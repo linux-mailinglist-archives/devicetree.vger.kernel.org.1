@@ -1,155 +1,96 @@
-Return-Path: <devicetree+bounces-11323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26987D5378
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:58:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACAE37D538D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:00:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E03F281721
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:58:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BDF61C20C78
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FB22B759;
-	Tue, 24 Oct 2023 13:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v+LZCGfn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57E92B76A;
+	Tue, 24 Oct 2023 14:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365A6125DE
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:58:20 +0000 (UTC)
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3B710CF
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:58:18 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40838915cecso37403885e9.2
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698155897; x=1698760697; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xwuYd5sYrMCGsWOHHrwWAyZKh6dV4sRNYK3tgcSb8O0=;
-        b=v+LZCGfneTsqFTMx0lrYKqKHDCLdEvdIJTiHgCv4+IRILA5PSBS3UZ43YZet8AKbni
-         km5vmeE+RObUAvaqBfOo/0t22BeebN9jWJIUtxCjR6QmWC2RVlk5QoDiVj7BEf18DxSC
-         S8E677JvHlxzVmMhm3l51Ul/znAgaaIj/xA9JcC1hCXix6hDnwhFlvGw7MzCXAKzI0sb
-         tvkNxbirBFYdV7VCkRy1qMGVCLKIcG9twuabht+y+XaxHKTKuVTKD443JAh9iyXSNtCQ
-         PM/NC9AUDf8UUAbU/abO5rDeHW10CrCOmH6G/pK37Cb/350h2ocApI3tNLJJcBZzMNIn
-         GL0A==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11806125DE;
+	Tue, 24 Oct 2023 14:00:38 +0000 (UTC)
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B6710D4;
+	Tue, 24 Oct 2023 07:00:37 -0700 (PDT)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-584042e7f73so2635324eaf.2;
+        Tue, 24 Oct 2023 07:00:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698155897; x=1698760697;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xwuYd5sYrMCGsWOHHrwWAyZKh6dV4sRNYK3tgcSb8O0=;
-        b=F3v96hMWQTAM6EvoCEvkI0yxeHPTB934uSXIO7DyI19YMOT4cQSKHdImx5eX+3EqeF
-         zDwy/wav9mHx1FMpI0WbBr5wHUIqlGOmlH5Xhz/pXbaacvnSI5fqPNJvGkfN4cKN9SHv
-         w/BfBM2mJcwdKLCtnOvR4nfEhjKoyStjwPBmSEmt4dhvnTbGgJF1cqnDmGVJH4XfjmLp
-         z4ep8y257OkY/CN8QA9tvhv5sLknCiACFZatWaXOlFjKzYSXdgLVIXozZ/AlpNRwkqnO
-         Z4Y+ei0A8kgUQbgDmJU3lK0jxmyVrCvRFeb0RCxRCgnU/OJRrN/yc7Q6WVumcUY3YB1B
-         0ZDg==
-X-Gm-Message-State: AOJu0YwdbHO4b/zccAaFLA8C3fCavFPEzDMYEvJF3Mdgi9Gs9IpOkQ+k
-	gVzXJ8yg6D9fmN+tbxF1R+U2rQ==
-X-Google-Smtp-Source: AGHT+IGJdl9cKzbwXnJAfc0hRScMwyMEHh50lfh1sPnwlVr8K6h23xvi3T/kr/TyLFJ1rg8KAMl5CQ==
-X-Received: by 2002:adf:e7d2:0:b0:32d:9541:b1e3 with SMTP id e18-20020adfe7d2000000b0032d9541b1e3mr8791941wrn.26.1698155896855;
-        Tue, 24 Oct 2023 06:58:16 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id p17-20020a5d68d1000000b0032d687fd9d0sm9991972wrw.19.2023.10.24.06.58.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 06:58:16 -0700 (PDT)
-Message-ID: <3431a8aa-714d-4abe-b9a7-cde26615d8d5@linaro.org>
-Date: Tue, 24 Oct 2023 15:58:14 +0200
+        d=1e100.net; s=20230601; t=1698156037; x=1698760837;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4H3TWjIQjf85zyBxIKv34+QRRIwX3a8rnrmF0O3dKsg=;
+        b=s/EV7EcOt5icWCFfLL3dpeLoFzNdHnSJC/smlmqm+yWNYlrikJ/9yU9dnlbzWXsmMp
+         wF6hiqUxxfH8wshEgsl/YpynM9CMhTcC0lPwetdhE1AFz1sOn0TMIG6U+OkWHU2mNjCS
+         hwNkEkF9jTNyhv6YRij8i9EJUjhFu1qLf96gnwE2ANETiznKnNnoTWkoPyJp7qVW2xjL
+         8S6hyHfxYoOAcdZiMSHGSP69BlLnXXJ9pfMF3x2LzFmj4YxjKNpfu/y49zgfxActq6YH
+         TZ8jvfGDz3XjKMM+dVY7lD0rYjg4LtrHleR5vg1CJjvlnmOymIQarKEF9OJcVP2Ife14
+         9Blw==
+X-Gm-Message-State: AOJu0YwOGZisC+2dUWFtfZr4/n1zXvn21ZaJ0yiZrC0GNzYQQsscX1XC
+	Mw+EzCdJ3gIp7IitlLGh0w==
+X-Google-Smtp-Source: AGHT+IH90mhjSMFC6luigjMC7lPfefuM1k+Kx6QDH0HCVGUzuacnelhYBUjr/MSrx7O9d++RvMeWuw==
+X-Received: by 2002:a4a:d6c5:0:b0:57b:8ff1:f482 with SMTP id j5-20020a4ad6c5000000b0057b8ff1f482mr12021472oot.0.1698156035973;
+        Tue, 24 Oct 2023 07:00:35 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w6-20020a9d6746000000b006ce33ba6474sm1865133otm.4.2023.10.24.07.00.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 07:00:34 -0700 (PDT)
+Received: (nullmailer pid 3550335 invoked by uid 1000);
+	Tue, 24 Oct 2023 14:00:33 -0000
+Date: Tue, 24 Oct 2023 09:00:33 -0500
+From: Rob Herring <robh@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Thomas Gleixner <tglx@linutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 0/6] imx6q related DT binding fixes
+Message-ID: <20231024140033.GA3544257-robh@kernel.org>
+References: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/5] soc: qcom: memory_dump: Add memory dump driver
-Content-Language: en-US
-To: Zhenhua Huang <quic_zhenhuah@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_tingweiz@quicinc.com
-References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <1698052857-6918-4-git-send-email-quic_zhenhuah@quicinc.com>
- <5bac8188-7d27-4efe-9493-dec4393fbeb0@linaro.org>
- <b455d4f7-0347-ac07-6d41-32b3f06c4f0a@quicinc.com>
- <454c4267-6bb7-456e-8dc1-cba83ffd1641@linaro.org>
- <1a5b2381-8987-2f92-d018-29fdbc23b826@quicinc.com>
- <2c8cc463-84dd-4f28-812d-f5eea922daef@linaro.org>
- <45b115e2-9e44-266c-e2ec-751392ce1c21@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <45b115e2-9e44-266c-e2ec-751392ce1c21@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com>
 
-On 24/10/2023 12:57, Zhenhua Huang wrote:
+On Thu, Aug 10, 2023 at 04:44:45PM +0200, Alexander Stein wrote:
+> Hi everyone,
 > 
+> while working on i.MX6Q based board (arch/arm/boot/dts/nxp/imx/imx6q-mba6a.dts)
+> I noticed several warnings on dtbs_check. The first 5 patches should be pretty
+> much straight forward.
+> I'm not 100% sure on the sixth patch, as it might be affected by incorrect
+> compatible lists. Please refer to the note in that patch.
+> I'm also no sure whether thse patches warrent a Fixes tag, so I only added that
+> for patch 3. All of these patches are independent and can be picked up
+> individually.
 > 
-> On 2023/10/23 20:53, Krzysztof Kozlowski wrote:
->>> It's not same as below case. Allocation is successful here, while the
->>> driver used more than allocated size.
->> $ man errno
->> ENOMEM means: Not enough space/cannot allocate memory
+> Best regards,
+> Alexander
 > 
-> I think "Not enough space" should be applicable here?
+> Alexander Stein (6):
+>   dt-bindings: trivial-devices: Remove national,lm75
+>   dt-bindings: imx-thermal: Add #thermal-sensor-cells property
+>   dt-bindings: display: imx: hdmi: Allow 'reg' and 'interrupts'
+>   dt-bindings: net: microchip: Allow nvmem-cell usage
+>   dt-bindings: timer: add imx7d compatible
+>   dt-bindings: timer: fsl,imxgpt: Add optional osc_per clock
 
-To me: not. This is some configuration problem, not lack of mmaped
-address space or lack of free pages. It's true that NOMEM is also used
-for limits (e.g. "The process's maximum number of mappings would have
-been exceeded.", "The process's RLIMIT_DATA limit, described in
-getrlimit(2), would have been exceeded."), but I am not sure whether
-this fits this case.
+I noticed this is the top warning for 32-bit i.MX[1] and found this. 
+Looks like 5 and 6 never got applied, so I've applied them.
 
-Best regards,
-Krzysztof
+Rob
 
+[1] https://gitlab.com/robherring/linux-dt/-/jobs/5361483372/artifacts/external_file/platform-warnings.log
 
