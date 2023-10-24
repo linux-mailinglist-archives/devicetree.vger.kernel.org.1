@@ -1,210 +1,86 @@
-Return-Path: <devicetree+bounces-11250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1F837D4F26
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:46:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCD07D4F41
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:55:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77B902818FC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:46:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 245DC1C20AAE
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884F826293;
-	Tue, 24 Oct 2023 11:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F55266BE;
+	Tue, 24 Oct 2023 11:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gp/kARWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0A3224F7
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 11:45:57 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A4B8F9
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 04:45:56 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qvFr8-0000Fe-N7; Tue, 24 Oct 2023 13:45:54 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qvFr5-003vwf-5s; Tue, 24 Oct 2023 13:45:51 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qvFr4-005Dz2-SD; Tue, 24 Oct 2023 13:45:50 +0200
-Date: Tue, 24 Oct 2023 13:45:45 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: William Qiu <william.qiu@starfivetech.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v6 2/4] pwm: opencores: Add PWM driver support
-Message-ID: <20231024114545.73ljfceuon2blkxz@pengutronix.de>
-References: <20231020103741.557735-1-william.qiu@starfivetech.com>
- <20231020103741.557735-3-william.qiu@starfivetech.com>
- <20231020112539.gctx5uj2rrhryulo@pengutronix.de>
- <b2ef7299-5d5a-4ef7-89fd-04b6130cb227@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40EC26293
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 11:55:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56BB9C433C7;
+	Tue, 24 Oct 2023 11:55:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698148529;
+	bh=ozsPNKeRYz2u0iELn3HbnuXXLgIDYAVxNBxhsn13OoU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=gp/kARWkeQCvZcJG51906PXhGlm2ymUqGxZ0YpevWlinAhdCJ8ccWWJ7UI4/r3z8E
+	 OT35Ycq8hze2eR21Dv7CifcmXJLQc9h4N6Sq0e4Zw0ZMVpVaIepz36MdvFlEOLwlq+
+	 DELIVmHBREeVxPD7McDdYBrugbGj0anqLa5spDHY+qD6QF4kT6RLBWgH36psqrk3YV
+	 NdWiQY5wlw126R6bLEx8scnNL4MiJHILywR1lCcJYKWG0+I33zpgAD5OrNu4MXEkHI
+	 4+Gho6kZkaMG7wsX6BgCqV/mBP/OwPToli+7r+LluAlsSOtTc0olHSUos3ayccLada
+	 LvtEhPyprQBTg==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
+ Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>,
+ Andrew Jones <ajones@ventanamicro.com>, Sunil V L
+ <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, Anup
+ Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
+ <apatel@ventanamicro.com>, Atish Patra <atishp@rivosinc.com>
+Subject: Re: [PATCH v11 01/14] RISC-V: Don't fail in
+ riscv_of_parent_hartid() for disabled HARTs
+In-Reply-To: <20231023172800.315343-2-apatel@ventanamicro.com>
+References: <20231023172800.315343-1-apatel@ventanamicro.com>
+ <20231023172800.315343-2-apatel@ventanamicro.com>
+Date: Tue, 24 Oct 2023 13:55:24 +0200
+Message-ID: <87h6mgs09f.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="w2zicncd2z4lq4pb"
-Content-Disposition: inline
-In-Reply-To: <b2ef7299-5d5a-4ef7-89fd-04b6130cb227@starfivetech.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---w2zicncd2z4lq4pb
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello William,
+Anup Patel <apatel@ventanamicro.com> writes:
 
-On Tue, Oct 24, 2023 at 05:16:49PM +0800, William Qiu wrote:
-> On 2023/10/20 19:25, Uwe Kleine-K=F6nig wrote:
-> > Hello,
-> >=20
-> > On Fri, Oct 20, 2023 at 06:37:39PM +0800, William Qiu wrote:
-> >> Add Pulse Width Modulation driver support for OpenCores.
-> >>=20
-> >> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> >> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> >> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> >> ---
-> >>  MAINTAINERS              |   7 ++
-> >>  drivers/pwm/Kconfig      |  11 ++
-> >>  drivers/pwm/Makefile     |   1 +
-> >>  drivers/pwm/pwm-ocores.c | 211 +++++++++++++++++++++++++++++++++++++++
-> >>  4 files changed, 230 insertions(+)
-> >>  create mode 100644 drivers/pwm/pwm-ocores.c
-> >>=20
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index 6c4cce45a09d..321af8fa7aad 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -16003,6 +16003,13 @@ F:	Documentation/i2c/busses/i2c-ocores.rst
-> >>  F:	drivers/i2c/busses/i2c-ocores.c
-> >>  F:	include/linux/platform_data/i2c-ocores.h
-> >>=20
-> >> +OPENCORES PWM DRIVER
-> >> +M:	William Qiu <william.qiu@starfivetech.com>
-> >> +M:	Hal Feng <hal.feng@starfivetech.com>
-> >> +S:	Supported
-> >> +F:	Documentation/devicetree/bindings/pwm/opencores,pwm-ocores.yaml
-> >> +F:	drivers/pwm/pwm-ocores.c
-> >> +
-> >>  OPENRISC ARCHITECTURE
-> >>  M:	Jonas Bonn <jonas@southpole.se>
-> >>  M:	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>
-> >> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> >> index 8ebcddf91f7b..cbfbf227d957 100644
-> >> --- a/drivers/pwm/Kconfig
-> >> +++ b/drivers/pwm/Kconfig
-> >> @@ -434,6 +434,17 @@ config PWM_NTXEC
-> >>  	  controller found in certain e-book readers designed by the original
-> >>  	  design manufacturer Netronix.
-> >>=20
-> >> +config PWM_OCORES
-> >> +	tristate "Opencores PWM support"
-> >> +	depends on HAS_IOMEM && OF
-> >> +	depends on COMMON_CLK && RESET_CONTROLLER
-> >=20
-> > Would it make sense to add something like:
-> >=20
-> > 	depends on ARCH_SOMETHING || COMPILE_TEST
-> >=20
-> > here?
-> >=20
-> But there is no mention of architectural limitations in the OpenCores's
-> specification.
+> The riscv_of_processor_hartid() used by riscv_of_parent_hartid() fails
+> for HARTs disabled in the DT. This results in the following warning
+> thrown by the RISC-V INTC driver for the E-core on SiFive boards:
+>
+> [    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/interru=
+pt-controller
+>
+> The riscv_of_parent_hartid() is only expected to read the hartid from
+> the DT so we should directly call of_get_cpu_hwid() instead of calling
+> riscv_of_processor_hartid().
+>
+> Fixes: ad635e723e17 ("riscv: cpu: Add 64bit hartid support on RV64")
 
-I already guessed that. Still it probably makes no sense to enable that
-option on most machines. The PWM device found in i.MX SoCs can
-theoretically also be implemented on AT91 or S390x. In practice it
-isn't, so there is a dependency on ARCH_MXC || COMPILE_TEST.
+Patch 1 and 3: These fixes are stand alone, and doesn't have to be part
+of the series.
 
-Consider the role of someone who does a kernel bump for a certain
-machine (on one end of the spectrum) or a distribution kernel (on the
-other end).
+Wouldn't it be better to pull these out of the long-going series, and
+try to get in the fixes ASAP?
 
-If you take a 6.5 x86_64 allmodconfig + COMPILE_TEST=3Dn and upgrade to
-v6.6-rc7 and do an oldconfig, you get 90 questions[1].
 
-Just looking quickly through this list, among them are:
-
-	DRM support for Loongson Graphics (DRM_LOONGSON) [N/m/?] (NEW)=20
-	Xilinx AXI DMAS Engine (XILINX_DMA) [N/m/y/?] (NEW)
-	Clock driver for Renesas VersaClock 3 devices (COMMON_CLK_VC3) [N/m/y/?] (=
-NEW)
-	Realtek RT1017 SDCA Codec - SDW (SND_SOC_RT1017_SDCA_SDW) [N/m/?] (NEW)
-
-I didn't check in detail and maybe one or the other is valid on x86_64,
-but I'd be surprised if you find two that are sensible to enable on
-x86_64 to support a real machine.
-
-While I think Kconfig cannot be held responsible to only allow
-generating "real world sensible" configurations, we should work a bit
-harder to rule out the obvious violators and make it easy for people
-configuring the kernel where sensible.
-
-In my book it's better to have a too strong dependency at first for a
-new driver (but allow it with COMPILE_TEST). Someone who as a device
-needing that driver will find it out and speak up. However if you allow
-to enable the driver everywhere, many people will disable the driver
-(maybe using yes '' | make oldconfig), some will spend time to research
-about this option to find which machines actually have such a device and
-if the machine(s) they care about are in this set. This is a waste of
-time and opportunities. (And note, this isn't only about people spending
-time to decide if they enable or disable PWM_OCORES, this is also about
-people who use yes '' because there are too many questions and so they
-might miss the handful of useful ones.)
-
-Best regards
-Uwe
-
-[1] measured using
-
-	yes '' | make oldconfig
-
-and counting the occurrences of "(NEW)".
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---w2zicncd2z4lq4pb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmU3rmQACgkQj4D7WH0S
-/k5J/Qf+NrB4b444Ylur3Cvou63Nqg11EseoPk/INOD1fQCFZc/DgsqpNDFCfOcr
-8Z+nDdgC1dDs024syUcHnjgMK0ssOP6qBTNJ0OKUpkk+kS+E0grO2U5iZcMGpLtc
-e/ZMQ0fepTQ3PasKQdJ0PpgfMjkDVHTdEL9YwxW/RAm0IJsq7dwnRDQPVRtxrNlr
-oRvKzcODshrZX2C+3FQqCCIVhk2oySokKzCRGC0RHA1kLSf1aujl8wIs7/d9jlcy
-8dv/boJGK/pqtQFKHmtAYAqDC8KzbMiHNgdaOwLla+y+HrI74xsB18BXJM/zARW6
-sHBLPQDsmP7NCAVB+pjYC+s9KbnJAg==
-=FO4l
------END PGP SIGNATURE-----
-
---w2zicncd2z4lq4pb--
+Bj=C3=B6rn
 
