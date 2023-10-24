@@ -1,54 +1,65 @@
-Return-Path: <devicetree+bounces-11183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D447D4A98
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:42:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C277D4ACA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:48:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2524A281892
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:42:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F41CB1C20B2A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA6E11714;
-	Tue, 24 Oct 2023 08:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AEF125B0;
+	Tue, 24 Oct 2023 08:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E3QhKZSU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W8i/k8FN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B36011701;
-	Tue, 24 Oct 2023 08:42:03 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63ECD12C;
-	Tue, 24 Oct 2023 01:42:00 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39O7fNlc000679;
-	Tue, 24 Oct 2023 08:41:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=gySDwgLbcFWjq9SutAIKJaVMTjlGX9BPGXsVpeNRcBk=;
- b=E3QhKZSUXzkkMHDq3Ss4/eN+D3oZtNXounjWCSBTOLqgIWW/RlWXTJcM2fL5wowPScaT
- YUSfvXTgn4GtAPGAD4GXvAJI67+F00zUw5KeAqPD91ixlfjemxlr4rrM+eTH0mk/pqXQ
- gw2iBC5DZIkGfiZvebMIam9pEWwYDzrUBNEVlN0Drv0hWt5bOVOi464VosOhWkRhkw7j
- gVf6+VOfMyotptBEd8CJkpRvsRG/3maKDYhq62jhKKGwNz90bUYnav/ZeBU0aaZHKU0m
- DuRYFxjff2CtYGA4oxcsuUE1zK7d2JRSDBL9yPZUAy17I7AuFMS1ypBPoxhw/N+NHZq1 cA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3twxa0hebr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 08:41:44 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39O8fhRG011642
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 08:41:43 GMT
-Received: from [10.249.18.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
- 2023 01:41:36 -0700
-Message-ID: <00044364-9a6a-4138-9c17-7b0b801e9f10@quicinc.com>
-Date: Tue, 24 Oct 2023 14:11:31 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC31211713
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:48:00 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FADC0
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:47:55 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507c91582fdso6214833e87.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:47:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698137274; x=1698742074; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bO6YHAKaV8AqWNOWS1Qva9aD4w5t1sEQw22AzPm5E0I=;
+        b=W8i/k8FNeJqyCmedjiR0sZX1NSZzBei3zc1rfa63U6CigaBBycmCIZLRQyzmsfP9/U
+         XMHgAwvOsFW4dl8q4jiQZBW6uJHx8nGyArct1aoVBs1SRJv/0b5NGwLsR/0MeM5IOW/L
+         7lEWeisicBZzF4nySNiTbGClafPrEyqdApKk4qHM/ReCO4DW6qsou+Pt0brDxPGrkQV5
+         G3TTpo1Ci8mdcnGhuFqqSQQGPPDo7sQmRtyMTehl3RFlpZLLynpYp2xlM6l3+BG3Be18
+         lCABfUHHAx3LiZz76ARp3TN5hfIYz/GfPxKpLtsFKYIuP86lMaGYtfOpNmFzBhnm3HWh
+         JWfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698137274; x=1698742074;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bO6YHAKaV8AqWNOWS1Qva9aD4w5t1sEQw22AzPm5E0I=;
+        b=QhDtQDtAhUDnUOcBAgaNnWt+DHiTyFAyU90GcW0YbVM5Qr/ad3Had31ESCHLkUZa63
+         fCDAlkjzUWvyBrJZ/h/OnSd+VKmVE6s3VR28hGNkvoiwHHZelMt61rKJebXm4j+R/agM
+         Y3VR8r+rdRNPYY4zcXzIVO3uF25zRkGlXKRcApyzbMdSQ86PeX65N6tF19KpEkvVldiU
+         X1ePW2B05eLeRdKq1DBfkwm1YuwnpLHQ/l7DJZjEpz2wU4Jc/BLB32yVP+PTTQV5YIK5
+         pfRolq+S1cOc+qlxhmp+YtlwcJ/CBQ8oqOfwNUCZQM40727NArjd+qh/S71CwMog7bFi
+         LfPw==
+X-Gm-Message-State: AOJu0YzvatYlUB7bx4UwB7K1JdFOmQvSJ6rCQbHYQ38QspMHDCQrdGQv
+	Yd8tmGiGvsXB1Exyp9BT0GvO6Q==
+X-Google-Smtp-Source: AGHT+IHBDNN5VJtRTOtpzO2H6y3ZoFnXgbo+ybTkq/If8jtD5A1PlkyYgvuX+vSNzX0t3GJ+glajyQ==
+X-Received: by 2002:a05:6512:2815:b0:503:3447:b704 with SMTP id cf21-20020a056512281500b005033447b704mr10658964lfb.0.1698137273700;
+        Tue, 24 Oct 2023 01:47:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id a3-20020a5d4d43000000b003196b1bb528sm9421868wru.64.2023.10.24.01.47.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Oct 2023 01:47:52 -0700 (PDT)
+Message-ID: <72526de5-5b2b-474b-a04a-6b3a1b374f23@linaro.org>
+Date: Tue, 24 Oct 2023 10:47:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,125 +67,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 06/10] usb: dwc3: qcom: Enable wakeup for applicable
- ports of multiport
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: aspeed: add Meta Minerva Harma
+ board
 Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-7-quic_kriskura@quicinc.com>
- <ZTaViatsRY7LCbIX@hovoldconsulting.com>
- <7e9bdd65-35b7-43c2-810a-2cd81f736084@quicinc.com>
- <ZTdt-wyCHh3i0SlK@hovoldconsulting.com>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZTdt-wyCHh3i0SlK@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20231024082404.735843-1-peteryin.openbmc@gmail.com>
+ <20231024082404.735843-2-peteryin.openbmc@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231024082404.735843-2-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ksY2q5lXohwGC7tFx5fG0_k9SAMQS3LX
-X-Proofpoint-ORIG-GUID: ksY2q5lXohwGC7tFx5fG0_k9SAMQS3LX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-24_07,2023-10-19_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
- mlxscore=0 phishscore=0 mlxlogscore=964 impostorscore=0 clxscore=1015
- bulkscore=0 adultscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
- definitions=main-2310240073
 
-
-On 10/24/2023 12:40 PM, Johan Hovold wrote:
->>>
->>> This comment no longer makes sense with your current implementation.
->>>
->> Can you help elaborate on your comment ? Do you mean that this API
->> doesn't get speed on all ports, but this has to be called in a loop to
->> get all the port speeds ? In that sense, I agree, I can change the
->> comments here.
+On 24/10/2023 10:24, Peter Yin wrote:
+> Document the new compatibles used on Meta Minerva Harma.
 > 
-> It does not make sense to keep only half the comment after your update
-> as it is a suggestion for how one could go about and generalise this for
-> multiport, which is what you are now doing.
->   
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
 
-Thanks for explanation. Will update the comments.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->>> But perhaps this should be done using usb_hub_for_each_child() instead
->>> as that may be more efficient. Then you use this function to read out
->>> the speed for all the ports in go (and store it in the port structures I
->>> mentioned). Please determine which alternative is best.
->>>
->> Either ways is fine. We would have qcom->num_ports to determine how many
->> speeds we can read.
-> 
-> That's not the point. I'm referring to which alternative is less
-> computationally expensive and allows for a clean implementation.
-> 
-> Please do try to figure it out yourself.
-> 
-I don't think its much of a difference:
+Best regards,
+Krzysztof
 
-while (loop over num_ports) {
-	read_usb2_speed()
-}
-
-read_usb2_speed() {
-	while (loop over num_ports) {
-		hub api to read speed.
-	}
-}
-
-The second one would avoid calling read_usb2_speed multiple times. Will 
-take that path.
-
->>>
->>> [ I realise that the confusion around hs_phy_irq may be partly to blame
->>> for this but since that one is also a per-port interrupt, that's no
->>> longer an issue. ]
->>
->> I don't want to add support for this right away [1]. I would like to
->> keep hs_phy_irq outside the loop for now.
-> 
-> No. Stop trying to take shortcuts. Again, this is upstream, not
-> Qualcomm's vendor kernel.
-> 
-
-I don't think it is a shortcut.
-
-The reason I said I would keep it out of loop is I know why we need 
-DP/DM/SS IRQ's during wakeup. The wakeup signals come in as 
-rising/falling edges in high speed on DP/DM lines and LFPS terminations 
-come on SS lines.
-
-So we need these 3 interrupts for sure in wakeup context.
-hs_phy_irq is not mandatory for wakeup. Any particular reason why it is 
-needed to add driver support for hs_phy_irq's of multiport now ? May be 
-I am missing something. If there is any reason why we need to add it 
-now, I would try to learn and see if it has any side effects (like 
-generating spurious wakeup's) and if nothing, I would add it back to 
-port structure.
-
-Regards,
-Krishna,
 
