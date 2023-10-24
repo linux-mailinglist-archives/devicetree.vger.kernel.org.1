@@ -1,65 +1,35 @@
-Return-Path: <devicetree+bounces-11471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81487D5DEF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 00:09:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5502F7D5E2D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 00:29:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EE11B20EC6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:09:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 135A52812F4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB4C224E7;
-	Tue, 24 Oct 2023 22:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y397B1xB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 047FA43ABF;
+	Tue, 24 Oct 2023 22:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7572D622
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:09:48 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E479010C9
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:09:46 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4083f61322fso39309615e9.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:09:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698185385; x=1698790185; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eW4/b7pttVdrOHJ1oWcsCaKgbQur0E4wQP+v/cgTaDg=;
-        b=Y397B1xB5GlLazO5+O0yi0MMCZDDdnIWCgUCKhENODt9bYSu/H1Rv9jr4pm6pYDRnQ
-         RlePr58GoJupKikZ5pISiM4KnQ0tFt/H4A1gsGbM/DpS73WcZuqBqob2P7DrXvKORJ6m
-         vu8MKRSPqvbOU21zdMhG95NBXPGUiNhPH2v5ik3hJPemSHzu94OiUPXBgb+y/xQCf5xz
-         Y61nTOYFb1GffwRuFJqHnSJP7en0wQGs97imKIOu92+Tp1uMvIVxUsOocxGbV3+j5NgA
-         utqQ58wSxYGrI9+wW371EaxrdB6hFKZYNoDgrfhE10ETrUhXnQqQGY3/JnjhsPJpgDKK
-         upxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698185385; x=1698790185;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eW4/b7pttVdrOHJ1oWcsCaKgbQur0E4wQP+v/cgTaDg=;
-        b=q1FcKiaJx4E8iuMQoU8zI1W7r/RGgYMcKoLp1sT09CrjDs8ANxuCzXEQdAebNCznqB
-         ly+DOZ6IlZ9oV5vvJv98q4FlKQxWjGrs0llVBhNG+fht5ytrwJngk6lQzIT46ywYH+17
-         zU07iPEfc/4hI4jdQNj8PetSXGVGYeiHFRrCbzsmXxImT1CCCCJkYTT/GpLL1mntFc+m
-         3+K0M/vcGjY725PhvNISgyWECe0gmNDHsqhdA2bvORfdOR7lYc3Hhw9Z42tSJMV90gfG
-         DecJ9aUaB4pAOFGymrn/Ops4yHi64mK/TIBDEdiuXmFJuqC+JamgIv/Zgq0jmUIfgmg6
-         UXng==
-X-Gm-Message-State: AOJu0YxKx1LnF6BXW2mUFxrFDPA13sjmO5gjnaIXLwNvceKRpzO48+xr
-	se2Q8QvAPCIWQGgwaeBbF24J/ZVROHSuljm15ffhqA==
-X-Google-Smtp-Source: AGHT+IGaoaxXCtiNpKvBP2hDYd/SGzvJRL76ZfuEMP5bouvglaPXvLiIJvHzvg7G9VhJCPmwMwoYhQ==
-X-Received: by 2002:adf:f50d:0:b0:31f:afeb:4e7e with SMTP id q13-20020adff50d000000b0031fafeb4e7emr8729753wro.37.1698185385357;
-        Tue, 24 Oct 2023 15:09:45 -0700 (PDT)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id g7-20020a5d6987000000b003232380ffd7sm10738098wru.102.2023.10.24.15.09.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 15:09:44 -0700 (PDT)
-Message-ID: <07f48f49-4264-46f6-b9ad-f6188bd074b8@linaro.org>
-Date: Tue, 24 Oct 2023 23:09:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26BB942909
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:28:57 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF5CB10DE;
+	Tue, 24 Oct 2023 15:26:39 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0C5FB2F4;
+	Tue, 24 Oct 2023 15:27:07 -0700 (PDT)
+Received: from [10.57.5.249] (unknown [10.57.5.249])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 22CAF3F762;
+	Tue, 24 Oct 2023 15:26:23 -0700 (PDT)
+Message-ID: <56bbb2ad-5cea-46ad-83be-d6d7fd9bbfde@arm.com>
+Date: Tue, 24 Oct 2023 23:26:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,79 +37,192 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: starqltechn: disable crypto
-Content-Language: en-US
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20231024154338.407191-1-dsankouski@gmail.com>
- <20231024154338.407191-6-dsankouski@gmail.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231024154338.407191-6-dsankouski@gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: iommu: Add Translation Buffer Unit
+ bindings
+To: Rob Herring <robh@kernel.org>, Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
+ joro@8bytes.org, devicetree@vger.kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
+ quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com,
+ djakov@kernel.org
+References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
+ <20231019021923.13939-2-quic_c_gdjako@quicinc.com>
+ <20231024184248.GA252155-robh@kernel.org>
+Content-Language: en-GB
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20231024184248.GA252155-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 24/10/2023 16:43, Dzmitry Sankouski wrote:
-> Disable the crypto block due to it causing an SError in qce_start() on
-> the starqltechn, which happens upon every boot when cryptomanager tests are
-> enabled.
+On 2023-10-24 19:42, Rob Herring wrote:
+> On Wed, Oct 18, 2023 at 07:19:18PM -0700, Georgi Djakov wrote:
+>> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
+>> of the ARM SMMU-500, that consists of a single TCU (Translation Control
+>> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
+>> being described in the ARM SMMU DT schema. Add also bindings for the
+>> TBUs so that we can describe their properties.
 > 
-> Same problem is on Lenovo C630, see
-> commit 382e3e0eb6a8 ("arm64: dts: qcom: c630: disable crypto due to serror")
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> Link: https://lore.kernel.org/r/20211105035235.2392-1-steev@kali.org
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-msm@vger.kernel.org
-> 
-> ---
-> 
-> Changes in v2:
-> - none
-> 
->   arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> index f2bc3c412a2f..0e2c7df2baa7 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-> @@ -504,6 +504,11 @@ touchscreen@48 {
->   	};
->   };
->   
-> +&crypto {
-> +	/* FIXME: qce_start triggers an SError */
-> +	status = "disable";
-> +};
-> +
->   /* Modem/wifi*/
->   &mss_pil {
->   	status = "okay";
+> Arm SMMU-500 is an implementation, too. Is QCom's a modified
+> implementation or you are just the first to want to control TBU
+> resources?
 
-Probably another patch that should have Fixes.
+It's very very modified. The stock MMU-500 has very few 
+microarchitectural registers[1], they all live within the regular SMMU 
+address space, are all Secure-only by default, and don't do anything 
+like the shenanigans here.
 
-BTW when you do "git send-email" please include a 
-"--to=someone@adomain.xyz" your emails appear with a weird red box that 
-declares "(no To-header on input)<>" in Thunderbird - I guess because 
-you didn't do "git send-email --to="
+That said, looking at patch #3, I don't really understand why we need 
+any of this stuff upstream... AFAICS it's doing an insane amount of work 
+to use complicated imp-def debug functionality to duplicate things that 
+the main driver can already do far more efficiently. Sure, in general it 
+seems like it could potentially be useful stuff for bringing up and 
+debugging a new driver, but the Linux SMMUv2 driver is mature and 
+frankly already closer to being obsolete than to being new...
 
-For preference I do "--to=" for everybody who appears as a 
-maintainer/supporter and "--cc=" to the named mailing lists with myself 
-last.
+[ digression since I can't be bothered to split this discussion by 
+replying separately to patch #3: ]
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+I mean, just looking at qsmmuv500_iova_to_phys(), you do realise that 
+that's going to be called potentially multiple times by iommu-dma for 
+*every* dma_sync and dma_unmap call and really wants to be fast, right? 
+This brings to mind all the work I did a couple of years back[2] because 
+strict TLB invalidation on unmap was considered too slow for certain 
+devices on QCom platforms by ChromeOS, yet what this achieves looks like 
+it could easily be up to an order of magnitude slower again :(
 
----
-bod
+> You need to split this into what could be any SMMU-500 implementation
+> and what is truly QCom specific (i.e. modified). Unlike some licensed IP
+> that's a free-for-all on DT resources, Arm IP has public specs so we
+> don't have to guess.
+> 
+>> In this DT schema, the TBUs are modelled as a child devices of the TCU
+>> and each of them is described with it's own resources such as clocks,
+>> power domains, interconnects etc.
+>>
+>> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/iommu/arm,smmu.yaml   | 13 ++++
+>>   .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 67 +++++++++++++++++++
+>>   2 files changed, 80 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> index cf29ab10501c..afc323b4bbc5 100644
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -230,6 +230,19 @@ properties:
+>>         enabled for any given device.
+>>       $ref: /schemas/types.yaml#/definitions/phandle
+>>   
+>> +  '#address-cells':
+>> +    const: 2
+>> +
+>> +  '#size-cells':
+>> +    const: 2
+>> +
+>> +  ranges: true
+>> +
+>> +patternProperties:
+>> +  "^tbu@[0-9a-f]+$":
+>> +    $ref: qcom,qsmmuv500-tbu.yaml
+> 
+> Generic SMMU binding includes something QCom specific. That's not right.
+> 
+> 
+>> +    description: The SMMU may include Translation Buffer Units (TBU) as subnodes
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+>> new file mode 100644
+>> index 000000000000..4baba7397e90
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+>> @@ -0,0 +1,67 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm TBU (Translation Buffer Unit)
+>> +
+>> +maintainers:
+>> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
+>> +
+>> +description:
+>> +  TBU nodes represent Translation Buffer Units in an ARM SMMU. Each TBU node
+>> +  should be a child node of the SMMU in the device tree.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,qsmmuv500-tbu
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: Address and size of the TBU's register space.
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: base
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    maxItems: 1
+
+What does this interconnect represent? MMU-500 TBUs don't access memory 
+themselves[3], they only have an internal AXI Stream interface to the 
+TCU to request translations.
+
+Thanks,
+Robin.
+
+[1] 
+https://developer.arm.com/documentation/ddi0517/f/programmers-model/memory-model
+[2] 
+https://lore.kernel.org/all/d652966348c78457c38bf18daf369272a4ebc2c9.1628682049.git.robin.murphy@arm.com/
+[3] Yeah yeah, other than the special case of TBU0 issuing pagetable 
+walks on behalf of the TCU when it's not configured with its own 
+dedicated PTW interface, I know :P
+
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  qcom,stream-id-range:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    description: Stream ID range (address and size) that is assigned by the TBU
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interconnects
+>> +  - qcom,stream-id-range
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+>> +    #include <dt-bindings/interconnect/qcom,sdm845.h>
+>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>> +
+>> +
+>> +    tbu@150e1000 {
+>> +        compatible = "qcom,qsmmuv500-tbu";
+>> +        reg = <0x150e1000 0x1000>;
+>> +        reg-names = "base";
+>> +        clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
+>> +        power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
+>> +        interconnects = <&system_noc MASTER_GNOC_SNOC 0 &config_noc SLAVE_IMEM_CFG 0>;
+>> +        qcom,stream-id-range = <0x1c00 0x400>;
+>> +    };
+>> +
+>> +...
 
