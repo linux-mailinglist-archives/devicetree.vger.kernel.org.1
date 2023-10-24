@@ -1,165 +1,253 @@
-Return-Path: <devicetree+bounces-11109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA817D4443
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 02:48:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBA267D445D
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 02:57:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E77C1C20A5D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 00:48:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AA33B20D6E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 00:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E9A1118;
-	Tue, 24 Oct 2023 00:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67AA31855;
+	Tue, 24 Oct 2023 00:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UHXuYbFP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bWet3xyc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E72E7E
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:48:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AE16C433C8;
-	Tue, 24 Oct 2023 00:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698108503;
-	bh=hDqlVLfIF2Hifcp5Msw9iNRqkC7H0PnW326FpusT624=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=UHXuYbFPF1F6hZViXJ4I+IIPTzjRGgeNgsoruXx/gOSCuCUuLXgw9TdAE4jPQafBf
-	 n/V/GSlflJtVk6fUDGt3RabMKlZRmbpJvyp2JelB0SrG3mc64V7BP0XF40OJsCpSzr
-	 g1FRvq2rDzws6QNzTf5k4YX/In63m0L7UoQd9FdQJGXBCterDC80UeukE+ZXjN3Sg5
-	 hNdhfrxfAZ94Tv77jyz1oc+GjD3i+9kF5/HvwJb2i3FWbcB5N/pi0dz29JV7/iryag
-	 FJ83oHo73zJSvfp2aLcD/OcrYd8GXEJzkFw3OxRvtH4VkiBua+HFsaUYSBVNtYpkr5
-	 URjqaczsK8CsQ==
-Message-ID: <73db289df68b179ac0e0388260b4f939.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DF97E;
+	Tue, 24 Oct 2023 00:56:53 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DDD210E;
+	Mon, 23 Oct 2023 17:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=78+m0X28g+8K5fIS7BSl6fCBE5Ci01OLZTR2J9ZW1K4=; b=bW
+	et3xycyU6pd/IilZVvr/W60pMyg8jDYcWaWrsakzeGtJBPGJm+6EyueGFx5HUHZQvJla6ZYoqp9EF
+	LQUowD3SjVmArluMRq2HAvW3I8R+w+iaX236FuwicHclWDy3zmlA9fAI441J+OpyWcphlLTCAR9+p
+	gitztlkGwuGLQvc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qv5ir-0001eZ-O7; Tue, 24 Oct 2023 02:56:41 +0200
+Date: Tue, 24 Oct 2023 02:56:41 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
+	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, horatiu.vultur@microchip.com,
+	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
+	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
+Subject: Re: [PATCH net-next v2 5/9] net: ethernet: oa_tc6: implement
+ internal PHY initialization
+Message-ID: <5c240b3b-60c2-45bb-8861-e3a8de28d00f@lunn.ch>
+References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
+ <20231023154649.45931-6-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <49422d258d67d33a2547fbb7f4f6e72d489c2301.1697781921.git.quic_varada@quicinc.com>
-References: <cover.1697781921.git.quic_varada@quicinc.com> <49422d258d67d33a2547fbb7f4f6e72d489c2301.1697781921.git.quic_varada@quicinc.com>
-Subject: Re: [PATCH v5 5/9] clk: qcom: apss-ipq6018: ipq5332: add safe source switch for a53pll
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, ilia.lin@kernel.org, konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, mturquette@baylibre.com, quic_kathirav@quicinc.com, rafael@kernel.org, robh+dt@kernel.org, sivaprak@codeaurora.org, viresh.kumar@linaro.org
-Date: Mon, 23 Oct 2023 17:48:21 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231023154649.45931-6-Parthiban.Veerasooran@microchip.com>
 
-Quoting Varadarajan Narayanan (2023-10-19 23:19:35)
-> Stromer Plus PLL found on IPQ53xx doesn't support dynamic
-> frequency scaling. To achieve the same, we need to park the APPS
-> PLL source to GPLL0, re configure the PLL and then switch the
-> source to APSS_PLL_EARLY.
->=20
-> To support this, register a clock notifier to get the PRE_RATE
-> and POST_RATE notification. Change the APSS PLL source to GPLL0
-> when PRE_RATE notification is received, then configure the PLL
-> and then change back the source to APSS_PLL_EARLY.
->=20
-> Additionally, not all SKUs of IPQ53xx support scaling. Hence,
-> do the above to the SKUs that support scaling.
->=20
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> +	/* Minimum supported Chunk Payload Size */
+>  	mincps = FIELD_GET(MINCPS, regval);
+> +	/* Cut-Through Capability */
+>  	ctc = (regval & CTC) ? true : false;
 
-The Kconfig change (patch#1) should be squashed into here. Otherwise
-there isn't a call to qcom_smem_get_soc_id() in the clk driver.
+These comment should be in the patch which added these, not here.
 
-> ---
-> v5:     clk_notifier_register -> devm_clk_notifier_register
-> v3:     devm_kzalloc for cpu_clk_notifier instead of global static
-> v2:     Handle ABORT_RATE_CHANGE
->         Use local variable for apcs_alias0_clk_src.clkr.hw
->         Use single line comment instead of multi line style
-> ---
->  drivers/clk/qcom/apss-ipq6018.c | 58 +++++++++++++++++++++++++++++++++++=
-+++++-
->  1 file changed, 57 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6=
-018.c
-> index 4e13a08..e6295b8 100644
-> --- a/drivers/clk/qcom/apss-ipq6018.c
-> +++ b/drivers/clk/qcom/apss-ipq6018.c
-> @@ -9,8 +9,11 @@
->  #include <linux/clk-provider.h>
->  #include <linux/regmap.h>
->  #include <linux/module.h>
-> +#include <linux/clk.h>
-> +#include <linux/soc/qcom/smem.h>
-> =20
->  #include <dt-bindings/clock/qcom,apss-ipq.h>
-> +#include <dt-bindings/arm/qcom,ids.h>
-> =20
->  #include "common.h"
->  #include "clk-regmap.h"
-> @@ -84,15 +87,68 @@ static const struct qcom_cc_desc apss_ipq6018_desc =
-=3D {
->         .num_clks =3D ARRAY_SIZE(apss_ipq6018_clks),
->  };
-> =20
-> +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long =
-action,
-> +                               void *data)
+> +	/* Direct PHY Register Access Capability */
+> +	dprac = (regval & DPRAC) ? true : false;
+> +	/* Indirect PHY Register access Capability */
+> +	iprac = (regval & IPRAC) ? true : false;
+>  
+>  	regval = 0;
+>  	oa_node = of_get_child_by_name(spi->dev.of_node, "oa-tc6");
+> @@ -242,7 +257,7 @@ static int oa_tc6_configure(struct oa_tc6 *tc6)
+>  			if (tc6->cps < mincps)
+>  				return -ENODEV;
+>  		} else {
+> -			tc6->cps = 64;
+> +			tc6->cps = OA_TC6_MAX_CPS;
+
+This also should of been in an earlier patch.
+
+>  		}
+>  		if (of_property_present(oa_node, "oa-txcte")) {
+>  			/* Return error if the tx cut through mode is configured
+> @@ -266,8 +281,26 @@ static int oa_tc6_configure(struct oa_tc6 *tc6)
+>  			regval |= PROTE;
+>  			tc6->prote = true;
+>  		}
+> +		if (of_property_present(oa_node, "oa-dprac")) {
+> +			/* Return error if the direct phy register access mode
+> +			 * is configured but it is not supported by MAC-PHY.
+> +			 */
+> +			if (dprac)
+> +				tc6->dprac = true;
+> +			else
+> +				return -ENODEV;
+> +		}
+
+This is not in the binding. Why do we even need to be able to
+configure it. Direct is faster, so use it is available. If not, use
+indirect. And if both dprac and iproc are false, dev_err() and
+-ENODEV.
+
+> +static int oa_tc6_mdiobus_read(struct mii_bus *bus, int phy_id, int idx)
+
+It would be good to put direct in the name. If somebody implements
+indirect, it will make the naming easier.
+
 > +{
-> +       struct clk_hw *hw;
-> +       u8 index;
-> +       int err;
+> +	struct oa_tc6 *tc6 = bus->priv;
+> +	u32 regval;
+> +	bool ret;
 > +
-> +       if (action =3D=3D PRE_RATE_CHANGE)
-> +               index =3D P_GPLL0;
-> +       else if (action =3D=3D POST_RATE_CHANGE || action =3D=3D ABORT_RA=
-TE_CHANGE)
-> +               index =3D P_APSS_PLL_EARLY;
-> +       else
-> +               return NOTIFY_OK;
+> +	ret = oa_tc6_read_register(tc6, 0xFF00 | (idx & 0xFF), &regval);
+> +	if (ret)
+> +		return -ENODEV;
 > +
-> +       hw =3D &apcs_alias0_clk_src.clkr.hw;
-> +       err =3D clk_rcg2_mux_closest_ops.set_parent(hw, index);
-> +
-> +       return notifier_from_errno(err);
+> +	return regval;
 > +}
 > +
->  static int apss_ipq6018_probe(struct platform_device *pdev)
+> +static int oa_tc6_mdiobus_write(struct mii_bus *bus, int phy_id, int idx,
+> +				u16 val)
+> +{
+> +	struct oa_tc6 *tc6 = bus->priv;
+> +
+> +	return oa_tc6_write_register(tc6, 0xFF00 | (idx & 0xFF), val);
+> +}
+> +
+> +static int oa_tc6_phy_init(struct oa_tc6 *tc6)
+> +{
+> +	int ret;
+> +
+> +	if (tc6->dprac) {
+
+You can avoid the indentation by first checking indirect is the only
+choice, and doing a dev_err() followed by return -ENODEV.
+
+> +		tc6->mdiobus = mdiobus_alloc();
+> +		if (!tc6->mdiobus) {
+> +			netdev_err(tc6->netdev, "MDIO bus alloc failed\n");
+> +			return -ENODEV;
+> +		}
+> +
+> +		tc6->mdiobus->phy_mask = ~(u32)BIT(1);
+
+Does the standard define this ? BIT(1), not BIT(0)?
+
+>  /**
+>   * oa_tc6_init - allocates and intializes oa_tc6 structure.
+>   * @spi: device with which data will be exchanged.
+> - * @prote: control data (register) read/write protection enable/disable.
+
+Something else which should of been in the previous patch. Please look
+through this patch and find all the other instances.
+
+> + * @netdev: network device to use.
+>   *
+>   * Returns pointer reference to the oa_tc6 structure if all the memory
+>   * allocation success otherwise NULL.
+>   */
+> -struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
+> +struct oa_tc6 *oa_tc6_init(struct spi_device *spi, struct net_device *netdev)
 >  {
-> +       struct clk_hw *hw =3D &apcs_alias0_clk_src.clkr.hw;
-> +       struct notifier_block *cpu_clk_notifier;
->         struct regmap *regmap;
-> +       u32 soc_id;
-> +       int ret;
+>  	struct oa_tc6 *tc6;
+>  
+> @@ -395,15 +521,19 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
+>  	if (!tc6)
+>  		return NULL;
+>  
+> +	/* Allocate memory for the control tx buffer used for SPI transfer. */
+>  	tc6->ctrl_tx_buf = devm_kzalloc(&spi->dev, TC6_CTRL_BUF_SIZE, GFP_KERNEL);
+>  	if (!tc6->ctrl_tx_buf)
+>  		return NULL;
+>  
+> +	/* Allocate memory for the control rx buffer used for SPI transfer. */
+>  	tc6->ctrl_rx_buf = devm_kzalloc(&spi->dev, TC6_CTRL_BUF_SIZE, GFP_KERNEL);
+>  	if (!tc6->ctrl_rx_buf)
+>  		return NULL;
+>  
+>  	tc6->spi = spi;
+> +	tc6->netdev = netdev;
+> +	SET_NETDEV_DEV(netdev, &spi->dev);
+>  
+>  	/* Perform MAC-PHY software reset */
+>  	if (oa_tc6_sw_reset(tc6)) {
+> @@ -417,10 +547,27 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
+>  		return NULL;
+>  	}
+>  
+> +	/* Initialize PHY */
+> +	if (oa_tc6_phy_init(tc6)) {
+> +		dev_err(&spi->dev, "PHY initialization failed\n");
+> +		return NULL;
+> +	}
 > +
-> +       ret =3D qcom_smem_get_soc_id(&soc_id);
+>  	return tc6;
+>  }
+>  EXPORT_SYMBOL_GPL(oa_tc6_init);
+>  
+> +/**
+> + * oa_tc6_exit - exit function.
+> + * @tc6: oa_tc6 struct.
+> + *
+> + */
+> +void oa_tc6_exit(struct oa_tc6 *tc6)
+> +{
+> +	oa_tc6_phy_exit(tc6);
+> +}
+> +EXPORT_SYMBOL_GPL(oa_tc6_exit);
+> +
+>  MODULE_DESCRIPTION("OPEN Alliance 10BASE‑T1x MAC‑PHY Serial Interface Lib");
+>  MODULE_AUTHOR("Parthiban Veerasooran <parthiban.veerasooran@microchip.com>");
+>  MODULE_LICENSE("GPL");
+> diff --git a/include/linux/oa_tc6.h b/include/linux/oa_tc6.h
+> index 378636fd9ca8..36b729c384ac 100644
+> --- a/include/linux/oa_tc6.h
+> +++ b/include/linux/oa_tc6.h
+> @@ -5,54 +5,59 @@
+>   * Author: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+>   */
+>  
+> +#include <linux/etherdevice.h>
+>  #include <linux/spi/spi.h>
+>  
+>  /* Control header */
+> -#define CTRL_HDR_DNC		BIT(31)		/* Data-Not-Control */
+> -#define CTRL_HDR_HDRB		BIT(30)		/* Received Header Bad */
+> -#define CTRL_HDR_WNR		BIT(29)		/* Write-Not-Read */
+> -#define CTRL_HDR_AID		BIT(28)		/* Address Increment Disable */
+> -#define CTRL_HDR_MMS		GENMASK(27, 24)	/* Memory Map Selector */
+> -#define CTRL_HDR_ADDR		GENMASK(23, 8)	/* Address */
+> -#define CTRL_HDR_LEN		GENMASK(7, 1)	/* Length */
+> -#define CTRL_HDR_P		BIT(0)		/* Parity Bit */
+> +#define CTRL_HDR_DNC	BIT(31)		/* Data-Not-Control */
+> +#define CTRL_HDR_HDRB	BIT(30)		/* Received Header Bad */
+> +#define CTRL_HDR_WNR	BIT(29)		/* Write-Not-Read */
+> +#define CTRL_HDR_AID	BIT(28)		/* Address Increment Disable */
+> +#define CTRL_HDR_MMS	GENMASK(27, 24)	/* Memory Map Selector */
+> +#define CTRL_HDR_ADDR	GENMASK(23, 8)	/* Address */
+> +#define CTRL_HDR_LEN	GENMASK(7, 1)	/* Length */
+> +#define CTRL_HDR_P	BIT(0)		/* Parity Bit */
 
-You need to explain why this information can't come from the compatible str=
-ing.
+Please don't change the whitespace like this.
 
-> +       if (ret)
-> +               return ret;
-> =20
->         regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
->         if (!regmap)
->                 return -ENODEV;
-> =20
-> -       return qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
-> +       ret =3D qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
-> +       if (ret)
-> +               return ret;
-> +
-> +       switch (soc_id) {
-> +       /* Only below variants of IPQ53xx support scaling */
-> +       case QCOM_ID_IPQ5332:
-> +       case QCOM_ID_IPQ5322:
-> +       case QCOM_ID_IPQ5300:
-> +               cpu_clk_notifier =3D devm_kzalloc(&pdev->dev,
-> +                                               sizeof(*cpu_clk_notifier),
-> +                                               GFP_KERNEL);
-> +               if (!cpu_clk_notifier)
-> +                       return -ENOMEM;
-> +
+       Andrew
 
