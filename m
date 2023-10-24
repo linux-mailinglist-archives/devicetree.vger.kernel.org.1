@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8437D52A9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:48:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396D37D5321
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:50:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 652B2281BD0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:48:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE1F5282033
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34E22B5F2;
-	Tue, 24 Oct 2023 13:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A813AC19;
+	Tue, 24 Oct 2023 13:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TpKRsUxl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z/NrMfOz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E002B759
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:47:31 +0000 (UTC)
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F9FB19B0
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:47:21 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-32d9d8284abso3052803f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:47:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300B03A291
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:48:17 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A8B8213F
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:48:16 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-32d9cb5e0fcso3199930f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 06:48:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698155239; x=1698760039; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1698155294; x=1698760094; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wvhpCK3frheCthRrpOgh0zrl+ct+ClP+4XcisWHapjk=;
-        b=TpKRsUxltXjHqYx5IKnhJM4qe7cLJQkF5InzYtsuAi8CIOlMJ7uIIwjWTSNZHCZkZH
-         +TtuuDl7rGeuE3vl93xIsS/VGIGnP6Z3YCfNXJYQMDcF5WpMAnrVjK9E2nhaxv6uF2i5
-         CzxmpwGI2jTbjfwupbr0xQup/lO+sng17mQaiBTWakiYwbZnXygI1gA26stGtPJC3YSk
-         Kecf78A+iuL/kN7rdlI2SoVpJrOCnE4wEnkkXFKxnG2cCH2Ftp3Y/lBUw27BPh/eGa53
-         rYyB6PORjTKk3pIZB6udvYAQobAHdpGcdIyfFmWYxLV5Hpd0kUTPjzh+DR7ZzbcilyLz
-         YJdQ==
+        bh=o0zlICfKS9BIvwSLqYLNk0tKGQuHdKyXzE5RDB/FcwE=;
+        b=Z/NrMfOzAVVvFlBN6cYI/+FOvS9iDet2yLTLejMPfXBAIdRL2r0iRgmJsYm+mKYGJX
+         dYC90Rejx+nfGrj8/9FFqN9IRwdKNk7WVQsU1Lp7mZ3ocFNzfrZDvDtwdTgKeAjDY/Q6
+         3aKpHC6gRZDFzrZGVTZkQVg5EzDNhewSJ2jcdGsJxw9Xh6ArUY6KJagYgb87gQFXD0Lw
+         j4kF9Eg1vUTWWgRllmQz0tGt+pb3v2STEivwjb2QP+8yG/8lUDJX12uZMkoNn5rg3LZ3
+         /hxm5bZSO37cSZrIO2h0QfieHLGdGuGg2Whk4UgCkPJA0+LSRAliZVh5DgE1Fc57AqN8
+         WhgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698155239; x=1698760039;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1698155294; x=1698760094;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wvhpCK3frheCthRrpOgh0zrl+ct+ClP+4XcisWHapjk=;
-        b=UllfnO/YAy2Q0xvE7sIJF53P/WiUPbXVqTLSdcyun6aDjIHa2yr2rWZgU09XFDYLkq
-         nd3XqFAHWNNUEgQZjxB7t04BC6J2JFkcRTLDkOCBSYBCRkqBC6/lI8HQlVTEesDIkW8W
-         8EmqLmgCajPDBvitmbZHddqCXWWsPK9ZoN3gh1n2LjiDp3twfyiJo0KLL+q0mG7n1CM3
-         8cyMIwojymrsICSapZQCmVCUA3B5FIc4370D4lSFfiyy1jsdUH2nNj3xuUxd6WbmrJcm
-         GHklth2CGNxyc1cjZ4bLBaahFXtoc8tnp6tV2WIWgPVUHbMWhohRHtaCaaZeFjSuiIxj
-         Mtnw==
-X-Gm-Message-State: AOJu0Yz1crIQGssaRzIXGeWC/SUs1opck0EtpG6kCkN65DTVMk98XMw4
-	Fwqr0yVgDFK63rsRWvJCkhnZZQ==
-X-Google-Smtp-Source: AGHT+IGz3jnjKq9evm/HLmafgvEvDPTZr2z9ydQDtKuBwKG0JHRLP24wqRMQ4CriBz77UjQDHz5O9A==
-X-Received: by 2002:a5d:5b1f:0:b0:32d:7615:372b with SMTP id bx31-20020a5d5b1f000000b0032d7615372bmr12731797wrb.12.1698155238858;
-        Tue, 24 Oct 2023 06:47:18 -0700 (PDT)
+        bh=o0zlICfKS9BIvwSLqYLNk0tKGQuHdKyXzE5RDB/FcwE=;
+        b=vDa844rA3tUQc5vhoGjKBWpxogRRpRbWEYZTh5QflE8KRnIBSYbKMIB2ff1DkOqwBX
+         XaBp4h+ttoMJJogERJJcR6g7lVCQ7lRP9zLAJ59VZXFskmebQ30wLOBc/vE6V1T/rvLV
+         QuYuId2zykWFJTiHyzRPmzsD/Qt/JpzM5uFGD9jY7+rxXhX2M7ZnczR5lRkH1kMylPHd
+         Gzh6+OatdzS/7TZcdI/4NzFdgOSf77ENIFoZgCFW5IDBmqlJtPF5TRLDpCzjMPnDwpKn
+         gF/Trh/xhgAiy2TnW+u53LuxeYhD+oplZ36aU6pgbRuwxCC6agSmDgwxKKKmcRmhVRYX
+         x61g==
+X-Gm-Message-State: AOJu0Yy61S2sQelb/EZPt0E6rWCV/0WDpdSGS7hH56PhsWzyqigRw39F
+	+36Ev3CHeq3NYE0TSJ2ysWG5cg==
+X-Google-Smtp-Source: AGHT+IEzx4zSgbgdZJRVFVj0jmCQMoEPTeBdMoUIEF6ikOwrETN4Xn1KjrBm0vUz8Hcm7wy+EmXCrw==
+X-Received: by 2002:adf:e590:0:b0:32d:8357:42dd with SMTP id l16-20020adfe590000000b0032d835742ddmr8517272wrm.68.1698155294514;
+        Tue, 24 Oct 2023 06:48:14 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id y10-20020a5d470a000000b0032d9efeccd8sm9975318wrq.51.2023.10.24.06.47.17
+        by smtp.gmail.com with ESMTPSA id y10-20020a5d470a000000b0032d9efeccd8sm9975318wrq.51.2023.10.24.06.48.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 06:47:18 -0700 (PDT)
-Message-ID: <8391fb67-e575-49e6-9857-806cb85e9e59@linaro.org>
-Date: Tue, 24 Oct 2023 15:47:16 +0200
+        Tue, 24 Oct 2023 06:48:14 -0700 (PDT)
+Message-ID: <fbf4af1f-fc3a-4111-8823-424fb3eea60a@linaro.org>
+Date: Tue, 24 Oct 2023 15:48:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: adis16460: Add
+Subject: Re: [PATCH v2 2/3] dt-bindings: adis16475: Add
  'spi-cs-inactive-delay-ns' property
 Content-Language: en-US
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
+To: Ramona Gradinariu <ramona.gradinariu@analog.com>, jic23@kernel.org,
  nuno.sa@analog.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  conor+dt@kernel.org, linux-iio@vger.kernel.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20231023140534.704312-1-ramona.gradinariu@analog.com>
- <20231023140534.704312-4-ramona.gradinariu@analog.com>
- <e97ac024cb2654507ed8f7af715f3604efefbdbb.camel@gmail.com>
- <20231023-repost-coma-2f67ea8b95af@spud>
- <5c600a6db6173a56251302da8d2f438435959bd2.camel@gmail.com>
+ <20231023140534.704312-3-ramona.gradinariu@analog.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,76 +121,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5c600a6db6173a56251302da8d2f438435959bd2.camel@gmail.com>
+In-Reply-To: <20231023140534.704312-3-ramona.gradinariu@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 24/10/2023 08:53, Nuno Sá wrote:
-> On Mon, 2023-10-23 at 17:06 +0100, Conor Dooley wrote:
->> On Mon, Oct 23, 2023 at 04:27:48PM +0200, Nuno Sá wrote:
->>> On Mon, 2023-10-23 at 17:05 +0300, Ramona Gradinariu wrote:
->>>> The adis16460 device requires a stall time between SPI
->>>> transactions (during which the chip select is inactive),
->>>> with a minimum value equal to 16 microseconds.
->>>> This commit adds 'spi-cs-inactive-delay-ns' property, which should
->>>> indicate the stall time between consecutive SPI transactions.
->>>>
->>>> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
->>>> ---
->>>> changes in v2:
->>>>  - added default value
->>>>  - updated description
->>>>  - updated commit message
->>>>  .../devicetree/bindings/iio/imu/adi,adis16460.yaml          | 6 ++++++
->>>>  1 file changed, 6 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
->>>> b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
->>>> index 4e43c80e5119..f10469b86ee0 100644
->>>> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
->>>> @@ -25,6 +25,12 @@ properties:
->>>>
->>>>    spi-cpol: true
->>>>
->>>> +  spi-cs-inactive-delay-ns:
->>>> +    minimum: 16000
->>>> +    default: 16000
->>>> +    description:
->>>> +      Indicates the stall time between consecutive SPI transactions.
->>>> +
->>>
->>> You should drop the description... 
->>>
->>> Also, give more time before posting a v2 so others get a chance to review
->>> your
->>> patches. It's also better for you since you can gather more change requests.
->>
->> Further, I don't see an answer to Krzysztof's question of why the stall
->> time would not just be set to 16,000 ns in the driver, based on the
->> compatible.
+On 23/10/2023 16:05, Ramona Gradinariu wrote:
+> The devices supported by adis16475 driver require a stall period
+> between SPI transactions (during which the chip select is
+> inactive), with a minimum value equal to 16 microseconds, thus
+> adding 'spi-cs-inactive-delay-ns' property, which should indicate
+> the stall time between consecutive SPI transactions.
 > 
-> Hi Conor,
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> ---
+> changes in v2:
+>  - added default value
+>  - updated description
+>  - updated commit message
+>  .../devicetree/bindings/iio/imu/adi,adis16475.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Regarding that, I'm the one to blame since I was the one asking for the property
-> during internal review... The reason is that "spi-cs-inactive-delay-ns" is
-> already part of spi-peripheral-props.yaml which we already reference. So my
-> question would be why not using it?
+> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+> index c73533c54588..135ccdd5c392 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+> @@ -47,6 +47,12 @@ properties:
+>    spi-max-frequency:
+>      maximum: 2000000
 > 
-> These devices are a bit sensitive regarding these timings. Not in devices
-> supported by this driver but I already experienced having to set timings bigger
-> than defined in the datasheet for spi to be reliable. this was true on a RPI but
-> might not be in another platform.
-> 
-> Hence having the flexibility to change the time in an already supported property
-> does sound good to me. If not set, we still use the default value based on the
-> compatible. Now, if you tell me "let's just add this if we really get the need
-> for it", I get it but I also don't understand why not add it now...
-> 
+> +  spi-cs-inactive-delay-ns:
+> +    minimum: 16000
+> +    default: 16000
+> +    description:
+> +      Indicates the stall time between consecutive SPI transactions.
 
-I think it is okay to document specific SPI peripheral constraints in
-each device. Just like we document sometimes SPI frequency. The v1 did
-not explain this, but I see in this commit msg some rationale.
+You can skip the description entirely, it is coming from
+spi-peripheral-props.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
