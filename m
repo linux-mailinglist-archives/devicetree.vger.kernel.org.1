@@ -1,86 +1,252 @@
-Return-Path: <devicetree+bounces-11251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCD07D4F41
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001ED7D4F45
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 13:57:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 245DC1C20AAE
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:55:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 305D81C20A15
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F55266BE;
-	Tue, 24 Oct 2023 11:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 743F5266C1;
+	Tue, 24 Oct 2023 11:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gp/kARWk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U38GQfbR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40EC26293
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 11:55:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56BB9C433C7;
-	Tue, 24 Oct 2023 11:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D6A211731;
+	Tue, 24 Oct 2023 11:57:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31B9CC433C7;
+	Tue, 24 Oct 2023 11:57:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698148529;
-	bh=ozsPNKeRYz2u0iELn3HbnuXXLgIDYAVxNBxhsn13OoU=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=gp/kARWkeQCvZcJG51906PXhGlm2ymUqGxZ0YpevWlinAhdCJ8ccWWJ7UI4/r3z8E
-	 OT35Ycq8hze2eR21Dv7CifcmXJLQc9h4N6Sq0e4Zw0ZMVpVaIepz36MdvFlEOLwlq+
-	 DELIVmHBREeVxPD7McDdYBrugbGj0anqLa5spDHY+qD6QF4kT6RLBWgH36psqrk3YV
-	 NdWiQY5wlw126R6bLEx8scnNL4MiJHILywR1lCcJYKWG0+I33zpgAD5OrNu4MXEkHI
-	 4+Gho6kZkaMG7wsX6BgCqV/mBP/OwPToli+7r+LluAlsSOtTc0olHSUos3ayccLada
-	 LvtEhPyprQBTg==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>,
- Andrew Jones <ajones@ventanamicro.com>, Sunil V L
- <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, Anup
- Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Anup Patel
- <apatel@ventanamicro.com>, Atish Patra <atishp@rivosinc.com>
-Subject: Re: [PATCH v11 01/14] RISC-V: Don't fail in
- riscv_of_parent_hartid() for disabled HARTs
-In-Reply-To: <20231023172800.315343-2-apatel@ventanamicro.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-2-apatel@ventanamicro.com>
-Date: Tue, 24 Oct 2023 13:55:24 +0200
-Message-ID: <87h6mgs09f.fsf@all.your.base.are.belong.to.us>
+	s=k20201202; t=1698148647;
+	bh=P/62AzhAT4KUu+utmsfzDa4VRGeCzMsZgfgeMsb7fFQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=U38GQfbR3I5gJybWpH3LqCbdHqpdPDApaYa1y7mhdHfH2MA7aXAYD+2IlpfaC18ma
+	 ay52CdaP3lbY7qoerCPgb9NzBkZaYvVu6JOy6tttoVEA/9mwRg6ZlI0aiqvEeInWsf
+	 kOd9ellhuLwmoQl6mfxAOuMpu+8dt9wLEIdk/FScqAlOGcsHo8PqLqskRi6YiRSxlr
+	 NaPcuKp9WnIagQ1fYKvNijy78f+vYKm/NxP7lIuAqlZd/dVtwz/vPsm47pdz6uMMdW
+	 SXvqgXOgbwqZFCX4/1BYlXn7j2iOMuHpR9lEIalQ/nNPG4+BlxKqWdsLHMuJxaJ+IJ
+	 XV8pef6DwsLOQ==
+Message-ID: <59767fb8-8b9a-472a-884c-009cb00ed0b9@kernel.org>
+Date: Tue, 24 Oct 2023 13:57:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 8/9] microchip: lan865x: add driver support
+ for Microchip's LAN865X MACPHY
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, corbet@lwn.net, steen.hegelund@microchip.com,
+ rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
+ andrew@lunn.ch
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
+ Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
+ Thorsten.Kummermehr@microchip.com
+References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
+ <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Anup Patel <apatel@ventanamicro.com> writes:
+On 23/10/2023 17:46, Parthiban Veerasooran wrote:
+> The LAN8650/1 is designed to conform to the OPEN Alliance 10BASE‑T1x
+> MAC‑PHY Serial Interface specification, Version 1.1. The IEEE Clause 4
+> MAC integration provides the low pin count standard SPI interface to any
+> microcontroller therefore providing Ethernet functionality without
+> requiring MAC integration within the microcontroller. The LAN8650/1
+> operates as an SPI client supporting SCLK clock rates up to a maximum of
+> 25 MHz. This SPI interface supports the transfer of both data (Ethernet
+> frames) and control (register access).
+> 
+> By default, the chunk data payload is 64 bytes in size. A smaller payload
+> data size of 32 bytes is also supported and may be configured in the
+> Chunk Payload Size (CPS) field of the Configuration 0 (OA_CONFIG0)
+> register. Changing the chunk payload size requires the LAN8650/1 be reset
+> and shall not be done during normal operation.
+> 
+> The Ethernet Media Access Controller (MAC) module implements a 10 Mbps
+> half duplex Ethernet MAC, compatible with the IEEE 802.3 standard.
+> 10BASE-T1S physical layer transceiver integrated into the LAN8650/1. The
+> PHY and MAC are connected via an internal Media Independent Interface
+> (MII).
+> 
+> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+> ---
+>  MAINTAINERS                              |   6 +
+>  drivers/net/ethernet/microchip/Kconfig   |  11 +
+>  drivers/net/ethernet/microchip/Makefile  |   2 +
+>  drivers/net/ethernet/microchip/lan865x.c | 415 +++++++++++++++++++++++
+>  4 files changed, 434 insertions(+)
+>  create mode 100644 drivers/net/ethernet/microchip/lan865x.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9580be91f5e9..1b1bd3218a2d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14001,6 +14001,12 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/microchip/lan743x_*
+>  
+> +MICROCHIP LAN8650/1 10BASE-T1S MACPHY ETHERNET DRIVER
+> +M:	Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+> +L:	netdev@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/net/ethernet/microchip/lan865x.c
+> +
+>  MICROCHIP LAN87xx/LAN937x T1 PHY DRIVER
+>  M:	Arun Ramadoss <arun.ramadoss@microchip.com>
+>  R:	UNGLinuxDriver@microchip.com
+> diff --git a/drivers/net/ethernet/microchip/Kconfig b/drivers/net/ethernet/microchip/Kconfig
+> index 329e374b9539..596caf59dea6 100644
+> --- a/drivers/net/ethernet/microchip/Kconfig
+> +++ b/drivers/net/ethernet/microchip/Kconfig
+> @@ -59,4 +59,15 @@ source "drivers/net/ethernet/microchip/lan966x/Kconfig"
+>  source "drivers/net/ethernet/microchip/sparx5/Kconfig"
+>  source "drivers/net/ethernet/microchip/vcap/Kconfig"
+>  
+> +config LAN865X
+> +	tristate "LAN865x support"
+> +	depends on SPI
+> +	depends on OA_TC6
+> +	help
+> +      	  Support for the Microchip LAN8650/1 Rev.B0 MACPHY Ethernet chip. It
+> +	  uses OPEN Alliance 10BASE-T1x Serial Interface specification.
+> +
+> +      	  To compile this driver as a module, choose M here. The module will be
+> +          called lan865x.
 
-> The riscv_of_processor_hartid() used by riscv_of_parent_hartid() fails
-> for HARTs disabled in the DT. This results in the following warning
-> thrown by the RISC-V INTC driver for the E-core on SiFive boards:
->
-> [    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/interru=
-pt-controller
->
-> The riscv_of_parent_hartid() is only expected to read the hartid from
-> the DT so we should directly call of_get_cpu_hwid() instead of calling
-> riscv_of_processor_hartid().
->
-> Fixes: ad635e723e17 ("riscv: cpu: Add 64bit hartid support on RV64")
+That's odd indentation. Kconfig help goes with tab and two spaces.
 
-Patch 1 and 3: These fixes are stand alone, and doesn't have to be part
-of the series.
+> +
+>  endif # NET_VENDOR_MICROCHIP
+> diff --git a/drivers/net/ethernet/microchip/Makefile b/drivers/net/ethernet/microchip/Makefile
+> index bbd349264e6f..1fa4e15a067d 100644
+> --- a/drivers/net/ethernet/microchip/Makefile
+> +++ b/drivers/net/ethernet/microchip/Makefile
+> @@ -12,3 +12,5 @@ lan743x-objs := lan743x_main.o lan743x_ethtool.o lan743x_ptp.o
+>  obj-$(CONFIG_LAN966X_SWITCH) += lan966x/
+>  obj-$(CONFIG_SPARX5_SWITCH) += sparx5/
+>  obj-$(CONFIG_VCAP) += vcap/
 
-Wouldn't it be better to pull these out of the long-going series, and
-try to get in the fixes ASAP?
+...
+
+> +static void lan865x_remove(struct spi_device *spi)
+> +{
+> +	struct lan865x_priv *priv = spi_get_drvdata(spi);
+> +
+> +	oa_tc6_exit(priv->tc6);
+> +	unregister_netdev(priv->netdev);
+> +	free_netdev(priv->netdev);
+> +}
+> +
+> +#ifdef CONFIG_OF
+
+Drop ifdef
+
+> +static const struct of_device_id lan865x_dt_ids[] = {
+> +	{ .compatible = "microchip,lan865x" },
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, lan865x_dt_ids);
+> +#endif
+> +
+> +#ifdef CONFIG_ACPI
+> +static const struct acpi_device_id lan865x_acpi_ids[] = {
+> +	{ .id = "LAN865X",
+> +	},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(acpi, lan865x_acpi_ids);
+> +#endif
+> +
+> +static struct spi_driver lan865x_driver = {
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +#ifdef CONFIG_OF
+
+Drop ifdef
+
+> +		.of_match_table = lan865x_dt_ids,
+> +#endif
+> +#ifdef CONFIG_ACPI
+
+Why do you need this ifdef?
+
+> +		   .acpi_match_table = ACPI_PTR(lan865x_acpi_ids),
+> +#endif
+> +	 },
+> +	.probe = lan865x_probe,
+> +	.remove = lan865x_remove,
+> +};
+> +module_spi_driver(lan865x_driver);
+> +
+> +MODULE_DESCRIPTION(DRV_NAME " 10Base-T1S MACPHY Ethernet Driver");
+> +MODULE_AUTHOR("Parthiban Veerasooran <parthiban.veerasooran@microchip.com>");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("spi:" DRV_NAME);
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong.
 
 
-Bj=C3=B6rn
+Best regards,
+Krzysztof
+
 
