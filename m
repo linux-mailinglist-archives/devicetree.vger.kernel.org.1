@@ -1,434 +1,203 @@
-Return-Path: <devicetree+bounces-11337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEC37D544E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:49:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051C47D547E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:56:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 025261C20C14
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:49:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DC50B20C0B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50B58262BC;
-	Tue, 24 Oct 2023 14:49:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE43273DC;
+	Tue, 24 Oct 2023 14:55:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="iJ0yByEx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pMHpAmKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC4E2AB2F
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:49:13 +0000 (UTC)
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2040.outbound.protection.outlook.com [40.107.243.40])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62311EA;
-	Tue, 24 Oct 2023 07:49:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UUHvSrkzMveQ98inc/DKPGJv4sUGeCJOi39J53IVPNBBIBg5fHFsJ6Dq30xWQRxPHZpt/hvp1vnX9L2c7rmvacaCg86saOJhYOJHnHiiDL0y1eepn0Vx67AXi6El3OR5fSaFFeUhlkl7FKG6TbHXtVodZo73aa9K4acMVgV3m2WmI4HyLcAHNLWBTIllz7aIEr/mjvfWohtxsfyFul7t7U8s1615r0WBd9k30378AvrbvIBIUtxMIqP48XDxz+XroUt7+PVXxirChHXg17X85QRMaahhX2nxJUElmJX+1WmZ6lZhUXLvvQPoZtsRPAmyInR4HH8d6BZ/z662azJ9aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D5mxZsl5nBupaT0BEqINEAw8IzFWjrHW1gL5vZTnYD8=;
- b=a4p8DRNU3iq4lzyoPt+1+wqd9SXcBaUgLkUqJsCJudgZ/z4KzOqkah9LQgVlVmBQYVTyKt3Z7jdFnJ6a8Q5KwM4DVnRzLjihyvx90npP4/Id87gKDLhpWNuOskPs7fZ6UPiCGty40yZUQY0vXOuBf11+BVCQ2buptgNLAJZ4ovFUeLFKgdRg53a51HeCEVOJhLw6i3pko0YCSr8AZSfsSwh443sYfjYbNzGCk7uwUkbzQ9F+SJs0m6Utm0rYSfVuS5NEyarbQo+mZjN4a2eJxSrVqrB8xVX5sfL9da67JTq0gKW18ozDiIHCvz5bQDn6BHn/KjJGQJnT0ShvjP4N+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D5mxZsl5nBupaT0BEqINEAw8IzFWjrHW1gL5vZTnYD8=;
- b=iJ0yByExoR08trykP23UQAcatShGHmPMZQBa95soyEt08D6DN0kd6q1fdeqcoi2eQrubeqD3s6JAk7r0Jv1UYP7hk7WsG2Ps7Mm7U03Av7wxpDoBPZ/0uhp3PE8WKcD1uqcHkSDS5XnnFYgarVQILwFgOSjYiR2UKmbAVN/8Zbg=
-Received: from CYXPR02CA0034.namprd02.prod.outlook.com (2603:10b6:930:cc::22)
- by CH3PR12MB7642.namprd12.prod.outlook.com (2603:10b6:610:14a::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Tue, 24 Oct
- 2023 14:49:08 +0000
-Received: from CY4PEPF0000E9D1.namprd03.prod.outlook.com
- (2603:10b6:930:cc:cafe::86) by CYXPR02CA0034.outlook.office365.com
- (2603:10b6:930:cc::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.34 via Frontend
- Transport; Tue, 24 Oct 2023 14:49:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9D1.mail.protection.outlook.com (10.167.241.144) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6933.15 via Frontend Transport; Tue, 24 Oct 2023 14:49:08 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 24 Oct
- 2023 09:49:07 -0500
-Received: from xhdsgoud40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
- Transport; Tue, 24 Oct 2023 09:49:03 -0500
-From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-To: <git@amd.com>, <michal.simek@amd.com>, <gregkh@linuxfoundation.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<jirislaby@kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
-	<shubhrajyoti.datta@amd.com>, <manion05gk@gmail.com>, Manikanta Guntupalli
-	<manikanta.guntupalli@amd.com>
-Subject: [PATCH V3 2/2] tty: serial: uartps: Add rs485 support to uartps driver
-Date: Tue, 24 Oct 2023 20:18:47 +0530
-Message-ID: <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231024144847.2316941-1-manikanta.guntupalli@amd.com>
-References: <20231024144847.2316941-1-manikanta.guntupalli@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE4A266AD
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:55:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F191C433C8;
+	Tue, 24 Oct 2023 14:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698159355;
+	bh=vuJgsrEAfHidl/LC9Nby8frF6rGsOt8evp6na8amWoU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pMHpAmKrY5a40YB98zv5cEhynF8IqCDt6qfDAfb4kCtLCcfEYiL9OAmfF0K9kSNT+
+	 clGdZ70etIcvNEdH2kzEw5bwQDNFjBHvkvfP9Itq2TQYT8D1QKfiqkEbf1BwkpqLFy
+	 P5LPZ3OsWVFSCEQakmvXwsYGP5Mj7Zv31WCg25pWhUrQlVq/DfnKY2rLYSa46lMayq
+	 hg9xs5ZcwRpPJGohlI6wyZ+eHzYdY8iF8gKMBVkawAQcJiBeqGyG6GBrBfKCRaR3tx
+	 KlG7TKZtCzTF3M8xsU42Gr+snuZpjW8Dz+IZxw+9i9PJXd+Rb3aUFTMCdzDJA0SDCT
+	 jRkRP0B0T7wjw==
+Date: Tue, 24 Oct 2023 15:55:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Nylon Chen <nylon.chen@sifive.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, thierry.reding@gmail.com,
+	u.kleine-koenig@pengutronix.de, emil.renner.berthing@canonical.com,
+	vincent.chen@sifive.com, greentime.hu@sifive.com,
+	zong.li@sifive.com, nylon7717@gmail.com
+Subject: Re: [v5 1/2] riscv: dts: sifive: unleashed/unmatched: Remove PWM
+ controlled LED's active-low properties
+Message-ID: <20231024-yin-coliseum-11f5e06fec14@spud>
+References: <20231024101902.6689-1-nylon.chen@sifive.com>
+ <20231024101902.6689-2-nylon.chen@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D1:EE_|CH3PR12MB7642:EE_
-X-MS-Office365-Filtering-Correlation-Id: c5e7543d-5ecc-4627-f177-08dbd4a06099
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ipnS8qWd+XDnjvld3m6uEOZrbjc3UqY1pelJohWRhYYHMVc6yHvGtOJwYJkw/coWykIQmVV+DUulFU8nD8fovTryRaVBKsEcl4xf2RXeWgx16STnRnGYg9RTEoAxRwOkegjg2Il4N5FFRJd9dGeJka0Q70C5qXmc8P43oKXmOjj57F67Aaf6RBrabFkjiZF31BfTo89iM4bEPjGQqsB1KOjhPatlcN3iCgARRB9yv5Q2Ub9fzgWpW2/cRzIu+vrk20KQfGIOvjgzwm9TRbiHdGnywIJdGE7emDTSN+Lxra4XRODkkCS2MjOAfhQnrmTD7LM/RCezgWtxuU9o3aDMmizDLpWyOYWRXsab1BiBtI93XZsZwpTM+qDV8vLlNpLEOj/Ua3tR6Qh4sW+51g/+JptC/3P4zE0H7C4RR0aAX9D/bcVdcEEXUFN7YUZLN+AT+j7RTI5CYtTZqzcb5giCGOKk8EHpyZ+3KmIPIiZrnPGQ1SGsLnQuG0ZlXkaO11u1mWkxWT7js2Ljnzru46t/OmnKXfrIUMjoZInMlyG9jgvlewTKCs1rzFXO2EeWR27HEhMfX7GTw7YZPXtcE73SehAtEUnXzNg2GMpV97juhKhdtyebIYfwK1KlXBh+fGLHTJbnzZTamT1uanfIrNHuuggQEo1ZjCCLL3y1wSzxryh2KG0Wt5qEppS73H4nDHdJ3CwuHTntBFrNlEEEILXiqw/odzk9CbbSZlXm/AhM46NqF+sxfiiKoaOS1df6T1Z8405pltACBZXUGeH0yAr7UjBTedCUh2hshn+Yk3/AnaI=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(396003)(376002)(136003)(39860400002)(230922051799003)(82310400011)(64100799003)(1800799009)(451199024)(186009)(36840700001)(46966006)(40470700004)(2906002)(7416002)(8676002)(8936002)(4326008)(44832011)(83380400001)(81166007)(356005)(82740400003)(41300700001)(5660300002)(47076005)(6666004)(86362001)(40480700001)(316002)(110136005)(336012)(426003)(1076003)(26005)(478600001)(921008)(2616005)(36756003)(70586007)(70206006)(40460700003)(54906003)(36860700001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2023 14:49:08.2520
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c5e7543d-5ecc-4627-f177-08dbd4a06099
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9D1.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7642
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="H7Zl3g4CczEwNK1s"
+Content-Disposition: inline
+In-Reply-To: <20231024101902.6689-2-nylon.chen@sifive.com>
 
-Add rs485 support to uartps driver. Use either rts-gpios or RTS
-to control RS485 phy as driver or a receiver.
 
-Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
----
-Changes for V2:
-Modify optional gpio name to xlnx,phy-ctrl-gpios.
-Update commit description.
-Add support for RTS, delay_rts_before_send and delay_rts_after_send in RS485 mode.
-Changes for V3:
-Modify optional gpio name to rts-gpios.
-Update commit description.
-Move cdns_uart_tx_empty function to avoid prototype statement.
-Remove assignment of struct serial_rs485 to port->rs485 as
-serial core performs that.
-Switch to native RTS in non GPIO case.
-Handle rs485 during stop tx.
-Remove explicit calls to configure gpio direction and value,
-as devm_gpiod_get_optional performs that by using GPIOD_OUT_LOW argument.
-Update implementation to support configuration of GPIO/RTS value
-based on user configuration of SER_RS485_RTS_ON_SEND and
-SER_RS485_RTS_AFTER_SEND. Move implementation to start_tx from handle_tx.
----
- drivers/tty/serial/xilinx_uartps.c | 180 ++++++++++++++++++++++++++---
- 1 file changed, 165 insertions(+), 15 deletions(-)
+--H7Zl3g4CczEwNK1s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
-index 9c13dac1d4d1..32229cf5c508 100644
---- a/drivers/tty/serial/xilinx_uartps.c
-+++ b/drivers/tty/serial/xilinx_uartps.c
-@@ -23,6 +23,9 @@
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
- #include <linux/iopoll.h>
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/delay.h>
- 
- #define CDNS_UART_TTY_NAME	"ttyPS"
- #define CDNS_UART_NAME		"xuartps"
-@@ -193,6 +196,7 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-255");
-  * @clk_rate_change_nb:	Notifier block for clock changes
-  * @quirks:		Flags for RXBS support.
-  * @cts_override:	Modem control state override
-+ * @gpiod:		Pointer to the gpio descriptor
-  */
- struct cdns_uart {
- 	struct uart_port	*port;
-@@ -203,10 +207,19 @@ struct cdns_uart {
- 	struct notifier_block	clk_rate_change_nb;
- 	u32			quirks;
- 	bool cts_override;
-+	struct gpio_desc	*gpiod;
- };
- struct cdns_platform_data {
- 	u32 quirks;
- };
-+
-+struct serial_rs485 cdns_rs485_supported = {
-+	.flags = SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
-+		 SER_RS485_RTS_AFTER_SEND,
-+	.delay_rts_before_send = 1,
-+	.delay_rts_after_send = 1,
-+};
-+
- #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
- 		clk_rate_change_nb)
- 
-@@ -305,6 +318,79 @@ static void cdns_uart_handle_rx(void *dev_id, unsigned int isrstatus)
- 	tty_flip_buffer_push(&port->state->port);
- }
- 
-+/**
-+ * cdns_rs485_config_gpio_rts_high - Configure GPIO/RTS to high
-+ * @cdns_uart: Handle to the cdns_uart
-+ */
-+static void cdns_rs485_config_gpio_rts_high(struct cdns_uart *cdns_uart)
-+{
-+	u32 val;
-+
-+	if (cdns_uart->gpiod) {
-+		gpiod_set_value(cdns_uart->gpiod, 1);
-+	} else {
-+		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-+		val &= ~CDNS_UART_MODEMCR_RTS;
-+		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-+	}
-+}
-+
-+/**
-+ * cdns_rs485_config_gpio_rts_low - Configure GPIO/RTS to low
-+ * @cdns_uart: Handle to the cdns_uart
-+ */
-+static void cdns_rs485_config_gpio_rts_low(struct cdns_uart *cdns_uart)
-+{
-+	u32 val;
-+
-+	if (cdns_uart->gpiod) {
-+		gpiod_set_value(cdns_uart->gpiod, 0);
-+	} else {
-+		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-+		val |= CDNS_UART_MODEMCR_RTS;
-+		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-+	}
-+}
-+
-+/**
-+ * cdns_rs485_tx_setup - Tx setup specific to rs485
-+ * @cdns_uart: Handle to the cdns_uart
-+ */
-+static void cdns_rs485_tx_setup(struct cdns_uart *cdns_uart)
-+{
-+	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_ON_SEND)
-+		cdns_rs485_config_gpio_rts_high(cdns_uart);
-+	else
-+		cdns_rs485_config_gpio_rts_low(cdns_uart);
-+}
-+
-+/**
-+ * cdns_rs485_rx_setup - Rx setup specific to rs485
-+ * @cdns_uart: Handle to the cdns_uart
-+ */
-+static void cdns_rs485_rx_setup(struct cdns_uart *cdns_uart)
-+{
-+	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
-+		cdns_rs485_config_gpio_rts_high(cdns_uart);
-+	else
-+		cdns_rs485_config_gpio_rts_low(cdns_uart);
-+}
-+
-+/**
-+ * cdns_uart_tx_empty -  Check whether TX is empty
-+ * @port: Handle to the uart port structure
-+ *
-+ * Return: TIOCSER_TEMT on success, 0 otherwise
-+ */
-+static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-+{
-+	unsigned int status;
-+
-+	status = readl(port->membase + CDNS_UART_SR) &
-+		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
-+	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-+}
-+
- /**
-  * cdns_uart_handle_tx - Handle the bytes to be Txed.
-  * @dev_id: Id of the UART port
-@@ -571,6 +657,8 @@ static int cdns_uart_clk_notifier_cb(struct notifier_block *nb,
- static void cdns_uart_start_tx(struct uart_port *port)
- {
- 	unsigned int status;
-+	unsigned long time_out;
-+	struct cdns_uart *cdns_uart = port->private_data;
- 
- 	if (uart_tx_stopped(port))
- 		return;
-@@ -589,8 +677,31 @@ static void cdns_uart_start_tx(struct uart_port *port)
- 
- 	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_ISR);
- 
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-+		cdns_rs485_tx_setup(cdns_uart);
-+		if (cdns_uart->port->rs485.delay_rts_before_send)
-+			mdelay(cdns_uart->port->rs485.delay_rts_before_send);
-+	}
-+
- 	cdns_uart_handle_tx(port);
- 
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-+		time_out = jiffies + usecs_to_jiffies(TX_TIMEOUT);
-+		/* Wait for tx completion */
-+		while ((cdns_uart_tx_empty(cdns_uart->port) != TIOCSER_TEMT) &&
-+		       time_before(jiffies, time_out))
-+			cpu_relax();
-+
-+		if (cdns_uart->port->rs485.delay_rts_after_send)
-+			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-+
-+		/*
-+		 * Default Rx should be setup, because RX signaling path
-+		 * need to enable to receive data.
-+		 */
-+		cdns_rs485_rx_setup(cdns_uart);
-+	}
-+
- 	/* Enable the TX Empty interrupt */
- 	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
- }
-@@ -602,6 +713,14 @@ static void cdns_uart_start_tx(struct uart_port *port)
- static void cdns_uart_stop_tx(struct uart_port *port)
- {
- 	unsigned int regval;
-+	struct cdns_uart *cdns_uart = port->private_data;
-+
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-+		if (cdns_uart->port->rs485.delay_rts_after_send)
-+			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-+
-+		cdns_rs485_rx_setup(cdns_uart);
-+	}
- 
- 	regval = readl(port->membase + CDNS_UART_CR);
- 	regval |= CDNS_UART_CR_TX_DIS;
-@@ -626,21 +745,6 @@ static void cdns_uart_stop_rx(struct uart_port *port)
- 	writel(regval, port->membase + CDNS_UART_CR);
- }
- 
--/**
-- * cdns_uart_tx_empty -  Check whether TX is empty
-- * @port: Handle to the uart port structure
-- *
-- * Return: TIOCSER_TEMT on success, 0 otherwise
-- */
--static unsigned int cdns_uart_tx_empty(struct uart_port *port)
--{
--	unsigned int status;
--
--	status = readl(port->membase + CDNS_UART_SR) &
--		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
--	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
--}
--
- /**
-  * cdns_uart_break_ctl - Based on the input ctl we have to start or stop
-  *			transmitting char breaks
-@@ -829,6 +933,9 @@ static int cdns_uart_startup(struct uart_port *port)
- 		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
- 		cpu_relax();
- 
-+	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED)
-+		cdns_rs485_rx_setup(cdns_uart);
-+
- 	/*
- 	 * Clear the RX disable bit and then set the RX enable bit to enable
- 	 * the receiver.
-@@ -1455,6 +1562,23 @@ MODULE_DEVICE_TABLE(of, cdns_uart_of_match);
- /* Temporary variable for storing number of instances */
- static int instances;
- 
-+/**
-+ * cdns_rs485_config - Called when an application calls TIOCSRS485 ioctl.
-+ * @port: Pointer to the uart_port structure
-+ * @termios: Pointer to the ktermios structure
-+ * @rs485: Pointer to the serial_rs485 structure
-+ *
-+ * Return: 0
-+ */
-+static int cdns_rs485_config(struct uart_port *port, struct ktermios *termios,
-+			     struct serial_rs485 *rs485)
-+{
-+	if (rs485->flags & SER_RS485_ENABLED)
-+		dev_dbg(port->dev, "Setting UART to RS485\n");
-+
-+	return 0;
-+}
-+
- /**
-  * cdns_uart_probe - Platform driver probe
-  * @pdev: Pointer to the platform device structure
-@@ -1463,6 +1587,7 @@ static int instances;
-  */
- static int cdns_uart_probe(struct platform_device *pdev)
- {
-+	u32 val;
- 	int rc, id, irq;
- 	struct uart_port *port;
- 	struct resource *res;
-@@ -1597,9 +1722,23 @@ static int cdns_uart_probe(struct platform_device *pdev)
- 	port->private_data = cdns_uart_data;
- 	port->read_status_mask = CDNS_UART_IXR_TXEMPTY | CDNS_UART_IXR_RXTRIG |
- 			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
-+	port->rs485_config = cdns_rs485_config;
-+	port->rs485_supported = cdns_rs485_supported;
- 	cdns_uart_data->port = port;
- 	platform_set_drvdata(pdev, port);
- 
-+	rc = uart_get_rs485_mode(port);
-+	if (rc)
-+		goto err_out_clk_notifier;
-+
-+	cdns_uart_data->gpiod = devm_gpiod_get_optional(&pdev->dev, "rts",
-+							GPIOD_OUT_LOW);
-+	if (IS_ERR(cdns_uart_data->gpiod)) {
-+		rc = PTR_ERR(cdns_uart_data->gpiod);
-+		dev_err(port->dev, "xuartps: devm_gpiod_get_optional failed\n");
-+		goto err_out_clk_notifier;
-+	}
-+
- 	pm_runtime_use_autosuspend(&pdev->dev);
- 	pm_runtime_set_autosuspend_delay(&pdev->dev, UART_AUTOSUSPEND_TIMEOUT);
- 	pm_runtime_set_active(&pdev->dev);
-@@ -1638,6 +1777,16 @@ static int cdns_uart_probe(struct platform_device *pdev)
- 	cdns_uart_data->cts_override = of_property_read_bool(pdev->dev.of_node,
- 							     "cts-override");
- 
-+	if (cdns_uart_data->port->rs485.flags & SER_RS485_ENABLED) {
-+		if (!cdns_uart_data->gpiod) {
-+			val = readl(cdns_uart_data->port->membase
-+				    + CDNS_UART_MODEMCR);
-+			val |= CDNS_UART_MODEMCR_RTS;
-+			writel(val, cdns_uart_data->port->membase
-+			       + CDNS_UART_MODEMCR);
-+		}
-+	}
-+
- 	instances++;
- 
- 	return 0;
-@@ -1646,6 +1795,7 @@ static int cdns_uart_probe(struct platform_device *pdev)
- 	pm_runtime_disable(&pdev->dev);
- 	pm_runtime_set_suspended(&pdev->dev);
- 	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+err_out_clk_notifier:
- #ifdef CONFIG_COMMON_CLK
- 	clk_notifier_unregister(cdns_uart_data->uartclk,
- 			&cdns_uart_data->clk_rate_change_nb);
--- 
-2.25.1
+Hey,
 
+On Tue, Oct 24, 2023 at 06:19:01PM +0800, Nylon Chen wrote:
+> This removes the active-low properties of the PWM-controlled LEDs in
+> the HiFive Unmatched device tree.
+>=20
+> The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schemat=
+ics-v3.pdf[1].
+>=20
+> Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf845=
+3f8698_hifive-unleashed-a00-schematics-1.pdf [0]
+> Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce7=
+6f4192_hifive-unmatched-schematics-v3.pdf [1]
+
+>=20
+
+This blank line should be removed if there is a follow-up.
+
+> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
+
+What did Vincent contribute to this patch? Are you missing a
+co-developed-by tag, perhaps?
+
+> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+I expect this to go via the pwm tree since this is going to "break" (in
+the loosest possible sense) existing systems if merged separately.
+
+Cheers,
+Conor.
+
+> ---
+>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  8 ++++----
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++--------
+>  2 files changed, 8 insertions(+), 12 deletions(-)
+>=20
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/r=
+iscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> index 900a50526d77..11e7ac1c54bb 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> @@ -49,7 +49,7 @@ led-controller {
+>  		compatible =3D "pwm-leds";
+> =20
+>  		led-d1 {
+> -			pwms =3D <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms =3D <&pwm0 0 7812500 0>;
+>  			active-low;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+>  			max-brightness =3D <255>;
+> @@ -57,7 +57,7 @@ led-d1 {
+>  		};
+> =20
+>  		led-d2 {
+> -			pwms =3D <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms =3D <&pwm0 1 7812500 0>;
+>  			active-low;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+>  			max-brightness =3D <255>;
+> @@ -65,7 +65,7 @@ led-d2 {
+>  		};
+> =20
+>  		led-d3 {
+> -			pwms =3D <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms =3D <&pwm0 2 7812500 0>;
+>  			active-low;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+>  			max-brightness =3D <255>;
+> @@ -73,7 +73,7 @@ led-d3 {
+>  		};
+> =20
+>  		led-d4 {
+> -			pwms =3D <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms =3D <&pwm0 3 7812500 0>;
+>  			active-low;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+>  			max-brightness =3D <255>;
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/r=
+iscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 07387f9c135c..b328ee80693f 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -51,8 +51,7 @@ led-controller-1 {
+>  		compatible =3D "pwm-leds";
+> =20
+>  		led-d12 {
+> -			pwms =3D <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+> -			active-low;
+> +			pwms =3D <&pwm0 0 7812500 0>;
+>  			color =3D <LED_COLOR_ID_GREEN>;
+>  			max-brightness =3D <255>;
+>  			label =3D "d12";
+> @@ -68,20 +67,17 @@ multi-led {
+>  			label =3D "d2";
+> =20
+>  			led-red {
+> -				pwms =3D <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+> -				active-low;
+> +				pwms =3D <&pwm0 2 7812500 0>;
+>  				color =3D <LED_COLOR_ID_RED>;
+>  			};
+> =20
+>  			led-green {
+> -				pwms =3D <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+> -				active-low;
+> +				pwms =3D <&pwm0 1 7812500 0>;
+>  				color =3D <LED_COLOR_ID_GREEN>;
+>  			};
+> =20
+>  			led-blue {
+> -				pwms =3D <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+> -				active-low;
+> +				pwms =3D <&pwm0 3 7812500 0>;
+>  				color =3D <LED_COLOR_ID_BLUE>;
+>  			};
+>  		};
+> --=20
+> 2.42.0
+>=20
+
+--H7Zl3g4CczEwNK1s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTfa9gAKCRB4tDGHoIJi
+0uwlAQCAZQx27sPA2UXRQiyGM6Fg+CQ3RWgDqFwXmisNYn/2GwEAqc5VaZVLOB01
+ub63XDQoIn8tFuAT1jgi10RRbmKjBw0=
+=TgU2
+-----END PGP SIGNATURE-----
+
+--H7Zl3g4CczEwNK1s--
 
