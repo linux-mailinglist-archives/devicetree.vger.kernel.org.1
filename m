@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-11408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4017C7D5AD0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:43:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F8D7D5AD5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:44:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAF031F22A04
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:43:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A6A9281376
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:44:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D163A28D;
-	Tue, 24 Oct 2023 18:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97A43A265;
+	Tue, 24 Oct 2023 18:44:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hcVwqSt7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2958C35896
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:42:53 +0000 (UTC)
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886C010D0;
-	Tue, 24 Oct 2023 11:42:51 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1e5bc692721so3122505fac.0;
-        Tue, 24 Oct 2023 11:42:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698172971; x=1698777771;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e7tCIB9BylheYtMG7rMe1KZx7kNN6oaCCoyrHFzcP3w=;
-        b=WEeRrWQ1hKrYVce1JRJpJZBNVmCAnoAGas+mr07qDA0Fo1oBAWvWcswX4p80Z7lzqV
-         6TSJIHeFE2aUS9NGAf0tdPuwDOeX2+S+ynPaHUeBZWyZjDH/SrpfM5F/v7i55MGt8GvV
-         Vbero89zGdYid3bmGAoucnzcdGId7jxq08ih0j11h9fliTSO58zFFeGN7ctVALs4GcOM
-         ZNh8FFC13In6fsUKmcArB9QCK8TgFsF4t9u5850bTmd/8c8boIRLn05zXtwDil2L5Vhe
-         Xi0KjCZBF3m1Zhvz3GyijCaykHVxWXoPGHq9uebjKEGjxc8FlSEZEAi4TPSaRMDMFjIE
-         LGzg==
-X-Gm-Message-State: AOJu0YxHld/ZaZfOSp2FJV408CamJebegO0W4xF/mdk1hNaHBoJ4sQkH
-	a4jZPXOsHHlan/rD/JNTHg==
-X-Google-Smtp-Source: AGHT+IEwPD0r1BvSI+qia1MrYQNuHfFhmEEtqVIVoIHZoqHIvOzwAF1Y9oJIQUNl++IgJf0l1aNg1g==
-X-Received: by 2002:a05:6870:b90a:b0:1ea:4dc8:a17 with SMTP id gx10-20020a056870b90a00b001ea4dc80a17mr13544728oab.28.1698172970721;
-        Tue, 24 Oct 2023 11:42:50 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id sc17-20020a056871221100b001e0fd4c9b9asm2303077oab.6.2023.10.24.11.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 11:42:50 -0700 (PDT)
-Received: (nullmailer pid 263045 invoked by uid 1000);
-	Tue, 24 Oct 2023 18:42:48 -0000
-Date: Tue, 24 Oct 2023 13:42:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Georgi Djakov <quic_c_gdjako@quicinc.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, devicetree@vger.kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com, djakov@kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: iommu: Add Translation Buffer Unit
- bindings
-Message-ID: <20231024184248.GA252155-robh@kernel.org>
-References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
- <20231019021923.13939-2-quic_c_gdjako@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C276A36AF8
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:44:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D3C12C;
+	Tue, 24 Oct 2023 11:44:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698173062; x=1729709062;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yXiUqDTjJlLIfMRjPSDr+1lzyNKgBoHGKVQdpfNmqY8=;
+  b=hcVwqSt718wpKv4DJWwNltj/5u6fSw53QEivE872BngUGa1PGCXmyyuq
+   7CVkEL81lz8Kyrs/UULmlL5DnLCNBhIUtG/4CYNI0GqV294wVgq7xxWnc
+   WMs2J9rV5y7glYZlLliXmv7fUs2J1+2CvPMAJg/kXwVV7oPSn+3Bl6dah
+   ZPO4jL6QYvVihfSaSQrpvsJmagV0KStB9j6+0iaWuubmEzYyoFXAMxkHR
+   bG8rUga3MzEelKaSqBslwYPQi0dug1JyEy/OOnlAjCdBcvc/KTQt4wxjA
+   eD5If/tSR0KijipOwqXisZ3VsDB2SYZLZ02V/ibPg8BVSFWFZxMxDtymj
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="389993640"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="389993640"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 11:44:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="6558967"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 24 Oct 2023 11:44:12 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qvMO0-0008AD-2M;
+	Tue, 24 Oct 2023 18:44:16 +0000
+Date: Wed, 25 Oct 2023 02:43:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Guo Mengqi <guomengqi3@huawei.com>, vkoul@kernel.org,
+	dmaengine@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, xuqiang36@huawei.com,
+	chenweilong@huawei.com, guomengqi3@huawei.com
+Subject: Re: [PATCH v5 1/2] dmaengine: Add HiSilicon Ascend SDMA engine
+ support
+Message-ID: <202310250208.jwwNXco0-lkp@intel.com>
+References: <20231021093454.39822-2-guomengqi3@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,134 +70,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231019021923.13939-2-quic_c_gdjako@quicinc.com>
+In-Reply-To: <20231021093454.39822-2-guomengqi3@huawei.com>
 
-On Wed, Oct 18, 2023 at 07:19:18PM -0700, Georgi Djakov wrote:
-> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
-> of the ARM SMMU-500, that consists of a single TCU (Translation Control
-> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
-> being described in the ARM SMMU DT schema. Add also bindings for the
-> TBUs so that we can describe their properties.
+Hi Guo,
 
-Arm SMMU-500 is an implementation, too. Is QCom's a modified 
-implementation or you are just the first to want to control TBU 
-resources?
+kernel test robot noticed the following build warnings:
 
-You need to split this into what could be any SMMU-500 implementation 
-and what is truly QCom specific (i.e. modified). Unlike some licensed IP 
-that's a free-for-all on DT resources, Arm IP has public specs so we 
-don't have to guess.
+[auto build test WARNING on vkoul-dmaengine/next]
+[also build test WARNING on linus/master v6.6-rc7 next-20231024]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> In this DT schema, the TBUs are modelled as a child devices of the TCU
-> and each of them is described with it's own resources such as clocks,
-> power domains, interconnects etc.
-> 
-> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
-> ---
->  .../devicetree/bindings/iommu/arm,smmu.yaml   | 13 ++++
->  .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 67 +++++++++++++++++++
->  2 files changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index cf29ab10501c..afc323b4bbc5 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -230,6 +230,19 @@ properties:
->        enabled for any given device.
->      $ref: /schemas/types.yaml#/definitions/phandle
->  
-> +  '#address-cells':
-> +    const: 2
-> +
-> +  '#size-cells':
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^tbu@[0-9a-f]+$":
-> +    $ref: qcom,qsmmuv500-tbu.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Guo-Mengqi/dmaengine-Add-HiSilicon-Ascend-SDMA-engine-support/20231021-174034
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
+patch link:    https://lore.kernel.org/r/20231021093454.39822-2-guomengqi3%40huawei.com
+patch subject: [PATCH v5 1/2] dmaengine: Add HiSilicon Ascend SDMA engine support
+config: openrisc-allyesconfig (https://download.01.org/0day-ci/archive/20231025/202310250208.jwwNXco0-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231025/202310250208.jwwNXco0-lkp@intel.com/reproduce)
 
-Generic SMMU binding includes something QCom specific. That's not right.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310250208.jwwNXco0-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from arch/openrisc/include/asm/mmu_context.h:18,
+                    from include/linux/mmu_context.h:5,
+                    from drivers/iommu/iommu-sva.c:5:
+>> include/asm-generic/mm_hooks.h:10:40: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      10 | static inline int arch_dup_mmap(struct mm_struct *oldmm,
+         |                                        ^~~~~~~~~
+   include/asm-generic/mm_hooks.h:16:42: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      16 | static inline void arch_exit_mmap(struct mm_struct *mm)
+         |                                          ^~~~~~~~~
+   include/asm-generic/mm_hooks.h:20:38: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      20 | static inline void arch_unmap(struct mm_struct *mm,
+         |                                      ^~~~~~~~~
+   include/asm-generic/mm_hooks.h:25:15: error: unknown type name 'bool'
+      25 | static inline bool arch_vma_access_permitted(struct vm_area_struct *vma,
+         |               ^~~~
+   include/asm-generic/mm_hooks.h:26:17: error: unknown type name 'bool'
+      26 |                 bool write, bool execute, bool foreign)
+         |                 ^~~~
+   include/asm-generic/mm_hooks.h:1:1: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+     +++ |+#include <stdbool.h>
+       1 | /* SPDX-License-Identifier: GPL-2.0 */
+   include/asm-generic/mm_hooks.h:26:29: error: unknown type name 'bool'
+      26 |                 bool write, bool execute, bool foreign)
+         |                             ^~~~
+   include/asm-generic/mm_hooks.h:26:29: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+   include/asm-generic/mm_hooks.h:26:43: error: unknown type name 'bool'
+      26 |                 bool write, bool execute, bool foreign)
+         |                                           ^~~~
+   include/asm-generic/mm_hooks.h:26:43: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+>> arch/openrisc/include/asm/mmu_context.h:21:61: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      21 | extern int init_new_context(struct task_struct *tsk, struct mm_struct *mm);
+         |                                                             ^~~~~~~~~
+>> arch/openrisc/include/asm/mmu_context.h:21:36: warning: 'struct task_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      21 | extern int init_new_context(struct task_struct *tsk, struct mm_struct *mm);
+         |                                    ^~~~~~~~~~~
+   arch/openrisc/include/asm/mmu_context.h:23:36: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      23 | extern void destroy_context(struct mm_struct *mm);
+         |                                    ^~~~~~~~~
+   arch/openrisc/include/asm/mmu_context.h:25:30: warning: 'struct task_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      25 |                       struct task_struct *tsk);
+         |                              ^~~~~~~~~~~
+   arch/openrisc/include/asm/mmu_context.h:24:30: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
+      24 | extern void switch_mm(struct mm_struct *prev, struct mm_struct *next,
+         |                              ^~~~~~~~~
+   arch/openrisc/include/asm/mmu_context.h:33:17: error: unknown type name 'pgd_t'
+      33 | extern volatile pgd_t *current_pgd[]; /* defined in arch/openrisc/mm/fault.c */
+         |                 ^~~~~
+   include/linux/mmu_context.h:39:15: error: unknown type name 'bool'
+      39 | static inline bool arch_pgtable_dma_compat(struct mm_struct *mm)
+         |               ^~~~
+   include/linux/mmu_context.h: In function 'arch_pgtable_dma_compat':
+   include/linux/mmu_context.h:41:16: error: 'true' undeclared (first use in this function)
+      41 |         return true;
+         |                ^~~~
+   include/linux/mmu_context.h:7:1: note: 'true' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
+       6 | #include <asm/mmu.h>
+     +++ |+#include <stdbool.h>
+       7 | 
+   include/linux/mmu_context.h:41:16: note: each undeclared identifier is reported only once for each function it appears in
+      41 |         return true;
+         |                ^~~~
+   include/linux/mmu_context.h:42:1: error: control reaches end of non-void function [-Werror=return-type]
+      42 | }
+         | ^
+   cc1: some warnings being treated as errors
 
 
-> +    description: The SMMU may include Translation Buffer Units (TBU) as subnodes
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
-> new file mode 100644
-> index 000000000000..4baba7397e90
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm TBU (Translation Buffer Unit)
-> +
-> +maintainers:
-> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
-> +
-> +description:
-> +  TBU nodes represent Translation Buffer Units in an ARM SMMU. Each TBU node
-> +  should be a child node of the SMMU in the device tree.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qsmmuv500-tbu
-> +
-> +  reg:
-> +    items:
-> +      - description: Address and size of the TBU's register space.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: base
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interconnects:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  qcom,stream-id-range:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: Stream ID range (address and size) that is assigned by the TBU
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interconnects
-> +  - qcom,stream-id-range
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-> +    #include <dt-bindings/interconnect/qcom,sdm845.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +
-> +    tbu@150e1000 {
-> +        compatible = "qcom,qsmmuv500-tbu";
-> +        reg = <0x150e1000 0x1000>;
-> +        reg-names = "base";
-> +        clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
-> +        power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
-> +        interconnects = <&system_noc MASTER_GNOC_SNOC 0 &config_noc SLAVE_IMEM_CFG 0>;
-> +        qcom,stream-id-range = <0x1c00 0x400>;
-> +    };
-> +
-> +...
+vim +10 include/asm-generic/mm_hooks.h
+
+d6dd61c831226f Jeremy Fitzhardinge 2007-05-02   9  
+c10e83f598d080 Thomas Gleixner     2017-12-14 @10  static inline int arch_dup_mmap(struct mm_struct *oldmm,
+d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  11  				struct mm_struct *mm)
+d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  12  {
+c10e83f598d080 Thomas Gleixner     2017-12-14  13  	return 0;
+d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  14  }
+d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  15  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
