@@ -1,328 +1,197 @@
-Return-Path: <devicetree+bounces-11407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491067D5ACA
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:42:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4017C7D5AD0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:43:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63C541C20975
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:42:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAF031F22A04
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFB7347A2;
-	Tue, 24 Oct 2023 18:42:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OH6BGjQy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D163A28D;
+	Tue, 24 Oct 2023 18:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6828D28FA;
-	Tue, 24 Oct 2023 18:42:14 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B75912C;
-	Tue, 24 Oct 2023 11:42:12 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39OIWRau025039;
-	Tue, 24 Oct 2023 18:42:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=uGHRv3zuutbStD7E9MlZNXiGhV3IMVGQQ/a4No1Mr2E=;
- b=OH6BGjQyGl+N4bgKZW2F9XyZXNIVRMsUO5bxNvNQlK7O32GQcJamz/Sz2Snj1jX64Kj0
- +HaS86V+V+9NTC7MHZP0bUW05XmKMEv+fKEV9z9m9jbUywpwDHnaOI8BWZF4W+mA7L1D
- yhgq1lqiQGv1x+oeO/L8+V9HesVRyVikfq8PYZ2ss5z6MHOdGQYg7bqS5YIbBlDVvNMt
- vxhq9beFsSJLwGzUhza/pfqUendvZ/xUaOHppPVqplTS47/Wm/RRwcNUDOWS0CH1Vjlf
- Qfdni6gud+3lv4zWxEG6Q8cY8/pJ1QH8R6pxSzXrO1dLrbZzLUTFiXZx9vDUnFFejJiG hA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tx7r81t01-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 18:42:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39OIg3MO031347
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 24 Oct 2023 18:42:03 GMT
-Received: from [10.110.113.199] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
- 2023 11:42:03 -0700
-Message-ID: <cd294a89-33e7-0569-81b3-df77a255f061@quicinc.com>
-Date: Tue, 24 Oct 2023 11:41:51 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2958C35896
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:42:53 +0000 (UTC)
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886C010D0;
+	Tue, 24 Oct 2023 11:42:51 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1e5bc692721so3122505fac.0;
+        Tue, 24 Oct 2023 11:42:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698172971; x=1698777771;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e7tCIB9BylheYtMG7rMe1KZx7kNN6oaCCoyrHFzcP3w=;
+        b=WEeRrWQ1hKrYVce1JRJpJZBNVmCAnoAGas+mr07qDA0Fo1oBAWvWcswX4p80Z7lzqV
+         6TSJIHeFE2aUS9NGAf0tdPuwDOeX2+S+ynPaHUeBZWyZjDH/SrpfM5F/v7i55MGt8GvV
+         Vbero89zGdYid3bmGAoucnzcdGId7jxq08ih0j11h9fliTSO58zFFeGN7ctVALs4GcOM
+         ZNh8FFC13In6fsUKmcArB9QCK8TgFsF4t9u5850bTmd/8c8boIRLn05zXtwDil2L5Vhe
+         Xi0KjCZBF3m1Zhvz3GyijCaykHVxWXoPGHq9uebjKEGjxc8FlSEZEAi4TPSaRMDMFjIE
+         LGzg==
+X-Gm-Message-State: AOJu0YxHld/ZaZfOSp2FJV408CamJebegO0W4xF/mdk1hNaHBoJ4sQkH
+	a4jZPXOsHHlan/rD/JNTHg==
+X-Google-Smtp-Source: AGHT+IEwPD0r1BvSI+qia1MrYQNuHfFhmEEtqVIVoIHZoqHIvOzwAF1Y9oJIQUNl++IgJf0l1aNg1g==
+X-Received: by 2002:a05:6870:b90a:b0:1ea:4dc8:a17 with SMTP id gx10-20020a056870b90a00b001ea4dc80a17mr13544728oab.28.1698172970721;
+        Tue, 24 Oct 2023 11:42:50 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id sc17-20020a056871221100b001e0fd4c9b9asm2303077oab.6.2023.10.24.11.42.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 11:42:50 -0700 (PDT)
+Received: (nullmailer pid 263045 invoked by uid 1000);
+	Tue, 24 Oct 2023 18:42:48 -0000
+Date: Tue, 24 Oct 2023 13:42:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org, robin.murphy@arm.com, joro@8bytes.org, devicetree@vger.kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com, quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com, djakov@kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: iommu: Add Translation Buffer Unit
+ bindings
+Message-ID: <20231024184248.GA252155-robh@kernel.org>
+References: <20231019021923.13939-1-quic_c_gdjako@quicinc.com>
+ <20231019021923.13939-2-quic_c_gdjako@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
- suspend
-Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-4-quic_eserrao@quicinc.com>
- <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
-From: Elson Serrao <quic_eserrao@quicinc.com>
-In-Reply-To: <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VU6LfGhr4GY0_tRn7IyMektX1o9WnNEj
-X-Proofpoint-GUID: VU6LfGhr4GY0_tRn7IyMektX1o9WnNEj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-24_18,2023-10-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
- mlxlogscore=999 lowpriorityscore=0 bulkscore=0 phishscore=0 spamscore=0
- clxscore=1015 priorityscore=1501 suspectscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310240160
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231019021923.13939-2-quic_c_gdjako@quicinc.com>
 
+On Wed, Oct 18, 2023 at 07:19:18PM -0700, Georgi Djakov wrote:
+> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
+> of the ARM SMMU-500, that consists of a single TCU (Translation Control
+> Unit) and multiple TBUs (Translation Buffer Units). The TCU is already
+> being described in the ARM SMMU DT schema. Add also bindings for the
+> TBUs so that we can describe their properties.
 
+Arm SMMU-500 is an implementation, too. Is QCom's a modified 
+implementation or you are just the first to want to control TBU 
+resources?
 
-On 10/24/2023 3:14 AM, Roger Quadros wrote:
-> Hi Elson,
+You need to split this into what could be any SMMU-500 implementation 
+and what is truly QCom specific (i.e. modified). Unlike some licensed IP 
+that's a free-for-all on DT resources, Arm IP has public specs so we 
+don't have to guess.
+
+> In this DT schema, the TBUs are modelled as a child devices of the TCU
+> and each of them is described with it's own resources such as clocks,
+> power domains, interconnects etc.
 > 
-> On 14/08/2023 21:50, Elson Roy Serrao wrote:
->> The current implementation blocks the runtime pm operations when cable
->> is connected. This would block dwc3 to enter a low power state during
->> bus suspend scenario. Modify the runtime pm ops to handle bus suspend
->> case for such platforms where the controller low power mode entry/exit
->> is handled by the glue driver. This enablement is controlled through a
->> dt property and platforms capable of detecting bus resume can benefit
->> from this feature. Also modify the remote wakeup operations to trigger
->> runtime resume before sending wakeup signal.
->>
->> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
->> ---
->>   drivers/usb/dwc3/core.c   | 28 ++++++++++++++++++++++++++--
->>   drivers/usb/dwc3/core.h   |  3 +++
->>   drivers/usb/dwc3/gadget.c | 32 +++++++++++++++++++++++++-------
->>   3 files changed, 54 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->> index 9c6bf054f15d..9bfd9bb18caf 100644
->> --- a/drivers/usb/dwc3/core.c
->> +++ b/drivers/usb/dwc3/core.c
->> @@ -1518,6 +1518,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>   	dwc->dis_split_quirk = device_property_read_bool(dev,
->>   				"snps,dis-split-quirk");
->>   
->> +	dwc->runtime_suspend_on_usb_suspend = device_property_read_bool(dev,
->> +				"snps,runtime-suspend-on-usb-suspend");
->> +
->>   	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
->>   	dwc->tx_de_emphasis = tx_de_emphasis;
->>   
->> @@ -2029,6 +2032,9 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
->>   
->>   	switch (dwc->current_dr_role) {
->>   	case DWC3_GCTL_PRTCAP_DEVICE:
->> +		/* runtime resume on bus resume scenario */
->> +		if (PMSG_IS_AUTO(msg) && dwc->connected)
->> +			break;
->>   		ret = dwc3_core_init_for_resume(dwc);
->>   		if (ret)
->>   			return ret;
->> @@ -2090,8 +2096,13 @@ static int dwc3_runtime_checks(struct dwc3 *dwc)
->>   {
->>   	switch (dwc->current_dr_role) {
->>   	case DWC3_GCTL_PRTCAP_DEVICE:
->> -		if (dwc->connected)
->> +		if (dwc->connected) {
->> +			/* bus suspend scenario */
->> +			if (dwc->runtime_suspend_on_usb_suspend &&
->> +			    dwc->suspended)
+> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+> ---
+>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 13 ++++
+>  .../bindings/iommu/qcom,qsmmuv500-tbu.yaml    | 67 +++++++++++++++++++
+>  2 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
 > 
-> If dwc is already suspended why do we return -EBUSY?
-> Should this be !dwc->suspended?
-> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index cf29ab10501c..afc323b4bbc5 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -230,6 +230,19 @@ properties:
+>        enabled for any given device.
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^tbu@[0-9a-f]+$":
+> +    $ref: qcom,qsmmuv500-tbu.yaml
 
-Hi Roger
+Generic SMMU binding includes something QCom specific. That's not right.
 
-Thank you for reviewing.
-If dwc->suspended is true (i.e suspend event due to U3/L2 is received), 
-I am actually breaking from this switch statement and returning 0.
 
->> +				break;
->>   			return -EBUSY;
->> +		}
->>   		break;
->>   	case DWC3_GCTL_PRTCAP_HOST:
->>   	default:
->> @@ -2107,9 +2118,22 @@ static int dwc3_runtime_suspend(struct device *dev)
->>   	struct dwc3     *dwc = dev_get_drvdata(dev);
->>   	int		ret;
->>   
->> -	if (dwc3_runtime_checks(dwc))
->> +	ret = dwc3_runtime_checks(dwc);
->> +	if (ret)
->>   		return -EBUSY;
->>   
->> +	switch (dwc->current_dr_role) {
->> +	case DWC3_GCTL_PRTCAP_DEVICE:
->> +		/* bus suspend case */
->> +		if (!ret && dwc->connected)
-> 
-> No need to check !ret again as it will never happen because
-> we are returning -EBUSY earlier if (ret);
-> 
-Thanks for this catch. I will remove !ret check in v5.
-
->> +			return 0;
->> +		break;
->> +	case DWC3_GCTL_PRTCAP_HOST:
->> +	default:
->> +		/* do nothing */
->> +		break;
->> +	}
->> +
-> 
-> While this takes care of runtime suspend case, what about system_suspend?
-> Should this check be moved to dwc3_suspend_common() instead?
-> 
-
-Sure I can move these checks to dwc3_suspend_common to make it generic.
-Will rename this patch to "Modify pm ops to handle bus suspend" since 
-this is now not limited to only runtime suspend/resume. Will also rename 
-dwc->runtime_suspend_on_usb_suspend to dwc->delegate_wakeup_interrupt 
-based on earlier feedback.
-
-I am still working on a clean way to enable/disable this feature (i.e 
-set dwc->delegate_wakeup_interrupt flag) from the glue driver based on 
-Thinh's feedback .
-I will accommodate above feedback as well and upload v5.
-
-Thanks
-Elson
->>   	ret = dwc3_suspend_common(dwc, PMSG_AUTO_SUSPEND);
->>   	if (ret)
->>   		return ret;
->> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
->> index a69ac67d89fe..f2f788a6b4b5 100644
->> --- a/drivers/usb/dwc3/core.h
->> +++ b/drivers/usb/dwc3/core.h
->> @@ -1124,6 +1124,8 @@ struct dwc3_scratchpad_array {
->>    * @num_ep_resized: carries the current number endpoints which have had its tx
->>    *		    fifo resized.
->>    * @debug_root: root debugfs directory for this device to put its files in.
->> + * @runtime_suspend_on_usb_suspend: true if dwc3 runtime suspend is allowed
->> + *			during bus suspend scenario.
->>    */
->>   struct dwc3 {
->>   	struct work_struct	drd_work;
->> @@ -1340,6 +1342,7 @@ struct dwc3 {
->>   	int			last_fifo_depth;
->>   	int			num_ep_resized;
->>   	struct dentry		*debug_root;
->> +	bool			runtime_suspend_on_usb_suspend;
->>   };
->>   
->>   #define INCRX_BURST_MODE 0
->> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
->> index 5fd067151fbf..978ce0e91164 100644
->> --- a/drivers/usb/dwc3/gadget.c
->> +++ b/drivers/usb/dwc3/gadget.c
->> @@ -2401,15 +2401,21 @@ static int dwc3_gadget_wakeup(struct usb_gadget *g)
->>   		return -EINVAL;
->>   	}
->>   
->> -	spin_lock_irqsave(&dwc->lock, flags);
->>   	if (!dwc->gadget->wakeup_armed) {
->>   		dev_err(dwc->dev, "not armed for remote wakeup\n");
->> -		spin_unlock_irqrestore(&dwc->lock, flags);
->>   		return -EINVAL;
->>   	}
->> -	ret = __dwc3_gadget_wakeup(dwc, true);
->>   
->> +	ret = pm_runtime_resume_and_get(dwc->dev);
->> +	if (ret < 0) {
->> +		pm_runtime_set_suspended(dwc->dev);
->> +		return ret;
->> +	}
->> +
->> +	spin_lock_irqsave(&dwc->lock, flags);
->> +	ret = __dwc3_gadget_wakeup(dwc, true);
->>   	spin_unlock_irqrestore(&dwc->lock, flags);
->> +	pm_runtime_put_noidle(dwc->dev);
->>   
->>   	return ret;
->>   }
->> @@ -2428,6 +2434,12 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
->>   		return -EINVAL;
->>   	}
->>   
->> +	ret = pm_runtime_resume_and_get(dwc->dev);
->> +	if (ret < 0) {
->> +		pm_runtime_set_suspended(dwc->dev);
->> +		return ret;
->> +	}
->> +
->>   	spin_lock_irqsave(&dwc->lock, flags);
->>   	/*
->>   	 * If the link is in U3, signal for remote wakeup and wait for the
->> @@ -2438,6 +2450,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
->>   		ret = __dwc3_gadget_wakeup(dwc, false);
->>   		if (ret) {
->>   			spin_unlock_irqrestore(&dwc->lock, flags);
->> +			pm_runtime_put_noidle(dwc->dev);
->>   			return -EINVAL;
->>   		}
->>   		dwc3_resume_gadget(dwc);
->> @@ -2452,6 +2465,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
->>   		dev_err(dwc->dev, "function remote wakeup failed, ret:%d\n", ret);
->>   
->>   	spin_unlock_irqrestore(&dwc->lock, flags);
->> +	pm_runtime_put_noidle(dwc->dev);
->>   
->>   	return ret;
->>   }
->> @@ -2732,21 +2746,23 @@ static int dwc3_gadget_pullup(struct usb_gadget *g, int is_on)
->>   	/*
->>   	 * Avoid issuing a runtime resume if the device is already in the
->>   	 * suspended state during gadget disconnect.  DWC3 gadget was already
->> -	 * halted/stopped during runtime suspend.
->> +	 * halted/stopped during runtime suspend except for bus suspend case
->> +	 * where we would have skipped the controller halt.
->>   	 */
->>   	if (!is_on) {
->>   		pm_runtime_barrier(dwc->dev);
->> -		if (pm_runtime_suspended(dwc->dev))
->> +		if (pm_runtime_suspended(dwc->dev) && !dwc->connected)
->>   			return 0;
->>   	}
->>   
->>   	/*
->>   	 * Check the return value for successful resume, or error.  For a
->>   	 * successful resume, the DWC3 runtime PM resume routine will handle
->> -	 * the run stop sequence, so avoid duplicate operations here.
->> +	 * the run stop sequence except for bus resume case, so avoid
->> +	 * duplicate operations here.
->>   	 */
->>   	ret = pm_runtime_get_sync(dwc->dev);
->> -	if (!ret || ret < 0) {
->> +	if ((!ret && !dwc->connected) || ret < 0) {
->>   		pm_runtime_put(dwc->dev);
->>   		if (ret < 0)
->>   			pm_runtime_set_suspended(dwc->dev);
->> @@ -4331,6 +4347,8 @@ static void dwc3_gadget_suspend_interrupt(struct dwc3 *dwc,
->>   	}
->>   
->>   	dwc->link_state = next;
->> +	pm_runtime_mark_last_busy(dwc->dev);
->> +	pm_request_autosuspend(dwc->dev);
->>   }
->>   
->>   static void dwc3_gadget_interrupt(struct dwc3 *dwc,
-> 
+> +    description: The SMMU may include Translation Buffer Units (TBU) as subnodes
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+> new file mode 100644
+> index 000000000000..4baba7397e90
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/qcom,qsmmuv500-tbu.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/qcom,qsmmuv500-tbu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm TBU (Translation Buffer Unit)
+> +
+> +maintainers:
+> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
+> +
+> +description:
+> +  TBU nodes represent Translation Buffer Units in an ARM SMMU. Each TBU node
+> +  should be a child node of the SMMU in the device tree.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qsmmuv500-tbu
+> +
+> +  reg:
+> +    items:
+> +      - description: Address and size of the TBU's register space.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: base
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interconnects:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  qcom,stream-id-range:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: Stream ID range (address and size) that is assigned by the TBU
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interconnects
+> +  - qcom,stream-id-range
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+> +    #include <dt-bindings/interconnect/qcom,sdm845.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+> +
+> +
+> +    tbu@150e1000 {
+> +        compatible = "qcom,qsmmuv500-tbu";
+> +        reg = <0x150e1000 0x1000>;
+> +        reg-names = "base";
+> +        clocks = <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>;
+> +        power-domains = <&gcc HLOS1_VOTE_AGGRE_NOC_MMU_PCIE_TBU_GDSC>;
+> +        interconnects = <&system_noc MASTER_GNOC_SNOC 0 &config_noc SLAVE_IMEM_CFG 0>;
+> +        qcom,stream-id-range = <0x1c00 0x400>;
+> +    };
+> +
+> +...
 
