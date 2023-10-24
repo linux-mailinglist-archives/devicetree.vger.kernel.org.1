@@ -1,263 +1,416 @@
-Return-Path: <devicetree+bounces-11339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7C197D5484
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:57:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BCB97D549F
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:03:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68AD5280F28
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:57:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7B4C1F22827
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EA7262B2;
-	Tue, 24 Oct 2023 14:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113842510D;
+	Tue, 24 Oct 2023 15:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BVMbDOkK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KMUkGJTr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5F530F80
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:57:04 +0000 (UTC)
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AB92CC
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:57:02 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4083f613272so39097485e9.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:57:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698159421; x=1698764221; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+PoNElajP8sJ7epQkLSnQ3gBazZcGctrrMBsHdY35wo=;
-        b=BVMbDOkKxSXJwSDQMMwnOecw3VQaDiz0r1+pxm0gWIDE4wIZWHhbgFn27zm9BUJpmv
-         TQVzgh4TLjyHPujXeK/KAgAFyoXSZfNfFAkTiF59PaP33Rm7LKyUQDIJizHV6jY8uVsL
-         kfvg233jjMEQFdW5QaJYWk6NmzfkA3qBN8DjQ8JCRhOr5n7MM2aptOfjzhNAKX3N5n27
-         V9i1fKnVBZauJ0z2HZKR+rD1nG05pV4gzIGtEdiKqqOT7iNd+BOBKaeAq6tqTnhvSBo2
-         D/HLzzL0oT6BHqwTeLspuXfMYncOi5dgp6K3a4W7OqQRoZqbwPd5J9OCaySscq7zmPTA
-         wZrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698159421; x=1698764221;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+PoNElajP8sJ7epQkLSnQ3gBazZcGctrrMBsHdY35wo=;
-        b=uc0bvyFei7czRESb9Eb/PPa6w+/F6OWyIdg32xDQutH31qjDU3++Nk6D5+cEMt9l5Q
-         AePQ4ZRQ73weQ33eKwvtM3RgavvdL+r1PnJiximJxhv4KllK+3Eunbyozwy4nFDmTxcq
-         08Cd99d462TIFh4/g8efTJQUmhfDk3KB2Xj23wrF5qfi0o5/5x+gLD402HkB1LL+zf6M
-         +5I47kO/IoTUk74wC3Qka2tcp+TGPBFQ/sMel9Cgo87jDzIZmrgRcnl8pCM4W6N2x7qb
-         JO5wxcJg+2zWVfJkmeRHDmOGHiQHddoxSTA7JfIFoYP8R3+HzQBWvDSkpja7vrOMJ1d8
-         GHRA==
-X-Gm-Message-State: AOJu0YwL/GhrqHbmXhq+Ia9vfIe9oR9Bc6Ly2l3wkCUZFrxWlgbsnpwa
-	BacT/Vtuio4LiaJ2A/xa5Ph6mg==
-X-Google-Smtp-Source: AGHT+IFdw010oLNVepkIReEFPUIX06g7zCHhwwihKO4C480GsZZ9JoH1qy3uCS4da8zpBdBpPsrJkg==
-X-Received: by 2002:a05:600c:46c8:b0:409:295:9c44 with SMTP id q8-20020a05600c46c800b0040902959c44mr4489796wmo.14.1698159420856;
-        Tue, 24 Oct 2023 07:57:00 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id p5-20020a05600c358500b004053a6b8c41sm12225994wmq.12.2023.10.24.07.56.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 07:57:00 -0700 (PDT)
-Message-ID: <3f76f965-7c7b-109e-2ee0-3033e332e84b@linaro.org>
-Date: Tue, 24 Oct 2023 16:56:56 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7F413FED
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:03:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A9C9111;
+	Tue, 24 Oct 2023 08:03:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698159798; x=1729695798;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=r47g194hEkB5Z9PKa+y8DVJGAzdshQtZiIXJLW56A0E=;
+  b=KMUkGJTrWEJy4S5SRml2QtKxO6DyKAac1HQxqsV2qfO+oeD1l5js9N87
+   C0XMRRQsOVu0HK6Ta2m0+sVr2RA1WOWQvc6BZGQTjCgLqp4RUhsY3VSK2
+   LcdNCHLNGXWTsiupw1P5GZqMQgUs1xxCFuAdp4nSCLXoccyd8uyVvSJIA
+   qjSJKmDXRLEvnif+tsqROWWX0/c8kYVOdRmPo2E8JR0GPKTPhcKWcZ4sP
+   6etVQVxVnqsitHCjxTHSWWGE9A0rMEgIsiwX13Q9s5p8BW3pG4c5CflUf
+   nvYx83CYdflW9uqmEdjLrpSAZ4EeOEbA45awbc1vnyKIGy8N/G6apTD0a
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="389927615"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="389927615"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 08:02:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="1089849125"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
+   d="scan'208";a="1089849125"
+Received: from nkraljev-mobl.ger.corp.intel.com ([10.249.41.91])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 08:02:14 -0700
+Date: Tue, 24 Oct 2023 18:02:12 +0300 (EEST)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+cc: git@amd.com, michal.simek@amd.com, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, robh+dt@kernel.org, 
+    krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+    linux-serial <linux-serial@vger.kernel.org>, devicetree@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, Jiri Slaby <jirislaby@kernel.org>, 
+    linux-arm-kernel@lists.infradead.org, radhey.shyam.pandey@amd.com, 
+    srinivas.goud@amd.com, shubhrajyoti.datta@amd.com, manion05gk@gmail.com
+Subject: Re: [PATCH V3 2/2] tty: serial: uartps: Add rs485 support to uartps
+ driver
+In-Reply-To: <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
+Message-ID: <f48b4dda-f78e-ce2b-39dd-af82db4b84@linux.intel.com>
+References: <20231024144847.2316941-1-manikanta.guntupalli@amd.com> <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v7 2/3] clocksource: Add JH7110 timer driver
-Content-Language: en-US
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Walker Chen <walker.chen@starfivetech.com>,
- Samin Guo <samin.guo@starfivetech.com>, linux-kernel@vger.kernel.org,
- Conor Dooley <conor@kernel.org>
-References: <20231019053501.46899-1-xingyu.wu@starfivetech.com>
- <20231019053501.46899-3-xingyu.wu@starfivetech.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231019053501.46899-3-xingyu.wu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 
+On Tue, 24 Oct 2023, Manikanta Guntupalli wrote:
 
-Hi Xingyu,
-
-
-On 19/10/2023 07:35, Xingyu Wu wrote:
-> Add timer driver for the StarFive JH7110 SoC.
-
-As it is a new timer, please add a proper nice description explaining 
-the timer hardware, thanks.
-
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->   MAINTAINERS                        |   7 +
->   drivers/clocksource/Kconfig        |  11 +
->   drivers/clocksource/Makefile       |   1 +
->   drivers/clocksource/timer-jh7110.c | 380 +++++++++++++++++++++++++++++
->   4 files changed, 399 insertions(+)
->   create mode 100644 drivers/clocksource/timer-jh7110.c
+> Add rs485 support to uartps driver. Use either rts-gpios or RTS
+> to control RS485 phy as driver or a receiver.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7a7bd8bd80e9..91c09b399131 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20473,6 +20473,13 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
->   F:	sound/soc/starfive/jh7110_tdm.c
->   
-> +STARFIVE JH7110 TIMER DRIVER
-> +M:	Samin Guo <samin.guo@starfivetech.com>
-> +M:	Xingyu Wu <xingyu.wu@starfivetech.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
-> +F:	drivers/clocksource/timer-jh7110.c
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> ---
+> Changes for V2:
+> Modify optional gpio name to xlnx,phy-ctrl-gpios.
+> Update commit description.
+> Add support for RTS, delay_rts_before_send and delay_rts_after_send in RS485 mode.
+> Changes for V3:
+> Modify optional gpio name to rts-gpios.
+> Update commit description.
+> Move cdns_uart_tx_empty function to avoid prototype statement.
+> Remove assignment of struct serial_rs485 to port->rs485 as
+> serial core performs that.
+> Switch to native RTS in non GPIO case.
+> Handle rs485 during stop tx.
+> Remove explicit calls to configure gpio direction and value,
+> as devm_gpiod_get_optional performs that by using GPIOD_OUT_LOW argument.
+> Update implementation to support configuration of GPIO/RTS value
+> based on user configuration of SER_RS485_RTS_ON_SEND and
+> SER_RS485_RTS_AFTER_SEND. Move implementation to start_tx from handle_tx.
+> ---
+>  drivers/tty/serial/xilinx_uartps.c | 180 ++++++++++++++++++++++++++---
+>  1 file changed, 165 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
+> index 9c13dac1d4d1..32229cf5c508 100644
+> --- a/drivers/tty/serial/xilinx_uartps.c
+> +++ b/drivers/tty/serial/xilinx_uartps.c
+> @@ -23,6 +23,9 @@
+>  #include <linux/module.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/iopoll.h>
+> +#include <linux/gpio.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/delay.h>
+>  
+>  #define CDNS_UART_TTY_NAME	"ttyPS"
+>  #define CDNS_UART_NAME		"xuartps"
+> @@ -193,6 +196,7 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-255");
+>   * @clk_rate_change_nb:	Notifier block for clock changes
+>   * @quirks:		Flags for RXBS support.
+>   * @cts_override:	Modem control state override
+> + * @gpiod:		Pointer to the gpio descriptor
+>   */
+>  struct cdns_uart {
+>  	struct uart_port	*port;
+> @@ -203,10 +207,19 @@ struct cdns_uart {
+>  	struct notifier_block	clk_rate_change_nb;
+>  	u32			quirks;
+>  	bool cts_override;
+> +	struct gpio_desc	*gpiod;
+>  };
+>  struct cdns_platform_data {
+>  	u32 quirks;
+>  };
 > +
->   STARFIVE JH71X0 CLOCK DRIVERS
->   M:	Emil Renner Berthing <kernel@esmil.dk>
->   M:	Hal Feng <hal.feng@starfivetech.com>
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index 0ba0dc4ecf06..821abcc1e517 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -641,6 +641,17 @@ config RISCV_TIMER
->   	  is accessed via both the SBI and the rdcycle instruction.  This is
->   	  required for all RISC-V systems.
->   
-> +config STARFIVE_JH7110_TIMER
-> +	bool "Timer for the STARFIVE JH7110 SoC"
-> +	depends on ARCH_STARFIVE || COMPILE_TEST
-
-You may want to use ARCH_STARFIVE only if the platform can make this 
-timer optional. Otherwise, set the option from the platform Kconfig and 
-put the bool "bla bla" if COMPILE_TEST
-
-> +	select TIMER_OF
-> +	select CLKSRC_MMIO
-> +	default ARCH_STARFIVE
-
-no "default"
-
-> +	help
-> +	  This enables the timer for StarFive JH7110 SoC. On RISC-V platform,
-> +	  the system has started RISCV_TIMER, but you can also use this timer
-> +	  which can provide four channels to do a lot more things on JH7110 SoC.
-> +
->   config CLINT_TIMER
->   	bool "CLINT Timer for the RISC-V platform" if COMPILE_TEST
->   	depends on GENERIC_SCHED_CLOCK && RISCV
-> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-> index 368c3461dab8..b66ac05ec086 100644
-> --- a/drivers/clocksource/Makefile
-> +++ b/drivers/clocksource/Makefile
-> @@ -80,6 +80,7 @@ obj-$(CONFIG_INGENIC_TIMER)		+= ingenic-timer.o
->   obj-$(CONFIG_CLKSRC_ST_LPC)		+= clksrc_st_lpc.o
->   obj-$(CONFIG_X86_NUMACHIP)		+= numachip.o
->   obj-$(CONFIG_RISCV_TIMER)		+= timer-riscv.o
-> +obj-$(CONFIG_STARFIVE_JH7110_TIMER)	+= timer-jh7110.o
->   obj-$(CONFIG_CLINT_TIMER)		+= timer-clint.o
->   obj-$(CONFIG_CSKY_MP_TIMER)		+= timer-mp-csky.o
->   obj-$(CONFIG_GX6605S_TIMER)		+= timer-gx6605s.o
-> diff --git a/drivers/clocksource/timer-jh7110.c b/drivers/clocksource/timer-jh7110.c
-> new file mode 100644
-> index 000000000000..71de29a3ec91
-> --- /dev/null
-> +++ b/drivers/clocksource/timer-jh7110.c
-> @@ -0,0 +1,380 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Starfive JH7110 Timer driver
-> + *
-> + * Copyright (C) 2022-2023 StarFive Technology Co., Ltd.
-> + *
-> + * Author:
-> + * Xingyu Wu <xingyu.wu@starfivetech.com>
-> + * Samin Guo <samin.guo@starfivetech.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clockchips.h>
-> +#include <linux/clocksource.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/irq.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/sched_clock.h>
-
-Please double check the headers and remove the pointless ones.
-
-
-> +/* Bias: Ch0-0x0, Ch1-0x40, Ch2-0x80, and so on. */
-> +#define JH7110_TIMER_CH_LEN		0x40
-> +#define JH7110_TIMER_CH_BASE(x)		((x) * JH7110_TIMER_CH_LEN)
-> +#define JH7110_TIMER_CH_MAX		4
-> +
-> +#define JH7110_CLOCK_SOURCE_RATING	200
-> +#define JH7110_VALID_BITS		32
-> +#define JH7110_DELAY_US			0
-> +#define JH7110_TIMEOUT_US		10000
-> +#define JH7110_CLOCKEVENT_RATING	300
-> +#define JH7110_TIMER_MAX_TICKS		0xffffffff
-> +#define JH7110_TIMER_MIN_TICKS		0xf
-> +#define JH7110_TIMER_RELOAD_VALUE	0
-> +
-> +#define JH7110_TIMER_INT_STATUS		0x00 /* RO[0:4]: Interrupt Status for channel0~4 */
-> +#define JH7110_TIMER_CTL		0x04 /* RW[0]: 0-continuous run, 1-single run */
-> +#define JH7110_TIMER_LOAD		0x08 /* RW: load value to counter */
-> +#define JH7110_TIMER_ENABLE		0x10 /* RW[0]: timer enable register */
-> +#define JH7110_TIMER_RELOAD		0x14 /* RW: write 1 or 0 both reload counter */
-> +#define JH7110_TIMER_VALUE		0x18 /* RO: timer value register */
-> +#define JH7110_TIMER_INT_CLR		0x20 /* RW: timer interrupt clear register */
-> +#define JH7110_TIMER_INT_MASK		0x24 /* RW[0]: timer interrupt mask register */
-> +
-> +#define JH7110_TIMER_INT_CLR_ENA	BIT(0)
-> +#define JH7110_TIMER_INT_CLR_AVA_MASK	BIT(1)
-> +
-> +struct jh7110_clkevt {
-> +	struct clock_event_device evt;
-> +	struct clocksource cs;
-> +	bool cs_is_valid;
-> +	struct clk *clk;
-> +	struct reset_control *rst;
-> +	u32 rate;
-> +	u32 reload_val;
-> +	void __iomem *base;
-> +	char name[sizeof("jh7110-timer.chX")];
+> +struct serial_rs485 cdns_rs485_supported = {
+> +	.flags = SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
+> +		 SER_RS485_RTS_AFTER_SEND,
+> +	.delay_rts_before_send = 1,
+> +	.delay_rts_after_send = 1,
 > +};
 > +
-> +struct jh7110_timer_priv {
-> +	struct clk *pclk;
-> +	struct reset_control *prst;
-> +	struct jh7110_clkevt clkevt[JH7110_TIMER_CH_MAX];
+>  #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
+>  		clk_rate_change_nb)
+>  
+> @@ -305,6 +318,79 @@ static void cdns_uart_handle_rx(void *dev_id, unsigned int isrstatus)
+>  	tty_flip_buffer_push(&port->state->port);
+>  }
+>  
+> +/**
+> + * cdns_rs485_config_gpio_rts_high - Configure GPIO/RTS to high
+> + * @cdns_uart: Handle to the cdns_uart
+> + */
+> +static void cdns_rs485_config_gpio_rts_high(struct cdns_uart *cdns_uart)
+> +{
+> +	u32 val;
+> +
+> +	if (cdns_uart->gpiod) {
+> +		gpiod_set_value(cdns_uart->gpiod, 1);
+> +	} else {
+> +		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
+> +		val &= ~CDNS_UART_MODEMCR_RTS;
+> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
+> +	}
+> +}
+> +
+> +/**
+> + * cdns_rs485_config_gpio_rts_low - Configure GPIO/RTS to low
+> + * @cdns_uart: Handle to the cdns_uart
+> + */
+> +static void cdns_rs485_config_gpio_rts_low(struct cdns_uart *cdns_uart)
+> +{
+> +	u32 val;
+> +
+> +	if (cdns_uart->gpiod) {
+> +		gpiod_set_value(cdns_uart->gpiod, 0);
+> +	} else {
+> +		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
+> +		val |= CDNS_UART_MODEMCR_RTS;
+> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
+> +	}
+> +}
+> +
+> +/**
+> + * cdns_rs485_tx_setup - Tx setup specific to rs485
+> + * @cdns_uart: Handle to the cdns_uart
+> + */
+> +static void cdns_rs485_tx_setup(struct cdns_uart *cdns_uart)
+> +{
+> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_ON_SEND)
+> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
+> +	else
+> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
+> +}
+> +
+> +/**
+> + * cdns_rs485_rx_setup - Rx setup specific to rs485
+> + * @cdns_uart: Handle to the cdns_uart
+> + */
+> +static void cdns_rs485_rx_setup(struct cdns_uart *cdns_uart)
+> +{
+> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
+> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
+> +	else
+> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
+> +}
+> +
+> +/**
+> + * cdns_uart_tx_empty -  Check whether TX is empty
+> + * @port: Handle to the uart port structure
+> + *
+> + * Return: TIOCSER_TEMT on success, 0 otherwise
+> + */
+> +static unsigned int cdns_uart_tx_empty(struct uart_port *port)
+> +{
+> +	unsigned int status;
+> +
+> +	status = readl(port->membase + CDNS_UART_SR) &
+> +		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
 
-Why do you need several clock events and clock sources ?
+Split to two lines since you need two lines anyway.
 
-[ ... ]
+> +	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
+> +}
+> +
+>  /**
+>   * cdns_uart_handle_tx - Handle the bytes to be Txed.
+>   * @dev_id: Id of the UART port
+> @@ -571,6 +657,8 @@ static int cdns_uart_clk_notifier_cb(struct notifier_block *nb,
+>  static void cdns_uart_start_tx(struct uart_port *port)
+>  {
+>  	unsigned int status;
+> +	unsigned long time_out;
+> +	struct cdns_uart *cdns_uart = port->private_data;
+>  
+>  	if (uart_tx_stopped(port))
+>  		return;
+> @@ -589,8 +677,31 @@ static void cdns_uart_start_tx(struct uart_port *port)
+>  
+>  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_ISR);
+>  
+> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
+> +		cdns_rs485_tx_setup(cdns_uart);
+> +		if (cdns_uart->port->rs485.delay_rts_before_send)
+> +			mdelay(cdns_uart->port->rs485.delay_rts_before_send);
+> +	}
+> +
+>  	cdns_uart_handle_tx(port);
+>  
+> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
+> +		time_out = jiffies + usecs_to_jiffies(TX_TIMEOUT);
+> +		/* Wait for tx completion */
+> +		while ((cdns_uart_tx_empty(cdns_uart->port) != TIOCSER_TEMT) &&
+> +		       time_before(jiffies, time_out))
+> +			cpu_relax();
 
+Use iopoll.h helper instead of handcrafted delay loop ?
+
+> +
+> +		if (cdns_uart->port->rs485.delay_rts_after_send)
+> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
+> +
+> +		/*
+> +		 * Default Rx should be setup, because RX signaling path
+> +		 * need to enable to receive data.
+> +		 */
+> +		cdns_rs485_rx_setup(cdns_uart);
+> +	}
+> +
+>  	/* Enable the TX Empty interrupt */
+>  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
+>  }
+> @@ -602,6 +713,14 @@ static void cdns_uart_start_tx(struct uart_port *port)
+>  static void cdns_uart_stop_tx(struct uart_port *port)
+>  {
+>  	unsigned int regval;
+> +	struct cdns_uart *cdns_uart = port->private_data;
+> +
+> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
+> +		if (cdns_uart->port->rs485.delay_rts_after_send)
+> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
+> +
+> +		cdns_rs485_rx_setup(cdns_uart);
+> +	}
+>  
+>  	regval = readl(port->membase + CDNS_UART_CR);
+>  	regval |= CDNS_UART_CR_TX_DIS;
+> @@ -626,21 +745,6 @@ static void cdns_uart_stop_rx(struct uart_port *port)
+>  	writel(regval, port->membase + CDNS_UART_CR);
+>  }
+>  
+> -/**
+> - * cdns_uart_tx_empty -  Check whether TX is empty
+> - * @port: Handle to the uart port structure
+> - *
+> - * Return: TIOCSER_TEMT on success, 0 otherwise
+> - */
+> -static unsigned int cdns_uart_tx_empty(struct uart_port *port)
+> -{
+> -	unsigned int status;
+> -
+> -	status = readl(port->membase + CDNS_UART_SR) &
+> -		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
+> -	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
+> -}
+
+This is just a relocation of code? Move it in another patch in the 
+series, don't put it within the feature patch..
+
+> -
+>  /**
+>   * cdns_uart_break_ctl - Based on the input ctl we have to start or stop
+>   *			transmitting char breaks
+> @@ -829,6 +933,9 @@ static int cdns_uart_startup(struct uart_port *port)
+>  		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
+>  		cpu_relax();
+>  
+> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED)
+> +		cdns_rs485_rx_setup(cdns_uart);
+> +
+>  	/*
+>  	 * Clear the RX disable bit and then set the RX enable bit to enable
+>  	 * the receiver.
+> @@ -1455,6 +1562,23 @@ MODULE_DEVICE_TABLE(of, cdns_uart_of_match);
+>  /* Temporary variable for storing number of instances */
+>  static int instances;
+>  
+> +/**
+> + * cdns_rs485_config - Called when an application calls TIOCSRS485 ioctl.
+> + * @port: Pointer to the uart_port structure
+> + * @termios: Pointer to the ktermios structure
+> + * @rs485: Pointer to the serial_rs485 structure
+> + *
+> + * Return: 0
+> + */
+> +static int cdns_rs485_config(struct uart_port *port, struct ktermios *termios,
+> +			     struct serial_rs485 *rs485)
+> +{
+> +	if (rs485->flags & SER_RS485_ENABLED)
+> +		dev_dbg(port->dev, "Setting UART to RS485\n");
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * cdns_uart_probe - Platform driver probe
+>   * @pdev: Pointer to the platform device structure
+> @@ -1463,6 +1587,7 @@ static int instances;
+>   */
+>  static int cdns_uart_probe(struct platform_device *pdev)
+>  {
+> +	u32 val;
+>  	int rc, id, irq;
+>  	struct uart_port *port;
+>  	struct resource *res;
+> @@ -1597,9 +1722,23 @@ static int cdns_uart_probe(struct platform_device *pdev)
+>  	port->private_data = cdns_uart_data;
+>  	port->read_status_mask = CDNS_UART_IXR_TXEMPTY | CDNS_UART_IXR_RXTRIG |
+>  			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
+> +	port->rs485_config = cdns_rs485_config;
+> +	port->rs485_supported = cdns_rs485_supported;
+>  	cdns_uart_data->port = port;
+>  	platform_set_drvdata(pdev, port);
+>  
+> +	rc = uart_get_rs485_mode(port);
+> +	if (rc)
+> +		goto err_out_clk_notifier;
+> +
+> +	cdns_uart_data->gpiod = devm_gpiod_get_optional(&pdev->dev, "rts",
+> +							GPIOD_OUT_LOW);
+> +	if (IS_ERR(cdns_uart_data->gpiod)) {
+> +		rc = PTR_ERR(cdns_uart_data->gpiod);
+> +		dev_err(port->dev, "xuartps: devm_gpiod_get_optional failed\n");
+> +		goto err_out_clk_notifier;
+> +	}
+> +
+>  	pm_runtime_use_autosuspend(&pdev->dev);
+>  	pm_runtime_set_autosuspend_delay(&pdev->dev, UART_AUTOSUSPEND_TIMEOUT);
+>  	pm_runtime_set_active(&pdev->dev);
+> @@ -1638,6 +1777,16 @@ static int cdns_uart_probe(struct platform_device *pdev)
+>  	cdns_uart_data->cts_override = of_property_read_bool(pdev->dev.of_node,
+>  							     "cts-override");
+>  
+> +	if (cdns_uart_data->port->rs485.flags & SER_RS485_ENABLED) {
+> +		if (!cdns_uart_data->gpiod) {
+
+Combine the if conditions into a single if.
+
+> +			val = readl(cdns_uart_data->port->membase
+> +				    + CDNS_UART_MODEMCR);
+
+One line.
+
+> +			val |= CDNS_UART_MODEMCR_RTS;
+> +			writel(val, cdns_uart_data->port->membase
+> +			       + CDNS_UART_MODEMCR);
+
+Ditto.
+
+> +		}
+> +	}
+> +
+>  	instances++;
+>  
+>  	return 0;
+> @@ -1646,6 +1795,7 @@ static int cdns_uart_probe(struct platform_device *pdev)
+>  	pm_runtime_disable(&pdev->dev);
+>  	pm_runtime_set_suspended(&pdev->dev);
+>  	pm_runtime_dont_use_autosuspend(&pdev->dev);
+> +err_out_clk_notifier:
+>  #ifdef CONFIG_COMMON_CLK
+>  	clk_notifier_unregister(cdns_uart_data->uartclk,
+>  			&cdns_uart_data->clk_rate_change_nb);
+> 
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+ i.
 
 
