@@ -1,101 +1,122 @@
-Return-Path: <devicetree+bounces-11216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5721B7D4C3B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:29:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF38E7D4C51
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:30:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 883ED1C20BAB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:29:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 899E9281826
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6746323765;
-	Tue, 24 Oct 2023 09:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084E223753;
+	Tue, 24 Oct 2023 09:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cC0UEiL1"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="DyZ5ATjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FF2F23749;
-	Tue, 24 Oct 2023 09:29:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6989C433C7;
-	Tue, 24 Oct 2023 09:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698139741;
-	bh=UZqrmiFyMb6iqj6CEJfrDan6NO1zF1ytYhlleAz7Zd8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cC0UEiL1k7DyE0KNQjYurtMYHM4qXlM+gG/UHQ6QuaXfo/L0CAmjZeRTLjvcott4W
-	 WO7L+wlp5ixc4eKL0KekOYwy4Xzp8D/U1UUZPMydxEA4oWQ5gyTE6SZtWePOyZxozk
-	 2IbsoIgHCnN1QNTwe6gHv+YV59WAa39VtLB/L19ZraaJ3fj3SJoYcSU1otuChayijA
-	 VkBHTD3apxEO3/DMClob8moR71I4y576/sW7OgBpxrBcpR2bZww77O9KfIs1r36TEb
-	 twQ3WGAMPM+35FVe8h/CQdIPaZRjjtWzfRuSs6GFh25A+X9zfECbLDce9KGkXgsvKO
-	 kVkZykHUqd4Sw==
-Received: from johan by xi.lan with local (Exim 4.96)
-	(envelope-from <johan@kernel.org>)
-	id 1qvDiv-00044j-0D;
-	Tue, 24 Oct 2023 11:29:17 +0200
-Date: Tue, 24 Oct 2023 11:29:17 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Message-ID: <ZTeObdjSSok0tttg@hovoldconsulting.com>
-References: <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
- <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <196601cc-f8c6-4266-bfff-3fd69f0ab31c@quicinc.com>
- <ZTeL4nSw6dMGKODm@hovoldconsulting.com>
- <2023102429-craftsman-student-ba77@gregkh>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0135D22F1D
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:30:17 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E3F1BCE;
+	Tue, 24 Oct 2023 02:30:07 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 71434403C2;
+	Tue, 24 Oct 2023 14:29:48 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1698139798; bh=r9TCrD1Taj9N39LOJkMvCUyhLxDk2EU51QorwsqEIP4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DyZ5ATjGay9uJdJWM3VKywt/uGPlWIMw4zPa3vJfAHCVgNTsyXnsYxSv3HVwitcsA
+	 JKyxBMgNl7dTDO3ruIt8Bk+3JQdUtGwDcw0Ewi782Sy+kpdCh6mAJ5WZ5SJpBf/3EP
+	 rjfhkagGp6CTTAyQK0DBYZYgg4ptRUJdrTQXnrqqpHT7VjH2egs0zOWePUEhTd0lzy
+	 8w3X3D5ft3ZJCYxjzTm+sxvBDfiidtGvl3tN30vlD3QMUVl8v7SEPSGZ94S+HNbL59
+	 +7Ao8SoAHoVbFxGevR9HeifBvmCdVEeYN3vaqeDvu3n6bwxEO5BtGkEgncy9WRVUY5
+	 vJY1fCrCwGTxg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2023102429-craftsman-student-ba77@gregkh>
+Date: Tue, 24 Oct 2023 14:29:48 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Lee
+ Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: pm8916: Add BMS and charger
+In-Reply-To: <3dff444b-c439-4c40-9d21-1e390f449840@linaro.org>
+References: <20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru>
+ <20231023-pm8916-dtsi-bms-lbc-v2-2-343e3dbf423e@trvn.ru>
+ <3dff444b-c439-4c40-9d21-1e390f449840@linaro.org>
+Message-ID: <b9c7f8662e4c02a4f9f275d27469f3be@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 24, 2023 at 11:23:19AM +0200, Greg Kroah-Hartman wrote:
-> On Tue, Oct 24, 2023 at 11:18:26AM +0200, Johan Hovold wrote:
-
-> > And we may even consider reverting the updated bindings as it appears
-> > they are still not correct.
+Konrad Dybcio писал(а) 24.10.2023 13:34:
+> On 10/23/23 08:20, Nikita Travkin wrote:
+>> pm8916 contains some hardware blocks for battery powered devices:
+>>
+>> - VM-BMS: Battery voltage monitoring block.
+>> - LBC: Linear battery charger.
+>>
+>> Add them to the pmic dtsi so the devices that make use of those blocks
+>> can enable them.
+>>
+>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>> ---
+>>   arch/arm64/boot/dts/qcom/pm8916.dtsi | 48 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 48 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+>> index f4de86787743..4b2e8fb47d2d 100644
+>> --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+>> @@ -41,6 +41,35 @@ watchdog {
+>>   			};
+>>   		};
+>>   +		pm8916_charger: charger@1000 {
+>> +			compatible = "qcom,pm8916-lbc";
+>> +			reg = <0x1000>, <0x1200>, <0x1300>, <0x1600>;
+>> +			reg-names = "chgr", "bat_if", "usb", "misc";
+>> +
+>> +			interrupts = <0x0 0x10 0 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x10 5 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x10 6 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x10 7 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x12 0 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x12 1 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x13 0 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x13 1 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x13 2 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x0 0x13 4 IRQ_TYPE_EDGE_BOTH>;
+>> +			interrupt-names = "vbat_det",
+>> +					  "fast_chg",
+>> +					  "chg_fail",
+>> +					  "chg_done",
+>> +					  "bat_pres",
+>> +					  "temp_ok",
+>> +					  "coarse_det",
+>> +					  "usb_vbus",
+> So, both the charger and the USBIN driver use the same irq? :/
 > 
-> If you can tell me what the git ids of them are, I'll be glad to do so
-> right now, sorry for taking them "early".
 
-That's
+AFAIU the usbin extcon driver pretty much just tracks the state
+of the IRQ to report extcon. It happens to assume the same part
+of the pmic though, yes, which also means there will be no user
+that would enable both charger and vbus extcon, since charger
+driver provides this functionality as well.
 
-	ca58c4ae75b6 ("dt-bindings: usb: qcom,dwc3: Add bindings for SC8280 Multiport")
+Nikita
 
-and
-
-	eb3f1d9e42b1 ("dt-bindings: usb: Add bindings for multiport properties on DWC3 controller")
-
-It's probably best to just revert them now.
-
-Thanks.
-
-Johan
+> Konrad
 
