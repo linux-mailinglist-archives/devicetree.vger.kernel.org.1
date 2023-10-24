@@ -1,151 +1,125 @@
-Return-Path: <devicetree+bounces-11202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6147D4BD8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:21:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4710E7D4BDD
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:21:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6F42B20C80
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:21:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF5E3B20C23
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C9E22EF1;
-	Tue, 24 Oct 2023 09:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A770022EF1;
+	Tue, 24 Oct 2023 09:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oH2tmN+u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A16E33D0
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:21:05 +0000 (UTC)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FA5310CF;
-	Tue, 24 Oct 2023 02:21:02 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5a7afd45199so44047067b3.0;
-        Tue, 24 Oct 2023 02:21:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C14ED749A
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:21:46 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8778E
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:21:44 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40853c639abso30239985e9.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698139303; x=1698744103; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bHLz8PPjT5hmB2yN6aVrR9CV+tu/9PbMfn39Dru7aRI=;
+        b=oH2tmN+uFbi4r5EtEV87Eap4fiKhWjYbRAF7+0kFVPe/cUeb2GtJIZg0Crx/2PFHbN
+         i6LWRpAATzjIkw2Se1FPiaG7ioGTCnWPGxCMCiHRB1hGBeWXUhFOx8nsUDdfgugubr07
+         2EcjCDX3z469k6OQMJcEQJPPSLvwrzJxYNG8ZiZpy9DCTgO3O9usaWhLyhTr9vuOKZcs
+         2ssB5MFqo4JiKn4nkGhJnGzfqSuNbajnPIIM+A4ZSbbS8l2N/YafJzYZJKPImcQIMFAA
+         sPvxWhdb7w+3RV5YtaCinuasqTvvNWFi6qnBz6K8GDZJAC6QIjyGoVngTemWZEJwverC
+         hx8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698139261; x=1698744061;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Gs5mB9agEgSw8mVnf4S2UDX5XrqsGgxEhttckCERVW8=;
-        b=nqNmu+0lFZh6YzckBDwZkJJ+78B3tMYz9NO3e5EAly6nLB59LaKkTqLZEpHS+48fFc
-         2ufCdYowdPwTlUPz1ag09luEoOOLq8HUJychr4DO13OFVD24cz5aXfpxnkyoxpkJ9UGA
-         HtnTuVYFJovtxV8ZaNvAXjVzFb3lswmNULStvwtM4JDxayF8ShQLV7SDAYs8K5s3MzC6
-         4FoZvAlq6ALOp9nogOBaptZtpFWOqDkKYjN5q12/ttcQeEt0/vfcyrYTheyLMfm0mWJ9
-         zZP4z9FltA3BQMy4UJnYPRTMTvMLTlXlNFctPLr6tRk73NQD5Fu2n1vIIeII/JYuhGbk
-         ZJCQ==
-X-Gm-Message-State: AOJu0Yx5eFbrJRLkgPOipJN8YrKzE8IQEdg58Gu1B0hEXVQLQhglzOtc
-	ReYczCx+6C3aI3GjCYa4joNoLvGopj+WAw==
-X-Google-Smtp-Source: AGHT+IEwxai+BkzzfQM0Vh5gNbrQ+5eo8xYuITZjxnc18rlEqqD1vn2IhzVlxnS0J76HJoSAFfCRUw==
-X-Received: by 2002:a81:83ca:0:b0:5a7:b8a5:1474 with SMTP id t193-20020a8183ca000000b005a7b8a51474mr13918888ywf.22.1698139261080;
-        Tue, 24 Oct 2023 02:21:01 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id m83-20020a0dca56000000b005a0a57cb089sm3899607ywd.5.2023.10.24.02.21.00
+        d=1e100.net; s=20230601; t=1698139303; x=1698744103;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bHLz8PPjT5hmB2yN6aVrR9CV+tu/9PbMfn39Dru7aRI=;
+        b=QTaDM1PWm2QfviBnJjX4aYDXGFtkv3P09iSrPqbXbT1XX2e8XeRfUw992TdIHvdB82
+         lQJfLidKdnrO2kp+nzTwEA7yo3XPg5oTWySVtIz8SPfR6eI7q7VZGQkrrCGSFWQcTXGR
+         h7YpTRm0QXcM8z1B2XRrpJs+yfrOc9Ce/2QT+/Grfaj+ygnNruhMdrr75l4ID7CYgXyJ
+         Y6NXd82AY1PsWOJydLgBnXZiXJ5U3VCPjMzZ9hXhoISBwdfZnhBCLXOsgLZjD2fAQHu9
+         t9fJuBlcWcji4fabXhB6/iU/MbxwNmYXf+KiJ7SHBoB7MIMj4YdT0LsBgvpkNfQ9DUmV
+         f3nA==
+X-Gm-Message-State: AOJu0YxMye/viFYz6sQl3dflJFE2Y6s6j2ihZpfi6K7/iVYxwdB39QjS
+	9ntizEW/L6BLbaGqg/sfVIQAlA==
+X-Google-Smtp-Source: AGHT+IGmTE7S8Bn22t6axk51MnY+srHjcF3lXhxJM8aBvQIoNaSPW1U6i8mvZVzOD+mypNBfwpseVw==
+X-Received: by 2002:a05:600c:3b99:b0:407:5ad0:ab5b with SMTP id n25-20020a05600c3b9900b004075ad0ab5bmr9181918wms.8.1698139303217;
+        Tue, 24 Oct 2023 02:21:43 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id q19-20020a05600c46d300b0040836519dd9sm11523045wmo.25.2023.10.24.02.21.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 02:21:00 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-d9caf5cc948so3949717276.0;
-        Tue, 24 Oct 2023 02:21:00 -0700 (PDT)
-X-Received: by 2002:a25:c091:0:b0:d9a:3c58:6ba9 with SMTP id
- c139-20020a25c091000000b00d9a3c586ba9mr10693006ybf.44.1698139260672; Tue, 24
- Oct 2023 02:21:00 -0700 (PDT)
+        Tue, 24 Oct 2023 02:21:42 -0700 (PDT)
+Message-ID: <ec7c16ef-5878-488c-af7e-10138783f726@baylibre.com>
+Date: Tue, 24 Oct 2023 11:21:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023144134.1881973-1-geert+renesas@glider.be>
- <4e2928a0-b2e6-4651-8cab-7f1c4d8f697d@linaro.org> <CAMuHMdVSx2G8A6wP+j0fNoFz1Y4+=R+diXc5pxJrn1FV65EBeQ@mail.gmail.com>
- <530b364d-1cdb-4905-a3f6-fd15c7aa1456@linaro.org> <CAMuHMdUg1t=McCPEFV9d0Jt=-oSDhzYznMWc17sbYvaVvueRfA@mail.gmail.com>
- <a58f3267-092c-4877-b45a-b2775b1d3312@linaro.org>
-In-Reply-To: <a58f3267-092c-4877-b45a-b2775b1d3312@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 24 Oct 2023 11:20:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVttLvkKrrO+ty=g9aYiVW8M=NBjJhtedx+z_=4D-QRog@mail.gmail.com>
-Message-ID: <CAMuHMdVttLvkKrrO+ty=g9aYiVW8M=NBjJhtedx+z_=4D-QRog@mail.gmail.com>
-Subject: Re: [PATCH dt-schema] schemas: gpio: gpio-consumer: Fix false
- positives on nodes named gpio
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/18] dt-bindings: pwm: add power-domains property
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jitao Shi <jitao.shi@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>,
+ CK Hu <ck.hu@mediatek.com>, Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org
+References: <20231023-display-support-v1-0-5c860ed5c33b@baylibre.com>
+ <20231023-display-support-v1-11-5c860ed5c33b@baylibre.com>
+ <20231023-oppose-tamper-36d526ece102@spud>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20231023-oppose-tamper-36d526ece102@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+Hello Conor
 
-On Tue, Oct 24, 2023 at 11:15=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 24/10/2023 09:39, Geert Uytterhoeven wrote:
-> > On Tue, Oct 24, 2023 at 9:33=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >> On 23/10/2023 20:08, Geert Uytterhoeven wrote:
-> >>> On Mon, Oct 23, 2023 at 5:24=E2=80=AFPM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>> On 23/10/2023 16:41, Geert Uytterhoeven wrote:
-> >>>>> Just like for "gpio", nodes can be named "gpios" or
-> >>>>> "<something>-gpio(s)", causing false positive failures.
-> >>>>>
-> >>>>> See also commit 80120fccde170902 ("schemas: gpio: fix false positiv=
-e
-> >>>>> failures on nodes named 'gpio'").
-> >>>>>
-> >>>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >>>>> ---
-> >>>>> Seen on Linux, e.g.:
-> >>>>>
-> >>>>>     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: /: keyboard-gpio:=
- {'compatible': ['gpio-keys-polled'], 'poll-interval': [[50]], 'pinctrl-0':=
- [[29]], 'pinctrl-names': ['default'], 'key-3': {'gpios': [[28, 19, 1]], 'l=
-inux,code': [[4]], 'label': ['SW1-3'], 'debounce-interval': [[20]]}, 'key-4=
-': {'gpios': [[28, 20, 1]], 'linux,code': [[5]], 'label': ['SW1-4'], 'debou=
-nce-interval': [[20]]}} is not of type 'array'
-> >>>>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-=
-consumer.yaml#
-> >>>>>     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: pinctrl@fffc0000:=
- keyboard-gpio: {'pins': ['GP_0_19', 'GP_0_20'], 'bias-pull-up': True, 'pha=
-ndle': [[29]]} is not of type 'array'
-> >>>>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-=
-consumer.yaml#
-> >>>>
-> >>>> keyboard-gpio is not commonly used names. Most (almost all) boards j=
-ust
-> >>>> call it "gpio-keys".
-> >>>
-> >>> Most call it "keyboard".
-> >>
-> >> Most? My grep counted only 14.
-> >>
-> >> 520 for gpio-keys (not counting -polled)
-> >>
-> >> But sure, can be keyboard.
-> >
-> > Sorry, I meant Section 2.2.2 "Generic Names Recommendation" in
-> > the Devicetree Specification ;-)
->
-> Yes, that's right. Keyboard is generic thus indeed seems more suitable,
-> because "gpio-keys" already includes specific part - GPIO. OTOH, we tend
-> to think about keyboard as something with keys for the full alphabet,
-> like PC 10x keyboard. How to call a node in an embedded board or phone
-> with 4 buttons or 4 keys in total?
+On 23/10/2023 19:38, Conor Dooley wrote:
+> Yo,
+> 
+> On Mon, Oct 23, 2023 at 04:40:11PM +0200, Alexandre Mergnat wrote:
+>> According to the Mediatek datasheet, the display PWM block has a power
+>> domain.
+> 
+> Datasheet for which soc? The mt8173? Is it valid for all devices in this
+> binding?
 
-On hackaday.com, they would call that a keypad.
+I can't verify for other SoC. Then, I fix the commit message
+and remove the example changes.
 
-Gr{oetje,eeting}s,
+> 
+> Cheers,
+> Conor.
+> 
+>>
 
-                        Geert
+..snip..
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+>> -- 
+>> 2.25.1
+>>
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Regards,
+Alexandre
 
