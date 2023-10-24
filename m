@@ -1,93 +1,88 @@
-Return-Path: <devicetree+bounces-11346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359907D54F7
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:13:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 682C07D54F8
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 17:13:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E59AF2811EC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:12:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 988AC1C20B4E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 15:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06A22C84D;
-	Tue, 24 Oct 2023 15:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C2D2E654;
+	Tue, 24 Oct 2023 15:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="PkGmnmIK";
-	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="WAnZ5gtP"
+	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="XX4+RIdQ";
+	dkim=pass (1024-bit key) header.d=flawful.org header.i=@flawful.org header.b="YPetIezb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8732E654
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:12:55 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45455122;
-	Tue, 24 Oct 2023 08:12:43 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-507bd19eac8so6733232e87.0;
-        Tue, 24 Oct 2023 08:12:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992132E65E
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:13:05 +0000 (UTC)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A0293
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:13:01 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c514cbbe7eso64459301fa.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:13:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698160361; x=1698765161;
+        d=1e100.net; s=20230601; t=1698160380; x=1698765180;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature:dkim-signature
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9N9/+NUa+wHK0HF99kAFQH1PWNyZJRmq/sRYP/HtkeM=;
-        b=Qy7xbmmpprk7o68qbU5++IAXmaAxHn6rWI5+jLpZbFpTcDOE0HWEhpWuLilYMS/bnI
-         +ygfVqNBG433lt9Qc8OBJA1u8VboGet55Q74e1HxuCj7nGd19uGBCAtHjd+hH5C+r4yn
-         XvxXCG+oNHBJW7Zfc4YxDWyKcuO+b8R+OgLwC0cdBnTdI7pVeJgN4k6569BctaxNqiPG
-         cafirZCT5CzwoBbR0Dd4CyteFQpp+ZvZGSpUQ/aS/hiCebGip2Eavjga1QmOiZnrI9od
-         PhkSUtTJwkuhNen1E109v3rETtpwe3Cn8WLc7SN2qptdB2na86eaYw/B81KDA5zhptqO
-         IPwA==
-X-Gm-Message-State: AOJu0YwbuzxUmKGgD/CIV+W+GFIT/OVWNEX2fvDzbknpNjkBTrfFddeh
-	tdTTUeJiQdQok0kvklldFIEA9+qKRuoypw==
-X-Google-Smtp-Source: AGHT+IFQRbGqxwwWDNyZFLNmwC4u32DEGCwINoeL3rqL0ZmPtayQiSa4V+fMB7LtB04E5CROiWsV+g==
-X-Received: by 2002:a19:5e1c:0:b0:507:a58f:79ac with SMTP id s28-20020a195e1c000000b00507a58f79acmr9328157lfb.33.1698160361182;
-        Tue, 24 Oct 2023 08:12:41 -0700 (PDT)
+        bh=Fs5BWqZ4KWd4eF9fOCTK8GAB1nXsPd0oZ+/iEQRlIeA=;
+        b=Cid/dwyqzHK76cDQAiq5rH5r3RbKt5jGVOfpGm2zTcLF0KeiTSDWhTnxSRMXArbSYt
+         ZAsl2q0Bw+ipAv0Fphpc4AF4NrNNzX0o9JwisX/aR0xWwNbOAyX4x3Jb1ZYLYW1cbFMd
+         YdtElpoRsutieYkCoGdtie3H1AzgiauOjl5zA+Z2MTCJxzcAVuzPdE8mFp5mbNMJHH10
+         3BL5unXceNMxdWSekG4NtZtnbih2/HSQxA0S41KrAnfx7oDum67R0Qfn/0QWGUCjwUKS
+         SOUwAi/J2d1u19KMXb3uVL0Zg/I9pFAYf/DUqEFNaCU28Dr1uvEyxtXaQhWW1RU3urAC
+         F+5w==
+X-Gm-Message-State: AOJu0Yx5Nf1bBHcKCB2Zs/MTkRIKEgfygXjEzuP1pLLevv8DceuLzVoP
+	d5YU6kp05UTT9pwkRSbi0psCRFYw0IUJ1A==
+X-Google-Smtp-Source: AGHT+IHl71uJGbEbXc3w8oVa2Mg/uvQXyiVqTw/MvYHeGU39r5d4sVSBsO6Db8ed/fm0SJEcqfiTvg==
+X-Received: by 2002:a2e:81d7:0:b0:2c5:3a9:7467 with SMTP id s23-20020a2e81d7000000b002c503a97467mr8710099ljg.8.1698160379925;
+        Tue, 24 Oct 2023 08:12:59 -0700 (PDT)
 Received: from flawful.org (c-f5f0e255.011-101-6d6c6d3.bbcust.telenor.se. [85.226.240.245])
-        by smtp.gmail.com with ESMTPSA id l8-20020ac25548000000b005032ebff21asm2141126lfk.279.2023.10.24.08.12.40
+        by smtp.gmail.com with ESMTPSA id q24-20020a2e9698000000b002c12c2094e4sm2106927lji.74.2023.10.24.08.12.59
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 08:12:40 -0700 (PDT)
+        Tue, 24 Oct 2023 08:12:59 -0700 (PDT)
 Received: by flawful.org (Postfix, from userid 112)
-	id 109F414D4; Tue, 24 Oct 2023 17:12:40 +0200 (CEST)
+	id CC3F514E3; Tue, 24 Oct 2023 17:12:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=flawful.org; s=mail;
-	t=1698160360; bh=nOWykBjoXapYzbbqt/B6vaxHD5OyGUKgl7kHm6hJUts=;
+	t=1698160378; bh=ErqCJiP8U44ISh4Im9EcpFWgOzEosEpfBHoDJ+9Kgdw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PkGmnmIKbZXn3i3S+B4zJWjLs6YwRCYrx3zQ/0kyZg5Y/w8mpBDNGeqPTu8BDV5rq
-	 jje4lJWt71pDKMowQs/obwiXUj6H4WVqJM5KedZ6kxYcwgGYPQsDzHerbBd+qeK+no
-	 MTRI45wloCJpt/7K6zdx9SGVxsBfUempa1m/ENMw=
+	b=XX4+RIdQqpwcgiSk3keVVRMKdRRL6KvGkN9SzivO/Leac6WITW3z5iIDgSEAiD8se
+	 ggR8vd8W9LNeDKYsXoPfZg233lGpDSxYTBxHRubh/9dQhIS3PJUSzxakpHYm0nGokn
+	 GxkzAi6NtUZmcpjU7D6mvxICXdBDPYUoetIwmgbw=
 X-Spam-Level: 
 Received: from x1-carbon.lan (OpenWrt.lan [192.168.1.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by flawful.org (Postfix) with ESMTPSA id 57FF514E7;
-	Tue, 24 Oct 2023 17:10:46 +0200 (CEST)
+	by flawful.org (Postfix) with ESMTPSA id 14D5015E1;
+	Tue, 24 Oct 2023 17:10:47 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=flawful.org; s=mail;
-	t=1698160246; bh=nOWykBjoXapYzbbqt/B6vaxHD5OyGUKgl7kHm6hJUts=;
+	t=1698160247; bh=ErqCJiP8U44ISh4Im9EcpFWgOzEosEpfBHoDJ+9Kgdw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WAnZ5gtPK8mM3eEH4aTkJGHHxRvBNJtNK4kGrk0CYhTG4AEKnQKNIPRPCcuti4T1E
-	 7oJX1wj0eJ132vMInhvaOTYDmRkFXrouTOzfMVtn3QlFbek8AjJWbl+NL8vVFrDoIt
-	 IHHPQpg9jT9kIiC17HA5YFoWQQzPPZ0VnyYB0UAk=
+	b=YPetIezbIGPz/6ySQtofIO1XKUtjvcIGK/RwOaRqbMiPAspV+G+wA19XlHTfwKvMH
+	 k/lMSgd2DckEIDOIiVS1bMBWcP7XbW5zAbz7sqw9MpjZnpQqKtAbhr90knfA8lZo0u
+	 s9tgKPeOxCbawAWwZVFr7XzoLGyJVZHmuyY/0MeQ=
 From: Niklas Cassel <nks@flawful.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>
+	Heiko Stuebner <heiko@sntech.de>
 Cc: Damien Le Moal <dlemoal@kernel.org>,
 	Sebastian Reichel <sebastian.reichel@collabora.com>,
 	Niklas Cassel <niklas.cassel@wdc.com>,
-	linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 3/4] dt-bindings: PCI: dwc: rockchip: Add dma properties
-Date: Tue, 24 Oct 2023 17:10:10 +0200
-Message-ID: <20231024151014.240695-4-nks@flawful.org>
+Subject: [PATCH v2 4/4] arm64: dts: rockchip: add missing rk3588 PCIe dma properties
+Date: Tue, 24 Oct 2023 17:10:11 +0200
+Message-ID: <20231024151014.240695-5-nks@flawful.org>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231024151014.240695-1-nks@flawful.org>
 References: <20231024151014.240695-1-nks@flawful.org>
@@ -101,81 +96,65 @@ Content-Transfer-Encoding: 8bit
 
 From: Niklas Cassel <niklas.cassel@wdc.com>
 
-Even though rockchip-dw-pcie.yaml inherits snps,dw-pcie.yaml
-using:
+The rk3588 has 5 PCIe controllers, however, according the the rk3588 TRM
+(Technical Reference Manual), only pcie3x4 supports the embedded DMA
+controller (eDMA) on the DWC PCIe controller.
 
-allOf:
-  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+The size of the eDMA region equals to:
+0x200 + MAX(NUM_DMA_RD_CHAN, NUM_DMA_WR_CHAN) * 0x200.
 
-and snps,dw-pcie.yaml does have the dma properties defined, in order to be
-able to use these properties, while still making sure 'make CHECK_DTBS=y'
-pass, we need to add these properties to rockchip-dw-pcie.yaml.
+Where for each 0x200 region, the registers controlling the write channel
+starts at offset 0x0, and the registers controlling the read channel
+starts at offset 0x100.
+
+pcie3x4 has two DMA read channels and two DMA write channels,
+so it has size: 0x200 + max(2, 2) * 0x200 = 0x600
+
+On the rk3588 based rock-5b board, when building with CONFIG_DW_EDMA=y:
+Before this patch, only the iATUs are detected:
+rockchip-dw-pcie a40000000.pcie: iATU: unroll T, 16 ob, 16 ib, align 64K, limit 8G
+
+After this patch, both the iATUs and the eDMA channels are detected:
+rockchip-dw-pcie a40000000.pcie: iATU: unroll T, 16 ob, 16 ib, align 64K, limit 8G
+rockchip-dw-pcie a40000000.pcie: eDMA: unroll T, 2 wr, 2 rd
 
 Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
 ---
- .../bindings/pci/rockchip-dw-pcie.yaml        | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-index 229f8608c535..633f8e0e884f 100644
---- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-@@ -35,6 +35,7 @@ properties:
-       - description: Rockchip designed configuration registers
-       - description: Config registers
-       - description: iATU registers
-+      - description: eDMA registers
- 
-   reg-names:
-     minItems: 3
-@@ -43,6 +44,7 @@ properties:
-       - const: apb
-       - const: config
-       - const: atu
-+      - const: dma
- 
-   clocks:
-     minItems: 5
-@@ -65,6 +67,7 @@ properties:
-       - const: pipe
- 
-   interrupts:
-+    minItems: 5
-     items:
-       - description:
-           Combined system interrupt, which is used to signal the following
-@@ -88,14 +91,31 @@ properties:
-           interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
-           tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
-           nf_err_rx, f_err_rx, radm_qoverflow
-+      - description:
-+          Indicates that the eDMA Tx/Rx transfer is complete or that an
-+          error has occurred on the corresponding channel.
-+      - description:
-+          Indicates that the eDMA Tx/Rx transfer is complete or that an
-+          error has occurred on the corresponding channel.
-+      - description:
-+          Indicates that the eDMA Tx/Rx transfer is complete or that an
-+          error has occurred on the corresponding channel.
-+      - description:
-+          Indicates that the eDMA Tx/Rx transfer is complete or that an
-+          error has occurred on the corresponding channel.
- 
-   interrupt-names:
-+    minItems: 5
-     items:
-       - const: sys
-       - const: pmc
-       - const: msg
-       - const: legacy
-       - const: err
-+      - const: dma0
-+      - const: dma1
-+      - const: dma2
-+      - const: dma3
- 
-   legacy-interrupt-controller:
-     description: Interrupt controller node for handling legacy PCI interrupts.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+index d7998a9c0c43..e072f5fe655d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+@@ -101,8 +101,13 @@ pcie3x4: pcie@fe150000 {
+ 			     <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH 0>,
+ 			     <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH 0>,
+-			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
+-		interrupt-names = "sys", "pmc", "msg", "legacy", "err";
++			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 271 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH 0>,
++			     <GIC_SPI 270 IRQ_TYPE_LEVEL_HIGH 0>;
++		interrupt-names = "sys", "pmc", "msg", "legacy", "err",
++				  "dma0", "dma1", "dma2", "dma3";
+ 		#interrupt-cells = <1>;
+ 		interrupt-map-mask = <0 0 0 7>;
+ 		interrupt-map = <0 0 0 1 &pcie3x4_intc 0>,
+@@ -122,8 +127,9 @@ pcie3x4: pcie@fe150000 {
+ 		reg = <0xa 0x40000000 0x0 0x00300000>,
+ 		      <0x0 0xfe150000 0x0 0x00010000>,
+ 		      <0x0 0xf0000000 0x0 0x00100000>,
+-		      <0xa 0x40300000 0x0 0x00002000>;
+-		reg-names = "dbi", "apb", "config", "atu";
++		      <0xa 0x40300000 0x0 0x00002000>,
++		      <0xa 0x40380000 0x0 0x00000600>;
++		reg-names = "dbi", "apb", "config", "atu", "dma";
+ 		resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
+ 		reset-names = "pwr", "pipe";
+ 		status = "disabled";
 -- 
 2.41.0
 
