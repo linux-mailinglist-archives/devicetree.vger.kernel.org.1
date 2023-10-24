@@ -1,682 +1,328 @@
-Return-Path: <devicetree+bounces-11406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ECE07D5A9E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:36:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 491067D5ACA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:42:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B74D28130D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:36:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63C541C20975
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB080347CB;
-	Tue, 24 Oct 2023 18:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EFB7347A2;
+	Tue, 24 Oct 2023 18:42:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="nKxkfAeR";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="YgznZ7tj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OH6BGjQy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31856347A2
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:36:08 +0000 (UTC)
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F3510D3;
-	Tue, 24 Oct 2023 11:36:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1698172554; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=Xxuv4+fd2Pb9vATAPvYzs341X+mQkIv6Vp8rKYB6jc4ygkRW24/8niVitekyd8xBuu
-    vRY/B+6VsA+ipg6VUx0pqP5LSMyqE2Y72f5gZjUVsnFeBC9srBqI4/vIlpdlLLrHjJ4V
-    cf0fmhX1aaEnjmvlHMLnQpqfzQr9ZIvcXS0i9Sh0yvJbY4S8D4kznjQhp4H1Fv+L+YsO
-    z6ZIt3BasqsD66tuk8XgxyeZMPzXH8u+oDlVGSmaN7YVIswDV2/8zfF/NrjheVO2gRUd
-    ccjSg6LFhec6W2Rr/MpkNSZb9u7rvL22RL/ujxNEpcvJMvuZf4+XwlaK3+9g9VGoqYOl
-    XvjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698172554;
-    s=strato-dkim-0002; d=strato.com;
-    h=Cc:To:In-Reply-To:References:Message-Id:Subject:Date:From:Cc:Date:
-    From:Subject:Sender;
-    bh=REaKDc3ecuGqAeo08fXeRUV5mCnAuSiC6X9qIu311LQ=;
-    b=GWrvNns+uAaWJXrlh86KtNUPxtMAuiqQon4Ie0lNnKWPVGnxXpfw0sbtpr45XlM9LI
-    4SVMWeAY7eCy7E7VgOxEIP6nF68VkPk0QatvOqLI582Ana6wm5kt2zjXu8eEb4gfCm3p
-    IedWUGCXVJ4DaXBdkA9E9osRdr8CBaVOZSbKAk23eJoJN9fN0HyLQmFBEL1W6VoAF/Nr
-    haaB/CVO8OpXBBH6Vrib+2c1EOXv+H/wFr01CpwjPQqVqX1e1C9UbCwGOwQw755kx14K
-    lq6t9IOf79LOibgtchEGMJ0k1hkoFRBW2SHwa2izuuKzQjKBpVTh3vgAiNMtTw3sQ2lQ
-    YQ9g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698172554;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=Cc:To:In-Reply-To:References:Message-Id:Subject:Date:From:Cc:Date:
-    From:Subject:Sender;
-    bh=REaKDc3ecuGqAeo08fXeRUV5mCnAuSiC6X9qIu311LQ=;
-    b=nKxkfAeRO3iKIngg/NUEd8qpefbpeHO5IB9TxPX4yY6A3a1F2Vk66V8vksLDfvx5Xh
-    C072D7dJcLn4zVRSCcLtFDpgq0CMhfzcvDCeG0pRdXjEOSMu4D+VH+yepqCNNDYWb/jH
-    53+wftobRb4nMaaBq8kIuiNyrJURPKnk+CqQaYdI89PfXvZKBlfZXi5RJzbeosa+MUu3
-    WxdKdHkiAE9sfXD3UGTAXLbd/XX9rVIfF8GkmOqnBsIVPfUD1nIChI9SsUal2Y8Sp+UV
-    AJXpgsz3WpmTlvLL2yfQ4zDN7iT4KL7ti2nXSyNjs9xlVoe0ulfnpqSIqBEF1pG7fOoq
-    9Y8g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698172554;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=Cc:To:In-Reply-To:References:Message-Id:Subject:Date:From:Cc:Date:
-    From:Subject:Sender;
-    bh=REaKDc3ecuGqAeo08fXeRUV5mCnAuSiC6X9qIu311LQ=;
-    b=YgznZ7tjxChKfMGg4+ZuLkqkGtekAHYicdBXByDYg06B6H7BHa/csX8uuNuybCq3je
-    zAl3/C7l/XUkD4p3fbCQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4p39TY="
-Received: from [192.168.244.3]
-    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
-    with ESMTPSA id j34a49z9OIZsRxi
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 24 Oct 2023 20:35:54 +0200 (CEST)
-From: Stephan Gerhold <stephan@gerhold.net>
-Date: Tue, 24 Oct 2023 20:35:46 +0200
-Subject: [PATCH v3 2/2] Input: add Himax HX852x(ES) touchscreen driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6828D28FA;
+	Tue, 24 Oct 2023 18:42:14 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B75912C;
+	Tue, 24 Oct 2023 11:42:12 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39OIWRau025039;
+	Tue, 24 Oct 2023 18:42:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=uGHRv3zuutbStD7E9MlZNXiGhV3IMVGQQ/a4No1Mr2E=;
+ b=OH6BGjQyGl+N4bgKZW2F9XyZXNIVRMsUO5bxNvNQlK7O32GQcJamz/Sz2Snj1jX64Kj0
+ +HaS86V+V+9NTC7MHZP0bUW05XmKMEv+fKEV9z9m9jbUywpwDHnaOI8BWZF4W+mA7L1D
+ yhgq1lqiQGv1x+oeO/L8+V9HesVRyVikfq8PYZ2ss5z6MHOdGQYg7bqS5YIbBlDVvNMt
+ vxhq9beFsSJLwGzUhza/pfqUendvZ/xUaOHppPVqplTS47/Wm/RRwcNUDOWS0CH1Vjlf
+ Qfdni6gud+3lv4zWxEG6Q8cY8/pJ1QH8R6pxSzXrO1dLrbZzLUTFiXZx9vDUnFFejJiG hA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tx7r81t01-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 18:42:04 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39OIg3MO031347
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 24 Oct 2023 18:42:03 GMT
+Received: from [10.110.113.199] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 24 Oct
+ 2023 11:42:03 -0700
+Message-ID: <cd294a89-33e7-0569-81b3-df77a255f061@quicinc.com>
+Date: Tue, 24 Oct 2023 11:41:51 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
+ suspend
+Content-Language: en-US
+To: Roger Quadros <rogerq@kernel.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
+References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
+ <20230814185043.9252-4-quic_eserrao@quicinc.com>
+ <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
+From: Elson Serrao <quic_eserrao@quicinc.com>
+In-Reply-To: <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231024-hx852x-v3-2-a1890d3a81e9@gerhold.net>
-References: <20231024-hx852x-v3-0-a1890d3a81e9@gerhold.net>
-In-Reply-To: <20231024-hx852x-v3-0-a1890d3a81e9@gerhold.net>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, 
- linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Jeff LaBundy <jeff@labundy.com>, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- Jonathan Albrieux <jonathan.albrieux@gmail.com>, 
- Stephan Gerhold <stephan@gerhold.net>
-X-Mailer: b4 0.12.3
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: VU6LfGhr4GY0_tRn7IyMektX1o9WnNEj
+X-Proofpoint-GUID: VU6LfGhr4GY0_tRn7IyMektX1o9WnNEj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-24_18,2023-10-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 lowpriorityscore=0 bulkscore=0 phishscore=0 spamscore=0
+ clxscore=1015 priorityscore=1501 suspectscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310170001 definitions=main-2310240160
 
-From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
 
-Add a simple driver for the Himax HX852x(ES) touch panel controller,
-with support for multi-touch and capacitive touch keys.
 
-The driver is somewhat based on sample code from Himax. However, that
-code was so extremely confusing that we spent a significant amount of
-time just trying to understand the packet format and register commands.
-In this driver they are described with clean structs and defines rather
-than lots of magic numbers and offset calculations.
+On 10/24/2023 3:14 AM, Roger Quadros wrote:
+> Hi Elson,
+> 
+> On 14/08/2023 21:50, Elson Roy Serrao wrote:
+>> The current implementation blocks the runtime pm operations when cable
+>> is connected. This would block dwc3 to enter a low power state during
+>> bus suspend scenario. Modify the runtime pm ops to handle bus suspend
+>> case for such platforms where the controller low power mode entry/exit
+>> is handled by the glue driver. This enablement is controlled through a
+>> dt property and platforms capable of detecting bus resume can benefit
+>> from this feature. Also modify the remote wakeup operations to trigger
+>> runtime resume before sending wakeup signal.
+>>
+>> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
+>> ---
+>>   drivers/usb/dwc3/core.c   | 28 ++++++++++++++++++++++++++--
+>>   drivers/usb/dwc3/core.h   |  3 +++
+>>   drivers/usb/dwc3/gadget.c | 32 +++++++++++++++++++++++++-------
+>>   3 files changed, 54 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+>> index 9c6bf054f15d..9bfd9bb18caf 100644
+>> --- a/drivers/usb/dwc3/core.c
+>> +++ b/drivers/usb/dwc3/core.c
+>> @@ -1518,6 +1518,9 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>>   	dwc->dis_split_quirk = device_property_read_bool(dev,
+>>   				"snps,dis-split-quirk");
+>>   
+>> +	dwc->runtime_suspend_on_usb_suspend = device_property_read_bool(dev,
+>> +				"snps,runtime-suspend-on-usb-suspend");
+>> +
+>>   	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
+>>   	dwc->tx_de_emphasis = tx_de_emphasis;
+>>   
+>> @@ -2029,6 +2032,9 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+>>   
+>>   	switch (dwc->current_dr_role) {
+>>   	case DWC3_GCTL_PRTCAP_DEVICE:
+>> +		/* runtime resume on bus resume scenario */
+>> +		if (PMSG_IS_AUTO(msg) && dwc->connected)
+>> +			break;
+>>   		ret = dwc3_core_init_for_resume(dwc);
+>>   		if (ret)
+>>   			return ret;
+>> @@ -2090,8 +2096,13 @@ static int dwc3_runtime_checks(struct dwc3 *dwc)
+>>   {
+>>   	switch (dwc->current_dr_role) {
+>>   	case DWC3_GCTL_PRTCAP_DEVICE:
+>> -		if (dwc->connected)
+>> +		if (dwc->connected) {
+>> +			/* bus suspend scenario */
+>> +			if (dwc->runtime_suspend_on_usb_suspend &&
+>> +			    dwc->suspended)
+> 
+> If dwc is already suspended why do we return -EBUSY?
+> Should this be !dwc->suspended?
+> 
 
-Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- MAINTAINERS                              |   7 +
- drivers/input/touchscreen/Kconfig        |  10 +
- drivers/input/touchscreen/Makefile       |   1 +
- drivers/input/touchscreen/himax_hx852x.c | 500 +++++++++++++++++++++++++++++++
- 4 files changed, 518 insertions(+)
+Hi Roger
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4cc6bf79fdd8..c0004b25b524 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9264,6 +9264,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
- F:	drivers/input/touchscreen/himax_hx83112b.c
- 
-+HIMAX HX852X TOUCHSCREEN DRIVER
-+M:	Stephan Gerhold <stephan@gerhold.net>
-+L:	linux-input@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx852es.yaml
-+F:	drivers/input/touchscreen/himax_hx852x.c
-+
- HIPPI
- M:	Jes Sorensen <jes@trained-monkey.org>
- L:	linux-hippi@sunsite.dk
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index e3e2324547b9..8e5667ae5dab 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -427,6 +427,16 @@ config TOUCHSCREEN_HIDEEP
- 	  To compile this driver as a module, choose M here : the
- 	  module will be called hideep_ts.
- 
-+config TOUCHSCREEN_HIMAX_HX852X
-+	tristate "Himax HX852x(ES) touchscreen"
-+	depends on I2C
-+	help
-+	  Say Y here if you have a Himax HX852x(ES) touchscreen.
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called himax_hx852x.
-+
- config TOUCHSCREEN_HYCON_HY46XX
- 	tristate "Hycon hy46xx touchscreen support"
- 	depends on I2C
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 62bd24f3ac8e..f42a87faa86c 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -48,6 +48,7 @@ obj-$(CONFIG_TOUCHSCREEN_EXC3000)	+= exc3000.o
- obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
- obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
-+obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX852X)	+= himax_hx852x.o
- obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
- obj-$(CONFIG_TOUCHSCREEN_ILITEK)	+= ilitek_ts_i2c.o
-diff --git a/drivers/input/touchscreen/himax_hx852x.c b/drivers/input/touchscreen/himax_hx852x.c
-new file mode 100644
-index 000000000000..6aa39f02829d
---- /dev/null
-+++ b/drivers/input/touchscreen/himax_hx852x.c
-@@ -0,0 +1,500 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Himax HX852x(ES) Touchscreen Driver
-+ * Copyright (c) 2020-2023 Stephan Gerhold <stephan@gerhold.net>
-+ * Copyright (c) 2020 Jonathan Albrieux <jonathan.albrieux@gmail.com>
-+ *
-+ * Based on the Himax Android Driver Sample Code Ver 0.3 for HMX852xES chipset:
-+ * Copyright (c) 2014 Himax Corporation.
-+ */
-+
-+#include <asm/unaligned.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/input/mt.h>
-+#include <linux/input/touchscreen.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define HX852X_COORD_SIZE(fingers)	((fingers) * sizeof(struct hx852x_coord))
-+#define HX852X_WIDTH_SIZE(fingers)	ALIGN(fingers, 4)
-+#define HX852X_BUF_SIZE(fingers)	(HX852X_COORD_SIZE(fingers) + \
-+					 HX852X_WIDTH_SIZE(fingers) + \
-+					 sizeof(struct hx852x_touch_info))
-+
-+#define HX852X_MAX_FINGERS		12
-+#define HX852X_MAX_KEY_COUNT		4
-+#define HX852X_MAX_BUF_SIZE		HX852X_BUF_SIZE(HX852X_MAX_FINGERS)
-+
-+#define HX852X_TS_SLEEP_IN		0x80
-+#define HX852X_TS_SLEEP_OUT		0x81
-+#define HX852X_TS_SENSE_OFF		0x82
-+#define HX852X_TS_SENSE_ON		0x83
-+#define HX852X_READ_ONE_EVENT		0x85
-+#define HX852X_READ_ALL_EVENTS		0x86
-+#define HX852X_READ_LATEST_EVENT	0x87
-+#define HX852X_CLEAR_EVENT_STACK	0x88
-+
-+#define HX852X_REG_SRAM_SWITCH		0x8c
-+#define HX852X_REG_SRAM_ADDR		0x8b
-+#define HX852X_REG_FLASH_RPLACE		0x5a
-+
-+#define HX852X_SRAM_SWITCH_TEST_MODE	0x14
-+#define HX852X_SRAM_ADDR_CONFIG		0x7000
-+
-+struct hx852x {
-+	struct i2c_client *client;
-+	struct input_dev *input_dev;
-+	struct touchscreen_properties props;
-+	struct gpio_desc *reset_gpiod;
-+	struct regulator_bulk_data supplies[2];
-+	unsigned int max_fingers;
-+	unsigned int keycount;
-+	unsigned int keycodes[HX852X_MAX_KEY_COUNT];
-+};
-+
-+struct hx852x_config {
-+	u8 rx_num;
-+	u8 tx_num;
-+	u8 max_pt;
-+	u8 padding1[3];
-+	__be16 x_res;
-+	__be16 y_res;
-+	u8 padding2[2];
-+} __packed __aligned(4);
-+
-+struct hx852x_coord {
-+	__be16 x;
-+	__be16 y;
-+} __packed __aligned(4);
-+
-+struct hx852x_touch_info {
-+	u8 finger_num;
-+	__le16 finger_pressed;
-+	u8 padding;
-+} __packed __aligned(4);
-+
-+static int hx852x_i2c_read(struct hx852x *hx, u8 cmd, void *data, u16 len)
-+{
-+	struct i2c_client *client = hx->client;
-+	int ret;
-+
-+	struct i2c_msg msg[] = {
-+		{
-+			.addr = client->addr,
-+			.flags = 0,
-+			.len = 1,
-+			.buf = &cmd,
-+		},
-+		{
-+			.addr = client->addr,
-+			.flags = I2C_M_RD,
-+			.len = len,
-+			.buf = data,
-+		},
-+	};
-+
-+	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-+	if (ret != ARRAY_SIZE(msg)) {
-+		dev_err(&client->dev, "failed to read %#x: %d\n", cmd, ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int hx852x_power_on(struct hx852x *hx)
-+{
-+	struct device *dev = &hx->client->dev;
-+	int error;
-+
-+	error = regulator_bulk_enable(ARRAY_SIZE(hx->supplies), hx->supplies);
-+	if (error) {
-+		dev_err(dev, "failed to enable regulators: %d\n", error);
-+		return error;
-+	}
-+
-+	gpiod_set_value_cansleep(hx->reset_gpiod, 1);
-+	msleep(20);
-+	gpiod_set_value_cansleep(hx->reset_gpiod, 0);
-+	msleep(20);
-+
-+	return 0;
-+}
-+
-+static int hx852x_start(struct hx852x *hx)
-+{
-+	struct device *dev = &hx->client->dev;
-+	int error;
-+
-+	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SLEEP_OUT);
-+	if (error) {
-+		dev_err(dev, "failed to send TS_SLEEP_OUT: %d\n", error);
-+		return error;
-+	}
-+	msleep(30);
-+
-+	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SENSE_ON);
-+	if (error) {
-+		dev_err(dev, "failed to send TS_SENSE_ON: %d\n", error);
-+		return error;
-+	}
-+	msleep(20);
-+
-+	return 0;
-+}
-+
-+static int hx852x_stop(struct hx852x *hx)
-+{
-+	struct device *dev = &hx->client->dev;
-+	int error;
-+
-+	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SENSE_OFF);
-+	if (error) {
-+		dev_err(dev, "failed to send TS_SENSE_OFF: %d\n", error);
-+		return error;
-+	}
-+	msleep(20);
-+
-+	error = i2c_smbus_write_byte(hx->client, HX852X_TS_SLEEP_IN);
-+	if (error) {
-+		dev_err(dev, "failed to send TS_SLEEP_IN: %d\n", error);
-+		return error;
-+	}
-+	msleep(30);
-+
-+	return 0;
-+}
-+
-+static int hx852x_power_off(struct hx852x *hx)
-+{
-+	struct device *dev = &hx->client->dev;
-+	int error;
-+
-+	error = regulator_bulk_disable(ARRAY_SIZE(hx->supplies), hx->supplies);
-+	if (error) {
-+		dev_err(dev, "failed to disable regulators: %d\n", error);
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static int hx852x_read_config(struct hx852x *hx)
-+{
-+	struct device *dev = &hx->client->dev;
-+	struct hx852x_config conf;
-+	int x_res, y_res;
-+	int error;
-+
-+	error = hx852x_power_on(hx);
-+	if (error)
-+		return error;
-+
-+	/* Sensing must be turned on briefly to load the config */
-+	error = hx852x_start(hx);
-+	if (error)
-+		goto err_power_off;
-+
-+	error = hx852x_stop(hx);
-+	if (error)
-+		goto err_power_off;
-+
-+	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH,
-+					  HX852X_SRAM_SWITCH_TEST_MODE);
-+	if (error)
-+		goto err_power_off;
-+
-+	error = i2c_smbus_write_word_data(hx->client, HX852X_REG_SRAM_ADDR,
-+					  HX852X_SRAM_ADDR_CONFIG);
-+	if (error)
-+		goto err_test_mode;
-+
-+	error = hx852x_i2c_read(hx, HX852X_REG_FLASH_RPLACE, &conf, sizeof(conf));
-+	if (error)
-+		goto err_test_mode;
-+
-+	x_res = be16_to_cpu(conf.x_res);
-+	y_res = be16_to_cpu(conf.y_res);
-+	hx->max_fingers = (conf.max_pt & 0xf0) >> 4;
-+	dev_dbg(dev, "x res: %u, y res: %u, max fingers: %u\n",
-+		x_res, y_res, hx->max_fingers);
-+
-+	if (hx->max_fingers > HX852X_MAX_FINGERS) {
-+		dev_err(dev, "max supported fingers: %u, found: %u\n",
-+			HX852X_MAX_FINGERS, hx->max_fingers);
-+		error = -EINVAL;
-+		goto err_test_mode;
-+	}
-+
-+	if (x_res && y_res) {
-+		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_X, 0, x_res - 1, 0, 0);
-+		input_set_abs_params(hx->input_dev, ABS_MT_POSITION_Y, 0, y_res - 1, 0, 0);
-+	}
-+
-+err_test_mode:
-+	error = i2c_smbus_write_byte_data(hx->client, HX852X_REG_SRAM_SWITCH, 0) ? : error;
-+err_power_off:
-+	return hx852x_power_off(hx) ? : error;
-+}
-+
-+static int hx852x_handle_events(struct hx852x *hx)
-+{
-+	/*
-+	 * The event packets have variable size, depending on the amount of
-+	 * supported fingers (hx->max_fingers). They are laid out as follows:
-+	 *  - struct hx852x_coord[hx->max_fingers]: Coordinates for each finger
-+	 *  - u8[ALIGN(hx->max_fingers, 4)]: Touch width for each finger
-+	 *      with padding for 32-bit alignment
-+	 *  - struct hx852x_touch_info
-+	 *
-+	 * Load everything into a 32-bit aligned buffer so the coordinates
-+	 * can be assigned directly, without using get_unaligned_*().
-+	 */
-+	u8 buf[HX852X_MAX_BUF_SIZE] __aligned(4);
-+	struct hx852x_coord *coord = (struct hx852x_coord *)buf;
-+	u8 *width = &buf[HX852X_COORD_SIZE(hx->max_fingers)];
-+	struct hx852x_touch_info *info = (struct hx852x_touch_info *)
-+		&width[HX852X_WIDTH_SIZE(hx->max_fingers)];
-+	unsigned long finger_pressed, key_pressed;
-+	unsigned int i, x, y, w;
-+	int error;
-+
-+	error = hx852x_i2c_read(hx, HX852X_READ_ALL_EVENTS, buf,
-+				HX852X_BUF_SIZE(hx->max_fingers));
-+	if (error)
-+		return error;
-+
-+	finger_pressed = get_unaligned_le16(&info->finger_pressed);
-+	key_pressed = finger_pressed >> HX852X_MAX_FINGERS;
-+
-+	/* All bits are set when no touch is detected */
-+	if (info->finger_num == 0xff || !(info->finger_num & 0x0f))
-+		finger_pressed = 0;
-+	if (key_pressed == 0xf)
-+		key_pressed = 0;
-+
-+	for_each_set_bit(i, &finger_pressed, hx->max_fingers) {
-+		x = be16_to_cpu(coord[i].x);
-+		y = be16_to_cpu(coord[i].y);
-+		w = width[i];
-+
-+		input_mt_slot(hx->input_dev, i);
-+		input_mt_report_slot_state(hx->input_dev, MT_TOOL_FINGER, 1);
-+		touchscreen_report_pos(hx->input_dev, &hx->props, x, y, true);
-+		input_report_abs(hx->input_dev, ABS_MT_TOUCH_MAJOR, w);
-+	}
-+	input_mt_sync_frame(hx->input_dev);
-+
-+	for (i = 0; i < hx->keycount; i++)
-+		input_report_key(hx->input_dev, hx->keycodes[i], key_pressed & BIT(i));
-+
-+	input_sync(hx->input_dev);
-+	return 0;
-+}
-+
-+static irqreturn_t hx852x_interrupt(int irq, void *ptr)
-+{
-+	struct hx852x *hx = ptr;
-+	int error;
-+
-+	error = hx852x_handle_events(hx);
-+	if (error) {
-+		dev_err_ratelimited(&hx->client->dev, "failed to handle events: %d\n", error);
-+		return IRQ_NONE;
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int hx852x_input_open(struct input_dev *dev)
-+{
-+	struct hx852x *hx = input_get_drvdata(dev);
-+	int error;
-+
-+	error = hx852x_power_on(hx);
-+	if (error)
-+		return error;
-+
-+	error = hx852x_start(hx);
-+	if (error) {
-+		hx852x_power_off(hx);
-+		return error;
-+	}
-+
-+	enable_irq(hx->client->irq);
-+	return 0;
-+}
-+
-+static void hx852x_input_close(struct input_dev *dev)
-+{
-+	struct hx852x *hx = input_get_drvdata(dev);
-+
-+	hx852x_stop(hx);
-+	disable_irq(hx->client->irq);
-+	hx852x_power_off(hx);
-+}
-+
-+static int hx852x_parse_properties(struct hx852x *hx)
-+{
-+	struct device *dev = &hx->client->dev;
-+	int error, count;
-+
-+	count = device_property_count_u32(dev, "linux,keycodes");
-+	if (count == -EINVAL) {
-+		/* Property does not exist, keycodes are optional */
-+		return 0;
-+	} else if (count < 0) {
-+		dev_err(dev, "Failed to read linux,keycodes: %d\n", count);
-+		return count;
-+	} else if (count > HX852X_MAX_KEY_COUNT) {
-+		dev_err(dev, "max supported keys: %u, found: %u\n",
-+			HX852X_MAX_KEY_COUNT, hx->keycount);
-+		return -EINVAL;
-+	}
-+	hx->keycount = count;
-+
-+	error = device_property_read_u32_array(dev, "linux,keycodes",
-+					       hx->keycodes, hx->keycount);
-+	if (error) {
-+		dev_err(dev, "failed to read linux,keycodes: %d\n", error);
-+		return error;
-+	}
-+
-+	return 0;
-+}
-+
-+static int hx852x_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct hx852x *hx;
-+	int error, i;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
-+				     I2C_FUNC_SMBUS_WRITE_BYTE |
-+				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
-+				     I2C_FUNC_SMBUS_WRITE_WORD_DATA)) {
-+		dev_err(dev, "not all required i2c functionality supported\n");
-+		return -ENXIO;
-+	}
-+
-+	hx = devm_kzalloc(dev, sizeof(*hx), GFP_KERNEL);
-+	if (!hx)
-+		return -ENOMEM;
-+
-+	hx->client = client;
-+	hx->input_dev = devm_input_allocate_device(dev);
-+	if (!hx->input_dev)
-+		return -ENOMEM;
-+
-+	hx->input_dev->name = "Himax HX852x";
-+	hx->input_dev->id.bustype = BUS_I2C;
-+	hx->input_dev->open = hx852x_input_open;
-+	hx->input_dev->close = hx852x_input_close;
-+
-+	i2c_set_clientdata(client, hx);
-+	input_set_drvdata(hx->input_dev, hx);
-+
-+	hx->supplies[0].supply = "vcca";
-+	hx->supplies[1].supply = "vccd";
-+	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(hx->supplies), hx->supplies);
-+	if (error)
-+		return dev_err_probe(dev, error, "failed to get regulators\n");
-+
-+	hx->reset_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(hx->reset_gpiod))
-+		return dev_err_probe(dev, PTR_ERR(hx->reset_gpiod),
-+				     "failed to get reset gpio\n");
-+
-+	error = devm_request_threaded_irq(dev, client->irq, NULL, hx852x_interrupt,
-+					  IRQF_ONESHOT | IRQF_NO_AUTOEN, NULL, hx);
-+	if (error)
-+		return dev_err_probe(dev, error, "failed to request irq %d", client->irq);
-+
-+	error = hx852x_read_config(hx);
-+	if (error)
-+		return error;
-+
-+	input_set_capability(hx->input_dev, EV_ABS, ABS_MT_POSITION_X);
-+	input_set_capability(hx->input_dev, EV_ABS, ABS_MT_POSITION_Y);
-+	input_set_abs_params(hx->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
-+
-+	touchscreen_parse_properties(hx->input_dev, true, &hx->props);
-+	error = hx852x_parse_properties(hx);
-+	if (error)
-+		return error;
-+
-+	hx->input_dev->keycode = hx->keycodes;
-+	hx->input_dev->keycodemax = hx->keycount;
-+	hx->input_dev->keycodesize = sizeof(hx->keycodes[0]);
-+	for (i = 0; i < hx->keycount; i++)
-+		input_set_capability(hx->input_dev, EV_KEY, hx->keycodes[i]);
-+
-+	error = input_mt_init_slots(hx->input_dev, hx->max_fingers,
-+				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
-+	if (error)
-+		return dev_err_probe(dev, error, "failed to init MT slots\n");
-+
-+	error = input_register_device(hx->input_dev);
-+	if (error)
-+		return dev_err_probe(dev, error, "failed to register input device\n");
-+
-+	return 0;
-+}
-+
-+static int hx852x_suspend(struct device *dev)
-+{
-+	struct hx852x *hx = dev_get_drvdata(dev);
-+	int error = 0;
-+
-+	mutex_lock(&hx->input_dev->mutex);
-+	if (input_device_enabled(hx->input_dev))
-+		error = hx852x_stop(hx);
-+	mutex_unlock(&hx->input_dev->mutex);
-+
-+	return error;
-+}
-+
-+static int hx852x_resume(struct device *dev)
-+{
-+	struct hx852x *hx = dev_get_drvdata(dev);
-+	int error = 0;
-+
-+	mutex_lock(&hx->input_dev->mutex);
-+	if (input_device_enabled(hx->input_dev))
-+		error = hx852x_start(hx);
-+	mutex_unlock(&hx->input_dev->mutex);
-+
-+	return error;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(hx852x_pm_ops, hx852x_suspend, hx852x_resume);
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id hx852x_of_match[] = {
-+	{ .compatible = "himax,hx852es" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, hx852x_of_match);
-+#endif
-+
-+static struct i2c_driver hx852x_driver = {
-+	.probe = hx852x_probe,
-+	.driver = {
-+		.name = "himax_hx852x",
-+		.pm = pm_sleep_ptr(&hx852x_pm_ops),
-+		.of_match_table = of_match_ptr(hx852x_of_match),
-+	},
-+};
-+module_i2c_driver(hx852x_driver);
-+
-+MODULE_DESCRIPTION("Himax HX852x(ES) Touchscreen Driver");
-+MODULE_AUTHOR("Jonathan Albrieux <jonathan.albrieux@gmail.com>");
-+MODULE_AUTHOR("Stephan Gerhold <stephan@gerhold.net>");
-+MODULE_LICENSE("GPL");
+Thank you for reviewing.
+If dwc->suspended is true (i.e suspend event due to U3/L2 is received), 
+I am actually breaking from this switch statement and returning 0.
 
--- 
-2.42.0
+>> +				break;
+>>   			return -EBUSY;
+>> +		}
+>>   		break;
+>>   	case DWC3_GCTL_PRTCAP_HOST:
+>>   	default:
+>> @@ -2107,9 +2118,22 @@ static int dwc3_runtime_suspend(struct device *dev)
+>>   	struct dwc3     *dwc = dev_get_drvdata(dev);
+>>   	int		ret;
+>>   
+>> -	if (dwc3_runtime_checks(dwc))
+>> +	ret = dwc3_runtime_checks(dwc);
+>> +	if (ret)
+>>   		return -EBUSY;
+>>   
+>> +	switch (dwc->current_dr_role) {
+>> +	case DWC3_GCTL_PRTCAP_DEVICE:
+>> +		/* bus suspend case */
+>> +		if (!ret && dwc->connected)
+> 
+> No need to check !ret again as it will never happen because
+> we are returning -EBUSY earlier if (ret);
+> 
+Thanks for this catch. I will remove !ret check in v5.
 
+>> +			return 0;
+>> +		break;
+>> +	case DWC3_GCTL_PRTCAP_HOST:
+>> +	default:
+>> +		/* do nothing */
+>> +		break;
+>> +	}
+>> +
+> 
+> While this takes care of runtime suspend case, what about system_suspend?
+> Should this check be moved to dwc3_suspend_common() instead?
+> 
+
+Sure I can move these checks to dwc3_suspend_common to make it generic.
+Will rename this patch to "Modify pm ops to handle bus suspend" since 
+this is now not limited to only runtime suspend/resume. Will also rename 
+dwc->runtime_suspend_on_usb_suspend to dwc->delegate_wakeup_interrupt 
+based on earlier feedback.
+
+I am still working on a clean way to enable/disable this feature (i.e 
+set dwc->delegate_wakeup_interrupt flag) from the glue driver based on 
+Thinh's feedback .
+I will accommodate above feedback as well and upload v5.
+
+Thanks
+Elson
+>>   	ret = dwc3_suspend_common(dwc, PMSG_AUTO_SUSPEND);
+>>   	if (ret)
+>>   		return ret;
+>> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+>> index a69ac67d89fe..f2f788a6b4b5 100644
+>> --- a/drivers/usb/dwc3/core.h
+>> +++ b/drivers/usb/dwc3/core.h
+>> @@ -1124,6 +1124,8 @@ struct dwc3_scratchpad_array {
+>>    * @num_ep_resized: carries the current number endpoints which have had its tx
+>>    *		    fifo resized.
+>>    * @debug_root: root debugfs directory for this device to put its files in.
+>> + * @runtime_suspend_on_usb_suspend: true if dwc3 runtime suspend is allowed
+>> + *			during bus suspend scenario.
+>>    */
+>>   struct dwc3 {
+>>   	struct work_struct	drd_work;
+>> @@ -1340,6 +1342,7 @@ struct dwc3 {
+>>   	int			last_fifo_depth;
+>>   	int			num_ep_resized;
+>>   	struct dentry		*debug_root;
+>> +	bool			runtime_suspend_on_usb_suspend;
+>>   };
+>>   
+>>   #define INCRX_BURST_MODE 0
+>> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
+>> index 5fd067151fbf..978ce0e91164 100644
+>> --- a/drivers/usb/dwc3/gadget.c
+>> +++ b/drivers/usb/dwc3/gadget.c
+>> @@ -2401,15 +2401,21 @@ static int dwc3_gadget_wakeup(struct usb_gadget *g)
+>>   		return -EINVAL;
+>>   	}
+>>   
+>> -	spin_lock_irqsave(&dwc->lock, flags);
+>>   	if (!dwc->gadget->wakeup_armed) {
+>>   		dev_err(dwc->dev, "not armed for remote wakeup\n");
+>> -		spin_unlock_irqrestore(&dwc->lock, flags);
+>>   		return -EINVAL;
+>>   	}
+>> -	ret = __dwc3_gadget_wakeup(dwc, true);
+>>   
+>> +	ret = pm_runtime_resume_and_get(dwc->dev);
+>> +	if (ret < 0) {
+>> +		pm_runtime_set_suspended(dwc->dev);
+>> +		return ret;
+>> +	}
+>> +
+>> +	spin_lock_irqsave(&dwc->lock, flags);
+>> +	ret = __dwc3_gadget_wakeup(dwc, true);
+>>   	spin_unlock_irqrestore(&dwc->lock, flags);
+>> +	pm_runtime_put_noidle(dwc->dev);
+>>   
+>>   	return ret;
+>>   }
+>> @@ -2428,6 +2434,12 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
+>>   		return -EINVAL;
+>>   	}
+>>   
+>> +	ret = pm_runtime_resume_and_get(dwc->dev);
+>> +	if (ret < 0) {
+>> +		pm_runtime_set_suspended(dwc->dev);
+>> +		return ret;
+>> +	}
+>> +
+>>   	spin_lock_irqsave(&dwc->lock, flags);
+>>   	/*
+>>   	 * If the link is in U3, signal for remote wakeup and wait for the
+>> @@ -2438,6 +2450,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
+>>   		ret = __dwc3_gadget_wakeup(dwc, false);
+>>   		if (ret) {
+>>   			spin_unlock_irqrestore(&dwc->lock, flags);
+>> +			pm_runtime_put_noidle(dwc->dev);
+>>   			return -EINVAL;
+>>   		}
+>>   		dwc3_resume_gadget(dwc);
+>> @@ -2452,6 +2465,7 @@ static int dwc3_gadget_func_wakeup(struct usb_gadget *g, int intf_id)
+>>   		dev_err(dwc->dev, "function remote wakeup failed, ret:%d\n", ret);
+>>   
+>>   	spin_unlock_irqrestore(&dwc->lock, flags);
+>> +	pm_runtime_put_noidle(dwc->dev);
+>>   
+>>   	return ret;
+>>   }
+>> @@ -2732,21 +2746,23 @@ static int dwc3_gadget_pullup(struct usb_gadget *g, int is_on)
+>>   	/*
+>>   	 * Avoid issuing a runtime resume if the device is already in the
+>>   	 * suspended state during gadget disconnect.  DWC3 gadget was already
+>> -	 * halted/stopped during runtime suspend.
+>> +	 * halted/stopped during runtime suspend except for bus suspend case
+>> +	 * where we would have skipped the controller halt.
+>>   	 */
+>>   	if (!is_on) {
+>>   		pm_runtime_barrier(dwc->dev);
+>> -		if (pm_runtime_suspended(dwc->dev))
+>> +		if (pm_runtime_suspended(dwc->dev) && !dwc->connected)
+>>   			return 0;
+>>   	}
+>>   
+>>   	/*
+>>   	 * Check the return value for successful resume, or error.  For a
+>>   	 * successful resume, the DWC3 runtime PM resume routine will handle
+>> -	 * the run stop sequence, so avoid duplicate operations here.
+>> +	 * the run stop sequence except for bus resume case, so avoid
+>> +	 * duplicate operations here.
+>>   	 */
+>>   	ret = pm_runtime_get_sync(dwc->dev);
+>> -	if (!ret || ret < 0) {
+>> +	if ((!ret && !dwc->connected) || ret < 0) {
+>>   		pm_runtime_put(dwc->dev);
+>>   		if (ret < 0)
+>>   			pm_runtime_set_suspended(dwc->dev);
+>> @@ -4331,6 +4347,8 @@ static void dwc3_gadget_suspend_interrupt(struct dwc3 *dwc,
+>>   	}
+>>   
+>>   	dwc->link_state = next;
+>> +	pm_runtime_mark_last_busy(dwc->dev);
+>> +	pm_request_autosuspend(dwc->dev);
+>>   }
+>>   
+>>   static void dwc3_gadget_interrupt(struct dwc3 *dwc,
+> 
 
