@@ -1,180 +1,123 @@
-Return-Path: <devicetree+bounces-11409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F8D7D5AD5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:44:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA747D5AE6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A6A9281376
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:44:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DC031C20BC7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97A43A265;
-	Tue, 24 Oct 2023 18:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6093B29F;
+	Tue, 24 Oct 2023 18:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hcVwqSt7"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="A1njmlfT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C276A36AF8
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:44:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2D3C12C;
-	Tue, 24 Oct 2023 11:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698173062; x=1729709062;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yXiUqDTjJlLIfMRjPSDr+1lzyNKgBoHGKVQdpfNmqY8=;
-  b=hcVwqSt718wpKv4DJWwNltj/5u6fSw53QEivE872BngUGa1PGCXmyyuq
-   7CVkEL81lz8Kyrs/UULmlL5DnLCNBhIUtG/4CYNI0GqV294wVgq7xxWnc
-   WMs2J9rV5y7glYZlLliXmv7fUs2J1+2CvPMAJg/kXwVV7oPSn+3Bl6dah
-   ZPO4jL6QYvVihfSaSQrpvsJmagV0KStB9j6+0iaWuubmEzYyoFXAMxkHR
-   bG8rUga3MzEelKaSqBslwYPQi0dug1JyEy/OOnlAjCdBcvc/KTQt4wxjA
-   eD5If/tSR0KijipOwqXisZ3VsDB2SYZLZ02V/ibPg8BVSFWFZxMxDtymj
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="389993640"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="389993640"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 11:44:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; 
-   d="scan'208";a="6558967"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 24 Oct 2023 11:44:12 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qvMO0-0008AD-2M;
-	Tue, 24 Oct 2023 18:44:16 +0000
-Date: Wed, 25 Oct 2023 02:43:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Guo Mengqi <guomengqi3@huawei.com>, vkoul@kernel.org,
-	dmaengine@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, xuqiang36@huawei.com,
-	chenweilong@huawei.com, guomengqi3@huawei.com
-Subject: Re: [PATCH v5 1/2] dmaengine: Add HiSilicon Ascend SDMA engine
- support
-Message-ID: <202310250208.jwwNXco0-lkp@intel.com>
-References: <20231021093454.39822-2-guomengqi3@huawei.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD1E3A296
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 18:52:18 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C5EA6;
+	Tue, 24 Oct 2023 11:52:14 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 27AB4120046;
+	Tue, 24 Oct 2023 21:52:12 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 27AB4120046
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1698173532;
+	bh=ZfnwsoCFNLWxYlhF3Ype4MK6VdYqony+g3yIue3PzsQ=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=A1njmlfTnNiQFmP0AhqW2IbeOLkX1fhd8vSFmE+snlE6wgCPFcyXc3T+8TxjNMzAx
+	 w6D6Elr7sohany6Ydo3sJCswxk0Sai1Wx9Tk9T23j3v+bga7OhCNvYTIDW3yaOtrMb
+	 KG8utSnwMhP834AVnHQU67WJdJjcjWouj2dfnHa0ceCo448EbtshzKcgCMFMukXe7d
+	 TPqu2h+gLkCYpFfmti6HsACB6EWqyHlsF1z0eUII1P+opWfR1AJ1m0miCt21KF/lk8
+	 F/2E4dMPh5qaT6ZRd+j2H+gTIODXbs0bxaUADilhp9qUY1uEUMgUv4JOgMVxqK5IFF
+	 F1eHn41HJdXIw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 24 Oct 2023 21:52:12 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Tue, 24 Oct
+ 2023 21:52:11 +0300
+Date: Tue, 24 Oct 2023 21:52:11 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Rob Herring <robh@kernel.org>
+CC: <lee@kernel.org>, <pavel@ucw.cz>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
+	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>
+Subject: Re: [DMARC error] Re: [PATCH v2 03/11] dt-bindings: leds: aw200xx:
+ introduce optional hwen-gpios property
+Message-ID: <20231024185211.x753eonmq5flwqa3@CAB-WSD-L081021>
+References: <20231018182943.18700-1-ddrokosov@salutedevices.com>
+ <20231018182943.18700-4-ddrokosov@salutedevices.com>
+ <20231024183014.GA243505-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231021093454.39822-2-guomengqi3@huawei.com>
+In-Reply-To: <20231024183014.GA243505-robh@kernel.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 180848 [Oct 24 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/10/24 17:39:00 #22277133
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Guo,
+On Tue, Oct 24, 2023 at 01:30:14PM -0500, Rob Herring wrote:
+> On Wed, Oct 18, 2023 at 09:29:35PM +0300, Dmitry Rokosov wrote:
+> > Property 'hwen-gpios' is optional, it can be used by the board
+> > developer to connect AW200XX LED controller with appropriate poweron
+> > GPIO pad.
+> > 
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > ---
+> >  Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> > index feb5febaf361..255eb0563737 100644
+> > --- a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+> > @@ -41,6 +41,9 @@ properties:
+> >      description:
+> >        Leds matrix size
+> >  
+> > +  hwen-gpios:
+> > +    maxItems: 1
+> 
+> The standard enable-gpios or powerdown-gpios don't work for you?
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on vkoul-dmaengine/next]
-[also build test WARNING on linus/master v6.6-rc7 next-20231024]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Guo-Mengqi/dmaengine-Add-HiSilicon-Ascend-SDMA-engine-support/20231021-174034
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git next
-patch link:    https://lore.kernel.org/r/20231021093454.39822-2-guomengqi3%40huawei.com
-patch subject: [PATCH v5 1/2] dmaengine: Add HiSilicon Ascend SDMA engine support
-config: openrisc-allyesconfig (https://download.01.org/0day-ci/archive/20231025/202310250208.jwwNXco0-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231025/202310250208.jwwNXco0-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310250208.jwwNXco0-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from arch/openrisc/include/asm/mmu_context.h:18,
-                    from include/linux/mmu_context.h:5,
-                    from drivers/iommu/iommu-sva.c:5:
->> include/asm-generic/mm_hooks.h:10:40: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      10 | static inline int arch_dup_mmap(struct mm_struct *oldmm,
-         |                                        ^~~~~~~~~
-   include/asm-generic/mm_hooks.h:16:42: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      16 | static inline void arch_exit_mmap(struct mm_struct *mm)
-         |                                          ^~~~~~~~~
-   include/asm-generic/mm_hooks.h:20:38: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      20 | static inline void arch_unmap(struct mm_struct *mm,
-         |                                      ^~~~~~~~~
-   include/asm-generic/mm_hooks.h:25:15: error: unknown type name 'bool'
-      25 | static inline bool arch_vma_access_permitted(struct vm_area_struct *vma,
-         |               ^~~~
-   include/asm-generic/mm_hooks.h:26:17: error: unknown type name 'bool'
-      26 |                 bool write, bool execute, bool foreign)
-         |                 ^~~~
-   include/asm-generic/mm_hooks.h:1:1: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
-     +++ |+#include <stdbool.h>
-       1 | /* SPDX-License-Identifier: GPL-2.0 */
-   include/asm-generic/mm_hooks.h:26:29: error: unknown type name 'bool'
-      26 |                 bool write, bool execute, bool foreign)
-         |                             ^~~~
-   include/asm-generic/mm_hooks.h:26:29: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
-   include/asm-generic/mm_hooks.h:26:43: error: unknown type name 'bool'
-      26 |                 bool write, bool execute, bool foreign)
-         |                                           ^~~~
-   include/asm-generic/mm_hooks.h:26:43: note: 'bool' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
->> arch/openrisc/include/asm/mmu_context.h:21:61: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      21 | extern int init_new_context(struct task_struct *tsk, struct mm_struct *mm);
-         |                                                             ^~~~~~~~~
->> arch/openrisc/include/asm/mmu_context.h:21:36: warning: 'struct task_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      21 | extern int init_new_context(struct task_struct *tsk, struct mm_struct *mm);
-         |                                    ^~~~~~~~~~~
-   arch/openrisc/include/asm/mmu_context.h:23:36: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      23 | extern void destroy_context(struct mm_struct *mm);
-         |                                    ^~~~~~~~~
-   arch/openrisc/include/asm/mmu_context.h:25:30: warning: 'struct task_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      25 |                       struct task_struct *tsk);
-         |                              ^~~~~~~~~~~
-   arch/openrisc/include/asm/mmu_context.h:24:30: warning: 'struct mm_struct' declared inside parameter list will not be visible outside of this definition or declaration
-      24 | extern void switch_mm(struct mm_struct *prev, struct mm_struct *next,
-         |                              ^~~~~~~~~
-   arch/openrisc/include/asm/mmu_context.h:33:17: error: unknown type name 'pgd_t'
-      33 | extern volatile pgd_t *current_pgd[]; /* defined in arch/openrisc/mm/fault.c */
-         |                 ^~~~~
-   include/linux/mmu_context.h:39:15: error: unknown type name 'bool'
-      39 | static inline bool arch_pgtable_dma_compat(struct mm_struct *mm)
-         |               ^~~~
-   include/linux/mmu_context.h: In function 'arch_pgtable_dma_compat':
-   include/linux/mmu_context.h:41:16: error: 'true' undeclared (first use in this function)
-      41 |         return true;
-         |                ^~~~
-   include/linux/mmu_context.h:7:1: note: 'true' is defined in header '<stdbool.h>'; did you forget to '#include <stdbool.h>'?
-       6 | #include <asm/mmu.h>
-     +++ |+#include <stdbool.h>
-       7 | 
-   include/linux/mmu_context.h:41:16: note: each undeclared identifier is reported only once for each function it appears in
-      41 |         return true;
-         |                ^~~~
-   include/linux/mmu_context.h:42:1: error: control reaches end of non-void function [-Werror=return-type]
-      42 | }
-         | ^
-   cc1: some warnings being treated as errors
-
-
-vim +10 include/asm-generic/mm_hooks.h
-
-d6dd61c831226f Jeremy Fitzhardinge 2007-05-02   9  
-c10e83f598d080 Thomas Gleixner     2017-12-14 @10  static inline int arch_dup_mmap(struct mm_struct *oldmm,
-d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  11  				struct mm_struct *mm)
-d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  12  {
-c10e83f598d080 Thomas Gleixner     2017-12-14  13  	return 0;
-d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  14  }
-d6dd61c831226f Jeremy Fitzhardinge 2007-05-02  15  
+HWEN is the name from the official datasheet. I thought it's always
+better to use a naming convention that is similar to the notations used
+in the datasheet.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thank you,
+Dmitry
 
