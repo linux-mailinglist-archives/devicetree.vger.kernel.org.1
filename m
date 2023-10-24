@@ -1,192 +1,197 @@
-Return-Path: <devicetree+bounces-11427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 277117D5BFF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA5F7D5C06
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:00:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90D15B20F4A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:59:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09D8BB20F82
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 19:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 459883D985;
-	Tue, 24 Oct 2023 19:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LgXRroQq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6903D988;
+	Tue, 24 Oct 2023 19:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD12A3B2B4
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:59:15 +0000 (UTC)
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC48186;
-	Tue, 24 Oct 2023 12:59:11 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9be7e3fa1daso727971366b.3;
-        Tue, 24 Oct 2023 12:59:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698177549; x=1698782349; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xvLnuPOLZ0Qaew46Cu9xpus2DnZ8DmYwfr9u352DlgY=;
-        b=LgXRroQqBLbFPJaz8aH6LhotDjPL9nVb4mnXdAsWxBwUXpU9Jh4WTqecdSY6L0ojxr
-         SwAay+SjV9ahI92c5lD3ZeCJoGYPPsiQrhDjJjLpGZOMolyJbPJoYf/QJsnMB/ZEPDJJ
-         tSt/cO18RbBvMDWBszGcez8QQ7mGfjmkrf4DRavKpMESOf/720t07ZziGrEshYsuYd65
-         v67qPGbFTbz4GUjaPNAw1nut7GYm0HmXhhleOjPi1wINjgTN2yCK/VkdYBU+VIBUeINj
-         8ZKrELe4fY7SJ6S2ufYo98xLp6FENBMJHe1+nRCTKcf9ASQkfXhm0JTMzCmGUPS4ILez
-         Tj1g==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53A593B2B4
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 19:59:52 +0000 (UTC)
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A010210C9;
+	Tue, 24 Oct 2023 12:59:50 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6c7b3adbeb6so3199443a34.0;
+        Tue, 24 Oct 2023 12:59:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698177549; x=1698782349;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xvLnuPOLZ0Qaew46Cu9xpus2DnZ8DmYwfr9u352DlgY=;
-        b=A4wGe05Whipfpt9zeOmQOX49S+wFHDJOv11rd8xdoJjPO0M4zLerwLyHeXI7l+clAq
-         FGdMcQTdn79Yfz+w4KCGSSPCufI4BawVO7NstH7eNskske9Z/rUhHlyon7pZlwEZ1R7Z
-         7S+fMriaWFPMG+Avit8iGDDNbQpqyopBsNARbd0KAKC0NVQz4iwe/XlthWG7/onYUXn+
-         2R0m3td6VAcat+znnnffS3hjG3TAa3yY1Shmmg5VekNn/oye5WU3TMmSGx9OZRJByL+x
-         udVexCCrox5bGQD//dXaUrqulGnrlqbkFz2/E92329k+X2wvmf4rVEyowR/IzXhupNQ+
-         DSMw==
-X-Gm-Message-State: AOJu0Yz2pGxDeIzeQve2zfsFfBI2n4+8CZP5j2AoboG+KhZslED7Gqzu
-	SzXQQHifOwWQSKZWq4A6sR8=
-X-Google-Smtp-Source: AGHT+IH88QFQIH9wScZb5doGMoOtngtz59b/bWFztMcjD+NkiEy+AteLh08Hxr4mddzEe2Gu7c/F4g==
-X-Received: by 2002:a17:907:9727:b0:9bf:5696:9153 with SMTP id jg39-20020a170907972700b009bf56969153mr10845240ejc.57.1698177548753;
-        Tue, 24 Oct 2023 12:59:08 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:918a:dd67:bc8:9f17])
-        by smtp.gmail.com with ESMTPSA id e27-20020a170906749b00b0097404f4a124sm8756295ejl.2.2023.10.24.12.59.07
+        d=1e100.net; s=20230601; t=1698177590; x=1698782390;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X34cwpBpiuP3aqf5QjDCKfEoi+InD6TZZpa1Cm188qc=;
+        b=Pv2pZVK+Je40RwnG8Ae1km7ocgLJvXvhzpRBZcwBbMvD+/78oK+wUydfKathlhsROV
+         8+PN2h7cQ6tHT5xwoSqe/4iHflrkYy4VX+w0rG1oPGpTku9LKlh95rjtM2chomxsLRfB
+         S7chYLHLx0Rt5nkN7yHLSYJkdqM2K8IBxCAwXaHCGnx/2rTRdXs7GEwAQMee9iTov0LO
+         vkTfYv+Yo+p0IVtnsHY5KdnoI0WUTKYmvbHlVpyFfMBChpWP3jNfbkn5dUSzKLGQIFZ/
+         ewWjQYl39ifGznDDBxfyfT6JuLq8JnPe5F7I+wlq0kLtHoJMyJi/ejI4MLkUDKTAgVw4
+         yKXQ==
+X-Gm-Message-State: AOJu0YyoORVT2IKYK9eAjxvimho2w/ctT6xiu4YZd7ftsk71MHMa2aoB
+	utUdfOgxELX1zcgabHgUsQ==
+X-Google-Smtp-Source: AGHT+IHIr4W8mfEnqO6DkV45UgvYeE2TGYjTXkCq8izEC3MLiXPtFc1Gm393ANejfie00c/rIq/f4w==
+X-Received: by 2002:a9d:6286:0:b0:6bd:152f:9918 with SMTP id x6-20020a9d6286000000b006bd152f9918mr14956463otk.14.1698177589921;
+        Tue, 24 Oct 2023 12:59:49 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q13-20020a9d57cd000000b006ce2f4861c5sm1961116oti.62.2023.10.24.12.59.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Oct 2023 12:59:08 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	m-karicheri2@ti.com,
-	ivan.khoronzhuk@ti.com
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: watchdog: davinci-wdt: convert txt to yaml
-Date: Tue, 24 Oct 2023 21:58:39 +0200
-Message-Id: <20231024195839.49607-1-n2h9z4@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Tue, 24 Oct 2023 12:59:49 -0700 (PDT)
+Received: (nullmailer pid 465614 invoked by uid 1000);
+	Tue, 24 Oct 2023 19:59:48 -0000
+Date: Tue, 24 Oct 2023 14:59:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+Message-ID: <20231024195948.GA459344-robh@kernel.org>
+References: <ZTUIJrTc6KKyT4xj@standask-GA-A55M-S2HP>
+ <3df06d79-ea51-4202-8cc8-468f741603bf@linaro.org>
+ <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
 
-Convert txt file to yaml.
-Add maintainers list, based on the git history.
-Mark clock as required property, by reviewer's suggestion.
+On Mon, Oct 23, 2023 at 10:17:22PM +0200, Stanislav Jakubek wrote:
+> On Mon, Oct 23, 2023 at 09:54:49AM +0200, Krzysztof Kozlowski wrote:
+> > On 22/10/2023 13:31, Stanislav Jakubek wrote:
+> > > Convert Broadcom Kona family clock controller unit (CCU) bindings
+> > > to DT schema.
+> > > 
+> > > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > 
+> > Thank you for your patch. There is something to discuss/improve.
+> > 
+> > > +description:
+> > > +  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
+> > > +  manages a set of clock signals.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - brcm,bcm11351-aon-ccu
+> > > +      - brcm,bcm11351-hub-ccu
+> > > +      - brcm,bcm11351-master-ccu
+> > > +      - brcm,bcm11351-root-ccu
+> > > +      - brcm,bcm11351-slave-ccu
+> > > +      - brcm,bcm21664-aon-ccu
+> > > +      - brcm,bcm21664-master-ccu
+> > > +      - brcm,bcm21664-root-ccu
+> > > +      - brcm,bcm21664-slave-ccu
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#clock-cells':
+> > > +    const: 1
+> > > +
+> > > +  clock-output-names:
+> > > +    minItems: 1
+> > > +    maxItems: 10
+> > > +
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - brcm,bcm11351-aon-ccu
+> > > +              - brcm,bcm11351-hub-ccu
+> > > +              - brcm,bcm11351-master-ccu
+> > > +              - brcm,bcm11351-root-ccu
+> > > +              - brcm,bcm11351-slave-ccu
+> > > +    then:
+> > > +      properties:
+> > > +        clock-output-names:
+> > > +          description: |
+> > > +            The following table defines the set of CCUs and clock specifiers
+> > > +            for BCM281XX family clocks.
+> > > +            These clock specifiers are defined in:
+> > > +                "include/dt-bindings/clock/bcm281xx.h"
+> > > +
+> > > +            CCU     Clock        Type  Index  Specifier
+> > > +            ---     -----        ----  -----  ---------
+> > > +            root    frac_1m      peri    0    BCM281XX_ROOT_CCU_FRAC_1M
+> > > +
+> > > +            aon     hub_timer    peri    0    BCM281XX_AON_CCU_HUB_TIMER
+> > > +            aon     pmu_bsc      peri    1    BCM281XX_AON_CCU_PMU_BSC
+> > > +            aon     pmu_bsc_var  peri    2    BCM281XX_AON_CCU_PMU_BSC_VAR
+> > > +
+> > > +            hub     tmon_1m      peri    0    BCM281XX_HUB_CCU_TMON_1M
+> > > +
+> > > +            master  sdio1        peri    0    BCM281XX_MASTER_CCU_SDIO1
+> > > +            master  sdio2        peri    1    BCM281XX_MASTER_CCU_SDIO2
+> > > +            master  sdio3        peri    2    BCM281XX_MASTER_CCU_SDIO3
+> > > +            master  sdio4        peri    3    BCM281XX_MASTER_CCU_SDIO4
+> > > +            master  dmac         peri    4    BCM281XX_MASTER_CCU_DMAC
+> > > +            master  usb_ic       peri    5    BCM281XX_MASTER_CCU_USB_IC
+> > > +            master  hsic2_48m    peri    6    BCM281XX_MASTER_CCU_HSIC_48M
+> > > +            master  hsic2_12m    peri    7    BCM281XX_MASTER_CCU_HSIC_12M
+> > > +
+> > > +            slave   uartb        peri    0    BCM281XX_SLAVE_CCU_UARTB
+> > > +            slave   uartb2       peri    1    BCM281XX_SLAVE_CCU_UARTB2
+> > > +            slave   uartb3       peri    2    BCM281XX_SLAVE_CCU_UARTB3
+> > > +            slave   uartb4       peri    3    BCM281XX_SLAVE_CCU_UARTB4
+> > > +            slave   ssp0         peri    4    BCM281XX_SLAVE_CCU_SSP0
+> > > +            slave   ssp2         peri    5    BCM281XX_SLAVE_CCU_SSP2
+> > > +            slave   bsc1         peri    6    BCM281XX_SLAVE_CCU_BSC1
+> > > +            slave   bsc2         peri    7    BCM281XX_SLAVE_CCU_BSC2
+> > > +            slave   bsc3         peri    8    BCM281XX_SLAVE_CCU_BSC3
+> > > +            slave   pwm          peri    9    BCM281XX_SLAVE_CCU_PWM
+> > 
+> > I don't really understand why this is in the binding schema. I guess you
+> > wanted to copy it from the old binding, but, unless there is real reason
+> > for it, don't. The clock IDs should be in the header file and that's it.
+> > Nothing here.
+> 
+> Hi Krzysztof, you're correct that I just copied this from the old bindings.
+> brcm,iproc-clocks.yaml has a similar table, so I thought this would be fine.
+> I'm OK with dropping it, but how should I document the clock-output-names
+> values then? A bunch of if-then blocks (per compatible)? Or should I not even
+> bother and just keep minItems/maxItems without documenting the values?
+> 
+> > 
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - brcm,bcm21664-aon-ccu
+> > > +              - brcm,bcm21664-master-ccu
+> > > +              - brcm,bcm21664-root-ccu
+> > > +              - brcm,bcm21664-slave-ccu
+> > > +    then:
+> > > +      properties:
+> > > +        clock-output-names:
+> > > +          maxItems: 8
+> 
+> I've also noticed that dtbs_check gives out warnings(?) like this for
+> bcm21664 ccu nodes:
+> 
+> /arch/arm/boot/dts/broadcom/bcm21664-garnet.dtb:
+>     root_ccu@35001000: clock-output-names: ['frac_1m'] is too short
+>     from schema $id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
+> 
+> and this maxItems:8 seems to me like the culprit (since the bcm11351 if-then
+> doesn't have that). Seems to me like it also overrides the minItems to be 8
+> as well. I don't understand why it would do that though.
 
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
----
+Indeed it does. That should be fixed soon such that minItems/maxItems 
+will never be added implicitly to if/then/else schemas.
 
-Changes in v2 (according to review comments):
-- Added clocks to the list of required properties.
-- Updated clocks property to have only maxItems without $ref and description. 
-- Removed timeout-sec explicit definition, as it is defined in watchdog.yaml.
-- Updated maintainers list from the git history.
-
-v1 patch: https://lore.kernel.org/all/20231021171323.113208-1-n2h9z4@gmail.com/
-
- .../bindings/watchdog/davinci-wdt.txt         | 24 ----------
- .../bindings/watchdog/ti,davinci-wdt.yaml     | 47 +++++++++++++++++++
- 2 files changed, 47 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-
-diff --git a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt b/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-deleted file mode 100644
-index aa10b8ec36e2..000000000000
---- a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
--
--Required properties:
--- compatible : Should be "ti,davinci-wdt", "ti,keystone-wdt"
--- reg : Should contain WDT registers location and length
--
--Optional properties:
--- timeout-sec : Contains the watchdog timeout in seconds
--- clocks : the clock feeding the watchdog timer.
--	   Needed if platform uses clocks.
--	   See clock-bindings.txt
--
--Documentation:
--Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
--Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
--
--Examples:
--
--wdt: wdt@2320000 {
--	compatible = "ti,davinci-wdt";
--	reg = <0x02320000 0x80>;
--	timeout-sec = <30>;
--	clocks = <&clkwdtimer0>;
--};
-diff --git a/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-new file mode 100644
-index 000000000000..4747be98b7d9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
-+
-+description: |
-+  Documentation:
-+  Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-+  Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a
-+
-+maintainers:
-+  - Murali Karicheri <m-karicheri2@ti.com>
-+  - Ivan Khoronzhuk <ivan.khoronzhuk@ti.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,davinci-wdt
-+      - ti,keystone-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog@2320000 {
-+        compatible = "ti,davinci-wdt";
-+        reg = <0x02320000 0x80>;
-+        timeout-sec = <30>;
-+        clocks = <&clkwdtimer0>;
-+    };
--- 
-2.34.1
-
+Rob
 
