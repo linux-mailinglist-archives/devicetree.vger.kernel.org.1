@@ -1,115 +1,90 @@
-Return-Path: <devicetree+bounces-11204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0DE27D4BE5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:23:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D557E7D4BF2
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BE642817D2
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:23:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 131411C209C6
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BFA21A08;
-	Tue, 24 Oct 2023 09:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 929E122F10;
+	Tue, 24 Oct 2023 09:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="K3TWxY/m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dL1Vnuvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87F822EF7;
-	Tue, 24 Oct 2023 09:23:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF454C433C7;
-	Tue, 24 Oct 2023 09:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1698139402;
-	bh=5BOfFTioUJ8IpZCnLdaN62MO+jIWJf1nCYWGm67cq/I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K3TWxY/mSp7p8NMVDwongsMDYppo+lMc0l2edIfizOsJCNCWK5D1nrULPM4fzy1bI
-	 u+9PSAJQCbcdXYn/gdibcysAoCV/lmK9kMkJMSHC3CbCCnk7/u6hVd5fKydCZ32HN7
-	 kPg6keKhfZVhnFg/DGvnwPaffEX6wO52pVc/kKLY=
-Date: Tue, 24 Oct 2023 11:23:19 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Message-ID: <2023102429-craftsman-student-ba77@gregkh>
-References: <20231007154806.605-6-quic_kriskura@quicinc.com>
- <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
- <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <196601cc-f8c6-4266-bfff-3fd69f0ab31c@quicinc.com>
- <ZTeL4nSw6dMGKODm@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE7521A08
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:24:51 +0000 (UTC)
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3D210C2
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:24:49 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-d9ac9573274so3901465276.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:24:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698139488; x=1698744288; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jvtw3R4g4yrWaCPe3OnX3OGqAz4Ysoana75anOWAYR4=;
+        b=dL1VnuvzBNr7p2VtGrgJ2YMxxalsZwAOP2rGfZWZbhmajLFcbZY3Lm89A6ef04MOw9
+         2DhAdz4udDbvACievBwRk+rVJcccWi1Seh+ZM0dUMJBEdIjnLkk/0nJaqN8Rrs+6XB8J
+         3xWsSTkXGOjD9o9mwZYwwHgASiNklO1XRN9d7WqOKVoVUFjUOs3OHfzfIDSlqJfMNYEo
+         DbwX3KGlDXATrMnn7ckXB2tBUjcEYneEiTgsbt24HWfCN/GMuf0CYk3t2dGt5cX9ya2q
+         5LY89XDHaIsj+x5tTJd0/WWzqz6kmOySBK7p1JC3kA6UCcGVCOsMi95AOwAGcoAmPQjR
+         8/iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698139488; x=1698744288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jvtw3R4g4yrWaCPe3OnX3OGqAz4Ysoana75anOWAYR4=;
+        b=mtHj5YzC61fS39XoXkuuBZHBsTPQVjedYNaVQqcXnf7BoEgf6RrHDNcQ/8a9HGu8u3
+         GfJkFYo7ZAatx3pBaF/vWCDjCnjE7HBRxgoG/IpGs83j1xA3bP/lU+72SfTDjnjWylZ3
+         flFwvQc4kwBc9vssp6zs8o8HGx5Ucn7N2CwueO7nMJp6Vu22BLYCZRoTDsmL9FkHLZ0+
+         WFqcaMvXJULTyCYrp8HkB0dKRhzU/DUrryaKwtZfY2Shj/UiDoO9D3N7gT5u4te+ddDz
+         fylvzOCfGbSfhb1J91gPmAx9FhBRRxyXTGzFtNz/ti52KnDxK14Y/WOqzT8cn11J+x62
+         EmaA==
+X-Gm-Message-State: AOJu0Yz7Bo60p60DgL0x+2oUcXxn5a+C/+TPHeT0/cxv3aQXqVOdb0i9
+	aYrzwlOCQI9dkpuzdBM3TFlpIWGhGQRaTBrvjYh2zw==
+X-Google-Smtp-Source: AGHT+IEjjXEh1q5UaxdtvCQj9zoNGBvaRwRDI5Q+oryObRZl50AcnXsTDbsRJJ5cG/pHer6xoQElF+sLHgofyO9u4cg=
+X-Received: by 2002:a25:cf14:0:b0:d9b:f161:5fce with SMTP id
+ f20-20020a25cf14000000b00d9bf1615fcemr11908547ybg.63.1698139488699; Tue, 24
+ Oct 2023 02:24:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZTeL4nSw6dMGKODm@hovoldconsulting.com>
+References: <20231024090631.3359592-1-jim.t90615@gmail.com> <20231024090631.3359592-2-jim.t90615@gmail.com>
+In-Reply-To: <20231024090631.3359592-2-jim.t90615@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 24 Oct 2023 11:24:36 +0200
+Message-ID: <CACRpkdZ_Xkw-rRL4YPQxP8Wp00SL=k5W=S1X4bdEpfmMedeXdg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: gpio: add NPCM sgpio driver bindings
+To: Jim Liu <jim.t90615@gmail.com>
+Cc: JJLIU0@nuvoton.com, krzysztof.kozlowski+dt@linaro.org, brgl@bgdev.pl, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 24, 2023 at 11:18:26AM +0200, Johan Hovold wrote:
-> On Tue, Oct 24, 2023 at 02:23:57PM +0530, Krishna Kurapati PSSNV wrote:
-> > On 10/24/2023 12:26 PM, Johan Hovold wrote:
-> 
-> > > No, you clearly did not understand [1] at all. And stop trying to game
-> > > the upstreaming process. Bindings and driver patches go together. The
-> > > devicetree changes can be sent separately in case of USB but only
-> > > *after* the first set has been merged.
-> > > 
-> > > If the code had been in good shape from the start it would have been
-> > > merged by now. Just learn from your mistakes and next time things will
-> > > be smoother.
-> > 
-> > I agree that bindings should go first. My point is core bindings are 
-> > already approved and merged and just wanted to check if core driver 
-> > changes can be merged without glue blocking them. Core driver changes 
-> > have nothing to do with interrupt handling in glue. If we get the core 
-> > changes merged separately after fixing the nits mentioned, we can take 
-> > up this interrupt handling in glue in parallel. I am just trying to see 
-> > if we can start merging independent portions of code. I agree that my 
-> > glue driver changes are still not upto mark. But that has nothing to do 
-> > with core driver changes.
-> 
-> Again, no. The dwc3 glue and core bits are not independent, and ideally
-> the bindings should not have been merged either before having the
-> implementation in a decent shape either (e.g. as the messy
-> implementation suggested that the bindings were incomplete).
-> 
-> You're again trying to sneak in an incomplete implementation. Qualcomm
-> has a terrible track record of doing just that and leaving others with
-> the task to clean up their mess.
-> 
-> This should go in as one series, when it's ready, and not before.
-> 
-> And we may even consider reverting the updated bindings as it appears
-> they are still not correct.
+On Tue, Oct 24, 2023 at 11:07=E2=80=AFAM Jim Liu <jim.t90615@gmail.com> wro=
+te:
 
-If you can tell me what the git ids of them are, I'll be glad to do so
-right now, sorry for taking them "early".
 
-thanks,
+> Add dt-bindings document for the Nuvoton NPCM7xx sgpio driver
+>
+> Signed-off-by: Jim Liu <jim.t90615@gmail.com>
 
-greg k-h
+This looks fair to me.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
 
