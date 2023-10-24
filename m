@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A727D4885
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:28:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8BF7D4899
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:33:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A342B20C7B
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 07:28:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D850281735
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 07:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9294B14299;
-	Tue, 24 Oct 2023 07:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F183914A8F;
+	Tue, 24 Oct 2023 07:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dDsUthjj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HUe5be4S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC701170F
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:28:31 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACED0122
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:28:29 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53d9b94731aso6461898a12.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:28:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEBA7486
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 07:33:44 +0000 (UTC)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4DF10C
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:33:42 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c4fdf94666so55466271fa.2
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:33:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698132508; x=1698737308; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698132820; x=1698737620; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZnZkVrsoY7zwDrGLoc+7S+JxSd/YvHNPT4sbpJbAdmQ=;
-        b=dDsUthjjtHEOMi5I2il5N0gd2FTSGgy8UJIt0hWaRx0noKuwF9hFIsfHPsP9xRJC/i
-         tmY07UGLg2wS8TSnzxT9Tvpdp/qnd7scRR1uCRwvi0o+aAdsm/jgWMdlRXII66U6PV3F
-         A5mJnkDhqWyTNWiBCXArdLYr1zGYAV2yPDM6cD+6f01h9YLKdH6FOur/Kw51/VDUJqOX
-         5KYAohzbVfjbz7oWGhN81gbuhHCbLHeeHqOsTa5pCSf1JOFRByY3nnJlXX4ocNaAmzWx
-         sqcPoVEx4pNFqLHg2jFA/4Wxd4yNpW1bOrAnbBiiWYErpmuPQpjeq/XQ9bmc47jn36cd
-         CQXQ==
+        bh=AK2JS0/81pDYSI6L7u1k0BgqB5D3FbcHDK7LTJTLCcQ=;
+        b=HUe5be4S3iubDGlFe2mUnINpCNMXqRxUeK+8+gt6ZQ+18Toi84jwPFwdPdjQ3A7pAN
+         2loj9W/ggGe1f5Wf1swmVHuUKzWYvADJpyUcYvgeE8AFISI+JhAFLKHGHBCkQsZRzLr3
+         6RTYNwZ/4bnGcR3U77L8xafRUDoTXABonp2CBpWnuZLOgpAElk89NeY0S5tSEXrE/h4K
+         tT6L9rXBM2BmHnMyzfCNuAJkqPrlsUeo9LymqWlHuxZKiKn5aUYjjbgHChUj6DirWIGY
+         qU4hD06LDBjVWc8NXb4wdUVCvkds6kb25sJ/pAjDjYOUnW1RHVmSPFpIGumjeoeCvenD
+         f/0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698132508; x=1698737308;
+        d=1e100.net; s=20230601; t=1698132820; x=1698737620;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZnZkVrsoY7zwDrGLoc+7S+JxSd/YvHNPT4sbpJbAdmQ=;
-        b=Htj/FWkGdpLBX5iJev0ul1B/yvKCmXbsAvvWOyYQwqC3fwYyi5VDqjUGB+RE/OjMx+
-         663HG9U93xg4xBlZb3Rp0aVJbEGvR9uOaMsTUPFlAhI4gEYX6UeK9jqfHfmz1aM/HjoC
-         fgiDBrpQf2iuBWu2iJ/7Y3sSz1RfOkEK0SKtN6uLQKTE2cXwsj5GUnbUOM5g+0jiV9xC
-         7HomdJcm7q605NNDOzcdoVW8OH9/4Jyx5znMJab3i4soAK2uGYdGShYtCr1AaNWJXU1e
-         TAb61UZ0EUMfPamX7pRyLeBT8USNHBgfhChcs+Amjw7YyUKCfobatOduXC7qAW5ZRkUX
-         2CPA==
-X-Gm-Message-State: AOJu0Yx2UrbE+UNgJ+/1r5Eg6UZfiCDyJ1yP+Ollyr/TQgOJE2R9vKOC
-	8dHvMLbkaZrLCD39zis7jOD0GQ==
-X-Google-Smtp-Source: AGHT+IFRlwdu+2MJ0YreEpllmOwZWoeIxrBcI5UwTltE2GQbYThynHTGHulOhHfnuFsX0GObLJJulQ==
-X-Received: by 2002:a50:d756:0:b0:53d:a1c0:410e with SMTP id i22-20020a50d756000000b0053da1c0410emr7399614edj.7.1698132508068;
-        Tue, 24 Oct 2023 00:28:28 -0700 (PDT)
+        bh=AK2JS0/81pDYSI6L7u1k0BgqB5D3FbcHDK7LTJTLCcQ=;
+        b=HyPr2mXu4jBfpOn0M30H1xUgtaTxj4HsJFqYb97U1dJjiGiffzZuJSpCVBZpTHiDNI
+         dmu1dqHZRxpS05BB4tfJ6EMhslHYKEhpxmOU43g6TbAQLPlk0Ywy9yZ2oozDKly6O2Fx
+         qqsUNnvOSODAvozAdykvETMj/COqVnRliSGNPTyOpezMtkhsbxwm/Z6rYWm6/9EbAJe9
+         awComWoNBhpD2OFhzsRPPmnuXMGFtKui1EbAz/74uwfD7EFyl9a4LZO2kT4k9JSF05kO
+         Idw9YM0t5t+3fEm4RD3fkfCY/z7q280qsSsLzsAdbAb7qdi024X9e06RPiWbGsMiBzXy
+         CvGw==
+X-Gm-Message-State: AOJu0YyRoiEPJptt58j9pHqUk/3bvv08rlCc5bDkfzQ1eMJfJBjrZeoB
+	quOEufVfcORCGEiwo7NJIL3epg==
+X-Google-Smtp-Source: AGHT+IHVAW6I1tWe3Cph0VY02pQsdhncN7oMJqXngyQdcMUODl307DBJRdhWQ2SqTeyMBoRZAuqueQ==
+X-Received: by 2002:a2e:7c15:0:b0:2c5:5926:de52 with SMTP id x21-20020a2e7c15000000b002c55926de52mr7753810ljc.53.1698132820471;
+        Tue, 24 Oct 2023 00:33:40 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ec31-20020a0564020d5f00b00530a9488623sm7426096edb.46.2023.10.24.00.28.26
+        by smtp.gmail.com with ESMTPSA id ay10-20020a05600c1e0a00b00405442edc69sm13486017wmb.14.2023.10.24.00.33.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 Oct 2023 00:28:27 -0700 (PDT)
-Message-ID: <958604e1-bfb0-4b9e-bf7c-a9345f3978ae@linaro.org>
-Date: Tue, 24 Oct 2023 09:28:24 +0200
+        Tue, 24 Oct 2023 00:33:39 -0700 (PDT)
+Message-ID: <530b364d-1cdb-4905-a3f6-fd15c7aa1456@linaro.org>
+Date: Tue, 24 Oct 2023 09:33:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+Subject: Re: [PATCH dt-schema] schemas: gpio: gpio-consumer: Fix false
+ positives on nodes named gpio
 Content-Language: en-US
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Artur Weber <aweber.kernel@gmail.com>
-References: <ZTUIJrTc6KKyT4xj@standask-GA-A55M-S2HP>
- <3df06d79-ea51-4202-8cc8-468f741603bf@linaro.org>
- <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20231023144134.1881973-1-geert+renesas@glider.be>
+ <4e2928a0-b2e6-4651-8cab-7f1c4d8f697d@linaro.org>
+ <CAMuHMdVSx2G8A6wP+j0fNoFz1Y4+=R+diXc5pxJrn1FV65EBeQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,148 +126,126 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZTbU0rkGMhja+J24@standask-GA-A55M-S2HP>
+In-Reply-To: <CAMuHMdVSx2G8A6wP+j0fNoFz1Y4+=R+diXc5pxJrn1FV65EBeQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 23/10/2023 22:17, Stanislav Jakubek wrote:
-> On Mon, Oct 23, 2023 at 09:54:49AM +0200, Krzysztof Kozlowski wrote:
->> On 22/10/2023 13:31, Stanislav Jakubek wrote:
->>> Convert Broadcom Kona family clock controller unit (CCU) bindings
->>> to DT schema.
+On 23/10/2023 20:08, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+>=20
+> On Mon, Oct 23, 2023 at 5:24=E2=80=AFPM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 23/10/2023 16:41, Geert Uytterhoeven wrote:
+>>> Just like for "gpio", nodes can be named "gpios" or
+>>> "<something>-gpio(s)", causing false positive failures.
 >>>
->>> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+>>> See also commit 80120fccde170902 ("schemas: gpio: fix false positive
+>>> failures on nodes named 'gpio'").
+>>>
+>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> ---
+>>> Seen on Linux, e.g.:
+>>>
+>>>     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: /: keyboard-gpio: {=
+'compatible': ['gpio-keys-polled'], 'poll-interval': [[50]], 'pinctrl-0':=
+ [[29]], 'pinctrl-names': ['default'], 'key-3': {'gpios': [[28, 19, 1]], =
+'linux,code': [[4]], 'label': ['SW1-3'], 'debounce-interval': [[20]]}, 'k=
+ey-4': {'gpios': [[28, 20, 1]], 'linux,code': [[5]], 'label': ['SW1-4'], =
+'debounce-interval': [[20]]}} is not of type 'array'
+>>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-co=
+nsumer.yaml#
+>>>     arch/arm/boot/dts/renesas/r8a7779-marzen.dtb: pinctrl@fffc0000: k=
+eyboard-gpio: {'pins': ['GP_0_19', 'GP_0_20'], 'bias-pull-up': True, 'pha=
+ndle': [[29]]} is not of type 'array'
+>>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-co=
+nsumer.yaml#
 >>
->> Thank you for your patch. There is something to discuss/improve.
+>> keyboard-gpio is not commonly used names. Most (almost all) boards jus=
+t
+>> call it "gpio-keys".
+>=20
+> Most call it "keyboard".
+
+Most? My grep counted only 14.
+
+520 for gpio-keys (not counting -polled)
+
+But sure, can be keyboard.
+
+>=20
+> Marzen has 4 keys split in two keyboards due to hardware limitations,
+> hence I had called them "keyboard-irq" (using falling edge interrupts,
+> i.e. no real key-up events)  and "keyboard-gpio" (gpio polling
+> without interrupts).
+keyboard-0
+keyboard-1
+
+>=20
+>>>     arch/arm/boot/dts/microchip/at91-kizbox3-hs.dtb: /: gpios: {'comp=
+atible': ['gpio'], 'status': ['okay'], 'rf_on': {'label': ['rf on'], 'gpi=
+o': [[38, 83, 0]], 'output': True, 'init-low': True}, 'wifi_on': {'label'=
+: ['wifi on'], 'gpio': [[38, 84, 0]], 'output': True, 'init-low': True}, =
+'zbe_test_radio': {'label': ['zbe test radio'], 'gpio': [[38, 53, 0]], 'o=
+utput': True, 'init-low': True}, 'zbe_rst': {'label': ['zbe rst'], 'gpio'=
+: [[38, 57, 0]], 'output': True, 'init-low': True}, 'io_reset': {'label':=
+ ['io reset'], 'gpio': [[38, 62, 0]], 'output': True, 'init-low': True}, =
+'io_test_radio': {'label': ['io test radio'], 'gpio': [[38, 73, 0]], 'out=
+put': True, 'init-low': True}, 'io_boot_0': {'label': ['io boot 0'], 'gpi=
+o': [[38, 75, 0]], 'output': True, 'init-low': True}, 'io_boot_1': {'labe=
+l': ['io boot 1'], 'gpio': [[38, 81, 0]], 'output': True, 'init-low': Tru=
+e}, 'verbose_bootloader': {'label': ['verbose bootloader'], 'gpio': [[38,=
+ 43, 0]], 'input': True}, 'nail_bed_detection': {'label': ['nail bed dete=
+ction'], 'gpio': [[38, 44, 0]], 'input': True}, 'id_usba': {'label': ['id=
+ usba'], 'gpio': [[38, 64, 1]], 'input': True}} is not of type 'array'
+>>>           from schema $id: http://devicetree.org/schemas/gpio/gpio-co=
+nsumer.yaml#
 >>
->>> +description:
->>> +  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
->>> +  manages a set of clock signals.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - brcm,bcm11351-aon-ccu
->>> +      - brcm,bcm11351-hub-ccu
->>> +      - brcm,bcm11351-master-ccu
->>> +      - brcm,bcm11351-root-ccu
->>> +      - brcm,bcm11351-slave-ccu
->>> +      - brcm,bcm21664-aon-ccu
->>> +      - brcm,bcm21664-master-ccu
->>> +      - brcm,bcm21664-root-ccu
->>> +      - brcm,bcm21664-slave-ccu
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  '#clock-cells':
->>> +    const: 1
->>> +
->>> +  clock-output-names:
->>> +    minItems: 1
->>> +    maxItems: 10
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - brcm,bcm11351-aon-ccu
->>> +              - brcm,bcm11351-hub-ccu
->>> +              - brcm,bcm11351-master-ccu
->>> +              - brcm,bcm11351-root-ccu
->>> +              - brcm,bcm11351-slave-ccu
->>> +    then:
->>> +      properties:
->>> +        clock-output-names:
->>> +          description: |
->>> +            The following table defines the set of CCUs and clock specifiers
->>> +            for BCM281XX family clocks.
->>> +            These clock specifiers are defined in:
->>> +                "include/dt-bindings/clock/bcm281xx.h"
->>> +
->>> +            CCU     Clock        Type  Index  Specifier
->>> +            ---     -----        ----  -----  ---------
->>> +            root    frac_1m      peri    0    BCM281XX_ROOT_CCU_FRAC_1M
->>> +
->>> +            aon     hub_timer    peri    0    BCM281XX_AON_CCU_HUB_TIMER
->>> +            aon     pmu_bsc      peri    1    BCM281XX_AON_CCU_PMU_BSC
->>> +            aon     pmu_bsc_var  peri    2    BCM281XX_AON_CCU_PMU_BSC_VAR
->>> +
->>> +            hub     tmon_1m      peri    0    BCM281XX_HUB_CCU_TMON_1M
->>> +
->>> +            master  sdio1        peri    0    BCM281XX_MASTER_CCU_SDIO1
->>> +            master  sdio2        peri    1    BCM281XX_MASTER_CCU_SDIO2
->>> +            master  sdio3        peri    2    BCM281XX_MASTER_CCU_SDIO3
->>> +            master  sdio4        peri    3    BCM281XX_MASTER_CCU_SDIO4
->>> +            master  dmac         peri    4    BCM281XX_MASTER_CCU_DMAC
->>> +            master  usb_ic       peri    5    BCM281XX_MASTER_CCU_USB_IC
->>> +            master  hsic2_48m    peri    6    BCM281XX_MASTER_CCU_HSIC_48M
->>> +            master  hsic2_12m    peri    7    BCM281XX_MASTER_CCU_HSIC_12M
->>> +
->>> +            slave   uartb        peri    0    BCM281XX_SLAVE_CCU_UARTB
->>> +            slave   uartb2       peri    1    BCM281XX_SLAVE_CCU_UARTB2
->>> +            slave   uartb3       peri    2    BCM281XX_SLAVE_CCU_UARTB3
->>> +            slave   uartb4       peri    3    BCM281XX_SLAVE_CCU_UARTB4
->>> +            slave   ssp0         peri    4    BCM281XX_SLAVE_CCU_SSP0
->>> +            slave   ssp2         peri    5    BCM281XX_SLAVE_CCU_SSP2
->>> +            slave   bsc1         peri    6    BCM281XX_SLAVE_CCU_BSC1
->>> +            slave   bsc2         peri    7    BCM281XX_SLAVE_CCU_BSC2
->>> +            slave   bsc3         peri    8    BCM281XX_SLAVE_CCU_BSC3
->>> +            slave   pwm          peri    9    BCM281XX_SLAVE_CCU_PWM
+>> compatible =3D "gpio"? Is there such binding?
 >>
->> I don't really understand why this is in the binding schema. I guess you
->> wanted to copy it from the old binding, but, unless there is real reason
->> for it, don't. The clock IDs should be in the header file and that's it.
->> Nothing here.
-> 
-> Hi Krzysztof, you're correct that I just copied this from the old bindings.
-> brcm,iproc-clocks.yaml has a similar table, so I thought this would be fine.
-> I'm OK with dropping it, but how should I document the clock-output-names
-> values then?
+>> I think we should not allow "gpios" as a node, at least above examples=
 
-Your schema does not document them, so I don't understand what would you
-loose.
+>> do not justify it.
+>=20
+> Note that there are more.  I used grep, and picked just one to see if I=
+ could
+> fix that one too while at it:
+>=20
+> $ git grep "\<gpios\s*{"
+> arch/arm/boot/dts/marvell/kirkwood-db.dtsi:
+> pmx_sdio_gpios: pmx-sdio-gpios {
+> arch/arm/boot/dts/marvell/orion5x-netgear-wnr854t.dts:  pmx_pci_gpios:
+> pmx-pci-gpios {
+> arch/arm/boot/dts/marvell/orion5x-rd88f5182-nas.dts:
+> pmx_misc_gpios: pmx-misc-gpios {
+> arch/arm/boot/dts/marvell/orion5x-rd88f5182-nas.dts:    pmx_pci_gpios:
+> pmx-pci-gpios {
+> arch/arm/boot/dts/microchip/at91-kizbox3-hs.dts:        gpios {
+> arch/arm/boot/dts/qcom/qcom-apq8064-pins.dtsi:  sdc4_gpios: sdc4-gpios =
+{
+> arch/arm/boot/dts/st/ste-hrefv60plus.dtsi:                      gpios {=
 
-> A bunch of if-then blocks (per compatible)? Or should I not even
-> bother and just keep minItems/maxItems without documenting the values?
+> arch/mips/boot/dts/ingenic/qi_lb60.dts:         mmc-gpios {
 
-But what do you want to document exactly? Only number of items is
-reasonable to constrain and it can be done with if:then blocks.
+These look like pins so they would have their own schema, most likely
+not "gpios" but "pins" or something similar.
 
+>=20
+> Or:
+>=20
+> $ git grep -e "-gpio\s*{" | wc -l
+> 64
 
-> 
->>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - brcm,bcm21664-aon-ccu
->>> +              - brcm,bcm21664-master-ccu
->>> +              - brcm,bcm21664-root-ccu
->>> +              - brcm,bcm21664-slave-ccu
->>> +    then:
->>> +      properties:
->>> +        clock-output-names:
->>> +          maxItems: 8
-> 
-> I've also noticed that dtbs_check gives out warnings(?) like this for
-> bcm21664 ccu nodes:
-> 
-> /arch/arm/boot/dts/broadcom/bcm21664-garnet.dtb:
->     root_ccu@35001000: clock-output-names: ['frac_1m'] is too short
->     from schema $id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
-> 
-> and this maxItems:8 seems to me like the culprit (since the bcm11351 if-then
-> doesn't have that). Seems to me like it also overrides the minItems to be 8
-> as well. I don't understand why it would do that though.
-> 
-> I suppose just adding minItems: 1 would be the correct fix in this case?
+For example Xilinx ones are pincfg, so they should have some name with
+known pattern (e.g. mentioned "pins").
 
-https://elixir.bootlin.com/linux/v5.19-rc6/source/Documentation/devicetree/bindings/clock/samsung,exynos7-clock.yaml#L57
+>=20
+>>> For marzen, the alternative fix would be to
+>>> s/keyboard-gpio/keyboard-polled/g.
+>=20
+> Do you prefer the alternative?
 
+I would propose to change the names in the DTS. For pin configuration
+nodes this however might require first having DT schema for them.
 
 Best regards,
 Krzysztof
