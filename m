@@ -1,122 +1,163 @@
-Return-Path: <devicetree+bounces-11217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF38E7D4C51
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:30:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 411057D4C56
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 11:30:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 899E9281826
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:30:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40DCF1C20BDF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 09:30:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084E223753;
-	Tue, 24 Oct 2023 09:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191AB2421D;
+	Tue, 24 Oct 2023 09:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="DyZ5ATjG"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="AMiqT/jw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0135D22F1D
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:30:17 +0000 (UTC)
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E3F1BCE;
-	Tue, 24 Oct 2023 02:30:07 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 71434403C2;
-	Tue, 24 Oct 2023 14:29:48 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1698139798; bh=r9TCrD1Taj9N39LOJkMvCUyhLxDk2EU51QorwsqEIP4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DyZ5ATjGay9uJdJWM3VKywt/uGPlWIMw4zPa3vJfAHCVgNTsyXnsYxSv3HVwitcsA
-	 JKyxBMgNl7dTDO3ruIt8Bk+3JQdUtGwDcw0Ewi782Sy+kpdCh6mAJ5WZ5SJpBf/3EP
-	 rjfhkagGp6CTTAyQK0DBYZYgg4ptRUJdrTQXnrqqpHT7VjH2egs0zOWePUEhTd0lzy
-	 8w3X3D5ft3ZJCYxjzTm+sxvBDfiidtGvl3tN30vlD3QMUVl8v7SEPSGZ94S+HNbL59
-	 +7Ao8SoAHoVbFxGevR9HeifBvmCdVEeYN3vaqeDvu3n6bwxEO5BtGkEgncy9WRVUY5
-	 vJY1fCrCwGTxg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B4C22F1D
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 09:30:21 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABC61986
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:30:11 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-32da42b8225so889608f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 02:30:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1698139810; x=1698744610; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=epBSW7d/Y73fuCPm0yJqVjtBNeGFhQxq0MaplKN63vg=;
+        b=AMiqT/jwK00ssjVuB21Y1vsh4Z8x0hMaB49VaHC9aXjss7zFtjX5jUszFo4EsDX9+U
+         3QE9XlAxOfHHCd3/FBjIwKR20W434JL4MXLvmwW2i3ts6NbAvUQrv33CRhNZdzRnGAsu
+         gslbGhzqrfouddAU2bPrRuxL3UMf0JtEUkGmFKEOjTbeOayV/QutH4Xsp5yJGS9jXat+
+         5y/pGgy4py1/A1Me1qTzSg5/sWAL7caH/e6179AyoJMu8/MXYnm8LY3aP27WqLvs5lCk
+         pxrFFNPhw12uT4xmur0Vvzi+WU5sTClp5f8KgdiUZCstD6ikiWE7CkXkyCjL3LdY9O7N
+         2jKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698139810; x=1698744610;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=epBSW7d/Y73fuCPm0yJqVjtBNeGFhQxq0MaplKN63vg=;
+        b=CAmzPF91WsRToN1XnB9I//gEF7HrmF+fOVQxQykO4vZQAxcVeEq02ip/KsiNm0bGOt
+         2vGY8s/9qpk2j4PdlebRjooOX7l9kFUgQPKPanqc8Xdis+Hf9epPPBnm6DU6qrpXSdBc
+         xh/iV34qSQvmFYMebE3p7mMnGCTu1x15ZSCIPnYULOqb1G+ooZsxyHJbzWYRwP+JMaAG
+         K6Jw6TLs2ritBw383Gj+frO3rBFTdoakyrCF1AZtOoZ/TiAs04qOHWo7DfJKB2kvfY0J
+         /EogjBbimyT5Z7jYfIbNmaFft+uHd6sYDmD86bWVX71BCxFo4nJRGJtLCJYCecN9brvv
+         Sutw==
+X-Gm-Message-State: AOJu0YwDq2kxm3OXcqQLZWo26+szPqpcSFu1ShAB/uzeoJbQVBCuAN9c
+	7sUG1IYnUe912V0TzDJPT9+Y8A==
+X-Google-Smtp-Source: AGHT+IFm/o5S53urNBlHODYQKB9HRkQDLb5L5tdDg3p22JIkoo7vc0CsuA6eRfMc1YyYbUFwwXSiVg==
+X-Received: by 2002:adf:a48f:0:b0:32d:d9a8:53df with SMTP id g15-20020adfa48f000000b0032dd9a853dfmr8334091wrb.3.1698139809733;
+        Tue, 24 Oct 2023 02:30:09 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:999:a3a0:597d:e2c5:6741:bac9? ([2a01:e0a:999:a3a0:597d:e2c5:6741:bac9])
+        by smtp.gmail.com with ESMTPSA id dj18-20020a0560000b1200b0032d96dd703bsm9574187wrb.70.2023.10.24.02.30.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Oct 2023 02:30:09 -0700 (PDT)
+Message-ID: <56f6af04-bdf4-4b85-99dc-9eb4f391d7ad@rivosinc.com>
+Date: Tue, 24 Oct 2023 11:30:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 24 Oct 2023 14:29:48 +0500
-From: Nikita Travkin <nikita@trvn.ru>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Lee
- Jones <lee@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: pm8916: Add BMS and charger
-In-Reply-To: <3dff444b-c439-4c40-9d21-1e390f449840@linaro.org>
-References: <20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru>
- <20231023-pm8916-dtsi-bms-lbc-v2-2-343e3dbf423e@trvn.ru>
- <3dff444b-c439-4c40-9d21-1e390f449840@linaro.org>
-Message-ID: <b9c7f8662e4c02a4f9f275d27469f3be@trvn.ru>
-X-Sender: nikita@trvn.ru
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/19] riscv: add ISA extension parsing for scalar
+ crypto
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+To: Evan Green <evan@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Palmer Dabbelt <palmer@rivosinc.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
+ Andrew Jones <ajones@ventanamicro.com>, Conor Dooley <conor@kernel.org>,
+ Samuel Ortiz <sameo@rivosinc.com>, Conor Dooley <conor.dooley@microchip.com>
+References: <20231017131456.2053396-1-cleger@rivosinc.com>
+ <20231017131456.2053396-3-cleger@rivosinc.com>
+ <CALs-HssmufWCKzaGy7BwWz4n4hfwV9NjjRD-O_JeupM-p=Ov+w@mail.gmail.com>
+ <d0ea4996-5c48-47b4-99b0-f4211276e0b2@rivosinc.com>
+In-Reply-To: <d0ea4996-5c48-47b4-99b0-f4211276e0b2@rivosinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Konrad Dybcio писал(а) 24.10.2023 13:34:
-> On 10/23/23 08:20, Nikita Travkin wrote:
->> pm8916 contains some hardware blocks for battery powered devices:
->>
->> - VM-BMS: Battery voltage monitoring block.
->> - LBC: Linear battery charger.
->>
->> Add them to the pmic dtsi so the devices that make use of those blocks
->> can enable them.
->>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> ---
->>   arch/arm64/boot/dts/qcom/pm8916.dtsi | 48 ++++++++++++++++++++++++++++++++++++
->>   1 file changed, 48 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
->> index f4de86787743..4b2e8fb47d2d 100644
->> --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
->> @@ -41,6 +41,35 @@ watchdog {
->>   			};
->>   		};
->>   +		pm8916_charger: charger@1000 {
->> +			compatible = "qcom,pm8916-lbc";
->> +			reg = <0x1000>, <0x1200>, <0x1300>, <0x1600>;
->> +			reg-names = "chgr", "bat_if", "usb", "misc";
->> +
->> +			interrupts = <0x0 0x10 0 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x10 5 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x10 6 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x10 7 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x12 0 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x12 1 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x13 0 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x13 1 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x13 2 IRQ_TYPE_EDGE_BOTH>,
->> +				     <0x0 0x13 4 IRQ_TYPE_EDGE_BOTH>;
->> +			interrupt-names = "vbat_det",
->> +					  "fast_chg",
->> +					  "chg_fail",
->> +					  "chg_done",
->> +					  "bat_pres",
->> +					  "temp_ok",
->> +					  "coarse_det",
->> +					  "usb_vbus",
-> So, both the charger and the USBIN driver use the same irq? :/
+
+
+On 24/10/2023 09:18, Clément Léger wrote:
 > 
+> 
+> On 23/10/2023 18:21, Evan Green wrote:
+>> On Tue, Oct 17, 2023 at 6:15 AM Clément Léger <cleger@rivosinc.com> wrote:
+>>>
+>>> From: Evan Green <evan@rivosinc.com>
+>>>
+>>> The Scalar Crypto specification defines Zk as a shorthand for the
+>>> Zkn, Zkr and Zkt extensions. The same follows for both Zkn, Zks and Zbk,
+>>> which are all shorthands for various other extensions. The detailed
+>>> breakdown can be found in their dt-binding entries.
+>>>
+>>> Since Zkn also implies the Zbkb, Zbkc and Zbkx extensions, simply passing
+>>> "zk" through a DT should enable all of Zbkb, Zbkc, Zbkx, Zkn, Zkr and Zkt.
+>>> For example, setting the "riscv,isa" DT property to "rv64imafdc_zk"
+>>> should generate the following cpuinfo output:
+>>> "rv64imafdc_zicntr_zicsr_zifencei_zihpm_zbkb_zbkc_zbkx_zknd_zkne_zknh_zkr_zkt"
+>>>
+>>> riscv_isa_ext_data grows a pair of new members, to permit setting the
+>>> relevant bits for "bundled" extensions, both while parsing the ISA string
+>>> and the new dedicated extension properties
+>>>
+>>> Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Signed-off-by: Evan Green <evan@rivosinc.com>
+>>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+>>
+>> My tree might be out of sync, but in my search for riscv_isa_ext, I
+>> also found a use in print_isa() (cpu.c) where we're reaching into
+>> riscv_isa_ext[].id and assuming it's always valid. If that's still in
+>> there we'll want to fix up that spot too, since now with bundles .id
+>> may or may not be valid.
+> 
+> Oh indeed, the array is visible outside of this compilation unit :/.
+> I'll check that before sending V3.
 
-AFAIU the usbin extcon driver pretty much just tracks the state
-of the IRQ to report extcon. It happens to assume the same part
-of the pmic though, yes, which also means there will be no user
-that would enable both charger and vbus extcon, since charger
-driver provides this functionality as well.
+After looking a bit more at that, it actually seems that id is used in
+cpuinfo to determine which extensions are present which means you are
+right, bundle_size needs to be accounted for.
 
-Nikita
+Looking at it also raises the question (again) of exposing the "bundles"
+extensions themselves or not in cpuinfo output. With the current setup,
+the bundles extensions won't be visible in cpuinfo output. For instance
+if Zk was in the isa string, then it will not be visible in the cpuinfo
+output, only the child extensions. One solution would be to always have
+a valid id for each extension. So we would have one for Zk for instance.
 
-> Konrad
+We would then have a similar setup for all "bundles" or "subset"
+extensions, they would have a id for all of them. For instance, Zk would
+become:
+
+__RISCV_ISA_EXT_DATA_BUNDLE(zk, RISCV_ISA_EXT_ZK, riscv_zk_bundled_exts)
+
+Same would go for zvbb (riscv_zvbb_subset_exts would only contain Zvkb):
+
+__RISCV_ISA_EXT_DATA_BUNDLE(zk, RISCV_ISA_EXT_ZVBB, riscv_zvbb_subset_exts)
+
+For the sake of completeness, I feel like it would be good to have all
+the extensions (bundles or not) visible in the riscv_isa_ext.
+
+Any objection ?
+
+Clément
+
+> 
+> Clément
+> 
+>>
+>> -Evan
 
