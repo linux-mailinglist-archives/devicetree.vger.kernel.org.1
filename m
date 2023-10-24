@@ -1,142 +1,102 @@
-Return-Path: <devicetree+bounces-11168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C258E7D49A6
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:15:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C033B7D49DC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 10:20:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58EE828182A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:15:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0E741C20AC1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 08:20:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61E1218650;
-	Tue, 24 Oct 2023 08:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B091C684;
+	Tue, 24 Oct 2023 08:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="UbL6YWnQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="foQZtX4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E70257D
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:15:05 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA50F8F
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 01:15:03 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 5D9782C0547;
-	Tue, 24 Oct 2023 21:15:01 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1698135301;
-	bh=a7rNjQU28ksuExI8JtKe/7t79lDDXhncoO0YZS25u08=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=UbL6YWnQAR2ss1kkQh2SNlqiUghE7jiH+nPoIpn25rsuIEUhkfG2zx0hD6c2joj+C
-	 sLf4+7WRWf7Ov1DMP64p4CeThlE8YetKH+jQehTyumsH0hxtn0w/1TTQjVu4QHP1Uj
-	 toPkblITZQERvlXQ8KzvmcB5BkWhVkinV2tHghmkkULE8Zkl2bYd9SonxrBleQKIUI
-	 3m4PambrY8cXDA4M4rImGe/IURLsC1sSjLigWltPmdaq2CVZs34IXSd9Ml2Ee/wUGU
-	 XGtKSfrmcR1U9I0LqomZDT2JQ4eyLL1sSAdnoAC9ouhsiUH/imF/dCsVAz9XbobIFm
-	 QZKFAIq5J/cvw==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65377d050001>; Tue, 24 Oct 2023 21:15:01 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.39; Tue, 24 Oct 2023 21:15:01 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.48; Tue, 24 Oct 2023 21:15:00 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.039; Tue, 24 Oct 2023 21:15:00 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"andi.shyti@kernel.org" <andi.shyti@kernel.org>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] i2c: mv64xxx: add an optional reset-gpios property
-Thread-Topic: [PATCH v3 2/2] i2c: mv64xxx: add an optional reset-gpios
- property
-Thread-Index: AQHaAgcy5mKiozoBFUuv9b6R9rUkyLBXxl+A
-Date: Tue, 24 Oct 2023 08:15:00 +0000
-Message-ID: <78c5eeb7-214d-43d2-91e7-7eb50a1543de@alliedtelesis.co.nz>
-References: <20231018210805.1569987-1-chris.packham@alliedtelesis.co.nz>
- <20231018210805.1569987-3-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20231018210805.1569987-3-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-originating-ip: [10.32.14.96]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <726BCCC326F776428AD7BDA67F787942@atlnz.lc>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616141BDC8
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 08:20:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EA44C433C8;
+	Tue, 24 Oct 2023 08:20:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698135650;
+	bh=ZGuyWnKr/kt2Unpu5aE4lFxwccQjdpGfUhSXgCB0iGQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=foQZtX4RsqPA1ecHtPBitGHsP5F/J44rftp9gPIBTCVIR7TT8jRUlObURWD/rgm1X
+	 Au/Glm3NEO6FjtktwTAPK7/mAEMSeovOfjDghb4zDathzlb7uLQJBsRyy1rkwUqjVO
+	 j/V+NMU129W2X3YLHelvhoWmBKGkfwwveFui0ldAIy7Y4PBDa2kbTwQXiAjfvaQSF9
+	 exT50YevH8L1HrNL4NWVsUlhKH3A7wBA91EtGVvccTeH/aodA4ayYgCeIcifUAOV7o
+	 8mM3qFn0Suypghfn+F8L2C/j/Cv3dh8ewencwUtozKYH8Ng0XsdsqLdnM5L9kaOVPW
+	 18PDLl0QEf/WA==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] riscv: dts: sophgo: remove address-cells from intc node
+Date: Tue, 24 Oct 2023 09:20:35 +0100
+Message-Id: <20231024-maternity-slang-fd3dcfb211c0@spud>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oOnywjR1vmkA:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=M7cbq605zZYUMcyVNpMA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1478; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=aQbYiTBBEQV72xMhaZU1xuHZtHqogNH4OaogNL5Blk4=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKnmdeYXOn9HB6V4Sdvv3hbt/vjRW5/gpatCGMI/W2saX 1Dwd/vfUcrCIMbBICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIlURzEy9Oq/3bJwvbaT0VLd Lpufb5b5hQcu+vTQOMR+otiq49ENpYwMl7St7TZfNt92yPJuwZ/9L3Py73qJh9qt5Dy6NZtv1/M 6bgA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-DQpPbiAxOS8xMC8yMyAxMDowOCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4gU29tZSBoYXJkd2Fy
-ZSBkZXNpZ25zIGhhdmUgYSBHUElPIHVzZWQgdG8gY29udHJvbCB0aGUgcmVzZXQgb2YgYWxsIHRo
-ZQ0KPiBkZXZpY2VzIG9uIGFuZCBJMkMgYnVzLiBJdCdzIG5vdCBwb3NzaWJsZSBmb3IgZXZlcnkg
-Y2hpbGQgbm9kZSB0bw0KPiBkZWNsYXJlIGEgcmVzZXQtZ3Bpb3MgcHJvcGVydHkgYXMgb25seSB0
-aGUgZmlyc3QgZGV2aWNlIHByb2JlZCB3b3VsZCBiZQ0KPiBhYmxlIHRvIHN1Y2Nlc3NmdWxseSBy
-ZXF1ZXN0IGl0ICh0aGUgb3RoZXJzIHdpbGwgZ2V0IC1FQlVTWSkuIFJlcHJlc2VudA0KPiB0aGlz
-IGtpbmQgb2YgaGFyZHdhcmUgZGVzaWduIGJ5IGFzc29jaWF0aW5nIHRoZSByZXNldC1ncGlvcyB3
-aXRoIHRoZQ0KPiBwYXJlbnQgSTJDIGJ1cy4gVGhlIHJlc2V0IGxpbmUgd2lsbCBiZSByZWxlYXNl
-ZCBwcmlvciB0byB0aGUgY2hpbGQgSTJDDQo+IGRldmljZXMgYmVpbmcgcHJvYmVkLg0KPg0KPiBT
-aWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMu
-Y28ubno+DQo+IC0tLQ0KPg0KPiBOb3RlczoNCj4gICAgICBDaGFuZ2VzIGluIHYzOg0KPiAgICAg
-IC0gUmVuYW1lIHJlc2V0LWRlbGF5IHRvIHJlc2V0LWR1cmF0aW9uDQo+ICAgICAgLSBVc2UgcmVz
-ZXQtZHVyYXRpb24tdXMgcHJvcGVydHkgdG8gY29udHJvbCB0aGUgcmVzZXQgcHVsc2UgcmF0aGVy
-IHRoYW4NCj4gICAgICAgIGRlbGF5aW5nIGFmdGVyIHRoZSByZXNldA0KPiAgICAgIENoYW5nZXMg
-aW4gdjI6DQo+ICAgICAgLSBBZGQgYSBwcm9wZXJ0eSB0byBjb3ZlciB0aGUgbGVuZ3RoIG9mIGRl
-bGF5IGFmdGVyIHJlbGVhc2luZyB0aGUgcmVzZXQNCj4gICAgICAgIEdQSU8NCj4gICAgICAtIFVz
-ZSBkZXZfZXJyX3Byb2JlKCkgd2hlbiByZXF1ZXNpbmcgdGhlIEdQSU8gZmFpbHMNCj4NCj4gICBk
-cml2ZXJzL2kyYy9idXNzZXMvaTJjLW12NjR4eHguYyB8IDE1ICsrKysrKysrKysrKysrKw0KPiAg
-IDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspDQo+DQo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2kyYy9idXNzZXMvaTJjLW12NjR4eHguYyBiL2RyaXZlcnMvaTJjL2J1c3Nlcy9pMmMtbXY2
-NHh4eC5jDQo+IGluZGV4IGVmZDI4YmJlY2Y2MS4uMjhmMTFkMmU4MDBiIDEwMDY0NA0KPiAtLS0g
-YS9kcml2ZXJzL2kyYy9idXNzZXMvaTJjLW12NjR4eHguYw0KPiArKysgYi9kcml2ZXJzL2kyYy9i
-dXNzZXMvaTJjLW12NjR4eHguYw0KDQprZXJuZWwgdGVzdCByb2JvdCBwb2ludHMgb3V0IEknbSBt
-aXNzaW5nIGFuIGluY2x1ZGUgb2YgZ3Bpby9jb25zdW1lci5oIA0KSSdsbCBmaXggdGhhdCB3aXRo
-IGEgdjQuIEknbGwgZ2l2ZSBpdCBhIGNvdXBsZSBvZiBkYXlzIGJlZm9yZSBzZW5kaW5nIGl0IA0K
-b3V0IGp1c3QgaW4gY2FzZSB0aGVyZSBhcmUgYW55IG1vcmUgY29tbWVudHMuDQoNCj4gQEAgLTE2
-MCw2ICsxNjAsNyBAQCBzdHJ1Y3QgbXY2NHh4eF9pMmNfZGF0YSB7DQo+ICAgCWJvb2wJCQljbGtf
-bl9iYXNlXzA7DQo+ICAgCXN0cnVjdCBpMmNfYnVzX3JlY292ZXJ5X2luZm8JcmluZm87DQo+ICAg
-CWJvb2wJCQlhdG9taWM7DQo+ICsJc3RydWN0IGdwaW9fZGVzYwkqcmVzZXRfZ3BpbzsNCj4gICB9
-Ow0KPiAgIA0KPiAgIHN0YXRpYyBzdHJ1Y3QgbXY2NHh4eF9pMmNfcmVncyBtdjY0eHh4X2kyY19y
-ZWdzX212NjR4eHggPSB7DQo+IEBAIC0xMDM2LDYgKzEwMzcsNyBAQCBtdjY0eHh4X2kyY19wcm9i
-ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZCkNCj4gICAJc3RydWN0IG12NjR4eHhfaTJjX2Rh
-dGEJCSpkcnZfZGF0YTsNCj4gICAJc3RydWN0IG12NjR4eHhfaTJjX3BkYXRhCSpwZGF0YSA9IGRl
-dl9nZXRfcGxhdGRhdGEoJnBkLT5kZXYpOw0KPiAgIAlzdHJ1Y3QgcmVzb3VyY2UgKnJlczsNCj4g
-Kwl1MzIJcmVzZXRfZHVyYXRpb247DQo+ICAgCWludAlyYzsNCj4gICANCj4gICAJaWYgKCghcGRh
-dGEgJiYgIXBkLT5kZXYub2Zfbm9kZSkpDQo+IEBAIC0xMDgzLDYgKzEwODUsMTQgQEAgbXY2NHh4
-eF9pMmNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGQpDQo+ICAgCWlmIChkcnZfZGF0
-YS0+aXJxIDwgMCkNCj4gICAJCXJldHVybiBkcnZfZGF0YS0+aXJxOw0KPiAgIA0KPiArCWRydl9k
-YXRhLT5yZXNldF9ncGlvID0gZGV2bV9ncGlvZF9nZXRfb3B0aW9uYWwoJnBkLT5kZXYsICJyZXNl
-dCIsIEdQSU9EX09VVF9ISUdIKTsNCj4gKwlpZiAoSVNfRVJSKGRydl9kYXRhLT5yZXNldF9ncGlv
-KSkNCj4gKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoJnBkLT5kZXYsIFBUUl9FUlIoZHJ2X2RhdGEt
-PnJlc2V0X2dwaW8pLA0KPiArCQkJCSAgICAgIkNhbm5vdCBnZXQgcmVzZXQgZ3Bpb1xuIik7DQo+
-ICsJcmMgPSBkZXZpY2VfcHJvcGVydHlfcmVhZF91MzIoJnBkLT5kZXYsICJyZXNldC1kdXJhdGlv
-bi11cyIsICZyZXNldF9kdXJhdGlvbik7DQo+ICsJaWYgKHJjKQ0KPiArCQlyZXNldF9kdXJhdGlv
-biA9IDE7DQo+ICsNCj4gICAJaWYgKHBkYXRhKSB7DQo+ICAgCQlkcnZfZGF0YS0+ZnJlcV9tID0g
-cGRhdGEtPmZyZXFfbTsNCj4gICAJCWRydl9kYXRhLT5mcmVxX24gPSBwZGF0YS0+ZnJlcV9uOw0K
-PiBAQCAtMTEyMSw2ICsxMTMxLDExIEBAIG12NjR4eHhfaTJjX3Byb2JlKHN0cnVjdCBwbGF0Zm9y
-bV9kZXZpY2UgKnBkKQ0KPiAgIAkJCWdvdG8gZXhpdF9kaXNhYmxlX3BtOw0KPiAgIAl9DQo+ICAg
-DQo+ICsJaWYgKGRydl9kYXRhLT5yZXNldF9ncGlvKSB7DQo+ICsJCXVzbGVlcF9yYW5nZShyZXNl
-dF9kdXJhdGlvbiwgcmVzZXRfZHVyYXRpb24gKyAxMCk7DQo+ICsJCWdwaW9kX3NldF92YWx1ZV9j
-YW5zbGVlcChkcnZfZGF0YS0+cmVzZXRfZ3BpbywgMCk7DQo+ICsJfQ0KPiArDQo+ICAgCXJjID0g
-cmVxdWVzdF9pcnEoZHJ2X2RhdGEtPmlycSwgbXY2NHh4eF9pMmNfaW50ciwgMCwNCj4gICAJCQkg
-TVY2NFhYWF9JMkNfQ1RMUl9OQU1FLCBkcnZfZGF0YSk7DQo+ICAgCWlmIChyYykgew==
+From: Conor Dooley <conor.dooley@microchip.com>
+
+A recent submission [1] from Rob has added additionalProperties: false
+to the interrupt-controller child node of RISC-V cpus, highlighting that
+the new cv1800b DT has been incorrectly using #address-cells.
+It has no child nodes, so #address-cells is not needed. Remove it.
+
+Link: https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.4184468-1-robh@kernel.org/ [1]
+Fixes: c3dffa879cca ("riscv: dts: sophgo: add initial CV1800B SoC device tree")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+CC: Chao Wei <chao.wei@sophgo.com>
+CC: Chen Wang <unicorn_wang@outlook.com>
+CC: Rob Herring <robh+dt@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Paul Walmsley <paul.walmsley@sifive.com>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>
+CC: devicetree@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+CC: linux-kernel@vger.kernel.org
+---
+ arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+index df40e87ee063..aec6401a467b 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+@@ -34,7 +34,6 @@ cpu0: cpu@0 {
+ 			cpu0_intc: interrupt-controller {
+ 				compatible = "riscv,cpu-intc";
+ 				interrupt-controller;
+-				#address-cells = <0>;
+ 				#interrupt-cells = <1>;
+ 			};
+ 		};
+-- 
+2.39.2
+
 
