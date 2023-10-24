@@ -1,129 +1,112 @@
-Return-Path: <devicetree+bounces-11098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807CB7D4318
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 01:10:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D004B7D4398
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 02:07:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0EFD1C20B58
-	for <lists+devicetree@lfdr.de>; Mon, 23 Oct 2023 23:10:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E14A2815CF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 00:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6079B24204;
-	Mon, 23 Oct 2023 23:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B276B386;
+	Tue, 24 Oct 2023 00:07:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Xo2ZCHrV"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="aO38YOWN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFB9241F9;
-	Mon, 23 Oct 2023 23:10:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1C0C0;
-	Mon, 23 Oct 2023 16:10:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698102629; x=1729638629;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XK5pkAOuUAUIv7kLf8nY8tzcC1YIWf+l3Z9h22jOQ0g=;
-  b=Xo2ZCHrVm2EB4bsOwGnEw+Pr1aNz/83cIi6xV2JxSOiW73/zfG1PRY0N
-   thYjUgSTs+DmXzw1GeKVPbfrhqIyDZ69czZ1hzEBcn4twDmCUz6UrTv7f
-   m1OfsVyoabuaVt4HjrrhSIWW/e3bRMV9wNbXnnqkz+6c8JjU21LKYBVjW
-   j8siSnclYa1kY+FCMNC5Hzi6emhnWZRb4YSNBeba2vElfkMsZ+81fXHVZ
-   VHx1AowoaIdusF8GSbqhIbUH/vgFiUyWyNfrBaXFtWbGE+G8gBkosMEnr
-   dV+5iiG2OmdeUjyYkXeVYDemKU/62+NqpyGIiNozIOjmn2VOSETqQT18H
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="385841775"
-X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; 
-   d="scan'208";a="385841775"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Oct 2023 16:10:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="881924055"
-X-IronPort-AV: E=Sophos;i="6.03,246,1694761200"; 
-   d="scan'208";a="881924055"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 23 Oct 2023 16:10:23 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qv43x-0007MK-0v;
-	Mon, 23 Oct 2023 23:10:21 +0000
-Date: Tue, 24 Oct 2023 07:09:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, steen.hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, andrew@lunn.ch
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, horatiu.vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com,
-	Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Subject: Re: [PATCH net-next v2 1/9] net: ethernet: implement OPEN Alliance
- control transaction interface
-Message-ID: <202310240609.nPpYbL1B-lkp@intel.com>
-References: <20231023154649.45931-2-Parthiban.Veerasooran@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421B97E5
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 00:07:32 +0000 (UTC)
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8971310D
+	for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:07:30 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1c8a1541232so33207185ad.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Oct 2023 17:07:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1698106050; x=1698710850; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8KIyXKnp9ik2LhvuJOfiqnewO+JX1rYsLQwadh3j9eo=;
+        b=aO38YOWN2ssvEbu5vgiRdSVbuuUhJbvRiIjNikAtJROAWlK3PwZad7G+OiU9aRSrjW
+         y91iprZOWNXNgUDdc37tw4vIkz/klBzrvrrn4O6OYZEaRGUOOcgwhF+7ayoeZWNAJgVe
+         pcd9BQfJt0I5LKc3H0hAfw4LvbqS9Yctt3iIo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698106050; x=1698710850;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8KIyXKnp9ik2LhvuJOfiqnewO+JX1rYsLQwadh3j9eo=;
+        b=TdQIP2hw6+0TBqJsS879lpi31Zowbu7n3S5KdbuGQCYws+gocbOPAu0tf8/2junRZw
+         Yrg6Y4iTSuhy0DvAlx8LTHVGRjGoIi9ouMtKFAkdQhGQ9xjrOqfehzYaNWql4kI966SN
+         kksNGXql2Z6XajFsaPJQj4Sn0YEAGemIY7gNxi0c08ux6FD65ZnMRG5r5B5vk3oDGA6T
+         HTtlg+Jy5JFC6G03g/3HoDsC+sJ43+bEzkTAYF6KWqvTYGQWOZWzkxwBZ9h4GhpQOeg1
+         z09bFkPmvUl24nvlSXUPskqATSuhujNxBitQC7yLqQFQvuoSPNVsaklljigSdlhZGYNZ
+         NkSw==
+X-Gm-Message-State: AOJu0YxPAmVUNKnnmlzCAhSwQoKdlJYCIssQP+2W26TKJAH5UoACcnGA
+	yjdAi6VRbdR5WQYxR1Ett5Lihg==
+X-Google-Smtp-Source: AGHT+IHiQ5fMHyiReBzHBkMvPSaaCCS/bkotYyZaskZvzm6qK4GNEDtEwtoub82tMAHIemj7mRkj9Q==
+X-Received: by 2002:a17:902:d484:b0:1c9:cf1e:f907 with SMTP id c4-20020a170902d48400b001c9cf1ef907mr14511451plg.57.1698106049960;
+        Mon, 23 Oct 2023 17:07:29 -0700 (PDT)
+Received: from hsinyi.sjc.corp.google.com ([2620:15c:9d:2:5a2d:c345:7f3f:d26c])
+        by smtp.gmail.com with ESMTPSA id a10-20020a170902ecca00b001c5dea67c26sm6505510plh.233.2023.10.23.17.07.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 17:07:29 -0700 (PDT)
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	=?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH 0/6] Add a few mt8183 follower boards.
+Date: Mon, 23 Oct 2023 17:02:23 -0700
+Message-ID: <20231024000724.57714-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.42.0.758.gaed0368e0e-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231023154649.45931-2-Parthiban.Veerasooran@microchip.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Parthiban,
+Add makomo, pico, and katsu which are mt8183 followers.
 
-kernel test robot noticed the following build warnings:
+Hsin-Yi Wang (6):
+  dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-katsu
+  arm64: dts: mt8183: Add kukui katsu board
+  dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-makomo
+  arm64: dts: mt8183: Add jacuzzi makomo board
+  dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-pico
+  arm64: dts: mt8183: Add jacuzzi pico/pico6 board
 
-[auto build test WARNING on net-next/main]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Parthiban-Veerasooran/net-ethernet-implement-OPEN-Alliance-control-transaction-interface/20231023-235310
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231023154649.45931-2-Parthiban.Veerasooran%40microchip.com
-patch subject: [PATCH net-next v2 1/9] net: ethernet: implement OPEN Alliance control transaction interface
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20231024/202310240609.nPpYbL1B-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231024/202310240609.nPpYbL1B-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310240609.nPpYbL1B-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/ethernet/oa_tc6.c:250: warning: Function parameter or member 'len' not described in 'oa_tc6_read_registers'
-
-
-vim +250 drivers/net/ethernet/oa_tc6.c
-
-   238	
-   239	/**
-   240	 * oa_tc6_read_registers - function for reading multiple consecutive registers.
-   241	 * @tc6: oa_tc6 struct.
-   242	 * @addr: address of the first register to be read in the MACPHY.
-   243	 * @val: values to be read from the starting register address @addr.
-   244	 *
-   245	 * Maximum of 128 consecutive registers can be read starting at @addr.
-   246	 *
-   247	 * Returns 0 on success otherwise failed.
-   248	 */
-   249	int oa_tc6_read_registers(struct oa_tc6 *tc6, u32 addr, u32 val[], u8 len)
- > 250	{
-   251		return oa_tc6_perform_ctrl(tc6, addr, val, len, false, tc6->prote);
-   252	}
-   253	EXPORT_SYMBOL_GPL(oa_tc6_read_registers);
-   254	
+ .../devicetree/bindings/arm/mediatek.yaml     |  25 ++++
+ .../mt8183-kukui-jacuzzi-makomo-sku0.dts      |  25 ++++
+ .../mt8183-kukui-jacuzzi-makomo-sku1.dts      |  25 ++++
+ .../mediatek/mt8183-kukui-jacuzzi-pico.dts    |  36 ++++++
+ .../mediatek/mt8183-kukui-jacuzzi-pico6.dts   | 110 ++++++++++++++++++
+ .../dts/mediatek/mt8183-kukui-katsu-sku38.dts |  44 +++++++
+ .../boot/dts/mediatek/mt8183-kukui-katsu.dts  |  40 +++++++
+ 7 files changed, 305 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu.dts
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.0.758.gaed0368e0e-goog
+
 
