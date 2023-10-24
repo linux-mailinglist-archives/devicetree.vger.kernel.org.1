@@ -1,93 +1,156 @@
-Return-Path: <devicetree+bounces-11256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB5C7D4F8D
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:13:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 864807D4F9B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 14:16:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D68191F2207E
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:13:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE60E1F2227A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 12:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF6626E15;
-	Tue, 24 Oct 2023 12:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE32E262AE;
+	Tue, 24 Oct 2023 12:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ELKk/21v"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="GCdzVcMD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33785262BA;
-	Tue, 24 Oct 2023 12:13:12 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA3FEF9;
-	Tue, 24 Oct 2023 05:13:07 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 21F7D240007;
-	Tue, 24 Oct 2023 12:13:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698149586;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=93RoybtCmurkEhmIcEikf8HjaYFy2otQkCDnAt4Q9kg=;
-	b=ELKk/21vjkPETZrMa4aDzQBq4IDx0/H74mmiNL06MB34Yl/+2q6kw44OHlOe3F5XqibIT2
-	vsv04tEI8l3XtSsLBm8ygRdVQgM6cpCd1YODIunnTCtwWOmxewC/y5+GdKsvM7nrjlvcRZ
-	0Nb9Hztu7D/J1iqK7rrVlf+9wjwBSQu45suHEf95RVgoLU4I17N5JlWzTbleOtP5YU0QNs
-	8erlqmOSckGnRVrieB0s6uQ1Jqy1mQuAp2jB3y4XsKyegNhUsbwEL21xeJ/Ey3denUKuSY
-	0qSjLkJ4uiGdk2OF1I6ryrwoR7fubqZI2RL0FhvlVtZWM1yLbixuAseiOf3Z6w==
-Date: Tue, 24 Oct 2023 14:13:17 +0200 (CEST)
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-cc: Romain Gantois <romain.gantois@bootlin.com>, Rob Herring <robh@kernel.org>, 
-    Luka Perkov <luka.perkov@sartura.hr>, 
-    Konrad Dybcio <konrad.dybcio@somainline.org>, 
-    Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org, 
-    Jakub Kicinski <kuba@kernel.org>, 
-    Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-    Russell King <linux@armlinux.org.uk>, Andy Gross <agross@kernel.org>, 
-    davem@davemloft.net, thomas.petazzoni@bootlin.com, 
-    Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Florian Fainelli <f.fainelli@gmail.com>, linux-kernel@vger.kernel.org, 
-    Eric Dumazet <edumazet@google.com>, Bjorn Andersson <andersson@kernel.org>, 
-    linux-arm-kernel@lists.infradead.org, 
-    Robert Marko <robert.marko@sartura.hr>, 
-    Vladimir Oltean <vladimir.oltean@nxp.com>, Andrew Lunn <andrew@lunn.ch>, 
-    Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH net-next 1/5] net: dt-bindings: Introduce the Qualcomm
- IPQESS Ethernet switch
-In-Reply-To: <7018bf8b-1f89-408e-8649-3788a28f3b1a@linaro.org>
-Message-ID: <0389bcc9-b74e-5394-d15a-17914ec3c1a9@bootlin.com>
-References: <20231023155013.512999-1-romain.gantois@bootlin.com> <20231023155013.512999-2-romain.gantois@bootlin.com> <169808266457.861402.14537617078362005098.robh@kernel.org> <35ec9e4b-21ee-1436-da00-02e11effdc23@bootlin.com> <550cba92-39dc-4e45-beb3-c714d14d9d85@linaro.org>
- <498ee025-b1b7-eafc-3758-993c5d564f67@bootlin.com> <7018bf8b-1f89-408e-8649-3788a28f3b1a@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C337914F82
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:16:34 +0000 (UTC)
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1AD9A2
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:16:32 -0700 (PDT)
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 419ED420AE
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 12:16:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1698149788;
+	bh=thwvxYYMUVPSY3nzBc7xApM08Kssn5NAFL9o/BCJG0g=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=GCdzVcMDl3yKio9zf1Tcxxo++Xsyf51R6f64l9afkdGXMSmsknkrIw6/Zpjx/eAWr
+	 B8439IsTEVfwGmDsq/d90xFfI1+zc68fZNX5GD939TEB2w49o27YQB14ZZJL/dsC4j
+	 ldGO87BBz6/fajM4weA1XZZ2GYh39tzkLGSrJC9IpWXbHrhaunUqN6UdiWtx24gmhK
+	 s48TKR8diJpujTWT5cEJC6APhwU+vKePQN1PZsN7aVTqFQnN03jBKg4SoDWRwLDUH9
+	 Kg9cF0lw8bewqoHWibF7ZVMGAUXW6S8KptvzqWRmAAPXJEwMXIG9bD6EyILtw/6zzr
+	 0xs8eBnqPzusQ==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-41cc72fca99so59999961cf.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 05:16:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698149786; x=1698754586;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=thwvxYYMUVPSY3nzBc7xApM08Kssn5NAFL9o/BCJG0g=;
+        b=GOQh3y0tnH3Xc7g8ltFnI82XMEWIhoA+tD3rCIdXEx8eShkSKpMl7NxstxxH4jAIsx
+         tfrm2Sxn53h9m8DaeROqJ9w3RJjtSvlQKEt5L3IO2AtPCVlNHbG0gQii8QsG78ndXhyC
+         BVSHoJikat4c2MfA/cLXWZKYIjBWyrZW5vm1X/7y2xpNvXwFldq8bjuEITdecxknNmAA
+         QS8Am2rK3c1Hcxle69TK+NihoKaSZ2vm49HXXCoCFHUZUVSqHaik25GNpm0YJALmNNyM
+         OpchHjPrG9pkq0CYO+0+1A3SysLEeuCs0Xv40HQdnl+ZJGMyicj7yuYjQjsbJ8hj2K/1
+         pBeQ==
+X-Gm-Message-State: AOJu0Ywk/wDSGBbXM83oQHYbsjsn75Orxmw3syhOwN6sneipMG3Efar8
+	GUQcbQ/p4+2ia6bUsT/9NeYlpwm7NEHVv2mA9j7RPZ5LXB/OPkRzmL75CZfEtxr+WJ7yf2HLiuM
+	xSH8QjYTEm9IFHJznz5Gfxn+n9EnW84KpfHQv7QEF/R0QTdYzm95Dwc4=
+X-Received: by 2002:a05:622a:2d2:b0:418:152d:bf4 with SMTP id a18-20020a05622a02d200b00418152d0bf4mr13460081qtx.51.1698149786495;
+        Tue, 24 Oct 2023 05:16:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEOE0qGS2pSUMsJf2A8W5Ex0DMIs+jJV1IcL5+p/qejHg+bJIzitFRzRk24ZJkjngpmMhUlqv5mwknRsepuX1A=
+X-Received: by 2002:a05:622a:2d2:b0:418:152d:bf4 with SMTP id
+ a18-20020a05622a02d200b00418152d0bf4mr13460067qtx.51.1698149786276; Tue, 24
+ Oct 2023 05:16:26 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 24 Oct 2023 05:16:25 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231023-th1520-mmc-v3-6-abc5e7491166@baylibre.com>
+References: <20231023-th1520-mmc-v3-0-abc5e7491166@baylibre.com> <20231023-th1520-mmc-v3-6-abc5e7491166@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-GND-Sasl: romain.gantois@bootlin.com
+Mime-Version: 1.0
+Date: Tue, 24 Oct 2023 05:16:25 -0700
+Message-ID: <CAJM55Z-OBUsnybSLTxB8RHwsYuWhsMKVH3x8ana4=LeZ98Yv1Q@mail.gmail.com>
+Subject: Re: [PATCH v3 6/7] riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
+To: Drew Fustini <dfustini@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jisheng Zhang <jszhang@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, Han Gao <gaohan@iscas.ac.cn>, 
+	linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Robert Nelson <robertcnelson@beagleboard.org>, Jason Kridner <jkridner@beagleboard.org>, 
+	Xi Ruoyao <xry111@xry111.site>, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 24 Oct 2023, Krzysztof Kozlowski wrote:
+Drew Fustini wrote:
+> Add mmc0 properties for the eMMC device and add mmc1 properties for
+> the microSD slot. Set the frequency for the sdhci clock.
+>
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> index 70e8042c8304..c4e748827889 100644
+> --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+> @@ -52,6 +52,10 @@ &uart_sclk {
+>  	clock-frequency = <100000000>;
+>  };
+>
+> +&sdhci_clk {
+> +	clock-frequency = <198000000>;
+> +};
+> +
+>  &dmac0 {
+>  	status = "okay";
+>  };
+> @@ -59,3 +63,19 @@ &dmac0 {
+>  &uart0 {
+>  	status = "okay";
+>  };
+> +
+> +&mmc0 {
+> +	bus-width = <8>;
+> +	max-frequency = <198000000>;
+> +	mmc-hs400-1_8v;
+> +	non-removable;
+> +	no-sdio;
+> +	no-sd;
+> +	status = "okay";
+> +};
+> +
+> +&mmc1 {
+> +	max-frequency = <198000000>;
+> +	bus-width = <4>;
+> +	status = "okay";
+> +};
 
-> Rob's bot might be using not-yet-released dtschema from main branch,
-> thus the error. However the error is true: you added a custom field
-> without type. That's why I asked: where is it defined?
-> 
+Hi Drew,
 
-I didn't define it anywhere, that's an oversight on my part. The psgmii_ethphy 
-property is a handle to an MDIO device, which I thought was integrated to the 
-PSGMII bus in the IPQ4019. However, I just learned from Robert Marko that this 
-MDIO device corresponds to a SoC-facing PHY integrated in the external QCA807x 
-IP. Therefore, I'm not convinced that this MDIO device should be handled by 
-the ESS driver.
+For the StarFive device tree files we've agreed on sorting by / node, clock
+references, and then other node references alphabetically. I'm not
+insisting you should do the same, but it would be nice with some system to make
+it clear where new node refences should go. Or maybe I'm just not seeing the
+system you're already following.
 
-I'm going to have to consider refactoring the psgmii_ethphy handling out of 
-the IPQESS driver, which would make this device tree property unnecessary.
+/Emil
 
-Best Regards,
-
-Romain
+>
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
