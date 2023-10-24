@@ -1,145 +1,180 @@
-Return-Path: <devicetree+bounces-11465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31407D5D4C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 23:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 372357D5C24
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 22:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 660F7281853
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 21:39:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D31DE2819A4
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 20:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EA073FB06;
-	Tue, 24 Oct 2023 21:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BFAB3D99C;
+	Tue, 24 Oct 2023 20:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="nXmdQ7Tv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53973CD06
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 21:39:07 +0000 (UTC)
-X-Greylist: delayed 21448 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 Oct 2023 14:39:05 PDT
-Received: from 13.mo584.mail-out.ovh.net (13.mo584.mail-out.ovh.net [178.33.251.8])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3C0A6
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 14:39:05 -0700 (PDT)
-Received: from director8.ghost.mail-out.ovh.net (unknown [10.108.16.31])
-	by mo584.mail-out.ovh.net (Postfix) with ESMTP id 11A2E27A9A
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 15:41:36 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-4l929 (unknown [10.111.172.174])
-	by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 5F09D1FD5A;
-	Tue, 24 Oct 2023 15:41:32 +0000 (UTC)
-Received: from RCM-web6.webmail.mail.ovh.net ([151.80.29.20])
-	by ghost-submission-6684bf9d7b-4l929 with ESMTPSA
-	id YKYSFazlN2WWggAAw4wSxw
-	(envelope-from <rafal@milecki.pl>); Tue, 24 Oct 2023 15:41:32 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F39224EB
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 20:10:19 +0000 (UTC)
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4C8A2
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 13:10:17 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 3A6952C0405;
+	Wed, 25 Oct 2023 09:10:15 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1698178215;
+	bh=sRJk5n3pDGUzZ7KoQFWruh7Nt5D3oxQPGHbRvhP453U=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=nXmdQ7TvG6V6Ot3G5CaopLK7k3M1R0/NvY4x601JHyx2ThNoxsIg4ZadcuuuhJKgv
+	 hDeHHGFi/j2gbtvDFjsVM9SdGL1JCsB8T5lhwD3ZNSMtzAy8dJ+OVCpZ+8HdoHVdzn
+	 CsR9RCtcZZj1wEJMH3XJXRy11UlNOHrnBKvsyH5rp9oaxM8+6JxWkRtbeJpuvVhRo2
+	 wTeX8WCfE+b/9k+M6wxwgUOT/z7kNMw9phTrYXiomfMKJtP+HFEBf4Va2RZYJfqPYz
+	 rMNkAHqRo5xP/cuX398jiqlqYHH2s+8PslqiAFdCgCseuSvLDC3ocw7AYS+s+y5l6o
+	 Hj2XbUApSuKog==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B653824a70001>; Wed, 25 Oct 2023 09:10:15 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.39; Wed, 25 Oct 2023 09:10:15 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
+ SMTP Server (TLS) id 15.0.1497.48; Wed, 25 Oct 2023 09:10:14 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.039; Wed, 25 Oct 2023 09:10:14 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Vladimir Oltean <olteanv@gmail.com>, Linus Walleij
+	<linus.walleij@linaro.org>, =?utf-8?B?UGFsaSBSb2jDoXI=?= <pali@kernel.org>,
+	Enrico Mioso <mrkiko.rs@gmail.com>, Robert Marko <robert.marko@sartura.hr>,
+	Russell King <linux@armlinux.org.uk>
+CC: Andrew Lunn <andrew@lunn.ch>, Gregory Clement
+	<gregory.clement@bootlin.com>, Sebastian Hesselbarth
+	<sebastian.hesselbarth@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	=?utf-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>, Christian Marangi
+	<ansuelsmth@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>
+Subject: Re: [PATCH net-next v7 5/7] ARM64: dts: marvell: Fix some common
+ switch mistakes
+Thread-Topic: [PATCH net-next v7 5/7] ARM64: dts: marvell: Fix some common
+ switch mistakes
+Thread-Index: AQHaBqfxy3RLBZSJF0yAzYSe+JPbArBYhPQA
+Date: Tue, 24 Oct 2023 20:10:14 +0000
+Message-ID: <1dff08d1-339b-4d5a-9dd4-6a6daca1dbde@alliedtelesis.co.nz>
+References: <20231024-marvell-88e6152-wan-led-v7-0-2869347697d1@linaro.org>
+ <20231024-marvell-88e6152-wan-led-v7-5-2869347697d1@linaro.org>
+ <20231024182842.flxrg3hjm3scnhjo@skbuf>
+In-Reply-To: <20231024182842.flxrg3hjm3scnhjo@skbuf>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-originating-ip: [10.33.22.30]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DE27B8B2EB580E4F8B2132384250D130@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 24 Oct 2023 17:41:31 +0200
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Rob Herring <robh@kernel.org>
-Cc: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Srinivas
- Kandagatla <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Jerome
- Brunet <jbrunet@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Hector Martin <marcan@marcan.st>, Sven
- Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Shawn
- Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Claudiu Beznea
- <claudiu.beznea@tuxon.dev>, Andy Gross <agross@kernel.org>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Heiko
- Stuebner <heiko@sntech.de>, Kunihiko Hayashi
- <hayashi.kunihiko@socionext.com>, Masami Hiramatsu <mhiramat@kernel.org>,
- Vincent Shih <vincent.sunplus@gmail.com>, Alessandro Zummo
- <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Christian Marangi
- <ansuelsmth@gmail.com>, Anson Huang <Anson.Huang@nxp.com>, Andrew-CT Chen
- <andrew-ct.chen@mediatek.com>, Lala Lin <lala.lin@mediatek.com>, Komal Bajaj
- <quic_kbajaj@quicinc.com>, Kumar Thella <sthella@codeaurora.org>, Keiji
- Hayashibara <hayashibara.keiji@socionext.com>,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, asahi@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-rtc@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH V2] dt-bindings: nvmem: move deprecated cells binding to
- its own file
-In-Reply-To: <20231024142457.GA3684864-robh@kernel.org>
-References: <20231003064018.7502-1-zajec5@gmail.com>
- <20231024142457.GA3684864-robh@kernel.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <77363977d8f24fc0620a54f36326421b@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 31.11.218.106
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 16550447158977801020
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrkeekgdelvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjedvlefguedthfefleehgeeftdeludeluedvgfeffeevhfevtdehteejteefheegnecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipdduhedurdektddrvdelrddvtdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehrrghfrghlsehmihhlvggtkhhirdhplheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkeegpdhmohguvgepshhmthhpohhuth
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=KKAkSRfTAAAA:8 a=Nrzf15qNN39qzBdrCVAA:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22
+X-SEG-SpamProfiler-Score: 0
 
-On 2023-10-24 16:24, Rob Herring wrote:
-> On Tue, Oct 03, 2023 at 08:40:18AM +0200, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->> 
->> Support for old NVMEM fixed cells was deprecated in favour of
->> "fixed-layout". It's still part of the nvmem.yaml though and may be
->> unknowingly used by new bindings added without much of analyze.
->> 
->> To make it more difficult to accidentally support old syntax move its
->> binding to separated file with "deprecated" in its name.
->> 
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> V2: Fix path to nvmem-deprecated-cells.yaml in amlogic,meson6-rtc.yaml
->> 
->>  .../devicetree/bindings/mtd/mtd.yaml          |  7 ++++-
->>  .../bindings/mtd/partitions/nvmem-cells.yaml  |  1 +
->>  .../nvmem/amlogic,meson-gxbb-efuse.yaml       |  1 +
->>  .../bindings/nvmem/amlogic,meson6-efuse.yaml  |  1 +
->>  .../bindings/nvmem/apple,efuses.yaml          |  1 +
->>  .../devicetree/bindings/nvmem/imx-ocotp.yaml  |  1 +
->>  .../bindings/nvmem/mediatek,efuse.yaml        |  1 +
->>  .../nvmem/microchip,sama7g5-otpc.yaml         |  1 +
->>  .../devicetree/bindings/nvmem/mxs-ocotp.yaml  |  1 +
->>  .../nvmem/nvmem-deprecated-cells.yaml         | 28 
->> +++++++++++++++++++
->>  .../devicetree/bindings/nvmem/nvmem.yaml      |  9 ------
->>  .../bindings/nvmem/qcom,qfprom.yaml           |  1 +
->>  .../bindings/nvmem/qcom,sec-qfprom.yaml       |  1 +
->>  .../bindings/nvmem/qcom,spmi-sdam.yaml        |  1 +
->>  .../bindings/nvmem/rockchip,otp.yaml          |  1 +
->>  .../bindings/nvmem/rockchip-efuse.yaml        |  1 +
->>  .../nvmem/socionext,uniphier-efuse.yaml       |  1 +
->>  .../bindings/nvmem/sunplus,sp7021-ocotp.yaml  |  1 +
->>  .../bindings/rtc/amlogic,meson6-rtc.yaml      |  1 +
->>  19 files changed, 50 insertions(+), 10 deletions(-)
->>  create mode 100644 
->> Documentation/devicetree/bindings/nvmem/nvmem-deprecated-cells.yaml
-> 
-> You missed allwinner,sun4i-a10-sid.yaml and at24.yaml
-> (arch/arm/boot/dts/broadcom/bcm53016-meraki-mr32.dts). Maybe we want to
-> fix the latter case because at24 will continually have new users.
-
-I see. I looked at examples and DTS files with "allwinner,sun4i-a10-sid"
-binding but I missed others. For reference fixed cells are used in:
-1. sun50i-a64.dtsi
-2. sun50i-h6.dtsi
-3. sun50i-a100.dtsi
-
-I'll fix that soon!
-
--- 
-Rafał Miłecki
+SGkgQWxsLA0KDQpPbiAyNS8xMC8yMyAwNzoyOCwgVmxhZGltaXIgT2x0ZWFuIHdyb3RlOg0KPiBM
+aW51cywNCj4NCj4gT24gVHVlLCBPY3QgMjQsIDIwMjMgYXQgMDM6MjA6MzFQTSArMDIwMCwgTGlu
+dXMgV2FsbGVpaiB3cm90ZToNCj4+IEZpeCBzb21lIGVycm9ycyBpbiB0aGUgTWFydmVsbCBNVjg4
+RTZ4eHggc3dpdGNoIGRlc2NyaXB0aW9uczoNCj4+IC0gVGhlIHRvcCBub2RlIGhhZCBubyBhZGRy
+ZXNzIHNpemUgb3IgY2VsbHMuDQo+PiAtIHN3aXRjaDBAMCBpcyBub3QgT0ssIHNob3VsZCBiZSBl
+dGhlcm5ldC1zd2l0Y2hAMC4NCj4+IC0gcG9ydHMgc2hvdWxkIGJlIGV0aGVybmV0LXBvcnRzDQo+
+PiAtIHBvcnRAMCBzaG91bGQgYmUgZXRoZXJuZXQtcG9ydEAwDQo+PiAtIFBIWXMgc2hvdWxkIGJl
+IG5hbWVkIGV0aGVybmV0LXBoeUANCj4+DQo+PiBSZXZpZXdlZC1ieTogQW5kcmV3IEx1bm4gPGFu
+ZHJld0BsdW5uLmNoPg0KPj4gU2lnbmVkLW9mZi1ieTogTGludXMgV2FsbGVpaiA8bGludXMud2Fs
+bGVpakBsaW5hcm8ub3JnPg0KPHNuaXA+DQo+PiAtLS0NCj4+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL21hcnZlbGwvY245MTMwLWNyYi5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0
+cy9tYXJ2ZWxsL2NuOTEzMC1jcmIuZHRzaQ0KPj4gaW5kZXggMzJjZmIzZTJlZmMzLi43NTM4ZWQ1
+NjA1M2IgMTAwNjQ0DQo+PiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvY245MTMw
+LWNyYi5kdHNpDQo+PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvY245MTMwLWNy
+Yi5kdHNpDQo+PiBAQCAtMjA3LDExICsyMDcsOSBAQCBwaHkwOiBldGhlcm5ldC1waHlAMCB7DQo+
+PiAgIAkJcmVnID0gPDA+Ow0KPj4gICAJfTsNCj4+ICAgDQo+PiAtCXN3aXRjaDY6IHN3aXRjaDBA
+NiB7DQo+PiArCXN3aXRjaDY6IGV0aGVybmV0LXN3aXRjaEA2IHsNCj4+ICAgCQkvKiBBY3R1YWwg
+ZGV2aWNlIGlzIE1WODhFNjM5M1ggKi8NCj4+ICAgCQljb21wYXRpYmxlID0gIm1hcnZlbGwsbXY4
+OGU2MTkwIjsNCj4+IC0JCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gLQkJI3NpemUtY2VsbHMg
+PSA8MD47DQo+PiAgIAkJcmVnID0gPDY+Ow0KPj4gICAJCWludGVycnVwdC1wYXJlbnQgPSA8JmNw
+MF9ncGlvMT47DQo+PiAgIAkJaW50ZXJydXB0cyA9IDwyOCBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0K
+Pj4gQEAgLTIyMCw1OSArMjE4LDU5IEBAIHN3aXRjaDY6IHN3aXRjaDBANiB7DQo+PiAgIA0KPj4g
+ICAJCWRzYSxtZW1iZXIgPSA8MCAwPjsNCj4+ICAgDQo+PiAtCQlwb3J0cyB7DQo+PiArCQlldGhl
+cm5ldC1wb3J0cyB7DQo+PiAgIAkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gICAJCQkjc2l6
+ZS1jZWxscyA9IDwwPjsNCj4+ICAgDQo+PiAtCQkJcG9ydEAxIHsNCj4+ICsJCQlldGhlcm5ldC1w
+b3J0QDEgew0KPj4gICAJCQkJcmVnID0gPDE+Ow0KPj4gICAJCQkJbGFiZWwgPSAicDEiOw0KPj4g
+ICAJCQkJcGh5LWhhbmRsZSA9IDwmc3dpdGNoMHBoeTE+Ow0KPj4gICAJCQl9Ow0KPj4gICANCj4+
+IC0JCQlwb3J0QDIgew0KPj4gKwkJCWV0aGVybmV0LXBvcnRAMiB7DQo+PiAgIAkJCQlyZWcgPSA8
+Mj47DQo+PiAgIAkJCQlsYWJlbCA9ICJwMiI7DQo+PiAgIAkJCQlwaHktaGFuZGxlID0gPCZzd2l0
+Y2gwcGh5Mj47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXBvcnRAMyB7DQo+PiArCQkJZXRo
+ZXJuZXQtcG9ydEAzIHsNCj4+ICAgCQkJCXJlZyA9IDwzPjsNCj4+ICAgCQkJCWxhYmVsID0gInAz
+IjsNCj4+ICAgCQkJCXBoeS1oYW5kbGUgPSA8JnN3aXRjaDBwaHkzPjsNCj4+ICAgCQkJfTsNCj4+
+ICAgDQo+PiAtCQkJcG9ydEA0IHsNCj4+ICsJCQlldGhlcm5ldC1wb3J0QDQgew0KPj4gICAJCQkJ
+cmVnID0gPDQ+Ow0KPj4gICAJCQkJbGFiZWwgPSAicDQiOw0KPj4gICAJCQkJcGh5LWhhbmRsZSA9
+IDwmc3dpdGNoMHBoeTQ+Ow0KPj4gICAJCQl9Ow0KPj4gICANCj4+IC0JCQlwb3J0QDUgew0KPj4g
+KwkJCWV0aGVybmV0LXBvcnRANSB7DQo+PiAgIAkJCQlyZWcgPSA8NT47DQo+PiAgIAkJCQlsYWJl
+bCA9ICJwNSI7DQo+PiAgIAkJCQlwaHktaGFuZGxlID0gPCZzd2l0Y2gwcGh5NT47DQo+PiAgIAkJ
+CX07DQo+PiAgIA0KPj4gLQkJCXBvcnRANiB7DQo+PiArCQkJZXRoZXJuZXQtcG9ydEA2IHsNCj4+
+ICAgCQkJCXJlZyA9IDw2PjsNCj4+ICAgCQkJCWxhYmVsID0gInA2IjsNCj4+ICAgCQkJCXBoeS1o
+YW5kbGUgPSA8JnN3aXRjaDBwaHk2PjsNCj4+ICAgCQkJfTsNCj4+ICAgDQo+PiAtCQkJcG9ydEA3
+IHsNCj4+ICsJCQlldGhlcm5ldC1wb3J0QDcgew0KPj4gICAJCQkJcmVnID0gPDc+Ow0KPj4gICAJ
+CQkJbGFiZWwgPSAicDciOw0KPj4gICAJCQkJcGh5LWhhbmRsZSA9IDwmc3dpdGNoMHBoeTc+Ow0K
+Pj4gICAJCQl9Ow0KPj4gICANCj4+IC0JCQlwb3J0QDggew0KPj4gKwkJCWV0aGVybmV0LXBvcnRA
+OCB7DQo+PiAgIAkJCQlyZWcgPSA8OD47DQo+PiAgIAkJCQlsYWJlbCA9ICJwOCI7DQo+PiAgIAkJ
+CQlwaHktaGFuZGxlID0gPCZzd2l0Y2gwcGh5OD47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJ
+CXBvcnRAOSB7DQo+PiArCQkJZXRoZXJuZXQtcG9ydEA5IHsNCj4+ICAgCQkJCXJlZyA9IDw5PjsN
+Cj4+ICAgCQkJCWxhYmVsID0gInA5IjsNCj4+ICAgCQkJCXBoeS1tb2RlID0gIjEwZ2Jhc2UtciI7
+DQo+PiBAQCAtMjgwLDcgKzI3OCw3IEBAIHBvcnRAOSB7DQo+PiAgIAkJCQltYW5hZ2VkID0gImlu
+LWJhbmQtc3RhdHVzIjsNCj4+ICAgCQkJfTsNCj4+ICAgDQo+PiAtCQkJcG9ydEBhIHsNCj4+ICsJ
+CQlldGhlcm5ldC1wb3J0QGEgew0KPj4gICAJCQkJcmVnID0gPDEwPjsNCj4+ICAgCQkJCWV0aGVy
+bmV0ID0gPCZjcDBfZXRoMD47DQo+PiAgIAkJCQlwaHktbW9kZSA9ICIxMGdiYXNlLXIiOw0KPj4g
+QEAgLTI5MywzNSArMjkxLDM1IEBAIG1kaW8gew0KPj4gICAJCQkjYWRkcmVzcy1jZWxscyA9IDwx
+PjsNCj4+ICAgCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+PiAgIA0KPj4gLQkJCXN3aXRjaDBwaHkx
+OiBzd2l0Y2gwcGh5MUAxIHsNCj4+ICsJCQlzd2l0Y2gwcGh5MTogZXRoZXJuZXQtcGh5QDEgew0K
+Pj4gICAJCQkJcmVnID0gPDB4MT47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXN3aXRjaDBw
+aHkyOiBzd2l0Y2gwcGh5MkAyIHsNCj4+ICsJCQlzd2l0Y2gwcGh5MjogZXRoZXJuZXQtcGh5QDIg
+ew0KPj4gICAJCQkJcmVnID0gPDB4Mj47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXN3aXRj
+aDBwaHkzOiBzd2l0Y2gwcGh5M0AzIHsNCj4+ICsJCQlzd2l0Y2gwcGh5MzogZXRoZXJuZXQtcGh5
+QDMgew0KPj4gICAJCQkJcmVnID0gPDB4Mz47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJCXN3
+aXRjaDBwaHk0OiBzd2l0Y2gwcGh5NEA0IHsNCj4+ICsJCQlzd2l0Y2gwcGh5NDogZXRoZXJuZXQt
+cGh5QDQgew0KPj4gICAJCQkJcmVnID0gPDB4ND47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4gLQkJ
+CXN3aXRjaDBwaHk1OiBzd2l0Y2gwcGh5NUA1IHsNCj4+ICsJCQlzd2l0Y2gwcGh5NTogZXRoZXJu
+ZXQtcGh5QDUgew0KPj4gICAJCQkJcmVnID0gPDB4NT47DQo+PiAgIAkJCX07DQo+PiAgIA0KPj4g
+LQkJCXN3aXRjaDBwaHk2OiBzd2l0Y2gwcGh5NkA2IHsNCj4+ICsJCQlzd2l0Y2gwcGh5NjogZXRo
+ZXJuZXQtcGh5QDYgew0KPj4gICAJCQkJcmVnID0gPDB4Nj47DQo+PiAgIAkJCX07DQo+PiAgIA0K
+Pj4gLQkJCXN3aXRjaDBwaHk3OiBzd2l0Y2gwcGh5N0A3IHsNCj4+ICsJCQlzd2l0Y2gwcGh5Nzog
+ZXRoZXJuZXQtcGh5QDcgew0KPj4gICAJCQkJcmVnID0gPDB4Nz47DQo+PiAgIAkJCX07DQo+PiAg
+IA0KPj4gLQkJCXN3aXRjaDBwaHk4OiBzd2l0Y2gwcGh5OEA4IHsNCj4+ICsJCQlzd2l0Y2gwcGh5
+ODogZXRoZXJuZXQtcGh5QDggew0KPj4gICAJCQkJcmVnID0gPDB4OD47DQo+PiAgIAkJCX07DQo+
+PiAgIAkJfTsNCj4gQ2hyaXMsIGRvZXMgdGhpcyBsb29rIG9rYXk/DQoNClRoZXJlJ3Mgbm90aGlu
+ZyBpbiB0aGUgdS1ib290IGNvZGUgZm9yIHRoZSBDTjkxMzAtQ1JCIHRoYXQgY2FyZXMgYWJvdXQg
+DQp0aGUgc3dpdGNoIHNvIEkgZG9uJ3QgdGhpbmsgdGhlcmUncyBhbnkgaXNzdWUgQUJJIHdpc2Uu
+IFdlIGFyZSB3b3JraW5nIA0Kb24gb3VyIG93biBDTjkxMzAgYmFzZWQgcm91dGVyIHdpdGggYSBM
+MiBzd2l0Y2ggYnV0IGl0J3MgYXQgYSBwb2ludCB3ZSANCmNhbiBmb2xsb3cgd2hhdGV2ZXIgdXBz
+dHJlYW0gZGVjaWRlIGlzIHRoZSBmaW5hbCBzY2hlbWEuDQoNCkluIHRlcm1zIG9mIG15IHBlcnNv
+bmFsIHByZWZlcmVuY2UgdGhlIHNjaGVtYSBxdW90ZWQgdXAgdGhyZWFkIGhhcyB0aGUgDQpwYXR0
+ZXJuwqAgJ14oZXRoZXJuZXQtKT9zd2l0Y2goQC4qKT8kJyAoaS5lLiB0aGUgJ2V0aGVybmV0LScg
+cGFydCBpcyANCm9wdGlvbmFsKSBzbyBJJ2QgcGVyc29uYWxseSBwcmVmZXIgc3dpdGNoMEA2IC0+
+IHN3aXRjaEA2IGJ1dCB0aGF0J3Mgb25seSANCmEgc2xpZ2h0IHByZWZlcmVuY2UgYmVjYXVzZSBJ
+IGRlYWwgd2l0aCBFdGhlcm5ldCBzd2l0Y2hlcyBkYXkgaW4gZGF5IG91dC4NCg==
 
