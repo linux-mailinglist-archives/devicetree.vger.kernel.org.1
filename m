@@ -1,206 +1,175 @@
-Return-Path: <devicetree+bounces-11373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEDFC7D5829
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:25:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B1EB7D584A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 18:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90C4B2815C4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:25:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 824A8B20D1E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 16:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E20E39950;
-	Tue, 24 Oct 2023 16:25:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="MxgKkMra";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="2PCEAStk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2560839948;
+	Tue, 24 Oct 2023 16:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B4F29D05
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:25:38 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C1AD111;
-	Tue, 24 Oct 2023 09:25:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1698164734; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=jFmsKgTNZAZIwUdugGKnmrcnP5auvCuXcRINXCifCaqO2Rxwwh5aTPGR4MBASQ81d/
-    OHlOQkIEDiM2VJHDCJ0Ar0qRHDGH9jE1tRnCbVRhOL/jkIstiQlwCetHNgbOu46MRfhS
-    nQeYXi4AdGH3sdVqPZN/jL5PeTLM2j7nbVxpFvUeC3tp5VvZy/dec1W9X3TcR2mJPW90
-    f0gPLZ8R2ZQOb3hcK40vs19NtQhp9nLVsk7gnRTa2KD1uLZ/fafHXOApviEHp8NzM/lC
-    Q6iQdRn4HSFiduvyayKDLraMPVDFDW2Igbbt/lToO01oJ+Hq9xlHwiotzuZZJVsSlh/B
-    nhPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698164734;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=BKuCBeuwdGgUeRuNCbFHWtHrgHiZpvFPcgBdLz2whR4=;
-    b=MKjshxKL2XMbugW1bLA9mN8A0RKMg2KLCu19ikbDuOfgDnchzw7UgMWFUd+C3Skj1/
-    5DX/m2puY2yTWVHIMc07WyMuk4JV4aynmNyWZz05eXfkWse/zd86SWqjln2NYNU3Icjk
-    tGyFMIbbJDPuX65tu1o/ba4qjQWiok7CAFYG/M8fgwOjObX4KomI0N+1IU25xDPkIkTY
-    8jSvz/giiiN6pDAY1cam5yuSt4/q4PpvnZ2y6xL5rUPP/s23Sr/wCxRysvpbu4E2RBEh
-    B9gPEgcD+xi2z+9kYgcMzjwhHt5ElfRoUJq0iXkupIkuf0DG7qyg0xTmIRUGdfK3vbT8
-    8HYw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698164734;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=BKuCBeuwdGgUeRuNCbFHWtHrgHiZpvFPcgBdLz2whR4=;
-    b=MxgKkMraIPXFbPtFfYbpgzo7AyE6t3/6XtN08BPqKzB4dIDWiByfjTXj4o71jchFO4
-    xp2PjzC3Ar/4zr1/NugLN+v+LX+lhZ0Rk739Fd0hmD/CGWirt1MQptRjN8mlS/aunEJP
-    YDbDiOtoTZZx41cLh6zYmAL8HMCcLXV5cHqUGt2jDIJKHaOd+oKT8X6nxHJEzGJ2pG5J
-    06+hUg0ZDoZHt4xZXxU4L8mZp7kiJOwvYUjRbGqe5yeWmFjLN9tH4xt6NE0T39xIx8vA
-    QV2WzNaM0WlSnrqoB9Xy2CCV58Im4HF74ks/GAroHmbWg3jyGlIEoWTjXVKZZrTqvLkz
-    5WXg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698164734;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=BKuCBeuwdGgUeRuNCbFHWtHrgHiZpvFPcgBdLz2whR4=;
-    b=2PCEAStkBVaZjcLABSrDuFH8+MKtswPuHybD8FIetqU3T5XlT5mm0KXJESzGBYuJNM
-    1wOSuHbnT4QEpu196ZCA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z+P1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.9.0 DYNA|AUTH)
-    with ESMTPSA id j34a49z9OGPXRmV
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 24 Oct 2023 18:25:33 +0200 (CEST)
-Date: Tue, 24 Oct 2023 18:25:28 +0200
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Ilia Lin <ilia.lin@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] cpufreq: qcom-nvmem: Enable virtual power domain
- devices
-Message-ID: <ZTfv-Dea693UqLXB@gerhold.net>
-References: <20231018-msm8909-cpufreq-v2-0-0962df95f654@kernkonzept.com>
- <20231018-msm8909-cpufreq-v2-2-0962df95f654@kernkonzept.com>
- <CAPDyKFot9=M1ooP_Q1AOgG5o_4DTQ2qsyai1ZdXAzBwf89W4uA@mail.gmail.com>
- <CAPDyKFr5A-P=UhWs4rUMBWup3pH75WAhcZ56Y2_Sfk3=WfxRCQ@mail.gmail.com>
- <ZTeyhR7YY7VgWQlU@kernkonzept.com>
- <CAPDyKFrcV8iJnJ904j1jkx0E8PaOLmiTZ7CKk7EV8qQ71AZdbA@mail.gmail.com>
- <ZTfBZqBwqskhFydZ@kernkonzept.com>
- <CAPDyKFooPLCmJeqjhiMm7HRdW5UrEw0yHvGF9fgLvOigsgbWxg@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCF3210FD
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 16:29:27 +0000 (UTC)
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9E11B3;
+	Tue, 24 Oct 2023 09:29:22 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5845a94dae1so1213608eaf.0;
+        Tue, 24 Oct 2023 09:29:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698164962; x=1698769762;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lyvP8rg0cN3uMaVGkUZJYnGyShBPgeG7niyvmwU0I7E=;
+        b=JdeIWagfaoq9xk2goPqmXPpIX6xPdQmlRevemgvciTpSzNIfMv6I5OEsaHdO3wKV1J
+         f9xzvpspkDe1R5l7vBODvIVpLDsZEMry0Gc5hVu6DPbszniUdF1E95JcEOa1komsWvw7
+         b6QuP229mCW9TVlBDTe+A1sW84D+vzRTj2a2XKA94uBpWFIGi0OP5v20I6jdEjHbNdqO
+         E5a2AntNsIxi6RfksT2nmuWt2eiW9wxrA0pNmYBFKvRwTAVehgRq2l5HauSzVD5mtg7g
+         FHLXQvHWyoeLh2ostLtCC1ZSeQT3xOQozZMkfCG50ZOHZJnnO1ITLloQ4K9RANJGd0iW
+         v0Qg==
+X-Gm-Message-State: AOJu0YykRMOK5aGBQJU6k5ZyeWHHmPyydnfEBwP7elc1rUFK0TyLF/Qm
+	X3+Z8gsEzteDuCIdBNpzwg==
+X-Google-Smtp-Source: AGHT+IHHMl2/oHWft2yTTAv4LNNI02Tu07uYTbFvwLbExU9mIcFCwW29I/FboUp1wYBFIRXZrsw17A==
+X-Received: by 2002:a4a:e751:0:b0:571:aceb:26d3 with SMTP id n17-20020a4ae751000000b00571aceb26d3mr7013547oov.4.1698164961620;
+        Tue, 24 Oct 2023 09:29:21 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id di11-20020a0568201e8b00b0057b43a25deasm1997587oob.3.2023.10.24.09.29.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 09:29:20 -0700 (PDT)
+Received: (nullmailer pid 4048334 invoked by uid 1000);
+	Tue, 24 Oct 2023 16:29:19 -0000
+Date: Tue, 24 Oct 2023 11:29:19 -0500
+From: Rob Herring <robh@kernel.org>
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>, Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Tom Rini <trini@konsulko.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: mtd: binman-partitions: Add
+ alignment properties
+Message-ID: <20231024162919.GC3707756-robh@kernel.org>
+References: <20231009220436.2164245-1-sjg@chromium.org>
+ <20231009220436.2164245-3-sjg@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFooPLCmJeqjhiMm7HRdW5UrEw0yHvGF9fgLvOigsgbWxg@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231009220436.2164245-3-sjg@chromium.org>
 
-On Tue, Oct 24, 2023 at 06:11:34PM +0200, Ulf Hansson wrote:
-> On Tue, 24 Oct 2023 at 15:07, Stephan Gerhold
-> <stephan.gerhold@kernkonzept.com> wrote:
-> >
-> > On Tue, Oct 24, 2023 at 02:49:32PM +0200, Ulf Hansson wrote:
-> > > On Tue, 24 Oct 2023 at 14:03, Stephan Gerhold
-> > > <stephan.gerhold@kernkonzept.com> wrote:
-> > > >
-> > > > On Thu, Oct 19, 2023 at 01:26:19PM +0200, Ulf Hansson wrote:
-> > > > > On Thu, 19 Oct 2023 at 12:24, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > > >
-> > > > > > On Wed, 18 Oct 2023 at 10:06, Stephan Gerhold
-> > > > > > <stephan.gerhold@kernkonzept.com> wrote:
-> > > > > > >
-> > > > > > > The genpd core caches performance state votes from devices that are
-> > > > > > > runtime suspended as of commit 3c5a272202c2 ("PM: domains: Improve
-> > > > > > > runtime PM performance state handling"). They get applied once the
-> > > > > > > device becomes active again.
-> > > > > > >
-> > > > > > > To attach the power domains needed by qcom-cpufreq-nvmem the OPP core
-> > > > > > > calls genpd_dev_pm_attach_by_id(). This results in "virtual" dummy
-> > > > > > > devices that use runtime PM only to control the enable and performance
-> > > > > > > state for the attached power domain.
-> > > > > > >
-> > > > > > > However, at the moment nothing ever resumes the virtual devices created
-> > > > > > > for qcom-cpufreq-nvmem. They remain permanently runtime suspended. This
-> > > > > > > means that performance state votes made during cpufreq scaling get
-> > > > > > > always cached and never applied to the hardware.
-> > > > > > >
-> > > > > > > Fix this by enabling the devices after attaching them and use
-> > > > > > > dev_pm_syscore_device() to ensure the power domains also stay on when
-> > > > > > > going to suspend. Since it supplies the CPU we can never turn it off
-> > > > > > > from Linux. There are other mechanisms to turn it off when needed,
-> > > > > > > usually in the RPM firmware (RPMPD) or the cpuidle path (CPR genpd).
-> > > > > >
-> > > > > > I believe we discussed using dev_pm_syscore_device() for the previous
-> > > > > > version. It's not intended to be used for things like the above.
-> > > > > >
-> > > > > > Moreover, I was under the impression that it wasn't really needed. In
-> > > > > > fact, I would think that this actually breaks things for system
-> > > > > > suspend/resume, as in this case the cpr driver's genpd
-> > > > > > ->power_on|off() callbacks are no longer getting called due this,
-> > > > > > which means that the cpr state machine isn't going to be restored
-> > > > > > properly. Or did I get this wrong?
-> > > > >
-> > > > > BTW, if you really need something like the above, the proper way to do
-> > > > > it would instead be to call device_set_awake_path() for the device.
-> > > > >
-> > > >
-> > > > Unfortunately this does not work correctly. When I use
-> > > > device_set_awake_path() it does set dev->power.wakeup_path = true.
-> > > > However, this flag is cleared again in device_prepare() when entering
-> > > > suspend. To me it looks a bit like wakeup_path is not supposed to be set
-> > > > directly by drivers? Before and after your commit 8512220c5782 ("PM /
-> > > > core: Assign the wakeup_path status flag in __device_prepare()") it
-> > > > seems to be internally bound to device_may_wakeup().
-> > > >
-> > > > It works if I make device_may_wakeup() return true, with
-> > > >
-> > > >         device_set_wakeup_capable(dev, true);
-> > > >         device_wakeup_enable(dev);
-> > > >
-> > > > but that also allows *disabling* the wakeup from sysfs which doesn't
-> > > > really make sense for the CPU.
-> > > >
-> > > > Any ideas?
-> > >
-> > > The device_set_awake_path() should be called from a system suspend
-> > > callback. So you need to add that callback for the cpufreq driver.
-> > >
-> > > Sorry, if that wasn't clear.
-> > >
-> >
-> > Hmm, but at the moment I'm calling this on the virtual genpd devices.
-> > How would it work for them? I don't have a suspend callback for them.
-> >
-> > I guess could loop over the virtual devices in the cpufreq driver
-> > suspend callback, but is my driver suspend callback really guaranteed to
-> > run before the device_prepare() that clears "wakeup_path" on the virtual
-> > devices?
+On Mon, Oct 09, 2023 at 04:04:15PM -0600, Simon Glass wrote:
+> Add three properties for controlling alignment of partitions, aka
+> 'entries' in binman.
 > 
-> Yes, that's guaranteed. dpm_prepare() (which calls device_prepare())
-> is always being executed before dpm_suspend().
+> For now there is no explicit mention of hierarchy, so a 'section' is
+> just the 'binman' node.
 > 
+> These new properties are inputs to the packaging process, but are also
+> needed if the firmware is repacked, to ensure that alignment
+> constraints are not violated. Therefore they are provided as part of
+> the schema.
+> 
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+> 
+> (no changes since v2)
+> 
+> Changes in v2:
+> - Fix 'a' typo in commit message
+> 
+>  .../mtd/partitions/binman-partition.yaml      | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
+> index 35a320359ec1..8e8a3b6d4d14 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/binman-partition.yaml
+> @@ -28,6 +28,42 @@ properties:
+>            - const: u-boot       # u-boot.bin from U-Boot project
+>            - const: atf-bl31     # bl31.bin or bl31.elf from TF-A project
+>  
+> +  align:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This sets the alignment of the entry. The entry offset is adjusted
+> +      so that the entry starts on an aligned boundary within the containing
+> +      section or image. For example ‘align = <16>’ means that the entry will
+> +      start on a 16-byte boundary. This may mean that padding is added before
 
-Thanks, I think I understand. Maybe. :-)
+Only your example defines that alignment is in bytes.
 
-Just to confirm, I should call device_set_awake_path() for the virtual
-genpd devices as part of the PM ->suspend() callback? And this will be
-guaranteed to run after the "prepare" phase but before the
-"suspend_noirq" phase where the genpd core will check the wakeup flag?
+> +      the entry. The padding is part of the containing section but is not
+> +      included in the entry, meaning that an empty space may be created before
+> +      the entry starts. Alignment should be a power of 2. If ‘align’ is not
+> +      provided, no alignment is performed.
 
-Thanks,
-Stepan
+Would be nice to have some constraints. Unfortunately, no way to say 
+'power of 2' in json-schema (we could add something possibly), so the 
+only way is:
+
+enum: [ 2, 4, 8, 16, 32, 64, ... ]
+
+Kind of verbose if we add all 31 possibilities...
+
+Could also do this:
+
+minium: 2
+maximum: 0x80000000
+multipleOf: 2
+
+> +
+> +  align-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This sets the alignment of the entry size. For example, to ensure
+> +      that the size of an entry is a multiple of 64 bytes, set this to 64.
+> +      While this does not affect the contents of the entry within binman
+> +      itself (the padding is performed only when its parent section is
+> +      assembled), the end result is that the entry ends with the padding
+> +      bytes, so may grow. If ‘align-size’ is not provided, no alignment is
+> +      performed.
+> +
+> +  align-end:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This sets the alignment of the end of an entry with respect to the
+> +      containing section. Some entries require that they end on an alignment
+> +      boundary, regardless of where they start. This does not move the start
+> +      of the entry, so the contents of the entry will still start at the
+> +      beginning. But there may be padding at the end. While this does not
+> +      affect the contents of the entry within binman itself (the padding is
+> +      performed only when its parent section is assembled), the end result is
+> +      that the entry ends with the padding bytes, so may grow. If ‘align-end’
+> +      is not provided, no alignment is performed.
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -40,10 +76,13 @@ examples:
+>          partition@100000 {
+>              compatible = "u-boot";
+>              reg = <0x100000 0xf00000>;
+> +            align-size = <0x1000>;
+> +            align-end = <0x10000>;
+>          };
+>  
+>          partition@200000 {
+>              compatible = "atf-bl31";
+>              reg = <0x200000 0x100000>;
+> +            align = <0x4000>;
+>          };
+>      };
+> -- 
+> 2.42.0.609.gbb76f46606-goog
+> 
 
