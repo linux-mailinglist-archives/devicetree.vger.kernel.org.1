@@ -1,203 +1,229 @@
-Return-Path: <devicetree+bounces-12029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5392D7D7802
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 00:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CAE7D787B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 01:23:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0824C281D7D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 22:32:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38CC8281735
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 23:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF49374D8;
-	Wed, 25 Oct 2023 22:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966BC374F7;
+	Wed, 25 Oct 2023 23:23:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ijeFRrAL"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="JGwFVM/a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8FD381AF;
-	Wed, 25 Oct 2023 22:32:22 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C1890;
-	Wed, 25 Oct 2023 15:32:20 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39PMRckh018217;
-	Wed, 25 Oct 2023 22:31:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=0bQFa/OqIcYnNhxbQluyp0FpYS66aD/rqg1j1yF4XKw=;
- b=ijeFRrAL554HbPROVtgWMr342xAc9G3Hb0rAtbzazIeiS1eg43uNeJ5NNvthovYmO1bC
- PbwBEMKg8RwEfBd4KRmSynJ6HsadqSD0aP6JRwG41tKmTEPkLWN07zpX90f5OC/1iVc8
- AuQjJZYAYakQJru8MAWTjJPPSKMr+zN+QfpdTNMneESElujSicMhcJTYobkPp1qKPymj
- VQm+TYJ3AAzEOiKQXMJPDw6HXPHSoOiOSXts2wv4QLyq950/WmSY89YWpssdS2GFWX/A
- bxyLjkgkjbbyWhdodpk4n7LuczyQGKSPtkCtE7tp+/lGrmcWN8ctgfQLXgB8WDj20mRx eA== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3txwjphvea-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Oct 2023 22:31:55 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39PMVsJe024992
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Oct 2023 22:31:54 GMT
-Received: from [10.71.114.19] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 25 Oct
- 2023 15:31:53 -0700
-Message-ID: <dc14cce6-7967-9992-c552-00fd043b0445@quicinc.com>
-Date: Wed, 25 Oct 2023 15:31:52 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7B6266BC;
+	Wed, 25 Oct 2023 23:23:29 +0000 (UTC)
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2088.outbound.protection.outlook.com [40.107.8.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C80EDE;
+	Wed, 25 Oct 2023 16:23:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HSWAEowkZ3sWJutIDHThrIwz2ZSEUpkzQS7ND6jb22n64f4lnE2qvoBHLC2SbO5xatJKf/Yl+BP9aP+159D0VprNu3k+g9rsXiDU8w3GkuotNH8cRWRdOo+SfcT/Jp3QB5B8tUwYkWn6hWMhUx0I25mW9CvjrEXrPPCPXYH6Tp7LXJf9Gxu7UYR09TOTNCyE7ueUElDZ76ZyB2BCsVoBMNGJA9nd3EItwfZARRUaYL7x54MvLHYjwUDFBDl4YfPefpFLYaf0H6P0OcMSKVvDx3aJgMSOq5jiRI2rAPUloZoFiup9ys9K4OVb97RfXZA5y4n11RO7aEyJlFloHE/b0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Bc3/NXvbiTSvDWfHsO5MBpvxp+ls5Je/W5znP1QKeuA=;
+ b=H+UZ5BtUYWEq0D/MecGJiePInzWSkm1hupSEsADnyIsyaPzAHAKv3oJB5StcB98cr/6qlOCRK6/gCt1iWU4bTdVk1ejYNbEQU+Hk+HDdjHaMXJ/rZ15hyRex2bS4GpIw95DUjo++ZF+7zI+ROlvZai6G496SahcECmDcX6ml0V8UMlRB6vC6fbRygvhv/ngYCzc4Vu/w3mtvlv7is4UR/h+wtTrPcGuLEkR6RkXf7i7hnHBkVdjFyvpWO9ameV+PKvdqYryYX3lPoHhHZa5smcSa7I1XyM4f09UOSYgVQLMx6ytKYfpcEVZs7ItRxxvi3WwRGQsBov9ZE4Y9XNpYgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Bc3/NXvbiTSvDWfHsO5MBpvxp+ls5Je/W5znP1QKeuA=;
+ b=JGwFVM/a5OQBS0PM2m46jUSauL3aG9iUBqspx5f8PcKhhcQUq3vBAL49RNd2XaYJ5Kir9kGI34K8BrS1swakUYga2kuPyBmefKSb+yaoF7qpDeCHs6tEUNiw3W6Y3PQtDNwGr0g7+JLqYOgRuiws5sWkAEysQC66yXN10L09djU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by AM9PR08MB6098.eurprd08.prod.outlook.com (2603:10a6:20b:2d9::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Wed, 25 Oct
+ 2023 23:23:24 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a309:1d65:f5fb:436b]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a309:1d65:f5fb:436b%6]) with mapi id 15.20.6933.019; Wed, 25 Oct 2023
+ 23:23:24 +0000
+Message-ID: <1c4a6185-fe09-45d1-900a-10abf48e3fc9@wolfvision.net>
+Date: Thu, 26 Oct 2023 01:23:21 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: nxp,pcf8563: add hiz-output
+ property
+Content-Language: en-US
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231024-topic-pcf85363_hiz_output-v1-0-50908aff0e52@wolfvision.net>
+ <20231024-topic-pcf85363_hiz_output-v1-2-50908aff0e52@wolfvision.net>
+ <20231025222327c0b5d460@mail.local>
+ <2f17c031-30f6-4242-b2a1-1628402b3091@wolfvision.net>
+In-Reply-To: <2f17c031-30f6-4242-b2a1-1628402b3091@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR09CA0168.eurprd09.prod.outlook.com
+ (2603:10a6:800:120::22) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v9 34/34] ASoC: usb: Rediscover USB SND devices on USB
- port add
-Content-Language: en-US
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <mathias.nyman@intel.com>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bgoswami@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20231017200109.11407-1-quic_wcheng@quicinc.com>
- <20231017200109.11407-35-quic_wcheng@quicinc.com>
- <b503058d-e23f-4a63-99b8-f0a62b2a2557@linux.intel.com>
- <6409c486-7393-4352-489c-ecd488597c4c@quicinc.com>
- <efa9cdd0-4e5b-4b54-a4ea-7ec735224f44@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <efa9cdd0-4e5b-4b54-a4ea-7ec735224f44@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 14nEvn4zNDoYq68xWCflDzpsII9GKJ3J
-X-Proofpoint-GUID: 14nEvn4zNDoYq68xWCflDzpsII9GKJ3J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-25_12,2023-10-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0
- suspectscore=0 impostorscore=0 adultscore=0 clxscore=1015 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310250193
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|AM9PR08MB6098:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1b3d493-28e6-4743-ab03-08dbd5b16221
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	NYGeocQrcAPckuDkgMwgsWVCZiR+5bSWFeqSB+NbxtG60WfYCP0jkiK7fBN5fR0+juc0XcrkYMne4dgLEtJ26/p3L6Hs98ZTwkwzp76HQ/gGGq5UqH46EcnVb5skGFwumPzCdrTKNdafgIVVXXj9ey90X0xdCmUpKkyqpGHuBUJ/+YTzj9cZlKCov5TVNo55yUEwpnylyPfMn2OdPDGa5Z7cKMpNARwlL2tTJ2HGYN4ukW4UDQTHVgqKT+fPGgDWvqkNOKjO7gWh5ajvqdGS3lZLNTg39WRt0Iro2ssnRIdn/wmiy/0tF6U9flFaTMOsKIadzG0MsXGtEkn2s4NcVWcVM4g2JI6hUX43mjejuRlfgzPIj6NewgRFrIgtOZM3T0t+p1/mba00l+MQCF6olZljQQ34hXhntsdtqVyU2CIOPWpJiKcXGPtAwqblQz/TKqh0MWwPanX6S1NLYELDC+ImwFw6q3LLZSQDyC2/j5cv9yhqWFPgiQBJ5w2cYpp85ijcNII+8ekSSggUriUdj1v+j3DeU4Jbc4MvcnZRAsEy+MqHbAvdSOkcKoQThVcVYpITh+mtMvirRWu+BGXHwkcNguYfkhljdcxhzDu4QY8Mhqx2QpS8Ht43y45j3urh7vedMhnNCwlB8dKv2T6B9Q==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39850400004)(346002)(136003)(366004)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(6512007)(2616005)(31696002)(38100700002)(36756003)(83380400001)(86362001)(66946007)(66556008)(66476007)(54906003)(316002)(6916009)(8676002)(4326008)(8936002)(44832011)(41300700001)(5660300002)(6506007)(31686004)(2906002)(6666004)(53546011)(478600001)(6486002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?a01QSTB0L1N3TC9PTFJaRWV3UHViWXRHTEtrYU1VOHNhWUFkeE10VG1sWG1H?=
+ =?utf-8?B?c05UMllMSVpQb3pWZkRnZVJnb3grZExsWUgzdTBza1N4RVdKajlUL3JTeWJq?=
+ =?utf-8?B?OHpLdXYzSWt3Vm1MOXRiT3A3dnc2MDF3aWpOY2ZFdDA4YktpbCtxSGlaYUlB?=
+ =?utf-8?B?STFmdXgvZWNzUWc4RWV0NFBVMDBOc1JIV2FGUWR2OUloWGdEdjZVY2lraUtx?=
+ =?utf-8?B?cTdEbFZKZnlIQ0NZVmYza0NQV25UWWVjZkkvckhkYkpzQUVjUnplc2JIUFNy?=
+ =?utf-8?B?TmsrMnZ1VENaUFNtc2grWDF6VXYzUHc1T0FvWjNveFlSZ1llTnl4UXJoeVds?=
+ =?utf-8?B?a1E1ZDlUdk1yejVhUjBVRStOeEpQMlZNVHV6Y1ltbjZzZ3V2ZmNBcGVnbjV2?=
+ =?utf-8?B?OUZjWi9kazdXNmlZR3UrcndqdmhldWIwWCtrblZHYWo4MGJCNEZhWHFFZ3pF?=
+ =?utf-8?B?MlJwTCthZVdHdVZUaXVHQlpsc1RJaXErY3dpYXg3VUgzWVdkaFMzSHZGcTF0?=
+ =?utf-8?B?QW02V3ZMTEwveitTcHZpcldBZlhsWE1qaGVMUHhNYlpuVFA5RWlleVJYdkts?=
+ =?utf-8?B?MDhXbWdVcWVQRCt5QlMyYjBjS01JNW4xWTJFSmZabFpRZzljd3ZOcUM1ZVZQ?=
+ =?utf-8?B?YUFQY3VTK0ZwVExlSndpRWYrSGs3UTBkajFqTDlwL0pGeTBaMjBWVURYdm1i?=
+ =?utf-8?B?WTIrZWdONm5PaXMxT2w3US8zcDBsMWNDUGQ1aGNtSThJOWZyTGFWcTZ3WTNR?=
+ =?utf-8?B?aXpZekNMTkZjd2xDbmkvR0pZcUxCTkovWGQ1cDVVYjg1Nk9UbUMzVEtyN3dl?=
+ =?utf-8?B?aFV3a0ZJREN2YVhFRXQxVS9nQkdpQ2xyMjZwcmVFS1BFQVJMUm9BTS9DTmtF?=
+ =?utf-8?B?cGpQQjNXU2c0UlR5ejZLZ3cxRTRQQUdBNk9ERUJvZVVXVXVEaVpQZ1grQVFq?=
+ =?utf-8?B?NEhhdi9EeG82VHhOT0J3c0xwVHRXeXoxVUNCc2Nrelh0Tks2VTdnNm5EZ3U0?=
+ =?utf-8?B?cnN2NWZGZnVyRUVtdElMblZLT01pMkx2THA5UEM4dXpsYlRtS01DRC9COUFW?=
+ =?utf-8?B?cW42QkpRbGllWmVwMStmMHJGVlg0RFE5N1hDUEZZUjFBUWhqYXlUUzdtTEhB?=
+ =?utf-8?B?dzR4S0VobHpQTmpMSDhWWGcyQ0h4T2Q0OTkyL09pTDROQkhIVDBiQ00rM2tV?=
+ =?utf-8?B?QkYrbnhWNzg1UFdaYjlUVm9QWSsydmRHMUNrZXl1VEFXeithUGxXNTdKMjVD?=
+ =?utf-8?B?dnpFR1FySGllRFRyMnZFYTMwb212QWJoUTRpZ0xSeW1jaTVuRXVzeWJGQ05o?=
+ =?utf-8?B?dEZrUU9JdTFUVm9qMGNMMzE0NC9PUEpLSGtuMk5xNHhXVjJXRksxTWx2MDNN?=
+ =?utf-8?B?aEFtS1hSelQ0L1ZFRmVXd25pY3RGK1pHV3RHNlN2Q2FxRWM0aDVvRXZYeTV6?=
+ =?utf-8?B?Y3pRSVdhUlVFUFl5VHpjRDJuN0tKR1RvTmFaQThQMTQxZmdDTVFrNXYrUlM4?=
+ =?utf-8?B?NHQ5L2xCUy9CSkVRcURza0pZTlpLbHVyMWkyWERrMllaTnhYc29oOFdaNUVm?=
+ =?utf-8?B?M045bU5LQWxKMlN1VEZkZ09MbTAwazlrZ0FPRWNuRkkzQnN1czlSOFBKRzRG?=
+ =?utf-8?B?RnpZQU9OTUs0NlY0SWNUNU5tcXBxUTNmSy84YVpSZHZiclV5NzhZQSsvdEVX?=
+ =?utf-8?B?emVtMGQ1emRzZW05dU5KQkZlRm5yY25VbGpaQ3lDUmZGa3owVHRFOURYd0R0?=
+ =?utf-8?B?c25QOG5xQzJzUjh3SlQzQmVXSGlhSDcyN0VJYkZnVmpVcFE2c3QwK0g3QStj?=
+ =?utf-8?B?Rkd1TXdXMGs3d2lxQkhNZlhqcDJHcm5WRFZlVEpYOHJXYWZKYjJEbHEzMnla?=
+ =?utf-8?B?Y2pvUGtGZ0pFVEhnT1U1ZTJSTGpKOVB2OXh4WWYzMXVCNzNHZXVzczI4Z0lE?=
+ =?utf-8?B?N21XTU9BY2RtdDZyUVRaSjZ1SStpc0ZFTWNxRkN6OWVKcUQ1MHRLc1lRRjE3?=
+ =?utf-8?B?aE9jTzdYUmdpeFBaQVhyblV2dHhSb2R5VWRVeUtRbGFBMkU4WWQ2MjZLUWNU?=
+ =?utf-8?B?eXBvT1hXSkJNV2hyVWJnQTJkbFQwSklrTVp6ai9aY0M4UW9tZUR4ZCtuVVoy?=
+ =?utf-8?B?YkpTYjBEaDhFWm1tSk5majlsb3JOY250OXFQaVB5cFBoQVMvN1NYcmpSMUNV?=
+ =?utf-8?B?YkxVd3R0ZjFtdTRiWHRrMzhaY3VkYWJXeWdDWjlldkdSdGloN1dkSEtCQzhl?=
+ =?utf-8?Q?yZTC6ARRaUOx/K/flL3BY42biJ6xxB1UFY7XEzDf8M=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1b3d493-28e6-4743-ab03-08dbd5b16221
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 23:23:23.9063
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PgBg/ZkYr4KmhleK0+fSnR53RZC7DxuKwk8cocVKY8nBtU2txcErFfX2uZhnRiYVyG9I58nRbpFFm3iBylULMdmNbuWK4dy5nB/c+Fh9Mcw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR08MB6098
 
-Hi Pierre,
+Hi,
 
-On 10/24/2023 6:35 AM, Pierre-Louis Bossart wrote:
+On 26.10.23 00:30, Javier Carrasco wrote:
+> Hi Alexandre,
 > 
-> 
-> On 10/23/23 16:54, Wesley Cheng wrote:
->> Hi Pierre,
+> On 26.10.23 00:23, Alexandre Belloni wrote:
+>> Hello,
 >>
->> On 10/17/2023 4:11 PM, Pierre-Louis Bossart wrote:
->>>
->>>
->>> On 10/17/23 15:01, Wesley Cheng wrote:
->>>> In case the USB backend device has not been initialized/probed, USB SND
->>>> device connections can still occur.  When the USB backend is eventually
->>>> made available, previous USB SND device connections are not
->>>> communicated to
->>>> the USB backend.  Call snd_usb_rediscover_devices() to generate the
->>>> connect
->>>> callbacks for all USB SND devices connected.  This will allow for the
->>>> USB
->>>> backend to be updated with the current set of devices available.
->>>>
->>>> The chip array entries are all populated and removed while under the
->>>> register_mutex, so going over potential race conditions:
->>>>
->>>> Thread#1:
->>>>     q6usb_component_probe()
->>>>       --> snd_soc_usb_add_port()
->>>>         --> snd_usb_rediscover_devices()
->>>>           --> mutex_lock(register_mutex)
->>>>
->>>> Thread#2
->>>>     --> usb_audio_disconnect()
->>>>       --> mutex_lock(register_mutex)
->>>>
->>>> So either thread#1 or thread#2 will complete first.  If
->>>>
->>>> Thread#1 completes before thread#2:
->>>>     SOC USB will notify DPCM backend of the device connection.  Shortly
->>>>     after, once thread#2 runs, we will get a disconnect event for the
->>>>     connected device.
->>>>
->>>> Thread#2 completes before thread#1:
->>>>     Then during snd_usb_rediscover_devices() it won't notify of any
->>>>     connection for that particular chip index.
->>> Looks like you are assuming the regular USB audio stuff is probed first?
->>>
->>> What if it's not the case? Have you tested with a manual 'blacklist' and
->>> "modprobe" sequence long after all the DSP stuff is initialized?
->>>
->>> It really reminds me of audio+display issues, and the same opens apply
->>> IMHO.
+>> I'm sorry I never replied to your previous thread...
 >>
->> Not necessarily...if the USB audio driver is not probed, then that is
->> the same scenario as when there is no USB audio capable device plugged
->> in, while the offload path is waiting for the connect event. I think
->> this is the standard scenario.
+>> On 25/10/2023 18:21:55+0200, Javier Carrasco wrote:
+>>> The "hiz-output" property models the RTC output as a high-impedance
+>>> (hi-Z) output.
+>>>
+>>> This property is optional and if it is not defined, the output will
+>>> either act as an output clock (default mode) or as an interrupt
+>>> depending on the configuration set by other properties.
+>>>
+>>> Two modes are defined in case the high-impedance is used: "enabled" and
+>>> "sleep". The former disables the RTC output completely while the latter
+>>> keeps the RTC output disabled until the system enters in sleep mode.
+>>> This option is especially relevant if the output clock is used to feed a
+>>> PMU, a PMIC or any other device required to run when the rest of the
+>>> system is down. For the sake of completeness, a "disabled" mode has been
+>>> added, which acts as if the property was not defined.
+>>>
+>>> Document "hiz-output" as a non-required property.
+>>>
+>>> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+>>> ---
+>>>  Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml | 14 ++++++++++++++
+>>>  1 file changed, 14 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+>>> index 52aa3e2091e9..4b27a9154191 100644
+>>> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+>>> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+>>> @@ -36,6 +36,19 @@ properties:
+>>>      enum: [6000, 7000, 12500]
+>>>      default: 7000
+>>>  
+>>> +  hiz-output:
+>>> +    description:
+>>> +      Use enabled if the output should stay in high-impedance. This
+>>> +      mode will mask the output as an interrupt source.
+>>> +      Use sleep if the otuput should be only active in sleep mode.
+>>> +      This mode is compatible with any other output configuration.
+>>> +      The disabled value acts as if the property was not defined.
+>>> +    enum:
+>>> +      - enabled
+>>> +      - sleep
+>>> +      - disabled
+>>> +    default: disabled
+>>> +
 >>
->> In the situation where the platform sound card hasn't probed yet and USB
->> audio devices are being identified, then that is basically the scenario
->> that would be more of an issue, since its USB SND that notifies of the
->> connection state (at the time of connect/disconnect).
-> 
-> Not following if this scenario is covered?
-> 
+>> If instead of using a custom property, you consider this as what it
+>> actually is: pinmuxing, then everything else comes for free. With
+>> pinctrl, you can define different states for runtime and sleep and they
+>> will get applied automatically instead of open coding in the driver.
 
-Yes, this is covered.  For example, if there are already devices 
-connected, but the platform sound card is still unbound.  Then this 
-rediscover API will be called to traverse through the list of connected 
-USB sound devices, so that the USB DPCM dai can know about their 
-existence when it is probed.
+I am not sure if your solution would cover all my needs:
 
->> I've tried with building these drivers as modules and probing them at
->> different times/sequences, and I haven't seen an issue so far.
-> 
-> The scenario I have in mind is this:
-> 
-> the platform driver is on the deny list, the USB driver detects a
-> device. When the platform driver probes at a later time (with a manual
-> modprobe to make delays really long), how would the notification be handled?
-> 
+1.- With pinctrl I can model the SoC pins, right? That would not stop
+the RTC output though, so the 32 kHz signal would be generated anyways
+even though the SoC would ignore it. That is one of the things I want to
+avoid.
 
-So that is essentially the same scenario as when there is no USB device 
-connected, ie no USB class driver is bounded to anything.  Since the 
-notifications are all handled within USB SND (USB class driver) then if 
-the module isn't loaded yet, no notification is sent to the DPCM USB 
-backend.  Once you say...modprobe the USB SND driver, then the USB 
-interface probe occurs, and that would issue the connect callback from 
-the USB SND probe routine. (keep in mind these are not platform devices, 
-we're working with devices under the usb bus)
-
-> Between audio and display, we use the 'drm_audio_component' layer to
-> model these sort of run-time binding between independent driver stacks.
-> It's not used here but we need a moral equivalent, don't we?
+2.- What happens if the RTC output is a clock for an external device
+that is only required when the SoC is in sleep mode? In that case I
+would like the RTC driver to control the output with the modes it provides.
+>>
+>> Also, how you define this property means that everyone currently using
+>> this RTC is going to have a new warning that they should just ignore.
+>>
+>>
+> Thanks for your reply. The warning can only be triggered if the property
+> is defined, so in principle no one could have that warning yet. Only the
+> ones who actually define it and use an invalid value would get the warning.
 > 
-> It would really help if you documented a bit more the dependencies or
-> timing assumptions, to make sure we have a stable solution to build on.
+> On the other hand I did not consider your approach, which might make
+> this patch irrelevant. So I will have a look at it to make sure that it
+> achieves the same results.
 > 
-
-I can add this to the RST that I'll make in detail, and add a summary 
-here in the commit message.
-
-Thanks
-Wesley Cheng
+> Thanks again and best regards,
+> Javier Carrasco
+> 
 
