@@ -1,85 +1,92 @@
-Return-Path: <devicetree+bounces-11984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0607D74FD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 21:59:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6337D7506
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 22:01:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CD0E1C20C57
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 19:59:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A68BB20F4A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 20:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F85D328A6;
-	Wed, 25 Oct 2023 19:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="UfFMIM7e";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="UAS7JqC/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C06328AC;
+	Wed, 25 Oct 2023 20:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21BE2D631
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 19:59:18 +0000 (UTC)
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C705F93;
-	Wed, 25 Oct 2023 12:59:17 -0700 (PDT)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1698263956;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sT6BK5Z8FPdXb0R3Y4NYE9GeqC6Wv7eahDU+D60e1Ps=;
-	b=UfFMIM7eQiozcUjqpRZh5qaxkLEq8/25fz8PmjlZuV6PIoFovao2Bbs1sW3O6KSyMaSrGK
-	YZGvmLN3vsXfmUYzVQ6BV1J674CzA1EDPI1HwadW711XopPlJD2r2UmR0G3a313p3h9l19
-	IZYw4JC/qYr0vkr0mwcrKY+gW5ZmopG2f1htxgsLdH/O5PadMrsoCiT4c7SXFw79gqTios
-	YV9lR8jbxXDjU3KhWoNYZy0dj5Es19ds0W3hoOHQMb8ll/4qLnZyKrJTzggDTqG83UARCI
-	MjbvIPxf3DCmqYONVcFQFnJUM6wSAKq8p+Gx83HGq/ybjtRGujc4q3EeQ3aKqA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1698263956;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sT6BK5Z8FPdXb0R3Y4NYE9GeqC6Wv7eahDU+D60e1Ps=;
-	b=UAS7JqC/0l/WnQ7ztOlbqaFHo826mHKYl/aPVpUn6S9Ppdw/RBzfQ1kws4/1EYbO9PUovO
-	rJ/FsqYvfBY4irBQ==
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, =?utf-8?B?QmrDtnJuIFTDtnBlbA==?=
- <bjorn@kernel.org>, Atish
- Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan
- <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-Subject: Re: [PATCH v11 09/14] irqchip/riscv-imsic: Add support for PCI MSI
- irqdomain
-In-Reply-To: <20231023172800.315343-10-apatel@ventanamicro.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-10-apatel@ventanamicro.com>
-Date: Wed, 25 Oct 2023 21:59:15 +0200
-Message-ID: <87bkcm5v8s.ffs@tglx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988373158A
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 20:00:57 +0000 (UTC)
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0FB0136;
+	Wed, 25 Oct 2023 13:00:55 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3b2ec5ee2e4so52675b6e.3;
+        Wed, 25 Oct 2023 13:00:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698264055; x=1698868855;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uoMt90OKcFXpIeFo/05qurlurQ+/MEMSAJc4nHZV4uY=;
+        b=lWlnOm56wckLEctqMH5CQjgZOuz9wjbuz0R5Vhfi2QnuYfnLmqOI93dEOtZ6LwTVT7
+         NihxS3bhvNkjyjbMFrUTJJ4hcnfzFBLr/vUROAy8BaoCNhNB0EWE19Hfl671j+ZyHQca
+         DcjIN7StdqxjpZyNb4Hobb/VjEnk/2MZa/wSAoSbWVAEHTQ/kd9ZNDjOjk3NZDOpBXfb
+         JMBuFalkc8LT0BjXlxFz2rAYvkiO4kny7hLao7Grss0t2kGWB4SjfNnax1A34GHUUtbB
+         Cq2l/OZYwnxVQAJR1UVBNl887D03dVLFq9oGT8/VK5d9TYnmXvLS3W8xLxtSKE/vVIhZ
+         JkIw==
+X-Gm-Message-State: AOJu0Yyvfj/yvrB0WHaArcwKZ4LdgS/NO9CMj2aArjQ6XLZpXV+RZnha
+	XD+5mevsD/Rzsb7joltglg==
+X-Google-Smtp-Source: AGHT+IGd+HFEO0LVcA30PIFwVUYPF81oIVG6w5idnhTj/UqzaoeLqG0DvBSh13xSTR8P9OsfI6q/qg==
+X-Received: by 2002:a05:6808:64d:b0:3a8:80ea:f0c6 with SMTP id z13-20020a056808064d00b003a880eaf0c6mr14961768oih.29.1698264055123;
+        Wed, 25 Oct 2023 13:00:55 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s15-20020a056830124f00b006c4727812fdsm2380249otp.15.2023.10.25.13.00.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Oct 2023 13:00:54 -0700 (PDT)
+Received: (nullmailer pid 1066090 invoked by uid 1000);
+	Wed, 25 Oct 2023 20:00:53 -0000
+Date: Wed, 25 Oct 2023 15:00:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Nik Bune <n2h9z4@gmail.com>
+Cc: conor+dt@kernel.org, wim@linux-watchdog.org, krzysztof.kozlowski+dt@linaro.org, skhan@linuxfoundation.org, devicetree@vger.kernel.org, linux@roeck-us.net, nicolas.ferre@microchip.com, claudiu.beznea@microchip.com, linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert
+ txt to yaml
+Message-ID: <169826359217.1053485.16654434281057363682.robh@kernel.org>
+References: <20230924181959.64264-1-n2h9z4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230924181959.64264-1-n2h9z4@gmail.com>
 
-On Mon, Oct 23 2023 at 22:57, Anup Patel wrote:
-> The Linux PCI framework requires it's own dedicated MSI irqdomain so
-> let us create PCI MSI irqdomain as child of the IMSIC base irqdomain.
 
-Same here. Please don't add new incarnations of that and switch over to
-per device MSI domains which is the most future proof mechanism.
+On Sun, 24 Sep 2023 20:19:59 +0200, Nik Bune wrote:
+> Convert txt file to yaml.
+> 
+> Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> 
+> Changes in v3:
+> - Removed trailing whitespace in an element of the maintainers list.
+> 
+> v2 patch: https://lore.kernel.org/linux-devicetree/20230924172004.59208-1-n2h9z4@gmail.com/
+> 
+>  .../watchdog/atmel,at91rm9200-wdt.yaml        | 33 +++++++++++++++++++
+>  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 -----
+>  2 files changed, 33 insertions(+), 9 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+> 
 
-Thanks,
+It seems watchdog bindings aren't getting applied, so I've applied it. 
+Wim, please take watchdog bindings in the future unless noted otherwise.
 
-        tglx
-
+Rob
 
