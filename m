@@ -1,199 +1,112 @@
-Return-Path: <devicetree+bounces-11911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 212097D6EDD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A207D6FA1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:47:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9F80281CD9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:39:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B520281B4C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF42C8EA;
-	Wed, 25 Oct 2023 14:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rqInz86u"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3342627729;
+	Wed, 25 Oct 2023 14:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9106B2AB34
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:39:23 +0000 (UTC)
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23A9DC
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:39:20 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4081ccf69dcso5854905e9.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:39:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698244759; x=1698849559; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CB2fosNyHpnLw68d0tSWZGOJRnHryfe3IEs9QTF/RYI=;
-        b=rqInz86ufeeDKaBhGjYlLXxAz+tTNal+VF/vrivCM2NlZtXNoD0FZEFV/+aqV8A5p6
-         wTLtVGlfve6UuxGhZ3map5eO72WOt+5O+ufVcSaab7d9anvxI1hC/F/fuPQUx0TP5RBm
-         sw3exhZJvwCmgOgDHtKDOGGjRML7WRMxwYCnmvHOY5MBjhi1bd72eh1dv8qBZYlUhBiF
-         KNnHYhiTmWLc51bU1CyMbpg5Nn8j2qXXt3wnZnguHgtvnvmTgLdYM8EnI319riGStdPz
-         JaTePrfLFU+/BjgAJ+6J7MSg53jxTLOlOgnxa5OCYDXZVWOwwE/vHv0KddhU2ahuQiOK
-         i5eQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A2020B00
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:47:36 +0000 (UTC)
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAAD9B0;
+	Wed, 25 Oct 2023 07:47:35 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3b2e44c7941so3966883b6e.2;
+        Wed, 25 Oct 2023 07:47:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698244759; x=1698849559;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CB2fosNyHpnLw68d0tSWZGOJRnHryfe3IEs9QTF/RYI=;
-        b=Q1784HzbpKp1Q9sspSXtbzqudBzfURrrXKmggfNUUiiljmhZizsOU9bIhs1+Wychnm
-         qk7gumMld6J6Q0RODLUH42j4WZ4NLTrJQCGjuiErv6z58Mtz7XF2s5iEIAUevsL18p78
-         hixw092ZTNMv778Ow4gVy1+kRiK6tN2+6xCVaVX+edeTwC6pdPYCMxwewKswWD+ftajd
-         ahPH6/sWH1Drh4hVqMQEUKirUtW9TK7W2GAIa/IpNDAsJvAaC3evL0GZ00/lDM+E5rmo
-         DnUv1bg0UH/28zEyT08pr3rS2s5ilNveZtiVUyKnCAgfJi2HCSuTeI0n7qmWpa0xh6OU
-         cnHA==
-X-Gm-Message-State: AOJu0YxjiHORjlUMmpetrau2w1J5KYaeb7dkots43C84mbPtDOTWjZop
-	S4IZ9VuXUD0JzAVRkzm52ArYUwBFiwMPUcEoxuu6ew==
-X-Google-Smtp-Source: AGHT+IGqXcpRVWBXo+8Ix92wajAH3UIGgltE405zdSv3Pgfz1FUcUSG0CISD+Q5m0T1OIr23+ANGxQ==
-X-Received: by 2002:a05:600c:4fc6:b0:405:19dd:ad82 with SMTP id o6-20020a05600c4fc600b0040519ddad82mr15707940wmq.16.1698244758561;
-        Wed, 25 Oct 2023 07:39:18 -0700 (PDT)
-Received: from [192.168.2.1] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id o12-20020a05600c4fcc00b0040775501256sm14774508wmq.16.2023.10.25.07.39.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 07:39:18 -0700 (PDT)
-Message-ID: <d0e70434-e273-4799-c5ec-bbee1b3f5cc7@linaro.org>
-Date: Wed, 25 Oct 2023 16:39:14 +0200
+        d=1e100.net; s=20230601; t=1698245255; x=1698850055;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eU9dcz1YGa9iU8LlGA/PhULWkXEMb0rfxCJT61Ovfuc=;
+        b=m8e1sfrhXtPvOoE1xxgYXZByt7tKA0HZt9rcv5lMdIcHX0Y1VPf90UVm1tbUga+En1
+         wlpVRksokoYHJQ8vqs86EdJmCorAhm0uJaKdGMoo01jpypUnM/IR+8QHoZPrjgHWxGZ1
+         mD/cVavHM6nUP7Dq+vF/r4bRi+Z0dAeZT/P7ViC17rlgZC9MmTLPO7SkR24W3UtFiSlo
+         TimjA6aUpjZ2X7ynaVPghhcVoFcRLBFmm7BZqKs2iKu1NK3Y+QteBAqLLZm6nJuE2zLz
+         62xMz8N8TIbzN9iCLFuN19foV/fCcCz8jMMc0DuJswe2rFo48BCLC+iLUMBIx/Zs/42C
+         fswg==
+X-Gm-Message-State: AOJu0YwpBfRfCCMb448Wii9QZcRuoRx7ozi22Z/zGown7hWmrFBFcPos
+	DeJDnbalb7W8+hia1d+aMa1432xR9w==
+X-Google-Smtp-Source: AGHT+IGHO+eEDenRbvjdxLALO/vIF1UN+JMcjErf2td8FFO4465DCrb+T8KVr5y3/DBabI3sw0GQiQ==
+X-Received: by 2002:a54:448f:0:b0:3ae:5743:533a with SMTP id v15-20020a54448f000000b003ae5743533amr17400033oiv.47.1698245254994;
+        Wed, 25 Oct 2023 07:47:34 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u12-20020a056808000c00b003af6eeed9b6sm2387440oic.27.2023.10.25.07.47.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Oct 2023 07:47:34 -0700 (PDT)
+Received: (nullmailer pid 259082 invoked by uid 1000);
+	Wed, 25 Oct 2023 14:47:33 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v7 2/3] clocksource: Add JH7110 timer driver
-Content-Language: en-US
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Walker Chen <walker.chen@starfivetech.com>,
- Samin Guo <samin.guo@starfivetech.com>, linux-kernel@vger.kernel.org,
- Conor Dooley <conor@kernel.org>
-References: <20231019053501.46899-1-xingyu.wu@starfivetech.com>
- <20231019053501.46899-3-xingyu.wu@starfivetech.com>
- <3f76f965-7c7b-109e-2ee0-3033e332e84b@linaro.org>
- <bb819333-52d3-49fc-9bb9-1a227bd5ca8f@starfivetech.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <bb819333-52d3-49fc-9bb9-1a227bd5ca8f@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Taniya Das <quic_tdas@quicinc.com>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
+References: <20231025-topic-sm8650-upstream-clocks-v1-0-c89b59594caf@linaro.org>
+ <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
+Message-Id: <169824516120.243773.546101172844888564.robh@kernel.org>
+Subject: Re: [PATCH 03/10] dt-bindings: clock: qcom: document the SM8650
+ Display Clock Controller
+Date: Wed, 25 Oct 2023 09:47:33 -0500
 
 
-Hi Xingyu,
-
-
-On 25/10/2023 11:04, Xingyu Wu wrote:
-> On 2023/10/24 22:56, Daniel Lezcano wrote:
->>
->> Hi Xingyu,
->>
->>
->> On 19/10/2023 07:35, Xingyu Wu wrote:
->>> Add timer driver for the StarFive JH7110 SoC.
->>
->> As it is a new timer, please add a proper nice description explaining the timer hardware, thanks.
+On Wed, 25 Oct 2023 09:32:40 +0200, Neil Armstrong wrote:
+> Add bindings documentation for the SM8650 Display Clock Controller.
 > 
-> OK. Will add the description in next version.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/clock/qcom,sm8650-dispcc.yaml         | 106 +++++++++++++++++++++
+>  include/dt-bindings/clock/qcom,sm8650-dispcc.h     | 101 ++++++++++++++++++++
+>  2 files changed, 207 insertions(+)
 > 
->>
->>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>> ---
->>>    MAINTAINERS                        |   7 +
->>>    drivers/clocksource/Kconfig        |  11 +
->>>    drivers/clocksource/Makefile       |   1 +
->>>    drivers/clocksource/timer-jh7110.c | 380 +++++++++++++++++++++++++++++
->>>    4 files changed, 399 insertions(+)
->>>    create mode 100644 drivers/clocksource/timer-jh7110.c
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 7a7bd8bd80e9..91c09b399131 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -20473,6 +20473,13 @@ S:    Maintained
->>>    F:    Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
->>>    F:    sound/soc/starfive/jh7110_tdm.c
->>>    +STARFIVE JH7110 TIMER DRIVER
->>> +M:    Samin Guo <samin.guo@starfivetech.com>
->>> +M:    Xingyu Wu <xingyu.wu@starfivetech.com>
->>> +S:    Supported
->>> +F:    Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
->>> +F:    drivers/clocksource/timer-jh7110.c
->>> +
->>>    STARFIVE JH71X0 CLOCK DRIVERS
->>>    M:    Emil Renner Berthing <kernel@esmil.dk>
->>>    M:    Hal Feng <hal.feng@starfivetech.com>
->>> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
->>> index 0ba0dc4ecf06..821abcc1e517 100644
->>> --- a/drivers/clocksource/Kconfig
->>> +++ b/drivers/clocksource/Kconfig
->>> @@ -641,6 +641,17 @@ config RISCV_TIMER
->>>          is accessed via both the SBI and the rdcycle instruction.  This is
->>>          required for all RISC-V systems.
->>>    +config STARFIVE_JH7110_TIMER
->>> +    bool "Timer for the STARFIVE JH7110 SoC"
->>> +    depends on ARCH_STARFIVE || COMPILE_TEST
->>
->> You may want to use ARCH_STARFIVE only if the platform can make this timer optional. Otherwise, set the option from the platform Kconfig and put the bool "bla bla" if COMPILE_TEST
-> 
-> Yes, this timer only be used on the StarFive SoC. So I intend to modify to this:
-> 
-> bool "Timer for the STARFIVE JH7110 SoC" if COMPILE_TEST
-> depends on ARCH_STARFIVE
 
-In this case, you should change the platform config and select the timer 
-from there. Remove the depends on ARCH_STARFIVE so it is possible enable 
-cross test compilation. Otherwise COMPILE_TEST will not work on other 
-platforms.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[ ... ]
+yamllint warnings/errors:
 
->>> +struct jh7110_clkevt {
->>> +    struct clock_event_device evt;
->>> +    struct clocksource cs;
->>> +    bool cs_is_valid;
->>> +    struct clk *clk;
->>> +    struct reset_control *rst;
->>> +    u32 rate;
->>> +    u32 reload_val;
->>> +    void __iomem *base;
->>> +    char name[sizeof("jh7110-timer.chX")];
->>> +};
->>> +
->>> +struct jh7110_timer_priv {
->>> +    struct clk *pclk;
->>> +    struct reset_control *prst;
->>> +    struct jh7110_clkevt clkevt[JH7110_TIMER_CH_MAX];
->>
->> Why do you need several clock events and clock sources ?
-> 
-> This timer has four counters (channels) which run independently. So each counter can have its own clock event and clock source to configure different settings.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.example.dts:18:18: fatal error: dt-bindings/clock/qcom,sm8650-gcc.h: No such file or directory
+   18 |         #include <dt-bindings/clock/qcom,sm8650-gcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-The kernel only needs one clocksource. Usually multiple clockevents are 
-per-cpu based system.
+doc reference errors (make refcheckdocs):
 
-The driver does not seem to have a per cpu timer but just initializing 
-multiple clockevents which will end up unused, wasting energy.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
