@@ -1,132 +1,204 @@
-Return-Path: <devicetree+bounces-11540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993307D6248
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:18:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1AE67D6241
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:18:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52145281BAB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:18:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E9811C209C8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238CE1643A;
-	Wed, 25 Oct 2023 07:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91C715AE3;
+	Wed, 25 Oct 2023 07:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kHmiR6Q6"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="dntqu+8p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0B616407
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:18:33 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D62E12A
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:18:31 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507b96095abso7937390e87.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:18:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698218310; x=1698823110; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zFDz+M0UYdFKqciwDNgVINJYhQcMXvNDjn381PdtAr0=;
-        b=kHmiR6Q6wl9t8FL7wozdDSboPt3wEVDq9pI2zivrjf9awI4xMAgGHp/9Bk2rpEoXUS
-         hh8mSyLV979W2e6rkzTzTcFMI8lKm/ORXP4WUG12xo1keVqPijpN+MUIsiOQznreCnL5
-         36VApPzLa6Nvtf3WegJbxc2tscyblu76nDuUe+IfnkWohw/kY+AlYOLm7DNzo8nFiLO1
-         PakkBaNCRn5YlYhZVl44FYTfgyqAIhiLuWR4OVnYBWOftcOOksOHxfAm5UOQ5s2ckujf
-         BRrhHro9EptXdfI01MK/1OFUV6Djt8XKEhcDv9El47XX7yYffv4phDKl655fEF6ZqR75
-         nE9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698218310; x=1698823110;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zFDz+M0UYdFKqciwDNgVINJYhQcMXvNDjn381PdtAr0=;
-        b=M/Q2uV4QCA9fyeqB2Sawi0etiqplgcnhTiNYBjcvqb8IQNE9zomxiVXMyf/mXnw7US
-         wxk3S7e+LEOoBtTkCIICOG6s83yTUz6OTJb757iuIQpjPXV6ixrC9qrGFUoSL3MKijdt
-         AYtVETon9drfWXs5vVZktLmWuRoug2Am173hqhktlYLf0jpLiH1ewpbyRfV8EEPDB/Vy
-         zqpcqd4h9kz/Dlh6cV7tWfPnP6fNHrHp0Jglp/EiL48e/20JWqQ8TImeOzE4mE6mWiZS
-         ssRyCK09MQpWSAdyQHukVAYhWjmFG3KYoJDs0+o793wft1X+N75zD6sqWRmu0vWSdvx9
-         CS2g==
-X-Gm-Message-State: AOJu0YwOYbFeMB2W7lMz6Eu2q5JpZz7bVSQl7yHGC5/nHik2wSIl8Mfz
-	DqXu9AOiiPWynLFW6KMpWexnfw==
-X-Google-Smtp-Source: AGHT+IFrozB4gFUphdayvOWReNoVyUqfgYENSrUOhDao0BY1Ek/2sK35eeugDqPuASwqsfeiE08bsA==
-X-Received: by 2002:a2e:9cd4:0:b0:2c5:2df8:d321 with SMTP id g20-20020a2e9cd4000000b002c52df8d321mr9816552ljj.36.1698218309753;
-        Wed, 25 Oct 2023 00:18:29 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id b13-20020a05600c11cd00b0040770ec2c19sm18514378wmi.10.2023.10.25.00.18.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 00:18:29 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 25 Oct 2023 09:18:27 +0200
-Subject: [PATCH] dt-bindings: soc: qcom,aoss-qmp: document the SM8560
- Always-On Subsystem side channel
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C432125A8
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:18:20 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2076.outbound.protection.outlook.com [40.107.21.76])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF352AF;
+	Wed, 25 Oct 2023 00:18:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M8mcIAO1BjGFhjgErF0NfLKG1CR8SPRYq/7LH2j5vh9n9+MmHa4H6Beohz6eL/qzFCSeDWrd3HGcVxVtqY/4UYd3KwvPLuR0oBrGWC8CHWtFwKV/XuAxyWcozhReUb18tIEcYSdHykgPITCK0gzbMirj9MzNk2H271ybns/ectgJTUUdRIO+JQuiGTtc8JG3jqKo1mx3JkdA6TurRd50L2IOEoYmHNGmQ5qi7Ez+7ZWgZ18fkYAOCIc8tqMQDB/bJutujuOiRx7thhXTIh+kkKe7AQCkES2VSGyFmqMLhbMcXidAkEIREoPIWFaeBWH30frEPSNWUkiuN/7C+fJcjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sqiGSVA7pcy6y6bTcaSWgBinfZkLWzxtqNOLmimsPAw=;
+ b=XCcoI1tt8c6xGj1TTU7sRIAb9at784l7juyrejRKUfk/2vv/wZcN3nsapiQjfNAS/C2NsuUtVeKIx9l6x0lwEdf/4ceX1/20f/OMBRxwIKFIFE6/w07pTJaiXgYPcTTVLyNlpJ7qcW3NXWx1TTdkyGhQOxboMOEUmoNhQrQ9XJ4KPk5tLsdgt0cPd7IAb5mi4neahKlpxqF6NnWyxJeyFIrxYEAI8DeWTcnm3XJY9fm97Oq4BTSIY5/wIMuqk021FAsV47yCOJko7Cs4NSzovDO7WlIvDBChu55LwV4Y/t94ZT27ZrpuVgA2P4OjG//IUENyGCBxiw9M0eb1+e4mpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sqiGSVA7pcy6y6bTcaSWgBinfZkLWzxtqNOLmimsPAw=;
+ b=dntqu+8pfbH4JtzPnx2gYona5c/fuZeykw0wdF/35mmpf5QqiH29TI2G3eLMWkzKL7CsLuDE6oIgmQqcTjvJ2Wu0NYc2yBOXaA0IQiFrZxGps158HwSQQZU/3CfcoWbh3q3CDqIfeApGncGFsKrkIZn8DNuDJakWzHh8D+672JM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM9PR04MB8243.eurprd04.prod.outlook.com (2603:10a6:20b:3b4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.18; Wed, 25 Oct
+ 2023 07:18:15 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::50bf:dcd6:885e:32c4]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::50bf:dcd6:885e:32c4%4]) with mapi id 15.20.6933.011; Wed, 25 Oct 2023
+ 07:18:15 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	abelvesa@kernel.org
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V3 1/2] dt-bindings: clock: support i.MX93 Analog clock module
+Date: Wed, 25 Oct 2023 15:22:41 +0800
+Message-Id: <20231025072242.1134090-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0024.apcprd02.prod.outlook.com
+ (2603:1096:4:195::18) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231025-topic-sm8650-upstream-bindings-aoss-qmp-v1-1-8940621d704c@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAELBOGUC/x3NTQ6CMBBA4auQWTvJlGI1XsWwKDDFWfTHDhoTw
- t1tWH6b93ZQrsIKj26Hyl9RyanBXDqYXz6tjLI0Q0+9NWQcbrnIjBrv7kr4KbpV9hEnSYukVdF
- nVXzHgsENzBORvQULrVYqB/mdp+d4HH/+APZ8eQAAAA==
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1190;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=ujpHzL2mDnNq1FMhjNya0BMA8gZVq8wjv/NajHbGyz4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlOMFE/LT8pcN1QmeXxafEwBE/J6eqK93jYVGIB2VZ
- mVASUXKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTjBRAAKCRB33NvayMhJ0dM4D/
- 97Lo2Xvsnq/migfuVva9B3GkXe7TKwaD3yTf97a5FOxzh9cnyxM+lw0uaZgpu+cx9I1g33cZS/ZrSc
- y/D9wnGLoFNzYYJRF3bh8QjcnYL+LdzmneEOS9eHyPNZPAclo787XwcZYBf4YBX/E0kDqWNIE9PZcd
- aPHNo0I+h5HaRfqX4h4SWlqFsVOFNcVh22il8feMABF53ueTs8FUdUXjtAqo1eauy5xHhIaDrU6rTE
- BWEAAosRBS+J9wtzC9KMr9YUEgszvWs4UGz8nctW38FX2TxQ3N6y71GNW4HkuUmgfWbns4WRT4/6br
- kVtqlPW/8FB5v+FaDduN9/o+nYviNG5z/v11giMB6Yb7EKe3PR4us0RPJo0PvTkQ0dMF1x+fp2nOJ5
- lxSIrsa2B8SN4RQho0EVhA+E8WElW8g6q9MT8a0776Z0y/5ZyoharCZptzaC143tEQIN3+2wAg6UIm
- SGUadBb/Mxp5X4+nc1ectCpIVBmsaHEBYAZzSWP3YX/gppRmwCeHG3akUdBRYIPem1xvrKHKtzTKvo
- 6ro12UeubKcxDX4B1rp7ky0MXRG8d+Ucsu5WpygGVNiEUGbj5U/j/X7uqGcdQi8CXECFtrnKJGskt8
- L1W1Z14V87lkQY7EN/z8I2MDSVY5t2/pLH1PqBlBLxGaWakqEwVn4mmjPCqg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM9PR04MB8243:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4c696348-a680-44e4-1b06-08dbd52a8dde
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	WIEBShzJKXumJevry0QdB/Hq4IYDo/vRuo+u2/GnOSEY5kh/WOQ5m+AeFzUUe6aF0+1t+W9HvSBYh4jao/9+iXyBVf6nB3QRt1Mqbgpxw+3EASbfaCIOhgRZBm35WKBqS2vNIaYw/GCbQ+jaJcLMgBew4WLqH/HJfDHM6Fxo38GTH7Z4sZ9u31kMgaApLS4++U/AX0QMLJKV8wHXOD/mkdGAbcHcVzuvmXIkY3S9Pc7CkOLUU15DCSglBRzKCucBy1QNbmNNwnM9BehCRWG2su8idNjMx9x5FNGjO9BKT7k3vAJ/vqxODEDye5BIq12ZgtJnJWaiSObbiUECnXsUW8SZbuIzhdbLLJtujTJntO1vOhqUxoTwCC7/pwsFIVwKqAwaLbE42WWA2LtkqSK5XCgi9YVglWzSoUKJD8k2nuWiq+4i5As7PDP6H7maFtQK9GKfeH0dEv+hXrYps5NvbDR1EuVKldKHHlViYKkvsDwg23VpByentgTvZjz5bVUk7KXu7BiaHaS23SpPA+Kb8ymGQejK/t8NDKUvnND6Rp6pH4XxeAfe7V2CfBZsC1TtY1hjJRhy2u3KO6G6/7eIscUcgVH/QTxO7BY76fJdbTk=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(39860400002)(366004)(396003)(346002)(230922051799003)(64100799003)(1800799009)(451199024)(186009)(26005)(478600001)(1076003)(6512007)(6666004)(86362001)(6506007)(316002)(66476007)(66946007)(66556008)(38100700002)(38350700005)(2616005)(966005)(6486002)(2906002)(8676002)(83380400001)(7416002)(4326008)(8936002)(5660300002)(41300700001)(52116002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?89xaCMVsOoUFOmwq7Sy7BLxq6v0cKiVYzhyGAavT+uX7NNpBOzDTMOoDfsM6?=
+ =?us-ascii?Q?MxuqW/mq0XXKadL+PVy/f8XcshLA+XYE1EX7u8mgJSciZDUqypPKTH84J23Y?=
+ =?us-ascii?Q?Sdr1fstB7g3dctcQJCq/vwWkTTT0AS9ARYUe0XUpeC0Va8q4kstqeYM4o24s?=
+ =?us-ascii?Q?eTsn37nmZLXHXDLyRwYpFkT/2dop1Ak1ckE0LsD6uod2mF+wnG8rjgzLMH15?=
+ =?us-ascii?Q?Rn1/Pm8b2VMnVv/R1fN/mkgdxAKOd7CqQ4FXXUw/QIFaojqPeC9qgC1xcofX?=
+ =?us-ascii?Q?gFpEkIsjktBdIaVby76aiScgPYaBBd+Cb2TKQpNKH3IjIQRluKSaiq0g7/wo?=
+ =?us-ascii?Q?X2sd0P2WioppVIzKDwfQj+C5rqaTLzFUZQnHWMs5gnaUNQ/bZm0sMfCB71yD?=
+ =?us-ascii?Q?EZGBRYoeCicdQeA6n4Kt/rBJNmiskDOIpIksWLTz4Kze90krVTd9DhKyUKq9?=
+ =?us-ascii?Q?8HXRD52KWbQUY+efK8n3Aeb1zTGC9LbQMGHrOFuS6fabu6hP4MLw5OqcHGRD?=
+ =?us-ascii?Q?QJyK9ZVJCV+0UvgsmDYwXsJ1XB53qFAWTCUqMNSxBAuMi10bKopNS53eiA+1?=
+ =?us-ascii?Q?J8T2bPvssvcxHrdX3QGRcizHWOK3VOJysROnH2B3WnwYUWOXaSg9FSNRgmVN?=
+ =?us-ascii?Q?O6oHC5jDOTVcgfMyCDb2hd3rEq5m1TdEnw4N3508tE9BfqIv4xPZVbX07r31?=
+ =?us-ascii?Q?7u6JlKONMlNNnxAygWw688ekTLqMu7m6gFOVdeHpic5yMQBy6yCN+yuOUa/3?=
+ =?us-ascii?Q?GSlyQhbVBwHwsjk5xguIURtcGk8+ElM783lkJYHa0UhOfXNx2VQ14GmqbqB1?=
+ =?us-ascii?Q?7sO+k5eLeyS8zMDpsY8yhyxb4otBRpDNmlxEjGWeTd0sH9g6j523s7un+QDP?=
+ =?us-ascii?Q?6OpNk5AXOr30k6uW5kssS8wC/A5J0Llcecmq6rvL4BT7VLp9cgXYsqMMYTSj?=
+ =?us-ascii?Q?8TOqWwGkeh+ErHCVsQ3yFXyXJ6FPr7+k5aCfTEQH3bEnxjIjDtDZ5KXjHhDZ?=
+ =?us-ascii?Q?mgn+bny5koTPxeY12czwQc2JkxBWg9E4L5KyiUqtdNrIATZ4IzKzAO2nJVhY?=
+ =?us-ascii?Q?9Q1w8F/qLJ7+5n1g5B1lrP0rxG80TqlYmc0pxaVMytk5yCGsdCcv7Zv4FAPY?=
+ =?us-ascii?Q?WIbS/XNohbIOHy4KDoqa6kzuB9YuGsoNkjc4OccwNltEbB3/H0Jf0S6ao182?=
+ =?us-ascii?Q?rRMG1ey0+fwrrWdqi8cjYjdunULqXmivxNs2wcwLRhBmu/v2Y8pvRU5R/UzF?=
+ =?us-ascii?Q?Q02OjYmrW95INt3HW1hh2tAxDWFIdy6gdxRAJJ2QXnrJJb1fKbF3v5+5qNQn?=
+ =?us-ascii?Q?b+HW12adCGZHYrEoTlDloOnYs07xZXHG9XdCUXWzejBua0iCjG3IF12zBlgi?=
+ =?us-ascii?Q?jbH5Q9MssKxJnjcy/5wviZ+zNDxit1lcpCBI3L2uNt34Ib61X53fPKJzAW/j?=
+ =?us-ascii?Q?yuE2umR2VAeIVhr5SxYyvKL6vsGR6qWHXuJvFOsu5GYfpf007N7gm6XdKsgH?=
+ =?us-ascii?Q?Ir0UUaNvNypwxkwjRFBz0Za1bNXlZ4QBulKY6ZG8c5juEiNJOlAFhadVgXH9?=
+ =?us-ascii?Q?PoW4IGkX6wwfMIBDDg0kWipIZRmcBVSU0D9Jq+oP?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c696348-a680-44e4-1b06-08dbd52a8dde
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 07:18:15.4468
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fNrPxMh6FjyH3ncHo5Udj/Dl1lVhT1uUTDRlFhFwzMMQHfIQd/8X/EKIZQzPy7llRkgulRCNFsQ6EYi//pVs6Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8243
 
-Document the Always-On Subsystem side channel on the SM8650 Platform.
+From: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Support i.MX93 Analog module which produces PLL and OSC for Clock
+Controller Module
+
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
-For convenience, a regularly refreshed linux-next based git tree containing
-all the SM8650 related work is available at:
-https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
----
- Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
- 1 file changed, 1 insertion(+)
+V3:
+ Rename back to fsl,imx93-anatop.yaml
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-index d1c7c2be865f..109f52a0b524 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-@@ -38,6 +38,7 @@ properties:
-           - qcom,sm8350-aoss-qmp
-           - qcom,sm8450-aoss-qmp
-           - qcom,sm8550-aoss-qmp
-+          - qcom,sm8650-aoss-qmp
-       - const: qcom,aoss-qmp
- 
-   reg:
+V2:
+ Update subject and commit, rename file to fsl,imx93-analog.yaml
 
----
-base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
-change-id: 20231016-topic-sm8650-upstream-bindings-aoss-qmp-f64eeb0037f3
+ .../bindings/clock/fsl,imx93-anatop.yaml      | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yaml
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yaml b/Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yaml
+new file mode 100644
+index 000000000000..5d696ccc8986
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/fsl,imx93-anatop.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/fsl,imx93-anatop.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP i.MX93 Analog Clock Module
++
++maintainers:
++  - Peng Fan <peng.fan@nxp.com>
++
++description: |
++  NXP i.MX93 Analog module which produces PLL and OSC to Clock Controller
++  Module.
++
++properties:
++  compatible:
++    items:
++      - const: fsl,imx93-anatop
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@44480000 {
++        compatible = "fsl,imx93-anatop";
++        reg = <0x44480000 0x2000>;
++        #clock-cells = <1>;
++    };
++
++...
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.37.1
 
 
