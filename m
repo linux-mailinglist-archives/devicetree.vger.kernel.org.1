@@ -1,158 +1,122 @@
-Return-Path: <devicetree+bounces-11913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E467D6FAE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:49:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D347D6FCA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6669B20FB8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:49:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EA3D1C2080C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F1628691;
-	Wed, 25 Oct 2023 14:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6710C28DAB;
+	Wed, 25 Oct 2023 14:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZvuYL0Ck"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="L2zx2ZDU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E792D62F
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:49:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E5ECC433C8;
-	Wed, 25 Oct 2023 14:49:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698245374;
-	bh=g8c0ZqXEd+5miVwaaQEwfnrYYAhfuPmdWpJQcdlsakE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZvuYL0CkCqKmU8kEiF8yK/BtZZR7hOAaiJ2a2gYPUHteYQ6YOZey5rLFET4OueViT
-	 MXbzzmDscQU5O6f+R/kV3rfcUCJxQJHV1ElJF56953GXqTyfBJ0XHzbXValfLXc5Ql
-	 FB2R8+PzCtwp4y7awD1H26vEjCodXSR3GTmsrpPQOc52bf5US7wNT/ZztcsSn9P2/4
-	 r2bypPZVFR+vZTWi9RAbRdy4Cam+I1HGY6+BFiQlxeW9ee1PASJy7FTAlT68VPW1tN
-	 R3TpuzqoyoLi3j+PdSt7cczRvR3YQR7TUkZck/pm0lyXxjNdz26xnm97uYXPBDgf48
-	 MystXecyzwGXg==
-Date: Wed, 25 Oct 2023 15:49:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/6] dt-bindings: arm64: dts: mediatek: Add
- mt8183-kukui-jacuzzi-makomo
-Message-ID: <20231025-charity-replica-9c9b03380d7f@spud>
-References: <20231024000724.57714-1-hsinyi@chromium.org>
- <20231024000724.57714-4-hsinyi@chromium.org>
- <20231024-bobbed-although-06f341259ebb@spud>
- <CAJMQK-hvhjNGFUfgqb7pm=pAYjJ0wZAhkPGXxDCUJ5cnUDh2gw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C89C8EA
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:53:23 +0000 (UTC)
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6543010E0
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:52:13 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-4587f9051e3so2335616137.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:52:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1698245531; x=1698850331; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QLjdKZ5k0mXVbD8bW7euvhzE58el0xEiaStx/smEM9o=;
+        b=L2zx2ZDUTUcNhjd/kQhBfl0X6zLoWnqtZftN5bvJLKV8MKaeH+LxAIiuNlaXBauLFe
+         olCtDxbH+t09Olwjiuwif1Oxm6GktIiG4Rwm3z6Gr/OnLSQAOE2T2K8QWLk/Bql4yTZ1
+         vEDW9Rc6LSkY2q7TqlAgLV5mvnni0yfndg8EZEkDGBsNVZAAm/67qXPnX4r21w9+r5s7
+         AMmr/QdCizQRiu51ynVZB0L+RecCDYSjd9/5pxqfrL9+4yPhG1kpfnrszGLdga3CA/uM
+         RDPeD+zQTRJxoaWGcdr2iodOWpIE65JKHQvoPhU5HCa6SIevFw7DlYjCirKVdqmJTHr/
+         yuUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698245531; x=1698850331;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QLjdKZ5k0mXVbD8bW7euvhzE58el0xEiaStx/smEM9o=;
+        b=GTPnFutcQyeOfrEQizyOXGfKFe2LC3fAv4innc6lJivofB3/d4scwr2D7AkJWfbq+c
+         JIxOHyl5vX4zEywEexIr6qvSelyiA5d0oNZa5c36YfmP++ljv0moFK0jZJRNEadvFTtU
+         FZjGb2GZupIAZgRVuBKgsUntHmR349w680rhnCcMKJPIxjdr6Vjs5WH2IS/bFGtsNAC3
+         vPNWx/+c7bYI2FgWuZhiliVQZIx5AAUQNfH5I5l+NjSFIEmYjQbRqNLbUclA6jRiqatH
+         Q3x8sj4LJ6mmqgfJWORdBNJf4QhayBzf9r5WiKpbcnzDiz14BYIY/1Sc6QjsdHPOqGDw
+         rZlA==
+X-Gm-Message-State: AOJu0YwGjdzWYXLdvfWZFCfHSdrZ5PDett5GLNCy+6qkmBaExY26OY8b
+	+yQWDR5RGEL9N934PL7CLbAybohc0A1iUX/jm+sM0w==
+X-Google-Smtp-Source: AGHT+IH9eZcIeh5TypMu2DrELpqy3iFXVc5K2Hl5mUVraJmb0uVk6Ut6VGVvmn/692Isw5J2GiM90b5hEhQWssWFL90=
+X-Received: by 2002:a67:c295:0:b0:458:47e6:70e4 with SMTP id
+ k21-20020a67c295000000b0045847e670e4mr15925625vsj.19.1698245531279; Wed, 25
+ Oct 2023 07:52:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZJFVlm9+Zn/c9yF1"
-Content-Disposition: inline
-In-Reply-To: <CAJMQK-hvhjNGFUfgqb7pm=pAYjJ0wZAhkPGXxDCUJ5cnUDh2gw@mail.gmail.com>
-
-
---ZJFVlm9+Zn/c9yF1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20231024171253.19976-1-zajec5@gmail.com> <20231024171253.19976-2-zajec5@gmail.com>
+In-Reply-To: <20231024171253.19976-2-zajec5@gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 25 Oct 2023 16:52:00 +0200
+Message-ID: <CAMRc=Mdb7mjOLQSVVka4XTCuziB1DNj9kpgB=sE=fcJKvpk0_A@mail.gmail.com>
+Subject: Re: [PATCH 6.7 fix 2/2] dt-bindings: eeprom: at24: allow NVMEM cells
+ based on old syntax
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 24, 2023 at 11:22:00AM -0700, Hsin-Yi Wang wrote:
-> On Tue, Oct 24, 2023 at 8:17=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Mon, Oct 23, 2023 at 05:02:26PM -0700, Hsin-Yi Wang wrote:
-> > > Add makomo sku0 and sku1 which uses different audio codec.
-> > >
-> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/mediatek.yaml | 12 ++++++++++++
-> > >  1 file changed, 12 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Do=
-cumentation/devicetree/bindings/arm/mediatek.yaml
-> > > index fe8c488a3207..b131e0bdbf01 100644
-> > > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > @@ -250,6 +250,18 @@ properties:
-> > >                - google,kodama-sku32
-> > >            - const: google,kodama
-> > >            - const: mediatek,mt8183
-> > > +      - description: Google Makomo (Lenovo 100e Chromebook 2nd Gen M=
-TK 2)
-> > > +        items:
-> > > +          - const: google,makomo-rev4-sku0
-> > > +          - const: google,makomo-rev5-sku0
-> >
-> > With these bindings, how does one describe a makomo-rev5-sku0?
-> > What you have here is only suitable for describing the makomo-rev4-sku0.
-> >
-> makomo-rev5-sku0 and makomo-rev4-sku0 uses the same dts:
->=20
-> compatible =3D "google,makomo-rev4-sku0", "google,makomo-rev5-sku0",
->                       "google,makomo", "mediatek,mt8183";
->=20
-> In this case, can bindings be listed like that?
+On Tue, Oct 24, 2023 at 7:13=E2=80=AFPM Rafa=C5=82 Mi=C5=82ecki <zajec5@gma=
+il.com> wrote:
+>
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> This binding supported NVMEM cells as subnodes and that syntax is used
+> by few in-kenel DTS files. Modify binding to allow it.
+>
+> Reported-by: Rob Herring <robh@kernel.org>
+> Fixes: c5330723d5a0 ("dt-bindings: nvmem: move deprecated cells binding t=
+o its own file")
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+>  Documentation/devicetree/bindings/eeprom/at24.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documen=
+tation/devicetree/bindings/eeprom/at24.yaml
+> index 6385b05a1e62..b6864d0ee81e 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -12,6 +12,7 @@ maintainers:
+>
+>  allOf:
+>    - $ref: /schemas/nvmem/nvmem.yaml
+> +  - $ref: /schemas/nvmem/nvmem-deprecated-cells.yaml
+>
+>  select:
+>    properties:
+> --
+> 2.35.3
+>
 
-On a rev5-sku0, the first compatible should be the most specific one,
-which would mean:
+Do you want it to go through the at24 and subsequently i2c tree?
 
-compatible =3D "google,makomo-rev5-sku0", "google,makomo", "mediatek,mt8183=
-";
+Otherwise if someone else will pick it up:
 
-I said the same on other google laptop bindings before, but I'm not
-really happy with these compatible configurations, that seem conjured up
-to suit your firmware. It'd make far more sense to me to have a setup
-that permitted:
-compatible =3D "google,makomo-sku0-rev5", "google,makomo-sku0", "google,mak=
-omo", "mediatek,mt8183";
-and
-compatible =3D "google,makomo-sku0-rev4", "google,makomo-sku0", "google,mak=
-omo", "mediatek,mt8183";
-
-Cheers,
-Conor.
-
-> > > +          - const: google,makomo
-> > > +          - const: mediatek,mt8183
-> > > +      - description: Google Makomo (Lenovo 100e Chromebook 2nd Gen M=
-TK 2)
-> > > +        items:
-> > > +          - const: google,makomo-rev4-sku1
-> > > +          - const: google,makomo-rev5-sku1
-> > > +          - const: google,makomo
-> > > +          - const: mediatek,mt8183
-> > >        - description: Google Willow (Acer Chromebook 311 C722/C722T)
-> > >          items:
-> > >            - enum:
-> > > --
-> > > 2.42.0.758.gaed0368e0e-goog
-> > >
-
---ZJFVlm9+Zn/c9yF1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTkq+AAKCRB4tDGHoIJi
-0rnGAP9ZabySIiA8SVpNMYulGM3x3bCMQhPDIuSRdNFrqvuBKgEApPdAFGmmDMNE
-Pqyn5ngRg4/wRf9xVNi8zaqOYEf2ug0=
-=ShOI
------END PGP SIGNATURE-----
-
---ZJFVlm9+Zn/c9yF1--
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
