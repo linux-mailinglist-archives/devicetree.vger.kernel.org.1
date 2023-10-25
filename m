@@ -1,100 +1,169 @@
-Return-Path: <devicetree+bounces-11916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6177D7042
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:01:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F7077D7065
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF30BB20F06
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:01:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED98F281CEA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629A528E33;
-	Wed, 25 Oct 2023 15:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE4229D05;
+	Wed, 25 Oct 2023 15:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q3kFInjh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxIJusxg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE0AD2D631;
-	Wed, 25 Oct 2023 15:01:05 +0000 (UTC)
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57711A2;
-	Wed, 25 Oct 2023 08:00:56 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E8F43C000F;
-	Wed, 25 Oct 2023 15:00:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698246054;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yH7ih/sENBHheaY4sC23vjZWR5QPhO2FB5uDgGmBUEE=;
-	b=Q3kFInjh7UIlv2i9yjPV+QU4V85L5o5uVFoPjbdjL//6+E7uHPH6qKo6VtFDApky9mvBZR
-	DLu9NkXUD5OxfTo6itNQvOGypacNFCTLN9WVTaPz0FqcOhRwPMyGfxtOcSfDuL7/skp8vX
-	Xi0TkyJYpNrsUrKOLGJVtQuYOi+gWoYdjSS/UVjEa2e22L9HGWc4DrymLHD7I/JWSwkFqm
-	89zhexE6c2ltXbqig51XVG6K1DOiQZZDzAVHFzwstX5/KXfaw66BE90pcuR8wCZ76roTNp
-	RW+shC4dBtvTe/L6r6lvIDt4EzZod8+c2krxeBAs7QIBUwZpDZyN+x2UlhjNHw==
-Date: Wed, 25 Oct 2023 17:00:51 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
- <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Qiang
- Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Shengjiu Wang
- <shengjiu.wang@gmail.com>, Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Randy Dunlap <rdunlap@infradead.org>,
- netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- alsa-devel@alsa-project.org, Simon Horman <horms@kernel.org>, Christophe
- JAILLET <christophe.jaillet@wanadoo.fr>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 00/30] Add support for QMC HDLC, framer
- infrastructure and PEF2256 framer
-Message-ID: <20231025170051.27dc83ea@bootlin.com>
-In-Reply-To: <20231013164647.7855f09a@kernel.org>
-References: <20231011061437.64213-1-herve.codina@bootlin.com>
-	<20231013164647.7855f09a@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FEF515AE5
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 15:08:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6307C433C8;
+	Wed, 25 Oct 2023 15:08:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698246502;
+	bh=EmGG2bIEHpNFNsbXGuXDFwFfImfIAEmvCH+yu4IiAQs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hxIJusxgziIeOjGZnH5vgUQdMAVFCU3Tj4YiMTQSqfHAJ/M591Z2FHQ6b5mJZp88o
+	 CnaiV0kgufr/AUpXcdCPqIEIvWnVX+74FLa9KHS5G1PXI8BKgSWmZrOu+19pK02b1J
+	 jVPLK1oFfw07klVxvto4kapMw+x8AzJYvv2FXMbp//ArEiY9ORXpAZBMSXn7pk1WGR
+	 VtKa6awKAp+SsGoNfs/k/7KOrtdUw8xagMC0p4hmpIiWyEc5usyT1O98xG7qA8bv6e
+	 I5eE8IOSi1iS2MmbZ8/i1sCYgaLtV5gcAuf5agw9TOGfngPO0EK9VKKp16D7wTL61U
+	 WdQi57npZBnbA==
+Date: Wed, 25 Oct 2023 16:08:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: marius.cristea@microchip.com
+Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: adding dt-bindings for
+ PAC193X
+Message-ID: <20231025-cheddar-tucking-b2ea777ed4f9@spud>
+References: <20231025134404.131485-1-marius.cristea@microchip.com>
+ <20231025134404.131485-2-marius.cristea@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ActSxKFGitGW1WzK"
+Content-Disposition: inline
+In-Reply-To: <20231025134404.131485-2-marius.cristea@microchip.com>
 
-Hi All, Maintainers
 
-On Fri, 13 Oct 2023 16:46:47 -0700
-Jakub Kicinski <kuba@kernel.org> wrote:
+--ActSxKFGitGW1WzK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Wed, 11 Oct 2023 08:14:04 +0200 Herve Codina wrote:
-> > Compare to the previous iteration
-> >   https://lore.kernel.org/linux-kernel/20230928070652.330429-1-herve.codina@bootlin.com/
-> > This v8 series:
-> >  - Fixes a race condition
-> >  - Uses menuconfig instead of menu and hides CONFIG_GENERIC_FRAMER
-> >  - Performs minor changes  
-> 
-> Which way will those patches go? Via some FSL SoC tree?
+Hey Marius,
 
-This series seems mature now.
-What is the plan next in order to have it applied ?
+On Wed, Oct 25, 2023 at 04:44:03PM +0300, marius.cristea@microchip.com wrot=
+e:
+> From: Marius Cristea <marius.cristea@microchip.com>
+>=20
+> This is the device tree schema for iio driver for
+> Microchip PAC193X series of Power Monitors with Accumulator.
+>=20
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+> ---
+>  .../bindings/iio/adc/microchip,pac1934.yaml   | 146 ++++++++++++++++++
+>  1 file changed, 146 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,p=
+ac1934.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.=
+yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
+> new file mode 100644
+> index 000000000000..837053ed8a71
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
+> @@ -0,0 +1,146 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PAC1934 Power Monitors with Accumulator
+> +
+> +maintainers:
+> +  - Marius Cristea <marius.cristea@microchip.com>
+> +
+> +description: |
+> +  Bindings for the Microchip family of Power Monitors with Accumulator.
+> +  The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be found h=
+ere:
+> +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produ=
+ctDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,pac1931
+> +      - microchip,pac1932
+> +      - microchip,pac1933
+> +      - microchip,pac1934
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  interrupts:
+> +    description: IRQ line of the ADC
+> +    maxItems: 1
+> +
+> +  drive-open-drain:
+> +    description: The IRQ signal is configured as open-drain.
+> +    type: boolean
+> +    maxItems: 1
+> +
+> +  microchip,slow-io:
+> +    type: boolean
+> +    description: |
+> +      A GPIO used to trigger a change is sampling rate (lowering the chi=
+p power consumption).
+> +      In default mode, if this pin is forced high, sampling rate is forc=
+ed to eight
+> +      samples/second. When it is forced low, the sampling rate is 1024 s=
+amples/second unless
+> +      a different sample rate has been programmed.
 
-Don't hesitate to tell me if you prefer split series.
+This description doesn't really make sense to me - if a GPIO is used to
+drive the pin low or high, why do we need a property? A DT property
+implies that this is a static configuration depending on the board, but
+reading the description this seems to be something that can be toggled
+at runtime.
+I do note though, that this GPIO is not documented in the binding, so I
+suppose what really needs to happen here is document the gpio so that
+the driver can determine at runtime what state this pin is in?
 
-Best regards,
-Hervé
+Also, you say "In default mode", but don't mention what the non-default
+mode is. What happens in the other mode?
+
+Cheers,
+Conor.
+
+--ActSxKFGitGW1WzK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTkvYgAKCRB4tDGHoIJi
+0p/jAQC8aTY9tapI5zJAbel/AlSiuunOhpwryaeBOFSHulfBtwD/Qm+HEKQnOX21
+IT9MfeRfd0f0YwK+jzSSPQpdWjDaiw0=
+=Kxul
+-----END PGP SIGNATURE-----
+
+--ActSxKFGitGW1WzK--
 
