@@ -1,134 +1,174 @@
-Return-Path: <devicetree+bounces-11823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169277D6BCA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:33:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14317D6BDF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:34:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 474FF1C20DE9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 12:33:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40B19B20FC0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 12:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF70273C8;
-	Wed, 25 Oct 2023 12:33:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90510847C;
+	Wed, 25 Oct 2023 12:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CKUNQxSj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23214219F3
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 12:33:07 +0000 (UTC)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D8218E;
-	Wed, 25 Oct 2023 05:33:05 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3b2f2b9a176so3734225b6e.0;
-        Wed, 25 Oct 2023 05:33:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D424D27EED
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 12:34:53 +0000 (UTC)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7199F13A;
+	Wed, 25 Oct 2023 05:34:51 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1c434c33ec0so38943065ad.3;
+        Wed, 25 Oct 2023 05:34:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698237291; x=1698842091; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VsDxx842Vh1lbgmxJbbVurYHlLK+5bkeIBGgQTHiyQc=;
+        b=CKUNQxSjtrPpg5VTfLnOdOmcVhPkXayERwvDsQett7otiw1JyzNtoyP0ILaQV/waYr
+         qxHpF45JmX6YkV7RMiidJUm1b0YltMQE8vmtpxyJhHHO+9uj17eqm56D9rfsl/CPCTHB
+         IjUcM2fnTsaQHoWXSzYYHWcsVuWcc3ckhu+/BUGpAq4D91qtYLmS6LIgXKZUrRRCa75g
+         c8xNaIKJWXMmrV4daSZLv5v3ZsKNk3TK/Qz5f/A2KFu4covEeAgUt29fyuQLdOwoGgqW
+         UESnbsRat2WpyVo39AfcG+r/eAjOjpI25sS/L62m0AyWMF0mAGFQxvb+kLVfjkHdXyQl
+         wKTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698237184; x=1698841984;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8CPemYXBUDg57/WVb4vOz03sRB1TRQWESGKykqWrHzg=;
-        b=kfLk/HwAJFNxCDS+nCShcYMgexOfU/V3ciNtLYJaAiyrRLl1uGf5AFtwQcNjACeymm
-         R+4K4MxTfgXSYYAwtYORC9mN6+tBQ46ElyGYSPi+Pbms486qPrYVkYXmX9VLPOMf3eSz
-         jD31HY3D/n4+M3/ROXdk0SnXHAhZfyUIa8v86hfPC3cyKQMo/E/1EDVOrlXVU8hUQ2P9
-         ZHGzKimEmmRwYOoDqgGCqWxG8FzK44dq9plY/7R4B8bTcvPsWDgCiu9oSnc5ZcEtLvW2
-         zqTPjZvWb6/ON5ErUpG0hgER3/UDhIOKOp/Z0jrPtL72OkzNICQjGH7nU04UtvmWXiqm
-         XZyQ==
-X-Gm-Message-State: AOJu0Yxj1yR9R9oUF14JCE00lCLR3VihFz/FAIpPzX98RzGbBm9yuZbX
-	qkd5bf3kMo5Bisxb7y3Wpg==
-X-Google-Smtp-Source: AGHT+IGFRmvPp4komL3PmPB+n4EaJxfBNyiGvm6AYFq8mhHjHNqEKyiOmK8UKYdLkHWzvM0ogmXGug==
-X-Received: by 2002:a54:4581:0:b0:3a8:ccf0:103f with SMTP id z1-20020a544581000000b003a8ccf0103fmr16717681oib.3.1698237184122;
-        Wed, 25 Oct 2023 05:33:04 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n12-20020aca240c000000b003afe584ed4fsm2356547oic.42.2023.10.25.05.33.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 05:33:03 -0700 (PDT)
-Received: (nullmailer pid 3559498 invoked by uid 1000);
-	Wed, 25 Oct 2023 12:33:02 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20230601; t=1698237291; x=1698842091;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VsDxx842Vh1lbgmxJbbVurYHlLK+5bkeIBGgQTHiyQc=;
+        b=cwxFV7Z2QP3JLWZIU/9O1XRAfdSnuKq9AyVXbHir36SwItamRZAd+HxI+wETsRDKua
+         E50gZTw5w4aSyhtmYkD5QGHTVOzbgN3NS+9uneHRkwnfBkIYZ63hzIJDF5SzmstJKZYK
+         sVT90DiWKSQ9PMXy0yKNxE370YX52JDJRpWWdPLFVpEN5puT65xBPn8hKIxL/OEoKtT7
+         iVbhAjQz6M3Mbo0o44dj3HV8tVpG874u1RLb1cMtGna/CASexUA9+VxeudgmvO6vkKzb
+         k6q4QHYhWsO8caF9QNhstZsyeeEAG8hD/v/51bDw+sj92zLCvqMVb7Leg5SiwUnZzY+P
+         58Pg==
+X-Gm-Message-State: AOJu0YzaIT1pkg4xftK73YgEDreiOp4Q76/i9rFo+JTbyj/Yo5Ja65wT
+	tOtibp3KTXCqAZfN1ceLYCw=
+X-Google-Smtp-Source: AGHT+IGxDRMB9twDQqv3BHPmlvSOnwkQxL3nyUwxZxuFEbpaADNMEeeqfDwrvUuYAXcqnJjI1xUYnw==
+X-Received: by 2002:a17:903:6cc:b0:1bb:f1d9:432e with SMTP id kj12-20020a17090306cc00b001bbf1d9432emr11070365plb.37.1698237290823;
+        Wed, 25 Oct 2023 05:34:50 -0700 (PDT)
+Received: from ibuprofen.lan (202-79-124-123.east.xps.vectant.ne.jp. [202.79.124.123])
+        by smtp.gmail.com with ESMTPSA id x10-20020a170902ea8a00b001c20c608373sm9099756plb.296.2023.10.25.05.34.48
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 25 Oct 2023 05:34:50 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Edward Chow <equu@openmail.cc>
-Cc: linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20231025052937.830813-1-equu@openmail.cc>
-References: <20231025052937.830813-1-equu@openmail.cc>
-Message-Id: <169823714202.3554834.10341623302238023195.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mtd-partitions: Export special values
-Date: Wed, 25 Oct 2023 07:33:02 -0500
+Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
+Subject: Re: [RFC PATCH v3 25/35]
+ Documentation/devicetree/bindings/sh/cpus.yaml: Add SH CPU.
+From: "D. Jeff Dionne" <djeffdionne@gmail.com>
+In-Reply-To: <CAMuHMdV1+Ec=23pGrN-ZMDwx9xXgEeUs827J4768wmgfaOeCWg@mail.gmail.com>
+Date: Wed, 25 Oct 2023 21:34:46 +0900
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>,
+ "open list:SUPERH" <linux-sh@vger.kernel.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org,
+ devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <2ED29F7F-5DC0-43C6-B125-795D9DA6567B@gmail.com>
+References: <cover.1697199949.git.ysato@users.sourceforge.jp>
+ <46ef748dd27127ef9b39fa6c97fe51e8d3422a4f.1697199949.git.ysato@users.sourceforge.jp>
+ <CAMuHMdU5brBPGuCaMra6pS4MRFvBFQ5vF9tEFVre=-032xuuMg@mail.gmail.com>
+ <87ttqf6jjq.wl-ysato@users.sourceforge.jp>
+ <D779B53C-D508-4112-8340-CB11F35EBACA@gmail.com>
+ <CAMuHMdUpwdmOGB6BRfWFcd3NJ5Gigui7JpsX_RzMJPT5fsNyyA@mail.gmail.com>
+ <38FB33F7-7740-4181-9F0F-902AC7D7C11C@gmail.com>
+ <CAMuHMdV1+Ec=23pGrN-ZMDwx9xXgEeUs827J4768wmgfaOeCWg@mail.gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+X-Mailer: Apple Mail (2.3608.120.23.2.7)
 
 
-On Wed, 25 Oct 2023 13:29:37 +0800, Edward Chow wrote:
-> There are special "offset" and "size" values defined and documented in
-> linux/mtd/partitions.h:
-> 
-> // consume as much as possible, leaving size after the end of partition.
-> 
-> // the partition will start at the next erase block.
-> 
-> // the partition will start where the previous one ended.
-> 
-> (Though not explicitly, they are compared against variables in uint64_t
-> in drivers/mtd/mtdpart.c, so they had better be considered as such.)
-> 
-> // the partition will extend to the end of the master MTD device.
-> 
-> These special values could be used to define partitions automatically
-> fitting to the size of the master MTD device at runtime.
-> 
-> However, these values used not to be exported to dt-bindings, thus
-> seldom used before, since they might have been only used in numeric form,
-> such as "(-1) (-3)" for MTDPART_OFS_RETAIN.
-> 
-> Now, they are exported in dt-bindings/mtd/partitions.h as 32-bit cell
-> values, so 2-cell addressed should be defined to use special offset values,
-> such as "MTDPART_OFS_SPECIAL MTDPART_OFS_RETAIN" for MTDPART_OFS_RETAIN in
-> linux/mtd/partitions.h. An example is added to fixed-partitions.yaml.
-> 
-> Signed-off-by: Edward Chow <equu@openmail.cc>
-> ---
->  .../mtd/partitions/fixed-partitions.yaml      | 29 +++++++++++++++++++
->  MAINTAINERS                                   |  2 ++
->  include/dt-bindings/mtd/partitions.h          | 15 ++++++++++
->  3 files changed, 46 insertions(+)
->  create mode 100644 include/dt-bindings/mtd/partitions.h
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> On Oct 25, 2023, at 21:17, Geert Uytterhoeven <geert@linux-m68k.org> =
+wrote:
+>=20
+> Hi Jeff,
+>=20
+> On Wed, Oct 25, 2023 at 2:10=E2=80=AFPM D. Jeff Dionne =
+<djeffdionne@gmail.com> wrote:
+>> On Oct 25, 2023, at 21:04, Geert Uytterhoeven <geert@linux-m68k.org> =
+wrote:
+>>> On Wed, Oct 25, 2023 at 1:33=E2=80=AFPM D. Jeff Dionne =
+<djeffdionne@gmail.com> wrote:
+>>>>> On Oct 25, 2023, at 20:14, Yoshinori Sato =
+<ysato@users.sourceforge.jp> wrote:
+>>>>> On Wed, 18 Oct 2023 23:27:43 +0900,
+>>>>> Geert Uytterhoeven wrote:
+>>>>>> On Sat, Oct 14, 2023 at 4:54=E2=80=AFPM Yoshinori Sato
+>>>>>> <ysato@users.sourceforge.jp> wrote:
+>>>>>>> Renesas SuperH binding definition.
+>>>>>>>=20
+>>>>>>> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+>>>=20
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/sh/cpus.yaml
+>=20
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    items:
+>>>>>>> +      - enum:
+>>>>>>=20
+>>>>>> Missing
+>>>>>>=20
+>>>>>>  - jcore,j2
+>>>=20
+>>>> We must not imply that Renesas is responsible for J2, or that it is =
+a sanctioned SH core.
+>>>=20
+>>> Compatible values do not declare any such endorsement.
+>>>=20
+>>>> J-Core has the responsibility for maintenance of those SH ISA =
+compatible cores.
+>>>=20
+>>> The question is: does J2 implement the same instruction set as SH2,
+>>> i.e. can it run unmodified SH2 code?
+>>=20
+>> It can run all SH2 code, but an SH2 cannot run all J2 code.
+>=20
+> This is exactly what
+>=20
+>    compatible =3D "jcore,j2", "renesas,sh2";
 
-yamllint warnings/errors:
+Oh, yes.  I agree, this is correct.  Once this is settled upon, we can =
+change new J2 cores so they will export their ROM device tree with the =
+sh2 fallback.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dts:225.24-25 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+Down thread, Sato-san proposes =E2=80=9Crenesas,sh4=E2=80=9D, =
+=E2=80=9Crenesas,sh=E2=80=9D  I=E2=80=99m not sure I understand what a =
+=E2=80=9Crenesas,sh=E2=80=9D base fallback is.
 
-doc reference errors (make refcheckdocs):
+J.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231025052937.830813-1-equu@openmail.cc
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> represents.
+> Cfr. Section 2.3.1 ("compatible") of the Devicetree Specification
+> https://www.devicetree.org/specifications
+>=20
+> Gr{oetje,eeting}s,
+>=20
+>                        Geert
+>=20
+> --=20
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- =
+geert@linux-m68k.org
+>=20
+> In personal conversations with technical people, I call myself a =
+hacker. But
+> when I'm talking to journalists I just say "programmer" or something =
+like that.
+>                                -- Linus Torvalds
 
 
