@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC187D6214
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:04:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8227D622D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:12:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50E46B20FC4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:04:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A6A31C20DCB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CED3156D1;
-	Wed, 25 Oct 2023 07:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BD116407;
+	Wed, 25 Oct 2023 07:12:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hOSlbCHg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P1K3cQ+s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E31179FB
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:04:14 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C396DD
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:04:13 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9be02fcf268so776106366b.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:04:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6553125A8
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:12:35 +0000 (UTC)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BCDE5
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:12:33 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so8643108a12.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:12:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698217451; x=1698822251; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698217951; x=1698822751; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ISx9XF0jymKJbKBV7VQC9cj9x5oOl7s9JRVjqaQ3WiA=;
-        b=hOSlbCHg2gQRWRlb8LnsRu9j7r5uKTSOvVvhw4bjIpxnAuX+GWvGzyu4BzhU8sGUCg
-         fWAwemftRa1EjjUQmQTaJeGLifAq5AAWhdbik7lJx8vqVua2G9gIvUu5aSKXSjsrK6OI
-         x6atel5BXlil0vDha+qzohA+lx8s6F+VZAJrjIeBWhctwWnox+jLHwXctXtERDk7mPAS
-         o4/wqUN3o2n9P0LGFAXRJHZqiEOOUGRLz2Xa8CrJJeA5ax6F6U5mljJkoXwFv+1R/Nlf
-         tLiXHKD2fwOLU934asZdYSqiLWouyR+oAbiG7EXiVd+1o4LXUIXgRZ4T8HGHWaToQXsW
-         3Dzg==
+        bh=1p4mtYTUYkpBX6TFWvld0/O9WF1Uls0Opf9jIGP8ioA=;
+        b=P1K3cQ+sTpj58tbJYk8iEppvZJesxtXMJBZ4FC1N76NeaBjTntW0ecgXYLjnx4kJJn
+         9FTE6HPzFY3UVM9Wou9aMJaaB+y2Xfiu5Q2cmlRTp29vlJRK6heG4tl0c3NKIR766ITh
+         mnbYTqZp4kUxZ6V2AABM8l1KjpIMPqtGQ5fZKjF/VE6XvqTc/jXb4cUBztwoy1t1M1Ud
+         d9tPigsZyogyLOu6T220EHWiFW3kC/USlzozA1BmJxb56ulNKKSM4KWUJyoxYLLhW+O2
+         C1ouvoTQqzV6s/EJkNXktFP3SvsTZhshwVlW84BghyNYJiki2SZXd95XHwVE7uTiX5Zx
+         i2oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698217451; x=1698822251;
+        d=1e100.net; s=20230601; t=1698217951; x=1698822751;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ISx9XF0jymKJbKBV7VQC9cj9x5oOl7s9JRVjqaQ3WiA=;
-        b=xUJEQ+kJAxhMsz0ofTQd+4ptvp5KyUjY9n13j1Q0H33kXSF1wJ9gfgOIIRzOegedGu
-         Q5OMLn4Gl44jp6KntZ/Csn8MDifTmLeLuwj5ls0p7iJxL2Qn+VvYtd6XbZOBnCSDBDGJ
-         JAMjyUxrPPStVWBfmqFm3X4thbivqYOc6711RqzaJdzOuDryADSisiV2Me9Y8ZnbBsJL
-         Md5K1iYGCb59TTeOW57dkY+PT/JkidK6kfrrL53ntXe6rpUU9ey+31Pok2EJJNz8EyV/
-         sqzDMJWpCEkg4dPPHbspaVCBlBIBHTJ1AyMuOAmlHdbm5iARwU5k7ClkuXQYY88Ad70u
-         QuhA==
-X-Gm-Message-State: AOJu0YwaK1SD4vZeZzDbGa5VJfExY3ppYOXLkY0SorP8fr7HT52PEIr6
-	NpxVH3DHz1wV6A8laFPQs9EtXw==
-X-Google-Smtp-Source: AGHT+IHl7TXiNgbxL/lFXemZ/HH/QB5tELiJpzblrf3+E9x+fD02+qxXiz919I3FzUwr8d30ZQD50w==
-X-Received: by 2002:a17:906:4784:b0:9ae:4f9e:7813 with SMTP id cw4-20020a170906478400b009ae4f9e7813mr10078085ejc.73.1698217451553;
-        Wed, 25 Oct 2023 00:04:11 -0700 (PDT)
+        bh=1p4mtYTUYkpBX6TFWvld0/O9WF1Uls0Opf9jIGP8ioA=;
+        b=HMUdjpnI6Xm5W5XQizcUsaBdnTMDwsEZ8s0EcJjHTu8XbfU5b+c6DjlVWSm+Nql971
+         ID1jCR2po4KJ2UGqYdfIlbkd9G+u68U8yCH3c96rjYota/mxGLeVhYCjbnvG+K8czvWc
+         PHW1ylMIpNnVJQ30hK+W/M4WD4fh0QLi0xs71N06PgmMkakTNNYR/nB387L6Ad842Sol
+         29f6QyQwplNOphVJof6t7A374w5xe546nzalR6TLLm24CwSL/H+E5+O/b3vi0k7KPVDc
+         b+bNJuBXpKcNMELms5YlxsZ1uqWHcbf87zRm565UuKxBa/s1wxa7iUJh6+dchWd9pmoR
+         h1gQ==
+X-Gm-Message-State: AOJu0YxCiKC4LRYzxIjG9cZT6NzUq6FH0b+cvDj+sl4r0UehOH/2/vco
+	H92Bqkc4Ce21xkHQIMyvyRjROQ==
+X-Google-Smtp-Source: AGHT+IEwFELPzNhVlT3XtcM3enGieNWkBACDFcRfSO+8l+duJ22xAitnA3psupareITnbhPs3/ULjQ==
+X-Received: by 2002:a50:d593:0:b0:53d:a0c9:dbd4 with SMTP id v19-20020a50d593000000b0053da0c9dbd4mr8980318edi.21.1698217951579;
+        Wed, 25 Oct 2023 00:12:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id l20-20020a1709065a9400b009786c8249d6sm9576921ejq.175.2023.10.25.00.04.09
+        by smtp.gmail.com with ESMTPSA id dm28-20020a05640222dc00b0053def18ee8bsm8943831edb.20.2023.10.25.00.12.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 00:04:10 -0700 (PDT)
-Message-ID: <2a715a8a-c4c1-42ea-9159-15f25338d36c@linaro.org>
-Date: Wed, 25 Oct 2023 09:04:08 +0200
+        Wed, 25 Oct 2023 00:12:31 -0700 (PDT)
+Message-ID: <e51bcca4-6664-4103-8109-3f2a7fc63fe7@linaro.org>
+Date: Wed, 25 Oct 2023 09:12:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,33 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
- codec IP support
+Subject: Re: [PATCH v2 1/4] ARM: dts: qcom: samsung-matisse-common: Add
+ initial common device tree
 Content-Language: en-US
-To: Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc: Rob Herring <robh@kernel.org>,
+To: Stefan Hansson <newbyte@postmarketos.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil
- <hverkuil@xs4all.nl>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>,
- linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
- linux-kernel@vger.kernel.org,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, kernel@collabora.com,
- Robert Beckett <bob.beckett@collabora.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Darren Etheridge <detheridge@ti.com>
-References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
- <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
- <b94e3561-f5ef-443f-98c7-9b79a8bbceec@linaro.org>
- <20231016134720.GA2650973-robh@kernel.org>
- <20231021120526.eqe3esyxyi5b3e5d@basti-XPS-13-9310>
- <3d465d3c-386d-467b-87e9-806962464ac5@linaro.org>
- <20231024051745.d663ekj7klrl4yzj@basti-XPS-13-9310>
- <7240fa39-1a8f-4338-b5ae-b469dfaeb7e1@linaro.org>
- <20231025061713.kmmu432q76t32iv6@basti-XPS-13-9310>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20231024204505.125813-1-newbyte@postmarketos.org>
+ <20231024204505.125813-2-newbyte@postmarketos.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,49 +124,29 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025061713.kmmu432q76t32iv6@basti-XPS-13-9310>
+In-Reply-To: <20231024204505.125813-2-newbyte@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 08:17, Sebastian Fricke wrote:
-> Hey Krzysztof,
+On 24/10/2023 22:33, Stefan Hansson wrote:
+> According to the dts from the kernel source code released by Samsung,
+> matissewifi and matisselte only have minor differences in hardware, so
+> use a shared dtsi to reduce duplicated code. Additionally, this should
+> make adding support for matisse3g easier should someone want to do that
+> at a later point.
 > 
-> On 24.10.2023 09:24, Krzysztof Kozlowski wrote:
->> On 24/10/2023 07:17, Sebastian Fricke wrote:
->>
->>>>>> It needs an SoC specific compatible (TI something...) as well (or
->>>>>> instead). Unless there's a public spec with details on how many
->>>>>> clocks, resets, interrupts, etc. there are.
->>>>>
->>>>> Okay so how about this, a bit similar to the Coda driver supplying both
->>>>> a general option and a SoC specific version:
->>>>
->>>> Can generic compatible be used alone in board designs? If it is licensed
->>>> block, then most likely you want a fallback.
->>>
->>> Alright, so a fallback seems appropriate, how do you like this?
->>>
->>> properties:
->>>    compatible:
->>>      items:
->>>        - enum:
->>>            - const: ti,k3-j721sX-wave521c
->>>        - const: cnm,wave521c
->>>
->>> Providing a fallback and adding a enum which can be extended later on.
->>
->> This looks almost good. I wonder what is "j721sX" - Google does not find
->> it. There is thouhg j721se.
+> As such, add a common device tree for all matisse devices by Samsung
+> based on the matissewifi dts. Support for matisselte will be introduced
+> in a later patch in this series and will use the common dtsi as well.
 > 
-> Well that was a misunderstanding from my side I thought that both j721se
-> and j721s2 have the Wave5 IP block and wanted to describe both with
-> j721sX. But as it turns out the IP block isn't present on j721se.
+> Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
+> ---
+>  .../qcom-apq8026-samsung-matisse-wifi.dts     | 467 +----------------
+>  .../qcom-msm8226-samsung-matisse-common.dtsi  | 474 ++++++++++++++++++
+>  2 files changed, 483 insertions(+), 458 deletions(-)
 
-It does not matter. You must not have wildcards in compatibles.
-
-> Additionally, I was only able to test the codec on j721s2 for now and so
-> I would opt for calling it: `ti,k3-j721s2-wave521c`
-
+It's impossible to review this change. Please use proper -B/-M/-C
+arguments to format-patch to detect code move.
 
 Best regards,
 Krzysztof
