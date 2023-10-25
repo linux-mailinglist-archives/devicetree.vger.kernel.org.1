@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-11596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5677D635A
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D737D637A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:37:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8515D281C8F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:35:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67467281CDF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373A91864B;
-	Wed, 25 Oct 2023 07:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EB41A284;
+	Wed, 25 Oct 2023 07:37:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W9M+tyQR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JNsFAoZi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4AC18C32
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:35:46 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0ECF3852
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:10 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso797157666b.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D6CF9EB
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:37:27 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E1A385D
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:12 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40850b244beso42376075e9.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698219309; x=1698824109; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698219310; x=1698824110; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z4zOtiipUT8sw701OMgXZHG72ZF/cn8D9ojdqcZ+I6M=;
-        b=W9M+tyQRyCC37AFIud/4M80c5fpBYcDp47q1dxaceoX9cl6xjT/Ab3W3w7VRnFY5GE
-         EnQad//dZHFEjFIXSqpYYq12ZBh48/WB3WP6NpIaTJyzZXsmTPXGJvJRk7gOTZrcEcss
-         8uaIWEL31anPCRjWIc6UVCjDBuI+5otbe23P0NDj+W+v4j0QL2728PepWYB6nY3ktmm/
-         uyiXmI/p8c1mCwWLVnoiV+y94N/wXlunyAV5Pbkinjrlh5RB/R1IwGgvbgmsxQ5K2XKK
-         wdRo9uiiZb478kVkDGuOEe00ore/0uAIcWsXB04VahKu7TZT46cFTaPT9mUtP6JZWEFO
-         rdXQ==
+        bh=FeVaWNnyeNRSIzE+gpNieFC+q7WQJWKZkR02hpS08iA=;
+        b=JNsFAoZiFDLQX7G2YXJfrHGgV50FR5iQTffYjY2CUt+SUoQ9Yuh6qAYX0UQjoVAyPq
+         O12vmjnP932eaj5RXEbkyajDE6dPul0Zt3pPGP6UHQsgkuwb6knkRb+dOIJO/JychmhW
+         hbr517fzU0s1I2a+9ao7SMUDyeXK53k6f5lR8ycLBs9Iz7rDeK+1DJZyZ1vkSxMs8Nds
+         wLZvsybqUm9yhrC5ui7d8qtGEszyeCtBBQqaDu9BAo9e2ipLaJD5Lqxr+H8i5/ffVe7W
+         yvi99yOAEF6KwftLnpUlN7AdKdn9RF1ZhGKvA8gjMWRHUb25eE0KwJUJQ/Az1VcV0MOL
+         yN5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698219309; x=1698824109;
+        d=1e100.net; s=20230601; t=1698219310; x=1698824110;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Z4zOtiipUT8sw701OMgXZHG72ZF/cn8D9ojdqcZ+I6M=;
-        b=FpFRbB7a3gpJfsgNz2N8fPkrHkz08srGjrjF2rUNfSVhpFGCqrtP9+ALUyOVCeIE3M
-         PNVl2paRSLz1WGu0MG4b58iCU35+1iak7S7AwdLbCz6QvmI8hzyrJy5DO9O8FnvrGLsY
-         L0N2lA/soeHAqxgG+FmMWFlh/oDpfqzYFhvPBof0ES6WtrUXQ7uYkzVu2KgOYejaY3VJ
-         pAXUDPC3oxsgqqy2ITK1mqjoz+uxT45wrE3lUUH2uw4mNsPe9BSaAujXQJV4+WuFeFhB
-         S7mm27a5kQaNHU56hBZd2Z7y0uQUUUVVGrbgWKflvEyiO2PRf3QhQziyrIR+Y0rXsg8S
-         BcVQ==
-X-Gm-Message-State: AOJu0YzOT9PglLQlMaeZerR/o8knMg7+3UoZabrxhqyyt6PU5ijTtPOg
-	yFBTCqrbylN7bdFRI+EkQCnBbw==
-X-Google-Smtp-Source: AGHT+IEWIlRxJHjlqkDhPQzwZYLZEGQw2y+NFgK0dXdjyK25j8sEgY+p48QN/rjnemCH40nSMuXAxw==
-X-Received: by 2002:a17:907:940a:b0:9bf:2ddf:1bca with SMTP id dk10-20020a170907940a00b009bf2ddf1bcamr10284265ejc.62.1698219308901;
-        Wed, 25 Oct 2023 00:35:08 -0700 (PDT)
+        bh=FeVaWNnyeNRSIzE+gpNieFC+q7WQJWKZkR02hpS08iA=;
+        b=krc/wSCZNEkRnH/nATAB23dTNccJbhcl9NhXEh4q9hKVWJJ+gUWijrUJQnT6mNeKDT
+         8iPiL+coNC40irtq4Ky70up0DPT2I4Fmyi2N+QJYmA60vjmpVMbCozvDDp7UGv8ZKiUX
+         PTW56gQTL6+HzeTsNSGO4J++J5pj0+1b/anHA4+wThXZuo3hwQktkk7FNP6bv1VkRhK/
+         D0zQyITmjnbm4MiR9Jpc4r4wusEsCuDEKO2hlB0tLG6TNhkZMIjBBv1wcEZt0L20WIrO
+         3UXXZigD+nKchk4+sxEKtHhJRU4PY1ACn3gf3t9ucHB8vSriZf8qt7WF52herza4YDyD
+         jveQ==
+X-Gm-Message-State: AOJu0YymyMFSDOaZnk0np9UuAEzlItZczisMzblOCgOgKIz/ZD5CY3g2
+	IHEaZhQydsQqMQZ9agWa7fAnaw==
+X-Google-Smtp-Source: AGHT+IEoONYynpBbhg6LTU7YNc9309l0erhRMfCJ4DvMaMUvjthqw2ltUmMX7x/deOmgOiYmoeIoQA==
+X-Received: by 2002:a5d:654a:0:b0:32d:95dc:c065 with SMTP id z10-20020a5d654a000000b0032d95dcc065mr10482391wrv.19.1698219310309;
+        Wed, 25 Oct 2023 00:35:10 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id x18-20020a5d60d2000000b003248a490e3asm11449058wrt.39.2023.10.25.00.35.07
+        by smtp.gmail.com with ESMTPSA id x18-20020a5d60d2000000b003248a490e3asm11449058wrt.39.2023.10.25.00.35.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 00:35:08 -0700 (PDT)
+        Wed, 25 Oct 2023 00:35:09 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 25 Oct 2023 09:35:00 +0200
-Subject: [PATCH 2/8] dt-bindings: display: msm-dsi-controller-main:
- document the SM8650 DSI Controller
+Date: Wed, 25 Oct 2023 09:35:01 +0200
+Subject: [PATCH 3/8] dt-bindings: display: msm: document the SM8650 DPU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +69,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231025-topic-sm8650-upstream-mdss-v1-2-bb219b8c7a51@linaro.org>
+Message-Id: <20231025-topic-sm8650-upstream-mdss-v1-3-bb219b8c7a51@linaro.org>
 References: <20231025-topic-sm8650-upstream-mdss-v1-0-bb219b8c7a51@linaro.org>
 In-Reply-To: <20231025-topic-sm8650-upstream-mdss-v1-0-bb219b8c7a51@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -88,50 +87,163 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1121;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3887;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=RmyjIW0lZguWP9hWwmPF3DabpwwT0EuPrdA5wtaVnxE=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlOMUmE/hLSdAHnisyVX6XnsRoZy11MItZW/udDqz5
- NGspU5iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTjFJgAKCRB33NvayMhJ0T8BD/
- 4gJS5f7QwonEjarJZE7rXHRj4qWZe2gJ9BUxjXRBaFYLeFFwEBAtOyOMAiE1dRXilnJj0TUDZcKC3A
- BHhMD5VsCXzEmta/5kPIGS9OZjZvJkdVzPkp8vyiyokQfUiUdv8sjD0NwOVWNTC8xIlCYK7P6pPE+J
- UHY1JOLMIHJierdDgTpHfyM8PSR7rCb1luhfelsmTRIL3BIWULwiTfdvPBNGjluXLOPCizkxqLTWJF
- wk669lsH26PKp8pmWCDHke6OIU//IVF2fy7AwyLJLMNhhIij0w+O2Ry97rDoEcQyOshJNS1C3lvu9j
- WB6iwaBu7RtVOwde9E8BNjBtktEbR5ZTX1kLd6l0Ah/5u+NGOKMCNKmVecubQmnGGuLg+XQk+AKzPq
- 7sD8RBXk/CNJGqz0Q8YuQJN2gMP5MxiIZo+kBq20Bo3EHGHSFc97ZcakRDdM0bq4bwQAZdROJrtxvA
- vv//I9Ouq8Xzl4gCBLnKZUYXjS74zdtNRYh+cmwl/NzFuABX5PfioTJFRvb86YkMrCxP74m8lqBz94
- LfL4eMGRk2Hy2l2v13+2J5tKHzOndjb32BTfS3to35Khyt4tpf490OPG877c5TskAPKyiuiN+ueHBf
- u/G9qOnRMDygT+Y0Ltuk/YSvUH68+AoLeHTAfWaD6KQtSu4O4cfaXZSxquZg==
+ bh=A8kBi2PrODlpOXZ493WRi1fPCLR+VF/HPHoWKYNttUE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlOMUmzT1vJJHda3TnDlgizA2nyQee2qiYeQfMv3gj
+ b9KHq6WJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTjFJgAKCRB33NvayMhJ0YmOD/
+ 0Wy6xv8g7QDKWntJIJYjxPBFwl9LLdnNGSqpTiVNiq3N2NjSJqCz/6aBrvNuko5n2A1BkrPW0bkN5T
+ HcBeeU6VPjvMhILDwzAgp85FVmE9UdwjKpjhJ5XLETt7Ds4Ib3orhz6jvFzEk67mtSzO0AO/U8YVob
+ ZbvGRM9cuW3SJbB/LkgZAbZRf2M/Bb8EDA+zbiPtBnewMPH1El0mItaqn9t/YYgL3Dw+LwuyziSO2L
+ +K3JdM90d0zBQWG3huUV8/wAUSFQtrSSTnEiLrLgRdjzg6zNnKfVe0UU80cuXJvNafb9lBn/RiwDEp
+ 0NEa1JGd8nedr22ZPDJHAatQMe+gSeizmOZCgf5bGYrarFQSvO2/9Pk3xrY3eRZ6NQoPRIy8iJAwH5
+ HGSTrWIsFGg6VKDMh5QT+izBqdRSV0THi4wZpxjeoYqItPLYOfqkkVcPCCaM39ol1kAXiUOd9KDNbQ
+ 4XIw2ymN/fejn7/M4cGIORldAgzHP4DM49RvMXJBfjLM6CckuMmJpoy7KJzWFZ6ptpySVlSH1Ipyps
+ 46xfd52NZEVQ7AIt+G7h9e3uugYgQYF/2DcmDfbGHs/wKPRCsNkfYrKcl75y/USDZxCXcyKLTd4jIE
+ 4XISf78x+oEHdsTKDrJamtofLsiveiFShHPqRemtvXg/5hfW8+n/YXUstxjA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Document the DSI Controller on the SM8650 Platform.
+Document the DPU Display Controller on the SM8650 Platform.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      | 127 +++++++++++++++++++++
+ 1 file changed, 127 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index c6dbab65d5f7..24944979d500 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -35,6 +35,7 @@ properties:
-               - qcom,sm8350-dsi-ctrl
-               - qcom,sm8450-dsi-ctrl
-               - qcom,sm8550-dsi-ctrl
-+              - qcom,sm8650-dsi-ctrl
-           - const: qcom,mdss-dsi-ctrl
-       - enum:
-           - qcom,dsi-ctrl-6g-qcm2290
-@@ -333,6 +334,7 @@ allOf:
-               - qcom,sm8350-dsi-ctrl
-               - qcom,sm8450-dsi-ctrl
-               - qcom,sm8550-dsi-ctrl
-+              - qcom,sm8650-dsi-ctrl
-     then:
-       properties:
-         clocks:
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml
+new file mode 100644
+index 000000000000..a01d15a03317
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8650-dpu.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/qcom,sm8650-dpu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SM8650 Display DPU
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++$ref: /schemas/display/msm/dpu-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,sm8650-dpu
++
++  reg:
++    items:
++      - description: Address offset and size for mdp register set
++      - description: Address offset and size for vbif register set
++
++  reg-names:
++    items:
++      - const: mdp
++      - const: vbif
++
++  clocks:
++    items:
++      - description: Display hf axi
++      - description: Display MDSS ahb
++      - description: Display lut
++      - description: Display core
++      - description: Display vsync
++
++  clock-names:
++    items:
++      - const: nrt_bus
++      - const: iface
++      - const: lut
++      - const: core
++      - const: vsync
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/qcom,rpmhpd.h>
++
++    display-controller@ae01000 {
++        compatible = "qcom,sm8650-dpu";
++        reg = <0x0ae01000 0x8f000>,
++              <0x0aeb0000 0x2008>;
++        reg-names = "mdp", "vbif";
++
++        clocks = <&gcc_axi_clk>,
++                 <&dispcc_ahb_clk>,
++                 <&dispcc_mdp_lut_clk>,
++                 <&dispcc_mdp_clk>,
++                 <&dispcc_vsync_clk>;
++        clock-names = "nrt_bus",
++                      "iface",
++                      "lut",
++                      "core",
++                      "vsync";
++
++        assigned-clocks = <&dispcc_vsync_clk>;
++        assigned-clock-rates = <19200000>;
++
++        operating-points-v2 = <&mdp_opp_table>;
++        power-domains = <&rpmhpd RPMHPD_MMCX>;
++
++        interrupt-parent = <&mdss>;
++        interrupts = <0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dpu_intf1_out: endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dpu_intf2_out: endpoint {
++                    remote-endpoint = <&dsi1_in>;
++                };
++            };
++        };
++
++        mdp_opp_table: opp-table {
++            compatible = "operating-points-v2";
++
++            opp-200000000 {
++                opp-hz = /bits/ 64 <200000000>;
++                required-opps = <&rpmhpd_opp_low_svs>;
++            };
++
++            opp-325000000 {
++                opp-hz = /bits/ 64 <325000000>;
++                required-opps = <&rpmhpd_opp_svs>;
++            };
++
++            opp-375000000 {
++                opp-hz = /bits/ 64 <375000000>;
++                required-opps = <&rpmhpd_opp_svs_l1>;
++            };
++
++            opp-514000000 {
++                opp-hz = /bits/ 64 <514000000>;
++                required-opps = <&rpmhpd_opp_nom>;
++            };
++        };
++    };
++...
 
 -- 
 2.34.1
