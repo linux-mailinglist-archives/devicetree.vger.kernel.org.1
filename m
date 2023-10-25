@@ -1,107 +1,132 @@
-Return-Path: <devicetree+bounces-11992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13EEA7D7527
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 22:07:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3CC07D7534
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 22:10:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1DE5281D2C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 20:07:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E642CB2111C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 20:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA8C328C7;
-	Wed, 25 Oct 2023 20:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BE5D328CB;
+	Wed, 25 Oct 2023 20:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HK9FRtjq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IXobuwDD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2F928680
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 20:07:53 +0000 (UTC)
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3770DDC
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 13:07:52 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-578bb70ad89so10130a12.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 13:07:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698264471; x=1698869271; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OLfOw7r6LzUZP4S1C/fWPH0RTjZZmlp8HRm8J+m3Nqo=;
-        b=HK9FRtjqZ5Oa/Dh0cZRK8/fc5NzocMB6UcarvlKMDVl2LavQE26He1wulRynoSESGz
-         2G0Dlum+hn244kIaanbSLmTFDD9J6pAAjBE4ShuH0n1vzE44UyugCfx4SWNoTaEhthUt
-         MnUZpEZJkVypmxImJhJU9/fwHeGLUhlEORBawqopnVIz6XpZh5YkxzTN0L0XqoSlmbwL
-         F4LgZw0WIrQLvc1MdA2NTV51OZ/jyHULXPpGOkK34YNRyT2z3CaVuB6gpOcnjmvr/825
-         4z36rX12SbjEoDfYoYCNHkdhMMRDaby3bfEaNrFUR5P3ILcY1hTxTFPxdC6coUD5cwKw
-         fbKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698264471; x=1698869271;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OLfOw7r6LzUZP4S1C/fWPH0RTjZZmlp8HRm8J+m3Nqo=;
-        b=Puoz0lRGdcuuiP/i8VSQSKaGFYodD8SbGrsRoB5Y96mP96Bx55BrBJHHNsMcsG8E4o
-         MQIvQxtNzVwfoU1v/uoEHuawUdzAZ/1XuJnxRvy30CE2rQhpKzAQXLEcRJTxe+7j9/i6
-         ovLXc5xmQTmMUek1NPU6IeD9bEkzIPEjnL10/7PVqdGquQEDLKn5MKbXta4D779MOqVQ
-         LaJRFicHHwwEuzNo723DXlGgTO//ptjDX5zbjU5qt9BGRxZ5d6ek0uv1719bczMgeQNS
-         ySXFGIo/K9/kuOsJAkMhoHvFsrBZ2QZJvxsVcEUeE0B9DjquQhBp1CoeuB9zwqGWb3vT
-         cxZA==
-X-Gm-Message-State: AOJu0YygULdW4MWiL+K61u+yh2e0PaPlU3fJI0B9eZLl4Lp/7TLPYX/9
-	Gmo1lFs40GmBJ9KLQZBjZh3qgYYCQMNDjbhV6m4=
-X-Google-Smtp-Source: AGHT+IEd1N6OL8rlT8Knncn8WHY8bMNl3TOn+3qSr5FtyZyRKjnYvDdVl5ToxQVTN7zxz+tOdvukPeQijjKfx5NDkr0=
-X-Received: by 2002:a17:90b:1812:b0:27d:2762:2728 with SMTP id
- lw18-20020a17090b181200b0027d27622728mr18659291pjb.0.1698264471641; Wed, 25
- Oct 2023 13:07:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6776B28680;
+	Wed, 25 Oct 2023 20:10:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3671C433C8;
+	Wed, 25 Oct 2023 20:10:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698264624;
+	bh=W2ZtlC8h83hjoSYyz4fUnl72qO69z2zaIBKrCyxCmas=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IXobuwDDWpPIpl4AGv2c5SE7hxUyUbECrQX3GJJk0nfdVMzKJMUgOH4sbX/qKdVyv
+	 9Dcu7WtXFdjDy/FZYaULYAWZETMipyCvyRYNGFFX8xwMLsUCKJ0rFPScDcOX0E6xcs
+	 SVF4S8sYz77QDTgdkeUI9BFYOXEacv8eGXIGCLlk6wia3qtc3pPH5Dfc2HasEenD+j
+	 AF3B4PIFBmkf0g65ZlgJ98SB3A2W8KZAKgRCVJgee/hOb441boZQJN2m5HOhSQw1Pk
+	 qXhqILm7WzfTbaKJUEUIKKFLntVCL6b+S1gGywIhrbsPrqILWhOKv3k4TchDC26j7P
+	 NxO9TUDh0W0uw==
+Date: Wed, 25 Oct 2023 21:10:15 +0100
+From: Simon Horman <horms@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v7 4/9] net: dsa: microchip: ksz9477: add Wake
+ on LAN support
+Message-ID: <20231025201015.GL57304@kernel.org>
+References: <20231023093343.2370248-1-o.rempel@pengutronix.de>
+ <20231023093343.2370248-5-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926122957.341094-1-festevam@gmail.com> <169591967800.835622.10464359202188248969.robh@kernel.org>
-In-Reply-To: <169591967800.835622.10464359202188248969.robh@kernel.org>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 25 Oct 2023 17:07:39 -0300
-Message-ID: <CAOMZO5Adr+au1em1cAR3E_irErXM3qd2FPiG0DJiU-Hskwgekg@mail.gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: input: fsl,scu-key: Document wakeup-source
-To: Rob Herring <robh@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Fabio Estevam <festevam@denx.de>, linux-arm-kernel@lists.infradead.org, 
-	robh+dt@kernel.org, devicetree@vger.kernel.org, linux-imx@nxp.com, 
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231023093343.2370248-5-o.rempel@pengutronix.de>
 
-Hi Dmitry,
+On Mon, Oct 23, 2023 at 11:33:38AM +0200, Oleksij Rempel wrote:
+> Add WoL support for KSZ9477 family of switches. This code was tested on
+> KSZ8563 chip.
+> 
+> KSZ9477 family of switches supports multiple PHY events:
+> - wake on Link Up
+> - wake on Energy Detect.
+> Since current UAPI can't differentiate between this PHY events, map all
+> of them to WAKE_PHY.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
+>  drivers/net/dsa/microchip/ksz9477.c    | 100 +++++++++++++++++++++++++
+>  drivers/net/dsa/microchip/ksz9477.h    |   4 +
+>  drivers/net/dsa/microchip/ksz_common.c |  24 ++++++
+>  drivers/net/dsa/microchip/ksz_common.h |   4 +
+>  4 files changed, 132 insertions(+)
+> 
+> diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
+> index cde8ef33d029..036dfaddb32a 100644
+> --- a/drivers/net/dsa/microchip/ksz9477.c
+> +++ b/drivers/net/dsa/microchip/ksz9477.c
+> @@ -56,6 +56,103 @@ int ksz9477_change_mtu(struct ksz_device *dev, int port, int mtu)
+>  				  REG_SW_MTU_MASK, frame_size);
+>  }
+>  
+> +/**
+> + * ksz9477_handle_wake_reason - Handle wake reason on a specified port.
+> + * @dev: The device structure.
+> + * @port: The port number.
+> + *
+> + * This function reads the PME (Power Management Event) status register of a
+> + * specified port to determine the wake reason. If there is no wake event, it
+> + * returns early. Otherwise, it logs the wake reason which could be due to a
+> + * "Magic Packet", "Link Up", or "Energy Detect" event. The PME status register
+> + * is then cleared to acknowledge the handling of the wake event.
+> + *
+> + * Return: 0 on success, or an error code on failure.
+> + */
+> +static int ksz9477_handle_wake_reason(struct ksz_device *dev, int port)
+> +{
+> +	u8 pme_status;
+> +	int ret;
+> +
+> +	ret = ksz_pread8(dev, port, REG_PORT_PME_STATUS, &pme_status);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!pme_status)
+> +		return 0;
+> +
+> +	dev_dbg(dev->dev, "Wake event on port %d due to:%s%s\n", port,
+> +		pme_status & PME_WOL_LINKUP ? " \"Link Up\"" : "",
+> +		pme_status & PME_WOL_ENERGY ? " \"Enery detect\"" : "");
 
-On Thu, Sep 28, 2023 at 1:48=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
->
-> On Tue, 26 Sep 2023 09:29:50 -0300, Fabio Estevam wrote:
-> > From: Fabio Estevam <festevam@denx.de>
-> >
-> > The SCU Key controller can be used as a system wakeup source.
-> >
-> > Document the 'wakeup-source' property.
-> >
-> > This fixes the following schema warning:
-> >
-> > system-controller: keys: 'wakeup-source' does not match any of the rege=
-xes: 'pinctrl-[0-9]+'
-> >       from schema $id: http://devicetree.org/schemas/firmware/fsl,scu.y=
-aml#
-> >
-> > Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > Signed-off-by: Fabio Estevam <festevam@denx.de>
-> > ---
-> >  Documentation/devicetree/bindings/input/fsl,scu-key.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
+nit: Energy
 
-Could you please take this one?
+> +
+> +	return ksz_pwrite8(dev, port, REG_PORT_PME_STATUS, pme_status);
+> +}
+
+...
 
