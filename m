@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9213E7D620F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:02:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC187D6214
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:04:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1685AB20E83
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:02:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50E46B20FC4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9B0154B2;
-	Wed, 25 Oct 2023 07:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CED3156D1;
+	Wed, 25 Oct 2023 07:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U2T6Aptn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hOSlbCHg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C6F79FB
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:02:36 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5562619D
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:02:31 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99357737980so829477266b.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:02:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E31179FB
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:04:14 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C396DD
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:04:13 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9be02fcf268so776106366b.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:04:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698217349; x=1698822149; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698217451; x=1698822251; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ISa8zL6UMcVxhtYUYtsZ90GndIzLZwLMRsock1IO5nw=;
-        b=U2T6AptnIIqV1wynN1MJ9K4RpvAYXZP719JjyvInNW08Ii3lO9akLH8HyIuTDrmat3
-         2nVXrAAc8hnSp1gBNCzc/3HDy/YenqwcyEF2W3NAWfSfb2vB9YCqPNIQP7boQXmbUiLg
-         HqUQ4GtYfWhJVutawMSCmGisITXmcLut+qU/2o/S98b4Q7I02dyP+kiaFT21pKy1qHG9
-         hZUxcipC8gfuBGgPUdfYMzxJvjHrtfAz/4gW8J1iwjbc9j0y9Zhcw0l2l9dZDhflfTZJ
-         5mMqbR3qOLdbY09Or/bwwdsbInSlYqvaeewTpPl0w55MiaAkdF3jiJ83PHm9xnbrSk69
-         aXrQ==
+        bh=ISx9XF0jymKJbKBV7VQC9cj9x5oOl7s9JRVjqaQ3WiA=;
+        b=hOSlbCHg2gQRWRlb8LnsRu9j7r5uKTSOvVvhw4bjIpxnAuX+GWvGzyu4BzhU8sGUCg
+         fWAwemftRa1EjjUQmQTaJeGLifAq5AAWhdbik7lJx8vqVua2G9gIvUu5aSKXSjsrK6OI
+         x6atel5BXlil0vDha+qzohA+lx8s6F+VZAJrjIeBWhctwWnox+jLHwXctXtERDk7mPAS
+         o4/wqUN3o2n9P0LGFAXRJHZqiEOOUGRLz2Xa8CrJJeA5ax6F6U5mljJkoXwFv+1R/Nlf
+         tLiXHKD2fwOLU934asZdYSqiLWouyR+oAbiG7EXiVd+1o4LXUIXgRZ4T8HGHWaToQXsW
+         3Dzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698217349; x=1698822149;
+        d=1e100.net; s=20230601; t=1698217451; x=1698822251;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ISa8zL6UMcVxhtYUYtsZ90GndIzLZwLMRsock1IO5nw=;
-        b=YcM22zxvLDfq10DmD0NcdHv0+NzIu4UQlajQ2yZ62dALPc6k7XcXaWIADRQkI8FTD/
-         UDqqdMDSzxcuX3AQHn20bdDm9jRGCj7yYN9MjoYb3KtZjzTkw6AOSMnsVqhCHq/7rqfm
-         vYxBwY+fwKXn740wY1zw6pVY9ZRTNBLxCN2OcliwvgLhcc4uT9drm3qNlhFt9yHfybkc
-         u2m2iAM7at8vwIawNVp/mI/jC5n9NO/6AIwL2GyQptoKrUGkeImv5vTCGN2EDEXJ33r9
-         18pmSshMJB76FdI28iGsuaLvxaqUPA4a+3lsW+8S/qEKZFII021LKMks7AkFd4MKsWIR
-         34RQ==
-X-Gm-Message-State: AOJu0YwAQMpoTm0RDpI0yxZp4aT48Uu/0Y8cR4zV6VDBwlioPXOSd72v
-	ngkIwWBW6J5QJc2RIyVlkgIaiQ==
-X-Google-Smtp-Source: AGHT+IFq1rm5Awxh+Wpr0IvxefH7nYNkUw4u4jWjGDDb3VxVcGrsc7FX4UTKbZejkxgRNAIWA7/LCA==
-X-Received: by 2002:a17:907:3f09:b0:9ad:c763:bc7a with SMTP id hq9-20020a1709073f0900b009adc763bc7amr13515922ejc.23.1698217349648;
-        Wed, 25 Oct 2023 00:02:29 -0700 (PDT)
+        bh=ISx9XF0jymKJbKBV7VQC9cj9x5oOl7s9JRVjqaQ3WiA=;
+        b=xUJEQ+kJAxhMsz0ofTQd+4ptvp5KyUjY9n13j1Q0H33kXSF1wJ9gfgOIIRzOegedGu
+         Q5OMLn4Gl44jp6KntZ/Csn8MDifTmLeLuwj5ls0p7iJxL2Qn+VvYtd6XbZOBnCSDBDGJ
+         JAMjyUxrPPStVWBfmqFm3X4thbivqYOc6711RqzaJdzOuDryADSisiV2Me9Y8ZnbBsJL
+         Md5K1iYGCb59TTeOW57dkY+PT/JkidK6kfrrL53ntXe6rpUU9ey+31Pok2EJJNz8EyV/
+         sqzDMJWpCEkg4dPPHbspaVCBlBIBHTJ1AyMuOAmlHdbm5iARwU5k7ClkuXQYY88Ad70u
+         QuhA==
+X-Gm-Message-State: AOJu0YwaK1SD4vZeZzDbGa5VJfExY3ppYOXLkY0SorP8fr7HT52PEIr6
+	NpxVH3DHz1wV6A8laFPQs9EtXw==
+X-Google-Smtp-Source: AGHT+IHl7TXiNgbxL/lFXemZ/HH/QB5tELiJpzblrf3+E9x+fD02+qxXiz919I3FzUwr8d30ZQD50w==
+X-Received: by 2002:a17:906:4784:b0:9ae:4f9e:7813 with SMTP id cw4-20020a170906478400b009ae4f9e7813mr10078085ejc.73.1698217451553;
+        Wed, 25 Oct 2023 00:04:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id l20-20020a1709065a9400b009786c8249d6sm9576921ejq.175.2023.10.25.00.02.28
+        by smtp.gmail.com with ESMTPSA id l20-20020a1709065a9400b009786c8249d6sm9576921ejq.175.2023.10.25.00.04.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 00:02:29 -0700 (PDT)
-Message-ID: <2f3a4dcf-fa70-4834-9986-b5cf389f541c@linaro.org>
-Date: Wed, 25 Oct 2023 09:02:27 +0200
+        Wed, 25 Oct 2023 00:04:10 -0700 (PDT)
+Message-ID: <2a715a8a-c4c1-42ea-9159-15f25338d36c@linaro.org>
+Date: Wed, 25 Oct 2023 09:04:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +67,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: enable GPIO based LED
+Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
+ codec IP support
 Content-Language: en-US
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231025-ipq9574-led-v1-1-b8217e997dfb@quicinc.com>
+ NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil
+ <hverkuil@xs4all.nl>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Nas Chung <nas.chung@chipsnmedia.com>, Fabio Estevam <festevam@gmail.com>,
+ linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+ linux-kernel@vger.kernel.org,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, kernel@collabora.com,
+ Robert Beckett <bob.beckett@collabora.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Darren Etheridge <detheridge@ti.com>
+References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
+ <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
+ <b94e3561-f5ef-443f-98c7-9b79a8bbceec@linaro.org>
+ <20231016134720.GA2650973-robh@kernel.org>
+ <20231021120526.eqe3esyxyi5b3e5d@basti-XPS-13-9310>
+ <3d465d3c-386d-467b-87e9-806962464ac5@linaro.org>
+ <20231024051745.d663ekj7klrl4yzj@basti-XPS-13-9310>
+ <7240fa39-1a8f-4338-b5ae-b469dfaeb7e1@linaro.org>
+ <20231025061713.kmmu432q76t32iv6@basti-XPS-13-9310>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,38 +139,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-ipq9574-led-v1-1-b8217e997dfb@quicinc.com>
+In-Reply-To: <20231025061713.kmmu432q76t32iv6@basti-XPS-13-9310>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 08:58, Kathiravan Thirumoorthy wrote:
-> Add support for wlan-2g LED on GPIO64.
+On 25/10/2023 08:17, Sebastian Fricke wrote:
+> Hey Krzysztof,
 > 
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> On 24.10.2023 09:24, Krzysztof Kozlowski wrote:
+>> On 24/10/2023 07:17, Sebastian Fricke wrote:
+>>
+>>>>>> It needs an SoC specific compatible (TI something...) as well (or
+>>>>>> instead). Unless there's a public spec with details on how many
+>>>>>> clocks, resets, interrupts, etc. there are.
+>>>>>
+>>>>> Okay so how about this, a bit similar to the Coda driver supplying both
+>>>>> a general option and a SoC specific version:
+>>>>
+>>>> Can generic compatible be used alone in board designs? If it is licensed
+>>>> block, then most likely you want a fallback.
+>>>
+>>> Alright, so a fallback seems appropriate, how do you like this?
+>>>
+>>> properties:
+>>>    compatible:
+>>>      items:
+>>>        - enum:
+>>>            - const: ti,k3-j721sX-wave521c
+>>>        - const: cnm,wave521c
+>>>
+>>> Providing a fallback and adding a enum which can be extended later on.
+>>
+>> This looks almost good. I wonder what is "j721sX" - Google does not find
+>> it. There is thouhg j721se.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> index 49c9b6478357..b6f90da31778 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
-> @@ -51,6 +51,18 @@ button-wps {
->  			debounce-interval = <60>;
->  		};
->  	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-0 = <&gpio_leds_default>;
-> +		pinctrl-names = "default";
-> +
-> +		led-0 {
-> +			gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger = "phy0tx";
-> +			default-state = "off";
+> Well that was a misunderstanding from my side I thought that both j721se
+> and j721s2 have the Wave5 IP block and wanted to describe both with
+> j721sX. But as it turns out the IP block isn't present on j721se.
 
-Missing function and color.
+It does not matter. You must not have wildcards in compatibles.
+
+> Additionally, I was only able to test the codec on j721s2 for now and so
+> I would opt for calling it: `ti,k3-j721s2-wave521c`
+
 
 Best regards,
 Krzysztof
