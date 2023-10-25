@@ -1,202 +1,109 @@
-Return-Path: <devicetree+bounces-11945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1767D71EC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:51:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 444967D720C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 19:07:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9095281D69
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:51:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E72B1C20D6A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A9328E31;
-	Wed, 25 Oct 2023 16:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE762AB48;
+	Wed, 25 Oct 2023 17:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="r5nGp8M4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VXcyZ1bt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DE928E08
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:51:01 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2530185
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 09:50:59 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AAEF91010;
-	Wed, 25 Oct 2023 18:50:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1698252644;
-	bh=Vstx2/uLnLoK3+ATkIxZe9Jtui8pXM6YKsGUNqaLrb0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=r5nGp8M4wV+kZ94TOPY3zt38Kq4MvhrSQz62C5cYIcvBW/lEixjPqD6fjdiirIGkk
-	 3oCCQcoDNxSWP9nT+QBdz3o5BuCtjWnIhVHxAVY/pYlNmaCBYwPVWwjARpz7Akva5z
-	 581j8QjqG5wHXwDC7AZVyRTGHH589DfCcCIFz+4k=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev
-Cc: devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Li Yang <leoyang.li@nxp.com>,
-	Marco Contenti <marco.c@variscite.com>,
-	Nate Drude <nate.d@variscite.com>,
-	FrancescoFerraro <francesco.f@variscite.com>,
-	Harshesh Valera <harshesh.v@variscite.com>
-Subject: [PATCH v2 4/4] arm64: dts: freescale: Add panel overlay for Variscite DART
-Date: Wed, 25 Oct 2023 19:50:58 +0300
-Message-ID: <20231025165058.31697-5-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
-References: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A3972AB2B
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 17:07:13 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B826133;
+	Wed, 25 Oct 2023 10:07:12 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39PFhfRa006993;
+	Wed, 25 Oct 2023 17:07:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=/GbdsTHcBTeMdk2nrGkNsicVUpEdodOMhaqnSIBEsaQ=;
+ b=VXcyZ1btG1S808V8K6edoARSvXeprYuyl1A3e3aSXJTX0CmOgwAT53dri9HGRTT5Q8wo
+ Hw2bSB9DGgBXZoB16tiwptddwlCC1X3eP0NGSKoDyVbEr2Xye2p/d09eOzB3p7iFNJo8
+ 8oqYA/7bdaajppygk7Y2fUe1VG7Mv3SmjbYaHUi93xmmGviO6s06kww6l86c+383MSnQ
+ IUN2aaaj0h2o7RD516bkR19w/f5/DTXCU6DhInb0be1nAjwNXNqFfYZcXA1fah37n/Sf
+ FID59FvvuFC4pYrpMMK9NavDurrzSitv1rrLQAKUH+7TBi4o01vsCKq1sXH/dGpZjv+d bQ== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ty5wdr8ap-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Oct 2023 17:07:07 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39PH76Sd017720
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Oct 2023 17:07:06 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Wed, 25 Oct 2023 10:07:03 -0700
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: [PATCH v2 1/4] dt-bindings: mfd: qcom,tcsr: Add compatible for sm8250/sm8350
+Date: Wed, 25 Oct 2023 22:36:38 +0530
+Message-ID: <1698253601-11957-1-git-send-email-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vygGjcVFlcHL_e-Kg8whwgCYYE48I4hf
+X-Proofpoint-ORIG-GUID: vygGjcVFlcHL_e-Kg8whwgCYYE48I4hf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-25_05,2023-10-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 clxscore=1015 spamscore=0 mlxscore=0 bulkscore=0
+ impostorscore=0 priorityscore=1501 mlxlogscore=689 phishscore=0
+ malwarescore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2310170001 definitions=main-2310250149
 
-Add a DT overlay for the Variscite i.MX8MP DT8MCustomBoard that models
-the GKTW70SDAE4SE LVDS panel found in the evaluation kit.
+Document the compatible for both sm8250 and sm8350 SoCs.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../imx8mp-var-dart-panel-gktw70sdae4se.dtso  | 99 +++++++++++++++++++
- 2 files changed, 101 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso
+Changes in v2:
+ - Removed sm8550.
+ - Removed regular expression from commit text/subject.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 19637302397f..20514cb1c505 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -150,6 +150,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
- 
-+imx8mp-var-dart-panel-gktw70sdae4se-dtbs := imx8mp-var-dart-dt8mcustomboard-v2.dtb imx8mp-var-dart-panel-gktw70sdae4se.dtbo
- imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
- imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
- imx8mm-venice-gw72xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs232-rts.dtbo
-@@ -162,6 +163,7 @@ imx8mm-venice-gw73xx-0x-rs422-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-
- imx8mm-venice-gw73xx-0x-rs485-dtbs	:= imx8mm-venice-gw73xx-0x.dtb imx8mm-venice-gw73xx-0x-rs485.dtbo
- imx8mp-venice-gw74xx-rpidsi-dtbs	:= imx8mp-venice-gw74xx.dtb imx8mp-venice-gw74xx-rpidsi.dtbo
- 
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-var-dart-panel-gktw70sdae4se.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-imx219.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rpidsi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x-rs232-rts.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso
-new file mode 100644
-index 000000000000..d5f61e157bc2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2020-2021 Variscite Ltd.
-+ * Copyright 2023 Ideas on Board Oy
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "imx8mp-pinfunc.h"
-+
-+&{/} {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 1000000 0>;
-+	};
-+
-+	panel {
-+		compatible = "sgd,gktw70sdae4se", "panel-lvds";
-+		backlight = <&backlight>;
-+		width-mm = <153>;
-+		height-mm = <87>;
-+		label = "gktw70sdae4se";
-+		data-mapping = "jeida-24";
-+
-+		panel-timing {
-+			clock-frequency = <29232000>;
-+			hactive = <800>;
-+			vactive = <480>;
-+			hback-porch = <40>;
-+			hfront-porch = <40>;
-+			vback-porch = <29>;
-+			vfront-porch = <13>;
-+			hsync-len = <48>;
-+			vsync-len = <3>;
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <1>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&ldb_lvds_ch0>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	touch@38 {
-+		compatible = "edt,edt-ft5206";
-+		reg = <0x38>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_captouch>;
-+
-+		reset-gpios = <&gpio_exp_2 4 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-+		wakeup-source;
-+
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+	};
-+};
-+
-+&lcdif2 {
-+	/*
-+	 * The pixel clock should be configured by the lcdif driver, but the
-+	 * clock frequency propagation in the clock framework stops at the PIX2
-+	 * clock and doesn't reach the VIDEO_PLL1 clock. As a workaround, set
-+	 * the VIDEO_PLL1 rate manually.
-+	 *
-+	 * For a 60Hz refresh rate, the panel requires a pixel clock of 29.232
-+	 * MHz. The LVDS clock frequency is 7 times higher, or 204.624 MHz.
-+	 */
-+	assigned-clock-rates = <0>, <204624000>;
-+	status = "okay";
-+};
-+
-+&ldb_lvds_ch0 {
-+	remote-endpoint = <&panel_in>;
-+};
-+
-+&lvds_bridge {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_captouch: captouchgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14				0x16
-+		>;
-+	};
-+};
+ Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+index 33c3d023a106..798705ab6a46 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+@@ -29,6 +29,8 @@ properties:
+           - qcom,sdx65-tcsr
+           - qcom,sm4450-tcsr
+           - qcom,sm8150-tcsr
++          - qcom,sm8250-tcsr
++          - qcom,sm8350-tcsr
+           - qcom,sm8450-tcsr
+           - qcom,tcsr-apq8064
+           - qcom,tcsr-apq8084
 -- 
-Regards,
-
-Laurent Pinchart
+2.7.4
 
 
