@@ -1,599 +1,169 @@
-Return-Path: <devicetree+bounces-11927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC8E7D7135
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:51:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC8B7D7139
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:51:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8495DB20C0C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:51:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAAEC281C6A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9042B779;
-	Wed, 25 Oct 2023 15:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1962C855;
+	Wed, 25 Oct 2023 15:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KRef4/n2"
+	dkim=pass (1024-bit key) header.d=asem.it header.i=@asem.it header.b="camlQTDK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFA2C8EA
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 15:51:01 +0000 (UTC)
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17032136
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:50:58 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507bd644a96so8617686e87.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:50:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698249056; x=1698853856; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ylcJerF5bwbwKPe0Z1fbiB9tppCgDvXclx4fVOdD5LY=;
-        b=KRef4/n2/QC+CiBNkLjVOIeSgEfJZO5fHzKDKrOKlWVE9qc9cHqSy/Vd0ot4siZxgV
-         SpJnyD1In8vaaFpW/Hg7L57vjIKfJaWt2QUceikXsoOlqS20myvuuJf2AK8NBZb2Y2YC
-         7WouoVNt0dmwzYw2gJ/uP5jbLVSHlltccw+6qDLFxwIBdgXdJ2UvW5wGfViTTIHc1op+
-         d9jLhsRtx/uCw+G3boYTJNWZt7+TuX5F+RSCxqkaPVC3pLX2VeKAIjlgVVXiHUvdtdjq
-         Y1CciqJXHqZzLL4MYzcxIgKUCNuj66nxTCzl6P0/OQOUFANUr/wEKcvVJnAAZLzk6vuu
-         e36g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698249056; x=1698853856;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ylcJerF5bwbwKPe0Z1fbiB9tppCgDvXclx4fVOdD5LY=;
-        b=rEsxUyECHSXyfG9bn7uzDJTEnKM4ERpUDGODEfPTWyoYN87kYq/LS9lO+ubwbBQLf9
-         0kyNjCA+dsY5fmHbEH8wvpqifNW8Xyut+C7Cir6Ck/HYCyabwqtALZLk2LXzI98Hv8Oy
-         xznA6wJC66IfBArQMFr4ehkFY79AMT0/AAlxP/wXuTnI0RpC+c5cKOnyUT1yw/twqKPF
-         omFYd9L+YwFO5lPsRV/1ybWVvkTcZu+IDnoOQ+WmSoslRjGu4SaOfZPWD8oUgJkDQNLn
-         /2d7CsrdwaMo/CvkJbunXgdhpKO1tHIscLM68PlA4OUTgctHNBsS7Xq4DV9DOYVjkmoy
-         1z3Q==
-X-Gm-Message-State: AOJu0Yym3SAHVSFJzQPgspM/czoOixsXezYwWlTKd2u08ocgGPJZJAiW
-	x1Hu6CGvvjHV6B9MzfSs4V4CYA==
-X-Google-Smtp-Source: AGHT+IHTmuZM+UUpN/nS6e7s96XkJiNiR6iojtWQfvkfRXgdY6vTMWs5grXugKN9ggmgHU76yjAEXg==
-X-Received: by 2002:ac2:4315:0:b0:507:b90a:7a5d with SMTP id l21-20020ac24315000000b00507b90a7a5dmr11466935lfh.10.1698249056137;
-        Wed, 25 Oct 2023 08:50:56 -0700 (PDT)
-Received: from [192.168.1.212] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 7-20020ac25f07000000b00507a5f385f0sm2591799lfq.266.2023.10.25.08.50.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 08:50:55 -0700 (PDT)
-Message-ID: <bc1586aa-9a25-4012-94ee-14782a11e969@linaro.org>
-Date: Wed, 25 Oct 2023 18:50:54 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAF61DA5B
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 15:51:14 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2056.outbound.protection.outlook.com [40.107.6.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE9F3182;
+	Wed, 25 Oct 2023 08:51:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ivpaSCO/vr8f3jS6M+IgGQCMm10HuGjscok1e8DSjrvldzwaCLbz0OrREc3jAO1hrl5yNxKan1C3pt3FDFzGyc9jA4iQcnM51WZIOv3xhNVqYdjkE7iaoq8YkqMkgeVQmsvpwN/1LWtwNMMQwtDfQngD/mbFwDxkFp+Qx1lPizVfo3EibVTPkPlXB9YjZxlC5VYwVWEy+N493sB1E1XK4NR8intVvXPia7oVflDKSHAzLUeCj7tSjSFLDswwX+sG56AqK+VUxtAfQ3rJjReuvEBMVhmRe4ExtSRzequCfERAnHNdPJN8PENrF61hsU7CtSSOU/GEGby0fCuqvmnluA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XGUZwAaFuAPJBm2px7vb6P5m+iiV8jGnPBLUM1awQI0=;
+ b=RX6Psmfs8QpMAfqLY+FCLhjGm/GnI8C/t6ZQa6tTsqjJEOZb/ivvjo8IwkfjGqiyg3nHALZ9sgBMpGoaIRO6AUt/FXvNiBlTck+3RQv1/y9tllFTZPqPQR3kbONX7jYI5D9vmHfZuxfvuTBcuKUXU35RTxXsYytVm+wCW7Hp5beig+e4HXrcpWEcfTHgm+2Ng7xYijJ3cRXqbWZsgqjTKtms0y7VQHZNI7FlcKnfSjhrWxdc8U1alb4Ew3Y84Yuq+E1wjxgqbFE6v18OYna8fNTwZDsCbxUEA6LkB3hkcT8GNI/gLLgDRvs24EC4qX9Mq4paE1sNJL8aQ1aMNIaGtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 151.1.184.193) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=asem.it;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=asem.it;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XGUZwAaFuAPJBm2px7vb6P5m+iiV8jGnPBLUM1awQI0=;
+ b=camlQTDK7ObVisiROZvgFN36kb0nsYu0cyfHd0f8M7eUvZduXrqi6G9Lap/Z0cYi5DXsJOu8lNTjA9mFFs+l8XM0vSb4rdwBijALwNErqS+ahzs2qNC1WFCicZETMpnrUBqN+uZbpGu2boixaS5LHIdUTjAj4cwPubW56brwViQ=
+Received: from AM6P195CA0020.EURP195.PROD.OUTLOOK.COM (2603:10a6:209:81::33)
+ by AM9PR01MB7203.eurprd01.prod.exchangelabs.com (2603:10a6:20b:2c8::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Wed, 25 Oct
+ 2023 15:51:05 +0000
+Received: from AM3PEPF0000A791.eurprd04.prod.outlook.com
+ (2603:10a6:209:81:cafe::a0) by AM6P195CA0020.outlook.office365.com
+ (2603:10a6:209:81::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.36 via Frontend
+ Transport; Wed, 25 Oct 2023 15:51:05 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 151.1.184.193) smtp.mailfrom=asem.it; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=asem.it;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ asem.it discourages use of 151.1.184.193 as permitted sender)
+Received: from asas054.asem.intra (151.1.184.193) by
+ AM3PEPF0000A791.mail.protection.outlook.com (10.167.16.120) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6933.15 via Frontend Transport; Wed, 25 Oct 2023 15:51:05 +0000
+Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with Microsoft SMTPSVC(10.0.14393.4169);
+	 Wed, 25 Oct 2023 17:51:04 +0200
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Flavio Suligoi <f.suligoi@asem.it>
+Subject: [PATCH v2 0/1] dt-bindings: backlight: mp3309c: remove two required properties
+Date: Wed, 25 Oct 2023 17:50:56 +0200
+Message-Id: <20231025155057.886823-1-f.suligoi@asem.it>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] drm/vs: Register DRM device
-Content-Language: en-GB
-To: Keith Zhao <keith.zhao@starfivetech.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Emil Renner Berthing <kernel@esmil.dk>,
- Shengyang Chen <shengyang.chen@starfivetech.com>,
- Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>,
- Chris Morgan <macromorgan@hotmail.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Changhuang Liang <changhuang.liang@starfivetech.com>,
- Jack Zhu <jack.zhu@starfivetech.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
-References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
- <20231025103957.3776-5-keith.zhao@starfivetech.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20231025103957.3776-5-keith.zhao@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 25 Oct 2023 15:51:04.0513 (UTC) FILETIME=[0F8C6B10:01DA075B]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM3PEPF0000A791:EE_|AM9PR01MB7203:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: facfd5cc-8cd6-4adc-f042-08dbd5723275
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	SAQeInu82Lp/vHYzfwMO88OddYGwkKS1LmbUEpsaZlPooPOB19+/DPOMLHIu9H5JXS700//dK6CuxWZ9Evi/KkjPLiBF7cJnGQsDjLcuoOSj7ubhnYwKnmUnNn78T+EX7ap4EltDG56CmzIeexyYdGXNT1YsGsJxJRuKBtyPeWkr4d4ScqJ6H1Nv3CWAsYin8/QlznYXlPjQaSI4kHat6KuHfke8xKdiNvpk6QOVdw9u6k6ey32EpiSU+GFzU9zkRc7f/8V/5VaOvb8btdtCDSvsIwN7LP6F6rPbC/5nlrMvRRFYK+m9bskpMJWcVLIIjX4/XOtXRBmWps4GUbj+xl2rO+wZD1d9BGOmRlGKTAD9tJ0XOtDFAP4EQoT9Hc2Zw4shkf+1/eYlXt0zpe3Rb5e5OeqkSyRvG2/+LyoV1QMmVg+26+AvBThWQQpuSD5/yXKIaOfyf97e4N3K33njUco1X/BFckiXxH4xt6izI9c8J4k8Oc+TK3RXhL53ZRw8VfqkdtRz3zEGZgugHu9QbmHAO2QTfaJ3BI00WaMi4mCd7fmC/osVIh0/v7Q5tEx7lJrR8C1XQHbjE37TQ0Qn3gjw7JG3Umh+VTgrxD1DUaRBzXCPGuvm/HGp2RXtpFI1sEn4wfoFVNpS+t+OPAFAPg9xORUZ/V2J0hhd2Pjz9Hz3IaGlCqybXwQaVYAaE1W5dh/uoyTzm7W4sE2BTrmqxDk6MAhzKOQ+Qb4gu24J+WSBcPP08/vJWMtnAOFFd/gi
+X-Forefront-Antispam-Report:
+	CIP:151.1.184.193;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:asas054.asem.intra;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(346002)(39850400004)(396003)(136003)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(82310400011)(46966006)(36840700001)(41300700001)(450100002)(2906002)(81166007)(70206006)(82740400003)(6666004)(478600001)(356005)(47076005)(40480700001)(336012)(83380400001)(110136005)(86362001)(36756003)(5660300002)(2616005)(107886003)(36860700001)(1076003)(8676002)(8936002)(4326008)(70586007)(26005)(316002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: asem.it
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 15:51:05.0916
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: facfd5cc-8cd6-4adc-f042-08dbd5723275
+X-MS-Exchange-CrossTenant-Id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d0a766c6-7992-4344-a4a2-a467a7bb1ed2;Ip=[151.1.184.193];Helo=[asas054.asem.intra]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM3PEPF0000A791.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR01MB7203
 
-On 25/10/2023 13:39, Keith Zhao wrote:
-> Implement drm device registration interface
-> 
-> Thomas Zimmermann wrote:
-> You are replacing almost all of the GEM DMA object's helper code.
-> Either inherit directly from drm_gem_object drop the dependency entirely,
-> or you could try to fit your code into GEM DMA as well
-> 
-> Eventually I found an answer and it was DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE
-> After I adapt this interface, the custom gem logic interfaces can be deleted.
-> It's a big shocking, clap!
-> 
-> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
-> ---
->   drivers/gpu/drm/Kconfig                  |   2 +
->   drivers/gpu/drm/Makefile                 |   1 +
->   drivers/gpu/drm/verisilicon/Kconfig      |  15 ++
->   drivers/gpu/drm/verisilicon/Makefile     |   7 +
->   drivers/gpu/drm/verisilicon/vs_drv.c     | 227 +++++++++++++++++++++++
->   drivers/gpu/drm/verisilicon/vs_drv.h     |  27 +++
->   drivers/gpu/drm/verisilicon/vs_modeset.c |  36 ++++
->   drivers/gpu/drm/verisilicon/vs_modeset.h |  10 +
->   include/uapi/drm/vs_drm.h                |  50 +++++
->   9 files changed, 375 insertions(+)
->   create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
->   create mode 100644 drivers/gpu/drm/verisilicon/Makefile
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
->   create mode 100644 include/uapi/drm/vs_drm.h
-> 
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index afb3b2f5f..9ede80ef9 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -363,6 +363,8 @@ source "drivers/gpu/drm/solomon/Kconfig"
->   
->   source "drivers/gpu/drm/sprd/Kconfig"
->   
-> +source "drivers/gpu/drm/verisilicon/Kconfig"
-> +
->   config DRM_HYPERV
->   	tristate "DRM Support for Hyper-V synthetic video device"
->   	depends on DRM && PCI && MMU && HYPERV
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 7a09a89b4..6db3bc397 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -194,3 +194,4 @@ obj-y			+= gud/
->   obj-$(CONFIG_DRM_HYPERV) += hyperv/
->   obj-y			+= solomon/
->   obj-$(CONFIG_DRM_SPRD) += sprd/
-> +obj-$(CONFIG_DRM_VERISILICON) += verisilicon/
-> diff --git a/drivers/gpu/drm/verisilicon/Kconfig b/drivers/gpu/drm/verisilicon/Kconfig
-> new file mode 100644
-> index 000000000..3a361f8c8
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +config DRM_VERISILICON
-> +	tristate "DRM Support for VeriSilicon"
-> +	depends on DRM
-> +	select DRM_KMS_HELPER
-> +	select DRM_GEM_DMA_HELPER
-> +	select CMA
-> +	select DMA_CMA
-> +	help
-> +	  Choose this option if you have a VeriSilicon soc chipset.
-> +	  This driver provides VeriSilicon kernel mode
-> +	  setting and buffer management. It does not
-> +	  provide 2D or 3D acceleration.
-> +
-> +
-> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
-> new file mode 100644
-> index 000000000..7d3be305b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/Makefile
-> @@ -0,0 +1,7 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +vs_drm-objs := vs_drv.o \
-> +		vs_modeset.o
-> +
-> +obj-$(CONFIG_DRM_VERISILICON) += vs_drm.o
-> +
-> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/verisilicon/vs_drv.c
-> new file mode 100644
-> index 000000000..da7698c3d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_drv.c
-> @@ -0,0 +1,227 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#include <linux/component.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include <drm/drm_aperture.h>
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_crtc_helper.h>
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_fbdev_generic.h>
-> +#include <drm/drm_file.h>
-> +#include <drm/drm_gem_dma_helper.h>
-> +#include <drm/drm_module.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_probe_helper.h>
-> +#include <drm/drm_vblank.h>
-> +
-> +#include "vs_drv.h"
-> +#include "vs_modeset.h"
-> +
-> +#define DRV_NAME	"verisilicon"
-> +#define DRV_DESC	"Verisilicon DRM driver"
-> +#define DRV_DATE	"20230516"
-> +#define DRV_MAJOR	1
-> +#define DRV_MINOR	0
-> +
-> +static int vs_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
-> +			      struct drm_mode_create_dumb *args)
-> +{
-> +	struct vs_drm_device *priv = to_vs_drm_private(dev);
-> +
-> +	unsigned int pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
-> +
-> +	if (args->bpp % 10)
-> +		args->pitch = ALIGN(pitch, priv->pitch_alignment);
-> +	else
-> +		/* for costum 10bit format with no bit gaps */
+This patch remove the following two not-required properties from the
+"required" section:
 
-? I think you meant 'custom' here. If so, please define that format and 
-use it explicitly here. There can be other 10bpp formats.
+- max-brightness
+- default brightness
 
-> +		args->pitch = pitch;
-> +
-> +	return drm_gem_dma_dumb_create_internal(file, dev, args);
-> +}
-> +
-> +DEFINE_DRM_GEM_FOPS(vs_drm_fops);
-> +
-> +static struct drm_driver vs_drm_driver = {
-> +	.driver_features	= DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_GEM,
-> +
-> +	DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(vs_gem_dumb_create),
-> +
-> +	.fops			= &vs_drm_fops,
-> +	.name			= DRV_NAME,
-> +	.desc			= DRV_DESC,
-> +	.date			= DRV_DATE,
-> +	.major			= DRV_MAJOR,
-> +	.minor			= DRV_MINOR,
-> +};
-> +
-> +static int vs_drm_bind(struct device *dev)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct vs_drm_device *priv;
-> +	int ret;
-> +	struct drm_device *drm_dev;
-> +
-> +	/* Remove existing drivers that may own the framebuffer memory. */
-> +	ret = drm_aperture_remove_framebuffers(&vs_drm_driver);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv = devm_drm_dev_alloc(dev, &vs_drm_driver, struct vs_drm_device, base);
-> +	if (IS_ERR(priv))
-> +		return PTR_ERR(priv);
-> +
-> +	priv->pitch_alignment = 64;
-> +
-> +	ret = dma_set_coherent_mask(priv->base.dev, DMA_BIT_MASK(40));
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_dev = &priv->base;
-> +	platform_set_drvdata(pdev, drm_dev);
-> +
-> +	vs_mode_config_init(drm_dev);
-> +
-> +	/* Now try and bind all our sub-components */
-> +	ret = component_bind_all(dev, drm_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = drm_vblank_init(drm_dev, drm_dev->mode_config.num_crtc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_mode_config_reset(drm_dev);
-> +
-> +	drm_kms_helper_poll_init(drm_dev);
-> +
-> +	ret = drm_dev_register(drm_dev, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_fbdev_generic_setup(drm_dev, 32);
-> +
-> +	return 0;
-> +}
-> +
-> +static void vs_drm_unbind(struct device *dev)
-> +{
-> +	struct drm_device *drm_dev = dev_get_drvdata(dev);
-> +
-> +	drm_dev_unregister(drm_dev);
-> +	drm_kms_helper_poll_fini(drm_dev);
-> +	component_unbind_all(drm_dev->dev, drm_dev);
-> +}
-> +
-> +static const struct component_master_ops vs_drm_ops = {
-> +	.bind = vs_drm_bind,
-> +	.unbind = vs_drm_unbind,
-> +};
-> +
-> +static struct platform_driver *drm_sub_drivers[] = {
-> +
-> +};
-> +
-> +static struct component_match *vs_drm_match_add(struct device *dev)
-> +{
-> +	struct component_match *match = NULL;
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(drm_sub_drivers); ++i) {
-> +		struct platform_driver *drv = drm_sub_drivers[i];
-> +		struct device *p = NULL, *d;
-> +
-> +		while ((d = platform_find_device_by_driver(p, &drv->driver))) {
-> +			put_device(p);
-> +
-> +			component_match_add(dev, &match, component_compare_dev, d);
+These properties are not really required, so they can be removed from the
+"required" section.
+The "max-brightness" is no longer used in the current version
+of the driver (it was used only in the first version).
+The "default-brightness", if omitted in the DT, is managed by the
+device driver, using a default value. This value depends on the dimming
+mode used:
 
-drm_of_component_match_add ?
+- for the "analog mode", via I2C commands, this value is fixed by
+  hardware (=31);
+- while in case of pwm mode the default used is the last value of the
+  brightness-levels array.
 
-> +			p = d;
-> +		}
-> +		put_device(p);
-> +	}
-> +
-> +	return match ? match : ERR_PTR(-ENODEV);
-> +}
-> +
-> +static int vs_drm_platform_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct component_match *match;
-> +
-> +	match = vs_drm_match_add(dev);
-> +	if (IS_ERR(match))
-> +		return PTR_ERR(match);
-> +
-> +	return component_master_add_with_match(dev, &vs_drm_ops, match);
-> +}
-> +
-> +static int vs_drm_platform_remove(struct platform_device *pdev)
-> +{
-> +	component_master_del(&pdev->dev, &vs_drm_ops);
-> +	return 0;
-> +}
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int vs_drm_suspend(struct device *dev)
-> +{
-> +	return drm_mode_config_helper_suspend(dev_get_drvdata(dev));
-> +}
-> +
-> +static int vs_drm_resume(struct device *dev)
-> +{
-> +	drm_mode_config_helper_resume(dev_get_drvdata(dev));
-> +
-> +	return 0;
-> +}
-> +#endif
-> +
-> +static SIMPLE_DEV_PM_OPS(vs_drm_pm_ops, vs_drm_suspend, vs_drm_resume);
-> +
-> +static const struct of_device_id vs_drm_dt_ids[] = {
-> +	{ .compatible = "starfive,display-subsystem", },
-> +	{ },
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, vs_drm_dt_ids);
-> +
-> +static struct platform_driver vs_drm_platform_driver = {
-> +	.probe = vs_drm_platform_probe,
-> +	.remove = vs_drm_platform_remove,
-> +
-> +	.driver = {
-> +		.name = DRV_NAME,
-> +		.of_match_table = vs_drm_dt_ids,
-> +		.pm = &vs_drm_pm_ops,
-> +	},
-> +};
-> +
-> +static int __init vs_drm_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = platform_register_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = drm_platform_driver_register(&vs_drm_platform_driver);
-> +	if (ret)
-> +		platform_unregister_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
+Also the brightness-levels array is not required:
 
-You can probably squash all the drivers into a single array.
+- in "analog mode", via I2C commands, the brightness-level array is
+  fixed by hardware (0..31);
+- in pwm dimming mode, the driver uses a default array of 0..255 and
+  the "default-brightness" is the last one, which is "255".
 
-> +
-> +	return ret;
-> +}
-> +
-> +static void __exit vs_drm_fini(void)
-> +{
-> +	platform_driver_unregister(&vs_drm_platform_driver);
-> +	platform_unregister_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
-> +}
-> +
-> +module_init(vs_drm_init);
-> +module_exit(vs_drm_fini);
-> +
-> +MODULE_DESCRIPTION("VeriSilicon DRM Driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.h b/drivers/gpu/drm/verisilicon/vs_drv.h
-> new file mode 100644
-> index 000000000..369ad22d6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_drv.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_DRV_H__
-> +#define __VS_DRV_H__
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_gem.h>
-> +#include <drm/drm_managed.h>
-> +
-> +/*@pitch_alignment: buffer pitch alignment required by sub-devices.*/
-> +struct vs_drm_device {
-> +	struct drm_device base;
-> +	unsigned int pitch_alignment;
-> +};
-> +
-> +static inline struct vs_drm_device *
-> +to_vs_drm_private(const struct drm_device *dev)
-> +{
-> +	return container_of(dev, struct vs_drm_device, base);
-> +}
-> +
-> +#endif /* __VS_DRV_H__ */
-> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.c b/drivers/gpu/drm/verisilicon/vs_modeset.c
-> new file mode 100644
-> index 000000000..151272067
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.c
-> @@ -0,0 +1,36 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#include <linux/module.h>
-> +
-> +#include <drm/drm_damage_helper.h>
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_gem_framebuffer_helper.h>
-> +
-> +#include "vs_modeset.h"
-> +
-> +static const struct drm_mode_config_funcs vs_mode_config_funcs = {
-> +	.fb_create			 = drm_gem_fb_create,
-> +	.atomic_check		 = drm_atomic_helper_check,
-> +	.atomic_commit		 = drm_atomic_helper_commit,
-> +};
-> +
-> +static struct drm_mode_config_helper_funcs vs_mode_config_helpers = {
-> +	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
-> +};
-> +
-> +void vs_mode_config_init(struct drm_device *dev)
-> +{
-> +	drm_mode_config_init(dev);
+NOTE: there are no compatibility problems with the previous version,
+      since the device driver has not yet been included in any kernel.
+      Only this dt-binding yaml file is already included in the
+      "for-backlight-next" branch of the "backlight" kernel repository.
+      No developer may have used it.
 
-quoting docs:
+Other changes:
 
-  * FIXME: This function is deprecated and drivers should be converted 
-over to
-  * drmm_mode_config_init().
+- improve the backlight working mode descripion in the "description"
+  section
+- update the example, removing the "max-brightness" and introducing the
+  "brightess-levels" property
 
-> +	dev->mode_config.fb_modifiers_not_supported = false;
+NOTE: the "brightess-levels" property is present in the last version of the
+      common.yaml file, so it is not decalared here.
+      For this last version of common.yaml file, see my patch:
+      
+[1/1] dt-bindings: backlight: add brightness-levels related common
+ properties
+commit: d5272d39995f4150062a67e6f2cef556edece740
 
-This is the default, if I'm not mistaken
+Flavio Suligoi (1):
+  dt-bindings: backlight: mp3309c: remove two required properties
 
-> +
-> +	dev->mode_config.min_width  = 0;
-> +	dev->mode_config.min_height = 0;
-> +	dev->mode_config.max_width  = 4096;
-> +	dev->mode_config.max_height = 4096;
-> +
-> +	dev->mode_config.funcs = &vs_mode_config_funcs;
-> +	dev->mode_config.helper_private = &vs_mode_config_helpers;
-> +}
-> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.h b/drivers/gpu/drm/verisilicon/vs_modeset.h
-> new file mode 100644
-> index 000000000..ebfe6d612
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_FB_H__
-> +#define __VS_FB_H__
-
-Please match guarding define and the header name.
-
-> +
-> +void vs_mode_config_init(struct drm_device *dev);
-> +#endif /* __VS_FB_H__ */
-> diff --git a/include/uapi/drm/vs_drm.h b/include/uapi/drm/vs_drm.h
-> new file mode 100644
-> index 000000000..96b7fc95d
-> --- /dev/null
-> +++ b/include/uapi/drm/vs_drm.h
-> @@ -0,0 +1,50 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ WITH Linux-syscall-note */
-> +/*
-> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_DRM_H__
-> +#define __VS_DRM_H__
-> +
-> +#include "drm.h"
-
-Which drm.h?
-
-> +
-> +enum drm_vs_degamma_mode {
-> +	VS_DEGAMMA_DISABLE = 0,
-> +	VS_DEGAMMA_BT709 = 1,
-> +	VS_DEGAMMA_BT2020 = 2,
-> +};
-> +
-> +enum drm_vs_sync_dc_mode {
-> +	VS_SINGLE_DC = 0,
-> +	VS_MULTI_DC_PRIMARY = 1,
-> +	VS_MULTI_DC_SECONDARY = 2,
-> +};
-> +
-> +enum drm_vs_mmu_prefetch_mode {
-> +	VS_MMU_PREFETCH_DISABLE = 0,
-> +	VS_MMU_PREFETCH_ENABLE = 1,
-> +};
-> +
-> +struct drm_vs_watermark {
-> +	__u32 watermark;
-> +	__u8 qos_low;
-> +	__u8 qos_high;
-> +};
-> +
-> +struct drm_vs_color_mgmt {
-> +	__u32 colorkey;
-> +	__u32 colorkey_high;
-> +	__u32 clear_value;
-> +	bool  clear_enable;
-> +	bool  transparency;
-> +};
-> +
-> +struct drm_vs_roi {
-> +	bool enable;
-> +	__u16 roi_x;
-> +	__u16 roi_y;
-> +	__u16 roi_w;
-> +	__u16 roi_h;
-> +};
-
-Could you please add corresponding defines in the patch that actually 
-makes use of them? Otherwise it might be hard to review usage.
-
-> +
-> +#endif /* __VS_DRM_H__ */
+ .../bindings/leds/backlight/mps,mp3309c.yaml           | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.34.1
 
 
