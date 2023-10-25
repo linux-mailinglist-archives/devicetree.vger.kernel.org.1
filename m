@@ -1,73 +1,174 @@
-Return-Path: <devicetree+bounces-11482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 990167D5EB1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 01:30:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627F67D5F2C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 02:49:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA92C1C20CB9
-	for <lists+devicetree@lfdr.de>; Tue, 24 Oct 2023 23:30:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9903C281B93
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 00:49:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293314448B;
-	Tue, 24 Oct 2023 23:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D1C1360;
+	Wed, 25 Oct 2023 00:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YJl5MOKT"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="FHxePgVz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C4622D633
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 23:30:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2930C433C8;
-	Tue, 24 Oct 2023 23:30:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698190217;
-	bh=1O0jyc+9jRwfH+bIBSNC2AC/+zBx3VZH8zI/l7nXoXA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YJl5MOKTV73WhzWjI/s8noNzFiTyaPyRAuduREg0WYPPk8HpQrSx2L8P/a3dDaxGY
-	 j7sqmqICC1xn1WvOc+Cp0SJZH337fifCL2PMyl7TAZxQTqJQzh7zuoRIPdYmvzZeLf
-	 ZX07Y30lwsF6qmOhaIAuO3+P30QunXCHIu2S3YvFJazL4UYmqqsqg38S2GB8+Wsog8
-	 DoDsazOV/Q4Y+qfa2tt3X9Bz+btPJkrhj/LuDZe+5fHLHnhQhvuQKzlcXeoh8AGXVL
-	 jgW4krSo5BG/0TnGAEgvQYF/bTk4j0QHVnlS1LNSAz2k8fVLX1TmBPoY+LoeV3JskY
-	 50N/qjx5GrmYA==
-Date: Wed, 25 Oct 2023 01:30:13 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: gregory.clement@bootlin.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] i2c: mv64xxx: add an optional reset-gpios property
-Message-ID: <20231024233013.qtbdmnzek2flxk7a@zenone.zhora.eu>
-References: <20231024223032.3387487-1-chris.packham@alliedtelesis.co.nz>
- <20231024223032.3387487-3-chris.packham@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D21620
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:49:08 +0000 (UTC)
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2032.outbound.protection.outlook.com [40.92.102.32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77319E5;
+	Tue, 24 Oct 2023 17:49:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LNGUkXorBQgPR3XIoQvuQwdSIMDWEh1rL7YGBwT2SagSdjRQkiwlzVClBRq+oG80M5tCEXXnCO+dACXvCcwpbfd90wCKDtXnKGc8zqTqcN0djcGs+5QNu+VZRJfA3oL4Cd21uE60Qf8vcpinqA9O0KiOWXwd3o3sOsI+3AH9muiFjBi4cmd9oBMjbvUdcIU+r0Tu4OPv0uFqk/dH0LY/nl31N7NFp/RzrswfHKxVig8oxQ/+0vLNKTcczHSt9qHkwswaA8MfX1nfp5mcNMEX/VTCLN8sZcTPfmcex+80AU/KNw+Xx2AhdnwFhoLdXKzGxEDaHKDT2nBBIWF1PEviGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nnRXckoE8o5ieiYWdmKmvUktpDSfNXWX/dVI+emY/DI=;
+ b=BQ4L5AMZJYw5/nJyXEXpbvU+wXOx5lY3HMYpyJ7lO3lfTG2KGIhS4oUlKoe9D4FKLl4MJDC0eQjt6s5lKqcMFKa2BQ/dEXg69TqrP4VwrOYay7jM7Hkeco30RThADMvlNhfz2IKOrGqydIGTXEmjHXSKmRw2oQfs/m4V1vGOCxQUXt0X1FcapDMza8XQ90Mqsn9VGcbwA5ZJQD0nmeJLbsRNuYm55zsOtkE07cB5xHa5QFq3YhzIaiIkLH9lMnCKCPw4FNQ6bsHUMzDfB2lH/hZVbwITI/WbXbnf9wsrVjFQ23lt4XVF6uHhdr1yhZ6k93k9sjIzFZPwKkgllZjI+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nnRXckoE8o5ieiYWdmKmvUktpDSfNXWX/dVI+emY/DI=;
+ b=FHxePgVzJWDZEeWO96yCL85a/vS+6zM1HNMblVWr9gpNKSgkBv9RPdB+TZPWyq0Ln5kdunjDtXtuAmgDHHyW/hkl2W9TPLDq8/DSMFMWSgUdn0pLHQy7opKG3SUP7rWx92K1SoGq+4BjnZrKAy2LQMl2gNFew7OOeHsSJR+OYBmv5tNjyJoUsUyK3cizGo6bNPgxfpLl2foUOB3snegwWjEb4gAfK3wJRBH8nW2ea0c1fOMULw9OH+cc3C/gRXYRCYXLSccQdIILzFDftOMRybl+cOudHfc2El3T+B8g7JzwUTkbooPA80eIQqaKnhThk6QVh4Zry5lEtv8R0rM3Xw==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ MAZP287MB0519.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:d3::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6907.33; Wed, 25 Oct 2023 00:49:01 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::d479:bebd:2f6a:caf0]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::d479:bebd:2f6a:caf0%6]) with mapi id 15.20.6907.032; Wed, 25 Oct 2023
+ 00:49:00 +0000
+Message-ID:
+ <MA0P287MB0332C00AB091FD7139560E25FEDEA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 25 Oct 2023 08:48:57 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] riscv: dts: sophgo: remove address-cells from intc
+ node
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
+ Jisheng Zhang <jszhang@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Chao Wei
+ <chao.wei@sophgo.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231024-maternity-slang-fd3dcfb211c0@spud>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20231024-maternity-slang-fd3dcfb211c0@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [KrLksE9OeS3RxoMfgpTIYAzV/Gr/mtBh]
+X-ClientProxiedBy: SG2PR02CA0096.apcprd02.prod.outlook.com
+ (2603:1096:4:90::36) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <6781c916-69b0-4eaf-b8a1-ba77d3fbaf25@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024223032.3387487-3-chris.packham@alliedtelesis.co.nz>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|MAZP287MB0519:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79c16334-07c2-4cb0-1471-08dbd4f42d5d
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	+UOu8zsMzzZLITwIOab9geEBQYYVEqcQL40YgjwPiHy9cPtivydwEDOS8CIVum4bXzfuqF0yizICumr0cItmnIQk3U4pZTixvJchWK2CWMaOWFRLF5alFby/lK1saxEAVCA+pehsUH92at+g97IZgPYo7M1R3Ifta2qILBjd6XFtFfGLqns0YKLF+SMb0U8rnYK/pQJEkKtW5bvfrrHVw6jHJ8coJTaotM+DDhOW2e4BmEfsfGt/SHoPcuZHMbv7mIqJBGv1VZ1NcnR3L/G9nxNZqRy30/3LbKzt9j+Rew82UxYGOAJZL4DpjM3X33LE5yWVW37MY6wnqMp40pXWjSIrwX4/uFuY44MnWNlaAv6750Jf4K+S80KrrfMBaa3/TkhwSFYTPC4IEUBdSC7FIYWJBnqXDuIEqJYQEHlWKF7X7hyrp3ruC78R8DFrz6kucfRDSyq4ml1obiwkM6eHvb56nkmwjMO6jnC89a+vTKHZRi7cz1BKyZvkZUzNph0K7cV6ZOXiwLxkshYEXRQII6sN+M1IHalT/Tcmh2W/nvOI3iWSopA56Qmp/hHeRZo4FdeSlTbTkpklp4D5JeJBQLqls7a3waNZ04DbdeS7vu0=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?czhFcTV0YzVHTEJ4QVpDb0l2SWQxNlJJeDZFeFd5LzdOajRQWmFZV2tvSmY0?=
+ =?utf-8?B?dHFzTzhsVmFPZDNZaEFveWwwcEtURCtOdjdJaWtOMFpFT0x3MlJBeWx4Tklj?=
+ =?utf-8?B?a29VcEwwM3F4Znd6Z3hXMzRMSnhGVlQvUTg0Q2xyOWNIQUtUcHo4ZTNJY0NW?=
+ =?utf-8?B?TjlwQXh6ZGVlYW1OU25uMi9vQmJBaldZc1ovdy9qQUFKWnJHRjBCTTZLVEU1?=
+ =?utf-8?B?VG8zcVVRY3hNMUpab01JRFkweEw3MmZoNm9VZzcrbml4dEEwekdNZFRjM3hl?=
+ =?utf-8?B?dHdQRytOZzdvVi9uTTBnaXBKZER2SGFPUStLcXFMWVYrcng5MUZtNFY2aTM0?=
+ =?utf-8?B?TGhyMlBtTlNoSVAxa3JmdnRoQmJBYTJjbVBDYUNCamxTdndkOW0xcW9lcUlN?=
+ =?utf-8?B?b01zUm9iaTBXdjBaSVk2ZHRWUVowRkM1ZmF3VWJDVUVwS1lReU4xVmM4blRy?=
+ =?utf-8?B?dHU2UlRQdWVGWHQwNXZ6Ky90eGdJYUMwMHFud0R4bGJvOGNuMHFGTHFaMU1u?=
+ =?utf-8?B?Qkt5RGp4TGpnVWdmK0xDWllVYitCVk9PNU1KUjQyRW1sb2RtL0ViRTM4YW9x?=
+ =?utf-8?B?TlN4clZkclA2QTVTNzUzQzE4OEk2VU5CSVRZL0I3K2w0aGRLUFNUcW1mcFFL?=
+ =?utf-8?B?dEVsTzNOV2R6Sko2VW5nSTl1blY3MWRhV2lTeHk2Mkwrb3IwdEFBM2lNcThu?=
+ =?utf-8?B?MDYvSDlFQ0lWWEZ3dERDYkFGZmdwMnlUUzVZQmhPdnA1QXorRTFaSkJjd24w?=
+ =?utf-8?B?cDNReG9CckZSWWJmclltU0tNQ3FJS1RhdEdHbnkyVmd6TStxaFZKRG50WkpC?=
+ =?utf-8?B?U0ZvSTc5V3BScENkT0lPVEpGNWdUQjNUSktjaTVPRmttSGJvUElmRS9wZ0U4?=
+ =?utf-8?B?cC9vYVdtTGNnTlBEdEFUTFcrQmlEYWtRQlpZWlB3QWZ0VXI1WTErMThpc2NB?=
+ =?utf-8?B?YzZ6ZnNEOW16T0FzakxabzcxRldrSGQxcytvVVdpcVlTV09mZnd3bzY2RThN?=
+ =?utf-8?B?SGNwdzUzY0YzZEdicVlDTDBpQ28wZFppTGRwUzZPUHBiZ25BYWdXVC90YjVi?=
+ =?utf-8?B?dVlLbDFkU1RibmFGWkROQlBsUlhYaEpEMStLOU5YNzlScHJMNVcwdWxsWUJE?=
+ =?utf-8?B?QmdkU3FYdjZILzhZRis0WVMwRkFUckZ4UXo4Q292TTVTd2dFY0dZSyt4N25Z?=
+ =?utf-8?B?akxxa2QyTFZNeFRiQnVrTjNUb1pRWnJ6N3ptcHAwblM3T0tsNEJhRmZ2WmFG?=
+ =?utf-8?B?RG1scExZa3dhakJBaURiTU5LcE1BWGxmOXBPc2hETzdReHNJbmU3d0VJMFpX?=
+ =?utf-8?B?bVNWS0RFWGsvZDRaNFpGOC9yeDBxV1ZUd1pVcFlIQ3ZYbDQwV2MyVjQ2TkVp?=
+ =?utf-8?B?LzZyQnhNVWtZU0NVY2k4ZHFaVXNUMnM5SFp5Tm5zRzQrcHNCT2pTRWVrVVFL?=
+ =?utf-8?B?SWR1Um8xcnU4SCt2Z3lGSHNZWE50b3V2UnNQeWoyVFNhcXlDN3lWSk9CVnJR?=
+ =?utf-8?B?UW9zbjhVYUNVWlVsYzV0Zk5sYk9UVWRhMGdvS3EzM3ZlZHZBVkE1RzcxRHIw?=
+ =?utf-8?B?QVV3SVo2S1U5YkdHV0dvNWcvd3kzMSt1UXB6dGNTSU96WU5DUzZWWHFHaURj?=
+ =?utf-8?Q?/iJDVHzr/sLm5cRE9rtfyeAzHMwO7tIMOfIzNTG2m7J8=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79c16334-07c2-4cb0-1471-08dbd4f42d5d
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 00:49:00.5536
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAZP287MB0519
 
-Hi Chris,
 
-On Wed, Oct 25, 2023 at 11:30:32AM +1300, Chris Packham wrote:
-> Some hardware designs have a GPIO used to control the reset of all the
-> devices on and I2C bus. It's not possible for every child node to
-> declare a reset-gpios property as only the first device probed would be
-> able to successfully request it (the others will get -EBUSY). Represent
-> this kind of hardware design by associating the reset-gpios with the
-> parent I2C bus. The reset line will be released prior to the child I2C
-> devices being probed.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+On 2023/10/24 16:20, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> A recent submission [1] from Rob has added additionalProperties: false
+> to the interrupt-controller child node of RISC-V cpus, highlighting that
+> the new cv1800b DT has been incorrectly using #address-cells.
+> It has no child nodes, so #address-cells is not needed. Remove it.
+>
+> Link: https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.4184468-1-robh@kernel.org/ [1]
+> Fixes: c3dffa879cca ("riscv: dts: sophgo: add initial CV1800B SoC device tree")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> CC: Chao Wei <chao.wei@sophgo.com>
+> CC: Chen Wang <unicorn_wang@outlook.com>
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Paul Walmsley <paul.walmsley@sifive.com>
+> CC: Palmer Dabbelt <palmer@dabbelt.com>
+> CC: Albert Ou <aou@eecs.berkeley.edu>
+> CC: devicetree@vger.kernel.org
+> CC: linux-riscv@lists.infradead.org
+> CC: linux-kernel@vger.kernel.org
+> ---
+>   arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 1 -
+>   1 file changed, 1 deletion(-)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> index df40e87ee063..aec6401a467b 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> @@ -34,7 +34,6 @@ cpu0: cpu@0 {
+>   			cpu0_intc: interrupt-controller {
+>   				compatible = "riscv,cpu-intc";
+>   				interrupt-controller;
+> -				#address-cells = <0>;
+>   				#interrupt-cells = <1>;
+>   			};
+>   		};
 
-Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
+Acked-by: Chen Wang <unicorn_wang@outlook.com>
 
-Thanks,
-Andi
+Thanks，btw, will it be merged in 6.7?
+
+Looping Jisheng who is working on Duo/cv1800b.
+
 
