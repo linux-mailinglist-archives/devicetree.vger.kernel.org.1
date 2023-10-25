@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFCE67D6DB6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:52:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE3B7D6DBC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:54:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 627EA281BBC
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 13:52:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06BBA281C0D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 13:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A796728DBE;
-	Wed, 25 Oct 2023 13:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EAB28DC7;
+	Wed, 25 Oct 2023 13:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qY2RxaYJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fjLh0KyP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45245286BF
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 13:52:32 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00766186
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 06:52:25 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a6190af24aso900285866b.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 06:52:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21CA273F2
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 13:54:52 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A43A713A
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 06:54:48 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9ba1eb73c27so896586766b.3
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 06:54:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698241944; x=1698846744; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698242087; x=1698846887; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hAkOKpILrYpS8jHlk8gSXtMq6g0OQA1rzT5MydVPTFY=;
-        b=qY2RxaYJbM4Qgc7oRVCGTiQMEaSkI5P1IFJFjHouWu13VVHrK2n+SsOrcnbkzzY2Qg
-         uDsvEL7hN8YiCMv5rBKkHEfTQ9Vn5/0luTssMn1A94+dpsXmy2G5vNXVnu0h6nX/0lpG
-         YoR7+W+1cd8iXqIb7YAveTl8MSQx9ra2MwzpWqqwxEmualYrZCQsJys8G3Paqjf8fZrB
-         lFIuCf1d3iVIfLoFOZ33ElNllVqiB+leDAr87rxuHnOFgYF45BJkVKiaaCJkE2dRL4VJ
-         zI+s5P5IrP3GMZktqeOgDOzwY7uAGz3ZxRUWsRnivlcJ1UxheqEwrL0S7cPnip9YIbMl
-         R2yw==
+        bh=2u/35Y9GoEt9/p7v5CHM6bJnQa1GULHNYMJWjAzjgk4=;
+        b=fjLh0KyPdVj1skCmgE8N2zpr0cdUiDIjjmglkgN+i1XeXDojTVVJ+6qEEghwQv9pox
+         K9YEGy8ooaYHqNPnon5SbA8Sxb99pYRs5VJoXofwuiIFuWNlF/LEij0WHP4uMpNamurz
+         yd3/q/o4pKHnnkp4aRmmGwiO43m1vmJa+huJ9lyf+xl1bebOFNyfKa5iRvlF1l3ont2t
+         PhE8UgXVCGHrT0ruFfZ6Fh1SOP7HTrRFKxcRrAprK3Ypza53Uw5qSy8oRUn1c2PnxGlu
+         a8nEcNFXkqk/G8o4zfhviQBrrkL0+r2ta6uhs8MoDa0XEMtLtkMfykfm7VFLryLcQpWS
+         ACrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698241944; x=1698846744;
+        d=1e100.net; s=20230601; t=1698242087; x=1698846887;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hAkOKpILrYpS8jHlk8gSXtMq6g0OQA1rzT5MydVPTFY=;
-        b=EFXIA8PlEMvYB10I7kbn58wyH6j3ys4PcXoTo8qHfW9Dzp5PuNk50kf7Du9t+OkOiZ
-         WN6cVhj+T7brU4AOfgnGrI2JbaEXit9imUQxWeNpcOWJ8q7+bgocNsgCFYJEMWNPfOgO
-         uTJMhCv9JqP3NW9w5aFpxFKHIQukpcEIf2lVHM4ygny4hclP8jPzhC6nDy2ZVj3A3UzA
-         xFl+DNAPmgIIyC/Q8u4CdlPgIQP/BdMGI/Nfbcw8MlzVEw6zqI6SsTvNzA24cwTneP4J
-         OWdx71Z4HTvQ0o4lhWUv55UPPa5OUjbapw/BXTKmvphg24XeGXQvUZL+PpJBw0X5O6jn
-         2KMg==
-X-Gm-Message-State: AOJu0YzfL35Zkx3pAyhft74G+bzhHmXStechs/NP3R9wZqNssbw9+YAA
-	3bbI/lofTaupPbgIzyMTsO1MWA==
-X-Google-Smtp-Source: AGHT+IFDKaJDHwRvVG34a23esZJ3422tDoOfMEvFxr3ahnNZO3QjugcETAa4voOfDlluxdez/zA8CQ==
-X-Received: by 2002:a17:907:3d9f:b0:9b2:b152:b0f2 with SMTP id he31-20020a1709073d9f00b009b2b152b0f2mr11433346ejc.10.1698241944486;
-        Wed, 25 Oct 2023 06:52:24 -0700 (PDT)
+        bh=2u/35Y9GoEt9/p7v5CHM6bJnQa1GULHNYMJWjAzjgk4=;
+        b=o4RRTraqbI704h3+M/1OXEK3wT4bndceP+p3pAbjbBfglihyGmBCuJt2no3ELJBJp5
+         0AkSsV8iWpybKnu5mZ5vEoNcxkNFbWrHgckZiT1KA1+ZHfSg1DmIHTpCdlm+AluDNwDb
+         O/2au3ML7OZlMN/hA5PTMW5XRYjf5a4Yj0IIcJhZ4TJ/8VFmkcjuvZ6qdC+lVRB11U4N
+         wbpex/YHUxbzpUtmGcVv5E9avGiCwdHsiv5Yow2UmkllfW5Bt6aJ4aMiyLgHZgAErKdy
+         E18wCQwcrAO94VsaR+ezcGOPWIwdanhChZ8JgmKaxFOY7KGUzrT4pfm0fiMR65pdJrq/
+         ofbA==
+X-Gm-Message-State: AOJu0Yz717kUj/mgRAi1yIRghgH47slr2aCidIX5I1FZhBImT4p8Qm2/
+	OaFQB4j8b/929NfyEEaTz+J+VQ==
+X-Google-Smtp-Source: AGHT+IHGJGxN7VkTYSf0NmJuUnnQ5YzDmisPm/AbqEAlzCfJwFiVSCNR71aIOQEgh/fOBtZlT2Xrdg==
+X-Received: by 2002:a17:906:fe04:b0:9c3:cd12:1925 with SMTP id wy4-20020a170906fe0400b009c3cd121925mr11808533ejb.58.1698242086964;
+        Wed, 25 Oct 2023 06:54:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id u2-20020a17090617c200b0098ce63e36e9sm10094961eje.16.2023.10.25.06.52.23
+        by smtp.gmail.com with ESMTPSA id x9-20020a170906b08900b0099ce188be7fsm9883089ejy.3.2023.10.25.06.54.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 06:52:23 -0700 (PDT)
-Message-ID: <3796c227-c850-4772-82f5-606ef5c5dc07@linaro.org>
-Date: Wed, 25 Oct 2023 15:52:22 +0200
+        Wed, 25 Oct 2023 06:54:46 -0700 (PDT)
+Message-ID: <3a761ab1-e9ba-4b2c-ae2c-2391bb18e563@linaro.org>
+Date: Wed, 25 Oct 2023 15:54:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq5332: add missing properties to the
- GPIO LED node
+Subject: Re: [PATCH v2] arm64: dts: qcom: ipq9574: enable GPIO based LED
 Content-Language: en-US
 To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
  Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -77,7 +76,7 @@ To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20231025-ipq5332-gpio-led-v1-1-0f0f52617648@quicinc.com>
+References: <20231025-ipq9574-led-v2-1-59b2725697ad@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,19 +122,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-ipq5332-gpio-led-v1-1-0f0f52617648@quicinc.com>
+In-Reply-To: <20231025-ipq9574-led-v2-1-59b2725697ad@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 15:50, Kathiravan Thirumoorthy wrote:
-> Add the color and function property to the GPIO LED node, which are
-> missed out in the initial submission.
+On 25/10/2023 15:31, Kathiravan Thirumoorthy wrote:
+> Add support for wlan-2g LED on GPIO64.
 > 
 > Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+> Changes in v2:
+> - Added function and color property
+> - Link to v1: https://lore.kernel.org/r/20231025-ipq9574-led-v1-1-b8217e997dfb@quicinc.com
+> ---
+>  arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
