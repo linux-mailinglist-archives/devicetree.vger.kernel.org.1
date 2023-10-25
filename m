@@ -1,126 +1,133 @@
-Return-Path: <devicetree+bounces-11805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0F507D6A9D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 13:58:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DC3F7D6AA1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 13:58:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1D171C20C3D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 11:58:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E973B20EF8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 11:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCB82771F;
-	Wed, 25 Oct 2023 11:58:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LEl6/AS0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816C427722;
+	Wed, 25 Oct 2023 11:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAEF211732
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 11:58:10 +0000 (UTC)
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57B212A
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 04:58:08 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-32d9b507b00so4023307f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 04:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698235087; x=1698839887; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vlx3leb/fOf20/ZSnP3M1ZG19ZufnWTKKnKwmqMVlX8=;
-        b=LEl6/AS0JmSlxo0OHTSaBJsqTJZtqVBAFWFfYnDU07bsqt8j7/qybqKmkCuCWJ6aZO
-         s3ZAfbGig3PJhpGAhCqn7lO3es/AH335E6ZUXdnqhD6owprSni32IqSb6/4iL6xW8k9T
-         c3q3WtG7EYgRBCqcIGdxZbp076iwwDTSLhTsUg/oKrsYcdZpq0K3lUB5qSPQYkNIAK+P
-         EPuFJDg4eQY3+jHOLkQr4SLdRpYPDxQFPvzbEkEK9/0ec/U/0HRq4NonO+hvtH+A+q+l
-         mOlDqt/eWZPleiT/H7V15r4R13AXZBdQEg98jxVadzap6pxb60J7bMdZqMqrvYPM6ABg
-         CDvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698235087; x=1698839887;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vlx3leb/fOf20/ZSnP3M1ZG19ZufnWTKKnKwmqMVlX8=;
-        b=lQUSQH6dVx/VyOafU+8uEguueCiQXC3RoLWZudvf9Ny1E3J62hZeFJ5/7WEefSRrdY
-         fyvhU1Hroe6pqrbQp2Cbd9FfXIfpKvc94hwqoKxQ0ZVWXt0x8TpfSUcixmF6ARa15Fav
-         rboXSv9ofw7U5RNpwWw3hs0mjqRnyjxNGP22D06YSTxJkxtfBpuJoHBrfV8U5+phlz3X
-         eQFTo6oQkW8xYY31QTgx9QE3lcSJKaRPXHjIAH7s3soW1r+TXfH8oVhko1ViwRrxpgdX
-         NBwvndk6MitUnkPYhlXngoOjQb+BtTX3XiiMez9znTB4iTT6C04keKyWDHT790gaA9bx
-         bNag==
-X-Gm-Message-State: AOJu0YxnVrI4SwaCSxV/BTUinT28XMFjyPK3KJQ+nUkFUNNb9kS18sPj
-	GKM8md6lS961F9CUuMNLgmLwog==
-X-Google-Smtp-Source: AGHT+IG7RVzaj46OeaDK9gTP9047Bg8RMN0rUXMPc1LISeImHQ/gzRuxX3o/OgsmlbtdMindsmeqrg==
-X-Received: by 2002:adf:cd0e:0:b0:32d:87df:6dea with SMTP id w14-20020adfcd0e000000b0032d87df6deamr11891398wrm.45.1698235087143;
-        Wed, 25 Oct 2023 04:58:07 -0700 (PDT)
-Received: from lion.localdomain (host-2-99-112-229.as13285.net. [2.99.112.229])
-        by smtp.gmail.com with ESMTPSA id o6-20020a5d62c6000000b0032196c508e3sm11871721wrv.53.2023.10.25.04.58.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 04:58:06 -0700 (PDT)
-From: Caleb Connolly <caleb.connolly@linaro.org>
-Date: Wed, 25 Oct 2023 12:58:00 +0100
-Subject: [PATCH] arm64: dts: qcom: qrb2210-rb1: use USB host mode
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57FC111732
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 11:58:37 +0000 (UTC)
+Received: from hsmtpd-def.xspmail.jp (hsmtpd-def.xspmail.jp [202.238.198.242])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4C8136
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 04:58:35 -0700 (PDT)
+X-Country-Code: JP
+Received: from sakura.ysato.name (ik1-413-38519.vs.sakura.ne.jp [153.127.30.23])
+	by hsmtpd-out-1.asahinet.cluster.xspmail.jp (Halon) with ESMTPA
+	id 4f047d62-4e46-4649-9768-f8031a9afeb1;
+	Wed, 25 Oct 2023 20:58:33 +0900 (JST)
+Received: from SIOS1075.ysato.ml (al128006.dynamic.ppp.asahi-net.or.jp [111.234.128.6])
+	by sakura.ysato.name (Postfix) with ESMTPSA id 8C1641C0037;
+	Wed, 25 Oct 2023 20:58:31 +0900 (JST)
+Date: Wed, 25 Oct 2023 20:58:31 +0900
+Message-ID: <87r0li7w2g.wl-ysato@users.sourceforge.jp>
+From: Yoshinori Sato <ysato@users.sourceforge.jp>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-sh@vger.kernel.org,
+	glaubitz@physik.fu-berlin.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH v3 29/35] Documentation/devicetree/bindings/soc/renesas/sh.yaml: Add SH7751 based target.
+In-Reply-To: <CAMuHMdXR1qW9yD6xwQ-G9no85E2uQaje+PWnLvQwke-v_J-TUg@mail.gmail.com>
+References: <cover.1697199949.git.ysato@users.sourceforge.jp>
+	<35311df6cf65c9f110604cbbdecad2f15ac602b6.1697199949.git.ysato@users.sourceforge.jp>
+	<CAMuHMdVjyPchHd8Hzcy+1Pv-57M_eD9rPSDmT88M3bSeEUn86A@mail.gmail.com>
+	<CAMuHMdXR1qW9yD6xwQ-G9no85E2uQaje+PWnLvQwke-v_J-TUg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231025-b4-rb1-usb-host-v1-1-522616c575ef@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAMcCOWUC/x2NSQrDMAwAvxJ0rsB2un+l9GC5Si0ITpGaEgj5e
- 0SPMzDMCsYqbHDvVlD+icnUHOKhg1JzezPKyxlSSH0M6YR0RKWIsxHWyb54vRTuOQ35Fs7gFWV
- jJM2tVO/aPI4uP8qDLP/N47ltOy0drnx2AAAA
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Caleb Connolly <caleb.connolly@linaro.org>
-X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1061;
- i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=zoiKtVHzLvhnPvwaM89PsmhcLzPbNHQwQeEPbjW6REA=;
- b=owGbwMvMwCFYaeA6f6eBkTjjabUkhlRLprOFHvlrMkuzj2fuX7BFr1MlO0p+jVd19/zbRq0vS
- suMV+7tKGVhEORgkBVTZBE/scyyae1le43tCy7AzGFlAhnCwMUpABOZ2MHI0NrtYRp04OKlg1vn
- tZjNffnye4fshxuTdrae8HGU36au1cPwT4U9X9dX2D7opMFKu40z9O9e6993S9i6T6SmzdDed4J
- 5MwA=
-X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
- fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-The default for the QCM2290 platform that this board is based on is OTG
-mode, however the role detection logic is not hooked up for this board
-and the dwc3 driver is configured to not allow role switching from
-userspace.
+On Thu, 19 Oct 2023 04:44:12 +0900,
+Geert Uytterhoeven wrote:
+>=20
+> Hi Sato-san,
+>=20
+> On Wed, Oct 18, 2023 at 8:48=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Sat, Oct 14, 2023 at 4:54=E2=80=AFPM Yoshinori Sato
+> > <ysato@users.sourceforge.jp> wrote:
+> > > Renesas SuperH based target definition.
+> > >
+> > > Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+>=20
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/renesas/sh.yaml
+> > > @@ -0,0 +1,32 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/soc/renesas/sh.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Renesas SuperH Platform
+> > > +
+> > > +maintainers:
+> > > +  - Yoshinori Sato <ysato@users.sourceforge.jp>
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    const: '/'
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - description: RTS7751R2D Plus
+> > > +        items:
+> > > +          - enum:
+> > > +              - renesas,rts7751r2d # Renesas SH4 2D graphics board
+> > > +          - const: renesas,sh7751r
+> > > +
+> > > +      - description: Julian board
+> > > +        items:
+> > > +          - enum:
+> > > +              - iodata,landisk  # LANDISK HDL-U
+> > > +              - iodata,usl-5p   # USL-5P
+> > > +          - const: renesas,sh7751r
+> >
+> > Please merge both sections, as they use the same number of compatible
+> > values and the same fallback.
+>=20
+> Unless we want to add an "renesas,sh7380" intermediate, as that is
+> the actual SoC in the landisk? I do not know what is the difference
+> between SH7380 and SH7751R.
 
-Force this board to host mode as this is the preferred usecase until we
-get role switching hooked up.
+Everything here is SH7751R.
+I didn't include J2, so I'll add it.
+Other SoCs will be added after changing to DeviceTree.
 
-Fixes: e18771961336 ("arm64: dts: qcom: Add initial QTI RB1 device tree")
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
-base-commit: 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
+> Gr{oetje,eeting}s,
+>=20
+>                         Geert
+>=20
+> --=20
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>=20
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
-// Caleb (they/them)
----
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-index eadba066972e..f1961a07c9a3 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-@@ -366,6 +366,10 @@ &usb {
- 	status = "okay";
- };
- 
-+&usb_dwc3 {
-+	dr_mode = "host";
-+};
-+
- &usb_hsphy {
- 	vdd-supply = <&pm2250_l12>;
- 	vdda-pll-supply = <&pm2250_l13>;
-
+--=20
+Yosinori Sato
 
