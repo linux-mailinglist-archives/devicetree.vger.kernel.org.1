@@ -1,167 +1,82 @@
-Return-Path: <devicetree+bounces-11971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFC57D7464
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 21:33:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3B27D747F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 21:40:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A49AB20F32
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 19:33:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD9B5281CF7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 19:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8767031A71;
-	Wed, 25 Oct 2023 19:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nsoZwlXx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37F431A76;
+	Wed, 25 Oct 2023 19:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C2C30FBF
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 19:33:30 +0000 (UTC)
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642B513A
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 12:33:29 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6ce2add34c9so68282a34.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 12:33:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698262408; x=1698867208; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WMeG9MZNqxS33OpWNusWQZ07NUKZ/4HRV8It71VS7r0=;
-        b=nsoZwlXx4Z+8a3tRJA34cK54S3BaRF4JVVRm7rgCmIELCSD/Q+vtze/iRbIu7bJ6qr
-         cmATAzRWZPYPvA4z9pz5lHWh6N0/8kk1KOwBxQKnuGMplgBNrOh0HQQCfvXXydOCZILf
-         8c+uZHhaSm17ISv6SAL2jwDaIIGadUq95uaac=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E2E30FBF
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 19:40:16 +0000 (UTC)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF0193;
+	Wed, 25 Oct 2023 12:40:15 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3b2d9ac9926so40052b6e.2;
+        Wed, 25 Oct 2023 12:40:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698262408; x=1698867208;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WMeG9MZNqxS33OpWNusWQZ07NUKZ/4HRV8It71VS7r0=;
-        b=u4n68EfK/adS8jCWeABt1VVqVAWpayG0UigHVw5sYzMXlh2TV/FQsncXt/5a07JAlb
-         SiXVRkzSr7LA6c8coFoy2TPyy703Bn6sDwCPUyYvtu0ZugKGCwDrcPc0TtvB26YA+1ap
-         MKvNgaEAH5tkxtAz4ybgxjcQJQBRCb74VmPX2llWpPWHYweiCIyIP8V3Dxomvk+qfV4g
-         4f6TKi+8CvQg4Mtq1Unm9uclsDcwlqYz4kb0kmYTkxzUWpfLrm3a/u181dSfK4h4RupT
-         DPE1HT+Lh3Adal1vZrhAlzxRRwficTE/Ew/A52gSdvOR35jbXCh/0TyztIUYfqAW/EPK
-         xNNg==
-X-Gm-Message-State: AOJu0YzdC1rpisasRqyevWJpV1Ci+foo5HsY1ZmUXkDOsAza/Sbj/HaM
-	hsGaTJFWzEpr6JFdQDNHyV6VNRYvg2Mr+Pd18XxB+tnqtx2CZf8A3Ig=
-X-Google-Smtp-Source: AGHT+IHiYSybIcqOiSHYlaPTfrpU/MNeQ/W6p+mNix58fbQG6nB2jXmpWTM6OIrTAkYTbY/RB4wv8ZzvD1YbuWiQtog=
-X-Received: by 2002:a05:6830:314f:b0:6b9:b1b1:135 with SMTP id
- c15-20020a056830314f00b006b9b1b10135mr20680016ots.13.1698262408688; Wed, 25
- Oct 2023 12:33:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698262815; x=1698867615;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bgzWQGUF2R94XSvaqGsE9kf71dMgnkeRT2bUDQQ5vCg=;
+        b=r2MkOu+rsW9gBavov31SG31pajrP1jmAvR+6VS9fziwkUAC4YonD9e4GTHqQjKnh4a
+         W2H5TyHxB7eRS8HTWiOs7G7vrWjJ7vgmqH5iwiS8j3/M4eOhHFuRZVq5K/Bcv17FCzvp
+         XOCDJxnss2s5Wlla7auD3jHH2/kyYayR34VMiIYPnfpYEtlzS0yzaBm80C3kdCcwxfai
+         bgS1cOVojBU52KGyfRiJ5vZArEKB9kOPvb2Y8aK/AuDZtBEmXICnYX8abyUR+o11n19k
+         BPXQGJ5zeFIHLDh6M5IG/1SFHFoy32VVp6ujRWWM6dBaNEUro0b/DUbOaww73eHODj25
+         qKQQ==
+X-Gm-Message-State: AOJu0Yz2aOI87dhrK1XjlzhGSifYXrPVRlmBXLc++Ie0ULpiOnxE1T4X
+	giOdawarmuactQT0lVUPTw==
+X-Google-Smtp-Source: AGHT+IFeJP7N/L5R+uMmYJroNwQpvnXY+ul54ClclPvR8XWk7eVljdarNhM7eS8z/FAvzyX6wsoIOw==
+X-Received: by 2002:a05:6808:2201:b0:3a4:ccf:6a63 with SMTP id bd1-20020a056808220100b003a40ccf6a63mr23179813oib.55.1698262815183;
+        Wed, 25 Oct 2023 12:40:15 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b25-20020aca1b19000000b003a99bb60815sm2485395oib.22.2023.10.25.12.40.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Oct 2023 12:40:14 -0700 (PDT)
+Received: (nullmailer pid 1037636 invoked by uid 1000);
+	Wed, 25 Oct 2023 19:40:13 -0000
+Date: Wed, 25 Oct 2023 14:40:13 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-kernel@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 03/10] dt-bindings: clock: qcom: document the SM8650
+ Display Clock Controller
+Message-ID: <169826281293.1037580.4025547355263346758.robh@kernel.org>
+References: <20231025-topic-sm8650-upstream-clocks-v1-0-c89b59594caf@linaro.org>
+ <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231024000724.57714-1-hsinyi@chromium.org> <20231024000724.57714-4-hsinyi@chromium.org>
- <20231024-bobbed-although-06f341259ebb@spud> <CAJMQK-hvhjNGFUfgqb7pm=pAYjJ0wZAhkPGXxDCUJ5cnUDh2gw@mail.gmail.com>
- <20231025-charity-replica-9c9b03380d7f@spud>
-In-Reply-To: <20231025-charity-replica-9c9b03380d7f@spud>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Wed, 25 Oct 2023 12:33:03 -0700
-Message-ID: <CAJMQK-gkCK=AtSYa7vH5mfD01GedXqd2Hrt1aYPymzOiEr2LRQ@mail.gmail.com>
-Subject: Re: [PATCH 3/6] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-makomo
-To: Conor Dooley <conor@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	=?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
-	Frank Wunderlich <frank-w@public-files.de>, Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
 
-On Wed, Oct 25, 2023 at 7:49=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Tue, Oct 24, 2023 at 11:22:00AM -0700, Hsin-Yi Wang wrote:
-> > On Tue, Oct 24, 2023 at 8:17=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Mon, Oct 23, 2023 at 05:02:26PM -0700, Hsin-Yi Wang wrote:
-> > > > Add makomo sku0 and sku1 which uses different audio codec.
-> > > >
-> > > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/arm/mediatek.yaml | 12 +++++++++=
-+++
-> > > >  1 file changed, 12 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/=
-Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > > index fe8c488a3207..b131e0bdbf01 100644
-> > > > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > > > @@ -250,6 +250,18 @@ properties:
-> > > >                - google,kodama-sku32
-> > > >            - const: google,kodama
-> > > >            - const: mediatek,mt8183
-> > > > +      - description: Google Makomo (Lenovo 100e Chromebook 2nd Gen=
- MTK 2)
-> > > > +        items:
-> > > > +          - const: google,makomo-rev4-sku0
-> > > > +          - const: google,makomo-rev5-sku0
-> > >
-> > > With these bindings, how does one describe a makomo-rev5-sku0?
-> > > What you have here is only suitable for describing the makomo-rev4-sk=
-u0.
-> > >
-> > makomo-rev5-sku0 and makomo-rev4-sku0 uses the same dts:
-> >
-> > compatible =3D "google,makomo-rev4-sku0", "google,makomo-rev5-sku0",
-> >                       "google,makomo", "mediatek,mt8183";
-> >
-> > In this case, can bindings be listed like that?
->
-> On a rev5-sku0, the first compatible should be the most specific one,
-> which would mean:
->
-> compatible =3D "google,makomo-rev5-sku0", "google,makomo", "mediatek,mt81=
-83";
->
-> I said the same on other google laptop bindings before, but I'm not
-> really happy with these compatible configurations, that seem conjured up
-> to suit your firmware. It'd make far more sense to me to have a setup
-> that permitted:
-> compatible =3D "google,makomo-sku0-rev5", "google,makomo-sku0", "google,m=
-akomo", "mediatek,mt8183";
-> and
-> compatible =3D "google,makomo-sku0-rev4", "google,makomo-sku0", "google,m=
-akomo", "mediatek,mt8183";
->
 
-The actual compatible is like:
-google,makomo-rev4-sku1 google,makomo-sku1 google,makomo-rev4 google,makomo
+On Wed, 25 Oct 2023 09:32:40 +0200, Neil Armstrong wrote:
+> Add bindings documentation for the SM8650 Display Clock Controller.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/clock/qcom,sm8650-dispcc.yaml         | 106 +++++++++++++++++++++
+>  include/dt-bindings/clock/qcom,sm8650-dispcc.h     | 101 ++++++++++++++++++++
+>  2 files changed, 207 insertions(+)
+> 
 
-So I think I can remove the rev here, and just let them match with
-google,makomo-skuX, since rev4/rev5 share the same dts.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> Cheers,
-> Conor.
->
-> > > > +          - const: google,makomo
-> > > > +          - const: mediatek,mt8183
-> > > > +      - description: Google Makomo (Lenovo 100e Chromebook 2nd Gen=
- MTK 2)
-> > > > +        items:
-> > > > +          - const: google,makomo-rev4-sku1
-> > > > +          - const: google,makomo-rev5-sku1
-> > > > +          - const: google,makomo
-> > > > +          - const: mediatek,mt8183
-> > > >        - description: Google Willow (Acer Chromebook 311 C722/C722T=
-)
-> > > >          items:
-> > > >            - enum:
-> > > > --
-> > > > 2.42.0.758.gaed0368e0e-goog
-> > > >
 
