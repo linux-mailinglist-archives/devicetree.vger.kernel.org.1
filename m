@@ -1,348 +1,338 @@
-Return-Path: <devicetree+bounces-12023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBCB7D778C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 00:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 292817D77AB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 00:16:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACAD31C20864
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 22:01:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 016CC1C20BC9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 22:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E1A2E65C;
-	Wed, 25 Oct 2023 22:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05017374C1;
+	Wed, 25 Oct 2023 22:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IiiDCBgf"
+	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="EoYLw1X/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADB934CC0;
-	Wed, 25 Oct 2023 22:01:33 +0000 (UTC)
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9410C133;
-	Wed, 25 Oct 2023 15:01:31 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6bd73395bceso173120b3a.0;
-        Wed, 25 Oct 2023 15:01:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698271291; x=1698876091; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R44jXdiuZHoojdDKPbMz5ZFFqiSzPyU1FqJ/gr42Jbs=;
-        b=IiiDCBgfdNU52+/h/emFMrQaOKmxUvGJFLhBz02+EyGNZL9RvBZUyu9W7dCkj1yxS0
-         IZ1dT25cf5NfRsWogwo8ZuBgqNx+DHKgWuMInSx0qJg36PmVrFiq2yDdGTfFq03pB9X3
-         TWd7/XfmmuPWOXsam8x1sM7YoBucegvxd/+McRN3Vtn2Bsdxp2dq2t7RxzOT+6dOLuzb
-         vyYPuAAmRbETCUMlmOK91abIM7ePCywCvFs/GPsQCR+e6zqQEKz1H9qEbu8B4e3QFodK
-         LbsfDgFpbfBKfo7KfYWNEdp6j1Ip7RaM0kBI0mYxSrzs35z0i13Tz1wUBVYz2Jqxhg7l
-         /CaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698271291; x=1698876091;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R44jXdiuZHoojdDKPbMz5ZFFqiSzPyU1FqJ/gr42Jbs=;
-        b=dxBzRvbp7nvsAAXKh3zuT96HO+ldT0iH2DxWsG5p+HBX+6AH1btto79QJ9AoPAD7hX
-         3aq4Ms42zVtLMXvDm1AxELIeS6OZbLtcoL31t4lzaTGDK8IidrMDNH+VDlphOOqFnM0d
-         qa928e0P3nfkBNwA2PKzKlHOrFjf394Ns+kASJRzZk4VC38j4VvAclREUBusdMbUq0fL
-         yO+v7OQ8dcIIVJN4NQzv2CV1DuynKKOVqflKZxnyba14KT+pkdwRA9ChXv01mLqoh9R9
-         Xb6gAMXvrJrRp/ngpW0tS41jQgIV+V+rSJk0CmL7Y0Tu5EWh/16NmUyl1PMIxfi+Hla0
-         A29g==
-X-Gm-Message-State: AOJu0YxltLXjVTI9+KJ3tF6OntdibFotFUNmTVLY9krny9Z4VYa5+HlZ
-	SYveCyOoFi6HuDOd+ewzcWY=
-X-Google-Smtp-Source: AGHT+IEANEkEaIWdYpeG2OyuvGZrXFUGur91Fw+Z4WNSMUkEYwo0wnsCGDJNBDAWQXZR7xzsrQcW1w==
-X-Received: by 2002:a05:6a00:23d1:b0:68e:351b:15b9 with SMTP id g17-20020a056a0023d100b0068e351b15b9mr1099676pfc.4.1698271290825;
-        Wed, 25 Oct 2023 15:01:30 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x13-20020aa79a4d000000b006be0bd6a4d8sm9821288pfj.36.2023.10.25.15.01.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 15:01:30 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 25 Oct 2023 15:01:29 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Daniel Matyas <daniel.matyas@analog.com>
-Cc: no@web.codeaurora.org, To-header@web.codeaurora.org,
-	on@web.codeaurora.org, "input <"@web.codeaurora.org;,
-	kernel test robot <lkp@intel.com>, Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 4/7] hwmon: max31827: Handle new properties from the
- devicetree
-Message-ID: <fcc0848f-d449-43e8-9664-aba0858367d3@roeck-us.net>
-References: <20230919093456.10592-1-daniel.matyas@analog.com>
- <20230919093456.10592-4-daniel.matyas@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D1515AE5;
+	Wed, 25 Oct 2023 22:16:30 +0000 (UTC)
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3693137;
+	Wed, 25 Oct 2023 15:16:28 -0700 (PDT)
+Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39PKqM8C021237;
+	Wed, 25 Oct 2023 22:16:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pps0720;
+ bh=GVSaSWkIYr3yPWFoqG81IZra53YBoc01vqxMSSgjtas=;
+ b=EoYLw1X/DWBlw7d9vOjl0ufOvl9PmVNosIvbDbDfGR3CMVgiakFQ1MG0BEDV/PmZRPru
+ okxALq5uIq5CvYEKEGh70j+bZuIQxrLyC/wko6/7KqY2ML8NI4npxpR+QH6en376upS1
+ uS+DHpzX+GIo5tb62M7EFkANZ72Ug9BBBsic3NNyl0daPmwq6Bm6FWxouwz5LA0Sq0JD
+ VDiBqZmC/AVRrpnh1ELYxVbi0uZBPnpkyQD64bouOxmE2GMeBHUtPJsIlTmxzZg4W8jf
+ rJptCqtypCg/ZW0s/4M3WeCr7Qj89CGDCNuGtM/IVRaUoU6FZdCfeye7dx1JukWkk8n5 4g== 
+Received: from p1lg14879.it.hpe.com ([16.230.97.200])
+	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3tyaeegkyy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 25 Oct 2023 22:16:16 +0000
+Received: from p1wg14923.americas.hpqcorp.net (unknown [10.119.18.111])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by p1lg14879.it.hpe.com (Postfix) with ESMTPS id 0D516131AC;
+	Wed, 25 Oct 2023 22:16:15 +0000 (UTC)
+Received: from p1wg14926.americas.hpqcorp.net (10.119.18.115) by
+ p1wg14923.americas.hpqcorp.net (10.119.18.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 25 Oct 2023 10:14:53 -1200
+Received: from p1wg14920.americas.hpqcorp.net (16.230.19.123) by
+ p1wg14926.americas.hpqcorp.net (10.119.18.115) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42
+ via Frontend Transport; Wed, 25 Oct 2023 10:14:53 -1200
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (192.58.206.35)
+ by edge.it.hpe.com (16.230.19.123) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 25 Oct 2023 10:14:52 -1200
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=c62SHFjdBw9JPs5dwAYjpgyKVFzwH0zJB8Gd+yeIz4xkuBB59Ph9s3wA5Ibw+CE3aOb0UTXfY/rjR/JKCz2OpQWgSAw+0VARiZyQXqC+Xpm12izllqjgzD0yL3FaqkB8uHkNmK1SoKLCrnp6rl9elnwYIKkzHqpZxOhqVPk613CpIVtR2BzyoCk5HDXGbpQS0ny3cdmRFNSQNn4K0udwurTkqMSrmu+kGGaC3uZTY0Dt+8lta3eAw6Pl9gnXImDmfIbtcJG42Zg+8e46z+N0zh+EbRShuTs85QX4HgAUbJj+9Lshv/y4XomoiR2GbbxzT7D0TDuXg6ndS5jzpbD2vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GVSaSWkIYr3yPWFoqG81IZra53YBoc01vqxMSSgjtas=;
+ b=QySRxLm+Rx7J+lb98ym310Y/l/J2DepoGm2t206Vk1WtpWC3FLm9LfsOIxP8POWghes/6U1mwrsi0ii3p9p4W2Q4zuS9IDlC8BSH52mORVPQ1FVqhyNK9GamX822VYJtez43GUicSRiFak6JYf27MVJJ8PtaaL+Ed5kT+DMmSx9T++mBpiFctD9N9MesbcFfp3moqbTnwX1cCmR5ystwi9ETandKdGuU0lC9x5j0V+hy+hHtDgA0nClrX7NRL2sWl+3QZED5EfvoUqbTm05UVUwsWQFzOOVNKoh1pH/PdXAYX7sD0a1FAA+c+5GCwZrx/5gMqjrfC8iw44rA488Vug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:a03:434::14)
+ by PH0PR84MB1525.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:510:170::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Wed, 25 Oct
+ 2023 22:14:50 +0000
+Received: from SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::8e47:3053:dae:5c17]) by SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::8e47:3053:dae:5c17%6]) with mapi id 15.20.6907.032; Wed, 25 Oct 2023
+ 22:14:49 +0000
+From: "Yu, Richard" <richard.yu@hpe.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+CC: "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Hawkins, Nick"
+	<nick.hawkins@hpe.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 2/3] usb: gadget: udc: gxp-udc: add HPE GXP USB HUB
+ support
+Thread-Topic: [PATCH v2 2/3] usb: gadget: udc: gxp-udc: add HPE GXP USB HUB
+ support
+Thread-Index: AQHZ4c+k4sD8rkOE10yCm8eHVE9HNrA2kkCAgBy9EGA=
+Date: Wed, 25 Oct 2023 22:14:49 +0000
+Message-ID: <SJ0PR84MB20855ADDEE46D6A437D8E7C18DDEA@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+References: <20230907210601.25284-1-richard.yu@hpe.com>
+ <20230907210601.25284-3-richard.yu@hpe.com>
+ <2023100212-hyperlink-prolonged-3e18@gregkh>
+In-Reply-To: <2023100212-hyperlink-prolonged-3e18@gregkh>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR84MB2085:EE_|PH0PR84MB1525:EE_
+x-ms-office365-filtering-correlation-id: d6236060-d9b4-4956-959a-08dbd5a7ce23
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 6PE5+XmtgUiXQB6nIHxbjEV1PmZ/66vH6IOgEgK9m1ME63dVWwtaWUZ4DoP3qqYcm0skEbTnN6MN/NT22yK37yiuWktz8yGiltJVJVShjAgFDQu7rQB/mDQLEZG9NQqKiXzFvbxITOvmIGZetFQs3QmMzuc+tJmvRdctPQjVYEA/RNQo6bWKYpEreaFa0FCSTyFVdem6Z50Qfmd/tD39GyPMiz2YiKkdnO1v5jkMaUreBUhyffe9N4Mso6J97vkHrkHWieab9/K1TXXOTWNXQGGLAYQzwRuRsaNXzf992BXmNWABK3WcZhFcOwZHk4pBFflZGJP1F4G8T+R1iUILqkdHC4csFqmgtQ95vNm33GLXFAdQ35DrZbDmUP7JpOn9ReDE5/JHTPZbAIcEcrO5PtRYO8IAjTQNhtMPoZIg2wgW/7GShJAoKA3z6euTmIFYrLf1hwtPOA//mEjKFW8aNaTRdF083V2W48sJdvSi3OqulMoGUmuAjIEcLVQ0W2LJeIilKjJJ426c3r/wfIqUdbC8Z4NW8WTCksG4Ey29Rk3praEcxHguaxLpg6BEnbJfxsgKFvwxRQC8DC59p9brK+CmDuvFm+AkcpRTHThVkUG5TXlWYFBeYDEHtRGJcoD5
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(396003)(366004)(136003)(376002)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(55016003)(66476007)(2906002)(86362001)(38100700002)(41300700001)(64756008)(122000001)(6916009)(66556008)(54906003)(66446008)(76116006)(71200400001)(478600001)(7696005)(6506007)(316002)(66946007)(55236004)(9686003)(83380400001)(82960400001)(5660300002)(52536014)(33656002)(4326008)(8676002)(8936002)(26005)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?rPrzuhrclG0WC82JP03wPQ8bWG+RjIERlUYomrCWsYHVczAFChnlZu9QO7Jl?=
+ =?us-ascii?Q?O5IqYnMaiqtqn2LA4OkJ30DI2brOX6UHyRCRy21cccosD17vgKc7xGAQMiet?=
+ =?us-ascii?Q?HTSiaVqjWTS6aoMG71fPC5UpLXJlbeC/IKxhF2GOCOpxKkx0DmOPYqzW0BOr?=
+ =?us-ascii?Q?Ku4DndslJh3ih2i74PuPtJAKSXykfIVvxpKPbX+J1CDkth1GKMOrUgrqCwNc?=
+ =?us-ascii?Q?5EsUSqttXFgYvZdcyLIxpTHSC6iuLuJ/tBjkGRQdNfrJnzigoHiS2OACYiAz?=
+ =?us-ascii?Q?0iWM/rOSHjKvHUzlqepxmpOFwT3cz+uJisF44q5e5gpfuB8OHOeMB0vKFxaw?=
+ =?us-ascii?Q?C2ltJdqmwZBJQElEivu+k/tFuPltljS0/XeH+JbOkWjvL+H0C8/GRj2GE7Fk?=
+ =?us-ascii?Q?34IM4EHf/8kvDmd7jUsquBQE4i0JOvY2LzaUZK/I82yCaqV9NXY8jecrC+P9?=
+ =?us-ascii?Q?OE4bA3jJe8lkQG0t2hB8+lV1EAxgIkuQzA6xX9ijd9bq/Q1a9sMaKv9FdKu3?=
+ =?us-ascii?Q?kLsDKhAEJv5m4QKj3zY65adG1SjQzg7blX6cFgrtfmaVAJ3CRqDWPrzvWW57?=
+ =?us-ascii?Q?pF43q4lLg/HaebvZS7qQffxqPjD6c2V8lSaCBzdRL90A2qbh8FPnXprxhHyi?=
+ =?us-ascii?Q?DfoK/utEoPtSAbtLca+dXmmUt2ltRt6p1FJ3SAKND4qz0llGg0O0FMxQU43X?=
+ =?us-ascii?Q?N7oRCnpXJzQccc6KVB9SI7mG1Yx7K5vUb4CXtJZWxs7SdRxfexmZMexfYG/+?=
+ =?us-ascii?Q?/IQItvVUWlfdExSTaXFF4zNgHeQPbW8tbwrVn1MyK3YuCmCi/HqDbceaUM5o?=
+ =?us-ascii?Q?DNMPwbAXTiMMnt5i1G6Yz948E0RSMccTpWqn4e0s4fpa6yjSCHGBJX/vPIR2?=
+ =?us-ascii?Q?JTP4rByT1Sgf0ktgANB0yH0XrroJryQpiJhR9Hnj0hvolqNBAZk9HW/qvIDt?=
+ =?us-ascii?Q?uEJF4RkTzyLYQ7ITfH0Ut67lg8mTsnhmFgu1YtHUqUMpByqJRvekNLgrf33k?=
+ =?us-ascii?Q?/xtSb6qxfam0idtQXKyky3iJ4zmyroO8Ddo3McaSy48o+8NxrIpryROZ/XIu?=
+ =?us-ascii?Q?ebuxm3uWIGlFD8uGRpL/vcFHnTAKcGYO/Wat8LMM1JukspRJVgOgxBb3jQms?=
+ =?us-ascii?Q?agDzTGgb9KD+gZUg9dLY5W5xiGKZgM71Xadcw3xjsy5MXlbsHMGTU8F7B4lo?=
+ =?us-ascii?Q?CjBjFF1Bqb9DeIX78CdHBmX+jzWyfctZHXgZHAC7ab+ASTxfBOYvPN6yuDyM?=
+ =?us-ascii?Q?jMlLpqDDv/HTLq/q/rdl0Wc2bcd5Q7qKYrBJEh0bhhwBvqfG4nczKpyKMFC3?=
+ =?us-ascii?Q?Yyz1IO7CVe9RU9a/CNn974G3MKZn64YfpW5MMN9sFWq7XIZ2Evh11sIBAN8a?=
+ =?us-ascii?Q?6Z8Vq1aaJr7DuoyKNAxfpzlQJJqCb9FnF4DzYpAOq1GvCwP+GOOvl1M0HCKK?=
+ =?us-ascii?Q?6iL8X1NsfEEEpIjoH1Vi+wF7tofASo8OiR/At9C4LWhdZyMm3wIOtaFFbu0N?=
+ =?us-ascii?Q?+5G+6HdRWe3HmgqHamtrDh33G+rAz+OblkEk7FriObT8WJ0dkctCSfZZ0Mow?=
+ =?us-ascii?Q?H2rx9d2LfNfwRFNcvAc=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230919093456.10592-4-daniel.matyas@analog.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6236060-d9b4-4956-959a-08dbd5a7ce23
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2023 22:14:49.7506
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: InWeq3+GO0i59xsAy2n+hlL/1rMJyYbHVAIoimbxt7VwzKbwWGDV+n1EBZqCvbCfOwYxENVrU5M88kizU3xEFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR84MB1525
+X-OriginatorOrg: hpe.com
+X-Proofpoint-ORIG-GUID: ZT_v14FLbCuOAQdemG7tZdkW3fwX0CjC
+X-Proofpoint-GUID: ZT_v14FLbCuOAQdemG7tZdkW3fwX0CjC
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-25_12,2023-10-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ spamscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
+ malwarescore=0 mlxlogscore=558 phishscore=0 clxscore=1011 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
+ definitions=main-2310250191
 
-On Tue, Sep 19, 2023 at 12:34:52PM +0300, Daniel Matyas wrote:
-> Used fwnode to retrieve data from the devicetree in the init_client
-> function.
-> 
-> If the uint32 properties are not present, the default values are used
-> for max31827 chip.
-> 
-> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> ---
-> 
-> v3 -> v4: Renamed property names to correspond with binding.
-> 
-> v2 -> v3: Separated patch into 2. Fixed 'WARNING: Unexpected
-> indentation.'
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> v2: Added patch
-> 
->  Documentation/hwmon/max31827.rst | 48 ++++++++++++++----
->  drivers/hwmon/max31827.c         | 85 +++++++++++++++++++++++++++++---
->  2 files changed, 116 insertions(+), 17 deletions(-)
-> 
-> diff --git a/Documentation/hwmon/max31827.rst b/Documentation/hwmon/max31827.rst
-> index 9a1055a007cf..a8bbfb85dd02 100644
-> --- a/Documentation/hwmon/max31827.rst
-> +++ b/Documentation/hwmon/max31827.rst
-> @@ -52,13 +52,21 @@ MAX31827 has low and over temperature alarms with an effective value and a
->  hysteresis value: -40 and -30 degrees for under temperature alarm and +100 and
->  +90 degrees for over temperature alarm.
->  
-> -The alarm can be configured in comparator and interrupt mode. Currently only
-> -comparator mode is implemented. In Comparator mode, the OT/UT status bits have a
-> -value of 1 when the temperature rises above the TH value or falls below TL,
-> -which is also subject to the Fault Queue selection. OT status returns to 0 when
-> -the temperature drops below the TH_HYST value or when shutdown mode is entered.
-> -Similarly, UT status returns to 0 when the temperature rises above TL_HYST value
-> -or when shutdown mode is entered.
-> +The alarm can be configured in comparator and interrupt mode from the
-> +devicetree. In Comparator mode, the OT/UT status bits have a value of 1 when the
-> +temperature rises above the TH value or falls below TL, which is also subject to
-> +the Fault Queue selection. OT status returns to 0 when the temperature drops
-> +below the TH_HYST value or when shutdown mode is entered. Similarly, UT status
-> +returns to 0 when the temperature rises above TL_HYST value or when shutdown
-> +mode is entered.
-> +
-> +In interrupt mode exceeding TH also sets OT status to 1, which remains set until
-> +a read operation is performed on the configuration/status register (max or min
-> +attribute); at this point, it returns to 0. Once OT status is set to 1 from
-> +exceeding TH and reset, it is set to 1 again only when the temperature drops
-> +below TH_HYST. The output remains asserted until it is reset by a read. It is
-> +set again if the temperature rises above TH, and so on. The same logic applies
-> +to the operation of the UT status bit.
->  
->  Putting the MAX31827 into shutdown mode also resets the OT/UT status bits. Note
->  that if the mode is changed while OT/UT status bits are set, an OT/UT status
-> @@ -68,6 +76,18 @@ clear the status bits before changing the operating mode.
->  
->  The conversions can be manual with the one-shot functionality and automatic with
->  a set frequency. When powered on, the chip measures temperatures with 1 conv/s.
-> +The conversion rate can be modified with update_interval attribute of the chip.
-> +Conversion/second = 1/update_interval. Thus, the available options according to
-> +the data sheet are:
-> +
-> +- 64000 (ms) = 1 conv/64 sec
-> +- 32000 (ms) = 1 conv/32 sec
-> +- 16000 (ms) = 1 conv/16 sec
-> +- 4000 (ms) = 1 conv/4 sec
-> +- 1000 (ms) = 1 conv/sec (default)
-> +- 250 (ms) = 4 conv/sec
-> +- 125 (ms) = 8 conv/sec
-> +
->  Enabling the device when it is already enabled has the side effect of setting
->  the conversion frequency to 1 conv/s. The conversion time varies depending on
->  the resolution. The conversion time doubles with every bit of increased
-> @@ -83,8 +103,18 @@ in the writing of alarm values too. For positive numbers the user-input value
->  will always be rounded down to the nearest possible value, for negative numbers
->  the user-input will always be rounded up to the nearest possible value.
->  
-> +Bus timeout resets the I2C-compatible interface when SCL is low for more than
-> +30ms (nominal).
-> +
-> +Alarm polarity determines if the active state of the alarm is low or high. The
-> +behavior for both settings is dependent on the Fault Queue setting. The ALARM
-> +pin is an open-drain output and requires a pullup resistor to operate.
-> +
-> +The Fault Queue bits select how many consecutive temperature faults must occur
-> +before overtemperature or undertemperature faults are indicated in the
-> +corresponding status bits.
-> +
->  Notes
->  -----
->  
-> -Currently fault queue, alarm polarity and resolution cannot be modified.
-> -PEC is not implemented either.
-> +PEC and resolution are not implemented.
-> diff --git a/drivers/hwmon/max31827.c b/drivers/hwmon/max31827.c
-> index f05762219995..2bddca60666d 100644
-> --- a/drivers/hwmon/max31827.c
-> +++ b/drivers/hwmon/max31827.c
-> @@ -12,6 +12,19 @@
->  #include <linux/i2c.h>
->  #include <linux/mutex.h>
->  #include <linux/regmap.h>
-> +#include <linux/hwmon-sysfs.h>
+Hi Greg KH,
 
-What is this supposed to be needed for ?
+Thank you very much for the feedback and sorry for the late respond.
 
-> +#include <linux/of_device.h>
-> +
-> +/*
-> + * gcc turns __builtin_ffsll() into a call to __ffsdi2(), which is not provided
-> + * by every architecture. __ffs64() is available on all architectures, but the
-> + * result is not defined if no bits are set.
-> + */
-> +#define max31827__bf_shf(x)			 \
-> +	({					 \
-> +		typeof(x) x_ = (x);		 \
-> +		((x_) != 0) ? __ffs64(x_) : 0x0; \
-> +	})
+On Thu, Sep 07, 2023 at 04:06:00PM -0500, richard.yu@hpe.com wrote:
+>> +struct gxp_udc_drvdata {
+>> +	void __iomem *base;
+>> +	struct platform_device *pdev;
+>> +	struct regmap *udcg_map;
+>> +	struct gxp_udc_ep ep[GXP_UDC_MAX_NUM_EP];
+>> +
+>> +	int irq;
+>> +
+>> +	/* sysfs enclosure for the gadget gunk */
+>> +	struct device *port_dev;
 
-You lost me here. The passed parameter is u32, making __ffs64
-unnecessary. Why not use ffs() ?
+> A "raw" struct device?  That's not ok.  It's also going to break things, =
+how was this tested?  What does it look like in sysfs with this device?
 
->  
->  #define MAX31827_T_REG			0x0
->  #define MAX31827_CONFIGURATION_REG	0x2
-> @@ -22,11 +35,19 @@
->  
->  #define MAX31827_CONFIGURATION_1SHOT_MASK	BIT(0)
->  #define MAX31827_CONFIGURATION_CNV_RATE_MASK	GENMASK(3, 1)
-> -#define MAX31827_CONFIGURATION_U_TEMP_STAT_MASK	BIT(14)
-> -#define MAX31827_CONFIGURATION_O_TEMP_STAT_MASK	BIT(15)
-> +#define MAX31827_CONFIGURATION_TIMEOUT_MASK	BIT(5)
-> +#define MAX31827_CONFIGURATION_RESOLUTION_MASK	GENMASK(7, 6)
-> +#define MAX31827_CONFIGURATION_ALRM_POL_MASK	BIT(8)
-> +#define MAX31827_CONFIGURATION_COMP_INT_MASK	BIT(9)
-> +#define MAX31827_CONFIGURATION_FLT_Q_MASK	GENMASK(11, 10)
-> +#define MAX31827_CONFIGURATION_U_TEMP_STAT_MASK BIT(14)
-> +#define MAX31827_CONFIGURATION_O_TEMP_STAT_MASK BIT(15)
+I am using aspeed-vhub as example to write this gxp-hub driver. My struct g=
+xp_udc_drvdata{}
+Is similar to the struct ast_vhub_dev{} in drivers/usb/gadget/udc/aspeed-vh=
+ub/vhub.h
+The "struct device *port_dev;" is for the child device which is attached to=
+ the hub device.
 
-Why drop the <tab> after MAX31827_CONFIGURATION_U_TEMP_STAT_MASK
-and MAX31827_CONFIGURATION_O_TEMP_STAT_MASK ?
+I tested this driver by modifying the create_usbhid.sh and ikvm_input.hpp i=
+n the obmc-ikvm.
+The modification is just changing the dev_name to be "80400800.usb-hub". I =
+have made sure=20
+that the KVM is working. (The virtual keyboard and virtual mouse are workin=
+g).
 
->  
->  #define MAX31827_12_BIT_CNV_TIME	140
->  
-> +#define MAX31827_ALRM_POL_LOW	0x0
-> +#define MAX31827_FLT_Q_1	0x0
-> +
->  #define MAX31827_16_BIT_TO_M_DGR(x)	(sign_extend32(x, 15) * 1000 / 16)
->  #define MAX31827_M_DGR_TO_16_BIT(x)	(((x) << 4) / 1000)
->  #define MAX31827_DEVICE_ENABLE(x)	((x) ? 0xA : 0x0)
-> @@ -58,6 +79,7 @@ struct max31827_state {
->  	struct mutex lock;
->  	struct regmap *regmap;
->  	bool enable;
-> +	struct i2c_client *client;
+The devices will be shown as=20
+./sys/devices/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-h=
+ub:p1
+./sys/devices/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-h=
+ub:p2
+./sys/devices/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-h=
+ub:p3
+./sys/devices/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-h=
+ub:p4
 
-Only used in max31827_init_client(). Pass it as parameter
-to that function.
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+1
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+2
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+3
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+4
 
->  };
->  
->  static const struct regmap_config max31827_regmap = {
-> @@ -361,14 +383,57 @@ static int max31827_write(struct device *dev, enum hwmon_sensor_types type,
->  	return -EOPNOTSUPP;
->  }
->  
-> -static int max31827_init_client(struct max31827_state *st)
-> +static int max31827_init_client(struct max31827_state *st,
-> +				struct fwnode_handle *fwnode)
->  {
-> +	bool prop;
-> +	u32 data, lsb_idx;
-> +	unsigned int res = 0;
-> +	int ret;
-> +
->  	st->enable = true;
-> +	res |= MAX31827_DEVICE_ENABLE(1);
-> +
-> +	res |= MAX31827_CONFIGURATION_RESOLUTION_MASK;
-> +
-> +	prop = fwnode_property_read_bool(fwnode, "adi,comp-int");
-> +	res |= FIELD_PREP(MAX31827_CONFIGURATION_COMP_INT_MASK, prop);
-> +
-> +	prop = fwnode_property_read_bool(fwnode, "adi,timeout-enable");
-> +	res |= FIELD_PREP(MAX31827_CONFIGURATION_TIMEOUT_MASK, !prop);
-> +
-> +	if (fwnode_property_present(fwnode, "adi,alarm-pol")) {
-> +		ret = fwnode_property_read_u32(fwnode, "adi,alarm-pol", &data);
-> +		if (ret)
-> +			return ret;
->  
-> -	return regmap_update_bits(st->regmap, MAX31827_CONFIGURATION_REG,
-> -				  MAX31827_CONFIGURATION_1SHOT_MASK |
-> -					  MAX31827_CONFIGURATION_CNV_RATE_MASK,
-> -				  MAX31827_DEVICE_ENABLE(1));
-> +		res |= FIELD_PREP(MAX31827_CONFIGURATION_ALRM_POL_MASK, !!data);
-> +	} else {
-> +		res |= FIELD_PREP(MAX31827_CONFIGURATION_ALRM_POL_MASK,
-> +				  MAX31827_ALRM_POL_LOW);
-> +	}
-> +
-> +	if (fwnode_property_present(fwnode, "adi,fault-q")) {
-> +		ret = fwnode_property_read_u32(fwnode, "adi,fault-q", &data);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/*
-> +		 * Convert the desired fault queue into register bits.
-> +		 */
-> +		lsb_idx = max31827__bf_shf(data);
-> +		if (lsb_idx > 3 || data != BIT(lsb_idx)) {
-> +			dev_err(&st->client->dev, "Invalid data in fault queue\n");
 
-This is misleading. It is not "Invalid data in fault queue",
-it is an invalid value in the "adi,fault-q" property.
+>> +	/*
+>> +	 * The UDC core really needs us to have separate and uniquely
+>> +	 * named "parent" devices for each port so we create a sub device
+>> +	 * here for that purpose
+>> +	 */
+>> +	drvdata->port_dev =3D kzalloc(sizeof(*drvdata->port_dev), GFP_KERNEL);
+>> +	if (!drvdata->port_dev) {
+>> +		rc =3D -ENOMEM;
+>> +		goto fail_alloc;
+>> +	}
+>> +	device_initialize(drvdata->port_dev);
+>> +	drvdata->port_dev->release =3D gxp_udc_dev_release;
+>> +	drvdata->port_dev->parent =3D parent;
+>> +	dev_set_name(drvdata->port_dev, "%s:p%d", dev_name(parent), idx +=20
+>> +1);
+>> +
+>> +	/* DMA setting */
+>> +	drvdata->port_dev->dma_mask =3D parent->dma_mask;
+>> +	drvdata->port_dev->coherent_dma_mask =3D parent->coherent_dma_mask;
+>> +	drvdata->port_dev->bus_dma_limit =3D parent->bus_dma_limit;
+>> +	drvdata->port_dev->dma_range_map =3D parent->dma_range_map;
+>> +	drvdata->port_dev->dma_parms =3D parent->dma_parms;
+>> +	drvdata->port_dev->dma_pools =3D parent->dma_pools;
+>> +
+>> +	rc =3D device_add(drvdata->port_dev);
 
-> +			return -EOPNOTSUPP;
+> So you createad a "raw" device that does not belong to any bus or type an=
+d add it to sysfs?=20
+>  Why?  Shouldn't it be a "virtual" device if you really want/need one?
 
-			return -EINVAL;
+I am just following the aspeed-vhub driver here. I thought I have to build =
+the following entries:
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+1
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+2
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+3
+./sys/bus/platform/devices/ahb@80000000/80400800.usb-hub/80400800.usb-hub:p=
+4
 
-As you state yourself, this is invalid data, not an unsupported operation.
+In order for the ikvm application to get access the virtual devices.
 
-> +		}
-> +
-> +		res |= FIELD_PREP(MAX31827_CONFIGURATION_FLT_Q_MASK, lsb_idx);
-> +	} else {
-> +		res |= FIELD_PREP(MAX31827_CONFIGURATION_FLT_Q_MASK,
-> +				  MAX31827_FLT_Q_1);
-> +	}
-> +
-> +	return regmap_write(st->regmap, MAX31827_CONFIGURATION_REG, res);
->  }
->  
->  static const struct hwmon_channel_info *max31827_info[] = {
-> @@ -396,6 +461,7 @@ static int max31827_probe(struct i2c_client *client)
->  	struct device *dev = &client->dev;
->  	struct device *hwmon_dev;
->  	struct max31827_state *st;
-> +	struct fwnode_handle *fwnode;
->  	int err;
->  
->  	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-> @@ -412,7 +478,10 @@ static int max31827_probe(struct i2c_client *client)
->  		return dev_err_probe(dev, PTR_ERR(st->regmap),
->  				     "Failed to allocate regmap.\n");
->  
-> -	err = max31827_init_client(st);
-> +	st->client = client;
-> +	fwnode = dev_fwnode(dev);
-> +
-> +	err = max31827_init_client(st, fwnode);
+>> +	if (rc)
+>> +		goto fail_add;
+>> +
+>> +	/* Populate gadget */
+>> +	gxp_udc_init(drvdata);
+>> +
+>> +	rc =3D usb_add_gadget_udc(drvdata->port_dev, &drvdata->gadget);
+>> +	if (rc !=3D 0) {
+>> +		dev_err(drvdata->port_dev, "add gadget failed\n");
+>> +		goto fail_udc;
+>> +	}
+>> +	rc =3D devm_request_irq(drvdata->port_dev,
+>> +			      drvdata->irq,
+>> +			      gxp_udc_irq,
+>> +			      IRQF_SHARED,
+>> +			      gxp_udc_name[drvdata->vdevnum],
+>> +			      drvdata);
 
-Both fwnode and client are only used in that function.
-Actually, client is only used to get client->dev.
-Just pass dev and st, get fwnode in max31827_init_client(),
-and use dev directly there.
+> devm_request_irq() is _very_ tricky, are you _SURE_ you got it right here=
+?  Why do you need to use it?
 
-Guenter
+I thought this is to install my device interrupt handler. Again, I just fol=
+lowed the aspeed-vhub driver. The=20
+Aspeed-vhub driver is doing it at ast_vhub_probe() core.c file.
+
+In previous review, Mr. Kolowski pointed out that this is very tricky using=
+ "IRQF_SHARED". I tried all the=20
+Available flag and none are working for me, except "IRQF_SHARED". I also co=
+nfirmed that the Aspeed-vhub=20
+driver is also using "IRQF_SHARED".
+
+
+>> +	if (rc < 0) {
+>> +		dev_err(drvdata->port_dev, "irq request failed\n");
+>> +		goto fail_udc;
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +	/* ran code to simulate these three error exit, no double free */
+
+> What does this comment mean?
+
+I will remove this comment. I put it in there because it was pointed out th=
+ere is potential double free in
+the previous review. I ran through the error exit test cases and did not se=
+e any problem.
+
+>> +fail_udc:
+>> +	device_del(drvdata->port_dev);
+>> +fail_add:
+>> +	put_device(drvdata->port_dev);
+>> +fail_alloc:
+>> +	devm_kfree(parent, drvdata);
+>> +
+>> +	return rc;
+>> +}
+
+> Where is the device removed from the system when done?
+I will add the device removed routine in the next check-in.
+
+> thanks,
+
+> greg k-h
+
+Thank you very much
+
+Richard.
 
