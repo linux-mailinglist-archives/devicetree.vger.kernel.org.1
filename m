@@ -1,99 +1,124 @@
-Return-Path: <devicetree+bounces-11940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8CA67D71E6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:51:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E14267D71E8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:51:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 943E0281C8F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:51:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A87C28176E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1BB286A3;
-	Wed, 25 Oct 2023 16:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E5FB27ED6;
+	Wed, 25 Oct 2023 16:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fqU0ebeO"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LMKgg6/X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108BA273F2
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:50:55 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD1A13A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C47827EFB
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:50:56 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E35E1182
 	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 09:50:53 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32dcd3e5f3fso4062263f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 09:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698252652; x=1698857452; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CZYImk/mXSSi+o4l71ADu1/FnBpFWcH0X2+sMWjIFRg=;
-        b=fqU0ebeOVrFibfPJP3j0RdJ+BWZ9RpRksNhJXIkjJi5xdbeGxAAaZBMokHGiTIl129
-         c6XXHHC2crBd0H/qbVKCvH7Y7wxWLu+6ek/IPrIU4+/oFZdhvdhZX3U68VdQGSiwS4Cl
-         7TNcaFlp5FNs8aWD2XTxDbPCugGUZaMXe2ujJnxvHWJ4XEEzDiMFA1Q2ymsQRS5sMbug
-         u85Vitqbm3mTodoLZ8qyVdCqcsUB2WLu7wsFl/+SkvY6huv5FLLXvggY7W8GXkYZbHf+
-         7tYA06jY97v1X+GjSVxdcRH5p61780TupB7cj/6DmWzANmCLvkaZRbzDVfe8bJgFiriE
-         p9KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698252652; x=1698857452;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CZYImk/mXSSi+o4l71ADu1/FnBpFWcH0X2+sMWjIFRg=;
-        b=Ul3iekFQIzr1O0oBuZUBJv1YHO82Fdy63YVZ+PmRFashhVmCQ3CawA7jIPj+6ysi/G
-         5VwRMyX/uKg8i1NOdN4qLf7gWEs3ubA/RtusscqJIDBrZtzVRgxh9zSbMDguPUkYVgyB
-         Z1MgkTIGYT/YaUQssayUFVAqWdQ6uOSa6iOW7XcJYKY1b8NsJWJY6UWG4OdTY18Dxb8y
-         HoWxNGugC1q7ak8xCrAI2gUbkKU/Fm02S5senICfDePIO8Gy/KvCWtxreUMNL9Ze/wJX
-         3lUrconPcEzNSplzKQ/LCkI/ygHl0rjdsIzwXyrpQMXQZwVwoYXhwAcSaynU4BBjustO
-         MYbw==
-X-Gm-Message-State: AOJu0Yz8XLfsSDaeipxtAx1XiJQwmdbEkyXpF0XdhiWCF7rJD73MnDe2
-	FCpbGZNLy1Dx5md76BfawlJLXA==
-X-Google-Smtp-Source: AGHT+IEQCFBk5Dxw5dhzmiY5H20nvQe5QOzfRpA8EQpGFtUhVqOtnnudYdGdu3Qw92qf1Qf1whdYXg==
-X-Received: by 2002:adf:e58f:0:b0:31f:a0ab:26b5 with SMTP id l15-20020adfe58f000000b0031fa0ab26b5mr12193613wrm.8.1698252652187;
-        Wed, 25 Oct 2023 09:50:52 -0700 (PDT)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id a3-20020a5d4d43000000b003196b1bb528sm12374109wru.64.2023.10.25.09.50.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 09:50:51 -0700 (PDT)
-Message-ID: <03f6d583-8324-4ea2-ac6d-5e20987133e9@linaro.org>
-Date: Wed, 25 Oct 2023 17:50:50 +0100
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 78A62669;
+	Wed, 25 Oct 2023 18:50:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1698252639;
+	bh=7K1olaVKCwfA8ZPuGeuySDhYia+lM9SqFRJEvSWL0QE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LMKgg6/XTtJ4HovsVcBk+5iGbKpaJu9wx5GOug3Yt+ewhLi1hjqc/N/jtnRoRBxCu
+	 YbwJ2wSuFDxgU6pm7FQp7+w7Xk+G9n+eeWfAanKvleA0xSme/4TI7Pv9GBisVEB3lr
+	 UbphT9kgblUVhzh4Nn/t9JmNxcM3KBWvUqhStRck=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev
+Cc: devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>,
+	Marco Contenti <marco.c@variscite.com>,
+	Nate Drude <nate.d@variscite.com>,
+	FrancescoFerraro <francesco.f@variscite.com>,
+	Harshesh Valera <harshesh.v@variscite.com>
+Subject: [PATCH v2 0/4] arm64: dts: freescale: Add Variscite i.MX8MP DART8MCustomBoard v2
+Date: Wed, 25 Oct 2023 19:50:54 +0300
+Message-ID: <20231025165058.31697-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] soc: qcom: llcc: Add configuration data for SC8380XP
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
- abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231025134632.10363-1-quic_sibis@quicinc.com>
- <20231025134632.10363-3-quic_sibis@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231025134632.10363-3-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/10/2023 14:46, Sibi Sankar wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
-> 
-> Add LLCC configuration data for SC8380XP SoC.
-> 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
+Hello,
 
-LGTM
+This patch series adds support for the Variscite DART8MCustomBoard v2
+carrier board with a DART-MX8M-PLUS module.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+The device tree code originates from Variscite's BSP, and has been
+heavily refactored to adapt to mainline DT bindings. Some features have
+been left out:
+
+- Camera: cameras should be enabled through overlays as they're not part
+  of the carrier board itself. I have successfully tested both camera
+  ports with modules that currently require out-of-tree drivers, so I
+  haven't included them in this series.
+
+- HDMI: I have successfully tested this with DT bindings and drivers
+  that have been posted to mailing lists but not merged yet. I will
+  submit a patch to enable HDMI once the dependencies will be available
+  upstream.
+
+- USB OTG: the carrier board has a PTN5150 but doesn't route its
+  interrupt pin to the SoC. It should be possible to work around that in
+  the driver by implementing polling, but that requires more work that I
+  can perform at the moment.
+
+- WiFi, Bluetooth and audio support: those are part of the DART SoM
+  itself, for which schematics isn't available, so I can't easily
+  troubleshoot them.
+
+- PCIe: I lack test hardware for this.
+
+The LVDS display panel is integrated in the carrier board device tree in
+the BSP, I have split it out to an overlay in this series as it is
+shipped with the development kit but isn't an integral part of the
+carrier board.
+
+May I tempt someone from Variscite to submit patches to enable at least
+WiFi, Bluetooth, audio and PCIe ? :-)
+
+Laurent Pinchart (4):
+  dt-bindings: arm: fsl: Add Variscite DT8MCustomBoard with DART
+    MX8M-PLUS
+  arm64: dts: freescale: Add support for the Variscite DART-MX8M-PLUS
+    SoM
+  arm64: dts: freescale: Add support for the Variscite i.MX8MP
+    DART8MCustomBoard
+  arm64: dts: freescale: Add panel overlay for Variscite DART
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +
+ .../imx8mp-var-dart-dt8mcustomboard-v2.dts    | 500 ++++++++++++++++++
+ .../imx8mp-var-dart-panel-gktw70sdae4se.dtso  |  99 ++++
+ .../boot/dts/freescale/imx8mp-var-dart.dtsi   | 305 +++++++++++
+ 5 files changed, 913 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-dt8mcustomboard-v2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-panel-gktw70sdae4se.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi
+
+
+base-commit: 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
+-- 
+Regards,
+
+Laurent Pinchart
 
 
