@@ -1,169 +1,118 @@
-Return-Path: <devicetree+bounces-11917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7077D7065
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:08:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 061D67D70B7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:26:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED98F281CEA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:08:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 363CD1C20A34
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE4229D05;
-	Wed, 25 Oct 2023 15:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34D72AB49;
+	Wed, 25 Oct 2023 15:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxIJusxg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jIrWXIAj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FEF515AE5
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 15:08:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6307C433C8;
-	Wed, 25 Oct 2023 15:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1ECF2D62F
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 15:25:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 120C1C433C7;
+	Wed, 25 Oct 2023 15:25:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698246502;
-	bh=EmGG2bIEHpNFNsbXGuXDFwFfImfIAEmvCH+yu4IiAQs=;
+	s=k20201202; t=1698247557;
+	bh=XNtqmjzlGoaxXATR3hfkSbSFqAPY5X6MkYdWKvJljr4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hxIJusxgziIeOjGZnH5vgUQdMAVFCU3Tj4YiMTQSqfHAJ/M591Z2FHQ6b5mJZp88o
-	 CnaiV0kgufr/AUpXcdCPqIEIvWnVX+74FLa9KHS5G1PXI8BKgSWmZrOu+19pK02b1J
-	 jVPLK1oFfw07klVxvto4kapMw+x8AzJYvv2FXMbp//ArEiY9ORXpAZBMSXn7pk1WGR
-	 VtKa6awKAp+SsGoNfs/k/7KOrtdUw8xagMC0p4hmpIiWyEc5usyT1O98xG7qA8bv6e
-	 I5eE8IOSi1iS2MmbZ8/i1sCYgaLtV5gcAuf5agw9TOGfngPO0EK9VKKp16D7wTL61U
-	 WdQi57npZBnbA==
-Date: Wed, 25 Oct 2023 16:08:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: marius.cristea@microchip.com
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	b=jIrWXIAj85SXqAP4C2Dj4+engdAvrNekV9ljm3XKOtePy1hwdO0o9VP+bsRJqORKU
+	 QKl2HohkReBC82jPccVy+9BMut/SzwcXVin5kZfm3Jtj3Nk+KSrnBH2Cfp4bhwANZW
+	 NirYI/ePMwf/Qkdc9+OxfABKlFuQe087xarez2hpsvDCoiggpoAjXBX8QjUGKrM6SM
+	 rYp6S7MJxBtBgphivsAxMga7Kx/8+09G6NesVDoBT2gNj98bE5InuOja7XGqU6LSyu
+	 c6HhMfQOAXYjGYSRISPo+cytz7GELTtK7WHHBLpz7FEIpHPBSim+ud/QRv+ON1P0Zs
+	 CnD8TAb41TYQw==
+Date: Wed, 25 Oct 2023 23:13:39 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Chen Wang <unicorn_wang@outlook.com>
+Cc: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Chao Wei <chao.wei@sophgo.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: adding dt-bindings for
- PAC193X
-Message-ID: <20231025-cheddar-tucking-b2ea777ed4f9@spud>
-References: <20231025134404.131485-1-marius.cristea@microchip.com>
- <20231025134404.131485-2-marius.cristea@microchip.com>
+Subject: Re: [PATCH v1] riscv: dts: sophgo: remove address-cells from intc
+ node
+Message-ID: <ZTkwo/u6S9Atp2u3@xhacker>
+References: <20231024-maternity-slang-fd3dcfb211c0@spud>
+ <MA0P287MB0332C00AB091FD7139560E25FEDEA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ActSxKFGitGW1WzK"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231025134404.131485-2-marius.cristea@microchip.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <MA0P287MB0332C00AB091FD7139560E25FEDEA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+
+On Wed, Oct 25, 2023 at 08:48:57AM +0800, Chen Wang wrote:
+> 
+> On 2023/10/24 16:20, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > A recent submission [1] from Rob has added additionalProperties: false
+> > to the interrupt-controller child node of RISC-V cpus, highlighting that
+> > the new cv1800b DT has been incorrectly using #address-cells.
+> > It has no child nodes, so #address-cells is not needed. Remove it.
+> > 
+> > Link: https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.4184468-1-robh@kernel.org/ [1]
+> > Fixes: c3dffa879cca ("riscv: dts: sophgo: add initial CV1800B SoC device tree")
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+Nice catch!
+
+Reviewed-by: Jisheng Zhang <jszhang@kernel.org>
 
 
---ActSxKFGitGW1WzK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > ---
+> > CC: Chao Wei <chao.wei@sophgo.com>
+> > CC: Chen Wang <unicorn_wang@outlook.com>
+> > CC: Rob Herring <robh+dt@kernel.org>
+> > CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > CC: Paul Walmsley <paul.walmsley@sifive.com>
+> > CC: Palmer Dabbelt <palmer@dabbelt.com>
+> > CC: Albert Ou <aou@eecs.berkeley.edu>
+> > CC: devicetree@vger.kernel.org
+> > CC: linux-riscv@lists.infradead.org
+> > CC: linux-kernel@vger.kernel.org
+> > ---
+> >   arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 1 -
+> >   1 file changed, 1 deletion(-)
+> > 
+> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > index df40e87ee063..aec6401a467b 100644
+> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > @@ -34,7 +34,6 @@ cpu0: cpu@0 {
+> >   			cpu0_intc: interrupt-controller {
+> >   				compatible = "riscv,cpu-intc";
+> >   				interrupt-controller;
+> > -				#address-cells = <0>;
+> >   				#interrupt-cells = <1>;
+> >   			};
+> >   		};
+> 
+> Acked-by: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Thanks，btw, will it be merged in 6.7?
 
-Hey Marius,
+Don't worry, this is a fix, I think Conor will submit fix PR once rc1 is out.
 
-On Wed, Oct 25, 2023 at 04:44:03PM +0300, marius.cristea@microchip.com wrot=
-e:
-> From: Marius Cristea <marius.cristea@microchip.com>
->=20
-> This is the device tree schema for iio driver for
-> Microchip PAC193X series of Power Monitors with Accumulator.
->=20
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> ---
->  .../bindings/iio/adc/microchip,pac1934.yaml   | 146 ++++++++++++++++++
->  1 file changed, 146 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,p=
-ac1934.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.=
-yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> new file mode 100644
-> index 000000000000..837053ed8a71
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> @@ -0,0 +1,146 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PAC1934 Power Monitors with Accumulator
-> +
-> +maintainers:
-> +  - Marius Cristea <marius.cristea@microchip.com>
-> +
-> +description: |
-> +  Bindings for the Microchip family of Power Monitors with Accumulator.
-> +  The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be found h=
-ere:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produ=
-ctDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pac1931
-> +      - microchip,pac1932
-> +      - microchip,pac1933
-> +      - microchip,pac1934
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  interrupts:
-> +    description: IRQ line of the ADC
-> +    maxItems: 1
-> +
-> +  drive-open-drain:
-> +    description: The IRQ signal is configured as open-drain.
-> +    type: boolean
-> +    maxItems: 1
-> +
-> +  microchip,slow-io:
-> +    type: boolean
-> +    description: |
-> +      A GPIO used to trigger a change is sampling rate (lowering the chi=
-p power consumption).
-> +      In default mode, if this pin is forced high, sampling rate is forc=
-ed to eight
-> +      samples/second. When it is forced low, the sampling rate is 1024 s=
-amples/second unless
-> +      a different sample rate has been programmed.
-
-This description doesn't really make sense to me - if a GPIO is used to
-drive the pin low or high, why do we need a property? A DT property
-implies that this is a static configuration depending on the board, but
-reading the description this seems to be something that can be toggled
-at runtime.
-I do note though, that this GPIO is not documented in the binding, so I
-suppose what really needs to happen here is document the gpio so that
-the driver can determine at runtime what state this pin is in?
-
-Also, you say "In default mode", but don't mention what the non-default
-mode is. What happens in the other mode?
-
-Cheers,
-Conor.
-
---ActSxKFGitGW1WzK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTkvYgAKCRB4tDGHoIJi
-0p/jAQC8aTY9tapI5zJAbel/AlSiuunOhpwryaeBOFSHulfBtwD/Qm+HEKQnOX21
-IT9MfeRfd0f0YwK+jzSSPQpdWjDaiw0=
-=Kxul
------END PGP SIGNATURE-----
-
---ActSxKFGitGW1WzK--
+> 
+> Looping Jisheng who is working on Duo/cv1800b.
+> 
 
