@@ -1,164 +1,94 @@
-Return-Path: <devicetree+bounces-11702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B2F7D65D6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:53:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9FE7D65DC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:54:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93354280F4F
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:53:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A08BC28100B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96C8F1F607;
-	Wed, 25 Oct 2023 08:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368F31F608;
+	Wed, 25 Oct 2023 08:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="riyj2cQx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BKALmRLa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DCC290C
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:53:31 +0000 (UTC)
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1217116
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:53:29 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-52bd9ddb741so8382031a12.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:53:29 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1791FD1
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:54:05 +0000 (UTC)
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9390712A
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:54:04 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-d9b9adaf291so4270083276.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:54:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698224008; x=1698828808; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jqDiGZSAEWENqW9kahxeDuO1dH7CgDPifdSzgWaBa9I=;
-        b=riyj2cQx/7f6rP3uQvnF4GTEBf5g3NCArwU2cnzE7w97UbZb0mHJikIL7EQJS7pUc+
-         LXx1pz6cN7S8Tpx4PilMqyBFRE+7VY8PU68kv+lTLUXgLH4TkcaMWlp1yWl2x7PxC/TW
-         ydDXACw5/R73VeTqayrotr+a+GnCtwrmTyTM6TJLMfXigJrFjvxxkrulQ4b0q9yYBJtR
-         4vdeKm4lzZIfQecvuAHZFA3mLADXhbNTQzaAEVt5rVqVdlPT7YUK6MZYulNcambxMD9W
-         DEqBydL4BxT1gB7VN8CtOdjXVKyWgfM+xERFBujMxwwRxPSfOiTInAum6p5k6YHfPihM
-         J3wQ==
+        d=linaro.org; s=google; t=1698224044; x=1698828844; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=05z2jDJBCkJUaY0qwN312UAtjh1v85RzfJBH/QDD2yE=;
+        b=BKALmRLaCzGKeC4a7L+jqoO7BDxm9QUkh6fj79ZFvVKTbJEn3Z38+PgABQlR5rYuX+
+         qH13EuCsp6o7gbHRqCAMK9zDBc1le96NV2nLBrKRWpD8ffPcU5YfW2nJBNS/b380G8ue
+         eyhT6ss5I7zDiD5ALHfB5bmc1/aOIJk9wvgUHSMC9hV8lHObEsrhTA5YwJQj9+lnbwEY
+         uhVwiB0Ne9nEdUEM0fuBIK+OyaYLxEDxNf3keFMlknm1nnApAtmx+NVji06bwibDPqut
+         II1aPHCZ9pmfV1gD92biLEs4pakR3ajBZFCMk1bm1jltOJileiXVjJ9/UQGrNWEvY3qo
+         HPXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698224008; x=1698828808;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jqDiGZSAEWENqW9kahxeDuO1dH7CgDPifdSzgWaBa9I=;
-        b=mgRgjSB6ZWbxENnTjmyYXAB3o12Pw2SjyCPOp2N+iktjQZqTdhEOpk32W7DY23TF9u
-         81RDivCz+UOdDIJaDT5ofGbrHS/bc6AyT6JkMRSW/BWdB9m/QKbnr+GgkvSllfBiVgct
-         K8vYUPYCfn8+QWhrIRdSHEngxJvG2AqvdThoG68vz/5ChxFTbFx8p7pjbfxS6CAfD3da
-         ztDj1zsaSCyZpUlqOyKjnktsNTP8+hCYuVUIH1H7jVpQayu1zGHmADsCCCtGjMPVuX9G
-         U/iwr+pkq9JCt+d6rFlOf+hbCrG86vJG3qiYGz5kfGvX6f+7aRbfib2tCunho6pj0wd4
-         QXQQ==
-X-Gm-Message-State: AOJu0YxvsZXd2H2lMZeOZl1g8+8fp58FHC4qHrh3v/90aMVNTm4lmLIi
-	fDFYE/hc6jutJI0H5CqMVWVjww==
-X-Google-Smtp-Source: AGHT+IFdJIpJy2HcSg0IPExEK9z49nZ51+jUBkDUPzDL9FWXLMg/9f67U/WwgN6O/lrxXnmcr29fPA==
-X-Received: by 2002:a05:6402:11d4:b0:540:b524:5228 with SMTP id j20-20020a05640211d400b00540b5245228mr2842168edw.33.1698224008152;
-        Wed, 25 Oct 2023 01:53:28 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id m20-20020a509994000000b0053635409213sm9415717edb.34.2023.10.25.01.53.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 01:53:27 -0700 (PDT)
-Message-ID: <13c63dd3-011d-49a8-9db4-8135178e3cd1@linaro.org>
-Date: Wed, 25 Oct 2023 10:53:26 +0200
+        d=1e100.net; s=20230601; t=1698224044; x=1698828844;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=05z2jDJBCkJUaY0qwN312UAtjh1v85RzfJBH/QDD2yE=;
+        b=USddsh9JG9jS7R0w6TbOViFbeC8FuoITwdH8iBjzXvIAAcXkJM4b0SHfHSBN1OTEme
+         LVDfdSJa7Ew+IEZPe5X00PVdzPIDn55LM36AXBxBIXZTsNSFBU+Zc8sVZBu8aIajfeD3
+         oS1q6ERtWt8dytlMFP0kbPvkzaiCTf9kKUjRXh8mhmqNFQhNXEqKeaLNNcRyvuEVwLnU
+         EuGEQ4aVs6LbznwS9J8AggT2lM/UFX3IHVrpsTHpvJnD9rv+N/vT9Y7ChBJH9x9D7Dy9
+         yHLVk2VrlgqNdqt3pURmQyBneo9u0Gk7DyOO0UwTA+XgtM7mo6h676jlGlfGPVkFt9wa
+         FAWw==
+X-Gm-Message-State: AOJu0YyF26evilJDYsUNskiwanh2Qx61s2DdDaVi1rlSgh8B562pWqSu
+	E3SvVkH/nEWkd0GprX8LjxnPAL0UeyFfXm17FeDaJA==
+X-Google-Smtp-Source: AGHT+IEv8Y1RRki8dQdUkHfMqNiOSNJD2LSTon4K+5zL/p6SyF33Vqj3k2iU08uur8/zm9Esfw/JJA3puyUMAXz9YYQ=
+X-Received: by 2002:a5b:74a:0:b0:da0:4dfc:57d5 with SMTP id
+ s10-20020a5b074a000000b00da04dfc57d5mr3141457ybq.9.1698224043799; Wed, 25 Oct
+ 2023 01:54:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] Add samsung-matisselte and common matisse dtsi
-Content-Language: en-US
-To: Stefan Hansson <newbyte@postmarketos.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20231025083952.12367-1-newbyte@postmarketos.org>
- <04fae330-0866-408a-8016-b6f897f9550e@linaro.org>
- <25a25ec1-e556-4f55-9594-47dc56971091@postmarketos.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <25a25ec1-e556-4f55-9594-47dc56971091@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231025-topic-sm8650-upstream-phy-v1-0-6137101520c4@linaro.org> <20231025-topic-sm8650-upstream-phy-v1-6-6137101520c4@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-phy-v1-6-6137101520c4@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 25 Oct 2023 11:53:52 +0300
+Message-ID: <CAA8EJpotBF5xP2UC307nQpXUfvmiH8iK729KBXsPUrf5b8rQBw@mail.gmail.com>
+Subject: Re: [PATCH 6/7] phy: qcom: qmp-pcie: add QMP PCIe PHY tables for SM8650
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 25/10/2023 10:52, Stefan Hansson wrote:
-> 
-> 
-> On 2023-10-25 10:48, Krzysztof Kozlowski wrote:
->> On 25/10/2023 10:37, Stefan Hansson wrote:
->>> This series adds a common samsung-matisse dtsi and reworks
->>> samsung-matisse-wifi to use it, and introduces samsung-matisselte. I
->>> choose matisselte over matisse-lte as this is how most other devices
->>> (klte, s3ve3g) do it and it is the codename that Samsung gave the
->>> device. See individual commits for more information.
->>>
->>> ---
->>> Changes since v1:
->>>
->>>   - Rebased on latest linux-next
->>>   - Added qcom,msm8226 compatible to matisselte inspired by recent Lumia
->>>     830 patch. This is done as in v1, the patch was rejected because I
->>>     included the msm8226 dtsi despite not marking matisselte as
->>>     compatible with msm8226, and I was not sure how to resolve that. As
->>>     such, I'm copying what was done in the Lumia 830 (microsoft-tesla)
->>>     patch given that it was accepted.
->>
->> One version per day, so you won't ignore tags.
-> 
-> Sorry, I don't understand. Could you clarify what you mean? Thanks in 
-> advance.
+On Wed, 25 Oct 2023 at 10:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> Add QMP PCIe PHY support for the SM8650 platform.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 65 ++++++++++++++++++++++++++++++++
+>  1 file changed, 65 insertions(+)
 
-Do not send more than one version of your patchset per 24h, if your
-patchset is bigger than one patch.
 
-Best regards,
-Krzysztof
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+-- 
+With best wishes
+Dmitry
 
