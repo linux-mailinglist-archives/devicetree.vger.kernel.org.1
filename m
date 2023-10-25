@@ -1,111 +1,109 @@
-Return-Path: <devicetree+bounces-11709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D1B7D65F8
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:59:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB0B7D660A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 11:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7D951C208ED
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:59:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15B65B20E6B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C301F616;
-	Wed, 25 Oct 2023 08:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BAA81F92C;
+	Wed, 25 Oct 2023 09:01:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OimNZ9aV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E91A1F612
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:59:16 +0000 (UTC)
-Received: from out28-194.mail.aliyun.com (out28-194.mail.aliyun.com [115.124.28.194])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63786B0;
-	Wed, 25 Oct 2023 01:59:11 -0700 (PDT)
-X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07707555|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0251605-0.000177189-0.974662;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047187;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.V7kMlT4_1698224337;
-Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.V7kMlT4_1698224337)
-          by smtp.aliyun-inc.com;
-          Wed, 25 Oct 2023 16:59:05 +0800
-From: wangweidong.a@awinic.com
-To: broonie@kernel.org
-Cc: 13916275206@139.com,
-	ajye_huang@compal.corp-partner.google.com,
-	alsa-devel@alsa-project.org,
-	arnd@arndb.de,
-	ckeepax@opensource.cirrus.com,
-	colin.i.king@gmail.com,
-	conor+dt@kernel.org,
-	dan.carpenter@linaro.org,
-	devicetree@vger.kernel.org,
-	harshit.m.mogalapalli@oracle.com,
-	herve.codina@bootlin.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	lgirdwood@gmail.com,
-	linus.walleij@linaro.org,
-	linux-kernel@vger.kernel.org,
-	liweilei@awinic.com,
-	perex@perex.cz,
-	rf@opensource.cirrus.com,
-	robh+dt@kernel.org,
-	ryans.lee@analog.com,
-	sebastian.reichel@collabora.com,
-	shumingf@realtek.com,
-	tiwai@suse.com,
-	trix@redhat.com,
-	wangweidong.a@awinic.com,
-	yijiangtao@awinic.com
-Subject: Re: [PATCH V2 3/4] ASoC: codecs: Add code for bin parsing compatible with aw88399
-Date: Wed, 25 Oct 2023 16:58:56 +0800
-Message-ID: <20231025085857.918695-1-wangweidong.a@awinic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <06c14b04-28df-4374-80e3-91e40bc53a84@sirena.org.uk>
-References: <06c14b04-28df-4374-80e3-91e40bc53a84@sirena.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6CF1C2AF
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 09:01:18 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2DC199
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 02:01:17 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507b9408c61so7400815e87.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 02:01:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698224476; x=1698829276; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AvgTazU05wmbAVu8s1pewYEdDleLktThS4lYuVG5GWA=;
+        b=OimNZ9aVm7DVVVDFF1tukWaSQxopYsClRM3K7b8f4qan4CyOH0cREhf2KVe4Un2ES5
+         WcRw35fckOwoIiTqkjg5MjM+FaMpCF0+Y/+S/NutqQYLnwS8Rt6Kmh9M/Zk6DrCutn9Z
+         ysqOdiMrKIMQNXSIy/U1VxTCb5uub82OyhOAJTd75VYP3pMDjCW4EUdn0++rFk5w9UFU
+         xe1JODdIaIzKzLRtIfvgwbeiaw/jKpvgpdqrBPDoBuBTslvq7upC2ahNpvoETObWTUzj
+         +gDl2MuV455IKhbCQUpcXIO6okKn7Z+jv296wY/939HO5A+8Xnyq8TNh1EzlDSQHFRaM
+         zDEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698224476; x=1698829276;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AvgTazU05wmbAVu8s1pewYEdDleLktThS4lYuVG5GWA=;
+        b=UdY9foZt9hAyvo7Ur/OA/hjugA83dts5CB/W1jslqMZk9MD9GA27uxKmiliPXZnjb+
+         C8BonMjQoPwHbCnWYlhvw4xpYRX6zaOQFX/ECDuWWUzAGdBSs8cWwERUi7mGE/4eBPtn
+         h+yM1pWb2zpbczQNUQO4vEwfiswIZIpdRR1zOCBXzFgSiIr7EZbNMEaKH+nUA3a/A59b
+         guwhG1a9iznJBhFffdkJxgWRh5HQpK0hBNm9OsR6dC227MkrYk+7MR0r16R36klBcQ0a
+         eubGhEZYN6P2Ctz9kDRIj8SspUUv7xVKGUoUM87vBeXfb3ekfxgfxNxDefwvhHliF66s
+         jATQ==
+X-Gm-Message-State: AOJu0YzJC+ax+vA9gKkjTMNqpi8wE3FnDUA7WrA5zZGWSBDPv9pJw3zl
+	kE8TapHwmuTv/sH6E55VevxfJg==
+X-Google-Smtp-Source: AGHT+IEcHR1W3xSeqiVG6hd48eONiv2HigJ9anogPs5wH/X2HmMIp0FVAqWjrSocCI2xbJRSQd2SBQ==
+X-Received: by 2002:a19:9115:0:b0:503:1722:bf3a with SMTP id t21-20020a199115000000b005031722bf3amr10690089lfd.1.1698224475861;
+        Wed, 25 Oct 2023 02:01:15 -0700 (PDT)
+Received: from [172.30.204.57] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id k10-20020ac257ca000000b005079ab8ab19sm2458305lfo.150.2023.10.25.02.01.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Oct 2023 02:01:15 -0700 (PDT)
+Message-ID: <691f1781-906c-411f-90f6-e1cc71062253@linaro.org>
+Date: Wed, 25 Oct 2023 11:01:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/8] arm64: dts: qcom: add initial SM8650 dtsi
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-dt-v1-0-a821712af62f@linaro.org>
+ <20231025-topic-sm8650-upstream-dt-v1-2-a821712af62f@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-dt-v1-2-a821712af62f@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thank you very much for your help.
 
-On Tue, Oct 24, 2023 at 14:57:03 +0100, Mark Brown wrote:
-> On Tue, Oct 24, 2023 at 01:42:13PM +0100, Mark Brown wrote:
->> On Tue, Oct 24, 2023 at 03:19:28PM +0800, wangweidong.a@awinic.com wrote:
->> 
->> > I generated the patch based on the mainline branch, 
->> > Why would there be a conflict? I know that I made a change to
->> > this file when I committed aw87390 and that 
->> > the change was in the Linux-next branch, but the two 
->> > changes are in different parts of the file.
->> 
->> I don't know off hand, I didn't check in detail.  It's possible someone
->> else sent a fix that's been applied and is causing the issue - if you
->> check out my branch and try to apply the patches hopefully you can
->> figure out what the problem was.
 
-> diff --cc sound/soc/codecs/aw88395/aw88395_lib.c
-> index a0a429ca9768,bc72a7487048..000000000000
-> --- a/sound/soc/codecs/aw88395/aw88395_lib.c
-> +++ b/sound/soc/codecs/aw88395/aw88395_lib.c
-> @@@ -705,7 -703,8 +705,12 @@@ static int aw_dev_load_cfg_by_hdr(struc
->  
->  	switch (aw_dev->chip_id) {
->  	case AW88395_CHIP_ID:
-> ++<<<<<<< HEAD
-> +		ret = aw88395_dev_cfg_get_valid_prof(aw_dev, all_prof_info);
-> ++=======
-> + 	case AW88399_CHIP_ID:
-> + 		ret = aw88395_dev_cfg_get_valid_prof(aw_dev, *all_prof_info);
-> ++>>>>>>> ASoC: codecs: Add code for bin parsing compatible with aw88399
->  		if (ret < 0)
->  			goto exit;
->  		break;
+On 10/25/23 09:47, Neil Armstrong wrote:
+> Add initial DTSI for the Qualcomm SM8650 platform,
+> only contains nodes which doesn't depend on interconnect.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---[...]
 
-Again, thank you very much for your help. I'll resend the patch
-based against for-6.7 of sound tree.
+> +			CLUSTER_SLEEP_1: cluster-sleep-1 {
+> +				compatible = "domain-idle-state";
+> +				arm,psci-suspend-param = <0x4100c344>;
+I think this parameter signals the AOSS to attempt system
+suspend and CLUSTER_SLEEP is a shallower, separate state.
 
-Best regards
-Weidong Wang
+[...]
+> +			qcom,tcs-config = <ACTIVE_TCS    3>, <SLEEP_TCS     2>,
+> +					  <WAKE_TCS      2>, <CONTROL_TCS   0>;
+Is <CONTROL_TCS 0> the correct value?
+
+I think it looks good otherwise
+
+Konrad
 
