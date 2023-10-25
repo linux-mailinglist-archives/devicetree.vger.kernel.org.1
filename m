@@ -1,149 +1,95 @@
-Return-Path: <devicetree+bounces-11705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6927D65E2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:56:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BF767D65E6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:56:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E2BF1C208FE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:56:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98657B20D1B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8298B1F60F;
-	Wed, 25 Oct 2023 08:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9CC1F611;
+	Wed, 25 Oct 2023 08:56:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uUljIP0n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gzQpDUt+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669C31FD1
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:56:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7016EC433C8;
-	Wed, 25 Oct 2023 08:56:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698224162;
-	bh=8Bq3Qbr/gkUku/+SWoEdJgAMfakCIxzCaI3vtlBxij0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=uUljIP0nXjpIJwp0WDGa9ZfJn/zLuzz3k43zWJq4sGpb8ZuHWM7LAb8VPIJivr+MV
-	 LFuMNqCL/2FMw72a12OQh1D1zoQ5PXSyE0Zz0yVxVXJllKkcyXMuXuNQVLvKcqDj3Q
-	 PshpFP9LtcjXFQ0i2zLTznMLaCFqHtWUWlSVZw6xP6auTvTC4U8CuY5VWL8gt3xl1q
-	 uVccUUx1xQmsx2izxdQdY1LZMkKy/l0dcJQUw92LTiZKx4or3GnnUq6pzRapDhCKbS
-	 sZ7m+xYxOKQloKVkVQTXoprD1S1sdCzXVGnOcAG6EEOFa+/qHKAi+CLNy23Nc63Mz1
-	 gse8XjPHTo1xA==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Marc Zyngier
- <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew Jones
- <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, Saravana
- Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 09/14] irqchip/riscv-imsic: Add support for PCI MSI
- irqdomain
-In-Reply-To: <CAK9=C2UVgTd-a0671Lab_ZeOPWP3=wHY+pydKHqaR-Yg65YhrA@mail.gmail.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-10-apatel@ventanamicro.com>
- <8734y0rwtw.fsf@all.your.base.are.belong.to.us>
- <CAK9=C2UVgTd-a0671Lab_ZeOPWP3=wHY+pydKHqaR-Yg65YhrA@mail.gmail.com>
-Date: Wed, 25 Oct 2023 10:55:59 +0200
-Message-ID: <87jzrbf5cw.fsf@all.your.base.are.belong.to.us>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B1D1F607
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:56:34 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22BD7183
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:56:33 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-507a55302e0so7229298e87.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:56:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698224191; x=1698828991; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XcWDpz6RiebILDq0MkRy3/6J4V7vqmXqPyZ0jkm/G3U=;
+        b=gzQpDUt+LhTYuB83RhcDhHITcJjaBGxZMj12pqjGU0M/q/1EsJDBG7YFvo4bHejD3H
+         iSMfInT+AYNXcx7z/V4i1ZG6oFjacRWI/d17Fhek1uGOlOSjdVchbPCeoGY48nHRrtRj
+         uSnNiPz91kxq1oqO3zr0RtaZH7rfuCCqcYfq3UE6yK2OK/jPxIcOjkLvo4XwNqbIb4g6
+         MAN38g8Z4Eyp7W7Hh+g8yGgx4XIlHA8ymsbWq4Hly+gkZQ8XQ65cxi8vUsUYf8AqYtVQ
+         onFZ6uyqzJANlpQxt4MYXrAxfczzCwI+fmZelDqOitSIzp83Ix+pskiOiyJMeMoLzgHI
+         Teyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698224191; x=1698828991;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XcWDpz6RiebILDq0MkRy3/6J4V7vqmXqPyZ0jkm/G3U=;
+        b=XPtbqlg8lWBzYMYj/dsiVmNAXQUQI2P58dAfGpGbB0COua1MliAzdD186VvMQE5Q1C
+         e026tzZULn/7HWpbIsO91z1QKdhYm6gievTxTPItjaL4ysYYXBU2QnA4ivbZU4XLa9Pa
+         S089FLkaC7PSm8GqV5FCSd50yGFxD8OXIUmuPkpo5QIxrS2IzxGLIgxp4OBXewWn4IAZ
+         qbZ/9FrhC6RB/x2qQ7wVK8xe0qThLxCiPamYStrCSm7N1qAKNBW4JCXIs1dRlONIJDRT
+         AsTje0+5gXq3K2ZwOMiX8yMjcsp3VTgtofHJfiNbuQcZ9bVmcSZ93+BG+qj7z5wMAcAZ
+         XEyQ==
+X-Gm-Message-State: AOJu0YyVkgKe9CEvNy1l/ellCYgJsOxp0oDGJ/cth9AF5u1XwZu/JDBg
+	ssFU+9sMDdPvjrAKMI9rbXTezQ==
+X-Google-Smtp-Source: AGHT+IFcsjDaRKHtNQkrRrpzaJTXYCgCXDLm2TWDrR2cEO93ECaEjWZjYH7DVg020p+sK7+GfwmO6Q==
+X-Received: by 2002:a05:6512:2825:b0:508:1690:d825 with SMTP id cf37-20020a056512282500b005081690d825mr1167879lfb.21.1698224191151;
+        Wed, 25 Oct 2023 01:56:31 -0700 (PDT)
+Received: from [172.30.204.57] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id e7-20020a05651236c700b00507a3b0eb34sm2468030lfs.264.2023.10.25.01.56.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Oct 2023 01:56:30 -0700 (PDT)
+Message-ID: <a42a913d-b0b1-4645-9f60-0163bc93fc85@linaro.org>
+Date: Wed, 25 Oct 2023 10:56:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Anup Patel <apatel@ventanamicro.com> writes:
-
-> On Tue, Oct 24, 2023 at 6:39=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
-el.org> wrote:
->>
->> Anup Patel <apatel@ventanamicro.com> writes:
->>
->> > The Linux PCI framework requires it's own dedicated MSI irqdomain so
->> > let us create PCI MSI irqdomain as child of the IMSIC base irqdomain.
->> >
->> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
->> > ---
->> >  drivers/irqchip/Kconfig                    |  7 +++
->> >  drivers/irqchip/irq-riscv-imsic-platform.c | 51 ++++++++++++++++++++++
->> >  drivers/irqchip/irq-riscv-imsic-state.h    |  1 +
->> >  3 files changed, 59 insertions(+)
->> >
->> > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
->> > index bdd80716114d..c1d69b418dfb 100644
->> > --- a/drivers/irqchip/Kconfig
->> > +++ b/drivers/irqchip/Kconfig
->> > @@ -552,6 +552,13 @@ config RISCV_IMSIC
->> >       select IRQ_DOMAIN_HIERARCHY
->> >       select GENERIC_MSI_IRQ
->> >
->> > +config RISCV_IMSIC_PCI
->> > +     bool
->> > +     depends on RISCV_IMSIC
->> > +     depends on PCI
->> > +     depends on PCI_MSI
->> > +     default RISCV_IMSIC
->> > +
->> >  config EXYNOS_IRQ_COMBINER
->> >       bool "Samsung Exynos IRQ combiner support" if COMPILE_TEST
->> >       depends on (ARCH_EXYNOS && ARM) || COMPILE_TEST
->> > diff --git a/drivers/irqchip/irq-riscv-imsic-platform.c b/drivers/irqc=
-hip/irq-riscv-imsic-platform.c
->> > index 23d286cb017e..cdb659401199 100644
->> > --- a/drivers/irqchip/irq-riscv-imsic-platform.c
->> > +++ b/drivers/irqchip/irq-riscv-imsic-platform.c
->> > @@ -13,6 +13,7 @@
->> >  #include <linux/irqdomain.h>
->> >  #include <linux/module.h>
->> >  #include <linux/msi.h>
->> > +#include <linux/pci.h>
->> >  #include <linux/platform_device.h>
->> >  #include <linux/spinlock.h>
->> >  #include <linux/smp.h>
->> > @@ -215,6 +216,42 @@ static const struct irq_domain_ops imsic_base_dom=
-ain_ops =3D {
->> >  #endif
->> >  };
->> >
->> > +#ifdef CONFIG_RISCV_IMSIC_PCI
->> > +
->> > +static void imsic_pci_mask_irq(struct irq_data *d)
->> > +{
->> > +     pci_msi_mask_irq(d);
->> > +     irq_chip_mask_parent(d);
->>
->> I've asked this before, but I still don't get why you need to propagate
->> to the parent? Why isn't masking on PCI enough?
->>
->
-> We are using hierarchical IRQ domains where IMSIC-BASE is
-> the root domain whereas IMSIC-PLAT domain (MSI irq domain
-> for platform devices) and IMSIC-PCI domain (MSI irq domain
-> for PCI devices). For hierarchical IRQ domains, if irq domain X
-> does not implement irq_mask/unmask then the parent irq
-> domain irq_mask/unmask is called with parent irq descriptor.
->
-> Now for IMSIC-PCI domain, the PCI framework expects the
-> pci_msi_mask/unmask_irq() functions to be called but if
-> we directly point pci_msi_mask/unmask_irq() in the IMSIC-PCI
-> irqchip then IMSIC-BASE (parent domain) irq_mask/umask
-> won't be called hence the IRQ won't be masked/unmask.
-> Due to this, we call both pci_msi_mask/unmask_irq() and
-> irq_chip_mask/unmask_parent() for IMSIC-PCI domain.
-
-Ok. I wont dig more into it for now! If the interrupt is disabled at
-PCI, it seems a bit overkill to *also* mask it at the IMSIC level...
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] soc: qcom: socinfo: Add SM8650 SoC ID
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-socinfo-v1-1-6776a5183fa0@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-socinfo-v1-1-6776a5183fa0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-Bj=C3=B6rn
+
+On 10/25/23 09:31, Neil Armstrong wrote:
+> Add SoC Info support for the SM8650 platform.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
