@@ -1,567 +1,304 @@
-Return-Path: <devicetree+bounces-11505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13C27D6035
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:03:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3187D6040
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:08:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C2B01C204F9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 03:03:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85B99B210BA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 03:08:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03662D60F;
-	Wed, 25 Oct 2023 03:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E4817C6;
+	Wed, 25 Oct 2023 03:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="jsHOhJhm"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Y5im22Py";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="Jhw0Svz0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459601360
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 03:03:18 +0000 (UTC)
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2082.outbound.protection.outlook.com [40.107.102.82])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70F610E0;
-	Tue, 24 Oct 2023 20:03:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39B41360
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 03:08:43 +0000 (UTC)
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B59F12A;
+	Tue, 24 Oct 2023 20:08:34 -0700 (PDT)
+X-UUID: c5f18f0472e311eea33bb35ae8d461a2-20231025
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=Up6FEnUF3dvtNO5W1GIqfXhmQkE6O9h8odqMrhiDCj8=;
+	b=Y5im22PyOfgDiFTIhR/tV/QuDUdli5n9jXl6z9PigJTd4HbUR1fkN/YpM1MUtUOGdOi7Tu4RdjdfVTwksOF2NkGwgF4UjffoJzdLZS935hwG0NN7GsTZpDUSKJNrmKXZ2r/syouLgMj0zepm3aa37Ud0f0cmPtQXIW+hXucHaQI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.32,REQID:567054b8-ba44-4688-9dd0-1079bed9e315,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:5f78ec9,CLOUDID:a36d9994-10ce-4e4b-85c2-c9b5229ff92b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: c5f18f0472e311eea33bb35ae8d461a2-20231025
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 314639454; Wed, 25 Oct 2023 11:08:29 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 25 Oct 2023 11:08:28 +0800
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 25 Oct 2023 11:08:28 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E5ZgRdCC/BSz51hfundq9I2IzVakhxxG5KO0xbdvYQZumLxjljCwe2Y20ppC/ov8nzjwW2crSlUiAOCDg9t74NMkym2OIRD7Qj5Bxr1N6nvQme5NwdEX82O7bWbiaJvdS8FN7CBW7qdqUQRNG9UV1UzNWvsmMY56EFf+MqMHaLmY0K8QTAdY+7W+oyzrAIwj0bI5ishVYshmRCu33oz9Le+PWbG1+++TfMMODWX9uP4DLbY3ou07MZUBXUJVpppN1v1THXzMy+d+uozuwTg8WAHqiRh5Cw3hscRKPqUrlj2fGwp2uyvax4oHfUquWmneGqER+iNxE7iRxDSxjp7RlQ==
+ b=hqcpmM4m4ZV/5DwYObMQ7e4nq5idOCTPTBoPqCYMpvR7m9iiJvVegCq9lVP8C1uUEMw0v6ZoDjywnbkbp0fa8K7xE4rgUP24fu3Fp9vbFer98/iPQqL6brdg594m13sGjsKrpz5vxPp4sjfyx+Xc2mkv4cUa5nzzb79w3ZG8UmywxjJFw/qeJ7gNAwJwoCa1yV7aR/GtwaENolsvjoeTm4hXkVZulFinx5TId2kkbF3lroeC9yQesNuHpJe9wb/IXkrFct9RtUl653f0RWBSvBVba+9u5MrG+ILtLuWZ/inbZ5IAP+LG4lpIQEqZmxUpoRTEpO8UIGKTzOQfJbJO+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lifsBpGpGVWxGG2/Et38xwhn25wtt/0HTYeLunlwriI=;
- b=Ggjo+Is4HEq3S2DlvygRdzqWOSdNHaYKe1TaruHUes5g98FY3NR1/+Y3Xav1TNSW0ynJfpA53/yUwjuJ6mCRMDr3JWw0zgen+oa1iUVrBJ9Nx29vaootvrqRTGTyU4OmpAiuTr5rpIaSOnReoWzW7OipiDatW7BywvCO76mv/K6MbZ38k8dY1bU/7HhiqG/wELT4yeRr8k3eXsDg4xUCJvG99TgXn14uAjMRZtothFdaCtNk02tHa0L2IvV4Jog2TUSngWkNKkXaJDuglskFMHwbBwMMZXSN2haymJHCiYFgSRNQnjZ8YK7gOWYRS5EHOFLFKQWLHoC689r4GsHAAw==
+ bh=Up6FEnUF3dvtNO5W1GIqfXhmQkE6O9h8odqMrhiDCj8=;
+ b=Fbr7Rohr0zO6EqxT92Uhmw17BJLwIe+fvL6rrE1kM6YhFmHQsizZPmiajxe4i6bRdXonrSAiu6lHC7zhpjaNjJmsGtD8xzYHcnu9q/O+5P82kdYMftbp38u8vj54V41DHqtFfG9tSFOXlotZXEu28ezoP591lfA9CbtcqsrCQRSZXkW6BNHBJgi3mDy9lq8JGknf8gjyYuOrVJBL7fPlX92l+spu1YvrlSo+3ichh6aqh0CzYxlwxStP3lYCukRMyA/Ul/WntrChEcjyKLYq7RUJCmLNt5SE4ifxCc6MlGzZYCwTecfA1zIGKv1WKvuGD0U38ABGNyzwebbR6HOyvg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lifsBpGpGVWxGG2/Et38xwhn25wtt/0HTYeLunlwriI=;
- b=jsHOhJhmtmtuPGPNN78Z53YaLbDysYwBcwSyU1wCgjfL9lyilyXJe3viwB/eiMpJApVCckEeDX0k+zUJ1sXJHO+4lVNcKSDKKpCQngnR4IqXKFLeYZqKFKISeUAuiNW/88Y3nSP/3Yyi/DdCavL/Je2CGjK8dnqsRm3kab2CYgw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by BL3PR08MB7378.namprd08.prod.outlook.com
- (2603:10b6:208:355::9) with Microsoft SMTP Server (version=TLS1_2,
+ bh=Up6FEnUF3dvtNO5W1GIqfXhmQkE6O9h8odqMrhiDCj8=;
+ b=Jhw0Svz0MnaJoKFxUOyquGbHS9I+2TGP7q7khZl794nyLt6K4gHzBoBBQC+0ip4oVJ9LmYs0H2SOPwTJS7RvN8uz6b4Dsm0Eav+rO++hwAMt+o4yn4BqcwlSH1/Q+azXrl3NOFM+LdHU3HmYMUVG/an/AJ5R+delROXjXVKPyew=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by SI2PR03MB6055.apcprd03.prod.outlook.com (2603:1096:4:14b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Wed, 25 Oct
- 2023 03:03:13 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::e73c:270b:75f7:5302]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::e73c:270b:75f7:5302%4]) with mapi id 15.20.6907.032; Wed, 25 Oct 2023
- 03:03:13 +0000
-Date: Tue, 24 Oct 2023 22:03:10 -0500
-From: Jeff LaBundy <jeff@labundy.com>
-To: James Ogletree <james.ogletree@opensource.cirrus.com>
-Cc: James Ogletree <james.ogletree@cirrus.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lee Jones <lee@kernel.org>, Fred Treven <fred.treven@cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] Input: cs40l50 - Add support for the CS40L50
- haptic driver
-Message-ID: <ZTiFbmutojF0LRZU@nixie71>
-References: <20231018175726.3879955-1-james.ogletree@opensource.cirrus.com>
- <20231018175726.3879955-5-james.ogletree@opensource.cirrus.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231018175726.3879955-5-james.ogletree@opensource.cirrus.com>
-X-ClientProxiedBy: SA0PR11CA0204.namprd11.prod.outlook.com
- (2603:10b6:806:1bc::29) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+ 2023 03:08:26 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::fe5a:c0e7:4b72:64f3]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::fe5a:c0e7:4b72:64f3%4]) with mapi id 15.20.6907.025; Wed, 25 Oct 2023
+ 03:08:25 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "chunkuang.hu@kernel.org"
+	<chunkuang.hu@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	=?utf-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
+	<Jason-ch.Chen@mediatek.com>, =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?=
+	<Shawn.Sung@mediatek.com>, =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
+	<Nancy.Lin@mediatek.com>, =?utf-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?=
+	<Johnson.Wang@mediatek.com>, "jkardatzke@google.com" <jkardatzke@google.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 07/11] drm/mediatek: Add secure layer config support
+ for ovl
+Thread-Topic: [PATCH v2 07/11] drm/mediatek: Add secure layer config support
+ for ovl
+Thread-Index: AQHaBWwJYGbjWCm+FECrWQohGGln37BZ1jGA
+Date: Wed, 25 Oct 2023 03:08:25 +0000
+Message-ID: <5d688b197946656bcfac74e8a6f0325a738260c4.camel@mediatek.com>
+References: <20231023044549.21412-1-jason-jh.lin@mediatek.com>
+	 <20231023044549.21412-8-jason-jh.lin@mediatek.com>
+In-Reply-To: <20231023044549.21412-8-jason-jh.lin@mediatek.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SI2PR03MB6055:EE_
+x-ms-office365-filtering-correlation-id: fa10d2b8-8bf0-4174-3316-08dbd507a7b9
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: UwomYv2CuTW47KZrZMuKqZzajx6JZMRm3FjtucyhDL66B+Vj32X7HRYgtxQWWeiPbwYQ4ak2MYBv/Lplrw4X2c19MN6s25+UQVHMF/+qUORDGrws0AZ8vtrlL48jbbNt94uyaVcb+Z8tVPQ9GqnUwselgMfSoC8Bh5n4hTQHaQasfnONVAvw0Sim5xs2MnuEZ/xJMkOTy9LocIOJiJuJ8Js5wuyCt0ooYT133J6JHHEzPK33wHj1okI6dDj0tVonH+sCq0FuvrzqyXrg4KS3iSZHLtpdO0UAyOJdMUAjhNYTFGmqUOXjlAusS4siEX+GepLTvDo6R310AECzpJBaIx9TkfGhqtZPOm10M8hWl4Kqv4LG32F26ESHJOTEWI48RoJXuj7EQ0uhC4h9V1z2rkBHYk1Dm2CxpmAxx9yX0e++zUCuD3o1LY5i7NoV2N4IaRjev5C9lzQ6vuoxXHg3K0GK4QqxLr/+7aZvSSKI3TJdQqrR7o8o518Ru7piGPkrvgtfTl4d+P9IfFJHdiVN7J2H90iWSZJCR1WfGhmROZEjdGtzT5OGLtncj9vnO+iz2MRJgyAWPtOMZXhUPUSoHz7wZEdG/kLDqOPRqISncoarMeuYQqp5JMWpXg4BHoJ50deVJxWdPrDQ/qAJ3RFVYZnSVf9XC5tZN3/PEHghLMs=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(376002)(39860400002)(136003)(396003)(230922051799003)(64100799003)(1800799009)(186009)(451199024)(83380400001)(4001150100001)(2906002)(26005)(8936002)(8676002)(4326008)(71200400001)(86362001)(41300700001)(76116006)(38100700002)(54906003)(66446008)(66476007)(66556008)(66946007)(64756008)(316002)(110136005)(122000001)(478600001)(6486002)(38070700009)(5660300002)(36756003)(7416002)(2616005)(85182001)(6512007)(6506007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OE1IclhUK2l0dWdyY0dZMno2b0ZLMXRndXJNVENKZjdiRnNIclZmd0M0ZHlT?=
+ =?utf-8?B?UUUrMTczallxWW5KajUzMWE3d1d5NzF4MEFNOFBYOE1zUTl2N3c4eVpQM0Q3?=
+ =?utf-8?B?RHVjQ1FQUmZwZGk3cFJEdTArMm5vM2hqaEkvM3d1NzZNVDlVVyt4cmZhTHNN?=
+ =?utf-8?B?VWo0cjNlcVVOWHhvOUdKUi9BelpDVUlQRE9yOUx6NkQ5TXFRc2w0bXNBQUdh?=
+ =?utf-8?B?UEFEN2VyblgwUjZBNHZJSDVoWXAzUjV2alZvZFlVSGNvRUhTUUkrSjcvRGl3?=
+ =?utf-8?B?eEw4SHVhMEMzWnRqZFhDYWl4eEhkRjl5VVJrSmVFSHNrTnhSOGpsQVFWRW84?=
+ =?utf-8?B?dnFpNjUweHdEOG93NW5zQk1EUGZXQUh0Sm1zVkt6by9tOGx4NTYwS1FsVHdD?=
+ =?utf-8?B?OTJxczBQNGluaU13TGQxdVhBUlpRejNvaWU3WkxVSkVtaHNXRjlSaUZBbGp3?=
+ =?utf-8?B?dnhGVklCT05jVWJhOWhlZFVsRVlxeERqRHBuUFRDTDE4SG1kN0gzUVdMWU9j?=
+ =?utf-8?B?aTM4N2gvZStVQmFsc0dCZkI2N3c1RGhxWkFLZFJMYWpvSDBFUFVmSFFmV1Yr?=
+ =?utf-8?B?Sk13Z1ZlSzFxOW9CTFY0K0hTNWRDcHpIUmx3K1ZTTVJBdzNJWjFrK1NOcnZX?=
+ =?utf-8?B?RkVDeGdHbGxXY3RUckI0ZE81V0U0YTFFTWhnL21aUS9JQS8rSTRTMTJCckpD?=
+ =?utf-8?B?Y1Z5SWV5Yll4VlVsai9pTFNPbytSWUJhVEg4dDBlU0tZcmgycDBkMUZtSlNX?=
+ =?utf-8?B?UWVjaE5nRDRIZVhvYjFVc0M4ZEYvVjRFMGIzU0U3T1VnWXRNeUtWL1hFcHpD?=
+ =?utf-8?B?aSswTk13SzgzalZiQzVvYmpFTVczN2JpamtLZTArV28wNXZoZmc2dU16ZXRW?=
+ =?utf-8?B?M2J5SHIvT25hNExJdDZQVXlWclNwc0Q4bEhVcWoyOCtidGoxU251TG9xMDh3?=
+ =?utf-8?B?VkVReWlwZFMxaWRmTkU2cE84cm05YU83TEkvNmhhVlk5Q3d0TGViQ055REdo?=
+ =?utf-8?B?N3VLRHh3cmhySnF6WVdEQldYdkorWnZacVBEWTM4K2d2NVo4U2p0NDhaN1hv?=
+ =?utf-8?B?RkhIaEVVTS9ZTUlHUGJaT2ppQjBLbHNLWHBrZ0J2SUxUMUd2N3NidXFOUjd0?=
+ =?utf-8?B?dC9iVkNub1JwVjhnaWtCWXR4RU1oMVIxQnRRSVB5ZHhSNlprd3cvOGcrV2o1?=
+ =?utf-8?B?Uk16a1Z0TmNFV256a3F6R1FaMi9NWURGdWtrdm1yRTNDMks4UnJCWmtBQVpY?=
+ =?utf-8?B?SWoxbW9hNldhMWxXSjFxVjdZZThHd1hDc05Ick9oSzhLZVNDNG1SMDVJVFAw?=
+ =?utf-8?B?VXVINm5pRTA1VnZ4RlRWaUZ1dkxBZ1VyYlpJTUxKQUxJNGpLeVZmRXlPZkwx?=
+ =?utf-8?B?ZERRd3lpTHNsMlZYNmR6alBDSE9KL3NkN3huOXJmTTlXSDlhTXY5ZmJ0ZmRT?=
+ =?utf-8?B?QlpTeFplZVNnRzZ2dmRoQnEwQWgrZngwZjRPUWZINHllYXVjOFdCQll1WjBz?=
+ =?utf-8?B?RzJ5YW5RM2JUTk9LT01mVzFOc01xV25IRVM4K3ltK2dEeUxCS2kwd0I3QUxt?=
+ =?utf-8?B?MmNWTlFsdVh4anN5ditvWjRhbWl0cTFUeFZxODFVVHE0S2VWQzgvcXVOblJ1?=
+ =?utf-8?B?VjVXL0NSSzliTTlINEVDbjBrRTBLSVB3WUhPYTFYV0R6U1p2NE41eHhCNG9y?=
+ =?utf-8?B?VFoyQnZXb2ZrOXJjRmpZUjlNTXp3NEFzdElQSHJvcWF3M2x5ODdCWnVmakJO?=
+ =?utf-8?B?Tkd1enhHYWFQWFlLWUQ5b0I0T0NyWmtsVVJ1Ymc3VUpIc1Yrc0VYMElWMU9Q?=
+ =?utf-8?B?SDhzVG9BT05pTk9pWEdjVlRlSmloK2Ntd3J3L1BmRmo4UDBlWURPajJpOHk4?=
+ =?utf-8?B?RDBjdGZYdzg5cWhyTWJCd0syUEdhWDVVeVo5MG1zMHJVYVpJTU1GelNCNk5m?=
+ =?utf-8?B?VzF3NFl4THMzcW9WejR3blpVYVZadUtDUTlEcEpJajNseWxqclRsVERvZzNJ?=
+ =?utf-8?B?QW9ieTRsZ1B6KzlEeS9Xd3ZZSGJqcnFvRXBLSytOVStxUnljWjdFQkZTbjdZ?=
+ =?utf-8?B?YnVKdXFKeFVYNklibDFBM1BtSXBQRERMM0J3eEhqN0ZtYmErS2xTUWhDc2FI?=
+ =?utf-8?Q?/OvaklIly6KQOlLYtqXBzF/MC?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <875BD32A58A6014596572C7F82D2EA4D@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|BL3PR08MB7378:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1defdb87-94f2-4888-17c5-08dbd506ed5f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	aOp+Lc0BuwwGNlO3Rj4mZe1GrYTC4XvpY9hQWdSve56tmUIQ6yEZYa/XgHnahuJomkL4g7GAdWwcrIx5BrtMsle2xY5eoU988GuxzrZOEkWZsfInFfLwen3eXronbJllqgyBysdZqAfL4E7wytSk0LnWKtH28BvBYYqYVtIEvR+du5dpBXv28W6DQNaGqGuoZ4SowkeJIJiOv1L30bCZ+TalHx8S+BC0zv1K8tk8O1vTYMNZhSGMRuf7lYBU3kTsiTtNMvcPqXFd8DH44i/5pUoOfiVaXijQDnjetR8pWeth75vJyzbVwyBT80+eX6aX4FQttjxXAa9RG2tHWV28mN0rremmMgme46/gvXkT22D8y4Q2h8GvBjqWuhcI43ivb78jxHf/VHLuISAZvjq1O+QHRFbH4xs8vIpa+RBld8SHNeUuSdRNHUgO51xuExLOREt+zkzULCfRmC5WnoIRyhRaJ2GHcWRbZ01YNF6fyp3swk+I7EU4iWjWA6/74iYw7ny6sTjPY/YgOfUdeozycPEbwt56LWH03XfjvGyB7XfnfPnPNGuEcR0+t0M032Dh
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39830400003)(396003)(366004)(346002)(376002)(136003)(230922051799003)(1800799009)(64100799003)(451199024)(186009)(7416002)(83380400001)(2906002)(8676002)(4326008)(8936002)(6486002)(30864003)(9686003)(41300700001)(5660300002)(86362001)(6512007)(6506007)(6916009)(316002)(26005)(478600001)(38100700002)(66946007)(66476007)(54906003)(66556008)(33716001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?KE2nJq0C+OAZZuEvd3Q2SBotjVEA/w6aCjWo+bAA9m6jgZa6JBHYcOQ1drk/?=
- =?us-ascii?Q?F5mzQrRRYbSqjmdHRd30JUvwHTQzzG/MO4F8MTw7nlZv3+kmwRcQ0niH38Zt?=
- =?us-ascii?Q?Klu9JxRLT1N5Pp4KeqJgFGcp+RU9eLdptzFYA1sLo7X5YqcBf3rnQ+WfpOTt?=
- =?us-ascii?Q?qLiBtscVHixhFPIZWsLbVUauMhKg3lW3+mpDAU0QGuoNc4e8k1eWs3BImWKq?=
- =?us-ascii?Q?mDkothzCLaQL9zCCnAS9Mk5zR2y9uLPUxAGAlLypK5+5dAZZlajdTXSawahI?=
- =?us-ascii?Q?0nBniQAVegpuVDIHd3CRK+nVS6EclaSexI7WHQk6VOus5Vjg0t3WT6OlsFN/?=
- =?us-ascii?Q?p5iUX4i6kgMO6lklUN75bIC0OeJuhcRUy0ioi7WKq1wV1j2NTzYyemiS7QZG?=
- =?us-ascii?Q?6erkd6n6c5D7ypRll1mlaU0ZAzstWt4O1pVKv6CQvKooL56MRqHD/H4VEl0C?=
- =?us-ascii?Q?wtCqmry78/tp1F7KrK1wHHRRgWCPVcV6oxqIUF11O9JX+1iMZYxHJELfQufo?=
- =?us-ascii?Q?+d+9cmsyWugnKgfu/1LlOkmTX1Ox7ecM58b9HuCN960Rfo8lHGVnXkvpL4/w?=
- =?us-ascii?Q?VG/RuP7pxR9ikVhFt9ZiPqY/9vB0I5ug+9a5eXopv1vq3vGWA4UelHHvJhp5?=
- =?us-ascii?Q?xrQIUZL860UhkWZVySmsgfL7S5bw3GMqWRXaLCwwQOk1L8Q7hgXvXTQVNINX?=
- =?us-ascii?Q?q4yH+N6U0TjR47K7xkmKXnxPi+Fppof5IeaGYb2zpZAibOmLScbQ77JmSrrq?=
- =?us-ascii?Q?MUrMKu5hKgq3H4xGykTx7pcUoTEXem21oYk76O1h7++2CjjYNVMhSO/UVS0c?=
- =?us-ascii?Q?isqnLUhjZ09inb3qO8LxhSWtZhp13aUcPSExRzFhBnFNmG1PBUO5GMUS7T+u?=
- =?us-ascii?Q?bS0YIJsViKuI+lLXPPr4ZgtCSdkbg3b/K7SSDuXj5N1lkbU/LkwBrNgMj1PE?=
- =?us-ascii?Q?otynlPV6ojRwLhjBZUDlkljT6vGnJg2rTJeX5kk4RsmJg8bsvG+gcllVTa0v?=
- =?us-ascii?Q?hMAx5wIuS2Bi5HtAiuL7reF0mB3sn1pdYPrdap5UBQpWaMF/sk+26UueQLxK?=
- =?us-ascii?Q?Nd9TyHB4p1K0+c8BsjliYdj32KueeVV+VNa8i380wUXvz+ldhCasAMPZev5I?=
- =?us-ascii?Q?9yeuc8fB6H+RRko2ag2Y1jARUnU/7ydyp17C7nmh9P1Ikq5/Vh9effIJEKBk?=
- =?us-ascii?Q?PYxlxr1LFix230KkIkaFQnD4tq/2E3on1J7dFX4MZvRlFs2wpONorwvdUZvD?=
- =?us-ascii?Q?ucTtFMENZZ6GRM4nneKzhFFFZ2j3XzpsAPJuJB9+y2F07d9R9vgi1yKIIJ+M?=
- =?us-ascii?Q?m62lzEieMxKBmVBQPPpn+iNWT92BxYx3UJgQe7LdwduRKxcPad7i14XwF31/?=
- =?us-ascii?Q?OC1aTUJlyjqCYO4gX4xT4bNTF2HsfEcd2lSEJxwz7M+x8fscixaZ8mJ8+MXn?=
- =?us-ascii?Q?a2UwCu6O9gVY6AC5ep1LMOGBsFCVRuomMrRhs1q2Pp47FV0IGmRAqHOK6iLu?=
- =?us-ascii?Q?gUXPy7ox9CzYhxk+KUSFpRK8ZSVvyBUqahCaZBOZmxTveTrukBXU3h6q6bYJ?=
- =?us-ascii?Q?uxrmgVID6QgfpgSWR0alYgW6Gu2UJameuyAdh74G?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1defdb87-94f2-4888-17c5-08dbd506ed5f
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 03:03:13.3537
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa10d2b8-8bf0-4174-3316-08dbd507a7b9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2023 03:08:25.8058
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G31o7Dxe7qw2ndXj81YV717FcLVRJRaOVJy8hjgjVnBHiQqbbc7H2UlKufcIq7j/ABWiFJIOUH9HlmqVc/THug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR08MB7378
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Md4g59elqx/yvwE9vBq702wgXXTFAybZtTi7/YXZHAqea2r4Zwdm03OzsG1CHSRgognRCdjGna3b+9baFU5JWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6055
 
-Hi James,
-
-On Wed, Oct 18, 2023 at 05:57:25PM +0000, James Ogletree wrote:
-> From: James Ogletree <james.ogletree@cirrus.com>
-> 
-> Introduce support for Cirrus Logic Device CS40L50: a
-> haptic driver with waveform memory, integrated DSP,
-> and closed-loop algorithms.
-> 
-> The input driver provides the interface for control of
-> haptic effects through the device.
-> 
-> Signed-off-by: James Ogletree <james.ogletree@cirrus.com>
-> ---
->  MAINTAINERS                        |   1 +
->  drivers/input/misc/Kconfig         |  10 +
->  drivers/input/misc/Makefile        |   1 +
->  drivers/input/misc/cs40l50-vibra.c | 353 +++++++++++++++++++++++++++++
->  4 files changed, 365 insertions(+)
->  create mode 100644 drivers/input/misc/cs40l50-vibra.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 08e1e9695d49..24a00d8e5c1c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4971,6 +4971,7 @@ L:	patches@opensource.cirrus.com
->  S:	Supported
->  F:	Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
->  F:	drivers/input/misc/cirrus*
-> +F:	drivers/input/misc/cs40l*
->  F:	drivers/mfd/cs40l*
->  F:	include/linux/input/cirrus*
->  F:	include/linux/mfd/cs40l*
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index 9f088900f863..938090648126 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -129,6 +129,16 @@ config INPUT_BMA150
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called bma150.
->  
-> +config INPUT_CS40L50_VIBRA
-> +	tristate "CS40L50 Haptic Driver support"
-> +	depends on MFD_CS40L50_CORE
-> +	help
-> +	  Say Y here to enable support for Cirrus Logic's CS40L50
-> +	  haptic driver.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called cs40l50-vibra.
-> +
->  config INPUT_E3X0_BUTTON
->  	tristate "NI Ettus Research USRP E3xx Button support."
->  	default n
-> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-> index 6abefc41037b..6b653ed2124f 100644
-> --- a/drivers/input/misc/Makefile
-> +++ b/drivers/input/misc/Makefile
-> @@ -27,6 +27,7 @@ obj-$(CONFIG_INPUT_CMA3000)		+= cma3000_d0x.o
->  obj-$(CONFIG_INPUT_CMA3000_I2C)		+= cma3000_d0x_i2c.o
->  obj-$(CONFIG_INPUT_COBALT_BTNS)		+= cobalt_btns.o
->  obj-$(CONFIG_INPUT_CPCAP_PWRBUTTON)	+= cpcap-pwrbutton.o
-> +obj-$(CONFIG_INPUT_CS40L50_VIBRA)	+= cs40l50-vibra.o cirrus_haptics.o
->  obj-$(CONFIG_INPUT_DA7280_HAPTICS)	+= da7280.o
->  obj-$(CONFIG_INPUT_DA9052_ONKEY)	+= da9052_onkey.o
->  obj-$(CONFIG_INPUT_DA9055_ONKEY)	+= da9055_onkey.o
-> diff --git a/drivers/input/misc/cs40l50-vibra.c b/drivers/input/misc/cs40l50-vibra.c
-> new file mode 100644
-> index 000000000000..3b3e4cb10de0
-> --- /dev/null
-> +++ b/drivers/input/misc/cs40l50-vibra.c
-> @@ -0,0 +1,353 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * CS40L50 Advanced Haptic Driver with waveform memory,
-> + * integrated DSP, and closed-loop algorithms
-> + *
-> + * Copyright 2023 Cirrus Logic, Inc.
-> + *
-> + */
-> +
-> +#include <linux/firmware/cirrus/wmfw.h>
-> +#include <linux/mfd/cs40l50.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +static int cs40l50_add(struct input_dev *dev,
-> +		       struct ff_effect *effect,
-> +		       struct ff_effect *old)
-> +{
-> +	struct cs40l50_private *cs40l50 = input_get_drvdata(dev);
-> +	u32 len = effect->u.periodic.custom_len;
-> +
-> +	if (effect->type != FF_PERIODIC || effect->u.periodic.waveform != FF_CUSTOM) {
-> +		dev_err(cs40l50->dev, "Type (%#X) or waveform (%#X) unsupported\n",
-> +			effect->type, effect->u.periodic.waveform);
-> +		return -EINVAL;
-> +	}
-> +
-> +	memcpy(&cs40l50->haptics.add_effect, effect, sizeof(struct ff_effect));
-> +
-> +	cs40l50->haptics.add_effect.u.periodic.custom_data = kcalloc(len,
-> +								     sizeof(s16),
-> +								     GFP_KERNEL);
-> +	if (!cs40l50->haptics.add_effect.u.periodic.custom_data)
-> +		return -ENOMEM;
-> +
-> +	if (copy_from_user(cs40l50->haptics.add_effect.u.periodic.custom_data,
-> +			   effect->u.periodic.custom_data, sizeof(s16) * len)) {
-> +		cs40l50->haptics.add_error = -EFAULT;
-> +		goto out_free;
-> +	}
-> +
-> +	queue_work(cs40l50->haptics.vibe_wq, &cs40l50->haptics.add_work);
-> +	flush_work(&cs40l50->haptics.add_work);
-> +
-> +out_free:
-> +	kfree(cs40l50->haptics.add_effect.u.periodic.custom_data);
-> +	cs40l50->haptics.add_effect.u.periodic.custom_data = NULL;
-> +
-> +	return cs40l50->haptics.add_error;
-> +}
-> +
-> +static int cs40l50_playback(struct input_dev *dev, int effect_id, int val)
-> +{
-> +	struct cs40l50_private *cs40l50 = input_get_drvdata(dev);
-> +
-> +	if (val > 0) {
-> +		cs40l50->haptics.start_effect = &dev->ff->effects[effect_id];
-> +		queue_work(cs40l50->haptics.vibe_wq,
-> +			   &cs40l50->haptics.vibe_start_work);
-> +	} else {
-> +		queue_work(cs40l50->haptics.vibe_wq,
-> +			   &cs40l50->haptics.vibe_stop_work);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int cs40l50_erase(struct input_dev *dev, int effect_id)
-> +{
-> +	struct cs40l50_private *cs40l50 = input_get_drvdata(dev);
-> +
-> +	cs40l50->haptics.erase_effect = &dev->ff->effects[effect_id];
-> +
-> +	queue_work(cs40l50->haptics.vibe_wq, &cs40l50->haptics.erase_work);
-> +	flush_work(&cs40l50->haptics.erase_work);
-> +
-> +	return cs40l50->haptics.erase_error;
-> +}
-> +
-> +static const struct reg_sequence cs40l50_int_vamp_seq[] = {
-> +	{ CS40L50_BST_LPMODE_SEL,	CS40L50_DCM_LOW_POWER },
-> +	{ CS40L50_BLOCK_ENABLES2,	CS40L50_OVERTEMP_WARN },
-> +};
-> +
-> +static const struct reg_sequence cs40l50_irq_mask_seq[] = {
-> +	{ CS40L50_IRQ1_MASK_2,	CS40L50_IRQ_MASK_2_OVERRIDE },
-> +	{ CS40L50_IRQ1_MASK_20,	CS40L50_IRQ_MASK_20_OVERRIDE },
-> +};
-> +
-> +static int cs40l50_hw_init(struct cs40l50_private *cs40l50)
-> +{
-> +	int error;
-> +
-> +	error = regmap_multi_reg_write(cs40l50->regmap,
-> +				       cs40l50_int_vamp_seq,
-> +				       ARRAY_SIZE(cs40l50_int_vamp_seq));
-> +	if (error)
-> +		return error;
-> +
-> +	error = cs_hap_pseq_multi_write(&cs40l50->haptics,
-> +					cs40l50_int_vamp_seq,
-> +					ARRAY_SIZE(cs40l50_int_vamp_seq),
-> +					false, PSEQ_OP_WRITE_FULL);
-> +	if (error)
-> +		return error;
-> +
-> +	error = regmap_multi_reg_write(cs40l50->regmap, cs40l50_irq_mask_seq,
-> +				       ARRAY_SIZE(cs40l50_irq_mask_seq));
-> +	if (error)
-> +		return error;
-> +
-> +	return cs_hap_pseq_multi_write(&cs40l50->haptics, cs40l50_irq_mask_seq,
-> +				       ARRAY_SIZE(cs40l50_irq_mask_seq), false,
-> +				       PSEQ_OP_WRITE_FULL);
-> +}
-> +
-> +static const struct cs_dsp_client_ops cs40l50_cs_dsp_client_ops;
-> +
-> +static const struct cs_dsp_region cs40l50_dsp_regions[] = {
-> +	{
-> +		.type = WMFW_HALO_PM_PACKED,
-> +		.base = CS40L50_DSP1_PMEM_0
-> +	},
-> +	{
-> +		.type = WMFW_HALO_XM_PACKED,
-> +		.base = CS40L50_DSP1_XMEM_PACKED_0
-> +	},
-> +	{
-> +		.type = WMFW_HALO_YM_PACKED,
-> +		.base = CS40L50_DSP1_YMEM_PACKED_0
-> +	},
-> +	{
-> +		.type = WMFW_ADSP2_XM,
-> +		.base = CS40L50_DSP1_XMEM_UNPACKED24_0
-> +	},
-> +	{
-> +		.type = WMFW_ADSP2_YM,
-> +		.base = CS40L50_DSP1_YMEM_UNPACKED24_0
-> +	},
-> +};
-> +
-> +static int cs40l50_cs_dsp_init(struct cs40l50_private *cs40l50)
-> +{
-> +	cs40l50->dsp.num = 1;
-> +	cs40l50->dsp.type = WMFW_HALO;
-> +	cs40l50->dsp.dev = cs40l50->dev;
-> +	cs40l50->dsp.regmap = cs40l50->regmap;
-> +	cs40l50->dsp.base = CS40L50_CORE_BASE;
-> +	cs40l50->dsp.base_sysinfo = CS40L50_SYS_INFO_ID;
-> +	cs40l50->dsp.mem = cs40l50_dsp_regions;
-> +	cs40l50->dsp.num_mems = ARRAY_SIZE(cs40l50_dsp_regions);
-> +	cs40l50->dsp.no_core_startstop = true;
-> +	cs40l50->dsp.client_ops = &cs40l50_cs_dsp_client_ops;
-> +
-> +	return cs_dsp_halo_init(&cs40l50->dsp);
-> +}
-> +
-> +static struct cs_hap_bank cs40l50_banks[] = {
-> +	{
-> +		.bank =		WVFRM_BANK_RAM,
-> +		.base_index =	CS40L50_RAM_BANK_INDEX_START,
-> +		.max_index =	CS40L50_RAM_BANK_INDEX_START,
-> +	},
-> +	{
-> +		.bank =		WVFRM_BANK_ROM,
-> +		.base_index =	CS40L50_ROM_BANK_INDEX_START,
-> +		.max_index =	CS40L50_ROM_BANK_INDEX_END,
-> +	},
-> +	{
-> +		.bank =		WVFRM_BANK_OWT,
-> +		.base_index =	CS40L50_RTH_INDEX_START,
-> +		.max_index =	CS40L50_RTH_INDEX_END,
-> +	},
-> +};
-
-These structs describe the DSP, and hence the silicon; they are not
-specific to the input/FF device. Presumably the DSP could run algorithms
-that support only the I2S streaming case as well (e.g. A2H); therefore,
-these seem more appropriately placed in the MFD.
-
-> +
-> +static int cs40l50_cs_hap_init(struct cs40l50_private *cs40l50)
-> +{
-> +	cs40l50->haptics.regmap = cs40l50->regmap;
-> +	cs40l50->haptics.dev = cs40l50->dev;
-> +	cs40l50->haptics.banks = cs40l50_banks;
-> +	cs40l50->haptics.dsp.gpio_base_reg = CS40L50_GPIO_BASE;
-> +	cs40l50->haptics.dsp.owt_base_reg = CS40L50_OWT_BASE;
-> +	cs40l50->haptics.dsp.owt_offset_reg = CS40L50_OWT_NEXT;
-> +	cs40l50->haptics.dsp.owt_size_reg = CS40L50_OWT_SIZE;
-> +	cs40l50->haptics.dsp.mailbox_reg = CS40L50_DSP_MBOX;
-> +	cs40l50->haptics.dsp.pseq_reg = CS40L50_POWER_ON_SEQ;
-> +	cs40l50->haptics.dsp.push_owt_cmd = CS40L50_OWT_PUSH;
-> +	cs40l50->haptics.dsp.delete_owt_cmd = CS40L50_OWT_DELETE;
-> +	cs40l50->haptics.dsp.stop_cmd = CS40L50_STOP_PLAYBACK;
-> +	cs40l50->haptics.dsp.pseq_size = CS40L50_PSEQ_SIZE;
-> +	cs40l50->haptics.runtime_pm = true;
-> +
-> +	return cs_hap_init(&cs40l50->haptics);
-> +}
-> +
-> +static void cs40l50_upload_wt(const struct firmware *bin, void *context)
-> +{
-> +	struct cs40l50_private *cs40l50 = context;
-> +	u32 nwaves;
-> +
-> +	mutex_lock(&cs40l50->lock);
-> +
-> +	if (cs40l50->wmfw) {
-> +		if (regmap_write(cs40l50->regmap, CS40L50_CCM_CORE_CONTROL,
-> +				 CS40L50_CLOCK_DISABLE))
-> +			goto err_mutex;
-> +
-> +		if (regmap_write(cs40l50->regmap, CS40L50_RAM_INIT,
-> +				 CS40L50_RAM_INIT_FLAG))
-> +			goto err_mutex;
-> +
-> +		if (regmap_write(cs40l50->regmap, CS40L50_PWRMGT_CTL,
-> +				 CS40L50_MEM_RDY_HW))
-> +			goto err_mutex;
-> +	}
-> +
-> +	cs_dsp_power_up(&cs40l50->dsp, cs40l50->wmfw, "cs40l50.wmfw",
-> +			bin, "cs40l50.bin", "cs40l50");
-> +
-> +	if (cs40l50->wmfw) {
-> +		if (regmap_write(cs40l50->regmap, CS40L50_CCM_CORE_CONTROL,
-> +				 CS40L50_CLOCK_ENABLE))
-> +			goto err_mutex;
-> +	}
-> +
-> +	if (regmap_read(cs40l50->regmap, CS40L50_NUM_OF_WAVES, &nwaves))
-> +		goto err_mutex;
-> +
-> +	cs40l50->haptics.banks[WVFRM_BANK_RAM].max_index += (nwaves - 1);
-> +
-> +err_mutex:
-> +	mutex_unlock(&cs40l50->lock);
-> +	release_firmware(bin);
-> +	release_firmware(cs40l50->wmfw);
-> +}
-> +
-> +static void cs40l50_upload_patch(const struct firmware *wmfw, void *context)
-> +{
-> +	struct cs40l50_private *cs40l50 = context;
-> +
-> +	cs40l50->wmfw = wmfw;
-> +
-> +	if (request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT, CS40L50_WT,
-> +				    cs40l50->dev, GFP_KERNEL,
-> +				    cs40l50, cs40l50_upload_wt))
-> +		release_firmware(cs40l50->wmfw);
-> +}
-> +
-> +static int cs40l50_input_init(struct cs40l50_private *cs40l50)
-> +{
-> +	int error;
-> +
-> +	cs40l50->input = devm_input_allocate_device(cs40l50->dev);
-> +	if (!cs40l50->input)
-> +		return -ENOMEM;
-> +
-> +	cs40l50->input->id.product = cs40l50->devid & 0xFFFF;
-> +	cs40l50->input->id.version = cs40l50->revid;
-> +	cs40l50->input->name = "cs40l50_vibra";
-> +
-> +	input_set_drvdata(cs40l50->input, cs40l50);
-> +	input_set_capability(cs40l50->input, EV_FF, FF_PERIODIC);
-> +	input_set_capability(cs40l50->input, EV_FF, FF_CUSTOM);
-> +
-> +	error = input_ff_create(cs40l50->input, FF_MAX_EFFECTS);
-> +	if (error)
-> +		return error;
-> +
-> +	cs40l50->input->ff->upload = cs40l50_add;
-> +	cs40l50->input->ff->playback = cs40l50_playback;
-> +	cs40l50->input->ff->erase = cs40l50_erase;
-> +
-> +	INIT_LIST_HEAD(&cs40l50->haptics.effect_head);
-> +
-> +	error = input_register_device(cs40l50->input);
-> +	if (error)
-> +		goto err_free_dev;
-> +
-> +	return cs40l50_cs_hap_init(cs40l50);
-> +
-> +err_free_dev:
-> +	input_free_device(cs40l50->input);
-> +	return error;
-> +}
-> +static int cs40l50_vibra_probe(struct platform_device *pdev)
-> +{
-> +	struct cs40l50_private *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-> +	int error;
-> +
-> +	error = cs40l50_input_init(cs40l50);
-> +	if (error)
-> +		return error;
-> +
-> +	error = cs40l50_hw_init(cs40l50);
-> +	if (error)
-> +		goto err_input;
-> +
-> +	error = cs40l50_cs_dsp_init(cs40l50);
-> +	if (error)
-> +		goto err_input;
-> +
-> +	error = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
-> +					CS40L50_FW, cs40l50->dev,
-> +					GFP_KERNEL, cs40l50,
-> +					cs40l50_upload_patch);
-> +	if (error)
-> +		goto err_dsp;
-> +
-> +	return 0;
-> +
-> +err_dsp:
-> +	cs_dsp_remove(&cs40l50->dsp);
-> +err_input:
-> +	input_unregister_device(cs40l50->input);
-> +	cs_hap_remove(&cs40l50->haptics);
-> +
-> +	return error;
-> +}
-> +
-> +static int cs40l50_vibra_remove(struct platform_device *pdev)
-> +{
-> +	struct cs40l50_private *cs40l50 = dev_get_drvdata(pdev->dev.parent);
-> +
-> +	input_unregister_device(cs40l50->input);
-> +	cs_hap_remove(&cs40l50->haptics);
-> +
-> +	if (cs40l50->dsp.booted)
-> +		cs_dsp_power_down(&cs40l50->dsp);
-> +	if (&cs40l50->dsp)
-> +		cs_dsp_remove(&cs40l50->dsp);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct platform_device_id cs40l50_id_vibra[] = {
-> +	{"cs40l50-vibra", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(platform, cs40l50_id_vibra);
-> +
-> +static struct platform_driver cs40l50_vibra_driver = {
-> +	.probe		= cs40l50_vibra_probe,
-> +	.remove		= cs40l50_vibra_remove,
-> +	.id_table	= cs40l50_id_vibra,
-> +	.driver		= {
-> +		.name	= "cs40l50-vibra",
-> +	},
-> +};
-> +module_platform_driver(cs40l50_vibra_driver);
-> +
-> +MODULE_DESCRIPTION("CS40L50 Advanced Haptic Driver");
-> +MODULE_AUTHOR("James Ogletree, Cirrus Logic Inc. <james.ogletree@cirrus.com>");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.25.1
-> 
-
-Kind regards,
-Jeff LaBundy
+SGksIEphc29uOg0KDQpPbiBNb24sIDIwMjMtMTAtMjMgYXQgMTI6NDUgKzA4MDAsIEphc29uLUpI
+LkxpbiB3cm90ZToNCj4gQWRkIHNlY3VyZSBsYXllciBjb25maWcgc3VwcG9ydCBmb3Igb3ZsLg0K
+PiANCj4gU2lnbmVkLW9mZi1ieTogSmFzb24tSkguTGluIDxqYXNvbi1qaC5saW5AbWVkaWF0ZWsu
+Y29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9kcnYuaCAg
+ICAgICB8ICAzICsrDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bfb3ZsLmMg
+ICAgICAgfCAzMQ0KPiArKysrKysrKysrKysrKysrKy0tDQo+ICAuLi4vZ3B1L2RybS9tZWRpYXRl
+ay9tdGtfZGlzcF9vdmxfYWRhcHRvci5jICAgfCAxMiArKysrKysrDQo+ICBkcml2ZXJzL2dwdS9k
+cm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jICAgfCAgMiArKw0KPiAgNCBmaWxlcyBjaGFu
+Z2VkLCA0NiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9kcnYuaA0KPiBiL2RyaXZlcnMvZ3B1
+L2RybS9tZWRpYXRlay9tdGtfZGlzcF9kcnYuaA0KPiBpbmRleCAyMjU0MDM4NTE5ZTEuLmRlYzkz
+N2IxODNhOCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNw
+X2Rydi5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9kcnYuaA0K
+PiBAQCAtOSw2ICs5LDcgQEANCj4gICNpbmNsdWRlIDxsaW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNt
+ZHEuaD4NCj4gICNpbmNsdWRlIDxsaW51eC9zb2MvbWVkaWF0ZWsvbXRrLW1tc3lzLmg+DQo+ICAj
+aW5jbHVkZSA8bGludXgvc29jL21lZGlhdGVrL210ay1tdXRleC5oPg0KPiArI2luY2x1ZGUgIm10
+a19kcm1fZGRwX2NvbXAuaCINCj4gICNpbmNsdWRlICJtdGtfZHJtX3BsYW5lLmgiDQo+ICAjaW5j
+bHVkZSAibXRrX21kcF9yZG1hLmgiDQo+ICANCj4gQEAgLTc5LDYgKzgwLDcgQEAgdm9pZCBtdGtf
+b3ZsX2Nsa19kaXNhYmxlKHN0cnVjdCBkZXZpY2UgKmRldik7DQo+ICB2b2lkIG10a19vdmxfY29u
+ZmlnKHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHcsDQo+ICAJCSAgICB1bnNpZ25l
+ZCBpbnQgaCwgdW5zaWduZWQgaW50IHZyZWZyZXNoLA0KPiAgCQkgICAgdW5zaWduZWQgaW50IGJw
+Yywgc3RydWN0IGNtZHFfcGt0ICpjbWRxX3BrdCk7DQo+ICt1NjQgbXRrX292bF9nZXRfc2VjX3Bv
+cnQoc3RydWN0IG10a19kZHBfY29tcCAqY29tcCwgdW5zaWduZWQgaW50DQo+IGlkeCk7DQo+ICBp
+bnQgbXRrX292bF9sYXllcl9jaGVjayhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCBp
+ZHgsDQo+ICAJCQlzdHJ1Y3QgbXRrX3BsYW5lX3N0YXRlICptdGtfc3RhdGUpOw0KPiAgdm9pZCBt
+dGtfb3ZsX2xheWVyX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCBpZHgs
+DQo+IEBAIC0xMTIsNiArMTE0LDcgQEAgdm9pZCBtdGtfb3ZsX2FkYXB0b3JfY2xrX2Rpc2FibGUo
+c3RydWN0IGRldmljZQ0KPiAqZGV2KTsNCj4gIHZvaWQgbXRrX292bF9hZGFwdG9yX2NvbmZpZyhz
+dHJ1Y3QgZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCB3LA0KPiAgCQkJICAgIHVuc2lnbmVkIGlu
+dCBoLCB1bnNpZ25lZCBpbnQgdnJlZnJlc2gsDQo+ICAJCQkgICAgdW5zaWduZWQgaW50IGJwYywg
+c3RydWN0IGNtZHFfcGt0DQo+ICpjbWRxX3BrdCk7DQo+ICt1NjQgbXRrX292bF9hZGFwdG9yX2dl
+dF9zZWNfcG9ydChzdHJ1Y3QgbXRrX2RkcF9jb21wICpjb21wLCB1bnNpZ25lZA0KPiBpbnQgaWR4
+KTsNCj4gIHZvaWQgbXRrX292bF9hZGFwdG9yX2xheWVyX2NvbmZpZyhzdHJ1Y3QgZGV2aWNlICpk
+ZXYsIHVuc2lnbmVkIGludA0KPiBpZHgsDQo+ICAJCQkJICBzdHJ1Y3QgbXRrX3BsYW5lX3N0YXRl
+ICpzdGF0ZSwNCj4gIAkJCQkgIHN0cnVjdCBjbWRxX3BrdCAqY21kcV9wa3QpOw0KPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292bC5jDQo+IGIvZHJpdmVy
+cy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292bC5jDQo+IGluZGV4IDJiZmZlNDI0NTQ2Ni4u
+NzZlODMyZTQ4NzVhIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
+X2Rpc3Bfb3ZsLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292
+bC5jDQo+IEBAIC00Niw2ICs0Niw3IEBADQo+ICAjZGVmaW5lIERJU1BfUkVHX09WTF9BRERSKG92
+bCwgbikJCSgob3ZsKS0+ZGF0YS0+YWRkciArDQo+IDB4MjAgKiAobikpDQo+ICAjZGVmaW5lIERJ
+U1BfUkVHX09WTF9IRFJfQUREUihvdmwsIG4pCQkoKG92bCktPmRhdGEtDQo+ID5hZGRyICsgMHgy
+MCAqIChuKSArIDB4MDQpDQo+ICAjZGVmaW5lIERJU1BfUkVHX09WTF9IRFJfUElUQ0gob3ZsLCBu
+KQkJKChvdmwpLT5kYXRhLQ0KPiA+YWRkciArIDB4MjAgKiAobikgKyAweDA4KQ0KPiArI2RlZmlu
+ZSBESVNQX1JFR19PVkxfU0VDVVJFCQkJMHgwZmMwDQo+ICANCj4gICNkZWZpbmUgR01DX1RIUkVT
+SE9MRF9CSVRTCTE2DQo+ICAjZGVmaW5lIEdNQ19USFJFU0hPTERfSElHSAkoKDEgPDwgR01DX1RI
+UkVTSE9MRF9CSVRTKSAvIDQpDQo+IEBAIC0xMjYsOCArMTI3LDE5IEBAIHN0cnVjdCBtdGtfZGlz
+cF9vdmwgew0KPiAgCWNvbnN0IHN0cnVjdCBtdGtfZGlzcF9vdmxfZGF0YQkqZGF0YTsNCj4gIAl2
+b2lkCQkJCSgqdmJsYW5rX2NiKSh2b2lkICpkYXRhKTsNCj4gIAl2b2lkCQkJCSp2YmxhbmtfY2Jf
+ZGF0YTsNCj4gKwlyZXNvdXJjZV9zaXplX3QJCQlyZWdzX3BhOw0KPiAgfTsNCj4gIA0KPiArdTY0
+IG10a19vdmxfZ2V0X3NlY19wb3J0KHN0cnVjdCBtdGtfZGRwX2NvbXAgKmNvbXAsIHVuc2lnbmVk
+IGludA0KPiBpZHgpDQo+ICt7DQo+ICsJaWYgKGNvbXAtPmlkID09IEREUF9DT01QT05FTlRfT1ZM
+MCkNCj4gKwkJcmV0dXJuIDFVTEwgPDwgQ01EUV9TRUNfRElTUF9PVkwwOw0KPiArCWVsc2UgaWYg
+KGNvbXAtPmlkID09IEREUF9DT01QT05FTlRfT1ZMMSkNCj4gKwkJcmV0dXJuIDFVTEwgPDwgQ01E
+UV9TRUNfRElTUF9PVkwxOw0KPiArDQo+ICsJcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gIHN0YXRp
+YyBpcnFyZXR1cm5fdCBtdGtfZGlzcF9vdmxfaXJxX2hhbmRsZXIoaW50IGlycSwgdm9pZCAqZGV2
+X2lkKQ0KPiAgew0KPiAgCXN0cnVjdCBtdGtfZGlzcF9vdmwgKnByaXYgPSBkZXZfaWQ7DQo+IEBA
+IC00NDksOCArNDYxLDIyIEBAIHZvaWQgbXRrX292bF9sYXllcl9jb25maWcoc3RydWN0IGRldmlj
+ZSAqZGV2LA0KPiB1bnNpZ25lZCBpbnQgaWR4LA0KPiAgCQkJICAgICAgRElTUF9SRUdfT1ZMX1NS
+Q19TSVpFKGlkeCkpOw0KPiAgCW10a19kZHBfd3JpdGVfcmVsYXhlZChjbWRxX3BrdCwgb2Zmc2V0
+LCAmb3ZsLT5jbWRxX3JlZywgb3ZsLQ0KPiA+cmVncywNCj4gIAkJCSAgICAgIERJU1BfUkVHX09W
+TF9PRkZTRVQoaWR4KSk7DQo+IC0JbXRrX2RkcF93cml0ZV9yZWxheGVkKGNtZHFfcGt0LCBhZGRy
+LCAmb3ZsLT5jbWRxX3JlZywgb3ZsLQ0KPiA+cmVncywNCj4gLQkJCSAgICAgIERJU1BfUkVHX09W
+TF9BRERSKG92bCwgaWR4KSk7DQo+ICsNCj4gKwlpZiAoc3RhdGUtPnBlbmRpbmcuaXNfc2VjKSB7
+DQo+ICsJCWNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8gKmZtdF9pbmZvID0NCj4gZHJtX2Zv
+cm1hdF9pbmZvKGZtdCk7DQo+ICsJCXVuc2lnbmVkIGludCBidWZfc2l6ZSA9IChwZW5kaW5nLT5o
+ZWlnaHQgLSAxKSAqDQo+IHBlbmRpbmctPnBpdGNoICsNCj4gKwkJCQkJcGVuZGluZy0+d2lkdGgg
+KiBmbXRfaW5mby0NCj4gPmNwcFswXTsNCj4gKw0KPiArCQltdGtfZGRwX3dyaXRlX21hc2soY21k
+cV9wa3QsIEJJVChpZHgpLCAmb3ZsLT5jbWRxX3JlZywNCj4gb3ZsLT5yZWdzLA0KPiArCQkJCSAg
+IERJU1BfUkVHX09WTF9TRUNVUkUsIEJJVChpZHgpKTsNCj4gKwkJbXRrX2RkcF9zZWNfd3JpdGUo
+Y21kcV9wa3QsIG92bC0+cmVnc19wYSArDQo+IERJU1BfUkVHX09WTF9BRERSKG92bCwgaWR4KSwN
+Cj4gKwkJCQkgIHBlbmRpbmctPmFkZHIsIENNRFFfSVdDX0hfMl9NVkEsIDAsDQo+IGJ1Zl9zaXpl
+LCAwKTsNCj4gKwl9IGVsc2Ugew0KPiArCQltdGtfZGRwX3dyaXRlX21hc2soY21kcV9wa3QsIDAs
+ICZvdmwtPmNtZHFfcmVnLCBvdmwtDQo+ID5yZWdzLA0KPiArCQkJCSAgIERJU1BfUkVHX09WTF9T
+RUNVUkUsIEJJVChpZHgpKTsNCg0KV2hhdCdzIHRoZSBmdW5jdGlvbiBvZiB0aGlzIHJlZ2lzdGVy
+PyBEb2VzIGl0IG1lYW5zIHRoYXQgbGF5ZXIgaXMgQUJMRQ0KdG8gcmVhZCBzZWN1cmUgYnVmZmVy
+PyBBbmQgdGhpcyByZWdpc3RlciBjb3VsZCBiZSBjb250cm9sbGVkIGluIG5vcm1hbA0Kd29ybGQ/
+DQoNClJlZ2FyZHMsDQpDSw0KDQo+ICsJCW10a19kZHBfd3JpdGVfcmVsYXhlZChjbWRxX3BrdCwg
+YWRkciwgJm92bC0+Y21kcV9yZWcsDQo+IG92bC0+cmVncywNCj4gKwkJCQkgICAgICBESVNQX1JF
+R19PVkxfQUREUihvdmwsIGlkeCkpOw0KPiArCX0NCj4gIA0KPiAgCWlmIChpc19hZmJjKSB7DQo+
+ICAJCW10a19kZHBfd3JpdGVfcmVsYXhlZChjbWRxX3BrdCwgaGRyX2FkZHIsICZvdmwtDQo+ID5j
+bWRxX3JlZywgb3ZsLT5yZWdzLA0KPiBAQCAtNTI5LDYgKzU1NSw3IEBAIHN0YXRpYyBpbnQgbXRr
+X2Rpc3Bfb3ZsX3Byb2JlKHN0cnVjdA0KPiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ICAJfQ0K
+PiAgDQo+ICAJcmVzID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNlKHBkZXYsIElPUkVTT1VSQ0VfTUVN
+LCAwKTsNCj4gKwlwcml2LT5yZWdzX3BhID0gcmVzLT5zdGFydDsNCj4gIAlwcml2LT5yZWdzID0g
+ZGV2bV9pb3JlbWFwX3Jlc291cmNlKGRldiwgcmVzKTsNCj4gIAlpZiAoSVNfRVJSKHByaXYtPnJl
+Z3MpKSB7DQo+ICAJCWRldl9lcnIoZGV2LCAiZmFpbGVkIHRvIGlvcmVtYXAgb3ZsXG4iKTsNCj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9vdmxfYWRhcHRv
+ci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292bF9hZGFwdG9yLmMN
+Cj4gaW5kZXggNmJmNjM2Nzg1M2ZiLi4yOGEwYmNjZmIwYjkgMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9vdmxfYWRhcHRvci5jDQo+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9vdmxfYWRhcHRvci5jDQo+IEBAIC04Myw2ICs4
+MywxOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG92bF9hZGFwdG9yX2NvbXBfbWF0Y2gNCj4gY29t
+cF9tYXRjaGVzW09WTF9BREFQVE9SX0lEX01BWF0gPSB7DQo+ICAJW09WTF9BREFQVE9SX0VUSERS
+MF0JPSB7IE9WTF9BREFQVE9SX1RZUEVfRVRIRFIsIDAgfSwNCj4gIH07DQo+ICANCj4gK3N0YXRp
+YyBjb25zdCB1NjQgb3ZsX2FkYXB0b3Jfc2VjX3BvcnRbXSA9IHsNCj4gKwkxVUxMIDw8IENNRFFf
+U0VDX1ZETzFfRElTUF9SRE1BX0wwLA0KPiArCTFVTEwgPDwgQ01EUV9TRUNfVkRPMV9ESVNQX1JE
+TUFfTDEsDQo+ICsJMVVMTCA8PCBDTURRX1NFQ19WRE8xX0RJU1BfUkRNQV9MMiwNCj4gKwkxVUxM
+IDw8IENNRFFfU0VDX1ZETzFfRElTUF9SRE1BX0wzLA0KPiArfTsNCj4gKw0KPiArdTY0IG10a19v
+dmxfYWRhcHRvcl9nZXRfc2VjX3BvcnQoc3RydWN0IG10a19kZHBfY29tcCAqY29tcCwgdW5zaWdu
+ZWQNCj4gaW50IGlkeCkNCj4gK3sNCj4gKwlyZXR1cm4gb3ZsX2FkYXB0b3Jfc2VjX3BvcnRbaWR4
+XTsNCj4gK30NCj4gKw0KPiAgdm9pZCBtdGtfb3ZsX2FkYXB0b3JfbGF5ZXJfY29uZmlnKHN0cnVj
+dCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50DQo+IGlkeCwNCj4gIAkJCQkgIHN0cnVjdCBtdGtf
+cGxhbmVfc3RhdGUgKnN0YXRlLA0KPiAgCQkJCSAgc3RydWN0IGNtZHFfcGt0ICpjbWRxX3BrdCkN
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21w
+LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+IGlu
+ZGV4IDNkY2E5MzZiOTE0My4uZWVjM2ExY2MyZWQ0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHBfY29tcC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmMNCj4gQEAgLTM3Myw2ICszNzMsNyBAQCBzdGF0
+aWMgY29uc3Qgc3RydWN0IG10a19kZHBfY29tcF9mdW5jcyBkZHBfb3ZsID0NCj4gew0KPiAgCS5i
+Z2Nscl9pbl9vZmYgPSBtdGtfb3ZsX2JnY2xyX2luX29mZiwNCj4gIAkuZ2V0X2Zvcm1hdHMgPSBt
+dGtfb3ZsX2dldF9mb3JtYXRzLA0KPiAgCS5nZXRfbnVtX2Zvcm1hdHMgPSBtdGtfb3ZsX2dldF9u
+dW1fZm9ybWF0cywNCj4gKwkuZ2V0X3NlY19wb3J0ID0gbXRrX292bF9nZXRfc2VjX3BvcnQsDQo+
+ICB9Ow0KPiAgDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19kZHBfY29tcF9mdW5jcyBkZHBf
+cG9zdG1hc2sgPSB7DQo+IEBAIC00MjQsNiArNDI1LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBt
+dGtfZGRwX2NvbXBfZnVuY3MNCj4gZGRwX292bF9hZGFwdG9yID0gew0KPiAgCS5yZW1vdmUgPSBt
+dGtfb3ZsX2FkYXB0b3JfcmVtb3ZlX2NvbXAsDQo+ICAJLmdldF9mb3JtYXRzID0gbXRrX292bF9h
+ZGFwdG9yX2dldF9mb3JtYXRzLA0KPiAgCS5nZXRfbnVtX2Zvcm1hdHMgPSBtdGtfb3ZsX2FkYXB0
+b3JfZ2V0X251bV9mb3JtYXRzLA0KPiArCS5nZXRfc2VjX3BvcnQgPSBtdGtfb3ZsX2FkYXB0b3Jf
+Z2V0X3NlY19wb3J0LA0KPiAgfTsNCj4gIA0KPiAgc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCBt
+dGtfZGRwX2NvbXBfc3RlbVtNVEtfRERQX0NPTVBfVFlQRV9NQVhdID0NCj4gew0K
 
