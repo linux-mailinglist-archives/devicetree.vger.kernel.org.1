@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-11962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD3607D73A3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 20:56:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E87107D73A6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 20:56:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09F2B1C20BDB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:56:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 896EAB2119B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672E42E632;
-	Wed, 25 Oct 2023 18:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2335030CEB;
+	Wed, 25 Oct 2023 18:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="oRXQvxGF"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="E8rtwGrf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9C72C874
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 18:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6240D2AB2B
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 18:56:48 +0000 (UTC)
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D0E123
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 11:56:46 -0700 (PDT)
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC7C111
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 11:56:47 -0700 (PDT)
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 06FAB3FADB
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id DE8113FD3F
 	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 18:56:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
 	s=20210705; t=1698260204;
-	bh=8ZSwQnx25XWx6H9WHSt+QTyzglk67NwsJMp2gzIlTF8=;
+	bh=FFiHmR7ukRwdZCsC7cixmRTY2MvrJS7s0z/YTGkE2iM=;
 	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type;
-	b=oRXQvxGFWV+36DVVfwcqEhGl1Xhmyd/NxGQSoAHu7trykUzSe4dR06Bu/BKP9fMRU
-	 ZDP69C01hJwKDoSbtRH0xmRQ4NpWCjEFEDMA5eFkW1nvZdPbxDphCivbGdW6WbRgld
-	 6Qtd9qhW8Iadt88OZ0UmBq7UI1T8H8vfQOdYpV3bPjLVv3BSyeY8zYFhlHbVYDvrMY
-	 zwTqPgZ4UeYtemPIoTFo/wSG5yU/H6HLPSI7x4U/TCaY6FpZSP/rRQzihx27CoTdjt
-	 ncthGM88eIqznmrhQa0c/WLbxaN+hWm+B8mTG/jTipPMo7w4yDJP+PFlnwnIoleJ2c
-	 SkQ4r5XXLdDJQ==
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-41cc6fa3ea4so1800961cf.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 11:56:43 -0700 (PDT)
+	b=E8rtwGrfaEYHWSNoBg/dCNr8pK5GmkvEEQYOAHRHCwb7UVtqmorKMzEOW0OHiHT+n
+	 9EuPOCAFm5vlKxjfQvfbZxUJtROcuVmlhJDJ+QdCZmGN4EgEDtyhyio5wzLncE7ZRq
+	 7E2FoVI6964wgeqLTrKj3GEHd2oXmvqA/VBaVkIOeyA5aBPt5o7vqYcdcIy4ogjosd
+	 3ij+EJEoQN5/1DqRcbEggcFDEeTG/QWp28TJnDKEmc9qNR7OVCbX/y2l/8EMFlgGJ8
+	 2dr3F+2tra5s4ZWB8d9CxksvwJYpfIRtmQwqNrPWnctJtD0eLv7w0YzP/pZaLXr/8S
+	 cdG7mYbTmzE5g==
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-41e16b279ffso1453261cf.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 11:56:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698260200; x=1698865000;
+        d=1e100.net; s=20230601; t=1698260202; x=1698865002;
         h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ZSwQnx25XWx6H9WHSt+QTyzglk67NwsJMp2gzIlTF8=;
-        b=NDVErtM/KTj0A4+s6nJ4covJQyYg3QyVZG0cGB/3mI0EDREnR3enoRbMlGMC7TVGTY
-         +pzg0WvzDms0SlAWw6hm9gLHaRqI6e3sEmYQTOcmdFi20Aimw2Qju3UeZpD2JEbk6HP4
-         V15iEcH7Ce97l7vfzocNuZLQgOJYhpUFvTYc0E409yItzp3fXgE1UKb15oSWpB6qsX+a
-         J5hQA8ljhypLsPC/udCoyo7cqfkRKmJbEzrywL1+w56qvfeo+tosPWkYXOlEcWsI7AgH
-         lvA5twbtgMCmhoFhb8VrxUPcEBPkZdexn5zGqXp0fBdRwEvAh0t4hAkWpHsifir49NZe
-         8tWQ==
-X-Gm-Message-State: AOJu0YzxzBj1u0Ilbce7tF3MPyjR8LsagulbNN5I6LVMWOITM4vhhwL+
-	xcayTKhgkW7BzqHS0b9IRtnWD1cyX01leKeRYHSFD/s4ZfPvJ4UEjE2eJzzDWh3gsfFyT+VTKMx
-	1iw9oabqC/42UKb1kw4TjR5BIO3CblWVW4u09MzMiwbOY5fkQCzW3PE0=
-X-Received: by 2002:a05:622a:1b9f:b0:417:bd2c:2683 with SMTP id bp31-20020a05622a1b9f00b00417bd2c2683mr17944694qtb.19.1698260200206;
-        Wed, 25 Oct 2023 11:56:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHJTkG3zv5DTeWRvY1y/BasKIXcM7hXfHiMkDTcbRf8mjI+q0VqgB+zstaBrwJ9z4uKKWXR3bFMed8oDTtI7W0=
+        bh=FFiHmR7ukRwdZCsC7cixmRTY2MvrJS7s0z/YTGkE2iM=;
+        b=qxjT/9HVAWdNL+3JKNlClWwwTg09I/ki9dRwoLd6yophisc/gI5NAzognHsaT7R7ZP
+         4I04qhlZI37xjyKmGGBot0M+HMzbrXv3+U7F3pu+BTyXU4bPefefm1AkXMFmHtkloUgY
+         ngFYiuE4W2q/GVL/sRHDiViwRFeSo/SHcaCHcRkwzkK2lrOd18T9ntLbThbBv3alPClZ
+         KuabnVRlvVSwToGpx1MD9tXzTY6vu+N4T5RHiUkxnfrOMWGvthImTaoL/7WEGKhuJ1wy
+         dtxrqwvAMnLCC2x5fVIPOvsYeE71+N3VvbAYu1P1kQkT+JD3KdvAezeZLp0jMp6FQXU9
+         RcDA==
+X-Gm-Message-State: AOJu0Ywcivhs6grhPzQdVgPA6w4ftYkjL9mPBwzzAdvpJZl9kz2Dwpk3
+	e+Doo8gP0ECCQyAl9T4pqk1TC31u0CPwX56QWs7RxhB1A9H3g+2xSFSULtDstm9slLcjBMQw2Vk
+	T8t9gg6ZHzQKRmPio0Rh5ng9qsXXebAu/6zbw8jMWrPtdncAnPO+KW2g=
+X-Received: by 2002:a05:622a:14e:b0:41e:172f:6e78 with SMTP id v14-20020a05622a014e00b0041e172f6e78mr15135519qtw.29.1698260202169;
+        Wed, 25 Oct 2023 11:56:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGRHDA8d43i/0eqTtRETVi4ef1AAWHZvlYua8G+9qwUeJ5hvjbzmci7qiMP/aXUn13Et1Ecrw6N0+hOCNM2Ze0=
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Received: by 2002:a05:622a:1b9f:b0:417:bd2c:2683 with SMTP id
- bp31-20020a05622a1b9f00b00417bd2c2683mr17944683qtb.19.1698260199921; Wed, 25
- Oct 2023 11:56:39 -0700 (PDT)
+X-Received: by 2002:a05:622a:14e:b0:41e:172f:6e78 with SMTP id
+ v14-20020a05622a014e00b0041e172f6e78mr15135502qtw.29.1698260201944; Wed, 25
+ Oct 2023 11:56:41 -0700 (PDT)
 Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 25 Oct 2023 11:56:39 -0700
-From: emil.renner.berthing@canonical.com
-Date: Wed, 25 Oct 2023 11:56:39 -0700
-Message-ID: <CAJM55Z_U9R6R_t1g5KANV5hQwP91TcHYKGwbnHxXXs5fm0y7Yw@mail.gmail.com>
-Subject: [PATCH 2/4] soc: sifive: ccache: Add StarFive JH7100 support
+ HTTPREST; Wed, 25 Oct 2023 11:56:41 -0700
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date: Wed, 25 Oct 2023 11:56:41 -0700
+Message-ID: <CAJM55Z8DXDs6LT0JrTyEMp8V6BHvsjUW7aJ8Gj+fRGsasHAi_A@mail.gmail.com>
+Subject: [PATCH 3/4] dt-bindings: cache: sifive,ccache0: Add sifive,cache-ops property
 To: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
 Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -81,58 +81,35 @@ Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Emil Renner Berthing <emil.renner.berthing@canonical.com>
 Content-Type: text/plain; charset="UTF-8"
 
-This adds support for the StarFive JH7100 SoC which also features this
-SiFive cache controller.
+This cache controller also supports flushing cache lines by writing
+their address to a register. This can be used for cache management on
+SoCs with non-coherent DMAs that predate the RISC-V Zicbom extension
+such as the StarFive JH7100 SoC.
 
-Unfortunately the interrupt for uncorrected data is broken on the JH7100
-and fires continuously, so add a quirk to not register a handler for it.
-
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- drivers/soc/sifive/sifive_ccache.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/soc/sifive/sifive_ccache.c
-b/drivers/soc/sifive/sifive_ccache.c
-index 3684f5b40a80..676468c35859 100644
---- a/drivers/soc/sifive/sifive_ccache.c
-+++ b/drivers/soc/sifive/sifive_ccache.c
-@@ -106,6 +106,7 @@ static void ccache_config_read(void)
- static const struct of_device_id sifive_ccache_ids[] = {
- 	{ .compatible = "sifive,fu540-c000-ccache" },
- 	{ .compatible = "sifive,fu740-c000-ccache" },
-+	{ .compatible = "starfive,jh7100-ccache", .data = (void *)BIT(DATA_UNCORR) },
- 	{ .compatible = "sifive,ccache0" },
- 	{ /* end of table */ }
- };
-@@ -210,11 +211,15 @@ static int __init sifive_ccache_init(void)
- 	struct device_node *np;
- 	struct resource res;
- 	int i, rc, intr_num;
-+	const struct of_device_id *match;
-+	unsigned long broken_irqs;
+diff --git a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+index 7e8cebe21584..36ae6f48ce0b 100644
+--- a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
++++ b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+@@ -81,6 +81,11 @@ properties:
+       The reference to the reserved-memory for the L2 Loosely
+Integrated Memory region.
+       The reserved memory node should be defined as per the bindings
+in reserved-memory.txt.
 
--	np = of_find_matching_node(NULL, sifive_ccache_ids);
-+	np = of_find_matching_node_and_match(NULL, sifive_ccache_ids, &match);
- 	if (!np)
- 		return -ENODEV;
-
-+	broken_irqs = (uintptr_t)match->data;
++  sifive,cache-ops:
++    type: boolean
++    description: |
++      Use this cache controller for non-standard cache management operations.
 +
- 	if (of_address_to_resource(np, 0, &res)) {
- 		rc = -ENODEV;
- 		goto err_node_put;
-@@ -240,6 +245,10 @@ static int __init sifive_ccache_init(void)
+ allOf:
+   - $ref: /schemas/cache-controller.yaml#
 
- 	for (i = 0; i < intr_num; i++) {
- 		g_irq[i] = irq_of_parse_and_map(np, i);
-+
-+		if (broken_irqs & BIT(i))
-+			continue;
-+
- 		rc = request_irq(g_irq[i], ccache_int_handler, 0, "ccache_ecc",
- 				 NULL);
- 		if (rc) {
 -- 
 2.40.1
 
