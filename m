@@ -1,559 +1,220 @@
-Return-Path: <devicetree+bounces-11524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5317D6137
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:34:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F62D7D6145
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E48FF1C20D02
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:34:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 396D4B21030
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B946F9F5;
-	Wed, 25 Oct 2023 05:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E5CF9D1;
+	Wed, 25 Oct 2023 05:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C9ulLBk/"
+	dkim=pass (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="DSAw1TMY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A007C2D636
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 05:34:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CFF128
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:34:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698212049; x=1729748049;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=L2T6Nw3MpwaPL3b3z/0nc2iregjQVSzrt5QZ6CyMq/4=;
-  b=C9ulLBk/MMbVLlWBPsBBokBlNZTgMARTSGF+QLgRu04NCTUm25uUVLwQ
-   m369sSQjSSIb7EHD9GT9MnY5FnoXgVPk/p/k3HrFYZPU05B+QYMZsJMxk
-   +FrhZub7mj8cVBkUkSfrlPZLn89M+J648QsUtpuX+ci6dMl41JRMxq1fD
-   o5eXIeaBJpWZlgeWXYpRJxWbfgvTQS3aI0kztyMXg8TmGrEzybgMszpzQ
-   /e45iv9n4uThnVCcyM5A61cARyg3eJ7SM7QCXOdwyIJG+Q2qqR61m0+cs
-   yvBKF1ZF4HtYF8epX07nxidGxzUCWfs7gh0SMxTe4OGIbWRD7DtFmnKAs
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="377610486"
-X-IronPort-AV: E=Sophos;i="6.03,249,1694761200"; 
-   d="scan'208";a="377610486"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 22:34:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="849402751"
-X-IronPort-AV: E=Sophos;i="6.03,249,1694761200"; 
-   d="scan'208";a="849402751"
-Received: from yungchua-mobl2.ccr.corp.intel.com (HELO [10.92.2.114]) ([10.92.2.114])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2023 22:34:06 -0700
-Message-ID: <2c8fe1f5-0f5f-4299-bda9-223418df8458@linux.intel.com>
-Date: Wed, 25 Oct 2023 13:33:55 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB83F2D61D
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 05:45:20 +0000 (UTC)
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2128.outbound.protection.outlook.com [40.107.13.128])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DAB12A;
+	Tue, 24 Oct 2023 22:45:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g6cWOpepCmUj3p00qR48c21TunIcByIgcUWs/07TweIhcJTFgod/T2w3upDTz65J8twIg9K+kJ+vCNKduYh+uJLKhFmrJSD/K2ISZXZYpr8mlmEvjEAMy0tD+Ol2JBMdQ0F/jL0eiSqGjABMhFmSLON+ESKMEs+LiF5aRDrGxUXpxnyb32lCzPlCYgFx4NopITAzLauknx2c0rpirePiAwXzSRfiw4Vs3HoZvGKFp6J/AnGRIKO3Ks6VqTpO0REbDhtYutqiGQ+lptWBop9RsIUV4beivKqcXqHwa5cH/s7u22HUbX4H4BAp0eDviwFWqtMlTMj1x03SOvfnFfgPcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rurFSdzdZnpqeRMmdL07P0ypIj9zX+Nx0vnxi0GCTVM=;
+ b=UwBvocVGq/PdW+1vjaQixIcniBwrB7DHzL2Fg/QjMxcnr+z/166v+tFkpFJJYzG1lUcakuX2xOMDlxyJYuyLxUJLhmSFHi+rkAeK9k61u1cBVFv4owU4+/XCRW0WGv/yr7B4x7LBXP8yxIqzveSNNx6WYpYLlKL8zburqrbf2xLM7SbAeMUVWS/Gj5wv2/+ufU/clQ1s6XXnaj4cvde+z61bJNjJ3KowKyUrq7XdvP2xtE8+Y2Uuc0MgoSNP8k0SOYgnKuSFbJtt7xL9W68RojPQMMT1RAgTYeedQVKnaYxijgqSd/bsf+XWCGJjb8rVRwSzQS4gJDBhQC/s6EQ1pQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rurFSdzdZnpqeRMmdL07P0ypIj9zX+Nx0vnxi0GCTVM=;
+ b=DSAw1TMYB2gPBEk/lIkq0kkc0uDPVPon8eDcfzefqeln+vdytdBUD9bdAbDUsndTuRw70Nm3h8YuSyimz/zPimKHCXWdqbSN+fqkFZOAw5XGJS5hBosXRtsIDrj4VCVPy9fGJwFrqBob3CdkyQFeG/oxXCbKaFPHfbnBCs47ETc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
+ by AS2PR02MB9953.eurprd02.prod.outlook.com (2603:10a6:20b:607::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.29; Wed, 25 Oct
+ 2023 05:45:14 +0000
+Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::de22:5b04:df31:2d87]) by AM0PR02MB4436.eurprd02.prod.outlook.com
+ ([fe80::de22:5b04:df31:2d87%6]) with mapi id 15.20.6907.032; Wed, 25 Oct 2023
+ 05:45:14 +0000
+Message-ID: <f8d3a930-491c-e79f-47b4-618757b6bebf@axentia.se>
+Date: Wed, 25 Oct 2023 07:45:12 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH v4] mux: mmio: use reg property when parent device is not
+ a syscon
+Content-Language: sv-SE
+To: Andrew Davis <afd@ti.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231023162659.81397-1-afd@ti.com>
+From: Peter Rosin <peda@axentia.se>
+In-Reply-To: <20231023162659.81397-1-afd@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: GVYP280CA0023.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:fa::26) To AM0PR02MB4436.eurprd02.prod.outlook.com
+ (2603:10a6:208:ed::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] ASoC: makes CPU/Codec channel connection map more
- generic
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- Mark Brown <broonie@kernel.org>, bard.liao@intel.com,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-References: <87fs1zbg2g.wl-kuninori.morimoto.gx@renesas.com>
- <87edhjbg1u.wl-kuninori.morimoto.gx@renesas.com>
-Content-Language: en-US
-From: "Liao, Bard" <yung-chuan.liao@linux.intel.com>
-In-Reply-To: <87edhjbg1u.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR02MB4436:EE_|AS2PR02MB9953:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0294a174-0f2a-4efc-6479-08dbd51d8f69
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	2SYJ8PH3z7Lx/rZInLa2dU3HTiintX7ivUHeYKpnv0HLnBp417Amq9F+IF++P6uf3HOJDceifqzzS/IdHOyn+m4+uH/1XQnkAuxnoQp9OhySkQ7aKATngHHzVqaB1UgSI7R3IkxYcrkG2t1LX73RZFqWS+Di1EzarRgWVST6YW/wk6xTMXUSP8l3if1j5or7EA6+JOBOaUzPWhNxH/sgQ2JP2QU9X2OItxTLNVICeFY5mw+otzWkNxrM5aJgli69hulz2ivbS6NFiTo/mFZuyRooy0EBHivQlN28oGPUShapLOJLMVuyzAN1wUBa5voLJ52ZDtHBiV5Lg9S7/bgkVkG0AvWafgMP+H0JgL/KoF4hhmvHPUuYN+9nb47+3rbPg01qKAWkHYy63McBKos0NlwsR12uG129onlzIV55v89ATBF3fX4948tKLZT6h+lpczIAJ4qmFTw40cZDqSyDeKezM6Yuu5yflOml/aSp14e5LKz6yVwTUjdgoSqSjjsrVithB105+idbdnaKptuK8FW/3kDDMXiJ2QrPIPJLWV7s3+P4HThKhDL13/WnuyYOA0y1O4FhKl6nhdd4yESPZQdllLV/523nDoVTrOw+YK4S5bvePAS25Zkqs6F8Ex/MtAyyd9QZufcmZ9VHTSRM2w==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39840400004)(376002)(396003)(366004)(346002)(136003)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(31686004)(83380400001)(8936002)(2906002)(4001150100001)(38100700002)(4326008)(26005)(8676002)(36756003)(2616005)(86362001)(6512007)(6506007)(31696002)(316002)(478600001)(966005)(5660300002)(6486002)(66476007)(66556008)(110136005)(41300700001)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?U1h1MW9SY0I3UjhWRno4OHdkWTE4Y3RhTkcxcGpvOUpkVjNPbW91dnhyM0pO?=
+ =?utf-8?B?T2tGdDcrMG1ycWpCcW5oWnhCdW5CUVRYS2hpK0lObVh6SzUxKzdzdTZEQzhZ?=
+ =?utf-8?B?NWhjL2ZIYmhERGUzbDRMdDBDaExwSCt1LzU2RXEzRjNITHhRWXpoWWoxbU1i?=
+ =?utf-8?B?ZTJLam9sTVFpQzdOZkw2cU1tVUZqZzJuaWxCcTMxVi94RFdWNjF6cWVuQzdK?=
+ =?utf-8?B?bTNQYkJQbk44bUF6czlVeEw2UzFSRmRMWnh6R1diV2dVbVFQcm0rY2pmZWVB?=
+ =?utf-8?B?aVU3RHhoVlQxeHdEOWREcnZGOEZjMXoxamVWV0g5RjNXN0duQ2dlREU5L0Fh?=
+ =?utf-8?B?MXJ0aERIU2F4S1o5OFpxMEZpLy9zbnlqVzVwZi8vRWNjSGZHT0FnK2U4enBp?=
+ =?utf-8?B?Z2tnTDZtN3Nsbm92MnBzL3pseFdMM0FOaEMrL2N3bkEvb3VNMjVsb3N2a1lN?=
+ =?utf-8?B?ZThyN2R5VXhsS0h5MTdRdzdZYWtqbFRrS1IrOEcwaDQ1a2Jmd2hURVl1d1E2?=
+ =?utf-8?B?dldxZ1RWakx5OW1IKzA4U0F2S2paY0RqRElXczRqWmk2Z2RZQjlyQWRtMHJM?=
+ =?utf-8?B?azhOUWRzWE9ya3dJLzJHNHZZS1E3dzFSZUxYbTFENkRXY3ZJbDBtWXI2enow?=
+ =?utf-8?B?MUIzS0I1aGZIWnJTUWZpMEUvRjBNTzBLN24vQUV3ZE1TcVFuTm0rcDlZampW?=
+ =?utf-8?B?blZJYXRzOENKUWJ2S0c4azd5YXArUW1lb2x0OW80dHFadytSamNhVkptc1Jy?=
+ =?utf-8?B?MUZpeUxhSzV6MG9aMDVHdjJpTmNTdFFSNEZaTmRmenBJd2Z3d2ZvOHRVd0tF?=
+ =?utf-8?B?Wk5RUnlrRFNwZHVvemxHcVRGeEEyUVY1cE1XeitTVU5OcGRoa05xOUFWR2lq?=
+ =?utf-8?B?RUgwRisrTDNUM3pLWE50bWRSdVl6NTc0V3c0NXJqLzE1dUVuWjdZYWI2M3ZG?=
+ =?utf-8?B?QmZFM2YxZUQzVVAwcXdFWXhIOTM1SkdXdCtUa0M0QTZKMTF0aXNIU2lxOEZp?=
+ =?utf-8?B?T0ZKRUQrMStVYjJHODdpWEFmM245M3VRRTBiOFVmQTFpNFRoZmF0OFZxcVFy?=
+ =?utf-8?B?aEQ1TEZ3YWt4NFZpSWZYODFZVDhpdnZ4V2VLZndCRUdxZm9ST05nYjhNWmZC?=
+ =?utf-8?B?bEdKWHArdFQ2SkpTTDhycnFwNmNGSEd5bGd5TXNJRTZJZlhTVUZOYTkrNDBZ?=
+ =?utf-8?B?WGdSNm1rMFFtVFE4UmtjYVVQcTk2aFdhNCtNM2JWSmg0VkUrd216cFhmY3Fw?=
+ =?utf-8?B?WFJmRWdDaGxqUEF3TC9wZklIOEt4RzIzUldHTGFMcjRIVlhQSWxqQmV0V0JL?=
+ =?utf-8?B?M1NzS2NNSWxDWTc5Ri9rU3BGa2dqaTFERjUxL0RiSmNLckJDL29Ha0tYTit2?=
+ =?utf-8?B?V2tYaU5SSisxb1pLQjNtZG1LZE5VSjZ0UXIrdFZmQ2dacEQxYnU3UHJvdTh1?=
+ =?utf-8?B?NVN3akU0YUx1U043K3VJRXg3QnZKRDFYd25aSDMyYXdCUUg4U2VzeERPSjg0?=
+ =?utf-8?B?ejU5ZEZRWURRV0VxTXVWYURhKzJEN1YyaTlBOFllc0lsc00xcVhvVGZaajBy?=
+ =?utf-8?B?Ymlvc0QwWGJhbTRQQU9CaGd0QzBRUnZwT2xkYlhRWHFBRnRCUFNia0dxUTdY?=
+ =?utf-8?B?N0gzdTgrSnhQSWQxOVdVNVByL1VTaTE2blN2ajRYZW81cGFDTkJEVWRrdmVV?=
+ =?utf-8?B?eklreUZndWVhM0FvNWZ6Mnp5NTlNM0N5bFBnekdrbzFoMkdIb0tFK2sxWmJk?=
+ =?utf-8?B?cER6U2M5Nk5WWEtIU1JwdVpucE5xQkZJalhzK0taaWFaTWVxNkRLcmNyaFUz?=
+ =?utf-8?B?cloxNG9HM1BOUjhEQTR2N2xDcmNmRDNIaWh5bk5xRlJsTzFFWTUyeGhDWEdR?=
+ =?utf-8?B?S0dmdk9tUmtvdzdnZXRQWlVJb3J3KzFVTmJuMC9OL0tTM1RHSndvWXJCa2Jk?=
+ =?utf-8?B?WGs4UWx2cDUwNm9XaUdaeEZKMk0yZlJ2TGlqM0JWblNZZGxPQkNPQnhQaVhC?=
+ =?utf-8?B?Ujg3UWRSZVJMWUJMY3A0a1QwQ3FuazgyZWtUeEJ2S3NKdGlXMVkvTHdkOTA3?=
+ =?utf-8?B?TmgxeEp1dVM0U1dVcUhwK1BxT256aDRBdkZzTjdCVks3OWVnK0lKcEhETDhZ?=
+ =?utf-8?Q?HRf6pOKcPW1X8G1+TqK4v/JgD?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0294a174-0f2a-4efc-6479-08dbd51d8f69
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 05:45:14.5804
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2dI1KKDjpF/rr91yKqvngLEqYq+vY+AH6uwDeIlS0kNjZSEcnVeQTdRVaHwJk9pG
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR02MB9953
 
+Hi!
 
-On 2023/10/25 上午 10:18, Kuninori Morimoto wrote:
-> Current ASoC CPU:Codec = N:M connection is using connection mapping idea,
-> but it is used for N < M case only. We want to use it for any case.
->
-> By this patch, not only N:M connection, but all existing connection
-> (1:1, 1:N, N:N) will use same connection mapping. Then, because it will
-> use default mapping, no conversion patch is needed to exising drivers.
->
-> More over, CPU:Codec = N:M (N > M) also supported in the same time.
->
-> ch_maps array will has CPU/Codec index by this patch.
->
-> Image
-> 	CPU0 <---> Codec0
-> 	CPU1 <-+-> Codec1
-> 	CPU2 <-/
->
-> ch_map
-> 	ch_map[0].cpu = 0	ch_map[0].codec = 0
-> 	ch_map[1].cpu = 1	ch_map[1].codec = 1
-> 	ch_map[2].cpu = 2	ch_map[2].codec = 1
->
-> Link: https://lore.kernel.org/r/87fs6wuszr.wl-kuninori.morimoto.gx@renesas.com
-> Link: https://lore.kernel.org/r/878r7yqeo4.wl-kuninori.morimoto.gx@renesas.com
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Tested-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-
-
-The change looks good to me.
-
-Reviewed-by:  Bard Liao <yung-chuan.liao@linux.intel.com>
-
-
+2023-10-23 at 18:26, Andrew Davis wrote:
+> The DT binding for the reg-mux compatible states it can be used when the
+> "parent device of mux controller is not syscon device". It also allows
+> for a reg property. When the reg property is provided, use that to
+> identify the address space for this mux. If not provided fallback to
+> using the parent device as a regmap provider.
+> 
+> While here use dev_err_probe() in the error path to prevent printing
+> a message on probe defer which now can happen in extra ways.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> Reviewed-by: Nishanth Menon <nm@ti.com>
 > ---
->   include/sound/soc.h              | 56 ++++++++++++++++++-
->   sound/soc/intel/boards/sof_sdw.c | 28 ++++------
->   sound/soc/soc-core.c             | 95 +++++++++++++++++++++++++++++++-
->   sound/soc/soc-dapm.c             | 45 ++++-----------
->   sound/soc/soc-pcm.c              | 44 +++++----------
->   5 files changed, 185 insertions(+), 83 deletions(-)
->
-> diff --git a/include/sound/soc.h b/include/sound/soc.h
-> index 7792c393e238..f3803c2dc349 100644
-> --- a/include/sound/soc.h
-> +++ b/include/sound/soc.h
-> @@ -655,8 +655,45 @@ struct snd_soc_dai_link_component {
->   	struct of_phandle_args *dai_args;
->   };
->   
-> -struct snd_soc_dai_link_codec_ch_map {
-> -	unsigned int connected_cpu_id;
-> +/*
-> + * [dai_link->ch_maps Image sample]
-> + *
-> + *-------------------------
-> + * CPU0 <---> Codec0
-> + *
-> + * ch-map[0].cpu = 0	ch-map[0].codec = 0
-> + *
-> + *-------------------------
-> + * CPU0 <---> Codec0
-> + * CPU1 <---> Codec1
-> + * CPU2 <---> Codec2
-> + *
-> + * ch-map[0].cpu = 0	ch-map[0].codec = 0
-> + * ch-map[1].cpu = 1	ch-map[1].codec = 1
-> + * ch-map[2].cpu = 2	ch-map[2].codec = 2
-> + *
-> + *-------------------------
-> + * CPU0 <---> Codec0
-> + * CPU1 <-+-> Codec1
-> + * CPU2 <-/
-> + *
-> + * ch-map[0].cpu = 0	ch-map[0].codec = 0
-> + * ch-map[1].cpu = 1	ch-map[1].codec = 1
-> + * ch-map[2].cpu = 2	ch-map[2].codec = 1
-> + *
-> + *-------------------------
-> + * CPU0 <---> Codec0
-> + * CPU1 <-+-> Codec1
-> + *	  \-> Codec2
-> + *
-> + * ch-map[0].cpu = 0	ch-map[0].codec = 0
-> + * ch-map[1].cpu = 1	ch-map[1].codec = 1
-> + * ch-map[2].cpu = 1	ch-map[2].codec = 2
-> + *
-> + */
-> +struct snd_soc_dai_link_ch_map {
-> +	unsigned int cpu;
-> +	unsigned int codec;
->   	unsigned int ch_mask;
->   };
->   
-> @@ -688,7 +725,9 @@ struct snd_soc_dai_link {
->   	struct snd_soc_dai_link_component *codecs;
->   	unsigned int num_codecs;
->   
-> -	struct snd_soc_dai_link_codec_ch_map *codec_ch_maps;
-> +	/* num_ch_maps = max(num_cpu, num_codecs) */
-> +	struct snd_soc_dai_link_ch_map *ch_maps;
-> +
->   	/*
->   	 * You MAY specify the link's platform/PCM/DMA driver, either by
->   	 * device name, or by DT/OF node, but not both. Some forms of link
-> @@ -775,6 +814,10 @@ struct snd_soc_dai_link {
->   #endif
->   };
->   
-> +static inline int snd_soc_link_num_ch_map(struct snd_soc_dai_link *link) {
-> +	return max(link->num_cpus, link->num_codecs);
-> +}
-> +
->   static inline struct snd_soc_dai_link_component*
->   snd_soc_link_to_cpu(struct snd_soc_dai_link *link, int n) {
->   	return &(link)->cpus[n];
-> @@ -808,6 +851,12 @@ snd_soc_link_to_platform(struct snd_soc_dai_link *link, int n) {
->   		     ((cpu) = snd_soc_link_to_cpu(link, i));		\
->   	     (i)++)
->   
-> +#define for_each_link_ch_maps(link, i, ch_map)			\
-> +	for ((i) = 0;						\
-> +	     ((i) < snd_soc_link_num_ch_map(link) &&		\
-> +		      ((ch_map) = link->ch_maps + i));		\
-> +	     (i)++)
-> +
->   /*
->    * Sample 1 : Single CPU/Codec/Platform
->    *
-> @@ -1163,6 +1212,7 @@ struct snd_soc_pcm_runtime {
->   	     ((i) < (rtd)->dai_link->num_cpus + (rtd)->dai_link->num_codecs) &&	\
->   		     ((dai) = (rtd)->dais[i]);				\
->   	     (i)++)
-> +#define for_each_rtd_ch_maps(rtd, i, ch_maps) for_each_link_ch_maps(rtd->dai_link, i, ch_maps)
->   
->   void snd_soc_close_delayed_work(struct snd_soc_pcm_runtime *rtd);
->   
-> diff --git a/sound/soc/intel/boards/sof_sdw.c b/sound/soc/intel/boards/sof_sdw.c
-> index 3312ad8a563b..2faf7372bad0 100644
-> --- a/sound/soc/intel/boards/sof_sdw.c
-> +++ b/sound/soc/intel/boards/sof_sdw.c
-> @@ -570,16 +570,14 @@ int sdw_hw_params(struct snd_pcm_substream *substream,
->   		  struct snd_pcm_hw_params *params)
->   {
->   	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
-> +	struct snd_soc_dai_link_ch_map *ch_maps;
->   	int ch = params_channels(params);
-> -	struct snd_soc_dai *codec_dai;
-> -	struct snd_soc_dai *cpu_dai;
->   	unsigned int ch_mask;
->   	int num_codecs;
->   	int step;
->   	int i;
-> -	int j;
->   
-> -	if (!rtd->dai_link->codec_ch_maps)
-> +	if (!rtd->dai_link->ch_maps)
->   		return 0;
->   
->   	/* Identical data will be sent to all codecs in playback */
-> @@ -605,13 +603,9 @@ int sdw_hw_params(struct snd_pcm_substream *substream,
->   	 * link has more than one codec DAIs. Set codec channel mask and
->   	 * ASoC will set the corresponding channel numbers for each cpu dai.
->   	 */
-> -	for_each_rtd_cpu_dais(rtd, i, cpu_dai) {
-> -		for_each_rtd_codec_dais(rtd, j, codec_dai) {
-> -			if (rtd->dai_link->codec_ch_maps[j].connected_cpu_id != i)
-> -				continue;
-> -			rtd->dai_link->codec_ch_maps[j].ch_mask = ch_mask << (j * step);
-> -		}
-> -	}
-> +	for_each_link_ch_maps(rtd->dai_link, i, ch_maps)
-> +		ch_maps->ch_mask = ch_mask << (i * step);
-> +
->   	return 0;
->   }
->   
-> @@ -1350,15 +1344,17 @@ static int get_slave_info(const struct snd_soc_acpi_link_adr *adr_link,
->   	return 0;
->   }
->   
-> -static void set_dailink_map(struct snd_soc_dai_link_codec_ch_map *sdw_codec_ch_maps,
-> +static void set_dailink_map(struct snd_soc_dai_link_ch_map *sdw_codec_ch_maps,
->   			    int codec_num, int cpu_num)
->   {
->   	int step;
->   	int i;
->   
->   	step = codec_num / cpu_num;
-> -	for (i = 0; i < codec_num; i++)
-> -		sdw_codec_ch_maps[i].connected_cpu_id = i / step;
-> +	for (i = 0; i < codec_num; i++) {
-> +		sdw_codec_ch_maps[i].cpu	= i / step;
-> +		sdw_codec_ch_maps[i].codec	= i;
+> 
+> Changes from v3:
+>  - Check for probe defer
+> 
+> Changes from v2:
+>  - Rebased on v6.6-rc1
+> 
+> Changes from v1:
+>  - Flip logic as suggested in v1[0]
+> 
+> [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
+> 
+>  drivers/mux/mmio.c | 13 ++++++++-----
+>  1 file changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+> index fd1d121a584ba..07c99588ff999 100644
+> --- a/drivers/mux/mmio.c
+> +++ b/drivers/mux/mmio.c
+> @@ -44,14 +44,17 @@ static int mux_mmio_probe(struct platform_device *pdev)
+>  	int ret;
+>  	int i;
+>  
+> -	if (of_device_is_compatible(np, "mmio-mux"))
+> +	if (of_device_is_compatible(np, "mmio-mux")) {
+>  		regmap = syscon_node_to_regmap(np->parent);
+> -	else
+> -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+> +	} else {
+> +		regmap = device_node_to_regmap(np);
+> +		/* Fallback to checking the parent node on any error other than probe defer */
+> +		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER))
+> +			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+
+I'm not too fond of overly long lines, and the coding style document
+agrees with me. Also, please end comments with a period.
+
+		/* Fallback to checking the parent node on "real" errors. */
+		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER)) {
+			regmap = dev_get_regmap(dev->parent, NULL);
+			if (!regmap)
+				regmap = ERR_PTR(-ENODEV);
+		}
+
 > +	}
->   }
->   
->   static const char * const type_strings[] = {"SimpleJack", "SmartAmp", "SmartMic"};
-> @@ -1453,7 +1449,7 @@ static int create_sdw_dailink(struct snd_soc_card *card, int *link_index,
->   		*ignore_pch_dmic = true;
->   
->   	for_each_pcm_streams(stream) {
-> -		struct snd_soc_dai_link_codec_ch_map *sdw_codec_ch_maps;
-> +		struct snd_soc_dai_link_ch_map *sdw_codec_ch_maps;
->   		char *name, *cpu_name;
->   		int playback, capture;
->   		static const char * const sdw_stream_name[] = {
-> @@ -1530,7 +1526,7 @@ static int create_sdw_dailink(struct snd_soc_card *card, int *link_index,
->   		dai_links[*link_index].nonatomic = true;
->   
->   		set_dailink_map(sdw_codec_ch_maps, codec_num, cpu_dai_num);
-> -		dai_links[*link_index].codec_ch_maps = sdw_codec_ch_maps;
-> +		dai_links[*link_index].ch_maps = sdw_codec_ch_maps;
->   		ret = set_codec_init_func(card, adr_link, dai_links + (*link_index)++,
->   					  playback, group_id, adr_index, dai_index);
->   		if (ret < 0) {
-> diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
-> index b2bd45e87bc3..4ca3319a8e19 100644
-> --- a/sound/soc/soc-core.c
-> +++ b/sound/soc/soc-core.c
-> @@ -1015,6 +1015,94 @@ static int soc_dai_link_sanity_check(struct snd_soc_card *card,
->   	return -EINVAL;
->   }
->   
-> +#define MAX_DEFAULT_CH_MAP_SIZE 7
-> +static struct snd_soc_dai_link_ch_map default_ch_map_sync[MAX_DEFAULT_CH_MAP_SIZE] = {
-> +	{ .cpu = 0, .codec = 0 },
-> +	{ .cpu = 1, .codec = 1 },
-> +	{ .cpu = 2, .codec = 2 },
-> +	{ .cpu = 3, .codec = 3 },
-> +	{ .cpu = 4, .codec = 4 },
-> +	{ .cpu = 5, .codec = 5 },
-> +	{ .cpu = 6, .codec = 6 },
-> +};
-> +static struct snd_soc_dai_link_ch_map default_ch_map_1cpu[MAX_DEFAULT_CH_MAP_SIZE] = {
-> +	{ .cpu = 0, .codec = 0 },
-> +	{ .cpu = 0, .codec = 1 },
-> +	{ .cpu = 0, .codec = 2 },
-> +	{ .cpu = 0, .codec = 3 },
-> +	{ .cpu = 0, .codec = 4 },
-> +	{ .cpu = 0, .codec = 5 },
-> +	{ .cpu = 0, .codec = 6 },
-> +};
-> +static struct snd_soc_dai_link_ch_map default_ch_map_1codec[MAX_DEFAULT_CH_MAP_SIZE] = {
-> +	{ .cpu = 0, .codec = 0 },
-> +	{ .cpu = 1, .codec = 0 },
-> +	{ .cpu = 2, .codec = 0 },
-> +	{ .cpu = 3, .codec = 0 },
-> +	{ .cpu = 4, .codec = 0 },
-> +	{ .cpu = 5, .codec = 0 },
-> +	{ .cpu = 6, .codec = 0 },
-> +};
-> +static int snd_soc_compensate_channel_connection_map(struct snd_soc_card *card,
-> +						     struct snd_soc_dai_link *dai_link)
-> +{
-> +	struct snd_soc_dai_link_ch_map *ch_maps;
-> +	int i;
-> +
-> +	/*
-> +	 * dai_link->ch_maps indicates how CPU/Codec are connected.
-> +	 * It will be a map seen from a larger number of DAI.
-> +	 * see
-> +	 *	soc.h :: [dai_link->ch_maps Image sample]
-> +	 */
-> +
-> +	/* it should have ch_maps if connection was N:M */
-> +	if (dai_link->num_cpus > 1 && dai_link->num_codecs > 1 &&
-> +	    dai_link->num_cpus != dai_link->num_codecs && !dai_link->ch_maps) {
-> +		dev_err(card->dev, "need to have ch_maps when N:M connction (%s)",
-> +			dai_link->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* do nothing if it has own maps */
-> +	if (dai_link->ch_maps)
-> +		goto sanity_check;
-> +
-> +	/* check default map size */
-> +	if (dai_link->num_cpus   > MAX_DEFAULT_CH_MAP_SIZE ||
-> +	    dai_link->num_codecs > MAX_DEFAULT_CH_MAP_SIZE) {
-> +		dev_err(card->dev, "soc-core.c needs update default_connection_maps");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Compensate missing map for ... */
-> +	if (dai_link->num_cpus == dai_link->num_codecs)
-> +		dai_link->ch_maps = default_ch_map_sync;	/* for 1:1 or N:N */
-> +	else if (dai_link->num_cpus <  dai_link->num_codecs)
-> +		dai_link->ch_maps = default_ch_map_1cpu;	/* for 1:N */
-> +	else
-> +		dai_link->ch_maps = default_ch_map_1codec;	/* for N:1 */
-> +
-> +sanity_check:
-> +	dev_dbg(card->dev, "dai_link %s\n", dai_link->stream_name);
-> +	for_each_link_ch_maps(dai_link, i, ch_maps) {
-> +		if ((ch_maps->cpu   >= dai_link->num_cpus) ||
-> +		    (ch_maps->codec >= dai_link->num_codecs)) {
-> +			dev_err(card->dev,
-> +				"unexpected dai_link->ch_maps[%d] index (cpu(%d/%d) codec(%d/%d))",
-> +				i,
-> +				ch_maps->cpu,	dai_link->num_cpus,
-> +				ch_maps->codec,	dai_link->num_codecs);
-> +			return -EINVAL;
-> +		}
-> +
-> +		dev_dbg(card->dev, "  [%d] cpu%d <-> codec%d\n",
-> +			i, ch_maps->cpu, ch_maps->codec);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   /**
->    * snd_soc_remove_pcm_runtime - Remove a pcm_runtime from card
->    * @card: The ASoC card to which the pcm_runtime has
-> @@ -1121,8 +1209,13 @@ int snd_soc_add_pcm_runtimes(struct snd_soc_card *card,
->   			     int num_dai_link)
->   {
->   	for (int i = 0; i < num_dai_link; i++) {
-> -		int ret = snd_soc_add_pcm_runtime(card, dai_link + i);
-> +		int ret;
-> +
-> +		ret = snd_soc_compensate_channel_connection_map(card, dai_link + i);
-> +		if (ret < 0)
-> +			return ret;
->   
-> +		ret = snd_soc_add_pcm_runtime(card, dai_link + i);
->   		if (ret < 0)
->   			return ret;
->   	}
-> diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
-> index 4e2beda6f9bf..233ebc74c313 100644
-> --- a/sound/soc/soc-dapm.c
-> +++ b/sound/soc/soc-dapm.c
-> @@ -4438,11 +4438,14 @@ static void soc_dapm_dai_stream_event(struct snd_soc_dai *dai, int stream,
->   void snd_soc_dapm_connect_dai_link_widgets(struct snd_soc_card *card)
->   {
->   	struct snd_soc_pcm_runtime *rtd;
-> +	struct snd_soc_dai *cpu_dai;
->   	struct snd_soc_dai *codec_dai;
-> -	int i;
->   
->   	/* for each BE DAI link... */
->   	for_each_card_rtds(card, rtd)  {
-> +		struct snd_soc_dai_link_ch_map *ch_maps;
-> +		int i;
-> +
->   		/*
->   		 * dynamic FE links have no fixed DAI mapping.
->   		 * CODEC<->CODEC links have no direct connection.
-> @@ -4450,39 +4453,15 @@ void snd_soc_dapm_connect_dai_link_widgets(struct snd_soc_card *card)
->   		if (rtd->dai_link->dynamic)
->   			continue;
->   
-> -		if (rtd->dai_link->num_cpus == 1) {
-> -			for_each_rtd_codec_dais(rtd, i, codec_dai)
-> -				dapm_connect_dai_pair(card, rtd, codec_dai,
-> -						      snd_soc_rtd_to_cpu(rtd, 0));
-> -		} else if (rtd->dai_link->num_codecs == rtd->dai_link->num_cpus) {
-> -			for_each_rtd_codec_dais(rtd, i, codec_dai)
-> -				dapm_connect_dai_pair(card, rtd, codec_dai,
-> -						      snd_soc_rtd_to_cpu(rtd, i));
-> -		} else if (rtd->dai_link->num_codecs > rtd->dai_link->num_cpus) {
-> -			int cpu_id;
-> -
-> -			if (!rtd->dai_link->codec_ch_maps) {
-> -				dev_err(card->dev, "%s: no codec channel mapping table provided\n",
-> -					__func__);
-> -				continue;
-> -			}
-> +		/*
-> +		 * see
-> +		 *	soc.h :: [dai_link->ch_maps Image sample]
-> +		 */
-> +		for_each_rtd_ch_maps(rtd, i, ch_maps) {
-> +			cpu_dai   = snd_soc_rtd_to_cpu(rtd,   ch_maps->cpu);
-> +			codec_dai = snd_soc_rtd_to_codec(rtd, ch_maps->codec);
->   
-> -			for_each_rtd_codec_dais(rtd, i, codec_dai) {
-> -				cpu_id = rtd->dai_link->codec_ch_maps[i].connected_cpu_id;
-> -				if (cpu_id >= rtd->dai_link->num_cpus) {
-> -					dev_err(card->dev,
-> -						"%s: dai_link %s cpu_id %d too large, num_cpus is %d\n",
-> -						__func__, rtd->dai_link->name, cpu_id,
-> -						rtd->dai_link->num_cpus);
-> -					continue;
-> -				}
-> -				dapm_connect_dai_pair(card, rtd, codec_dai,
-> -						      snd_soc_rtd_to_cpu(rtd, cpu_id));
-> -			}
-> -		} else {
-> -			dev_err(card->dev,
-> -				"%s: codec number %d < cpu number %d is not supported\n",
-> -				__func__, rtd->dai_link->num_codecs, rtd->dai_link->num_cpus);
-> +			dapm_connect_dai_pair(card, rtd, codec_dai, cpu_dai);
->   		}
->   	}
->   }
-> diff --git a/sound/soc/soc-pcm.c b/sound/soc/soc-pcm.c
-> index 8c168dc553f6..7198f017c167 100644
-> --- a/sound/soc/soc-pcm.c
-> +++ b/sound/soc/soc-pcm.c
-> @@ -1042,6 +1042,7 @@ static int __soc_pcm_hw_params(struct snd_soc_pcm_runtime *rtd,
->   	}
->   
->   	for_each_rtd_cpu_dais(rtd, i, cpu_dai) {
-> +		struct snd_soc_dai_link_ch_map *ch_maps;
->   		unsigned int ch_mask = 0;
->   		int j;
->   
-> @@ -1055,22 +1056,20 @@ static int __soc_pcm_hw_params(struct snd_soc_pcm_runtime *rtd,
->   		/* copy params for each cpu */
->   		tmp_params = *params;
->   
-> -		if (!rtd->dai_link->codec_ch_maps)
-> -			goto hw_params;
->   		/*
->   		 * construct cpu channel mask by combining ch_mask of each
->   		 * codec which maps to the cpu.
-> +		 * see
-> +		 *	soc.h :: [dai_link->ch_maps Image sample]
->   		 */
-> -		for_each_rtd_codec_dais(rtd, j, codec_dai) {
-> -			if (rtd->dai_link->codec_ch_maps[j].connected_cpu_id == i)
-> -				ch_mask |= rtd->dai_link->codec_ch_maps[j].ch_mask;
-> -		}
-> +		for_each_rtd_ch_maps(rtd, j, ch_maps)
-> +			if (ch_maps->cpu == i)
-> +				ch_mask |= ch_maps->ch_mask;
->   
->   		/* fixup cpu channel number */
->   		if (ch_mask)
->   			soc_pcm_codec_params_fixup(&tmp_params, ch_mask);
->   
-> -hw_params:
->   		ret = snd_soc_dai_hw_params(cpu_dai, substream, &tmp_params);
->   		if (ret < 0)
->   			goto out;
-> @@ -2818,35 +2817,20 @@ static int soc_get_playback_capture(struct snd_soc_pcm_runtime *rtd,
->   			}
->   		}
->   	} else {
-> +		struct snd_soc_dai_link_ch_map *ch_maps;
->   		struct snd_soc_dai *codec_dai;
->   
->   		/* Adapt stream for codec2codec links */
->   		int cpu_capture  = snd_soc_get_stream_cpu(dai_link, SNDRV_PCM_STREAM_CAPTURE);
->   		int cpu_playback = snd_soc_get_stream_cpu(dai_link, SNDRV_PCM_STREAM_PLAYBACK);
->   
-> -		for_each_rtd_codec_dais(rtd, i, codec_dai) {
-> -			if (dai_link->num_cpus == 1) {
-> -				cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-> -			} else if (dai_link->num_cpus == dai_link->num_codecs) {
-> -				cpu_dai = snd_soc_rtd_to_cpu(rtd, i);
-> -			} else if (rtd->dai_link->num_codecs > rtd->dai_link->num_cpus) {
-> -				int cpu_id;
-> -
-> -				if (!rtd->dai_link->codec_ch_maps) {
-> -					dev_err(rtd->card->dev, "%s: no codec channel mapping table provided\n",
-> -						__func__);
-> -					return -EINVAL;
-> -				}
-> -
-> -				cpu_id = rtd->dai_link->codec_ch_maps[i].connected_cpu_id;
-> -				cpu_dai = snd_soc_rtd_to_cpu(rtd, cpu_id);
-> -			} else {
-> -				dev_err(rtd->card->dev,
-> -					"%s codec number %d < cpu number %d is not supported\n",
-> -					__func__, rtd->dai_link->num_codecs,
-> -					rtd->dai_link->num_cpus);
-> -				return -EINVAL;
-> -			}
-> +		/*
-> +		 * see
-> +		 *	soc.h :: [dai_link->ch_maps Image sample]
-> +		 */
-> +		for_each_rtd_ch_maps(rtd, i, ch_maps) {
-> +			cpu_dai	  = snd_soc_rtd_to_cpu(rtd,   ch_maps->cpu);
-> +			codec_dai = snd_soc_rtd_to_codec(rtd, ch_maps->codec);
->   
->   			if (snd_soc_dai_stream_valid(codec_dai, SNDRV_PCM_STREAM_PLAYBACK) &&
->   			    snd_soc_dai_stream_valid(cpu_dai,   cpu_playback))
+>  	if (IS_ERR(regmap)) {
+>  		ret = PTR_ERR(regmap);
+> -		dev_err(dev, "failed to get regmap: %d\n", ret);
+> -		return ret;
+> +		return dev_err_probe(dev, ret, "failed to get regmap\n");
+>  	}
+
+Now that you use dev_err_probe(), please drop the pointless ret
+assignment:
+
+ 	if (IS_ERR(regmap))
+		return dev_err_probe(dev, PTR_ERR(regmap),
+				     "failed to get regmap\n");
+
+With those changes, you can add "Acked-by: Peter Rosin <peda@axentia.se>",
+so that Greg can pick it up.
+
+Cheers,
+Peter
+
+>  
+>  	ret = of_property_count_u32_elems(np, "mux-reg-masks");
 
