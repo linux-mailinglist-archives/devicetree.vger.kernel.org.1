@@ -1,133 +1,348 @@
-Return-Path: <devicetree+bounces-11930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4257D7152
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2DF27D716C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:05:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5102E1C20C57
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 15:58:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDD981C20C2E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B577527EF4;
-	Wed, 25 Oct 2023 15:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F3C2E639;
+	Wed, 25 Oct 2023 16:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SPXkLk8T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LPYExIXE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9D7156E5
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 15:57:56 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D731012F;
-	Wed, 25 Oct 2023 08:57:54 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39PFvhET013312;
-	Wed, 25 Oct 2023 10:57:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698249463;
-	bh=EeIvSdJTPv70yRQJz4urS0T172AtomQUKqKng0i1Tq8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=SPXkLk8T0knwJiZAGrH0ZM3/o0HwCMlCbli8aNfJZMMM6BDAwrLAZyBXmjgItr+Zf
-	 DYD/s+FXMTwblSj60kv8XpdOnJKyxDM50ID70wle81G+4KxH5FEwYLKwnUdFPb+cm5
-	 Fz5YTtSCwXZOgckiCn+RFrIQrLZ82VrDyqrcZUkw=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39PFvhpC114580
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 25 Oct 2023 10:57:43 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 25
- Oct 2023 10:57:43 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 25 Oct 2023 10:57:43 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39PFvhfV100334;
-	Wed, 25 Oct 2023 10:57:43 -0500
-Date: Wed, 25 Oct 2023 10:57:43 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Nitin Yadav <n-yadav@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: boot: dts: ti: k3-am62a-main: Fix GPIO pin count
- in DT nodes.
-Message-ID: <20231025155743.nk7un6pvib7swtxg@decorator>
-References: <20231025110252.1089979-1-n-yadav@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82F22E627
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:05:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D97C433C7;
+	Wed, 25 Oct 2023 16:05:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698249916;
+	bh=c6iYE+MG+kMUSf/CPK47bC8qCmFUiFpvtnl6HQ3ZERI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=LPYExIXEF4SXK8C5FGTW2PzdJuBtUnptTLPIoQRqVHPeKgGCddJtiw834cE9VrnMY
+	 7AEJlU2PBmYUMUPZfWGG4t5FGVNXubqN6Uk8LBMpSZc6lJ14gtGrQmz779DXLgvq5b
+	 jrbynVIdI9H4ynH+jn3In/eH4H/xBT0MB+RfEKqypq7D8yaN/JnAT7Z4b/7f4RUFFi
+	 97IlP1I6PxXzkUVvuTPfKJZr9BW35EWOnHWv0EpK2D6pSIPsjMMbbaY3/0IujbRdIk
+	 yWqmdZ6OdRmKUW94dAf6c1deNqHiItWyHUq/As2CBiCVECHv5FR9WT6ad//jbR/t4N
+	 KoN8nP8du9JmA==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Marc Zyngier
+ <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew Jones
+ <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, Saravana
+ Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 07/14] irqchip: Add RISC-V incoming MSI controller
+ early driver
+In-Reply-To: <CAK9=C2XpxYztxgD-5HQ+1kThBaRTv3pVk5eah4XHZ_8x62BwqQ@mail.gmail.com>
+References: <20231023172800.315343-1-apatel@ventanamicro.com>
+ <20231023172800.315343-8-apatel@ventanamicro.com>
+ <878r7srx04.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2XpxYztxgD-5HQ+1kThBaRTv3pVk5eah4XHZ_8x62BwqQ@mail.gmail.com>
+Date: Wed, 25 Oct 2023 18:05:08 +0200
+Message-ID: <875y2ug023.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231025110252.1089979-1-n-yadav@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 16:32-20231025, Nitin Yadav wrote:
-> Fix number of gpio pins in main_gpio0 & main_gpio1 DT nodes according
-> to AM62a SK datasheet. The Link of datasheet is in the following line:
+Hi!
 
-SK? line?
+Anup Patel <apatel@ventanamicro.com> writes:
 
-Please rephrase above and just mention the section of the data sheet to
-refer to.
+> On Tue, Oct 24, 2023 at 6:35=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
+el.org> wrote:
+>>
+>> Hi Anup!
+>>
+>> Wow, I'm really happy to see that you're moving towards the 1-1 model!
+>>
+>> Anup Patel <apatel@ventanamicro.com> writes:
+>>
+>> > The RISC-V advanced interrupt architecture (AIA) specification
+>> > defines a new MSI controller called incoming message signalled
+>> > interrupt controller (IMSIC) which manages MSI on per-HART (or
+>> > per-CPU) basis. It also supports IPIs as software injected MSIs.
+>> > (For more details refer https://github.com/riscv/riscv-aia)
+>> >
+>> > Let us add an early irqchip driver for RISC-V IMSIC which sets
+>> > up the IMSIC state and provide IPIs.
+>>
+>> It would help (reviewers, and future bugfixers) if you add (here or in
+>> the cover) what design decisions you've taken instead of just saying
+>> that you're now supporting IMSIC.
+>
+> I agree with the suggestion but this kind of information should be
+> in the source itself rather than commit description.
 
-> 
-> https://www.ti.com/lit/gpn/am62a3
-> 
-> Section: 6.3.10 GPIO (Page No. 52-55)
+I think the high-level flow, and why you made certain design decisions
+should be in the commit message.
 
-> 
-> Fixes: '5fc6b1b62639c ("arm64: dts: ti: Introduce AM62A7 family of SoCs")'
+The "how" in the code, the "why" in the commit message. Regardless -- it
+would make it easier for reviewers to get into your code faster.
 
-What is the single quote for?
-Also note the additional comment in the list to drop the extra EoL.
+[...]
+
+>> > +
+>> > +     writel(IMSIC_IPI_ID, local->msi_va);
+>>
+>> Do you need the barriers here? If so, please document. If not, use the
+>> _releaxed() version.
+>
+> We can't assume that _relaxed version of MMIO operations
+> will work for RISC-V implementation so we conservatively
+> use regular MMIO operations without _releaxed().
+
+You'll need to expand on your thinking here, Anup. We can't just
+sprinkle fences everywhere because of "we can't assume it'll work". Do
+you need proper barriers for IPIs or not?
+
+[...]
+
+>> > +             mvec =3D lpriv->ids_move[i];
+>> > +             lpriv->ids_move[i] =3D NULL;
+>> > +             if (mvec) {
+>> > +                     if (__imsic_id_read_clear_pending(i)) {
+>> > +                             mlocal =3D per_cpu_ptr(imsic->global.loc=
+al,
+>> > +                                                  mvec->cpu);
+>> > +                             writel(mvec->local_id, mlocal->msi_va);
+>>
+>> Again, do you need all the barriers? If yes, document. No, then relax
+>> the call.
+>
+> Same comment as above.
+
+Dito for me! ;-)
+
+>> > +                     }
+>> > +
+>> > +                     lpriv->vectors[i].hwirq =3D UINT_MAX;
+>> > +                     lpriv->vectors[i].order =3D UINT_MAX;
+>> > +                     clear_bit(i, lpriv->ids_used_bitmap);
+>> > +             }
+>> > +
+>> > +     }
+>> > +     raw_spin_unlock_irqrestore(&lpriv->ids_lock, flags);
+>> > +}
+>> > +
+>> > +void imsic_local_delivery(bool enable)
+>> > +{
+>> > +     if (enable) {
+>> > +             imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_ENABLE_EITHRESH=
+OLD);
+>> > +             imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_ENABLE_EIDELIVER=
+Y);
+>> > +     } else {
+>> > +             imsic_csr_write(IMSIC_EIDELIVERY, IMSIC_DISABLE_EIDELIVE=
+RY);
+>> > +             imsic_csr_write(IMSIC_EITHRESHOLD, IMSIC_DISABLE_EITHRES=
+HOLD);
+>> > +     }
+>>
+>> My regular "early exit" nit. I guess I really dislike indentation. ;-)
+>
+> -ENOPARSE
+
+if (...) {
+  a();
+  b();
+  c();
+} else {
+  d();
+  e();
+}
+
+vs
+
+if (...) {
+  a();
+  b();
+  c();
+  return;
+}
+
+d();
+e();
+
+[...]
+
+>> > +void imsic_vector_mask(struct imsic_vector *vec)
+>> > +{
+>> > +     struct imsic_local_priv *lpriv;
+>> > +     unsigned long flags;
+>> > +
+>> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
+>> > +     if (WARN_ON(&lpriv->vectors[vec->local_id] !=3D vec))
+>> > +             return;
+>> > +
+>> > +     raw_spin_lock_irqsave(&lpriv->ids_lock, flags);
+>> > +     bitmap_clear(lpriv->ids_enabled_bitmap, vec->local_id, 1);
+>> > +     raw_spin_unlock_irqrestore(&lpriv->ids_lock, flags);
+>> > +
+>> > +     imsic_remote_sync(vec->cpu);
+>>
+>> x86 seems to set a timer instead, for the remote cpu cleanup, which can
+>> be much cheaper, and less in instrusive. Is that applicable here?
+>
+> The issue with that approach is deciding the right duration
+> of timer interrupt. There might be platforms who need
+> immediate mask/unmask response. We can certainely
+> keep improving/tuning this over-time.
+
+Any concrete examples where this is an actual problem?
+
+[...]
+
+>> > +void imsic_vector_move(struct imsic_vector *old_vec,
+>> > +                     struct imsic_vector *new_vec)
+>> > +{
+>> > +     struct imsic_local_priv *old_lpriv, *new_lpriv;
+>> > +     struct imsic_vector *ovec, *nvec;
+>> > +     unsigned long flags, flags1;
+>> > +     unsigned int i;
+>> > +
+>> > +     if (WARN_ON(old_vec->cpu =3D=3D new_vec->cpu ||
+>> > +                 old_vec->order !=3D new_vec->order ||
+>> > +                 (old_vec->local_id & IMSIC_VECTOR_MASK(old_vec)) ||
+>> > +                 (new_vec->local_id & IMSIC_VECTOR_MASK(new_vec))))
+>> > +             return;
+>> > +
+>> > +     old_lpriv =3D per_cpu_ptr(imsic->lpriv, old_vec->cpu);
+>> > +     if (WARN_ON(&old_lpriv->vectors[old_vec->local_id] !=3D old_vec))
+>> > +             return;
+>> > +
+>> > +     new_lpriv =3D per_cpu_ptr(imsic->lpriv, new_vec->cpu);
+>> > +     if (WARN_ON(&new_lpriv->vectors[new_vec->local_id] !=3D new_vec))
+>> > +             return;
+>> > +
+>> > +     raw_spin_lock_irqsave(&old_lpriv->ids_lock, flags);
+>> > +     raw_spin_lock_irqsave(&new_lpriv->ids_lock, flags1);
+>> > +
+>> > +     /* Move the state of each vector entry */
+>> > +     for (i =3D 0; i < BIT(old_vec->order); i++) {
+>> > +             ovec =3D old_vec + i;
+>> > +             nvec =3D new_vec + i;
+>> > +
+>> > +             /* Unmask the new vector entry */
+>> > +             if (test_bit(ovec->local_id, old_lpriv->ids_enabled_bitm=
+ap))
+>> > +                     bitmap_set(new_lpriv->ids_enabled_bitmap,
+>> > +                                nvec->local_id, 1);
+>> > +
+>> > +             /* Mask the old vector entry */
+>> > +             bitmap_clear(old_lpriv->ids_enabled_bitmap, ovec->local_=
+id, 1);
+>> > +
+>> > +             /*
+>> > +              * Move and re-trigger the new vector entry based on the
+>> > +              * pending state of the old vector entry because we might
+>> > +              * get a device interrupt on the old vector entry while
+>> > +              * device was being moved to the new vector entry.
+>> > +              */
+>> > +             old_lpriv->ids_move[ovec->local_id] =3D nvec;
+>> > +     }
+>>
+>> Hmm, nested spinlocks, and reimplementing what the irq matrix allocator
+>> does.
+>>
+>> Convince me why irq matrix is not a good fit to track the interrupts IDs
+>> *and* get handling/tracking for managed/unmanaged interrupts. You said
+>> that it was the power-of-two blocks for MSI, but can't that be enfored
+>> on matrix alloc? Where are you doing the special handling of MSI?
+>>
+>> The reason I'm asking is because I'm pretty certain that x86 has proper
+>> MSI support (Thomas Gleixner can answer for sure! ;-))
+>>
+>> IMSIC smells a lot like the the LAPIC. The implementation could probably
+>> be *very* close to what arch/x86/kernel/apic/vector.c does.
+>>
+>> Am I completly off here?
+>>
+>
+> The x86 APIC driver only supports MSI-X due to which the IRQ matrix
+> allocator only supports ID/Vector allocation suitable for MSI-X whereas
+> the ARM GICv3 driver supports both legacy MSI and MSI-X. In absence
+> of legacy MSI support, Linux x86 will fallback to INTx for PCI devices
+> with legacy MSI support but for RISC-V platforms we can't assume that
+> INTx is available because we might be dealing with an IMSIC-only
+> platform.
+
+You're mixing up MSI and *multi-MSI* (multiple MSI vectors).
+
+x86 support MSI-X, MSI, and multi-MSI with IOMMU.
+
+Gleixner has a some insights on why one probably should *not* jump
+through hoops to support multi-MSI:
+https://lore.kernel.org/all/877d7yhve7.ffs@tglx/
+
+Will we really see HW requiring multi-MSI support on RISC-V systems
+without IOMMU? To me this sounds like a theoretical exercise.
+
+> Refer, x86_vector_msi_parent_ops in arch/x86/kernel/apic/msi.c and
+> X86_VECTOR_MSI_FLAGS_SUPPORTED in arch/x86/include/asm/msi.h
+>
+> Refer, its_pci_msi_domain_info in drivers/irqchip/irq-gic-v3-its-pci-msi.c
+>
+> The changes which I think are need in the IRQ matrix allocator before
+> integrating it in the IMSIC driver are the following:
+> 1) IRQ matrix allocator assumed NR_VECTORS to be a fixed define
+>     which the arch code provides but in RISC-V world the number of
+>     IDs are discovered from DT or ACPI.
+
+Ok, let's try to be bit more explicit. Have you had a look at
+kernel/irq/matrix.c?
+
+You need to define the IRQ_MATRIX_BITS (which x86 sets to NR_VECTORS).
+This is the size of the bitmap. For IMSIC this would be 2047.
+
+The matrix allocator is an excellent fit, modulo multi-MSI. It's battle
+proven code.
+
+> 2) IRQ matrix allocator needs to be support allocator multiple vectors
+>     in power-of-2 which will allow IMSIC driver to support both legacy
+>     MSI and MSI-X. This will involve changing the way best CPU is
+>     found, the way bitmap APIs are used and adding some new APIs
+>     for allocate vectors in power-of-2
+
+...and all the other things multi-MSI requires.
+
+> Based on above, I suggest we keep the integration of IRQ matrix
+> allocator in the IMSIC driver as a separate series which will allow
+> us to unblock other series (such as AIA ACPI support, power
+> managment related changes in AIA drivers, etc).
+
+I suggest removing the multi-MSI support, and use the matrix allocator.
+We have something that looks like what x86 has (IMSIC). We have a
+battle-proven implementation, and helper function. In my view it would
+be just weird not to piggy-back on that work, and benefit from years of
+bugfixes/things we haven't thought of.
+
+Finally; I don't see that you're handling managed interrupt in the
+series (Oh, the matrix allocator has support for that! ;-)).
+
+I realize it's some changes, but the interrupt handling is a central
+piece.
+
+If you agree with my input, LMK if you're time/work-constrained, and I
+can take a stab at integrating it in the series.
 
 
-Did you check the MCU and WKUP GPIO count as well? if there are bugs
-around it, fix it in a single commit please.
-
-> 
-> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> index 3198af08fb9f..de36abb243f1 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> @@ -462,7 +462,7 @@ main_gpio0: gpio@600000 {
->  			     <193>, <194>, <195>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
-> -		ti,ngpio = <87>;
-> +		ti,ngpio = <92>;
->  		ti,davinci-gpio-unbanked = <0>;
->  		power-domains = <&k3_pds 77 TI_SCI_PD_EXCLUSIVE>;
->  		clocks = <&k3_clks 77 0>;
-> @@ -480,7 +480,7 @@ main_gpio1: gpio@601000 {
->  			     <183>, <184>, <185>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
-> -		ti,ngpio = <88>;
-> +		ti,ngpio = <52>;
->  		ti,davinci-gpio-unbanked = <0>;
->  		power-domains = <&k3_pds 78 TI_SCI_PD_EXCLUSIVE>;
->  		clocks = <&k3_clks 78 0>;
-> -- 
-> 2.25.1
-> 
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Bj=C3=B6rn
 
