@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-11598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 143777D6363
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5677D635A
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 09:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF9E8281C6D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:36:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8515D281C8F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BC518E1F;
-	Wed, 25 Oct 2023 07:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373A91864B;
+	Wed, 25 Oct 2023 07:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T7Utl1aT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W9M+tyQR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDA318B08
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:36:12 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FB53849
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:09 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40859c466efso31348115e9.3
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:09 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4AC18C32
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:35:46 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0ECF3852
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:10 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso797157666b.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 00:35:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698219307; x=1698824107; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698219309; x=1698824109; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pe4SRUofU2WFm2fmN823Um+mIBdgfTseC5LX2TC6qmk=;
-        b=T7Utl1aTwx2yevUK8aVbd9iS9TRpfdmNsZGhXGZYg+4e7QghB16ML+7RZt24NNf2AB
-         8nF7EbxbbN/dwi1CPA2QSV8iXESKxQjN2ToBqegEwL1rkmyibvr0vIM6NGrsVQ2j98kT
-         jMXa7pNCR6JQYLyl6+Z8S7w9GSRZ1sSjT3QgdNgDRo5KwCSIyF76k1DE7c3fjni3KS30
-         MZ6MLwwgh4+0MbBwCd1KhTf6ht6i6IYVzK7xy+d1h2jLF6cA9WbV+DFkOGCQR3IPGTyz
-         gFDBmTJ8moe3CKckurQyiPkWpe8orFTYnN7U34ssR1lQK4awqw3OWCbHRGJIPYQvMPgx
-         /ogw==
+        bh=Z4zOtiipUT8sw701OMgXZHG72ZF/cn8D9ojdqcZ+I6M=;
+        b=W9M+tyQRyCC37AFIud/4M80c5fpBYcDp47q1dxaceoX9cl6xjT/Ab3W3w7VRnFY5GE
+         EnQad//dZHFEjFIXSqpYYq12ZBh48/WB3WP6NpIaTJyzZXsmTPXGJvJRk7gOTZrcEcss
+         8uaIWEL31anPCRjWIc6UVCjDBuI+5otbe23P0NDj+W+v4j0QL2728PepWYB6nY3ktmm/
+         uyiXmI/p8c1mCwWLVnoiV+y94N/wXlunyAV5Pbkinjrlh5RB/R1IwGgvbgmsxQ5K2XKK
+         wdRo9uiiZb478kVkDGuOEe00ore/0uAIcWsXB04VahKu7TZT46cFTaPT9mUtP6JZWEFO
+         rdXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698219307; x=1698824107;
+        d=1e100.net; s=20230601; t=1698219309; x=1698824109;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pe4SRUofU2WFm2fmN823Um+mIBdgfTseC5LX2TC6qmk=;
-        b=tYAs4NqBE4HdZ/1WmRuN2VSXEG9cwH2Tzm/P8FNBR6CxyCsVijgH0BTl4gtnryDLvb
-         2PFT9IrVArVYeaQwBjPytfpG+ZKoTosod6XQ9jtOpp/QMEWNENduqnKKVkgXh8ol10pm
-         q4tV3DNuodKeFFK5y6R2fajGNhJGKti3WZE093Hyk7vNXayfsMGtXKwMokIYE616FDX+
-         ewho3gYM1lJCk/ShoihAhysOtSm7ooYcspt0KehxDLb6dtoaMUCWv7UKeZlPcUSnD1Os
-         73xSUd+pvab18NhkyjhCPMnFOnygyASOmolnmqvWaLYoP+oATVaY4lfgQwij2OWRSf1q
-         4Vwg==
-X-Gm-Message-State: AOJu0Yyc3XL+iCXPub/HYX0nHpc88odiQTBxWY6VVZxS6jSMu6YUOQP0
-	Mqz2hBSAqTmzDM1EJMS/Ds/xIA==
-X-Google-Smtp-Source: AGHT+IEiQvJPZXUSoJ+rvGAVwkMDv40zmLqfwbPBtb7KlNbEPmm3TB9RLLv1bPNuVdvy0rjD8U7C4A==
-X-Received: by 2002:a05:600c:1c29:b0:408:3d91:8251 with SMTP id j41-20020a05600c1c2900b004083d918251mr10926835wms.5.1698219307607;
-        Wed, 25 Oct 2023 00:35:07 -0700 (PDT)
+        bh=Z4zOtiipUT8sw701OMgXZHG72ZF/cn8D9ojdqcZ+I6M=;
+        b=FpFRbB7a3gpJfsgNz2N8fPkrHkz08srGjrjF2rUNfSVhpFGCqrtP9+ALUyOVCeIE3M
+         PNVl2paRSLz1WGu0MG4b58iCU35+1iak7S7AwdLbCz6QvmI8hzyrJy5DO9O8FnvrGLsY
+         L0N2lA/soeHAqxgG+FmMWFlh/oDpfqzYFhvPBof0ES6WtrUXQ7uYkzVu2KgOYejaY3VJ
+         pAXUDPC3oxsgqqy2ITK1mqjoz+uxT45wrE3lUUH2uw4mNsPe9BSaAujXQJV4+WuFeFhB
+         S7mm27a5kQaNHU56hBZd2Z7y0uQUUUVVGrbgWKflvEyiO2PRf3QhQziyrIR+Y0rXsg8S
+         BcVQ==
+X-Gm-Message-State: AOJu0YzOT9PglLQlMaeZerR/o8knMg7+3UoZabrxhqyyt6PU5ijTtPOg
+	yFBTCqrbylN7bdFRI+EkQCnBbw==
+X-Google-Smtp-Source: AGHT+IEWIlRxJHjlqkDhPQzwZYLZEGQw2y+NFgK0dXdjyK25j8sEgY+p48QN/rjnemCH40nSMuXAxw==
+X-Received: by 2002:a17:907:940a:b0:9bf:2ddf:1bca with SMTP id dk10-20020a170907940a00b009bf2ddf1bcamr10284265ejc.62.1698219308901;
+        Wed, 25 Oct 2023 00:35:08 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id x18-20020a5d60d2000000b003248a490e3asm11449058wrt.39.2023.10.25.00.35.06
+        by smtp.gmail.com with ESMTPSA id x18-20020a5d60d2000000b003248a490e3asm11449058wrt.39.2023.10.25.00.35.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 00:35:07 -0700 (PDT)
+        Wed, 25 Oct 2023 00:35:08 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 25 Oct 2023 09:34:59 +0200
-Subject: [PATCH 1/8] dt-bindings: display: msm-dsi-phy-7nm: document the
- SM8650 DSI PHY
+Date: Wed, 25 Oct 2023 09:35:00 +0200
+Subject: [PATCH 2/8] dt-bindings: display: msm-dsi-controller-main:
+ document the SM8650 DSI Controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +70,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231025-topic-sm8650-upstream-mdss-v1-1-bb219b8c7a51@linaro.org>
+Message-Id: <20231025-topic-sm8650-upstream-mdss-v1-2-bb219b8c7a51@linaro.org>
 References: <20231025-topic-sm8650-upstream-mdss-v1-0-bb219b8c7a51@linaro.org>
 In-Reply-To: <20231025-topic-sm8650-upstream-mdss-v1-0-bb219b8c7a51@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
@@ -88,42 +88,50 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=748;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1121;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=LjEsqHAGp+UfualC/tIMljUQuvkQEZ5WI4NYmB6cs2o=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlOMUlzhTUsc4upScdy9doWeeZ8Av0tdD3FxQMALDK
- w6zzprCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTjFJQAKCRB33NvayMhJ0QJqEA
- CUt/Fq2kgT90yTup1XhV+j3NhHGt6q7dqGEjHB+5YL+39c+RYWVhJ8fq+9zDhTot7kYVsS8nJZlrbn
- JhZ44Zf77PWDphzIjLmVzSgW9QHZbzsIlNCX5Z2NyFVhbm3q/OcJKY9bRA8addCLKdo4ublGUg0Gsy
- EOMNZpc20cA0Ujl3WGyU/m3vdVRI/2J2YiEATw3d+MueFgm7w4DJnjEmnkSuwmDnuwahIlNPK++/M8
- 20I32mfmeIhUe4eRUn8bnM6fSuOOqrHXxNhRHdzFIh4bCrSpJEk0QVj+pBs2nmtkczf/fK2+wpsbFs
- 5sOKycIN2dIVv8mIi2w8w44dTpVT7d+VL6XrvetdsSqO9iMMy8/nrhvSJGFRt2RCQZRnYmaW8GoRWI
- zUNt4XdlIrnkdY0RovJdvaLHLGO7vw7KHd3nr0P3uKwnb0sCdnbsisxvHE6zZb5twIU1ojpsru0owQ
- vk0iBMrK4HoGvQuAC0iVoXnSip+GE1hcS/S9ULjhFqQBzYc1oTqmi6gxpkOeMYHJobJnFJFJuSwQLo
- piFfPx9T2CsDrGFIK2/A5aKSEufirnWnpd4Hpnj8blFh5MDV9rEpvEsoyBv4kxKTDwFfyLEPuqg3+W
- WegGC7+fkK1/ViVzn2uEywsilYnlcYXkeBMoT8WtERZBXQs5XMfrMBABJqPA==
+ bh=RmyjIW0lZguWP9hWwmPF3DabpwwT0EuPrdA5wtaVnxE=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlOMUmE/hLSdAHnisyVX6XnsRoZy11MItZW/udDqz5
+ NGspU5iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTjFJgAKCRB33NvayMhJ0T8BD/
+ 4gJS5f7QwonEjarJZE7rXHRj4qWZe2gJ9BUxjXRBaFYLeFFwEBAtOyOMAiE1dRXilnJj0TUDZcKC3A
+ BHhMD5VsCXzEmta/5kPIGS9OZjZvJkdVzPkp8vyiyokQfUiUdv8sjD0NwOVWNTC8xIlCYK7P6pPE+J
+ UHY1JOLMIHJierdDgTpHfyM8PSR7rCb1luhfelsmTRIL3BIWULwiTfdvPBNGjluXLOPCizkxqLTWJF
+ wk669lsH26PKp8pmWCDHke6OIU//IVF2fy7AwyLJLMNhhIij0w+O2Ry97rDoEcQyOshJNS1C3lvu9j
+ WB6iwaBu7RtVOwde9E8BNjBtktEbR5ZTX1kLd6l0Ah/5u+NGOKMCNKmVecubQmnGGuLg+XQk+AKzPq
+ 7sD8RBXk/CNJGqz0Q8YuQJN2gMP5MxiIZo+kBq20Bo3EHGHSFc97ZcakRDdM0bq4bwQAZdROJrtxvA
+ vv//I9Ouq8Xzl4gCBLnKZUYXjS74zdtNRYh+cmwl/NzFuABX5PfioTJFRvb86YkMrCxP74m8lqBz94
+ LfL4eMGRk2Hy2l2v13+2J5tKHzOndjb32BTfS3to35Khyt4tpf490OPG877c5TskAPKyiuiN+ueHBf
+ u/G9qOnRMDygT+Y0Ltuk/YSvUH68+AoLeHTAfWaD6KQtSu4O4cfaXZSxquZg==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Document the DSI PHY on the SM8650 Platform.
+Document the DSI Controller on the SM8650 Platform.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-index dd6619555a12..7e764eac3ef3 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-@@ -22,6 +22,7 @@ properties:
-       - qcom,sm8350-dsi-phy-5nm
-       - qcom,sm8450-dsi-phy-5nm
-       - qcom,sm8550-dsi-phy-4nm
-+      - qcom,sm8650-dsi-phy-4nm
- 
-   reg:
-     items:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index c6dbab65d5f7..24944979d500 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -35,6 +35,7 @@ properties:
+               - qcom,sm8350-dsi-ctrl
+               - qcom,sm8450-dsi-ctrl
+               - qcom,sm8550-dsi-ctrl
++              - qcom,sm8650-dsi-ctrl
+           - const: qcom,mdss-dsi-ctrl
+       - enum:
+           - qcom,dsi-ctrl-6g-qcm2290
+@@ -333,6 +334,7 @@ allOf:
+               - qcom,sm8350-dsi-ctrl
+               - qcom,sm8450-dsi-ctrl
+               - qcom,sm8550-dsi-ctrl
++              - qcom,sm8650-dsi-ctrl
+     then:
+       properties:
+         clocks:
 
 -- 
 2.34.1
