@@ -1,112 +1,158 @@
-Return-Path: <devicetree+bounces-11912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A207D6FA1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:47:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42E467D6FAE
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:49:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B520281B4C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:47:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6669B20FB8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3342627729;
-	Wed, 25 Oct 2023 14:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F1628691;
+	Wed, 25 Oct 2023 14:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZvuYL0Ck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A2020B00
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:47:36 +0000 (UTC)
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAAD9B0;
-	Wed, 25 Oct 2023 07:47:35 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3b2e44c7941so3966883b6e.2;
-        Wed, 25 Oct 2023 07:47:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698245255; x=1698850055;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=eU9dcz1YGa9iU8LlGA/PhULWkXEMb0rfxCJT61Ovfuc=;
-        b=m8e1sfrhXtPvOoE1xxgYXZByt7tKA0HZt9rcv5lMdIcHX0Y1VPf90UVm1tbUga+En1
-         wlpVRksokoYHJQ8vqs86EdJmCorAhm0uJaKdGMoo01jpypUnM/IR+8QHoZPrjgHWxGZ1
-         mD/cVavHM6nUP7Dq+vF/r4bRi+Z0dAeZT/P7ViC17rlgZC9MmTLPO7SkR24W3UtFiSlo
-         TimjA6aUpjZ2X7ynaVPghhcVoFcRLBFmm7BZqKs2iKu1NK3Y+QteBAqLLZm6nJuE2zLz
-         62xMz8N8TIbzN9iCLFuN19foV/fCcCz8jMMc0DuJswe2rFo48BCLC+iLUMBIx/Zs/42C
-         fswg==
-X-Gm-Message-State: AOJu0YwpBfRfCCMb448Wii9QZcRuoRx7ozi22Z/zGown7hWmrFBFcPos
-	DeJDnbalb7W8+hia1d+aMa1432xR9w==
-X-Google-Smtp-Source: AGHT+IGHO+eEDenRbvjdxLALO/vIF1UN+JMcjErf2td8FFO4465DCrb+T8KVr5y3/DBabI3sw0GQiQ==
-X-Received: by 2002:a54:448f:0:b0:3ae:5743:533a with SMTP id v15-20020a54448f000000b003ae5743533amr17400033oiv.47.1698245254994;
-        Wed, 25 Oct 2023 07:47:34 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u12-20020a056808000c00b003af6eeed9b6sm2387440oic.27.2023.10.25.07.47.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Oct 2023 07:47:34 -0700 (PDT)
-Received: (nullmailer pid 259082 invoked by uid 1000);
-	Wed, 25 Oct 2023 14:47:33 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E792D62F
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:49:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E5ECC433C8;
+	Wed, 25 Oct 2023 14:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698245374;
+	bh=g8c0ZqXEd+5miVwaaQEwfnrYYAhfuPmdWpJQcdlsakE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZvuYL0CkCqKmU8kEiF8yK/BtZZR7hOAaiJ2a2gYPUHteYQ6YOZey5rLFET4OueViT
+	 MXbzzmDscQU5O6f+R/kV3rfcUCJxQJHV1ElJF56953GXqTyfBJ0XHzbXValfLXc5Ql
+	 FB2R8+PzCtwp4y7awD1H26vEjCodXSR3GTmsrpPQOc52bf5US7wNT/ZztcsSn9P2/4
+	 r2bypPZVFR+vZTWi9RAbRdy4Cam+I1HGY6+BFiQlxeW9ee1PASJy7FTAlT68VPW1tN
+	 R3TpuzqoyoLi3j+PdSt7cczRvR3YQR7TUkZck/pm0lyXxjNdz26xnm97uYXPBDgf48
+	 MystXecyzwGXg==
+Date: Wed, 25 Oct 2023 15:49:28 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 3/6] dt-bindings: arm64: dts: mediatek: Add
+ mt8183-kukui-jacuzzi-makomo
+Message-ID: <20231025-charity-replica-9c9b03380d7f@spud>
+References: <20231024000724.57714-1-hsinyi@chromium.org>
+ <20231024000724.57714-4-hsinyi@chromium.org>
+ <20231024-bobbed-although-06f341259ebb@spud>
+ <CAJMQK-hvhjNGFUfgqb7pm=pAYjJ0wZAhkPGXxDCUJ5cnUDh2gw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Taniya Das <quic_tdas@quicinc.com>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
-References: <20231025-topic-sm8650-upstream-clocks-v1-0-c89b59594caf@linaro.org>
- <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
-Message-Id: <169824516120.243773.546101172844888564.robh@kernel.org>
-Subject: Re: [PATCH 03/10] dt-bindings: clock: qcom: document the SM8650
- Display Clock Controller
-Date: Wed, 25 Oct 2023 09:47:33 -0500
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ZJFVlm9+Zn/c9yF1"
+Content-Disposition: inline
+In-Reply-To: <CAJMQK-hvhjNGFUfgqb7pm=pAYjJ0wZAhkPGXxDCUJ5cnUDh2gw@mail.gmail.com>
 
 
-On Wed, 25 Oct 2023 09:32:40 +0200, Neil Armstrong wrote:
-> Add bindings documentation for the SM8650 Display Clock Controller.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/clock/qcom,sm8650-dispcc.yaml         | 106 +++++++++++++++++++++
->  include/dt-bindings/clock/qcom,sm8650-dispcc.h     | 101 ++++++++++++++++++++
->  2 files changed, 207 insertions(+)
-> 
+--ZJFVlm9+Zn/c9yF1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tue, Oct 24, 2023 at 11:22:00AM -0700, Hsin-Yi Wang wrote:
+> On Tue, Oct 24, 2023 at 8:17=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Mon, Oct 23, 2023 at 05:02:26PM -0700, Hsin-Yi Wang wrote:
+> > > Add makomo sku0 and sku1 which uses different audio codec.
+> > >
+> > > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/mediatek.yaml | 12 ++++++++++++
+> > >  1 file changed, 12 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Do=
+cumentation/devicetree/bindings/arm/mediatek.yaml
+> > > index fe8c488a3207..b131e0bdbf01 100644
+> > > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > > @@ -250,6 +250,18 @@ properties:
+> > >                - google,kodama-sku32
+> > >            - const: google,kodama
+> > >            - const: mediatek,mt8183
+> > > +      - description: Google Makomo (Lenovo 100e Chromebook 2nd Gen M=
+TK 2)
+> > > +        items:
+> > > +          - const: google,makomo-rev4-sku0
+> > > +          - const: google,makomo-rev5-sku0
+> >
+> > With these bindings, how does one describe a makomo-rev5-sku0?
+> > What you have here is only suitable for describing the makomo-rev4-sku0.
+> >
+> makomo-rev5-sku0 and makomo-rev4-sku0 uses the same dts:
+>=20
+> compatible =3D "google,makomo-rev4-sku0", "google,makomo-rev5-sku0",
+>                       "google,makomo", "mediatek,mt8183";
+>=20
+> In this case, can bindings be listed like that?
 
-yamllint warnings/errors:
+On a rev5-sku0, the first compatible should be the most specific one,
+which would mean:
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.example.dts:18:18: fatal error: dt-bindings/clock/qcom,sm8650-gcc.h: No such file or directory
-   18 |         #include <dt-bindings/clock/qcom,sm8650-gcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+compatible =3D "google,makomo-rev5-sku0", "google,makomo", "mediatek,mt8183=
+";
 
-doc reference errors (make refcheckdocs):
+I said the same on other google laptop bindings before, but I'm not
+really happy with these compatible configurations, that seem conjured up
+to suit your firmware. It'd make far more sense to me to have a setup
+that permitted:
+compatible =3D "google,makomo-sku0-rev5", "google,makomo-sku0", "google,mak=
+omo", "mediatek,mt8183";
+and
+compatible =3D "google,makomo-sku0-rev4", "google,makomo-sku0", "google,mak=
+omo", "mediatek,mt8183";
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org
+Cheers,
+Conor.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> > > +          - const: google,makomo
+> > > +          - const: mediatek,mt8183
+> > > +      - description: Google Makomo (Lenovo 100e Chromebook 2nd Gen M=
+TK 2)
+> > > +        items:
+> > > +          - const: google,makomo-rev4-sku1
+> > > +          - const: google,makomo-rev5-sku1
+> > > +          - const: google,makomo
+> > > +          - const: mediatek,mt8183
+> > >        - description: Google Willow (Acer Chromebook 311 C722/C722T)
+> > >          items:
+> > >            - enum:
+> > > --
+> > > 2.42.0.758.gaed0368e0e-goog
+> > >
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+--ZJFVlm9+Zn/c9yF1
+Content-Type: application/pgp-signature; name="signature.asc"
 
-pip3 install dtschema --upgrade
+-----BEGIN PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTkq+AAKCRB4tDGHoIJi
+0rnGAP9ZabySIiA8SVpNMYulGM3x3bCMQhPDIuSRdNFrqvuBKgEApPdAFGmmDMNE
+Pqyn5ngRg4/wRf9xVNi8zaqOYEf2ug0=
+=ShOI
+-----END PGP SIGNATURE-----
 
+--ZJFVlm9+Zn/c9yF1--
 
