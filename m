@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE817D6499
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:10:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC257D649F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:11:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07C4C1C20C42
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:10:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76B4F281052
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AAB1C6B1;
-	Wed, 25 Oct 2023 08:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCC91C6B3;
+	Wed, 25 Oct 2023 08:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z//HFD56"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kxfFIPoY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E841514AA2
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:10:26 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66A3D133
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:10:19 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99357737980so838885366b.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:10:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B46414AA2
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:11:26 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DC5116
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:11:24 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53e751aeb3cso8348374a12.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:11:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698221415; x=1698826215; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698221482; x=1698826282; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e4W3FzdBdmgcqLq3CYAVEQg20wE8TpJO/Jt0nqAq+mI=;
-        b=Z//HFD563Id1kD0AUwbP7b1BPWjP/UH0lGL7Km1J/CQKPulMxD3RqQxIQf9smiWnSh
-         KGBLESmJUbJIvlpuJODqX9uvvJ3DI87fDRc+qdL1uWGhbo8TrIECDmgG6E/a8zZOb26S
-         OxWr2R0dyTqfzHW445msiKZvyJRdhw7fn63BxNmImgxdx1x/hocOG/GaM2hx5dpgvBiX
-         RxGD6FKHUH0jxs3+inWtEocVtOfMSUUTx9Zg0ygUhhiFxYW0lM6nEeelyI+Magw9oRrP
-         RUIbM7M+7eSjNPRIeZh+TGbI4VG41GX3F+z9smOy7DDqdSFTSmrX4BMcfIHAU60sMiVx
-         h0WA==
+        bh=pmHAkiZSBWdTXTD4oGRmomkl9FLnUtzH0axDDUoy7iM=;
+        b=kxfFIPoY2NYTW9HZeF0jhtyLjfYYZ7w08BcSJ8ym1p+v1lnO0DUeLQQ265Fn8Ke72m
+         G0CCfmnhSb3kFdJ8/ELq6NW/wqsx10N8kGy/cg4rnnqOYC73gyNKkX2GCkA/54E/At6T
+         JrMoQZJk8dcH/FxGXY4teFZfkzygHFfTpb8UOoIQ5PU5fLYWUHplLnNd6fA9Kmki2nmT
+         8c0HLXv6STcvyEPbd8MBXRmiZ8NPBekgg+pZbxDi6H8ahUrowrUXJJxsxV6EXGLs4JCb
+         1ISGurQ0tyKoVrkfZi81ZA+Y2PmymMwQQ3AuAfAVxjohx1V2iKGiBOCXpxu2YgnecfJa
+         3Q7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698221415; x=1698826215;
+        d=1e100.net; s=20230601; t=1698221482; x=1698826282;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e4W3FzdBdmgcqLq3CYAVEQg20wE8TpJO/Jt0nqAq+mI=;
-        b=tBVAY+pHfReTprEgVY7UMI8fay7wdGTjRYT1L1/PRlWPMWH/D0KdHBW3MHM1Hl6DZ8
-         h/eOpfTRU9mU62QJMowH67GYuBRDSg4+IRm4n2xwu23wgQJTdFpTKkK2yObbt510QyRI
-         MDdrFJd3MxtXy3xU72GVVOpd6ySt1SA/cCOVfuUCOlYJt7zDfhB/rnWQoutzxV+x9sDh
-         VLFCEOuYcwHfl7QIMJtOURKL/4jNzw2dlpYI1kO7eRdoNVQVUKRIlgBXyG3xyCbh2LaO
-         vc6f053OM6u8y5UEX6+zq1HEYV8+YgbPyTs5L4i/KhmDW1Mnv2a8nkCSVh1C1d3F6JtC
-         SYiw==
-X-Gm-Message-State: AOJu0YymWzEW9hvDllFDGooB+ZtWpChxefRxkVInqBhI5hV7QnMs/cEB
-	qV7vqeMkC6r6RGWAZM6BQs/Mow==
-X-Google-Smtp-Source: AGHT+IGVp+R025TInRQwYI6q7PbMS8fVsQj7ICyrdzm2FIiV9UmwrF/SDyNcy8E1FiLQ0fvBnSPBEg==
-X-Received: by 2002:a17:907:8e89:b0:9c7:dc4e:1a22 with SMTP id tx9-20020a1709078e8900b009c7dc4e1a22mr8529234ejc.48.1698221414978;
-        Wed, 25 Oct 2023 01:10:14 -0700 (PDT)
+        bh=pmHAkiZSBWdTXTD4oGRmomkl9FLnUtzH0axDDUoy7iM=;
+        b=UvQor4nhVSICrXKTaAoM++Vo+XxxpxUJ+Qr2R4AOJemBMNtX6QHtDqCe2cAiznWFkm
+         oXV3xs2HAd8dCdIneRyviQl+SKfF/oXwZy5Oa2zy+CoFS4LPsGC8oENxmpMo1Y4OKqm7
+         70kPoT+tli/7R+DJiR5fd+Yf9oOGQDhwNLrkpCrTb3PWcDy/72DEQmMlw3MozRIvAgem
+         /UaoVrigwVBvu3HgxLHlV0kKnZvguTQ1ce6WrH9MLyLSfAQC/xo4TwG4f5ENWoJI+bsd
+         O5f0G1nSx8ow2U7aLLpRCvuZl3gWzqnrptlez+fpwza/vthL9wcJ8ltacFxoXy8cWnAk
+         NaEg==
+X-Gm-Message-State: AOJu0YwMuXqEMfgo0RZXmCRrh70iftR8W5d1dtyQCZcKF8OH5njpVYDO
+	tsaKVJfVbYSuY/o5V8NedwuhDw==
+X-Google-Smtp-Source: AGHT+IEZxxwvbIACPWNEIDwLFXM4CjcZv2qOHT6u2psb/jnffDc3kZ2fNlQQ87uOqqQfT+np12onwQ==
+X-Received: by 2002:a17:907:948e:b0:9c6:6f65:def1 with SMTP id dm14-20020a170907948e00b009c66f65def1mr11745937ejc.35.1698221482453;
+        Wed, 25 Oct 2023 01:11:22 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id pj19-20020a170906d79300b009ad829ed144sm9378723ejb.130.2023.10.25.01.10.13
+        by smtp.gmail.com with ESMTPSA id pj19-20020a170906d79300b009ad829ed144sm9378723ejb.130.2023.10.25.01.11.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 01:10:14 -0700 (PDT)
-Message-ID: <213d8b75-93b5-40d5-bf4c-11690b05553f@linaro.org>
-Date: Wed, 25 Oct 2023 10:10:12 +0200
+        Wed, 25 Oct 2023 01:11:21 -0700 (PDT)
+Message-ID: <8246f8a1-459f-4c12-a63a-c5206d67d284@linaro.org>
+Date: Wed, 25 Oct 2023 10:11:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: document the SM8650 Top Level
- Mode Multiplexer
+Subject: Re: [PATCH 3/3] pinctrl: qcom: Introduce the SM8650 Top Level Mode
+ Multiplexer driver
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -79,7 +79,7 @@ To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
 Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20231025-topic-sm8650-upstream-tlmm-v1-0-4e3d84a3a46b@linaro.org>
- <20231025-topic-sm8650-upstream-tlmm-v1-1-4e3d84a3a46b@linaro.org>
+ <20231025-topic-sm8650-upstream-tlmm-v1-3-4e3d84a3a46b@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,89 +125,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-topic-sm8650-upstream-tlmm-v1-1-4e3d84a3a46b@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-tlmm-v1-3-4e3d84a3a46b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/10/2023 09:33, Neil Armstrong wrote:
+> Add Top Level Mode Multiplexer (pinctrl) support for the SM8650 platform.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/pinctrl/qcom/Kconfig.msm      |    8 +
+>  drivers/pinctrl/qcom/Makefile         |    1 +
+>  drivers/pinctrl/qcom/pinctrl-sm8650.c | 1762 +++++++++++++++++++++++++++++++++
+>  3 files changed, 1771 insertions(+)
+> 
 
-Thank you for your patch. There is something to discuss/improve.
 
-> +$defs:
-> +  qcom-sm8650-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-9])$"
-> +            - enum: [ ufs_reset, sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +        enum: [ gpio, aoss_cti, atest_char, atest_usb, audio_ext_mclk0,
-> +                audio_ext_mclk1, audio_ref_clk, cam_aon_mclk2, cam_aon_mclk4,
-> +                cam_mclk, cci_async_in, cci_i2c_scl, cci_i2c_sda, cci_timer,
-> +                cmu_rng, coex_uart1_rx, coex_uart1_tx, coex_uart2_rx,
-> +                coex_uart2_tx, cri_trng, dbg_out_clk, ddr_bist_complete,
-> +                ddr_bist_fail, ddr_bist_start, ddr_bist_stop, ddr_pxi0,
-> +                ddr_pxi1, ddr_pxi2, ddr_pxi3, do_not, dp_hot, gcc_gp1,
-> +                gcc_gp2, gcc_gp3, gnss_adc0, gnss_adc1, i2chub0_se0,
-> +                i2chub0_se1, i2chub0_se2, i2chub0_se3, i2chub0_se4,
-> +                i2chub0_se5, i2chub0_se6, i2chub0_se7, i2chub0_se8,
-> +                i2chub0_se9, i2s0_data0, i2s0_data1, i2s0_sck, i2s0_ws,
-> +                i2s1_data0, i2s1_data1, i2s1_sck, i2s1_ws, ibi_i3c,
-> +                jitter_bist, mdp_vsync, mdp_vsync0_out, mdp_vsync1_out,
-> +                mdp_vsync2_out, mdp_vsync3_out, mdp_vsync_e, nav_gpio0,
-> +                nav_gpio1, nav_gpio2, nav_gpio3, pcie0_clk_req_n,
-> +                pcie1_clk_req_n, phase_flag, pll_bist_sync, pll_clk_aux,
-> +                prng_rosc0, prng_rosc1, prng_rosc2, prng_rosc3, qdss_cti,
-> +                qdss_gpio, qlink_big_enable, qlink_big_request,
-> +                qlink_little_enable, qlink_little_request, qlink_wmss,
-> +                qspi0, qspi1, qspi2, qspi3, qspi_clk, qspi_cs, qup1_se0,
-> +                qup1_se1, qup1_se2, qup1_se3, qup1_se4, qup1_se5, qup1_se6,
-> +                qup1_se7, qup2_se0, qup2_se1, qup2_se2, qup2_se3, qup2_se4,
-> +                qup2_se5, qup2_se6, qup2_se7, sd_write_protect, sdc40, sdc41,
-> +                sdc42, sdc43, sdc4_clk, sdc4_cmd, tb_trig_sdc2, tb_trig_sdc4,
-> +                tgu_ch0_trigout, tgu_ch1_trigout, tgu_ch2_trigout,
-> +                tgu_ch3_trigout, tmess_prng0, tmess_prng1, tmess_prng2,
-> +                tmess_prng3, tsense_pwm1, tsense_pwm2, tsense_pwm3, uim0_clk,
-> +                uim0_data, uim0_present, uim0_reset, uim1_clk, uim1_data,
-> +                uim1_present, uim1_reset, usb1_hs, usb_phy, vfr_0, vfr_1,
-> +                vsense_trigger_mirnat ]
-> +
-> +      bias-disable: true
-> +      bias-pull-down: true
-> +      bias-pull-up: true
-> +      drive-strength: true
-> +      input-enable: true
-> +      output-disable: true
-> +      output-high: true
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +
-> +    additionalProperties: false
-
-We changed the syntax here:
-1. Use unevaluatedProperties: false (and put it after $ref:
-qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state)
-2. Drop all these ": true" properties.
-
-Take a look at sm8550 for an example.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
