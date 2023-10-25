@@ -1,143 +1,184 @@
-Return-Path: <devicetree+bounces-11932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E4F07D717C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:13:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A347D7199
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:22:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB48EB21053
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:13:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E20F91C209D7
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55682E643;
-	Wed, 25 Oct 2023 16:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504F42E652;
+	Wed, 25 Oct 2023 16:22:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kXFCdzre"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="wcrYviDF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D1827EF2
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:12:59 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AEE0193;
-	Wed, 25 Oct 2023 09:12:58 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39PGCo2G014922;
-	Wed, 25 Oct 2023 11:12:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698250370;
-	bh=a78lhGsMSXpH6aIuXQaVkWQJnsBiGCqCQrARwCrvt28=;
-	h=From:To:CC:Subject:Date;
-	b=kXFCdzreaFvXqN7VBlywv33O8lVaGaZ211/ez9y/V7xTjuLuEjQvZFiEZAEv9EacQ
-	 fM5ojzcf4hptUUTUXGWpC+Utd0oBZVEB9S70O4Ue/EvKPQEOADNGw+Yioka0LduuYY
-	 Z9xKxjqJHJIWHyauxtF4K6iWOKv+VofzxCHbht38=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39PGCoMk005223
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 25 Oct 2023 11:12:50 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 25
- Oct 2023 11:12:49 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 25 Oct 2023 11:12:49 -0500
-Received: from fllv0040.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39PGCmqi111714;
-	Wed, 25 Oct 2023 11:12:49 -0500
-From: Andrew Davis <afd@ti.com>
-To: Peter Rosin <peda@axentia.se>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>
-Subject: [PATCH v5] mux: mmio: use reg property when parent device is not a syscon
-Date: Wed, 25 Oct 2023 11:12:47 -0500
-Message-ID: <20231025161247.1283319-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CB226E3C;
+	Wed, 25 Oct 2023 16:22:03 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2063.outbound.protection.outlook.com [40.107.21.63])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E5292;
+	Wed, 25 Oct 2023 09:22:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A2A5/dIqGUi8RpkHfjaP+0v821IMnwUpJ7AcOe+Us/58TheZyhOYxXWlBRd7mWtx3rSpP+TzWQcMEAkApjLBK5TyUy5W9AlH9vHv9s9RAjGUz5aQM2jNvdiIp4YmOfG6ldsvldTldXEeoandu+cWuOPoD6x5cG7C+I3EFoeANKX1yLx2cEgfn8kLjCwCfNMlJ4uAbP3VgIYBPDS+0Nf8BnpzVLOa3hGBsYfRq7MrL6ovQhwPu97LUkzpHq0NYH/wf46JmX7zX22LXKVzep9n98SmHXWEKm/z1rsc0qbVfvAMnbveH5TYkltpZ+l+XvpY9pCfAxu0qFZZthiV0O7ylg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JrC8eF7WiRM8JiZT1s1xDX0aDUytE4QhAcEL81Qt598=;
+ b=R0kU78ZQauxaPErXWPtYYh9PkQYScwTQQEKNr8IfW9wNbEn/YRagp9Euj7NhrVgJQbPvePXdiI5eEaRgzwzk5rh62nMaXndKV+mqlxvyGoFVT54zGlTEVVYkgnSFaZCVqawGTvwDx/gVNxiJXnmwDEBNRZRDWvX4OgExdJWSqfS/nRhlPdZPvhVHnWz/IrzeXLTCfg0frv2gIkMt86dpd5BLvwapzpl6wUv1aKNZGmNMBlikCwTVQrrwLrrQQP1EdyIga+rS6iBxv08/j2Ab2xqNR8yVsJXQ+/wKSTM8LaMnDWDKf/3zSYo1NWWP2Ka8YrT0lufcrkiB/PGrEDBfeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JrC8eF7WiRM8JiZT1s1xDX0aDUytE4QhAcEL81Qt598=;
+ b=wcrYviDFzszSPY3dDksiuuL4yW3NN7qhTD7Zix6rjyujKoqMRCYR7w7xrBRrBOR6cXGm+L4V7TPK3PiL74fm99ewJf6heNuBHeu4GzSKzOCFIM4HioyH0hIefO/rxQnN2+e4k+Lt7hibNyzN/kUAXBYrkisb3koQxIUCcNuaqSc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by VI1PR08MB5376.eurprd08.prod.outlook.com (2603:10a6:803:13e::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Wed, 25 Oct
+ 2023 16:21:58 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a309:1d65:f5fb:436b]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a309:1d65:f5fb:436b%6]) with mapi id 15.20.6933.019; Wed, 25 Oct 2023
+ 16:21:58 +0000
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+Subject: [PATCH 0/2] rtc: pcf85363: add support for high-impedance output
+Date: Wed, 25 Oct 2023 18:21:53 +0200
+Message-Id: <20231024-topic-pcf85363_hiz_output-v1-0-50908aff0e52@wolfvision.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKFAOWUC/x2N2wrDIBAFfyXsc4WotTT9lRKC2ax1Iah4KaUh/
+ 17p4xyYMwcUykwFHsMBmd5cOIYO8jIAehteJHjrDGpUWo7qKmpMjCKhuxt904vn7xJbTa2KbUK
+ N0hlLZoLur7aQWLMN6PtDaPvex5TJ8ecffM7n+QP6+1C0gAAAAA==
+To: Alessandro Zummo <a.zummo@towertech.it>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco@wolfvision.net>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1698250918; l=1591;
+ i=javier.carrasco@wolfvision.net; s=20230509; h=from:subject:message-id;
+ bh=XjwGgbXrx1mUyaQvBZ728qJrCqgOeL5FeWgo0RlMqzc=;
+ b=lswYr+e0BJ1oZsa3won4ihKqyVSixSPe/9E38CCiZnYjeSazEUKL537jnvHdRiZRIrl1lPLU4
+ TR/ydAyMC8lDjSlKbX34LfUv+DTVhyAr+E4cInBpTHJgzloIec9hbMy
+X-Developer-Key: i=javier.carrasco@wolfvision.net; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
+X-ClientProxiedBy: VI1PR0102CA0040.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803::17) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|VI1PR08MB5376:EE_
+X-MS-Office365-Filtering-Correlation-Id: 30929798-2986-494f-3c58-08dbd576832d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	YHc+jjckdI4yt8sWLZi/vIv6aJBogbZsBTai3ZAcz9Q6h/KnoUaqqvV0kvA44N+/fc96v2GUfnptgmgCm+R05dvLADN6iB9Bx5C2ZsncMZZymeqyIq6GpjcgIllVZJzw+U0UuwD8JdNjdI6ro6dz5R3CSl12NRNo87jYvl0F58Q2zrp2I+WyspMwBwggLyoPwu+QKA5bF+/ghBTzsMo4kTqN8hy8gA8Zc5AmeBo+ooX87QwV4/Z7RnrYOzGyR6t46n5FB6mxsYkWHM1QJ1BtIWa37oY54m1N+mgr3QumX8Pqy775rrjMdTfecIWGiyhGd0ySJKKLOK29TmGSP+F2TdvvmMl31Z48v+uPjCyaxupgPGdAaEJsmTn6WH3RD3D+TCWgTHmHsHawpaHo7VobTeVu0jZZLVUoUwANn5KRkECIyaE1/pfekBFLT0vpKTYIXHEPnpq3K1wOhwYRS5Xs3mLu5YE6ON76PYJdy1zIsmpgp38vouOqy1y7yH5nXKKW5Q3I3IaFxNtYqtvQi1Hr1pBXM+5bgrooAD4JzQ17mKBbfet+D6bYnICMfAdZwpuN88YaGG29tsNxH4hgxxt7xAMNftPguvMhj2pJT19BldiczZR7gG/Rp1Fml+4Tk8SU
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39840400004)(396003)(376002)(136003)(366004)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(4326008)(2906002)(8676002)(8936002)(44832011)(83380400001)(6486002)(107886003)(52116002)(5660300002)(41300700001)(6512007)(6506007)(86362001)(316002)(110136005)(26005)(478600001)(6666004)(2616005)(36756003)(38100700002)(66946007)(66556008)(66476007)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UmdtMkVqRlpaeHJRczdLSExqTjVBVXF1dDJ6VmthUWxyTWk3YjdValpGQ1Z3?=
+ =?utf-8?B?T2UxOThIYllqa2lLcGpKVVVPV09SUEp1VldRZ1JKNzU4Y0RwUnE3U2htaGFW?=
+ =?utf-8?B?dmprMjRldGE5OHZhYkNocE5seXNVNkFiZGJhNGNpM3RYMDlBQnNPMHkvZEQz?=
+ =?utf-8?B?NXhCd3NLV3R2UGpDMVYxeW5WVFNZOVFIenpBK2tCbWRXTlFsM2pvZXZZdSto?=
+ =?utf-8?B?T01NMDBIOUlnWE1sOThNamVMcENZRjFsa2NKY3RiNGJGM29iaTFNNGVNdEJt?=
+ =?utf-8?B?NVdLMHNqb1JUYXVlZzhlR0djV01QUXAyYkphK0dqNFV1WGFzY2xYTnhpTGc4?=
+ =?utf-8?B?cnkyMGRXNHI3L1VMUmNDU1Q4RUR6NGd0bnR6c0x5dDlQL0ZEK2l3SytvTlZY?=
+ =?utf-8?B?WVRaU0JCaU5DVEpiMUNDWTlLVEg0c3VrRW9aZWMwaGo0ellhV3Bvei9zQmR5?=
+ =?utf-8?B?WEdHTlgzZktiT3Q2ZDNkKzRiUmZ1TUN3L2VzQ3E0M3JvWE5WSGNmTEJRZ3lN?=
+ =?utf-8?B?MzhLTmczYTNTVWJVbE1sOG9mcC9oL0dudFZRaWhkS1pzYTFlNVR0N0Nld0VM?=
+ =?utf-8?B?bEcvS1R0MjJKSldJNjYyMjEzN1dSVzdLbVJDdUMxcE1uUnZ3aGs0Sit4eDVy?=
+ =?utf-8?B?d2k1SC9iTkthT2k4TnJnTmhpYXh5VWt1YUpkU2l6Z0ZBVVVJeDZYN3Z6WnZM?=
+ =?utf-8?B?LytqNU1qaUYyUWFGYUp3VlQrbTBOMTZaWVJ2S0pleXFYdzc3UnZ0VXBWSzc5?=
+ =?utf-8?B?YUZoQ29yNkhVUm5CeFhITmtML3BaTkxralFRMVB4N2tVWm14TnNkZXA0MVFW?=
+ =?utf-8?B?NDhnQ3RTSjc3c3pqRGplVmJXSk5pdFRLNWt0cTErQ2VmNEFkTWlvdVB2N2tj?=
+ =?utf-8?B?aHpkVXFIMlZyRDltUEdaNWtzY2xGb1BVeDNZeDE4anM5ZTZKTHNUNTdtS2Iw?=
+ =?utf-8?B?MkNTZFFvTGVLUW9kTG8wdGFLVVNTeVluSitYL205V09Ld3U4WnVhY2ljNWhj?=
+ =?utf-8?B?VFR0blFkcWtrYVJwYXU2T2F1UkhvSDJrODUzL0NLSDJMYS8vZEhQV2xUOUVF?=
+ =?utf-8?B?eDRKRFJpTVFwMWVVbnp0N0doOXBnUTR5aWJ2SnVORWM4QmVXR3o0aXJQa1FJ?=
+ =?utf-8?B?b1pqMXc0NW1XRFM4UmhqaDF6aGYyVmxwSmNvT0Y4a2xUbGprZW1JTWlYc1hK?=
+ =?utf-8?B?aFNyTm5nVGhxNE45UXFRTkd5TVhBcTUybGtPMXRWTExONWtQRy9rWThlbkxj?=
+ =?utf-8?B?eG1ZUG91NUsvZE1ZYVlUR1dyOEVDTUlmOGZHTWJIdUMvcWFJTERaZGFVUjBz?=
+ =?utf-8?B?QUozRVpqakFDb2JMYmNUa0VwMStRNFhheDd6bllmdmxhbk1LcEN2VWZPcDh2?=
+ =?utf-8?B?VllEODAwQVc1VzE5eStWT0VrVUhiOG5kOVpzb0lxeUtSZmdvRTlhZzJhVmZQ?=
+ =?utf-8?B?S21NTUx0enJKNXcyTE5KQ2VCR3JNYUZCa28zbjdFVlFHM2Y5UTZWNkd5TDJr?=
+ =?utf-8?B?aUJwMWdEbHNtNmdHdS8rR1BGd2Q4b0hjckl0UE1qTTZOWUdrT1o2anY4WEdQ?=
+ =?utf-8?B?MTF1OG82WTNtZENIeVJBWnFaY1NRRUVVd2owQnBDNnFNYjNmblpFNzg3L2U3?=
+ =?utf-8?B?WTNWK1lVZURtNVFGOGtIYXBiSFYwN0FwYXFWbmNCcXE1UXFrRnBRTitrbWdu?=
+ =?utf-8?B?Rmh5NkhaVWtrclpVZ2xUQVVpemMwck5ZWDYveVZXNTV2MUhHVk5vbGkvcmZ4?=
+ =?utf-8?B?SFVoVnJVcStpaXFXMjRud056NXMwOTQ0Z2tXN3YxMVNZamxRQndGYmNMV3Jk?=
+ =?utf-8?B?K3Jxam5VaGd3cDZWbmhqcldDeUpFdXMzd1dCU2VwZm9oRXd1OE51UHN1TWdz?=
+ =?utf-8?B?Rmdqc1NzeEVCNVhibXJDTlRNT1lRMGlOU0hQN3h1S3hzTEQ1Y2Jra2RzbEFl?=
+ =?utf-8?B?SlZGWFgzejhpMlFFNUFuOWpHTTM4Vm43YVhFUlhBRncyUG1tMmNHTU9BNW14?=
+ =?utf-8?B?NThHMG9vRGRFL0RhR09WVklZbmgyUzgyVGttc2wxeENPOGZRTzhNck5zRU5o?=
+ =?utf-8?B?WUxLMTRlUFJQdXlGaXM1ZWFOUmpSdGlEV1dON0RTOVl0anMwLzhOd1EyMENP?=
+ =?utf-8?B?eEtjemR2SHIvSkRCMWgwWlMzUjc0MDdKTGtjcTVZNzlBNGo0UFphb0MrZUVX?=
+ =?utf-8?Q?Gww1TNgyLn3UWdHNTyP5MdA=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30929798-2986-494f-3c58-08dbd576832d
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 16:21:58.7811
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pgQrPyE/6JQy2uybdRU/Bc8nglSxxIl/U1amveWUujE65j1sDNAn1Up00Jnl714vYEeNv4Kd1poweivWoBsib+aBMLClqsDq2+nUE7iuxjU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR08MB5376
 
-The DT binding for the reg-mux compatible states it can be used when the
-"parent device of mux controller is not syscon device". It also allows
-for a reg property. When the reg property is provided, use that to
-identify the address space for this mux. If not provided fallback to
-using the parent device as a regmap provider.
+This series adds support for the high-impedance (hi-Z) output mode. The
+current implementation only allows two output modes: output clock
+(default) and interrupt. In cases where the output is only used in
+low-power modes as a clock source for other devices (PMU, PMIC, etc)
+or the output is not needed at all, the hi-Z can be used to reduce power
+consumption.
 
-While here use dev_err_probe() in the error path to prevent printing
-a message on probe defer which now can happen in extra ways.
+To model the hi-Z output, a new property "hiz-output" has been added and
+the following cases have been taken into account:
+- hiz-output = enabled: the output is not available in the design and
+  must be kept in high-impedance mode.
+- hiz-output = sleep: the output is only required in sleep (low-power)
+  mode.
+- hiz-output = disabled (default): for the sake of completion, this mode
+  ignores the hiz-output altogether and acts as if the property was not
+  defined.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Nishanth Menon <nm@ti.com>
-Acked-by: Peter Rosin <peda@axentia.se>
+Any other value will trigger a dev_warn and the default value (disabled)
+will be used as it is done with other non-mandatory properties.
+
+Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
 ---
+Javier Carrasco (2):
+      rtc: pcf85363: add support for high-impedance output
+      dt-bindings: rtc: nxp,pcf8563: add hiz-output property
 
-Changes from v4:
- - Shorten comment and code lines
- - Remove extra ret assignment
+ .../devicetree/bindings/rtc/nxp,pcf85363.yaml      | 14 +++++
+ drivers/rtc/rtc-pcf85363.c                         | 62 +++++++++++++++++++++-
+ 2 files changed, 75 insertions(+), 1 deletion(-)
+---
+base-commit: cfb67623ce281e045ec11e3eddb1b68b879b53a1
+change-id: 20231024-topic-pcf85363_hiz_output-d9c3c1f5ae59
 
-Changes from v3:
- - Check for probe defer
-
-Changes from v2:
- - Rebased on v6.6-rc1
-
-Changes from v1:
- - Flip logic as suggested in v1[0]
-
-[0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
-
- drivers/mux/mmio.c | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
-index fd1d121a584ba..30a952c34365f 100644
---- a/drivers/mux/mmio.c
-+++ b/drivers/mux/mmio.c
-@@ -44,15 +44,20 @@ static int mux_mmio_probe(struct platform_device *pdev)
- 	int ret;
- 	int i;
- 
--	if (of_device_is_compatible(np, "mmio-mux"))
-+	if (of_device_is_compatible(np, "mmio-mux")) {
- 		regmap = syscon_node_to_regmap(np->parent);
--	else
--		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
--	if (IS_ERR(regmap)) {
--		ret = PTR_ERR(regmap);
--		dev_err(dev, "failed to get regmap: %d\n", ret);
--		return ret;
-+	} else {
-+		regmap = device_node_to_regmap(np);
-+		/* Fallback to checking the parent node on "real" errors. */
-+		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER)) {
-+			regmap = dev_get_regmap(dev->parent, NULL);
-+			if (!regmap)
-+				regmap = ERR_PTR(-ENODEV);
-+		}
- 	}
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap),
-+				     "failed to get regmap\n");
- 
- 	ret = of_property_count_u32_elems(np, "mux-reg-masks");
- 	if (ret == 0 || ret % 2)
+Best regards,
 -- 
-2.39.2
+Javier Carrasco <javier.carrasco@wolfvision.net>
 
 
