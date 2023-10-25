@@ -1,112 +1,108 @@
-Return-Path: <devicetree+bounces-11882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DC57D6E7C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:12:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F12A87D6E8F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:19:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E288281812
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:12:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80C90B20F11
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F390928E26;
-	Wed, 25 Oct 2023 14:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3760428E2B;
+	Wed, 25 Oct 2023 14:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fa2CjzMm"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="xqXXrruY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F292773D
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:12:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B295C433C7;
-	Wed, 25 Oct 2023 14:12:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698243146;
-	bh=q8F2mFd6CImLzNK99x7rHDG+F1bVa1gJCgNVAIBLG/4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fa2CjzMmnPB1Vv5v/Pj+OQfsAWkGvN3dFH2tb5BEpfxZMBT11FWppbZPhXnuKKCAo
-	 rEwTYJmjaj7cwFStsB0PBCQZq+Z0hV25Kz4qfJ9reXiVVSsJ0QapbtZ5PqK+1KzlT6
-	 VkPg0YH1xriRN7GlydwW2Gv9QeuFIRKS7MM8cbWfz8z79Z9M05A+AyiFLt2SF6Wy94
-	 ccqqFHYWiDwlX4OKAccp5W/zFZ3NKn1xh7BCXkrfw1KE8E3i64YortLQocPE0s6kPI
-	 8bE8GX0n+FJuim5VtjYXs25em/+oaM4oL2gAsQYsaPtanJ5Qk0sB1pjQD0JWas6ru7
-	 gLwz9f17C1NVA==
-Date: Wed, 25 Oct 2023 15:12:20 +0100
-From: Conor Dooley <conor@kernel.org>
-To: shravan chippa <shravan.chippa@microchip.com>
-Cc: green.wan@sifive.com, vkoul@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, conor+dt@kernel.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	nagasuresh.relli@microchip.com, praveen.kumar@microchip.com
-Subject: Re: [PATCH v3 4/4] riscv: dts: microchip: add specific compatible
- for mpfs' pdma
-Message-ID: <20231025-pang-unstuffed-4d8bf48baf21@spud>
-References: <20231025102251.3369472-1-shravan.chippa@microchip.com>
- <20231025102251.3369472-5-shravan.chippa@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6B918B08
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:19:33 +0000 (UTC)
+X-Greylist: delayed 344 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 25 Oct 2023 07:19:31 PDT
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF370A3
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:19:31 -0700 (PDT)
+Date: Wed, 25 Oct 2023 16:13:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1698243224;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RuY2yDHrXKAvuateilio+Ihipw+6+Lq+kqIuX9eZkgc=;
+	b=xqXXrruYY3CMsVHk0QotQ+7a99KNMvVrS2E6GyvvHA86+kfOC8D2FFhXQzg8ZnU5gwofKY
+	Wg/wyazmFAnQ7L78sYju1lHjzVVZB+oswcb0jXNAM2xrU1Vi65BpohWpNXxnR/t+4tNjHD
+	EhvN6StwHVGrQkK0AeckCMZ+nZKBmTo=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Richard Leitner <richard.leitner@linux.dev>
+To: Conor Dooley <conor@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: hwmon: ti,ina238: add ti,ina237
+Message-ID: <pwfj54krrau3rihjb73dd4p3yizzjyuv4gwxky776m2goerjw6@6rfxo6kzjhjs>
+References: <20231025-ina237-v1-0-a0196119720c@linux.dev>
+ <20231025-ina237-v1-4-a0196119720c@linux.dev>
+ <20231025-unclip-ion-826a58681a12@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qwZ+jMYzinWm1SqJ"
-Content-Disposition: inline
-In-Reply-To: <20231025102251.3369472-5-shravan.chippa@microchip.com>
-
-
---qwZ+jMYzinWm1SqJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231025-unclip-ion-826a58681a12@spud>
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Oct 25, 2023 at 03:52:51PM +0530, shravan chippa wrote:
-> From: Shravan Chippa <shravan.chippa@microchip.com>
->=20
-> Add specific compatible for PolarFire SoC for The SiFive PDMA driver
->=20
+On Wed, Oct 25, 2023 at 02:58:44PM +0100, Conor Dooley wrote:
+> On Wed, Oct 25, 2023 at 10:34:14AM +0000, Richard Leitner wrote:
+> > Add ti,ina237 binding to ti,ina238 as they share the same driver.
+> > 
+> > Signed-off-by: Richard Leitner <richard.leitner@linux.dev>
+> > ---
+> >  Documentation/devicetree/bindings/hwmon/ti,ina238.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina238.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina238.yaml
+> > index aba89e5f34b3..17408076696c 100644
+> > --- a/Documentation/devicetree/bindings/hwmon/ti,ina238.yaml
+> > +++ b/Documentation/devicetree/bindings/hwmon/ti,ina238.yaml
+> > @@ -22,6 +22,7 @@ description: |
+> >  properties:
+> >    compatible:
+> >      enum:
+> > +      - ti,ina237
+> 
+> The driver patch you have done implies no difference between the
+> programming model for both of these devices. It'd seem to make more sense
+> for the ina237 to fall back to the ina238, thereby requiring no change in
+> the driver to support it.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks for the quick feedback, Conor.
 
-Thanks,
-Conor.
+I first thought of just mentioning the ina237 in the documentation as
+"compatible" to the ina238. But IMHO it is better understandable if it's
+listed as compatible.
 
-> Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
-> ---
->  arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dt=
-s/microchip/mpfs.dtsi
-> index 104504352e99..f43486e9a090 100644
-> --- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-> +++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-> @@ -221,7 +221,7 @@ plic: interrupt-controller@c000000 {
->  		};
-> =20
->  		pdma: dma-controller@3000000 {
-> -			compatible =3D "sifive,fu540-c000-pdma", "sifive,pdma0";
-> +			compatible =3D "microchip,mpfs-pdma", "sifive,pdma0";
->  			reg =3D <0x0 0x3000000 0x0 0x8000>;
->  			interrupt-parent =3D <&plic>;
->  			interrupts =3D <5 6>, <7 8>, <9 10>, <11 12>;
-> --=20
-> 2.34.1
->=20
+And I would strongly encourage mentioning it somewhere (documentation or
+compatible). So other people using the ina237 are able to find it and
+don't have to compare the datasheets by themselves to find the right
+driver.
 
---qwZ+jMYzinWm1SqJ
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Cheers,
+> Conor.
+> 
+> >        - ti,ina238
+> >  
+> >    reg:
+> > 
+> > -- 
+> > 2.40.1
+> > 
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTkiRAAKCRB4tDGHoIJi
-0sEJAQCHzvvzlWORtnYlb+uw/EMYHDQckws0ffM81OhwMCFujAD/bvpu5fSldrSt
-ZlX/mfkXv0hoIFwpIi4+lGF8Y7p/Jgw=
-=ip81
------END PGP SIGNATURE-----
-
---qwZ+jMYzinWm1SqJ--
 
