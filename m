@@ -1,84 +1,147 @@
-Return-Path: <devicetree+bounces-12008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C51F07D76E9
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 23:40:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522C87D76FC
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 23:43:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E77D281CF3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 21:40:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5F32B21030
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 21:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59536341BF;
-	Wed, 25 Oct 2023 21:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5287347D8;
+	Wed, 25 Oct 2023 21:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OeJhxYPb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TcKWV/16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319A0848B
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 21:40:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F36DC433C7;
-	Wed, 25 Oct 2023 21:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698270032;
-	bh=ObgKYH0fS2mj/mvGmpx0d95XPn9BwP7C8YrKDWzCovk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=OeJhxYPboBK9ff7+ZjAslTD2fIqdeh0FrTxfSIPime7vzUJU/fooEUtZSFrjba7m1
-	 2kV+6SB9OXWRiwWJId/Ufw8gFs7dSeo4T9a8IoB/FKWTv4f7r8V3Pf/q+ggoD6l7xG
-	 /lDRH8qUW7a0/9ALY0UYkKK/mCqCrgO5wfYuETCef92QYbtd9pSjUWOYDUEAncfSrd
-	 yraO/WFH1lJC1TYbeasVWZrfjTKy5bYbOHoc1NwRNwnRjgbftW9WB9iUwDX9/0ZEsh
-	 4fb+bFJrq4WNZZmiD8meyc90OC1TPxTaxt355RZH+l7+sZnzGaNiVXkNR8ZpWViiPT
-	 IFFTM3zuxWGlA==
-Message-ID: <dc96dc36c6df1d3bfa3006298e353f39.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E381341B5;
+	Wed, 25 Oct 2023 21:43:23 +0000 (UTC)
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02072132;
+	Wed, 25 Oct 2023 14:43:22 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1cbf47fa563so1353155ad.2;
+        Wed, 25 Oct 2023 14:43:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698270201; x=1698875001; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5pKgvc0ZdpThrYsI9owOdyfg7XAKBM9BBvoNuBA2SpU=;
+        b=TcKWV/16SXF17jjO6d+gEk6uKNc/kq+9eQpMMLw46Gkm10JEpa6MWqiQ5mR/S/A3SQ
+         YTDTzIjrU4TFqsRGolojh1qik8rWlByZ51q111jUiDH3Shq56lgvATbYqYWLKMn1naKk
+         3KhrH4KI4hoxfrw9/t8yo8O1pbuhbVzVYq0v2lxQNWp3CeBHjLnBW6pdzQwJP1wlU5nY
+         CqbCcn6zsSCErcgktloVFsop2vefu4EEZyNaikT/dRI9iIFlDDrQsVKZwIj2XzrfcdDB
+         tsE5ib98VDAnBYBpDS/hUs9V8TEP4oLsGgdlfeYQVNkx9rGf94qFCcIWurhQ8qd6QNh7
+         K48A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698270201; x=1698875001;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5pKgvc0ZdpThrYsI9owOdyfg7XAKBM9BBvoNuBA2SpU=;
+        b=LyF6WnwErbROOKZbzfUqkyJCcnzx6x0iVDn7V+oMpBuGawfV0uKk109dGZQ1vjo0Dk
+         BlkbrE6ARBlQstlPN1NpNWAx4UHAxklNSXfXBQYXQhgkiaLf9i2+LugoPb5CFBT3nGy5
+         LNMIdVlrUiE8DTTGriWdCMecNmzzNppkl3bPze5JbBgjloGeClYK3PL+S8VsJWtGGCYe
+         7YfgvVfkcUvDX+/Fcn5U83ssPuh2NNNZblhAF1W6oRBYa8C7Gi4KvOeaXPFFGsXfUiqJ
+         pGKoVuS69pj44TjbD4GO3TOlCNjcpDvoVmVWWTTm4jOTP4yfsp0WwWeRCDiH/Rzp3ox6
+         G61w==
+X-Gm-Message-State: AOJu0YxcooMg/BIk3ox8WvqFO39H5f9Sxh9fYMU1GyO2hzPblAfCOENH
+	TWQyyToie1HI08xvOHTn0e4=
+X-Google-Smtp-Source: AGHT+IECzA5Qaal68VFpZkxbxUHSJ5OGnDeFpmeFEnzT+dlBRb9pAUcCONJWtr+3AlOwkp8EKbDr6g==
+X-Received: by 2002:a17:902:ecc2:b0:1c9:dee4:87ec with SMTP id a2-20020a170902ecc200b001c9dee487ecmr17216487plh.39.1698270201197;
+        Wed, 25 Oct 2023 14:43:21 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h1-20020a170902704100b001c60a548331sm9534098plt.304.2023.10.25.14.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Oct 2023 14:43:20 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 25 Oct 2023 14:43:19 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Daniel Matyas <daniel.matyas@analog.com>
+Cc: no@web.codeaurora.org, To-header@web.codeaurora.org,
+	on@web.codeaurora.org, "input <"@web.codeaurora.org;,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] hwmon: max31827: Make code cleaner
+Message-ID: <5376244a-c6ec-466f-a42d-97d2d52af2cb@roeck-us.net>
+References: <20230919093456.10592-1-daniel.matyas@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231025194849.4esjw4w2trgalp55@mercury.elektranox.org>
-References: <20231018070144.8512-1-zhangqing@rock-chips.com> <b0af9e04bafb07e8a73e8f242a4ff556.sboyd@kernel.org> <20231025194849.4esjw4w2trgalp55@mercury.elektranox.org>
-Subject: Re: [PATCH v4 0/4] rockchip: add GATE_LINK
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: conor+dt@kernel.org, heiko@sntech.de, kever.yang@rock-chips.com, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, robh+dt@kernel.org, zhangqing@rock-chips.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, huangtao@rock-chips.com, andy.yan@rock-chips.com
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Wed, 25 Oct 2023 14:40:30 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230919093456.10592-1-daniel.matyas@analog.com>
 
-Quoting Sebastian Reichel (2023-10-25 12:48:49)
-> Hello Stephen,
->=20
-> On Mon, Oct 23, 2023 at 06:47:17PM -0700, Stephen Boyd wrote:
-> > Quoting Elaine Zhang (2023-10-18 00:01:40)
-> > > Recent Rockchip SoCs have a new hardware block called Native Interface
-> > > Unit (NIU), which gates clocks to devices behind them. These effectiv=
-ely
-> > > need two parent clocks.
-> > > Use GATE_LINK to handle this.
-> >=20
-> > Why can't pm clks be used here? The qcom clk driver has been doing that
-> > for some time now.=20
-> >=20
-> >  $ git grep pm_clk_add -- drivers/clk/qcom/
->=20
-> Maybe I'm mistaken, but as far as I can tell this is adding the
-> dependency on controller level and only works because Qualcomm
-> has multiple separate clock controllers. In the Rockchip design
-> there is only one platform device.
->=20
-> Note, that the original downstream code from Rockchip actually used
-> pm_clk infrastructure by moving these clocks to separate platform
-> devices. I changed this when upstreaming the code, since that leaks
-> into DT and from DT point of view there should be only one clock
-> controller.
->=20
+On Tue, Sep 19, 2023 at 12:34:49PM +0300, Daniel Matyas wrote:
+> Used enums and while loops to replace switch for selecting and getting
+> update interval from conversion rate bits.
+> 
+> Divided the write_alarm_val function into 2 functions. The new function
+> is more generic: it can be used not only for alarm writes, but for any
+> kind of writes which require the device to be in shutdown mode.
+> 
+> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+> ---
 
-Why can't the rockchip driver bind to a single device node and make
-sub-devices for each clk domain and register clks for those? Maybe it
-can use the auxiliary driver infrastructure to do that?
+Applied, with one change.
+
+> @@ -333,39 +330,27 @@ static int max31827_write(struct device *dev, enum hwmon_sensor_types type,
+>  			if (!st->enable)
+>  				return -EINVAL;
+>  
+> -			switch (val) {
+> -			case 125:
+> -				val = MAX31827_CNV_8_HZ;
+> -				break;
+> -			case 250:
+> -				val = MAX31827_CNV_4_HZ;
+> -				break;
+> -			case 1000:
+> -				val = MAX31827_CNV_1_HZ;
+> -				break;
+> -			case 4000:
+> -				val = MAX31827_CNV_1_DIV_4_HZ;
+> -				break;
+> -			case 16000:
+> -				val = MAX31827_CNV_1_DIV_16_HZ;
+> -				break;
+> -			case 32000:
+> -				val = MAX31827_CNV_1_DIV_32_HZ;
+> -				break;
+> -			case 64000:
+> -				val = MAX31827_CNV_1_DIV_64_HZ;
+> -				break;
+> -			default:
+> -				return -EINVAL;
+> -			}
+> +			/*
+> +			 * Convert the desired conversion rate into register
+> +			 * bits. res is already initialized with 1.
+> +			 *
+> +			 * This was inspired by lm73 driver.
+> +			 */
+> +			while (res < ARRAY_SIZE(max31827_conversions) &&
+> +			       val < max31827_conversions[res])
+> +				res++;
+> +
+> +			if (res == ARRAY_SIZE(max31827_conversions) ||
+> +			    val != max31827_conversions[res])
+> +				return -EOPNOTSUPP;
+
+Changing the return value from -EINVAL to -EOPNOTSUPP was inappropriate
+here. This needs to return -EINVAL because it is the result of an
+invalid value provided by userspace, not the result of an unsupported
+operation.
+
+Guenter
 
