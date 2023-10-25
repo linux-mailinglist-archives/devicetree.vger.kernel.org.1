@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-11885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753ED7D6E8D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:18:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D356E7D6E92
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B90281CC0
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:18:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FD6EB20EB4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 14:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC11128E35;
-	Wed, 25 Oct 2023 14:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC2628E35;
+	Wed, 25 Oct 2023 14:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="POZOXhi4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WemKRxkb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBDB18B08
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:18:38 +0000 (UTC)
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B773218B
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:18:36 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-313e742a787so580432f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 07:18:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B98B18B08
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 14:20:14 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97BB399;
+	Wed, 25 Oct 2023 07:20:12 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507cee17b00so8441948e87.2;
+        Wed, 25 Oct 2023 07:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698243515; x=1698848315; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1698243611; x=1698848411; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mz+BlFZhw2f57rcawWivLZhBkzrLw1iX4+S/xW1xXjk=;
-        b=POZOXhi4y6RdTllGjjnULXNpzQqQ/wAj9KapdA168qNAaVSEQ2feg/ec6//QOOpw3L
-         SEQ3FqJnQi1l2rJ1l7bDqIqoz8bAVRMywi5nIk1nimdNlokbePRWekAfzopzTaHh5esI
-         l7XwnzhiVOgIh4lsWL0g3aRqoanebejjGlM1MUCSEhVvYIio64zxTQG7tutd8/g96GcN
-         wbfvue01wcxPFRoepcIiJTgpGNarxptQJlvo3jgfABZVteiuIPfDQ/JvKQADhCgQpMPb
-         e/Ep0CKXnpL8ajn1jOSDZMPT4yn6ceTwadn/CisGXwwRDadUtu6UIyuUbkNT6p1MK5JC
-         I4hg==
+        bh=KXdFX0UY5tniJLRDcl1ufSs5c/hl+EfLWW5bDdsq8SA=;
+        b=WemKRxkbCgLhSmp6vTOqZfbOnC1Ume8v/AP9mdV6ky5315lfssgVvsk9/O4UA3dtf5
+         zTIcCvlzFA8+wiB0OzCbzG3bvIkt7tVI0+jamk5iXO30Koup6w2ug0aBcV+66MFmiCpp
+         lny0FiAseXqcw79Na2A8X8QGqr+33mt15gBcajIn+0vcFU392TlGR/Zm7NJWXuaXQSS1
+         DWcCVyVka/K57VbziPgYxSuLX9zYNt14X3IXKFGp2pNlF7ScGh3ze1i+xySyX6Qk6PtK
+         2OSb+gH8AeFs53B99+2bdBTekfB05AEBWECnrKzVHQ1RXbR/Qz+mxSeF0Oq6udHzxZJu
+         mtAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698243515; x=1698848315;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1698243611; x=1698848411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mz+BlFZhw2f57rcawWivLZhBkzrLw1iX4+S/xW1xXjk=;
-        b=u2rOGv/TNROe96rtb4+I0sBUKVPTNCW5ukM//unbWDoa4U5PnRS6f/SxM0FynBVtYo
-         eK5+BlZMD+bYD2Q4WYBRw1wsPCN+niNAYgXIrRoD+8tsBWbf50UT9TzOntu5mRVAm+Ia
-         pbqYgdtsOxtZHyRuKLDWEaRU0S+giaoPzjlilLvj13lina0GOobKrRxgg26IlP/BdZfT
-         wnjUIeblgS3CGWLYBErJLHtUExeF5tpW0I0O9SZ5VKRUKanYMADzhSFuBXJ0CIEPY+kx
-         gUtjztFdIf5ls/FB/GnKXbkRw+vO6hr4xGUmjkqlJXEJNG+qxc+fr1eO1meTo6JM19i/
-         j6dQ==
-X-Gm-Message-State: AOJu0YxZxYkdBe803ncfOXSTja41+iT1kUMZF/1fixFaLK6OP8U1xAZR
-	NLesNip2FlAG+u96JF82y/DGgA==
-X-Google-Smtp-Source: AGHT+IFnDSrUcr1TfWB+YvnQwidLEvOgTF75iRZSAjlPtOeYhGGhAslj7p6tI+DD6Ylll+dtExHbDw==
-X-Received: by 2002:adf:f283:0:b0:313:f75b:c552 with SMTP id k3-20020adff283000000b00313f75bc552mr14072623wro.15.1698243515063;
-        Wed, 25 Oct 2023 07:18:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id e16-20020adfe7d0000000b0032db8f7f378sm12230946wrn.71.2023.10.25.07.18.32
+        bh=KXdFX0UY5tniJLRDcl1ufSs5c/hl+EfLWW5bDdsq8SA=;
+        b=R3ZlUxyD2zh+JpYOB7HMCrAqMHN75z5QCmTCnonkYz9z1Ca702MrExC77psAwRyu6a
+         F98hLgA6uTmvYKIAtmeKyvJ1WX2kWgppmzlHMoP3Emqv1neim51vN0FAMqDU9KYfRNV6
+         5dIUv4BMq+94pGoQxYfdl+hedgEGgGkAxOATOuDpyV6zrtlepiL3vKWL80DMc5l+FlrG
+         W1+Q0qVBThey78b6Vkt+Iu5LusemWg3/YyCagttIwWnCQV2nb2U0mbNAQURVrobp7vtD
+         poitG53P4qaJCp5MlKjZPDZj6FgYHJDPCE7ZyRa+QeoF/EoDk0BcHT4+Ka+EibCWOtds
+         Rg2w==
+X-Gm-Message-State: AOJu0Yy52ICEV5JT68A6Ug/MMGDEVLsQaDM5s8NKGr9mOp7z3OkX+oML
+	OE1CjydG7GqeUiHtNb/QyKc=
+X-Google-Smtp-Source: AGHT+IHCJiQ2e6pDH3+U3/wVqmKSJcAM0uK7m8zA5flWq6iZTKh/qG9TOso4O1h1Ce74ljz0EvAsIw==
+X-Received: by 2002:ac2:5550:0:b0:503:258f:fd1b with SMTP id l16-20020ac25550000000b00503258ffd1bmr11409838lfk.18.1698243610440;
+        Wed, 25 Oct 2023 07:20:10 -0700 (PDT)
+Received: from [192.168.76.157] (85-76-164-65-nat.elisa-mobile.fi. [85.76.164.65])
+        by smtp.gmail.com with ESMTPSA id x13-20020ac25dcd000000b005041ce44bbdsm2568600lfq.5.2023.10.25.07.20.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 07:18:34 -0700 (PDT)
-Message-ID: <8cd5c34e-f733-445d-bc1e-d4dea1bcb47d@linaro.org>
-Date: Wed, 25 Oct 2023 16:18:31 +0200
+        Wed, 25 Oct 2023 07:20:09 -0700 (PDT)
+Message-ID: <a0db9dbb-df0e-406a-9a88-2a6968ec1469@gmail.com>
+Date: Wed, 25 Oct 2023 17:21:12 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,89 +67,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: hwmon: add ti,ina238
+Subject: Re: [PATCH 1/3] ASoC: ti: omap-mcbsp: Ignore errors for getting
+ fck_src
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Tony Lindgren <tony@atomide.com>, bcousson@baylibre.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+ jarkko.nikula@bitmer.com, dmitry.torokhov@gmail.com,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20230705190324.355282-1-andreas@kemnade.info>
+ <20230705190324.355282-2-andreas@kemnade.info>
+ <7d58d52d-2087-45af-b29e-2515b63ead13@gmail.com>
+ <20230920063353.GQ5285@atomide.com>
+ <dac768d2-2c66-4d6b-b3d3-d1ef69103c76@gmail.com>
+ <20230921121626.GT5285@atomide.com> <20231006102348.GK34982@atomide.com>
+ <20231006213003.0fbac87a@aktux> <20231007062518.GM34982@atomide.com>
+ <20231007091156.588d7ba1@aktux>
+ <db511d14-f2fe-4b4e-bd13-223e7a33f933@gmail.com>
+ <20231013132503.25d63933@aktux>
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>,
- Richard Leitner <richard.leitner@linux.dev>
-Cc: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231025-ina237-v1-0-a0196119720c@linux.dev>
- <20231025-ina237-v1-2-a0196119720c@linux.dev>
- <20231025-hut-omnivore-f4b44a7b928d@spud>
- <qoxgyho5twbm4jopfveaf5ee3z4tkyb2z5f2vsyrpglffegmxf@v2z5ckcaa5jc>
- <20231025-eatery-backup-ad85c043cb01@spud>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-eatery-backup-ad85c043cb01@spud>
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20231013132503.25d63933@aktux>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/10/2023 16:11, Conor Dooley wrote:
-> On Wed, Oct 25, 2023 at 04:07:31PM +0200, Richard Leitner wrote:
->> On Wed, Oct 25, 2023 at 03:00:01PM +0100, Conor Dooley wrote:
->>> On Wed, Oct 25, 2023 at 10:34:12AM +0000, Richard Leitner wrote:
->>>> The ina238 driver is available since 2021 but lacks a dt-bindings file.
->>>> Therefore add the missing file now.
->>>
->>> Seemingly it is documented in Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+
+On 13/10/2023 14:25, Andreas Kemnade wrote:
+>> I guess it is because of the pm_runtime_put_sync() in the
+>> omap2_mcbsp_set_clks_src() around the fclk re-parenting.
+>> That is a bit dubious thing for sure. We need to disable the device to
+>> be able to re-parent the fclk but if we disable the device it is going
+>> to be powered down, right? I think we have appropriate context handling,
+>> so it might work, but it is certainly not a rock solid code... If you
+>> have a stream running already, you don't really want to kill the McBSP.
 >>
->> Thanks for the feedback. True. So is it fine if it's left there or
->> should it be removed from ti,ina2xxx.yml as this is a separate driver
->> with different properties?
+> Ok, so if the device is powered of at omap2_mcbsp_set_clks_src() 
+> we get the usage count underflow, and the counter is incremented
+> immediately again in the runtime put function. So things get out of balance...
+> I'll check Tony's fix here.
 > 
-> Merging them would seem like the most straightforward thing to do, no?
+>> The problem is that this mux is outside of the McBSP IP, so we need a
+>> system level (iow, clk API) way to change it runtime.
+>>
+>> What is the machine driver where this happens? If you set the sysclk in
+>> hw_params of the machine driver, it will be OK, but if you do that in
+>> probe time then it is likely going to fail as you experienced
+>>
+> As you see in the other patches of this series,
+> it is a simple-audio-card with a tlv320aic3x codec
+> in combination with the mcbsp.
 
-Sorry folks, I don't quite get what do you want to merge or move and
-why. Drivers are not related to bindings. The point is the compatible is
-already documented, so is anything wrong with existing documentation?
+To be honest I would be happier if we can just remove the whole
+omap2_mcbsp_set_clks_src() and leave the CLKS source selection outside
+of the driver.
+But omap3pandora is selecting external clock as parent
+(OMAP_MCBSP_SYSCLK_CLKS_EXT - in hw_params, so it actually works) and I
+don't know what happens if this functionality is removed. Likely going
+to break Pandora.
+That is fixable, but what worries me is this comment and code:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/sound/soc/ti/omap-mcbsp.c#n388
 
-Best regards,
-Krzysztof
+Which is added by me a long time ago:
+e386615c01d37 ("ASoC: omap-mcbsp: When closing the port select PRCM
+source for CLKS signal")
 
+I'm not sure if this is possible to do in any other way.
+
+-- 
+Péter
 
