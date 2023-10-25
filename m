@@ -1,166 +1,173 @@
-Return-Path: <devicetree+bounces-11522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81FC47D6104
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:08:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3713B7D6126
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:30:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE6411C20D94
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:08:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEC5EB2101F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E34EDDC8;
-	Wed, 25 Oct 2023 05:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB2AF4E5;
+	Wed, 25 Oct 2023 05:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="aHpIMNAO"
+	dkim=pass (1024-bit key) header.d=openmail.cc header.i=@openmail.cc header.b="Cj0wJoiK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2560613B
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 05:08:33 +0000 (UTC)
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA9512F
-	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:08:31 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-578b407045bso3977725a12.0
-        for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:08:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698210511; x=1698815311; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oFvh81m/EkJYzWlFXi+WuBbUWclMpLB5KNSNRJow4Gk=;
-        b=aHpIMNAOAlB2/YqNG5UTqHmTouDdjZ6KZxQ2Gmp2DLy+T55QIw1Qafmq37UkmmeNJY
-         ik8ercMqf3UGkb3sybVxvkFRlTdCshoHlb2h2uQ2W9UvQIpDKfseXQEMy0rmCG0sowqE
-         JvqZ41cZ/pSo0ebQPPPrd6ueWNVvnTJX0RAd0k94p07VX0UuAevvvK+zwTfqYUdAjffv
-         ms/673vVXUmt0s6PxY+tSdnon5wCfnGZw46mYAXXFpdlKWtzmyfS2SW7homhYVb0Xsh0
-         210a0ZMP/W0QAPocwTUBs9+Q/HEgXXJK9MABcaENF59V/0TUbJUZ1Vkqi7Mxnq4eJU8s
-         GFOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698210511; x=1698815311;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oFvh81m/EkJYzWlFXi+WuBbUWclMpLB5KNSNRJow4Gk=;
-        b=Z0bTYIKlpfmEzKjRNht5HZ0EnaF5hK6s1ANdRUGSIGSY0E1NOg2tuVav1Qlj3iA8jI
-         NOyr6nWdbS0rTanmzXzhmNHcpD8ZN3UQtDZglQOdj06wUjLg8Y0+7q+emPhC+VFqfSeW
-         nFbibnccuaUqZNfkUyhake2nfjsr/RswiFoNTUtFvqYxEVK1q3RQqUCrK82sZgxafJDF
-         ZUMeD3syvj/+jq8Dj9jw+NkfsgnCLXaR/EX+OkJpnX0QNWezdeCakK8OSPMNPs+9rby5
-         tTw0uoKG9VAy/8O6oi4+tyHj5WvVQIsHjI0DyET2byxFqFu3V0P72sqmul/pbFYiiy/Y
-         AD5w==
-X-Gm-Message-State: AOJu0Yx9Q6hlwpF8WuUYg5rodz4U4xP1hyVvRH71/BDjkflbhAhlHFZB
-	Xf9WZ6rgMAJcgUor+Q5MJZOV94VqEeRVo4NAKfVqog==
-X-Google-Smtp-Source: AGHT+IHcaVxUx65KUpdn3fS8Uk95UJXFTtrVhI8I3RT798xBXThkTN9cWmveeVlGayof6ryYYLraHDlLGhg4cwxsmyg=
-X-Received: by 2002:a17:90b:4d12:b0:279:2dac:80b3 with SMTP id
- mw18-20020a17090b4d1200b002792dac80b3mr13071676pjb.44.1698210510922; Tue, 24
- Oct 2023 22:08:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBAA2D636
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 05:29:58 +0000 (UTC)
+Received: from smtp161.vfemail.net (smtp161.vfemail.net [146.59.185.161])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D01A128
+	for <devicetree@vger.kernel.org>; Tue, 24 Oct 2023 22:29:57 -0700 (PDT)
+Received: (qmail 19213 invoked from network); 25 Oct 2023 05:29:55 +0000
+Received: from localhost (HELO nl101-3.vfemail.net) ()
+  by smtpout.vfemail.net with ESMTPS (ECDHE-RSA-AES256-GCM-SHA384 encrypted); 25 Oct 2023 05:29:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=openmail.cc; h=from:to:cc
+	:subject:date:message-id:mime-version:content-transfer-encoding;
+	 s=2018; bh=z3I7BxJWkJGWMcauhe7x+lldOe3CDXrLlKAqfautbjk=; b=Cj0w
+	JoiKI2SfVe60Psj61dy+q52zcpnQMkdZP67tcjvidMl6y4aVKYAxOW9ExxIhthqS
+	15sVmRPwMBR84z2XcNUVvQqdEyyp9sFp+j0qboyt7AAZE+D8/KT0vEQxB9QjsgpH
+	x40Gly4ZsBpym5DXJCFTEPOtAY8Q2S0TY5UftTo=
+Received: (qmail 25396 invoked from network); 25 Oct 2023 05:29:55 -0000
+Received: by simscan 1.4.0 ppid: 25167, pid: 25355, t: 1.2316s
+         scanners:none
+Received: from unknown (HELO bmwxMDEudmZlbWFpbC5uZXQ=) (ZXF1dUBvcGVubWFpbC5jYw==@MTkyLjE2OC4xLjE5Mg==)
+  by nl101.vfemail.net with ESMTPA; 25 Oct 2023 05:29:54 -0000
+From: Edward Chow <equu@openmail.cc>
+To: Rob Herring <robh+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Edward Chow <equu@openmail.cc>
+Subject: [PATCH] dt-bindings: mtd-partitions: Export special values
+Date: Wed, 25 Oct 2023 13:29:37 +0800
+Message-ID: <20231025052937.830813-1-equu@openmail.cc>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-10-apatel@ventanamicro.com> <8734y0rwtw.fsf@all.your.base.are.belong.to.us>
-In-Reply-To: <8734y0rwtw.fsf@all.your.base.are.belong.to.us>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 25 Oct 2023 10:38:20 +0530
-Message-ID: <CAK9=C2UVgTd-a0671Lab_ZeOPWP3=wHY+pydKHqaR-Yg65YhrA@mail.gmail.com>
-Subject: Re: [PATCH v11 09/14] irqchip/riscv-imsic: Add support for PCI MSI irqdomain
-To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 24, 2023 at 6:39=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel=
-.org> wrote:
->
-> Anup Patel <apatel@ventanamicro.com> writes:
->
-> > The Linux PCI framework requires it's own dedicated MSI irqdomain so
-> > let us create PCI MSI irqdomain as child of the IMSIC base irqdomain.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  drivers/irqchip/Kconfig                    |  7 +++
-> >  drivers/irqchip/irq-riscv-imsic-platform.c | 51 ++++++++++++++++++++++
-> >  drivers/irqchip/irq-riscv-imsic-state.h    |  1 +
-> >  3 files changed, 59 insertions(+)
-> >
-> > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> > index bdd80716114d..c1d69b418dfb 100644
-> > --- a/drivers/irqchip/Kconfig
-> > +++ b/drivers/irqchip/Kconfig
-> > @@ -552,6 +552,13 @@ config RISCV_IMSIC
-> >       select IRQ_DOMAIN_HIERARCHY
-> >       select GENERIC_MSI_IRQ
-> >
-> > +config RISCV_IMSIC_PCI
-> > +     bool
-> > +     depends on RISCV_IMSIC
-> > +     depends on PCI
-> > +     depends on PCI_MSI
-> > +     default RISCV_IMSIC
-> > +
-> >  config EXYNOS_IRQ_COMBINER
-> >       bool "Samsung Exynos IRQ combiner support" if COMPILE_TEST
-> >       depends on (ARCH_EXYNOS && ARM) || COMPILE_TEST
-> > diff --git a/drivers/irqchip/irq-riscv-imsic-platform.c b/drivers/irqch=
-ip/irq-riscv-imsic-platform.c
-> > index 23d286cb017e..cdb659401199 100644
-> > --- a/drivers/irqchip/irq-riscv-imsic-platform.c
-> > +++ b/drivers/irqchip/irq-riscv-imsic-platform.c
-> > @@ -13,6 +13,7 @@
-> >  #include <linux/irqdomain.h>
-> >  #include <linux/module.h>
-> >  #include <linux/msi.h>
-> > +#include <linux/pci.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/spinlock.h>
-> >  #include <linux/smp.h>
-> > @@ -215,6 +216,42 @@ static const struct irq_domain_ops imsic_base_doma=
-in_ops =3D {
-> >  #endif
-> >  };
-> >
-> > +#ifdef CONFIG_RISCV_IMSIC_PCI
-> > +
-> > +static void imsic_pci_mask_irq(struct irq_data *d)
-> > +{
-> > +     pci_msi_mask_irq(d);
-> > +     irq_chip_mask_parent(d);
->
-> I've asked this before, but I still don't get why you need to propagate
-> to the parent? Why isn't masking on PCI enough?
->
+There are special "offset" and "size" values defined and documented in
+linux/mtd/partitions.h:
 
-We are using hierarchical IRQ domains where IMSIC-BASE is
-the root domain whereas IMSIC-PLAT domain (MSI irq domain
-for platform devices) and IMSIC-PCI domain (MSI irq domain
-for PCI devices). For hierarchical IRQ domains, if irq domain X
-does not implement irq_mask/unmask then the parent irq
-domain irq_mask/unmask is called with parent irq descriptor.
+// consume as much as possible, leaving size after the end of partition.
 
-Now for IMSIC-PCI domain, the PCI framework expects the
-pci_msi_mask/unmask_irq() functions to be called but if
-we directly point pci_msi_mask/unmask_irq() in the IMSIC-PCI
-irqchip then IMSIC-BASE (parent domain) irq_mask/umask
-won't be called hence the IRQ won't be masked/unmask.
-Due to this, we call both pci_msi_mask/unmask_irq() and
-irq_chip_mask/unmask_parent() for IMSIC-PCI domain.
+// the partition will start at the next erase block.
 
-The ARM GIC driver also uses hierarchical IRQ domains
-even there same thing is done.
-(Refer, first 30 lines of drivers/irqchip/irq-gic-v3-its-pci-msi.c)
+// the partition will start where the previous one ended.
 
-Regards,
-Anup
+(Though not explicitly, they are compared against variables in uint64_t
+in drivers/mtd/mtdpart.c, so they had better be considered as such.)
+
+// the partition will extend to the end of the master MTD device.
+
+These special values could be used to define partitions automatically
+fitting to the size of the master MTD device at runtime.
+
+However, these values used not to be exported to dt-bindings, thus
+seldom used before, since they might have been only used in numeric form,
+such as "(-1) (-3)" for MTDPART_OFS_RETAIN.
+
+Now, they are exported in dt-bindings/mtd/partitions.h as 32-bit cell
+values, so 2-cell addressed should be defined to use special offset values,
+such as "MTDPART_OFS_SPECIAL MTDPART_OFS_RETAIN" for MTDPART_OFS_RETAIN in
+linux/mtd/partitions.h. An example is added to fixed-partitions.yaml.
+
+Signed-off-by: Edward Chow <equu@openmail.cc>
+---
+ .../mtd/partitions/fixed-partitions.yaml      | 29 +++++++++++++++++++
+ MAINTAINERS                                   |  2 ++
+ include/dt-bindings/mtd/partitions.h          | 15 ++++++++++
+ 3 files changed, 46 insertions(+)
+ create mode 100644 include/dt-bindings/mtd/partitions.h
+
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index 331e564f29dc..a939fb52ef76 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -164,3 +164,32 @@ examples:
+             read-only;
+         };
+     };
++
++  - |
++    partitions {
++        compatible = "fixed-partitions";
++        #address-cells = <2>;
++        #size-cells = <1>;
++
++        partition@0 {
++            label = "bootloader";
++            reg = <0 0x000000 0x020000>;
++            read-only;
++        };
++
++        firmware@1 {
++            label = "firmware";
++            /* From the end of the last partition, occupying as mush
++             * as possible, retaining 0x010000 after it,
++             * "MTDPART_OFS_SPECIAL MTDPART_OFS_NXTBLK" similar to
++             * this, but always beginning at erase block boundary. */
++            reg = <MTDPART_OFS_SPECIAL MTDPART_OFS_RETAIN 0x010000>;
++        };
++
++        calibration@2 {
++            compatible = "fixed-partitions";
++            label = "calibration";
++            /* Appending to the last partition, occupying 0x010000 */
++            reg = <MTDPART_OFS_SPECIAL MTDPART_OFS_APPEND 0x010000>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 668d1e24452d..7d6beadc8b36 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13771,9 +13771,11 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/fixes
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next
+ F:	Documentation/devicetree/bindings/mtd/
+ F:	drivers/mtd/
++F:	include/dt-bindings/mtd/
+ F:	include/linux/mtd/
+ F:	include/uapi/mtd/
+ 
++
+ MEMSENSING MICROSYSTEMS MSA311 DRIVER
+ M:	Dmitry Rokosov <ddrokosov@sberdevices.ru>
+ L:	linux-iio@vger.kernel.org
+diff --git a/include/dt-bindings/mtd/partitions.h b/include/dt-bindings/mtd/partitions.h
+new file mode 100644
+index 000000000000..456a54a1259a
+--- /dev/null
++++ b/include/dt-bindings/mtd/partitions.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Device Tree constants identical to those in include/linux/mtd/partitions.h
++ */
++
++#ifndef _DT_BINDINGS_MTD_PARTITIONS_H
++#define _DT_BINDINGS_MTD_PARTITIONS_H
++
++#define MTDPART_OFS_SPECIAL	(-1)
++#define MTDPART_OFS_RETAIN	(-3)
++#define MTDPART_OFS_NXTBLK	(-2)
++#define MTDPART_OFS_APPEND	(-1)
++#define MTDPART_SIZ_FULL	(0)
++
++#endif
+-- 
+2.42.0
+
 
