@@ -1,328 +1,97 @@
-Return-Path: <devicetree+bounces-11696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 142717D65C1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:50:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BE8D7D65C4
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:50:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39E6D1C2032D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:50:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC6B41C20C2E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F481D557;
-	Wed, 25 Oct 2023 08:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E1E1D558;
+	Wed, 25 Oct 2023 08:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Uf/Ua3or"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FKSqpr0t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9733D72
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:49:59 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F0718C;
-	Wed, 25 Oct 2023 01:49:56 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 299B61BF205;
-	Wed, 25 Oct 2023 08:49:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698223795;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kDKzSwobFKhvPb/S7FCw9CUUuZRhjo3hWw2I68BBVaY=;
-	b=Uf/Ua3orfZI1c+SkYBr68sRjaF4DhtsrTNk9WD9Z5StYN8qvR7Uy+08duhBLMTFV6JQj8v
-	aySWILmMdvmyNHjvzOJ636mC2pEjy0NHAlTxmL5Vkzm6/Wh5vAudTspmNHqmEid+BQWJh9
-	o95X3xvKTcrGcuqX/XvGQU5KyDLyaPp5si+x5NLCMR6EmdRXvwN/nFcn+38kN9YaoHzOHG
-	Rck3Au7Udt5s3YJNLK3FjJD6MGTzwTsQMFKfTEuqlJLwiCr8TEKUfozN9sLETe0Mr7LGbR
-	kWPFqFe9Jr/O1MnVtAC1W+vFyzN+1Pr2jct0yfqOyBnGZFww1mEmT7UiGc8J/g==
-Date: Wed, 25 Oct 2023 10:49:53 +0200
-From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
-	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, ezequiel@vanguardiasur.com.ar,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com
-Subject: Re: [PATCH v8 2/3] media: rockchip: Add a driver for Rockhip's
- camera interface
-Message-ID: <ZTjWsf69QdXoJNKj@aptenodytes>
-References: <cover.1697446303.git.mehdi.djait@bootlin.com>
- <3790470ff7606fc075ec742d43254e52dde5d120.1697446303.git.mehdi.djait@bootlin.com>
- <ee4034b9-85f6-42cc-abca-d61004aa0a6c@wolfvision.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1DD3D72
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:50:21 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF22219F
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:50:19 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507a0907896so8040963e87.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698223818; x=1698828618; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=42JgJL4inSij1dDJZcKoLha0/JD4nZAzUlXXA6vbSFk=;
+        b=FKSqpr0ta9Vn7tSIRC9rZOG5CwTLG7E7SXNHiL6+KSNJTyvP3kcBoWcAnEuJVrfB0K
+         rmNqaRW1H5fp+RsvPONDRDi5noyJN8FSxw/pGSTrx2XphZkhXv5LahTJxQH7piROpvW9
+         maY+QocffrmbBPUWG28s/LQQY3+VIk+ZhPv3RhIZINKcE4J2s+IrMzucbYNDoe/xMKVZ
+         nfLmJN0I6DWa0NBsJMpOEPR66f2iYPFEOSx0T3vZlLLXGgXMmSI6ncs2M8ViqIjBv8c3
+         jjZvaiUsiDGJGT3o6dL2C9VRE7T8tJIqYZPUX/ZRR/3IzjJh2fZWfFKuKuEpQzHz/0a5
+         Mu7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698223818; x=1698828618;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=42JgJL4inSij1dDJZcKoLha0/JD4nZAzUlXXA6vbSFk=;
+        b=vu+4RmsNZqWqrq2XAcGNrtsRLTTIWAbUYY+/n0RrVrd1+dbSALuiN3N6LnOQBQQLF6
+         Nanm9w6BHqlsiUhPhqPpPOcA/yDH9UQtQFSij01WcFYY0yNiw+J+nUw9cpOFuc6FxIm3
+         VE/Hbmwuj2iBJNP/ApC1f2ySquHeU37YExrrQ7qXq0yeBz73mu1w6dkiPhsmZTVaj3SR
+         rl3ISz2z6lBWcau5TgKGYR+gQyHEx+gw3PKYTecz32gtCTeL7GR6W7kHxH1AxA8v3l9D
+         YxmvBFkWn3l3gVmXmRmoaW7WwuftkCpVdOLUqERcNt9+jqipN04hWdd+Suz37790n4R2
+         HMug==
+X-Gm-Message-State: AOJu0YwGYZ6X8efs5CdCUo36HPme+e2baSEfxAxk/9VhOgHsbFTQGaxg
+	KlbWyBY8uBhZmafYgVp9zU38pQ==
+X-Google-Smtp-Source: AGHT+IFI/jAT9xMiMciXbNW+3Fnv+Y9Bc7x1R5bYbksqN4voIBEiqokYkWMFtRc95a6GWDmnR3p3+Q==
+X-Received: by 2002:a05:6512:6c4:b0:507:a04c:76eb with SMTP id u4-20020a05651206c400b00507a04c76ebmr13233616lff.35.1698223818149;
+        Wed, 25 Oct 2023 01:50:18 -0700 (PDT)
+Received: from [172.30.204.57] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id y7-20020a196407000000b005041f004d33sm2475831lfb.90.2023.10.25.01.50.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Oct 2023 01:50:17 -0700 (PDT)
+Message-ID: <b7e6839d-69c6-4d89-805e-be6bfd384a2b@linaro.org>
+Date: Wed, 25 Oct 2023 10:50:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IqvARDLe+FQx9dTB"
-Content-Disposition: inline
-In-Reply-To: <ee4034b9-85f6-42cc-abca-d61004aa0a6c@wolfvision.net>
-X-GND-Sasl: paul.kocialkowski@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] soc: qcom: llcc: Add configuration data for SM8650
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-llcc-v1-0-ba4566225424@linaro.org>
+ <20231025-topic-sm8650-upstream-llcc-v1-2-ba4566225424@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-llcc-v1-2-ba4566225424@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---IqvARDLe+FQx9dTB
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On 10/25/23 09:31, Neil Armstrong wrote:
+> Add Last Level Cache Controller support for the SM8650 platform.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+Did you double-check with the docs for the latest hw
+revision?
 
-On Mon 23 Oct 23, 15:28, Michael Riesch wrote:
-> Typo in the subject: "Rockhip's" -> "Rockchip's"
-> I think this typo has been in there for a while now ;-)
-
-Great hips make for great dancing!
-
-> On 10/16/23 11:00, Mehdi Djait wrote:
-> > Introduce a driver for the camera interface on some Rockchip platforms.
-> >=20
-> > This controller supports CSI2 and BT656 interfaces, but for
-> > now only the BT656 interface could be tested, hence it's the only one
-> > that's supported in the first version of this driver.
->=20
-> "CSI2" -> "MIPI CSI-2" ?
-> "BT656" -> "BT.656" ?
-> Also, additional interfaces are supported by some units, e.g., the
-> RK3568 VICAP also supports BT.1120.
->=20
-> But most likely it becomes too complex to list everything, and it would
-> be better if you simply described the unit in the PX30. I think this
-> would clarify the commit message a lot.
-
-For now I would just stick to mentionning parallel (aka DVP). Indeed we don=
-'t
-need to list every possible parallel setup and MIPI CSI-2 is not supported
-in the current version of the driver.
-
-> > This controller can be fond on PX30, RK1808, RK3128 and RK3288,
-> > but for now it's only been tested on PX30.
-> >=20
-> > Most of this driver was written following the BSP driver from rockchip,
->=20
-> "rockchip" -> "Rockchip"
->=20
-> > removing the parts that either didn't fit correctly the guidelines, or
-> > that couldn't be tested.
-> >=20
-> > In the BSP, this driver is known as the "cif" driver, but this was
-> > renamed to "vip" to better fit the controller denomination in the
-> > datasheet.
-> >=20
-> > This basic version doesn't support cropping nor scaling, and is only
-> > designed with one SDTV video decoder being attached to it a any time.
-> >=20
-> > This version uses the "pingpong" mode of the controller, which is a
-> > double-buffering mechanism.
-> >=20
-> > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
->=20
-> Two things below:
->=20
-> >[...]
-> > diff --git a/drivers/media/platform/rockchip/vip/dev.h b/drivers/media/=
-platform/rockchip/vip/dev.h
-> > new file mode 100644
-> > index 000000000000..eb9cd8f20ffc
-> > --- /dev/null
-> > +++ b/drivers/media/platform/rockchip/vip/dev.h
-> > @@ -0,0 +1,163 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Rockchip VIP Driver
-> > + *
-> > + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
-> > + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
-> > + */
-> > +
-> > +#ifndef _RK_VIP_DEV_H
-> > +#define _RK_VIP_DEV_H
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/mutex.h>
-> > +#include <media/media-device.h>
-> > +#include <media/media-entity.h>
-> > +#include <media/v4l2-ctrls.h>
-> > +#include <media/v4l2-device.h>
-> > +#include <media/videobuf2-v4l2.h>
-> > +
-> > +#define VIP_DRIVER_NAME		"rk_vip"
-> > +#define VIP_VIDEODEVICE_NAME	"stream_vip"
-> > +
-> > +#define RK_VIP_MAX_BUS_CLK	8
-> > +#define RK_VIP_MAX_SENSOR	2
-> > +#define RK_VIP_MAX_RESET	5
-> > +#define RK_VIP_MAX_CSI_CHANNEL	4
-> > +
-> > +#define RK_VIP_DEFAULT_WIDTH	640
-> > +#define RK_VIP_DEFAULT_HEIGHT	480
-> > +
-> > +#define write_vip_reg(base, addr, val)  writel(val, (addr) + (base))
-> > +#define read_vip_reg(base, addr) readl((addr) + (base))
->=20
-> Please provide those helpers as proper inline functions. As to the
-> naming, the "_reg" suffix seems unnecessary.
->=20
-> Alternatively, you could consider converting the driver to use regmap.
-
-Come to think of it, I feel like it would make more sense to have an inline
-function which is given a struct rk_vip_device instead of having to derefer=
-ence
-it every time in the caller to access the base address.
-
-> > +
-> > +enum rk_vip_state {
-> > +	RK_VIP_STATE_DISABLED,
-> > +	RK_VIP_STATE_READY,
-> > +	RK_VIP_STATE_STREAMING
-> > +};
-> > +
-> > +enum rk_vip_chip_id {
-> > +	CHIP_PX30_VIP,
-> > +	CHIP_RK1808_VIP,
-> > +	CHIP_RK3128_VIP,
-> > +	CHIP_RK3288_VIP
-> > +};
-> > +
-> > +enum host_type_t {
-> > +	RK_CSI_RXHOST,
-> > +	RK_DSI_RXHOST
-> > +};
-> > +
-> > +struct rk_vip_buffer {
-> > +	struct vb2_v4l2_buffer vb;
-> > +	struct list_head queue;
-> > +	union {
-> > +		u32 buff_addr[VIDEO_MAX_PLANES];
-> > +		void *vaddr[VIDEO_MAX_PLANES];
-> > +	};
-> > +};
-> > +
-> > +struct rk_vip_scratch_buffer {
-> > +	void *vaddr;
-> > +	dma_addr_t dma_addr;
-> > +	u32 size;
-> > +};
-> > +
-> > +static inline struct rk_vip_buffer *to_rk_vip_buffer(struct vb2_v4l2_b=
-uffer *vb)
-> > +{
-> > +	return container_of(vb, struct rk_vip_buffer, vb);
-> > +}
-> > +
-> > +struct rk_vip_sensor_info {
-> > +	struct v4l2_subdev *sd;
-> > +	int pad;
-> > +	struct v4l2_mbus_config mbus;
-> > +	int lanes;
-> > +	v4l2_std_id std;
-> > +};
-> > +
-> > +struct vip_output_fmt {
-> > +	u32 fourcc;
-> > +	u32 mbus;
-> > +	u32 fmt_val;
-> > +	u8 cplanes;
-> > +};
-> > +
-> > +enum vip_fmt_type {
-> > +	VIP_FMT_TYPE_YUV =3D 0,
-> > +	VIP_FMT_TYPE_RAW,
-> > +};
-> > +
-> > +struct vip_input_fmt {
-> > +	u32 mbus_code;
-> > +	u32 dvp_fmt_val;
-> > +	u32 csi_fmt_val;
-> > +	enum vip_fmt_type fmt_type;
-> > +	enum v4l2_field field;
-> > +};
-> > +
-> > +struct rk_vip_stream {
-> > +	struct rk_vip_device		*vipdev;
-> > +	enum rk_vip_state		state;
-> > +	bool				stopping;
-> > +	wait_queue_head_t		wq_stopped;
-> > +	int				frame_idx;
-> > +	int				frame_phase;
-> > +
-> > +	/* lock between irq and buf_queue */
-> > +	spinlock_t			vbq_lock;
-> > +	struct vb2_queue		buf_queue;
-> > +	struct list_head		buf_head;
-> > +	struct rk_vip_scratch_buffer	scratch_buf;
-> > +	struct rk_vip_buffer		*buffs[2];
-> > +
-> > +	/* vfd lock */
-> > +	struct mutex			vlock;
-> > +	struct video_device		vdev;
-> > +	struct media_pad		pad;
-> > +
-> > +	struct vip_output_fmt		*vip_fmt_out;
-> > +	const struct vip_input_fmt	*vip_fmt_in;
-> > +	struct v4l2_pix_format_mplane	pixm;
-> > +};
-> > +
-> > +static inline struct rk_vip_stream *to_rk_vip_stream(struct video_devi=
-ce *vdev)
-> > +{
-> > +	return container_of(vdev, struct rk_vip_stream, vdev);
-> > +}
-> > +
-> > +struct rk_vip_device {
-> > +	struct list_head		list;
-> > +	struct device			*dev;
-> > +	int				irq;
-> > +	void __iomem			*base_addr;
-> > +	void __iomem			*csi_base;
-> > +	struct clk_bulk_data		clks[RK_VIP_MAX_BUS_CLK];
-> > +	int				num_clk;
-> > +	struct vb2_alloc_ctx		*alloc_ctx;
-> > +	bool				iommu_en;
-> > +	struct iommu_domain		*domain;
-> > +	struct reset_control		*vip_rst;
-> > +
-> > +	struct v4l2_device		v4l2_dev;
-> > +	struct media_device		media_dev;
-> > +	struct v4l2_ctrl_handler	ctrl_handler;
-> > +	struct v4l2_async_notifier	notifier;
-> > +	struct v4l2_async_connection	asd;
-> > +	struct rk_vip_sensor_info	sensor;
->=20
-> Using "sensor" as name does not seem correct. As pointed out above it
-> could be a video decoder just as well. Something with "subdevice" maybe?
-
-Agreed. I suggest renaming the struct "rk_vip_sensor_info" -> "rk_cif_remot=
-e"
-and just calling the member "remote".
-
-Cheers,
-
-Paul
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---IqvARDLe+FQx9dTB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmU41rEACgkQ3cLmz3+f
-v9G18gf9HjBe+Tt1f9LvHCxhOiq2bRyWFVPqyjlYlU4B0jK3yg6o5UcssDHUSXLT
-/LtsfEKeVMMQRGDw1cAn0tafarUqk7eWQjfw4+uyPn8OMhX7CiYdKSMNaaa6KNje
-PhDqijyDw4P7Hxt9vbXmJnDsrS0iKJ1PMoDLTdaqJPyCenwLjornfDqJUoOxokoX
-wx8xO+ngwfzo0iTcx9djHBqw1xqJe/CoSdOxXm8rmz/gXhGxQmwAdUoArrFKzkD6
-kRHf/OYepU5G8JodRIYPmng3+s1/EnkXQutDFMDQlo/xqk0b1/9MEj6g/f2U1nij
-wZJTO0sfRvzQOy/PdwdaYJ3PRC8dQQ==
-=iFRN
------END PGP SIGNATURE-----
-
---IqvARDLe+FQx9dTB--
+Konrad
 
