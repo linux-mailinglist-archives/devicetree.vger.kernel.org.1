@@ -1,220 +1,131 @@
-Return-Path: <devicetree+bounces-11525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F62D7D6145
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 07:45:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6687D6186
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:17:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 396D4B21030
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 05:45:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDD5F1C20CAA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 06:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E5CF9D1;
-	Wed, 25 Oct 2023 05:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098F514AA4;
+	Wed, 25 Oct 2023 06:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axentia.se header.i=@axentia.se header.b="DSAw1TMY"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KTfwTaUF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB83F2D61D
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 05:45:20 +0000 (UTC)
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2128.outbound.protection.outlook.com [40.107.13.128])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DAB12A;
-	Tue, 24 Oct 2023 22:45:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g6cWOpepCmUj3p00qR48c21TunIcByIgcUWs/07TweIhcJTFgod/T2w3upDTz65J8twIg9K+kJ+vCNKduYh+uJLKhFmrJSD/K2ISZXZYpr8mlmEvjEAMy0tD+Ol2JBMdQ0F/jL0eiSqGjABMhFmSLON+ESKMEs+LiF5aRDrGxUXpxnyb32lCzPlCYgFx4NopITAzLauknx2c0rpirePiAwXzSRfiw4Vs3HoZvGKFp6J/AnGRIKO3Ks6VqTpO0REbDhtYutqiGQ+lptWBop9RsIUV4beivKqcXqHwa5cH/s7u22HUbX4H4BAp0eDviwFWqtMlTMj1x03SOvfnFfgPcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rurFSdzdZnpqeRMmdL07P0ypIj9zX+Nx0vnxi0GCTVM=;
- b=UwBvocVGq/PdW+1vjaQixIcniBwrB7DHzL2Fg/QjMxcnr+z/166v+tFkpFJJYzG1lUcakuX2xOMDlxyJYuyLxUJLhmSFHi+rkAeK9k61u1cBVFv4owU4+/XCRW0WGv/yr7B4x7LBXP8yxIqzveSNNx6WYpYLlKL8zburqrbf2xLM7SbAeMUVWS/Gj5wv2/+ufU/clQ1s6XXnaj4cvde+z61bJNjJ3KowKyUrq7XdvP2xtE8+Y2Uuc0MgoSNP8k0SOYgnKuSFbJtt7xL9W68RojPQMMT1RAgTYeedQVKnaYxijgqSd/bsf+XWCGJjb8rVRwSzQS4gJDBhQC/s6EQ1pQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rurFSdzdZnpqeRMmdL07P0ypIj9zX+Nx0vnxi0GCTVM=;
- b=DSAw1TMYB2gPBEk/lIkq0kkc0uDPVPon8eDcfzefqeln+vdytdBUD9bdAbDUsndTuRw70Nm3h8YuSyimz/zPimKHCXWdqbSN+fqkFZOAw5XGJS5hBosXRtsIDrj4VCVPy9fGJwFrqBob3CdkyQFeG/oxXCbKaFPHfbnBCs47ETc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from AM0PR02MB4436.eurprd02.prod.outlook.com (2603:10a6:208:ed::15)
- by AS2PR02MB9953.eurprd02.prod.outlook.com (2603:10a6:20b:607::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.29; Wed, 25 Oct
- 2023 05:45:14 +0000
-Received: from AM0PR02MB4436.eurprd02.prod.outlook.com
- ([fe80::de22:5b04:df31:2d87]) by AM0PR02MB4436.eurprd02.prod.outlook.com
- ([fe80::de22:5b04:df31:2d87%6]) with mapi id 15.20.6907.032; Wed, 25 Oct 2023
- 05:45:14 +0000
-Message-ID: <f8d3a930-491c-e79f-47b4-618757b6bebf@axentia.se>
-Date: Wed, 25 Oct 2023 07:45:12 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [PATCH v4] mux: mmio: use reg property when parent device is not
- a syscon
-Content-Language: sv-SE
-To: Andrew Davis <afd@ti.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231023162659.81397-1-afd@ti.com>
-From: Peter Rosin <peda@axentia.se>
-In-Reply-To: <20231023162659.81397-1-afd@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GVYP280CA0023.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:fa::26) To AM0PR02MB4436.eurprd02.prod.outlook.com
- (2603:10a6:208:ed::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71040156CC
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 06:17:20 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090AE12F;
+	Tue, 24 Oct 2023 23:17:19 -0700 (PDT)
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 9064B6607346;
+	Wed, 25 Oct 2023 07:17:16 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698214636;
+	bh=5ZLsWC7aMFDc9fj82Ydoi62rViJ6tOPBBk38bEeyRxU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KTfwTaUFwmhVTV+6Qk+sViNOWO44Ta8yu8IvFrHewMq3uU3/3phR+gFLeH9A8+Pi6
+	 E2cut+25qlAwEoHIXElSrMMTyctFoRRBTZVNrfYsWv06t80DqIBxoOmAJKKSoCkGIl
+	 0DWlZjFshHwmRY4s9jKbfzD2BoK0xU22inHoas0XeNkifHoVmmBMh1H6bmc4SdhgNm
+	 Nbm0ozTrKr+r7uby3JoCoFuBeLA81BxtMAg433HvtRrEpmKqF8jEvN0DB1bcoX+ML4
+	 TPSg2KYIvLdjh+Q3KQdDCJFcJNX29X8K5p3vguBS4kH1wmprtWBaDxKcOYe9B7lmD9
+	 YDJ9+B5jF4s3g==
+Date: Wed, 25 Oct 2023 08:17:13 +0200
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Nas Chung <nas.chung@chipsnmedia.com>,
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+	Tomasz Figa <tfiga@chromium.org>, linux-kernel@vger.kernel.org,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Darren Etheridge <detheridge@ti.com>
+Subject: Re: [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c
+ codec IP support
+Message-ID: <20231025061713.kmmu432q76t32iv6@basti-XPS-13-9310>
+References: <20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com>
+ <20230929-wave5_v13_media_master-v13-6-5ac60ccbf2ce@collabora.com>
+ <b94e3561-f5ef-443f-98c7-9b79a8bbceec@linaro.org>
+ <20231016134720.GA2650973-robh@kernel.org>
+ <20231021120526.eqe3esyxyi5b3e5d@basti-XPS-13-9310>
+ <3d465d3c-386d-467b-87e9-806962464ac5@linaro.org>
+ <20231024051745.d663ekj7klrl4yzj@basti-XPS-13-9310>
+ <7240fa39-1a8f-4338-b5ae-b469dfaeb7e1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR02MB4436:EE_|AS2PR02MB9953:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0294a174-0f2a-4efc-6479-08dbd51d8f69
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	2SYJ8PH3z7Lx/rZInLa2dU3HTiintX7ivUHeYKpnv0HLnBp417Amq9F+IF++P6uf3HOJDceifqzzS/IdHOyn+m4+uH/1XQnkAuxnoQp9OhySkQ7aKATngHHzVqaB1UgSI7R3IkxYcrkG2t1LX73RZFqWS+Di1EzarRgWVST6YW/wk6xTMXUSP8l3if1j5or7EA6+JOBOaUzPWhNxH/sgQ2JP2QU9X2OItxTLNVICeFY5mw+otzWkNxrM5aJgli69hulz2ivbS6NFiTo/mFZuyRooy0EBHivQlN28oGPUShapLOJLMVuyzAN1wUBa5voLJ52ZDtHBiV5Lg9S7/bgkVkG0AvWafgMP+H0JgL/KoF4hhmvHPUuYN+9nb47+3rbPg01qKAWkHYy63McBKos0NlwsR12uG129onlzIV55v89ATBF3fX4948tKLZT6h+lpczIAJ4qmFTw40cZDqSyDeKezM6Yuu5yflOml/aSp14e5LKz6yVwTUjdgoSqSjjsrVithB105+idbdnaKptuK8FW/3kDDMXiJ2QrPIPJLWV7s3+P4HThKhDL13/WnuyYOA0y1O4FhKl6nhdd4yESPZQdllLV/523nDoVTrOw+YK4S5bvePAS25Zkqs6F8Ex/MtAyyd9QZufcmZ9VHTSRM2w==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR02MB4436.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39840400004)(376002)(396003)(366004)(346002)(136003)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(31686004)(83380400001)(8936002)(2906002)(4001150100001)(38100700002)(4326008)(26005)(8676002)(36756003)(2616005)(86362001)(6512007)(6506007)(31696002)(316002)(478600001)(966005)(5660300002)(6486002)(66476007)(66556008)(110136005)(41300700001)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?U1h1MW9SY0I3UjhWRno4OHdkWTE4Y3RhTkcxcGpvOUpkVjNPbW91dnhyM0pO?=
- =?utf-8?B?T2tGdDcrMG1ycWpCcW5oWnhCdW5CUVRYS2hpK0lObVh6SzUxKzdzdTZEQzhZ?=
- =?utf-8?B?NWhjL2ZIYmhERGUzbDRMdDBDaExwSCt1LzU2RXEzRjNITHhRWXpoWWoxbU1i?=
- =?utf-8?B?ZTJLam9sTVFpQzdOZkw2cU1tVUZqZzJuaWxCcTMxVi94RFdWNjF6cWVuQzdK?=
- =?utf-8?B?bTNQYkJQbk44bUF6czlVeEw2UzFSRmRMWnh6R1diV2dVbVFQcm0rY2pmZWVB?=
- =?utf-8?B?aVU3RHhoVlQxeHdEOWREcnZGOEZjMXoxamVWV0g5RjNXN0duQ2dlREU5L0Fh?=
- =?utf-8?B?MXJ0aERIU2F4S1o5OFpxMEZpLy9zbnlqVzVwZi8vRWNjSGZHT0FnK2U4enBp?=
- =?utf-8?B?Z2tnTDZtN3Nsbm92MnBzL3pseFdMM0FOaEMrL2N3bkEvb3VNMjVsb3N2a1lN?=
- =?utf-8?B?ZThyN2R5VXhsS0h5MTdRdzdZYWtqbFRrS1IrOEcwaDQ1a2Jmd2hURVl1d1E2?=
- =?utf-8?B?dldxZ1RWakx5OW1IKzA4U0F2S2paY0RqRElXczRqWmk2Z2RZQjlyQWRtMHJM?=
- =?utf-8?B?azhOUWRzWE9ya3dJLzJHNHZZS1E3dzFSZUxYbTFENkRXY3ZJbDBtWXI2enow?=
- =?utf-8?B?MUIzS0I1aGZIWnJTUWZpMEUvRjBNTzBLN24vQUV3ZE1TcVFuTm0rcDlZampW?=
- =?utf-8?B?blZJYXRzOENKUWJ2S0c4azd5YXArUW1lb2x0OW80dHFadytSamNhVkptc1Jy?=
- =?utf-8?B?MUZpeUxhSzV6MG9aMDVHdjJpTmNTdFFSNEZaTmRmenBJd2Z3d2ZvOHRVd0tF?=
- =?utf-8?B?Wk5RUnlrRFNwZHVvemxHcVRGeEEyUVY1cE1XeitTVU5OcGRoa05xOUFWR2lq?=
- =?utf-8?B?RUgwRisrTDNUM3pLWE50bWRSdVl6NTc0V3c0NXJqLzE1dUVuWjdZYWI2M3ZG?=
- =?utf-8?B?QmZFM2YxZUQzVVAwcXdFWXhIOTM1SkdXdCtUa0M0QTZKMTF0aXNIU2lxOEZp?=
- =?utf-8?B?T0ZKRUQrMStVYjJHODdpWEFmM245M3VRRTBiOFVmQTFpNFRoZmF0OFZxcVFy?=
- =?utf-8?B?aEQ1TEZ3YWt4NFZpSWZYODFZVDhpdnZ4V2VLZndCRUdxZm9ST05nYjhNWmZC?=
- =?utf-8?B?bEdKWHArdFQ2SkpTTDhycnFwNmNGSEd5bGd5TXNJRTZJZlhTVUZOYTkrNDBZ?=
- =?utf-8?B?WGdSNm1rMFFtVFE4UmtjYVVQcTk2aFdhNCtNM2JWSmg0VkUrd216cFhmY3Fw?=
- =?utf-8?B?WFJmRWdDaGxqUEF3TC9wZklIOEt4RzIzUldHTGFMcjRIVlhQSWxqQmV0V0JL?=
- =?utf-8?B?M1NzS2NNSWxDWTc5Ri9rU3BGa2dqaTFERjUxL0RiSmNLckJDL29Ha0tYTit2?=
- =?utf-8?B?V2tYaU5SSisxb1pLQjNtZG1LZE5VSjZ0UXIrdFZmQ2dacEQxYnU3UHJvdTh1?=
- =?utf-8?B?NVN3akU0YUx1U043K3VJRXg3QnZKRDFYd25aSDMyYXdCUUg4U2VzeERPSjg0?=
- =?utf-8?B?ejU5ZEZRWURRV0VxTXVWYURhKzJEN1YyaTlBOFllc0lsc00xcVhvVGZaajBy?=
- =?utf-8?B?Ymlvc0QwWGJhbTRQQU9CaGd0QzBRUnZwT2xkYlhRWHFBRnRCUFNia0dxUTdY?=
- =?utf-8?B?N0gzdTgrSnhQSWQxOVdVNVByL1VTaTE2blN2ajRYZW81cGFDTkJEVWRrdmVV?=
- =?utf-8?B?eklreUZndWVhM0FvNWZ6Mnp5NTlNM0N5bFBnekdrbzFoMkdIb0tFK2sxWmJk?=
- =?utf-8?B?cER6U2M5Nk5WWEtIU1JwdVpucE5xQkZJalhzK0taaWFaTWVxNkRLcmNyaFUz?=
- =?utf-8?B?cloxNG9HM1BOUjhEQTR2N2xDcmNmRDNIaWh5bk5xRlJsTzFFWTUyeGhDWEdR?=
- =?utf-8?B?S0dmdk9tUmtvdzdnZXRQWlVJb3J3KzFVTmJuMC9OL0tTM1RHSndvWXJCa2Jk?=
- =?utf-8?B?WGs4UWx2cDUwNm9XaUdaeEZKMk0yZlJ2TGlqM0JWblNZZGxPQkNPQnhQaVhC?=
- =?utf-8?B?Ujg3UWRSZVJMWUJMY3A0a1QwQ3FuazgyZWtUeEJ2S3NKdGlXMVkvTHdkOTA3?=
- =?utf-8?B?TmgxeEp1dVM0U1dVcUhwK1BxT256aDRBdkZzTjdCVks3OWVnK0lKcEhETDhZ?=
- =?utf-8?Q?HRf6pOKcPW1X8G1+TqK4v/JgD?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0294a174-0f2a-4efc-6479-08dbd51d8f69
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR02MB4436.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2023 05:45:14.5804
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2dI1KKDjpF/rr91yKqvngLEqYq+vY+AH6uwDeIlS0kNjZSEcnVeQTdRVaHwJk9pG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR02MB9953
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <7240fa39-1a8f-4338-b5ae-b469dfaeb7e1@linaro.org>
 
-Hi!
+Hey Krzysztof,
 
-2023-10-23 at 18:26, Andrew Davis wrote:
-> The DT binding for the reg-mux compatible states it can be used when the
-> "parent device of mux controller is not syscon device". It also allows
-> for a reg property. When the reg property is provided, use that to
-> identify the address space for this mux. If not provided fallback to
-> using the parent device as a regmap provider.
-> 
-> While here use dev_err_probe() in the error path to prevent printing
-> a message on probe defer which now can happen in extra ways.
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> Reviewed-by: Nishanth Menon <nm@ti.com>
-> ---
-> 
-> Changes from v3:
->  - Check for probe defer
-> 
-> Changes from v2:
->  - Rebased on v6.6-rc1
-> 
-> Changes from v1:
->  - Flip logic as suggested in v1[0]
-> 
-> [0] https://lore.kernel.org/lkml/1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com/T/
-> 
->  drivers/mux/mmio.c | 13 ++++++++-----
->  1 file changed, 8 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
-> index fd1d121a584ba..07c99588ff999 100644
-> --- a/drivers/mux/mmio.c
-> +++ b/drivers/mux/mmio.c
-> @@ -44,14 +44,17 @@ static int mux_mmio_probe(struct platform_device *pdev)
->  	int ret;
->  	int i;
->  
-> -	if (of_device_is_compatible(np, "mmio-mux"))
-> +	if (of_device_is_compatible(np, "mmio-mux")) {
->  		regmap = syscon_node_to_regmap(np->parent);
-> -	else
-> -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
-> +	} else {
-> +		regmap = device_node_to_regmap(np);
-> +		/* Fallback to checking the parent node on any error other than probe defer */
-> +		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER))
-> +			regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+On 24.10.2023 09:24, Krzysztof Kozlowski wrote:
+>On 24/10/2023 07:17, Sebastian Fricke wrote:
+>
+>>>>> It needs an SoC specific compatible (TI something...) as well (or
+>>>>> instead). Unless there's a public spec with details on how many
+>>>>> clocks, resets, interrupts, etc. there are.
+>>>>
+>>>> Okay so how about this, a bit similar to the Coda driver supplying both
+>>>> a general option and a SoC specific version:
+>>>
+>>> Can generic compatible be used alone in board designs? If it is licensed
+>>> block, then most likely you want a fallback.
+>>
+>> Alright, so a fallback seems appropriate, how do you like this?
+>>
+>> properties:
+>>    compatible:
+>>      items:
+>>        - enum:
+>>            - const: ti,k3-j721sX-wave521c
+>>        - const: cnm,wave521c
+>>
+>> Providing a fallback and adding a enum which can be extended later on.
+>
+>This looks almost good. I wonder what is "j721sX" - Google does not find
+>it. There is thouhg j721se.
 
-I'm not too fond of overly long lines, and the coding style document
-agrees with me. Also, please end comments with a period.
+Well that was a misunderstanding from my side I thought that both j721se
+and j721s2 have the Wave5 IP block and wanted to describe both with
+j721sX. But as it turns out the IP block isn't present on j721se.
+Additionally, I was only able to test the codec on j721s2 for now and so
+I would opt for calling it: `ti,k3-j721s2-wave521c`
 
-		/* Fallback to checking the parent node on "real" errors. */
-		if (IS_ERR(regmap) && regmap != ERR_PTR(-EPROBE_DEFER)) {
-			regmap = dev_get_regmap(dev->parent, NULL);
-			if (!regmap)
-				regmap = ERR_PTR(-ENODEV);
-		}
+>
+>Best regards,
+>Krzysztof
 
-> +	}
->  	if (IS_ERR(regmap)) {
->  		ret = PTR_ERR(regmap);
-> -		dev_err(dev, "failed to get regmap: %d\n", ret);
-> -		return ret;
-> +		return dev_err_probe(dev, ret, "failed to get regmap\n");
->  	}
+Sincerely,
+Sebastian
 
-Now that you use dev_err_probe(), please drop the pointless ret
-assignment:
-
- 	if (IS_ERR(regmap))
-		return dev_err_probe(dev, PTR_ERR(regmap),
-				     "failed to get regmap\n");
-
-With those changes, you can add "Acked-by: Peter Rosin <peda@axentia.se>",
-so that Greg can pick it up.
-
-Cheers,
-Peter
-
->  
->  	ret = of_property_count_u32_elems(np, "mux-reg-masks");
+>
+>_______________________________________________
+>Kernel mailing list -- kernel@mailman.collabora.com
+>To unsubscribe send an email to kernel-leave@mailman.collabora.com
 
