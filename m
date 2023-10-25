@@ -1,157 +1,328 @@
-Return-Path: <devicetree+bounces-11695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 213BE7D65B2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:48:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 142717D65C1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 10:50:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4DF3B20D26
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:48:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39E6D1C2032D
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 08:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ACD41D543;
-	Wed, 25 Oct 2023 08:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F481D557;
+	Wed, 25 Oct 2023 08:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uHLZudRh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Uf/Ua3or"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E7B749D
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:48:17 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65CAE10D5
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:48:15 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-507a0907896so8038270e87.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 01:48:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698223693; x=1698828493; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FkqJduOzXjPNoXLYlUx0HTE0sa8mKdyOyNN/qLkGEQk=;
-        b=uHLZudRhJNy45uXTBSwoB+3N9oz3hBHE6SB/irewveJL6hV6N8qVkwq2/LDHqZXcGl
-         BywboyCQb2YT3TA49+hJJJWhJwmrkLr1B7ZtGbr32PTR0BJ1weYIx1CwFnZLiLHT8g8L
-         AuozNoJ5wBrfEMiGVZeGdrmJHHZzQSYzizVXaS7WLbYtL9tUvQ21Aq+/VOhMHFLzq3No
-         q60r14HRKUvscEE9x9AK/SCvJTSg95EjEsdS5MCNHoMceBkoZdts/bhchma3Yezb3OkM
-         QHBpLfRFlpKixrsFNyFQS7cueZnfW5qZHHwq4zhpiPKx3xJO1UYxnNU93kDHcz8akDFW
-         6hfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698223693; x=1698828493;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FkqJduOzXjPNoXLYlUx0HTE0sa8mKdyOyNN/qLkGEQk=;
-        b=SkSSkR4fBxsvavl0wI9NzCjK0zIeyv1HKXyMwSeQkhpUdDI6THU7G1E040gKaS4b0T
-         w1gzRVBMFREAJNrKKIqJyTr9h4+YretMGqO1KCr9+kLCk/bhW3v+Z8EoO5lWUeji+snH
-         h3B+MbH//InriOVOfrY9PkzAPqPwEqFHBQgIxoZ26hlKAL4CDR9j0oUvNuNX5GfjrUfc
-         aXu8xXkdKKRNjntOsM/snFRIAHKMk0a6r/bRaZVsmwdainmSDJzh05arBy2b0wUmZxPF
-         4S0iZDrG935CNyfuEanETqnMvbjBUY2qbK+NBE7MpY1rBjlOnh6JQVtuWEs6aHQwWqUU
-         E3jw==
-X-Gm-Message-State: AOJu0Yw5Ajv6hkG9a/YflcJ2ybhX82KlIk68WNKvWn5HYxNw4Jy8XfOp
-	GsSakxF02WthjfjoYDBrNdAZyw==
-X-Google-Smtp-Source: AGHT+IEzsioGuOlLUiHFaykpAmOanNYr48M8ck95W0xTGCJUWYPuW+XgpSTKCPhTiTwUZsf+kkCqKQ==
-X-Received: by 2002:ac2:522c:0:b0:503:3278:3225 with SMTP id i12-20020ac2522c000000b0050332783225mr9410863lfl.63.1698223693565;
-        Wed, 25 Oct 2023 01:48:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id q11-20020a056000136b00b0032dc74c093dsm11622009wrz.103.2023.10.25.01.48.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 Oct 2023 01:48:13 -0700 (PDT)
-Message-ID: <8154fb11-c18f-4d22-a02f-7fe1a6c4f012@linaro.org>
-Date: Wed, 25 Oct 2023 10:48:12 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE9733D72
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 08:49:59 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F0718C;
+	Wed, 25 Oct 2023 01:49:56 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 299B61BF205;
+	Wed, 25 Oct 2023 08:49:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698223795;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kDKzSwobFKhvPb/S7FCw9CUUuZRhjo3hWw2I68BBVaY=;
+	b=Uf/Ua3orfZI1c+SkYBr68sRjaF4DhtsrTNk9WD9Z5StYN8qvR7Uy+08duhBLMTFV6JQj8v
+	aySWILmMdvmyNHjvzOJ636mC2pEjy0NHAlTxmL5Vkzm6/Wh5vAudTspmNHqmEid+BQWJh9
+	o95X3xvKTcrGcuqX/XvGQU5KyDLyaPp5si+x5NLCMR6EmdRXvwN/nFcn+38kN9YaoHzOHG
+	Rck3Au7Udt5s3YJNLK3FjJD6MGTzwTsQMFKfTEuqlJLwiCr8TEKUfozN9sLETe0Mr7LGbR
+	kWPFqFe9Jr/O1MnVtAC1W+vFyzN+1Pr2jct0yfqOyBnGZFww1mEmT7UiGc8J/g==
+Date: Wed, 25 Oct 2023 10:49:53 +0200
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, ezequiel@vanguardiasur.com.ar,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com
+Subject: Re: [PATCH v8 2/3] media: rockchip: Add a driver for Rockhip's
+ camera interface
+Message-ID: <ZTjWsf69QdXoJNKj@aptenodytes>
+References: <cover.1697446303.git.mehdi.djait@bootlin.com>
+ <3790470ff7606fc075ec742d43254e52dde5d120.1697446303.git.mehdi.djait@bootlin.com>
+ <ee4034b9-85f6-42cc-abca-d61004aa0a6c@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: arm: qcom: Add Samsung Galaxy Tab 4
- 10.1 LTE
-Content-Language: en-US
-To: Stefan Hansson <newbyte@postmarketos.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20231025083952.12367-1-newbyte@postmarketos.org>
- <20231025083952.12367-3-newbyte@postmarketos.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025083952.12367-3-newbyte@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IqvARDLe+FQx9dTB"
+Content-Disposition: inline
+In-Reply-To: <ee4034b9-85f6-42cc-abca-d61004aa0a6c@wolfvision.net>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
 
-On 25/10/2023 10:37, Stefan Hansson wrote:
-> This documents Samsung Galaxy Tab 4 10.1 LTE (samsung,matisselte)
-> which is a tablet by Samsung based on the MSM8926 SoC.
-> 
-> Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
-> ---
 
-This is a friendly reminder during the review process.
+--IqvARDLe+FQx9dTB
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It looks like you received a tag and forgot to add it.
+Hi,
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+On Mon 23 Oct 23, 15:28, Michael Riesch wrote:
+> Typo in the subject: "Rockhip's" -> "Rockchip's"
+> I think this typo has been in there for a while now ;-)
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+Great hips make for great dancing!
 
-If a tag was not added on purpose, please state why and what changed.
+> On 10/16/23 11:00, Mehdi Djait wrote:
+> > Introduce a driver for the camera interface on some Rockchip platforms.
+> >=20
+> > This controller supports CSI2 and BT656 interfaces, but for
+> > now only the BT656 interface could be tested, hence it's the only one
+> > that's supported in the first version of this driver.
+>=20
+> "CSI2" -> "MIPI CSI-2" ?
+> "BT656" -> "BT.656" ?
+> Also, additional interfaces are supported by some units, e.g., the
+> RK3568 VICAP also supports BT.1120.
+>=20
+> But most likely it becomes too complex to list everything, and it would
+> be better if you simply described the unit in the PX30. I think this
+> would clarify the commit message a lot.
 
-Best regards,
-Krzysztof
+For now I would just stick to mentionning parallel (aka DVP). Indeed we don=
+'t
+need to list every possible parallel setup and MIPI CSI-2 is not supported
+in the current version of the driver.
 
+> > This controller can be fond on PX30, RK1808, RK3128 and RK3288,
+> > but for now it's only been tested on PX30.
+> >=20
+> > Most of this driver was written following the BSP driver from rockchip,
+>=20
+> "rockchip" -> "Rockchip"
+>=20
+> > removing the parts that either didn't fit correctly the guidelines, or
+> > that couldn't be tested.
+> >=20
+> > In the BSP, this driver is known as the "cif" driver, but this was
+> > renamed to "vip" to better fit the controller denomination in the
+> > datasheet.
+> >=20
+> > This basic version doesn't support cropping nor scaling, and is only
+> > designed with one SDTV video decoder being attached to it a any time.
+> >=20
+> > This version uses the "pingpong" mode of the controller, which is a
+> > double-buffering mechanism.
+> >=20
+> > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+>=20
+> Two things below:
+>=20
+> >[...]
+> > diff --git a/drivers/media/platform/rockchip/vip/dev.h b/drivers/media/=
+platform/rockchip/vip/dev.h
+> > new file mode 100644
+> > index 000000000000..eb9cd8f20ffc
+> > --- /dev/null
+> > +++ b/drivers/media/platform/rockchip/vip/dev.h
+> > @@ -0,0 +1,163 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Rockchip VIP Driver
+> > + *
+> > + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
+> > + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> > + */
+> > +
+> > +#ifndef _RK_VIP_DEV_H
+> > +#define _RK_VIP_DEV_H
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/mutex.h>
+> > +#include <media/media-device.h>
+> > +#include <media/media-entity.h>
+> > +#include <media/v4l2-ctrls.h>
+> > +#include <media/v4l2-device.h>
+> > +#include <media/videobuf2-v4l2.h>
+> > +
+> > +#define VIP_DRIVER_NAME		"rk_vip"
+> > +#define VIP_VIDEODEVICE_NAME	"stream_vip"
+> > +
+> > +#define RK_VIP_MAX_BUS_CLK	8
+> > +#define RK_VIP_MAX_SENSOR	2
+> > +#define RK_VIP_MAX_RESET	5
+> > +#define RK_VIP_MAX_CSI_CHANNEL	4
+> > +
+> > +#define RK_VIP_DEFAULT_WIDTH	640
+> > +#define RK_VIP_DEFAULT_HEIGHT	480
+> > +
+> > +#define write_vip_reg(base, addr, val)  writel(val, (addr) + (base))
+> > +#define read_vip_reg(base, addr) readl((addr) + (base))
+>=20
+> Please provide those helpers as proper inline functions. As to the
+> naming, the "_reg" suffix seems unnecessary.
+>=20
+> Alternatively, you could consider converting the driver to use regmap.
+
+Come to think of it, I feel like it would make more sense to have an inline
+function which is given a struct rk_vip_device instead of having to derefer=
+ence
+it every time in the caller to access the base address.
+
+> > +
+> > +enum rk_vip_state {
+> > +	RK_VIP_STATE_DISABLED,
+> > +	RK_VIP_STATE_READY,
+> > +	RK_VIP_STATE_STREAMING
+> > +};
+> > +
+> > +enum rk_vip_chip_id {
+> > +	CHIP_PX30_VIP,
+> > +	CHIP_RK1808_VIP,
+> > +	CHIP_RK3128_VIP,
+> > +	CHIP_RK3288_VIP
+> > +};
+> > +
+> > +enum host_type_t {
+> > +	RK_CSI_RXHOST,
+> > +	RK_DSI_RXHOST
+> > +};
+> > +
+> > +struct rk_vip_buffer {
+> > +	struct vb2_v4l2_buffer vb;
+> > +	struct list_head queue;
+> > +	union {
+> > +		u32 buff_addr[VIDEO_MAX_PLANES];
+> > +		void *vaddr[VIDEO_MAX_PLANES];
+> > +	};
+> > +};
+> > +
+> > +struct rk_vip_scratch_buffer {
+> > +	void *vaddr;
+> > +	dma_addr_t dma_addr;
+> > +	u32 size;
+> > +};
+> > +
+> > +static inline struct rk_vip_buffer *to_rk_vip_buffer(struct vb2_v4l2_b=
+uffer *vb)
+> > +{
+> > +	return container_of(vb, struct rk_vip_buffer, vb);
+> > +}
+> > +
+> > +struct rk_vip_sensor_info {
+> > +	struct v4l2_subdev *sd;
+> > +	int pad;
+> > +	struct v4l2_mbus_config mbus;
+> > +	int lanes;
+> > +	v4l2_std_id std;
+> > +};
+> > +
+> > +struct vip_output_fmt {
+> > +	u32 fourcc;
+> > +	u32 mbus;
+> > +	u32 fmt_val;
+> > +	u8 cplanes;
+> > +};
+> > +
+> > +enum vip_fmt_type {
+> > +	VIP_FMT_TYPE_YUV =3D 0,
+> > +	VIP_FMT_TYPE_RAW,
+> > +};
+> > +
+> > +struct vip_input_fmt {
+> > +	u32 mbus_code;
+> > +	u32 dvp_fmt_val;
+> > +	u32 csi_fmt_val;
+> > +	enum vip_fmt_type fmt_type;
+> > +	enum v4l2_field field;
+> > +};
+> > +
+> > +struct rk_vip_stream {
+> > +	struct rk_vip_device		*vipdev;
+> > +	enum rk_vip_state		state;
+> > +	bool				stopping;
+> > +	wait_queue_head_t		wq_stopped;
+> > +	int				frame_idx;
+> > +	int				frame_phase;
+> > +
+> > +	/* lock between irq and buf_queue */
+> > +	spinlock_t			vbq_lock;
+> > +	struct vb2_queue		buf_queue;
+> > +	struct list_head		buf_head;
+> > +	struct rk_vip_scratch_buffer	scratch_buf;
+> > +	struct rk_vip_buffer		*buffs[2];
+> > +
+> > +	/* vfd lock */
+> > +	struct mutex			vlock;
+> > +	struct video_device		vdev;
+> > +	struct media_pad		pad;
+> > +
+> > +	struct vip_output_fmt		*vip_fmt_out;
+> > +	const struct vip_input_fmt	*vip_fmt_in;
+> > +	struct v4l2_pix_format_mplane	pixm;
+> > +};
+> > +
+> > +static inline struct rk_vip_stream *to_rk_vip_stream(struct video_devi=
+ce *vdev)
+> > +{
+> > +	return container_of(vdev, struct rk_vip_stream, vdev);
+> > +}
+> > +
+> > +struct rk_vip_device {
+> > +	struct list_head		list;
+> > +	struct device			*dev;
+> > +	int				irq;
+> > +	void __iomem			*base_addr;
+> > +	void __iomem			*csi_base;
+> > +	struct clk_bulk_data		clks[RK_VIP_MAX_BUS_CLK];
+> > +	int				num_clk;
+> > +	struct vb2_alloc_ctx		*alloc_ctx;
+> > +	bool				iommu_en;
+> > +	struct iommu_domain		*domain;
+> > +	struct reset_control		*vip_rst;
+> > +
+> > +	struct v4l2_device		v4l2_dev;
+> > +	struct media_device		media_dev;
+> > +	struct v4l2_ctrl_handler	ctrl_handler;
+> > +	struct v4l2_async_notifier	notifier;
+> > +	struct v4l2_async_connection	asd;
+> > +	struct rk_vip_sensor_info	sensor;
+>=20
+> Using "sensor" as name does not seem correct. As pointed out above it
+> could be a video decoder just as well. Something with "subdevice" maybe?
+
+Agreed. I suggest renaming the struct "rk_vip_sensor_info" -> "rk_cif_remot=
+e"
+and just calling the member "remote".
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--IqvARDLe+FQx9dTB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmU41rEACgkQ3cLmz3+f
+v9G18gf9HjBe+Tt1f9LvHCxhOiq2bRyWFVPqyjlYlU4B0jK3yg6o5UcssDHUSXLT
+/LtsfEKeVMMQRGDw1cAn0tafarUqk7eWQjfw4+uyPn8OMhX7CiYdKSMNaaa6KNje
+PhDqijyDw4P7Hxt9vbXmJnDsrS0iKJ1PMoDLTdaqJPyCenwLjornfDqJUoOxokoX
+wx8xO+ngwfzo0iTcx9djHBqw1xqJe/CoSdOxXm8rmz/gXhGxQmwAdUoArrFKzkD6
+kRHf/OYepU5G8JodRIYPmng3+s1/EnkXQutDFMDQlo/xqk0b1/9MEj6g/f2U1nij
+wZJTO0sfRvzQOy/PdwdaYJ3PRC8dQQ==
+=iFRN
+-----END PGP SIGNATURE-----
+
+--IqvARDLe+FQx9dTB--
 
