@@ -1,107 +1,99 @@
-Return-Path: <devicetree+bounces-11939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A38F7D71DF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:45:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8CA67D71E6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 18:51:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E98FBB2108B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:45:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 943E0281C8F
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 16:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C003527725;
-	Wed, 25 Oct 2023 16:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1BB286A3;
+	Wed, 25 Oct 2023 16:50:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="el9Rhp9r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fqU0ebeO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC941F61C
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:45:15 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D86CE5;
-	Wed, 25 Oct 2023 09:45:11 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39PGigZi025973;
-	Wed, 25 Oct 2023 16:44:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=3Z9GAsAh0ZV2NMdeqoj60VoLHhtNstJDDU4o4/KwAWU=;
- b=el9Rhp9rue7J6iqWI1lwcVEnrPfwVYRJfTwSlutjIidd4IR17ydZxLmkNfWRLzMRyQcr
- ye+xsa0Rhp2Oz7kBlGgc0fOUldziH+YVKIO1+aRclqJVbhQbfNF71uFlbG8u7Vf0CSG+
- p1MRysp181u19pKEWpPtpORuIgEboPUFji/SjdH/2QV5XMC4rNwQMmvq6Z6kOQvIqC/o
- x4UNmORkSyvKS7gSHyaNYWdG5ubiokZJnSSOSIAD0ZeP3eFJrxLWcbSiT7ziTLRZCRba
- emSa82YRBaMoTi95nSySYExp5vVW/u+CcGcf3DQ8JrbU0ww3vnHSvhPgypEDygGnmfTz pw== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3txxbb96nb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Oct 2023 16:44:41 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39PGieVS026236
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Oct 2023 16:44:40 GMT
-Received: from quicinc.com (10.49.16.6) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 25 Oct
- 2023 09:44:40 -0700
-Date: Wed, 25 Oct 2023 09:44:38 -0700
-From: Guru Das Srinagesh <quic_gurus@quicinc.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh
-	<quic_gurus@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: firmware: qcom,scm: document SM8650 SCM
- Firmware Interface
-Message-ID: <ZTlF9tGDJMnoqtpx@quicinc.com>
-Mail-Followup-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robert Marko <robimarko@gmail.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-bindings-scm-v2-1-68a8db7ae434@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108BA273F2
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 16:50:55 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD1A13A
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 09:50:53 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32dcd3e5f3fso4062263f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 09:50:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698252652; x=1698857452; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CZYImk/mXSSi+o4l71ADu1/FnBpFWcH0X2+sMWjIFRg=;
+        b=fqU0ebeOVrFibfPJP3j0RdJ+BWZ9RpRksNhJXIkjJi5xdbeGxAAaZBMokHGiTIl129
+         c6XXHHC2crBd0H/qbVKCvH7Y7wxWLu+6ek/IPrIU4+/oFZdhvdhZX3U68VdQGSiwS4Cl
+         7TNcaFlp5FNs8aWD2XTxDbPCugGUZaMXe2ujJnxvHWJ4XEEzDiMFA1Q2ymsQRS5sMbug
+         u85Vitqbm3mTodoLZ8qyVdCqcsUB2WLu7wsFl/+SkvY6huv5FLLXvggY7W8GXkYZbHf+
+         7tYA06jY97v1X+GjSVxdcRH5p61780TupB7cj/6DmWzANmCLvkaZRbzDVfe8bJgFiriE
+         p9KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698252652; x=1698857452;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CZYImk/mXSSi+o4l71ADu1/FnBpFWcH0X2+sMWjIFRg=;
+        b=Ul3iekFQIzr1O0oBuZUBJv1YHO82Fdy63YVZ+PmRFashhVmCQ3CawA7jIPj+6ysi/G
+         5VwRMyX/uKg8i1NOdN4qLf7gWEs3ubA/RtusscqJIDBrZtzVRgxh9zSbMDguPUkYVgyB
+         Z1MgkTIGYT/YaUQssayUFVAqWdQ6uOSa6iOW7XcJYKY1b8NsJWJY6UWG4OdTY18Dxb8y
+         HoWxNGugC1q7ak8xCrAI2gUbkKU/Fm02S5senICfDePIO8Gy/KvCWtxreUMNL9Ze/wJX
+         3lUrconPcEzNSplzKQ/LCkI/ygHl0rjdsIzwXyrpQMXQZwVwoYXhwAcSaynU4BBjustO
+         MYbw==
+X-Gm-Message-State: AOJu0Yz8XLfsSDaeipxtAx1XiJQwmdbEkyXpF0XdhiWCF7rJD73MnDe2
+	FCpbGZNLy1Dx5md76BfawlJLXA==
+X-Google-Smtp-Source: AGHT+IEQCFBk5Dxw5dhzmiY5H20nvQe5QOzfRpA8EQpGFtUhVqOtnnudYdGdu3Qw92qf1Qf1whdYXg==
+X-Received: by 2002:adf:e58f:0:b0:31f:a0ab:26b5 with SMTP id l15-20020adfe58f000000b0031fa0ab26b5mr12193613wrm.8.1698252652187;
+        Wed, 25 Oct 2023 09:50:52 -0700 (PDT)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id a3-20020a5d4d43000000b003196b1bb528sm12374109wru.64.2023.10.25.09.50.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Oct 2023 09:50:51 -0700 (PDT)
+Message-ID: <03f6d583-8324-4ea2-ac6d-5e20987133e9@linaro.org>
+Date: Wed, 25 Oct 2023 17:50:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231025-topic-sm8650-upstream-bindings-scm-v2-1-68a8db7ae434@linaro.org>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oCt0gl5XyINh2MhnVbeepytGnV6BtFDp
-X-Proofpoint-GUID: oCt0gl5XyINh2MhnVbeepytGnV6BtFDp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-25_05,2023-10-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
- lowpriorityscore=0 phishscore=0 mlxlogscore=542 adultscore=0 bulkscore=0
- spamscore=0 mlxscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310170001
- definitions=main-2310250145
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] soc: qcom: llcc: Add configuration data for SC8380XP
+Content-Language: en-US
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
+ abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231025134632.10363-1-quic_sibis@quicinc.com>
+ <20231025134632.10363-3-quic_sibis@quicinc.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20231025134632.10363-3-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Oct 25 2023 10:21, Neil Armstrong wrote:
-> Document the SCM Firmware Interface on the SM8650 Platform.
+On 25/10/2023 14:46, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Add LLCC configuration data for SC8380XP SoC.
+> 
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
 
-Reviewed-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
+LGTM
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
