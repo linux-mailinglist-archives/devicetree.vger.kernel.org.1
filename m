@@ -1,86 +1,95 @@
-Return-Path: <devicetree+bounces-11952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-11953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286267D7247
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 19:29:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046AB7D724B
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 19:32:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCEBC281AE6
-	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:29:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87B2CB21000
+	for <lists+devicetree@lfdr.de>; Wed, 25 Oct 2023 17:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3767430CF7;
-	Wed, 25 Oct 2023 17:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D665C30CFA;
+	Wed, 25 Oct 2023 17:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="AMx2OflL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zf5ACJgY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB0E1D684
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 17:29:06 +0000 (UTC)
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2813138;
-	Wed, 25 Oct 2023 10:29:04 -0700 (PDT)
-Received: from pps.filterd (m0134421.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39PFa8sK006074;
-	Wed, 25 Oct 2023 17:28:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pps0720;
- bh=ODs5ZcF4dYSOy7ucmTgHFyaBQlOjJayE/j222k9NTTk=;
- b=AMx2OflLSyXuo14B/54PZyGbAXN6WlVtA+axwBtT4E3px8xhiqigjrHcYmVIfrRPRMIv
- 9dK3fqVvTERX9f0QE6Ycyz/Mm+AosE0l9VhoYPwOAAo6VrsqEPmiXw1f1ZO6Me/Z4JlW
- s7X/70zS9Oqz3QWd5UFsYbT+nyW3Fs4DHQ+9CvokeuXcfJ36YeOztKop9ayravoLTD8c
- pnncTm0hMDHXZAmVkATfkcg79Utrxcd4/ig5/kb/hlTnIJgAxo2atblA5bKo/Jz1izDS
- 7+NnuXYqoibpMEEU8nDcYc4RsQPcr30l9P1Y6vi9wyHEwdEitzbaDnDgCM1mUiYXLtxk Xg== 
-Received: from p1lg14879.it.hpe.com ([16.230.97.200])
-	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3txjjkvms3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 25 Oct 2023 17:28:55 +0000
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by p1lg14879.it.hpe.com (Postfix) with ESMTPS id 7241713149;
-	Wed, 25 Oct 2023 17:28:41 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-	by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id F3D2D80E4EE;
-	Wed, 25 Oct 2023 17:28:40 +0000 (UTC)
-From: charles.kearney@hpe.com
-To: charles.kearney@hpe.com
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        nick.hawkins@hpe.com, robh+dt@kernel.org, verdun@hpe.com
-Subject: [PATCH v2 1/1] ARM: dts: hpe: BUG: Correct GXP register ranges
-Date: Wed, 25 Oct 2023 17:27:32 +0000
-Message-Id: <20231025172732.489264-1-charles.kearney@hpe.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230920152514.3889174-2-charles.kearney@hpe.com>
-References: <20230920152514.3889174-2-charles.kearney@hpe.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922DC1C683
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 17:32:32 +0000 (UTC)
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11B7F11F
+	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 10:32:31 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3b2b1af09c5so3521157b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 10:32:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698255150; x=1698859950; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2HVv1I+VHPYBmP2qyskHC3BNYGeZwM5VQdpXShNy2UU=;
+        b=zf5ACJgYBf0QnYXanrqJVYm+tkFt0XvZ82DuSfzFskWcUAIwsbM26e7W46k/ob7Cr8
+         jZ3wHVjD1KQtZj8S8IFhXBmNQMFG3BNwCgA3b7a5IWDASv0rVTFhO9ooqrYmLP/k9Ecf
+         kJ8hdMWlMXAq3E8NaGzUAVtGGMUmWqFWpeY1ww7pC6uSBQzCocpDInmLLMFabq7mPxy8
+         wCvxhG9G/1ELH86czQTeM7fqQQFMuCw78zXB9gWyIkay0k7XfqSZ3scfoKx14ddjLzJp
+         VgglAiuaKrlKogBp2g1BF+v8MIW9mm22zEPvLZoVV5LbRG1WvDqeU0u7vNG0MGPAB/HL
+         1WHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698255150; x=1698859950;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2HVv1I+VHPYBmP2qyskHC3BNYGeZwM5VQdpXShNy2UU=;
+        b=qxHE5cOxCo9lF3khgQKRB6q4kI9grVfdjKYXjMbzVAQdwXFl7Ik+AvnHPSQEnjx4UI
+         L9Xbn/MM8IY8JSOI4CPovGAfVB6n4OJ4YTkg8ScFIU4YYeTAQamJjog9pBWvf9P2famd
+         rT9rF2vvmHK+yoE5zh4E7rZ4Gvr430l7wFX+HbMG2lG9/E8iOdHeYWfKUHJtiNeLV0GJ
+         eDPIr7cV7wXMxiEh+nI+4m3Yz00QyoP19s2gtS7xiLMlqTaJ4OmNIRmTNnb0dtS2n97p
+         kIJ2UwQClNh55QA+6t68cAj69WSPShCCgeRmSDrETRx1rPClujj8q0vIy7aszHJ5xi/i
+         3k8w==
+X-Gm-Message-State: AOJu0YwoNTCwEKpHoF6/zmaJqLhzb63zJtYfWOUGhqF+U7ZBsUJeMauQ
+	vTAugEivj0ZcBwFzY1cnyoystM4BpImRB2FGbdGm7Q==
+X-Google-Smtp-Source: AGHT+IHK3QW/LQO8x2wSrRAP38zFqCKcXAPmcxtAPrlTRDXOL59OgKdxwhV3/4We8G2bhIYvPQK38ep1jZnF3JLZbxA=
+X-Received: by 2002:a05:6808:bc1:b0:3a9:cfb5:462a with SMTP id
+ o1-20020a0568080bc100b003a9cfb5462amr17552310oik.36.1698255150350; Wed, 25
+ Oct 2023 10:32:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: nbh7KcTg3PGKmEkxsnd8Ex30gKKodTVr
-X-Proofpoint-ORIG-GUID: nbh7KcTg3PGKmEkxsnd8Ex30gKKodTVr
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-25_07,2023-10-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1011 bulkscore=0 phishscore=0 suspectscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=369 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310250152
+References: <20231025135550.13162-1-quic_sibis@quicinc.com> <20231025135550.13162-3-quic_sibis@quicinc.com>
+In-Reply-To: <20231025135550.13162-3-quic_sibis@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 25 Oct 2023 20:32:19 +0300
+Message-ID: <CAA8EJpoRMW95hGrDCMAjVeC5Q-xvZovEr53A2UpXLppujDTFOQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] regulator: qcom-rpmh: Add regulators support for PMC8380
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org, 
+	lgirdwood@gmail.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com, 
+	abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 
-Greetings Arm Linux Community,
+On Wed, 25 Oct 2023 at 16:57, Sibi Sankar <quic_sibis@quicinc.com> wrote:
+>
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+>
+> Add support from RPMH regulators found in PMC8380 for SC8380XP platform.
+>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 
-Are any additional changes necessary for this patch to be accepted upstream?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Charles Kearney
+>  drivers/regulator/qcom-rpmh-regulator.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+
+-- 
+With best wishes
+Dmitry
 
