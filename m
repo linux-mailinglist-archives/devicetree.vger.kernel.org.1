@@ -1,59 +1,86 @@
-Return-Path: <devicetree+bounces-12112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457AB7D801B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:56:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4877D8023
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB80728103B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:56:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5B7E2811C2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0BC62942E;
-	Thu, 26 Oct 2023 09:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3FE2AB2C;
+	Thu, 26 Oct 2023 09:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="J3BWVAyt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NEt5wwqI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660E5AD29;
-	Thu, 26 Oct 2023 09:56:22 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14731A2;
-	Thu, 26 Oct 2023 02:56:18 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F1D7D1C0002;
-	Thu, 26 Oct 2023 09:56:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698314177;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iLpdKu5C0fYSPbxSc3YHWPnQqBl6qyVkCmCpGHs4+QQ=;
-	b=J3BWVAytJd2WnybC3NmZ82R6PhfkKM824u1c139GxFwgy5rv2QRuDb/bNnD8rUMGuaiPWD
-	K4uVIt4Yig3m0x6Vzf3PxnHTCVTt/wKE3EjlOHDUG6ubUuu4FkPthqm3cwaIkwk8dBRF4y
-	+sMGkDaaSqGbPv7kYzYWZUriecU4EAbk6AhaKL2jIpxpqHUjJrtumhMGjuxwyaWRPqWtv+
-	AU9nHATD+O5l5Nclrk8Sdnp7TGPdJWsyePOUKNw/4eiNSPufg0mS4zXkrOGwPz22h00tnh
-	xDhzHiQl147R2RPdblcN0LmgRE723QGOJseRRErVkHTugpgC6JkgXApXtLYP6g==
-Date: Thu, 26 Oct 2023 11:56:16 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Alessandro Zummo <a.zummo@towertech.it>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B3C2D021;
+	Thu, 26 Oct 2023 09:58:09 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE7A93;
+	Thu, 26 Oct 2023 02:58:07 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9bf0ac97fdeso108604466b.2;
+        Thu, 26 Oct 2023 02:58:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698314286; x=1698919086; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9KIvM94Zo8czLYhdT3nLKb2AOCp1EA16AmR4SZgO/t4=;
+        b=NEt5wwqImRgDWauETNXA/+jsOSV/bAbMRs4dBNT7cfzWdx6QEOBGMXqbrgyAjDGy/7
+         Hr9JirvRT5DeB6wZfZ6tFtvh9+aMKdz7LKsU/V/4veYb/hrLGwTOZcYx0j/J62qKbdCI
+         tgxAWfn0AcXuPISxqqeOb3c+A/drBmfflaVr8CIp8AsKrVmO4mKs0Qff6pZjy3qj5Ufx
+         akde5aojA3aLHl9v2oqO/xEY24bE5/MRAyy91q4GxUv6JkMl51fQvz7Cr7LM7t0FF4Ta
+         4oVAXDsKgxccPbXQUYIZJ88yjf8oQb3C0qjyh3wkkYFIj6pdg97BC+vfV2BLoa3OT7Ov
+         BGlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698314286; x=1698919086;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9KIvM94Zo8czLYhdT3nLKb2AOCp1EA16AmR4SZgO/t4=;
+        b=N6vRd4e+QkIhSCtbz710e7guKNQqMixRqqstFYofbnCo5PmPLUVkSrdVmab5CD043r
+         jVTqUZzOfniG8z6M0svhE2+9DL91aEwiF01MKwU0RV+OpS+6/jCaWDOEGssY5KYJppzd
+         miIfeWIchzju/tbiR7AXQa/BqMbhUBP7wL8JA3tD9preyX65pTf55SwbZuNoriSDTFck
+         jBBv358uk50rRhLvh+3F939MEMr2fFAUUY3d+KO5TOCnbGLc7xH2dxq7pSZUyRFYW76P
+         3tT3pucZESR8AC8LX/p8NInXjAqMcKyxSWjTgzBYiJsJnVwX5D1OIKNvz4vo6wuH+eWq
+         4aMQ==
+X-Gm-Message-State: AOJu0Yxsc9ddX5Qn72I2jkBotTlthOpTN9FGgWhvndp2QFmY6tN8Vb8b
+	JtdHVbuPOPbBMhlA4Ml+qU8=
+X-Google-Smtp-Source: AGHT+IFCQqAufKA0LjuOtRNshjlN3m4ejifcXJ3YvxW+ZdXdN/W0E5ZaHeHdmKDkFOFggdRCPQmqFw==
+X-Received: by 2002:a17:907:841:b0:9c7:3611:9e7c with SMTP id ww1-20020a170907084100b009c736119e7cmr13848003ejb.61.1698314286213;
+        Thu, 26 Oct 2023 02:58:06 -0700 (PDT)
+Received: from skbuf ([188.26.57.160])
+        by smtp.gmail.com with ESMTPSA id n13-20020a170906088d00b0098ec690e6d7sm11396113eje.73.2023.10.26.02.58.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 02:58:05 -0700 (PDT)
+Date: Thu, 26 Oct 2023 12:58:03 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Arun Ramadoss <arun.ramadoss@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: rtc: nxp,pcf8563: add hiz-output
- property
-Message-ID: <202310260956166bdcb845@mail.local>
-References: <20231024-topic-pcf85363_hiz_output-v1-0-50908aff0e52@wolfvision.net>
- <20231024-topic-pcf85363_hiz_output-v1-2-50908aff0e52@wolfvision.net>
- <20231025222327c0b5d460@mail.local>
- <2f17c031-30f6-4242-b2a1-1628402b3091@wolfvision.net>
- <1c4a6185-fe09-45d1-900a-10abf48e3fc9@wolfvision.net>
- <20231026005008b8255799@mail.local>
- <8fec6c89-548b-43b5-8361-869663a58573@wolfvision.net>
+	Rob Herring <robh+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v8 1/5] net: dsa: microchip: ksz9477: Add Wake
+ on Magic Packet support
+Message-ID: <20231026095803.a54uni73ugwm33sg@skbuf>
+References: <20231026051051.2316937-1-o.rempel@pengutronix.de>
+ <20231026051051.2316937-1-o.rempel@pengutronix.de>
+ <20231026051051.2316937-2-o.rempel@pengutronix.de>
+ <20231026051051.2316937-2-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,77 +89,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8fec6c89-548b-43b5-8361-869663a58573@wolfvision.net>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20231026051051.2316937-2-o.rempel@pengutronix.de>
+ <20231026051051.2316937-2-o.rempel@pengutronix.de>
 
-On 26/10/2023 11:41:47+0200, Javier Carrasco wrote:
+On Thu, Oct 26, 2023 at 07:10:47AM +0200, Oleksij Rempel wrote:
+> Introduce Wake on Magic Packet (WoL) functionality to the ksz9477
+> driver.
 > 
-> On 26.10.23 02:50, Alexandre Belloni wrote:
-> > On 26/10/2023 01:23:21+0200, Javier Carrasco wrote:
-> >>>>> +  hiz-output:
-> >>>>> +    description:
-> >>>>> +      Use enabled if the output should stay in high-impedance. This
-> >>>>> +      mode will mask the output as an interrupt source.
-> >>>>> +      Use sleep if the otuput should be only active in sleep mode.
-> >>>>> +      This mode is compatible with any other output configuration.
-> >>>>> +      The disabled value acts as if the property was not defined.
-> >>>>> +    enum:
-> >>>>> +      - enabled
-> >>>>> +      - sleep
-> >>>>> +      - disabled
-> >>>>> +    default: disabled
-> >>>>> +
-> >>>>
-> >>>> If instead of using a custom property, you consider this as what it
-> >>>> actually is: pinmuxing, then everything else comes for free. With
-> >>>> pinctrl, you can define different states for runtime and sleep and they
-> >>>> will get applied automatically instead of open coding in the driver.
-> >>
-> >> I am not sure if your solution would cover all my needs:
-> >>
-> >> 1.- With pinctrl I can model the SoC pins, right? That would not stop
-> >> the RTC output though, so the 32 kHz signal would be generated anyways
-> >> even though the SoC would ignore it. That is one of the things I want to
-> >> avoid.
-> >>
-> > 
-> > No, you would model the INTA pin.
-> I am sorry for insisting on this topic, but if I get you right, I would
-> be modeling an interrupt pin (INTA) to keep it from generating a clock
-> signal when the RTC itself offers a high-impedance mode i.e. avoiding to
-> use the RTC feature.
+> Major changes include:
 > 
-> Is that not a misuse of the INTA pin in the first place? If there was no
-> other option, that would be an easy fix, but why would we not implement
-> the hi-Z mode when it is available? If I see a pinctrl-* modeling an
-> interrupt pin, it is not obvious that I am doing that to stop the clock
-> signal and I would have to clarify it explicitly, especially if I am not
-> interested in the interrupt.
+> 1. Extending the `ksz9477_handle_wake_reason` function to identify Magic
+>    Packet wake events alongside existing wake reasons.
 > 
-> I would rather implement and document the hi-Z mode the RTC offers
-> instead of using another mode like INTA which actually can trigger
-> interrupts. If the implementation must be different is of course another
-> topic.
+> 2. Updating the `ksz9477_get_wol` and `ksz9477_set_wol` functions to
+>    handle WAKE_MAGIC alongside the existing WAKE_PHY option, and to
+>    program the switch's MAC address register accordingly when Magic
+>    Packet wake-up is enabled. This change will prevent WAKE_MAGIC
+>    activation if the related port has a different MAC address compared
+>    to a MAC address already used by HSR or an already active WAKE_MAGIC
+>    on another port.
+> 
+> 3. Adding a restriction in `ksz_port_set_mac_address` to prevent MAC
+>    address changes on ports with active Wake on Magic Packet, as the
+>    switch's MAC address register is utilized for this feature.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
 
-There is a pin named INTA, it can mux 4 different functions:
-
- - clock output
- - battery mode indication
- - interrupt
- - HiZ
-
-with pinmuxing, you can select which function you want for the pin. I'm
-not sure what is misused there.
-
-Can you explain what is your actual use case? I'm starting to understand
-that what you want is simply disable clock out because you are not using
-the interrupt.
-
-If we assume we are never going to use battery mode, then we could
-simply used the CCF for this like the other RTC drivers.
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
