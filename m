@@ -1,125 +1,108 @@
-Return-Path: <devicetree+bounces-12168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E6C7D835E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:16:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333D27D8384
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:27:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C0B11C20D85
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:16:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598941C208EA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ACB22DF8E;
-	Thu, 26 Oct 2023 13:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CAD2DF97;
+	Thu, 26 Oct 2023 13:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Om7zOqYT"
+	dkim=pass (1024-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="z5HDzmjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C54B2D799
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:16:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8796C433C9;
-	Thu, 26 Oct 2023 13:16:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698326204;
-	bh=K9OAFyz+7TNreG16Cevm17Kt9VFkMRVq0eOtrmSO5Ws=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Om7zOqYTp6V3XsoLvP5+ArLRL0sJbOrEYW8ljitfiu3783rlKacY152DZWCbdtjuk
-	 ECyj1VAA7nymvEW0jgdbbUFcxxuKitjKcLe+o14HTW70Rrnmxx/CbCdvz21CY6Mhrw
-	 zacgjzBdcy+dGT73FVndVFz5aSg6FY/d7Zs99nyFXE8OoPvR0AD0/M8WSTTuP0I90Y
-	 Gy93YXEl2xEvrRaBEKx3HgA5vlsi5FoGxZ5S9XFogMaEOqy0qDeC50DEygXxiFIMAv
-	 Uwdtdbc8z7NrxmjY9JtNAdGlqMhzwfhk2Y1B5rjuipx6E7OlDI2nF84mNsRclO5I2m
-	 6490aI19k4F/A==
-Date: Thu, 26 Oct 2023 14:16:40 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02692D787
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:27:29 +0000 (UTC)
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 05DE3AB;
+	Thu, 26 Oct 2023 06:27:27 -0700 (PDT)
+From: Stefan Hansson <newbyte@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=donut; t=1698326847;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=s8F4XHnf3tGxinF8AVFI1KGKOgFvNYjjrwZV1fgHERE=;
+	b=z5HDzmjQ1aqCEbNnhVBUGdvjNSpt0gSQHxF+k6HC2zbjW8e2kWD5qVaa1QZDZzckYlm0/h
+	bxbGkaEpLq6Br1xbSuogLoeIPXV7KuISIfzQ4sAFVTgnyWU0ITh76rNciqct2wM5cjVk53
+	HEdIkcMHd8uKPj5895NyI3fvU/LN9FA=
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH 3/4] dt-bindings: cache: sifive,ccache0: Add
- sifive,cache-ops property
-Message-ID: <20231026-cupcake-smashing-eb150e74a17c@spud>
-References: <CAJM55Z8DXDs6LT0JrTyEMp8V6BHvsjUW7aJ8Gj+fRGsasHAi_A@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	Stefan Hansson <newbyte@postmarketos.org>
+Subject: [PATCH v4 0/4] Add samsung-matisselte and common matisse dtsi
+Date: Thu, 26 Oct 2023 15:24:05 +0200
+Message-ID: <20231026132521.38575-1-newbyte@postmarketos.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hRUnr5j1rWZpVzgz"
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z8DXDs6LT0JrTyEMp8V6BHvsjUW7aJ8Gj+fRGsasHAi_A@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
+This series adds a common samsung-matisse dtsi and reworks
+samsung-matisse-wifi to use it, and introduces samsung-matisselte. I
+choose matisselte over matisse-lte as this is how most other devices
+(klte, s3ve3g) do it and it is the codename that Samsung gave the
+device. See individual commits for more information.
 
---hRUnr5j1rWZpVzgz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+Changes since v1:
 
-Hey Emil,
+ - Rebased on latest linux-next
+ - Added qcom,msm8226 compatible to matisselte inspired by recent Lumia
+   830 patch. This is done as in v1, the patch was rejected because I
+   included the msm8226 dtsi despite not marking matisselte as
+   compatible with msm8226, and I was not sure how to resolve that. As
+   such, I'm copying what was done in the Lumia 830 (microsoft-tesla)
+   patch given that it was accepted.
 
-On Wed, Oct 25, 2023 at 11:56:41AM -0700, Emil Renner Berthing wrote:
-> This cache controller also supports flushing cache lines by writing
-> their address to a register. This can be used for cache management on
-> SoCs with non-coherent DMAs that predate the RISC-V Zicbom extension
-> such as the StarFive JH7100 SoC.
+Changes since v2:
 
-I'm not really sure why we need the flag, is it not sufficient to
-register the cache ops on a per-compatible basis? At least for the
-jh7110, you're always going to want them, otherwise your system is going
-to be largely non-functional, right?
+ - Updated commit message for UART patch to explain why it was added.
+ - Gave more flags to git to provide a hopefully more readable patch.
 
->=20
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> ---
->  Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-> b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-> index 7e8cebe21584..36ae6f48ce0b 100644
-> --- a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-> +++ b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
-> @@ -81,6 +81,11 @@ properties:
->        The reference to the reserved-memory for the L2 Loosely
-> Integrated Memory region.
->        The reserved memory node should be defined as per the bindings
-> in reserved-memory.txt.
->=20
-> +  sifive,cache-ops:
-> +    type: boolean
-> +    description: |
+Changes since v3:
 
-and this | is not required btw, since there's no formatting here that
-would need to be preserved.
+ - Collect tags.
+ - Remove spurious copyright notice.
+ - Miscellaneous fixes following review feedback.
 
-Cheers,
-Conor.
+Stefan Hansson (4):
+  ARM: dts: qcom: samsung-matisse-common: Add initial common device tree
+  dt-bindings: arm: qcom: Add Samsung Galaxy Tab 4 10.1 LTE
+  ARM: dts: qcom: Add support for Samsung Galaxy Tab 4 10.1 LTE
+    (SM-T535)
+  ARM: dts: qcom: samsung-matisse-common: Add UART
 
-> +      Use this cache controller for non-standard cache management operat=
-ions.
-> +
->  allOf:
->    - $ref: /schemas/cache-controller.yaml#
->=20
-> --=20
-> 2.40.1
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm/boot/dts/qcom/Makefile               |   1 +
+ .../qcom-apq8026-samsung-matisse-wifi.dts     | 603 +++---------------
+ ... qcom-msm8226-samsung-matisse-common.dtsi} |  68 +-
+ .../qcom/qcom-msm8926-samsung-matisselte.dts  |  42 ++
+ 5 files changed, 131 insertions(+), 584 deletions(-)
+ rewrite arch/arm/boot/dts/qcom/qcom-apq8026-samsung-matisse-wifi.dts (85%)
+ copy arch/arm/boot/dts/qcom/{qcom-apq8026-samsung-matisse-wifi.dts => qcom-msm8226-samsung-matisse-common.dtsi} (86%)
+ create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
 
---hRUnr5j1rWZpVzgz
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.41.0
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTpmuAAKCRB4tDGHoIJi
-0vG1AQD9Fhze9QKqj00P+zguWQSroVY9G3kMiTWghXQbNb9PoAD/bQUYVQNgsLE2
-5yEvG+pxv0JoZjPqvCdpwD909s1ZAQ0=
-=1ovc
------END PGP SIGNATURE-----
-
---hRUnr5j1rWZpVzgz--
 
