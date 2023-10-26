@@ -1,220 +1,443 @@
-Return-Path: <devicetree+bounces-12220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508D17D8675
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 18:08:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 329067D86B2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 18:27:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A2801C2096F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:08:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 549C71C209BE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8BF381A1;
-	Thu, 26 Oct 2023 16:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE88381CA;
+	Thu, 26 Oct 2023 16:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADe+Z3lM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WjFASNsv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2333037157
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 16:08:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6900C433C7;
-	Thu, 26 Oct 2023 16:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698336491;
-	bh=WFxJq0/989teIWW06N+2g4pyBHa4H3eufPVUdxZPeYY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ADe+Z3lMEHuDh0qqqAVl77fLn6VPJYM1TQjiDbmugE9JXn1ZNrTTLAzpd+jwgsw6t
-	 VjnTUmu0zsKv3Dz62Ko5AL3P8PDQ9HNBA/Q9dWtZq5dqjYcd+LIeFnC5kCjiK3Avly
-	 JZ84ad8+qqjrZwMDUR713ka8roxIz/X86QZvp2oX8rv4uR9hF0k/3pcVTdKTNZid/i
-	 gPvlxVKShWCpx6DRniFMs55ekXzS0VBw2L5vOFXYSZufV1mJaIkHmcVvxTFUfp+aQ6
-	 9Wa6Olw3kRNIfOq10k3PLxwXjcD+Uu/YgP64IePiEPNi/XRh4UeK8JpqWDYUxZBL/W
-	 ZzsK6Ctp+gIdw==
-Date: Thu, 26 Oct 2023 17:08:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marius.Cristea@microchip.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, lars@metafoo.de,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: adding dt-bindings for
- PAC193X
-Message-ID: <20231026-perkiness-financial-55313e297230@spud>
-References: <20231025134404.131485-1-marius.cristea@microchip.com>
- <20231025134404.131485-2-marius.cristea@microchip.com>
- <20231025-cheddar-tucking-b2ea777ed4f9@spud>
- <937af3ec4012c6ec1d66285660d8c56dcf356703.camel@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5AFD2DF6A;
+	Thu, 26 Oct 2023 16:27:37 +0000 (UTC)
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA9A018A;
+	Thu, 26 Oct 2023 09:27:35 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id 5614622812f47-3b2ec9a79bdso682746b6e.3;
+        Thu, 26 Oct 2023 09:27:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698337655; x=1698942455; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1o+C/Ju47qPjeFqJIVFsykCRJQQm8W2j+1h8zsZchD0=;
+        b=WjFASNsv5jNU9yPalee2EA1wyu/6kx285dU/7W19kkCZebDkzhNvvOFvNMwR0jAPiX
+         +15En4OqMfdC/el/7vcvQ9WPnMSgaJ2EOJxXio7NNSpRbMCDvbGGnv5y2cHFeaxC2hgk
+         2ju0YaOSmRl/UctZyqO5RwbtSt/Zgu8/AdoMWqbqVFhZHwx7e7qA2+mmDlrhU8cnGnR6
+         hQBjEyH1jc+cv829GgU7io/HDIlTwfUE5NRUohnieJqRc9puovwcoklAv/I4DOd/R+Gw
+         VmUqvuJ1r/WpBwJLX2V9ysqdSyFySVy6ynWVcFXC0PjOuG54XEaIbDK74BIxv9S8aFkT
+         V1xA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698337655; x=1698942455;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1o+C/Ju47qPjeFqJIVFsykCRJQQm8W2j+1h8zsZchD0=;
+        b=Sb0Ls26l3XFy/tTdnc9WIQDHSEqfbJNQKQSL8iKNDWv6ExgDR7XszcJKo/J+vkPW0h
+         u2hYHhb6FkTBBK/nWEpKCDXWXdLMKxDFDHCtZMLPJfureWyV0SztWxWM4symbpPKCpU4
+         M5d2DvdOLbPy0AKiAYjJBXUiEal2ZZRnpGaT1qI0ksUAForGVbpRlJMCJfYwhqRCZt5G
+         TPxRGEWT3q5vlq79RPaKvWNxTwG3g2Gx7tPuejgsQ2RKiZ5lzB/bqU3SozIFk5p9Mq5G
+         eQiZZMSPsHVhyhZnCu85Kmc/3zqD3MI8UseeeEFu7M9kTaIansLA+irm4R1TC+AvFip6
+         6Fdg==
+X-Gm-Message-State: AOJu0YywQx3co0xnwkRSxQ5CyHXxvJH7iAlIMEfdb6qGG30Rn9XI6aSm
+	6jk03u1QhTuBPo9Jd5txep4=
+X-Google-Smtp-Source: AGHT+IE6aVhubW1YE0EGv32aZBUobbdBYep/IteFbHIY2FN45nKdYHsAM/gJi1YjCUanmGBBzoKF3Q==
+X-Received: by 2002:a05:6808:90:b0:3b2:dd87:fc with SMTP id s16-20020a056808009000b003b2dd8700fcmr21032696oic.2.1698337654829;
+        Thu, 26 Oct 2023 09:27:34 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id i133-20020a25d18b000000b00d9ac1f0e23csm5414095ybg.56.2023.10.26.09.27.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 09:27:34 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <2ef2e804-d498-a2ae-9717-dd03bfd26853@roeck-us.net>
+Date: Thu, 26 Oct 2023 09:27:31 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6/TCsU+pwTa96crd"
-Content-Disposition: inline
-In-Reply-To: <937af3ec4012c6ec1d66285660d8c56dcf356703.camel@microchip.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231026081514.3610343-3-Delphine_CC_Chiu@Wiwynn.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 2/2] hwmon: pmbus: Add ltc4286 driver
+In-Reply-To: <20231026081514.3610343-3-Delphine_CC_Chiu@Wiwynn.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 10/26/23 01:15, Delphine CC Chiu wrote:
+> Add a driver to support ltc4286 chip
+> 
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> 
+> Changelog:
+>    v2 - Revise Linear Technologies LTC4286 to
+>         Analog Devices LTC4286 in Kconfig
+>       - Add more description for this driver in Kconfig
+>       - Add some comments for MBR setting in ltc4286.c
+>       - Add ltc4286.rst
+> ---
+>   Documentation/hwmon/ltc4286.rst |  79 ++++++++++++++++
+>   drivers/hwmon/pmbus/Kconfig     |   9 ++
+>   drivers/hwmon/pmbus/Makefile    |   1 +
+>   drivers/hwmon/pmbus/ltc4286.c   | 160 ++++++++++++++++++++++++++++++++
+>   4 files changed, 249 insertions(+)
+>   create mode 100644 Documentation/hwmon/ltc4286.rst
+>   create mode 100644 drivers/hwmon/pmbus/ltc4286.c
+> 
+> diff --git a/Documentation/hwmon/ltc4286.rst b/Documentation/hwmon/ltc4286.rst
+> new file mode 100644
+> index 000000000000..9cae50b7478d
+> --- /dev/null
+> +++ b/Documentation/hwmon/ltc4286.rst
+> @@ -0,0 +1,79 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +Kernel driver ltc4286
+> +=====================
+> +
+> +Supported chips:
+> +
+> +  * Analog Devices LTC4286
+> +
+> +    Prefix: 'ltc4286'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4286.pdf
+> +
+> +  * Analog Devices LTC4287
+> +
+> +    Prefix: 'ltc4287'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4287.pdf
+> +
+> +Author: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +This driver supports hardware monitoring for Analog Devices LTC4286
+> +and LTC4287 Hot-Swap Controller and Digital Power Monitors.
+> +
+> +LTC4286 and LTC4287 are hot-swap controllers that allow a circuit board
+> +to be removed from or inserted into a live backplane. They also feature
+> +current and voltage readback via an integrated 12 bit analog-to-digital
+> +converter (ADC), accessed using a PMBus interface.
+> +
+> +The driver is a client driver to the core PMBus driver. Please see
+> +Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
+> +
+> +
+> +Usage Notes
+> +-----------
+> +
+> +This driver does not auto-detect devices. You will have to instantiate the
+> +devices explicitly. Please see Documentation/i2c/instantiating-devices.rst for
+> +details.
+> +
+> +The shunt value in micro-ohms can be set via device tree at compile-time. Please
+> +refer to the Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml for bindings
+> +if the device tree is used.
+> +
+> +
+> +Platform data support
+> +---------------------
+> +
+> +The driver supports standard PMBus driver platform data. Please see
+> +Documentation/hwmon/pmbus.rst for details.
+> +
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +The following attributes are supported. Limits are read-write, history reset
+> +attributes are write-only, all other attributes are read-only.
+> +
+> +======================= =======================================================
+> +inX_label               "vin1" or "vout1" depending on chip variant and
+> +                        configuration.
 
---6/TCsU+pwTa96crd
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is that a cut-and-paste ? I don't see it handled in the driver, and I don't immediately
+see it in the datasheet. From the datasheet, it seems to me that both are always
+present.
 
-On Thu, Oct 26, 2023 at 03:23:46PM +0000, Marius.Cristea@microchip.com wrot=
-e:
-> Hi Conor,
->=20
-> On Wed, 2023-10-25 at 16:08 +0100, Conor Dooley wrote:
-> > Hey Marius,
-> >=20
-> > On Wed, Oct 25, 2023 at 04:44:03PM +0300,
-> > marius.cristea@microchip.com=A0wrote:
-> > > From: Marius Cristea <marius.cristea@microchip.com>
-> > >=20
-> > > This is the device tree schema for iio driver for
-> > > Microchip PAC193X series of Power Monitors with Accumulator.
-> > >=20
-> > > Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> > > ---
-> > > =A0.../bindings/iio/adc/microchip,pac1934.yaml=A0=A0 | 146
-> > > ++++++++++++++++++
-> > > =A01 file changed, 146 insertions(+)
-> > > =A0create mode 100644
-> > > Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > >=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > > b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > > new file mode 100644
-> > > index 000000000000..837053ed8a71
-> > > --- /dev/null
-> > > +++
-> > > b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > > @@ -0,0 +1,146 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Microchip PAC1934 Power Monitors with Accumulator
-> > > +
-> > > +maintainers:
-> > > +=A0 - Marius Cristea <marius.cristea@microchip.com>
-> > > +
-> > > +description: |
-> > > +=A0 Bindings for the Microchip family of Power Monitors with
-> > > Accumulator.
-> > > +=A0 The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be
-> > > found here:
-> > > +=A0=A0=A0
-> > > https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produc=
-tDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-> > > +
-> > > +properties:
-> > > +=A0 compatible:
-> > > +=A0=A0=A0 enum:
-> > > +=A0=A0=A0=A0=A0 - microchip,pac1931
-> > > +=A0=A0=A0=A0=A0 - microchip,pac1932
-> > > +=A0=A0=A0=A0=A0 - microchip,pac1933
-> > > +=A0=A0=A0=A0=A0 - microchip,pac1934
-> > > +
-> > > +=A0 reg:
-> > > +=A0=A0=A0 maxItems: 1
-> > > +
-> > > +=A0 "#address-cells":
-> > > +=A0=A0=A0 const: 1
-> > > +
-> > > +=A0 "#size-cells":
-> > > +=A0=A0=A0 const: 0
-> > > +
-> > > +=A0 interrupts:
-> > > +=A0=A0=A0 description: IRQ line of the ADC
-> > > +=A0=A0=A0 maxItems: 1
-> > > +
-> > > +=A0 drive-open-drain:
-> > > +=A0=A0=A0 description: The IRQ signal is configured as open-drain.
-> > > +=A0=A0=A0 type: boolean
-> > > +=A0=A0=A0 maxItems: 1
-> > > +
-> > > +=A0 microchip,slow-io:
-> > > +=A0=A0=A0 type: boolean
-> > > +=A0=A0=A0 description: |
-> > > +=A0=A0=A0=A0=A0 A GPIO used to trigger a change is sampling rate (lo=
-wering
-> > > the chip power consumption).
-> > > +=A0=A0=A0=A0=A0 In default mode, if this pin is forced high, samplin=
-g rate
-> > > is forced to eight
-> > > +=A0=A0=A0=A0=A0 samples/second. When it is forced low, the sampling =
-rate is
-> > > 1024 samples/second unless
-> > > +=A0=A0=A0=A0=A0 a different sample rate has been programmed.
-> >=20
-> > This description doesn't really make sense to me - if a GPIO is used
-> > to
-> > drive the pin low or high, why do we need a property? A DT property
-> > implies that this is a static configuration depending on the board,
-> > but
-> > reading the description this seems to be something that can be
-> > toggled
-> > at runtime.
-> > I do note though, that this GPIO is not documented in the binding, so
-> > I
-> > suppose what really needs to happen here is document the gpio so that
-> > the driver can determine at runtime what state this pin is in?
-> >=20
-> > Also, you say "In default mode", but don't mention what the non-
-> > default
-> > mode is. What happens in the other mode?
+> +inX_input               Measured voltage.
+> +
+> +curr1_label             "iout1"
+> +curr1_input             Measured current.
+> +
+> +power1_label            "pin1"
+> +power1_input            Input power.
+> +
+> +temp1_input             Chip temperature.
+> +======================= =======================================================
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index b4e93bd5835e..f2b53e8abc3c 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -226,6 +226,15 @@ config SENSORS_LTC3815
+>   
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called ltc3815.
+> +config SENSORS_LTC4286
+> +	bool "Analog Devices LTC4286"
+> +	help
+> +	  LTC4286 is an integrated solution for hot swap applications that
+> +	  allows a board to be safely inserted and removed from a live
+> +	  backplane.
+> +	  This chip could be used to monitor voltage, current, ...etc.
+> +	  If you say yes here you get hardware monitoring support for Analog
+> +	  Devices LTC4286.
+>   
+>   config SENSORS_MAX15301
+>   	tristate "Maxim MAX15301"
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 84ee960a6c2d..94e28f6d6a61 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -24,6 +24,7 @@ obj-$(CONFIG_SENSORS_LM25066)	+= lm25066.o
+>   obj-$(CONFIG_SENSORS_LT7182S)	+= lt7182s.o
+>   obj-$(CONFIG_SENSORS_LTC2978)	+= ltc2978.o
+>   obj-$(CONFIG_SENSORS_LTC3815)	+= ltc3815.o
+> +obj-$(CONFIG_SENSORS_LTC4286)	+= ltc4286.o
+>   obj-$(CONFIG_SENSORS_MAX15301)	+= max15301.o
+>   obj-$(CONFIG_SENSORS_MAX16064)	+= max16064.o
+>   obj-$(CONFIG_SENSORS_MAX16601)	+= max16601.o
+> diff --git a/drivers/hwmon/pmbus/ltc4286.c b/drivers/hwmon/pmbus/ltc4286.c
+> new file mode 100644
+> index 000000000000..e1d72fe9587c
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/ltc4286.c
+> @@ -0,0 +1,160 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pmbus.h>
+> +#include "pmbus.h"
+> +
+> +/* LTC4286 register */
+> +#define LTC4286_MFR_CONFIG1	0xF2
+> +
+> +/* LTC4286 configuration */
+> +#define VRANGE_SELECT_BIT	BIT(1)
+> +
+> +#define LTC4286_MFR_ID_SIZE	3
+> +
+> +enum chips { ltc4286, ltc4287 };
+> +
+> +/*
+> + * Initialize the MBR as default settings which is referred to LTC4286 datasheet
+> + * (March 22, 2022 version) table 3 page 16
+> + */
+> +static struct pmbus_driver_info ltc4286_info = {
+> +	.pages = 1,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +	.format[PSC_CURRENT_OUT] = direct,
+> +	.format[PSC_POWER] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.m[PSC_VOLTAGE_IN] = 32,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = 1,
+> +	.m[PSC_VOLTAGE_OUT] = 32,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +	.R[PSC_VOLTAGE_OUT] = 1,
+> +	.m[PSC_CURRENT_OUT] = 1024,
+> +	.b[PSC_CURRENT_OUT] = 0,
+> +	/*
+> +	 * The rsense value used in MBR formula in LTC4286 datasheet should be ohm unit.
+> +	 * However, the rsense value that user input is mirco ohm.
+> +	 * Thus, the MBR setting which involves rsense should be shifted by 6 digits.
+> +	 */
+> +	.R[PSC_CURRENT_OUT] = 3 - 6,
+> +	.m[PSC_POWER] = 1,
+> +	.b[PSC_POWER] = 0,
+> +	/*
+> +	 * The rsense value used in MBR formula in LTC4286 datasheet should be ohm unit.
+> +	 * However, the rsense value that user input is mirco ohm.
+> +	 * Thus, the MBR setting which involves rsense should be shifted by 6 digits.
+> +	 */
+> +	.R[PSC_POWER] = 4 - 6,
+> +	.m[PSC_TEMPERATURE] = 1,
+> +	.b[PSC_TEMPERATURE] = 273,
+> +	.R[PSC_TEMPERATURE] = 0,
+> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+> +		   PMBUS_HAVE_PIN | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_VOUT |
+> +		   PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_TEMP,
+> +};
+> +
 
-> This is a "double function" pin. On the PAC193x there is the SLOW/ALERT
-> pin. At runtime this pin could be configured as an input to the PAC and
-> the functionality will be "SLOW" that means if it is forced high, the
-> PAC will work in low power mode by changing the sample rate to 8 SPS.
-> If it's forced low the PAC will work at it's full sample rate.
+The datasheet for LTC4286  (in the PMBus description talks about LSB 21.3 mV/RSENSE
+for IOUT_OC_WARN_LIMIT and 2.8/RSENSE for PIN_OP_WARN_LIMIT. This contradicts
+data elsewhere in the datasheet which uses above coefficients for both LTC4286
+and LTC4287. I don't know if the datasheet is wrong, but this needs to be clarified.
+If the datasheet is wrong, that needs to be mentioned above. If the limit registers
+use different coefficients, local code will be needed to adjust values when reading /
+writing the registers to have it match coefficients.
 
-Since this is a runtime thing, it doesn't make sense to have a property
-that is set at dts creation time that decides what mode the pin is in.
+> +static const struct i2c_device_id ltc4286_id[] = { { "ltc4286", ltc4286 },
+> +						   { "ltc4287", ltc4287 },
+> +						   {} };
+> +MODULE_DEVICE_TABLE(i2c, ltc4286_id);
+> +
+> +static int ltc4286_probe(struct i2c_client *client)
+> +{
+> +	int ret;
+> +	const struct i2c_device_id *mid;
+> +	u8 block_buffer[I2C_SMBUS_BLOCK_MAX + 1];
+> +	struct pmbus_driver_info *info;
+> +	u32 rsense;
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, block_buffer);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "failed to read manufacturer id\n");
 
-> "SLOW" is the default function of the pin but it may be programmed to
-> function as ALERT pin (Open Collector when functioning as ALERT,
-> requires pull-up resistor to VDD I/O). This time the pin will be set as
-> output from PAC (ALERT functionality) to trigger an interrupt to the
-> system (this is covered by the interrupts and drive-open-drain).
+Why not use dev_err_probe() here ?
 
-Hmm, at the risk of getting out of my depth with what the GPIO subsystem
-is capable of doing, I would expect to see something like
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Refer to ltc4286 datasheet page 20
+> +	 * the manufacturer id is LTC
+> +	 */
+> +	if (ret != LTC4286_MFR_ID_SIZE ||
+> +	    strncmp(block_buffer, "LTC", LTC4286_MFR_ID_SIZE)) {
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "failed to read manufacturer id\n");
 
-sampling-rate-gpios:
-  description:
-    <what you have above>
-  maxItems: 1
+This is misleading. It didn't _fail_ to read the manufacturer ID.
 
-Which would allow the driver to either drive this pin via the gpio
-subsystem, or to use the interrupt property to use it as an interrupt
-instead.
+> +	}
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, block_buffer);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "failed to read manufacturer model\n");
 
-Perhaps Jonathan etc knows better for these sort of dual mode pins.
+Why not use dev_err_probe() here ?
 
-> The system could work fine without this pin. The driver doesn't use
-> interrupt at this time, but it could be extended.
+> +		return ret;
+> +	}
+> +
+> +	for (mid = ltc4286_id; mid->name[0]; mid++) {
+> +		if (!strncasecmp(mid->name, block_buffer, strlen(mid->name)))
+> +			break;
+> +	}
 
-Cheers,
-Conor.
+This is pointless code. If the ID is not found, mid will point after
+the end of the array, and then what ?
 
---6/TCsU+pwTa96crd
-Content-Type: application/pgp-signature; name="signature.asc"
+The purpose of such code is to validate if the chip is actually the one
+referenced in the match function and at least warn if that is not the case.
+It should never accept a chip which is _known_ to not be supported.
 
------BEGIN PGP SIGNATURE-----
+> +
+> +	ret = of_property_read_u32(client->dev.of_node,
+> +				   "shunt-resistor-micro-ohms", &rsense);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (rsense == 0)
+> +		return -EINVAL;
+> +
+> +	info = &ltc4286_info;
+> +
+> +	/* Default of VRANGE_SELECT = 1, 102.4V */
+> +	if (device_property_read_bool(&client->dev, "adi,vrange-select-25p6")) {
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTqO5wAKCRB4tDGHoIJi
-0hmYAQCmkSnFNbvLOYoS5zpR/RrKQCjnseNtPyG7Q7Cd/8Q6lQEA5xp0wOClCL69
-r+PqDSbFGSDxR9U6JeWtWD5lnAIvMQw=
-=8fmx
------END PGP SIGNATURE-----
+What if the adi,vrange-select-25p6 property is not provided, but the chip
+is programmed for this range ?
 
---6/TCsU+pwTa96crd--
+> +		/* Setup MFR1 CONFIG register bit 1 VRANGE_SELECT */
+> +		ret = i2c_smbus_read_word_data(client, LTC4286_MFR_CONFIG1);
+> +		if (ret < 0) {
+> +			dev_err(&client->dev,
+> +				"failed to read manufacturer configuration one\n"); > +			return ret;
+> +		}
+> +
+> +		ret &= ~VRANGE_SELECT_BIT; /* VRANGE_SELECT = 0, 25.6V */
+> +		ret = i2c_smbus_write_word_data(client, LTC4286_MFR_CONFIG1,
+> +						ret);
+
+This should only be written if it actually changed.
+
+> +		if (ret < 0) {
+> +			dev_err(&client->dev, "failed to set vrange\n");
+> +			return ret;
+> +		}
+> +
+> +		info->m[PSC_VOLTAGE_IN] = 128;
+> +		info->m[PSC_VOLTAGE_OUT] = 128;
+> +		info->m[PSC_POWER] = 4 * rsense;
+
+You can not overwrite ltc4286_info because there might be several chips
+in the system with different sense resistor values and range
+configurations.
+
+Also, the above (and the calculation in the code below) will overflow
+with too-large sense register values.
+
+> +	} else
+> +		info->m[PSC_POWER] = rsense;
+
+Please run checkpatch --strict on your patches.
+
+> +
+> +	info->m[PSC_CURRENT_OUT] = 1024 * rsense;
+
+Any rsense value larger than MAXINT / 1024 will overflow.
+
+> +
+> +	return pmbus_do_probe(client, info);
+> +}
+> +
+> +static const struct of_device_id ltc4286_of_match[] = {
+> +	{ .compatible = "lltc,ltc4286" },
+> +	{ .compatible = "lltc,ltc4287" },
+> +	{}
+> +};
+> +
+> +static struct i2c_driver ltc4286_driver = {
+> +	.driver = {
+> +		.name = "ltc4286",
+> +		.of_match_table = ltc4286_of_match,
+> +	},
+> +	.probe = ltc4286_probe,
+> +	.id_table = ltc4286_id,
+> +};
+> +
+> +module_i2c_driver(ltc4286_driver);
+> +
+> +MODULE_AUTHOR("Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>");
+> +MODULE_DESCRIPTION("PMBUS driver for LTC4286 and compatibles");
+> +MODULE_LICENSE("GPL");
+
 
