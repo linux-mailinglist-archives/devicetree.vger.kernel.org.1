@@ -1,446 +1,140 @@
-Return-Path: <devicetree+bounces-12101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08EA57D7EDE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:51:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E82BD7D7F1D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:57:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A4FF1C20E5D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:51:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70772B211CE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6683208B6;
-	Thu, 26 Oct 2023 08:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0142419BCD;
+	Thu, 26 Oct 2023 08:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="quGwx5xv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VGdVAsYl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11EC1CFB7
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 08:51:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B51DBC433C8;
-	Thu, 26 Oct 2023 08:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698310267;
-	bh=mddcn5IUn1NieVHT8ue//nKluw4nhymiQSKMfwyNqmc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=quGwx5xvVZVgIO8NqhpBP4m7Kn6qven7A30OpvG5XZH0ujJyaECkqmCND95h33XdK
-	 0iPjzkVSga48GfWH/6G4ifAmMNXZq5BS970n/nlYynWgPgJsXtkdZpHhsOmEjdZ9qK
-	 gPb2KuUPuJPNFwIuqFRZD+DFKRiIi1d6H7TIbAU0kzyHS3UeXbjmoI/rlAlvinJHzY
-	 LMzJUZIHnmEokL975kdrLUrCbLmGX0RM+bm2UQmUW/1Z+PAWr6mYhSuD/sD7CWFrLJ
-	 6BVPS0DdGl+3nCnidohM9nLrHWrXlR8o6Z3y9PQQuqkYMQMu4QoD5TqOGExy4vZU7f
-	 tDvCtfPcutbjw==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Marc Zyngier
- <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew Jones
- <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, Saravana
- Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 07/14] irqchip: Add RISC-V incoming MSI controller
- early driver
-In-Reply-To: <CAK9=C2WHw5BKZua9+qEHso3NdxuX-_nqaLKrGetO4u=R==RuHg@mail.gmail.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-8-apatel@ventanamicro.com>
- <878r7srx04.fsf@all.your.base.are.belong.to.us>
- <CAK9=C2XpxYztxgD-5HQ+1kThBaRTv3pVk5eah4XHZ_8x62BwqQ@mail.gmail.com>
- <875y2ug023.fsf@all.your.base.are.belong.to.us>
- <CAK9=C2WHw5BKZua9+qEHso3NdxuX-_nqaLKrGetO4u=R==RuHg@mail.gmail.com>
-Date: Thu, 26 Oct 2023 10:51:04 +0200
-Message-ID: <87pm11wyvb.fsf@all.your.base.are.belong.to.us>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B36A3D78
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 08:57:39 +0000 (UTC)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0B91AC
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 01:57:34 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d9c66e70ebdso441566276.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 01:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698310654; x=1698915454; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=d15OUBlXoCJoUgZsOraHwb/V6/eE2WDwET5ZkyPx89I=;
+        b=VGdVAsYlb1hiv6kYyLytVrbDKNuOdBKi4pUjHe7VTA0caJu5yvrVqPQRJ4t1D1W3eM
+         KrRqxJbEzYlDOjvyawUifn1SAELQ0MzA1CNT+qdG7F41T8pZVVHyzMF4EK0XNDog02Kr
+         yHB54LgJiZAn+ymc813OAcm6xilxRpqujqgyvNY9llbMF81w10IFXKTJRjE9yAWpaIQp
+         XiAymVmXqElSI3X0gDuKN48mBnzthQxStmQ2YMj2TjTUKeV3NnqwTILbYfZzqCdtp4GB
+         ZEEU7F4ZK3yoFqKZPb4f9IUKM/OBhoKizEliZRLh0UwVOXP48ehxQWuWMdY5PNFq7M18
+         JyHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698310654; x=1698915454;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d15OUBlXoCJoUgZsOraHwb/V6/eE2WDwET5ZkyPx89I=;
+        b=ORrewZ/TMrIVn1tas6bjYmTgBQnbJlkssdMsC87zQCjqg/05haQdCzRnKewoy9zMpB
+         NY7sVt4ssk9zC/71jlh1EMMwgUyRsmpOlHrcHkNEZDNIs/4HWMfck3HqSU3LFWDmoH5Q
+         ynWljrCHhSI3QfS3FOZXaGZsrm1AVTbk/pJBUzfJUi67ha9V+KRhzLoX3+zwYobgQy97
+         s7nWheyaeswZZGyLr73OATJYGUFVkq6g/Ktf+DwgNB79oGOIVHvZdR58xzayZXXkEIDK
+         v3CTFCaivIn9uei1jX9FtCeArdusirGfzVOxR8YFjSzV55A/tjC0S3ixSP/56++GeXNT
+         UAxw==
+X-Gm-Message-State: AOJu0Yx/iXhdTNdufYkaOwvuvRgEMq8zuVDBENi9p5lk9ESLxqCan2l9
+	dMnEHjBOi5jfdrQNafcbgqi4sZrWlwQi1JKJ1PC9pQ==
+X-Google-Smtp-Source: AGHT+IFhzh3jp3HfNlJ8La8+jINi5sy551LrNDFQM80H3MVmgkxMCbioFraPFHdJrZNwGJJzriw+6D047YqUbWdNHEc=
+X-Received: by 2002:a25:fb01:0:b0:da0:9735:b012 with SMTP id
+ j1-20020a25fb01000000b00da09735b012mr2234616ybe.11.1698310654073; Thu, 26 Oct
+ 2023 01:57:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
+ <20231025103957.3776-7-keith.zhao@starfivetech.com> <70805ff2-56a8-45e1-a31c-ffb0e84749e5@linaro.org>
+ <3twc4zoohon7uujypgjtlnryfmebx4osvpykagnwr5nemmqz2w@w4vw55uswebh>
+In-Reply-To: <3twc4zoohon7uujypgjtlnryfmebx4osvpykagnwr5nemmqz2w@w4vw55uswebh>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 26 Oct 2023 11:57:22 +0300
+Message-ID: <CAA8EJppxQ7J8DEDFsWzPL8bDpNW-KY0nhUA++zDBRpMCpP-bkA@mail.gmail.com>
+Subject: Re: [PATCH v2 6/6] drm/vs: Add hdmi driver
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Keith Zhao <keith.zhao@starfivetech.com>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-media@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Changhuang Liang <changhuang.liang@starfivetech.com>, 
+	Jack Zhu <jack.zhu@starfivetech.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Anup,
-
-I'm getting the vibes that you are upset. Just to clarify; I want AIA
-support as much as the next guy. I'm not here to pick fights, and argue
-for non-technical things. I'm just here for
-questions/clarifications/suggestion, so we can move the implementation
-forward.
-
-If I for some reason offended you, please let me know. If that was the
-case, that was not on purpose, and accept my apologies.
-
-Now, please let's continue the technical discussion.
-
-Anup Patel <apatel@ventanamicro.com> writes:
-
->> >> > +
->> >> > +     writel(IMSIC_IPI_ID, local->msi_va);
->> >>
->> >> Do you need the barriers here? If so, please document. If not, use the
->> >> _releaxed() version.
->> >
->> > We can't assume that _relaxed version of MMIO operations
->> > will work for RISC-V implementation so we conservatively
->> > use regular MMIO operations without _releaxed().
->>
->> You'll need to expand on your thinking here, Anup. We can't just
->> sprinkle fences everywhere because of "we can't assume it'll work". Do
->> you need proper barriers for IPIs or not?
+On Thu, 26 Oct 2023 at 11:07, Maxime Ripard <mripard@kernel.org> wrote:
 >
-> For IPIs, we use generic IPI-mux which has its own barriers. We
-> certainly need matching read and write barrier for the data being
-> passed for synchronization.
-
-Ok! If the IPI-mux has the barriers, it seems like a writel_relaxed will
-do just fine.
-
->> >> > +void imsic_vector_mask(struct imsic_vector *vec)
->> >> > +{
->> >> > +     struct imsic_local_priv *lpriv;
->> >> > +     unsigned long flags;
->> >> > +
->> >> > +     lpriv =3D per_cpu_ptr(imsic->lpriv, vec->cpu);
->> >> > +     if (WARN_ON(&lpriv->vectors[vec->local_id] !=3D vec))
->> >> > +             return;
->> >> > +
->> >> > +     raw_spin_lock_irqsave(&lpriv->ids_lock, flags);
->> >> > +     bitmap_clear(lpriv->ids_enabled_bitmap, vec->local_id, 1);
->> >> > +     raw_spin_unlock_irqrestore(&lpriv->ids_lock, flags);
->> >> > +
->> >> > +     imsic_remote_sync(vec->cpu);
->> >>
->> >> x86 seems to set a timer instead, for the remote cpu cleanup, which c=
-an
->> >> be much cheaper, and less in instrusive. Is that applicable here?
->> >
->> > The issue with that approach is deciding the right duration
->> > of timer interrupt. There might be platforms who need
->> > immediate mask/unmask response. We can certainely
->> > keep improving/tuning this over-time.
->>
->> Any concrete examples where this is an actual problem?
+> On Thu, Oct 26, 2023 at 01:23:53AM +0300, Dmitry Baryshkov wrote:
+> > > +static int starfive_hdmi_register(struct drm_device *drm, struct starfive_hdmi *hdmi)
+> > > +{
+> > > +   struct drm_encoder *encoder = &hdmi->encoder;
+> > > +   struct device *dev = hdmi->dev;
+> > > +
+> > > +   encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
+> > > +
+> > > +   /*
+> > > +    * If we failed to find the CRTC(s) which this encoder is
+> > > +    * supposed to be connected to, it's because the CRTC has
+> > > +    * not been registered yet.  Defer probing, and hope that
+> > > +    * the required CRTC is added later.
+> > > +    */
+> > > +   if (encoder->possible_crtcs == 0)
+> > > +           return -EPROBE_DEFER;
+> > > +
+> > > +   drm_encoder_helper_add(encoder, &starfive_hdmi_encoder_helper_funcs);
+> > > +
+> > > +   hdmi->connector.polled = DRM_CONNECTOR_POLL_HPD;
+> > > +
+> > > +   drm_connector_helper_add(&hdmi->connector,
+> > > +                            &starfive_hdmi_connector_helper_funcs);
+> > > +   drmm_connector_init(drm, &hdmi->connector,
+> > > +                       &starfive_hdmi_connector_funcs,
+> > > +                       DRM_MODE_CONNECTOR_HDMIA,
+> >
+> > On an embedded device one can not be so sure. There can be MHL or HDMI
+> > Alternative Mode. Usually we use drm_bridge here and drm_bridge_connector.
 >
-> Do you have a concrete timer duration with proper justification ?
+> On an HDMI driver, it's far from being a requirement, especially given
+> the limitations bridges have.
 
-I would simply mimic what x86 does for now -- jiffies + 1.
+It's a blessing that things like MHL / HDMI-in-USB-C / HDMI-to-MyDP
+are not widely used in the wild and are mostly non-existing except
+several phones that preate wide DP usage.
+Using drm_connector directly prevents one from handling possible
+modifications on the board level. For example, with the DRM connector
+in place, handling a separate HPD GPIO will result in code duplication
+from the hdmi-connector driver. Handling any other variations in the
+board design (which are pretty common in the embedded world) will also
+require changing the driver itself. drm_bridge / drm_bridge_connector
+save us from those issues.
 
-No biggie for me, and this can, as you say, be improved later.
+BTW: what are the limitations of the drm_bridge wrt. HDMI output? I'm
+asking because we heavily depend on the bridge infrastructure for HDMI
+output. Maybe we are missing something there, which went unnoticed to
+me and my colleagues.
 
->> >> > +void imsic_vector_move(struct imsic_vector *old_vec,
->> >> > +                     struct imsic_vector *new_vec)
->> >> > +{
->> >> > +     struct imsic_local_priv *old_lpriv, *new_lpriv;
->> >> > +     struct imsic_vector *ovec, *nvec;
->> >> > +     unsigned long flags, flags1;
->> >> > +     unsigned int i;
->> >> > +
->> >> > +     if (WARN_ON(old_vec->cpu =3D=3D new_vec->cpu ||
->> >> > +                 old_vec->order !=3D new_vec->order ||
->> >> > +                 (old_vec->local_id & IMSIC_VECTOR_MASK(old_vec)) =
-||
->> >> > +                 (new_vec->local_id & IMSIC_VECTOR_MASK(new_vec))))
->> >> > +             return;
->> >> > +
->> >> > +     old_lpriv =3D per_cpu_ptr(imsic->lpriv, old_vec->cpu);
->> >> > +     if (WARN_ON(&old_lpriv->vectors[old_vec->local_id] !=3D old_v=
-ec))
->> >> > +             return;
->> >> > +
->> >> > +     new_lpriv =3D per_cpu_ptr(imsic->lpriv, new_vec->cpu);
->> >> > +     if (WARN_ON(&new_lpriv->vectors[new_vec->local_id] !=3D new_v=
-ec))
->> >> > +             return;
->> >> > +
->> >> > +     raw_spin_lock_irqsave(&old_lpriv->ids_lock, flags);
->> >> > +     raw_spin_lock_irqsave(&new_lpriv->ids_lock, flags1);
->> >> > +
->> >> > +     /* Move the state of each vector entry */
->> >> > +     for (i =3D 0; i < BIT(old_vec->order); i++) {
->> >> > +             ovec =3D old_vec + i;
->> >> > +             nvec =3D new_vec + i;
->> >> > +
->> >> > +             /* Unmask the new vector entry */
->> >> > +             if (test_bit(ovec->local_id, old_lpriv->ids_enabled_b=
-itmap))
->> >> > +                     bitmap_set(new_lpriv->ids_enabled_bitmap,
->> >> > +                                nvec->local_id, 1);
->> >> > +
->> >> > +             /* Mask the old vector entry */
->> >> > +             bitmap_clear(old_lpriv->ids_enabled_bitmap, ovec->loc=
-al_id, 1);
->> >> > +
->> >> > +             /*
->> >> > +              * Move and re-trigger the new vector entry based on =
-the
->> >> > +              * pending state of the old vector entry because we m=
-ight
->> >> > +              * get a device interrupt on the old vector entry whi=
-le
->> >> > +              * device was being moved to the new vector entry.
->> >> > +              */
->> >> > +             old_lpriv->ids_move[ovec->local_id] =3D nvec;
->> >> > +     }
->> >>
->> >> Hmm, nested spinlocks, and reimplementing what the irq matrix allocat=
-or
->> >> does.
->> >>
->> >> Convince me why irq matrix is not a good fit to track the interrupts =
-IDs
->> >> *and* get handling/tracking for managed/unmanaged interrupts. You said
->> >> that it was the power-of-two blocks for MSI, but can't that be enfored
->> >> on matrix alloc? Where are you doing the special handling of MSI?
->> >>
->> >> The reason I'm asking is because I'm pretty certain that x86 has prop=
-er
->> >> MSI support (Thomas Gleixner can answer for sure! ;-))
->> >>
->> >> IMSIC smells a lot like the the LAPIC. The implementation could proba=
-bly
->> >> be *very* close to what arch/x86/kernel/apic/vector.c does.
->> >>
->> >> Am I completly off here?
->> >>
->> >
->> > The x86 APIC driver only supports MSI-X due to which the IRQ matrix
->> > allocator only supports ID/Vector allocation suitable for MSI-X whereas
->> > the ARM GICv3 driver supports both legacy MSI and MSI-X. In absence
->> > of legacy MSI support, Linux x86 will fallback to INTx for PCI devices
->> > with legacy MSI support but for RISC-V platforms we can't assume that
->> > INTx is available because we might be dealing with an IMSIC-only
->> > platform.
->>
->> You're mixing up MSI and *multi-MSI* (multiple MSI vectors).
->
-> So now you are doubting my understanding of MSI ?
-
-I'm not doubting anything. Maybe we need to clarify so that we
-understand each other.
-
-You said: "The x86 APIC driver only supports MSI-X..." And that made me
-think that you didn't have all the details. Sorry for making that
-assumption.
-
-Let's clear up the terminology, for our own sake:
-
-  * legacy-MSI: MSI (non-MSIX!), with *only one vector*.
-  * multi-MSI: MSI (non-MSIX!), with multiple vectors
-  * MSI-X
-
-"MSI" can also refer to all of the above.
-
-x86 supports legacy-MSI and MSI-X for non-remapped MSIs, and multi-MSI
-with IOMMU support.
-
->> x86 support MSI-X, MSI, and multi-MSI with IOMMU.
->>
->> Gleixner has a some insights on why one probably should *not* jump
->> through hoops to support multi-MSI:
->> https://lore.kernel.org/all/877d7yhve7.ffs@tglx/
->
-> This is a fair justification to drop why x86 does not support
-> the legacy-MSI or "multi-MSI".
-
-My claim is that x86 does support legacy-MSI, but for design decision,
-has avoided multi-MSI.
-
-AFAIU, there are few multi-MSI devices out there.
-
->> Will we really see HW requiring multi-MSI support on RISC-V systems
->> without IOMMU? To me this sounds like a theoretical exercise.
->>
->> > Refer, x86_vector_msi_parent_ops in arch/x86/kernel/apic/msi.c and
->> > X86_VECTOR_MSI_FLAGS_SUPPORTED in arch/x86/include/asm/msi.h
->> >
->> > Refer, its_pci_msi_domain_info in drivers/irqchip/irq-gic-v3-its-pci-m=
-si.c
->> >
->> > The changes which I think are need in the IRQ matrix allocator before
->> > integrating it in the IMSIC driver are the following:
->> > 1) IRQ matrix allocator assumed NR_VECTORS to be a fixed define
->> >     which the arch code provides but in RISC-V world the number of
->> >     IDs are discovered from DT or ACPI.
->>
->> Ok, let's try to be bit more explicit. Have you had a look at
->> kernel/irq/matrix.c?
->
-> Why do you doubt it ?
-
-Again, no doubts -- I'm just trying to clarify. Sorry if that touched a
-nerve!
-
->> You need to define the IRQ_MATRIX_BITS (which x86 sets to NR_VECTORS).
->> This is the size of the bitmap. For IMSIC this would be 2047.
->
-> Wow, let's just create large bitmaps even when underlying HW has
-> fewer per-CPU IDs !!!
-
-Yeah, fair argument. It's a bit too much. Here's a patch to the matrix
-allocator that fixes that. Note that it's only compile tested:
-
---8<--
-From 2be4093a39b0560247289f8f4c8214cdacda7870 Mon Sep 17 00:00:00 2001
-From: =3D?UTF-8?q?Bj=3DC3=3DB6rn=3D20T=3DC3=3DB6pel?=3D <bjorn@rivosinc.com>
-Date: Thu, 26 Oct 2023 10:17:21 +0200
-Subject: [PATCH] genirq/matrix: Dynamic bitmap allocation
-MIME-Version: 1.0
-Content-Type: text/plain; charset=3DUTF-8
-Content-Transfer-Encoding: 8bit
-
-Some (future) users of the irq matrix allocator, do not know the size
-of the bitmaps at compile time.
-
-To avoid wasting memory on unneccesary large bitmaps, size the bitmap
-at matrix allocation time.
-
-Signed-off-by: Bj=C3=B6rn T=C3=B6pel <bjorn@rivosinc.com>
----
- arch/x86/include/asm/hw_irq.h |  2 --
- kernel/irq/matrix.c           | 33 ++++++++++++++++++++++-----------
- 2 files changed, 22 insertions(+), 13 deletions(-)
-
-diff --git a/arch/x86/include/asm/hw_irq.h b/arch/x86/include/asm/hw_irq.h
-index 551829884734..dcfaa3812306 100644
---- a/arch/x86/include/asm/hw_irq.h
-+++ b/arch/x86/include/asm/hw_irq.h
-@@ -16,8 +16,6 @@
-=20
- #include <asm/irq_vectors.h>
-=20
--#define IRQ_MATRIX_BITS		NR_VECTORS
--
- #ifndef __ASSEMBLY__
-=20
- #include <linux/percpu.h>
-diff --git a/kernel/irq/matrix.c b/kernel/irq/matrix.c
-index 1698e77645ac..16ce956935ca 100644
---- a/kernel/irq/matrix.c
-+++ b/kernel/irq/matrix.c
-@@ -8,8 +8,6 @@
- #include <linux/cpu.h>
- #include <linux/irq.h>
-=20
--#define IRQ_MATRIX_SIZE	(BITS_TO_LONGS(IRQ_MATRIX_BITS))
--
- struct cpumap {
- 	unsigned int		available;
- 	unsigned int		allocated;
-@@ -17,8 +15,9 @@ struct cpumap {
- 	unsigned int		managed_allocated;
- 	bool			initialized;
- 	bool			online;
--	unsigned long		alloc_map[IRQ_MATRIX_SIZE];
--	unsigned long		managed_map[IRQ_MATRIX_SIZE];
-+	unsigned long		*alloc_map;
-+	unsigned long		*managed_map;
-+	unsigned long		bitmap_storage[];
- };
-=20
- struct irq_matrix {
-@@ -32,8 +31,10 @@ struct irq_matrix {
- 	unsigned int		total_allocated;
- 	unsigned int		online_maps;
- 	struct cpumap __percpu	*maps;
--	unsigned long		scratch_map[IRQ_MATRIX_SIZE];
--	unsigned long		system_map[IRQ_MATRIX_SIZE];
-+	unsigned long		*scratch_map;
-+	unsigned long		*system_map;
-+	unsigned long		bitmap_storage[];
-+
- };
-=20
- #define CREATE_TRACE_POINTS
-@@ -50,24 +51,34 @@ __init struct irq_matrix *irq_alloc_matrix(unsigned int=
- matrix_bits,
- 					   unsigned int alloc_start,
- 					   unsigned int alloc_end)
- {
-+	unsigned int cpu, matrix_size =3D BITS_TO_LONGS(matrix_bits);
- 	struct irq_matrix *m;
-=20
--	if (matrix_bits > IRQ_MATRIX_BITS)
--		return NULL;
--
--	m =3D kzalloc(sizeof(*m), GFP_KERNEL);
-+	m =3D kzalloc(struct_size(m, bitmap_storage, matrix_size * 2), GFP_KERNEL=
-);
- 	if (!m)
- 		return NULL;
-=20
-+	m->scratch_map =3D &m->bitmap_storage[0];
-+	m->system_map =3D &m->bitmap_storage[matrix_size];
-+
- 	m->matrix_bits =3D matrix_bits;
- 	m->alloc_start =3D alloc_start;
- 	m->alloc_end =3D alloc_end;
- 	m->alloc_size =3D alloc_end - alloc_start;
--	m->maps =3D alloc_percpu(*m->maps);
-+	m->maps =3D __alloc_percpu(struct_size(m->maps, bitmap_storage, matrix_si=
-ze * 2),
-+				 __alignof__(*m->maps));
- 	if (!m->maps) {
- 		kfree(m);
- 		return NULL;
- 	}
-+
-+	for_each_possible_cpu(cpu){
-+		struct cpumap *cm =3D per_cpu_ptr(m->maps, cpu);
-+
-+		cm->alloc_map =3D &cm->bitmap_storage[0];
-+		cm->managed_map =3D &cm->bitmap_storage[matrix_size];
-+	}
-+
- 	return m;
- }
-=20
-
-base-commit: 611da07b89fdd53f140d7b33013f255bf0ed8f34
---=20
-2.40.1
-
---8<--
-
-
->> The matrix allocator is an excellent fit, modulo multi-MSI. It's battle
->> proven code.
->>
->> > 2) IRQ matrix allocator needs to be support allocator multiple vectors
->> >     in power-of-2 which will allow IMSIC driver to support both legacy
->> >     MSI and MSI-X. This will involve changing the way best CPU is
->> >     found, the way bitmap APIs are used and adding some new APIs
->> >     for allocate vectors in power-of-2
->>
->> ...and all the other things multi-MSI requires.
->>
->> > Based on above, I suggest we keep the integration of IRQ matrix
->> > allocator in the IMSIC driver as a separate series which will allow
->> > us to unblock other series (such as AIA ACPI support, power
->> > managment related changes in AIA drivers, etc).
->>
->> I suggest removing the multi-MSI support, and use the matrix allocator.
->> We have something that looks like what x86 has (IMSIC). We have a
->> battle-proven implementation, and helper function. In my view it would
->> be just weird not to piggy-back on that work, and benefit from years of
->> bugfixes/things we haven't thought of.
->>
->> Finally; I don't see that you're handling managed interrupt in the
->> series (Oh, the matrix allocator has support for that! ;-)).
->
-> We don't need managed interrupts like x86 does. We are using
-> IPI-mux to create multiple virtual IPIs on-top-of single ID and we
-> use some of these virtual IPIs for internal managment.
-
-I'm not following here, and what IPI's has to do with managed
-interrupts. I'm referring to "IRQD_AFFINITY_MANAGED".
-
-I'm probably missing something?
-
-
-Bj=C3=B6rn
+-- 
+With best wishes
+Dmitry
 
