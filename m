@@ -1,82 +1,145 @@
-Return-Path: <devicetree+bounces-12189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 003767D849A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:24:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4CC7D84A1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:26:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77AF4B20FEA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:24:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A32E91C20EAD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDAE2EAE3;
-	Thu, 26 Oct 2023 14:24:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8502EAED;
+	Thu, 26 Oct 2023 14:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QIn7GuOI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rk0fmsRF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E4F2E411
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:24:44 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0CD71B3;
-	Thu, 26 Oct 2023 07:24:40 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EB058240008;
-	Thu, 26 Oct 2023 14:24:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698330279;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PziSD1PgLb0667xILGVhhWhS3pJpGafG9WCNyplDM6M=;
-	b=QIn7GuOInRvzLopWLDpEwkNAHOMLbAID0zp3gldafosregQkAiEFK3AidlLnrta4vGYG4y
-	wr5A5L4tEgRVFz6aDtcbpalX2QiVE7UgBQla1eH5D+AaaCpOUCM2d7EkqGfs9QCWHHExWY
-	KgKsYMAFdux9kQYKH4Dr5F88YDwjoxpvGkDZ4ydIhkmDgh2c+IhcdLWMdgUOa3FhrWvZXb
-	fi1g9c84ant7cWC5XmGIy0/bcZQanfqqXLE9L2VH36Zz+NSpS16lVJgwHNZj2j8BP8PaX6
-	OHMers7IgTCaRz8Pels/IChplDKbacwVhDlxNpUIxSHIXwEeb3h7Yf2EHrZlvg==
-Date: Thu, 26 Oct 2023 16:24:38 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] of: address: Consolidate bus .map() functions
-Message-ID: <20231026162438.5b063044@bootlin.com>
-In-Reply-To: <20231026135358.3564307-3-robh@kernel.org>
-References: <20231026135358.3564307-2-robh@kernel.org>
-	<20231026135358.3564307-3-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CA02EAEB;
+	Thu, 26 Oct 2023 14:26:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38F3AC433C7;
+	Thu, 26 Oct 2023 14:25:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698330360;
+	bh=9Cwqw/fWKM5uYNCnpfD7cgaQ4Y+kZK35kIJsOLUSy1o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Rk0fmsRFU74qvN0wrURYBETxMpTCpWBiSCdBGXjfJ6eVKk1CbB5PmlEVygDG0Veel
+	 uoDyi0xwJHgrVoCINq5tSt6SeMh09QWLqfXyPhRBvRssN7i6YdTbquC0+3j0aLYEJ0
+	 8VgVs2kr7AFhasTjd5/gWRNXLS+B2YC1ZS7648t8tBU3Eqi232Zmpep0WLNaRfqW1+
+	 3KMr2Cq2bGQTRHU1ct1pIlQruaGQVZLRLmiFuYOXUDyzimoSVz5erPRR4vXRt8LDDP
+	 rZUOUBw/ErMtS+BJ5T1Z0VQwsrfnDZZbfE9EP01kCZcq8RxST7IErLQS/vQnMzfcvH
+	 bjckdnconGRbA==
+Date: Thu, 26 Oct 2023 15:25:55 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: patrick@stwcx.xyz, Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-i2c@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
+ bindings
+Message-ID: <20231026-dicing-crispy-a10af575d3e5@spud>
+References: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231026081514.3610343-2-Delphine_CC_Chiu@Wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="jMMeW1OsGzkZp10V"
+Content-Disposition: inline
+In-Reply-To: <20231026081514.3610343-2-Delphine_CC_Chiu@Wiwynn.com>
 
-Hi Rob,
 
-On Thu, 26 Oct 2023 08:53:59 -0500
-Rob Herring <robh@kernel.org> wrote:
+--jMMeW1OsGzkZp10V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> The bus .map() functions vary only by checking the flag cells values
-> and skipping over any flag cells to read the addresses. Otherwise they
-> all do the same reading 'ranges' address and size and returning the
-> address's offset if it is within the 'ranges' entry.
-> 
-> Refactor all the .map() functions to pass in the flag cell size so that
-> each bus can check the bus specific flags and then call a common
-> function to do everything else.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Hey,
 
-Acked-by: Herve Codina <herve.codina@bootlin.com>
+On Thu, Oct 26, 2023 at 04:15:11PM +0800, Delphine CC Chiu wrote:
+> Add a device tree bindings for ltc4286 driver.
 
-Best regards,
-Hervé
+Bindings are for devices, not for drivers.
+
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+>=20
+> Changelog:
+>   v2 - Revise vrange_select_25p6 to adi,vrange-select-25p6
+>      - Add type for adi,vrange-select-25p6
+>      - Revise rsense-micro-ohms to shunt-resistor-micro-ohms
+> ---
+>  .../bindings/hwmon/lltc,ltc4286.yaml          | 50 +++++++++++++++++++
+>  MAINTAINERS                                   | 10 ++++
+>  2 files changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml b/=
+Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+> new file mode 100644
+> index 000000000000..17022de657bb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/lltc,ltc4286.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LTC4286 power monitors
+> +
+> +maintainers:
+> +  - Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lltc,ltc4286
+> +      - lltc,ltc4287
+
+I don't recall seeing an answer to Guenter about this ltc4287 device:
+https://lore.kernel.org/all/22f6364c-611c-ffb6-451c-9ddc20418d0a@roeck-us.n=
+et/
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  adi,vrange-select-25p6:
+> +    description:
+> +      This property is a bool parameter to represent the
+> +      voltage range is 25.6 or not for this chip.
+
+25.6 what? Volts? microvolts?
+What about Guenter's suggestion to name this so that it better matches
+the other, similar properties?
+
+Cheers,
+Conor.
+
+--jMMeW1OsGzkZp10V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTp28wAKCRB4tDGHoIJi
+0jT7APwIvjLDbL//84boMtfvc5RAA1QcNcVO+kfVu3dhyr7v0QD/YlNzHmAB6RRB
+kYtv8yYAiBRKdn612BukEd8U5pcGjgU=
+=QvBI
+-----END PGP SIGNATURE-----
+
+--jMMeW1OsGzkZp10V--
 
