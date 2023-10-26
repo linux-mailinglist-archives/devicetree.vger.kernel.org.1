@@ -1,153 +1,123 @@
-Return-Path: <devicetree+bounces-12272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CDF67D89F2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 23:01:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E38527D8A2A
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 23:22:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 818F31C20EB8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:01:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A64372820E2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173613AC0B;
-	Thu, 26 Oct 2023 21:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f+UCuqzC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646583D3A5;
+	Thu, 26 Oct 2023 21:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583C5C8E8
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 21:01:15 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0FB1A6;
-	Thu, 26 Oct 2023 14:01:13 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39QKvtk6027731;
-	Thu, 26 Oct 2023 21:01:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=sEvMtIr7neQtXxPbZtaebPWIEdYxlif33988BkAWMXw=;
- b=f+UCuqzCw8PcKy2DDGI/YGKA3ungpyK1YGaG5asXhbE9Th7E8GQMmCqieeWaO5S6kAg1
- ratrfPe0B10lTuWqXW3NTvujc4unb5glST2Rj/X+7KpEW3NptS0z730c9jiBdj82iGU9
- gXFX9PCmECxG1zEPufv3aIr2fj9z+SYsgGRww3Scd6mBvZ+IbU7xxp2omodSfoKqU/tI
- slBC6aP18p0buqSaVA3c1enopql5aoXR67ETgGde/nD9U6ai9TinS//MHwi8gvvrtx1H
- rvWyF83uRct5XZSyZf4JO2RcsFt5zLrxIIKxCOHxY/lB2tR9bOMxyCq/owHWzMMDmM2M /A== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tyxbv8516-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Oct 2023 21:01:09 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39QL178w028652
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Oct 2023 21:01:07 GMT
-Received: from [10.110.87.103] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 26 Oct
- 2023 14:01:04 -0700
-Message-ID: <dc248635-4aa0-40b9-8837-3145027b0ac9@quicinc.com>
-Date: Thu, 26 Oct 2023 14:01:04 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C784426
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 21:22:52 +0000 (UTC)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D59C0
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:22:51 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6ce2bcb131fso904398a34.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:22:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698355370; x=1698960170;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4152jFLYLD/MBewGGEPSHG844zUZQa9UTyIgToDxCiM=;
+        b=iwEHfN/CaJMuvj5Ff2eNZlW0Ohqe23esTHsNJLL0+sOR7Tj+2QMD4WJdMak9IAmD7U
+         jZX2F1Q/j0/EmVJTS5ZKNC4ptyDpZhV630/G8gUloo23eutprQGHNVmQR30fSgS9iL5b
+         HncB/JQWnre5cpKJkcv4Uds0g+f1nTX3ijTGdolEEiTsZahcAVyNvuAWakgRRqLOyBVh
+         qYtOsYL0fo5x0EETb3662EcxA9YlPkp8kOdVMPfdV06sY/0GhbKq5qoeFb2qo5t75PfZ
+         97h+hQ5UfioVYFHOwPwR7bV2gTqdzRXwqhSSV96lt09SyQvRWluxQOM1cBFFgCEOCyEh
+         9TJA==
+X-Gm-Message-State: AOJu0YxKfWRGQx1yq1m6JC3b7KiXyTFC0uv0BNFUViLnkdbbhZ7FhMtl
+	T3hvwfmdZsvk6VgJseF07A==
+X-Google-Smtp-Source: AGHT+IHabh59A6Iy4VEaSpR8/PFa9Dq+e6X0DG9ObnlWccTugNJclAbi3zd3YfIeAaa0IB54AvVS2A==
+X-Received: by 2002:a05:6830:14:b0:6cc:fff0:8ebd with SMTP id c20-20020a056830001400b006ccfff08ebdmr612994otp.24.1698355370314;
+        Thu, 26 Oct 2023 14:22:50 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b8-20020a4a98c8000000b0057377b1c1c8sm36892ooj.24.2023.10.26.14.22.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 14:22:49 -0700 (PDT)
+Received: (nullmailer pid 420013 invoked by uid 1000);
+	Thu, 26 Oct 2023 21:22:48 -0000
+Date: Thu, 26 Oct 2023 16:22:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>, Mark Brown <broonie@kernel.org>, Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 5/5] dt-bindings: audio-graph-port: add
+ channel-map-index property
+Message-ID: <20231026212248.GA383937-robh@kernel.org>
+References: <87fs1zbg2g.wl-kuninori.morimoto.gx@renesas.com>
+ <878r7rbg0v.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver
- bindings
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Zhenhua Huang
-	<quic_zhenhuah@quicinc.com>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
- <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
- <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
-From: Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FYMb0UM2Q5bUob_F1AO2QArFhe9g1kgc
-X-Proofpoint-GUID: FYMb0UM2Q5bUob_F1AO2QArFhe9g1kgc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-26_19,2023-10-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 clxscore=1011
- priorityscore=1501 adultscore=0 impostorscore=0 mlxlogscore=878
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2310260181
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <878r7rbg0v.wl-kuninori.morimoto.gx@renesas.com>
 
-Hi Zhenhua,
+On Wed, Oct 25, 2023 at 02:19:13AM +0000, Kuninori Morimoto wrote:
+> This patch adds channel-map-index property to enable handling
 
-On 10/23/2023 2:27 AM, Krzysztof Kozlowski wrote:
-> On 23/10/2023 11:20, Zhenhua Huang wrote:
->> Add bindings for the QCOM Memory Dump driver providing debug
-> 
-> Bindings are for hardware, not driver. This suggests it is not suitable
-> for bindings at all.
-> 
->> facilities. Firmware dumps system cache, internal memory,
->> peripheral registers to reserved DDR as per the table which
->> populated by the driver, after crash and warm reset.
-> 
-> Again driver :/
-> 
->>
->> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
->> ---
->>  .../bindings/soc/qcom/qcom,mem-dump.yaml           | 42 +++++++++++++++++++++
->>  .../devicetree/bindings/sram/qcom,imem.yaml        | 44 ++++++++++++++++++++++
->>  2 files changed, 86 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
->> new file mode 100644
->> index 0000000..87f8f51
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,mem-dump.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> 
-> Drop quotes.
-> 
-> It does not look like you tested the bindings, at least after quick
-> look. Please run `make dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> Maybe you need to update your dtschema and yamllint.
-> 
->> +
->> +title: Qualcomm memory dump
-> 
-> Describe hardware, not driver.
-> 
->> +
->> +description: |
->> +  Qualcomm memory dump driver dynamically reserves memory and provides hints(id and size)
-> 
-> Again, driver, so not suitable for DTS and bindings.
+Don't write commit messages with 'This patch' or 'This commit'. See the 
+documentation on writing patches.
 
-Could you create platform driver which binds directly to the
+> CPU:Codec = N:M connection.
 
-compatible = "qcom,qcom-imem-mem-dump-table"
+This is not answering Why?
 
-You can look up the size from the dump table driver or have 2 reg properties 
-in the -table node itself (so no need for the table-size node either).
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../devicetree/bindings/sound/audio-graph-port.yaml | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index 60b5e3fd1115..2a7e0784d591 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -93,6 +93,19 @@ definitions:
+>                minimum: 1
+>                maximum: 64
+>  
+> +      channel-map-index:
+> +        description: It indicates CPU/Codec DAIs channel mapping index if number of
+> +          CPU(N) / Codec(M) were not same in one dai-link. channel-map-index is not
+> +          needed if the numbers were 1:M or N:1 or N==M. Same indexed CPU <-> Codec
+> +          will be paired. This is CPUx2 <-> Codecx3 sample.
+> +                                   CPUA   { ... .channel-map-index = <0>;   }
+> +          [0] CPUA <---> CodecA    CPUB   { ... .channel-map-index = <1 2>; }
+> +          [1] CPUB <-+-> CodecB
+> +          [2]        \-> CodecC    CodecA { ... .channel-map-index = <0>; }
+> +                                   CodecB { ... .channel-map-index = <1>; }
+> +                                   CodecC { ... .channel-map-index = <2>; }
+
+We have 2 different meanings for channel-map-index here. We have the 
+codecs defining "I am index N" and then the CPUs defining "I'm connected 
+to codec N". That's confusing to start with. Made-up indices are 
+something we try to avoid in DT. Are the numbers here (0, 1, 2) 
+significant? The normal way we link from one node to another is 
+phandles. Why not use phandles here:
+
+CPUA   { ... .channel-map-index = <&CodecA>;   }
+CPUB   { ... .channel-map-index = <&CodecB &CodecC>; }
+
+
+However, we also have OF graph to define complex topologies/connections 
+AND we're already using it for this binding. So why not here? You can 
+always have more than 1 port and/or endpoint. Generally, multiple ports 
+are independent/simultaneous data connections and multiple endpoints are 
+either 1:N fanout or N:1 muxed connections.
+
+Rob
 
