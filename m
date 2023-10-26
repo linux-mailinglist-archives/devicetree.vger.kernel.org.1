@@ -1,225 +1,809 @@
-Return-Path: <devicetree+bounces-12049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62AD97D7AE2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 04:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 869D77D7B8C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 06:38:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 856801C20DB8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 02:27:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EF7A1C20E26
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 04:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0B38C11;
-	Thu, 26 Oct 2023 02:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B099915DA;
+	Thu, 26 Oct 2023 04:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ZQbQY6UA";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="jSIxy82y"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="lXFYwQGK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216EC2F44
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 02:27:11 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1C8D8;
-	Wed, 25 Oct 2023 19:27:04 -0700 (PDT)
-X-UUID: 233db7b473a711ee8051498923ad61e6-20231026
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=p3OpuwC0ubP4QM3tJd8tsmfvvgW+Km0JazGOriHYyP0=;
-	b=ZQbQY6UAhkOvoi5NrJb0fDBhPR1M1woyHcl8qM9lBuTvZrjSUPx3+9/S52/zsVaCbdXOK6e204DY1giacFxhQfQKBk83Gk8xAEv8nyvSOGedCzJTQMQscZMhFF5ytc5HKDljIZkLuCsPe3YrcU6d64XcBXqSQCsHw2aEOl86JuU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.32,REQID:ab1c332f-990c-4634-bcbe-18d5dbbc6158,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5f78ec9,CLOUDID:af5e54d7-04a0-4e50-8742-3543eab8cb8e,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 233db7b473a711ee8051498923ad61e6-20231026
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 582073194; Thu, 26 Oct 2023 10:26:58 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 26 Oct 2023 10:26:57 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 26 Oct 2023 10:26:57 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32148622
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 04:38:40 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AD318A;
+	Wed, 25 Oct 2023 21:38:36 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hSBWbR/g88gxU94myBXBED3CVPhchCYC2zAdQFTei2PQ/EoW2gZA/Nx1rsnM//osFlUX+hQ4k7y4mAXAoQOiJfGXbCWiuftQrRZ8Rb6vcpDXOmpR4l6PCoAX0fBvfBjpNLzWjpEpeTgP3a4QBm5MuwxO6wHTd6AozvkLYsybZOY4MtPZJn7x0kYhTJ/pkr3yKRFsF/urrOYQR6kiijwaa5b33cRXFN5RuSiPunbqgUbcv41U3emZeH9UsYXlOzCYF5u0nPwPRg+1o0BQqN1JTNZ+TEyDpIuf9hRcZOB9Z9XgbRRZzVEXh/xBu6Q7mxqwIfmwMXYMZyxu7ytY8iMSGw==
+ b=TD+Iwi2fZD4tlKUX6eO3gt8s422Cti2bT1Cyjt7lxTSigp0al+R2sNTy966QlvR2optxvZdZ1EIHESwRlgU9URNOs8IpsU5HkZoeq+qAliXCpAlU649Jun9x1XcRH2m4wRITYiqKWQOZW+L8GstbcItOUQic3TbIzQV0ah5/Mp5jVNLP62by/GkM+ucbLcVF3kmN/IRgbnLREehoDb0RGi2/XLDenvl7aw7R/FofgNKYiQpa9CxG9eVzPeZshX5j7C2wDjpaojc6lrwV7e9I5kThPfwjx49Ir0ML0ws9uS9ocbjpeshNreWydvIeajSgDXHdcdIYTd6VJDq//NluUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p3OpuwC0ubP4QM3tJd8tsmfvvgW+Km0JazGOriHYyP0=;
- b=cDO1EcoDp+O2ZSzIEpOqqpr4/GysBFg2yZ17ChFeVdcZmeAQpC8ibrlWrdEHvhWAo+2Uvgs+shhfhfj4gsehLWt3YkzJEgVXXR+9aesifpA2IQVTKYUvZUpQ681xhoaiD8oME61ggv8g+tjkeipJ/CvLZkB2B/Ok/E30THJWTuDSf41IzeRk5+XDXBj7L5xxl5v9HFXhL/iAIJ6UuWv2S9v4P2DlsAcasH3yHpgFcy0jmVJmSJSzkEOHH1ESN6T+95O6dEUFxTCCdartYCV3ALh+DDa4tiSkF+8uDN0EVryUVR8KC2dp9vp2WzVWQjsYHfTaVbkSIAwdmw1igMwR5Q==
+ bh=UH7pMCczovcJF0KDREgCAlRllewwKJNvAy6V3cuJmVQ=;
+ b=UqzjdsdXkhLPqDjYNWV1izCgKpOJzdsfmxZYPp1CdPuU1pQ7fGKaTQrzsnIrl2ER8RTtYpf4cupUCG+ZrBpHsOcTdrK5g2mEeLKhpJbS4ZNcFMJYE9Jb5gk/Jlue7tpRh8QRx+bmbzcjXbpvsEHgd/VGI+fd97GjmEWCT3xOUHYeSNUb3RrXyLqGrvNL/xHHzqrQFGbI7SNXwLR/H/d4+WeSMHp77gsKfrFafEhIaunLKdqZQWJMG5gKAhVX9KOIEIOW3/7rrCyQdmr4Dhum2KpHr10kfDT5NeiRgSigzLSdoq5mSDYSXe3ihWJfCIerTRH4UxG09ejD3TnkvT0Izg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p3OpuwC0ubP4QM3tJd8tsmfvvgW+Km0JazGOriHYyP0=;
- b=jSIxy82yNmLKdecgSl0b7CFSP9mRIjsTesaOih2siRIyyD17XigSsTYVQv2f7fg77HiXgcmheERIHIOkxtLZFaprLoPumRCcxH+f/nkqNecXIu+y/YYBnTK1wDlpYHFLpvkCrNdC5UBYHg9EjNK8VRo2O826U1E9ozILH1diKPg=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by KL1PR0302MB5411.apcprd03.prod.outlook.com (2603:1096:820:4f::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Thu, 26 Oct
- 2023 02:26:54 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::fe5a:c0e7:4b72:64f3]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::fe5a:c0e7:4b72:64f3%4]) with mapi id 15.20.6907.025; Thu, 26 Oct 2023
- 02:26:54 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
-	"angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "chunkuang.hu@kernel.org"
-	<chunkuang.hu@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	=?utf-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
-	<Jason-ch.Chen@mediatek.com>, =?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?=
-	<Shawn.Sung@mediatek.com>, =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
-	<Nancy.Lin@mediatek.com>, =?utf-8?B?Sm9obnNvbiBXYW5nICjnjovogZbpkasp?=
-	<Johnson.Wang@mediatek.com>, "jkardatzke@google.com" <jkardatzke@google.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 10/11] drm/mediatek: Add cmdq_insert_backup_cookie
- before secure pkt finalize
-Thread-Topic: [PATCH v2 10/11] drm/mediatek: Add cmdq_insert_backup_cookie
- before secure pkt finalize
-Thread-Index: AQHaBWv+PhA/HnZqn02pJP46ox1LtLBbXOuA
-Date: Thu, 26 Oct 2023 02:26:54 +0000
-Message-ID: <7e856cd887d2f0319810f9b3ec50f9f5a52a8147.camel@mediatek.com>
-References: <20231023044549.21412-1-jason-jh.lin@mediatek.com>
-	 <20231023044549.21412-11-jason-jh.lin@mediatek.com>
-In-Reply-To: <20231023044549.21412-11-jason-jh.lin@mediatek.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|KL1PR0302MB5411:EE_
-x-ms-office365-filtering-correlation-id: 3922ad50-2121-45fe-7f79-08dbd5cb054d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: HwZ2O+xmACheORIyCCehwmrsULrY/j7eODrMEftS7nm85eBgvNERcmprnEcjL+E3CaEjkewzgpfUwOG3mrw3X++yyYLuil8sG1NId0SlJ9VV1W0ROxdHdi9E3N5L4g0TFopcXEJOQCMeoE1spxxvfhQaoA3Wy5l5vqW1AOW7kY2DBxmCU3QdLp25Ric3EVUt9e77ELW+aJOcpvuD+o2AgqY6a2eSkgMiagHBOJJjH+dhw7RPj/GA8CZgw3kOSjNMFlQ+Z000RmLcgttj9QpZVPg+xbaigurztAT/itzMgC2BZPWwIGQuEsPAJSILGwJmcY812io+/BZKzkv0iv9e2i8HQh6KE4phaNXoOlTPKtjBWKI9Q9Px6Fxnh8TgGelWxoMVvh2x/9o50WWx4xWrnE+ogjUPjI4fW3gu8K50ZTrV/QBt8iwEOmym4dol/Z5X4uUYecyIQnYdHOjMj+n/4RwT5+GA+jKhcyG/lVmTuG6JzihwhhSeLYIyLjxMAvFPynfHjAxOI91n8lliyFkgPif+yrY/bvXTVCw4Ig0Ab1UhvUSesWXMImF6XVnZZ6d3o+cfthXUGuxrvD9yaNemoYRcbTinjxl1uWvrM6zs91zYDicSBEiyWVHhcT/DLNBW6mSwsxf/CaXHn2IH5w1lHpyfZuiGA68tIslcUsFFQUM=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(376002)(366004)(396003)(346002)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(110136005)(26005)(76116006)(478600001)(316002)(6512007)(86362001)(6506007)(66946007)(66556008)(66446008)(38100700002)(66476007)(64756008)(54906003)(36756003)(85182001)(38070700009)(2616005)(7416002)(6486002)(4001150100001)(2906002)(122000001)(71200400001)(83380400001)(4326008)(8676002)(8936002)(5660300002)(41300700001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y09ZcTU1Zmp2RXBSOGprR1JNbHBKVjQyVE85S21WRlN5RjJuaDk1ZVhRTWdy?=
- =?utf-8?B?Mm0zNi9sQWdybldOZkl0RzhlNDJTY0l5MUdkKzBUVFdZbks5Y0hnblpkQ3dJ?=
- =?utf-8?B?eEpzOEtlK3gyN2dNcjc1U1U0Q1NKVGJya1dYamZKYU9WUTV6SWYrb3hBQUpR?=
- =?utf-8?B?b3FkT3hqbS8wWUtzSFl4QzFjMDJNUTVkRXlmc3YvYUx4cEdUc041ajJJWGVX?=
- =?utf-8?B?V0RmdHlkM0hnSTJ6WTZ5N3ZHMm1lU0lJN3RvRU5neWlTQ1Fha2N0blo4T3dT?=
- =?utf-8?B?ampwdmE4aVdTa2hHeDkxUWtFSHNXc0Z3MUZXUFE0NFpaczByY3llVjZIZEk4?=
- =?utf-8?B?TDJUR1NpRStIODUyQ25ZVnZrdDdKL0hmMG9TbXhDR09ySFoySXF0NWxnaitF?=
- =?utf-8?B?a0RkY3BQVjRoUVVtR2JjMElZeE41SGZxbzQ1TlhqN3lBMG5zTUNKZHFaQnQv?=
- =?utf-8?B?bU1EU1BPUE9mWGFzREMzbk5FMkpXWGlyVkgwYnNOa2NncERMajMvN2dsbFVD?=
- =?utf-8?B?UVJLRS8wWFg5MzB1WktyUjNWYnhNNGltWk5wS2dBSFFvWVhEMngwQVFoUUZ3?=
- =?utf-8?B?anJuaEp5cHFzbitiRUhNM244QUxrbXFnWElkK0xWRTlsMUt1aWg5d0RLTEhF?=
- =?utf-8?B?UzhKKy8vZFB2aUFEWkNhTXBYNG9ySWZVc2pQcXNTMTlrS3dWNXRNM0k4WnVV?=
- =?utf-8?B?eXZCMEh4dDdsY2xUcjRaQWZiTEJYNERsc3YraTZrKzc2UXRvRGZyajFvTk1V?=
- =?utf-8?B?dFgxZUN2SGE1ZmgwbzJrMFRHcDlZQmlYNDU2eGk4QmZTVUhzTnpYc3BCRmZ5?=
- =?utf-8?B?L1paSFdRK2lTeDh3aExQNERITXNIdk5DZUs0YlM3dE52N01CbThMYUF2aStk?=
- =?utf-8?B?a2lsaDF1TUZnazY3UlRwUmRFZERNZU9Zb2R6L1RTN1F5SmMvUUM2YStTZ3dv?=
- =?utf-8?B?b21IY015cXlWaVpQZjI5Q3MyVWRMQ1FOUitTWERLU2xUcXB0NXR3am9NOUx3?=
- =?utf-8?B?Y3Z2M1BvUkJkZlZGcE5zamVtRStIcld0RllXK0RIandiVjkyZ2tRT0dkc1ps?=
- =?utf-8?B?QjhmVVkwSDgvc0VIZHVLWUI4SGVWd2NWZGx6Tnl3WVFUcnUyamtKMW13dlc3?=
- =?utf-8?B?aG9Ua0Fkb1FBY0FaQkc2Qjk5Sm1mUUlKelJyZUt2RU95aXhnK0FhcU9KcU1x?=
- =?utf-8?B?d3EwVE40T0hTU1hISmFvb21TZVcyVlZWVnBzamlsUjRlaSsvS2xtYXBoUHFJ?=
- =?utf-8?B?RWJOekQ1Uno0Q0FYT1c1TUpjeWRtR1A1d3ZtTXNFakFaclJ1Nk92bG9KRFNS?=
- =?utf-8?B?eHJZQkxTaHRaTUxPYk5tT2xVbWU2Ny9UQ1l3alRXeXZuZ0cxUlF1OHYweEFl?=
- =?utf-8?B?bmFyRkQzWDhmak9KdFJYSEh3cS9kQkV3QllJdzlIS1BoK2xiOWdwZ0c3Rk1N?=
- =?utf-8?B?RDZDZTBEM3diTkloczN4MGk4WVZncjVBb04veVVQc1gySEoyZjJmcDN5TExo?=
- =?utf-8?B?dXNJWExidWFnL2ora0NLYk5oV28vQnRxdVBkUzM5SHBOb0d0RVh4VE42NUdC?=
- =?utf-8?B?akszbXdlSjYwcllwNHRwV1Z2RnBvLzcwUjdUeGtuQi95b3djY2w4WWZjMm9J?=
- =?utf-8?B?Z3hVOUlMQUVzT2xSRDlIUGVOMlM1YVBBZzF0VkJnWU5qaVN1UXltc1d1VllW?=
- =?utf-8?B?a2NiQ3JzOFc4UGJ6eXlKUkFWdU1LUUNpK1Zlcm9ab2ZXQzl4THRpN2pYMStn?=
- =?utf-8?B?SW9uZ3UrbUUxKzJSSG1CNzFOa2RZMWluWEo1OCtYSzBpVzBEMzBnb2ZwRjJY?=
- =?utf-8?B?YzVxZEZ0MDU4L1gxYXJMTUpIOWt1RUhCakFoKzJTbklTaisxMnJNeFpqNkE5?=
- =?utf-8?B?bVpxMFdSSDdYcyttQmpmTk85MTdjTFY0UEJzakt2ZW5YU29nOFBJQjdTVzlQ?=
- =?utf-8?B?bHF0Q2pmbVZQUzhQbnB4NVYxLzBLMTN6VzV6QllOY1lLYXdCa2x3c3lQaVo4?=
- =?utf-8?B?Zm5PRWg4MWZOek5KU0NCamc1SUE1RHZQSEhlN2NQaURock1JNit2TDFjS3dD?=
- =?utf-8?B?UTljamNPbWg2T2JYR3RqWXR1OWp4V2NzcGcyWm1YQjZ6a3VtTkU2R2REOXgy?=
- =?utf-8?Q?jPi880aCije12mpV6OyD3Xx7f?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E8471207C4AA8F489FC55E9FF9413A7C@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ bh=UH7pMCczovcJF0KDREgCAlRllewwKJNvAy6V3cuJmVQ=;
+ b=lXFYwQGKIRxFRZUlAIarDPHLY7m7CBonBcVwNHqadKwDuVoZtPFvar+ZHbLFqHVQi47RZ7goAmw1nxn+P1PKxCML3OHwijDfaDEa84yRrkLD6SqRcUe76f66fg4JV73MOppNgz3bS3cvSYq9XVm5I1VRKQvI9whihvcT0YqbRKQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by CH3PR08MB8971.namprd08.prod.outlook.com
+ (2603:10b6:610:1c8::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Thu, 26 Oct
+ 2023 04:38:32 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::e73c:270b:75f7:5302]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::e73c:270b:75f7:5302%4]) with mapi id 15.20.6907.032; Thu, 26 Oct 2023
+ 04:38:31 +0000
+Date: Wed, 25 Oct 2023 23:38:24 -0500
+From: Jeff LaBundy <jeff@labundy.com>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <ZTntQNbk0bLkjuvc@nixie71>
+References: <20231017034356.1436677-1-anshulusr@gmail.com>
+ <20231017034356.1436677-2-anshulusr@gmail.com>
+ <ZTWza+S+t+UZKlwu@nixie71>
+ <c4eed4e8-77e1-4129-ab6c-cc76ee4197db@gmail.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c4eed4e8-77e1-4129-ab6c-cc76ee4197db@gmail.com>
+X-ClientProxiedBy: DS7PR03CA0182.namprd03.prod.outlook.com
+ (2603:10b6:5:3b6::7) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|CH3PR08MB8971:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef904196-9edf-4ac5-c487-08dbd5dd67c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	wzGo+6vBjxXa8myh+0uDtQahhnbzlFKZQpY0RqvbKS2JhBFmzlLIXCswIHaTyVYQ1ebsjsMwdtt2VtSgD6BtypnwPVB3l4xWNu9jbf5gTwnlTDg2/e7UpLTGP81P/SPz0GYcXo3PgFH4D5HhZySK2fCuS38sx45nETyXEpkYNXx0/hdDD2kMu2/GTcijXPnZt7lCNWFO7PTBIsc7m8RzokI8FQqccCVWe0iY8dATIgJpKcRufDV/aBReC0EC7h68RGiNrRhcKMfvMkVvOXefCt1iCampPVDGQ0zrETDF2/5fcPA3EcwsjqaRjaHoOgG8JOMgwEFuytoF6YiaWh7IrD69XLaTsmJavamZJWQfCUgl6Xwgwrirbwey3JNDNwVxdBa0kPMrN4ffSKu6jrf6wwC/shwn8ybit0lMD5uJsG3hbyuYW54Ogj+0WxHJosxOPZne4pZPgBKkSAEMwpLsSNnkpwwZBtsTik5LnC+pDxwctUF9AS3LVmWFLFDTe+v4ry783BHk0Dnb26wBVkTJo/aHxf98+W14szSQncilxa0=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39830400003)(376002)(136003)(346002)(366004)(396003)(230922051799003)(186009)(451199024)(64100799003)(1800799009)(33716001)(26005)(2906002)(38100700002)(6916009)(30864003)(41300700001)(7416002)(4326008)(5660300002)(8936002)(8676002)(66556008)(6666004)(478600001)(6506007)(66476007)(86362001)(54906003)(316002)(66946007)(6512007)(66574015)(83380400001)(6486002)(9686003)(966005)(53546011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?iso-8859-1?Q?m+a31rsCTd8Csy6XZw6jpxvyUQ7jWiCY5rMgQ49IDxIxRcdK4molB2Izon?=
+ =?iso-8859-1?Q?9hrqF21m6t7fms4BrnCbGS8Iu/G3p44jKOsCqIiz/QvFQAAKvkzwAVxyOm?=
+ =?iso-8859-1?Q?9yTYIxtgoxdcGOUWw9ndAy/vg2DgW2RR/QgEjG2PPFPcaRHs9O/sAdRHSF?=
+ =?iso-8859-1?Q?4d8GVSZ8bePeiuo9fmhX4fHNu3+RFm7sKaAy6GG0lNS32xdtbYko6Ihsj7?=
+ =?iso-8859-1?Q?VXgWmL5v5NHJCD92U4WJNpzyA2ZhDWikLk3IJq7D0QjSrl+Vb9GXijH7Ju?=
+ =?iso-8859-1?Q?yBOBWr+Aw5fDF7bZaDBo8rVteP6l0Kx7whglrMTbIiSQjzTKfrRg6NFt2Y?=
+ =?iso-8859-1?Q?iEUkE1JJqUa2nFfMR6YDmi+ayPZxeBOElJgxYCbhf77tIY7pcugMs8TVFe?=
+ =?iso-8859-1?Q?NUWDGuz5UypQ2owwOjABO31fTtMvz4AHU9fHOk2eeWIqh918kPdXkAAoGD?=
+ =?iso-8859-1?Q?RVlgKdtpaASih7SKox4AQ+2pexvfe7/V37744gd076qbLR5qPRXO+9bNWK?=
+ =?iso-8859-1?Q?b8APavzr5IZ2sKhtQ/m4AA3+8+C9Ff1KruxiJmgoWeqXvFAHpuXnMAgBVz?=
+ =?iso-8859-1?Q?7l3M3TPBoO9kaQ1FiTIpbvKWxOP9kNamFNQVke9ZVbWeMVoXlnPOmtjCZ7?=
+ =?iso-8859-1?Q?ZJStNA4EJKdbeArfFpNwXCp73Sjq5kEEhVUMRIhAND4PWAJzhLod5AaANY?=
+ =?iso-8859-1?Q?pImqfyBdnMnz76FPXq3GmqrUxvG3TDE6DrJR92L7PD4kBb0CjS2eDPrs0r?=
+ =?iso-8859-1?Q?MGFFQEqX1x0fHG/6mINd9jEvsyazu7gmnc9Rlw482z3FmKGq7KwABEnewC?=
+ =?iso-8859-1?Q?sSLxd7GIxVc+SzeAJWicFriMlKYx4ZeWJMaqQGSzmxw7B+xJ2J/uek5xBH?=
+ =?iso-8859-1?Q?QtvbMGS+6Pcnhrog1YPHiv95+3mBjQ5iANHv6+Gh+JQ1bdJvJrVGKValc9?=
+ =?iso-8859-1?Q?wvl6HxZdGU8kSIEtYdoe2Vf8X4ie0e6OazywuA+PBtejGYwrD/FO0SNrYB?=
+ =?iso-8859-1?Q?Sq5/PqNjmhcVI4CYgJS7gFpY7r6t3tQROq9AW7rS/wgPTRNH42gilK1R++?=
+ =?iso-8859-1?Q?3/BHLlxmB7hX2/g0AmZ+rT7TsODuA85H2yVDkLvp9PD7Q8PW7YsWSEM8qU?=
+ =?iso-8859-1?Q?K5XNuXi6Z/+ZqqyImN/FXS5NS/Wt2sE+ywikPjvjrIqVtc3fUaZRJk0S3N?=
+ =?iso-8859-1?Q?PWFwyqQAZ/9DFrXv50pIFDBhF4wVj+0263T4Pdh4RU4K/+L6X+RibYn6vZ?=
+ =?iso-8859-1?Q?SAQio1FqxNrtywOU557wW8E2xF7J99cTuWbF739nFyGTxYWCqetFAd0j7j?=
+ =?iso-8859-1?Q?Fd06djIC27jIQzbbPlOIuRkHQ9F83mv9RgBZ60uudXA4lh7TdkUZfwp0WP?=
+ =?iso-8859-1?Q?H3R+/MXUpNwvs4lw5NvGV463nEhx7kfZvMTfr734QjiT7vC0hxAk4xeNR+?=
+ =?iso-8859-1?Q?zyNUzr2mlAl0YYyrn1J4O3vVz2pwGskFhe/Mh7F4FeqKpWBFiSaR9If2cZ?=
+ =?iso-8859-1?Q?F9Cmn0AOgsU8EN1ABT9R+kW7Lk4tZpPikgjiFDR8WnN0cOK4jXWRVFMpQl?=
+ =?iso-8859-1?Q?jR+N2s4EPEn3WuCRq1RtnxreA9baIpLhb1rYX1bQUCIq0eeL4EVfACBRQM?=
+ =?iso-8859-1?Q?YNPRWViy0VfTzBwTJlIWd4KoNYnAIcZEnQ?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef904196-9edf-4ac5-c487-08dbd5dd67c0
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3922ad50-2121-45fe-7f79-08dbd5cb054d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2023 02:26:54.7100
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 04:38:31.2137
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: v5apySuACjtdvP+Llcv9axZI8KRxcxQ6i0G4J5OW0OPMGJ0+msdqhawv/HM9K0HFiC5Z2+fdS++UTir9pZusFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0302MB5411
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iaSsKrlqYEULcFBKZaJhAySewNzdU6QhHi+05xAhzxV3fvs/JNcB8ajjoWNTpSFdMDJ0ff/MlG5oIc3oBuLb9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR08MB8971
 
-SGksIEphc29uOg0KDQpPbiBNb24sIDIwMjMtMTAtMjMgYXQgMTI6NDUgKzA4MDAsIEphc29uLUpI
-LkxpbiB3cm90ZToNCj4gQWRkIGNtZHFfaW5zZXJ0X2JhY2t1cF9jb29raWUgdG8gYXBwZW5kIHNv
-bWUgY29tbWFuZHMgYmVmb3JlIEVPQzoNCj4gMS4gR2V0IEdDRSBIVyB0aHJlYWQgZXhlY3V0ZSBj
-b3VudCBmcm9tIHRoZSBHQ0UgSFcgcmVnaXN0ZXIuDQo+IDIuIEFkZCAxIHRvIHRoZSBleGVjdXRl
-IGNvdW50IGFuZCB0aGVuIHN0b3JlIGludG8gYSBzaGFyZWQgbWVtb3J5Lg0KDQpJIHRoaW5rIHdo
-ZW4gY21kcSBkcml2ZXIgaGFuZGxlciBpbnRlcnJ1cHQsIGl0IGNvdWxkIHNpbXBseSBjYWxsIGlu
-dG8NClRFRSB3aXRoIGFuIEFQSSB0byBxdWVyeSBzdGF0dXMuIFRoZSBzdGF0dXMgbm90IG9ubHkg
-dGhlIGV4ZWN1dGUgY291bnQsDQpidXQgYWxzbyBvdGhlciBtZXNzYWdlIGluY2x1ZGluZyBlcnJv
-ciBpbmZvcm1hdGlvbi4gU28gaXQncyBub3QNCm5lY2Vzc2FyeSB0byB1c2Ugc3VjaCBub24tdHJp
-Y2t5IHdheSB0byBnZXQgZXhlY3V0ZSBjb3VudC4NCg0KT25lIG1vcmUgcXVlc3Rpb24uIFRoZSBj
-b21tYW5kIGJ1ZmZlciBpcyBub3Qgc2VjdXJlLiBEb2VzIHRoZSBHQ0UNCmhhcmR3YXJlIGV4ZWN1
-dGUgdGhpcyBub24tc2VjdXJlIGNvbW1hbmQgYnVmZmVyPw0KDQpSZWdhcmRzLA0KQ0sNCg0KPiAz
-LiBTZXQgYSBzb2Z0d2FyZSBldmVudCBzaWdhbmwgYXMgc2VjdXJlIGlycSB0byBHQ0UgSFcuDQo+
-IA0KPiBTaW5jZSB0aGUgdmFsdWUgb2YgZXhlY3V0ZSBjb3VudCArIDEgaXMgc3RvcmVkIGluIGEg
-c2hhcmVkIG1lbW9yeSwNCj4gQ01EUSBkcml2ZXIgaW4gdGhlIG5vcm1hbCB3b3JsZCBjYW4gdXNl
-IGl0IHRvIGhhbmRsZSB0YXNrIGRvbmUgaW4gaXJxDQo+IGhhbmRsZXIgYW5kIENNRFEgZHJpdmVy
-IGluIHRoZSBzZWN1cmUgd29ybGQgd2lsbCB1c2UgaXQgdG8gc2NoZWR1bGUNCj4gdGhlIHRhc2sg
-c2xvdCBmb3IgZWFjaCBzZWN1cmUgdGhyZWFkLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSmFzb24t
-SkguTGluIDxqYXNvbi1qaC5saW5AbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1
-L2RybS9tZWRpYXRlay9tdGtfZHJtX2NydGMuYyB8IDQgKysrLQ0KPiAgMSBmaWxlIGNoYW5nZWQs
-IDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2NydGMuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9t
-ZWRpYXRlay9tdGtfZHJtX2NydGMuYw0KPiBpbmRleCA2YzJjZjMzOWI5MjMuLjM5OWFhNmJiMmY4
-ZCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fY3J0Yy5j
-DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2NydGMuYw0KPiBAQCAt
-MTc3LDcgKzE3Nyw3IEBAIHZvaWQgbXRrX2NydGNfZGlzYWJsZV9zZWN1cmVfc3RhdGUoc3RydWN0
-DQo+IGRybV9jcnRjICpjcnRjKQ0KPiAgCQlzZWNfc2NuID0gQ01EUV9TRUNfU1VCX0RJU1BfRElT
-QUJMRTsNCj4gIA0KPiAgCWNtZHFfc2VjX3BrdF9zZXRfZGF0YSgmbXRrX2NydGMtPnNlY19jbWRx
-X2hhbmRsZSwgc2VjX2VuZ2luZSwNCj4gc2VjX2VuZ2luZSwgc2VjX3Njbik7DQo+IC0NCj4gKwlj
-bWRxX3NlY19pbnNlcnRfYmFja3VwX2Nvb2tpZSgmbXRrX2NydGMtPnNlY19jbWRxX2hhbmRsZSk7
-DQo+ICAJY21kcV9wa3RfZmluYWxpemUoJm10a19jcnRjLT5zZWNfY21kcV9oYW5kbGUpOw0KPiAg
-CWRtYV9zeW5jX3NpbmdsZV9mb3JfZGV2aWNlKG10a19jcnRjLT5zZWNfY21kcV9jbGllbnQuY2hh
-bi0NCj4gPm1ib3gtPmRldiwNCj4gIAkJCQkgICBtdGtfY3J0Yy0+c2VjX2NtZHFfaGFuZGxlLnBh
-X2Jhc2UsDQo+IEBAIC03ODYsNiArNzg2LDggQEAgc3RhdGljIHZvaWQgbXRrX2RybV9jcnRjX3Vw
-ZGF0ZV9jb25maWcoc3RydWN0DQo+IG10a19kcm1fY3J0YyAqbXRrX2NydGMsDQo+ICAJCWNtZHFf
-cGt0X2NsZWFyX2V2ZW50KGNtZHFfaGFuZGxlLCBtdGtfY3J0Yy0NCj4gPmNtZHFfZXZlbnQpOw0K
-PiAgCQljbWRxX3BrdF93ZmUoY21kcV9oYW5kbGUsIG10a19jcnRjLT5jbWRxX2V2ZW50LCBmYWxz
-ZSk7DQo+ICAJCW10a19jcnRjX2RkcF9jb25maWcoY3J0YywgY21kcV9oYW5kbGUpOw0KPiArCQlp
-ZiAoY21kcV9oYW5kbGUtPnNlY19kYXRhKQ0KPiArCQkJY21kcV9zZWNfaW5zZXJ0X2JhY2t1cF9j
-b29raWUoY21kcV9oYW5kbGUpOw0KPiAgCQljbWRxX3BrdF9maW5hbGl6ZShjbWRxX2hhbmRsZSk7
-DQo+ICAJCWRtYV9zeW5jX3NpbmdsZV9mb3JfZGV2aWNlKGNtZHFfY2xpZW50LmNoYW4tPm1ib3gt
-PmRldiwNCj4gIAkJCQkJICAgY21kcV9oYW5kbGUtPnBhX2Jhc2UsDQo=
+Hi Anshul,
+
+On Wed, Oct 25, 2023 at 03:50:04PM +0530, Anshul Dalal wrote:
+> Hello Jeff,
+> Thanks for the review, I plan on addressing the changes you requested in
+> the next version of the patch. Though I had a few questions:
+
+Sounds great; thank you for the informative discussion.
+
+> 
+> On 10/23/23 05:12, Jeff LaBundy wrote:
+> > Hi Anshul,
+> > 
+> > On Tue, Oct 17, 2023 at 09:13:45AM +0530, Anshul Dalal wrote:
+> >> Adds a driver for a mini gamepad that communicates over i2c, the gamepad
+> >> has bidirectional thumb stick input and six buttons.
+> >>
+> >> The gamepad chip utilizes the open framework from Adafruit called 'Seesaw'
+> >> to transmit the ADC data for the joystick and digital pin state for the
+> >> buttons. I have only implemented the functionality required to receive the
+> >> thumb stick and button state.
+> >>
+> >> Steps in reading the gamepad state over i2c:
+> >>   1. Reset the registers
+> >>   2. Set the pin mode of the pins specified by the `BUTTON_MASK` to input
+> >>       `BUTTON_MASK`: A bit-map for the six digital pins internally
+> >>        connected to the joystick buttons.
+> >>   3. Enable internal pullup resistors for the `BUTTON_MASK`
+> >>   4. Bulk set the pin state HIGH for `BUTTON_MASK`
+> >>   5. Poll the device for button and joystick state done by:
+> >>       `seesaw_read_data(struct i2c_client *client, struct seesaw_data *data)`
+> >>
+> >> Product page:
+> >>   https://www.adafruit.com/product/5743
+> >> Arduino driver:
+> >>   https://github.com/adafruit/Adafruit_Seesaw
+> >>
+> >> Driver tested on RPi Zero 2W
+> >>
+> >> Reviewed-by: Thomas Weiﬂschuh <linux@weissschuh.net>
+> >> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> >> ---
+> >>
+> >> Changes for v5:
+> >> - Added link to the datasheet
+> >> - Added debug log message when `seesaw_read_data` fails
+> >>
+> >> Changes for v4:
+> >> - Changed `1UL << BUTTON_` to BIT(BUTTON_)
+> >> - Removed `hardware_id` field from `struct seesaw_gamepad`
+> >> - Removed redundant checks for the number of bytes written and received by
+> >>   `i2c_master_send` and `i2c_master_recv`
+> >> - Used `get_unaligned_be32` to instantiate `u32 result` from `read_buf`
+> >> - Changed  `result & (1UL << BUTTON_)` to
+> >>   `test_bit(BUTTON_, (long *)&result)`
+> >> - Changed `KBUILD_MODNAME` in id-tables to `SEESAW_DEVICE_NAME`
+> >> - Fixed formatting issues
+> >> - Changed button reporting:
+> >>     Since the gamepad had the action buttons in a non-standard layout:
+> >>          (X)
+> >>       (Y)   (A)
+> >>          (B)
+> >>     Therefore moved to using generic directional action button event codes
+> >>     instead of BTN_[ABXY].
+> >>
+> >> Changes for v3:
+> >> - no updates
+> >>
+> >> Changes for v2:
+> >> adafruit-seesaw.c:
+> >> - Renamed file from 'adafruit_seesaw.c'
+> >> - Changed device name from 'seesaw_gamepad' to 'seesaw-gamepad'
+> >> - Changed count parameter for receiving joystick x on line 118:
+> >>     `2` to `sizeof(write_buf)`
+> >> - Fixed invalid buffer size on line 123 and 126:
+> >>     `data->y` to `sizeof(data->y)`
+> >> - Added comment for the `mdelay(10)` on line 169
+> >> - Changed inconsistent indentation on line 271
+> >> Kconfig:
+> >> - Fixed indentation for the help text
+> >> - Updated module name
+> >> Makefile:
+> >> - Updated module object file name
+> >> MAINTAINERS:
+> >> - Updated file name for the driver and bindings
+> >>
+> >>  MAINTAINERS                              |   7 +
+> >>  drivers/input/joystick/Kconfig           |   9 +
+> >>  drivers/input/joystick/Makefile          |   1 +
+> >>  drivers/input/joystick/adafruit-seesaw.c | 273 +++++++++++++++++++++++
+> >>  4 files changed, 290 insertions(+)
+> >>  create mode 100644 drivers/input/joystick/adafruit-seesaw.c
+> >>
+> >> diff --git a/MAINTAINERS b/MAINTAINERS
+> >> index 6c4cce45a09d..a314f9b48e21 100644
+> >> --- a/MAINTAINERS
+> >> +++ b/MAINTAINERS
+> >> @@ -441,6 +441,13 @@ W:	http://wiki.analog.com/AD7879
+> >>  W:	https://ez.analog.com/linux-software-drivers
+> >>  F:	drivers/input/touchscreen/ad7879.c
+> >>  
+> >> +ADAFRUIT MINI I2C GAMEPAD
+> >> +M:	Anshul Dalal <anshulusr@gmail.com>
+> >> +L:	linux-input@vger.kernel.org
+> >> +S:	Maintained
+> >> +F:	Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
+> >> +F:	drivers/input/joystick/adafruit-seesaw.c
+> >> +
+> >>  ADDRESS SPACE LAYOUT RANDOMIZATION (ASLR)
+> >>  M:	Jiri Kosina <jikos@kernel.org>
+> >>  S:	Maintained
+> >> diff --git a/drivers/input/joystick/Kconfig b/drivers/input/joystick/Kconfig
+> >> index ac6925ce8366..df9cd1830b29 100644
+> >> --- a/drivers/input/joystick/Kconfig
+> >> +++ b/drivers/input/joystick/Kconfig
+> >> @@ -412,4 +412,13 @@ config JOYSTICK_SENSEHAT
+> >>  	  To compile this driver as a module, choose M here: the
+> >>  	  module will be called sensehat_joystick.
+> >>  
+> >> +config JOYSTICK_SEESAW
+> >> +	tristate "Adafruit Mini I2C Gamepad with Seesaw"
+> >> +	depends on I2C
+> >> +	help
+> >> +	  Say Y here if you want to use the Adafruit Mini I2C Gamepad.
+> >> +
+> >> +	  To compile this driver as a module, choose M here: the module will be
+> >> +	  called adafruit-seesaw.
+> >> +
+> >>  endif
+> >> diff --git a/drivers/input/joystick/Makefile b/drivers/input/joystick/Makefile
+> >> index 3937535f0098..9976f596a920 100644
+> >> --- a/drivers/input/joystick/Makefile
+> >> +++ b/drivers/input/joystick/Makefile
+> >> @@ -28,6 +28,7 @@ obj-$(CONFIG_JOYSTICK_N64)		+= n64joy.o
+> >>  obj-$(CONFIG_JOYSTICK_PSXPAD_SPI)	+= psxpad-spi.o
+> >>  obj-$(CONFIG_JOYSTICK_PXRC)		+= pxrc.o
+> >>  obj-$(CONFIG_JOYSTICK_QWIIC)		+= qwiic-joystick.o
+> >> +obj-$(CONFIG_JOYSTICK_SEESAW)		+= adafruit-seesaw.o
+> >>  obj-$(CONFIG_JOYSTICK_SENSEHAT)	+= sensehat-joystick.o
+> >>  obj-$(CONFIG_JOYSTICK_SIDEWINDER)	+= sidewinder.o
+> >>  obj-$(CONFIG_JOYSTICK_SPACEBALL)	+= spaceball.o
+> >> diff --git a/drivers/input/joystick/adafruit-seesaw.c b/drivers/input/joystick/adafruit-seesaw.c
+> >> new file mode 100644
+> >> index 000000000000..2a1eae8d2861
+> >> --- /dev/null
+> >> +++ b/drivers/input/joystick/adafruit-seesaw.c
+> >> @@ -0,0 +1,273 @@
+> >> +// SPDX-License-Identifier: GPL-2.0-or-later
+> >> +/*
+> >> + * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
+> >> + *
+> >> + * Driver for Adafruit Mini I2C Gamepad
+> >> + *
+> >> + * Based on the work of:
+> >> + *	Oleh Kravchenko (Sparkfun Qwiic Joystick driver)
+> >> + *
+> >> + * Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf
+> >> + * Product page: https://www.adafruit.com/product/5743
+> >> + * Firmware and hardware sources: https://github.com/adafruit/Adafruit_Seesaw
+> >> + */
+> >> +
+> >> +#include <asm-generic/unaligned.h>
+> >> +#include <linux/bits.h>
+> >> +#include <linux/delay.h>
+> >> +#include <linux/i2c.h>
+> >> +#include <linux/input.h>
+> >> +#include <linux/kernel.h>
+> >> +#include <linux/module.h>
+> >> +
+> >> +/* clang-format off */
+> > 
+> > I don't think we need this directive; at least, no other input drivers have
+> > it, or really any drivers for that matter.
+> > 
+> >> +#define SEESAW_DEVICE_NAME	"seesaw-gamepad"
+> >> +
+> >> +#define SEESAW_STATUS_BASE	0
+> >> +#define SEESAW_GPIO_BASE	1
+> >> +#define SEESAW_ADC_BASE		9
+> >> +
+> >> +#define SEESAW_GPIO_DIRCLR_BULK	3
+> >> +#define SEESAW_GPIO_BULK	4
+> >> +#define SEESAW_GPIO_BULK_SET	5
+> >> +#define SEESAW_GPIO_PULLENSET	11
+> >> +
+> >> +#define SEESAW_STATUS_HW_ID	1
+> >> +#define SEESAW_STATUS_SWRST	127
+> >> +
+> >> +#define SEESAW_ADC_OFFSET	7
+> >> +
+> >> +#define BUTTON_A	5
+> >> +#define BUTTON_B	1
+> >> +#define BUTTON_X	6
+> >> +#define BUTTON_Y	2
+> >> +#define BUTTON_START	16
+> >> +#define BUTTON_SELECT	0
+> > 
+> > Please namespace these (e.g. SEESAW_BUTTON_A) to make it clear they refer
+> > to device-specific bits and not standard keycodes (e.g. BTN_A). In fact,
+> > these seem better off as part of an array of structs; more on that below.
+> > 
+> >> +
+> >> +#define ANALOG_X	14
+> >> +#define ANALOG_Y	15
+> > 
+> > Please namespace these as well.
+> > 
+> >> +
+> >> +#define SEESAW_JOYSTICK_MAX_AXIS	1023
+> >> +#define SEESAW_JOYSTICK_FUZZ		2
+> >> +#define SEESAW_JOYSTICK_FLAT		4
+> >> +
+> >> +#define SEESAW_GAMEPAD_POLL_INTERVAL	16
+> >> +#define SEESAW_GAMEPAD_POLL_MIN		8
+> >> +#define SEESAW_GAMEPAD_POLL_MAX		32
+> >> +/* clang-format on */
+> >> +
+> >> +u32 BUTTON_MASK = BIT(BUTTON_A) | BIT(BUTTON_B) | BIT(BUTTON_X) |
+> >> +		  BIT(BUTTON_Y) | BIT(BUTTON_START) | BIT(BUTTON_SELECT);
+> >> +
+> >> +struct seesaw_gamepad {
+> >> +	char physical_path[32];
+> >> +	struct input_dev *input_dev;
+> >> +	struct i2c_client *i2c_client;
+> >> +};
+> >> +
+> >> +struct seesaw_data {
+> >> +	__be16 x;
+> >> +	__be16 y;
+> >> +	u8 button_a, button_b, button_x, button_y, button_start, button_select;
+> > 
+> > Please keep these each on a separate line.
+> > 
+> >> +};
+> > 
+> > Please declare this struct as __packed, as that is how it appears to be used.
+> > 
+> >> +
+> >> +static int seesaw_read_data(struct i2c_client *client, struct seesaw_data *data)
+> >> +{
+> >> +	int err;
+> > 
+> > Please use 'ret' for return variables that can indicate a positive value on success.
+> > 
+> >> +	unsigned char write_buf[2] = { SEESAW_GPIO_BASE, SEESAW_GPIO_BULK };
+> >> +	unsigned char read_buf[4];
+> > 
+> > Please use standard kernel type definitions (i.e. u8 in this case).
+> > 
+> >> +
+> >> +	err = i2c_master_send(client, write_buf, sizeof(write_buf));
+> >> +	if (err < 0)
+> >> +		return err;
+> > 
+> > You correctly return err (or rather, ret) for negative values, but you should also
+> > check that ret matches the size of the data sent. For 0 <= ret < sizeof(writebuf),
+> > return -EIO.
+> > 
+> >> +	err = i2c_master_recv(client, read_buf, sizeof(read_buf));
+> >> +	if (err < 0)
+> >> +		return err;
+> > 
+> > And here.
+> > 
+> >> +
+> >> +	u32 result = get_unaligned_be32(&read_buf);
+> > 
+> > Please do not mix declarations and code; all declarations must be at the
+> > top of the function.
+> > 
+> >> +
+> >> +	data->button_a = !test_bit(BUTTON_A, (long *)&result);
+> >> +	data->button_b = !test_bit(BUTTON_B, (long *)&result);
+> >> +	data->button_x = !test_bit(BUTTON_X, (long *)&result);
+> >> +	data->button_y = !test_bit(BUTTON_Y, (long *)&result);
+> >> +	data->button_start = !test_bit(BUTTON_START, (long *)&result);
+> >> +	data->button_select = !test_bit(BUTTON_SELECT, (long *)&result);
+> >> +
+> >> +	write_buf[0] = SEESAW_ADC_BASE;
+> >> +	write_buf[1] = SEESAW_ADC_OFFSET + ANALOG_X;
+> >> +	err = i2c_master_send(client, write_buf, sizeof(write_buf));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +	err = i2c_master_recv(client, (char *)&data->x, sizeof(data->x));
+> >> +	if (err < 0)
+> >> +		return err;
+> > 
+> > This is starting to look like a 16-bit register map. To that end, please
+> > consider using regmap instead of open-coding each of these standard write-
+> > then-read operations.
+> > 
+> > Using regmap would also save you the trouble of managing the endianness
+> > yourself, as well as having to check for incomplete transfers since its
+> > functions return zero or a negative error code only.
+> > 
+> In this driver there are only two places a 16-bit regmap could be used,
+> for getting the joystick X and Y values. I see minimal utility in adding
+> the boilerplate necessary to use the more sophisticated regmap API in
+> this case.
+
+I counted a total of three sequences that write two bytes (i.e. a 16-bit
+"address"), send a stop condition, then read back a modulo-2 number of
+bytes. If the hardware can tolerate a repeated start in between the write
+and read operations, which is quite common, all of these can be replaced
+with a single call to regmap_read().
+
+A fourth sequence reads back a single byte after the 16-bit "address",
+while a fifth writes a single byte after the 16-bit "address." Those two
+admittedly break the model.
+
+Given those two oddballs in seesaw_probe(), maybe regmap is not the best
+solution after all. You could, however, mix the two and use regmap where
+it works, and roll your own where it doesn't.
+
+> 
+> As for the handling of endianness, if I am not mistaken the
+> `be16_to_cpu` macro should manage it.
+
+Right, what I mean to say is that regmap calls be16_to_cpu() for you. You
+do not need to do any extra operations on the values returned by regmap.
+
+> 
+> If you prefer I could add the following function to reduce code duplication:
+> 
+> int seesaw_get_analog(int pin) {
+> 	__be16 result;
+> 	u8 write_buf[2] = { SEESAW_ADC_BASE, SEESAW_ADC_OFFSET + pin };
+> 	int ret;
+> 	ret = i2c_master_send(client, write_buf, sizeof(write_buf));
+> 	if (ret < 0)
+> 		return ret;
+> 	ret = i2c_master_recv(client, (char *)&result, sizeof(result));
+> 	if (ret < 0)
+> 		return ret;
+> 	return result;
+> }
+
+Assuming regmap is out of the picture, I'd like to see something even more
+generic like the following:
+
+static int seesaw_register_read(struct i2c_client *client,
+				u16 reg, void *val, u16 len)
+{
+	__be16 reg_buf = cpu_to_be16(reg);
+	int ret;
+
+	ret = i2c_master_send(client, (char *)&reg_buf, sizeof(reg_buf));
+	if (ret < 0)
+		return ret;
+
+	ret = i2c_master_recv(client, (char *)&val, len);
+	if (ret < 0)
+		return ret;
+
+	return 0;
+}
+
+A call to seesaw_register_read() might look like the following:
+
+	int error;
+	__be16 val;
+
+	error = seesaw_register_read(client,
+				     SEESAW_ADC_BASE + SEESAW_ADC_OFFSET + ANALOG_X,
+				     &val, sizeof(val);
+	if (error)
+		return error;
+
+	input_report_abs(input, ABS_X, be16_to_cpu(val));
+
+Last but not least:
+
+static int seesaw_register_write(struct i2c_client *client, u16 reg, u8 val)
+{
+	u8 buf[sizeof(reg) + sizeof(val)];
+	int ret;
+
+	put_unaligned_be16(reg, buf);
+	*(buf + sizeof(reg)) = val;
+
+        ret = i2c_master_send(client, (char *)&buf, sizeof(buf));
+        if (ret < 0)
+                return ret;
+
+	return 0;
+}
+
+And to reset the device:
+
+	error = seesaw_register_write(client,
+				      SEESAW_STATUS_BASE + SEESAW_STATUS_SWRST, 0xFF);
+	if (error)
+		return error;
+
+You can extend this as necessary to support the pin configuration registers
+discussed below. Does this seem like a reasonable compromise?
+
+> 
+> >> +	/*
+> >> +	 * ADC reads left as max and right as 0, must be reversed since kernel
+> >> +	 * expects reports in opposite order.
+> >> +	 */
+> >> +	data->x = SEESAW_JOYSTICK_MAX_AXIS - be16_to_cpu(data->x);
+> >> +
+> >> +	write_buf[1] = SEESAW_ADC_OFFSET + ANALOG_Y;
+> >> +	err = i2c_master_send(client, write_buf, sizeof(write_buf));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +	err = i2c_master_recv(client, (char *)&data->y, sizeof(data->y));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +	data->y = be16_to_cpu(data->y);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static void seesaw_poll(struct input_dev *input)
+> >> +{
+> >> +	struct seesaw_gamepad *private = input_get_drvdata(input);
+> >> +	struct seesaw_data data;
+> >> +	int err;
+> >> +
+> >> +	err = seesaw_read_data(private->i2c_client, &data);
+> >> +	if (err != 0) {
+> >> +		dev_dbg(&input->dev, "failed to read joystick state: %d\n",
+> >> +			err);
+> > 
+> > This should be dev_err_ratelimited().
+> > 
+> >> +		return;
+> >> +	}
+> >> +
+> >> +	input_report_abs(input, ABS_X, data.x);
+> >> +	input_report_abs(input, ABS_Y, data.y);
+> >> +	input_report_key(input, BTN_EAST, data.button_a);
+> >> +	input_report_key(input, BTN_SOUTH, data.button_b);
+> >> +	input_report_key(input, BTN_NORTH, data.button_x);
+> >> +	input_report_key(input, BTN_WEST, data.button_y);
+> >> +	input_report_key(input, BTN_START, data.button_start);
+> >> +	input_report_key(input, BTN_SELECT, data.button_select);
+> > 
+> > I think you can make this much cleaner and smaller by defining an array
+> > of structs, each with a key code and bit position. You can then simply
+> > iterate over the array and call input_report_key() once per element as
+> > in the following:
+> > 
+> > struct seesaw_btn_desc {
+> > 	unsigned int code;
+> > 	unsigned int shift;
+> > };
+> > 
+> > static const struct seesaw_btn_desc seesaw_btns[] = {
+> > 	{
+> > 		.code = BTN_EAST,
+> > 		.mask = 5,
+> > 	},
+> > 	[...]
+> > };
+> > 
+> > And then:
+> > 
+> > 	btn_status = ...;
+> > 
+> > 	for (i = 0; i < ARRAY_SIZE(seesaw_btns); i++)
+> > 		input_report_key(input, seesaw_btns[i].code,
+> > 				 btn_status & seesaw_btns[i].mask);
+> > 
+> > This would also make it easier to quickly discern what keycodes are mapped
+> > to which bits in the register.
+> > 
+> >> +	input_sync(input);
+> >> +}
+> >> +
+> >> +static int seesaw_probe(struct i2c_client *client)
+> >> +{
+> >> +	int err;
+> >> +	struct seesaw_gamepad *private;
+> > 
+> > I'd rather this be called something like 'seesaw' rather than private.
+> > 
+> >> +	unsigned char register_reset[] = { SEESAW_STATUS_BASE,
+> >> +					   SEESAW_STATUS_SWRST, 0xFF };
+> >> +	unsigned char get_hw_id[] = { SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID };
+> >> +
+> >> +	err = i2c_master_send(client, register_reset, sizeof(register_reset));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +
+> >> +	/* Wait for the registers to reset before proceeding */
+> >> +	mdelay(10);
+> >> +
+> >> +	private = devm_kzalloc(&client->dev, sizeof(*private), GFP_KERNEL);
+> >> +	if (!private)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	err = i2c_master_send(client, get_hw_id, sizeof(get_hw_id));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +
+> >> +	unsigned char hardware_id;
+> > 
+> > Same comment as earlier with regard to mixed declarations.
+> > 
+> >> +
+> >> +	err = i2c_master_recv(client, &hardware_id, 1);
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +
+> >> +	dev_dbg(&client->dev, "Adafruit Seesaw Gamepad, Hardware ID: %02x\n",
+> >> +		hardware_id);
+> >> +
+> >> +	private->i2c_client = client;
+> >> +	scnprintf(private->physical_path, sizeof(private->physical_path),
+> >> +		  "i2c/%s", dev_name(&client->dev));
+> > 
+> > This seems overly complex; can we not simply set input_dev->phys to the
+> > literal "i2c/seesaw-gamepad"? Why to copy at runtime and incur the cost
+> > of carrying 'physical_path' throughout the life of the module?
+> > 
+> >> +	i2c_set_clientdata(client, private);
+> >> +
+> >> +	private->input_dev = devm_input_allocate_device(&client->dev);
+> >> +	if (!private->input_dev)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	private->input_dev->id.bustype = BUS_I2C;
+> >> +	private->input_dev->name = "Adafruit Seesaw Gamepad";
+> >> +	private->input_dev->phys = private->physical_path;
+> >> +	input_set_drvdata(private->input_dev, private);
+> >> +	input_set_abs_params(private->input_dev, ABS_X, 0,
+> >> +			     SEESAW_JOYSTICK_MAX_AXIS, SEESAW_JOYSTICK_FUZZ,
+> >> +			     SEESAW_JOYSTICK_FLAT);
+> >> +	input_set_abs_params(private->input_dev, ABS_Y, 0,
+> >> +			     SEESAW_JOYSTICK_MAX_AXIS, SEESAW_JOYSTICK_FUZZ,
+> >> +			     SEESAW_JOYSTICK_FLAT);
+> >> +	input_set_capability(private->input_dev, EV_KEY, BTN_EAST);
+> >> +	input_set_capability(private->input_dev, EV_KEY, BTN_SOUTH);
+> >> +	input_set_capability(private->input_dev, EV_KEY, BTN_NORTH);
+> >> +	input_set_capability(private->input_dev, EV_KEY, BTN_WEST);
+> >> +	input_set_capability(private->input_dev, EV_KEY, BTN_START);
+> >> +	input_set_capability(private->input_dev, EV_KEY, BTN_SELECT);
+> > 
+> > Same comment with regard to creating an array of structs, and hence only
+> > having to call input_set_capability() from within a small loop.
+> > 
+> >> +
+> >> +	err = input_setup_polling(private->input_dev, seesaw_poll);
+> >> +	if (err) {
+> >> +		dev_err(&client->dev, "failed to set up polling: %d\n", err);
+> >> +		return err;
+> >> +	}
+> >> +
+> >> +	input_set_poll_interval(private->input_dev,
+> >> +				SEESAW_GAMEPAD_POLL_INTERVAL);
+> >> +	input_set_max_poll_interval(private->input_dev,
+> >> +				    SEESAW_GAMEPAD_POLL_MAX);
+> >> +	input_set_min_poll_interval(private->input_dev,
+> >> +				    SEESAW_GAMEPAD_POLL_MIN);
+> >> +
+> >> +	err = input_register_device(private->input_dev);
+> >> +	if (err) {
+> >> +		dev_err(&client->dev, "failed to register joystick: %d\n", err);
+> >> +		return err;
+> >> +	}
+> >> +
+> >> +	/* Set Pin Mode to input and enable pull-up resistors */
+> >> +	unsigned char pin_mode[] = { SEESAW_GPIO_BASE,	SEESAW_GPIO_DIRCLR_BULK,
+> >> +				     BUTTON_MASK >> 24, BUTTON_MASK >> 16,
+> >> +				     BUTTON_MASK >> 8,	BUTTON_MASK };
+> >> +	err = i2c_master_send(client, pin_mode, sizeof(pin_mode));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +	pin_mode[1] = SEESAW_GPIO_PULLENSET;
+> >> +	err = i2c_master_send(client, pin_mode, sizeof(pin_mode));
+> >> +	if (err < 0)
+> >> +		return err;
+> >> +	pin_mode[1] = SEESAW_GPIO_BULK_SET;
+> >> +	err = i2c_master_send(client, pin_mode, sizeof(pin_mode));
+> >> +	if (err < 0)
+> >> +		return err;
+> > 
+> > Please configure the HW before the input device is live and being polled.
+> > 
+> 
+> Could you elaborate on what you meant by this. To my knowledge, the
+> device is ready to be polled right after the pin state for the
+> `BUTTON_MASK` is configured. That is also how it's done in the Arduino
+> driver provided by the manufacturer. Please clarify if I'm missing
+> something here.
+
+Normally, we want to do the following:
+
+1. Configure the hardware.
+2. Register the input device.
+3. Request an interrupt line or enable polling.
+
+Here, we have placed step (1) at the end of the sequence, which is dangerous
+for two reasons:
+
+1. For a brief moment, the device is availing button status to the input core
+   while the pull-up resistors are not yet enabled, and the buttons are in an
+   undefined state. Any kind of electrical noise or disturbance may trigger a
+   false button event.
+
+2. The input poller is reading registers and changing the device's internal
+   address pointer at the same time probe() is still writing some registers.
+   This is a concurrency problem.
+
+If what is shown is how the Arduino reference design operates, then I would
+argue the reference design is mistaken, or not subject to the same constraints
+and behaviors as a Linux input driver. Therefore, please set the pin mode much
+earlier in probe().
+
+> 
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +#ifdef CONFIG_OF
+> >> +static const struct of_device_id of_seesaw_match[] = {
+> >> +	{
+> >> +		.compatible = "adafruit,seesaw-gamepad",
+> >> +	},
+> >> +	{ /* Sentinel */ }
+> >> +};
+> >> +MODULE_DEVICE_TABLE(of, of_seesaw_match);
+> >> +#endif /* CONFIG_OF */
+> > 
+> > Please correct me if I am wrong, but it does not seem that OF support is
+> > required by this driver. There are no properties beyond the standard ones
+> > understood by the I2C core, which can match based on the ID table below.
+> > 
+> >> +
+> >> +/* clang-format off */
+> >> +static const struct i2c_device_id seesaw_id_table[] = {
+> >> +	{ SEESAW_DEVICE_NAME, 0 },
+> >> +	{ /* Sentinel */ }
+> >> +};
+> >> +/* clang-format on */
+> > 
+> > Again, I don't see any need for these directives.
+> > 
+> >> +
+> > 
+> > Nit: unnecessary NL.
+> > 
+> >> +MODULE_DEVICE_TABLE(i2c, seesaw_id_table);
+> >> +
+> >> +static struct i2c_driver seesaw_driver = {
+> >> +	.driver = {
+> >> +		.name = SEESAW_DEVICE_NAME,
+> >> +		.of_match_table = of_match_ptr(of_seesaw_match),
+> >> +	},
+> >> +	.id_table = seesaw_id_table,
+> >> +	.probe = seesaw_probe,
+> >> +};
+> >> +module_i2c_driver(seesaw_driver);
+> >> +
+> >> +MODULE_AUTHOR("Anshul Dalal <anshulusr@gmail.com>");
+> >> +MODULE_DESCRIPTION("Adafruit Mini I2C Gamepad driver");
+> >> +MODULE_LICENSE("GPL");
+> >> -- 
+> >> 2.42.0
+> >>
+> > 
+> > Kind regards,
+> > Jeff LaBundy
+> 
+> Regards,
+> Anshul Dalal
+
+Kind regards,
+Jeff LaBundy
 
