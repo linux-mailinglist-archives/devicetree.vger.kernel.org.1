@@ -1,135 +1,218 @@
-Return-Path: <devicetree+bounces-12107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8A07D7FC7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:40:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 591777D7FCE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:42:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE82F1C20F0B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:40:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 138C9281EE9
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C56C2869E;
-	Thu, 26 Oct 2023 09:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CFB928683;
+	Thu, 26 Oct 2023 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="elLNWVpZ"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="YbtCQN7l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8939E28682;
-	Thu, 26 Oct 2023 09:40:39 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ECA184;
-	Thu, 26 Oct 2023 02:40:36 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50802148be9so745786e87.2;
-        Thu, 26 Oct 2023 02:40:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698313235; x=1698918035; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=16C1WfT2DwpGvrfebh3jri2daMchrLPYq4YQrge37a8=;
-        b=elLNWVpZVMRaAiRJjSYDRNBaItDFGjUB0f13H6Ob5ymiFThwZD5C7dGTVYVbAPP2H/
-         KnhJITmC0DgdnIoBpo0WF3sHuo8XBAe8eFaYFd3nuxsFZwf4LFsSp8icpmihL7PqJBse
-         I8pDDMNg1f1eGROl7V1hptyTy8n7wP46ktLhct9oiNtLOEO9dYAtHe9uw8mEpjVCOkgA
-         HycXl4uLgxLn9vMOzNO/Y74XbVLb8o1+Yk5Lq2tobcPrMI+qIsR8owbTcSh4qYpivRem
-         gLTDV+RXgDmZ+MjG5GrWQ4rOX2EI1xB/CcDwPHE2N16mgoH0a0BA9gn9O0vwRC2c48mc
-         FMiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698313235; x=1698918035;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=16C1WfT2DwpGvrfebh3jri2daMchrLPYq4YQrge37a8=;
-        b=pomHkzS9FE7Sj6dFZRMA8zi69Pkn03upbnoGmnPARD9sxEcsj/f1hONuYEVmk6ps7T
-         kkxoag6sAI8GQP1AfiCnRisbNMP6kFVIcNGjHsNg0bRMEq4YQTCzfuTVUC93EddH4+1P
-         r2wUM2cByeprAMACL75pNrrtxdBn+SNkzGyAtGfrvbF/koDu9qxAE3C1CayNT/ppq7Ps
-         8o8GTTp/93w2XqUdX6+xDPNphQerWZq2RYrYBdWnR+lnnNx8X4LELuN3sLeY35TNgwNf
-         JGz4yYojgdf4g+MolSyrAie0ySmdsLck5j29S0I29Tm3mDPLI3NW1irh7lk6by7IH6x2
-         zkuw==
-X-Gm-Message-State: AOJu0YzuaxBcYgt8rqiOBCNpQFrohOVnFvVu6nqs1M6muoztbgBJCfaH
-	R8tUYQc5Q9rwuQWwmAFp2eE=
-X-Google-Smtp-Source: AGHT+IGlwr9dCU6ecQBIYTesn3xkLbGBkhX7LjmKR030UIvrvCcdj5ZXyGut84ci6KoZvBvRdraMrg==
-X-Received: by 2002:a05:6512:2352:b0:507:a5dc:6d3e with SMTP id p18-20020a056512235200b00507a5dc6d3emr13866269lfu.31.1698313234359;
-        Thu, 26 Oct 2023 02:40:34 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id l18-20020a5d5272000000b00323293bd023sm14028072wrc.6.2023.10.26.02.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 02:40:34 -0700 (PDT)
-Date: Thu, 26 Oct 2023 12:40:30 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v8 0/5] net: dsa: microchip: provide Wake on LAN
- support (part 2)
-Message-ID: <20231026094030.wyoz3rj2jiim7ptx@skbuf>
-References: <20231026051051.2316937-1-o.rempel@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339B427728;
+	Thu, 26 Oct 2023 09:41:56 +0000 (UTC)
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2041.outbound.protection.outlook.com [40.107.241.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76CA6195;
+	Thu, 26 Oct 2023 02:41:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bxxa6neCJDPYZjLS1A5tppBlRNIjZoA2GHmlFCUq+wKEDVcyd5s/hb6IOYmWK4XZKjYYesDPTaItlalFNJmUJMFV5QF7JjXqcAQVqmKLI5WzLJt75uPWbI9gtLj0+Z8o+LVkpGPffifJQwkmkC8iGnEJdz67dwRkQHGdiq+cCSdKPsLoe8sNfIrDcgwY4HuAcuVhhbdADDDUJer75f01KMfx5Nizdzhv0iJF46r6zvZNWUizHvo0HlbrjAcOUc7lX3HhS1sLAoWNquAJ77KbIGKHLOKiunjSXUEc69vJG6ytyGLfXsjlJswEvV54WAQ8QlNiC7ZvnpZH3LfRFlMqow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ow5pvRSFci8FURhEb6dW8RZBuwo3nFVFJVsIf2pNDYQ=;
+ b=PnQFHXAVN/z8+3Q7jniCUUSJ2o7dkdjN9fcm0WotCSm4bN28CiWRbd3TFtbUmUObOQILIQX1fJ5GYI7dXT0UJqFA9GB+1g+Uy6DDOJYINPrRMlR4h3om5+co80pYzn8CKcjkli2C7sYvINiSse3XURtTAoVpRWL1lq0IMblJS2+XDlxqrH+W9L+vIdm/1aakxA0Cx5brONhtxmVchf0PR+0PzUgW4SGghLo/s/2Sjv5otSXcAGkGmolLCS5NJZDMUOzF8iyVq/TpJ49ogPoL7N5eZtMIz6n1UlTVskMMnbOEl/XgPixK9lexjbYjApwR3BY/LumYSGI7oZxra6F8NQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ow5pvRSFci8FURhEb6dW8RZBuwo3nFVFJVsIf2pNDYQ=;
+ b=YbtCQN7lGvNMX8ALIehCH9arZAAlLuw4lSo+mxaTxfOY5bZMXtYAEDSLjLw7n6mR2v6qOs0SYIdtxOqIHkRjsKA54ZmvxYqFT+bBqBe15e/J5+Tyb77g8/cQYTVr1CMgenpQSksM2B2o21hDjVZCLdsrvSXc7zM3qpNrwcI2OrQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by DU0PR08MB8929.eurprd08.prod.outlook.com (2603:10a6:10:464::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Thu, 26 Oct
+ 2023 09:41:50 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a309:1d65:f5fb:436b]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::a309:1d65:f5fb:436b%6]) with mapi id 15.20.6933.019; Thu, 26 Oct 2023
+ 09:41:50 +0000
+Message-ID: <8fec6c89-548b-43b5-8361-869663a58573@wolfvision.net>
+Date: Thu, 26 Oct 2023 11:41:47 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: nxp,pcf8563: add hiz-output
+ property
+Content-Language: en-US
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Alessandro Zummo <a.zummo@towertech.it>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231024-topic-pcf85363_hiz_output-v1-0-50908aff0e52@wolfvision.net>
+ <20231024-topic-pcf85363_hiz_output-v1-2-50908aff0e52@wolfvision.net>
+ <20231025222327c0b5d460@mail.local>
+ <2f17c031-30f6-4242-b2a1-1628402b3091@wolfvision.net>
+ <1c4a6185-fe09-45d1-900a-10abf48e3fc9@wolfvision.net>
+ <20231026005008b8255799@mail.local>
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <20231026005008b8255799@mail.local>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR08CA0253.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::26) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231026051051.2316937-1-o.rempel@pengutronix.de>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DU0PR08MB8929:EE_
+X-MS-Office365-Filtering-Correlation-Id: d1853ed6-ff56-42e8-fcae-08dbd607c74c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	3lhhLBGlVVt9vNbUL5ejobEF9c+r45qt0uozNMyauujWOHUcJqqik/5zvLqRGImNx2E38+LoclW4Pla1fbC1vZ5gXutBqFhSHO88zYj9kvg4Gvqb3bx2YI1kydLZAjwr+fSbtC1j13cOg+a7BkqFePlitENeO8XKUm658Ia7UnSgdprSd+lP55VmVnZdrWP7UVCdwlq/5aZ5kQQf2eEij6MPK+Mk50r6gbgdPPYIJP/VK3xz09qMWakFGQGb7n25/Bo8SrkbYR6rJ4FNcfY11UtX8LLutj9CPK1pWlknvbBpB9KbEjxXeTa+rc2Ne3Kz0JSDGIPMd8zwizVdXUrrHTyMLzV9par1tuFugqfTYPIgP55A09dXY/YPnkRamD1uXfvtOoQur8J9lXFButf9OnOpv45whKM9xxr40zjispsnApQb1M3XaU+iITHWr5RJq3BIVlxiTy+vhhEA2dfQqbj8keipttlbVn6POvpFC8phg4aq7MwWF4SRcWx2Pv69liUxmibs4YWHBfL4R81aX7QimGksQMeOks7kL73v6o5BzNA5ZEFH2xQeynK4xE+kWsTprI4F8lFyYJGFQTzit+54OqRfHSdeAmt7uaYHDLKTF3wswmyq24A+mJx2NKHfqp/cTj4kUu6GejFvP3ojRg==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39850400004)(136003)(366004)(346002)(230922051799003)(64100799003)(186009)(451199024)(1800799009)(66476007)(6486002)(66556008)(66946007)(478600001)(6916009)(316002)(54906003)(38100700002)(41300700001)(31686004)(86362001)(31696002)(5660300002)(8936002)(44832011)(8676002)(53546011)(66899024)(4326008)(2616005)(6506007)(6666004)(83380400001)(36756003)(2906002)(6512007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?akd1dEJLWU5iRjdMS2EvYUgrWnY5bndOOFN6M3lzaFNlbXk1QU9waHRnMmFH?=
+ =?utf-8?B?L01pYlNacHM5WWFwTDV2TUxRdWhxTlZraW1SM0s0K3dQUjV0NS9vcXlNSWJy?=
+ =?utf-8?B?MUQ1eDdTVzk5SCsxc0JvVGdnakdBM2xXUHNkdmFDWHZFUHBmQnIyNnUyMWVI?=
+ =?utf-8?B?VXR2NkdTbStZVHJPVWFPY2hib0NSTGl3NWpqZjRoYW9qTGVXdkdZRGZhMGI0?=
+ =?utf-8?B?NWVwSExsRWtvODZ4U0gwZUJ0bVZ4azI5dmdRaU9CNmlQYXdhaHI3dHdOTllG?=
+ =?utf-8?B?T1g1dTY3L1JFdHVFMVh4eDJjUlVXZW9BVGRyTTU0MllaUWNSdGhnbFp1dVA1?=
+ =?utf-8?B?eElmMkQ1TG5DZ3lObGoyQ0RqblZmUyt4UDI0TzM3S1NtSHM2eHVSVEhlMDNa?=
+ =?utf-8?B?aGhJRjZQN0JwaUd1TTNYZEVWdG45SEZ0OTA1cWkwZ0tjenk5Z0tWZHhLOFNa?=
+ =?utf-8?B?aXhFaXZGcU10cTBOL1hhMmZSMUU0NldUNWEyQk1ySE42OSsxUTE0YWFiNitQ?=
+ =?utf-8?B?dEw1b0tHUWdqWVdRNm9nWjcwUHpmN254MnUzWmZiMTFiTHphampmZWpmTmZu?=
+ =?utf-8?B?c2MzcGVkTUV6NCtUZE5hbis5MHhoSDFFSTdXVlljREo4SnY2L1A4amNxVFBv?=
+ =?utf-8?B?NTNKU1VhRHcySkIzOGluOENzVjZWWjVydzcvNU9OTWNwajd3djlpWk1ncjUw?=
+ =?utf-8?B?bWdNajRhMkZadURvQisrb2xyOXZ4NW9XYzZiWXo3Yi8yZDZzMllOQ3ZweUNN?=
+ =?utf-8?B?UEdNd3M3NXkxanhuMW0xdjgxTnNKRXlUOFJmeXk5UnJCTjVwY2E3T1F5Mmxw?=
+ =?utf-8?B?MCt0SUVYRElxVVZ0OG01L1JXaFhkNGR5ZkxmeHF2UjNuZExHVk5vZ1QwSkg5?=
+ =?utf-8?B?a0VzR2hJaGplZEROSTB4T2thT05VVFdmVldESEU4amVKU1hNOUtQL2Jrd0d3?=
+ =?utf-8?B?Sm94cFdXREQyTWJVeklQNWMrWEtyMFN1T0dBVkpnN2loYjc3N0JpVjlFTlh5?=
+ =?utf-8?B?eGRXSkR4OWRkNmVBZlB1NzFiU1h4U2RVaVRLVUpaN2x3bXpzWlpybTlhWnFP?=
+ =?utf-8?B?VHJ6aWhVamh3aFAzUFFlakprMjhDVFkzdWZCY29zVFlkL0liMmpqRG4relZV?=
+ =?utf-8?B?NU9IQ1pJUWtWYVI5Q29KTEUyVXNrN0lzVXBZSGgrQXlHRUZyd1V4d2tpb3I2?=
+ =?utf-8?B?TnZmRVR1WUJFZFBzWWlEbjg0dWtFK0U5SVJ1TWxUbUEyQVN5Qk1kYzlFaEo3?=
+ =?utf-8?B?TTFUaGg4V3JJSjB2cFFOZmxNcTBZdUpweUR5YnRXVk9wck5aVUdVRnM4YTNL?=
+ =?utf-8?B?cGdCTXBQNEZ3TEVLeEpmMFJoSnV4dWU2RHI4Y3hTcm9uRE5aSE1GNWZFVHBV?=
+ =?utf-8?B?K1BpL1JaemFhaDFpTWdIQXFrNjNlOHRYR0tYOWVuZUpMSEtUUG9qM3R6RVRh?=
+ =?utf-8?B?QkRoZjRvTnVrVkxTQitYVnVaVzgycVJrc1hkNmFDazIwSVhpd0JpTFMxdDBK?=
+ =?utf-8?B?WC9sVjY2NnIvWEZrVTlGNEFHeE1MdnlVcU5uaUU3QUhJL0c5WmNXbmhHTGkx?=
+ =?utf-8?B?cEc4a3Znd1d0ZlJxajVCTlhZem9hY3JBL05JMklvcVM3R3FkdWlEdDdLOWVs?=
+ =?utf-8?B?aU53TS96WGV0TDNxNllZRmEzZkx0Si8zdU1rRis5MGxqb0RwRWtNRUQvYS90?=
+ =?utf-8?B?UzBwaytHTjZrQVExTUNyMjZzamJxY1REUVF1ZUdNZ3JCMlhsZWwxUFc4d2lY?=
+ =?utf-8?B?YkZteUNYTTlOY1pqNmlNbGU5WmxOdStSRUdMbWZYcG1BNjltQm56SEYxVG5t?=
+ =?utf-8?B?bHlndWxnOEZNWTlXTFA3QVdOUy8xQkI5OHJHcW1KYStuNkJDUHE5bHFFVkox?=
+ =?utf-8?B?QTdZcE0yaHdZMEdwV0E0QmVsd0lsMHdUU29PUGZYOVozOGF5YjZSWmJSdGNy?=
+ =?utf-8?B?RUZHSENKV3dmQ3BCbHpmbCthaFJSWFliKytqa3dzNXdyVmZiMWR4M09nNVhP?=
+ =?utf-8?B?TEluRlhmUWVkQkxHditDMENNMEtHVG1VS0dleWcramJoMWh6eFRuRGtScisz?=
+ =?utf-8?B?VkUyWFAzeUIzQllaZXN0QnhRMXVWc3BCZ1hxanh5Y25kTjdMbllQSXdxNHNT?=
+ =?utf-8?B?WXNRdUtFNnpxU3NRTm01SmhYWTh0TCtGVVZ3QzZZL1FFYUxFREJZSThoOURz?=
+ =?utf-8?B?SWM5eExWQ0tRRHBUOVNGSGFtM2M0T0ZQL1JucnV0Y00vZUNuNVF3bGZTMkNW?=
+ =?utf-8?Q?EKwLTQMzaW3+Jp/8dSw1TXRvWG6bBlwfMQU5X5IfWw=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1853ed6-ff56-42e8-fcae-08dbd607c74c
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 09:41:50.1593
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7Xhz09IsqFQNgQbAT96iDN7YlQDJOvT5N5dfP5luRNhqQGBnBLE7xH8c2Sw6OoQk2qIqBZAetFjjN/PZzWl4jCUTbzsNu5n3B7pA4RqznFc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8929
 
-On Thu, Oct 26, 2023 at 07:10:46AM +0200, Oleksij Rempel wrote:
-> This patch series introduces extensive Wake on LAN (WoL) support for the
-> Microchip KSZ9477 family of switches, coupled with some code refactoring
-> and error handling enhancements. The principal aim is to enable and
-> manage Wake on Magic Packet and other PHY event triggers for waking up
-> the system, whilst ensuring that the switch isn't reset during a
-> shutdown if WoL is active.
+
+On 26.10.23 02:50, Alexandre Belloni wrote:
+> On 26/10/2023 01:23:21+0200, Javier Carrasco wrote:
+>>>>> +  hiz-output:
+>>>>> +    description:
+>>>>> +      Use enabled if the output should stay in high-impedance. This
+>>>>> +      mode will mask the output as an interrupt source.
+>>>>> +      Use sleep if the otuput should be only active in sleep mode.
+>>>>> +      This mode is compatible with any other output configuration.
+>>>>> +      The disabled value acts as if the property was not defined.
+>>>>> +    enum:
+>>>>> +      - enabled
+>>>>> +      - sleep
+>>>>> +      - disabled
+>>>>> +    default: disabled
+>>>>> +
+>>>>
+>>>> If instead of using a custom property, you consider this as what it
+>>>> actually is: pinmuxing, then everything else comes for free. With
+>>>> pinctrl, you can define different states for runtime and sleep and they
+>>>> will get applied automatically instead of open coding in the driver.
+>>
+>> I am not sure if your solution would cover all my needs:
+>>
+>> 1.- With pinctrl I can model the SoC pins, right? That would not stop
+>> the RTC output though, so the 32 kHz signal would be generated anyways
+>> even though the SoC would ignore it. That is one of the things I want to
+>> avoid.
+>>
 > 
-> The Wake on LAN functionality is optional and is particularly beneficial
-> if the PME pins are connected to the SoC as a wake source or to a PMIC
-> that can enable or wake the SoC.
+> No, you would model the INTA pin.
+I am sorry for insisting on this topic, but if I get you right, I would
+be modeling an interrupt pin (INTA) to keep it from generating a clock
+signal when the RTC itself offers a high-impedance mode i.e. avoiding to
+use the RTC feature.
+
+Is that not a misuse of the INTA pin in the first place? If there was no
+other option, that would be an easy fix, but why would we not implement
+the hi-Z mode when it is available? If I see a pinctrl-* modeling an
+interrupt pin, it is not obvious that I am doing that to stop the clock
+signal and I would have to clarify it explicitly, especially if I am not
+interested in the interrupt.
+
+I would rather implement and document the hi-Z mode the RTC offers
+instead of using another mode like INTA which actually can trigger
+interrupts. If the implementation must be different is of course another
+topic.
 > 
-> changes v8:
-> - rebase on top of net-next and s/slave/user/
-
-I am stunned by what happened here. The timeline seems to be:
-
-- On the 23rd of October, you sent a 9-patch series constituting v7.
-- On the 25th of October, 4 of those patches were silently merged, as
-  follows:
-
-93aa731e6133 Merge branch 'dsa-microchip-WoL-support'
-d264f24409b8 net: dsa: microchip: ksz9477: add Wake on LAN support
-aed7425d6510 net: dsa: microchip: use wakeup-source DT property to enable PME output
-4e1799ae84fc dt-bindings: net: dsa: microchip: add wakeup-source property
-02e987f52cf0 net: dsa: microchip: Add missing MAC address register offset for ksz8863
-
- commit 93aa731e613399f5145166940b20224a8d116920
- Merge: e43e6d9582e0 d264f24409b8
- Author: David S. Miller <davem@davemloft.net>
- Date:   Wed Oct 25 08:47:33 2023 +0100
-
-     Merge branch 'dsa-microchip-WoL-support'
-
-with no further details as usual (cover letter becomes merge commit
-message), no patchwork bot notification, nothing.
-
-- Today you are sending the rest of 5 unmerged patches.
-- In parallel, Colin Ian King has sent a fixup for a review comment on
-  the first 4 patches from v7, which got silently applied without that
-  comment being addressed.
-
-So, given the circumstances, I see that you did the right thing. It's
-just that I'm starting to understand less and less of what the rules are
-supposed to be.
+>> 2.- What happens if the RTC output is a clock for an external device
+>> that is only required when the SoC is in sleep mode? In that case I
+>> would like the RTC driver to control the output with the modes it provides.
+> 
+> Even if I doubt this is a valid use case, this would be possible as long
+> as the external device node has the correct pinctrl-* properties.
+> 
+> 
+>>>>
+>>>> Also, how you define this property means that everyone currently using
+>>>> this RTC is going to have a new warning that they should just ignore.
+>>>>
+>>>>
+>>> Thanks for your reply. The warning can only be triggered if the property
+>>> is defined, so in principle no one could have that warning yet. Only the
+>>> ones who actually define it and use an invalid value would get the warning.
+>>>
+>>> On the other hand I did not consider your approach, which might make
+>>> this patch irrelevant. So I will have a look at it to make sure that it
+>>> achieves the same results.
+>>>
+>>> Thanks again and best regards,
+>>> Javier Carrasco
+>>>
+> 
 
