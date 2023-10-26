@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-12178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B507D83FA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:56:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9D37D83FB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:56:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8AB32819A2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:55:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28734281FF4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1543A2E407;
-	Thu, 26 Oct 2023 13:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B4C2E40E;
+	Thu, 26 Oct 2023 13:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890EE2E3F8
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:55:54 +0000 (UTC)
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40564D55;
-	Thu, 26 Oct 2023 06:55:53 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1d544a4a2f2so517460fac.3;
-        Thu, 26 Oct 2023 06:55:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3E52E3F8
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:55:58 +0000 (UTC)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6488AD54;
+	Thu, 26 Oct 2023 06:55:55 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3b2e07e5f3aso1028053b6e.0;
+        Thu, 26 Oct 2023 06:55:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698328552; x=1698933352;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dS2bQbsQIb8CArWmGPDMcF+yvzLcVqjiAEJzVYwbS4Y=;
-        b=WXv98GxHzt2vF0zr3O1BOVadpHB2m/CMItumCtVwmLY03ZCoBCumdZFuo5RQTtGDXX
-         3ufMt0KAAtGtMntMQ3dYWSNtE5TkOGDVay9n0Zvu3CJsb5k4BObx1KNzkupVfCbHOJHc
-         tdsO9teLmm2wauB53lhQvOcK0rVhRYFieXtorEUK6xE1GExJDUcd3L4hVX2uKPpy9+Ra
-         8gtGKhqVQbqQLqYWvgIr0kuvSB/bF8e/LTMYH6rqAfxZ/n14uu91vn7KToGuhHkN/eNj
-         orWkaPoMsQY1puYYJjdvDyWTuRbmfj7lZqpuVNrLu87OTr2U/aT6zVaEBZqCP0qlGHIu
-         +hBQ==
-X-Gm-Message-State: AOJu0Yw7tRC1bfekSbi+Rhlm/TWIkSUc1pAPwz2N3XYHdwGgKpbgd13b
-	8Pbyz7FVAa98b/z3aLe7kQ==
-X-Google-Smtp-Source: AGHT+IHgf8CUyKOpw+cAs/S6m6eInBTBXSRM7rx9/VPe+g8iy1ZVcIgDIaA3FB/mqMoSQ4Z1mFgJTw==
-X-Received: by 2002:a05:6870:7a1b:b0:1e9:f0be:cbbe with SMTP id hf27-20020a0568707a1b00b001e9f0becbbemr24245194oab.9.1698328552259;
-        Thu, 26 Oct 2023 06:55:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698328555; x=1698933355;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yvFrN6RkHOEg6+kdZIT7qu8F7MiUG3qfKprWNC+gw7c=;
+        b=TPeTS3TPM3mZZ8D9Nc8qM165TuuUqTe41UnfTanHe3MFeL6BFpw9f5I32+bXaVIr+n
+         psvMGRGBqyOwijwUGsxDNW6aAU91tITFDXEeATcs60omZjOGplWc2ei5VPbggKtrif7z
+         VDovKClQLVsxWCKWApk2JiJCVhhKYrp6ClT6fjafeE4wthdDYfF5ZSANOfcyMEM5vo2H
+         Q9ABWX9oQYwX43pLuMfWquiVnb8KkH94AQqV8yfrrqdBTZ+Uq13VPJkqdG2+Oj7g0G3/
+         s+S0H1aI8xBPut+Wmm0VZ6FQn4ihAopVZyM76BFTgZQm4MY4XfakfeKdlJIhSAKyqyUx
+         gI8w==
+X-Gm-Message-State: AOJu0YwXyHtR5qP2/SFXlRaSlt4cNTyhZ7XF/MD+1cirQ7OjCn5lDcJ7
+	IEFjsJir1qqEXXe+LsHO1bF5HVKXjA==
+X-Google-Smtp-Source: AGHT+IGoVC4Kyb4A1PcHBnfW6kCpsMlNPSGpBUJTOVOFk4x7EK0/yhtKbN2/0QAkxo3AqpJ2AJ0PNQ==
+X-Received: by 2002:a05:6808:24f:b0:3b2:f4a2:e7fc with SMTP id m15-20020a056808024f00b003b2f4a2e7fcmr1541559oie.25.1698328554938;
+        Thu, 26 Oct 2023 06:55:54 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z7-20020a056870e14700b001c5a3e31474sm3046274oaa.45.2023.10.26.06.55.51
+        by smtp.gmail.com with ESMTPSA id z18-20020a056808029200b003b2f369a932sm2763797oic.49.2023.10.26.06.55.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 06:55:51 -0700 (PDT)
-Received: (nullmailer pid 3566795 invoked by uid 1000);
-	Thu, 26 Oct 2023 13:55:50 -0000
+        Thu, 26 Oct 2023 06:55:54 -0700 (PDT)
+Received: (nullmailer pid 3566879 invoked by uid 1000);
+	Thu, 26 Oct 2023 13:55:53 -0000
 From: Rob Herring <robh@kernel.org>
 To: Frank Rowand <frowand.list@gmail.com>
 Cc: Herve Codina <herve.codina@bootlin.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] of: address: Store number of bus flag cells rather than bool
-Date: Thu, 26 Oct 2023 08:53:58 -0500
-Message-ID: <20231026135358.3564307-2-robh@kernel.org>
+Subject: [PATCH 2/2] of: address: Consolidate bus .map() functions
+Date: Thu, 26 Oct 2023 08:53:59 -0500
+Message-ID: <20231026135358.3564307-3-robh@kernel.org>
 X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231026135358.3564307-2-robh@kernel.org>
+References: <20231026135358.3564307-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,81 +64,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-It is more useful to know how many flags cells a bus has rather than
-whether a bus has flags or not as ultimately the number of cells is the
-information used. Replace 'has_flags' boolean with 'flag_cells' count.
+The bus .map() functions vary only by checking the flag cells values
+and skipping over any flag cells to read the addresses. Otherwise they
+all do the same reading 'ranges' address and size and returning the
+address's offset if it is within the 'ranges' entry.
+
+Refactor all the .map() functions to pass in the flag cell size so that
+each bus can check the bus specific flags and then call a common
+function to do everything else.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-This series applies on top of Herve's[1].
-
-Rob
-
-[1] https://lore.kernel.org/all/20231017110221.189299-1-herve.codina@bootlin.com/
-
- drivers/of/address.c | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
+ drivers/of/address.c | 54 +++++++++-----------------------------------
+ 1 file changed, 11 insertions(+), 43 deletions(-)
 
 diff --git a/drivers/of/address.c b/drivers/of/address.c
-index d21a3b74ac56..997f431af165 100644
+index 997f431af165..b59956310f66 100644
 --- a/drivers/of/address.c
 +++ b/drivers/of/address.c
-@@ -45,7 +45,7 @@ struct of_bus {
+@@ -43,7 +43,7 @@ struct of_bus {
+ 	void		(*count_cells)(struct device_node *child,
+ 				       int *addrc, int *sizec);
  	u64		(*map)(__be32 *addr, const __be32 *range,
- 				int na, int ns, int pna);
+-				int na, int ns, int pna);
++				int na, int ns, int pna, int fna);
  	int		(*translate)(__be32 *addr, u64 offset, int na);
--	bool	has_flags;
-+	int		flag_cells;
+ 	int		flag_cells;
  	unsigned int	(*get_flags)(const __be32 *addr);
- };
+@@ -63,13 +63,13 @@ static void of_bus_default_count_cells(struct device_node *dev,
+ }
  
-@@ -370,7 +370,7 @@ static struct of_bus of_busses[] = {
- 		.count_cells = of_bus_pci_count_cells,
- 		.map = of_bus_pci_map,
- 		.translate = of_bus_default_flags_translate,
--		.has_flags = true,
-+		.flag_cells = 1,
- 		.get_flags = of_bus_pci_get_flags,
- 	},
- #endif /* CONFIG_PCI */
-@@ -382,7 +382,7 @@ static struct of_bus of_busses[] = {
- 		.count_cells = of_bus_isa_count_cells,
- 		.map = of_bus_isa_map,
- 		.translate = of_bus_default_flags_translate,
--		.has_flags = true,
-+		.flag_cells = 1,
- 		.get_flags = of_bus_isa_get_flags,
- 	},
- 	/* Default with flags cell */
-@@ -393,7 +393,7 @@ static struct of_bus of_busses[] = {
- 		.count_cells = of_bus_default_count_cells,
- 		.map = of_bus_default_flags_map,
- 		.translate = of_bus_default_flags_translate,
--		.has_flags = true,
-+		.flag_cells = 1,
- 		.get_flags = of_bus_default_flags_get_flags,
- 	},
- 	/* Default */
-@@ -826,7 +826,7 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
- 	int na = parser->na;
- 	int ns = parser->ns;
- 	int np = parser->pna + na + ns;
--	int busflag_na = 0;
-+	int busflag_na = parser->bus->flag_cells;
+ static u64 of_bus_default_map(__be32 *addr, const __be32 *range,
+-		int na, int ns, int pna)
++		int na, int ns, int pna, int fna)
+ {
+ 	u64 cp, s, da;
  
- 	if (!range)
- 		return NULL;
-@@ -836,10 +836,6 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
+-	cp = of_read_number(range, na);
++	cp = of_read_number(range + fna, na - fna);
+ 	s  = of_read_number(range + na + pna, ns);
+-	da = of_read_number(addr, na);
++	da = of_read_number(addr + fna, na - fna);
  
- 	range->flags = parser->bus->get_flags(parser->range);
+ 	pr_debug("default map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
  
--	/* A extra cell for resource flags */
--	if (parser->bus->has_flags)
--		busflag_na = 1;
+@@ -101,24 +101,13 @@ static unsigned int of_bus_default_get_flags(const __be32 *addr)
+ }
+ 
+ static u64 of_bus_default_flags_map(__be32 *addr, const __be32 *range, int na,
+-				    int ns, int pna)
++				    int ns, int pna, int fna)
+ {
+-	u64 cp, s, da;
 -
- 	range->bus_addr = of_read_number(parser->range + busflag_na, na - busflag_na);
+ 	/* Check that flags match */
+ 	if (*addr != *range)
+ 		return OF_BAD_ADDR;
  
- 	if (parser->dma)
+-	/* Read address values, skipping high cell */
+-	cp = of_read_number(range + 1, na - 1);
+-	s  = of_read_number(range + na + pna, ns);
+-	da = of_read_number(addr + 1, na - 1);
+-
+-	pr_debug("default flags map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
+-
+-	if (da < cp || da >= (cp + s))
+-		return OF_BAD_ADDR;
+-	return da - cp;
++	return of_bus_default_map(addr, range, na, ns, pna, fna);
+ }
+ 
+ static int of_bus_default_flags_translate(__be32 *addr, u64 offset, int na)
+@@ -192,9 +181,8 @@ static void of_bus_pci_count_cells(struct device_node *np,
+ }
+ 
+ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
+-		int pna)
++		int pna, int fna)
+ {
+-	u64 cp, s, da;
+ 	unsigned int af, rf;
+ 
+ 	af = of_bus_pci_get_flags(addr);
+@@ -204,16 +192,7 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
+ 	if ((af ^ rf) & (IORESOURCE_MEM | IORESOURCE_IO))
+ 		return OF_BAD_ADDR;
+ 
+-	/* Read address values, skipping high cell */
+-	cp = of_read_number(range + 1, na - 1);
+-	s  = of_read_number(range + na + pna, ns);
+-	da = of_read_number(addr + 1, na - 1);
+-
+-	pr_debug("PCI map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
+-
+-	if (da < cp || da >= (cp + s))
+-		return OF_BAD_ADDR;
+-	return da - cp;
++	return of_bus_default_map(addr, range, na, ns, pna, fna);
+ }
+ 
+ #endif /* CONFIG_PCI */
+@@ -319,24 +298,13 @@ static void of_bus_isa_count_cells(struct device_node *child,
+ }
+ 
+ static u64 of_bus_isa_map(__be32 *addr, const __be32 *range, int na, int ns,
+-		int pna)
++		int pna, int fna)
+ {
+-	u64 cp, s, da;
+-
+ 	/* Check address type match */
+ 	if ((addr[0] ^ range[0]) & cpu_to_be32(1))
+ 		return OF_BAD_ADDR;
+ 
+-	/* Read address values, skipping high cell */
+-	cp = of_read_number(range + 1, na - 1);
+-	s  = of_read_number(range + na + pna, ns);
+-	da = of_read_number(addr + 1, na - 1);
+-
+-	pr_debug("ISA map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
+-
+-	if (da < cp || da >= (cp + s))
+-		return OF_BAD_ADDR;
+-	return da - cp;
++	return of_bus_default_map(addr, range, na, ns, pna, fna);
+ }
+ 
+ static unsigned int of_bus_isa_get_flags(const __be32 *addr)
+@@ -486,7 +454,7 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
+ 	rlen /= 4;
+ 	rone = na + pna + ns;
+ 	for (; rlen >= rone; rlen -= rone, ranges += rone) {
+-		offset = bus->map(addr, ranges, na, ns, pna);
++		offset = bus->map(addr, ranges, na, ns, pna, bus->flag_cells);
+ 		if (offset != OF_BAD_ADDR)
+ 			break;
+ 	}
 -- 
 2.42.0
 
