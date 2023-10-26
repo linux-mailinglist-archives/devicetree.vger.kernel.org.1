@@ -1,196 +1,168 @@
-Return-Path: <devicetree+bounces-12215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029957D857B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 17:04:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A0067D85A5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 17:10:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7670282023
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:04:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95916B20E42
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:10:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA812EB1C;
-	Thu, 26 Oct 2023 15:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0BF2F502;
+	Thu, 26 Oct 2023 15:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="IVeOVnhe";
-	dkim=pass (1024-bit key) header.d=microchiptechnology.onmicrosoft.com header.i=@microchiptechnology.onmicrosoft.com header.b="tjbvAPhI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FNuGCSnz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB6F71D52B
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 15:04:39 +0000 (UTC)
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531731AB;
-	Thu, 26 Oct 2023 08:04:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1698332677; x=1729868677;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=pMwr4ANvednoHdsXGqmhyesaOBvLIYycExzB+MUagGU=;
-  b=IVeOVnhejaID0g7e07pW6XOwPC6OK5nMhADtC/bjOeryhiMYAt0aXkBo
-   BV6jqDdeR5SFjJU+0R1IFygBqRSNbnuXjSkZ9rfUgO3LePKt93vVxPM4X
-   +T/6XS98+S0XevMnRdHHto+VEPlwKyf8bd/cuok4iUJ4VSMj4WaLMUebs
-   JDAO90dnEhiOLs7tDdQby/bVmy9MczIAZVf93WQsSEklu2PAw3SBXkUZa
-   hJa8mVxvfjAERbIbQEs+4Ik/1eLAUWinMkBiiW2cHxjLWDJjaRvQCjJFY
-   R0Myyi9N2hYBn4SuUEr6o5PQaaTeGBPQyXxhNlisWGyhSd8UQ65M7Q4nr
-   w==;
-X-CSE-ConnectionGUID: KaU2AMuxQlai+mDd6vxTXg==
-X-CSE-MsgGUID: dy0EayemQSam8FS7J9lmiw==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="10645963"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Oct 2023 08:04:36 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 26 Oct 2023 08:03:46 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.250)
- by email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 26 Oct 2023 08:03:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KweqmeAtPXucmR/fQTpAkyD3raS/WvSNxxe7GB/kOJKNx4YFySbxlLHZEW9gPRg1Bw4ftsn6CFqFlJw86KGRMwKLDU50v+MZOLh/Wtj7RR4ZxfmOxCdWAeh9DDrTI0apMUTnx06ECjuzIezmkDEj28uBEwfo4inEuISm7/PZhL+k8WCdciYNkQkaWu3JiM23uYcmXIv9OSl7/KTbXBXiKR/nkCHqNmxrMNSMcdb694VoXRMi7IBxGV+5/mKQ+CdGvqCTOdg3BwgB88+fjoxEJGArLezAgzQLIeESgcy2mTLNQU6tbhr2Oyt/Jq3JdWAv+z/hzAsAwgxb7uVlqRvNhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pMwr4ANvednoHdsXGqmhyesaOBvLIYycExzB+MUagGU=;
- b=jHhv7BZrA1O7CONS0ULJpmnMCzbM71UnuWDyws5Pl5H+bBar/IeQdYFaW8S1XuDRzCvTPfe/HBFq52x3joC5EUf1pjaXgpdDxPhXtuAAKGEo653JAbswO0XM8c7GGSzBzQ2UI3X1hnQ4IP6g/CjgQS43WWS7DgfEyFFgtztzzOLwZwUe958YzfYdmQiociCjy2pvtqUNHFoj65gEXYXG2RUKJ7KHvHvFz+oqltXvS4xcEVMuyVj0tXUZI1dzeBlq6UeJOywUpUzkE8g2HC0zk/GWG1zXx0VBE7hRcCKVoKA4yYL/3HFkI27js3WIu1F/6jOX90s3ZHSMivDLNm4/sQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198A22E404;
+	Thu, 26 Oct 2023 15:09:57 +0000 (UTC)
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07FE18A;
+	Thu, 26 Oct 2023 08:09:56 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-59e88a28b98so9081997b3.1;
+        Thu, 26 Oct 2023 08:09:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pMwr4ANvednoHdsXGqmhyesaOBvLIYycExzB+MUagGU=;
- b=tjbvAPhIHoyFjnJQ4XegSpl8BsyDm/4IidOpQdWywFmakMDrsMf6eH2+eBy/CK6YKKQdtJG/1p/EAAzw6PgToOhZBk66Po+M0ppCi89j9lgNWb5i9UHGxPlW8jZkZAvAWJ3knlrxyKqsnBJjBagdRK/qXgFHOERmzRz1od6qEkY=
-Received: from IA1PR11MB6395.namprd11.prod.outlook.com (2603:10b6:208:3ac::14)
- by DM4PR11MB5471.namprd11.prod.outlook.com (2603:10b6:5:39d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.33; Thu, 26 Oct
- 2023 15:03:44 +0000
-Received: from IA1PR11MB6395.namprd11.prod.outlook.com
- ([fe80::1268:3f:8109:622b]) by IA1PR11MB6395.namprd11.prod.outlook.com
- ([fe80::1268:3f:8109:622b%4]) with mapi id 15.20.6907.032; Thu, 26 Oct 2023
- 15:03:43 +0000
-From: <Marius.Cristea@microchip.com>
-To: <noname.nuno@gmail.com>, <jic23@kernel.org>, <lars@metafoo.de>,
-	<robh+dt@kernel.org>
-CC: <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] iio: adc: adding support for pac193x
-Thread-Topic: [PATCH v2 2/2] iio: adc: adding support for pac193x
-Thread-Index: AQHaB0llG35Muzqel0+JxBePU2newbBaky0AgAGZdIA=
-Date: Thu, 26 Oct 2023 15:03:43 +0000
-Message-ID: <02ea54ae3a2ab4f0a19232a4df494f71b1de3b00.camel@microchip.com>
-References: <20231025134404.131485-1-marius.cristea@microchip.com>
-	 <20231025134404.131485-3-marius.cristea@microchip.com>
-	 <d914069815f76245ef91b6b7b0c6b382b054b562.camel@gmail.com>
-In-Reply-To: <d914069815f76245ef91b6b7b0c6b382b054b562.camel@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6395:EE_|DM4PR11MB5471:EE_
-x-ms-office365-filtering-correlation-id: ca5b6857-e555-4818-ce5b-08dbd634bf20
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CRVgvOKPMlxC1XoEBUb0OknYx5NDYOfsyGcihWBVg10wTbKzBMG8J4NQIdzNC8pCadbh72iTn3mLRfjmNE7j39zi763CjJCe/2367QAsnBNJ6K6WqJSl6e5o54Re35NCr4vS8+dIEST9mt6Rps/AQR93zh0xkMQX5ISiHmdFdswrDYwtMxO5Yd469wgl0BErjvR2tVwxsAO2DzhBWqJs9YPbpR7g63nTfFODuXXExJB+lPfgijacYcmJEz0NeADKOqMI+UfhYfpfNdlD4Bi42af3D1vh9MW8mNpk1L4jtLYNYCh+DWyp+a9E3WPiP3FV3ggBkFImMDmcWOTNyz20k+UVrkcIC2aBu6ALehq/AUEam0JxREewc4/AhiXW59Bx5xbpc3kx+L1SXopsEQ6qJ6vCKHTrC0rKM/guwbCMI/aWp4cyfPliDm33jYAHtu1nTCuNx3rA+8Oepyy1MHSC319GvZym+UQ0zwq7WlIC8to3dbkyWLVUVLQnXzTCfuo5FFvQAFdNXiGRpiMnnZQMRRhEr665IypjXsjXSYzUl86UF2Eq0Ou/mdMJ01oAdJMj2DQLX/OeXXAko3oxgz+IKlSVYMIEyvpn9FSsEqYWh9j/2GU7NUDtPMYKcaRUB8V5
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR11MB6395.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(136003)(346002)(366004)(376002)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(71200400001)(2616005)(26005)(38100700002)(36756003)(2906002)(4001150100001)(38070700009)(6506007)(6512007)(83380400001)(4326008)(91956017)(66556008)(76116006)(66476007)(66446008)(66946007)(64756008)(54906003)(86362001)(110136005)(122000001)(8676002)(41300700001)(8936002)(5660300002)(316002)(478600001)(6486002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z0ZHaWRtSHlIMGlsNFdldmRFOXR5V1RkSXorOTZsWHI2aVFtUkZiWGVBQUdM?=
- =?utf-8?B?SGUyejdJSG0yRGxldHpqSi9DcnF2U0ZSR3VRT01OaEV1YXhnSnBQTUZEQ0cv?=
- =?utf-8?B?aHlKc1VNUG9WNVFubmZIV09ZRExRL2FvcXRqUlRNaFBGYnZscWFFMFhrNGlm?=
- =?utf-8?B?N1hlM2dGdHg5b1RRTHF5Wkt5YzBhRUoxNlM0Z1czL3lDTEp6RVh4NHUxamxW?=
- =?utf-8?B?THZYc3dtdzM0MFo4TmN6SWZ0eHMyK2dFeTFXSFIyZVNZYjl3ZFRiTHdUYzM4?=
- =?utf-8?B?SnVsM01YdHJmVjd0RWFFMkZDVkFGQVhwUUpNZ2JSVEJtekRWTmpwN2J0QU9I?=
- =?utf-8?B?WEpoZHdMZ3UwaWxYWVVNTW1kenRpTEd4TmxVdHpNMElXc2RVbyswem5nbU9V?=
- =?utf-8?B?WGJFM2FtTFpWMGxqUTVzNWZoK25jSHN5RHZkRmRnTFJRNHZoYVF1eTRuZVV3?=
- =?utf-8?B?NmRNNGFoOUhYWTJPVzIyamZiR0xxT0RJR1Byd2RTeG1SSUZoeVlCRXdKeDhK?=
- =?utf-8?B?ZlB1WUJoT296Sy9LUWp0UlZpeDNIWXZ0YUtndGE1SmJsRHNFYmgySmR1YlNh?=
- =?utf-8?B?NFhYZG92WVBhU1ZOSWphMHY3Y2FwSTRvZHE2NUJ3eExjRWtTSUJDL3o3ZGtP?=
- =?utf-8?B?YTNYR1QwZ0ZKby9XN2s4ZDk1aGlnMThxelpsT3ppdnRBSUR0ZnNSUFRBa3dz?=
- =?utf-8?B?WkUyUExyc2VjNElsUFNwdlRxM1pjRUJ3aVpjRXMvb3hXMDZzbXRha0N6azRq?=
- =?utf-8?B?UzdESHgyRitObEpMQ2xKUUtud2VwTzBoTGhpbGtWckt1bHJNeWlWdjE5WGQr?=
- =?utf-8?B?dzZYaG94TGU0ekRwRGR1WG5rZEpCZkJwNDJPMFhVeDBRTXFWelNlNml2U29h?=
- =?utf-8?B?MXN3K1NBV011K0xnRFZMY2Q5UEVTcGM2UmU4d0VVODJNcDYwZ1BIbTl4Vm9D?=
- =?utf-8?B?L0pDSEZjUDdkWVRSYUpoMXYrc3V0RGFieGRZd2NCb2hhbHAxdjQ3YU9MSHAw?=
- =?utf-8?B?LzhLZUF2UUloM05keko4eEQ2TTRiNlN6dDNJWktDaUNuZXZ3ZFVoUG41eE1p?=
- =?utf-8?B?azE2V1E5NU1BMkxnUXVCVkpVTmN0bnlodGw4MU56ZE5nR1RnL0NXM2lrYk4x?=
- =?utf-8?B?QTJJSnkwV0M5NkNwSm5ka3g2Y0cxbHpCQlVPWE0rclhSQjF6YXhuN1hEYlhU?=
- =?utf-8?B?QVg0MTlRQndqWTRkVjVoa1B4ZGpNSVV0V0F1azdxY0p2MjhhZndTSk1EbjhX?=
- =?utf-8?B?RlNsSXBCaUYxUjQ5ckRGYlhvMCs3MG1SMjVpYVpRY1NuWWMrZHVpUmtNYnRm?=
- =?utf-8?B?WjdwY001UmdmRC9NQVZ4VlRZejBMazlxdUFTKzFiaklNUVdGOXNFYTVlcGUw?=
- =?utf-8?B?bEs0amNLSklzZXNOUTZiVjlkL0xiOVdsRmR5VmxsN1UxM0dSTmNmRllHVjYw?=
- =?utf-8?B?b0dlWUh6ZTFsb0ZiMFVGL3A2SVU1Kzk1eTRLZnU4aUl2dGE2eGhGUFpMc050?=
- =?utf-8?B?ZkF2M2svK0hkNjk4VVZWK0ovUVo5WlNGNk84VElhNVNKdlZoRWRUTzBCREo4?=
- =?utf-8?B?WFM1REdYT3RRRXM2MnZ0cnlKR0swZ3VOYzR2Z3czR1RTREE1TkZ0ODViSlg3?=
- =?utf-8?B?Z2QwU3FyTURWWnR1OC9Oa2s5K2hhQTRFb3lEVGZMUzJZVURjOGN0YWdaeWFL?=
- =?utf-8?B?NjRZRWtrVFZNWjdHNmtNT0xsNmFzUHNOMWFoRmVmeGl1VXlKNXZoREY2WGxJ?=
- =?utf-8?B?eDBBcDdLT2VjTnErV3RETmhBR3NHV1QwZlQ0akhveWxYSlVNMmZ6K0JKbWNF?=
- =?utf-8?B?cFFsOCtIRXNhOFpKV1hlRUdWZ3p0ZzloNlAxOTlWQmU2aStDczVWY09DeWIr?=
- =?utf-8?B?TkJ5cjYrb1FTL2hiUmt1Y0JmRFhycVVVRVl0c25mNGVkbUFtVWtVKzBWbi9X?=
- =?utf-8?B?UlFVSXdwY0FNajVWbjgzR2tZa0pWUlBTZk0xUEw3SWdrdEdFZTdUTmlyWVZG?=
- =?utf-8?B?d2MyOUg0Q21XOUVUVUdmT21uNWxMTGFFSmFHTDcvNGpsYXBvaGFMMkhhMTc3?=
- =?utf-8?B?Sm1VaVMrcklQZ3dMQ1dmazAzWG5xaW5IY1I1M3pENVp6Zy9LeXBMY28ybUli?=
- =?utf-8?B?dzdoU2tUVHhhRjZ4NDE4cHc4RlVwdzJEQnNTdHZvN01zY2NFaWJpd1phWmNw?=
- =?utf-8?B?ZVE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B1C5C1E46A97C241A76B70C6FD434E91@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1698332996; x=1698937796; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=75afhKIki2MH320fMMs1G/iqDOlXln6+st6AMPJCLVw=;
+        b=FNuGCSnzz8t0irCgtqu7ki/QjYLncD09eQdwAnfUKrMxFI3Eb64fKN6om8JXUXHRVk
+         DqS9THDCdxH08MueQs1Uw36P8Wz4pHwg3KfuXOnhI6xkUqZlgdo8xc2Md8RSgncOdEYd
+         BnuVuNsJ9SUo6gNHZ++4yyHRJmB9ce1S8C64Ah465UK93DgxlFrkNgoNJasUBtZRxhvF
+         S5S+7fDYOpPkHOzI6psVyHzcCpB1FYqDE2LyGpiKEhV7BF6sh5uMJOb0jvEk0IiiplE0
+         D865OlsenBkasy6eCYG58LYcS5Ny5MUiV1HKNbw8b5egtfVXBvvTIWnVGpSbmVEE0XII
+         OpVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698332996; x=1698937796;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=75afhKIki2MH320fMMs1G/iqDOlXln6+st6AMPJCLVw=;
+        b=rDnZNx8aZUcIbe3MexsqWHY0LMGyOWsBqUZfZkRIiS+IF6DVgjoBMDm+EN33bVDQ18
+         fp2I1BvmOJI0KjZzXigdEwOqGXBEVU6zTgCi0Ay3BC6V1LOG3A1AOFiyF/AdyOqurz1I
+         wcxC7DKMoW1SqIs34z0RY71JFEz3J3XX3MDQWtT/z4KHSUkQbvIwLqAnMyKP0xmGN8jZ
+         QaHHqQJIsmpOqcYpMa3JZN6itOJgr5QW/zWJNNb1K2mj4sU4t55OUoFh+XZN6SdCW7wl
+         oHBKrWRfxJlKzr+U1dC2VGVPKCjCic7go2dqoF0GxBc+dRy0OYPqrl29WG9WMoBv+FS4
+         X/vA==
+X-Gm-Message-State: AOJu0YzDAdSlyqMvTIF8oZW+dgEYmodgnQ6Kzf4l2j9Ok7KWHEbEyHOd
+	vry0gd918zjDu05pqEVOJOI=
+X-Google-Smtp-Source: AGHT+IHD++PBcpdui/9TiMk2cEZAWtW2G937tYwxgv12fWXW2nUrbT0fGTjquMvR9nVleeurC6RC4g==
+X-Received: by 2002:a81:9897:0:b0:5a7:bfc6:96aa with SMTP id p145-20020a819897000000b005a7bfc696aamr4970538ywg.7.1698332995767;
+        Thu, 26 Oct 2023 08:09:55 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r83-20020a819a56000000b005af5ef0687fsm170776ywg.6.2023.10.26.08.09.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 08:09:55 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <fffa4330-8d01-8498-4c5f-772ebf2a6b5a@roeck-us.net>
+Date: Thu, 26 Oct 2023 08:09:52 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6395.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca5b6857-e555-4818-ce5b-08dbd634bf20
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2023 15:03:43.6065
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: I68ihHMSw/uKlS0zaumTdhD+FPaOR1Z8GiRzQq3YatxOkt6oZ8OAfGFEBXTqYRydRTJP+80NjG+k1F2GtfMnabNYpyMIWZeFt/6XAeFMuBc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5471
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>,
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: patrick@stwcx.xyz, Jean Delvare <jdelvare@suse.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-i2c@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231026081514.3610343-2-Delphine_CC_Chiu@Wiwynn.com>
+ <20231026-dicing-crispy-a10af575d3e5@spud>
+From: Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
+ bindings
+In-Reply-To: <20231026-dicing-crispy-a10af575d3e5@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-SGkgTnVubyBTw6EsDQoNCiAgVGhhbmtzIGZvciBsb29raW5nIG92ZXIgdGhlIHBhdGNoLg0KDQpP
-biBXZWQsIDIwMjMtMTAtMjUgYXQgMTY6MzggKzAyMDAsIE51bm8gU8OhIHdyb3RlOg0KPiBFWFRF
-Uk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNz
-IHlvdQ0KPiBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIFdlZCwgMjAyMy0xMC0y
-NSBhdCAxNjo0NCArMDMwMCwNCj4gbWFyaXVzLmNyaXN0ZWFAbWljcm9jaGlwLmNvbcKgd3JvdGU6
-DQo+ID4gRnJvbTogTWFyaXVzIENyaXN0ZWEgPG1hcml1cy5jcmlzdGVhQG1pY3JvY2hpcC5jb20+
-DQo+ID4gDQo+ID4gVGhpcyBpcyB0aGUgaWlvIGRyaXZlciBmb3IgTWljcm9jaGlwDQo+ID4gUEFD
-MTkzWCBzZXJpZXMgb2YgUG93ZXIgTW9uaXRvciB3aXRoIEFjY3VtdWxhdG9yIGNoaXAgZmFtaWx5
-Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1hcml1cyBDcmlzdGVhIDxtYXJpdXMuY3Jpc3Rl
-YUBtaWNyb2NoaXAuY29tPg0KPiA+IC0tLQ0KPiANCj4gSGkgTWFyaXVzLA0KPiANCj4gSSdsbCBi
-ZSBob25lc3QgYW5kIEkganVzdCBsb29rZWQgYXQgdGhpcyBmb3IgNW1pbi4gQnV0IEknbSBzZWVp
-bmcNCj4gdGhpbmdzIGxpa2UNCj4gc2h1bnQgcmVzaXN0b3JzLCB2c2Vuc2UsIHBvd2VyLCBlbmVy
-Z3kuLi4gVGhpcyBzZWVtcyB0byBtZSB0aGF0IGl0DQo+IGJlbG9uZyB0bw0KPiBkcml2ZXJzL2h3
-bW9uLiBBbnkgc3BlY2lhbCByZWFzb24gZm9yIElJTz8NCj4gDQoNCiAgWWVzLCB0aGlzIGRldmlj
-ZSBpcyBhdCB0aGUgYm91bmRhcnkgYmV0d2VlbiBJSU8gYW5kIEhXTU9OIGlmIHlvdSBhcmUNCmxv
-b2tpbmcganVzdCBhdCB0aGUgInNodW50IHJlc2lzdG9ycywgdnNlbnNlLCBwb3dlciwgZW5lcmd5
-Ii4gVGhlDQpkZXZpY2UgYWxzbyBoYXMgQURDIGludGVybmFseSB0aGF0IGNhbiBtZWFzdXJlIHZv
-bHRhZ2VzICh1cCB0byA0DQpjaGFubmVscykgYW5kIGFsc28gY3VycmVudHMgKHVwIHRvIDQgY2hh
-bm5lbHMpLiBDdXJyZW50IGlzIG1lYXN1cmVkIGFzDQp2b2x0YWdlIGFjcm9zcyB0aGUgc2h1bnRf
-cmVzaXN0b3IuDQoNCiAgQXMgSSBzYWlkIGJlZm9yZTogSSB3YXMgdGhpbmtpbmcgdG8gc3RhcnQg
-d2l0aCBhIHNpbXBsZSBkcml2ZXIgKHRoaXMNCm9uZSB0aGF0IGlzIG1vcmUgYXByb3BpYXRlIHRv
-IGJlIGEgSFdNT04pIGFuZCBhZGQgbW9yZSBmdW5jdGlvbmFsaXR5DQpsYXRlciAobGlrZSBkYXRh
-IGJ1ZmZlcmluZyB0aGF0IGlzIHF1aXRlIGltcG9ydGFudCBmb3IgZXhhbXBsZSBpZg0Kc29tZW9u
-ZSB3YW50cyB0byBwcm9maWxlIHBvd2VyIGNvbnN1bXRpb24gb2YgdGhlIHByb2Nlc29yIGl0c2Vs
-Ziwgb3IgYQ0KcGhlcmlwZXJpYywgb3IgYSBiYXR0ZXJ5LCB0aGlzIGtpbmQgb2YgZnVuY3Rpb25h
-bGl0eSB3YXMgcmVxdWVzdGVkIGJ5DQpvdXIgY3VzdG9tZXJzKS4NCg0KDQoNCj4gLSBOdW5vIFPD
-oQ0KPiANCj4gDQovL01hcml1cw0KDQo=
+On 10/26/23 07:25, Conor Dooley wrote:
+> Hey,
+> 
+> On Thu, Oct 26, 2023 at 04:15:11PM +0800, Delphine CC Chiu wrote:
+>> Add a device tree bindings for ltc4286 driver.
+> 
+> Bindings are for devices, not for drivers.
+> 
+>>
+>> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+>>
+>> Changelog:
+>>    v2 - Revise vrange_select_25p6 to adi,vrange-select-25p6
+>>       - Add type for adi,vrange-select-25p6
+>>       - Revise rsense-micro-ohms to shunt-resistor-micro-ohms
+>> ---
+>>   .../bindings/hwmon/lltc,ltc4286.yaml          | 50 +++++++++++++++++++
+>>   MAINTAINERS                                   | 10 ++++
+>>   2 files changed, 60 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml b/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+>> new file mode 100644
+>> index 000000000000..17022de657bb
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+>> @@ -0,0 +1,50 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwmon/lltc,ltc4286.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: LTC4286 power monitors
+>> +
+>> +maintainers:
+>> +  - Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - lltc,ltc4286
+>> +      - lltc,ltc4287
+> 
+> I don't recall seeing an answer to Guenter about this ltc4287 device:
+> https://lore.kernel.org/all/22f6364c-611c-ffb6-451c-9ddc20418d0a@roeck-us.net/
+> 
+
+At least the chip does officially exist now, and a datasheet is available.
+
+https://www.analog.com/en/products/ltc4287.html
+
+It shows that coefficients for the telemetry commands are different,
+meaning that indeed both chips need to be explicitly referenced
+in the properties description (and handled in the driver, which proves
+my point of needing a datasheet before accepting such a driver).
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  adi,vrange-select-25p6:
+>> +    description:
+>> +      This property is a bool parameter to represent the
+>> +      voltage range is 25.6 or not for this chip.
+> 
+> 25.6 what? Volts? microvolts?
+> What about Guenter's suggestion to name this so that it better matches
+> the other, similar properties?
+> 
+
+I still would prefer one of the more common properties.
+I still prefer adi,vrange-high-enable.
+
+Guenter
+
 
