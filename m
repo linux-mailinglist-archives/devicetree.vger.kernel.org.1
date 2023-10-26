@@ -1,105 +1,196 @@
-Return-Path: <devicetree+bounces-12262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F8F7D8922
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:46:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD627D8938
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:53:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1EB21C20F10
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:46:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64363B20F71
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825513C078;
-	Thu, 26 Oct 2023 19:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA22C3C090;
+	Thu, 26 Oct 2023 19:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Lj49dNdx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rep7QBKx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3B23B786;
-	Thu, 26 Oct 2023 19:46:53 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EBFD1B2;
-	Thu, 26 Oct 2023 12:46:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=iSmsri1S5YsHLGyRgvyYOQUdppxAE4tSQENMgUEYJTk=; b=Lj49dNdxL88asba/4AQ4/rbxuB
-	uiYG0+vP8JAHgjyRrAg489KvzAsLU2SAuEWnT1oUtY3l5TamzP9W+KdNMmxSeG1Gbjnevz/rKhWiP
-	/L7/mcm++PhmfdHdlU+oRqttclmche12Z9/GXbNVQAKzGUJwavfbd1CNNzfuYNNuY0gQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qw6JQ-000HAX-D9; Thu, 26 Oct 2023 21:46:36 +0200
-Date: Thu, 26 Oct 2023 21:46:36 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Horatiu.Vultur@microchip.com,
-	Woojung.Huh@microchip.com, Nicolas.Ferre@microchip.com,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com
-Subject: Re: [PATCH net-next v2 1/9] net: ethernet: implement OPEN Alliance
- control transaction interface
-Message-ID: <3c7a04a3-4ae2-4f83-b7bf-0db75f58f5be@lunn.ch>
-References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
- <20231023154649.45931-2-Parthiban.Veerasooran@microchip.com>
- <c51d9660-d6c3-4202-9fc6-b9add06b64ce@lunn.ch>
- <8430c607-4a62-47fc-9c13-9ba17cf09679@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF7F156E4
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:53:39 +0000 (UTC)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83F5129;
+	Thu, 26 Oct 2023 12:53:37 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9c2a0725825so214083266b.2;
+        Thu, 26 Oct 2023 12:53:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698350016; x=1698954816; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NoidDC1rkNqrGwoUP3wzln3oeF1WmBpP8RGBkU4I8Gw=;
+        b=Rep7QBKxc+Ka3vYnbAOhCcoCkzU5wfmjmCqmOiMOvz/NvScsiB25Om33cOVYW8Sbfo
+         sfOmBzROxyatlouWVH6CzDPQqxm4D2zSF6RAjSdFP0qUC99SuRfx2oZSSN24fZspzXMQ
+         OihV6XwVIUivCathN/ymfO24ChS3pztsa1G8bAzGAxVgEAlFjZrTajKXPduwL/jUCK0z
+         Tm85ri6Vs81+3hWiru+PAnLuLq6yA/zVgPCOPU6HwOhv8AouHi/z57sS1vCc8BUSeEFS
+         PdAV0zxJoyV7K+MWNAVkSiW+4zp9t55yUDi3IvcvWVhtvBHpvWQb343GP74rye+0+vQe
+         r+zA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698350016; x=1698954816;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NoidDC1rkNqrGwoUP3wzln3oeF1WmBpP8RGBkU4I8Gw=;
+        b=f+YoVfA9JcjSIN0CjrCRYV6Y9wIf/lGfkIYo7y3dwRnWwd/zTbYGwI3lIO8Iky76+p
+         aql2fj8mBwCN4i00JZYPx+ZztklaBk9d8gur2pWyUlQs+JkHorVj5Mls+rrc3RND69ew
+         za4eFNSCDh+wSlbQZI12wqhw14gsq9dFMJm+R4LQPTYlLvp176FiZURYgCKdYvH0b3kh
+         AZXTGhWkD40w4fonCrYGs5pccrL8Fb8Yix93WskkrWMpOeyhW1eF8k641PIlLvn5bOjF
+         0Lta4/c3zwajwhL76g2WbrfJtfoRiVHU8e4d+WYBo2Jw/zjS7lUkofknKdGkyDOZNKjn
+         hYSw==
+X-Gm-Message-State: AOJu0Yw978ENqCRZMorDbH7xuNGE4ssNslIMa5/u9i9e7yTYxfo+8V1z
+	l3kJDLiBPdrunYGM7c/L5KE=
+X-Google-Smtp-Source: AGHT+IGEQ1d+12j6D1l2GmoJoV8MuzQgTVAkfW4qxVFZ4no4rHZ6B/iRsJF98CagYqhPKa9QrtRUFQ==
+X-Received: by 2002:a17:906:eec2:b0:9bd:cab6:a34f with SMTP id wu2-20020a170906eec200b009bdcab6a34fmr552194ejb.73.1698350015849;
+        Thu, 26 Oct 2023 12:53:35 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8109:8c00:3664:f059:9710:42eb:c98b])
+        by smtp.gmail.com with ESMTPSA id k5-20020a1709063e0500b009cc1e8ed7c5sm80764eji.133.2023.10.26.12.53.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 12:53:35 -0700 (PDT)
+From: Nik Bune <n2h9z4@gmail.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	skhan@linuxfoundation.org,
+	afd@ti.com
+Cc: Nik Bune <n2h9z4@gmail.com>,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: watchdog: davinci-wdt: convert txt to yaml
+Date: Thu, 26 Oct 2023 21:53:13 +0200
+Message-Id: <20231026195313.76756-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8430c607-4a62-47fc-9c13-9ba17cf09679@microchip.com>
+Content-Transfer-Encoding: 8bit
 
-> Still if you feel like using "write" instead of "wnr" and "protect" 
-> instead of "prote", I will change them in the next revision.
+Convert txt file to yaml.
+Add maintainers list.
+Mark clock as required property, by reviewer's suggestion.
+Add power-domains as optional property, by reviewer's suggestion. 
 
-There is some value in using names from the standard, if they are
-actually good names. But i guess most developers don't have a copy of
-the standard by there side. 
+Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+---
 
-You actually wrote in the patch:
+Changes in 3 (according to review comments):
+- Added Andrew Davis <afd@ti.com> into maintainers list.
+- Added power-domains property.
 
-+/* Control header */
-+#define CTRL_HDR_DNC           BIT(31)         /* Data-Not-Control */
-+#define CTRL_HDR_HDRB          BIT(30)         /* Received Header Bad */
-+#define CTRL_HDR_WNR           BIT(29)         /* Write-Not-Read */
-+#define CTRL_HDR_AID           BIT(28)         /* Address Increment Disable */
-+#define CTRL_HDR_MMS           GENMASK(27, 24) /* Memory Map Selector */
+v2 patch: https://lore.kernel.org/all/20231024195839.49607-1-n2h9z4@gmail.com/
 
-The comments suggest you also don't think the names are particularly
-good, otherwise you would not of added comments.
 
-But if you instead had:
+ .../bindings/watchdog/davinci-wdt.txt         | 24 ---------
+ .../bindings/watchdog/ti,davinci-wdt.yaml     | 52 +++++++++++++++++++
+ 2 files changed, 52 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
 
-/* Control header */
-#define CTRL_HDR_DATA_NOT_CTRL           BIT(31)
-#define CTRL_HDR_HDR_RX_BAD              BIT(30)
-#define CTRL_HDR_WRITE           	 BIT(29)
-#define CTRL_HDR_ADDR_INC_DISABLE        BIT(28)
-#define CTRL_HDR_MEM_MAP_SELECTOR        GENMASK(27, 24)
+diff --git a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt b/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
+deleted file mode 100644
+index aa10b8ec36e2..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
+-
+-Required properties:
+-- compatible : Should be "ti,davinci-wdt", "ti,keystone-wdt"
+-- reg : Should contain WDT registers location and length
+-
+-Optional properties:
+-- timeout-sec : Contains the watchdog timeout in seconds
+-- clocks : the clock feeding the watchdog timer.
+-	   Needed if platform uses clocks.
+-	   See clock-bindings.txt
+-
+-Documentation:
+-Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
+-Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
+-
+-Examples:
+-
+-wdt: wdt@2320000 {
+-	compatible = "ti,davinci-wdt";
+-	reg = <0x02320000 0x80>;
+-	timeout-sec = <30>;
+-	clocks = <&clkwdtimer0>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+new file mode 100644
+index 000000000000..17c824f2fc7d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
++
++description: |
++  Documentation:
++  Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
++  Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a
++
++maintainers:
++  - Andrew Davis <afd@ti.com>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,davinci-wdt
++      - ti,keystone-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    description:
++      A phandle and PM domain specifier as defined by bindings of 
++      the power controller specified by phandle. 
++      See Documentation/devicetree/bindings/power/power-domain.yaml for details.
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@2320000 {
++        compatible = "ti,davinci-wdt";
++        reg = <0x02320000 0x80>;
++        timeout-sec = <30>;
++        clocks = <&clkwdtimer0>;
++    };
+-- 
+2.34.1
 
-the names are probably sufficient that comments are not needed.  And
-is should be easy for somebody to map these back to the names used in
-the standard.
-
-This also to some extent comes into the comment about coding style, a
-function does one thing, is short, etc. Short functions tend to have
-less indentation, meaning you can use longer names. And longer names
-are more readable, making the function easier to understand, so it
-does that one thing well.
-
-    Andrew
 
