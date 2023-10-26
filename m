@@ -1,196 +1,122 @@
-Return-Path: <devicetree+bounces-12263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD627D8938
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:53:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88DB87D8954
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 22:01:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64363B20F71
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:53:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DC911F2332D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 20:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA22C3C090;
-	Thu, 26 Oct 2023 19:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A8F3C09B;
+	Thu, 26 Oct 2023 20:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rep7QBKx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J0w1uwlW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF7F156E4
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:53:39 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83F5129;
-	Thu, 26 Oct 2023 12:53:37 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9c2a0725825so214083266b.2;
-        Thu, 26 Oct 2023 12:53:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08463B7BB
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 20:01:35 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2956D1BB
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:01:34 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507975d34e8so1955084e87.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:01:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698350016; x=1698954816; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NoidDC1rkNqrGwoUP3wzln3oeF1WmBpP8RGBkU4I8Gw=;
-        b=Rep7QBKxc+Ka3vYnbAOhCcoCkzU5wfmjmCqmOiMOvz/NvScsiB25Om33cOVYW8Sbfo
-         sfOmBzROxyatlouWVH6CzDPQqxm4D2zSF6RAjSdFP0qUC99SuRfx2oZSSN24fZspzXMQ
-         OihV6XwVIUivCathN/ymfO24ChS3pztsa1G8bAzGAxVgEAlFjZrTajKXPduwL/jUCK0z
-         Tm85ri6Vs81+3hWiru+PAnLuLq6yA/zVgPCOPU6HwOhv8AouHi/z57sS1vCc8BUSeEFS
-         PdAV0zxJoyV7K+MWNAVkSiW+4zp9t55yUDi3IvcvWVhtvBHpvWQb343GP74rye+0+vQe
-         r+zA==
+        d=linaro.org; s=google; t=1698350492; x=1698955292; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=pzGqz/duyYPElwwtqx/hjizAGVszVP9AWvS4e26Osn0=;
+        b=J0w1uwlWD3G4/I5eKcsjcmfHTeMX/UuBqnTC7R+cjHCx4xW+Ok0imZ0h5WcUWdsLsM
+         2+82/18TOZ4wSdUUVIHMZwTgBfP88Ug/LvlDnI/koBop7wa/uafvIpOVrcoV6HqMxywe
+         maEscMA1KtU/Zygw9Do42nx7vVL9YZ7IoZFRM0FAusXBkiDlQFMGspaluTCpkFAGfisp
+         T1ttwk5E3VtBN1CJ/1aNxXYyy9304f7Bp48iQtnxIJVWG3xv+JjVh4FgNTBizhypC2jT
+         i3P9tOALnObBePfdSRnsj002TJhS+Ldf0tefhzBqSRjy4SXbkWKy07hz9eRIdhbL8YUK
+         fkFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698350016; x=1698954816;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NoidDC1rkNqrGwoUP3wzln3oeF1WmBpP8RGBkU4I8Gw=;
-        b=f+YoVfA9JcjSIN0CjrCRYV6Y9wIf/lGfkIYo7y3dwRnWwd/zTbYGwI3lIO8Iky76+p
-         aql2fj8mBwCN4i00JZYPx+ZztklaBk9d8gur2pWyUlQs+JkHorVj5Mls+rrc3RND69ew
-         za4eFNSCDh+wSlbQZI12wqhw14gsq9dFMJm+R4LQPTYlLvp176FiZURYgCKdYvH0b3kh
-         AZXTGhWkD40w4fonCrYGs5pccrL8Fb8Yix93WskkrWMpOeyhW1eF8k641PIlLvn5bOjF
-         0Lta4/c3zwajwhL76g2WbrfJtfoRiVHU8e4d+WYBo2Jw/zjS7lUkofknKdGkyDOZNKjn
-         hYSw==
-X-Gm-Message-State: AOJu0Yw978ENqCRZMorDbH7xuNGE4ssNslIMa5/u9i9e7yTYxfo+8V1z
-	l3kJDLiBPdrunYGM7c/L5KE=
-X-Google-Smtp-Source: AGHT+IGEQ1d+12j6D1l2GmoJoV8MuzQgTVAkfW4qxVFZ4no4rHZ6B/iRsJF98CagYqhPKa9QrtRUFQ==
-X-Received: by 2002:a17:906:eec2:b0:9bd:cab6:a34f with SMTP id wu2-20020a170906eec200b009bdcab6a34fmr552194ejb.73.1698350015849;
-        Thu, 26 Oct 2023 12:53:35 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:f059:9710:42eb:c98b])
-        by smtp.gmail.com with ESMTPSA id k5-20020a1709063e0500b009cc1e8ed7c5sm80764eji.133.2023.10.26.12.53.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 12:53:35 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	afd@ti.com
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: watchdog: davinci-wdt: convert txt to yaml
-Date: Thu, 26 Oct 2023 21:53:13 +0200
-Message-Id: <20231026195313.76756-1-n2h9z4@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1698350492; x=1698955292;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pzGqz/duyYPElwwtqx/hjizAGVszVP9AWvS4e26Osn0=;
+        b=vACxhW4ZkZPXFOE5A+EkhhZ0uSy0PX5C1iusoPZhcj+9mrbE+IJclN06+K/ewYs7CW
+         2EhhISX/Cd7rLUgpBUewINAG1hy4G1TbuVcVz4NdEFhSIUgrgL+Z7D6DiblDEknnKsTY
+         sQC7yLP3Sdegl6PXEs7dU9zI9QI7wUF1MssRhjH+wUdpYdF862y0oSSO1TGroRg46+6d
+         +tpUXaY1wn9cP0CnCGovy48CZYIBrm/KesbrOJyJ6D9kDOJBJFJkScq9qisv1dcTbzPE
+         dhMBqLHvgSH1xnUljxFAHcTeBa4Akxa4CygZZtyNNaKCYveDfbfylap0CzraDQcTgj4K
+         78lA==
+X-Gm-Message-State: AOJu0YzBEAIEqiQafWkcukT9+LFA09pbv7JUaUItbTTf1hdv+hEhO8B0
+	iDTMCYYDHnl8VM6P4Ifd4EwCbg==
+X-Google-Smtp-Source: AGHT+IHhxtpFa1NlJRvaWu3AoOoyJeppQxaOVSGhWnU+RXFu75zgVS2yrEFL9xfgFkxYE9BbFWyilA==
+X-Received: by 2002:a05:6512:3d0b:b0:500:8f66:5941 with SMTP id d11-20020a0565123d0b00b005008f665941mr337184lfv.50.1698350492352;
+        Thu, 26 Oct 2023 13:01:32 -0700 (PDT)
+Received: from [172.30.205.86] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id m21-20020a194355000000b00501b9fc977csm3137765lfj.37.2023.10.26.13.01.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 13:01:31 -0700 (PDT)
+Message-ID: <a6cc8d55-2892-478f-ad8a-a9a4359abb7d@linaro.org>
+Date: Thu, 26 Oct 2023 22:01:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] cpufreq: qcom-nvmem: add support for IPQ8064
+To: Christian Marangi <ansuelsmth@gmail.com>, Ilia Lin <ilia.lin@kernel.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Sricharan Ramabadhran <quic_srichara@quicinc.com>, linux-pm@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231013173854.7399-1-ansuelsmth@gmail.com>
+ <20231013173854.7399-4-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231013173854.7399-4-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Convert txt file to yaml.
-Add maintainers list.
-Mark clock as required property, by reviewer's suggestion.
-Add power-domains as optional property, by reviewer's suggestion. 
-
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
----
-
-Changes in 3 (according to review comments):
-- Added Andrew Davis <afd@ti.com> into maintainers list.
-- Added power-domains property.
-
-v2 patch: https://lore.kernel.org/all/20231024195839.49607-1-n2h9z4@gmail.com/
 
 
- .../bindings/watchdog/davinci-wdt.txt         | 24 ---------
- .../bindings/watchdog/ti,davinci-wdt.yaml     | 52 +++++++++++++++++++
- 2 files changed, 52 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
+On 10/13/23 19:38, Christian Marangi wrote:
+> IPQ8064 comes in 3 families:
+> * IPQ8062 up to 1.0GHz
+> * IPQ8064/IPQ8066/IPQ8068 up to 1.4GHz
+> * IPQ8065/IPQ8069 up to 1.7Ghz
+> 
+> So, in order to be able to support one OPP table, add support for
+> IPQ8064 family based of SMEM SoC ID-s and correctly set the version so
+> opp-supported-hw can be correctly used.
+> 
+> Bit are set with the following logic:
+> * IPQ8062 BIT 0
+> * IPQ8064/IPQ8066/IPQ8068 BIT 1
+> * IPQ8065/IPQ8069 BIT 2
+> 
+> speed is never fused, only pvs values are fused.
+> 
+> IPQ806x SoC doesn't have pvs_version so we drop and we use the new
+> pattern:
+> opp-microvolt-speed0-pvs<PSV_VALUE>
+> 
+> Example:
+> - for ipq8062 psv2
+>    opp-microvolt-speed0-pvs2 = < 925000 878750 971250>
+> 
+> Fixes: a8811ec764f9 ("cpufreq: qcom: Add support for krait based socs")
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt b/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-deleted file mode 100644
-index aa10b8ec36e2..000000000000
---- a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
--
--Required properties:
--- compatible : Should be "ti,davinci-wdt", "ti,keystone-wdt"
--- reg : Should contain WDT registers location and length
--
--Optional properties:
--- timeout-sec : Contains the watchdog timeout in seconds
--- clocks : the clock feeding the watchdog timer.
--	   Needed if platform uses clocks.
--	   See clock-bindings.txt
--
--Documentation:
--Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
--Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
--
--Examples:
--
--wdt: wdt@2320000 {
--	compatible = "ti,davinci-wdt";
--	reg = <0x02320000 0x80>;
--	timeout-sec = <30>;
--	clocks = <&clkwdtimer0>;
--};
-diff --git a/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-new file mode 100644
-index 000000000000..17c824f2fc7d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
-+
-+description: |
-+  Documentation:
-+  Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-+  Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a
-+
-+maintainers:
-+  - Andrew Davis <afd@ti.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,davinci-wdt
-+      - ti,keystone-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    description:
-+      A phandle and PM domain specifier as defined by bindings of 
-+      the power controller specified by phandle. 
-+      See Documentation/devicetree/bindings/power/power-domain.yaml for details.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog@2320000 {
-+        compatible = "ti,davinci-wdt";
-+        reg = <0x02320000 0x80>;
-+        timeout-sec = <30>;
-+        clocks = <&clkwdtimer0>;
-+    };
--- 
-2.34.1
-
+Konrad
 
