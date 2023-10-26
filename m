@@ -1,114 +1,153 @@
-Return-Path: <devicetree+bounces-12271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6157D89E8
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 22:58:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CDF67D89F2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 23:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB7A92820E5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 20:58:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 818F31C20EB8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:01:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9DE53AC04;
-	Thu, 26 Oct 2023 20:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173613AC0B;
+	Thu, 26 Oct 2023 21:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f+UCuqzC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC16C8E8;
-	Thu, 26 Oct 2023 20:58:12 +0000 (UTC)
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA6F1A5;
-	Thu, 26 Oct 2023 13:58:11 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6cd09f51fe0so747791a34.1;
-        Thu, 26 Oct 2023 13:58:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698353890; x=1698958690;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9ZZs6ipF1/kyYhxkHZor6S/scn40iCNPizM59Ene1L8=;
-        b=YlhrVUTigmk4EFT4VufTztDdlYtfVJ++S4+WZyHwV9PM7EZzfApOMKPhJUjRHYYROT
-         HDPA/J9+gkLyGFVmei7raX1iVtDjEOLEnd/7DFys8J+r8S1dYIY84+f5sILSaCxwxJyz
-         1tGnOqEfsp1aDvB7Ly821oJTF5Z9HG8IZCKfoPCzf0Xhs3E0Tu1O2ur3vU1t1oKdkpId
-         iHJh1PHqL81/lv5mATIROadIkdTvFBpRkaTs9bbE/uOUvw+AHelfDx8oy9Uj9rHELFz8
-         3Af7aDMz0VtZapE5nLv9aornJG346xJ21WPsxtdlTduV3mYTP0fDU0o6UoZbt2z2bNTB
-         f8pw==
-X-Gm-Message-State: AOJu0Ywr1TKArjoPRpvbEsyI4wALjNSmL7nXwjWF5OcN0ahMOaGW3Bwk
-	F9vPVekDrcq4ZLT89OsAjg==
-X-Google-Smtp-Source: AGHT+IHnHkZswO8YBailJZbQHDWeErCjZkAmi7dsoNesGJpL7ZjpwoWWVG0G7aRPvWifYpGVVGsFxA==
-X-Received: by 2002:a9d:7d96:0:b0:6bc:f276:717f with SMTP id j22-20020a9d7d96000000b006bcf276717fmr562427otn.13.1698353890370;
-        Thu, 26 Oct 2023 13:58:10 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r25-20020a05683001d900b006bee5535b44sm10575ota.75.2023.10.26.13.58.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 13:58:09 -0700 (PDT)
-Received: (nullmailer pid 383670 invoked by uid 1000);
-	Thu, 26 Oct 2023 20:58:07 -0000
-Date: Thu, 26 Oct 2023 15:58:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc: netdev@vger.kernel.org, linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org, arinc.unal@arinc9.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] dt-bindings: net: dsa: realtek: add reset
- controller
-Message-ID: <20231026205807.GA347941-robh@kernel.org>
-References: <20231024205805.19314-1-luizluca@gmail.com>
- <20231024205805.19314-3-luizluca@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583C5C8E8
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 21:01:15 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0FB1A6;
+	Thu, 26 Oct 2023 14:01:13 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39QKvtk6027731;
+	Thu, 26 Oct 2023 21:01:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=sEvMtIr7neQtXxPbZtaebPWIEdYxlif33988BkAWMXw=;
+ b=f+UCuqzCw8PcKy2DDGI/YGKA3ungpyK1YGaG5asXhbE9Th7E8GQMmCqieeWaO5S6kAg1
+ ratrfPe0B10lTuWqXW3NTvujc4unb5glST2Rj/X+7KpEW3NptS0z730c9jiBdj82iGU9
+ gXFX9PCmECxG1zEPufv3aIr2fj9z+SYsgGRww3Scd6mBvZ+IbU7xxp2omodSfoKqU/tI
+ slBC6aP18p0buqSaVA3c1enopql5aoXR67ETgGde/nD9U6ai9TinS//MHwi8gvvrtx1H
+ rvWyF83uRct5XZSyZf4JO2RcsFt5zLrxIIKxCOHxY/lB2tR9bOMxyCq/owHWzMMDmM2M /A== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tyxbv8516-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Oct 2023 21:01:09 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39QL178w028652
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Oct 2023 21:01:07 GMT
+Received: from [10.110.87.103] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 26 Oct
+ 2023 14:01:04 -0700
+Message-ID: <dc248635-4aa0-40b9-8837-3145027b0ac9@quicinc.com>
+Date: Thu, 26 Oct 2023 14:01:04 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231024205805.19314-3-luizluca@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/5] dt-bindings: soc: qcom: Add memory_dump driver
+ bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Zhenhua Huang
+	<quic_zhenhuah@quicinc.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        <quic_tingweiz@quicinc.com>
+References: <1698052857-6918-1-git-send-email-quic_zhenhuah@quicinc.com>
+ <1698052857-6918-2-git-send-email-quic_zhenhuah@quicinc.com>
+ <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
+From: Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <27fcdcc1-b29b-43b2-8b1a-c648dd9e696c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FYMb0UM2Q5bUob_F1AO2QArFhe9g1kgc
+X-Proofpoint-GUID: FYMb0UM2Q5bUob_F1AO2QArFhe9g1kgc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-26_19,2023-10-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 clxscore=1011
+ priorityscore=1501 adultscore=0 impostorscore=0 mlxlogscore=878
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2310260181
 
-On Tue, Oct 24, 2023 at 05:58:06PM -0300, Luiz Angelo Daros de Luca wrote:
-> Realtek switches can now be reset using a reset controller.
-> 
-> The 'reset-gpios' were never mandatory for the driver, although they
-> are required for some devices if the switch reset was left asserted by
-> a previous driver, such as the bootloader.
-> 
-> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/net/dsa/realtek.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> index cce692f57b08..070821eae2a7 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> @@ -59,6 +59,12 @@ properties:
->      description: GPIO to be used to reset the whole device
->      maxItems: 1
->  
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: switch
+Hi Zhenhua,
 
-$block-name is not really a useful name for resources. Generally, you   
-don't need -names if there's only 1 entry.
-
-> +
->    realtek,disable-leds:
->      type: boolean
->      description: |
-> @@ -127,7 +133,6 @@ else:
->      - mdc-gpios
->      - mdio-gpios
->      - mdio
-> -    - reset-gpios
->  
->  required:
->    - compatible
-> -- 
-> 2.42.0
+On 10/23/2023 2:27 AM, Krzysztof Kozlowski wrote:
+> On 23/10/2023 11:20, Zhenhua Huang wrote:
+>> Add bindings for the QCOM Memory Dump driver providing debug
 > 
+> Bindings are for hardware, not driver. This suggests it is not suitable
+> for bindings at all.
+> 
+>> facilities. Firmware dumps system cache, internal memory,
+>> peripheral registers to reserved DDR as per the table which
+>> populated by the driver, after crash and warm reset.
+> 
+> Again driver :/
+> 
+>>
+>> Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+>> ---
+>>  .../bindings/soc/qcom/qcom,mem-dump.yaml           | 42 +++++++++++++++++++++
+>>  .../devicetree/bindings/sram/qcom,imem.yaml        | 44 ++++++++++++++++++++++
+>>  2 files changed, 86 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>> new file mode 100644
+>> index 0000000..87f8f51
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,mem-dump.yaml
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,mem-dump.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> 
+> Drop quotes.
+> 
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
+> 
+>> +
+>> +title: Qualcomm memory dump
+> 
+> Describe hardware, not driver.
+> 
+>> +
+>> +description: |
+>> +  Qualcomm memory dump driver dynamically reserves memory and provides hints(id and size)
+> 
+> Again, driver, so not suitable for DTS and bindings.
+
+Could you create platform driver which binds directly to the
+
+compatible = "qcom,qcom-imem-mem-dump-table"
+
+You can look up the size from the dump table driver or have 2 reg properties 
+in the -table node itself (so no need for the table-size node either).
 
