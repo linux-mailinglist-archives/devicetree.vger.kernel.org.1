@@ -1,190 +1,155 @@
-Return-Path: <devicetree+bounces-12156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0E47D8207
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:51:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0827D820D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:54:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 904DC281DC1
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:51:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3638DB212D6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1352D796;
-	Thu, 26 Oct 2023 11:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B952D798;
+	Thu, 26 Oct 2023 11:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VTVcVWhc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WthaQ/2T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FFF2D05F
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 11:51:27 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1FC61AC
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 04:51:24 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32d81864e3fso525083f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 04:51:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698321083; x=1698925883; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+bEXKDY0O2dJcBx8PzS4T9juifD+BCTKEs1j4rNwC1s=;
-        b=VTVcVWhcGRkOUFd+5rhYkj+iqsqtMkVgWDX7GVP1GWBFQ90Z4gB/yCqjgNUOSEb42I
-         caFbItMu4G4cABcdR1VcrO8h7N1LdffBy1KPClqqZpy1JCUbBwQzIr9AgpKb3bZ+CmFj
-         abIQeFggxPsS0CJ0ECqy2Wb7r1Rc5bkeIlHDUQIf5KpphR2IjwyNBd1UhrY/Mz5yikNP
-         zgBB2RPqAA8ihia1VnObvmuNbURUqgBTPfmFjexymZLa/T9n+QBGwzJM7yr4Brx4wb5v
-         L//8GncHYTvbt98gUNUynAe8Xtl43zWlShWCSbRyKjQVEpV5YNIQnh67KnRSMmXAZHOB
-         IKGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698321083; x=1698925883;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+bEXKDY0O2dJcBx8PzS4T9juifD+BCTKEs1j4rNwC1s=;
-        b=Ty00jd4qTGd0thQwL9oOEojZyLZq/8GU6DIJfHShC74TjRJcryx86u7VjD8Tcvea4K
-         8+U0X2FUR3M0S3SHQ2H6ULYJenveJLthDJLitBw48k9LZmR/3z1Bx34VUC5wCTeRgr0A
-         9vKxU4uu+/NgtD9msZZroZQJ5RYThwk5T3c29nFGQ2vKeZayIeUWrqyV44v5NL0eQOAj
-         eEGm7DRqK8PNiMIjoFIxb2UKRpTrmWgMEH0RORO8NUChiAU4LHPBbXDl142KnN+u+EHe
-         y/1Qk076KcjkhwlHU+QiWBsgK4cA9jHxw+AsZ6VxcF1ykx8NQwls8S2AFS+JQheyRASs
-         OSIA==
-X-Gm-Message-State: AOJu0Yx0ijo7HCzohOB04B8WudJvczA5chyOinPbDFfhD9uaVL0Z/GbL
-	fwERpKJoMfYxBm3z3f3vMDb6SA==
-X-Google-Smtp-Source: AGHT+IH8qEeu0Nv7Dhl0dcFqtz/6wuFEaJuVWtoYvI/ohEGhBwiXHsTI1LdqZ39vCFJmokVpoTlNLA==
-X-Received: by 2002:a05:6000:b4b:b0:32d:a4c4:f700 with SMTP id dk11-20020a0560000b4b00b0032da4c4f700mr13224768wrb.38.1698321083300;
-        Thu, 26 Oct 2023 04:51:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c? ([2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c])
-        by smtp.gmail.com with ESMTPSA id k12-20020adff5cc000000b00326f5d0ce0asm14094197wrp.21.2023.10.26.04.51.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Oct 2023 04:51:22 -0700 (PDT)
-Message-ID: <4f0a7c6c-b221-46c8-888a-34b94cafeb8a@linaro.org>
-Date: Thu, 26 Oct 2023 13:51:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6353E2D05A
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 11:53:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C18C433C7;
+	Thu, 26 Oct 2023 11:53:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698321232;
+	bh=je+DADXCoX+kCTmWmZq0ysK4G7kIaCSpTWt8Az7jl+8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WthaQ/2T2IwZQyvxbjc8i6TLCZH6R0bxGgKm3P19AQmdfpQ6FpjwwvQFGWuJlmFZh
+	 tm7fXvL65CzQ5c33upmgr/CpnC+NcEfl7NPZYHB61Dli32HyEHjHTAEm7TVcOCAW6u
+	 WX/pzPDujgTi+qekKeBkEKa/w3xdlsSoHtKQqepic+zDucRuItVq9HOI76c1zy0Fnj
+	 tcQZxaUmgfx/DxBjhYrjFnhrEajLGZHbOZ1pNFf23+sav93OnPXQUIreqClHVVFSWC
+	 4P6xH7xxp6pLnMn6QqN5PTG1/GsT6u4FVHAjey/Jdqt/t8/DPsiwi5Y8eT5xbu0gKF
+	 PO2YZ9C1j9ydw==
+Date: Thu, 26 Oct 2023 13:53:48 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Keith Zhao <keith.zhao@starfivetech.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Changhuang Liang <changhuang.liang@starfivetech.com>, 
+	Jack Zhu <jack.zhu@starfivetech.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
+Subject: Re: [PATCH v2 6/6] drm/vs: Add hdmi driver
+Message-ID: <344veqjvvwlo7vls2kdlgjggf77of2ijxwc2hmk7tarm75ugcs@bmozk23uqxqr>
+References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
+ <20231025103957.3776-7-keith.zhao@starfivetech.com>
+ <70805ff2-56a8-45e1-a31c-ffb0e84749e5@linaro.org>
+ <3twc4zoohon7uujypgjtlnryfmebx4osvpykagnwr5nemmqz2w@w4vw55uswebh>
+ <CAA8EJppxQ7J8DEDFsWzPL8bDpNW-KY0nhUA++zDBRpMCpP-bkA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 06/10] clk: qcom: add the SM8650 Global Clock Controller
- driver
-Content-Language: en-US, fr
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-clocks-v1-0-c89b59594caf@linaro.org>
- <20231025-topic-sm8650-upstream-clocks-v1-6-c89b59594caf@linaro.org>
- <ccd24edd-b713-49f3-96f4-af653a8fd6b7@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <ccd24edd-b713-49f3-96f4-af653a8fd6b7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6ydghz6j3eeoumtu"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJppxQ7J8DEDFsWzPL8bDpNW-KY0nhUA++zDBRpMCpP-bkA@mail.gmail.com>
 
-On 25/10/2023 10:41, Konrad Dybcio wrote:
-> 
-> 
-> On 10/25/23 09:32, Neil Armstrong wrote:
->> Add Global Clock Controller (GCC) support for SM8650 platform.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> Just a couple remarks
-> 
-> 1. looks like there's no usage of shared ops (corresponding
->     to enable_safe_parent or something along these lines
->     downstream)
 
-Indeed, it was missing, I'll give a test before posting a v2.
+--6ydghz6j3eeoumtu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> 2. none of the GDSCs have interesting flags.. I have this
->     little cheat sheet that you may find handy:
-> 
-> qcom,retain-regs -> RETAIN_FF_ENABLE
-> qcom,support-hw-trigger + set_mode in driver -> HW_CONTROL
-> qcom,no-status-check-on-disable -> VOTABLE
-> qcom,reset-aon-logic -> AON_RESET
-> domain-addr  = clamp_io_ctrl
+On Thu, Oct 26, 2023 at 11:57:22AM +0300, Dmitry Baryshkov wrote:
+> On Thu, 26 Oct 2023 at 11:07, Maxime Ripard <mripard@kernel.org> wrote:
+> >
+> > On Thu, Oct 26, 2023 at 01:23:53AM +0300, Dmitry Baryshkov wrote:
+> > > > +static int starfive_hdmi_register(struct drm_device *drm, struct s=
+tarfive_hdmi *hdmi)
+> > > > +{
+> > > > +   struct drm_encoder *encoder =3D &hdmi->encoder;
+> > > > +   struct device *dev =3D hdmi->dev;
+> > > > +
+> > > > +   encoder->possible_crtcs =3D drm_of_find_possible_crtcs(drm, dev=
+->of_node);
+> > > > +
+> > > > +   /*
+> > > > +    * If we failed to find the CRTC(s) which this encoder is
+> > > > +    * supposed to be connected to, it's because the CRTC has
+> > > > +    * not been registered yet.  Defer probing, and hope that
+> > > > +    * the required CRTC is added later.
+> > > > +    */
+> > > > +   if (encoder->possible_crtcs =3D=3D 0)
+> > > > +           return -EPROBE_DEFER;
+> > > > +
+> > > > +   drm_encoder_helper_add(encoder, &starfive_hdmi_encoder_helper_f=
+uncs);
+> > > > +
+> > > > +   hdmi->connector.polled =3D DRM_CONNECTOR_POLL_HPD;
+> > > > +
+> > > > +   drm_connector_helper_add(&hdmi->connector,
+> > > > +                            &starfive_hdmi_connector_helper_funcs);
+> > > > +   drmm_connector_init(drm, &hdmi->connector,
+> > > > +                       &starfive_hdmi_connector_funcs,
+> > > > +                       DRM_MODE_CONNECTOR_HDMIA,
+> > >
+> > > On an embedded device one can not be so sure. There can be MHL or HDMI
+> > > Alternative Mode. Usually we use drm_bridge here and drm_bridge_conne=
+ctor.
+> >
+> > On an HDMI driver, it's far from being a requirement, especially given
+> > the limitations bridges have.
+>=20
+> It's a blessing that things like MHL / HDMI-in-USB-C / HDMI-to-MyDP
+> are not widely used in the wild and are mostly non-existing except
+> several phones that preate wide DP usage.
 
-Thx, I updated the GDSCs.
+And those can be supported without relying on bridges.
 
-> 
-> 3. gcc_cpuss_ubwcp_clk_src uses the XO_A clock as parent, but
->     it's not there in the ftbl.. Could you confirm whether this
->     clock should even be accessed from HLOS?
+> Using drm_connector directly prevents one from handling possible
+> modifications on the board level. For example, with the DRM connector
+> in place, handling a separate HPD GPIO will result in code duplication
+> from the hdmi-connector driver. Handling any other variations in the
+> board design (which are pretty common in the embedded world) will also
+> require changing the driver itself. drm_bridge / drm_bridge_connector
+> save us from those issues.
 
-Downstream this clock is only used by gem_noc, since we don't use such
-clock upstream I think it's safer to remove it until we have the usage.
+And we have other solutions there too. Like, EDIDs are pretty much in
+the same spot with a lot of device variations, but it also works without
+a common driver. I'd really wish we were having less bridges and more
+helpers, but here we are.
 
-> 
-> [...]
-> 
->> +static int gcc_sm8650_probe(struct platform_device *pdev)
->> +{
->> +    struct regmap *regmap;
->> +    int ret;
->> +
->> +    regmap = qcom_cc_map(pdev, &gcc_sm8650_desc);
->> +    if (IS_ERR(regmap))
->> +        return PTR_ERR(regmap);
->> +
->> +    ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks,
->> +                       ARRAY_SIZE(gcc_dfs_clocks));
->> +    if (ret)
->> +        return ret;
->> +
->> +    /*
->> +     * Keep the critical clock always-On
->> +     * gcc_camera_ahb_clk, gcc_camera_xo_clk, gcc_disp_ahb_clk,
->> +     * gcc_disp_xo_clk, gcc_gpu_cfg_ahb_clk, gcc_video_ahb_clk,
->> +     * gcc_video_xo_clk
->> +     */
-> Could you make these comments inline, i.e.
-> 
-> regmap_update_bits(regmap, 0x26004, BIT(0), BIT(0)); /* gcc_camera_ahb_clk */
-> 
-> ?
+> BTW: what are the limitations of the drm_bridge wrt. HDMI output? I'm
+> asking because we heavily depend on the bridge infrastructure for HDMI
+> output. Maybe we are missing something there, which went unnoticed to
+> me and my colleagues.
 
-Done
+A bridge cannot extend the connector state or use properties, for
+example. It works for basic stuff but falls apart as soon as you're
+trying to do something slightly advanced.
 
-> 
-> Konrad
+Maxime
 
-Thanks,
-Neil
+--6ydghz6j3eeoumtu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZTpTTAAKCRDj7w1vZxhR
+xbLFAP4unIAE0v+sEMAKIEHtzqjUKfaDRvFMhet0vamy7Zof+QD/dgmnLOex7TJ1
+wA5XuQ2uivS+Cv7xrc3HS7yTI5xVjAE=
+=5wik
+-----END PGP SIGNATURE-----
+
+--6ydghz6j3eeoumtu--
 
