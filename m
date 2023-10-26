@@ -1,420 +1,116 @@
-Return-Path: <devicetree+bounces-12064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9E1B7D7C83
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:51:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC84B7D7C90
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:54:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D4AF281E20
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 05:51:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A9A7281E26
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 05:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1EFD30B;
-	Thu, 26 Oct 2023 05:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE31EF9FB;
+	Thu, 26 Oct 2023 05:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IHQ/LM4B"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="tp2oNbxn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02260C134
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:51:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC47D115;
-	Wed, 25 Oct 2023 22:51:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698299497; x=1729835497;
-  h=date:from:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=OH/20/B2NLsGcslDH5sfUvJ+st0+zsZKKUjG0meGGHQ=;
-  b=IHQ/LM4BNUwYbcbHTB6p8XYXLVqmhpfut5AnDX8uOCMN9XAiyahgyVgi
-   a50LLWMl9M+N5bmQYyS31izWU+c8277viDIkbKrKTadLhnttYkyofoukg
-   +jyQpXfaN6wt8RObXwkregM/3xxLOkDL3HNaQpSEvK51zE7iUyD+rsSOT
-   25tS71uihnExynTCJ1Jb1rW6sFOlqqqUVygsfu9E4xLwGM0QNKH46PyiR
-   r/PcmmxBXWhqWrSZV+vxjj8v9PqbmuuyHlFvsazsi2706AZBH00Y4OaVR
-   rrk3+vUxC6xdgMojEAiTtKM0Yy3hnyqOalVoemF3PoHY7DEXMrQsmzcdj
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="473703239"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="473703239"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2023 22:51:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="788369898"
-X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
-   d="scan'208";a="788369898"
-Received: from abarix-mobl.ger.corp.intel.com (HELO ubuntu) ([10.252.33.100])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2023 22:51:34 -0700
-Date: Thu, 26 Oct 2023 07:51:31 +0200 (CEST)
-From: Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>, 
-    Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-    devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-    linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mfd: ams,as3711: Convert to
- json-schema
-In-Reply-To: <56a5ebee588696f9022fa29fa8e266c8bdee6fd7.1698228043.git.geert+renesas@glider.be>
-Message-ID: <4aaabd0-98f1-3c56-96d5-9b3b789dc36c@intel.com>
-References: <56a5ebee588696f9022fa29fa8e266c8bdee6fd7.1698228043.git.geert+renesas@glider.be>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 461DDC134
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:54:10 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E84F137;
+	Wed, 25 Oct 2023 22:54:09 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id C6F39408D9;
+	Thu, 26 Oct 2023 10:54:04 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1698299645; bh=gDa6AVN3vo7ERUBFuN7/nhEFecN+h7HA4AxNspjfA74=;
+	h=From:Subject:Date:To:Cc:From;
+	b=tp2oNbxnkDn0WideMtOIogIjIaTH8HRvTYtEgcbxvqZpdyFHNyM+3TOowjwYxq0P9
+	 r6WLzcz4p5iOPaJxCl7EKKvkueab8V7JnoP4mKonwBGtp4oMR7nyc3atgM8D4egJiu
+	 RBhIw1JXVaZq1dVGIPDsDQvsPsU8hj9vFyZjUzS5b+RsytT62+8jNf5Ntc8+I5DeDz
+	 JU9zt7mSOZ6X6L+alw7H9UIKOx7sh6IyqEn7YQp8jFuBWXH8NHQeJmjYbvBSfh8BsM
+	 glss2y/nCTPc2AhA6v2y9FuXVaGVVelramX2C/XCWMzVhPCNGAxO/S8OrwKnQ4I/mR
+	 XQ6IcgrHcK9qA==
+From: Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v3 0/2] pm8916: Add BMS and charger
+Date: Thu, 26 Oct 2023 10:53:43 +0500
+Message-Id: <20231026-pm8916-dtsi-bms-lbc-v3-0-fad1ff22306e@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOf+OWUC/33NzwrCMAwG8FcZPRtp06HWk+8hHsyauoL7QzuLM
+ vrudjvoRTyE8H2QX2YROXiO4ljNInDy0Q99CXpTiaa99jcGb0sWKFFLo3Ywdodl2Sl6oC7CnRp
+ AR4qMsYoJRbkcAzv/XNXzpeTWx2kIr/VJUkv730sKJOwtSarRmYKfppD6bXiIRUv4EVSZ3wIWQ
+ deatSVXo+avkHN+A1bv+iX2AAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Nikita Travkin <nikita@trvn.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1256; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=gDa6AVN3vo7ERUBFuN7/nhEFecN+h7HA4AxNspjfA74=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBlOf749S6qy8jn8gFHv8ya0UmTDBMZ9bqqadoK7
+ ScEvd5m9xuJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZTn++AAKCRBDHOzuKBm/
+ dS9LD/9T7iD5tvyD/ej0dNBcSXEA+mrYHcS+fWieVOrXJJu9QDAdVLRrL09Te/pKn16lv6gYldk
+ qcWjgKc/VbJLUU0BPCxjI+cWVuu4oJh7CkL6fKfT5PgXZMv1yTZgNVkuyrJkFlBkVjEhVHgJ7he
+ R7zsafIyL0Fm5AwrTl0iExtiAVVK8xYwXjqSfMvuQnE94jegWAf7orBJgq0o9mrhI3KJyP4HSi2
+ kTAeRwqe6S9n26O3Ie/Oln6UZXjyiP5eDiXZlfI1eKHfyGys3g7/xcqFeqkZIFUQAKbHgcgKGM/
+ dRq1p6GpuVQQCWRgnqJhgaDtzUtMFOopNWLBrt2guSz5oROYiWphHUd8wz/RbbFEX4dW/YmxJV5
+ hHauAh5shEmPhheBUxnm/6vq2BbR0nT8dG0Bzel8KazGuIPhUsvizB72MUEIPBM6LQXN/flm5O2
+ Q/88tvHbabjoKgtdRG9ZMpalbRBmrJ4Akoid4eAQzsuVYzWsMvns/UgKPaWj2TqHZxkE7dCsGrS
+ p8FufmY8iBC7CsQiTzahhEbycqKiO/wnqF9pCTgj2bHwrWq6n37z2YykI8ctnuTDOIkdGthxk8o
+ KEK0Daplz5Gcvai2lPjZGWAmKjgWJAtlfZJteIz9gDddVYQ+J3EDckcDnQC1hPcjgVV+x38SfOr
+ xCnD4i7oO7WRkGQ==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-Hi Geert,
+This series enables VM-BMS and LBC blocks in the pm8916 pmic.
 
-Sorry for a late reply. I just noticed that you specified me as a 
-maintainer of as3711 code in your new file. Even though I did author the 
-original version of the driver more than 10 years ago, I haven't worked on 
-it for a long time, so I think it would be better to pick up a more 
-relevant person there.
+The VM-BMS is a simple voltage monitoring block that allows the software
+to estimate the battery capacity left.
 
-Thanks
-Guennadi
+The LBC is a linear battery charger for lipo batteries.
 
-On Wed, 25 Oct 2023, Geert Uytterhoeven wrote:
+Add both devices to the pmic dtsi and enable them for Longcheer L8150
+which makes use of them.
 
-> Convert the Austria MicroSystems AS3711 Quad Buck High Current PMIC with
-> Charger Device Tree binding documentation to json-schema.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->  - Consistently use "DC/DC" and "step-up",
->  - Move {additional,unevaluated}Properties in subnodes up to improve
->    readability,
->  - Split dependencies in dependent{Required,Schemas} to fix multiple
->    dependencies,
->  - s/oneof/oneOf/ (flagged by dt-schema as of commit 411c305105dd1273
->    ("meta-schemas: Check sub-schemas of "dependencies" and
->    "dependentSchemas"")),
->  - Use pmic recommended node name.
-> ---
-> .../devicetree/bindings/mfd/ams,as3711.yaml   | 223 ++++++++++++++++++
-> .../devicetree/bindings/mfd/as3711.txt        |  73 ------
-> 2 files changed, 223 insertions(+), 73 deletions(-)
-> create mode 100644 Documentation/devicetree/bindings/mfd/ams,as3711.yaml
-> delete mode 100644 Documentation/devicetree/bindings/mfd/as3711.txt
->
-> diff --git a/Documentation/devicetree/bindings/mfd/ams,as3711.yaml b/Documentation/devicetree/bindings/mfd/ams,as3711.yaml
-> new file mode 100644
-> index 0000000000000000..ad8649cbb2ccef34
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/ams,as3711.yaml
-> @@ -0,0 +1,223 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/ams,as3711.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Austria MicroSystems AS3711 Quad Buck High Current PMIC with Charger
-> +
-> +maintainers:
-> +  - Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>
-> +
-> +description:
-> +  AS3711 is an I2C PMIC from Austria MicroSystems with multiple DC/DC and LDO
-> +  power supplies, a battery charger and an RTC.  So far only bindings for the
-> +  two step-up DC/DC converters are defined.
-> +
-> +properties:
-> +  compatible:
-> +    const: ams,as3711
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  backlight:
-> +    description:
-> +      Step-up converter configuration, to be used as a backlight source
-> +    type: object
-> +    additionalProperties: false
-> +    properties:
-> +      compatible:
-> +        const: ams,as3711-bl
-> +
-> +      su1-dev:
-> +        description: Framebuffer phandle for the first step-up converter
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +      su1-max-uA:
-> +        description: Maximum current for the first step-up converter
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +      su2-dev:
-> +        description: Framebuffer phandle for the second step-up converter
-> +        $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +      su2-max-uA:
-> +        description: Maximum current for the second step-up converter
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +      su2-feedback-voltage:
-> +        description: Second step-up converter uses voltage feedback
-> +        type: boolean
-> +
-> +      su2-feedback-curr1:
-> +        description:
-> +          Second step-up converter uses CURR1 input for current feedback
-> +        type: boolean
-> +
-> +      su2-feedback-curr2:
-> +        description:
-> +          Second step-up converter uses CURR2 input for current feedback
-> +        type: boolean
-> +
-> +      su2-feedback-curr3:
-> +        description:
-> +          Second step-up converter uses CURR3 input for current feedback
-> +        type: boolean
-> +
-> +      su2-feedback-curr-auto:
-> +        description:
-> +          Second step-up converter uses automatic current feedback selection
-> +        type: boolean
-> +
-> +      su2-fbprot-lx-sd4:
-> +        description:
-> +          Second step-up converter uses LX_SD4 for over-voltage protection
-> +        type: boolean
-> +
-> +      su2-fbprot-gpio2:
-> +        description:
-> +          Second step-up converter uses GPIO2 for over-voltage protection
-> +        type: boolean
-> +
-> +      su2-fbprot-gpio3:
-> +        description:
-> +          Second step-up converter uses GPIO3 for over-voltage protection
-> +        type: boolean
-> +
-> +      su2-fbprot-gpio4:
-> +        description:
-> +          Second step-up converter uses GPIO4 for over-voltage protection
-> +        type: boolean
-> +
-> +      su2-auto-curr1:
-> +        description:
-> +          Second step-up converter uses CURR1 input for automatic current
-> +          feedback
-> +        type: boolean
-> +
-> +      su2-auto-curr2:
-> +        description:
-> +          Second step-up converter uses CURR2 input for automatic current
-> +          feedback
-> +        type: boolean
-> +
-> +      su2-auto-curr3:
-> +        description:
-> +          Second step-up converter uses CURR3 input for automatic current
-> +          feedback
-> +        type: boolean
-> +
-> +    required:
-> +      - compatible
-> +
-> +    dependentRequired:
-> +      # To use the SU1 converter as a backlight source the following two
-> +      # properties must be provided:
-> +      su1-dev: [ su1-max-uA ]
-> +      su1-max-uA: [ su1-dev ]
-> +
-> +      # To use the SU2 converter as a backlight source the following two
-> +      # properties must be provided:
-> +      su2-dev: [ su2-max-uA ]
-> +      su2-max-uA: [ su2-dev ]
-> +
-> +      su2-feedback-voltage: [ su2-dev ]
-> +      su2-feedback-curr1: [ su2-dev ]
-> +      su2-feedback-curr2: [ su2-dev ]
-> +      su2-feedback-curr3: [ su2-dev ]
-> +      su2-feedback-curr-auto: [ su2-dev ]
-> +      su2-fbprot-lx-sd4: [ su2-dev ]
-> +      su2-fbprot-gpio2: [ su2-dev ]
-> +      su2-fbprot-gpio3: [ su2-dev ]
-> +      su2-fbprot-gpio4: [ su2-dev ]
-> +      su2-auto-curr1: [ su2-feedback-curr-auto ]
-> +      su2-auto-curr2: [ su2-feedback-curr-auto ]
-> +      su2-auto-curr3: [ su2-feedback-curr-auto ]
-> +
-> +    dependentSchemas:
-> +      su2-dev:
-> +        allOf:
-> +          - oneOf:
-> +              - required:
-> +                  - su2-feedback-voltage
-> +              - required:
-> +                  - su2-feedback-curr1
-> +              - required:
-> +                  - su2-feedback-curr2
-> +              - required:
-> +                  - su2-feedback-curr3
-> +              - required:
-> +                  - su2-feedback-curr-auto
-> +          - oneOf:
-> +              - required:
-> +                  - su2-fbprot-lx-sd4
-> +              - required:
-> +                  - su2-fbprot-gpio2
-> +              - required:
-> +                  - su2-fbprot-gpio3
-> +              - required:
-> +                  - su2-fbprot-gpio4
-> +
-> +      su2-feedback-curr-auto:
-> +        anyOf:
-> +          - required:
-> +              - su2-auto-curr1
-> +          - required:
-> +              - su2-auto-curr2
-> +          - required:
-> +              - su2-auto-curr3
-> +
-> +  regulators:
-> +    description: Other DC/DC and LDO supplies
-> +    type: object
-> +    unevaluatedProperties: false
-> +    patternProperties:
-> +      "^(sd[1-4]|ldo[1-8])$":
-> +        type: object
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@40 {
-> +            compatible = "ams,as3711";
-> +            reg = <0x40>;
-> +
-> +            regulators {
-> +                sd4 {
-> +                    regulator-name = "1.215V";
-> +                    regulator-min-microvolt = <1215000>;
-> +                    regulator-max-microvolt = <1235000>;
-> +                };
-> +                ldo2 {
-> +                    regulator-name = "2.8V CPU";
-> +                    regulator-min-microvolt = <2800000>;
-> +                    regulator-max-microvolt = <2800000>;
-> +                    regulator-always-on;
-> +                    regulator-boot-on;
-> +                };
-> +            };
-> +
-> +            backlight {
-> +                compatible = "ams,as3711-bl";
-> +                su2-dev = <&lcdc>;
-> +                su2-max-uA = <36000>;
-> +                su2-feedback-curr-auto;
-> +                su2-fbprot-gpio4;
-> +                su2-auto-curr1;
-> +                su2-auto-curr2;
-> +                su2-auto-curr3;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mfd/as3711.txt b/Documentation/devicetree/bindings/mfd/as3711.txt
-> deleted file mode 100644
-> index d98cf18c721ceb18..0000000000000000
-> --- a/Documentation/devicetree/bindings/mfd/as3711.txt
-> +++ /dev/null
-> @@ -1,73 +0,0 @@
-> -AS3711 is an I2C PMIC from Austria MicroSystems with multiple DCDC and LDO power
-> -supplies, a battery charger and an RTC. So far only bindings for the two stepup
-> -DCDC converters are defined. Other DCDC and LDO supplies are configured, using
-> -standard regulator properties, they must belong to a sub-node, called
-> -"regulators" and be called "sd1" to "sd4" and "ldo1" to "ldo8." Stepup converter
-> -configuration should be placed in a subnode, called "backlight."
-> -
-> -Compulsory properties:
-> -- compatible		: must be "ams,as3711"
-> -- reg			: specifies the I2C address
-> -
-> -To use the SU1 converter as a backlight source the following two properties must
-> -be provided:
-> -- su1-dev		: framebuffer phandle
-> -- su1-max-uA		: maximum current
-> -
-> -To use the SU2 converter as a backlight source the following two properties must
-> -be provided:
-> -- su2-dev		: framebuffer phandle
-> -- su1-max-uA		: maximum current
-> -
-> -Additionally one of these properties must be provided to select the type of
-> -feedback used:
-> -- su2-feedback-voltage	: voltage feedback is used
-> -- su2-feedback-curr1	: CURR1 input used for current feedback
-> -- su2-feedback-curr2	: CURR2 input used for current feedback
-> -- su2-feedback-curr3	: CURR3 input used for current feedback
-> -- su2-feedback-curr-auto: automatic current feedback selection
-> -
-> -and one of these to select the over-voltage protection pin
-> -- su2-fbprot-lx-sd4	: LX_SD4 is used for over-voltage protection
-> -- su2-fbprot-gpio2	: GPIO2 is used for over-voltage protection
-> -- su2-fbprot-gpio3	: GPIO3 is used for over-voltage protection
-> -- su2-fbprot-gpio4	: GPIO4 is used for over-voltage protection
-> -
-> -If "su2-feedback-curr-auto" is selected, one or more of the following properties
-> -have to be specified:
-> -- su2-auto-curr1	: use CURR1 input for current feedback
-> -- su2-auto-curr2	: use CURR2 input for current feedback
-> -- su2-auto-curr3	: use CURR3 input for current feedback
-> -
-> -Example:
-> -
-> -as3711@40 {
-> -	compatible = "ams,as3711";
-> -	reg = <0x40>;
-> -
-> -	regulators {
-> -		sd4 {
-> -			regulator-name = "1.215V";
-> -			regulator-min-microvolt = <1215000>;
-> -			regulator-max-microvolt = <1235000>;
-> -		};
-> -		ldo2 {
-> -			regulator-name = "2.8V CPU";
-> -			regulator-min-microvolt = <2800000>;
-> -			regulator-max-microvolt = <2800000>;
-> -			regulator-always-on;
-> -			regulator-boot-on;
-> -		};
-> -	};
-> -
-> -	backlight {
-> -		compatible = "ams,as3711-bl";
-> -		su2-dev = <&lcdc>;
-> -		su2-max-uA = <36000>;
-> -		su2-feedback-curr-auto;
-> -		su2-fbprot-gpio4;
-> -		su2-auto-curr1;
-> -		su2-auto-curr2;
-> -		su2-auto-curr3;
-> -	};
-> -};
-> -- 
-> 2.34.1
->
->
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Changes in v3:
+- Drop 1/3 (dt-bindings) as it was applied.
+- Link to v2: https://lore.kernel.org/r/20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru
+
+Changes in v2:
+- No changes - resend with minor commit message edits.
+- Link to v1: https://lore.kernel.org/r/20230916-pm8916-dtsi-bms-lbc-v1-0-7db0b42f9fb1@trvn.ru
+
+---
+Nikita Travkin (2):
+      arm64: dts: qcom: pm8916: Add BMS and charger
+      arm64: dts: qcom: msm8916-longcheer-l8150: Add battery and charger
+
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 43 ++++++++++++++++---
+ arch/arm64/boot/dts/qcom/pm8916.dtsi               | 48 ++++++++++++++++++++++
+ 2 files changed, 85 insertions(+), 6 deletions(-)
+---
+base-commit: 2ef7141596eed0b4b45ef18b3626f428a6b0a822
+change-id: 20230916-pm8916-dtsi-bms-lbc-2fb1b99d1eb2
+
+Best regards,
+-- 
+Nikita Travkin <nikita@trvn.ru>
+
 
