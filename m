@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-12252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2847F7D88CC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:14:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA1EF7D88CA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADBCAB213D2
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD8EC1C20F47
 	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994293B795;
-	Thu, 26 Oct 2023 19:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2985D3B78F;
+	Thu, 26 Oct 2023 19:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FovDHLKF"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kYRIuMZF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051A63B78F
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:13:55 +0000 (UTC)
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D15C91B8
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:13:54 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-27d087c4276so1054757a91.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:13:54 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159FD3B287
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:13:57 +0000 (UTC)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7F011B1
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-27d104fa285so1048574a91.2
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698347634; x=1698952434; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1698347635; x=1698952435; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LKO2g208XzCfOsORI6ZMG1mCYRoaMgItfO0wExwA+14=;
-        b=FovDHLKFv9Gi3C2YjP7dXJfItRR3PH6JFC+StLbj0rZX2lSdGcAZNGY+ENj4h/CWWw
-         FvkdXgqEcnMMZJuiA6fLYF1yt+xLnf5DP2JhvYbFJJQMu669YuZbT0rb1FwgNYGm5xaU
-         T/vjsuw7Y0dq29pQY7yaXyNy8mFH/EOoOSsyI=
+        bh=NkZn+U4Wu9+OkFBGF0q0OH+o+7fW9Y2LfpUD4qU656Q=;
+        b=kYRIuMZFx6Okn+VqkPykbCsygvA6PDrXFarfMIL1uvq9xCx0d1FnSXix+X3QqkHpg5
+         ESJAMdzBuIinvC51B8MRc+iH/U56JA1k+/fNXtRH5XqPPogdgZ0VbU7tedA/cElbUotP
+         mvNKwYffXeGvcosmWaTTZc/x8O+8RbX3AyO/E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698347634; x=1698952434;
+        d=1e100.net; s=20230601; t=1698347635; x=1698952435;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LKO2g208XzCfOsORI6ZMG1mCYRoaMgItfO0wExwA+14=;
-        b=Jd/RLRn2X/2A52XblqOTRX7pbi3niDFa22TNVBxElKWXwCXrngMM+lyAxZdqQzzMGo
-         aVxlU6aGzsTwZkxyZFHalrAZgPLek8yZ3XBokVUORO50DTyYBce58cAZBlNglGcz8sHZ
-         Zr+RHhxN5v7W1uFhjci2aaN6zds0W3Sqev69UPquv8lkJZ5Y6byi7zTcSqow0XVT1c3C
-         xLopi3Si9SPPSEF7sWvSVqgbPhpvhXiyobnFEGMX1ke78QXMU3PrtarB584gaJUwoiep
-         fEXoqMjgRCXyHdJBPWVRqEX6WU23J1xJQpbzCi2SXKa1LD/9W1JOJxDkL9h/cFByFL8e
-         DX+Q==
-X-Gm-Message-State: AOJu0YztshHoPp8wDPI2+104Br4gZEWSIlI40bk1fuqycstfvbEkSUMj
-	wLF9cIrF0SE1r4k8LNzgEbDBbQ1YM7+AfMGksL8=
-X-Google-Smtp-Source: AGHT+IEmsklJ5EWfVQVMeGYaB6B6U1UOfAuEgiqRe/EIB/KFs8EkGHLZUt6Yhm9lhheQgYiVB6Lw/Q==
-X-Received: by 2002:a17:90b:f0a:b0:27d:37bb:12c0 with SMTP id br10-20020a17090b0f0a00b0027d37bb12c0mr449838pjb.36.1698347634291;
-        Thu, 26 Oct 2023 12:13:54 -0700 (PDT)
+        bh=NkZn+U4Wu9+OkFBGF0q0OH+o+7fW9Y2LfpUD4qU656Q=;
+        b=PZNYygl4m2PrTBg5E+z+UzxJLxuiHE02lmnbLRsPpM7q3vXOUkToX0hdQ/b2vBcpe/
+         PoAv0biA9nki571lLXRggoDtT6DaUE8b/d3VLfHj9GN0Vr7uUeyDhGu6DpOvfqSQ2ITx
+         XtR7nBvlechUDMQVXUffPUEmc1Ao/R3pVPothzbOyscqFtBBIJPDUBjtxSaGyLLPRK2Y
+         lprFYKrMDriIpDndtDkUAFaMZlfMp+Ejcj6ciColnt1UnWu8GI031N7vvWp+VpHvj76L
+         tZ2tLRzf8Zsu3ZQLASX9po7+w7QYBYKBxD6qCtILvKEsjnGUPxMpeZB+BGrV2tda1LtK
+         h0Pg==
+X-Gm-Message-State: AOJu0Yw9LNElvSOCDZ7DaNfUy9kGxtnnLqdIv8ZCkfuC1hfAbiFcCEqR
+	dk0n4w61jn6cT6DzxAp8GSabMg==
+X-Google-Smtp-Source: AGHT+IGP4O9vPP2T8OqN76SUfejnT4iizwcqXE3U6WJq4ArhjjGIhWGRJua8zBBO7fkBTgQ/twu1gA==
+X-Received: by 2002:a17:90b:3889:b0:27d:72bb:3d92 with SMTP id mu9-20020a17090b388900b0027d72bb3d92mr448994pjb.19.1698347635401;
+        Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
 Received: from hsinyi.sjc.corp.google.com ([2620:15c:9d:2:f0fe:5c3b:1d70:d0bb])
-        by smtp.gmail.com with ESMTPSA id 22-20020a17090a031600b0027476c68cc3sm2183639pje.22.2023.10.26.12.13.53
+        by smtp.gmail.com with ESMTPSA id 22-20020a17090a031600b0027476c68cc3sm2183639pje.22.2023.10.26.12.13.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 12:13:54 -0700 (PDT)
+        Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
 From: Hsin-Yi Wang <hsinyi@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -69,9 +69,9 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 6/7] dt-bindings: arm64: mediatek: Add mt8183-kukui-jacuzzi-pico
-Date: Thu, 26 Oct 2023 12:09:15 -0700
-Message-ID: <20231026191343.3345279-7-hsinyi@chromium.org>
+Subject: [PATCH v4 7/7] arm64: dts: mt8183: Add jacuzzi pico/pico6 board
+Date: Thu, 26 Oct 2023 12:09:16 -0700
+Message-ID: <20231026191343.3345279-8-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.42.0.820.g83a721a137-goog
 In-Reply-To: <20231026191343.3345279-1-hsinyi@chromium.org>
 References: <20231026191343.3345279-1-hsinyi@chromium.org>
@@ -83,32 +83,188 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add pico (sku1) and pico6 (sku2).
+pico is also known as Acer Chromebook Spin 311.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+ .../mediatek/mt8183-kukui-jacuzzi-pico.dts    |  36 ++++++
+ .../mediatek/mt8183-kukui-jacuzzi-pico6.dts   | 110 ++++++++++++++++++
+ 3 files changed, 148 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index c937f49ba3b4..f133d9673803 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -258,6 +258,13 @@ properties:
-               - google,makomo-sku1
-           - const: google,makomo
-           - const: mediatek,mt8183
-+      - description: Google Pico (Acer Chromebook Spin 311)
-+        items:
-+          - enum:
-+              - google,pico-sku1
-+              - google,pico-sku2
-+          - const: google,pico
-+          - const: mediatek,mt8183
-       - description: Google Willow (Acer Chromebook 311 C722/C722T)
-         items:
-           - enum:
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index 1b85a8c12850..ed174dde97e1 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -34,6 +34,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kappa.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kenzo.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-makomo-sku0.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-makomo-sku1.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-pico.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-pico6.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
+new file mode 100644
+index 000000000000..e230323b3a54
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
+@@ -0,0 +1,36 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi.dtsi"
++#include "mt8183-kukui-audio-ts3a227e-max98357a.dtsi"
++
++/ {
++	model = "Google pico board";
++	chassis-type = "convertible";
++	compatible = "google,pico-sku1", "google,pico", "mediatek,mt8183";
++};
++
++&i2c_tunnel {
++	google,remote-bus = <0>;
++};
++
++&i2c2 {
++	i2c-scl-internal-delay-ns = <25000>;
++
++	trackpad@2c {
++		compatible = "hid-over-i2c";
++		reg = <0x2c>;
++		hid-descr-addr = <0x20>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&trackpad_pins>;
++
++		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
++
++		wakeup-source;
++	};
++};
++
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+new file mode 100644
+index 000000000000..a2e74b829320
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+@@ -0,0 +1,110 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8183-kukui-jacuzzi.dtsi"
++#include "mt8183-kukui-audio-ts3a227e-max98357a.dtsi"
++
++/ {
++	model = "Google pico6 board";
++	chassis-type = "convertible";
++	compatible = "google,pico-sku2", "google,pico", "mediatek,mt8183";
++
++	bt_wakeup: bt-wakeup {
++		compatible = "gpio-keys";
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_pins_wakeup>;
++
++		wobt {
++			label = "Wake on BT";
++			gpios = <&pio 42 GPIO_ACTIVE_HIGH>;
++			linux,code = <KEY_WAKEUP>;
++			wakeup-source;
++		};
++	};
++};
++
++&i2c_tunnel {
++	google,remote-bus = <0>;
++};
++
++&i2c2 {
++	i2c-scl-internal-delay-ns = <25000>;
++
++	trackpad@2c {
++		compatible = "hid-over-i2c";
++		reg = <0x2c>;
++		hid-descr-addr = <0x20>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&trackpad_pins>;
++
++		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
++
++		wakeup-source;
++	};
++};
++
++&wifi_wakeup {
++	wowlan {
++		gpios = <&pio 113 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&wifi_pwrseq {
++	post-power-on-delay-ms = <50>;
++
++	/* Toggle WIFI_ENABLE to reset the chip. */
++	reset-gpios = <&pio 8 GPIO_ACTIVE_LOW>;
++};
++
++&wifi_pins_pwrseq {
++	pins-wifi-enable {
++		pinmux = <PINMUX_GPIO8__FUNC_GPIO8>;
++	};
++};
++
++&mmc1_pins_default {
++	pins-cmd-dat {
++		drive-strength = <MTK_DRIVE_6mA>;
++	};
++	pins-clk {
++		drive-strength = <MTK_DRIVE_6mA>;
++	};
++};
++
++&mmc1_pins_uhs {
++	pins-clk {
++		drive-strength = <MTK_DRIVE_6mA>;
++	};
++};
++
++&mmc1 {
++	bt_reset: bt-reset {
++		compatible = "mediatek,mt7921s-bluetooth";
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_pins_reset>;
++		reset-gpios = <&pio 120 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&pio {
++	bt_pins_wakeup: bt-pins-wakeup {
++		piins-bt-wakeup {
++			pinmux = <PINMUX_GPIO42__FUNC_GPIO42>;
++			input-enable;
++		};
++	};
++
++	bt_pins_reset: bt-pins-reset {
++		pins-bt-reset {
++			pinmux = <PINMUX_GPIO120__FUNC_GPIO120>;
++			output-high;
++		};
++	};
++};
++
++/delete-node/ &bluetooth;
++/delete-node/ &bt_pins;
 -- 
 2.42.0.820.g83a721a137-goog
 
