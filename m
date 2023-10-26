@@ -1,137 +1,387 @@
-Return-Path: <devicetree+bounces-12070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F4A97D7CBD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E7FB7D7D01
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:46:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A04761C20E48
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 06:11:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F4D21C20ED7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 06:46:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4105F11712;
-	Thu, 26 Oct 2023 06:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898A03D68;
+	Thu, 26 Oct 2023 06:46:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PVkNkhKh"
+	dkim=pass (1024-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="IT1RxCxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3FBF9E8;
-	Thu, 26 Oct 2023 06:11:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA9CC433C7;
-	Thu, 26 Oct 2023 06:11:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698300709;
-	bh=WP9d1iMdHPkt0PbU8QkjDRKGyEiT4D30Ft8z4vXjTQc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PVkNkhKh5ml5e5y+JFl345qvwmlc2Mz25e1JTAeCRFmHBWCp3hXXt1ZXdu+qnjTRS
-	 HYORrhArTLtrjXIlUtP6SJb7IaFad4JoO0V1W4HVBoQOLATcMaTvSxoCw7wl0CK1h/
-	 KavsoFACTRYaKd36vfWdPMQeLdTV5yrRJhVUJIbnIodsgthnmnP+ZAFjcxEmYItRLn
-	 HBiI/gXbgG/lf9ECvqU2j9kDzE8yj5iSDkbRgLxmaSphXt2JJQfJXt5ZYpWsF6hliq
-	 RbVRkfiuIF71qUmw5tBcocOI1LO3uBemxrUqUFO+zKsY71yM29X3rD7zshKmo9wbep
-	 7pEQ6KDmEs/iw==
-Date: Thu, 26 Oct 2023 11:41:39 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, quic_shazhuss@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
-	quic_nayiluri@quicinc.com, dmitry.baryshkov@linaro.org,
-	robh@kernel.org, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 4/5] PCI: epf-mhi: Add support for SA8775P
-Message-ID: <20231026061139.GB4915@thinkpad>
-References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
- <1697715430-30820-5-git-send-email-quic_msarkar@quicinc.com>
- <20231025075603.GD3648@thinkpad>
- <610b0621-b140-ee9b-c450-0fec6862c4fc@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3664A256C
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 06:46:34 +0000 (UTC)
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id AD3A110E;
+	Wed, 25 Oct 2023 23:46:31 -0700 (PDT)
+Message-ID: <8441f987-cf40-b254-ed95-bd9a894ec6de@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=donut; t=1698302788;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GdUw7FXJa1/MNHUyjI19mQt/B38JsgdBRy7vlg7v/Tg=;
+	b=IT1RxCxjqrnlgIM4wubSJx7mkzfP1vGFfPO3f6lxLEyIMOH9Wty7Rk9Y7RvD1zDF/avEti
+	x4reBqQ6smZprJVJiiPJm/64CMWiEr0+OJfg/vot8q6gtloDP+0XQGQra4UtZqK2BjcOhI
+	QTJYFRgZOTcsMAmFrMOjTyKilqrr9wI=
+Date: Thu, 26 Oct 2023 09:46:27 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <610b0621-b140-ee9b-c450-0fec6862c4fc@quicinc.com>
+Subject: Re: [PATCH 2/2] ASoC: qcom: sc7180: Add support for qdsp6 baked sound
+To: Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231020-sc7180-qdsp-sndcard-v1-0-157706b7d06f@trvn.ru>
+ <20231020-sc7180-qdsp-sndcard-v1-2-157706b7d06f@trvn.ru>
+Content-Language: en-US
+From: Anton Bambura <jenneron@postmarketos.org>
+In-Reply-To: <20231020-sc7180-qdsp-sndcard-v1-2-157706b7d06f@trvn.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 26, 2023 at 11:00:29AM +0530, Mrinmay Sarkar wrote:
-> 
-> On 10/25/2023 1:26 PM, Manivannan Sadhasivam wrote:
-> > On Thu, Oct 19, 2023 at 05:07:09PM +0530, Mrinmay Sarkar wrote:
-> > > Add support for Qualcomm Snapdragon SA8775P SoC to the EPF driver.
-> > > SA8775P has the PID (0x0306) and supports HDMA. Currently, it has
-> > Is the PID fixed? I thought you just want to reuse the SDXxx PID in the
-> > meantime.
-> > 
-> > - Mani
-> 
-> The PID for SA8775p EP is not decided yet. So using 0x0306 PID meantime.
-> 
 
-Okay, then please mention that explicitly in the commit message.
+On 10/20/23 18:33, Nikita Travkin wrote:
+> Some sc7180 devices use audio adsp to play sound. The setup for this
+> adsp is similar to the dirrect lpass usage but requires the use of
+> different link ids and clocks.
+>
+> This commit adds support for the qdsp based audio, reusing the common
+> parts like audio codec setup and jack creation.
+>
+> Since the setup is mostly generic and codec specific setup is guarded
+> behind a check, a generic compatible is added, similar to other
+> platforms. Even though those changes target Acer Aspire 1 as the only
+> user of the adsp audio on this platform present upstream at the moment
+> of the commit, those changes should be either dirrectly compatible or
+> trivially expandable to the other devices that will be added in the
+> future.
+>
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 
-- Mani
+Tested that sound still works on lazor chromebook
 
-> --Mrinmay
-> 
-> > > no fixed PCI class, so it is being advertised as "PCI_CLASS_OTHERS".
-> > > 
-> > > Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> > > ---
-> > >   drivers/pci/endpoint/functions/pci-epf-mhi.c | 17 +++++++++++++++++
-> > >   1 file changed, 17 insertions(+)
-> > > 
-> > > diff --git a/drivers/pci/endpoint/functions/pci-epf-mhi.c b/drivers/pci/endpoint/functions/pci-epf-mhi.c
-> > > index b7b9d3e..4487260 100644
-> > > --- a/drivers/pci/endpoint/functions/pci-epf-mhi.c
-> > > +++ b/drivers/pci/endpoint/functions/pci-epf-mhi.c
-> > > @@ -114,6 +114,22 @@ static const struct pci_epf_mhi_ep_info sm8450_info = {
-> > >   	.flags = MHI_EPF_USE_DMA,
-> > >   };
-> > > +static struct pci_epf_header sa8775p_header = {
-> > > +	.vendorid = PCI_VENDOR_ID_QCOM,
-> > > +	.deviceid = 0x0306,
-> > > +	.baseclass_code = PCI_CLASS_OTHERS,
-> > > +	.interrupt_pin = PCI_INTERRUPT_INTA,
-> > > +};
-> > > +
-> > > +static const struct pci_epf_mhi_ep_info sa8775p_info = {
-> > > +	.config = &mhi_v1_config,
-> > > +	.epf_header = &sa8775p_header,
-> > > +	.bar_num = BAR_0,
-> > > +	.epf_flags = PCI_BASE_ADDRESS_MEM_TYPE_32,
-> > > +	.msi_count = 32,
-> > > +	.mru = 0x8000,
-> > > +};
-> > > +
-> > >   struct pci_epf_mhi {
-> > >   	const struct pci_epc_features *epc_features;
-> > >   	const struct pci_epf_mhi_ep_info *info;
-> > > @@ -677,6 +693,7 @@ static int pci_epf_mhi_probe(struct pci_epf *epf,
-> > >   }
-> > >   static const struct pci_epf_device_id pci_epf_mhi_ids[] = {
-> > > +	{ .name = "sa8775p", .driver_data = (kernel_ulong_t)&sa8775p_info },
-> > >   	{ .name = "sdx55", .driver_data = (kernel_ulong_t)&sdx55_info },
-> > >   	{ .name = "sm8450", .driver_data = (kernel_ulong_t)&sm8450_info },
-> > >   	{},
-> > > -- 
-> > > 2.7.4
-> > > 
-> 
+Tested-by: Anton Bambura <jenneron@postmarketos.org>
 
--- 
-மணிவண்ணன் சதாசிவம்
+> ---
+>   sound/soc/qcom/sc7180.c | 195 ++++++++++++++++++++++++++++++++++++++++++------
+>   1 file changed, 173 insertions(+), 22 deletions(-)
+>
+> diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
+> index 8e433e309f77..b0320a74d508 100644
+> --- a/sound/soc/qcom/sc7180.c
+> +++ b/sound/soc/qcom/sc7180.c
+> @@ -5,6 +5,7 @@
+>   // sc7180.c -- ALSA SoC Machine driver for SC7180
+>   
+>   #include <dt-bindings/sound/sc7180-lpass.h>
+> +#include <dt-bindings/sound/qcom,q6afe.h>
+>   #include <linux/gpio.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/module.h>
+> @@ -19,8 +20,10 @@
+>   #include "../codecs/rt5682.h"
+>   #include "../codecs/rt5682s.h"
+>   #include "common.h"
+> +#include "qdsp6/q6afe.h"
+>   
+>   #define DEFAULT_MCLK_RATE		19200000
+> +#define MI2S_BCLK_RATE			1536000
+>   #define RT5682_PLL1_FREQ (48000 * 512)
+>   
+>   #define DRIVER_NAME "SC7180"
+> @@ -133,12 +136,28 @@ static int sc7180_init(struct snd_soc_pcm_runtime *rtd)
+>   	return 0;
+>   }
+>   
+> -static int sc7180_snd_startup(struct snd_pcm_substream *substream)
+> +static int sc7180_qdsp_init(struct snd_soc_pcm_runtime *rtd)
+>   {
+> -	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> -	struct snd_soc_card *card = rtd->card;
+> -	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(card);
+>   	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+> +
+> +	switch (cpu_dai->id) {
+> +	case PRIMARY_MI2S_RX:
+> +		return sc7180_headset_init(rtd);
+> +	case PRIMARY_MI2S_TX:
+> +	case TERTIARY_MI2S_RX:
+> +		return 0;
+> +	case DISPLAY_PORT_RX:
+> +		return sc7180_hdmi_init(rtd);
+> +	default:
+> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
+> +			cpu_dai->id);
+> +		return -EINVAL;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int sc7180_startup_realtek_codec(struct snd_soc_pcm_runtime *rtd)
+> +{
+>   	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+>   	int pll_id, pll_source, pll_in, pll_out, clk_id, ret;
+>   
+> @@ -154,8 +173,40 @@ static int sc7180_snd_startup(struct snd_pcm_substream *substream)
+>   		clk_id = RT5682S_SCLK_S_PLL2;
+>   		pll_out = RT5682_PLL1_FREQ;
+>   		pll_in = DEFAULT_MCLK_RATE;
+> +	} else {
+> +		return 0;
+> +	}
+> +	snd_soc_dai_set_fmt(codec_dai,
+> +			    SND_SOC_DAIFMT_BC_FC |
+> +			    SND_SOC_DAIFMT_NB_NF |
+> +			    SND_SOC_DAIFMT_I2S);
+> +
+> +	/* Configure PLL1 for codec */
+> +	ret = snd_soc_dai_set_pll(codec_dai, pll_id, pll_source,
+> +				  pll_in, pll_out);
+> +	if (ret) {
+> +		dev_err(rtd->dev, "can't set codec pll: %d\n", ret);
+> +		return ret;
+>   	}
+>   
+> +	/* Configure sysclk for codec */
+> +	ret = snd_soc_dai_set_sysclk(codec_dai, clk_id, pll_out,
+> +				     SND_SOC_CLOCK_IN);
+> +	if (ret)
+> +		dev_err(rtd->dev, "snd_soc_dai_set_sysclk err = %d\n",
+> +			ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int sc7180_snd_startup(struct snd_pcm_substream *substream)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct snd_soc_card *card = rtd->card;
+> +	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(card);
+> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+> +	int ret;
+> +
+>   	switch (cpu_dai->id) {
+>   	case MI2S_PRIMARY:
+>   		if (++data->pri_mi2s_clk_count == 1) {
+> @@ -165,30 +216,66 @@ static int sc7180_snd_startup(struct snd_pcm_substream *substream)
+>   					       SNDRV_PCM_STREAM_PLAYBACK);
+>   		}
+>   
+> -		snd_soc_dai_set_fmt(codec_dai,
+> -				    SND_SOC_DAIFMT_BC_FC |
+> -				    SND_SOC_DAIFMT_NB_NF |
+> -				    SND_SOC_DAIFMT_I2S);
+> -
+> -		/* Configure PLL1 for codec */
+> -		ret = snd_soc_dai_set_pll(codec_dai, pll_id, pll_source,
+> -					  pll_in, pll_out);
+> -		if (ret) {
+> -			dev_err(rtd->dev, "can't set codec pll: %d\n", ret);
+> +		ret = sc7180_startup_realtek_codec(rtd);
+> +		if (ret)
+>   			return ret;
+> +
+> +		break;
+> +	case MI2S_SECONDARY:
+> +		break;
+> +	case LPASS_DP_RX:
+> +		break;
+> +	default:
+> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
+> +			cpu_dai->id);
+> +		return -EINVAL;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int sc7180_qdsp_snd_startup(struct snd_pcm_substream *substream)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct snd_soc_card *card = rtd->card;
+> +	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(card);
+> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+> +	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+> +	int ret;
+> +
+> +	switch (cpu_dai->id) {
+> +	case PRIMARY_MI2S_RX:
+> +	case PRIMARY_MI2S_TX:
+> +		if (++data->pri_mi2s_clk_count == 1) {
+> +			snd_soc_dai_set_sysclk(cpu_dai,
+> +					       Q6AFE_LPASS_CLK_ID_MCLK_1,
+> +					       DEFAULT_MCLK_RATE,
+> +					       SNDRV_PCM_STREAM_PLAYBACK);
+> +			snd_soc_dai_set_sysclk(cpu_dai,
+> +					       Q6AFE_LPASS_CLK_ID_PRI_MI2S_IBIT,
+> +					       MI2S_BCLK_RATE,
+> +					       SNDRV_PCM_STREAM_PLAYBACK);
+>   		}
+>   
+> -		/* Configure sysclk for codec */
+> -		ret = snd_soc_dai_set_sysclk(codec_dai, clk_id, pll_out,
+> -					     SND_SOC_CLOCK_IN);
+> +		snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_BP_FP);
+> +
+> +		ret = sc7180_startup_realtek_codec(rtd);
+>   		if (ret)
+> -			dev_err(rtd->dev, "snd_soc_dai_set_sysclk err = %d\n",
+> -				ret);
+> +			return ret;
+>   
+>   		break;
+> -	case MI2S_SECONDARY:
+> +	case TERTIARY_MI2S_RX:
+> +		snd_soc_dai_set_sysclk(cpu_dai,
+> +				       Q6AFE_LPASS_CLK_ID_TER_MI2S_IBIT,
+> +				       MI2S_BCLK_RATE,
+> +				       SNDRV_PCM_STREAM_PLAYBACK);
+> +
+> +		snd_soc_dai_set_fmt(codec_dai,
+> +				SND_SOC_DAIFMT_BC_FC |
+> +				SND_SOC_DAIFMT_NB_NF |
+> +				SND_SOC_DAIFMT_I2S);
+> +		snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_BP_FP);
+>   		break;
+> -	case LPASS_DP_RX:
+> +	case DISPLAY_PORT_RX:
+>   		break;
+>   	default:
+>   		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
+> @@ -246,6 +333,42 @@ static void sc7180_snd_shutdown(struct snd_pcm_substream *substream)
+>   	}
+>   }
+>   
+> +static void sc7180_qdsp_snd_shutdown(struct snd_pcm_substream *substream)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+> +	struct snd_soc_card *card = rtd->card;
+> +	struct sc7180_snd_data *data = snd_soc_card_get_drvdata(card);
+> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+> +
+> +	switch (cpu_dai->id) {
+> +	case PRIMARY_MI2S_RX:
+> +	case PRIMARY_MI2S_TX:
+> +		if (--data->pri_mi2s_clk_count == 0) {
+> +			snd_soc_dai_set_sysclk(cpu_dai,
+> +					       Q6AFE_LPASS_CLK_ID_MCLK_1,
+> +					       0,
+> +					       SNDRV_PCM_STREAM_PLAYBACK);
+> +			snd_soc_dai_set_sysclk(cpu_dai,
+> +					       Q6AFE_LPASS_CLK_ID_PRI_MI2S_IBIT,
+> +					       0,
+> +					       SNDRV_PCM_STREAM_PLAYBACK);
+> +		}
+> +		break;
+> +	case TERTIARY_MI2S_RX:
+> +		snd_soc_dai_set_sysclk(cpu_dai,
+> +				       Q6AFE_LPASS_CLK_ID_TER_MI2S_IBIT,
+> +				       0,
+> +				       SNDRV_PCM_STREAM_PLAYBACK);
+> +		break;
+> +	case DISPLAY_PORT_RX:
+> +		break;
+> +	default:
+> +		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
+> +			cpu_dai->id);
+> +		break;
+> +	}
+> +}
+> +
+>   static int sc7180_adau7002_init(struct snd_soc_pcm_runtime *rtd)
+>   {
+>   	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+> @@ -294,11 +417,30 @@ static int sc7180_adau7002_snd_startup(struct snd_pcm_substream *substream)
+>   	return 0;
+>   }
+>   
+> +static int sc7180_qdsp_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
+> +				     struct snd_pcm_hw_params *params)
+> +{
+> +	struct snd_interval *rate = hw_param_interval(params,
+> +					SNDRV_PCM_HW_PARAM_RATE);
+> +	struct snd_interval *channels = hw_param_interval(params,
+> +					SNDRV_PCM_HW_PARAM_CHANNELS);
+> +
+> +	rate->min = rate->max = 48000;
+> +	channels->min = channels->max = 2;
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct snd_soc_ops sc7180_ops = {
+>   	.startup = sc7180_snd_startup,
+>   	.shutdown = sc7180_snd_shutdown,
+>   };
+>   
+> +static const struct snd_soc_ops sc7180_qdsp_ops = {
+> +	.startup = sc7180_qdsp_snd_startup,
+> +	.shutdown = sc7180_qdsp_snd_shutdown,
+> +};
+> +
+>   static const struct snd_soc_ops sc7180_adau7002_ops = {
+>   	.startup = sc7180_adau7002_snd_startup,
+>   };
+> @@ -354,7 +496,7 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
+>   	struct snd_soc_dai_link *link;
+>   	int ret;
+>   	int i;
+> -	bool no_headphone = false;
+> +	bool qdsp = false, no_headphone = false;
+>   
+>   	/* Allocate the private data */
+>   	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> @@ -390,6 +532,8 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
+>   		no_headphone = true;
+>   		card->dapm_widgets = sc7180_adau7002_snd_widgets;
+>   		card->num_dapm_widgets = ARRAY_SIZE(sc7180_adau7002_snd_widgets);
+> +	} else if (of_device_is_compatible(dev->of_node, "qcom,sc7180-qdsp6-sndcard")) {
+> +		qdsp = true;
+>   	}
+>   
+>   	ret = qcom_snd_parse_of(card);
+> @@ -400,6 +544,12 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
+>   		if (no_headphone) {
+>   			link->ops = &sc7180_adau7002_ops;
+>   			link->init = sc7180_adau7002_init;
+> +		} else if (qdsp) {
+> +			if (link->no_pcm == 1) {
+> +				link->ops = &sc7180_qdsp_ops;
+> +				link->be_hw_params_fixup = sc7180_qdsp_be_hw_params_fixup;
+> +				link->init = sc7180_qdsp_init;
+> +			}
+>   		} else {
+>   			link->ops = &sc7180_ops;
+>   			link->init = sc7180_init;
+> @@ -412,6 +562,7 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
+>   static const struct of_device_id sc7180_snd_device_id[]  = {
+>   	{.compatible = "google,sc7180-trogdor"},
+>   	{.compatible = "google,sc7180-coachz"},
+> +	{.compatible = "qcom,sc7180-qdsp6-sndcard"},
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, sc7180_snd_device_id);
+>
 
