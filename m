@@ -1,123 +1,111 @@
-Return-Path: <devicetree+bounces-12273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38527D8A2A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 23:22:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D56B87D8A33
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 23:23:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A64372820E2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:22:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10E3B1C20E7F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646583D3A5;
-	Thu, 26 Oct 2023 21:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A793D3A6;
+	Thu, 26 Oct 2023 21:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JgJgEZo8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C784426
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 21:22:52 +0000 (UTC)
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D59C0
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:22:51 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6ce2bcb131fso904398a34.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:22:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173A04426
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 21:23:50 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1DCB8
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:23:49 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-508126afc88so2101021e87.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:23:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698355427; x=1698960227; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WaS1F6gxvektWaH+1uXMzK+p2rqyW26a4HQpLvHPqcE=;
+        b=JgJgEZo8z0xWPSUgdtQjadp4VGUhjXVVGvrwk55CUM/IM5LXcVAQ01hBzPFMLyU9sS
+         Nj1pVuWDj506FC6GhCbU2ZYZy78D6mZ9HPVe3BYN/sS7L7An0uL/qMX63Ao0QKe7Un4d
+         nJnJF+PUgcsLyi5aOz1MJAUW/o+g5SCTkbx0feGDsQQkxwWZ5ibVqkABBTx4krCCrvRB
+         JNHk/OXPH/yE0kMdrAc9ykkvqLdRCO2yCUXphBahgx6MCSlYWlT5/QiN4w02ylBlZNxh
+         9T8KnfqGtzbBgvhIxlumu+xOCtkMYc3rEYglqvjoumtuDfeJzHH/gvUcYoudsIjKeUht
+         zh6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698355370; x=1698960170;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4152jFLYLD/MBewGGEPSHG844zUZQa9UTyIgToDxCiM=;
-        b=iwEHfN/CaJMuvj5Ff2eNZlW0Ohqe23esTHsNJLL0+sOR7Tj+2QMD4WJdMak9IAmD7U
-         jZX2F1Q/j0/EmVJTS5ZKNC4ptyDpZhV630/G8gUloo23eutprQGHNVmQR30fSgS9iL5b
-         HncB/JQWnre5cpKJkcv4Uds0g+f1nTX3ijTGdolEEiTsZahcAVyNvuAWakgRRqLOyBVh
-         qYtOsYL0fo5x0EETb3662EcxA9YlPkp8kOdVMPfdV06sY/0GhbKq5qoeFb2qo5t75PfZ
-         97h+hQ5UfioVYFHOwPwR7bV2gTqdzRXwqhSSV96lt09SyQvRWluxQOM1cBFFgCEOCyEh
-         9TJA==
-X-Gm-Message-State: AOJu0YxKfWRGQx1yq1m6JC3b7KiXyTFC0uv0BNFUViLnkdbbhZ7FhMtl
-	T3hvwfmdZsvk6VgJseF07A==
-X-Google-Smtp-Source: AGHT+IHabh59A6Iy4VEaSpR8/PFa9Dq+e6X0DG9ObnlWccTugNJclAbi3zd3YfIeAaa0IB54AvVS2A==
-X-Received: by 2002:a05:6830:14:b0:6cc:fff0:8ebd with SMTP id c20-20020a056830001400b006ccfff08ebdmr612994otp.24.1698355370314;
-        Thu, 26 Oct 2023 14:22:50 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b8-20020a4a98c8000000b0057377b1c1c8sm36892ooj.24.2023.10.26.14.22.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 14:22:49 -0700 (PDT)
-Received: (nullmailer pid 420013 invoked by uid 1000);
-	Thu, 26 Oct 2023 21:22:48 -0000
-Date: Thu, 26 Oct 2023 16:22:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>, Mark Brown <broonie@kernel.org>, Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 5/5] dt-bindings: audio-graph-port: add
- channel-map-index property
-Message-ID: <20231026212248.GA383937-robh@kernel.org>
-References: <87fs1zbg2g.wl-kuninori.morimoto.gx@renesas.com>
- <878r7rbg0v.wl-kuninori.morimoto.gx@renesas.com>
+        d=1e100.net; s=20230601; t=1698355427; x=1698960227;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WaS1F6gxvektWaH+1uXMzK+p2rqyW26a4HQpLvHPqcE=;
+        b=E3WCHpabVQDf27DSiTB48oFoSDFJyRQ4m2rYgXdp9U4Y9Q+gbDOC/3vjxr8VDRBbo2
+         ZmpP/iTYea4E1B9+bIo1zVRvlgGjmBy5rw70HHaa6uavqQEp4zT4Vn45PTQnxnrELljP
+         aeQ0Pby5gcU09OY3DC92rq8ruH68VVt/tKeKiurz/zUp5Xj0DFGWpeZ06bWIScuC6neJ
+         ExJ/FxGAOmSvN0jhvIGBHUO7zNL1VGpgvB5rtoOwDApJaX/fsvFhls3wBmUOLLRYUuFL
+         41mOAP83TVCEX3akzq5EuIcCzjWF55YmIjT9+CABhSbPVa62b6oybAAH3InfApr4F0Uk
+         oHsw==
+X-Gm-Message-State: AOJu0YyQdhqEujVLP2oKSXdQMxlpsCUdeUUaWskcBu/BhFzYGhj3/4Mq
+	gUIZ7zrUmzTdjF6AGt+7PTDn0g==
+X-Google-Smtp-Source: AGHT+IG4rn72MceQOMecssoAqNoze+tcPRSKZ88w+fIaYfqgCbPe9Go1xkti6JH9We47TwImsVs2Nw==
+X-Received: by 2002:ac2:4553:0:b0:502:f2a4:152f with SMTP id j19-20020ac24553000000b00502f2a4152fmr399943lfm.10.1698355427481;
+        Thu, 26 Oct 2023 14:23:47 -0700 (PDT)
+Received: from [172.30.204.146] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id u15-20020ac248af000000b004fdd6b72bfdsm5498lfg.117.2023.10.26.14.23.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 14:23:47 -0700 (PDT)
+Message-ID: <d2c46459-0686-41ba-bf27-a62fcd00d489@linaro.org>
+Date: Thu, 26 Oct 2023 23:23:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <878r7rbg0v.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/4] ARM: dts: qcom: ipq8064: Add CPU OPP table
+To: Christian Marangi <ansuelsmth@gmail.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20231019105011.7289-1-ansuelsmth@gmail.com>
+ <20231019105011.7289-5-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231019105011.7289-5-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 25, 2023 at 02:19:13AM +0000, Kuninori Morimoto wrote:
-> This patch adds channel-map-index property to enable handling
 
-Don't write commit messages with 'This patch' or 'This commit'. See the 
-documentation on writing patches.
 
-> CPU:Codec = N:M connection.
-
-This is not answering Why?
-
+On 10/19/23 12:50, Christian Marangi wrote:
+> Add CPU OPP table for IPQ8062, IPQ8064 and IPQ8065 SoC.
+> Use opp-supported-hw binding to correctly enable and disable the
+> frequency as IPQ8062 supports up to 1.0Ghz, IPQ8064 supports up to
+> 1.4GHz with 1.2GHz as an additional frequency and IPQ8065 supports
+> 1.7GHZ but doesn't have 1.2GHZ frequency and has to be disabled.
 > 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  .../devicetree/bindings/sound/audio-graph-port.yaml | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> index 60b5e3fd1115..2a7e0784d591 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> @@ -93,6 +93,19 @@ definitions:
->                minimum: 1
->                maximum: 64
->  
-> +      channel-map-index:
-> +        description: It indicates CPU/Codec DAIs channel mapping index if number of
-> +          CPU(N) / Codec(M) were not same in one dai-link. channel-map-index is not
-> +          needed if the numbers were 1:M or N:1 or N==M. Same indexed CPU <-> Codec
-> +          will be paired. This is CPUx2 <-> Codecx3 sample.
-> +                                   CPUA   { ... .channel-map-index = <0>;   }
-> +          [0] CPUA <---> CodecA    CPUB   { ... .channel-map-index = <1 2>; }
-> +          [1] CPUB <-+-> CodecB
-> +          [2]        \-> CodecC    CodecA { ... .channel-map-index = <0>; }
-> +                                   CodecB { ... .channel-map-index = <1>; }
-> +                                   CodecC { ... .channel-map-index = <2>; }
+I didn't actually check the values against downstream, maybe we
+can prettyplease ask Dmitry as he's done that before with msm8960-class
+SoCs..
 
-We have 2 different meanings for channel-map-index here. We have the 
-codecs defining "I am index N" and then the CPUs defining "I'm connected 
-to codec N". That's confusing to start with. Made-up indices are 
-something we try to avoid in DT. Are the numbers here (0, 1, 2) 
-significant? The normal way we link from one node to another is 
-phandles. Why not use phandles here:
+[...]
 
-CPUA   { ... .channel-map-index = <&CodecA>;   }
-CPUB   { ... .channel-map-index = <&CodecB &CodecC>; }
+> +	opp_table_cpu: opp-table-cpu {
+> +		compatible = "operating-points-v2-krait-cpu";
+> +		nvmem-cells = <&speedbin_efuse>;
+Shouldn't this be opp-shared?
 
-
-However, we also have OF graph to define complex topologies/connections 
-AND we're already using it for this binding. So why not here? You can 
-always have more than 1 port and/or endpoint. Generally, multiple ports 
-are independent/simultaneous data connections and multiple endpoints are 
-either 1:N fanout or N:1 muxed connections.
-
-Rob
+Konrad
 
