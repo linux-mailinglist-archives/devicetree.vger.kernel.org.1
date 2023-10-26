@@ -1,271 +1,177 @@
-Return-Path: <devicetree+bounces-12253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA1EF7D88CA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:14:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B767D88DC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:18:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD8EC1C20F47
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:14:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FBD3B213C2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2985D3B78F;
-	Thu, 26 Oct 2023 19:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1473B783;
+	Thu, 26 Oct 2023 19:18:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kYRIuMZF"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="ReOeW7Tn";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="xsqt+Vyg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159FD3B287
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:13:57 +0000 (UTC)
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7F011B1
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-27d104fa285so1048574a91.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698347635; x=1698952435; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NkZn+U4Wu9+OkFBGF0q0OH+o+7fW9Y2LfpUD4qU656Q=;
-        b=kYRIuMZFx6Okn+VqkPykbCsygvA6PDrXFarfMIL1uvq9xCx0d1FnSXix+X3QqkHpg5
-         ESJAMdzBuIinvC51B8MRc+iH/U56JA1k+/fNXtRH5XqPPogdgZ0VbU7tedA/cElbUotP
-         mvNKwYffXeGvcosmWaTTZc/x8O+8RbX3AyO/E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698347635; x=1698952435;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NkZn+U4Wu9+OkFBGF0q0OH+o+7fW9Y2LfpUD4qU656Q=;
-        b=PZNYygl4m2PrTBg5E+z+UzxJLxuiHE02lmnbLRsPpM7q3vXOUkToX0hdQ/b2vBcpe/
-         PoAv0biA9nki571lLXRggoDtT6DaUE8b/d3VLfHj9GN0Vr7uUeyDhGu6DpOvfqSQ2ITx
-         XtR7nBvlechUDMQVXUffPUEmc1Ao/R3pVPothzbOyscqFtBBIJPDUBjtxSaGyLLPRK2Y
-         lprFYKrMDriIpDndtDkUAFaMZlfMp+Ejcj6ciColnt1UnWu8GI031N7vvWp+VpHvj76L
-         tZ2tLRzf8Zsu3ZQLASX9po7+w7QYBYKBxD6qCtILvKEsjnGUPxMpeZB+BGrV2tda1LtK
-         h0Pg==
-X-Gm-Message-State: AOJu0Yw9LNElvSOCDZ7DaNfUy9kGxtnnLqdIv8ZCkfuC1hfAbiFcCEqR
-	dk0n4w61jn6cT6DzxAp8GSabMg==
-X-Google-Smtp-Source: AGHT+IGP4O9vPP2T8OqN76SUfejnT4iizwcqXE3U6WJq4ArhjjGIhWGRJua8zBBO7fkBTgQ/twu1gA==
-X-Received: by 2002:a17:90b:3889:b0:27d:72bb:3d92 with SMTP id mu9-20020a17090b388900b0027d72bb3d92mr448994pjb.19.1698347635401;
-        Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
-Received: from hsinyi.sjc.corp.google.com ([2620:15c:9d:2:f0fe:5c3b:1d70:d0bb])
-        by smtp.gmail.com with ESMTPSA id 22-20020a17090a031600b0027476c68cc3sm2183639pje.22.2023.10.26.12.13.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 12:13:55 -0700 (PDT)
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
-	=?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 7/7] arm64: dts: mt8183: Add jacuzzi pico/pico6 board
-Date: Thu, 26 Oct 2023 12:09:16 -0700
-Message-ID: <20231026191343.3345279-8-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.42.0.820.g83a721a137-goog
-In-Reply-To: <20231026191343.3345279-1-hsinyi@chromium.org>
-References: <20231026191343.3345279-1-hsinyi@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C243AC35
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:18:01 +0000 (UTC)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.22])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A62AC;
+	Thu, 26 Oct 2023 12:17:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1698347875; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=MAyPAt6Fw8HBzoOrR3mTRFlSYcoTN/biTPt+LZ49ZNHY1AevjLZ+hOrFs7PIg/jxQq
+    0Xe/AzW0EHyXJTZmudh3qqg8F/X45IPRCLd7RAZwyMkA2OrBhAl4YVQEmnXJ33WEs665
+    uuHj9lMABoMFQyNldDPiiGLhnF62GfyeqDOOwYSo3fcd/JH3R4PJH71MTVMh1muP/y1u
+    btbtWjx4exsW6jZKjA64XdA6qpU1H8bPfVff5Gse3YjnkWQUpobbqQwwMUB1CnQoeR5E
+    whU7prFkAg9pXm+HkJJKtxSp7ROtk2rqcBhw+dmqHZB7z1YJESzsjaS5oXQl1erQb9vc
+    A7kA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1698347875;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=3RRTbCKgym2ZKAfKmnEa/WEdD9osQqu4/PX3qrE8WD8=;
+    b=eGUXKIxOK0rVVM85nLOb5L47o7IIcIhFFDTQgfuEPsGRA0dK3vKlhablGlWJ3Tm4HG
+    eylRbPc5L+kZhAwE2W1IZKHgvXvKyvsdZL3zx4QNM/UxAg7XQ+MmfZUv3L66W4Pk2+yk
+    7Lhmgga4K2Xdu0CfNXDFXg5iD14HOG9hAbbxjllOG9yyMfWRWEoiGkyX82eovfOwJLBC
+    t6eBIvme1fQf8F/yF/IyoetcjwetJ9lg3Y0rS3mAd6SVcNXhpBl4wOozdpG1fVW+LzKR
+    ump9pi4BP9djoYpBxdiNk+wWzdqkhEsRyopASw9sSfo870m4tC8lt29ot0vTi32VUO4K
+    YFlA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1698347875;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=3RRTbCKgym2ZKAfKmnEa/WEdD9osQqu4/PX3qrE8WD8=;
+    b=ReOeW7TnoeZqegJf5JfRuaRAn8UyaJKgkKvyku4ilimr1OcwczHexvCssg1vLmCldS
+    R4NKuv5Kg2EefE+NAO7EA6LhfOLjHeegbmTq93tv7u7q4TswYgFJZ61d78E071SFjsZz
+    RBdMdXDhj2pLFMR+GVFdB9pjMCT4LREbvQN9jXKpkTmkSosS3fw46OswbN+T8OCyUfc2
+    Mx8nxrxGwiTxorjDxCuE+q3dzc+ZtnnC3+YuP0TYgCFtS56OyWrsjJC6dzCIx2bJgLre
+    vYOT4EuArJ8rXpCF44CymJSCLpUjYNscaOdNDssNp63Xp1D6BT4Ze9Q7GSJEO9jSnKug
+    uU1g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1698347875;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=3RRTbCKgym2ZKAfKmnEa/WEdD9osQqu4/PX3qrE8WD8=;
+    b=xsqt+VygVZfAOk6OK0oxcjaIseydbe43WzIKNFEaNonstiAHum+ybBY99SCsTc5rn9
+    f4UJimc1W89HIbMBFUAQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA95vh"
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.1 DYNA|AUTH)
+    with ESMTPSA id Lbb8e2z9QJHs4iy
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Thu, 26 Oct 2023 21:17:54 +0200 (CEST)
+Date: Thu, 26 Oct 2023 21:17:48 +0200
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: pm8916: Add BMS and charger
+Message-ID: <ZTq7XGz4Ux8lYQho@gerhold.net>
+References: <20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru>
+ <20231023-pm8916-dtsi-bms-lbc-v2-2-343e3dbf423e@trvn.ru>
+ <3dff444b-c439-4c40-9d21-1e390f449840@linaro.org>
+ <b9c7f8662e4c02a4f9f275d27469f3be@trvn.ru>
+ <f3c215a3-579a-4b4f-92bf-092c91234180@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <f3c215a3-579a-4b4f-92bf-092c91234180@linaro.org>
 
-pico is also known as Acer Chromebook Spin 311.
+On Thu, Oct 26, 2023 at 08:54:00PM +0200, Konrad Dybcio wrote:
+> On 10/24/23 11:29, Nikita Travkin wrote:
+> > Konrad Dybcio писал(а) 24.10.2023 13:34:
+> > > On 10/23/23 08:20, Nikita Travkin wrote:
+> > > > pm8916 contains some hardware blocks for battery powered devices:
+> > > > 
+> > > > - VM-BMS: Battery voltage monitoring block.
+> > > > - LBC: Linear battery charger.
+> > > > 
+> > > > Add them to the pmic dtsi so the devices that make use of those blocks
+> > > > can enable them.
+> > > > 
+> > > > Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> > > > ---
+> > > >    arch/arm64/boot/dts/qcom/pm8916.dtsi | 48 ++++++++++++++++++++++++++++++++++++
+> > > >    1 file changed, 48 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+> > > > index f4de86787743..4b2e8fb47d2d 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+> > > > @@ -41,6 +41,35 @@ watchdog {
+> > > >    			};
+> > > >    		};
+> > > >    +		pm8916_charger: charger@1000 {
+> > > > +			compatible = "qcom,pm8916-lbc";
+> > > > +			reg = <0x1000>, <0x1200>, <0x1300>, <0x1600>;
+> > > > +			reg-names = "chgr", "bat_if", "usb", "misc";
+> > > > +
+> > > > +			interrupts = <0x0 0x10 0 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x10 5 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x10 6 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x10 7 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x12 0 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x12 1 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x13 0 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x13 1 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x13 2 IRQ_TYPE_EDGE_BOTH>,
+> > > > +				     <0x0 0x13 4 IRQ_TYPE_EDGE_BOTH>;
+> > > > +			interrupt-names = "vbat_det",
+> > > > +					  "fast_chg",
+> > > > +					  "chg_fail",
+> > > > +					  "chg_done",
+> > > > +					  "bat_pres",
+> > > > +					  "temp_ok",
+> > > > +					  "coarse_det",
+> > > > +					  "usb_vbus",
+> > > So, both the charger and the USBIN driver use the same irq? :/
+> > > 
+> > 
+> > AFAIU the usbin extcon driver pretty much just tracks the state
+> > of the IRQ to report extcon. It happens to assume the same part
+> > of the pmic though, yes, which also means there will be no user
+> > that would enable both charger and vbus extcon, since charger
+> > driver provides this functionality as well.
+> So, should USBIN be removed from PM8916 dt since it's essentially
+> a part of the charger block?
+> 
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
- arch/arm64/boot/dts/mediatek/Makefile         |   2 +
- .../mediatek/mt8183-kukui-jacuzzi-pico.dts    |  36 ++++++
- .../mediatek/mt8183-kukui-jacuzzi-pico6.dts   | 110 ++++++++++++++++++
- 3 files changed, 148 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+The "USB_IN" pad of the PM8916 seems to be connected on pretty much all
+devices, even if they are using external chargers and the charging
+functionality of PM8916 is completely disabled. For those devices, the
+&pm8916_usbin device provides a convenient way to detect the USB state,
+even without a working charger driver.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 1b85a8c12850..ed174dde97e1 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -34,6 +34,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kappa.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kenzo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-makomo-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-makomo-sku1.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-pico.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-pico6.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
-new file mode 100644
-index 000000000000..e230323b3a54
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8183-kukui-jacuzzi.dtsi"
-+#include "mt8183-kukui-audio-ts3a227e-max98357a.dtsi"
-+
-+/ {
-+	model = "Google pico board";
-+	chassis-type = "convertible";
-+	compatible = "google,pico-sku1", "google,pico", "mediatek,mt8183";
-+};
-+
-+&i2c_tunnel {
-+	google,remote-bus = <0>;
-+};
-+
-+&i2c2 {
-+	i2c-scl-internal-delay-ns = <25000>;
-+
-+	trackpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&trackpad_pins>;
-+
-+		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
-+
-+		wakeup-source;
-+	};
-+};
-+
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
-new file mode 100644
-index 000000000000..a2e74b829320
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
-@@ -0,0 +1,110 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2023 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8183-kukui-jacuzzi.dtsi"
-+#include "mt8183-kukui-audio-ts3a227e-max98357a.dtsi"
-+
-+/ {
-+	model = "Google pico6 board";
-+	chassis-type = "convertible";
-+	compatible = "google,pico-sku2", "google,pico", "mediatek,mt8183";
-+
-+	bt_wakeup: bt-wakeup {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_pins_wakeup>;
-+
-+		wobt {
-+			label = "Wake on BT";
-+			gpios = <&pio 42 GPIO_ACTIVE_HIGH>;
-+			linux,code = <KEY_WAKEUP>;
-+			wakeup-source;
-+		};
-+	};
-+};
-+
-+&i2c_tunnel {
-+	google,remote-bus = <0>;
-+};
-+
-+&i2c2 {
-+	i2c-scl-internal-delay-ns = <25000>;
-+
-+	trackpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&trackpad_pins>;
-+
-+		interrupts-extended = <&pio 7 IRQ_TYPE_LEVEL_LOW>;
-+
-+		wakeup-source;
-+	};
-+};
-+
-+&wifi_wakeup {
-+	wowlan {
-+		gpios = <&pio 113 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&wifi_pwrseq {
-+	post-power-on-delay-ms = <50>;
-+
-+	/* Toggle WIFI_ENABLE to reset the chip. */
-+	reset-gpios = <&pio 8 GPIO_ACTIVE_LOW>;
-+};
-+
-+&wifi_pins_pwrseq {
-+	pins-wifi-enable {
-+		pinmux = <PINMUX_GPIO8__FUNC_GPIO8>;
-+	};
-+};
-+
-+&mmc1_pins_default {
-+	pins-cmd-dat {
-+		drive-strength = <MTK_DRIVE_6mA>;
-+	};
-+	pins-clk {
-+		drive-strength = <MTK_DRIVE_6mA>;
-+	};
-+};
-+
-+&mmc1_pins_uhs {
-+	pins-clk {
-+		drive-strength = <MTK_DRIVE_6mA>;
-+	};
-+};
-+
-+&mmc1 {
-+	bt_reset: bt-reset {
-+		compatible = "mediatek,mt7921s-bluetooth";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_pins_reset>;
-+		reset-gpios = <&pio 120 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&pio {
-+	bt_pins_wakeup: bt-pins-wakeup {
-+		piins-bt-wakeup {
-+			pinmux = <PINMUX_GPIO42__FUNC_GPIO42>;
-+			input-enable;
-+		};
-+	};
-+
-+	bt_pins_reset: bt-pins-reset {
-+		pins-bt-reset {
-+			pinmux = <PINMUX_GPIO120__FUNC_GPIO120>;
-+			output-high;
-+		};
-+	};
-+};
-+
-+/delete-node/ &bluetooth;
-+/delete-node/ &bt_pins;
--- 
-2.42.0.820.g83a721a137-goog
+While we could modify the PM8916 charger driver and DT node to have some
+special mode where charging and battery monitoring is completely
+disabled and only the USBIN extcon is provided, I'm not sure if that
+would provide a significant advantage compared to just keeping the
+simple &pm8916_usbin node with the existing driver.
 
+Thanks,
+Stephan
 
