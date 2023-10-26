@@ -1,155 +1,96 @@
-Return-Path: <devicetree+bounces-12260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C28627D8916
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:42:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CAC47D8920
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:46:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2EDC1C20EE2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:42:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1019B20F2D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 19:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E0F3B7BB;
-	Thu, 26 Oct 2023 19:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061253C073;
+	Thu, 26 Oct 2023 19:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="k4r0SdBP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WFz+R3+i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFAA17E3
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:42:18 +0000 (UTC)
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2089.outbound.protection.outlook.com [40.107.100.89])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA291BC;
-	Thu, 26 Oct 2023 12:42:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YAqzUfhOwGbLnfhCPF1oVoJGNCSB2bzAmAf892MuR9mrKHVrbSH96r0hafgBymiajdN3GbaZ7+fZpGsnghQ+uCu/Tmk2AizK+iplq1t2fUjNK5zD7CPGZMXtPMFpy7UJjRNR2ifIxgayeKxcIDiNhX5wiKHOhEngjuFLa77zck2lg9yeA1msr48MlW/MSZnq2Zk0od3p9U1mDZC9+DfjFvaU2hLqktFKjZFftEeNEJwglanqp/pqCxdSsAY67URrZEIKAxL82yUBn08NWZAiNZibJfm9+dVDpVX+H+5qEmqZQ9+IemZW8LFyCyR24lTZVwC1hCscvNOt2JFHxUIPEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SZOvWaa4e6CGB762KJTySSBrF8rVKvUyILfvSBU4Mgw=;
- b=fROqw5hmOXhk4Vu1wdzU3my3EsXQ7TERSUZa3xniEt2y/yMJS5WPxrewrRwEMn27zQkdBrqDgwObsNXlZ9bs5wbWleFRo8vMzvs1ndWEgDzAUiVUsJiBf0UDkiu+p4BR8x3IAS6KvZ6ckZ4adSaesgnpE+qwTJoKiLXlr1HhC6BCJmuwpbGB2wqBHS2nV7jd7LVnVx5fNdtibgGReLOI783EJ8xkAm8xbU35VrJgZf967JLRFPaayvuMfqWjqbMRwUx2+qtB3fymOKeWzr+iu5Bb+7yl0HSZqnC6x40AHwGt9Ljsb0ISFo9DVuRf4jttmvwT6A+MUmA3UkOKy1W8zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SZOvWaa4e6CGB762KJTySSBrF8rVKvUyILfvSBU4Mgw=;
- b=k4r0SdBP/uy+oBwiPPJMyg3NVNEyBs1VgZ1RtTfiyOHa1ScY42Ryzoi2eamktdf0594RwBhmotNg721T9/9CxwtGjDfcNA6UBixMus2eiW28bnloH6wt9TtdIAuYiNgp4pM5w1xsyhgjHpTzP+DmyCqC/nLdJ1+U+2G0JxM39fk=
-Received: from SN7PR04CA0219.namprd04.prod.outlook.com (2603:10b6:806:127::14)
- by SA1PR12MB8643.namprd12.prod.outlook.com (2603:10b6:806:387::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.31; Thu, 26 Oct
- 2023 19:42:13 +0000
-Received: from SA2PEPF000015C8.namprd03.prod.outlook.com
- (2603:10b6:806:127:cafe::d1) by SN7PR04CA0219.outlook.office365.com
- (2603:10b6:806:127::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.23 via Frontend
- Transport; Thu, 26 Oct 2023 19:42:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SA2PEPF000015C8.mail.protection.outlook.com (10.167.241.198) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6933.15 via Frontend Transport; Thu, 26 Oct 2023 19:42:13 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Thu, 26 Oct
- 2023 14:42:12 -0500
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32 via Frontend
- Transport; Thu, 26 Oct 2023 14:42:09 -0500
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>,
-	<sebastian.reichel@collabora.com>, <broonie@kernel.org>,
-	<jassisinghbrar@gmail.com>, <jay.buddhabhatti@xilinx.com>,
-	<naman.trivedimanojbhai@amd.com>, <nava.kishore.manne@amd.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [PATCH] dt-bindings: firmware: versal: add versal-net compatible string
-Date: Fri, 27 Oct 2023 01:12:08 +0530
-Message-ID: <1698349328-2321184-1-git-send-email-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.1.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BBC3B786
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 19:46:39 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA0A1B1
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:46:37 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507a5f2193bso1463539e87.1
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698349596; x=1698954396; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jowQ11rUSpjVGyVsG2uzn3kgeh+2aiSTzmMO92O6Apw=;
+        b=WFz+R3+i2HwpbhhtQ5TGU2kyH2vrdkoAU5KjG6FBfp3eJQ7upmS20eHynyuUa6p4wN
+         4RGoqHYHhGZ5IdLEdG++E7uC7GEXnKNbnNkE436Zuq/CZHRqJhXAhfPLpTDPieguiVSW
+         BWsUM2XnPMvwzyOFuCOlVLyUIND8TJlgH1mNygl2CtnhMkHpbVH5oNWU1qz9gk1zyPtE
+         WwWo9YYQbdiVoSmJtnIdJcN3tfFD5sQpEeZtETPgCPTmJB4sPtBCyAGdyM7tHDhNvL6x
+         5fnTWFnXPz2mw7T4TTHAbZ0Y0+PGVT4o3dc4Z65d4ScmiKgN6Jcz8iosxgc0fSP4ngnh
+         4bTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698349596; x=1698954396;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jowQ11rUSpjVGyVsG2uzn3kgeh+2aiSTzmMO92O6Apw=;
+        b=w9Y6WwX33gPk+47sK/0T5D3NYzKPSTPNACDtIFEvmUsagXA06Zwog5oMbsG+YTY9/H
+         68fy5oxW+7vWtYxPaM1LMQqdDcCoFvtEMj5ZQIqapCo1GZ471BUoXN07dErFi9LzLbMO
+         ev97re/7LxaWsL+zn5RMLip8CufkvAPUk4JW1jPRFE1ev0gNw41SpIkslkC2+xJsUwFB
+         HpkNs1Oi1vXxHZrSFN2ZaP6cGaUy1vgPycY7R4NjsKF+WiEnkmC6o1r5j6pgswUJF3LL
+         zWTugSKYZ2OzUGYLyT+AEmrDGPiPhv0Caysgbwdlv8Hx4PhQxAsYefga8mG9I9TjZsb+
+         AirA==
+X-Gm-Message-State: AOJu0Yxl9Ncv03Vv38awZ1YrmiZ0PLcDE65UzK/43ZysT0btNPkDZSxS
+	o7GaoYGRm9NefV9+zE6xomI+YA==
+X-Google-Smtp-Source: AGHT+IEAXIVB5mbCR7PclkPeND1uvH3i5XJyIYmeyAfsCHXbf4KIgbyJXZJAdtdgFvw2zUI9zMphKg==
+X-Received: by 2002:ac2:5ecd:0:b0:507:96fd:e4a9 with SMTP id d13-20020ac25ecd000000b0050796fde4a9mr220274lfq.29.1698349596178;
+        Thu, 26 Oct 2023 12:46:36 -0700 (PDT)
+Received: from [172.30.204.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id s16-20020a056512315000b00507b1b8cef8sm3118728lfi.253.2023.10.26.12.46.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 12:46:35 -0700 (PDT)
+Message-ID: <aeaabcc9-0a7b-4325-851a-09383160ad0d@linaro.org>
+Date: Thu, 26 Oct 2023 21:46:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015C8:EE_|SA1PR12MB8643:EE_
-X-MS-Office365-Filtering-Correlation-Id: efc0999c-5a0a-4069-962f-08dbd65ba6e1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3laa80rqfEIKKSxVsCDO7qDKiScls7YKhX7BHqD0hTM9xvB6NnJ72jeiNeZMJd5d7yb45McMB40hj/Xt/lK77oDZBZdRvv5RvpIC55CUKmboocTvnoTDbjGort9cPRieeE14kxt16Xgqo05sxu6AbAyp4uBmawu4AVgomW2fObMeA8kcQ40lAKRwBVqdzRZHmr1IGSqk93AH/I2mMEq+R/lwSDhlTN+hJlVcP0Y4eqzGRq0ppvk7WYsflA6+NQcmubC50uSA8F2Va7ovaIdSO9wzg15P8ZeQ5QVcOsTkiZM9Fv23L9dDO+xkFnaCIrln2D7RuSRTp8EQoub6L+MMwpvwgSmBMtMd77Bge9tCVK9sw8Yp2Z2Y4jAK4s4jdfjxFl78H12LF6HD3C6X6pdwDdsayJWLfcZP8AnkBoTIMw4pLkKnY7wlvSNL9sLqxj+JLdk0K6qGuG7RM5o1/B86s56U+z2gmsbVvpnVa1u1M60a4iTyiSRsVb0o7DoB4mgS9FCqVo2Iz2cWuJfpN9VMkTPP/IJFhN061fiuZJmaqCtA/zksDtxzBVB0G0L3xx2034Tqk1DrIlsj4OAgPD4dPvSzGbyEZjKCC7BbWeD/XfLNI1fjBc7F00W+0jUySBrZ68+ufD3/3GYwZ3O/+LoVPLGPcL531L0vlgTait00UNi2MeIeaVeUCD3oAAHgnXimxc70u669CgM7ddHMadf8veVNUdZQcdlmBuGaFy1XyZPk4xCF2n3tXLbRu6Di5TfbWPqmP6It8DmSxjHwX1gKFmkkWcKgWT5EgBGMt/d/Y+xit939CFEUhLeTzn35BcYPW1xGPvaSGxFlmpPb730jug==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(39860400002)(376002)(346002)(230922051799003)(1800799009)(451199024)(186009)(82310400011)(64100799003)(40470700004)(46966006)(36840700001)(36860700001)(6636002)(478600001)(316002)(54906003)(70586007)(5660300002)(70206006)(4326008)(921008)(966005)(8936002)(8676002)(110136005)(40460700003)(41300700001)(2906002)(26005)(7416002)(40480700001)(83380400001)(86362001)(426003)(2616005)(81166007)(336012)(82740400003)(356005)(36756003)(47076005)(2101003)(36900700001)(83996005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 19:42:13.2602
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: efc0999c-5a0a-4069-962f-08dbd65ba6e1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF000015C8.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8643
-X-Spam-Level: *
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: Add USB3 and PHY support on
+ SDX75
+Content-Language: en-US
+To: Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, dmitry.baryshkov@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1696327472-21776-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1696327472-21776-3-git-send-email-quic_rohiagar@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <1696327472-21776-3-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
 
-Add dt-binding documentation for Versal NET platforms.
-Versal Net is a new AMD/Xilinx SoC.
 
-The SoC and its architecture is based on the Versal ACAP device.
-The Versal Net device includes more security features in the
-platform management controller (PMC) and increases the number of
-CPUs in the application processing unit (APU) and the real-time
-processing unit (RPU).
+On 10/3/23 12:04, Rohit Agarwal wrote:
+> Add devicetree nodes for enabling USB3 controller, Qcom QMP PHY and
+> HS PHY on SDX75.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
-This usecase also looks similar to versal-net clock upstream compatible
-discussion[1], so inline with mainline suggestion i have modified
-firmware binding. Also firmware driver can be modified later
-on when there is a real SoC specific compatible string need.
-
-[1]: https://lore.kernel.org/all/20230620110137.5701-1-shubhrajyoti.datta@amd.com
----
- .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml      | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-index 822864488dcb..c5483d80ce3c 100644
---- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-+++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-@@ -26,6 +26,12 @@ properties:
-       - description: For implementations complying for Versal.
-         const: xlnx,versal-firmware
- 
-+      - description: For implementations complying for Versal NET.
-+        items:
-+          - enum:
-+              - xlnx,versal-net-firmware
-+          - const: xlnx,versal-firmware
-+
-   method:
-     description: |
-                  The method of calling the PM-API firmware layer.
--- 
-2.34.1
-
+Konrad
 
