@@ -1,187 +1,97 @@
-Return-Path: <devicetree+bounces-12123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0057D808B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 12:19:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939007D809C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 12:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91845B2127D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:19:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C39571C20E7F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB2A2D045;
-	Thu, 26 Oct 2023 10:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229F22D04C;
+	Thu, 26 Oct 2023 10:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jqdC2gdQ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Pkwrrz23"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CC4B2D043
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 10:19:37 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2493FDC;
-	Thu, 26 Oct 2023 03:19:36 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9a6190af24aso119051766b.0;
-        Thu, 26 Oct 2023 03:19:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698315574; x=1698920374; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=R6xRovC9oM8uLuvwYTTHSjPfu/zUQK1EzagTxS/ZS6I=;
-        b=jqdC2gdQJ1hQzKmF7j1iUolY8F7BIEbVqFSo/M8VO//FAk15m0e9yKcer7rMKIpA4J
-         aox8XnW25dzP0h7jvRpbIwSbLGRHB93iY5lJHuuKZu0qLDOmFHgcOYevsfrIY5BLADmN
-         APJyAdTN6EYKvDwFLO0YciDnn/FcBLJN8c7jWDQjHsGu4F2YKl+jpF8WsbwTgGt7m0+I
-         BIPwGd/boaU4TVAWSStJdAsUX4ZLfsa1AuzHpNvKulBRwr/iqKdFCg4EMRck8358A22f
-         Ju/Df4pqvm1hOrQuUAEtqIUqX60OXZJvCCGpCxLv4QPei6vCWLrr9SNZIjhNJJfGtvxp
-         9B5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698315574; x=1698920374;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R6xRovC9oM8uLuvwYTTHSjPfu/zUQK1EzagTxS/ZS6I=;
-        b=jZBTuG2jdMP5yXGNSJkzdJf1iZvX7oCMPQkEI3qGRx/zChuiFXriy1kD7mnhiggUP4
-         rK3TJetAmxyLyQxV6w1pf8/MZf6IG9tEvfeLnHPow2is8t93sijS8Rn0/P5WqZFPoJB9
-         Um5+kl/ZE/OVRqZkfZQPAAu08ZpGxT328hA6GxG9GlcvxgYsePtXj4/ZmKV7hjI5xPUu
-         2v99ujkDNOys2p3pkQXtOV+keuIohwO5ThDd9O9B5gEkGaJ75IVyjungIoGzz/YPlqiE
-         TskSAbV10q5lA42g3A6PaLyWLLu30a7sHCM0gNuaCESMviOR8Suti4tQFcEC92KdE6Ck
-         vdIA==
-X-Gm-Message-State: AOJu0YxHV1BTGfdgPzkQBbTvwvt1p0UAxgahma2a8A24j7fUKI+ykpy7
-	I6Cp8OZmdyCM2oM9fXDS0EY=
-X-Google-Smtp-Source: AGHT+IFONz4Km/NGUBE/juLsEkByLkDuNJBDP7znncsLKTroN2coU2vhl00r8C/0cgDi630dR+GuEg==
-X-Received: by 2002:a17:907:608b:b0:9b2:9e44:222e with SMTP id ht11-20020a170907608b00b009b29e44222emr17653637ejc.19.1698315574319;
-        Thu, 26 Oct 2023 03:19:34 -0700 (PDT)
-Received: from fedora.. (cpezg-94-253-130-190-cbl.xnet.hr. [94.253.130.190])
-        by smtp.googlemail.com with ESMTPSA id jy20-20020a170907763400b009b97d9ae329sm11457552ejc.198.2023.10.26.03.19.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 03:19:33 -0700 (PDT)
-From: Robert Marko <robimarko@gmail.com>
-To: andersson@kernel.org,
-	agross@kernel.org,
-	konrad.dybcio@linaro.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	quic_tdas@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Robert Marko <robimarko@gmail.com>
-Subject: [PATCH] dt-bindings: clock: qcom,gcc-ipq6018: split to separate schema
-Date: Thu, 26 Oct 2023 12:18:37 +0200
-Message-ID: <20231026101931.695497-1-robimarko@gmail.com>
-X-Mailer: git-send-email 2.41.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291D82D02B;
+	Thu, 26 Oct 2023 10:21:50 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBAF9183;
+	Thu, 26 Oct 2023 03:21:48 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7965AE000C;
+	Thu, 26 Oct 2023 10:21:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698315706;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=oGcZNXbWjy+iksWtqqJpAf6k6WVn04EIPNKOTg5UZUc=;
+	b=Pkwrrz23POBOjesBMT1sSYR9fFmwNbamTDO7MR+WlTut6bzE/Pp4qMKH/N1T+p5R5hYwU4
+	JgMPNXnd3Kw9EhTqcqd3lm0uG1EWFt+GzsHEwiN7Rf/aHw8/ijSToYg2y/hh3eOZZenaw0
+	sa50XlY4/6Bsvn2rjv1/JNyXZw7/kinL92rLyD+V6xOMUqfD0LypvdU7u2ZtqPSl+ok9Fs
+	+9mqCv5PY348oo9fufW6ySoa8hUtIDxUg0wZM/Xx/yRwNlk0uk9NXDdvPirJ6ExPK86Byf
+	DS8Atf9WpyhFJGZlK/xc47v1PfGIvGanZzOUobEYVxbjaLRnDzOUSoCI/DsUAg==
+Date: Thu, 26 Oct 2023 12:21:46 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc: Alessandro Zummo <a.zummo@towertech.it>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: nxp,pcf8563: add hiz-output
+ property
+Message-ID: <202310261021467b56f131@mail.local>
+References: <20231024-topic-pcf85363_hiz_output-v1-0-50908aff0e52@wolfvision.net>
+ <20231024-topic-pcf85363_hiz_output-v1-2-50908aff0e52@wolfvision.net>
+ <20231025222327c0b5d460@mail.local>
+ <2f17c031-30f6-4242-b2a1-1628402b3091@wolfvision.net>
+ <1c4a6185-fe09-45d1-900a-10abf48e3fc9@wolfvision.net>
+ <20231026005008b8255799@mail.local>
+ <8fec6c89-548b-43b5-8361-869663a58573@wolfvision.net>
+ <202310260956166bdcb845@mail.local>
+ <d3dcb034-f589-41bb-8a67-1de8ce51db8c@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d3dcb034-f589-41bb-8a67-1de8ce51db8c@wolfvision.net>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-The Qualcomm IPQ6018 GCC clock controller has clock inputs, thus existing
-gcc-other.yaml was not describing it fully so move it to a separate schema.
+On 26/10/2023 12:13:23+0200, Javier Carrasco wrote:
+> I want to model the INTA pin as a clock source that only should run in
+> sleep mode because its clock is only used in that mode. Therefore I want
+> the pin to stay in hi-Z during normal operation.
 
-Fully document the allowed and required XO and sleep clock inputs, as well
-as update the provided example.
+Can you disclose what is the user of the clock, do you have a driver for
+this device?
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- .../bindings/clock/qcom,gcc-ipq6018.yaml      | 57 +++++++++++++++++++
- .../bindings/clock/qcom,gcc-other.yaml        |  3 -
- 2 files changed, 57 insertions(+), 3 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-ipq6018.yaml
+> 
+> I do not want to get any interrupts from the INTA pin and the battery
+> mode indication is not relevant for me either. I do not know the CCF
+> mechanism in other RTCs though, but I think that the hi-Z mode
+> accomplishes exactly what I described.The assumption about the battery
+> mode is therefore beyond my knowledge, but my first reaction is that we
+> already have the hi-Z for that.
+> 
+> So in the end I just need a mechanism to configure INTA as hi-Z, which
+> the driver still does not support. There is another application where
+> the clock output is not required even though it is physically connected,
+> so hi-Z is again an interesting mode and the battery mode would be
+> available if it ever becomes relevant for anyone.
+> 
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-ipq6018.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq6018.yaml
-new file mode 100644
-index 0000000000000..af5d883cfdc86
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq6018.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,gcc-ipq6018.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Global Clock & Reset Controller on IPQ6018
-+
-+maintainers:
-+  - Stephen Boyd <sboyd@kernel.org>
-+  - Taniya Das <quic_tdas@quicinc.com>
-+  - Robert Marko <robimarko@gmail.com>
-+
-+description: |
-+  Qualcomm global clock control module provides the clocks, resets and power
-+  domains on IPQ6018.
-+
-+  See also::
-+    include/dt-bindings/clock/qcom,gcc-ipq6018.h
-+    include/dt-bindings/reset/qcom,gcc-ipq6018.h
-+
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+
-+properties:
-+  compatible:
-+    const: qcom,gcc-ipq6018
-+
-+  clocks:
-+    items:
-+      - description: board XO clock
-+      - description: sleep clock
-+
-+  clock-names:
-+    items:
-+      - const: xo
-+      - const: sleep_clk
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@1800000 {
-+      compatible = "qcom,gcc-ipq6018";
-+      reg = <0x01800000 0x80000>;
-+      clocks = <&xo>, <&sleep_clk>;
-+      clock-names = "xo", "sleep_clk";
-+      #clock-cells = <1>;
-+      #power-domain-cells = <1>;
-+      #reset-cells = <1>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-index 559fc21435c8d..7d05f0f63cef2 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-@@ -15,8 +15,6 @@ description: |
-   domains.
- 
-   See also::
--    include/dt-bindings/clock/qcom,gcc-ipq6018.h
--    include/dt-bindings/reset/qcom,gcc-ipq6018.h
-     include/dt-bindings/clock/qcom,gcc-msm8953.h
-     include/dt-bindings/clock/qcom,gcc-mdm9607.h
- 
-@@ -26,7 +24,6 @@ allOf:
- properties:
-   compatible:
-     enum:
--      - qcom,gcc-ipq6018
-       - qcom,gcc-mdm9607
- 
- required:
 -- 
-2.41.0
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
