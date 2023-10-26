@@ -1,83 +1,133 @@
-Return-Path: <devicetree+bounces-12090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 746FB7D7E25
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:13:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF497D7E37
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:15:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 091C1B211A5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:13:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AB131C20E9C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C131864F;
-	Thu, 26 Oct 2023 08:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C4018B02;
+	Thu, 26 Oct 2023 08:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Nv1dpivh"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="X0z3UkgQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F91256C
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 08:13:39 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D290B8;
-	Thu, 26 Oct 2023 01:13:38 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 0CCB06607331;
-	Thu, 26 Oct 2023 09:13:36 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698308016;
-	bh=b4sv+Fx9di5WoipS7karC4btrWmed47jb0eGgVLSPHE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Nv1dpivhq9t0r8s27I1+mf0LG047q5JakBxxDuYEGbpJY0xlOVusLF3pMoU7xvZkl
-	 8V2RbRKwXdve1jUYvq1AzNDr14d+5IV7IbjTyVFyKRE3yxE4vOxq9xiGGLuQBffjZE
-	 0Zo/cWs+114VOfhIVrIHCsCz5T0VybZuCRza3fz0Vkg7MlHCfVI4o3XXGFLFguKhCb
-	 jbdhSaBEvPOLMyonGaDRQUzJhyh8mhRNnACTA/ygELPzJltPuAb+G8BX3rQFGGYASE
-	 01WG/GZKXMVlOQPHT1RYShYDkULFkQZwLhdorvqgd5gpZs8jRK2QOOqJ03S/pYmDu1
-	 BCJd3Ox0193pA==
-Message-ID: <5f2f0bad-5a9f-4ae7-86ae-45bbe12ca9b4@collabora.com>
-Date: Thu, 26 Oct 2023 10:13:33 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC172256C;
+	Thu, 26 Oct 2023 08:15:30 +0000 (UTC)
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2061.outbound.protection.outlook.com [40.107.117.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A266CE;
+	Thu, 26 Oct 2023 01:15:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aBfokeLiZoHOHlwnx3Ig/qtT2QpjyunjByTglqQB0gju0D8XReiJmMINt62JN5O0z28/jvCNt+f7LeaMCg6gJgoRPGmrQ6PZYxZqm3dDnZ+lE8ScF2NMyeJcUlTIcMqTolwX3TtH433ALQ3cn2IzK167seTNFwyqNlnDBjIulFy660PjYWQWiAqe8El9PTDLweJXR8yWHyEq4g+j1bsddWtf6hODDgIbHmyGvqvbsVtEscpQbE/TSk7meh4E7+v5GGHufKjbXd7m7/b+MYRh+yqXuN8wnQXn36USUWH19OCEDtKt3ToD08U1wExWXt8xbtWefrd8mSlJhfX/G0+Gvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=41FOP7tGP3V4A+/Xspp259P7cwuIEzHK2Yug8mkoLow=;
+ b=UfkrfqJYhR4E5b07W4i8NNdBVBNI9TIN1sdie568mD6CZbrAi8OvePrGCQzzmyWZzN140FDv1hCYZCvtJqs53q1bYDE0yoBDcDmuS01SLwaCUL5GjpzOxys6tIFgm3jleWQUsda9YBVVE6fnhpJW4fowtf2pt4LbIJyT+buJ1VZlnCHbzvv1EekakxZHa92/MnQjc81vnc0JyDIwim0roPN643bMbRfnBdPJRHQrZT04SB9OQ6p9Fewz1hTvYw1WcYgacBzwCq3u3oKRKtnsaPF8yA2bXJxzUPfqhnLfQR+pvYyOU6YHSzEN5cRjO4ZWPqvp5ZlnLEMGdwNytGUNQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=41FOP7tGP3V4A+/Xspp259P7cwuIEzHK2Yug8mkoLow=;
+ b=X0z3UkgQk5aDHVvNonWgSTStnDOdb30qDXluTFoLV+q4birwFw9LAlicj/KWdckufaG1V2ml6Vf1PZtXvksTZ57A1u7URcvRNeALZRVgxUQ96rvjHkEUrO/vqWvsUwFLHNB3utWOG4yAR37WR9/tw8tQpRUJT+o7PC71ZjX0eYy+NXt1BKrWfrnqQJkrR6AxvMw2msUpSAQREonqnzWCmfRrWTeXG4wTNfCELl3PWS1bNt7M507U7JawYIRVbVwLJwT94jcSIZZRFUwT2/v5osbhG9izs9DXNQvQsJ51YKH3dnPm740hbpSQF+RLdmMXfjNDm3eSmo4clVM9LyRWUA==
+Received: from KL1PR0401CA0030.apcprd04.prod.outlook.com (2603:1096:820:e::17)
+ by SEZPR04MB6355.apcprd04.prod.outlook.com (2603:1096:101:cb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19; Thu, 26 Oct
+ 2023 08:15:20 +0000
+Received: from HK2PEPF00006FB0.apcprd02.prod.outlook.com
+ (2603:1096:820:e:cafe::d6) by KL1PR0401CA0030.outlook.office365.com
+ (2603:1096:820:e::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.34 via Frontend
+ Transport; Thu, 26 Oct 2023 08:15:19 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=Wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=Wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of Wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FB0.mail.protection.outlook.com (10.167.8.6) with Microsoft SMTP
+ Server id 15.20.6838.22 via Frontend Transport; Thu, 26 Oct 2023 08:15:19
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-i2c@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v2 0/2] LTC4286 and LTC4287 driver support
+Date: Thu, 26 Oct 2023 16:15:10 +0800
+Message-Id: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] arm64: dts: mt8183: kukui: Fix underscores in node
- names
-Content-Language: en-US
-To: Hsin-Yi Wang <hsinyi@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20231025215517.1388735-1-hsinyi@chromium.org>
- <20231025215517.1388735-2-hsinyi@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231025215517.1388735-2-hsinyi@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB0:EE_|SEZPR04MB6355:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 8de9bb05-959c-4e6d-2250-08dbd5fbb16a
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	d2L1iVrANtie0MzbUkzvFKTA26EfwqtcYANAaSX5Fp9eTethzuDReTXKNvZL4Nie7L6XmkuOquwJ4tNRVegRjH3NAxSnPWXKAvMHymvXn6gEE3xi+/YYjyPljDwuodwP5hNrU3reVeD+D0iEgEk2B+fg8mz1vNMa1Ctal6EvUj3O/3NxEifuSswQCBHTGosE2q56rUm7ssLI2ysYly3Y4sXzcV3n7lsR+y7zdDHlJ83pY/ihRk7gbDfwMeW5wk3XUmA2NSB4aLdr6R0MJr2l8xgzP+mSoa4z4t+vy0DRtvdpKexZv5nY9bhfo3wKT41c/UNU2gIQAeh9oasShBh2qCsGhmZWNXvDx79FaoEprYl5l2o+7i/CxNFVxczwhdGhw6LKjnOtZe5BjERuddY5d08Ib/5Ez8zJtfUvIkEuZMFY6Z3UZ339WH4/S74bpq+tY6dcPtxxvRszucOELvWvO8qKbkWOaSbAGEbfNRzn/rbeTjUpprlw/jprh89kXuZTK8fVc0kjFEjiSuHI0EmiIT/ByR0sxiXyuvwNMvawHLR/VO25/UPE5dgui0rRkxB/neFTGQmL4aCifFDRLtYcCQITXQnoGbVma+xIFyF4ugNaQEW1JA2ztIJDPMEuZuTWKcXRdmjixBNRzgdW54Pz1jNL1NRbCa4/ZhtduF9EXvZzz4W220Q+sHjtoT2PlP0jYHfrlT4SCmw1MH0Qkr7Anw==
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(6069001)(4636009)(39860400002)(376002)(136003)(346002)(396003)(186009)(1800799009)(451199024)(64100799003)(82310400011)(46966006)(36840700001)(40480700001)(6506007)(478600001)(54906003)(2616005)(70586007)(70206006)(956004)(6512007)(1076003)(6666004)(316002)(36756003)(6916009)(86362001)(9316004)(6486002)(47076005)(36860700001)(336012)(81166007)(82740400003)(26005)(356005)(8676002)(8936002)(4326008)(36736006)(7416002)(5660300002)(2906002)(4744005)(41300700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 08:15:19.0431
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8de9bb05-959c-4e6d-2250-08dbd5fbb16a
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FB0.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR04MB6355
 
-Il 25/10/23 23:48, Hsin-Yi Wang ha scritto:
-> Replace underscores with hyphens in pinctrl node names both for consistency
-> and to adhere to the bindings.
-> 
-> Fixes: cd894e274b74 ("arm64: dts: mt8183: Add krane-sku176 board")
-> Fixes: 1652dbf7363a ("arm64: dts: mt8183: add scp node")
-> Fixes: 27eaf34df364 ("arm64: dts: mt8183: config dsi node")
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+v2 - Add LTC4286 and LTC4287 binding document
+   - Add LTC4286 and LTC4287 driver
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Delphine CC Chiu (2):
+  dt-bindings: hwmon: Add lltc ltc4286 driver bindings
+  hwmon: pmbus: Add ltc4286 driver
 
+ .../bindings/hwmon/lltc,ltc4286.yaml          |  50 ++++++
+ Documentation/hwmon/ltc4286.rst               |  79 +++++++++
+ MAINTAINERS                                   |  10 ++
+ drivers/hwmon/pmbus/Kconfig                   |   9 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/ltc4286.c                 | 160 ++++++++++++++++++
+ 6 files changed, 309 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+ create mode 100644 Documentation/hwmon/ltc4286.rst
+ create mode 100644 drivers/hwmon/pmbus/ltc4286.c
+
+-- 
+2.25.1
 
 
