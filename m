@@ -1,151 +1,227 @@
-Return-Path: <devicetree+bounces-12110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06947D800E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:53:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B81C7D8018
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:56:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BDDD281362
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:53:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 507A7B21262
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC4028E02;
-	Thu, 26 Oct 2023 09:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D93228E3D;
+	Thu, 26 Oct 2023 09:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MeLaPXBk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fno3gG18"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FA827728;
-	Thu, 26 Oct 2023 09:53:45 +0000 (UTC)
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D069E198;
-	Thu, 26 Oct 2023 02:53:43 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-540105dea92so1003465a12.2;
-        Thu, 26 Oct 2023 02:53:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3536EAD29
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 09:55:55 +0000 (UTC)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FF59192
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 02:55:53 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-408002b5b9fso5331425e9.3
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 02:55:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698314022; x=1698918822; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2sKfBNadnTr56Xc/xg3ISbacdEoqQ0HVmsmGJG/4R2A=;
-        b=MeLaPXBkmURCRH2aQt5dYiZFnZTn8kAAciJa1+nZhdaBSw8pRHn1O0PpouF2lkOAmm
-         03VcDEmKFhnL/MCe97P63IGDv+8+Ceqh1gGS+ahCmypRiUb352Anql31eUs90Sllvpp7
-         gqKrAdreKZdog5ncH/6lRcx35FcNEjXBJCRgtQ7cIfQ3U70vupxudz+pXNOZMjgTvolg
-         SELAStw90fAs3ZqgqXZfYypKOQWy44UU9/xOuLOC/Tg64M0E5x6Jp7HZhdY82hL+HFJv
-         h++gdQ2woiSxVmZEljPMeOwqwTrZIifAgeK5cJXy7/lt6GA3+iiKlQ/H9YGmd0cLNSp1
-         0U6w==
+        d=linaro.org; s=google; t=1698314152; x=1698918952; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HzK9VMU7biBwtYpWfbq1vfPfka6gtKA3XTGeKlqZMFE=;
+        b=Fno3gG18vOTZRYljWTZeujrdphCFq6DqvpJtzIaSApJwJeTGXh/HJIvVb3HhjxilJl
+         ES5IS03SGPBVQkxNcScFRr1nRPCVaQkM9IQDAi7ZaKNUgR9ZIMTJX3dKHBk6OU8GxAvb
+         tOiU826I+4rxGcUPoR0TjVyGwVP+5ZK1nxh/5a8288rpt9ECOfd+3QjoAGmZKbqg8sdy
+         39n/vuX3CayW28PzDpQcHv8+ETvtyIKPzL+o6WoGoqU2wBvjQ8jpXUmR59q/zXbvURNC
+         Sfi/8prPZJoa8dFjQHQJ9yWUJP5wLFb34sAhprC+LcjzaTzu6bY0Pi2yjcZX54rZnciw
+         mFjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698314022; x=1698918822;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2sKfBNadnTr56Xc/xg3ISbacdEoqQ0HVmsmGJG/4R2A=;
-        b=wHimgLqYVk2NfXhsomJ6P95utbpbiWKjrx5O9DDDlmKR9N8k8y7ax8/5SgwLFJk4wh
-         ZCPrAkwqmS/YX/CBDSnxUh1h7hXsTKWRs79SZcnUnkSoPkxLlJwCxeukLCt9NIQErutY
-         SH0Y/njjhLkY6wIQ3Wsn5TRW4hqxnH4LXaIQndkJ5bfU9sLxUPm8QG0nZaGZoXYnKw8o
-         2gD33b+MqMYaETFDwsNCtvqEer4sIAMM6oeXMRo0pwR6BjD5IqVK+E/cyLcsccG1M30I
-         heJ52UiGYXBFY8K0IcTNy916TKZvMYVt2lHFZKk7kMLLZB5miIq1w5wwIYytpfYlJ11b
-         zQSw==
-X-Gm-Message-State: AOJu0Yz+jHS/q/TwOIXW0tLylXQ+2Utk+ztIL7xZ4355s0miXgRBLfRs
-	r9lVObgQHDYZjquQQ/zuVKs=
-X-Google-Smtp-Source: AGHT+IG4j7BhGIqb7pQU9bz8m7JoS9pzA5FPWz2L+Tu7Yi1Zr1/NmpbNW3tpJspHBT43ihjJhJubDg==
-X-Received: by 2002:a17:907:789:b0:9b6:5b56:bbe3 with SMTP id xd9-20020a170907078900b009b65b56bbe3mr14024428ejb.72.1698314021897;
-        Thu, 26 Oct 2023 02:53:41 -0700 (PDT)
-Received: from skbuf ([188.26.57.160])
-        by smtp.gmail.com with ESMTPSA id j14-20020a1709064b4e00b009ad778a68c5sm11494190ejv.60.2023.10.26.02.53.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 02:53:41 -0700 (PDT)
-Date: Thu, 26 Oct 2023 12:53:38 +0300
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v8 3/5] net: dsa: microchip: Add error handling
- for ksz_switch_macaddr_get()
-Message-ID: <20231026095338.o6v6wzrjoyci72jk@skbuf>
-References: <20231026051051.2316937-1-o.rempel@pengutronix.de>
- <20231026051051.2316937-4-o.rempel@pengutronix.de>
+        d=1e100.net; s=20230601; t=1698314152; x=1698918952;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HzK9VMU7biBwtYpWfbq1vfPfka6gtKA3XTGeKlqZMFE=;
+        b=qXXS8DootosRTj8Jq/IHsTxUgEUAo2raPNVXtwTGkssoPD+tlnRKLDjzLNuUFrIIBB
+         7ositxnuh8nBNG3AtUX2XrdzypDEhh7uZ70Vrqyd/npD4kWLFgXMQ7b66ExzBYcISt22
+         w+dWV0yOtVa5PQJXZySachbdOR7jtY3htuR9kwy01LJIKB0YwupPob+KcDRKlkb0V938
+         xqnXS7O6Xgtc4pAgkEb5dqEJN/8l2PEoq9kM+j8cJX54EW8/IGwQZ3BUJbrwSWfPIkgm
+         5AT8TrGMF6cxOzAyHUvkojAybOdhAUE3gYZtN5zNjrWI+qHgTLX1T3XiAJXC2TwrSHT6
+         C5rQ==
+X-Gm-Message-State: AOJu0YzRGyrTQlB10J9hrPMH1Zl5KGyzfV6SDZH8T4IJmYfoVva9ep9s
+	ldua1TUwReDki6cVj2oCnqhtHQ==
+X-Google-Smtp-Source: AGHT+IFb0olVf7k+kG9TMpqi8I49DaAUrabsj77Wjiv7YCbMUEoPbXGZ2VvBCXxZiIXUx1mwSdp7Ww==
+X-Received: by 2002:adf:ef48:0:b0:32d:84a3:f3fe with SMTP id c8-20020adfef48000000b0032d84a3f3femr12620181wrp.41.1698314151935;
+        Thu, 26 Oct 2023 02:55:51 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c? ([2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c])
+        by smtp.gmail.com with ESMTPSA id n12-20020adfe78c000000b00326f0ca3566sm13990599wrm.50.2023.10.26.02.55.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 02:55:51 -0700 (PDT)
+Message-ID: <24ee41f5-1eb3-4f46-b198-a3123a64a39c@linaro.org>
+Date: Thu, 26 Oct 2023 11:55:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231026051051.2316937-4-o.rempel@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 7/8] drm/msm: dsi: add support for DSI-PHY on SM8650
+Content-Language: en-US, fr
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Marek <jonathan@marek.ca>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-mdss-v1-0-bb219b8c7a51@linaro.org>
+ <20231025-topic-sm8650-upstream-mdss-v1-7-bb219b8c7a51@linaro.org>
+ <CAA8EJpr+QGBFchG9aXJLxyhbMwMWZF6RjSVOpORkP_KFrV=P1A@mail.gmail.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <CAA8EJpr+QGBFchG9aXJLxyhbMwMWZF6RjSVOpORkP_KFrV=P1A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 26, 2023 at 07:10:49AM +0200, Oleksij Rempel wrote:
-> Enhance the ksz_switch_macaddr_get() function to handle errors that may
-> occur during the call to ksz_write8(). Specifically, this update checks
-> the return value of ksz_write8(), which may fail if regmap ranges
-> validation is not passed and returns the error code.
+On 25/10/2023 10:03, Dmitry Baryshkov wrote:
+> On Wed, 25 Oct 2023 at 10:35, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>
+>> Add DSI PHY support for the SM8650 platform.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c     |  2 ++
+>>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h     |  1 +
+>>   drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c | 27 +++++++++++++++++++++++++++
+>>   3 files changed, 30 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+>> index 05621e5e7d63..7612be6c3618 100644
+>> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+>> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+>> @@ -585,6 +585,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>>            .data = &dsi_phy_5nm_8450_cfgs },
+>>          { .compatible = "qcom,sm8550-dsi-phy-4nm",
+>>            .data = &dsi_phy_4nm_8550_cfgs },
+>> +       { .compatible = "qcom,sm8650-dsi-phy-4nm",
+>> +         .data = &dsi_phy_4nm_8650_cfgs },
+>>   #endif
+>>          {}
+>>   };
+>> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+>> index 8b640d174785..e4275d3ad581 100644
+>> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+>> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+>> @@ -62,6 +62,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_7nm_7280_cfgs;
+>>   extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8350_cfgs;
+>>   extern const struct msm_dsi_phy_cfg dsi_phy_5nm_8450_cfgs;
+>>   extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs;
+>> +extern const struct msm_dsi_phy_cfg dsi_phy_4nm_8650_cfgs;
+>>
+>>   struct msm_dsi_dphy_timing {
+>>          u32 clk_zero;
+>> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>> index 3b1ed02f644d..c66193f2dc0d 100644
+>> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
+>> @@ -1121,6 +1121,10 @@ static const struct regulator_bulk_data dsi_phy_7nm_37750uA_regulators[] = {
+>>          { .supply = "vdds", .init_load_uA = 37550 },
+>>   };
+>>
+>> +static const struct regulator_bulk_data dsi_phy_7nm_98000uA_regulators[] = {
+>> +       { .supply = "vdds", .init_load_uA = 98000 },
+>> +};
+>> +
+>>   static const struct regulator_bulk_data dsi_phy_7nm_97800uA_regulators[] = {
+>>          { .supply = "vdds", .init_load_uA = 97800 },
+>>   };
+>> @@ -1281,3 +1285,26 @@ const struct msm_dsi_phy_cfg dsi_phy_4nm_8550_cfgs = {
+>>          .num_dsi_phy = 2,
+>>          .quirks = DSI_PHY_7NM_QUIRK_V5_2,
+>>   };
+>> +
+>> +const struct msm_dsi_phy_cfg dsi_phy_4nm_8650_cfgs = {
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> ---
+> So, this is the same as sm8550 config, just using 400 uA less? I
+> wonder if it makes sense to go for setting the regulator mode instead
+> of setting the load.
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+I have no idea, we keep changing this but indeed we should instead change
+the regulator mode, it's safer to keep it that way until we figure that out.
 
->  drivers/net/dsa/microchip/ksz_common.c | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
+I'll double check anyway
+
 > 
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-> index 0c3adc389d0b..00be812bef40 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.c
-> +++ b/drivers/net/dsa/microchip/ksz_common.c
-> @@ -3640,7 +3640,7 @@ int ksz_switch_macaddr_get(struct dsa_switch *ds, int port,
->  	struct ksz_switch_macaddr *switch_macaddr;
->  	struct ksz_device *dev = ds->priv;
->  	const u16 *regs = dev->info->regs;
-> -	int i;
-> +	int i, ret;
->  
->  	/* Make sure concurrent MAC address changes are blocked */
->  	ASSERT_RTNL();
-> @@ -3667,10 +3667,20 @@ int ksz_switch_macaddr_get(struct dsa_switch *ds, int port,
->  	dev->switch_macaddr = switch_macaddr;
->  
->  	/* Program the switch MAC address to hardware */
-> -	for (i = 0; i < ETH_ALEN; i++)
-> -		ksz_write8(dev, regs[REG_SW_MAC_ADDR] + i, addr[i]);
-> +	for (i = 0; i < ETH_ALEN; i++) {
-> +		ret = ksz_write8(dev, regs[REG_SW_MAC_ADDR] + i, addr[i]);
-> +		if (ret)
-> +			goto macaddr_drop;
-> +	}
->  
->  	return 0;
-> +
-> +macaddr_drop:
-> +	dev->switch_macaddr = NULL;
-> +	refcount_set(&switch_macaddr->refcount, 0);
-
-Nitpick: this line doesn't do any harm, but it doesn't do any good, either.
-It can be removed in a follow-up patch.
-
-> +	kfree(switch_macaddr);
-> +
-> +	return ret;
->  }
->  
->  void ksz_switch_macaddr_put(struct dsa_switch *ds)
-> -- 
-> 2.39.2
+> Nevertheless (unless you'd like to reuse sm8550 config entry):
 > 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Thanks,
+Neil
+
+> 
+>> +       .has_phy_lane = true,
+>> +       .regulator_data = dsi_phy_7nm_98000uA_regulators,
+>> +       .num_regulators = ARRAY_SIZE(dsi_phy_7nm_98000uA_regulators),
+>> +       .ops = {
+>> +               .enable = dsi_7nm_phy_enable,
+>> +               .disable = dsi_7nm_phy_disable,
+>> +               .pll_init = dsi_pll_7nm_init,
+>> +               .save_pll_state = dsi_7nm_pll_save_state,
+>> +               .restore_pll_state = dsi_7nm_pll_restore_state,
+>> +               .set_continuous_clock = dsi_7nm_set_continuous_clock,
+>> +       },
+>> +       .min_pll_rate = 600000000UL,
+>> +#ifdef CONFIG_64BIT
+>> +       .max_pll_rate = 5000000000UL,
+>> +#else
+>> +       .max_pll_rate = ULONG_MAX,
+>> +#endif
+>> +       .io_start = { 0xae95000, 0xae97000 },
+>> +       .num_dsi_phy = 2,
+>> +       .quirks = DSI_PHY_7NM_QUIRK_V5_2,
+>> +};
+>>
+>> --
+>> 2.34.1
+>>
+> 
+> 
+
 
