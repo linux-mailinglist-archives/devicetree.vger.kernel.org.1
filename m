@@ -1,61 +1,49 @@
-Return-Path: <devicetree+bounces-12180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9D37D83FB
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:56:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D2A7D83F4
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:55:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28734281FF4
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:56:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F21A1C20EAD
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B4C2E40E;
-	Thu, 26 Oct 2023 13:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18AD2E405;
+	Thu, 26 Oct 2023 13:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED3E52E3F8
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:55:58 +0000 (UTC)
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6488AD54;
-	Thu, 26 Oct 2023 06:55:55 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3b2e07e5f3aso1028053b6e.0;
-        Thu, 26 Oct 2023 06:55:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698328555; x=1698933355;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yvFrN6RkHOEg6+kdZIT7qu8F7MiUG3qfKprWNC+gw7c=;
-        b=TPeTS3TPM3mZZ8D9Nc8qM165TuuUqTe41UnfTanHe3MFeL6BFpw9f5I32+bXaVIr+n
-         psvMGRGBqyOwijwUGsxDNW6aAU91tITFDXEeATcs60omZjOGplWc2ei5VPbggKtrif7z
-         VDovKClQLVsxWCKWApk2JiJCVhhKYrp6ClT6fjafeE4wthdDYfF5ZSANOfcyMEM5vo2H
-         Q9ABWX9oQYwX43pLuMfWquiVnb8KkH94AQqV8yfrrqdBTZ+Uq13VPJkqdG2+Oj7g0G3/
-         s+S0H1aI8xBPut+Wmm0VZ6FQn4ihAopVZyM76BFTgZQm4MY4XfakfeKdlJIhSAKyqyUx
-         gI8w==
-X-Gm-Message-State: AOJu0YwXyHtR5qP2/SFXlRaSlt4cNTyhZ7XF/MD+1cirQ7OjCn5lDcJ7
-	IEFjsJir1qqEXXe+LsHO1bF5HVKXjA==
-X-Google-Smtp-Source: AGHT+IGoVC4Kyb4A1PcHBnfW6kCpsMlNPSGpBUJTOVOFk4x7EK0/yhtKbN2/0QAkxo3AqpJ2AJ0PNQ==
-X-Received: by 2002:a05:6808:24f:b0:3b2:f4a2:e7fc with SMTP id m15-20020a056808024f00b003b2f4a2e7fcmr1541559oie.25.1698328554938;
-        Thu, 26 Oct 2023 06:55:54 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z18-20020a056808029200b003b2f369a932sm2763797oic.49.2023.10.26.06.55.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 06:55:54 -0700 (PDT)
-Received: (nullmailer pid 3566879 invoked by uid 1000);
-	Thu, 26 Oct 2023 13:55:53 -0000
-From: Rob Herring <robh@kernel.org>
-To: Frank Rowand <frowand.list@gmail.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] of: address: Consolidate bus .map() functions
-Date: Thu, 26 Oct 2023 08:53:59 -0500
-Message-ID: <20231026135358.3564307-3-robh@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231026135358.3564307-2-robh@kernel.org>
-References: <20231026135358.3564307-2-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D5E2E402
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 13:55:39 +0000 (UTC)
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B10DD4B
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 06:55:36 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:32d3:3cb9:edce:43ae])
+	by xavier.telenet-ops.be with bizsmtp
+	id 2dva2B0082XL1Wb01dvaKi; Thu, 26 Oct 2023 15:55:34 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1qw0pa-007YxJ-1x;
+	Thu, 26 Oct 2023 15:55:34 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1qw0ph-00HArs-VU;
+	Thu, 26 Oct 2023 15:55:33 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] scripts: dt_to_config: Fix nul-separated compatible values
+Date: Thu, 26 Oct 2023 15:55:30 +0200
+Message-Id: <cover.1698328110.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,143 +52,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The bus .map() functions vary only by checking the flag cells values
-and skipping over any flag cells to read the addresses. Otherwise they
-all do the same reading 'ranges' address and size and returning the
-address's offset if it is within the 'ranges' entry.
+	Hi all,
 
-Refactor all the .map() functions to pass in the flag cell size so that
-each bus can check the bus specific flags and then call a common
-function to do everything else.
+Due to a not-so-recent change in dtc, the dt_to_config script no longer
+works well when used on a DTB instead of on a DTS file.  The first patch
+fixes that, the second patch fixes the rather odd spacing in that
+script.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/address.c | 54 +++++++++-----------------------------------
- 1 file changed, 11 insertions(+), 43 deletions(-)
+To not hamper backporting the fix, I put the reformatting patch last.
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 997f431af165..b59956310f66 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -43,7 +43,7 @@ struct of_bus {
- 	void		(*count_cells)(struct device_node *child,
- 				       int *addrc, int *sizec);
- 	u64		(*map)(__be32 *addr, const __be32 *range,
--				int na, int ns, int pna);
-+				int na, int ns, int pna, int fna);
- 	int		(*translate)(__be32 *addr, u64 offset, int na);
- 	int		flag_cells;
- 	unsigned int	(*get_flags)(const __be32 *addr);
-@@ -63,13 +63,13 @@ static void of_bus_default_count_cells(struct device_node *dev,
- }
- 
- static u64 of_bus_default_map(__be32 *addr, const __be32 *range,
--		int na, int ns, int pna)
-+		int na, int ns, int pna, int fna)
- {
- 	u64 cp, s, da;
- 
--	cp = of_read_number(range, na);
-+	cp = of_read_number(range + fna, na - fna);
- 	s  = of_read_number(range + na + pna, ns);
--	da = of_read_number(addr, na);
-+	da = of_read_number(addr + fna, na - fna);
- 
- 	pr_debug("default map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
- 
-@@ -101,24 +101,13 @@ static unsigned int of_bus_default_get_flags(const __be32 *addr)
- }
- 
- static u64 of_bus_default_flags_map(__be32 *addr, const __be32 *range, int na,
--				    int ns, int pna)
-+				    int ns, int pna, int fna)
- {
--	u64 cp, s, da;
--
- 	/* Check that flags match */
- 	if (*addr != *range)
- 		return OF_BAD_ADDR;
- 
--	/* Read address values, skipping high cell */
--	cp = of_read_number(range + 1, na - 1);
--	s  = of_read_number(range + na + pna, ns);
--	da = of_read_number(addr + 1, na - 1);
--
--	pr_debug("default flags map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
--
--	if (da < cp || da >= (cp + s))
--		return OF_BAD_ADDR;
--	return da - cp;
-+	return of_bus_default_map(addr, range, na, ns, pna, fna);
- }
- 
- static int of_bus_default_flags_translate(__be32 *addr, u64 offset, int na)
-@@ -192,9 +181,8 @@ static void of_bus_pci_count_cells(struct device_node *np,
- }
- 
- static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
--		int pna)
-+		int pna, int fna)
- {
--	u64 cp, s, da;
- 	unsigned int af, rf;
- 
- 	af = of_bus_pci_get_flags(addr);
-@@ -204,16 +192,7 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 *range, int na, int ns,
- 	if ((af ^ rf) & (IORESOURCE_MEM | IORESOURCE_IO))
- 		return OF_BAD_ADDR;
- 
--	/* Read address values, skipping high cell */
--	cp = of_read_number(range + 1, na - 1);
--	s  = of_read_number(range + na + pna, ns);
--	da = of_read_number(addr + 1, na - 1);
--
--	pr_debug("PCI map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
--
--	if (da < cp || da >= (cp + s))
--		return OF_BAD_ADDR;
--	return da - cp;
-+	return of_bus_default_map(addr, range, na, ns, pna, fna);
- }
- 
- #endif /* CONFIG_PCI */
-@@ -319,24 +298,13 @@ static void of_bus_isa_count_cells(struct device_node *child,
- }
- 
- static u64 of_bus_isa_map(__be32 *addr, const __be32 *range, int na, int ns,
--		int pna)
-+		int pna, int fna)
- {
--	u64 cp, s, da;
--
- 	/* Check address type match */
- 	if ((addr[0] ^ range[0]) & cpu_to_be32(1))
- 		return OF_BAD_ADDR;
- 
--	/* Read address values, skipping high cell */
--	cp = of_read_number(range + 1, na - 1);
--	s  = of_read_number(range + na + pna, ns);
--	da = of_read_number(addr + 1, na - 1);
--
--	pr_debug("ISA map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
--
--	if (da < cp || da >= (cp + s))
--		return OF_BAD_ADDR;
--	return da - cp;
-+	return of_bus_default_map(addr, range, na, ns, pna, fna);
- }
- 
- static unsigned int of_bus_isa_get_flags(const __be32 *addr)
-@@ -486,7 +454,7 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
- 	rlen /= 4;
- 	rone = na + pna + ns;
- 	for (; rlen >= rone; rlen -= rone, ranges += rone) {
--		offset = bus->map(addr, ranges, na, ns, pna);
-+		offset = bus->map(addr, ranges, na, ns, pna, bus->flag_cells);
- 		if (offset != OF_BAD_ADDR)
- 			break;
- 	}
+Thanks for your comments!
+
+P.S. Apparently I had fixed the similar issue in my own out-of-tree
+     linux-config-from-dt script in a slightly different way.
+     https://github.com/geertu/linux-scripts/commit/56ade26c032c45e9353334384643d190d34b89fb
+
+Geert Uytterhoeven (2):
+  scripts: dt_to_config: Fix nul-separated compatible values
+  scripts: dt_to_config: Fix odd formatting
+
+ scripts/dtc/dt_to_config | 1765 +++++++++++++++++++-------------------
+ 1 file changed, 879 insertions(+), 886 deletions(-)
+
 -- 
-2.42.0
+2.34.1
 
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
