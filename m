@@ -1,140 +1,130 @@
-Return-Path: <devicetree+bounces-12103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82BD7D7F1D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:57:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA997D7F91
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:31:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70772B211CE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:57:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FD9B1C20B6C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0142419BCD;
-	Thu, 26 Oct 2023 08:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF49227EC5;
+	Thu, 26 Oct 2023 09:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VGdVAsYl"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AbQ9PbhF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B36A3D78
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 08:57:39 +0000 (UTC)
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0B91AC
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 01:57:34 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d9c66e70ebdso441566276.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 01:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698310654; x=1698915454; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d15OUBlXoCJoUgZsOraHwb/V6/eE2WDwET5ZkyPx89I=;
-        b=VGdVAsYlb1hiv6kYyLytVrbDKNuOdBKi4pUjHe7VTA0caJu5yvrVqPQRJ4t1D1W3eM
-         KrRqxJbEzYlDOjvyawUifn1SAELQ0MzA1CNT+qdG7F41T8pZVVHyzMF4EK0XNDog02Kr
-         yHB54LgJiZAn+ymc813OAcm6xilxRpqujqgyvNY9llbMF81w10IFXKTJRjE9yAWpaIQp
-         XiAymVmXqElSI3X0gDuKN48mBnzthQxStmQ2YMj2TjTUKeV3NnqwTILbYfZzqCdtp4GB
-         ZEEU7F4ZK3yoFqKZPb4f9IUKM/OBhoKizEliZRLh0UwVOXP48ehxQWuWMdY5PNFq7M18
-         JyHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698310654; x=1698915454;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d15OUBlXoCJoUgZsOraHwb/V6/eE2WDwET5ZkyPx89I=;
-        b=ORrewZ/TMrIVn1tas6bjYmTgBQnbJlkssdMsC87zQCjqg/05haQdCzRnKewoy9zMpB
-         NY7sVt4ssk9zC/71jlh1EMMwgUyRsmpOlHrcHkNEZDNIs/4HWMfck3HqSU3LFWDmoH5Q
-         ynWljrCHhSI3QfS3FOZXaGZsrm1AVTbk/pJBUzfJUi67ha9V+KRhzLoX3+zwYobgQy97
-         s7nWheyaeswZZGyLr73OATJYGUFVkq6g/Ktf+DwgNB79oGOIVHvZdR58xzayZXXkEIDK
-         v3CTFCaivIn9uei1jX9FtCeArdusirGfzVOxR8YFjSzV55A/tjC0S3ixSP/56++GeXNT
-         UAxw==
-X-Gm-Message-State: AOJu0Yx/iXhdTNdufYkaOwvuvRgEMq8zuVDBENi9p5lk9ESLxqCan2l9
-	dMnEHjBOi5jfdrQNafcbgqi4sZrWlwQi1JKJ1PC9pQ==
-X-Google-Smtp-Source: AGHT+IFhzh3jp3HfNlJ8La8+jINi5sy551LrNDFQM80H3MVmgkxMCbioFraPFHdJrZNwGJJzriw+6D047YqUbWdNHEc=
-X-Received: by 2002:a25:fb01:0:b0:da0:9735:b012 with SMTP id
- j1-20020a25fb01000000b00da09735b012mr2234616ybe.11.1698310654073; Thu, 26 Oct
- 2023 01:57:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BEAF26E20
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 09:31:08 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2078.outbound.protection.outlook.com [40.107.212.78])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E74A196;
+	Thu, 26 Oct 2023 02:31:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z2q/fy71ITYRTzDex8MD1i/bZeTB/Gu5Uo+yZ++V/UAoFIdzCiOOdBptBbTx3snPuC+IO2VLQSDB43g9ACTpVSqNFowLd16z2OqXzUPg4MKVymP/sNS8AmcwnMELLnmjI7QT0FsNHjkIj97fVikQcB7w9LQdk0bw9ylIxeWwmvV85LrXdbmSLnyE1M9AiihTBjQd+yhyvSiTQ573ZElALuPy+IaRitBYA6tCVlpxlJoVmZvCgXBlyI0shX0kYsQdCIhZSY5rZ5uDIHVz87HEKKh99lP5leoDkhlfEFKcwZVxQCilXjRaOxvzDM9SR9VKWRgGwG30cvV40OjOOEBe3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t/f12NrSFQP7dKwCuTvy8aW7mGugG2U90CW9inIhK2c=;
+ b=cl4Blg2jJi2fl7lk7gKuWdbqH/9LBtMWDOvaMiP+tTsEc4KpasDuQ1S5P6cnFgYaYxh0nvrGHlMgfiV/dbYWQygI66YAlraPpm3S38r2MR5nuSqlAZAh5PGtrRartP/Ss18re0IFyzNLttNzIQnaxd8BCxEpIWkZ2Z5zyT63w+XSijsYNu4OutEHLqa023aZUuoZIqRh+3ulbkzHKJWtiKqntlzWqTP3pwTUwr7GlVfrqYCAQcQ1griMZFRtZPJHptyK0sndJmJDRJR9PS3mrI23MvJp7oFwMEucweyceP0j42UhymXRoq4r4PpOaemRYUcrG4VQqFINgoJ5xtokng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t/f12NrSFQP7dKwCuTvy8aW7mGugG2U90CW9inIhK2c=;
+ b=AbQ9PbhFPyslPtQXgIQ5E08RtR8pozFyL4Jb3xmdP7D2kuDd4j8pT/7blxktFI6fy4Uu9rLnNqGWdgjokUdQru3ouaXa1doBWcMX9HRmTGvRqvXlP0KfRKLLBWMMg4WQlutH5LeWiE31jcES4oxgzFwLkdQ2uQS6S4F1ZRFHSok=
+Received: from MN2PR01CA0048.prod.exchangelabs.com (2603:10b6:208:23f::17) by
+ BL1PR12MB5804.namprd12.prod.outlook.com (2603:10b6:208:394::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6933.22; Thu, 26 Oct 2023 09:31:03 +0000
+Received: from BL6PEPF0001AB4B.namprd04.prod.outlook.com
+ (2603:10b6:208:23f:cafe::55) by MN2PR01CA0048.outlook.office365.com
+ (2603:10b6:208:23f::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.19 via Frontend
+ Transport; Thu, 26 Oct 2023 09:31:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB4B.mail.protection.outlook.com (10.167.242.69) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6933.15 via Frontend Transport; Thu, 26 Oct 2023 09:31:03 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Thu, 26 Oct
+ 2023 04:31:02 -0500
+Received: from xsjapps58.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32 via Frontend
+ Transport; Thu, 26 Oct 2023 04:31:01 -0500
+From: Kris Chaplin <kris.chaplin@amd.com>
+To: <kris.chaplin@amd.com>, <thomas.delev@amd.com>, <michal.simek@amd.com>,
+	<krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<git@amd.com>
+Subject: [RESEND v2 0/2] w1: Add AXI 1-wire host driver for AMD programmable logic IP core
+Date: Thu, 26 Oct 2023 02:28:40 -0700
+Message-ID: <20231026093029.3122573-1-kris.chaplin@amd.com>
+X-Mailer: git-send-email 2.42.GIT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
- <20231025103957.3776-7-keith.zhao@starfivetech.com> <70805ff2-56a8-45e1-a31c-ffb0e84749e5@linaro.org>
- <3twc4zoohon7uujypgjtlnryfmebx4osvpykagnwr5nemmqz2w@w4vw55uswebh>
-In-Reply-To: <3twc4zoohon7uujypgjtlnryfmebx4osvpykagnwr5nemmqz2w@w4vw55uswebh>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 26 Oct 2023 11:57:22 +0300
-Message-ID: <CAA8EJppxQ7J8DEDFsWzPL8bDpNW-KY0nhUA++zDBRpMCpP-bkA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] drm/vs: Add hdmi driver
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Keith Zhao <keith.zhao@starfivetech.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-media@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Changhuang Liang <changhuang.liang@starfivetech.com>, 
-	Jack Zhu <jack.zhu@starfivetech.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB4B:EE_|BL1PR12MB5804:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8870f880-447d-4011-0eb0-08dbd60645bf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	YP4/rT3TsTaWeboRrRC0mHv9qzi23eCh+B5Biom0jdAuI8GZUAxH7Ul63b3z0aJPntbStlH812lz3lyYa2QeCphfR9lnb3oTdOa9TMK27GWWdSyMrAY7aHybo15Ay6QFKxUaGO11A+SMBSIjTYseBxqeE0BQMM1464E/J0Rue1ioBWz5jZJ5Ypy32ctu/ZB/vtNmlcnRd5WRoDfAM+NPZe72GsfsnD+57xpBJh729UsxrgptLZk5iMxo3SSGjDIdxxQMxeiZloc3wSoqJSbQe2rMc/pstmStzDkHNn+uTdKD4qjKNxGHFRD71KYEMOIfFQOgU+r8/D8NPqyM+hhP0CfAMUGpStFRIroMalRLpcgnO/ybqXPrlFmfn88FdeI2OdW3VYlC+CQ9SKnUzqi4Ntn5nqNhO/Rr93x4trmfkYHKFGpLkmjta0p8crw4a+MqgQCLz6asgiIf0IRnhdOELT0WDUUZ+i3cjmQgZMOtuXrcB83m+d7a4mJM2qFWMD2JsZpwPzbqzD6+uPGLnNbMu6u4PZ+XCAq31JCES9KPYHDQ1vXauTk9cFpIbF2xJFP9HcsVE4UiSaAKsbaN9gH7ZknpKtfo+UhQdY96DY7gcNI59T6EXLxSlZtSDIeE9jJo2+YOxk7WaT6WmkUNM+G+QtD61u+SzOhwZLCBdugxc7xkXWmc6Xgr53pmSZsEBgXtGwbFmHRINksKRGfCJ1BJGgiT8VGBpYmvmH1Uks9xuNV3FdOJ6+Siq975MVzcVyhzZPTWJSvEgQPmPLlP8/FVUg==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(346002)(376002)(396003)(136003)(39860400002)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(82310400011)(40470700004)(36840700001)(46966006)(82740400003)(2616005)(44832011)(41300700001)(81166007)(336012)(426003)(40460700003)(40480700001)(356005)(5660300002)(1076003)(70206006)(26005)(8676002)(4326008)(8936002)(478600001)(54906003)(316002)(70586007)(36756003)(110136005)(6666004)(86362001)(2906002)(36860700001)(47076005)(83380400001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 09:31:03.0885
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8870f880-447d-4011-0eb0-08dbd60645bf
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB4B.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5804
 
-On Thu, 26 Oct 2023 at 11:07, Maxime Ripard <mripard@kernel.org> wrote:
->
-> On Thu, Oct 26, 2023 at 01:23:53AM +0300, Dmitry Baryshkov wrote:
-> > > +static int starfive_hdmi_register(struct drm_device *drm, struct starfive_hdmi *hdmi)
-> > > +{
-> > > +   struct drm_encoder *encoder = &hdmi->encoder;
-> > > +   struct device *dev = hdmi->dev;
-> > > +
-> > > +   encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
-> > > +
-> > > +   /*
-> > > +    * If we failed to find the CRTC(s) which this encoder is
-> > > +    * supposed to be connected to, it's because the CRTC has
-> > > +    * not been registered yet.  Defer probing, and hope that
-> > > +    * the required CRTC is added later.
-> > > +    */
-> > > +   if (encoder->possible_crtcs == 0)
-> > > +           return -EPROBE_DEFER;
-> > > +
-> > > +   drm_encoder_helper_add(encoder, &starfive_hdmi_encoder_helper_funcs);
-> > > +
-> > > +   hdmi->connector.polled = DRM_CONNECTOR_POLL_HPD;
-> > > +
-> > > +   drm_connector_helper_add(&hdmi->connector,
-> > > +                            &starfive_hdmi_connector_helper_funcs);
-> > > +   drmm_connector_init(drm, &hdmi->connector,
-> > > +                       &starfive_hdmi_connector_funcs,
-> > > +                       DRM_MODE_CONNECTOR_HDMIA,
-> >
-> > On an embedded device one can not be so sure. There can be MHL or HDMI
-> > Alternative Mode. Usually we use drm_bridge here and drm_bridge_connector.
->
-> On an HDMI driver, it's far from being a requirement, especially given
-> the limitations bridges have.
+Changes since v1:
+ Updated IP name and binding to axi-1wire-host and filenames to match  Comment pruning where operation obvious, additional comments where not  Unwrapped helper functions for register read/writes  Removed un-necessary device reset on fail to add device  Fixed duplicate clock disable in remove function  Move bus master structure to per instance  Improved hardware testing with multiple w1 instances
 
-It's a blessing that things like MHL / HDMI-in-USB-C / HDMI-to-MyDP
-are not widely used in the wild and are mostly non-existing except
-several phones that preate wide DP usage.
-Using drm_connector directly prevents one from handling possible
-modifications on the board level. For example, with the DRM connector
-in place, handling a separate HPD GPIO will result in code duplication
-from the hdmi-connector driver. Handling any other variations in the
-board design (which are pretty common in the embedded world) will also
-require changing the driver itself. drm_bridge / drm_bridge_connector
-save us from those issues.
+Add a host driver to support the AMD 1-Wire programmable logic IP block.
+This block guarantees protocol timing for driving off-board devices such as thermal sensors, proms, etc.
 
-BTW: what are the limitations of the drm_bridge wrt. HDMI output? I'm
-asking because we heavily depend on the bridge infrastructure for HDMI
-output. Maybe we are missing something there, which went unnoticed to
-me and my colleagues.
+Kris Chaplin (2):
+  dt-bindings: w1: Add YAML DT schema for AMD AXI w1 host and
+    MAINTAINERS entry
+  w1: Add AXI 1-wire host driver for AMD programmable logic IP core
+
+ .../bindings/w1/amd,axi-1wire-host.yaml       |  44 ++
+ MAINTAINERS                                   |   8 +
+ drivers/w1/masters/Kconfig                    |  11 +
+ drivers/w1/masters/Makefile                   |   1 +
+ drivers/w1/masters/amd_axi_w1.c               | 395 ++++++++++++++++++
+ 5 files changed, 459 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
+ create mode 100644 drivers/w1/masters/amd_axi_w1.c
 
 -- 
-With best wishes
-Dmitry
+2.42.GIT
+
 
