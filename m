@@ -1,132 +1,200 @@
-Return-Path: <devicetree+bounces-12087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DBE7D7DC5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CDA17D7DFE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 10:03:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B65EA1C20DCE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:43:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D9811C20CFA
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 08:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0015B168A9;
-	Thu, 26 Oct 2023 07:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F081863B;
+	Thu, 26 Oct 2023 08:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yRNJ4RwR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HdtPWIqR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DAA3C34
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:43:37 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 349A318F
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 00:43:36 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4081ccf69dcso9960175e9.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 00:43:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1180B256C
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 08:03:01 +0000 (UTC)
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81102B8;
+	Thu, 26 Oct 2023 01:02:59 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id 46e09a7af769-6ce291b5df9so308866a34.2;
+        Thu, 26 Oct 2023 01:02:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698306214; x=1698911014; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iT0pJGgpEn+Y4BTcRkM01vVuWXFxY/vEXDXIX8DeCXY=;
-        b=yRNJ4RwREo6A9AV6XW+/1GFvhRIcomSc+PJGXAIBDIi2iguZ/dwXgyhTeCFPLjir3T
-         SIjelf8+ygfDo+KHq8m+VhOR3xisR7dKOUVFznEuLBIBQnausxMYVW7FfR7vk7NUUK98
-         RqiMSWU260aGN0zBmVBUnjjLBzhoQTK0B/TlA5QQsgfxI5h7h8WFKdabDY24D5s/X/ze
-         GhIg2xGlzOe5sIZ8HObOXgi7JDgMqJhadbNHQ+HOEbi+6Hzn+Jl4KiA/v3pqDikbDTXJ
-         zB+WjaPL/9pgD1HyP1L3Xe8QflLoduecTr1TgmIU9e7HDlxSajJYlqfo6JS6UCbRPxmt
-         dzuQ==
+        d=gmail.com; s=20230601; t=1698307379; x=1698912179; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EiNUWaVbyuQ9E3+Z8Xcu/M3576aIKpUu0D5Q0llCz/Y=;
+        b=HdtPWIqR+o4kxo1Y5iDHbGcrPB1w5Fstm7Nx0OOZ3P75OOtel40+ajHTWlwWu/5gSx
+         7nT98Za/HEwDhsjCjbX8qzso2By5Bzh56b0tgRX17pj3/cK12B2CA/EmzUaGajDiPOOj
+         V4uw2IMe1J8LThuEhUqAsmWj/7kqHqYNLtH5TZ1BflSj6DVk32A2m7JCJLF99HMycoMB
+         aD2OiFHaCUIFOsM1luvvstSX8QdW38jpYK9AlLi5k6trM3qWlWi2oJN7Zdmi59cDJg8v
+         pUiNDu3kd5BLMCapi0TXrujTerxjJh9jTDi1SId/CXTK45RCM4tbveIL0cg8VS9VcoPi
+         KcEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698306214; x=1698911014;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=iT0pJGgpEn+Y4BTcRkM01vVuWXFxY/vEXDXIX8DeCXY=;
-        b=htjCeqzvyEzrl7ORR3MawpmLJLynll6BlPAO/taV1ecNjt/yOKEzzMCVkxAZ7QT0He
-         CFBIAA7GsRe2xt1iCFI2ar2zuCfKFdgA+azbpshfqh3zTu0Y9FNhmfTSzfM+TuyctkzY
-         pl177QFu20mgo8chSw3QEgiu4bpSMclJ3WzRiqjCnQms1VS4k3R75jhB21OfZFmZjUnB
-         K9kdJgtwhnIESOC1Bw/P3g1atRyQw0G1Ua5pdA8Vo9cMnhezuekVmGjuDE1oyzoAIDhx
-         tBp8T7tuH8ZKdUij490d+7rlEa1eGsVtvoXgMtgD22GeNNYdzyKfKLtLl+gLkaGmppYX
-         m7fA==
-X-Gm-Message-State: AOJu0YwFWJbUBqWyUusBDu45C+J3on+prfzMO0nPe/Yo9B6TfEUCze88
-	ZJjIWIthrWUBitnzFqA3DkmX8Q==
-X-Google-Smtp-Source: AGHT+IH9/t6VXnuGSglyx8gmgCHAbA4Y25dbJPKrDFQ48McZAXhVPSSz9eiWcwu1AVV+0GCZP4y4Ug==
-X-Received: by 2002:adf:efc7:0:b0:32d:a366:7073 with SMTP id i7-20020adfefc7000000b0032da3667073mr1751749wrp.14.1698306214576;
-        Thu, 26 Oct 2023 00:43:34 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c? ([2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c])
-        by smtp.gmail.com with ESMTPSA id h1-20020a05600c498100b004090798d29csm1775761wmp.15.2023.10.26.00.43.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Oct 2023 00:43:34 -0700 (PDT)
-Message-ID: <95ec724e-27c1-43c0-9f2c-99934c5ca3c2@linaro.org>
-Date: Thu, 26 Oct 2023 09:43:32 +0200
+        d=1e100.net; s=20230601; t=1698307379; x=1698912179;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EiNUWaVbyuQ9E3+Z8Xcu/M3576aIKpUu0D5Q0llCz/Y=;
+        b=utr6171PHDJyskINhRSjRbn11Cgk5YRnd6vL1t+jkR3SaEG7y6FtLNFT6iFIHhbl/k
+         ou8lPzg3gF9OhfKJHsHXFebrsknPbeUskpZnHNeYr93ImD9pl6VFYrRVOC+QfDkX9Mjv
+         9awrozJF4Z3eeSmAdp1arvHlBL7hLYmBUCxxYNhVGcgUqrMS01wnoCTsd+HtSUCa0/+Z
+         gAFAtGTfgCF3p5TEnU8a4W4zGrt6iSKa8HtiYZYUUqhYJUBPHdAsV7Iva3UPYNlIGJ9y
+         aOPZGWfdyajeaS8zT37B7uQKZWgwOWSbiiche6XA89S4JORXIL+l8bAhilCIGoA2oWNV
+         dCmw==
+X-Gm-Message-State: AOJu0Yxfzjavp7nmqQUVqRgYjYQ1cw86BcANYathIDYVGgxqhDtyMLaO
+	QL/NzNYaqqnaCLSIUAzdfK8=
+X-Google-Smtp-Source: AGHT+IHgKWPQhOLXFQRr+4qqmAwqD5d5K+uinng7SBFGOYZi7HWhXPOFi6EUb9I2souPViSEkRgsWw==
+X-Received: by 2002:a05:6870:6713:b0:1e9:9bad:8989 with SMTP id gb19-20020a056870671300b001e99bad8989mr24160862oab.25.1698307378484;
+        Thu, 26 Oct 2023 01:02:58 -0700 (PDT)
+Received: from dawn-Aspire-A715-74G.. ([183.198.110.181])
+        by smtp.gmail.com with ESMTPSA id b11-20020a655ccb000000b0058a9621f583sm8625579pgt.44.2023.10.26.01.02.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 01:02:58 -0700 (PDT)
+From: Li peiyu <579lpy@gmail.com>
+To: jdelvare@suse.com,
+	linux@roeck-us.net
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH v2] dt-bindings: hwmon: lm87: convert to YAML
+Date: Thu, 26 Oct 2023 16:02:26 +0800
+Message-Id: <20231026080226.52170-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <caa50763-74be-4c40-9d8d-7f1f64ce5144@kernel.org>
+References: <caa50763-74be-4c40-9d8d-7f1f64ce5144@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFC 0/8] arm64: dts: qcom: Introduce SM8650 platforms
- device tree
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-dt-v1-0-a821712af62f@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231025-topic-sm8650-upstream-dt-v1-0-a821712af62f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 25/10/2023 09:47, Neil Armstrong wrote:
+Convert the lm87 hwmon sensor bindings to DT schema
 
-<snip>
+Signed-off-by: Li peiyu <579lpy@gmail.com>
+---
+Changes for v2:
+- replace node name lm87 with sensor
+- replace character '\t' with spaces
 
-> 
-> For convenience, a regularly refreshed linux-next based git tree containing
-> all the SM8650 related work is available at:
-> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
+ .../devicetree/bindings/hwmon/lm87.txt        | 30 ----------
+ .../devicetree/bindings/hwmon/lm87.yaml       | 59 +++++++++++++++++++
+ 2 files changed, 59 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/lm87.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lm87.yaml
 
-As it was reported off-list, there's a typo in the previous URL, like in the related cover letters,
-the correct URL is:
-https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
-
-I'll keep the previous URL valid to avoid broken links.
-
-Neil
-
-<snip>
+diff --git a/Documentation/devicetree/bindings/hwmon/lm87.txt b/Documentation/devicetree/bindings/hwmon/lm87.txt
+deleted file mode 100644
+index 758ff398b67b..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/lm87.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-*LM87 hwmon sensor.
+-
+-Required properties:
+-- compatible: Should be
+-	"ti,lm87"
+-
+-- reg: I2C address
+-
+-optional properties:
+-- has-temp3: This configures pins 18 and 19 to be used as a second
+-             remote temperature sensing channel. By default the pins
+-             are configured as voltage input pins in0 and in5.
+-
+-- has-in6: When set, pin 5 is configured to be used as voltage input
+-           in6. Otherwise the pin is set as FAN1 input.
+-
+-- has-in7: When set, pin 6 is configured to be used as voltage input
+-           in7. Otherwise the pin is set as FAN2 input.
+-
+-- vcc-supply: a Phandle for the regulator supplying power, can be
+-              configured to measure 5.0V power supply. Default is 3.3V.
+-
+-Example:
+-
+-lm87@2e {
+-	compatible = "ti,lm87";
+-	reg = <0x2e>;
+-	has-temp3;
+-	vcc-supply = <&reg_5v0>;
+-};
+diff --git a/Documentation/devicetree/bindings/hwmon/lm87.yaml b/Documentation/devicetree/bindings/hwmon/lm87.yaml
+new file mode 100644
+index 000000000000..8f4f07845d95
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/lm87.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/lm87.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LM87 hwmon sensor
++
++maintainers:
++  - Jean Delvare <jdelvare@suse.com>
++  - Guenter Roeck <linux@roeck-us.net>
++
++properties:
++  compatible:
++    const: ti,lm87
++
++  reg:
++    maxItems: 1
++
++  has-temp3:
++    description: |
++      This configures pins 18 and 19 to be used as a second remote
++      temperature sensing channel. By default the pins are configured
++      as voltage input pins in0 and in5.
++
++  has-in6:
++    description: |
++      When set, pin 5 is configured to be used as voltage input in6.
++      Otherwise the pin is set as FAN1 input.
++
++  has-in7:
++    description: |
++      When set, pin 6 is configured to be used as voltage input in7.
++      Otherwise the pin is set as FAN2 input.
++
++  vcc-supply:
++    description: |
++      a Phandle for the regulator supplying power, can be configured to
++      measure 5.0V power supply. Default is 3.3V.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      sensor@2e {
++        compatible = "ti,lm87";
++        reg = <0x2e>;
++        has-temp3;
++        vcc-supply = <&reg_5v0>;
++      };
++    };
+-- 
+2.34.1
 
 
