@@ -1,218 +1,401 @@
-Return-Path: <devicetree+bounces-12108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591777D7FCE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:42:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0ED17D7FE0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:43:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 138C9281EE9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:42:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D18811C20C91
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CFB928683;
-	Thu, 26 Oct 2023 09:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="YbtCQN7l"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5FB226E20;
+	Thu, 26 Oct 2023 09:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339B427728;
-	Thu, 26 Oct 2023 09:41:56 +0000 (UTC)
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2041.outbound.protection.outlook.com [40.107.241.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76CA6195;
-	Thu, 26 Oct 2023 02:41:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bxxa6neCJDPYZjLS1A5tppBlRNIjZoA2GHmlFCUq+wKEDVcyd5s/hb6IOYmWK4XZKjYYesDPTaItlalFNJmUJMFV5QF7JjXqcAQVqmKLI5WzLJt75uPWbI9gtLj0+Z8o+LVkpGPffifJQwkmkC8iGnEJdz67dwRkQHGdiq+cCSdKPsLoe8sNfIrDcgwY4HuAcuVhhbdADDDUJer75f01KMfx5Nizdzhv0iJF46r6zvZNWUizHvo0HlbrjAcOUc7lX3HhS1sLAoWNquAJ77KbIGKHLOKiunjSXUEc69vJG6ytyGLfXsjlJswEvV54WAQ8QlNiC7ZvnpZH3LfRFlMqow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ow5pvRSFci8FURhEb6dW8RZBuwo3nFVFJVsIf2pNDYQ=;
- b=PnQFHXAVN/z8+3Q7jniCUUSJ2o7dkdjN9fcm0WotCSm4bN28CiWRbd3TFtbUmUObOQILIQX1fJ5GYI7dXT0UJqFA9GB+1g+Uy6DDOJYINPrRMlR4h3om5+co80pYzn8CKcjkli2C7sYvINiSse3XURtTAoVpRWL1lq0IMblJS2+XDlxqrH+W9L+vIdm/1aakxA0Cx5brONhtxmVchf0PR+0PzUgW4SGghLo/s/2Sjv5otSXcAGkGmolLCS5NJZDMUOzF8iyVq/TpJ49ogPoL7N5eZtMIz6n1UlTVskMMnbOEl/XgPixK9lexjbYjApwR3BY/LumYSGI7oZxra6F8NQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ow5pvRSFci8FURhEb6dW8RZBuwo3nFVFJVsIf2pNDYQ=;
- b=YbtCQN7lGvNMX8ALIehCH9arZAAlLuw4lSo+mxaTxfOY5bZMXtYAEDSLjLw7n6mR2v6qOs0SYIdtxOqIHkRjsKA54ZmvxYqFT+bBqBe15e/J5+Tyb77g8/cQYTVr1CMgenpQSksM2B2o21hDjVZCLdsrvSXc7zM3qpNrwcI2OrQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by DU0PR08MB8929.eurprd08.prod.outlook.com (2603:10a6:10:464::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Thu, 26 Oct
- 2023 09:41:50 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::a309:1d65:f5fb:436b]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::a309:1d65:f5fb:436b%6]) with mapi id 15.20.6933.019; Thu, 26 Oct 2023
- 09:41:50 +0000
-Message-ID: <8fec6c89-548b-43b5-8361-869663a58573@wolfvision.net>
-Date: Thu, 26 Oct 2023 11:41:47 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: rtc: nxp,pcf8563: add hiz-output
- property
-Content-Language: en-US
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Alessandro Zummo <a.zummo@towertech.it>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231024-topic-pcf85363_hiz_output-v1-0-50908aff0e52@wolfvision.net>
- <20231024-topic-pcf85363_hiz_output-v1-2-50908aff0e52@wolfvision.net>
- <20231025222327c0b5d460@mail.local>
- <2f17c031-30f6-4242-b2a1-1628402b3091@wolfvision.net>
- <1c4a6185-fe09-45d1-900a-10abf48e3fc9@wolfvision.net>
- <20231026005008b8255799@mail.local>
-From: Javier Carrasco <javier.carrasco@wolfvision.net>
-In-Reply-To: <20231026005008b8255799@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR08CA0253.eurprd08.prod.outlook.com
- (2603:10a6:803:dc::26) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF1619BCD
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 09:42:52 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CFC8184;
+	Thu, 26 Oct 2023 02:42:48 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 903AD24E1AB;
+	Thu, 26 Oct 2023 17:42:38 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 26 Oct
+ 2023 17:42:38 +0800
+Received: from [192.168.60.126] (180.164.60.184) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 26 Oct
+ 2023 17:42:38 +0800
+Message-ID: <627a0f60-7da0-6683-a451-42801c513308@starfivetech.com>
+Date: Thu, 26 Oct 2023 17:42:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DU0PR08MB8929:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1853ed6-ff56-42e8-fcae-08dbd607c74c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3lhhLBGlVVt9vNbUL5ejobEF9c+r45qt0uozNMyauujWOHUcJqqik/5zvLqRGImNx2E38+LoclW4Pla1fbC1vZ5gXutBqFhSHO88zYj9kvg4Gvqb3bx2YI1kydLZAjwr+fSbtC1j13cOg+a7BkqFePlitENeO8XKUm658Ia7UnSgdprSd+lP55VmVnZdrWP7UVCdwlq/5aZ5kQQf2eEij6MPK+Mk50r6gbgdPPYIJP/VK3xz09qMWakFGQGb7n25/Bo8SrkbYR6rJ4FNcfY11UtX8LLutj9CPK1pWlknvbBpB9KbEjxXeTa+rc2Ne3Kz0JSDGIPMd8zwizVdXUrrHTyMLzV9par1tuFugqfTYPIgP55A09dXY/YPnkRamD1uXfvtOoQur8J9lXFButf9OnOpv45whKM9xxr40zjispsnApQb1M3XaU+iITHWr5RJq3BIVlxiTy+vhhEA2dfQqbj8keipttlbVn6POvpFC8phg4aq7MwWF4SRcWx2Pv69liUxmibs4YWHBfL4R81aX7QimGksQMeOks7kL73v6o5BzNA5ZEFH2xQeynK4xE+kWsTprI4F8lFyYJGFQTzit+54OqRfHSdeAmt7uaYHDLKTF3wswmyq24A+mJx2NKHfqp/cTj4kUu6GejFvP3ojRg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39850400004)(136003)(366004)(346002)(230922051799003)(64100799003)(186009)(451199024)(1800799009)(66476007)(6486002)(66556008)(66946007)(478600001)(6916009)(316002)(54906003)(38100700002)(41300700001)(31686004)(86362001)(31696002)(5660300002)(8936002)(44832011)(8676002)(53546011)(66899024)(4326008)(2616005)(6506007)(6666004)(83380400001)(36756003)(2906002)(6512007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?akd1dEJLWU5iRjdMS2EvYUgrWnY5bndOOFN6M3lzaFNlbXk1QU9waHRnMmFH?=
- =?utf-8?B?L01pYlNacHM5WWFwTDV2TUxRdWhxTlZraW1SM0s0K3dQUjV0NS9vcXlNSWJy?=
- =?utf-8?B?MUQ1eDdTVzk5SCsxc0JvVGdnakdBM2xXUHNkdmFDWHZFUHBmQnIyNnUyMWVI?=
- =?utf-8?B?VXR2NkdTbStZVHJPVWFPY2hib0NSTGl3NWpqZjRoYW9qTGVXdkdZRGZhMGI0?=
- =?utf-8?B?NWVwSExsRWtvODZ4U0gwZUJ0bVZ4azI5dmdRaU9CNmlQYXdhaHI3dHdOTllG?=
- =?utf-8?B?T1g1dTY3L1JFdHVFMVh4eDJjUlVXZW9BVGRyTTU0MllaUWNSdGhnbFp1dVA1?=
- =?utf-8?B?eElmMkQ1TG5DZ3lObGoyQ0RqblZmUyt4UDI0TzM3S1NtSHM2eHVSVEhlMDNa?=
- =?utf-8?B?aGhJRjZQN0JwaUd1TTNYZEVWdG45SEZ0OTA1cWkwZ0tjenk5Z0tWZHhLOFNa?=
- =?utf-8?B?aXhFaXZGcU10cTBOL1hhMmZSMUU0NldUNWEyQk1ySE42OSsxUTE0YWFiNitQ?=
- =?utf-8?B?dEw1b0tHUWdqWVdRNm9nWjcwUHpmN254MnUzWmZiMTFiTHphampmZWpmTmZu?=
- =?utf-8?B?c2MzcGVkTUV6NCtUZE5hbis5MHhoSDFFSTdXVlljREo4SnY2L1A4amNxVFBv?=
- =?utf-8?B?NTNKU1VhRHcySkIzOGluOENzVjZWWjVydzcvNU9OTWNwajd3djlpWk1ncjUw?=
- =?utf-8?B?bWdNajRhMkZadURvQisrb2xyOXZ4NW9XYzZiWXo3Yi8yZDZzMllOQ3ZweUNN?=
- =?utf-8?B?UEdNd3M3NXkxanhuMW0xdjgxTnNKRXlUOFJmeXk5UnJCTjVwY2E3T1F5Mmxw?=
- =?utf-8?B?MCt0SUVYRElxVVZ0OG01L1JXaFhkNGR5ZkxmeHF2UjNuZExHVk5vZ1QwSkg5?=
- =?utf-8?B?a0VzR2hJaGplZEROSTB4T2thT05VVFdmVldESEU4amVKU1hNOUtQL2Jrd0d3?=
- =?utf-8?B?Sm94cFdXREQyTWJVeklQNWMrWEtyMFN1T0dBVkpnN2loYjc3N0JpVjlFTlh5?=
- =?utf-8?B?eGRXSkR4OWRkNmVBZlB1NzFiU1h4U2RVaVRLVUpaN2x3bXpzWlpybTlhWnFP?=
- =?utf-8?B?VHJ6aWhVamh3aFAzUFFlakprMjhDVFkzdWZCY29zVFlkL0liMmpqRG4relZV?=
- =?utf-8?B?NU9IQ1pJUWtWYVI5Q29KTEUyVXNrN0lzVXBZSGgrQXlHRUZyd1V4d2tpb3I2?=
- =?utf-8?B?TnZmRVR1WUJFZFBzWWlEbjg0dWtFK0U5SVJ1TWxUbUEyQVN5Qk1kYzlFaEo3?=
- =?utf-8?B?TTFUaGg4V3JJSjB2cFFOZmxNcTBZdUpweUR5YnRXVk9wck5aVUdVRnM4YTNL?=
- =?utf-8?B?cGdCTXBQNEZ3TEVLeEpmMFJoSnV4dWU2RHI4Y3hTcm9uRE5aSE1GNWZFVHBV?=
- =?utf-8?B?K1BpL1JaemFhaDFpTWdIQXFrNjNlOHRYR0tYOWVuZUpMSEtUUG9qM3R6RVRh?=
- =?utf-8?B?QkRoZjRvTnVrVkxTQitYVnVaVzgycVJrc1hkNmFDazIwSVhpd0JpTFMxdDBK?=
- =?utf-8?B?WC9sVjY2NnIvWEZrVTlGNEFHeE1MdnlVcU5uaUU3QUhJL0c5WmNXbmhHTGkx?=
- =?utf-8?B?cEc4a3Znd1d0ZlJxajVCTlhZem9hY3JBL05JMklvcVM3R3FkdWlEdDdLOWVs?=
- =?utf-8?B?aU53TS96WGV0TDNxNllZRmEzZkx0Si8zdU1rRis5MGxqb0RwRWtNRUQvYS90?=
- =?utf-8?B?UzBwaytHTjZrQVExTUNyMjZzamJxY1REUVF1ZUdNZ3JCMlhsZWwxUFc4d2lY?=
- =?utf-8?B?YkZteUNYTTlOY1pqNmlNbGU5WmxOdStSRUdMbWZYcG1BNjltQm56SEYxVG5t?=
- =?utf-8?B?bHlndWxnOEZNWTlXTFA3QVdOUy8xQkI5OHJHcW1KYStuNkJDUHE5bHFFVkox?=
- =?utf-8?B?QTdZcE0yaHdZMEdwV0E0QmVsd0lsMHdUU29PUGZYOVozOGF5YjZSWmJSdGNy?=
- =?utf-8?B?RUZHSENKV3dmQ3BCbHpmbCthaFJSWFliKytqa3dzNXdyVmZiMWR4M09nNVhP?=
- =?utf-8?B?TEluRlhmUWVkQkxHditDMENNMEtHVG1VS0dleWcramJoMWh6eFRuRGtScisz?=
- =?utf-8?B?VkUyWFAzeUIzQllaZXN0QnhRMXVWc3BCZ1hxanh5Y25kTjdMbllQSXdxNHNT?=
- =?utf-8?B?WXNRdUtFNnpxU3NRTm01SmhYWTh0TCtGVVZ3QzZZL1FFYUxFREJZSThoOURz?=
- =?utf-8?B?SWM5eExWQ0tRRHBUOVNGSGFtM2M0T0ZQL1JucnV0Y00vZUNuNVF3bGZTMkNW?=
- =?utf-8?Q?EKwLTQMzaW3+Jp/8dSw1TXRvWG6bBlwfMQU5X5IfWw=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1853ed6-ff56-42e8-fcae-08dbd607c74c
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2023 09:41:50.1593
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7Xhz09IsqFQNgQbAT96iDN7YlQDJOvT5N5dfP5luRNhqQGBnBLE7xH8c2Sw6OoQk2qIqBZAetFjjN/PZzWl4jCUTbzsNu5n3B7pA4RqznFc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8929
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 5/6] drm/vs: Add KMS crtc&plane
+Content-Language: en-US
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, "Emil Renner
+ Berthing" <kernel@esmil.dk>, <christian.koenig@amd.com>, Thomas Zimmermann
+	<tzimmermann@suse.de>, Bjorn Andersson <andersson@kernel.org>, Chris Morgan
+	<macromorgan@hotmail.com>, Maxime Ripard <mripard@kernel.org>, Jagan Teki
+	<jagan@edgeble.ai>, Jack Zhu <jack.zhu@starfivetech.com>, Rob Herring
+	<robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Shengyang Chen <shengyang.chen@starfivetech.com>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>, Shawn Guo
+	<shawnguo@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>
+References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
+ <20231025103957.3776-6-keith.zhao@starfivetech.com>
+ <6db09f77-31e8-4f2e-a987-e3745d0e8c24@linaro.org>
+ <ZTlxWiX7-vKeLQsc@intel.com>
+From: Keith Zhao <keith.zhao@starfivetech.com>
+In-Reply-To: <ZTlxWiX7-vKeLQsc@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
+
+hi Ville:
+very glad to receive your feedback
+Some of them are very good ideas.
+Some are not very clear and hope to get your further reply!
 
 
-On 26.10.23 02:50, Alexandre Belloni wrote:
-> On 26/10/2023 01:23:21+0200, Javier Carrasco wrote:
->>>>> +  hiz-output:
->>>>> +    description:
->>>>> +      Use enabled if the output should stay in high-impedance. This
->>>>> +      mode will mask the output as an interrupt source.
->>>>> +      Use sleep if the otuput should be only active in sleep mode.
->>>>> +      This mode is compatible with any other output configuration.
->>>>> +      The disabled value acts as if the property was not defined.
->>>>> +    enum:
->>>>> +      - enabled
->>>>> +      - sleep
->>>>> +      - disabled
->>>>> +    default: disabled
->>>>> +
->>>>
->>>> If instead of using a custom property, you consider this as what it
->>>> actually is: pinmuxing, then everything else comes for free. With
->>>> pinctrl, you can define different states for runtime and sleep and they
->>>> will get applied automatically instead of open coding in the driver.
->>
->> I am not sure if your solution would cover all my needs:
->>
->> 1.- With pinctrl I can model the SoC pins, right? That would not stop
->> the RTC output though, so the 32 kHz signal would be generated anyways
->> even though the SoC would ignore it. That is one of the things I want to
->> avoid.
->>
-> 
-> No, you would model the INTA pin.
-I am sorry for insisting on this topic, but if I get you right, I would
-be modeling an interrupt pin (INTA) to keep it from generating a clock
-signal when the RTC itself offers a high-impedance mode i.e. avoiding to
-use the RTC feature.
+On 2023/10/26 3:49, Ville Syrj=C3=A4l=C3=A4 wrote:
+> On Wed, Oct 25, 2023 at 10:28:56PM +0300, Dmitry Baryshkov wrote:
+>> On 25/10/2023 13:39, Keith Zhao wrote:
+>> > add 2 crtcs and 8 planes in vs-drm
+>> >=20
+>> > Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+>> > ---
+>> >   drivers/gpu/drm/verisilicon/Makefile   |    8 +-
+>> >   drivers/gpu/drm/verisilicon/vs_crtc.c  |  257 ++++
+>> >   drivers/gpu/drm/verisilicon/vs_crtc.h  |   43 +
+>> >   drivers/gpu/drm/verisilicon/vs_dc.c    | 1002 ++++++++++++
+>> >   drivers/gpu/drm/verisilicon/vs_dc.h    |   80 +
+>> >   drivers/gpu/drm/verisilicon/vs_dc_hw.c | 1959 ++++++++++++++++++++=
+++++
+>> >   drivers/gpu/drm/verisilicon/vs_dc_hw.h |  492 ++++++
+>> >   drivers/gpu/drm/verisilicon/vs_drv.c   |    2 +
+>> >   drivers/gpu/drm/verisilicon/vs_plane.c |  526 +++++++
+>> >   drivers/gpu/drm/verisilicon/vs_plane.h |   58 +
+>> >   drivers/gpu/drm/verisilicon/vs_type.h  |   69 +
+>> >   11 files changed, 4494 insertions(+), 2 deletions(-)
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
+>> >   create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
+>> >=20
+>> > diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/=
+verisilicon/Makefile
+>> > index 7d3be305b..1d48016ca 100644
+>> > --- a/drivers/gpu/drm/verisilicon/Makefile
+>> > +++ b/drivers/gpu/drm/verisilicon/Makefile
+>> > @@ -1,7 +1,11 @@
+>> >   # SPDX-License-Identifier: GPL-2.0
+>> >  =20
+>> > -vs_drm-objs :=3D vs_drv.o \
+>> > -		vs_modeset.o
+>> > +vs_drm-objs :=3D vs_dc_hw.o \
+>> > +		vs_dc.o \
+>> > +		vs_crtc.o \
+>> > +		vs_drv.o \
+>> > +		vs_modeset.o \
+>> > +		vs_plane.o
+>> >  =20
+>> >   obj-$(CONFIG_DRM_VERISILICON) +=3D vs_drm.o
+>> >  =20
+>> > diff --git a/drivers/gpu/drm/verisilicon/vs_crtc.c b/drivers/gpu/drm=
+/verisilicon/vs_crtc.c
+>> > new file mode 100644
+>> > index 000000000..8a658ea77
+>> > --- /dev/null
+>> > +++ b/drivers/gpu/drm/verisilicon/vs_crtc.c
+>> > @@ -0,0 +1,257 @@
+>> > +// SPDX-License-Identifier: GPL-2.0
+>> > +/*
+>> > + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
+>> > + *
+>> > + */
+>> > +
+>> > +#include <linux/clk.h>
+>> > +#include <linux/debugfs.h>
+>> > +#include <linux/media-bus-format.h>
+>> > +
+>> > +#include <drm/drm_atomic_helper.h>
+>> > +#include <drm/drm_atomic.h>
+>> > +#include <drm/drm_crtc.h>
+>> > +#include <drm/drm_gem_atomic_helper.h>
+>> > +#include <drm/drm_vblank.h>
+>> > +#include <drm/vs_drm.h>
+>> > +
+>> > +#include "vs_crtc.h"
+>> > +#include "vs_dc.h"
+>> > +#include "vs_drv.h"
+>> > +
+>> > +static void vs_crtc_reset(struct drm_crtc *crtc)
+>> > +{
+>> > +	struct vs_crtc_state *state;
+>> > +
+>> > +	if (crtc->state) {
+>> > +		__drm_atomic_helper_crtc_destroy_state(crtc->state);
+>> > +
+>> > +		state =3D to_vs_crtc_state(crtc->state);
+>> > +		kfree(state);
+>> > +		crtc->state =3D NULL;
+>> > +	}
+>>=20
+>> You can call your crtc_destroy_state function directly here.
+ok got it !
+>>=20
+>> > +
+>> > +	state =3D kzalloc(sizeof(*state), GFP_KERNEL);
+>> > +	if (!state)
+>> > +		return;
+>> > +
+>> > +	__drm_atomic_helper_crtc_reset(crtc, &state->base);
+>> > +}
+>> > +
+>> > +static struct drm_crtc_state *
+>> > +vs_crtc_atomic_duplicate_state(struct drm_crtc *crtc)
+>> > +{
+>> > +	struct vs_crtc_state *ori_state;
+>>=20
+>> It might be a matter of taste, but it is usually old_state.
+>>=20
+>> > +	struct vs_crtc_state *state;
+>> > +
+>> > +	if (!crtc->state)
+>> > +		return NULL;
+>> > +
+>> > +	ori_state =3D to_vs_crtc_state(crtc->state);
+>> > +	state =3D kzalloc(sizeof(*state), GFP_KERNEL);
+>> > +	if (!state)
+>> > +		return NULL;
+>> > +
+>> > +	__drm_atomic_helper_crtc_duplicate_state(crtc, &state->base);
+>> > +
+>> > +	state->output_fmt =3D ori_state->output_fmt;
+>> > +	state->encoder_type =3D ori_state->encoder_type;
+>> > +	state->bpp =3D ori_state->bpp;
+>> > +	state->underflow =3D ori_state->underflow;
+>>=20
+>> Can you use kmemdup instead?
+ok=20
+>>=20
+>> > +
+>> > +	return &state->base;
+>> > +}
+>> > +
+>> > +static void vs_crtc_atomic_destroy_state(struct drm_crtc *crtc,
+>> > +					 struct drm_crtc_state *state)
+>> > +{
+>> > +	__drm_atomic_helper_crtc_destroy_state(state);
+>> > +	kfree(to_vs_crtc_state(state));
+>> > +}
+>> > +
+>> > +static int vs_crtc_enable_vblank(struct drm_crtc *crtc)
+>> > +{
+>> > +	struct vs_crtc *vs_crtc =3D to_vs_crtc(crtc);
+>> > +	struct vs_dc *dc =3D dev_get_drvdata(vs_crtc->dev);
+>> > +
+>> > +	vs_dc_enable_vblank(dc, true);
+>> > +
+>> > +	return 0;
+>> > +}
+>> > +
+>> > +static void vs_crtc_disable_vblank(struct drm_crtc *crtc)
+>> > +{
+>> > +	struct vs_crtc *vs_crtc =3D to_vs_crtc(crtc);
+>> > +	struct vs_dc *dc =3D dev_get_drvdata(vs_crtc->dev);
+>> > +
+>> > +	vs_dc_enable_vblank(dc, false);
+>> > +}
+>> > +
+>> > +static const struct drm_crtc_funcs vs_crtc_funcs =3D {
+>> > +	.set_config		=3D drm_atomic_helper_set_config,
+>> > +	.page_flip		=3D drm_atomic_helper_page_flip,
+>>=20
+>> destroy is required, see drm_mode_config_cleanup()
+will add destory=20
+>>=20
+>> > +	.reset			=3D vs_crtc_reset,
+>> > +	.atomic_duplicate_state =3D vs_crtc_atomic_duplicate_state,
+>> > +	.atomic_destroy_state	=3D vs_crtc_atomic_destroy_state,
+>>=20
+>> please consider adding atomic_print_state to output driver-specific bi=
+ts.
+>>=20
+will add atomic_print_state  to print my private definitions
+>> > +	.enable_vblank		=3D vs_crtc_enable_vblank,
+>> > +	.disable_vblank		=3D vs_crtc_disable_vblank,
+>> > +};
+>> > +
+>> > +static u8 cal_pixel_bits(u32 bus_format)
+>>=20
+>> This looks like a generic helper code, which can go to a common place.
+>>=20
+>> > +{
+>> > +	u8 bpp;
+>> > +
+>> > +	switch (bus_format) {
+>> > +	case MEDIA_BUS_FMT_RGB565_1X16:
+>> > +	case MEDIA_BUS_FMT_UYVY8_1X16:
+>> > +		bpp =3D 16;
+>> > +		break;
+>> > +	case MEDIA_BUS_FMT_RGB666_1X18:
+>> > +	case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
+>> > +		bpp =3D 18;
+>> > +		break;
+>> > +	case MEDIA_BUS_FMT_UYVY10_1X20:
+>> > +		bpp =3D 20;
+>> > +		break;
+>> > +	case MEDIA_BUS_FMT_BGR888_1X24:
+>> > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+>> > +	case MEDIA_BUS_FMT_YUV8_1X24:
+>> > +		bpp =3D 24;
+>> > +		break;
+>> > +	case MEDIA_BUS_FMT_RGB101010_1X30:
+>> > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+>> > +	case MEDIA_BUS_FMT_YUV10_1X30:
+>> > +		bpp =3D 30;
+>> > +		break;
+>> > +	default:
+>> > +		bpp =3D 24;
+>> > +		break;
+>> > +	}
+>> > +
+>> > +	return bpp;
+>> > +}
+>> > +
+>> > +static void vs_crtc_atomic_enable(struct drm_crtc *crtc,
+>> > +				  struct drm_atomic_state *state)
+>> > +{
+>> > +	struct vs_crtc *vs_crtc =3D to_vs_crtc(crtc);
+>> > +	struct vs_dc *dc =3D dev_get_drvdata(vs_crtc->dev);
+>> > +	struct vs_crtc_state *vs_crtc_state =3D to_vs_crtc_state(crtc->sta=
+te);
+>> > +
+>> > +	vs_crtc_state->bpp =3D cal_pixel_bits(vs_crtc_state->output_fmt);
+>> > +
+>> > +	vs_dc_enable(dc, crtc);
+>> > +	drm_crtc_vblank_on(crtc);
+>> > +}
+>> > +
+>> > +static void vs_crtc_atomic_disable(struct drm_crtc *crtc,
+>> > +				   struct drm_atomic_state *state)
+>> > +{
+>> > +	struct vs_crtc *vs_crtc =3D to_vs_crtc(crtc);
+>> > +	struct vs_dc *dc =3D dev_get_drvdata(vs_crtc->dev);
+>> > +
+>> > +	drm_crtc_vblank_off(crtc);
+>> > +
+>> > +	vs_dc_disable(dc, crtc);
+>> > +
+>> > +	if (crtc->state->event && !crtc->state->active) {
+>> > +		spin_lock_irq(&crtc->dev->event_lock);
+>> > +		drm_crtc_send_vblank_event(crtc, crtc->state->event);
+>> > +		spin_unlock_irq(&crtc->dev->event_lock);
+>> > +
+>> > +		crtc->state->event =3D NULL;
+>>=20
+>> I think even should be cleared within the lock.
+>=20
+> event_lock doesn't protect anything in the crtc state.
 
-Is that not a misuse of the INTA pin in the first place? If there was no
-other option, that would be an easy fix, but why would we not implement
-the hi-Z mode when it is available? If I see a pinctrl-* modeling an
-interrupt pin, it is not obvious that I am doing that to stop the clock
-signal and I would have to clarify it explicitly, especially if I am not
-interested in the interrupt.
+how about match like this:
+spin_lock_irq(&crtc->dev->event_lock);
+if (crtc->state->event) {
+	drm_crtc_send_vblank_event(crtc, crtc->state->event);
+	crtc->state->event =3D NULL;
+}
+spin_unlock_irq(&crtc->dev->event_lock);
 
-I would rather implement and document the hi-Z mode the RTC offers
-instead of using another mode like INTA which actually can trigger
-interrupts. If the implementation must be different is of course another
-topic.
-> 
->> 2.- What happens if the RTC output is a clock for an external device
->> that is only required when the SoC is in sleep mode? In that case I
->> would like the RTC driver to control the output with the modes it provides.
-> 
-> Even if I doubt this is a valid use case, this would be possible as long
-> as the external device node has the correct pinctrl-* properties.
-> 
-> 
->>>>
->>>> Also, how you define this property means that everyone currently using
->>>> this RTC is going to have a new warning that they should just ignore.
->>>>
->>>>
->>> Thanks for your reply. The warning can only be triggered if the property
->>> is defined, so in principle no one could have that warning yet. Only the
->>> ones who actually define it and use an invalid value would get the warning.
->>>
->>> On the other hand I did not consider your approach, which might make
->>> this patch irrelevant. So I will have a look at it to make sure that it
->>> achieves the same results.
->>>
->>> Thanks again and best regards,
->>> Javier Carrasco
->>>
-> 
+>=20
+> But the bigger problem in this code is the prevalent crtc->state
+> usage. That should pretty much never be done, especially in anything
+> that can get called from the actual commit phase where you no longer
+> have the locks held. Instead one should almost always use the
+> get_{new,old}_state() stuff, or the old/new/oldnew state iterators.
+
+the prevalent crtc->state usage :
+crtc->state should not be used directly?
+need replace it by get_{new,old}_state()
+
+for example:
+drm_crtc_send_vblank_event(crtc, crtc->state->event);
+
+
+should do like this :
+struct drm_crtc_state *crtc_state =3D drm_atomic_get_new_crtc_state(state=
+, crtc);
+...
+drm_crtc_send_vblank_event(crtc, crtc_state->event);
+...
+
+If there is a problem, help further correct
+wish give a example
+Thanks
+
+>=20
+>>=20
+>> > +	}
+>> > +}
+>> > +
+>> > +static void vs_crtc_atomic_begin(struct drm_crtc *crtc,
+>> > +				 struct drm_atomic_state *state)
+>> > +{
+>> > +	struct drm_crtc_state *crtc_state =3D drm_atomic_get_new_crtc_stat=
+e(state,
+>> > +									  crtc);
+>> > +
+>> > +	struct vs_crtc *vs_crtc =3D to_vs_crtc(crtc);
+>> > +	struct device *dev =3D vs_crtc->dev;
+>> > +	struct drm_property_blob *blob =3D crtc->state->gamma_lut;
+>=20
+> Eg. here you are using drm_atomic_get_new_crtc_state() correctly, but
+> then proceed to directly access crtc->state anyway.
+>=20
+struct drm_property_blob *blob =3D crtc->state->gamma_lut;
+change to=20
+struct drm_property_blob *blob =3D crtc_state ->gamma_lut;
+
+>> > +	struct drm_color_lut *lut;
+>> > +	struct vs_dc *dc =3D dev_get_drvdata(dev);
+>> > +
+>> > +	if (crtc_state->color_mgmt_changed) {
+>> > +		if (blob && blob->length) {
+>> > +			lut =3D blob->data;
+>> > +			vs_dc_set_gamma(dc, crtc, lut,
+>> > +					blob->length / sizeof(*lut));
+>> > +			vs_dc_enable_gamma(dc, crtc, true);
+>> > +		} else {
+>> > +			vs_dc_enable_gamma(dc, crtc, false);
+>> > +		}
+>> > +	}
+>> > +}
+>=20
 
