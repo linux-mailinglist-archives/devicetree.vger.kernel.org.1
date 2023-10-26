@@ -1,89 +1,96 @@
-Return-Path: <devicetree+bounces-12080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83D9F7D7D62
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:09:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811967D7D67
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 09:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 221CCB212D3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:09:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C698281935
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6181156DF;
-	Thu, 26 Oct 2023 07:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="OlDVuwxw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A85125B5;
+	Thu, 26 Oct 2023 07:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2BB11CA2
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:08:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5C687C433CA;
-	Thu, 26 Oct 2023 07:08:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux.dev; s=korg;
-	t=1698304136; bh=hz+nOTC5E+8gnzYA2BexlgejiqntKVvvG4MRarols1w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=OlDVuwxwRA5eo6ln7+feW3zIEu7eLneL3ze9wDaRWhqMSVQzXGy/NSfZtfbUHDTvc
-	 1CGxzztF5euJIaQf1hystKbSJwqTK3auuapWeGZBSnmuI7V5hQcLh0zd6DiyHYmd2A
-	 BF9WVjrxK2cXl/sKVAnkr03nb4O65xpuRRd0EvYU=
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39907C25B70;
-	Thu, 26 Oct 2023 07:08:56 +0000 (UTC)
-From: Richard Leitner <richard.leitner@linux.dev>
-Date: Thu, 26 Oct 2023 09:08:50 +0200
-Subject: [PATCH v2 2/2] dt-bindings: hwmon: ti,ina2xx: add ti,ina237
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9737FE54E
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:10:36 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBAD018D
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 00:10:34 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvuVl-0006p3-17; Thu, 26 Oct 2023 09:10:33 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvuVk-004Lmo-CY; Thu, 26 Oct 2023 09:10:32 +0200
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qvuVk-00GPNi-9w; Thu, 26 Oct 2023 09:10:32 +0200
+Date: Thu, 26 Oct 2023 09:10:32 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH v3 4/7] regulator: dt-bindings: whitelist
+ system-critical-regulator property for fixed-regulator
+Message-ID: <20231026071032.GI3803936@pengutronix.de>
+References: <20231025084614.3092295-1-o.rempel@pengutronix.de>
+ <20231025084614.3092295-5-o.rempel@pengutronix.de>
+ <e2ae68a5-b6fc-4b0f-b198-e635435c33ce@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231026-ina237-v2-2-dec44811a3c9@linux.dev>
-References: <20231026-ina237-v2-0-dec44811a3c9@linux.dev>
-In-Reply-To: <20231026-ina237-v2-0-dec44811a3c9@linux.dev>
-To: Guenter Roeck <linux@roeck-us.net>, Jean Delvare <jdelvare@suse.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
- devicetree@vger.kernel.org, Richard Leitner <richard.leitner@linux.dev>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1698304135; l=711;
- i=richard.leitner@linux.dev; s=20231025; h=from:subject:message-id;
- bh=hz+nOTC5E+8gnzYA2BexlgejiqntKVvvG4MRarols1w=; =?utf-8?q?b=3D52V4KetWDgyI?=
- =?utf-8?q?jvgRhZArF8xqDkr7222pycFNSta1cRJ7abK31jjnVIwHzCJpR5h76SRAt7q+Ok0L?=
- 93Y4ZIZ7Awa8ZBIkJkNAvTda5MMabZh/+JOVsOR2Eu4XWKtS6POu
-X-Developer-Key: i=richard.leitner@linux.dev; a=ed25519;
- pk=ZYa5+0m9RFYtnNU6DLet7sHyPehnVHa0ucJlYiAu2NU=
-X-Endpoint-Received:
- by B4 Relay for richard.leitner@linux.dev/20231025 with auth_id=90
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <e2ae68a5-b6fc-4b0f-b198-e635435c33ce@sirena.org.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add ti,ina237 binding to ti,ina2xx as they are very similar and may
-share the same properties.
+On Wed, Oct 25, 2023 at 01:41:45PM +0100, Mark Brown wrote:
+> On Wed, Oct 25, 2023 at 10:46:11AM +0200, Oleksij Rempel wrote:
+> > Allow fixed-regulator to be marked as system-critical by whitelisting
+> > the 'system-critical-regulator' property.
+> > 
+> > This property indicating that the fixed-regulator is critical to system
+> > stability or functionality, aligning with the recent changes in the
+> > regulator core handling of under-voltage events for system-critical
+> > regulators.
+> 
+> Why would this need to be something we explicitly enable for a given
+> regulator?  Surely this is a property of the creativity of hardware
+> engineers rather than the regulator itself.
 
-Signed-off-by: Richard Leitner <richard.leitner@linux.dev>
----
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+:)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index 8648877d2d01..378d1f6aeeb3 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -26,6 +26,7 @@ properties:
-       - ti,ina226
-       - ti,ina230
-       - ti,ina231
-+      - ti,ina237
-       - ti,ina238
- 
-   reg:
+> Also please avoid the use of the outdated terms whitelist and blacklist,
+> pass and block lists are often a good alternative.
+
+ack
 
 -- 
-2.40.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
