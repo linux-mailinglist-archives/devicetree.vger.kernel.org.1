@@ -1,106 +1,131 @@
-Return-Path: <devicetree+bounces-12142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860227D8181
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:05:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 632477D8184
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 13:07:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40ADD281EF7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:05:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C98B281FAB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 11:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9432B23743;
-	Thu, 26 Oct 2023 11:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DCA31CAB2;
+	Thu, 26 Oct 2023 11:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FtQnivfn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TN96z371"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801271A59A
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 11:05:48 +0000 (UTC)
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D74D7195
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 04:05:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=GrFG
-	vbfeidm+alHjgtvfbrlEGdBVZ91PCRNVJyE2n3s=; b=FtQnivfn7Eapj7iiEDDH
-	2bsIwK2h+0BTc5qjqIMMUxut3VVftEGvgOyLBZlp4StVLgtYcaJT8BObbwlmu3bN
-	h3lud96BBk7C9MBGdlYnnh+JcZ/YBExC2TAmlyleTsUplYOJIpEHtI3bpK+JQMfr
-	vmhoE6N9o0KTGne58rWMWosdNnnQX5ee/qqBqZpRw8Jm/fWACKJL9n+OLAt4yVSF
-	+mHtKaPrfGuvYlOxsaRfwtoIX5ectZ8Jn39pKuipTnKo600z2aa+lQBJpjP4JGq5
-	5a4b8jpTRx4yBA6GkZI/i9nNezimD5JL+drq0ufheO7N7L387hQc+53PwO9/jyY6
-	dQ==
-Received: (qmail 2945163 invoked from network); 26 Oct 2023 13:05:42 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Oct 2023 13:05:42 +0200
-X-UD-Smtp-Session: l3s3148p1@pkF/jZwIWpFehhre
-Date: Thu, 26 Oct 2023 13:05:41 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-demux-pinctrl: Convert to
- json-schema
-Message-ID: <ZTpIBVTnEc0bkwth@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <28c173dfbbc17403b0c5a6f27661d7bd33a86f84.1698068607.git.geert+renesas@glider.be>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F9D13FEB
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 11:07:00 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7313D1AB
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 04:06:58 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507ad511315so1098091e87.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 04:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698318417; x=1698923217; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=toXNFfzr2zB8FMnlgacjGM+iESEOfHX27uyQ115+fBQ=;
+        b=TN96z3710cpyTAQ6Rb7vg5fw1uiBvBg/oRZW/FNtUR6HIo677vG3qVWnB0INPeRCyO
+         vSWZoZGpCXMd4SV4BCWgueqFFwiE+v0lCnO/gdGpSILDUSSJ3N4zWHYKNawCH8Mq7nVW
+         2wQ0OIIel85rbSq/sOkjkP52URI5V6lVxH2Jq7vTbx4Oq28aweutw4vLkbNdxAhmRj5s
+         fiELeDG23ZG34+a6X7ozL8nqHMwFRQDG3l96Y4t3zb3JT3OnJlhQ80txXqE7fToOKY7U
+         5TiiVCd36OkXp+JwF/My/+ZtBSaMIzt8kvAEConK8tyT053FZfpGBgEtQeLokcxOsJpS
+         4CTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698318417; x=1698923217;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=toXNFfzr2zB8FMnlgacjGM+iESEOfHX27uyQ115+fBQ=;
+        b=Ptr5Xa/da/OmEMwmVDx0+Yvw5oDtG5FLmZQBFyInge+/jMX5Z5kS3Qbm5I0BBaZzY2
+         ghaubjteQfvCKcKhSoASmiOZhm2Rj985dJBMGLi2rDSPPBJv49vFTdM4NvazleGEw/8R
+         K7uClva65ts2JofkNqfWkhZ0h/hh2egl8LIlBY+JtpDL90QUPPcEHl318vHZHovqj5k8
+         Hm7I3G2SnDQ9V3RhCYPr2r/uVJMQ7O11/AgbOpSSoolsjM+yRGa7C+r9SL3TX9UJGgTc
+         LDh9OVJcsYNR+2V5Agky39OH3lSE208IEPoQnK2AtucAec2siEOgTMabLqFhvXTdS0mg
+         UkiA==
+X-Gm-Message-State: AOJu0YwnMYATWiHJxZiu1iiuwtm16gVZgUyMFH3xW2n0Tp0LH1tZja0g
+	YX2hW0/JctxrNH6/Sx/5L3MuqQ==
+X-Google-Smtp-Source: AGHT+IF1GzRZLlCAOCTP0Lt45qDT8HQJ8XqHwpM351pN08WUKAOM3A/n2rhSXw93342t0EeqkpEuUw==
+X-Received: by 2002:ac2:485a:0:b0:500:a08e:2fcf with SMTP id 26-20020ac2485a000000b00500a08e2fcfmr11101260lfy.47.1698318416705;
+        Thu, 26 Oct 2023 04:06:56 -0700 (PDT)
+Received: from [172.30.204.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id q9-20020a056512210900b005079691360csm2978277lfr.49.2023.10.26.04.06.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Oct 2023 04:06:56 -0700 (PDT)
+Message-ID: <8dc48acb-46f0-47fa-bf7f-ee2d09eebcb3@linaro.org>
+Date: Thu, 26 Oct 2023 13:06:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0WBOsKIlUJq/1aDI"
-Content-Disposition: inline
-In-Reply-To: <28c173dfbbc17403b0c5a6f27661d7bd33a86f84.1698068607.git.geert+renesas@glider.be>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: qcom: Add Global Clock controller (GCC) driver
+ for SC8380XP
+Content-Language: en-US
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_tdas@quicinc.com,
+ quic_rjendra@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+ abel.vesa@linaro.org, quic_tsoni@quicinc.com
+References: <20231025133320.4720-1-quic_sibis@quicinc.com>
+ <20231025133320.4720-3-quic_sibis@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231025133320.4720-3-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---0WBOsKIlUJq/1aDI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 23, 2023 at 03:53:00PM +0200, Geert Uytterhoeven wrote:
-> Convert the pinctrl-based I2C bus demultiplexer Device Tree binding
-> documentation to json-schema.
->=20
-> Update the example to match reality.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 10/25/23 15:33, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+> 
+> Add support for the global clock controller found on SC8380XP
+> based devices.
+> 
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+[...]
 
-Applied to for-next, thanks!
+> +static int gcc_sc8380xp_probe(struct platform_device *pdev)
+> +{
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap = qcom_cc_map(pdev, &gcc_sc8380xp_desc);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks,
+> +				       ARRAY_SIZE(gcc_dfs_clocks));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Keep the critical clock always-On
+> +	 * gcc_camera_ahb_clk, gcc_camera_xo_clk, gcc_disp_ahb_clk,
+> +	 * gcc_disp_xo_clk, gcc_gpu_cfg_ahb_clk, gcc_video_ahb_clk,
+> +	 * gcc_video_xo_clk
+> +	 */
+> +	regmap_update_bits(regmap, 0x26004, BIT(0), BIT(0));
+Please inline the clock names, like so:
 
+regmap_update_bits(regmap, 0x26004, BIT(0), BIT(0)); /* gcc_camera_ahb_clk */
 
---0WBOsKIlUJq/1aDI
-Content-Type: application/pgp-signature; name="signature.asc"
+LGTM otherwise
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmU6SAEACgkQFA3kzBSg
-KbZPTQ/9HJyFypdF5mtVBnw2T6G5v4IPqogc28B48lU7SSVEoaxdJLA8Qag7nK0S
-3qXUG11tXs1TWRhZEaa5UtLEh0pUuXURZPl39hXcPkiTVMBFH7pjJU/kDX6USFJh
-cGSr2jKMh/CE1ud7c2Nt9PzPlAaA8c9vlyB+CT9lD1J+Rd78ZAop1csnHrvcbGsq
-Fmgjtgj03wVT+YTL2uarRS1sBmxTviSikSHGuRYUjVUSDgo358ReWZdmXx0XkVzj
-gQKyo1nl1s2xkhw3l8tzGqhxCtliYaYQRh3VAnDqu8xx2ljWdtXpOsj0NQlmiHDd
-07BPoU1sEu4H17wCuT8Kss6XWvn2hA7oeLrRqE04cuZo4i9gemoRY3Mf0po2SykU
-KEgR6SNXHMhCHhG5LsvNW5nXDmTKJ0v4ri3EdjyXiLcUui6orGNrtQuwV+RFmiiG
-RulXcWPFRnshE70SHGqTzOxlN+5jAJl/rf9rXPF5FYkm7302GL0T/F2dZOV9FqL2
-rPFV0V8YyNcc6+m2fQdMt6EfeS4WMiYfF/wmTl3e/04Ik6ppPSLRaEdCRcrW6zAC
-5SHZE7eu+w1SX7+LbzGJ8RBahc62m6a8tZwAPCwMiAU/79ILUhQtItfRp33zTEMx
-75rOwSQULMwT7cb3cSdzrOQjd4lAsa1R64/IqpkxVyXVyf+TRkU=
-=MH8N
------END PGP SIGNATURE-----
-
---0WBOsKIlUJq/1aDI--
+Konrad
 
