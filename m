@@ -1,81 +1,93 @@
-Return-Path: <devicetree+bounces-12285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C667D8A7E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 23:39:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A4A7D8B5E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 00:03:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 665D4B2115D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 21:39:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01D8BB212EE
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 22:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322BC3D987;
-	Thu, 26 Oct 2023 21:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83E03E47E;
+	Thu, 26 Oct 2023 22:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VZDhVB3p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1E211C9E
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 21:39:25 +0000 (UTC)
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A7210E;
-	Thu, 26 Oct 2023 14:39:24 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3b2f4a5ccebso869986b6e.3;
-        Thu, 26 Oct 2023 14:39:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541DC34CDA;
+	Thu, 26 Oct 2023 22:03:34 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24CF4194;
+	Thu, 26 Oct 2023 15:03:33 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a0907896so2060427e87.2;
+        Thu, 26 Oct 2023 15:03:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698357811; x=1698962611; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q5hLrNJsmwnCO5l/iKscXNMyGzsoKX1e7ZUXZvYUQ+E=;
+        b=VZDhVB3pWNlapxf0QvGjotICTMY9TfBLlXZobyupzLDSkZcqpvgXJZGl84XIOUViRN
+         s5qKGIdW1CwBhDRHF2pyr3jw/ytYtjyVobKjFh7PAEgH890NYuWl/7jphoYlly/nZRxz
+         m0EhXRx3AJle++2rYEIGl/8NtfxBngaLRA02a3BMR6zGyBYuz2V/bbjBle3ivDfb8132
+         dC7Ut0U2/ACUsCJhRe9sG7nVTqen2iUPRjioCs853up2odndd8cYw6wK28F4NnpowYix
+         mzUqtjBTFgmTH/P7NNNGYF0S4DpZ4aldXUuFi0EGlq5/ECkJ7hUlD9wV5ohH5I3SaopI
+         8J2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698356364; x=1698961164;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=owGB7B4AKx9aC9FfJUL9KzWkWR7ZglsVcL0jrgxqndE=;
-        b=Khs6ZIpM79ntX9Sb42+08eu+NbWZee7gADo0ORZtT8NKrYGFccg89T0XiCnkHBZNej
-         WAdOo+Oy8jK4TQ39opE7K2eqJ4XYzJ2Y0+Pm0y9uGgIHxGzcfxgRMd4I31K7bCQDTmSB
-         LIl0Y6KhJvPcO0hPcg+QEQ0QgZIVBw0ACBM1Fs7f5L6oF4YYMO84KCbWpgMsYzw/Fd0V
-         zJMDdEqugc1co8ewujY8zJqUkcU+QmUQ4rtipnQx07cQRqGx7I2XZFrNsAyHzJ8s2YNo
-         G+qTIksTlk/qNrgtg2FgaIBhwHFvhFHvKhPZtS56LFMkKOKHuWE1Kywgo+VYQ5WgK9h2
-         wNBQ==
-X-Gm-Message-State: AOJu0YzPOKe8tBovI5b53Ed1ebPbvFF1mFeTxIHbgzbjr+/QIp7NqPIt
-	Qogg6G1Z5LJwhOdBGouTkg==
-X-Google-Smtp-Source: AGHT+IFhQna7OtMxgkFIDFlhS0L2auquNBNgiVZqtGP36y5bCp4caQ57mkHl3frZkcZRzmA7qQ3TeA==
-X-Received: by 2002:a54:4415:0:b0:3a4:3b56:72b2 with SMTP id k21-20020a544415000000b003a43b5672b2mr722017oiw.8.1698356363730;
-        Thu, 26 Oct 2023 14:39:23 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id h24-20020a056808015800b003ae5cb55513sm39685oie.38.2023.10.26.14.39.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 14:39:23 -0700 (PDT)
-Received: (nullmailer pid 443891 invoked by uid 1000);
-	Thu, 26 Oct 2023 21:39:22 -0000
-Date: Thu, 26 Oct 2023 16:39:22 -0500
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: cache: qcom,llcc: Document the SM8650
- Last Level Cache Controller
-Message-ID: <169835636164.443852.14392766930073177451.robh@kernel.org>
-References: <20231025-topic-sm8650-upstream-llcc-v1-0-ba4566225424@linaro.org>
- <20231025-topic-sm8650-upstream-llcc-v1-1-ba4566225424@linaro.org>
+        d=1e100.net; s=20230601; t=1698357811; x=1698962611;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q5hLrNJsmwnCO5l/iKscXNMyGzsoKX1e7ZUXZvYUQ+E=;
+        b=eyQ/H9Q5iWKzvDADONE+ofju+h0VsVhO9UrBa1jn4ijGVeYQyd3mFSV5jdq8tAP12C
+         vRsmdh3OAEi5dlnOwQaqh9EWDsH8oBNepgp1ScyPfmjYh8T0I7Hr7etrBwOn2PjQpTC7
+         vLHJr8eoAhjU7GpQBF0rdxmUGT20t0GFRDjyy2XNHJ2wzzdwCRjehBjVh+CXMXWSRsZ7
+         3N077ix21KpdGemlCecqcmTEpcXr34Bw1XuXoS4BMYLhx6DlmVKakhqLSVkfQnBxRkqq
+         SykbZ157+eLzpJKbRlWG60QlrtId3Zbiu/8sZC/tLVkDK5JjHUe/rNa2NGKVVBzjdWB5
+         lijg==
+X-Gm-Message-State: AOJu0YyvKJzqQTbu/J9FWtpX0DdUe5/CUv0ebISjftPIe8woZlozuXUw
+	a6/cQn5tOvkCrYczGpDtx4vUZ1IDL5Gp4dwXZBw=
+X-Google-Smtp-Source: AGHT+IHbgZl1rbe/BbKbUA0u9EHvueRSJ46VOIWp7wWXxyKGtD3be/nmYvNaoh/DzKVRPpw6egm8xijuXEsCU3DzP0c=
+X-Received: by 2002:a05:6512:208c:b0:507:ab66:f118 with SMTP id
+ t12-20020a056512208c00b00507ab66f118mr397456lfr.68.1698357811023; Thu, 26 Oct
+ 2023 15:03:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231025-topic-sm8650-upstream-llcc-v1-1-ba4566225424@linaro.org>
+References: <20231024205805.19314-1-luizluca@gmail.com> <20231024205805.19314-3-luizluca@gmail.com>
+ <20231026205807.GA347941-robh@kernel.org>
+In-Reply-To: <20231026205807.GA347941-robh@kernel.org>
+From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date: Thu, 26 Oct 2023 19:03:19 -0300
+Message-ID: <CAJq09z5wm=WMifELQ2cEYWb1L4Wsc4nkaj0o8p+fireY5QG-uQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] dt-bindings: net: dsa: realtek: add reset controller
+To: Rob Herring <robh@kernel.org>
+Cc: netdev@vger.kernel.org, linus.walleij@linaro.org, alsi@bang-olufsen.dk, 
+	andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com, 
+	olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, 
+	krzk+dt@kernel.org, arinc.unal@arinc9.com, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    const: switch
+>
+> $block-name is not really a useful name for resources. Generally, you
+> don't need -names if there's only 1 entry.
 
-On Wed, 25 Oct 2023 09:31:36 +0200, Neil Armstrong wrote:
-> Document the Last Level Cache Controller on the SM8650 platform.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+I didn't know the reset-control name was optional. Yes, it is not
+useful. I'll get rid of it.
+It looks like there are more bindings where it is not necessary.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Regards,
 
+Luiz
 
