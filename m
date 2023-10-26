@@ -1,209 +1,163 @@
-Return-Path: <devicetree+bounces-12056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89847D7C0A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:11:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A9A7D7C3B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:31:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1722B21396
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 05:11:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3395281050
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 05:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED55F9F9;
-	Thu, 26 Oct 2023 05:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A1DC2D5;
+	Thu, 26 Oct 2023 05:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G8wbEv0Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051EBC2CF
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:11:24 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D31E187
-	for <devicetree@vger.kernel.org>; Wed, 25 Oct 2023 22:11:23 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qvsdy-0004YC-OS; Thu, 26 Oct 2023 07:10:54 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qvsdw-004L1X-PJ; Thu, 26 Oct 2023 07:10:52 +0200
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qvsdw-009ilI-2E;
-	Thu, 26 Oct 2023 07:10:52 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: "David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Arun Ramadoss <arun.ramadoss@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	UNGLinuxDriver@microchip.com,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org
-Subject: [PATCH net-next v8 5/5] net: dsa: microchip: Ensure Stable PME Pin State for Wake-on-LAN
-Date: Thu, 26 Oct 2023 07:10:51 +0200
-Message-Id: <20231026051051.2316937-6-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231026051051.2316937-1-o.rempel@pengutronix.de>
-References: <20231026051051.2316937-1-o.rempel@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C005C2C6
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:31:05 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B776C1;
+	Wed, 25 Oct 2023 22:31:02 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39Q5RvLl020299;
+	Thu, 26 Oct 2023 05:30:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=TpmWst0YTaQbHQXHbu3AD6DbrLSZSlQlBc5MhXt+JO0=;
+ b=G8wbEv0QaAvgZLrumCkdPm/i3sRkrWSiK3r0MR1VSOYKGAxXTmFje+qRe7yTYCmrrChr
+ +zqfGhg1Y9riLQePifbaKh/rLxsA9Vx+kizNWOCzy4V5ibHGU9QgLqiGkB2+HLdzMD52
+ BxpUcl7BnO5XBgYUVGuGjKnx0cEYBVVGgZE0Skx8HrD532epS0YQeW2UroowPp2KHg+u
+ jE706Jl2ayp9WZAimPNWaC66//ZIxYAJzGYrkBNC+b2ExQfFCbnCYkCBR71PmbjZyjSv
+ s7RX6ZRSLgKLCXUqR162IhgsYqUgOR4GXUHeQOk9+wTSAGEYmxa53nCNEaPxNGpjKbmQ Ng== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ty0tu265a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Oct 2023 05:30:42 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39Q5Uf4u026009
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 26 Oct 2023 05:30:41 GMT
+Received: from [10.216.45.182] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 25 Oct
+ 2023 22:30:32 -0700
+Message-ID: <610b0621-b140-ee9b-c450-0fec6862c4fc@quicinc.com>
+Date: Thu, 26 Oct 2023 11:00:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 4/5] PCI: epf-mhi: Add support for SA8775P
+Content-Language: en-US
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <quic_shazhuss@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nayiluri@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <robh@kernel.org>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Lorenzo
+ Pieralisi" <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Vinod Koul
+	<vkoul@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
+        <linux-phy@lists.infradead.org>
+References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
+ <1697715430-30820-5-git-send-email-quic_msarkar@quicinc.com>
+ <20231025075603.GD3648@thinkpad>
+From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+In-Reply-To: <20231025075603.GD3648@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: UsPh1zzspnuUr39tC_m-xsRWj4z3LVWm
+X-Proofpoint-GUID: UsPh1zzspnuUr39tC_m-xsRWj4z3LVWm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-26_03,2023-10-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 mlxlogscore=833
+ suspectscore=0 bulkscore=0 mlxscore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2310170001 definitions=main-2310260045
 
-Ensures a stable PME (Power Management Event) pin state by disabling PME
-on system start and enabling it on shutdown only if WoL (Wake-on-LAN) is
-configured. This is needed to avoid issues with some PMICs (Power
-Management ICs).
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- drivers/net/dsa/microchip/ksz9477.c    | 46 ++++++++++++++++++++++++++
- drivers/net/dsa/microchip/ksz9477.h    |  1 +
- drivers/net/dsa/microchip/ksz_common.c |  8 ++++-
- drivers/net/dsa/microchip/ksz_common.h |  1 +
- 4 files changed, 55 insertions(+), 1 deletion(-)
+On 10/25/2023 1:26 PM, Manivannan Sadhasivam wrote:
+> On Thu, Oct 19, 2023 at 05:07:09PM +0530, Mrinmay Sarkar wrote:
+>> Add support for Qualcomm Snapdragon SA8775P SoC to the EPF driver.
+>> SA8775P has the PID (0x0306) and supports HDMA. Currently, it has
+> Is the PID fixed? I thought you just want to reuse the SDXxx PID in the
+> meantime.
+>
+> - Mani
 
-diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
-index 441b4597ef27..f24181086e16 100644
---- a/drivers/net/dsa/microchip/ksz9477.c
-+++ b/drivers/net/dsa/microchip/ksz9477.c
-@@ -197,6 +197,46 @@ int ksz9477_set_wol(struct ksz_device *dev, int port,
- 	return 0;
- }
- 
-+/**
-+ * ksz9477_wol_pre_shutdown - Prepares the switch device for shutdown while
-+ *                            considering Wake-on-LAN (WoL) settings.
-+ * @dev: The switch device structure.
-+ * @wol_enabled: Pointer to a boolean which will be set to true if WoL is
-+ *               enabled on any port.
-+ *
-+ * This function prepares the switch device for a safe shutdown while taking
-+ * into account the Wake-on-LAN (WoL) settings on the user ports. It updates
-+ * the wol_enabled flag accordingly to reflect whether WoL is active on any
-+ * port.
-+ */
-+void ksz9477_wol_pre_shutdown(struct ksz_device *dev, bool *wol_enabled)
-+{
-+	struct dsa_port *dp;
-+	int ret;
-+
-+	*wol_enabled = false;
-+
-+	if (!dev->wakeup_source)
-+		return;
-+
-+	dsa_switch_for_each_user_port(dp, dev->ds) {
-+		u8 pme_ctrl = 0;
-+
-+		ret = ksz_pread8(dev, dp->index, REG_PORT_PME_CTRL, &pme_ctrl);
-+		if (!ret && pme_ctrl)
-+			*wol_enabled = true;
-+
-+		/* make sure there are no pending wake events which would
-+		 * prevent the device from going to sleep/shutdown.
-+		 */
-+		ksz9477_handle_wake_reason(dev, dp->index);
-+	}
-+
-+	/* Now we are save to enable PME pin. */
-+	if (*wol_enabled)
-+		ksz_write8(dev, REG_SW_PME_CTRL, PME_ENABLE);
-+}
-+
- static int ksz9477_wait_vlan_ctrl_ready(struct ksz_device *dev)
- {
- 	unsigned int val;
-@@ -1277,6 +1317,12 @@ int ksz9477_setup(struct dsa_switch *ds)
- 	/* enable global MIB counter freeze function */
- 	ksz_cfg(dev, REG_SW_MAC_CTRL_6, SW_MIB_COUNTER_FREEZE, true);
- 
-+	/* Make sure PME (WoL) is not enabled. If requested, it will be
-+	 * enabled by ksz9477_wol_pre_shutdown(). Otherwise, some PMICs do not
-+	 * like PME events changes before shutdown.
-+	 */
-+	ksz_write8(dev, REG_SW_PME_CTRL, 0);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/net/dsa/microchip/ksz9477.h b/drivers/net/dsa/microchip/ksz9477.h
-index fa8d0318b437..ce1e656b800b 100644
---- a/drivers/net/dsa/microchip/ksz9477.h
-+++ b/drivers/net/dsa/microchip/ksz9477.h
-@@ -62,6 +62,7 @@ void ksz9477_get_wol(struct ksz_device *dev, int port,
- 		     struct ethtool_wolinfo *wol);
- int ksz9477_set_wol(struct ksz_device *dev, int port,
- 		    struct ethtool_wolinfo *wol);
-+void ksz9477_wol_pre_shutdown(struct ksz_device *dev, bool *wol_enabled);
- 
- int ksz9477_port_acl_init(struct ksz_device *dev, int port);
- void ksz9477_port_acl_free(struct ksz_device *dev, int port);
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 3b48e42148a0..3fed406fb46a 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -321,6 +321,7 @@ static const struct ksz_dev_ops ksz9477_dev_ops = {
- 	.phylink_mac_link_up = ksz9477_phylink_mac_link_up,
- 	.get_wol = ksz9477_get_wol,
- 	.set_wol = ksz9477_set_wol,
-+	.wol_pre_shutdown = ksz9477_wol_pre_shutdown,
- 	.config_cpu_port = ksz9477_config_cpu_port,
- 	.tc_cbs_set_cinc = ksz9477_tc_cbs_set_cinc,
- 	.enable_stp_addr = ksz9477_enable_stp_addr,
-@@ -3857,7 +3858,12 @@ EXPORT_SYMBOL(ksz_switch_alloc);
-  */
- void ksz_switch_shutdown(struct ksz_device *dev)
- {
--	if (dev->dev_ops->reset)
-+	bool wol_enabled = false;
-+
-+	if (dev->dev_ops->wol_pre_shutdown)
-+		dev->dev_ops->wol_pre_shutdown(dev, &wol_enabled);
-+
-+	if (dev->dev_ops->reset && !wol_enabled)
- 		dev->dev_ops->reset(dev);
- 
- 	dsa_switch_shutdown(dev->ds);
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 14b4828f80a1..b7e8a403a132 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -378,6 +378,7 @@ struct ksz_dev_ops {
- 			struct ethtool_wolinfo *wol);
- 	int (*set_wol)(struct ksz_device *dev, int port,
- 		       struct ethtool_wolinfo *wol);
-+	void (*wol_pre_shutdown)(struct ksz_device *dev, bool *wol_enabled);
- 	void (*config_cpu_port)(struct dsa_switch *ds);
- 	int (*enable_stp_addr)(struct ksz_device *dev);
- 	int (*reset)(struct ksz_device *dev);
--- 
-2.39.2
+The PID for SA8775p EP is not decided yet. So using 0x0306 PID meantime.
 
+--Mrinmay
+
+>> no fixed PCI class, so it is being advertised as "PCI_CLASS_OTHERS".
+>>
+>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+>> ---
+>>   drivers/pci/endpoint/functions/pci-epf-mhi.c | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/pci/endpoint/functions/pci-epf-mhi.c b/drivers/pci/endpoint/functions/pci-epf-mhi.c
+>> index b7b9d3e..4487260 100644
+>> --- a/drivers/pci/endpoint/functions/pci-epf-mhi.c
+>> +++ b/drivers/pci/endpoint/functions/pci-epf-mhi.c
+>> @@ -114,6 +114,22 @@ static const struct pci_epf_mhi_ep_info sm8450_info = {
+>>   	.flags = MHI_EPF_USE_DMA,
+>>   };
+>>   
+>> +static struct pci_epf_header sa8775p_header = {
+>> +	.vendorid = PCI_VENDOR_ID_QCOM,
+>> +	.deviceid = 0x0306,
+>> +	.baseclass_code = PCI_CLASS_OTHERS,
+>> +	.interrupt_pin = PCI_INTERRUPT_INTA,
+>> +};
+>> +
+>> +static const struct pci_epf_mhi_ep_info sa8775p_info = {
+>> +	.config = &mhi_v1_config,
+>> +	.epf_header = &sa8775p_header,
+>> +	.bar_num = BAR_0,
+>> +	.epf_flags = PCI_BASE_ADDRESS_MEM_TYPE_32,
+>> +	.msi_count = 32,
+>> +	.mru = 0x8000,
+>> +};
+>> +
+>>   struct pci_epf_mhi {
+>>   	const struct pci_epc_features *epc_features;
+>>   	const struct pci_epf_mhi_ep_info *info;
+>> @@ -677,6 +693,7 @@ static int pci_epf_mhi_probe(struct pci_epf *epf,
+>>   }
+>>   
+>>   static const struct pci_epf_device_id pci_epf_mhi_ids[] = {
+>> +	{ .name = "sa8775p", .driver_data = (kernel_ulong_t)&sa8775p_info },
+>>   	{ .name = "sdx55", .driver_data = (kernel_ulong_t)&sdx55_info },
+>>   	{ .name = "sm8450", .driver_data = (kernel_ulong_t)&sm8450_info },
+>>   	{},
+>> -- 
+>> 2.7.4
+>>
 
