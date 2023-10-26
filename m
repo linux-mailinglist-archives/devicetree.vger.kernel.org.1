@@ -1,101 +1,98 @@
-Return-Path: <devicetree+bounces-12191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4E387D84AC
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A267D84AA
 	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:27:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55A80B20BAD
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCD34282045
 	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE7A2EAE4;
-	Thu, 26 Oct 2023 14:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4872EAF0;
+	Thu, 26 Oct 2023 14:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S8A3L/KF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pJPL21YR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0342E3EE
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:27:39 +0000 (UTC)
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE2F1AE
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:27:37 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6ce291b5df9so500543a34.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:27:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4F82E3EE
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:27:43 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322BA128
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:27:41 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5a7e5dc8573so7374477b3.0
+        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 07:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698330457; x=1698935257; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698330460; x=1698935260; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GhsfFnZU92WVFFrLtVVI1l5X1Oa/Mn3OJb2wIrC8HxY=;
-        b=S8A3L/KFwrMW1qgZRTEsPZ+r1M+Gs9TSGv+0/fHkUsYmXv+SFlJVlixeTztoACBq5h
-         0niVURbFcYmck7HJoM8FOnPsYMg74H1bEoif/2fyVyavTQtEwda/xQOaBInE+k+QDAwH
-         nf7zj3atpindmcvfQAhnmhTgqQzXGgblTD/ZbFPcZiYkHIDQfHJdic8mgEY+QikyBT7i
-         d93ZmwcDJkuh79+DjPEF0dp4Ero3xMUgeTsIGobEqQqfsKhB5X6o1qOWT/HZS0t3CZhX
-         Hoj2/CmsfYjeJi9cJpqTgDTlfT4hMf2GeWV06emR+bsCqLFXisMNonUGBckeC2EUywaJ
-         5sVA==
+        bh=aq6iigylZMpfs04X5SeXZ4mtetKbM9BrbaFDGbQvE9o=;
+        b=pJPL21YR8BU93jB5pWuogc/1qcxuzz4q5t5/rlQP3aw4Q27dhGRty3Fa64po7Cv3FM
+         dglwvDQIA6sIaAaVJY8/d5d9yhNYYupmqnVWB/mVwY+etQ9n1yv9mhsKra0Lrad/0kWL
+         5tLTaPQJNf1WymgYeKQ/nSmBUm44XbjMjQqRmZBMogVWhySoEk+ux9E0j0Jkz3Sz7w6Z
+         0QsosL4RqeB24vfaESRl43AadN5IhRwFMv3L4HG7I2i7Ti3NQzb1+qqmBfJqG43OTA4K
+         auhyj9DaH3O7R2Yk/CFC2ayh8MYbSWhii1tHn+YYHNANSOtgn8JCr2XQvN4Z+tlYpgx2
+         iW2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698330457; x=1698935257;
+        d=1e100.net; s=20230601; t=1698330460; x=1698935260;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GhsfFnZU92WVFFrLtVVI1l5X1Oa/Mn3OJb2wIrC8HxY=;
-        b=ucJbsrfUc3Ltm3wzL5FIM7jzq/6/2Yt/ZlZCS6w41pD5VrOmfD9VbY97oZC6CLs97s
-         TbT/n2pNLsOy+03+wZNItIw98Q6YHhdLcsys7iNkFgGk8Ib7YXB3+lf6lCUJrFoG0/d/
-         h39BnFSexfbQ8/8q9Rvk93TvVOiEa485WLg9R2pjYTaCK2NPYW7dnVMnh3nTscGdE2hx
-         3IHx32d3gB5agyR5mmV+TqP2ceiB9leOZllp016n8MEEIX1abnq5T3gvM+uMlvQXgzuc
-         XUe1EVhBGSV4zOgTyKa2SsQHQNyP4z87emdUkP6Cn6wEUtQV82PWFG//7jTrx5uvwGCh
-         5uOQ==
-X-Gm-Message-State: AOJu0YyMpNdxJHv3P2EwjVIK6Yj21FfgW8KTUoN/nK4B6WFYsUzi5z2y
-	lgNX3L29DURx/jffw+pir1JSh+2rYn6+alRsh3oyTw==
-X-Google-Smtp-Source: AGHT+IGxE2Xrpad4dfWbz2DEnioRFB5E9UqGa5TGGzFeHITk4UUxpgjyIjrhQGMQUGjqU0chVHmctgxOD1J/cdNLLec=
-X-Received: by 2002:a05:6830:910:b0:6b9:c4b1:7a86 with SMTP id
- v16-20020a056830091000b006b9c4b17a86mr23867125ott.3.1698330456853; Thu, 26
- Oct 2023 07:27:36 -0700 (PDT)
+        bh=aq6iigylZMpfs04X5SeXZ4mtetKbM9BrbaFDGbQvE9o=;
+        b=P8FHOYkiQHTOn2atVMZK7+/P9ZTX35nPAnq6g5BYyJQZFwsJ1SupQIFR5gvHaEqiwg
+         8fXcC9W6xiTtUhnEDl6zpSGmBLLegZ/p+YMGu1G72qYF1CNuO7nKta2YefK/3PNH5S3W
+         5ujLPepc6ZnFIaWabSlnia0tm+vq78nhdXeWqb2RyWTE1f/tzzTqvGr213tM0+IZ5XLn
+         2K4rCl9PzWWAfaRAgL9DAV7E7fKKEp+uPvG6wPt8CU0leUElGytgCnMogklpbG7mL9bX
+         syXTcI8aD/biboHZ1GbjOt+HjsLyy3kuQVU67hc81Gph1eWmkSQUmiWKOHZQrf1jxH1y
+         0AWQ==
+X-Gm-Message-State: AOJu0YzyTvU7YeFotshOW+QKC83uIIohZdvUdWwf8/4OGN5RbLJubHJj
+	5WsHYQYBoAJZ1vPTxXTvfRB/reAe9cWJd67nyyxNbw==
+X-Google-Smtp-Source: AGHT+IF9Q38E9GYE6ICcOASuOK8JhrLJhUIH0SyBbZqI7bVwo2KRd8JC/19kmyoIdCwSgBT5tP2m9yPHgvRFJFObtLc=
+X-Received: by 2002:a05:690c:dc4:b0:5a7:aa54:42b1 with SMTP id
+ db4-20020a05690c0dc400b005a7aa5442b1mr23450115ywb.28.1698330460413; Thu, 26
+ Oct 2023 07:27:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231025-topic-sm8650-upstream-rpmpd-v1-0-f25d313104c6@linaro.org>
-In-Reply-To: <20231025-topic-sm8650-upstream-rpmpd-v1-0-f25d313104c6@linaro.org>
+References: <20231025135943.13854-1-quic_sibis@quicinc.com>
+In-Reply-To: <20231025135943.13854-1-quic_sibis@quicinc.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 26 Oct 2023 16:27:01 +0200
-Message-ID: <CAPDyKFpXURm-kE-mhgyU7bO4EeApKA6PSrmcNp4a_39Eba-Lcg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] pmdomain: qcom: rpmhpd: Introduce Power Domains
- support for SM8650
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Date: Thu, 26 Oct 2023 16:27:04 +0200
+Message-ID: <CAPDyKFow00ZDE7RkaU_gj3iLYKjubhCZX01GNyROXYE+3YjUAA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] pmdomain: qcom: Add power domain support for SC8380XP
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, agross@kernel.org, conor+dt@kernel.org, 
+	quic_rjendra@quicinc.com, abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, quic_tsoni@quicinc.com, neil.armstrong@linaro.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 25 Oct 2023 at 09:32, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+On Wed, 25 Oct 2023 at 16:00, Sibi Sankar <quic_sibis@quicinc.com> wrote:
 >
-> Add Power Domains and Bindings for SM8650 platform, it uses
-> a new NSP2 power domain.
+> This series adds power domain support for the Qualcomm SC8380XP platform, aka Snapdragon X Elite.
 >
 > Dependencies: None
+> Release Link: https://www.qualcomm.com/news/releases/2023/10/qualcomm-unleashes-snapdragon-x-elite--the-ai-super-charged-plat
 >
-> For convenience, a regularly refreshed linux-next based git tree containing
-> all the SM8650 related work is available at:
-> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
+> Abel Vesa (2):
+>   dt-bindings: power: rpmpd: Add SC8380XP support
+>   pmdomain: qcom: rpmhpd: Add SC8380XP power domains
 >
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Neil Armstrong (2):
->       dt-bindings: power: qcom,rpmpd: document the SM8650 RPMh Power Domains
->       pmdomain: qcom: rpmhpd: Add SM8650 RPMh Power Domains
+> Sibi Sankar (1):
+>   dt-bindings: power: qcom,rpmhpd: Add GMXC PD index
 >
->  .../devicetree/bindings/power/qcom,rpmpd.yaml      |  1 +
->  drivers/pmdomain/qcom/rpmhpd.c                     | 30 ++++++++++++++++++++++
->  include/dt-bindings/power/qcom,rpmhpd.h            |  1 +
->  3 files changed, 32 insertions(+)
+>  .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+>  drivers/pmdomain/qcom/rpmhpd.c                | 28 +++++++++++++++++++
+>  include/dt-bindings/power/qcom,rpmhpd.h       |  1 +
+>  3 files changed, 30 insertions(+)
+>
 
 Applied for next, thanks!
 
