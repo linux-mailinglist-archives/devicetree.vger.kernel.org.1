@@ -1,139 +1,420 @@
-Return-Path: <devicetree+bounces-12063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC417D7C4D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:38:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E1B7D7C83
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 07:51:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DB051C20E48
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 05:38:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D4AF281E20
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 05:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBA2CC8DE;
-	Thu, 26 Oct 2023 05:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1EFD30B;
+	Thu, 26 Oct 2023 05:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MFK7KMgj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IHQ/LM4B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D54CC134
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:38:28 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42891115;
-	Wed, 25 Oct 2023 22:38:27 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39Q3Otwx017422;
-	Thu, 26 Oct 2023 05:38:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=fkSeqXomzCL96EMHGzEvzbs4O6q4EfsPRcDgEiGKLaI=;
- b=MFK7KMgjL85YyufW38WA8h5NF3bvpEQGsZhrPjRiXoCPcbTDDMVXvzwFhevPamgtjpp3
- c2Gt9+2UysuhcDvil1rFGo0a5iLmeMogTlbD3pFkz2DkvTv1XCRS7fruCgH92XterjGT
- 3tO7ltsO32yVAaUOGzOuUIaMBjbQUc4PTSKbEBFwlWB2GSbCAKoMw7/UaBD/dcze/fdG
- I7HHwnEZyp+l5RNNr6jv/BxoQm+ulTAHKxgwntu/Zk0Z6R+rjrLB6EnXp3orvfKk5XeP
- b16NJQ1eEM75Wth9pJ7dBbyR3EMHgTqv4hthA2gaZQhHfH3GA8J2RyUPOOEcYlz6tQXp kw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tye3trdj5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Oct 2023 05:38:16 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39Q5cETR012187
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 26 Oct 2023 05:38:14 GMT
-Received: from [10.216.45.182] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 25 Oct
- 2023 22:38:06 -0700
-Message-ID: <adbca084-a74b-51be-67b5-a3b9e45da506@quicinc.com>
-Date: Thu, 26 Oct 2023 11:08:03 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02260C134
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:51:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC47D115;
+	Wed, 25 Oct 2023 22:51:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698299497; x=1729835497;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=OH/20/B2NLsGcslDH5sfUvJ+st0+zsZKKUjG0meGGHQ=;
+  b=IHQ/LM4BNUwYbcbHTB6p8XYXLVqmhpfut5AnDX8uOCMN9XAiyahgyVgi
+   a50LLWMl9M+N5bmQYyS31izWU+c8277viDIkbKrKTadLhnttYkyofoukg
+   +jyQpXfaN6wt8RObXwkregM/3xxLOkDL3HNaQpSEvK51zE7iUyD+rsSOT
+   25tS71uihnExynTCJ1Jb1rW6sFOlqqqUVygsfu9E4xLwGM0QNKH46PyiR
+   r/PcmmxBXWhqWrSZV+vxjj8v9PqbmuuyHlFvsazsi2706AZBH00Y4OaVR
+   rrk3+vUxC6xdgMojEAiTtKM0Yy3hnyqOalVoemF3PoHY7DEXMrQsmzcdj
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="473703239"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
+   d="scan'208";a="473703239"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2023 22:51:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="788369898"
+X-IronPort-AV: E=Sophos;i="6.03,253,1694761200"; 
+   d="scan'208";a="788369898"
+Received: from abarix-mobl.ger.corp.intel.com (HELO ubuntu) ([10.252.33.100])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2023 22:51:34 -0700
+Date: Thu, 26 Oct 2023 07:51:31 +0200 (CEST)
+From: Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>, 
+    Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+    devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+    linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mfd: ams,as3711: Convert to
+ json-schema
+In-Reply-To: <56a5ebee588696f9022fa29fa8e266c8bdee6fd7.1698228043.git.geert+renesas@glider.be>
+Message-ID: <4aaabd0-98f1-3c56-96d5-9b3b789dc36c@intel.com>
+References: <56a5ebee588696f9022fa29fa8e266c8bdee6fd7.1698228043.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 2/5] PCI: qcom-ep: Add support for SA8775P SOC
-Content-Language: en-US
-To: Manivannan Sadhasivam <mani@kernel.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <quic_shazhuss@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_nayiluri@quicinc.com>, <dmitry.baryshkov@linaro.org>,
-        <robh@kernel.org>, <quic_krichai@quicinc.com>,
-        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "Lorenzo
- Pieralisi" <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Vinod Koul
-	<vkoul@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mhi@lists.linux.dev>,
-        <linux-phy@lists.infradead.org>
-References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
- <1697715430-30820-3-git-send-email-quic_msarkar@quicinc.com>
- <20231025075317.GC3648@thinkpad>
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-In-Reply-To: <20231025075317.GC3648@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aWWc90mcD3ASVtrDYp15LOh2IKMbAlM7
-X-Proofpoint-ORIG-GUID: aWWc90mcD3ASVtrDYp15LOh2IKMbAlM7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.980,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-26_03,2023-10-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 suspectscore=0 spamscore=0 phishscore=0 malwarescore=0
- impostorscore=0 mlxlogscore=999 adultscore=0 bulkscore=0 clxscore=1011
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310170001 definitions=main-2310260046
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
+Hi Geert,
 
-On 10/25/2023 1:23 PM, Manivannan Sadhasivam wrote:
-> On Thu, Oct 19, 2023 at 05:07:07PM +0530, Mrinmay Sarkar wrote:
->> Add support for SA8775P SoC to the Qualcomm PCIe Endpoint Controller
->> driver. There will be some change specific to SA8775P so adding new
->> compatible string.
->>
-> What are those specific changes?
+Sorry for a late reply. I just noticed that you specified me as a 
+maintainer of as3711 code in your new file. Even though I did author the 
+original version of the driver more than 10 years ago, I haven't worked on 
+it for a long time, so I think it would be better to pick up a more 
+relevant person there.
+
+Thanks
+Guennadi
+
+On Wed, 25 Oct 2023, Geert Uytterhoeven wrote:
+
+> Convert the Austria MicroSystems AS3711 Quad Buck High Current PMIC with
+> Charger Device Tree binding documentation to json-schema.
 >
-> - Mani
-
-Need to enable cache snooping logic for SA8775P only.
-
---Mrinmay
-
->> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
->> ---
->>   drivers/pci/controller/dwc/pcie-qcom-ep.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
->> index 32c8d9e..4c01c34 100644
->> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
->> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
->> @@ -858,6 +858,7 @@ static void qcom_pcie_ep_remove(struct platform_device *pdev)
->>   }
->>   
->>   static const struct of_device_id qcom_pcie_ep_match[] = {
->> +	{ .compatible = "qcom,sa8775p-pcie-ep", },
->>   	{ .compatible = "qcom,sdx55-pcie-ep", },
->>   	{ .compatible = "qcom,sm8450-pcie-ep", },
->>   	{ }
->> -- 
->> 2.7.4
->>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>  - Consistently use "DC/DC" and "step-up",
+>  - Move {additional,unevaluated}Properties in subnodes up to improve
+>    readability,
+>  - Split dependencies in dependent{Required,Schemas} to fix multiple
+>    dependencies,
+>  - s/oneof/oneOf/ (flagged by dt-schema as of commit 411c305105dd1273
+>    ("meta-schemas: Check sub-schemas of "dependencies" and
+>    "dependentSchemas"")),
+>  - Use pmic recommended node name.
+> ---
+> .../devicetree/bindings/mfd/ams,as3711.yaml   | 223 ++++++++++++++++++
+> .../devicetree/bindings/mfd/as3711.txt        |  73 ------
+> 2 files changed, 223 insertions(+), 73 deletions(-)
+> create mode 100644 Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+> delete mode 100644 Documentation/devicetree/bindings/mfd/as3711.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/ams,as3711.yaml b/Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+> new file mode 100644
+> index 0000000000000000..ad8649cbb2ccef34
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+> @@ -0,0 +1,223 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ams,as3711.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Austria MicroSystems AS3711 Quad Buck High Current PMIC with Charger
+> +
+> +maintainers:
+> +  - Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>
+> +
+> +description:
+> +  AS3711 is an I2C PMIC from Austria MicroSystems with multiple DC/DC and LDO
+> +  power supplies, a battery charger and an RTC.  So far only bindings for the
+> +  two step-up DC/DC converters are defined.
+> +
+> +properties:
+> +  compatible:
+> +    const: ams,as3711
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  backlight:
+> +    description:
+> +      Step-up converter configuration, to be used as a backlight source
+> +    type: object
+> +    additionalProperties: false
+> +    properties:
+> +      compatible:
+> +        const: ams,as3711-bl
+> +
+> +      su1-dev:
+> +        description: Framebuffer phandle for the first step-up converter
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +      su1-max-uA:
+> +        description: Maximum current for the first step-up converter
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      su2-dev:
+> +        description: Framebuffer phandle for the second step-up converter
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +      su2-max-uA:
+> +        description: Maximum current for the second step-up converter
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +      su2-feedback-voltage:
+> +        description: Second step-up converter uses voltage feedback
+> +        type: boolean
+> +
+> +      su2-feedback-curr1:
+> +        description:
+> +          Second step-up converter uses CURR1 input for current feedback
+> +        type: boolean
+> +
+> +      su2-feedback-curr2:
+> +        description:
+> +          Second step-up converter uses CURR2 input for current feedback
+> +        type: boolean
+> +
+> +      su2-feedback-curr3:
+> +        description:
+> +          Second step-up converter uses CURR3 input for current feedback
+> +        type: boolean
+> +
+> +      su2-feedback-curr-auto:
+> +        description:
+> +          Second step-up converter uses automatic current feedback selection
+> +        type: boolean
+> +
+> +      su2-fbprot-lx-sd4:
+> +        description:
+> +          Second step-up converter uses LX_SD4 for over-voltage protection
+> +        type: boolean
+> +
+> +      su2-fbprot-gpio2:
+> +        description:
+> +          Second step-up converter uses GPIO2 for over-voltage protection
+> +        type: boolean
+> +
+> +      su2-fbprot-gpio3:
+> +        description:
+> +          Second step-up converter uses GPIO3 for over-voltage protection
+> +        type: boolean
+> +
+> +      su2-fbprot-gpio4:
+> +        description:
+> +          Second step-up converter uses GPIO4 for over-voltage protection
+> +        type: boolean
+> +
+> +      su2-auto-curr1:
+> +        description:
+> +          Second step-up converter uses CURR1 input for automatic current
+> +          feedback
+> +        type: boolean
+> +
+> +      su2-auto-curr2:
+> +        description:
+> +          Second step-up converter uses CURR2 input for automatic current
+> +          feedback
+> +        type: boolean
+> +
+> +      su2-auto-curr3:
+> +        description:
+> +          Second step-up converter uses CURR3 input for automatic current
+> +          feedback
+> +        type: boolean
+> +
+> +    required:
+> +      - compatible
+> +
+> +    dependentRequired:
+> +      # To use the SU1 converter as a backlight source the following two
+> +      # properties must be provided:
+> +      su1-dev: [ su1-max-uA ]
+> +      su1-max-uA: [ su1-dev ]
+> +
+> +      # To use the SU2 converter as a backlight source the following two
+> +      # properties must be provided:
+> +      su2-dev: [ su2-max-uA ]
+> +      su2-max-uA: [ su2-dev ]
+> +
+> +      su2-feedback-voltage: [ su2-dev ]
+> +      su2-feedback-curr1: [ su2-dev ]
+> +      su2-feedback-curr2: [ su2-dev ]
+> +      su2-feedback-curr3: [ su2-dev ]
+> +      su2-feedback-curr-auto: [ su2-dev ]
+> +      su2-fbprot-lx-sd4: [ su2-dev ]
+> +      su2-fbprot-gpio2: [ su2-dev ]
+> +      su2-fbprot-gpio3: [ su2-dev ]
+> +      su2-fbprot-gpio4: [ su2-dev ]
+> +      su2-auto-curr1: [ su2-feedback-curr-auto ]
+> +      su2-auto-curr2: [ su2-feedback-curr-auto ]
+> +      su2-auto-curr3: [ su2-feedback-curr-auto ]
+> +
+> +    dependentSchemas:
+> +      su2-dev:
+> +        allOf:
+> +          - oneOf:
+> +              - required:
+> +                  - su2-feedback-voltage
+> +              - required:
+> +                  - su2-feedback-curr1
+> +              - required:
+> +                  - su2-feedback-curr2
+> +              - required:
+> +                  - su2-feedback-curr3
+> +              - required:
+> +                  - su2-feedback-curr-auto
+> +          - oneOf:
+> +              - required:
+> +                  - su2-fbprot-lx-sd4
+> +              - required:
+> +                  - su2-fbprot-gpio2
+> +              - required:
+> +                  - su2-fbprot-gpio3
+> +              - required:
+> +                  - su2-fbprot-gpio4
+> +
+> +      su2-feedback-curr-auto:
+> +        anyOf:
+> +          - required:
+> +              - su2-auto-curr1
+> +          - required:
+> +              - su2-auto-curr2
+> +          - required:
+> +              - su2-auto-curr3
+> +
+> +  regulators:
+> +    description: Other DC/DC and LDO supplies
+> +    type: object
+> +    unevaluatedProperties: false
+> +    patternProperties:
+> +      "^(sd[1-4]|ldo[1-8])$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@40 {
+> +            compatible = "ams,as3711";
+> +            reg = <0x40>;
+> +
+> +            regulators {
+> +                sd4 {
+> +                    regulator-name = "1.215V";
+> +                    regulator-min-microvolt = <1215000>;
+> +                    regulator-max-microvolt = <1235000>;
+> +                };
+> +                ldo2 {
+> +                    regulator-name = "2.8V CPU";
+> +                    regulator-min-microvolt = <2800000>;
+> +                    regulator-max-microvolt = <2800000>;
+> +                    regulator-always-on;
+> +                    regulator-boot-on;
+> +                };
+> +            };
+> +
+> +            backlight {
+> +                compatible = "ams,as3711-bl";
+> +                su2-dev = <&lcdc>;
+> +                su2-max-uA = <36000>;
+> +                su2-feedback-curr-auto;
+> +                su2-fbprot-gpio4;
+> +                su2-auto-curr1;
+> +                su2-auto-curr2;
+> +                su2-auto-curr3;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mfd/as3711.txt b/Documentation/devicetree/bindings/mfd/as3711.txt
+> deleted file mode 100644
+> index d98cf18c721ceb18..0000000000000000
+> --- a/Documentation/devicetree/bindings/mfd/as3711.txt
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -AS3711 is an I2C PMIC from Austria MicroSystems with multiple DCDC and LDO power
+> -supplies, a battery charger and an RTC. So far only bindings for the two stepup
+> -DCDC converters are defined. Other DCDC and LDO supplies are configured, using
+> -standard regulator properties, they must belong to a sub-node, called
+> -"regulators" and be called "sd1" to "sd4" and "ldo1" to "ldo8." Stepup converter
+> -configuration should be placed in a subnode, called "backlight."
+> -
+> -Compulsory properties:
+> -- compatible		: must be "ams,as3711"
+> -- reg			: specifies the I2C address
+> -
+> -To use the SU1 converter as a backlight source the following two properties must
+> -be provided:
+> -- su1-dev		: framebuffer phandle
+> -- su1-max-uA		: maximum current
+> -
+> -To use the SU2 converter as a backlight source the following two properties must
+> -be provided:
+> -- su2-dev		: framebuffer phandle
+> -- su1-max-uA		: maximum current
+> -
+> -Additionally one of these properties must be provided to select the type of
+> -feedback used:
+> -- su2-feedback-voltage	: voltage feedback is used
+> -- su2-feedback-curr1	: CURR1 input used for current feedback
+> -- su2-feedback-curr2	: CURR2 input used for current feedback
+> -- su2-feedback-curr3	: CURR3 input used for current feedback
+> -- su2-feedback-curr-auto: automatic current feedback selection
+> -
+> -and one of these to select the over-voltage protection pin
+> -- su2-fbprot-lx-sd4	: LX_SD4 is used for over-voltage protection
+> -- su2-fbprot-gpio2	: GPIO2 is used for over-voltage protection
+> -- su2-fbprot-gpio3	: GPIO3 is used for over-voltage protection
+> -- su2-fbprot-gpio4	: GPIO4 is used for over-voltage protection
+> -
+> -If "su2-feedback-curr-auto" is selected, one or more of the following properties
+> -have to be specified:
+> -- su2-auto-curr1	: use CURR1 input for current feedback
+> -- su2-auto-curr2	: use CURR2 input for current feedback
+> -- su2-auto-curr3	: use CURR3 input for current feedback
+> -
+> -Example:
+> -
+> -as3711@40 {
+> -	compatible = "ams,as3711";
+> -	reg = <0x40>;
+> -
+> -	regulators {
+> -		sd4 {
+> -			regulator-name = "1.215V";
+> -			regulator-min-microvolt = <1215000>;
+> -			regulator-max-microvolt = <1235000>;
+> -		};
+> -		ldo2 {
+> -			regulator-name = "2.8V CPU";
+> -			regulator-min-microvolt = <2800000>;
+> -			regulator-max-microvolt = <2800000>;
+> -			regulator-always-on;
+> -			regulator-boot-on;
+> -		};
+> -	};
+> -
+> -	backlight {
+> -		compatible = "ams,as3711-bl";
+> -		su2-dev = <&lcdc>;
+> -		su2-max-uA = <36000>;
+> -		su2-feedback-curr-auto;
+> -		su2-fbprot-gpio4;
+> -		su2-auto-curr1;
+> -		su2-auto-curr2;
+> -		su2-auto-curr3;
+> -	};
+> -};
+> -- 
+> 2.34.1
+>
+>
 
