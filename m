@@ -1,125 +1,175 @@
-Return-Path: <devicetree+bounces-12195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61BBD7D84C9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:32:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C64437D84CB
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:32:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 914DC1C20EF6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:32:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8016528208B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:32:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6ABD2DF9F;
-	Thu, 26 Oct 2023 14:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFCC2DF9F;
+	Thu, 26 Oct 2023 14:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EY04TEBY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZDFxSzYg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B871A2EAF7
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:32:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 639AAC433C8;
-	Thu, 26 Oct 2023 14:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698330762;
-	bh=la2sdiSTispFY+4HPux+4oDSduULbv+AF7/FuOI7xbo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EY04TEBYA8PRSw4Eamm0phM3Jxw8mDC1ZlanMbqJlsEkV0Q6w2aVv0cXbs9/km+4Z
-	 +HGo9KaK9Mbv0sIERcukmDadDda8I1lMxycQgRXDzpkRGJJjOCC/8XJc0MJQpycpHD
-	 xLL80r0pLeqmQu89w/ScIsaVF6jVZifmEAyHxnqCVY9HvVpJBle4P8MotkRZkh7YnN
-	 Fv9JNdA6MLWveMS6xOpCO/KCaj8FGIsNLDgDev13j4hHaL7ThPkYuuJ3lgJ4LtWbD5
-	 rV2p/+fnmlxdniJ1dEgKjSubCqcHUMPZpGGBicODDn6f5A8epRV3W2rCnxVR0HBWLx
-	 oitHzxRd0JX/g==
-Date: Thu, 26 Oct 2023 15:32:37 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 2/7] dt-bindings: arm64: dts: mediatek: Add
- mt8183-kukui-katsu
-Message-ID: <20231026-afford-suitor-18b4f0eea371@spud>
-References: <20231025215517.1388735-1-hsinyi@chromium.org>
- <20231025215517.1388735-3-hsinyi@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501372EAF1
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 14:32:51 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1B61BC;
+	Thu, 26 Oct 2023 07:32:49 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507d1cc0538so1323812e87.2;
+        Thu, 26 Oct 2023 07:32:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698330767; x=1698935567; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nHmRoq0ETjVN1za9BajG5M61oGOFzDIRHNAMG5IaVTQ=;
+        b=ZDFxSzYgPL5hDBPeJK5qvLmBnQ8Hak30jneZZbBPqFNJTB/8ZhB9Zu7prPWU+2bcLn
+         xD4IIuBi/WWqwD4PE54eoURl1oo3QzKT4QZN3KVOF2zsWFBVxb6QQnkQ6/v8YfEiBgZk
+         agIXhqfO/SGCmM6bN85DneD8bMKjgHO6yNOiTJUqK2SaC+NvIjpmEUqnDCv0jUBMBfi0
+         NvaHhMg0nlTs6rT+6iMpjbtjhmg/TL9ld4p8GL4ylD9TvNORO/H9bU42/AZapodVjNOA
+         HvhvqgMga01+BTC9aEMleQ7Ij45NKiUJH+8Hb6Ihe8uj/ohPsdGaymL3URLJxALHi7Bk
+         MEuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698330767; x=1698935567;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nHmRoq0ETjVN1za9BajG5M61oGOFzDIRHNAMG5IaVTQ=;
+        b=UgsIPd9FfSF6GfbqhySECP2Au1yufCGZ+4CunsxZRAm8SfJrpEp/kmlyPmuF13cUqh
+         1cR5oesvwHJRFRkdCb/zerNkn50HnmbckMYEzWkse6HGP/b10I3vxqZRKuz1CXbGaaL5
+         6/9n7m30/5MwMVrufV8ePsNAZCrSa8cwegFL8v9ZkkKT6AvHlEJ+PNbod/Xra1ggLUYu
+         wcCm5Jw0/Ws18HbYsyP0sS1QjDRee3r74qWcmpaoXro0HUqnGdPzI5c/3WDAcrjkk2vt
+         7LOrZjLFhgYIE6fbGj9R0PqjSoF0HNoQywBcH4C/S3wgpw5C8mQhm3MTsU0CFaZNyH3/
+         vaOQ==
+X-Gm-Message-State: AOJu0YzjR0Hx24HY/XjJ9JkesAXnQdk3jkeRoVLryEianOHPQLwC4dFr
+	If5oyeyfYoY5KK/hotXLVl0=
+X-Google-Smtp-Source: AGHT+IHSgnN4Bgh64erDu9jYfseLN/aERhHKcZUhV4w5LUCCdNcCijf729M77+heSOLOkoWu93Tpgw==
+X-Received: by 2002:ac2:51a3:0:b0:507:9618:d446 with SMTP id f3-20020ac251a3000000b005079618d446mr12199193lfk.61.1698330767273;
+        Thu, 26 Oct 2023 07:32:47 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id k15-20020ac2456f000000b005008c11ca6dsm3019090lfm.184.2023.10.26.07.32.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 07:32:46 -0700 (PDT)
+Date: Thu, 26 Oct 2023 17:32:44 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Niklas Cassel <nks@flawful.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Shawn Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>, 
+	Damien Le Moal <dlemoal@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Niklas Cassel <niklas.cassel@wdc.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: PCI: dwc: rockchip: Add dma
+ properties
+Message-ID: <4tzz7e5mznunyar6d675lzn4jdshqvik4flyronb7sjwhc4deh@qwikilvdyosc>
+References: <20231024151014.240695-1-nks@flawful.org>
+ <20231024151014.240695-4-nks@flawful.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xhWZzE7Zdu2mfZah"
-Content-Disposition: inline
-In-Reply-To: <20231025215517.1388735-3-hsinyi@chromium.org>
-
-
---xhWZzE7Zdu2mfZah
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231024151014.240695-4-nks@flawful.org>
 
-Yo,
-
-For your subject, drop the "dts: ", that as this is a patch for a
-dt-binding, not a devicetree source file.
-
-On Wed, Oct 25, 2023 at 02:48:44PM -0700, Hsin-Yi Wang wrote:
-> Add katsu sku32 and sku38 which uses different audio codec.
->=20
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+On Tue, Oct 24, 2023 at 05:10:10PM +0200, Niklas Cassel wrote:
+> From: Niklas Cassel <niklas.cassel@wdc.com>
+> 
+> Even though rockchip-dw-pcie.yaml inherits snps,dw-pcie.yaml
+> using:
+> 
+> allOf:
+>   - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> 
+> and snps,dw-pcie.yaml does have the dma properties defined, in order to be
+> able to use these properties, while still making sure 'make CHECK_DTBS=y'
+> pass, we need to add these properties to rockchip-dw-pcie.yaml.
+> 
+> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
 > ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
-ntation/devicetree/bindings/arm/mediatek.yaml
-> index a5999b3afc35..4fe58cfe6f1b 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -235,6 +235,13 @@ properties:
->          items:
->            - const: google,kappa
->            - const: mediatek,mt8183
-> +      - description: Google Katsu (ASUS Chromebook Detachable CZ1)
-> +        items:
-> +          - enum:
-> +              - google,katsu-sku32
-> +              - google,katsu-sku38
-> +          - const: google,katsu
-> +          - const: mediatek,mt8183
+>  .../bindings/pci/rockchip-dw-pcie.yaml        | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index 229f8608c535..633f8e0e884f 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -35,6 +35,7 @@ properties:
+>        - description: Rockchip designed configuration registers
+>        - description: Config registers
+>        - description: iATU registers
+> +      - description: eDMA registers
+>  
+>    reg-names:
+>      minItems: 3
+> @@ -43,6 +44,7 @@ properties:
+>        - const: apb
+>        - const: config
+>        - const: atu
+> +      - const: dma
+>  
+>    clocks:
+>      minItems: 5
+> @@ -65,6 +67,7 @@ properties:
+>        - const: pipe
+>  
+>    interrupts:
+> +    minItems: 5
+>      items:
+>        - description:
+>            Combined system interrupt, which is used to signal the following
+> @@ -88,14 +91,31 @@ properties:
+>            interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
+>            tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
+>            nf_err_rx, f_err_rx, radm_qoverflow
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
 
-Thanks,
-Conor.
+They aren't identical. Some IRQs indicate events on the write eDMA
+channels, some - read eDMA channels. The respective channel ID would
+be also useful to have in the description.
 
->        - description: Google Kodama (Lenovo 10e Chromebook Tablet)
->          items:
->            - enum:
-> --=20
-> 2.42.0.758.gaed0368e0e-goog
->=20
+-Serge(y)
 
---xhWZzE7Zdu2mfZah
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTp4hAAKCRB4tDGHoIJi
-0gCAAQDE1tc7reAgagQx6S0aLYjNsM/zxnvnjgoqFHY1D/3mVwD+NU8+R7xn8F0V
-7bAmx7CUZpdLqiUJ8RpMAUiU5+uPswE=
-=tke3
------END PGP SIGNATURE-----
-
---xhWZzE7Zdu2mfZah--
+>  
+>    interrupt-names:
+> +    minItems: 5
+>      items:
+>        - const: sys
+>        - const: pmc
+>        - const: msg
+>        - const: legacy
+>        - const: err
+> +      - const: dma0
+> +      - const: dma1
+> +      - const: dma2
+> +      - const: dma3
+>  
+>    legacy-interrupt-controller:
+>      description: Interrupt controller node for handling legacy PCI interrupts.
+> -- 
+> 2.41.0
+> 
 
