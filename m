@@ -1,207 +1,120 @@
-Return-Path: <devicetree+bounces-12162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274C37D829C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:27:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E61C7D82CF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 14:38:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 584691C20E96
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 12:27:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48674281F9E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 12:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5122DF7D;
-	Thu, 26 Oct 2023 12:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i0VU0Q49"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4392611C9F;
+	Thu, 26 Oct 2023 12:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335FC2D7AD
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:27:28 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8228F196
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:27:25 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50797cf5b69so1097536e87.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 05:27:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698323244; x=1698928044; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H0P71wVS48La4jPQi6tVCrTZ6bHsJV48oqbwPiJ0ir8=;
-        b=i0VU0Q49MxXZaymYGujsfz0vwzMVzGcYp7zWMKjmPpl4gcssfStUjjlwLvgk2CE3mB
-         10AnmZMGtP1ceYW+mv6DsQNCsepyI759cCDdHduxrZto8l8+ECpM7ckiTQJPJ4MCrPYV
-         cEIhT4yXRzPav6pI/54CfyqCTOYkEWSGzJ+oo33ksw4wvb9nkmtdNmYyc3fhOeQPt7M+
-         DCrBgrURK7bsk1fRVwp+X9SIRC9QTWdRge4o4i3l7Milhz0ZQeTFahyzQGmHNnMELM7Q
-         jhBm+o2QNcHjt05TosktuRtC60UXfnUOwSk+CRoPsXcTT6a4I5BM4A4d92KM4bozb1oR
-         A2Zw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAA6883A
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 12:38:42 +0000 (UTC)
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CAE111;
+	Thu, 26 Oct 2023 05:38:41 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6ce29d1db6eso943067a34.1;
+        Thu, 26 Oct 2023 05:38:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698323244; x=1698928044;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=H0P71wVS48La4jPQi6tVCrTZ6bHsJV48oqbwPiJ0ir8=;
-        b=czQeHF7eooLFZQGls7vDoe8ChfOPerKMBOBkiSEkGyzzfqqIYZD8i46fAbtrjJrts7
-         jLPi0cic1e1bs0dV7zSyH4YMx/CA60qirCzhZo+LYhUtq8SLlQwlNKcpILMobabqejD/
-         r3glfWgV+eK14WtxHcC6+HXysDhDyIcCJMVnOVUb+naB9WEqrAFoQGtoqQ2gquVTobKZ
-         /qDNnNA2u1cECLN7mfV9aeaAZ1oera7lJI9rtTtRmr1+L4/s+7Z3F6PSRbwOVXBaaidE
-         qdBG3PGrdYGUNbccvrxW5+lhNwwgN6j/yoKBdzIKZb8DxalR9yHWyyNy3VpUizEhTBIE
-         lwqg==
-X-Gm-Message-State: AOJu0YzN3eD+rtRi9ADvWB3RRl5jX2Jjt1ApN8jKtYh/EoIvZ5F9+Td+
-	4I9PG6++hnOjRFW/GwQh3NUl9aWWFhZjyJFgFbk6unSJ
-X-Google-Smtp-Source: AGHT+IEEmdwW+QLsNrn6w7xcamSTlEPh/aCQ9HPZZqWMpOGzQKV/c/f1WbC/70g14sO/MG0eoyVgKQ==
-X-Received: by 2002:ac2:5337:0:b0:505:72bf:43a4 with SMTP id f23-20020ac25337000000b0050572bf43a4mr13167156lfh.39.1698323243561;
-        Thu, 26 Oct 2023 05:27:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c? ([2a01:e0a:982:cbb0:f57f:eb08:d29b:8c9c])
-        by smtp.gmail.com with ESMTPSA id e8-20020adffc48000000b0031c5e9c2ed7sm11264703wrs.92.2023.10.26.05.27.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Oct 2023 05:27:22 -0700 (PDT)
-Message-ID: <afb778da-ec0a-4451-b853-4b1eba14a68a@linaro.org>
-Date: Thu, 26 Oct 2023 14:27:22 +0200
+        d=1e100.net; s=20230601; t=1698323920; x=1698928720;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mYlGtsDkwIplMMDKnitSehXlNwqD+lQR4ItqdPikmlA=;
+        b=SQvAcXjcmZ44Ptu+ChSCuzCNmUFpwKh9kMAQAQoqvT8MNZ/klbC3WFwsYFmDNgxJgs
+         7T+1CSBlRiu4Zs0aF3rNM1EUyXsXX9dyyRjORiDjMq4r0a2pC1ga7cj8jPHgazV1AIsS
+         qH1/rDgqnh2WzQ0rS+V4hHBe5M08w2gognjI+8ieCu09Vo0nddWdv3UN+v+b7wc9R5q7
+         oZSZpS2hN8sz5JrmgxYN0Yzk9HyKDn8ysw4icFuGzvQ3dR1SgZPUDmSGYGWRnvEbZBUq
+         4jz1ln1KGp+Z3Ju9b+9p+Q0olVpWdBNh4UvG28qLYw4ZttGFtApr6gVTmpLtsdr05ZNa
+         EDXA==
+X-Gm-Message-State: AOJu0YxYzNJvCYkizxbH8fkKhwSt9DeDqhqAxusP5GRGU0AEaKG6kg1v
+	NzNRCVbq6yhFaJFkv1hIebdlIgJGbw==
+X-Google-Smtp-Source: AGHT+IGPNkjxWdQ54Pt7m6sZj9ctL7yRpUNOch/924+5N+/XoEwdc5zfnlX7MrRmcNHcUD8UlspAKA==
+X-Received: by 2002:a9d:63d7:0:b0:6b4:4ee1:b525 with SMTP id e23-20020a9d63d7000000b006b44ee1b525mr1369239otl.1.1698323920284;
+        Thu, 26 Oct 2023 05:38:40 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v7-20020a9d6047000000b006ce33902b07sm2589636otj.30.2023.10.26.05.38.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Oct 2023 05:38:39 -0700 (PDT)
+Received: (nullmailer pid 3459246 invoked by uid 1000);
+	Thu, 26 Oct 2023 12:38:38 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 08/10] clk: qcom: add the SM8650 Display Clock Controller
- driver
-Content-Language: en-US, fr
-To: Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-clocks-v1-0-c89b59594caf@linaro.org>
- <20231025-topic-sm8650-upstream-clocks-v1-8-c89b59594caf@linaro.org>
- <a939ef1a4c2cad763fe484cc943f44d5.sboyd@kernel.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <a939ef1a4c2cad763fe484cc943f44d5.sboyd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Rob Herring <robh@kernel.org>
+To: Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, =?utf-8?q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>, Sean Wang <sean.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Conor Dooley <conor+dt@kernel.org>, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, =?utf-8?q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20231025215517.1388735-5-hsinyi@chromium.org>
+References: <20231025215517.1388735-1-hsinyi@chromium.org>
+ <20231025215517.1388735-5-hsinyi@chromium.org>
+Message-Id: <169828011805.2202183.11133384715258450793.robh@kernel.org>
+Subject: Re: [PATCH v3 4/7] dt-bindings: arm64: dts: mediatek: Add
+ mt8183-kukui-jacuzzi-makomo
+Date: Thu, 26 Oct 2023 07:38:38 -0500
 
-On 25/10/2023 23:45, Stephen Boyd wrote:
-> Quoting Neil Armstrong (2023-10-25 00:32:45)
->> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->> index c04b6526f4f3..5bf25e8d033c 100644
->> --- a/drivers/clk/qcom/Kconfig
->> +++ b/drivers/clk/qcom/Kconfig
->> @@ -842,6 +842,15 @@ config SM_DISPCC_8550
->>            Say Y if you want to support display devices and functionality such as
->>            splash screen.
->>   
->> +config SM_DISPCC_8650
->> +       tristate "SM8650 Display Clock Controller"
->> +       depends on SM_GCC_8650
-> 
-> selects?
-> 
-> We use selects instead of depends so that the driver can be built-in or
-> modular regardless of parent clks that provide clks to this device.
-> Orphan clk handling resolves issues with the driver registering clks
-> before parents. And with fw_devlink the driver isn't even attempted to
-> probe before the GCC driver is probed so there's no build dependency
-> between these drivers.
 
-All current DISPCC entries uses depends, but CAM_CC doesn't,
-I'll switch to select and re-sync Kconfig for all 8650 entries.
+On Wed, 25 Oct 2023 14:48:46 -0700, Hsin-Yi Wang wrote:
+> Add makomo sku0 and sku1 which uses different audio codec.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> v2->v3: remove rev since match on sku is sufficient.
+> ---
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-> 
->> +       help
->> +         Support for the display clock controller on Qualcomm Technologies, Inc
->> +         SM8650 devices.
->> +         Say Y if you want to support display devices and functionality such as
->> +         splash screen.
->> +
->>   config SM_GCC_4450
->>          tristate "SM4450 Global Clock Controller"
->>          depends on ARM64 || COMPILE_TEST
->> diff --git a/drivers/clk/qcom/dispcc-sm8650.c b/drivers/clk/qcom/dispcc-sm8650.c
->> new file mode 100644
->> index 000000000000..7cb91306e895
->> --- /dev/null
->> +++ b/drivers/clk/qcom/dispcc-sm8650.c
->> @@ -0,0 +1,1806 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2023, Linaro Ltd.
->> + */
->> +
->> +#include <linux/clk.h>
-> 
-> Is this include used?
-> 
->> +#include <linux/clk-provider.h>
->> +#include <linux/err.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
-> 
-> Is this mod_devicetable.h?
-> 
->> +#include <linux/of.h>
-> 
-> Is this include used?
-> 
->> +#include <linux/regmap.h>
->> +#include <linux/pm_runtime.h>
->> +
->> +#include <dt-bindings/clock/qcom,sm8650-dispcc.h>
->> +
->> +#include "common.h"
->> +#include "clk-alpha-pll.h"
->> +#include "clk-branch.h"
->> +#include "clk-pll.h"
->> +#include "clk-rcg.h"
->> +#include "clk-regmap.h"
->> +#include "clk-regmap-divider.h"
->> +#include "clk-regmap-mux.h"
-> 
-> Is this include used?
-> 
->> +#include "reset.h"
->> +#include "gdsc.h"
->> +
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Did a include cleanup aswell on all drivers.
+yamllint warnings/errors:
 
-Thanks,
-Neil
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/mediatek.yaml: properties:compatible:oneOf:42:items: 'oneOf' conditional failed, one must be fixed:
+	[{'enum': [{'const': 'google,makomo-sku0'}, {'const': 'google,makomo-sku1'}]}, {'const': 'google,makomo'}, {'const': 'mediatek,mt8183'}] is not of type 'object'
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/mediatek.yaml: properties:compatible:oneOf:42:items:0:enum: 'oneOf' conditional failed, one must be fixed:
+		{'const': 'google,makomo-sku0'} is not of type 'integer'
+		{'const': 'google,makomo-sku0'} is not of type 'string'
+		{'const': 'google,makomo-sku1'} is not of type 'integer'
+		{'const': 'google,makomo-sku1'} is not of type 'string'
+		hint: "enum" must be an array of either integers or strings
+		from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/arm/mediatek.yaml: properties:compatible:oneOf:42:items: 'oneOf' conditional failed, one must be fixed:
+	[{'enum': [{'const': 'google,makomo-sku0'}, {'const': 'google,makomo-sku1'}]}, {'const': 'google,makomo'}, {'const': 'mediatek,mt8183'}] is not of type 'object'
+	{'const': 'google,makomo-sku0'} is not of type 'string'
+	{'const': 'google,makomo-sku1'} is not of type 'string'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231025215517.1388735-5-hsinyi@chromium.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
