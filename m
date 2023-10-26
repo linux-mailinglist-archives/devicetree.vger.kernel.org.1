@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-12270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 881C17D89B2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 22:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6157D89E8
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 22:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C7F92820B3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 20:30:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB7A92820E5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 20:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0360A2E631;
-	Thu, 26 Oct 2023 20:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9DE53AC04;
+	Thu, 26 Oct 2023 20:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F104C3D397
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 20:30:41 +0000 (UTC)
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629E91AC;
-	Thu, 26 Oct 2023 13:30:39 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6ce2d4567caso829530a34.2;
-        Thu, 26 Oct 2023 13:30:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FC16C8E8;
+	Thu, 26 Oct 2023 20:58:12 +0000 (UTC)
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA6F1A5;
+	Thu, 26 Oct 2023 13:58:11 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6cd09f51fe0so747791a34.1;
+        Thu, 26 Oct 2023 13:58:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698352238; x=1698957038;
+        d=1e100.net; s=20230601; t=1698353890; x=1698958690;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TkyeTzF/tPkHv6TpS8dsv+uB8svyflGUtJpGpeK6gjs=;
-        b=AIX9qQO58fo6NGgI9fxBQXmFY1DC7Jn35RtByAhebk6c304pYfJLC6qTScweArBR9H
-         gwhDLezldOH2G19FqmB2+FonF9M8W5N8mHMeCKOBRwzVbbmvWAxsMpx8Hl/8PbNvwW0i
-         KfpqMtLcF56mNKp914PDfQE99c+XzDB8smhsxOxJb4vrkNG+f7Rmeg4f7Mqd91AcEA0v
-         /8kDteVOC8YyDNJ2SSZ/G+O+SAh+TPacxe6RhdXeiNt9fvS2yiAf66sz97h42aO27900
-         gyhKBy3Zyhxx5ZAfVY20aGNSJL3Fr34o1fYlqVo/0vwf0S13cUkftgMUL3lrpPgCvsTn
-         Ty2Q==
-X-Gm-Message-State: AOJu0YzMUHSu6OrySVGPRc2XD2YfWiCHTgSMbgPOYullOrMhvzm8ynEp
-	iCq1yFaDQD1D5Jory9aH6g==
-X-Google-Smtp-Source: AGHT+IH6kobtiBdqkODWoCJa7OcCFMsfzJD5tffITWfZyftDjIsVOFBR16HbOPZ6q+2+26m/pWGJ0Q==
-X-Received: by 2002:a05:6808:17a2:b0:3af:6ce1:91fc with SMTP id bg34-20020a05680817a200b003af6ce191fcmr617368oib.21.1698352238569;
-        Thu, 26 Oct 2023 13:30:38 -0700 (PDT)
+        bh=9ZZs6ipF1/kyYhxkHZor6S/scn40iCNPizM59Ene1L8=;
+        b=YlhrVUTigmk4EFT4VufTztDdlYtfVJ++S4+WZyHwV9PM7EZzfApOMKPhJUjRHYYROT
+         HDPA/J9+gkLyGFVmei7raX1iVtDjEOLEnd/7DFys8J+r8S1dYIY84+f5sILSaCxwxJyz
+         1tGnOqEfsp1aDvB7Ly821oJTF5Z9HG8IZCKfoPCzf0Xhs3E0Tu1O2ur3vU1t1oKdkpId
+         iHJh1PHqL81/lv5mATIROadIkdTvFBpRkaTs9bbE/uOUvw+AHelfDx8oy9Uj9rHELFz8
+         3Af7aDMz0VtZapE5nLv9aornJG346xJ21WPsxtdlTduV3mYTP0fDU0o6UoZbt2z2bNTB
+         f8pw==
+X-Gm-Message-State: AOJu0Ywr1TKArjoPRpvbEsyI4wALjNSmL7nXwjWF5OcN0ahMOaGW3Bwk
+	F9vPVekDrcq4ZLT89OsAjg==
+X-Google-Smtp-Source: AGHT+IHnHkZswO8YBailJZbQHDWeErCjZkAmi7dsoNesGJpL7ZjpwoWWVG0G7aRPvWifYpGVVGsFxA==
+X-Received: by 2002:a9d:7d96:0:b0:6bc:f276:717f with SMTP id j22-20020a9d7d96000000b006bcf276717fmr562427otn.13.1698353890370;
+        Thu, 26 Oct 2023 13:58:10 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m9-20020a0568080f0900b003b2ee6a9358sm19785oiw.16.2023.10.26.13.30.37
+        by smtp.gmail.com with ESMTPSA id r25-20020a05683001d900b006bee5535b44sm10575ota.75.2023.10.26.13.58.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 13:30:37 -0700 (PDT)
-Received: (nullmailer pid 347114 invoked by uid 1000);
-	Thu, 26 Oct 2023 20:30:37 -0000
-Date: Thu, 26 Oct 2023 15:30:37 -0500
+        Thu, 26 Oct 2023 13:58:09 -0700 (PDT)
+Received: (nullmailer pid 383670 invoked by uid 1000);
+	Thu, 26 Oct 2023 20:58:07 -0000
+Date: Thu, 26 Oct 2023 15:58:07 -0500
 From: Rob Herring <robh@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Nik Bune <n2h9z4@gmail.com>, wim@linux-watchdog.org, linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, skhan@linuxfoundation.org, m-karicheri2@ti.com, ivan.khoronzhuk@ti.com, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: watchdog: davinci-wdt: convert txt to
- yaml
-Message-ID: <20231026203037.GA327324-robh@kernel.org>
-References: <20231024195839.49607-1-n2h9z4@gmail.com>
- <41408db6-89f9-4e0b-b407-96c6c922e8a4@ti.com>
+To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: netdev@vger.kernel.org, linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org, arinc.unal@arinc9.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] dt-bindings: net: dsa: realtek: add reset
+ controller
+Message-ID: <20231026205807.GA347941-robh@kernel.org>
+References: <20231024205805.19314-1-luizluca@gmail.com>
+ <20231024205805.19314-3-luizluca@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,112 +64,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <41408db6-89f9-4e0b-b407-96c6c922e8a4@ti.com>
+In-Reply-To: <20231024205805.19314-3-luizluca@gmail.com>
 
-On Tue, Oct 24, 2023 at 03:55:23PM -0500, Andrew Davis wrote:
-> On 10/24/23 2:58 PM, Nik Bune wrote:
-> > Convert txt file to yaml.
-> > Add maintainers list, based on the git history.
-> > Mark clock as required property, by reviewer's suggestion.
-> > 
-> > Signed-off-by: Nik Bune <n2h9z4@gmail.com>
-> > ---
-> > 
-> > Changes in v2 (according to review comments):
-> > - Added clocks to the list of required properties.
-> > - Updated clocks property to have only maxItems without $ref and description.
-> > - Removed timeout-sec explicit definition, as it is defined in watchdog.yaml.
-> > - Updated maintainers list from the git history.
-> > 
-> > v1 patch: https://lore.kernel.org/all/20231021171323.113208-1-n2h9z4@gmail.com/
-> > 
-> >   .../bindings/watchdog/davinci-wdt.txt         | 24 ----------
-> >   .../bindings/watchdog/ti,davinci-wdt.yaml     | 47 +++++++++++++++++++
-> >   2 files changed, 47 insertions(+), 24 deletions(-)
-> >   delete mode 100644 Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-> >   create mode 100644 Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt b/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-> > deleted file mode 100644
-> > index aa10b8ec36e2..000000000000
-> > --- a/Documentation/devicetree/bindings/watchdog/davinci-wdt.txt
-> > +++ /dev/null
-> > @@ -1,24 +0,0 @@
-> > -Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
-> > -
-> > -Required properties:
-> > -- compatible : Should be "ti,davinci-wdt", "ti,keystone-wdt"
-> > -- reg : Should contain WDT registers location and length
-> > -
-> > -Optional properties:
-> > -- timeout-sec : Contains the watchdog timeout in seconds
-> > -- clocks : the clock feeding the watchdog timer.
-> > -	   Needed if platform uses clocks.
-> > -	   See clock-bindings.txt
-> > -
-> > -Documentation:
-> > -Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-> > -Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a.pdf
-> > -
-> > -Examples:
-> > -
-> > -wdt: wdt@2320000 {
-> > -	compatible = "ti,davinci-wdt";
-> > -	reg = <0x02320000 0x80>;
-> > -	timeout-sec = <30>;
-> > -	clocks = <&clkwdtimer0>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-> > new file mode 100644
-> > index 000000000000..4747be98b7d9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/ti,davinci-wdt.yaml
-> > @@ -0,0 +1,47 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/ti,davinci-wdt.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Texas Instruments DaVinci/Keystone Watchdog Timer (WDT) Controller
-> > +
-> > +description: |
-> > +  Documentation:
-> > +  Davinci DM646x - https://www.ti.com/lit/ug/spruer5b/spruer5b.pdf
-> > +  Keystone - https://www.ti.com/lit/ug/sprugv5a/sprugv5a
-> > +
-> > +maintainers:
-> > +  - Murali Karicheri <m-karicheri2@ti.com>
-> > +  - Ivan Khoronzhuk <ivan.khoronzhuk@ti.com>
+On Tue, Oct 24, 2023 at 05:58:06PM -0300, Luiz Angelo Daros de Luca wrote:
+> Realtek switches can now be reset using a reset controller.
 > 
-> Neither of these folks will be available for this, you can use me if
-> you want an email that won't bounce for now.
+> The 'reset-gpios' were never mandatory for the driver, although they
+> are required for some devices if the switch reset was left asserted by
+> a previous driver, such as the bootloader.
 > 
-> > +
-> > +allOf:
-> > +  - $ref: watchdog.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,davinci-wdt
-> > +      - ti,keystone-wdt
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/net/dsa/realtek.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> We also have some instances with an optional power-domains prop.
-> 
->   power-domains:
->     description: A phandle and PM domain specifier as defined by bindings of
->       the power controller specified by phandle. See
->       Documentation/devicetree/bindings/power/power-domain.yaml for details.
+> diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> index cce692f57b08..070821eae2a7 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> @@ -59,6 +59,12 @@ properties:
+>      description: GPIO to be used to reset the whole device
+>      maxItems: 1
+>  
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: switch
 
-But not what the schema should look like here. Same as others. How many 
-and what order if more than 1.
+$block-name is not really a useful name for resources. Generally, you   
+don't need -names if there's only 1 entry.
 
-Rob
+> +
+>    realtek,disable-leds:
+>      type: boolean
+>      description: |
+> @@ -127,7 +133,6 @@ else:
+>      - mdc-gpios
+>      - mdio-gpios
+>      - mdio
+> -    - reset-gpios
+>  
+>  required:
+>    - compatible
+> -- 
+> 2.42.0
+> 
 
