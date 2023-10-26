@@ -1,97 +1,104 @@
-Return-Path: <devicetree+bounces-12242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7781C7D8899
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 20:56:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 895EF7D88A7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 20:59:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 305402810E7
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 18:56:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B5B0B21056
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 18:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03653AC03;
-	Thu, 26 Oct 2023 18:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C6E3AC17;
+	Thu, 26 Oct 2023 18:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ct9/PgAj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="neA7AY8n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F6AF1D68D
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 18:56:13 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF4E1A5
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 11:56:11 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-507cd62472dso2757677e87.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 11:56:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698346570; x=1698951370; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XX0o5SH/u4zUmUnFynVSLwt8JJsmyB5ifz1RY8kYi4I=;
-        b=ct9/PgAjQEuZy7MIOoE85jeGpsgNwWdUBgLW3fRZ0CA8q8ygQJFc1YQPAK4HHKjhL5
-         ttUqmqvA+DBpHQafSwzbvq4nJ2Sx4M6Vz9bgaVU+AtkworC4OuRIHmzJe5lCILuYdY5N
-         TKggE6WGZBbRsqref8b6tQpXvFRMmPR9LcgfZXNUsL8CBS2fKOgUS6oxAw1FD/UTF2x8
-         jvOdf0sQK0DxduUjdoBKRAz2zm14jyuwErDBwVfABhqtLyWPzK5gzKYAjxaB4TqTyuF+
-         fzJ5k6NCsPkJOvPvELKUNHdR28JeHENwXHaxuF4axDu4Ommfcj47E0Pn6xWKBxKSlqlR
-         lpsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698346570; x=1698951370;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XX0o5SH/u4zUmUnFynVSLwt8JJsmyB5ifz1RY8kYi4I=;
-        b=mTKFjiEz22BeOpcjJTgHNC0dNBhQMC4BoP6nQhEz+DtFpfc9TDA/BiRK3wvITIlO+M
-         FYQxDHcndF6Fb9JPTwsUKcI7kM9mKW8675zwArzAb7HFyi28zYJTOaBLmc1QEcCetHwz
-         +q1rzjxxahjL3b1XJMPgLTuzb3/Umzwarwg76Uf6YS8P5Nr4IBP00Npc7d+q0IUT6RVs
-         mda/hXLEu4v0/wz3mlmJeV+hTdJXUJsM/zAp0/0yAr3ddSp7ZiI8CSJA6lJ8DQ2BvfaV
-         ui8pakfVGhoJTk7UDQX46gZH1piGLnwSZawG8LcEJtotqKNq/2HcufoI4/Lnczo5ext/
-         iKrg==
-X-Gm-Message-State: AOJu0YwIIqB3KSzQ23YGVRipllJ8i1d4qGOPWU3CAbuxIaVjmJ7s5pAI
-	vS1y+3TXvhjBL8X1Bfj/fRBTkw==
-X-Google-Smtp-Source: AGHT+IFKNInBH0+wVI9usnvM3zIPeA2ufDrxdwj06joslGu94sQIaI+AGsW2hSgXOumEWzGSUSrg8Q==
-X-Received: by 2002:a05:6512:2210:b0:507:cd54:e93e with SMTP id h16-20020a056512221000b00507cd54e93emr268710lfu.2.1698346569919;
-        Thu, 26 Oct 2023 11:56:09 -0700 (PDT)
-Received: from [172.30.205.8] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id q18-20020a194312000000b0050797cbfa82sm3122255lfa.17.2023.10.26.11.56.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Oct 2023 11:56:09 -0700 (PDT)
-Message-ID: <9439252a-4dbc-417f-99a8-fa7c5f11a3d8@linaro.org>
-Date: Thu, 26 Oct 2023 20:56:07 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F70E3AC0D
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 18:59:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D044D1AD;
+	Thu, 26 Oct 2023 11:59:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698346781; x=1729882781;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w+jkdo2nGAM6bl91xwOy9fzuA08TAFRBLF2hy8Mzcps=;
+  b=neA7AY8non8/WxUqysN6om/isnTRyzow1d1jdQWJ10DSmwj7rRD3YCiO
+   NPqrC3rjvXf0FJ4rMI6iDHkJmZKrUqZYVxzNZbN+stc6K/7AJdXkGx7DT
+   NvqZ86Qpt9w27JPJh4oKDohEYNiNYt8FGvAYMY2texkluhu/U+7xzBBnw
+   ynJAthc/294naJAt4BlTkbqebmR18+C5mcNJWCtYKpdPHC07fHLDmM7R3
+   hW5JR2qCiQuzegFV6q11Uw2tsOFUkQzSARL6Liaqbpqu6kC1bdlpb/Y7y
+   1pIAoEClgSlhcqVHr1kyXFSP3x2bXo7LHRifWZWPe57TX0brBHbkMlBDo
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="6249243"
+X-IronPort-AV: E=Sophos;i="6.03,254,1694761200"; 
+   d="scan'208";a="6249243"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2023 11:59:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="876068277"
+X-IronPort-AV: E=Sophos;i="6.03,254,1694761200"; 
+   d="scan'208";a="876068277"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 26 Oct 2023 11:59:37 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qw5Zv-000A3J-0I;
+	Thu, 26 Oct 2023 18:59:35 +0000
+Date: Fri, 27 Oct 2023 02:58:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Zhenhua Huang <quic_zhenhuah@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kernel@quicinc.com, quic_tingweiz@quicinc.com,
+	Zhenhua Huang <quic_zhenhuah@quicinc.com>
+Subject: Re: [PATCH v1 3/5] soc: qcom: memory_dump: Add memory dump driver
+Message-ID: <202310270221.jqcwE137-lkp@intel.com>
+References: <1698052857-6918-4-git-send-email-quic_zhenhuah@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qrb2210-rb1: use USB host mode
-Content-Language: en-US
-To: Caleb Connolly <caleb.connolly@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231025-b4-rb1-usb-host-v1-1-522616c575ef@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231025-b4-rb1-usb-host-v1-1-522616c575ef@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1698052857-6918-4-git-send-email-quic_zhenhuah@quicinc.com>
 
+Hi Zhenhua,
 
+kernel test robot noticed the following build warnings:
 
-On 10/25/23 13:58, Caleb Connolly wrote:
-> The default for the QCM2290 platform that this board is based on is OTG
-> mode, however the role detection logic is not hooked up for this board
-> and the dwc3 driver is configured to not allow role switching from
-> userspace.
-> 
-> Force this board to host mode as this is the preferred usecase until we
-> get role switching hooked up.
-Does that not kill usb internet and similar?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on arm64/for-next/core linus/master v6.6-rc7 next-20231026]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Konrad
+url:    https://github.com/intel-lab-lkp/linux/commits/Zhenhua-Huang/dt-bindings-soc-qcom-Add-memory_dump-driver-bindings/20231023-172245
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/1698052857-6918-4-git-send-email-quic_zhenhuah%40quicinc.com
+patch subject: [PATCH v1 3/5] soc: qcom: memory_dump: Add memory dump driver
+reproduce: (https://download.01.org/0day-ci/archive/20231027/202310270221.jqcwE137-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310270221.jqcwE137-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/soc/qcom/qcom,memory_dump.yaml
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
