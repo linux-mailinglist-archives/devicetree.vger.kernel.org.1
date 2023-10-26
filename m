@@ -1,54 +1,50 @@
-Return-Path: <devicetree+bounces-12218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162197D85FA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 17:26:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 508D17D8675
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 18:08:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7EA82810CD
-	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 15:26:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A2801C2096F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Oct 2023 16:08:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E43C35882;
-	Thu, 26 Oct 2023 15:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8BF381A1;
+	Thu, 26 Oct 2023 16:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mes1gn0z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADe+Z3lM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9042D7A5;
-	Thu, 26 Oct 2023 15:26:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC321C433C9;
-	Thu, 26 Oct 2023 15:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2333037157
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 16:08:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6900C433C7;
+	Thu, 26 Oct 2023 16:08:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698333978;
-	bh=7f5jXWpac8QZKPV1MUAg3K8E6GSbuJvhCPvV6ZUCJUs=;
+	s=k20201202; t=1698336491;
+	bh=WFxJq0/989teIWW06N+2g4pyBHa4H3eufPVUdxZPeYY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mes1gn0zY9wsK9yGdAJYMQwOkw/vWggKfbPilTP63TgMbYNuTEDhgUKEfly6OeUsy
-	 Z0/ZzufvG/Kz0eqtWpKHmopfJARvTf/8v/lEp6Bo4RqEntEqzHmpN3JQUaEpJy27S3
-	 s6OD+wp0VGGwJEvq1GA0KTDYxjjJpTQywyloxiZIjIxDmcbFkQYXna0L1uUmctcNvt
-	 izuOfGIANVrtWl056FnZ93Kpm2u1jtpC7SIORe1R/1ujf6TVPaugc/eOfBOidvqRyc
-	 TXA/ObZ6iJUm8g50a4gR3cN1LQdgu+ooMznywwBgVnTN5YIsDnv1xTERQ1cspE6Few
-	 byZ9032N1A9AQ==
-Date: Thu, 26 Oct 2023 16:26:13 +0100
+	b=ADe+Z3lMEHuDh0qqqAVl77fLn6VPJYM1TQjiDbmugE9JXn1ZNrTTLAzpd+jwgsw6t
+	 VjnTUmu0zsKv3Dz62Ko5AL3P8PDQ9HNBA/Q9dWtZq5dqjYcd+LIeFnC5kCjiK3Avly
+	 JZ84ad8+qqjrZwMDUR713ka8roxIz/X86QZvp2oX8rv4uR9hF0k/3pcVTdKTNZid/i
+	 gPvlxVKShWCpx6DRniFMs55ekXzS0VBw2L5vOFXYSZufV1mJaIkHmcVvxTFUfp+aQ6
+	 9Wa6Olw3kRNIfOq10k3PLxwXjcD+Uu/YgP64IePiEPNi/XRh4UeK8JpqWDYUxZBL/W
+	 ZzsK6Ctp+gIdw==
+Date: Thu, 26 Oct 2023 17:08:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-i2c@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
- bindings
-Message-ID: <20231026-poison-encrypt-1df55e023867@spud>
-References: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
- <20231026081514.3610343-2-Delphine_CC_Chiu@Wiwynn.com>
- <20231026-dicing-crispy-a10af575d3e5@spud>
- <fffa4330-8d01-8498-4c5f-772ebf2a6b5a@roeck-us.net>
+To: Marius.Cristea@microchip.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, lars@metafoo.de,
+	linux-kernel@vger.kernel.org, jic23@kernel.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: adding dt-bindings for
+ PAC193X
+Message-ID: <20231026-perkiness-financial-55313e297230@spud>
+References: <20231025134404.131485-1-marius.cristea@microchip.com>
+ <20231025134404.131485-2-marius.cristea@microchip.com>
+ <20231025-cheddar-tucking-b2ea777ed4f9@spud>
+ <937af3ec4012c6ec1d66285660d8c56dcf356703.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,115 +52,169 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="krQTSOoQEUtjB+4u"
+	protocol="application/pgp-signature"; boundary="6/TCsU+pwTa96crd"
 Content-Disposition: inline
-In-Reply-To: <fffa4330-8d01-8498-4c5f-772ebf2a6b5a@roeck-us.net>
+In-Reply-To: <937af3ec4012c6ec1d66285660d8c56dcf356703.camel@microchip.com>
 
 
---krQTSOoQEUtjB+4u
-Content-Type: text/plain; charset=us-ascii
+--6/TCsU+pwTa96crd
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 26, 2023 at 08:09:52AM -0700, Guenter Roeck wrote:
-> On 10/26/23 07:25, Conor Dooley wrote:
-> > Hey,
+On Thu, Oct 26, 2023 at 03:23:46PM +0000, Marius.Cristea@microchip.com wrot=
+e:
+> Hi Conor,
+>=20
+> On Wed, 2023-10-25 at 16:08 +0100, Conor Dooley wrote:
+> > Hey Marius,
 > >=20
-> > On Thu, Oct 26, 2023 at 04:15:11PM +0800, Delphine CC Chiu wrote:
-> > > Add a device tree bindings for ltc4286 driver.
-> >=20
-> > Bindings are for devices, not for drivers.
-> >=20
+> > On Wed, Oct 25, 2023 at 04:44:03PM +0300,
+> > marius.cristea@microchip.com=A0wrote:
+> > > From: Marius Cristea <marius.cristea@microchip.com>
 > > >=20
-> > > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> > > This is the device tree schema for iio driver for
+> > > Microchip PAC193X series of Power Monitors with Accumulator.
 > > >=20
-> > > Changelog:
-> > >    v2 - Revise vrange_select_25p6 to adi,vrange-select-25p6
-> > >       - Add type for adi,vrange-select-25p6
-> > >       - Revise rsense-micro-ohms to shunt-resistor-micro-ohms
+> > > Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
 > > > ---
-> > >   .../bindings/hwmon/lltc,ltc4286.yaml          | 50 ++++++++++++++++=
-+++
-> > >   MAINTAINERS                                   | 10 ++++
-> > >   2 files changed, 60 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc=
-4286.yaml
+> > > =A0.../bindings/iio/adc/microchip,pac1934.yaml=A0=A0 | 146
+> > > ++++++++++++++++++
+> > > =A01 file changed, 146 insertions(+)
+> > > =A0create mode 100644
+> > > Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
 > > >=20
-> > > diff --git a/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yam=
-l b/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
+> > > b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
 > > > new file mode 100644
-> > > index 000000000000..17022de657bb
+> > > index 000000000000..837053ed8a71
 > > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
-> > > @@ -0,0 +1,50 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +++
+> > > b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
+> > > @@ -0,0 +1,146 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > > > +%YAML 1.2
 > > > +---
-> > > +$id: http://devicetree.org/schemas/hwmon/lltc,ltc4286.yaml#
+> > > +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
 > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > > +
-> > > +title: LTC4286 power monitors
+> > > +title: Microchip PAC1934 Power Monitors with Accumulator
 > > > +
 > > > +maintainers:
-> > > +  - Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> > > +=A0 - Marius Cristea <marius.cristea@microchip.com>
+> > > +
+> > > +description: |
+> > > +=A0 Bindings for the Microchip family of Power Monitors with
+> > > Accumulator.
+> > > +=A0 The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be
+> > > found here:
+> > > +=A0=A0=A0
+> > > https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produc=
+tDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
 > > > +
 > > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - lltc,ltc4286
-> > > +      - lltc,ltc4287
-> >=20
-> > I don't recall seeing an answer to Guenter about this ltc4287 device:
-> > https://lore.kernel.org/all/22f6364c-611c-ffb6-451c-9ddc20418d0a@roeck-=
-us.net/
-> >=20
->=20
-> At least the chip does officially exist now, and a datasheet is available.
->=20
-> https://www.analog.com/en/products/ltc4287.html
->=20
-> It shows that coefficients for the telemetry commands are different,
-> meaning that indeed both chips need to be explicitly referenced
-> in the properties description (and handled in the driver, which proves
-> my point of needing a datasheet before accepting such a driver).
-
-Oh neat, would've been good if that'd been mentioned!
-
+> > > +=A0 compatible:
+> > > +=A0=A0=A0 enum:
+> > > +=A0=A0=A0=A0=A0 - microchip,pac1931
+> > > +=A0=A0=A0=A0=A0 - microchip,pac1932
+> > > +=A0=A0=A0=A0=A0 - microchip,pac1933
+> > > +=A0=A0=A0=A0=A0 - microchip,pac1934
 > > > +
-> > > +  reg:
-> > > +    maxItems: 1
+> > > +=A0 reg:
+> > > +=A0=A0=A0 maxItems: 1
 > > > +
-> > > +  adi,vrange-select-25p6:
-> > > +    description:
-> > > +      This property is a bool parameter to represent the
-> > > +      voltage range is 25.6 or not for this chip.
+> > > +=A0 "#address-cells":
+> > > +=A0=A0=A0 const: 1
+> > > +
+> > > +=A0 "#size-cells":
+> > > +=A0=A0=A0 const: 0
+> > > +
+> > > +=A0 interrupts:
+> > > +=A0=A0=A0 description: IRQ line of the ADC
+> > > +=A0=A0=A0 maxItems: 1
+> > > +
+> > > +=A0 drive-open-drain:
+> > > +=A0=A0=A0 description: The IRQ signal is configured as open-drain.
+> > > +=A0=A0=A0 type: boolean
+> > > +=A0=A0=A0 maxItems: 1
+> > > +
+> > > +=A0 microchip,slow-io:
+> > > +=A0=A0=A0 type: boolean
+> > > +=A0=A0=A0 description: |
+> > > +=A0=A0=A0=A0=A0 A GPIO used to trigger a change is sampling rate (lo=
+wering
+> > > the chip power consumption).
+> > > +=A0=A0=A0=A0=A0 In default mode, if this pin is forced high, samplin=
+g rate
+> > > is forced to eight
+> > > +=A0=A0=A0=A0=A0 samples/second. When it is forced low, the sampling =
+rate is
+> > > 1024 samples/second unless
+> > > +=A0=A0=A0=A0=A0 a different sample rate has been programmed.
 > >=20
-> > 25.6 what? Volts? microvolts?
-> > What about Guenter's suggestion to name this so that it better matches
-> > the other, similar properties?
+> > This description doesn't really make sense to me - if a GPIO is used
+> > to
+> > drive the pin low or high, why do we need a property? A DT property
+> > implies that this is a static configuration depending on the board,
+> > but
+> > reading the description this seems to be something that can be
+> > toggled
+> > at runtime.
+> > I do note though, that this GPIO is not documented in the binding, so
+> > I
+> > suppose what really needs to happen here is document the gpio so that
+> > the driver can determine at runtime what state this pin is in?
 > >=20
->=20
-> I still would prefer one of the more common properties.
-> I still prefer adi,vrange-high-enable.
+> > Also, you say "In default mode", but don't mention what the non-
+> > default
+> > mode is. What happens in the other mode?
 
-I think, from reading the previous version, that this is actually the
-lower voltage range, as there is a 102.x $unit range too that is the
-default in the hardware. Obviously, the use of the property could be
-inverted to match that naming however.
+> This is a "double function" pin. On the PAC193x there is the SLOW/ALERT
+> pin. At runtime this pin could be configured as an input to the PAC and
+> the functionality will be "SLOW" that means if it is forced high, the
+> PAC will work in low power mode by changing the sample rate to 8 SPS.
+> If it's forced low the PAC will work at it's full sample rate.
+
+Since this is a runtime thing, it doesn't make sense to have a property
+that is set at dts creation time that decides what mode the pin is in.
+
+> "SLOW" is the default function of the pin but it may be programmed to
+> function as ALERT pin (Open Collector when functioning as ALERT,
+> requires pull-up resistor to VDD I/O). This time the pin will be set as
+> output from PAC (ALERT functionality) to trigger an interrupt to the
+> system (this is covered by the interrupts and drive-open-drain).
+
+Hmm, at the risk of getting out of my depth with what the GPIO subsystem
+is capable of doing, I would expect to see something like
+
+sampling-rate-gpios:
+  description:
+    <what you have above>
+  maxItems: 1
+
+Which would allow the driver to either drive this pin via the gpio
+subsystem, or to use the interrupt property to use it as an interrupt
+instead.
+
+Perhaps Jonathan etc knows better for these sort of dual mode pins.
+
+> The system could work fine without this pin. The driver doesn't use
+> interrupt at this time, but it could be extended.
 
 Cheers,
 Conor.
 
---krQTSOoQEUtjB+4u
+--6/TCsU+pwTa96crd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTqFFQAKCRB4tDGHoIJi
-0miPAP9L8K6SvI6VCT2EjTet+tJAmaS2yY3HJ6tRbYuno10IBQEAwzAatI/gAbTd
-v+T2gZMjF8Xf3EaQtl/98SNYuVMLswc=
-=OU8X
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTqO5wAKCRB4tDGHoIJi
+0hmYAQCmkSnFNbvLOYoS5zpR/RrKQCjnseNtPyG7Q7Cd/8Q6lQEA5xp0wOClCL69
+r+PqDSbFGSDxR9U6JeWtWD5lnAIvMQw=
+=8fmx
 -----END PGP SIGNATURE-----
 
---krQTSOoQEUtjB+4u--
+--6/TCsU+pwTa96crd--
 
