@@ -1,108 +1,101 @@
-Return-Path: <devicetree+bounces-12455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1493B7D990F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:56:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D86E7D9928
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:59:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19672B20D7C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:56:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DE3E1C20F7F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693511641D;
-	Fri, 27 Oct 2023 12:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADA617742;
+	Fri, 27 Oct 2023 12:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3uPk2Wa"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="YLuYvjPE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD8E13FF4
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:55:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40D6DC433CC;
-	Fri, 27 Oct 2023 12:55:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698411340;
-	bh=wSX3hZkZaTrYS5zn46sQAvcYVUlw291hdHsmheCFw7A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T3uPk2WaIv4i+lUBOQtRXwUHb6Q58T0/wvONVvtFSn1Maj2zynMwpNQLYcJMhojwb
-	 m4OF8V5DmUPf5d9ZqiJvGGXq1kmX0DYJhYCkDy8aOYjXbpOisO7srwSCXzBgOKt8Y7
-	 cuG6nloPsP8cLC46m9ETXxE4Q2kfi03LdjvVovY/QfoQoTiWHILg0XA1pMsnBvHcpz
-	 bSCYynI2H3pxPJ9goZ81qdQrFgDxJqSvn/ARGKbLQGp+tepha+6nJVrzD9agmDzh0f
-	 USBH9Ou1z9sp2GZDdfEnonBMQhPzlmnxvxohAj/G8Huch9rDMnltoNcnWRILfLMQin
-	 1wXMMhIWCtpqQ==
-Date: Fri, 27 Oct 2023 14:55:37 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	gregory.clement@bootlin.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	Abel Vesa <abel.vesa@linaro.org>, Mark Brown <broonie@kernel.org>,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] i2c: mv64xxx: add an optional bus-reset-gpios
- property
-Message-ID: <20231027125537.5d5cu3wc4r4c2yb4@zenone.zhora.eu>
-References: <20231027033104.1348921-1-chris.packham@alliedtelesis.co.nz>
- <20231027033104.1348921-3-chris.packham@alliedtelesis.co.nz>
- <65911ec0-e073-435f-846a-c5501dd5d3a9@linaro.org>
- <9eebec9b-e6fd-4a22-89ea-b434f446e061@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FD45CBC
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:59:20 +0000 (UTC)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A7591B1
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:59:18 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1caa371dcd8so17837955ad.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:59:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tweaklogic.com; s=google; t=1698411557; x=1699016357; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OnVvDYzrOiXXcLBIXZo998leFWypinKwSwwBh9B0Bhc=;
+        b=YLuYvjPEiR+LNZoGyjZcHy5a7qZZTOCaR51sxH/HkChShJOcKfAgTBGPPlJTyYo063
+         KTh1iDH0pPmb5nc8h4L+85XleWpIMz2JH38u2BLU1/QiEZadZbRocDnW0lI3gNdDouUD
+         6ZKRTQe/CqSW/Id7ohrV/B3WphxTT3NPYnl3mWeK+K/H/EfyCgoYDPMUROisq2/FoRaz
+         +YkrxRrgdg5xP3CwuAgxp2DpRGzP8toCBU9d5Vrl652wY3QIt/zgjlDdakpB1COOv6hf
+         d39ms9DI7uWCe1TvZKg+Pxs9m7ZRZJJynjRjGsA3Wi9zLydQle5loZQ286vyKGHicVt6
+         i1dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698411557; x=1699016357;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OnVvDYzrOiXXcLBIXZo998leFWypinKwSwwBh9B0Bhc=;
+        b=COVdTW9OBR+yNOZNw/le4VP855rFGrPzuwB8KhJBWHGbjbXMQrS/eELMuzBX/y9CYw
+         5nJUR7/OVP35dfZ6ZIRjMDXNDkqPblUfI8+MrBmWivD3+cU7umU1cATjIHw8kqj7kKyz
+         +iirmTQiYP6GKeX1onuy3TyB2fLMP7rcHIXN/BXWc0ZyVu9ssIoBTOywhJNIA0DdCgNv
+         G1TWBGuCs4dw0UyHtXocy3qUkqd1+h1/ssPj+ZVznq0K6Qz9vjJiCACjhQZdLuaseKGD
+         s7GbG0sdCIoG0TjPvDEQB1boFCTPOLA3vfbAoATA1By6m9Yn1gSdtIsDEpvNzrjbx+aL
+         cPXw==
+X-Gm-Message-State: AOJu0YzMUvkNvuqlkoDLypza9mWwcUStcZz+MBA+KRAr5MkeDLpwxxy9
+	TXv7kBqujJXkFG+m5BGI1R+96w==
+X-Google-Smtp-Source: AGHT+IE/y41xbQGeI5wjC1sLH+pq9yHPsk4f4rnVQlyHxT5L0fSSnli72s6diRvbt22YhudFLgevQw==
+X-Received: by 2002:a17:903:2306:b0:1c6:2f59:8c4d with SMTP id d6-20020a170903230600b001c62f598c4dmr2929514plh.28.1698411557571;
+        Fri, 27 Oct 2023 05:59:17 -0700 (PDT)
+Received: from ?IPV6:2403:580d:82f4:0:c232:f53e:32d4:5510? (2403-580d-82f4-0-c232-f53e-32d4-5510.ip6.aussiebb.net. [2403:580d:82f4:0:c232:f53e:32d4:5510])
+        by smtp.gmail.com with ESMTPSA id z13-20020a1709027e8d00b001b9da42cd7dsm1515657pla.279.2023.10.27.05.59.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Oct 2023 05:59:17 -0700 (PDT)
+Message-ID: <7524a9ef-c1c4-462e-8f9d-fc03c29ca092@tweaklogic.com>
+Date: Fri, 27 Oct 2023 23:29:08 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9eebec9b-e6fd-4a22-89ea-b434f446e061@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] iio: light: Add support for APDS9306 Light Sensor
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>, Paul Gazzillo <paul@pgazz.com>,
+ Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231026143532.39660-1-subhajit.ghosh@tweaklogic.com>
+ <20231026143532.39660-3-subhajit.ghosh@tweaklogic.com>
+ <ZTuuUl0PBklbVjb9@smile.fi.intel.com>
+Content-Language: en-US
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <ZTuuUl0PBklbVjb9@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+On 27/10/23 23:04, Andy Shevchenko wrote:
+> This will benefit from guard() or scoped_guard().
+> And many other functions in your driver.
+> I believe ~15% of LoCs can be dropped with help of cleanup.h.
+Acknowledging all other comments. Jonathan commented earlier on using guard() and cleanup.h
+Unfortunately I missed it. Like GTS, it will again be a brand new thing to understand!
+Thank you for reviewing.
 
-On Fri, Oct 27, 2023 at 01:37:05PM +0200, Krzysztof Kozlowski wrote:
-> On 27/10/2023 13:27, Krzysztof Kozlowski wrote:
-> > On 27/10/2023 05:31, Chris Packham wrote:
-> >> Some hardware designs have a GPIO used to control the reset of all the
-> >> devices on and I2C bus. It's not possible for every child node to
-> >> declare a reset-gpios property as only the first device probed would be
-> >> able to successfully request it (the others will get -EBUSY). Represent
-> 
-> Cc: Mark,
-> 
-> Also this part is not true. If the bus is non-discoverable, then it is
-> possible to have reset-gpios in each probed device. You can share GPIOs,
-> so no problem with -EBUSY at all.
-> 
-> The problem is doing reset:
-> 1. in proper moment for all devices
-> 2. without affecting other devices when one unbinds/remove()
+Regards,
+Subhajit Ghosh
 
-yes, I thought that we could get to this point, but I did not
-object the patch as I didn't see an immediate better solution. I
-would still be OK to merge it until we develop something better.
-
-Let me mull this over and will be back to the topic.
-
-Thanks, Krzysztof!
-Andi
-
-> The (2) above is not solveable easy in kernel and we already had nice
-> talks about it just few days ago:
-> 1. Apple case:
-> https://social.treehouse.systems/@marcan/111268780311634160
-> 
-> 2. my WSA884x:
-> https://lore.kernel.org/alsa-devel/84f9f1c4-0627-4986-8160-b4ab99469b81@linaro.org/
-> 
-> Last,
-> I would like to apologize to you Chris. I understand that bringing such
-> feedback at v5 is not that good. I had plenty of time to say something
-> earlier, so this is not really professional from my side. I am sorry,
-> just my brain did not connect all these topics together.
-> 
-> I apologize.
-> 
-> Best regards,
-> Krzysztof
 
