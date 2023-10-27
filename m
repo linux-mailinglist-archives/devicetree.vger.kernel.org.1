@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4FCF7D95FB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:06:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6245C7D95FD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:07:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 652F6B21184
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:06:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1571F2821EE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF20718046;
-	Fri, 27 Oct 2023 11:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E8618050;
+	Fri, 27 Oct 2023 11:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wyslFgI8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="isqkL3Np"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4070515AFF
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:06:37 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA161B5
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:06:35 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507bd644a96so2830055e87.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:06:35 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E386C15AFF
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:07:15 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1272F9C
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:07:14 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-508126afb9bso2718381e87.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:07:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698404794; x=1699009594; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698404832; x=1699009632; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QjFnua1NuNprcnVPcdRFEVjvawhhfFX2Q//0zt+xqMo=;
-        b=wyslFgI8vOcdhwCFgF9Yg98DUb6vXJGMfZMsziObdT38MyIUjYqFCjWSKFnjZwSFJY
-         E/XP4z/j2vCpBHFWVAsPushgi7f458rnlxXdKnEi4qO6RKLsFD8jwxUnw9CWhVK14GjJ
-         rhCYk+xq06l2Y/9relFob3ClwQbj4SrMF0IQ8VDpGUa35FS+GmmuITa9h2uv0tPWweRr
-         pegte7xodkq6Uln6BNGiyfe110rnsdDxTrSRNfJay70MYfbbrSmrL33zHUcxKk811A6J
-         bheCw6rH0ZozGS9mHBcep9ATMTqqYputFeG2417fHo1zOfynBaSXLwnHYAW+ZXy4UIxk
-         Bu2w==
+        bh=dYmoAZ6D1Y5eAnBhMuhr3K3LD3rxWA06Ac0Boy3nzSY=;
+        b=isqkL3Npj11JsIQAGcdBZQn33gM+5+0ws0Yemf9FMt9h7aCKpiq3hSSGqRQrpH9Eem
+         3keZ3JJU6aQ1RvNDox9ZCC2WbMKTskqZJXPCNVIPaVDAieYsHQaZ6wHCGqrdA11Qrd8v
+         npIBq9M0ya++zNiNkZztBVFRkRfoG70vrwyfe3BNw4KsmH5o7h4w4OiKk8gPsjR5xyi3
+         w7uiGSBvkpITtnT8+tcUZhDq1X478t1YVXWDCspPA4MU4wHIeu8Tnq6kZ9Gpjswv1oAY
+         XqpmRJTRMcO4nTKY8ZM1MdfQ7Do1aQ5/wFV/vieuFqJriMx+PGL5QWvarDZkE3S+CVFi
+         iYgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698404794; x=1699009594;
+        d=1e100.net; s=20230601; t=1698404832; x=1699009632;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QjFnua1NuNprcnVPcdRFEVjvawhhfFX2Q//0zt+xqMo=;
-        b=CGRx2ObcbWHpI0AMQJlqH0uCBdiT065XbrpCUQV2b59TcNLcfoGv/LR+OcjfuIkZ75
-         7uStulDCqdytULD3LcZO0TyqLE1WJIrqb/jWsi6lFeKaQRMx6bY5SFEg2p/Uu/tzJTO/
-         FdGzXkhpz4jILAEzB1w0MwMMjn6BGLiYHOEPkNLaN8Gz7pkRa7NeRelvPcZVFcQMTbAP
-         2Og55NkXeAp/+tANsEd4jy9HfOIfFOEoxm7lhYXOj8PmBQz736x90OOwHrTwIG4+NtXo
-         C1BRVTN7n1//9dl3OnILhnElqGu95kJeDx6VODjg5zu+qrDyc7MMEHBHHpBjUggcVb2+
-         E4Uw==
-X-Gm-Message-State: AOJu0YypdDjrA1jn6i5gPOeXcAdatX7wF23GkEsNuGi3GYrusiuuR3Kb
-	PVn00j3fmP5K6BbAAQy7GGeiQg==
-X-Google-Smtp-Source: AGHT+IGiVp3irsSJHWwCE8sYrw+Y+bBWhl9tUkAy3aT41B69HbU+ku1ZCqQmn7+3VoDn14ey9kSULQ==
-X-Received: by 2002:a19:f70c:0:b0:503:3278:3221 with SMTP id z12-20020a19f70c000000b0050332783221mr1515372lfe.69.1698404793963;
-        Fri, 27 Oct 2023 04:06:33 -0700 (PDT)
+        bh=dYmoAZ6D1Y5eAnBhMuhr3K3LD3rxWA06Ac0Boy3nzSY=;
+        b=vduvRrL6hsBM3W33W+yhmrXT+xzigzcHW9AXyRFvNmeeaxjXdEMHRbgBoxveqkLjul
+         5eMa8FrK6ONs6sz29T7ha9sNzshxs3c9/fjEfOkrOWx9uFVXy5AOGXPqXaufxmYx6Ens
+         tKdXrA8A2D8SPxvDo25IOroFxLty8Akbw2jcvEVnlqUoe1omyPYOvtqeGNSba+2KYgkr
+         AEBIsWlp/hZv4MtwhtCaeK/ZgvH4Xu+S7wgotZpnzWY208abTIkVOXImVrkFl4/I4sc5
+         0SlMSmI2GhcHcIiaA/HxRytDeCP8EeY3Cvz/KAwwG7jqHrBjW8X7VjO4ODEdtr1wuOQE
+         wZzw==
+X-Gm-Message-State: AOJu0Yye1VWU44l2Sys8pa87mObt0ZSA1Iqhk6S3KXJ1ZhPAF9iiS1o+
+	ZQJIaSuBTSHR/Iy5ODTldDL+hjDSOCUh2s2LuP8=
+X-Google-Smtp-Source: AGHT+IEBrFm+KVtNdv3CB/7mtFROOKhgAd+2YAmBTZ5w+j8ciDOBe2NnWi2KyUsWnfm5fLKQQSXaTw==
+X-Received: by 2002:ac2:4f13:0:b0:505:7276:8a5f with SMTP id k19-20020ac24f13000000b0050572768a5fmr2084938lfr.2.1698404832269;
+        Fri, 27 Oct 2023 04:07:12 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id m28-20020ac24adc000000b00507d478c211sm237468lfp.76.2023.10.27.04.06.32
+        by smtp.gmail.com with ESMTPSA id m28-20020ac24adc000000b00507d478c211sm237468lfp.76.2023.10.27.04.07.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 04:06:33 -0700 (PDT)
-Message-ID: <682e25ca-fb03-45a4-a9a8-bdf4247e027b@linaro.org>
-Date: Fri, 27 Oct 2023 13:06:32 +0200
+        Fri, 27 Oct 2023 04:07:11 -0700 (PDT)
+Message-ID: <7b7068b0-886d-4964-bb53-2658ec84faeb@linaro.org>
+Date: Fri, 27 Oct 2023 13:07:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -131,9 +131,15 @@ On 27/10/2023 11:46, Edward Chow wrote:
 > There are special "offset" and "size" values defined and documented in
 > linux/mtd/partitions.h:
 > 
+> /* consume as much as possible, leaving size after the end of partition. */
+>  #define MTDPART_OFS_RETAIN (uint64_t)(-3)
+> 
 
+Also:
 
-Missing changelog. I already see you ignored my comments :/
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets.
 
 Best regards,
 Krzysztof
