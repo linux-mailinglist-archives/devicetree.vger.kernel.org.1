@@ -1,81 +1,100 @@
-Return-Path: <devicetree+bounces-12565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A457DA279
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 23:30:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 711907DA27E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 23:32:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54982B2148F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:30:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AE8D2825E2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000823FE2C;
-	Fri, 27 Oct 2023 21:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580683FE31;
+	Fri, 27 Oct 2023 21:32:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="reF7VfnS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3413FB1C
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 21:29:59 +0000 (UTC)
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBAD0B0;
-	Fri, 27 Oct 2023 14:29:58 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1e9c9d181d6so1574394fac.0;
-        Fri, 27 Oct 2023 14:29:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698442198; x=1699046998;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kNGJKvEldoT9PmYXR0BTbSqlmq0sSRwAAORJfa42T8Q=;
-        b=LVNKf/LKBZ+l4UiE1atmI9AZ8nPUl1jRjDfiIk/t+L3nzSNDGt2MSEiDwKU5LnWbxJ
-         MoF0DcXXlbUs1oHUEyG+gLnU1w3nemRbqXk8v4iNpOg7I4u2l81ELtryXAPaur5+WFIA
-         pHHTW5+/JXhmPIwD60Y3f1ccUKitLtcbx8D4XK44beIbljdFLyuvpRbVxTskmmgBRwH/
-         PSZuAc3VGPrMbg0uKKboQIsD+vdhPInmd0ukMzgJrI+MK0exJt6AVYPeGHCv0bEacxak
-         RQSOtBPSoifGf6EG98aQhOKE8uCvIDYPLAHjWPfmxzzZD1P6IXSmOSrHUiNnhxTrYB5Q
-         kINQ==
-X-Gm-Message-State: AOJu0Yy5bT2JEt90IJm+e+9hIsU4HEybQNZx+f3TEqywzwHIjJe91QDY
-	+mqQyhn+yzHzbvxcvzoNvA==
-X-Google-Smtp-Source: AGHT+IGuKz3y2T4ah9nZVE2uj6UueeplwSlnm5Su8lnIY0Azaoq7IaEILJphqDhnUBYiQtTwQFuTGA==
-X-Received: by 2002:a05:6870:1712:b0:1e9:8a35:863a with SMTP id h18-20020a056870171200b001e98a35863amr5036395oae.20.1698442198089;
-        Fri, 27 Oct 2023 14:29:58 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n40-20020a056870822800b001dd5857e243sm460947oae.14.2023.10.27.14.29.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 14:29:56 -0700 (PDT)
-Received: (nullmailer pid 3404725 invoked by uid 1000);
-	Fri, 27 Oct 2023 21:29:55 -0000
-Date: Fri, 27 Oct 2023 16:29:55 -0500
-From: Rob Herring <robh@kernel.org>
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, devicetree@vger.kernel.org, linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: vendor-prefixes: add GalaxyCore
-Message-ID: <169844219487.3404665.10937682775716979340.robh@kernel.org>
-References: <20231027011417.2174658-1-sre@kernel.org>
- <20231027011417.2174658-2-sre@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B24B3C09E
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 21:32:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EC7AC433C8;
+	Fri, 27 Oct 2023 21:32:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698442335;
+	bh=qK3hvJNS0Aliw7xtqaQfDoHDTkfG6rrB9PlIHENXp2M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=reF7VfnS5duq0mgeS8r0udz14EQe/24l9fbm+CaxS8xqcPXiyjpMlFomtdjZOld0l
+	 FCGKPxe3nEo7NT+AK4suFsZvpjJUDcRD52NaNJC+N3XV0BsmFwZQAsikAmph5MUyyM
+	 0ZTBdehoku4xvH8VJothhg4ER63PIl0ELl71CU3qbWVVkjPKms42zdPEz3Uiek6YKK
+	 3XNNuV47dAyC7zIjEyBNOz5C42v6IJGcBrwBJcNh6Q4n87Hd4QP/DPLz4sOelc56rg
+	 BcM9h9IUw2CslM5WYiBkpkArldS3krV+fYFZ6GG2lNAb6AY/vAxP0iWZNyhO5WsFaQ
+	 WgteBjRB4g0gg==
+Date: Fri, 27 Oct 2023 22:32:12 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] regulator: dt-bindings: Allow system-critical
+ marking for fixed-regulator
+Message-ID: <ZTwsXCQ2bz7KlgFl@finisterre.sirena.org.uk>
+References: <20231026144824.4065145-1-o.rempel@pengutronix.de>
+ <20231026144824.4065145-4-o.rempel@pengutronix.de>
+ <20231027212440.GA3392484-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mZLwjrO5zan/3GHq"
+Content-Disposition: inline
+In-Reply-To: <20231027212440.GA3392484-robh@kernel.org>
+X-Cookie: Save energy:  Drive a smaller shell.
+
+
+--mZLwjrO5zan/3GHq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231027011417.2174658-2-sre@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Oct 27, 2023 at 04:24:40PM -0500, Rob Herring wrote:
+> On Thu, Oct 26, 2023 at 04:48:22PM +0200, Oleksij Rempel wrote:
 
-On Fri, 27 Oct 2023 03:12:01 +0200, Sebastian Reichel wrote:
-> GalaxyCore Shanghai Limited Corporation manufacturers
-> CMOS Image Sensor and Display Driver IC.
-> 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> > In certain projects, the main system regulator, composed of simple
+> > components including an under-voltage detector and capacitors, can be
+> > aptly described as a fixed regulator in the device tree. To cater to
+> > such use cases, this patch extends the fixed regulator binding to
+> > support the 'system-critical-regulator' property. This property
+> > signifies that the fixed-regulator is vital for system stability.
 
-Acked-by: Rob Herring <robh@kernel.org>
+> There is no programming interface for fixed-regulators, so how do you=20
+> know an under/over voltage condition?
 
+There's support for interrupts now - it's a just a simple signal so if
+the interrupt is asserted you know there's an error but that's all you
+know.
+
+--mZLwjrO5zan/3GHq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmU8LFsACgkQJNaLcl1U
+h9A20Qf+PcLBGuaFuQS105GCX+siPedNjWr631UhJBQWdT8ZOVMYOQynB3gBheJh
+yPf4FZDN0CW6fx+KTGWJUmSOy8fDez9M78hl8XMAxd9NhrcUxqbVjl6AFfBv6UES
+lXLkRxxpHTqTw7XySJFDl0s3tyLqgTN7cdqlYXghyjwEV8tudTv7kkl9pPhVyCP8
+xylX/nz+F8sZOuAJ/RWVMcUKZBf3wblNR9x170gTEkof/9lsAt2004O/VmIBZplQ
+mjuWPwy7OX0TXct4MxncJAYCqkWcZxGOjSuBr9iAhUV2tA6t7DuW3B35HL+gnQD/
+JKjSM0hTcSrykL81qfXqn54ozzUdWA==
+=9OwE
+-----END PGP SIGNATURE-----
+
+--mZLwjrO5zan/3GHq--
 
