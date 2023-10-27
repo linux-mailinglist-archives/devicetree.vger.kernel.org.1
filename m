@@ -1,115 +1,128 @@
-Return-Path: <devicetree+bounces-12486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCE77D9AC6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:05:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E55C7D9AE4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:11:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B06E91C21090
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:05:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA4B71C20EE9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6F236AE4;
-	Fri, 27 Oct 2023 14:05:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7772D36AE0;
+	Fri, 27 Oct 2023 14:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+h2mAlT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE58358B4
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:04:51 +0000 (UTC)
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635A1C0;
-	Fri, 27 Oct 2023 07:04:50 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39RB1Gma028823;
-	Fri, 27 Oct 2023 10:04:20 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tyx01pa89-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Oct 2023 10:04:20 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 39RE4I3q048300
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 27 Oct 2023 10:04:18 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 27 Oct
- 2023 10:04:17 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 27 Oct 2023 10:04:17 -0400
-Received: from rbolboac.ad.analog.com ([10.48.65.174])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 39RE40hc022983;
-	Fri, 27 Oct 2023 10:04:09 -0400
-From: Ramona Gradinariu <ramona.gradinariu@analog.com>
-To: <jic23@kernel.org>, <nuno.sa@analog.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Ramona Gradinariu <ramona.gradinariu@analog.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 3/3] dt-bindings: adis16460: Add 'spi-cs-inactive-delay-ns' property
-Date: Fri, 27 Oct 2023 17:03:58 +0300
-Message-ID: <20231027140358.328699-4-ramona.gradinariu@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231027140358.328699-1-ramona.gradinariu@analog.com>
-References: <20231027140358.328699-1-ramona.gradinariu@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561CD358AD
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:11:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAAD3C433C9;
+	Fri, 27 Oct 2023 14:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698415900;
+	bh=qiPK2+5bbIvnFZbVVqos1S/u2AdHxbqykbMWZHHXeiU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E+h2mAlTeznQyw9FEZ6q7a/Yc4daSJLb373j7XfWgfwt4u6pT/QB7I7r26Uvy6l1v
+	 jeLTaV9iB8eXeABbaFc78yp3zyZoVcYj3phgewglZpGrTZV2hg3WFPadlQ3Bv3XxgJ
+	 mTaH6IWdx5I4wF6mskwkrrmp0Z3Li1M2m/48WkmYRzWtT8JYVM3xEZNnNiVNJ1Eq3B
+	 xFWdWhVtkPTu0wVIEh/avYTQwxwtiiK7B5orqm0IGXzm4wHDfZLqc7jwwh/heSLTi1
+	 Ry9ucEsKi1dPYYO4LiM80iGu5cH4sq5QMTt9juk96LdVv4uIHk/oKQhjGIxJXjTnYR
+	 s7ukr0I9mrMSg==
+Date: Fri, 27 Oct 2023 15:11:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Seven Lee <wtli@nuvoton.com>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com,
+	KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com,
+	scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: nau8821: Add DMIC slew rate
+ selection
+Message-ID: <20231027-pronto-prideful-2cf3415a9d87@spud>
+References: <20231027082144.639369-1-wtli@nuvoton.com>
+ <20231027082144.639369-2-wtli@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: i09VU6HRxbq9GHHEBk8fb73x9FrSS4iJ
-X-Proofpoint-GUID: i09VU6HRxbq9GHHEBk8fb73x9FrSS4iJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-27_12,2023-10-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 adultscore=0 mlxscore=0 malwarescore=0 impostorscore=0
- clxscore=1015 phishscore=0 suspectscore=0 mlxlogscore=982 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2310240000 definitions=main-2310270121
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Utulr+me0/RPd4KV"
+Content-Disposition: inline
+In-Reply-To: <20231027082144.639369-2-wtli@nuvoton.com>
 
-The adis16460 device requires a stall time between SPI
-transactions (during which the chip select is inactive),
-with a minimum value equal to 16 microseconds.
-This commit adds 'spi-cs-inactive-delay-ns' property, which should
-indicate the stall time between consecutive SPI transactions.
-The specified minimum time may not be sufficient for all
-configurations.
 
-Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-changes in v3:
- - removed description
- - updated commit message
- Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+--Utulr+me0/RPd4KV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-index 4e43c80e5119..4cacc9948726 100644
---- a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-@@ -25,6 +25,10 @@ properties:
+Hey,
 
-   spi-cpol: true
+On Fri, Oct 27, 2023 at 04:21:43PM +0800, Seven Lee wrote:
+> Add input with DMIC slew rate selection
+>=20
+> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+> ---
+>  .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml=
+ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> index 3e54abd4ca74..01028b7ff85c 100644
+> --- a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> @@ -89,6 +89,13 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      default: 3072000
+> =20
+> +  nuvoton,dmic-slew-rate-selection:
+> +    description: the number from 0 to 7 that sets the DMIC slew rate.
+> +        The unit is mV/ns. 0 is the slowest, and 7 is the fastest.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 7
+> +    default: 0
 
-+  spi-cs-inactive-delay-ns:
-+    minimum: 16000
-+    default: 16000
-+
-   interrupts:
-     maxItems: 1
+I meant make the property in terms of the unit, so
+nuvoton,dmic-slew-rate-volt-per-sec (or similar, Rob would likely know
+better how he likes the unit suffix for a more complex unit like this
+one) and then make it an enum with possible values corresponding to
+the real values that putting 0, 1, 2, 3 etc into the register produces.
 
---
-2.34.1
+Cheers,
+Conor.
 
+> +
+>    nuvoton,left-input-single-end:
+>      description: Enable left input with single-ended settings if set.
+>          For the headset mic application, the single-ended control is
+> @@ -127,6 +134,7 @@ examples:
+>              nuvoton,jack-insert-debounce =3D <7>;
+>              nuvoton,jack-eject-debounce =3D <0>;
+>              nuvoton,dmic-clk-threshold =3D <3072000>;
+> +            nuvoton,dmic-slew-rate-selection=3D <0>;
+>              #sound-dai-cells =3D <0>;
+>          };
+>      };
+> --=20
+> 2.25.1
+>=20
+
+--Utulr+me0/RPd4KV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTvFFwAKCRB4tDGHoIJi
+0oU8AQCj7pUfn9S1XRtqy6D5OsCQmxBVTCNuJ1c20C0wtxBy1AD+O3vJBYzE6iVc
+BMhcpZ436Z5tHhcVPq+K0vt37JpUTwo=
+=y/dP
+-----END PGP SIGNATURE-----
+
+--Utulr+me0/RPd4KV--
 
