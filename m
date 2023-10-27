@@ -1,117 +1,114 @@
-Return-Path: <devicetree+bounces-12388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B870A7D93B5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:31:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40AD37D93DC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:37:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8C901C20F7D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:31:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC5CDB210E8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2839515AFF;
-	Fri, 27 Oct 2023 09:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC43516417;
+	Fri, 27 Oct 2023 09:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="HosLYxpS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CaYEmVjI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736C7156F7
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 09:31:18 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48DC4D6
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 02:31:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1698399076;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XNrFs0h07QQ3WzL8XWJs8qa636YWY8uqFNGGrlBPzmc=;
-	b=HosLYxpSVk6EbFNtvBpcf3CITVYZaQoWwsp1Q+fZHYXPK8XX1R/WRKCQ13tnUbKsL/mvsJ
-	RCBn42q38OHz6l9NMMqvedXZ8+U05IOhKOIcvgjHH9/BXn9Ovcd95VSPUWoEiizW4vTNZd
-	XS81OfvardOen5S928ZvvXHEb0Z6W8U=
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
- [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-631-wYydcP3EO6qZ2kr84WuYtA-1; Fri, 27 Oct 2023 05:30:59 -0400
-X-MC-Unique: wYydcP3EO6qZ2kr84WuYtA-1
-Received: by mail-lf1-f69.google.com with SMTP id 2adb3069b0e04-507bd5f4b2dso2073545e87.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 02:30:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7480E16406
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 09:37:28 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA14E5
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 02:37:24 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5079f9675c6so2863521e87.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 02:37:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698399442; x=1699004242; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bxAhGTRk8WbWkwB+dTuwh9bEQbrCU7H1RI+9l+q0K90=;
+        b=CaYEmVjIgu/fK1yY7wGa2klX283fs7FTn5YX4C5x57qDRx2YjZqfNL9pznt4iwdzSm
+         E6EsfY0Mhf8tG5188WbUeFXtB/VLMIdh1WoFeZrs85LD4v5gGz2aMEBoGrhiOB+g7RLP
+         rdKPr9owAgCMjXufL0hJ7PawKfgW1BydwFkbbKDnWVUldw09rcCLgQvH+UreKmTlyrVw
+         LcQX2NjEoTxhMpzrgl40DreWsvVIggSP8xVDN1yZapbqBNVSwfP/If+/vxm5NwKvloYr
+         /CSNfM8zNFLwI44hmZQoU80TCbOELgW0f/jEunSBuGelZChZON2jQQ/mzENUU2xBthHQ
+         nLHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698399058; x=1699003858;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XNrFs0h07QQ3WzL8XWJs8qa636YWY8uqFNGGrlBPzmc=;
-        b=tYkjA488pkJqv5zCm+GYWRPeTRUTuzVpE6OtGlv2N1J9Onn4FMY9HuULmVW5Klwkqq
-         16tuuM1JST1kV0hiSSgVsyXoNFvepkJHbAnXauRWTxeVaJf1Wkr+w3Cxx8eX3mkEKD3D
-         ymQvKsFIyYFYNhkzNa7L3l6Odvc6v9se+ixK+/tmRCANLbWiVBAmg1y0Mrzrk5P1EK12
-         9pnyAcpFarsKudbV29TurAZYeTxo+lAh1Ruzo9js4+31Jq0c4pR4z1VID3JIi14lKzOc
-         PTp0i6GAzQJZVT/CsJ3KsO6Fz3mDFYBayoukS58+ukcyH9ImWvcljzgYaqATq0oSyaAv
-         BXdQ==
-X-Gm-Message-State: AOJu0YzKSYmaKVSZWcd/fidzpepbAWfZl5VsCYJxsN9tmpjdMNRBzDL9
-	coU83yOSDBEiek0geDY9wwhDfz1gVTQ+iBor/Pkyxg4SqQKdEmBMVF+6sp3tTK6t4K4MahDkv2f
-	U/bVyndzsEqBE2wQotxfzZw==
-X-Received: by 2002:ac2:5449:0:b0:505:7371:ec83 with SMTP id d9-20020ac25449000000b005057371ec83mr1392688lfn.48.1698399058345;
-        Fri, 27 Oct 2023 02:30:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHJVuGYSYuMReQZAoVFqQtGlXfjg/2jaYA5k0xGLUkM/iujstFcVk8aJjyyfMM1Ijuxe8lSmA==
-X-Received: by 2002:ac2:5449:0:b0:505:7371:ec83 with SMTP id d9-20020ac25449000000b005057371ec83mr1392668lfn.48.1698399057931;
-        Fri, 27 Oct 2023 02:30:57 -0700 (PDT)
-Received: from localhost ([212.80.183.76])
-        by smtp.gmail.com with ESMTPSA id a1-20020a05600c348100b00402ff8d6086sm1165870wmq.18.2023.10.27.02.30.57
+        d=1e100.net; s=20230601; t=1698399442; x=1699004242;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bxAhGTRk8WbWkwB+dTuwh9bEQbrCU7H1RI+9l+q0K90=;
+        b=EZSZw05dn3kY+3zMynY0PmmtF6X/WWTL0gKpyn7uB+QQSXuzYo3e/ZBAhcb7fhB9gx
+         UG8iHfp7pTZDArvWDPfCFlBdfesvV//m6QDGO8leeVFFp2P7OEBdJdQ4bzDQXPsiLEFu
+         xPOksSJ7gt2dJUUP8aAdfBeeUeD3RMiG8gVA0PfxnXSW5pllW/st4e/AilnQJP5z299F
+         0NHKEvw8/ZswjuaBfi8l4rgkzvUNvoez6t9igOIfrq8j9NHyZGQ4i/My+K8x1QJ5Y0Y0
+         0S+H2CUcr49Ct6i0f6ig8vhkX/bNR6DaDO3jpB11lGwQ0SEe99OxtPRjfVIcMtFywTHL
+         zzPA==
+X-Gm-Message-State: AOJu0YxFcKRfBN19cZBtl6yO8p/XDVjn5IE1V3LmKp3zFNhArFIJh6mX
+	qYG+R7xVIx+7vc31qehqTVJc7g==
+X-Google-Smtp-Source: AGHT+IFQw7hIScOFSzvtLz9DA9eBVKE2Jz65xnKksveBucyHsbC6nhpEUWiEVVT/vo9qDs+HweEaXw==
+X-Received: by 2002:a05:651c:42:b0:2bf:f32a:1f64 with SMTP id d2-20020a05651c004200b002bff32a1f64mr1718197ljd.18.1698399442460;
+        Fri, 27 Oct 2023 02:37:22 -0700 (PDT)
+Received: from krzk-bin.. ([78.10.206.168])
+        by smtp.gmail.com with ESMTPSA id s26-20020a2e151a000000b002c12c2094e4sm223341ljd.74.2023.10.27.02.37.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 02:30:57 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>, Daniel
- Vetter <daniel@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, Conor
- Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: ssd132x: Remove '-' before
- compatible enum
-In-Reply-To: <169801218855.747717.5658253186246322717.robh@kernel.org>
-References: <20231020223029.1667190-1-javierm@redhat.com>
- <169801218855.747717.5658253186246322717.robh@kernel.org>
-Date: Fri, 27 Oct 2023 11:30:56 +0200
-Message-ID: <87y1foo1in.fsf@minerva.mail-host-address-is-not-set>
+        Fri, 27 Oct 2023 02:37:22 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/2] pinctrl: qcom: add sm8650 lpass-lpi
+Date: Fri, 27 Oct 2023 11:36:13 +0200
+Message-Id: <20231027093615.140656-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-Rob Herring <robh@kernel.org> writes:
+Hi,
 
-> On Sat, 21 Oct 2023 00:30:17 +0200, Javier Martinez Canillas wrote:
->> This is a leftover from when the binding schema had the compatible string
->> property enum as a 'oneOf' child and the '-' was not removed when 'oneOf'
->> got dropped during the binding review process.
->> 
->> Reported-by: Rob Herring <robh@kernel.org>
->> Closes: https://lore.kernel.org/dri-devel/CAL_Jsq+h8DcnpKqhokQOODCc8+Qi3M0PrxRFKz_Y4v37yMJvvA@mail.gmail.com/
->> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
->> ---
->> 
->>  .../devicetree/bindings/display/solomon,ssd132x.yaml      | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->> 
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
->
+Dependency
+==========
+This patchset depends on v2 of:
+https://lore.kernel.org/all/CACRpkdYzhEJhN9BFdbZkJ7LurtT+dFMg97SLY-q91SNCZ8bikw@mail.gmail.com/
 
-Pushed to drm-misc (drm-misc-next). Thanks!
+Due to conflicts with current fixes, the v2 above was postponed for v6.8, thus
+this should wait as well.  Review can happen anyway now.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (2):
+  dt-bindings: pinctrl: qcom,sm8650-lpass-lpi-pinctrl: add SM8650 LPASS
+  pinctrl: qcom: sm8650-lpass-lpi: add SM8650 LPASS
+
+ .../qcom,sm8650-lpass-lpi-pinctrl.yaml        | 148 ++++++++++
+ drivers/pinctrl/qcom/Kconfig                  |  10 +
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ .../pinctrl/qcom/pinctrl-sm8650-lpass-lpi.c   | 255 ++++++++++++++++++
+ 4 files changed, 414 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8650-lpass-lpi.c
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.34.1
 
 
