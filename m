@@ -1,429 +1,156 @@
-Return-Path: <devicetree+bounces-12444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03B17D9867
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:35:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532647D98A0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:42:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74196282410
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:35:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14B162823FF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9487F171A3;
-	Fri, 27 Oct 2023 12:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2C82D786;
+	Fri, 27 Oct 2023 12:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="sNI6YClE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="utLj1yr+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0C71EB48
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:35:13 +0000 (UTC)
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6CC121;
-	Fri, 27 Oct 2023 05:35:11 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4SH2Ds2LpJz49Q1r;
-	Fri, 27 Oct 2023 15:35:05 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1698410109;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SEt7/heSUybPT9J+bVFvE1YIvbwzGfrPOQfYzpl7z/s=;
-	b=sNI6YClECyi868wdbEtcCrpPxA/P4oiqInR5VBeXSMvIucYG1oOtbeVHUThg1M1s7JQhZg
-	l1gcCmUEcL8g7ePGfnb0KH8KD9x8I9EwZhz0teVQdEYwCJe1yqPRl52bmb9A6qyZzHbee4
-	HXYn4jA9TxufyMtYPOr9jcGyW7LAZEuo5EjS7snBNYZdCkyVOGcY0NuySb//Z2355n9Eqd
-	GV2QzKQZ5WkyzoNrYw1xVfBqJk8TAQyYZJpVGK2rHsaPnwz4AoRqVMlExZiqX1ZcHURg/1
-	zTJMaYjNqdzUyp0Gczg0VPlqwBdA1FIeubEH5T6qbS6BiecxouU0lX4o8parLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1698410109;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SEt7/heSUybPT9J+bVFvE1YIvbwzGfrPOQfYzpl7z/s=;
-	b=Ka50OULlH7yu+eahIPyPGEvMlL6WUhW5h/3YBJ8KSRYlgmsW8O//sxui0C2N/AE6c11xXb
-	egHrTU68At7toLkH4536p380snPawuF0iPBMs3XNo9poJKTzhmdPpOV5hfPJxJsfIPn1Ug
-	319aNOZAqBzQp5VHCOwFIUu3/bVbx10542JA4sHPkirlHjal0u5FtAhgoLtgFjdGvc5B8J
-	kZZ+1tPTpeebKpQmKydeILVjwURsCQtFTkyTpv17+RZUwWld+Q6Rbo3R6Y4KRSNVS1l87k
-	+26ER5zGXEn5nGfk2PkDS+p4gdjECDlCNOG1Wc/vx8QcU3vI5dhVP7xNuZVclw==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1698410109; a=rsa-sha256;
-	cv=none;
-	b=AaJOlcU/riwSMVoY1e8Fstm2eO2nxknAw9kmZ49fT7WiQUUBXzfaBdpkV3z/j9J4tdyPT9
-	YFBZRdmESIo0QGe6obNhIE9W2ViuybqhmV30nB4e8sQMeM6LkM/CrDLiJ5Bp5iw7ZMvu73
-	BdPeBAKgLpOmx9JpRhbdQjNmRbNJGyHjuI3M3XLtnI86XFfyqgz7zaeF5FudMNReqlwwlf
-	e4xA0hJ01qRdXRcJz/mR/lnyGncWOOuSfz15SpPTsQfWsN7MzCxXGFfmWmfpIHkomnjAEX
-	FlQGtk+cQirAEt7zR6X8UwdE8BpQqCYo1vSSUI4N9rEEd5vkwzTW1Be+7Z5r+A==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 93A47634C93;
-	Fri, 27 Oct 2023 15:35:05 +0300 (EEST)
-Date: Fri, 27 Oct 2023 12:35:05 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: media: Add bindings for THine
- THP7312 ISP
-Message-ID: <ZTuueXYFeEqqpD6Z@valkosipuli.retiisi.eu>
-References: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
- <20231017132103.9914-2-laurent.pinchart@ideasonboard.com>
- <ZTulSCwfyEF9exu9@valkosipuli.retiisi.eu>
- <20231027121929.GC12144@pendragon.ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42289179B2
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:42:22 +0000 (UTC)
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FA5DE
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:42:20 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c518a1d83fso32671151fa.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:42:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698410538; x=1699015338; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=exvDpKGP3xe8J4K7FXQjqjLSWKBqdNxHxjiG64utWdE=;
+        b=utLj1yr+kpTRPs3At61TNsW6gNqGMEppSPeqbMO6UiUg+tro7FpV07E5ZZ4LjETRcJ
+         KN1uBYmB9g0MN5wXMS7u4hOFdi5CPypfgruwfl7YIcwl8dGi8W9UnodY5h/yt/Og178E
+         2WLLnbRbSuUtlT9YMhbsHa43VMqsyaf5Ufbl4NvEhK5e+ORbkpsTDbfWfv9MPXjVWoVx
+         WYaY1A8JIuEuVh7PBUAYpy3rjUScW1RyQn5B5E+c5QJRdzNQHqjpMLsPVQwkNUg2J+EN
+         ldK3RhmO5VNhMmzDMUD+cdkLRPRDaiUNZbPslZZ0Lf0AdVlxAmDLTtVJJdFf9bPDrGKG
+         aT7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698410538; x=1699015338;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=exvDpKGP3xe8J4K7FXQjqjLSWKBqdNxHxjiG64utWdE=;
+        b=PKGlq3LgKfYy5DwmUHiwQs+RiV8DKeItXzOJiYMsx79EKhExsSKcEn/zGkrRLcO6fS
+         5kGvYHE9V6OaMpYuEyeNayS6bJpO9OR79QbH7v3dfV4zJqSy81fuq23ajTDC4jwtNb5Z
+         ONPxRTiGwCGCU/1sTY96OXHRV1oHF23lIiumCr3NBnAQcROBOVxbFMbjckIVhtLELHQ8
+         U/H3aqekwDq9A45pUG3T/nanHzPRtvcSPWh6KpI61QYALOx8QdpwYhW1I1czydFIRoT9
+         IqcrCOFg/JM8NOd8Qcr/pmDUOShTh+tgmmcm4ZhxG4fNKhjke45YO6VQ44JPiK6LkQ2Y
+         y/ag==
+X-Gm-Message-State: AOJu0YzIO9vcmSXgg//iV2VOYmaCpoqVNKALsoOUuGUkzhPBnNNcJ/M9
+	aU6RYNq8imZKRvJxP2AFf1lbwQ==
+X-Google-Smtp-Source: AGHT+IFSSDIj3q1kzywSsNNE8JfgxmB5D590eBLiFe70duFi16X/bsq6j+VDElE79aBZk45WAlSoJg==
+X-Received: by 2002:a05:651c:1208:b0:2c5:1a40:f26a with SMTP id i8-20020a05651c120800b002c51a40f26amr1831140lja.13.1698410538396;
+        Fri, 27 Oct 2023 05:42:18 -0700 (PDT)
+Received: from [192.168.0.22] ([78.10.206.168])
+        by smtp.gmail.com with ESMTPSA id z24-20020a2e3518000000b002bc3fbe9fd5sm267914ljz.55.2023.10.27.05.42.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Oct 2023 05:42:17 -0700 (PDT)
+Message-ID: <fd9185f3-2695-44da-9669-987884a22215@linaro.org>
+Date: Fri, 27 Oct 2023 14:42:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231027121929.GC12144@pendragon.ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: document
+ the SM8650 QMP UFS PHY
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Abel Vesa <abel.vesa@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-phy-v1-0-6137101520c4@linaro.org>
+ <20231025-topic-sm8650-upstream-phy-v1-1-6137101520c4@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231025-topic-sm8650-upstream-phy-v1-1-6137101520c4@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Laurent,
-
-On Fri, Oct 27, 2023 at 03:19:29PM +0300, Laurent Pinchart wrote:
-> Hi Sakari,
+On 25/10/2023 09:34, Neil Armstrong wrote:
+> Document the QMP UFS PHY on the SM8650 Platform.
 > 
-> On Fri, Oct 27, 2023 at 11:55:52AM +0000, Sakari Ailus wrote:
-> > Hi Laurent,
-> > 
-> > Thank you for the patchset any my apologies for not reviewing it earlier.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> No worries. Thank you for reviewing it now :-)
-> 
-> > On Tue, Oct 17, 2023 at 04:21:01PM +0300, Laurent Pinchart wrote:
-> > > From: Paul Elder <paul.elder@ideasonboard.com>
-> > > 
-> > > The THP7312 is an external ISP from THine. Add DT bindings for it.
-> > > 
-> > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > > Changes since v2:
-> > > 
-> > > - Drop description of reg property
-> > > - Improve thine,boot-mode property documentation
-> > > - Making thine,boot-mode property optional
-> > > - Don't use underscores in supplies names
-> > > ---
-> > >  .../bindings/media/i2c/thine,thp7312.yaml     | 226 ++++++++++++++++++
-> > >  MAINTAINERS                                   |   7 +
-> > >  2 files changed, 233 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > > new file mode 100644
-> > > index 000000000000..0758d8d44826
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > > @@ -0,0 +1,226 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright (c) 2023 Ideas on Board
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: THine THP7312
-> > > +
-> > > +maintainers:
-> > > +  - Paul Elder <paul.elder@@ideasonboard.com>
-> > > +
-> > > +description:
-> > > +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
-> > > +  various image processing and correction functions, including 3A control. It
-> > > +  can be connected to CMOS image sensors from various vendors, supporting both
-> > > +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
-> > > +  or parallel. The hardware is capable of transmitting and receiving MIPI
-> > > +  interlaved data strams with data types or multiple virtual channel
-> > > +  identifiers.
-> > > +
-> > > +allOf:
-> > > +  - $ref: ../video-interface-devices.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: thine,thp7312
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +    description: CLKI clock input
-> > > +
-> > > +  thine,boot-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    minimum: 0
-> > > +    maximum: 1
-> > > +    default: 1
-> > > +    description:
-> > > +      Boot mode of the THP7312, reflecting the value of the BOOT[0] pin strap.
-> > > +      0 is for the SPI/2-wire slave boot, 1 is for the SPI master boot (from
-> > > +      external flash ROM).
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Reference to the GPIO connected to the RESET_N pin, if any.
-> > > +      Must be released (set high) after all supplies are applied.
-> > > +
-> > > +  vddcore-supply:
-> > > +    description:
-> > > +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
-> > > +
-> > > +  vhtermrx-supply:
-> > > +    description:
-> > > +      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> > > +
-> > > +  vddtx-supply:
-> > > +    description:
-> > > +      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> > > +
-> > > +  vddhost-supply:
-> > > +    description:
-> > > +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
-> > > +
-> > > +  vddcmos-supply:
-> > > +    description:
-> > > +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
-> > > +
-> > > +  vddgpio-0-supply:
-> > > +    description:
-> > > +      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
-> > > +
-> > > +  vddgpio-1-supply:
-> > > +    description:
-> > > +      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
-> > > +
-> > > +  orientation: true
-> > > +  rotation: true
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    additionalProperties: false
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          data-lanes:
-> > > +            description:
-> > > +              This property is for lane reordering between the THP7312 and the
-> > > +              SoC. The sensor supports either two-lane, or four-lane operation.
-> > > +              If this property is omitted four-lane operation is assumed. For
-> > > +              two-lane operation the property must be set to <1 2>.
-> > 
-> > How are link frequencies determined by the device?
-> 
-> The link frequency is not under direct control of the host. There are
-> registers to select between mode presets, each of them producing a
-> particular link frequency.
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> index f3a3296c811c..1d54d564fe9b 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> @@ -32,6 +32,7 @@ properties:
+>        - qcom,sm8350-qmp-ufs-phy
+>        - qcom,sm8450-qmp-ufs-phy
+>        - qcom,sm8550-qmp-ufs-phy
+> +      - qcom,sm8650-qmp-ufs-phy
 
-If they are known, one could only allow setting the modes with known-good
-link requencies. This could be added later on, too, affecting systems with
-link-frequencies set. I guess you could also add it now, as optional.
+Missing constraints for clocks.
 
-Where's the link frequency information available? In documentation or in
-on the firmware API?
+Best regards,
+Krzysztof
 
-> 
-> > The description above also says the parallel interface is supported. The
-> > bindings do not reflect that however.
-> > 
-> > Same for the sensor node below.
-> > 
-> > Is the intention to add support for these later on? In that case you'll
-> > need bus-type and default that to CSI-2 for DTs conforming to these
-> > bindings.
-> 
-> While documentation claims that parallel interfaces are supported, we
-> haven't been able to test this at all, due to lack of a suitable
-> hardware test platform. The intention is indeed to add support for them
-> later. I will add the bus-type property here.
-
-Using a CSI-2 D-PHY default later on would be workable, too, IMO. Up to
-you.
-
-> 
-> > > +            minItems: 2
-> > > +            maxItems: 4
-> > > +            items:
-> > > +              maximum: 4
-> > > +
-> > > +  sensors:
-> > > +    type: object
-> > > +    description: List of connected sensors
-> > > +
-> > > +    properties:
-> > > +      "#address-cells":
-> > > +        const: 1
-> > > +
-> > > +      "#size-cells":
-> > > +        const: 0
-> > > +
-> > > +    patternProperties:
-> > > +      "^sensor@[01]":
-> > > +        type: object
-> > > +        description:
-> > > +          Sensors connected to the first and second input, with one node per
-> > > +          sensor.
-> > > +
-> > > +        properties:
-> > > +          thine,model:
-> > > +            $ref: /schemas/types.yaml#/definitions/string
-> > > +            description:
-> > > +              Model of the connected sensors. Must be a valid compatible string.
-> > > +
-> > > +          reg:
-> > > +            maxItems: 1
-> > > +            description: THP7312 input port number
-> > > +
-> > > +          data-lanes:
-> > > +            $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
-> > > +            items:
-> > > +              maxItems: 4
-> > > +            description:
-> > > +              This property is for lane reordering between the THP7312 and the imaging
-> > > +              sensor that it is connected to.
-> > > +
-> > > +        patternProperties:
-> > > +          ".*-supply":
-> > > +            description: Power supplies for the sensor
-> > > +
-> > > +        required:
-> > > +          - reg
-> > > +          - data-lanes
-> > > +
-> > > +        additionalProperties: false
-> > > +
-> > > +    required:
-> > > +      - "#address-cells"
-> > > +      - "#size-cells"
-> > > +
-> > > +    additionalProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reset-gpios
-> > > +  - clocks
-> > > +  - vddcore-supply
-> > > +  - vhtermrx-supply
-> > > +  - vddtx-supply
-> > > +  - vddhost-supply
-> > > +  - vddcmos-supply
-> > > +  - vddgpio-0-supply
-> > > +  - vddgpio-1-supply
-> > > +  - sensors
-> > > +  - port
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +    i2c {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        camera@61 {
-> > > +            compatible = "thine,thp7312";
-> > > +            reg = <0x61>;
-> > > +
-> > > +            pinctrl-names = "default";
-> > > +            pinctrl-0 = <&cam1_pins_default>;
-> > > +
-> > > +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
-> > > +            clocks = <&camera61_clk>;
-> > > +
-> > > +            vddcore-supply = <&vsys_v4p2>;
-> > > +            vhtermrx-supply = <&vsys_v4p2>;
-> > > +            vddtx-supply = <&vsys_v4p2>;
-> > > +            vddhost-supply = <&vsys_v4p2>;
-> > > +            vddcmos-supply = <&vsys_v4p2>;
-> > > +            vddgpio-0-supply = <&vsys_v4p2>;
-> > > +            vddgpio-1-supply = <&vsys_v4p2>;
-> > > +
-> > > +            orientation = <0>;
-> > > +            rotation = <0>;
-> > > +
-> > > +            sensors {
-> > > +                #address-cells = <1>;
-> > > +                #size-cells = <0>;
-> > > +
-> > > +                sensor@0 {
-> > > +                    thine,model = "sony,imx258";
-> > > +                    reg = <0>;
-> > > +
-> > > +                    data-lanes = <4 1 3 2>;
-> > 
-> > Does the device support lane mapping?
-> 
-> Yes it does, both on the input and output.
-
-Nice to know there are more devices supporting it. It's not very common.
-
-> 
-> > > +
-> > > +                    dovdd-supply = <&vsys_v4p2>;
-> > > +                    avdd-supply = <&vsys_v4p2>;
-> > > +                    dvdd-supply = <&vsys_v4p2>;
-> > > +                };
-> > > +            };
-> > > +
-> > > +            port {
-> > > +                thp7312_2_endpoint: endpoint {
-> > > +                    remote-endpoint = <&mipi_thp7312_2>;
-> > > +                    data-lanes = <4 2 1 3>;
-> > > +                };
-> > > +            };
-> > > +    	  };
-> > > +    };
-> > > +...
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 3b47e0b56859..7451367e6780 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -21448,6 +21448,13 @@ S:	Maintained
-> > >  F:	Documentation/ABI/testing/sysfs-class-firmware-attributes
-> > >  F:	drivers/platform/x86/think-lmi.?
-> > >  
-> > > +THP7312 ISP DRIVER
-> > > +M:	Paul Elder <paul.elder@ideasonboard.com>
-> > > +L:	linux-media@vger.kernel.org
-> > > +S:	Maintained
-> > > +T:	git git://linuxtv.org/media_tree.git
-> > > +F:	Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > > +
-> > >  THUNDERBOLT DMA TRAFFIC TEST DRIVER
-> > >  M:	Isaac Hazan <isaac.hazan@intel.com>
-> > >  L:	linux-usb@vger.kernel.org
-
--- 
-Regards,
-
-Sakari Ailus
 
