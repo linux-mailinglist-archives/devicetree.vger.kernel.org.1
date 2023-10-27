@@ -1,108 +1,115 @@
-Return-Path: <devicetree+bounces-12507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF9F7D9B97
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A9C7D9BE0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29407B20FAD
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:39:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05BE3B2140E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF4B18654;
-	Fri, 27 Oct 2023 14:38:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA691EB39;
+	Fri, 27 Oct 2023 14:43:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Wc9yZqFy"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="giTA9TyV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F7B0374C6
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:38:38 +0000 (UTC)
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D21B611F
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:38:36 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1c77449a6daso18448205ad.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698417516; x=1699022316; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=55I45Qtlplt+aIkb3uw3RfeEyoBtnIxw2UGzAOCPdDY=;
-        b=Wc9yZqFyEFXH4zn/PSLKQ/HOqrf0AoU2UFslouG08QDJqMelIZEnrsHC02ddkxZ8uP
-         8nHshG8bhaR42c6RDsFT7/zNmYgI3eEFA8jy3S1RUQ/2phKYFGN/LUBsOGXR1MTK3puc
-         QNX3fQrW/PeDDcaRqbxA8/WedSrL34SjPJ+W/Y1yEz6tVcJeO9PxxUWStQxZFjf95WOs
-         m0mDZPAlJ29u17K9cvcpRUBdVEtq9m3nde73g4z1NzBR2mts44iJhBCdgz8xEbAqJEcJ
-         MJxC+OuHN1PITAU/SmNfNy+jV33G8ZCQJOC4e5HpsZXNcu+MC1mb0d+X3hRfd+GGgzXq
-         Tj9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698417516; x=1699022316;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=55I45Qtlplt+aIkb3uw3RfeEyoBtnIxw2UGzAOCPdDY=;
-        b=ASB37fddAHcns2F3RgEKD1LqJx7OzdgmM2nEmKkTWYBLNr6hTDlCa8qfzHYJb3SbQ+
-         O5Evw0NBe2057lPPI3kq/A3JDx840r+seCTM6G/fAmp8WS7+aKMNu3toNSLSFRdnig9I
-         KOkQpZeAUq3rKjFneLwtTi2gC0qZw7YBQOJT9bVtrEfciIAfkfxJxB16npEru+va+klw
-         k6px4J9AXmGarBddyhD99FkBxtKq3RTiGNptijRlr9RCj80PfERyBz4AvqJRQUjNSwkU
-         4NtHpKODHw8daJEfAqmSuCKfyjnokEiN9b4PoduTMKvOoL1G3verLJdhGpXUvi2bOhcb
-         s1aQ==
-X-Gm-Message-State: AOJu0Yy47knRtieiKtr1LmSP7piobGdb5Dg8aL66iTL+bUYlYJIRMhir
-	+d3eDqysVJNXoC37Fzs6WhkNkK73OxHmq4REko+Y8Q==
-X-Google-Smtp-Source: AGHT+IEJ07q1D5+4KgTEUidlRWDjPLhaZTGEoCul8Ylb8bU0eDcjf2kvbdOo0yKFuk4wmgeVVBFcvoZPzXSIbNI0bKk=
-X-Received: by 2002:a17:90a:6e48:b0:27d:3c75:db02 with SMTP id
- s8-20020a17090a6e4800b0027d3c75db02mr2979762pjm.32.1698417516000; Fri, 27 Oct
- 2023 07:38:36 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A3E18654
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:43:37 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE951D7;
+	Fri, 27 Oct 2023 07:43:35 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 75BA240474;
+	Fri, 27 Oct 2023 19:42:38 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1698417767; bh=NeaRIvhAdmsiwixrPyzAQHliiv4QtYTDvXHLkzW8OEI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=giTA9TyVqb6BRKMu2aVItavAXYm2H6+GfiFuQv2sATtV8WVUrU/qj2ePjNbpKHRkx
+	 ZugEkqUvcBAXaPsaQ3yp1hss1nvwA5A7bQpCkYF1An/2Oe0z+Lvo3UnJ6U902Qmp0M
+	 abX3dkFJw8R1LDEJpK5ATa+hRKRtP67L/plUZnmHEGyPjnnGAe5dS2sww1VjnvqZk1
+	 WUYUJumqXYLit74nuIIPmPI0YACHwBk8Gjbn9Y4KhfKzeY01lgSMlZybqlPMoprXPM
+	 TMyuVtc1XMtR2h7u4vGUQJqiA2HV28jYtcAhkAGTtbhbVlp238fMX5DVnKz+7Pdt6S
+	 UDqfMWDYnf4Ww==
+From: Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/3] sc7180-acer-aspire1: Add sound
+Date: Fri, 27 Oct 2023 19:42:20 +0500
+Message-Id: <20231027-aspire1-sound-v1-0-5ff3cf8b5701@trvn.ru>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231025142820.390238-1-apatel@ventanamicro.com>
- <20231025142820.390238-2-apatel@ventanamicro.com> <87y1fo3383.ffs@tglx>
-In-Reply-To: <87y1fo3383.ffs@tglx>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Fri, 27 Oct 2023 20:08:24 +0530
-Message-ID: <CAK9=C2WC7N-9LgrtpfeWCT08iToqMevgvR0rkjEvdJFPzNDkMQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] RISC-V: Don't fail in riscv_of_parent_hartid() for
- disabled HARTs
-To: Thomas Gleixner <tglx@linutronix.de>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Saravana Kannan <saravanak@google.com>, 
-	Anup Patel <anup@brainfault.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Atish Patra <atishp@rivosinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEzMO2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDAyNz3cTigsyiVEPd4vzSvBRdU+NEk2QDs8Rky7QUJaCegqLUtMwKsHn
+ RsbW1AGBtjsBfAAAA
+To: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1171; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=NeaRIvhAdmsiwixrPyzAQHliiv4QtYTDvXHLkzW8OEI=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBlO8xYvULdIu3LC9eztejqErSwObt6VpGV4XWrk
+ JdonJIEfZqJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZTvMWAAKCRBDHOzuKBm/
+ dbqvD/4uU5Nx12cXGwc59v2QZQ1J+nGku4y+96O2IoOgzY97p0X5uz+R9GyQOTwcukxs3/mZ9b5
+ EAHNLbm47jGXChy4j7n7KEBYNoNsGreTT+SZmAxUGhlwJwZoWj2shyFNliSRRsXos5tc0JXS6TU
+ EEwCAcxzs6K51KalW/c+DPNMhIiVEXhv+ZH2EUO8+LH7gHGcDkC+UQQ17sNIm3m/ls8YPwpEiC+
+ O0KMQ3jImXb6CsmLo5XASL+v4PwY4z8eXwm9dVCPvo0G6DITY0lMi5hyygE+70oHaabmfZ8zxAS
+ ktniTXOWj18awMAx01MNrzvNBKeapWdCvW8bGz0Lg2WGwFGf42Hnavi/+G83wmdLuN0ilRv5W00
+ FfRPL/CxXsXW0eAG052OHkJoeG0BWzMe7WlbLGtP6BOEaeeIriyd55Z+9G+nb58x++yjvtxQFxX
+ zE0oh+WI/aKf86+5uo80AD1cLJedeEyuwxqx7jJuPTqvO4m8J2kmjYZCqYSdTWVfg75wKQrWRAo
+ dQ2Ey23fG/DnrcI7wxZ78e4anLAk/BFYxcfgpt1jDLz2DR+xbFzfKPpMseR4Qmj2GuYWckVoYl/
+ peBXvtfFYdsQHCGOxCPjBxisiby7OAJljm5SCT9ELo5klc9z5GQD4dnVkdI7BDTygGYHyqW4Fb+
+ AFmgmJ75iBKprmA==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-On Fri, Oct 27, 2023 at 1:29=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de=
-> wrote:
->
-> On Wed, Oct 25 2023 at 19:58, Anup Patel wrote:
-> > The riscv_of_processor_hartid() used by riscv_of_parent_hartid() fails
-> > for HARTs disabled in the DT. This results in the following warning
-> > thrown by the RISC-V INTC driver for the E-core on SiFive boards:
-> >
-> > [    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/inter=
-rupt-controller
-> >
-> > The riscv_of_parent_hartid() is only expected to read the hartid from
-> > the DT so we should directly call of_get_cpu_hwid() instead of calling
->
-> We should? Or maybe not?
->
-> Please write precise changelogs and use imperative wording as documented
-> in Documentation/process.
+This series adds initial sound support to Acer Aspire 1.
 
-Sure, I will update the wording in the commit description.
+The following sound devices are enabled:
+- External stereo speakers
+- Headphone jack
+- Headset microphone
+- DisplayPort sound*
 
-Thanks,
-Anup
+[*] The DisplayPort itself is not yet enabled as it depends on
+the embedded controller, which will be added later.
+
+The stereo DMIC in the device lid is omitted from this series
+as it requires introduction of the in-soc audio codec, which will
+be done later.
+
+While at it, also enable the PMIC RTC that, while is locked
+by the firmware as read-only, still allows userspace to track
+time with extra tools to save the offset.
+
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+Nikita Travkin (3):
+      arm64: dts: qcom: acer-aspire1: Enable RTC
+      arm64: dts: qcom: acer-aspire1: Correct audio codec definition
+      arm64: dts: qcom: acer-aspire1: Add sound
+
+ arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts | 174 ++++++++++++++++++++++-
+ 1 file changed, 172 insertions(+), 2 deletions(-)
+---
+base-commit: 66f1e1ea3548378ff6387b1ce0b40955d54e86aa
+change-id: 20231027-aspire1-sound-53a4c06ac9fd
+
+Best regards,
+-- 
+Nikita Travkin <nikita@trvn.ru>
+
 
