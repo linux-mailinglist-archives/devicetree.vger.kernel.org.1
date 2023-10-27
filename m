@@ -1,129 +1,118 @@
-Return-Path: <devicetree+bounces-12553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340C47DA144
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:25:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73AC17DA13E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:22:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADCDFB21424
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 19:25:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B8D8B21434
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 19:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639063D968;
-	Fri, 27 Oct 2023 19:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ubimet.com header.i=@ubimet.com header.b="YzitxHaf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDAF3D962;
+	Fri, 27 Oct 2023 19:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD5F3AC22
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 19:25:04 +0000 (UTC)
-X-Greylist: delayed 526 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 27 Oct 2023 12:25:03 PDT
-Received: from mx2-at.ubimet.com (mx2-at.ubimet.com [141.98.226.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8D41AC;
-	Fri, 27 Oct 2023 12:25:02 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mx2-at.ubimet.com (Postfix) with ESMTP id C2E5180F51;
-	Fri, 27 Oct 2023 19:16:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ubimet.com;
-	s=20200131mdel; t=1698434174;
-	bh=Fyd8ZQEuYM+Iy6ZXTdK/66gxo3xx3cuUN3PUInF/vBA=;
-	h=Date:From:Cc:Subject:From;
-	b=YzitxHafFVgV5w+r+XJVUkMklCrnaaICDuD2NYmaXo46HaZNj2VXj0vircbips2Dt
-	 mSsxxfnC/SPP/AuWr9xNtydQ0LFa7QVctGSGu9FLI+uNH6oIlMCh2CzWPSPAT5W7GT
-	 G8BczT1qHU0ExZdFagY4S7TA3pLKhXcMAUAvAVegUbWZNpmmdcx5J6saLfXjlIUKbU
-	 /EzvE5gFPu6mq8bmhKilzeMZfO9NJQx3s/ujF9CIG76i4mh3b2OBo6D/+Sc65MzuAi
-	 zum3VVqlRpAa48eDfeIAb96LeuHNSl7ludYiqIiZaivxB2uzUbX5kqZ7nBsW8UK12h
-	 kzcBCnGHd7IdQ==
-Received: from mx2-at.ubimet.com ([127.0.0.1])
-	by localhost (mx02.dmz.dc.at.ubimet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zZxDbivKcnPI; Fri, 27 Oct 2023 19:16:14 +0000 (UTC)
-Received: from zimbra-mta01.ext.dc.at.ubimet.com (webmail-dc.at.ubimet.com [10.1.18.22])
-	by mx2-at.ubimet.com (Postfix) with ESMTPS id B055C80F32;
-	Fri, 27 Oct 2023 19:16:14 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTP id A62CE8074F;
-	Fri, 27 Oct 2023 19:16:14 +0000 (UTC)
-Received: from zimbra-mta01.ext.dc.at.ubimet.com ([127.0.0.1])
- by localhost (zimbra-mta01.ext.dc.at.ubimet.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id RmSCG380Fm8h; Fri, 27 Oct 2023 19:16:13 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTP id 753BE807D5;
-	Fri, 27 Oct 2023 19:16:13 +0000 (UTC)
-X-Virus-Scanned: amavis at zimbra-mta01.ext.dc.at.ubimet.com
-Received: from zimbra-mta01.ext.dc.at.ubimet.com ([127.0.0.1])
- by localhost (zimbra-mta01.ext.dc.at.ubimet.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id r9ywy6JXBxb5; Fri, 27 Oct 2023 19:16:13 +0000 (UTC)
-Received: from pcn112 (unknown [10.15.100.32])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTPSA id 120F88074F;
-	Fri, 27 Oct 2023 19:16:12 +0000 (UTC)
-Date: Fri, 27 Oct 2023 21:15:48 +0200
-From: jrodrigues <jrodrigues@ubimet.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, jrodrigues@ubimet.com
-Subject: [PATCH] ARM: dts: imx: tqma7: add lm75a sensor (rev. 01xxx)
-Message-ID: <20231027211548.21a6cee7@pcn112>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DFC3AC22
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 19:22:41 +0000 (UTC)
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A6818A;
+	Fri, 27 Oct 2023 12:22:39 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1e5bc692721so1448839fac.0;
+        Fri, 27 Oct 2023 12:22:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698434558; x=1699039358;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A9jsGRebq8pjluBKi445sl0SsEqPdZ2Zl/0kDDzL9uM=;
+        b=ZPaqGMLoGsU5CRBRi9UtF4mI9UdY6gQaiW+pxIq+wy/lKVS2fZZOjn4wPGpd2pCWOv
+         C/3X3PjVNotwuOLMUV+t0Cwysf6184Vp34yODSomWjalKNs8pWlUloq2fEs93+DyicZ3
+         P1njzd2Pl0IkOhbTFAnbqqF6LxwgDxSJnLjLfSGG2Hm8RggMmTDbFjQpHQbDTvzmhM6X
+         JVPd361m5UkPL+5VrJTscZXZe63FUMs3sq5weFOja+lK08jVQgSvKHZAztSnfcHWvwL1
+         +ZsFpnPmUgoCcTIfSVv5sq/3+tFcKnP6tDgaKKdbsFFEV/VVJm+h6w8RDmPqcbFnQhAm
+         rp8w==
+X-Gm-Message-State: AOJu0Yy3nfjTCGtWbsLmVEiItVJVAjoNlo25ZLwGukayA4PxrKBjOOI+
+	+F2f06iEyAK/oYUu3sSUvw==
+X-Google-Smtp-Source: AGHT+IGI5DUU/lE7E5bfhiKYkZ2U5RZ+9Ps+0bmLbokwsngLhoH+QPV0HcchdfFxVVZX3O0J0iDL9g==
+X-Received: by 2002:a05:6870:582:b0:1e9:f4e4:2882 with SMTP id m2-20020a056870058200b001e9f4e42882mr4189126oap.38.1698434558282;
+        Fri, 27 Oct 2023 12:22:38 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ea53-20020a056870073500b001e9ce1b5e8fsm415203oab.15.2023.10.27.12.22.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 12:22:37 -0700 (PDT)
+Received: (nullmailer pid 3086934 invoked by uid 1000);
+	Fri, 27 Oct 2023 19:22:36 -0000
+Date: Fri, 27 Oct 2023 14:22:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Wolfram Sang <wsa@kernel.org>, Chris Packham <chris.packham@alliedtelesis.co.nz>, krzysztof.kozlowski+dt@linaro.org, gregory.clement@bootlin.com, andi.shyti@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: i2c: mv64xxx: add bus-reset-gpios
+ property
+Message-ID: <20231027192236.GA2946793-robh@kernel.org>
+References: <20231027033104.1348921-1-chris.packham@alliedtelesis.co.nz>
+ <20231027033104.1348921-2-chris.packham@alliedtelesis.co.nz>
+ <ZTt+ZgNe5Y35E/C2@shikoro>
+ <7bfa2f6c-3e99-49a6-9b5a-81398d4bce7e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7bfa2f6c-3e99-49a6-9b5a-81398d4bce7e@linaro.org>
 
+On Fri, Oct 27, 2023 at 01:25:56PM +0200, Krzysztof Kozlowski wrote:
+> On 27/10/2023 11:09, Wolfram Sang wrote:
+> > On Fri, Oct 27, 2023 at 04:31:03PM +1300, Chris Packham wrote:
+> >> Add bus-reset-gpios and bus-reset-duration-us properties to the
+> >> marvell,mv64xxx-i2c binding. These can be used to describe hardware
+> >> where a common reset GPIO is connected to all downstream devices on and
+> >> I2C bus. This reset will be asserted then released before the downstream
+> >> devices on the bus are probed.
+> >>
+> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > Krzysztof, are you fine with this change?
+> 
+> Actually no. NAK.
+> 
+> Not because of the naming, but because the new name triggered some new
+> paths in my brain which brought the point - this is old problem of power
+> sequencing of children.
+> 
+> I believe this must be solved in more generic way. First - generic for
+> all I2C devices. Second - generic also matching other buses/subsystems,
+> which have similar problem. We did it for USB (onboard USB), MMC
+> (unloved MMC power sequence) and now we are doing it for PCIe and few
+> others (Cc: Abel)
 
-TQMa7x (revision 01xxx) uses a different (LM75A) temperature sensor.
-The two sensors use different I2C address, so we can set both sensors
-simultaneously.
+Unlike the others I2C doesn't expect to access the bus/device before 
+devices probe, right?
 
-Signed-off-by: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
----
- arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+> https://lpc.events/event/17/contributions/1507/
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi b/arch/arm/boot/dts/=
-nxp/imx/imx7-tqma7.dtsi
-index fe42b0a468..b87560d037 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-@@ -128,7 +128,14 @@ vgen6_reg: vldo4 {
- 		};
- 	};
-=20
--	/* NXP SE97BTP with temperature sensor + eeprom */
-+	/* LM75A - temperature sensor, TQMa7x 01xx */
-+	lm75a: temperature-sensor@48 {
-+		compatible =3D "national,lm75a";
-+		reg =3D <0x48>;
-+		status =3D "okay";
-+	};
-+
-+	/* NXP SE97BTP with temperature sensor + eeprom, TQMa7x 02xx */
- 	se97b: temperature-sensor-eeprom@1e {
- 		compatible =3D "nxp,se97b", "jedec,jc-42.4-temp";
- 		reg =3D <0x1e>;
---
+Oh, good!
 
-The differences in the ICs are shown here:
-The TQMa7 manual only references the latest version
-https://www.tq-group.com/filedownloads/files/products/embedded/manuals/arm/=
-embedded-modul/TQ-Socket/TQMa7x/TQMa7x.UM.0203.pdf
-in section 3.2.4, while the board manual
-https://www.tq-group.com/filedownloads/files/products/embedded/manuals/arm/=
-carrierboard/MBa7x/MBa7x.UM.0101.pdf
-in section 4.1.2 references the old version, introduced by this patch.
+> Current solution is heavily limited. What about regulators? What about
+> buses having 2 reset lines (still the same bus)? What about sequence?
 
-I have tested this change in a board which uses the TQMa7x
-module, and with this patch we always a temperature sensors available.
+A more complicated case should be handled by the device's driver. If the 
+GPIO reset was not shared we'd be handling it there too. I think what's 
+needed is to solve the shared aspect. That's already done with reset 
+subsys, so I think making 'reset-gpios' handled by it too is the way 
+forward. That would handle the QCA WiFi/BT case I think.
 
+I'm not sure waiting for that or something else to happen is worth 
+holding up this simple case. It's not the only case of a common reset 
+for a bus (MDIO).
 
-Best regards,
-
---
-Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-
+Rob
 
