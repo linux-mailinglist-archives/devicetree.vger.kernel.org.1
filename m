@@ -1,73 +1,92 @@
-Return-Path: <devicetree+bounces-12443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153417D9861
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:34:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C03B17D9867
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:35:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F6B7B20FD7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:34:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74196282410
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB028156E2;
-	Fri, 27 Oct 2023 12:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9487F171A3;
+	Fri, 27 Oct 2023 12:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FtyVnEGU"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="sNI6YClE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1ED1EB45
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:34:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D917DBD;
-	Fri, 27 Oct 2023 05:34:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698410074; x=1729946074;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iIOysqrWfB9MlIYycR6MYiypQqiAGhoBsKxcZd/zCcg=;
-  b=FtyVnEGUReA0cwOiraGL/ACpJ0BKXfWoO5JXP2YJmQI3Qp5MlbJlKBjD
-   92/+uMlOmk3h3Yfd6dXKPYJ5xIZ4v8C6OnNKc2WIO4UcZ+m9dWxPf6Jh4
-   D7TYiVshAXfYf9a06AijDs9D/1Z4fYoVMX40V2+n1UVtAZDubVwobHSHt
-   rESDLqysYfmMybOoT1oBnR20BxApbPWmKVJP1J+u6z6AnuycTn4THoxhZ
-   0WEbBMdcsqk+RWVlBLhkGgsa/UksSjNGnLMlGVX2CUjRFWxkdrIfdIbr8
-   z8zOcQ0sN99EwERLk475ATX9T9CvZSBPnKS0IN5+t+8f9c39AFy5JsYKu
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="384974555"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; 
-   d="scan'208";a="384974555"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2023 05:34:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="759583856"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; 
-   d="scan'208";a="759583856"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2023 05:34:30 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qwM2l-000000098rB-0N8f;
-	Fri, 27 Oct 2023 15:34:27 +0300
-Date: Fri, 27 Oct 2023 15:34:26 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0C71EB48
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:35:13 +0000 (UTC)
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6CC121;
+	Fri, 27 Oct 2023 05:35:11 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4SH2Ds2LpJz49Q1r;
+	Fri, 27 Oct 2023 15:35:05 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1698410109;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SEt7/heSUybPT9J+bVFvE1YIvbwzGfrPOQfYzpl7z/s=;
+	b=sNI6YClECyi868wdbEtcCrpPxA/P4oiqInR5VBeXSMvIucYG1oOtbeVHUThg1M1s7JQhZg
+	l1gcCmUEcL8g7ePGfnb0KH8KD9x8I9EwZhz0teVQdEYwCJe1yqPRl52bmb9A6qyZzHbee4
+	HXYn4jA9TxufyMtYPOr9jcGyW7LAZEuo5EjS7snBNYZdCkyVOGcY0NuySb//Z2355n9Eqd
+	GV2QzKQZ5WkyzoNrYw1xVfBqJk8TAQyYZJpVGK2rHsaPnwz4AoRqVMlExZiqX1ZcHURg/1
+	zTJMaYjNqdzUyp0Gczg0VPlqwBdA1FIeubEH5T6qbS6BiecxouU0lX4o8parLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1698410109;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SEt7/heSUybPT9J+bVFvE1YIvbwzGfrPOQfYzpl7z/s=;
+	b=Ka50OULlH7yu+eahIPyPGEvMlL6WUhW5h/3YBJ8KSRYlgmsW8O//sxui0C2N/AE6c11xXb
+	egHrTU68At7toLkH4536p380snPawuF0iPBMs3XNo9poJKTzhmdPpOV5hfPJxJsfIPn1Ug
+	319aNOZAqBzQp5VHCOwFIUu3/bVbx10542JA4sHPkirlHjal0u5FtAhgoLtgFjdGvc5B8J
+	kZZ+1tPTpeebKpQmKydeILVjwURsCQtFTkyTpv17+RZUwWld+Q6Rbo3R6Y4KRSNVS1l87k
+	+26ER5zGXEn5nGfk2PkDS+p4gdjECDlCNOG1Wc/vx8QcU3vI5dhVP7xNuZVclw==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1698410109; a=rsa-sha256;
+	cv=none;
+	b=AaJOlcU/riwSMVoY1e8Fstm2eO2nxknAw9kmZ49fT7WiQUUBXzfaBdpkV3z/j9J4tdyPT9
+	YFBZRdmESIo0QGe6obNhIE9W2ViuybqhmV30nB4e8sQMeM6LkM/CrDLiJ5Bp5iw7ZMvu73
+	BdPeBAKgLpOmx9JpRhbdQjNmRbNJGyHjuI3M3XLtnI86XFfyqgz7zaeF5FudMNReqlwwlf
+	e4xA0hJ01qRdXRcJz/mR/lnyGncWOOuSfz15SpPTsQfWsN7MzCxXGFfmWmfpIHkomnjAEX
+	FlQGtk+cQirAEt7zR6X8UwdE8BpQqCYo1vSSUI4N9rEEd5vkwzTW1Be+7Z5r+A==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 93A47634C93;
+	Fri, 27 Oct 2023 15:35:05 +0300 (EEST)
+Date: Fri, 27 Oct 2023 12:35:05 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
-	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] iio: light: Add support for APDS9306 Light Sensor
-Message-ID: <ZTuuUl0PBklbVjb9@smile.fi.intel.com>
-References: <20231026143532.39660-1-subhajit.ghosh@tweaklogic.com>
- <20231026143532.39660-3-subhajit.ghosh@tweaklogic.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: media: Add bindings for THine
+ THP7312 ISP
+Message-ID: <ZTuueXYFeEqqpD6Z@valkosipuli.retiisi.eu>
+References: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
+ <20231017132103.9914-2-laurent.pinchart@ideasonboard.com>
+ <ZTulSCwfyEF9exu9@valkosipuli.retiisi.eu>
+ <20231027121929.GC12144@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,638 +95,335 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231026143532.39660-3-subhajit.ghosh@tweaklogic.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Fri, Oct 27, 2023 at 01:05:32AM +1030, Subhajit Ghosh wrote:
-> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor with als
-
-WTH "als" is? Always think about reader of your commit message. It should be
-clear to the unprepared reader.
-
-> and clear channels with i2c interface. Hardware interrupt configuration is
-> optional. It is a low power device with 20 bit resolution and has
-> configurable adaptive interrupt mode and interrupt persistence mode.
-> The device also features inbuilt hardware gain, multiple integration time
-> selection options and sampling frequency selection options.
-
-> v0 -> v1
-> - Fixed errors as per previous review
-> - Longer commit messages and descriptions
-> - Updated scale calculations as per iio gts scheme to export proper scale
->   values and tables to userspace
-> - Removed processed attribute for the same channel for which raw is
->   provided, instead, exporting proper scale and scale table to userspace so
->   that userspace can do "(raw + offset) * scale" and derive Lux values
-> - Fixed IIO attribute range syntax
-> - Keeping the regmap lock enabled as the driver uses unlocked regfield
->   accesses from interrupt handler
-> - Several levels of cleanups by placing guard mutexes in proper places and
->   returning immediately in case of an error
-> - Using iio_device_claim_direct_mode() during raw reads so that
->   configurations could not be changed during an adc conversion period
-> - In case of a powerdown error, returning immediately
-> - Removing the definition of direction of the hardware interrupt and
->   leaving it on to device tree
-> - Adding the powerdown callback after doing device initialization
-> - Removed the regcache_cache_only() implementation
-
-This is wrong location for the changelog...
-
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
-
-...should go here, after cutter '---' line.
-
-...
-
-Missing bits.h.
-
-Also array_size.h is pending for v6.7-rc1.
-
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/pm.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-
-Missing types.h.
-
-> +#include <linux/units.h>
-
-...
-
-> +#define APDS9306_ALS_THRES_VAL_MAX	0xFFFFF
-
-It seems like the limit is hardware based, then probably better to mark it via
-(BIT(20) - 1) to show this limitation explicitly.
-
-...
-
-> +enum apds9306_power_states {
-> +	STANDBY,
-> +	ACTIVE,
-
-Perhaps namespace?
-
-> +};
-
-...
-
-> +/**
-> + * struct part_id_gts_multiplier - Part no. & corresponding gts multiplier
-
-GTS? WTH "GTS" is, btw? (see comment on the commit message)
-
-> + * @part_id: Part ID of the device
-> + * @max_scale_int: Multiplier for iio_init_iio_gts()
-> + * @max_scale_nano: Multiplier for iio_init_iio_gts()
-> + */
-
-...
-
-> +/**
-
-Hmm... Do we really need this in kernel doc?
-Ditto for the similar cases.
-
-> + * apds9306_repeat_rate_freq - Sampling Frequency in uHz
-> + */
-
-...
-
-> +static const int apds9306_repeat_rate_period[] = {
-> +	25000, 50000, 100000, 200000, 500000, 1000000, 2000000
-
-Leave the trailing comma.
-
-> +};
-
-> +static_assert(ARRAY_SIZE(apds9306_repeat_rate_freq) ==
-> +	      ARRAY_SIZE(apds9306_repeat_rate_period));
-
-Instead you may add a new definition and use it in [] in the respective arrays.
-
-...
-
-> +/**
-> + * struct apds9306_data - apds9306 private data and registers definitions
-
-> + * All regfield definitions are named exactly according to datasheet for easy
-> + * search
-
-I'm not sure this comment adds any value.
-
-> + * @dev:	Pointer to the device structure
-> + * @gts:	IIO Gain Time Scale structure
-> + * @mutex:	Lock for protecting register access, adc reads and power
-> + * @regmap:	Regmap structure pointer
-> + * @regfield_sw_reset:	Reg: MAIN_CTRL, Field: SW_Reset
-> + * @regfield_en:	Reg: MAIN_CTRL, Field: ALS_EN
-> + * @regfield_intg_time:	Reg: ALS_MEAS_RATE, Field: ALS Resolution/Bit Width
-> + * @regfield_repeat_rate:	Reg: ALS_MEAS_RATE, Field: ALS Measurement Rate
-> + * @regfield_scale:	Reg: ALS_GAIN, Field: ALS Gain Range
-> + * @regfield_int_src:	Reg: INT_CFG, Field: ALS Interrupt Source
-> + * @regfield_int_thresh_var_en:	Reg: INT_CFG, Field: ALS Var Interrupt Mode
-> + * @regfield_int_en:	Reg: INT_CFG, Field: ALS Interrupt Enable
-> + * @regfield_int_persist_val:	Reg: INT_PERSISTENCE, Field: ALS_PERSIST
-> + * @regfield_int_thresh_var_val:	Reg: ALS_THRSH_VAR, Field: ALS_THRES_VAR
-> + * @nlux_per_count:	nano lux per ADC count for a particular model
-> + * @read_data_available:	Flag set by IRQ handler for ADC data available
-> + * @intg_time_idx:	Array index for integration times
-> + * @repeat_rate_idx:	Array index for sampling frequency
-> + * @gain_idx:	Array index for gain
-> + * @int_ch:	Currently selected Interrupt channel
-> + */
-
-...
-
-> +static const struct iio_itime_sel_mul apds9306_itimes[] = {
-> +	GAIN_SCALE_ITIME_US(400000, APDS9306_MEAS_MODE_400MS, 128),
-> +	GAIN_SCALE_ITIME_US(200000, APDS9306_MEAS_MODE_200MS, 64),
-> +	GAIN_SCALE_ITIME_US(100000, APDS9306_MEAS_MODE_100MS, 32),
-> +	GAIN_SCALE_ITIME_US(50000, APDS9306_MEAS_MODE_50MS, 16),
-> +	GAIN_SCALE_ITIME_US(25000, APDS9306_MEAS_MODE_25MS, 8),
-> +	GAIN_SCALE_ITIME_US(3125, APDS9306_MEAS_MODE_3125US, 1),
-
-Hmm... Maybe BIT() in all values?
-
-> +};
-
-> +static const struct attribute_group apds9306_event_attr_group = {
-> +	.attrs = apds9306_event_attributes,
-> +};
-
-...
-
-> +	data->regfield_intg_time = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_intg_time);
-> +	if (IS_ERR(data->regfield_intg_time))
-> +		return PTR_ERR(data->regfield_intg_time);
-> +
-> +	data->regfield_repeat_rate = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_repeat_rate);
-> +	if (IS_ERR(data->regfield_repeat_rate))
-> +		return PTR_ERR(data->regfield_repeat_rate);
-> +
-> +	data->regfield_scale = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_scale);
-> +	if (IS_ERR(data->regfield_scale))
-> +		return PTR_ERR(data->regfield_scale);
-> +
-> +	data->regfield_int_src = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_int_src);
-> +	if (IS_ERR(data->regfield_int_src))
-> +		return PTR_ERR(data->regfield_int_src);
-> +
-> +	data->regfield_int_thresh_var_en = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_int_thresh_var_en);
-> +	if (IS_ERR(data->regfield_int_thresh_var_en))
-> +		return PTR_ERR(data->regfield_int_thresh_var_en);
-> +
-> +	data->regfield_int_en = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_int_en);
-> +	if (IS_ERR(data->regfield_int_en))
-> +		return PTR_ERR(data->regfield_int_en);
-> +
-> +	data->regfield_int_persist_val = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_int_persist_val);
-> +	if (IS_ERR(data->regfield_int_persist_val))
-> +		return PTR_ERR(data->regfield_int_en);
-> +
-> +	data->regfield_int_thresh_var_val = devm_regmap_field_alloc(dev, regmap,
-> +			apds9306_regfield_int_thresh_var_val);
-> +	if (IS_ERR(data->regfield_int_thresh_var_val))
-> +		return PTR_ERR(data->regfield_int_thresh_var_en);
-
-Instead I would rather do with a temporary variable all of these...
-
-	tmp = devm_regmap_field_alloc(dev, regmap, apds9306_regfield_int_thresh_var_val);
-	if (IS_ERR(tmp)
-		return PTR_ERR(tmp);
-	data->regfield_int_thresh_var_val = tmp;
-
-...
-
-> +static int apds9306_power_state(struct apds9306_data *data,
-> +				enum apds9306_power_states state)
-> +{
-> +	int ret;
-> +
-> +	/* Reset not included as it causes ugly I2C bus error */
-> +	switch (state) {
-> +	case STANDBY:
-> +		return regmap_field_write(data->regfield_en, 0);
-> +	case ACTIVE:
-> +		ret = regmap_field_write(data->regfield_en, 1);
-> +		if (ret)
-> +			return ret;
-> +		/* 5ms wake up time */
-> +		usleep_range(5000, 10000);
-
-fsleep()
-
-> +		return 0;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-...
-
-> +static int apds9306_runtime_power(struct apds9306_data *data, int en)
-> +{
-> +	struct device *dev = data->dev;
-> +	int ret;
-> +
-> +	if (en) {
-> +		ret = pm_runtime_resume_and_get(dev);
-> +		if (ret < 0) {
-> +			dev_err(dev, "runtime resume failed: %d\n", ret);
-> +			return ret;
-> +		}
-> +		return 0;
-> +	}
-> +
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +	return 0;
-> +}
-
-Wouldn't be better to have something like
-
-static int apds9306_runtime_power_on(struct device *dev)
-{
-	int ret;
-
-	ret = pm_runtime_resume_and_get(dev);
-	if (ret < 0)
-		dev_err(dev, "runtime resume failed: %d\n", ret);
-	return ret;
-}
-
-static int apds9306_runtime_power_off(struct device *dev)
-{
-	pm_runtime_mark_last_busy(dev);
-	pm_runtime_put_autosuspend(dev);
-	return 0;
-}
-
-// Not sure you will even need this one
-static int apds9306_runtime_power(struct apds9306_data *data, bool en)
-{
-	struct device *dev = data->dev;
-
-	if (en)
-		return apds9306_runtime_power_on(dev);
-
-	return apds9306_runtime_power_off(dev);
-}
-
-?
-
-...
-
-> +static int apds9306_read_data(struct apds9306_data *data, int *val, int reg)
-> +{
-> +	struct device *dev = data->dev;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	int ret, delay, intg_time, status = 0;
-> +	u8 buff[3];
-> +
-> +	ret = apds9306_runtime_power(data, 1);
-
-	ret = apds9306_runtime_power_on(dev);
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	intg_time = iio_gts_find_int_time_by_sel(&data->gts,
-> +						 data->intg_time_idx);
-> +	if (intg_time < 0)
-> +		delay = apds9306_repeat_rate_period[data->repeat_rate_idx];
-> +
-> +	/*
-> +	 * Whichever is greater - integration time period or
-> +	 * sampling period.
-> +	 */
-> +	delay = max(intg_time,
-> +		    apds9306_repeat_rate_period[data->repeat_rate_idx]);
-> +
-> +
-
-One blank line is enough.
-
-> +	/*
-> +	 * Clear stale data flag that might have been set by the interrupt
-> +	 * handler if it got data available flag set in the status reg.
-> +	 */
-> +	data->read_data_available = 0;
-> +
-> +	/*
-> +	 * If this function runs parallel with the interrupt handler, either
-> +	 * this reads and clears the status registers or the interrupt handler
-> +	 * does. The interrupt handler sets a flag for read data available
-> +	 * in our private structure which we read here.
-> +	 */
-> +	ret = regmap_read_poll_timeout(data->regmap, APDS9306_MAIN_STATUS,
-> +				status, (status & (APDS9306_ALS_DATA_STAT_MASK |
-> +				APDS9306_ALS_INT_STAT_MASK)) ||
-> +				data->read_data_available,
-> +				APDS9306_ALS_READ_DATA_DELAY_US, delay * 2);
-
-> +
-
-Redundant blank line.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* If we reach here before the interrupt handler we push an event */
-> +	if ((status & APDS9306_ALS_INT_STAT_MASK)) {
-> +		iio_push_event(indio_dev, IIO_UNMOD_EVENT_CODE(IIO_LIGHT,
-> +			       data->int_ch,
-> +			       IIO_EV_TYPE_THRESH, IIO_EV_DIR_EITHER),
-> +			       iio_get_time_ns(indio_dev));
-> +	}
-
-> +	if ((status & APDS9306_ALS_DATA_STAT_MASK) ||
-> +		data->read_data_available) {
-
-Wrong indentation, perhaps put them on one line?
-
-> +		ret = regmap_bulk_read(data->regmap, reg, buff, sizeof(buff));
-> +		if (ret) {
-> +			dev_err(dev, "read data failed\n");
-> +			return ret;
-> +		}
-> +		*val = get_unaligned_le24(&buff);
-> +	}
-> +
-> +	return apds9306_runtime_power(data, 0);
-
-	return apds9306_runtime_power_off(dev);
-
-> +}
-
-...
-
-> +	gain_new_closest = iio_find_closest_gain_low(&data->gts, gain_new, &ok);
-> +	if (gain_new_closest < 0) {
-> +		gain_new_closest = iio_gts_get_min_gain(&data->gts);
-> +		if (gain_new_closest < 0)
-
-> +			return gain_new_closest < 0;
-
-Typo?
-
-> +	}
-
-...
-
-> +static int apds9306_sampling_freq_set(struct apds9306_data *data, int val,
-> +				int val2)
-> +{
-> +	int i, ret = -EINVAL;
-
-Use value directly.
-
-> +
-> +	for (i = 0; i < ARRAY_SIZE(apds9306_repeat_rate_freq); i++)
-> +		if (apds9306_repeat_rate_freq[i][0] == val &&
-> +				apds9306_repeat_rate_freq[i][1] == val2) {
-
-Wrong indentation.
-
-> +			ret = regmap_field_write(data->regfield_repeat_rate, i);
-> +			if (ret)
-> +				return ret;
-> +			data->repeat_rate_idx = i;
-
-> +			return ret;
-
-You meant break here or return 0; ?
-
-> +		}
-> +
-> +	return ret;
-> +}
-
-You can rewrite this as
-
-	unsigned int i;
-	int ret;
-
-	for (i = 0; i < ARRAY_SIZE(apds9306_repeat_rate_freq); i++) {
-		if (apds9306_repeat_rate_freq[i][0] == val &&
-		    apds9306_repeat_rate_freq[i][1] == val2)
-			break;
-	}
-	if (i == ARRAY_SIZE(apds9306_repeat_rate_freq))
-		return -EINVAL;
-
-	ret = regmap_field_write(data->regfield_repeat_rate, i);
-	if (ret)
-		return ret;
-
-	data->repeat_rate_idx = i;
-
-	return 0;
-
-...which is easier to read and understand.
-
-...
-
-> +	ret = iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
-> +				     data->intg_time_idx, val, val2, &gain_sel);
-> +	if (ret) {
-> +		for (i = 0; i < data->gts.num_itime; i++) {
-> +			time_sel = data->gts.itime_table[i].sel;
-> +
-> +			if (time_sel == data->intg_time_idx)
-> +				continue;
-> +
-> +			ret = iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
-> +						time_sel, val, val2, &gain_sel);
-> +			if (!ret)
-> +				break;
-> +		}
-> +		if (ret)
-> +			return -EINVAL;
-> +
-> +		ret = apds9306_intg_time_set_hw(data, time_sel);
-> +		if (ret)
-> +			return ret;
-
-Looks like a candidate for a helper function.
-
-> +	}
-
-...
-
-> +	if (val < 0 || val > APDS9306_ALS_PERSIST_VAL_MAX)
-
-in_range()
-
-> +		return -EINVAL;
-
-...
-
-> +static int apds9306_event_thresh_get(struct apds9306_data *data, int dir,
-> +				     int *val)
-> +{
-> +	int var, ret;
-> +	u8 buff[3];
-> +
-> +	if (dir == IIO_EV_DIR_RISING)
-> +		var = APDS9306_ALS_THRES_UP_0;
-> +	else if (dir == IIO_EV_DIR_FALLING)
-> +		var = APDS9306_ALS_THRES_LOW_0;
-> +	else
-> +		return -EINVAL;
-
-> +	ret = regmap_bulk_read(data->regmap, var, buff, sizeof(buff));
-> +	if (ret)
-> +		return ret;
-> +	*val = get_unaligned_le24(&buff);
-> +	return 0;
-
-In some cases you put blank line(s) in between, in some seems not. Please,
-be consistent with your style for whatever it is: blank lines, comments,
-indentation, ...
-
-> +}
-
-...
-
-> +	if (val < 0 || val > APDS9306_ALS_THRES_VAL_MAX)
-
-in_range()
-
-> +		return -EINVAL;
-
-...
-
-> +	if (val < 0 || val > APDS9306_ALS_THRES_VAR_VAL_MAX)
-
-Ditto.
-
-> +		return -EINVAL;
-
-...
-
-> +		return iio_gts_all_avail_scales(&data->gts, vals, type,
-> +						length);
-
-It's exactly 80 character if on a single line, why wrapped?
-
-...
-
-> +	mutex_lock(&data->mutex);
-
-You can use guard() from cleanup.h for this kind of stuff to make your life and
-maintenance easier.
-
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_INT_TIME:
-
-> +		if (!val)
-
-What's wrong with positive check and even more with the usual pattern -- check
-for errors first?
-
-> +			ret = apds9306_intg_time_set(data, val2);
-> +		else
-> +			ret = -EINVAL;
-> +		break;
-
-With the above (i.e guard() use) this will become as simple as
-
-		if (val)
-			return -EINVAL;
-
-		return apds9306_intg_time_set(data, val2);
-
-> +	case IIO_CHAN_INFO_SCALE:
-> +		ret = apds9306_scale_set(data, val, val2);
-> +		break;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		ret = apds9306_sampling_freq_set(data, val, val2);
-> +		break;
-> +	default:
-> +		ret = -EINVAL;
-> +	}
-> +	mutex_unlock(&data->mutex);
-
-...
-
-> +	switch (type) {
-> +	case IIO_EV_TYPE_THRESH:
-> +		mutex_lock(&data->mutex);
-> +		if (dir == IIO_EV_DIR_EITHER && info == IIO_EV_INFO_PERIOD)
-> +			ret = apds9306_event_period_get(data, val);
-> +		else
-> +			ret = apds9306_event_thresh_get(data, dir, val);
-> +		mutex_unlock(&data->mutex);
-> +		if (ret)
-> +			return ret;
-> +		return IIO_VAL_INT;
-> +	case IIO_EV_TYPE_THRESH_ADAPTIVE:
-> +		mutex_lock(&data->mutex);
-> +		ret = apds9306_event_thresh_adaptive_get(data, val);
-> +		mutex_unlock(&data->mutex);
-> +		if (ret)
-> +			return ret;
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-
-This will benefit from guard() or scoped_guard().
-And many other functions in your driver.
-I believe ~15% of LoCs can be dropped with help of cleanup.h.
-
-...
-
-> +#define APDS9306_IIO_INFO \
-> +	.read_avail = apds9306_read_avail, \
-> +	.read_raw = apds9306_read_raw, \
-> +	.write_raw = apds9306_write_raw, \
-> +	.write_raw_get_fmt = apds9306_write_raw_get_fmt,
-
-Not using this macro will only add 1 LoC, but will be much easier to read.
-
-...
-
-> +			return dev_err_probe(dev, ret,
-> +					"failed to assign interrupt.\n");
-
-Indentation issue.
-
-...
-
-> +		return dev_err_probe(dev, ret,
-> +				"failed to add action on driver unwind\n");
-
-Ditto.
-
-...
-
-> +
-
-Unneeded blank line.
-
-> +module_i2c_driver(apds9306_driver);
+In-Reply-To: <20231027121929.GC12144@pendragon.ideasonboard.com>
+
+Hi Laurent,
+
+On Fri, Oct 27, 2023 at 03:19:29PM +0300, Laurent Pinchart wrote:
+> Hi Sakari,
+> 
+> On Fri, Oct 27, 2023 at 11:55:52AM +0000, Sakari Ailus wrote:
+> > Hi Laurent,
+> > 
+> > Thank you for the patchset any my apologies for not reviewing it earlier.
+> 
+> No worries. Thank you for reviewing it now :-)
+> 
+> > On Tue, Oct 17, 2023 at 04:21:01PM +0300, Laurent Pinchart wrote:
+> > > From: Paul Elder <paul.elder@ideasonboard.com>
+> > > 
+> > > The THP7312 is an external ISP from THine. Add DT bindings for it.
+> > > 
+> > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > > Changes since v2:
+> > > 
+> > > - Drop description of reg property
+> > > - Improve thine,boot-mode property documentation
+> > > - Making thine,boot-mode property optional
+> > > - Don't use underscores in supplies names
+> > > ---
+> > >  .../bindings/media/i2c/thine,thp7312.yaml     | 226 ++++++++++++++++++
+> > >  MAINTAINERS                                   |   7 +
+> > >  2 files changed, 233 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > > new file mode 100644
+> > > index 000000000000..0758d8d44826
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > > @@ -0,0 +1,226 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +# Copyright (c) 2023 Ideas on Board
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: THine THP7312
+> > > +
+> > > +maintainers:
+> > > +  - Paul Elder <paul.elder@@ideasonboard.com>
+> > > +
+> > > +description:
+> > > +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
+> > > +  various image processing and correction functions, including 3A control. It
+> > > +  can be connected to CMOS image sensors from various vendors, supporting both
+> > > +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
+> > > +  or parallel. The hardware is capable of transmitting and receiving MIPI
+> > > +  interlaved data strams with data types or multiple virtual channel
+> > > +  identifiers.
+> > > +
+> > > +allOf:
+> > > +  - $ref: ../video-interface-devices.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: thine,thp7312
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +    description: CLKI clock input
+> > > +
+> > > +  thine,boot-mode:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    minimum: 0
+> > > +    maximum: 1
+> > > +    default: 1
+> > > +    description:
+> > > +      Boot mode of the THP7312, reflecting the value of the BOOT[0] pin strap.
+> > > +      0 is for the SPI/2-wire slave boot, 1 is for the SPI master boot (from
+> > > +      external flash ROM).
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      Reference to the GPIO connected to the RESET_N pin, if any.
+> > > +      Must be released (set high) after all supplies are applied.
+> > > +
+> > > +  vddcore-supply:
+> > > +    description:
+> > > +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
+> > > +
+> > > +  vhtermrx-supply:
+> > > +    description:
+> > > +      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > > +
+> > > +  vddtx-supply:
+> > > +    description:
+> > > +      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > > +
+> > > +  vddhost-supply:
+> > > +    description:
+> > > +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  vddcmos-supply:
+> > > +    description:
+> > > +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  vddgpio-0-supply:
+> > > +    description:
+> > > +      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  vddgpio-1-supply:
+> > > +    description:
+> > > +      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  orientation: true
+> > > +  rotation: true
+> > > +
+> > > +  port:
+> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      endpoint:
+> > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          data-lanes:
+> > > +            description:
+> > > +              This property is for lane reordering between the THP7312 and the
+> > > +              SoC. The sensor supports either two-lane, or four-lane operation.
+> > > +              If this property is omitted four-lane operation is assumed. For
+> > > +              two-lane operation the property must be set to <1 2>.
+> > 
+> > How are link frequencies determined by the device?
+> 
+> The link frequency is not under direct control of the host. There are
+> registers to select between mode presets, each of them producing a
+> particular link frequency.
+
+If they are known, one could only allow setting the modes with known-good
+link requencies. This could be added later on, too, affecting systems with
+link-frequencies set. I guess you could also add it now, as optional.
+
+Where's the link frequency information available? In documentation or in
+on the firmware API?
+
+> 
+> > The description above also says the parallel interface is supported. The
+> > bindings do not reflect that however.
+> > 
+> > Same for the sensor node below.
+> > 
+> > Is the intention to add support for these later on? In that case you'll
+> > need bus-type and default that to CSI-2 for DTs conforming to these
+> > bindings.
+> 
+> While documentation claims that parallel interfaces are supported, we
+> haven't been able to test this at all, due to lack of a suitable
+> hardware test platform. The intention is indeed to add support for them
+> later. I will add the bus-type property here.
+
+Using a CSI-2 D-PHY default later on would be workable, too, IMO. Up to
+you.
+
+> 
+> > > +            minItems: 2
+> > > +            maxItems: 4
+> > > +            items:
+> > > +              maximum: 4
+> > > +
+> > > +  sensors:
+> > > +    type: object
+> > > +    description: List of connected sensors
+> > > +
+> > > +    properties:
+> > > +      "#address-cells":
+> > > +        const: 1
+> > > +
+> > > +      "#size-cells":
+> > > +        const: 0
+> > > +
+> > > +    patternProperties:
+> > > +      "^sensor@[01]":
+> > > +        type: object
+> > > +        description:
+> > > +          Sensors connected to the first and second input, with one node per
+> > > +          sensor.
+> > > +
+> > > +        properties:
+> > > +          thine,model:
+> > > +            $ref: /schemas/types.yaml#/definitions/string
+> > > +            description:
+> > > +              Model of the connected sensors. Must be a valid compatible string.
+> > > +
+> > > +          reg:
+> > > +            maxItems: 1
+> > > +            description: THP7312 input port number
+> > > +
+> > > +          data-lanes:
+> > > +            $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
+> > > +            items:
+> > > +              maxItems: 4
+> > > +            description:
+> > > +              This property is for lane reordering between the THP7312 and the imaging
+> > > +              sensor that it is connected to.
+> > > +
+> > > +        patternProperties:
+> > > +          ".*-supply":
+> > > +            description: Power supplies for the sensor
+> > > +
+> > > +        required:
+> > > +          - reg
+> > > +          - data-lanes
+> > > +
+> > > +        additionalProperties: false
+> > > +
+> > > +    required:
+> > > +      - "#address-cells"
+> > > +      - "#size-cells"
+> > > +
+> > > +    additionalProperties: false
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reset-gpios
+> > > +  - clocks
+> > > +  - vddcore-supply
+> > > +  - vhtermrx-supply
+> > > +  - vddtx-supply
+> > > +  - vddhost-supply
+> > > +  - vddcmos-supply
+> > > +  - vddgpio-0-supply
+> > > +  - vddgpio-1-supply
+> > > +  - sensors
+> > > +  - port
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    i2c {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        camera@61 {
+> > > +            compatible = "thine,thp7312";
+> > > +            reg = <0x61>;
+> > > +
+> > > +            pinctrl-names = "default";
+> > > +            pinctrl-0 = <&cam1_pins_default>;
+> > > +
+> > > +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
+> > > +            clocks = <&camera61_clk>;
+> > > +
+> > > +            vddcore-supply = <&vsys_v4p2>;
+> > > +            vhtermrx-supply = <&vsys_v4p2>;
+> > > +            vddtx-supply = <&vsys_v4p2>;
+> > > +            vddhost-supply = <&vsys_v4p2>;
+> > > +            vddcmos-supply = <&vsys_v4p2>;
+> > > +            vddgpio-0-supply = <&vsys_v4p2>;
+> > > +            vddgpio-1-supply = <&vsys_v4p2>;
+> > > +
+> > > +            orientation = <0>;
+> > > +            rotation = <0>;
+> > > +
+> > > +            sensors {
+> > > +                #address-cells = <1>;
+> > > +                #size-cells = <0>;
+> > > +
+> > > +                sensor@0 {
+> > > +                    thine,model = "sony,imx258";
+> > > +                    reg = <0>;
+> > > +
+> > > +                    data-lanes = <4 1 3 2>;
+> > 
+> > Does the device support lane mapping?
+> 
+> Yes it does, both on the input and output.
+
+Nice to know there are more devices supporting it. It's not very common.
+
+> 
+> > > +
+> > > +                    dovdd-supply = <&vsys_v4p2>;
+> > > +                    avdd-supply = <&vsys_v4p2>;
+> > > +                    dvdd-supply = <&vsys_v4p2>;
+> > > +                };
+> > > +            };
+> > > +
+> > > +            port {
+> > > +                thp7312_2_endpoint: endpoint {
+> > > +                    remote-endpoint = <&mipi_thp7312_2>;
+> > > +                    data-lanes = <4 2 1 3>;
+> > > +                };
+> > > +            };
+> > > +    	  };
+> > > +    };
+> > > +...
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 3b47e0b56859..7451367e6780 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -21448,6 +21448,13 @@ S:	Maintained
+> > >  F:	Documentation/ABI/testing/sysfs-class-firmware-attributes
+> > >  F:	drivers/platform/x86/think-lmi.?
+> > >  
+> > > +THP7312 ISP DRIVER
+> > > +M:	Paul Elder <paul.elder@ideasonboard.com>
+> > > +L:	linux-media@vger.kernel.org
+> > > +S:	Maintained
+> > > +T:	git git://linuxtv.org/media_tree.git
+> > > +F:	Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
+> > > +
+> > >  THUNDERBOLT DMA TRAFFIC TEST DRIVER
+> > >  M:	Isaac Hazan <isaac.hazan@intel.com>
+> > >  L:	linux-usb@vger.kernel.org
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Regards,
 
-
+Sakari Ailus
 
