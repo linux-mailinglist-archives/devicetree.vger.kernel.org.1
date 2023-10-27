@@ -1,184 +1,86 @@
-Return-Path: <devicetree+bounces-12555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33107DA1C6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:31:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A6157DA1D4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A6D9B213D4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:31:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23EE51C210E7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:35:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD3838FB6;
-	Fri, 27 Oct 2023 20:31:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="C9r/VZO6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9692F3B7B8;
+	Fri, 27 Oct 2023 20:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB0B3FB07;
-	Fri, 27 Oct 2023 20:31:25 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC351AA;
-	Fri, 27 Oct 2023 13:31:23 -0700 (PDT)
-Received: from notapiano (unknown [146.70.117.171])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B25C6607388;
-	Fri, 27 Oct 2023 21:31:19 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698438682;
-	bh=x04e49XZ44kUWKuvH7Agm9r97YLxKz5Y0a4BLiq+mII=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C9r/VZO6NQCPNxFyaLFikbz8AbFVuTfxtMxI80nrDSuc2KZhvF9y/pVLrVqdyzFIL
-	 GnW26iZP32/7z+TCAsxX61tKhT2f7bDFcDbwcsS/b4Wp0BuodS8Ih6H3axTmZSBTNe
-	 DgvyFkYKKRgv/jARoP2D5Aml+n7B2+tkp4D2NE/hcb3VZGJYyZV8u4W5pgK9PB7ysw
-	 /36S2QwKgwJOiNXTpHBa2Z6twuIWs3/eFWCxOUPtox06CMbN3YR2AU+I3o5iMlSCiH
-	 /oyIkCLK0YAagsOkHoNPsrmTb8t3QKNxARhfCMtKnVD1bKHZidV4AWkmEG9M0wOWWN
-	 zFvFvp+WTHWvA==
-Date: Fri, 27 Oct 2023 16:31:13 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Shuah Khan <shuah@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	linux-kselftest@vger.kernel.org, kernel@collabora.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/2] kselftest: devices: Add board file for
- google,spherion
-Message-ID: <3bcd3794-cd19-4772-8da2-772821a756b5@notapiano>
-References: <20231024211818.365844-1-nfraprado@collabora.com>
- <20231024211818.365844-3-nfraprado@collabora.com>
- <2023102546-filled-onboard-3dfb@gregkh>
- <e49c63c4-2b24-4428-801c-1f854a98c593@notapiano>
- <2023102747-conclude-backside-a579@gregkh>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AA553986E
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 20:35:42 +0000 (UTC)
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A29D1AA;
+	Fri, 27 Oct 2023 13:35:41 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6cd33d51852so1635377a34.2;
+        Fri, 27 Oct 2023 13:35:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698438941; x=1699043741;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l0MCKR3GOOa2vZ/7J6O5w9Wxt+RdpyTKLpyAWuEdIOw=;
+        b=OqJgWEm8BGf9KrfladeT2zmDhAqH6MFCazvYvpLSaVmyikwlS6NLliNOWsCEihxGqt
+         HAi+7C12LqyvHmKZk7EojjwRAmUNajJ5AGBuN3HrZCVhsPVXUFdw+EUv1MyChZWzQJyt
+         ZgDR7aoHOjBNzfaVutpOR9RFoMhvFk7eaZ5CP5egOGpRFnmYgKAANyieq9oXpPkRMh1U
+         D+zn8yyw0CopWJV3u3264Qj+Sj+qa6RqneMa0JKTlcH9kK/2qeGCGsYSgxxs8xJQWYOm
+         jPN9ZxlisNrnLWxIkfBCjaI2NGYsNkrsj6txG49F1v//Og5K2jNhrsyzQ3Z54+Z1taUt
+         LN6w==
+X-Gm-Message-State: AOJu0YyaSeisp3TR0/fcgCHw1nE96mrUY/Jcyf8uE5ufBfGZJczYPim1
+	tDhyfhlKVEYeFNis2h93/w==
+X-Google-Smtp-Source: AGHT+IFjNDirDMzT5Dcd+/NCUYRApXXNhOwqVIh4YUcK+n2IkbbOJWMQUXnRoSqH2Kmegr6O+qzJmw==
+X-Received: by 2002:a9d:3e11:0:b0:6d2:e1fd:9f3a with SMTP id a17-20020a9d3e11000000b006d2e1fd9f3amr1603912otd.10.1698438940787;
+        Fri, 27 Oct 2023 13:35:40 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e15-20020a4aaacf000000b0057b8baf00bbsm503418oon.22.2023.10.27.13.35.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 13:35:38 -0700 (PDT)
+Received: (nullmailer pid 3327205 invoked by uid 1000);
+	Fri, 27 Oct 2023 20:35:36 -0000
+Date: Fri, 27 Oct 2023 15:35:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, kernel@pengutronix.de, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/7] regulator: dt-bindings: Add
+ regulator-uv-survival-time-ms property
+Message-ID: <169843893546.3327050.8390769854034176045.robh@kernel.org>
+References: <20231025084614.3092295-1-o.rempel@pengutronix.de>
+ <20231025084614.3092295-7-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2023102747-conclude-backside-a579@gregkh>
+In-Reply-To: <20231025084614.3092295-7-o.rempel@pengutronix.de>
 
-On Fri, Oct 27, 2023 at 12:48:35PM +0200, Greg Kroah-Hartman wrote:
-> On Wed, Oct 25, 2023 at 08:32:42AM -0400, Nícolas F. R. A. Prado wrote:
-> > On Wed, Oct 25, 2023 at 12:32:15PM +0200, Greg Kroah-Hartman wrote:
-> > > On Tue, Oct 24, 2023 at 05:18:00PM -0400, Nícolas F. R. A. Prado wrote:
-> > > > Add the list of devices expected to be probed from the USB and PCI
-> > > > busses on the google,spherion machine. The USB host controller at
-> > > > 11200000 is shared between two busses, for USB2 and USB3, so an
-> > > > additional match is used to select the USB2 bus.
-> > > > 
-> > > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > > > ---
-> > > > 
-> > > >  tools/testing/selftests/devices/boards/google,spherion | 3 +++
-> > > >  1 file changed, 3 insertions(+)
-> > > >  create mode 100644 tools/testing/selftests/devices/boards/google,spherion
-> > > > 
-> > > > diff --git a/tools/testing/selftests/devices/boards/google,spherion b/tools/testing/selftests/devices/boards/google,spherion
-> > > > new file mode 100644
-> > > > index 000000000000..ba86ffcfe43c
-> > > > --- /dev/null
-> > > > +++ b/tools/testing/selftests/devices/boards/google,spherion
-> > > > @@ -0,0 +1,3 @@
-> > > > +usb camera 11200000,PRODUCT=.*/2/.* 1.4.1 1 0,1
-> > > > +usb bluetooth 11200000,PRODUCT=.*/2/.* 1.4.2 1 0,1
-> > > > +pci wifi 11230000 0.0/0.0
-> > > 
-> > > USB busses (and PCI ids) are not determinisitic and can, and will,
-> > > change values randomly.  So while it is nice to test "did the devices
-> > > show up properly", you can not do that based on bus ids at all, sorry.
-> > > 
-> > > Unless I'm reading these values wrong?  What are the fields
-> > > representing?  Perhaps a comment at the top to describe them so that we
-> > > know how to parse them?
-> > 
-> > Hi Greg,
-> > 
-> > I have described the fields in the commit message of patch 1. Here they are:
-> > 
-> > usb <test_name> <controller_address>[,<additional_match>] <ports_path> <configuration> <interfaces>
-> > 
-> > pci <test_name> <controller_address> <device-function_pairs_path>
+
+On Wed, 25 Oct 2023 10:46:13 +0200, Oleksij Rempel wrote:
+> Introduce a new Device Tree property 'regulator-uv-survival-time-ms' to
+> specify the survival time post a critical under-voltage event. This
+> property defines the time in milliseconds the system can operate before
+> the on-board capacitors fail, providing a window for necessary actions
+> or preparations to be taken before power loss, aligning with the
+> under-voltage event handling mechanism.
 > 
-> That's not a good place to document them, we'll never find them, and I
-> obviously missed it as well.
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/regulator/regulator.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> Please put it in a comment at the top of this file _AND_ in a comment in
-> the script that parses these files.
 
-Fair enough, will do so in the next version.
+Acked-by: Rob Herring <robh@kernel.org>
 
-> 
-> > I'm aware that bus IDs are assigned at runtime, and that's exactly why I've
-> > avoided those in the test definitions, instead describing the hardware topology,
-> > which won't ever change.
-> > 
-> > And just to be extra clear, by hardware topology I mean:
-> > 
-> > For USB, we find the USB bus based on the address of its controller (and
-> > optionally its productID if two busses share the same controller for USB2 and
-> > USB3),
-> 
-> What exactly do you mean by "address" of a controller?  That will be
-> unique per bus-type that the controller lives on, right?
-
-Well, in its current form the test is targetted at DT-based platforms, so by
-address I mean the MMIO address of the host controller, as defined in the
-controller's node in the DT.
-
-In order to expand the coverage of the test to non-DT platforms as well, yes,
-we'll need to allow describing controllers that are under some bus, rather than
-at a fixed memory address. I'm already planning to do that as a next step.
-
-> 
-> > and then find the device by following the ports at each hub. The
-> > configuration number and interfaces then describe what interfaces to check for
-> > presence and driver binding.
-> 
-> Ok, good, hub and port locations _should_ be stable, but note they have
-> changed at times so you will have to deal with that for the next 20+
-> years, are you ok with that?
-
-If the locations changed it means we have a new hardware revision. I'd expect
-most of those occurences to result in new compatible strings or DMI identifiers,
-which we could then use to run a different set of tests, using the new hub and
-port locations, since this is effectively a different piece of hardware.
-
-> 
-> > For PCI, we find the controller again based on its address, and follow the
-> > device-function pairs at each level in the topology until we arrive at the
-> > desired device.
-> 
-> "address"?  What exactly do you mean by this value?  For PCI, that will
-> change.
-
-Same as for USB.
-
-> 
-> > We don't rely on the USB bus number, nor on the PCI domain and bus number, since
-> > these are all assigned at runtime.
-> 
-> You are relying on a specific sysfs tree as well, are you able to handle
-> it when new devices get added to the middle of a device path?  That
-> sometimes happens in sysfs too.
-
-Right, I'm relying on the fact that the PCI topology is reflected into the sysfs
-topology, meaning the sysfs directories for devices on a PCI bus are direct
-descendants of the directory for the PCI bridge exposing that bus. That's the
-only place I'm aware of which exposes the PCI topology.
-
-In any case, although simplistic, this approach has worked well so far on the
-platforms I've tested on.
-
-Thanks,
-Nícolas
 
