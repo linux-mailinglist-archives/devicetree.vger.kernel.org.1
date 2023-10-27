@@ -1,120 +1,98 @@
-Return-Path: <devicetree+bounces-12540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C50C7D9EA2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 19:08:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4401F7D9EDD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 19:28:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 391531C20F34
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 17:08:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D03C3B212BF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 17:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B3F623769;
-	Fri, 27 Oct 2023 17:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B98A39877;
+	Fri, 27 Oct 2023 17:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2647B3984A
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 17:07:59 +0000 (UTC)
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9336F7A9C;
-	Fri, 27 Oct 2023 10:07:34 -0700 (PDT)
-Received: from i53875a19.versanet.de ([83.135.90.25] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1qwQIX-0001eX-MH; Fri, 27 Oct 2023 19:07:01 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Niklas Cassel <Niklas.Cassel@wdc.com>
-Cc: Niklas Cassel <nks@flawful.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Krzysztof =?utf-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>,
- Simon Xue <xxm@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Serge Semin <fancer.lancer@gmail.com>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>
-Subject:
- Re: [PATCH v3 1/6] dt-bindings: PCI: dwc: rockchip: Add mandatory atu reg
-Date: Fri, 27 Oct 2023 19:07:00 +0200
-Message-ID: <3040634.xgJ6IN8ObU@diego>
-In-Reply-To: <ZTvh51PGCBhSjURY@x1-carbon>
-References:
- <20231027145422.40265-1-nks@flawful.org>
- <CAL_JsqJh6aJb7_qsVnVNEABBg2utf0FPN+qYyOfsF2dAfZpd0w@mail.gmail.com>
- <ZTvh51PGCBhSjURY@x1-carbon>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF282F37
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 17:27:57 +0000 (UTC)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8060AB;
+	Fri, 27 Oct 2023 10:27:56 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3b2df2fb611so1518254b6e.0;
+        Fri, 27 Oct 2023 10:27:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698427676; x=1699032476;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lT09sGgTrEuTUf24HSAV5+mSvhXBl77PVqX+x8VkCqU=;
+        b=nnQy3h0GkEN2++N0hg/xm0slgWt+/AhNMX0Oe//JI6QRJW+q5104+d1nt/UTw4U+Zt
+         wt3eMPFMj2TbKwdXcnxpVX8jQ+6/G8K6ewAkszLYWdRLuVHU+TyzO8yNdLn4Ne+rZi7X
+         mMWocA5xUMElUtB3X8gq7rPhNJXv80ViWfGxZpNv4x3Ne4RrIcqm7kx1ZXiyQdT3+Qaf
+         ZI1tjB2J8UqF0bt6zEiyxKbOGe3QCoYJ2H3coTjb6GBFhq2ktMI6z3Sepf79NxwG6lEF
+         iBz5DS/D1Rupmi6NvYlYZuux0dibefZkVxg9FtBToKg58pQaoyhruH6SKho4JNlnuPsy
+         HizQ==
+X-Gm-Message-State: AOJu0YzIX4/aJPChp/H2D8kjV0WtlP5HCbnp9q3nz0nfvHw3h+9uhs4M
+	enGK/rCLQCc2e/M0e0XhUw==
+X-Google-Smtp-Source: AGHT+IHrGTnQFkC61PIza6vsczaA9W1Gzyuq3CCjBuzoKftsPrt/l9cqVYYDl7cqKInXkPJDSawjww==
+X-Received: by 2002:a54:4690:0:b0:3a8:432a:ea13 with SMTP id k16-20020a544690000000b003a8432aea13mr3693298oic.46.1698427676117;
+        Fri, 27 Oct 2023 10:27:56 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l18-20020a056808021200b003ae165739bbsm361155oie.7.2023.10.27.10.27.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 10:27:54 -0700 (PDT)
+Received: (nullmailer pid 2844872 invoked by uid 1000);
+	Fri, 27 Oct 2023 17:27:53 -0000
+Date: Fri, 27 Oct 2023 12:27:53 -0500
+From: Rob Herring <robh@kernel.org>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Cc: linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Maxime Ripard <mripard@kernel.org>
+Subject: Re: [PATCH] dt-bindings: display: ssd132x: Remove '-' before
+ compatible enum
+Message-ID: <20231027172753.GA2834192-robh@kernel.org>
+References: <20231020223029.1667190-1-javierm@redhat.com>
+ <169801218855.747717.5658253186246322717.robh@kernel.org>
+ <87y1foo1in.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87y1foo1in.fsf@minerva.mail-host-address-is-not-set>
 
-Hi Niklas,
+On Fri, Oct 27, 2023 at 11:30:56AM +0200, Javier Martinez Canillas wrote:
+> Rob Herring <robh@kernel.org> writes:
+> 
+> > On Sat, 21 Oct 2023 00:30:17 +0200, Javier Martinez Canillas wrote:
+> >> This is a leftover from when the binding schema had the compatible string
+> >> property enum as a 'oneOf' child and the '-' was not removed when 'oneOf'
+> >> got dropped during the binding review process.
+> >> 
+> >> Reported-by: Rob Herring <robh@kernel.org>
+> >> Closes: https://lore.kernel.org/dri-devel/CAL_Jsq+h8DcnpKqhokQOODCc8+Qi3M0PrxRFKz_Y4v37yMJvvA@mail.gmail.com/
+> >> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+> >> ---
+> >> 
+> >>  .../devicetree/bindings/display/solomon,ssd132x.yaml      | 8 ++++----
+> >>  1 file changed, 4 insertions(+), 4 deletions(-)
+> >> 
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> 
+> Pushed to drm-misc (drm-misc-next). Thanks!
 
-Am Freitag, 27. Oktober 2023, 18:14:32 CEST schrieb Niklas Cassel:
-> On Fri, Oct 27, 2023 at 10:58:28AM -0500, Rob Herring wrote:
-> > On Fri, Oct 27, 2023 at 9:56=E2=80=AFAM Niklas Cassel <nks@flawful.org>=
- wrote:
-> > >
-> > > From: Niklas Cassel <niklas.cassel@wdc.com>
-> > >
-> > > Even though rockchip-dw-pcie.yaml inherits snps,dw-pcie.yaml
-> > > using:
-> > >
-> > > allOf:
-> > >   - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> > >
-> > > and snps,dw-pcie.yaml does have the atu reg defined, in order to be
-> > > able to use this reg, while still making sure 'make CHECK_DTBS=3Dy'
-> > > pass, we need to add this reg to rockchip-dw-pcie.yaml.
-> > >
-> > > All compatible strings (rockchip,rk3568-pcie and rockchip,rk3588-pcie)
-> > > should have this reg.
-> > >
-> > > The regs in the example are updated to actually match pcie3x2 on rk35=
-68.
-> >=20
-> > Breaking compatibility on these platforms is okay because ...?
->=20
-> I don't follow, could you please elaborate?
+Given what introduced this is before the drm-misc-next-2023-10-19 tag, 
+isn't it going into 6.7 and needs to be in the fixes branch? Though that 
+doesn't exist yet for 6.7 fixes. I don't understand why that's not done 
+as part of the last tag for a cycle. But drm-misc is special.
 
-you're adding the atu reg unconditionally as required element.
-
-Newer kernel versions (strongly) _should_ work with older devicetrees.
-So a kernel with that change should also work with a dtb build from the
-old style.
-
-DTBs are essentially part of the device firmware, so while some devices
-can update theirs easily, you can't really require a dtb update.
-
-I guess you could something like:
-
-   reg-names:
-     oneOf:
-       - deprecated: true
-         items:
-         - const: dbi
-         - const: apb
-         - const: config
-       - items:
-         - const: dbi
-         - const: apb
-         - const: config
-         - const: atu
-=20
-(may not be accurate and to spec yet)
-
-
+Rob
 
