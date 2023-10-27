@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55D27D8FF8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:36:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1F07D8FFF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:38:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6088B280F56
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:36:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5FEDB2128E
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E9E8F4B;
-	Fri, 27 Oct 2023 07:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394EABE76;
+	Fri, 27 Oct 2023 07:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="goG8P1A6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PK7o0A6b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612948C0B
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:36:28 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF40A1BF
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:36:25 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-507973f3b65so2708019e87.3
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:36:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978AA3FDC
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:38:05 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57323194
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:38:03 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5079f9ec8d9so1973948e87.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698392184; x=1698996984; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698392281; x=1698997081; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FKgxwW12cXvJbbJyaE54dQi3HeFLiwxHnNrbqUscsyw=;
-        b=goG8P1A6H2ypq5vqm5Ei3c75UdWfo8F0g8RvmWTSZGrH6HBIRNrfuI3rFfWO5v5sMM
-         bCyDiMj/jqdjy+9qXyac0N+XfIUrTkWC5CegtooR5gieOyOfbZnW1AjdhTYoh/bJajEs
-         x8Xwep1tGwF3ZKqF0wz7M1UYZmaOtIsjBcdr/ZRRIbnr0YBQTf7oh/k5Z4RpDQg4Mn8Y
-         F0YeiDJnOAhyleXN9FkUNuKcMt5agCPRRifig2QyapJtCRZT+BlayGLAKwawPBdH1LBT
-         jOBM4FOvj03DcnTjO8LYr9CgLcES13SSSSs8gFqdpjYekIBVO+r+OJeQhw8rr3T7heXE
-         mxjg==
+        bh=kvLefYjDOH/NWQ5JdDi1TXOayZ7Fqy4fXxBwUzlM+i8=;
+        b=PK7o0A6bIojbCDOBcv8TBoK2dBXMa0+lShUtKWkZ7hbvZlVeejbm0TVbM5NDHmWAXA
+         zQKz+ePxmJOCReWdrRNsN+OTXJKZNXPEJNaoKnAgc7IIgGRlu6/wIvNcB8AV9k4/xCm9
+         wi8LRHbnv36Q0bv67D3zzB6GMkst2TNg0+qIBLTgrAdxCi8XQzVpqpichdlamKLxEXzl
+         GLPPDN1kfRZkO6Q5reHb4caQEBoLP4Vh7CZ8iGHnhqUa6ARBzC5FqURRunI2zr8HMNe0
+         nSBYzhKNqgP465V5k3yDFZPibrMXxQ/lObE+j4WPN4YS3VMybC1b8NBbKnrLM/eo2J++
+         gElg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698392184; x=1698996984;
+        d=1e100.net; s=20230601; t=1698392281; x=1698997081;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKgxwW12cXvJbbJyaE54dQi3HeFLiwxHnNrbqUscsyw=;
-        b=bpBuGfbWquYpNkmLrvlqAtlYxDXIYd5UKuRd0vJFv6GeXtRiz6YL9BgCOXVbxK9Rtz
-         m9fghRvcmjRsabpLIaWqY5H8a49xlVlxAEiXIvcZhcIotdpz+WitqZ64VMCtEFGHsDVh
-         elwXCJUyFwCvictWjvInDInrzAx8J1fQ88R8Au9zBdrhozsiWxn+63YBlfhufuyiR+L9
-         j4CVux4/tswt3ZgEOwrDEG2XZWBk9H7yVppdm+VdVijODqkN85BjmQPe+h4GOHBHKStO
-         EPUc6LWI+8SVbXDBTi+wFUPM9vnk+zUaK36PnQgPu4nttyffIcQL+HuhNgTIxWzAPS5U
-         Qc6w==
-X-Gm-Message-State: AOJu0YzZSnYQFuiPf097lbILkgkz63YhawVZu6PAykxF0m5YcHC+GuC6
-	EPTVpICAPjTnPN3/A4+9PS2M7iHa0DYtinelUX0=
-X-Google-Smtp-Source: AGHT+IFqagUd0m8zM5GEs/QvCP49dXETv0iPLFRVr7vsc8eyNYMZsLQ/8t/1txgYTkEGuOrjv46TKA==
-X-Received: by 2002:a05:6512:3b89:b0:503:36cb:5438 with SMTP id g9-20020a0565123b8900b0050336cb5438mr1484365lfv.21.1698392183994;
-        Fri, 27 Oct 2023 00:36:23 -0700 (PDT)
+        bh=kvLefYjDOH/NWQ5JdDi1TXOayZ7Fqy4fXxBwUzlM+i8=;
+        b=pIrh6kbcpK8mEzHEFhFdo1OHcIKMUtBiebYYDs9RS4sPxCEMiu3/BDJWdYlg7sv0Si
+         7fzbuvduwoF1Wmcfa//VzWznsO9SbuzyPa2937/iKE4N5mn+F8nEmq0DIb4kK+0GTsjF
+         6INnmGUTjZ/G543wkpGTxuZlxshACO6G4tYU1YulAMyapPHLrI3X5n2eXmz2ckF9JM3H
+         UxxfG3g31iXExTH6ziVWKe7EHRDbbjGqfx6uz0ms9Src3TXL/o8qOyBEGwPDuADpRI9J
+         2w+77vr1eVdJLirRyrRZvmNWWLJIUuyRRbsJ19jEaC5dsoHd+dW6u64A6n0HmuEiNx9y
+         Oouw==
+X-Gm-Message-State: AOJu0YySAKxNusZROYen7bE337lQSKfejBk0j3YpS1jDreeyL/VCFWBz
+	YURdLFHUtXdWmAPgl8cP8qZCaw==
+X-Google-Smtp-Source: AGHT+IF9nrLJ4wN3Bfdl+IOennWMi3oF/Vcq7Ig75iYZPFNxZ/BRWnO6tM1iKD0pTmY/W3GE5mLL4w==
+X-Received: by 2002:a05:6512:3986:b0:504:3464:b4a1 with SMTP id j6-20020a056512398600b005043464b4a1mr1615776lfu.22.1698392281542;
+        Fri, 27 Oct 2023 00:38:01 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id a14-20020a194f4e000000b00505a20d070asm170385lfk.78.2023.10.27.00.36.22
+        by smtp.gmail.com with ESMTPSA id a14-20020a194f4e000000b00505a20d070asm170385lfk.78.2023.10.27.00.38.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 00:36:23 -0700 (PDT)
-Message-ID: <a1895327-b520-4f3a-a427-0947ac46495c@linaro.org>
-Date: Fri, 27 Oct 2023 09:36:22 +0200
+        Fri, 27 Oct 2023 00:38:00 -0700 (PDT)
+Message-ID: <bffdf71b-3423-405f-b338-e3f08a633d39@linaro.org>
+Date: Fri, 27 Oct 2023 09:38:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,sm8550-pas: document
- the SM8650 PAS
+Subject: Re: [PATCH v2] dt-bindings: dma: qcom,gpi: document the SM8650 GPI
+ DMA Engine
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-remoteproc-v1-0-a8d20e4ce18c@linaro.org>
- <20231025-topic-sm8650-upstream-remoteproc-v1-1-a8d20e4ce18c@linaro.org>
+References: <20231025-topic-sm8650-upstream-bindings-gpi-v2-1-4de85293d730@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,101 +124,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-topic-sm8650-upstream-remoteproc-v1-1-a8d20e4ce18c@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-bindings-gpi-v2-1-4de85293d730@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 09:35, Neil Armstrong wrote:
-> Document the DSP Peripheral Authentication Service on the SM8650 Platform.
+On 25/10/2023 10:23, Neil Armstrong wrote:
+> Document the GPI DMA Engine on the SM8650 Platform.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../bindings/remoteproc/qcom,sm8550-pas.yaml       | 41 +++++++++++++++++++++-
->  1 file changed, 40 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> index 58120829fb06..316371c8ee6e 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> @@ -19,6 +19,9 @@ properties:
->        - qcom,sm8550-adsp-pas
->        - qcom,sm8550-cdsp-pas
->        - qcom,sm8550-mpss-pas
-> +      - qcom,sm8650-adsp-pas
-> +      - qcom,sm8650-cdsp-pas
-> +      - qcom,sm8650-mpss-pas
->  
->    reg:
->      maxItems: 1
-> @@ -49,6 +52,7 @@ properties:
->        - description: Memory region for main Firmware authentication
->        - description: Memory region for Devicetree Firmware authentication
->        - description: DSM Memory region
-> +      - description: DSM Memory region 2
->  
->  required:
->    - compatible
-> @@ -63,6 +67,7 @@ allOf:
->            enum:
->              - qcom,sm8550-adsp-pas
->              - qcom,sm8550-cdsp-pas
-> +            - qcom,sm8650-adsp-pas
->      then:
->        properties:
->          interrupts:
-> @@ -71,7 +76,25 @@ allOf:
->            maxItems: 5
->          memory-region:
->            maxItems: 2
-> -    else:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8650-cdsp-pas
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 5
+> For convenience, a regularly refreshed linux-next based git tree containing
+> all the SM8650 related work is available at:
 
-maxItems
-
-
-> +        interrupt-names:
-> +          minItems: 5
-
-maxItems
-
-> +        memory-region:
-> +          minItems: 3
-
-maxItems: 3
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8550-mpss-pas
-> +    then:
->        properties:
->          interrupts:
->            minItems: 6
-> @@ -79,12 +102,26 @@ allOf:
->            minItems: 6
->          memory-region:
->            minItems: 3
-
-You need to add here maxItems.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm8650-mpss-pas
-> +    then:
-
-I am not sure if keeping it in the same binding as sm8550 avoids that
-much duplication.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
