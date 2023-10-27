@@ -1,250 +1,114 @@
-Return-Path: <devicetree+bounces-12529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C9D7D9D24
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 17:38:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6577D9D37
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 17:43:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96FA9282362
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:38:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 461431C20F49
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3AB37C96;
-	Fri, 27 Oct 2023 15:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF67D37C97;
+	Fri, 27 Oct 2023 15:43:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="EX/VSOoO"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="lmqEV6ET"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B3B1F5E7;
-	Fri, 27 Oct 2023 15:38:28 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11D48AC;
-	Fri, 27 Oct 2023 08:38:25 -0700 (PDT)
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39RCc60x010675;
-	Fri, 27 Oct 2023 17:37:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=137N9qL9i5h4t8Cbod1j95elUvUuNi+rOMR+/nkEcGo=; b=EX
-	/VSOoOTnYBW0p53Tuy8tkZXHrE9TCpRNA/bI48SzdaVOLcAioGGb2rDjfu4AwA5k
-	v32rhDVol8dtT3+OOAzKYell3XeaqdcateC0Ht5f5f44AtAT8RLKlj4pjSRODpXr
-	C0G+tE9HPuhvxq3nm5EGbDWsx+uMm9et8AnfTgvKf1VjaRyB+OoZrlta+QCeusS4
-	DtxnglJxdX6gQPW+fzfVM9T+lLDdVWAiWn4tSE7mlX17rCSRm6jWnka0+g6Fhf8e
-	vNoBtK5Ifbj7KqtJXykvIpXKvK2oehCiK/hsOAlK4WYKA3vfmSNeg4DV8PILG2Rh
-	7NAyCWbRDCK0IX4FDaoA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3tywqq4fmr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Oct 2023 17:37:17 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 023E9100062;
-	Fri, 27 Oct 2023 17:37:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6CD2C27DB5D;
-	Fri, 27 Oct 2023 17:37:14 +0200 (CEST)
-Received: from [10.201.20.32] (10.201.20.32) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 27 Oct
- 2023 17:37:12 +0200
-Message-ID: <8fa014c3-c0e9-4183-b4fb-90962f71295a@foss.st.com>
-Date: Fri, 27 Oct 2023 17:37:11 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9EC7D530
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 15:43:07 +0000 (UTC)
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5584AB8
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:43:06 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1cbf47fa563so19280485ad.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:43:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1698421386; x=1699026186; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0NUEyjjvZD3sZIgVAZcZlQ2UsD1JGHJJKuO7MaTqPDY=;
+        b=lmqEV6ET13z2PsKvwqudYfcrD7hjZDGYvjf5RsS4Zq8zTGJZeaOC10BM4NmeM0PFlz
+         fnq8FKyZPhE1WlsiuG6Y1zCrhKLTGREN8AL2w+EDiVc6Lskhl8DytD20ExJpWEwQ9WrW
+         mEwKYbfHidkIrGccDVpEi6OnLxL2XDpiCfMfUqHdQxEQVfOVLDeP1WkQBiwVyyUcXiWd
+         ZEEDJplfkHHjksAw9sS7IK5nL/R4+p7AeyGmZAKFznuhB8Xbi3N0+fRxDPaex3SNA/QY
+         wq/r6pMDIujIMxggb4z6ZSo32emgSLEGqaLLtmNbj4jw7L2oL8c2Epr4QfOsZe3FbysC
+         2oTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698421386; x=1699026186;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0NUEyjjvZD3sZIgVAZcZlQ2UsD1JGHJJKuO7MaTqPDY=;
+        b=Uce7ZUkH5d3sC5QEMTBxd9kdWwwHZ/Er1XxSabjztlHqRy9FCIIFJXSmseKgIVQ7LV
+         Q2ak+W1X07eyovLt6AyKulhzEZVo319sGW8OmfAq4ztoNzBL8nhtE2Ty0OmaGvAwoo3y
+         1pfor65PMDgjKCMfm0d84j1+tdICQBVh5VP1Hk1tOHcoQ6PlU8leDusi1/u9AhzIZxon
+         xmI3WK1h9CkY30Np6CYyHqsM4j7pbkXCdExMtnBooyUulyoNsP8XF7v9cWQ+ylGVLBPL
+         KmLq59wpccxyr0jyztSk8+We7kakcLmmVAumA8kWeYy3IxSWUIINAOo1PvEmEPD2wlKE
+         UMYQ==
+X-Gm-Message-State: AOJu0Ywt1Mlx84xSOQyFmKowBYE6Wct8IRMvl0oUEewhWjeqm2OexphK
+	nzU8ipZgIfVCiq/kfxnKzSjigQ==
+X-Google-Smtp-Source: AGHT+IEx/N0OUV5A9FXLided5UkCLjMqnc16wgrRBNTOukMY6YYFjgFSJXzCBeVlqx4V+2JX11pH3w==
+X-Received: by 2002:a17:903:234d:b0:1c4:16f:cc3e with SMTP id c13-20020a170903234d00b001c4016fcc3emr2759246plh.35.1698421385688;
+        Fri, 27 Oct 2023 08:43:05 -0700 (PDT)
+Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
+        by smtp.gmail.com with ESMTPSA id n16-20020a170903111000b001b9e9edbf43sm1729246plh.171.2023.10.27.08.42.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 08:43:05 -0700 (PDT)
+From: Anup Patel <apatel@ventanamicro.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Marc Zyngier <maz@kernel.org>,
+	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v2 0/2] Linux RISC-V AIA Preparatory Series
+Date: Fri, 27 Oct 2023 21:12:52 +0530
+Message-Id: <20231027154254.355853-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-Subject: Re: [PATCH v6 10/11] ARM: dts: stm32: add ETZPC as a system bus for
- STM32MP15x boards
-To: Rob Herring <robh@kernel.org>
-CC: <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>, <jic23@kernel.org>,
-        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
-        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
-        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
-        <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
-        <peng.fan@oss.nxp.com>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-p.hy@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-References: <20231010125719.784627-1-gatien.chevallier@foss.st.com>
- <20231010125719.784627-11-gatien.chevallier@foss.st.com>
- <20231010184212.GA1221641-robh@kernel.org>
- <8f1b6915-68be-a525-c5d5-37f0983c14de@foss.st.com>
- <20231012153012.GA698406-robh@kernel.org>
- <b16ed06f-66fd-457b-9610-a67ad07deb60@foss.st.com>
- <20231024163956.GA4049342-robh@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20231024163956.GA4049342-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.20.32]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-27_14,2023-10-27_01,2023-05-22_02
+Content-Transfer-Encoding: 8bit
 
+The first three patches of the v11 Linux RISC-V AIA series can be
+merged independently hence sending these patches as an independent
+perparatory series.
+(Refer, https://www.spinics.net/lists/devicetree/msg643764.html)
 
+These patches can also be found in the riscv_aia_prep_v2 branch at:
+https://github.com/avpatel/linux.git
 
-On 10/24/23 18:39, Rob Herring wrote:
-> On Mon, Oct 16, 2023 at 02:02:39PM +0200, Gatien CHEVALLIER wrote:
->> Hi Rob,
->>
->> On 10/12/23 17:30, Rob Herring wrote:
->>> On Wed, Oct 11, 2023 at 10:49:58AM +0200, Gatien CHEVALLIER wrote:
->>>> Hi Rob,
->>>>
->>>> On 10/10/23 20:42, Rob Herring wrote:
->>>>> On Tue, Oct 10, 2023 at 02:57:18PM +0200, Gatien Chevallier wrote:
->>>>>> ETZPC is a firewall controller. Put all peripherals filtered by the
->>>>>> ETZPC as ETZPC subnodes and reference ETZPC as an
->>>>>> access-control-provider.
->>>>>>
->>>>>> For more information on which peripheral is securable or supports MCU
->>>>>> isolation, please read the STM32MP15 reference manual.
->>>>>>
->>>>>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->>>>>> ---
->>>>>>
->>>>>> Changes in V6:
->>>>>>        	- Renamed access-controller to access-controllers
->>>>>>        	- Removal of access-control-provider property
->>>>>>
->>>>>> Changes in V5:
->>>>>>        	- Renamed feature-domain* to access-control*
->>>>>>
->>>>>>     arch/arm/boot/dts/st/stm32mp151.dtsi  | 2756 +++++++++++++------------
->>>>>>     arch/arm/boot/dts/st/stm32mp153.dtsi  |   52 +-
->>>>>>     arch/arm/boot/dts/st/stm32mp15xc.dtsi |   19 +-
->>>>>>     3 files changed, 1450 insertions(+), 1377 deletions(-)
->>>>>
->>>>> This is not reviewable. Change the indentation and any non-functional
->>>>> change in one patch and then actual changes in another.
->>>>
->>>> Ok, I'll make it easier to read.
->>>>
->>>>>
->>>>> This is also an ABI break. Though I'm not sure it's avoidable. All the
->>>>> devices below the ETZPC node won't probe on existing kernel. A
->>>>> simple-bus fallback for ETZPC node should solve that.
->>>>>
->>>>
->>>> I had one issue when trying with a simple-bus fallback that was the
->>>> drivers were probing even though the access rights aren't correct.
->>>> Hence the removal of the simple-bus compatible in the STM32MP25 patch.
->>>
->>> But it worked before, right? So the difference is you have either added
->>> new devices which need setup or your firmware changed how devices are
->>> setup (or not setup). Certainly can't fix the latter case. You just need
->>> to be explicit about what you are doing to users.
->>>
->>
->> I should've specified it was during a test where I deliberately set
->> incorrect rights on a peripheral and enabled its node to see if the
->> firewall would allow the creation of the device.
->>
->>>
->>>> Even though a node is tagged with the OF_POPULATED flag when checking
->>>> the access rights with the firewall controller, it seems that when
->>>> simple-bus is probing, there's no check of this flag.
->>>
->>> It shouldn't. Those flags are for creating the devices (or not) and
->>> removing only devices of_platform_populate() created.
->>>
->>
->> About the "simple-bus" being a fallback, I think I understood why I saw
->> that the devices were created.
->>
->> All devices under a node whose compatible is "simple-bus" are created
->> in of_platform_device_create_pdata(), called by
->> of_platform_default_populate_init() at arch_initcall level. This
->> before the firewall-controller has a chance to populate it's bus.
->>
->> Therefore, when I flag nodes when populating the firewall-bus, the
->> devices are already created. The "simple-bus" mechanism is not a
->> fallback here as it precedes the driver probe.
->>
->> Is there a safe way to safely remove/disable a device created this way?
-> 
-> There's 2 ways to handle this. Either controlling creating the device or
-> controlling probing the device. The latter should just work with
-> fw_devlink dependency. The former probably needs some adjustment to
-> simple-pm-bus driver if you have 'simple-bus' compatible. You want it to
-> probe on old kernels and not probe on new kernels with your firewall
-> driver. Look at the commit history for simple-pm-bus. There was some
-> discussion on it as well.
-> 
+Changes since v1:
+ - Use imperative wording in PATCH1 commit description
+ - Dropped PATCH3 since it is already merged by Thomas
 
-Hi Rob,
+Anup Patel (2):
+  RISC-V: Don't fail in riscv_of_parent_hartid() for disabled HARTs
+  of: property: Add fw_devlink support for msi-parent
 
-First, thank you for your suggestions.
+ arch/riscv/kernel/cpu.c | 11 ++++++-----
+ drivers/of/property.c   |  2 ++
+ 2 files changed, 8 insertions(+), 5 deletions(-)
 
-Regarding controlling probing the device: the philosophy of the firewall
-controller was to check a device secure configuration to determine if
-its associated driver should be probed (+handle some firewall
-resources). I'd rather avoid it so that the device isn't created at all.
+-- 
+2.34.1
 
-I took a look on the simple-bus driver side. I don't see an obvious way
-on how to do it as the firewall controller driver is a module while the
-devices being populated is done at arch initcall level.
-
-I ended up with two propositions:
-
-1)I took a shot at implementing a new flag "OF_ACCESS_GRANTED" that
-should be set in the first call of the of_platform_bus_create()
-function for every child node of a "default bus" (simple-bus,
-simple-pm-bus, ...) having the access-controllers property.
-This flag should be unset by the access controller if the access is
-not granted. This covers the particular case where the access controller
-has a simple-bus fallback whilst not creating the devices on the first
-try for the bus' childs.
-
-This way, the first round of of_platform_populate() done at arch init
-call level won't create the devices of an access controller child
-nodes. Then, the firewall controller has a chance to clear the flag
-before the second call to this function by the simple-pm-bus driver.
-
-If the controller module isn't present, then it's a simple-bus
-behavior to extent of the child devices not being all created in the
-first place. This shouldn't be an issue as in only concerns childs
-of such bus that aren't probed before the bus driver.
-
-I have a patch that I can send as RFC on top of my series if my
-explanation isn't clear enough.
-
-2)Make the STM32_FIREWALL configuration switch select the OF_DYNAMIC
-one. This way I can use of_detach_node() function to remove the node
-from the device tree. The cons of this is the device tree is now
-used at runtime.
-
-Are you considering one of these two proposition as a viable solution?
-
-Best regards,
-Gatien
-
->> Devices that are under the firewall controller (simple-bus) node
->> should not be probed before it as they're child of it.
-> 
-> fw_devlink should take care of parent/child dependencies without any
-> explicit handling of the access ctrl binding.
-> 
-> Rob
 
