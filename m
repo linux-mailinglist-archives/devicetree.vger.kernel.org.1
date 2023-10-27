@@ -1,110 +1,76 @@
-Return-Path: <devicetree+bounces-12401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852137D952F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:25:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A6D7D95D1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FAAB2823AA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:24:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4D031F235B9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF95518031;
-	Fri, 27 Oct 2023 10:24:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BNqnkM7D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A169017756;
+	Fri, 27 Oct 2023 10:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1571E17732
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 10:24:54 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C361DC;
-	Fri, 27 Oct 2023 03:24:52 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPA id 6724CFF813;
-	Fri, 27 Oct 2023 10:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698402290;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=cGPv+pY+P6hcMNmV/AQ4WJAxMTYlBDo9T5+aYFQOgzo=;
-	b=BNqnkM7DL8PHAvoJucbsNnzyN67Xqv3vw1XSqrpkP1Wp9YjQY4tN0jdVh2O7osNMJeG5Aw
-	HbasXwbwQngKO6KQyOahNUFA2dVEFk8GQj48Uwgg+YoM1jylHXugFjPYuFMSzEVSnktN/L
-	I5bNGYZQFOnS6xXdKD1ptxClT2j8f4sGj+Lr6deYmvsznRyiqLwtIVu2QsdfghvB5Rg493
-	+8YPecnqp0FJdfUn1sez8dAbku1P06TJxMXwf5EqFd7BtVFqSbYNgI6b4VtYZaLujWuuuj
-	8SJPi8ECG2bqwlq+AYAG5XSl+lO2oiBwQ5u5M+mEefUQLaR0VtWysla/9zFDfg==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Lizhi Hou <lizhi.hou@amd.com>
-Cc: Max Zhen <max.zhen@amd.com>,
-	Sonal Santan <sonal.santan@amd.com>,
-	Stefano Stabellini <stefano.stabellini@xilinx.com>,
-	Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH 1/1] of: unittest: Fix test build on config without CONFIG_OF_ADDRESS
-Date: Fri, 27 Oct 2023 12:24:37 +0200
-Message-ID: <20231027102440.677773-1-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.41.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F728BF9
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 10:59:33 +0000 (UTC)
+X-Greylist: delayed 902 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 27 Oct 2023 03:59:30 PDT
+Received: from mail-sh.amlogic.com (unknown [58.32.228.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5BBF9C;
+	Fri, 27 Oct 2023 03:59:30 -0700 (PDT)
+Received: from rd02-sz.amlogic.software (10.28.11.83) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 27 Oct 2023
+ 18:44:25 +0800
+From: Huqiang Qin <huqiang.qin@amlogic.com>
+To: <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<neil.armstrong@linaro.org>, <khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Huqiang Qin <huqiang.qin@amlogic.com>
+Subject: [PATCH V3 0/3] Add watchdog support for Amlogic C3 and S4 SoCs
+Date: Fri, 27 Oct 2023 18:43:55 +0800
+Message-ID: <20231027104358.342861-1-huqiang.qin@amlogic.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain
+X-Originating-IP: [10.28.11.83]
 
-of_address_to_resource() is not defined if !CONFIG_OF_ADDRESS.
+Amlogic C3 and S4 has the same watchdog controller as Amlogic T7.
 
-Return early in of_unittest_check_addr() to avoid the
-of_address_to_resource() usage.
+Changes since V2 [2]:
+- Modified yaml document to ensure that dtbs_check passes.
+- Added a patch for watchdog support for S4.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202310271513.8MUErCK4-lkp@intel.com/
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
-Rob,
+Changes since V1 [1]:
+- Added C3 compatibles, with T7 compatibles list as fallback.
 
-This fixes a patch you already applied from my series
-https://lore.kernel.org/all/20231017110221.189299-1-herve.codina@bootlin.com/
+[1]: https://lore.kernel.org/all/20230925090641.1185942-1-huqiang.qin@amlogic.com/
+[2]: https://lore.kernel.org/all/20230926055512.2355390-1-huqiang.qin@amlogic.com/
 
-I don't know if it's too late or not but maybe you can squash this fix patch.
+Huqiang Qin (3):
+  dt-bindings: watchdog: Add support for Amlogic C3 and S4 SoCs
+  arm64: dts: Add watchdog node for Amlogic C3 SoCs
+  arm64: dts: Add watchdog node for Amlogic S4 SoCs
 
-My apologies for this issue.
+ .../bindings/watchdog/amlogic,meson-gxbb-wdt.yaml    | 12 +++++++++---
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi          |  6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi            |  6 ++++++
+ 3 files changed, 21 insertions(+), 3 deletions(-)
 
-Hervé
-
- drivers/of/unittest.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index ffbecd349899..e9e90e96600e 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1201,6 +1201,9 @@ static void __init of_unittest_check_addr(const char *node_path,
- 	unsigned int count;
- 	int ret;
- 
-+	if (!IS_ENABLED(CONFIG_OF_ADDRESS))
-+		return;
-+
- 	np = of_find_node_by_path(node_path);
- 	if (!np) {
- 		pr_err("missing testcase data (%s)\n", node_path);
 -- 
-2.41.0
+2.42.0
 
 
