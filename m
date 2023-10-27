@@ -1,466 +1,297 @@
-Return-Path: <devicetree+bounces-12512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 070E27D9C12
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:48:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051827D9C23
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 290941C20FF6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:48:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D23F1C20F34
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C5D199CE;
-	Fri, 27 Oct 2023 14:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E741EB39;
+	Fri, 27 Oct 2023 14:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gX32qHm6"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="aw4PcDC7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A42918654
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:47:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A4CC433C9;
-	Fri, 27 Oct 2023 14:47:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698418073;
-	bh=nAT3vIPkBRzhyPX82SokqF71iDQhFT4SJJaMDT239ts=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gX32qHm6ZUcjL0sknP6o//EXBUfac7BH/NfcEJY1l3zjatt9wB/LQZSwbFvwQINM2
-	 95mgLCnh2GizDwkzxJ5CfJWGdbaz+bF0kku2ebe+mn7VmT1AOUMR+4ubLvGXoVjEwz
-	 M98+u3i6mPUquauB0CLrM0oykM8mApjPuXm9aULR9+eaY7iME4xxb4aU6StmrP8FFb
-	 5OFheyjh1LTW+gqwhMyyOs0ENaBckhwb4wOiMiQcfiUuujAYfh62AvXs4AjHUopXx/
-	 DfGGSAJzQX7YaCREiPzAcygKuvGNOAuzErmib2ZDJUhmnhyzL/KqfkU8dSx02t/Z/9
-	 EVQaIyCio9W8Q==
-Date: Fri, 27 Oct 2023 15:47:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A5418654
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:50:22 +0000 (UTC)
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA52C4;
+	Fri, 27 Oct 2023 07:50:20 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (185-9-10-242.cust.suomicom.net [185.9.10.242])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4SH5Dk1067zyRk;
+	Fri, 27 Oct 2023 17:50:10 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1698418217;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CwLL8oRcqzD+WCVphWWS/lhaeiBAkPeqfmq7MEhA+uk=;
+	b=aw4PcDC7D6l3DxZDu8NVZ/dZ4YmKi9iyE30Auw8nNDZBsEsb5Ncl1aK4Mz5qvGe95MBT9P
+	1o1kZq1G05NxU6quwaKWCxNQ90CHXUqyHfXZq0ww9WWakagBSKHc7kz+jr6rqQy4Jw4En6
+	Rmy2XhPCiVieymw5VbUEYKqrpDZLaZs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1698418217;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CwLL8oRcqzD+WCVphWWS/lhaeiBAkPeqfmq7MEhA+uk=;
+	b=ISllpOLF2nQlLA2Z4nPC24TJLh9epmlUhbOyVz6PEyJeH8eI12jo2ReMOVCk0g+MEJmgB8
+	tTuT40H4WIhlwXJ2rcfXmM2KCJSDTs+ApXlk5rkagS88WFkPjSSUYHwcu6dZC6M7oZS3sO
+	FMsQQ9VK6ejVtPplV3NYuOJVB0PMNJI=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1698418217; a=rsa-sha256; cv=none;
+	b=hVXsAbROPPnSFm17/MvceFi5a+vm4JAG60zKcNNYbOrDloP0Y6zcxsQTwgApiSJTuDO9Rz
+	bs13hKU1Q4wHUu3Lv236+H/J+s1LRrSAk5o4+V3QD3ZaeGSnHRwSdAGCRgdD449VGxKhof
+	wcoLGoMVA+w1Z/uynMWMQ+1KimWOz3o=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id BC61B634C93;
+	Fri, 27 Oct 2023 17:50:09 +0300 (EEST)
+Date: Fri, 27 Oct 2023 14:50:09 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Artur Weber <aweber.kernel@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: clock: brcm,kona-ccu: convert to YAML
-Message-ID: <20231027-bulldog-component-5b84e4660465@spud>
-References: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] media: i2c: Add driver for THine THP7312
+Message-ID: <ZTvOIQSmpytUisUD@valkosipuli.retiisi.eu>
+References: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
+ <20231017132103.9914-4-laurent.pinchart@ideasonboard.com>
+ <ZTutbU1XG_jKZbIp@valkosipuli.retiisi.eu>
+ <20231027124529.GA19539@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PpgCk1CqQ30xHt9p"
-Content-Disposition: inline
-In-Reply-To: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
-
-
---PpgCk1CqQ30xHt9p
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231027124529.GA19539@pendragon.ideasonboard.com>
 
-On Tue, Oct 24, 2023 at 06:45:21PM +0200, Stanislav Jakubek wrote:
-> Convert Broadcom Kona family clock controller unit (CCU) bindings
-> to DT schema.
+Hi Laurent,
 
-I didn't cross-check the clock-output-names, but this conversion mostly
-looks good to me.
+On Fri, Oct 27, 2023 at 03:45:29PM +0300, Laurent Pinchart wrote:
 
-> Changes during conversion:
->   - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
->     it is not used in DT nor the dt-bindings
->   - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
->     it is not used in DT nor the dt-bindings
+...
 
-This I'm not sure about - they _were_ documented in the text-form
-dt-binding, even if they weren't used in the dts. If the clock
-controller does actually produce these clocks, removing them doesn't
-make sense to me.
+> > > +#include <linux/clk.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/device.h>
+> > > +#include <linux/firmware.h>
+> > > +#include <linux/gpio/consumer.h>
+> > > +#include <linux/i2c.h>
+> > > +#include <linux/init.h>
+> > > +#include <linux/iopoll.h>
+> > > +#include <linux/kernel.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/mtd/spi-nor.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/pm_runtime.h>
+> > > +#include <linux/regulator/consumer.h>
+> > > +#include <linux/slab.h>
+> > > +#include <linux/thp7312.h>
+> > 
+> > uapi/linux/thp7321.h ?
+> 
+> Is that needed ?
 
-Cheers,
-Conor.
+It's a UAPI header. Wouldn't it be reasonable to include it that way
+(instead of relying on searching include/uapi as well)?
 
->=20
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
->=20
-> Changes in V2:
->   - remove the table copied from the old txt bindings, replace it with if=
--then
->     blocks individually listing the allowed clock-output-names per compat=
-ible
->   - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
->     it is not used in DT nor the dt-bindings
->   - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
->     it is not used in DT nor the dt-bindings
->   - move allOf: after required:
->   - Link to V1: https://lore.kernel.org/lkml/ZTUIJrTc6KKyT4xj@standask-GA=
--A55M-S2HP/
->=20
->  .../bindings/clock/brcm,kona-ccu.txt          | 138 -------------
->  .../bindings/clock/brcm,kona-ccu.yaml         | 181 ++++++++++++++++++
->  2 files changed, 181 insertions(+), 138 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu=
-=2Etxt
->  create mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu=
-=2Eyaml
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt b/=
-Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
-> deleted file mode 100644
-> index 8e5a7d868557..000000000000
-> --- a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
-> +++ /dev/null
-> @@ -1,138 +0,0 @@
-> -Broadcom Kona Family Clocks
-> -
-> -This binding is associated with Broadcom SoCs having "Kona" style
-> -clock control units (CCUs).  A CCU is a clock provider that manages
-> -a set of clock signals.  Each CCU is represented by a node in the
-> -device tree.
-> -
-> -This binding uses the common clock binding:
-> -    Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -Required properties:
-> -- compatible
-> -	Shall have a value of the form "brcm,<model>-<which>-ccu",
-> -	where <model> is a Broadcom SoC model number and <which> is
-> -	the name of a defined CCU.  For example:
-> -	    "brcm,bcm11351-root-ccu"
-> -	The compatible strings used for each supported SoC family
-> -	are defined below.
-> -- reg
-> -	Shall define the base and range of the address space
-> -	containing clock control registers
-> -- #clock-cells
-> -	Shall have value <1>.  The permitted clock-specifier values
-> -	are defined below.
-> -- clock-output-names
-> -	Shall be an ordered list of strings defining the names of
-> -	the clocks provided by the CCU.
-> -
-> -Device tree example:
-> -
-> -	slave_ccu: slave_ccu {
-> -		compatible =3D "brcm,bcm11351-slave-ccu";
-> -		reg =3D <0x3e011000 0x0f00>;
-> -		#clock-cells =3D <1>;
-> -		clock-output-names =3D "uartb",
-> -				     "uartb2",
-> -				     "uartb3",
-> -				     "uartb4";
-> -	};
-> -
-> -	ref_crystal_clk: ref_crystal {
-> -		#clock-cells =3D <0>;
-> -		compatible =3D "fixed-clock";
-> -		clock-frequency =3D <26000000>;
-> -	};
-> -
-> -	uart@3e002000 {
-> -		compatible =3D "brcm,bcm11351-dw-apb-uart", "snps,dw-apb-uart";
-> -		reg =3D <0x3e002000 0x1000>;
-> -		clocks =3D <&slave_ccu BCM281XX_SLAVE_CCU_UARTB3>;
-> -		interrupts =3D <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
-> -		reg-shift =3D <2>;
-> -		reg-io-width =3D <4>;
-> -	};
-> -
-> -BCM281XX family
-> ----------------
-> -CCU compatible string values for SoCs in the BCM281XX family are:
-> -    "brcm,bcm11351-root-ccu"
-> -    "brcm,bcm11351-aon-ccu"
-> -    "brcm,bcm11351-hub-ccu"
-> -    "brcm,bcm11351-master-ccu"
-> -    "brcm,bcm11351-slave-ccu"
-> -
-> -The following table defines the set of CCUs and clock specifiers for
-> -BCM281XX family clocks.  When a clock consumer references a clocks,
-> -its symbolic specifier (rather than its numeric index value) should
-> -be used.  These specifiers are defined in:
-> -    "include/dt-bindings/clock/bcm281xx.h"
-> -
-> -    CCU     Clock           Type    Index   Specifier
-> -    ---     -----           ----    -----   ---------
-> -    root    frac_1m         peri      0     BCM281XX_ROOT_CCU_FRAC_1M
-> -
-> -    aon     hub_timer       peri      0     BCM281XX_AON_CCU_HUB_TIMER
-> -    aon     pmu_bsc         peri      1     BCM281XX_AON_CCU_PMU_BSC
-> -    aon     pmu_bsc_var     peri      2     BCM281XX_AON_CCU_PMU_BSC_VAR
-> -
-> -    hub     tmon_1m         peri      0     BCM281XX_HUB_CCU_TMON_1M
-> -
-> -    master  sdio1           peri      0     BCM281XX_MASTER_CCU_SDIO1
-> -    master  sdio2           peri      1     BCM281XX_MASTER_CCU_SDIO2
-> -    master  sdio3           peri      2     BCM281XX_MASTER_CCU_SDIO3
-> -    master  sdio4           peri      3     BCM281XX_MASTER_CCU_SDIO4
-> -    master  dmac            peri      4     BCM281XX_MASTER_CCU_DMAC
-> -    master  usb_ic          peri      5     BCM281XX_MASTER_CCU_USB_IC
-> -    master  hsic2_48m       peri      6     BCM281XX_MASTER_CCU_HSIC_48M
-> -    master  hsic2_12m       peri      7     BCM281XX_MASTER_CCU_HSIC_12M
-> -
-> -    slave   uartb           peri      0     BCM281XX_SLAVE_CCU_UARTB
-> -    slave   uartb2          peri      1     BCM281XX_SLAVE_CCU_UARTB2
-> -    slave   uartb3          peri      2     BCM281XX_SLAVE_CCU_UARTB3
-> -    slave   uartb4          peri      3     BCM281XX_SLAVE_CCU_UARTB4
-> -    slave   ssp0            peri      4     BCM281XX_SLAVE_CCU_SSP0
-> -    slave   ssp2            peri      5     BCM281XX_SLAVE_CCU_SSP2
-> -    slave   bsc1            peri      6     BCM281XX_SLAVE_CCU_BSC1
-> -    slave   bsc2            peri      7     BCM281XX_SLAVE_CCU_BSC2
-> -    slave   bsc3            peri      8     BCM281XX_SLAVE_CCU_BSC3
-> -    slave   pwm             peri      9     BCM281XX_SLAVE_CCU_PWM
-> -
-> -
-> -BCM21664 family
-> ----------------
-> -CCU compatible string values for SoCs in the BCM21664 family are:
-> -    "brcm,bcm21664-root-ccu"
-> -    "brcm,bcm21664-aon-ccu"
-> -    "brcm,bcm21664-master-ccu"
-> -    "brcm,bcm21664-slave-ccu"
-> -
-> -The following table defines the set of CCUs and clock specifiers for
-> -BCM21664 family clocks.  When a clock consumer references a clocks,
-> -its symbolic specifier (rather than its numeric index value) should
-> -be used.  These specifiers are defined in:
-> -    "include/dt-bindings/clock/bcm21664.h"
-> -
-> -    CCU     Clock           Type    Index   Specifier
-> -    ---     -----           ----    -----   ---------
-> -    root    frac_1m         peri      0     BCM21664_ROOT_CCU_FRAC_1M
-> -
-> -    aon     hub_timer       peri      0     BCM21664_AON_CCU_HUB_TIMER
-> -
-> -    master  sdio1           peri      0     BCM21664_MASTER_CCU_SDIO1
-> -    master  sdio2           peri      1     BCM21664_MASTER_CCU_SDIO2
-> -    master  sdio3           peri      2     BCM21664_MASTER_CCU_SDIO3
-> -    master  sdio4           peri      3     BCM21664_MASTER_CCU_SDIO4
-> -    master  sdio1_sleep     peri      4     BCM21664_MASTER_CCU_SDIO1_SL=
-EEP
-> -    master  sdio2_sleep     peri      5     BCM21664_MASTER_CCU_SDIO2_SL=
-EEP
-> -    master  sdio3_sleep     peri      6     BCM21664_MASTER_CCU_SDIO3_SL=
-EEP
-> -    master  sdio4_sleep     peri      7     BCM21664_MASTER_CCU_SDIO4_SL=
-EEP
-> -
-> -    slave   uartb           peri      0     BCM21664_SLAVE_CCU_UARTB
-> -    slave   uartb2          peri      1     BCM21664_SLAVE_CCU_UARTB2
-> -    slave   uartb3          peri      2     BCM21664_SLAVE_CCU_UARTB3
-> -    slave   uartb4          peri      3     BCM21664_SLAVE_CCU_UARTB4
-> -    slave   bsc1            peri      4     BCM21664_SLAVE_CCU_BSC1
-> -    slave   bsc2            peri      5     BCM21664_SLAVE_CCU_BSC2
-> -    slave   bsc3            peri      6     BCM21664_SLAVE_CCU_BSC3
-> -    slave   bsc4            peri      7     BCM21664_SLAVE_CCU_BSC4
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml b=
-/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
-> new file mode 100644
-> index 000000000000..e5656950b3bd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
-> @@ -0,0 +1,181 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom Kona family clock control units (CCU)
-> +
-> +maintainers:
-> +  - Florian Fainelli <florian.fainelli@broadcom.com>
-> +  - Ray Jui <rjui@broadcom.com>
-> +  - Scott Branden <sbranden@broadcom.com>
-> +
-> +description: |
-> +  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
-> +  manages a set of clock signals.
-> +
-> +  All available clock IDs are defined in
-> +  - include/dt-bindings/clock/bcm281xx.h for BCM281XX family
-> +  - include/dt-bindings/clock/bcm21664.h for BCM21664 family
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - brcm,bcm11351-aon-ccu
-> +      - brcm,bcm11351-hub-ccu
-> +      - brcm,bcm11351-master-ccu
-> +      - brcm,bcm11351-root-ccu
-> +      - brcm,bcm11351-slave-ccu
-> +      - brcm,bcm21664-aon-ccu
-> +      - brcm,bcm21664-master-ccu
-> +      - brcm,bcm21664-root-ccu
-> +      - brcm,bcm21664-slave-ccu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clock-output-names:
-> +    minItems: 1
-> +    maxItems: 10
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +  - clock-output-names
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm11351-aon-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          items:
-> +            - const: hub_timer
-> +            - const: pmu_bsc
-> +            - const: pmu_bsc_var
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm11351-hub-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          const: tmon_1m
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm11351-master-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          items:
-> +            - const: sdio1
-> +            - const: sdio2
-> +            - const: sdio3
-> +            - const: sdio4
-> +            - const: usb_ic
-> +            - const: hsic2_48m
-> +            - const: hsic2_12m
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - brcm,bcm11351-root-ccu
-> +              - brcm,bcm21664-root-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          const: frac_1m
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm11351-slave-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          items:
-> +            - const: uartb
-> +            - const: uartb2
-> +            - const: uartb3
-> +            - const: uartb4
-> +            - const: ssp0
-> +            - const: ssp2
-> +            - const: bsc1
-> +            - const: bsc2
-> +            - const: bsc3
-> +            - const: pwm
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm21664-aon-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          const: hub_timer
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm21664-master-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          items:
-> +            - const: sdio1
-> +            - const: sdio2
-> +            - const: sdio3
-> +            - const: sdio4
-> +            - const: sdio1_sleep
-> +            - const: sdio2_sleep
-> +            - const: sdio3_sleep
-> +            - const: sdio4_sleep
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm21664-slave-ccu
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          items:
-> +            - const: uartb
-> +            - const: uartb2
-> +            - const: uartb3
-> +            - const: bsc1
-> +            - const: bsc2
-> +            - const: bsc3
-> +            - const: bsc4
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-controller@3e011000 {
-> +      compatible =3D "brcm,bcm11351-slave-ccu";
-> +      reg =3D <0x3e011000 0x0f00>;
-> +      #clock-cells =3D <1>;
-> +      clock-output-names =3D "uartb",
-> +                           "uartb2",
-> +                           "uartb3",
-> +                           "uartb4",
-> +                           "ssp0",
-> +                           "ssp2",
-> +                           "bsc1",
-> +                           "bsc2",
-> +                           "bsc3",
-> +                           "pwm";
-> +    };
-> +...
-> --=20
-> 2.34.1
->=20
+> > > +	struct {
+> > > +		struct v4l2_ctrl *noise_reduction_auto;
+> > > +		struct v4l2_ctrl *noise_reduction_absolute;
+> > > +	};
+> > > +
+> > > +	const char *fw_name;
+> > > +	u8 *fw_data;
+> > > +	size_t fw_size;
+> > > +
+> > > +	u8 fw_major_version;
+> > > +	u8 fw_minor_version;
+> > > +
+> > > +	/* Lock to protect fw_cancel */
+> > > +	struct mutex fw_lock;
+> > > +	struct fw_upload *fwl;
+> > > +	bool fw_cancel;
+> > 
+> > Arranging this right after fw_* would save some memory.
+> 
+> After what ? I assume you mean fw_*_version ? It would, but it would
+> feel a bit out of place. I'll see what I can do.
 
---PpgCk1CqQ30xHt9p
-Content-Type: application/pgp-signature; name="signature.asc"
+Yes. There doesn't seem to be any firm ordering here either. Up to you.
 
------BEGIN PGP SIGNATURE-----
+...
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTvNlAAKCRB4tDGHoIJi
-0jYIAQCUJq9VPOfJ8GqCoKw0wOrV4eSRvP1LpFvKlJLMdmkJtQD+P8riU4F8BNVM
-Qjf3aEc3xvojkrRD4IP7/6xEFYnhcAE=
-=TpuJ
------END PGP SIGNATURE-----
+> > > +	val = ((conv_lanes[3] & 0x03) << 6) |
+> > > +	      ((conv_lanes[2] & 0x03) << 4) |
+> > > +	      ((conv_lanes[1] & 0x03) << 2) |
+> > > +	       (conv_lanes[0] & 0x03);
+> > 
+> > You could construct val in the loop and drop conv_lanes altogether.
+> > 
+> > I.e.
+> > 
+> > 		val |= (i & 0x03) << ((lanes[i] - 1) * 2);
+> > 
+> > And assign val to 0 in declaration.
+> 
+> I think I'll compute it at probe time and cache it instead.
 
---PpgCk1CqQ30xHt9p--
+If you don't need anything else in the endpoint, you could move it out of
+the device context struct.
+
+> > > +	for (rate = mode->rates; rate->fps; ++rate, --index) {
+> > > +		if (!index) {
+> > > +			fie->interval.numerator = 1;
+> > > +			fie->interval.denominator = rate->fps;
+> > 
+> > Maybe a newline here?
+> 
+> If that makes you happy :-)
+
+Newlines are great (when they are at the right places)!
+
+> > > +	case V4L2_CID_THP7312_NOISE_REDUCTION_AUTO:
+> > > +	case V4L2_CID_THP7312_NOISE_REDUCTION_ABSOLUTE:
+> > > +		/* Ignore the manually set value if auto has been set */
+> > > +		value = thp7312->noise_reduction_auto->val
+> > > +		      ? 0 : 0x80 | (thp7312->noise_reduction_absolute->val & 0x7f);
+> > 
+> > "?" should be on the preceding line.
+> 
+> Isn't that a matter of coding style preference ?
+
+Yes, indeed, and I recall GNU coding style is shunned upon here. :-)
+
+> 
+> > > +
+> > > +		cci_write(thp7312->regmap, THP7312_REG_NOISE_REDUCTION, value,
+> > > +			  &ret);
+> > > +		break;
+> > > +
+> > > +	case V4L2_CID_AUTO_WHITE_BALANCE:
+> > > +		value = ctrl->val ? THP7312_WB_MODE_AUTO : THP7312_WB_MODE_MANUAL;
+> > 
+> > I'd do this in the call, up to you.
+> 
+> Only if you allow lines longer than 80 columns ;-)
+
+I don't think you need longer lines for that, do you?
+
+> 
+> > > +
+> > > +		cci_write(thp7312->regmap, THP7312_REG_WB_MODE, value, &ret);
+> > > +		break;
+> > > +
+
+...
+
+> > > +static enum fw_upload_err thp7312_fw_write_to_flash(struct thp7312_device *thp7312,
+> > > +						    u32 dest, u32 write_size)
+> > > +{
+> > > +	u8 command[sizeof(thp7312_cmd_write_ram_to_flash) + 6];
+> > > +	static const u32 cmd_size = sizeof(thp7312_cmd_write_ram_to_flash);
+> > > +	u64 val;
+> > > +	int ret;
+> > > +
+> > > +	memcpy(command, thp7312_cmd_write_ram_to_flash, cmd_size);
+> > > +
+> > > +	command[cmd_size] = (dest & 0xff0000) >> 16;
+> > > +	command[cmd_size + 1] = (dest & 0x00ff00) >> 8;
+> > > +	command[cmd_size + 2] = (dest & 0x0000ff);
+> > > +	command[cmd_size + 3] = ((write_size - 1) & 0xff0000) >> 16;
+> > > +	command[cmd_size + 4] = ((write_size - 1) & 0x00ff00) >> 8;
+> > > +	command[cmd_size + 5] = ((write_size - 1) & 0x0000ff);
+> > > +
+> > > +	ret = thp7312_write_buf(thp7312, command, sizeof(command));
+> > > +	if (ret < 0)
+> > > +		return FW_UPLOAD_ERR_RW_ERROR;
+> > > +
+> > > +	usleep_range(8000000, 8100000);
+> > 
+> > I guess there's time to make some tea here?
+> 
+> For a flash infusion, gong fu style, probably.
+> 
+> We don't have much documentation about the exact values of the delays
+> that are needed, and why :-(
+
+I have even less documentation (none) on this device. Is polling an option,
+as you're reading a register to verify the operation was successful?
+
+> 
+> > > +
+> > > +	ret = cci_read(thp7312->regmap, THP7312_REG_FW_VERIFY_RESULT, &val,
+> > > +		       NULL);
+> > > +	if (ret < 0)
+> > > +		return FW_UPLOAD_ERR_RW_ERROR;
+> > > +
+> > > +	return val ?  FW_UPLOAD_ERR_HW_ERROR : FW_UPLOAD_ERR_NONE;
+> > > +}
+
+...
+
+> > > +	/*
+> > > +	 * Register a device for the sensor, to support usage of the regulator
+> > > +	 * API.
+> > > +	 */
+> > > +	sensor->dev = kzalloc(sizeof(*sensor->dev), GFP_KERNEL);
+> > > +	if (!sensor->dev)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	sensor->dev->parent = dev;
+> > > +	sensor->dev->of_node = of_node_get(sensor->of_node);
+> > 
+> > This device could well find its way to a non-OF system. Could you use the
+> > fwnode property API instead?
+> 
+> I'm pretty sure there will be problems if someone was using this driver
+> on an ACPI-based system, so trying to pretend it's supported without
+> being able to test it may not be the best use of development time. I'll
+> try, but if I hit any issue, I'll keep using the OF-specific functions
+> in the next version.
+
+I'd suggest to use OF functions if there's no corresponding fwnode function
+available. The intention is they cover the same scope, so it is likely
+something that's missing will be added sooner or later.
+
+> > > +	/* Retrieve the sensor index from the reg property. */
+> > > +	ret = of_property_read_u32(node, "reg", &reg);
+> > > +	if (ret < 0) {
+> > > +		dev_err(dev, "'reg' property missing in sensor node\n");
+> > 
+> > Shouldn't you assume it's zero instead?
+> 
+> The property is mandatory.
+
+You could also make it optional as that appears to be the general practice.
+Up to you.
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
