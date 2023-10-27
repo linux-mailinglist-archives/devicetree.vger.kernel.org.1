@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74B77D963A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:16:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D8E7D9647
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:17:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6ECCAB20B99
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:16:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCACBB20C17
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EBBF182A4;
-	Fri, 27 Oct 2023 11:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC3E182C0;
+	Fri, 27 Oct 2023 11:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dVnpA5EG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V3dtfsyR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39A418057
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:16:06 +0000 (UTC)
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7929826AD
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:15:38 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-507c91582fdso2847164e87.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:15:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE09182BA
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:17:29 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10EFCD7A
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:17:11 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c50cf61f6dso28688601fa.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:17:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698405336; x=1699010136; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698405429; x=1699010229; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UzJNCQE9lIWs8QWU4r4wyUtYu55wpx8s4OSbjSYDFgI=;
-        b=dVnpA5EGU/L88g8Ra/eknMmltQw4tYYRPtOPTZGRCeghsSfDmGc82yq149q/pmsERE
-         3dhj+rKE0ijFcGiXHfkMxfv0Y4GIG57QhIgk5Wd0pybMygHSSvbsoMnQzQwOWz5R2q9G
-         9vJcyVcsY2tb4/j3D727juvXUUhYifeGsE7m1/N93zR1Zd92WTD6Ntvcmj17hdaX0cn/
-         bCWvofHAROCsohslFM3GFkCNMch9XDNa+Z+wPoNsaKucSIHi7nvrCK0WlwMiZ7n4Oi/3
-         CssuGr62aDx9uGsBWd6CvSsUAyAICtFEoO2jTP+1+P4Xzi380usK/qv3UAGxU8mK5BIA
-         rW6Q==
+        bh=eVx+hYNTtyPTCrkTEuuWNFgk6rRa3E+X6uh7DImui/I=;
+        b=V3dtfsyRMRjMTwL+UEml+EnGUBoO/1pjhp7i0qiYAf2GimC9mq77wHaImqsHZ77IMD
+         TCRQJ1+x441lOMupvms2TefIuQgFTV6Y5e5CiZ6JH9lw3GwjF93CWDka+bGyvEgJLAxj
+         7khJpkwABTfc1RAQQpPQ6epQNrOn8Pa1beSRFyarZ2YU7DWIdePnbrU74lS17lOogal5
+         tJlKMNR+azUeT4HZtLndlkHp1Cs6XdhOjXPj1u02LkXt785WHXG5WOd/aAVVZLM4BMKX
+         4fXuE1tuAlATp7YTpv51pLQirMvY3DGQiJITZ0bDc68o3jxuh7llTYWQbKwDkXtRXwiq
+         ZxpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698405336; x=1699010136;
+        d=1e100.net; s=20230601; t=1698405429; x=1699010229;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UzJNCQE9lIWs8QWU4r4wyUtYu55wpx8s4OSbjSYDFgI=;
-        b=R86Gf0vfemZY/gbq4CBqgv59kqyPYEIaeXkxsvn9a7CvXu8eK/9O6RnUT1YOa3WtsK
-         Wz4BdHSp0XLsxqI0boPMSwskMB5MnYK3HQq3HV2b//jegSr8o3HPzcXJvo5ZRff/sfXC
-         /TLUlQpGwOLs1JvAyanEd5OqfTzk+4UemWxe55b7wmgDbnxDr7tjn5b6Cff4tXLjt492
-         szXboexuzoQXm/xngHSiO+jljkTzVlYVtV/xetGjEjbh4sR75YfXBA5XOlrsUb1V/jsi
-         lXY3YLTdeQE3TTC0xAN5/GZibYyE1EzwoHQiNiKZa9o4HrHdUtvI9PkC497Wz17hFj+N
-         UPTw==
-X-Gm-Message-State: AOJu0Yy/frLXICyiYx0+z8tQ9l01wy1IpEw+40EUMtyacDsn9mPbpfJo
-	diWjtf9Azq1dqbUUOH1WYWIbgA==
-X-Google-Smtp-Source: AGHT+IHFnKZSrWhQ7TE5pG9aEy7GL96hHyfmiRDxAvTEvxLTDH4iZ+Eme18F80+H0CtBkdZu3bAwDw==
-X-Received: by 2002:a05:6512:457:b0:508:21c8:92e3 with SMTP id y23-20020a056512045700b0050821c892e3mr1598700lfk.9.1698405336081;
-        Fri, 27 Oct 2023 04:15:36 -0700 (PDT)
+        bh=eVx+hYNTtyPTCrkTEuuWNFgk6rRa3E+X6uh7DImui/I=;
+        b=FVB6OMJWxu7TGcOWhUJrSduqybbdfvbuChUQcLaz5YrqXiRrw6KRmTMRL4jn6VgcBy
+         0chBZajNF+pArQc5Dr3PJPbZJ/EKnZQ93CB/VBhhzsBaGTc7l766ZgkjiYFJN/IHDpHp
+         BJGL7i5RDIsZCVJ/eG/EhGdbDwB0XvGnPE8lBIZl55ryZAA/7Kq1pfNR03iq5URm+lPu
+         G7o8uwkJIyZw3j/wpJaGcxD3f1NTtbbRpd81DWIcRbgdFIC1wUs3iPwUTGfznGP6ijj2
+         351J5/vICMtRzqKRti1HXwwrW73wOPFttVsae3L32Hai0KoXWWiM46MuVCoKpZLqssoz
+         5C5Q==
+X-Gm-Message-State: AOJu0YwEmJIqXopEPdn2jNhZzItWMWst+bP7t5bvwsYdG4NcQxGOlXl7
+	qWhWgl33euddLxRpG1+oAlMQ2Q==
+X-Google-Smtp-Source: AGHT+IEMw3t90pzSxHESpsQBZhlJyfLR1+5UJIopkkpQj31SvHvRYHgUmtoRjHxB4MH+E57o1ZrXKw==
+X-Received: by 2002:ac2:5390:0:b0:500:91ac:c0b5 with SMTP id g16-20020ac25390000000b0050091acc0b5mr1640589lfh.30.1698405429258;
+        Fri, 27 Oct 2023 04:17:09 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id k7-20020ac257c7000000b00507cf5fa20esm242640lfo.97.2023.10.27.04.15.34
+        by smtp.gmail.com with ESMTPSA id k7-20020ac257c7000000b00507cf5fa20esm242640lfo.97.2023.10.27.04.17.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 04:15:35 -0700 (PDT)
-Message-ID: <2baad576-2775-4566-b6d8-a03319112431@linaro.org>
-Date: Fri, 27 Oct 2023 13:15:34 +0200
+        Fri, 27 Oct 2023 04:17:08 -0700 (PDT)
+Message-ID: <7b737537-38f2-4404-b469-c67005cdaf83@linaro.org>
+Date: Fri, 27 Oct 2023 13:17:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm64: dts: add dt-bindings for ac5x
- rd carrier
+Subject: Re: [PATCH v4 0/7] Add a few mt8183 follower boards.
 Content-Language: en-US
-To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
- pali@kernel.org, mrkiko.rs@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: cyuval@marvell.com
-References: <20231026084735.3595944-1-enachman@marvell.com>
- <20231026084735.3595944-3-enachman@marvell.com>
+To: Hsin-Yi Wang <hsinyi@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231026191343.3345279-1-hsinyi@chromium.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,24 +125,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231026084735.3595944-3-enachman@marvell.com>
+In-Reply-To: <20231026191343.3345279-1-hsinyi@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/10/2023 10:47, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
+On 26/10/2023 21:09, Hsin-Yi Wang wrote:
+> Add makomo, pico, and katsu which are mt8183 followers.
 > 
-> Add dt bindings for AC5X RD COM Express Type 7 carrier board.
-> This board will Accept a CN9131 COM Express Type 7 CPU module.
+> v4: based on https://lore.kernel.org/all/20231025093816.44327-1-angelogioacchino.delregno@collabora.com/
 > 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
 
-Please order your patches correctly, so bindings come before their
-users. You cannot have other way.
+Where is the changelog? It's already v4 and still no changelog...
 
-> ---
->  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml     | 8 ++++++++
->  1 file changed, 8 insertions(+)
 Best regards,
 Krzysztof
 
