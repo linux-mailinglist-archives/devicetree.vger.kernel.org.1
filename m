@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-12475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FAAF7D9A4C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:44:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F3C7D9A50
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:45:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BF44B2136F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:44:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FFBF282464
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D5120B09;
-	Fri, 27 Oct 2023 13:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF4620B09;
+	Fri, 27 Oct 2023 13:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vjD+cbFc"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FY2TUPcj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224B21EA8F
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 13:44:04 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C9CCA;
-	Fri, 27 Oct 2023 06:44:02 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39RDhQVF028798;
-	Fri, 27 Oct 2023 08:43:26 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AEA11EA8F
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 13:45:12 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5939D;
+	Fri, 27 Oct 2023 06:45:09 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39RDiaxQ067033;
+	Fri, 27 Oct 2023 08:44:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698414206;
-	bh=3rDRLhnrXxERWUz9JFDk4LH+AO1bqojQxFOibShO0ks=;
+	s=ti-com-17Q1; t=1698414276;
+	bh=Qg/1UXJ0dWyMcG/xoLC6gioXtxPaIZUEcHwz2w/f3iQ=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=vjD+cbFcueLVtw0uf67Onh1BVyECSXGfwPh0vEItvMMFnPhGwzhAbuqd0fP1gfn9i
-	 IWuuLsp+gJHorMGiKvq+Ia+0485u9o0Ed8Vj/04rle+bx383FU8ZZPuVGJDN3IBptM
-	 /FCvFnrtzBSyS/xflPq3gLb+cUqCCcGAuwxAtss8=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39RDhQJS061568
+	b=FY2TUPcjIkGQYB26c3LR0Azc0ZbZAKkFVE7TIkOtzxMvnfFRYQ+X8NKfoVoCSxuWY
+	 c0uAGGJt+yya5tE9ewgT/9DuTltScgW+1EQL7kMfIzFuFd5EXLLLNmBKabE/kaQzOH
+	 mdXVHn9Z9HyL0vHhWEJwmnWRqBJqiQ1/mMYLvkPY=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39RDiaqO005226
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 27 Oct 2023 08:43:26 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 27 Oct 2023 08:44:36 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 27
- Oct 2023 08:43:25 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 08:44:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 27 Oct 2023 08:43:26 -0500
+ Frontend Transport; Fri, 27 Oct 2023 08:44:35 -0500
 Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39RDhPp2109082;
-	Fri, 27 Oct 2023 08:43:25 -0500
-Date: Fri, 27 Oct 2023 08:43:25 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39RDiZWc079480;
+	Fri, 27 Oct 2023 08:44:35 -0500
+Date: Fri, 27 Oct 2023 08:44:35 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Jan Kiszka <jan.kiszka@siemens.com>
 CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -60,11 +60,11 @@ CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
 	<baocheng.su@siemens.com>,
         Benedikt Niedermayr
 	<benedikt.niedermayr@siemens.com>
-Subject: Re: [PATCH 4/7] arm64: dts: ti: iot2050: Refactor the m.2 and
- minipcie power pin
-Message-ID: <20231027134325.qvwe4ocpf36qvmry@prism>
+Subject: Re: [PATCH 3/7] arm64: dts: ti: iot2050: Definitions for runtime
+ pinmuxing
+Message-ID: <20231027134435.xi7lx3kckcqntmrg@giblet>
 References: <cover.1698413678.git.jan.kiszka@siemens.com>
- <ccac993e604b912bb8472f08f5fd43c528c7973b.1698413678.git.jan.kiszka@siemens.com>
+ <4ecdf2fbe8c8a99e95743c78c63205548bb97a04.1698413678.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,21 +73,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ccac993e604b912bb8472f08f5fd43c528c7973b.1698413678.git.jan.kiszka@siemens.com>
+In-Reply-To: <4ecdf2fbe8c8a99e95743c78c63205548bb97a04.1698413678.git.jan.kiszka@siemens.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 On 15:34-20231027, Jan Kiszka wrote:
-> From: Su Bao Cheng <baocheng.su@siemens.com>
+> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 > 
-> Make the m.2 power control pin also available on miniPCIE variants.
+> Add multiple device tree nodes in order to support
+> runtime pinmuxing via debugfs.
 > 
-> This can fix some miniPCIE card hang issue, by forcing a power on reset
-> during boot.
+> All nodes are added to the pinctrl device node,
+> since they are now belonging to multiple interfaces now.
 > 
-> Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
-> ---
+> Note: Pinconf is also handled by debugfs-pinmux. This is possible since
+> pinconf and pinmux accessing the same 32-Bit register and setting the
+> function mask to 32-Bit allows writes to the whole register.
+> 
+> Signed-off-by: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 
-Jan - please Sign-off for the carried chain..
+Your sign off is missing here Jan.
 
 -- 
 Regards,
