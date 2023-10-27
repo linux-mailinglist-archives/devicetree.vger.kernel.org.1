@@ -1,107 +1,102 @@
-Return-Path: <devicetree+bounces-12560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646597DA25D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 23:22:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA637DA269
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 23:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E32F2825A4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:22:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEB65282588
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988093FB26;
-	Fri, 27 Oct 2023 21:22:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NnRhdUqm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF263FE21;
+	Fri, 27 Oct 2023 21:24:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222B53D999
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 21:22:52 +0000 (UTC)
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7142B129
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:22:51 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6cd0963c61cso1639763a34.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:22:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698441771; x=1699046571; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xl4zXkHeuFWcpQhNv8s/3dbQRenrc7EurtmB89vaheY=;
-        b=NnRhdUqmFvEbncJOszNYxC+TzAmy8lf+FxlVYFom8vwas9FHwo82kaqjvWvAZ3mkOx
-         Sjh2J9i3I1o8Ks1KrcGbmlgkWt7tnUlAha3nyNCp3u3r3AOVryhhEvCYH1V6xIwiHYRo
-         /n358h0aKVIfKZbRC3TASX5gQ1oQIqSw9cTwg=
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76093FB20
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 21:24:43 +0000 (UTC)
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9963A1AA;
+	Fri, 27 Oct 2023 14:24:42 -0700 (PDT)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-57ad95c555eso1591012eaf.3;
+        Fri, 27 Oct 2023 14:24:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698441771; x=1699046571;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xl4zXkHeuFWcpQhNv8s/3dbQRenrc7EurtmB89vaheY=;
-        b=X/sPpj/kwqppDJop0HLZ57RRxYe5XbYemaRoaVFsBPgB5sPowvJoWZzyvJsMR5vgQ0
-         Otmm0Qbe2GdLrxdRB/m8UGEUA9/lXybqlN5aPRxiH0Q8QY/RHFRkemmnRWQU+DLZqEtc
-         mYrpruNThecm0ixJW3cmUPrGZWJbje9a5Sf4Psl/ke00QpziNvwxdpi8dQ1al/kDyW+I
-         K6xo5umwyUjpMAjUYw8Ap3wBjEc2g2Kaq71AMwy7i1OA0iEgCc4pPoqpW+ZdDLB5c4SW
-         2JP6YxxZJ2J40HbGTAvflWsCsiA4qT0ZZWHk7nftj1OUt0AImDSBZbwdm6xUhp7qbmZk
-         +00Q==
-X-Gm-Message-State: AOJu0YwGypWK55NjzmTVYo9sEGTL6TPydiCj7cHxWvJLBqU/lzJe40Bq
-	fk+t8//q1IjlTpZuGurBlZ5bVUp/Cj7zdLqzcz/xQg==
-X-Google-Smtp-Source: AGHT+IGtyxsQVIElVPhn4PwChycLoUO0IBnOpJTJJlENkGw49YyMfxoENC/+K3LcbH4aiI2vBYPF62ksN+R8KRRbXAw=
-X-Received: by 2002:a9d:7499:0:b0:6bc:8afe:8a15 with SMTP id
- t25-20020a9d7499000000b006bc8afe8a15mr4025416otk.38.1698441770745; Fri, 27
- Oct 2023 14:22:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698441882; x=1699046682;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5vDjxeIztMYV+RXt8l5Ypmao9jXTVq+yUzzQl5hZC+s=;
+        b=w8Sy377gb7+UhTnS97xxEHaBiHKASB2eEIlpToq5ot+vkKlkdVHKj8k7biEZVrkksU
+         BZcrngyEBKkxKKghXSnAv1lFF0bXRDWmJSJLvKRg5z9Nk/8ELTVCYh9O7DEyrhdoCcIJ
+         txeeB1zoZYzqRiV5JOG7kak9YQwGRRAARLl4R0mo9LzL2togdmCZLNEAHVddG/P5bmRr
+         mXvYgBG7trieMsZNDIcZthLPPWl6M+ot6eo4JemfG5xCSuuvDcLGRMq3gFopfp07d4TU
+         XVhYZPO5OXUjkiGY/Vbo1DJUjlEU/P1lQGyyJ6Qj8A70s91ydQNx8ky895LVH6yeEW5L
+         brPA==
+X-Gm-Message-State: AOJu0YzzjrnF5j476e6i9wwC+jVEJfoE4V2ufdLbxGjEd5+nxpgokCRf
+	/38eIE2GfuflJ5ptAzSeD877MHIe7g==
+X-Google-Smtp-Source: AGHT+IGGC9TsMVGuIaNtb+Rfr48y+2I0v+/38N6hSjofz8ifBeICH1sxB6MZPwbjZV4IZj+H/tJQuA==
+X-Received: by 2002:a4a:da4f:0:b0:582:3c4a:923a with SMTP id f15-20020a4ada4f000000b005823c4a923amr3919973oou.9.1698441881891;
+        Fri, 27 Oct 2023 14:24:41 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j9-20020a9d7f09000000b006b8b55297b5sm431607otq.42.2023.10.27.14.24.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 14:24:40 -0700 (PDT)
+Received: (nullmailer pid 3397284 invoked by uid 1000);
+	Fri, 27 Oct 2023 21:24:40 -0000
+Date: Fri, 27 Oct 2023 16:24:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] regulator: dt-bindings: Allow system-critical
+ marking for fixed-regulator
+Message-ID: <20231027212440.GA3392484-robh@kernel.org>
+References: <20231026144824.4065145-1-o.rempel@pengutronix.de>
+ <20231026144824.4065145-4-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231026191343.3345279-1-hsinyi@chromium.org> <7b737537-38f2-4404-b469-c67005cdaf83@linaro.org>
-In-Reply-To: <7b737537-38f2-4404-b469-c67005cdaf83@linaro.org>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Fri, 27 Oct 2023 14:22:25 -0700
-Message-ID: <CAJMQK-jQUHz8-hEx4DzNU3cOnN59JG1xFBPH5mUndLV-rbk+Jg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] Add a few mt8183 follower boards.
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	=?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>, 
-	Macpaul Lin <macpaul.lin@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231026144824.4065145-4-o.rempel@pengutronix.de>
 
-On Fri, Oct 27, 2023 at 4:17=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 26/10/2023 21:09, Hsin-Yi Wang wrote:
-> > Add makomo, pico, and katsu which are mt8183 followers.
-> >
-> > v4: based on https://lore.kernel.org/all/20231025093816.44327-1-angelog=
-ioacchino.delregno@collabora.com/
-> >
->
-> Where is the changelog? It's already v4 and still no changelog...
->
+On Thu, Oct 26, 2023 at 04:48:22PM +0200, Oleksij Rempel wrote:
+> In certain projects, the main system regulator, composed of simple
+> components including an under-voltage detector and capacitors, can be
+> aptly described as a fixed regulator in the device tree. To cater to
+> such use cases, this patch extends the fixed regulator binding to
+> support the 'system-critical-regulator' property. This property
+> signifies that the fixed-regulator is vital for system stability.
 
-v3:https://patchwork.kernel.org/project/linux-mediatek/cover/20231025215517=
-.1388735-1-hsinyi@chromium.org/
-v2:https://patchwork.kernel.org/project/linux-mediatek/cover/20231024212618=
-.1079676-1-hsinyi@chromium.org/
-v1:https://patchwork.kernel.org/project/linux-mediatek/cover/20231024000724=
-.57714-1-hsinyi@chromium.org/
+There is no programming interface for fixed-regulators, so how do you 
+know an under/over voltage condition?
 
-changelog with previous version are in each of the patchset. eg:
-https://patchwork.kernel.org/project/linux-mediatek/patch/20231025215517.13=
-88735-5-hsinyi@chromium.org/
-
-> Best regards,
-> Krzysztof
->
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  .../devicetree/bindings/regulator/fixed-regulator.yaml          | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> index ce7751b9129c..9ff9abf2691a 100644
+> --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> @@ -105,6 +105,8 @@ properties:
+>      description:
+>        Interrupt signaling a critical under-voltage event.
+>  
+> +  system-critical-regulator: true
+> +
+>  required:
+>    - compatible
+>    - regulator-name
+> -- 
+> 2.39.2
+> 
 
