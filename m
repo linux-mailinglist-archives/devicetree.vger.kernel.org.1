@@ -1,114 +1,252 @@
-Return-Path: <devicetree+bounces-12496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCBA17D9B30
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:21:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E757D9B52
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:26:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D669B214FC
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:21:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55E2CB21535
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAA337167;
-	Fri, 27 Oct 2023 14:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEFE37174;
+	Fri, 27 Oct 2023 14:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="kju7MqYA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqrsoCJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BED436B1F
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:20:57 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FD55D6C
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:20:38 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9cf83c044b7so233358966b.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:20:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1698416436; x=1699021236; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L5VK2HSIOWZmUzPwXwqeSeHrMobAdR7tlAySzxFYWrY=;
-        b=kju7MqYAJmlHUDfIkQKsMnzzAr2o7ukRwdw9kG/ruxKWZheoyDFlQz/LdvFvAPmAd1
-         qjgnQAvi9ak+W0Vqqod9OcoLnyHLGf3CiHMe4yZx0vtgQzC5YSaiOehB991vvrPz47pp
-         YQHJmYPtqvSayMBll0gXLrvBcVFroZAQhxYu5rqRUc2Jc51bfkcW7BAs6UdXxiCd0S5H
-         +h+9lquEucc6m8D/SNnjRlfHXkQBrEHXHjnGEvZ0AvwiO1jL8b9pv+8JLyycShsLS6Nh
-         6xET2gNvrEJkDmWC4wz9yfwHKa0qteNtg1ko3TLBNw9fYJ3776afsG4+H8atAWppWZPq
-         f+lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698416436; x=1699021236;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L5VK2HSIOWZmUzPwXwqeSeHrMobAdR7tlAySzxFYWrY=;
-        b=cFPJP3J+RFRsnNVgVZ8VP9UdcKE38j0u3X2MhT5jU6s0zv5vjemq2ReI3XPp7CcPir
-         BSEYa0NfxzsFHC3fipGr96hbj9W39BWPk5zHiT0akg0uNRb/2VxWCT9G/lSyyK2m7kPI
-         MOgsGC3Pt30TY6sGYeYjbYEcF6Cw7ZwxdDpLnolCOsyR38DDi5i98btpCM8JiLEyFIoq
-         CRllYJKmTrkN1ZCb9hLeXyCRwhHFZwDecaVmQjH92uuPS5xemkawDF56Y4UM0LHJSW54
-         WAuxluTnv6K/AEnYmhMG6i3r5tBWTbj6axsTOEbfPCqwo/wkHNqSW3m4h46HKZAG4CcN
-         t/Iw==
-X-Gm-Message-State: AOJu0YzURDPO2TCD3/YN3MjNm9i9Aj0UDrVuP6Vn4EzoM+vnumbPqZ8v
-	NnG87oniSf+CP8PkK3s4Bzd7ihEZFl24N+YSfcQVXQ==
-X-Google-Smtp-Source: AGHT+IGCrCLnjiNlVbMaeUUlvJXqIO5b6SWq0niQMI5IHqrUMdEpFeM4ZgO5YzR9L+9udK6dzKRqgA==
-X-Received: by 2002:a17:907:3da7:b0:9be:6ff7:128a with SMTP id he39-20020a1709073da700b009be6ff7128amr2350241ejc.67.1698416436593;
-        Fri, 27 Oct 2023 07:20:36 -0700 (PDT)
-Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id z23-20020a170906075700b0099cc36c4681sm1254076ejb.157.2023.10.27.07.20.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 07:20:36 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 27 Oct 2023 16:20:31 +0200
-Subject: [PATCH 9/9] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable WiFi
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418BB3716B
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:26:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE2AFC433CA;
+	Fri, 27 Oct 2023 14:26:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698416779;
+	bh=8qw0EbZsKfI+mcRiDV8ej9Au0jkLQmpK/TeFhPyywc0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YqrsoCJAZTU1G5TxXnts8bFdbd08TgNfMjuTCCFE90q2UXWM5ZjaznzG/39N6gnJL
+	 P7jfc1XJAxr4Z2LP32asathQpDzPyZuHuiBdhf4yYqQlNlrjiEG8IGkd38DNjyxB88
+	 ZufPg8vGPQxuXdCPm05PS0uLbPUF5DQO1DU8izlOjsshe5uAF1MBFmn1MkLUCLRXs8
+	 pxgTEdDzQLdidgJr+NHr1byt/6xrw4eG49oXIr+dWxAOSiB0uFjm4tm4ehia80YlUf
+	 cl9dyK38vULRUnUmHAXsosuXLog3XpJE5sil/ZxYPG9cF1hdJFZYEmOzr8SZCW0x5C
+	 ItAzFKgS5c89g==
+Date: Fri, 27 Oct 2023 15:26:14 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: light: Avago APDS9306
+Message-ID: <20231027-cryptic-smooth-c8826acea9b5@spud>
+References: <20231026143532.39660-1-subhajit.ghosh@tweaklogic.com>
+ <20231026143532.39660-2-subhajit.ghosh@tweaklogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231027-sc7280-remoteprocs-v1-9-05ce95d9315a@fairphone.com>
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
-In-Reply-To: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Rob Herring <robh@kernel.org>, 
- =?utf-8?q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, 
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.12.3
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lsk+N5ANcwQ3U5Sa"
+Content-Disposition: inline
+In-Reply-To: <20231026143532.39660-2-subhajit.ghosh@tweaklogic.com>
 
-Now that the WPSS remoteproc is enabled, enable wifi so we can use it.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+--lsk+N5ANcwQ3U5Sa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index d65eef30091b..e7e20f73cbe6 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -713,3 +713,7 @@ &venus {
- 	firmware-name = "qcom/qcm6490/fairphone5/venus.mbn";
- 	status = "okay";
- };
-+
-+&wifi {
-+	status = "okay";
-+};
+Yo,
 
--- 
-2.42.0
+On Fri, Oct 27, 2023 at 01:05:31AM +1030, Subhajit Ghosh wrote:
 
+Missing a commit message.
+
+> v0 -> v1
+> - Squashing Avago (Broadcom) APDS9300 and APDS9960 schemas into one as
+>   they look similar
+> - Adding support for APDS9306 in the same schema file
+> - Adding mandatory interrupt property requirement for APDS9960 as per the
+>   driver's probe method which fails if interrupt bindings are not defined.
+
+I know this is in the changelog, and not the commit message, so you're
+saying what you changed and not the reasoning for doing something, but
+it'd be good to mention why the interrupt is required for this one device
+only in the commit message (and since this is a binding, that
+explanation needs to be something rooted in how the hardware works).
+
+>   Both APDS9300 and APDS9306 (this patch set) supports sensors with and
+>   without hardware interrupt bindings
+> - In the device tree example, replacing interrupt type number with macro
+>   from irq.h
+> - Updated the vin to vdd which is the same for all the three sensors
+> - Used proper "Datasheet:" tags
+
+This all goes below the --- line.
+
+Cheers,
+Conor.
+
+> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+> ---
+>  .../bindings/iio/light/avago,apds9300.yaml    | 35 ++++++++++++---
+>  .../bindings/iio/light/avago,apds9960.yaml    | 44 -------------------
+>  2 files changed, 30 insertions(+), 49 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/light/avago,apd=
+s9960.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9300.y=
+aml b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
+> index 206af44f2c43..7a24a97d0594 100644
+> --- a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
+> @@ -4,17 +4,26 @@
+>  $id: http://devicetree.org/schemas/iio/light/avago,apds9300.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: Avago APDS9300 ambient light sensor
+> +title: Avago Gesture, RGB, ALS and Proximity sensors
+> =20
+>  maintainers:
+>    - Jonathan Cameron <jic23@kernel.org>
+> +  - Matt Ranostay <matt@ranostay.sg>
+> +  - Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+> =20
+>  description: |
+> -  Datasheet at https://www.avagotech.com/docs/AV02-1077EN
+> +  Avago (Broadcom) optical and proximity sensors with I2C interfaces.
+> +  Datasheet: https://docs.broadcom.com/doc/AV02-1077EN
+> +  Datasheet: https://docs.broadcom.com/doc/AV02-4191EN
+> +  Datasheet: https://docs.broadcom.com/doc/AV02-4755EN
+> =20
+>  properties:
+>    compatible:
+> -    const: avago,apds9300
+> +    oneOf:
+> +      - enum:
+> +          - avago,apds9300
+> +          - avago,apds9306
+> +          - avago,apds9960
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -22,14 +31,30 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> -additionalProperties: false
+> +  vdd-supply: true
+> =20
+>  required:
+>    - compatible
+>    - reg
+> =20
+> +allOf:
+> +  - $ref: ../common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - avago,apds9960
+> +    then:
+> +      required:
+> +        - interrupts
+> +
+> +additionalProperties: false
+> +
+>  examples:
+>    - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+>      i2c {
+>          #address-cells =3D <1>;
+>          #size-cells =3D <0>;
+> @@ -38,7 +63,7 @@ examples:
+>              compatible =3D "avago,apds9300";
+>              reg =3D <0x39>;
+>              interrupt-parent =3D <&gpio2>;
+> -            interrupts =3D <29 8>;
+> +            interrupts =3D <29 IRQ_TYPE_EDGE_FALLING>;
+>          };
+>      };
+>  ...
+> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9960.y=
+aml b/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+> deleted file mode 100644
+> index f06e0fda5629..000000000000
+> --- a/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+> +++ /dev/null
+> @@ -1,44 +0,0 @@
+> -# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> -%YAML 1.2
+> ----
+> -$id: http://devicetree.org/schemas/iio/light/avago,apds9960.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -title: Avago APDS9960 gesture/RGB/ALS/proximity sensor
+> -
+> -maintainers:
+> -  - Matt Ranostay <matt.ranostay@konsulko.com>
+> -
+> -description: |
+> -  Datasheet at https://www.avagotech.com/docs/AV02-4191EN
+> -
+> -properties:
+> -  compatible:
+> -    const: avago,apds9960
+> -
+> -  reg:
+> -    maxItems: 1
+> -
+> -  interrupts:
+> -    maxItems: 1
+> -
+> -additionalProperties: false
+> -
+> -required:
+> -  - compatible
+> -  - reg
+> -
+> -examples:
+> -  - |
+> -    i2c {
+> -        #address-cells =3D <1>;
+> -        #size-cells =3D <0>;
+> -
+> -        light-sensor@39 {
+> -            compatible =3D "avago,apds9960";
+> -            reg =3D <0x39>;
+> -            interrupt-parent =3D <&gpio1>;
+> -            interrupts =3D <16 1>;
+> -        };
+> -    };
+> -...
+> --=20
+> 2.34.1
+>=20
+
+--lsk+N5ANcwQ3U5Sa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTvIhgAKCRB4tDGHoIJi
+0vpoAP9sOV4rKSfnB82x6BxZSqKDTQiJwYRQch7dCgI6jgz0xAEAm83dyQb3y+bk
+hXowr2Z3C8yOV8vGpkHUk/uX7Mmp/Ag=
+=dQX/
+-----END PGP SIGNATURE-----
+
+--lsk+N5ANcwQ3U5Sa--
 
