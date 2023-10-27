@@ -1,39 +1,38 @@
-Return-Path: <devicetree+bounces-12470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C8C17D9A0B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:36:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758377D9A09
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:35:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A7951F2328D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:36:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31150282439
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:35:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45EC51F171;
-	Fri, 27 Oct 2023 13:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71231EB58;
+	Fri, 27 Oct 2023 13:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="PrUtF3O3"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="MWPa28KH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4126618031
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 13:35:55 +0000 (UTC)
-X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 27 Oct 2023 06:35:44 PDT
-Received: from mta-65-225.siemens.flowmailer.net (mta-65-225.siemens.flowmailer.net [185.136.65.225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D7B10F3
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 06:35:44 -0700 (PDT)
-Received: by mta-65-225.siemens.flowmailer.net with ESMTPSA id 20231027133439c1eefdc3360630374a
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25841F171
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 13:34:45 +0000 (UTC)
+Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6356ED43
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 06:34:41 -0700 (PDT)
+Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 2023102713343961c54714bcc60c118e
         for <devicetree@vger.kernel.org>;
         Fri, 27 Oct 2023 15:34:39 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
  d=siemens.com; i=jan.kiszka@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=YkPFdNGNdT5cVutTk9C1dmnrIFJ2F0FJa9j2a+FDVEk=;
- b=PrUtF3O3pZebpkjzl+XyyjbTcEHL8Qo8ETtlcSJ5I4VboRekrm1B6cWzm+/BhRO5Cq31c+
- MQOsEEvzod1Co0bbnb/fByFl7dmKCdmhGSZaMM1b440qTDxmqErqUX2mY+Ry85qwpfZHYDbX
- 5ICrzlQ+8Twh8iY6Bag02l8cmqpC8=;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=KRsaZaotDzBqRLlyM/Wzg+W2fZv67OoozB01SLJHNHw=;
+ b=MWPa28KHMxOC11lKqNg8fWbrsT1oygUXDG72ZqcEkfFLtSHtmyPScpyqt3ho+Ux5tGRZpo
+ iHegJJ5COExPuYqzaaSTWCajUKG9f8BK9IgLU7wmGe/evtuhLFDkMAFkGUimpDJIya/1rl+w
+ MeHLvRgOEN3BksJMdirDBjZjMpgxc=;
 From: Jan Kiszka <jan.kiszka@siemens.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -45,9 +44,11 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Bao Cheng Su <baocheng.su@siemens.com>,
 	Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-Subject: [PATCH 0/7] arm64: dts: iot2050: DT fixes, cleanups and enhancements
-Date: Fri, 27 Oct 2023 15:34:31 +0200
-Message-Id: <cover.1698413678.git.jan.kiszka@siemens.com>
+Subject: [PATCH 1/7] arm64: dts: ti: iot2050: Re-add aliases
+Date: Fri, 27 Oct 2023 15:34:32 +0200
+Message-Id: <e7be10e6cb40c783145132fb7158df67c154a054.1698413678.git.jan.kiszka@siemens.com>
+In-Reply-To: <cover.1698413678.git.jan.kiszka@siemens.com>
+References: <cover.1698413678.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,36 +59,37 @@ Content-Transfer-Encoding: 8bit
 X-Flowmailer-Platform: Siemens
 Feedback-ID: 519:519-294854:519-21489:flowmailer
 
-This fixes the lost aliases for the IOT2050 series, fixes mini PCIe card
-hangs,, drops an unused device node, brings runtime pinmuxing for the
-Arduino connector via debugfs as well as spidev. Finally, it enables
-PRU-based Ethernet on PG2/M.2 device variants (depends on [1]). PG1
-devices still need changes to the TI driver to enable them as well.
+From: Jan Kiszka <jan.kiszka@siemens.com>
 
-Jan
+Lost while dropping them from the common dtsi.
 
-[1] https://lore.kernel.org/lkml/35a3c4c9-5c1b-4891-9ea2-e3f648a9afe0@ti.com/
+Fixes: ffc449e016e2 ("arm64: dts: ti: k3-am65: Drop aliases")
+Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+---
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Benedikt Niedermayr (1):
-  arm64: dts: ti: iot2050: Definitions for runtime pinmuxing
-
-Jan Kiszka (5):
-  arm64: dts: ti: iot2050: Re-add aliases
-  arm64: dts: ti: iot2050: Drop unused ecap0 PWM
-  dt-bindings: trivial-devices: Add IOT2050 Arduino SPI connector
-  arm64: dts: ti: iot2050: Add node for SPI devices on Arduino connector
-  arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG2 devices
-
-Su Bao Cheng (1):
-  arm64: dts: ti: iot2050: Refactor the m.2 and minipcie power pin
-
- .../devicetree/bindings/trivial-devices.yaml  |   2 +
- .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    |  10 +-
- .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    |   4 +-
- .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 834 +++++++++++++++++-
- .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  |  12 +-
- 5 files changed, 802 insertions(+), 60 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+index ba1c14a54acf..b849648d51f9 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+@@ -14,6 +14,16 @@
+ 
+ / {
+ 	aliases {
++		serial0 = &wkup_uart0;
++		serial1 = &mcu_uart0;
++		serial2 = &main_uart0;
++		serial3 = &main_uart1;
++		i2c0 = &wkup_i2c0;
++		i2c1 = &mcu_i2c0;
++		i2c2 = &main_i2c0;
++		i2c3 = &main_i2c1;
++		i2c4 = &main_i2c2;
++		i2c5 = &main_i2c3;
+ 		spi0 = &mcu_spi0;
+ 		mmc0 = &sdhci1;
+ 		mmc1 = &sdhci0;
 -- 
 2.35.3
 
