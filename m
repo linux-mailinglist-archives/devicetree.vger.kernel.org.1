@@ -1,131 +1,93 @@
-Return-Path: <devicetree+bounces-12312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653C37D8ED2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:37:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AFD47D8ED7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:38:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 200012822D6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 06:37:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8F36B20DC8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 06:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F771FAF;
-	Fri, 27 Oct 2023 06:37:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891F31FAF;
+	Fri, 27 Oct 2023 06:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xha9T82P"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="dRZk73P+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7FF68813;
-	Fri, 27 Oct 2023 06:37:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37ED2C433C8;
-	Fri, 27 Oct 2023 06:37:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698388643;
-	bh=iTtuERV2GGYkyPX4sdPoambzqvDILTxFvFsnlUuWTEs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xha9T82PS3pmzm0UIVeMCGsm2lj7BEV83PPvtrPif94MJYHU+mWsTCpnnPRAVJNov
-	 w9mUwd+MZUQqkrkY9vL/l7E4Zglp4e6aZVW5dVf5IRNq8YJpDpdvYOOj8dU7Um98cR
-	 9B/VNSB8DWM7xBL3LBIf/d4zYR/esLLntEV8N+yxGm1r3LiUIdfveiCaC+jKpFVkUx
-	 Snibywkb+xrFkL+2XLQjybVPpzuNocDh6dhNR1eRi6FPLgl37YoklJWshA4WyKepvZ
-	 jBz5TAB7ZaBIRZIWypyoTbB72W5QiTSyU1cu5kTRt5Dz0FwsbDPNKFJCbJoNk7EVpJ
-	 c1uzmAAAP/+/Q==
-Message-ID: <09707469-193b-43c5-8503-b75f97ba1fbf@kernel.org>
-Date: Fri, 27 Oct 2023 09:37:17 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79B58F41
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 06:37:56 +0000 (UTC)
+Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F5B71B8
+	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 23:37:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
+	; s=dkim1; h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=cfSheYkKgV7wYhq6XSQC0lCEKcDMBiR27jIy14VfJ9E=; b=dRZk73P+tV/kmONU7XBPReVXbD
+	GPey+0NfYgarUIznoTZ5chGGFcN+tS5MJWdu7sAJa7f7CTimSpe6kpTTuDjgCfGPRUbcSlGDinK8T
+	ZgsJtkds9BoJqMrIi4yWMo78K6A2LFdRk6BYrXw/PcFXBDgAl5XPxun163Nk7QpSkg5FRqat77gAq
+	x4MrxJzXx/N+/v43PaNytS9pLo4CaGc71UjrnFxAPwQjX10PdvHWPTy2uvHBK4R1jYawryZVFtOZA
+	CQaG5pPOkUuZ7feQTvDgjKG2WwBr0JwKjaDoo1ka7e7Acgd3rQLbmq0Kz49IxvYrYXsYl/O4GTWKN
+	HzoQBZQQ==;
+Received: from [192.168.1.4] (port=60910 helo=SH-EX2013.helmholz.local)
+	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.96)
+	(envelope-from <Ante.Knezic@helmholz.de>)
+	id 1qwGTb-0005tz-0O;
+	Fri, 27 Oct 2023 08:37:47 +0200
+Received: from linuxdev.helmholz.local (192.168.6.7) by
+ SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.48; Fri, 27 Oct 2023 08:37:46 +0200
+From: Ante Knezic <ante.knezic@helmholz.de>
+To: <olteanv@gmail.com>
+CC: <o.rempel@pengutronix.de>, <UNGLinuxDriver@microchip.com>,
+	<andrew@lunn.ch>, <ante.knezic@helmholz.de>, <conor+dt@kernel.org>,
+	<davem@davemloft.net>, <devicetree@vger.kernel.org>, <edumazet@google.com>,
+	<f.fainelli@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
+	<kuba@kernel.org>, <linux-kernel@vger.kernel.org>, <marex@denx.de>,
+	<netdev@vger.kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<woojung.huh@microchip.com>
+Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
+Date: Fri, 27 Oct 2023 08:37:43 +0200
+Message-ID: <20231027063743.28747-1-ante.knezic@helmholz.de>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20231024142426.GE3803936@pengutronix.de>
+References: <20231024142426.GE3803936@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
- suspend
-Content-Language: en-US
-To: Elson Serrao <quic_eserrao@quicinc.com>, gregkh@linuxfoundation.org,
- Thinh.Nguyen@synopsys.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-4-quic_eserrao@quicinc.com>
- <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
- <cd294a89-33e7-0569-81b3-df77a255f061@quicinc.com>
- <0dee3bec-d49f-4808-a2f8-7a4205303e1f@kernel.org>
- <c7fc7bc2-1a84-e6b5-5198-1b8cc602d738@quicinc.com>
- <bd74947f-8827-4539-a590-9c53d5ddd02d@kernel.org>
- <ceb0f48f-8db9-40ae-769a-08e36373b922@quicinc.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <ceb0f48f-8db9-40ae-769a-08e36373b922@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [192.168.6.7]
+X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
+ SH-EX2013.helmholz.local (192.168.1.4)
+X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
 
+On Tue, 24 Oct 2023 16:24:26 +0200, Oleksij Rampel wrote:
 
+> > That is correct, I guess its a matter of nomenclature, but how do you 
+> > "tell" the switch whether it has REFCLKI routed externally or not if not by 
+> > setting the 0xC6 bit 3? Is there another way to achieve this?
+> 
+> I do not see any other way to "tell" it. The only thing to change in you
+> patches is a different way to tell it to the kernel.
+> Instead of introducing a new devicetree property, you need to reuse
+> phy-mode property.
 
-On 27/10/2023 03:07, Elson Serrao wrote:
-> 
-> 
-> 
->>>>>>
->>>>>> While this takes care of runtime suspend case, what about system_suspend?
->>>>>> Should this check be moved to dwc3_suspend_common() instead?
->>>>>>
->>>>>
->>>>> Sure I can move these checks to dwc3_suspend_common to make it generic.
->>>>
->>>> Before you do that let's first decide how we want the gadget driver to behave
->>>> in system_suspend case.
->>>>
->>>> Current behavior is to Disconnect from the Host.
->>>>
->>>> Earlier I was thinking on the lines that we prevent system suspend if
->>>> we are not already in USB suspend. But I'm not sure if that is the right
->>>> thing to do anymore. Mainly because, system suspend is a result of user
->>>> request and it may not be nice to not to meet his/her request.
->>>
->>> Agree. Irrespective of whether USB is suspended or not it is better to honor the system suspend request from user.
->>>
->>>> Maybe best to leave this policy handling to user space?
->>>> i.e. if user wants USB gadget operation to be alive, he will not issue
->>>> system suspend?
->>>>
->>>
->>> Sure. So below two cases
->>>
->>> Case1: User doesn't care if gadget operation is alive and triggers system suspend irrespective of USB suspend. Like you mentioned, current behavior already takes care of this and initiates a DISCONNECT
->>>
->>> Case2:  User wants gadget to stay alive and hence can trigger system suspend only when USB is suspended (there are already user space hooks that read cdev->suspended bit to tell whether USB is suspended or not for user to decide). Attempts to request system suspend when USB is not suspended, would result in a DISCONNECT.
->>>
->>> For supporting Case2 from gadget driver point of view, we need to extend this series by having relevant checks in suspend_common()
->>>
->>> Also, is it better to provide separate flags to control the gadget driver behavior for runtime suspend Vs system suspend when USB is suspended ? For example, what if we want to enable bus suspend handling for runtime suspend only and not for system suspend (Case1).
->>
->> But you mentioned that for Case1, USB gadget would disconnect from Host. So USB will be in disconnected state and USB controller can be fully de-activated? Except maybe wakeup handling to bring system out of suspend on a USB plug/unplug event?
->> Why do we need separate flags for?
->>
-> 
-> Sorry let me clarify. This is in reference to deciding how we want the dwc3 driver to behave in system_suspend case.
-> 
-> One option is to continue with the existing behavior where USB gadget would disconnect from Host irrespective of bus suspend state. We dont need any modification in this case and we can leave this series limited to runtime suspend only.
-> 
-> Second option is to stay connected IF we are in bus suspend state (U3/L2) otherwise DISCONNECT IF we are not in bus suspend state. The main motivation is to preserve the ongoing usb session
-> without going through a re-enumeration (ofcourse true only if we are in bus suspend state). This would need relevant checks in suspend_common().
+> ...
 
-The catch here is, what to do if the USB device is not in bus suspend state but user wants to put the system in suspend state? Do we still disconnect?
+> Since phy-mode for RMII was never set correctly, it will most probably
+> break every single devicetree using KSZ switches. It is the price of fixing
+> things :/
 
-You might also want to refer to the discussion in [1]
+To Vladimir Oltean: What are your thoughts on this?
 
-[1] - https://lore.kernel.org/all/Y+z9NK6AyhvTQMir@rowland.harvard.edu/
-
-> 
-> Which option do you think is more suitable? IMO option2 is better. For example if we are in a scenario where there is a network session (over USB) open between Host and the device and usb bus is suspended due to data inactivity. Option2 would preserve the session whereas Option1 we would terminate this session when a system_suspend happens.
-> 
-> Thanks
-> Elson
-
--- 
-cheers,
--roger
 
