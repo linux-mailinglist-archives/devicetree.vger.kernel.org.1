@@ -1,158 +1,146 @@
-Return-Path: <devicetree+bounces-12288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 017ED7D8C79
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 02:08:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C237D8CBA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 03:14:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B9D4B2131C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 00:08:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5973B2138A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 01:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4549119C;
-	Fri, 27 Oct 2023 00:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BC71857;
+	Fri, 27 Oct 2023 01:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nZbcxUsJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+3GG61v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2D1179;
-	Fri, 27 Oct 2023 00:08:17 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B04B1D4F;
-	Thu, 26 Oct 2023 17:08:14 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39QNxq7e010558;
-	Fri, 27 Oct 2023 00:07:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=KTwkppKtfnt2SAszLh2T9OBebpVxwToekkwIOrS6bL4=;
- b=nZbcxUsJY0ezVL5sidh830ykjrp0PQ6loSuQuiqUgbwY027VsGahwVKjM3mllbbwY/65
- WC6yqfUOe+iXZIcGZqtXWCcrBBAIIwMDCKWDr7C68FkJnjnRoev7CjblainhJ+m5OdD3
- JH9KA57UeywlKwi3KB8sayFHiEbVxzNzK9uFU60QoHtF2bPFBx3X1b7i/FQGc63ug794
- J91gXQfO3NfFML7Vp7R4kEudUtVYDPXnG7Bc6fQp8nICl/T4HnqitGAruKPIWib9esce
- MXNTeS9cFWHKciLlUjAuOYjgvmPL2FAQXBtM7if9nFdpXZZD7HEEk4jEu1pOoKX+EdX2 lw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tyx3u8jtt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Oct 2023 00:07:51 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39R07oVw032425
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Oct 2023 00:07:50 GMT
-Received: from [10.71.115.36] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 26 Oct
- 2023 17:07:50 -0700
-Message-ID: <ceb0f48f-8db9-40ae-769a-08e36373b922@quicinc.com>
-Date: Thu, 26 Oct 2023 17:07:49 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF3417EF
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:14:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F40FAC433CA;
+	Fri, 27 Oct 2023 01:14:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698369261;
+	bh=jyK9XMtPWsaT4FQrOBuiO6PcqdC1YHVnaagZqHZXO2k=;
+	h=From:To:Cc:Subject:Date:From;
+	b=q+3GG61vCp+3gEbDSZ/PtoSW04hHLXz8BGqdVw9WBlxIINoxt+hTD5QuD8i2cLKTg
+	 NaUFonXvSB601rNQVlL2U0b62EszxG51y1KTXdKxxRrVKc/euenF3yHgJap6b2npGz
+	 fp4UlobLjNYJkmBkMIw/9e6F2g42tC4oyBe6Py1tYeIysz9wWmQELEJfNDiGGLLuzS
+	 tgK9wmApfmxnrW27zjfJGOcgsBjwiEGeq/gw/mNsJV5k5kp1tgYRiaYPSnw/9PJZyf
+	 7W/5QEiwFjIO4Fu4RAryYHcuv1R9b4+JaoeA1xcOOQNz22WLgIxWYTc9sLJl+/YYYo
+	 74KIfhMvSQypA==
+Received: by mercury (Postfix, from userid 1000)
+	id 3F8E6106057B; Fri, 27 Oct 2023 03:14:18 +0200 (CEST)
+From: Sebastian Reichel <sre@kernel.org>
+To: Sebastian Reichel <sre@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/4] GC0308 Camera Sensor
+Date: Fri, 27 Oct 2023 03:12:00 +0200
+Message-ID: <20231027011417.2174658-1-sre@kernel.org>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
- suspend
-Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-4-quic_eserrao@quicinc.com>
- <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
- <cd294a89-33e7-0569-81b3-df77a255f061@quicinc.com>
- <0dee3bec-d49f-4808-a2f8-7a4205303e1f@kernel.org>
- <c7fc7bc2-1a84-e6b5-5198-1b8cc602d738@quicinc.com>
- <bd74947f-8827-4539-a590-9c53d5ddd02d@kernel.org>
-From: Elson Serrao <quic_eserrao@quicinc.com>
-In-Reply-To: <bd74947f-8827-4539-a590-9c53d5ddd02d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7rxH9l_SyWSXCToapu9r2IwRjqwzkuZ8
-X-Proofpoint-GUID: 7rxH9l_SyWSXCToapu9r2IwRjqwzkuZ8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-26_22,2023-10-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- mlxlogscore=668 suspectscore=0 spamscore=0 mlxscore=0 phishscore=0
- priorityscore=1501 malwarescore=0 impostorscore=0 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2310260211
 
+Hi,
 
+I did the following tests done by me on an i.MX6ULL based system [0]:
 
+ * v4l2-compliance -u /dev/v4l-subdev1
+   - v4l2-compliance 1.24.1, 32 bits, 32-bit time_t
+     (from Debian testing)
+   - Total for device /dev/v4l-subdev1: 44, Succeeded: 44
+ * Using gstreamer + v4l2-ctl
+   - Tried 640x480, 320x240, 160x120 YUYV8_2X8 formats
+   - Tested effect of all exposed user controls
+ * checkpatch does not report any driver issues
+ * dt_binding_check does not report anything
 
->>>>>
->>>>> While this takes care of runtime suspend case, what about system_suspend?
->>>>> Should this check be moved to dwc3_suspend_common() instead?
->>>>>
->>>>
->>>> Sure I can move these checks to dwc3_suspend_common to make it generic.
->>>
->>> Before you do that let's first decide how we want the gadget driver to behave
->>> in system_suspend case.
->>>
->>> Current behavior is to Disconnect from the Host.
->>>
->>> Earlier I was thinking on the lines that we prevent system suspend if
->>> we are not already in USB suspend. But I'm not sure if that is the right
->>> thing to do anymore. Mainly because, system suspend is a result of user
->>> request and it may not be nice to not to meet his/her request.
->>
->> Agree. Irrespective of whether USB is suspended or not it is better to honor the system suspend request from user.
->>
->>> Maybe best to leave this policy handling to user space?
->>> i.e. if user wants USB gadget operation to be alive, he will not issue
->>> system suspend?
->>>
->>
->> Sure. So below two cases
->>
->> Case1: User doesn't care if gadget operation is alive and triggers system suspend irrespective of USB suspend. Like you mentioned, current behavior already takes care of this and initiates a DISCONNECT
->>
->> Case2:  User wants gadget to stay alive and hence can trigger system suspend only when USB is suspended (there are already user space hooks that read cdev->suspended bit to tell whether USB is suspended or not for user to decide). Attempts to request system suspend when USB is not suspended, would result in a DISCONNECT.
->>
->> For supporting Case2 from gadget driver point of view, we need to extend this series by having relevant checks in suspend_common()
->>
->> Also, is it better to provide separate flags to control the gadget driver behavior for runtime suspend Vs system suspend when USB is suspended ? For example, what if we want to enable bus suspend handling for runtime suspend only and not for system suspend (Case1).
-> 
-> But you mentioned that for Case1, USB gadget would disconnect from Host. So USB will be in disconnected state and USB controller can be fully de-activated? Except maybe wakeup handling to bring system out of suspend on a USB plug/unplug event?
-> Why do we need separate flags for?
-> 
+Note, that there is another patchset adding GC2145, which
+adds the same vendor prefix. I just included it for completeness,
+since it's needed to avoid checkpatch and dt_binding_check
+warnings.
 
-Sorry let me clarify. This is in reference to deciding how we want the 
-dwc3 driver to behave in system_suspend case.
+[0] https://embedded-recipes.org/2023/schedule/running-foss-thermal-camera/
 
-One option is to continue with the existing behavior where USB gadget 
-would disconnect from Host irrespective of bus suspend state. We dont 
-need any modification in this case and we can leave this series limited 
-to runtime suspend only.
+Changes since PATCHv2:
+ * https://lore.kernel.org/all/20231024010355.1877523-1-sre@kernel.org/
+ * Simplify Kconfig dependencies
+ * Do not store code/resolution; which is available from subdev state
+ * Store register values for mode settings to avoid second lookup in
+   s_stream
+ * Reduce power_on sleep times
+ * remove debug dev_err() print, that I accidently added in v2
+ * add missing format check in gc0308_enum_frame_size()
+ * do not PM resume in gc0308_s_ctrl()
+ * enable and use runtime PM autosuspend
+ * add .init_cfg() PAD op
+ * use CCI helper instead of raw regmap
+ * cluster both flip controls
+   (that's not just a performance optimization, but fixes an issue,
+   that register update is slow, so fast sequential setting of VFLIP/HFLIP
+   override each other without this)
+ * simplify gc0308_set_power_line_freq
+ * free control handler on probe error
+ * use first format by default
+ * expose V4L2_CID_HBLANK, V4L2_CID_VBLANK, V4L2_CID_PIXEL_RATE
+ * remove incorrect support for framerate and instead add a comment
 
-Second option is to stay connected IF we are in bus suspend state 
-(U3/L2) otherwise DISCONNECT IF we are not in bus suspend state. The 
-main motivation is to preserve the ongoing usb session
-without going through a re-enumeration (ofcourse true only if we are in 
-bus suspend state). This would need relevant checks in suspend_common().
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20231023002547.1754190-1-sre@kernel.org/
+ * Update binding: i2c0 -> i2c
+ * Update binding: make GC0309 use GC0308 as fallback compatible
+ * Add regulator handling in power_on/power_off
+ * Fix alignment of regmap_multi_reg_write arguments
+ * Fix useless extra return
+ * Do not check for pad in gc0308_enum_frame_size()
+ * Drop get_mbus_config implementation
+ * Use V4L2_CID_AUTO_EXPOSURE_BIAS instead of V4L2_CID_EXPOSURE
+ * Drop gc0308_get_format in favour of v4l2_subdev_get_fmt
+ * Replace open-coded v4l2_find_nearest_size() logic
+ * check clock rate instead of setting it
+ * use fwnode_graph_get_endpoint_by_id()
+ * power off device when probe errors out after power on
+ * replace mutex with sub-device state
+ * add Galaxycore to generic camera sensors section in MAINTAINERS
+ * add GC0308 entry in MAINTAINERS
 
-Which option do you think is more suitable? IMO option2 is better. For 
-example if we are in a scenario where there is a network session (over 
-USB) open between Host and the device and usb bus is suspended due to 
-data inactivity. Option2 would preserve the session whereas Option1 we 
-would terminate this session when a system_suspend happens.
+Greetings,
 
-Thanks
-Elson
+-- Sebastian
+
+Sebastian Reichel (4):
+  dt-bindings: vendor-prefixes: add GalaxyCore
+  media: dt-bindings: gc0308: add binding
+  media: MAINTAINERS: Add GalaxyCore in camera sensor section
+  media: i2c: gc0308: new driver
+
+ .../bindings/media/i2c/galaxycore,gc0308.yaml |  108 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc0308.c                    | 1437 +++++++++++++++++
+ 6 files changed, 1566 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc0308.yaml
+ create mode 100644 drivers/media/i2c/gc0308.c
+
+-- 
+2.42.0
+
 
