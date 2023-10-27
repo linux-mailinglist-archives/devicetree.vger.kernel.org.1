@@ -1,150 +1,154 @@
-Return-Path: <devicetree+bounces-12355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814197D9089
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1D777D90BF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:10:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88EFB1C20E7B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:02:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E4AA1C20F61
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19ACE1171D;
-	Fri, 27 Oct 2023 08:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jlFL2DAL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC76811CAB;
+	Fri, 27 Oct 2023 08:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75BEF9C4
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:02:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4983C433C7;
-	Fri, 27 Oct 2023 08:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698393772;
-	bh=qBhixI295XZFLMlYuV4YMaMKUlDmM1jtasM2MlNqIrE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jlFL2DALS+gH82StTTMIG3nL4jljsvr4W0BkR7ULwLaZJhc9ucE0ALsTdfgTxM5rt
-	 8MmnHtKQfuEprEYBmspyko//3x6ho2NOsAwI5uJE5I58mNHbw7Yq3xdd97x10HGQek
-	 JDas8jqdyBbn17qm4ZjszN/RSoQd+KHpp+jtk4MXC7S0Qm9H49hWY6eyPiEqvqkzfb
-	 gwFdKgVhKfL28U94E6aAS0NGNoRkjFOPEW67XWlxquTjdJ/FK8ylLeHloB2q4G+D3h
-	 V4rMqH1agxuWlvG8uPCkfk60FilCXUHamyRPu1yOTPs10+bxn163HYiiuV/ERGG7zt
-	 8cjhjnQu14TPQ==
-Message-ID: <025c3d36-587e-480c-b913-2a3916674c54@kernel.org>
-Date: Fri, 27 Oct 2023 10:02:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8406C11734
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:09:56 +0000 (UTC)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA4E111;
+	Fri, 27 Oct 2023 01:09:54 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-7aae07e7ba4so728466241.1;
+        Fri, 27 Oct 2023 01:09:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698394193; x=1698998993;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YXz17VD25GWoAf0H7NxnM2SjBWk5BeAkDDQxS4QDQmU=;
+        b=IkAcp/xTbdKSGw2Cl78ckOl9BxBh4fmouyQPbXiG+eRaSSXoTb9xayK+RdQhddNtHl
+         uXuF7pE/swNtKeICPMeYEWi5ZuCm+fZvAWXviPBuvaqwIRTPsk2a3bUT5wXiJ8e5YH4X
+         4exkVPPYDYw5fW+st9LxYEyvmeM9xFyH0ncrfKY5Ltprk935t1ojK7GkTTslNvqUEZtI
+         J5D1QXX6JDVIAYyJDSG8SvAWYf85q6qbUSgHLQxnEBOyd1eC0Q7EEaBF3rG233t78sTU
+         soESU6PNpR4muePAXVDn/nlHRrx5/OXWF8xJtGp3HKDaU9ejcs75lWvc4NOJXxN6s0R4
+         k1qw==
+X-Gm-Message-State: AOJu0YzQiJVmOkpLUuY4H80lxbRjLRQfnPbO5hCLXdsX0NaUd7ev32hq
+	NgzrZjoY47bS48SrQHO2JMvKoWclkVWFxg==
+X-Google-Smtp-Source: AGHT+IEwvnSdOsGKN4x0g+weDlDKku373Nr0W6R1+kmlKTzfLeFDb4XYt0Zki8OUcBWwAYNsrRNOqw==
+X-Received: by 2002:a05:6102:3d8c:b0:45a:b396:a44 with SMTP id h12-20020a0561023d8c00b0045ab3960a44mr2199594vsv.25.1698394193414;
+        Fri, 27 Oct 2023 01:09:53 -0700 (PDT)
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
+        by smtp.gmail.com with ESMTPSA id c26-20020a056102319a00b004546c2bfd2bsm132465vsh.13.2023.10.27.01.09.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Oct 2023 01:09:52 -0700 (PDT)
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-49ab0641e77so805104e0c.0;
+        Fri, 27 Oct 2023 01:09:52 -0700 (PDT)
+X-Received: by 2002:a1f:178c:0:b0:49e:2145:1654 with SMTP id
+ 134-20020a1f178c000000b0049e21451654mr2148085vkx.7.1698394192303; Fri, 27 Oct
+ 2023 01:09:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: hwmon: lm87: convert to YAML
-To: Li peiyu <579lpy@gmail.com>, jdelvare@suse.com, linux@roeck-us.net
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <caa50763-74be-4c40-9d8d-7f1f64ce5144@kernel.org>
- <20231026080226.52170-1-579lpy@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231026080226.52170-1-579lpy@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1694767208.git.geert+renesas@glider.be> <CAMuHMdWfBTKdXvZutg4LvWqBjuz-X=ZjzX0LKPqD=JxYuLoPRw@mail.gmail.com>
+ <CAMuHMdUF61V5qNyKbrTGxZfEJvCVuLO7q2R5MqZYkzRC_cNr0w@mail.gmail.com> <CAMuHMdXTpMYqdFzro3kX-3wXYC8N6z2abiMTiXXpV9xn1ohj0Q@mail.gmail.com>
+In-Reply-To: <CAMuHMdXTpMYqdFzro3kX-3wXYC8N6z2abiMTiXXpV9xn1ohj0Q@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 27 Oct 2023 10:09:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWdRCzy7_RnBh7bqpURxx8qeWaC6ARMt7XWsbRv8FYnjw@mail.gmail.com>
+Message-ID: <CAMuHMdWdRCzy7_RnBh7bqpURxx8qeWaC6ARMt7XWsbRv8FYnjw@mail.gmail.com>
+Subject: Re: [GIT PULL v2] drm: renesas: shmobile: Atomic conversion + DT
+ support (was: Re: [PATCH v4 00/41] drm: renesas: shmobile: Atomic conversion
+ + DT support)
+To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	DRI Development <dri-devel@lists.freedesktop.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux Media Mailing List <linux-media@vger.kernel.org>, 
+	Linux Fbdev development list <linux-fbdev@vger.kernel.org>, Linux-sh list <linux-sh@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 26/10/2023 10:02, Li peiyu wrote:
-> Convert the lm87 hwmon sensor bindings to DT schema
-> 
-> Signed-off-by: Li peiyu <579lpy@gmail.com>
-> ---
-> Changes for v2:
-> - replace node name lm87 with sensor
-> - replace character '\t' with spaces
-> 
->  .../devicetree/bindings/hwmon/lm87.txt        | 30 ----------
->  .../devicetree/bindings/hwmon/lm87.yaml       | 59 +++++++++++++++++++
+Hi David, Daniel,
 
-...
+On Tue, Oct 24, 2023 at 12:08=E2=80=AFPM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+> On Mon, Oct 16, 2023 at 11:59=E2=80=AFAM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > The following changes since commit 389af786f92ecdff35883551d54bf4e507ff=
+cccb:
+> >
+> >   Merge tag 'drm-intel-next-2023-09-29' of
+> > git://anongit.freedesktop.org/drm/drm-intel into drm-next (2023-10-04
+> > 13:55:19 +1000)
+> >
+> > are available in the Git repository at:
+> >
+> >   git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.g=
+it
+> > tags/shmob-drm-atomic-dt-tag2
+> >
+> > for you to fetch changes up to 1399ebacbf590dfbac4fbba181dd1595b2fa10ba=
+:
+> >
+> >   drm: renesas: shmobile: Add DT support (2023-10-16 11:47:48 +0200)
+> >
+> > ----------------------------------------------------------------
+> > drm: renesas: shmobile: Atomic conversion + DT support
+> >
+> > Currently, there are two drivers for the LCD controller on Renesas
+> > SuperH-based and ARM-based SH-Mobile and R-Mobile SoCs:
+> >   1. sh_mobile_lcdcfb, using the fbdev framework,
+> >   2. shmob_drm, using the DRM framework.
+> > However, only the former driver is used, as all platform support
+> > integrates the former.  None of these drivers support DT-based systems.
+> >
+> > Convert the SH-Mobile DRM driver to atomic modesetting, and add DT
+> > support, complemented by the customary set of fixes and improvements.
+> >
+> > Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Link: https://lore.kernel.org/r/cover.1694767208.git.geert+renesas@glid=
+er.be/
+> >
+> > Changes compared to v1:
+> >   - Rebase to drm-next,
+> >   - Add Acked-by.
+> >
+> > Thanks for pulling!
+>
+> Ping?
+> Thanks!
 
-> -- vcc-supply: a Phandle for the regulator supplying power, can be
-> -              configured to measure 5.0V power supply. Default is 3.3V.
-> -
-> -Example:
-> -
-> -lm87@2e {
-> -	compatible = "ti,lm87";
-> -	reg = <0x2e>;
-> -	has-temp3;
-> -	vcc-supply = <&reg_5v0>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/hwmon/lm87.yaml b/Documentation/devicetree/bindings/hwmon/lm87.yaml
-> new file mode 100644
-> index 000000000000..8f4f07845d95
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/lm87.yaml
+Please note that this is a hard dependency for adding shmobile-lcdc
+device nodes to DTS files, which is in turn a hard dependency for
+removing drivers/staging/board/, and for removing legacy clkdev
+registration from various clock drivers.
 
-This is a friendly reminder during the review process.
+Thanks for pulling!
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
+Gr{oetje,eeting}s,
 
-Thank you.
+                        Geert
 
-> @@ -0,0 +1,59 @@
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
-
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
