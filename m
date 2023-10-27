@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA807D9010
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:40:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7977D9018
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:42:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04A11281016
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:40:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CF20B212F6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E071FC2C3;
-	Fri, 27 Oct 2023 07:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB409C2FE;
+	Fri, 27 Oct 2023 07:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EcnoKNHn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wrJHXP7B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470168C0B
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:40:03 +0000 (UTC)
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110791BB
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:40:01 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-507962561adso2659560e87.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:40:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BCC8C0B
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:42:42 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835BE194
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:42:40 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c5629fdbf8so24847041fa.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:42:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698392399; x=1698997199; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698392559; x=1698997359; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GXUjM3EOPX7iEP2l6z+R1euqXv6dNw8ofuLQ19H53CE=;
-        b=EcnoKNHno6NIdDPSJtcNhc7DG1u4RptPxeu+y4ZBrJMIgfULJtZsofEnjMVFDgEeOU
-         yaGpvDecrPa64zJ3D8MVYIawXa0pypgNrHSeLFUAz0sLyRuqFUB0TS6ck+iBNdybShGi
-         uQ6zeolR4RMTnTTalPaNuxEvvndDP8w/fvbdqh3zjJW0giH6euAf3iq8NCPXemHPOYL1
-         xLGtyVoU6n32/dJfWaQbGqqhnijbS/e8HyL9/xLUXomNX8viGQ1E8iV05yJL+XMPropU
-         XRmRg5GwtcPGuDrKNlFAr0zUIR1CO17w3odKBQfk0Zih2fVu3ar7j9hncwMI2glzdxAG
-         muLg==
+        bh=WW64DPkgTkjFEjw8jrydz5ulxa4DGHMCtbXHY4Hhj+0=;
+        b=wrJHXP7BT2Uk9IPwBykbN81iLfpiH1psQpNwQZzGaITE9jl7fqeWSq7TZcPGKe1A+Q
+         NyjDizFJ5jeWvrbxzbMOpMqV3OHmF6H+n4S2Sm8nUiWrwTH5vh1zk+P8GFQzgSHP/uQa
+         XvPl+3G6+s+765bJUB55om7rdDsdHm75/xAIIDhoBF8WEBjXTvAS9LCIoonqApYoZumc
+         I+O5q6PfgSegrW3A5hOMNFZZx2RO8yLdA8IyKarMo5jGDb2J4Fgpjl+iI4SyhibKabHW
+         pNONrLwN0sLhHYZHVujq5z/Wo7XC9E8EoAMsERawkZ1Pz25b1YLTPrEPp838fhyO2CK8
+         6rCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698392399; x=1698997199;
+        d=1e100.net; s=20230601; t=1698392559; x=1698997359;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GXUjM3EOPX7iEP2l6z+R1euqXv6dNw8ofuLQ19H53CE=;
-        b=TMHN6xhkt2G0An1m5AD7Vgsc5XUQAxQJDNnnAfGUYi0GKhX0kyox9RMkDGaLFH9OyR
-         VOurZ5eBLnrw+0ykFEd4rjCQz904PiZDq9m7Ng0AEfgMkCTgb3sEEwoCZm+Xzxu6v7SO
-         qphEvaJ35uWHGkEcz0i3mNDWaCP/C96EXHhwRzhu9pCHi2GkubZc0P0QwUY16qVEuYXv
-         Bdu1w6KPCi8KmvVjpRPtwuJSmS8idK7p8Hcn/n61yQtU6Nu5GYv6DkeH3GEhkwZ3N1ox
-         SDEV2iF08XTF3ny5OTCP4EOl2E9dxqTeyMSUtRKSIr0LC25mQcxhjK2s1Jg4XEXPRjSi
-         IUZg==
-X-Gm-Message-State: AOJu0Yza9cSCtY85RwJ+IA2yaIq5sY0rMyGAaiTuVmx1xIdjIPqZ7VSu
-	fw/VsaKBzCpSim0TvCoOggDc0g==
-X-Google-Smtp-Source: AGHT+IHnVbXL0w1nNa4w7HVpthktbqpCspWP5hjziUi17hNqgeMMIf3fVQPLprqOfJAZTpunZYcTYA==
-X-Received: by 2002:ac2:5293:0:b0:500:92f1:c341 with SMTP id q19-20020ac25293000000b0050092f1c341mr1180386lfm.54.1698392399105;
-        Fri, 27 Oct 2023 00:39:59 -0700 (PDT)
+        bh=WW64DPkgTkjFEjw8jrydz5ulxa4DGHMCtbXHY4Hhj+0=;
+        b=slo2Gzh2pFo5pJp/5DA3iQRuzttPAVrE8ZgDgJxt9Z5u0RjPxBfNaLvIe27pb6rVpX
+         Xy7J19dXZVTNmM8QZ0YwlvE6tEdaoZYRelhD+/6AWE05g38QRKc8aTUR5ByH8HYNHjfi
+         aGt81EgqtvajgaiDgdqeg6lktCkuvhGnmNZAdPprQM2bx+VSjF1zw2N3leLrUeYtrnOk
+         R2S6StO129/2O8FsA9YY4qHdpBDSe0t87njGhX6mqzD+5qym0rxvOIV6QDZeYAWhix6U
+         oo7wh8coi7/BoSU8DLWKA4mzv/o+6yJddKqKA1lfwDeSBptxNMjUDKDn/9MiSgIaVYJJ
+         Gqbg==
+X-Gm-Message-State: AOJu0YznYiQmyksn2neiPpGn0J0fJ0UmQG2TvlrC4jOlKxmAqfWk/UZn
+	DHdp0ZM1jHZoThPKGjPyR73qvQ==
+X-Google-Smtp-Source: AGHT+IECvkNYMJBY6p1b9PDa1mwZ4XRfcJNngJ41xQkl8dyZUJqnpSAKqZNM2f4BlDRV+AzPPraGpQ==
+X-Received: by 2002:a2e:8895:0:b0:2b9:f13b:6139 with SMTP id k21-20020a2e8895000000b002b9f13b6139mr1497359lji.20.1698392558767;
+        Fri, 27 Oct 2023 00:42:38 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id be16-20020a056512251000b004f13cd61ebbsm169705lfb.175.2023.10.27.00.39.58
+        by smtp.gmail.com with ESMTPSA id u12-20020a05651c130c00b002c3c60e86a6sm177656lja.124.2023.10.27.00.42.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 00:39:58 -0700 (PDT)
-Message-ID: <4a2113ea-5e52-4caa-80f6-661c6ad64091@linaro.org>
-Date: Fri, 27 Oct 2023 09:39:57 +0200
+        Fri, 27 Oct 2023 00:42:38 -0700 (PDT)
+Message-ID: <17185ae7-b1ab-4c23-b9ab-96e62efdbf5f@linaro.org>
+Date: Fri, 27 Oct 2023 09:42:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: document the RPMh
- Network-On-Chip Interconnect in Qualcomm SM8650 SoC
+Subject: Re: [PATCH v4 3/4] ARM: dts: qcom: Add support for Samsung Galaxy Tab
+ 4 10.1 LTE (SM-T535)
 Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+To: Stefan Hansson <newbyte@postmarketos.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-interconnect-v1-0-b7277e03aa3d@linaro.org>
- <20231025-topic-sm8650-upstream-interconnect-v1-1-b7277e03aa3d@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20231026132521.38575-1-newbyte@postmarketos.org>
+ <20231026132521.38575-4-newbyte@postmarketos.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,77 +124,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-topic-sm8650-upstream-interconnect-v1-1-b7277e03aa3d@linaro.org>
+In-Reply-To: <20231026132521.38575-4-newbyte@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 09:33, Neil Armstrong wrote:
-> Document the RPMh Network-On-Chip Interconnect of the SM8650 platform.
+On 26/10/2023 15:24, Stefan Hansson wrote:
+> Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T535) LTE tablet
+> based on the MSM8926 platform.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/interconnect/qcom,sm8650-rpmh.yaml    | 136 ++++++++++++++++++
->  .../dt-bindings/interconnect/qcom,sm8650-rpmh.h    | 154 +++++++++++++++++++++
->  2 files changed, 290 insertions(+)
+> The common dtsi is also modified to describe the widest constraints,
+> which required modifications to the matisse-wifi dts.
 > 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sm8650-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sm8650-rpmh.yaml
-> new file mode 100644
-> index 000000000000..65b239ac2afd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sm8650-rpmh.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/qcom,sm8650-rpmh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm RPMh Network-On-Chip Interconnect on SM8650
-> +
-> +maintainers:
-> +  - Abel Vesa <abel.vesa@linaro.org>
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +description: |
-> +  RPMh interconnect providers support system bandwidth requirements through
-> +  RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
-> +  able to communicate with the BCM through the Resource State Coordinator (RSC)
-> +  associated with each execution environment. Provider nodes must point to at
-> +  least one RPMh device child node pertaining to their RSC and each provider
-> +  can map to multiple RPMh resources.
-> +
-> +  See also:: include/dt-bindings/interconnect/qcom,sm8650-rpmh.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm8650-aggre1-noc
-> +      - qcom,sm8650-aggre2-noc
-> +      - qcom,sm8650-clk-virt
-> +      - qcom,sm8650-cnoc-main
-> +      - qcom,sm8650-config-noc
-> +      - qcom,sm8650-gem-noc
-> +      - qcom,sm8650-lpass-ag-noc
-> +      - qcom,sm8650-lpass-lpiaon-noc
-> +      - qcom,sm8650-lpass-lpicx-noc
-> +      - qcom,sm8650-mc-virt
-> +      - qcom,sm8650-mmss-noc
-> +      - qcom,sm8650-nsp-noc
-> +      - qcom,sm8650-pcie-anoc
-> +      - qcom,sm8650-system-noc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-
-If there is going to be resend/new version:
-
-Please put required: block here.
-
-In any case:
+> Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
