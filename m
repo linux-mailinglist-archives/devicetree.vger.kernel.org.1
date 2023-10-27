@@ -1,283 +1,466 @@
-Return-Path: <devicetree+bounces-12511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E567D9BDF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:44:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 070E27D9C12
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:48:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC6A31C2109D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 290941C20FF6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E28E37163;
-	Fri, 27 Oct 2023 14:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C5D199CE;
+	Fri, 27 Oct 2023 14:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="vjhEzfNB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gX32qHm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE8618E05
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:43:38 +0000 (UTC)
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB33E3;
-	Fri, 27 Oct 2023 07:43:36 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	by box.trvn.ru (Postfix) with ESMTPSA id 4343240557;
-	Fri, 27 Oct 2023 19:42:50 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-	t=1698417770; bh=OHLRJC/diPfVFt8XwpnQvHWosIsHUiivbV6zXKO3qc0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=vjhEzfNBqX2jogZExWJu9smjWlNjalqWufxvt6mPBlLmiofTQKr+n1gW/qZ2fmxX9
-	 ibhUnclb0yuzOXkbupuJw4kfzorN8n/8R6udUv9vc1jZPVksm+k/9QNXR9RVv6Yyki
-	 TdoGbRHCtmdy9aqDBx7aufN+Es/Y3lIIWrBelFJhD25vXt9jvpUtzZ1wqhEXPonTFD
-	 +sYtXon6jSnNy1JZ6zbQ5wgQM1qn9Fo45MaHapNjKrJkLbX5kIxXNJQdxNQSeB4Jhs
-	 2lGOaXfrCAEk5+Nm5kzcoeb8+K89RCgd6Ww9p30nCtrLJbZYddWCJwUVDGBqz/PMjD
-	 GPMFDOJJZR1bg==
-From: Nikita Travkin <nikita@trvn.ru>
-Date: Fri, 27 Oct 2023 19:42:23 +0500
-Subject: [PATCH 3/3] arm64: dts: qcom: acer-aspire1: Add sound
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A42918654
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:47:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A4CC433C9;
+	Fri, 27 Oct 2023 14:47:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698418073;
+	bh=nAT3vIPkBRzhyPX82SokqF71iDQhFT4SJJaMDT239ts=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gX32qHm6ZUcjL0sknP6o//EXBUfac7BH/NfcEJY1l3zjatt9wB/LQZSwbFvwQINM2
+	 95mgLCnh2GizDwkzxJ5CfJWGdbaz+bF0kku2ebe+mn7VmT1AOUMR+4ubLvGXoVjEwz
+	 M98+u3i6mPUquauB0CLrM0oykM8mApjPuXm9aULR9+eaY7iME4xxb4aU6StmrP8FFb
+	 5OFheyjh1LTW+gqwhMyyOs0ENaBckhwb4wOiMiQcfiUuujAYfh62AvXs4AjHUopXx/
+	 DfGGSAJzQX7YaCREiPzAcygKuvGNOAuzErmib2ZDJUhmnhyzL/KqfkU8dSx02t/Z/9
+	 EVQaIyCio9W8Q==
+Date: Fri, 27 Oct 2023 15:47:48 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+Message-ID: <20231027-bulldog-component-5b84e4660465@spud>
+References: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231027-aspire1-sound-v1-3-5ff3cf8b5701@trvn.ru>
-References: <20231027-aspire1-sound-v1-0-5ff3cf8b5701@trvn.ru>
-In-Reply-To: <20231027-aspire1-sound-v1-0-5ff3cf8b5701@trvn.ru>
-To: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4201; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=OHLRJC/diPfVFt8XwpnQvHWosIsHUiivbV6zXKO3qc0=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBlO8xc30z+MrENqgfLgqVSE+q+ra7RoCnWdyiz1
- 6GhE6uWXmGJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZTvMXAAKCRBDHOzuKBm/
- dd67D/4pT2ycHdMwd/6ryVt9JVDg9rTTP+IYgpuMiDCjwy/JQbSkqPqigfGqMOwdFhI9L4h6fqt
- gYa6wqXhCXxADwSfKrvXLSJsszBm5Btrm71ZnhWp+E5gDGYCoO4hjfH3L4Nv9FWJ4rkJe5WQL7Z
- 3Ya+y6IW5jrKlAQhkr+zdTFhc3cgPKdbvB45jvxncQ5zEXPVQv5rDZ6m+orp42Pft9QWajLr5E5
- EOrN61xy36EwCz0zEj5irEOPUQXicR08uheUN/DlJIPppxOVnmfLku0/fO5SIjIQOEe0D20pSf0
- IA+VWyXrcE/+dAieOEBT+jN9f2IE25r5urMUMLv9jSjfcUvBufLRya6kRJ97bLOMu1sSW2OWnA4
- ZWu27d+nhxE+ux11DeQAvl+9Hs4iKT5cibvCieGVX0OLLjRWl1sFgVRAgc7lFMEyC89YYzTBmOt
- kaBR56+mNmr+MVA46wlhySWo5phGSniQA9iK6g/XqYREephKV64kJfDK2VysZrf4yfDyJXPS//3
- sB7h6sL81NHZkJR1MJ5vlGDWFaDbQ33V2N2rBn6VfcPaoMYCVYA2n/QGo/yWlsrey5E/G42nQ5P
- UMKEqwzUDkw+V/t66xTROfIN2I/UmtMPnRl1P1VNe9FVihLxSIyeZnIwM0SLCOC7RW4aCu2sA1U
- z0aJPfUusk+QCPw==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PpgCk1CqQ30xHt9p"
+Content-Disposition: inline
+In-Reply-To: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
 
-This laptop has two i2s speakers; an i2s audio codec for the headset
-jack; two DMIC microphones in the lid and the displayport audio channel.
 
-This commit adds the audio node that describes all of the above with the
-exception of the DMICs that require in-SoC digital codec to be brought
-up, which will be done later.
+--PpgCk1CqQ30xHt9p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Note that the displayport channel is connected here for completeness,
-but the displayport can't be used yet since the HPD signal is created by
-the embedded controller, which will be added later.
+On Tue, Oct 24, 2023 at 06:45:21PM +0200, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family clock controller unit (CCU) bindings
+> to DT schema.
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts | 153 +++++++++++++++++++++++
- 1 file changed, 153 insertions(+)
+I didn't cross-check the clock-output-names, but this conversion mostly
+looks good to me.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-index 00b442696618..5afcb8212f49 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
-@@ -3,6 +3,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
- #include "sc7180.dtsi"
-@@ -129,6 +130,113 @@ reg_lcm_3p3: panel-regulator {
- 		pinctrl-names = "default";
- 	};
- 
-+	sound: sound {
-+		compatible = "qcom,sc7180-qdsp6-sndcard";
-+		pinctrl-0 = <&pri_mi2s_active>, <&pri_mi2s_mclk_active>, <&ter_mi2s_active>;
-+		pinctrl-names = "default";
-+		model = "Acer-Aspire-1";
-+
-+		audio-routing =
-+			"Headphone Jack", "HPOL",
-+			"Headphone Jack", "HPOR";
-+
-+		multimedia1-dai-link {
-+			link-name = "MultiMedia1";
-+
-+			cpu {
-+				sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+			};
-+		};
-+
-+		multimedia2-dai-link {
-+			link-name = "MultiMedia2";
-+
-+			cpu {
-+				sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
-+			};
-+		};
-+
-+		multimedia3-dai-link {
-+			link-name = "MultiMedia3";
-+
-+			cpu {
-+				sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+			};
-+		};
-+
-+		multimedia4-dai-link {
-+			link-name = "MultiMedia4";
-+
-+			cpu {
-+				sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA4>;
-+			};
-+		};
-+
-+		primary-rx-dai-link {
-+			link-name = "Primary MI2S Playback";
-+
-+			cpu {
-+				sound-dai = <&q6afedai PRIMARY_MI2S_RX>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6routing>;
-+			};
-+
-+			codec {
-+				sound-dai = <&alc5682 0>;
-+			};
-+		};
-+
-+		primary-tx-dai-link {
-+			link-name = "Primary MI2S Capture";
-+
-+			cpu {
-+				sound-dai = <&q6afedai PRIMARY_MI2S_TX>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6routing>;
-+			};
-+
-+			codec {
-+				sound-dai = <&alc5682 0>;
-+			};
-+		};
-+
-+		tertiary-rx-dai-link {
-+			link-name = "Tertiary MI2S Playback";
-+
-+			cpu {
-+				sound-dai = <&q6afedai TERTIARY_MI2S_RX>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6routing>;
-+			};
-+
-+			codec {
-+				sound-dai = <&max98357a>;
-+			};
-+		};
-+
-+		displayport-rx-dai-link {
-+			link-name = "DisplayPort Playback";
-+
-+			cpu {
-+				sound-dai = <&q6afedai DISPLAY_PORT_RX>;
-+			};
-+
-+			platform {
-+				sound-dai = <&q6routing>;
-+			};
-+
-+			codec {
-+				sound-dai = <&mdss_dp>;
-+			};
-+		};
-+	};
-+
- 	reg_tp_3p3: touchpad-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "tp_3p3";
-@@ -368,6 +476,45 @@ &pm6150_rtc {
- 	status = "okay";
- };
- 
-+&q6afedai {
-+	dai@16 {
-+		reg = <PRIMARY_MI2S_RX>;
-+		qcom,sd-lines = <1>;
-+	};
-+
-+	dai@17 {
-+		reg = <PRIMARY_MI2S_TX>;
-+		qcom,sd-lines = <0>;
-+	};
-+
-+	dai@20 {
-+		reg = <TERTIARY_MI2S_RX>;
-+		qcom,sd-lines = <0>;
-+	};
-+
-+	dai@104 {
-+		reg = <DISPLAY_PORT_RX>;
-+	};
-+};
-+
-+&q6asmdai {
-+	dai@0 {
-+		reg = <0>;
-+	};
-+
-+	dai@1 {
-+		reg = <1>;
-+	};
-+
-+	dai@2 {
-+		reg = <2>;
-+	};
-+
-+	dai@3 {
-+		reg = <3>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -376,6 +523,12 @@ &qupv3_id_1 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	memory-region = <&adsp_mem>;
-+	firmware-name = "qcom/sc7180/acer/aspire1/qcadsp7180.mbn";
-+	status = "okay";
-+};
-+
- &remoteproc_mpss {
- 	firmware-name = "qcom/sc7180/acer/aspire1/qcmpss7180_nm.mbn";
- 	status = "okay";
+> Changes during conversion:
+>   - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
+>     it is not used in DT nor the dt-bindings
+>   - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
+>     it is not used in DT nor the dt-bindings
 
--- 
-2.41.0
+This I'm not sure about - they _were_ documented in the text-form
+dt-binding, even if they weren't used in the dts. If the clock
+controller does actually produce these clocks, removing them doesn't
+make sense to me.
 
+Cheers,
+Conor.
+
+>=20
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+>=20
+> Changes in V2:
+>   - remove the table copied from the old txt bindings, replace it with if=
+-then
+>     blocks individually listing the allowed clock-output-names per compat=
+ible
+>   - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
+>     it is not used in DT nor the dt-bindings
+>   - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
+>     it is not used in DT nor the dt-bindings
+>   - move allOf: after required:
+>   - Link to V1: https://lore.kernel.org/lkml/ZTUIJrTc6KKyT4xj@standask-GA=
+-A55M-S2HP/
+>=20
+>  .../bindings/clock/brcm,kona-ccu.txt          | 138 -------------
+>  .../bindings/clock/brcm,kona-ccu.yaml         | 181 ++++++++++++++++++
+>  2 files changed, 181 insertions(+), 138 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu=
+=2Etxt
+>  create mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu=
+=2Eyaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt b/=
+Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
+> deleted file mode 100644
+> index 8e5a7d868557..000000000000
+> --- a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
+> +++ /dev/null
+> @@ -1,138 +0,0 @@
+> -Broadcom Kona Family Clocks
+> -
+> -This binding is associated with Broadcom SoCs having "Kona" style
+> -clock control units (CCUs).  A CCU is a clock provider that manages
+> -a set of clock signals.  Each CCU is represented by a node in the
+> -device tree.
+> -
+> -This binding uses the common clock binding:
+> -    Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -
+> -Required properties:
+> -- compatible
+> -	Shall have a value of the form "brcm,<model>-<which>-ccu",
+> -	where <model> is a Broadcom SoC model number and <which> is
+> -	the name of a defined CCU.  For example:
+> -	    "brcm,bcm11351-root-ccu"
+> -	The compatible strings used for each supported SoC family
+> -	are defined below.
+> -- reg
+> -	Shall define the base and range of the address space
+> -	containing clock control registers
+> -- #clock-cells
+> -	Shall have value <1>.  The permitted clock-specifier values
+> -	are defined below.
+> -- clock-output-names
+> -	Shall be an ordered list of strings defining the names of
+> -	the clocks provided by the CCU.
+> -
+> -Device tree example:
+> -
+> -	slave_ccu: slave_ccu {
+> -		compatible =3D "brcm,bcm11351-slave-ccu";
+> -		reg =3D <0x3e011000 0x0f00>;
+> -		#clock-cells =3D <1>;
+> -		clock-output-names =3D "uartb",
+> -				     "uartb2",
+> -				     "uartb3",
+> -				     "uartb4";
+> -	};
+> -
+> -	ref_crystal_clk: ref_crystal {
+> -		#clock-cells =3D <0>;
+> -		compatible =3D "fixed-clock";
+> -		clock-frequency =3D <26000000>;
+> -	};
+> -
+> -	uart@3e002000 {
+> -		compatible =3D "brcm,bcm11351-dw-apb-uart", "snps,dw-apb-uart";
+> -		reg =3D <0x3e002000 0x1000>;
+> -		clocks =3D <&slave_ccu BCM281XX_SLAVE_CCU_UARTB3>;
+> -		interrupts =3D <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
+> -		reg-shift =3D <2>;
+> -		reg-io-width =3D <4>;
+> -	};
+> -
+> -BCM281XX family
+> ----------------
+> -CCU compatible string values for SoCs in the BCM281XX family are:
+> -    "brcm,bcm11351-root-ccu"
+> -    "brcm,bcm11351-aon-ccu"
+> -    "brcm,bcm11351-hub-ccu"
+> -    "brcm,bcm11351-master-ccu"
+> -    "brcm,bcm11351-slave-ccu"
+> -
+> -The following table defines the set of CCUs and clock specifiers for
+> -BCM281XX family clocks.  When a clock consumer references a clocks,
+> -its symbolic specifier (rather than its numeric index value) should
+> -be used.  These specifiers are defined in:
+> -    "include/dt-bindings/clock/bcm281xx.h"
+> -
+> -    CCU     Clock           Type    Index   Specifier
+> -    ---     -----           ----    -----   ---------
+> -    root    frac_1m         peri      0     BCM281XX_ROOT_CCU_FRAC_1M
+> -
+> -    aon     hub_timer       peri      0     BCM281XX_AON_CCU_HUB_TIMER
+> -    aon     pmu_bsc         peri      1     BCM281XX_AON_CCU_PMU_BSC
+> -    aon     pmu_bsc_var     peri      2     BCM281XX_AON_CCU_PMU_BSC_VAR
+> -
+> -    hub     tmon_1m         peri      0     BCM281XX_HUB_CCU_TMON_1M
+> -
+> -    master  sdio1           peri      0     BCM281XX_MASTER_CCU_SDIO1
+> -    master  sdio2           peri      1     BCM281XX_MASTER_CCU_SDIO2
+> -    master  sdio3           peri      2     BCM281XX_MASTER_CCU_SDIO3
+> -    master  sdio4           peri      3     BCM281XX_MASTER_CCU_SDIO4
+> -    master  dmac            peri      4     BCM281XX_MASTER_CCU_DMAC
+> -    master  usb_ic          peri      5     BCM281XX_MASTER_CCU_USB_IC
+> -    master  hsic2_48m       peri      6     BCM281XX_MASTER_CCU_HSIC_48M
+> -    master  hsic2_12m       peri      7     BCM281XX_MASTER_CCU_HSIC_12M
+> -
+> -    slave   uartb           peri      0     BCM281XX_SLAVE_CCU_UARTB
+> -    slave   uartb2          peri      1     BCM281XX_SLAVE_CCU_UARTB2
+> -    slave   uartb3          peri      2     BCM281XX_SLAVE_CCU_UARTB3
+> -    slave   uartb4          peri      3     BCM281XX_SLAVE_CCU_UARTB4
+> -    slave   ssp0            peri      4     BCM281XX_SLAVE_CCU_SSP0
+> -    slave   ssp2            peri      5     BCM281XX_SLAVE_CCU_SSP2
+> -    slave   bsc1            peri      6     BCM281XX_SLAVE_CCU_BSC1
+> -    slave   bsc2            peri      7     BCM281XX_SLAVE_CCU_BSC2
+> -    slave   bsc3            peri      8     BCM281XX_SLAVE_CCU_BSC3
+> -    slave   pwm             peri      9     BCM281XX_SLAVE_CCU_PWM
+> -
+> -
+> -BCM21664 family
+> ----------------
+> -CCU compatible string values for SoCs in the BCM21664 family are:
+> -    "brcm,bcm21664-root-ccu"
+> -    "brcm,bcm21664-aon-ccu"
+> -    "brcm,bcm21664-master-ccu"
+> -    "brcm,bcm21664-slave-ccu"
+> -
+> -The following table defines the set of CCUs and clock specifiers for
+> -BCM21664 family clocks.  When a clock consumer references a clocks,
+> -its symbolic specifier (rather than its numeric index value) should
+> -be used.  These specifiers are defined in:
+> -    "include/dt-bindings/clock/bcm21664.h"
+> -
+> -    CCU     Clock           Type    Index   Specifier
+> -    ---     -----           ----    -----   ---------
+> -    root    frac_1m         peri      0     BCM21664_ROOT_CCU_FRAC_1M
+> -
+> -    aon     hub_timer       peri      0     BCM21664_AON_CCU_HUB_TIMER
+> -
+> -    master  sdio1           peri      0     BCM21664_MASTER_CCU_SDIO1
+> -    master  sdio2           peri      1     BCM21664_MASTER_CCU_SDIO2
+> -    master  sdio3           peri      2     BCM21664_MASTER_CCU_SDIO3
+> -    master  sdio4           peri      3     BCM21664_MASTER_CCU_SDIO4
+> -    master  sdio1_sleep     peri      4     BCM21664_MASTER_CCU_SDIO1_SL=
+EEP
+> -    master  sdio2_sleep     peri      5     BCM21664_MASTER_CCU_SDIO2_SL=
+EEP
+> -    master  sdio3_sleep     peri      6     BCM21664_MASTER_CCU_SDIO3_SL=
+EEP
+> -    master  sdio4_sleep     peri      7     BCM21664_MASTER_CCU_SDIO4_SL=
+EEP
+> -
+> -    slave   uartb           peri      0     BCM21664_SLAVE_CCU_UARTB
+> -    slave   uartb2          peri      1     BCM21664_SLAVE_CCU_UARTB2
+> -    slave   uartb3          peri      2     BCM21664_SLAVE_CCU_UARTB3
+> -    slave   uartb4          peri      3     BCM21664_SLAVE_CCU_UARTB4
+> -    slave   bsc1            peri      4     BCM21664_SLAVE_CCU_BSC1
+> -    slave   bsc2            peri      5     BCM21664_SLAVE_CCU_BSC2
+> -    slave   bsc3            peri      6     BCM21664_SLAVE_CCU_BSC3
+> -    slave   bsc4            peri      7     BCM21664_SLAVE_CCU_BSC4
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml b=
+/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
+> new file mode 100644
+> index 000000000000..e5656950b3bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
+> @@ -0,0 +1,181 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom Kona family clock control units (CCU)
+> +
+> +maintainers:
+> +  - Florian Fainelli <florian.fainelli@broadcom.com>
+> +  - Ray Jui <rjui@broadcom.com>
+> +  - Scott Branden <sbranden@broadcom.com>
+> +
+> +description: |
+> +  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
+> +  manages a set of clock signals.
+> +
+> +  All available clock IDs are defined in
+> +  - include/dt-bindings/clock/bcm281xx.h for BCM281XX family
+> +  - include/dt-bindings/clock/bcm21664.h for BCM21664 family
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm11351-aon-ccu
+> +      - brcm,bcm11351-hub-ccu
+> +      - brcm,bcm11351-master-ccu
+> +      - brcm,bcm11351-root-ccu
+> +      - brcm,bcm11351-slave-ccu
+> +      - brcm,bcm21664-aon-ccu
+> +      - brcm,bcm21664-master-ccu
+> +      - brcm,bcm21664-root-ccu
+> +      - brcm,bcm21664-slave-ccu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    minItems: 1
+> +    maxItems: 10
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +  - clock-output-names
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm11351-aon-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          items:
+> +            - const: hub_timer
+> +            - const: pmu_bsc
+> +            - const: pmu_bsc_var
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm11351-hub-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          const: tmon_1m
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm11351-master-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          items:
+> +            - const: sdio1
+> +            - const: sdio2
+> +            - const: sdio3
+> +            - const: sdio4
+> +            - const: usb_ic
+> +            - const: hsic2_48m
+> +            - const: hsic2_12m
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - brcm,bcm11351-root-ccu
+> +              - brcm,bcm21664-root-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          const: frac_1m
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm11351-slave-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          items:
+> +            - const: uartb
+> +            - const: uartb2
+> +            - const: uartb3
+> +            - const: uartb4
+> +            - const: ssp0
+> +            - const: ssp2
+> +            - const: bsc1
+> +            - const: bsc2
+> +            - const: bsc3
+> +            - const: pwm
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm21664-aon-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          const: hub_timer
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm21664-master-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          items:
+> +            - const: sdio1
+> +            - const: sdio2
+> +            - const: sdio3
+> +            - const: sdio4
+> +            - const: sdio1_sleep
+> +            - const: sdio2_sleep
+> +            - const: sdio3_sleep
+> +            - const: sdio4_sleep
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm21664-slave-ccu
+> +    then:
+> +      properties:
+> +        clock-output-names:
+> +          items:
+> +            - const: uartb
+> +            - const: uartb2
+> +            - const: uartb3
+> +            - const: bsc1
+> +            - const: bsc2
+> +            - const: bsc3
+> +            - const: bsc4
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller@3e011000 {
+> +      compatible =3D "brcm,bcm11351-slave-ccu";
+> +      reg =3D <0x3e011000 0x0f00>;
+> +      #clock-cells =3D <1>;
+> +      clock-output-names =3D "uartb",
+> +                           "uartb2",
+> +                           "uartb3",
+> +                           "uartb4",
+> +                           "ssp0",
+> +                           "ssp2",
+> +                           "bsc1",
+> +                           "bsc2",
+> +                           "bsc3",
+> +                           "pwm";
+> +    };
+> +...
+> --=20
+> 2.34.1
+>=20
+
+--PpgCk1CqQ30xHt9p
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTvNlAAKCRB4tDGHoIJi
+0jYIAQCUJq9VPOfJ8GqCoKw0wOrV4eSRvP1LpFvKlJLMdmkJtQD+P8riU4F8BNVM
+Qjf3aEc3xvojkrRD4IP7/6xEFYnhcAE=
+=TpuJ
+-----END PGP SIGNATURE-----
+
+--PpgCk1CqQ30xHt9p--
 
