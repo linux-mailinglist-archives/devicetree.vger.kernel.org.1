@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3C37D98B2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:43:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 534AB7D98B9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:44:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B6881C20F49
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:43:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CEBF1C20F93
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2686F1944A;
-	Fri, 27 Oct 2023 12:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79EE21EB45;
+	Fri, 27 Oct 2023 12:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KXqRHRxX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EOjDfXyH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E91179B2
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:43:33 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C64D48
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:43:31 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c5210a1515so30337821fa.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:43:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C881EB42
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:43:55 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D827FDE
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:43:53 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c594196344so30181351fa.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:43:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698410610; x=1699015410; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698410632; x=1699015432; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pe17ihUV1h93kyWHNqPYIawwhb3ODVjOgzmqoYszpgg=;
-        b=KXqRHRxXl51U59a/KPBfV8ianoqXtYzM1k0nqtHudOfiISbgYecCvghNYnMXDcdjq6
-         IPHvbSORhIXg7QVSR/1WqJHwtdsececsT3M9L7F6Ft+ln4lcKD09mICdJmgEjNLbYiyw
-         FBjEJmcjt391WvTw8n+5Sx8HsSle5rqKMUHbQNDO1GuuYSUD6nNfTpS/z0/se3A5JXeh
-         naOCFYXQEa30M/MrnxiWMzf8AbU1A0EG0oG0IGBhChJO307kkeftkLGrhWQKBrkmJ2gs
-         b3Qf8crFznOjC5WQPorm1gWAGQdCrtGcYhq2g2RxWzvmdHSP22yLgb05pzP2ugu9qRqw
-         F8jg==
+        bh=Y/2WBVQskAZL/ZnL07uvUlUtqe/GgmrTi4LkbbyTYsM=;
+        b=EOjDfXyHu8NLuBTA+ylM+TsB41LpMq6q+LbOJlpvroXJKB4lk52DcxCxF/XvO6v1RL
+         4P12/YJfFpvvvsphRZ0z+cpyA91XusbzPNdf2B5o18pfmTZBMoZJTd0lswNXLB5NcmwS
+         ymz6kgMkI5QuO/iCbDBIQI2cpyFnY+yn6qdSlPZri5DbyP75+47NR4mOayKrZxWowiqw
+         FWkckHbfQxi87oZtHBYcBDd4cczeYtOlpDxEHft6V0uNG+TsSBJ31iI5ZCd6IIG3O2Qs
+         el/Nhm+TewrfdrN/NMr90HvTQ2UhWfwvFYH4M6DhzrV/fawZVd96ohPIB73Cfn/uaC1c
+         wn/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698410610; x=1699015410;
+        d=1e100.net; s=20230601; t=1698410632; x=1699015432;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pe17ihUV1h93kyWHNqPYIawwhb3ODVjOgzmqoYszpgg=;
-        b=RpJUoGeYcEDECnULzqmy3Rm0E0Auz2vDkA3lgys3+Tww5QazrnEPSoDduNN/Oc5nCJ
-         zR6A/6IkBFc1f6zii1+YE8eBVfc6CAE8PHjtiDlwNvm1zZOJSwWQ0LoSg2tWSOno1mCz
-         +p6ZVoaYBKPD5ShxAzR6arDEeDlTEpTVxv5DX5k72OBK+7bZTociUqN//4brsjQzsaq1
-         LbgE+EeiHh8K3XkzdnKmDSF5NGEZANQ/r3ndLybh2qjR6Rmzyp9hplPOxIcd3chHDamS
-         j6C6IqGcWV6/WsgIuvkfDNkq5C6Vgd6vy9F+lv7X+LB3Xmvwk6hzpGoUh+n5ojcUCraw
-         nI8A==
-X-Gm-Message-State: AOJu0YxzJ21irRKSUTkHIJ2ggbIx7khkV84dYwMlVZ7pqHH6YwGVKh5O
-	IhLXJHISdu4j8M2ixLrGSBuuSA==
-X-Google-Smtp-Source: AGHT+IEgfKizdZaWIWUxbNDfpujjdzyimvdEk39ZKc2g3T2LoTf/+6awfuW4kayR6xXMukIlecXWOQ==
-X-Received: by 2002:a2e:b0ef:0:b0:2c5:f54:2497 with SMTP id h15-20020a2eb0ef000000b002c50f542497mr1946515ljl.39.1698410609828;
-        Fri, 27 Oct 2023 05:43:29 -0700 (PDT)
+        bh=Y/2WBVQskAZL/ZnL07uvUlUtqe/GgmrTi4LkbbyTYsM=;
+        b=FY5O9Hu72Qrwy5vlOFamOjJ/0TRGDcZQgl8/xyynHscvkTb6ZjTkQzQRrOej06j5tI
+         LvaVy7FQCotKgyAxgOTIcOoHJx/vDiMjrvMi+AKvMg+7hDxijCwRM+l6WFnQS9/WcGLR
+         4aliL2E0WeEcgwBRiBfbRlnD6NjhMn24nZvq1lsgLG747pjEaq0Fx+hasXV5JGnG/qmC
+         tzA04HvXz3PVU45pIQX8+1x8RfNDXM7kM/4cj3mgbr47EStje1VcajPrye3/pyhKcQhz
+         lbtoAQb4ljilun3b1Vg0gOycNiLmJb96eBg145ht97FETeHfEZbry5kSeqH6VBBDGzNJ
+         WV/g==
+X-Gm-Message-State: AOJu0YwjgFrSttotpTI3SJa1OMh0rFnwU87/phbNbubgvKQIAnksjmY4
+	NWSoZJRorE8OwG56NSJu7iVZ5g==
+X-Google-Smtp-Source: AGHT+IFs8Q9M62RKXrVIBm8TUTlmpaVhnflx6w0J7Lt8qioi9eVdOPFJLBrLU/CIv0ZJjX1BKVkRuA==
+X-Received: by 2002:a2e:7e0e:0:b0:2c0:34ed:b5ea with SMTP id z14-20020a2e7e0e000000b002c034edb5eamr1975338ljc.45.1698410632203;
+        Fri, 27 Oct 2023 05:43:52 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id z24-20020a2e3518000000b002bc3fbe9fd5sm267914ljz.55.2023.10.27.05.43.28
+        by smtp.gmail.com with ESMTPSA id z24-20020a2e3518000000b002bc3fbe9fd5sm267914ljz.55.2023.10.27.05.43.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 05:43:29 -0700 (PDT)
-Message-ID: <66b8e350-63ff-424c-8223-73c95e5d5c32@linaro.org>
-Date: Fri, 27 Oct 2023 14:43:28 +0200
+        Fri, 27 Oct 2023 05:43:51 -0700 (PDT)
+Message-ID: <5c616851-4090-4ae1-97a8-bd27ca9005b4@linaro.org>
+Date: Fri, 27 Oct 2023 14:43:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] dt-bindings: phy: qcom,snps-eusb2: document the
- SM8650 Synopsys eUSB2 PHY
+Subject: Re: [PATCH 1/8] dt-bindings: display: msm-dsi-phy-7nm: document the
+ SM8650 DSI PHY
 Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-phy-v1-0-6137101520c4@linaro.org>
- <20231025-topic-sm8650-upstream-phy-v1-4-6137101520c4@linaro.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Marek <jonathan@marek.ca>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-mdss-v1-0-bb219b8c7a51@linaro.org>
+ <20231025-topic-sm8650-upstream-mdss-v1-1-bb219b8c7a51@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,13 +131,12 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-topic-sm8650-upstream-phy-v1-4-6137101520c4@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-mdss-v1-1-bb219b8c7a51@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/10/2023 09:34, Neil Armstrong wrote:
-> Document the Synopsys eUSB2 PHY on the SM8650 Platform by using
-> the SM8550 as fallback.
+> Document the DSI PHY on the SM8650 Platform.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
