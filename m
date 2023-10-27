@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-12439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7537D983E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:32:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D66FB7D9841
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:32:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 349FC1C20FDA
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:32:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6EC78B215B1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8F11EB35;
-	Fri, 27 Oct 2023 12:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFEF11E503;
+	Fri, 27 Oct 2023 12:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jleNQ/sW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXPd5is5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D0B1EB22
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:31:03 +0000 (UTC)
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 533851A1
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:31:01 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2c514cbbe7eso28983191fa.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:31:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698409859; x=1699014659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7+D/DSj36vCV1OwzBOVWowZkd0YiD7TzmQT6IGopp+o=;
-        b=jleNQ/sWVQkepJqBZPrVDPY5G22I3+SJUByCXKIwMHi7/hzwE1ntosJG2utggTuiDB
-         0IToFONqs1iPHD0gEwT1ZdB0pAVAoM9C0vrO0/ffspk4ifGZRjr416gAMr2/yAxZMxbB
-         Td3MLCJBHAcs6ndtfYNRt3tDVaKlMy4vqe6vdAy9KGY1J0jGsf6Cs5UBB1uH7B/2/aGc
-         ayBLN7SLc3P9CE6UkCTuRNliSpVPl6hpi2H/Ou7f9fNy55LcyFq3NHpsSjavFJJxJkuq
-         2w9gVpA78LNdcmHC/41OSUsc6WiMqRPjoaVZAS889Y4EhYwXndt2WmhkwuJnZaH6pxu+
-         InOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698409859; x=1699014659;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+D/DSj36vCV1OwzBOVWowZkd0YiD7TzmQT6IGopp+o=;
-        b=H+7GDda5RiDTU7YVG3Nal1PRoYGiuuaDcuP0MjAThKhWI9fGyQ9mKq6gMqlLLHI5Jf
-         oZVE3M/JX0iYb7n7VolRFxtP67dZguE/GzFYX3YDXjjJhmnY8HbETENsMe3OTCg9dXfw
-         aOaAXq/HRlOruxbzYmd3GipUzYnrpkAwegJda9dj7UmATWcAK3VvP3gxFffb+zL54zeT
-         A4dYljucstPRIsVkFiMA6RdEoz84TJ3bad/d0ULltO79vCHC667dBJB99Z7xqoov+YH9
-         wRJByvnfOp/LQGJqfS6wCMkHg8RMfJu+yf1hWBGDhpspwo9NIhtmNxjgzIc0JiFirTYW
-         XCZQ==
-X-Gm-Message-State: AOJu0YxQFnylWrRzJQ5Nkr3xm+eEqNPsZTrpadAXImyxWAdP3ifBHkRh
-	ODE4sEViQ8RbTgx6RKR4TxgYxyo4nPvBBZp+6E0=
-X-Google-Smtp-Source: AGHT+IGVdg2+xBNRlAa5jMv+5wOxWqAK4i8vljWdepR+qkY+9QDbKSCL5vQDP7l+pauStKC6WBgy4g==
-X-Received: by 2002:a05:6512:3b3:b0:500:be57:ce53 with SMTP id v19-20020a05651203b300b00500be57ce53mr1683670lfp.42.1698409859389;
-        Fri, 27 Oct 2023 05:30:59 -0700 (PDT)
-Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id eo25-20020a056512481900b00500ba43a43asm264016lfb.86.2023.10.27.05.30.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 05:30:58 -0700 (PDT)
-Message-ID: <d0acf4ff-ffea-4436-ad15-3b3ef4f36e58@linaro.org>
-Date: Fri, 27 Oct 2023 14:30:57 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AA01EB2A;
+	Fri, 27 Oct 2023 12:31:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47DB2C433CC;
+	Fri, 27 Oct 2023 12:31:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698409899;
+	bh=AcMSafgikuw0QDyO06n+uZljx9TSL1PuVKSPh0RB4Og=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YXPd5is5+RQIvKnCK/8PpgTaXHBwPVeKYqBRMKl0KC/SBZQjgC8G4bAjW/wFEQqly
+	 Hm7If3WAqhzHtmrP8f/U4c/YSL83ewnD/cfMcBYeNl9lQ+2Mj1t2Ttti2SlCWGU8dy
+	 yG3SMedBeYlUVuboANt3CpegrTZuMnFEKKxv5UoZelpF/OaS2zRNr7Q/l5/pPOXIZ5
+	 bkCk7+3dbcK2TNEolNzGvkwFNZjeyFSVPEvfeolQim7sgvd8vOAxDoVealQMR3dqOq
+	 yuXNE8+anr0uHBQHT3y8FyGYez0G8EMaenJ3Ph5U5FvI6DVZIzKCvxYijSQ1XzKtaj
+	 x56tnB/J3nsDg==
+Date: Fri, 27 Oct 2023 18:01:25 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	konrad.dybcio@linaro.org, quic_shazhuss@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
+	quic_nayiluri@quicinc.com, dmitry.baryshkov@linaro.org,
+	robh@kernel.org, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mhi@lists.linux.dev,
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v3 2/5] PCI: qcom-ep: Add support for SA8775P SOC
+Message-ID: <20231027123125.GC17527@thinkpad>
+References: <1697715430-30820-1-git-send-email-quic_msarkar@quicinc.com>
+ <1697715430-30820-3-git-send-email-quic_msarkar@quicinc.com>
+ <20231025075317.GC3648@thinkpad>
+ <adbca084-a74b-51be-67b5-a3b9e45da506@quicinc.com>
+ <20231026061035.GA4915@thinkpad>
+ <23f3f2a8-dcbd-6764-195b-49bcec451084@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: qcom,rpmh: Add PMC8380
- compatible
-Content-Language: en-US
-To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, broonie@kernel.org, lgirdwood@gmail.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
- abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231025135550.13162-1-quic_sibis@quicinc.com>
- <20231025135550.13162-2-quic_sibis@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025135550.13162-2-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <23f3f2a8-dcbd-6764-195b-49bcec451084@quicinc.com>
 
-On 25/10/2023 15:55, Sibi Sankar wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+On Thu, Oct 26, 2023 at 12:29:30PM +0530, Mrinmay Sarkar wrote:
 > 
-> Add PMC8380 compatibles for PMIC found in SC8380XP platform.
+> On 10/26/2023 11:40 AM, Manivannan Sadhasivam wrote:
+> > On Thu, Oct 26, 2023 at 11:08:03AM +0530, Mrinmay Sarkar wrote:
+> > > On 10/25/2023 1:23 PM, Manivannan Sadhasivam wrote:
+> > > > On Thu, Oct 19, 2023 at 05:07:07PM +0530, Mrinmay Sarkar wrote:
+> > > > > Add support for SA8775P SoC to the Qualcomm PCIe Endpoint Controller
+> > > > > driver. There will be some change specific to SA8775P so adding new
+> > > > > compatible string.
+> > > > > 
+> > > > What are those specific changes?
+> > > > 
+> > > > - Mani
+> > > Need to enable cache snooping logic for SA8775P only.
+> > > 
+> > Then you can add the compatible to the driver at that time and use the fallback
+> > till then i.e., just document the SA8775P compatible in bindings and use both
+> > SA8775P and SM8450 compatibles in the dts where the latter will act as a
+> > fallback.
+> > 
+> > - Mani
 > 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> I am getting below error in dtb checking if I add SM8450 as fallback
+> compatible in dtsi. As both has different set of clocks.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Ok. I didn't realize that the clocks are different. In that case, you need to
+mention it in the commit message to make it clear and introduce a new
+compatible.
 
-Best regards,
-Krzysztof
+- Mani
 
+> //local/mnt/workspace/Mrinmay/new_lemans/next-20231018/linux-next/out/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb:
+> pcie-ep@1c00000: compatible: 'oneOf' conditional failed, one must be
+> fixed://
+> //        ['qcom,sa8775p-pcie-ep', 'qcom,sm8450-pcie-ep'] is too long//
+> //        'qcom,sdx65-pcie-ep' was expected//
+> //        'qcom,sdx55-pcie-ep' was expected//
+> //        from schema $id:
+> http://devicetree.org/schemas/pci/qcom,pcie-ep.yaml#//
+> ///local/mnt/workspace/Mrinmay/new_lemans/next-20231018/linux-next/out/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb:
+> pcie-ep@1c00000: clocks: [[31, 66], [31, 68], [31, 69], [31, 78], [31, 79]]
+> is too short//
+> //        from schema $id:
+> http://devicetree.org/schemas/pci/qcom,pcie-ep.yaml#//
+> ///local/mnt/workspace/Mrinmay/new_lemans/next-20231018/linux-next/out/arch/arm64/boot/dts/qcom/sa8775p-ride.dtb:
+> pcie-ep@1c00000: clock-names: ['aux', 'cfg', 'bus_master', 'bus_slave',
+> 'slave_q2a'] is too short/
+> 
+> > > --Mrinmay
+> > > 
+> > > > > Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+> > > > > ---
+> > > > >    drivers/pci/controller/dwc/pcie-qcom-ep.c | 1 +
+> > > > >    1 file changed, 1 insertion(+)
+> > > > > 
+> > > > > diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > > > index 32c8d9e..4c01c34 100644
+> > > > > --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > > > +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+> > > > > @@ -858,6 +858,7 @@ static void qcom_pcie_ep_remove(struct platform_device *pdev)
+> > > > >    }
+> > > > >    static const struct of_device_id qcom_pcie_ep_match[] = {
+> > > > > +	{ .compatible = "qcom,sa8775p-pcie-ep", },
+> > > > >    	{ .compatible = "qcom,sdx55-pcie-ep", },
+> > > > >    	{ .compatible = "qcom,sm8450-pcie-ep", },
+> > > > >    	{ }
+> > > > > -- 
+> > > > > 2.7.4
+> > > > > 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
