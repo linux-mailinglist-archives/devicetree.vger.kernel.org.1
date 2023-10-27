@@ -1,125 +1,105 @@
-Return-Path: <devicetree+bounces-12482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3F37D9AAE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:03:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14A27D9AC3
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 16:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26A2B1C20E9B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:03:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC541C20F87
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC83358AD;
-	Fri, 27 Oct 2023 14:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n6qs5A2I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF9E358B7;
+	Fri, 27 Oct 2023 14:05:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F49B1DDD7
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:03:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC91AC433C8;
-	Fri, 27 Oct 2023 14:03:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698415395;
-	bh=I8Lf1lGqEIBiRLLQKY+WAnwAUTOu+8uX5WfQ5AedY3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n6qs5A2IS8RYWjkZkmBdOFmRpzRDPB4vGqqJNRgnXGIwr90Z77tdwFfC6PPsP6N+P
-	 AsUBtmX/jZFnaed61069Xbm1DBc5RlKrvqJFOnjSaUwU185VsBEgW1OI8zCPIDHooP
-	 rLEP9pnL5HTE2fo2nOwDroZEOj+oivRU9/3lUNhIiNEt6FSVItekn6hwDbKzR/HrIM
-	 rXuXfwK3wYqrTgOtB2P9HfYR9yqBSVMA4nHzXS2fW9m/i7NDfXkUf+UJuWLX7Bs+3w
-	 EJpijWkb4VZKW0S0pb+ukZaxCDd1osapre6lYpnvK6eQs7wDzJ62ltSuOeBh3u/gPM
-	 /70zy5P2bVLtA==
-Date: Fri, 27 Oct 2023 15:03:10 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Huqiang Qin <huqiang.qin@amlogic.com>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, khilman@baylibre.com,
-	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 1/3] dt-bindings: watchdog: Add support for Amlogic C3
- and S4 SoCs
-Message-ID: <20231027-dandy-remote-7cdbb721f95c@spud>
-References: <20231027104358.342861-1-huqiang.qin@amlogic.com>
- <20231027104358.342861-2-huqiang.qin@amlogic.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E44358AF
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 14:04:50 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0520210A;
+	Fri, 27 Oct 2023 07:04:49 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39RDW8ut000776;
+	Fri, 27 Oct 2023 10:04:16 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3tywr0pbrg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 27 Oct 2023 10:04:15 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 39RE4Dap048294
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 27 Oct 2023 10:04:13 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 27 Oct 2023 10:04:13 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 27 Oct 2023 10:04:12 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 27 Oct 2023 10:04:12 -0400
+Received: from rbolboac.ad.analog.com ([10.48.65.174])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 39RE40hZ022983;
+	Fri, 27 Oct 2023 10:04:02 -0400
+From: Ramona Gradinariu <ramona.gradinariu@analog.com>
+To: <jic23@kernel.org>, <nuno.sa@analog.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Ramona Gradinariu <ramona.gradinariu@analog.com>
+Subject: [PATCH v3 0/3] iio: imu: adis: Use spi cs inactive delay
+Date: Fri, 27 Oct 2023 17:03:55 +0300
+Message-ID: <20231027140358.328699-1-ramona.gradinariu@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oM/wQgfGbne7U64P"
-Content-Disposition: inline
-In-Reply-To: <20231027104358.342861-2-huqiang.qin@amlogic.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: p6shrmKnYsB1iwG8_NaMpaRWPGKpWEkc
+X-Proofpoint-ORIG-GUID: p6shrmKnYsB1iwG8_NaMpaRWPGKpWEkc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-27_12,2023-10-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ lowpriorityscore=0 malwarescore=0 adultscore=0 mlxlogscore=973
+ impostorscore=0 suspectscore=0 spamscore=0 priorityscore=1501 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2310240000 definitions=main-2310270121
 
+A delay is needed each time the chip selected becomes inactive,
+even after burst data readings are performed.
+Currently, there is no delay added after a burst reading
+and in case a new SPI transfer is performed before
+the needed delay, the adis device becomes unresponsive until
+reset.
 
---oM/wQgfGbne7U64P
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This commit is adding the needed delay directly to the spi driver,
+using the cs_inactive parameter, in case it is not set and is
+removing the additional chip select change delay present in adis
+APIs to remove the double delay.
 
-On Fri, Oct 27, 2023 at 06:43:56PM +0800, Huqiang Qin wrote:
-> Update dt-binding document for watchdog of Amlogic C3 and S4 SoCs.
->=20
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+Ramona Gradinariu (3):
+  iio: imu: adis: Use spi cs inactive delay
+  dt-bindings: adis16475: Add 'spi-cs-inactive-delay-ns' property
+  dt-bindings: adis16460: Add 'spi-cs-inactive-delay-ns' property
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+ .../bindings/iio/imu/adi,adis16460.yaml        |  4 ++++
+ .../bindings/iio/imu/adi,adis16475.yaml        |  4 ++++
+ drivers/iio/imu/adis.c                         | 18 ++++++------------
+ 3 files changed, 14 insertions(+), 12 deletions(-)
 
-Thanks,
-Conor.
+--
+2.34.1
 
-> ---
->  .../bindings/watchdog/amlogic,meson-gxbb-wdt.yaml    | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxb=
-b-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-=
-wdt.yaml
-> index 443e2e7ab467..69845ec32e81 100644
-> --- a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.y=
-aml
-> +++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.y=
-aml
-> @@ -15,9 +15,15 @@ allOf:
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - amlogic,meson-gxbb-wdt
-> -      - amlogic,t7-wdt
-> +    oneOf:
-> +      - enum:
-> +          - amlogic,meson-gxbb-wdt
-> +          - amlogic,t7-wdt
-> +      - items:
-> +          - enum:
-> +              - amlogic,c3-wdt
-> +              - amlogic,s4-wdt
-> +          - const: amlogic,t7-wdt
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.42.0
->=20
->=20
-
---oM/wQgfGbne7U64P
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTvDHgAKCRB4tDGHoIJi
-0qcvAP9SGLIcv30IzHPU1l4xfEzLR3YQ9/vjV8fAu2jJcj0fDwEAm6Yhi73ZKy1E
-vjagBd0uQzS1m25Urmv+KT1LmSVVKQY=
-=qbQP
------END PGP SIGNATURE-----
-
---oM/wQgfGbne7U64P--
 
