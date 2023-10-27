@@ -1,143 +1,184 @@
-Return-Path: <devicetree+bounces-12554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C400E7DA19E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:07:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C33107DA1C6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E911C210BF
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:07:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A6D9B213D4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA47F39878;
-	Fri, 27 Oct 2023 20:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD3838FB6;
+	Fri, 27 Oct 2023 20:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LKalK66+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="C9r/VZO6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D3756128
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 20:07:55 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC6B187
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 13:07:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1698437272;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TKT2siFILLclNs7DXkgdMslrVPbCgf+UzQ9e1S29k4Y=;
-	b=LKalK66+b+2o3mk/MXoVVbJh8vxyRvw0Ejw42m8ryF2pu7I0A2qrvvQSlSHDzdxpaEVYnX
-	o+hDXtavddJa42hbJDgWEJAPXbbqOpl7T5yIvE8BnDPU53UHKS7xHuxCqdhBQJK5bzceHk
-	/EwoGThOO9sLNPmJApNldMl0jqFRwPE=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-618-0mNL7CPEMH6bpFk0O0mrsA-1; Fri, 27 Oct 2023 16:07:50 -0400
-X-MC-Unique: 0mNL7CPEMH6bpFk0O0mrsA-1
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-32deb4e2eb7so1259240f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 13:07:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698437270; x=1699042070;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TKT2siFILLclNs7DXkgdMslrVPbCgf+UzQ9e1S29k4Y=;
-        b=joVvaeGkldnBl0zPCo/YYWjCJpkk1HxCwLJ14wQGpuAoMQ836u++XoKWDc/VcLUY6I
-         Zdbc49FNqYWzu6FfBTXpxd8uOOgci7T7oGwALusMLIUleIS9xKfwO5suXy8swavUbTkD
-         h9bE9CpWV3E4wbmwhSD1a1jcvO7DMVd5jcN423PBoehqUwhRmosmG46VXqQTS/ZxnwFs
-         S7z1KuF4XJwp9r/pfU7nA0ELIlmUJFeo9bJ74Pww0rS2D7YOB92VH8dhcfhe4S7E0Vcb
-         U9KWCOUElnqdmpjLUm6wqrVong2XB76kiaYAFL4t4kYWT6uFsOOzPKDyoDVp+tljAV4S
-         KhYg==
-X-Gm-Message-State: AOJu0YxB3J9o6LPLWZNE2AzdijAU9MYtQto0rfLh6bg16++dA9QxjVZs
-	ncLLET3ILSpUIjNBJIklSTxK1yaqIrWeq6VnEccOv/jJ5CqmQk9ibejVCVcOybmTAmGLOvsEdNf
-	6gSONZmiRrBl+Th+F8pnC0w==
-X-Received: by 2002:a05:6000:401f:b0:32d:b081:ff38 with SMTP id cp31-20020a056000401f00b0032db081ff38mr2954643wrb.0.1698437269877;
-        Fri, 27 Oct 2023 13:07:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGkgUTGYjS6f4IS8gpL2kOvvhHnXXSaIDACgCVW9FuhNqYJjmfMRlQW2XMkSuftApFYRJIr7Q==
-X-Received: by 2002:a05:6000:401f:b0:32d:b081:ff38 with SMTP id cp31-20020a056000401f00b0032db081ff38mr2954630wrb.0.1698437269519;
-        Fri, 27 Oct 2023 13:07:49 -0700 (PDT)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id z9-20020a5d44c9000000b0032d9caeab0fsm2414342wrr.77.2023.10.27.13.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 13:07:49 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>, Daniel
- Vetter <daniel@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, dri-devel@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, Conor
- Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Maxime Ripard <mripard@kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: ssd132x: Remove '-' before
- compatible enum
-In-Reply-To: <20231027172753.GA2834192-robh@kernel.org>
-References: <20231020223029.1667190-1-javierm@redhat.com>
- <169801218855.747717.5658253186246322717.robh@kernel.org>
- <87y1foo1in.fsf@minerva.mail-host-address-is-not-set>
- <20231027172753.GA2834192-robh@kernel.org>
-Date: Fri, 27 Oct 2023 22:07:48 +0200
-Message-ID: <87msw3omln.fsf@minerva.mail-host-address-is-not-set>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB0B3FB07;
+	Fri, 27 Oct 2023 20:31:25 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC351AA;
+	Fri, 27 Oct 2023 13:31:23 -0700 (PDT)
+Received: from notapiano (unknown [146.70.117.171])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 7B25C6607388;
+	Fri, 27 Oct 2023 21:31:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698438682;
+	bh=x04e49XZ44kUWKuvH7Agm9r97YLxKz5Y0a4BLiq+mII=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C9r/VZO6NQCPNxFyaLFikbz8AbFVuTfxtMxI80nrDSuc2KZhvF9y/pVLrVqdyzFIL
+	 GnW26iZP32/7z+TCAsxX61tKhT2f7bDFcDbwcsS/b4Wp0BuodS8Ih6H3axTmZSBTNe
+	 DgvyFkYKKRgv/jARoP2D5Aml+n7B2+tkp4D2NE/hcb3VZGJYyZV8u4W5pgK9PB7ysw
+	 /36S2QwKgwJOiNXTpHBa2Z6twuIWs3/eFWCxOUPtox06CMbN3YR2AU+I3o5iMlSCiH
+	 /oyIkCLK0YAagsOkHoNPsrmTb8t3QKNxARhfCMtKnVD1bKHZidV4AWkmEG9M0wOWWN
+	 zFvFvp+WTHWvA==
+Date: Fri, 27 Oct 2023 16:31:13 -0400
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Shuah Khan <shuah@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	linux-kselftest@vger.kernel.org, kernel@collabora.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 2/2] kselftest: devices: Add board file for
+ google,spherion
+Message-ID: <3bcd3794-cd19-4772-8da2-772821a756b5@notapiano>
+References: <20231024211818.365844-1-nfraprado@collabora.com>
+ <20231024211818.365844-3-nfraprado@collabora.com>
+ <2023102546-filled-onboard-3dfb@gregkh>
+ <e49c63c4-2b24-4428-801c-1f854a98c593@notapiano>
+ <2023102747-conclude-backside-a579@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2023102747-conclude-backside-a579@gregkh>
 
-Rob Herring <robh@kernel.org> writes:
+On Fri, Oct 27, 2023 at 12:48:35PM +0200, Greg Kroah-Hartman wrote:
+> On Wed, Oct 25, 2023 at 08:32:42AM -0400, Nícolas F. R. A. Prado wrote:
+> > On Wed, Oct 25, 2023 at 12:32:15PM +0200, Greg Kroah-Hartman wrote:
+> > > On Tue, Oct 24, 2023 at 05:18:00PM -0400, Nícolas F. R. A. Prado wrote:
+> > > > Add the list of devices expected to be probed from the USB and PCI
+> > > > busses on the google,spherion machine. The USB host controller at
+> > > > 11200000 is shared between two busses, for USB2 and USB3, so an
+> > > > additional match is used to select the USB2 bus.
+> > > > 
+> > > > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > > > ---
+> > > > 
+> > > >  tools/testing/selftests/devices/boards/google,spherion | 3 +++
+> > > >  1 file changed, 3 insertions(+)
+> > > >  create mode 100644 tools/testing/selftests/devices/boards/google,spherion
+> > > > 
+> > > > diff --git a/tools/testing/selftests/devices/boards/google,spherion b/tools/testing/selftests/devices/boards/google,spherion
+> > > > new file mode 100644
+> > > > index 000000000000..ba86ffcfe43c
+> > > > --- /dev/null
+> > > > +++ b/tools/testing/selftests/devices/boards/google,spherion
+> > > > @@ -0,0 +1,3 @@
+> > > > +usb camera 11200000,PRODUCT=.*/2/.* 1.4.1 1 0,1
+> > > > +usb bluetooth 11200000,PRODUCT=.*/2/.* 1.4.2 1 0,1
+> > > > +pci wifi 11230000 0.0/0.0
+> > > 
+> > > USB busses (and PCI ids) are not determinisitic and can, and will,
+> > > change values randomly.  So while it is nice to test "did the devices
+> > > show up properly", you can not do that based on bus ids at all, sorry.
+> > > 
+> > > Unless I'm reading these values wrong?  What are the fields
+> > > representing?  Perhaps a comment at the top to describe them so that we
+> > > know how to parse them?
+> > 
+> > Hi Greg,
+> > 
+> > I have described the fields in the commit message of patch 1. Here they are:
+> > 
+> > usb <test_name> <controller_address>[,<additional_match>] <ports_path> <configuration> <interfaces>
+> > 
+> > pci <test_name> <controller_address> <device-function_pairs_path>
+> 
+> That's not a good place to document them, we'll never find them, and I
+> obviously missed it as well.
+> 
+> Please put it in a comment at the top of this file _AND_ in a comment in
+> the script that parses these files.
 
-Hello Rob,
+Fair enough, will do so in the next version.
 
-> On Fri, Oct 27, 2023 at 11:30:56AM +0200, Javier Martinez Canillas wrote:
->> Rob Herring <robh@kernel.org> writes:
->> 
->> > On Sat, 21 Oct 2023 00:30:17 +0200, Javier Martinez Canillas wrote:
->> >> This is a leftover from when the binding schema had the compatible string
->> >> property enum as a 'oneOf' child and the '-' was not removed when 'oneOf'
->> >> got dropped during the binding review process.
->> >> 
->> >> Reported-by: Rob Herring <robh@kernel.org>
->> >> Closes: https://lore.kernel.org/dri-devel/CAL_Jsq+h8DcnpKqhokQOODCc8+Qi3M0PrxRFKz_Y4v37yMJvvA@mail.gmail.com/
->> >> Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
->> >> ---
->> >> 
->> >>  .../devicetree/bindings/display/solomon,ssd132x.yaml      | 8 ++++----
->> >>  1 file changed, 4 insertions(+), 4 deletions(-)
->> >> 
->> >
->> > Reviewed-by: Rob Herring <robh@kernel.org>
->> >
->> 
->> Pushed to drm-misc (drm-misc-next). Thanks!
->
-> Given what introduced this is before the drm-misc-next-2023-10-19 tag, 
-> isn't it going into 6.7 and needs to be in the fixes branch? Though that 
-> doesn't exist yet for 6.7 fixes. I don't understand why that's not done 
-> as part of the last tag for a cycle. But drm-misc is special.
->
+> 
+> > I'm aware that bus IDs are assigned at runtime, and that's exactly why I've
+> > avoided those in the test definitions, instead describing the hardware topology,
+> > which won't ever change.
+> > 
+> > And just to be extra clear, by hardware topology I mean:
+> > 
+> > For USB, we find the USB bus based on the address of its controller (and
+> > optionally its productID if two busses share the same controller for USB2 and
+> > USB3),
+> 
+> What exactly do you mean by "address" of a controller?  That will be
+> unique per bus-type that the controller lives on, right?
 
-I pushed to drm-misc-next because I thought that there will be a last PR
-of drm-misc-next for 6.7, but it seems I missed it for a couple of hours
-(that is drm-misc-next-2023-10-27) :(
+Well, in its current form the test is targetted at DT-based platforms, so by
+address I mean the MMIO address of the host controller, as defined in the
+controller's node in the DT.
 
-https://lists.freedesktop.org/archives/dri-devel/2023-October/425698.html
+In order to expand the coverage of the test to non-DT platforms as well, yes,
+we'll need to allow describing controllers that are under some bus, rather than
+at a fixed memory address. I'm already planning to do that as a next step.
 
-The solution now is to cherry-pick the fixes already in drm-misc-next to
-drm-misc-next-fixes, to make sure that land in 6.7. I can do that once
-drm-next is back merged to that branch, if you think the schema warning
-fix must land in 6.7 and can't wait for the next release.
+> 
+> > and then find the device by following the ports at each hub. The
+> > configuration number and interfaces then describe what interfaces to check for
+> > presence and driver binding.
+> 
+> Ok, good, hub and port locations _should_ be stable, but note they have
+> changed at times so you will have to deal with that for the next 20+
+> years, are you ok with that?
 
-> Rob
->
+If the locations changed it means we have a new hardware revision. I'd expect
+most of those occurences to result in new compatible strings or DMI identifiers,
+which we could then use to run a different set of tests, using the new hub and
+port locations, since this is effectively a different piece of hardware.
 
--- 
-Best regards,
+> 
+> > For PCI, we find the controller again based on its address, and follow the
+> > device-function pairs at each level in the topology until we arrive at the
+> > desired device.
+> 
+> "address"?  What exactly do you mean by this value?  For PCI, that will
+> change.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Same as for USB.
 
+> 
+> > We don't rely on the USB bus number, nor on the PCI domain and bus number, since
+> > these are all assigned at runtime.
+> 
+> You are relying on a specific sysfs tree as well, are you able to handle
+> it when new devices get added to the middle of a device path?  That
+> sometimes happens in sysfs too.
+
+Right, I'm relying on the fact that the PCI topology is reflected into the sysfs
+topology, meaning the sysfs directories for devices on a PCI bus are direct
+descendants of the directory for the PCI bridge exposing that bus. That's the
+only place I'm aware of which exposes the PCI topology.
+
+In any case, although simplistic, this approach has worked well so far on the
+platforms I've tested on.
+
+Thanks,
+Nícolas
 
