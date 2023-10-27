@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D677D90E5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:17:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9367F7D9103
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:18:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31824281C1A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:16:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E37EFB2135F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F248812B84;
-	Fri, 27 Oct 2023 08:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC2D1429F;
+	Fri, 27 Oct 2023 08:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sl/488vC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jioTpSr5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3551427D
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:16:54 +0000 (UTC)
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1CE11AC
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:16:51 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-508126afc88so2682148e87.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:16:51 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960E213AF3
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:18:40 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D84DD1B3
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:18:38 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507bd19eac8so2651399e87.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:18:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698394610; x=1698999410; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698394717; x=1698999517; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=k9C+6hxBJkuWlTPJ9vcL8K0I/WwLi1EZuPVpW+Ob4vU=;
-        b=Sl/488vCuQnnoHeS1PlXGalXMB8B8QtzLjPIY3MjusUBjEVBgcM/srW+T4DkwvNVy7
-         3VS30KJkJUVeEx3s5BCQGbWDqjQjA9TiP1FjK2ukT8fyG2npislD1u16kaW0Zhwdyy5p
-         tn4aBeHN41ceaJ2/GbIwMpCsvp9vOvseVsDGH0fcJdlBs95QIgHV670hiGjhpGdnKg2P
-         i/WDKZ27/bczW9PPG+Zb6nasybWZSrQfWFFBVOSfyjDhauktx8pPi41yKuzksswEH2OZ
-         JwPEZ1qIvQiazut4YAP1T3UaAuX9AuDz4BCU8qJjpTjqSNmWfsZHXGgg+c8fLoC6BnfC
-         MPTw==
+        bh=lncm3MHrPjC7vAyy69JbUAajdl3oE8Tr3nNBlMEOh0k=;
+        b=jioTpSr53zWQFCUsZiF24O5kZWeWAXytWlpiH9MJSSjlEDsrLxrColQaDhMXP6/6qn
+         MebQGTgoGbIwmig9JLBhpHXU6SxRa2IqEhNRnOXOugHCDsiDMXa6I/ogXMTEWrttX7op
+         6cGYRFTp02nM8auUwzuCcz66631XJNLHyfbTdrJmF7I1Ir+sA8ec04IrO6/L6d0a52OF
+         Ko9gmqRYoOhitqBHtzTOX0+q5Cz+EI99Dt8KdNb+5i53mUlACq/zJ8XIOLnKAppTCjpT
+         /k8TSyV2XiKjbu39dKA/s8cKvfa/7gbTorjrFjiBslSCp5fd3u6c8cK6sxL1SIakLXMr
+         16Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698394610; x=1698999410;
+        d=1e100.net; s=20230601; t=1698394717; x=1698999517;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k9C+6hxBJkuWlTPJ9vcL8K0I/WwLi1EZuPVpW+Ob4vU=;
-        b=ewBLGpcttJsbW5lJowxhPnkFS2OdQ2EYdytaAh2iGKbGyKejPKSuny2zcoEyZmoM+0
-         2j77ZMHj6g00WQf1x1xi6S5KJDDZH1H6VEVTyEUc83Jlg4QnHJDlq90iuZ+taSzk2NBG
-         jdY2ZJIG70NZfRu1Sd1jItsRnxVm9b59/AGHTceYlBDEag4EQBkA2SkEYHgWgxyxG4OW
-         yCh+9GfKlYDARwl6pnpl6gYdNbLQOJtZXd9PNL5aMVYE/Cu565fC3k9SZOqcAUeXtNzz
-         aDo73z6shL4ZJWjcvR1y+hkPOCnI2ont808GUtL6Ifm9zjZnBFvPwW0vHdNiZeRgx/wb
-         NlnQ==
-X-Gm-Message-State: AOJu0YyrTIWyZ0G2uFhPLnmTApNDnVyRmqsNrqiwdRcymyVSc2BewLuA
-	kVhz2DwkMp55gGRB1ew+LBTs1A==
-X-Google-Smtp-Source: AGHT+IHtPuhJ8vqTyk8LFy4cnn/Pc+pkJ85bwxJehD8IZY4TS0KZ7iz28Ol3I+yrnMCxI/6zxkcFgg==
-X-Received: by 2002:a05:6512:39c8:b0:507:ae8b:a573 with SMTP id k8-20020a05651239c800b00507ae8ba573mr1673641lfu.51.1698394609984;
-        Fri, 27 Oct 2023 01:16:49 -0700 (PDT)
+        bh=lncm3MHrPjC7vAyy69JbUAajdl3oE8Tr3nNBlMEOh0k=;
+        b=bJo5Mx/6u6s1Zbauh1Hj5514+YJFVvDhMxccn0h5uVju+kKl2+2JbrjuqVwLMV/NMn
+         PXVq3SBUT2RkcD9SvI1qGDoKwgBC8FJ25aBgiXzO4vq5nCNVx+X5SeWWfbe9KfNbWTaM
+         pWxab5QInL+FdBSqBR+UmGXZiCtj58ci4TNJu8OvOzg6x9+Ft2OjoS6liHGmizGHKTCe
+         33FPOhpXkXINs2gjR5oH5FvWyudymvpmHbVw3+m6IlQppGbZ9KDymSHVTE4OPUP2Ezs7
+         HH+d6u4lnyxR3M0MnK66hegrLb+BCiy+EKyg0J4RRKgqinDmBqcRP2wlz560qIYWy7aX
+         4T5Q==
+X-Gm-Message-State: AOJu0YzkVRW1lcFBTrRqIzOPG+7DgPiRNav7AlAJda8MPvfilbfG60AF
+	WhxHokpfy+BPU3gZjlD9fU6ycg==
+X-Google-Smtp-Source: AGHT+IGdqaIkTC/UqOvj0SJjK0KmaAOqJXGgRLkrw7UUE1muaYKq1OheWDOEH5hPtUZjQ6xqwIHwMA==
+X-Received: by 2002:a05:6512:370b:b0:507:a6a5:a87b with SMTP id z11-20020a056512370b00b00507a6a5a87bmr1172764lfr.51.1698394717054;
+        Fri, 27 Oct 2023 01:18:37 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id dx3-20020a0565122c0300b0050451e663f1sm182687lfb.28.2023.10.27.01.16.48
+        by smtp.gmail.com with ESMTPSA id v19-20020a05651203b300b00507a96d17b3sm181433lfp.237.2023.10.27.01.18.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 01:16:49 -0700 (PDT)
-Message-ID: <2cecb51e-9528-471c-8de0-cb716977c0e0@linaro.org>
-Date: Fri, 27 Oct 2023 10:16:47 +0200
+        Fri, 27 Oct 2023 01:18:36 -0700 (PDT)
+Message-ID: <75b41aca-0333-4e69-aaf2-9aaa48d18d1b@linaro.org>
+Date: Fri, 27 Oct 2023 10:18:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Document SC8380XP SoC and
- boards
+Subject: Re: [PATCH 5/5] arm64: defconfig: Enable SC8380XP SoC base configs
 Content-Language: en-US
 To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
  konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -82,7 +81,7 @@ Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  quic_tsoni@quicinc.com, neil.armstrong@linaro.org
 References: <20231025142427.2661-1-quic_sibis@quicinc.com>
- <20231025142427.2661-3-quic_sibis@quicinc.com>
+ <20231025142427.2661-6-quic_sibis@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,53 +127,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025142427.2661-3-quic_sibis@quicinc.com>
+In-Reply-To: <20231025142427.2661-6-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 25/10/2023 16:24, Sibi Sankar wrote:
 > From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
-> Document the SC8380XP SoC binding and also the boards using it.
-> Also document the new board id qcp (Qualcomm Compute Platform).
-> 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 88b84035e7b1..6145e9ad340c 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -62,6 +62,7 @@ description: |
->          sc7280
->          sc8180x
->          sc8280xp
-> +        sc8380xp
->          sda660
->          sdm450
->          sdm630
-> @@ -110,6 +111,7 @@ description: |
->          liquid
->          rdp432-c2
->          mtp
-> +        qcp
->          qrd
->          rb2
->          ride
-> @@ -1044,6 +1046,12 @@ properties:
->                - qcom,sm8550-qrd
->            - const: qcom,sm8550
->  
-> +      - items:
-> +          - enum:
-> +              - qcom,sc8380xp-crd
-> +              - qcom,sc8380xp-qcp
-> +          - const: qcom,sc8380xp
+> Enable GCC, Pinctrl and Interconnect configs for SC8380XP needed to boot
+> to a console shell.
 
-This is some odd placement. Please keep things properly ordered.
+This is generic defconfig for all platforms. You must be explicit which
+SoC and board you now target. How anyone could figure out that random
+set of numbers/letters like A1204XZY SoC is Qualcomm?
 
 Best regards,
 Krzysztof
