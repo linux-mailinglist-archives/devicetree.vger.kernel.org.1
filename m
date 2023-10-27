@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E11B7D90D6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:13:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D677D90E5
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:17:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFFAC1C20EB7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:13:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31824281C1A
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:16:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0150B125AC;
-	Fri, 27 Oct 2023 08:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F248812B84;
+	Fri, 27 Oct 2023 08:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wUZulFrP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sl/488vC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ABDF134B7
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:13:11 +0000 (UTC)
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150551A1
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:13:09 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507ad511315so2646472e87.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:13:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3551427D
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:16:54 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1CE11AC
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:16:51 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-508126afc88so2682148e87.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:16:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698394387; x=1698999187; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698394610; x=1698999410; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WaU+VzqqAMvguWmnxiwuxYmqBvrom9QacJqWkrVVdu8=;
-        b=wUZulFrPTLEtH8kYqbDi9xU28WxME80O/JuEFVGyjOlPGvY9wQVnZFjba2AbppH1Ge
-         ARKZ0GuRYEh74Nv8jsTIeMkrB8aPprS+8Gtef4fcnBFnIvN3N76gpXxqFQSdXeR6HOuX
-         tsTbTEx48KjinyswaTZGH20m90Hdvzlz1MDO8A/Qv5B8pVmQwh0nmeZDntAocEpogZvN
-         Kce5R/v96FgJ71h3hu8y/Cq1IK1k92374GB9eqXO6yPikxiU1LSDic1WcfJhZMnLb59h
-         nW6NN06r8eZQ4JeWWTtYngMmR4WbOp63EP+OrjLbouu9Wz2jzg/taJ1iqmaxgPYEyJPj
-         /6yA==
+        bh=k9C+6hxBJkuWlTPJ9vcL8K0I/WwLi1EZuPVpW+Ob4vU=;
+        b=Sl/488vCuQnnoHeS1PlXGalXMB8B8QtzLjPIY3MjusUBjEVBgcM/srW+T4DkwvNVy7
+         3VS30KJkJUVeEx3s5BCQGbWDqjQjA9TiP1FjK2ukT8fyG2npislD1u16kaW0Zhwdyy5p
+         tn4aBeHN41ceaJ2/GbIwMpCsvp9vOvseVsDGH0fcJdlBs95QIgHV670hiGjhpGdnKg2P
+         i/WDKZ27/bczW9PPG+Zb6nasybWZSrQfWFFBVOSfyjDhauktx8pPi41yKuzksswEH2OZ
+         JwPEZ1qIvQiazut4YAP1T3UaAuX9AuDz4BCU8qJjpTjqSNmWfsZHXGgg+c8fLoC6BnfC
+         MPTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698394387; x=1698999187;
+        d=1e100.net; s=20230601; t=1698394610; x=1698999410;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WaU+VzqqAMvguWmnxiwuxYmqBvrom9QacJqWkrVVdu8=;
-        b=rJjutsM0536z8HD4fEJo7sbkUJw0vQfKhwylfrSMQeGCSPt51AUuv7nXQvO2iPJ3kA
-         hjvE/MyRo23+xXdSoWmVk9g9G6TQNEn0Tpyc3YVxUgGlU0evwit2w+p+YBhrLtBB6Wwc
-         FXZeOHGMQdeMpUY7ZvYEpBbChdtUA7MsxKmb1fABAmAP1EXA7yc4g8Rmv4Qtov9EcUCp
-         ZTWO4/RMwlbCyK8IAfji1ia/GaFYmuNTQQa4pRyxnYb2TTXtRpQkScrzKwoMKKFnM/SO
-         HjuR984GkJL4u2gU42qDmW5zfXbJtYPh9VInpuHmxFAErnKtbIKAoge/J3kvYMzmwxlY
-         lITg==
-X-Gm-Message-State: AOJu0YxC/v3o/qETIswBjYotv7k0JCX0PVr5rkbBZQI4uEhZO71auLzv
-	PLDe8mTVOXJbgvy4rFLVor9tIw==
-X-Google-Smtp-Source: AGHT+IFsoHXfD9HiDoMksyk4QuQG3CdhxxjXj1bwBFtrS+/O2I4qHfwp3VCpzZW96b3jw1Ae9XZE6Q==
-X-Received: by 2002:ac2:4f13:0:b0:503:18c3:d874 with SMTP id k19-20020ac24f13000000b0050318c3d874mr1724309lfr.45.1698394387314;
-        Fri, 27 Oct 2023 01:13:07 -0700 (PDT)
+        bh=k9C+6hxBJkuWlTPJ9vcL8K0I/WwLi1EZuPVpW+Ob4vU=;
+        b=ewBLGpcttJsbW5lJowxhPnkFS2OdQ2EYdytaAh2iGKbGyKejPKSuny2zcoEyZmoM+0
+         2j77ZMHj6g00WQf1x1xi6S5KJDDZH1H6VEVTyEUc83Jlg4QnHJDlq90iuZ+taSzk2NBG
+         jdY2ZJIG70NZfRu1Sd1jItsRnxVm9b59/AGHTceYlBDEag4EQBkA2SkEYHgWgxyxG4OW
+         yCh+9GfKlYDARwl6pnpl6gYdNbLQOJtZXd9PNL5aMVYE/Cu565fC3k9SZOqcAUeXtNzz
+         aDo73z6shL4ZJWjcvR1y+hkPOCnI2ont808GUtL6Ifm9zjZnBFvPwW0vHdNiZeRgx/wb
+         NlnQ==
+X-Gm-Message-State: AOJu0YyrTIWyZ0G2uFhPLnmTApNDnVyRmqsNrqiwdRcymyVSc2BewLuA
+	kVhz2DwkMp55gGRB1ew+LBTs1A==
+X-Google-Smtp-Source: AGHT+IHtPuhJ8vqTyk8LFy4cnn/Pc+pkJ85bwxJehD8IZY4TS0KZ7iz28Ol3I+yrnMCxI/6zxkcFgg==
+X-Received: by 2002:a05:6512:39c8:b0:507:ae8b:a573 with SMTP id k8-20020a05651239c800b00507ae8ba573mr1673641lfu.51.1698394609984;
+        Fri, 27 Oct 2023 01:16:49 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id y5-20020ac24e65000000b00505713722b9sm181142lfs.38.2023.10.27.01.13.05
+        by smtp.gmail.com with ESMTPSA id dx3-20020a0565122c0300b0050451e663f1sm182687lfb.28.2023.10.27.01.16.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 01:13:06 -0700 (PDT)
-Message-ID: <d7ba077d-6bcd-4e04-b678-51e4bbc935ca@linaro.org>
-Date: Fri, 27 Oct 2023 10:13:05 +0200
+        Fri, 27 Oct 2023 01:16:49 -0700 (PDT)
+Message-ID: <2cecb51e-9528-471c-8de0-cb716977c0e0@linaro.org>
+Date: Fri, 27 Oct 2023 10:16:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +67,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
+Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Document SC8380XP SoC and
+ boards
 Content-Language: en-US
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Paul Gazzillo <paul@pgazz.com>
-Cc: Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
- <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+ ulf.hansson@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
+ j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+ m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
+ lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231025142427.2661-1-quic_sibis@quicinc.com>
+ <20231025142427.2661-3-quic_sibis@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,23 +128,53 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20231025142427.2661-3-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/10/2023 09:45, Subhajit Ghosh wrote:
-> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor with als
-> and clear channels with i2c interface. Hardware interrupt configuration is
-> optional. It is a low power device with 20 bit resolution and has
-> configurable adaptive interrupt mode and interrupt persistence mode.
-> The device also features inbuilt hardware gain, multiple integration time
-> selection options and sampling frequency selection options.
+On 25/10/2023 16:24, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
-> v1 -> v2
-> - Renamed probe_new to probe
-> - Removed module id table
+> Document the SC8380XP SoC binding and also the boards using it.
+> Also document the new board id qcp (Qualcomm Compute Platform).
+> 
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 88b84035e7b1..6145e9ad340c 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -62,6 +62,7 @@ description: |
+>          sc7280
+>          sc8180x
+>          sc8280xp
+> +        sc8380xp
+>          sda660
+>          sdm450
+>          sdm630
+> @@ -110,6 +111,7 @@ description: |
+>          liquid
+>          rdp432-c2
+>          mtp
+> +        qcp
+>          qrd
+>          rb2
+>          ride
+> @@ -1044,6 +1046,12 @@ properties:
+>                - qcom,sm8550-qrd
+>            - const: qcom,sm8550
+>  
+> +      - items:
+> +          - enum:
+> +              - qcom,sc8380xp-crd
+> +              - qcom,sc8380xp-qcp
+> +          - const: qcom,sc8380xp
 
-This is fourth version of this patchset, not second, so v4.
+This is some odd placement. Please keep things properly ordered.
 
 Best regards,
 Krzysztof
