@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-12556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6157DA1D4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:35:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2F57DA1D8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23EE51C210E7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:35:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAE221C210B9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9692F3B7B8;
-	Fri, 27 Oct 2023 20:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E602D78A;
+	Fri, 27 Oct 2023 20:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AA553986E
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 20:35:42 +0000 (UTC)
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A29D1AA;
-	Fri, 27 Oct 2023 13:35:41 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6cd33d51852so1635377a34.2;
-        Fri, 27 Oct 2023 13:35:41 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81C0257B
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 20:37:13 +0000 (UTC)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C0EE5;
+	Fri, 27 Oct 2023 13:37:12 -0700 (PDT)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-586b512ba0aso1043618eaf.3;
+        Fri, 27 Oct 2023 13:37:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698438941; x=1699043741;
+        d=1e100.net; s=20230601; t=1698439032; x=1699043832;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=l0MCKR3GOOa2vZ/7J6O5w9Wxt+RdpyTKLpyAWuEdIOw=;
-        b=OqJgWEm8BGf9KrfladeT2zmDhAqH6MFCazvYvpLSaVmyikwlS6NLliNOWsCEihxGqt
-         HAi+7C12LqyvHmKZk7EojjwRAmUNajJ5AGBuN3HrZCVhsPVXUFdw+EUv1MyChZWzQJyt
-         ZgDR7aoHOjBNzfaVutpOR9RFoMhvFk7eaZ5CP5egOGpRFnmYgKAANyieq9oXpPkRMh1U
-         D+zn8yyw0CopWJV3u3264Qj+Sj+qa6RqneMa0JKTlcH9kK/2qeGCGsYSgxxs8xJQWYOm
-         jPN9ZxlisNrnLWxIkfBCjaI2NGYsNkrsj6txG49F1v//Og5K2jNhrsyzQ3Z54+Z1taUt
-         LN6w==
-X-Gm-Message-State: AOJu0YyaSeisp3TR0/fcgCHw1nE96mrUY/Jcyf8uE5ufBfGZJczYPim1
-	tDhyfhlKVEYeFNis2h93/w==
-X-Google-Smtp-Source: AGHT+IFjNDirDMzT5Dcd+/NCUYRApXXNhOwqVIh4YUcK+n2IkbbOJWMQUXnRoSqH2Kmegr6O+qzJmw==
-X-Received: by 2002:a9d:3e11:0:b0:6d2:e1fd:9f3a with SMTP id a17-20020a9d3e11000000b006d2e1fd9f3amr1603912otd.10.1698438940787;
-        Fri, 27 Oct 2023 13:35:40 -0700 (PDT)
+        bh=l5WFN1SSmS/r3ICuBTDtqGiXKLGto00C5bgN46KK4Uw=;
+        b=GTFsYc7nHwJ5uS4GmFzIiY3GDVuP+gJsA81h1Nt4lgLaVd5ACmfwIe7QcpkMpvTnqi
+         7l34Iz7YlFT72aq7b+EaSPwFhv4VpKdcbeNVOuhqj8PcDLVZEEwARNQYfMxIlyghQqUG
+         zHDq5FNHzmTcXCrZ13MXs6vpCN2fyFTP4zrn0y41d6X8HMcmSNweoGeq2xs4RWYTrTea
+         uNo4xg1aemRKnkgzVRzlyaPfn48W66TmsMcLVsjZFLg8AqA6Km8Dr672Fw+gYzb16g1L
+         5YQqoLoxCBp2gEpzxnQNp03uOhcjvI1jW6FWmFMdMB39n11/ntJf4xw0F9FwYbFBztTG
+         +50Q==
+X-Gm-Message-State: AOJu0Yzn5W4ROvEoNdDxhFP5FCCUNkksJUjZ/k/ekTVjtocZm+2P6V4V
+	q2Mr5lNwc0jnZflOpRj7bNKYaWurZQ==
+X-Google-Smtp-Source: AGHT+IG6h4oHBmG2T3I4LJb5oLOQfp7Pdatfr90hATEu3Fw8YMSQOgVhy5hwcA3zkYiUtORF3Rfhdg==
+X-Received: by 2002:a4a:db8d:0:b0:581:9066:49 with SMTP id s13-20020a4adb8d000000b0058190660049mr4041174oou.0.1698439031844;
+        Fri, 27 Oct 2023 13:37:11 -0700 (PDT)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e15-20020a4aaacf000000b0057b8baf00bbsm503418oon.22.2023.10.27.13.35.37
+        by smtp.gmail.com with ESMTPSA id y30-20020a4a9821000000b0054f85f67f31sm516061ooi.46.2023.10.27.13.37.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 13:35:38 -0700 (PDT)
-Received: (nullmailer pid 3327205 invoked by uid 1000);
-	Fri, 27 Oct 2023 20:35:36 -0000
-Date: Fri, 27 Oct 2023 15:35:36 -0500
+        Fri, 27 Oct 2023 13:37:10 -0700 (PDT)
+Received: (nullmailer pid 3329327 invoked by uid 1000);
+	Fri, 27 Oct 2023 20:37:09 -0000
+Date: Fri, 27 Oct 2023 15:37:09 -0500
 From: Rob Herring <robh@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, kernel@pengutronix.de, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] regulator: dt-bindings: Add
- regulator-uv-survival-time-ms property
-Message-ID: <169843893546.3327050.8390769854034176045.robh@kernel.org>
-References: <20231025084614.3092295-1-o.rempel@pengutronix.de>
- <20231025084614.3092295-7-o.rempel@pengutronix.de>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>, Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: mfd: ams,as3711: Convert to json-schema
+Message-ID: <169843902845.3329267.3867770965839541973.robh@kernel.org>
+References: <56a5ebee588696f9022fa29fa8e266c8bdee6fd7.1698228043.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,23 +62,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231025084614.3092295-7-o.rempel@pengutronix.de>
+In-Reply-To: <56a5ebee588696f9022fa29fa8e266c8bdee6fd7.1698228043.git.geert+renesas@glider.be>
 
 
-On Wed, 25 Oct 2023 10:46:13 +0200, Oleksij Rempel wrote:
-> Introduce a new Device Tree property 'regulator-uv-survival-time-ms' to
-> specify the survival time post a critical under-voltage event. This
-> property defines the time in milliseconds the system can operate before
-> the on-board capacitors fail, providing a window for necessary actions
-> or preparations to be taken before power loss, aligning with the
-> under-voltage event handling mechanism.
+On Wed, 25 Oct 2023 12:02:34 +0200, Geert Uytterhoeven wrote:
+> Convert the Austria MicroSystems AS3711 Quad Buck High Current PMIC with
+> Charger Device Tree binding documentation to json-schema.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/regulator/regulator.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> v2:
+>   - Consistently use "DC/DC" and "step-up",
+>   - Move {additional,unevaluated}Properties in subnodes up to improve
+>     readability,
+>   - Split dependencies in dependent{Required,Schemas} to fix multiple
+>     dependencies,
+>   - s/oneof/oneOf/ (flagged by dt-schema as of commit 411c305105dd1273
+>     ("meta-schemas: Check sub-schemas of "dependencies" and
+>     "dependentSchemas"")),
+>   - Use pmic recommended node name.
+> ---
+>  .../devicetree/bindings/mfd/ams,as3711.yaml   | 223 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/as3711.txt        |  73 ------
+>  2 files changed, 223 insertions(+), 73 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ams,as3711.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/as3711.txt
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
