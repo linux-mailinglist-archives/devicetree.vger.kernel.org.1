@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E54B97D8FC3
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:26:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C37A67D8FCF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:28:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 143841C20A8E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:26:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F381B210A6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:28:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EAF2BA31;
-	Fri, 27 Oct 2023 07:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616FC8489;
+	Fri, 27 Oct 2023 07:28:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kl5Ib74h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zecPRq6Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266968489
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:26:19 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7536116
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:26:17 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5079f9675c6so2701799e87.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:26:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199AEBA33
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:28:47 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B02A71BD
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:28:45 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-508126afc88so2626904e87.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:28:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698391576; x=1698996376; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698391724; x=1698996524; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=b3l5eiPgjqB3yPgjpBs4NrKU8xun61Csjfy/N/87VvY=;
-        b=Kl5Ib74hBoQbIL/RGpaYJbfno48eZzSg/fyMWwPZlzJE429kWbTN9vWzoxoTxamhfH
-         Q/696F/Qkp7GrOWIPLvz0vuqtCA0EHxXvsbT7FLNCN4uLacXElS4pTp765YAur9iuCvA
-         ogmBdkAOdztkYzgjix+WiSUiA0uquPGJfAI4955KVIlDcfwSGRmKV1qb4w1LVGVJA4ie
-         1ASxYAODv7G4Ne8OfBz9AGdi3X8HrRPJAHVm75QODR7fL++uumJ0EYQq0UnvVsHl5XUE
-         pe8sWDauUUyz4JQrd+oGRoNNurBjwuk6SO88nPNkzdE2zCXW/LJZ/hiEyi042CU7fIB7
-         KyEA==
+        bh=zjNPHbtOED/2ge5agx08nP8e/nReL/y8aN8ah7Dyvc4=;
+        b=zecPRq6QzR2yib9HM+7zwAKNXfC8gbIHI22EG9/fin2LqJwqcfCIq6KPms09c4cWz5
+         hZPszeQ0vEP+KMTCA3FQD/twX3ll5jvJMMMnZ751OfnuBOdt8cPao8iAy++cjPmlsOQR
+         FaPfWxNsBQtfVHv3toY+iScYxRWz8J1a2DJ5wVcJzBP5IuOeGObnQVwiZ2hqSSiCSqGH
+         FWZyY9SvAgT6ykOcWZ2GEcKWE6H9GIi7czf/jBvQm2+d/rpN57iv7A/XLaQJUI8aQyV8
+         LXnXw5tu4DM5ibDevl4vqxRrZ7lWdegFABIzyWqMIcidwrnzDHZp33sv1j9jsM6BzJIz
+         v7dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698391576; x=1698996376;
+        d=1e100.net; s=20230601; t=1698391724; x=1698996524;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b3l5eiPgjqB3yPgjpBs4NrKU8xun61Csjfy/N/87VvY=;
-        b=JvE/DKY+sFFc3zQmBFSomhIng5pp8FQptKboySCZhAZaR+BbsivbObLjs74wjfGKpw
-         tlceLbGm3FGAMDUlV0mNy0bVkezq31o6xBtUM7+gbr1Fkhjw+6xgLzqu9Y+IrDWJsm5y
-         uHuLScL3LRvO3bZy24Ufcco4CT96TrzaPWjGhSQZD+PEo4Z1UU1uGiExaQ/gIadcD5d8
-         nXIElcnJO/I7yyUtNLrFLkw+Cp1GJAeun7po18I4mbbIacgH/DOAgebGinuVwqcRUasT
-         3dSekzxynoUeHKIUgJVLpG87qHStRs9e5NkJKCvnDZkGNdxa0fzt5J8OmJhK+mhCxXQK
-         FfJA==
-X-Gm-Message-State: AOJu0Yy2C++dQgOxsLlFv66+tM0LWS565O1AF/eqNJI9Lv/x8L19UzWI
-	JRI6u7345xcaAiX0PuToX4se4g==
-X-Google-Smtp-Source: AGHT+IFMzxnf4rd5M9vQsSI4tCRtG7+f/honwpysf1uGKvUDWFMbso896OZUP0fbZcUDmtL0ELW/dA==
-X-Received: by 2002:a05:6512:e92:b0:504:7bb0:9d7e with SMTP id bi18-20020a0565120e9200b005047bb09d7emr1398577lfb.27.1698391576091;
-        Fri, 27 Oct 2023 00:26:16 -0700 (PDT)
+        bh=zjNPHbtOED/2ge5agx08nP8e/nReL/y8aN8ah7Dyvc4=;
+        b=QuQ9HaVemgtBCoIRQRSMZx4yrbKjolSQEexxXRNxGOv4OSftsFwziu/KTrFYt52JS4
+         znP59nRasAleXVexS3jks+RNP6pqw+J0BO8QGWrkDi6G3o9B9yq/HPWxS1aoT5nMcfzS
+         q+HwKKUX35dIz9zOrMmJbG3MBMN1wDmJpWHWwXofBuZjVeNUeRs5krotNN0rlCICbaZT
+         9katSuTX1AoIAGWfnCjxSeNnx3KF3p4VmkZ/XaMjpZnK2csLQjlDVhUdLgDYm1L0dAmy
+         iVQQFFqnWHoG5JeOeI6lNaY9ka38+QLFJ2gYHc4QRnUuJrLsoe3jjZvHm1JyjjeIg+VG
+         7SnA==
+X-Gm-Message-State: AOJu0YyZuDyrF0sw54ZkeN1YrCAV2fEcrNmaEX1CGIGN0vKkfTdqqAWf
+	+nqHzFSlzZl6LFTmKMG47ZLCkw==
+X-Google-Smtp-Source: AGHT+IFwua/y2ONn6n7raG2QpXYXufV/WaqIomvKh34KDJdEYrwhWpnr8YbP9CyCCgc9iK1DrakUhQ==
+X-Received: by 2002:a19:9112:0:b0:507:9ef2:fb1c with SMTP id t18-20020a199112000000b005079ef2fb1cmr1227688lfd.2.1698391723945;
+        Fri, 27 Oct 2023 00:28:43 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id k4-20020ac24f04000000b00507b0b9145fsm164790lfr.177.2023.10.27.00.26.14
+        by smtp.gmail.com with ESMTPSA id q14-20020ac24a6e000000b00505a49573a8sm165102lfp.220.2023.10.27.00.28.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 00:26:15 -0700 (PDT)
-Message-ID: <f4bbe0e4-9905-4f24-9363-bc4e35a3d0f5@linaro.org>
-Date: Fri, 27 Oct 2023 09:26:14 +0200
+        Fri, 27 Oct 2023 00:28:43 -0700 (PDT)
+Message-ID: <122c000d-0163-49fa-abd8-540f3a21067c@linaro.org>
+Date: Fri, 27 Oct 2023 09:28:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: thermal: qcom-tsens: document the SM8650
- Temperature Sensor
+Subject: Re: [PATCH 03/10] dt-bindings: clock: qcom: document the SM8650
+ Display Clock Controller
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Amit Kucheria <amitk@kernel.org>,
- Thara Gopinath <thara.gopinath@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Taniya Das <quic_tdas@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231025-topic-sm8650-upstream-bindings-tsens-v2-1-5add2ac04943@linaro.org>
+References: <20231025-topic-sm8650-upstream-clocks-v1-0-c89b59594caf@linaro.org>
+ <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,18 +127,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025-topic-sm8650-upstream-bindings-tsens-v2-1-5add2ac04943@linaro.org>
+In-Reply-To: <20231025-topic-sm8650-upstream-clocks-v1-3-c89b59594caf@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 10:24, Neil Armstrong wrote:
-> Document the Temperature Sensor (TSENS) on the SM8650 Platform.
+On 25/10/2023 09:32, Neil Armstrong wrote:
+> Add bindings documentation for the SM8650 Display Clock Controller.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> For convenience, a regularly refreshed linux-next based git tree containing
+>  .../bindings/clock/qcom,sm8650-dispcc.yaml         | 106 +++++++++++++++++++++
+>  include/dt-bindings/clock/qcom,sm8650-dispcc.h     | 101 ++++++++++++++++++++
+>  2 files changed, 207 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.yaml
+> new file mode 100644
+> index 000000000000..5e0c45c380f5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8650-dispcc.yaml
+> @@ -0,0 +1,106 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,sm8650-dispcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Display Clock & Reset Controller for SM8650
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +
+> +description: |
+> +  Qualcomm display clock control module provides the clocks, resets and power
+> +  domains on SM8650.
+> +
+> +  See also:: include/dt-bindings/clock/qcom,sm8650-dispcc.h
+> +
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please $ref here gcc.yaml like
+Documentation/devicetree/bindings/clock/qcom,sm6375-dispcc.yaml does.
+You will be able to drop several properties.
 
 Best regards,
 Krzysztof
