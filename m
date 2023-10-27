@@ -1,100 +1,130 @@
-Return-Path: <devicetree+bounces-12566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 711907DA27E
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 23:32:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73A37DA288
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 23:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AE8D2825E2
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82CA92825F1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 21:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580683FE31;
-	Fri, 27 Oct 2023 21:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="reF7VfnS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB29C3FE38;
+	Fri, 27 Oct 2023 21:35:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B24B3C09E
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 21:32:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EC7AC433C8;
-	Fri, 27 Oct 2023 21:32:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698442335;
-	bh=qK3hvJNS0Aliw7xtqaQfDoHDTkfG6rrB9PlIHENXp2M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=reF7VfnS5duq0mgeS8r0udz14EQe/24l9fbm+CaxS8xqcPXiyjpMlFomtdjZOld0l
-	 FCGKPxe3nEo7NT+AK4suFsZvpjJUDcRD52NaNJC+N3XV0BsmFwZQAsikAmph5MUyyM
-	 0ZTBdehoku4xvH8VJothhg4ER63PIl0ELl71CU3qbWVVkjPKms42zdPEz3Uiek6YKK
-	 3XNNuV47dAyC7zIjEyBNOz5C42v6IJGcBrwBJcNh6Q4n87Hd4QP/DPLz4sOelc56rg
-	 BcM9h9IUw2CslM5WYiBkpkArldS3krV+fYFZ6GG2lNAb6AY/vAxP0iWZNyhO5WsFaQ
-	 WgteBjRB4g0gg==
-Date: Fri, 27 Oct 2023 22:32:12 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] regulator: dt-bindings: Allow system-critical
- marking for fixed-regulator
-Message-ID: <ZTwsXCQ2bz7KlgFl@finisterre.sirena.org.uk>
-References: <20231026144824.4065145-1-o.rempel@pengutronix.de>
- <20231026144824.4065145-4-o.rempel@pengutronix.de>
- <20231027212440.GA3392484-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9953C08B
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 21:35:46 +0000 (UTC)
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE78A129;
+	Fri, 27 Oct 2023 14:35:45 -0700 (PDT)
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-581f78a0206so1381989eaf.2;
+        Fri, 27 Oct 2023 14:35:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698442545; x=1699047345;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S01/m+UkdNRB6iMJPFGQoMRsSYHCWIY0UEsdJKSaDcE=;
+        b=TXMaaiKx8JABdH5L70p3xHUQQRyG879VnQqmRvld2hqggsXrGaubnFPCcrK5J2iLOL
+         DulAJ+BBSAfqOn6b4SkHqsOaUBnDgI4oAcOVN10Qbh0LFHxTbjzPEjDBDRY4pP/2jzgR
+         FUJrXnNbHkR4G97zRXt3K3zeU1xJT8Ym43l9bbfG6cM0LkzxCS+QklkGHyNEsZW9U8Ds
+         P92IytWNTYVrenMA/MZcJIFaflMcqIMeNsLjSJC5IlZjKelXa/5vS2un+6nIs6qXMFGi
+         ydrw8ZpsjzmYxo0+bh7OTTm4qmZPhYqmBwiqQgYno8k/D/RgE+pbdhZ5P9//Tx5aGiYB
+         rFcQ==
+X-Gm-Message-State: AOJu0YzsVJZI3F6bFFpVAc+C7JwjTL/MspdbYuY/WvwXBEUTeXg94Vpu
+	KniljzJ+k8OkSOe49Rgv/ANIdTLgBQ==
+X-Google-Smtp-Source: AGHT+IHC3Ocx06EeQtGzauTEivlJu9qRN/UWQolL0W2b0N/emKZ2p5F/Qqyuf0mOd25BGAXFc+0TQw==
+X-Received: by 2002:a4a:eace:0:b0:586:b79f:b0ee with SMTP id s14-20020a4aeace000000b00586b79fb0eemr4106284ooh.5.1698442545087;
+        Fri, 27 Oct 2023 14:35:45 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c4-20020a4aacc4000000b00581eb0bc164sm526287oon.0.2023.10.27.14.35.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 14:35:44 -0700 (PDT)
+Received: (nullmailer pid 3412526 invoked by uid 1000);
+	Fri, 27 Oct 2023 21:35:43 -0000
+Date: Fri, 27 Oct 2023 16:35:43 -0500
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Seven Lee <wtli@nuvoton.com>, broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com, KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com, scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: nau8821: Add DMIC slew rate
+ selection
+Message-ID: <20231027213543.GA3405817-robh@kernel.org>
+References: <20231027082144.639369-1-wtli@nuvoton.com>
+ <20231027082144.639369-2-wtli@nuvoton.com>
+ <20231027-pronto-prideful-2cf3415a9d87@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mZLwjrO5zan/3GHq"
-Content-Disposition: inline
-In-Reply-To: <20231027212440.GA3392484-robh@kernel.org>
-X-Cookie: Save energy:  Drive a smaller shell.
-
-
---mZLwjrO5zan/3GHq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231027-pronto-prideful-2cf3415a9d87@spud>
 
-On Fri, Oct 27, 2023 at 04:24:40PM -0500, Rob Herring wrote:
-> On Thu, Oct 26, 2023 at 04:48:22PM +0200, Oleksij Rempel wrote:
+On Fri, Oct 27, 2023 at 03:11:35PM +0100, Conor Dooley wrote:
+> Hey,
+> 
+> On Fri, Oct 27, 2023 at 04:21:43PM +0800, Seven Lee wrote:
+> > Add input with DMIC slew rate selection
+> > 
+> > Signed-off-by: Seven Lee <wtli@nuvoton.com>
+> > ---
+> >  .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> > index 3e54abd4ca74..01028b7ff85c 100644
+> > --- a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> > +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> > @@ -89,6 +89,13 @@ properties:
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> >      default: 3072000
+> >  
+> > +  nuvoton,dmic-slew-rate-selection:
+> > +    description: the number from 0 to 7 that sets the DMIC slew rate.
+> > +        The unit is mV/ns. 0 is the slowest, and 7 is the fastest.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    maximum: 7
+> > +    default: 0
+> 
+> I meant make the property in terms of the unit, so
+> nuvoton,dmic-slew-rate-volt-per-sec (or similar, Rob would likely know
+> better how he likes the unit suffix for a more complex unit like this
+> one) and then make it an enum with possible values corresponding to
+> the real values that putting 0, 1, 2, 3 etc into the register produces.
 
-> > In certain projects, the main system regulator, composed of simple
-> > components including an under-voltage detector and capacitors, can be
-> > aptly described as a fixed regulator in the device tree. To cater to
-> > such use cases, this patch extends the fixed regulator binding to
-> > support the 'system-critical-regulator' property. This property
-> > signifies that the fixed-regulator is vital for system stability.
+From what I've seen, you often don't know what units the h/w settings 
+correspond to. Often it's just fast, medium, slow or something. And 
+here, 0 doesn't make sense if the units really are mV/ns. 
 
-> There is no programming interface for fixed-regulators, so how do you=20
-> know an under/over voltage condition?
+So I'd just drop '-selection' and be done with it. (And clear up the 
+units part).
 
-There's support for interrupts now - it's a just a simple signal so if
-the interrupt is asserted you know there's an error but that's all you
-know.
+> 
+> Cheers,
+> Conor.
+> 
+> > +
+> >    nuvoton,left-input-single-end:
+> >      description: Enable left input with single-ended settings if set.
+> >          For the headset mic application, the single-ended control is
+> > @@ -127,6 +134,7 @@ examples:
+> >              nuvoton,jack-insert-debounce = <7>;
+> >              nuvoton,jack-eject-debounce = <0>;
+> >              nuvoton,dmic-clk-threshold = <3072000>;
+> > +            nuvoton,dmic-slew-rate-selection= <0>;
+> >              #sound-dai-cells = <0>;
+> >          };
+> >      };
+> > -- 
+> > 2.25.1
+> > 
 
---mZLwjrO5zan/3GHq
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmU8LFsACgkQJNaLcl1U
-h9A20Qf+PcLBGuaFuQS105GCX+siPedNjWr631UhJBQWdT8ZOVMYOQynB3gBheJh
-yPf4FZDN0CW6fx+KTGWJUmSOy8fDez9M78hl8XMAxd9NhrcUxqbVjl6AFfBv6UES
-lXLkRxxpHTqTw7XySJFDl0s3tyLqgTN7cdqlYXghyjwEV8tudTv7kkl9pPhVyCP8
-xylX/nz+F8sZOuAJ/RWVMcUKZBf3wblNR9x170gTEkof/9lsAt2004O/VmIBZplQ
-mjuWPwy7OX0TXct4MxncJAYCqkWcZxGOjSuBr9iAhUV2tA6t7DuW3B35HL+gnQD/
-JKjSM0hTcSrykL81qfXqn54ozzUdWA==
-=9OwE
------END PGP SIGNATURE-----
-
---mZLwjrO5zan/3GHq--
 
