@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222DB7D9605
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:10:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5787D9615
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 13:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1F2CB2122F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:10:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE5D31C209CB
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 11:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B1D18056;
-	Fri, 27 Oct 2023 11:10:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6430A18057;
+	Fri, 27 Oct 2023 11:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XdEgu8Yc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nuu8NJfZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06EE15AFF
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:10:03 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19BD69C
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:10:02 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507a62d4788so3013863e87.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:10:02 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1078118631
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:13:00 +0000 (UTC)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E249C
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:12:59 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c501bd6ff1so27671441fa.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 04:12:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698405000; x=1699009800; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698405177; x=1699009977; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=blp+a0MlGD5pzk7JAdwHfntPsuGSRfQeCbROVp8O9Yw=;
-        b=XdEgu8YcqOxJbecfv2maKzwJ/MvMDIIt285oxPukkKnVjyYg+g0bG+t6m60Mt/Nx/2
-         VauTVpeSjukXoTJ6pa/HgvUBRe9Qf7lyQ1mMrzLyNrWw2f0DMk3HwDVXIbS7WHtseFe2
-         hD+Az2Q47sH1p9kDxOia8fymvwHWhoqwZuhcDrQT16DqKDYjI9YziaWO3c2LHk6PnNaN
-         NzSvZj3of8vX7JU7vTHzwnBjuBgXZ+K2zTonemTC1SeFHeVyRCylnQI/FJExq8xRm4Wz
-         hj7KC7aHgoijVqAgOenjHHOYPxG72zvDg6tWaykATUPe8HUtz1SSq8dGPlv7mWcIWS9z
-         GopA==
+        bh=gzS3xtRaYXApZ+3kIqeVQrGG8Ns+4rxD5VoBS9jMb0o=;
+        b=Nuu8NJfZy0Bq73AysLIZJWEXZEEGWjdEcTajUU5wFcjtnCFX6OXoniPa5eb2jAl2ou
+         AAt0yFHN7IWDOiLUVJa3jr5GnFy9REO9Paf9hSJVZODdGSpe7K8GZej+G50mgOnt4nCJ
+         NI3FQ94MqV6KyO6HicHdY8yE3wkKIPtKovxCEHeCr07XB+sUWB+sN3SPXfcaFup5ngb8
+         eSyxUqDxf5sB2kUjR+1e+ezoP1UYO5STj5NlbalSQ1h5f65zGDNztCoAQfLcN1vhuj7/
+         R65ltxabIiSfnMMOfunJ+APEZYdYYk3RFTr0wFcqX7vu2XdiTgn+k0Y9mubNe3QNe2no
+         zMCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698405000; x=1699009800;
+        d=1e100.net; s=20230601; t=1698405177; x=1699009977;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=blp+a0MlGD5pzk7JAdwHfntPsuGSRfQeCbROVp8O9Yw=;
-        b=fq7OATQ5OZHLErSBq9QTnufjqlQU14syTibaCrksliOfBxBuk4icAK9MFMWsfoBoWh
-         aJLEWNmHw8CfqPpkD22k1jvzJRS/tQH/nBzsThQeB+0uXqJMgz6qZPIMeNPDFnns2rKf
-         isxnKL7J7hGUAQx8GE6BkOuPgZucMe2dJMk3UVJg4bMOcKCB6dVUTYb24cG0D5RcPETV
-         edvcj8lPAO0dEjbwXuBHkkpKexBQtAUrd7APNO8nO7xtgGpMZh8JV/fPE4+FLlfnZGxH
-         9Q0ePshhS3qDIlpvxX+pzWsRCAKYwtSUN/IkLShaKYfPTI3Uav4FR/yRj2yNT5wYZBsQ
-         w7Gg==
-X-Gm-Message-State: AOJu0Yzc1VVxagVk6NCVre6+o+/e3M+bc8SMzJDSEHC4x7Eu6/RcvLYs
-	LO46wl/iqevNP9yrSYamS3RfvA==
-X-Google-Smtp-Source: AGHT+IEwb+QM+OJ39rKZGDpUKH/caPyYLN3FberZMUEbfs0yjZByTHzsFSGlDak1X0ymQenG7Ryk4w==
-X-Received: by 2002:ac2:5a02:0:b0:504:31a0:f9e2 with SMTP id q2-20020ac25a02000000b0050431a0f9e2mr1554435lfn.58.1698405000213;
-        Fri, 27 Oct 2023 04:10:00 -0700 (PDT)
+        bh=gzS3xtRaYXApZ+3kIqeVQrGG8Ns+4rxD5VoBS9jMb0o=;
+        b=Hr3agS84c53Hgq6m8VkHktDmboDC9KDgR0hvyvZ/Q8bUJ694uJAiEqvz29lW/mO9UU
+         h3K5q3HO+Utn1Qd84Xa2pvUSZ3i3eH0W6XLLdE1KQEPkrZJGTFVt3q660AQ57xswh89M
+         LEnm/do9nb4sPkamIcY+N8gKMxNb40mNOxbMKXLfup1Y/X0EWvD7glmB3gj01G44SxXU
+         Qgq01ZYOUuIKvp1t+et8lSJ26GJDqkGc8p4o9tEsfEJTD21ACe9DH/r8QvzijFMHhCDc
+         b7yJo4LIh2DAK+BUTCZA/ZeE//mO0W6nhPZ50lOMW+vQ/fLk+pcSbEPLLkQLIQQ3cqqM
+         zO5g==
+X-Gm-Message-State: AOJu0YylnVP7XLKowQhHca8iMQ5A8awrn8REeBgD5Gd8fJxBQaTNnEOu
+	W4pfzKtxm/yC1apv+4W5ejl6Kw==
+X-Google-Smtp-Source: AGHT+IEH3lgoUuBsJBBZA/euKnydpc/GAWK4n64r/DYsrpsTtloPfH9jTmBUZHg9xvVfd8zFxgw6Wg==
+X-Received: by 2002:ac2:54a7:0:b0:507:9628:1082 with SMTP id w7-20020ac254a7000000b0050796281082mr1638858lfk.58.1698405177147;
+        Fri, 27 Oct 2023 04:12:57 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id g21-20020ac25395000000b00507d219596dsm238408lfh.268.2023.10.27.04.09.59
+        by smtp.gmail.com with ESMTPSA id dw9-20020a0565122c8900b00502fd9110ffsm238611lfb.294.2023.10.27.04.12.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 04:09:59 -0700 (PDT)
-Message-ID: <1075eedc-3e7e-4070-8cf2-ae63513fd764@linaro.org>
-Date: Fri, 27 Oct 2023 13:09:58 +0200
+        Fri, 27 Oct 2023 04:12:56 -0700 (PDT)
+Message-ID: <3168e245-797a-4f30-bb48-8b88993691a6@linaro.org>
+Date: Fri, 27 Oct 2023 13:12:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,17 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm64: dts: add dt-bindings for ac5x
- rd carrier
+Subject: Re: [PATCH v3 1/3] arm64: dts: cn913x: add device trees for COM
+ Express boards
 Content-Language: en-US
-To: Elad Nachman <enachman@marvell.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
- pali@kernel.org, mrkiko.rs@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: cyuval@marvell.com
+To: Andrew Lunn <andrew@lunn.ch>, Elad Nachman <enachman@marvell.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, gregory.clement@bootlin.com,
+ sebastian.hesselbarth@gmail.com, pali@kernel.org, mrkiko.rs@gmail.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, cyuval@marvell.com
 References: <20231026084735.3595944-1-enachman@marvell.com>
- <20231026084735.3595944-3-enachman@marvell.com>
+ <20231026084735.3595944-2-enachman@marvell.com>
+ <2f7ab700-cd87-42f2-870d-950a4c75b17d@lunn.ch>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,37 +124,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231026084735.3595944-3-enachman@marvell.com>
+In-Reply-To: <2f7ab700-cd87-42f2-870d-950a4c75b17d@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/10/2023 10:47, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
-> 
-> Add dt bindings for AC5X RD COM Express Type 7 carrier board.
-> This board will Accept a CN9131 COM Express Type 7 CPU module.
-> 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
->  .../devicetree/bindings/arm/marvell/armada-7k-8k.yaml     | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
-> index 52d78521e412..71bc94047d1b 100644
-> --- a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
-> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.yaml
-> @@ -60,4 +60,12 @@ properties:
->            - const: marvell,armada-ap807-quad
->            - const: marvell,armada-ap807
->  
-> +      - description: AC5X RD COM Express Carrier for Armada CN9131 SoC with one external CP
-> +        items:
-> +          - const: marvell,ac5x_rd_carrier
+On 26/10/2023 19:32, Andrew Lunn wrote:
+>> +#include "cn9131-db-comexpress.dtsi"
+>> +
+>> +/ {
+>> +	model = "Marvell Armada AC5X RD COM EXPRESS type 7 carrier board";
+>> +	compatible = "marvell,ac5x_rd_carrier", "marvell,cn9131", "marvell,cn9130",
 
-No underscores in compatibles. Do you see them anywhere? Please use
-existing, recent code as start of your contributions, not something
-buggy 5 years old.
+Except wrong naming for compatible, I really do not understand what you
+want to add here. If AC5X is the carrier, what is the model name of
+entire product? If AC5X is not the carrier, where it the carrier?
 
+>> +		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
+> 
+> This is really a question to the DT Maintainers. This is a carrier
+> board for a standardised Com express type 7 board. In theory, you
+> should be able to plug any Com Express module into it, not just
+> Marvells. So should the compatible list just have a compatible for the
+> carrier itself? Not the module which would normally be mounted in it?
+
+Yes, because there are some common parts of the carrier board.
+
+> 
+> Should the carrier have a .dtsi file describing it? And then we have a
+> .dts file which combines the module .dtsi and the carrier .dtsi?
+
+Depends, how this is organized depends on possible re-usage etc. Usually
+answer is: yes, carrier board should have DTSI.
+
+> 
+> Sorry i did not ask this earlier, i was thinking more about SolidRuns
+> systems, which tend to have custom SOMs and customs carriers, so you
+> can only really mount one particular SOM into one particular
+> carrier. But that is not true here.
 Best regards,
 Krzysztof
 
