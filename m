@@ -1,98 +1,166 @@
-Return-Path: <devicetree+bounces-12548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12927DA0A7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:38:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A8B7DA0FA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 20:47:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40966B2147F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 18:38:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68C8F1C21069
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 18:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA1437C9C;
-	Fri, 27 Oct 2023 18:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606973C09F;
+	Fri, 27 Oct 2023 18:47:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nbLXCIvy"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="QeNtJAt/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F26A3DFEB
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 18:38:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39A09C433C7;
-	Fri, 27 Oct 2023 18:38:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698431917;
-	bh=ST4J4uVD7J/Mq/vL7XaZM3mtZ3PwaVzL06JUPaESq9k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nbLXCIvymjtmabOlRja1JfUu227rsbH09ABUPCat0bpYPi6WIZl1Pb2j7k+Iyp3nn
-	 hngm5E3WTkLFgjQQ78EWCRFxYTR6bXnlHKxl9v+b41z0WZgtgVrTpKoWnZfFI1d43Z
-	 I9WFavBLdwNddrmA8F6aYO5XdxwFDRnOLfukH8AVEi2tMdU3uNLUsiVFkrMX/gqorN
-	 ordH55IwUfqQd8L/VQ+cAPEn+YaPl4oedOVpFLP4mj+q/OjiVn8UJooq05myswfJJj
-	 TIYiSZA7LEZiacNU4LMvo5yEyuwtFRU5MfdIF49CD+uFr3oAvYODKBtpTVhPe1pD8U
-	 8P2RrSgBKVcDA==
-Date: Fri, 27 Oct 2023 19:38:33 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD50C3984C
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 18:47:32 +0000 (UTC)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B121BC1
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:47:22 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-32dd70c5401so1552776f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 11:47:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1698432439; x=1699037239; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eNQIp/KBXkssBnXnURnyXEtwPP/esZe3h0yYIlPjhVo=;
+        b=QeNtJAt/rdAhVrhvVRHNzf+dYPFLSSlLB1aEaI4Z6ZhcB6zUdTFKAuJ4iZmA9m7y30
+         4XBDnhfk1R9O4BYjV5TjvXzl+iDXoYQkjucAvEsutBB0i68PkAQfuyDIdiObltYosgEJ
+         ZWNXquJ6HrJFbq2QW1q13kfPcOINXDT+lNtWYpgOJGvR+Ar4mdV0t4uzwPbNqpQxL2T6
+         ExrEJd6WxC9eSx97KwLythW1xTRlI6qoJQf/63TD5pDk4xpa9PIWA199TvR78a3snvMZ
+         /ouScNJG8gRR6V746eV5FFE2Jx3W6RRzKaOxwwff4WsZMaPp3N6XkeKnH24dMLKi6lAj
+         xM3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698432439; x=1699037239;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eNQIp/KBXkssBnXnURnyXEtwPP/esZe3h0yYIlPjhVo=;
+        b=MXFd5rxPuvDNa9cXj/LDFr/cSdIcH46yQylzhtcW77URE2D+ftmLs59Iw9CFvI3VDs
+         0oaAFLf3jDYuKnHwx3vcJjKfuMwqjX+6z31sl63W3bxeavupbSd/TLONjI7f1EZZBSI3
+         W1wzbBi+V4lfBnGUd6HNgECOVXyIIuGEgD1QDBrY3xRYeloUM8sTjUKX7b92XlBNExbc
+         fXR57O+imlqiYwT8FVJ7vBbFl2+/CEiB3vgsEumobGyAmAZZ556CpUkOWG5XwwPE6XGW
+         jXXAEXvFhYaa/ZXA+1iw29l7FK5KHKwcJvu4EdPno7CZDHClW2D2JDLBwqhPn/jOxegP
+         40uQ==
+X-Gm-Message-State: AOJu0YwzgivxGF/h/8XndD+B1cRzJaEx+HucQeTe1dGvsawI6ycfJyhG
+	ZRw2E96HG2z1hi/AeaDi9Vu9xQ==
+X-Google-Smtp-Source: AGHT+IEvA2K/8e37Llc60+TgJ1tU9QqM7b5P36PhoN+eWvM81UvJpQDoYjKsJZcLO6J4djyErmX9YA==
+X-Received: by 2002:a05:6000:10c5:b0:32d:9a17:2a70 with SMTP id b5-20020a05600010c500b0032d9a172a70mr2605651wrx.68.1698432439392;
+        Fri, 27 Oct 2023 11:47:19 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id j12-20020adfe50c000000b0032d893d8dc8sm2298527wrm.2.2023.10.27.11.47.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 11:47:18 -0700 (PDT)
+From: Naresh Solanki <naresh.solanki@9elements.com>
+To: Peter Rosin <peda@axentia.se>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>
-Subject: Re: [PATCH 1/4] dt-bindings: cache: sifive,ccache0: Add StarFive
- JH7100 compatible
-Message-ID: <20231027-freezing-pointed-53c73b0ae227@spud>
-References: <CAJM55Z-vw1sbks0KcHOXMzP-6c9NMg+GOndi2pQ7iyWh0=oQiQ@mail.gmail.com>
- <20231026-paycheck-equation-b0f1a1191bf2@spud>
- <20231027182236.GA2853373-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: robh@kernel.org,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom properties for MAX7357
+Date: Fri, 27 Oct 2023 18:47:07 +0000
+Message-ID: <20231027184709.1541375-1-naresh.solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SeokC8kRK7bMnsPN"
-Content-Disposition: inline
-In-Reply-To: <20231027182236.GA2853373-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
---SeokC8kRK7bMnsPN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Maxim Max7357 has a configuration register to enable additional
+features. These features aren't enabled by default & its up to
+board designer to enable the same as it may have unexpected side effects.
 
-On Fri, Oct 27, 2023 at 01:22:36PM -0500, Rob Herring wrote:
-> On Thu, Oct 26, 2023 at 02:10:37PM +0100, Conor Dooley wrote:
-> > On Wed, Oct 25, 2023 at 11:56:37AM -0700, Emil Renner Berthing wrote:
-> > > This cache controller is also used on the StarFive JH7100 SoC.
-> > > Unfortunately it needs a quirk to work properly, so add dedicated
-> > > compatible string to be able to match it.
-> > >=20
-> > > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.c=
-om>
-> >=20
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> Did you want me to pick this up? Or you or Palmer will?
+These should be validated for proper functioning & detection of devices
+in secondary bus as sometimes it can cause secondary bus being disabled.
 
-Me or Palmer I guess, I was going to take the lot together through soc.
+Add booleans for:
+ - maxim,isolate-stuck-channel
+ - maxim,send-flush-out-sequence
+ - maxim,preconnection-wiggle-test-enable
 
-Cheers,
-Conor.
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+Changes in V4:
+- Drop max7358.
+Changes in V3:
+- Update commit message
+Changes in V2:
+- Update properties.
+---
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
---SeokC8kRK7bMnsPN
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+index 2d7bb998b0e9..9aa0585200c9 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+@@ -71,6 +71,23 @@ properties:
+     description: A voltage regulator supplying power to the chip. On PCA9846
+       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
+ 
++  maxim,isolate-stuck-channel:
++    type: boolean
++    description: Allows to use non faulty channels while a stuck channel is
++      isolated from the upstream bus. If not set all channels are isolated from
++      the upstream bus until the fault is cleared.
++
++  maxim,send-flush-out-sequence:
++    type: boolean
++    description: Send a flush-out sequence to stuck auxiliary buses
++      automatically after a stuck channel is being detected.
++
++  maxim,preconnection-wiggle-test-enable:
++    type: boolean
++    description: Send a STOP condition to the auxiliary buses when the switch
++      register activates a channel to detect a stuck high fault. On fault the
++      channel is isolated from the upstream bus.
++
+ required:
+   - compatible
+   - reg
+@@ -95,6 +112,19 @@ allOf:
+         "#interrupt-cells": false
+         interrupt-controller: false
+ 
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - maxim,max7357
++    then:
++      properties:
++        maxim,isolate-stuck-channel: false
++        maxim,send-flush-out-sequence: false
++        maxim,preconnection-wiggle-test-enable: false
++
+ unevaluatedProperties: false
+ 
+ examples:
 
------BEGIN PGP SIGNATURE-----
+base-commit: 9b156db7e479ac996ae9dc93a0cce3b3df3d0307
+-- 
+2.41.0
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZTwDqQAKCRB4tDGHoIJi
-0ublAP9H4KL8LXkV1jQ9dF6slNKqtn+yMaV3hmHpa4k2f/lnowEA7Wl2/62I5sVs
-OBGRLUt/nQSPEMzEklP7Tup5Er1tEwE=
-=Kmup
------END PGP SIGNATURE-----
-
---SeokC8kRK7bMnsPN--
 
