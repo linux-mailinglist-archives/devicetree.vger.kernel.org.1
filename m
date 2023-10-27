@@ -1,92 +1,196 @@
-Return-Path: <devicetree+bounces-12322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2FF47D8F5C
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:14:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30CCD7D8F5F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6703B1F227D1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:14:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52C6F1C209CA
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EE3B656;
-	Fri, 27 Oct 2023 07:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAD5B656;
+	Fri, 27 Oct 2023 07:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="yjRTcK/3";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="jHx8e7bH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dsMTyWZy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E16F0B64F;
-	Fri, 27 Oct 2023 07:14:02 +0000 (UTC)
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FCE8116;
-	Fri, 27 Oct 2023 00:14:01 -0700 (PDT)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1698390839;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eJVMpiIeVpk7seuFKZfSHdhPh2uWAHUcs45v1cNLNhw=;
-	b=yjRTcK/3HzHdJlxf+rNLkpWCvE+GXuLsHOqzK4Eoe2oksmgDWddVwYQ+fRSjo1D7616Vry
-	H4jCeZX3g6FIrk7Ti3uYeH3csx+mDg2gIY71hddUSUKpaDaDmZiua8tN8vYicUoNFpJJqf
-	/nPyz3FpKLh+DHdfUcvr57/Pqy2cDt++xhw2bS1slf4UT2gl04Fkiijq7Pxv5DjrN1bD5Q
-	V6SUkXxWBUteuUGs8r2abdiJQ/X+4575r39Bz+2p/p0Ht8bdJeWJky8L6tuppJDtInX8fU
-	cBZLUuHUrg9beMho6ba/v7/JIXYylayjZl88T3tDvskyWI4zsqi4YPrDq/l8GA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1698390839;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eJVMpiIeVpk7seuFKZfSHdhPh2uWAHUcs45v1cNLNhw=;
-	b=jHx8e7bHfbKM/IOLO1Lz2Zfw896ficoDWczCWdGHFlQrzI5neRSnnei4Nv8xLffuOdJRSI
-	NpyHrax2awuojpBQ==
-To: Yu Chien Peter Lin <peterlin@andestech.com>, acme@kernel.org,
- adrian.hunter@intel.com, ajones@ventanamicro.com,
- alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
- anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
- conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org,
- devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
- geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
- irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
- jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
- locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
- mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, peterlin@andestech.com,
- peterz@infradead.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
- sunilvl@ventanamicro.com, tim609@andestech.com, uwu@icenowy.me,
- wens@csie.org, will@kernel.org, ycliang@andestech.com
-Subject: Re: [RFC PATCH v3 RESEND 03/13] irqchip/riscv-intc: Introduce Andes
- IRQ chip
-In-Reply-To: <20231023004100.2663486-4-peterlin@andestech.com>
-References: <20231023004100.2663486-1-peterlin@andestech.com>
- <20231023004100.2663486-4-peterlin@andestech.com>
-Date: Fri, 27 Oct 2023 09:13:59 +0200
-Message-ID: <877cn84jwo.ffs@tglx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA749B64F
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:14:15 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6121BB
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:14:13 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-507e85ebf50so2372991e87.1
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:14:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698390852; x=1698995652; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+px//zDue0QlLsQmg7awV4cRdW/dHUa3REcXtXS90qk=;
+        b=dsMTyWZyJwN9HSJiuxRI1VjImPIftNx+j12PSCgHhyRp0J0JI179uf1b1dOsm/gEun
+         313NsMFsSAGVGQLYirAL4FAajhoUml9XOykuMXa61raGK4qaQq6C3PgAGyr2nRgMJnci
+         YZrBvagMrRBcv5aymqJ+bkia5TrG3CTkcBRC8pDm/z0ZhebfMCY2f5HTVabqX2FytAm6
+         1AwQcpRNUlc1mNQRXzV8V11qytI366igo7/PwJUm+FsfPJ0bcIYLnYqNRUHVTHipCtTn
+         9xB8838l2pDzyo/li//nwCBBP9dZwCB3+TxhwPBbuUPwAMPjen30y70dNhRywGz261gF
+         SdHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698390852; x=1698995652;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+px//zDue0QlLsQmg7awV4cRdW/dHUa3REcXtXS90qk=;
+        b=vsI5ig6PupWbKlgD9W9IB69QGxoAolId/oS+d6q1WIZHpOnDSaq2pwIu9JeLapySuf
+         5R6/8dr1qqlOLxD4RX4TIZL9whyGTBoYwqSxLz3ICbocUy37lKijlo/G9ogjReRlqoSr
+         jO34ixk55J9630bIMS6oP9YBbKOLPijafrmxvJHzIbiTeNrw1JFGLGkDmgHu/gL7LYRe
+         tEuezerRcTIOKhVprPYUXPykJUqtQEr1HnE7uqRtMUfyFeJ+RU1n55IsNP07VTtrDGiz
+         9CLpJ0PU3QjNHkBAGO3IzaaLsVHSPf+LvYUlifgcsoM3qpeNSxXTCesS5S0ynGG+aaZN
+         4+vg==
+X-Gm-Message-State: AOJu0YxqHbiHWexX+Pg9QmEvbrMsxX7V6c1EjFulWm95TUZxe7SFdf6K
+	nc/uaYGMgcdlvX8BbUQV9YCcbw==
+X-Google-Smtp-Source: AGHT+IFsd13t6vzLiUy8DGtEdNHSaRHNkAgJmsB1iqmeU5GA9aPjvvJZKCXRwFwMNqevAXWrxZZkJA==
+X-Received: by 2002:a19:6d03:0:b0:507:c763:27a5 with SMTP id i3-20020a196d03000000b00507c76327a5mr1031747lfc.62.1698390851726;
+        Fri, 27 Oct 2023 00:14:11 -0700 (PDT)
+Received: from [192.168.0.22] ([78.10.206.168])
+        by smtp.gmail.com with ESMTPSA id m28-20020ac24adc000000b00507d478c211sm161204lfp.76.2023.10.27.00.14.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Oct 2023 00:14:11 -0700 (PDT)
+Message-ID: <baf3fc7e-9d0d-47cc-a53f-4c6fe6878381@linaro.org>
+Date: Fri, 27 Oct 2023 09:14:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: qcom,spmi-pmic: Add pm8916
+ vm-bms and lbc
+Content-Language: en-US
+To: Nikita Travkin <nikita@trvn.ru>, Lee Jones <lee@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ linux-arm-msm@vger.kernel.org
+References: <20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru>
+ <20231023-pm8916-dtsi-bms-lbc-v2-1-343e3dbf423e@trvn.ru>
+ <169808265626.861066.13083505051202182067.robh@kernel.org>
+ <53474576e3c860a1bb93f811cfe3964a@trvn.ru> <20231025122124.GO8909@google.com>
+ <eaa4a6e2d8539a0a772286f7f13ccc2c@trvn.ru>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <eaa4a6e2d8539a0a772286f7f13ccc2c@trvn.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 23 2023 at 08:40, Yu Chien Peter Lin wrote:
-> +
-> +	if (strcmp(cp, "riscv,cpu-intc") == 0)
-> +		chip = &riscv_intc_chip;
-> +	else if (strcmp(cp, "andestech,cpu-intc") == 0)
-> +		chip = &andes_intc_chip;
-> +	else
-> +		return -ENXIO;
+On 25/10/2023 14:57, Nikita Travkin wrote:
+> Lee Jones писал(а) 25.10.2023 17:21:
+>> On Tue, 24 Oct 2023, Nikita Travkin wrote:
+>>
+>>> Rob Herring писал(а) 23.10.2023 22:40:
+>>>> On Mon, 23 Oct 2023 11:20:32 +0500, Nikita Travkin wrote:
+>>>>> PM8916 (and probably some other similar pmics) have hardware blocks for
+>>>>> battery monitoring and charging. Add patterns for respecive nodes so the
+>>>>> devicetree for those blocks can be validated properly.
+>>>>>
+>>>>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 ++++++
+>>>>>  1 file changed, 6 insertions(+)
+>>>>>
+>>>>
+>>>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>>>
+>>>> yamllint warnings/errors:
+>>>>
+>>>> dtschema/dtc warnings/errors:
+>>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml:
+>>>> Error in referenced schema matching $id: http://devicetree.org/schemas/power/supply/qcom,pm8916-bms-vm.yaml
+>>>>
+>>>> doc reference errors (make refcheckdocs):
+>>>>
+>>>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231023-pm8916-dtsi-bms-lbc-v2-1-343e3dbf423e@trvn.ru
+>>>>
+>>>> The base for the series is generally the latest rc1. A different dependency
+>>>> should be noted in *this* patch.
+>>>>
+>>>
+>>> Somehow I missed the memo and thought it tracks -next...
+>>>
+>>> This patch depends on 7f590e3831 and 5cee843d56 in linux-next.git
+>>> They were applied in [1].
+>>>
+>>> I'm wondering if the bot just bails out when the "depend" is present
+>>> or there is some more sophisticated logic to suggest the base to it?
+>>
+>> So is this good to go, or not?
+> 
+> IMO this patch should be good, it passes the check on today's linux-next
+> on my end.
 
-See the other reply.
+It's not the next which matters, but maintainers tree.
+
+> 
+> The only concern might be that if someone runs dt_binding_check on
+> for-mfd-next, it would skip that file with an error since there is no
+> dependency yet.
+
+Eee, so this has dependency on some other tree? Then no, it is not good
+to go.
+
+
+
+Best regards,
+Krzysztof
 
 
