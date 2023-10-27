@@ -1,128 +1,230 @@
-Return-Path: <devicetree+bounces-12532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58227D9D3B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 17:43:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC317D9DA1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 17:57:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 587C6B21158
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:43:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F11381C20FDC
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 15:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D3737C99;
-	Fri, 27 Oct 2023 15:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEDD381DA;
+	Fri, 27 Oct 2023 15:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="T0LJAPNB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDiCaM3t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5FFD530
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 15:43:21 +0000 (UTC)
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEBC1B5
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:43:19 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1c87a85332bso19623215ad.2
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:43:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698421399; x=1699026199; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7KBK3NZC+n7aQ9gEOFAwoNpYjPv+cjuqYwdG+XSaoH8=;
-        b=T0LJAPNB19x+3cmpdpCBFxa32T0bxfaocCYvLabqvXPV9ZjGHp+oLN1bwZ9aCEqMCS
-         G1gtQiVWX7fYCtaN+EneO+PwtFwtKiTC9OycHz37V+/RPHJFNLWumK4yJ4WlyF9X6R/2
-         es5UTdClqdZUdwQPm2APlb/8jUCXRv+7q5Q2sy+DQiOZ9LzrAYkNb6PyDoaPFLxJ8Nir
-         vviSUJR4zf6R4KDBinF1/oFme7+MCiQ3PPiRbGMzWjpww/JEwYzMBeGg7uPZW6VhDJrk
-         16hwGHiKxzSlYJdYdUqMiJp7716cGCBSZbdOYioVuMBcnsrYvf16WsRiZxz0kVcBthPs
-         xnvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698421399; x=1699026199;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7KBK3NZC+n7aQ9gEOFAwoNpYjPv+cjuqYwdG+XSaoH8=;
-        b=bVULVKbsW2mfpQDY64q2lVh6+x8x81lnPMLDVXWRG8LSGJHosLPQMEwILKKYy2ssnV
-         C3z0H7coYYGUmPfBHsu+a2Ud5j9P55d6tg1WgcPbCkMm4aN7JZY6hrSuStZUj3vvh3OS
-         K9EXLDv9HYrue0RnOc3R/CLWQ951a0CT+W2KPChLfsiI8g6kE4TfomlcvTjhu+dHsIu+
-         3J5Oq8E315/lA7NVHXYXtWBwuHe3Ue6tKEIhccXb04SmDZnj8oD5mhE5BgrXg2ukkIeY
-         mYL+iWqp1ry/arbbVomD6nOG+Y+rrZ+2kSZG5UyumdyUqqABcfOlKzYFctja91JT5vPN
-         yy/g==
-X-Gm-Message-State: AOJu0YzXSdAvQ1GAsPVzJ/1dV4XALh1+QAlo77On0DIkJPjcXjhqq+FW
-	ea7w8Sh8PJ+z1duM8LQZCnVITg==
-X-Google-Smtp-Source: AGHT+IE0WwiuMIrwwFj9qaBNO8bS08eHPy8xyS/b27ydVSLkLsZB0Im99FCLmBi5mGjBXe6UHnkgtw==
-X-Received: by 2002:a17:902:6acb:b0:1c6:a0b:7b9a with SMTP id i11-20020a1709026acb00b001c60a0b7b9amr2905659plt.3.1698421399249;
-        Fri, 27 Oct 2023 08:43:19 -0700 (PDT)
-Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
-        by smtp.gmail.com with ESMTPSA id n16-20020a170903111000b001b9e9edbf43sm1729246plh.171.2023.10.27.08.43.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Oct 2023 08:43:18 -0700 (PDT)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 2/2] of: property: Add fw_devlink support for msi-parent
-Date: Fri, 27 Oct 2023 21:12:54 +0530
-Message-Id: <20231027154254.355853-3-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231027154254.355853-1-apatel@ventanamicro.com>
-References: <20231027154254.355853-1-apatel@ventanamicro.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312FD37158
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 15:57:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD84EC433C9;
+	Fri, 27 Oct 2023 15:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698422224;
+	bh=GNGO9Dy7lzklLJ0376C9oy3DviV7FdG3YmJvVG6RcJU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MDiCaM3t2THhJi7+cn47CasKWbC8pAVOfWCAjNYsIusrJ60gyEtXM1m6Dw7O7hAsR
+	 afCid2ZmkgQMfoxVPboGgJGiQxWC9ulUvVasMUtZgYRyi1JQ2H6xe4Xthksx4KUE08
+	 lBSInXSgJjM6NVYPLy+JStqPeUhVBJO4i2aTIp+HG1Cl0IS6byl9boIORYO38iXQa5
+	 kSqnBqF83ktKU5QSx8lt51x9n/k9yk62dJPK0Rce8cQ4i7L0nldbjBIJSDCBT/ChZt
+	 BQbKS73oixYAQIguSc20zSV3bFsPKimSJnYdFnBeu97Rtgr3yKHXloSP9bRI4M/WJv
+	 8YqZADn7PQTYA==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so29514721fa.3;
+        Fri, 27 Oct 2023 08:57:04 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxXNKPLkvVAp+FD4R1v+axY6Ld39G5jrUZwl4hVCDd8cGjEkUeg
+	J1T6dmkw8GcN61LIV7UpKOPn0/7mxSedp9tK3g==
+X-Google-Smtp-Source: AGHT+IEwlNZ95i/dFoxCnlHoH5+6/K3HPIFaerat8lMtZIKbwrzp3SFQx76pV2pk3V3UCLFHaP2Fj7ehg6iUmiep7DU=
+X-Received: by 2002:ac2:4d90:0:b0:507:a6b6:e5de with SMTP id
+ g16-20020ac24d90000000b00507a6b6e5demr2084401lfe.23.1698422222865; Fri, 27
+ Oct 2023 08:57:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231024151014.240695-1-nks@flawful.org> <20231024151014.240695-2-nks@flawful.org>
+ <20231024-zoology-preteen-5627e1125ae0@spud> <ZTl0VwdFYt9kqxtp@x1-carbon>
+ <20231026183501.GB4122054-robh@kernel.org> <ZTvKeeYpfX57A+yd@x1-carbon>
+In-Reply-To: <ZTvKeeYpfX57A+yd@x1-carbon>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 27 Oct 2023 10:56:50 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLvBuFcbXR-2OHLwQ1a28DwTGXUgAOgsmWofSFrmTsNJw@mail.gmail.com>
+Message-ID: <CAL_JsqLvBuFcbXR-2OHLwQ1a28DwTGXUgAOgsmWofSFrmTsNJw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: dwc: rockchip: Add atu property
+To: Niklas Cassel <Niklas.Cassel@wdc.com>
+Cc: Conor Dooley <conor@kernel.org>, Niklas Cassel <nks@flawful.org>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Shawn Lin <shawn.lin@rock-chips.com>, 
+	Simon Xue <xxm@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This allows fw_devlink to create device links between consumers of
-a MSI and the supplier of the MSI.
+On Fri, Oct 27, 2023 at 9:35=E2=80=AFAM Niklas Cassel <Niklas.Cassel@wdc.co=
+m> wrote:
+>
+> Hello Rob,
+>
+> On Thu, Oct 26, 2023 at 01:35:01PM -0500, Rob Herring wrote:
+> > On Wed, Oct 25, 2023 at 08:02:32PM +0000, Niklas Cassel wrote:
+> > > Hello Conor,
+> > >
+> > > On Tue, Oct 24, 2023 at 05:29:28PM +0100, Conor Dooley wrote:
+> > > > On Tue, Oct 24, 2023 at 05:10:08PM +0200, Niklas Cassel wrote:
+> > > > > From: Niklas Cassel <niklas.cassel@wdc.com>
+> > > > >
+> > > > > Even though rockchip-dw-pcie.yaml inherits snps,dw-pcie.yaml
+> > > > > using:
+> > > > >
+> > > > > allOf:
+> > > > >   - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> > > > >
+> > > > > and snps,dw-pcie.yaml does have the atu property defined, in orde=
+r to be
+> > > > > able to use this property, while still making sure 'make CHECK_DT=
+BS=3Dy'
+> > > > > pass, we need to add this property to rockchip-dw-pcie.yaml.
+> > > > >
+> > > > > Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 4 =
+++++
+> > > > >  1 file changed, 4 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pc=
+ie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > > > > index 1ae8dcfa072c..229f8608c535 100644
+> > > > > --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> > > > > @@ -29,16 +29,20 @@ properties:
+> > > > >            - const: rockchip,rk3568-pcie
+> > > > >
+> > > > >    reg:
+> > > > > +    minItems: 3
+> > > > >      items:
+> > > > >        - description: Data Bus Interface (DBI) registers
+> > > > >        - description: Rockchip designed configuration registers
+> > > > >        - description: Config registers
+> > > > > +      - description: iATU registers
+> > > >
+> > > > Is this extra register only for the ..88 or for the ..68 and for th=
+e
+> > > > ..88 models?
+> > >
+> > > Looking at the rk3568 Technical Reference Manual (TRM):
+> > > https://dl.radxa.com/rock3/docs/hw/datasheet/Rockchip%20RK3568%20TRM%=
+20Part2%20V1.1-20210301.pdf
+> > >
+> > > The iATU register register range exists for all 3 PCIe controllers
+> > > found on the rk3568.
+> > >
+> > > This register range is currently not defined in the rk3568.dtsi, so t=
+he driver
+> > > will currently use the default register offset (which is correct), bu=
+t with
+> > > the driver fallback register size that is only big enough to cover 8 =
+inbound
+> > > and 8 outbound iATUs (internal Address Translation Units).
+> >
+> > We should probably make the driver smarter instead or in addition. We
+> > have the DBI size, Just make atu_size =3D dbi_size - DEFAULT_DBI_ATU_OF=
+FSET.
+>
+> I though about that, but it seems that some drivers don't use
+> res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "dbi")
+>
+> but instead set pci->dbi_base from non-common code, e.g.:
+> drivers/pci/controller/dwc/pci-dra7xx.c:        pci->dbi_base =3D devm_pl=
+atform_ioremap_resource_byname(pdev, "ep_dbics");
+> drivers/pci/controller/dwc/pci-dra7xx.c:        pci->dbi_base =3D devm_pl=
+atform_ioremap_resource_byname(pdev, "rc_dbics");
+> drivers/pci/controller/dwc/pci-imx6.c:  pci->dbi_base =3D devm_platform_g=
+et_and_ioremap_resource(pdev, 0, &dbi_base);
+> drivers/pci/controller/dwc/pci-keystone.c:      pci->dbi_base =3D base;
+> drivers/pci/controller/dwc/pci-layerscape-ep.c: dbi_base =3D platform_get=
+_resource_byname(pdev, IORESOURCE_MEM, "regs");
+> drivers/pci/controller/dwc/pci-layerscape-ep.c: pci->dbi_base =3D devm_pc=
+i_remap_cfg_resource(dev, dbi_base);
+> drivers/pci/controller/dwc/pci-layerscape.c:    dbi_base =3D platform_get=
+_resource_byname(pdev, IORESOURCE_MEM, "regs");
+> drivers/pci/controller/dwc/pci-layerscape.c:    pci->dbi_base =3D devm_pc=
+i_remap_cfg_resource(dev, dbi_base);
+> drivers/pci/controller/dwc/pci-meson.c: pci->dbi_base =3D devm_platform_i=
+oremap_resource_byname(pdev, "elbi");
+> drivers/pci/controller/dwc/pcie-al.c:   void __iomem *dbi_base =3D pcie->=
+dbi_base;
+> drivers/pci/controller/dwc/pcie-al.c:   al_pcie->dbi_base =3D devm_pci_re=
+map_cfg_resource(dev, res);
+> drivers/pci/controller/dwc/pcie-armada8k.c:     pci->dbi_base =3D devm_pc=
+i_remap_cfg_resource(dev, base);
+> drivers/pci/controller/dwc/pcie-designware.c:           pci->dbi_base =3D=
+ devm_pci_remap_cfg_resource(pci->dev, res);
+> drivers/pci/controller/dwc/pcie-histb.c:        pci->dbi_base =3D devm_pl=
+atform_ioremap_resource_byname(pdev, "rc-dbi");
+> drivers/pci/controller/dwc/pcie-qcom-ep.c:      pci->dbi_base =3D devm_pc=
+i_remap_cfg_resource(dev, res);
+> drivers/pci/controller/dwc/pcie-tegra194-acpi.c:        pcie_ecam->dbi_ba=
+se =3D cfg->win + SZ_512K;
+>
+> So I don't think that we can always get the size of the dbi.
+> And a solution that does not work for all platforms is not
+> that appealing.
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 2 ++
- 1 file changed, 2 insertions(+)
+Do I get a chance to respond before you send a new version?
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index cf8dacf3e3b8..afdaefbd03f6 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1267,6 +1267,7 @@ DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
- DEFINE_SIMPLE_PROP(leds, "leds", NULL)
- DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
- DEFINE_SIMPLE_PROP(panel, "panel", NULL)
-+DEFINE_SIMPLE_PROP(msi_parent, "msi-parent", "#msi-cells")
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- 
-@@ -1356,6 +1357,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_leds, },
- 	{ .parse_prop = parse_backlight, },
- 	{ .parse_prop = parse_panel, },
-+	{ .parse_prop = parse_msi_parent, },
- 	{ .parse_prop = parse_gpio_compat, },
- 	{ .parse_prop = parse_interrupts, },
- 	{ .parse_prop = parse_regulators, },
--- 
-2.34.1
+Does something like the patch below not work for everyone? We could
+store the DBI size as well if we want more than 8 regions to work
+without a 'dbi' nor 'atu' region defined. We shouldn't have new users
+doing that though.
 
+diff --git a/drivers/pci/controller/dwc/pcie-designware.c
+b/drivers/pci/controller/dwc/pcie-designware.c
+index 250cf7f40b85..3dc71ea7fa76 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.c
++++ b/drivers/pci/controller/dwc/pcie-designware.c
+@@ -105,11 +105,13 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
+        struct platform_device *pdev =3D to_platform_device(pci->dev);
+        struct device_node *np =3D dev_of_node(pci->dev);
+        struct resource *res;
++       size_t dbi_size =3D DEFAULT_DBI_ATU_OFFSET + SZ_4K;
+        int ret;
+
+        if (!pci->dbi_base) {
+                res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, =
+"dbi");
+                pci->dbi_base =3D devm_pci_remap_cfg_resource(pci->dev, res=
+);
++               dbi_size =3D resource_size(res);
+                if (IS_ERR(pci->dbi_base))
+                        return PTR_ERR(pci->dbi_base);
+        }
+@@ -136,13 +138,10 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
+                                return PTR_ERR(pci->atu_base);
+                } else {
+                        pci->atu_base =3D pci->dbi_base + DEFAULT_DBI_ATU_O=
+FFSET;
++                       pci->atu_size =3D dbi_size - DEFAULT_DBI_ATU_OFFSET=
+;
+                }
+        }
+
+-       /* Set a default value suitable for at most 8 in and 8 out windows =
+*/
+-       if (!pci->atu_size)
+-               pci->atu_size =3D SZ_4K;
+-
+        /* eDMA region can be mapped to a custom base address */
+        if (!pci->edma.reg_base) {
+                res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, =
+"dma");
 
