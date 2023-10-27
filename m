@@ -1,112 +1,160 @@
-Return-Path: <devicetree+bounces-12302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26BD7D8E28
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:30:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC207D8E46
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:44:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E36381C20D27
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 05:30:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C6C72821AD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 05:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3B35CBB;
-	Fri, 27 Oct 2023 05:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C657493;
+	Fri, 27 Oct 2023 05:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LNADWBZA"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="B/6zyogF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865785249
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:30:05 +0000 (UTC)
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B78B893
-	for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 22:30:03 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-577fff1cae6so1203582a12.1
-        for <devicetree@vger.kernel.org>; Thu, 26 Oct 2023 22:30:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698384603; x=1698989403; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EDCChaj1gissqjEBEAMXe/0tc+K9t0+uAP8/ShNGqvA=;
-        b=LNADWBZAnh8NUreCJD4I3fKYf5PCkPmAYq4KJbAXktmFrV16Xe+gaZJc7z+MOenP19
-         ydXLRRg4bS7Xar3tZ5Zgv728l50zfg7wf4VITMa8oz9+U5yMRj8XxSysI4rhsf8zmoRH
-         nOMT5ketnzbVFbd33vGWI6UGGC8E96WgZewF3N6Sicf19QycYvHQElk9fZpPtIIgUHok
-         ZDiQFsyU9lbm7xbvIYNlPveyd+FzxpgAxAzXGZenE/RpFLNNdbm6Z7VhacumYmvP8AiR
-         KAPrnJWD0Nc0X+Fmzkw6MDEify8v8BhRUtsNZZcVxyc+R6WRRf6JvmZXy18WCi905bPj
-         mTOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698384603; x=1698989403;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EDCChaj1gissqjEBEAMXe/0tc+K9t0+uAP8/ShNGqvA=;
-        b=BACLWLfVn8Bl/hKYvBBJXB+J8mGSRu047MJxjqTA4BRvpj8OE8ShMhMHp3L1Hx8K6N
-         6c31mYy6t1AxcPoO80gBPBaCBK1+PjjTblfaGB78QrhXOwxroUZAwK7ydeoFqq3XTYns
-         fXRz0A/GSdbdmpL7ePAR8JexSy38A4bjYOMl/qJAsSBTslj7P6Sd2HpbVmkG9hEJ9CnS
-         3L1WJrKMrhDn+j71u3wHzML+5/HQFSolJZxXux+RUR/VJDqxr0rIwgZr/WeUHM5YS48d
-         kT5lePtD3UHfeqOCLaLjBQmT9YrVQKMdaDK9/1KlBioXK8n9t90lSxTTzOuvlWJ4nf3i
-         YazQ==
-X-Gm-Message-State: AOJu0YxDSwYnUt/8/ITo2kAnkxf01n0e1bvBabz4O9XEBuelayp9XRx8
-	Twg9BuWaAiNGnrXrFV/JkJV0jVmd63x9NBcFP5M=
-X-Google-Smtp-Source: AGHT+IEDdiUnBtNGv3NqKyoW3hwNthvCCMtRZ9osKz/+i+r83pEqPvuYCWs+QgwVReFiGJCBLU3PzA==
-X-Received: by 2002:a17:90b:3a90:b0:277:5cd5:6f80 with SMTP id om16-20020a17090b3a9000b002775cd56f80mr5789495pjb.16.1698384603045;
-        Thu, 26 Oct 2023 22:30:03 -0700 (PDT)
-Received: from localhost ([122.172.80.14])
-        by smtp.gmail.com with ESMTPSA id so3-20020a17090b1f8300b0027d0a60b9c9sm2554765pjb.28.2023.10.26.22.30.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Oct 2023 22:30:02 -0700 (PDT)
-Date: Fri, 27 Oct 2023 11:00:00 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cpufreq: qcom-hw: document SM8560 CPUFREQ
- Hardware
-Message-ID: <20231027053000.hitqlo4a6lusdgzw@vireshk-i7>
-References: <20231025-topic-sm8650-upstream-bindings-cpufreq-v1-1-31dec4887d14@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81BB47484
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:44:45 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312761B2;
+	Thu, 26 Oct 2023 22:44:42 -0700 (PDT)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 6873440474;
+	Fri, 27 Oct 2023 10:44:37 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1698385477; bh=Rpor7KoZoeEC/K2ptmWwufpCeaKiSvUOZItVny41+Ac=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=B/6zyogFsrhzuWczOZs3MmESEPTb3PCgT2sWxAfoqTSJJyxp4HXnxto3oFHi/jpf8
+	 iPzibrD8x4P1pUnYFPGSz+0VVXUSMi7GB5siNPwOqxRxasoLxURIOOh26Wu1qLXpo2
+	 S3VLEQJ+NlEjmRsgxcm18Q3llP109inVS7Ce+jYUMbMEloG/wFpQSmL7PqSt9chYMQ
+	 oC347ahewIswR+aQXn1j/AMdFk0vlTdFHbPJ8tsbLCDJHyi2WP2oyavbrpTEURv8Qb
+	 yEY0NzJQPSmpQ5+qRoXZjRb5NldEiBCc0Vep7lACcqPQM6xPh1Kz48W42TRdYL+uTX
+	 jhCVrtzcOzQdA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231025-topic-sm8650-upstream-bindings-cpufreq-v1-1-31dec4887d14@linaro.org>
+Date: Fri, 27 Oct 2023 10:44:34 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Stephan Gerhold <stephan@gerhold.net>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, Stephen Boyd
+ <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: pm8916: Add BMS and charger
+In-Reply-To: <e56bec85-46be-4c88-ae88-199e7272ccdd@linaro.org>
+References: <20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru>
+ <20231023-pm8916-dtsi-bms-lbc-v2-2-343e3dbf423e@trvn.ru>
+ <3dff444b-c439-4c40-9d21-1e390f449840@linaro.org>
+ <b9c7f8662e4c02a4f9f275d27469f3be@trvn.ru>
+ <f3c215a3-579a-4b4f-92bf-092c91234180@linaro.org>
+ <ZTq7XGz4Ux8lYQho@gerhold.net>
+ <e56bec85-46be-4c88-ae88-199e7272ccdd@linaro.org>
+Message-ID: <bd1da1d81f1345e25c37995af3014308@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 25-10-23, 09:25, Neil Armstrong wrote:
-> Document the CPUFREQ Hardware on the SM8650 Platform.
+Konrad Dybcio писал(а) 27.10.2023 01:03:
+> On 10/26/23 21:17, Stephan Gerhold wrote:
+>> On Thu, Oct 26, 2023 at 08:54:00PM +0200, Konrad Dybcio wrote:
+>>> On 10/24/23 11:29, Nikita Travkin wrote:
+>>>> Konrad Dybcio писал(а) 24.10.2023 13:34:
+>>>>> On 10/23/23 08:20, Nikita Travkin wrote:
+>>>>>> pm8916 contains some hardware blocks for battery powered devices:
+>>>>>>
+>>>>>> - VM-BMS: Battery voltage monitoring block.
+>>>>>> - LBC: Linear battery charger.
+>>>>>>
+>>>>>> Add them to the pmic dtsi so the devices that make use of those blocks
+>>>>>> can enable them.
+>>>>>>
+>>>>>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>>>>>> ---
+>>>>>>     arch/arm64/boot/dts/qcom/pm8916.dtsi | 48 ++++++++++++++++++++++++++++++++++++
+>>>>>>     1 file changed, 48 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+>>>>>> index f4de86787743..4b2e8fb47d2d 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
+>>>>>> @@ -41,6 +41,35 @@ watchdog {
+>>>>>>     			};
+>>>>>>     		};
+>>>>>>     +		pm8916_charger: charger@1000 {
+>>>>>> +			compatible = "qcom,pm8916-lbc";
+>>>>>> +			reg = <0x1000>, <0x1200>, <0x1300>, <0x1600>;
+>>>>>> +			reg-names = "chgr", "bat_if", "usb", "misc";
+>>>>>> +
+>>>>>> +			interrupts = <0x0 0x10 0 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x10 5 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x10 6 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x10 7 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x12 0 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x12 1 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x13 0 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x13 1 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x13 2 IRQ_TYPE_EDGE_BOTH>,
+>>>>>> +				     <0x0 0x13 4 IRQ_TYPE_EDGE_BOTH>;
+>>>>>> +			interrupt-names = "vbat_det",
+>>>>>> +					  "fast_chg",
+>>>>>> +					  "chg_fail",
+>>>>>> +					  "chg_done",
+>>>>>> +					  "bat_pres",
+>>>>>> +					  "temp_ok",
+>>>>>> +					  "coarse_det",
+>>>>>> +					  "usb_vbus",
+>>>>> So, both the charger and the USBIN driver use the same irq? :/
+>>>>>
+>>>>
+>>>> AFAIU the usbin extcon driver pretty much just tracks the state
+>>>> of the IRQ to report extcon. It happens to assume the same part
+>>>> of the pmic though, yes, which also means there will be no user
+>>>> that would enable both charger and vbus extcon, since charger
+>>>> driver provides this functionality as well.
+>>> So, should USBIN be removed from PM8916 dt since it's essentially
+>>> a part of the charger block?
+>>>
+>>
+>> The "USB_IN" pad of the PM8916 seems to be connected on pretty much all
+>> devices, even if they are using external chargers and the charging
+>> functionality of PM8916 is completely disabled. For those devices, the
+>> &pm8916_usbin device provides a convenient way to detect the USB state,
+>> even without a working charger driver.
+>>
+>> While we could modify the PM8916 charger driver and DT node to have some
+>> special mode where charging and battery monitoring is completely
+>> disabled and only the USBIN extcon is provided, I'm not sure if that
+>> would provide a significant advantage compared to just keeping the
+>> simple &pm8916_usbin node with the existing driver.
+> Hmm okay I see..
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> For convenience, a regularly refreshed linux-next based git tree containing
-> all the SM8650 related work is available at:
-> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
-> ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Generally it's rather "no bueno" to have two DT nodes consuming the
+> same register space.. What happens when you enable BMS on a device
+> with a non-PM8916 charger? Does it correctly recognize "no battery"
+> etc.?
 > 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> index 0177d1ef0bf9..56fc71d6a081 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> @@ -43,6 +43,7 @@ properties:
->                - qcom,sm8350-cpufreq-epss
->                - qcom,sm8450-cpufreq-epss
->                - qcom,sm8550-cpufreq-epss
-> +              - qcom,sm8650-cpufreq-epss
->            - const: qcom,cpufreq-epss
->  
->    reg:
 
-Applied. Thanks.
+The _charger and _bms are separate and communicate in a generic
+manner via power-supplies and supply core (see 3/3) so giving
+a different charger to _bms can work.
 
--- 
-viresh
+If an external charger is present in the device, qcom mandates
+"external charger" optional line of the pmic to be tied, and
+_charger is then disabled. The driver bails out in this case,
+but _usbin could still be used.
+
+> Konrad
 
