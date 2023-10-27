@@ -1,375 +1,389 @@
-Return-Path: <devicetree+bounces-12435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307127D97B7
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFCE7D97C1
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 14:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1FCA2823A8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:19:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 547E928239B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 12:20:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9490A1A5A4;
-	Fri, 27 Oct 2023 12:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5EE1A5AB;
+	Fri, 27 Oct 2023 12:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jIVqzBY3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ewEZX41M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFFA199A1
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:19:29 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7873C0;
-	Fri, 27 Oct 2023 05:19:26 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C373C74A;
-	Fri, 27 Oct 2023 14:19:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1698409150;
-	bh=xE45iya/4WrngKR3yPrHKJ+AzVa+Tyq3D5LIwRQlwl8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jIVqzBY3pPIK7wRL1q77EfHBUVKvy/bAEvLYmw4VpEwvpYvpuh6yWkcgNjIH9SDOJ
-	 K/QEPcGFlJWFKs/FDnKzYfq2tFVuXXufB3lfC7WfIbJ81KoadtXEwLMpElc+QZU6P2
-	 9TSYIRxqu2n7l0Kx4LZt2OQJCw8QtkUO3YdhuzcQ=
-Date: Fri, 27 Oct 2023 15:19:29 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: media: Add bindings for THine
- THP7312 ISP
-Message-ID: <20231027121929.GC12144@pendragon.ideasonboard.com>
-References: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
- <20231017132103.9914-2-laurent.pinchart@ideasonboard.com>
- <ZTulSCwfyEF9exu9@valkosipuli.retiisi.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B11199A1
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 12:20:15 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E830FA
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:20:13 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507bd644a96so2923158e87.3
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 05:20:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698409211; x=1699014011; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lNWeKQrm3Pv4VEOmFSW+qGUcdVGYIzaM8ErPxXFUzug=;
+        b=ewEZX41M+sf+DDJ4zLYqeATdukxNb7DKvwGBdmTCi6jTcU/o4jJ9giOIK1K7dWraZ8
+         i4ZgNUC5jRdTnpYV3nBUkiIZcOQQx3a4IWce2COVVVKNrvKN0ELPf3WYUtDmBSRN/kwO
+         txWAbzQfHCZ9zaKkeSji3Lhygwj6F2vcM9ijIucgCDQsW7EhBnx0cdiiQFsRyExozMsn
+         RPMiTe1b+yBuY34GbF57pfAfTtkb/q/54NfWU7mFCc1aJ1t0s/S6wDapJ3SDvvR/mAUd
+         zWJnnrcVcTZ30uKZuOXlnSWRUo3PgBKiFKwqzn6UGe+ZPbZIBdP1uhUMAlo6EEltJ57r
+         wJGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698409211; x=1699014011;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lNWeKQrm3Pv4VEOmFSW+qGUcdVGYIzaM8ErPxXFUzug=;
+        b=dAfVYHdMGUhSO1L7y2mfvig0A/ae1x1jAGD03msTQIBb+WgbeSqVbFpyCRIzy7TM8a
+         WXddvgUdZ6J8eZIiJARpJXp1heYRuouvpHMIHhE0A4TvWsoOy2jYyvkKpZ2zGqgNoVbE
+         7c7D4bEw4DqlJfut20KdaCIcDjglhSumZI+HoY9UI+hTQFrYB2DgOSehj8F5RNR6tWCt
+         RcXEUpEqwO7LRDzIkv5DDEpZFxpw5EjdZH8v0dLEdIO4u2o5NKfzj+VeHcq4cV/GeDJ+
+         gIlwg4JKO8+Wc5pZsVcSeDqUYZQPDdK6laqui2EIdXnOiknLB8Q/RrPiNjmlhLoPieFO
+         ct6g==
+X-Gm-Message-State: AOJu0YySxAReD6ooeI+w61AUJbtSkfleE2w4FRTwREypGZ9iEUpLrsqp
+	tvgXsagrqXbEuHuRD18SjJyIMA==
+X-Google-Smtp-Source: AGHT+IFjosSc8YG1jOkfgyv8MjGZT4SObLRX06yPJk1Iwhv4fkBq8L+ICLUaFZ0Y92aC+Z1cchGyAA==
+X-Received: by 2002:ac2:430a:0:b0:503:257a:7f5d with SMTP id l10-20020ac2430a000000b00503257a7f5dmr1481038lfh.31.1698409211446;
+        Fri, 27 Oct 2023 05:20:11 -0700 (PDT)
+Received: from [192.168.0.22] ([78.10.206.168])
+        by smtp.gmail.com with ESMTPSA id z12-20020a19504c000000b00507b869b068sm261691lfj.302.2023.10.27.05.20.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Oct 2023 05:20:10 -0700 (PDT)
+Message-ID: <42fd061d-7832-4531-bb85-eb8860c7e5e1@linaro.org>
+Date: Fri, 27 Oct 2023 14:20:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ZTulSCwfyEF9exu9@valkosipuli.retiisi.eu>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: adding support for pac193x
+Content-Language: en-US
+To: marius.cristea@microchip.com, jic23@kernel.org, lars@metafoo.de,
+ robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231025134404.131485-1-marius.cristea@microchip.com>
+ <20231025134404.131485-3-marius.cristea@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231025134404.131485-3-marius.cristea@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Sakari,
-
-On Fri, Oct 27, 2023 at 11:55:52AM +0000, Sakari Ailus wrote:
-> Hi Laurent,
+On 25/10/2023 15:44, marius.cristea@microchip.com wrote:
+> From: Marius Cristea <marius.cristea@microchip.com>
 > 
-> Thank you for the patchset any my apologies for not reviewing it earlier.
-
-No worries. Thank you for reviewing it now :-)
-
-> On Tue, Oct 17, 2023 at 04:21:01PM +0300, Laurent Pinchart wrote:
-> > From: Paul Elder <paul.elder@ideasonboard.com>
-> > 
-> > The THP7312 is an external ISP from THine. Add DT bindings for it.
-> > 
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v2:
-> > 
-> > - Drop description of reg property
-> > - Improve thine,boot-mode property documentation
-> > - Making thine,boot-mode property optional
-> > - Don't use underscores in supplies names
-> > ---
-> >  .../bindings/media/i2c/thine,thp7312.yaml     | 226 ++++++++++++++++++
-> >  MAINTAINERS                                   |   7 +
-> >  2 files changed, 233 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > new file mode 100644
-> > index 000000000000..0758d8d44826
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > @@ -0,0 +1,226 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (c) 2023 Ideas on Board
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: THine THP7312
-> > +
-> > +maintainers:
-> > +  - Paul Elder <paul.elder@@ideasonboard.com>
-> > +
-> > +description:
-> > +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
-> > +  various image processing and correction functions, including 3A control. It
-> > +  can be connected to CMOS image sensors from various vendors, supporting both
-> > +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
-> > +  or parallel. The hardware is capable of transmitting and receiving MIPI
-> > +  interlaved data strams with data types or multiple virtual channel
-> > +  identifiers.
-> > +
-> > +allOf:
-> > +  - $ref: ../video-interface-devices.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: thine,thp7312
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description: CLKI clock input
-> > +
-> > +  thine,boot-mode:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 1
-> > +    default: 1
-> > +    description:
-> > +      Boot mode of the THP7312, reflecting the value of the BOOT[0] pin strap.
-> > +      0 is for the SPI/2-wire slave boot, 1 is for the SPI master boot (from
-> > +      external flash ROM).
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description:
-> > +      Reference to the GPIO connected to the RESET_N pin, if any.
-> > +      Must be released (set high) after all supplies are applied.
-> > +
-> > +  vddcore-supply:
-> > +    description:
-> > +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
-> > +
-> > +  vhtermrx-supply:
-> > +    description:
-> > +      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> > +
-> > +  vddtx-supply:
-> > +    description:
-> > +      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> > +
-> > +  vddhost-supply:
-> > +    description:
-> > +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
-> > +
-> > +  vddcmos-supply:
-> > +    description:
-> > +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
-> > +
-> > +  vddgpio-0-supply:
-> > +    description:
-> > +      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
-> > +
-> > +  vddgpio-1-supply:
-> > +    description:
-> > +      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
-> > +
-> > +  orientation: true
-> > +  rotation: true
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            description:
-> > +              This property is for lane reordering between the THP7312 and the
-> > +              SoC. The sensor supports either two-lane, or four-lane operation.
-> > +              If this property is omitted four-lane operation is assumed. For
-> > +              two-lane operation the property must be set to <1 2>.
+> This is the iio driver for Microchip
+> PAC193X series of Power Monitor with Accumulator chip family.
 > 
-> How are link frequencies determined by the device?
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+> ---
 
-The link frequency is not under direct control of the host. There are
-registers to select between mode presets, each of them producing a
-particular link frequency.
 
-> The description above also says the parallel interface is supported. The
-> bindings do not reflect that however.
-> 
-> Same for the sensor node below.
-> 
-> Is the intention to add support for these later on? In that case you'll
-> need bus-type and default that to CSI-2 for DTs conforming to these
-> bindings.
+...
 
-While documentation claims that parallel interfaces are supported, we
-haven't been able to test this at all, due to lack of a suitable
-hardware test platform. The intention is indeed to add support for them
-later. I will add the bus-type property here.
+> +
+> +static ssize_t reset_accumulators_store(struct device *dev,
+> +					struct device_attribute *attr,
+> +					const char *buf, size_t count)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	struct pac1934_chip_info *info = iio_priv(indio_dev);
+> +	int ret, i;
+> +	u8 refresh_cmd = PAC1934_REFRESH_REG_ADDR;
+> +
+> +	ret = i2c_smbus_write_byte(info->client, refresh_cmd);
+> +	if (ret) {
+> +		dev_err(&indio_dev->dev,
+> +			"%s - cannot send 0x%02X\n",
+> +			__func__, refresh_cmd);
+> +	}
+> +
+> +	for (i = 0 ; i < info->phys_channels; i++)
+> +		info->chip_reg_data.energy_sec_acc[i] = 0;
+> +
+> +	return count;
+> +}
+> +
+> +static IIO_DEVICE_ATTR(in_shunt_resistor_1, 0644, shunt_value_show, shunt_value_store, 0);
+> +static IIO_DEVICE_ATTR(in_shunt_resistor_2, 0644, shunt_value_show, shunt_value_store, 0);
+> +static IIO_DEVICE_ATTR(in_shunt_resistor_3, 0644, shunt_value_show, shunt_value_store, 0);
+> +static IIO_DEVICE_ATTR(in_shunt_resistor_4, 0644, shunt_value_show, shunt_value_store, 0);
+> +static IIO_DEVICE_ATTR(reset_accumulators, 0200, NULL, reset_accumulators_store, 0);
+> +
+> +static struct attribute *pac1934_all_attributes[] = {
+> +	PAC1934_DEV_ATTR(in_shunt_resistor_1),
+> +	PAC1934_DEV_ATTR(in_shunt_resistor_2),
+> +	PAC1934_DEV_ATTR(in_shunt_resistor_3),
+> +	PAC1934_DEV_ATTR(in_shunt_resistor_4),
+> +	PAC1934_DEV_ATTR(reset_accumulators),
+> +	NULL
+> +};
+> +
+> +static int pac1934_prep_custom_attributes(struct pac1934_chip_info *info,
+> +					  struct iio_dev *indio_dev)
+> +{
+> +	int i, j, active_channels_count = 0;
+> +	struct attribute **pac1934_custom_attributes;
+> +	struct attribute_group *pac1934_group;
+> +	struct i2c_client *client = info->client;
+> +
+> +	for (i = 0 ; i < info->phys_channels; i++)
+> +		if (info->active_channels[i])
+> +			active_channels_count++;
+> +
+> +	pac1934_group = devm_kzalloc(&client->dev, sizeof(*pac1934_group), GFP_KERNEL);
+> +
+> +	pac1934_custom_attributes = devm_kzalloc(&client->dev,
+> +						 (PAC1934_CUSTOM_ATTR_FOR_CHANNEL *
+> +						 active_channels_count +
+> +						 PAC1934_SHARED_DEVATTRS_COUNT)
+> +						 * sizeof(*pac1934_group) + 1,
+> +						 GFP_KERNEL);
+> +	j = 0;
+> +
+> +	for (i = 0 ; i < info->phys_channels; i++) {
+> +		if (info->active_channels[i]) {
+> +			pac1934_custom_attributes[PAC1934_CUSTOM_ATTR_FOR_CHANNEL * j] =
+> +			pac1934_all_attributes[PAC1934_CUSTOM_ATTR_FOR_CHANNEL * i];
+> +			pac1934_custom_attributes[PAC1934_CUSTOM_ATTR_FOR_CHANNEL * j + 1] =
+> +			pac1934_all_attributes[PAC1934_CUSTOM_ATTR_FOR_CHANNEL * i + 1];
+> +			j++;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < PAC1934_SHARED_DEVATTRS_COUNT; i++)
+> +		pac1934_custom_attributes[PAC1934_CUSTOM_ATTR_FOR_CHANNEL *
+> +			active_channels_count + i] =
+> +			pac1934_all_attributes[PAC1934_CUSTOM_ATTR_FOR_CHANNEL *
+> +			info->phys_channels + i];
+> +
+> +	pac1934_group->attrs = pac1934_custom_attributes;
+> +	info->pac1934_info.attrs = pac1934_group;
+> +
+> +	return 0;
+> +}
+> +
+> +static void pac1934_remove(struct i2c_client *client)
 
-> > +            minItems: 2
-> > +            maxItems: 4
-> > +            items:
-> > +              maximum: 4
-> > +
-> > +  sensors:
-> > +    type: object
-> > +    description: List of connected sensors
-> > +
-> > +    properties:
-> > +      "#address-cells":
-> > +        const: 1
-> > +
-> > +      "#size-cells":
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      "^sensor@[01]":
-> > +        type: object
-> > +        description:
-> > +          Sensors connected to the first and second input, with one node per
-> > +          sensor.
-> > +
-> > +        properties:
-> > +          thine,model:
-> > +            $ref: /schemas/types.yaml#/definitions/string
-> > +            description:
-> > +              Model of the connected sensors. Must be a valid compatible string.
-> > +
-> > +          reg:
-> > +            maxItems: 1
-> > +            description: THP7312 input port number
-> > +
-> > +          data-lanes:
-> > +            $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
-> > +            items:
-> > +              maxItems: 4
-> > +            description:
-> > +              This property is for lane reordering between the THP7312 and the imaging
-> > +              sensor that it is connected to.
-> > +
-> > +        patternProperties:
-> > +          ".*-supply":
-> > +            description: Power supplies for the sensor
-> > +
-> > +        required:
-> > +          - reg
-> > +          - data-lanes
-> > +
-> > +        additionalProperties: false
-> > +
-> > +    required:
-> > +      - "#address-cells"
-> > +      - "#size-cells"
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reset-gpios
-> > +  - clocks
-> > +  - vddcore-supply
-> > +  - vhtermrx-supply
-> > +  - vddtx-supply
-> > +  - vddhost-supply
-> > +  - vddcmos-supply
-> > +  - vddgpio-0-supply
-> > +  - vddgpio-1-supply
-> > +  - sensors
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        camera@61 {
-> > +            compatible = "thine,thp7312";
-> > +            reg = <0x61>;
-> > +
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&cam1_pins_default>;
-> > +
-> > +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
-> > +            clocks = <&camera61_clk>;
-> > +
-> > +            vddcore-supply = <&vsys_v4p2>;
-> > +            vhtermrx-supply = <&vsys_v4p2>;
-> > +            vddtx-supply = <&vsys_v4p2>;
-> > +            vddhost-supply = <&vsys_v4p2>;
-> > +            vddcmos-supply = <&vsys_v4p2>;
-> > +            vddgpio-0-supply = <&vsys_v4p2>;
-> > +            vddgpio-1-supply = <&vsys_v4p2>;
-> > +
-> > +            orientation = <0>;
-> > +            rotation = <0>;
-> > +
-> > +            sensors {
-> > +                #address-cells = <1>;
-> > +                #size-cells = <0>;
-> > +
-> > +                sensor@0 {
-> > +                    thine,model = "sony,imx258";
-> > +                    reg = <0>;
-> > +
-> > +                    data-lanes = <4 1 3 2>;
-> 
-> Does the device support lane mapping?
+Remove functions goes always after probe.
 
-Yes it does, both on the input and output.
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(&client->dev);
+> +	struct pac1934_chip_info *info = iio_priv(indio_dev);
+> +
+> +	cancel_delayed_work_sync(&info->work_chip_rfsh);
+> +}
+> +
+> +static int pac1934_probe(struct i2c_client *client)
+> +{
+> +	struct pac1934_chip_info *info;
+> +	struct iio_dev *indio_dev;
+> +	const char *name = NULL;
+> +	int cnt, ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*info));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	info = iio_priv(indio_dev);
+> +
+> +	i2c_set_clientdata(client, indio_dev);
+> +	info->client = client;
+> +
+> +	/*
+> +	 * load default settings - all channels disabled,
+> +	 * uni directional flow
+> +	 */
+> +	for (cnt = 0; cnt < PAC1934_MAX_NUM_CHANNELS; cnt++) {
+> +		info->active_channels[cnt] = false;
+> +		info->bi_dir[cnt] = false;
+> +	}
+> +
+> +	info->crt_samp_spd_bitfield = PAC1934_SAMP_1024SPS;
+> +
+> +	ret = pac1934_chip_identify(info);
+> +	if (ret)
+> +		return -EINVAL;
+> +
+> +	if (ACPI_HANDLE(&client->dev)) {
+> +		if (!info->phys_channels)
+> +			/* failed to identify part number, unknown number of channels available */
+> +			return -EINVAL;
+> +
+> +		name = pac1934_match_acpi_device(client, info);
+> +	} else {
+> +		name = pac1934_match_of_device(client, info);
+> +	}
+> +
+> +	if (!name) {
+> +		dev_dbg(&client->dev, "parameter parsing returned an error\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_init(&info->lock);
+> +
+> +	/*
+> +	 * do now any chip specific initialization (e.g. read/write
+> +	 * some registers), enable/disable certain channels, change the sampling
+> +	 * rate to the requested value
+> +	 */
+> +	ret = pac1934_chip_configure(info);
+> +	if (ret < 0)
+> +		goto fail;
 
-> > +
-> > +                    dovdd-supply = <&vsys_v4p2>;
-> > +                    avdd-supply = <&vsys_v4p2>;
-> > +                    dvdd-supply = <&vsys_v4p2>;
-> > +                };
-> > +            };
-> > +
-> > +            port {
-> > +                thp7312_2_endpoint: endpoint {
-> > +                    remote-endpoint = <&mipi_thp7312_2>;
-> > +                    data-lanes = <4 2 1 3>;
-> > +                };
-> > +            };
-> > +    	  };
-> > +    };
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 3b47e0b56859..7451367e6780 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -21448,6 +21448,13 @@ S:	Maintained
-> >  F:	Documentation/ABI/testing/sysfs-class-firmware-attributes
-> >  F:	drivers/platform/x86/think-lmi.?
-> >  
-> > +THP7312 ISP DRIVER
-> > +M:	Paul Elder <paul.elder@ideasonboard.com>
-> > +L:	linux-media@vger.kernel.org
-> > +S:	Maintained
-> > +T:	git git://linuxtv.org/media_tree.git
-> > +F:	Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > +
-> >  THUNDERBOLT DMA TRAFFIC TEST DRIVER
-> >  M:	Isaac Hazan <isaac.hazan@intel.com>
-> >  L:	linux-usb@vger.kernel.org
+Why do you need to go to fail here? Is the work scheduled in error cases?
 
--- 
-Regards,
+> +
+> +	/* prepare the channel information */
+> +	ret = pac1934_prep_iio_channels(info, indio_dev);
+> +	if (ret < 0)
+> +		goto fail;
+> +
+> +	ret = pac1934_prep_custom_attributes(info, indio_dev);
+> +	if (ret < 0) {
+> +		dev_err_probe(&indio_dev->dev, ret,
+> +			      "Can't configure custom attributes for PAC1934 device\n");
+> +		goto fail;
+> +	}
+> +
+> +	info->pac1934_info.read_raw = pac1934_read_raw;
+> +	info->pac1934_info.read_avail = pac1934_read_avail;
+> +	info->pac1934_info.write_raw = pac1934_write_raw;
+> +	info->pac1934_info.read_label = pac1934_read_label;
+> +
+> +	indio_dev->info = &info->pac1934_info;
+> +	indio_dev->name = name;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	/*
+> +	 * read whatever has been accumulated in the chip so far
+> +	 * and reset the accumulators
+> +	 */
+> +	ret = pac1934_reg_snapshot(info, true, PAC1934_REFRESH_REG_ADDR,
+> +				   PAC1934_MIN_UPDATE_WAIT_TIME_US);
+> +	if (ret < 0)
+> +		goto fail;
+> +
+> +	ret = devm_iio_device_register(&client->dev, indio_dev);
+> +	if (ret < 0) {
+> +		dev_err_probe(&indio_dev->dev, ret,
+> +			      "Can't register IIO device\n");
+> +		goto fail;
+> +	}
+> +
+> +	return 0;
+> +
+> +fail:
+> +	cancel_delayed_work_sync(&info->work_chip_rfsh);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct i2c_device_id pac1934_id[] = {
+> +	{ .name = "pac1931", .driver_data = (kernel_ulong_t)&pac1934_chip_config[PAC1931] },
+> +	{ .name = "pac1932", .driver_data = (kernel_ulong_t)&pac1934_chip_config[PAC1932] },
+> +	{ .name = "pac1933", .driver_data = (kernel_ulong_t)&pac1934_chip_config[PAC1933] },
+> +	{ .name = "pac1934", .driver_data = (kernel_ulong_t)&pac1934_chip_config[PAC1934] },
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, pac1934_id);
+> +
+> +static const struct of_device_id pac1934_of_match[] = {
+> +	{
+> +		.compatible = "microchip,pac1931",
+> +		.data = &pac1934_chip_config[PAC1931]
+> +	},
+> +	{
+> +		.compatible = "microchip,pac1932",
+> +		.data = &pac1934_chip_config[PAC1932]
+> +	},
+> +	{
+> +		.compatible = "microchip,pac1933",
+> +		.data = &pac1934_chip_config[PAC1933]
+> +	},
+> +	{
+> +		.compatible = "microchip,pac1934",
+> +		.data = &pac1934_chip_config[PAC1934]
+> +	},
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, pac1934_of_match);
+> +
+> +/* using MCHP1930 to be compatible with WINDOWS ACPI */
+> +static const struct acpi_device_id pac1934_acpi_match[] = {
+> +	{"MCHP1930", 0},
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(acpi, pac1934_acpi_match);
+> +
+> +static struct i2c_driver pac1934_driver = {
+> +	.driver	 = {
+> +		.name = "pac1934",
+> +		.of_match_table = pac1934_of_match,
+> +		.acpi_match_table = ACPI_PTR(pac1934_acpi_match)
 
-Laurent Pinchart
+Drop ACPI_PTR, causes warnings.
+
+Best regards,
+Krzysztof
+
 
