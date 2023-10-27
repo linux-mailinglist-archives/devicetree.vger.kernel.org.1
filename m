@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9367F7D9103
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:18:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A4F7D911B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 10:19:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E37EFB2135F
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 916DA1C20FE4
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 08:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC2D1429F;
-	Fri, 27 Oct 2023 08:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D575F13FFE;
+	Fri, 27 Oct 2023 08:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jioTpSr5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QfPYxauN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960E213AF3
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:18:40 +0000 (UTC)
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D84DD1B3
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:18:38 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507bd19eac8so2651399e87.0
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:18:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7096C13FF5
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 08:19:39 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62FBB1721
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:19:30 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507bd19eac8so2652521e87.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 01:19:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698394717; x=1698999517; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698394768; x=1698999568; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lncm3MHrPjC7vAyy69JbUAajdl3oE8Tr3nNBlMEOh0k=;
-        b=jioTpSr53zWQFCUsZiF24O5kZWeWAXytWlpiH9MJSSjlEDsrLxrColQaDhMXP6/6qn
-         MebQGTgoGbIwmig9JLBhpHXU6SxRa2IqEhNRnOXOugHCDsiDMXa6I/ogXMTEWrttX7op
-         6cGYRFTp02nM8auUwzuCcz66631XJNLHyfbTdrJmF7I1Ir+sA8ec04IrO6/L6d0a52OF
-         Ko9gmqRYoOhitqBHtzTOX0+q5Cz+EI99Dt8KdNb+5i53mUlACq/zJ8XIOLnKAppTCjpT
-         /k8TSyV2XiKjbu39dKA/s8cKvfa/7gbTorjrFjiBslSCp5fd3u6c8cK6sxL1SIakLXMr
-         16Jg==
+        bh=QfO+TSWrd6mU/MA0g3SKN/GveJctycindhSaCCpzyGM=;
+        b=QfPYxauNvrUXUSg8q0Nc46xdOXnsDk/zGLFNv9a/bY+JYah9sznj1KL8xgjnd3m+Oc
+         jBGszRHTIn6l2gpl65I/KrkYbL3ycb0zHbM0luBv2kVcszWXnhRCVShnVCDqOxmowpi5
+         H4BTDdAaWVNWf89sG8XV/JNyOTVz3xtrVY33NSaVgOlhhOnpotAne14pGydThsn3Z7cZ
+         JROirIhhm2W5AmuUT651bgVQAOpxekv3la1TlCkyeVxNJYPpwuLDCEjHRsPYKqrvf0ad
+         L8c0E1uZRMMy9YrOlB6LvowCY2EDheFPf9XeIB0ivpAnMrO93f4Crz4tNBELvlGw6zyW
+         UPoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698394717; x=1698999517;
+        d=1e100.net; s=20230601; t=1698394768; x=1698999568;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lncm3MHrPjC7vAyy69JbUAajdl3oE8Tr3nNBlMEOh0k=;
-        b=bJo5Mx/6u6s1Zbauh1Hj5514+YJFVvDhMxccn0h5uVju+kKl2+2JbrjuqVwLMV/NMn
-         PXVq3SBUT2RkcD9SvI1qGDoKwgBC8FJ25aBgiXzO4vq5nCNVx+X5SeWWfbe9KfNbWTaM
-         pWxab5QInL+FdBSqBR+UmGXZiCtj58ci4TNJu8OvOzg6x9+Ft2OjoS6liHGmizGHKTCe
-         33FPOhpXkXINs2gjR5oH5FvWyudymvpmHbVw3+m6IlQppGbZ9KDymSHVTE4OPUP2Ezs7
-         HH+d6u4lnyxR3M0MnK66hegrLb+BCiy+EKyg0J4RRKgqinDmBqcRP2wlz560qIYWy7aX
-         4T5Q==
-X-Gm-Message-State: AOJu0YzkVRW1lcFBTrRqIzOPG+7DgPiRNav7AlAJda8MPvfilbfG60AF
-	WhxHokpfy+BPU3gZjlD9fU6ycg==
-X-Google-Smtp-Source: AGHT+IGdqaIkTC/UqOvj0SJjK0KmaAOqJXGgRLkrw7UUE1muaYKq1OheWDOEH5hPtUZjQ6xqwIHwMA==
-X-Received: by 2002:a05:6512:370b:b0:507:a6a5:a87b with SMTP id z11-20020a056512370b00b00507a6a5a87bmr1172764lfr.51.1698394717054;
-        Fri, 27 Oct 2023 01:18:37 -0700 (PDT)
+        bh=QfO+TSWrd6mU/MA0g3SKN/GveJctycindhSaCCpzyGM=;
+        b=XiPVpnuKRxgFGftpPM6U9KKYAfSIx/xI/MECLmiBudM5xNGTC32wdKfVStU2HtGT/f
+         xyJv80pH8znWzzS4YVak9Cdd+lZ6Y+eOWc7w9sqT2dXiAhqiQGJph4QbiMqgUsPCH9V7
+         QeqCbfrc6k4FiXCvlC9q/1T2nPy2n5RvBRwCTCcN3heOjgII/ntOCGgnyh0xyZR+BA4h
+         q/FHrqwCgnRSjIT1qV8gp2Hgk8NKCbzzlcXvvTEoRSmgzKly8i+xMtoMHiHT3XDUD76t
+         I73xiRYzbD33UgyQK3M69/cbKcitNUZmcbc0YVcpw+aJDAjVDrtXxZmMZscrd7x7Anbr
+         U9aw==
+X-Gm-Message-State: AOJu0YxHO4qj0xAyylN4H5YMWhL4+uFjNG++9plKOypZ7TUXY4lL6vVi
+	6cXNIsIg4j7jz+cWGc88IPMoqg==
+X-Google-Smtp-Source: AGHT+IHTKnvS4zvAcrOIFGoui/scJgXvbEsYMSmtqAKAI8pNmA3pVyCTLztPepWgjImeHJIuBTRxAw==
+X-Received: by 2002:a19:771a:0:b0:507:9784:644c with SMTP id s26-20020a19771a000000b005079784644cmr1210049lfc.26.1698394768611;
+        Fri, 27 Oct 2023 01:19:28 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id v19-20020a05651203b300b00507a96d17b3sm181433lfp.237.2023.10.27.01.18.35
+        by smtp.gmail.com with ESMTPSA id v19-20020a05651203b300b00507a96d17b3sm181433lfp.237.2023.10.27.01.19.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 01:18:36 -0700 (PDT)
-Message-ID: <75b41aca-0333-4e69-aaf2-9aaa48d18d1b@linaro.org>
-Date: Fri, 27 Oct 2023 10:18:35 +0200
+        Fri, 27 Oct 2023 01:19:28 -0700 (PDT)
+Message-ID: <8e7b141a-9a87-48d9-ad93-f1f9ffcb5eda@linaro.org>
+Date: Fri, 27 Oct 2023 10:19:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: defconfig: Enable SC8380XP SoC base configs
+Subject: Re: [PATCH 2/3] dt-bindings: power: rpmpd: Add SC8380XP support
 Content-Language: en-US
 To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
- ulf.hansson@linaro.org
-Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
- j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
- m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
- lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- quic_tsoni@quicinc.com, neil.armstrong@linaro.org
-References: <20231025142427.2661-1-quic_sibis@quicinc.com>
- <20231025142427.2661-6-quic_sibis@quicinc.com>
+ konrad.dybcio@linaro.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, quic_rjendra@quicinc.com,
+ abel.vesa@linaro.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231025135943.13854-1-quic_sibis@quicinc.com>
+ <20231025135943.13854-3-quic_sibis@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,19 +123,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025142427.2661-6-quic_sibis@quicinc.com>
+In-Reply-To: <20231025135943.13854-3-quic_sibis@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 16:24, Sibi Sankar wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+On 25/10/2023 15:59, Sibi Sankar wrote:
+> From: Abel Vesa <abel.vesa@linaro.org>
 > 
-> Enable GCC, Pinctrl and Interconnect configs for SC8380XP needed to boot
-> to a console shell.
+> Add compatible and constants for the power domains exposed by the RPMH
+> in the Qualcomm SC8380XP platform.
 
-This is generic defconfig for all platforms. You must be explicit which
-SoC and board you now target. How anyone could figure out that random
-set of numbers/letters like A1204XZY SoC is Qualcomm?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
