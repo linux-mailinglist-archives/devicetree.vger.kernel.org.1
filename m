@@ -1,115 +1,78 @@
-Return-Path: <devicetree+bounces-12352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EC8A7D9065
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:54:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9A37D9070
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:58:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ECD31C20EB8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:54:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0D40B20D7F
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37D7DF68;
-	Fri, 27 Oct 2023 07:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD04101CC;
+	Fri, 27 Oct 2023 07:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ppia+k/A"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Kz4Oggw8";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="64Rmxwlm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A4B10A02
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:54:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CAF2196;
-	Fri, 27 Oct 2023 00:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698393260; x=1729929260;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9f7KCpcClMX4zOG+PhlFub8CGNanF6tmYlOOi+MezcI=;
-  b=Ppia+k/AbKndg2sOnN7Y1pfjqyz70ZXBAipQouq9wVGYmOkc+lzzA1By
-   ARcBywpygSU4CCByJM4DKwH/HnSNvW9/IOnYFj5dZShrHcPWl5Gd5yUP/
-   mX5yR4f5ZnTeu78k0hyZwkWn6LazJPNkyWbV9I6Y+pUArqfB5soGWT3X6
-   vpdpW5D7QTzpeCooJybEudKbSwhlUhN0TnEp27OIOcxWR3aE3qs5jYRh4
-   G/AxxvyavlI/6QAr2jujMakZLz8G9/Q2CbWAG0zN6aG8eKd0wud5Gif8A
-   77Bc2cF8n9AgNEm3du0gObap2e+XynasrpL+rv7IpxIfiXNHdWIE3q80J
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="473969570"
-X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; 
-   d="scan'208";a="473969570"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2023 00:54:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="709343915"
-X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; 
-   d="scan'208";a="709343915"
-Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 27 Oct 2023 00:54:15 -0700
-Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qwHfZ-000Abn-1k;
-	Fri, 27 Oct 2023 07:54:13 +0000
-Date: Fri, 27 Oct 2023 15:53:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Herve Codina <herve.codina@bootlin.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Lizhi Hou <lizhi.hou@amd.com>
-Cc: oe-kbuild-all@lists.linux.dev, Max Zhen <max.zhen@amd.com>,
-	Sonal Santan <sonal.santan@amd.com>,
-	Stefano Stabellini <stefano.stabellini@xilinx.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Bjorn Helgaas <helgaas@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH v2 3/3] of: unittest: Add tests for address translations
-Message-ID: <202310271513.8MUErCK4-lkp@intel.com>
-References: <20231017110221.189299-4-herve.codina@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BE38F7E
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:57:52 +0000 (UTC)
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77E31AA;
+	Fri, 27 Oct 2023 00:57:50 -0700 (PDT)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1698393469;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UKtr3c2y4bwdF/vP9HE6zYBjusukdEz9+E2VJT4SVls=;
+	b=Kz4Oggw8+grS0WSKVO+9MyGnS273ejuWYfJtGOvjd+CrftpUcSKRYKB25UcvePrTyRUlSs
+	2P0RuymBweHmZZl5FsV8xqWoBqmdRn0zbK7N8WWtILTzveoXeY2XO84P9T0p5TfUVhx3ay
+	wibhPTvzyaD7ZzC3uJcb8H8Mi02++PkV8/EuKoCf/eu6/52Opr2i6yIRSQefcftlng5mRR
+	VL4S1IE4ek7Hnn6UnLxbtKlgGQl2cs/U9TrZ8fjUu39NJxOp0Ivjzx9moEIPNNvVd7nWYn
+	GAUKA1xDr3RyizeolP4Ma2oL4Wwbahd0nrZt1iWfAFE13FmnUArSmfTp4/51YQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1698393469;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UKtr3c2y4bwdF/vP9HE6zYBjusukdEz9+E2VJT4SVls=;
+	b=64RmxwlmEIlKoZMqNa2m2RVJYbjNA5l71PuX77/hdLLuwKlQzC6xWex5nFyGrKhx8nwNfY
+	DzKX9jc4LGiriABg==
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, Atish Patra
+ <atishp@atishpatra.org>, Andrew
+ Jones <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>,
+ Saravana Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>, Rob
+ Herring <robh@kernel.org>
+Subject: Re: [PATCH 2/3] of: property: Add fw_devlink support for msi-parent
+In-Reply-To: <20231025142820.390238-3-apatel@ventanamicro.com>
+References: <20231025142820.390238-1-apatel@ventanamicro.com>
+ <20231025142820.390238-3-apatel@ventanamicro.com>
+Date: Fri, 27 Oct 2023 09:57:49 +0200
+Message-ID: <871qdg4hvm.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231017110221.189299-4-herve.codina@bootlin.com>
+Content-Type: text/plain
 
-Hi Herve,
+On Wed, Oct 25 2023 at 19:58, Anup Patel wrote:
+> This allows fw_devlink to create device links between consumers of
+> a MSI and the supplier of the MSI.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.6-rc7 next-20231026]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/of-address-Fix-address-translation-when-address-size-is-greater-than-2/20231017-190414
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231017110221.189299-4-herve.codina%40bootlin.com
-patch subject: [PATCH v2 3/3] of: unittest: Add tests for address translations
-config: s390-randconfig-002-20231027 (https://download.01.org/0day-ci/archive/20231027/202310271513.8MUErCK4-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231027/202310271513.8MUErCK4-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202310271513.8MUErCK4-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   s390-linux-ld: drivers/of/unittest.o: in function `of_unittest_check_addr':
->> unittest.c:(.init.text+0x5ad2): undefined reference to `of_address_to_resource'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+How is this related to the two fixes in this series?
 
