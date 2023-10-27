@@ -1,143 +1,171 @@
-Return-Path: <devicetree+bounces-12346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A58F57D9023
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:44:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5AA7D9029
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 09:46:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F2212821E1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:44:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB8FC1C20F49
+	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 07:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097A6C8F8;
-	Fri, 27 Oct 2023 07:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D1AC8F8;
+	Fri, 27 Oct 2023 07:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A1MYE0Ms"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="DDWIiYI+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6934C8CB
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:44:48 +0000 (UTC)
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6C6CD4C
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:44:46 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-507c8316abcso2187750e87.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:44:46 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D502AC2FE
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 07:45:58 +0000 (UTC)
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6341A5
+	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:45:56 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-577e62e2adfso1458853a12.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 00:45:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698392685; x=1698997485; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YdE2y1aby0BQdk8xrlCB8Kqg1DOQ9KmpAl5ECSr9stg=;
-        b=A1MYE0MsgHqTu8Z5Bh+1Ul2+0tzIfgvERSdztGzd7Iioy0+hT743DXVyHTvLCOxSTs
-         dmUWtmQIWSn4K2yZznL3UUxwDudacttXVYpNUdY4mJ484WrREOIgptzzFYzAEJDKu30E
-         2BNHergGbRDeItrFmLoAhYHCkrmFC+lRAXlUXbdKOktnKhcwKphiIuWtpRu/Y6tvkH5G
-         w+dg4Uh4vx6aE79QvLmNZFr0w4sWzc9En3TEau0UTavWC0XehAuMUQFo1D5nbD/4OHn4
-         Xf8tgd/WrwojeQjrJzTsChEH7jzP1hSb+9jaZUsn41cdnYAu5In9hEsrbM84CptqHagN
-         dSVg==
+        d=tweaklogic.com; s=google; t=1698392756; x=1698997556; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s1ZqF4Y+8XvmpYsLnKTvR6Vxy6r+gLyNVW4nq/44GEQ=;
+        b=DDWIiYI+XPI0q4akkfp2XIJBk0REoVM5LSqyDLG31zk9MU2ZsDIGCBuSEu/FoSLvbI
+         lIdNWHXlKMbBtJqP94DfhCgpjKEtY5q6VYDH5NvYC4aJV8lzgg84zl8aY5jNPq5UgR95
+         XVTd9J5Ei/VgYPjcMsTYbB7kiY1WboXoVJnVMYXNXDFcnj5aaaRZU8nq8KVzUtzcXSWE
+         /mArY1VTUP1aEg3Nv8fJhbYyr5oWCelxlB0iO68BsT4DOZ1B+Cziscw/53fPry15APQe
+         0E99c6SEgqNBpkhsqenYUdKhxBM3EYt2z9GWP6/FLzgGjaxFTAPGvcBD5a2eqkk+IxBJ
+         yNJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698392685; x=1698997485;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YdE2y1aby0BQdk8xrlCB8Kqg1DOQ9KmpAl5ECSr9stg=;
-        b=jC/hGv/6pLDm5tOKvnlMt512iFY0nBbttBVB3y/PbstewmgNOQpe437GGrQHhBD0iw
-         q6wwmGLMwIJwbXiQr7xATkCwNmyBinsDZQBU/AE4mpWYLL4xp2NKdCji7QaToC0+WA30
-         mOK4dtLNpV/HEJFUiZEXOAtVmOYAoaIQFxjhIskCjg1ZusLeuoySsB24HWsL7MoTDkWk
-         aT8GU+k3ZVsWEJ2vBgjsF4VSd+z6cZGSt2S11nubpb3ehdsVT6YAXABm9urq1jAoFQmy
-         jB23wJ2f4DWuC9WJvIYplvmQhjNKHBY335vxRJxdv+0zGwvQrj/6t9+NIyS+OFFMKKNC
-         Xc+A==
-X-Gm-Message-State: AOJu0YxUTP1/bXLqlhgfpa3JtXjdvy1Qal69Mr98LdE7piodyQBZAJId
-	q7PV9PgNYwxXARBVFhSeMfIvKg==
-X-Google-Smtp-Source: AGHT+IGItjKvsvGv6rSiLZu71/SwupAPTEFcgbaC8DVtntISnzBvw+nuVsrRemUBOTuJ+4+Rq3012Q==
-X-Received: by 2002:a05:6512:6d1:b0:508:19be:fb2e with SMTP id u17-20020a05651206d100b0050819befb2emr1366026lff.58.1698392684898;
-        Fri, 27 Oct 2023 00:44:44 -0700 (PDT)
-Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id u28-20020a19791c000000b005079fd88326sm170716lfc.45.2023.10.27.00.44.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Oct 2023 00:44:44 -0700 (PDT)
-Message-ID: <35489fb7-9272-40dc-a2e1-45326b964e75@linaro.org>
-Date: Fri, 27 Oct 2023 09:44:43 +0200
+        d=1e100.net; s=20230601; t=1698392756; x=1698997556;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s1ZqF4Y+8XvmpYsLnKTvR6Vxy6r+gLyNVW4nq/44GEQ=;
+        b=jvFuWhDX32fyt57fsjEM1Kg4oTiazoPMHI+i8CRN1BJJaWkT5IcpitDbAQX3v5c5No
+         oTffIPJ+eI9WXmnFqXCQ3ARqX5rOALBvZfdupJmtuqH3ii6c9xi9Bc2XFsEZVtgWgz2n
+         XkF0nEMkbZWHB8Np9VsSxIVArp3Q+WUxKbmECBcO6rL7mi92vUrNTF4b9Ow9udL8pkZr
+         iAfqkURH45TWnrOVSRLH4gCVtXMjXOJzG9JIlMtnoiXemUvuYhSA3ocvF6ZP5EXUzHA5
+         JUYpy+T2mBKAgnN8NPqFNFl62fCI8IAlyd6no9eFAtRyf43fva1BCoKLkikn5OWVw25T
+         eULg==
+X-Gm-Message-State: AOJu0YwBvbKqdHBKPRVg9DwadUBb5c5zHzcWOYKsngtbPRmZ6f2PGWW1
+	nW3DzrXPsFbRgR8p4O0O1HU1YA==
+X-Google-Smtp-Source: AGHT+IGN3nHP51lPVBuXkhPSkiQS17tSC7ACDp/muLwdcnay6wDURDjyfTAimYSAeFGKP6oV58ekIg==
+X-Received: by 2002:a17:90a:7:b0:27c:fdc6:c52 with SMTP id 7-20020a17090a000700b0027cfdc60c52mr1743733pja.30.1698392755913;
+        Fri, 27 Oct 2023 00:45:55 -0700 (PDT)
+Received: from localhost.localdomain (2403-580d-82f4-0-bfe6-93ca-47b7-e8ec.ip6.aussiebb.net. [2403:580d:82f4:0:bfe6:93ca:47b7:e8ec])
+        by smtp.gmail.com with ESMTPSA id v12-20020a17090ac90c00b00277832fbf4esm684835pjt.16.2023.10.27.00.45.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Oct 2023 00:45:55 -0700 (PDT)
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Paul Gazzillo <paul@pgazz.com>
+Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Support for Avago APDS9306 Ambient Light Sensor
+Date: Fri, 27 Oct 2023 18:15:43 +1030
+Message-Id: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] ARM: dts: qcom: samsung-matisse-common: Add UART
-Content-Language: en-US
-To: Stefan Hansson <newbyte@postmarketos.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20231026132521.38575-1-newbyte@postmarketos.org>
- <20231026132521.38575-5-newbyte@postmarketos.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231026132521.38575-5-newbyte@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 26/10/2023 15:24, Stefan Hansson wrote:
-> This was not enabled in the matisse-wifi tree. Without this, it is not
-> possible to use the USB port for serial debugging via a "Carkit debug
-> cable".
-> 
-> Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
+This series adds support for Avago (Broadcom) APDS9306 Ambient Light
+Sensor.
+
+Datasheet: https://docs.broadcom.com/doc/AV02-4755EN
+
+Following features are supported:
+  - I2C interface
+  - 2 channels - als and clear
+  - Raw data for als and clear channels
+  - Up to 20 bit resolution
+  - 20 bit data register for each channel
+  - Common Configurable items for both channels
+    - Integration Time
+    - Scale
+  - High and Low threshold interrupts for each channel
+  - Selection of interrupt channels - als or clear
+  - Selection of interrupt mode - threshold or adaptive
+  - Level selection for adaptive threshold interrupts
+  - Persistence (Period) level selection for interrupts
+  
+This driver also uses the IIO GTS Helpers Namespace for Scales, Gains
+and Integration time implementation.
+
+root@stm32mp1:~# tree -I 'dev|name|of_node|power|subsystem|uevent' \
+> /sys/bus/iio/devices/iio:device1/
+/sys/bus/iio/devices/iio:device1/
+|-- events
+|   |-- in_illuminance_thresh_either_en
+|   |-- in_intensity_clear_thresh_either_en
+|   |-- thresh_adaptive_either_en
+|   |-- thresh_adaptive_either_value
+|   |-- thresh_adaptive_either_values_available
+|   |-- thresh_either_period
+|   |-- thresh_either_period_available
+|   |-- thresh_falling_value
+|   `-- thresh_rising_value
+|-- in_illuminance_raw
+|-- in_intensity_clear_raw
+|-- integration_time
+|-- integration_time_available
+|-- sampling_frequency
+|-- sampling_frequency_available
+|-- scale
+|-- scale_available
+`-- waiting_for_supplier
+
+1 directory, 18 files
+
+v1 -> v2
+  - apds9306 driver
+   - Fixed kernel build failure due to probe_new(), replaced with probe()
+v0 -> v1
+  - dt_bindings
+   - Squashed apds9300 and apds9600 dt bindings, added apds9306 bindings on
+     top of that
+   - Added detailed commit message for dt_bindings
+  - apds9306 driver
+   - Fixes as per review
+   - Not disabling the regmap internal lock
+   - Removing processed attribute for als channel which exposes raw values
+   - Modified the iio gts scale implementation for above change
+   - Not implementing a fallback and warning for compatibility and part ID 
+     mismatch as suggested by Matti and Jonathan as Rob insisted on having
+     a single compatible string for the driver (if the device can power up
+     with a single compatible string, which it does).
+
+Subhajit Ghosh (2):
+  dt-bindings: iio: light: Avago APDS9306
+  iio: light: Add support for APDS9306 Light Sensor
+
+ .../bindings/iio/light/avago,apds9300.yaml    |   35 +-
+ .../bindings/iio/light/avago,apds9960.yaml    |   44 -
+ drivers/iio/light/Kconfig                     |   12 +
+ drivers/iio/light/Makefile                    |    1 +
+ drivers/iio/light/apds9306.c                  | 1326 +++++++++++++++++
+ 5 files changed, 1369 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+ create mode 100644 drivers/iio/light/apds9306.c
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+base-commit: 611da07b89fdd53f140d7b33013f255bf0ed8f34
+-- 
+2.34.1
 
 
