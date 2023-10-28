@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-12608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4A87DA7A3
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 16:59:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 585EB7DA7A5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 17:01:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0304E1C2097F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 14:59:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CF87282170
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 15:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F82B156F8;
-	Sat, 28 Oct 2023 14:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49A515ADA;
+	Sat, 28 Oct 2023 15:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZViAY92"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYTKofFM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336093C3D
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 14:59:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EE10C433C7;
-	Sat, 28 Oct 2023 14:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7DAD295
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 15:00:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A1F0C433C7;
+	Sat, 28 Oct 2023 15:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698505192;
-	bh=XKFKJwLWN8LtB9HObwbsrakqlDA+eZ153UzGNfdFqXY=;
+	s=k20201202; t=1698505259;
+	bh=GD2T2QKFUpl5maQSmial0BzdF9R0LkgywwOMePuymGs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lZViAY92Wbr1wehCOC5INdBZAijNN3dxMZ6Cm7gGze93XSUbYK2VJ34+KFooBwiUT
-	 lCianNHEVYQ96H1/Ip96m3JUCmXTcIY8ZdBf9DECM6xLr+LDqtiVGyXWM0lYkEYfBB
-	 JcuXuRQqGQY2xUfHSEZSuYh8zoQMWow01V2uCt+xHOElI/cBaqq4BW2AYZk0KBVyu2
-	 04KGgPcYO2iMpuZalT9cx0McFvijTRn8FIORk8Yda2jiNDEfXWfSFBfv2N/ngWqRym
-	 Ml7UosNNkRZ+/V+YxJYmFzq79l+NcnGJBGXUUTK0okMATSGxQ24hv8Z5UVIPubuHTr
-	 dc+4RnNwFyofA==
-Message-ID: <1f16f4d3-4f93-46ef-bb4a-4c60277fd737@kernel.org>
-Date: Sat, 28 Oct 2023 16:59:49 +0200
+	b=TYTKofFMvawcKYW2vhTOc4RD3po6ftO/PEJ4QqlNeOrPPPKKjHHq67GbT6/VF66RH
+	 ZYVE5zyeo8TI9q3tNj1UGXwvEg0HNN+lbBY/96Cbzq4VQJPnfVKT2rqXVGfMstGXDF
+	 MGsJyIAR5LBqLNc6QDjNJJsAFxmAfvozevJEZ/xWzXFL2NPAYOCd1Tz2Oxde93LjZ7
+	 G5ipP/sfA/07LcmcUPUTTv5qTXwl6DJ0jh2ES4CejdLze1EV/Y3tbsNPOQ0h4Mc2eU
+	 7gQzau54ZcXR98w7JiOgpH+DE7jFqFq/MTF50xy4noJLSgSV1HeNIXqYBQcsTevi6S
+	 tVBgTWQ9EOccg==
+Message-ID: <d12f8784-21ec-46c3-8216-e33e0f9846d7@kernel.org>
+Date: Sat, 28 Oct 2023 17:00:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,21 +102,12 @@ On 28/10/2023 14:05, Li peiyu wrote:
 > ---
 > Changes for v4:
 > - remove excess spaces
-> Changes for v3:
-> - add type definition of has-temp3, has-in6, has-in7
-> - Change the description of has-temp3
-> Changes for v2:
-> - replace node name lm87 with sensor
-> - replace character '\t' with spaces
-> 
->  .../devicetree/bindings/hwmon/lm87.txt        | 30 ---------
->  .../devicetree/bindings/hwmon/lm87.yaml       | 62 +++++++++++++++++++
 
-Nothing improved from my original feedback from 25th of October.
+One more comment (all previous are still valid):
 
-Instead of ignoring it, please open the email, read and respond inline
-that you understand each part of the feedback and you are going to
-implement it.
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets.
 
 Best regards,
 Krzysztof
