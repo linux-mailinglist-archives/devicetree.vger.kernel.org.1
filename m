@@ -1,97 +1,237 @@
-Return-Path: <devicetree+bounces-12614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF6E7DA7EF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 18:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA017DA7FA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 18:10:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C0F11C20985
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 16:01:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C0771C20961
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 16:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC94168B7;
-	Sat, 28 Oct 2023 16:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937C6BA4B;
+	Sat, 28 Oct 2023 16:10:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mYidd5He"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JqJFWdSN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B378621
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 16:01:18 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE418E1
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 09:01:16 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c5629fdbf8so43071451fa.0
-        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 09:01:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7927463A4;
+	Sat, 28 Oct 2023 16:10:29 +0000 (UTC)
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B36E5;
+	Sat, 28 Oct 2023 09:10:27 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1c87a85332bso27345895ad.2;
+        Sat, 28 Oct 2023 09:10:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698508875; x=1699113675; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+C4htKxxG/0myTJYp+gCkrihurqn4Ntp5Fw1DhZOWF4=;
-        b=mYidd5HekR2DpNvxbBYOeyE5i52fe51zju5uePNGtzymdL0kI2LN9z+RYGUU8PJq1E
-         vSxRtywHi+ObFX9EoCuyYZG1cFGyYvXRwjuZnFf6hQf9gUgcOXGO7Z7MQg6XG6O38QMi
-         EpQ54T6QtrlayiO1oHRPlrqZp1tQsDgGEXi/NmrJPvWXnH4tM2Onq41T9Q9aP+5giXbd
-         3GXzl4b5ga2mfYhZ7A7EF8vhX70WnAzRxpgGDa1ato9uGYAgMM1XABftXOJPBSepm+wh
-         FdFPU0luarbBMbG4bjvQRmtVl/S+gWtpbG87YfGMgAGdEhw/uy/UBbTuSOgQM0wAmvOi
-         G+sQ==
+        d=gmail.com; s=20230601; t=1698509427; x=1699114227; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A/R6fybkuPrh/vemQBEtPBgOnhFZTvd3BcrWSjhKvPM=;
+        b=JqJFWdSNUZsFAEJuvRxQwLKPQ1dBZRWKx2J+1iTnBwEkoi7fPGeX4vUcVpHy38uNaU
+         +GL+iqHsQ7Cr1LBXKgl2XuDfteve4shD5VWkehZnr2OIUilMrB+BVzpHE4x1yC6p6FVo
+         cJJ6IOGqg7lYrWx11ZqYnU1MxpHHhU4XzDpHO9Awgp2nUycNhn8CVKtKV94Q7GWXeCIG
+         BSwLy4N98p5rwd68ivGW3+h6i21IXpsOqvhww+AfCC2DsoqGqPePsDt82Sg511ovla5+
+         /Zckt6Hytk4hPjCU69I4noY370rkdHS4S5nBhcKH9xLgcNj+n3FBzQJm7/qbzhMYCqN0
+         hJIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698508875; x=1699113675;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1698509427; x=1699114227;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+C4htKxxG/0myTJYp+gCkrihurqn4Ntp5Fw1DhZOWF4=;
-        b=AwrVejGbj6Nitdb5PXyr+hPjmWM5sJpPscMU0mPDwLCuv68U8ockcUa+NfHatsveM6
-         +SuLEmQz4nEwadpWa/a6Jp6K6R6NOfbQj8VabP/0ikA1OLd3Jrj2ewh2m9jpwpGiTXqI
-         0Yk0rb2gqog50TezRWbKVjGMpvtefe+TI0OPEkXv+15556eYVxzGGESH1NKhmmolKNtB
-         YqR9azSIdZ58zCwW7FqIQxo+J279j3JY6d//3BlgXUzsaX7GwW/RXOV0xysbWMf+jK7B
-         Q+3QTK0zAkIvPSmvn7Y5+P+fV8qUVJFh/XfWM1V+JAkY/Qs6M4Qn9lS+UAptdCvzMmo2
-         K9pg==
-X-Gm-Message-State: AOJu0YzblEAifKxpLEvyJuztLZThKE6780/mnhY8DlPHbZs5y2787NsZ
-	OYCU8RYGS0TjMg50xu1NcYOOEOqQcaa4KGrG96Y=
-X-Google-Smtp-Source: AGHT+IH21H8+dIz9zobUr17Kr9MlwqkqsofrzMh0hhj0mP2cLhLco+dI0RnfmzZ3xZl/fUNKEQ5nUgg+7y3qpZF/qCM=
-X-Received: by 2002:a05:651c:31a:b0:2c2:9414:7dc8 with SMTP id
- a26-20020a05651c031a00b002c294147dc8mr3683988ljp.36.1698508874656; Sat, 28
- Oct 2023 09:01:14 -0700 (PDT)
+        bh=A/R6fybkuPrh/vemQBEtPBgOnhFZTvd3BcrWSjhKvPM=;
+        b=WSlw/SqCqLDSIDVlg0I4k2ZVV3Ph413B1WjuRUJY4oAb5CXnNgmu1CxU+VUiAFsb0R
+         KdjibKXfBhcr6e1sjfPBH6kiN+76QbW9BwZKkNO5ognN2JcKh2+sH3iiyhtnQiNCsmhP
+         lKv7Ux5yIgE0+yJSVTnskbEaK7J5CfP/kQtOZTkqdmWonKyEKlxEIbYjPWUmhXHKAk64
+         9X+/vO6B4VhWbrP9bTei9SSXoZaldLRKPio9sTJxFBRTf8XelM8QnuJ3XIAMzGOeEg36
+         Xq/nohcsYPX9oDLBp7nYGAojApiZSI6cx3W/8dyo/bGTwbzwTBMgy3RUr/guFHxdkxub
+         jA9w==
+X-Gm-Message-State: AOJu0YxMX17ZX9PiDyqGT5+GpsqRk1bPQU635BN+bo/yiFW89sqRK4nE
+	ewu9HGCReMn4QfBzFdqnCuQ=
+X-Google-Smtp-Source: AGHT+IFCxkcX/4mh5DsxzdHDuTmcmJd858zCiXe4nVTZFSwzWWRRXBEzhQe0Dfbz5jaOuSxrUbdwHg==
+X-Received: by 2002:a17:903:1104:b0:1ca:29f:4b06 with SMTP id n4-20020a170903110400b001ca029f4b06mr7452678plh.2.1698509427112;
+        Sat, 28 Oct 2023 09:10:27 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u2-20020a1709026e0200b001c746b986e5sm3482443plk.45.2023.10.28.09.10.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Oct 2023 09:10:26 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 28 Oct 2023 09:10:25 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: hwmon: ltc2991: add bindings
+Message-ID: <842c0616-f635-4443-99b6-c7b47ab145fb@roeck-us.net>
+References: <20231026103413.27800-1-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231024154338.407191-1-dsankouski@gmail.com> <20231024154338.407191-2-dsankouski@gmail.com>
- <5c126f13-d199-4e09-bb58-fbf281947115@linaro.org>
-In-Reply-To: <5c126f13-d199-4e09-bb58-fbf281947115@linaro.org>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Sat, 28 Oct 2023 19:01:03 +0300
-Message-ID: <CABTCjFAkjw+EO2ZgPcbKP+dX8d-Rem+ceoNUVGahFM8zUhKbMQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: regulator: add Samsung s2dos05 pmic
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231026103413.27800-1-antoniu.miclaus@analog.com>
 
-=D0=B2=D1=82, 24 =D0=BE=D0=BA=D1=82. 2023=E2=80=AF=D0=B3. =D0=B2 18:59, Krz=
-ysztof Kozlowski
-<krzysztof.kozlowski@linaro.org>:
-....
-> > +title: Samsung s2dos05 regulator
->
-> Not a PMIC/MFD device? If not, then:
-> Samsung S2DOS05 Power Management IC
->
-> Otherwise, if this is only for regulators:
-> Samsung S2DOS05 Power Management IC Regulators
->
-AFAIU, PMIC/MFD would be a device, with more than one function.
-Analysing s2dos05 vendor code it's capable of generating interrupts
-and measure current(which I'm planning to implement as a hwmon module).
-There're regulators with interrupt functionality in linux. Since
-current measurement
-feature would be in hwmon subsystem, can we consider s2dos05 NOT a PMIC/MFD
-device?
+On Thu, Oct 26, 2023 at 01:33:12PM +0300, Antoniu Miclaus wrote:
+> Add dt-bindings for ltc2991 octal i2c voltage, current and temperature
+> monitor.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Applied.
+
+Thanks,
+Guenter
+
+> ---
+> no changes in v5.
+>  .../bindings/hwmon/adi,ltc2991.yaml           | 128 ++++++++++++++++++
+>  1 file changed, 128 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+> new file mode 100644
+> index 000000000000..011e5b65c79c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
+> @@ -0,0 +1,128 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/adi,ltc2991.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices LTC2991 Octal I2C Voltage, Current and Temperature Monitor
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +  The LTC2991 is used to monitor system temperatures, voltages and currents.
+> +  Through the I2C serial interface, the eight monitors can individually measure
+> +  supply voltages and can be paired for differential measurements of current
+> +  sense resistors or temperature sensing transistors.
+> +
+> +  Datasheet:
+> +    https://www.analog.com/en/products/ltc2991.html
+> +
+> +properties:
+> +  compatible:
+> +    const: adi,ltc2991
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  vcc-supply: true
+> +
+> +patternProperties:
+> +  "^channel@[0-3]$":
+> +    type: object
+> +    description:
+> +      Represents the differential/temperature channels.
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The channel number. LTC2991 can monitor 4 currents/temperatures.
+> +        items:
+> +          minimum: 0
+> +          maximum: 3
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description:
+> +          The value of curent sense resistor in micro ohms. Pin configuration is
+> +          set for differential input pair.
+> +
+> +      adi,temperature-enable:
+> +        description:
+> +          Enables temperature readings. Pin configuration is set for remote
+> +          diode temperature measurement.
+> +        type: boolean
+> +
+> +    required:
+> +      - reg
+> +
+> +    allOf:
+> +      - if:
+> +          required:
+> +            - shunt-resistor-micro-ohms
+> +        then:
+> +          properties:
+> +            adi,temperature-enable: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vcc-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hwmon@48 {
+> +            compatible = "adi,ltc2991";
+> +            reg = <0x48>;
+> +            vcc-supply = <&vcc>;
+> +        };
+> +    };
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hwmon@48 {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            compatible = "adi,ltc2991";
+> +            reg = <0x48>;
+> +            vcc-supply = <&vcc>;
+> +
+> +            channel@0 {
+> +                    reg = <0x0>;
+> +                    shunt-resistor-micro-ohms = <100000>;
+> +            };
+> +
+> +            channel@1 {
+> +                    reg = <0x1>;
+> +                    shunt-resistor-micro-ohms = <100000>;
+> +            };
+> +
+> +            channel@2 {
+> +                    reg = <0x2>;
+> +                    adi,temperature-enable;
+> +            };
+> +
+> +            channel@3 {
+> +                    reg = <0x3>;
+> +                    adi,temperature-enable;
+> +            };
+> +        };
+> +    };
+> +...
 
