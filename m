@@ -1,122 +1,133 @@
-Return-Path: <devicetree+bounces-12594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ECB77DA69A
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 12:59:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E51207DA6B8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 13:30:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7E501C20971
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:59:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71D12282068
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 11:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5C8F9FE;
-	Sat, 28 Oct 2023 10:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5CC10A08;
+	Sat, 28 Oct 2023 11:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VBdSr5KY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD231FCF
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 10:59:39 +0000 (UTC)
-Received: from connect.vanmierlo.com (fieber.vanmierlo.com [84.243.197.177])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04ABCB4;
-	Sat, 28 Oct 2023 03:59:35 -0700 (PDT)
-X-Footer: dmFubWllcmxvLmNvbQ==
-Received: from roundcube.vanmierlo.com ([192.168.37.37])
-	(authenticated user m.brock@vanmierlo.com)
-	by connect.vanmierlo.com (Kerio Connect 10.0.2 patch 1) with ESMTPA;
-	Sat, 28 Oct 2023 12:59:28 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660894422
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 11:30:51 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2199C;
+	Sat, 28 Oct 2023 04:30:50 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9bdf5829000so468828666b.0;
+        Sat, 28 Oct 2023 04:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698492648; x=1699097448; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+GZgpjtqscAa143cX/9uuh3k2yGrgKZoz3xkY7o9yEo=;
+        b=VBdSr5KY2Q8D37X2UpbZ/IzPhhuLlqheBsL2hZEuYCNHY6RPlpP26VwtRyzZ58yf0f
+         /iyv/eC/EdmAYpaekIr4NzBn2+6l0Kv8mp8SOnUZdx4kTyUzU0evxtSrcK/UNLaqfoY+
+         VTaT62RmOYsNxfJjoXr1DWK9VUETPZYqruKJvydT49DpY5/6skoXIbnl9/JKpaAL540M
+         Lx6UgPsw7nLPJYujSu5suxG/lbTDxccZ8hptasbsRHHAUAJpZmhS1ya0mJsnDRw78XTJ
+         L0rq3l75Iv37b6Qc5c0tavyN6YJ/jTxemDlbkdUd/1AtSezmBNGWXXTnPMC0QA3dQAZ9
+         Q/zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698492648; x=1699097448;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+GZgpjtqscAa143cX/9uuh3k2yGrgKZoz3xkY7o9yEo=;
+        b=le9uTv5avLXrH9jrAcQIXvbr/dPMRlBDbvL9wMSBSI3gh5WAtVtuhFvfW8NJHfDgaL
+         a1OxQFmTOH7ltfCn++q/Z1Qb1Bx6/nnucCxkrGYkd+fewX4uy2fhpT6zLSHpkA+bdPpv
+         3Z8OexVzfzDqosSlZsnZKMZiN/5wphRB9purb2+Tfv3EN9j4VXdBsSiGn4cC4ALRy+vW
+         6g5M/ROaeg8+cVKUeZt+wrnRBCHHKgqt3z1DoR1JYNJkY06+/32T3AyDFBIOwqb3htSy
+         8gPfiBMXl8ldvHXbKDKoAeZZ1PXxmmlXlmgcoOpMKRbdRP/vETkbXAu+AOCAddesB0RB
+         8R/g==
+X-Gm-Message-State: AOJu0YxiLJP7OI4Aqhsr31urcjwNYlT22I4ASC775EdWcid6JxzwlNkK
+	mLKIWsu6ndd5AFCFwsaGs8s=
+X-Google-Smtp-Source: AGHT+IEV6JxpXRi7QuZm8U8u6YWPsop5BcBriL1ekBjQfCgQhSUqwWiN1PUUIGeqqBCb2DIqTuc7KQ==
+X-Received: by 2002:a17:906:ee87:b0:9a5:874a:9745 with SMTP id wt7-20020a170906ee8700b009a5874a9745mr3942462ejb.26.1698492648276;
+        Sat, 28 Oct 2023 04:30:48 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id u18-20020a170906409200b009928b4e3b9fsm2648331ejj.114.2023.10.28.04.30.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Oct 2023 04:30:48 -0700 (PDT)
+Date: Sat, 28 Oct 2023 13:30:45 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+Message-ID: <ZTzw5c5/MwU3VOBo@standask-GA-A55M-S2HP>
+References: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
+ <20231027-bulldog-component-5b84e4660465@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 28 Oct 2023 12:59:28 +0200
-From: m.brock@vanmierlo.com
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Cc: git@amd.com, michal.simek@amd.com, gregkh@linuxfoundation.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, jirislaby@kernel.org,
- linux-arm-kernel@lists.infradead.org, radhey.shyam.pandey@amd.com,
- srinivas.goud@amd.com, shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-Subject: Re: [PATCH V3 1/2] dt-bindings: Add optional gpio property to uartps
- node to support rs485
-In-Reply-To: <20231024144847.2316941-2-manikanta.guntupalli@amd.com>
-References: <20231024144847.2316941-1-manikanta.guntupalli@amd.com>
- <20231024144847.2316941-2-manikanta.guntupalli@amd.com>
-Message-ID: <ea3ee738155af7a0f19c2fef3a482a7d@vanmierlo.com>
-X-Sender: m.brock@vanmierlo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231027-bulldog-component-5b84e4660465@spud>
 
-Manikanta Guntupalli schreef op 2023-10-24 16:48:
-> Add optional gpio property to uartps node and reference to rs485.yaml
+On Fri, Oct 27, 2023 at 03:47:48PM +0100, Conor Dooley wrote:
+> On Tue, Oct 24, 2023 at 06:45:21PM +0200, Stanislav Jakubek wrote:
+> > Convert Broadcom Kona family clock controller unit (CCU) bindings
+> > to DT schema.
 > 
-> On Xilinx/AMD Kria SOM KD240 board rs485 connects via TI ISOW1432
-> Transceiver device, where one GPIO is used for driving DE/RE signals.
-> With rs485 half duplex configuration, DE and RE are shorted to each 
-> other,
-> and at a time, any node acts as either a driver or a receiver.
+> I didn't cross-check the clock-output-names, but this conversion mostly
+> looks good to me.
 > 
-> Here,
-> DE - Driver enable. If pin is floating, driver is disabled.
-> RE - Receiver enable. If pin is floating, receiver buffer is disabled.
+> > Changes during conversion:
+> >   - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
+> >     it is not used in DT nor the dt-bindings
+> >   - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
+> >     it is not used in DT nor the dt-bindings
 > 
-> For more deatils, please find below link which contains Transceiver
-> device(ISOW1432) datasheet
-> https://www.ti.com/lit/ds/symlink/isow1432.pdf?ts=1682607122706&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FISOW1432%252Fpart-details%252FISOW1432DFMR%253FkeyMatch%253DISOW1432DFMR%2526tisearch%253Dsearch-everything%2526usecase%253DOPN
-> 
-> rts-gpios is optional property, because it is not required
-> for uart console node.
-> 
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> ---
-> Changes for V2:
-> Modify optional gpio name to xlnx,phy-ctrl-gpios.
-> Update commit description.
-> Changes for V3:
-> Modify optional gpio name to rts-gpios.
-> Update commit description.
-> ---
->  Documentation/devicetree/bindings/serial/cdns,uart.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> index e35ad1109efc..7ee305f9a45f 100644
-> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
-> @@ -46,6 +46,11 @@ properties:
->    power-domains:
->      maxItems: 1
-> 
-> +  rts-gpios:
-> +    description: Optional GPIO to control transmit/receive on RS485 
-> phy
-> +      in halfduplex mode.
-> +    maxItems: 1
-> +
+> This I'm not sure about - they _were_ documented in the text-form
+> dt-binding, even if they weren't used in the dts. If the clock
+> controller does actually produce these clocks, removing them doesn't
+> make sense to me.
 
-Why would this be related to RS485? A user could also have a need for a
-gpio instead of the native pin to be used as normal rts.
-All RS485 references can be removed.
+Hi Conor. Looking at downstream, I was not able to find these clocks, though
+I admit that I'm not familiar enough with the downstream mess to be 100%
+confident.
 
->  required:
->    - compatible
->    - reg
-> @@ -55,6 +60,7 @@ required:
+From what I can tell, the BCM21664 arch/arm/mach-hawaii/clock.c (e.g. [1])
+doesn't contain any mention of uartb4, only uartb, uartb2 and uartb3.
+And similarly, for the BCM281XX arch/arm/mach-capri/clock_capri.c (e.g. [2])
+I wasn't able to find any mention of dmac, only dmac_mux_apb and dma_axi
+(though these two don't seem to be supported on mainline yet).
+
+Judging by that and the fact that mainline Linux or the dt-bindings includes
+don't mention these clocks either, I would say the old txt bindings document
+was the wrong one.
+
+The old clock-output-name table also didn't match with the dt-bindings include
+it was supposedly describing - for example, BCM281XX_MASTER_CCU_USB_IC is
+defined as 4, not 5 as the old table stated.
+
+[1] https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-14.1/arch/arm/mach-hawaii/clock.c
+[2] https://github.com/surblazer/android_kernel_samsung_galaxys2plus-common/blob/android-7.1/arch/arm/mach-capri/clock_capri.c
+
+Thanks,
+Stanislav
+
 > 
->  allOf:
->    - $ref: serial.yaml#
-> +  - $ref: rs485.yaml#
->    - if:
->        properties:
->          compatible:
-
-Maarten
+> Cheers,
+> Conor.
 
 
