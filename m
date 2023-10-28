@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-12625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02C587DA939
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 22:17:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E30BF7DA93E
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 22:19:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86081B20E02
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 20:17:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14F441C20942
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 20:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E0318030;
-	Sat, 28 Oct 2023 20:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEF9182C6;
+	Sat, 28 Oct 2023 20:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uN+cBuwF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="McCDP+tU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8DAD295
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 20:17:19 +0000 (UTC)
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5D7CC
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:17:18 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c509f2c46cso44801121fa.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:17:18 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9CD4D295
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 20:19:02 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C9AA7
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:19:01 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507973f3b65so4893754e87.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:19:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698524236; x=1699129036; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=y6LOkRpG6W1hRoUcQeGmxLGo8P527niQeswx0pnBGFY=;
-        b=uN+cBuwFxCcv8oMBj4JwXk7ZikMGEd9jBmBmziPPlQV4NpCPiYhytmZaf6etZEZa8s
-         mfBiS2xj9As81fzEyRg0ozxKqspGLwyMxG07hEbcnIZjzQWjN5p51WpE5mUIxE8idZ6W
-         CFd6L4Wm3b+Ol495OejmHhQNCGIFuElEHjxPUGxCyF2jcMhF+3O6fk9lopLYmTUeziKb
-         Bnq55BQJH+YF9i9ivn9WSCqafvZVJNpauMV+kd4+q7h7N04FYfyZqHMwWMLBs4bnE4ql
-         OMSZAL1gCe82UKPc0dE/roNpg+2P4wpMo/r9XlykqhsyWpbrc5gzZnzd7TK3kawGXNWh
-         DUog==
+        d=linaro.org; s=google; t=1698524339; x=1699129139; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5+6Qv3uNsNnOQBiLEQQyT3pfgGCEa0rPmQ4TKwACdWw=;
+        b=McCDP+tUz+6Sk219PLQtPJUoHmLiT8uTR4644CL/5ZT2HKaME9gSsDeDeZi/WvI3sE
+         lFqWXOsETM1uuDWSdwjAbTpvuEvrQu/MFGbqz61Y3wxJsEKblaLUwhbG7f0kXVfSA9W6
+         trHDzZPIGyQKwIIUV4+/K6arf2+c7bfoH7zGxDPlaWikQOk2Fki7T94PscurgqCVvU1q
+         jFeA4mei7X6W0SA8eLHAwp88+1H5dO1ubCLe51YQTj5qLMk1azBdDKj7CReLY7JbYs5C
+         C7Ew46HNxsyHmraEJ56UxpjBlo1pxSpAkXuVPQKphtSd4TFfa69jXuQH/77gre2S6hEM
+         ymEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698524236; x=1699129036;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y6LOkRpG6W1hRoUcQeGmxLGo8P527niQeswx0pnBGFY=;
-        b=vRkcgk+kAwOkaumAVXnDe8Pr08iVT2ghjBa2SazrF7WTtZNFkN7n9iKhukf4e4U9mm
-         6gDWklWpO3jFKXiHQSfvQDIAEoUybbr8z1sQP+ROuXSXcY6Blb2cB5qA4s8pYnuMPDpb
-         G9Or8S4gRa2irK+wmMHiyGjP123A8mkyTMUQ1QhsAPQfhrauaMMAMwFiRW77+bQ42btu
-         t1BRng2m00pdSYiYR5/W3jDsmcX7e7AmN/yWcVHQkpL8yTvhb7EtUJjdjFi1sc8D/zeo
-         qxdnRbvQGS4qLWiAJ7c446rzp/8D3fKhGdQEgA2u8kuxq4FBeQYoaRpH8uW5TRo4AMuu
-         E4Kw==
-X-Gm-Message-State: AOJu0Yx/ynko5lFJFpoTKvJYGK/jehtZIWI4HG93WsIV2xWQ1jcqWGSa
-	dezGT+tIDrHERVwYDZGMyaiTqw==
-X-Google-Smtp-Source: AGHT+IETCs0kg8gUDKDKKyS5ZorTg10UbQs5S2PEUJ9O/PBTcJimaEPsl5Ddr4O5t+dsaFbKWyvXnA==
-X-Received: by 2002:a05:6512:2506:b0:509:11bf:340c with SMTP id be6-20020a056512250600b0050911bf340cmr1884205lfb.47.1698524236413;
-        Sat, 28 Oct 2023 13:17:16 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698524339; x=1699129139;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5+6Qv3uNsNnOQBiLEQQyT3pfgGCEa0rPmQ4TKwACdWw=;
+        b=ArJQep4lRvXprQ/02zpy0tqAVkeLG6q2OYsVUuhNmih1+G4uuF3z8lZm63RKsQBPbs
+         sGSJmIpzxCpuwubbuzGwa0YP3sxDw1PeVmd4zCWpNFGPIn06q+SHTua/8Pa//W3kbPU9
+         dVMWjO0XhT8Ow2EHOphDqWVaI2xhm3DjyMYtkOqiGB33pMXHI59sS6JpYGxMLr59HZEF
+         +c9fxq0sHVJo/8e1eWShaCr0w0J3utHzsixg9hoYVJjwPOZhrYw+Ndkno9Cd0EmzxudQ
+         OOFQ9syCgr+awFg9vgnFIL5NXxhafL7EPqBepH2lge5K8DMQlFpuDbc/LEQRNccKz0pR
+         2EhQ==
+X-Gm-Message-State: AOJu0Yw1kvVRYhWwolonAVU0zLaks8P9kdd1Klv0eozZBPcjB1M47ECO
+	WrCrIzCTq+iR4DNWDvumXmKsMLTFVmTgPszd040=
+X-Google-Smtp-Source: AGHT+IH12qUEffScnKauTO4A7h6hW8k0eIU1hh1aNldQG/PgewhLnir5yWyvzlYCmI9uCHP829fVNA==
+X-Received: by 2002:a05:6512:201c:b0:508:266a:e85f with SMTP id a28-20020a056512201c00b00508266ae85fmr4433322lfb.1.1698524339149;
+        Sat, 28 Oct 2023 13:18:59 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id q25-20020a19a419000000b00507d0a0366esm761495lfc.100.2023.10.28.13.17.15
+        by smtp.gmail.com with ESMTPSA id j12-20020ac2454c000000b0050797480457sm753687lfm.278.2023.10.28.13.18.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Oct 2023 13:17:15 -0700 (PDT)
-Message-ID: <dd889d4b-fb76-4862-9756-110cec04927f@linaro.org>
-Date: Sat, 28 Oct 2023 22:17:14 +0200
+        Sat, 28 Oct 2023 13:18:58 -0700 (PDT)
+Message-ID: <d26b9c61-00ae-4149-aae8-ab528007d96b@linaro.org>
+Date: Sat, 28 Oct 2023 22:18:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,17 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: regulator: add Samsung s2dos05 pmic
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20231024154338.407191-1-dsankouski@gmail.com>
- <20231024154338.407191-2-dsankouski@gmail.com>
- <5c126f13-d199-4e09-bb58-fbf281947115@linaro.org>
- <CABTCjFAkjw+EO2ZgPcbKP+dX8d-Rem+ceoNUVGahFM8zUhKbMQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: starqltechn: enable more
+ features
 Content-Language: en-US
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20231024154338.407191-1-dsankouski@gmail.com>
+ <20231024154338.407191-5-dsankouski@gmail.com>
+ <af9f75e3-0b64-41b5-9854-c7edf544c9a0@linaro.org>
+ <CABTCjFA4Y5o8S+JUh=9h3zHo2VCRJCejabs_UAkn=n1WUnYK3A@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,34 +126,30 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CABTCjFAkjw+EO2ZgPcbKP+dX8d-Rem+ceoNUVGahFM8zUhKbMQ@mail.gmail.com>
+In-Reply-To: <CABTCjFA4Y5o8S+JUh=9h3zHo2VCRJCejabs_UAkn=n1WUnYK3A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/10/2023 18:01, Dzmitry Sankouski wrote:
-> вт, 24 окт. 2023 г. в 18:59, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org>:
-> ....
->>> +title: Samsung s2dos05 regulator
+On 28/10/2023 19:13, Dzmitry Sankouski wrote:
+> ...
+>>> +
+>>> +     touchscreen@48 {
+>>> +             compatible = "samsung,s6sy761";
+>>> +             reg = <0x48>;
+>>> +             interrupt-parent = <&tlmm>;
+>>> +             interrupts = <120 0x0>;
+>> interrupts-extended with a fixed irq type (not _NONE)
 >>
->> Not a PMIC/MFD device? If not, then:
->> Samsung S2DOS05 Power Management IC
->>
->> Otherwise, if this is only for regulators:
->> Samsung S2DOS05 Power Management IC Regulators
->>
-> AFAIU, PMIC/MFD would be a device, with more than one function.
-> Analysing s2dos05 vendor code it's capable of generating interrupts
-> and measure current(which I'm planning to implement as a hwmon module).
-> There're regulators with interrupt functionality in linux. Since
-> current measurement
-> feature would be in hwmon subsystem, can we consider s2dos05 NOT a PMIC/MFD
-> device?
+> Can you please explain why not _NONE?
+> Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.txt example
+> says it should be IRQ_TYPE_NONE.
 
-These PMICs often have also RTC, USB connector, battery charger and/or
-fuel-gauge. If the main function is PMIC, keeping it in regulators seem
-fine. The bindings should be complete though (or at least ready for more
-features), so you should investigate hwmon or fuel-gauge now.
+I don't see the binding saying this And just to be clear: example,
+especially incorrect example, means nothing.
+
+There are no hardware interrupts of type NONE. That's why you should not
+use it, It just does not exist.
+
 
 Best regards,
 Krzysztof
