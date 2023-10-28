@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38DFD7DA5B0
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 217357DA5B5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:05:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC4C12825E0
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 08:04:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D02382825D8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 08:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA533C1C;
-	Sat, 28 Oct 2023 08:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20BB63C1C;
+	Sat, 28 Oct 2023 08:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cHKnUQIo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="unLagKzZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3E7D6FD2
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 08:04:26 +0000 (UTC)
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9299711B
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:04:24 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-507bd644a96so4081302e87.3
-        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:04:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F4B6119
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 08:05:18 +0000 (UTC)
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E9A10A
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:05:16 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c5039d4e88so42035141fa.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:05:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698480263; x=1699085063; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698480315; x=1699085115; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZohF6XXYHN3lkC97Gnm4RgAjDu75/PnHDh7R0EPDwgo=;
-        b=cHKnUQIoVcjQvwnxhLczFf5lkrXIGktvW15MMasSt34kV9W0s8jOvmaZMjrZ06TBrk
-         aVgyOBXu8D4CtQD/j3COFuDlHYMiElX/KySAmwWSra7wukuP35yBB/uIZ8ypVcrcD4Di
-         EQW2vUKfF+QwkZuxWrfxXiht+AENB09+7y7+bzh5/AItEfffI52nQhGzvWRxD6ygxm6U
-         ke9HIToCjNVII0ivD3mUXYul/h3VQFaL4cTB+ePH/7yEiYrHdh2Ys29bse1R8UrP6Mb3
-         e9GSVOl9Pj06yrqdWAY7ao2dfXtaZS55wyWo+c16R34hvArGnFGAB4f92VLwy3FgUxVV
-         UWDA==
+        bh=mK0o59TWuBIxrXZwIfqZZhfKM/DWh7MO6XtCzhfVuRk=;
+        b=unLagKzZsfgurcLShGgEOirXnfFXGjySAoRitvu86GtvRssldaE3LDq0HBYeYfWoc1
+         k+yk+ETkZWf90ZaMUlYPp2SALcilo8pyYpGWZnu605KWzxsQe83BXVFAGlsebGHB6Wzh
+         YAI5O8qXgX4ENDNRAFds1gHmTg7XO5Ge8FEJvTzGhntc5WTWPm0iLV+d5PQoux1AAW0a
+         bb5jnYUgdnh+1z8n3eGf9bYNEQSQstPYWHdoYlANStzB2lpheD/N49ZKHwub21Ej9S2v
+         qUildLVSreQGOVx2/Ofuh4qyMpm4CpwZV5lgRu0pkftKuR7zvu+z9bYEDP0n7llZ5nMu
+         7Unw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698480263; x=1699085063;
+        d=1e100.net; s=20230601; t=1698480315; x=1699085115;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZohF6XXYHN3lkC97Gnm4RgAjDu75/PnHDh7R0EPDwgo=;
-        b=T+OHYw7qkLlln7xTX7huSyUYxUByvLcqNN++uihGjhOafQY/Op6G6JMlefe93s+8D3
-         xSyipNKneatc4vLMS4btY0SvoI+Ffy5htF37UOKZe3Vc/KRz0GMsnllDa9MJMk6ThXEl
-         z7LiXj7NpGIZiL1w1mss9IH6Kq5mTYia/ZiUNps3eOc+5qi31SvTa+31bSsOyQ+pkQ1U
-         1jDUCiuQ/d5RErA7LWWd0klh3NesAMSTP5TXZ16niw0uY1hAH65OuS5pmV2fRXRZd1Rl
-         bHnO697kVv7QpGNXZIcBIF5Ypg65GjTqE5VyIdGb4hNlvZh4Msk32ZKJlk3MuYHlOmkf
-         8BAQ==
-X-Gm-Message-State: AOJu0YzFfqM8Jjm8KWrmPhstYIKsShyebvgy94QBSASUS6vArXsw7jnC
-	h1Vu8wDLsvEBhEVEHvzOrsguoA==
-X-Google-Smtp-Source: AGHT+IEe1S+QZbje1cgBFmjpwq+WltHVn6lZ7yAZ9PhcsQJki2wnQ7qF193MQV/b/kNE7KU7Aaxwjw==
-X-Received: by 2002:a19:e057:0:b0:4ff:7f7f:22e7 with SMTP id g23-20020a19e057000000b004ff7f7f22e7mr3216188lfj.17.1698480262749;
-        Sat, 28 Oct 2023 01:04:22 -0700 (PDT)
+        bh=mK0o59TWuBIxrXZwIfqZZhfKM/DWh7MO6XtCzhfVuRk=;
+        b=OCbOLC2TAC49VWp8B5eOyDq7BG6u88C2p40/MtP6qA2reXEKlKcTZ/IWIDhffmvUqH
+         HnLXZCeXruG8vJrmVr3g72ZkAkWebrBLMM2USd/U7rFLWRS9vZnYOtOIPR9l6w/ODQhA
+         2PKfcCpCM73l7WotWDLfhXibKICxtWhbFhzuch2EHYCICB3+Ac6/csjhAFtBT6bTiPFg
+         noXBto9YD7cFOxL9CVEfxoDpI60kuoSMnMBEFcAGsu+iyIbeWYjTkmIjSDdJUTGkPLtr
+         /AQmajml2teBFqb2zhEtw5I1tNf0u7rBGVufUyXqT2Ygaww4XN+uK6qDNKiugSORaOfa
+         SVYQ==
+X-Gm-Message-State: AOJu0YzG9gwzck8UqJh/ywFS6SyyQtuoWB8vwUSClX6Gv68xbFrClpiD
+	tLz0nGzJX0lxdGwQEJZeHSkv9w==
+X-Google-Smtp-Source: AGHT+IFf/W6ZHopLQ5WYwpD1GTmcL3CczHbL0m+aQGRL/X6gKPX7xaEkBhzdkyAQJY0Ute1d+x7hZA==
+X-Received: by 2002:a19:691a:0:b0:503:183c:1223 with SMTP id e26-20020a19691a000000b00503183c1223mr2930380lfc.7.1698480314713;
+        Sat, 28 Oct 2023 01:05:14 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id c9-20020a056512238900b004fbc82dd1a5sm570985lfv.13.2023.10.28.01.04.21
+        by smtp.gmail.com with ESMTPSA id c9-20020a056512238900b004fbc82dd1a5sm570985lfv.13.2023.10.28.01.05.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Oct 2023 01:04:22 -0700 (PDT)
-Message-ID: <20157964-c3d2-443d-aee3-786b6b73ea1c@linaro.org>
-Date: Sat, 28 Oct 2023 10:04:20 +0200
+        Sat, 28 Oct 2023 01:05:14 -0700 (PDT)
+Message-ID: <116e29f3-da7e-4710-a60f-7448255cfe19@linaro.org>
+Date: Sat, 28 Oct 2023 10:05:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] arm64: dts: qcom: sc7280: Remove unused second MPSS
- reg
+Subject: Re: [PATCH 3/9] dt-bindings: remoteproc: qcom: sc7180-pas: Add SC7280
+ compatibles
 Content-Language: en-US
 To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -84,7 +84,7 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
- <20231027-sc7280-remoteprocs-v1-2-05ce95d9315a@fairphone.com>
+ <20231027-sc7280-remoteprocs-v1-3-05ce95d9315a@fairphone.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,23 +130,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231027-sc7280-remoteprocs-v1-2-05ce95d9315a@fairphone.com>
+In-Reply-To: <20231027-sc7280-remoteprocs-v1-3-05ce95d9315a@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 27/10/2023 16:20, Luca Weiss wrote:
-> The bindings for sc7280-mpss-pas neither expects a second reg nor a
-> reg-names property, which is only required by the sc7280-mss-pil
-> bindings.
-> 
-> Move it to sc7280-herobrine-lte-sku.dtsi, the only place where that
-> other compatible is used.
+> Add the compatibles and constraints for the ADSP, CDSP and WPSS found on
+> the SC7280 SoC.
 > 
 > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 2 ++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi                   | 3 +--
->  2 files changed, 3 insertions(+), 2 deletions(-)
+>  .../bindings/remoteproc/qcom,sc7180-pas.yaml        | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
