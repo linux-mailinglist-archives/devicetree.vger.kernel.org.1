@@ -1,233 +1,106 @@
-Return-Path: <devicetree+bounces-12572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC807DA3B2
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 00:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCAC67DA516
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 05:55:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 199C51C21050
-	for <lists+devicetree@lfdr.de>; Fri, 27 Oct 2023 22:44:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C64E1C2102B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 03:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA231156C6;
-	Fri, 27 Oct 2023 22:44:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555FD10FF;
+	Sat, 28 Oct 2023 03:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aST4fnsH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VciHVq8R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37DDE8F69
-	for <devicetree@vger.kernel.org>; Fri, 27 Oct 2023 22:44:01 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9198C1B5;
-	Fri, 27 Oct 2023 15:43:59 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39RMMjWA027511;
-	Fri, 27 Oct 2023 22:43:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=dddWPssa7NxKmBC9PKKk9og9EbwBwqpIobXk1v9pY3w=;
- b=aST4fnsHI29EOTPrCe6kCaPzzqMMHIR1ZLVd7aM4I6EM1Z1XhZ49bXHph3YkvOxLci/4
- 2ZVdXluoAhNHhyMeaxTPPNqoB18jlwXRVy6baYLs3RBlfrUNGvmbY8egUyxiWiViG5/S
- ivvDvsTH3EIwLztbyn5xTiDb1WvVIJ0rIwcRPSADMUjb6rH5rehZifC2d15Xp+Hni7Pk
- alR49ywA67BKRW/g8Ge/R1SjHbAMy+H+Jtg6jGoKXKK56udRh5BrJFBw+zVAAkMvggoO
- Oh9lAGvzdKE1gujczz9jAiGYXb8shMFo1pvKrhrt7xjVP8Obre6S+HeIVxQ6khcbWkfx rQ== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3tyws9bbvf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Oct 2023 22:43:42 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39RMheLg002193
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Oct 2023 22:43:41 GMT
-Received: from [10.134.69.165] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 27 Oct
- 2023 15:43:40 -0700
-Message-ID: <0eb01480-f733-437e-a87a-9296dc7709c3@quicinc.com>
-Date: Fri, 27 Oct 2023 15:43:33 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7ED7EB8;
+	Sat, 28 Oct 2023 03:55:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F7E10A;
+	Fri, 27 Oct 2023 20:55:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698465313; x=1730001313;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qDzqr30MeOgL/N0BmqbgF3J5CqRGi7sdwxlhCyhEzw0=;
+  b=VciHVq8RNen2+p7pTeAZVSrT5C23q0LpdTIE1eiy4TTxsGHJlSp5KEUX
+   wFc0tSjLIie1AvNoqubw2dj0C9hFP9QPBwOsXnHYEsVv01/hKvNn3kNQJ
+   afoMGpZTcJ0VF1aM8ygwPI2XkmUCYzuvv7//jdY751+ihxOyiVEWM078c
+   pusvIVOwsB0wF/ChCRcZwJnL+6Df5bv8idsJF86uX6H2JBrm7WIaYM3XV
+   YO5/2tcYZ59QaUovp3lDOoFgGiTBnkJaZO7Pv7iN1nG7TCoQOxjPhVeKy
+   K/zQktFjuMP3NMZ6xZ5qdOnT8dRGEa1ELbC0oadLwrI4vzwmPvkh1QeY2
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="676147"
+X-IronPort-AV: E=Sophos;i="6.03,258,1694761200"; 
+   d="scan'208";a="676147"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2023 20:55:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="933283132"
+X-IronPort-AV: E=Sophos;i="6.03,258,1694761200"; 
+   d="scan'208";a="933283132"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 27 Oct 2023 20:55:08 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qwaPi-000BSd-2O;
+	Sat, 28 Oct 2023 03:55:06 +0000
+Date: Sat, 28 Oct 2023 11:54:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: oe-kbuild-all@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] hwmon: pmbus: Add ltc4286 driver
+Message-ID: <202310281159.Y11xKbmu-lkp@intel.com>
+References: <20231026081514.3610343-3-Delphine_CC_Chiu@Wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] drm/panel: nv3051d: Add Powkiddy RK2023 Panel Support
-To: Chris Morgan <macromorgan@hotmail.com>
-CC: Chris Morgan <macroalpha82@gmail.com>, <devicetree@vger.kernel.org>,
-        <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <neil.armstrong@linaro.org>, <sboyd@kernel.org>, <sam@ravnborg.org>,
-        <mturquette@baylibre.com>, <sebastian.reichel@collabora.com>,
-        <dri-devel@lists.freedesktop.org>, <robh+dt@kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
-References: <20231018161848.346947-1-macroalpha82@gmail.com>
- <20231018161848.346947-3-macroalpha82@gmail.com>
- <c5e2929c-ef05-4e74-947e-579706f2b4aa@quicinc.com>
- <SN6PR06MB53427936B51EABD4484DF0C3A5DBA@SN6PR06MB5342.namprd06.prod.outlook.com>
-Content-Language: en-US
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <SN6PR06MB53427936B51EABD4484DF0C3A5DBA@SN6PR06MB5342.namprd06.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Jw6Q9V-R7xe7r2cJPauMZui7Tf4CK_8s
-X-Proofpoint-GUID: Jw6Q9V-R7xe7r2cJPauMZui7Tf4CK_8s
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-27_21,2023-10-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- mlxlogscore=999 spamscore=0 impostorscore=0 mlxscore=0 bulkscore=0
- clxscore=1015 lowpriorityscore=0 phishscore=0 priorityscore=1501
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2310270194
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231026081514.3610343-3-Delphine_CC_Chiu@Wiwynn.com>
 
+Hi Delphine,
 
+kernel test robot noticed the following build warnings:
 
-On 10/20/2023 8:02 AM, Chris Morgan wrote:
-> On Thu, Oct 19, 2023 at 10:22:24AM -0700, Jessica Zhang wrote:
->>
->>
->> On 10/18/2023 9:18 AM, Chris Morgan wrote:
->>> From: Chris Morgan <macromorgan@hotmail.com>
->>>
->>> Refactor the driver to add support for the powkiddy,rk2023-panel
->>> panel. This panel is extremely similar to the rg353p-panel but
->>> requires a smaller vertical back porch and isn't as tolerant of
->>> higher speeds.
->>>
->>> Tested on my RG351V, RG353P, RG353V, and RK2023.
->>>
->>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>
->> Hi Chris,
->>
->> Thanks for the patch. Just have a minor question below.
->>
->>> ---
->>>    .../gpu/drm/panel/panel-newvision-nv3051d.c   | 56 +++++++++++++++----
->>>    1 file changed, 45 insertions(+), 11 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
->>> index 79de6c886292..d24c51503d68 100644
->>> --- a/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
->>> +++ b/drivers/gpu/drm/panel/panel-newvision-nv3051d.c
->>> @@ -28,6 +28,7 @@ struct nv3051d_panel_info {
->>>    	unsigned int num_modes;
->>>    	u16 width_mm, height_mm;
->>>    	u32 bus_flags;
->>> +	u32 mode_flags;
->>>    };
->>>    struct panel_nv3051d {
->>> @@ -385,15 +386,7 @@ static int panel_nv3051d_probe(struct mipi_dsi_device *dsi)
->>>    	dsi->lanes = 4;
->>>    	dsi->format = MIPI_DSI_FMT_RGB888;
->>> -	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
->>> -			  MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
->>> -
->>> -	/*
->>> -	 * The panel in the RG351V is identical to the 353P, except it
->>> -	 * requires MIPI_DSI_CLOCK_NON_CONTINUOUS to operate correctly.
->>> -	 */
->>> -	if (of_device_is_compatible(dev->of_node, "anbernic,rg351v-panel"))
->>> -		dsi->mode_flags |= MIPI_DSI_CLOCK_NON_CONTINUOUS;
->>> +	dsi->mode_flags = ctx->panel_info->mode_flags;
->>>    	drm_panel_init(&ctx->panel, &dsi->dev, &panel_nv3051d_funcs,
->>>    		       DRM_MODE_CONNECTOR_DSI);
->>> @@ -481,18 +474,59 @@ static const struct drm_display_mode nv3051d_rgxx3_modes[] = {
->>>    	},
->>>    };
->>> -static const struct nv3051d_panel_info nv3051d_rgxx3_info = {
->>> +static const struct drm_display_mode nv3051d_rk2023_modes[] = {
->>> +	{
->>> +		.hdisplay       = 640,
->>> +		.hsync_start    = 640 + 40,
->>> +		.hsync_end      = 640 + 40 + 2,
->>> +		.htotal         = 640 + 40 + 2 + 80,
->>> +		.vdisplay       = 480,
->>> +		.vsync_start    = 480 + 18,
->>> +		.vsync_end      = 480 + 18 + 2,
->>> +		.vtotal         = 480 + 18 + 2 + 4,
->>> +		.clock          = 24150,
->>> +		.flags          = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
->>> +	},
->>> +};
->>> +
->>> +static const struct nv3051d_panel_info nv3051d_rg351v_info = {
->>>    	.display_modes = nv3051d_rgxx3_modes,
->>>    	.num_modes = ARRAY_SIZE(nv3051d_rgxx3_modes),
->>>    	.width_mm = 70,
->>>    	.height_mm = 57,
->>>    	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
->>> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
->>> +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET |
->>> +		      MIPI_DSI_CLOCK_NON_CONTINUOUS,
->>> +};
->>> +
->>> +static const struct nv3051d_panel_info nv3051d_rg353p_info = {
->>> +	.display_modes = nv3051d_rgxx3_modes,
->>> +	.num_modes = ARRAY_SIZE(nv3051d_rgxx3_modes),
->>> +	.width_mm = 70,
->>> +	.height_mm = 57,
->>
->> Will all the panels for this driver be 70x57? If so, would it be better to
->> set display_info.[width_mm|height_mm] directly?
-> 
-> They are all so far the same size, but I can't guarantee that going forward.
-> To my knowledge this is the last of the nv3051d devices I'll be working on
-> in the foreseeable future though, and so far they're all identical in size.
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on linus/master v6.6-rc7 next-20231027]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Got it, if it's not guaranteed might be better to leave it as it then. 
-Thanks for clarifying.
+url:    https://github.com/intel-lab-lkp/linux/commits/Delphine-CC-Chiu/dt-bindings-hwmon-Add-lltc-ltc4286-driver-bindings/20231026-161739
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20231026081514.3610343-3-Delphine_CC_Chiu%40Wiwynn.com
+patch subject: [PATCH v2 2/2] hwmon: pmbus: Add ltc4286 driver
+reproduce: (https://download.01.org/0day-ci/archive/20231028/202310281159.Y11xKbmu-lkp@intel.com/reproduce)
 
-BR,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310281159.Y11xKbmu-lkp@intel.com/
 
-Jessica Zhang
+All warnings (new ones prefixed by >>):
 
-> 
->>
->>> +	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
->>> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
->>> +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET,
->>> +};
->>> +
->>> +static const struct nv3051d_panel_info nv3051d_rk2023_info = {
->>> +	.display_modes = nv3051d_rk2023_modes,
->>> +	.num_modes = ARRAY_SIZE(nv3051d_rk2023_modes),
->>> +	.width_mm = 70,
->>> +	.height_mm = 57,
->>> +	.bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
->>> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
->>> +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET,
->>>    };
->>>    static const struct of_device_id newvision_nv3051d_of_match[] = {
->>> -	{ .compatible = "newvision,nv3051d", .data = &nv3051d_rgxx3_info },
->>> +	{ .compatible = "anbernic,rg351v-panel", .data = &nv3051d_rg351v_info },
->>> +	{ .compatible = "anbernic,rg353p-panel", .data = &nv3051d_rg353p_info },
->>> +	{ .compatible = "powkiddy,rk2023-panel", .data = &nv3051d_rk2023_info },
->>>    	{ /* sentinel */ }
->>>    };
->>> +
-> 
-> Sorry, will fix that in a V2. Thank you.
-> 
->>
->> I think you can drop this stray newline.
->>
->> Thanks,
->>
->> Jessica Zhang
->>
->>>    MODULE_DEVICE_TABLE(of, newvision_nv3051d_of_match);
->>>    static struct mipi_dsi_driver newvision_nv3051d_driver = {
->>> -- 
->>> 2.34.1
->>>
+>> Documentation/hwmon/ltc4286.rst: WARNING: document isn't included in any toctree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
