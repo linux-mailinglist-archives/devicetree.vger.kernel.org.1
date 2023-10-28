@@ -1,174 +1,158 @@
-Return-Path: <devicetree+bounces-12602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92C3E7DA728
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 15:20:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0987DA733
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 15:21:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE64C1C20957
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 13:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D606A28216F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 13:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43961FBF3;
-	Sat, 28 Oct 2023 13:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F541125D5;
+	Sat, 28 Oct 2023 13:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMrpCxX5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jqVn5Kt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF14F9D6
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:20:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A628EC433C8;
-	Sat, 28 Oct 2023 13:20:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698499221;
-	bh=HMIbKdE+7pP6FjaD+r0mc7H7tiphE1xO2v7OzEIp3bE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KMrpCxX5khDM78I/Q2a68w9M1v5VDnWWysfUZsUFmCCApnKa072llcSj0wNzmb2Fa
-	 ABoq7p1gfjL5wgGu2HiamEVsjdhNnov/UO9RgTbZZl9venQKWvoPSCIDhSP5WhzPVo
-	 A6Cy/n/b9zMRcrrcyZAJ7aX1URAT/DA02ko3VCdMOLJMOO0fl/38yP8ntXNMG9S5v8
-	 qPDPA43YevvS9pmxWQIA7UUjogYnHgNuIcVweJFTyVxjWjeE5FmOkJjeZobgnsboEv
-	 7RBG/g/EY6szhkGbCNFHVdYvXNR4ZPdBATy4K0DvzwhFaKpYTngGfbDCabSyMXG4ac
-	 HN3SgqImUpfIw==
-Date: Sat, 28 Oct 2023 14:19:48 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andrew Hepp <andrew.hepp@ahepp.dev>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [v7,PATCH 1/2] dt-bindings: iio: Add MCP9600 thermocouple EMF
- converter
-Message-ID: <20231028141948.5ec4b542@jic23-huawei>
-In-Reply-To: <20231025233153.5454-1-andrew.hepp@ahepp.dev>
-References: <20231025233153.5454-1-andrew.hepp@ahepp.dev>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58B8F9D6
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:21:46 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A79BAE0
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 06:21:44 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507be298d2aso4304279e87.1
+        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 06:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698499303; x=1699104103; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=qUL3TIWraIjLoBjR/tSpsWt5Ij1jmFrNh8eAkT0CWUs=;
+        b=jqVn5Kt8cK3LR3L/YoJfGvL6TvnbUous1DcIvPHJQeSAXWBOXlKGCVeIdSaegk9SAK
+         6zTpa2zUIAnxHo0Eo12wIT0NIKj34vAoou2PZpZ+9YAUuhOextGB8wpBFzrzuY8aCmPn
+         nPLmsC0Ixh24313TLfz1Mn2peyMHgNo70INZTkFe83NBbVuy0NlS6KwxUeMOdxHpU5bX
+         txK6fgCR0zpXyRMQglLvpwxLbTvmpDMa7eVyTzQaBo+a+gxnmTPTRvAUY9Ps4GIVFreC
+         o6Gj0j++CfrKShdecIFy/kAnfBZabJ6j45vEOdIL3ha9xjVhONbS7E3yLG1yird58n3c
+         Xo/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698499303; x=1699104103;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qUL3TIWraIjLoBjR/tSpsWt5Ij1jmFrNh8eAkT0CWUs=;
+        b=GoWKwdFiyp8WFb+8Y6AZkdOb+lQSlbyS1oXQBxi9QI3u6G8EFRq+FHaT5CA/OEcnuo
+         r+9bTY0SRBq3SRVKugeAautZRPAU266t9CfbUx8DP2uzjpWn+XRmfYEfkLfFjau9yjlv
+         ExKamZzJIjL5Fxe4490J6FhHQBwMtC3xYE7XRqKrOvuMfOQ6GyMXsUIWkbTRlCHEbRxp
+         YWuQyFWpevdejsCfidAd9xcFilPnWscqswpZoz/WqSvzNlrCfHrMDlfzMFJCR7suqv1s
+         6P5RVAu0EzeaLrEngerhMScihmHiEZP+QqU91bRpbSOUb8yYP7NT6WZCP7LXWmOoPq/U
+         +cAg==
+X-Gm-Message-State: AOJu0YzajcCK5EL793zrO1q+cfbSulLsfwhcD4ywmJvEZBFp8a1rMYyZ
+	t8tPt6zJSHrct+gNxevaJz0Urw==
+X-Google-Smtp-Source: AGHT+IFximgdu9cWb6GQAT2cvaFkzJf9ISTkl6lf/ejtSGazROb1hN3Jzw+WHlP6dUwkDAwAaT5G7A==
+X-Received: by 2002:a05:6512:2106:b0:507:a28e:f3b5 with SMTP id q6-20020a056512210600b00507a28ef3b5mr3412346lfr.12.1698499302859;
+        Sat, 28 Oct 2023 06:21:42 -0700 (PDT)
+Received: from [192.168.0.22] ([78.10.206.168])
+        by smtp.gmail.com with ESMTPSA id z12-20020a19504c000000b00507b869b068sm662877lfj.302.2023.10.28.06.21.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 28 Oct 2023 06:21:42 -0700 (PDT)
+Message-ID: <b1dc63d2-277b-47b0-8df4-bd3c2926fa31@linaro.org>
+Date: Sat, 28 Oct 2023 15:21:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] clk: qcom: gcc-msm8939: Add missing CSI2 related clocks
+To: Vincent Knecht <vincent.knecht@mailoo.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231028121047.317550-1-vincent.knecht@mailoo.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231028121047.317550-1-vincent.knecht@mailoo.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, 25 Oct 2023 16:31:52 -0700
-Andrew Hepp <andrew.hepp@ahepp.dev> wrote:
-
-> Add support for the MCP9600 thermocouple electromotive force converter. The sensor has  integrated cold junction compensation and a typical accuracy of 0.5 degrees Celsius. The driver supports a resolution of 0.0625 degrees Celsius.
+On 28/10/2023 14:10, Vincent Knecht wrote:
+> When adding in the indexes for this clock-controller we missed
+> GCC_CAMSS_CSI2_AHB_CLK, GCC_CAMSS_CSI2_CLK, GCC_CAMSS_CSI2PHY_CLK,
+> GCC_CAMSS_CSI2PIX_CLK and GCC_CAMSS_CSI2RDI_CLK.
 > 
-> Datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
-> Signed-off-by: Andrew Hepp <andrew.hepp@ahepp.dev>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Hi Andrew,
-
-Series applied to the togreg branch of iio.git.
-I will be rebasing that tree once rc1 is out in a few weeks time
-so in the meantime I will only push this out as testing for 0-day to take
-a look at it and see if we missed anything,
-
-Thanks,
-
-Jonathan
-
-> ---
-> Changes for v7:
-> - none
-> Changes for v6:
-> - none
-> Changes for v5:
-> - remove "bindings" from subject
-> - change unevaluatedProperties to additionalProperties
-> Changes for v4:
-> - use descriptive names for open/short circuit interrupts
-> - remove vdd regulator description
-> - remove unused import
-> - use generic sensor name in example
-> - don't use literal style for doc description
-> Changes for v3:
-> - Added dt-bindings
-> ---
->  .../iio/temperature/microchip,mcp9600.yaml    | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> Add them in now.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> new file mode 100644
-> index 000000000000..d2cafa38a544
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MCP9600 thermocouple EMF converter
-> +
-> +maintainers:
-> +  - Andrew Hepp <andrew.hepp@ahepp.dev>
-> +
-> +description:
-> +  https://ww1.microchip.com/downloads/en/DeviceDoc/MCP960X-Data-Sheet-20005426.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,mcp9600
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 6
-> +    items:
-> +      enum:
-> +        - open-circuit
-> +        - short-circuit
-> +        - alert1
-> +        - alert2
-> +        - alert3
-> +        - alert4
-> +
-> +  thermocouple-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Type of thermocouple (THERMOCOUPLE_TYPE_K if omitted).
-> +      Use defines in dt-bindings/iio/temperature/thermocouple.h.
-> +      Supported types are B, E, J, K, N, R, S, T.
-> +
-> +  vdd-supply: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/iio/temperature/thermocouple.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        temperature-sensor@60 {
-> +            compatible = "microchip,mcp9600";
-> +            reg = <0x60>;
-> +            interrupt-parent = <&gpio>;
-> +            interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-> +            interrupt-names = "open-circuit";
-> +            thermocouple-type = <THERMOCOUPLE_TYPE_K>;
-> +            vdd-supply = <&vdd>;
-> +        };
-> +    };
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+> No fixes tag because camss is a not-yet-enabled feature for msm8939.
+> 
+> Also didn't rename ftbl_gcc_camss_csi0_1_clk now that csi2 uses it
+> to avoid not-required-churn... should it be done anyway ?
+> ---
+>  drivers/clk/qcom/gcc-msm8939.c               | 104 +++++++++++++++++++
+>  include/dt-bindings/clock/qcom,gcc-msm8939.h |   6 ++
+
+Bindings must be a separate patch.
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+Best regards,
+Krzysztof
 
 
