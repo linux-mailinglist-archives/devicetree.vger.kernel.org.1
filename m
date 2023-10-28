@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-12603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0987DA733
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 15:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 123EC7DA735
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 15:22:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D606A28216F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 13:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB0A7282187
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 13:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F541125D5;
-	Sat, 28 Oct 2023 13:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661C214A8B;
+	Sat, 28 Oct 2023 13:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jqVn5Kt8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hS/3xj0C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58B8F9D6
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:21:46 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A79BAE0
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 06:21:44 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507be298d2aso4304279e87.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 06:21:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE77EF9D6
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 13:22:20 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06ABF4
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 06:22:18 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507c8316abcso3947640e87.1
+        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 06:22:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698499303; x=1699104103; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qUL3TIWraIjLoBjR/tSpsWt5Ij1jmFrNh8eAkT0CWUs=;
-        b=jqVn5Kt8cK3LR3L/YoJfGvL6TvnbUous1DcIvPHJQeSAXWBOXlKGCVeIdSaegk9SAK
-         6zTpa2zUIAnxHo0Eo12wIT0NIKj34vAoou2PZpZ+9YAUuhOextGB8wpBFzrzuY8aCmPn
-         nPLmsC0Ixh24313TLfz1Mn2peyMHgNo70INZTkFe83NBbVuy0NlS6KwxUeMOdxHpU5bX
-         txK6fgCR0zpXyRMQglLvpwxLbTvmpDMa7eVyTzQaBo+a+gxnmTPTRvAUY9Ps4GIVFreC
-         o6Gj0j++CfrKShdecIFy/kAnfBZabJ6j45vEOdIL3ha9xjVhONbS7E3yLG1yird58n3c
-         Xo/A==
+        d=linaro.org; s=google; t=1698499337; x=1699104137; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E6pdZ2aO7b/DBuGDGSOI5y96/5iv9R+X1Oz+3eai3ok=;
+        b=hS/3xj0C1OacD/bsuv3/FLrDLxotoWEw9Ef0PbZn6O0ixBSS62V99OCS+Cm5jPWXWw
+         1kgEjkgsokMdA01V8EL/IfLha9hh1u1HPtWNCt8FC8JmU4Fnn30IJ6+PDS1SpXp/yaw4
+         Lkc8sEQSYPhUAfb4Vqd4rcoksTk+4+qPI9FYYT9EfOePcs+0C7/14kkCPOqV2TcJVl8j
+         D9ZAeckrkbtOyFTg8GJ5J0KiI/Zj/w1FSm6PSozdTjX2uW13JvMs8dfAOKvf0rHWg6zf
+         UlKLoL2deZaoYY/s4tOYW7Pejn90y55DUfwt1/QgOmxTCKwYy92LzigVCfbvl9P39is1
+         J5Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698499303; x=1699104103;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qUL3TIWraIjLoBjR/tSpsWt5Ij1jmFrNh8eAkT0CWUs=;
-        b=GoWKwdFiyp8WFb+8Y6AZkdOb+lQSlbyS1oXQBxi9QI3u6G8EFRq+FHaT5CA/OEcnuo
-         r+9bTY0SRBq3SRVKugeAautZRPAU266t9CfbUx8DP2uzjpWn+XRmfYEfkLfFjau9yjlv
-         ExKamZzJIjL5Fxe4490J6FhHQBwMtC3xYE7XRqKrOvuMfOQ6GyMXsUIWkbTRlCHEbRxp
-         YWuQyFWpevdejsCfidAd9xcFilPnWscqswpZoz/WqSvzNlrCfHrMDlfzMFJCR7suqv1s
-         6P5RVAu0EzeaLrEngerhMScihmHiEZP+QqU91bRpbSOUb8yYP7NT6WZCP7LXWmOoPq/U
-         +cAg==
-X-Gm-Message-State: AOJu0YzajcCK5EL793zrO1q+cfbSulLsfwhcD4ywmJvEZBFp8a1rMYyZ
-	t8tPt6zJSHrct+gNxevaJz0Urw==
-X-Google-Smtp-Source: AGHT+IFximgdu9cWb6GQAT2cvaFkzJf9ISTkl6lf/ejtSGazROb1hN3Jzw+WHlP6dUwkDAwAaT5G7A==
-X-Received: by 2002:a05:6512:2106:b0:507:a28e:f3b5 with SMTP id q6-20020a056512210600b00507a28ef3b5mr3412346lfr.12.1698499302859;
-        Sat, 28 Oct 2023 06:21:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698499337; x=1699104137;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E6pdZ2aO7b/DBuGDGSOI5y96/5iv9R+X1Oz+3eai3ok=;
+        b=N3GmkEc2Zpst80Te3pU8UfF7JIZt1CL0DZEU4XzM8351BXrAV80QrF1/uV3yi4qgBy
+         vrkGdIwZsUcIo1Cjtr5h3ImVwkswEUWuYx+RJ4j6dUqVUihRMRD3e5bQyft1jw+324KR
+         bzvZTsyi/Pk4FFaTVgbGTvdGOjW1uErrw7FLHn9PHWY/AVUKHqxvGxst8SiTlJZsGj1z
+         Tc2/PLIpRfSy8rP11kXJWkgnIqm0NkFbJTPJ9u4sjVSf8bcuHxMuWJRYl956gl+7Il/s
+         wJ9pqTDY1Sk/1/KPiAJKzCP7Ex21SsuSCsR6Yc3o0QxXrVGbJuRzqRyRyy7ntMEJBQZg
+         0Luw==
+X-Gm-Message-State: AOJu0YyN5o/4D/gdvvbgY1/5KHVlaiCKaZOQxDnyOtn7dqNY2xWOhc5A
+	wBJiu/A5skZ3OnsGeeMxieKw8Q==
+X-Google-Smtp-Source: AGHT+IE0R3d+X38ySMp+r2Oc1WdHuTCVp+cuogvftVJkW1ddwVa5XisoXzYmVnWm4VN29UV31jKb8w==
+X-Received: by 2002:a19:8c0f:0:b0:503:1783:d5a9 with SMTP id o15-20020a198c0f000000b005031783d5a9mr3214741lfd.3.1698499337060;
+        Sat, 28 Oct 2023 06:22:17 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id z12-20020a19504c000000b00507b869b068sm662877lfj.302.2023.10.28.06.21.41
+        by smtp.gmail.com with ESMTPSA id z12-20020a19504c000000b00507b869b068sm662877lfj.302.2023.10.28.06.22.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Oct 2023 06:21:42 -0700 (PDT)
-Message-ID: <b1dc63d2-277b-47b0-8df4-bd3c2926fa31@linaro.org>
-Date: Sat, 28 Oct 2023 15:21:41 +0200
+        Sat, 28 Oct 2023 06:22:16 -0700 (PDT)
+Message-ID: <ff0577a5-a46a-4f0c-ad7d-5db8e61cae70@linaro.org>
+Date: Sat, 28 Oct 2023 15:22:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,18 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] clk: qcom: gcc-msm8939: Add missing CSI2 related clocks
-To: Vincent Knecht <vincent.knecht@mailoo.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231028121047.317550-1-vincent.knecht@mailoo.org>
+Subject: Re: [PATCH 2/2] pinctrl: qcom: sm8650-lpass-lpi: add SM8650 LPASS
 Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231027093615.140656-1-krzysztof.kozlowski@linaro.org>
+ <20231027093615.140656-3-krzysztof.kozlowski@linaro.org>
+ <42fa773d-b58a-4bd9-b12d-3e9931d2ae6c@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,32 +125,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231028121047.317550-1-vincent.knecht@mailoo.org>
+In-Reply-To: <42fa773d-b58a-4bd9-b12d-3e9931d2ae6c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/10/2023 14:10, Vincent Knecht wrote:
-> When adding in the indexes for this clock-controller we missed
-> GCC_CAMSS_CSI2_AHB_CLK, GCC_CAMSS_CSI2_CLK, GCC_CAMSS_CSI2PHY_CLK,
-> GCC_CAMSS_CSI2PIX_CLK and GCC_CAMSS_CSI2RDI_CLK.
+On 28/10/2023 15:05, Konrad Dybcio wrote:
+> On 27.10.2023 11:36, Krzysztof Kozlowski wrote:
+>> Add driver for the pin controller in Low Power Audio SubSystem (LPASS)
+>> of Qualcomm SM8650 SoC.
+>>
+>> Notable differences against SM8550 LPASS pin controller:
+>> 1. Additional address space for slew rate thus driver uses
+>>    LPI_FLAG_SLEW_RATE_SAME_REG and sets slew rate via different
+>>    register.
+>>
+>> 2. Two new pin mux functions: qca_swr_clk and qca_swr_data
+> Hmmm so slimbus is entirely removed on 8650?
 > 
-> Add them in now.
-> 
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> ---
-> No fixes tag because camss is a not-yet-enabled feature for msm8939.
-> 
-> Also didn't rename ftbl_gcc_camss_csi0_1_clk now that csi2 uses it
-> to avoid not-required-churn... should it be done anyway ?
-> ---
->  drivers/clk/qcom/gcc-msm8939.c               | 104 +++++++++++++++++++
->  include/dt-bindings/clock/qcom,gcc-msm8939.h |   6 ++
+> Diffing it against 8550, looks sane
 
-Bindings must be a separate patch.
-
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
+No, the slimbus functions were there as well.
 
 Best regards,
 Krzysztof
