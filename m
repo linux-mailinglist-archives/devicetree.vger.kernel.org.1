@@ -1,155 +1,205 @@
-Return-Path: <devicetree+bounces-12584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1887DA5BC
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:06:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD9547DA5CA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:23:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C37C11F21C94
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 08:06:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D19E41C209BF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 08:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B620B63C4;
-	Sat, 28 Oct 2023 08:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363918F49;
+	Sat, 28 Oct 2023 08:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZQPWagkS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l2kNP7Nd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6713D3C1C
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 08:06:23 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8585A10A
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:06:21 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-507f1c29f25so3872534e87.1
-        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:06:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B45E34404
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 08:23:01 +0000 (UTC)
+Received: from mail-oo1-xc42.google.com (mail-oo1-xc42.google.com [IPv6:2607:f8b0:4864:20::c42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F71ED;
+	Sat, 28 Oct 2023 01:23:00 -0700 (PDT)
+Received: by mail-oo1-xc42.google.com with SMTP id 006d021491bc7-581e92f615fso1640754eaf.2;
+        Sat, 28 Oct 2023 01:23:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698480380; x=1699085180; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wefxII02gAtHMYcJTuAHCcFkJplYb6i79G6DCLTeYuQ=;
-        b=ZQPWagkSyY4oLPkojhDJaDcAEFyoFl/lRIhbTFXZWp619wA2KZgpnIh3Y2QGOWb7oH
-         RUk3hhnJEZWR6HKEQcFD//P3cdk9k5zHPBdVSmvK/mtEl4EMIur6TQyINxjGSCr3ltP4
-         VpOZqvGvjfyY/QkBmKOu9ZOT6jnfhpm3tWRCnLodqmpW48DgMbpHcqXeJU+1abhVdouL
-         G0xRt2nAArLFn7MGfrfNnj44TZN73ECskkHlh8j666qYVqeCuONFbH8DOMMx4DPyDj1P
-         bYesjaGcukxKyxx8VRGwaI/F+ASg2wVPYWA2foFPc5hY98bM0B/uu9gxOnvg2Y38pURp
-         dEeA==
+        d=gmail.com; s=20230601; t=1698481379; x=1699086179; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JP6wiRrtwTK6swQjIEVgXni0A5O1wIdXi7I8tLKQ7oM=;
+        b=l2kNP7Ndgg0VPdFTYqFgzW9f09qkcY7nKnxIz12kA+XJrKrBmGJGLVK41uw04v5KWP
+         Z8z+aComppfxteo2PwQ6dN989axVb0WEqK6z4rhr2qSo5GiEbKfCSEOoU10fCepaUl/q
+         hl7tLMeJELxX+CTWeIsHln8zZhSoTb0NN3BhppZfomOUHpMKQc20jMqS8KAclEPsPehs
+         /p2/Aeq7ngc9eh/jp3S8eBX9kkDLoVQL+OaIKw0eHfTKg1siod9pe+poccoR/ZXJKFiO
+         m2XYVDs9P+sbnACH0b1hI447Qsfu3jyWR2RqIpqgtHfb/8/c3N3ZWV3/Rs+/7gDB8lmu
+         +xnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698480380; x=1699085180;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wefxII02gAtHMYcJTuAHCcFkJplYb6i79G6DCLTeYuQ=;
-        b=ic8yyKg+tOqJRn8WN7ZqpkT6MfA72KTH4JzLOLGSIO7Mmhq2ko17mvvSRuS0tzshMp
-         J53d8UYKqYGxOgP/JQpJE4fRcFUpKZ9BVGs0tazSVcPAr4Pupq6nVtC4xrvWVlDbCdj2
-         BUt5rCCp10vecM7T+5n7RCm+nlVYvqEbHpJIbt7M6ZrU5OdwtXNeDzD77dOix14ZtsPt
-         02YIRmIBA6RqtDkJhyVTYGy96pdzn8KvLjnHZnidN2oER00CQ+8eJnff7jEK1C5XaiQe
-         KGRjQMoyzNK1RUGuw239ZQGBbOfcyw3nJTyFm8FN9XSOANxIFOosWdEeqcCCUt2kTRm4
-         hVTw==
-X-Gm-Message-State: AOJu0YwifYD+t0yoqy2AeUovuTXdOqzA8l2zDkOczMJsSM29MgRw/a7P
-	R5XpE4GlgMKH8E1wziAo6s5MTg==
-X-Google-Smtp-Source: AGHT+IGGycbusJVRpq6CtgGmCnAVfe/aVlJSDuGnxMp7KASqDGw+Y635kgHjaj/axFR+EArobvm2bw==
-X-Received: by 2002:a05:6512:21c2:b0:507:a9e1:5a3b with SMTP id d2-20020a05651221c200b00507a9e15a3bmr3133176lft.0.1698480379816;
-        Sat, 28 Oct 2023 01:06:19 -0700 (PDT)
-Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id c9-20020a056512238900b004fbc82dd1a5sm570985lfv.13.2023.10.28.01.06.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Oct 2023 01:06:19 -0700 (PDT)
-Message-ID: <fac4e966-5322-4da8-94b9-e2e1a895a88a@linaro.org>
-Date: Sat, 28 Oct 2023 10:06:18 +0200
+        d=1e100.net; s=20230601; t=1698481379; x=1699086179;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JP6wiRrtwTK6swQjIEVgXni0A5O1wIdXi7I8tLKQ7oM=;
+        b=hEKQRUcPr+WXCoPUmBj6x5/W4y3Bo7OzG4gwYTdThnDAyLzxzEMnJKl9NFZkGXZXp+
+         4CADzGjZd8sWTL3yUTj8VIR1gK6d3HExpZ5qTFMwqi482NVXRWW5zjYAnZIFUbGYG9DF
+         rvCFfmlsh7KD8oEFUznG3isz+8fJ9xk6pBgb4wK7VNLvFEfgJmTA5DQrjhRitDYZDRnf
+         WwBAi1cRL2PikXaAg1pp7pqDN8YTrSkUwdIULyrBWc3mhAaCI8Sp41KFzkiSG5/AN3Bu
+         o3Vw0HH6Rxqi/rIxKo7qVHfR/tS51CuJJ6c1OnV2SQ41p7XQod8Ls5iV12N/BnlzlLJf
+         t9hA==
+X-Gm-Message-State: AOJu0YwwdBul+g/I+Vcama3HStnknkSfbjymAvHg0fUEp5AgbzCl1v+o
+	yF43i0dlkZjexRN/ecIHq2s=
+X-Google-Smtp-Source: AGHT+IGyNeKH4HniKy+pLheYEL/j0CxFUgrN0ICWz4Gq7rRkbWuKPpxy2gW27njI6Bz7VKt9d3SBPg==
+X-Received: by 2002:a05:6358:cc25:b0:168:d382:1446 with SMTP id gx37-20020a056358cc2500b00168d3821446mr5060125rwb.11.1698481378894;
+        Sat, 28 Oct 2023 01:22:58 -0700 (PDT)
+Received: from dawn-Aspire-A715-74G.. ([183.198.111.239])
+        by smtp.gmail.com with ESMTPSA id gb9-20020a17090b060900b00267b38f5e13sm2318789pjb.2.2023.10.28.01.22.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Oct 2023 01:22:58 -0700 (PDT)
+From: Li peiyu <579lpy@gmail.com>
+To: jdelvare@suse.com
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH v3] dt-bindings: hwmon: lm87: convert to YAML
+Date: Sat, 28 Oct 2023 16:20:56 +0800
+Message-Id: <20231028082056.43276-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <025c3d36-587e-480c-b913-2a3916674c54@kernel.org>
+References: <025c3d36-587e-480c-b913-2a3916674c54@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/9] arm64: dts: qcom: sc7280: Add CDSP node
-Content-Language: en-US
-To: Luca Weiss <luca.weiss@fairphone.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, =?UTF-8?Q?Matti_Lehtim=C3=A4ki?=
- <matti.lehtimaki@gmail.com>, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
- <20231027-sc7280-remoteprocs-v1-7-05ce95d9315a@fairphone.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231027-sc7280-remoteprocs-v1-7-05ce95d9315a@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 27/10/2023 16:20, Luca Weiss wrote:
-> Add the node for the ADSP found on the SC7280 SoC, using standard
-> Qualcomm firmware.
-> 
-> The memory region for sc7280-chrome-common.dtsi is taken from msm-5.4
-> yupik.dtsi since the other areas also seem to match that file there,
-> though I cannot be sure there.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   5 +
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 138 +++++++++++++++++++++
->  2 files changed, 143 insertions(+)
+Convert the lm87 hwmon sensor bindings to DT schema
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Li peiyu <579lpy@gmail.com>
+---
+Changes for v3:
+- add type definition of has-temp3, has-in6, has-in7
+- Change the description of has-temp3
+Changes for v2:
+- replace node name lm87 with sensor
+- replace character '\t' with spaces
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/hwmon/lm87.txt        | 30 ---------
+ .../devicetree/bindings/hwmon/lm87.yaml       | 62 +++++++++++++++++++
+ 2 files changed, 62 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/lm87.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lm87.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/lm87.txt b/Documentation/devicetree/bindings/hwmon/lm87.txt
+deleted file mode 100644
+index 758ff398b67b..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/lm87.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-*LM87 hwmon sensor.
+-
+-Required properties:
+-- compatible: Should be
+-	"ti,lm87"
+-
+-- reg: I2C address
+-
+-optional properties:
+-- has-temp3: This configures pins 18 and 19 to be used as a second
+-             remote temperature sensing channel. By default the pins
+-             are configured as voltage input pins in0 and in5.
+-
+-- has-in6: When set, pin 5 is configured to be used as voltage input
+-           in6. Otherwise the pin is set as FAN1 input.
+-
+-- has-in7: When set, pin 6 is configured to be used as voltage input
+-           in7. Otherwise the pin is set as FAN2 input.
+-
+-- vcc-supply: a Phandle for the regulator supplying power, can be
+-              configured to measure 5.0V power supply. Default is 3.3V.
+-
+-Example:
+-
+-lm87@2e {
+-	compatible = "ti,lm87";
+-	reg = <0x2e>;
+-	has-temp3;
+-	vcc-supply = <&reg_5v0>;
+-};
+diff --git a/Documentation/devicetree/bindings/hwmon/lm87.yaml b/Documentation/devicetree/bindings/hwmon/lm87.yaml
+new file mode 100644
+index 000000000000..587191c663d3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/lm87.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/lm87.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LM87 hwmon sensor
++
++maintainers:
++  - Jean Delvare <jdelvare@suse.com>
++  - Guenter Roeck <linux@roeck-us.net>
++
++properties:
++  compatible:
++    const: ti,lm87
++
++  reg:
++    maxItems: 1
++
++  has-temp3:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      When set, pins 18 and 19 are configured to be used as a second 
++      remote temperature sensing channel. Otherwise the pins are
++      configured as voltage input pins in0 and in5.
++
++  has-in6:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      When set, pin 5 is configured to be used as voltage input in6.
++      Otherwise the pin is set as FAN1 input.
++
++  has-in7:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      When set, pin 6 is configured to be used as voltage input in7.
++      Otherwise the pin is set as FAN2 input.
++
++  vcc-supply:
++    description: |
++      A Phandle for the regulator supplying power, can be configured to
++      measure 5.0V power supply. Default is 3.3V.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      sensor@2e {
++        compatible = "ti,lm87";
++        reg = <0x2e>;
++        has-temp3;
++        vcc-supply = <&reg_5v0>;
++      };
++    };
+-- 
+2.34.1
 
 
