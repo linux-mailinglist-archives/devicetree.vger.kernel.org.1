@@ -1,54 +1,52 @@
-Return-Path: <devicetree+bounces-12592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A65487DA681
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 12:39:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8E27DA688
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 12:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 376D4B2129B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:39:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 151BD282053
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8362596;
-	Sat, 28 Oct 2023 10:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE4B6126;
+	Sat, 28 Oct 2023 10:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="SW2cpvuU"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="VQAjXRm+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306D98F64
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 10:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973B94422
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 10:40:18 +0000 (UTC)
 Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB745F1;
-	Sat, 28 Oct 2023 03:39:43 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCA6A126;
+	Sat, 28 Oct 2023 03:40:12 -0700 (PDT)
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 9ECBE1C007C; Sat, 28 Oct 2023 12:39:42 +0200 (CEST)
+	id 3DB291C007C; Sat, 28 Oct 2023 12:40:11 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1698489582;
+	t=1698489611;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=v8GRunWXkz2EhpYIjMx6s+mZlAVkZ08YcCPCZSlxpBg=;
-	b=SW2cpvuUcKZSXMhvvuuxlm/i9jPTzcMmda0cWak6ny1mD29a8a8IpBXjsYa1WK3xc7xnFO
-	xS3FuD96N+gYPA6OAawwsek45oOuRd1BUOQy4uDZ5vL3cCIH/5aV1B4lxwALTBbLat06vT
-	ylVAq+Y92pkHieG+eYCklekWFnLqsoU=
-Date: Sat, 28 Oct 2023 12:39:41 +0200
+	bh=PSth4Mdhtx4iGpZmumOOpeS2KofR5ROVqUGGwL8j3rs=;
+	b=VQAjXRm+ivsQlkb0qwiEdNlYeo1hguL8j1ZPUEr5hECd5OdSTeMHxVx4cKexVWfyU/HfB2
+	bSUm9jZRMyeybPwY2NCLaME1lHhzg0uvKrkiAqZTayOpXK7zMDuQQ6V6OcCtRR7Q3K83Xc
+	/Hu5955njfX7rwy/xju5+FgJlnz7IRM=
+Date: Sat, 28 Oct 2023 12:40:10 +0200
 From: Pavel Machek <pavel@ucw.cz>
-To: =?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: longcheer l8910 and l9100: Enable
- RGB LED
-Message-ID: <ZTzk7cNJd4iPsd3B@localhost>
-References: <20231013-bq_leds-v1-0-cc374369fc56@apitzsch.eu>
+To: Caleb Connolly <caleb.connolly@linaro.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Vincent Huang <vincent.huang@tw.synaptics.com>,
+	methanal <baclofen@tuta.io>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 3/7] Input: synaptics-rmi4 - f12: use hardcoded values
+ for aftermarket touch ICs
+Message-ID: <ZTzlChOS0OR95Ykp@localhost>
+References: <20230929-caleb-rmi4-quirks-v1-0-cc3c703f022d@linaro.org>
+ <20230929-caleb-rmi4-quirks-v1-3-cc3c703f022d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,17 +55,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231013-bq_leds-v1-0-cc374369fc56@apitzsch.eu>
+In-Reply-To: <20230929-caleb-rmi4-quirks-v1-3-cc3c703f022d@linaro.org>
 
 Hi!
 
-> With the driver for ktd2026 recently applied to linux-leds[1], the LED
-> can be enabled on longcheer l8910 and l9100.
+> Some replacement displays include third-party touch ICs which are
+> devoid of register descriptors. Create a fake data register descriptor
+> for such ICs and provide hardcoded default values.
+> 
+> It isn't possible to reliably determine if the touch IC is original or
+> not, so these fallback values are offered as an alternative to the error
+> path when register descriptors aren't available.
+> 
+> Signed-off-by: methanal <baclofen@tuta.io>
 
-Please make sure sysfs name is consistent with notification LED on
-other phones, as documented by well-known-leds.txt.
+I guess we should have full/real name here.
 
 Best regards,
-								Pavel
+							Pavel
+							
 -- 
 
