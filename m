@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF877DA5F9
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 10:52:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5507DA61E
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 11:19:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D2A01C20FDC
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 08:52:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF6BFB21342
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 09:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84AAD8F69;
-	Sat, 28 Oct 2023 08:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D7BBA35;
+	Sat, 28 Oct 2023 09:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cQWgT6id"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OPAw5rZr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D99C28EA
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 08:52:24 +0000 (UTC)
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB860119
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:52:21 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2c518a1d83fso43927531fa.3
-        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 01:52:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C21679E0
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 09:19:40 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA17CC6
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 02:19:35 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-509109104e2so240670e87.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 02:19:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698483140; x=1699087940; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698484774; x=1699089574; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Z9vB9VbZGgvTRVizPNnWhkdTc6ZaUyij5O3MqvXo+E=;
-        b=cQWgT6idAcmJyn6zHTFc2krb9mD18hBVEdCCzKqKABLuUf0cFv4K7IwNoWdN8tUQ8u
-         vR36rcx2jfdDNE6F/UV4OtkSUAzyZMQmE0fdfg4/xivSAa4qafwq/pp/Ekav4IfboWh/
-         l0CQ5rwlQD5Tbgs1/E6wJBuKhLFBUaDLcgS3HZNxOhgPhnNBWfzEc0b0KKE8ZOTg1UwR
-         fLj3sbUlv16HM26UgSsUE2s5vQtRtbm1h7qCueZ985fUNqL5P3Y6WJJGtgLCO5hILvvH
-         CgO0XI/kheJyN05qhsARtqeggtmjsxV6/MWP2sX0FD5q5GF8st7WSrXQx93VUVM8M7xZ
-         1mLQ==
+        bh=r14PfVQZJtRhRFTTat1MXNc44OC5b+RVhDdh07xZHtI=;
+        b=OPAw5rZr9vEQ5/lxzHthulqdbfv2TorebimVXCSxnb758W5CGdeEZ6yJ61x3sqOVf/
+         M/mI2uqh+ndpDq/IzqXatN2JngZUfNv3QPW8RWN9IVMhYCoWG4K69G8UcoHpldYLYiMv
+         wDjm7N9cm+3tWgJA2f26+zR/3xjuc/WsjFgEgyYuSD6mCdXNOBYsKHO1fRGONlKUwPf3
+         cpxzy/LaavRIqSkoHhTlEJNMEvsfqE3J79vYKbdZqqFMFm5CvXyuoa0Cy13KN8xQsxxS
+         4lhS1sIFtp3ro8kB6SLgNDbTPeTu4r1qBl2H6llc/i39igcMVQ5E5gTdJ3ugFWhzDGRH
+         RkTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698483140; x=1699087940;
+        d=1e100.net; s=20230601; t=1698484774; x=1699089574;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Z9vB9VbZGgvTRVizPNnWhkdTc6ZaUyij5O3MqvXo+E=;
-        b=hW5UH5A0DsFThAPUo4uLGkC3XFZIZZRIiTft+ds0SxrOWTWlCXVfvbwF53Zsebzoft
-         AUUAxmKu8I4C/MiKk0Vrx0XUjzudYVHIqDw8ExVKwkSjiq5GLxk3hamEJmaRqYDl3b7M
-         uxusrAFNO35BZwFkU/HsLwFaGrwzyYunjYzMDHdSSr3zzTqE7RwrehUDRS38uq3Vbw2R
-         pycSvvlmL0bC5R1ineA8O5CN3gAdbDy0CmwxO57ImbV7YSCUT1f8PSNFYUrGfZSLSEPr
-         6xbFmH8z9RBXp85/1VhwiXyhNKKnEOosCKcgq9qXXj+E94JpLxjwYX35yS1o6bXPNHeY
-         StuQ==
-X-Gm-Message-State: AOJu0YwDAn0khTl772Ug3MqIaOAhEL5Vu/XrCUshfAuaw6lIbGwWdiGv
-	TlZV0tJs5uktmPO4BdhYao+PXQ==
-X-Google-Smtp-Source: AGHT+IFYfc7ZFlUFJOumyOmfk5FdBsPYEnDsaUjipT1I3jn3dt3zk4NSwZ6bmHrjK7+FatlEEuqV8g==
-X-Received: by 2002:a05:651c:38c:b0:2c5:2df8:d31c with SMTP id e12-20020a05651c038c00b002c52df8d31cmr3413459ljp.21.1698483140178;
-        Sat, 28 Oct 2023 01:52:20 -0700 (PDT)
+        bh=r14PfVQZJtRhRFTTat1MXNc44OC5b+RVhDdh07xZHtI=;
+        b=A9hQ6qmqLVVx8BTacZtsc/SlESeFxeqg019eO72VWcLKnMG/8EyGLZHcpstH60tntk
+         PeQa/HfFBNE+NjfRBHz4HVf5AQkGfp3+b+azU55aXxw0ZyUbo2PZ39OcUze3mkSrkU5W
+         9czGENR8CNF8hXr2+Wm+rbx4agT5r3DR9JAcvgvjPME/xReOOgv/nnKEHguGi9rTBW+O
+         3UHi5JQSQ3PDqyukgzHGFFuiPlrchd5vb9HLGpupglLWcp9GzWk1YxTcFb6Jr5N8nL17
+         E/14dx2ANHnqoX7EMFTWD83N2bEu9UKBQe+VrigxJpInzcNH6GsVDAkTO2EV7YGsTCBK
+         w8Rg==
+X-Gm-Message-State: AOJu0YzHWdjXCimVIcLV9VBg/jvBJCJB01tGLNaTS2cXS8Un/mlSg9do
+	XxSsOK6fReupTHFWrbTyhC54zA==
+X-Google-Smtp-Source: AGHT+IHdivAjMdcLyeZCLEu4k12Sh11mbR8gaVjFac4gymHWhOppE9NVQVIzv75qN+CrPKfLwuRVhA==
+X-Received: by 2002:a05:6512:2f4:b0:500:a6c1:36f7 with SMTP id m20-20020a05651202f400b00500a6c136f7mr3367170lfq.3.1698484774202;
+        Sat, 28 Oct 2023 02:19:34 -0700 (PDT)
 Received: from [192.168.0.22] ([78.10.206.168])
-        by smtp.gmail.com with ESMTPSA id m7-20020a2e8707000000b002b6e77e87fcsm571403lji.68.2023.10.28.01.52.18
+        by smtp.gmail.com with ESMTPSA id t8-20020a056512068800b004ff6fa3f038sm582464lfe.144.2023.10.28.02.19.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Oct 2023 01:52:19 -0700 (PDT)
-Message-ID: <c66bb1fe-152f-492f-ada6-274162515c58@linaro.org>
-Date: Sat, 28 Oct 2023 10:52:18 +0200
+        Sat, 28 Oct 2023 02:19:33 -0700 (PDT)
+Message-ID: <131fd0c0-0a53-4c2f-9f2a-688b1e53b1aa@linaro.org>
+Date: Sat, 28 Oct 2023 11:19:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +67,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] Input: Add driver for Novatek NT519XX series
- touchscreen devices
+Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: qcom,tcsr: Add compatible for
+ sm8250/sm8350
 Content-Language: en-US
-To: Wei-Shih Lin <frank101417@gmail.com>, dmitry.torokhov@gmail.com,
+To: Mukesh Ojha <quic_mojha@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20231025082054.1190-1-Weishih_Lin@novatek.com.tw>
- <20231025082054.1190-3-Weishih_Lin@novatek.com.tw>
+References: <1698253601-11957-1-git-send-email-quic_mojha@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,109 +121,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231025082054.1190-3-Weishih_Lin@novatek.com.tw>
+In-Reply-To: <1698253601-11957-1-git-send-email-quic_mojha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/10/2023 10:20, Wei-Shih Lin wrote:
-> This patch adds support for Novatek NT519XX series touchscreen devices.
-> Existing Novatek touchscreen driver code developed for Acer Iconia One 7
-> B1-750 tablet with Novatek IC NT11205 is novatek-nvt-ts.c in the path
-> drivers/input/touchscreen/. However, this patch supports touch features
-> for automotive display with Novatek TDDI NT519XX.
+On 25/10/2023 19:06, Mukesh Ojha wrote:
+> Document the compatible for both sm8250 and sm8350 SoCs.
 > 
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
 
-
-> +
-> +static int32_t nvt_ts_resume(struct device *dev)
-> +{
-> +	if (bTouchIsAwake) {
-> +		NVT_LOG("Touch is already resume.\n");
-> +		return 0;
-> +	}
-> +
-> +	mutex_lock(&ts->lock);
-> +
-> +	NVT_LOG("start\n");
-
-Sorry, you cannot have such silly debugs.
-
-> +
-> +	nvt_bootloader_reset();
-> +	nvt_check_fw_reset_state(RESET_STATE_NORMAL_RUN);
-> +
-> +	nvt_irq_enable(true);
-> +
-> +	bTouchIsAwake = 1;
-> +
-> +	mutex_unlock(&ts->lock);
-> +
-> +	NVT_LOG("end\n");
-
-
-
-....
-
-> +#endif
-> +
-> +static struct i2c_driver nvt_i2c_driver = {
-> +	.probe		= nvt_ts_probe,
-> +	.remove		= nvt_ts_remove,
-> +	.shutdown	= nvt_ts_shutdown,
-> +	.id_table	= nvt_ts_id,
-> +	.driver = {
-> +		.name	= NVT_I2C_NAME,
-> +		.owner	= THIS_MODULE,
-
-Drop
-
-> +#ifdef CONFIG_OF
-
-Nope, drop
-
-> +		.of_match_table = nvt_match_table,
-> +#endif
-> +	},
-> +};
-> +
-> +static int32_t __init nvt_driver_init(void)
-> +{
-> +	int32_t ret = 0;
-> +
-> +	NVT_LOG("start\n");
-
-Drop entire init. Open existing code and use it as template.
-
-> +
-> +	bTouchIsAwake = 0;
-> +
-> +	ret = i2c_add_driver(&nvt_i2c_driver);
-> +	if (ret) {
-> +		NVT_ERR("Failed to add i2c driver!");
-> +		goto err_driver;
-> +	}
-> +
-> +	NVT_LOG("end\n");
-> +
-> +err_driver:
-> +	return ret;
-> +}
-> +
-> +static void __exit nvt_driver_exit(void)
-> +{
-> +	i2c_del_driver(&nvt_i2c_driver);
-> +}
-> +
-> +module_init(nvt_driver_init);
-> +module_exit(nvt_driver_exit);
-> +
-> +MODULE_DESCRIPTION("Novatek Touchscreen Driver");
-> +MODULE_LICENSE("GPL");
-
-This driver has very poor quality. Pointing issues here would be even
-too much work. Please start from scratch from existing, accepted and
-reviewed driver and customize it for your needs. You will notice that it
-does not have all this weird code you put here.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
