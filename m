@@ -1,74 +1,59 @@
-Return-Path: <devicetree+bounces-12597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74DAF7DA6D5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 14:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC5D7DA6FB
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 14:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 196E8B211FC
-	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 12:05:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE933B21224
+	for <lists+devicetree@lfdr.de>; Sat, 28 Oct 2023 12:32:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27661400B;
-	Sat, 28 Oct 2023 12:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20525642;
+	Sat, 28 Oct 2023 12:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="koj2OpGs"
+	dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b="gzOm6C8R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BDBDFC00
-	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 12:05:40 +0000 (UTC)
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7A09ED;
-	Sat, 28 Oct 2023 05:05:35 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id d2e1a72fcca58-6b26a3163acso2590658b3a.2;
-        Sat, 28 Oct 2023 05:05:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698494735; x=1699099535; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7y+u3HX5A7WzeSwU6shpmTa8VRBi7WiJ2jWNjhVEC/8=;
-        b=koj2OpGsSD0YhCJqTK4VgTVkTUtd0x4HAsmcAH7PTOr/T8DRkt8tDOeVJiYLM6vfH/
-         Uk9fiSjBf4PpogxP4gf4Izb1eNnOQL6+XGUW+RkH8IwyX70VB9lUURd6+zo6yE42B5EU
-         i0b7ZLutnpJ/N8F93HefZOF+47jP7Fl+lY+Z1U28aVK26rckMld8Oi0LuydWkGuB9cwa
-         Zy53EUByHkwKBrfcK36ofBswql9CFrP+bTmzHiuqW4sJVBqOwVph442aN9wew7HOB3ws
-         2W9j0Db396csPTfZ1UoWfdz04NfL4v1Ve/kPzowaPSxXDjRtdDTElDsKHju30mgK27bo
-         wapQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698494735; x=1699099535;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7y+u3HX5A7WzeSwU6shpmTa8VRBi7WiJ2jWNjhVEC/8=;
-        b=WuGuBNFcHQ8rMBwh535Zt7z/c6Gna3rB6kXnJq6CzuVQqueKOWWVCbPn4YyRSgSk59
-         QKGm56C+oMot8GOp0AFoG+NA/I0wBde2gFrIjh3KQz3G3pjwNmy34GVi1Oh91J3OAUzZ
-         qkJVKI52FYu+UF1BR1aV28MO8WymEEVq5W7Ttcmido6B3pWDprsocyfaG+zB/T2U6fRY
-         RYTHHqvZPGP4klgo/0I+zzpjxzUYkAHgBff4fpLwNawVig/v6+wwrPnVpaw37UeaPUsP
-         CeZGVBn0ya5RGU2BEkd63OkxacMqUZAnGAa4als6kUcoUY8l3+XbXL3jTPxIui8R73Nl
-         F70g==
-X-Gm-Message-State: AOJu0YxhATsTnMb6mS/QyAkdFM8fRcu1ZohyqgMM7tNekJ5EKsC7+SXC
-	wSIfZfyoOfiH/H5luvejPw8=
-X-Google-Smtp-Source: AGHT+IFafLoTZpF1qEjjbYkP9/C/z/JwSkvBITeeQyRoDjKA/NdXrON9up2EEpxEKeowa1fAvjCxRA==
-X-Received: by 2002:a05:6a00:3924:b0:6be:43d5:6505 with SMTP id fh36-20020a056a00392400b006be43d56505mr4819597pfb.6.1698494735083;
-        Sat, 28 Oct 2023 05:05:35 -0700 (PDT)
-Received: from dawn-Aspire-A715-74G.. ([211.81.255.5])
-        by smtp.gmail.com with ESMTPSA id s24-20020a62e718000000b00694ebe2b0d4sm2847311pfh.191.2023.10.28.05.05.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Oct 2023 05:05:34 -0700 (PDT)
-From: Li peiyu <579lpy@gmail.com>
-To: jdelvare@suse.com
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Li peiyu <579lpy@gmail.com>
-Subject: [PATCH v4] dt-bindings: hwmon: lm87: convert to YAML
-Date: Sat, 28 Oct 2023 20:05:26 +0800
-Message-Id: <20231028120526.19528-1-579lpy@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <29d2e5dc-7eb1-4dba-a2fe-4829fdb65a95@kernel.org>
-References: <29d2e5dc-7eb1-4dba-a2fe-4829fdb65a95@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C28A14F9C
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 12:32:10 +0000 (UTC)
+X-Greylist: delayed 1259 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 28 Oct 2023 05:32:09 PDT
+Received: from mailo.com (msg-4.mailo.com [213.182.54.15])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCF4CE
+	for <devicetree@vger.kernel.org>; Sat, 28 Oct 2023 05:32:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+	t=1698495056; bh=yxb6zphCiYkg1BMNfJoJYLGbGEtFPFGmsEthVt0RmgE=;
+	h=X-EA-Auth:From:To:Cc:Subject:Date:Message-ID:X-Mailer:
+	 MIME-Version:Content-Transfer-Encoding;
+	b=gzOm6C8RgfWW200kRZxvKY57EJPqrd+GoSuiec/YbssAkYVGsB/j9vctklefTdZTQ
+	 1YcB2PABM3jnlHrQPExEi0NN2LO+uwtCbyqgU4IzPHmHprIu2he0/DWybKjlpyhPUI
+	 7oOM9eNRG7YtaO6ssSRRIly49xxllis+inE2yJxU=
+Received: by b221-2.in.mailobj.net [192.168.90.22] with ESMTP
+	via ip-22.mailoo.org [213.182.54.22]
+	Sat, 28 Oct 2023 14:10:56 +0200 (CEST)
+X-EA-Auth: dugBy9wIT2iBVLJu1SI60csL07/ZUymv4lZ45nAesMiPN9y+zAvHoUPGQ5G/fRoY1CSNDg/dMYyWW09v3Yv/m2eTUwo/EGp9viYN0qfvNWQ=
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephan Gerhold <stephan@gerhold.net>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH] clk: qcom: gcc-msm8939: Add missing CSI2 related clocks
+Date: Sat, 28 Oct 2023 14:10:47 +0200
+Message-ID: <20231028121047.317550-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,130 +62,179 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the lm87 hwmon sensor bindings to DT schema
+When adding in the indexes for this clock-controller we missed
+GCC_CAMSS_CSI2_AHB_CLK, GCC_CAMSS_CSI2_CLK, GCC_CAMSS_CSI2PHY_CLK,
+GCC_CAMSS_CSI2PIX_CLK and GCC_CAMSS_CSI2RDI_CLK.
 
-Signed-off-by: Li peiyu <579lpy@gmail.com>
+Add them in now.
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
-Changes for v4:
-- remove excess spaces
-Changes for v3:
-- add type definition of has-temp3, has-in6, has-in7
-- Change the description of has-temp3
-Changes for v2:
-- replace node name lm87 with sensor
-- replace character '\t' with spaces
+No fixes tag because camss is a not-yet-enabled feature for msm8939.
 
- .../devicetree/bindings/hwmon/lm87.txt        | 30 ---------
- .../devicetree/bindings/hwmon/lm87.yaml       | 62 +++++++++++++++++++
- 2 files changed, 62 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/hwmon/lm87.txt
- create mode 100644 Documentation/devicetree/bindings/hwmon/lm87.yaml
+Also didn't rename ftbl_gcc_camss_csi0_1_clk now that csi2 uses it
+to avoid not-required-churn... should it be done anyway ?
+---
+ drivers/clk/qcom/gcc-msm8939.c               | 104 +++++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-msm8939.h |   6 ++
+ 2 files changed, 110 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/lm87.txt b/Documentation/devicetree/bindings/hwmon/lm87.txt
-deleted file mode 100644
-index 758ff398b67b..000000000000
---- a/Documentation/devicetree/bindings/hwmon/lm87.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--*LM87 hwmon sensor.
--
--Required properties:
--- compatible: Should be
--	"ti,lm87"
--
--- reg: I2C address
--
--optional properties:
--- has-temp3: This configures pins 18 and 19 to be used as a second
--             remote temperature sensing channel. By default the pins
--             are configured as voltage input pins in0 and in5.
--
--- has-in6: When set, pin 5 is configured to be used as voltage input
--           in6. Otherwise the pin is set as FAN1 input.
--
--- has-in7: When set, pin 6 is configured to be used as voltage input
--           in7. Otherwise the pin is set as FAN2 input.
--
--- vcc-supply: a Phandle for the regulator supplying power, can be
--              configured to measure 5.0V power supply. Default is 3.3V.
--
--Example:
--
--lm87@2e {
--	compatible = "ti,lm87";
--	reg = <0x2e>;
--	has-temp3;
--	vcc-supply = <&reg_5v0>;
--};
-diff --git a/Documentation/devicetree/bindings/hwmon/lm87.yaml b/Documentation/devicetree/bindings/hwmon/lm87.yaml
-new file mode 100644
-index 000000000000..587191c663d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/lm87.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/lm87.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/clk/qcom/gcc-msm8939.c b/drivers/clk/qcom/gcc-msm8939.c
+index e4a44377b75f..ad6599fffef3 100644
+--- a/drivers/clk/qcom/gcc-msm8939.c
++++ b/drivers/clk/qcom/gcc-msm8939.c
+@@ -728,6 +728,19 @@ static struct clk_rcg2 csi1_clk_src = {
+ 	},
+ };
+ 
++static struct clk_rcg2 csi2_clk_src = {
++	.cmd_rcgr = 0x3c020,
++	.hid_width = 5,
++	.parent_map = gcc_xo_gpll0_map,
++	.freq_tbl = ftbl_gcc_camss_csi0_1_clk,
++	.clkr.hw.init = &(struct clk_init_data){
++		.name = "csi2_clk_src",
++		.parent_data = gcc_xo_gpll0_parent_data,
++		.num_parents = ARRAY_SIZE(gcc_xo_gpll0_parent_data),
++		.ops = &clk_rcg2_ops,
++	},
++};
 +
-+title: LM87 hwmon sensor
+ static const struct freq_tbl ftbl_gcc_oxili_gfx3d_clk[] = {
+ 	F(19200000, P_XO, 1, 0, 0),
+ 	F(50000000, P_GPLL0, 16, 0, 0),
+@@ -2385,6 +2398,91 @@ static struct clk_branch gcc_camss_csi1rdi_clk = {
+ 	},
+ };
+ 
++static struct clk_branch gcc_camss_csi2_ahb_clk = {
++	.halt_reg = 0x3c040,
++	.clkr = {
++		.enable_reg = 0x3c040,
++		.enable_mask = BIT(0),
++		.hw.init = &(struct clk_init_data){
++			.name = "gcc_camss_csi2_ahb_clk",
++			.parent_hws = (const struct clk_hw*[]){
++				&camss_ahb_clk_src.clkr.hw,
++			},
++			.num_parents = 1,
++			.flags = CLK_SET_RATE_PARENT,
++			.ops = &clk_branch2_ops,
++		},
++	},
++};
 +
-+maintainers:
-+  - Jean Delvare <jdelvare@suse.com>
-+  - Guenter Roeck <linux@roeck-us.net>
++static struct clk_branch gcc_camss_csi2_clk = {
++	.halt_reg = 0x3c03c,
++	.clkr = {
++		.enable_reg = 0x3c03c,
++		.enable_mask = BIT(0),
++		.hw.init = &(struct clk_init_data){
++			.name = "gcc_camss_csi2_clk",
++			.parent_hws = (const struct clk_hw*[]){
++				&csi2_clk_src.clkr.hw,
++			},
++			.num_parents = 1,
++			.flags = CLK_SET_RATE_PARENT,
++			.ops = &clk_branch2_ops,
++		},
++	},
++};
 +
-+properties:
-+  compatible:
-+    const: ti,lm87
++static struct clk_branch gcc_camss_csi2phy_clk = {
++	.halt_reg = 0x3c048,
++	.clkr = {
++		.enable_reg = 0x3c048,
++		.enable_mask = BIT(0),
++		.hw.init = &(struct clk_init_data){
++			.name = "gcc_camss_csi2phy_clk",
++			.parent_hws = (const struct clk_hw*[]){
++				&csi2_clk_src.clkr.hw,
++			},
++			.num_parents = 1,
++			.flags = CLK_SET_RATE_PARENT,
++			.ops = &clk_branch2_ops,
++		},
++	},
++};
 +
-+  reg:
-+    maxItems: 1
++static struct clk_branch gcc_camss_csi2pix_clk = {
++	.halt_reg = 0x3c058,
++	.clkr = {
++		.enable_reg = 0x3c058,
++		.enable_mask = BIT(0),
++		.hw.init = &(struct clk_init_data){
++			.name = "gcc_camss_csi2pix_clk",
++			.parent_hws = (const struct clk_hw*[]){
++				&csi2_clk_src.clkr.hw,
++			},
++			.num_parents = 1,
++			.flags = CLK_SET_RATE_PARENT,
++			.ops = &clk_branch2_ops,
++		},
++	},
++};
 +
-+  has-temp3:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      When set, pins 18 and 19 are configured to be used as a second
-+      remote temperature sensing channel. Otherwise the pins are
-+      configured as voltage input pins in0 and in5.
++static struct clk_branch gcc_camss_csi2rdi_clk = {
++	.halt_reg = 0x3c050,
++	.clkr = {
++		.enable_reg = 0x3c050,
++		.enable_mask = BIT(0),
++		.hw.init = &(struct clk_init_data){
++			.name = "gcc_camss_csi2rdi_clk",
++			.parent_hws = (const struct clk_hw*[]){
++				&csi2_clk_src.clkr.hw,
++			},
++			.num_parents = 1,
++			.flags = CLK_SET_RATE_PARENT,
++			.ops = &clk_branch2_ops,
++		},
++	},
++};
 +
-+  has-in6:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      When set, pin 5 is configured to be used as voltage input in6.
-+      Otherwise the pin is set as FAN1 input.
-+
-+  has-in7:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      When set, pin 6 is configured to be used as voltage input in7.
-+      Otherwise the pin is set as FAN2 input.
-+
-+  vcc-supply:
-+    description: |
-+      A Phandle for the regulator supplying power, can be configured to
-+      measure 5.0V power supply. Default is 3.3V.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      sensor@2e {
-+        compatible = "ti,lm87";
-+        reg = <0x2e>;
-+        has-temp3;
-+        vcc-supply = <&reg_5v0>;
-+      };
-+    };
+ static struct clk_branch gcc_camss_csi_vfe0_clk = {
+ 	.halt_reg = 0x58050,
+ 	.clkr = {
+@@ -3682,6 +3780,7 @@ static struct clk_regmap *gcc_msm8939_clocks[] = {
+ 	[APSS_AHB_CLK_SRC] = &apss_ahb_clk_src.clkr,
+ 	[CSI0_CLK_SRC] = &csi0_clk_src.clkr,
+ 	[CSI1_CLK_SRC] = &csi1_clk_src.clkr,
++	[CSI2_CLK_SRC] = &csi2_clk_src.clkr,
+ 	[GFX3D_CLK_SRC] = &gfx3d_clk_src.clkr,
+ 	[VFE0_CLK_SRC] = &vfe0_clk_src.clkr,
+ 	[BLSP1_QUP1_I2C_APPS_CLK_SRC] = &blsp1_qup1_i2c_apps_clk_src.clkr,
+@@ -3751,6 +3850,11 @@ static struct clk_regmap *gcc_msm8939_clocks[] = {
+ 	[GCC_CAMSS_CSI1PHY_CLK] = &gcc_camss_csi1phy_clk.clkr,
+ 	[GCC_CAMSS_CSI1PIX_CLK] = &gcc_camss_csi1pix_clk.clkr,
+ 	[GCC_CAMSS_CSI1RDI_CLK] = &gcc_camss_csi1rdi_clk.clkr,
++	[GCC_CAMSS_CSI2_AHB_CLK] = &gcc_camss_csi2_ahb_clk.clkr,
++	[GCC_CAMSS_CSI2_CLK] = &gcc_camss_csi2_clk.clkr,
++	[GCC_CAMSS_CSI2PHY_CLK] = &gcc_camss_csi2phy_clk.clkr,
++	[GCC_CAMSS_CSI2PIX_CLK] = &gcc_camss_csi2pix_clk.clkr,
++	[GCC_CAMSS_CSI2RDI_CLK] = &gcc_camss_csi2rdi_clk.clkr,
+ 	[GCC_CAMSS_CSI_VFE0_CLK] = &gcc_camss_csi_vfe0_clk.clkr,
+ 	[GCC_CAMSS_GP0_CLK] = &gcc_camss_gp0_clk.clkr,
+ 	[GCC_CAMSS_GP1_CLK] = &gcc_camss_gp1_clk.clkr,
+diff --git a/include/dt-bindings/clock/qcom,gcc-msm8939.h b/include/dt-bindings/clock/qcom,gcc-msm8939.h
+index 2d545ed0d35a..9a9bc55b49af 100644
+--- a/include/dt-bindings/clock/qcom,gcc-msm8939.h
++++ b/include/dt-bindings/clock/qcom,gcc-msm8939.h
+@@ -193,6 +193,12 @@
+ #define GCC_VENUS0_CORE1_VCODEC0_CLK		184
+ #define GCC_OXILI_TIMER_CLK			185
+ #define SYSTEM_MM_NOC_BFDCD_CLK_SRC		186
++#define CSI2_CLK_SRC				187
++#define GCC_CAMSS_CSI2_AHB_CLK			188
++#define GCC_CAMSS_CSI2_CLK			189
++#define GCC_CAMSS_CSI2PHY_CLK			190
++#define GCC_CAMSS_CSI2PIX_CLK			191
++#define GCC_CAMSS_CSI2RDI_CLK			192
+ 
+ /* Indexes for GDSCs */
+ #define BIMC_GDSC				0
 -- 
-2.34.1
+2.41.0
+
+
 
 
