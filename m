@@ -1,135 +1,103 @@
-Return-Path: <devicetree+bounces-12685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C457DAE5E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:02:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37DD57DAE61
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:08:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8492281449
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:02:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6F5F1F217DB
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167C1101F6;
-	Sun, 29 Oct 2023 21:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799E810962;
+	Sun, 29 Oct 2023 21:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="1+E71egh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dT0wlb9v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D49D299
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 21:02:35 +0000 (UTC)
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4AC1AF
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 14:02:33 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102D48F7E;
+	Sun, 29 Oct 2023 21:08:25 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54775BA;
+	Sun, 29 Oct 2023 14:08:24 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.143.101])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 08B9C2C04A8;
-	Mon, 30 Oct 2023 10:02:32 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1698613352;
-	bh=B09d4lIdDANJfUjjq7WALyCU4zBVl2nQ2e3xFu+mesQ=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=1+E71eghvObYnW8IgIPprH0EwPuRbQrQFdc4HWOQYrKE/8GweBzEOevYnp9iRiMLC
-	 AfeUfqjwbc86l0EXMChCT3bkwNtbcbPUZzuqFr5eKu5T5dx0JB9hugheb/dKxyqC5y
-	 wy+vmlShMksYrLTSv8z4W9Lq5QJ1h67wxvMvO8krcOnmvC8GDNeUdpEOrJ33reVonL
-	 48xY9s//UsykhI76PtFmhEnW2Mdy8akVMgRG/HAaeu0e6FWKWhILZVUwD+wCnj+bON
-	 QJ9yehtZLkY9nDEmWbMhDnKSs31gr6l4o0DNZPR5wIk1hNXytaNXnh4AF4MI5KsBDc
-	 o1UIMNGKqxZog==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B653ec8670001>; Mon, 30 Oct 2023 10:02:31 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Mon, 30 Oct 2023 10:02:31 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.039; Mon, 30 Oct 2023 10:02:31 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Andi Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-CC: "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, Abel Vesa
-	<abel.vesa@linaro.org>, Mark Brown <broonie@kernel.org>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/2] i2c: mv64xxx: add an optional bus-reset-gpios
- property
-Thread-Topic: [PATCH v5 2/2] i2c: mv64xxx: add an optional bus-reset-gpios
- property
-Thread-Index: AQHaCIYGLKsizTKN0UyQHbkVO99aL7BcpjeAgAACoICAABXxgIADrLSA
-Date: Sun, 29 Oct 2023 21:02:31 +0000
-Message-ID: <8ffbd670-52c5-4344-9119-d7e55367092b@alliedtelesis.co.nz>
-References: <20231027033104.1348921-1-chris.packham@alliedtelesis.co.nz>
- <20231027033104.1348921-3-chris.packham@alliedtelesis.co.nz>
- <65911ec0-e073-435f-846a-c5501dd5d3a9@linaro.org>
- <9eebec9b-e6fd-4a22-89ea-b434f446e061@linaro.org>
- <20231027125537.5d5cu3wc4r4c2yb4@zenone.zhora.eu>
-In-Reply-To: <20231027125537.5d5cu3wc4r4c2yb4@zenone.zhora.eu>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <68B8A453696C744C9B89AAD75D34DE72@atlnz.lc>
-Content-Transfer-Encoding: base64
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id DF7DD66072BB;
+	Sun, 29 Oct 2023 21:08:20 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698613702;
+	bh=GoWKvXVCI2rJHZaaMlrQGK5PE/qto64zo6wfdhb04jw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dT0wlb9v/BSZdRvWw2CB4dPGTr65xipwdJ1ig9xIKIAkNUTEUjjERuC4H1MnIlY7L
+	 YHVqnak1wmwv0EXm0xnTWi6h/oWfJWDY9vPtUIdO/y35OgL539uSZKuLgBtMtu9rTk
+	 4cVIDn1O4skrL+tY/cy51u/S7uRJicQ3YklzkLXhl/E4nYfPvmEK70+ZlVyidteCH2
+	 JVAbU2ipAXoL76QnyMj1A+SF3e/bwJXaouX2NNzCnpSd7zCjZGoNEaJ/T62NU5EvA/
+	 5WI6l6YnPrfxwo3Y8GIsGmZhcTKDsddwcdCeFdiFLUzhh8y8MSrAunK7jm3x1cVhQU
+	 AyaCOohAvr+6A==
+Message-ID: <77ea127f-1040-489c-8ee3-d27df16fb995@collabora.com>
+Date: Sun, 29 Oct 2023 23:08:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=L6ZjvNb8 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=bhdUkHdE2iEA:10 a=62ntRvTiAAAA:8 a=g14jhrGyAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=W1AI2-169aiEXg90ZX8A:9 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=P511sJaWzJIkUf5biGsp:22 a=AjGcO6oz07-iQ99wixmX:22 a=cvBusfyB2V15izCimMoJ:22
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/12] dt-bindings: net: starfive,jh7110-dwmac: Drop
+ superfluous select
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-3-cristian.ciocaltea@collabora.com>
+ <9c9120d6-dd28-4b6d-be8d-46c0cab8f26a@linaro.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <9c9120d6-dd28-4b6d-be8d-46c0cab8f26a@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-DQpPbiAyOC8xMC8yMyAwMTo1NSwgQW5kaSBTaHl0aSB3cm90ZToNCj4gSGkgS3J6eXN6dG9mLA0K
-Pg0KPiBPbiBGcmksIE9jdCAyNywgMjAyMyBhdCAwMTozNzowNVBNICswMjAwLCBLcnp5c3p0b2Yg
-S296bG93c2tpIHdyb3RlOg0KPj4gT24gMjcvMTAvMjAyMyAxMzoyNywgS3J6eXN6dG9mIEtvemxv
-d3NraSB3cm90ZToNCj4+PiBPbiAyNy8xMC8yMDIzIDA1OjMxLCBDaHJpcyBQYWNraGFtIHdyb3Rl
-Og0KPj4+PiBTb21lIGhhcmR3YXJlIGRlc2lnbnMgaGF2ZSBhIEdQSU8gdXNlZCB0byBjb250cm9s
-IHRoZSByZXNldCBvZiBhbGwgdGhlDQo+Pj4+IGRldmljZXMgb24gYW5kIEkyQyBidXMuIEl0J3Mg
-bm90IHBvc3NpYmxlIGZvciBldmVyeSBjaGlsZCBub2RlIHRvDQo+Pj4+IGRlY2xhcmUgYSByZXNl
-dC1ncGlvcyBwcm9wZXJ0eSBhcyBvbmx5IHRoZSBmaXJzdCBkZXZpY2UgcHJvYmVkIHdvdWxkIGJl
-DQo+Pj4+IGFibGUgdG8gc3VjY2Vzc2Z1bGx5IHJlcXVlc3QgaXQgKHRoZSBvdGhlcnMgd2lsbCBn
-ZXQgLUVCVVNZKS4gUmVwcmVzZW50DQo+PiBDYzogTWFyaywNCj4+DQo+PiBBbHNvIHRoaXMgcGFy
-dCBpcyBub3QgdHJ1ZS4gSWYgdGhlIGJ1cyBpcyBub24tZGlzY292ZXJhYmxlLCB0aGVuIGl0IGlz
-DQo+PiBwb3NzaWJsZSB0byBoYXZlIHJlc2V0LWdwaW9zIGluIGVhY2ggcHJvYmVkIGRldmljZS4g
-WW91IGNhbiBzaGFyZSBHUElPcywNCj4+IHNvIG5vIHByb2JsZW0gd2l0aCAtRUJVU1kgYXQgYWxs
-Lg0KPj4NCj4+IFRoZSBwcm9ibGVtIGlzIGRvaW5nIHJlc2V0Og0KPj4gMS4gaW4gcHJvcGVyIG1v
-bWVudCBmb3IgYWxsIGRldmljZXMNCj4+IDIuIHdpdGhvdXQgYWZmZWN0aW5nIG90aGVyIGRldmlj
-ZXMgd2hlbiBvbmUgdW5iaW5kcy9yZW1vdmUoKQ0KPiB5ZXMsIEkgdGhvdWdodCB0aGF0IHdlIGNv
-dWxkIGdldCB0byB0aGlzIHBvaW50LCBidXQgSSBkaWQgbm90DQo+IG9iamVjdCB0aGUgcGF0Y2gg
-YXMgSSBkaWRuJ3Qgc2VlIGFuIGltbWVkaWF0ZSBiZXR0ZXIgc29sdXRpb24uIEkNCj4gd291bGQg
-c3RpbGwgYmUgT0sgdG8gbWVyZ2UgaXQgdW50aWwgd2UgZGV2ZWxvcCBzb21ldGhpbmcgYmV0dGVy
-Lg0KPg0KPiBMZXQgbWUgbXVsbCB0aGlzIG92ZXIgYW5kIHdpbGwgYmUgYmFjayB0byB0aGUgdG9w
-aWMuDQoNCklmIHdlJ3JlIGhhcHB5IHdpdGggcGxhaW4gR1BJT3MgSSBjYW4gbW92ZSB3aGF0IEkn
-dmUgZG9uZSBzbyBmYXIgdG8gDQpzb21ld2hlcmUgaW4gdGhlIEkyQyBjb3JlLiBJIGtub3cgd2Un
-dmUgZ290IG90aGVyIGhhcmR3YXJlIGRlc2lnbnMgd2l0aCANCmRpZmZlcmVudCBjb250cm9sbGVy
-cyB0aGF0IGFsc28gaGF2ZSBtdXhlcyBjb25uZWN0ZWQgdG8gYSBjb21tb24gcmVzZXQgDQpHUElP
-IHNvIEkgd291bGQgaGF2ZSBlbmRlZCB1cCBtb3ZpbmcgdGhpcyBjb2RlIHRvIEkyQyBjb3JlIGV2
-ZW50dWFsbHkuDQoNCklmIHdlJ3JlIHRhbGtpbmcgYSBwcm9wZXIgcmVzZXQgZHJpdmVyIGltcGxl
-bWVudGVkIHVzaW5nIEdQSU9zIHRoZW4gdGhhdCANCm1pZ2h0IGJlIGEgYml0IG9mIGJpZ2dlciB0
-YXNrLg0KDQo+IFRoYW5rcywgS3J6eXN6dG9mIQ0KPiBBbmRpDQo+DQo+PiBUaGUgKDIpIGFib3Zl
-IGlzIG5vdCBzb2x2ZWFibGUgZWFzeSBpbiBrZXJuZWwgYW5kIHdlIGFscmVhZHkgaGFkIG5pY2UN
-Cj4+IHRhbGtzIGFib3V0IGl0IGp1c3QgZmV3IGRheXMgYWdvOg0KPj4gMS4gQXBwbGUgY2FzZToN
-Cj4+IGh0dHBzOi8vc2Nhbm1haWwudHJ1c3R3YXZlLmNvbS8/Yz0yMDk4OCZkPTFMTzc1UjJucmUx
-TFAzVHlFV01ZZzFJczRNei1ZUk9QUThKeHNKcXdrZyZ1PWh0dHBzJTNhJTJmJTJmc29jaWFsJTJl
-dHJlZWhvdXNlJTJlc3lzdGVtcyUyZiU0MG1hcmNhbiUyZjExMTI2ODc4MDMxMTYzNDE2MA0KPj4N
-Cj4+IDIuIG15IFdTQTg4NHg6DQo+PiBodHRwczovL3NjYW5tYWlsLnRydXN0d2F2ZS5jb20vP2M9
-MjA5ODgmZD0xTE83NVIybnJlMUxQM1R5RVdNWWcxSXM0TXotWVJPUFE4SXZ0TWZoeVEmdT1odHRw
-cyUzYSUyZiUyZmxvcmUlMmVrZXJuZWwlMmVvcmclMmZhbHNhLWRldmVsJTJmODRmOWYxYzQtMDYy
-Ny00OTg2LTgxNjAtYjRhYjk5NDY5YjgxJTQwbGluYXJvJTJlb3JnJTJmDQo+Pg0KPj4gTGFzdCwN
-Cj4+IEkgd291bGQgbGlrZSB0byBhcG9sb2dpemUgdG8geW91IENocmlzLiBJIHVuZGVyc3RhbmQg
-dGhhdCBicmluZ2luZyBzdWNoDQo+PiBmZWVkYmFjayBhdCB2NSBpcyBub3QgdGhhdCBnb29kLiBJ
-IGhhZCBwbGVudHkgb2YgdGltZSB0byBzYXkgc29tZXRoaW5nDQo+PiBlYXJsaWVyLCBzbyB0aGlz
-IGlzIG5vdCByZWFsbHkgcHJvZmVzc2lvbmFsIGZyb20gbXkgc2lkZS4gSSBhbSBzb3JyeSwNCj4+
-IGp1c3QgbXkgYnJhaW4gZGlkIG5vdCBjb25uZWN0IGFsbCB0aGVzZSB0b3BpY3MgdG9nZXRoZXIu
-DQo+Pg0KPj4gSSBhcG9sb2dpemUuDQo+Pg0KPj4gQmVzdCByZWdhcmRzLA0KPj4gS3J6eXN6dG9m
+On 10/29/23 13:18, Krzysztof Kozlowski wrote:
+> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
+>> The usage of 'select' doesn't seem to have any influence on how this
+>> binding schema is applied to the nodes, hence remove it.
+>>
+> 
+> It has. Why do you think it doesn't? You should see new errors from
+> dwmac schema.
+
+This patch came as a result of testing both variants (w/ and w/o
+'select') with several different compatible strings and seeing
+consistent output:
+
+- "starfive,jh7110-dwmac", "invalid";
+- "starfive,jh7110-dwmac";
+- "invalid", "snps,dwmac-5.20";
+- "invalid"
+
+Did I miss something?
+
+Thanks for the review,
+Cristian
 
