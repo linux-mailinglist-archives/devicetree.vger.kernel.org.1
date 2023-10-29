@@ -1,115 +1,115 @@
-Return-Path: <devicetree+bounces-12703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002E67DB0CA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 00:17:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14B107DB165
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 00:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 306621C204F8
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 23:17:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3D1F2813CB
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 23:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4344C15E81;
-	Sun, 29 Oct 2023 23:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F7014F90;
+	Sun, 29 Oct 2023 23:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ZaHoVgoj"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E8YqVXFq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F0C115487
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 23:17:37 +0000 (UTC)
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 877624EBF9
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 16:15:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=4LqK
-	zsyzMPK0zG6jKlZssYlLz/JHO+MhlunhgtJzoZo=; b=ZaHoVgojOIkrRRSx+KOd
-	dVlhRZ6Ob907FHX3inRvUAEQiHcpGd+45mPtvGQyIk1lhpKiyemRLyBypmxVZgOP
-	SWmlKxXq1Ki4BKlCRZXUrTYt6FBtHseSamajnqNbiR97wXmcb/Cc/xv0yD3TxAkl
-	zd07/zAUl4r5szjNNfGSbpZVQaska9llvX4vbcBvObSdyRZTZisLk3l35Fb0FEE/
-	IzFbNMotuxys1TSVKZpg9xwg4xl0pIr3BxbyY3arfjWUFKgwra48lYCY6EUiMH2j
-	/Ff69Bhoy9SJn/So0CC79ffsi8mSv90CAZdZvrXrg/4G9P/hp8CSOXczjAc73kbh
-	VA==
-Received: (qmail 3928351 invoked from network); 30 Oct 2023 00:15:55 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Oct 2023 00:15:55 +0100
-X-UD-Smtp-Session: l3s3148p1@YKl3GuMICKVehhre
-Date: Mon, 30 Oct 2023 00:15:54 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v5 0/2] PCI: rcar: support regulators for PCIe
-Message-ID: <ZT7nqrxadWzhrhU9@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-References: <20230921132624.5664-1-wsa+renesas@sang-engineering.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E70715487;
+	Sun, 29 Oct 2023 23:35:22 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C5FD75;
+	Sun, 29 Oct 2023 16:35:20 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.143.101])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id AE1E86606F9A;
+	Sun, 29 Oct 2023 23:35:17 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698622519;
+	bh=MTCi2I9f4ISCBGs2/Fbga3HK8s3ZEp9YzqbtdDcEFuA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=E8YqVXFqTKOb1b7+V+LvVodpgloKNhOi/cvEi6BPPS05bV806a0qSmpHGA//N3snW
+	 h99teObkzlP/UFwAKAFDk9Nk8YCnqRNsEwoz2CN5Rsz/xZx7qxxDU+MnPU99ernPYA
+	 qEGXl+IYNDpATcKw1tbJeqffsMuMAd6omfTp3+MCNL7mmmkWf1/A/3L9JRX5eVfdTQ
+	 JonkmqtldtU5gK/6FKezwzsNBda3DWs0J0gxEoBAJDXLwyo1vO6ZcNftj1XXfll6PA
+	 kW+TEy+Z0LEQweOfGiqxPYeyOUsDCnTxbFLxy+5EnLQV/skyhiNO95EHGcV8RU1FUG
+	 yDP1+OLtXJmdg==
+Message-ID: <7eab89f4-bfd0-441c-8b02-aa9d0f0cdace@collabora.com>
+Date: Mon, 30 Oct 2023 01:35:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VK2a64zn4LDxDZm+"
-Content-Disposition: inline
-In-Reply-To: <20230921132624.5664-1-wsa+renesas@sang-engineering.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 11/12] riscv: dts: starfive: visionfive-v1: Enable gmac
+ and setup phy
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-12-cristian.ciocaltea@collabora.com>
+ <f379a507-c3c1-4872-9e4f-f521b86f44d4@lunn.ch>
+ <f05839c0-7a78-4616-bedc-6a876b7f4bb3@collabora.com>
+ <e837e707-5b01-4b7b-8362-0dc62883fdba@lunn.ch>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <e837e707-5b01-4b7b-8362-0dc62883fdba@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 10/30/23 00:50, Andrew Lunn wrote:
+> On Mon, Oct 30, 2023 at 12:41:23AM +0200, Cristian Ciocaltea wrote:
+>> On 10/29/23 20:45, Andrew Lunn wrote:
+>>> On Sun, Oct 29, 2023 at 06:27:11AM +0200, Cristian Ciocaltea wrote:
+>>>> The StarFive VisionFive V1 SBC has a Motorcomm YT8521 PHY supporting
+>>>> RGMII-ID, but requires manual adjustment of the RX internal delay to
+>>>> work properly.
+>>>>
+>>>> The default RX delay provided by the driver is 1.95 ns, which proves to
+>>>> be too high. Applying a 50% reduction seems to mitigate the issue.
+>>>
+>>> I'm not so happy this cannot be explained. You are potentially heading
+>>> into horrible backwards compatibility problems with old DT blobs and
+>>> new kernels once this is explained and fixed.
+>>
+>> It seems the visionfive-v2 board also required setting some delays, but
+>> unfortunately no details were provided:
+>>
+>> 0104340a67b1 ("riscv: dts: starfive: visionfive 2: Add configuration of
+>> mac and phy")
+> 
+> That board also uses a YT8531 PHY. Its possible this is somehow to do
+> with the PHY. Which is why testing with the Microchip PHY is
+> important. That should answer the question is it a SoC or a PHY
+> problem.
 
---VK2a64zn4LDxDZm+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+There is also YT8531S, which looks compatible with YT8521, but YT8531
+seems to be a bit different. Regardless of what VisionFive v2 is using,
+it would be indeed interesting to find out how the Microchip PHY behaves
+in this context.
 
-On Thu, Sep 21, 2023 at 03:26:22PM +0200, Wolfram Sang wrote:
-> Here are the patches to make PCIe cards work in slot CN15 on a Renesas
-> KingFisher board. Please apply.
->=20
-> Changes since v4:
-> * rebased to 6.6-rc2
-> * added ack from Mani (Thanks!)
-
-Did this slip through the cracks maybe?
-
->=20
-> Wolfram Sang (2):
->   dt-bindings: PCI: rcar-pci-host: add optional regulators
->   PCI: rcar-host: add support for optional regulators
->=20
->  .../devicetree/bindings/pci/rcar-pci-host.yaml   | 11 +++++++++++
->  drivers/pci/controller/pcie-rcar-host.c          | 16 +++++++++++++++-
->  2 files changed, 26 insertions(+), 1 deletion(-)
->=20
-> --=20
-> 2.35.1
->=20
-
---VK2a64zn4LDxDZm+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmU+56oACgkQFA3kzBSg
-KbZksQ//ZTQLV9AZwNEEizqnTqfYg+QukBAMZ/kogfa/L/jSlsS7Gbh0ki0wQBG9
-nwLAdJWr17bzAqAtkaOezJ5+4QsE5PtfhDZ2kSdJd2sxKJ5FUc0g2Wrqe1EmOlez
-zTEzOvJeXhi3IV8kp4kAA2856rVcxfFIAD3+42vfZLHP5xsTL4L/rDMshRL4Pwf/
-69Q0LjTkQyhNHocQGduT/j6K7XCq9uLVfEcNu7ViCbzLbxzjoIy74b33nCK7KCCi
-/Ci2R6Tr7U5Mui4Z4AyHvUgqKiVe+BTzCjWmDUznQRC5KmE5302dI7Oq/PRt3ret
-F+SnXI+TrO/AwSlg1eC7V03gVGOqibVQfAATLhxPc+E3bKvrFd1jrzDSZHiT8dic
-ZsR+jpf86vW/1G58PB7ZRIpePPhoskJ9o8u7JP29HuVd1xUG3TH8TokrSStn3Pdb
-I5x87wcYaIWNXoludxC/CLMZoQ8k2KqGfg9SXav2YO4eeWuYZf6ozhpsHP84qQzE
-CUIewC5etAevv1Y2cQ/ETuql08sOsfQVsDenJ0Uz67dXhs+xBC0fCjLI0Jctra8Y
-tHq5JJs35qM2sZSrsKFS+4gaw6zFECNpf5CGeonMu2Qj6F+0MsL4eUpwyOofUAk5
-/Nf6JQdEs2drjfJQGe+REja9S5AelI5F4jrRHaRosy4DtJ3o2nE=
-=6C7y
------END PGP SIGNATURE-----
-
---VK2a64zn4LDxDZm+--
+Regards,
+Cristian
 
