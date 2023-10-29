@@ -1,47 +1,65 @@
-Return-Path: <devicetree+bounces-12686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37DD57DAE61
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:08:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF037DAE7A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6F5F1F217DB
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:08:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 272B5280E01
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799E810962;
-	Sun, 29 Oct 2023 21:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F90D53F;
+	Sun, 29 Oct 2023 21:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dT0wlb9v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UhNfIPk+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 102D48F7E;
-	Sun, 29 Oct 2023 21:08:25 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54775BA;
-	Sun, 29 Oct 2023 14:08:24 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.24.143.101])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id DF7DD66072BB;
-	Sun, 29 Oct 2023 21:08:20 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698613702;
-	bh=GoWKvXVCI2rJHZaaMlrQGK5PE/qto64zo6wfdhb04jw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dT0wlb9v/BSZdRvWw2CB4dPGTr65xipwdJ1ig9xIKIAkNUTEUjjERuC4H1MnIlY7L
-	 YHVqnak1wmwv0EXm0xnTWi6h/oWfJWDY9vPtUIdO/y35OgL539uSZKuLgBtMtu9rTk
-	 4cVIDn1O4skrL+tY/cy51u/S7uRJicQ3YklzkLXhl/E4nYfPvmEK70+ZlVyidteCH2
-	 JVAbU2ipAXoL76QnyMj1A+SF3e/bwJXaouX2NNzCnpSd7zCjZGoNEaJ/T62NU5EvA/
-	 5WI6l6YnPrfxwo3Y8GIsGmZhcTKDsddwcdCeFdiFLUzhh8y8MSrAunK7jm3x1cVhQU
-	 AyaCOohAvr+6A==
-Message-ID: <77ea127f-1040-489c-8ee3-d27df16fb995@collabora.com>
-Date: Sun, 29 Oct 2023 23:08:18 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7714B9470
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 21:16:19 +0000 (UTC)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B006D97;
+	Sun, 29 Oct 2023 14:16:17 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-53e2308198eso6140038a12.1;
+        Sun, 29 Oct 2023 14:16:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698614176; x=1699218976; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QvsKzG+rs1HOWlhjYy4OEuq3sm4Ra3HE4ezTkFwDqiM=;
+        b=UhNfIPk+DRSz+HZMRj9wTUobBajfXCb9fxSkPVF7NNMGMaqyHGvqpzdRJ3It1vxF5Q
+         J0G2nmYNstIytW88HHCvsiHg15POckPeedejFb3C2TqK0Si+wzmzYMnFN911hfnAW07x
+         rFyLBWupdGsp6bZ6mmRQBO6b4cuv/tpsazW17oPC5IoLDq7vfLKcj2UxiKJvIGww5EqM
+         r3/fp+cBWQD5Pu2txrtOW+tgGhshjVM/S9gWtcHhah8ABN1s0JrTxZWLQNSw+tBOT1dr
+         npZ7o1CDYJRyOppbWoHWvSVv8QvWYSn3QVKJaDcv9J2yOfYvJSiaBYravFp/ybwT37o5
+         6nlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698614176; x=1699218976;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QvsKzG+rs1HOWlhjYy4OEuq3sm4Ra3HE4ezTkFwDqiM=;
+        b=VkGtGLFRiGM16vuBiPJHcXSxvDesEFpq3HQYrrlH+9crBgu9pBockpyDtDDiaIrzJN
+         TGGfDDy1TuQ7hzSyWz/wU2z1yXDFBYf/B9uoZfIj3mGZ3Q8c7jVBZws3GU+VK0lYZiD3
+         JlrKfXHU6FBFeZnZVozTyMIS2y61cd9hnfnSl7UmCXczspvBtYs3vHAe+HvX11VKibT3
+         LQty4R0kRtt7D9+r+EthvMfw/OTeESGQS+eGHPVGnbISFI2JlwdtxPY6VXpg6lkWgCwO
+         /K+ubk7WBG5EdvpE6v2TUZtkg7AVkUQPfFirstvOrMzDqk5r1ngKd3QadDiC23RoOxeO
+         lpiQ==
+X-Gm-Message-State: AOJu0Yyv/wTK8rlFfl1egKLEiN1pB/2JuYBTt986NXQ2W6Xe3Locc8L4
+	Uvs7RiakrUU9EcjlZYBpfGU=
+X-Google-Smtp-Source: AGHT+IF7sE5EoaLdZ8ZzvjrwxAns0T3bzFyPglhgZ/pN3bXockxACawGbRmYwmhYVlGo9hG2IWqNCw==
+X-Received: by 2002:a17:906:c10e:b0:9c2:a072:78c8 with SMTP id do14-20020a170906c10e00b009c2a07278c8mr6691256ejc.26.1698614175965;
+        Sun, 29 Oct 2023 14:16:15 -0700 (PDT)
+Received: from [192.168.50.244] (83.11.208.51.ipv4.supernova.orange.pl. [83.11.208.51])
+        by smtp.gmail.com with ESMTPSA id rn20-20020a170906d93400b009930308425csm4890885ejb.31.2023.10.29.14.16.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Oct 2023 14:16:15 -0700 (PDT)
+Message-ID: <5bd796c5-3e9a-4aa5-b284-27fb4fc8ea48@gmail.com>
+Date: Sun, 29 Oct 2023 22:16:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,55 +67,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/12] dt-bindings: net: starfive,jh7110-dwmac: Drop
- superfluous select
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: clock: brcm,kona-ccu: convert to YAML
+To: Stanislav Jakubek <stano.jakubek@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-3-cristian.ciocaltea@collabora.com>
- <9c9120d6-dd28-4b6d-be8d-46c0cab8f26a@linaro.org>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <9c9120d6-dd28-4b6d-be8d-46c0cab8f26a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
+ <20231027-bulldog-component-5b84e4660465@spud>
+ <ZTzw5c5/MwU3VOBo@standask-GA-A55M-S2HP>
+Content-Language: en-US
+In-Reply-To: <ZTzw5c5/MwU3VOBo@standask-GA-A55M-S2HP>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/29/23 13:18, Krzysztof Kozlowski wrote:
-> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
->> The usage of 'select' doesn't seem to have any influence on how this
->> binding schema is applied to the nodes, hence remove it.
+
+On 28/10/2023 13:30, Stanislav Jakubek wrote:
+> On Fri, Oct 27, 2023 at 03:47:48PM +0100, Conor Dooley wrote:
+>> On Tue, Oct 24, 2023 at 06:45:21PM +0200, Stanislav Jakubek wrote:
+>>> Convert Broadcom Kona family clock controller unit (CCU) bindings
+>>> to DT schema.
 >>
+>> I didn't cross-check the clock-output-names, but this conversion mostly
+>> looks good to me.
+>>
+>>> Changes during conversion:
+>>>    - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
+>>>      it is not used in DT nor the dt-bindings
+>>>    - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
+>>>      it is not used in DT nor the dt-bindings
+>>
+>> This I'm not sure about - they _were_ documented in the text-form
+>> dt-binding, even if they weren't used in the dts. If the clock
+>> controller does actually produce these clocks, removing them doesn't
+>> make sense to me.
 > 
-> It has. Why do you think it doesn't? You should see new errors from
-> dwmac schema.
+> Hi Conor. Looking at downstream, I was not able to find these clocks, though
+> I admit that I'm not familiar enough with the downstream mess to be 100%
+> confident.
+> 
+>  From what I can tell, the BCM21664 arch/arm/mach-hawaii/clock.c (e.g. [1])
+> doesn't contain any mention of uartb4, only uartb, uartb2 and uartb3.
+> And similarly, for the BCM281XX arch/arm/mach-capri/clock_capri.c (e.g. [2])
+> I wasn't able to find any mention of dmac, only dmac_mux_apb and dma_axi
+> (though these two don't seem to be supported on mainline yet).
 
-This patch came as a result of testing both variants (w/ and w/o
-'select') with several different compatible strings and seeing
-consistent output:
+I've done some digging in the downstream kernel; for the BCM21664, I'm
+almost certain that the uartb4 clock doesn't exist. Broadcom helpfully
+left in "RDB" files containing the entire register layout of all of the
+components; and even in the RDB for the slave clock manager[1] (used by
+the other uart clocks), there is no uartb4, nor is it mentioned
+anywhere else in the kernel (judging by a quick grep in the kernel
+sources).
 
-- "starfive,jh7110-dwmac", "invalid";
-- "starfive,jh7110-dwmac";
-- "invalid", "snps,dwmac-5.20";
-- "invalid"
+As for the BCM281XX clocks, there indeed doesn't seem to be an exact
+"dmac" clock but there is a "dmac" clock gate register[2], which is
+used for the dma_axi clock, so perhaps that's what this is referring
+to? Also not 100% certain.
 
-Did I miss something?
+Best regards,
+Artur
 
-Thanks for the review,
-Cristian
+[1] https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-14.1/arch/arm/mach-hawaii/include/mach/rdb/brcm_rdb_kps_rst_mgr_reg.h
+[2] https://github.com/surblazer/android_kernel_samsung_galaxys2plus-common/blob/android-7.1/arch/arm/mach-capri/include/mach/rdb/brcm_rdb_kpm_clk_mgr_reg.h#L417-L433
 
