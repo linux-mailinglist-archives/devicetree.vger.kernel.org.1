@@ -1,235 +1,222 @@
-Return-Path: <devicetree+bounces-12653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A0E7DAC08
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 12:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 803907DAC24
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 12:19:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AF57281421
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 11:04:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B2FE2816DB
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 11:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049A933D6;
-	Sun, 29 Oct 2023 11:04:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CnHVpI+S"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC9DEC12D;
+	Sun, 29 Oct 2023 11:19:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336E333D4
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 11:04:33 +0000 (UTC)
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93ABCC0;
-	Sun, 29 Oct 2023 04:04:31 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-5b9390d6bd3so1822340a12.0;
-        Sun, 29 Oct 2023 04:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698577471; x=1699182271; darn=vger.kernel.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eipiED5N5Zxq+cfbE7Nt7+p4CNXfmzDmQVeO71JBpOk=;
-        b=CnHVpI+S+tUhB0QICZf9bK1XH8I+5We94hizl6JFZajQKlXcVTePnKBDPeyXLuKluz
-         qqM0k4S1Jo2Z53K1SfwOGcVAdKXRUytvt46u0Hx+KIWuttuO84nM5KjwSaxNyk6zpfOZ
-         dSn4vqy4VMFQ+kfnYygU3sf8ipIP2SNHAdnoCbNKZ7vwUujb6HILrJ6RwcwTUWUP7dXF
-         nqkETZbZ/y+y7DktLwC+zxYyyQYd22XAMYa2JlG/EKiiGfDwFbopeOdVoYP6COtg7Tqn
-         7Ljm8Uq/D0I1i64RLZJSUE148OjeQNhUu9WheXFArNQu2XwsOi+nhFwipdKWPffTwBMH
-         MyIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698577471; x=1699182271;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eipiED5N5Zxq+cfbE7Nt7+p4CNXfmzDmQVeO71JBpOk=;
-        b=n45o6MzzvvZH2pebzq6K8WYJwgouA7Ez0CRnXb52LRBKlhm/IfabbqOY/KuWt/caY7
-         UIpY0CBmU8UdRqPuEEG2vjzqkLdvLE9acYQP1w3OhCoj1bq2rIII9wp5AQjb+JaUIv52
-         up+QoHtKfwA6wsk8GebQtDQG9z1G32zM3L3J1VrDEhrSQJrkrCDSE8x0ibKY048W/JO3
-         bRzAi8bJhot0ZU0r3jAGQmVIIjUb9ebWqa6cpHufd/nBcAASEadkuUh7vDLMFdLeZoTT
-         HgHr3HMK+opAZvn2Wr/j2vC2CKBEuVxkZXqC0Roit/JJ/6MKoiM1i/5X2g9G9RyBgr2N
-         zq4A==
-X-Gm-Message-State: AOJu0YwQQy/uc/y3Zxne5udDjige/UO5RmQxY2mYdgDFA4f+ARFqqL2/
-	mHKodsAV/9eiK6bDILZU8zh5vNfTVqnMHC64CfBrtQjtKNA=
-X-Google-Smtp-Source: AGHT+IHr4psGgXNsB0bVStvDoxnBk6i5SdbPIWiGxBaaF2NphlWQWrdx4NMwddymj0JG0CCldcVSn1/lCX3j637wpog=
-X-Received: by 2002:a17:90a:f0c2:b0:280:299d:4b7e with SMTP id
- fa2-20020a17090af0c200b00280299d4b7emr4090103pjb.19.1698577470909; Sun, 29
- Oct 2023 04:04:30 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD9FBE72
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 11:19:16 +0000 (UTC)
+Received: from smtp1.ms.mff.cuni.cz (smtp1.ms.mff.cuni.cz [IPv6:2001:718:1e03:801::4])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83E42C2;
+	Sun, 29 Oct 2023 04:19:13 -0700 (PDT)
+X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
+	serial F5FD910E8FE2121B897F7E55B84E351D
+	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
+	auth type TLS.CUNI
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(authenticated)
+	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 39TBIQdY065431
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
+	Sun, 29 Oct 2023 12:18:27 +0100 (CET)
+	(envelope-from balejk@matfyz.cz)
+From: Karel Balej <balejk@matfyz.cz>
+To: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Karel Balej <balejk@matfyz.cz>
+Subject: [PATCH 0/2] net: mwifiex: add support for the SD8777 chipset
+Date: Sun, 29 Oct 2023 12:08:15 +0100
+Message-ID: <20231029111807.19261-1-balejk@matfyz.cz>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231025104457.628109-1-robimarko@gmail.com> <20231025104457.628109-2-robimarko@gmail.com>
-In-Reply-To: <20231025104457.628109-2-robimarko@gmail.com>
-From: Robert Marko <robimarko@gmail.com>
-Date: Sun, 29 Oct 2023 12:04:19 +0100
-Message-ID: <CAOX2RU4MBvDZZ767RPS9XKj0U2L3gviVG5cyR8NKyO4LD+sfYQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] clk: qcom: ipq6018: add USB GDSCs
-To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, 
-	Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 25 Oct 2023 at 12:45, Robert Marko <robimarko@gmail.com> wrote:
->
-> IPQ6018 has GDSC-s for each of the USB ports, so lets define them as such
-> and drop the curent code that is de-asserting the USB GDSC-s as part of
-> the GCC probe.
->
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+This series introduces simple modifications to the Marvell mwifiex
+wireless driver to make it support the SD8777 chipset which can be found
+in mobile devices using the PXA1908 SoC (the support for which is being
+upstreamed here [1]), among others, such as samsung,coreprimevelte or
+samsung,xcover3lte. The changes are based on the Samsung downstream code
+for coreprimevelte [2].
 
-Unfortunately, after testing on multiple devices I hit the same GDSC
-issue I had a long time ago
-that was the reason I did not send this upstream.
-It seems that USB3 port GDSC (USB0 GDSC in code) works just fine,
-however the USB2 one
-(USB1 GDSC in code) it is stuck off and USB2 port will fail due to this:
-    1.607531] ------------[ cut here ]------------
-[    1.607559] usb1_gdsc status stuck at 'off'
-[    1.607592] WARNING: CPU: 0 PID: 35 at gdsc_toggle_logic+0x16c/0x174
-[    1.615120] Modules linked in:
-[    1.621712] CPU: 0 PID: 35 Comm: kworker/u8:1 Tainted: G        W
-       6.6.0-rc7-next-20231026 #5
-[    1.624586] Hardware name: Wallys DR6018 v4 (DT)
-[    1.633867] Workqueue: events_unbound deferred_probe_work_func
-[    1.638556] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    1.644200] pc : gdsc_toggle_logic+0x16c/0x174
-[    1.651052] lr : gdsc_toggle_logic+0x16c/0x174
-[    1.655566] sp : ffffffc081a03a40
-[    1.659990] x29: ffffffc081a03a40 x28: 0000000000000000 x27: 0000000000000000
-[    1.663384] x26: ffffff8000156ac0 x25: 0000000000000000 x24: ffffffc081824c90
-[    1.670502] x23: ffffffc081824840 x22: 0000000000000000 x21: 0000000000000001
-[    1.677620] x20: 00000000ffffff92 x19: ffffffc081824840 x18: ffffffffffffffff
-[    1.684738] x17: 00000000cdb32eee x16: 00000000d648a142 x15: fffffffffffc38ff
-[    1.691855] x14: ffffffc0817994c0 x13: 00000000000000e0 x12: 00000000000000e0
-[    1.698974] x11: 00000000ffffffea x10: ffffffc0817f14c0 x9 : 0000000000000001
-[    1.706094] x8 : 0000000000000001 x7 : 0000000000017fe8 x6 : c0000000ffffefff
-[    1.713211] x5 : 0000000000057fa8 x4 : 0000000000000000 x3 : ffffffc081a03840
-[    1.720328] x2 : ffffffc081799400 x1 : ffffffc081799400 x0 : 000000000000001f
-[    1.727448] Call trace:
-[    1.734556]  gdsc_toggle_logic+0x16c/0x174
-[    1.736815]  gdsc_enable+0x60/0x27c
-[    1.740980]  genpd_power_on+0x180/0x22c
-[    1.744367]  __genpd_dev_pm_attach+0x140/0x238
-[    1.748188]  genpd_dev_pm_attach+0x60/0x70
-[    1.752701]  dev_pm_domain_attach+0x20/0x34
-[    1.756780]  platform_probe+0x50/0xc0
-[    1.760859]  really_probe+0x148/0x2b8
-[    1.764679]  __driver_probe_device+0x78/0x12c
-[    1.768327]  driver_probe_device+0xdc/0x160
-[    1.772667]  __device_attach_driver+0xb8/0x134
-[    1.776660]  bus_for_each_drv+0x70/0xb8
-[    1.781173]  __device_attach+0xa0/0x184
-[    1.784905]  device_initial_probe+0x14/0x20
-[    1.788725]  bus_probe_device+0xac/0xb0
-[    1.792891]  deferred_probe_work_func+0x88/0xc0
-[    1.796712]  process_one_work+0x158/0x2bc
-[    1.801226]  worker_thread+0x2a0/0x4bc
-[    1.805391]  kthread+0xe4/0xf0
-[    1.809035]  ret_from_fork+0x10/0x20
-[    1.812075] ---[ end trace 0000000000000000 ]---
+The driver requires proprietary firmware which is not yet part of
+linux-firmware, but it is packaged in postmarketOS.
 
-Kathiravan, do you happen to have any docs or info if the USB1 GDSC is special
-and its status bits are broken or?
+The Marvell repository for PXA1908 [3] contains some information in the
+form of release notes (in a PDF under drivers/marvell/sd8777).
 
-Maybe the offset is even wrong as I based it on the current driver.
+This series was sucessfully tested with the aforementioned smartphone,
+samsung,coreprimevelte. However it has a caveat: the driver is not
+always able to load the firmware onto the device and even when it
+succeeds, it emits some errors and eventually breaks irrecoverably after
+some time, seemingly after heavier usage. dmesg outputs with description
+are below. The suspicion, supported by the fact that the eMMC on the
+smartphone does not work at the moment (it reports as busy and the
+initialization fails with -ETIMEDOUT, see [4] for dmesg output), is that
+the problem is either with the MMC driver (sdhci-pxav3) or the clocks
+driver which according to the author is currently missing some parts
+present in the downstream version. In particular, the lack of tuning in
+the mainline sdhci-pxav3 was considered a possible cause (specifically
+the dvfs tuning which the downstream driver performs), however disabling
+of this tuning in the downstream kernel doesn't seem to have any effect
+on it's ability to use either eMMC or the wireless.
 
-Regards,
-Robert
+Here are the relevant dmesg outputs for several situations (debug
+messages are enabled in the first, not so in the others):
 
-> ---
->  drivers/clk/qcom/Kconfig       |  1 +
->  drivers/clk/qcom/gcc-ipq6018.c | 33 ++++++++++++++++++++++++---------
->  2 files changed, 25 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index ad1acd9b7426b..2aefa2231b51b 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -164,6 +164,7 @@ config IPQ_GCC_5332
->
->  config IPQ_GCC_6018
->         tristate "IPQ6018 Global Clock Controller"
-> +       select QCOM_GDSC
->         help
->           Support for global clock controller on ipq6018 devices.
->           Say Y if you want to use peripheral devices such as UART, SPI,
-> diff --git a/drivers/clk/qcom/gcc-ipq6018.c b/drivers/clk/qcom/gcc-ipq6018.c
-> index cc20a16d8973c..9d5ee2ac012a1 100644
-> --- a/drivers/clk/qcom/gcc-ipq6018.c
-> +++ b/drivers/clk/qcom/gcc-ipq6018.c
-> @@ -23,6 +23,7 @@
->  #include "clk-alpha-pll.h"
->  #include "clk-regmap-divider.h"
->  #include "clk-regmap-mux.h"
-> +#include "gdsc.h"
->  #include "reset.h"
->
->  enum {
-> @@ -4691,6 +4692,22 @@ static struct clk_branch gcc_dcc_clk = {
->         },
->  };
->
-> +static struct gdsc usb0_gdsc = {
-> +       .gdscr = 0x3e078,
-> +       .pd = {
-> +               .name = "usb0_gdsc",
-> +       },
-> +       .pwrsts = PWRSTS_OFF_ON,
-> +};
-> +
-> +static struct gdsc usb1_gdsc = {
-> +       .gdscr = 0x3f078,
-> +       .pd = {
-> +               .name = "usb1_gdsc",
-> +       },
-> +       .pwrsts = PWRSTS_OFF_ON,
-> +};
-> +
->  static const struct alpha_pll_config ubi32_pll_config = {
->         .l = 0x3e,
->         .alpha = 0x6667,
-> @@ -5138,6 +5155,11 @@ static const struct qcom_reset_map gcc_ipq6018_resets[] = {
->         [GCC_Q6_AXIM_ARES] = {0x59110, 4},
->  };
->
-> +static struct gdsc *gcc_ipq6018_gdscs[] = {
-> +       [USB0_GDSC] = &usb0_gdsc,
-> +       [USB1_GDSC] = &usb1_gdsc,
-> +};
-> +
->  static const struct of_device_id gcc_ipq6018_match_table[] = {
->         { .compatible = "qcom,gcc-ipq6018" },
->         { }
-> @@ -5160,6 +5182,8 @@ static const struct qcom_cc_desc gcc_ipq6018_desc = {
->         .num_resets = ARRAY_SIZE(gcc_ipq6018_resets),
->         .clk_hws = gcc_ipq6018_hws,
->         .num_clk_hws = ARRAY_SIZE(gcc_ipq6018_hws),
-> +       .gdscs = gcc_ipq6018_gdscs,
-> +       .num_gdscs = ARRAY_SIZE(gcc_ipq6018_gdscs),
->  };
->
->  static int gcc_ipq6018_probe(struct platform_device *pdev)
-> @@ -5170,15 +5194,6 @@ static int gcc_ipq6018_probe(struct platform_device *pdev)
->         if (IS_ERR(regmap))
->                 return PTR_ERR(regmap);
->
-> -       /* Disable SW_COLLAPSE for USB0 GDSCR */
-> -       regmap_update_bits(regmap, 0x3e078, BIT(0), 0x0);
-> -       /* Enable SW_OVERRIDE for USB0 GDSCR */
-> -       regmap_update_bits(regmap, 0x3e078, BIT(2), BIT(2));
-> -       /* Disable SW_COLLAPSE for USB1 GDSCR */
-> -       regmap_update_bits(regmap, 0x3f078, BIT(0), 0x0);
-> -       /* Enable SW_OVERRIDE for USB1 GDSCR */
-> -       regmap_update_bits(regmap, 0x3f078, BIT(2), BIT(2));
-> -
->         /* SW Workaround for UBI Huyara PLL */
->         regmap_update_bits(regmap, 0x2501c, BIT(26), BIT(26));
->
-> --
-> 2.41.0
->
+This is the usual output when the firmware loading fails. The device has
+to be rebooted before the next attempt to load the firmware because the
+driver seems to think that it's already loaded.
+
+	[   68.335394] mwifiex_sdio mmc2:0001:1: info: SDIO FUNC1 IO port: 0x10000
+	[   68.485552] mwifiex_sdio mmc2:0001:1: info: downloading FW image (418332 bytes)
+	[   68.698674] mwifiex_sdio mmc2:0001:1: FW download, write iomem (0) failed @ 208016
+	[   68.698711] mwifiex_sdio mmc2:0001:1: prog_fw failed ret=0xffffffff
+	[   68.698724] mwifiex_sdio mmc2:0001:1: info: _mwifiex_fw_dpc: unregister device
+
+The return value of mwifiex_write_data_sync which is invoked during the
+firmware loading is -EILSEQ.
+
+Here, the download succeeds but the driver still emits some errors.
+Eventually after some (short in this case) time the wireless stops
+working and the below errors are printed repeatedly (here the failure
+occurred while page loading was in progress in Mozilla Firefox). A
+restart seems to be necessary to get the adapter to work again.
+
+	[   61.876547] mwifiex_sdio mmc2:0001:1: info: FW download over, size 418332 bytes
+	[   61.981497] mwifiex_sdio mmc2:0001:1: WLAN FW is active
+	[   62.278898] mwifiex_sdio mmc2:0001:1: CMD_RESP: cmd 0x242 error, result=0x2
+	[   62.278919] mwifiex_sdio mmc2:0001:1: mwifiex_process_cmdresp: cmd 0x242 failed during	initialization
+	[   62.661327] mwifiex_sdio mmc2:0001:1: info: MWIFIEX VERSION: mwifiex 1.0 (14.75.33.p119) 
+	[   62.661349] mwifiex_sdio mmc2:0001:1: driver_version = mwifiex 1.0 (14.75.33.p119) 
+	[   63.886186] mwifiex_sdio mmc2:0001:1: info: trying to associate to bssid CENSORED
+	[   63.898581] mwifiex_sdio mmc2:0001:1: info: associated to bssid CENSORED successfully
+	[   64.011982] mwifiex_sdio mmc2:0001:1: CMD_RESP: cmd 0x23f error, result=0x2
+	[  145.926392] mwifiex_sdio mmc2:0001:1: host_to_card, write iomem	(1) failed: -110
+	[  146.643323] mwifiex_sdio mmc2:0001:1: write CFG reg failed
+	[  147.342918] mwifiex_sdio mmc2:0001:1: host_to_card, write iomem	(2) failed: -16
+	[  148.041929] mwifiex_sdio mmc2:0001:1: write CFG reg failed
+	[  148.727401] mwifiex_sdio mmc2:0001:1: host_to_card, write iomem	(3) failed: -16
+	[  149.418479] mwifiex_sdio mmc2:0001:1: write CFG reg failed
+	[  149.418508] mwifiex_sdio mmc2:0001:1: mwifiex_write_data_async failed: 0xFFFFFFFF
+	[  150.108002] mwifiex_sdio mmc2:0001:1: host_to_card, write iomem	(1) failed: -16
+	[  150.788011] mwifiex_sdio mmc2:0001:1: write CFG reg failed
+	[  151.452231] mwifiex_sdio mmc2:0001:1: host_to_card, write iomem	(2) failed: -16
+	[  152.136966] mwifiex_sdio mmc2:0001:1: write CFG reg failed
+	[  152.836739] mwifiex_sdio mmc2:0001:1: host_to_card, write iomem	(3) failed: -16
+	[  153.545571] mwifiex_sdio mmc2:0001:1: write CFG reg failed
+	[  153.545611] mwifiex_sdio mmc2:0001:1: mwifiex_write_data_async failed: 0xFFFFFFFF
+	[  154.083665] mwifiex_sdio mmc2:0001:1: cmd_wait_q terminated: -110
+	[  154.083707] mwifiex_sdio mmc2:0001:1: failed to get signal information
+	[...]
+
+Last observed scenario is again a failure occuring some time after
+firmware loading succeeds. This also seems to be irrecoverable without
+device reboot.
+
+	[ 2101.209913] mwifiex_sdio mmc2:0001:1: mwifiex_cmd_timeout_func: Timeout cmd id = 0xa4, act = 0x0
+	[ 2101.209941] mwifiex_sdio mmc2:0001:1: num_data_h2c_failure = 0
+	[ 2101.209949] mwifiex_sdio mmc2:0001:1: num_cmd_h2c_failure = 0
+	[ 2101.209957] mwifiex_sdio mmc2:0001:1: is_cmd_timedout = 1
+	[ 2101.209964] mwifiex_sdio mmc2:0001:1: num_tx_timeout = 0
+	[ 2101.209971] mwifiex_sdio mmc2:0001:1: last_cmd_index = 1
+	[ 2101.209978] mwifiex_sdio mmc2:0001:1: last_cmd_id: 16 00 a4 00 75 00 a4 00 7f 00
+	[ 2101.209988] mwifiex_sdio mmc2:0001:1: last_cmd_act: 00 00 00 00 02 00 00 00 00 00
+	[ 2101.209995] mwifiex_sdio mmc2:0001:1: last_cmd_resp_index = 0
+	[ 2101.210003] mwifiex_sdio mmc2:0001:1: last_cmd_resp_id: 16 80 a4 80 75 80 a4 80 7f 80
+	[ 2101.210010] mwifiex_sdio mmc2:0001:1: last_event_index = 4
+	[ 2101.210018] mwifiex_sdio mmc2:0001:1: last_event: 0b 00 0a 00 0b 00 0a 00 1c 00
+	[ 2101.210025] mwifiex_sdio mmc2:0001:1: data_sent=1 cmd_sent=1
+	[ 2101.210033] mwifiex_sdio mmc2:0001:1: ps_mode=1 ps_state=0
+	[ 2101.210089] mwifiex_sdio mmc2:0001:1: failed to get signal information
+	[ 2101.210761] mwifiex_sdio mmc2:0001:1: PREP_CMD: FW is in bad state
+	[ 2101.210786] mwifiex_sdio mmc2:0001:1: failed to get signal information
+	[ 2101.211162] mwifiex_sdio mmc2:0001:1: ===mwifiex driverinfo dump start===
+	[ 2101.211178] mwifiex_sdio mmc2:0001:1: info: MWIFIEX VERSION: mwifiex 1.0 (14.75.33.p119) 
+	[ 2101.211202] mwifiex_sdio mmc2:0001:1: SDIO register dump start
+	[ 2101.211482] mwifiex_sdio mmc2:0001:1: SDIO Func0 (0x0-0x9): 32 02 02 02 03 00 00 02 03 00 
+	[ 2101.211649] mwifiex_sdio mmc2:0001:1: SDIO Func1 (0x0-0x9): 02 3f 03 00 00 00 00 00 92 00 
+	[ 2101.211740] mwifiex_sdio mmc2:0001:1: SDIO Func1: (0x28) 00 (0x30) 08 (0x34) 07 (0x38) 11 (0x3c) 00 
+	[ 2101.211921] mwifiex_sdio mmc2:0001:1: SDIO Func1 (0x60-0x6a): dc fe 5f 81 ca 04 00 79 79 00 30 
+	[ 2101.314135] mwifiex_sdio mmc2:0001:1: SDIO Func1 (0x60-0x6a): dc fe 5f 81 ca 04 00 79 79 00 30 
+	[ 2101.314168] mwifiex_sdio mmc2:0001:1: SDIO register dump end
+	[ 2101.314300] mwifiex_sdio mmc2:0001:1: ===mwifiex driverinfo dump end===
+	[ 2101.314313] mwifiex_sdio mmc2:0001:1: == mwifiex dump information to /sys/class/devcoredump start
+	[ 2101.314586] mwifiex_sdio mmc2:0001:1: == mwifiex dump information to /sys/class/devcoredump end
+	[ 2101.314610] mwifiex_sdio mmc2:0001:1: PREP_CMD: FW is in bad state
+	[ 2101.314638] mwifiex_sdio mmc2:0001:1: PREP_CMD: FW is in bad state
+	[ 2101.317997] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.318029] mwifiex_sdio mmc2:0001:1: deleting the crypto keys
+	[ 2101.318037] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.318044] mwifiex_sdio mmc2:0001:1: deleting the crypto keys
+	[ 2101.318051] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.318057] mwifiex_sdio mmc2:0001:1: deleting the crypto keys
+	[ 2101.318064] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.318071] mwifiex_sdio mmc2:0001:1: deleting the crypto keys
+	[ 2101.318078] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.318084] mwifiex_sdio mmc2:0001:1: deleting the crypto keys
+	[ 2101.318091] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.318098] mwifiex_sdio mmc2:0001:1: deleting the crypto keys
+	[ 2101.321278] mwifiex_sdio mmc2:0001:1: info: shutdown mwifiex...
+	[ 2101.323214] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.323250] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.324427] mwifiex_sdio mmc2:0001:1: PREP_CMD: card is removed
+	[ 2101.419786] mmc2: queuing unknown CIS tuple 0x50 [40 1e fd d1 c0 46 70 47 00 b5 23 48 24 49 01 60 24 48 24 49 01 60 24 49 08 47 1f 48 24 49 01 60] (32 bytes)
+	[ 2101.460850] mmc2: queuing unknown CIS tuple 0x70 [53 f0 21 e3 1e ff 2f e1 10 1f 11 ee 00 00 50 e3 02 2a a0 e3 02 10 c1 01 02 10 81 11 10 1f 01 ee 1e ff 2f e1 01 00 a0 e3 f6 ff ff eb ea ff ff fa 48 00 9f e5 54 10 9f e5 54 20 9f e5 ef ff ff eb] (71 bytes)
+	[ 2101.532495] mmc2: queuing unknown CIS tuple 0xe8 [2f 07 ee 1e ff 2f e1 0e 30 a0 e1 00 00 a0 e3 ea ff ff eb e5 ff ff fa 03 e0 a0 e1 2c 30 9f e5 13 ff 2f e1 00 10 80 e5 1a 9f 00 ee 12 ff 2f e1 04 21 00 80 c0 00 10 80 04 22 00 80 06 0a 46 02 48] (144 bytes)
+	[ 2101.598922] mmc2: queuing unknown CIS tuple 0x9d [29 15 1d 01 00 4d 61 72 76 65 6c 6c 20 42 6c 75 65 74 6f 6f 74 68 20 44 65 76 69 63 65 00 00 ff 20 04 df 02 32 91 21 02 0c 00 22 2a 01 01 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00 00 00 00] (162 bytes)
+	[ 2101.599647] mmc2: tried to HW reset card, got error -2
+	[ 2101.599699] mwifiex_sdio mmc2:0001:1: SDIO HW reset failed: -2
+
+Despite these problems, the wireless is overall usable on the phone,
+once the firmware loading succeeds, even for intensive transfers, until
+one of the other failures occurs, for which no rule seems to exist - it
+can happen soon after starting some transfer or it can work for several
+hours under normal load, although some CMD_RESP errors (as above) are
+printed frequently.
+
+[1] https://lore.kernel.org/all/20231010-pxa1908-lkml-v6-0-b2fe09240cf8@skole.hr/
+[2] https://github.com/CoderCharmander/g361f-kernel
+[3] https://github.com/acorn-marvell/brillo_pxa_kernel
+[4] https://wiki.postmarketos.org/wiki/Marvell_PXA1908
+
+Karel Balej (2):
+  dt-bindings: mwifiex: document use with the SD8777 chipset
+  net: mwifiex: add support for the SD8777 chipset
+
+ .../bindings/net/wireless/marvell-8xxx.txt    |  3 ++-
+ drivers/net/wireless/marvell/mwifiex/Kconfig  |  4 ++--
+ drivers/net/wireless/marvell/mwifiex/sdio.c   | 19 +++++++++++++++++++
+ drivers/net/wireless/marvell/mwifiex/sdio.h   |  1 +
+ include/linux/mmc/sdio_ids.h                  |  1 +
+ 5 files changed, 25 insertions(+), 3 deletions(-)
+
+-- 
+2.42.0
+
 
