@@ -1,84 +1,118 @@
-Return-Path: <devicetree+bounces-12682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BC87DAE10
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 20:53:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 139337DAE12
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 20:56:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D0C4B20CC2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 19:53:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89D4BB20CC2
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 19:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9345010A26;
-	Sun, 29 Oct 2023 19:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC048D527;
+	Sun, 29 Oct 2023 19:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BYRXQ30H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mZMy5FL7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BDB41078D
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 19:53:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46471C433C8;
-	Sun, 29 Oct 2023 19:53:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698609208;
-	bh=lmudrSFAHZUzHPWgKrth9d+IMU9R0eRDc3eGd1MXJC4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=BYRXQ30H7zG0VuXvZAImgIlhy7I8o0cO6u74yfM2MHH0xc7shZ1zPeV2NrW/FjYxm
-	 i4M3G+IwBNXrgeZp3ir7RiYdAXCQ21w9+g2mLWKgb4yZLNGvf15tGfJJ8JL5yaPcEq
-	 qBB0vaSNa3IHDUzD7YZPYbnbbfWpmSVIikUNp0bt+QECZyY+Cvos8qOifeaL0DKm8V
-	 B8G6oz2+1L1rKMk4wfU5chSopqlaNhyqJQrmmQ6EM1kahfNdN2MaPEIqrYWIKZinDD
-	 UXmf+XJb9cuLyPTCuIg838uJhSmMdiQHs5+J8kT0pLfy4AXYne4Dm49zDSNV8mDFwo
-	 9nksLDpGRohlw==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Thomas Gleixner <tglx@linutronix.de>, Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Marc Zyngier
- <maz@kernel.org>, Atish Patra <atishp@atishpatra.org>, Andrew Jones
- <ajones@ventanamicro.com>, Sunil V L <sunilvl@ventanamicro.com>, Saravana
- Kannan <saravanak@google.com>, Anup Patel <anup@brainfault.org>,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 09/14] irqchip/riscv-imsic: Add support for PCI MSI
- irqdomain
-In-Reply-To: <87y1fmzja1.ffs@tglx>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-10-apatel@ventanamicro.com>
- <8734y0rwtw.fsf@all.your.base.are.belong.to.us>
- <CAK9=C2UVgTd-a0671Lab_ZeOPWP3=wHY+pydKHqaR-Yg65YhrA@mail.gmail.com>
- <87jzrbf5cw.fsf@all.your.base.are.belong.to.us> <87y1fmzja1.ffs@tglx>
-Date: Sun, 29 Oct 2023 20:53:25 +0100
-Message-ID: <87bkchfbnu.fsf@all.your.base.are.belong.to.us>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C741D2F9
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 19:56:32 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70C4C1
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 12:56:29 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4083f613272so31648515e9.1
+        for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 12:56:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698609388; x=1699214188; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MBjaEDFH2L20pCiIDxvatCP6Y3N/isgm8vU1EI+Cv9k=;
+        b=mZMy5FL7v4eWKOG7xM+D1+YMg8qx3cN4t9c2DV7n2W0YFN2jyg7KOJp61ZzyZR6OfG
+         XMD15AVBEXELLKSDBYK43x2uZocQOZSswHgFdl2GHPqi0wesU/ZVlzVDYqsg3NEuqrRQ
+         Je9PwRlPwcTiuVZKuu3ZQT+eXEVqcir+AFINJxy/+B5K9ANAqqbtTKYu+BVfU7pFo+SA
+         lPjs8JD79BqU2Myj0exYjuwVxmMocB98uhkW6WdNCj9AAJ91sHcoG2xa2FWf9DE7q1pK
+         6jJhnP4p/BzIlE+iSLPx5G+2jQHZKxVWFxz/WpalKEwnfjesS/Mvg+BaUI0dr4WkHGgE
+         +/Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698609388; x=1699214188;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MBjaEDFH2L20pCiIDxvatCP6Y3N/isgm8vU1EI+Cv9k=;
+        b=rxoyE4HA6+1urwVFc/dNbPAL+STBDKD9L5IqPPTfq6LzxPzFFxMYhwJkws/68nAUNO
+         JMhJHuyRqERJEMqhjmC88FAelYlmba+GUo+undnWxrp096J5IrI0aQLACJc8u1WRc/Wd
+         xjg9Dgrzmmv9GBQNajMpVi+PLjSfvJ1gwpSvz3KvuZNbfuu4ukh9Alac+/piL6TBPwuz
+         Bipb9T7PjRwnHSi40nNH9yiqCgrFySi5UhEM4RR6Mi4hrT/xKT0S5P3klrgiO/P/WErv
+         I+7FPVD75UzlbJMPISi6GnEgRKrcHitIiUzVNfrRASE7Sn9wgbO4DsP7THO2xEDlkdxH
+         GPiA==
+X-Gm-Message-State: AOJu0YxGkZeL6FXFyD/dAcHXbr8GHCv5WidjJ3z+4b8dSdl7YByvVjHB
+	F1hivSURp7x6wlBqXT2fVIOICA==
+X-Google-Smtp-Source: AGHT+IEi1Yyfb3UFTgrRlCELfvUo+XrKxRvz3CPs1ECtt3zmTkP2oaRcalosIGlPQTA3Htg7mSge+Q==
+X-Received: by 2002:a05:600c:4f81:b0:401:23fc:1f92 with SMTP id n1-20020a05600c4f8100b0040123fc1f92mr6929891wmq.25.1698609387737;
+        Sun, 29 Oct 2023 12:56:27 -0700 (PDT)
+Received: from [192.168.1.15] (host-2-99-112-229.as13285.net. [2.99.112.229])
+        by smtp.gmail.com with ESMTPSA id u7-20020a05600c138700b003feea62440bsm7385225wmf.43.2023.10.29.12.56.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Oct 2023 12:56:27 -0700 (PDT)
+Message-ID: <298df163-c4f2-4075-a33f-661276b2e657@linaro.org>
+Date: Sun, 29 Oct 2023 19:56:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] Input: synaptics-rmi4 - f12: use hardcoded values for
+ aftermarket touch ICs
+To: Pavel Machek <pavel@ucw.cz>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Vincent Huang <vincent.huang@tw.synaptics.com>, methanal <baclofen@tuta.io>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20230929-caleb-rmi4-quirks-v1-0-cc3c703f022d@linaro.org>
+ <20230929-caleb-rmi4-quirks-v1-3-cc3c703f022d@linaro.org>
+ <ZTzlChOS0OR95Ykp@localhost>
+Content-Language: en-US
+From: Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <ZTzlChOS0OR95Ykp@localhost>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Thomas Gleixner <tglx@linutronix.de> writes:
 
-> On Wed, Oct 25 2023 at 10:55, Bj=C3=B6rn T=C3=B6pel wrote:
->>> Now for IMSIC-PCI domain, the PCI framework expects the
->>> pci_msi_mask/unmask_irq() functions to be called but if
->>> we directly point pci_msi_mask/unmask_irq() in the IMSIC-PCI
->>> irqchip then IMSIC-BASE (parent domain) irq_mask/umask
->>> won't be called hence the IRQ won't be masked/unmask.
->>> Due to this, we call both pci_msi_mask/unmask_irq() and
->>> irq_chip_mask/unmask_parent() for IMSIC-PCI domain.
+
+On 28/10/2023 11:40, Pavel Machek wrote:
+> Hi!
+> 
+>> Some replacement displays include third-party touch ICs which are
+>> devoid of register descriptors. Create a fake data register descriptor
+>> for such ICs and provide hardcoded default values.
 >>
->> Ok. I wont dig more into it for now! If the interrupt is disabled at
->> PCI, it seems a bit overkill to *also* mask it at the IMSIC level...
->
-> Only _if_ the device provides MSI masking, but that extra mask/unmask is
-> not the end of the world.
+>> It isn't possible to reliably determine if the touch IC is original or
+>> not, so these fallback values are offered as an alternative to the error
+>> path when register descriptors aren't available.
+>>
+>> Signed-off-by: methanal <baclofen@tuta.io>
+> 
+> I guess we should have full/real name here.
 
-Yikes -- so MSI masking is optional. Ick. :-( Thanks for the excellent
-MSI vs MSI-X post in the other thread, BTW. Great stuff!
+I must disagree [1] [2]. These patches have my SoB and are being sent by
+me on behalf of the author, who has no interest in contributing upstream.
+
+[1]:
+https://lore.kernel.org/lkml/c1bf62a2-e381-c796-2219-17a578987a76@marcan.st/T/
+
+[2]:
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=d4563201f33a022fc0353033d9dfeb1606a88330
+> 
+> Best regards,
+> 							Pavel
+> 							
+
+-- 
+// Caleb (they/them)
 
