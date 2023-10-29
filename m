@@ -1,103 +1,96 @@
-Return-Path: <devicetree+bounces-12701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2D47DAED9
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 23:51:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 197007DAEE0
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 23:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D433CB20BDB
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:50:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDAD3281259
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707E512E76;
-	Sun, 29 Oct 2023 22:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5848D2F4;
+	Sun, 29 Oct 2023 22:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="O4z6s+bS"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZlS35BI0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CCE31118B;
-	Sun, 29 Oct 2023 22:50:51 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE82C5;
-	Sun, 29 Oct 2023 15:50:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=mItQr9Lnr2C07koQ7ptJcY2nYrj1Tv7N3viIjaS79mo=; b=O4z6s+bSQrfPzDDmeay9WJaB3d
-	6DyWIwTIhL7JZOJeso/nzNcfcqgwCRchXJOb28e+/nsHaW9AG4w2iw0aYs/b//6B7COSqtYePpmZE
-	ejpmJpVx3mLK0a39nksWbIFKIj6n6mS3qFBR1PKPntGjDw4R8tVaHA3jZWq87tDvjXtE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qxEbw-000T7f-KV; Sun, 29 Oct 2023 23:50:24 +0100
-Date: Sun, 29 Oct 2023 23:50:24 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 11/12] riscv: dts: starfive: visionfive-v1: Enable
- gmac and setup phy
-Message-ID: <e837e707-5b01-4b7b-8362-0dc62883fdba@lunn.ch>
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-12-cristian.ciocaltea@collabora.com>
- <f379a507-c3c1-4872-9e4f-f521b86f44d4@lunn.ch>
- <f05839c0-7a78-4616-bedc-6a876b7f4bb3@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674FF2F2D;
+	Sun, 29 Oct 2023 22:54:00 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310C6BA;
+	Sun, 29 Oct 2023 15:53:59 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.143.101])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 5344666072BB;
+	Sun, 29 Oct 2023 22:53:56 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698620037;
+	bh=vm9aJnhq63RdAaCsogNW1tU6wc1DMvmWq3qynSp9OGA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZlS35BI0RXrQj/Gnyaf64juE825VEBdfX4SYCJizDZFvT5KuXISWLctywXd80qzuC
+	 /WGuacRkxqmWk5ftBuaGxLpx/Yi+7iInpcYkuBmmI1yJVxhwQJutYlMtAEb54C6GTm
+	 NXW+e5p2TQNAHOMyTwCv4742iRyQfKm+GffBe8OlU7tskNnujIke4QYrmA4ohjPNRn
+	 TmjagXC3BYwMItuBM4bNDPZXSDLkLOtlPOxyh3Rf0HyBJasYMbr7fLRVG8fBvg8jJx
+	 u7+aIQaPU2c/5qxCB/Wb1fKKy0XmH/1JNCQ4MqOGDrUiqtvrx8kr2lkc8F1PwWDDa9
+	 iTgFfFHJJ0OUw==
+Message-ID: <233a45e1-15ac-40da-badf-dee2d3d60777@collabora.com>
+Date: Mon, 30 Oct 2023 00:53:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f05839c0-7a78-4616-bedc-6a876b7f4bb3@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 30, 2023 at 12:41:23AM +0200, Cristian Ciocaltea wrote:
-> On 10/29/23 20:45, Andrew Lunn wrote:
-> > On Sun, Oct 29, 2023 at 06:27:11AM +0200, Cristian Ciocaltea wrote:
-> >> The StarFive VisionFive V1 SBC has a Motorcomm YT8521 PHY supporting
-> >> RGMII-ID, but requires manual adjustment of the RX internal delay to
-> >> work properly.
-> >>
-> >> The default RX delay provided by the driver is 1.95 ns, which proves to
-> >> be too high. Applying a 50% reduction seems to mitigate the issue.
-> > 
-> > I'm not so happy this cannot be explained. You are potentially heading
-> > into horrible backwards compatibility problems with old DT blobs and
-> > new kernels once this is explained and fixed.
+On 10/29/23 20:46, Andrew Lunn wrote:
+> On Sun, Oct 29, 2023 at 06:27:12AM +0200, Cristian Ciocaltea wrote:
+>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+>> RGMII-ID.
+>>
+>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
+>> yes, add the mdio & phy sub-nodes.
 > 
-> It seems the visionfive-v2 board also required setting some delays, but
-> unfortunately no details were provided:
-> 
-> 0104340a67b1 ("riscv: dts: starfive: visionfive 2: Add configuration of
-> mac and phy")
+> Please could you try to get this tested. It might shed some light on
+> what is going on here, since it is a different PHY.
 
-That board also uses a YT8531 PHY. Its possible this is somehow to do
-with the PHY. Which is why testing with the Microchip PHY is
-important. That should answer the question is it a SoC or a PHY
-problem.
+Actually, this is the main reason I added the patch. I don't have access
+to this board, so it would be great if we could get some help with testing.
 
-	Andrew
+Thanks,
+Cristian
 
