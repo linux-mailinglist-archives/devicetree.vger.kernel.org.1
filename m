@@ -1,130 +1,120 @@
-Return-Path: <devicetree+bounces-12665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C6B7DACE1
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 15:53:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE077DACF8
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 16:09:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D770428148C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 14:53:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 677331C2090A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 15:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9988C7F9;
-	Sun, 29 Oct 2023 14:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A29A49;
+	Sun, 29 Oct 2023 15:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0T5Ukdi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GR6bmFPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720CD389
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 14:53:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37787C433C8;
-	Sun, 29 Oct 2023 14:53:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698591225;
-	bh=B77paaWavuJBoV76+uT6kv3JeTujUuxIv7T2SkTKO1k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o0T5Ukdin8LJMZ70k7O9IyjSUqDJHhzJ5pTPTYGcwJk0p6dDRLeMRfxtRwkxYWJ0k
-	 XtC6NZ4s3vGwbBc1FuTCr80pfBRYZcOgtPpZWSN6AQWJSxQoNrdKvGWbHFvKkOygfH
-	 xs3eL+qwd99/qB5b/KaSHUT4tZsk1ZgTQiGsOxCdEEWX0fjM36TT2zswTyvBI6FrgG
-	 zbjZ2tjs4kF7hUoql8akr2d949b8YbpTODf7aN1X6CiWiukBUmg8bWg/9RkE2PmkBG
-	 YZyN0K1P7EMe3k0Kjr3yH4rBCP6U9OqTgZmHcfam24M2/3AMPDoz3aAHJSEr2iAU4q
-	 v3sTeAvOngTuQ==
-Date: Sun, 29 Oct 2023 14:53:41 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, apatel@ventanamicro.com,
-	palmer@dabbelt.com, devicetree@vger.kernel.org,
-	ajones@ventanamicro.com, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH] dt-bindings: riscv: Document cbop-block-size
-Message-ID: <20231029-kitten-provider-1602fa805c35@spud>
-References: <20231029123500.739409-1-dbarboza@ventanamicro.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26BD7F9
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 15:09:10 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06EE1AD;
+	Sun, 29 Oct 2023 08:09:09 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9d34b2b51a5so52213466b.2;
+        Sun, 29 Oct 2023 08:09:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698592147; x=1699196947; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JDVvws0xcol9Z8gLUvHiqok3duMmv3cfjwte/9TgRL8=;
+        b=GR6bmFPhJxo9bzgOxo9Nlp5nEAeWOcxwqGCmDl41WUAl67T5EpSLSu8b5OWjj3Ejc5
+         cunC/CRFuuZV7VMC01iOYGwpzmPCIgcWpw2FbqTWRwGtvFVtLbj57M7NDeWto7xL/OXX
+         dZzhQ/54kMK74tb+AkXhL5iQ+eDE/twvexrK/C0RCD63rNg+U1HdMB6nfJbENjs4yBVV
+         zx9x4E8VJ23iTh7XVTV8yHDaVzopmAkpfl7w5T7qGeW3+IL8EUBdvNlP06HIGO1F0ISm
+         rTEilrNlpjWID2Qn/yRgduQf+uekDNpEqfroRZCP3ObKjiiGNdbhyNlTkPZnurRaYPnS
+         YX+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698592147; x=1699196947;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JDVvws0xcol9Z8gLUvHiqok3duMmv3cfjwte/9TgRL8=;
+        b=fC0DQlCvvGZ/cxi8TJfqMR2cUMH+mQybGdVlomHP5OHSNOKCYC01KnwrVhpc6VCbUV
+         z87pgW4fFQIb0yX/LMNKCitKB5YTiN+DnNq1Icrr7VeOVAkmjZ36noesJ/RwnApDUr0L
+         F+y4m1yF9RpsOIWECJJtKEX4r6FOtItE2WQ7rGKR2uOX7cX2xu6CorsOutEm532KHV+I
+         QOoOt/Ul3teL/3XNvQL00c1uovwn1z6IMVnURijRLOG9RxxqeUClZSGaOpxUveGWDQJA
+         oKvSiX1PL0JIezannc2BthZ3nmTBE06zgGULphxdGG4y/9idWpiwyFmVCvI2dPxrLVBV
+         2vSA==
+X-Gm-Message-State: AOJu0Yz1zSsbqZJ629x1o0kxNZhg0/j1ZNKzkAZ3nwLjgwuORONijUWf
+	JWvoiMO2queX07mXq4WJBJ4=
+X-Google-Smtp-Source: AGHT+IE+TbbZnZkg8aYetZpu32U/3BElYo/MIJd7ZMusXP8zXHlZckohHAOeTlnBDVtu1+IOcInWaA==
+X-Received: by 2002:a17:906:f74a:b0:9d2:7f29:2baf with SMTP id jp10-20020a170906f74a00b009d27f292bafmr1902079ejb.75.1698592147069;
+        Sun, 29 Oct 2023 08:09:07 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:8109:8c00:3664:9abe:5e88:5792:87a5])
+        by smtp.gmail.com with ESMTPSA id lc9-20020a170906dfe900b009ad81554c1bsm4391076ejc.55.2023.10.29.08.09.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Oct 2023 08:09:06 -0700 (PDT)
+From: Nik Bune <n2h9z4@gmail.com>
+To: krzysztof.kozlowski+dt@linaro.org
+Cc: robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	afd@ti.com,
+	linux-kernel@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	linux@roeck-us.net,
+	n2h9z4@gmail.com,
+	skhan@linuxfoundation.org,
+	wim@linux-watchdog.org
+Subject: Re: [PATCH v3] dt-bindings: watchdog: davinci-wdt: convert txt to yaml
+Date: Sun, 29 Oct 2023 16:09:05 +0100
+Message-Id: <20231029150905.108531-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <147aebc9-8d76-49d4-a80f-eb6894868688@linaro.org>
+References: <147aebc9-8d76-49d4-a80f-eb6894868688@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tyFSOvf0FmUbRd4a"
-Content-Disposition: inline
-In-Reply-To: <20231029123500.739409-1-dbarboza@ventanamicro.com>
+Content-Transfer-Encoding: 8bit
 
+Hello! 
 
---tyFSOvf0FmUbRd4a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>On Sun, 29 Oct 2023 at 08:31, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>On 28/10/2023 19:51, Nik Bune wrote:
+>>>> +  power-domains:
+>>>> +    description:
+>>>> +      A phandle and PM domain specifier as defined by bindings of
+>>>> +      the power controller specified by phandle.
+>>>> +      See Documentation/devicetree/bindings/power/power-domain.yaml for details.
+>>>
+>>> I think you missed Rob's comment in reply to Andrew, about constraining
+>>> and ordering the power-domains:
+>>> https://lore.kernel.org/all/20231026203037.GA327324-robh@kernel.org/
+>>>
+>>> Cheers,
+>>> Conor.
+>>
+>> I didn't get what should be done with respect to the comment above:
+>> Should we wait for the response from Andrew,
+>> or should we skip and remove the the power-domains definition for this binding,
+>> or add "maxItems: 1" to power-domains definition?
+>
+>None of the options above allow to send the same code without maxItems.
+>Sending new version without addressing feedback is basically ignoring
+>the feedback and next time you will have annoyed reviewers...
+>
+>Best regards,
+>Krzysztof
+>
 
-Yo,
+I didn't ignore. v3 patch was sent 37 minutes before the Rob's comment to v2. 
 
-On Sun, Oct 29, 2023 at 09:35:00AM -0300, Daniel Henrique Barboza wrote:
-> Following the examples of cbom-block-size and cboz-block-size,
-> cbop-block-size is the cache size of Zicbop (cbo.prefetch) operations.
-> The most common case is to have all cache block sizes to be the same
-> size (e.g. profiles such as rva22u64 mandates a 64 bytes size for all
-> cache operations), but there's no specification requirement for that,
-> and an implementation can have different cache sizes for each operation.
->=20
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
-
-Firstly, odd CC list. Please CC the output of get_maintainer.pl in the
-future.
-
-IIRC, I mentioned defining this to Drew when he was add zicboz, but he
-didn't want to add it - although he seems to have asked you to document
-this. Drew, change of heart or am I not remembering correctly?
-I think he cited some interpretation of the spec from Andrei W that
-implied the Zicbop size would be the same as one of the other ones, but
-I cannot find that on lore atm.
-
-If Drew's okay with it, then I am too, so a conditional
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Document=
-ation/devicetree/bindings/riscv/cpus.yaml
-> index 97e8441eda1c..1660b296f7de 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -78,6 +78,11 @@ properties:
->      description:
->        The blocksize in bytes for the Zicbom cache operations.
-> =20
-> +  riscv,cbop-block-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The blocksize in bytes for the Zicbop cache operations.
-> +
->    riscv,cboz-block-size:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
-> --=20
-> 2.41.0
->=20
->=20
-
---tyFSOvf0FmUbRd4a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZT5x9QAKCRB4tDGHoIJi
-0rHgAP9mMGabZ8oZuilD5QVEH/IQImiR4kJXJX509fCK4Q1LMAD/UKI0W9asmhs1
-7+asQ3dMCGcWYy4rEQgKHcIWBXGInw4=
-=j177
------END PGP SIGNATURE-----
-
---tyFSOvf0FmUbRd4a--
+Kind regards, Nik.
 
