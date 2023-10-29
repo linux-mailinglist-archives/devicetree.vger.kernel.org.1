@@ -1,207 +1,95 @@
-Return-Path: <devicetree+bounces-12669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77EBE7DAD08
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 16:52:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0F57DAD39
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 17:35:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B827B20CA2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 15:52:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BF4A281439
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 16:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CB18F7A;
-	Sun, 29 Oct 2023 15:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C268F388;
+	Sun, 29 Oct 2023 16:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lrcVkejk"
+	dkim=pass (1024-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b="lOAoZZbz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22759CA7C
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 15:52:03 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5CEC9;
-	Sun, 29 Oct 2023 08:52:00 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5079f3f3d7aso5582038e87.1;
-        Sun, 29 Oct 2023 08:52:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698594719; x=1699199519; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TfpAEh8BoIp/HuFoXptqqOXSYXjYC1kr/tBCE1qtZIw=;
-        b=lrcVkejkc5mQgWaGlEkaoaR9h+yJBKkmiCsXsxBSAX6ikvifWXWrphy6p+WYkNB4u1
-         mejedjw4JJGqW5CyPasbZ9k7CTM1bjekB51JDkvCrX3OvvAzd1ng7RrfHRM8NCPwz/fZ
-         /nqwNV/yRVo1gh+7ZLtw3/UQOBaYXDw4GHN1kuVjbT9ckdU88HRGs0xq1ihF3G1jqB1Y
-         XvJtDE6YtEsOG3JNq4zxp7UzeatiYhOU4SFktQtEJ8fCUQo9ePRCG9rd6qdJ16bW75l0
-         Kc60/OsX7ly/Vxn4NhHwsl7BHSInRbXo9Kr3V0BBFRbC8/by0EDa0Fu5cPP90OiKtljo
-         L1Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698594719; x=1699199519;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TfpAEh8BoIp/HuFoXptqqOXSYXjYC1kr/tBCE1qtZIw=;
-        b=JFouJsPo/fl3dJoHaDJIwSQVfYNVO/ubOPEb0+OnZw3e/yBbdUuPa35NxIbnEPWrkC
-         XYeFXpyq6vyVKi7JOmxSMOYUQQiy2M0UhpFTkIH+7iw2Evt7ey3PEzEutWzwhY6LtQoR
-         rfhGoanxtW+mFXyZ2T9Yo3M2wuA/JbAAlkrH41RDS6ya7fqaKuwwzEvRi3iRmRraovc7
-         tTJuBujARPyLBAnxSBgvpKcPs0DKuB6jIqY0IpuZP67GYxvGoFu2E71yrfoSfZsOtU8Z
-         48Mc1pO5qfepEu/jeBS/c6CSt0pcnW7RY3R0d7G16VI+EcbG6seVHfyH6JKHbwhPZyqB
-         Ylvg==
-X-Gm-Message-State: AOJu0YylIovMVNHUrqTppnsOOqNdWYZYv4D+n4QcoX4hYtlI8afPKtZ9
-	97j7Oe8P2T4A3pYdRx68Ios=
-X-Google-Smtp-Source: AGHT+IGJTu0y3jbNKHU9AgMSMVu7/hp1EMXzTMU9K5gSj4WdVkEjL7XtEs9ua6/b3CagTCDri4Sjbg==
-X-Received: by 2002:a05:6512:2248:b0:4fe:7e7f:1328 with SMTP id i8-20020a056512224800b004fe7e7f1328mr7532556lfu.16.1698594718700;
-        Sun, 29 Oct 2023 08:51:58 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
-        by smtp.gmail.com with ESMTPSA id k5-20020ac24f05000000b005091314185asm584392lfr.285.2023.10.29.08.51.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Oct 2023 08:51:58 -0700 (PDT)
-Message-ID: <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
-Date: Sun, 29 Oct 2023 17:51:57 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F772CA8
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 16:35:00 +0000 (UTC)
+X-Greylist: delayed 365 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 Oct 2023 09:34:58 PDT
+Received: from www.linux-watchdog.org (www.linux-watchdog.org [185.87.125.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id F1DDFBA
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 09:34:58 -0700 (PDT)
+Received: by www.linux-watchdog.org (Postfix, from userid 500)
+	id 985B040A00; Sun, 29 Oct 2023 17:22:26 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org 985B040A00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
+	s=odk20180602; t=1698596546;
+	bh=G9lxUza6HED6hs2c1ujMx3YvUQ0ITbFmi3BmpQHbHu8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lOAoZZbz3K8+3kguQ7NLT/uhtfutqdTrbW24gSAhMr/Y7Ij84KouKWW/3z1y9Urwy
+	 +G5Qit20g6v9wKNRezksnesMKHDL436j3UHRcYqTI4vTB9wh9hkIJLQfL3vep2Z2Bz
+	 KQZC7mb2uFFs7ro27IwSABRX8x2nDUV3UifxPbHQ=
+Date: Sun, 29 Oct 2023 17:22:26 +0100
+From: Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Nik Bune <n2h9z4@gmail.com>, conor+dt@kernel.org,
+	wim@linux-watchdog.org, krzysztof.kozlowski+dt@linaro.org,
+	skhan@linuxfoundation.org, devicetree@vger.kernel.org,
+	linux@roeck-us.net, nicolas.ferre@microchip.com,
+	claudiu.beznea@microchip.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+	alexandre.belloni@bootlin.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: watchdog: atmel,at91rm9200-wdt: convert
+ txt to yaml
+Message-ID: <20231029162226.GC5887@www.linux-watchdog.org>
+References: <20230924181959.64264-1-n2h9z4@gmail.com>
+ <169826359217.1053485.16654434281057363682.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
-Content-Language: en-US, en-GB
-To: Jonathan Cameron <jic23@kernel.org>,
- Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
- <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
- <20231028162025.4259f1cc@jic23-huawei>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20231028162025.4259f1cc@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <169826359217.1053485.16654434281057363682.robh@kernel.org>
+User-Agent: Mutt/1.5.20 (2009-12-10)
 
-On 10/28/23 18:20, Jonathan Cameron wrote:
-> On Fri, 27 Oct 2023 18:15:45 +1030
-> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
-> 
->> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor with als
->> and clear channels with i2c interface. Hardware interrupt configuration is
->> optional. It is a low power device with 20 bit resolution and has
->> configurable adaptive interrupt mode and interrupt persistence mode.
->> The device also features inbuilt hardware gain, multiple integration time
->> selection options and sampling frequency selection options.
-> 
-> Hi Subhajit,
-> 
-> 
->>
-> Change log below the ---
-> 
-> We don't generally want to end up with this information in the git log
-> and anything above the --- is used for the commit message.
-> 
-> Note that if you want to keep notes in your local git it is fine adding
-> 
-> Signed-of-by...
-> 
-> ---
-> 
-> Version notes
-> etc
-> 
-> 
-> As then git am will drop them anyway when your patches are picked up.
-> 
-> 
->> v1 -> v2
->> - Renamed probe_new to probe
->> - Removed module id table
->>
->> v0 -> v1
->> - Fixed errors as per previous review
->> - Longer commit messages and descriptions
->> - Updated scale calculations as per iio gts scheme to export proper scale
->>    values and tables to userspace
->> - Removed processed attribute for the same channel for which raw is
->>    provided, instead, exporting proper scale and scale table to userspace so
->>    that userspace can do "(raw + offset) * scale" and derive Lux values
->> - Fixed IIO attribute range syntax
->> - Keeping the regmap lock enabled as the driver uses unlocked regfield
->>    accesses from interrupt handler
->> - Several levels of cleanups by placing guard mutexes in proper places and
->>    returning immediately in case of an error
->> - Using iio_device_claim_direct_mode() during raw reads so that
->>    configurations could not be changed during an adc conversion period
->> - In case of a powerdown error, returning immediately
->> - Removing the definition of direction of the hardware interrupt and
->>    leaving it on to device tree
->> - Adding the powerdown callback after doing device initialization
->> - Removed the regcache_cache_only() implementation
->>
->> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> 
-
-...
+Hi Rob,
 
 > 
->> +static int apds9306_scale_set(struct apds9306_data *data, int val, int val2)
->> +{
->> +	int i, ret, time_sel, gain_sel;
->> +
->> +	/* Rounding up the last digit by one, otherwise matching table fails! */
+> On Sun, 24 Sep 2023 20:19:59 +0200, Nik Bune wrote:
+> > Convert txt file to yaml.
+> > 
+> > Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> > 
+> > Changes in v3:
+> > - Removed trailing whitespace in an element of the maintainers list.
+> > 
+> > v2 patch: https://lore.kernel.org/linux-devicetree/20230924172004.59208-1-n2h9z4@gmail.com/
+> > 
+> >  .../watchdog/atmel,at91rm9200-wdt.yaml        | 33 +++++++++++++++++++
+> >  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 -----
+> >  2 files changed, 33 insertions(+), 9 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+> > 
 > 
-> Interesting.  Sounds like a question for Matti?
+> It seems watchdog bindings aren't getting applied, so I've applied it. 
+> Wim, please take watchdog bindings in the future unless noted otherwise.
 
-Sounds odd indeed. I assume this happens when scale setting is requested 
-using one of the exact values advertised by the available scales from 
-the GTS? This does not feel right and the +1 does not ring a bell to me. 
-I need to investigate what's going on. It would help if you could 
-provide the values used as val and val2 for the setting.
+I was going to add them now, but since you allready applied them, I will leave them out this time.
 
-This will take a while from me though - I'll try to get to this next 
-week. Thanks for pointing out the anomaly!
-
-> 
->> +	if (val2 % 10)
->> +		val2 += 1;
->> +
->> +	ret = iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
->> +				     data->intg_time_idx, val, val2, &gain_sel);
->> +	if (ret) {
->> +		for (i = 0; i < data->gts.num_itime; i++) {
->> +			time_sel = data->gts.itime_table[i].sel;
->> +
->> +			if (time_sel == data->intg_time_idx)
->> +				continue;
->> +
->> +			ret = iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
->> +						time_sel, val, val2, &gain_sel);
->> +			if (!ret)
->> +				break;
->> +		}
->> +		if (ret)
->> +			return -EINVAL;
->> +
->> +		ret = apds9306_intg_time_set_hw(data, time_sel);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return apds9306_gain_set_hw(data, gain_sel);
->> +}
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+Kind regards,
+Wim.
 
 
