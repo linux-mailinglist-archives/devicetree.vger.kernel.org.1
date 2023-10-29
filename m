@@ -1,167 +1,146 @@
-Return-Path: <devicetree+bounces-12671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BDFF7DAD4D
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 17:52:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C577DAD88
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 18:48:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4E55B20C58
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 16:52:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 385E8281415
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 17:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4341CA72;
-	Sun, 29 Oct 2023 16:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2432FC18;
+	Sun, 29 Oct 2023 17:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ICBNXs3M"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="g5B4FF08"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E76823DB
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 16:52:35 +0000 (UTC)
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BE0BD
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 09:52:33 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5a7d9d357faso32497577b3.0
-        for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 09:52:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698598352; x=1699203152; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Aoy1l/OIWuZyO9Z9oXh2HgTPM0zwmwHlZqeVfBp4F14=;
-        b=ICBNXs3MjBrR8S36oUFwyhFsLrCqp00IgwPLWE3/kru9CoNJTunde/9OBVqk+F3UxX
-         tMs8C/QjUvYkZQvSNsP9LvedVHj3WAHWkhmrJnFUssoD2ClcZnc5ILu91ujmUqtg3vfW
-         EF7LFpoXbqBVNwrGLKrbc8UBxeG4nimKEbmnm/uxGpIHit1f2ubmesgaMfCKv7DpqSeF
-         bM2C8aRRnJwcndWhijIScZRRnoAP92tiwyvbr4Q2Tuvpa1WRUAsOjqEQDKyCQuilVOsP
-         rh1DdbHE/K6WKhyoSaJGUJoWv7weHYEaTODie+hB0Jb+ENzahKMzeLfs+bxw6VeoO0OV
-         ZBDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698598352; x=1699203152;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Aoy1l/OIWuZyO9Z9oXh2HgTPM0zwmwHlZqeVfBp4F14=;
-        b=Fr3TofWojH6mUHHBy/K6qTbHO9z88OVpyU00fazA0cj0+DdBQV/RMdd7JuxHHFKYpJ
-         cEI/N71iZV40YP5oZfbhjBCK5CRwYVSsUvpfkT3qB1FqiZf5Nnb4dv2moFVKWUh0DTkK
-         iv8xSR+E9L6NmVzrAGKD+bpnJt0u2zGpTQXVyksTWsfkA0lkPCWE1APbZLMrQYfGO0R7
-         K9DyVLj5eqK7ZgPTMjoNeGim2KWNoWFfNI9v1hZhuzgdQqSdt2qYqCuKeYnDnPUhA1FX
-         +4rL31Gg1NAkXGVGM9KIadKvOa8r1OJAj7gJoN9dYb4Ag46GgRWtoD1KtP+MIKQI0pUX
-         JkVQ==
-X-Gm-Message-State: AOJu0YwIo3tIrr2ljI9uUvxwrmpSCjkGH8EWthJUH2155shBja9oIj76
-	t/iDoVdUFn2GG1YFL3PC9AOSZSjI2Ymizbfwf2E5mQ==
-X-Google-Smtp-Source: AGHT+IFXSrP5aeoWhs3Y4D0eNG10IP70i3n/QShH9gKSv775NDiMg4SU6zfUoxyYEuuq+a+adTKElsBDmpSGQ+aBEhI=
-X-Received: by 2002:a81:e50c:0:b0:5ad:a3f9:1b10 with SMTP id
- s12-20020a81e50c000000b005ada3f91b10mr6688733ywl.10.1698598352517; Sun, 29
- Oct 2023 09:52:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6435A814
+	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 17:48:43 +0000 (UTC)
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 932F1D6;
+	Sun, 29 Oct 2023 10:48:41 -0700 (PDT)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39TDN70f028070;
+	Sun, 29 Oct 2023 10:48:22 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=pfpt0220; bh=OP3kArmtoHp5EYUi2p8ZdBSr7Ca6MjehGwqB3ZEv7/c=;
+ b=g5B4FF08QSEoffQPj+1xJLoND9uaOxU+Lla37hn/ZUDUb0LLfkYObCyZkf/0yKCyHdyZ
+ WBZy2aWXOXIoN7JtEhb8hIW8isxuY/fmapSkAHLp+8d1zGjpZ8b9VlJjXJ9VPFeFVC6M
+ anJ2r19rZ8p8Mz2udmBkuRTMaUWajmMLJnG+x+WzTbtQdpDgryWteY8h7iTPeBIeSffJ
+ FccZgyoZ8rpIvWozcxdw+Sver3qtxqHUIy0rXKK2MG+RHW+/E7Q7Xkwsh+7ddjZg5TfX
+ Rf7KxVoZXj+9b6Jj6MYZerPJmmlleNu/4OTN93syUOKP53PyY+nY+k30bWC98GU76fQj Fw== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3u11tp3aq0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Sun, 29 Oct 2023 10:48:22 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sun, 29 Oct
+ 2023 10:48:20 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
+ Transport; Sun, 29 Oct 2023 10:48:20 -0700
+Received: from dc3lp-swdev041.marvell.com (dc3lp-swdev041.marvell.com [10.6.60.191])
+	by maili.marvell.com (Postfix) with ESMTP id E56A33F70CE;
+	Sun, 29 Oct 2023 10:48:16 -0700 (PDT)
+From: Elad Nachman <enachman@marvell.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <andrew@lunn.ch>, <gregory.clement@bootlin.com>,
+        <sebastian.hesselbarth@gmail.com>, <pali@kernel.org>,
+        <mrkiko.rs@gmail.com>, <chris.packham@alliedtelesis.co.nz>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC: <enachman@marvell.com>, <cyuval@marvell.com>
+Subject: [PATCH v4 0/3] arm64: dts: cn913x: add COM Express boards
+Date: Sun, 29 Oct 2023 19:48:11 +0200
+Message-ID: <20231029174814.559583-1-enachman@marvell.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
- <20231025103957.3776-7-keith.zhao@starfivetech.com> <70805ff2-56a8-45e1-a31c-ffb0e84749e5@linaro.org>
- <3twc4zoohon7uujypgjtlnryfmebx4osvpykagnwr5nemmqz2w@w4vw55uswebh>
- <CAA8EJppxQ7J8DEDFsWzPL8bDpNW-KY0nhUA++zDBRpMCpP-bkA@mail.gmail.com> <344veqjvvwlo7vls2kdlgjggf77of2ijxwc2hmk7tarm75ugcs@bmozk23uqxqr>
-In-Reply-To: <344veqjvvwlo7vls2kdlgjggf77of2ijxwc2hmk7tarm75ugcs@bmozk23uqxqr>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 29 Oct 2023 18:52:24 +0200
-Message-ID: <CAA8EJpomaDoJVkq+_NhcxqOs6X-dFd=Vo9Wtqnp8egNaWzDH2Q@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] drm/vs: Add hdmi driver
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Keith Zhao <keith.zhao@starfivetech.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-media@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Jagan Teki <jagan@edgeble.ai>, Rob Herring <robh+dt@kernel.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Changhuang Liang <changhuang.liang@starfivetech.com>, 
-	Jack Zhu <jack.zhu@starfivetech.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: eZguKLyAA5cOItN7CdpTm3qnZExYVfj2
+X-Proofpoint-ORIG-GUID: eZguKLyAA5cOItN7CdpTm3qnZExYVfj2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-29_06,2023-10-27_01,2023-05-22_02
 
-On Thu, 26 Oct 2023 at 14:53, Maxime Ripard <mripard@kernel.org> wrote:
->
-> On Thu, Oct 26, 2023 at 11:57:22AM +0300, Dmitry Baryshkov wrote:
-> > On Thu, 26 Oct 2023 at 11:07, Maxime Ripard <mripard@kernel.org> wrote:
-> > >
-> > > On Thu, Oct 26, 2023 at 01:23:53AM +0300, Dmitry Baryshkov wrote:
-> > > > > +static int starfive_hdmi_register(struct drm_device *drm, struct starfive_hdmi *hdmi)
-> > > > > +{
-> > > > > +   struct drm_encoder *encoder = &hdmi->encoder;
-> > > > > +   struct device *dev = hdmi->dev;
-> > > > > +
-> > > > > +   encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
-> > > > > +
-> > > > > +   /*
-> > > > > +    * If we failed to find the CRTC(s) which this encoder is
-> > > > > +    * supposed to be connected to, it's because the CRTC has
-> > > > > +    * not been registered yet.  Defer probing, and hope that
-> > > > > +    * the required CRTC is added later.
-> > > > > +    */
-> > > > > +   if (encoder->possible_crtcs == 0)
-> > > > > +           return -EPROBE_DEFER;
-> > > > > +
-> > > > > +   drm_encoder_helper_add(encoder, &starfive_hdmi_encoder_helper_funcs);
-> > > > > +
-> > > > > +   hdmi->connector.polled = DRM_CONNECTOR_POLL_HPD;
-> > > > > +
-> > > > > +   drm_connector_helper_add(&hdmi->connector,
-> > > > > +                            &starfive_hdmi_connector_helper_funcs);
-> > > > > +   drmm_connector_init(drm, &hdmi->connector,
-> > > > > +                       &starfive_hdmi_connector_funcs,
-> > > > > +                       DRM_MODE_CONNECTOR_HDMIA,
-> > > >
-> > > > On an embedded device one can not be so sure. There can be MHL or HDMI
-> > > > Alternative Mode. Usually we use drm_bridge here and drm_bridge_connector.
-> > >
-> > > On an HDMI driver, it's far from being a requirement, especially given
-> > > the limitations bridges have.
-> >
-> > It's a blessing that things like MHL / HDMI-in-USB-C / HDMI-to-MyDP
-> > are not widely used in the wild and are mostly non-existing except
-> > several phones that preate wide DP usage.
->
-> And those can be supported without relying on bridges.
+From: Elad Nachman <enachman@marvell.com>
 
-Yes, they likely can, in the way that nouveau handles I2C TV encoders.
-But I don't think this can scale. We can have different devices
-attached to the DSI, LVDS, HDMI and even DP image sources. I don't see
-a scalable solution for either of them. E.g. by switching drm/msm to
-use panel bridges for DSI panels we were able to significantly unify
-and simplify code paths.
+Add support for CN9130 and CN9131 COM Express Type 7 CPU
+module boards by Marvell.
+Define these COM Express CPU modules as dtsi, and
+provide a dtsi file for a carrier board (Marvell AC5X RD
+COM Express type 7 carrier board).
+This Carrier board only utilizes the PCIe link, hence no
+special device / driver support is provided by this dtsi file.
+Finally, add dts file for the combined carrier and CPU module.
 
-> > Using drm_connector directly prevents one from handling possible
-> > modifications on the board level. For example, with the DRM connector
-> > in place, handling a separate HPD GPIO will result in code duplication
-> > from the hdmi-connector driver. Handling any other variations in the
-> > board design (which are pretty common in the embedded world) will also
-> > require changing the driver itself. drm_bridge / drm_bridge_connector
-> > save us from those issues.
->
-> And we have other solutions there too. Like, EDIDs are pretty much in
-> the same spot with a lot of device variations, but it also works without
-> a common driver. I'd really wish we were having less bridges and more
-> helpers, but here we are.
->
-> > BTW: what are the limitations of the drm_bridge wrt. HDMI output? I'm
-> > asking because we heavily depend on the bridge infrastructure for HDMI
-> > output. Maybe we are missing something there, which went unnoticed to
-> > me and my colleagues.
->
-> A bridge cannot extend the connector state or use properties, for
-> example. It works for basic stuff but falls apart as soon as you're
-> trying to do something slightly advanced.
+v4:
+   1) reorder patches - dt bindings before dts/dtsi files
 
-Ack. I agree, we didn't have a necessity to implement properties up to
-now. But that sounds like an interesting topic for DSI-to-HDMI bridges
-and HDCP support. I'll need to check if any of the RB3/RB5/Dragonboard
-bridges are programmed with the HDCP keys.
---
-With best wishes
-Dmitry
+   2) correct description in dt bindings
+
+   3) separate dt bindings for CPU module, carrier and combination
+
+   4) make carrier board dts into dtsi, make dts for combination of
+      carrier and CPU module
+
+   5) correct compatibility strings and file names to use dashes
+      instead of underscores
+
+v3:
+   1) Remove acronym which creates warnings for checkpatch.pl
+
+   2) Correct compatibility string for ac5x rd board
+
+   3) Add above compatibility string to dt bindings
+
+   4) update MAINTAINERS file with ac5 series dts files
+
+   5) remove memory property from carrier dts
+
+   6) add comment explaining that OOB RGMII ethernet port
+      connector and PHY are both on CPU module
+
+v2:
+   1) add compatibility string for the board
+
+   2) remove unneeded hard-coded PHY LED blinking mode initialization
+
+   3) Split the CPU portion of the carrier board to
+      dtsi files, and define a dts file for the AC5X RD
+      carrier board.
+
+Elad Nachman (3):
+  MAINTAINERS: add ac5 to list of maintained Marvell dts files
+  dt-bindings: arm64: dts: add dt-bindings for Marvell COM Express
+    boards
+  arm64: dts: cn913x: add device trees for COM Express boards
+
+ .../bindings/arm/marvell/armada-7k-8k.yaml    |  15 +++
+ .../bindings/arm/marvell/marvell,ac5.yaml     |  14 +++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../marvell/ac5x-rd-carrier-with-cn9131.dts   |  19 +++
+ .../boot/dts/marvell/ac5x-rd-carrier.dtsi     |  18 +++
+ .../dts/marvell/cn9130-db-comexpress.dtsi     | 101 ++++++++++++++++
+ .../dts/marvell/cn9131-db-comexpress.dtsi     | 113 ++++++++++++++++++
+ 8 files changed, 282 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/ac5x-rd-carrier-with-cn9131.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
+
+-- 
+2.25.1
+
 
