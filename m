@@ -1,188 +1,139 @@
-Return-Path: <devicetree+bounces-12694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AFF7DAE90
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 174857DAEA9
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F6F51C2094F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:27:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B85C1C208DF
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822E112E4B;
-	Sun, 29 Oct 2023 21:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B789D12E4D;
+	Sun, 29 Oct 2023 21:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sholland.org header.i=@sholland.org header.b="ZgqMwS2D";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="tJmCwC8a"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KerkcdZs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE33712E53
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 21:27:52 +0000 (UTC)
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A992E97;
-	Sun, 29 Oct 2023 14:27:51 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailout.nyi.internal (Postfix) with ESMTP id 221405C00F5;
-	Sun, 29 Oct 2023 17:27:51 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Sun, 29 Oct 2023 17:27:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-	cc:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm1; t=1698614871; x=
-	1698701271; bh=pqggGLCwnACae2UnEHHjv/s1fXcJLCQyy4ZCbqoi31o=; b=Z
-	gqMwS2D+kJ4kswoDW9i2nb/5RDjHHQQg/nlgEd+ZmGnvnSfPEq3ES4y4nD1TbFC2
-	fk/CoxFMftMxtamvIarT2HF1MXgW2vRqFrkprnSsXkfpUB5hm2VBwEhY5oMts6fk
-	4zLhwSAIAsZCLlJNMVHuBmSc1hle3Oon+3m2xjMeSYL3v3kj56ANZ2ZbGuv1w5oA
-	Ma0vPwUHAfPAiTtRqH0NqrkdtWmA47gFZwirZpl4MZPV7ROWZyno/PLVAfnD4Lsm
-	wxROGu+uMI873u4cbReIwIa5PKA2DCXYZ0krA8IsdoIZ8JetvnOv89oHeX/UcLJ0
-	WIofRgq9xo3JZFoy9NnFg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1698614871; x=
-	1698701271; bh=pqggGLCwnACae2UnEHHjv/s1fXcJLCQyy4ZCbqoi31o=; b=t
-	JmCwC8aYLZGOFM9dYO+XRT+YMxeyVgPh1nmN2/K5bCGlXN/NFlsIJcq9Hyf3S8x5
-	1oHvNdoRcU8JL4W5BtlCKNwtwWW//yz53YCczG2LR7re3TtlT3rSRjb21wC91AF0
-	+j30s5Czv8ylIRQJ3SXlB8PKxO8iOKjvHppIztWa/GNKq/aWK/mtKlhRyKJpjnJW
-	RYsjlzwef55QiKeto2DCKbLGh9U3/OHFG8s4c7m2LdFUy5PLt3IOXqAvrPOZMmLr
-	NM420mpp94tD41XaMfJdVy7sgqoHpP3fNHf7OaGM38lpBv1n7lNtvb/DY1Bo+yPY
-	hAgDv+JuMEage2Jujp/GA==
-X-ME-Sender: <xms:V84-ZYpNXs0l4jUWUxn0HR_h-mpilzyOxma2J1uNMOHd33fChwL0oA>
-    <xme:V84-Zeob_5mYcbaFW3RjVmO-p7qsJv9m8fr2c9xqMyZTdroD8ccqK2SNpx_9M-zcq
-    4Gou1KlM15SZDRlZQ>
-X-ME-Received: <xmr:V84-ZdN2y2PI5UOHn0AuaJY5ZHLPOUM5KvrNRuKEgtxRFnwjestQtKSphdBtIQuqyLPOdgZObhqNDk8LQ-FoquRCQcGStnwjlNs7QsBRKS6GzN4TyZIcKLFxcIlzW0puvWzssw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrleekgddugeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepudekteeuudehtdelteevgfduvddvjefhfedulefgudevgeeghefg
-    udefiedtveetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:V84-Zf6VyhNSgo-hr84p5F_xXi94fn0nGjpBWDDayw4UXN3Skgi1Fg>
-    <xmx:V84-ZX7VbzZlzchlI8ynPStFghcN00SFf0aGf7blOdpiHoHLf49QNQ>
-    <xmx:V84-Zfi2ezyHLXh_hYDOMReXa4KxWGJLg6Gu1KNtU7m390CQ5JYcoQ>
-    <xmx:V84-Zcr0ShP3pvYkZmTrErI_4LGVgwT1JQQF9_0psqGzotL3lTv1HA>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 29 Oct 2023 17:27:50 -0400 (EDT)
-From: Samuel Holland <samuel@sholland.org>
-To: Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc: Samuel Holland <samuel@sholland.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Guo Ren <guoren@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	John Watts <contact@jookia.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Trevor Woerner <twoerner@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH v8 5/5] riscv: dts: allwinner: d1: Add RGB LEDs to boards
-Date: Sun, 29 Oct 2023 16:26:59 -0500
-Message-ID: <20231029212738.7871-6-samuel@sholland.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231029212738.7871-1-samuel@sholland.org>
-References: <20231029212738.7871-1-samuel@sholland.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4680D8F7E;
+	Sun, 29 Oct 2023 21:56:05 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8186B7;
+	Sun, 29 Oct 2023 14:56:03 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.143.101])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id EB42466072BB;
+	Sun, 29 Oct 2023 21:56:00 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698616562;
+	bh=9kXCuQh63U4MYAws1gRK8ESi0SHsl74/OxpK1M4Qxbg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KerkcdZsbuCGKGZ+GY+q3ScfNhttqTmD8XJ7fkwIciBDGHh7a0kQ6VPXsCFAZfuYr
+	 KslM2+6J2wgomTQz5lPrdI8jjnfOXA6HFRZfnNnqe2U+Jv1rlKB1VlsxaNRKw5O4KL
+	 DPGW9AHWr/DXBXXOVD4nGISz3YSorQMOeQMZ9PIli0bVDTLw/FRWIZISe81sYBMNmX
+	 Bi5uA1gIH02uMhTCayLd1Ubk9h6JE+Otm7S0xsCcpYTGEmHeC2DXe1d85RkZeHi8K7
+	 3LTYyzbGDXKbJTlKYTI3rI5doK6srRiMaBEIYFzy+xz5XXBtYZcLr6jiUUAyNY1mtI
+	 NP6BQ4qOxSzJA==
+Message-ID: <564503dd-b779-4e9f-851d-f34d9ea5fa65@collabora.com>
+Date: Sun, 29 Oct 2023 23:55:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/12] dt-bindings: net: snps,dwmac: Allow exclusive
+ usage of ahb reset
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-2-cristian.ciocaltea@collabora.com>
+ <e2c65d01-3498-4287-a6dc-b926135df762@linaro.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <e2c65d01-3498-4287-a6dc-b926135df762@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Some D1-based boards feature an onboard RGB LED. Enable them.
+On 10/29/23 13:21, Krzysztof Kozlowski wrote:
+> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
+>> The Synopsys DesignWare MAC found on the StarFive JH7100 SoC requires
+>> just the 'ahb' reset name, but the binding allows selecting it only in
+>> conjunction with 'stmmaceth'.
+>>
+>> Fix the issue by permitting exclusive usage of the 'ahb' reset name.
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> index 5c2769dc689a..a4d7172ea701 100644
+>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> @@ -146,7 +146,7 @@ properties:
+>>    reset-names:
+>>      minItems: 1
+>>      items:
+>> -      - const: stmmaceth
+>> +      - enum: [stmmaceth, ahb]
+> 
+> Your patch #3 says you have minimum two items. Here you claim you have
+> only one reset. It's confusing.
 
-Acked-by: Guo Ren <guoren@kernel.org>
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Tested-by: Trevor Woerner <twoerner@gmail.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+At least the following use-cases need to be supported:
 
-(no changes since v5)
+- JH7110: reset-names = "stmmaceth", "ahb";
+- JH7110: reset-names = "ahb";
+- other:  reset-names = "stmmaceth";
 
-Changes in v5:
- - New patch for v5
+Since this is the schema which gets included later in other bindings,
+the property needs to be generic enough to cope with all the above.
+[added actual content here for more clarity]
 
- .../boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts | 12 ++++++++++++
- arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts   | 13 +++++++++++++
- 2 files changed, 25 insertions(+)
+  reset-names:
+    minItems: 1
+    items:
+      - enum: [stmmaceth, ahb]
+      - const: ahb
 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-index 08cf716328a0..feaa75d5aead 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-@@ -59,6 +59,18 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&ledc {
-+	pinctrl-0 = <&ledc_pc0_pin>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	multi-led@0 {
-+		reg = <0x0>;
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+	};
-+};
-+
- &mmc1 {
- 	bus-width = <4>;
- 	mmc-pwrseq = <&wifi_pwrseq>;
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-index 8dbe717c79ce..73840ea300f0 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-@@ -22,6 +22,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- 
- /dts-v1/;
- 
-@@ -121,6 +122,18 @@ pcf8574a: gpio@38 {
- 	};
- };
- 
-+&ledc {
-+	pinctrl-0 = <&ledc_pc0_pin>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	multi-led@0 {
-+		reg = <0x0>;
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+	};
-+};
-+
- &mdio {
- 	ext_rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
--- 
-2.41.0
+Therefore, only the lower limit (1) is enforced here, while
+starfive,jh7110-dwmac.yaml (which PATCH 3 relates to) adds further
+constraints (limiting to precisely two items):
 
+    reset-names:
+      items:
+        - const: stmmaceth
+        - const: ahb
+
+I understand the generic binding also allows now specifying 'ahb' twice,
+but I'm not sure if there's a convenient way to avoid that (e.g. without
+complicating excessively the schema).
+
+Thanks,
+Cristian
 
