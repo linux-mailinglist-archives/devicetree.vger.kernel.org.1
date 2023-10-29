@@ -1,65 +1,47 @@
-Return-Path: <devicetree+bounces-12687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF037DAE7A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:16:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DBB7DAE83
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 22:24:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 272B5280E01
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:16:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D67FB20CB4
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 21:24:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F90D53F;
-	Sun, 29 Oct 2023 21:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B347D11C97;
+	Sun, 29 Oct 2023 21:23:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UhNfIPk+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="abdE6pR/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7714B9470
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 21:16:19 +0000 (UTC)
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B006D97;
-	Sun, 29 Oct 2023 14:16:17 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-53e2308198eso6140038a12.1;
-        Sun, 29 Oct 2023 14:16:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698614176; x=1699218976; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QvsKzG+rs1HOWlhjYy4OEuq3sm4Ra3HE4ezTkFwDqiM=;
-        b=UhNfIPk+DRSz+HZMRj9wTUobBajfXCb9fxSkPVF7NNMGMaqyHGvqpzdRJ3It1vxF5Q
-         J0G2nmYNstIytW88HHCvsiHg15POckPeedejFb3C2TqK0Si+wzmzYMnFN911hfnAW07x
-         rFyLBWupdGsp6bZ6mmRQBO6b4cuv/tpsazW17oPC5IoLDq7vfLKcj2UxiKJvIGww5EqM
-         r3/fp+cBWQD5Pu2txrtOW+tgGhshjVM/S9gWtcHhah8ABN1s0JrTxZWLQNSw+tBOT1dr
-         npZ7o1CDYJRyOppbWoHWvSVv8QvWYSn3QVKJaDcv9J2yOfYvJSiaBYravFp/ybwT37o5
-         6nlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698614176; x=1699218976;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QvsKzG+rs1HOWlhjYy4OEuq3sm4Ra3HE4ezTkFwDqiM=;
-        b=VkGtGLFRiGM16vuBiPJHcXSxvDesEFpq3HQYrrlH+9crBgu9pBockpyDtDDiaIrzJN
-         TGGfDDy1TuQ7hzSyWz/wU2z1yXDFBYf/B9uoZfIj3mGZ3Q8c7jVBZws3GU+VK0lYZiD3
-         JlrKfXHU6FBFeZnZVozTyMIS2y61cd9hnfnSl7UmCXczspvBtYs3vHAe+HvX11VKibT3
-         LQty4R0kRtt7D9+r+EthvMfw/OTeESGQS+eGHPVGnbISFI2JlwdtxPY6VXpg6lkWgCwO
-         /K+ubk7WBG5EdvpE6v2TUZtkg7AVkUQPfFirstvOrMzDqk5r1ngKd3QadDiC23RoOxeO
-         lpiQ==
-X-Gm-Message-State: AOJu0Yyv/wTK8rlFfl1egKLEiN1pB/2JuYBTt986NXQ2W6Xe3Locc8L4
-	Uvs7RiakrUU9EcjlZYBpfGU=
-X-Google-Smtp-Source: AGHT+IF7sE5EoaLdZ8ZzvjrwxAns0T3bzFyPglhgZ/pN3bXockxACawGbRmYwmhYVlGo9hG2IWqNCw==
-X-Received: by 2002:a17:906:c10e:b0:9c2:a072:78c8 with SMTP id do14-20020a170906c10e00b009c2a07278c8mr6691256ejc.26.1698614175965;
-        Sun, 29 Oct 2023 14:16:15 -0700 (PDT)
-Received: from [192.168.50.244] (83.11.208.51.ipv4.supernova.orange.pl. [83.11.208.51])
-        by smtp.gmail.com with ESMTPSA id rn20-20020a170906d93400b009930308425csm4890885ejb.31.2023.10.29.14.16.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Oct 2023 14:16:15 -0700 (PDT)
-Message-ID: <5bd796c5-3e9a-4aa5-b284-27fb4fc8ea48@gmail.com>
-Date: Sun, 29 Oct 2023 22:16:14 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5552B33C7;
+	Sun, 29 Oct 2023 21:23:55 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84575D9;
+	Sun, 29 Oct 2023 14:23:53 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.24.143.101])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 679A566072BB;
+	Sun, 29 Oct 2023 21:23:50 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698614631;
+	bh=SGq6QPRGIBNn7gbJ2EgKHoDNWHX9rvAA0k7+HWJtVnc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=abdE6pR/zA982y8K9cNxgC1xlpp75ZzB8caxA2ixKDYqj+NQC6wKEfhwy4PQfUYyY
+	 j7WDCREK3Wzhi4Ti+raoR5XlLz7rgd52QgBzcnc0FcTl4IXNxPMCtbx+FoFLPGFche
+	 bHGVyDAabwMjuh+DsixN6oiDYSjCYYzF46mgU7MGiViIPrNQ9QzlwdPvR2AAZXOuxj
+	 BJsXPR/uB7cYb23tyMWk9rCrtc2ulZZUWUTaa7ZBHQDpjpXap2Q7DPhDaSYOZlZTLt
+	 eo+eLURddzhlIk5zq1l7hsnLgH1veVvb72E9mbnnvTfqFS41c1xEExhuYJwsOSWKIW
+	 LVkKtidAvTyrg==
+Message-ID: <0ff7a905-d8f2-401b-a0ff-47947d12ce05@collabora.com>
+Date: Sun, 29 Oct 2023 23:23:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,73 +49,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Artur Weber <aweber.kernel@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: clock: brcm,kona-ccu: convert to YAML
-To: Stanislav Jakubek <stano.jakubek@gmail.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
- <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP>
- <20231027-bulldog-component-5b84e4660465@spud>
- <ZTzw5c5/MwU3VOBo@standask-GA-A55M-S2HP>
+Subject: Re: [PATCH v2 03/12] dt-bindings: net: starfive,jh7110-dwmac: Drop
+ redundant reset description
 Content-Language: en-US
-In-Reply-To: <ZTzw5c5/MwU3VOBo@standask-GA-A55M-S2HP>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-4-cristian.ciocaltea@collabora.com>
+ <ad023e4d-51d2-4fba-bf85-0c8ba358ab39@linaro.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <ad023e4d-51d2-4fba-bf85-0c8ba358ab39@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-On 28/10/2023 13:30, Stanislav Jakubek wrote:
-> On Fri, Oct 27, 2023 at 03:47:48PM +0100, Conor Dooley wrote:
->> On Tue, Oct 24, 2023 at 06:45:21PM +0200, Stanislav Jakubek wrote:
->>> Convert Broadcom Kona family clock controller unit (CCU) bindings
->>> to DT schema.
+On 10/29/23 13:19, Krzysztof Kozlowski wrote:
+> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
+>> The reset description items are already provided by the referenced
+>> snps,dwmac.yaml schema, hence replace them with the necessary
+>> {min,max}Items.
 >>
->> I didn't cross-check the clock-output-names, but this conversion mostly
->> looks good to me.
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  .../devicetree/bindings/net/starfive,jh7110-dwmac.yaml       | 5 ++---
+>>  1 file changed, 2 insertions(+), 3 deletions(-)
 >>
->>> Changes during conversion:
->>>    - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
->>>      it is not used in DT nor the dt-bindings
->>>    - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
->>>      it is not used in DT nor the dt-bindings
->>
->> This I'm not sure about - they _were_ documented in the text-form
->> dt-binding, even if they weren't used in the dts. If the clock
->> controller does actually produce these clocks, removing them doesn't
->> make sense to me.
+>> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> index cc3e1c6fc135..44e58755a5a2 100644
+>> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+>> @@ -46,9 +46,8 @@ properties:
+>>      maxItems: 3
+>>  
+>>    resets:
+>> -    items:
+>> -      - description: MAC Reset signal.
+>> -      - description: AHB Reset signal.
+>> +    minItems: 2
+>> +    maxItems: 2
 > 
-> Hi Conor. Looking at downstream, I was not able to find these clocks, though
-> I admit that I'm not familiar enough with the downstream mess to be 100%
-> confident.
-> 
->  From what I can tell, the BCM21664 arch/arm/mach-hawaii/clock.c (e.g. [1])
-> doesn't contain any mention of uartb4, only uartb, uartb2 and uartb3.
-> And similarly, for the BCM281XX arch/arm/mach-capri/clock_capri.c (e.g. [2])
-> I wasn't able to find any mention of dmac, only dmac_mux_apb and dma_axi
-> (though these two don't seem to be supported on mainline yet).
+> You must also update reset-names. They must have same constraints.
 
-I've done some digging in the downstream kernel; for the BCM21664, I'm
-almost certain that the uartb4 clock doesn't exist. Broadcom helpfully
-left in "RDB" files containing the entire register layout of all of the
-components; and even in the RDB for the slave clock manager[1] (used by
-the other uart clocks), there is no uartb4, nor is it mentioned
-anywhere else in the kernel (judging by a quick grep in the kernel
-sources).
+reset-names explicitly lists the items and we need to keep them as such
+because the order is not fixed, i.e. PATCH 1 allows using 'ahb' instead
+of 'stmmaceth' as the first (and only) item.
 
-As for the BCM281XX clocks, there indeed doesn't seem to be an exact
-"dmac" clock but there is a "dmac" clock gate register[2], which is
-used for the dma_axi clock, so perhaps that's what this is referring
-to? Also not 100% certain.
+        reset-names:
+          items:
+            - const: stmmaceth
+            - const: ahb
 
-Best regards,
-Artur
-
-[1] https://github.com/Samsung-KYLEPROXX/android_kernel_samsung_kyleproxx/blob/cm-14.1/arch/arm/mach-hawaii/include/mach/rdb/brcm_rdb_kps_rst_mgr_reg.h
-[2] https://github.com/surblazer/android_kernel_samsung_galaxys2plus-common/blob/android-7.1/arch/arm/mach-capri/include/mach/rdb/brcm_rdb_kpm_clk_mgr_reg.h#L417-L433
+Thanks,
+Cristian
 
