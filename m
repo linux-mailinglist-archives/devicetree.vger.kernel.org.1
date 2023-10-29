@@ -1,112 +1,145 @@
-Return-Path: <devicetree+bounces-12629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84C967DAA95
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 04:26:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0657DAAA9
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 05:27:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 454CC1C2093E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 03:26:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9557E1C20947
+	for <lists+devicetree@lfdr.de>; Sun, 29 Oct 2023 04:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C270E10E2;
-	Sun, 29 Oct 2023 03:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1911615AA;
+	Sun, 29 Oct 2023 04:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h8UPyLTJ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YGCEXx3l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A98CA41
-	for <devicetree@vger.kernel.org>; Sun, 29 Oct 2023 03:26:31 +0000 (UTC)
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23DC993;
-	Sat, 28 Oct 2023 20:26:30 -0700 (PDT)
-Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-58441865ffaso2141192eaf.1;
-        Sat, 28 Oct 2023 20:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698549989; x=1699154789; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uRnOiKu4nI2Ad98Fhq/Hp7MEOJFLr/EtLs46UGel2iA=;
-        b=h8UPyLTJBk2+k4nCpLx3QDfZLtoPam+mROLh3rlj90Jtz7JuW79vsmRyAhMv7gaSIU
-         oC21x+4NouHbKLccEi93UIsJopRE5jyfMOMzo2Fqbv//BcL52Q6be612rI+IY+a3Pj33
-         oQPv/1dkTjvMNDAxVaFXgHyiyUQiGB4X9bfmw4cAj+L8OL6SHy1cjcFBOzxezwZDvm9Y
-         78B2z8IXf8AidizO/6WbdME7PBZM6VnXsmKyOcHRKs2dXMhWMwwHmsSOYSbPGCcn5Gz5
-         7et6Vvh98xVSllSP10g91Eq6S5ucP3E1nhyAeQZ8C3RF+3ADQnaUeoFsOsukK1lW6e4W
-         iAlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698549989; x=1699154789;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uRnOiKu4nI2Ad98Fhq/Hp7MEOJFLr/EtLs46UGel2iA=;
-        b=oV2ZuES2kon66rlrOeU1FW/GU2xG4cTpdF62EdaJMwZW8qTk+aqlyE+Ca8ngp1QAuH
-         gbEdHiKOppOk0OHcEOEte2Y06QOe4yGiU3FBB950rXB0fpk+rMgpoG7fOtfjxGxRmCOl
-         epBkSCtl37me0HKiEOmXblL3eQkadTSF2iYTgeYO8G9JYAxeUIZxVM/WtTIEZkPsxH9T
-         yaqluB+AAjzyQuGYjtFD5AjyXE9wnFZDhW4m7Y9BMCDGlYtoCQMnpPliim1zeUePnwHR
-         breNznQPl0/Surd273tuH2JBNqP2Xq+q0lI6bFwQRBhm6dQE1WxpbwqFyD+hWBnGtBae
-         e4iw==
-X-Gm-Message-State: AOJu0YxuFGVpBwgLKgJ98tkSlXOaKzVdP5wLezAlN53YdA4HwMdcHrQ7
-	ZxvvRLIeXIrD5n1bYfimRAc=
-X-Google-Smtp-Source: AGHT+IHZJdq2Kpp+5seJOpPFzrlrJs3ax3hBLtrf0qwiyEAh+NCm2a8Skd3c6XCuCvY7X9R1wMer2Q==
-X-Received: by 2002:a05:6358:6f9a:b0:168:e9d2:6568 with SMTP id s26-20020a0563586f9a00b00168e9d26568mr7611380rwn.25.1698549989091;
-        Sat, 28 Oct 2023 20:26:29 -0700 (PDT)
-Received: from google.com ([205.220.129.30])
-        by smtp.gmail.com with ESMTPSA id f11-20020a170902e98b00b001cc0d1af177sm712442plb.229.2023.10.28.20.26.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Oct 2023 20:26:28 -0700 (PDT)
-Date: Sun, 29 Oct 2023 03:26:06 +0000
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Wei-Shih Lin <frank101417@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] Input: Add driver for Novatek NT519XX series
- touchscreen devices
-Message-ID: <ZT3QzhXr8OaOCfx2@google.com>
-References: <20231025082054.1190-1-Weishih_Lin@novatek.com.tw>
- <20231025082054.1190-3-Weishih_Lin@novatek.com.tw>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A5F81B;
+	Sun, 29 Oct 2023 04:27:22 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FE7AD;
+	Sat, 28 Oct 2023 21:27:20 -0700 (PDT)
+Received: from localhost (unknown [188.24.143.101])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 93BFF6607332;
+	Sun, 29 Oct 2023 04:27:17 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698553637;
+	bh=n+ZdkLjYx7BCTMug2pHsJcPM5JrGsyJS0p5MK5HHjEE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=YGCEXx3lfRjWUCbd2vc4CJYDoWcmz0cympjiLksceK9GI1HYaUyW7t//lstBik5s1
+	 HpGJgn6kj7XZdunSkpVWEYWhptEkIxwtHKlAPrhrD3KEvlGxqO7lJeODc0FhbK/3P3
+	 mLFj9qNWGjdjUT2MQJkDFEr0gd4pnhPKasLldg9T9ADjHwxO98Vk9+AnKOeGPoz2qj
+	 r8SnXUwYhVkRDwD+5ONz2jF8yXsI8JWcnxbgP9NDIr7KYXv6OYL986X2M8hHsgNTUs
+	 O0rDkHC89XRAH4oY15VddESeIjQYD1sFgNbCS+IUJoWIKu2xVd2iG7UjfX/Jn/smIT
+	 o7v1ijfzkKb1Q==
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH v2 00/12] Enable networking support for StarFive JH7100 SoC
+Date: Sun, 29 Oct 2023 06:27:00 +0200
+Message-ID: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231025082054.1190-3-Weishih_Lin@novatek.com.tw>
+Content-Transfer-Encoding: 8bit
 
-Hi Wei-Shih,
+This patch series adds ethernet support for the StarFive JH7100 SoC and 
+makes it available for the StarFive VisionFive V1 and BeagleV Starlight 
+boards, although I could only validate on the former SBC.
 
-On Wed, Oct 25, 2023 at 04:20:54PM +0800, Wei-Shih Lin wrote:
-> This patch adds support for Novatek NT519XX series touchscreen devices.
-> Existing Novatek touchscreen driver code developed for Acer Iconia One 7
-> B1-750 tablet with Novatek IC NT11205 is novatek-nvt-ts.c in the path
-> drivers/input/touchscreen/. However, this patch supports touch features
-> for automotive display with Novatek TDDI NT519XX.
+The work is heavily based on the reference implementation [1] and depends 
+the non-coherent DMA support provided by Emil via the SiFive Composable 
+Cache controller [2].
 
-How different the protocol of this part from NT11205? Can the existing
-driver be modified to support both variants?
+[1] https://github.com/starfive-tech/linux/commits/visionfive
+[2] https://lore.kernel.org/all/CAJM55Z_pdoGxRXbmBgJ5GbVWyeM1N6+LHihbNdT26Oo_qA5VYA@mail.gmail.com/
 
-You already got feedback from Krzysztof, on top of his, if we want to
-continue with a separate driver:
+Changes in v2:
+ - Dropped ccache PATCH 01-05 reworked by Emil via [2]
+ - Dropped already applied PATCH 06/12
+ - Added PATCH v2 01 to prepare snps-dwmac binding for JH7100 support
+ - Added PATCH v2 02-03 to provide some jh7110-dwmac binding optimizations
+ - Handled JH7110 conflicting work in PATCH 07 via PATCH v2 04
+ - Reworked PATCH 8 via PATCH v2 05, adding JH7100 quirk and dropped
+ - starfive,gtxclk-dlychain DT property, also fixed register naming
+ - Added PATCH v2 08 providing DMA coherency related DT changes
+ - Updated PATCH 9 commit msg:
+   s/OF_DMA_DEFAULT_COHERENT/ARCH_DMA_DEFAULT_COHERENT/
+ - Replaced 'uncached-offset' property with 'sifive,cache-ops' 
+   in PATCH 10/12 and dropped 'sideband' reg
+ - Add new patch providing coherent DMA memory pool (PATCH v2 10)
+ - Updated PATCH 11/12 according to the stmmac glue layer changes in
+   upstream
+ - Split PATCH 12/12 into PATCH v2 10-12 to handle individual gmac setup of
+   VisionFive v1 and BeagleV boards as they use different PHYs; also
+   switched phy-mode from "rgmii-tx" to "rgmii-id" (requires a reduction of
+   rx-internal-delay-ps by ~50%)
+ - Rebased series onto next-20231024
+ - v1: https://lore.kernel.org/lkml/20230211031821.976408-1-cristian.ciocaltea@collabora.com/
 
-- it should use standard device properties
-- it should use gpiod API
-- it looks like it will benefit of regmap's paging support
-- helpers like nvt_irq_enable() should not be used - your code should
-  know whether itq is enabled or disabled at all times
-- all caps are reserved for macros (CTP_I2C_WRITE and others)
-- I am sure we have crc8 helpers in the kernel
-- please use u8, u16, etc in the kernel code instead of uint8_t,
-  uint16_t
-- your driver will likely benefit from devm APIs
-- no compile-time conditionals like "#if TOUCH_MAX_FINGER_NUM > 1"
+Cristian Ciocaltea (11):
+  dt-bindings: net: snps,dwmac: Allow exclusive usage of ahb reset
+  dt-bindings: net: starfive,jh7110-dwmac: Drop superfluous select
+  dt-bindings: net: starfive,jh7110-dwmac: Drop redundant reset
+    description
+  dt-bindings: net: starfive,jh7110-dwmac: Add JH7100 SoC compatible
+  net: stmmac: dwmac-starfive: Add support for JH7100 SoC
+  riscv: dts: starfive: jh7100: Add dma-noncoherent property
+  riscv: dts: starfive: jh7100: Add ccache DT node
+  riscv: dts: starfive: jh7100: Add sysmain and gmac DT nodes
+  riscv: dts: starfive: jh7100-common: Setup gmac pinmux
+  riscv: dts: starfive: visionfive-v1: Enable gmac and setup phy
+  [UNTESTED] riscv: dts: starfive: beaglev-starlight: Enable gmac
 
-Thanks.
+Emil Renner Berthing (1):
+  riscv: dts: starfive: Add pool for coherent DMA memory on JH7100
+    boards
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   3 +-
+ .../bindings/net/starfive,jh7110-dwmac.yaml   |  84 +++++++++------
+ .../dts/starfive/jh7100-beaglev-starlight.dts |   5 +
+ .../boot/dts/starfive/jh7100-common.dtsi      | 100 ++++++++++++++++++
+ .../jh7100-starfive-visionfive-v1.dts         |  17 +++
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |  51 +++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |   6 +-
+ .../ethernet/stmicro/stmmac/dwmac-starfive.c  |  32 +++++-
+ 8 files changed, 259 insertions(+), 39 deletions(-)
 
 -- 
-Dmitry
+2.42.0
+
 
