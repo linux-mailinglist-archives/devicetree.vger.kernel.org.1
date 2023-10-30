@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D58D7DBF61
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:52:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9797DBF63
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0095F1C20A89
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:52:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 408BA1C20A71
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19D4168A8;
-	Mon, 30 Oct 2023 17:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94381798C;
+	Mon, 30 Oct 2023 17:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M/mSEMid"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l+MgFjeJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B60199A8
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:52:12 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C3A109
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:52:07 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-53b32dca0bfso9861071a12.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:52:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321E9168A8
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:52:40 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB11A9
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:52:38 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-540c54944c4so9837903a12.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:52:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698688325; x=1699293125; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698688357; x=1699293157; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1DOAGGRD9zn/OfpdLXvRloDl4JqpWGj7oIPv4XRwA/8=;
-        b=M/mSEMidvWKreUVzl2UY5BWQKIFCcRjsFSAbsWmQeoXtcfLraD1MJrfc3GyctyS6Po
-         ECS64rsf2u4ObDZ3aUs5P99AXDkLvcWYKWMmqFW7S6R6emCLg/qUGxepk14AsVf1xuST
-         2pXX1In/Qu6YYQx2WGCrUDDf6XLsPTe81iJrMTlVM/txVYbinoapcBSLJz+CJjQHiPUY
-         Wzxie7dXaEbg4jk7xDmKjKEisWmTsNn2oTjmfpP0BU1B7vdQx2Z/HDEAZU4sBsrglneu
-         nvUFjSbf9PnQFE4+Wbc+0q4pARAo5sgscKNVzbDMwRsFxYquDjHP1Y4PbaKFLNYJ/b5N
-         qZCQ==
+        bh=pdJux0Q4B07NLTg26fucIZtojK2epWCkbuqQD9NS0Io=;
+        b=l+MgFjeJc7pd3alSF7BrR0EIDRA9G8YyKGRzUTTbfc0lZ4tznDstoL6Msq0JGLg9ka
+         HGDcC5lXKPwJl6jn3YwBQSX5Uo6VEfJs/vjZyF7CTwpdvggmsy6kt8gHMxpcg61kfyt/
+         lRCgrBLOzP5tIhm84AzR0r+iQrjDslI2KYojBZGpmf4m4mydMsGm2nnxp3hzYGtLdTVv
+         hT+bMsuATLOgrwVj+vkA7aMylcwmyfbFCvzBXLXIKG8ONZnrCixtKFKI7S8DqdHTmHNt
+         Wuwxig8fEaVe4UDBykaATaxGnT7fWJHyTHUuSioaZksVWKxEUMEYM63lfGALlM6sC6W9
+         I1bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698688325; x=1699293125;
+        d=1e100.net; s=20230601; t=1698688357; x=1699293157;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1DOAGGRD9zn/OfpdLXvRloDl4JqpWGj7oIPv4XRwA/8=;
-        b=KJaylKnmD07J5rEgp4AM0DysrvLdSfeBnTmwwnBdZe3OKSNfAkb/EnJhjw/96cakQr
-         kAxl1nSeKUqpG28kektVf1SZfPMsJ4C96gYd6Zj01RM9LuTEVErH1RnLU3eQvDv2zvYI
-         QU7JsCsbMHXdHHsQUIWS/rf13HCMbUzrMdgNOUlo7P/5E9wfM74HRMzaPHdaMlYBCmKr
-         autSHmqG9yJ+hIbtWuqhbGBH9Me5Uw76NI9/IPYOt1yymjNGJ6GzwH0bIzqWVopT/UIA
-         iwx697SBUr1CIybum87AwEG8+Q5OXUVFph3hFjTaTBn7Ihrn35i/m4VJ6/vSEFJEZEjc
-         gLIA==
-X-Gm-Message-State: AOJu0YxX/8frppbNGm7QCH/xCJfGDgQhm75iwPSA4YitnXLtiAU99BDE
-	dFrsm3bMOv+KH0r1mkAKi1cgcg==
-X-Google-Smtp-Source: AGHT+IFDqdQvj78F0yb6k/qL7PbPBcugZqEuNJBx8rK08kf5WCT69hLYeH1eIsnM0xYezBly+pUaQQ==
-X-Received: by 2002:aa7:d28c:0:b0:51e:5bd5:fe7e with SMTP id w12-20020aa7d28c000000b0051e5bd5fe7emr357691edq.17.1698688325242;
-        Mon, 30 Oct 2023 10:52:05 -0700 (PDT)
+        bh=pdJux0Q4B07NLTg26fucIZtojK2epWCkbuqQD9NS0Io=;
+        b=P6KQI2r6vLvVGD49wBt70PrKk4nPWDXzIEvSb6ExeEB+UDnpNEIEdGyo73DjJ4s7Pv
+         Xqofa8lY7ElkwN2sZ4uDBFn2w2ADr2PNFGp6kIS3vZaGty5WeiHI1bUZJaMMsXP8MG1f
+         947P6LBZykjaQIu6mN9wNh5GwmLCjQsuzowIg2k0MsAhhs6G++cyqbQTNf1dS0fAEVAM
+         9SOOzgo1u9O7m89tx55Es8VKQ6byM4k2jgzrLOmejKK/an1zmQmhp5BZCV1hDUiGD3wN
+         2tpFctbrqHTeCgnYuOQh8ytaqxE3NeHKTGeqwmTEvtPkoNwbbaz2sSRBKHpcTSmFM3NP
+         AZfA==
+X-Gm-Message-State: AOJu0YxYgiRoR5ZRafDs+dfDdaKVYOVtoHLKANncSoEbmM5parBUUs5W
+	7I7qDb3fp1pvSIlzk9cMZi5KdQ==
+X-Google-Smtp-Source: AGHT+IEEDmPTbRyeq0tltnJanaHQVjRKXE5/XlVNjX4oUw/U36PPs5KdAqQDbHZA3j2UWvry+H51NA==
+X-Received: by 2002:a50:d553:0:b0:542:fe59:2234 with SMTP id f19-20020a50d553000000b00542fe592234mr355831edj.6.1698688357058;
+        Mon, 30 Oct 2023 10:52:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id x8-20020a50d608000000b00543597cd190sm429445edi.47.2023.10.30.10.52.03
+        by smtp.gmail.com with ESMTPSA id x8-20020a50d608000000b00543597cd190sm429445edi.47.2023.10.30.10.52.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:52:04 -0700 (PDT)
-Message-ID: <566b7ded-c4a2-4e77-8b0f-cc97128d4a17@linaro.org>
-Date: Mon, 30 Oct 2023 18:52:03 +0100
+        Mon, 30 Oct 2023 10:52:36 -0700 (PDT)
+Message-ID: <9ea9a91b-22df-4dfa-88cd-2b8270cbfe0d@linaro.org>
+Date: Mon, 30 Oct 2023 18:52:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 03/11] arm64: dts: imx8ulp-evk: added nxp secure
- enclave firmware
+Subject: Re: [PATCH v7 05/11] arm64: dts: imx93-11x11-evk: added nxp secure
+ enclave fw
 Content-Language: en-US
 To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
@@ -78,7 +78,7 @@ To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  gaurav.jain@nxp.com, alexander.stein@ew.tq-group.com, V.Sethi@nxp.com
 References: <20231030095849.3456820-1-pankaj.gupta@nxp.com>
- <20231030095849.3456820-4-pankaj.gupta@nxp.com>
+ <20231030095849.3456820-6-pankaj.gupta@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,34 +124,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030095849.3456820-4-pankaj.gupta@nxp.com>
+In-Reply-To: <20231030095849.3456820-6-pankaj.gupta@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30/10/2023 10:58, Pankaj Gupta wrote:
 > Added support for NXP secure enclave called EdgeLock Enclave
-> firmware (se-fw) for imx8ulp-evk.
+> firmware (se-fw) for imx93-11x11-evk.
 > 
 > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> index 946f2b68d16f..7b66de3a392d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> @@ -152,7 +152,7 @@ sosc: clock-sosc {
->  		#clock-cells = <0>;
->  	};
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index dcf6e4846ac9..197de680fd27 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>  /*
+> - * Copyright 2022 NXP
+> + * Copyright 2022-2023 NXP
+>   */
 >  
-> -	sram@2201f000 {
-> +	sram0: sram@2201f000 {
->  		compatible = "mmio-sram";
->  		reg = <0x0 0x2201f000 0x0 0x1000>;
->  
-> @@ -578,4 +578,12 @@ gpiod: gpio@2e200080 {
->  			gpio-ranges = <&iomuxc1 0 0 24>;
+>  #include <dt-bindings/clock/imx93-clock.h>
+> @@ -925,4 +925,10 @@ ddr-pmu@4e300dc0 {
+>  			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
 >  		};
 >  	};
 > +
@@ -161,6 +160,7 @@ Node names should be generic. See also an explanation and list of
 examples (not exhaustive) in DT specification:
 https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
+Why do you even need label?
 
 Best regards,
 Krzysztof
