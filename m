@@ -1,312 +1,178 @@
-Return-Path: <devicetree+bounces-12847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3EF7DB867
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 11:42:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C550F7DB880
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 11:50:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2043FB20C91
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:42:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814041F21691
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF69C33DD;
-	Mon, 30 Oct 2023 10:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FF5D517;
+	Mon, 30 Oct 2023 10:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="thjjjzO2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FB0P3bGH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C493FD26C
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:42:40 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC1AE83;
-	Mon, 30 Oct 2023 03:42:37 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2D750AE;
-	Mon, 30 Oct 2023 11:42:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1698662540;
-	bh=N/AB8vEHluaW8g7hMALFHWDvfNj9MxXkl6VVzLU1ZFo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=thjjjzO2GUKIT3V2LY4Ax5wU6N3F38hqmSNjWMdgZ2LU9vwgsBAHm+GAnbKeSoHcj
-	 dqiznrvYd/ClZ9bLpxbA/qSARgZiMVEJRJPC4V8XkSgXABEtH05F9u/DyjertWilK7
-	 HTQMDE/aJhbJVFdLrbAQHQFbR/btb0WgFPIxVOM4=
-Date: Mon, 30 Oct 2023 12:42:41 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: linux-media@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] media: i2c: Add driver for THine THP7312
-Message-ID: <20231030104241.GJ12144@pendragon.ideasonboard.com>
-References: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
- <20231017132103.9914-4-laurent.pinchart@ideasonboard.com>
- <ZTutbU1XG_jKZbIp@valkosipuli.retiisi.eu>
- <20231027124529.GA19539@pendragon.ideasonboard.com>
- <ZTvOIQSmpytUisUD@valkosipuli.retiisi.eu>
- <20231028151858.GB20465@pendragon.ideasonboard.com>
- <ZT9kwC3abUKR9fgQ@valkosipuli.retiisi.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F359DD285
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:50:14 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3AEDC6
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 03:50:12 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9d216597f64so240590366b.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 03:50:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698663011; x=1699267811; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=knzrkLCwZ6hCiKHeBnBHe0EAB84CYsXSNvsHjcWg86E=;
+        b=FB0P3bGHfRylro4tcMlhY2nG3y4Tl8aWGKPfT2HYGwUpvywZA26JvEAQYpIcevzy0k
+         JEZMKYHXwJzjThblkkoyZlF/GhWT/qHDHX0pPBEGh6TEcQNgkqCaBy+iGo0r+bMSfGPi
+         ArYViswCVCy+xUFHy9qyP/mnovR+71mN7SOR31bgBrK5eGCh20ta7muEF8cyAX+PSync
+         pRZDhmQkO+VCwtmloYvbR5VMf63aoz1ILj0C1yk8g6DxWD+K1LrBlvsfLh8AQzm/+9f5
+         l09XGZVKGIcVyemKwbaaH2bX1bE/1gKHssaFb9Ni+lRT/mwjchSRK7v6S5m9AgBNI1y/
+         6kyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698663011; x=1699267811;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=knzrkLCwZ6hCiKHeBnBHe0EAB84CYsXSNvsHjcWg86E=;
+        b=JPMgpB2TUCPOL1z5PVgxZxg60/THu8TYoMa2kEMICHTTdoNFISZhBLMe0JkuHQrj3A
+         SsRrnWatmvlPRHUyyN7A/Hl04C4Hvpo9uMUV9k2Jn2rJfUm9Uq4NQ9S1Z1MDiD9Aunzy
+         oIq5MRoENtClDxwihyHh5wr6a4xPsyB9VCZxzAdpa/DpRY2ClQ8F6HygY0H9uQ/b+dW2
+         16zRw7MQF3/FxwCCzgjLEW8TonDeJ77XtZbCpiyTAIWsWrIAKQrxmvEKCyDsQnfli5UG
+         5aKxs9qtBUlzmOImd7ASY6DeN7+oIE1oG3j7q7gpe+1MjBaj5xX1oK8Zg9Dsg8TjXZcr
+         4rNA==
+X-Gm-Message-State: AOJu0YzGWKQjQmjEwdM8nIpVTdgkdptHkMPZE0+++4FGLlOSq1Au6DRa
+	a1eCPxfZygGwetdiewTLCBtzug==
+X-Google-Smtp-Source: AGHT+IEUdn19+1e5UQ+2UrpQM7bwbxFkK+KtWMpTWXbuOXD5l0yskp83ZDwLxMmyZqQ/FniWjmZIKw==
+X-Received: by 2002:a17:907:7ea3:b0:9ae:699d:8a2a with SMTP id qb35-20020a1709077ea300b009ae699d8a2amr7293950ejc.5.1698663011408;
+        Mon, 30 Oct 2023 03:50:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id ci6-20020a170906c34600b009a1dbf55665sm5685007ejb.161.2023.10.30.03.50.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Oct 2023 03:50:10 -0700 (PDT)
+Message-ID: <fc0e791d-96a5-4557-9963-ec02318b60fb@linaro.org>
+Date: Mon, 30 Oct 2023 11:50:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <ZT9kwC3abUKR9fgQ@valkosipuli.retiisi.eu>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: PCI: qcom-ep: Add support for SA8775P
+ SoC
+Content-Language: en-US
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
+Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+ quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+ dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
+ quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
+ quic_schintav@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-pci@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mhi@lists.linux.dev
+References: <1698413592-26523-1-git-send-email-quic_msarkar@quicinc.com>
+ <1698413592-26523-2-git-send-email-quic_msarkar@quicinc.com>
+ <45b8f4e1-b915-42f2-aa03-03cc9d1be9f7@linaro.org>
+ <4ea52adf-9f64-7aa3-1d88-e90ce1d9ff4d@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <4ea52adf-9f64-7aa3-1d88-e90ce1d9ff4d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Sakari,
-
-On Mon, Oct 30, 2023 at 08:09:36AM +0000, Sakari Ailus wrote:
-> On Sat, Oct 28, 2023 at 06:18:58PM +0300, Laurent Pinchart wrote:
-> > On Fri, Oct 27, 2023 at 02:50:09PM +0000, Sakari Ailus wrote:
-> > > On Fri, Oct 27, 2023 at 03:45:29PM +0300, Laurent Pinchart wrote:
-> > > 
-> > > ...
-> > > 
-> > > > > > +#include <linux/clk.h>
-> > > > > > +#include <linux/delay.h>
-> > > > > > +#include <linux/device.h>
-> > > > > > +#include <linux/firmware.h>
-> > > > > > +#include <linux/gpio/consumer.h>
-> > > > > > +#include <linux/i2c.h>
-> > > > > > +#include <linux/init.h>
-> > > > > > +#include <linux/iopoll.h>
-> > > > > > +#include <linux/kernel.h>
-> > > > > > +#include <linux/module.h>
-> > > > > > +#include <linux/mtd/spi-nor.h>
-> > > > > > +#include <linux/of_device.h>
-> > > > > > +#include <linux/pm_runtime.h>
-> > > > > > +#include <linux/regulator/consumer.h>
-> > > > > > +#include <linux/slab.h>
-> > > > > > +#include <linux/thp7312.h>
-> > > > > 
-> > > > > uapi/linux/thp7321.h ?
-> > > > 
-> > > > Is that needed ?
-> > > 
-> > > It's a UAPI header. Wouldn't it be reasonable to include it that way
-> > > (instead of relying on searching include/uapi as well)?
-> > 
-> > There are some occurences of '#include <uapi/' in drivers/ (I counted
-> > 338), but why is that better ?
+On 30/10/2023 11:19, Mrinmay Sarkar wrote:
 > 
-> I'd presume that at some point the -Iinclude/uapi will be cleaned up and
-> then the only option remains to include it from there directly. Why not to
-> do it already now?
+> On 10/27/2023 7:20 PM, Krzysztof Kozlowski wrote:
+>> On 27/10/2023 15:33, Mrinmay Sarkar wrote:
+>>> Add devicetree bindings support for SA8775P SoC. It has DMA register
+>>> space and dma interrupt to support HDMA.
+>>>
+>>> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+>> Unfortunately I do not see any of my comment addressed. :(
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my or other reviewer's previous comments were not fully
+>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>> just forgot to apply it. Please go back to the previous discussion and
+>> either implement all requested changes or keep discussing them.
+>>
+>> Thank you.
+>>
+>> Best regards,
+>> Krzysztof
+> Thanks Krzysztof for your review and patience.
+> Sorry I missed your previous comment.
 
-Will it be ? I've never heard of such a plan, but I may have missed it.
-I thought it was a feature meant to stay, and the recommended way to
-include headers in the uapi/ directory.
+Multiple comments. Also from Mani and maybe from others?
 
-> > > > > > +	struct {
-> > > > > > +		struct v4l2_ctrl *noise_reduction_auto;
-> > > > > > +		struct v4l2_ctrl *noise_reduction_absolute;
-> > > > > > +	};
-> > > > > > +
-> > > > > > +	const char *fw_name;
-> > > > > > +	u8 *fw_data;
-> > > > > > +	size_t fw_size;
-> > > > > > +
-> > > > > > +	u8 fw_major_version;
-> > > > > > +	u8 fw_minor_version;
-> > > > > > +
-> > > > > > +	/* Lock to protect fw_cancel */
-> > > > > > +	struct mutex fw_lock;
-> > > > > > +	struct fw_upload *fwl;
-> > > > > > +	bool fw_cancel;
-> > > > > 
-> > > > > Arranging this right after fw_* would save some memory.
-> > > > 
-> > > > After what ? I assume you mean fw_*_version ? It would, but it would
-> > > > feel a bit out of place. I'll see what I can do.
-> > > 
-> > > Yes. There doesn't seem to be any firm ordering here either. Up to you.
-> > > 
-> > > ...
-> > > 
-> > > > > > +	val = ((conv_lanes[3] & 0x03) << 6) |
-> > > > > > +	      ((conv_lanes[2] & 0x03) << 4) |
-> > > > > > +	      ((conv_lanes[1] & 0x03) << 2) |
-> > > > > > +	       (conv_lanes[0] & 0x03);
-> > > > > 
-> > > > > You could construct val in the loop and drop conv_lanes altogether.
-> > > > > 
-> > > > > I.e.
-> > > > > 
-> > > > > 		val |= (i & 0x03) << ((lanes[i] - 1) * 2);
-> > > > > 
-> > > > > And assign val to 0 in declaration.
-> > > > 
-> > > > I think I'll compute it at probe time and cache it instead.
-> > > 
-> > > If you don't need anything else in the endpoint, you could move it out of
-> > > the device context struct.
-> > 
-> > That's what I've now done, yes.
-> > 
-> > > > > > +	for (rate = mode->rates; rate->fps; ++rate, --index) {
-> > > > > > +		if (!index) {
-> > > > > > +			fie->interval.numerator = 1;
-> > > > > > +			fie->interval.denominator = rate->fps;
-> > > > > 
-> > > > > Maybe a newline here?
-> > > > 
-> > > > If that makes you happy :-)
-> > > 
-> > > Newlines are great (when they are at the right places)!
-> > > 
-> > > > > > +	case V4L2_CID_THP7312_NOISE_REDUCTION_AUTO:
-> > > > > > +	case V4L2_CID_THP7312_NOISE_REDUCTION_ABSOLUTE:
-> > > > > > +		/* Ignore the manually set value if auto has been set */
-> > > > > > +		value = thp7312->noise_reduction_auto->val
-> > > > > > +		      ? 0 : 0x80 | (thp7312->noise_reduction_absolute->val & 0x7f);
-> > > > > 
-> > > > > "?" should be on the preceding line.
-> > > > 
-> > > > Isn't that a matter of coding style preference ?
-> > > 
-> > > Yes, indeed, and I recall GNU coding style is shunned upon here. :-)
-> > > 
-> > > > > > +
-> > > > > > +		cci_write(thp7312->regmap, THP7312_REG_NOISE_REDUCTION, value,
-> > > > > > +			  &ret);
-> > > > > > +		break;
-> > > > > > +
-> > > > > > +	case V4L2_CID_AUTO_WHITE_BALANCE:
-> > > > > > +		value = ctrl->val ? THP7312_WB_MODE_AUTO : THP7312_WB_MODE_MANUAL;
-> > > > > 
-> > > > > I'd do this in the call, up to you.
-> > > > 
-> > > > Only if you allow lines longer than 80 columns ;-)
-> > > 
-> > > I don't think you need longer lines for that, do you?
-> > > 
-> > > > > > +
-> > > > > > +		cci_write(thp7312->regmap, THP7312_REG_WB_MODE, value, &ret);
-> > > > > > +		break;
-> > > > > > +
-> > > 
-> > > ...
-> > > 
-> > > > > > +static enum fw_upload_err thp7312_fw_write_to_flash(struct thp7312_device *thp7312,
-> > > > > > +						    u32 dest, u32 write_size)
-> > > > > > +{
-> > > > > > +	u8 command[sizeof(thp7312_cmd_write_ram_to_flash) + 6];
-> > > > > > +	static const u32 cmd_size = sizeof(thp7312_cmd_write_ram_to_flash);
-> > > > > > +	u64 val;
-> > > > > > +	int ret;
-> > > > > > +
-> > > > > > +	memcpy(command, thp7312_cmd_write_ram_to_flash, cmd_size);
-> > > > > > +
-> > > > > > +	command[cmd_size] = (dest & 0xff0000) >> 16;
-> > > > > > +	command[cmd_size + 1] = (dest & 0x00ff00) >> 8;
-> > > > > > +	command[cmd_size + 2] = (dest & 0x0000ff);
-> > > > > > +	command[cmd_size + 3] = ((write_size - 1) & 0xff0000) >> 16;
-> > > > > > +	command[cmd_size + 4] = ((write_size - 1) & 0x00ff00) >> 8;
-> > > > > > +	command[cmd_size + 5] = ((write_size - 1) & 0x0000ff);
-> > > > > > +
-> > > > > > +	ret = thp7312_write_buf(thp7312, command, sizeof(command));
-> > > > > > +	if (ret < 0)
-> > > > > > +		return FW_UPLOAD_ERR_RW_ERROR;
-> > > > > > +
-> > > > > > +	usleep_range(8000000, 8100000);
-> > > > > 
-> > > > > I guess there's time to make some tea here?
-> > > > 
-> > > > For a flash infusion, gong fu style, probably.
-> > > > 
-> > > > We don't have much documentation about the exact values of the delays
-> > > > that are needed, and why :-(
-> > > 
-> > > I have even less documentation (none) on this device. Is polling an option,
-> > > as you're reading a register to verify the operation was successful?
-> > 
-> > I'll try to ask and get more information. As firmware update is an
-> > uncommon and not time-sensitive operation, I'd rather be cautious here
-> > and not over-optimize.
 > 
-> If this is only done in order to *upgrade* the firmware, it's certainly not
-> a concern IMO.
-
-Yes, this is about flashing a new firmware to the device, not loading a
-firmware at runtime. You need to boot the chip with a pin strapped to
-select the firmware upgrade mode.
-
-> > > > > > +
-> > > > > > +	ret = cci_read(thp7312->regmap, THP7312_REG_FW_VERIFY_RESULT, &val,
-> > > > > > +		       NULL);
-> > > > > > +	if (ret < 0)
-> > > > > > +		return FW_UPLOAD_ERR_RW_ERROR;
-> > > > > > +
-> > > > > > +	return val ?  FW_UPLOAD_ERR_HW_ERROR : FW_UPLOAD_ERR_NONE;
-> > > > > > +}
-> > > 
-> > > ...
-> > > 
-> > > > > > +	/*
-> > > > > > +	 * Register a device for the sensor, to support usage of the regulator
-> > > > > > +	 * API.
-> > > > > > +	 */
-> > > > > > +	sensor->dev = kzalloc(sizeof(*sensor->dev), GFP_KERNEL);
-> > > > > > +	if (!sensor->dev)
-> > > > > > +		return -ENOMEM;
-> > > > > > +
-> > > > > > +	sensor->dev->parent = dev;
-> > > > > > +	sensor->dev->of_node = of_node_get(sensor->of_node);
-> > > > > 
-> > > > > This device could well find its way to a non-OF system. Could you use the
-> > > > > fwnode property API instead?
-> > > > 
-> > > > I'm pretty sure there will be problems if someone was using this driver
-> > > > on an ACPI-based system, so trying to pretend it's supported without
-> > > > being able to test it may not be the best use of development time. I'll
-> > > > try, but if I hit any issue, I'll keep using the OF-specific functions
-> > > > in the next version.
-> > > 
-> > > I'd suggest to use OF functions if there's no corresponding fwnode function
-> > > available. The intention is they cover the same scope, so it is likely
-> > > something that's missing will be added sooner or later.
-> > 
-> > I understand, but if the conversion is not complete, it's not very
-> > valuable. I have no objection against using the fwnode API in the
-> > driver, but I'll let someone else handle it when and if needed.
+> If I understand correctly by constraining IO space/interrupt,
+> you mean to add maxItems for reg and interrupt for other variants.
+> If so, I verified adding maxItems for these properties and dtb check
+> seems to be good. I will post the same in the next patch series.
 > 
-> If you leave it using OF-only API now in a driver that is not bound to OF
-> in any way, someone moving it to fwnode later may not be able to test it on
-> OF, increasing the likelihood something breaks. So use fwnode API where you
-> can now, and we'll address that one call later on.
+> Thanks,
+> Mrinmay
+>>
 
-Sorry, this is extra work for very little gain (if any) now, so I don't
-plan to do so if I can't implement a full conversion.
+Best regards,
+Krzysztof
 
-> > > > > > +	/* Retrieve the sensor index from the reg property. */
-> > > > > > +	ret = of_property_read_u32(node, "reg", &reg);
-> > > > > > +	if (ret < 0) {
-> > > > > > +		dev_err(dev, "'reg' property missing in sensor node\n");
-> > > > > 
-> > > > > Shouldn't you assume it's zero instead?
-> > > > 
-> > > > The property is mandatory.
-> > > 
-> > > You could also make it optional as that appears to be the general practice.
-> > > Up to you.
-> > 
-> > I think it's easier to keep it mandatory.
-> 
-> Ack.
-
--- 
-Regards,
-
-Laurent Pinchart
 
