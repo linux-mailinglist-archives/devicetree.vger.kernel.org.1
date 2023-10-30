@@ -1,88 +1,94 @@
-Return-Path: <devicetree+bounces-12881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80DF37DBA9E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 14:23:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CDE07DBAA6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 14:25:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B29071C20A45
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 13:23:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D84CD1F21F89
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 13:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6938516433;
-	Mon, 30 Oct 2023 13:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F419168A8;
+	Mon, 30 Oct 2023 13:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="D6EovCpt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B51316426
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 13:23:43 +0000 (UTC)
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7241711C;
-	Mon, 30 Oct 2023 06:23:28 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-581f78a0206so2481010eaf.2;
-        Mon, 30 Oct 2023 06:23:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698672207; x=1699277007;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wjt3TAo3Dse9HLcIvA8SfElE9ogqvEen9PSWvl4jKHI=;
-        b=mmJ2O9QWzNLBNtv84PO4RnisLOQnnfw3/r9tB6Q6P/dnsNyC+QvafLbLMp1hKLP8v8
-         RJko+tL92o23bz1pRiUKIprqpsvjGKCz49SsG2iejxh2dRCn7RQ+WmianTiKPyyM9bhE
-         U9fZX2sfA2Q/HwQczWlmcvVCqM5PYIp4pkKLoASKG0cupiTA9EWdfUVaZF9/UGlcfSuX
-         IQLigcaCHIPCN0HrYDsiFBGp+zLUrM9X/rfBmzFUJDSaKFHh92g7D/8dqeQC2btMbT4A
-         yg+8PD+LXLQwF1vxs8emZtKCrWmsZE1P7c+NyYXB+gOgdxVoFrIOze1tC/w6b0VGb0KZ
-         tv2g==
-X-Gm-Message-State: AOJu0YzAwctl+cvE09ovS+Zwa8w7FW9TDnGAl19+eBApCp6Bp6Q+loWP
-	tKAsQDfyOXkksikYMEg/dg==
-X-Google-Smtp-Source: AGHT+IEaB8n505Hu712q4IY6O7KQDxychWyTNOV58H89VBCZFr9I2EC1PD5VP1sd2CT4pNHS5AyMkw==
-X-Received: by 2002:a4a:dcca:0:b0:583:fb9c:6fe4 with SMTP id h10-20020a4adcca000000b00583fb9c6fe4mr10046399oou.1.1698672207050;
-        Mon, 30 Oct 2023 06:23:27 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y199-20020a4a45d0000000b00581d6ea29d1sm1805586ooa.4.2023.10.30.06.22.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Oct 2023 06:23:26 -0700 (PDT)
-Received: (nullmailer pid 732542 invoked by uid 1000);
-	Mon, 30 Oct 2023 13:22:16 -0000
-Date: Mon, 30 Oct 2023 08:22:16 -0500
-From: Rob Herring <robh@kernel.org>
-To: Elad Nachman <enachman@marvell.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, pali@kernel.org, mrkiko.rs@gmail.com, chris.packham@alliedtelesis.co.nz, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, cyuval@marvell.com
-Subject: Re: [PATCH v4 2/3] dt-bindings: arm64: dts: add dt-bindings for
- Marvell COM Express boards
-Message-ID: <20231030132216.GA726350-robh@kernel.org>
-References: <20231029174814.559583-1-enachman@marvell.com>
- <20231029174814.559583-3-enachman@marvell.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1876A14F95
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 13:25:30 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4DB98E;
+	Mon, 30 Oct 2023 06:25:29 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id D8CD4660297B;
+	Mon, 30 Oct 2023 13:25:27 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698672328;
+	bh=4eqeiWumk4iSfUH1LnoCuerSUI7m7wgrGgGcR0jKt20=;
+	h=From:To:Cc:Subject:Date:From;
+	b=D6EovCptxO0ZxALbuNpnoq/13GJgRkqwpxgY1tqF99+c3Qnj7nIkTOP+QIiv7pD0t
+	 4fDwG08rEhEJR6D71qtxH+M6nmNJvAtM/E22zOWd8lw4ZZz+fXgjOqee58z3woKI2n
+	 UbQD1ZHF3OS287on70DQp2TfzNBbNAhmmdaM12nCgkNMp4LnayH5XXqxrm5UYd5YSP
+	 8KBrgXvkbsWrzNpFEHQKZCGkiuMisVhcIl1T9bnp+PKnFQ47tOXGGN2XUXZc/g+P8l
+	 4rNYb3/WCXBHkB9MV230pIx0/4ibr29eBHxrKm9Rt4/LPxnr3X9qqzvZ7Oz8t0JbFT
+	 eHh9awnUnUCtQ==
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: matthias.bgg@gmail.com
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	wenst@chromium.org,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH 0/2] MT8195 Cherry: Assign MFG vregs for power saving
+Date: Mon, 30 Oct 2023 14:25:21 +0100
+Message-ID: <20231030132523.86123-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231029174814.559583-3-enachman@marvell.com>
+Content-Transfer-Encoding: 8bit
 
-On Sun, Oct 29, 2023 at 07:48:13PM +0200, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
+This series assigns the right regulators to MFG0 and MFG1, respectively
+VGPU (GPU Core) and VSRAM_OTHERS (GPU SRAM), and removes the property
+regulator-always-on from both.
 
-Drop 'dts:' from the subject. This is not a .dts file.
+This allows to save power both during runtime suspend and during system
+sleep; specifically because:
+ 1. The GPU SRAM regulator is switched off during runtime suspend
+ 2. The GPU Core regulator is switched off during system sleep
 
-Also drop the 2nd 'dt-bindings'. Subject line space is precious.
+Of course, in order for those power saving actions to actually take
+place, it is required to also have the code in [1].
+Anyway, even without series [1], this will not introduce any unstability
+as the Vgpu regulator will simply not ever get turned off.
 
-> 
-> Add dt bindings for:
-> CN9130 COM Express CPU module
-> CN9131 COM Express CPU module
-> AC5X RD COM Express Type 7 carrier board.
-> AC5X RD COM Express board with a CN9131 COM Express Type 7 CPU module.
-> 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
->  .../bindings/arm/marvell/armada-7k-8k.yaml        | 15 +++++++++++++++
->  .../bindings/arm/marvell/marvell,ac5.yaml         | 14 ++++++++++++++
->  2 files changed, 29 insertions(+)
+[1]: https://lore.kernel.org/r/20231030132257.85379-1-angelogioacchino.delregno@collabora.com
+
+AngeloGioacchino Del Regno (2):
+  arm64: dts: mediatek: mt8195-cherry: Add MFG0 domain supply
+  arm64: dts: mediatek: mt8195-cherry: Assign sram supply to MFG1 pd
+
+ arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 10 ++++++++--
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi        |  2 +-
+ 2 files changed, 9 insertions(+), 3 deletions(-)
+
+-- 
+2.42.0
+
 
