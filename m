@@ -1,301 +1,196 @@
-Return-Path: <devicetree+bounces-12749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93A17DB5E5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCB387DB5F1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DC1328123D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:12:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FA4B28131B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC14D51A;
-	Mon, 30 Oct 2023 09:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2EED526;
+	Mon, 30 Oct 2023 09:14:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="r+COnjRV"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ZR6D7x2Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5CBD2F3
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 09:12:19 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51EF0C4
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:12:17 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-53dfc28a2afso6691093a12.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:12:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87468D50F
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 09:14:52 +0000 (UTC)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986F5A7
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:14:50 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5af6c445e9eso31245177b3.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:14:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1698657136; x=1699261936; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uOzvxojt5IkzpqEC6kgmrbNp7izwwxbXp+yu+D9sdwU=;
-        b=r+COnjRVjsVaPVs3t2VmGwM9JcaxQmUquAaehCCG3y/Q2MNtYYfglNtAnzp5uOE7cP
-         WHtgDezQZyORRRyp+YGdKZuUl71+C7SiBGLhv58uQq0PqTvSPEyLFhF+Y9ouYSXjq9/q
-         8ACX1d1PpFATjAJ4TT6qxiTmIt6+X3JV3INp+Ck4LSy1RzVgnS1JtCK1OIxIGGqy+Blx
-         sd9j5ZK9xhUZALqzaMTVQWcTDXSNu6b7/AguOm/ejV8VeEdqtPzy0gLCWO5btK0ktuzB
-         6f+jTxQ5DcAKoD9Ds4UUzQ6EpEGd+zwvbPkMT8otXMfDr2p1kc4903Fcakkqp74M8J5r
-         ysSQ==
+        d=ventanamicro.com; s=google; t=1698657290; x=1699262090; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B7aqKrsdZIrB5ABk434LeogLx2l2c4W5AH5BU+5ySR4=;
+        b=ZR6D7x2QMaKIjm688/+G4lZsv/1RwCWlZqUg6O/txzPI9bp3fjXeBG79Xgepm7/1dG
+         84HfKnyzdrE3DwcM7kng7f7Ip0dG7NKpB+gb6ltnMsG4xgiwTjJ/c4N+0ttGJAljV0+V
+         xVx6vm7bl7hkJ/Yd6CZwVCuksu5VC6zWTsVHDkM2bnAKCqV+WrU1yb1rwJCSeSiHmSNN
+         w4mzddANIZ7EXoWDiQR8rV0WcPGsPzp3spcHa483JTm3j+8MORzO+yoq9hEEmEXe/u4v
+         GAe7r5gw3+DVvvP4PbEr41iQJvaM/tvICJ0Q+61iNIbxsyacVtoTcxUsnfmY9Gz+4kkz
+         8OKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698657136; x=1699261936;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uOzvxojt5IkzpqEC6kgmrbNp7izwwxbXp+yu+D9sdwU=;
-        b=sjISVAGelQscYK7W1ZbYcm9E2mWvgczQIN4K3W2Cmhsu7lOIOdespmrLETMFfhIqYn
-         n/fdDV84GDlF2GCEgwRcl2XzIjLqYuwC5CiJfaYIkZpHMDSnWffyvWHoGEQjfAXvLvJo
-         U0xtnZdEK3Ac4b9Qjc9vzOs0OGRjikrY/sekY3VRw0oxkxrjeuqOVz9Ff76bd7nrIVan
-         ifAYORnTplsreBXwTpz1AbPkuDjwZmC9RGQWH3CBxR+BXmkWtjSVFFZJfLF7S2Oe0/5y
-         k7dvBv7Pxhkxr92K4T7ZdIpVdqa38X30qdPRC9qQpd2M9DiCzL88EnfAdSExeYmJ2Cp5
-         MD9g==
-X-Gm-Message-State: AOJu0YxoKBzmq27U+d4l+P+Pde7YRgBpe9csS2UdLUjlueOeY1w87oh2
-	bBHw2BaOLTcjrEyDkNvgKqXCEg==
-X-Google-Smtp-Source: AGHT+IEYCma+GOM6jY6YkxKwhHrk/iK/ziLsvGWwcdC/cvUPp8XZUvhRvI0SwFwRhd8Hweyrf/evGA==
-X-Received: by 2002:a17:907:360a:b0:9c7:dc4e:1a22 with SMTP id bk10-20020a170907360a00b009c7dc4e1a22mr8483803ejc.48.1698657135700;
-        Mon, 30 Oct 2023 02:12:15 -0700 (PDT)
-Received: from localhost (k10064.upc-k.chello.nl. [62.108.10.64])
-        by smtp.gmail.com with ESMTPSA id v6-20020a1709067d8600b0099bcf1c07c6sm5660388ejo.138.2023.10.30.02.12.14
+        d=1e100.net; s=20230601; t=1698657290; x=1699262090;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B7aqKrsdZIrB5ABk434LeogLx2l2c4W5AH5BU+5ySR4=;
+        b=XWqwkNMISBKolu8erH5kXjgrzPEdBvRwQTYLxHbclcGIf39ev0hIkW3OXm1D7197Gs
+         c2Qw/6zZKhDgvQZ9aYqpiju/Qlk2AL2awVf7YixXjyUCRl5Bs+m94d5BpI7isERZBRy+
+         M713zUHMiu4CvtOvvipxHByBH5SY8UHX6GYxa529iee/ZQIRgcCbBLMH+yGWLr0MY3uf
+         rW3Gyo8P+a0eJtFX0kuMHRAsghAp69JZirCFuy+x8GEWf8qpaINlxTlhrdBgNVrhCrtU
+         A+IjfmKVSaWVV2TRuTPtlc10eczMGkOvtA/OLEZZABDB2lP43mKScT5Ewgq1sSWFGRKT
+         dXUA==
+X-Gm-Message-State: AOJu0YzOIAkGdL1l9ldmfDeKeN83RCtSs4AZlOc1m8Xc9vgxZyGVpIDV
+	01ZBuQvP5wI8vPieJV/DTrREWw==
+X-Google-Smtp-Source: AGHT+IFtFlQZiOnSiJDBLR4UIwO0tx/7GTeBHUefs6bsb6z+tsAAKXgW+oOfteddFuQbSAS0y5DrPQ==
+X-Received: by 2002:a0d:cb52:0:b0:59f:6675:7771 with SMTP id n79-20020a0dcb52000000b0059f66757771mr9457492ywd.35.1698657289735;
+        Mon, 30 Oct 2023 02:14:49 -0700 (PDT)
+Received: from [192.168.68.107] ([179.193.10.161])
+        by smtp.gmail.com with ESMTPSA id e67-20020a816946000000b0059b24bd4f2asm4068279ywc.57.2023.10.30.02.14.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 02:12:15 -0700 (PDT)
+        Mon, 30 Oct 2023 02:14:49 -0700 (PDT)
+Message-ID: <513ea612-b354-44d4-b6d7-490741ed14a3@ventanamicro.com>
+Date: Mon, 30 Oct 2023 06:14:45 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 30 Oct 2023 10:12:14 +0100
-Message-Id: <CWLNP6QNUXN1.SNVACF2IEGI8@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
- <robh@kernel.org>, =?utf-8?q?Matti_Lehtim=C3=A4ki?=
- <matti.lehtimaki@gmail.com>, <linux-arm-msm@vger.kernel.org>,
- <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 7/9] arm64: dts: qcom: sc7280: Add CDSP node
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Mukesh Ojha" <quic_mojha@quicinc.com>, "Andy Gross"
- <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@linaro.org>, "Mathieu Poirier"
- <mathieu.poirier@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Manivannan Sadhasivam" <mani@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-X-Mailer: aerc 0.15.2
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
- <20231027-sc7280-remoteprocs-v1-7-05ce95d9315a@fairphone.com>
- <7934a36a-9438-719a-2ed0-4a78757b044b@quicinc.com>
-In-Reply-To: <7934a36a-9438-719a-2ed0-4a78757b044b@quicinc.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: riscv: Document cbop-block-size
+To: Andrew Jones <ajones@ventanamicro.com>, Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, apatel@ventanamicro.com,
+ palmer@dabbelt.com, devicetree@vger.kernel.org, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor.dooley@microchip.com>
+References: <20231029123500.739409-1-dbarboza@ventanamicro.com>
+ <20231029-kitten-provider-1602fa805c35@spud>
+ <680a2f25-59e7-4757-ba93-1de7fe1279e3@ventanamicro.com>
+ <20231029-sappy-ought-98fecff551fc@spud>
+ <20231030-d3db6c3f8cf46bbdd8191d65@orel>
+Content-Language: en-US
+From: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
+In-Reply-To: <20231030-d3db6c3f8cf46bbdd8191d65@orel>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon Oct 30, 2023 at 10:04 AM CET, Mukesh Ojha wrote:
->
->
-> On 10/27/2023 7:50 PM, Luca Weiss wrote:
-> > Add the node for the ADSP found on the SC7280 SoC, using standard
-> > Qualcomm firmware.
-> >=20
-> > The memory region for sc7280-chrome-common.dtsi is taken from msm-5.4
-> > yupik.dtsi since the other areas also seem to match that file there,
-> > though I cannot be sure there.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   5 +
-> >   arch/arm64/boot/dts/qcom/sc7280.dtsi               | 138 ++++++++++++=
-+++++++++
-> >   2 files changed, 143 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/=
-arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > index eb55616e0892..6e5a9d4c1fda 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > @@ -29,6 +29,11 @@ adsp_mem: memory@86700000 {
-> >   			no-map;
-> >   		};
-> >  =20
-> > +		cdsp_mem: memory@88f00000 {
-> > +			reg =3D <0x0 0x88f00000 0x0 0x1e00000>;
-> > +			no-map;
-> > +		};
-> > +
->
-> Just a question, why to do it here, if chrome does not use this ?
 
-Other memory regions in sc7280.dtsi also get referenced but not actually
-defined in that file, like mpss_mem and wpss_mem. Alternatively we can
-also try and solve this differently, but then we should probably also
-adjust mpss and wpss to be consistent.
 
-Apart from either declaring cdsp_mem in sc7280.dtsi or
-"/delete-property/ memory-region;" for CDSP I don't really have better
-ideas though.
+On 10/30/23 05:18, Andrew Jones wrote:
+> On Sun, Oct 29, 2023 at 10:21:55PM +0000, Conor Dooley wrote:
+>> On Sun, Oct 29, 2023 at 04:49:30PM -0300, Daniel Henrique Barboza wrote:
+>>>
+>>>
+>>> On 10/29/23 11:53, Conor Dooley wrote:
+>>>> Yo,
+>>>>
+>>>> On Sun, Oct 29, 2023 at 09:35:00AM -0300, Daniel Henrique Barboza wrote:
+>>>>> Following the examples of cbom-block-size and cboz-block-size,
+>>>>> cbop-block-size is the cache size of Zicbop (cbo.prefetch) operations.
+>>>>> The most common case is to have all cache block sizes to be the same
+>>>>> size (e.g. profiles such as rva22u64 mandates a 64 bytes size for all
+>>>>> cache operations), but there's no specification requirement for that,
+>>>>> and an implementation can have different cache sizes for each operation.
+>>>>>
+>>>>> Cc: Rob Herring <robh@kernel.org>
+>>>>> Cc: Conor Dooley <conor.dooley@microchip.com>
+>>>>> Signed-off-by: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
+>>>>
+>>>> Firstly, odd CC list. Please CC the output of get_maintainer.pl in the
+>>>> future.
+>>>
+>>> Ops, my bad
+>>>
+>>>>
+>>>> IIRC, I mentioned defining this to Drew when he was add zicboz, but he
+>>>> didn't want to add it - although he seems to have asked you to document
+>>>> this. Drew, change of heart or am I not remembering correctly?
+>>>> I think he cited some interpretation of the spec from Andrei W that
+>>>> implied the Zicbop size would be the same as one of the other ones, but
+>>>> I cannot find that on lore atm.
+>>>
+>>> The reason why I'm here is because I want to add Zicbop in QEMU riscv,isa.
+>>> I'm pushing a rva22u64 profile implementation there and Zicbop is mandatory
+>>> for it. In the process I added a riscv,cbop-block-size DT because, well,
+>>> if both Zicboz and Zicbom have their respective block-size DTs, then it's
+>>> expected that Zicbop also has one. Or so I thought.
+>>>
+>>> Drew then replied in the QEMU ML [1] that riscv,cbop-block-size isn't
+>>> documented and we can't add it as it is. So here we are.
+>>
+>> Yeah, I did read that.
+>>
+>>> If riscv,cbop-block-size isn't needed because Zicbop will use the cache
+>>> block size of Zicboz or Zicbom, that works for me too - I'll add a note
+>>> in QEMU explaining why there's no riscv,cbop-block-size and everything
+>>> is fine.
+>>
+>> I just wanted to remind Drew why we didn't add this in the first place,
+>> given I had seen that he suggested that you add it in the QEMU thread.
+>> And in the hopes that he would be able to dig the link back up to
+>> Andrei's comments, given I wasn't able to find it/couldnt remember
+>> recall where it had come from.
+> 
+> Hi Conor,
+> 
+> Thanks for the reminder. I had forgotten my own opinion on this :-)
+> 
+> I found the messages. In [1], I advocate for the block size DT property,
+> but then, in [2], I reply to myself saying we could probably wait until
+> we have a prefetch block size that differs from the management block
+> size, due to the "reasonable" interpretation of the spec that management
+> and prefetch block sizes are the same.
+> 
+> I think I could go either way. The nice thing about adding the node is
+> that it's self-documenting. While we could document that Zicbop will use
+> cbom's block size (and if we ever added a cbop-block-size, then we'd
+> change the documentation to state that cbom's block size is Zicbop's
+> fallback block size), it might be better for things like hwprobe to just
+> have them separate from the start. FWIW, ACPI already has a separate table
+> entry for Zicbop's block size.
+> 
+> I guess after letting this ping-pong back and forth in my brain a few
+> times the ball is currently resting on the "let's add cbop-block-size"
+> side.
 
-I also imagine these ChromeOS devices will want to enable cdsp at some
-point but I don't know any plans there.
+I'll go ahead and understand that it is ok for QEMU to add a riscv,cbop-block-size DT
+then.
 
-Regards
-Luca
+If Linux wants to handle cbop-block-size as an alias of cbom-block-size that's
+Linux prerrogative and it's perfectly fine. QEMU and other emulators/VMMs deals
+with non-Linux OSes that uses the devicetree bindings though (like FreeBSD), so
+we'd rather error to the side of having redundant info than baking in Linux
+assumptions in the DT.
 
->
-> -Mukesh
->
-> >   		camera_mem: memory@8ad00000 {
-> >   			reg =3D <0x0 0x8ad00000 0x0 0x500000>;
-> >   			no-map;
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts=
-/qcom/sc7280.dtsi
-> > index cc153f4e6979..e15646289bf7 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -3815,6 +3815,144 @@ nsp_noc: interconnect@a0c0000 {
-> >   			qcom,bcm-voters =3D <&apps_bcm_voter>;
-> >   		};
-> >  =20
-> > +		remoteproc_cdsp: remoteproc@a300000 {
-> > +			compatible =3D "qcom,sc7280-cdsp-pas";
-> > +			reg =3D <0 0x0a300000 0 0x10000>;
-> > +
-> > +			interrupts-extended =3D <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
-> > +					      <&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> > +					      <&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> > +					      <&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> > +					      <&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
-> > +					      <&cdsp_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
-> > +			interrupt-names =3D "wdog", "fatal", "ready", "handover",
-> > +					  "stop-ack", "shutdown-ack";
-> > +
-> > +			clocks =3D <&rpmhcc RPMH_CXO_CLK>;
-> > +			clock-names =3D "xo";
-> > +
-> > +			power-domains =3D <&rpmhpd SC7280_CX>,
-> > +					<&rpmhpd SC7280_MX>;
-> > +			power-domain-names =3D "cx", "mx";
-> > +
-> > +			interconnects =3D <&nsp_noc MASTER_CDSP_PROC 0 &mc_virt SLAVE_EBI1 =
-0>;
-> > +
-> > +			memory-region =3D <&cdsp_mem>;
-> > +
-> > +			qcom,qmp =3D <&aoss_qmp>;
-> > +
-> > +			qcom,smem-states =3D <&cdsp_smp2p_out 0>;
-> > +			qcom,smem-state-names =3D "stop";
-> > +
-> > +			status =3D "disabled";
-> > +
-> > +			glink-edge {
-> > +				interrupts-extended =3D <&ipcc IPCC_CLIENT_CDSP
-> > +							     IPCC_MPROC_SIGNAL_GLINK_QMP
-> > +							     IRQ_TYPE_EDGE_RISING>;
-> > +				mboxes =3D <&ipcc IPCC_CLIENT_CDSP
-> > +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> > +
-> > +				label =3D "cdsp";
-> > +				qcom,remote-pid =3D <5>;
-> > +
-> > +				fastrpc {
-> > +					compatible =3D "qcom,fastrpc";
-> > +					qcom,glink-channels =3D "fastrpcglink-apps-dsp";
-> > +					label =3D "cdsp";
-> > +					qcom,non-secure-domain;
-> > +					#address-cells =3D <1>;
-> > +					#size-cells =3D <0>;
-> > +
-> > +					compute-cb@1 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <1>;
-> > +						iommus =3D <&apps_smmu 0x11a1 0x0420>,
-> > +							 <&apps_smmu 0x1181 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@2 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <2>;
-> > +						iommus =3D <&apps_smmu 0x11a2 0x0420>,
-> > +							 <&apps_smmu 0x1182 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@3 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <3>;
-> > +						iommus =3D <&apps_smmu 0x11a3 0x0420>,
-> > +							 <&apps_smmu 0x1183 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@4 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <4>;
-> > +						iommus =3D <&apps_smmu 0x11a4 0x0420>,
-> > +							 <&apps_smmu 0x1184 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@5 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <5>;
-> > +						iommus =3D <&apps_smmu 0x11a5 0x0420>,
-> > +							 <&apps_smmu 0x1185 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@6 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <6>;
-> > +						iommus =3D <&apps_smmu 0x11a6 0x0420>,
-> > +							 <&apps_smmu 0x1186 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@7 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <7>;
-> > +						iommus =3D <&apps_smmu 0x11a7 0x0420>,
-> > +							 <&apps_smmu 0x1187 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@8 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <8>;
-> > +						iommus =3D <&apps_smmu 0x11a8 0x0420>,
-> > +							 <&apps_smmu 0x1188 0x0420>;
-> > +					};
-> > +
-> > +					/* note: secure cb9 in downstream */
-> > +
-> > +					compute-cb@11 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <11>;
-> > +						iommus =3D <&apps_smmu 0x11ab 0x0420>,
-> > +							 <&apps_smmu 0x118b 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@12 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <12>;
-> > +						iommus =3D <&apps_smmu 0x11ac 0x0420>,
-> > +							 <&apps_smmu 0x118c 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@13 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <13>;
-> > +						iommus =3D <&apps_smmu 0x11ad 0x0420>,
-> > +							 <&apps_smmu 0x118d 0x0420>;
-> > +					};
-> > +
-> > +					compute-cb@14 {
-> > +						compatible =3D "qcom,fastrpc-compute-cb";
-> > +						reg =3D <14>;
-> > +						iommus =3D <&apps_smmu 0x11ae 0x0420>,
-> > +							 <&apps_smmu 0x118e 0x0420>;
-> > +					};
-> > +				};
-> > +			};
-> > +		};
-> > +
-> >   		usb_1: usb@a6f8800 {
-> >   			compatible =3D "qcom,sc7280-dwc3", "qcom,dwc3";
-> >   			reg =3D <0 0x0a6f8800 0 0x400>;
-> >=20
 
+Thanks,
+
+Daniel
+
+> 
+> [1] https://lore.kernel.org/all/20230914-892327a75b4b86badac5de02@orel/
+> [2] https://lore.kernel.org/all/20230914-74d0cf00633c199758ee3450@orel/
+> 
+> Thanks,
+> drew
+> 
+>>
+>>> What we can't do is add stuff in the QEMU DT that's neither
+>>> documented nor acked in the DT bindings.
+>>
+>> That's a welcome change.
+>>
+>> Cheers,
+>> Conor.
+> 
+> 
 
