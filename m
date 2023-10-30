@@ -1,102 +1,124 @@
-Return-Path: <devicetree+bounces-12907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5CD7DBDA3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:20:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF8F7DBDB8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BAB9B20DB1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:20:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DDD7B20B61
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78F6C18C3B;
-	Mon, 30 Oct 2023 16:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B9A18E03;
+	Mon, 30 Oct 2023 16:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akFbJv95"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="KHUFHvzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC7518C38
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:20:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D07FFC433CA;
-	Mon, 30 Oct 2023 16:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698682799;
-	bh=8CB+A7ObhubnYvuahBzqn4eJLvBHVOjnBhZVrb8dFnk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=akFbJv95dTuqKRsQGo+Ea3m0Vhr422EcQxSOn0ZcR255YMvsmBVPDO9mdcUiyZxsA
-	 q6aaKFs0gGobVTTRtFt2Z5nUxgrGi++AQf5Fv1UbPKcnrM9Z888+oscuK0I+Ghj6+s
-	 eqUqEEJD+TyoM1gNB0J70dhFEOhOL5c+TJj048QxK/4+o89rHAnIQYEPiqBQkDB+K0
-	 r9o0ulTJd2EQi7rSlSzEJ9cQDeb9Yn61wDeVCUhQpw63vR26nFwRmeRfAQ5rPsdeUo
-	 MNwnkWi2rjaZRQsxjctavnfwmXzXDtEJjTZT1STHFY5GyLSCKZbGNya+ko9tcJooyk
-	 VVMWWEQGSRwqw==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-507bd19eac8so6745416e87.0;
-        Mon, 30 Oct 2023 09:19:59 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwSIONLziGJ8FCmfVYtwNw5OO947YWWoXEuQ7OYahZQqm/T8Unj
-	GFZXylCOxsdCP5B52LZ0wuiBwbINXpEKyPWSYg==
-X-Google-Smtp-Source: AGHT+IGhPodCnfPRw3kjgKtqbysRQzHuB1pJlVdyRGdREeej24r6SiIpuQ7qVUxVicmLsS83yHmtCdlKXyWAJYJCfUw=
-X-Received: by 2002:a05:6512:3b97:b0:507:9777:a34a with SMTP id
- g23-20020a0565123b9700b005079777a34amr10517948lfv.39.1698682798032; Mon, 30
- Oct 2023 09:19:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0B7F18C38
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:22:40 +0000 (UTC)
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20DBA83;
+	Mon, 30 Oct 2023 09:22:36 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39UF3Wru012001;
+	Mon, 30 Oct 2023 17:22:07 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=WWjvixk
+	x1+sUJudPBiinwlW6wYpb+vSAYAex868zvkg=; b=KHUFHvzdpvB9wB8g7w2XTRG
+	Yzoq/mVxTwda2uxkNZ7zx4As5TV6cwA8r1yLgoHbak1dX8GUcm6p64pIudqwuGeB
+	fSsX1zIs2ON9mRvFyThxiPYcqC7gJYrCNzWVJMyK/grkRpdKePRm/0rk5r7kPh5l
+	fhjSKjtVwjmTdX26bZq1nFYxdHIWoE7cK8j9t4h5qdKTajGPaZjJTMyikv6vEJde
+	bBOb7m38xJ4NctwH6V65vGkfA2aU7VolwigG6ERzD4wPOtMOuxzptVDLSGlB5TKe
+	ACDosYaHira/AflfM4v0CWUt37YUjjA1AFww8V0O6QItPHjB3/6fLVRVf0iLBIg=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3u0ttvh0bb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Oct 2023 17:22:07 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BF16110005B;
+	Mon, 30 Oct 2023 17:22:05 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B116D25C61C;
+	Mon, 30 Oct 2023 17:22:05 +0100 (CET)
+Received: from localhost (10.252.13.136) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 30 Oct
+ 2023 17:22:02 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>
+Subject: [PATCH 0/3] Update STM DSI PHY driver
+Date: Mon, 30 Oct 2023 17:21:54 +0100
+Message-ID: <20231030162157.218901-1-raphael.gallais-pou@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231026093029.3122573-1-kris.chaplin@amd.com>
- <20231026093029.3122573-2-kris.chaplin@amd.com> <20231030154015.GA1141490-robh@kernel.org>
- <df37f8db-a8c7-4a99-8828-3cb123afed1d@amd.com>
-In-Reply-To: <df37f8db-a8c7-4a99-8828-3cb123afed1d@amd.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 30 Oct 2023 11:19:45 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+SMY+C3=e=zbdrP_Ekj3FkRs7QQyg2pqmjrcz_0AvmBQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+SMY+C3=e=zbdrP_Ekj3FkRs7QQyg2pqmjrcz_0AvmBQ@mail.gmail.com>
-Subject: Re: [RESEND v2 1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI
- w1 host and MAINTAINERS entry
-To: Kris Chaplin <kris.chaplin@amd.com>
-Cc: thomas.delev@amd.com, michal.simek@amd.com, krzysztof.kozlowski@linaro.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	git@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.252.13.136]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-30_10,2023-10-27_01,2023-05-22_02
 
-On Mon, Oct 30, 2023 at 10:48=E2=80=AFAM Kris Chaplin <kris.chaplin@amd.com=
-> wrote:
->
-> Hello Rob,
->
-> On 30/10/2023 15:40, Rob Herring wrote:
->
-> Is there a device side implementation? I can't really imagine that
-> 1-wire would ever be implemented as firmware on the device side given
-> its limited nature. So adding 'host' doesn't make this any more
-> specific.
->
-> There are slave drivers as well as master, although these do not have a d=
-evice tree binding.
+This patch series aims to add several features of the dw-mipi-dsi phy
+driver that are missing or need to be updated.
 
-My question is whether there is slave/device IP for implementing the
-device side in software? The slave drivers in the kernel are for
-handling those devices, not a slave side controller interface.
+First patch adds runtime PM functionality to the driver.
 
-For comparison, we have SPI slave in the kernel which is for
-implementing the device side in software (running Linux or another
-OS). There is no such thing in the kernel for 1-wire and I would doubt
-there would ever be a software implementation. Could you, yes, but
-given the limited nature of 1-wire why would you?
+Second patch adds a clock provider generated by the PHY itself.  As
+explained in the commit log of the second patch, a clock declaration is
+missing.  Since this clock is parent of 'dsi_k', it leads to an orphan
+clock.  Most importantly this patch is an anticipation for future
+versions of the DSI PHY, and its inclusion within the display subsystem
+and the DRM framework.
 
->
-> The IP device from AMD is called "axi_1wire_host", and so we are hoping t=
-o stick with this binding if appropriate as it relates to the IP name.
+Last patch fixes a corner effect introduced previously.  Since 'dsi' and
+'dsi_k' are gated by the same bit on the same register, both reference
+work as peripheral clock in the device-tree.
 
-Okay, I suppose that is good enough reason.
+Raphael Gallais-Pou (2):
+  drm/stm: dsi: expose DSI PHY internal clock
+  arm: dts: st: fix DSI peripheral clock on stm32mp15 boards
 
-However, the versioning comments in your first v2 have not been
-addressed. I believe the conclusion was to mention the IP has a
-version register. And Conor's R-by tag was not added.
+Yannick Fertre (1):
+  drm/stm: dsi: add pm runtime ops
 
-Rob
+ arch/arm/boot/dts/st/stm32mp157.dtsi          |   2 +-
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-dk2-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts |   2 +-
+ drivers/gpu/drm/stm/dw_mipi_dsi-stm.c         | 274 +++++++++++++++---
+ 6 files changed, 240 insertions(+), 44 deletions(-)
+
+-- 
+2.25.1
+
 
