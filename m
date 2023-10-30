@@ -1,175 +1,224 @@
-Return-Path: <devicetree+bounces-12742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E94C7DB4FC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 398EE7DB522
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:30:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FF371C2096B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:18:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 746881C20A36
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:30:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAD55D276;
-	Mon, 30 Oct 2023 08:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA3CD2ED;
+	Mon, 30 Oct 2023 08:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Mx9IRwdv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SypD02Qp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8F4CA7E
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 08:18:54 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 090D4A7
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 01:18:53 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso655580966b.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 01:18:52 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F240AD2E9
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 08:29:58 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BE0AF
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 01:29:57 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50797cf5b69so5762484e87.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 01:29:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1698653931; x=1699258731; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ASGohF6wcQzyEKbt+mevQcb55fbQucBQCkmpGWTsGto=;
-        b=Mx9IRwdvmnLyEA+4C1iP8h+hI0+6auDl0La07+WM9VkAoWZpQTqfmUx42hy28yEBHr
-         amB803/yl4qMmRx85DmnnNcZe9b5RTsdtozq1EprI6UIfvEiy/TZq5hOppdRExHgGIG4
-         0nKyJ+8f2QcEm6sAYtUuOc0HypV1nkyb4RAUM4Ze2KIyYy8GfhuplAkkTTZuTVJEM842
-         sRCQqR4Krdi10UmMmoaogTb1c3ArqgpBAbqhqUCP7pFTbvUu+E/aljzv+Nu6XLSC2XH3
-         RCx5dcQ1yoOsxkWuKwSwOYwLuAo16R26nO7Llkzex/btNPfPVnr2rfptYkZQutEl6WQq
-         B3/Q==
+        d=linaro.org; s=google; t=1698654595; x=1699259395; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rnpIzjbYLIpmyoln4TxTiMzbHo5KIuPiksSLMxx86Kw=;
+        b=SypD02QpGbCY8EuPcxe25cw59pDZFne7kZN9d/b8oXtPYo+Ry72i1cb2kCa1yp1p3v
+         7EmRCkkc4l9YrvCOaJyjRr8LDVxF95PieIBrYE5OyfHFQE6Mp7QYSeYOgzCfSXykvTHY
+         aONuaxzQF5foAT+4a7xTjTuKu3kBBWCtmd+AOlVaUOpGg70QaFhx5BPvo8iKt82hyvjY
+         Bry7tL7aiqYOrgmlczzOZA99eMN+PtgERkkOJHZrw+RQD8o1g3roReaJdct98EaL/I4I
+         Adj6kRG2QMKuQ8n+9TrQqPjw1iLHnX/zsEqxZImkcbtSVmhy7vCkdbkX38+Zsl6aKeh5
+         I/Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698653931; x=1699258731;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ASGohF6wcQzyEKbt+mevQcb55fbQucBQCkmpGWTsGto=;
-        b=IEO2F+kJAlox/RSMEcVIc5XpVAx7qkjdMfxNYW2Yf+MKNAsUzXaGdEqEO6hIQTYVYo
-         kSLIOE6UeV1jPeXiUMTovxIPiO7eKMBE5GgLqIA7qDlo0W2/rodDmL4JwEbY1YDketmh
-         uynO6uryyPe90NWULdjm1vSFUfT+hWpXoRJ4t3QjtXLjXmIxOENHGluGzn+A0o6tYRv3
-         qRBBMOEE+GwGidWUDjOoAhb4HExLrX2zMRnQDxXaXqTTKi6LIZBnb7LIyvOuz6HAZIvv
-         VemKVcJMUVFVpnkTL0NETNTVcOrpu52YOl3NuewdvpE8WygKRHvC7zkexJ+jYqgVpDhq
-         LWCw==
-X-Gm-Message-State: AOJu0YwFr0CfjI6XC7BPMZbqKBE205/v2fk7zrIWFDmoKKM9c7rxjkNU
-	6oxDj5hX1P5iuTGXGOkwy9UU/g==
-X-Google-Smtp-Source: AGHT+IGdqsotN4dfRUTxJ2PytrYg4PIok+Da6/rxiuFLYsQNc0JOO256uP9qD7cm9yibCS0EteAn8w==
-X-Received: by 2002:a17:907:7ba0:b0:9af:9c4f:b579 with SMTP id ne32-20020a1709077ba000b009af9c4fb579mr9498421ejc.18.1698653931212;
-        Mon, 30 Oct 2023 01:18:51 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id n11-20020a170906b30b00b00989828a42e8sm5528320ejz.154.2023.10.30.01.18.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Oct 2023 01:18:50 -0700 (PDT)
-Date: Mon, 30 Oct 2023 09:18:49 +0100
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Daniel Henrique Barboza <dbarboza@ventanamicro.com>, 
-	linux-riscv@lists.infradead.org, apatel@ventanamicro.com, palmer@dabbelt.com, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH] dt-bindings: riscv: Document cbop-block-size
-Message-ID: <20231030-d3db6c3f8cf46bbdd8191d65@orel>
-References: <20231029123500.739409-1-dbarboza@ventanamicro.com>
- <20231029-kitten-provider-1602fa805c35@spud>
- <680a2f25-59e7-4757-ba93-1de7fe1279e3@ventanamicro.com>
- <20231029-sappy-ought-98fecff551fc@spud>
+        d=1e100.net; s=20230601; t=1698654595; x=1699259395;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rnpIzjbYLIpmyoln4TxTiMzbHo5KIuPiksSLMxx86Kw=;
+        b=osJ1rwcY8AE7O/7Pmiuh209PMWM9KbzhbihAxnFqMJmsGaIhe3tCgo5TO0r7ViYM7Z
+         9JwPz1KwHfYwfD9MlU5wxsGV8yaESfj0pyk8XkgnlEfxdfv3pmLZd314D8ZX1V7bRmi8
+         D58kk97rAVUJptbUqcDVL6w/FR99RjgWl+WvGSSRLRxO3Z34nJWs2Ea9xLrMYm7QamdN
+         6HiaISyREbWYHtZK5Lni2C+a2NQLydJfZTzUQ6etdu1mseEk6ph53t8aXaZGbPTIotCh
+         PfXfLtnHXEk001J6Ijzb0S5dsnyiuMyM3cIQ6JvlEMJNSmizhjlqNLXyeRn421oCH8MV
+         s/xA==
+X-Gm-Message-State: AOJu0YzuKVlO+3iM7/u1R8qIl4RGBD5ezR5YIUUqPgGkQ8WbNW6/PLWu
+	Fdpla+AB6UT0VBYMYJ6dZcnm7Q==
+X-Google-Smtp-Source: AGHT+IEcRMWXLNodTV6mQug71yQCCf+gJGD/OjbqlrKiQem+EyurncoOmzl+I70Jm3gUJApsoX3nng==
+X-Received: by 2002:a19:5516:0:b0:503:2dce:4544 with SMTP id n22-20020a195516000000b005032dce4544mr6869632lfe.59.1698654595117;
+        Mon, 30 Oct 2023 01:29:55 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a05f:dffd:3e08:6b03? ([2a01:e0a:982:cbb0:a05f:dffd:3e08:6b03])
+        by smtp.gmail.com with ESMTPSA id z8-20020adfe548000000b0031c52e81490sm7729674wrm.72.2023.10.30.01.29.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Oct 2023 01:29:54 -0700 (PDT)
+Message-ID: <469f2249-5f7b-4136-9f65-b58c9baf537c@linaro.org>
+Date: Mon, 30 Oct 2023 09:29:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231029-sappy-ought-98fecff551fc@spud>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: qcom,sm8550-pas: document
+ the SM8650 PAS
+Content-Language: en-US, fr
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231025-topic-sm8650-upstream-remoteproc-v1-0-a8d20e4ce18c@linaro.org>
+ <20231025-topic-sm8650-upstream-remoteproc-v1-1-a8d20e4ce18c@linaro.org>
+ <a1895327-b520-4f3a-a427-0947ac46495c@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <a1895327-b520-4f3a-a427-0947ac46495c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, Oct 29, 2023 at 10:21:55PM +0000, Conor Dooley wrote:
-> On Sun, Oct 29, 2023 at 04:49:30PM -0300, Daniel Henrique Barboza wrote:
-> > 
-> > 
-> > On 10/29/23 11:53, Conor Dooley wrote:
-> > > Yo,
-> > > 
-> > > On Sun, Oct 29, 2023 at 09:35:00AM -0300, Daniel Henrique Barboza wrote:
-> > > > Following the examples of cbom-block-size and cboz-block-size,
-> > > > cbop-block-size is the cache size of Zicbop (cbo.prefetch) operations.
-> > > > The most common case is to have all cache block sizes to be the same
-> > > > size (e.g. profiles such as rva22u64 mandates a 64 bytes size for all
-> > > > cache operations), but there's no specification requirement for that,
-> > > > and an implementation can have different cache sizes for each operation.
-> > > > 
-> > > > Cc: Rob Herring <robh@kernel.org>
-> > > > Cc: Conor Dooley <conor.dooley@microchip.com>
-> > > > Signed-off-by: Daniel Henrique Barboza <dbarboza@ventanamicro.com>
-> > > 
-> > > Firstly, odd CC list. Please CC the output of get_maintainer.pl in the
-> > > future.
-> > 
-> > Ops, my bad
-> > 
-> > > 
-> > > IIRC, I mentioned defining this to Drew when he was add zicboz, but he
-> > > didn't want to add it - although he seems to have asked you to document
-> > > this. Drew, change of heart or am I not remembering correctly?
-> > > I think he cited some interpretation of the spec from Andrei W that
-> > > implied the Zicbop size would be the same as one of the other ones, but
-> > > I cannot find that on lore atm.
-> > 
-> > The reason why I'm here is because I want to add Zicbop in QEMU riscv,isa.
-> > I'm pushing a rva22u64 profile implementation there and Zicbop is mandatory
-> > for it. In the process I added a riscv,cbop-block-size DT because, well,
-> > if both Zicboz and Zicbom have their respective block-size DTs, then it's
-> > expected that Zicbop also has one. Or so I thought.
-> > 
-> > Drew then replied in the QEMU ML [1] that riscv,cbop-block-size isn't
-> > documented and we can't add it as it is. So here we are.
+On 27/10/2023 09:36, Krzysztof Kozlowski wrote:
+> On 25/10/2023 09:35, Neil Armstrong wrote:
+>> Document the DSP Peripheral Authentication Service on the SM8650 Platform.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../bindings/remoteproc/qcom,sm8550-pas.yaml       | 41 +++++++++++++++++++++-
+>>   1 file changed, 40 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+>> index 58120829fb06..316371c8ee6e 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+>> @@ -19,6 +19,9 @@ properties:
+>>         - qcom,sm8550-adsp-pas
+>>         - qcom,sm8550-cdsp-pas
+>>         - qcom,sm8550-mpss-pas
+>> +      - qcom,sm8650-adsp-pas
+>> +      - qcom,sm8650-cdsp-pas
+>> +      - qcom,sm8650-mpss-pas
+>>   
+>>     reg:
+>>       maxItems: 1
+>> @@ -49,6 +52,7 @@ properties:
+>>         - description: Memory region for main Firmware authentication
+>>         - description: Memory region for Devicetree Firmware authentication
+>>         - description: DSM Memory region
+>> +      - description: DSM Memory region 2
+>>   
+>>   required:
+>>     - compatible
+>> @@ -63,6 +67,7 @@ allOf:
+>>             enum:
+>>               - qcom,sm8550-adsp-pas
+>>               - qcom,sm8550-cdsp-pas
+>> +            - qcom,sm8650-adsp-pas
+>>       then:
+>>         properties:
+>>           interrupts:
+>> @@ -71,7 +76,25 @@ allOf:
+>>             maxItems: 5
+>>           memory-region:
+>>             maxItems: 2
+>> -    else:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - qcom,sm8650-cdsp-pas
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          minItems: 5
 > 
-> Yeah, I did read that.
+> maxItems
 > 
-> > If riscv,cbop-block-size isn't needed because Zicbop will use the cache
-> > block size of Zicboz or Zicbom, that works for me too - I'll add a note
-> > in QEMU explaining why there's no riscv,cbop-block-size and everything
-> > is fine.
 > 
-> I just wanted to remind Drew why we didn't add this in the first place,
-> given I had seen that he suggested that you add it in the QEMU thread.
-> And in the hopes that he would be able to dig the link back up to
-> Andrei's comments, given I wasn't able to find it/couldnt remember
-> recall where it had come from.
+>> +        interrupt-names:
+>> +          minItems: 5
+> 
+> maxItems
+> 
+>> +        memory-region:
+>> +          minItems: 3
+> 
+> maxItems: 3
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - qcom,sm8550-mpss-pas
+>> +    then:
+>>         properties:
+>>           interrupts:
+>>             minItems: 6
+>> @@ -79,12 +102,26 @@ allOf:
+>>             minItems: 6
+>>           memory-region:
+>>             minItems: 3
+> 
+> You need to add here maxItems.
 
-Hi Conor,
+Ok, I fixed all that
 
-Thanks for the reminder. I had forgotten my own opinion on this :-)
+> 
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          enum:
+>> +            - qcom,sm8650-mpss-pas
+>> +    then:
+> 
+> I am not sure if keeping it in the same binding as sm8550 avoids that
+> much duplication.
 
-I found the messages. In [1], I advocate for the block size DT property,
-but then, in [2], I reply to myself saying we could probably wait until
-we have a prefetch block size that differs from the management block
-size, due to the "reasonable" interpretation of the spec that management
-and prefetch block sizes are the same.
-
-I think I could go either way. The nice thing about adding the node is
-that it's self-documenting. While we could document that Zicbop will use
-cbom's block size (and if we ever added a cbop-block-size, then we'd
-change the documentation to state that cbom's block size is Zicbop's
-fallback block size), it might be better for things like hwprobe to just
-have them separate from the start. FWIW, ACPI already has a separate table
-entry for Zicbop's block size.
-
-I guess after letting this ping-pong back and forth in my brain a few
-times the ball is currently resting on the "let's add cbop-block-size"
-side.
-
-[1] https://lore.kernel.org/all/20230914-892327a75b4b86badac5de02@orel/
-[2] https://lore.kernel.org/all/20230914-74d0cf00633c199758ee3450@orel/
+Yes it does, 70% is the bindings would be the same, still if it's still preferable I can duplicate.
 
 Thanks,
-drew
+Neil
 
 > 
-> > What we can't do is add stuff in the QEMU DT that's neither
-> > documented nor acked in the DT bindings.
+> Best regards,
+> Krzysztof
 > 
-> That's a welcome change.
-> 
-> Cheers,
-> Conor.
-
 
 
