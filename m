@@ -1,151 +1,185 @@
-Return-Path: <devicetree+bounces-12724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4CF37DB430
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:25:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC2E77DB437
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:26:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 777FB2813D5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 07:25:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20286B20B7F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 07:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB4A5683;
-	Mon, 30 Oct 2023 07:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759D75683;
+	Mon, 30 Oct 2023 07:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="YUTRiIDO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cwzb/Yzg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F2C4C84
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:25:15 +0000 (UTC)
-Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com [95.215.58.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F122103
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 00:25:11 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1698650709;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JhEQ1dqgKvz3w9QUVhZNxp0xbOiz8esdacL61UcOl+o=;
-	b=YUTRiIDO6c4V47NTDewFxsIKZNafI3YGUUBiwbJzBLE00aC+Q2CABGQN9scYF9ig2XerDs
-	/yX90oyP2rdtnu7Z25m6w+kiboDt3jhV8o6QFugs2rkFktszKNte13tyGVlHbqNJyAdJ0n
-	jIfK4FcckJuDe22wj74xHJ7XAQZ4pJpHbseh4hD9TGPeGm/PbTUuv0RMlaiFqi9VZXok7q
-	D2Z9kRpKfVrDUqyK/3mOocJIPlPclW6i3ijo6ODOYyivYhhUFOcnOdotZ9KYMpQb89Snn0
-	5RP1WkFqwfyzKa90oKMIzklDkFoZ8m2Hi5Z8CzJpNDJ5tIUsyl31/tSWi1bcOg==
-From: John Watts <contact@jookia.org>
-To: dri-devel@lists.freedesktop.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	John Watts <contact@jookia.org>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Christophe Branchereau <cbranchereau@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [RFC PATCH v4 7/7] dt-bindings: display: panel: add Fascontek FS035VG158 panel
-Date: Mon, 30 Oct 2023 18:23:38 +1100
-Message-ID: <20231030072337.2341539-9-contact@jookia.org>
-In-Reply-To: <20231030072337.2341539-2-contact@jookia.org>
-References: <20231030072337.2341539-2-contact@jookia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EF51C2D
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:26:09 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF437C1
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 00:26:07 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9d10f94f70bso299347766b.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 00:26:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698650766; x=1699255566; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=dyWNxsxWlzhvm6Y0dpEhCS1H0rqtMD6v8Hr+ql8Uylo=;
+        b=Cwzb/YzgywMhivJYnpQcjGE1wDlORyGqzBfIB1bMQ8Yw85bmlaEHBfGmHXIaBjPuJ8
+         2zfoQCFcxIZGt+iHKX4NUAR5/clraKFTRdX5XZ3aXjY495vKahK4jFCBzr/CAeavwu1P
+         cPV/Hp+h9jm3AVQoP/INFUwgB5FEy2ZccKrkwtf16O9FiCr6gA1HmlzXukCptI8QzJDF
+         qcOCq7g59x1CE5xS6PMSMl2dvqY9/oysN8yiiX7bnLzcOYIN+8dAAXYhEIT5VG4t04Zz
+         7HTY/GWtrWW/9zHoFEZW/c1AfvDQcJb9lv9tXfYtzbRGDcAQbK7G3fTFrwH8+TadNvAp
+         3VVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698650766; x=1699255566;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dyWNxsxWlzhvm6Y0dpEhCS1H0rqtMD6v8Hr+ql8Uylo=;
+        b=WW9fwsxLDWzw3w3HXInGLSjsVKboALn/muBBPh782xdvRni+wLlAPHCNXoL3zOTmau
+         jFjpK9WQW8sk/XMX4AVRj+7fXUzj6k3G2XZRgKoeYD/oOp6mnh1ambr++5uo/KAk3XVF
+         37d86ZjORPRMilmZ+9mg8+5+aYvYIww6zy0epgDPAmB/JuNsCYbSkP5EKyNjHIvYLSwW
+         gP0udAsLz30htTDUIDg2qVA2wuE/A0G5PDE3DTg9rwiiuorbq3RRXKajP7XqfjiGa32N
+         9hjHtWg242wRj3ZAo9Ag5TdIdlWIlK6Nk6kGWeVMzFqLIYdJ4MBKzY5HedIv5yG+PPzk
+         FsUg==
+X-Gm-Message-State: AOJu0YwaypNauBJ/DhNqrJ2eit+GuYwsLLz501hzDn/JAggSCHCLl8h4
+	uylgzmbetotF5vqbpxVoNTGzKA==
+X-Google-Smtp-Source: AGHT+IEEnkoYr0z3ZrRlQJXw6yqyZE3YgCn2Zf1pdAfOPbw1Jsi9yH4GW3+dTznibP9OSsHPUL6omA==
+X-Received: by 2002:a17:906:6aca:b0:9d3:65fd:feea with SMTP id q10-20020a1709066aca00b009d365fdfeeamr1751781ejs.35.1698650766317;
+        Mon, 30 Oct 2023 00:26:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id l25-20020a1709060e1900b009c65e13c33dsm5386794eji.122.2023.10.30.00.26.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Oct 2023 00:26:05 -0700 (PDT)
+Message-ID: <98d90ba9-7e69-4b54-830d-bdbc0e6c54fe@linaro.org>
+Date: Mon, 30 Oct 2023 08:26:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/12] dt-bindings: net: snps,dwmac: Allow exclusive
+ usage of ahb reset
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-2-cristian.ciocaltea@collabora.com>
+ <3016eff2-fce5-4b5e-bbb2-d56cbb45df85@linaro.org>
+ <05186c62-fcad-4d56-8ae8-d802f87a39e2@collabora.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <05186c62-fcad-4d56-8ae8-d802f87a39e2@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This is a small 3.5" 640x480 IPS LCD panel.
+On 29/10/2023 23:24, Cristian Ciocaltea wrote:
+> On 10/29/23 13:25, Krzysztof Kozlowski wrote:
+>> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
+>>> The Synopsys DesignWare MAC found on the StarFive JH7100 SoC requires
+>>> just the 'ahb' reset name, but the binding allows selecting it only in
+>>> conjunction with 'stmmaceth'.
+>>>
+>>> Fix the issue by permitting exclusive usage of the 'ahb' reset name.
+>>>
+>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>> index 5c2769dc689a..a4d7172ea701 100644
+>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>>> @@ -146,7 +146,7 @@ properties:
+>>>    reset-names:
+>>>      minItems: 1
+>>>      items:
+>>> -      - const: stmmaceth
+>>> +      - enum: [stmmaceth, ahb]
+>>
+>> Also, this makes sense only with patch #4, so this should be squashed there.
+> 
+> I added this as a separate patch since it changes the generic schema
+> which is included by many other bindings.  JH7100 just happens to be the
+> first use-case requiring this update.  But I can squash the patch if
+> that's not a good enough reason to keep it separately.
 
-Signed-off-by: John Watts <contact@jookia.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../display/panel/fascontek,fs035vg158.yaml   | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
+If there is no single user of this, why changing this? I would even
+argue that it is not correct from existing bindings point of view -
+nothing allows and uses ahb as the only reset. Even the commit msg
+mentions your hardware from patch 4.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml b/Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
-new file mode 100644
-index 000000000000..d13c4bd26de4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/fascontek,fs035vg158.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Fascontek FS035VG158 3.5" (640x480 pixels) 24-bit IPS LCD panel
-+
-+maintainers:
-+  - John Watts <contact@jookia.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: fascontek,fs035vg158
-+
-+  spi-3wire: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - port
-+  - power-supply
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel@0 {
-+            compatible = "fascontek,fs035vg158";
-+            reg = <0>;
-+
-+            spi-3wire;
-+            spi-max-frequency = <3125000>;
-+
-+            reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
-+
-+            backlight = <&backlight>;
-+            power-supply = <&vcc>;
-+
-+            port {
-+                panel_input: endpoint {
-+                    remote-endpoint = <&panel_output>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.42.0
+Best regards,
+Krzysztof
 
 
