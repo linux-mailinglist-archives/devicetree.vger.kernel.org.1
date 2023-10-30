@@ -1,121 +1,183 @@
-Return-Path: <devicetree+bounces-12913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D69897DBDD8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:30:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 621727DBDE6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:32:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9166028122C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:30:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEAC1B20BF3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F63D12E68;
-	Mon, 30 Oct 2023 16:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1050616418;
+	Mon, 30 Oct 2023 16:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="PGh84WxJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929B019441
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:30:30 +0000 (UTC)
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB8998;
-	Mon, 30 Oct 2023 09:30:28 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6ce2ea3a944so3121178a34.1;
-        Mon, 30 Oct 2023 09:30:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698683428; x=1699288228;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BcVNlJeyBrMVGTXIAmHAqDlrfW8jG94IoCiR838zgwA=;
-        b=WEhHGNqkFZBjgOZTV1vR85oJJ1dCipmYzzgi/+R7OIVzGQIRsNDwyME4V7shUQEoDM
-         hkE5uToWi8XJf7DjUEEnl/3oKwrVERmeoQTs1Iqog9pw0Wp/f/k/iiMyBtYB3Esh8HP6
-         G0prT14SYYufZUeI/P3dBb1FG1eQd5cetCT6UlzIjLYrdBeNl2FtBwCrxF4BXnQv1qoo
-         ujX+gIlUbUzKdhARFw0pXHu+GMPqp+AK/oJUAV/z+BJSobPGMphaRPkkyYKoYmuWcWIe
-         GGXCV7KH4gPbrzRqp+Tz+YbCjk7NX45AJc37nfJybl5HGrNf0Ut2qtH+McE8OL+C4j09
-         ZEsg==
-X-Gm-Message-State: AOJu0YzNxEAPvjNMPDyCo/UDojfRyvFLffOlazTpGNoiTyX09QRAp9S2
-	+rb3ehGlDqUDTuwmlO0rCg==
-X-Google-Smtp-Source: AGHT+IEd12+3cMerzKxQ6WlNn0KGU+krjkb2chcKQwFzPAlC2OFeqZJbU4T3pYy7iCufS7tXF+6nqA==
-X-Received: by 2002:a05:6830:1546:b0:6bd:c8c2:b70f with SMTP id l6-20020a056830154600b006bdc8c2b70fmr9872865otp.34.1698683428019;
-        Mon, 30 Oct 2023 09:30:28 -0700 (PDT)
-Received: from herring.priv ([2607:fb91:e6c7:c3eb:a6fd:69b4:aba3:6929])
-        by smtp.gmail.com with ESMTPSA id l11-20020a9d708b000000b006c619f17669sm1448667otj.74.2023.10.30.09.30.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Oct 2023 09:30:27 -0700 (PDT)
-Received: (nullmailer pid 1465603 invoked by uid 1000);
-	Mon, 30 Oct 2023 16:30:25 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5591944B
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:32:22 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2057.outbound.protection.outlook.com [40.107.102.57])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3645A98;
+	Mon, 30 Oct 2023 09:32:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N3dpY5DZnEkuVRO46LtcYMDCmzuT0bJRYcqR0W9KX0xIOM8TNnctiRzxu2hwJo/f/tK5P05XnTRBK1FvzZYr9ienyqNWg5J3JPGT7K/1H+qAEupCaP4Plvs/iYGVTyv5Tc1fszlfCBztWaZsNZHSBa8KHuFeFWigHRrYTgZ2RNMH/k45FWFnLe1Wgmc3Z5Qx38VdJzkpJRBtEUOW/ulawfio3Uhc2SLQEbdscwe8LxHEh6ds3VWmK3NtN6pgr4pHrwWz+vC54cC2IuP5DrCgxGyUYF7hoocgNCao3GYApLNxuOCFNOYc8uJuqBplxdcgcWZZQxB8uEo0m9AP0CU1iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K7gGKrcYCLUv+NDzgTe70wB6s1j166Q9ZseIrLPeMGY=;
+ b=P2yLPRiKTz26f/DN5pS3HvPDu8OcGSSUVjl1d9T4mQ4tqzLcG6/MggtOPjhkLrfCfGhTPdS/U1bfSuFy3ni1meoakDMVXDxWgATJiMg5HWPJSQNVEqeDxEks5lNN2dY6Uu9/UHjJvu9ffIltfvgB/m1iEzW6SrR62S+WLCY6JyOQd0OUt6q35zkbsMf6U9Vs6JvPyfNTpHqeDjvb0s0yPPrelHy3mlBX2XENMwneMUiuZBp9MOZET4KWzR65tZPtNHv7lu6HOL9IGArM01hASjoMeaxOcK4q4yE8/Hln0CvB1N/zLM7uAG7b2FOTnkhl6GE1IO7WxS3+rJo7KutEcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K7gGKrcYCLUv+NDzgTe70wB6s1j166Q9ZseIrLPeMGY=;
+ b=PGh84WxJ3qeR5yCvjfRZifaMb7XyZw3UDH5WoE0oxFnM6nfFnoW3T3ZF88SyfEbjCtCNBnIBqstzT6wu1ab7PiTjzDWrsiQGsB46vdRAEYHMxuZq+XvHTKEwJrE7qndowqKvH56h6VjuDjN1e8Z6rY8ZjPJWbGLzlZvI1MyCosw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com (2603:10b6:208:c5::18)
+ by SJ2PR12MB8874.namprd12.prod.outlook.com (2603:10b6:a03:540::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.26; Mon, 30 Oct
+ 2023 16:32:17 +0000
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::3008:be4:e9a4:2a98]) by MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::3008:be4:e9a4:2a98%7]) with mapi id 15.20.6933.026; Mon, 30 Oct 2023
+ 16:32:16 +0000
+Message-ID: <bbffd884-b31a-4e95-8a72-3705745b49f9@amd.com>
+Date: Mon, 30 Oct 2023 16:32:12 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND v2 1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI
+ w1 host and MAINTAINERS entry
+Content-Language: en-GB
+To: Rob Herring <robh@kernel.org>
+Cc: thomas.delev@amd.com, michal.simek@amd.com,
+ krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com
+References: <20231026093029.3122573-1-kris.chaplin@amd.com>
+ <20231026093029.3122573-2-kris.chaplin@amd.com>
+ <20231030154015.GA1141490-robh@kernel.org>
+ <df37f8db-a8c7-4a99-8828-3cb123afed1d@amd.com>
+ <CAL_Jsq+SMY+C3=e=zbdrP_Ekj3FkRs7QQyg2pqmjrcz_0AvmBQ@mail.gmail.com>
+From: Kris Chaplin <kris.chaplin@amd.com>
+In-Reply-To: <CAL_Jsq+SMY+C3=e=zbdrP_Ekj3FkRs7QQyg2pqmjrcz_0AvmBQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PA7P264CA0258.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:375::7) To MN2PR12MB3407.namprd12.prod.outlook.com
+ (2603:10b6:208:c5::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: linux-imx@nxp.com, robh+dt@kernel.org, alexander.stein@ew.tq-group.com, s.hauer@pengutronix.de, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, shawnguo@kernel.org, V.Sethi@nxp.com, devicetree@vger.kernel.org, clin@suse.com, festevam@gmail.com, pierre.gondois@arm.com, linux-arm-kernel@lists.infradead.org, gaurav.jain@nxp.com, kernel@pengutronix.de, davem@davemloft.net
-In-Reply-To: <20231030095849.3456820-3-pankaj.gupta@nxp.com>
-References: <20231030095849.3456820-1-pankaj.gupta@nxp.com>
- <20231030095849.3456820-3-pankaj.gupta@nxp.com>
-Message-Id: <169868330533.1462937.712295576257900135.robh@kernel.org>
-Subject: Re: [PATCH v7 02/11] dt-bindings: arm: fsl: add imx-se-fw binding
- doc
-Date: Mon, 30 Oct 2023 11:30:25 -0500
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3407:EE_|SJ2PR12MB8874:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81a8046e-9bbe-41ed-a237-08dbd965c79a
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	jSnu/4O3T+PU0pRcm00L5y/j2LQBrJ3U1w0EgIbTeO/+cznYFV3mXXVt0ztAlk7MtY7fWPf63mPVXNgTYVkJrNf60jLDoAF4c0r4ZBaATUDR1nmYN5p/8TkJ44XyKAJFWx1zgRXsTaJDM1Bt3DX3zrO3Kb8lctxjoBuyInNJIRQncuovQrtO8d29hxftnVt2EcKuR1gtzxiN/sVt2rvAPaxfZTH3p10B3yU0862C5rIwzfhS0mc2qkek5tm5WA71hhI3yfDUTPMUwx3w1hD+ECC7ihznnS6pxqcPkhcTShBPQ4SPhxGBAOFDon5r9ox4Ox6+z0B1Jk3/qhldZoG5rijGwOE9ZocpP650/oTjmdKhDmW7a1uxZ+rV5adFilrcrbtLTajNTR2H748xfCGK8GBVXWcOEBvC8Psf74cPzwknCtpBPeXQo1MYWTFqEURpdplSUXqzXJXXzd1L4Nt3GdTX4SAQLCrzlk0yvCLRaBWD6qL0xeKEqy63W4gqEhElguUxVUXDyC/cEsqRCaAIWosmC3r/i36evvH88LJWWdE8XlcEs4l14yUyMSkrhgTcWEdZXbrBp3b5jqu048UVkOftOFSE9DzgnA9bVHbf8uoHqzhEfvnU67gV5VctOHabSzL3EmDQJSqFG4KWKzAupA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3407.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(396003)(366004)(376002)(346002)(136003)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(2906002)(86362001)(31696002)(41300700001)(8676002)(4326008)(8936002)(5660300002)(44832011)(36756003)(478600001)(31686004)(6486002)(6512007)(38100700002)(6506007)(6666004)(53546011)(6916009)(316002)(66556008)(66476007)(26005)(66946007)(83380400001)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SUFpMzFPRy96N2RPUzI2TUF2cmQ2dVZxNWJQOVJ2OE11TTROdDFtYlVQOGha?=
+ =?utf-8?B?V1ZONmgxU0VBZ3pUM2hnenhkNi9HRmliNGFKUDZyaDlFMkJ2M2FpczN6M2d2?=
+ =?utf-8?B?eGhjR3pMYWJvdG5zK2R2bkE5KzRtUFRiV01jZVo3K1VyTFkrR0ozSjdkRjFW?=
+ =?utf-8?B?Mmp2U3dUS3plbHFLNlFqYmRYWE5tUWhxL2FvRE0zSVFBM1hHeE5IV1hQWFNw?=
+ =?utf-8?B?TTVlQVhKVkNNMVowQitNQWluRlc0YWx3OGdXUFpuYSsrSUpzMXowU1MvRnY0?=
+ =?utf-8?B?Z2p4SHlocmNkOHR3YVcvQ3Zua2tzYzB1Q2Y3TDhQT2dXNjN1Z2RLQmorc1JJ?=
+ =?utf-8?B?U2hvd2FQTENQajVoeU1LRU1iMU5EZmZpS2wwVGlHK3ljWWV6dnRnbTlQK1pX?=
+ =?utf-8?B?dW5na242ZmRRdnZWc3pyYVMzejlDRWVOWUIwME01L2d2Q093ZnFwRDJqVGlD?=
+ =?utf-8?B?eUJObkdyYnpKS2lVbUc3aFFFam9BRzl2R0h4ckMxR3pUY2xybFU2VXliRnJR?=
+ =?utf-8?B?SG41T0xBQ2hMbDhrQlhFNElWT21lTEMrcEZNTldTZmdKOFpySWhzZUtKYkdt?=
+ =?utf-8?B?OUh3eWhjNVhzTDVZTVdPOXF1RytBZlRudnpsTkxsMCtwbWE2Um5HK1ZyTVVH?=
+ =?utf-8?B?ZkFTWlRCakZZVHhMMlpFMnY4eXJOejVJVC8xNi9UMUlHOTU5VndYZFdMcXFh?=
+ =?utf-8?B?Z2g4empIVkdVRnFLbWNQb1NxY05aSlJEVHJYa1RpQ0F2SDZMV3lYb3Y4U2xX?=
+ =?utf-8?B?ZEpUVlMyeVZ0N3RRVTl4WDE2MFRXbFVLMEl2akZIUXMwajVZT055WVNpRnlw?=
+ =?utf-8?B?Q1BNUW1BQk9Lci9LM29xL1V2RUd5eHVuUEFXaUZoSnUrWTJjQXZwWEQ3dFU5?=
+ =?utf-8?B?bHNDL0xJNUNyanBSczN0cEUrY3BqQWd6QkVqUm5RSXBnNTdGREFEdTNCUlZG?=
+ =?utf-8?B?bkFZcGtMTjQrRUxEcVNVNllBRlRnTGFlbzRVbHF3bVBtekMyazFSSGVLTlFU?=
+ =?utf-8?B?MWc1TCtJK0FHY0tGVlJRdHVQaXFETzNrR3lKYjdmaXpvMmN2ZUgwVDA4U09m?=
+ =?utf-8?B?dndYWldwN0txcFJNdXdwMENEQWRVcGVTNmdmK3hUbzh1VmpaUXRpNUpaOW12?=
+ =?utf-8?B?ZklBRkduRzB4UlBuVEdmVitxUExqNWtxY29Pc3UyQmJYSnJHRkdLTUVyZmxu?=
+ =?utf-8?B?VUhvY1ZXNUJhVmlQTnN0M3NBeXJ3YUNqUlFSdFBTbzZqQlBFWUJmSUVZTW94?=
+ =?utf-8?B?ZWNianJnM2FCclhmaTRaZUNZNitPUmpOWGVSTnd3Nmh3cUtOSUE0aHV3TFNG?=
+ =?utf-8?B?dHVJTDZKdWxCZWcwYXpqTzVhaUx5SHdtdmdWdHZNQ1R1SkRYQmVqZXVyUWRK?=
+ =?utf-8?B?Yjd2dWlzS1pQSHJSa013ampiY0dQR3BRdHVZeTZOdXVCNCtIUlRzQzd0OVFp?=
+ =?utf-8?B?bWYyTFc0ZTRLaENVTWR1NW1qYm91VkwzYzZ0MGlYVFA1OHYrOWZDNW5UTUQ2?=
+ =?utf-8?B?UENCMWF3c1hScjc0eE9COFJYTm0zckVwZXhZUnhyUklwSjdLT25wSTJTU0gw?=
+ =?utf-8?B?YjJ3MzR0Tjl1bUgyam5MMVNnR0hHdTRrUVNETmdpQlhYZXJSb3pGNHd5VktY?=
+ =?utf-8?B?V051T3JQdmR3WEhjcTQ2eldRK3l2bXhnTGxKSnowbkJqRnY5My9CTGFPeDlB?=
+ =?utf-8?B?a2RQUWVtOGZ4QWJqMjZqWlFFSUY5QkhvOWpSRUdpdzJmdFNUb1ZiVzdNeUFF?=
+ =?utf-8?B?SXpmalp1WWkrdTB1SmdteUN0djFwL21ZT21yMHBGN1RVNzBUWFpSOGpKZWRt?=
+ =?utf-8?B?cnZLQllyVXFKRGx4OThLSU9zUE5EeXZCNmdvd0F1UUczbWZ5S2hKRkIvVUho?=
+ =?utf-8?B?K3JoVDBaMVdDRG85L0ljak11N3FCLzI3aWwwc3VzOEdJSFdBazFZOG4vMFVU?=
+ =?utf-8?B?dzg2RThyTS8rVVk1dFF4dnExTUZMY2FRYStyam8vOGV3clhybEtIUlB2VTlU?=
+ =?utf-8?B?Z0RsNjZ4YlBWdGl6c01oQm9TNjQ5bFdkQ2V2M1Y3TzZJZDcxUSsxK2REQmgv?=
+ =?utf-8?B?aHBEb1R2NkZZckZkNHVUMmErODdwRnNsSytnOFpJVExqc2g2NStZbldpU3BL?=
+ =?utf-8?Q?lGx/1vIxxcAkttVKzrYLiLO8V?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81a8046e-9bbe-41ed-a237-08dbd965c79a
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3407.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 16:32:16.8596
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lkY1OAQmwWRAciS74vms81amksPYp0foaOxua0OENzn0jh9BCouK/KqmHg2ic5oQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8874
 
+Thanks Rob,
 
-On Mon, 30 Oct 2023 15:28:40 +0530, Pankaj Gupta wrote:
-> The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded
-> secure enclave within the SoC boundary to enable features like
-> - HSM
-> - SHE
-> - V2X
+On 30/10/2023 16:19, Rob Herring wrote:
+>> Is there a device side implementation? I can't really imagine that
+>> 1-wire would ever be implemented as firmware on the device side given
+>> its limited nature. So adding 'host' doesn't make this any more
+>> specific.
+>>
+>> There are slave drivers as well as master, although these do not have a device tree binding.
 > 
-> Communicates via message unit with linux kernel. This driver
-> is enables communication ensuring well defined message sequence
-> protocol between Application Core and enclave's firmware.
+> My question is whether there is slave/device IP for implementing the
+> device side in software? The slave drivers in the kernel are for
+> handling those devices, not a slave side controller interface.
 > 
-> Driver configures multiple misc-device on the MU, for multiple
-> user-space applications can communicate on single MU.
+> For comparison, we have SPI slave in the kernel which is for
+> implementing the device side in software (running Linux or another
+> OS). There is no such thing in the kernel for 1-wire and I would doubt
+> there would ever be a software implementation. Could you, yes, but
+> given the limited nature of 1-wire why would you?
+
+I agree - I'm not aware of any such interface or plans.  Yes - I've seen 
+it with SPI, but I've not heard anything similar for 1-wire.
 > 
-> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+>>
+>> The IP device from AMD is called "axi_1wire_host", and so we are hoping to stick with this binding if appropriate as it relates to the IP name.
 > 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> ---
->  .../bindings/firmware/fsl,imx-se-fw.yaml      | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
-> 
+> Okay, I suppose that is good enough reason.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thank you - it does help when we can align the binding and IP name.
 
-yamllint warnings/errors:
+> However, the versioning comments in your first v2 have not been
+> addressed. I believe the conclusion was to mention the IP has a
+> version register. And Conor's R-by tag was not added.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/stericsson,dma40.example.dtb: dma-controller@801c0000: sram:0: [4294967295, 4294967295] is too long
-	from schema $id: http://devicetree.org/schemas/dma/stericsson,dma40.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.example.dtb: se-fw2: 'memory-region' is a required property
-	from schema $id: http://devicetree.org/schemas/firmware/fsl,imx-se-fw.yaml#
+I messed up with not adding a note about this to the commit on v2 which 
+I can resolve in a v3 - yes the versioning is via register in the IP 
+core at a known offset.  The binding name (and IP name) changed between 
+v1 and v2 (from master to host) so I didn't add the review tag for Conor 
+in v2 as the commit changed.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231030095849.3456820-3-pankaj.gupta@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+regards,
+Kris
 
 
