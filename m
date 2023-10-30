@@ -1,177 +1,549 @@
-Return-Path: <devicetree+bounces-12905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE52B7DBD56
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:02:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E19D7DBD79
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27EFA1C2081B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:02:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AEC9D281461
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF5E18C15;
-	Mon, 30 Oct 2023 16:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6B518C1B;
+	Mon, 30 Oct 2023 16:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sEXQU/ws"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="dGJHeXDc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5ECBC8D2
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:02:42 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D78A8D9
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 09:02:40 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40806e40fccso31009335e9.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 09:02:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698681759; x=1699286559; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nVvcMoYkzxlHlBOVcPHB/eNx5ig0soooxsb0yzrw7Nw=;
-        b=sEXQU/wsYUsnx7lXCbAwKmbQyeyHnpc9QdUHZxtpT8nKGf3+XUAN7X5/O6ZjfpSZoc
-         JtWIUZeGF0NFDcEvhg+yqkJPVstP1L53ZPFER3lVsKeMENiqUZ/PyMw+ltqWJQ9zSrHC
-         vysvHL1x7cvxmWdCvNvfFmQYgX7IlQnzkpJrIV8l0UlVRppWDbS+IoaG5PW2rGYOPRSK
-         9wY1IQQHrP1BILNqHVtYEhRYQFEaGsooJLNKTjE6dTictPSvk4FCenkDh2yWLX/plZHC
-         fWjj569K7nhBvd5O0/qbEiWjf18AFoOlm2YnsXUsdVXAt4cQY13Yjq9YzrH79LVPa19k
-         HLQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698681759; x=1699286559;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nVvcMoYkzxlHlBOVcPHB/eNx5ig0soooxsb0yzrw7Nw=;
-        b=IXYXfDDA9QYLtB9f3JwRx47azR4YTMOP8Tr3FoNJc0TbdGCHg3lSj7lm+DIGdIWVc8
-         oJm2k8jQ5d6JVMOmGllM2jhDcj7RhkEoTAvn2ErOa0Ipw7VMQZpq8LDr14SQyzi7dX6p
-         0li2au8zqWHfQvnq9Bs4ThY8s0nYuWWeQe6u/aPCgtRrMrdTsGHR9ABoQB64YEC07MPM
-         t9tsQAmRqlqBoR88NS+7huPDPop+PGEa/+AD1MOc5MS/ivUP3SUY3uq5wJzrIyuNRMQk
-         llQW4KBO384cVBnoeiGDUVXa/udqYzY4VGHfJKI16G/qsXb9ZCzaNZR7UPb/s1BYwsRA
-         rdgA==
-X-Gm-Message-State: AOJu0YzXT6vIV/sHMFt6zSKI7UE7R7bKf1liw+SAaFgZdL/hSsvUk/ua
-	eKp75BGghDnycEdMiz5HB1w9zg==
-X-Google-Smtp-Source: AGHT+IG1ZBfAPdgT3Jfho4NUWM9LICqMhqAY+MKxWT//6P8N7hGkqhoVQfMAQO2HX4Hdh1crmbnzbw==
-X-Received: by 2002:a05:600c:3594:b0:405:4daa:6e3d with SMTP id p20-20020a05600c359400b004054daa6e3dmr8364616wmq.39.1698681759249;
-        Mon, 30 Oct 2023 09:02:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id a6-20020a05600c068600b0040773c69fc0sm12878331wmn.11.2023.10.30.09.02.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 09:02:38 -0700 (PDT)
-Message-ID: <7b30cb32-760a-4a73-8b89-3ac7bf26d3ca@linaro.org>
-Date: Mon, 30 Oct 2023 17:02:37 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A2818C17
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:09:20 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2042.outbound.protection.outlook.com [40.107.101.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF1FC2;
+	Mon, 30 Oct 2023 09:09:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lz2POrXg+r/N8QlMm8XVWq5W1En8imWKpDGJF5Lj1ZJDGxpCSXDMPtloX7avq7ZXJ4wOtyUopHrT5StTrQoBqZjLX5WogWs/d1hLj5C8kjJIH3PXhcxCU88tBqZVUxAjWBlKrUJALAmlTcCfA7MTO4ai8qAEMw8xQ14NzWXFTXcbuH2mBsSOwoNf+F2FxjR4F3EOy/g8xVXh18NOQqMdnoC6dmbFESfkKP82FYbnv8acmxnTbYNMysKj2n2WfbuvrkxDntoH26F9tbty8V7QaBMBkblv1TZq0IPkjqw1os6rrYGUFlUy28Whff+LTZXay0T+NXbfEwYadggkux9LgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ywcVoH3E+GECq4GBYEFAEMvU8hQ+2Qy6FcXrSjenWjk=;
+ b=GMZc2M0MDpEaXLbd2xGL6kJWVuaxdYpFXqBLEX1WNcL1ZT6ZuhMN7H/W245TdnQcbMioS3wDBj51FVw7j24FkF+IvGJkPlGF9qjVLPojBI3edeRmjooQQOIRHWBG8VklRD65zlw4gIztqBhsmVrtf0Te+bBlqb69kAoxOViAgyT+bX++PZ6vtdtDeim/0aU/EHRU0mWDEEJ6c1m4eWuLhyVk65GE94NdpxaXj+C1/kqjxGMzVGTZWuskjEzxBCqkpPkLfBqScEyN8rudHiPq/2p6CRvGKP1rp04/gagOWwDgZPIBc6UcTVBkWlitUQ5D+HiCOldundOjCIS/fAYc7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ywcVoH3E+GECq4GBYEFAEMvU8hQ+2Qy6FcXrSjenWjk=;
+ b=dGJHeXDcQ0lHVvkbAS7VI2Yw8mQCtjEA/zteBs0yML2b4lKd3tex3ts+2ykXn4ZZOzAs6zLheoatdzGMY8qcAEd/oLGDCPi+biWzUYCHaLjulCWfr3zvfG7NFYkoAT/xMGCdBtvk7CfuvCH1jrgELmrM8FK4Qox3qN61pHb5zmc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
+ by CH3PR12MB9169.namprd12.prod.outlook.com (2603:10b6:610:1a0::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Mon, 30 Oct
+ 2023 16:09:15 +0000
+Received: from BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::6b5f:4bf5:84d4:5503]) by BY5PR12MB3683.namprd12.prod.outlook.com
+ ([fe80::6b5f:4bf5:84d4:5503%5]) with mapi id 15.20.6933.027; Mon, 30 Oct 2023
+ 16:09:15 +0000
+Message-ID: <60f523da-f38b-473c-b5f1-f3af8c24bb9b@amd.com>
+Date: Mon, 30 Oct 2023 11:09:12 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] remoteproc: zynqmp: add pm domains support
+Content-Language: en-US
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: andersson@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, ben.levinsky@amd.com,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231013042229.3954527-1-tanmay.shah@amd.com>
+ <20231013042229.3954527-4-tanmay.shah@amd.com> <ZTAYASCZA3dZOvmJ@p14s>
+From: Tanmay Shah <tanmay.shah@amd.com>
+In-Reply-To: <ZTAYASCZA3dZOvmJ@p14s>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DM6PR08CA0065.namprd08.prod.outlook.com
+ (2603:10b6:5:1e0::39) To BY5PR12MB3683.namprd12.prod.outlook.com
+ (2603:10b6:a03:1a5::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND v2 1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI
- w1 host and MAINTAINERS entry
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Kris Chaplin <kris.chaplin@amd.com>
-Cc: thomas.delev@amd.com, michal.simek@amd.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com
-References: <20231026093029.3122573-1-kris.chaplin@amd.com>
- <20231026093029.3122573-2-kris.chaplin@amd.com>
- <20231030154015.GA1141490-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030154015.GA1141490-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|CH3PR12MB9169:EE_
+X-MS-Office365-Filtering-Correlation-Id: afdc12ab-625e-48ac-7d2f-08dbd9628fea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	gw8OnAvriGkgyujaek2oV37XpfyTIFzzdv8s4fEXTZHWg0FG71Se6BhHzD5MonpiAAy6MZ7MF3qxOzVUSjTGFu3OQyr3J9xpG0ILtilsUJflp4wbfVRV/xfBR9PGOyyTjKGZo8ySqI0DNgcsVzdzbBLAkRZ0qgeCYtyMezCaF7uKPow41IPjb8nA3fjDsOxe20tha0bn86qbsOTT/CR14t4KJbRrWhAUuFS+KOFwL2rr+qvBemkeAEPRG9M5SgKgoDW2JUiU2/oMHtxS3mibUQ9WYM9l5LPnYY7yqZabuQZFNm8ZedSNDjV96Yf4I0JXuPsuXpCm+g1buOCl7ExCszjAS3cnYQqdO3p0nBH4VGjOUyhgUy/It3xHAzI4LQhcJ1RecfTwlwLXu8CimLRKxG+6SYM7Jx6xD07YMO8kKv2g5q6GdJ+AbppVGDe7PSeXt+rNghYBvd8+fR1OyDjJO2t6h63aMjfC6SVIVWnzwWE7pH9Xx3xf5Al6CWUxp8Iays0D5HT1EsN8evKB22mWzHXQAl1atIVRGqO3yxTlPKeuNEo0GPFvM5D/z7zow52etDECkMDXOnmhFbysE26OYOpVFaZAHKP/bm6r9jdk9vSTyyYBlv+GPUC81Qx7UYkE3lh2yfm1pM0X+UlsXSbn0A==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(136003)(396003)(376002)(346002)(230922051799003)(64100799003)(186009)(451199024)(1800799009)(30864003)(2906002)(44832011)(4326008)(8936002)(6486002)(5660300002)(478600001)(8676002)(41300700001)(66946007)(316002)(66556008)(6916009)(66476007)(2616005)(31686004)(83380400001)(31696002)(36756003)(86362001)(38100700002)(53546011)(6666004)(6512007)(26005)(6506007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RDlpc1p4YnhmWGN1QWsyMGQ5TGpsWHZlMDh1Z0ljQmpOL2lmNHBQYS81SXBn?=
+ =?utf-8?B?SWpob21PY0MyeVJ4TTdvVWFINXRjVEM3Z29tN1hrSGdJMFBKQ3NzRFdIcEwy?=
+ =?utf-8?B?U0N3UFU5L3o0WEZ3SnRBcDhuVEJaa0FlL29McmdWWDFyellMbTB6dWwvdDh0?=
+ =?utf-8?B?bjQ2RjlhYTBxTHU3R0F6U1VTUmdkVTgrWlFiOS9hbHN5TUVBK3krMjA1S1Ru?=
+ =?utf-8?B?SHNOTWxXcWVoNHZlUjdPd05ucURpYlZ2V1lLMy9xRGZ3dWtOZDRUUEdSdU9j?=
+ =?utf-8?B?eXBaZCtvUS9zZWpmY2lZV3NXcEZtQ1FEcW9DRjQxekRJb2l1M3V2aUh2elV2?=
+ =?utf-8?B?V3k5d2lXbmJLUEVtZmUrMjNoZ3FrT3k1ZjlQWkpmMFFINHFVNFNLaThkZ3Rh?=
+ =?utf-8?B?VXRqVzBjYlZzd3ZSNFYreFdubG9nQkJmc0ErNTAxd2oxNHk3TFJrbzdXR3Bi?=
+ =?utf-8?B?SVEvc04xZjltNzVjalYvMnNyOGpJOVlWanNrLyt5WXlJNk5LbU9jd2w5SlVo?=
+ =?utf-8?B?dHJpTFRtK0FLQThvQ1k4aHZ2NkkzNjdoM2E2UWltcEFnVVo0Ni80TC9lVER1?=
+ =?utf-8?B?R2xoYXBNNmFNdkFhS2lnZ3RzVUtSR1pBWFR4N2o2MzBwQ2kvendpZUU5Yktl?=
+ =?utf-8?B?dnh4aUZWY0hMQU5OOTI4WkZORVpydTBwZmgvQ0xtSlV6MGtTQ2krMWZYNmRS?=
+ =?utf-8?B?eEcvZlJHMHlyTncxV2ZuMlByU3FibENmQUR1ZXVINGllaXY3NTdzZmZWZ2lT?=
+ =?utf-8?B?Q0trczk4S3JCT2pFNmdMcDBZcnBYZkIvZWtNc3k3NXU0VWd1a05ycVluR1Qv?=
+ =?utf-8?B?bnZYMTVLNTAvb3FURUpVbVhxS2hvZ3RNdXloUlVuZGlPWmxsYjJwWDBiZjQx?=
+ =?utf-8?B?SlNxME1JZ25tSDA4aGY3TVhPdTR0bWpBY09jek85ZHhSK2JvSDNwYXozVTRC?=
+ =?utf-8?B?YlE1ejF2NkRhZHU5L3FOVlZlbzFMR1ZKOHh0OS90eWVGamNML1llSm03UTEr?=
+ =?utf-8?B?eFpta0U5VkpBMTlwclE5dnhXcEx0UDFseDdvZzNtaFE1b0hZTGxUNWV6RlVO?=
+ =?utf-8?B?VERRcnhjbUxwNWFsSGx0ZitudnhRWjM5WVYvSDR2Y3hzaHNEemF5bUZCNHZQ?=
+ =?utf-8?B?YlNwUk9nYnI2S05Mam02RVN6azZKeEdvMFl1V0JuM055ZWpCeXQrejJzdXpn?=
+ =?utf-8?B?VjVFUVpwdnpKTEIrVDNDRmhJdDB4bWx1Z3diY3lzNC9rVm1kWE8xUlFRRXlp?=
+ =?utf-8?B?V3lBaHBLRWdSS3pXQ1Z2KzE4aXVwdmhvT2hxUFRIYm01OXlKeDV4NU1XamZW?=
+ =?utf-8?B?VGMwUll2YWx4Y1FsemxVeEdnUldGdS8zQ01LOTdnVDArZjZuaHp1Q2NwVnl4?=
+ =?utf-8?B?bW9GNXB6bDMxQkd0bllNTC84d1dDSFZkZ2FIYytObWFHbVFTK1RjemRhNzh4?=
+ =?utf-8?B?L1BCZjl0enNXN2xJbk9Da1U2RUZ5dWFPTEhNVDhiOUd2dVRPRWtWNzdYeDRU?=
+ =?utf-8?B?cStFVTdMYUM4VjNwWmsrZUFoNUppK2VVOUVvbzdtZDdwZXJrek85UkQ4TFZn?=
+ =?utf-8?B?UHZ0YVVXNkhEZGFwdzFBNC95VXA2VmhsTkh3TjJrT1NUaVpFRFVlNnJMWWJK?=
+ =?utf-8?B?aHNETzViUnFSdHBycS81cXN4TjZNK1M4RmYvOEF6V0JRTXdsOWhKbkN5bk9r?=
+ =?utf-8?B?T29OMVphRXBRTTdnaE1ia3Nic1hibnFjbTBMNU5GN25ZWG1sM1VyVGdQTFJG?=
+ =?utf-8?B?Q2VNallwZW1WaXN2R0hzd203OFZrNWhkVFRKMVhGRFJaSk9wWGpLR0ZQcmcr?=
+ =?utf-8?B?NGIxcjJzNHpqWVhoWmd4VXFPSzBxekZGME43L0FCcVF5bTlkanJtbUZDbjNN?=
+ =?utf-8?B?UlY4OW1EeVhJbTZvU3RhNnRoampzVnJORmZsTUpEdFR6ZjRIY3BGSGFlMUsz?=
+ =?utf-8?B?NEJyNnNpRlRTK1dmQkx2TkJVRnBmM3oxQ3ZrZGlVbVVKWGZMSkZiOE56UkVJ?=
+ =?utf-8?B?WHdZQXQyUVExNjRSN3poV3dMbUgyZUhRRXk4L1dMWVBkQUZMc1VET2w4MW5C?=
+ =?utf-8?B?ZGxEby9WVU5MSzZXeWF5cUswaFJBZEtETkxGV01IcDBaTzBaN2YvenE2cTNX?=
+ =?utf-8?Q?oCCrDD2CyQFC9WlVUYSala0Am?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: afdc12ab-625e-48ac-7d2f-08dbd9628fea
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 16:09:15.0083
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n9X+jReEVJgilHPTzkf9ua4NimwSLPIap9YX+LHa9Vq0WWSffn1k9tBfrcEZnvKy
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9169
 
-On 30/10/2023 16:40, Rob Herring wrote:
-> On Thu, Oct 26, 2023 at 02:28:41AM -0700, Kris Chaplin wrote:
->> Add YAML DT schema for the AMD AXI w1 host IP.
->>
->> This hardware guarantees protocol timing for driving off-board devices such
->> as thermal sensors, proms, etc using the 1wire protocol.
->>
->> Add MAINTAINERS entry for DT schema.
->>
->> Co-developed-by: Thomas Delev <thomas.delev@amd.com>
->> Signed-off-by: Thomas Delev <thomas.delev@amd.com>
->> Signed-off-by: Kris Chaplin <kris.chaplin@amd.com>
->> ---
->>  .../bindings/w1/amd,axi-1wire-host.yaml       | 44 +++++++++++++++++++
->>  MAINTAINERS                                   |  7 +++
->>  2 files changed, 51 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml b/Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
->> new file mode 100644
->> index 000000000000..ef70fa2c0c5d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
->> @@ -0,0 +1,44 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/w1/amd,axi-1wire-host.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: AMD AXI 1-wire bus host for programmable logic
->> +
->> +maintainers:
->> +  - Kris Chaplin <kris.chaplin@amd.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: amd,axi-1wire-host
-> 
-> Is there a device side implementation? I can't really imagine that 
-> 1-wire would ever be implemented as firmware on the device side given 
-> its limited nature. So adding 'host' doesn't make this any more 
-> specific.
+Hi Mathieu,
 
-"host" here means "controller", to avoid the other naming "master/slave".
+I agree to all the comments, I will address them in next revision.
 
-Best regards,
-Krzysztof
+Thanks,
 
+Tanmay
+
+On 10/18/23 12:38 PM, Mathieu Poirier wrote:
+> Good morning,
+>
+> On Thu, Oct 12, 2023 at 09:22:28PM -0700, Tanmay Shah wrote:
+> > Use TCM pm domains extracted from device-tree
+> > to power on/off TCM using general pm domain framework.
+> > 
+> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > ---
+> > 
+> > Changes in v6:
+> >   - Remove spurious change
+> >   - Handle errors in add_pm_domains function
+> >   - Remove redundant code to handle errors from remove_pm_domains
+> > 
+> >  drivers/remoteproc/xlnx_r5_remoteproc.c | 262 ++++++++++++++++++++++--
+> >  1 file changed, 243 insertions(+), 19 deletions(-)
+> > 
+> > diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > index 4395edea9a64..04e95d880184 100644
+> > --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
+> > @@ -16,6 +16,7 @@
+> >  #include <linux/of_reserved_mem.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/remoteproc.h>
+> > +#include <linux/pm_domain.h>
+> >  
+> >  #include "remoteproc_internal.h"
+> >  
+> > @@ -102,6 +103,12 @@ static const struct mem_bank_data zynqmp_tcm_banks_lockstep[] = {
+> >   * @rproc: rproc handle
+> >   * @pm_domain_id: RPU CPU power domain id
+> >   * @ipi: pointer to mailbox information
+> > + * @num_pm_dev: number of tcm pm domain devices for this core
+> > + * @pm_dev1: pm domain virtual devices for power domain framework
+> > + * @pm_dev_link1: pm domain device links after registration
+> > + * @pm_dev2: used only in lockstep mode. second core's pm domain virtual devices
+> > + * @pm_dev_link2: used only in lockstep mode. second core's pm device links after
+> > + * registration
+> >   */
+> >  struct zynqmp_r5_core {
+> >  	struct device *dev;
+> > @@ -111,6 +118,11 @@ struct zynqmp_r5_core {
+> >  	struct rproc *rproc;
+> >  	u32 pm_domain_id;
+> >  	struct mbox_info *ipi;
+> > +	int num_pm_dev;
+> > +	struct device **pm_dev1;
+>
+> s/pm_dev1/pm_dev_core0
+>
+> > +	struct device_link **pm_dev_link1;
+>
+> s/pm_dev_link1/pm_dev_core0_link;
+>
+> > +	struct device **pm_dev2;
+>
+> s/pm_dev2/pm_dev_core1
+>
+> > +	struct device_link **pm_dev_link2;
+>
+> s/pm_dev_link2/pm_dev_core1_link;
+>
+> >  };
+> >  
+> >  /**
+> > @@ -575,12 +587,21 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
+> >  		bank_size = r5_core->tcm_banks[i]->size;
+> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
+> >  
+> > -		ret = zynqmp_pm_request_node(pm_domain_id,
+> > -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
+> > -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+> > -		if (ret < 0) {
+> > -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
+> > -			goto release_tcm_split;
+> > +		/*
+> > +		 * If TCM information is available in device-tree then
+> > +		 * in that case, pm domain framework will power on/off TCM.
+> > +		 * In that case pm_domain_id is set to 0. If hardcode
+> > +		 * bindings from driver is used, then only this driver will
+> > +		 * use pm_domain_id.
+> > +		 */
+> > +		if (pm_domain_id) {
+> > +			ret = zynqmp_pm_request_node(pm_domain_id,
+> > +						     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
+> > +						     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+> > +			if (ret < 0) {
+> > +				dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
+> > +				goto release_tcm_split;
+> > +			}
+>
+> This should go in the next patch.
+>
+> >  		}
+> >  
+> >  		dev_dbg(dev, "TCM carveout split mode %s addr=%llx, da=0x%x, size=0x%lx",
+> > @@ -646,13 +667,16 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
+> >  	for (i = 0; i < num_banks; i++) {
+> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
+> >  
+> > -		/* Turn on each TCM bank individually */
+> > -		ret = zynqmp_pm_request_node(pm_domain_id,
+> > -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
+> > -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+> > -		if (ret < 0) {
+> > -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
+> > -			goto release_tcm_lockstep;
+> > +		if (pm_domain_id) {
+> > +			/* Turn on each TCM bank individually */
+> > +			ret = zynqmp_pm_request_node(pm_domain_id,
+> > +						     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
+> > +						     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
+> > +			if (ret < 0) {
+> > +				dev_err(dev, "failed to turn on TCM 0x%x",
+> > +					pm_domain_id);
+> > +				goto release_tcm_lockstep;
+> > +			}
+>
+> Same
+>
+> >  		}
+> >  
+> >  		bank_size = r5_core->tcm_banks[i]->size;
+> > @@ -687,7 +711,8 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
+> >  	/* If failed, Turn off all TCM banks turned on before */
+> >  	for (i--; i >= 0; i--) {
+> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
+> > -		zynqmp_pm_release_node(pm_domain_id);
+> > +		if (pm_domain_id)
+> > +			zynqmp_pm_release_node(pm_domain_id);
+> >  	}
+> >  	return ret;
+> >  }
+> > @@ -758,6 +783,192 @@ static int zynqmp_r5_parse_fw(struct rproc *rproc, const struct firmware *fw)
+> >  	return ret;
+> >  }
+> >  
+> > +static void zynqmp_r5_remove_pm_domains(struct rproc *rproc)
+> > +{
+> > +	struct zynqmp_r5_core *r5_core = rproc->priv;
+> > +	struct device *dev = r5_core->dev;
+> > +	struct zynqmp_r5_cluster *cluster;
+> > +	int i;
+> > +
+> > +	cluster = platform_get_drvdata(to_platform_device(dev->parent));
+> > +
+> > +	for (i = 1; i < r5_core->num_pm_dev; i++) {
+> > +		device_link_del(r5_core->pm_dev_link1[i]);
+> > +		dev_pm_domain_detach(r5_core->pm_dev1[i], false);
+> > +	}
+> > +
+> > +	kfree(r5_core->pm_dev1);
+> > +	r5_core->pm_dev1 = NULL;
+> > +	kfree(r5_core->pm_dev_link1);
+> > +	r5_core->pm_dev_link1 = NULL;
+> > +
+> > +	if (cluster->mode == SPLIT_MODE) {
+> > +		r5_core->num_pm_dev = 0;
+> > +		return;
+> > +	}
+> > +
+> > +	for (i = 1; i < r5_core->num_pm_dev; i++) {
+> > +		device_link_del(r5_core->pm_dev_link2[i]);
+> > +		dev_pm_domain_detach(r5_core->pm_dev2[i], false);
+> > +	}
+> > +
+> > +	kfree(r5_core->pm_dev2);
+> > +	r5_core->pm_dev2 = NULL;
+> > +	kfree(r5_core->pm_dev_link2);
+> > +	r5_core->pm_dev_link2 = NULL;
+> > +	r5_core->num_pm_dev = 0;
+> > +}
+> > +
+> > +static int zynqmp_r5_add_pm_domains(struct rproc *rproc)
+> > +{
+> > +	struct zynqmp_r5_core *r5_core = rproc->priv;
+> > +	struct device *dev = r5_core->dev, *dev2;
+> > +	struct zynqmp_r5_cluster *cluster;
+> > +	struct platform_device *pdev;
+> > +	struct device_node *np;
+> > +	int i, j, num_pm_dev, ret;
+> > +
+> > +	cluster = dev_get_drvdata(dev->parent);
+> > +
+> > +	/* get number of power-domains */
+> > +	num_pm_dev = of_count_phandle_with_args(r5_core->np, "power-domains",
+> > +						"#power-domain-cells");
+> > +
+> > +	if (num_pm_dev <= 0)
+> > +		return -EINVAL;
+> > +
+> > +	r5_core->pm_dev1 = kcalloc(num_pm_dev,
+> > +				   sizeof(struct device *),
+> > +				   GFP_KERNEL);
+> > +	if (!r5_core->pm_dev1)
+> > +		ret = -ENOMEM;
+> > +
+> > +	r5_core->pm_dev_link1 = kcalloc(num_pm_dev,
+> > +					sizeof(struct device_link *),
+> > +					GFP_KERNEL);
+> > +	if (!r5_core->pm_dev_link1) {
+> > +		kfree(r5_core->pm_dev1);
+> > +		r5_core->pm_dev1 = NULL;
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	r5_core->num_pm_dev = num_pm_dev;
+> > +
+> > +	/*
+> > +	 * start from 2nd entry in power-domains property list as
+> > +	 * for zynqmp we only add TCM power domains and not core's power domain.
+> > +	 */
+>
+> It would be worth mentionning where the 1st entry get added.
+>
+> > +	for (i = 1; i < r5_core->num_pm_dev; i++) {
+> > +		r5_core->pm_dev1[i] = dev_pm_domain_attach_by_id(dev, i);
+> > +		if (IS_ERR_OR_NULL(r5_core->pm_dev1[i])) {
+> > +			dev_dbg(dev, "failed to attach pm domain %d, ret=%ld\n", i,
+> > +				PTR_ERR(r5_core->pm_dev1[i]));
+> > +			ret = -EINVAL;
+> > +			goto fail_add_pm_domains;
+> > +		}
+> > +		r5_core->pm_dev_link1[i] = device_link_add(dev, r5_core->pm_dev1[i],
+> > +							   DL_FLAG_STATELESS |
+> > +							   DL_FLAG_RPM_ACTIVE |
+> > +							   DL_FLAG_PM_RUNTIME);
+> > +		if (!r5_core->pm_dev_link1[i]) {
+> > +			dev_pm_domain_detach(r5_core->pm_dev1[i], true);
+> > +			r5_core->pm_dev1[i] = NULL;
+> > +			ret = -EINVAL;
+>
+> Cleanup for this iteration is properly done here.  As such the while() loop in
+> fail_add_pm_domains needs to be while (--i >= 0).  See my comment below.
+>
+> > +			goto fail_add_pm_domains;
+> > +		}
+> > +	}
+> > +
+> > +	if (cluster->mode == SPLIT_MODE)
+> > +		return 0;
+> > +
+> > +	r5_core->pm_dev2 = kcalloc(num_pm_dev,
+> > +				   sizeof(struct device *),
+> > +				   GFP_KERNEL);
+> > +	if (!r5_core->pm_dev2) {
+> > +		ret = -ENOMEM;
+> > +		goto fail_add_pm_domains;
+> > +	}
+> > +
+> > +	r5_core->pm_dev_link2 = kcalloc(num_pm_dev,
+> > +					sizeof(struct device_link *),
+> > +					GFP_KERNEL);
+> > +	if (!r5_core->pm_dev_link2) {
+> > +		kfree(r5_core->pm_dev2);
+> > +		r5_core->pm_dev2 = NULL;
+> > +		ret = -ENOMEM;
+> > +		goto fail_add_pm_domains;
+> > +	}
+> > +
+> > +	/* get second core's device to detach its power-domains */
+> > +	np = of_get_next_child(cluster->dev->of_node, of_node_get(dev->of_node));
+> > +
+> > +	pdev = of_find_device_by_node(np);
+> > +	if (!pdev) {
+> > +		dev_err(cluster->dev, "core1 platform device not available\n");
+> > +		kfree(r5_core->pm_dev2);
+> > +		kfree(r5_core->pm_dev_link2);
+> > +		r5_core->pm_dev2 = NULL;
+> > +		r5_core->pm_dev_link2 = NULL;
+> > +		ret = -EINVAL;
+> > +		goto fail_add_pm_domains;
+> > +	}
+> > +
+> > +	dev2 = &pdev->dev;
+> > +
+> > +	/* for zynqmp we only add TCM power domains and not core's power domain */
+> > +	for (j = 1; j < r5_core->num_pm_dev; j++) {
+> > +		r5_core->pm_dev2[j] = dev_pm_domain_attach_by_id(dev2, j);
+> > +		if (!r5_core->pm_dev2[j]) {
+> > +			dev_dbg(dev, "can't attach to pm domain %d\n", j);
+> > +			ret = -EINVAL;
+> > +			goto fail_add_pm_domains_lockstep;
+> > +		} else if (IS_ERR(r5_core->pm_dev2[j])) {
+> > +			dev_dbg(dev, "can't attach to pm domain %d\n", j);
+> > +			ret = PTR_ERR(r5_core->pm_dev2[j]);
+> > +			goto fail_add_pm_domains_lockstep;
+> > +		}
+> > +
+> > +		r5_core->pm_dev_link2[j] = device_link_add(dev, r5_core->pm_dev2[j],
+> > +							   DL_FLAG_STATELESS |
+> > +							   DL_FLAG_RPM_ACTIVE |
+> > +							   DL_FLAG_PM_RUNTIME);
+> > +		if (!r5_core->pm_dev_link2[j]) {
+> > +			dev_pm_domain_detach(r5_core->pm_dev2[j], true);
+> > +			r5_core->pm_dev2[j] = NULL;
+> > +			ret = -ENODEV;
+> > +			goto fail_add_pm_domains_lockstep;
+> > +		}
+> > +	}
+> > +
+> > +fail_add_pm_domains_lockstep:
+> > +	while (j >= 1) {
+> > +		if (r5_core->pm_dev_link2 && !IS_ERR_OR_NULL(r5_core->pm_dev_link2[j]))
+> > +			device_link_del(r5_core->pm_dev_link2[j]);
+> > +		if (r5_core->pm_dev2 && !IS_ERR_OR_NULL(r5_core->pm_dev2[j]))
+> > +			dev_pm_domain_detach(r5_core->pm_dev2[j], true);
+> > +		j--;
+> > +	}
+> > +	kfree(r5_core->pm_dev2);
+> > +	r5_core->pm_dev2 = NULL;
+> > +	kfree(r5_core->pm_dev_link2);
+> > +	r5_core->pm_dev_link2 = NULL;
+> > +
+> > +fail_add_pm_domains:
+> > +	while (i >= 1) {
+> > +		if (r5_core->pm_dev_link1 && !IS_ERR_OR_NULL(r5_core->pm_dev_link1[i]))
+> > +			device_link_del(r5_core->pm_dev_link1[i]);
+>
+> Because the cleanup is properly done above we can start the loop at the previous
+> value of 'i', i.e --i.  The added bonus is that you don't need the if()
+> statement.
+>
+> Another problem with starting at 'i' is that you get an out of bound access when
+> all PM domains have been properly added for core 0 but fail for core 1.
+>
+> > +		if (r5_core->pm_dev1 && !IS_ERR_OR_NULL(r5_core->pm_dev1[i]))
+> > +			dev_pm_domain_detach(r5_core->pm_dev1[i], true);
+>
+> Same as above.
+>
+> I will stop here for this revision.
+>
+> Mathieu
+>
+>
+> > +		i--;
+> > +	}
+> > +	kfree(r5_core->pm_dev1);
+> > +	r5_core->pm_dev1 = NULL;
+> > +	kfree(r5_core->pm_dev_link1);
+> > +	r5_core->pm_dev_link1 = NULL;
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >  /**
+> >   * zynqmp_r5_rproc_prepare()
+> >   * adds carveouts for TCM bank and reserved memory regions
+> > @@ -770,19 +981,30 @@ static int zynqmp_r5_rproc_prepare(struct rproc *rproc)
+> >  {
+> >  	int ret;
+> >  
+> > +	ret = zynqmp_r5_add_pm_domains(rproc);
+> > +	if (ret) {
+> > +		dev_err(&rproc->dev, "failed to add pm domains\n");
+> > +		return ret;
+> > +	}
+> > +
+> >  	ret = add_tcm_banks(rproc);
+> >  	if (ret) {
+> >  		dev_err(&rproc->dev, "failed to get TCM banks, err %d\n", ret);
+> > -		return ret;
+> > +		goto fail_prepare;
+> >  	}
+> >  
+> >  	ret = add_mem_regions_carveout(rproc);
+> >  	if (ret) {
+> >  		dev_err(&rproc->dev, "failed to get reserve mem regions %d\n", ret);
+> > -		return ret;
+> > +		goto fail_prepare;
+> >  	}
+> >  
+> >  	return 0;
+> > +
+> > +fail_prepare:
+> > +	zynqmp_r5_remove_pm_domains(rproc);
+> > +
+> > +	return ret;
+> >  }
+> >  
+> >  /**
+> > @@ -801,11 +1023,13 @@ static int zynqmp_r5_rproc_unprepare(struct rproc *rproc)
+> >  
+> >  	r5_core = rproc->priv;
+> >  
+> > +	zynqmp_r5_remove_pm_domains(rproc);
+> > +
+> >  	for (i = 0; i < r5_core->tcm_bank_count; i++) {
+> >  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
+> > -		if (zynqmp_pm_release_node(pm_domain_id))
+> > -			dev_warn(r5_core->dev,
+> > -				 "can't turn off TCM bank 0x%x", pm_domain_id);
+> > +		if (pm_domain_id && zynqmp_pm_release_node(pm_domain_id))
+> > +			dev_dbg(r5_core->dev,
+> > +				"can't turn off TCM bank 0x%x", pm_domain_id);
+> >  	}
+> >  
+> >  	return 0;
+> > -- 
+> > 2.25.1
+> > 
 
