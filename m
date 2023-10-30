@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C1A7DBF77
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:58:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B347DBF7B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57D201F217AE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:58:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0E05B20C34
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4AD18C23;
-	Mon, 30 Oct 2023 17:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CD0199A9;
+	Mon, 30 Oct 2023 17:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y4dBLW1j"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CO2L3xwY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739C3199A8
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9203F18C23
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:59:41 +0000 (UTC)
 Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E599C
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:58:00 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c3c8adb27so716154566b.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:58:00 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9BF2CC
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:59:39 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9c773ac9b15so716085566b.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:59:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698688678; x=1699293478; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=linaro.org; s=google; t=1698688778; x=1699293578; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NAgIQUdPaFmbgwMkeuYptRKeq6uvytFY1rtEkYKy7tc=;
-        b=Y4dBLW1jil9iUtPYri7S4LbX40q8R2xY3QuHC9Gt85WcPPgaYPeLfw/vFhvceNlXh9
-         TdVgNJBNB+/sWRk0bLRx/Wjp932Uv7YgIktzslpWt/K415SQlP54xAK4OuyO/kzKMJig
-         CwxR9aiOZVX3GTDV66vCa8BxVGWS1J14ihKCWs5ooxz3kvxUIczFP63ZX0BbL4ffVktv
-         X8co7O7qkMZMXfQR7A79KOIep/XUDSQTDWuATNYooadKWPbxahxmBSzf2EfCOoXWbqoH
-         mm69UARIajBueR8fZnkYKLKpzcLRQpH4j+iO2/oUu46onAIPIS8UwsBZkPDNdb//67uM
-         8DFg==
+        bh=CvSSz2b1QgB/AlYG4CXYHHHkCbHuZHM20Xi74wt8pqk=;
+        b=CO2L3xwYFIz7UrYBy+XUS4muwKRKF/9LHLp8i55e4z+MKtxrFv6nrehZA4i5bJ5th9
+         4iLIxoRGH938+tzjh2W6byYBD2YyBIYRLGoCRQSC0NxiYUTS4XETHGw5RUtt4VfOf6+c
+         L/f/mXIcWu7lYYCORnlbiT2kp+zZZb0mCfLvkrZ0z7xeeFVqubmhLF7Xv6s1mc8mJD2H
+         vjUnuB3/D95EyTK+PMBBVyueOhe1pcwlhWi9Zj9fFQeFoCTgWDn4ZgALW3YhnXGgc9Rt
+         0NSB3SFLUER/vviPVUEDqbHonwFcCwksZ9eoFM8hAhr2ru6JOY0Wey9QhnosGsnEHq1I
+         +V5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698688678; x=1699293478;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=1e100.net; s=20230601; t=1698688778; x=1699293578;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NAgIQUdPaFmbgwMkeuYptRKeq6uvytFY1rtEkYKy7tc=;
-        b=r9aw6qqA9S/mqUDoFePJi+e5eXdpzDj4w1xZth5JcIdU0QDi+zIhoXmrWQI4Qx7hW/
-         0EgXMOJ8Mc3noJrY6lCNU2m262CC+u0qLG8l/QfTilNorfrkpx+NFdwRhaO0ZlgHm7HY
-         y4Ovfe2Sf6c7qt4hnU05on2W6HEqScpsRW5joVtJw/kVDZsgA8gMlznFBFh+m1K1BJpb
-         gdwXb47z3h0D0aBtNZSfF1j9o4pH4qXHVZbKCge8Nk3nCwPm9SWT3HHLrOnDMzwRl+a5
-         obXcK7et8lnqbRE44IzoD9m5Q5wb1w1CAUeidhKTJIyZQJzHr63nxWmFlr3B/VH4bKHp
-         /8Ag==
-X-Gm-Message-State: AOJu0Yw3PLhN1qDbVHYvzWbGhfSrqwqynuSxYZM20xkPR/BW7cwGlJUp
-	/GlNz/FSwEn/J5L7nEfRIBOllQ==
-X-Google-Smtp-Source: AGHT+IH8JaJY6/2Ys3gOcmv82AWcORT+Pyw/5P3m3EViq/NHfm8136epp3fwzk8NP8fb7/Fd5gWQWQ==
-X-Received: by 2002:a17:907:3fa4:b0:9be:8ead:54c7 with SMTP id hr36-20020a1709073fa400b009be8ead54c7mr9682004ejc.12.1698688678523;
-        Mon, 30 Oct 2023 10:57:58 -0700 (PDT)
+        bh=CvSSz2b1QgB/AlYG4CXYHHHkCbHuZHM20Xi74wt8pqk=;
+        b=EMdJacPVyL1ReyMsBdhEGMBXvhCxsCQ71r4rE0OwgQ6BbIab4BnAtkFHqb3ICaTAGl
+         +RghLdDdegMHiM01+PoJpiFpxZWl6FIxesNDn21PThPSBxtV78BqwM73Ml8EoXmQg8HE
+         +8Ua2vfo4T5eBfsy8544GgkxVwNlzIrqA+b0gEXv3WJUW+xNiiDK5t3gsKUoWkVMZ2TW
+         eqddzzDr9FWlsFaSpw8tYmQ0Cp5XnXVlhNR0bhXOkIGiATG3p+YHM9MJ/yYDW+jlbN82
+         92rghNyUB2LX46oqIgsD6TjJrLgiB9eTlv4novfJbTd+a27v5YilAPmZ5XJrw35tp30o
+         1U/g==
+X-Gm-Message-State: AOJu0YwDty8dN6sEj9QgUkhoM3FgzKTYeADFEpWDrV08oNoCIkYwKSW4
+	QcAkCiCE+CFmyJXhBCGiDJ5iOQ==
+X-Google-Smtp-Source: AGHT+IFVyWxtyQCSeBEnfoj5Z8tWNDXo57pKKBU7f0HXEpK3JkJsSltTriOVzuUJUdUXIsismU8/Gw==
+X-Received: by 2002:a17:907:d387:b0:9d4:55b1:a45f with SMTP id vh7-20020a170907d38700b009d455b1a45fmr2251301ejc.43.1698688778376;
+        Mon, 30 Oct 2023 10:59:38 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id k5-20020a1709063e0500b009b8a4f9f20esm6328003eji.102.2023.10.30.10.57.56
+        by smtp.gmail.com with ESMTPSA id k5-20020a1709063e0500b009b8a4f9f20esm6328003eji.102.2023.10.30.10.59.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:57:57 -0700 (PDT)
-Message-ID: <2a9a25db-7fd4-494b-975d-f2f012cf67f6@linaro.org>
-Date: Mon, 30 Oct 2023 18:57:55 +0100
+        Mon, 30 Oct 2023 10:59:37 -0700 (PDT)
+Message-ID: <03a555ea-9066-4366-b130-545aa5519b18@linaro.org>
+Date: Mon, 30 Oct 2023 18:59:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,6 +70,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v7 01/11] Documentation/firmware: added imx/se-fw to
  other_interfaces
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
  conor+dt@kernel.org, pierre.gondois@arm.com, festevam@gmail.com,
@@ -79,7 +80,7 @@ To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  gaurav.jain@nxp.com, alexander.stein@ew.tq-group.com, V.Sethi@nxp.com
 References: <20231030095849.3456820-1-pankaj.gupta@nxp.com>
  <20231030095849.3456820-2-pankaj.gupta@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <2a9a25db-7fd4-494b-975d-f2f012cf67f6@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -124,19 +125,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030095849.3456820-2-pankaj.gupta@nxp.com>
+In-Reply-To: <2a9a25db-7fd4-494b-975d-f2f012cf67f6@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/10/2023 10:58, Pankaj Gupta wrote:
-> Documented i.MX SoC's Service layer and C_DEV driver for SoC(s)
-> enabled with hardware IP for secure-enclaves like:
-> - edgelock enclave on i.MX93 & i.MX8ULP
+On 30/10/2023 18:57, Krzysztof Kozlowski wrote:
+> On 30/10/2023 10:58, Pankaj Gupta wrote:
+>> Documented i.MX SoC's Service layer and C_DEV driver for SoC(s)
+>> enabled with hardware IP for secure-enclaves like:
+>> - edgelock enclave on i.MX93 & i.MX8ULP
+>>
+>> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> I asked to explain user-space tools as well. I don't see them
+> mentioned/documented in none of the commits.
 
-I asked to explain user-space tools as well. I don't see them
-mentioned/documented in none of the commits.
+Hm, I lost somehow or I did not get your patch #7, so maybe that's the
+place where they are mentioned.
 
 Best regards,
 Krzysztof
