@@ -1,157 +1,148 @@
-Return-Path: <devicetree+bounces-12745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F5CE7DB561
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:45:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 919E07DB574
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:49:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0849A281404
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:45:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C9871F21DFC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:49:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64EA8137E;
-	Mon, 30 Oct 2023 08:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7FCCA7E;
+	Mon, 30 Oct 2023 08:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="EnqnXpAD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DFXLV3UY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BEFCA58
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 08:45:13 +0000 (UTC)
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2060.outbound.protection.outlook.com [40.107.22.60])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A101AB;
-	Mon, 30 Oct 2023 01:45:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OKz0ycI3L/pXpIa/scoujBN00CGo87i4vf4LDdkW6NISQN7VxtM9gVC2R9bPzB1oXFwjozwljNtnzP560RblNA3jhKClaAocEuEr2inVwTAuX3q53bu+1mEvcNFaCTFRiI0C7V54VlA+TcTcctm9Kkx5MvfFSnDbr0TZju7AdoV8ZRG5YKkKkARtMULHNY9zKBMOB8YLy18a8VRTd95nSWXgLcvq6qrE4ZoKznCWMi1k2jfRBD81BQzuIZ4hm88HemvPB8PQzW3w62UUIloyN8kpXkGjBthx+05ioDPu5mWY7Eoh2SwEuXLbrjfUSxVoComAIkjmUAh4jmHl+39lZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OVKbeDd3kHAWW6CxBaIX5LutoVamKWWoJJirVxGOTDI=;
- b=auLZt+0kxlnrgrQhmn/y/p8dAfpzu38fxFuW6aq/dmSYrmo1e+3YpAl3UifuK+iOSbm9kRk8BGGdwHDnGT5HkFVQxA9wMwZjwMXcT2oeqacU24nchr2DcKDqSYSpzkJCLeqpvxfCRDkSE/q5fMpa18zSUr6bopnvRWIl2d1t5FofNCRB22rQMxyocBarfpOvxnCTTiZC6av/eFh6ulLUiOPRZTuguZga/GhDNm4S8YeptfCvTiN09eStrDygzYixscTrXOFqDbaCJsH93G6cXlx0HXOJmBY18yq3W+Mod2YODgHoZvLPpW/XzEukiGB2+F7K1100fvVAeZYg+Efsxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OVKbeDd3kHAWW6CxBaIX5LutoVamKWWoJJirVxGOTDI=;
- b=EnqnXpADfHpM7Jz1V2hT86WIK1VGxf4wj4hJTQXIn5COhw7NSm9oHqVQCHpZl9YbIl1cHLjZuMqbqeNRKjIJSIla8LrOlWqYSzhXcM7GRRhDgVVYLTAWp5KlQl+rmXSajkDC1Fc7NOZPI1wqWzIXivc3+YZRux3Y08Tv6YAtnVI=
-Received: from DU6P191CA0070.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:53e::18)
- by PAVPR02MB10012.eurprd02.prod.outlook.com (2603:10a6:102:31f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.23; Mon, 30 Oct
- 2023 08:45:10 +0000
-Received: from DU6PEPF00009527.eurprd02.prod.outlook.com
- (2603:10a6:10:53e:cafe::e9) by DU6P191CA0070.outlook.office365.com
- (2603:10a6:10:53e::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.28 via Frontend
- Transport; Mon, 30 Oct 2023 08:45:10 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=axis.com;
-Received-SPF: Fail (protection.outlook.com: domain of axis.com does not
- designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com;
-Received: from mail.axis.com (195.60.68.100) by
- DU6PEPF00009527.mail.protection.outlook.com (10.167.8.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6933.15 via Frontend Transport; Mon, 30 Oct 2023 08:45:09 +0000
-Received: from SE-MAIL21W.axis.com (10.20.40.16) by se-mail02w.axis.com
- (10.20.40.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 30 Oct
- 2023 09:45:09 +0100
-Received: from se-mail01w.axis.com (10.20.40.7) by SE-MAIL21W.axis.com
- (10.20.40.16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 30 Oct
- 2023 09:45:08 +0100
-Received: from se-intmail01x.se.axis.com (10.0.5.60) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Mon, 30 Oct 2023 09:45:08 +0100
-Received: from lnxchenhuiz2.sh.cn.axis.com (lnxchenhuiz2.sh.cn.axis.com [192.168.77.59])
-	by se-intmail01x.se.axis.com (Postfix) with ESMTP id 4F57321A7;
-	Mon, 30 Oct 2023 09:45:06 +0100 (CET)
-Received: from lnxchenhuiz2.sh.cn.axis.com (localhost [127.0.0.1])
-	by lnxchenhuiz2.sh.cn.axis.com (8.17.1.9/8.17.1.9/Debian-2) with ESMTP id 39U8h528593906;
-	Mon, 30 Oct 2023 16:43:05 +0800
-Received: (from chenhuiz@localhost)
-	by lnxchenhuiz2.sh.cn.axis.com (8.17.1.9/8.17.1.9/Submit) id 39U8h5RZ593905;
-	Mon, 30 Oct 2023 16:43:05 +0800
-From: Hermes Zhang <Hermes.Zhang@axis.com>
-To: <sre@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <kernel@axis.com>, Hermes Zhang
-	<chenhuiz@axis.com>, Conor Dooley <conor.dooley@microchip.com>,
-	<linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: power: supply: bq24190: Add BQ24296 compatible
-Date: Mon, 30 Oct 2023 16:43:01 +0800
-Message-ID: <20231030084302.593864-2-Hermes.Zhang@axis.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231030084302.593864-1-Hermes.Zhang@axis.com>
-References: <20231030084302.593864-1-Hermes.Zhang@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13396ADB
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 08:49:48 +0000 (UTC)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4F39D;
+	Mon, 30 Oct 2023 01:49:47 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1cc0d0a0355so24667465ad.3;
+        Mon, 30 Oct 2023 01:49:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698655787; x=1699260587; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=LTZiBHO/bcyQoF82GzeeiMxWv9nC9/4IT5S7HkUIiUE=;
+        b=DFXLV3UYxVc7NG5BA5Ynl4LyUPNEJp6Bm300p53E87GnhHx8GdZ/T/BlvCnBdjlDBx
+         WdTDBvbP2pWyxiEzcfsXevtI5fCCbxWH2rXcDtA9baTgsY42rN7BfoY6pHk/nHhOa1LW
+         ySj3+E5yPIheXW+g6hX2LCv7iY5HTJauYNBHFNmTJx2nGlAddE5GBMFNkJ1kTmmTTAQC
+         A9KypNtnCx52IdLa5YEtox2U6Lv29c13r5yPThlebmtWVMPNcdxJpsWWilG5S+SgL3Rx
+         gW8XDBiczV5RZl2Y8FKHvxWFH50G0U6Szb8dfJ0wOqjKNVG00+nGrP39lKUGAnG5uPz4
+         ISNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698655787; x=1699260587;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LTZiBHO/bcyQoF82GzeeiMxWv9nC9/4IT5S7HkUIiUE=;
+        b=a+UfnHQ5iY6Ga013S+/Qx4rxvQdEWTl77HA2utDqTtGl1i2vIaMFUnHdZTyxMYkEv9
+         rujGaxVwtFQpR+VNCxFSv9r3fCcvx95l5Pw6thARsJbg0OyBWnfJj2uz1jENcOD9E6fS
+         AFjEVaGDCI8afysQh5u9j0NRKPyUJo0PMeu/dixTO6IxLrYcrSyTe21Bzct7qrZDShrs
+         OYlPuUX26nOWPIvvH19ifTdFcdTxXzhkP+UAMq/3VEHcPMnfnwTC1HbKl7OaNT4ylA32
+         haI4KX8/3z8Vz6U5xjqO8sCUZqscZLBpT5c2fmGx4QFYGhsb1qKCRfUsdCza67P1tgry
+         xRRA==
+X-Gm-Message-State: AOJu0Yx9IduPamuFuk8G7bvT9GcdBa4tfq3+W2Gkof+rhtgbXzARgcEW
+	yLfh0z7Lb5NOKsL2/0xZzkM=
+X-Google-Smtp-Source: AGHT+IGcyGfbxIKfrCw66ui0EgwGDUWqZJg6i/OKXwBfNICtZCy+YCkcfoGpSm01KhDRVWKdbmM1yA==
+X-Received: by 2002:a17:902:6803:b0:1c9:ca02:645c with SMTP id h3-20020a170902680300b001c9ca02645cmr6399819plk.36.1698655786724;
+        Mon, 30 Oct 2023 01:49:46 -0700 (PDT)
+Received: from google.com ([2401:fa00:8f:201:4be2:e81c:ea48:aaac])
+        by smtp.gmail.com with ESMTPSA id q13-20020a170902dacd00b001bc2831e1a8sm5808793plx.80.2023.10.30.01.49.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Oct 2023 01:49:46 -0700 (PDT)
+Date: Mon, 30 Oct 2023 08:49:40 +0000
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc: Marco Felsch <m.felsch@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v3 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+Message-ID: <ZT9uJMExvf7B0gtR@google.com>
+References: <20231012074034.1090436-1-kamel.bouhara@bootlin.com>
+ <20231012074034.1090436-4-kamel.bouhara@bootlin.com>
+ <20231020120310.vrn6ew3fcg5e545w@pengutronix.de>
+ <20231022193529.GC3072@kb-xps>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF00009527:EE_|PAVPR02MB10012:EE_
-X-MS-Office365-Filtering-Correlation-Id: aabb93c2-0dff-4165-3e15-08dbd9248663
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	LTb0nhXmJVcSrphYASc8lti4NQGGcpcN0XxNQVEnAXR8kDVmokq6ZpCxpR9h2M8XI0PnIuZ4hU5OuPOZMYWm3XtdZJkjAOdkO1rxkTPBhFJUmtgW/AtIOZEE761Tte4zy9SqKiz1LqUe59r6FJCZKHQ34lr5nuz1sk3gBnsZXxdV1iD91yBGm+pZ/DMlIElwV8fDjWofeT5SHRwoiUYKaqyXllcqvbeTXbztQOf466dOMcWVFPfPSsTbSaf9+GXI57j1A5Hkf0dqaGQKMAGveD063XdvLjjiGc+X3b5PKovI9Ot9fLYktKtqvKVT+JdI2qdDxHH2Hk6e64n754UsUTris6cPFLyVURgqGTcMI0pOv8vPyvqlpzZvo5jvm7TOZvcGIT1ufDvsenH+LkQJ1qBQNk2SzS8fl7JdXbmoaVn5ak3OowlxOQcjYDix1BfweQxIlIKl7pU5up0en0c0RE3cYf3X6fw4Ah7ZD0tfqbK1PDLhZz+lkZo+SswBLNKmJF2aT5oTWOnUlQJcUy1c44DOVGyVtQb9XMv4h5Ck6t0xZ9zJQm4fupVBZMYbswPsdn00iO8BUKXL6wK4nHKu8m0b9G/fMA0j2ofEhfC7m0wHyFIX3kR59BDFEwbm5wQD5pPgKl0SYt6CXFh91rCkZLL8Aj4nDZylMpMLuNEsTcvvaZdt0qb3dkml5+WrJD/H45qhbKJrFxaNg7Ld4pw2PDB78UES+wDKL0JZUi3HVmGyNxR0DQ3+bVIqt6hgrnIjez4PxBYtNxfRngLjdPP1wQ==
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(376002)(346002)(39860400002)(230922051799003)(451199024)(186009)(64100799003)(82310400011)(1800799009)(36840700001)(40470700004)(46966006)(40460700003)(110136005)(316002)(70206006)(70586007)(54906003)(86362001)(36756003)(426003)(336012)(1076003)(26005)(2616005)(478600001)(83380400001)(356005)(82740400003)(6666004)(81166007)(47076005)(36860700001)(40480700001)(42186006)(2906002)(4326008)(8936002)(5660300002)(41300700001)(8676002)(4744005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 08:45:09.8976
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aabb93c2-0dff-4165-3e15-08dbd9248663
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF00009527.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR02MB10012
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231022193529.GC3072@kb-xps>
 
-From: Hermes Zhang <chenhuiz@axis.com>
+On Sun, Oct 22, 2023 at 09:35:29PM +0200, Kamel Bouhara wrote:
+> On Fri, Oct 20, 2023 at 02:03:10PM +0200, Marco Felsch wrote:
+> > > +
+> > > +static int
+> > > +axiom_i2c_write(struct i2c_client *client, u8 usage, u8 page, u8 *buf, u16 len)
+> > > +{
+> > > +	struct axiom_data *ts = i2c_get_clientdata(client);
+> > > +	struct axiom_cmd_header cmd_header;
+> > > +	struct i2c_msg msg[2];
+> > > +	int ret;
+> > > +
+> > > +	cmd_header.target_address = cpu_to_le16(usage_to_target_address(ts, usage, page, 0));
+> > > +	cmd_header.length = cpu_to_le16(len);
+> > > +	cmd_header.read = 0;
+> > > +
+> > > +	msg[0].addr = client->addr;
+> > > +	msg[0].flags = 0;
+> > > +	msg[0].len = sizeof(cmd_header);
+> > > +	msg[0].buf = (u8 *)&cmd_header;
+> > > +
+> > > +	msg[1].addr = client->addr;
+> > > +	msg[1].flags = 0;
+> > > +	msg[1].len = len;
+> > > +	msg[1].buf = (char *)buf;
+> >
+> > Please check the "comms protocol app note", for write it is not allowed
+> > to send a stop, so the whole data must be send in one i2c_msg.
+> >
+> 
+> Well I only have the "Programmer's Guide", I'll have to check that as it
+> really seems to works as it yet.
 
-The BQ24296 is most similar to the BQ24196, but the:
-1. OTG config is split from CHG config (REG01)
-2. ICHG (Fast Charge Current limit) range is smaller (<=3008mA)
-3. NTC fault is simplified to 2 bits
+As far as I know we only send "stop" on the last message in a sequence
+of messages in i2c_transfer() unless it is explicitly requested with
+I2C_M_STOP flag.
 
-Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
+...
+> > > +
+> > > +static void axiom_i2c_remove(struct i2c_client *client)
+> > > +{
+> > > +	struct axiom_data *ts = i2c_get_clientdata(client);
+> > > +
+> > > +	input_unregister_device(ts->input_dev);
+> >
+> > This can be part of devm_add_action_or_reset() and we could remove the
+> > .remove() callback for this driver.
+> >
+> 
+> Sure, thanks for the tips :)!
 
-Notes:
-    v2: restructured the code to support bq24296 and add Acked-by tag
-        from Conor
+Actually input devices allocated with devm do not need to be explicitly
+inregistered, so you do not need to bother with
+devm_add_action_or_reset() and simply delete axiom_i2c_remove().
 
- Documentation/devicetree/bindings/power/supply/bq24190.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Thanks.
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq24190.yaml b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-index d3ebc9de8c0b..131b7e57d22f 100644
---- a/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-@@ -20,6 +20,7 @@ properties:
-       - ti,bq24192
-       - ti,bq24192i
-       - ti,bq24196
-+      - ti,bq24296
- 
-   reg:
-     maxItems: 1
 -- 
-2.39.2
-
+Dmitry
 
