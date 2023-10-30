@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-12836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC037DB7DB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 11:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3AB7DB80C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 11:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA18F2813D8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:21:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB4C22813EE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8591010A3D;
-	Mon, 30 Oct 2023 10:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4084111A7;
+	Mon, 30 Oct 2023 10:27:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b2bM0yiT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KUzvHYTp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41561078E
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:21:48 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC9DB1BCC;
-	Mon, 30 Oct 2023 03:21:46 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a62d4788so6469079e87.0;
-        Mon, 30 Oct 2023 03:21:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698661305; x=1699266105; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OAUMPCgb6D0ZoxwJyFkMqL5B4ZYjbLuvm2n3X8foqi8=;
-        b=b2bM0yiTMWcPIM8rRsVWy/nIj3OLl6gJvdKZSut6Vx+El7CD4z7olGJiztHokDmpAj
-         IDLV031VrvkSHY+02Ol0dgTdJCajrJy3aTnw7prxt40A7lzzxZnJFASVsjqFscc2sNnV
-         FsGHq6fxje+Fb3xp5hdYmvBJr0CTmj3nPIcD7+gtKSyCibKc4idUdEHpqt36GY/p7kJY
-         c8s6/XMF2/62aHcTODpUYGWkdEcZ24oedAWsRd1AvvEEaZygsfyFVyIkzbZ4/lsG6cjs
-         rLkF7N8bZmDs+mFiHuUfthUDEKNv5yQEZ5oFyUlybS00eh3yu0UwIAqY4jHf3u1+b4Ym
-         krEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698661305; x=1699266105;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OAUMPCgb6D0ZoxwJyFkMqL5B4ZYjbLuvm2n3X8foqi8=;
-        b=YlIwQ2pC2BayIAQZh68eK9HVmjZa/atei4FDDBCpzHgiOCHAJm7m9zR3kv25SsmY92
-         6kivvS/lEIBidzeFAqynyTFPho/I6U428tL0upxvEIAdNTV/sDjit/ibXGc3eyN/XBeP
-         WdYDlqb0iGrKKluHpILw0NOVtKycAuUtwTsc22otahDV6HQJUJw2Kfd7eGcvaA3z5z4H
-         VfUERyTLrS9KJFUkYFEA5Zvd7HBSvXCpIV8N6AmOeK2WngOnaSTwmQkN5Rpb+5eHxcKc
-         b3n1J5zVBKA7+Po4QAMshPBQBqqDNG127xnyD4WG7A1o6NRIdGMC2x0Jpnss0AcFsPOC
-         OeBQ==
-X-Gm-Message-State: AOJu0YxfNEVcoeGrrnf+aqAy0Cm/TrmxdKAFiua8h0+Ob+T1H16aWOVq
-	QyPmeh+ByXXo+mVPTLI0EEA=
-X-Google-Smtp-Source: AGHT+IGreMrOzmQFQCcbd3tYcVtEV2DtIzrTDGcfNDjROOD1K8nCDJSo4hbXGPYapz/fLEvfchyi9Q==
-X-Received: by 2002:a05:6512:1114:b0:509:130f:dfa4 with SMTP id l20-20020a056512111400b00509130fdfa4mr5127151lfg.52.1698661304543;
-        Mon, 30 Oct 2023 03:21:44 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
-        by smtp.gmail.com with ESMTPSA id g21-20020ac25395000000b00507d219596dsm1395323lfh.268.2023.10.30.03.21.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 03:21:44 -0700 (PDT)
-Message-ID: <6a697c62-6a7c-4b31-bc8e-10f40db0363d@gmail.com>
-Date: Mon, 30 Oct 2023 12:21:43 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5E212E47;
+	Mon, 30 Oct 2023 10:27:01 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4108D43;
+	Mon, 30 Oct 2023 03:26:59 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39U8f6FH028076;
+	Mon, 30 Oct 2023 10:26:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=uP9thLy3jzWSSjRvA0uZ8VuTotc1A8u04dYCHo/3CCc=;
+ b=KUzvHYTpYanvEe/7C7Qc3AOJ+FFAkphFNVOefPz0Q6sM9WWa8lEkJTNAdM6ZIWPqNP1R
+ O6oAAKEsfsFRizw0oppVLb7lPmswyB2+YWzwpGxNUtX0dI5BwVeZoDdVszAZ+LWwP5LX
+ O7H59QuwtCAzG+iJcKjsMKkgHZupC6jfWbC8QImrEj2H3bzx6YFqqBzFW94+nLRFCBi7
+ BoDSco4tlBMct3ZYfFNnnbZC3cztK11jVAmaXzcFiMj2rMMFR4wepWZ5ANd6D5WLbHhw
+ Uon99bH7D9CxyQhZup5O1jyIoZxJJefD2AAnlY5R3OJOBfBLr/Nh0v5vAn4SkPjRPB+F 7A== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u0s8yukmc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Oct 2023 10:26:48 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39UAQmML008236
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Oct 2023 10:26:48 GMT
+Received: from [10.216.13.23] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 30 Oct
+ 2023 03:26:42 -0700
+Message-ID: <c77d416e-ed4a-4f92-980a-abe6b690f049@quicinc.com>
+Date: Mon, 30 Oct 2023 15:56:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,208 +56,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
- Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
- <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
- <20231028162025.4259f1cc@jic23-huawei>
- <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
-In-Reply-To: <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 8/8] arm64: defconfig: build NSS Clock Controller driver
+ for IPQ5332
+To: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20231030-ipq5332-nsscc-v1-0-6162a2c65f0a@quicinc.com>
+ <20231030-ipq5332-nsscc-v1-8-6162a2c65f0a@quicinc.com>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20231030-ipq5332-nsscc-v1-8-6162a2c65f0a@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: obNjgnvksFC1bfVqdm-UQHVIJnqf_l6B
+X-Proofpoint-ORIG-GUID: obNjgnvksFC1bfVqdm-UQHVIJnqf_l6B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-30_09,2023-10-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ suspectscore=0 spamscore=0 mlxlogscore=899 mlxscore=0 malwarescore=0
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2310300079
 
-Hi dee Ho peeps,
 
-On 10/29/23 17:51, Matti Vaittinen wrote:
-> On 10/28/23 18:20, Jonathan Cameron wrote:
->> On Fri, 27 Oct 2023 18:15:45 +1030
->> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
->>
->>> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor 
->>> with als
->>> and clear channels with i2c interface. Hardware interrupt 
->>> configuration is
->>> optional. It is a low power device with 20 bit resolution and has
->>> configurable adaptive interrupt mode and interrupt persistence mode.
->>> The device also features inbuilt hardware gain, multiple integration 
->>> time
->>> selection options and sampling frequency selection options.
->>
->> Hi Subhajit,
->>
->>
->>>
->> Change log below the ---
->>
->> We don't generally want to end up with this information in the git log
->> and anything above the --- is used for the commit message.
->>
->> Note that if you want to keep notes in your local git it is fine adding
->>
->> Signed-of-by...
->>
->> ---
->>
->> Version notes
->> etc
->>
->>
->> As then git am will drop them anyway when your patches are picked up.
->>
->>
->>> v1 -> v2
->>> - Renamed probe_new to probe
->>> - Removed module id table
->>>
->>> v0 -> v1
->>> - Fixed errors as per previous review
->>> - Longer commit messages and descriptions
->>> - Updated scale calculations as per iio gts scheme to export proper 
->>> scale
->>>    values and tables to userspace
->>> - Removed processed attribute for the same channel for which raw is
->>>    provided, instead, exporting proper scale and scale table to 
->>> userspace so
->>>    that userspace can do "(raw + offset) * scale" and derive Lux values
->>> - Fixed IIO attribute range syntax
->>> - Keeping the regmap lock enabled as the driver uses unlocked regfield
->>>    accesses from interrupt handler
->>> - Several levels of cleanups by placing guard mutexes in proper 
->>> places and
->>>    returning immediately in case of an error
->>> - Using iio_device_claim_direct_mode() during raw reads so that
->>>    configurations could not be changed during an adc conversion period
->>> - In case of a powerdown error, returning immediately
->>> - Removing the definition of direction of the hardware interrupt and
->>>    leaving it on to device tree
->>> - Adding the powerdown callback after doing device initialization
->>> - Removed the regcache_cache_only() implementation
->>>
->>> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
->>
+
+On 10/30/2023 3:17 PM, Kathiravan Thirumoorthy wrote:
+> Build Qualcomm IPQ9574 NSSCC driver as module.
+
+should be IPQ5332, will fix it in V2.
+
 > 
-> ...
+> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+> ---
+>   arch/arm64/configs/defconfig | 1 +
+>   1 file changed, 1 insertion(+)
 > 
->>
->>> +static int apds9306_scale_set(struct apds9306_data *data, int val, 
->>> int val2)
->>> +{
->>> +    int i, ret, time_sel, gain_sel;
->>> +
->>> +    /* Rounding up the last digit by one, otherwise matching table 
->>> fails! */
->>
->> Interesting.  Sounds like a question for Matti?
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index b60aa1f89343..c075202d255d 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -1223,6 +1223,7 @@ CONFIG_QCOM_CLK_SMD_RPM=y
+>   CONFIG_QCOM_CLK_RPMH=y
+>   CONFIG_IPQ_APSS_6018=y
+>   CONFIG_IPQ_GCC_5332=y
+> +CONFIG_IPQ_NSSCC_5332=m
+>   CONFIG_IPQ_APSS_5018=y
+>   CONFIG_IPQ_GCC_5018=y
+>   CONFIG_IPQ_GCC_6018=y
 > 
-> Sounds odd indeed. I assume this happens when scale setting is requested 
-> using one of the exact values advertised by the available scales from 
-> the GTS? This does not feel right and the +1 does not ring a bell to me. 
-> I need to investigate what's going on. It would help if you could 
-> provide the values used as val and val2 for the setting.
-> 
-> This will take a while from me though - I'll try to get to this next 
-> week. Thanks for pointing out the anomaly!
-> 
-
-I think I have a rough understanding. I did a Kunit test which goes 
-through all the available scales values from the 
-gts->avail_all_scales_table and all integration times, and feeds them to 
-the logic below. It seems the first culprit is hit by:
-val = 0, val2 = 125025502.
-
-Problem is that the 125025502 is rounded. The exact linearized NANO 
-scale resulting from time multiplier 128, gain multiplier 1 is 
-125025502.5 - which means we will see rounding.
-
->>
->>> +    if (val2 % 10)
->>> +        val2 += 1;
-
-For a while I was unsure if this check works for all cases because I see 
-linearized scales:
-250051005 - multipliers 1x, 64x
-83350335 - multipliers 3x, 64x and 6x, 32x
-27783445 - multipliers 9x, 64x.
-
-For those we will get + 1 added to val2 even though there is no 
-rounding. It appears this is not a problem because the 
-iio_gts_get_gain() (which is used to figure out the required total gain 
-to get the desired scale) does not require the scale to be formed by 
-exact multiples of gain.
-
-Still, the check:
- >>> +    if (val2 % 10)
- >>> +        val2 += 1;
-
-seems a bit misleading because only the scales where the NANO accuracy 
-is not enough need the + 1. I would at least ask for a comment 
-explaining this a bit better :)
-
-Another quick'n dirty way is to simply check if requested scale is one 
-of the magic scales where the NANO accuracy is not enough:
-41675167(.5)
-125025502(.5)
-20837583(.75)
-13891722(.5)
-
-and handle the rounding only for those (instead of the val2 % 10) - 
-still with appropriate comment.
-
-I think it would be very nice if the gts-helpers could do the rounding 
-when computing the available scales, but that'd require some thinking. 
-Fixup patch is still very welcome ;)
-
-I did avoid this issue with BU27* drivers earlier because I was able to 
-select the maximum scale so that the NANO accuracy was enough since I 
-used these helpers for the intensity channels.
-
->>> +
->>> +    ret = iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
->>> +                     data->intg_time_idx, val, val2, &gain_sel);
->>> +    if (ret) {
->>> +        for (i = 0; i < data->gts.num_itime; i++) {
->>> +            time_sel = data->gts.itime_table[i].sel;
->>> +
->>> +            if (time_sel == data->intg_time_idx)
->>> +                continue;
->>> +
->>> +            ret = 
->>> iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
->>> +                        time_sel, val, val2, &gain_sel);
->>> +            if (!ret)
->>> +                break;
->>> +        }
->>> +        if (ret)
->>> +            return -EINVAL;
->>> +
->>> +        ret = apds9306_intg_time_set_hw(data, time_sel);
->>> +        if (ret)
->>> +            return ret;
->>> +    }
->>> +
->>> +    return apds9306_gain_set_hw(data, gain_sel);
->>> +}
-> 
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
 
