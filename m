@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9389A7DBFEC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 19:35:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F20A67DBFEF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 19:36:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3485BB20CD6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:35:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EE711C20B0F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8527E4C84;
-	Mon, 30 Oct 2023 18:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711D111CB0;
+	Mon, 30 Oct 2023 18:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oH+cd1lD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oxrvqTgI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E918019BD7
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 18:35:14 +0000 (UTC)
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FF96D3
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:35:12 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5079f3f3d7aso7300655e87.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:35:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D915D199D7
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 18:36:04 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA8CDA
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:36:00 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5079f9675c6so7293070e87.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:36:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698690910; x=1699295710; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698690959; x=1699295759; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KbISI+V/Kk/FbRO+GwqIV5VSlGPBOPxdhGkcTRWNkfI=;
-        b=oH+cd1lDP5GBhTXhVd4PZF7E1kqGQ4SxMmfdwLmhKJ+zicTM3FeeyQdBoGft6zkxJ6
-         9r8Thjwor6+VuOuTvqpK48p+yndnfcbMpsXbO0YhzQ+ZrXppDCzg9B+gCOoOtcIqoWim
-         eyTAx41QkmWp6LnstfLfu3C/YvnPqWsQneYpSPk3/joklz3rkoYBJI302vLToH0sn6Zl
-         +nPuU2JkGp6pv3QmUo3JFfTX63VSUvOpfvxihxLtZ4oRGgt0444iz0yTrDew4xnMb8OW
-         eqpaXXNWSXi3dyYKDj4gpGwCcQob2BmTQwL5WTzQtkjl0TYkyPv9EOvobm2UzQSqIhoy
-         7Wsw==
+        bh=wL6aPnu239GRAOYjpmf9BD73+S6a/Yjrx1gRMIwVQU4=;
+        b=oxrvqTgIVL99j61V2E5D1jglUX5qN6K+ud4DP03JMrTItvv7EqGfshpQ7gPdmXPlzg
+         v+z9UVVOaYqyKEEI4G6pqCNC3o4J7fmvMH4LohMG0aISP5LBucFmnYljIL8rC2W6sIjt
+         LebG9LBSjmKVyM7o3ee0e27d+2MKaoQsU0v0Mde3zxLvA5cmzYxjYrxMTxlkVMMNTgz+
+         A09Ns2FXxBhHLyx1pIh3740MzqgJ1I3Dr0/H0ziPzVNyUYNUD7eJFoilsXcTC2VnvnCS
+         nh1U2tJ9CXPRkN/LrD9vF7UJie7pEPwO0ZQ2ljzP3V4+1K1ha44Wh86d7tnMupMNatsw
+         g2uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698690910; x=1699295710;
+        d=1e100.net; s=20230601; t=1698690959; x=1699295759;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KbISI+V/Kk/FbRO+GwqIV5VSlGPBOPxdhGkcTRWNkfI=;
-        b=Rm9fXZfj/Lx5IlprJJM97o5gAqF+QXD5p6EPSi3VSb7r2GihRVZUIcLo1d+QLIPeXj
-         RRLctxfdFmpPznw6+iLvR5+q1T1hjLayU2T8m1gOF4FmZtz9DFR/tjMhN0SoqojgjJnM
-         EeXvf53qakY8Ul6v7m6BMq8cBZea0d/2GNjrefbME2vkY8PsiNp7rMBGk6BBxwhWKueU
-         ZQJl+UVwcdYYYdKZ7HCXaVuDsvpCGHlOlYozwIGmH2Mas5GTSvTk+KaA12idQBO4k00b
-         a4l85WJgFaIpT9UOuUrQdv2mhlbJby8dR5mSu9LSDG7pxKyM/iWm4CY0lI5XJt4Kb96l
-         jolA==
-X-Gm-Message-State: AOJu0Yywb5zNhboV/j1a8k4qw+4CMYxuAA7Ar/Ih0h6HK1ng7E2wMSpw
-	IbbGQKbjFuIFFEFpxC0bcDAalA==
-X-Google-Smtp-Source: AGHT+IE8Pg6gJViUCk0hMf/OJlgUDr/E6BIT8Sf2d351E2omEA0yE4x9VVUqaszfrc69eX1lN/802w==
-X-Received: by 2002:a05:6512:536:b0:507:9787:6776 with SMTP id o22-20020a056512053600b0050797876776mr8116960lfc.5.1698690910368;
-        Mon, 30 Oct 2023 11:35:10 -0700 (PDT)
+        bh=wL6aPnu239GRAOYjpmf9BD73+S6a/Yjrx1gRMIwVQU4=;
+        b=ZBtcq1RL5RPiRawuXszOoI3jozlCL2X4m4grTuYFDQ7Sqfj7xsEHvGBmsG7gtlRpf2
+         znaacNWJIEFnt8Eeeqx/ikIKc7hTfRWS2ujkIZrIpOPcWAwAw2qXcfSm3/g2oXdkbrK0
+         ZzWkOTDFDF/y8Wb1Ii7w0c7q5u03znw1vTE9fV9o51F7lE00e1S2zXIVh2i44N0eJKzO
+         0uov5Tq+b9jqb6wDhI3M3aDZPI2ZckNbYEp42bJYIEVa7ZMh3GvVz1S7vCgI5E0wdbop
+         LM20oxICqZF7GzZ/iFP+LkGv1wtVTVjvUvJ31p6F0WosNEqr4dfQaRUTlbw64h8umg5d
+         djRg==
+X-Gm-Message-State: AOJu0YzE+eVTYLHXnNy87F/EkarYhBLMXLi/o3o1pqd8H+Uzf+MVtX/B
+	wWCMgx7fMdsIF3nXxQ/KVyzktQ==
+X-Google-Smtp-Source: AGHT+IFhJGSom/jWC1b6FIqqsro/nThAfw2pJlrCqVtKF3VUJ83YY1+F+h+wbt+aiNxBI4XUe7R/vg==
+X-Received: by 2002:a19:4f42:0:b0:507:a1bf:8e6f with SMTP id a2-20020a194f42000000b00507a1bf8e6fmr7746406lfk.46.1698690958589;
+        Mon, 30 Oct 2023 11:35:58 -0700 (PDT)
 Received: from [192.168.133.160] (178235177091.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.91])
-        by smtp.gmail.com with ESMTPSA id x18-20020a056512047200b004fb9c625b4asm1496892lfd.210.2023.10.30.11.35.08
+        by smtp.gmail.com with ESMTPSA id x18-20020a056512047200b004fb9c625b4asm1496892lfd.210.2023.10.30.11.35.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 11:35:09 -0700 (PDT)
-Message-ID: <b6d045ba-6017-491d-b06f-ae701fe50d96@linaro.org>
-Date: Mon, 30 Oct 2023 19:35:06 +0100
+        Mon, 30 Oct 2023 11:35:58 -0700 (PDT)
+Message-ID: <85dd5f91-7dc7-419f-88c0-b8024664f0f6@linaro.org>
+Date: Mon, 30 Oct 2023 19:35:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/10] clk: qcom: add the SM8650 TCSR Clock Controller
- driver
+Subject: Re: [PATCH v2 06/10] clk: qcom: add the SM8650 Global Clock
+ Controller driver
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -78,10 +78,9 @@ To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
  Taniya Das <quic_tdas@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20231030-topic-sm8650-upstream-clocks-v2-0-144333e086a2@linaro.org>
- <20231030-topic-sm8650-upstream-clocks-v2-7-144333e086a2@linaro.org>
+ <20231030-topic-sm8650-upstream-clocks-v2-6-144333e086a2@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -118,17 +117,19 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231030-topic-sm8650-upstream-clocks-v2-7-144333e086a2@linaro.org>
+In-Reply-To: <20231030-topic-sm8650-upstream-clocks-v2-6-144333e086a2@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30.10.2023 10:57, Neil Armstrong wrote:
-> Add TCSR Clock Controller support for SM8650 platform.
+> Add Global Clock Controller (GCC) support for SM8650 platform.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+the PCIe GDSC mask bug was a funny one, probably leaking power
+like crazy :D
 
 Konrad
 
