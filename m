@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B347DBF7B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:59:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3BBC7DBF80
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 19:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0E05B20C34
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:59:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE9322812D9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CD0199A9;
-	Mon, 30 Oct 2023 17:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6002715EB0;
+	Mon, 30 Oct 2023 18:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CO2L3xwY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DzzF1Cmj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9203F18C23
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:59:41 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9BF2CC
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:59:39 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9c773ac9b15so716085566b.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:59:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDCC28EF
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 18:02:54 +0000 (UTC)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C40FAB
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:02:53 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507b9408c61so6656140e87.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:02:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698688778; x=1699293578; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:to:from
+        d=linaro.org; s=google; t=1698688971; x=1699293771; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CvSSz2b1QgB/AlYG4CXYHHHkCbHuZHM20Xi74wt8pqk=;
-        b=CO2L3xwYFIz7UrYBy+XUS4muwKRKF/9LHLp8i55e4z+MKtxrFv6nrehZA4i5bJ5th9
-         4iLIxoRGH938+tzjh2W6byYBD2YyBIYRLGoCRQSC0NxiYUTS4XETHGw5RUtt4VfOf6+c
-         L/f/mXIcWu7lYYCORnlbiT2kp+zZZb0mCfLvkrZ0z7xeeFVqubmhLF7Xv6s1mc8mJD2H
-         vjUnuB3/D95EyTK+PMBBVyueOhe1pcwlhWi9Zj9fFQeFoCTgWDn4ZgALW3YhnXGgc9Rt
-         0NSB3SFLUER/vviPVUEDqbHonwFcCwksZ9eoFM8hAhr2ru6JOY0Wey9QhnosGsnEHq1I
-         +V5Q==
+        bh=tPCY4tkVUipxIg/AwJ77gYYa3fQWKVHm4osJfnDD/Xg=;
+        b=DzzF1CmjA16IB/jqJfb9C7RROoccet6vUhqzYhyNcfWqdhDZctFkWHnkCcSQfWoOdE
+         5fkCXpXFqgR3Q7sWQsmtCC6nkUiUGNf6jSVz/KaGYsGCIkIDXxihYyUae/wmqzhf80Ey
+         1i3MEqnX9hxKgfxor4uedtnyalIMSucPKQcvC9W+ZrU+yq4cBAsiMFlw3jbneOQJeDzz
+         qAqJlugU62XaBDUfy/mbKjbr1mRqT2kikcwSchJQ8Sdsqrtv6QLOYApD1H6XKBgsN4ud
+         Fp2LxH++MRSaGS77VoKWbaiWZ3yCbOsst4UuUg67lM1kmt7KYOdE4EgGok5G7swRSknS
+         xSXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698688778; x=1699293578;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:to:from
+        d=1e100.net; s=20230601; t=1698688971; x=1699293771;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CvSSz2b1QgB/AlYG4CXYHHHkCbHuZHM20Xi74wt8pqk=;
-        b=EMdJacPVyL1ReyMsBdhEGMBXvhCxsCQ71r4rE0OwgQ6BbIab4BnAtkFHqb3ICaTAGl
-         +RghLdDdegMHiM01+PoJpiFpxZWl6FIxesNDn21PThPSBxtV78BqwM73Ml8EoXmQg8HE
-         +8Ua2vfo4T5eBfsy8544GgkxVwNlzIrqA+b0gEXv3WJUW+xNiiDK5t3gsKUoWkVMZ2TW
-         eqddzzDr9FWlsFaSpw8tYmQ0Cp5XnXVlhNR0bhXOkIGiATG3p+YHM9MJ/yYDW+jlbN82
-         92rghNyUB2LX46oqIgsD6TjJrLgiB9eTlv4novfJbTd+a27v5YilAPmZ5XJrw35tp30o
-         1U/g==
-X-Gm-Message-State: AOJu0YwDty8dN6sEj9QgUkhoM3FgzKTYeADFEpWDrV08oNoCIkYwKSW4
-	QcAkCiCE+CFmyJXhBCGiDJ5iOQ==
-X-Google-Smtp-Source: AGHT+IFVyWxtyQCSeBEnfoj5Z8tWNDXo57pKKBU7f0HXEpK3JkJsSltTriOVzuUJUdUXIsismU8/Gw==
-X-Received: by 2002:a17:907:d387:b0:9d4:55b1:a45f with SMTP id vh7-20020a170907d38700b009d455b1a45fmr2251301ejc.43.1698688778376;
-        Mon, 30 Oct 2023 10:59:38 -0700 (PDT)
+        bh=tPCY4tkVUipxIg/AwJ77gYYa3fQWKVHm4osJfnDD/Xg=;
+        b=E3/UljWwnS0Xp/6RJoas6MQ1nAW4J30DMyCV1+LJsgTIVeTS5h9wfT20YDy78NsZhp
+         QbUIwzV5BBbAnfhEc55E7YwxRURSrfWNoMbxm/jyNgaU8YWTjYtlN36C44L0kit4PbBd
+         U+Izu70GLTrUeikR3b31NayB3RXGvsi0m9TbX4g0ocuIaO8SH04GPalfxH2iUnaGIGUR
+         JPcmvRzH4g4piqNTb1kxvu0TMZNCPiWU5NUnioBhu2pLze27DyW3xkUZAP/BaFKyfK5k
+         rb5R2fNDL6lx1MMguM/0EoUlBaEiYuq5foCOKiD0ubd0Z2Fvyy7hWx7KXKwFqNlDXFLt
+         U0SA==
+X-Gm-Message-State: AOJu0YzHCHCgYZYh/N8sWop6vG+zPAJC0fioKsippkHxjf6MRyPRPFzF
+	pgDhTuT4Epg6sLNFc6EDuVng4Q==
+X-Google-Smtp-Source: AGHT+IG3t8BqCAQ+n7XlQyeLnbyg8Z/qnUsgz1WS8a1VkGO55anFdF0zo6EBQi44q3ILt8BAlfHN1g==
+X-Received: by 2002:a05:6512:ea8:b0:507:ac56:66a0 with SMTP id bi40-20020a0565120ea800b00507ac5666a0mr6775379lfb.56.1698688971347;
+        Mon, 30 Oct 2023 11:02:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id k5-20020a1709063e0500b009b8a4f9f20esm6328003eji.102.2023.10.30.10.59.36
+        by smtp.gmail.com with ESMTPSA id gw18-20020a05600c851200b00405442edc69sm13128164wmb.14.2023.10.30.11.02.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:59:37 -0700 (PDT)
-Message-ID: <03a555ea-9066-4366-b130-545aa5519b18@linaro.org>
-Date: Mon, 30 Oct 2023 18:59:36 +0100
+        Mon, 30 Oct 2023 11:02:50 -0700 (PDT)
+Message-ID: <0148c072-feaa-4553-8a25-a0fced1bfad0@linaro.org>
+Date: Mon, 30 Oct 2023 19:02:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,10 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 01/11] Documentation/firmware: added imx/se-fw to
- other_interfaces
+Subject: Re: [PATCH v7 07/11] firmware: imx: add driver for NXP EdgeLock
+ Enclave
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
  conor+dt@kernel.org, pierre.gondois@arm.com, festevam@gmail.com,
@@ -79,8 +78,8 @@ To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  gaurav.jain@nxp.com, alexander.stein@ew.tq-group.com, V.Sethi@nxp.com
 References: <20231030095849.3456820-1-pankaj.gupta@nxp.com>
- <20231030095849.3456820-2-pankaj.gupta@nxp.com>
- <2a9a25db-7fd4-494b-975d-f2f012cf67f6@linaro.org>
+ <20231030095849.3456820-8-pankaj.gupta@nxp.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -125,23 +124,61 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2a9a25db-7fd4-494b-975d-f2f012cf67f6@linaro.org>
+In-Reply-To: <20231030095849.3456820-8-pankaj.gupta@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/10/2023 18:57, Krzysztof Kozlowski wrote:
-> On 30/10/2023 10:58, Pankaj Gupta wrote:
->> Documented i.MX SoC's Service layer and C_DEV driver for SoC(s)
->> enabled with hardware IP for secure-enclaves like:
->> - edgelock enclave on i.MX93 & i.MX8ULP
->>
->> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+On 30/10/2023 10:58, Pankaj Gupta wrote:
+> The Edgelock Enclave , is the secure enclave embedded in the SoC
+> to support the features like HSM, SHE & V2X, using message based
+> communication channel.
 > 
-> I asked to explain user-space tools as well. I don't see them
-> mentioned/documented in none of the commits.
+> ELE FW communicates on a dedicated MU with application core where
+> kernel is running. It exists on specific i.MX processors. e.g.
+> i.MX8ULP, i.MX93.
+> 
+> User-space library using this driver:
+> - i.MX Secure Enclave library:
+>   -- URL: https://github.com/nxp-imx/imx-secure-enclave.git,
+> - i.MX Secure Middle-Ware:
+>   -- URL: https://github.com/nxp-imx/imx-smw.git
 
-Hm, I lost somehow or I did not get your patch #7, so maybe that's the
-place where they are mentioned.
+OK, I got your patch #7. Thanks for documenting the user-space.
+
+> 
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+
+...
+
+> diff --git a/drivers/firmware/imx/ele_common.c b/drivers/firmware/imx/ele_common.c
+> new file mode 100644
+> index 000000000000..4410245a19ec
+> --- /dev/null
+> +++ b/drivers/firmware/imx/ele_common.c
+> @@ -0,0 +1,139 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright 2023 NXP
+> + */
+> +
+> +#include "ele_common.h"
+> +#include "se_fw.h"
+> +
+> +int imx_se_alloc_tx_rx_buf(struct ele_mu_priv *priv)
+> +{
+> +	int ret = 0;
+> +
+> +	priv->tx_msg = devm_kzalloc(priv->dev,
+> +				    sizeof(*priv->tx_msg),
+> +				    GFP_KERNEL);
+> +	if (!priv->tx_msg) {
+> +		ret = -ENOMEM;
+> +		dev_err(priv->dev, "Fail allocate mem for tx_msg.\n");
+
+No improvements. I assume rest of feedback could still be ignored. I am
+not going to check. It's your duty to implement the comments, not mine
+to check every line whether you did it or not. Trust does not work like
+that.
 
 Best regards,
 Krzysztof
