@@ -1,81 +1,155 @@
-Return-Path: <devicetree+bounces-12901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17057DBCDE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5377DBCEC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D705B20CD7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 15:46:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59EEAB20CD6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 15:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2421118658;
-	Mon, 30 Oct 2023 15:46:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D4018B1C;
+	Mon, 30 Oct 2023 15:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="oGa3KyCL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B012A12E64
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 15:46:21 +0000 (UTC)
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC1CDD;
-	Mon, 30 Oct 2023 08:46:20 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3b2f5aed39cso2874368b6e.1;
-        Mon, 30 Oct 2023 08:46:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698680780; x=1699285580;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HhgYLbg9CpuoRxcaeuro+Zs7vQs2cUHUGXONLu3huPI=;
-        b=T7PRoXRDWqLLFhzKXevEq4gTTEKHEBoAa+Vq2ohewzuFbmF7RYUIy6SlE76OmZzwXT
-         G2oXJPDwWllv28JJQTqx03HzjgF/QpT3EvIr2MdW1tpFe3nfG3yzWy1S1ltwiRTUg/Ov
-         gYwfUCG4xWvbE7XxOzHFcydEXpAiBzIDZIQ6WC8ypsqTmsoqIj8bpncX0aeQneJVzRHe
-         PixW+TjlmWvZVgvSf/pg0U35WPrqixZaSfFZ+H89n8rsMpNegbmx5vMzFhjHMoXW2PWk
-         yLZnkqEokpj1vpMBxoCqLvDN3xspO8abwF8sU4QKwxv3gWoxnE1+LJf16vrxtpM/hZmn
-         qnSA==
-X-Gm-Message-State: AOJu0YxE7kUdtrVRbenU6KBgeJkXD9MJO1LfniyU3H6u8042+ffwz8bN
-	8ji0SgBl/iqPseOpXKFm3w==
-X-Google-Smtp-Source: AGHT+IFSruwbJkEig+B3Y64xgE9mhFyNxARc1HIyHctZR+Z00jxUt3Wrrm8hz4v/Q8eRTqSYiXD6+w==
-X-Received: by 2002:a05:6808:8ea:b0:3b2:f3e6:f36f with SMTP id d10-20020a05680808ea00b003b2f3e6f36fmr11142849oic.54.1698680780125;
-        Mon, 30 Oct 2023 08:46:20 -0700 (PDT)
-Received: from herring.priv ([2607:fb91:e6c7:c3eb:a6fd:69b4:aba3:6929])
-        by smtp.gmail.com with ESMTPSA id i13-20020a056808030d00b003afe5617691sm1404553oie.12.2023.10.30.08.46.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Oct 2023 08:46:19 -0700 (PDT)
-Received: (nullmailer pid 1240978 invoked by uid 1000);
-	Mon, 30 Oct 2023 15:46:16 -0000
-Date: Mon, 30 Oct 2023 10:46:16 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>, Macpaul Lin <macpaul.lin@mediatek.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-mediatek@lists.infradead.org, Bernhard =?iso-8859-1?Q?Rosenkr=E4nzer?= <bero@baylibre.com>, Sean Wang <sean.wang@mediatek.com>
-Subject: Re: [PATCH v4 2/7] dt-bindings: arm64: mediatek: Add
- mt8183-kukui-katsu
-Message-ID: <169868077528.1240604.14632740739675998202.robh@kernel.org>
-References: <20231026191343.3345279-1-hsinyi@chromium.org>
- <20231026191343.3345279-3-hsinyi@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9C118C05
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 15:52:23 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80DCEC5;
+	Mon, 30 Oct 2023 08:52:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ie/4+8R+dcdSlqN1nR08nQEItJ5MP70m36N+K0sxb/CvL6bi26AeoMFuyvEK79f+f232QmilM3y4u0JteEkvIYgUnS7t0qLfmtqzklBznJjsGiKp7qoTq2Im7loBgpfwfOzTzig0zCTXTQ2yuJ5IBIDkWDTs6qNYPYWlVIbP0vbZKA3Up6DNtOKyprifVckVIvBQ5fokzsy2jpKgNH5M3MTMUxPiE8ythBQe4DPixuqHEjz/nPXFSouZ3P6AHdewX7DG+ACP3Ogm7rBZUzdtWhHSM+VTZQXItQ9YBVzGr142sTYmv4vCYGt7+W+8WgG6wHte/Ppo9MlRgH+Qf9gSDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kY/u0RYlROT8r++xbmWk3XSor9PEcXGD87AG7kSyVAo=;
+ b=bNZGJqC+swRs8SPC0AvPbPRBNdZOTHjyMLASlnf47gqkdBdAOCbkzUrlwla7Hc2EyKbzPQCGv0PAyNN2ZIpKT7sezdo3zZ2RD5iG8UDNG9wh8oRgUI4qIo59qG6ZHbg1JqNT9k1JMe+wWw0tF3BM5xHnqRqOHNidl7QlYFnKrF9jVtLzgQPfmqacb+RCzFOW+FEzx3THmtttO3kpl3zzZLlDEBrFnrNTu+x68cEkwt1zyGKWEFGfgqzpPN8TAdlMRqrtxrLXL05BAjKxVN45iEr9w9dx87crlFYiGG0p7vpVyLmhgvfixZMiakpUAsmCi968MohkvSPm/PIK0sVdqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kY/u0RYlROT8r++xbmWk3XSor9PEcXGD87AG7kSyVAo=;
+ b=oGa3KyCL4w+l+xLB71F6wP3tjCG8oN2Ask5OgKY4QiDp7ettBG+ACKcbeHc1b7N8T53QZQ9e1G2XxnR/WKjIQUguhpaOgpIP5j8UZb9RfXP0bmxxBQoQ54VJepe7/CWM0TwN/QQF2ddmH90e0Jc6M6KAhFSWQvFSabQ+LD5/z2g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com (2603:10b6:208:c5::18)
+ by PH7PR12MB6787.namprd12.prod.outlook.com (2603:10b6:510:1ad::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Mon, 30 Oct
+ 2023 15:52:17 +0000
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::3008:be4:e9a4:2a98]) by MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::3008:be4:e9a4:2a98%7]) with mapi id 15.20.6933.026; Mon, 30 Oct 2023
+ 15:52:17 +0000
+Message-ID: <83d88288-e82f-4c9c-b0ff-cc404e093a56@amd.com>
+Date: Mon, 30 Oct 2023 15:52:12 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND v2 1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI
+ w1 host and MAINTAINERS entry
+Content-Language: en-GB
+To: Rob Herring <robh@kernel.org>
+Cc: thomas.delev@amd.com, michal.simek@amd.com,
+ krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com
+References: <20231026093029.3122573-1-kris.chaplin@amd.com>
+ <20231026093029.3122573-2-kris.chaplin@amd.com>
+ <20231030154015.GA1141490-robh@kernel.org>
+From: Kris Chaplin <kris.chaplin@amd.com>
+In-Reply-To: <20231030154015.GA1141490-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PR3PR09CA0002.eurprd09.prod.outlook.com
+ (2603:10a6:102:b7::7) To MN2PR12MB3407.namprd12.prod.outlook.com
+ (2603:10b6:208:c5::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231026191343.3345279-3-hsinyi@chromium.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3407:EE_|PH7PR12MB6787:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77e1ef8f-dd4b-4e37-b639-08dbd9603170
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ezkIns85HcXC7zD9LwANMAqfhMOsQIxR0o0JpnG1hr9/jSgGPvjCwbhcnNzVwQgOJ3nsdswE4YJ4/Thf/VJGtWLn/G4/YP+8ygVRDQRvnXvl6wopcmV1FhxsJ6fjN4b0T29qxkA+H7h2OvKD9Q5Asi2YB4HGwG1u/0LBNbOX8PSZX47Wg4M1s04mLCWvfIDLk9Mn9V/PBLJ3oiyDK5eX344+DlIXxvB9sHBb0Islep3N8L9W5DaOI/l9pxM+KNGhL7anghy2oe8GZ+YndYCY2WoxouVwv21E1ycWLcvGd5ewJkSuxJPAIB4fMAekJhSnBh8/RxeGOECVmWQYQwXEZ18rSXQ/anO/q3m89mx223IapMrGKi8SIpKcnT6RfgXPr1EA+5IRun5Fntes9JvJ9NBp/+PWe2V0RsM7AQbpzZkbb9pfvIqShE01JBSyV6bQ9MgDRwvtkg8vR0ZHTxKL8Ay9hTTG6CKjM/rwJI/HnJC95ImS4vaQ7XgPHrl09luzA0YGDGpIEH3gi6rkHsQUFhSEFqj0zvczjPsN/iblfQBw5xbK7LCD56K1DbtdN68k5eSBwOgDTjopku0OpoMsDHFsh77dDoPypFzAuWyw2mlxVbpwltKTC+JdzW7es+RzvU3J3QxjQDCjmE9pafcolQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3407.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(346002)(376002)(136003)(39860400002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(31686004)(86362001)(36756003)(31696002)(2906002)(6486002)(6512007)(478600001)(41300700001)(4744005)(8936002)(8676002)(4326008)(6666004)(6506007)(44832011)(53546011)(83380400001)(26005)(2616005)(66556008)(5660300002)(6916009)(316002)(66946007)(66476007)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Q2JkZUljNk14eVhTTGhCSHNlUTFEakVIU2NlbVhDdms0dmxVK00yMyszS1Zw?=
+ =?utf-8?B?MlpPV2pFd00rR0tNUURiQVBGbldZK2NSby8rVFo2VUlndU1rS0k1WDVCQlI3?=
+ =?utf-8?B?VlR1cTYrK0p6eU1iVXhSRjFtVnkwK1dDTnZoNWt1R0RCSnRSdmNrYmpUSVkw?=
+ =?utf-8?B?dkRKNFE1ZDBERW1BWHlQQlEzcmdocmJ3UEQ2WGQ0NjQ2aXFoLzBXQmF1dWRr?=
+ =?utf-8?B?OHI3SE9OTng4aXFaZ1dJUUt6MkVKNzZ4OXJRVTk2M2NBRkZLSUh0Y0t1MWF3?=
+ =?utf-8?B?NzU1TEtSNjZDZ3VrUEY1K1JQd2o1dGNxZ0FYbExqWjNYTWkwRG43dEFyNENs?=
+ =?utf-8?B?RXE3b2x4Y3FHaHQzSmhvN2JNZ3BWWVhUaDlBZ2dIbmFTbWxWRktFMVFtYjdF?=
+ =?utf-8?B?azFNM3c0Q04xYm85UTRZUDVZbFh5b1lDUVgvempNcGpraXl6WG1RcFEwd0xN?=
+ =?utf-8?B?SkZzSGNocEFFR0pEYjdoMDc2ejdiTnpwSWxmbFdFVnhub2tKNTFGdlg4Rmhm?=
+ =?utf-8?B?RTZjUW53ODhLQ3JqbmZ0b2YwZUw5a2VRYjJ4UGJXNnVQSXZYOUxTeVdCUnN5?=
+ =?utf-8?B?L2VaTkYvcStKdVhWa3hzUVdCNjY0YkxkN0puMEsrSGlhYjVRR1BVUjR6Zzg0?=
+ =?utf-8?B?bHFLcXp4elhHQXBDRm1oMnFjbXlWOWFyS2F2c2RVdGpuZERyaVZuSWwxRU9N?=
+ =?utf-8?B?WnZrdE9ZbmlVRVd3eC9zRTNraGhtTWN3T3h1ZWJ1UEV0STVOZXlmeTdzMWhB?=
+ =?utf-8?B?NnoxMzVzRDhRTnFhV2RkbFJCeGFKdnJZSzkyaTE5YWZWbDhHbll1OUdOeThQ?=
+ =?utf-8?B?TTVvWDdZaHRnL1pjVUd2THA2ZUoweEF1MlVEeWZDTEtEb2RWMENVZjY2SlBi?=
+ =?utf-8?B?M0dUY1JvRjN4QzlQMTZhNDM5N2o2ZFVjYXEvcG1NcHdwd25kR1dUeU1DdGdF?=
+ =?utf-8?B?Um5ZbzNWcXJXODhmWmpRbjVxUzFXZ3VubGNtZGx6UjlEUnFQRUpua2RFTzU5?=
+ =?utf-8?B?d0k4cXMwSXVlVTBRWmZ6RHg4UnQxcW9KczhzSUkrVHA3N1BpTVd4WEZiOGdD?=
+ =?utf-8?B?K1NyeTVkaGtZZHo1VFpmRmMrTGRZTVdoZ1RqMk1oeDR4bHJST0RrSHplVGI2?=
+ =?utf-8?B?NlFyVkVTU2JyL0M2T3A3dFZIQWV5Rzh0VWhVYk52bXNOZkxacVRwRk9jVk5M?=
+ =?utf-8?B?ZWxjeHdxbktuaGZ0dlR6dXBVdE81SDlRTjY0U1ordE0vTEhDSm81TEpuckZU?=
+ =?utf-8?B?aG5LaUtLS3BSOFhHdTFsdU16WlRGcUl6V3RwaHJiUWhITWFXcGIzTzZneTk0?=
+ =?utf-8?B?S0hnOGdId0lDUjU4MEd3RWVIVEhibUZweUNHYjVEREg0czVPcm5BTi9sSjYy?=
+ =?utf-8?B?VWRFdGtNeGtIQ09TUTJtTEE5clZBYk4rOEN3WjVrZlVWSTVUNmtmdk9VK2Mr?=
+ =?utf-8?B?MlU5WVcrYTZNbVRYUEh4ZjV4TnFHdjdLR203SmxramlIT210WTB3VWJIdFpa?=
+ =?utf-8?B?TDZwMWpXVXcvYTNPMlVlVWsrYlhNa0pzN0swN0wrNUhER3RvUFFXREwyTmpO?=
+ =?utf-8?B?dzNzTW1lUDUrOEJTREFYUEZXNkEyeC9hUTR2a3d1aHVlWWVSVytZZGRKMTlL?=
+ =?utf-8?B?OVJlazA4b05rTlI0WGh2bjAzVU9XOGZJVmw0TGRnQlV6S0dCN2tKSTQyano2?=
+ =?utf-8?B?ZlhjcFJoL1NmZmxXQ1JUblcwcmNzTGpRNW9Lb1puUXFyOVlLZityR25kNUtn?=
+ =?utf-8?B?Vmx6RllWSmxxM2JIMy9rSyswMmhIeXNVdFZPdmh6bVlLN0ZWR2NsczNIeVNa?=
+ =?utf-8?B?dDk3M3U0Q3VGekdrMmxWeGxPa2JRNzc2UGhlMWRBS1IzL2JjMnc3ck9UTXh5?=
+ =?utf-8?B?dnhnbFhBQUY1VlZhcjVmNE03RnJyVkFQU3NTZEQwRnppckZUWS9xUE5CYXlI?=
+ =?utf-8?B?Q2w0T1pxR2tOaVFOTDlKVlNQcU1vMmR3NW91bHZlRGpOZE9KRDN1QkJ1THFF?=
+ =?utf-8?B?cDkvUGJoMVhhQ1BnMExIWTdpSkNJdmZMRnN6VTNnb2ZxUXQvUVBvM0xNK0ZL?=
+ =?utf-8?B?dEx6RFBhVFp5Qm9zOFF4Vk9NalN4MTdJR1QzRVNMWXJIWGtkNjhBNk1SbVBw?=
+ =?utf-8?Q?oGriJqf1A9gdlUiTQ8WXPstGa?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77e1ef8f-dd4b-4e37-b639-08dbd9603170
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3407.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 15:52:17.4319
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: s1DSdUoUmYsrED0VZhpwfIRRm3N2yZWrximIXjLtM2Nww7LWWx4/Dv5PpDbHNUmo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6787
 
+Hi Rob,
 
-On Thu, 26 Oct 2023 12:09:11 -0700, Hsin-Yi Wang wrote:
-> Add katsu sku32 and sku38 which uses different audio codec.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+On 30/10/2023 15:40, Rob Herring wrote:
+> Is there a device side implementation? I can't really imagine that
+> 1-wire would ever be implemented as firmware on the device side given
+> its limited nature. So adding 'host' doesn't make this any more
+> specific.
+>
+There are slave drivers as well as master, although these do not have a 
+device tree binding.
 
-Acked-by: Rob Herring <robh@kernel.org>
+The IP device from AMD is called "axi_1wire_host", and so we are hoping 
+to stick with this binding if appropriate as it relates to the IP name.
+
+Regards,
+Kris
 
 
