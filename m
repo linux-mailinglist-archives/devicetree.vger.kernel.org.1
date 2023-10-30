@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-12722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 880BD7DB42B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:25:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1EC87DB42D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3EA6B20BB6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 07:25:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AB36B20BBD
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 07:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F2A4C84;
-	Mon, 30 Oct 2023 07:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976E94C84;
+	Mon, 30 Oct 2023 07:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="AYX7Wm2P"
+	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="F67Gb+5x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6B24C7F
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:24:58 +0000 (UTC)
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA46E1
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 00:24:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D384C7F
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:25:05 +0000 (UTC)
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CF3103
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 00:25:04 -0700 (PDT)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1698650695;
+	t=1698650702;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=y2D4ndlv6XBBNSayv9WpZm/nwIasLD85Z8EivmdKgzU=;
-	b=AYX7Wm2PO0d/aHKVgfa5TFi3LeuKYWpGAUr3gkamlcD5f4FBkPbC7/5tbr0SJn2EWQuKgh
-	+Yf8qLvANO3/SoorZcAlH034lVeVQ1E3a5D3nlV95klur7u0+h8FNQyx8YYGqDbuQauK9G
-	sNlg1K22+BSTCsdlW3e/hD4rdRib3p3lYJT8BgL9TLW3o2Tc/0a6AzV3WA1OUDV/ThnHpu
-	hr1mP2h4coQd5dbw87DTMwzCR0/qbQIiP+Ur8ikznnvdKrtWafKmtQ3FJiU9HhrvwlyIB3
-	1ygAU4WDRNYgfYTr1xG/q2ngu2OmZfHqh6RHeRkKs/BehhvPdNkkIkSuEo27mw==
+	bh=eRNeRUnw0W/rmK4S/WyyMI9mgYNJC/j8V4E4eCw5j2Q=;
+	b=F67Gb+5xvsD2+5MjruB5LaVPYpNPwwU1pC/zDo1Raxj9EaDDqPWnXtRdF5p4PPRPupsrt4
+	732dt7BofNfYtiwpNwD7EZg41sL0cGpVRnaFnZivdFwy10MtexYyQcTesbnauUmo4NyJk4
+	I3K5e2nv5iXC9F5wcd3IMBhgJYqypEgdNDrX+97Nu5ChaBVM+LwqsH7ZcIW1WCT1nTXpur
+	d4SDhZpyrYmoo7z8BIrpbxEmGb9TIRjDn6lqaH1QCeffmyyG6eQSHlypMJijqaQER/dk4+
+	d1X4HoiQRrtTD+tMfuMr4awOnXs0lA4XPNuNEDqVEPLNqh6RixZrvQYfcg0RBg==
 From: John Watts <contact@jookia.org>
 To: dri-devel@lists.freedesktop.org
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
@@ -59,10 +59,10 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
 	Christophe Branchereau <cbranchereau@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>
-Subject: [RFC PATCH v4 5/7] dt-bindings: display: panel: Clean up leadtek,ltk035c5444t properties
-Date: Mon, 30 Oct 2023 18:23:36 +1100
-Message-ID: <20231030072337.2341539-7-contact@jookia.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RFC PATCH v4 6/7] dt-bindings: vendor-prefixes: Add fascontek
+Date: Mon, 30 Oct 2023 18:23:37 +1100
+Message-ID: <20231030072337.2341539-8-contact@jookia.org>
 In-Reply-To: <20231030072337.2341539-2-contact@jookia.org>
 References: <20231030072337.2341539-2-contact@jookia.org>
 Precedence: bulk
@@ -74,38 +74,27 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-Remove common properties listed in common yaml files.
-Add required properties needed to describe the panel.
+Fascontek manufactures LCD panels such as the FS035VG158.
 
 Signed-off-by: John Watts <contact@jookia.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/display/panel/leadtek,ltk035c5444t.yaml      | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
-index ebdca5f5a001..7a55961e1a3d 100644
---- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
-@@ -18,16 +18,12 @@ properties:
-   compatible:
-     const: leadtek,ltk035c5444t
- 
--  backlight: true
--  port: true
--  power-supply: true
--  reg: true
--  reset-gpios: true
--
-   spi-3wire: true
- 
- required:
-   - compatible
-+  - reg
-+  - port
-   - power-supply
-   - reset-gpios
- 
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 309b94c328c8..08ba7aad0d76 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -474,6 +474,8 @@ patternProperties:
+     description: Fairphone B.V.
+   "^faraday,.*":
+     description: Faraday Technology Corporation
++  "^fascontek,.*":
++    description: Fascontek
+   "^fastrax,.*":
+     description: Fastrax Oy
+   "^fcs,.*":
 -- 
 2.42.0
 
