@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB3E7DBF6F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:55:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C1A7DBF77
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:58:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB3311C20A72
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:55:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57D201F217AE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3FA18E33;
-	Mon, 30 Oct 2023 17:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4AD18C23;
+	Mon, 30 Oct 2023 17:58:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DmcLLM5Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y4dBLW1j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A18D27F
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:55:44 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DFFBB4
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:55:43 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507ad511315so6923471e87.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:55:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739C3199A8
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:58:01 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E599C
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:58:00 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c3c8adb27so716154566b.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:58:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698688541; x=1699293341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1698688678; x=1699293478; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=G6XArBh+cfcqYGo9AbKwnAbna32yieYtrNnD7ei8fA8=;
-        b=DmcLLM5Yr0KfbkjLSK6dfHLO4123joejN5em3JbdJNJM5kmk61dTNP5ybmHC8nGQJ5
-         +qzAQSXd/oKNdsgWoenox498Uct4vPkN5n3wpowuibDDmeDxPnARqVa8nxfRLmjiaPsX
-         gXtqFfeR3ZjO4PGE27lG0P3EG0rW3sFg77fmZks8j8P68g/M655D94TrYUetLARImRgi
-         BITL4Qz4A4pvHaRS0Dbefm+YhobmXzL/F/cJ139n5L4A7fnU9kELfWhDpxVtU8GJpDho
-         3sYvGWMh+hdL9DwZO5/zqsajchDM5zbK8YfD1Z+o6qiF/jQLjvymbcxxpdwLSgk7rnTk
-         054w==
+        bh=NAgIQUdPaFmbgwMkeuYptRKeq6uvytFY1rtEkYKy7tc=;
+        b=Y4dBLW1jil9iUtPYri7S4LbX40q8R2xY3QuHC9Gt85WcPPgaYPeLfw/vFhvceNlXh9
+         TdVgNJBNB+/sWRk0bLRx/Wjp932Uv7YgIktzslpWt/K415SQlP54xAK4OuyO/kzKMJig
+         CwxR9aiOZVX3GTDV66vCa8BxVGWS1J14ihKCWs5ooxz3kvxUIczFP63ZX0BbL4ffVktv
+         X8co7O7qkMZMXfQR7A79KOIep/XUDSQTDWuATNYooadKWPbxahxmBSzf2EfCOoXWbqoH
+         mm69UARIajBueR8fZnkYKLKpzcLRQpH4j+iO2/oUu46onAIPIS8UwsBZkPDNdb//67uM
+         8DFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698688541; x=1699293341;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1698688678; x=1699293478;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G6XArBh+cfcqYGo9AbKwnAbna32yieYtrNnD7ei8fA8=;
-        b=iJ+1+taYldRdL1Lit7bDQQ1TopFtIuXBXLn//CedTd56L5/1wnew6exBpbNp7mjOZ1
-         oY9ToBcHePrnH2d4ZF+9dBqHU+tbHxndBEJbZ2f/NkBuwY/fbdH6cakjpLyOV0tz6p9U
-         FIA9+AtZ00SQ9+SDajDowI/a/9IUrcUVWrAArM+msR0wnpHRK+y4b6vscDwBuNhwtfeg
-         you/3Tqx+Sy7tbAmSVnaMn7h6RNP4SdpGnM6etFwMZ76SNljQP7DL4j8/XE5Ca4r2vZA
-         ZhevOaTiv5KmoG+qlzGg7ClfKdLou1Nln5ULpdlekXkAHixmDQERKPXIAm9dR9FZSnZf
-         f42A==
-X-Gm-Message-State: AOJu0YyMs4I6os7lRSs/etBDCcNClSd7KT2hne4bK+AXMjuUkLxzNcIo
-	I+/uljHi+N9LTxenXY7uaFypwg==
-X-Google-Smtp-Source: AGHT+IGML5UpqehIVjazBJQnP4gBurkrdas0ZNwzM3q9XevLlpfpu3EBAQOIv6J9T7rWZzTdI8na2g==
-X-Received: by 2002:a05:6512:1282:b0:505:6ede:20a9 with SMTP id u2-20020a056512128200b005056ede20a9mr9898835lfs.65.1698688541087;
-        Mon, 30 Oct 2023 10:55:41 -0700 (PDT)
+        bh=NAgIQUdPaFmbgwMkeuYptRKeq6uvytFY1rtEkYKy7tc=;
+        b=r9aw6qqA9S/mqUDoFePJi+e5eXdpzDj4w1xZth5JcIdU0QDi+zIhoXmrWQI4Qx7hW/
+         0EgXMOJ8Mc3noJrY6lCNU2m262CC+u0qLG8l/QfTilNorfrkpx+NFdwRhaO0ZlgHm7HY
+         y4Ovfe2Sf6c7qt4hnU05on2W6HEqScpsRW5joVtJw/kVDZsgA8gMlznFBFh+m1K1BJpb
+         gdwXb47z3h0D0aBtNZSfF1j9o4pH4qXHVZbKCge8Nk3nCwPm9SWT3HHLrOnDMzwRl+a5
+         obXcK7et8lnqbRE44IzoD9m5Q5wb1w1CAUeidhKTJIyZQJzHr63nxWmFlr3B/VH4bKHp
+         /8Ag==
+X-Gm-Message-State: AOJu0Yw3PLhN1qDbVHYvzWbGhfSrqwqynuSxYZM20xkPR/BW7cwGlJUp
+	/GlNz/FSwEn/J5L7nEfRIBOllQ==
+X-Google-Smtp-Source: AGHT+IH8JaJY6/2Ys3gOcmv82AWcORT+Pyw/5P3m3EViq/NHfm8136epp3fwzk8NP8fb7/Fd5gWQWQ==
+X-Received: by 2002:a17:907:3fa4:b0:9be:8ead:54c7 with SMTP id hr36-20020a1709073fa400b009be8ead54c7mr9682004ejc.12.1698688678523;
+        Mon, 30 Oct 2023 10:57:58 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id oy29-20020a170907105d00b009b29553b648sm6304750ejb.206.2023.10.30.10.55.38
+        by smtp.gmail.com with ESMTPSA id k5-20020a1709063e0500b009b8a4f9f20esm6328003eji.102.2023.10.30.10.57.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:55:40 -0700 (PDT)
-Message-ID: <97063238-88fd-4685-accc-064f4ac3328a@linaro.org>
-Date: Mon, 30 Oct 2023 18:55:38 +0100
+        Mon, 30 Oct 2023 10:57:57 -0700 (PDT)
+Message-ID: <2a9a25db-7fd4-494b-975d-f2f012cf67f6@linaro.org>
+Date: Mon, 30 Oct 2023 18:57:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 06/11] arm64: dts: imx93-11x11-evk: reserved mem-ranges
+Subject: Re: [PATCH v7 01/11] Documentation/firmware: added imx/se-fw to
+ other_interfaces
 Content-Language: en-US
 To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
@@ -76,9 +77,8 @@ To: Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  gaurav.jain@nxp.com, alexander.stein@ew.tq-group.com, V.Sethi@nxp.com
-Cc: Dong Aisheng <aisheng.dong@nxp.com>
 References: <20231030095849.3456820-1-pankaj.gupta@nxp.com>
- <20231030095849.3456820-7-pankaj.gupta@nxp.com>
+ <20231030095849.3456820-2-pankaj.gupta@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,67 +124,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030095849.3456820-7-pankaj.gupta@nxp.com>
+In-Reply-To: <20231030095849.3456820-2-pankaj.gupta@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30/10/2023 10:58, Pankaj Gupta wrote:
-> EdgeLock Enclave are has a hardware limitation of restricted access
-> to the DDR memory range:
-> - 0x80000000  0x9FFFFFFF
+> Documented i.MX SoC's Service layer and C_DEV driver for SoC(s)
+> enabled with hardware IP for secure-enclaves like:
+> - edgelock enclave on i.MX93 & i.MX8ULP
 > 
-> ELE-MU driver requireis 1MB of memory. In this patch, reserving
-> 1MB of ddr memory region from the lower 32-bit range.
-> 
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 > Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> index cafd39130eb8..bcb4ae931c64 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> @@ -7,6 +7,10 @@
->  
->  #include "imx93.dtsi"
->  
-> +&ele_fw2 {
 
-OK, this explains the label in imx93.dtsi, but then node in the
-imx93.dtsi is incomplete and should be disabled. Everything which is
-incomplete should be disabled in DTSI by default. At v7 of your patchset
-I really would expect some internal review happening.
-
-> +	memory-region = <&ele_reserved>;
-> +};
-> +
->  / {
->  	model = "NXP i.MX93 11X11 EVK board";
->  	compatible = "fsl,imx93-11x11-evk", "fsl,imx93";
-> @@ -68,6 +72,17 @@ reg_vref_1v8: regulator-adc-vref {
->  		regulator-max-microvolt = <1800000>;
->  	};
->  
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		ele_reserved: ele-reserved@a4120000 {
-
-Names in reserved memory should match the purpose, so "reserved" is here
-redundant. Just "ele".
-
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0xa4120000 0 0x100000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->  	reg_usdhc2_vmmc: regulator-usdhc2 {
->  		compatible = "regulator-fixed";
->  		pinctrl-names = "default";
+I asked to explain user-space tools as well. I don't see them
+mentioned/documented in none of the commits.
 
 Best regards,
 Krzysztof
