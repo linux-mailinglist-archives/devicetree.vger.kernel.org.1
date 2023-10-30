@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41FE7DBEEC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 507627DBEEF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:30:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18EA31C20A74
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:30:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 809571C209F5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183E21947C;
-	Mon, 30 Oct 2023 17:30:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CA91947D;
+	Mon, 30 Oct 2023 17:30:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qGOmAPu1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a6Wded+S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6B319478
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:30:27 +0000 (UTC)
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 590FCBD
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:30:24 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-53e04b17132so7794371a12.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:30:24 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7024C19478
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:30:54 +0000 (UTC)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B1693
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:30:53 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9c41e95efcbso673222566b.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:30:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698687023; x=1699291823; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698687051; x=1699291851; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ziePZG2kxDJdeziFjAvPtRBnX63hYXtCniclQtp/sTw=;
-        b=qGOmAPu1IUovuwqoadIQpgukNao4dY1CCbTs42rm5yrP6Ot+2QqR3tpP2JHAOQWf1y
-         +wS9lQ03DeoLaa01I+R3a5V925ZjF7T9XiVy9zM5jVKwiN76o4WeZc53Ue8VTzxyL9d5
-         xH67AcPMwxlMA4n+emadE/8PdF0wTTp0sy04S4DAsAcWW7cRKiFYjzxqnARV/tW/DygC
-         gISITeKmDNKHarhQ6fPDJ6a928qBFtyXgaV+vwQto2hD0dyjnH2kTVyUG9fGuj4ZJLGa
-         pZmTCnASIIyrKh2nYoc9zvTWCzhvTT89hRaRXlxCCMbpNKBahA9bFDhHqFj4ViXdZojN
-         7xkw==
+        bh=eOLlsgufeisiZVpQvZj7sbmDdJI9qhZ5kNSYnqpmQvg=;
+        b=a6Wded+SERomePuH3jdYCq95yqzYvteFZC2sVFZqBbG2gHX9JgeBR03xWAFuDnscC8
+         uFH8q+JWqAytDPBg040L1htlLqOugX4N7GlLBOS9g1xMFiBx9ukq1uEuFLWuKnrgW8/r
+         Yc24UZj7iOQGxSeUjmuTTM57lFB/JPlfNUtDl0LHT9grPdm/A/iZYFTkHb5GoxaIQSYT
+         cgWXb4Aty4VNQdXWzj4bNU3FkQVpHdEuKUw0ZL+qqSuQ3FLjjgc7lADh85B5Y3gKJJ6g
+         nsekcM66LYJIinH+lURzj3rc8X9ueTkWfXoJ90d45oAKkugMPX0OK8i8ltXuQ7afgoIq
+         1j+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698687023; x=1699291823;
+        d=1e100.net; s=20230601; t=1698687051; x=1699291851;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ziePZG2kxDJdeziFjAvPtRBnX63hYXtCniclQtp/sTw=;
-        b=blnKqh1UwCppqqrck/cNAPSMU/ePe17Nz+6ALleMOmoEgLKCrUnD912ZZz9aFSayuT
-         yeCMwX+tebnyHa/DSb+TlcDpSkCVYuvROwPtkAF3tThnJAER5gRwOvMctl8noclw9sJP
-         Oh8J7OXHFT6Feyx2njLbSzZu1gAsuX+GkJLIz0uSK1iIBJEE1kjuplaif4Ezhg9+RtRJ
-         V52ZeejRNUgE2BVTvFbxaBwKCgzX2ms7hNn0WXYXWs/gs6k1GBDo/YpTYxlIfqoG0Xdi
-         fKG/v0riYdznPo6dG2BDFTDugVMClbWIkvPHvlCyezKmcIGJCLHb1ed4PwDNpYTyGMww
-         uMDQ==
-X-Gm-Message-State: AOJu0Yy0ZcAbVWAtV6lUC+9M0GQ9GEVoJioeT730MBILHR2tAYOroCEX
-	KSX6mUu9Zfu0Huc3yJJQNl0aEA==
-X-Google-Smtp-Source: AGHT+IG5Oku/fBs9JqK6krua83s5mZQAYK1VNEY4z7kQAI+lNkFTzzFRQT+1+vt3g65F+TFEERAPoQ==
-X-Received: by 2002:a17:907:6d19:b0:9bf:63b2:b6e2 with SMTP id sa25-20020a1709076d1900b009bf63b2b6e2mr8468752ejc.26.1698687022863;
-        Mon, 30 Oct 2023 10:30:22 -0700 (PDT)
+        bh=eOLlsgufeisiZVpQvZj7sbmDdJI9qhZ5kNSYnqpmQvg=;
+        b=PmPg2H7NrkbZ/krWBCNq9OFXeyOW8Lp0Q9ef95NlSW9kpP05VIBZ5/9hC5MDZ/OKt7
+         wPRRylR1Zc90dNccZeXtEM7Ud4pLotgWjGG8sSLzIR9r+etIMrqkKNhEYbg/wcPyL08d
+         NCoWcDon8FPeqg4qdG556wgbXApa+ZI4+F8sHjldVLcA9geh1RwPOTtA592+u23cKCDX
+         ClE2JoNC6w1C4NRSBltRrA1Y8tMFDTpJU0abQcKcwTQCKwORTm/MOjw9VBDDl0a70/VH
+         2/jgQkH0lmNsqHsPRHP15WjlxX24ggpSm45bWuZiwbAbyvQoeZAJ3PaaqGM/b/vr2iKu
+         ZdKw==
+X-Gm-Message-State: AOJu0YxnzZMTRSz+j2TQwosfqSV3XBVnVnOaczD9jlnJSE2kOJaechmS
+	AdVFg0oVu+pRwQZ9t/xvrIw4Nw==
+X-Google-Smtp-Source: AGHT+IEgUgrHI5ei8jzZ+40Q4nhuYT5gXLpM0CGH6h1fmxIifi1v5whMADvTq6/9CDb2Zs+FhEnoeQ==
+X-Received: by 2002:a17:906:344c:b0:9d2:fe04:b19a with SMTP id d12-20020a170906344c00b009d2fe04b19amr2993917ejb.27.1698687051642;
+        Mon, 30 Oct 2023 10:30:51 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id rn20-20020a170906d93400b009930308425csm6295467ejb.31.2023.10.30.10.30.21
+        by smtp.gmail.com with ESMTPSA id rn20-20020a170906d93400b009930308425csm6295467ejb.31.2023.10.30.10.30.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:30:22 -0700 (PDT)
-Message-ID: <5d8024bb-0e25-484a-a65d-5929984ddc7b@linaro.org>
-Date: Mon, 30 Oct 2023 18:30:21 +0100
+        Mon, 30 Oct 2023 10:30:51 -0700 (PDT)
+Message-ID: <81039823-3a0e-4ae9-993c-463aefe1e2a2@linaro.org>
+Date: Mon, 30 Oct 2023 18:30:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy:
- document the SM8650 QMP UFS PHY
+Subject: Re: [PATCH v3] dt-bindings: ufs: qcom-ufs: document the SM8650 UFS
+ Controller
 Content-Language: en-US
 To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231030-topic-sm8650-upstream-phy-v2-0-a543a4c4b491@linaro.org>
- <20231030-topic-sm8650-upstream-phy-v2-1-a543a4c4b491@linaro.org>
+References: <20231030-topic-sm8650-upstream-bindings-ufs-v3-1-a96364463fd5@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,14 +126,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030-topic-sm8650-upstream-phy-v2-1-a543a4c4b491@linaro.org>
+In-Reply-To: <20231030-topic-sm8650-upstream-bindings-ufs-v3-1-a96364463fd5@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/10/2023 10:48, Neil Armstrong wrote:
-> Document the QMP UFS PHY on the SM8650 Platform.
+On 30/10/2023 10:43, Neil Armstrong wrote:
+> Document the UFS Controller on the SM8650 Platform.
 > 
+> Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> For convenience, a regularly refreshed linux-next based git tree containing
+> all the SM8650 related work is available at:
+> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
+> ---
+> Changes in v3:
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
