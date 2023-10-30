@@ -1,147 +1,91 @@
-Return-Path: <devicetree+bounces-12975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD8E7DC0E5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 21:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B93307DC0EC
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 21:04:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03B55B20D0E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 20:02:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57B8FB20D07
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 20:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23811A727;
-	Mon, 30 Oct 2023 20:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KMC8RmIq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0D91A728;
+	Mon, 30 Oct 2023 20:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9A1D266;
-	Mon, 30 Oct 2023 20:02:46 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DAFF9;
-	Mon, 30 Oct 2023 13:02:44 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.24.143.101])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4E56A6607393;
-	Mon, 30 Oct 2023 20:02:42 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698696163;
-	bh=uO9kOx6FyYOhUQqCre9IC5JYGMe00wfHPt3Z51gKaCw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KMC8RmIq7yyYms1wPJND7cKAylDHwfxmvbG0kAnRHCIBhAdNzjbC5YNsAosIOBVaW
-	 KDt+6NUawFqs/TozlkoipWSu3hQKjL0n0JIXE4zlPqW/fJt55X9wkC+NsTqKaEzhB4
-	 iQzUqHzI1A/+cGNCBugC3nhz3o13Ms8geoOpXkPmSUkGku2RaxmqirWtYnabCAtCE2
-	 BuI6e8+d3jTVlv22YZjXNxLOU9GAIog9TmkcHhrKVuYI4NCXf3n6X+X7dppOUxvN5l
-	 vMS5suy4PyZPRVoYFtH6/Nm1S3PxuhpIEmE1F9JrU26ELv+qtx28N9igxBTlmMRpOq
-	 yZQgG+niCuAaA==
-Message-ID: <c47d2730-cbb4-43d2-aa51-ce439d67eabf@collabora.com>
-Date: Mon, 30 Oct 2023 22:02:38 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B36E71A727
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 20:04:10 +0000 (UTC)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C62CC;
+	Mon, 30 Oct 2023 13:04:09 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5a7b91faf40so45861517b3.1;
+        Mon, 30 Oct 2023 13:04:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698696248; x=1699301048;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l7EFaII1QqA4dlCF/XdXqD8XAo5yEqLk3DjmlDXGLSA=;
+        b=W1CnuJ0ybQuEBVxxmC71nxz84JuITpjJzKBbgoSmS1UQj+GdXzruW0DFD5XsKXziBL
+         PqZgXLryw6BpixCzUHY/vSuIZFfbv3gtIA89+FIjR4e5TQGVM/HjpeU3uMb3z4PAh2CR
+         FEgTfap8vbDSheVsrapgQ5mv7BDWrBsMgzIn5OZPOOa5rHPSwA32coKcgiTKENTPjE8+
+         XJbCeCWaywB/UQUCikXPeIrfs0CgsEIVgX4PT9oPHS+Yanhot0XkCdOf8gG4GiUWjDcx
+         9SCuk78ZiWsHiL8fWO71LTjL/SC26is1DDX8aHvSWUX4D4OPgfmkwxgLgARX9P9UzO34
+         Nvow==
+X-Gm-Message-State: AOJu0Yzfi4KCFLkdQhlf7tMKjqoUY79lMSun5lyRNQsVVBKgCELTovTd
+	n45U3mAwnLnqe7MVlPMc1Q==
+X-Google-Smtp-Source: AGHT+IG+1LMHYbwiDtlkh/ITWj/85Pq+zk/em6iekZavfHE3PtV8B/dlLxt+UZmjy90VEIH+5aPDZQ==
+X-Received: by 2002:a05:690c:fd5:b0:5a7:fc84:4314 with SMTP id dg21-20020a05690c0fd500b005a7fc844314mr11939752ywb.40.1698696248383;
+        Mon, 30 Oct 2023 13:04:08 -0700 (PDT)
+Received: from herring.priv ([2607:fb91:e6c7:c3eb:a6fd:69b4:aba3:6929])
+        by smtp.gmail.com with ESMTPSA id u141-20020a817993000000b005a7f676f305sm81621ywc.106.2023.10.30.13.04.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Oct 2023 13:04:07 -0700 (PDT)
+Received: (nullmailer pid 2221667 invoked by uid 1000);
+	Mon, 30 Oct 2023 20:04:05 -0000
+Date: Mon, 30 Oct 2023 15:04:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-input@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 01/36] dt-bindings: input: qcom,pm8921-keypad: convert
+ to YAML format
+Message-ID: <20231030200405.GA2216664-robh@kernel.org>
+References: <20230928110309.1212221-1-dmitry.baryshkov@linaro.org>
+ <20230928110309.1212221-2-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/12] dt-bindings: net: starfive,jh7110-dwmac: Add
- JH7100 SoC compatible
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-5-cristian.ciocaltea@collabora.com>
- <e8f18634-7187-4e5a-a494-329c7c602fd2@linaro.org>
- <e86247b3-a6f4-44cf-90c4-583d850f6dd8@collabora.com>
- <35556392-3b9a-4997-b482-082dc2f9121f@linaro.org>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <35556392-3b9a-4997-b482-082dc2f9121f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230928110309.1212221-2-dmitry.baryshkov@linaro.org>
 
-On 10/30/23 09:30, Krzysztof Kozlowski wrote:
-> On 29/10/2023 23:15, Cristian Ciocaltea wrote:
->> On 10/29/23 13:24, Krzysztof Kozlowski wrote:
->>> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
->>>> The Synopsys DesignWare MAC found on StarFive JH7100 SoC is quite
->>>> similar to the newer JH7110, but it requires only two interrupts and a
->>>> single reset line.
->>>>
->>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> ---
->>>>  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
->>>>  .../bindings/net/starfive,jh7110-dwmac.yaml   | 74 +++++++++++++------
->>>>  2 files changed, 54 insertions(+), 21 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> index a4d7172ea701..c1380ff1c054 100644
->>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>> @@ -95,6 +95,7 @@ properties:
->>>>          - snps,dwmac-5.20
->>>>          - snps,dwxgmac
->>>>          - snps,dwxgmac-2.10
->>>> +        - starfive,jh7100-dwmac
->>>>          - starfive,jh7110-dwmac
->>>>  
->>>>    reg:
->>>> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>>> index 44e58755a5a2..70e35a3401f4 100644
->>>> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->>>> @@ -13,10 +13,14 @@ maintainers:
->>>>  
->>>>  properties:
->>>>    compatible:
->>>> -    items:
->>>> -      - enum:
->>>> -          - starfive,jh7110-dwmac
->>>> -      - const: snps,dwmac-5.20
->>>> +    oneOf:
->>>> +      - items:
->>>> +          - const: starfive,jh7100-dwmac
->>>> +          - const: snps,dwmac
->>>> +      - items:
->>>> +          - enum:
->>>> +              - starfive,jh7110-dwmac
->>>> +          - const: snps,dwmac-5.20
->>>
->>> Why do you use different fallback?
->>
->> AFAIK, dwmac-5.20 is currently only used by JH7110.
+On Thu, Sep 28, 2023 at 02:02:34PM +0300, Dmitry Baryshkov wrote:
+> Convert the bindings for the keypad subdevices of Qualcomm PM8921 and
+> PM8058 PMICs from text to YAML format.
 > 
-> What is used by JH7000?
+> While doing the conversion also drop the linux,keypad-no-autorepeat
+> The property was never used by DT files. Both input and DT binding
+> maintainers consider that bindings should switch to assertive
+> (linux,autorepeat) instead of negating (no-autorepeat) property.
+> 
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/input/qcom,pm8921-keypad.yaml    | 89 ++++++++++++++++++
+>  .../bindings/input/qcom,pm8xxx-keypad.txt     | 90 -------------------
+>  2 files changed, 89 insertions(+), 90 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
 
-Driver reports "Synopsys ID: 0x37", so it could be 3.70a or 3.710, as
-those are the only compatibles available for 3.7x.
+As this is still warning in linux-next, applied.
 
-It's worth noting the driver does not rely on the compatibles for
-implementing version specific logic, as it gets the IDs directly from
-chip registers.
-
-The usage of generic snps,dwmac fallback was borrowed from downstream code.
-
-Regards,
-Cristian
+Rob
 
