@@ -1,140 +1,119 @@
-Return-Path: <devicetree+bounces-12716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55D0C7DB3D8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:15:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 854377DB423
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 08:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79E171C208E5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 07:15:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B58B01C20858
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 07:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 437A02915;
-	Mon, 30 Oct 2023 07:15:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F144C84;
+	Mon, 30 Oct 2023 07:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="Aa0Otn+t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150EE1C36;
-	Mon, 30 Oct 2023 07:15:07 +0000 (UTC)
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5C5BD;
-	Mon, 30 Oct 2023 00:15:05 -0700 (PDT)
-Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
-	by Atcsqr.andestech.com with ESMTP id 39U7Cl8k048592;
-	Mon, 30 Oct 2023 15:12:47 +0800 (+08)
-	(envelope-from peterlin@andestech.com)
-Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
- Microsoft SMTP Server id 14.3.498.0; Mon, 30 Oct 2023 15:12:46 +0800
-Date: Mon, 30 Oct 2023 15:12:46 +0800
-From: Yu-Chien Peter Lin <peterlin@andestech.com>
-To: Thomas Gleixner <tglx@linutronix.de>
-CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
-        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
-        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
-        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
-        <conor.dooley@microchip.com>, <conor@kernel.org>,
-        <devicetree@vger.kernel.org>, <dminus@andestech.com>,
-        <evan@rivosinc.com>, <geert+renesas@glider.be>, <guoren@kernel.org>,
-        <heiko@sntech.de>, <irogers@google.com>, <jernej.skrabec@gmail.com>,
-        <jolsa@kernel.org>, <jszhang@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-perf-users@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
-        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
-        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
-        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
-        <robh+dt@kernel.org>, <samuel@sholland.org>,
-        <sunilvl@ventanamicro.com>, <tim609@andestech.com>, <uwu@icenowy.me>,
-        <wens@csie.org>, <will@kernel.org>, <ycliang@andestech.com>
-Subject: Re: [RFC PATCH v3 RESEND 02/13] irqchip/riscv-intc: Allow large
- non-standard hwirq number
-Message-ID: <ZT9XbuxE2vlvsfYG@APC323>
-References: <20231023004100.2663486-1-peterlin@andestech.com>
- <20231023004100.2663486-3-peterlin@andestech.com>
- <87a5s44jyc.ffs@tglx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064364C7F
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:24:24 +0000 (UTC)
+Received: from out-189.mta1.migadu.com (out-189.mta1.migadu.com [IPv6:2001:41d0:203:375::bd])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 575B9C0
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 00:24:23 -0700 (PDT)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
+	t=1698650660;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iPJfSX51Ov+WGn0bxAkaRt0Zl4iWxaNa6Rvl7jWJpR4=;
+	b=Aa0Otn+t/VEndDsmkq9+3DXSDyhM0RF5cF9KQ8wftAM3x4bYxAgIXwRdUUCqQFEh9MLsp+
+	w/q+ROmDovuW+4XX1uAcme6Xmu/JTr13DUDCIWFy2PDboGMGgJxIEEVf3uq/cwo7YYbzQ2
+	pyvY8DUOwWZ7FOvOnYpPo8KUjVNKSqMYYwNGofRqFNNqH4qPigQgcbtHcHa/HhFD7Emc9p
+	9r3xaAmclEXOLjZG/RLIIHJYrAUGhDp4XPTXvqVbd8MyiHR2njpPqMD+jmo4+AU/PO7ey0
+	bpeTbLSiKi6oISz8KPTRfEAJxf7K5uVn/Ywjn6RM6dYejj/oA3grScwH9FCjeg==
+From: John Watts <contact@jookia.org>
+To: dri-devel@lists.freedesktop.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	John Watts <contact@jookia.org>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Christophe Branchereau <cbranchereau@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v4 0/7] Add FS035VG158 panel
+Date: Mon, 30 Oct 2023 18:23:31 +1100
+Message-ID: <20231030072337.2341539-2-contact@jookia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87a5s44jyc.ffs@tglx>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Originating-IP: [10.0.12.98]
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 39U7Cl8k048592
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi Thomas,
+Hello there,
 
-Thanks for the review.
+This RFC introduces support for the FS035VG158 LCD panel, cleaning up
+the nv3052c driver on the way and documentating existing panel code.
 
-On Fri, Oct 27, 2023 at 09:12:59AM +0200, Thomas Gleixner wrote:
-> On Mon, Oct 23 2023 at 08:40, Yu Chien Peter Lin wrote:
-> > Currently, the implementation of the RISC-V INTC driver uses the
-> > interrupt cause as hwirq and has a limitation of supporting a
-> > maximum of 64 hwirqs. However, according to the privileged spec,
-> > interrupt causes >= 16 are defined for platform use.
-> >
-> > This limitation prevents us from fully utilizing the available
-> > local interrupt sources. Additionally, the hwirqs used on RISC-V
-> > are sparse, with only interrupt numbers 1, 5 and 9 (plus Sscofpmf
-> > or T-Head's PMU irq) being currently used for supervisor mode.
-> >
-> > The patch switches to using irq_domain_create_tree() which
-> 
-> git grep "This patch" Documentation/process/
+This patch series is at a bit of a standstill: I have gotten feedback
+that it should instead use the Leadtek LTK035C5444T panel init sequence
+instead of Fascontek's provided sequence which is almost identical.
 
-Sure, will fix.
+I don't feel comfortable providing a patch that does this unless someone
+can explain why the changes Fascontek have made aren't critical.
 
-> > creates the radix tree map, allowing us to handle a larger
-> > number of hwirqs.
-> 
-> Who is 'us'? We are not part of the chip and please write out 'hardware
-> interrupts'
+I would like feedback to know if this is a blocker for this patch set,
+or otherwise what needs to be done to get it merged.
 
-OK!
+John.
 
-> > @@ -24,10 +24,8 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
-> >  {
-> >  	unsigned long cause = regs->cause & ~CAUSE_IRQ_FLAG;
-> >  
-> > -	if (unlikely(cause >= BITS_PER_LONG))
-> > -		panic("unexpected interrupt cause");
-> > -
-> > -	generic_handle_domain_irq(intc_domain, cause);
-> > +	if (generic_handle_domain_irq(intc_domain, cause))
-> > +		pr_warn("Failed to handle interrupt (cause: %ld)\n", cause);
-> 
-> pr_warn_once() or at least pr_warn_ratelimited().
+v3 -> v4:
+- Mark panel_regs_len as unsigned
 
-OK!
+v2 -> v3:
+- Dropped patches that add extra sleep time
 
-> >  }
-> >  
-> >  /*
-> > @@ -117,8 +115,8 @@ static int __init riscv_intc_init_common(struct fwnode_handle *fn)
-> >  {
-> >  	int rc;
-> >  
-> > -	intc_domain = irq_domain_create_linear(fn, BITS_PER_LONG,
-> > -					       &riscv_intc_domain_ops, NULL);
-> > +	intc_domain = irq_domain_create_tree(fn, &riscv_intc_domain_ops,
-> > +					     NULL);
-> 
-> Put it into one line. Linebreaking arguments is really only required
-> when the line length is exceedingly long. This one is not.
+v1 -> v2:
+- Fixed a variable declaration style error
+- Cleaned up device tree yaml
 
-OK! will fix.
+John Watts (7):
+  drm/panel: nv3052c: Document known register names
+  drm/panel: nv3052c: Add SPI device IDs
+  drm/panel: nv3052c: Allow specifying registers per panel
+  drm/panel: nv3052c: Add Fascontek FS035VG158 LCD display
+  dt-bindings: display: panel: Clean up leadtek,ltk035c5444t properties
+  dt-bindings: vendor-prefixes: Add fascontek
+  dt-bindings: display: panel: add Fascontek FS035VG158 panel
 
-Thanks,
-Peter Lin
+ .../display/panel/fascontek,fs035vg158.yaml   |  56 ++
+ .../display/panel/leadtek,ltk035c5444t.yaml   |   8 +-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../gpu/drm/panel/panel-newvision-nv3052c.c   | 515 +++++++++++++-----
+ 4 files changed, 437 insertions(+), 144 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
+
+-- 
+2.42.0
+
 
