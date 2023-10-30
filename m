@@ -1,109 +1,122 @@
-Return-Path: <devicetree+bounces-12916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00FD7DBE34
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:43:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C97A77DBE95
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:14:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C0521C2087E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 16:43:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE8F28142A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B421179BD;
-	Mon, 30 Oct 2023 16:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A4919459;
+	Mon, 30 Oct 2023 17:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="u2it7Zra"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8396316419
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 16:43:33 +0000 (UTC)
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5020298;
-	Mon, 30 Oct 2023 09:43:32 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3b2e308a751so2349402b6e.0;
-        Mon, 30 Oct 2023 09:43:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19E2F19449
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:13:59 +0000 (UTC)
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1909B3
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:13:56 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id 3f1490d57ef6-da0c7d27fb0so3775219276.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1698686036; x=1699290836; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=N/14nE/fQrv7yXeUiJ0T0oqRncNS6lZV+I39ngsgxFM=;
+        b=u2it7ZraGVU/6AnVqJrlWSr4t+dPy1Z64bAnK6Wg7nmQcZBcEZtqU/+L4b+zK3rvL8
+         QcXnhZjWNBNDwC7P1ekWKt8hyKlZF2aiF8bD0JJO7xDQ4aXRZbRzM45bKZfq5p535Dot
+         8pt2kLTzvKyjaFPKomQ7jaefYVgw9gqmZorp/paNRi7DSUmBavhSwnFXEQawmykENW5z
+         M9CVk6f0AkEId4AvnsIHN+AHzn3UelF168Pc8u4x6ZwIWKe42t7UI0O9Pk+BkUJJjtYl
+         eGn1XwM/k00qqYBZ/2ZCaFG6YsMXbPipYWTXwlDUKtJgnWjsb1oF2INEbCJFgGQzZIA8
+         vgXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698684211; x=1699289011;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Eb/YORMOjlpnh4rbVTUZhBfc4hKj/SVVxZvyoJL1lz8=;
-        b=b3BsbMe4HB8nYOYywurvT1bpIy8ZF11kTXpq5UNkC+Hq2GYhrmp6efw+jVQ73L5GkA
-         AlEIQ+AwajxXnMv607TSbM1KvCEwXu5AawUYPi2dEk3+Kz/HyBFABj1N89vKf9hmcp9k
-         0prg+2Da3b0GGZfJWd7rdWuCRlSuF6GfRMk4Cfkgi8m52Rg4L2+OLBwUh/jW/ctnMeJW
-         ZPf5PFCqihPUeAtUrl5rKzyl7C7otoIOjmqUFDaQG75W/6fibPk5YV3Yt3lHIjYSl1BI
-         cEb67GgHzuFNx7RG+aWKBHnPyvqW6x+h1FbQ6EFP4lPyllw5CgSKRyMdGilXdwgco6RF
-         ejMw==
-X-Gm-Message-State: AOJu0Yy0fsRyvMVit6g8Hkg/XIBReygsqN2HfSR9ewrSCNeW5+joHl05
-	DAA+FQetgiz9G6+6aN5O9g==
-X-Google-Smtp-Source: AGHT+IHMyFzMgm+c8dVGQtXeMkZmLGewJPYTiE1ve03hzwu64Cz53i0nHeF5ZdHN1wDStXGrXA8DlA==
-X-Received: by 2002:a05:6808:1383:b0:3ad:fa4b:4875 with SMTP id c3-20020a056808138300b003adfa4b4875mr84115oiw.11.1698684211419;
-        Mon, 30 Oct 2023 09:43:31 -0700 (PDT)
-Received: from herring.priv ([2607:fb91:e6c7:c3eb:a6fd:69b4:aba3:6929])
-        by smtp.gmail.com with ESMTPSA id bg20-20020a056808179400b003b2e3e0284fsm1441279oib.53.2023.10.30.09.43.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Oct 2023 09:43:30 -0700 (PDT)
-Received: (nullmailer pid 1482542 invoked by uid 1000);
-	Mon, 30 Oct 2023 16:43:27 -0000
-Date: Mon, 30 Oct 2023 11:43:27 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>, Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-Subject: Re: [PATCH 5/7] dt-bindings: trivial-devices: Add IOT2050 Arduino
- SPI connector
-Message-ID: <20231030164327.GA1242659-robh@kernel.org>
-References: <cover.1698413678.git.jan.kiszka@siemens.com>
- <7838d99a1795337c73f480fafcbf698fc17d16dd.1698413678.git.jan.kiszka@siemens.com>
+        d=1e100.net; s=20230601; t=1698686036; x=1699290836;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N/14nE/fQrv7yXeUiJ0T0oqRncNS6lZV+I39ngsgxFM=;
+        b=ia0Rb98Q2fu39j9UArxiBOPuVjhnnhv8Lgry4e4IxfxRHlv69jLnVw5YsVBByzv5JZ
+         JT3/AjKMnHmuJsqfBeGXHRv5xXURRr+iVTyECAVvMP5C9vZGpdHReFN/7cQIm1sxa3Cp
+         4QsHTAaQWWxLazIdysel4J35X5N8y7cwjHF41eAr9dYokmpX/V9V/fIu3q1Q6mFMOf6s
+         KDYr3VExMq9BgM6omzg7zEw5tR2p9G9yh+oKg7zYIn4wnmcIsevgLEpf2eRQCmJA/IuY
+         oqptS0rVEAPAQ/6Wf1xXzIl7m+WR7C3RYokVWI0/a3BWEe1tdO2QC0pi7wW1CvpBs3ls
+         kflw==
+X-Gm-Message-State: AOJu0YzrGiydNuhRHgaTnmr+lXp4WvBIyllReOX1cMEMe0EDD6M49IRA
+	gFFpIr3CvzhIMd88mG999LBMEJ4iONIw
+X-Google-Smtp-Source: AGHT+IGsuHQjHdqpdleuPu5UpGMdtR3K+bQ/gAXqTzzWJ4LG9rljjOJgS9dyOlVqTf0oET/QMyj65QGvk/oS
+X-Received: from kyletso-p620lin01.ntc.corp.google.com ([2401:fa00:fc:202:99ae:e3b5:518:c5b4])
+ (user=kyletso job=sendgmr) by 2002:a25:d7d5:0:b0:d9a:58e1:bb52 with SMTP id
+ o204-20020a25d7d5000000b00d9a58e1bb52mr180684ybg.6.1698686035950; Mon, 30 Oct
+ 2023 10:13:55 -0700 (PDT)
+Date: Tue, 31 Oct 2023 01:13:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7838d99a1795337c73f480fafcbf698fc17d16dd.1698413678.git.jan.kiszka@siemens.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.42.0.820.g83a721a137-goog
+Message-ID: <20231030171348.600621-1-kyletso@google.com>
+Subject: [PATCH v3 0/2] mutiple selectable capabilities in tcpm
+From: Kyle Tso <kyletso@google.com>
+To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux@roeck-us.net, heikki.krogerus@linux.intel.com, 
+	gregkh@linuxfoundation.org
+Cc: badhri@google.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Kyle Tso <kyletso@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Oct 27, 2023 at 03:34:36PM +0200, Jan Kiszka wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
-> 
-> On the Siemens IOT2050 devices, the SPI controller wired to the Arduino
-> connector is normally driven by userspace. Introduce a binding for use
-> by spidev.
+updates in v3
 
-What's spidev? Not a h/w device...
+dt-bindings: connector: Add child nodes for multiple PD capabilities
+  - Updated the commit message
+  - Remain unchanged for the comments about the property/node
+    refactor
 
+usb: typec: tcpm: Support multiple capabilities
+  - Changed the error handling and the usage of the APIs
+  - Updated the commit message
 
-> 
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 430a814f64a5..01b9f36afcd5 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -349,6 +349,8 @@ properties:
->            - silabs,si3210
->              # Relative Humidity and Temperature Sensors
->            - silabs,si7020
-> +            # Siemens IOT2050: SPI interface on Arduino connector
-> +          - siemens,iot2050-arduino-spi
+---
+updates in v2
 
-How is this specific to your board? Presumably, an 'Arduino connector' 
-is a somewhat standard interface, right? If every board with an Arduino 
-connector adds a compatible, this doesn't scale.
+dt-bindings: connector: Add child nodes for multiple PD capabilities
+  - revised the dt-bindings
 
-A connector is what you should be describing, but I imagine it is not 
-just SPI. Here's some past discussions[1][2] on the need for connector 
-bindings.
+usb: typec: tcpm: Support multiple capabilities
+  - Added missing cleanups in the function tcpm_port_unregister_pd
 
-Rob
+---
+Original cover letter:
 
+In commit a7cff92f0635 ("usb: typec: USB Power Delivery helpers for
+ports and partners"), typec_operations has two new ops .pd_get and
+.pd_set providing selection of different PD capabilities. This commit
+implements these two ops in tcpm.
 
-[1] https://lore.kernel.org/all/20220421094421.288672-1-michael@walle.cc/
-[2] https://lore.kernel.org/all/CAL_JsqK2DKPbaFvUPSU2E7oh1_pryrRXPMg8OASmK722jmznwA@mail.gmail.com/
+To support multiple capabilities, new dt-binding properties need to be
+defined to create a tree structure for the driver to get each set of
+capabilities one by one. The first tier of the child node under
+connector is called "capabilities". Under this child node lies several
+2nd tier of child nodes whose names are in the pattern of ^caps[0-9]+$.
+And the source and sink capabilities are placed in these nodes.
+
+Kyle Tso (2):
+  dt-bindings: connector: Add child nodes for multiple PD capabilities
+  usb: typec: tcpm: Support multiple capabilities
+
+ .../bindings/connector/usb-connector.yaml     |  80 ++--
+ drivers/usb/typec/tcpm/tcpm.c                 | 389 ++++++++++++++----
+ 2 files changed, 360 insertions(+), 109 deletions(-)
+
+-- 
+2.42.0.820.g83a721a137-goog
+
 
