@@ -1,150 +1,179 @@
-Return-Path: <devicetree+bounces-12890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8BEB7DBB76
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 15:11:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 304C57DBB86
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 15:15:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13DD9B20C31
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 14:11:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1F18B20CF0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 14:15:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE711774C;
-	Mon, 30 Oct 2023 14:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC1D17982;
+	Mon, 30 Oct 2023 14:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IOSC0IIb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QBpV9UdY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36631773C
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 14:11:33 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 939E3E8
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:11:31 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9c773ac9b15so674336566b.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:11:31 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A38F17981;
+	Mon, 30 Oct 2023 14:15:23 +0000 (UTC)
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13476D6;
+	Mon, 30 Oct 2023 07:15:22 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-6c0f14d6875so968279b3a.1;
+        Mon, 30 Oct 2023 07:15:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698675088; x=1699279888; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E4pKFRQbiSaL9ZKbrNbTowWU8USbI5fmQxi6InoyZho=;
-        b=IOSC0IIb0Tx/CSpf3tkeq9dQF+Mf+x2f5rrIxPWMbvSe5eBLGwDUYOHv31G0Fu+Mai
-         eNuQlhEKDVKYbSnYZtSjLOP+uah0Dy+VQfaaTFEUIQ/30YYxU3FrLBiorVTgYVkq09rp
-         HM0Nz3C98QU8jN+qTub8OZ2GCE9dLMYVPjla0=
+        d=gmail.com; s=20230601; t=1698675321; x=1699280121; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=Phy/nzVRPIoAgrWYC8gIYIVfTU+CyCtvaYTpZcFu2/8=;
+        b=QBpV9UdY42knpVQGs5E5RilYtXTI53PYds9gg3Ob0K/qpx8nmftauriIDOz6B8oS6u
+         +8w+pJYBDF40XRaHB6yIy0njwLQSTVAlLU2Aq40WPs2YeI20+C+Jip1+UDBL0ea4SOu/
+         houjI96fLErayKzCURbdAIEJMJgD5wx9ZGDEfujFQfgjHi082c3rzP6X8BvqmyQgx2Ny
+         sCPtxwzX4v6iM47mbe/rXFUj8RPLRD9Z8IV+8sHTPDuO9kihOC2yFcFdmYPHUcLPWiOx
+         EeopnGzaL+wTmuzXsQXKUzBrPxyObp/C07CoRfg2aQSgs6hFdD2dQS6d39GYxSo9TTVx
+         Vn/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698675088; x=1699279888;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E4pKFRQbiSaL9ZKbrNbTowWU8USbI5fmQxi6InoyZho=;
-        b=i6j9NCFfRpnt8plHMeAYYnLyPSgMRT3BpPn2C3+SOXOy7KaU7c5wAre9gsXpMKGEFr
-         sHKXiIjn8+39B5t/XLBMul3IaoBuUkF16f1NQkf3zrSFd8bwSqiiBmpvn/i8KYkQyztO
-         Iup3352f2kHHYdfJ1mnjnBy2GJBVtiO0Snn8YsYwWYsn15WEJ+f9v4WDxzcBfPgr3aPB
-         QlovUE10kKOqwmjNaw71g058BSjpVksiKXMVrLd5YUAc3FHmpikc2tcJVLLrYIempkNL
-         Ap10HoMvu+2IdfNXVQC4BZ1IX0qhiMpymLVaXrzsZPoW/Nwp+3F/NhA2UkeQfmi5T9X/
-         tATQ==
-X-Gm-Message-State: AOJu0YxWzBRjAhKlDAdvCBwCDA8wUmgGKbIqUKIxMiqLN5T5+tc9xkq2
-	QiWOLLsmd57zc4soBGEzTAULQqhnKokaZ79uCairvQ==
-X-Google-Smtp-Source: AGHT+IG8LOC+jxfilRHyBqKQzuECFa/TEcxgcOq1Eut8Qxugmv05I+C6Ugmqd1keidi/OEqa40gywA==
-X-Received: by 2002:a17:907:934a:b0:9c7:4e5d:12c5 with SMTP id bv10-20020a170907934a00b009c74e5d12c5mr8320185ejc.61.1698675088556;
-        Mon, 30 Oct 2023 07:11:28 -0700 (PDT)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com. [209.85.128.45])
-        by smtp.gmail.com with ESMTPSA id mf8-20020a170906cb8800b009ad875d12d7sm6047832ejb.210.2023.10.30.07.11.27
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1698675321; x=1699280121;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Phy/nzVRPIoAgrWYC8gIYIVfTU+CyCtvaYTpZcFu2/8=;
+        b=vlpW6/ajqdoYdhczTe+lLqcflpspF22AODDLW7Bnm1QcSzhXMn+Fr8xkywT1luuWXl
+         +cn8qTSKkzmLArAeFV+0ok8QbxOfeTfHwtoy1lNx1AyY4ngRa5/ZGDVdXYzWiEM4Fpbp
+         sVKvpefJrufdcKd7n8pRWvJbsVmjacLoxG7jggqcOLQjTWrKBtETDltVxpIq+0uAsyDW
+         UZp5Znqie79Ck7VXa9r8jt3fEjir2wf031nS/sEVtvliP73D+KoUuL4qaCgFpRXZFKAo
+         Iq7OIB4YsF+jl17dvclrMKPJUHSov41Z84fO6vLnI9O5oad6+7wHkvcMAK//IVrDztTo
+         bc0A==
+X-Gm-Message-State: AOJu0Yz9+iBct8mUQaMzOi4I5OrgTO/T06QBg3VyanJ/cen5ijbaaGUY
+	79b3BNLECiq9CMJFS43L3q8=
+X-Google-Smtp-Source: AGHT+IH1LGLzcObhgxTU63UavEcs3NmQlccH5PgxWH6rC1CZlrq70MTbiRAZcopHMG45pJY3z0yRRw==
+X-Received: by 2002:a05:6a00:1a04:b0:6b5:ec98:427d with SMTP id g4-20020a056a001a0400b006b5ec98427dmr7699238pfv.17.1698675321393;
+        Mon, 30 Oct 2023 07:15:21 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n10-20020a056a0007ca00b0068620bee456sm5987676pfu.209.2023.10.30.07.15.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 07:11:28 -0700 (PDT)
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40853f2e93eso94755e9.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 07:11:27 -0700 (PDT)
-X-Received: by 2002:a05:600c:5128:b0:3f7:3e85:36a with SMTP id
- o40-20020a05600c512800b003f73e85036amr116810wms.7.1698675087168; Mon, 30 Oct
- 2023 07:11:27 -0700 (PDT)
+        Mon, 30 Oct 2023 07:15:21 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <302a0c90-cc5a-41c3-8004-f96e9586ccf4@roeck-us.net>
+Date: Mon, 30 Oct 2023 07:15:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
- <20231027-sc7280-remoteprocs-v1-7-05ce95d9315a@fairphone.com>
- <7934a36a-9438-719a-2ed0-4a78757b044b@quicinc.com> <CWLNP6QNUXN1.SNVACF2IEGI8@fairphone.com>
-In-Reply-To: <CWLNP6QNUXN1.SNVACF2IEGI8@fairphone.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 30 Oct 2023 07:11:07 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U6mi0h0MBFMC+ba4oq-te6_+WR6fj1XjAq7tmUu64bUA@mail.gmail.com>
-Message-ID: <CAD=FV=U6mi0h0MBFMC+ba4oq-te6_+WR6fj1XjAq7tmUu64bUA@mail.gmail.com>
-Subject: Re: [PATCH 7/9] arm64: dts: qcom: sc7280: Add CDSP node
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Mukesh Ojha <quic_mojha@quicinc.com>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh@kernel.org>, 
-	=?UTF-8?Q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] hwmon: ltc2991: add driver support
+Content-Language: en-US
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+References: <20231026103413.27800-1-antoniu.miclaus@analog.com>
+ <20231026103413.27800-2-antoniu.miclaus@analog.com>
+ <075f6150-74f2-478e-9290-aa7186140cee@roeck-us.net>
+ <CY4PR03MB3399049CB79E0F468A945C659BA1A@CY4PR03MB3399.namprd03.prod.outlook.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <CY4PR03MB3399049CB79E0F468A945C659BA1A@CY4PR03MB3399.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 10/30/23 00:59, Miclaus, Antoniu wrote:
+> 
+>> On Thu, Oct 26, 2023 at 01:33:13PM +0300, Antoniu Miclaus wrote:
+>>> Add support for LTC2991 Octal I2C Voltage, Current, and Temperature
+>>> Monitor.
+>>>
+>>> The LTC2991 is used to monitor system temperatures, voltages and
+>>> currents. Through the I2C serial interface, the eight monitors can
+>>> individually measure supply voltages and can be paired for
+>>> differential measurements of current sense resistors or temperature
+>>> sensing transistors. Additional measurements include internal
+>>> temperature and internal VCC.
+>>>
+>>> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+>>
+>> Applied. I do have one comment (see below) about code which
+>> I would normally reject, but I am getting tired.
+>>
+>> [ ... ]
+>>
+>>> +
+>>> +struct ltc2991_state {
+>>> +	struct device		*dev;
+>>
+>> It is completely pointless to have a reference to dev in struct
+>> ltc2991_state because it is only used in the init function and
+>> dereferenced six times there. It would have been much easier to
+>> pass it as argument to that function. That would also have avoided
+>> the wrong assumption or expectation that it is needed/used elsewhere.
+>>
+>> Guenter
+> Sorry for the misunderstanding. I took as reference some old driver
+> implementations from the mainline kernel.
+> 
 
-On Mon, Oct 30, 2023 at 2:12=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.co=
-m> wrote:
->
-> On Mon Oct 30, 2023 at 10:04 AM CET, Mukesh Ojha wrote:
-> >
-> >
-> > On 10/27/2023 7:50 PM, Luca Weiss wrote:
-> > > Add the node for the ADSP found on the SC7280 SoC, using standard
-> > > Qualcomm firmware.
-> > >
-> > > The memory region for sc7280-chrome-common.dtsi is taken from msm-5.4
-> > > yupik.dtsi since the other areas also seem to match that file there,
-> > > though I cannot be sure there.
-> > >
-> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   5 +
-> > >   arch/arm64/boot/dts/qcom/sc7280.dtsi               | 138 ++++++++++=
-+++++++++++
-> > >   2 files changed, 143 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arc=
-h/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > > index eb55616e0892..6e5a9d4c1fda 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> > > @@ -29,6 +29,11 @@ adsp_mem: memory@86700000 {
-> > >                     no-map;
-> > >             };
-> > >
-> > > +           cdsp_mem: memory@88f00000 {
-> > > +                   reg =3D <0x0 0x88f00000 0x0 0x1e00000>;
-> > > +                   no-map;
-> > > +           };
-> > > +
-> >
-> > Just a question, why to do it here, if chrome does not use this ?
->
-> Other memory regions in sc7280.dtsi also get referenced but not actually
-> defined in that file, like mpss_mem and wpss_mem. Alternatively we can
-> also try and solve this differently, but then we should probably also
-> adjust mpss and wpss to be consistent.
->
-> Apart from either declaring cdsp_mem in sc7280.dtsi or
-> "/delete-property/ memory-region;" for CDSP I don't really have better
-> ideas though.
->
-> I also imagine these ChromeOS devices will want to enable cdsp at some
-> point but I don't know any plans there.
+You can find examples for pretty much everything in the kernel, including
+pretty much everything bad and pointless.
 
-Given that "remoteproc_cdsp" has status "disabled" in the dtsi, it
-feels like the dtsi shouldn't be reserving memory. I guess maybe
-memory regions can't be status "disabled"?
+> Is it fine if I do a follow-up patch on this subject in the near future?
+> 
 
--Doug
+If you wish. I already accepted your patch.
+
+Guenter
+
 
