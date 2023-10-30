@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-12921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCDFF7DBECE
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:24:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BA07DBEE0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:28:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 957122815CB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:24:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A55FB20BF5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F11E1946E;
-	Mon, 30 Oct 2023 17:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345691947A;
+	Mon, 30 Oct 2023 17:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EMrOjmgn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aKpkQ4oh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E53199A2
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:24:47 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F6199
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:24:44 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-408002b5b9fso34571395e9.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:24:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B796D33DD
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:28:33 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3BF7B3
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:28:31 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5409bc907edso7347474a12.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:28:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698686683; x=1699291483; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698686910; x=1699291710; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SgPvEq1XzKxonQVfxRuv6f0Aq4ieBnAx1krvZV+XHBA=;
-        b=EMrOjmgnaMM43FAcepwfzrDFf7LhbTE3XCtTsaVgOm4eEdKq5NXcWMmox4CfFrNBcX
-         Q0vxA7bEC6KpIAfhsRGChioFUuQL8vHmGyCz5dehVG5In6TSTQrC32crM8tdqpDvcEly
-         rOrdqPSQSVZ6bKDZl4Lt/4z+iRM3GKothFCX19auROvlkrc5JRLYzhdQqSccHJc9AzfL
-         AaL6ubXvSoedNJgXH58S+kXHjo5SuNsT1XPb61Nsao1ysVnF9BuxKoM7OxQ7npAHTWm8
-         /LqR+D3G8xNvf7wo7GaWBhlbHKTOuf36HRn3UFelaCLumXPF1QU+ss74gLOj7a2a+JHE
-         Flow==
+        bh=SUqympgaZbY4CwpbNsG1E9Za5/1fj3yZOhO3evs+MRE=;
+        b=aKpkQ4ohRxfy94qoUy7efeB8dkfFzQzmTE99ElrtSG+X58E40SVWKi0+NmEFOR2V2e
+         E2+v831ru40LUOYZyE3bTtyC5/FK/wPG0AeK3F4Cro5fZxXaZ9Ymx1CTwy9iYYSNLcY9
+         dBoDJr+SAW5FiuMSw9YUUBe4pY2UtoVmKDvdjPBqSk/dQkNYlEZjlQ56Of92UXQNEU9w
+         6+YRjHyf9yOe3x9+MbNmV/IBw6gT2ax3xBBDHZXBCyhLqg843XoeFF7OGwwZFAXXniPn
+         HwVckITmldQXs0QI2q6H/wXXW3jMIwcUpEVbUmZyGoJKWtj8J8Uovb+biPRlBW0VvUio
+         e83w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698686683; x=1699291483;
+        d=1e100.net; s=20230601; t=1698686910; x=1699291710;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SgPvEq1XzKxonQVfxRuv6f0Aq4ieBnAx1krvZV+XHBA=;
-        b=w/332VwDy1gVQWwVj3k95fd5DzM0QQrnTrXa2+HY3DraQ8cl7ZoHRqrut1sZWKgJFM
-         qM6YyNUVJ7tVe8G4jnJhIcmJkd66M+HAeV+7omqSzUEE0I0ZsrAW158smagWbUClDmf0
-         R6TsC4lxtjOBAdPDSVC+IhICR4YW0JRfO+aV0LOwNnfV9phOWXBSZwwqh0vtlWaKUzqb
-         pyosiM+0tktlPCdAI/7yjeRA7Ge422dQJXtr6fnZeAV6luSMrpoaEY3+HsEKYDOYpvUC
-         mQcQbia3tP2B7SlFPhy3duNrS53SMdBk29x6W5y1y1dAMweLxS+IUM7nlaA4f4IZ/SI1
-         ONDA==
-X-Gm-Message-State: AOJu0YwAipXYYTQtYNXkDbasdpYCAambXbMQvbIvRrtc2aoZnY4T0fQ6
-	kbuulhGJ15X02R7qMRIyBraIAQ==
-X-Google-Smtp-Source: AGHT+IFtCe+pmUo8vQC26fq5Uq7bvUXmF+s5YykZk0Z1s2Gq+eJ22Egf+z1817cGkL9BW0hN7yGcoQ==
-X-Received: by 2002:a05:600c:3149:b0:409:101e:235a with SMTP id h9-20020a05600c314900b00409101e235amr8466479wmo.28.1698686683266;
-        Mon, 30 Oct 2023 10:24:43 -0700 (PDT)
+        bh=SUqympgaZbY4CwpbNsG1E9Za5/1fj3yZOhO3evs+MRE=;
+        b=MXnwQbRW76G2NY+HK+3tCfnkfeIwO2MVYJ/gSedg476d4eLxJEEmViAVZkk12N8Znp
+         1xk7w1GI/eIVVu2Wrgz0TmTQzY07WJs/wGNgRdwn6wMi11MyzE622DfCLeAKXRYyk/kQ
+         53cIZEF2266uDbzw6/DQf2y/YobvvWj7BRSO2jE9jXmkGDXFtI/z8SRH57nq4Q6U7TIf
+         ai63H+iHwDFwWTfAZhw1RiKfwPikgiQff6bg8dl1X8X3AEmj4fRGKPKg5y0v9Uyoy9rR
+         HWoA+JAjKSRJYCrSYDNXRm0xXn0xA0q0iuA/R7d8N+1u9ziDbl2VXA7s96pLElJiBwiQ
+         jrIw==
+X-Gm-Message-State: AOJu0Yx4kOPgZH7chgPBaOfldLqAFiNMUR0xo018n7E4wCq5p0j1hB2Y
+	H3fIkRIxIsI2BJv74hNpV1j1mQ==
+X-Google-Smtp-Source: AGHT+IH6mxufACMCiWlN/BYBShqGYwpt5B/+xpeNWsAeDY48UPKAglrHQF/WBUaevJEsR5X6kINn8g==
+X-Received: by 2002:a17:907:7e81:b0:9ae:6da8:1819 with SMTP id qb1-20020a1709077e8100b009ae6da81819mr9521877ejc.48.1698686910330;
+        Mon, 30 Oct 2023 10:28:30 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id m1-20020a05600c4f4100b004063d8b43e7sm13350720wmq.48.2023.10.30.10.24.41
+        by smtp.gmail.com with ESMTPSA id rn20-20020a170906d93400b009930308425csm6295467ejb.31.2023.10.30.10.28.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:24:42 -0700 (PDT)
-Message-ID: <11906efc-e16a-40bc-98a5-db32fefbf355@linaro.org>
-Date: Mon, 30 Oct 2023 18:24:40 +0100
+        Mon, 30 Oct 2023 10:28:29 -0700 (PDT)
+Message-ID: <08db17bd-3e09-4608-8cb1-189aa286318e@linaro.org>
+Date: Mon, 30 Oct 2023 18:28:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Subject: Re: [PATCH 2/2] drivers: rtc: max31335: initial commit
 Content-Language: en-US
 To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
  Alessandro Zummo <a.zummo@towertech.it>,
@@ -79,7 +79,7 @@ To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-hwmon@vger.kernel.org
 References: <20231030115016.97823-1-antoniu.miclaus@analog.com>
- <20231030115016.97823-2-antoniu.miclaus@analog.com>
+ <20231030115016.97823-3-antoniu.miclaus@analog.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,95 +125,66 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030115016.97823-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20231030115016.97823-3-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 On 30/10/2023 12:50, Antoniu Miclaus wrote:
-> Document the Analog Devices MAX31335 device tree bindings.
+> RTC driver for MAX31335 ±2ppm Automotive Real-Time Clock with
+> Integrated MEMS Resonator.
 > 
 > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  .../devicetree/bindings/rtc/adi,max31335.yaml | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+There is no "drivers" prefix.
+
+>  drivers/rtc/Kconfig        |  11 +
+>  drivers/rtc/Makefile       |   1 +
+>  drivers/rtc/rtc-max31335.c | 759 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 771 insertions(+)
+>  create mode 100644 drivers/rtc/rtc-max31335.c
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
-> new file mode 100644
-> index 000000000000..b84be0fa34ef
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index d7502433c78a..11c7d7fe1e85 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -373,6 +373,17 @@ config RTC_DRV_MAX8997
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called rtc-max8997.
+>  
+> +config RTC_DRV_MAX31335
+> +	tristate "Analog Devices MAX31335"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for the Analog Devices
+> +	  MAX31335.
 > +
-> +title: Analog Devices MAX31335 RTC Device Tree Bindings
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
-Although I wonder why there is no error report from the bot.
-
-Drop "Device Tree Bindings"
-
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called rtc-max31335.
 > +
-> +allOf:
-> +  - $ref: rtc.yaml#
 
-This goes after description. Several existing files have it in other
-place, but if doing changes then well...
-
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: Analog Devices MAX31335 I2C RTC
-
-Drop or say something else than title.
+...
 
 
 > +
-> +properties:
-> +  compatible:
-> +    const: adi,max31335
+> +static int max31335_probe(struct i2c_client *client)
+> +{
+> +	struct max31335_data *max31335;
+> +	struct device *hwmon;
+> +	int ret, status;
 > +
-> +  reg:
-> +    description: I2C address of the RTC
+> +	max31335 = devm_kzalloc(&client->dev, sizeof(struct max31335_data),
 
-Drop description, obvious.
+sizeof(*)
 
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    description:
-> +      RTC can be used as a clock source through its clock output pin.
-> +    const: 0
-> +
-> +  trickle-resistor-ohms:
-> +    description: Selected resistor for trickle charger.
-> +    enum: [3000, 6000, 11000]
-
-default? Or missing property has other meaning...
-
-> +
-> +  trickle-diode-enable: true
-
-Where is it defined? You added it as it was a common property, so where
-is the one definition? Maybe you wanted to use other property from
-rtc.yaml which is deprecated, so obviously not...
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
+> +				GFP_KERNEL);
+> +	if (!max31335)
+> +		return -ENOMEM;
 > +
 
 Best regards,
