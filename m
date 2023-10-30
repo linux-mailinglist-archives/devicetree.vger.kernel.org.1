@@ -1,143 +1,197 @@
-Return-Path: <devicetree+bounces-12926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6BF7DBEF5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:31:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B90E87DBF0F
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:35:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD7631C20A5D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:31:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D91C2822A8
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 17:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D30199B5;
-	Mon, 30 Oct 2023 17:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E973199A6;
+	Mon, 30 Oct 2023 17:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pYFzpk5r"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="ILGoz6BB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B017B199AA
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:31:14 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61568C5
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:31:12 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9c603e235d1so766173866b.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 10:31:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698687071; x=1699291871; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4yh87nqX34rgMeMuTYK+i8Tf0KhI2kiawic9y2ljRvY=;
-        b=pYFzpk5rjWiQwuuYOpaLUzlQL5QzNybiKei8LCQmitlEKWB8I3YjeQhESiC9n2CIca
-         /qXZ5dO2fvyol/8CwehK2dSN5TLf3I9fMIKYcpjwCaYh6KTIIuKY7Xyuxuq884kp5mou
-         oiJhdi/h9Wq8hhgKz7CLta+t2e4wbEjX0r5/zjuoO98cKtwhvX8zOtQH+KwzdXPSt1I/
-         pVXDLY2gOjL3EgH4RFwMZUkzAxuKaDMWRj2J2+MSqsTxkPTGo6sJRUKwuPE68bJpuFbU
-         DQzCv4+NKu57+xyllzbgBWCthMwt+yX21zgEmnanF82n68AnWPWb7mDcgIFM00fOC7dl
-         mu4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698687071; x=1699291871;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4yh87nqX34rgMeMuTYK+i8Tf0KhI2kiawic9y2ljRvY=;
-        b=GnL9eamKlXo8T13VK+DFXqnm5istUGVoFeKvKcRnV5QRbK3te1esBoZpBfZl0OzbZj
-         /eont/1JnCL8VJBGjfAooMTbNKhNK/VHy/0J8azEQMRJgDbqJjQkMu9O6B9bPvJVFUAK
-         zK5B4eV7J+2wMH50jfe4UHmnSTObLTeKHf0350D5klKZTux3aP+Ps+EExGcRuwwjblYb
-         0l6brX1yXgJbOZqVzcfqQyJXSGYi68+MK8NuY2jQjK/F+mRcOA+2dC2MOIJprGeijw5+
-         WvNRI5f1uoO49K8K9g1RCBmPbbRUsqo6pf+AISLPhEYh/h9ZseHCT2/YQRHsOqTXQmsy
-         r+ZA==
-X-Gm-Message-State: AOJu0YwrTKXZp42ZJyba1WwVP9xyhEqew6fMAc13BWU8LPxVIAuv0CRy
-	NBaSmPuB2MGbHxacNedSuxFdnQ==
-X-Google-Smtp-Source: AGHT+IHf5igWzsoOq6zZvKhqiU5niEfNIVzY6869ZoswHxJn1FyvDQs/c6tYRY3sTmyIKMVIsi8GPw==
-X-Received: by 2002:a17:907:26c4:b0:9b2:82d2:a2db with SMTP id bp4-20020a17090726c400b009b282d2a2dbmr8100772ejc.28.1698687070965;
-        Mon, 30 Oct 2023 10:31:10 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id rn20-20020a170906d93400b009930308425csm6295467ejb.31.2023.10.30.10.31.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 10:31:10 -0700 (PDT)
-Message-ID: <4d4a6a1c-2f2e-4f01-b2ef-acf8050d12cb@linaro.org>
-Date: Mon, 30 Oct 2023 18:31:09 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E57B199A3
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 17:35:31 +0000 (UTC)
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2060.outbound.protection.outlook.com [40.107.247.60])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FA59C;
+	Mon, 30 Oct 2023 10:35:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eKz33+m1lFBK+xpl+I/lAhs5O6MI7lPRMA8pS/BCdkCHmUQoXCbI9Z6csNtu1HIHDd2SCdvLwowgBbiBvVFz4NIrwa6g7Oe+KDvLrcqpyYcNwwkUHD9Y6hxXMDJcnLLdZFhcWGOaUZ4rK4QYKp/GeXcwUr3BU74dyTIk3RMpBeOH5AD89OxrXnCO/B4xK76ccE7RuOw4xadtRdQbITKYwcvJJe9mw5sFW86nre2aitgV0Avm31Zq5YhALGmsjtO9rf519JUecGUhu1c0An+iRMQdSDD1dNfepS3zqnxUYctRMAFNSxYYKoJNOSZi74yDD9R6m3SxWambwsrPpot1Yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wvH0nYycAO6sAl/F2vJcb18b2LcPDZnTf02Zg6sDcFE=;
+ b=AbJKdJTiAfegkefAqXUeO3sl7LtyiNSYTPQd+3+3tuXPPJOd8Z+uiXMqURibOk5Cat7M8tdYX+49zEQQKz3iY7diJkCzhwQZ6m4gr2xRAVCQQ+FK2xo6ZbisdMHD3fZeehANWRSWZHSw44Mca4VDoYA5tP+qTw1UKGyz+VGtJtceS4ngUEYj+VGLw+OKhX9TRN+yBXeWqCwLOPM1tPEy9FiN5haSi7vuY3bySdkzNL63KjGGVVYu8u9mjJ+VXHyUzxjsendLNjkFOIrYRD6iHN/mdeFDZ4Yf/EElodDSuv2B1rUtFFmXw0jwwwTHnAxUKp6m7vvkOwqc6N9ouY5nhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wvH0nYycAO6sAl/F2vJcb18b2LcPDZnTf02Zg6sDcFE=;
+ b=ILGoz6BBJ09Fhf7CI7CHQkgwPcGUN658s5isfC0d7pfod0z97EkmRNQI7AF1tyH+ZTHHpobxqgRtdbAtqat1PvqHvUrTntxT9RODTDHCOX1ReySm+UfGZqdG8Qbw0F7kAWceVa6CUPv+Rnkay3jCY/lWUIWmUDnQDVEOlb/gBtjsL34RL9k6OoNA3lERC2x1vUL372AzAM07wBSDyrTrxSnRbz8yx4qJWnQJBaV5Xayz8oJSPS+P3qfjw8/uVvIqnVMdDNQY4rQhS1k75R9BhFGc7ZW61DYC5BxVuiSKK4u9+89QfS8QTUHk3PlzYEBA7lHhjPhGvJ8eO00RJQJdEg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
+ by GVXPR10MB8083.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:115::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Mon, 30 Oct
+ 2023 17:35:26 +0000
+Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8496:a3a3:d7a8:b24d]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::8496:a3a3:d7a8:b24d%4]) with mapi id 15.20.6933.028; Mon, 30 Oct 2023
+ 17:35:26 +0000
+Message-ID: <90334e24-6bcc-4676-8ddf-8c8f8191038d@siemens.com>
+Date: Mon, 30 Oct 2023 18:35:19 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] dt-bindings: trivial-devices: Add IOT2050 Arduino SPI
+ connector
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+ Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+References: <cover.1698413678.git.jan.kiszka@siemens.com>
+ <7838d99a1795337c73f480fafcbf698fc17d16dd.1698413678.git.jan.kiszka@siemens.com>
+ <20231030164327.GA1242659-robh@kernel.org>
+From: Jan Kiszka <jan.kiszka@siemens.com>
+In-Reply-To: <20231030164327.GA1242659-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CH0PR03CA0070.namprd03.prod.outlook.com
+ (2603:10b6:610:cc::15) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:588::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: usb: qcom,dwc3: document the SM8560
- SuperSpeed DWC3 USB controller
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231030-topic-sm8650-upstream-bindings-dwc3-v2-1-60c0824fb835@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030-topic-sm8650-upstream-bindings-dwc3-v2-1-60c0824fb835@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|GVXPR10MB8083:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b8c3bea-30b3-4a40-7ecd-08dbd96e9a57
+X-LD-Processed: 38ae3bcd-9579-4fd4-adda-b42e1495d55a,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	T4c5mPGvBXq001i92aAvLWb1krtG1ER686EXrHnND96IasMvOHTV5dvRIRkgLSadeg4wZcLUXcrV+GwtN3FYtOHcU3Ep152tKu748DNI/Rx93PyFe/C3MBCONSYVMlYr8bebdHHvM7TY8DrbLjNV9CeJ0fsyVMd/iniLuEt8YxUcfyeO4Mfvy9aJE+oZraDolLThSH6Q4YoaI04tok03i3ilcSFLoaWCaDiJAHVG72lizdldNAw3OLo+iapdouJNnCSNyhAjhdiuypcFDGfDREK5svYYHKDiThrWyB3ofLIrxNPv3EW9ysBzOaf0/4t9hBtKKHw3Z+JK7z1cMHUyEUphP2R5iJK2s4SlKJeJjhKocbCYbFtnTG/sXckCxNmTo8qGBs02ESneY0sjoMvPAloWUixYcBdWxIwEk00Jac5dLxM+3We7qHrxJiAXw3usJqKC8yihB1OWJmiGAfnL8WUhmStekcY/hYG04ud/GXJDnpCmgdwb7heyianXSfKBhhoL5sRFlu65vv2I47pqxLPbfom1zqimxjJMcTXOhBXYx4UlYQtwUxiE29NathhfK3IWYpRyoyjzl3UZkRQZfWbMoNsV15qgNvv2dypa8ZzsSc09xeOvd+ZnJKo+41tEUnoaU6Wj7St1f3WrxRIIJQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(346002)(136003)(366004)(396003)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(26005)(2616005)(107886003)(38100700002)(316002)(54906003)(66556008)(66946007)(66476007)(6916009)(5660300002)(44832011)(8676002)(8936002)(4326008)(53546011)(6666004)(6506007)(6512007)(6486002)(2906002)(41300700001)(478600001)(82960400001)(31696002)(86362001)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?U2ZpNExJdFU4WWFCZ29WVE03ekdCeEdJR05RbkdYZE50NHM4Q2Voa29GQWtQ?=
+ =?utf-8?B?ckxSdFVORXJMTDlqQUJvNDZDTUFtbVVFQkFlS1NDazlqOTV5b1FFdG1uc3gr?=
+ =?utf-8?B?eGU4dEtMeFJsOEk0TkorYTFIeXNQRVZ0Kyt3VXlsSWtKL0RYa1UwVzVNMjYy?=
+ =?utf-8?B?WWhPaTJ3bzZNdHlPZkJGeVdFaDNMQlBXZWQ5eHh0TXpwWlNXMFk2MHBmUWFm?=
+ =?utf-8?B?RU9TWlpmdnAwY0xMeXFUWHY1MU5hSWZyMDNTdDFiS3VjZGdURzhFUy9kOG52?=
+ =?utf-8?B?TTB1MGFkZzRIRm4za2lyRWhSSTJWRGNCQ3N6OTBud3YvKzJ3K1o3TzVnS1ZV?=
+ =?utf-8?B?bmRBOXlFaHQyZFNQcVR6Qlh0S2grdXVIK1BuYjhkN08xQTBLUVRYeFkvK3JY?=
+ =?utf-8?B?UEZhNE51Mk1BTUljREJNZ0E4bVNKcGRYWXBpUjN2WVA0WWgwQUgrRGRrem94?=
+ =?utf-8?B?MEhHaFN4a1k2UndVR255aDBWOTVLYzdLRnJtb2I5dFpLbFM2NmhNZ1pER1da?=
+ =?utf-8?B?dFhSbXFrU3pQaE1CL3FkYXYzYUZhb0c1eHlVL1dhRVg1ZmxYZ3Z5anpyTUJB?=
+ =?utf-8?B?S3UyT0RYTzBZYWpXTXZUTG8wcHU0YVpKK1d1dm9WZDl6UmpsK3JFKzkrK0lJ?=
+ =?utf-8?B?S1BQcHhwUUQxc0dlY2g1bWdXZ0pyT0Y5QmMvS1JoT1ZiT0ROQWgwMDlDUDR3?=
+ =?utf-8?B?a0FDanVIVUZ1R3FDRzJmWStpT0U5S1RQNXZ2endiR3plTFJIQXdVZUZNV0Z0?=
+ =?utf-8?B?MXhydFRZWWxHVE9GbWRVdGg2WGtuMzh6SzRPdG5Va1lmTzQzem5hMU1KTnJB?=
+ =?utf-8?B?QjJOTFJNMXNGOGFoWU9wU3ZlZjkyNnY4Y1ltYjh1Y0wrYi9ZMjg2NDBjeE1I?=
+ =?utf-8?B?NFhKNjI0QjU0UkRnSC9JSHd1ZVA0N25FbDhZNGFBSU1VaXVFdXpndmJwQ2Rm?=
+ =?utf-8?B?Um1vVmNETkVuVHllaVljZWxkYnRjK2RmUFlCOW5rMVdyZFk1d3lHT1FvWlIw?=
+ =?utf-8?B?QzdzVC9veUpPeEtNNkJSS2ttZzVQRlBmdU1WVDlnWWtNbkowaHdEcFFoWnp5?=
+ =?utf-8?B?WElVVU5wUEZDUzB0dlUvaHJ0NENDRFBHQnJkdGY5ckZrcTVvZHFpMy9kWXA0?=
+ =?utf-8?B?RXo4eVFMTURGcmVKYVc5d2oweTg0TEZ4NWkzZlMrQThqSkhldCswMitkNkF5?=
+ =?utf-8?B?OEdTbHNDMWlMWXhEaEVaVHREUitIV3R3UGxVSVBtcXA0ZGZ5SjZsODYyY0dS?=
+ =?utf-8?B?bkZOcHhGOWIyL2RITlNza1ZZK0MyUXJUS0hPOURreTcvSUkvakNEdzFGd0lH?=
+ =?utf-8?B?dmVZRitEL1orVm5IZ3M3UUJDdkpTSjVsSjJVSC9VRlRDLzZrMTVVRXpldlVM?=
+ =?utf-8?B?L2Rvdk5wQXVsSjdQZTd4OGlRSlVNdTZSVkwvd1VPdXRtdDRDU1dFK3lFM1RK?=
+ =?utf-8?B?ZmZnMWFVT1lrUTU5ZmxZVWRKMVFlUzFyQTlmcTlLdnVBOEtNb0JhV2l5Uld1?=
+ =?utf-8?B?WGlYWk83ZEVjVS8xL3ZKOUhwSzg3eXVBNFRDaG55Um1sbGVjWXBKQ0lpUFJE?=
+ =?utf-8?B?Z2l4aDZRRnBlUTV5WUNkaFRsakpKdzZiZ3ZDZmQyOVFvRE80aXp4SVI1QUcx?=
+ =?utf-8?B?RzhLRmhhUk51cEl3b0ZHYU1rVThXL1NQUXoxT0NLUnllaFh1cWxXTUlxYS9J?=
+ =?utf-8?B?N0xBS0VVWHRMcTNSemhMM05nL1VqMThydG41K080WmtUb280QTNtazhPaEtK?=
+ =?utf-8?B?bUFNMEQ4bElKSDQ1U1VITFRBWGRYa3FtQ0U2OVQwSkN2OTBjQTFkM3hCWTB1?=
+ =?utf-8?B?RTIyRFVjMTZsMFZUZ2N2dmZQZGtqdmNMVVBCM2hMUkU3M1Y4MFhYQjI0dDgw?=
+ =?utf-8?B?VDVjUVpCQmpZUnU5M0cweExiZHJKdncyU1VzOGNhOEQ4aVdMOWN0RmJMS1dr?=
+ =?utf-8?B?M1prMnZ2Wlg5V3ByZ3BJNCt3VHZUbTZqMG5TN05iTm9yRlVIeG5ZYXRKbHly?=
+ =?utf-8?B?NWd4SnEyWmM1QUE5Zkl1dis5K2N6K2YvY3dzcW1qcDhGdXVPQm5UMGJtOFV6?=
+ =?utf-8?B?NExKUmFuNDlLcGh6d1RlREpLZnlkK2FRUEVORFRsYm5YOVFvYVh6d1hpd0xB?=
+ =?utf-8?B?bDZJVW1NTGlyNUlrSTM3WUM2WTNoTFZnSDdVc1JmRFQ0SEFHMEdpWDhqTzBC?=
+ =?utf-8?B?d0E9PQ==?=
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b8c3bea-30b3-4a40-7ecd-08dbd96e9a57
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2023 17:35:26.5188
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ugs3A+9tF1rPLhCkmMty2EqBDm9LrFtOtuxIebue2jqyfbUctYi7fstCvFnmLv/UnJv6ElSJFf1njIfJKrHt6A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB8083
 
-On 30/10/2023 10:41, Neil Armstrong wrote:
-> Document the SuperSpeed DWC3 USB controller on the SM8650 Platform.
+On 30.10.23 17:43, Rob Herring wrote:
+> On Fri, Oct 27, 2023 at 03:34:36PM +0200, Jan Kiszka wrote:
+>> From: Jan Kiszka <jan.kiszka@siemens.com>
+>>
+>> On the Siemens IOT2050 devices, the SPI controller wired to the Arduino
+>> connector is normally driven by userspace. Introduce a binding for use
+>> by spidev.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+> What's spidev? Not a h/w device...
+> 
+> 
+>>
+>> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+>> ---
+>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> index 430a814f64a5..01b9f36afcd5 100644
+>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> @@ -349,6 +349,8 @@ properties:
+>>            - silabs,si3210
+>>              # Relative Humidity and Temperature Sensors
+>>            - silabs,si7020
+>> +            # Siemens IOT2050: SPI interface on Arduino connector
+>> +          - siemens,iot2050-arduino-spi
+> 
+> How is this specific to your board? Presumably, an 'Arduino connector' 
+> is a somewhat standard interface, right? If every board with an Arduino 
+> connector adds a compatible, this doesn't scale.
+> 
+> A connector is what you should be describing, but I imagine it is not 
+> just SPI. Here's some past discussions[1][2] on the need for connector 
+> bindings.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Right, we are not alone with this modelling problem on our board. The
+code talking to the SPI devices is inside applications, the kernel just
+needs to pave the way to the interface. However, you can't define that
+path without bending of the DT. This is specific to at least SPI, maybe
+some other buses without probing as well.
 
-Best regards,
-Krzysztof
+If this were a PCI device, no problem: tell vfio-pci or uio_pci_generic
+to be responsible as well (add IDs on the fly), bind bind any of them
+and then let userspace handle things. Same why to go back to an
+in-kernel driver. No bothering of the DT regarding how the final device
+is driven.
+
+Jan
+
+-- 
+Siemens AG, Technology
+Linux Expert Center
 
 
