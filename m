@@ -1,181 +1,136 @@
-Return-Path: <devicetree+bounces-12947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC3A7DBFFD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 19:41:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07ED47DC008
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 19:42:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7D9228163B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:41:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F28F28169E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 18:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39526182AB;
-	Mon, 30 Oct 2023 18:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253211865E;
+	Mon, 30 Oct 2023 18:42:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="geMCgZzi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WxIGKtbW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 593FA15EB9;
-	Mon, 30 Oct 2023 18:41:35 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0310BC9;
-	Mon, 30 Oct 2023 11:41:32 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39UINMXH005744;
-	Mon, 30 Oct 2023 18:41:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=DBcvM7I6vA3kOhdjHsguFx5PKkUbrhWdDwhRXky9OcE=;
- b=geMCgZzi+kN3gO1A+f53U0jAXFkJbFIMGve9v8h8vlGD+bnGiOJ/l6v3yUxxlHm9xXgL
- Pd6TgYjyb+bl0Wwp4SewmrcwV110h3nbeihkGP5n7u0kD4SO0Pp8uBXexaqqUk7Pp1U/
- 4CQjWaXP+E6n340eOfb55EHmgEFL8e3xh36rXzazGY2Hi/im0Xds724CTNkPXEPLpOPm
- S8FY4USoonO/cV9NEVVUcRtXL9AswVA1h2pbuIWMrX1l78SnC+/11zmnA8L9pyDrCX9G
- xfnmjd3Ppw4/XU+9fnFP7jNlZehaE8eDmPvaPN1Wn1dlAERNAeNx/rSdK9BR8tmw6RbD iA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u2dey0t9h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Oct 2023 18:41:26 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39UIfPla006490
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Oct 2023 18:41:25 GMT
-Received: from [10.110.59.210] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 30 Oct
- 2023 11:41:25 -0700
-Message-ID: <4f37aace-004f-5ff1-bff4-d939892176be@quicinc.com>
-Date: Mon, 30 Oct 2023 11:41:24 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EF7199B9
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 18:42:49 +0000 (UTC)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79FADA
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:42:46 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-507d1cc0538so6676954e87.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 11:42:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698691365; x=1699296165; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JwS8CJS2HdA7L2KwdZuJCSxbmDb03FC3Kv+/WIe4ieY=;
+        b=WxIGKtbWXFCYI5ivU5eIjwGLr0iQVkvI7aAbfCNsAgyq++KauAr95B3+748Ok9i6bd
+         Prq+Ixw9hx9NWw5KjABal4AXaQgDoPIqR1rHzzNPL3X1rd5fTxSVXiYkJyWO55h+yhg/
+         tDKwJ7f5Rm3995u6GIuIIAPcJpeyewR0jabU+mKom/tNkjm254NzgK4B17Ss1UDMejsZ
+         3V8kXGjKsjhbVGa/cFi+e+10a02bubxA9UTCaSkRZt5Pc+KPEPiv9o43XXeiaiT2XxNV
+         WmyJ9Z8HCx6/PjOXTU+vmdEVKXOSfoDRjoxSiPxDqrEQsSgKKHSzyvViCkmY4VfRZy/V
+         vozg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698691365; x=1699296165;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JwS8CJS2HdA7L2KwdZuJCSxbmDb03FC3Kv+/WIe4ieY=;
+        b=fDzvZ8lbWqSZL5oeuvCLvJ2bTYzPldnwImXDgPcT+65c0fsHj7iE2OcOg8rZMyLk2I
+         nxfp8dVm1YBS3D+FcJZh16ZYqRastlc+Lt9wSokKKTfy5sMue5b8BrFDyOFevRqr5qdf
+         XjcziXGdRrS7Z7C3TxIGM2LZ9+CHlPNXn6I4GdhzFp7eaKwEbNBFt9RkM0n0iAVli8nW
+         SSusUgepW0dKRugNzgD/SXiR49aNgEGXJpCGTvBDIL5G3Zg/pqU5kj9JizRFWUwtI77R
+         iFHSrSuYyqVu/2idRhvIsK5x8gjJtDL7S4KrRzwnLmBxPt4P80Tq292TklqR0qZVT/Vl
+         fWkw==
+X-Gm-Message-State: AOJu0YxElBuiuM4QXCEmzHTZ6Dd+3wZJSwhjWPjMWWkE52nBJ+tExd69
+	xGOO4C7pprb1ZZ0fZGWHvEiZXw==
+X-Google-Smtp-Source: AGHT+IFs1SvdKA+y3R0AbD3t9CtVc8ZXEFKCU/X6eYCAWfhtk7OEK2/zil1fF5aDurRg4Z/W4AI5DA==
+X-Received: by 2002:ac2:4db6:0:b0:503:264b:efc9 with SMTP id h22-20020ac24db6000000b00503264befc9mr7219254lfe.18.1698691365005;
+        Mon, 30 Oct 2023 11:42:45 -0700 (PDT)
+Received: from [192.168.133.160] (178235177091.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.91])
+        by smtp.gmail.com with ESMTPSA id dw24-20020a0565122c9800b00502ae8db086sm1522651lfb.19.2023.10.30.11.42.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Oct 2023 11:42:44 -0700 (PDT)
+Message-ID: <f50102e2-4e81-4e07-aa05-5ecce8024eb3@linaro.org>
+Date: Mon, 30 Oct 2023 19:42:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 3/3] usb: dwc3: Modify runtime pm ops to handle bus
- suspend
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] clk: qcom: ipq5332: drop the few nssnoc clocks
 Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-4-quic_eserrao@quicinc.com>
- <9be9fae5-f6f2-42fe-bd81-78ab50aafa06@kernel.org>
- <cd294a89-33e7-0569-81b3-df77a255f061@quicinc.com>
- <0dee3bec-d49f-4808-a2f8-7a4205303e1f@kernel.org>
- <c7fc7bc2-1a84-e6b5-5198-1b8cc602d738@quicinc.com>
- <bd74947f-8827-4539-a590-9c53d5ddd02d@kernel.org>
- <ceb0f48f-8db9-40ae-769a-08e36373b922@quicinc.com>
- <09707469-193b-43c5-8503-b75f97ba1fbf@kernel.org>
-From: Elson Serrao <quic_eserrao@quicinc.com>
-In-Reply-To: <09707469-193b-43c5-8503-b75f97ba1fbf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: v0iFOVinI0uV_gTyNVsky44UZQW0ytlH
-X-Proofpoint-GUID: v0iFOVinI0uV_gTyNVsky44UZQW0ytlH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-30_12,2023-10-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 spamscore=0 bulkscore=0 mlxscore=0
- phishscore=0 priorityscore=1501 impostorscore=0 mlxlogscore=648
- adultscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2310240000 definitions=main-2310300145
+To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231030-ipq5332-nsscc-v1-0-6162a2c65f0a@quicinc.com>
+ <20231030-ipq5332-nsscc-v1-1-6162a2c65f0a@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231030-ipq5332-nsscc-v1-1-6162a2c65f0a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 30.10.2023 10:47, Kathiravan Thirumoorthy wrote:
+> gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk, gcc_nssnoc_nsscc_clk are
+> enabled by default and it's RCG is properly configured by bootloader.
+The maskrom or something later on?
 
 
+> Some of the NSS clocks needs these clocks to be enabled. To avoid
+> these clocks being disabled by clock framework, drop these entries.
+Perhaps pm_clk could be an option for you?
 
-On 10/26/2023 11:37 PM, Roger Quadros wrote:
-> 
-> 
-> On 27/10/2023 03:07, Elson Serrao wrote:
->>
->>
->>
->>>>>>>
->>>>>>> While this takes care of runtime suspend case, what about system_suspend?
->>>>>>> Should this check be moved to dwc3_suspend_common() instead?
->>>>>>>
->>>>>>
->>>>>> Sure I can move these checks to dwc3_suspend_common to make it generic.
->>>>>
->>>>> Before you do that let's first decide how we want the gadget driver to behave
->>>>> in system_suspend case.
->>>>>
->>>>> Current behavior is to Disconnect from the Host.
->>>>>
->>>>> Earlier I was thinking on the lines that we prevent system suspend if
->>>>> we are not already in USB suspend. But I'm not sure if that is the right
->>>>> thing to do anymore. Mainly because, system suspend is a result of user
->>>>> request and it may not be nice to not to meet his/her request.
->>>>
->>>> Agree. Irrespective of whether USB is suspended or not it is better to honor the system suspend request from user.
->>>>
->>>>> Maybe best to leave this policy handling to user space?
->>>>> i.e. if user wants USB gadget operation to be alive, he will not issue
->>>>> system suspend?
->>>>>
->>>>
->>>> Sure. So below two cases
->>>>
->>>> Case1: User doesn't care if gadget operation is alive and triggers system suspend irrespective of USB suspend. Like you mentioned, current behavior already takes care of this and initiates a DISCONNECT
->>>>
->>>> Case2:  User wants gadget to stay alive and hence can trigger system suspend only when USB is suspended (there are already user space hooks that read cdev->suspended bit to tell whether USB is suspended or not for user to decide). Attempts to request system suspend when USB is not suspended, would result in a DISCONNECT.
->>>>
->>>> For supporting Case2 from gadget driver point of view, we need to extend this series by having relevant checks in suspend_common()
->>>>
->>>> Also, is it better to provide separate flags to control the gadget driver behavior for runtime suspend Vs system suspend when USB is suspended ? For example, what if we want to enable bus suspend handling for runtime suspend only and not for system suspend (Case1).
->>>
->>> But you mentioned that for Case1, USB gadget would disconnect from Host. So USB will be in disconnected state and USB controller can be fully de-activated? Except maybe wakeup handling to bring system out of suspend on a USB plug/unplug event?
->>> Why do we need separate flags for?
->>>
->>
->> Sorry let me clarify. This is in reference to deciding how we want the dwc3 driver to behave in system_suspend case.
->>
->> One option is to continue with the existing behavior where USB gadget would disconnect from Host irrespective of bus suspend state. We dont need any modification in this case and we can leave this series limited to runtime suspend only.
->>
->> Second option is to stay connected IF we are in bus suspend state (U3/L2) otherwise DISCONNECT IF we are not in bus suspend state. The main motivation is to preserve the ongoing usb session
->> without going through a re-enumeration (ofcourse true only if we are in bus suspend state). This would need relevant checks in suspend_common().
-> 
-> The catch here is, what to do if the USB device is not in bus suspend state but user wants to put the system in suspend state? Do we still disconnect?
-> 
-> You might also want to refer to the discussion in [1]
-> 
-> [1] - https://lore.kernel.org/all/Y+z9NK6AyhvTQMir@rowland.harvard.edu/
-> 
-
-Thanks for the details. If we dont DISCONNECT when the USB link is NOT 
-in bus suspend, the other alternatives we have are below ones
-
-1.) Abort system_suspend: In addition to not honoring the users request 
-to put the system in suspend, there is always a possibility of host 
-driver never sending bus suspend interrupt. If that happens we would be 
-denying system_suspend every time user requests it. So this is not a 
-right approach.
-
-2.) Keep the gadget connected and proceed with system_suspend: Now the 
-system is suspended but from host point of view the USB link is active 
-and would continue the communication normally. The signalling probably 
-is not going to to be detected as a wakeup by the Rx hardware as there 
-is no explicit resume signal involved here . The only exception is if we 
-can somehow configure each and every event from the host as a wakeup 
-signal(not sure if this is even possible)
-
-So IMO it is best to DISCONNECT from the host when USB link is NOT in 
-bus suspend state and user requests system_suspend.
-
-Thanks
-Elson
-
+Konrad
 
