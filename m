@@ -1,167 +1,126 @@
-Return-Path: <devicetree+bounces-12784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD1C7DB6C1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:54:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AFC17DB6C6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 10:55:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48C6A28136D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:54:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D1961C2092E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 09:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660FDDF69;
-	Mon, 30 Oct 2023 09:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D6FDF6A;
+	Mon, 30 Oct 2023 09:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d0Jl2giL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WndII1Yi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFBCBCA63
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 09:54:17 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15FDC10C7
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:54:16 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4094301d505so5704955e9.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:54:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62756F4EC
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 09:55:27 +0000 (UTC)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC2510EB
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:55:25 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c50cd16f3bso58555731fa.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 02:55:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698659654; x=1699264454; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BdtNJMjFoo8Mjg5DC2b6f5mJDPpgVLFxOKz6Ogv8dDI=;
-        b=d0Jl2giLu9YKbxBeTCjhHAQ4zJfgnoj2ltWxkl6mcAfGfRp9OWIq9tUY03mTN8jFLv
-         D7IP3OZJ92874lE0TfE41o6BkXnmszp7sCgNj+wrNvMrU0hTZHqYY7TT/Cl0kh7c4GSR
-         P4HCUKkupI+P+NGCGIqXu6k8z2C2j/ZYbBtJd/s7UCaGuV8+XAolPDsOGibdMk56bA7h
-         pd0YP5BfuHq436ZM6DafImvsfa6L7Q3cUdF/0Z0398CeAmNYDryOpyEVDxlDiagAJ+m0
-         d2Hehfg2OZkO7i83nKEdAeOei+VYKxCHoEVDZCw1GYrVXtFIruFbB/KNrV5iPgmHiKqH
-         DEwQ==
+        d=linaro.org; s=google; t=1698659723; x=1699264523; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FL4shc+cRRMmcw5qxKkbA2VipdmxCQewr4u6fEOw/1M=;
+        b=WndII1Yiarj/EClH6qjlzHvml+arstF/EXs5oa4c5iZRYkv/ezJjkQ8fpiOmKPT70P
+         ePgnKgrwoJ0J5D98DxZZc4AEmfmRECK4ouTEMr1Q+G5KF40MGtNqtHUqlTFoLIX+3U7z
+         5f5YaUcGOdS3q7ptDoiBy/0nGz5uStVCpTbibyuk+JFbO5/D9XRxyuuHiEFqrKdIt81n
+         z+ZR9Vs68HT2AorUuK+v7GVQcKl8CCBNWhpv2n3oZ4KCIY8vVe5n9cYBz2DBYUTdmd7A
+         qRd4uD5ihCX/K0daq6+4s8Zw7LLJQPhZP0ztBNRPpESu6uKW0mPavpEzrJ2i6rei7LG+
+         l3lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698659654; x=1699264454;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=BdtNJMjFoo8Mjg5DC2b6f5mJDPpgVLFxOKz6Ogv8dDI=;
-        b=rHZdbf7D+/3cQLTMuGzqlLwvH6/tHrzAlrMzl6j4sM7vzIJeXjFCYQgujEMsLI0GV0
-         kGLMeSzwr9bGgulxcqjwE0QH+IcXctUj/WRo4XGk95/uLNvmBTTpj36EObc0ZwCFOciK
-         t2p53bA88qhVJDxLtakYd+BXBLrBpWZNC+f9zH2rWGKzPwXycWEfzygNH+Cr68GUMRk5
-         BiASCU7apa7/P72kPfGsmv7SEqlMSUdwc2GhXmWODEE713gVXJY/26P0jN2HDrvFjE/G
-         wmR1ps/tYLxkKfVHEVWLORVO7WrA8IYq0lDi5IhJEAUW3D3HNrQuGJKxDiUqAThBCxuB
-         b9yg==
-X-Gm-Message-State: AOJu0Yygf1+Fx23TSc9TZMdqwmPgcAS8+QgqzRJMSCsJtk2FKgOOX9XE
-	PB1LgYUgBMU6Rzatcg1MK+ddXQ==
-X-Google-Smtp-Source: AGHT+IEBIJhTqNu++Oy8IVv8VSH6XW0aEhix3wf4DZZeIsdbnH0sOhyz6NtHvPoqfq1LRqlmTml5nA==
-X-Received: by 2002:a05:600c:a49:b0:408:3ab3:a05e with SMTP id c9-20020a05600c0a4900b004083ab3a05emr8142943wmq.38.1698659654510;
-        Mon, 30 Oct 2023 02:54:14 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a05f:dffd:3e08:6b03? ([2a01:e0a:982:cbb0:a05f:dffd:3e08:6b03])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c314a00b003fe1fe56202sm8785199wmo.33.2023.10.30.02.54.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 02:54:14 -0700 (PDT)
-Message-ID: <be8ea7a7-3353-4068-a113-1fde3ab8d0c9@linaro.org>
-Date: Mon, 30 Oct 2023 10:54:13 +0100
+        d=1e100.net; s=20230601; t=1698659723; x=1699264523;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FL4shc+cRRMmcw5qxKkbA2VipdmxCQewr4u6fEOw/1M=;
+        b=vo8G6QGONLaGaR5D5YD6OUSO3CF+6b8+51b1QC0xBk6f6z7JJkQOd40rLpzCeffnKe
+         0j5kRq4hEvUUrCXgbb0PQOQe82Q9V+g8xmh1UcHJHBaIyPlzf3XBaBx5YoIPusGr4Zbk
+         5HUFZ8scqsx9U5rXK3q0mAfwzQTNwaZl4OX5FH9aUGbeP2I+xyfSoA4SudzteOyuN3xl
+         oQ4AK1euL2P5kGsbtsweQAZiPxA1g4uhd3ZeGj8ynLqwNbOGAZlJNU44zYobYmJ61l4i
+         3/3sIax7FjUC760efp1+7u475v2TLVmotF6hLptN88y/stTnSxco0YaiPYonwhzZnTyW
+         67/Q==
+X-Gm-Message-State: AOJu0YxMU/Zwfci/2px8jUxz3pxiAEUmO2k4pBsct2uSgyeABgaOTSwI
+	5HFoGf//ja674A3Ev1J4Bb2Vdg==
+X-Google-Smtp-Source: AGHT+IFSgX3WWYhnbRwPF3Fgt3KhZkNwPflvQsUsVQKCfe0k4Dp01/AWgPqy1G9AAUmmnw4Jw3thAw==
+X-Received: by 2002:a05:651c:11d3:b0:2bc:b75e:b88 with SMTP id z19-20020a05651c11d300b002bcb75e0b88mr7488432ljo.18.1698659723337;
+        Mon, 30 Oct 2023 02:55:23 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id m11-20020a05600c4f4b00b0040651505684sm8783759wmq.29.2023.10.30.02.55.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Oct 2023 02:55:22 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/2] qcom: socinfo: Add SM8650 SoC ID table entry
+Date: Mon, 30 Oct 2023 10:55:18 +0100
+Message-Id: <20231030-topic-sm8650-upstream-socinfo-v2-0-4751e7391dc9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 0/4] pinctrl: qcom: Introduce Pinctrl/GPIO for SM8650
-Content-Language: en-US, fr
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20231030-topic-sm8650-upstream-tlmm-v2-0-9d4d4386452d@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231030-topic-sm8650-upstream-tlmm-v2-0-9d4d4386452d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIZ9P2UC/4XNQQ6CMBCF4auQrh3TKVCQlfcwLJrawiTSkikSD
+ eHuVuLe5f8W39tEckwuia7YBLuVEsWQQ50KYUcTBgd0zy2UVCVK1LDEmSykqdW1hOecFnZmghQ
+ tBR/BVFUjjaqsv6DIxszO0+vwb33ukdIS+X3crfhdf7Kq/8grAoJuGm1qbEtv5PVBwXA8Rx5Ev
+ +/7B9pnrwDLAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=923;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=3CG7a5rFsp5E9RmHmcpF+FEL0nmZ0r+jgZgCKX8lOc8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlP32J00v4S4srvXUITxOJTMwesQHWUInJHFRzC0ps
+ zuiDMjiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZT99iQAKCRB33NvayMhJ0RHXD/
+ 0bAIDTr7qNqEDXKhgS5vlKTW6U66Ts0eK8cvIMmxFf9fG/0syYDr0EFM2AXlELlkZOSABvYzfSgmkM
+ ZRbO/Da4naAS2Au6lFPde/75wNouNPj4oaeaDnn79YoAgNx6q9D6eRyUyPQcSmVUsd0dODj5a6Yrht
+ XR88/squmnqjyS9D6L0g8j8wkfaMTPjrfpcwj7R5mrq+Cth+Dfa02pnbOzMJC/7DD3yCe8A1Qa3/2/
+ qONMNkdg54fPetnQfuT0v0C54shg5nKCnJAFHFLXIiDMWeBVm3XPdg/LUe7rvUYpAKU6TAjyjm3ROi
+ jbG61RYaioUcfeztMGSNPzNXcuQEXmShATYwUwHlDB3WPDpiQ1LdY3B8D+BMPdjqAlDziK/mGd0O4w
+ tI5jCPQNCWDdndmt27HZ2PV4ac1jihYgVJ3tLaqOj6/noj1e5+NhFTyH5NmmOW6CYX1eRDDYowAocu
+ Whg8kNgx933oRBnHUUttRUXPta7Vt7LAGjEpQ0OIl//JcE5y2aoGyFJWEyZVjYm6Vn7AJnZFUuc59Q
+ LuDUGsahtW04BXdteWXkHkRkA2OC/LOmsLm0yYP86YBIMBrTbDz42JPsBYbwHe7TlFoGr1OVpYBgFc
+ UHJl+wgqmfPuzi0O86uX+EVyQQX/LlBGbozNh4NU9MXIkbVh7fRn7q4R50rg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hi,
+For convenience, a regularly refreshed linux-next based git tree containing
+all the SM8650 related work is available at:
+https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
 
-On 30/10/2023 10:50, Neil Armstrong wrote:
-> The SM8650 Top Level Mode Multiplexer supports 211 GPIOs,
-> and the usual UFS Reset, SDC Clk/Cmd/Data special pins.
-> 
-> An handful of pins can have their IRQ generated by the PDC
-> module, and for this support for the new wakeup_present &
-> wakeup_enable_bit is required to allow the "wakeup" event
-> to be passed to PDC and generate an interrupt or a wakeup
-> system event.
-> 
-> As SM8550, it also supports the i2c_pull_bit bit to enable the
-> on-SoC load resistor for I2C busses.
-> 
-> Dependencies: None
-> 
-> For convenience, a regularly refreshed linux-next based git tree containing
-> all the SM8650 related work is available at:
-> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> Changes in v2:
-> - Collect reviewed-bys
-> - Fixed unevaluatedProperties handling, and dropped the true properties
-> - Link to v1: https://lore.kernel.org/r/20231025-topic-sm8650-upstream-tlmm-v1-0-4e3d84a3a46b@linaro.org
-> 
-> ---
-> Neil Armstrong (4):
->        dt-bindings: pinctrl: document the SM8650 Top Level Mode Multiplexer
->        pinctrl: qcom: handle intr_target_reg wakeup_present/enable bits
->        pinctrl: qcom: Introduce the SM8650 Top Level Mode Multiplexer driver
->        fixup! pinctrl: qcom: handle intr_target_reg wakeup_present/enable bits
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Splitted patch in 2, moved ID definition in bindings changes patch
+- Link to v1: https://lore.kernel.org/r/20231025-topic-sm8650-upstream-socinfo-v1-1-6776a5183fa0@linaro.org
 
-Please ignore this patchset, I forgot to squash patch 4....
+---
+Neil Armstrong (2):
+      dt-bindings: arm: qcom,ids: Add SoC ID for SM8650
+      soc: qcom: socinfo: Add SM8650 SoC ID table entry
 
-Neil
+ drivers/soc/qcom/socinfo.c         | 1 +
+ include/dt-bindings/arm/qcom,ids.h | 1 +
+ 2 files changed, 2 insertions(+)
+---
+base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
+change-id: 20231016-topic-sm8650-upstream-socinfo-a4470a24cf91
 
-> 
->   .../bindings/pinctrl/qcom,sm8650-tlmm.yaml         |  147 ++
->   drivers/pinctrl/qcom/Kconfig.msm                   |    8 +
->   drivers/pinctrl/qcom/Makefile                      |    1 +
->   drivers/pinctrl/qcom/pinctrl-msm.c                 |   42 +
->   drivers/pinctrl/qcom/pinctrl-msm.h                 |    5 +
->   drivers/pinctrl/qcom/pinctrl-sm8650.c              | 1762 ++++++++++++++++++++
->   6 files changed, 1965 insertions(+)
-> ---
-> base-commit: ed75ce58b3a55d2cd95b68a06fdb010e1e18d825
-> change-id: 20231016-topic-sm8650-upstream-tlmm-4ece354ef319
-> 
-> Best regards,
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
