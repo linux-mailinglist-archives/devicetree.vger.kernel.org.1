@@ -1,104 +1,146 @@
-Return-Path: <devicetree+bounces-13191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448A97DCD96
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:17:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 741807DCDD3
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C954DB20CF9
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:17:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4FD01C20BD5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:29:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A56125CD;
-	Tue, 31 Oct 2023 13:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05F413FE1;
+	Tue, 31 Oct 2023 13:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="heU/JmH5"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="G7fbNGTj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FA728EB
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:17:03 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FFDDE;
-	Tue, 31 Oct 2023 06:17:02 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id D7B1366073A3;
-	Tue, 31 Oct 2023 13:16:59 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698758220;
-	bh=UKig+LuihbJ88pZrqsdMkSm6GIDrEJck0xJqKEx+xT8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=heU/JmH5bzkBexwGGbhEbA2kshYTP/yFEexLfR0na3soREvJWMZbMgw79+2gwCwMt
-	 F+tEJDK14a+T+Vq2da+/j19xmN7Hjr4QzsCduGwPan6KMhAl2odY0UqnkXZjs+3/Uy
-	 iyZd8pINFEQ3IobDyIbhsRB3m66+AOxnXblcTQvgC4BVw5oU9cw5EYouoG/8rPFtUC
-	 HH+QNAl7XMxJr5VoMj9rBdKE6v35OZagcosKuzqFRaeC5WjXvrcaJH+KldiY5HU61h
-	 dBY/PKGKYmz0oyJUnvDs5fnbsHPKQDKEqqYfvjeXVTXmt5htOtYacdOgJWEWQfSBky
-	 wvflJV5wkGfuw==
-Message-ID: <e17f5c83-80b2-4cbd-8e56-c484b6848e22@collabora.com>
-Date: Tue, 31 Oct 2023 14:16:57 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2009134B3
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:29:32 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01olkn2026.outbound.protection.outlook.com [40.92.98.26])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670A6DF;
+	Tue, 31 Oct 2023 06:29:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=anwf2q8KIHxZBDCjw/JOOLj6ybMz0C9T+ktwN1becOQO1ZLgZI+e4lNv0tB6LFZI7fpRUMy+tcw1ksCJEQGHz3TNh4HGIhxyasrj+axMSNI9y+qYJJmIqlZ49UCTxgz4eWA7Rc/wRVrW1XG1QJwlaKL5xAdyLh/UFuL2m1xQYEGTHOH3DTDmq0DpdwkUMTGgeOA7CzUcmHV5RmBAZn90h+axBoOk9Cp47QNgAWce/86CaubX5Efhg08BZZYrZBFs2k8nViaokWUj6QNcaJLwrCsI6Xtf/HaoiQW6ZD0faVyudu2Alnr6Wvi4Xu3ElwOXGF4BtflXYsg4TEZ/Y7Mk7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gCHyy08YXwWgNjNmbSUARLQu52+baGLYFiddQdm3xxE=;
+ b=Cm6wXFHHO77jEPEXPEiab6RsWZqrfeZMbwx7rWjzjOGScZu6CUoTb1XigtjaaLHN0LpZB0TGDMra3AcT+1VkxNYCyu2tICYcdWdeUxWn7bTR17vOCXlXhXGjKQw4m3QyA2044ETjr+ri+jXdXs7LruBfYUPXqW16DIcjr5hvjzuqRxC2oSTItZx70xURYVfb9w3tSCrCTiAZtIP5l7hLwsFkwAC+7085mMrwj74HnifvNS+q081L8YwpDXTONxQMMa7GLaHLUeMzNUYeN/0AxOJW9n9g8PNtptb8kV1m4b9hIMAOGjm7cu43BotH7YTPGWWegvVI8zSMqs+/Sx8pZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gCHyy08YXwWgNjNmbSUARLQu52+baGLYFiddQdm3xxE=;
+ b=G7fbNGTjXIbIElotZ6XAyI6WTfThKdQqHhXykm5I97bdj3Be5MR+IaXv49Q5RvIEibqP3uZIaLP4yxTDOKWxPnSVcVsUyKalWD9+YGGi5jregNNTdChH50taAv5j9mNClnH1e4trBblYGAmCW56F0/j3E2u3ibNXdpRSuiCuPkeKq01sT+tc9+qw3Bu2LhTfHXUz4XrihF4nxnFgLsNAWi9S3HkVOoX1j/lL+v4zgyxcj9Uv7bnKJEqA+ibXPwfijXvXM76jA2mj9pLLjOAbUvSXSOIYU7iB4TqLPX2/IrpHErfpEYbU4oA7f+sfAoo9q9Sy/ZQxc9MQ0nThnfkRdw==
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
+ by TYYP286MB1668.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:fc::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Tue, 31 Oct
+ 2023 13:29:27 +0000
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b%6]) with mapi id 15.20.6933.029; Tue, 31 Oct 2023
+ 13:29:27 +0000
+From: Shiji Yang <yangshiji66@outlook.com>
+To: devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olliver Schinagl <oliver@schinagl.nl>,
+	Shiji Yang <yangshiji66@outlook.com>
+Subject: [PATCH v2 0/2] leds: add more LED color and function definitions
+Date: Tue, 31 Oct 2023 21:28:59 +0800
+Message-ID:
+ <TYAP286MB0315D3014B329FE6B5873F76BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.39.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [UEev8ijVLm5nUeXN64f8mo06QF+dRwVm36dFCE90XXw=]
+X-ClientProxiedBy: TYCPR01CA0068.jpnprd01.prod.outlook.com
+ (2603:1096:405:2::32) To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:404:8041::8)
+X-Microsoft-Original-Message-ID:
+ <20231031132901.11732-1-yangshiji66@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] MT8195 Cherry: Assign MFG vregs for power saving
-Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: matthias.bgg@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20231030132523.86123-1-angelogioacchino.delregno@collabora.com>
- <CAGXv+5FWPZYjsXse58k5HyMijkrKBDYw0k4wpdfGv99ur8=5yg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5FWPZYjsXse58k5HyMijkrKBDYw0k4wpdfGv99ur8=5yg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TYYP286MB1668:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa17beed-2fa6-49b9-c75f-08dbda156782
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	krgxuJvCS5a8/a4AWvOi8KVv3l8uazuzQytnyQcHjJdunXYzKjZBVaZEvFMU6/NgINRGqP++yCIra5H5ZGJ8HUT6UfYCtciYnouv66ga4d53abtQ5AKwM2C8mkaH/2ZGAHnlboftgK14otLDVpp0jeSePDth6exX8u2Zw69o/RouOoNTGodwL2xFehiVQAb3ftRUjn4lu0TIiXa0lHALFJ51jof1dNy6C5ClLcyEOYAJouO7V/uqbNr+8s0KIP2EsbOjynWKgIusMCfq0YSremncJjM/sNgBoWMDn+qX5jLg7c3F9bVVVpAJK7RtHVoGwdShSQPTQzhsFhor9j0kKAg7iVwM1J3R50RdaSXfHhxdSrRsfoGpukBDOoZi5l0aI0se7JOaAkJVxTXyr6TSbOJBqRusZ6vt2cRp1UAT0xyrsSCzQhfv0/L04JtkQJHY8aHNF9G7xFP1Qf7gnZaaiuN53zMR+JNc8GG6tzr6B7LCcmxP7G84Ox0+WtrhbMBApsZRbNA0vP9mQTD1Kd3uyTlWHsc//QWp0rZSq4ECvRJPJPl/o1I5levFJfqSqn3fXe7n35t/yftQwZYWhQPpEsT+hNEtOnIIusiEcD4YtKB2oJdTFrfzBHYTYlIRro4c
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?5UGcbpCltnxlDnEHaKARlSEKAj5xg3clgDPb3Q4WfXO9mxxsz87krtAHWW1t?=
+ =?us-ascii?Q?C9/tKtA6vXpEAwP7aYfPWBt82htjC8h45clTlr5F9xeHVsxiInnYBVY2dVmA?=
+ =?us-ascii?Q?BYInhQ4OzYX4ZcZ1xOM2WRFe+LMsArkpWaPYetWu3vjUYwpFi7zwGEZz+lxv?=
+ =?us-ascii?Q?soOdqVMeVeuZ06po95Qxdgb82btXVxddEkeP785KL0llzZT3nWh8GDgMSkgs?=
+ =?us-ascii?Q?nVMyQXYuFnoOmTTYTwC+8AEgn7qFy2FuPhtECp1rdxSsr28bjoxoo3nIY4Gx?=
+ =?us-ascii?Q?CA9+modcW4S7F1wKUnNlp9kkTD1Wag12svXWtXW37O/zjg3mBzdWbJBnjE2w?=
+ =?us-ascii?Q?miB65FzR/818O3osNDwHBgq5nCTurPRUoFB9R+GjxtJOrNoXjejOHl3HCCHj?=
+ =?us-ascii?Q?2E8e9DOKcZsN4/B2MX5QpUQr9ZBlzBofFIyFtiqIPwlv1g5EOqn1AzX7Mo/N?=
+ =?us-ascii?Q?pZm/R9fZgm3TbYjAuWiWejbMeK6JbF8ntgYsobbtVrlDuuxfFpNP0sNhV+Nl?=
+ =?us-ascii?Q?goL8p92YcN6MEszEjBZRih0dk+puRU3T3Aam14SbbCN8EJPLrTxq57A7sA5e?=
+ =?us-ascii?Q?0of44dBPHPKpuDHaaMUXJ+H2D5G5mS0WN9ZELDbB8mHiPoGeq9jl3W0m4NVq?=
+ =?us-ascii?Q?PS0uXe5WBBPkKjAWabcjvWTNFWR7EgVhD3j8//F8X3+HIVQo10bogwTl6FaF?=
+ =?us-ascii?Q?7jHIS272SFDOMrLPbZnJk6MDuSn6oLtr8eRbN6VyanPKVQija8713hJ77qbL?=
+ =?us-ascii?Q?DIV1z07x+Auw+bwwmTvPT6JNYYRe+08kWQ66FyteACba5KFkgXsQ+z/5Bz1n?=
+ =?us-ascii?Q?BjlkQ7NMxWWACij7svuMFnHBNsnTtfzNPtLv5jtxbdeiwQVVQ2lWCL52gNNs?=
+ =?us-ascii?Q?MyKhAQfWPZxWdpv6S3jyBatqiY1xL3lwTv+oFs/YTyR8s8U/l9MGdAje/ekG?=
+ =?us-ascii?Q?+cDiYoGyLQlzGMR6nA8Ae4nOAGjzWa4JvP6/FAOWFeK937TOub8UfKEQpax2?=
+ =?us-ascii?Q?3c3C63vVA95zv8y0o3oSffmJZ4Xh4ly/IEbIDD2xc55q2Q/vZIaOeL7EQpvA?=
+ =?us-ascii?Q?q/KUcLWhwD9DQDOLs8raPLtTF/4LZVUe0GABnQB1JvgrYyvH8OHJhHWtnTei?=
+ =?us-ascii?Q?BTnGO/OD6hKBHOGDCX75+ZH4xulZi8HoJ1xR3KuM5/i0uQx93OSgwjojpYNB?=
+ =?us-ascii?Q?hsZzlHlCemah28FGF7EV17+JSqcbGp0t1QoR5fVSGBkVijIE0vTNJWEnBrs?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa17beed-2fa6-49b9-c75f-08dbda156782
+X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2023 13:29:27.2769
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYP286MB1668
 
-Il 31/10/23 10:19, Chen-Yu Tsai ha scritto:
-> On Mon, Oct 30, 2023 at 9:25 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> This series assigns the right regulators to MFG0 and MFG1, respectively
->> VGPU (GPU Core) and VSRAM_OTHERS (GPU SRAM), and removes the property
->> regulator-always-on from both.
->>
->> This allows to save power both during runtime suspend and during system
->> sleep; specifically because:
->>   1. The GPU SRAM regulator is switched off during runtime suspend
->>   2. The GPU Core regulator is switched off during system sleep
->>
->> Of course, in order for those power saving actions to actually take
->> place, it is required to also have the code in [1].
->> Anyway, even without series [1], this will not introduce any unstability
->> as the Vgpu regulator will simply not ever get turned off.
->>
->> [1]: https://lore.kernel.org/r/20231030132257.85379-1-angelogioacchino.delregno@collabora.com
->>
->> AngeloGioacchino Del Regno (2):
->>    arm64: dts: mediatek: mt8195-cherry: Add MFG0 domain supply
->>    arm64: dts: mediatek: mt8195-cherry: Assign sram supply to MFG1 pd
-> 
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-> 
-> on Tomato without the power saving patches. Regulators are correctly
-> requested and I can see the SRAM regulator get turned on and off with
-> GPU usage.
+Hi!
 
-Yes, I confirm that the sram vreg going on/off is expected even without the power
-saving patches (as the power domain refcount decreases during runtime suspend).
+This series patches add the missing LED color definitions and
+introduces two widely used LED functions "internet" and "rssi".
 
-Thanks!
+Regards,
+Shiji Yang
 
-Angelo
+
+Changes in v2:
+* Remove the LED name sorting patch as it changes the ABI
+
+
+Shiji Yang (2):
+  leds: core: add missing LED color strings
+  dt-bindings: leds: add "internet" and "rssi" function definitions
+
+ drivers/leds/led-core.c           | 5 +++++
+ include/dt-bindings/leds/common.h | 2 ++
+ 2 files changed, 7 insertions(+)
+
+-- 
+2.39.2
 
 
