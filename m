@@ -1,170 +1,147 @@
-Return-Path: <devicetree+bounces-13128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825A57DCA36
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:53:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0211B7DCA4B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:58:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CC1C28133F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:53:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D1AB1C20BE9
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10377182AF;
-	Tue, 31 Oct 2023 09:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870E0182DA;
+	Tue, 31 Oct 2023 09:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JgjwshRE"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="fNmbxvMl";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="M0nMIz5O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6215F10A33
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:53:47 +0000 (UTC)
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42FE91B4;
-	Tue, 31 Oct 2023 02:53:36 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 772AE1BF206;
-	Tue, 31 Oct 2023 09:53:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698746012;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+ChJmbwu9VOnS+POuHp63gRk5wbYb/ywo5ZD9wSaeEs=;
-	b=JgjwshREE8Ep4u5oBUOhPDbbNTHxfx0Z0WE37PioXBaiJ9B/irqONtAXNFueoA0H8LSIk7
-	W/QZH9YcMhG/mvGUa8ZNPCKR5HWzorw/ASJOBLiNw0jXToKCR9xKli6ZWK9T0cruBVWooh
-	OCMN/24k2VgD0AKzf3Cm0O+mjGxRYzoaXYwftBXcOesV+CPwWG6wy+2Rxqqjhv0+txGObD
-	E0Y4ZWcNNrHRROiMom3iaKwC85TkbRTsLmTRIEJWcf6iXDHZ3fEVtZ4HOTl4OsKY4SYfnv
-	IQwB+IbERhT2lQRIK2SxM1Nc+22WSPOmoDpP7l5oXPJffTEgtkIyWVZyLwKy3w==
-Date: Tue, 31 Oct 2023 10:53:30 +0100
-From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
-	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, michael.riesch@wolfvision.net
-Subject: Re: [PATCH v9 2/3] media: rockchip: Add a driver for Rockchip's
- camera interface
-Message-ID: <ZUDOmgmkIifE2w87@aptenodytes>
-References: <cover.1698666612.git.mehdi.djait@bootlin.com>
- <f7367726eb077d43446c83591ecbf9acbc77ef5f.1698666612.git.mehdi.djait@bootlin.com>
- <ad346052-ec62-4d68-903e-fccd7ad989bd@wanadoo.fr>
- <ZUDKAB+zQYS9aLpB@pc-70.home>
- <79231ec3-8da1-4c73-8f5b-efa445e6c35d@wanadoo.fr>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93931182A4
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:58:44 +0000 (UTC)
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D03D8;
+	Tue, 31 Oct 2023 02:58:43 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 85EE93200A30;
+	Tue, 31 Oct 2023 05:58:41 -0400 (EDT)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Tue, 31 Oct 2023 05:58:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm1; t=
+	1698746321; x=1698832721; bh=hGHPH0otSQhb+ezuJFb5cOt3lM/d83wh5j3
+	/Ve+BNBg=; b=fNmbxvMlV55NZdolsFP5rPiCIgl3z9Odq+LczgeiP88OIpZjoo4
+	K6ASsJhKOYnKYfbBXk66lAIEEpQsiNbC7dX7jE9CecC1NvEiNHbawsAkIBvdhDn7
+	ArT6/ep/q07FIM7nUBHEkA+0cLKNfh8hDaim4bRexdTYNmQw2d6dJ9gD8SpNAfsK
+	kxCuwgPD833Sj/vOC18tTdgCE0JSqoCur1CAY7IGlCWSz/umsBEuTn2wGW6Mpl6p
+	/QE28tMkQEKNBcL6WDln08Ig1YNdNmiuOqCBc6uwUQiOJBSaPJosJEyC8iCG2WSD
+	JoOJZAjZAwoTZ2bn7YhfxNy2qkz9TJLtQig==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1698746321; x=1698832721; bh=hGHPH0otSQhb+ezuJFb5cOt3lM/d83wh5j3
+	/Ve+BNBg=; b=M0nMIz5OBIz6py8D1Q+FhV08TDzEuLzN3EnFN4TtYWf34IoioQf
+	bBX6dLiBxA+ed3muDRoFrMH89zBoaWtr73lxsYRCWQXi8zad6vkWn12U81SXQATI
+	3wJBQ979KT4h3rWMuyWQZBrqwNup/3InH52qNxNghPZ0OuYDwqIOUiQTHl7IyX1b
+	2okJjqqqY5yPdyZkv1SqqYHjyePuuWoA5dnu7hcTY8cAyDaBHlEhmtSfCopK5BaE
+	hzpCHsfBceF83o8nQasdYHeN7bH8ivuH/GKQr0vJ7nFku9KYDF6sh/ExcJb0GKBa
+	8h2zfV1F5KjlrSqIp083PBk76w5BqKsYkUw==
+X-ME-Sender: <xms:z89AZRan5mhkNFr0oE97S49XgmLqrk9K-pqu2fcTJB1dVvQxNfZjdA>
+    <xme:z89AZYYEkUg_eOs-ONb7B00c-T-Ncd-JT_RTwzSbo6tIwnRRM7q9BL-t_lEIP7wct
+    xRWdxMCJbVOYnRnvJk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedruddtvddgtdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpedufeegfeetudeghefftdehfefgveffleefgfehhfej
+    ueegveethfduuddvieehgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:z89AZT-pt4ajXvIucm5TTh-V5z2_iSj_O0c1_ybx1j1UTE5pgtoTHQ>
+    <xmx:z89AZfoVOUuspXOJ5tuxGE-yo96_0SZ6jWNPoTBgK2xuOpjUb0TyRQ>
+    <xmx:z89AZcq7yJuHCW29WDkcWogiK4Fxt9CGDlV2s_KeeZpO0cyXtc8EMw>
+    <xmx:0c9AZZ6VoWbK1NBjvwRbHms9EOjMXb7V7h7wPrPHhMKUGlTBu8Yu7w>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 3082C36A0075; Tue, 31 Oct 2023 05:58:39 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1048-g9229b632c5-fm-20231019.001-g9229b632
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dYFHt+x1tKrOKW1+"
-Content-Disposition: inline
-In-Reply-To: <79231ec3-8da1-4c73-8f5b-efa445e6c35d@wanadoo.fr>
-X-GND-Sasl: paul.kocialkowski@bootlin.com
-
-
---dYFHt+x1tKrOKW1+
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Message-Id: <83e32f3a-75c4-4a72-a523-ecef501f9605@app.fastmail.com>
+In-Reply-To: 
+ <fd5efc8a21b94e044e4e225255655fc92beb0c63.1698717154.git.zhoubinbin@loongson.cn>
+References: <cover.1698717154.git.zhoubinbin@loongson.cn>
+ <fd5efc8a21b94e044e4e225255655fc92beb0c63.1698717154.git.zhoubinbin@loongson.cn>
+Date: Tue, 31 Oct 2023 09:58:18 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Binbin Zhou" <zhoubinbin@loongson.cn>,
+ "Binbin Zhou" <zhoubb.aaron@gmail.com>,
+ "Huacai Chen" <chenhuacai@loongson.cn>,
+ "Thomas Gleixner" <tglx@linutronix.de>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+Cc: "Huacai Chen" <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ devicetree@vger.kernel.org,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Jianmin Lv" <lvjianmin@loongson.cn>, "WANG Xuerui" <git@xen0n.name>,
+ loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: interrupt-controller: loongson,liointc: Fix
+ dtbs_check warning for reg-names
+Content-Type: text/plain;charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
 
-On Tue 31 Oct 23, 10:46, Christophe JAILLET wrote:
-> Le 31/10/2023 =C3=A0 10:33, Mehdi Djait a =C3=A9crit=C2=A0:
-> > Hello Christophe,
-> >=20
-> > On Mon, Oct 30, 2023 at 01:47:17PM +0100, Christophe JAILLET wrote:
-> > > > +	/* Create & register platform subdev. */
-> > > > +	ret =3D cif_register_stream_vdev(cif_dev);
-> > > > +	if (ret < 0)
-> > > > +		goto err_unreg_media_dev;
-> > > > +
-> > > > +	ret =3D cif_subdev_notifier(cif_dev);
-> > > > +	if (ret < 0) {
-> > > > +		v4l2_err(&cif_dev->v4l2_dev,
-> > > > +			 "Failed to register subdev notifier(%d)\n", ret);
-> > > > +		cif_unregister_stream_vdev(cif_dev);
-> > > > +		goto err_unreg_media_dev;
-> > >=20
-> > > Should there be another label with cif_unregister_stream_vdev(cif_dev=
-); if
-> > > an error occurs here?
-> > >=20
-> > > CJ
-> >=20
-> > cif_subdev_notifier() is the last function call in the probe with error
-> > handling. So it will undo the last successful register:
-> > cif_register_stream_vdev and use the goto to unregister the rest.
->=20
-> Ah, I didn't see the cif_unregister_stream_vdev() call here.
-> Sorry for the noise.
->=20
-> >=20
-> > I can add a label err_unreg_stream_vdev but it will be only used in the
-> > error handling of cif_subdev_notifier() and I don't see the benefit.
->=20
-> The main benefit is to be more consistent in the way the error path is
-> written, and to be more future proof.
 
-Indeed the fact that there is only a single user of the label is not a reas=
-on
-to avoid the label. As soon as you need to use labels/gotos for error handl=
-ing,
-you should do it for all steps involved and avoid mixing unregistration in =
-the
-error-checking condition and using a previous label.
+=E5=9C=A82023=E5=B9=B410=E6=9C=8831=E6=97=A5=E5=8D=81=E6=9C=88 =E4=B8=8A=
+=E5=8D=882:36=EF=BC=8CBinbin Zhou=E5=86=99=E9=81=93=EF=BC=9A
+> As we know, the Loongson-2K0500 is a single-core CPU, and the
+> core1-related register (isr1) does not exist, and we need a separate
+> declaration.
+>
+> This fixes dtbs_check warning:
+>
+> DTC_CHK arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
+> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb:=20
+> interrupt-controller@1fe11400: reg-names: ['main', 'isr0'] is too short
+>         From schema:=20
+> Documentation/devicetree/bindings/interrupt-controller/loongson,lioint=
+c.yaml
+> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb:=20
+> interrupt-controller@1fe11400: Unevaluated properties are not allowed=20
+> ('reg-names' was unexpected)
+>         From schema:=20
+> Documentation/devicetree/bindings/interrupt-controller/loongson,lioint=
+c.yaml
+> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb:=20
+> interrupt-controller@1fe11400: reg: [[0, 534844416, 0, 64], [0,=20
+> 534843456, 0, 8]] is too short
+>         From schema:=20
+> Documentation/devicetree/bindings/interrupt-controller/loongson,lioint=
+c.yaml
+> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb:=20
+> interrupt-controller@1fe11440: reg-names: ['main', 'isr0'] is too short
+>         From schema:=20
+> Documentation/devicetree/bindings/interrupt-controller/loongson,lioint=
+c.yaml
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 
-Cheers,
-
-Paul
-
->=20
-> CJ
-> >=20
-> > --
-> > Kind Regards
-> > Mehdi Djait
-> >=20
-> > > > +	}
-> > > > +
-> > > > +	cif_set_default_format(cif_dev);
-> > > > +	pm_runtime_enable(&pdev->dev);
-> > > > +
-> > > > +	return 0;
-> > > > +
-> > > > +err_unreg_media_dev:
-> > > > +	media_device_unregister(&cif_dev->media_dev);
-> > > > +err_unreg_v4l2_dev:
-> > > > +	v4l2_device_unregister(&cif_dev->v4l2_dev);
-> > > > +	return ret;
-> > > > +}
-> >=20
->=20
-
+[...]
 --=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---dYFHt+x1tKrOKW1+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVAzpoACgkQ3cLmz3+f
-v9Hw3Af+I1RiSM4LM+oLdDR2amN3CH8ODW0RSGGF7ynMWEsTPk0rceP6WGxD96ie
-BnwJAudOqNLFhVdgTib8wfZnJqljpQG+0SeVpprlAHI7GooAZ0i3YywzfbrMhUnO
-rRuCvdpl3aLAJ4kx05AMm0myRhNr8J69DjtADmQmaWWhXka1cWm6ZCZQLuBzHcv3
-29AzkE7jXcFPmtDsJO/DbGI6b5/tYBcoOPYSJjiOYD3EI/fcoINv8DGRQY66vVaL
-wbZpV72MdselOHkaGvnD1VCYVgvJ8ARfOSjpiwY6L59bM7+1aS4opnSEY3xf9nmS
-YiARdyCLIQs3aHbuFCQVyUAMzs2doQ==
-=/LT8
------END PGP SIGNATURE-----
-
---dYFHt+x1tKrOKW1+--
+- Jiaxun
 
