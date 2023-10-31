@@ -1,245 +1,133 @@
-Return-Path: <devicetree+bounces-13182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E610F7DCC96
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:08:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFDDD7DCD1A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:41:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E0B1B20E2C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:08:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E56CB1C20B90
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7CE1DA20;
-	Tue, 31 Oct 2023 12:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69D4EDA;
+	Tue, 31 Oct 2023 12:41:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Na2R3VBk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U4pmJS/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908B31D553
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 12:08:17 +0000 (UTC)
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3914A1AA
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 05:08:15 -0700 (PDT)
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20231031120812euoutp01d45621f1a66b9bbc645508114e3fd031~TL9jeRLVa2784327843euoutp01Q
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 12:08:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20231031120812euoutp01d45621f1a66b9bbc645508114e3fd031~TL9jeRLVa2784327843euoutp01Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1698754092;
-	bh=7R+We3/ZotRkN0zNzo4bcBqBdOETuS0p31VdG/ZiSD4=;
-	h=Date:Subject:To:From:Cc:In-Reply-To:References:From;
-	b=Na2R3VBkKye01omh0MTd2uw1FcDuqp/ltJLwgs0QMyeKAHSe/U52ExY/0sqI8R22I
-	 oG2jk+C4+/K9s3b0ZABZzqT/nY8c77lf5RBYhrrRbevY7LgsKh9kS8vVrqRm9fU+4Z
-	 +KcyF8o2I0sDpWeoz0z3aAjVRgdakAhiyr+p3Qww=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20231031120812eucas1p2925bf2ac67e8e654accd6e4260b8119f~TL9jQLEJr2837828378eucas1p2d;
-	Tue, 31 Oct 2023 12:08:12 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id ED.B1.52736.C2EE0456; Tue, 31
-	Oct 2023 12:08:12 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20231031120812eucas1p23817b869678ec45bd83f9e7f21ff92a7~TL9i6Bxxq2838328383eucas1p2K;
-	Tue, 31 Oct 2023 12:08:12 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231031120812eusmtrp2de2419fa7c68219ec49cf891b251225b~TL9i5YOh90258902589eusmtrp2s;
-	Tue, 31 Oct 2023 12:08:12 +0000 (GMT)
-X-AuditID: cbfec7f5-ba1ff7000000ce00-54-6540ee2c18b8
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id C9.4E.25043.C2EE0456; Tue, 31
-	Oct 2023 12:08:12 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20231031120811eusmtip13c34f44540513f450b5edf34a31d673a~TL9iHyOlN2503025030eusmtip1n;
-	Tue, 31 Oct 2023 12:08:11 +0000 (GMT)
-Message-ID: <7a71e348-f892-4fd4-8857-b72f35ab5134@samsung.com>
-Date: Tue, 31 Oct 2023 13:08:10 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB386A57
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 12:41:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6B07C433C7;
+	Tue, 31 Oct 2023 12:41:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698756109;
+	bh=zWSLV7OqTO7fjuZ1oF+Fq43mMRHT9MLHeYnDIzIn1ag=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U4pmJS/F2FQlIrYRIY4eD0PK3/c1vIp8rPVgaBVutzEfL+WdmPYp46dxtwdg6QGSf
+	 hrva00UzYQeAnEyQznB2v+H9b3rtcC2sJ7TMN1huk3iuIn9gs0l8Y82j/IHQRvMyZ3
+	 vMKkq/BCE4k+jBiBmuITYQvYKGWUJnibTy93NIDt6ZPkzixB/zyjZ5lAAkhcyuXmz2
+	 BFs8d2Y6+Hrdp50LHG61aUeSb2dy5zXqn4klqGzxyaJRtqpw2P3nY87oDSFJcpFe/5
+	 2K1NUm4Xqamre0Z4TPPzer7ZYANaWrNtWsYjQrvDZ8B53poSmCQTNQEfBHKKJHhcM8
+	 k/xJon0UObhXg==
+Date: Tue, 31 Oct 2023 12:41:43 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 5/6] regulator: bcm590xx: Add support for BCM59054
+Message-ID: <53aae3a6-9e6f-4156-b807-082d11d858ed@sirena.org.uk>
+References: <20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com>
+ <20231030-bcm59054-v2-5-5fa4011aa5ba@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: exynos-mixer 14450000.mixer: [drm:exynos_drm_register_dma]
- *ERROR* Device 14450000.mixer lacks support for IOMMU
-Content-Language: en-US
-To: Mario Marietto <marietto2008@gmail.com>
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, Krzysztof Kozlowski
-	<krzysztof.kozlowski@canonical.com>, Alim Akhtar <alim.akhtar@samsung.com>,
-	Sylwester Nawrocki <snawrocki@kernel.org>
-In-Reply-To: <CA+1FSign611=47=xLRucFhDjvs7A_TeFE9b8qO63WXDU8Pnkjg@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrHKsWRmVeSWpSXmKPExsWy7djP87o67xxSDR6/ULN4MG8bm8X8I+dY
-	La58fc9msfHtDyaLTY+vsVpc3jWHzWLG+X1MFoemPGezaH/6ktmB02NWQy+bx85Zd9k9Nq3q
-	ZPO4332cyWPzknqPvi2rGD0+b5ILYI/isklJzcksSy3St0vgyth7byV7QY9RRcuSJtYGxh0a
-	XYycHBICJhK3zyxn6mLk4hASWMEo0dv/gx3C+cIose1lCytIlZDAZ0aJNTMEuhg5wDo+HxCF
-	CC9nlNhxyxqi/iOjxMXN5xlBErwCdhKH905mAbFZBFQlvk68wwYRF5Q4OfMJWFxUQF7i/q0Z
-	7CAzhQXqJVrbeEHCzALiEreezGcCsUUEtCXW7ZjPDmKzCRhKdL3tYgPZxSywk0niTPMMsDmc
-	AoESa668Y4RolpfY/nYOM0iRhMB/Dolt9zqYII52kbg8TQTiY2GJV8e3sEPYMhL/d85ngqhv
-	Z5RY8Ps+lDOBUaLh+S1GiCpriTvnfrGBDGIW0JRYv0sfIuwosfrkR0aI+XwSN94KQtzAJzFp
-	23RmiDCvREebEES1msSs4+vg1h68cIl5AqPSLKRQmYXk/VlIvpmFsHcBI8sqRvHU0uLc9NRi
-	47zUcr3ixNzi0rx0veT83E2MwCR1+t/xrzsYV7z6qHeIkYmD8RCjBAezkgjvYVOHVCHelMTK
-	qtSi/Pii0pzU4kOM0hwsSuK8qinyqUIC6YklqdmpqQWpRTBZJg5OqQamyZFHP/06ero0rs3i
-	wOuW75yfpyTM1JwzbVm6tFJf+bKiDNavoeGebCGOlUqmBwplo+ctk5n589inWbMP7Kyz6V9s
-	Z6Ds7C+jMmuK0N/mUw/yJXPfub3z/jVtn4/RxyX9Xw8sXcZse3na69dHpT5eiNMy+BS39Ms8
-	jRsWvjN2NNbGr/A/u8juh5PmsbSvT/cXJJ1XahCP8vEpy76Uwi+70bp5p65Kppnaun2XBZz/
-	recIup+k+2r+gY5FLRMSrDd5OVhITXtwO5I13mr5kUeBCld4J717qJ2rvET4t/WL8oqgdf+7
-	fK8wHdUSTFu0b6/Kzk/nfMK8vSS2Pf62poY/vH/ZHxvRJye6qjMfP/7wUImlOCPRUIu5qDgR
-	AKpk6PTBAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMIsWRmVeSWpSXmKPExsVy+t/xu7o67xxSDX7M4rJ4MG8bm8X8I+dY
-	La58fc9msfHtDyaLTY+vsVpc3jWHzWLG+X1MFoemPGezaH/6ktmB02NWQy+bx85Zd9k9Nq3q
-	ZPO4332cyWPzknqPvi2rGD0+b5ILYI/SsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaP
-	tTIyVdK3s0lJzcksSy3St0vQy9h7byV7QY9RRcuSJtYGxh0aXYwcHBICJhKfD4h2MXJxCAks
-	ZZQ4sGUWUxcjJ1BcRuLktAZWCFtY4s+1LjaIoveMEntXbWMHSfAK2Ekc3juZBcRmEVCV+Drx
-	DhtEXFDi5MwnYHFRAXmJ+7dmsIMsExaol2ht4wUJMwuIS9x6Mh9sl4iAtsS6HfPZIeYvYZS4
-	sfEw2Bw2AUOJrrcQi5kFdjNJbPk/CewiToFAiTVX3jFCTDKT6NraBWXLS2x/O4d5AqPQLCR3
-	zEKycBaSlllIWhYwsqxiFEktLc5Nzy020itOzC0uzUvXS87P3cQIjM1tx35u2cG48tVHvUOM
-	TByMhxglOJiVRHgPmzqkCvGmJFZWpRblxxeV5qQWH2I0BQbGRGYp0eR8YHLIK4k3NDMwNTQx
-	szQwtTQzVhLn9SzoSBQSSE8sSc1OTS1ILYLpY+LglGpg6jTxvi0yvfD172M313r7Gx8QVDD8
-	8+pNuGmeW8f089e6rs1+zesp6Drf49Su091XAyctknvcwMjbwX8vVy01+5v2udJvnppcx85P
-	EbgzscZ3V8JO5dzcxap/Xpw4P+/ljuentPkjVA3+5kZcPaVge9CT8Wd67/Fvr1SLy2Ztr3x6
-	dvbirWev2sY+EUnzvXwkb4GX3kLG0m/vXk0ztPt8SOfk2mTjW5ezLOSzmtWvS08S+XE6cPJB
-	Hvf61xZndshy9kz7N19v7gXdShEh9Q3Fa7RdjpXJHPM0Ofji2JLsGpYenQkCt/0sF01pfmp5
-	ahPXlFlzrhc+v/pLzUZhn+OTRpXIif3FUpP+/zic8P2n5AslluKMREMt5qLiRADGmobaVgMA
-	AA==
-X-CMS-MailID: 20231031120812eucas1p23817b869678ec45bd83f9e7f21ff92a7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20231030230413eucas1p1c061adf636a7e8a58270a00725e1d0a2
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20231030230413eucas1p1c061adf636a7e8a58270a00725e1d0a2
-References: <CGME20231030230413eucas1p1c061adf636a7e8a58270a00725e1d0a2@eucas1p1.samsung.com>
-	<CA+1FSign611=47=xLRucFhDjvs7A_TeFE9b8qO63WXDU8Pnkjg@mail.gmail.com>
-
-Hi,
-
-On 31.10.2023 00:03, Mario Marietto wrote:
-> We are a team of linux enthusiasts who are trying to boot Xen on a 
-> Samsung XE303C12 Chromebook aka "snow" following the suggestions in 
-> the slide show presentation here: 
-> https://www.slideshare.net/xen_com_mgr/xpds16-porting-xen-on-arm-to-a-new-soc-julien-grall-arm 
-> This device uses an exynos5250 SOC dual core 1.7 GHz with 2 MB RAM, it 
-> is a Samsung armv7 chip with virtualization extensions. In particular, 
-> we have it working fairly well both on the bare metal with a recent 
-> 6.1.59 Linux LTS kernel and also with a recent 5.4.257 LTS kernel with 
-> KVM, the older LTS kernel version is used to test KVM because support 
-> for KVM on arm v7 was removed from Linux around kernel version 5.7. So 
-> we know we have the hypervisor mode enabled because we were able to 
-> use it with KVM. For Xen, we are using the latest Debian build of Xen 
-> 4.17 for the Debian armhf architecture: (XEN) Xen version 4.17.2-pre 
-> (Debian 4.17.1+2-gb773c48e36-1) 
-> (pkg-xen-devel@xxxxxxxxxxxxxxxxxxxxxxx) (arm-linux-gnueabihf-gcc 
-> (Debian 12.2.0-14) 12.2.0) debug=n Thu May 18 19:26:30 UTC 2023 The 
-> Linux kernel is a custom build that adds the Xen config kernel options 
-> (CONFIG_XEN_DOM0, etc) on top of a kernel that works well on the same 
-> Chromebook model on the bare metal. I can provide the config options 
-> of the kernel that was used if that is helpful. Our method of booting 
-> is to have u-boot boot the Xen hypervisor and load the device tree 
-> after adding the dom0 to the otherwise unaltered device tree from the 
-> Linux kernel using u-boot fdt commands to add a /chosen node, as 
-> described on the Xen wiki and in the pages linked from there. We have 
-> also tried adding and loading an initrd.img using the device tree 
-> /chosen node but that made no difference in our tests. We actually 
-> have the Linux LTS kernel version 6.1.59 working as dom0 with Xen 
-> using the same version of u-boot that we used for KVM, but with a big 
-> problem. The problem we see is that when booting the 6.1.59 kernel 
-> version as dom0 with Xen, the screen is totally dark and the only way 
-> to access the system is remotely through ssh. Logs indicate most 
-> everything else is working, such as the wifi card so we can access it 
-> remotely via ssh and a USB optical mouse lights up when connected so 
-> USB is also working. Obviously, the disk is also working. The 
-> Chromebook is configured to boot from the device's SD card slot by 
-> turning on Chrome OS developer mode options to enable booting from the 
-> SD card slot. The mystery is that when booting the exact same 6.1.59 
-> kernel on the bare metal instead of booting it as dom0 on Xen, it 
-> boots up with full access to the screen and we can interact with the 
-> system using the X.org windows system. But booting as dom0 with Xen, 
-> the screen is totally dark and the only access we have to the system 
-> is through the network via ssh. Also, when booting the 5.4.257 kernel 
-> with KVM in hypervisor mode, the screen works and we can interact with 
-> the system through the X.org windows system. Exploring the log file,we 
-> have seen the errors below :
->
-> With Xen (or in bare metal):
->
-> devuan-bunsen kernel: [drm] Exynos DRM: using 14400000.fimd device for 
-> DMA mapping operations
-> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14400000.fimd (ops 
-> 0xc0d96354)
-> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14450000.mixer (ops 
-> 0xc0d97554)
-> devuan-bunsen kernel: exynos-drm exynos-drm: bound 
-> 145b0000.dp-controller (ops 0xc0d97278)
-> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14530000.hdmi (ops 
-> 0xc0d97bd0)
-> ...
-> devuan-bunsen kernel: Console: switching to colour frame buffer device 
-> 170x48
-> devuan-bunsen kernel: exynos-drm exynos-drm: [drm] fb0: exynosdrmfb 
-> frame buffer device
-> devuan-bunsen kernel: [drm] Initialized exynos 1.1.0 20180330 for 
-> exynos-drm on minor 0
->
-> In this case,the kernel is able to use the exynos-drm kernel to start 
-> the fb0 device. But with Xen we get this error with exynos-drm:
->
-> devuan-bunsen kernel: [drm] Exynos DRM: using 14400000.fimd device for 
-> DMA mapping operations
-> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14400000.fimd (ops 
-> 0xc0d96354)
-> devuan-bunsen kernel: exynos-mixer 14450000.mixer: 
-> [drm:exynos_drm_register_dma] *ERROR* Device 14450000.mixer lacks 
-> support for IOMMU
-> devuan-bunsen kernel: exynos-drm exynos-drm: failed to bind 
-> 14450000.mixer (ops 0xc0d97554): -22
-> devuan-bunsen kernel: exynos-drm exynos-drm: adev bind failed: -22
-> devuan-bunsen kernel: exynos-dp: probe of 145b0000.dp-controller 
-> failed with error -22
->
-> I'm trying to find for a solution and I've googled a little bit and I 
-> found this web site : 
-> https://lore.kernel.org/linux-arm-kernel/20220208171823.226211-8-krzysztof.kozlowski@canonical.com/ 
-> with your email address and I tried to ask for some help for fixing 
-> the bug. Any ideas why booting the same Linux kernel that results in a 
-> working X.org display on the bare metal instead as dom0 on Xen would 
-> cause the display to remain dark, but most other basic functions would 
-> work, such as network, disk, and USB ? thanks.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="UpRfkmziJnKTBjHv"
+Content-Disposition: inline
+In-Reply-To: <20231030-bcm59054-v2-5-5fa4011aa5ba@gmail.com>
+X-Cookie: Is it clean in other dimensions?
 
 
-Thanks for the detailed description! Good to hear that those boards are 
-still being used for various projects. I also have Snow Chromebook and 
-use it for daily tests of linux-next branch.
+--UpRfkmziJnKTBjHv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Frankly speaking I have no idea what might happen wrong. There have been 
-some changes recently in the Exynos IOMMU driver related to 
-initialization, maybe your changes related to Xen enabling changed 
-somehow the order of device initialization during boot. I assume that 
-the device-tree you use for the bare metal run and Xen enabled run 
-doesn't differ in the areas describing the hardware blocks.
+On Mon, Oct 30, 2023 at 08:41:47PM +0100, Artur Weber wrote:
+> The BCM59054 is fairly similar in terms of regulators to the already
+> supported BCM59056, as included in the BCM590XX driver.
 
-Please check if cherry-picking the commit 
-https://github.com/torvalds/linux/commit/bbc4d205d93f52ee18dfa7858d51489c0506547f 
-to your v6.1.59 based kernel helps anyhow.
+> Add support for the BCM59054's regulators to the BCM590XX driver.
+> Switch from using defines for common checks to using functions which
+> return different values depending on the identified MFD model.
 
-If not, then as a temporary workaround please disable 
-CONFIG_DRM_EXYNOS_MIXER and CONFIG_DRM_EXYNOS_HDMI in your kernel config 
-and check what will happen (You will lose the HDMI output, but maybe 
-this won't a big issue).
+> While we're at it, fix a bug where the enable/vsel register
+> offsets for GPLDO and LDO regulators were calculated incorrectly.
 
+> Also, change the regulator enable bitmask to cover the entire PMMODE
+> register.
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+As is very clear from the commit log this is a whole bunch of changes
+which really should be split out into multiple patches.  There's the
+bug fix, there's the multiple refactorings to support the new device and
+the new device itself.  As covered in submitting-patches.rst you should
+do one change per patch, this makes things much easier to follow.
 
+> +	if (pmu->mfd->device_type == BCM59054_TYPE) {
+> +		info = bcm59054_regs;
+> +		n_regulators = BCM59054_NUM_REGS;
+> +	} else if (pmu->mfd->device_type == BCM59056_TYPE) {
+> +		info = bcm59056_regs;
+> +		n_regulators = BCM59056_NUM_REGS;
+> +	}
+
+There's no error handling here if there's an unknown type.
+
+> -		if ((BCM590XX_REG_IS_LDO(i)) || (BCM590XX_REG_IS_GPLDO(i))) {
+> +		if (bcm590xx_reg_is_ldo(pmu, i) || \
+> +				bcm590xx_reg_is_gpldo(pmu, i)) {
+>  			pmu->desc[i].ops = &bcm590xx_ops_ldo;
+>  			pmu->desc[i].vsel_mask = BCM590XX_LDO_VSEL_MASK;
+> -		} else if (BCM590XX_REG_IS_VBUS(i))
+> -			pmu->desc[i].ops = &bcm590xx_ops_vbus;
+> -		else {
+> +		} else if (bcm590xx_reg_is_static(pmu, i)) {
+> +			pmu->desc[i].ops = &bcm590xx_ops_static;
+> +		} else {
+>  			pmu->desc[i].ops = &bcm590xx_ops_dcdc;
+>  			pmu->desc[i].vsel_mask = BCM590XX_SR_VSEL_MASK;
+>  		}
+
+It seems like everything would be a lot simpler and clearer to just have
+tables of regulators per device rather than have all these conditionals.
+
+--UpRfkmziJnKTBjHv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVA9gcACgkQJNaLcl1U
+h9AgHAf/fXAIYfkZOEjidR1JA8aj8T+gmmVW38F5iafSQpIYGKnkq58f+AZTAJa8
+apU9HeN3u8zGGeKDwEbVR77SOBZFeBiVrWOcuPgV2iHt6rjcZarVJo6xdt/SNMlu
+rz35kfi3w8R27zzgT3q5V/7WWpfE0KxJwj7E+DWqVO7rKEwVtxEh0APHDy7WRVg6
+6KZxHMZj3/4iTfA1j4Q+i6qz5aMhy0GRZrBpke3zocc5qbZlccFOVkXIWNRgKm0I
+l/NSor7QAq7jg5YIEF74ITxsAjFYaIKf0ZUbqMSGITOUubpGH3J6MwyC3y4iWJf3
+r0wQxybrqX+ffkM5vu56fafygzUmgA==
+=8PAM
+-----END PGP SIGNATURE-----
+
+--UpRfkmziJnKTBjHv--
 
