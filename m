@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-13198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74607DCE40
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:53:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B232D7DCE44
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6649428173B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:53:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4274BB20E49
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38501DA58;
-	Tue, 31 Oct 2023 13:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9FF01DA58;
+	Tue, 31 Oct 2023 13:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g0Y3A+S8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aiK/+jjo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5645D1DA43
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:53:16 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5089F3
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 06:53:14 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-408382da7f0so41096045e9.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 06:53:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813351CFBE
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:54:29 +0000 (UTC)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53681ED
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 06:54:28 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40907b82ab9so39566935e9.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 06:54:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698760393; x=1699365193; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3ialy9jtL+fHbY4kBB8RqEvA0usTWIEvweFyleTxXxQ=;
-        b=g0Y3A+S8qfxrPoBqZYODAX8BBSBdEbWmdHOVePTwYHiZUzZi6qxEb4uqnz15dUl1uB
-         EqeE25X6uXPJcmHCZs6WqAXeTto1ndf2Q+80qDEqCfMHX9aBG+pzmPe9263S19F2eutV
-         9vh+QgkSASn9GS8tLD+l2bFT1sExphTbHrGdbQE/QbyA1jKUHUkK8Fwd6adU8zP/C+FD
-         QyeCkjYWZKL4AndQtBCERDFdg5xydN+eCGpfetO2b6csJZO0yRrhefv0nGOPwe/6SU9r
-         IwNljSbDz+FDIrSbPhhFfxfvh6LdnmlVZ7PDO4CqBe8h0aw6VqZhScEVbtpUZsUJY73i
-         qnpQ==
+        d=linaro.org; s=google; t=1698760467; x=1699365267; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PV3b7GreqW9Z28/dg3IbbCDWHrgqAOVfM3tZgWTiNKE=;
+        b=aiK/+jjo6yvl4uErKKWddt0JrkBhfAMewXyaVuCqMaMHffyoXO+6MUhfX6g3PbzVyR
+         ZZqM//vUTCRvYRyGqfQv0nFxBQlVNlqgGGmO/Bt1vDe4iu5+0WjuavTyEqCTzk99XCZm
+         EkHAN2y6VUKNQTEUtkEMLLbhhqcZy3V7dJp04IEJ1xoXizEjWRhILtR5gEiruCJmoE09
+         i5MF/V2tq7IgQtpSJCELUas5aDA3UZMwz93J5a44CaduttsaK9xCxcboVfsvkHRE2e9n
+         xGIXjH1CFRGGX8nmU2VCoFRb3Fn7aT+ec9FdIlub1/FEsK9UX5aZVnic7mFrb6Kgb/vo
+         Wrkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698760393; x=1699365193;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3ialy9jtL+fHbY4kBB8RqEvA0usTWIEvweFyleTxXxQ=;
-        b=Coa90RFYsBc/kOr0ULX4JjuEYzh1CTFUBzQIvdsqe7yjmExFIyxCrox1Oy7cCV1V9D
-         FXA0KCFew0AmX2lRDNVU3eW6opsgsKM0FwWg/f32dwBW95sT6+KCvkjlCjCxpSYoU7lJ
-         PaDOgAHu8enpFqfgv4iC6MGwrZm4PcwiILQCxsaKLYisJPNE7kreIAGCj6dmZ1t4BVV9
-         KDAHnUTN3MO6foUN5/Dy0khHsA6yFc/Cbh5ZnKQb6SLWBzaP3EBelnUz7Tv6ruIGadzU
-         Koq4gUcPHJT9AVx6VZctJ7Of5QCspEr5oehdOrgagN1kY+YWpHbPE+o0W5ymLrf63oGs
-         G9bg==
-X-Gm-Message-State: AOJu0YzM6GUQc/ble+iCb3fFQTslxkklbHa+35rO+AukFrxngsm0zk7R
-	cg3+H7xuQwf8vRuAm8np8rMUww==
-X-Google-Smtp-Source: AGHT+IFmkoELQ0qKzhgxP+Rzlrp15BD4nx+IDxcVtuyAaXSaaSRCSXDDGSGwdBrl02YGwGMmE5Xh5g==
-X-Received: by 2002:a5d:670c:0:b0:32d:8431:341e with SMTP id o12-20020a5d670c000000b0032d8431341emr8137132wru.62.1698760393295;
-        Tue, 31 Oct 2023 06:53:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698760467; x=1699365267;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PV3b7GreqW9Z28/dg3IbbCDWHrgqAOVfM3tZgWTiNKE=;
+        b=jDqMlLIyAcMO39ULoXYgpJrYMY2nR/VRvx6nnEh9BVnfk0lSemfIj2tB4422dLH+Nq
+         1IJi7x/x+fhe6R5155UdV3u/r2/xFlVSolg+2UQ+1T1qhRoHGeLM2rIcOmQ4x3P0dUPu
+         M4Gke3KdBRJ9wz/MFwyPE63ZdDLr9kYrdPNY4fZgp5euytpbgwKqU8hoxZCrtPcyeut8
+         3y6BCCIV22ugCyEESbREo/OIvPRIfPpLlegfuWQREevvlMMkrz/sgJWk/xH78KEeo6Hs
+         3GJJxYRRhEOYt6e+Sse2SHe73s0H+4dAmMTLnLQyd09pU+hk9t8h5bRfY/7rqViVPE17
+         B6mg==
+X-Gm-Message-State: AOJu0YxmN8Kuv7COdjI+Mh2YBQ5ODKDrnt7ZZrkbBKbsLLZhwqd4gJDT
+	AnARSBgm74TgYwDgFlZX3YGi0g==
+X-Google-Smtp-Source: AGHT+IGhtpb96TEt0QvL5vdhhWhkPdDz8p4JMp2P1yUvdjETjW1OTQCZPwoz4snPihGzkoGMMaoI8A==
+X-Received: by 2002:a05:6000:2a2:b0:32f:803e:3a06 with SMTP id l2-20020a05600002a200b0032f803e3a06mr3278556wry.7.1698760466702;
+        Tue, 31 Oct 2023 06:54:26 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id dk6-20020a0560000b4600b0032f7f4089b7sm1579614wrb.43.2023.10.31.06.53.11
+        by smtp.gmail.com with ESMTPSA id dk6-20020a0560000b4600b0032f7f4089b7sm1579614wrb.43.2023.10.31.06.54.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 06:53:12 -0700 (PDT)
-Message-ID: <680e77cf-a930-4eb8-9987-67f748a424e3@linaro.org>
-Date: Tue, 31 Oct 2023 14:53:10 +0100
+        Tue, 31 Oct 2023 06:54:26 -0700 (PDT)
+Message-ID: <2ae3d997-7a3e-487b-9d18-0101c3ba8e8e@linaro.org>
+Date: Tue, 31 Oct 2023 14:54:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,23 +67,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: max31335: add max31335 bindings
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: brcm,bcm59056: Convert to YAML
+Content-Language: en-US
+To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>,
- "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-References: <20231030115016.97823-1-antoniu.miclaus@analog.com>
- <20231030115016.97823-2-antoniu.miclaus@analog.com>
- <11906efc-e16a-40bc-98a5-db32fefbf355@linaro.org>
- <CY4PR03MB3399A0D6DCA419936B024D759BA0A@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Language: en-US
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231030-bcm59054-v1-0-3517f980c1e3@gmail.com>
+ <20231030-bcm59054-v1-1-3517f980c1e3@gmail.com>
+ <5a906074-5c1e-4c1c-8023-5346e7fe9738@linaro.org>
+ <0a4ae01e-fd47-4468-b7c1-527977e53965@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,32 +130,40 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CY4PR03MB3399A0D6DCA419936B024D759BA0A@CY4PR03MB3399.namprd03.prod.outlook.com>
+In-Reply-To: <0a4ae01e-fd47-4468-b7c1-527977e53965@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/10/2023 11:29, Miclaus, Antoniu wrote:
-
+On 31/10/2023 10:36, Artur Weber wrote:
+> 
+> 
+> On 31.10.2023 06:52, Krzysztof Kozlowski wrote:
+>> On 30/10/2023 20:36, Artur Weber wrote:
+>>> Convert devicetree bindings for the Broadcom BCM59056 PMU MFD from
+>>> TXT to YAML format. This patch does not change any functionality;
+>>> the bindings remain the same.
+>>> ...
+>>> +
+>>> +  reg:
 >>> +    maxItems: 1
 >>> +
 >>> +  interrupts:
 >>> +    maxItems: 1
 >>> +
->>> +  "#clock-cells":
->>> +    description:
->>> +      RTC can be used as a clock source through its clock output pin.
->>> +    const: 0
->>> +
->>> +  trickle-resistor-ohms:
->>> +    description: Selected resistor for trickle charger.
->>> +    enum: [3000, 6000, 11000]
 >>
->> default? Or missing property has other meaning...
+>> There is no other feature here, so this should go to regulators directory.
 > 
-> If trickle-resistor-ohms property is missing, then the trickle charger setup is skipped.
+> There are no other features *yet*, but the driver will eventually be 
+> expanded to support the other features of the PMIC (charger, fuel gauge, 
+> rtc, etc.).
 
-Then mention this.
+The bindings should be complete regardless of driver support, but if
+things are missing then it's okay. It can be in MFD.
 
+> 
+> In that case, should I move the bindings to regulators for now, and move 
+> them back when the other features are added, or would it be fine to keep 
+> it in mfd?
 Best regards,
 Krzysztof
 
