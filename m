@@ -1,164 +1,282 @@
-Return-Path: <devicetree+bounces-13210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8C47DCED5
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:15:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEBC77DCEEF
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:23:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75D8A28182A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:15:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63FC128109C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605E31DDEA;
-	Tue, 31 Oct 2023 14:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81FF1A73B;
+	Tue, 31 Oct 2023 14:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JCrdSmml"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IF/eYp2S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F91D1DDE3;
-	Tue, 31 Oct 2023 14:14:57 +0000 (UTC)
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EB5AED;
-	Tue, 31 Oct 2023 07:14:56 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-5ac865d1358so4233442a12.3;
-        Tue, 31 Oct 2023 07:14:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698761696; x=1699366496; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=kRNwzlQyH+VlpdFxfnUe4Y/Tf26qonfvNmh3DCH6lvA=;
-        b=JCrdSmmlOjER7c2+TICqjTaf/jMkGVujW4+TfVJaiYdRfq4KFCtcMvAX26sKbWJ8Yl
-         J1/d2blR/gDf1/LM8PLUAZEQKLqtTsSNakVH4Z5KkrSCW+1c5kTrKx0tb/tQ/Nm0FevM
-         MjtQVLUlHeMkYVUW0c7GjMw5U4XxGsJahh7e10PlAplWmNpaFSnYM11VK+7d19sQ4Gr+
-         N5uU0sUfdXf03EIWfrXlsi3xZf7sja47o8O7+ppofhu4q7U71vNNiKisurmSIu6lOSnL
-         AfRPvzO15rtl+YP8mvPI2WVJOf+2jNvLkyyfD1AvB08ZQMhXfaLiR/ZQ3N/qPY1hLHty
-         8oSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698761696; x=1699366496;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kRNwzlQyH+VlpdFxfnUe4Y/Tf26qonfvNmh3DCH6lvA=;
-        b=GnLxwXiCFDCPFQkXLCXZO87WvIGOsdDhkLBLJbADu5JwItvrN7aOTXtN2XgYelglwx
-         kAyRo1QjorT4Az5SFRVfddNf95kbX3FbcukSAXYr7aNKdz72si/tQ5SW0YPUluIItFVl
-         4MOd1BQVpfRiz3hcV+5LCvAJdfKOlxY3GaXLXdhoLPdynq8Wpq0GJiNgo+kzN47lzYod
-         NS+FG0tEyWI/bAwdj1b/xb7csvnv9Nq7li9ey4y8kvXBqbnnXlc5MkXyb93fJjdlddup
-         dKFuYxZ8LCwNU72ud4sgS9tsCw1tirwtFX0piLF7XbZgv0QpNWt8Bbyev8m5MZjiHzBX
-         yh0Q==
-X-Gm-Message-State: AOJu0Yx+R90fjfgHpvfPlUp8BvKfACTTHI7oiMxl8cwycL2COhBqwr+i
-	1LnxZQXY0dMllgNEOsiFQvo=
-X-Google-Smtp-Source: AGHT+IHy9Jj/Ww6f5TztL4zM9r3f+RpZejaBc/tHMpRDznCvumjJsGKs+jo2tnC2WQLeoa8SG2Anog==
-X-Received: by 2002:a17:90a:94ca:b0:280:1695:7b5 with SMTP id j10-20020a17090a94ca00b00280169507b5mr8318468pjw.12.1698761695920;
-        Tue, 31 Oct 2023 07:14:55 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b16-20020a17090ae39000b0026b12768e46sm1160685pjz.42.2023.10.31.07.14.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 07:14:55 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <708e84f3-01ac-455e-9b66-2f0e2be1a874@roeck-us.net>
-Date: Tue, 31 Oct 2023 07:14:54 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A821D1DFC2
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 14:23:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D3DBC433C8;
+	Tue, 31 Oct 2023 14:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698762205;
+	bh=gHF4eLRcWSiCzarvxwZwly4HI7O2WIslxS/qaonfnn4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IF/eYp2S75f9+6CreJlVFYfR+mY6FyCR/9KiNtiYPaP0qLKjxIkDse+nhKqTi66os
+	 1CzFoWhIsoj9Cz2byYZMH9eyI1Sgo7/pq8LcaMN2o0e7jj+fx9phqA0FLjw2lIATOT
+	 P/hqOhMta3RA4afNUT6pEguAuSFticwlM3z4MnJzKRbkoM+7Go1Bl9BOyGoK5FHWvi
+	 a7doouIyGKGVIMyHQMZWCA7VhD52vxM/T3bqFPp9fF9rqHhKfg1GhoZRug274n1ZQJ
+	 ebV0fhvl9VUvEr1uOrLv3yoLv17cZrN0Y/teVBXBq+mGtAf8ktAdT0x6r58G1SYPKZ
+	 Bg/jSkwvNKZmw==
+Date: Tue, 31 Oct 2023 14:23:18 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	robh+dt@kernel.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, miquel.raynal@bootlin.com,
+	richard@nod.at, vigneshr@ti.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+	quic_srichara@quicinc.com, qpic_varada@quicinc.com
+Subject: Re: [RFC PATCH 4/5] spi: qpic: Add support for qpic spi nand driver
+Message-ID: <a1270a88-49a9-4bdb-89a9-ce6929f2294d@sirena.org.uk>
+References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+ <20231031120307.1600689-5-quic_mdalam@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
- bindings
-Content-Language: en-US
-To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
- Conor Dooley <conor@kernel.org>
-Cc: "patrick@stwcx.xyz" <patrick@stwcx.xyz>, Jean Delvare
- <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
- <20231026081514.3610343-2-Delphine_CC_Chiu@Wiwynn.com>
- <20231026-dicing-crispy-a10af575d3e5@spud>
- <fffa4330-8d01-8498-4c5f-772ebf2a6b5a@roeck-us.net>
- <20231026-poison-encrypt-1df55e023867@spud>
- <c734e26a-6fad-bc23-ec58-10c6a440ec83@roeck-us.net>
- <SG2PR04MB55438AA9A2989F406012A4D4A1A0A@SG2PR04MB5543.apcprd04.prod.outlook.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <SG2PR04MB55438AA9A2989F406012A4D4A1A0A@SG2PR04MB5543.apcprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="910ikmaqu7YIRsJ2"
+Content-Disposition: inline
+In-Reply-To: <20231031120307.1600689-5-quic_mdalam@quicinc.com>
+X-Cookie: Is it clean in other dimensions?
 
-On 10/30/23 23:25, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
-[ ... ]
->>
->> Actually, turns out there is some contradiction in the LTC4286 datasheet.
->> It mentions different coefficients in different places. It is all but impossible to
->> determine if the datasheet is wrong or if the chip uses a variety of coefficients
->> unless one has a real chip available. Sigh :-(.
-> We are not the chip vendor, but we could forward your question to vendor.
-> Could you point out the exact places (which pages) where are the contradiction in LTC4286 datasheet?
-> 
 
-See "PMBUS COMMAND SUMMARY", default values:
+--910ikmaqu7YIRsJ2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-"IOUT_OC_WARN_LIMIT" says "21.3 mV/RSENSE"
+On Tue, Oct 31, 2023 at 05:33:06PM +0530, Md Sadre Alam wrote:
 
-"PIN_OP_WARN_LIMIT" says "2.8/RSENSE"
+> +config SPI_QPIC_SNAND
+> +	tristate "QPIC SNAND controller"
+> +	default y
+> +	depends on ARCH_QCOM
+> +	help
+> +	  QPIC_SNAND(Quad SPI) driver for Qualcomm QPIC_SNAND controller.
+> +
 
-This seems to contradict "Table 8. PMBus M, B, and R Parameters". But then,
-reading it again (and again), I think it is just an odd and confusing way
-of trying to describe the 0x7fff default register values. Sorry for the noise.
+I don't see any build dependencies on anything QC specific so please add
+an || COMPILE_TEST here, this makes it much easier to do generic changes
+without having to build some specific config.
 
-Guenter
+> +++ b/drivers/spi/Makefile
+> @@ -153,6 +153,7 @@ obj-$(CONFIG_SPI_XTENSA_XTFPGA)		+=3D spi-xtensa-xtfp=
+ga.o
+>  obj-$(CONFIG_SPI_ZYNQ_QSPI)		+=3D spi-zynq-qspi.o
+>  obj-$(CONFIG_SPI_ZYNQMP_GQSPI)		+=3D spi-zynqmp-gqspi.o
+>  obj-$(CONFIG_SPI_AMD)			+=3D spi-amd.o
+> +obj-$(CONFIG_SPI_QPIC_SNAND)            +=3D spi-qpic-snand.o
 
+Please keep this alphabetically sorted (there are some mistakes there
+but no need to add to them).
+
+> + * 	Sricharan R <quic_srichara@quicinc.com>
+> + */
+> +
+> +#include <linux/mtd/spinand.h>
+> +#include <linux/mtd/nand-qpic-common.h>
+> +
+
+This should be including the SPI API, and other API headers that are
+used directly like the platform and clock APIs.
+
+> +static int qcom_snand_init(struct qcom_nand_controller *snandc)
+> +{
+> +	u32 snand_cfg_val =3D 0x0;
+> +	int ret;
+
+=2E..
+
+> +	ret =3D submit_descs(snandc);
+> +	if (ret)
+> +		dev_err(snandc->dev, "failure in sbumitting spiinit descriptor\n");
+> +
+> +	free_descs(snandc);
+
+This seems to be doing a bit more than I would expect an init function
+to, and it's very surprising to see the descriptors freed immediately
+after something called a submit (which suggests that the descriptors are
+still in flight).
+
+> +static int qpic_snand_read_page(struct qcom_nand_controller *snandc,
+> +				const struct spi_mem_op *op)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int qpic_snand_write_page(struct qcom_nand_controller *snandc,
+> +				const struct spi_mem_op *op)
+> +{
+> +	return 0;
+> +}
+
+=2E..
+
+> +static int qpic_snand_exec_op(struct spi_mem *mem, const struct spi_mem_=
+op *op)
+> +{
+> +	struct qcom_nand_controller *snandc =3D spi_controller_get_devdata(mem-=
+>spi->master);
+> +	dev_dbg(snandc->dev, "OP %02x ADDR %08llX@%d:%u DATA %d:%u", op->cmd.op=
+code,
+> +		op->addr.val, op->addr.buswidth, op->addr.nbytes,
+> +		op->data.buswidth, op->data.nbytes);
+> +
+> +	/*
+> +	 * Check for page ops or normal ops
+> +	 */
+> +	if (qpic_snand_is_page_op(op)) {
+> +		if (op->data.dir =3D=3D SPI_MEM_DATA_IN)
+> +			return qpic_snand_read_page(snandc, op);
+> +		else
+> +			return qpic_snand_write_page(snandc, op);
+
+So does the device actually support page operations?  The above looks
+like the driver will silently noop them.
+
+> +	snandc->base_phys =3D res->start;
+> +	snandc->base_dma =3D dma_map_resource(dev, res->start,
+> +					   resource_size(res),
+> +					   DMA_BIDIRECTIONAL, 0);
+> +	if (dma_mapping_error(dev, snandc->base_dma))
+> +		return -ENXIO;
+> +
+> +	ret =3D clk_prepare_enable(snandc->core_clk);
+> +	if (ret)
+> +		goto err_core_clk;
+
+The DMA mapping and clock enables only get undone in error handling,
+they're not undone in the normal device release path.
+
+> +
+> +	ret =3D clk_prepare_enable(snandc->aon_clk);
+> +	if (ret)
+> +		goto err_aon_clk;
+> +
+> +	ret =3D clk_prepare_enable(snandc->iomacro_clk);
+> +	if (ret)
+> +		goto err_snandc_alloc;
+> +
+> +	ret =3D qcom_nandc_alloc(snandc);
+> +	if (ret)
+> +		goto err_snandc_alloc;
+> +
+> +	ret =3D qcom_snand_init(snandc);
+> +	if (ret)
+> +		goto err_init;
+> +
+> +	// setup ECC engine
+> +	snandc->ecc_eng.dev =3D &pdev->dev;
+> +	snandc->ecc_eng.integration =3D NAND_ECC_ENGINE_INTEGRATION_PIPELINED;
+> +	snandc->ecc_eng.ops =3D &qcom_snand_ecc_engine_ops;
+> +	snandc->ecc_eng.priv =3D snandc;
+> +
+> +	ret =3D nand_ecc_register_on_host_hw_engine(&snandc->ecc_eng);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to register ecc engine.\n");
+> +		goto err_init;
+> +	}
+> +
+> +	ctlr->num_chipselect =3D QPIC_QSPI_NUM_CS;
+> +	ctlr->mem_ops =3D &qcom_spi_mem_ops;
+> +	ctlr->mem_caps =3D &qcom_snand_mem_caps;
+> +	ctlr->dev.of_node =3D pdev->dev.of_node;
+> +	ctlr->mode_bits =3D SPI_TX_DUAL | SPI_RX_DUAL |
+> +			    SPI_TX_QUAD | SPI_RX_QUAD;
+> +
+> +	ret =3D spi_register_master(ctlr);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "spi_register_controller failed.\n");
+> +		goto err_init;
+> +	}
+> +
+> +	return 0;
+> +err_init:
+> +	qcom_nandc_unalloc(snandc);
+> +err_snandc_alloc:
+> +	clk_disable_unprepare(snandc->aon_clk);
+> +err_aon_clk:
+> +	clk_disable_unprepare(snandc->core_clk);
+> +err_core_clk:
+> +	dma_unmap_resource(dev, res->start, resource_size(res),
+> +			   DMA_BIDIRECTIONAL, 0);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_snand_remove(struct platform_device *pdev)
+> +{
+> +	struct spi_controller *ctlr =3D platform_get_drvdata(pdev);
+> +	spi_unregister_master(ctlr);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct qcom_nandc_props ipq9574_snandc_props =3D {
+> +	.dev_cmd_reg_start =3D 0x7000,
+> +	.is_bam =3D true,
+> +	.qpic_v2 =3D true,
+> +};
+> +
+> +static const struct of_device_id qcom_snandc_of_match[] =3D {
+> +	{
+> +		.compatible =3D "qcom,ipq9574-nand",
+> +		.data =3D &ipq9574_snandc_props,
+> +	},
+> +	{}
+> +}
+> +MODULE_DEVICE_TABLE(of, qcom_snandc_of_match);
+> +
+> +static struct platform_driver qcom_snand_driver =3D {
+> +	.driver =3D {
+> +		.name		=3D "qcom_snand",
+> +		.of_match_table =3D qcom_snandc_of_match,
+> +	},
+> +	.probe =3D qcom_snand_probe,
+> +	.remove =3D qcom_snand_remove,
+> +};
+> +module_platform_driver(qcom_snand_driver);
+> +
+> +MODULE_DESCRIPTION("SPI driver for QPIC QSPI cores");
+> +MODULE_AUTHOR("Md Sadre Alam <quic_mdalam@quicinc.com>");
+> +MODULE_LICENSE("GPL");
+> --=20
+> 2.34.1
+>=20
+
+--910ikmaqu7YIRsJ2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVBDdUACgkQJNaLcl1U
+h9Ayhgf+Ka7rwW/sqJZ1kD93K1uUeVHjyDvf9z9Z5yfcVvPLmIkHxGj4/ETeJFnP
+QIHcNM4TsiFOAjfsSU0JyCZKrw+7jgOgRE4EVfWUAqLwD3FdY9wTjmQmp5/pVlwF
+PbU9JbZjvWnPHhTjoZJNUJbA80Ea3E3ROE7FAS+P9VNTBgRqX00ubdyhXQ4ya3MT
+F3M8NiZmWmKNXOhoOOcNZkNNovhJh2X5ZY3GKhJ1mDdqlCcs3Uy7QU6lyhf6S9wR
+QhnUtjZuFqRSiSkVa7oTQIr7vZeG+gRj4uaK+QzglDmCJCInE/atWbONPyipveku
+8Ya+gviROLEJ0/htPxRIOAWjmwlKQw==
+=ddU9
+-----END PGP SIGNATURE-----
+
+--910ikmaqu7YIRsJ2--
 
