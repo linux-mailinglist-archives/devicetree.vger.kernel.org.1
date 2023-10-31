@@ -1,292 +1,172 @@
-Return-Path: <devicetree+bounces-13246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09FFB7DD085
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:29:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C02187DD092
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA801281319
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:29:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 471202814C5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA8E1E520;
-	Tue, 31 Oct 2023 15:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eP6LsbtT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDC01E526;
+	Tue, 31 Oct 2023 15:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3BC28EF
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 15:29:06 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2CEC9F;
-	Tue, 31 Oct 2023 08:29:03 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 363031C000B;
-	Tue, 31 Oct 2023 15:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698766141;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=RPYUkZNPreY88VDhOmVn3AFyOFRRtuLzyph5YgbM3vw=;
-	b=eP6LsbtTgo6LDa5+lKR/f83CNNGqISbapv0U2I6aLXb3X2fCHkzNPjvbXI1xd8xmC8qEsu
-	ZP+B3iYZkLiCfqYxfwRtRmYIgodRCtj5xUMpZ3+md0+S3mkMWhz3PmgtFW8ZtViHj+2oA7
-	0Fr17W394i8zUeZPr8rGCvn86z/D01hN4L1Hj/MfJUbqhT33IcrHURRtb4+JEzcNukl009
-	UNfV5KwMIhT5KmeWzzo1hY1mHENs+Of8aq//RVhE9iono7AxX+yNSFJLx18/ot9RPr/qEc
-	xNLLGDLNcQaWDcmYUZQa22+G2wydV42L2Qq+LzH0euWuFOiOUQMIlhiu7as/qQ==
-Date: Tue, 31 Oct 2023 16:28:56 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- robh+dt@kernel.org, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-spi@vger.kernel.org, quic_srichara@quicinc.com,
- qpic_varada@quicinc.com
-Subject: Re: [RFC PATCH 1/5] mtd: nand: ecc-qcom: Add support for ECC Engine
- Driver
-Message-ID: <20231031162856.1d9e3246@xps-13>
-In-Reply-To: <20231031120307.1600689-2-quic_mdalam@quicinc.com>
-References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
-	<20231031120307.1600689-2-quic_mdalam@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC42A1DFDF;
+	Tue, 31 Oct 2023 15:34:07 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A266F9F;
+	Tue, 31 Oct 2023 08:34:06 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39VFUrIx010963;
+	Tue, 31 Oct 2023 11:33:43 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3u32yj16dd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 11:33:41 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 39VFVeZ7021716
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 31 Oct 2023 11:31:40 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 31 Oct 2023 11:31:39 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 31 Oct 2023 11:31:39 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 31 Oct 2023 11:31:39 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.145])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 39VFVJrf013443;
+	Tue, 31 Oct 2023 11:31:22 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni
+	<alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck
+	<linux@roeck-us.net>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-hwmon@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Date: Tue, 31 Oct 2023 17:30:18 +0200
+Message-ID: <20231031153100.92939-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 8TOTKvBJh83yeMid1aRyXCwDsT9OMYkr
+X-Proofpoint-GUID: 8TOTKvBJh83yeMid1aRyXCwDsT9OMYkr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-31_02,2023-10-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ mlxscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0 adultscore=0
+ spamscore=0 phishscore=0 clxscore=1015 mlxlogscore=999 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2310240000
+ definitions=main-2310310122
 
-Hi,
+Document the Analog Devices MAX31335 device tree bindings.
 
-quic_mdalam@quicinc.com wrote on Tue, 31 Oct 2023 17:33:03 +0530:
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+changes in v3:
+ - `trickle-resistor-ohms` description specifies that the property is mandatory
+    if trickle charger should be enabled.
+ .../devicetree/bindings/rtc/adi,max31335.yaml | 64 +++++++++++++++++++
+ 1 file changed, 64 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
 
-Commit log is missing.
+diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+new file mode 100644
+index 000000000000..8da9cf2565be
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX31335 RTC
++
++maintainers:
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description:
++  Analog Devices MAX31335 I2C RTC ±2ppm Automotive Real-Time Clock with
++  Integrated MEMS Resonator.
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    const: adi,max31335
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#clock-cells":
++    description:
++      RTC can be used as a clock source through its clock output pin.
++    const: 0
++
++  trickle-resistor-ohms:
++    description:
++      Selected resistor for trickle charger. Should be specified if trickle
++      charger should be enabled.
++    enum: [3000, 6000, 11000]
++
++  aux-voltage-chargeable: true
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@68 {
++            compatible = "adi,max31335";
++            reg = <0x68>;
++            pinctrl-0 = <&rtc_nint_pins>;
++            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
++            trickle-resistor-ohms = <6000>;
++            aux-voltage-chargeable =<1>;
++        };
++    };
++...
+-- 
+2.42.0
 
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-
-If Sricharan is a co developer you need to use the right tags. Please
-have a look at the documentation. Using the two SoB here does not mean
-anything.
-
-> ---
->  drivers/mtd/nand/Kconfig    |   7 ++
->  drivers/mtd/nand/Makefile   |   1 +
->  drivers/mtd/nand/ecc-qcom.c | 198 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 206 insertions(+)
->  create mode 100644 drivers/mtd/nand/ecc-qcom.c
->=20
-> diff --git a/drivers/mtd/nand/Kconfig b/drivers/mtd/nand/Kconfig
-> index 5b0c2c95f10c..333cec8187c8 100644
-> --- a/drivers/mtd/nand/Kconfig
-> +++ b/drivers/mtd/nand/Kconfig
-> @@ -61,6 +61,13 @@ config MTD_NAND_ECC_MEDIATEK
->  	help
->  	  This enables support for the hardware ECC engine from Mediatek.
-> =20
-> +config MTD_NAND_ECC_QCOM
-> +	tristate "Qualcomm hardware ECC engine"
-> +	depends on ARCH_QCOM
-
-Same comment as Mark regarding COMPILE_TEST
-
-> +	select MTD_NAND_ECC
-> +	help
-> +	  This enables support for the hardware ECC engine from Qualcomm.
-> +
->  endmenu
-> =20
->  endmenu
-> diff --git a/drivers/mtd/nand/Makefile b/drivers/mtd/nand/Makefile
-> index 19e1291ac4d5..c73b8a3456ec 100644
-> --- a/drivers/mtd/nand/Makefile
-> +++ b/drivers/mtd/nand/Makefile
-> @@ -3,6 +3,7 @@
->  nandcore-objs :=3D core.o bbt.o
->  obj-$(CONFIG_MTD_NAND_CORE) +=3D nandcore.o
->  obj-$(CONFIG_MTD_NAND_ECC_MEDIATEK) +=3D ecc-mtk.o
-> +obj-$(CONFIG_MTD_NAND_ECC_QCOM) +=3D ecc-qcom.o qpic_common.o
-> =20
->  obj-y	+=3D onenand/
->  obj-y	+=3D raw/
-> diff --git a/drivers/mtd/nand/ecc-qcom.c b/drivers/mtd/nand/ecc-qcom.c
-> new file mode 100644
-> index 000000000000..a85423ed368a
-> --- /dev/null
-> +++ b/drivers/mtd/nand/ecc-qcom.c
-> @@ -0,0 +1,198 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * QCOM ECC Engine  Driver.
-> + * Copyright (C) 2023  Qualcomm Inc.
-> + * Authors:	Md sadre Alam		<quic_mdalam@quicinc.com>
-> + *		Sricharan R		<quic_srichara@quicinc.com>
-> + */
-> +
-> +#include <linux/platform_device.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/mutex.h>
-> +#include <linux/mtd/nand-qpic-common.h>
-> +
-> +
-> +
-> +/* ECC modes supported by the controller */
-> +#define ECC_NONE        BIT(0)
-> +#define ECC_RS_4BIT     BIT(1)
-> +#define ECC_BCH_4BIT    BIT(2)
-> +#define ECC_BCH_8BIT    BIT(3)
-> +
-> +struct qpic_ecc_caps {
-> +	u32 err_mask;
-> +	u32 err_shift;
-> +	const u8 *ecc_strength;
-> +	const u32 *ecc_regs;
-> +	u8 num_ecc_strength;
-> +	u8 ecc_mode_shift;
-> +	u32 parity_bits;
-> +	int pg_irq_sel;
-> +};
-> +
-> +
-> +struct qcom_nand_host *to_qcom_nand_host(struct nand_chip *chip)
-> +{
-> +	return container_of(chip, struct qcom_nand_host, chip);
-> +}
-> +EXPORT_SYMBOL(to_qcom_nand_host);
-> +
-> +struct qcom_nand_controller *
-> +get_qcom_nand_controller(struct nand_chip *chip)
-> +{
-> +	return container_of(chip->controller, struct qcom_nand_controller,
-> +			    controller);
-> +}
-> +EXPORT_SYMBOL(get_qcom_nand_controller);
-> +
-> +static struct qpic_ecc *qpic_ecc_get(struct device_node *np)
-> +{
-> +	struct platform_device *pdev;
-> +	struct qpic_ecc *ecc;
-> +
-> +	pdev =3D of_find_device_by_node(np);
-> +	if (!pdev)
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +
-> +	ecc =3D platform_get_drvdata(pdev);
-> +	if (!ecc) {
-> +		put_device(&pdev->dev);
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +	}
-> +
-> +	return ecc;
-> +}
-> +
-> +struct qpic_ecc *of_qpic_ecc_get(struct device_node *of_node)
-> +{
-> +	struct qpic_ecc *ecc =3D NULL;
-> +	struct device_node *np;
-> +
-> +	np =3D of_parse_phandle(of_node, "nand-ecc-engine", 0);
-> +	/* for backward compatibility */
-
-There is no backward compatibility to handle upstream
-
-> +	if (!np)
-> +		np =3D of_parse_phandle(of_node, "ecc-engine", 0);
-> +	if (np) {
-> +		ecc =3D qpic_ecc_get(np);
-> +		of_node_put(np);
-> +	}
-> +
-> +	return ecc;
-> +}
-> +EXPORT_SYMBOL(of_qpic_ecc_get);
-> +
-> +int qcom_ecc_config(struct qpic_ecc  *ecc, int ecc_strength,
-> +			bool wide_bus)
-> +{
-> +	ecc->ecc_modes =3D (ECC_RS_4BIT | ECC_BCH_8BIT);
-> +
-> +	if (ecc_strength >=3D 8) {
-
-If your engine does not support more than an 8-bit strength this
-condition seems a bit strange.
-
-> +		/* 8 bit ECC defaults to BCH ECC on all platforms */
-> +		ecc->bch_enabled =3D true;
-> +		ecc->ecc_mode =3D 1;
-
-ecc_modes above, ecc_mode here, not very clear what this is.
-Please give meaningful names to your variables, not just the bit name
-that this is capturing because here it's unclear what this is.
-
-> +
-> +		if (wide_bus) {
-> +			ecc->ecc_bytes_hw =3D 14;
-> +			ecc->spare_bytes =3D 0;
-
-Spare bytes depend on the flash, you can't use constant values like
-that.
-
-I also don't understand what wide_bus is and why it has an impact of
-only 1 on the number of ECC bytes. Please make all this more explicit.
-
-> +			ecc->bbm_size =3D 2;
-> +		} else {
-> +			ecc->ecc_bytes_hw =3D 13;
-> +			ecc->spare_bytes =3D 2;
-> +			ecc->bbm_size =3D 1;
-> +		}
-> +	} else {
-> +		/*
-> +		 * if the controller supports BCH for 4 bit ECC, the controller
-> +		 * uses lesser bytes for ECC. If RS is used, the ECC bytes is
-> +		 * always 10 bytes
-> +		 */
-> +		if (ecc->ecc_modes & ECC_BCH_4BIT) {
-> +			/* BCH */
-> +			ecc->bch_enabled =3D true;
-> +			ecc->ecc_mode =3D 0;
-> +			if (wide_bus) {
-> +				ecc->ecc_bytes_hw =3D 8;
-> +				ecc->spare_bytes =3D 2;
-> +				ecc->bbm_size =3D 2;
-> +			} else {
-> +				ecc->ecc_bytes_hw =3D 7;
-> +				ecc->spare_bytes =3D 4;
-> +				ecc->bbm_size =3D 1;
-> +			}
-> +		} else {
-> +			/* RS */
-> +			ecc->ecc_bytes_hw =3D 10;
-> +			if (wide_bus) {
-> +				ecc->spare_bytes =3D 0;
-> +				ecc->bbm_size =3D 2;
-> +			} else {
-> +				ecc->spare_bytes =3D 1;
-> +				ecc->bbm_size =3D 1;
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(qcom_ecc_config);
-
-Thanks,
-Miqu=C3=A8l
 
