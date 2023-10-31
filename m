@@ -1,212 +1,155 @@
-Return-Path: <devicetree+bounces-13072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57A17DC786
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:44:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301687DC799
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:51:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 155A9B20D88
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:44:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB7B92813CA
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FFE10A05;
-	Tue, 31 Oct 2023 07:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21BA10A1A;
+	Tue, 31 Oct 2023 07:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="b+JbZ3J3";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="Ib7b7Qq4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LdbzxT5B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9B16FD4
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:44:07 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E48FC2;
-	Tue, 31 Oct 2023 00:44:04 -0700 (PDT)
-X-UUID: 4097a5d677c111ee8051498923ad61e6-20231031
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=xeAhK1NgcoSm2A+vnBdjc7zacG1krvyQr8gH/P1Nmws=;
-	b=b+JbZ3J36QNWpguhkGvUsLFBxHbS/7cB29zLN3mQ8A6EQERf40MMOc1symKB7dDRGoBbytWziHVqhCyen8ckAuBs48NSsbO0QTEkgjh4FrGroJTFSMjMtnBQ4dWE/N2rO+FN4WnKb1JD42F32a1ZscRCD0jbuMo9JkG1E8yAzQg=;
-X-CID-CACHE: Type:Local,Time:202310311537+08,HitQuantity:1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.33,REQID:146529d6-fceb-470c-baa8-4d3b0f6cc248,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:364b77b,CLOUDID:764d1872-1bd3-4f48-b671-ada88705968c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 4097a5d677c111ee8051498923ad61e6-20231031
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1332348929; Tue, 31 Oct 2023 15:43:59 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B0220E6
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:51:07 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D83DE;
+	Tue, 31 Oct 2023 00:51:02 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39V6GtCo028034;
+	Tue, 31 Oct 2023 07:50:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=K6chD/shS+2nuxb3muBTcToPEHVuKnDqJk9aUOjQttg=;
+ b=LdbzxT5B7TqIuCEglJ5U+wWpSKlqjIHo0riAMzonKdv2nGwn6TXv6FOxAn+4LSBWiBBB
+ hotSKSrh51ATMLUoyWa7AUusJ/1sttjlQwqSU28mqVxTPGaI85dPKF0kZr+mAlW2tFUF
+ jwAE+NXhoyxYGZPE69uvN/ROO+TyFu74KG+GhQn+byiIBIS/Jj5h8i+Lb42f4bA7BtkB
+ JiWD1dpUJoqquNF/y5hYoS46Wz2TsODpwZzWUN6G0KMZUj8soMvqgINEt3JCapQLCgvk
+ 9eovsNJbhr0gEOZ2FfHCBLINybMA7QeZtNxIcOR7axGvyzV18VgCMk8Vsi/0kGivpKx7 lA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u29fetnxx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 07:50:36 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39V7oZuR013205
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 07:50:35 GMT
+Received: from tengfan2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 31 Oct 2023 15:43:57 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 31 Oct 2023 15:43:57 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i+hKYV4y2Q04RNvBmvCWLaTFnyk+yBcbwiSgee7A0Pmuf3B1PU4E2tJITeErnyOcntdTT4I2SMuTxzrU98wbOBdhpPl9M8XotU1689xiBensdnFPtxKJsTlU0EKSkpW2AAZ75XBhTTx36dEz5+pXYJ57tjQ/sf3ZT9gZG4Vcd7cL3Og/PMkJpRcyaps97aZzOi6dTsaJKdP8FCXytS+dJQRk/r6dP0jnp3f9mfwUP/Glie2G17lzSfR8EMyeOwE4febAi2yObmMC8FiZGbp48G8D5903vx798eIi6wFWfbuYLQ0u+rKNTrqTmi1Kdk0a0xYRXiSGFp77VuINq9C0Ug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xeAhK1NgcoSm2A+vnBdjc7zacG1krvyQr8gH/P1Nmws=;
- b=cjJQGmC7kcNVdVqZ08jjbIxwDqJIpaAIcAty691ffAJ5bch/+PMrQJ0VNf+1dSs+dUITlRne5Z92Ze6ugkiJP5RgL9oy8eOnxQ3UbDJmlK8DFkoTZlcu+XkrrMdOx57TgjRp/H/CGUfB/OErn5EQrPoigzkHFb7+Op5C+04pH6+Ec8drUYKfmXP94DNF1u1LL+VAXWInzPDZ7DIeLDIHsWE10p/OrlkVc3rqJETVwOt42Q4SAAh5BFIA0gK0nrofoe9HDokZrFzQtDngBqnb41gj85lvDVXUka4GeVddC+uhC9xa+hZyzRZ1Wvd8apOwNLv0tVTiVCB56GOX9/b+3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xeAhK1NgcoSm2A+vnBdjc7zacG1krvyQr8gH/P1Nmws=;
- b=Ib7b7Qq4aFo3OW+fOjzoHZpNhm59QlVvkznGdBFAeGOFy1LOwEog1Mncwh1LHgLFGTPJTODbG7/F+Lrna6g2yP5D6pvwlOBwRzsLWMJY8crac5A9uZ4VMXscOYKAyqWG9I3ohNrgYH7pTQGG0GzpaTn+DWiibmaLOSoj49X0M3c=
-Received: from TY0PR03MB6356.apcprd03.prod.outlook.com (2603:1096:400:14c::9)
- by KL1PR03MB5834.apcprd03.prod.outlook.com (2603:1096:820:93::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Tue, 31 Oct
- 2023 07:43:23 +0000
-Received: from TY0PR03MB6356.apcprd03.prod.outlook.com
- ([fe80::9e24:980f:fc1d:d4ba]) by TY0PR03MB6356.apcprd03.prod.outlook.com
- ([fe80::9e24:980f:fc1d:d4ba%4]) with mapi id 15.20.6933.029; Tue, 31 Oct 2023
- 07:43:23 +0000
-From: =?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, "mchehab@kernel.org"
-	<mchehab@kernel.org>, "mripard@kernel.org" <mripard@kernel.org>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-	"airlied@gmail.com" <airlied@gmail.com>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-	"angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v8 16/16] dt-bindings: display: mediatek: padding: add
- compatible for MT8195
-Thread-Topic: [PATCH v8 16/16] dt-bindings: display: mediatek: padding: add
- compatible for MT8195
-Thread-Index: AQHaCxf9Uo9mK2d1NEuS6fN2fs5uo7Bit98AgADNyoA=
-Date: Tue, 31 Oct 2023 07:43:23 +0000
-Message-ID: <e321fd1aad5f695278297d79531370356d82657f.camel@mediatek.com>
-References: <20231030100022.9262-1-moudy.ho@mediatek.com>
-	 <20231030100022.9262-17-moudy.ho@mediatek.com>
-	 <169869400953.1994265.3434527810955780048.robh@kernel.org>
-In-Reply-To: <169869400953.1994265.3434527810955780048.robh@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY0PR03MB6356:EE_|KL1PR03MB5834:EE_
-x-ms-office365-filtering-correlation-id: ea55793c-789e-4ced-4bdb-08dbd9e50fc0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yXCL3teORpyXl5YSr/ZoLz79P3dUiNoCc7RlZ5jfxMXumTceU2BwviTs4wXvoqnHxegG6Op/cmh0tCbO+5DQMVhOqK5OgB0A8yc0zjqayqpYwBtnAa6UNASS+Xzh95hQn0C+ddfKN3FfCW/RtKFfGEmVzv3m0Ehdvb/ogyFOeQuRPFdocHcKAm6P4RNkfnqrLhJAiv4MiSPUmXiEl4TUVcYyagF8lyOJwSop2cNUwN4dsbGN73sXP2gAjVgtJZqbbS0ozra2Rhd0QBUuOTcuoLF3Nt/+M6nBuUPAYuQn+XtOjy0FZUj9eERstx5GAkASZAazUIvNkR1/20/32UVxrryLgdfQ5ILQ+yORDHFePcn15lgcWuSaOwplzYXFNbLktIYgjhSBVnnx2N6V8UO+GYurlbJzE7QawnLfFkfzStNxslhvR1CnAqvNN0FBNIh1CWaUNDpr98KSFdaUJ165RgxB+uS21T5sFlsWdb0iRc3iphkfJ+8xFKufsEXPhM0tO1ZtaWF4T757FGJy3I2DM2ZFhrWmfy7r6cKbzq4AVsTFex2sxkzLU8j7tbpfponmWcDjU6QiqPIykYdPPcEzfDsuDg5BhFVi1u7fM1J0yw/uKflX55lwyy7mIJwyEDrW62q1Ph9LuvZxX4NsPq6SWURY3yd0bMQuY9PE4B1I/gEHj/mwS3AEAI9/Ix904f7lMiuPpNKoqhvdPoHHNID9DNZusp4lqrzkrpzpNFnSFBk=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY0PR03MB6356.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(346002)(39860400002)(376002)(136003)(230922051799003)(230173577357003)(230273577357003)(186009)(1800799009)(451199024)(64100799003)(36756003)(85182001)(38070700009)(64756008)(54906003)(6916009)(316002)(66946007)(76116006)(66446008)(66476007)(66556008)(38100700002)(86362001)(122000001)(6486002)(83380400001)(478600001)(6506007)(2616005)(71200400001)(6512007)(26005)(4744005)(8936002)(4001150100001)(2906002)(41300700001)(7416002)(4326008)(5660300002)(8676002)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WDFaNGprR3ZiYUxqUUNNTGJyUGlMa08rY1RiZ3A2R1dzMEd1WFBZRHRvUTB5?=
- =?utf-8?B?N2JjYk9tclRKVkIrL0NsY3ZHRUhwdmZoVm1QemhFbEpVR2dnTGhlRVdDdEtV?=
- =?utf-8?B?bkNRNHNCNkh2cjRMZTNMWFNjVlVyak5hN09pQkN6eVYyZnY4bzlPc2UrRXBq?=
- =?utf-8?B?cW9DQ0NIMDQ2YlF4SEJPTkZyRHg0dnRURnVrTFR2S2gzQXZXakl0WlpGa3dr?=
- =?utf-8?B?VWUvK3AvdDl4b3cvL2VldGhhMjVLbmNZVlgvMkhhRnF4N2RhYmptTFU4ZU91?=
- =?utf-8?B?NEJ4WnAxZFV2a2VyM1VZY011SWZsNk5HS29idWtNbTdodCtuQlJGTUZ5TUk2?=
- =?utf-8?B?ejlicG5qbStNUmtSWEJ2LzJZYWFDeXgrOW9vQ1Zlc3BDc3p4eWQ0VDFiQW56?=
- =?utf-8?B?WVRRazVQU0pMN1BGL2lRcmxxZ2Y2bXpBbkxiVndRRklnQ0gvMzZZdE5YTkFp?=
- =?utf-8?B?ems2ZFB3QmF3WXgvV29XVC90NVRoMzdWY25NU3lVZ0E5VUtFck9aUlRkb0M2?=
- =?utf-8?B?RTkwZXp6aGwyMTFUdXRCYnlZZCtMYmxOYmZDNHkvK1p1STByNGkrd3hLUjBI?=
- =?utf-8?B?YWRtdk14MmFtQjJxTUU2aTZqYU1nVHJvUXlITVhZcnQvejhtbTBUaHllWUJI?=
- =?utf-8?B?c3RXYmc5T0owOWJ3NVVvd3FoS2tVdmhaL0hMMWFacTVacjBRV3BOVWxrRi84?=
- =?utf-8?B?TnNSajFaeVdWNU9lTzNISE52UlovMkEzZXdZQ2pxKzUxdFJTWXlTMUtwMHdG?=
- =?utf-8?B?ZkNOaE4yYjRKdS9abTdWeEJhTzc4SDJYbWJ4N0JnenpyWWdvRXJ3aEtJTlpm?=
- =?utf-8?B?V2RBZEEzRnRKeTlCVGk1eW1TakJQdG9JVER1b0hmZDdyNFJoSmVJUnBNZDla?=
- =?utf-8?B?UnJzaWc2THZkVERsMktjd2tYR2srdGVrRzU1SlpEZ1pZUTl2MUtzcUYwSXpj?=
- =?utf-8?B?NHBqaTdvRGtGU1VZNDNodElsUmN6bHpnQlpIZWVDR2paKzJkNUVJYTJzN2pP?=
- =?utf-8?B?alM4QnB1UzBEUk9xTXg1L2dvblgyZTV0OUJGNXora3lZK25oRnhTUzJ4bkxn?=
- =?utf-8?B?VGtGQXg2OFMzMkhmRlJiMHc5UTZZc1hvWE9zNFBidWFWR0tBQnNNeUU5OTJl?=
- =?utf-8?B?aUFQNk1xYUxDSDFNZVUxTVZmVm9ONHFyZWloRExhanJuQzRIVUZZaldhaHM1?=
- =?utf-8?B?UHVnbFZQY0FnQVdZSEp4d0JLblVabUE3M05PeWVWTENwNzJVdGp4eldSNGcw?=
- =?utf-8?B?WDBmM2RyOGk1K3h0ektqNkZTS1Y0OENiWUZiK0JDSDR1ZkpnUEl5U2ZzRjZ5?=
- =?utf-8?B?NnNBR3hSZ2hydU8rTTd3Wjdkelc1QzF3Mi9xK0R0Wm5NUkYwOC9Fb2s3dHBY?=
- =?utf-8?B?N2N4aStFTXZLalZ1NEFKTytDR3lkMTFmVGx4OVVYemFIMy82YjB5eFhhaWpX?=
- =?utf-8?B?MmpEK2Z1Sk9UdWZXSmFCbVl5ekZIRWdmVEsrcEkwMmJRSmVtWFkrS3UvbVVE?=
- =?utf-8?B?Nk5JZkEwMTB1RU9WdkEvNmVMTDJ5WGtYSkZzYnl3cWM5YVNvTGJqeFhhTjhW?=
- =?utf-8?B?YjVZeEpIS1lvZkVnY25xam9ndVR2ZTVDUzRIZ3RGRTM2OVk1RHFkL01VVEdR?=
- =?utf-8?B?QU1YUDRyMnAreWVNMjRzQWc0OG9uYkl3NVBVcmhZbjh3R3M3eGw1bEg0akFK?=
- =?utf-8?B?bFcyVDFFMVVYMzdrRy9oQmViRWJFY05Zd3JuVGwreTVjcnFrS2JqWW9RWUo3?=
- =?utf-8?B?dTVtVHM1dE1lY3dzRmtHYnhuVnJyY3dVTGR0WTVOTm92L1pka3BycitaV2FJ?=
- =?utf-8?B?Vno4dXZPNWJiRFpNUnRVZ2lHclJobjE0K25aK2c2NjRUSWg1UWdnYTBlM056?=
- =?utf-8?B?dHNnZzZzUktRZVFJQXlrVFUvb2F5WUJVN2Fzc3k2RTlEY3JkeVhwa3ovMkhY?=
- =?utf-8?B?S0RZOEFRaE9ubHpQb3dlKzRrWStYV3lTQlhmZWkvVHNxQ1A5UlhmeVhSaVd3?=
- =?utf-8?B?a2tPNXlMUTFvWkkrdFh5RXJOVjBJQUFXUURqVzlmbGVwNllkQVIzQWN1NElo?=
- =?utf-8?B?UVB3NVhIalFPZVd2Zi96RW92OXZNWlU0WktwdFFIWFFLK2s3c0J1cVJwdVlP?=
- =?utf-8?B?UDJzZjhnZnM0UU9jUXVGN1VURHpTWmRxRHdVdDA2N0hPdkFXNWkxZHBhNVE3?=
- =?utf-8?B?cUE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7D7EDBB935CA1540A097A6C2782CC56B@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ 15.2.1118.39; Tue, 31 Oct 2023 00:50:27 -0700
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <geert+renesas@glider.be>, <arnd@arndb.de>, <neil.armstrong@linaro.org>,
+        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
+        <m.szyprowski@samsung.com>, <u-kumar1@ti.com>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tsoni@quicinc.com>,
+        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
+        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>
+Subject: [PATCH v6 0/6] soc: qcom: Add uart console support for SM4450
+Date: Tue, 31 Oct 2023 15:49:58 +0800
+Message-ID: <20231031075004.3850-1-quic_tengfan@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY0PR03MB6356.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea55793c-789e-4ced-4bdb-08dbd9e50fc0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2023 07:43:23.7486
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +cvJCp9SkfJyz0AdxBBNzQzgPWDfLK+LHxi0uOqcU44ss/wRTkWK5rzkGRS/voetoE7h1rO3Gj0xam38u+kb9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB5834
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--16.697700-8.000000
-X-TMASE-MatchedRID: dwNgap4H9hjUL3YCMmnG4t7SWiiWSV/1jLOy13Cgb4/n0eNPmPPe5KWz
-	WoIRiV9DM/Se/q/gEyf5MiS7M8c1eGmXMi7Ntyo2dnC5uaS6tb9+Mk6ACsw4JlwpnAAvAwazLR6
-	NeeEAYettoWjVt1YIZmEipkx5++QxEJHpQ2Y9lUQSEYfcJF0pRU6NT0XZrhTqM+iVqkzCnQijNs
-	MLknd0FeLzNWBegCW2PZex/kxUIHVmIVC+RmEW7Wrz/G/ZSbVq+gtHj7OwNO0CpgETeT0ynA==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--16.697700-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	EF8A0A85DF18A6FAF16A84DDDC47657991221850DE96EAAB94B0B911E20DE9332000:8
-X-MTK: N
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: _9hEAuE4e9-GFilZ6tRnVsBR31lbOvl5
+X-Proofpoint-ORIG-GUID: _9hEAuE4e9-GFilZ6tRnVsBR31lbOvl5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-30_13,2023-10-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 impostorscore=0 spamscore=0 suspectscore=0 adultscore=0
+ lowpriorityscore=0 clxscore=1011 bulkscore=0 mlxlogscore=582 mlxscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2310310060
 
-T24gTW9uLCAyMDIzLTEwLTMwIGF0IDE0OjI2IC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-IAkgDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBsaW5rcyBvciBvcGVu
-IGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhl
-IGNvbnRlbnQuDQo+ICANCj4gT24gTW9uLCAzMCBPY3QgMjAyMyAxODowMDoyMiArMDgwMCwgTW91
-ZHkgSG8gd3JvdGU6DQo+ID4gQWRkIGEgY29tcGF0aWJsZSBzdHJpbmcgZm9yIHRoZSBQQURESU5H
-IGJsb2NrIGluIE1lZGlhVGVrIE1UODE5NQ0KPiB0aGF0DQo+ID4gaXMgY29udHJvbGxlZCBieSBN
-RFAzLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1vdWR5IEhvIDxtb3VkeS5ob0BtZWRpYXRl
-ay5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlh
-dGVrLHBhZGRpbmcueWFtbCAgICAgICAgICAgfCA0DQo+ICsrKy0NCj4gPiAgMSBmaWxlIGNoYW5n
-ZWQsIDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiANCj4gQWNrZWQtYnk6
-IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+IA0KDQpIaSBSb2JlLA0KDQpJIGFwb2xv
-Z2l6ZSBmb3Igbm90IG5vdGljaW5nIHRoZSBjaGFuZ2VzIGluIHRoZSBkZXBlbmRlbnQgcGF0Y2gg
-YW5kDQpmYWlsaW5nIHRvIHVwZGF0ZSBvbmUgY29tcGF0aWJsZSBuYW1lLiBJIHdpbGwgcmVtb3Zl
-IHRoZSBBQ0sgdGFnZSBhbmQNCndvdWxkIGFwcHJlY2lhdGUgeW91ciBoZWxwIGluIHJldmlld2lu
-ZyBpdCBhZ2FpbiBpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KDQpTaW5jZXJlbHksDQpNb3VkeQ0K
+This series add base description of UART, TLMM, RPMHCC, GCC and RPMh PD
+nodes which helps SM4450 boot to shell with console on boards with this
+SoC.
+
+Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+---
+"[PATCH v4 0/2] pinctl: qcom: Add SM4450 pinctrl driver"
+https://lore.kernel.org/linux-arm-msm/20230920082102.5744-1-quic_tengfan@quicinc.com/
+
+v5 -> v6:
+  - remove link that depend on clock patch from cover letter
+  - remove patch which already mainline
+
+v4 -> v5:
+  - separate reserved gpios setting from enable UART console patch
+
+v3 -> v4:
+  - adjustment the sequence of property and property-names
+  - update 0 to 0x0 for reg params
+  - remove unrelated change
+  - separate SoC change and board change
+
+v2 -> v3:
+  - fix dtbs_check warning
+  - remove interconnect, iommu, scm and tcsr related code
+  - rearrangement dt node
+  - remove smmu, scm and tcsr related documentation update
+  - enable CONFIG_SM_GCC_4450 in defconfig related patch
+
+v1 -> v2:
+  - setting "qcom,rpmh-rsc" compatible to the first property
+  - keep order by unit address
+  - move tlmm node into soc node
+  - update arm,smmu.yaml
+  - add enable pinctrl and interconnect defconfig patches
+  - remove blank line
+  - redo dtbs_check check
+
+previous discussion here:
+[1] v5: https://lore.kernel.org/linux-arm-msm/20231011031415.3360-1-quic_tengfan@quicinc.com
+[2] v4: https://lore.kernel.org/linux-arm-msm/20230922081026.2799-1-quic_tengfan@quicinc.com
+[3] v3: https://lore.kernel.org/linux-arm-msm/20230920082102.5744-1-quic_tengfan@quicinc.com
+[4] v2: https://lore.kernel.org/linux-arm-msm/20230915021509.25773-1-quic_tengfan@quicinc.com
+[4] v1: https://lore.kernel.org/linux-arm-msm/20230908065847.28382-1-quic_tengfan@quicinc.com
+
+Ajit Pandey (1):
+  arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db node
+
+Tengfei Fan (5):
+  arm64: dts: qcom: sm4450: Add RPMH and Global clock
+  arm64: dts: qcom: add uart console support for SM4450
+  arm64: dts: qcom: sm4450-qrd: add QRD4450 uart support
+  arm64: dts: qcom: sm4450-qrd: mark QRD4450 reserved gpios
+  arm64: defconfig: enable clock controller and pinctrl
+
+ arch/arm64/boot/dts/qcom/sm4450-qrd.dts |  19 ++++-
+ arch/arm64/boot/dts/qcom/sm4450.dtsi    | 107 ++++++++++++++++++++++++
+ arch/arm64/configs/defconfig            |   2 +
+ 3 files changed, 126 insertions(+), 2 deletions(-)
+
+
+base-commit: c503e3eec382ac708ee7adf874add37b77c5d312
+-- 
+2.17.1
+
 
