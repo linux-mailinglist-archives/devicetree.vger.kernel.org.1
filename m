@@ -1,212 +1,1114 @@
-Return-Path: <devicetree+bounces-13253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3EE7DD0F1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:51:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744EC7DD0FE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 476B61C20BB4
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:51:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29AEC28126A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 694C21F93E;
-	Tue, 31 Oct 2023 15:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1FB1F945;
+	Tue, 31 Oct 2023 15:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wdc.com header.i=@wdc.com header.b="bFPoi2tm";
-	dkim=pass (1024-bit key) header.d=sharedspace.onmicrosoft.com header.i=@sharedspace.onmicrosoft.com header.b="HzlNiMRw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JHsOAC+H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1254E1D556
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 15:51:08 +0000 (UTC)
-Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F82B8F;
-	Tue, 31 Oct 2023 08:51:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1698767467; x=1730303467;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=DPJHABdy7AD1bzpkj3/T4x7I9/Th9YICGyWQEA8wcwY=;
-  b=bFPoi2tmEs9trAuH1YkPNUvr1lVSmoBdXVkkIsbhj8/+oFCUB3npAjFZ
-   AdOZaQ9dVi+CAc9dsj3V+d5MM5CFDR/2FcNDdO60iVZefxskazJACUs5f
-   EDWVgrulRL20KD8s1ur+kPfjmf787tRujE4jOCqtZLCtMHClFnd3zbVjJ
-   6mehZjht4Z4W3hbYa8dsHYWSrWTh2OPfcz/NlxG0FuKaVS6jtGb4v/fbd
-   2b0WLSveM0LLRJl6Feifl1fplkFIfjp4EiSGV+gKeejFzkyQCmxpTbxe1
-   msXOzU9Fn9gj2hz7AhlSuXBWfbMgBQ7pPy3skAiYoYEWhoS7qZ7V0kUoS
-   g==;
-X-CSE-ConnectionGUID: jcOnT0F0T2OjwvhCCLV+aw==
-X-CSE-MsgGUID: N6hHAwuvS72evYRnI+8H+w==
-X-IronPort-AV: E=Sophos;i="6.03,265,1694707200"; 
-   d="scan'208";a="1049929"
-Received: from mail-dm6nam12lp2169.outbound.protection.outlook.com (HELO NAM12-DM6-obe.outbound.protection.outlook.com) ([104.47.59.169])
-  by ob1.hgst.iphmx.com with ESMTP; 31 Oct 2023 23:51:05 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ggVPgywu++/IzMh5kuX+8CcWSSg76ayblEukJ0kP1x+fWgbmJEtb1JwAQDdmajmya5McujGAxtWrgw8Ev+yhawgMlyHo63I+swwHrP1PtVKKn+4Qd+W6S/0K7geC+nyiadZTKgXTrTCQ8edSFsgATWCCgrKXz2AfZTTy+uM6Q3DnfZNpUDWGj0hkeios2/cc32uv2wGJeGi9tLI6LxpghdBzaBMKYmW6MFFrqIgRMbofBTi74w44qLuUne3Xu3mQqgGvW4PhIQ/fXtD36u3tQsVxHOEMRjshD0jf4Cf9cIT6LfO64lNSKICDgmwYnMbw3gpXhUaaNWHwa0vAFo+fTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OacOOX2Nsm1kCBr0yR8V81vWM41vHx0aE4S2n51KTQw=;
- b=OWUR0jCZseeSIwnTti5Q+GgQGeqjRg5itAtwxuIoG4Fz5Bg5EE5sBMBvegRoIXnDZBqGBBsWC3gm+X8gLuoxnrT+Ub2Tcu4uxn3sHR346Jx82G1Qjzwi8UYVSVi9GaYkBNbNJZw9UhCDs+ZLebpsgMZr/QDiPC9/cE1lpjBoNsjIWdZtUVTl8j8iRm9oE+QFgWAeQ7bVDUEXZyBir4kIw4lsh/5hoYnTnDBGLzPnXQNNEgwbkSukog53w5d3WplUWH3hAH1iRZe052b6omh/hWwfealMz5iD1U28XP3VLAwhNQFvvNTrfVxbB8QFJ5t0C20vCimVVyLbWSWpQH97ZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
- header.d=wdc.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OacOOX2Nsm1kCBr0yR8V81vWM41vHx0aE4S2n51KTQw=;
- b=HzlNiMRwzTp6d0kDrFxH/+JLpuA15cuT21I+66K0khY6aegC83lPEkittSkCcXZAOgh9HiTzxuNhnvkMlM3MRFP9Q8W9W5gc9tjXQh6MM9iTFe5n/InaWH/G5DN0qAP9IQT7peiai0dceJhzl6XHksOpPBJtTugpzQ7Fj13+tVs=
-Received: from MN2PR04MB6272.namprd04.prod.outlook.com (2603:10b6:208:e0::27)
- by CH0PR04MB7905.namprd04.prod.outlook.com (2603:10b6:610:fa::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.24; Tue, 31 Oct
- 2023 15:51:03 +0000
-Received: from MN2PR04MB6272.namprd04.prod.outlook.com
- ([fe80::47df:9a7c:5674:2ca6]) by MN2PR04MB6272.namprd04.prod.outlook.com
- ([fe80::47df:9a7c:5674:2ca6%4]) with mapi id 15.20.6933.026; Tue, 31 Oct 2023
- 15:51:03 +0000
-From: Niklas Cassel <Niklas.Cassel@wdc.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-CC: Niklas Cassel <nks@flawful.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Shawn
- Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>, Damien Le
- Moal <dlemoal@kernel.org>, Sebastian Reichel
-	<sebastian.reichel@collabora.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
-	<linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v3 2/6] dt-bindings: PCI: dwc: rockchip: Add optional dma
- interrupts
-Thread-Topic: [PATCH v3 2/6] dt-bindings: PCI: dwc: rockchip: Add optional dma
- interrupts
-Thread-Index: AQHaCOXD5lFnH3cp6kCcuWNGHBAs/rBjHDmAgAD2EIA=
-Date: Tue, 31 Oct 2023 15:51:03 +0000
-Message-ID: <ZUEiY5i7DUWThhNX@x1-carbon>
-References: <20231027145422.40265-1-nks@flawful.org>
- <20231027145422.40265-3-nks@flawful.org>
- <jxsrtqplojsab4a64erm7ojjdm3kq5ohb5l7vf3lf7gzvx3q3d@ilyu4vg2xeze>
-In-Reply-To: <jxsrtqplojsab4a64erm7ojjdm3kq5ohb5l7vf3lf7gzvx3q3d@ilyu4vg2xeze>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wdc.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN2PR04MB6272:EE_|CH0PR04MB7905:EE_
-x-ms-office365-filtering-correlation-id: 45360982-d290-444f-9d25-08dbda292fcc
-wdcipoutbound: EOP-TRUE
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- FN1UKJHPun81f70+ZEiitt+HULyekcJyLj/2NcM0esepXITV517Z3moh2IV+QMvob1vhGYHTaWN/aHE1E0zs5I86uFUhCrpNk+G2q38W82WRxq/idgdi7mXM29NOsTth1JOIpQI/B8b/k01jWaBbKmhYn2MZK/nFM3m6KINxHuPLF0eWkb/+g63Z4sGcsBPv8MgQaF4aDDvS3wHwzksrmT31dllaMHH2OyDb7Gb8FT6Jx5hoJnfrKZKHzWOk8mZSUsPkb/PwfMtOMQFyd1K0CmlliitFCOEy16ud1BUNIOpt9lkhhSlBav8THbRiQlaVTvRbDBBmiH4SxafpoUACJP5TUTMn6ulAunHyo3ktqUbs9NLm204PMcasLiMhJ2EaOvGZjvmUY0LA7YyR/epNsUunDX3PIHPDyX6QgcakV8B9Jpx4mrL0dEtp6zX04keJ3T1Ex1wuJ9LtiCeBZQkScEx1UVQ23W/qQeM5yOYfrPadA/iUM/kCUJA4y4UaookMWHaRLCt4RL/4KmpGd/c06Os7TRBJMSDDtiMela4q+zodcSPTySLiiMdD5VabmxzQF/APCyuUFFHu0IYltDJtRQwJgJRciC8vE67tJiuuXoz7aPO+OrWDPOd3croeyEW8
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR04MB6272.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(366004)(396003)(136003)(346002)(376002)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(6512007)(9686003)(26005)(38070700009)(38100700002)(86362001)(122000001)(82960400001)(316002)(2906002)(6486002)(6506007)(4744005)(8936002)(5660300002)(71200400001)(478600001)(7416002)(33716001)(4326008)(6916009)(54906003)(41300700001)(8676002)(66556008)(66476007)(66446008)(76116006)(64756008)(91956017)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?qNNkXPUF2zHP3vyd5oXPqA/wZ8fTxPzijEwkxTnCpkOof8XZJNkGKiN0KA?=
- =?iso-8859-2?Q?W1IEnt+2/ijzbOfErRQux64By6EFbPSC38GUmUuYRSnE7OwQWfqrC1Frcu?=
- =?iso-8859-2?Q?cWM2rO505p+GCU7fzWXsLLGZHQw8iQykeRtfAlgp6LSl/QkIxeorkfoPNq?=
- =?iso-8859-2?Q?GWjRe0vQCjizY8iohHhFkm5KiqfDWmyglAwaMmZB9sJGWWijZk8xxOhwee?=
- =?iso-8859-2?Q?WnEpxpq+ZM6RuiMcLbqvHqKCyYSCYuyrZ7+EyfTrwl+x7IcbktUiRmZpFD?=
- =?iso-8859-2?Q?+0UhMo6CCdzJAUEZogyu8UF1mn0vvSJ3hmAhVLl+VOwb9NzWPuc0ZtOZB4?=
- =?iso-8859-2?Q?L3hQyztylr9xUNSymZ93s03QTQO4sBLSlZDAh3ZZi0nwwSjaVqukkQ+H3K?=
- =?iso-8859-2?Q?YnKK5ofU2eXAwcyB3UDs9g2RX688QEoRZSQw6HkVLun1coTnkn49NYfyVj?=
- =?iso-8859-2?Q?Ljyd89ckClblX6LF9LsEIgmWimn/BjhnMsX1NktvnF2nQ72aA6EKepVz6q?=
- =?iso-8859-2?Q?1EtFTpHnkgRZQ52ZKZkby7D3UFU0gD79mF8AwEhI7mxce5Tp4kkrx2mVcD?=
- =?iso-8859-2?Q?YYSSo3BedFcm2dXWNTauIiBotHuIeKY1g3VOd20r6cxUd7Y2vdGKaMB3S+?=
- =?iso-8859-2?Q?OrGHcDlLhDx/V4j8c3etR6coAkNvnDE/IkhnC3aY/7ZyaXmRjRN72Oa7rj?=
- =?iso-8859-2?Q?OMTYAQbI3GkN163WJyv7NiyJrPAeCw/jMDfjYIMwNHN4cY6VWaCRdmPmiz?=
- =?iso-8859-2?Q?EmT2aXZfv9NsCUo/h7UjkSqE/iaqYz4ZEw2Ex9lJ4Jw+n/FOsRJ4knntQA?=
- =?iso-8859-2?Q?heQ5xAxJfBMll3MuHKBPs65sOXrZZX6HB6HdkMTWyLPEdlQg2yRONexYfs?=
- =?iso-8859-2?Q?uzllKLN9muoXjcksQ96B3i6dUBTjuw96igoMxP6u/lnBj8fmWt/DFmoejm?=
- =?iso-8859-2?Q?Ks4wRXXCo974F3p/3BX3GQ/xQCAd+vl/c4u2F5Q1uVUWIznlkxLx2hODqn?=
- =?iso-8859-2?Q?KjhrmoLFo5fyZevGP4/Ww5MgwYlXpwZB3MD84/a2YhnIjJCIyXO+qmKb5b?=
- =?iso-8859-2?Q?nqQ+vmbO2+6epm2MBi7EfbBi8sbytlIr1g41/Xuxarh/vzwOFASCXsnFHK?=
- =?iso-8859-2?Q?HMzpzZRsoHDWTfoG7W8l+KcXRlDU5ntFme7Pl6FxE3B5iGrc/3CuSw5+P0?=
- =?iso-8859-2?Q?IEui8pj5nTnkImBcJerObOLEfhUs1oyZiDqSRwTVn9jPbT2Cu4VIxxryga?=
- =?iso-8859-2?Q?4SidNfA0/myToH1cpi1h9oOzwBqJ1PD5LzY3L9MshG7+DJm93WIhIINNE6?=
- =?iso-8859-2?Q?+UH3J4htFPi+eXHKWQqWyefHzc6AVteSQ/mfEbU5tTGQj1vudMyC3rz+hi?=
- =?iso-8859-2?Q?aWC9QF13kJieUMXMjF5i35omFYQqJ3SCLfYovt3hcBP0dlJ9FXroKFj8fH?=
- =?iso-8859-2?Q?cOiVnBLnzhvQQZViUFglT67W3nhuc7aj1nGmB/afsMoDv5LR4OMTGuBIz7?=
- =?iso-8859-2?Q?LsbleiqAhFTIbHyTxUM3h/nfzWcsFA2iHLr+NxTxYzAjxzdo6/RODmL4zn?=
- =?iso-8859-2?Q?Z5a2YH8WP0fXOpNzih3npHRq1MqDjNcC0crWbYNqgXso1ZOcuTXGdugTdM?=
- =?iso-8859-2?Q?v4GHTrq2WZNXTHKivmDbFjApi6JNF/hnaeQhwKmEZnTByOJZ+S10Kbsw?=
- =?iso-8859-2?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-ID: <47DD8025DCB0D648B335631D566A264A@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EDF1D556
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 15:54:17 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A048F;
+	Tue, 31 Oct 2023 08:54:12 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A01FC6000D;
+	Tue, 31 Oct 2023 15:54:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698767650;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pFpuhFdEBzHaLiA0OeJ+8Qf/mgpHnhSrpmbF/xo4GW0=;
+	b=JHsOAC+H3igsiQMlOeBjGjQxduzkExQYnyjrg+5kZ90nf+FVEeKWVAJlfAxE2yU8EwbdaC
+	bVTNPziOMVzhcxKXd6pW+BX+lm4/IsOVxOjnnIzYNmU7inGzoPR6wXNHen8qi5VU6Rc5dx
+	VFA0BODYV79rl3OuPgQmgNx+pBkE0urd9NwaAjXw5Ib1mnXVrdBR4iEeea5easVrDiV3jI
+	qnKGR5hM41dbmNPXsiniPLo7gYaCC2BdGKDMWhfesoDqY/b/L3ZoyKwDnPQ/Gsf33YPNkS
+	QQstiaHt0OrRFQ4Hp+eKXsLmrn9sQUWYiShXik7oAj7pczWpT5LJBkIZ38hfFA==
+Date: Tue, 31 Oct 2023 16:54:06 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ robh+dt@kernel.org, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-spi@vger.kernel.org, quic_srichara@quicinc.com,
+ qpic_varada@quicinc.com
+Subject: Re: [RFC PATCH 3/5] mtd: nand: qpic_common: Add support for qpic
+ common API
+Message-ID: <20231031165406.33e486a3@xps-13>
+In-Reply-To: <20231031120307.1600689-4-quic_mdalam@quicinc.com>
+References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+	<20231031120307.1600689-4-quic_mdalam@quicinc.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	=?iso-8859-2?Q?7NukG0vvPRqzqPCFQLPHwdBEMkv/tTCMpL8Aa900n6ekXCgAo+Y+kObFER?=
- =?iso-8859-2?Q?GNInfvEzZ9BQHGhySwCtOSA5aPP+sD5UIcFKlLiK5hGIGBawOaew1kXGN7?=
- =?iso-8859-2?Q?me2g1+sRvuziFu/eGRihn805ZuUPq3MCpj1iULgd0qEtRl0Aq6G9Re9diD?=
- =?iso-8859-2?Q?8j07n+OLjb2mLAGGd1PO58x7ebQkQYnSgCpjBHJArvzYmqqpXUoBAkDopX?=
- =?iso-8859-2?Q?opaXlSfEFX7tvyfRWuIeyYmbZjWIt3fcYzNnqls3RU43FVBL8dHaKFALQQ?=
- =?iso-8859-2?Q?xEDKG+HznlBEmdzXbpa9Qig9eLSezRnaIIWxXph+WsjCqwuaTk+2SFYOxS?=
- =?iso-8859-2?Q?Jsno4gKAZYx4mIT7CNo54SzmWfHoH3R9hwX3by/+xeXnNCO24IloZvDwx0?=
- =?iso-8859-2?Q?jvN3IHKX+Lfu+NXZghEKjITgUBZ0Zn5HOOA70uYQPVaSlAT8mPm6erqLtF?=
- =?iso-8859-2?Q?rmuhxcOOAB+rf5FIk6PAMKLv8awnuCZp3lGsWLr3TqFMHOk951F7b9MPGf?=
- =?iso-8859-2?Q?jv8vejYOIEUMw5K84DHe7yZhU7+cfeqr+jaT+NdQ8OwPhgXDixTHElEdbP?=
- =?iso-8859-2?Q?GkyfVgAApZIibKp5PpdTGsWUlwtQeWwFINOPxq3Qif70WKwWUK8Z6PNKOp?=
- =?iso-8859-2?Q?N1ugJNT4OztKqS8TFdT5EjaGG6bfEqZF2B8TG3EopYhSLWtQKWK8OQJ4rO?=
- =?iso-8859-2?Q?6swelxyMsdhMI8/5DP1vT04rcV8xApI2WrdPZ9U4p4q27mMGZGlvaZhJEO?=
- =?iso-8859-2?Q?Z9OUJJbzkRQlOQdgHDMBz+zEyHJ0SmGvnI9jX0IafjnxarWTZQHvSiepEa?=
- =?iso-8859-2?Q?W9hItqdNjV7h71zltdcijEF1zSnVRZOJeCbNnPKNLbVetgeFodZQ+TGvpJ?=
- =?iso-8859-2?Q?AIOXdlgSNDhTmt3V3E4ur4D5sfpAm/IyQq4gvpnorUflz1I56A1vrL9C6J?=
- =?iso-8859-2?Q?OQpTR4qCKrAGsiqgs1ikh5wMShkP74xw6k40fPOq16mXOrdyHCv50cEt6n?=
- =?iso-8859-2?Q?rfiNLL95bfOEe0Fgv496yQHg6m+AYxzqfJPhvmU1fOBRkppUHCeMboSwmv?=
- =?iso-8859-2?Q?KxOLtr0OseZC9k3GgVeanRO5IPkgwDE/VMVhxH7Lax/oA3rJAGDRkVNx9q?=
- =?iso-8859-2?Q?hYCJ2sFytOoiFMyNT7YTLo1A66Ias=3D?=
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR04MB6272.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45360982-d290-444f-9d25-08dbda292fcc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2023 15:51:03.3267
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 251/ho9k/9ecrXiyOiqP7P1dqE2co7Ve+repA95DOOXRft+EeBuIY4M8Y098zdAzreTv/RHHu2DZVmsaPtQdoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR04MB7905
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Tue, Oct 31, 2023 at 04:10:17AM +0300, Serge Semin wrote:
-> On Fri, Oct 27, 2023 at 05:51:14PM +0200, Niklas Cassel wrote:
-> > However, e.g. rk3568 only has one channel for reads and one for writes.
-> > (Now this SoC doesn't have dedicated IRQs for the eDMA, but let's prete=
-nd
-> > that it did.)
-> >=20
-> > So for rk3568, it would then instead be:
-> > dma0: wr0
-> > dma1: rd0
-> > dma2: <unused>
-> > dma3: <unused>
+Hi,
+
+quic_mdalam@quicinc.com wrote on Tue, 31 Oct 2023 17:33:05 +0530:
+
+> Add qpic command API in sperate file so that it will be
+> use by both spi and request and raw nand request.
+
+		nand?
+
 >=20
-> rk3568 doesn't have IRQs supplied in a normal way, as separate
-> signals.  Instead they are combined in the 'sys' IRQ. So you should
-> define the IRQs constraint being device-specific by using for example
-> the "allOf: if-else" pattern.
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+> ---
+>  drivers/mtd/nand/qpic_common.c       | 840 +++++++++++++++++++++++++++
+>  include/linux/mtd/nand-qpic-common.h | 641 ++++++++++++++++++++
+>  2 files changed, 1481 insertions(+)
+>  create mode 100644 drivers/mtd/nand/qpic_common.c
+>  create mode 100644 include/linux/mtd/nand-qpic-common.h
+>=20
+> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_commo=
+n.c
+> new file mode 100644
+> index 000000000000..983768a1ea94
+> --- /dev/null
+> +++ b/drivers/mtd/nand/qpic_common.c
+> @@ -0,0 +1,840 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * QPIC common API file.
+> + * Copyright (C) 2023  Qualcomm Inc.
+> + * Authors:	Md sadre Alam		<quic_mdalam@quicinc.com>
+> + *		Sricharan R		<quic_srichara@quicinc.com>
+> + */
+> +
+> +#include <linux/mtd/nand-qpic-common.h>
+> +
+> +/* Frees the BAM transaction memory */
+> +void free_bam_transaction(struct qcom_nand_controller *nandc)
 
-Thank you for your review comment.
+This is not a generic object, it's not meant to be shared with spi. So
+if it's meant to be used in a single place, please don't share it.
+Otherwise please use a more generic name.
 
-I agree. Will fix this in next version.
+> +{
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +
+> +	devm_kfree(nandc->dev, bam_txn);
+> +}
+> +EXPORT_SYMBOL(free_bam_transaction);
+> +
+> +/* Callback for DMA descriptor completion */
+> +void qpic_bam_dma_done(void *data)
+> +{
+> +	struct bam_transaction *bam_txn =3D data;
+
+Just provide the right pointer in the first place.
+
+> +
+> +	/*
+> +	 * In case of data transfer with NAND, 2 callbacks will be generated.
+
+What if we are not dealing with a NAND?
+
+> +	 * One for command channel and another one for data channel.
+> +	 * If current transaction has data descriptors
+> +	 * (i.e. wait_second_completion is true), then set this to false
+
+Why do you need a boolean for that if having a data descriptor is the
+condition you want to check against?
+
+> +	 * and wait for second DMA descriptor completion.
+> +	 */
+> +	if (bam_txn->wait_second_completion)
+> +		bam_txn->wait_second_completion =3D false;
+
+This looks very racy.
+
+> +	else
+> +		complete(&bam_txn->txn_done);
+> +}
+> +EXPORT_SYMBOL(qpic_bam_dma_done);
+> +
+> +u32 nandc_read(struct qcom_nand_controller *nandc, int offset)
+> +{
+> +	return ioread32(nandc->base + offset);
+
+I don't see the need for that.
+
+> +}
+> +EXPORT_SYMBOL(nandc_read);
+> +
+> +void nandc_write(struct qcom_nand_controller *nandc, int offset,
+> +			       u32 val)
+> +{
+> +	iowrite32(val, nandc->base + offset);
+
+Same here.
+
+> +}
+> +EXPORT_SYMBOL(nandc_write);
+> +
+> +void nandc_read_buffer_sync(struct qcom_nand_controller *nandc,
+> +					  bool is_cpu)
+> +{
+> +	if (!nandc->props->is_bam)
+> +		return;
+
+I thought BAM was a per transaction thing, and here you check it
+against a controller parameter. It looks wrong.
+
+> +
+> +	if (is_cpu)
+
+Whuut? naming, naming, naming, naming. Please.
+
+> +		dma_sync_single_for_cpu(nandc->dev, nandc->reg_read_dma,
+> +					MAX_REG_RD *
+
+Remove this new line
+
+> +					sizeof(*nandc->reg_read_buf),
+
+Are you sure this sizeof() is safe?
+
+> +					DMA_FROM_DEVICE);
+> +	else
+> +		dma_sync_single_for_device(nandc->dev, nandc->reg_read_dma,
+> +					   MAX_REG_RD *
+> +					   sizeof(*nandc->reg_read_buf),
+> +					   DMA_FROM_DEVICE);
+> +}
+
+You better have a really good reason to sync in the middle of an
+operation...
+
+> +EXPORT_SYMBOL(nandc_read_buffer_sync);
+> +
+> +__le32 *offset_to_nandc_reg(struct nandc_regs *regs, int offset)
+> +{
+> +	switch (offset) {
+> +	case NAND_FLASH_CMD:
+> +		return &regs->cmd;
+> +	case NAND_ADDR0:
+> +		return &regs->addr0;
+> +	case NAND_ADDR1:
+> +		return &regs->addr1;
+> +	case NAND_FLASH_CHIP_SELECT:
+> +		return &regs->chip_sel;
+> +	case NAND_EXEC_CMD:
+> +		return &regs->exec;
+> +	case NAND_FLASH_STATUS:
+> +		return &regs->clrflashstatus;
+> +	case NAND_DEV0_CFG0:
+> +		return &regs->cfg0;
+> +	case NAND_DEV0_CFG1:
+> +		return &regs->cfg1;
+> +	case NAND_DEV0_ECC_CFG:
+> +		return &regs->ecc_bch_cfg;
+> +	case NAND_READ_STATUS:
+> +		return &regs->clrreadstatus;
+> +	case NAND_DEV_CMD1:
+> +		return &regs->cmd1;
+> +	case NAND_DEV_CMD1_RESTORE:
+> +		return &regs->orig_cmd1;
+> +	case NAND_DEV_CMD_VLD:
+> +		return &regs->vld;
+> +	case NAND_DEV_CMD_VLD_RESTORE:
+> +		return &regs->orig_vld;
+> +	case NAND_EBI2_ECC_BUF_CFG:
+> +		return &regs->ecc_buf_cfg;
+> +	case NAND_READ_LOCATION_0:
+> +		return &regs->read_location0;
+> +	case NAND_READ_LOCATION_1:
+> +		return &regs->read_location1;
+> +	case NAND_READ_LOCATION_2:
+> +		return &regs->read_location2;
+> +	case NAND_READ_LOCATION_3:
+> +		return &regs->read_location3;
+> +	case NAND_READ_LOCATION_LAST_CW_0:
+> +		return &regs->read_location_last0;
+> +	case NAND_READ_LOCATION_LAST_CW_1:
+> +		return &regs->read_location_last1;
+> +	case NAND_READ_LOCATION_LAST_CW_2:
+> +		return &regs->read_location_last2;
+> +	case NAND_READ_LOCATION_LAST_CW_3:
+> +		return &regs->read_location_last3;
+> +	case NAND_FLASH_SPI_CFG:
+> +		return &regs->spi_cfg;
+> +	case NAND_NUM_ADDR_CYCLES:
+> +		return &regs->num_addr_cycle;
+> +	case NAND_BUSY_CHECK_WAIT_CNT:
+> +		return &regs->busy_wait_cnt;
+> +	case NAND_MSTR_CONFIG:
+> +		return &regs->mstr_cfg;
+> +	case NAND_FLASH_FEATURES:
+> +		return &regs->flash_feature;
+
+Just... no? What is the point of using an intermediate int here? just
+dereference the right value?
+
+> +	default:
+> +		return NULL;
+> +	}
+> +}
+> +EXPORT_SYMBOL(offset_to_nandc_reg);
+> +
+> +/* reset the register read buffer for next NAND operation */
+> +void clear_read_regs(struct qcom_nand_controller *nandc)
+> +{
+> +	nandc->reg_read_pos =3D 0;
+> +	nandc_read_buffer_sync(nandc, false);
+> +}
+> +EXPORT_SYMBOL(clear_read_regs);
+> +
+> +int prep_adm_dma_desc(struct qcom_nand_controller *nandc, bool read,
+
+adm?
 
 
-Kind regards,
-Niklas=
+Please always prefix your symbols (especially when exporting them) with
+a decent a easy to recognize prefix.
+
+> +			     int reg_off, const void *vaddr, int size,
+> +			     bool flow_control)
+> +{
+> +	struct desc_info *desc;
+> +	struct dma_async_tx_descriptor *dma_desc;
+> +	struct scatterlist *sgl;
+> +	struct dma_slave_config slave_conf;
+> +	struct qcom_adm_peripheral_config periph_conf =3D {};
+> +	enum dma_transfer_direction dir_eng;
+> +	int ret;
+> +
+> +	desc =3D kzalloc(sizeof(*desc), GFP_KERNEL);
+> +	if (!desc)
+> +		return -ENOMEM;
+> +
+> +	sgl =3D &desc->adm_sgl;
+> +
+> +	sg_init_one(sgl, vaddr, size);
+> +
+> +	if (read) {
+> +		dir_eng =3D DMA_DEV_TO_MEM;
+> +		desc->dir =3D DMA_FROM_DEVICE;
+> +	} else {
+> +		dir_eng =3D DMA_MEM_TO_DEV;
+> +		desc->dir =3D DMA_TO_DEVICE;
+> +	}
+> +
+> +	ret =3D dma_map_sg(nandc->dev, sgl, 1, desc->dir);
+> +	if (ret =3D=3D 0) {
+> +		ret =3D -ENOMEM;
+> +		goto err;
+> +	}
+> +
+> +	memset(&slave_conf, 0x00, sizeof(slave_conf));
+> +
+> +	slave_conf.device_fc =3D flow_control;
+> +	if (read) {
+> +		slave_conf.src_maxburst =3D 16;
+> +		slave_conf.src_addr =3D nandc->base_dma + reg_off;
+> +		if (nandc->data_crci) {
+> +			periph_conf.crci =3D nandc->data_crci;
+> +			slave_conf.peripheral_config =3D &periph_conf;
+> +			slave_conf.peripheral_size =3D sizeof(periph_conf);
+> +		}
+> +	} else {
+> +		slave_conf.dst_maxburst =3D 16;
+> +		slave_conf.dst_addr =3D nandc->base_dma + reg_off;
+> +		if (nandc->cmd_crci) {
+> +			periph_conf.crci =3D nandc->cmd_crci;
+> +			slave_conf.peripheral_config =3D &periph_conf;
+> +			slave_conf.peripheral_size =3D sizeof(periph_conf);
+> +		}
+> +	}
+> +
+> +	ret =3D dmaengine_slave_config(nandc->chan, &slave_conf);
+> +	if (ret) {
+> +		dev_err(nandc->dev, "failed to configure dma channel\n");
+> +		goto err;
+> +	}
+> +
+> +	dma_desc =3D dmaengine_prep_slave_sg(nandc->chan, sgl, 1, dir_eng, 0);
+> +	if (!dma_desc) {
+> +		dev_err(nandc->dev, "failed to prepare desc\n");
+> +		ret =3D -EINVAL;
+> +		goto err;
+> +	}
+> +
+> +	desc->dma_desc =3D dma_desc;
+> +
+> +	list_add_tail(&desc->node, &nandc->desc_list);
+> +
+> +	return 0;
+> +err:
+
+your error path is missing steps
+
+> +	kfree(desc);
+> +
+> +	return ret;
+> +}
+> +
+> +/* helpers to submit/free our list of dma descriptors */
+> +int submit_descs(struct qcom_nand_controller *nandc)
+> +{
+> +	struct desc_info *desc;
+> +	dma_cookie_t cookie =3D 0;
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +	int r;
+> +
+> +	if (nandc->props->is_bam) {
+> +		if (bam_txn->rx_sgl_pos > bam_txn->rx_sgl_start) {
+> +			r =3D prepare_bam_async_desc(nandc, nandc->rx_chan, 0);
+> +			if (r)
+> +				return r;
+> +		}
+> +
+> +		if (bam_txn->tx_sgl_pos > bam_txn->tx_sgl_start) {
+> +			r =3D prepare_bam_async_desc(nandc, nandc->tx_chan,
+> +						   DMA_PREP_INTERRUPT);
+> +			if (r)
+> +				return r;
+> +		}
+> +
+> +		if (bam_txn->cmd_sgl_pos > bam_txn->cmd_sgl_start) {
+> +			r =3D prepare_bam_async_desc(nandc, nandc->cmd_chan,
+> +						   DMA_PREP_CMD);
+> +			if (r)
+> +				return r;
+> +		}
+> +	}
+> +
+> +	list_for_each_entry(desc, &nandc->desc_list, node)
+> +		cookie =3D dmaengine_submit(desc->dma_desc);
+> +
+> +	if (nandc->props->is_bam) {
+> +		bam_txn->last_cmd_desc->callback =3D qpic_bam_dma_done;
+> +		bam_txn->last_cmd_desc->callback_param =3D bam_txn;
+> +		if (bam_txn->last_data_desc) {
+> +			bam_txn->last_data_desc->callback =3D qpic_bam_dma_done;
+> +			bam_txn->last_data_desc->callback_param =3D bam_txn;
+> +			bam_txn->wait_second_completion =3D true;
+> +		}
+> +
+> +		dma_async_issue_pending(nandc->tx_chan);
+> +		dma_async_issue_pending(nandc->rx_chan);
+> +		dma_async_issue_pending(nandc->cmd_chan);
+> +
+> +		if (!wait_for_completion_timeout(&bam_txn->txn_done,
+> +						 QPIC_NAND_COMPLETION_TIMEOUT))
+> +			return -ETIMEDOUT;
+> +	} else {
+> +		if (dma_sync_wait(nandc->chan, cookie) !=3D DMA_COMPLETE)
+> +			return -ETIMEDOUT;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(submit_descs);
+> +
+> +void free_descs(struct qcom_nand_controller *nandc)
+> +{
+> +	struct desc_info *desc, *n;
+> +
+> +	list_for_each_entry_safe(desc, n, &nandc->desc_list, node) {
+> +		list_del(&desc->node);
+> +
+> +		if (nandc->props->is_bam)
+> +			dma_unmap_sg(nandc->dev, desc->bam_sgl,
+> +				     desc->sgl_cnt, desc->dir);
+> +		else
+> +			dma_unmap_sg(nandc->dev, &desc->adm_sgl, 1,
+> +				     desc->dir);
+> +
+> +		kfree(desc);
+> +	}
+> +}
+> +EXPORT_SYMBOL(free_descs);
+> +
+> +/*
+> + * Maps the scatter gather list for DMA transfer and forms the DMA descr=
+iptor
+> + * for BAM. This descriptor will be added in the NAND DMA descriptor que=
+ue
+> + * which will be submitted to DMA engine.
+> + */
+> +int prepare_bam_async_desc(struct qcom_nand_controller *nandc,
+> +				  struct dma_chan *chan,
+> +				  unsigned long flags)
+> +{
+> +	struct desc_info *desc;
+> +	struct scatterlist *sgl;
+> +	unsigned int sgl_cnt;
+> +	int ret;
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +	enum dma_transfer_direction dir_eng;
+> +	struct dma_async_tx_descriptor *dma_desc;
+> +
+> +	desc =3D kzalloc(sizeof(*desc), GFP_KERNEL);
+> +	if (!desc)
+> +		return -ENOMEM;
+> +
+> +	if (chan =3D=3D nandc->cmd_chan) {
+> +		sgl =3D &bam_txn->cmd_sgl[bam_txn->cmd_sgl_start];
+> +		sgl_cnt =3D bam_txn->cmd_sgl_pos - bam_txn->cmd_sgl_start;
+> +		bam_txn->cmd_sgl_start =3D bam_txn->cmd_sgl_pos;
+> +		dir_eng =3D DMA_MEM_TO_DEV;
+> +		desc->dir =3D DMA_TO_DEVICE;
+> +	} else if (chan =3D=3D nandc->tx_chan) {
+> +		sgl =3D &bam_txn->data_sgl[bam_txn->tx_sgl_start];
+> +		sgl_cnt =3D bam_txn->tx_sgl_pos - bam_txn->tx_sgl_start;
+> +		bam_txn->tx_sgl_start =3D bam_txn->tx_sgl_pos;
+> +		dir_eng =3D DMA_MEM_TO_DEV;
+> +		desc->dir =3D DMA_TO_DEVICE;
+> +	} else {
+> +		sgl =3D &bam_txn->data_sgl[bam_txn->rx_sgl_start];
+> +		sgl_cnt =3D bam_txn->rx_sgl_pos - bam_txn->rx_sgl_start;
+> +		bam_txn->rx_sgl_start =3D bam_txn->rx_sgl_pos;
+> +		dir_eng =3D DMA_DEV_TO_MEM;
+> +		desc->dir =3D DMA_FROM_DEVICE;
+> +	}
+> +
+> +	sg_mark_end(sgl + sgl_cnt - 1);
+> +	ret =3D dma_map_sg(nandc->dev, sgl, sgl_cnt, desc->dir);
+> +	if (ret =3D=3D 0) {
+> +		dev_err(nandc->dev, "failure in mapping desc\n");
+> +		kfree(desc);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	desc->sgl_cnt =3D sgl_cnt;
+> +	desc->bam_sgl =3D sgl;
+> +
+> +	dma_desc =3D dmaengine_prep_slave_sg(chan, sgl, sgl_cnt, dir_eng,
+> +					   flags);
+> +
+> +	if (!dma_desc) {
+> +		dev_err(nandc->dev, "failure in prep desc\n");
+> +		dma_unmap_sg(nandc->dev, sgl, sgl_cnt, desc->dir);
+> +		kfree(desc);
+> +		return -EINVAL;
+> +	}
+> +
+> +	desc->dma_desc =3D dma_desc;
+> +
+> +	/* update last data/command descriptor */
+> +	if (chan =3D=3D nandc->cmd_chan)
+> +		bam_txn->last_cmd_desc =3D dma_desc;
+> +	else
+> +		bam_txn->last_data_desc =3D dma_desc;
+> +
+> +	list_add_tail(&desc->node, &nandc->desc_list);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(prepare_bam_async_desc);
+> +
+> +/*
+> + * Prepares the command descriptor for BAM DMA which will be used for NA=
+ND
+> + * register reads and writes. The command descriptor requires the command
+> + * to be formed in command element type so this function uses the command
+> + * element from bam transaction ce array and fills the same with required
+
+ce?
+
+> + * data. A single SGL can contain multiple command elements so
+> + * NAND_BAM_NEXT_SGL will be used for starting the separate SGL
+> + * after the current command element.
+> + */
+> +int prep_bam_dma_desc_cmd(struct qcom_nand_controller *nandc, bool read,
+> +				 int reg_off, const void *vaddr,
+> +				 int size, unsigned int flags)
+> +{
+> +	int bam_ce_size;
+> +	int i, ret;
+> +	struct bam_cmd_element *bam_ce_buffer;
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +
+> +	bam_ce_buffer =3D &bam_txn->bam_ce[bam_txn->bam_ce_pos];
+> +
+> +	/* fill the command desc */
+> +	for (i =3D 0; i < size; i++) {
+> +		if (read)
+> +			bam_prep_ce(&bam_ce_buffer[i],
+> +				    nandc_reg_phys(nandc, reg_off + 4 * i),
+> +				    BAM_READ_COMMAND,
+> +				    reg_buf_dma_addr(nandc,
+> +						     (__le32 *)vaddr + i));
+> +		else
+> +			bam_prep_ce_le32(&bam_ce_buffer[i],
+> +					 nandc_reg_phys(nandc, reg_off + 4 * i),
+> +					 BAM_WRITE_COMMAND,
+> +					 *((__le32 *)vaddr + i));
+
+The _le handling looks really fragile.
+
+> +	}
+> +
+> +	bam_txn->bam_ce_pos +=3D size;
+> +
+> +	/* use the separate sgl after this command */
+> +	if (flags & NAND_BAM_NEXT_SGL) {
+> +		bam_ce_buffer =3D &bam_txn->bam_ce[bam_txn->bam_ce_start];
+> +		bam_ce_size =3D (bam_txn->bam_ce_pos -
+> +				bam_txn->bam_ce_start) *
+> +				sizeof(struct bam_cmd_element);
+> +		sg_set_buf(&bam_txn->cmd_sgl[bam_txn->cmd_sgl_pos],
+> +			   bam_ce_buffer, bam_ce_size);
+> +		bam_txn->cmd_sgl_pos++;
+> +		bam_txn->bam_ce_start =3D bam_txn->bam_ce_pos;
+> +
+> +		if (flags & NAND_BAM_NWD) {
+> +			ret =3D prepare_bam_async_desc(nandc, nandc->cmd_chan,
+> +						     DMA_PREP_FENCE |
+> +						     DMA_PREP_CMD);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(prep_bam_dma_desc_cmd);
+> +
+> +/*
+> + * Prepares the data descriptor for BAM DMA which will be used for NAND
+> + * data reads and writes.
+> + */
+> +int prep_bam_dma_desc_data(struct qcom_nand_controller *nandc, bool read,
+> +				  const void *vaddr,
+> +				  int size, unsigned int flags)
+> +{
+> +	int ret;
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +
+> +	if (read) {
+> +		sg_set_buf(&bam_txn->data_sgl[bam_txn->rx_sgl_pos],
+> +			   vaddr, size);
+> +		bam_txn->rx_sgl_pos++;
+> +	} else {
+> +		sg_set_buf(&bam_txn->data_sgl[bam_txn->tx_sgl_pos],
+> +			   vaddr, size);
+> +		bam_txn->tx_sgl_pos++;
+> +
+> +		/*
+> +		 * BAM will only set EOT for DMA_PREP_INTERRUPT so if this flag
+> +		 * is not set, form the DMA descriptor
+> +		 */
+> +		if (!(flags & NAND_BAM_NO_EOT)) {
+> +			ret =3D prepare_bam_async_desc(nandc, nandc->tx_chan,
+> +						     DMA_PREP_INTERRUPT);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(prep_bam_dma_desc_data);
+> +
+> +/*
+> + * read_reg_dma:	prepares a descriptor to read a given number of
+> + *			contiguous registers to the reg_read_buf pointer
+> + *
+> + * @first:		offset of the first register in the contiguous block
+> + * @num_regs:		number of registers to read
+> + * @flags:		flags to control DMA descriptor preparation
+> + */
+> +int read_reg_dma(struct qcom_nand_controller *nandc, int first,
+> +			int num_regs, unsigned int flags)
+> +{
+> +	bool flow_control =3D false;
+> +	void *vaddr;
+> +
+> +	vaddr =3D nandc->reg_read_buf + nandc->reg_read_pos;
+> +	nandc->reg_read_pos +=3D num_regs;
+> +
+> +	if (first =3D=3D NAND_DEV_CMD_VLD || first =3D=3D NAND_DEV_CMD1)
+> +		first =3D dev_cmd_reg_addr(nandc, first);
+> +
+> +	if (nandc->props->is_bam)
+> +		return prep_bam_dma_desc_cmd(nandc, true, first, vaddr,
+> +					     num_regs, flags);
+> +
+> +	if (first =3D=3D NAND_READ_ID || first =3D=3D NAND_FLASH_STATUS)
+> +		flow_control =3D true;
+
+This flow_control property really bothers me.
+
+> +
+> +	return prep_adm_dma_desc(nandc, true, first, vaddr,
+> +				 num_regs * sizeof(u32), flow_control);
+> +}
+> +EXPORT_SYMBOL(read_reg_dma);
+> +
+> +/*
+> + * write_reg_dma:	prepares a descriptor to write a given number of
+> + *			contiguous registers
+> + *
+> + * @first:		offset of the first register in the contiguous block
+> + * @num_regs:		number of registers to write
+> + * @flags:		flags to control DMA descriptor preparation
+> + */
+> +int write_reg_dma(struct qcom_nand_controller *nandc, int first,
+> +			 int num_regs, unsigned int flags)
+> +{
+> +	bool flow_control =3D false;
+> +	struct nandc_regs *regs =3D nandc->regs;
+> +	void *vaddr;
+> +
+> +	vaddr =3D offset_to_nandc_reg(regs, first);
+> +
+> +	if (first =3D=3D NAND_ERASED_CW_DETECT_CFG) {
+> +		if (flags & NAND_ERASED_CW_SET)
+> +			vaddr =3D &regs->erased_cw_detect_cfg_set;
+> +		else
+> +			vaddr =3D &regs->erased_cw_detect_cfg_clr;
+> +	}
+> +
+> +	if (first =3D=3D NAND_EXEC_CMD)
+> +		flags |=3D NAND_BAM_NWD;
+> +
+> +	if (first =3D=3D NAND_FLASH_SPI_CFG || first =3D=3D NAND_NUM_ADDR_CYCLES
+> +		|| first =3D=3D NAND_BUSY_CHECK_WAIT_CNT
+> +		|| first =3D=3D NAND_MSTR_CONFIG)
+> +		first =3D dev_cmd_reg_addr(nandc, first);
+> +
+> +	if (first =3D=3D NAND_DEV_CMD1_RESTORE || first =3D=3D NAND_DEV_CMD1)
+> +		first =3D dev_cmd_reg_addr(nandc, NAND_DEV_CMD1);
+> +
+> +	if (first =3D=3D NAND_DEV_CMD_VLD_RESTORE || first =3D=3D NAND_DEV_CMD_=
+VLD)
+> +		first =3D dev_cmd_reg_addr(nandc, NAND_DEV_CMD_VLD);
+> +
+
+What about a switch case here?
+
+> +	if (nandc->props->is_bam)
+> +		return prep_bam_dma_desc_cmd(nandc, false, first, vaddr,
+> +					     num_regs, flags);
+> +
+> +	if (first =3D=3D NAND_FLASH_CMD)
+> +		flow_control =3D true;
+> +
+> +	return prep_adm_dma_desc(nandc, false, first, vaddr,
+> +				 num_regs * sizeof(u32), flow_control);
+> +}
+> +EXPORT_SYMBOL(write_reg_dma);
+> +
+> +/*
+> + * read_data_dma:	prepares a DMA descriptor to transfer data from the
+> + *			controller's internal buffer to the buffer 'vaddr'
+> + *
+> + * @reg_off:		offset within the controller's data buffer
+> + * @vaddr:		virtual address of the buffer we want to write to
+> + * @size:		DMA transaction size in bytes
+> + * @flags:		flags to control DMA descriptor preparation
+> + */
+> +int read_data_dma(struct qcom_nand_controller *nandc, int reg_off,
+> +			 const u8 *vaddr, int size, unsigned int flags)
+> +{
+> +	if (nandc->props->is_bam)
+> +		return prep_bam_dma_desc_data(nandc, true, vaddr, size, flags);
+> +
+> +	return prep_adm_dma_desc(nandc, true, reg_off, vaddr, size, false);
+> +}
+> +EXPORT_SYMBOL(read_data_dma);
+> +
+> +/*
+> + * write_data_dma:	prepares a DMA descriptor to transfer data from
+> + *			'vaddr' to the controller's internal buffer
+> + *
+> + * @reg_off:		offset within the controller's data buffer
+> + * @vaddr:		virtual address of the buffer we want to read from
+> + * @size:		DMA transaction size in bytes
+> + * @flags:		flags to control DMA descriptor preparation
+> + */
+> +int write_data_dma(struct qcom_nand_controller *nandc, int reg_off,
+> +			  const u8 *vaddr, int size, unsigned int flags)
+> +{
+> +	if (nandc->props->is_bam)
+> +		return prep_bam_dma_desc_data(nandc, false, vaddr, size, flags);
+> +
+> +	return prep_adm_dma_desc(nandc, false, reg_off, vaddr, size, false);
+> +}
+> +EXPORT_SYMBOL(write_data_dma);
+> +
+> +void nandc_set_reg(struct qcom_nand_controller *nandc, int offset,
+> +			  u32 val)
+> +{
+> +	struct nandc_regs *regs =3D nandc->regs;
+> +	__le32 *reg;
+> +
+> +	reg =3D offset_to_nandc_reg(regs, offset);
+> +	if (reg)
+> +		*reg =3D cpu_to_le32(val);
+> +}
+> +EXPORT_SYMBOL(nandc_set_reg);
+> +
+> +/* Allocates and Initializes the BAM transaction */
+> +struct bam_transaction *
+> +alloc_bam_transaction(struct qcom_nand_controller *nandc)
+> +{
+> +	struct bam_transaction *bam_txn;
+> +	size_t bam_txn_size;
+> +	unsigned int num_cw =3D nandc->max_cwperpage;
+> +	void *bam_txn_buf;
+> +
+> +	bam_txn_size =3D
+> +		sizeof(*bam_txn) + num_cw *
+> +		((sizeof(*bam_txn->bam_ce) * QPIC_PER_CW_CMD_ELEMENTS) +
+> +		(sizeof(*bam_txn->cmd_sgl) * QPIC_PER_CW_CMD_SGL) +
+> +		(sizeof(*bam_txn->data_sgl) * QPIC_PER_CW_DATA_SGL));
+> +
+> +	bam_txn_buf =3D devm_kzalloc(nandc->dev, bam_txn_size, GFP_KERNEL);
+> +	if (!bam_txn_buf)
+> +		return NULL;
+> +
+> +	bam_txn =3D bam_txn_buf;
+> +	bam_txn_buf +=3D sizeof(*bam_txn);
+> +
+> +	bam_txn->bam_ce =3D bam_txn_buf;
+> +	bam_txn_buf +=3D
+> +		sizeof(*bam_txn->bam_ce) * QPIC_PER_CW_CMD_ELEMENTS * num_cw;
+> +
+> +	bam_txn->cmd_sgl =3D bam_txn_buf;
+> +	bam_txn_buf +=3D
+> +		sizeof(*bam_txn->cmd_sgl) * QPIC_PER_CW_CMD_SGL * num_cw;
+> +
+> +	bam_txn->data_sgl =3D bam_txn_buf;
+> +
+> +	init_completion(&bam_txn->txn_done);
+> +
+> +	return bam_txn;
+> +}
+> +EXPORT_SYMBOL(alloc_bam_transaction);
+> +
+> +/* Clears the BAM transaction indexes */
+> +void clear_bam_transaction(struct qcom_nand_controller *nandc)
+> +{
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +
+> +	if (!nandc->props->is_bam)
+> +		return;
+> +
+> +	bam_txn->bam_ce_pos =3D 0;
+> +	bam_txn->bam_ce_start =3D 0;
+> +	bam_txn->cmd_sgl_pos =3D 0;
+> +	bam_txn->cmd_sgl_start =3D 0;
+> +	bam_txn->tx_sgl_pos =3D 0;
+> +	bam_txn->tx_sgl_start =3D 0;
+> +	bam_txn->rx_sgl_pos =3D 0;
+> +	bam_txn->rx_sgl_start =3D 0;
+> +	bam_txn->last_data_desc =3D NULL;
+> +	bam_txn->wait_second_completion =3D false;
+> +
+> +	sg_init_table(bam_txn->cmd_sgl, nandc->max_cwperpage *
+> +		      QPIC_PER_CW_CMD_SGL);
+> +	sg_init_table(bam_txn->data_sgl, nandc->max_cwperpage *
+> +		      QPIC_PER_CW_DATA_SGL);
+> +
+> +	reinit_completion(&bam_txn->txn_done);
+> +}
+> +EXPORT_SYMBOL(clear_bam_transaction);
+> +
+> +/* one time setup of a few nand controller registers */
+
+Does this needs to be shared?
+
+> +int qcom_nandc_setup(struct qcom_nand_controller *nandc)
+> +{
+> +	u32 nand_ctrl;
+> +
+> +	/* kill onenand */
+> +	if (!nandc->props->is_qpic)
+> +		nandc_write(nandc, SFLASHC_BURST_CFG, 0);
+> +
+> +	if (!nandc->props->qpic_v2)
+> +		nandc_write(nandc, dev_cmd_reg_addr(nandc, NAND_DEV_CMD_VLD),
+> +			    NAND_DEV_CMD_VLD_VAL);
+> +
+> +	/* enable ADM or BAM DMA */
+> +	if (nandc->props->is_bam) {
+> +		nand_ctrl =3D nandc_read(nandc, NAND_CTRL);
+> +
+> +		/*
+> +		 *NAND_CTRL is an operational registers, and CPU
+> +		 * access to operational registers are read only
+> +		 * in BAM mode. So update the NAND_CTRL register
+> +		 * only if it is not in BAM mode. In most cases BAM
+> +		 * mode will be enabled in bootloader
+> +		 */
+> +		if (!(nand_ctrl & BAM_MODE_EN))
+> +			nandc_write(nandc, NAND_CTRL, nand_ctrl | BAM_MODE_EN);
+> +	} else {
+> +		nandc_write(nandc, NAND_FLASH_CHIP_SELECT, DM_EN);
+> +	}
+> +
+> +	/* save the original values of these registers */
+> +	if (!nandc->props->qpic_v2) {
+> +		nandc->cmd1 =3D nandc_read(nandc, dev_cmd_reg_addr(nandc, NAND_DEV_CMD=
+1));
+> +		nandc->vld =3D NAND_DEV_CMD_VLD_VAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(qcom_nandc_setup);
+> +
+> +void qcom_nandc_unalloc(struct qcom_nand_controller *nandc)
+> +{
+> +	if (nandc->props->is_bam) {
+> +		if (!dma_mapping_error(nandc->dev, nandc->reg_read_dma))
+> +			dma_unmap_single(nandc->dev, nandc->reg_read_dma,
+> +					 MAX_REG_RD *
+> +					 sizeof(*nandc->reg_read_buf),
+> +					 DMA_FROM_DEVICE);
+> +
+> +		if (nandc->tx_chan)
+> +			dma_release_channel(nandc->tx_chan);
+> +
+> +		if (nandc->rx_chan)
+> +			dma_release_channel(nandc->rx_chan);
+> +
+> +		if (nandc->cmd_chan)
+> +			dma_release_channel(nandc->cmd_chan);
+> +	} else {
+> +		if (nandc->chan)
+> +			dma_release_channel(nandc->chan);
+> +	}
+> +}
+> +EXPORT_SYMBOL(qcom_nandc_unalloc);
+> +
+> +int qcom_nandc_alloc(struct qcom_nand_controller *nandc)
+> +{
+> +	int ret;
+> +
+> +	ret =3D dma_set_coherent_mask(nandc->dev, DMA_BIT_MASK(32));
+> +	if (ret) {
+> +		dev_err(nandc->dev, "failed to set DMA mask\n");
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * we use the internal buffer for reading ONFI params, reading small
+> +	 * data like ID and status, and preforming read-copy-write operations
+
+performing
+
+Please run checkpatch.pl, I believe the tool should catch these.
+
+> +	 * when writing to a codeword partially. 532 is the maximum possible
+> +	 * size of a codeword for our nand controller
+> +	 */
+> +	nandc->buf_size =3D 532;
+> +
+> +	nandc->data_buffer =3D devm_kzalloc(nandc->dev, nandc->buf_size,
+> +					GFP_KERNEL);
+> +	if (!nandc->data_buffer)
+> +		return -ENOMEM;
+> +
+> +	nandc->regs =3D devm_kzalloc(nandc->dev, sizeof(*nandc->regs),
+> +					GFP_KERNEL);
+> +	if (!nandc->regs)
+> +		return -ENOMEM;
+> +
+> +	nandc->reg_read_buf =3D devm_kcalloc(nandc->dev,
+> +				MAX_REG_RD, sizeof(*nandc->reg_read_buf),
+> +				GFP_KERNEL);
+> +	if (!nandc->reg_read_buf)
+> +		return -ENOMEM;
+> +
+> +	if (nandc->props->is_bam) {
+
+It's probably the 10th time I ask, but what the heck is this is_bam
+parameter showing? It looks like you're handling two different
+controllers in the same driver without using different compatibles.
+
+> +		nandc->reg_read_dma =3D
+> +			dma_map_single(nandc->dev, nandc->reg_read_buf,
+> +				       MAX_REG_RD *
+> +				       sizeof(*nandc->reg_read_buf),
+> +				       DMA_FROM_DEVICE);
+> +		if (dma_mapping_error(nandc->dev, nandc->reg_read_dma)) {
+> +			dev_err(nandc->dev, "failed to DMA MAP reg buffer\n");
+> +			return -EIO;
+> +		}
+> +
+> +		nandc->tx_chan =3D dma_request_chan(nandc->dev, "tx");
+> +		if (IS_ERR(nandc->tx_chan)) {
+> +			ret =3D PTR_ERR(nandc->tx_chan);
+> +			nandc->tx_chan =3D NULL;
+> +			dev_err_probe(nandc->dev, ret,
+> +				      "tx DMA channel request failed\n");
+> +			goto unalloc;
+> +		}
+> +
+> +		nandc->rx_chan =3D dma_request_chan(nandc->dev, "rx");
+> +		if (IS_ERR(nandc->rx_chan)) {
+> +			ret =3D PTR_ERR(nandc->rx_chan);
+> +			nandc->rx_chan =3D NULL;
+> +			dev_err_probe(nandc->dev, ret,
+> +				      "rx DMA channel request failed\n");
+> +			goto unalloc;
+> +		}
+> +
+> +		nandc->cmd_chan =3D dma_request_chan(nandc->dev, "cmd");
+> +		if (IS_ERR(nandc->cmd_chan)) {
+> +			ret =3D PTR_ERR(nandc->cmd_chan);
+> +			nandc->cmd_chan =3D NULL;
+> +			dev_err_probe(nandc->dev, ret,
+> +				      "cmd DMA channel request failed\n");
+> +			goto unalloc;
+> +		}
+> +
+> +		/*
+> +		 * Initially allocate BAM transaction to read ONFI param page.
+> +		 * After detecting all the devices, this BAM transaction will
+> +		 * be freed and the next BAM tranasction will be allocated with
+
+Typo
+
+> +		 * maximum codeword size
+> +		 */
+> +		nandc->max_cwperpage =3D 1;
+> +		nandc->bam_txn =3D alloc_bam_transaction(nandc);
+> +		if (!nandc->bam_txn) {
+> +			dev_err(nandc->dev,
+> +				"failed to allocate bam transaction\n");
+> +			ret =3D -ENOMEM;
+> +			goto unalloc;
+> +		}
+> +	} else {
+> +		nandc->chan =3D dma_request_chan(nandc->dev, "rxtx");
+> +		if (IS_ERR(nandc->chan)) {
+> +			ret =3D PTR_ERR(nandc->chan);
+> +			nandc->chan =3D NULL;
+> +			dev_err_probe(nandc->dev, ret,
+> +				      "rxtx DMA channel request failed\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	INIT_LIST_HEAD(&nandc->desc_list);
+> +	INIT_LIST_HEAD(&nandc->host_list);
+> +
+> +	return 0;
+> +unalloc:
+> +	qcom_nandc_unalloc(nandc);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(qcom_nandc_alloc);
+> diff --git a/include/linux/mtd/nand-qpic-common.h b/include/linux/mtd/nan=
+d-qpic-common.h
+> new file mode 100644
+> index 000000000000..c461c1781330
+> --- /dev/null
+> +++ b/include/linux/mtd/nand-qpic-common.h
+
+...
+
+> +	u32 cmd1, vld;
+> +	bool exec_opwrite;
+> +};
+> +
+> +/*
+> + * NAND chip structure
+
+qcom_nand_host is a nand chip structure?
+
+> + *
+> + * @boot_partitions:		array of boot partitions where offset and size of =
+the
+> + *				boot partitions are stored
+> + *
+> + * @chip:			base NAND chip structure
+> + * @node:			list node to add itself to host_list in
+> + *				qcom_nand_controller
+> + *
+> + * @nr_boot_partitions:		count of the boot partitions where spare data i=
+s not
+> + *				protected by ECC
+> + *
+> + * @cs:				chip select value for this chip
+> + * @cw_size:			the number of bytes in a single step/codeword
+> + *				of a page, consisting of all data, ecc, spare
+> + *				and reserved bytes
+> + * @cw_data:			the number of bytes within a codeword protected
+> + *				by ECC
+> + * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
+> + *				chip
+> + *
+> + * @last_command:		keeps track of last command on this chip. used
+> + *				for reading correct status
+> + *
+> + * @cfg0, cfg1, cfg0_raw..:	NANDc register configurations needed for
+> + *				ecc/non-ecc mode for the current nand flash
+> + *				device
+> + *
+> + * @status:			value to be returned if NAND_CMD_STATUS command
+> + *				is executed
+> + * @codeword_fixup:		keep track of the current layout used by
+> + *				the driver for read/write operation.
+> + * @use_ecc:			request the controller to use ECC for the
+> + *				upcoming read/write
+> + * @bch_enabled:		flag to tell whether BCH ECC mode is used
+> + */
+> +struct qcom_nand_host {
+> +	struct qcom_nand_boot_partition *boot_partitions;
+> +
+> +	struct nand_chip chip;
+> +	struct list_head node;
+> +
+> +	int nr_boot_partitions;
+> +
+> +	int cs;
+> +	int cw_size;
+> +	int cw_data;
+> +	int ecc_bytes_hw;
+> +	int spare_bytes;
+> +	int bbm_size;
+> +
+> +	int last_command;
+> +
+> +	u32 cfg0, cfg1;
+> +	u32 cfg0_raw, cfg1_raw;
+> +	u32 ecc_buf_cfg;
+> +	u32 ecc_bch_cfg;
+> +	u32 clrflashstatus;
+> +	u32 clrreadstatus;
+> +
+> +	u8 status;
+> +	bool codeword_fixup;
+> +	bool use_ecc;
+> +	bool bch_enabled;
+> +};
+> +
+
+I would like to see how useful are all these exports. I believe the
+current NAND controller driver already has some of these functions
+defined, could you please move the functions rather than adding them
+here without removing them in the other driver?
+
+Thanks, Miqu=C3=A8l
 
