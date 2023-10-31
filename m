@@ -1,105 +1,110 @@
-Return-Path: <devicetree+bounces-13111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FCAA7DC949
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:19:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECCBA7DC9B2
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:34:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E4B5B20C9B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:19:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC8FAB20D2F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D0D13AE2;
-	Tue, 31 Oct 2023 09:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A693913AE5;
+	Tue, 31 Oct 2023 09:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TW56cz8G"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IebiPiW3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9144713AD6
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:19:51 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BCEB3
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 02:19:50 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a98517f3so7574960e87.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 02:19:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1698743988; x=1699348788; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YXhk8j7RgMYbDOudOHh/s7hOM+xUoPUnDadljYQRfhA=;
-        b=TW56cz8GzAsWEJbTq25R1HfIkf0e/tIPCQLISTne8cbIm/82DlexIrMv0lfQ5nzNJX
-         a6DeeFAb/tmhcHmQLUwhxZtQVKq9gula3IbGjPVq9y/B81+WUh1WbFXJ+oMyLLkZ7a3T
-         TVErSHkZEwuF7NY9td7DBWrv4Zbk0j0MM2KWg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698743988; x=1699348788;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YXhk8j7RgMYbDOudOHh/s7hOM+xUoPUnDadljYQRfhA=;
-        b=b+z54iY91sQv/sDEYzxVDrfmbBpq/LkZirq4uKjKSdvf/e79DMC78BvRvm4gXT+YF/
-         sHMdDk3CWc8mi4b3hOpKEi7sZ7eEKhOMKz2SCw2cbK3mwpGBiwjT8/LJpYc3NpIewOmn
-         NO5Vy3TbMlBQZmCHBpwtKxPCB9OXffii++R33i2tm/iffuisnta09G/+XLJCzbHBeUNi
-         weShKXoWJ327ZrTWO04fdj6aR88972z/d7YNSjTLpXlauLg0Ctg6Nk9Wy81z30R8agPC
-         QzDGuJm29+JNW6WusPpyrTCFJAbb4Z9T25KWV9yE83h293pGW5sOfIKiOIj3kszrQhrb
-         GzEA==
-X-Gm-Message-State: AOJu0Yylo9jgwfftf5XZHWnzNHPidHRyLKpC5bXMjuPHvaHu7sTa6v/K
-	GDP4lUduACfBg8Cpr8V8dla9CGg1Sm8yiS/XXd1bvg==
-X-Google-Smtp-Source: AGHT+IFn5yWC2uhLfXCKgv1dEdMIAEZF0taqktQ/pQKq4j66LgSHNMQAoiTD3AocqF86NDROFv5aLWYwvNc/v9aYlPM=
-X-Received: by 2002:ac2:498e:0:b0:507:b935:9f60 with SMTP id
- f14-20020ac2498e000000b00507b9359f60mr9079538lfl.57.1698743988383; Tue, 31
- Oct 2023 02:19:48 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A909C14F7D
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:33:58 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83550B7;
+	Tue, 31 Oct 2023 02:33:56 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3656CFF811;
+	Tue, 31 Oct 2023 09:33:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698744835;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m47EAzqConAoJeh9KR/8kdD9Cq9u7uQy035dBZUpv0w=;
+	b=IebiPiW3z5rimh+Cw3MRE44T90St+6GCGnlsEWuv9nDu7j9N1Jk1vLk/rKm4ZwbrMPI+oa
+	3HZEGlx9OkxMQQ6x+xH023VJ+B2ZqoXlXvR2sciWSgQ+Lpb796IKuQFnM4V3V0TUZy/OEW
+	hg9PGSb5agMVpNh/iCSU+Nkx2TbpMmD3tJnVl2NercKUOcxCZPPgDKK+vILI97ZxDOdNPg
+	fCA1nByp3nD2azf32qBrczImLlfa5pSqFD1510jVbpayaYS/h3EuvwQxSaYkEBPo/N1OT/
+	hJ81V9BmxU7EifbWYs8RF7ApeNi7pL1jTuXC3IcX0BlNawvjQZGjRFkZ5y8j8A==
+Date: Tue, 31 Oct 2023 10:33:52 +0100
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
+	michael.riesch@wolfvision.net
+Subject: Re: [PATCH v9 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Message-ID: <ZUDKAB+zQYS9aLpB@pc-70.home>
+References: <cover.1698666612.git.mehdi.djait@bootlin.com>
+ <f7367726eb077d43446c83591ecbf9acbc77ef5f.1698666612.git.mehdi.djait@bootlin.com>
+ <ad346052-ec62-4d68-903e-fccd7ad989bd@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231030132523.86123-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231030132523.86123-1-angelogioacchino.delregno@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 31 Oct 2023 17:19:37 +0800
-Message-ID: <CAGXv+5FWPZYjsXse58k5HyMijkrKBDYw0k4wpdfGv99ur8=5yg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] MT8195 Cherry: Assign MFG vregs for power saving
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: matthias.bgg@gmail.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad346052-ec62-4d68-903e-fccd7ad989bd@wanadoo.fr>
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-On Mon, Oct 30, 2023 at 9:25=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> This series assigns the right regulators to MFG0 and MFG1, respectively
-> VGPU (GPU Core) and VSRAM_OTHERS (GPU SRAM), and removes the property
-> regulator-always-on from both.
->
-> This allows to save power both during runtime suspend and during system
-> sleep; specifically because:
->  1. The GPU SRAM regulator is switched off during runtime suspend
->  2. The GPU Core regulator is switched off during system sleep
->
-> Of course, in order for those power saving actions to actually take
-> place, it is required to also have the code in [1].
-> Anyway, even without series [1], this will not introduce any unstability
-> as the Vgpu regulator will simply not ever get turned off.
->
-> [1]: https://lore.kernel.org/r/20231030132257.85379-1-angelogioacchino.de=
-lregno@collabora.com
->
-> AngeloGioacchino Del Regno (2):
->   arm64: dts: mediatek: mt8195-cherry: Add MFG0 domain supply
->   arm64: dts: mediatek: mt8195-cherry: Assign sram supply to MFG1 pd
+Hello Christophe,
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+On Mon, Oct 30, 2023 at 01:47:17PM +0100, Christophe JAILLET wrote:
+> > +	/* Create & register platform subdev. */
+> > +	ret = cif_register_stream_vdev(cif_dev);
+> > +	if (ret < 0)
+> > +		goto err_unreg_media_dev;
+> > +
+> > +	ret = cif_subdev_notifier(cif_dev);
+> > +	if (ret < 0) {
+> > +		v4l2_err(&cif_dev->v4l2_dev,
+> > +			 "Failed to register subdev notifier(%d)\n", ret);
+> > +		cif_unregister_stream_vdev(cif_dev);
+> > +		goto err_unreg_media_dev;
+> 
+> Should there be another label with cif_unregister_stream_vdev(cif_dev); if
+> an error occurs here?
+> 
+> CJ
 
-on Tomato without the power saving patches. Regulators are correctly
-requested and I can see the SRAM regulator get turned on and off with
-GPU usage.
+cif_subdev_notifier() is the last function call in the probe with error
+handling. So it will undo the last successful register:
+cif_register_stream_vdev and use the goto to unregister the rest.
+
+I can add a label err_unreg_stream_vdev but it will be only used in the
+error handling of cif_subdev_notifier() and I don't see the benefit.
+
+--
+Kind Regards
+Mehdi Djait
+
+> > +	}
+> > +
+> > +	cif_set_default_format(cif_dev);
+> > +	pm_runtime_enable(&pdev->dev);
+> > +
+> > +	return 0;
+> > +
+> > +err_unreg_media_dev:
+> > +	media_device_unregister(&cif_dev->media_dev);
+> > +err_unreg_v4l2_dev:
+> > +	v4l2_device_unregister(&cif_dev->v4l2_dev);
+> > +	return ret;
+> > +}
 
