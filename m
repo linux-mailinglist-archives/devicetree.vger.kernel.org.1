@@ -1,170 +1,114 @@
-Return-Path: <devicetree+bounces-13259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817EE7DD19A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:31:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40FC17DD1A7
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:33:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 223FDB20EB3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:31:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDF6B281407
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DBA33DC;
-	Tue, 31 Oct 2023 16:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797DC1DFCC;
+	Tue, 31 Oct 2023 16:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3BeNkl8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GPMB20yu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4290A2031D;
-	Tue, 31 Oct 2023 16:31:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F938C433C9;
-	Tue, 31 Oct 2023 16:31:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698769868;
-	bh=Opu3JDYBPCoRNGFn0xHjErSlJeCKvHxFHszXMcL0FHY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T3BeNkl8nju6P2+MI5e0/95aJuR/VEVyzci11tafyEPpg2vdRXqOVZTp1zN8XbYWW
-	 OX5ErgTbJr4LJhZP7nYcz9TM3of3N5KvKvmKLchf9KogPccaqADR1yZ4SVgCjzEFIM
-	 doxWz7ls1xU2vJY0yUYruxxh/2TkmvwayEEiLo9mm0VyTJoIUhT4naxBYY0HxuU7e6
-	 i0/KQyankK9r5KDTDvq6BEc5bqnIPOYaqWdEGs2DuMbqfYAClh/OAZbe2JPC7wdIVU
-	 35oOBr2Oh0E07N9GhzYD3bJ/XfVNh143LQIoXFwL9DoNXJUXHQQc8/mJ4eFiokd4gs
-	 10bq2Oaj+f7sA==
-Date: Tue, 31 Oct 2023 17:31:05 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Sarah Walker <sarah.walker@imgtec.com>, frank.binns@imgtec.com, 
-	faith.ekstrand@collabora.com
-Cc: boris.brezillon@collabora.com, airlied@gmail.com, daniel@ffwll.ch, 
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, afd@ti.com, hns@goldelico.com, 
-	matthew.brost@intel.com, christian.koenig@amd.com, luben.tuikov@amd.com, dakr@redhat.com, 
-	linux-kernel@vger.kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, corbet@lwn.net, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v8 00/20] Imagination Technologies PowerVR DRM driver
-Message-ID: <lg7cdw3qlak74zefbx25f5pnazrburteldueoqz7o7cphydqp7@q56er3qa5muf>
-References: <20231031151257.90350-1-sarah.walker@imgtec.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 675EC20319;
+	Tue, 31 Oct 2023 16:32:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796BB1BCF;
+	Tue, 31 Oct 2023 09:32:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698769946; x=1730305946;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SAVUUSy6kEq+VaAk+hGdPRfOn1rye2cEo6cJ7P/cJ4A=;
+  b=GPMB20yuZylvzt4o/x+pzUgHbVNn8NySAwxBhoUgJxev10vH678C/bSJ
+   1XsJIVBbyu9EZNvub8kIWOxJi/iJGKDUXgFB5qtJU3dyKC2o4F5bj0uAa
+   qFgyP/mSvheVBnQbOyhuSUEGDLGEQ7uFCJFOkCCFHw3fDBFtQMC18g43Y
+   UXaJQ+18S/+f/5xmv/1v7cnlqeDhumbk0PQhUWw9mMHX5OSmFC9iF6GIs
+   vPxghSIcmbolfLh7eCJzSTqIvYKo1XK2nXyEe555YLuBMMzkwk1vRqcS1
+   cyNOiJLFjMt94UbiuZ0L55ltiJA5ioJPZ0CI04XcxW23E/r+RxlhkS1y7
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1172522"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="1172522"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 09:32:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="851293283"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="851293283"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by FMSMGA003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 09:32:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qxrf8-0000000ACil-13uQ;
+	Tue, 31 Oct 2023 18:32:18 +0200
+Date: Tue, 31 Oct 2023 18:32:17 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-acpi@vger.kernel.org, linux-media@vger.kernel.org,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/1] device property: Add fwnode_name_eq()
+Message-ID: <ZUEsEQQTTlXmOHPt@smile.fi.intel.com>
+References: <20231031135306.1106640-1-sakari.ailus@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="h6eqzan6yg37toag"
-Content-Disposition: inline
-In-Reply-To: <20231031151257.90350-1-sarah.walker@imgtec.com>
-
-
---h6eqzan6yg37toag
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231031135306.1106640-1-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Sarah, Faith, Frank,
+On Tue, Oct 31, 2023 at 03:53:06PM +0200, Sakari Ailus wrote:
+> Add fwnode_name_eq() to implement the functionality of of_node_name_eq()
+> on fwnode property API. The same convention of ending the comparison at
+> '@' (besides '\0') is applied on also both ACPI and swnode. The function
+> is intended for comparing unit address-less node names on DT and firmware
+> or swnodes compliant with DT bindings.
 
-On Tue, Oct 31, 2023 at 03:12:37PM +0000, Sarah Walker wrote:
-> This patch series adds the initial DRM driver for Imagination Technologie=
-s PowerVR
-> GPUs, starting with those based on our Rogue architecture. It's worth poi=
-nting
-> out that this is a new driver, written from the ground up, rather than a
-> refactored version of our existing downstream driver (pvrsrvkm).
->=20
-> This new DRM driver supports:
-> - GEM shmem allocations
-> - dma-buf / PRIME
-> - Per-context userspace managed virtual address space
-> - DRM sync objects (binary and timeline)
-> - Power management suspend / resume
-> - GPU job submission (geometry, fragment, compute, transfer)
-> - META firmware processor
-> - MIPS firmware processor
-> - GPU hang detection and recovery
->=20
-> Currently our main focus is on the AXE-1-16M GPU. Testing so far has been=
- done
-> using a TI SK-AM62 board (AXE-1-16M GPU). The driver has also been confir=
-med to
-> work on the BeaglePlay board. Firmware for the AXE-1-16M can befound here:
-> https://gitlab.freedesktop.org/frankbinns/linux-firmware/-/tree/powervr
->=20
-> A Vulkan driver that works with our downstream kernel driver has already =
-been
-> merged into Mesa [1][2]. Support for this new DRM driver is being maintai=
-ned in
-> a merge request [3], with the branch located here:
-> https://gitlab.freedesktop.org/frankbinns/mesa/-/tree/powervr-winsys
->=20
-> Job stream formats are documented at:
-> https://gitlab.freedesktop.org/mesa/mesa/-/blob/f8d2b42ae65c2f16f36a43e0a=
-e39d288431e4263/src/imagination/csbgen/rogue_kmd_stream.xml
->=20
-> The Vulkan driver is progressing towards Vulkan 1.0. The current combinat=
-ion of this
-> kernel driver with the Mesa Vulkan driver (powervr-mesa-next branch) succ=
-essfully
-> completes Vulkan CTS 1.3.4.1 in our local runs. The driver is expected to=
- pass the
-> Khronos Conformance Process once the submission is made.
->=20
-> The code in this patch series, along with the needed dts changes can be f=
-ound here:
-> https://gitlab.freedesktop.org/sarah-walker-imgtec/powervr/-/tree/dev/v8_=
-dts
-> The full development history can be found here:
-> https://gitlab.freedesktop.org/frankbinns/powervr/-/tree/powervr-next
+Some comments below.
 
-Awesome, thanks for sending a new version of that series.
+...
 
-At XDC, we all agreed that we would merge this version if the changes
-requested by Faith were fixed, and if the Mesa PR was updated to match
-that new kernel series.
+> Would you be able to use this to replace of_node_name_eq()?
 
-Are we there yet?
+Can you point out to the use case? Maybe it can be rewritten using existing
+APIs?
 
-If so, Faith, should we add your Reviewed-by/Acked-by tag to the UAPI patch?
+...
 
-> This patch series has dependencies on a number of patches not yet merged.=
- They
-> are listed below :
->=20
-> drm/sched: Convert drm scheduler to use a work queue rather than kthread:
->   https://lore.kernel.org/dri-devel/20230404002211.3611376-2-matthew.bros=
-t@intel.com/
-> drm/sched: Move schedule policy to scheduler / entity:
->   https://lore.kernel.org/dri-devel/20230404002211.3611376-3-matthew.bros=
-t@intel.com/
-> drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy:
->   https://lore.kernel.org/dri-devel/20230404002211.3611376-4-matthew.bros=
-t@intel.com/
-> drm/sched: Start run wq before TDR in drm_sched_start:
->   https://lore.kernel.org/dri-devel/20230404002211.3611376-6-matthew.bros=
-t@intel.com/
-> drm/sched: Submit job before starting TDR:
->   https://lore.kernel.org/dri-devel/20230404002211.3611376-7-matthew.bros=
-t@intel.com/
-> drm/sched: Add helper to set TDR timeout:
->   https://lore.kernel.org/dri-devel/20230404002211.3611376-8-matthew.bros=
-t@intel.com/
+> +	len = strchrnul(node_name, '@') - node_name;
 
-What is the state of those patches? Iirc, we were expecting them to be
-merged soon at XDC
+> +	return strlen(name) == len && !strncmp(node_name, name, len);
 
-Thanks,
-Maxime
+Seems like this is reimplementation of str_has_prefix().
 
---h6eqzan6yg37toag
-Content-Type: application/pgp-signature; name="signature.asc"
+	len = strchrnul(node_name, '@') - node_name;
+	return str_has_prefix(node_name, name) == len;
 
------BEGIN PGP SIGNATURE-----
+-- 
+With Best Regards,
+Andy Shevchenko
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZUEryQAKCRDj7w1vZxhR
-xTp9AP48QDAKYOfrziKxyJhD0jPjF1kfqNNf6jYxHagxVE+b3gD9HUbcKZsRyVJZ
-myv8rg5pwmzcvrMBx9Irutk/GY6w1Aw=
-=57Kh
------END PGP SIGNATURE-----
 
---h6eqzan6yg37toag--
 
