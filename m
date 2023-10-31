@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA547DD2FD
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:50:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B97BF7DD304
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 335D3281314
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:50:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 488B4B20C8B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208161DFC8;
-	Tue, 31 Oct 2023 16:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04E01DFC9;
+	Tue, 31 Oct 2023 16:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fSrkm81u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qo/edyi/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B230F1D69C
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 16:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554D41D69C
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 16:50:42 +0000 (UTC)
 Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C5B171A
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:50:26 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507bd644a96so8517219e87.3
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:50:25 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7816A1731
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:50:39 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507d7b73b74so8069592e87.3
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698771024; x=1699375824; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698771037; x=1699375837; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d73v9cfketw/ArDcT80Q+U6ac8cwJQ83f2L/6k+AOxU=;
-        b=fSrkm81u9KvGs3w4t9T7AScPGLJkfv92JdfaQKLl1FxqHuE3SnfpnMYYPvHp49bIZX
-         GjNBCYYfC5OcCQbl/dJOfaFT3BZ+UNiIr9BRFmLLyn67ZIUrmgEjWXemwjBY1qDhYVsJ
-         ov55OSVPVDV748Gv4PFf9jdF9pq1nh6js5Q+TbAI/Dzz4DIuNow3q525egHJYUKvsL9c
-         tuFTrxwlMxI7wBAGV2EolPOTFvirld6jJWQpE0x2l/A4StI1QhOAYCQ0Shhwfzh8Ouf4
-         tbEqFU1XAXmtmlE3W7oU2yCx6em8vBqXr6ycco7oZ/n4mKwepHmmy69TE+FMvFApfqL7
-         cPNQ==
+        bh=uQLeE6sXfW573CKI5NyYi9nd4DE1+VWbV1i+703zc4A=;
+        b=Qo/edyi/+nRbk3ntCpwkS/aiLFkIjT2zyGphDJH0UtRRjMzGN3LKMBellXBVPuT+k2
+         LBGCRLrkXtlSIwGyXNkpcHJL9E4R4LxKajiz43AF9SgxuaNc/9nvxKv6QS2LYu4Ttogx
+         WlOO2Xc6fTDowFSxxB6xwR+J49TiTjzpE6gBmRXeguRt6JSJ2hcawWyJFLt59NDHi2VW
+         ExZaNPoyQC+43d28r86lxKbGzur1Wbi0Bw6HXYcjOyYb3zYvlEIjLmko+ekWkr6XFFi4
+         YtTo39hAD759z5rKn3psQGkXlQSMoV/dzI1BsQZZGfMKmGt9kHJHQjkn96QvuCiuqTmc
+         YASg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698771024; x=1699375824;
+        d=1e100.net; s=20230601; t=1698771037; x=1699375837;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d73v9cfketw/ArDcT80Q+U6ac8cwJQ83f2L/6k+AOxU=;
-        b=iYThwufVcTqgzA95fb7egKhcTzN76IaLwAK7hXRL96V0vDEO2G2tEazi0c6WqgWyur
-         7Iq1wSWR/k/4hpSnwiko5J75ujwiryArmsSV0q7ONOfndcDMBuW2UUdx8koHgh6GZwJK
-         gEdw7TsgrN6qKAAzY/joiOs38yAa/6p+IKKLp5CtP0RzgoZxjYCdvSNugcc7Cg8Zp8xh
-         osbHDBNxhehv+SHkwDOvLiDTjGA/B1pGYOMcy/lDE6k83N7EDNWWRo7JlaW+GWPVO7KB
-         4CdRH3Lj2Km7tIDrsNP3uC7CVseYM0jLR6DPvC1DV3DgJN2xTrkStp8eeUFC4WXZOCY2
-         ybeA==
-X-Gm-Message-State: AOJu0Yy/obnqOLNtjmoNl9eRe+T64lw4z0ndWTfxXIZC/MmrcbUxbWoa
-	NaVfiL42vzueUOXfONF4uYNCEw==
-X-Google-Smtp-Source: AGHT+IGj8Fy0pJ05EoAIRZ55sWvm/g7whZcYv7i8aYj7QQHleGaGK92mxaglJWinHZajCCS/iMiSBQ==
-X-Received: by 2002:a05:6512:1282:b0:505:6ede:20a9 with SMTP id u2-20020a056512128200b005056ede20a9mr12384328lfs.65.1698771024156;
-        Tue, 31 Oct 2023 09:50:24 -0700 (PDT)
+        bh=uQLeE6sXfW573CKI5NyYi9nd4DE1+VWbV1i+703zc4A=;
+        b=ssurnHh1/4XIdC1TG4z2HbOdatBbEVsu4cFfXCNUrIlxoVrIQvy2D2rhk5E0Xc+aVX
+         OAK5z26gdDRzT2X1zri7JTrDEb6/XomUBSqa6sJ6BA0H4gHofGWUklgePk+9CPdXeZrK
+         B0pduUBW0grsF2XUnAxCTcEXTIybN6r4NQzHR2BbxgTi0oTRQ8g3vUlDUWRk8Lcbcdn0
+         /etnI8DOOQYdg0Sbz/Ig721aNjunb7JoFrodppeGd1WtBhxfWxQaZjyMYkCKh0oeXEBf
+         CdUfFtF/tNKbc/KNt5wBHAXyB1bHOkRn/ImgokJbxj2tFVO+9WCP6JAlcJoxx29cMjOj
+         s1Ow==
+X-Gm-Message-State: AOJu0Yyfquxdv/OMY0nKgercN3TamcEE5XC6UvIL7Nr4YIEGgesdh6Mw
+	ifu0i47TtuQ1shr8jdtQoLS+gg==
+X-Google-Smtp-Source: AGHT+IEzJGKJWCPnVYzpuEZxGqaRs6XzhDEr3F3ZVSxCn3yurfoTUNLhoPnQTcyd9os1W9HfmMHqAA==
+X-Received: by 2002:a05:6512:2356:b0:505:73e7:b478 with SMTP id p22-20020a056512235600b0050573e7b478mr12675226lfu.16.1698771037643;
+        Tue, 31 Oct 2023 09:50:37 -0700 (PDT)
 Received: from [192.168.143.96] (178235177091.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.91])
-        by smtp.gmail.com with ESMTPSA id j19-20020a056512345300b005079a61a182sm256853lfr.143.2023.10.31.09.50.21
+        by smtp.gmail.com with ESMTPSA id j19-20020a056512345300b005079a61a182sm256853lfr.143.2023.10.31.09.50.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 09:50:23 -0700 (PDT)
-Message-ID: <e5ee7051-d867-453f-98a7-3a8aea402607@linaro.org>
-Date: Tue, 31 Oct 2023 17:50:20 +0100
+        Tue, 31 Oct 2023 09:50:37 -0700 (PDT)
+Message-ID: <a2759c78-359f-4f40-81f4-98f7549e509b@linaro.org>
+Date: Tue, 31 Oct 2023 17:50:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
+Subject: Re: [PATCH v1 2/3] PCI: qcom-ep: Enable cache coherency for SA8775P
+ EP
 Content-Language: en-US
 To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -83,7 +84,7 @@ Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-pci@vger.kernel.org
 References: <1698767186-5046-1-git-send-email-quic_msarkar@quicinc.com>
- <1698767186-5046-2-git-send-email-quic_msarkar@quicinc.com>
+ <1698767186-5046-3-git-send-email-quic_msarkar@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -120,57 +121,17 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <1698767186-5046-2-git-send-email-quic_msarkar@quicinc.com>
+In-Reply-To: <1698767186-5046-3-git-send-email-quic_msarkar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 31.10.2023 16:46, Mrinmay Sarkar wrote:
 > This change will enable cache snooping logic to support
-> cache coherency for SA8755P RC platform.
-8775
-
+> cache coherency for SA8755P EP platform.
 > 
 > Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 6902e97..6f240fc 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -51,6 +51,7 @@
->  #define PARF_SID_OFFSET				0x234
->  #define PARF_BDF_TRANSLATE_CFG			0x24c
->  #define PARF_SLV_ADDR_SPACE_SIZE		0x358
-> +#define PCIE_PARF_NO_SNOOP_OVERIDE		0x3d4
->  #define PARF_DEVICE_TYPE			0x1000
->  #define PARF_BDF_TO_SID_TABLE_N			0x2000
->  
-> @@ -117,6 +118,9 @@
->  /* PARF_LTSSM register fields */
->  #define LTSSM_EN				BIT(8)
->  
-> +/* PARF_NO_SNOOP_OVERIDE register value */
-override
-> +#define NO_SNOOP_OVERIDE_EN			0xa
-is this actually some magic value and not BIT(1) | BIT(3)?
-
->  /* PARF_DEVICE_TYPE register fields */
->  #define DEVICE_TYPE_RC				0x4
->  
-> @@ -961,6 +965,13 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
-> +	struct dw_pcie *pci = pcie->pci;
-> +	struct device *dev = pci->dev;
-> +
-> +	/* Enable cache snooping for SA8775P */
-> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sa8775p"))
-> +		writel(NO_SNOOP_OVERIDE_EN, pcie->parf + PCIE_PARF_NO_SNOOP_OVERIDE);
-Why only for 8775 and not for other v2.7, or perhaps all other
-revisions?
+same comments as patch 1
 
 Konrad
 
