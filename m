@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255197DC7FF
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:16:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E2E7DC814
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:21:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 489131C20A95
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:16:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B930281054
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D966011190;
-	Tue, 31 Oct 2023 08:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CD010966;
+	Tue, 31 Oct 2023 08:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X51vj4Ig"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="FkY6IgbN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA5D110E
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:16:14 +0000 (UTC)
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA06E8
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:16:12 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so9082654a12.3
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:16:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A962A44
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:21:12 +0000 (UTC)
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA6D9F1
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:21:06 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6bd96cfb99cso4701174b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:21:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698740170; x=1699344970; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=tweaklogic.com; s=google; t=1698740466; x=1699345266; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=goof15RNeU0KLHtGHQUeg5uXRfnDboIB8cpBpI1bxBs=;
-        b=X51vj4IgtJlDylKdzk/D2cw31TexiCzaOPxPFLD0Xji1B6eo28Fbs9qRVGMmTdbodl
-         0w3BPnAqx0hpcsc3WPBpfd8B66etK7U1GlGHD2X3w+BXK06b/SKUlIBQ4QUwDxtEOtPU
-         WdrlkP7DEYGJ4tUVaomTngSPQNUKF50MWM4kMBc2ILZlKTlq/tvqEHaMrjmc5spRBFqv
-         ubdPGtGo2l93D98wGqc0TDZlP3bhIKHlwv6hFPPIGzkUko5l8Q0ZSis+nTUCLjk7Ucyz
-         wmPCbZFUA3wyhX/AAbfTcXutKtRdSQw74TJ765hKrptuYDOIAng7XV++Ux+c2wwfTe8S
-         LN4A==
+        bh=dodGbF59n5T1NWE+xJ3J7t+KFbgIak7MaAgmXTbF9ZQ=;
+        b=FkY6IgbN41oHB70JJu48+ptlvZj4f0gQGP0lYGXBnM0tHoSQrc88CivX7dFqieG+Dc
+         CZJmEvRcEd9FA5dRlI1MxRkH8ci5f832FyTyFkUK9OxARe31ml8s8oyZvMazAK/dotz0
+         1sSoaJ51GRUf4BMk0EOGZfT0g5SJyAAUlvmszHBXCUwwccVcoOd1HwVRSTu4PyTpn516
+         +mGJWVfkLgJNCIWQzHnu6fF024kNtQpnHJetbxG3zqyUKAJMZ3MJmy7pmDacakaTrqoW
+         vpBC4BoaQipwrOYPwhBAu3SikwA/lj90uvAG+rI6vpc0NEf5K2dyjeB2W7JVvmo84c2m
+         T/JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698740170; x=1699344970;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1698740466; x=1699345266;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=goof15RNeU0KLHtGHQUeg5uXRfnDboIB8cpBpI1bxBs=;
-        b=mF6/nXtC2lDpOiI+3HoVd5kEiR0ZIajgi0u6qezWfu5xKIrG1paedBk0JDLMiGZ24P
-         0CNG6IDcE9p7XctKHSvQxWj4z2eEvXUyZgEXpq1IxhDrtMsFiYMPuOyuQp2jHhdO21xo
-         Yh0IwjC9b2538j5Ip7tqIgrVJ8zRGGQqhy2aKo/ltZqmwFR2STJPG4DgOdo1B98zgWd+
-         dld2Xx869PuzFdVHwPddvQSUXO6plvnZDLsWAJ9FsILlJ4z2zhF8HrsZC746mldwC037
-         kjifnOCzWFJsEcT1tZuoq3AgXcXHRJ7x6fjriA0kfUnJDz0YHqLzJGqSiCpyIjMRA51V
-         0rdw==
-X-Gm-Message-State: AOJu0YwoZbG2grbbmMSq06rJf1u+bQ/8hWPbvxWLXpnQxKSb0cUWgTXK
-	Lw6w8gEB1F/Y2Yr+mTDZGx+AmQ==
-X-Google-Smtp-Source: AGHT+IHcFLwPmducaku0lltVCh0Y5JO215+TBhxgO/K0NuBXPhXcsRPvx0/+IcuLhYSi3M25webhFw==
-X-Received: by 2002:a17:907:6015:b0:9d1:a628:3e3f with SMTP id fs21-20020a170907601500b009d1a6283e3fmr4997256ejc.45.1698740170539;
-        Tue, 31 Oct 2023 01:16:10 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z7-20020a50cd07000000b0053e5a1bf77dsm704672edi.88.2023.10.31.01.16.07
+        bh=dodGbF59n5T1NWE+xJ3J7t+KFbgIak7MaAgmXTbF9ZQ=;
+        b=P/fxZiRp+N1bSWpweNLElXk81Cp6Ce/pQQpkDHMyY+6jTm7QQRCM8ZNbarJlCXCHJv
+         eeWV0dFqPZtz6RDI0+JSg4/zRgUBsIvbMzjHqcTSAvrFbzFKoK90HcB8ftraIdC6PT5u
+         hxsWyQQN+eLU1M2SR36hpRoloXnaLVEkxjPmw1dHD7+qUJgy/qgCziEVw8ugAZi/tgEf
+         y3YXsEJt7rmwl56bANCUOLVcm5FU4oBvVHbe5GATt3vt+gEOkfVInxR5U8z/WDK2PqN7
+         pX1XvvG4OWrcX0bKJkFw/OcPtAsu7vk6CkQ2N6nt1do20s7DDqjX8Ok+RMcV/1WtWl/z
+         OmMA==
+X-Gm-Message-State: AOJu0Yy+SKgXDBYQIJXYq3H2eXJrmxCh7HAR5wOmN9eBV3ECK9qx5zb3
+	hd9ijVOM3EDrAF+uXczlduWbdA==
+X-Google-Smtp-Source: AGHT+IG4EJTi8VZP/WCOxkSmv/vX20W/yeyFebjc5Y1wyIOtfDVwbVozwbG+20UB1CLUyYHBcv0xJg==
+X-Received: by 2002:a05:6a20:8e0b:b0:14c:a53c:498c with SMTP id y11-20020a056a208e0b00b0014ca53c498cmr12059510pzj.10.1698740466113;
+        Tue, 31 Oct 2023 01:21:06 -0700 (PDT)
+Received: from ?IPV6:2403:580d:82f4:0:d7db:fc6b:2721:a9be? (2403-580d-82f4-0-d7db-fc6b-2721-a9be.ip6.aussiebb.net. [2403:580d:82f4:0:d7db:fc6b:2721:a9be])
+        by smtp.gmail.com with ESMTPSA id ei56-20020a056a0080f800b00690c52267easm740206pfb.40.2023.10.31.01.21.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 01:16:09 -0700 (PDT)
-Message-ID: <d10dfd28-0116-47cc-8ee7-52261495698f@linaro.org>
-Date: Tue, 31 Oct 2023 09:16:06 +0100
+        Tue, 31 Oct 2023 01:21:05 -0700 (PDT)
+Message-ID: <8ccd2d84-4422-4bc0-83a7-13a8c103e5e9@tweaklogic.com>
+Date: Tue, 31 Oct 2023 18:50:58 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,443 +67,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] leds: add mp3326 driver
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
 Content-Language: en-US
-To: "Yuxi (Yuxi) Wang" <Yuxi.Wang@monolithicpower.com>,
- "pavel@ucw.cz" <pavel@ucw.cz>, "lee@kernel.org" <lee@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "wyx137120466@gmail.com" <wyx137120466@gmail.com>
-References: <ab9663a6b41e4bd7b347f51f72f5c4a1@monolithicpower.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ab9663a6b41e4bd7b347f51f72f5c4a1@monolithicpower.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
+ <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+ <20231028162025.4259f1cc@jic23-huawei>
+ <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
+ <6a697c62-6a7c-4b31-bc8e-10f40db0363d@gmail.com>
+ <d528b45c-123d-4ef7-b110-7efbfef91bc5@gmail.com>
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <d528b45c-123d-4ef7-b110-7efbfef91bc5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 31/10/2023 08:01, Yuxi (Yuxi) Wang wrote:
+On 31/10/23 17:41, Matti Vaittinen wrote:
+> On 10/30/23 12:21, Matti Vaittinen wrote:
+>> Hi dee Ho peeps,
+>>
+>> On 10/29/23 17:51, Matti Vaittinen wrote:
+>>> On 10/28/23 18:20, Jonathan Cameron wrote:
+>>>> On Fri, 27 Oct 2023 18:15:45 +1030
+>>>> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+>>>>
+>>>>> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor with als
+>>>>> and clear channels with i2c interface. Hardware interrupt configuration is
+>>>>> optional. It is a low power device with 20 bit resolution and has
+>>>>> configurable adaptive interrupt mode and interrupt persistence mode.
+>>>>> The device also features inbuilt hardware gain, multiple integration time
+>>>>> selection options and sampling frequency selection options.
 > 
-> This patch adds mp3326 led driver.
+> ...
 > 
-> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> ---
->  drivers/leds/Kconfig       |   7 +
->  drivers/leds/Makefile      |   1 +
->  drivers/leds/leds-mp3326.c | 632 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 640 insertions(+)
->  create mode 100644 drivers/leds/leds-mp3326.c
+>>>>> +static int apds9306_scale_set(struct apds9306_data *data, int val, int val2)
+>>>>> +{
+>>>>> +    int i, ret, time_sel, gain_sel;
+>>>>> +
+>>>>> +    /* Rounding up the last digit by one, otherwise matching table fails! */
+>>>>
+>>>> Interesting.  Sounds like a question for Matti?
+>>>
+>>> Sounds odd indeed. I assume this happens when scale setting is requested using one of the exact values advertised by the available scales from the GTS? This does not feel right and the +1 does not ring a bell to me. I need to investigate what's going on. It would help if you could provide the values used as val and val2 for the setting.
+>>>
+>>> This will take a while from me though - I'll try to get to this next week. Thanks for pointing out the anomaly!
+>>>
+>>
+>> I think I have a rough understanding. I did a Kunit test which goes through all the available scales values from the gts->avail_all_scales_table and all integration times, and feeds them to the logic below. It seems the first culprit is hit by:
+>> val = 0, val2 = 125025502.
+>>
+>> Problem is that the 125025502 is rounded. The exact linearized NANO scale resulting from time multiplier 128, gain multiplier 1 is 125025502.5 - which means we will see rounding.
+>>
+>>>>
+>>>>> +    if (val2 % 10)
+>>>>> +        val2 += 1;
+>>
+>> For a while I was unsure if this check works for all cases because I see linearized scales:
+>> 250051005 - multipliers 1x, 64x
+>> 83350335 - multipliers 3x, 64x and 6x, 32x
+>> 27783445 - multipliers 9x, 64x.
+>>
+>> For those we will get + 1 added to val2 even though there is no rounding. It appears this is not a problem because the iio_gts_get_gain() (which is used to figure out the required total gain to get the desired scale) does not require the scale to be formed by exact multiples of gain.
 > 
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index b92208eccdea..ac8115bffc2e 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -260,6 +260,13 @@ config LEDS_MIKROTIK_RB532
->  	  This option enables support for the so called "User LED" of
->  	  Mikrotik's Routerboard 532.
->  
-> +config LEDS_MP3326
-> +	tristate "LED Support for MPS MP3326"
-> +	depends on LEDS_CLASS
-> +	help
-> +	  This option enables support for on-chip LED drivers found on
-> +	  MPS MP3326.
-> +
->  config LEDS_MT6323
->  	tristate "LED Support for Mediatek MT6323 PMIC"
->  	depends on LEDS_CLASS
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index d7348e8bc019..196befb56278 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -63,6 +63,7 @@ obj-$(CONFIG_LEDS_MENF21BMC)		+= leds-menf21bmc.o
->  obj-$(CONFIG_LEDS_MIKROTIK_RB532)	+= leds-rb532.o
->  obj-$(CONFIG_LEDS_MLXCPLD)		+= leds-mlxcpld.o
->  obj-$(CONFIG_LEDS_MLXREG)		+= leds-mlxreg.o
-> +obj-$(CONFIG_LEDS_MP3326)		+= leds-mp3326.o
->  obj-$(CONFIG_LEDS_MT6323)		+= leds-mt6323.o
->  obj-$(CONFIG_LEDS_NET48XX)		+= leds-net48xx.o
->  obj-$(CONFIG_LEDS_NETXBIG)		+= leds-netxbig.o
-> diff --git a/drivers/leds/leds-mp3326.c b/drivers/leds/leds-mp3326.c
-> new file mode 100644
-> index 000000000000..140c71b334f7
-> --- /dev/null
-> +++ b/drivers/leds/leds-mp3326.c
-> @@ -0,0 +1,632 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * MP3326 Led driver
-> + *
-> + * Copyright 2023 Monolithic Power Systems, Inc
-> + *
-> + * Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> + */
-> +#include <linux/bits.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/i2c.h>
-> +#include <linux/of.h>
-> +#include <linux/slab.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mutex.h>
-> +#include <linux/leds.h>
-> +#include <linux/device.h>
-> +#include <linux/led-class-multicolor.h>
-> +
-> +#define MP3326_PWM_DIM_FREQUENCY_CONFIG			0x00
-> +#define MP3326_PWM_CTRL							0x01
-> +#define MP3326_PWM_DIM_FREQUENCY_CONFIG			0x00
-> +#define MP3326_PWM_CTRL_CHANNEL_9_16			0x04
-> +#define MP3326_PWM_CTRL_CHANNEL_1_8				0x05
-> +#define MP3326_PWM_OPEN_FAULT_CHANNEL_9_16		0x06
-> +#define MP3326_PWM_OPEN_FAULT_CHANNEL_1_8		0x07
-> +#define MP3326_PWM_SHORT_FAULT_CHANNEL_9_16		0x08
-> +#define MP3326_PWM_SHORT_FAULT_CHANNEL_1_8		0x09
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL1			0x0A
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL1		0x0B
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL1		0x0C
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL2			0x0D
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL2		0x0E
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL2		0x0F
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL3			0x10
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL3		0x11
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL3		0x12
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL4			0x13
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL4		0x14
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL4		0x15
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL5			0x16
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL5		0x17
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL5		0x18
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL6			0x19
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL6		0x1A
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL6		0x1B
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL7			0x1C
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL7		0x1D
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL7		0x1E
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL8			0x1F
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL8		0x20
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL8		0x21
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL9			0x22
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL9		0x23
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL9		0x24
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL10		0x25
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL10		0x26
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL10		0x27
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL11		0x28
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL11		0x29
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL11		0x2A
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL12		0x2B
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL12		0x2C
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL12		0x2D
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL13		0x2E
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL13		0x2F
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL13		0x30
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL14		0x31
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL14		0x32
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL14		0x33
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL15		0x34
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL15		0x35
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL15		0x36
-> +#define MP3326_PWM_CURRENT_SET_CHANNEL16		0x37
-> +#define MP3326_PWM_DUTY_LSB_SET_CHANNEL16		0x38
-> +#define MP3326_PWM_DUTY_MSB_SET_CHANNEL16		0x39
-> +#define MAX_BRIGHTNESS	63
-> +
-> +enum led_ctrl {
-> +	ENABLE = 0,
-> +	BRIGHTNESS,
-> +	COLOR_L4,
-> +	COLOR_H8,
-> +	OPEN_FAULT,
-> +	SHORT_FAULT,
-> +	Max_CTRL,
+> ...
+> 
+>> I think it would be very nice if the gts-helpers could do the rounding when computing the available scales, but that'd require some thinking. Fixup patch is still very welcome ;)
+> 
+> I did some further experimenting. Basically, I did a "hack" which always rounds up the available-scales values if division results a remainder. This way the values advertised by the available_scales did find the matching table.
+> 
+> It is a tiny bit icky because for example the scale 6945861.25 becomes 6945862 in available-scales. Also, I assume that if we "hack" just the available-scales and don't fix the rest of the logic, setting 6945862 will read back as 6945861 (I haven't tested this though). Also, the 20837583.75 will be 20837583 in available-scales but 20837582 when read back, resulting small error. (I haven't tested this either but I assume the current GTS code is flooring the 20837583.75 to 20837583.
+> 
+> I am wondering if changing the iio_gts_get_gain() to do rounding instead of flooring and changing also the iio_gts_total_gain_to_scale() to something like:
+> 
+> int iio_gts_total_gain_to_scale(struct iio_gts *gts, int total_gain,
+>                  int *scale_int, int *scale_nano)
+> {
+>      u64 tmp;
+>      int rem;
+> 
+>      tmp = gts->max_scale;
+> 
+>      rem = do_div(tmp, total_gain);
+>      if (total_gain > 1 && rem >= total_gain / 2)
+>          tmp += 1ULL;
+> 
+>      return iio_gts_delinearize(tmp, NANO, scale_int, scale_nano);
+> }
+> 
+> would do the trick. It's just that I'm a bit afraid of touching the iio_gts_get_gain() - by the very least I need to fire up the GTS tests which I implemented but are not in-tree due to the test-device dependency... :/
+> 
+> Any thoughts?
+> 
+Hi Matti,
+Sorry, got busy with my full time job.
+It's nice to see that you have found the issue without my test results:)
 
-Dpn't use CamelCase
+Please find below my tests -
 
-> +};
-> +
-> +enum mp3326_channel {
-> +	Channel1,
-> +	Channel2,
-> +	Channel3,
-> +	Channel4,
-> +	Channel5,
-> +	Channel6,
-> +	Channel7,
-> +	Channel8,
-> +	Channel9,
-> +	Channel10,
-> +	Channel11,
-> +	Channel12,
-> +	Channel13,
-> +	Channel14,
-> +	Channel15,
-> +	Channel16,
-
-Ditto
+root@stm32mp1:/sys/bus/iio/devices/iio:device1# cat scale_available
+14.009712000 4.669904000 2.334952000 1.751214000 1.556634666 0.875607000 0.778317333 0.583738000 0.437803500 0.291869000 0.218901750 0.194579333 0.145934500 0.109450875 0.097289666 0.072967250 0.048644833 0.036483625
+0.024322416 0.018241812 0.012161208 0.006080604
+root@stm32mp1:/sys/bus/iio/devices/iio:device1# echo 0.875607000 > scale ## This works
+root@stm32mp1:/sys/bus/iio/devices/iio:device1# echo 0.097289666 > scale ## This fails
+root@stm32mp1:/sys/bus/iio/devices/iio:device1# echo 0.097289667 > scale ## However if I add 1, it works! I figured, its a rounding issue so used this trick: "if (val2 % 10) val2 += 1;"
+I am sorry, I haven't gone through the full gts internals and only used your driver as a reference to understand it's implementation. I do not have any thoughts on top of my head now but let me go through the code.
+   
+Regards,
+Subhajit Ghosh
 
 
-> +	Max_Channel,> +};
-> +
-> +#define MP3326_Reg_Connect_Inner(prefix, range)	prefix##range
-> +#define MP3326_Reg_Connect(prefix, range)		MP3326_Reg_Connect_Inner(prefix, range)
-> +#define MP3326_Reg_Field(reg, minbit, maxbit)	REG_FIELD(reg, minbit, maxbit)
-> +#define Range1(a, b) MP3326_Reg_Connect_Inner(a, b)
-> +#define Range2(a, b) MP3326_Reg_Connect_Inner(a, b)
-
-OK, so this driver was copied from some out-of-tree, poor quality old
-code not even using Linux coding style. Please rewrite everything to
-match Linux coding style.
-
-> +
-> +#define MP3326_Channel_FIELD(bit, num, range) { \
-> +	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_CTRL_CHANNEL_, range), bit, bit),	\
-> +	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_CURRENT_SET_CHANNEL, num), 0, 5),	\
-> +	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_DUTY_LSB_SET_CHANNEL, num), 0, 3),	\
-> +	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_DUTY_MSB_SET_CHANNEL, num), 0, 7),	\
-> +	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_OPEN_FAULT_CHANNEL_, range), bit, bit),	\
-> +	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_SHORT_FAULT_CHANNEL_, range), bit, bit), \
-> +	}
-> +struct mp3326_led {
-> +	struct mp3326 *private_data;
-> +	struct led_classdev cdev;
-> +	struct mc_subled *subled_info;
-> +	int num_colors;
-> +};
-
-...
-
-> +
-> +		for_each_available_child_of_node(np, child) {
-> +			ret = of_property_read_u32(child, "reg", &reg);
-> +			if (ret || reg > Max_Channel) {
-> +				dev_err(&chip->client->dev,
-> +				"reg must less or equal than %d\n", Max_Channel);
-> +				return -EINVAL;
-> +			}
-> +
-> +			ret = of_property_read_u32(child, "color", &color);
-> +			if (ret) {
-> +				dev_err(&chip->client->dev, "color must have value\n");
-> +				return ret;
-> +			}
-> +
-> +			if (color > 3 || !color) {
-> +				dev_err(&chip->client->dev,
-> +				"color must be Red, Green and Blue. The color is %d\n", color);
-
-Broken indentation. Everywhere. Be sure that checkpatch --strict does
-not print any (any!) warnings.
-
-> +				return ret;
-> +			}
-> +			info[i].color_index = color;
-> +			info[i].channel = reg - 1;
-> +			info[i].brightness = 0;
-> +			i++;
-> +		}
-> +
-> +		led->subled_info = info;
-> +		led->num_colors = 3;
-> +		cdev = &led->cdev;
-> +		cdev->max_brightness = MAX_BRIGHTNESS;
-> +		cdev->brightness_set_blocking = led_brightness_set;
-> +		cdev->groups = led_sysfs_groups;
-> +		init_data.fwnode = &np->fwnode;
-> +
-> +		ret = devm_led_classdev_register_ext(&chip->client->dev, &led->cdev, &init_data);
-> +
-> +		if (ret) {
-> +			dev_err(&chip->client->dev, "Unable register multicolor:%s\n", cdev->name);
-> +			return ret;
-> +		}
-> +	} else {
-> +		ret = of_property_read_u32(np, "reg", &reg);
-> +		if (ret || reg > Max_Channel) {
-> +			dev_err(&chip->client->dev,
-> +			"reg must less or equal than %d\n", Max_Channel);
-> +			return -EINVAL;
-> +		}
-> +		info = devm_kcalloc(&chip->client->dev, 1, sizeof(*info), GFP_KERNEL);
-> +		led->num_colors = 1;
-> +		info[i].color_index = LED_COLOR_ID_WHITE;
-> +		info[i].channel = reg - 1;
-> +		info[i].brightness = 0;
-> +		led->subled_info = info;
-> +		cdev = &led->cdev;
-> +		cdev->max_brightness = MAX_BRIGHTNESS;
-> +		cdev->brightness_set_blocking = led_brightness_set;
-> +		cdev->groups = led_sysfs_groups;
-> +		init_data.fwnode = &np->fwnode;
-> +		ret = devm_led_classdev_register_ext(&chip->client->dev, &led->cdev, &init_data);
-> +		if (ret) {
-> +			dev_err(&chip->client->dev, "Unable register led:%s\n", cdev->name);
-> +			return ret;
-> +		}
-> +	}
-> +	return ret;
-> +}
-> +
-> +static int mp3326_parse_dt(struct mp3326 *chip)
-> +{
-> +	struct device_node *np = dev_of_node(&chip->client->dev);
-> +	struct device_node *child;
-> +	int ret;
-> +	int index;
-
-iteration variables have name 'i'. Not index.
-
-> +	int val;
-> +
-> +	for_each_available_child_of_node(np, child) {
-> +		ret = mp3326_add_led(chip, child, index);
-> +		if (ret)
-> +			return ret;
-> +		index++;
-> +	}
-> +	ret = of_property_read_u32(np, "led-protect", &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(chip->regmap, 0x01, BIT(4) | BIT(5), val << 4);
-> +
-> +	ret = regmap_write(chip->regmap, MP3326_PWM_CTRL_CHANNEL_9_16, 0);
-> +	if (ret)
-> +		return ret;
-> +	ret = regmap_write(chip->regmap, MP3326_PWM_CTRL_CHANNEL_1_8, 0);
-> +	if (ret)
-> +		return ret;
-> +	return 0;
-> +}
-> +
-> +static int mp3326_leds_probe(struct i2c_client *client)
-> +{
-> +	struct mp3326 *chip;
-> +	const struct reg_field *reg_fields;
-> +	int count, i, j;
-> +
-> +	count = device_get_child_node_count(&client->dev);
-> +	if (!count) {
-> +		return dev_err_probe(&client->dev, -EINVAL,
-> +				"Incorrect number of leds (%d)", count);
-> +	}
-> +	chip = devm_kzalloc(&client->dev, struct_size(chip, leds, count), GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	chip->client = client;
-> +	chip->num_of_leds = count;
-> +	i2c_set_clientdata(client, chip);
-> +	chip->regmap = devm_regmap_init_i2c(client, &MP3326_regmap_config);
-> +	if (IS_ERR(chip->regmap))
-> +		return PTR_ERR(chip->regmap);
-> +
-> +	for (i = 0; i < Max_Channel; i++) {
-> +		reg_fields = channels_reg_fields[i];
-> +		for (j = 0; j < Max_CTRL; j++) {
-> +			chip->regmap_fields[i][j] = devm_regmap_field_alloc(&client->dev,
-> +			chip->regmap, reg_fields[j]);
-> +			if (IS_ERR(chip->regmap_fields[i][j])) {
-> +				dev_err(&client->dev,
-> +				"regmap field alloc fail, channel:%d, item: %d\n", i, j);
-> +				return PTR_ERR(chip->regmap_fields[i][j]);
-
-Messed indentation. Anyway, memory allocation errors are not usually
-printed. Why should they be printed here?
 
 
-> +			}
-> +		}
-> +	}
-> +	if (mp3326_parse_dt(chip))
-> +		return 1;
-> +	else
-> +		return 0;
-> +}
-> +
-> +static const struct i2c_device_id mp3326_id[] = {
-> +	{"mp3326", 0},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, mp3326_id);
-> +
-> +static const struct of_device_id mp3326_of_match[] = {
-> +	{ .compatible = "mps,mp3326" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mp3326_of_match);
-> +
-> +static struct i2c_driver mp3326_driver = {
-> +	.probe_new = mp3326_leds_probe,
-> +	.driver = {
-> +			.owner = THIS_MODULE,
-
-Drop. Kernel does not have it since few years.
 
 
-> +			.name = "MP3326_led",
 
-One less indent.
-
-> +			.of_match_table = mp3326_of_match,
-> +		   },
-> +	.id_table = mp3326_id,
-> +};
-> +
-> +module_i2c_driver(mp3326_driver);
-> +MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-> +MODULE_DESCRIPTION("MPS MP3326 LED driver");
-> +MODULE_LICENSE("GPL");
-
-Best regards,
-Krzysztof
 
 
