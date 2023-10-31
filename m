@@ -1,259 +1,257 @@
-Return-Path: <devicetree+bounces-13121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF257DC9F5
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:50:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 131E47DCA12
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:51:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7AFB281727
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:50:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 430431C20C21
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21A87182DA;
-	Tue, 31 Oct 2023 09:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86DE18C29;
+	Tue, 31 Oct 2023 09:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="azirv0p+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UtvrJ5VF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E35182AF
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:50:40 +0000 (UTC)
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CC2137
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 02:50:35 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231031095023epoutp02b6528f0c3a6f75cdb3558c842d4afb1e~TKFNvnrC60564105641epoutp02I
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:50:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231031095023epoutp02b6528f0c3a6f75cdb3558c842d4afb1e~TKFNvnrC60564105641epoutp02I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1698745823;
-	bh=t5IrulBEYs/pAFYmxibKmCqgtb1DKb9WLtc5ml9R97Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=azirv0p+v+R4SHX1eWSvf14YMSjWKT42IBbOTVJz/UuEKBiHIbAJsQa9qGLcoxVNe
-	 3NlWKiDBkt/XaBpxZ2W86yHgQtr1wK36DOClR8C098jcfUcH9Ho6jcL4Wh2t9OFD0z
-	 plq+/W7sg/veK06hy6QVsXP0WWtOkxEPw3sdtSxQ=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-	20231031095022epcas2p32b0faa9af82c5f2ea617f8e135b7c3e7~TKFNWJYht0127001270epcas2p3K;
-	Tue, 31 Oct 2023 09:50:22 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.68]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4SKQNt29TGz4x9Pt; Tue, 31 Oct
-	2023 09:50:22 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8E.1E.10022.EDDC0456; Tue, 31 Oct 2023 18:50:22 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20231031095021epcas2p343514064dc0da3fff87e4b8a24d895fd~TKFMSIeNY0127001270epcas2p3G;
-	Tue, 31 Oct 2023 09:50:21 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231031095021epsmtrp24e846dd33a0bb2a6729563a9dd777dcc~TKFMRTggq1473914739epsmtrp2M;
-	Tue, 31 Oct 2023 09:50:21 +0000 (GMT)
-X-AuditID: b6c32a47-9a3ff70000002726-34-6540cdde65f7
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	E3.42.07368.DDDC0456; Tue, 31 Oct 2023 18:50:21 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.55]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20231031095021epsmtip13a8fcaf2ab6663eeb538bf106d2d2005~TKFLz3D4h2273922739epsmtip1q;
-	Tue, 31 Oct 2023 09:50:21 +0000 (GMT)
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
-	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, Greg
-	Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
-	<jirislaby@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org, Jaewon Kim <jaewon02.kim@samsung.com>
-Subject: [PATCH 10/10] arm64: dts: exynos: add minimal support for
- exynosautov920 sadk board
-Date: Tue, 31 Oct 2023 18:47:52 +0900
-Message-ID: <20231031094852.118677-11-jaewon02.kim@samsung.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231031094852.118677-1-jaewon02.kim@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7612E1802A
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 09:51:19 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BBF1726;
+	Tue, 31 Oct 2023 02:51:10 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 51809C0004;
+	Tue, 31 Oct 2023 09:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698745869;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FyjN8eHbYq37HQVccSWii8dO2ARTjErlZVWYsMFISx8=;
+	b=UtvrJ5VFR7enY6TYyRjZ+MC0kyvTzg9fiJ/FQXHvebe44qetk8VZpyeKLIS/CmYSFqBV42
+	mlFk/T5iDxapn4GaP9azgvw0de4clF/YQIBWztx3Yvr5A9FvaR7e6/9Qa39JsRtgdPYHrp
+	7aGYE/zJcE1bkILvJti4atBxNWuLU8Z4Z6RGfPDYrUH9VYNwGyORZwvHjgiZQUHmFAPLmn
+	dJ7GgZ1nQV1VdbLL7w1J5wE4ZLDw47n6Av8x4aDv9gR+ZHA1ZXc0Krnjb+HX353Q9tw1vv
+	uN1fTIwYIrRyzbIN+bf2glV6SypYzE1iZKGtneHHlooBxZgo26bjLSvVxs0fMA==
+Date: Tue, 31 Oct 2023 10:51:07 +0100
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+	michael.riesch@wolfvision.net
+Subject: Re: [PATCH v9 1/3] media: dt-bindings: media: add bindings for
+ Rockchip CIF
+Message-ID: <ZUDOCywnEqJSuQMM@aptenodytes>
+References: <cover.1698666612.git.mehdi.djait@bootlin.com>
+ <5f83d60031320c4c7b0f0727604903f50ee49058.1698666612.git.mehdi.djait@bootlin.com>
+ <20231030193236.GA1995060-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKJsWRmVeSWpSXmKPExsWy7bCmqe69sw6pBtOeclg8mLeNzWLN3nNM
-	FvOPnGO1aF68ns1iR8MRVot3c2Us9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWd++uYrSY
-	cX4fk8WZxb3sFq17j7BbHH7Tzmrxc9c8FotVu4Dqbk+czOgg7LFz1l12j02rOtk87lzbw+ax
-	f+4ado/NS+o9+v8aePRtWcXo8XmTXABHVLZNRmpiSmqRQmpecn5KZl66rZJ3cLxzvKmZgaGu
-	oaWFuZJCXmJuqq2Si0+ArltmDtA7SgpliTmlQKGAxOJiJX07m6L80pJUhYz84hJbpdSClJwC
-	8wK94sTc4tK8dL281BIrQwMDI1OgwoTsjDfvmxkLbopXvOx4ytbAOF+4i5GTQ0LARGLmt08s
-	XYxcHEICOxglrn2YxwrhfGKUmH/0KlTmG6NEw6Ed7DAtjU+72CESexkltm7vZ4RwPjJKrJ/e
-	xwJSxSagLfF9/WJWEFtE4AuzxPRH1SBFzALtTBLzvr0EKxIWiJPY9HwKG4jNIqAqMW/jXyYQ
-	m1fAXuLagmZmiHXyEnsWfQeLcwLFd/Y0MULUCEqcnPkEbA4zUE3z1tnMIAskBK5wSOy4uYEN
-	otlF4tjEbkYIW1ji1fEtUD9ISXx+txeqJluiffofVgi7QuLihtlQcWOJWc/agXo5gBZoSqzf
-	pQ9iSggoSxy5BbWWT6Lj8F92iDCvREebEESjmsT9qeeghshITDqykgnC9pDobbzEBAmrSYwS
-	M842MU5gVJiF5JtZSL6ZhbB4ASPzKkax1ILi3PTUYqMCY3gUJ+fnbmIEp28t9x2MM95+0DvE
-	yMTBeIhRgoNZSYT3sKlDqhBvSmJlVWpRfnxRaU5q8SFGU2BYT2SWEk3OB2aQvJJ4QxNLAxMz
-	M0NzI1MDcyVx3nutc1OEBNITS1KzU1MLUotg+pg4OKUamOZlL/cq7HnT2t3CvqJ+T2jC43d/
-	p0/P5RIPjG1LCPr7vPFLVnDL6ekdldXlR/fFrRIxe6cZuz3UxzxezMXkPeur078vKLGHMTz6
-	9v387hmmGm0GWWI8MdWqFw7sv/Pd7xbzwStq+xaJN3zcyhm74aLilwlGG9bM2BLrO/MUw2vd
-	DSecys7LbJl2Pskge9961903dauzFI+lrmlfPkFiWbSDz8y77w8utZoQXMb5MKdEpPyRaezB
-	afp/+Yzr6hStXz3bJslks8N28YpvTX+2KN4x/2cdO+vOJmvX0LtT5l9ktuHunrj/3lVT57Z5
-	18M3aBgx7PIUTfVleP4wfte3BW9FFtStNNU5efh+lnX20k1KLMUZiYZazEXFiQCb4RbDaAQA
-	AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupnkeLIzCtJLcpLzFFi42LZdlhJTvfuWYdUg1vP5C0ezNvGZrFm7zkm
-	i/lHzrFaNC9ez2axo+EIq8W7uTIWe19vZbeY8mc5k8Wmx9dYLTbP/8NocXnXHDaLu3dXMVrM
-	OL+PyeLM4l52i9a9R9gtDr9pZ7X4uWsei8WqXUB1tydOZnQQ9tg56y67x6ZVnWwed67tYfPY
-	P3cNu8fmJfUe/X8NPPq2rGL0+LxJLoAjissmJTUnsyy1SN8ugSvjzftmxoKb4hUvO56yNTDO
-	F+5i5OSQEDCRaHzaxd7FyMUhJLCbUWLdvOWsEAkZieXP+tggbGGJ+y1HWCGK3jNK3LrTwQSS
-	YBPQlvi+fjFYQkTgF7PE7gl3GUESzAL9TBLXNyV0MXJwCAvESDy5bg0SZhFQlZi38S9YL6+A
-	vcS1Bc3MEAvkJfYs+g4W5wSK7+xpAhsjJGAncXHDTah6QYmTM5+wQIyXl2jeOpt5AqPALCSp
-	WUhSCxiZVjFKphYU56bnJhsWGOallusVJ+YWl+al6yXn525iBMeZlsYOxnvz/+kdYmTiYDzE
-	KMHBrCTCe9jUIVWINyWxsiq1KD++qDQntfgQozQHi5I4r+GM2SlCAumJJanZqakFqUUwWSYO
-	TqkGptOiK7y/rX/DyBZf5eWyVUnx37ZLFdHmWxk+rvGJlhDm3/H1cSav3U/Dk0+2f9Yvu/VK
-	a6aIfn6IZDXHvTSdiw8NNTfKKbQzfejkKtRg3hcYfyZhU8nzQ9qXV06aeL1348vFoUmvLGKu
-	3Yub6XzgUXJfUrn3sULW46vrn2+rtp+gvL3qxh6lpdMYogMmfQvTTWlbFPX4Hm/lvrRZt08W
-	qTzZmXNrfaO3gc+k9w07GU48aNm/6/Lh26sd9uderW6df/zSvUj508wXHcustroarFx49pH/
-	jNX3LXcwzmXqS3zRfV3H4uOlsGWM6V3lalpPd3XcY6yJ/cSzl1e59VNGocGN+Ag510tJ6Xf8
-	tizJSFdiKc5INNRiLipOBADEScfPIgMAAA==
-X-CMS-MailID: 20231031095021epcas2p343514064dc0da3fff87e4b8a24d895fd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231031095021epcas2p343514064dc0da3fff87e4b8a24d895fd
-References: <20231031094852.118677-1-jaewon02.kim@samsung.com>
-	<CGME20231031095021epcas2p343514064dc0da3fff87e4b8a24d895fd@epcas2p3.samsung.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7fCeMisMgRBZQnBb"
+Content-Disposition: inline
+In-Reply-To: <20231030193236.GA1995060-robh@kernel.org>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
 
-ExynosAutov920 SADK is ExynosAutov920 SoC based SADK(Samsung Automotive
-Development Kit) board. It has 16GB(8GB + 8GB) LPDDR5 RAM and 256GB
-(128GB + 128GB) UFS.
 
-This is minimal support board device-tree.
- * Serial console
- * GPIO Key
- * PWM FAN
+--7fCeMisMgRBZQnBb
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
----
- arch/arm64/boot/dts/exynos/Makefile           |  3 +-
- .../boot/dts/exynos/exynosautov920-sadk.dts   | 88 +++++++++++++++++++
- 2 files changed, 90 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+Hi Rob,
 
-diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
-index 6e4ba69268e5..da06e1a9456c 100644
---- a/arch/arm64/boot/dts/exynos/Makefile
-+++ b/arch/arm64/boot/dts/exynos/Makefile
-@@ -5,4 +5,5 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	exynos7-espresso.dtb		\
- 	exynos7885-jackpotlte.dtb	\
- 	exynos850-e850-96.dtb		\
--	exynosautov9-sadk.dtb
-+	exynosautov9-sadk.dtb		\
-+	exynosautov920-sadk.dtb
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-new file mode 100644
-index 000000000000..e250b5594b58
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Samsung's ExynosAutov920 SADK board device tree source
-+ *
-+ * Copyright (c) 2023 Samsung Electronics Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+#include "exynosautov920.dtsi"
-+#include "exynos-pinctrl.h"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Samsung ExynosAutov920 SADK board";
-+	compatible = "samsung,exynosautov920-sadk", "samsung,exynosautov920";
-+
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &serial_0;
-+	};
-+
-+	chosen {
-+		stdout-path = &serial_0;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x0 0x70000000>,
-+		      <0x8 0x80000000 0x1 0xfba00000>,
-+		      <0xa 0x00000000 0x2 0x00000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key_wakeup &key_back>;
-+
-+		key-wakeup {
-+			label = "KEY_WAKEUP";
-+			linux,code = <KEY_WAKEUP>;
-+			gpios = <&gpa0 0 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		key-back {
-+			label = "KEY_BACK";
-+			linux,code = <KEY_BACK>;
-+			gpios = <&gpp6 3 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&pinctrl_alive {
-+	key_wakeup: key-wakeup-pins {
-+		samsung,pins = "gpa0-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+	};
-+};
-+
-+&pinctrl_peric1 {
-+	key_back: key-back-pins {
-+		samsung,pins = "gpp6-3";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-+	};
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm_tout0>;
-+	status = "okay";
-+};
-+
-+&serial_0 {
-+	status = "okay";
-+};
-+
-+&usi_0 {
-+	samsung,clkreq-on; /* needed for UART mode */
-+	status = "okay";
-+};
-+
-+&xtcxo {
-+	clock-frequency = <38400000>;
-+};
--- 
-2.42.0
+On Mon 30 Oct 23, 14:32, Rob Herring wrote:
+> On Mon, Oct 30, 2023 at 01:25:12PM +0100, Mehdi Djait wrote:
+> > Add a documentation for the Rockchip Camera Interface
+> > binding.
+> >=20
+> > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+> > ---
+> > v8=3D>v9:
+> > dropped the "Reviewed-by: Rob Herring <robh@kernel.org>"
+> > because of the following changes:
+> > - changed the compatible to rk3066-cif: rk3066 is the earliest Rockchip=
+ SoC
+> >   that uses cif and it is the first model starting the RK30 lineup.
+>=20
+> Is px30 compatible with rk3066? It's not clear because you didn't add=20
+> rk3066 support. If not compatible, then add rk3066 when you have a user.=
+=20
+> If it is compatible, then you should have a fallback for px30.
 
+Just to clarify here: we haven't checked that rk3066 uses the exact same
+programming model as px30 (so there should be no fallback compatible), but =
+it
+is definitely the same unit (in a different version).
+
+Since the yaml binding document will apply to all generations of the unit,
+the name of the file should be the first generation (rk3066) instead of the
+px30 which is just one of the many iterations of the unit.
+
+It would be both confusing and irrelevant to pick px30 just because it happ=
+ens
+to be the first generation supported in the Linux driver (and described in
+the binding).
+
+Cheers,
+
+Paul
+
+> > - adjusted the description
+> > - changed the node name to video-capture
+> >=20
+> >=20
+> >  .../bindings/media/rockchip,rk3066-cif.yaml   | 96 +++++++++++++++++++
+> >  1 file changed, 96 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/rockchip,rk=
+3066-cif.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3066-ci=
+f.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3066-cif.yaml
+> > new file mode 100644
+> > index 000000000000..be69e474ed26
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/rockchip,rk3066-cif.yaml
+> > @@ -0,0 +1,96 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/rockchip,rk3066-cif.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip CIF Camera Interface
+> > +
+> > +maintainers:
+> > +  - Mehdi Djait <mehdi.djait@bootlin.com>
+> > +
+> > +description: |
+>=20
+> Don't need '|'
+>=20
+> > +  CIF is a camera interface present on some rockchip SoCs. It
+> > +  receives the data from Camera sensor or CCIR656 encoder and
+> > +  transfers it into system main memory by AXI bus.
+>=20
+> Wrap lines at 80.
+>=20
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - rockchip,rk3066-cif
+> > +      - rockchip,px30-vip
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: ACLK
+> > +      - description: HCLK
+> > +      - description: PCLK
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: aclk
+> > +      - const: hclk
+> > +      - const: pclk
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: AXI
+> > +      - description: AHB
+> > +      - description: PCLK IN
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: axi
+> > +      - const: ahb
+> > +      - const: pclkin
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/properties/port
+> > +    description: A connection to a sensor or decoder
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/px30-cru.h>
+> > +    #include <dt-bindings/power/px30-power.h>
+> > +
+> > +    parent {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +
+> > +        video-capture@ff490000 {
+> > +            compatible =3D "rockchip,px30-vip";
+> > +            reg =3D <0x0 0xff490000 0x0 0x200>;
+> > +            interrupts =3D <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
+> > +            clocks =3D <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CI=
+F>;
+> > +            clock-names =3D "aclk", "hclk", "pclk";
+> > +            resets =3D <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRS=
+T_CIF_PCLKIN>;
+> > +            reset-names =3D "axi", "ahb", "pclkin";
+> > +            power-domains =3D <&power PX30_PD_VI>;
+> > +
+> > +            port {
+> > +                endpoint {
+> > +                    remote-endpoint =3D <&tw9900_out>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +...
+> > --=20
+> > 2.41.0
+> >=20
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--7fCeMisMgRBZQnBb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVAzgsACgkQ3cLmz3+f
+v9Hb1Qf9Eze/ep5/BwUEK3IGBy/qFAEjGRoZuXbOHllYr2mnjDO4odYjMWzn7Av+
+ZZR3u2CX3YthbJ2Ebrq8ONpweEkIfLTgPD+PE9PsACFsEcOi8oJBQDtO7FxNbVQJ
+ztVpqG0kB1cENdFHfj7Q6dI7t9fZXu483YnOTo7gL4ULTd09+Yter3eHoan5jZOB
+tqMn3kTUv+0Yn5HpQnhubgN42NQpUIVqtdvjuITo/WWIg3ApnW7cexGkiMBRyiwW
+Z96qKuEaHPkFuy3QyV3QgSzTuEOKQZG3A0Abhzvp1GG5p4mHZTocKK/EqYYCZi8U
+uN5gs8kAB+u/3LhjwhTgodNISl61Ww==
+=s9Kd
+-----END PGP SIGNATURE-----
+
+--7fCeMisMgRBZQnBb--
 
