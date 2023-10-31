@@ -1,254 +1,146 @@
-Return-Path: <devicetree+bounces-13321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4CD7DD7DF
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 22:48:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D32877DD7E8
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 22:49:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F9F71C20C69
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:48:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B4F0B20E5A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7525249F9;
-	Tue, 31 Oct 2023 21:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69F224A1B;
+	Tue, 31 Oct 2023 21:49:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C7jcHXbj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A69B23750
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 21:48:12 +0000 (UTC)
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A258E4;
-	Tue, 31 Oct 2023 14:48:10 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6d319933f9fso53396a34.2;
-        Tue, 31 Oct 2023 14:48:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698788889; x=1699393689;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kvA5jz1SY2yUj/xmQkBX3wSkbpuFj33iQKbU7myJsx0=;
-        b=W6Tq6hd8ZwOEXkCdr32k+AKCM+m3ZT8Ivcu/TTSIt4DGzuShse81NzidMGXpZi0YAs
-         QUb42OfSE91YmyErquKdMzWw6ktmEg94k8IuFdDx80Ii87TUEKA6AlMH4Pc+xPrDgpFl
-         2wyMbCB2OH/SaTCOlg+eCY5SiT/3+ToU/uQUrUGYElwPBYJrHK1El6zpl4ImxI7kWiKq
-         S6LO93R8G/0zm5QZUia7abjedUj0hOdvtKZFkIRoftZqlUbVZwYxPWz/vqGksozqrhIV
-         ca+IIhWY/A8kXxntbnQIiTzxtv0ivrXOogAJbU6mrdsPOLlUB18V9OafBw9fgyi7z34/
-         Oefw==
-X-Gm-Message-State: AOJu0YwdxJExYKnNy6hXpqVssNHmmHnRD+0AoBTB0Z6L5TBw4AYK57rf
-	uCc1tsHLjFBASq26chk3R2P/jQCjrw==
-X-Google-Smtp-Source: AGHT+IGgzJtDF/8nKZ8tgnktIFscURFPxpwSUwj7pp0nKY4N0sWLr704HBXZoTw5BeHtPIKcY416wg==
-X-Received: by 2002:a05:6830:2707:b0:6c4:cdce:5de8 with SMTP id j7-20020a056830270700b006c4cdce5de8mr14733384otu.26.1698788889580;
-        Tue, 31 Oct 2023 14:48:09 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id be14-20020a056830350e00b006ce32aac3e4sm26617otb.48.2023.10.31.14.48.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Oct 2023 14:48:08 -0700 (PDT)
-Received: (nullmailer pid 2184979 invoked by uid 1000);
-	Tue, 31 Oct 2023 21:48:08 -0000
-Date: Tue, 31 Oct 2023 16:48:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree updates for v6.7
-Message-ID: <20231031214808.GA2178025-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91350225D7;
+	Tue, 31 Oct 2023 21:49:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDE8FE;
+	Tue, 31 Oct 2023 14:49:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698788986; x=1730324986;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=600Nvh60124lsqCSvHFqzYzSMSzi4J7+aWhMqXLTTIM=;
+  b=C7jcHXbjXdZ4dp8esjDLBHLevhdh19Kn+cwqUKt3DuBs73fDDC3XVmnw
+   XZ866IiTAyVtDvXlXkVlu+Ss+D/z9YR5WuJM76dOvvRn6wmgEFQkqZpD1
+   4DuobhUNpJFlhjRsL5jz2lzd7IFVKE3wvTXlD2JClw/3cA1O1kc+SVPhG
+   I/7u1fd2OpxWaheqmJ0IaQwtfBEProHSFFTL0WXu7SMipqYmVUFg4AEH+
+   LHOtno9rpFZ8xu9Gx4DKXLxjBQ6DIJZkglZzZ/+7hN1jfVZdQsF7HgYVB
+   VhaoK23e2n7IhGplBvMTGCWfZHBDhgcFCF/T0YiwVrGbVBXFL8OyaVbdD
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="454850526"
+X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; 
+   d="scan'208";a="454850526"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 14:49:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="760748094"
+X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; 
+   d="scan'208";a="760748094"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 31 Oct 2023 14:49:42 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qxwcG-0000PI-0V;
+	Tue, 31 Oct 2023 21:49:40 +0000
+Date: Wed, 1 Nov 2023 05:49:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-acpi@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-media@vger.kernel.org,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/1] device property: Add fwnode_name_eq()
+Message-ID: <202311010542.1tRHV0in-lkp@intel.com>
+References: <20231031135306.1106640-1-sakari.ailus@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231031135306.1106640-1-sakari.ailus@linux.intel.com>
 
-Linus,
+Hi Sakari,
 
-Please pull. Nothing scary here. ;)
+kernel test robot noticed the following build warnings:
 
-There's one conflict with the USB tree. The correct resolution is in 
-linux-next.
+[auto build test WARNING on driver-core/driver-core-testing]
+[also build test WARNING on driver-core/driver-core-next driver-core/driver-core-linus linus/master v6.6 next-20231031]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Rob
+url:    https://github.com/intel-lab-lkp/linux/commits/Sakari-Ailus/device-property-Add-fwnode_name_eq/20231031-224454
+base:   driver-core/driver-core-testing
+patch link:    https://lore.kernel.org/r/20231031135306.1106640-1-sakari.ailus%40linux.intel.com
+patch subject: [PATCH 1/1] device property: Add fwnode_name_eq()
+config: sh-allnoconfig (https://download.01.org/0day-ci/archive/20231101/202311010542.1tRHV0in-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231101/202311010542.1tRHV0in-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311010542.1tRHV0in-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/base/property.c:611: warning: Function parameter or member 'fwnode' not described in 'fwnode_name_eq'
 
 
-The following changes since commit 0bb80ecc33a8fb5a682236443c1e740d5c917d1d:
+vim +611 drivers/base/property.c
 
-  Linux 6.6-rc1 (2023-09-10 16:28:41 -0700)
+   596	
+   597	/**
+   598	 * fwnode_name_eq - Return true if node name is equal
+   599	 * @fwnode The firmware node
+   600	 * @name: The name to which to compare the node name
+   601	 *
+   602	 * Compare the name provided as an argument to the name of the node, stopping
+   603	 * the comparison to either '\0' or '@' character, whichever comes first. This
+   604	 * function is generally used for comparing node names while ignoring the
+   605	 * possible unit address of the node.
+   606	 *
+   607	 * Return: true if the node name matches with the name provided in the @name
+   608	 * argument, false otherwise.
+   609	 */
+   610	bool fwnode_name_eq(const struct fwnode_handle *fwnode, const char *name)
+ > 611	{
+   612		const char *node_name;
+   613		unsigned int len;
+   614	
+   615		node_name = fwnode_get_name(fwnode);
+   616		if (!node_name)
+   617			return false;
+   618	
+   619		len = strchrnul(node_name, '@') - node_name;
+   620	
+   621		return strlen(name) == len && !strncmp(node_name, name, len);
+   622	}
+   623	EXPORT_SYMBOL_GPL(fwnode_name_eq);
+   624	
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.7
-
-for you to fetch changes up to fe612629746cf5cc7040529f780d46929605d0a6:
-
-  dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add support for QMC HDLC (2023-10-30 16:28:19 -0500)
-
-----------------------------------------------------------------
-Devicetree updates for 6.7:
-
-- Add a kselftest to check for unprobed DT devices
-
-- Fix address translation for some 3 address cells cases
-
-- Refactor firmware node refcounting for AMBA bus
-
-- Add bindings for qcom,sm4450-pdc, Qualcomm Kryo 465 CPU, and Freescale
-  QMC HDLC
-
-- Add Marantec vendor prefix
-
-- Convert qcom,pm8921-keypad, cnxt,cx92755-wdt, da9062-wdt,
-  and atmel,at91rm9200-wdt bindings to DT schema
-
-- Several additionalProperties/unevaluatedProperties on child node
-  schemas fixes
-
-- Drop reserved-memory bindings which now live in dtschema project
-
-- Fix a reference to rockchip,inno-usb2phy.yaml
-
-- Remove backlight nodes from display panel examples
-
-- Expand example for using DT_SCHEMA_FILES
-
-- Merge simple LVDS panel bindings to one binding doc
-
-----------------------------------------------------------------
-Alexander Stein (1):
-      dt-bindings: timer: fsl,imxgpt: Add optional osc_per clock
-
-Andy Shevchenko (1):
-      amba: bus: balance firmware node reference counting
-
-Christoph Niedermaier (1):
-      dt-bindings: Add Marantec vendor prefix
-
-David Wronek (1):
-      dt-bindings: arm: cpus: Add Qualcomm Kryo 465
-
-Dmitry Baryshkov (1):
-      dt-bindings: input: qcom,pm8921-keypad: convert to YAML format
-
-Fabio Estevam (1):
-      dt-bindings: watchdog: fsl,scu-wdt: Document imx8dl
-
-Geert Uytterhoeven (1):
-      of: overlay: unittest: overlay_bad_unresolved: Spelling s/ok/okay/
-
-Herve Codina (6):
-      of: address: Fix address translation when address-size is greater than 2
-      of: address: Remove duplicated functions
-      of: unittest: Add tests for address translations
-      dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Fix example property name
-      dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add 'additionalProperties: false' in child nodes
-      dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add support for QMC HDLC
-
-Hugo Villeneuve (1):
-      dt-bindings: writing-schema: add example for multiple DT_SCHEMA_FILES
-
-Johan Jonker (1):
-      dt-bindings: usb: rockchip,dwc3: update inno usb2 phy binding name
-
-Liu Ying (1):
-      dt-bindings: display: panel: one file of all simple LVDS panels with dual ports
-
-Luca Ceresoli (1):
-      dt-bindings: display: remove backlight node from panel examples
-
-Nik Bune (3):
-      dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt to yaml
-      dt-bindings: watchdog: da9062-wdt: convert txt to yaml
-      dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt to yaml
-
-Nícolas F. R. A. Prado (3):
-      dt: dt-extract-compatibles: Handle cfile arguments in generator function
-      dt: dt-extract-compatibles: Add flag for driver matching compatibles
-      kselftest: Add new test for detecting unprobed Devicetree devices
-
-Rob Herring (10):
-      dt-bindings: arm,psci: Add missing unevaluatedProperties on child node schemas
-      dt-bindings: usb: ti,tps6598x: Disallow undefined properties
-      dt-bindings: Drop kernel copy of common reserved-memory bindings
-      of: address: Store number of bus flag cells rather than bool
-      of: address: Consolidate bus .map() functions
-      media: dt-bindings: ti,ds90ub960: Add missing type for "i2c-alias"
-      dt-bindings: input: syna,rmi4: Make "additionalProperties: true" explicit
-      dt-bindings: soundwire: Add reference to soundwire-controller.yaml schema
-      dt-bindings: arm,coresight-cti: Drop type for 'cpu' property
-      dt-bindings: arm,coresight-cti: Add missing additionalProperties on child nodes
-
-Tengfei Fan (1):
-      dt-bindings: interrupt-controller: qcom,pdc: document qcom,sm4450-pdc
-
- Documentation/devicetree/bindings/Makefile         |   2 +-
- .../devicetree/bindings/arm/arm,coresight-cti.yaml |  34 ++--
- Documentation/devicetree/bindings/arm/cpus.yaml    |   1 +
- Documentation/devicetree/bindings/arm/psci.yaml    |   1 +
- .../bindings/display/ilitek,ili9486.yaml           |   4 -
- .../bindings/display/panel/ilitek,ili9163.yaml     |   4 -
- .../panel/panel-simple-lvds-dual-ports.yaml        | 118 ++++++++++++++
- .../bindings/display/panel/panel-simple.yaml       |  10 --
- .../bindings/display/sitronix,st7735r.yaml         |   5 -
- .../bindings/input/qcom,pm8921-keypad.yaml         |  89 ++++++++++
- .../bindings/input/qcom,pm8xxx-keypad.txt          |  90 ----------
- .../devicetree/bindings/input/syna,rmi4.yaml       |   2 +
- .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
- .../bindings/media/i2c/ti,ds90ub960.yaml           |   1 +
- .../bindings/remoteproc/renesas,rcar-rproc.yaml    |   2 +-
- .../bindings/reserved-memory/framebuffer.yaml      |  52 ------
- .../bindings/reserved-memory/memory-region.yaml    |  40 -----
- .../bindings/reserved-memory/reserved-memory.txt   |   2 +-
- .../bindings/reserved-memory/reserved-memory.yaml  | 181 ---------------------
- .../bindings/reserved-memory/shared-dma-pool.yaml  |  97 -----------
- .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml  |  37 ++++-
- .../bindings/sound/mediatek,mt8188-afe.yaml        |   2 +-
- .../bindings/soundwire/qcom,soundwire.yaml         |  16 +-
- .../devicetree/bindings/timer/fsl,imxgpt.yaml      |  27 +++
- .../devicetree/bindings/usb/rockchip,dwc3.yaml     |   2 +-
- .../devicetree/bindings/usb/ti,tps6598x.yaml       |   5 +-
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- .../bindings/watchdog/atmel,at91rm9200-wdt.yaml    |  33 ++++
- .../bindings/watchdog/atmel-at91rm9200-wdt.txt     |   9 -
- .../bindings/watchdog/cnxt,cx92755-wdt.yaml        |  45 +++++
- .../devicetree/bindings/watchdog/da9062-wdt.txt    |  34 ----
- .../devicetree/bindings/watchdog/digicolor-wdt.txt |  25 ---
- .../bindings/watchdog/dlg,da9062-watchdog.yaml     |  50 ++++++
- .../devicetree/bindings/watchdog/fsl,scu-wdt.yaml  |   4 +-
- .../devicetree/bindings/writing-schema.rst         |   5 +-
- MAINTAINERS                                        |   1 +
- drivers/acpi/arm64/amba.c                          |   2 +-
- drivers/amba/bus.c                                 |   5 +-
- drivers/of/address.c                               |  85 ++++------
- drivers/of/platform.c                              |   2 +-
- .../of/unittest-data/overlay_bad_unresolved.dtso   |   2 +-
- drivers/of/unittest-data/tests-address.dtsi        | 101 ++++++++++++
- drivers/of/unittest.c                              |  77 +++++++++
- scripts/dtc/dt-extract-compatibles                 |  74 +++++++--
- tools/testing/selftests/Makefile                   |   1 +
- tools/testing/selftests/dt/.gitignore              |   1 +
- tools/testing/selftests/dt/Makefile                |  21 +++
- tools/testing/selftests/dt/compatible_ignore_list  |   1 +
- tools/testing/selftests/dt/ktap_helpers.sh         |  70 ++++++++
- .../testing/selftests/dt/test_unprobed_devices.sh  |  83 ++++++++++
- 50 files changed, 902 insertions(+), 656 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
- create mode 100644 Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
- delete mode 100644 Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
- delete mode 100644 Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
- delete mode 100644 Documentation/devicetree/bindings/reserved-memory/memory-region.yaml
- delete mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
- delete mode 100644 Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml
- create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
- delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
- create mode 100644 tools/testing/selftests/dt/.gitignore
- create mode 100644 tools/testing/selftests/dt/Makefile
- create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
- create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
- create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
