@@ -1,47 +1,65 @@
-Return-Path: <devicetree+bounces-13151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0717DCBE8
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:36:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B9777DCBFA
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053A71F21873
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 11:36:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 776DF1C20B6E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 11:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D9A1A72B;
-	Tue, 31 Oct 2023 11:36:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B221A732;
+	Tue, 31 Oct 2023 11:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="V5S0NbEI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jlERvaua"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B96B156C1
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 11:36:47 +0000 (UTC)
-Received: from smtp.smtpout.orange.fr (smtp-26.smtpout.orange.fr [80.12.242.26])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6546C2
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 04:36:43 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-	by smtp.orange.fr with ESMTPA
-	id xn2xqgsfSOWoRxn2xqgwky; Tue, 31 Oct 2023 12:36:42 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1698752202;
-	bh=9KvNXF6pEJh/jTsRIm8nizvmtEilekGphzqImz455pY=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=V5S0NbEIvGxPADjcYc+bU1NBTQLnjjvHHkEN7xNE+/mV2HlGqpWkqYH4cjh+svGnI
-	 XtohOlwTVUntCBSWXn3bSAx8o8ebKZU7MTjoDADiubzAD/E2gfSwc4ULzrnhZZUZOh
-	 y6i97d4QloK2R0cvq19YWCwdnVYObE1JSkZKhLitIKT4z/L4AJWQqRg6b7VVLwwmWu
-	 0MYTbqd28wFE984H7arsrGMLrBsFI4PC81xJ3AYj8G34xC5P197n6dz4/Efar6Q0ii
-	 +x2iPmbZn9lbx52pcnpvNF2OZmDuHvT8yd6ruQd1Zaedx2ojy9WOK2YKKPFFZHLVXe
-	 aK3CI9WbQ92fw==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 31 Oct 2023 12:36:42 +0100
-X-ME-IP: 86.243.2.178
-Message-ID: <e1a06870-985a-4041-a21d-83d99d731fd6@wanadoo.fr>
-Date: Tue, 31 Oct 2023 12:36:35 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975441A711
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 11:39:40 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F05F397;
+	Tue, 31 Oct 2023 04:39:38 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507bd644a96so8020792e87.3;
+        Tue, 31 Oct 2023 04:39:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698752377; x=1699357177; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JpvaywPQcScYU3CWlECXIqGt+NokSx/RNLM7YM3gDd8=;
+        b=jlERvauaOxea/pbESdstcJOIPr1B3jW0TGiU1X+zotnZS0v3k8Ml2s0HG8R9wWG9qj
+         HGbrFyiXYqb59XqdtZiX+H+xT9yu2O5DW7rQtDgFbKKehNlNyCjSbwNSVO1AzsLXFr0R
+         9C1R4i0gez1rCDclVz6Dn5QWfcK/Tzi737QRMHLamDkuVGB1HdcWCWwkqU31LpFuxKtX
+         LfyxD1c0+xOuGQwpKJe5u3aiOvfIqtGC0uXD2TOfA5q6WTjQcBeTQaFD3aShpXLo/Mat
+         6xEvGM6JF8i0Pe6yZyklf4WpprZLtzIarLhNqBG7EVJ5lRLYgbOMGuDWExB1w/GquWWF
+         qiCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698752377; x=1699357177;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JpvaywPQcScYU3CWlECXIqGt+NokSx/RNLM7YM3gDd8=;
+        b=kxkwPqxyAw9TpM7bn6PkOh8hUv0QTtFN0N1sxG5UMHyEVQ6Qeqj5HTdMcU1SDjCskl
+         4bUaZ7ib4GM2FkF2sxDtbjZ7BTL8VRIGLCVh3JqSKk+aqZLpCtf3XsoOTSoIQqd8VABJ
+         eqv4Pa5AcJI5+GvG44W8dAn15+1mxFl88TCGtbp36twDYGga55HU5hKkSMykmTWj/np8
+         6tvxDls2R1wExIDViAkVOC5xyj8Z8M4qWuLOpXt/GuVYL+aMJL3TlVi619T4uDBmEWoO
+         3LV0EPryZp+bZFoO3YNOMTQFv4abz+mCrpB7pcVC48Rn7j/LHtOJOTTQr34e26CJC9n9
+         bG3w==
+X-Gm-Message-State: AOJu0Yy+sE4Sgo4czk2qK8TczbH0rcrhljNSAQ5aWR57kYcWB33vtk4V
+	VOP4+rSziucF3R81KPIBNf4=
+X-Google-Smtp-Source: AGHT+IFoJ4xLZ2QU+Hc/BsrNDWd5uyInpcY7BOXW+0s3SsnRn5FzPJ3pVa1bukPcvChA+DgGxsrG7A==
+X-Received: by 2002:a19:ae08:0:b0:507:a58d:24ba with SMTP id f8-20020a19ae08000000b00507a58d24bamr9004591lfc.63.1698752376872;
+        Tue, 31 Oct 2023 04:39:36 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id o6-20020a056512050600b00507f0d2b32bsm185652lfb.249.2023.10.31.04.39.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 04:39:36 -0700 (PDT)
+Message-ID: <16443f7b-846c-4133-8d73-22a847a4f4aa@gmail.com>
+Date: Tue, 31 Oct 2023 13:39:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,54 +67,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drivers: rtc: max31335: initial commit
-Content-Language: fr
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
+Content-Language: en-US, en-GB
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+ Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20231030115016.97823-1-antoniu.miclaus@analog.com>
- <20231030115016.97823-3-antoniu.miclaus@analog.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20231030115016.97823-3-antoniu.miclaus@analog.com>
+ Conor Dooley <conor+dt@kernel.org>, Paul Gazzillo <paul@pgazz.com>,
+ Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
+ <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+ <20231028162025.4259f1cc@jic23-huawei>
+ <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
+ <6a697c62-6a7c-4b31-bc8e-10f40db0363d@gmail.com>
+ <d528b45c-123d-4ef7-b110-7efbfef91bc5@gmail.com>
+ <ZUDZIEY_uTVMHh3C@smile.fi.intel.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <ZUDZIEY_uTVMHh3C@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Le 30/10/2023 à 12:50, Antoniu Miclaus a écrit :
-> RTC driver for MAX31335 ±2ppm Automotive Real-Time Clock with
-> Integrated MEMS Resonator.
+On 10/31/23 12:38, Andy Shevchenko wrote:
+> On Tue, Oct 31, 2023 at 09:11:37AM +0200, Matti Vaittinen wrote:
+>> On 10/30/23 12:21, Matti Vaittinen wrote:
+>>> On 10/29/23 17:51, Matti Vaittinen wrote:
+>>>> On 10/28/23 18:20, Jonathan Cameron wrote:
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
+> ...
+> 
+>> 	tmp = gts->max_scale;
+>>
+>> 	rem = do_div(tmp, total_gain);
+>> 	if (total_gain > 1 && rem >= total_gain / 2)
+>> 		tmp += 1ULL;
+> 
+> ...which is NIH DIV_ROUND_CLOSEST_ULL()
 
-...
+Thanks for the hint Andy. I do very much prefer using stuff like the 
+DIV_ROUND_CLOSEST_ULL().
 
-> +static bool max31335_volatile_reg(struct device *dev, unsigned int reg)
-> +{
-> +	/* time keeping registers */
-> +	if (reg >= MAX31335_SECONDS &&
-> +	    reg < MAX31335_SECONDS + MAX31335_TIME_SIZE)
-> +		return true;
-> +
-> +	/* interrupt status register */
-> +	if (reg == MAX31335_INT_EN1_A1IE)
-> +		return true;
-> +
-> +	/* temperature registers */
-> +	if (reg == MAX31335_TEMP_DATA_MSB || MAX31335_TEMP_DATA_LSB)
-> +		return true;
+I will use this - do you have other suggestions for me, especially 
+regarding the division u64 / u64?
 
-return false otherwise?
+I would appreciate if you found the time and energy to look at:
+https://lore.kernel.org/all/ZUDN9n8iXoNwzifQ@dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi/ 
 
-CJ
+as well. I feel like I am doing something someone else has already done. 
+(Yes, DIV_ROUND_CLOSEST_ULL() can be used there too).
 
-> +}
+Anyways, Thanks for this!
 
-...
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
