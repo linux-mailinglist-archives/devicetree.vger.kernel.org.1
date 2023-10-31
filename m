@@ -1,102 +1,146 @@
-Return-Path: <devicetree+bounces-13266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1E17DD388
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:58:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58207DD389
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:58:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 708C2B20E2C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:58:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 220941C20A1D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:58:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BED62030B;
-	Tue, 31 Oct 2023 16:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BE020315;
+	Tue, 31 Oct 2023 16:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6PHJWwM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WUjz+M83"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F22C200D4
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 16:58:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC2DEC433C8;
-	Tue, 31 Oct 2023 16:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FDE200D4;
+	Tue, 31 Oct 2023 16:58:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00C5FC433C7;
+	Tue, 31 Oct 2023 16:58:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698771487;
-	bh=SDYNmQ31DRGQ6K6cvQJhakeVosYz6EJUiy1qhYajt4g=;
+	s=k20201202; t=1698771504;
+	bh=EXc7FfdhWkgC8EXJESwgVLIiX4BW4W7aviY/soY+zWw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b6PHJWwML+z6Tp2ZxssUi6DpmmRgo2PUKJPfl+MxUB2da+3TPLHydgekhWXyukmcM
-	 Xi9r5ZZ+gQg/I7Gi+iOZCjRVTLa9pBWQrl794nSIjSWmCK+zn+Hef4ehuLlxhAeH1V
-	 PxNLmzRa3taxJNVAPihEepzCGIx/UjRVQ511sORubx+s/IBr9jlcBgPOYBaLaqQG2c
-	 0EBB1vnJluGEd/EAnecikr6pBWApK1t/BxLdKyfwkGmo8fg0b4uJuPpx7qFbRvFqVH
-	 IAK2Dg6whcrjkQK1rYAxY76jYVZROYDediL391AMopkKrmHrRLdhuSB7rzmkcO70vA
-	 7+Avoub7lvA8w==
-Date: Tue, 31 Oct 2023 22:27:47 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, mani@kernel.org, robh+dt@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, robh@kernel.org,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_parass@quicinc.com, quic_schintav@quicinc.com,
-	quic_shijjose@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v1 0/3] arm64: qcom: sa8775p: add cache coherency support
- for SA8775P
-Message-ID: <20231031165747.GF11778@thinkpad>
-References: <1698767186-5046-1-git-send-email-quic_msarkar@quicinc.com>
+	b=WUjz+M83TAJK5a62H2SN2uk4JxXlZQ3BaeWfgLG5GNO7sZGmFTLEo4M+nUUg9iCd5
+	 NadizlmTzfR4oQYqpZ6s0+4UdQ7kw0MkX6Xidgq7qgxKJBbPacuAVI8ytdCFq7N6yb
+	 Ge6m3gLJEq2Poy/zPILHVloMWRzp/8C/6GMEjx+MiQrYQqbwZYJ6KV9cvOIRSIjQzU
+	 u2t82g3K52zeoCDcXEfEItaV3EDSVEso7XOVfm9blV3e5Z6upZox2zZkyKGo4OAnb5
+	 XynAYeF4m8FimQbBzwPcGgrqUqS/aZyPg3jcgUqhO5gXG75KV1dpWB4a8Gp6QORBUU
+	 7ltuJt6Ux2WXA==
+Date: Tue, 31 Oct 2023 16:58:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, Yinbo Zhu <zhuyinbo@loongson.cn>,
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: loongson,ls2k-thermal: Fix
+ binding check issues
+Message-ID: <20231031-negative-giveaway-6191a2da0cd5@spud>
+References: <cover.1698743706.git.zhoubinbin@loongson.cn>
+ <944559ea3bf7ba0a1540f831ccd7d33591622b22.1698743706.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="MmKz63fqu/mZqg9d"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1698767186-5046-1-git-send-email-quic_msarkar@quicinc.com>
+In-Reply-To: <944559ea3bf7ba0a1540f831ccd7d33591622b22.1698743706.git.zhoubinbin@loongson.cn>
 
-On Tue, Oct 31, 2023 at 09:16:23PM +0530, Mrinmay Sarkar wrote:
-> This series is to enable cache snooping logic in both RC and EP
-> driver and add the "dma-coherent" property in dtsi to support
-> cache coherency in SA8775P.
-> 
 
-You need to explain why cache snooping needs to be enabled _only_ on SA8775P and
-not on other platforms, here and also in patch description.
+--MmKz63fqu/mZqg9d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Cover letter is not just meant for describing the changes you are submitting,
-you should also put as much info required for the reviewers/maintainers to get
-motivation behind the series.
+On Tue, Oct 31, 2023 at 07:05:49PM +0800, Binbin Zhou wrote:
+> Add the missing 'thermal-sensor-cells' property which is required for
+> every thermal sensor as it's used when using phandles.
+> And add the thermal-sensor.yaml reference.
+>=20
+> Fixes: 72684d99a854 ("thermal: dt-bindings: add loongson-2 thermal")
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../bindings/thermal/loongson,ls2k-thermal.yaml        | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-ther=
+mal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.=
+yaml
+> index 7538469997f9..b634f57cd011 100644
+> --- a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+> @@ -10,6 +10,9 @@ maintainers:
+>    - zhanghongchen <zhanghongchen@loongson.cn>
+>    - Yinbo Zhu <zhuyinbo@loongson.cn>
+> =20
+> +allOf:
+> +  - $ref: /schemas/thermal/thermal-sensor.yaml#
+> +
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -26,12 +29,16 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> +  '#thermal-sensor-cells':
+> +    const: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - interrupts
+> +  - '#thermal-sensor-cells'
 
-- Mani
+Why does it need to be a required property now though?
+Adding new required properties is technically an ABI break.
 
-> To verify this series we required [1]
-> 
-> [1] https://lore.kernel.org/all/1698729108-27356-1-git-send-email-quic_msarkar@quicinc.com/
-> 
-> Mrinmay Sarkar (3):
->   PCI: qcom: Enable cache coherency for SA8775P RC
->   PCI: qcom-ep: Enable cache coherency for SA8775P EP
->   arm64: dts: qcom: sa8775p: Mark PCIe controller as cache coherent
-> 
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi     |  2 ++
->  drivers/pci/controller/dwc/pcie-qcom-ep.c |  8 ++++++++
->  drivers/pci/controller/dwc/pcie-qcom.c    | 11 +++++++++++
->  3 files changed, 21 insertions(+)
-> 
-> -- 
-> 2.7.4
-> 
+Cheers,
+Conor.
 
--- 
-மணிவண்ணன் சதாசிவம்
+> =20
+> -additionalProperties: false
+> +unevaluatedProperties: false
+> =20
+>  examples:
+>    - |
+> @@ -41,4 +48,5 @@ examples:
+>          reg =3D <0x1fe01500 0x30>;
+>          interrupt-parent =3D <&liointc0>;
+>          interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>;
+> +        #thermal-sensor-cells =3D <1>;
+>      };
+> --=20
+> 2.39.3
+>=20
+
+--MmKz63fqu/mZqg9d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUEyKAAKCRB4tDGHoIJi
+0k0cAQDPw6O0fZMpvQeC7hVo6AKxjMU7IA9SCENIscLXKwsmigD/T+WLG3cAvHjw
+9M/MySMq/6DajsHg0C6nsGeWj3na/QU=
+=MXOh
+-----END PGP SIGNATURE-----
+
+--MmKz63fqu/mZqg9d--
 
