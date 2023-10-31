@@ -1,146 +1,123 @@
-Return-Path: <devicetree+bounces-13322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D32877DD7E8
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 22:49:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2626F7DD827
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 23:19:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B4F0B20E5A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:49:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F51F1C20C28
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 22:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69F224A1B;
-	Tue, 31 Oct 2023 21:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B97A422311;
+	Tue, 31 Oct 2023 22:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C7jcHXbj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a+TcgrrR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91350225D7;
-	Tue, 31 Oct 2023 21:49:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDE8FE;
-	Tue, 31 Oct 2023 14:49:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698788986; x=1730324986;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=600Nvh60124lsqCSvHFqzYzSMSzi4J7+aWhMqXLTTIM=;
-  b=C7jcHXbjXdZ4dp8esjDLBHLevhdh19Kn+cwqUKt3DuBs73fDDC3XVmnw
-   XZ866IiTAyVtDvXlXkVlu+Ss+D/z9YR5WuJM76dOvvRn6wmgEFQkqZpD1
-   4DuobhUNpJFlhjRsL5jz2lzd7IFVKE3wvTXlD2JClw/3cA1O1kc+SVPhG
-   I/7u1fd2OpxWaheqmJ0IaQwtfBEProHSFFTL0WXu7SMipqYmVUFg4AEH+
-   LHOtno9rpFZ8xu9Gx4DKXLxjBQ6DIJZkglZzZ/+7hN1jfVZdQsF7HgYVB
-   VhaoK23e2n7IhGplBvMTGCWfZHBDhgcFCF/T0YiwVrGbVBXFL8OyaVbdD
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="454850526"
-X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; 
-   d="scan'208";a="454850526"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 14:49:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="760748094"
-X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; 
-   d="scan'208";a="760748094"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 31 Oct 2023 14:49:42 -0700
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qxwcG-0000PI-0V;
-	Tue, 31 Oct 2023 21:49:40 +0000
-Date: Wed, 1 Nov 2023 05:49:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-acpi@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-media@vger.kernel.org,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/1] device property: Add fwnode_name_eq()
-Message-ID: <202311010542.1tRHV0in-lkp@intel.com>
-References: <20231031135306.1106640-1-sakari.ailus@linux.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5363927442
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 22:19:23 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 792CCFE;
+	Tue, 31 Oct 2023 15:19:21 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39VJOBuL029799;
+	Tue, 31 Oct 2023 22:19:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Aphlc6s8NtUMz0AnqPtvlfqApJgy5j7VA/4sgYsahRU=;
+ b=a+TcgrrRXjpCN5SqROM/bvVf8A6ELksisLPxyrzPnKzvxS5+/JmhvJmvNvEXcXrdcJ87
+ O7zUFbzID42C88I7t5x5Ci6H20sTRkMhmvgY5kpy4pnaQuAcviHKWf1fG8E6Ul8V2O16
+ SquzGStAoaq5vWx6Mm1yZAxvMv/TKH3UANC8NINeUwAbYe7vDV0zPTRb7cke/jG9o6d/
+ hbmsLITZJQ2/NYldQmEsVdgJBls1qkSanPpq7ZeKRbv5QpLS1U4eLkE61e4VfwR+pm75
+ wMe/CNyCCGv3UkY/2wZDht21WkwoFA/JBMdS/he6p9a14VkhHLeb47fjdQMc2SIKSnbM IQ== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u34sc0v4c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 22:19:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39VMJ8dP020242
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 22:19:08 GMT
+Received: from [10.110.20.112] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 31 Oct
+ 2023 15:19:07 -0700
+Message-ID: <7b074eaf-ab65-c03b-dcb6-92a0848c2291@quicinc.com>
+Date: Tue, 31 Oct 2023 15:18:59 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231031135306.1106640-1-sakari.ailus@linux.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 3/7] soc: qcom: add QCOM PBS driver
+Content-Language: en-US
+To: Lee Jones <lee@kernel.org>
+CC: <pavel@ucw.cz>, <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <luca.weiss@fairphone.com>, <konrad.dybcio@linaro.org>,
+        <u.kleine-koenig@pengutronix.de>, <quic_subbaram@quicinc.com>,
+        <quic_gurus@quicinc.com>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+References: <20231020182218.22217-1-quic_amelende@quicinc.com>
+ <20231020182218.22217-4-quic_amelende@quicinc.com>
+ <20231025121255.GM8909@google.com>
+From: Anjelique Melendez <quic_amelende@quicinc.com>
+In-Reply-To: <20231025121255.GM8909@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6iHWD_z0aisOaV3YVZEc3yd2VvNJ9BrR
+X-Proofpoint-GUID: 6iHWD_z0aisOaV3YVZEc3yd2VvNJ9BrR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-31_09,2023-10-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 mlxlogscore=749 bulkscore=0 phishscore=0 priorityscore=1501
+ mlxscore=0 spamscore=0 clxscore=1011 adultscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2310310184
 
-Hi Sakari,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on driver-core/driver-core-testing]
-[also build test WARNING on driver-core/driver-core-next driver-core/driver-core-linus linus/master v6.6 next-20231031]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Sakari-Ailus/device-property-Add-fwnode_name_eq/20231031-224454
-base:   driver-core/driver-core-testing
-patch link:    https://lore.kernel.org/r/20231031135306.1106640-1-sakari.ailus%40linux.intel.com
-patch subject: [PATCH 1/1] device property: Add fwnode_name_eq()
-config: sh-allnoconfig (https://download.01.org/0day-ci/archive/20231101/202311010542.1tRHV0in-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231101/202311010542.1tRHV0in-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311010542.1tRHV0in-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/base/property.c:611: warning: Function parameter or member 'fwnode' not described in 'fwnode_name_eq'
 
 
-vim +611 drivers/base/property.c
-
-   596	
-   597	/**
-   598	 * fwnode_name_eq - Return true if node name is equal
-   599	 * @fwnode The firmware node
-   600	 * @name: The name to which to compare the node name
-   601	 *
-   602	 * Compare the name provided as an argument to the name of the node, stopping
-   603	 * the comparison to either '\0' or '@' character, whichever comes first. This
-   604	 * function is generally used for comparing node names while ignoring the
-   605	 * possible unit address of the node.
-   606	 *
-   607	 * Return: true if the node name matches with the name provided in the @name
-   608	 * argument, false otherwise.
-   609	 */
-   610	bool fwnode_name_eq(const struct fwnode_handle *fwnode, const char *name)
- > 611	{
-   612		const char *node_name;
-   613		unsigned int len;
-   614	
-   615		node_name = fwnode_get_name(fwnode);
-   616		if (!node_name)
-   617			return false;
-   618	
-   619		len = strchrnul(node_name, '@') - node_name;
-   620	
-   621		return strlen(name) == len && !strncmp(node_name, name, len);
-   622	}
-   623	EXPORT_SYMBOL_GPL(fwnode_name_eq);
-   624	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On 10/25/2023 5:12 AM, Lee Jones wrote:
+> On Fri, 20 Oct 2023, Anjelique Melendez wrote:
+> 
+>> Add the Qualcomm PBS (Programmable Boot Sequencer) driver. The QCOM PBS
+>> driver supports configuring software PBS trigger events through PBS RAM
+>> on Qualcomm Technologies, Inc (QTI) PMICs.
+>>
+>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+>> ---
+>>  drivers/soc/qcom/Kconfig          |   9 ++
+>>  drivers/soc/qcom/Makefile         |   1 +
+>>  drivers/soc/qcom/qcom-pbs.c       | 243 ++++++++++++++++++++++++++++++
+>>  include/linux/soc/qcom/qcom-pbs.h |  30 ++++
+>>  4 files changed, 283 insertions(+)
+>>  create mode 100644 drivers/soc/qcom/qcom-pbs.c
+>>  create mode 100644 include/linux/soc/qcom/qcom-pbs.h
+> 
+> The LED patches look good to go.
+> 
+> What's the plan for the SoC driver?
+> 
+>   * Who will review it?
+>   * Shall I take it via LED with an Ack?
+> 
+QCOM PBS driver should be reviewed by linux-arm-msm maintainers/reviewers.
+Will give them another week or so to take a look at this series before I
+resend to them.
 
