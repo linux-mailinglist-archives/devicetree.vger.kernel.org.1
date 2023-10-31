@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-13285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A2307DD49D
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:24:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7697DD493
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:23:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AA891C20B44
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:24:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ADED1F22378
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:23:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADE0208B8;
-	Tue, 31 Oct 2023 17:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CE6208A8;
+	Tue, 31 Oct 2023 17:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="dOlcNtY+"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="IP9oth62"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42A7208A8
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:24:48 +0000 (UTC)
-Received: from mta-64-226.siemens.flowmailer.net (mta-64-226.siemens.flowmailer.net [185.136.64.226])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A0692
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:24:47 -0700 (PDT)
-Received: by mta-64-226.siemens.flowmailer.net with ESMTPSA id 2023103117234229b36ffae07adbbe5a
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE591DFFE
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:23:46 +0000 (UTC)
+Received: from mta-64-227.siemens.flowmailer.net (mta-64-227.siemens.flowmailer.net [185.136.64.227])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F319F
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:23:44 -0700 (PDT)
+Received: by mta-64-227.siemens.flowmailer.net with ESMTPSA id 20231031172342f6d01b57271a64ad17
         for <devicetree@vger.kernel.org>;
         Tue, 31 Oct 2023 18:23:42 +0100
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
  d=siemens.com; i=jan.kiszka@siemens.com;
  h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=uS7U8M/H5M0ZERJscFkJlzWuo4FJxRd/TE7u0fDUc7o=;
- b=dOlcNtY+H+d8XLuI1q3FMbUBeRUnxsQNvhetWmbP/YcXe6OjgvQ2dtYat32EIqxcploBYh
- Dtzg5MuD2NhnRMUbUQdyXsz+LCeDjPHxr5KZpdAis60e/vNasPcWUKPhdSjlO1Lv2kF023PT
- LDKIf/1TSM7GqWCSLoV6aQ9gi76gk=;
+ bh=FuURADaQV+ktKGaffYq9Mlv64CMgluIR0rUglXjZTXc=;
+ b=IP9oth62YRF6opTpMpX1w9GG83hwP6ke8tSNtbWLeozsVLSHFjFnjh8HCmWqEoh4B6CzZO
+ WLO+jtBeD65lc/MFJSRe04BOnMPu3DoPyx+JhTC3QLH1IwzL1A5AQhwj400eSwgSk854L6df
+ /OqJGXXsTwpN+4BZxhdkwlGfeo/b4=;
 From: Jan Kiszka <jan.kiszka@siemens.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -44,9 +44,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	Bao Cheng Su <baocheng.su@siemens.com>,
 	Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-Subject: [PATCH v2 4/5] arm64: dts: ti: iot2050: Refactor the m.2 and minipcie power pin
-Date: Tue, 31 Oct 2023 18:23:38 +0100
-Message-Id: <c49f0af07de0e5281149ee8ddef088c3ef0f57f2.1698773019.git.jan.kiszka@siemens.com>
+Subject: [PATCH v2 5/5] arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG2 devices
+Date: Tue, 31 Oct 2023 18:23:39 +0100
+Message-Id: <c46fddcf96f59af0796cefbe51dfff844261f22d.1698773019.git.jan.kiszka@siemens.com>
 In-Reply-To: <cover.1698773019.git.jan.kiszka@siemens.com>
 References: <cover.1698773019.git.jan.kiszka@siemens.com>
 Precedence: bulk
@@ -59,91 +59,211 @@ Content-Transfer-Encoding: 8bit
 X-Flowmailer-Platform: Siemens
 Feedback-ID: 519:519-294854:519-21489:flowmailer
 
-From: Su Bao Cheng <baocheng.su@siemens.com>
+From: Jan Kiszka <jan.kiszka@siemens.com>
 
-Make the m.2 power control pin also available on miniPCIE variants.
+Add the required nodes to enable ICSSG SR2.0 based prueth networking.
 
-This can fix some miniPCIE card hang issue, by forcing a power on reset
-during boot.
+As the driver still needs to be extended for SR1.0 support, keep related
+nodes disabled on PG1 devices.
 
-Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
 Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
 ---
- .../arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi |  4 +++-
- arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi    | 11 +++++++++++
- .../boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts     |  8 +-------
- 3 files changed, 15 insertions(+), 8 deletions(-)
+ .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    |  10 +-
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 132 ++++++++++++++++++
+ 2 files changed, 141 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-index e9419c4fe605..e9b57b87e42e 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
-@@ -20,7 +20,9 @@ AM65X_IOPAD(0x01e0, PIN_OUTPUT, 7)
- 
- &main_gpio1 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&cp2102n_reset_pin_default>;
-+	pinctrl-0 =
-+		<&main_pcie_enable_pins_default>,
-+		<&cp2102n_reset_pin_default>;
- 	gpio-line-names =
- 		"", "", "", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "", "", "",
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
+index 51f902fa35a7..1d1979859583 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * Copyright (c) Siemens AG, 2021
++ * Copyright (c) Siemens AG, 2021-2023
+  *
+  * Authors:
+  *   Jan Kiszka <jan.kiszka@siemens.com>
+@@ -44,3 +44,11 @@ &tx_pru2_0 {
+ &tx_pru2_1 {
+ 	status = "disabled";
+ };
++
++&icssg0_eth {
++	status = "disabled";
++};
++
++&icssg0_mdio {
++	status = "disabled";
++};
 diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index 74c4accff4b7..53bd296ba310 100644
+index 53bd296ba310..b7ed0cc4463e 100644
 --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
 +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -852,6 +852,12 @@ AM65X_IOPAD(0x00CC, PIN_INPUT_PULLDOWN, 7)
- 		>;
+@@ -11,6 +11,7 @@
+ 
+ #include "k3-am654.dtsi"
+ #include <dt-bindings/phy/phy.h>
++#include <dt-bindings/net/ti-dp83867.h>
+ 
+ / {
+ 	aliases {
+@@ -27,6 +28,8 @@ aliases {
+ 		spi0 = &mcu_spi0;
+ 		mmc0 = &sdhci1;
+ 		mmc1 = &sdhci0;
++		ethernet1 = &icssg0_emac0;
++		ethernet2 = &icssg0_emac1;
  	};
  
-+	main_pcie_enable_pins_default: main-pcie-enable-default-pins {
+ 	chosen {
+@@ -111,6 +114,80 @@ dp_refclk: clock {
+ 		#clock-cells = <0>;
+ 		clock-frequency = <19200000>;
+ 	};
++
++	/* Dual Ethernet application node on PRU-ICSSG0 */
++	icssg0_eth: icssg0-eth {
++		compatible = "ti,am654-icssg-prueth";
++		pinctrl-names = "default";
++		pinctrl-0 = <&icssg0_rgmii_pins_default>;
++		sram = <&msmc_ram>;
++
++		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>,
++			<&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
++		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
++				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
++
++		ti,pruss-gp-mux-sel = <2>,      /* MII mode */
++				      <2>,
++				      <2>,
++				      <2>,	/* MII mode */
++				      <2>,
++				      <2>;
++
++		ti,mii-g-rt = <&icssg0_mii_g_rt>;
++		ti,mii-rt = <&icssg0_mii_rt>;
++		ti,iep = <&icssg0_iep0>,  <&icssg0_iep1>;
++
++		interrupt-parent = <&icssg0_intc>;
++		interrupts = <24 0 2>, <25 1 3>;
++		interrupt-names = "tx_ts0", "tx_ts1";
++
++		dmas = <&main_udmap 0xc100>, /* egress slice 0 */
++		       <&main_udmap 0xc101>, /* egress slice 0 */
++		       <&main_udmap 0xc102>, /* egress slice 0 */
++		       <&main_udmap 0xc103>, /* egress slice 0 */
++		       <&main_udmap 0xc104>, /* egress slice 1 */
++		       <&main_udmap 0xc105>, /* egress slice 1 */
++		       <&main_udmap 0xc106>, /* egress slice 1 */
++		       <&main_udmap 0xc107>, /* egress slice 1 */
++
++		       <&main_udmap 0x4100>, /* ingress slice 0 */
++		       <&main_udmap 0x4101>, /* ingress slice 1 */
++		       <&main_udmap 0x4102>, /* mgmnt rsp slice 0 */
++		       <&main_udmap 0x4103>; /* mgmnt rsp slice 1 */
++		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
++			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
++			    "rx0", "rx1",
++			    "rxmgm0", "rxmgm1";
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			icssg0_emac0: port@0 {
++				reg = <0>;
++				phy-handle = <&icssg0_eth0_phy>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&scm_conf 0x4100>;
++				ti,half-duplex-capable;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++
++			icssg0_emac1: port@1 {
++				reg = <1>;
++				phy-handle = <&icssg0_eth1_phy>;
++				phy-mode = "rgmii-id";
++				ti,syscon-rgmii-delay = <&scm_conf 0x4104>;
++				ti,half-duplex-capable;
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++		};
++	};
+ };
+ 
+ &wkup_pmx0 {
+@@ -944,6 +1021,43 @@ AM65X_IOPAD(0x0074, PIN_INPUT,  5)  /* (T27) I2C2_SCL */
+ 			AM65X_IOPAD(0x0070, PIN_INPUT,  5)  /* (R25) I2C2_SDA */
+ 		>;
+ 	};
++
++	icssg0_mdio_pins_default: icssg0-mdio-pins-default {
 +		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x01c4, PIN_INPUT_PULLUP, 7)  /* (AH13) GPIO1_17 */
++			AM65X_IOPAD(0x0294, PIN_INPUT, 0) /* (AE26) PRG0_MDIO0_MDIO */
++			AM65X_IOPAD(0x0298, PIN_OUTPUT, 0) /* (AE28) PRG0_MDIO0_MDC */
 +		>;
 +	};
 +
- 	main_uart1_pins_default: main-uart1-default-pins {
- 		pinctrl-single,pins = <
- 			AM65X_IOPAD(0x0174, PIN_INPUT,  6)  /* (AE23) UART1_RXD */
-@@ -981,6 +987,11 @@ &main_gpio0 {
- 		"", "IO9";
- };
- 
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_pcie_enable_pins_default>;
-+};
++	icssg0_rgmii_pins_default: icssg0-rgmii-pins-default {
++		pinctrl-single,pins = <
++			AM65X_IOPAD(0x0244, PIN_INPUT, 2) /* (AB28) PRG0_PRU1_GPO0.PRG0_RGMII2_RD0 */
++			AM65X_IOPAD(0x0248, PIN_INPUT, 2) /* (AC28) PRG0_PRU1_GPO1.PRG0_RGMII2_RD1 */
++			AM65X_IOPAD(0x024c, PIN_INPUT, 2) /* (AC27) PRG0_PRU1_GPO2.PRG0_RGMII2_RD2 */
++			AM65X_IOPAD(0x0250, PIN_INPUT, 2) /* (AB26) PRG0_PRU1_GPO3.PRG0_RGMII2_RD3 */
++			AM65X_IOPAD(0x0274, PIN_OUTPUT, 2) /* (AC25) PRG0_PRU1_GPO12.PRG0_RGMII2_TD0 */
++			AM65X_IOPAD(0x0278, PIN_OUTPUT, 2) /* (AD25) PRG0_PRU1_GPO13.PRG0_RGMII2_TD1 */
++			AM65X_IOPAD(0x027c, PIN_OUTPUT, 2) /* (AD24) PRG0_PRU1_GPO14.PRG0_RGMII2_TD2 */
++			AM65X_IOPAD(0x0280, PIN_OUTPUT, 2) /* (AE27) PRG0_PRU1_GPO15.PRG0_RGMII2_TD3 */
++			AM65X_IOPAD(0x0284, PIN_INPUT, 2) /* (AC24) PRG0_PRU1_GPO16.PRG0_RGMII2_TXC */
++			AM65X_IOPAD(0x0270, PIN_OUTPUT, 2) /* (AB24) PRG0_PRU1_GPO11.PRG0_RGMII2_TX_CTL */
++			AM65X_IOPAD(0x025c, PIN_INPUT, 2) /* (AB27) PRG0_PRU1_GPO6.PRG0_RGMII2_RXC */
++			AM65X_IOPAD(0x0254, PIN_INPUT, 2) /* (AA25) PRG0_PRU1_GPO4.PRG0_RGMII2_RX_CTL */
 +
- &wkup_gpio0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 =
-diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-index 8301c35c31b3..bd6f2e696e94 100644
---- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
-@@ -27,12 +27,6 @@ &mcu_r5fss0 {
++			AM65X_IOPAD(0x01f4, PIN_INPUT, 2) /* (V24) PRG0_PRU0_GPO0.PRG0_RGMII1_RD0 */
++			AM65X_IOPAD(0x01f8, PIN_INPUT, 2) /* (W25) PRG0_PRU0_GPO1.PRG0_RGMII1_RD1 */
++			AM65X_IOPAD(0x01fc, PIN_INPUT, 2) /* (W24) PRG0_PRU0_GPO2.PRG0_RGMII1_RD2 */
++			AM65X_IOPAD(0x0200, PIN_INPUT, 2) /* (AA27) PRG0_PRU0_GPO3.PRG0_RGMII1_RD3 */
++			AM65X_IOPAD(0x0224, PIN_OUTPUT, 2) /* (AD27) PRG0_PRU0_GPO12.PRG0_RGMII1_TD0 */
++			AM65X_IOPAD(0x0228, PIN_OUTPUT, 2) /* (AC26) PRG0_PRU0_GPO13.PRG0_RGMII1_TD1 */
++			AM65X_IOPAD(0x022c, PIN_OUTPUT, 2) /* (AD26) PRG0_PRU0_GPO14.PRG0_RGMII1_TD2 */
++			AM65X_IOPAD(0x0230, PIN_OUTPUT, 2) /* (AA24) PRG0_PRU0_GPO15.PRG0_RGMII1_TD3 */
++			AM65X_IOPAD(0x0234, PIN_INPUT, 2) /* (AD28) PRG0_PRU0_GPO16.PRG0_RGMII1_TXC */
++			AM65X_IOPAD(0x0220, PIN_OUTPUT, 2) /* (AB25) PRG0_PRU0_GPO11.PRG0_RGMII1_TX_CTL */
++			AM65X_IOPAD(0x020c, PIN_INPUT, 2) /* (Y25) PRG0_PRU0_GPO6.PRG0_RGMII1_RXC */
++			AM65X_IOPAD(0x0204, PIN_INPUT, 2) /* (Y24) PRG0_PRU0_GPO4.PRG0_RGMII1_RX_CTL */
++		>;
++	};
  };
  
- &main_pmx0 {
--	main_m2_enable_pins_default: main-m2-enable-default-pins {
--		pinctrl-single,pins = <
--			AM65X_IOPAD(0x01c4, PIN_INPUT_PULLUP, 7)  /* (AH13) GPIO1_17 */
--		>;
--	};
--
- 	main_bkey_pcie_reset: main-bkey-pcie-reset-default-pins {
- 		pinctrl-single,pins = <
- 			AM65X_IOPAD(0x01bc, PIN_OUTPUT_PULLUP, 7)  /* (AG13) GPIO1_15 */
-@@ -72,7 +66,7 @@ &main_gpio0 {
- &main_gpio1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 =
--		<&main_m2_enable_pins_default>,
-+		<&main_pcie_enable_pins_default>,
- 		<&main_pmx0_m2_config_pins_default>,
- 		<&main_pmx1_m2_config_pins_default>,
- 		<&cp2102n_reset_pin_default>;
+ &main_pmx1 {
+@@ -1316,3 +1430,21 @@ &mcu_r5fss0_core1 {
+ 			<&mcu_r5fss0_core1_memory_region>;
+ 	mboxes = <&mailbox0_cluster1>, <&mbox_mcu_r5fss0_core1>;
+ };
++
++&icssg0_mdio {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&icssg0_mdio_pins_default>;
++
++	icssg0_eth0_phy: ethernet-phy@0 {
++		reg = <0>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++	};
++
++	icssg0_eth1_phy: ethernet-phy@1 {
++		reg = <1>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++	};
++};
 -- 
 2.35.3
 
