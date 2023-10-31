@@ -1,154 +1,143 @@
-Return-Path: <devicetree+bounces-13060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210DF7DC748
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:29:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AF77DC75F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC23C2815D1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:29:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87CBEB20CCE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0E410952;
-	Tue, 31 Oct 2023 07:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810A41095B;
+	Tue, 31 Oct 2023 07:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JI+kM589"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA5F3C3C
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:28:54 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2440DC1
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 00:28:53 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qxjBA-0007rN-RG; Tue, 31 Oct 2023 08:28:48 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qxjB9-005WBK-7y; Tue, 31 Oct 2023 08:28:47 +0100
-Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1qxjB9-00HDPi-56; Tue, 31 Oct 2023 08:28:47 +0100
-Date: Tue, 31 Oct 2023 08:28:47 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
-	Ante Knezic <ante.knezic@helmholz.de>, conor+dt@kernel.org,
-	UNGLinuxDriver@microchip.com, davem@davemloft.net,
-	devicetree@vger.kernel.org, edumazet@google.com,
-	f.fainelli@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-	kuba@kernel.org, linux-kernel@vger.kernel.org, marex@denx.de,
-	netdev@vger.kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-	woojung.huh@microchip.com
-Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
-Message-ID: <20231031072847.GP3803936@pengutronix.de>
-References: <20231024142426.GE3803936@pengutronix.de>
- <20231027063743.28747-1-ante.knezic@helmholz.de>
- <20231030174225.hqhc3afbayi7dmos@skbuf>
- <aad5ac41-3c05-421d-a483-0546b579585c@lunn.ch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD29510A00
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:34:30 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06A2C1;
+	Tue, 31 Oct 2023 00:34:28 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9be3b66f254so785970366b.3;
+        Tue, 31 Oct 2023 00:34:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698737667; x=1699342467; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vaiRdQ1c+DDVs4Z20fjdvqfJxBU+ISFg2fzCunWfAwA=;
+        b=JI+kM589L0PPkuhMRUeomEeRDB5sYzG74h+OOF0oPJuI1d6+cju5Gmke3lD04o4pdj
+         Ke1d1fGI4Fehiymy/9M/r1OMQ47sNgbgJRbOD2ingZZljJVfwjyh7QV9YNidtIOHtSBs
+         xiJCVxczGD6aN0X96tNcg9h9GeG7R2K63skldisf4wl50rwy5dlapHFrb1kQd40mIniT
+         U1AfY3rQM5wyAX7Ww1rfir6q0/i3ujsCeuwDWSA52+PMSlGuRi/IzARyswGQjwhCS+Wb
+         l+pRt6bobkqrrnTjg1bBz2O2C2PmwgLqVdWgBouAhk1JmHcfrlw5uYjSyaO1P1zV+TSW
+         lD/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698737667; x=1699342467;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vaiRdQ1c+DDVs4Z20fjdvqfJxBU+ISFg2fzCunWfAwA=;
+        b=jtMl5fGgdBymVbLzJq+8dsRmj4LpwVbB63x21UzTjftd7Vw33GZ0umAfB9gn2pGsYi
+         JDY/SP4Y/R7cPCn+R7rZL0fF7gGUcGLHcySFdRsNRa+UIk5e0/B60MJ0kP7x2cQtAZvJ
+         K+Jyo8ulophAuxzxr0/ajCkAqpOjWFC/CMuPn2ick31LGIYxOq6GePSC28ilfSydmx+M
+         8Crpyy2bOA8jTmc1f5/FI3kdNTHIA/9u8anbsN0frglsCDG/9cGm0oLGTeI4/agUyLTw
+         VKpFcKCefIg8Bmy7DbKriygD/YzstYEwS4KOhMDdB0RZmCnXjs/HCR8cAOv0W6zjNotB
+         YDog==
+X-Gm-Message-State: AOJu0Ywllbm3mtRGHCS5muSl6VRha7zoOMAc7FDAhGVJ9yrbAg0NqBVA
+	aXki1q/G9Jg+HlNUpJTkzKg=
+X-Google-Smtp-Source: AGHT+IFRnJwlt4jfCJeK/JlYyYRhoZ7FYb/4ga7Vff4anXgGHDAddPNvbI9KlDs0XYs+4Z0fQL6qug==
+X-Received: by 2002:a17:906:57c4:b0:9d3:6040:cf05 with SMTP id u4-20020a17090657c400b009d36040cf05mr5078257ejr.31.1698737666962;
+        Tue, 31 Oct 2023 00:34:26 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-59-109.cust.vodafonedsl.it. [188.217.59.109])
+        by smtp.gmail.com with ESMTPSA id jj13-20020a170907984d00b009d51f9d54edsm486845ejc.126.2023.10.31.00.34.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Oct 2023 00:34:26 -0700 (PDT)
+From: Tommaso Merciai <tomm.merciai@gmail.com>
+To: 
+Cc: laurent.pinchart@ideasonboard.com,
+	martin.hecht@avnet.eu,
+	michael.roeder@avnet.eu,
+	linuxfancy@googlegroups.com,
+	mhecht73@gmail.com,
+	sakari.ailus@linux.intel.com,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Nicholas Roth <nicholas@rothemail.net>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v11 1/3] dt-bindings: vendor-prefixes: Add prefix alliedvision
+Date: Tue, 31 Oct 2023 08:34:12 +0100
+Message-Id: <20231031073417.556053-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231031073417.556053-1-tomm.merciai@gmail.com>
+References: <20231031073417.556053-1-tomm.merciai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <aad5ac41-3c05-421d-a483-0546b579585c@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 31, 2023 at 02:00:05AM +0100, Andrew Lunn wrote:
-> > So, my opinion is that although what Oleksij would like to see is
-> > admirable, I don't think that the REF_CLK direction is a matter of RMII
-> > MAC vs PHY role, and thus, we wouldn't need to change "rmii" to "rev-rmii"
-> > and cause breakage everywhere. It's just that - a matter of REF_CLK
-> > direction. It's true, though, that this is a generic problem and that
-> > the generic bindings for RMII that we currently have are under-specified.
-> > We could try to devise an extended RMII binding which makes it clear for
-> > both the MAC and the PHY who is responsible to drive this signal. You
-> > are not attempting that, you are just coming up with yet another
-> > vendor-specific MAC property which solves a generic problem. I can't say
-> > I am completely opposed to that, either, which is why I haven't really
-> > spoken out against it. The PHY maintainers would also have to weigh in,
-> > and not all of them are CCed here.
-> 
-> I would recommend looking around other PHYs and find a property which
-> does what you want, and copy it.
-> 
-> We do have all sorts of properties. There are some to enable the
-> REF_CLK out of the PHY. Some to disable the REF_CLK out, some to
-> disable it when the link is down, some to indicate what frequency it
-> should tick at, etc.
-> 
-> If you want to go the extra mile, maybe you can make a summary of all
-> these properties, and maybe we can produce a guide line for what we
-> want the properties to be called going forward.
-> 
-> > I am afraid that creating a CCF style binding for REF_CLK will be an
-> > enormous hammer for a very small nail and will see very limited adoption
-> > to other drivers, but I might as well be wrong about it. Compatibility
-> > between RMII MACs and PHYs which may or may not be CCF-ready might also
-> > be a concern.
-> 
-> I also don't think using the CCF makes too much sense, except for
-> where the SoC provides the lock, and already has a CCF covering it.
-> 
-> I would also be hesitant to add more dependencies between the MAC and
-> the PHY. The DT often has circular dependencies and we have had issues
-> with probing being deferred because the core does not always
-> understand these circular dependencies.
+Add a vendor prefix entry for Allied Vision Technologies GmbH
+(https://www.alliedvision.com)
 
-Heh, this are unsolved problems making me pain in different projects.
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+ - Collected tags from LPinchart, CDooley, KKozlowski
 
-Here are some real life examples, which are unsolved in one or another project
-and till now didn't went mainline:
+Changes since v7:
+ - Fix company legal entity from Inc. to GmbH
 
-1. In scenarios where PHYs require an RMII clock from the MAC, initialization
-becomes complex. This is often resolved through bootloader and kernel
-modifications. Right now it kind of works and postponed until it will make
-real pain :)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-2. Complexity increases in designs with multiple PHYs used by different MACs
-but connected to one MDIO bus. Same is here, there was already some
-regressions but the pain is still not enough for making things right.
-
-3. For some MACs like STMMAC, configuration is challenging without an external
-clock from the PHY. For example, VLAN configuration isn't possible with EEE
-enabled unless deep power saving states are disabled during register access.
-If I remember it correctly, there was floating discussions and patches trying
-to address similar issues.
-
-Transferring these issues to KSZ8863, we might face difficulties configuring
-STMMAC if KSZ8863, acting as the clock provider, isn't enabled early before MAC
-driver probing, a tricky scenario in the DSA framework.
-
-Working on deep sleep states for the KSZ switch driver, I find that dynamic
-clock control, potentially offered by CCF, could be quite handy.
-
-Please do not see this answer as a request to Ante for complex rework. It's
-more of a red flag notifying that the clocking issue is still unsolved, and
-someone (may be me), sooner or later, will have enough motivation to jump into
-this wasp nest :)
-
-Regards,
-Oleksij
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..4763fbfcd936 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -77,6 +77,8 @@ patternProperties:
+     description: ALFA Network Inc.
+   "^allegro,.*":
+     description: Allegro DVT
++  "^alliedvision,.*":
++    description: Allied Vision Technologies GmbH
+   "^allo,.*":
+     description: Allo.com
+   "^allwinner,.*":
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.34.1
+
 
