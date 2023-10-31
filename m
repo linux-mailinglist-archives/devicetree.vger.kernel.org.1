@@ -1,47 +1,65 @@
-Return-Path: <devicetree+bounces-13301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BE07DD69B
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 20:16:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3B47DD6BD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 20:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E9D5281072
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 19:16:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0BAE1F21730
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 19:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC16222311;
-	Tue, 31 Oct 2023 19:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8232232A;
+	Tue, 31 Oct 2023 19:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UWkapJHF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EHc4OcE5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718491DFD8;
-	Tue, 31 Oct 2023 19:16:32 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A71F4;
-	Tue, 31 Oct 2023 12:16:31 -0700 (PDT)
-Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 87088660739C;
-	Tue, 31 Oct 2023 19:16:27 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1698779789;
-	bh=/gTUn35pxMVNvhON2z5RDIeqdGQZeEsVkG1xfnFFQu8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UWkapJHFI0QYA0BZgDKo7pkdKSfFUwRupE33rQsOG/HwaQdLomOj5pA3pua3dlPdO
-	 H0tXuKf0U2/4B6lQeLgvLnjlEfOG4t2z0p4MH1isl4fuO5fvFG5gkFgRi8URHiYKpX
-	 bs8HbD5ChMP3FIDNjmni5IDoGVQ1y5+uq7gH5TpsxHVzcec9UEy8xXtmRWncwfaeEK
-	 aErXYgvGzEDLuNlVKog3f+cHiJxt3+6KrSqAC5uVAerQD+M9meZ/jjt+XUcbyXoXwH
-	 o7rd5eyc4hnmvwGFUDLz+yOGxYcQeR0IO0XyJxRaqb/tFm+OpQy1mDdx7C1oNMDFtw
-	 FTOFXjIqtPDyw==
-Message-ID: <4f661818-1585-41d8-a305-96fd359bc8b8@collabora.com>
-Date: Tue, 31 Oct 2023 21:16:24 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C249134D6
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 19:46:50 +0000 (UTC)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8341C83;
+	Tue, 31 Oct 2023 12:46:48 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c518a1d83fso85530641fa.3;
+        Tue, 31 Oct 2023 12:46:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698781607; x=1699386407; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=purwZ105GsEhgtQHpkdP9umavsYHSc4ApWwflAbtrrc=;
+        b=EHc4OcE56l85l0RGlsWNTcov1sWKT63o3L/Of/LUVeBPCFjuo5SPXQ/7Rbd0U/3NmD
+         wsm81iz/kxwbKU6ZzRlIlC0UcPjjc2akCn221EPsk0aM0XE+8eJKNVGdsIRJoZ7LVWaO
+         rO3JhfHNFaDAswKuuPnm9wFZ0jElgeQOvaO7p6B7X0yxgeyfRUGHD02rf+KYJM9H+tiG
+         /INcKvOKyIUD3p0RU5tcZcbXDrBmm1bphMc6Ll3kBJmokqVwO1b+mpDsfcJW7uoaf7LR
+         tOJZDdvaHSi18gwxAXz6V+WHhhYh7y4WSfAfArx9/zmTBjX7JeAEm2irPeTa4ySTPh1Z
+         qkYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698781607; x=1699386407;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=purwZ105GsEhgtQHpkdP9umavsYHSc4ApWwflAbtrrc=;
+        b=UKojw2NaElWuJAFqAQ7TEyzuD3J+VFlsTHUeuZX241gp/Orkv6L565QS83/YGUyhTN
+         3x4aGBp6uO52Tt1Uy1xKYuGfGlpjXLmuALkKVXk/kiUPyzcGDvTdB2/AdEWkcw1qXth2
+         Dw0rextBrqA483qrRcMyUpy6z3DbugrW5mfjBfGwX1TXa1TzETaraf9qhSbYV6V6hOXz
+         Ao8rHXMh9YV9MjvI5QEyWVXUti+4EXVPUbuu71YVIOHiAirfIGOlN5DPqPKxy64BgLrZ
+         ksGGjZzMNJgbXCqogpG1M8b7haw6gtxavnKVPbQZfWGedfGeauqOkjMLtDG4BM1cQELZ
+         WgAQ==
+X-Gm-Message-State: AOJu0Yx678i6I8abs+jAVd93dATUO8eS3oRDBUa78y8j5wRgC5ZgSnLX
+	SnMqpFUmUdfoLbACcYGPJI0=
+X-Google-Smtp-Source: AGHT+IEOLRiyG9O+qr6AzZRS5vIZx/36cYDoFO/IMWC9eGiCVgGOswCJxAHnc67RSaD+pLKgSCkFgQ==
+X-Received: by 2002:a05:651c:1a20:b0:2c5:1808:4aa4 with SMTP id by32-20020a05651c1a2000b002c518084aa4mr12208174ljb.12.1698781606309;
+        Tue, 31 Oct 2023 12:46:46 -0700 (PDT)
+Received: from [192.168.3.32] (cpezg-94-253-131-198-cbl.xnet.hr. [94.253.131.198])
+        by smtp.gmail.com with ESMTPSA id 9-20020a2e0f09000000b002b6cd89a3fcsm7524ljp.118.2023.10.31.12.46.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 12:46:45 -0700 (PDT)
+Message-ID: <65cc630c-1d71-48e1-b639-b92221a8d7b1@gmail.com>
+Date: Tue, 31 Oct 2023 20:46:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,109 +67,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/12] riscv: dts: starfive: Add pool for coherent DMA
- memory on JH7100 boards
-Content-Language: en-US
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq6018: add SDHCI node
+To: Mantas Pucka <mantas@8devices.com>, Ulf Hansson <ulf.hansson@linaro.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-9-cristian.ciocaltea@collabora.com>
- <CAJM55Z_2hdsvw8gdYLs2kZbRrH6xcM6+xCZn8BCf5zsWYyhY3w@mail.gmail.com>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <CAJM55Z_2hdsvw8gdYLs2kZbRrH6xcM6+xCZn8BCf5zsWYyhY3w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc: Abhishek Sahu <absahu@codeaurora.org>,
+ Anusha Canchi Ramachandra Rao <anusharao@codeaurora.org>,
+ Sricharan R <sricharan@codeaurora.org>,
+ Sivaprakash Murugesan <sivaprak@codeaurora.org>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+References: <1682338412-15420-1-git-send-email-mantas@8devices.com>
+ <1682338412-15420-3-git-send-email-mantas@8devices.com>
+Content-Language: en-US
+From: Robert Marko <robimarko@gmail.com>
+In-Reply-To: <1682338412-15420-3-git-send-email-mantas@8devices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/31/23 16:40, Emil Renner Berthing wrote:
-> Cristian Ciocaltea wrote:
->> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->>
->> The StarFive JH7100 SoC has non-coherent device DMAs, but most drivers
->> expect to be able to allocate coherent memory for DMA descriptors and
->> such. However on the JH7100 DDR memory appears twice in the physical
->> memory map, once cached and once uncached:
->>
->>   0x00_8000_0000 - 0x08_7fff_ffff : Off chip DDR memory, cached
->>   0x10_0000_0000 - 0x17_ffff_ffff : Off chip DDR memory, uncached
->>
->> To use this uncached region we create a global DMA memory pool there and
->> reserve the corresponding area in the cached region.
->>
->> However the uncached region is fully above the 32bit address limit, so add
->> a dma-ranges map so the DMA address used for peripherals is still in the
->> regular cached region below the limit.
-> 
-> Adding these nodes to the device tree won't actually do anything without
-> enabling CONFIG_DMA_GLOBAL_POOL as is done here:
-> 
-> https://github.com/esmil/linux/commit/e14ad9ff67fd51dcc76415d4cc7f3a30ffcba379
 
-Should I pick this up for v3 or maybe it would be better to be handled
-as part of your ccache series?
+On 24. 04. 2023. 14:13, Mantas Pucka wrote:
+> IPQ6018 has one SD/eMMC controller, add node for it.
+>
+> Signed-off-by: Mantas Pucka <mantas@8devices.com>
 
-Thanks,
-Cristian
+Tested-by: Robert Marko <robimarko@gmail.com>
 
->>
->> Link: https://github.com/starfive-tech/JH7100_Docs/blob/main/JH7100%20Data%20Sheet%20V01.01.04-EN%20(4-21-2021).pdf
->> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
->>  .../boot/dts/starfive/jh7100-common.dtsi      | 24 +++++++++++++++++++
->>  1 file changed, 24 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->> index b93ce351a90f..504c73f01f14 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->> @@ -39,6 +39,30 @@ led-ack {
->>  			label = "ack";
->>  		};
->>  	};
->> +
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		dma-reserved {
->> +			reg = <0x0 0xfa000000 0x0 0x1000000>;
->> +			no-map;
->> +		};
->> +
->> +		linux,dma {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x10 0x7a000000 0x0 0x1000000>;
->> +			no-map;
->> +			linux,dma-default;
->> +		};
->> +	};
->> +
->> +	soc {
->> +		dma-ranges = <0x00 0x80000000 0x00 0x80000000 0x00 0x7a000000>,
->> +			     <0x00 0xfa000000 0x10 0x7a000000 0x00 0x01000000>,
->> +			     <0x00 0xfb000000 0x00 0xfb000000 0x07 0x85000000>;
->> +	};
->>  };
->>
->>  &gpio {
->> --
->> 2.42.0
->>
+> ---
+>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 23 +++++++++++++++++++++++
+>   1 file changed, 23 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 9ff4e9d45065..b129b23d68b1 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -414,6 +414,29 @@
+>   			};
+>   		};
+>   
+> +		sdhc_1: mmc@7804000 {
+> +			compatible = "qcom,ipq6018-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0x0 0x07804000 0x0 0x1000>,
+> +			      <0x0 0x07805000 0x0 0x1000>,
+> +			      <0x0 0x07808000 0x0 0x2000>;
+> +			reg-names = "hc", "cqhci", "ice";
+> +
+> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+> +				 <&gcc GCC_SDCC1_APPS_CLK>,
+> +				 <&xo>,
+> +				 <&gcc GCC_SDCC1_ICE_CORE_CLK>;
+> +			clock-names = "iface", "core", "xo", "ice";
+> +
+> +			resets = <&gcc GCC_SDCC1_BCR>;
+> +			supports-cqe;
+> +			bus-width = <8>;
+> +			status = "disabled";
+> +		};
+> +
+>   		blsp_dma: dma-controller@7884000 {
+>   			compatible = "qcom,bam-v1.7.0";
+>   			reg = <0x0 0x07884000 0x0 0x2b000>;
 
