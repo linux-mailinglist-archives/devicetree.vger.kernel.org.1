@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-13206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BAF7DCE9F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:05:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FCD17DCEA2
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:06:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B18B9281806
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:05:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00FB2B21063
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:05:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7411D1DDF5;
-	Tue, 31 Oct 2023 14:05:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504C81DDDE;
+	Tue, 31 Oct 2023 14:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="o7mJXbYN"
+	dkim=pass (1024-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="mYLYy4aC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BD8179B9
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 14:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5AA1DDF1
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 14:05:51 +0000 (UTC)
 Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [IPv6:2a01:4f8:a0:821d::2])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 24C69F4;
-	Tue, 31 Oct 2023 07:05:48 -0700 (PDT)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 474DDF5;
+	Tue, 31 Oct 2023 07:05:49 -0700 (PDT)
 From: Stefan Hansson <newbyte@postmarketos.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=donut; t=1698761146;
+	s=donut; t=1698761147;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=VYa8DDJIOHEtmh0RgNiZ0BLPYGQGWvRMKUTkLepvPiU=;
-	b=o7mJXbYNkm/rcyjF/MoGEY8/gSm99chIWb5JxWCINMRvQA9THV1Eu1D7zjQ+p3DEFDqxfE
-	f66UGcX9nt+9qU+DlVaZRCW9VEaKkS05vO5TrrA7ylqto1eOmvQSgYL2c3u1lhKIlQaRah
-	Wbbi6EcMphMibRnHHW58SVZKdRroFLM=
+	bh=vDWGSIc45GvSDLT9Cc9je0UWt/417+l6mhFdREd2cfs=;
+	b=mYLYy4aC3xSn7F5w5DOyW9hb6Pj+ZC741hWrKmEPWxxzIxI9OMOBYBalsBP/X3R7zoj8ul
+	IgjB5j4xW2whROw8EQV8T8YrxWQ2l3iaYQjQ353V5KicYwv9wRs0aZIwfB/z+rtMNhFGyL
+	0QTQmPWs2LQfpofN9Mf7kEPflKFreyg=
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -47,9 +47,9 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht,
 	phone-devel@vger.kernel.org,
 	Stefan Hansson <newbyte@postmarketos.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 3/4] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4 10.1 LTE (SM-T535)
-Date: Tue, 31 Oct 2023 15:00:57 +0100
-Message-ID: <20231031140337.49291-4-newbyte@postmarketos.org>
+Subject: [PATCH v5 4/4] ARM: dts: qcom: samsung-matisse-common: Add UART
+Date: Tue, 31 Oct 2023 15:00:58 +0100
+Message-ID: <20231031140337.49291-5-newbyte@postmarketos.org>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231031140337.49291-1-newbyte@postmarketos.org>
 References: <20231031140337.49291-1-newbyte@postmarketos.org>
@@ -59,121 +59,34 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T535) LTE tablet
-based on the MSM8926 platform.
-
-The common dtsi is also modified to describe the widest constraints,
-which required modifications to the matisse-wifi dts.
+This was not enabled in the matisse-wifi tree. Without this, it is not
+possible to use the USB port for serial debugging via a "Carkit debug
+cable".
 
 Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm/boot/dts/qcom/Makefile               |  1 +
- .../qcom-apq8026-samsung-matisse-wifi.dts     |  8 ++++
- .../qcom-msm8226-samsung-matisse-common.dtsi  |  4 +-
- .../qcom/qcom-msm8926-samsung-matisselte.dts  | 37 +++++++++++++++++++
- 4 files changed, 48 insertions(+), 2 deletions(-)
- create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
+ .../boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi    | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index a3d293e40820..cab35eeb30f6 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -34,6 +34,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-msm8916-samsung-serranove.dtb \
- 	qcom-msm8926-microsoft-superman-lte.dtb \
- 	qcom-msm8926-microsoft-tesla.dtb \
-+	qcom-msm8926-samsung-matisselte.dtb \
- 	qcom-msm8960-cdp.dtb \
- 	qcom-msm8960-samsung-expressatt.dtb \
- 	qcom-msm8974-lge-nexus5-hammerhead.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8026-samsung-matisse-wifi.dts b/arch/arm/boot/dts/qcom/qcom-apq8026-samsung-matisse-wifi.dts
-index b0da51f67539..3be02bdbb919 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8026-samsung-matisse-wifi.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8026-samsung-matisse-wifi.dts
-@@ -66,6 +66,14 @@ touchscreen@4a {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+index 28317ce79e97..dc63b91f94bc 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+@@ -219,6 +219,10 @@ muic: usb-switch@25 {
  	};
  };
  
-+&pm8226_l3 {
-+	regulator-max-microvolt = <1337500>;
++&blsp1_uart3 {
++	status = "okay";
 +};
 +
-+&pm8226_s4 {
-+	regulator-max-microvolt = <1800000>;
-+};
-+
- &tlmm {
- 	tsp_en1_default_state: tsp-en1-default-state {
- 		pins = "gpio73";
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
-index ef98d88927ca..28317ce79e97 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
-@@ -230,7 +230,7 @@ pm8226_s3: s3 {
- 
- 		pm8226_s4: s4 {
- 			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
-+			regulator-max-microvolt = <2200000>;
- 		};
- 
- 		pm8226_s5: s5 {
-@@ -250,7 +250,7 @@ pm8226_l2: l2 {
- 
- 		pm8226_l3: l3 {
- 			regulator-min-microvolt = <750000>;
--			regulator-max-microvolt = <1337500>;
-+			regulator-max-microvolt = <1350000>;
- 			regulator-always-on;
- 		};
- 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
-new file mode 100644
-index 000000000000..d0e1bc39f8ef
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2022, Matti Lehtimäki <matti.lehtimaki@gmail.com>
-+ * Copyright (c) 2023, Stefan Hansson <newbyte@postmarketos.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "qcom-msm8226-samsung-matisse-common.dtsi"
-+
-+/ {
-+	model = "Samsung Galaxy Tab 4 10.1 LTE";
-+	compatible = "samsung,matisselte", "qcom,msm8926", "qcom,msm8226";
-+	chassis-type = "tablet";
-+
-+	reg_tsp_3p3v: regulator-tsp-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "tsp_3p3v";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tsp_en1_default_state>;
-+	};
-+};
-+
-+&tlmm {
-+	tsp_en1_default_state: tsp-en1-default-state {
-+		pins = "gpio32";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
+ &rpm_requests {
+ 	regulators {
+ 		compatible = "qcom,rpm-pm8226-regulators";
 -- 
 2.41.0
 
