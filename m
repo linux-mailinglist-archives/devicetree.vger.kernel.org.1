@@ -1,1114 +1,435 @@
-Return-Path: <devicetree+bounces-13254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744EC7DD0FE
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:54:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2F57DD10C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:56:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29AEC28126A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:54:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AE1B280E55
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1FB1F945;
-	Tue, 31 Oct 2023 15:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71ED5200B9;
+	Tue, 31 Oct 2023 15:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JHsOAC+H"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="GdwsHaQm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56EDF1D556
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 15:54:17 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A048F;
-	Tue, 31 Oct 2023 08:54:12 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A01FC6000D;
-	Tue, 31 Oct 2023 15:54:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698767650;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pFpuhFdEBzHaLiA0OeJ+8Qf/mgpHnhSrpmbF/xo4GW0=;
-	b=JHsOAC+H3igsiQMlOeBjGjQxduzkExQYnyjrg+5kZ90nf+FVEeKWVAJlfAxE2yU8EwbdaC
-	bVTNPziOMVzhcxKXd6pW+BX+lm4/IsOVxOjnnIzYNmU7inGzoPR6wXNHen8qi5VU6Rc5dx
-	VFA0BODYV79rl3OuPgQmgNx+pBkE0urd9NwaAjXw5Ib1mnXVrdBR4iEeea5easVrDiV3jI
-	qnKGR5hM41dbmNPXsiniPLo7gYaCC2BdGKDMWhfesoDqY/b/L3ZoyKwDnPQ/Gsf33YPNkS
-	QQstiaHt0OrRFQ4Hp+eKXsLmrn9sQUWYiShXik7oAj7pczWpT5LJBkIZ38hfFA==
-Date: Tue, 31 Oct 2023 16:54:06 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
- robh+dt@kernel.org, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-spi@vger.kernel.org, quic_srichara@quicinc.com,
- qpic_varada@quicinc.com
-Subject: Re: [RFC PATCH 3/5] mtd: nand: qpic_common: Add support for qpic
- common API
-Message-ID: <20231031165406.33e486a3@xps-13>
-In-Reply-To: <20231031120307.1600689-4-quic_mdalam@quicinc.com>
-References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
-	<20231031120307.1600689-4-quic_mdalam@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3FB16418
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 15:56:30 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76F13DF
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:56:27 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5079f6efd64so8129525e87.2
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:56:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1698767786; x=1699372586; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aHMcOBdFYSE+8bQdxJLdLIEnklj/QhOLRUMvZvnsOnc=;
+        b=GdwsHaQmdAHe2I0Taj1u1mh/wLZt11Jnqi1R62gjEeDVk04NACdjLSzLfaLpGl2LQI
+         6ldScu2mPfJ12+dBMPho8c09y5KVROmb4ZbBn3zD4Dl1lE9AEazMZEBNP/426U8FFXr4
+         WlGjjLbQlFUX6tXA9CFopPbhFUfUu5J4Z9xhY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698767786; x=1699372586;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aHMcOBdFYSE+8bQdxJLdLIEnklj/QhOLRUMvZvnsOnc=;
+        b=bjgiTJgO5Z29dhR3whOKYvxtoIPoZTBMIq85GmJxW5qLuqPZI6KEiQD2VKFk7WD/id
+         jUj3ukC1TCA1dxJ4yPR8IzzjRhDjnGFmLPG5ki90eyQ8dwDjniUY7vEWQR6zpNFCTFht
+         Py48Z9W8aoUBrZZ0g1k4DqzZNBUNSyBSRuqDSk+7ke9TifMnv9i0EM1Jw7ezh+W1Sk+E
+         6j0UhuEOzI6WLeLZ+AtcHfEEb0TSKryyFI7YwJy2ps5srgMUoagQFSuGiR4J7s+vELdm
+         thGY6/UCgQsn9uvrz0g4HRb4kRg2XULOv79kRAJLbHNI2D1JUea0xkttMjhld0e5yIQk
+         GH/Q==
+X-Gm-Message-State: AOJu0Yytt4DBsmdMzy7KfHmuh9Cr4k9rvMiFtcunS3+Xf5OW57aVTiJL
+	t2qPXeOEsGIpoF59MpwjShuMuINOO0zlBUq8+yNF7g==
+X-Google-Smtp-Source: AGHT+IGbUvvv2le05LQXmClEzIoa9JudCW13DGRbovqjMaWYeHnLbrMVVPg93bjaAWyIqR5/AodlwAvye0YUGv26j1M=
+X-Received: by 2002:a05:6512:3b87:b0:508:2b98:d6ce with SMTP id
+ g7-20020a0565123b8700b005082b98d6cemr12268778lfv.45.1698767785185; Tue, 31
+ Oct 2023 08:56:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+ <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
+ <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
+ <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com>
+ <CAPnjgZ0LrsJ2_ENTYoBrnyFaH3UKdHs3D2XWY=TzBuBpBoTXZA@mail.gmail.com>
+ <CAL_Jsq+DQugkEDESW5wySFbLLN8HNqGDJCio8Wpi6fe0LeHKUA@mail.gmail.com>
+ <CAPnjgZ0cmKP5hoGCyQ_Rp8ZQXUVwaPYJMWyidXuOOjMVkDoMDw@mail.gmail.com>
+ <CAL_JsqJH=vJ40PNTg_i0LoKA-c0hhMJkL8zCC3_bB-tOkFWWsw@mail.gmail.com> <CAPnjgZ1FrdGKjGAxUbkQoL2vHwhC_2Oa2KT+0cm25dQAuAjxAQ@mail.gmail.com>
+In-Reply-To: <CAPnjgZ1FrdGKjGAxUbkQoL2vHwhC_2Oa2KT+0cm25dQAuAjxAQ@mail.gmail.com>
+From: Simon Glass <sjg@chromium.org>
+Date: Tue, 31 Oct 2023 09:56:08 -0600
+Message-ID: <CAPnjgZ19-xR6QxS=fR53skz0VuAty2Z2w2vQTjP7g=tbTFpaqw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: Rob Herring <robh@kernel.org>
+Cc: Ard Biesheuvel <ardb@kernel.org>, devicetree@vger.kernel.org, 
+	Mark Rutland <mark.rutland@arm.com>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi,
+Hi Rob,
 
-quic_mdalam@quicinc.com wrote on Tue, 31 Oct 2023 17:33:05 +0530:
+On Mon, 16 Oct 2023 at 15:54, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Rob,
+>
+> On Mon, 16 Oct 2023 at 10:50, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Oct 13, 2023 at 4:09=E2=80=AFPM Simon Glass <sjg@chromium.org> =
+wrote:
+> > >
+> > > Hi Rob,
+> > >
+> > > On Fri, 13 Oct 2023 at 13:42, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Fri, Oct 6, 2023 at 7:03=E2=80=AFPM Simon Glass <sjg@chromium.or=
+g> wrote:
+> > > > >
+> > > > > Hi Ard,
+> > > > >
+> > > > > On Fri, 6 Oct 2023 at 17:00, Ard Biesheuvel <ardb@kernel.org> wro=
+te:
+> > > > > >
+> > > > > > On Fri, 6 Oct 2023 at 20:17, Simon Glass <sjg@chromium.org> wro=
+te:
+> > > > > > >
+> > > > > > > Hi Ard,
+> > > > > > >
+> > > > > > > On Fri, 6 Oct 2023 at 11:33, Ard Biesheuvel <ardb@kernel.org>=
+ wrote:
+> > > > > > > >
+> > > > > > > > On Mon, 2 Oct 2023 at 19:54, Simon Glass <sjg@chromium.org>=
+ wrote:
+> > > > > > > > >
+> > > > > > > > > Hi Rob,
+> > > > > > > > >
+> > > > > > > > > On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromium.=
+org> wrote:
+> > > > > > > > > >
+> > > > > > > > > > It is common to split firmware into 'Platform Init', wh=
+ich does the
+> > > > > > > > > > initial hardware setup and a "Payload" which selects th=
+e OS to be booted.
+> > > > > > > > > > Thus an handover interface is required between these tw=
+o pieces.
+> > > > > > > > > >
+> > > > > > > > > > Where UEFI boot-time services are not available, but UE=
+FI firmware is
+> > > > > > > > > > present on either side of this interface, information a=
+bout memory usage
+> > > > > > > > > > and attributes must be presented to the "Payload" in so=
+me form.
+> > > > > > > > > >
+> > > > > > > > > > This aims to provide an small schema addition for the m=
+emory mapping
+> > > > > > > > > > needed to keep these two pieces working together well.
+> > > > > > > > > >
+> > > > > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > > > > > > ---
+> > > > > > > > > >
+> > > > > > > > > > Changes in v7:
+> > > > > > > > > > - Rename acpi-reclaim to acpi
+> > > > > > > > > > - Drop individual mention of when memory can be reclaim=
+ed
+> > > > > > > > > > - Rewrite the item descriptions
+> > > > > > > > > > - Add back the UEFI text (with trepidation)
+> > > > > > > > >
+> > > > > > > > > I am again checking on this series. Can it be applied, pl=
+ease?
+> > > > > > > > >
+> > > > > > > >
+> > > > > > > > Apologies for the delay in response. I have been away.
+> > > > > > >
+> > > > > > > OK, I hope you had a nice trip.
+> > > > > > >
+> > > > > >
+> > > > > > Thanks, it was wonderful!
+> > > > > >
+> > > > > > > >
+> > > > > > > > >
+> > > > > > > > > >
+> > > > > > > > > > Changes in v6:
+> > > > > > > > > > - Drop mention of UEFI
+> > > > > > > > > > - Use compatible strings instead of node names
+> > > > > > > > > >
+> > > > > > > > > > Changes in v5:
+> > > > > > > > > > - Drop the memory-map node (should have done that in v4=
+)
+> > > > > > > > > > - Tidy up schema a bit
+> > > > > > > > > >
+> > > > > > > > > > Changes in v4:
+> > > > > > > > > > - Make use of the reserved-memory node instead of creat=
+ing a new one
+> > > > > > > > > >
+> > > > > > > > > > Changes in v3:
+> > > > > > > > > > - Reword commit message again
+> > > > > > > > > > - cc a lot more people, from the FFI patch
+> > > > > > > > > > - Split out the attributes into the /memory nodes
+> > > > > > > > > >
+> > > > > > > > > > Changes in v2:
+> > > > > > > > > > - Reword commit message
+> > > > > > > > > >
+> > > > > > > > > >  .../reserved-memory/common-reserved.yaml      | 71 +++=
+++++++++++++++++
+> > > > > > > > > >  1 file changed, 71 insertions(+)
+> > > > > > > > > >  create mode 100644 dtschema/schemas/reserved-memory/co=
+mmon-reserved.yaml
+> > > > > > > > > >
+> > > > > > > > > > diff --git a/dtschema/schemas/reserved-memory/common-re=
+served.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > > > > > > > new file mode 100644
+> > > > > > > > > > index 0000000..f7fbdfd
+> > > > > > > > > > --- /dev/null
+> > > > > > > > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.=
+yaml
+> > > > > > > > > > @@ -0,0 +1,71 @@
+> > > > > > > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Claus=
+e
+> > > > > > > > > > +%YAML 1.2
+> > > > > > > > > > +---
+> > > > > > > > > > +$id: http://devicetree.org/schemas/reserved-memory/com=
+mon-reserved.yaml#
+> > > > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > > > +
+> > > > > > > > > > +title: Common memory reservations
+> > > > > > > > > > +
+> > > > > > > > > > +description: |
+> > > > > > > > > > +  Specifies that the reserved memory region can be use=
+d for the purpose
+> > > > > > > > > > +  indicated by its compatible string.
+> > > > > > > > > > +
+> > > > > > > > > > +  Clients may reuse this reserved memory if they under=
+stand what it is for,
+> > > > > > > > > > +  subject to the notes below.
+> > > > > > > > > > +
+> > > > > > > > > > +maintainers:
+> > > > > > > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > > > > > > +
+> > > > > > > > > > +allOf:
+> > > > > > > > > > +  - $ref: reserved-memory.yaml
+> > > > > > > > > > +
+> > > > > > > > > > +properties:
+> > > > > > > > > > +  compatible:
+> > > > > > > > > > +    description: |
+> > > > > > > > > > +      This describes some common memory reservations, =
+with the compatible
+> > > > > > > > > > +      string indicating what it is used for:
+> > > > > > > > > > +
+> > > > > > > > > > +         acpi: Advanced Configuration and Power Interf=
+ace (ACPI) tables
+> > > > > > > > > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (=
+NVS). This is reserved by
+> > > > > > > > > > +           the firmware for its use and is required to=
+ be saved and restored
+> > > > > > > > > > +           across an NVS sleep
+> > > > > > > > > > +         boot-code: Contains code used for booting whi=
+ch is not needed by the OS
+> > > > > > > > > > +         boot-code: Contains data used for booting whi=
+ch is not needed by the OS
+> > > > > > > > > > +         runtime-code: Contains code used for interact=
+ing with the system when
+> > > > > > > > > > +           running the OS
+> > > > > > > > > > +         runtime-data: Contains data used for interact=
+ing with the system when
+> > > > > > > > > > +           running the OS
+> > > > > > > > > > +
+> > > > > > > > > > +    enum:
+> > > > > > > > > > +      - acpi
+> > > > > > > > > > +      - acpi-nvs
+> > > > > > > > > > +      - boot-code
+> > > > > > > > > > +      - boot-data
+> > > > > > > > > > +      - runtime-code
+> > > > > > > > > > +      - runtime-data
+> > > > > > > > > > +
+> > > > > > > >
+> > > > > > > > As I mentioned a few times already, I don't think these com=
+patibles
+> > > > > > > > should be introduced here.
+> > > > > > > >
+> > > > > > > > A reserved region has a specific purpose, and the compatibl=
+e should be
+> > > > > > > > more descriptive than the enum above. If the consumer does =
+not
+> > > > > > > > understand this purpose, it should simply treat the memory =
+as reserved
+> > > > > > > > and not touch it. Alternatively, these regions can be refer=
+enced from
+> > > > > > > > other DT nodes using phandles if needed.
+> > > > > > >
+> > > > > > > We still need some description of what these regions are used=
+ for, so
+> > > > > > > that the payload can use the correct regions. I do not have a=
+ny other
+> > > > > > > solution to this problem. We are in v7 at present. At least e=
+xplain
+> > > > > > > where you want the compatible strings to be introduced.
+> > > > > > >
+> > > > > >
+> > > > > > My point is really that by themselves, these regions are not us=
+able by
+> > > > > > either a payload or an OS that consumes this information. Unles=
+s there
+> > > > > > is some other information being provided (via DT I imagine) tha=
+t
+> > > > > > describes how these things are supposed to be used, they are no=
+thing
+> > > > > > more than memory reservations that should be honored, and provi=
+ding
+> > > > > > this arbitrary set of labels is unnecessary.
+> > > > > >
+> > > > > > > What sort of extra detail are you looking for? Please be spec=
+ific and
+> > > > > > > preferably add some suggestions so I can close this out ASAP.
+> > > > > > >
+> > > > > >
+> > > > > > A payload or OS can do nothing with a memory reservation called
+> > > > > > 'runtime-code' it it doesn't know what is inside.
+> > > >
+> > > > Agreed. The question is WHAT runtime-code? The compatible needs to =
+answer that.
+> > > >
+> > > > For example, we have 'ramoops' as a compatible in reserved memory.
+> > > > That tells us *exactly* what's there. We know how to parse it. If w=
+e
+> > > > know ramoops is not supported, then we know we can toss it out and
+> > > > reclaim the memory.
+> > >
+> > > So if we said:
+> > >
+> > >    compatible =3D "runtime-code-efi"
+> > >
+> > > would that be OK? We seem to be in catch 22 here, because if I don't
+> > > mention EFI unhappy, but if I do, Ard is unhappy.
+> >
+> > Better yes, because then it is for something specific. However, AIUI,
+> > that's setup for the OS and defining that region is already defined by
+> > the EFI memory map. That's Ard's issue. If there's a need outside of
+> > the EFI to OS handoff,
+>
+> There is a need. Here is part of the commit message again. If there is
+> something else you need to know, please ask.
+>
+> >>>>
+> It is common to split firmware into 'Platform Init', which does the
+> initial hardware setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+>
+> Where UEFI boot-time services are not available, but UEFI firmware is
+> present on either side of this interface, information about memory usage
+> and attributes must be presented to the "Payload" in some form.
+> <<<
+>
+> > then you need to define what that usecase looks
+> > like. Describe the problem rather than present your solution.
+> >
+> > If this is all specific to EDK2 then it should say that rather than
+> > 'efi'. I imagine Ard would be happier with something tied to EDK2 than
+> > *all* UEFI. Though maybe the problem could be any implementation? IDK.
+> > Maybe it's TF-A that needs to define where the EFI runtime services
+> > region is and that needs to be passed all the way thru to the EFI
+> > implementation? So again, define the problem.
+>
+> It is not specific to EDK2. Imagine this boot sequence:
+>
+> - Platform Init (U-Boot) starts up
+> - U-Boot uses its platform knowledge to sets some ACPI tables and put
+> various things in memory
+> - U-Boot sets up some runtime code and data for the OS
+> - U-Boot jumps to the Tianocore payload **
+> - Payload (Tianocore) wants to know where the ACPI tables are, for exampl=
+e
+> - Tianocore needs to provide boot services to the OS, so needs to know
+> the memory map, etc.
+>
+> ** At this point we want to use DT to pass the required information.
+>
+> Of course, Platform Init could be coreboot or Tianocore or some
+> strange private binary. Payload could be U-Boot or something else.
+> That is the point of this effort, to build interoperability.
+>
+> >
+> > > What about the boottime code....you want to know which project it is =
+from?
+> >
+> > I think it is the same.
+> >
+> > >
+> > > +      - acpi
+> > > +      - acpi-nvs
+> > >
+> > > Those two should be enough info, right?
+> >
+> > I think so. NVS is not a term I've heard in relation to ACPI, but that
+> > may just be my limited ACPI knowledge.
+>
+> Perhaps it is only an Intel thing. It stands for Non-Volatile-Sleeping
+> Memory and it has various platform settings in a binary format that is
+> normally SoC-specific.
+>
+> >
+> > > +      - boot-code
+> > > +      - boot-data
+> > >
+> > > For these, they don't pertain to the OS, so perhaps they are OK?
+> >
+> > Hard to tell that just from the name... 'boot' could be any component
+> > involved in booting including the OS.
+>
+>  suggested that 'boot' should mean booting the OS. If the OS does lots
+> of fixup stuff at the start of it, I don't know what that is called.
+>
+> So if boot-code is no good, what do you suggest?
+>
+> Alternatively I could remove these for now, if it will help make progress=
+.
+>
+> >
+> > > In
+> > > any case, using a generic term like this makes some sense to me. We
+> > > can always add a new compatible like "efi-boottime-services" later. I=
+t
+> > > may be that the boottime services would be handled by the payload, so
+> > > not needed in all cases.
+> >
+> > Why later? You have a specific use in mind and I imagine Ard has
+> > thoughts on that.
+>
+> Because we don't need it right away, and just want to make some progress.
+>
+> Perhaps the problem here is that Linux has tied itself up in knots
+> with its EFI stuff and DT fixups and what-not. But this is not that.
+> It is a simple handoff between two pieces of firmware, Platform Init
+> and Payload. It has nothing to do with the OS. With Tianocore they are
+> typically combined, but with this usage they are split, and we can
+> swap out one project for another on either side of the DT interface.
+>
+> I do have views on the 'EFI' opt-out with reserved-memory, if you are
+> interested, but that relates to the OS. If you are wanting to place
+> some constraints on /reserved-memory and /memory we could do that
+> e.g. that the DT and the map returned by EFI boot services must be
+> consistent. But as it is, the nodes are ignored by the OS when booting
+> with EFI, aren't they?
 
-> Add qpic command API in sperate file so that it will be
-> use by both spi and request and raw nand request.
+Can this be applied, please? If there are further comments, please let me k=
+now.
 
-		nand?
-
->=20
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
-> ---
->  drivers/mtd/nand/qpic_common.c       | 840 +++++++++++++++++++++++++++
->  include/linux/mtd/nand-qpic-common.h | 641 ++++++++++++++++++++
->  2 files changed, 1481 insertions(+)
->  create mode 100644 drivers/mtd/nand/qpic_common.c
->  create mode 100644 include/linux/mtd/nand-qpic-common.h
->=20
-> diff --git a/drivers/mtd/nand/qpic_common.c b/drivers/mtd/nand/qpic_commo=
-n.c
-> new file mode 100644
-> index 000000000000..983768a1ea94
-> --- /dev/null
-> +++ b/drivers/mtd/nand/qpic_common.c
-> @@ -0,0 +1,840 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * QPIC common API file.
-> + * Copyright (C) 2023  Qualcomm Inc.
-> + * Authors:	Md sadre Alam		<quic_mdalam@quicinc.com>
-> + *		Sricharan R		<quic_srichara@quicinc.com>
-> + */
-> +
-> +#include <linux/mtd/nand-qpic-common.h>
-> +
-> +/* Frees the BAM transaction memory */
-> +void free_bam_transaction(struct qcom_nand_controller *nandc)
-
-This is not a generic object, it's not meant to be shared with spi. So
-if it's meant to be used in a single place, please don't share it.
-Otherwise please use a more generic name.
-
-> +{
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +
-> +	devm_kfree(nandc->dev, bam_txn);
-> +}
-> +EXPORT_SYMBOL(free_bam_transaction);
-> +
-> +/* Callback for DMA descriptor completion */
-> +void qpic_bam_dma_done(void *data)
-> +{
-> +	struct bam_transaction *bam_txn =3D data;
-
-Just provide the right pointer in the first place.
-
-> +
-> +	/*
-> +	 * In case of data transfer with NAND, 2 callbacks will be generated.
-
-What if we are not dealing with a NAND?
-
-> +	 * One for command channel and another one for data channel.
-> +	 * If current transaction has data descriptors
-> +	 * (i.e. wait_second_completion is true), then set this to false
-
-Why do you need a boolean for that if having a data descriptor is the
-condition you want to check against?
-
-> +	 * and wait for second DMA descriptor completion.
-> +	 */
-> +	if (bam_txn->wait_second_completion)
-> +		bam_txn->wait_second_completion =3D false;
-
-This looks very racy.
-
-> +	else
-> +		complete(&bam_txn->txn_done);
-> +}
-> +EXPORT_SYMBOL(qpic_bam_dma_done);
-> +
-> +u32 nandc_read(struct qcom_nand_controller *nandc, int offset)
-> +{
-> +	return ioread32(nandc->base + offset);
-
-I don't see the need for that.
-
-> +}
-> +EXPORT_SYMBOL(nandc_read);
-> +
-> +void nandc_write(struct qcom_nand_controller *nandc, int offset,
-> +			       u32 val)
-> +{
-> +	iowrite32(val, nandc->base + offset);
-
-Same here.
-
-> +}
-> +EXPORT_SYMBOL(nandc_write);
-> +
-> +void nandc_read_buffer_sync(struct qcom_nand_controller *nandc,
-> +					  bool is_cpu)
-> +{
-> +	if (!nandc->props->is_bam)
-> +		return;
-
-I thought BAM was a per transaction thing, and here you check it
-against a controller parameter. It looks wrong.
-
-> +
-> +	if (is_cpu)
-
-Whuut? naming, naming, naming, naming. Please.
-
-> +		dma_sync_single_for_cpu(nandc->dev, nandc->reg_read_dma,
-> +					MAX_REG_RD *
-
-Remove this new line
-
-> +					sizeof(*nandc->reg_read_buf),
-
-Are you sure this sizeof() is safe?
-
-> +					DMA_FROM_DEVICE);
-> +	else
-> +		dma_sync_single_for_device(nandc->dev, nandc->reg_read_dma,
-> +					   MAX_REG_RD *
-> +					   sizeof(*nandc->reg_read_buf),
-> +					   DMA_FROM_DEVICE);
-> +}
-
-You better have a really good reason to sync in the middle of an
-operation...
-
-> +EXPORT_SYMBOL(nandc_read_buffer_sync);
-> +
-> +__le32 *offset_to_nandc_reg(struct nandc_regs *regs, int offset)
-> +{
-> +	switch (offset) {
-> +	case NAND_FLASH_CMD:
-> +		return &regs->cmd;
-> +	case NAND_ADDR0:
-> +		return &regs->addr0;
-> +	case NAND_ADDR1:
-> +		return &regs->addr1;
-> +	case NAND_FLASH_CHIP_SELECT:
-> +		return &regs->chip_sel;
-> +	case NAND_EXEC_CMD:
-> +		return &regs->exec;
-> +	case NAND_FLASH_STATUS:
-> +		return &regs->clrflashstatus;
-> +	case NAND_DEV0_CFG0:
-> +		return &regs->cfg0;
-> +	case NAND_DEV0_CFG1:
-> +		return &regs->cfg1;
-> +	case NAND_DEV0_ECC_CFG:
-> +		return &regs->ecc_bch_cfg;
-> +	case NAND_READ_STATUS:
-> +		return &regs->clrreadstatus;
-> +	case NAND_DEV_CMD1:
-> +		return &regs->cmd1;
-> +	case NAND_DEV_CMD1_RESTORE:
-> +		return &regs->orig_cmd1;
-> +	case NAND_DEV_CMD_VLD:
-> +		return &regs->vld;
-> +	case NAND_DEV_CMD_VLD_RESTORE:
-> +		return &regs->orig_vld;
-> +	case NAND_EBI2_ECC_BUF_CFG:
-> +		return &regs->ecc_buf_cfg;
-> +	case NAND_READ_LOCATION_0:
-> +		return &regs->read_location0;
-> +	case NAND_READ_LOCATION_1:
-> +		return &regs->read_location1;
-> +	case NAND_READ_LOCATION_2:
-> +		return &regs->read_location2;
-> +	case NAND_READ_LOCATION_3:
-> +		return &regs->read_location3;
-> +	case NAND_READ_LOCATION_LAST_CW_0:
-> +		return &regs->read_location_last0;
-> +	case NAND_READ_LOCATION_LAST_CW_1:
-> +		return &regs->read_location_last1;
-> +	case NAND_READ_LOCATION_LAST_CW_2:
-> +		return &regs->read_location_last2;
-> +	case NAND_READ_LOCATION_LAST_CW_3:
-> +		return &regs->read_location_last3;
-> +	case NAND_FLASH_SPI_CFG:
-> +		return &regs->spi_cfg;
-> +	case NAND_NUM_ADDR_CYCLES:
-> +		return &regs->num_addr_cycle;
-> +	case NAND_BUSY_CHECK_WAIT_CNT:
-> +		return &regs->busy_wait_cnt;
-> +	case NAND_MSTR_CONFIG:
-> +		return &regs->mstr_cfg;
-> +	case NAND_FLASH_FEATURES:
-> +		return &regs->flash_feature;
-
-Just... no? What is the point of using an intermediate int here? just
-dereference the right value?
-
-> +	default:
-> +		return NULL;
-> +	}
-> +}
-> +EXPORT_SYMBOL(offset_to_nandc_reg);
-> +
-> +/* reset the register read buffer for next NAND operation */
-> +void clear_read_regs(struct qcom_nand_controller *nandc)
-> +{
-> +	nandc->reg_read_pos =3D 0;
-> +	nandc_read_buffer_sync(nandc, false);
-> +}
-> +EXPORT_SYMBOL(clear_read_regs);
-> +
-> +int prep_adm_dma_desc(struct qcom_nand_controller *nandc, bool read,
-
-adm?
-
-
-Please always prefix your symbols (especially when exporting them) with
-a decent a easy to recognize prefix.
-
-> +			     int reg_off, const void *vaddr, int size,
-> +			     bool flow_control)
-> +{
-> +	struct desc_info *desc;
-> +	struct dma_async_tx_descriptor *dma_desc;
-> +	struct scatterlist *sgl;
-> +	struct dma_slave_config slave_conf;
-> +	struct qcom_adm_peripheral_config periph_conf =3D {};
-> +	enum dma_transfer_direction dir_eng;
-> +	int ret;
-> +
-> +	desc =3D kzalloc(sizeof(*desc), GFP_KERNEL);
-> +	if (!desc)
-> +		return -ENOMEM;
-> +
-> +	sgl =3D &desc->adm_sgl;
-> +
-> +	sg_init_one(sgl, vaddr, size);
-> +
-> +	if (read) {
-> +		dir_eng =3D DMA_DEV_TO_MEM;
-> +		desc->dir =3D DMA_FROM_DEVICE;
-> +	} else {
-> +		dir_eng =3D DMA_MEM_TO_DEV;
-> +		desc->dir =3D DMA_TO_DEVICE;
-> +	}
-> +
-> +	ret =3D dma_map_sg(nandc->dev, sgl, 1, desc->dir);
-> +	if (ret =3D=3D 0) {
-> +		ret =3D -ENOMEM;
-> +		goto err;
-> +	}
-> +
-> +	memset(&slave_conf, 0x00, sizeof(slave_conf));
-> +
-> +	slave_conf.device_fc =3D flow_control;
-> +	if (read) {
-> +		slave_conf.src_maxburst =3D 16;
-> +		slave_conf.src_addr =3D nandc->base_dma + reg_off;
-> +		if (nandc->data_crci) {
-> +			periph_conf.crci =3D nandc->data_crci;
-> +			slave_conf.peripheral_config =3D &periph_conf;
-> +			slave_conf.peripheral_size =3D sizeof(periph_conf);
-> +		}
-> +	} else {
-> +		slave_conf.dst_maxburst =3D 16;
-> +		slave_conf.dst_addr =3D nandc->base_dma + reg_off;
-> +		if (nandc->cmd_crci) {
-> +			periph_conf.crci =3D nandc->cmd_crci;
-> +			slave_conf.peripheral_config =3D &periph_conf;
-> +			slave_conf.peripheral_size =3D sizeof(periph_conf);
-> +		}
-> +	}
-> +
-> +	ret =3D dmaengine_slave_config(nandc->chan, &slave_conf);
-> +	if (ret) {
-> +		dev_err(nandc->dev, "failed to configure dma channel\n");
-> +		goto err;
-> +	}
-> +
-> +	dma_desc =3D dmaengine_prep_slave_sg(nandc->chan, sgl, 1, dir_eng, 0);
-> +	if (!dma_desc) {
-> +		dev_err(nandc->dev, "failed to prepare desc\n");
-> +		ret =3D -EINVAL;
-> +		goto err;
-> +	}
-> +
-> +	desc->dma_desc =3D dma_desc;
-> +
-> +	list_add_tail(&desc->node, &nandc->desc_list);
-> +
-> +	return 0;
-> +err:
-
-your error path is missing steps
-
-> +	kfree(desc);
-> +
-> +	return ret;
-> +}
-> +
-> +/* helpers to submit/free our list of dma descriptors */
-> +int submit_descs(struct qcom_nand_controller *nandc)
-> +{
-> +	struct desc_info *desc;
-> +	dma_cookie_t cookie =3D 0;
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +	int r;
-> +
-> +	if (nandc->props->is_bam) {
-> +		if (bam_txn->rx_sgl_pos > bam_txn->rx_sgl_start) {
-> +			r =3D prepare_bam_async_desc(nandc, nandc->rx_chan, 0);
-> +			if (r)
-> +				return r;
-> +		}
-> +
-> +		if (bam_txn->tx_sgl_pos > bam_txn->tx_sgl_start) {
-> +			r =3D prepare_bam_async_desc(nandc, nandc->tx_chan,
-> +						   DMA_PREP_INTERRUPT);
-> +			if (r)
-> +				return r;
-> +		}
-> +
-> +		if (bam_txn->cmd_sgl_pos > bam_txn->cmd_sgl_start) {
-> +			r =3D prepare_bam_async_desc(nandc, nandc->cmd_chan,
-> +						   DMA_PREP_CMD);
-> +			if (r)
-> +				return r;
-> +		}
-> +	}
-> +
-> +	list_for_each_entry(desc, &nandc->desc_list, node)
-> +		cookie =3D dmaengine_submit(desc->dma_desc);
-> +
-> +	if (nandc->props->is_bam) {
-> +		bam_txn->last_cmd_desc->callback =3D qpic_bam_dma_done;
-> +		bam_txn->last_cmd_desc->callback_param =3D bam_txn;
-> +		if (bam_txn->last_data_desc) {
-> +			bam_txn->last_data_desc->callback =3D qpic_bam_dma_done;
-> +			bam_txn->last_data_desc->callback_param =3D bam_txn;
-> +			bam_txn->wait_second_completion =3D true;
-> +		}
-> +
-> +		dma_async_issue_pending(nandc->tx_chan);
-> +		dma_async_issue_pending(nandc->rx_chan);
-> +		dma_async_issue_pending(nandc->cmd_chan);
-> +
-> +		if (!wait_for_completion_timeout(&bam_txn->txn_done,
-> +						 QPIC_NAND_COMPLETION_TIMEOUT))
-> +			return -ETIMEDOUT;
-> +	} else {
-> +		if (dma_sync_wait(nandc->chan, cookie) !=3D DMA_COMPLETE)
-> +			return -ETIMEDOUT;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(submit_descs);
-> +
-> +void free_descs(struct qcom_nand_controller *nandc)
-> +{
-> +	struct desc_info *desc, *n;
-> +
-> +	list_for_each_entry_safe(desc, n, &nandc->desc_list, node) {
-> +		list_del(&desc->node);
-> +
-> +		if (nandc->props->is_bam)
-> +			dma_unmap_sg(nandc->dev, desc->bam_sgl,
-> +				     desc->sgl_cnt, desc->dir);
-> +		else
-> +			dma_unmap_sg(nandc->dev, &desc->adm_sgl, 1,
-> +				     desc->dir);
-> +
-> +		kfree(desc);
-> +	}
-> +}
-> +EXPORT_SYMBOL(free_descs);
-> +
-> +/*
-> + * Maps the scatter gather list for DMA transfer and forms the DMA descr=
-iptor
-> + * for BAM. This descriptor will be added in the NAND DMA descriptor que=
-ue
-> + * which will be submitted to DMA engine.
-> + */
-> +int prepare_bam_async_desc(struct qcom_nand_controller *nandc,
-> +				  struct dma_chan *chan,
-> +				  unsigned long flags)
-> +{
-> +	struct desc_info *desc;
-> +	struct scatterlist *sgl;
-> +	unsigned int sgl_cnt;
-> +	int ret;
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +	enum dma_transfer_direction dir_eng;
-> +	struct dma_async_tx_descriptor *dma_desc;
-> +
-> +	desc =3D kzalloc(sizeof(*desc), GFP_KERNEL);
-> +	if (!desc)
-> +		return -ENOMEM;
-> +
-> +	if (chan =3D=3D nandc->cmd_chan) {
-> +		sgl =3D &bam_txn->cmd_sgl[bam_txn->cmd_sgl_start];
-> +		sgl_cnt =3D bam_txn->cmd_sgl_pos - bam_txn->cmd_sgl_start;
-> +		bam_txn->cmd_sgl_start =3D bam_txn->cmd_sgl_pos;
-> +		dir_eng =3D DMA_MEM_TO_DEV;
-> +		desc->dir =3D DMA_TO_DEVICE;
-> +	} else if (chan =3D=3D nandc->tx_chan) {
-> +		sgl =3D &bam_txn->data_sgl[bam_txn->tx_sgl_start];
-> +		sgl_cnt =3D bam_txn->tx_sgl_pos - bam_txn->tx_sgl_start;
-> +		bam_txn->tx_sgl_start =3D bam_txn->tx_sgl_pos;
-> +		dir_eng =3D DMA_MEM_TO_DEV;
-> +		desc->dir =3D DMA_TO_DEVICE;
-> +	} else {
-> +		sgl =3D &bam_txn->data_sgl[bam_txn->rx_sgl_start];
-> +		sgl_cnt =3D bam_txn->rx_sgl_pos - bam_txn->rx_sgl_start;
-> +		bam_txn->rx_sgl_start =3D bam_txn->rx_sgl_pos;
-> +		dir_eng =3D DMA_DEV_TO_MEM;
-> +		desc->dir =3D DMA_FROM_DEVICE;
-> +	}
-> +
-> +	sg_mark_end(sgl + sgl_cnt - 1);
-> +	ret =3D dma_map_sg(nandc->dev, sgl, sgl_cnt, desc->dir);
-> +	if (ret =3D=3D 0) {
-> +		dev_err(nandc->dev, "failure in mapping desc\n");
-> +		kfree(desc);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	desc->sgl_cnt =3D sgl_cnt;
-> +	desc->bam_sgl =3D sgl;
-> +
-> +	dma_desc =3D dmaengine_prep_slave_sg(chan, sgl, sgl_cnt, dir_eng,
-> +					   flags);
-> +
-> +	if (!dma_desc) {
-> +		dev_err(nandc->dev, "failure in prep desc\n");
-> +		dma_unmap_sg(nandc->dev, sgl, sgl_cnt, desc->dir);
-> +		kfree(desc);
-> +		return -EINVAL;
-> +	}
-> +
-> +	desc->dma_desc =3D dma_desc;
-> +
-> +	/* update last data/command descriptor */
-> +	if (chan =3D=3D nandc->cmd_chan)
-> +		bam_txn->last_cmd_desc =3D dma_desc;
-> +	else
-> +		bam_txn->last_data_desc =3D dma_desc;
-> +
-> +	list_add_tail(&desc->node, &nandc->desc_list);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(prepare_bam_async_desc);
-> +
-> +/*
-> + * Prepares the command descriptor for BAM DMA which will be used for NA=
-ND
-> + * register reads and writes. The command descriptor requires the command
-> + * to be formed in command element type so this function uses the command
-> + * element from bam transaction ce array and fills the same with required
-
-ce?
-
-> + * data. A single SGL can contain multiple command elements so
-> + * NAND_BAM_NEXT_SGL will be used for starting the separate SGL
-> + * after the current command element.
-> + */
-> +int prep_bam_dma_desc_cmd(struct qcom_nand_controller *nandc, bool read,
-> +				 int reg_off, const void *vaddr,
-> +				 int size, unsigned int flags)
-> +{
-> +	int bam_ce_size;
-> +	int i, ret;
-> +	struct bam_cmd_element *bam_ce_buffer;
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +
-> +	bam_ce_buffer =3D &bam_txn->bam_ce[bam_txn->bam_ce_pos];
-> +
-> +	/* fill the command desc */
-> +	for (i =3D 0; i < size; i++) {
-> +		if (read)
-> +			bam_prep_ce(&bam_ce_buffer[i],
-> +				    nandc_reg_phys(nandc, reg_off + 4 * i),
-> +				    BAM_READ_COMMAND,
-> +				    reg_buf_dma_addr(nandc,
-> +						     (__le32 *)vaddr + i));
-> +		else
-> +			bam_prep_ce_le32(&bam_ce_buffer[i],
-> +					 nandc_reg_phys(nandc, reg_off + 4 * i),
-> +					 BAM_WRITE_COMMAND,
-> +					 *((__le32 *)vaddr + i));
-
-The _le handling looks really fragile.
-
-> +	}
-> +
-> +	bam_txn->bam_ce_pos +=3D size;
-> +
-> +	/* use the separate sgl after this command */
-> +	if (flags & NAND_BAM_NEXT_SGL) {
-> +		bam_ce_buffer =3D &bam_txn->bam_ce[bam_txn->bam_ce_start];
-> +		bam_ce_size =3D (bam_txn->bam_ce_pos -
-> +				bam_txn->bam_ce_start) *
-> +				sizeof(struct bam_cmd_element);
-> +		sg_set_buf(&bam_txn->cmd_sgl[bam_txn->cmd_sgl_pos],
-> +			   bam_ce_buffer, bam_ce_size);
-> +		bam_txn->cmd_sgl_pos++;
-> +		bam_txn->bam_ce_start =3D bam_txn->bam_ce_pos;
-> +
-> +		if (flags & NAND_BAM_NWD) {
-> +			ret =3D prepare_bam_async_desc(nandc, nandc->cmd_chan,
-> +						     DMA_PREP_FENCE |
-> +						     DMA_PREP_CMD);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(prep_bam_dma_desc_cmd);
-> +
-> +/*
-> + * Prepares the data descriptor for BAM DMA which will be used for NAND
-> + * data reads and writes.
-> + */
-> +int prep_bam_dma_desc_data(struct qcom_nand_controller *nandc, bool read,
-> +				  const void *vaddr,
-> +				  int size, unsigned int flags)
-> +{
-> +	int ret;
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +
-> +	if (read) {
-> +		sg_set_buf(&bam_txn->data_sgl[bam_txn->rx_sgl_pos],
-> +			   vaddr, size);
-> +		bam_txn->rx_sgl_pos++;
-> +	} else {
-> +		sg_set_buf(&bam_txn->data_sgl[bam_txn->tx_sgl_pos],
-> +			   vaddr, size);
-> +		bam_txn->tx_sgl_pos++;
-> +
-> +		/*
-> +		 * BAM will only set EOT for DMA_PREP_INTERRUPT so if this flag
-> +		 * is not set, form the DMA descriptor
-> +		 */
-> +		if (!(flags & NAND_BAM_NO_EOT)) {
-> +			ret =3D prepare_bam_async_desc(nandc, nandc->tx_chan,
-> +						     DMA_PREP_INTERRUPT);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(prep_bam_dma_desc_data);
-> +
-> +/*
-> + * read_reg_dma:	prepares a descriptor to read a given number of
-> + *			contiguous registers to the reg_read_buf pointer
-> + *
-> + * @first:		offset of the first register in the contiguous block
-> + * @num_regs:		number of registers to read
-> + * @flags:		flags to control DMA descriptor preparation
-> + */
-> +int read_reg_dma(struct qcom_nand_controller *nandc, int first,
-> +			int num_regs, unsigned int flags)
-> +{
-> +	bool flow_control =3D false;
-> +	void *vaddr;
-> +
-> +	vaddr =3D nandc->reg_read_buf + nandc->reg_read_pos;
-> +	nandc->reg_read_pos +=3D num_regs;
-> +
-> +	if (first =3D=3D NAND_DEV_CMD_VLD || first =3D=3D NAND_DEV_CMD1)
-> +		first =3D dev_cmd_reg_addr(nandc, first);
-> +
-> +	if (nandc->props->is_bam)
-> +		return prep_bam_dma_desc_cmd(nandc, true, first, vaddr,
-> +					     num_regs, flags);
-> +
-> +	if (first =3D=3D NAND_READ_ID || first =3D=3D NAND_FLASH_STATUS)
-> +		flow_control =3D true;
-
-This flow_control property really bothers me.
-
-> +
-> +	return prep_adm_dma_desc(nandc, true, first, vaddr,
-> +				 num_regs * sizeof(u32), flow_control);
-> +}
-> +EXPORT_SYMBOL(read_reg_dma);
-> +
-> +/*
-> + * write_reg_dma:	prepares a descriptor to write a given number of
-> + *			contiguous registers
-> + *
-> + * @first:		offset of the first register in the contiguous block
-> + * @num_regs:		number of registers to write
-> + * @flags:		flags to control DMA descriptor preparation
-> + */
-> +int write_reg_dma(struct qcom_nand_controller *nandc, int first,
-> +			 int num_regs, unsigned int flags)
-> +{
-> +	bool flow_control =3D false;
-> +	struct nandc_regs *regs =3D nandc->regs;
-> +	void *vaddr;
-> +
-> +	vaddr =3D offset_to_nandc_reg(regs, first);
-> +
-> +	if (first =3D=3D NAND_ERASED_CW_DETECT_CFG) {
-> +		if (flags & NAND_ERASED_CW_SET)
-> +			vaddr =3D &regs->erased_cw_detect_cfg_set;
-> +		else
-> +			vaddr =3D &regs->erased_cw_detect_cfg_clr;
-> +	}
-> +
-> +	if (first =3D=3D NAND_EXEC_CMD)
-> +		flags |=3D NAND_BAM_NWD;
-> +
-> +	if (first =3D=3D NAND_FLASH_SPI_CFG || first =3D=3D NAND_NUM_ADDR_CYCLES
-> +		|| first =3D=3D NAND_BUSY_CHECK_WAIT_CNT
-> +		|| first =3D=3D NAND_MSTR_CONFIG)
-> +		first =3D dev_cmd_reg_addr(nandc, first);
-> +
-> +	if (first =3D=3D NAND_DEV_CMD1_RESTORE || first =3D=3D NAND_DEV_CMD1)
-> +		first =3D dev_cmd_reg_addr(nandc, NAND_DEV_CMD1);
-> +
-> +	if (first =3D=3D NAND_DEV_CMD_VLD_RESTORE || first =3D=3D NAND_DEV_CMD_=
-VLD)
-> +		first =3D dev_cmd_reg_addr(nandc, NAND_DEV_CMD_VLD);
-> +
-
-What about a switch case here?
-
-> +	if (nandc->props->is_bam)
-> +		return prep_bam_dma_desc_cmd(nandc, false, first, vaddr,
-> +					     num_regs, flags);
-> +
-> +	if (first =3D=3D NAND_FLASH_CMD)
-> +		flow_control =3D true;
-> +
-> +	return prep_adm_dma_desc(nandc, false, first, vaddr,
-> +				 num_regs * sizeof(u32), flow_control);
-> +}
-> +EXPORT_SYMBOL(write_reg_dma);
-> +
-> +/*
-> + * read_data_dma:	prepares a DMA descriptor to transfer data from the
-> + *			controller's internal buffer to the buffer 'vaddr'
-> + *
-> + * @reg_off:		offset within the controller's data buffer
-> + * @vaddr:		virtual address of the buffer we want to write to
-> + * @size:		DMA transaction size in bytes
-> + * @flags:		flags to control DMA descriptor preparation
-> + */
-> +int read_data_dma(struct qcom_nand_controller *nandc, int reg_off,
-> +			 const u8 *vaddr, int size, unsigned int flags)
-> +{
-> +	if (nandc->props->is_bam)
-> +		return prep_bam_dma_desc_data(nandc, true, vaddr, size, flags);
-> +
-> +	return prep_adm_dma_desc(nandc, true, reg_off, vaddr, size, false);
-> +}
-> +EXPORT_SYMBOL(read_data_dma);
-> +
-> +/*
-> + * write_data_dma:	prepares a DMA descriptor to transfer data from
-> + *			'vaddr' to the controller's internal buffer
-> + *
-> + * @reg_off:		offset within the controller's data buffer
-> + * @vaddr:		virtual address of the buffer we want to read from
-> + * @size:		DMA transaction size in bytes
-> + * @flags:		flags to control DMA descriptor preparation
-> + */
-> +int write_data_dma(struct qcom_nand_controller *nandc, int reg_off,
-> +			  const u8 *vaddr, int size, unsigned int flags)
-> +{
-> +	if (nandc->props->is_bam)
-> +		return prep_bam_dma_desc_data(nandc, false, vaddr, size, flags);
-> +
-> +	return prep_adm_dma_desc(nandc, false, reg_off, vaddr, size, false);
-> +}
-> +EXPORT_SYMBOL(write_data_dma);
-> +
-> +void nandc_set_reg(struct qcom_nand_controller *nandc, int offset,
-> +			  u32 val)
-> +{
-> +	struct nandc_regs *regs =3D nandc->regs;
-> +	__le32 *reg;
-> +
-> +	reg =3D offset_to_nandc_reg(regs, offset);
-> +	if (reg)
-> +		*reg =3D cpu_to_le32(val);
-> +}
-> +EXPORT_SYMBOL(nandc_set_reg);
-> +
-> +/* Allocates and Initializes the BAM transaction */
-> +struct bam_transaction *
-> +alloc_bam_transaction(struct qcom_nand_controller *nandc)
-> +{
-> +	struct bam_transaction *bam_txn;
-> +	size_t bam_txn_size;
-> +	unsigned int num_cw =3D nandc->max_cwperpage;
-> +	void *bam_txn_buf;
-> +
-> +	bam_txn_size =3D
-> +		sizeof(*bam_txn) + num_cw *
-> +		((sizeof(*bam_txn->bam_ce) * QPIC_PER_CW_CMD_ELEMENTS) +
-> +		(sizeof(*bam_txn->cmd_sgl) * QPIC_PER_CW_CMD_SGL) +
-> +		(sizeof(*bam_txn->data_sgl) * QPIC_PER_CW_DATA_SGL));
-> +
-> +	bam_txn_buf =3D devm_kzalloc(nandc->dev, bam_txn_size, GFP_KERNEL);
-> +	if (!bam_txn_buf)
-> +		return NULL;
-> +
-> +	bam_txn =3D bam_txn_buf;
-> +	bam_txn_buf +=3D sizeof(*bam_txn);
-> +
-> +	bam_txn->bam_ce =3D bam_txn_buf;
-> +	bam_txn_buf +=3D
-> +		sizeof(*bam_txn->bam_ce) * QPIC_PER_CW_CMD_ELEMENTS * num_cw;
-> +
-> +	bam_txn->cmd_sgl =3D bam_txn_buf;
-> +	bam_txn_buf +=3D
-> +		sizeof(*bam_txn->cmd_sgl) * QPIC_PER_CW_CMD_SGL * num_cw;
-> +
-> +	bam_txn->data_sgl =3D bam_txn_buf;
-> +
-> +	init_completion(&bam_txn->txn_done);
-> +
-> +	return bam_txn;
-> +}
-> +EXPORT_SYMBOL(alloc_bam_transaction);
-> +
-> +/* Clears the BAM transaction indexes */
-> +void clear_bam_transaction(struct qcom_nand_controller *nandc)
-> +{
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +
-> +	if (!nandc->props->is_bam)
-> +		return;
-> +
-> +	bam_txn->bam_ce_pos =3D 0;
-> +	bam_txn->bam_ce_start =3D 0;
-> +	bam_txn->cmd_sgl_pos =3D 0;
-> +	bam_txn->cmd_sgl_start =3D 0;
-> +	bam_txn->tx_sgl_pos =3D 0;
-> +	bam_txn->tx_sgl_start =3D 0;
-> +	bam_txn->rx_sgl_pos =3D 0;
-> +	bam_txn->rx_sgl_start =3D 0;
-> +	bam_txn->last_data_desc =3D NULL;
-> +	bam_txn->wait_second_completion =3D false;
-> +
-> +	sg_init_table(bam_txn->cmd_sgl, nandc->max_cwperpage *
-> +		      QPIC_PER_CW_CMD_SGL);
-> +	sg_init_table(bam_txn->data_sgl, nandc->max_cwperpage *
-> +		      QPIC_PER_CW_DATA_SGL);
-> +
-> +	reinit_completion(&bam_txn->txn_done);
-> +}
-> +EXPORT_SYMBOL(clear_bam_transaction);
-> +
-> +/* one time setup of a few nand controller registers */
-
-Does this needs to be shared?
-
-> +int qcom_nandc_setup(struct qcom_nand_controller *nandc)
-> +{
-> +	u32 nand_ctrl;
-> +
-> +	/* kill onenand */
-> +	if (!nandc->props->is_qpic)
-> +		nandc_write(nandc, SFLASHC_BURST_CFG, 0);
-> +
-> +	if (!nandc->props->qpic_v2)
-> +		nandc_write(nandc, dev_cmd_reg_addr(nandc, NAND_DEV_CMD_VLD),
-> +			    NAND_DEV_CMD_VLD_VAL);
-> +
-> +	/* enable ADM or BAM DMA */
-> +	if (nandc->props->is_bam) {
-> +		nand_ctrl =3D nandc_read(nandc, NAND_CTRL);
-> +
-> +		/*
-> +		 *NAND_CTRL is an operational registers, and CPU
-> +		 * access to operational registers are read only
-> +		 * in BAM mode. So update the NAND_CTRL register
-> +		 * only if it is not in BAM mode. In most cases BAM
-> +		 * mode will be enabled in bootloader
-> +		 */
-> +		if (!(nand_ctrl & BAM_MODE_EN))
-> +			nandc_write(nandc, NAND_CTRL, nand_ctrl | BAM_MODE_EN);
-> +	} else {
-> +		nandc_write(nandc, NAND_FLASH_CHIP_SELECT, DM_EN);
-> +	}
-> +
-> +	/* save the original values of these registers */
-> +	if (!nandc->props->qpic_v2) {
-> +		nandc->cmd1 =3D nandc_read(nandc, dev_cmd_reg_addr(nandc, NAND_DEV_CMD=
-1));
-> +		nandc->vld =3D NAND_DEV_CMD_VLD_VAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(qcom_nandc_setup);
-> +
-> +void qcom_nandc_unalloc(struct qcom_nand_controller *nandc)
-> +{
-> +	if (nandc->props->is_bam) {
-> +		if (!dma_mapping_error(nandc->dev, nandc->reg_read_dma))
-> +			dma_unmap_single(nandc->dev, nandc->reg_read_dma,
-> +					 MAX_REG_RD *
-> +					 sizeof(*nandc->reg_read_buf),
-> +					 DMA_FROM_DEVICE);
-> +
-> +		if (nandc->tx_chan)
-> +			dma_release_channel(nandc->tx_chan);
-> +
-> +		if (nandc->rx_chan)
-> +			dma_release_channel(nandc->rx_chan);
-> +
-> +		if (nandc->cmd_chan)
-> +			dma_release_channel(nandc->cmd_chan);
-> +	} else {
-> +		if (nandc->chan)
-> +			dma_release_channel(nandc->chan);
-> +	}
-> +}
-> +EXPORT_SYMBOL(qcom_nandc_unalloc);
-> +
-> +int qcom_nandc_alloc(struct qcom_nand_controller *nandc)
-> +{
-> +	int ret;
-> +
-> +	ret =3D dma_set_coherent_mask(nandc->dev, DMA_BIT_MASK(32));
-> +	if (ret) {
-> +		dev_err(nandc->dev, "failed to set DMA mask\n");
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * we use the internal buffer for reading ONFI params, reading small
-> +	 * data like ID and status, and preforming read-copy-write operations
-
-performing
-
-Please run checkpatch.pl, I believe the tool should catch these.
-
-> +	 * when writing to a codeword partially. 532 is the maximum possible
-> +	 * size of a codeword for our nand controller
-> +	 */
-> +	nandc->buf_size =3D 532;
-> +
-> +	nandc->data_buffer =3D devm_kzalloc(nandc->dev, nandc->buf_size,
-> +					GFP_KERNEL);
-> +	if (!nandc->data_buffer)
-> +		return -ENOMEM;
-> +
-> +	nandc->regs =3D devm_kzalloc(nandc->dev, sizeof(*nandc->regs),
-> +					GFP_KERNEL);
-> +	if (!nandc->regs)
-> +		return -ENOMEM;
-> +
-> +	nandc->reg_read_buf =3D devm_kcalloc(nandc->dev,
-> +				MAX_REG_RD, sizeof(*nandc->reg_read_buf),
-> +				GFP_KERNEL);
-> +	if (!nandc->reg_read_buf)
-> +		return -ENOMEM;
-> +
-> +	if (nandc->props->is_bam) {
-
-It's probably the 10th time I ask, but what the heck is this is_bam
-parameter showing? It looks like you're handling two different
-controllers in the same driver without using different compatibles.
-
-> +		nandc->reg_read_dma =3D
-> +			dma_map_single(nandc->dev, nandc->reg_read_buf,
-> +				       MAX_REG_RD *
-> +				       sizeof(*nandc->reg_read_buf),
-> +				       DMA_FROM_DEVICE);
-> +		if (dma_mapping_error(nandc->dev, nandc->reg_read_dma)) {
-> +			dev_err(nandc->dev, "failed to DMA MAP reg buffer\n");
-> +			return -EIO;
-> +		}
-> +
-> +		nandc->tx_chan =3D dma_request_chan(nandc->dev, "tx");
-> +		if (IS_ERR(nandc->tx_chan)) {
-> +			ret =3D PTR_ERR(nandc->tx_chan);
-> +			nandc->tx_chan =3D NULL;
-> +			dev_err_probe(nandc->dev, ret,
-> +				      "tx DMA channel request failed\n");
-> +			goto unalloc;
-> +		}
-> +
-> +		nandc->rx_chan =3D dma_request_chan(nandc->dev, "rx");
-> +		if (IS_ERR(nandc->rx_chan)) {
-> +			ret =3D PTR_ERR(nandc->rx_chan);
-> +			nandc->rx_chan =3D NULL;
-> +			dev_err_probe(nandc->dev, ret,
-> +				      "rx DMA channel request failed\n");
-> +			goto unalloc;
-> +		}
-> +
-> +		nandc->cmd_chan =3D dma_request_chan(nandc->dev, "cmd");
-> +		if (IS_ERR(nandc->cmd_chan)) {
-> +			ret =3D PTR_ERR(nandc->cmd_chan);
-> +			nandc->cmd_chan =3D NULL;
-> +			dev_err_probe(nandc->dev, ret,
-> +				      "cmd DMA channel request failed\n");
-> +			goto unalloc;
-> +		}
-> +
-> +		/*
-> +		 * Initially allocate BAM transaction to read ONFI param page.
-> +		 * After detecting all the devices, this BAM transaction will
-> +		 * be freed and the next BAM tranasction will be allocated with
-
-Typo
-
-> +		 * maximum codeword size
-> +		 */
-> +		nandc->max_cwperpage =3D 1;
-> +		nandc->bam_txn =3D alloc_bam_transaction(nandc);
-> +		if (!nandc->bam_txn) {
-> +			dev_err(nandc->dev,
-> +				"failed to allocate bam transaction\n");
-> +			ret =3D -ENOMEM;
-> +			goto unalloc;
-> +		}
-> +	} else {
-> +		nandc->chan =3D dma_request_chan(nandc->dev, "rxtx");
-> +		if (IS_ERR(nandc->chan)) {
-> +			ret =3D PTR_ERR(nandc->chan);
-> +			nandc->chan =3D NULL;
-> +			dev_err_probe(nandc->dev, ret,
-> +				      "rxtx DMA channel request failed\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	INIT_LIST_HEAD(&nandc->desc_list);
-> +	INIT_LIST_HEAD(&nandc->host_list);
-> +
-> +	return 0;
-> +unalloc:
-> +	qcom_nandc_unalloc(nandc);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(qcom_nandc_alloc);
-> diff --git a/include/linux/mtd/nand-qpic-common.h b/include/linux/mtd/nan=
-d-qpic-common.h
-> new file mode 100644
-> index 000000000000..c461c1781330
-> --- /dev/null
-> +++ b/include/linux/mtd/nand-qpic-common.h
-
-...
-
-> +	u32 cmd1, vld;
-> +	bool exec_opwrite;
-> +};
-> +
-> +/*
-> + * NAND chip structure
-
-qcom_nand_host is a nand chip structure?
-
-> + *
-> + * @boot_partitions:		array of boot partitions where offset and size of =
-the
-> + *				boot partitions are stored
-> + *
-> + * @chip:			base NAND chip structure
-> + * @node:			list node to add itself to host_list in
-> + *				qcom_nand_controller
-> + *
-> + * @nr_boot_partitions:		count of the boot partitions where spare data i=
-s not
-> + *				protected by ECC
-> + *
-> + * @cs:				chip select value for this chip
-> + * @cw_size:			the number of bytes in a single step/codeword
-> + *				of a page, consisting of all data, ecc, spare
-> + *				and reserved bytes
-> + * @cw_data:			the number of bytes within a codeword protected
-> + *				by ECC
-> + * @ecc_bytes_hw:		ECC bytes used by controller hardware for this
-> + *				chip
-> + *
-> + * @last_command:		keeps track of last command on this chip. used
-> + *				for reading correct status
-> + *
-> + * @cfg0, cfg1, cfg0_raw..:	NANDc register configurations needed for
-> + *				ecc/non-ecc mode for the current nand flash
-> + *				device
-> + *
-> + * @status:			value to be returned if NAND_CMD_STATUS command
-> + *				is executed
-> + * @codeword_fixup:		keep track of the current layout used by
-> + *				the driver for read/write operation.
-> + * @use_ecc:			request the controller to use ECC for the
-> + *				upcoming read/write
-> + * @bch_enabled:		flag to tell whether BCH ECC mode is used
-> + */
-> +struct qcom_nand_host {
-> +	struct qcom_nand_boot_partition *boot_partitions;
-> +
-> +	struct nand_chip chip;
-> +	struct list_head node;
-> +
-> +	int nr_boot_partitions;
-> +
-> +	int cs;
-> +	int cw_size;
-> +	int cw_data;
-> +	int ecc_bytes_hw;
-> +	int spare_bytes;
-> +	int bbm_size;
-> +
-> +	int last_command;
-> +
-> +	u32 cfg0, cfg1;
-> +	u32 cfg0_raw, cfg1_raw;
-> +	u32 ecc_buf_cfg;
-> +	u32 ecc_bch_cfg;
-> +	u32 clrflashstatus;
-> +	u32 clrreadstatus;
-> +
-> +	u8 status;
-> +	bool codeword_fixup;
-> +	bool use_ecc;
-> +	bool bch_enabled;
-> +};
-> +
-
-I would like to see how useful are all these exports. I believe the
-current NAND controller driver already has some of these functions
-defined, could you please move the functions rather than adding them
-here without removing them in the other driver?
-
-Thanks, Miqu=C3=A8l
+Regards,
+Simon
 
