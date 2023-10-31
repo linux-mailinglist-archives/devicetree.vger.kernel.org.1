@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5887DD465
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:12:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF2A7DD46D
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:13:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 171B01C20BB4
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:12:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B34F12815E5
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF3CB2032E;
-	Tue, 31 Oct 2023 17:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9342520330;
+	Tue, 31 Oct 2023 17:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MbQgH7tu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zzEO0jzj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531A72031D
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:12:06 +0000 (UTC)
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBAEEA
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:12:04 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53ed4688b9fso9258643a12.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:12:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2258C2031D
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:13:43 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEB38F
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:13:41 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9d10f94f70bso569367966b.3
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:13:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698772323; x=1699377123; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698772420; x=1699377220; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3gy2DoXe7zvEWgTN6cmYSFYz8OjUKBBawRLe2BiuPrI=;
-        b=MbQgH7tuFfyVZFOqb3DywR3MnoPlr7LMsfjQSXpFgPYHMFKH8LwnZprQEfLDtOF4wY
-         n+SfYATK6C0uWNG2DZ4Fjstsbr+EiLziYuBcp9U9BaiVW0pA245Ddt3m46TRw5aW/6j8
-         QmRjXEOwxR53e6Ies36ksqfs6IFkkRpU115PKj9Eb5CxY9GKDheY+r0hiHNkXBY9AtEg
-         RNZCIcBN1bdE/xLaGRQDwKPZcSaH+lSxr5VM4qvS2cxZPt7SlmdW+zP8x9972pseiXdB
-         M4iGlKPTJygCwka3JYjg/XUDfhq08/G2HiwK5r0BRz647blMC9xkX8iq7ce1vO8jZ0hX
-         Xjtw==
+        bh=aQTUNx4Mt1V3Xbfj6nADMIG97fP/+CR083uBLNeQZTs=;
+        b=zzEO0jzjGQNejRbWmDXqVcFOIWK24WxLRgs92lnoOsZ3XER+anhE+RGJGRsbsWHa2a
+         eu5JJwDg1M61e7qYxOZYLXoDtMf1zT3BUk68UEjxEv4vONFDAj5cAjvYop7dHw8pZhJk
+         /re0pkMTS18chGaX0uDAQuhwNNpuzPav3SCFukW/HWgar9m6J7t6NajLN7lAq7QZt9Hu
+         31NUuHAyOZMBNpbkq6hrjghA8gJllkWaRJ6snlYvECOD+ZcX8iC499+RjMkQru7Dfvug
+         KS9r9ZngQHUctcvlLsf/yvvMkBdPTheSObYFuWFBlPgQMAvr6q+ESoyVF1404yuBhJ6R
+         ZSSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698772323; x=1699377123;
+        d=1e100.net; s=20230601; t=1698772420; x=1699377220;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3gy2DoXe7zvEWgTN6cmYSFYz8OjUKBBawRLe2BiuPrI=;
-        b=naA2KJOY5ShoDLmTuEiGQ7VmsaJFG+CjwZGKdTGNoJKA6wCBYufFaRBTJ7a8pD4uiN
-         6KGdEYpdc6hg6vex6106SIn7682WjXUBTZEsiJ8jOtKdjih9sMIxibOZE4PJ/YISCV03
-         hHufPrJttAxqymNGxnUITBv655kRTQAigmlUibt33j+pfzbN/cX7P9178UsWvQO/LujA
-         Jw9Kyp7q6VmMZ01onpvUvh0ABG2LFzRUIoQ5FkogvTs7hRyNRz6VscwCcgWGeoSXgN4+
-         NtNY6HliOBiqYZlKvoXCETa5ozOu7JGdKM4KbSUE+iKGL6enLgO3kOPaKuDuysFgGcb6
-         NaTg==
-X-Gm-Message-State: AOJu0Yz2gveV5ctwTj2jg+TUnf5k30SFhuSVI4hLdolaTTSvMWpQmB2A
-	AbmJqjV20ze9Ls5VB/wTddZJYg==
-X-Google-Smtp-Source: AGHT+IGEL4ucCTHZwLV51PO1qj/dTChkWJAA2ttTP0kXd0AtrR7VSrTuRrEgYvu0TJHdYWdsSFjY6A==
-X-Received: by 2002:a17:907:2d87:b0:9c4:b8c9:1bf2 with SMTP id gt7-20020a1709072d8700b009c4b8c91bf2mr12238581ejc.60.1698772323126;
-        Tue, 31 Oct 2023 10:12:03 -0700 (PDT)
+        bh=aQTUNx4Mt1V3Xbfj6nADMIG97fP/+CR083uBLNeQZTs=;
+        b=Lwv7YgyUZp/zbD9hMLJl3anfYodF771rlTmKGD0POOWjSJbWBiEOvzr9ZH8+vljSiV
+         SqkX6Pxis7h9V+hlpBJ/4sf9FXXqEEBmEyitazY1Jw/UJcBmIz2phBbSWC4J5NGCC5Ns
+         aYntt2cPFbhUneVJhUMCUES/bT0jhYAGDRvZLC4HOBKYSc4bjEGhcYGcxre8HI8uMGsw
+         sToNxRzWLboIvw0gJpzgqJS6H/FlgDoOZirWuqzUKUnl7wv3G6BfROvUK2m+W20mZvPj
+         sk92lqzIXPquItDsyO1qOmjDfVnT/EA/twGuUOouiOjAz8eZS34DOgEdLXDjWZVqWr2E
+         rdPg==
+X-Gm-Message-State: AOJu0YxGRF0owsDU+NxxBIfX7mahZ2P94gh3e0G/PZYjf3cy93D43jBO
+	Dxd3gmP7dqnSBMS5PW9WIidL4Q==
+X-Google-Smtp-Source: AGHT+IFd/RH1t48DNmOvCXOwpJg2eBZTRP2U2+y6MkWFB/zxtr99u8vS60Bx5qQ3jlzGC1NNMIywBA==
+X-Received: by 2002:a17:907:7f26:b0:9be:fc31:8cd3 with SMTP id qf38-20020a1709077f2600b009befc318cd3mr10801150ejc.17.1698772420090;
+        Tue, 31 Oct 2023 10:13:40 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id pj17-20020a170906d79100b0099bc8bd9066sm1268384ejb.150.2023.10.31.10.12.01
+        by smtp.gmail.com with ESMTPSA id pj17-20020a170906d79100b0099bc8bd9066sm1268384ejb.150.2023.10.31.10.13.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 10:12:02 -0700 (PDT)
-Message-ID: <47cf6dd2-dcfa-468b-9bcb-3af32f6d9c4b@linaro.org>
-Date: Tue, 31 Oct 2023 18:12:01 +0100
+        Tue, 31 Oct 2023 10:13:39 -0700 (PDT)
+Message-ID: <691607ce-ed05-4fd8-9989-ebd58f2e1664@linaro.org>
+Date: Tue, 31 Oct 2023 18:13:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/5] arm64: dts: qcom: ipq9574: Add ecc engine support
+Subject: Re: [RFC PATCH 4/5] spi: qpic: Add support for qpic spi nand driver
 Content-Language: en-US
 To: Md Sadre Alam <quic_mdalam@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -78,7 +78,7 @@ To: Md Sadre Alam <quic_mdalam@quicinc.com>, agross@kernel.org,
  linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
  quic_srichara@quicinc.com, qpic_varada@quicinc.com
 References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
- <20231031120307.1600689-3-quic_mdalam@quicinc.com>
+ <20231031120307.1600689-5-quic_mdalam@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,37 +124,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231031120307.1600689-3-quic_mdalam@quicinc.com>
+In-Reply-To: <20231031120307.1600689-5-quic_mdalam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 31/10/2023 13:03, Md Sadre Alam wrote:
+> Add qpic spi nand driver support for qcom soc.
+
+What is "qcom soc"? Did you mean Qualcomm and SoC?
+
+> 
 > Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
 > Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+>  drivers/spi/Kconfig          |   7 +
+>  drivers/spi/Makefile         |   1 +
+>  drivers/spi/spi-qpic-snand.c | 604 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 612 insertions(+)
+>  create mode 100644 drivers/spi/spi-qpic-snand.c
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 5f83ee42a719..b44acb1fac74 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -336,6 +336,11 @@ sdhc_1: mmc@7804000 {
->  			status = "disabled";
->  		};
->  
-> +		bch: qpic_ecc {
-> +			compatible = "qcom,ipq9574-ecc";
 
-NAK. There are so many wrong things with it... Let's start with missing
-checkpatch. Then with unndeeded label. Then with not allowed underscores
-in node names.
-Finally:
-> +			status = "ok";
+...
 
-Drop.
+> +
+> +static int qcom_snand_remove(struct platform_device *pdev)
+> +{
+> +	struct spi_controller *ctlr = platform_get_drvdata(pdev);
+> +	spi_unregister_master(ctlr);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct qcom_nandc_props ipq9574_snandc_props = {
+> +	.dev_cmd_reg_start = 0x7000,
+> +	.is_bam = true,
+> +	.qpic_v2 = true,
+> +};
+> +
+> +static const struct of_device_id qcom_snandc_of_match[] = {
+> +	{
+> +		.compatible = "qcom,ipq9574-nand",
 
-
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
 
 Best regards,
 Krzysztof
