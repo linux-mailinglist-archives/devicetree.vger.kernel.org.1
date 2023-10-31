@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F5E7DC617
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 06:48:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECB37DC622
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 06:52:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AF192815E3
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 05:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50D4F1C209E1
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 05:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41CFE5257;
-	Tue, 31 Oct 2023 05:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E040AD2EE;
+	Tue, 31 Oct 2023 05:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oDrea8wB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XRVKIXwb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C097B15CA
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 05:48:40 +0000 (UTC)
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDA8CE4
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 22:48:38 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so8271828a12.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 22:48:38 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D837DDA8
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 05:52:36 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A84BD
+	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 22:52:33 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5431614d90eso3189357a12.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 22:52:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698731317; x=1699336117; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698731552; x=1699336352; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=d8tsL5oB87Rx8sJrlG5ElUtswTptcOb5Z68cZ32EAsY=;
-        b=oDrea8wBuYrj+l8rGGG8zZp7F9CUUPlnFZy2a3K9lKCYdnB5Bacf2nA8cGPDGHwYcw
-         NQKvclcI2qkplBlAqd8pmavKV97rHt7WOmZtqjohcyhuO0+y9d+dq0OOnmOcCBBvXtKU
-         58+4oxAFmeAI/+5ngy8wxGYfhY+HUE5zJxzrJ4lxCqppSDH7F1PmbhOqZ+np25s5Nwyd
-         eI+DKStmO9gNB3qDwHyrSqZ4vBGZtoBn37YOAn1x/oC5EfPSLX0kn3FV5hL3D3Q+N3qd
-         VvD6o+yGTx/JoCVRYnzzszLrXmCL5q9KzmEIhLUyeOGso64pUkn3QZDqWq88Z7+znMA8
-         4O9g==
+        bh=1HL2/AT7/PZUXkao0bY/DaiTw9iiwVQwGoOkH/xt9cM=;
+        b=XRVKIXwbkK5LVV4DB8wokdzyfzhipHowkoNNJ9jtcEJ0dO/zEUFXpReRQyqbvcdz9Z
+         9hsMMM5lsyVRnFED98zp07Ej9pifH6rJ4z+04eNpHxjbiJ0QGCoM0hp+1UnmeEojdvpq
+         Nkd+WgP5zHsMOAzI7J1T17qrm6T5coW/C6oecNwmjsaC2vqVTXD9q3BOZYpSdSqnz88B
+         fdJV2IPOYOC9rPsbeQY+cZDIPQRtANr8l3EE9z3ntSVdYj8As4GrQlLghHWRgcmyrens
+         ZTqVnTe+lemfQW5CKAZFQRMZCXKX4kWFgcxT3lYYGc5+WhoJYZ5OKhviHXTrm0z4TT+C
+         H5AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698731317; x=1699336117;
+        d=1e100.net; s=20230601; t=1698731552; x=1699336352;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d8tsL5oB87Rx8sJrlG5ElUtswTptcOb5Z68cZ32EAsY=;
-        b=uv6NIg+7Mreg3n90IQVLN79UgYfCIHJYjaQQ459LNW0FOOxVUoIrDh8fGCzJWzoJH7
-         7JnszvgH56MzLljsNcDlLxl9l0tdNsFKc7+UmpQFRbdLLxCT/oWbmgKhoHsDcXPDQtcQ
-         JHjZj4mlshmLf1zzSsGFE48bCmpEldUPmXalT00B0L36j6DUIvy2P2zofoGm+vOF5LyZ
-         wjjQt5CFfPWk23FndpZ0tMvUHJFsPk+U8NZuluFo2Ra3QGITL9QZ5F+C3WKCxQnNBAAC
-         pNsSgzeEPkYJaOEw35FUNNDvKDYrcuMWn+Fabp6BTg+cq7G8l2SN3EYs3gR8bKleOS22
-         v0dw==
-X-Gm-Message-State: AOJu0YzuqIG87Q3GS37hQaEJEGGj7FdeVJV0lWBbHlXvaaeLg4r8FWD5
-	6ZSR6hlLbaOthCSiQS5W6ZnO9A==
-X-Google-Smtp-Source: AGHT+IH7TmlrhHtGaYMSqpY2i7vK1vgWIGw5a4YiJB8UtrNg8R8oC1mb+KBwD5+C5OPY2DzZOFMUxQ==
-X-Received: by 2002:a05:6402:379:b0:540:9b47:4f70 with SMTP id s25-20020a056402037900b005409b474f70mr9028247edw.26.1698731317311;
-        Mon, 30 Oct 2023 22:48:37 -0700 (PDT)
+        bh=1HL2/AT7/PZUXkao0bY/DaiTw9iiwVQwGoOkH/xt9cM=;
+        b=CBBTIKAs7YAMePNLqjp8+oCxejCL7SlHRKQkatHzn3lg5sRxMJd4af9ODz9gUDsGEw
+         ighvwt1vgR1yTt/PDZzj/Q5DLyP/fHqOaQIXfMtDn58bWXjdFA08Gb7QMXsO0RRO1sqb
+         1WO/tvwGz+EBz3qPn8wdMN313ubUb0od1QJOAZ7RsUsjypsZMTK5VD9/+NnwM0AHEFKz
+         ihy8lem+MyjdL/ClK07VSF4Uc0LQrVmtxyXfp5gBDD98wqeHCh7IVoy+LFiCOgJyddII
+         OjrZQUVJmBB5ZIh0YgilSz1U4OA/URSRsQukYG7RIzlj4vJ/nOXkEbQ/RJzJi7zLo7Vu
+         r8uQ==
+X-Gm-Message-State: AOJu0YxPQDKEdrcKXbvm/huPc2U8rrV6Ii6lfi3iyiTJN2BlAUovWWum
+	jk4k585aw5pdNn78PPpvqYbEHQ==
+X-Google-Smtp-Source: AGHT+IGXy/fC3RO6Rnklq5Wq9aOUTYe1O9YovjUTxvkol+Hq6ailcSu3RYdF84LIZs1799FWxWulWA==
+X-Received: by 2002:a50:aad8:0:b0:543:6444:ef2a with SMTP id r24-20020a50aad8000000b005436444ef2amr815817edc.32.1698731551517;
+        Mon, 30 Oct 2023 22:52:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ks24-20020a170906f85800b009ad8acac02asm361918ejb.172.2023.10.30.22.48.35
+        by smtp.gmail.com with ESMTPSA id q19-20020a056402033300b0054354da96e5sm497333edw.55.2023.10.30.22.52.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 22:48:36 -0700 (PDT)
-Message-ID: <b67ee496-397b-42f1-8109-542878934385@linaro.org>
-Date: Tue, 31 Oct 2023 06:48:34 +0100
+        Mon, 30 Oct 2023 22:52:31 -0700 (PDT)
+Message-ID: <5a906074-5c1e-4c1c-8023-5346e7fe9738@linaro.org>
+Date: Tue, 31 Oct 2023 06:52:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,33 +67,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/12] dt-bindings: net: snps,dwmac: Allow exclusive
- usage of ahb reset
+Subject: Re: [PATCH 1/6] dt-bindings: mfd: brcm,bcm59056: Convert to YAML
 Content-Language: en-US
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-2-cristian.ciocaltea@collabora.com>
- <3016eff2-fce5-4b5e-bbb2-d56cbb45df85@linaro.org>
- <05186c62-fcad-4d56-8ae8-d802f87a39e2@collabora.com>
- <98d90ba9-7e69-4b54-830d-bdbc0e6c54fe@linaro.org>
- <d532514a-524c-4607-b97b-2f89bc563406@collabora.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231030-bcm59054-v1-0-3517f980c1e3@gmail.com>
+ <20231030-bcm59054-v1-1-3517f980c1e3@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,83 +128,184 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d532514a-524c-4607-b97b-2f89bc563406@collabora.com>
+In-Reply-To: <20231030-bcm59054-v1-1-3517f980c1e3@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/10/2023 20:07, Cristian Ciocaltea wrote:
-> On 10/30/23 09:26, Krzysztof Kozlowski wrote:
->> On 29/10/2023 23:24, Cristian Ciocaltea wrote:
->>> On 10/29/23 13:25, Krzysztof Kozlowski wrote:
->>>> On 29/10/2023 05:27, Cristian Ciocaltea wrote:
->>>>> The Synopsys DesignWare MAC found on the StarFive JH7100 SoC requires
->>>>> just the 'ahb' reset name, but the binding allows selecting it only in
->>>>> conjunction with 'stmmaceth'.
->>>>>
->>>>> Fix the issue by permitting exclusive usage of the 'ahb' reset name.
->>>>>
->>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 2 +-
->>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>>> index 5c2769dc689a..a4d7172ea701 100644
->>>>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>>>> @@ -146,7 +146,7 @@ properties:
->>>>>    reset-names:
->>>>>      minItems: 1
->>>>>      items:
->>>>> -      - const: stmmaceth
->>>>> +      - enum: [stmmaceth, ahb]
->>>>
->>>> Also, this makes sense only with patch #4, so this should be squashed there.
->>>
->>> I added this as a separate patch since it changes the generic schema
->>> which is included by many other bindings.  JH7100 just happens to be the
->>> first use-case requiring this update.  But I can squash the patch if
->>> that's not a good enough reason to keep it separately.
->>
->> If there is no single user of this, why changing this? I would even
->> argue that it is not correct from existing bindings point of view -
->> nothing allows and uses ahb as the only reset. Even the commit msg
->> mentions your hardware from patch 4.
+On 30/10/2023 20:36, Artur Weber wrote:
+> Convert devicetree bindings for the Broadcom BCM59056 PMU MFD from
+> TXT to YAML format. This patch does not change any functionality;
+> the bindings remain the same.
 > 
-> Sorry, I'm not sure I follow. JH7100 is (or will be) the user of it and,
-> as a matter of fact, something similar has been done recently while
-> adding support for JH7110.
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/brcm,bcm59056.txt      | 39 ----------
+>  .../devicetree/bindings/mfd/brcm,bcm59056.yaml     | 91 ++++++++++++++++++++++
+>  2 files changed, 91 insertions(+), 39 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.txt b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.txt
+> deleted file mode 100644
+> index be51a15e05f9..000000000000
+> --- a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.txt
+> +++ /dev/null
+> @@ -1,39 +0,0 @@
+> --------------------------------
+> -BCM590xx Power Management Units
+> --------------------------------
+> -
+> -Required properties:
+> -- compatible: "brcm,bcm59056"
+> -- reg: I2C slave address
+> -- interrupts: interrupt for the PMU. Generic interrupt client node bindings
+> -  are described in interrupt-controller/interrupts.txt
+> -
+> -------------------
+> -Voltage Regulators
+> -------------------
+> -
+> -Optional child nodes:
+> -- regulators: container node for regulators following the generic
+> -  regulator binding in regulator/regulator.txt
+> -
+> -  The valid regulator node names for BCM59056 are:
+> -  	rfldo, camldo1, camldo2, simldo1, simldo2, sdldo, sdxldo,
+> -	mmcldo1, mmcldo2, audldo, micldo, usbldo, vibldo,
+> -	csr, iosr1, iosr2, msr, sdsr1, sdsr2, vsr,
+> -	gpldo1, gpldo2, gpldo3, gpldo4, gpldo5, gpldo6,
+> -	vbus
+> -
+> -Example:
+> -	pmu: bcm59056@8 {
+> -		compatible = "brcm,bcm59056";
+> -		reg = <0x08>;
+> -		interrupts = <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
+> -		regulators {
+> -			rfldo_reg: rfldo {
+> -				regulator-min-microvolt = <1200000>;
+> -				regulator-max-microvolt = <3300000>;
+> -			};
+> -
+> -			...
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
+> new file mode 100644
+> index 000000000000..6d6acc9fd312
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/brcm,bcm59056.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BCM590xx Power Management Unit MFD
 
-Every patch should stand on its own and at this point nothing uses it.
-We apply this patch #1 and we add dead code, unused case.
+Drop "MFD". That's Linux term.
 
-> 
-> In particular, commit [1] changed this binding before the JH7110
-> compatible was introduced in a subsequent patch. On a closer look that
-> commit made a statement which is not entirely correct:
-> 
-> "dwmac controller may require one (stmmaceth) or two (stmmaceth+ahb)
-> reset signals"
-> 
-> That's because stmmaceth is also optional in dwmac's driver, hence the
-> correct message would have been:
-> 
-> "[...] may require one (stmmaceth OR ahb) [...]"
+> +
+> +maintainers:
+> +  - Artur Weber <aweber.kernel@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - "brcm,bcm59056"
 
-Driver does not describe the hardware. The bindings do, so according to
-that description all supported hardware required MAC reset (stmmaceth).
-Otherwise please point me to any hardware which skips MAC reset and
-requires AHB reset instead (not future hardware, but current).
+No quotes. Please copy some existing DT schema as your template. None of
+them use such syntax.
 
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+
+There is no other feature here, so this should go to regulators directory.
+
+> +  regulators:
+> +    type: object
+> +    description: Container node for regulators.
+> +
+> +    # The valid regulator node names for BCM59056 are:
+> +    #   rfldo, camldo1, camldo2, simldo1, simldo2, sdldo, sdxldo,
+> +    #   mmcldo1, mmcldo2, audldo, micldo, usbldo, vibldo,
+> +    #   csr, iosr1, iosr2, msr, sdsr1, sdsr2, vsr,
+> +    #   gpldo1, gpldo2, gpldo3, gpldo4, gpldo5, gpldo6,
+> +    #   vbus
+> +    patternProperties:
+> +      "^(cam|sim|mmc)ldo[1-2]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^(rf|sd|sdx|aud|mic|usb|vib)ldo$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^(c|m|v)sr$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^(io|sd)sr[1-2]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^gpldo[1-6]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +    properties:
+> +      "vbus":
+
+Drop quotes
+
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmu: bcm59056@8 {
+
+Generic node names, so "pmic". You can also drop unused label.
+
+
+> +            compatible = "brcm,bcm59056";
+> +            reg = <0x08>;
+> +            interrupts = <0 215 IRQ_TYPE_LEVEL_HIGH>;
+
+Does 0 stand for some GIC flag?
+
+> +            regulators {
+> +                rfldo_reg: rfldo {
+> +                    regulator-min-microvolt = <1200000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                };
+> +            };
+> +        };
+> +    };
 > 
-> Hence, I think it makes sense to keep this patch, after adding the above
-> details in the commit message.
-> 
-> [1] 843f603762a5 ("dt-bindings: net: snps,dwmac: Add 'ahb'
-> reset/reset-name")
-> 
-> Thanks,
-> Cristian
 
 Best regards,
 Krzysztof
