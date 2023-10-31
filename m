@@ -1,155 +1,170 @@
-Return-Path: <devicetree+bounces-13194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37F7F7DCDD5
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:29:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E0C7DCE12
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:41:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF89AB20FCA
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:29:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C162B1C20BF6
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0606A1945A;
-	Tue, 31 Oct 2023 13:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247E919BD7;
+	Tue, 31 Oct 2023 13:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="R0Ar1e8S"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XxerQeny"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103DB134D6
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:29:37 +0000 (UTC)
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2071.outbound.protection.outlook.com [40.92.99.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9504AEA;
-	Tue, 31 Oct 2023 06:29:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UdBTCmh94WVusy5Qr075QYtVThxPCxhBEPhWCJPWo/w3V7ZDm9y76pQeCxz42fX6prHcPOw/GOOMnEAhZoNeWDJ5HdMrdAdqZcMAwUA5d2MtFiUAfu97O13dMJSsOo07p4HaP2M8UySYyst0MiED7aMGgiAyoEyGqPJYxTo5TrITqI/aUr3U84PuGMoS+AZiVmi7kNr6tXoSTMAvBWeZEWQes7hZ/l5YU2qyOhtU94JqhI/bC7Sts2WOOy44bt2MTGqQkTkAJh+13luZrtQPzoh/7BQVjKdu/BejI4CzXPveJCSBbdzqOQzgkAs1/TlmbzzX0IfdBmhL/V/PpAy/GA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AwXMo6ZId6UVaf3hdKPyTrvLK+kYzUVVgPWzrtFUXXU=;
- b=UD1B4+c2vyS3XlDTWcbDTKSCfE/OXS9qPfznhptTAUq/gSaI7WQA1u4ac7IaAf4mW4Lc/iOakm0z2sAeHdECpJHFwiIeiUFZn41Aqykc/fm618RDZqJGL9ZNCGIAglhcN8XH6LNkE0JKFM+vrrrNnym/5ym6Nvto5oezjJD8D/RUAxwCQi9TA1t8Wpmsla8iBkBoKLTCGMtPMcFvbmD4ke1boPQGGVY3vEtCJZghLoSAh1UtDfl1sgrVluFNZ8IKzRfsVmDf4jlEGwp4AQ+u1Dyt5Tu6dUoDdVErsA5OVf1aIeQ+EzW9ebdHtvUgaCmw+olN7XeAbz5poclOBE5rrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AwXMo6ZId6UVaf3hdKPyTrvLK+kYzUVVgPWzrtFUXXU=;
- b=R0Ar1e8SP6/junEzxWeqUiJ99W0+wxmtc+sR6uYVsIvpUDLvCEHtWorkfXSU+2WZw8txQUzS+7JcZWuIuL9cAx4EWO3oZ8ypVxU+vEOLtNCFBQF8BtUC9rj/JQY4Vgdco5dgUIxCjQog9jsmO8CA6/LStLwBntorZPiKJDeHC76GWcr9AXENEmtQJisNNy4G+rOjfUY8RgAIEyidf6jLlBf/e9D3qhlWb1yN5+lpvEy4r07tQN5JASUGONXII/Lxf/9zvuI7K9zZ9Ck9PxUssQG8BmQJ+BWo4d4otbkuXCdh6ic8Ar4GSbIoMyJEeGHHzXMJo1bgQFvy2OZUvVzPIA==
-Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
- by TYYP286MB1668.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:fc::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Tue, 31 Oct
- 2023 13:29:31 +0000
-Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
- ([fe80::465a:2534:4d99:a25b]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
- ([fe80::465a:2534:4d99:a25b%6]) with mapi id 15.20.6933.029; Tue, 31 Oct 2023
- 13:29:31 +0000
-From: Shiji Yang <yangshiji66@outlook.com>
-To: devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0D333D2
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:41:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58FA9F;
+	Tue, 31 Oct 2023 06:41:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698759705; x=1730295705;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HIB3SZjfCNG11GTudj4jsu6O4/8FayWcAc+P32hYbQc=;
+  b=XxerQenytUpW4AeSlfWLFDH4enPVlC8G8wmkYN+FzoEJe3Pi/6R5JQRC
+   N5ij5piwj44U+ZF6KgDPrV4/1DLnD73vc9ghChwqkGlyXt78lGZ8bLB0O
+   PT4rAl78Bqau0b0kBqEIMnr41Dz3Km5gDrDeygv5JZLmb2hMZjToOggvv
+   rLaCqVNEl7YAafNcnn26qUOwkidkPdhuKZq40ZNQ4NlNAM3Ys77AQfvW6
+   1dHft29kLdLhajLNnbHKHK2fUZhlX8qZuEvdmXazpTunk+fVyThW3lb8V
+   LH9GWg6nTNdloOAkGV1NCOPRINIASDWtKuNFoTJnJzk50ZKAXMggt9IUQ
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="368494340"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="368494340"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 06:41:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="795579232"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="795579232"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 06:41:29 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qxozm-0000000A9rT-004i;
+	Tue, 31 Oct 2023 15:41:26 +0200
+Date: Tue, 31 Oct 2023 15:41:25 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Olliver Schinagl <oliver@schinagl.nl>,
-	Shiji Yang <yangshiji66@outlook.com>
-Subject: [PATCH v2 2/2] dt-bindings: leds: add "internet" and "rssi" function definitions
-Date: Tue, 31 Oct 2023 21:29:01 +0800
-Message-ID:
- <TYAP286MB0315235C51DAC7905DE4573EBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231031132901.11732-1-yangshiji66@outlook.com>
-References: <20231031132901.11732-1-yangshiji66@outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [1WwSHmcsM2WLHjyKHGIY9S0Q21neNg6zm51S1aDk/NU=]
-X-ClientProxiedBy: TYCPR01CA0068.jpnprd01.prod.outlook.com
- (2603:1096:405:2::32) To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:404:8041::8)
-X-Microsoft-Original-Message-ID:
- <20231031132901.11732-3-yangshiji66@outlook.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] media: i2c: Add driver for THine THP7312
+Message-ID: <ZUEEBXfjTPqnnL9b@smile.fi.intel.com>
+References: <20231017132103.9914-1-laurent.pinchart@ideasonboard.com>
+ <20231017132103.9914-4-laurent.pinchart@ideasonboard.com>
+ <ZTutbU1XG_jKZbIp@valkosipuli.retiisi.eu>
+ <20231027124529.GA19539@pendragon.ideasonboard.com>
+ <ZTvOIQSmpytUisUD@valkosipuli.retiisi.eu>
+ <20231028151858.GB20465@pendragon.ideasonboard.com>
+ <ZT9kwC3abUKR9fgQ@valkosipuli.retiisi.eu>
+ <20231030104241.GJ12144@pendragon.ideasonboard.com>
+ <ZUDatMX10WK0bdid@valkosipuli.retiisi.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TYYP286MB1668:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97bcd924-63f8-4404-564c-08dbda156a2a
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	okbdMwrx3q7l+PeCKNsLHtbSic5iHW4LbPJkd7DxDGcKcM6cNSZCcT095agtSZWvTEKnbzOS63Oie/5VJPXe9FeQZLRrvJ1rBJAutMIeMq3f4lFOQElLIAsOhz2WGGpkUkSdtXnzaF6hmQYRFvSoNX4gMhyxCP9kt/7npg57GSSeHL+REH7ULkbogvU5fQlQgatEHZTlbqgRY3pNNlV4xTvbWN1r73eaJmIYecycHcaM9yrjs7dqvgHKInhlPxUzsQlFTRgjcJy7vBGbQ0n/7RkI0DFJb1Hy8lYUceVSQUiRikGUDzpuugmSVc3McjKOi+iKwzlCqYtYLneoqLwcqxGNpuph0OhjPNwbxofLsyuTZLXJMkc4RoUXueV5p9YLC8O0E9efcORgyiO7Pt6pnM9vHYnE+Lzu8LjYZA4NDmKKIB06utDXm4JgJJgU6TTcVflOU1G+NGumdo6g3XlyjHxv9W89YW/FdZVLB36kT5yHC5Jw0BK8mpuVKXqdHQSNznXd4K48Lh6SXnydqj5UmAyFRzRJpNaYOnvOUqQoJfBS6jXUADnQ9QojjbP0hrFnA7X5p7aUDCW+z89L9fRHubosaa9ZbrNCdc42JwSjgDDmEykdyfi19Go/piB1xGnO
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?90B4CQMclgvwap158wG6M8pW/vQrwsjOfatuT3LT9Y/DMoizbkkAoZfbbsG6?=
- =?us-ascii?Q?IO1fHA/AMv7xq7mmnOXXdo/oiYVblD9dC/GZs1aph/xE0UD72YUjmTYRaaZ4?=
- =?us-ascii?Q?d0voH1Jg8eZBydrkUwp65F5ESWXMsUljRLF5u3E3QHbAZgPbAnlek9Y1i2dk?=
- =?us-ascii?Q?qkaSTdM7RRYVJPV3bPmSh8od1IgTASECNw+UGjT+KJw83kkgrgpdFT/ZTRlJ?=
- =?us-ascii?Q?TfhxKtZVjIE2HoQaGqPlo/xtfA1XnLAaSZ5Y/g4AHs+ofykVbPmawDoQ+YwT?=
- =?us-ascii?Q?jdNcyYm4PuBE4yhI3GMN5ZKyRxrb3RjE24NIFh2WhXjCiNja1F0Yd9YcSTr7?=
- =?us-ascii?Q?kb6E3IEocaZY4AjHqqAUvHB3tRYVntHHUgjOO7utIXU9g5oRrqRtoHC7E4Xw?=
- =?us-ascii?Q?fXzKgy8qVIziGGj6KxFU7+iMQa1HXL3x5aJ2JivJ+rGS9bICGneO+m1/t8tE?=
- =?us-ascii?Q?COLr0Eby1X2EQVbffA+1UwthPXVRj566HPFLrkxsJYCjmqvJK4FUXE1MLK22?=
- =?us-ascii?Q?NbId9J0ephipCFVx9ns+9EszLB0HE//IdKsAodKuC4BvyKhsB6eOujkJGvLV?=
- =?us-ascii?Q?8+Qs8RDmpB8XnCPo+QpzdNoK4lDrkycHt953teHiN1tZaFIguVSBAZiwlvve?=
- =?us-ascii?Q?ABCjjXiTo50ojB3IEb7PIvduGARc94AFO2lciZGHuSa2sCkbZ/N57hyNlaRz?=
- =?us-ascii?Q?A8O3IC5M2e6GSFcCqYiNt06tPsnZfljJpyAhtU9DdP4H1DeMDy6B0AUsTbLi?=
- =?us-ascii?Q?DKEovDcXy1h/2ch/tAUQ2vq/HgYnd5YCvaSzlghGi8P50nns4JNmtSlp6YPM?=
- =?us-ascii?Q?RZ+KbGqXNdqKeFc3L1gq1WgoPZtw/8iHcMVL5fA+MF3/KFIm0rOJ7dJUCt96?=
- =?us-ascii?Q?4uSjHv++SM6TFLbnlvHdua9P7zaWweBHtHE2EmQvh2BLvZWNHNKcjm18pu0N?=
- =?us-ascii?Q?tV04AT3AendEQsD2zlKdP5E2AhmCo70GWWE+yzrX50fOY5zNlgU9a1zL0Hvl?=
- =?us-ascii?Q?aW8yEpaT0Z+jvKqgWlLodEEFpDvikImYjzZtNqMm8KdLIvns4ZHmdSLTxXqh?=
- =?us-ascii?Q?OelX97yFeAQtSkJQczNg1L5vCbxSVeuzYbup39gCRo73xFfOMORFOwC9dicA?=
- =?us-ascii?Q?DAIHZla8hJAfXn0tqT8U4KbrsvFZGqpD07LQnRbIr6uMsGi4M3Z5bYuG/sPs?=
- =?us-ascii?Q?B3y2JJ5XinKhZIJh1OzBZeMSvOoFiaFMZgi1T1TPJkhzGXoNfevw8N8RJrw?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97bcd924-63f8-4404-564c-08dbda156a2a
-X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2023 13:29:31.6411
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYP286MB1668
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZUDatMX10WK0bdid@valkosipuli.retiisi.eu>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-These two types of LEDs are widely used in routers and NICs. The
-RSSI (Received Signal Strength Indicator) LED is used to display
-the Wi-Fi signal strength, and the Internet LED can indicate
-whether the device can access a specific server.
+On Tue, Oct 31, 2023 at 10:45:32AM +0000, Sakari Ailus wrote:
+> On Mon, Oct 30, 2023 at 12:42:41PM +0200, Laurent Pinchart wrote:
+> > On Mon, Oct 30, 2023 at 08:09:36AM +0000, Sakari Ailus wrote:
+> > > On Sat, Oct 28, 2023 at 06:18:58PM +0300, Laurent Pinchart wrote:
+> > > > On Fri, Oct 27, 2023 at 02:50:09PM +0000, Sakari Ailus wrote:
+> > > > > On Fri, Oct 27, 2023 at 03:45:29PM +0300, Laurent Pinchart wrote:
 
-Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
----
- include/dt-bindings/leds/common.h | 2 ++
- 1 file changed, 2 insertions(+)
+...
 
-diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index 9a0d33d02..55a426e39 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -88,11 +88,13 @@
- #define LED_FUNCTION_FLASH "flash"
- #define LED_FUNCTION_HEARTBEAT "heartbeat"
- #define LED_FUNCTION_INDICATOR "indicator"
-+#define LED_FUNCTION_INTERNET "internet"
- #define LED_FUNCTION_LAN "lan"
- #define LED_FUNCTION_MAIL "mail"
- #define LED_FUNCTION_MTD "mtd"
- #define LED_FUNCTION_PANIC "panic"
- #define LED_FUNCTION_PROGRAMMING "programming"
-+#define LED_FUNCTION_RSSI "rssi"
- #define LED_FUNCTION_RX "rx"
- #define LED_FUNCTION_SD "sd"
- #define LED_FUNCTION_STANDBY "standby"
+> > > > > > > > +#include <linux/of_device.h>
+
+I believe this shouldn't (mustn't?) be used in a new code.
+Rob have been doing a big job of replacing some OF-specific
+APIs by generic ones.
+
+...
+
+> > > > > > > uapi/linux/thp7321.h ?
+
+Why does the driver even have that?! Does it allow direct IOCTLs? Some
+other hardware information that should be supplied via "abstract"
+(presumably existing IOCTL)?
+
+...
+
+> > > > > > > > +	sensor->dev->parent = dev;
+> > > > > > > > +	sensor->dev->of_node = of_node_get(sensor->of_node);
+
+This should be device_set_node().
+
+> > > > > > > This device could well find its way to a non-OF system. Could you use the
+> > > > > > > fwnode property API instead?
+> > > > > > 
+> > > > > > I'm pretty sure there will be problems if someone was using this driver
+> > > > > > on an ACPI-based system, so trying to pretend it's supported without
+> > > > > > being able to test it may not be the best use of development time. I'll
+> > > > > > try, but if I hit any issue, I'll keep using the OF-specific functions
+> > > > > > in the next version.
+
+Besides ACPI it may be other ways of instantiating the driver.
+And we, in general, asking for creating OF-independent drivers as long
+as there is no strong evidence that the platform itself and the particular
+hardware never ever will have anything than OF. And it almost always
+not true for discrete (outside the SoC) components.
+
+> > > > > I'd suggest to use OF functions if there's no corresponding fwnode function
+> > > > > available. The intention is they cover the same scope, so it is likely
+> > > > > something that's missing will be added sooner or later.
+> > > > 
+> > > > I understand, but if the conversion is not complete, it's not very
+> > > > valuable. I have no objection against using the fwnode API in the
+> > > > driver, but I'll let someone else handle it when and if needed.
+> > > 
+> > > If you leave it using OF-only API now in a driver that is not bound to OF
+> > > in any way, someone moving it to fwnode later may not be able to test it on
+> > > OF, increasing the likelihood something breaks. So use fwnode API where you
+> > > can now, and we'll address that one call later on.
+> > 
+> > Sorry, this is extra work for very little gain (if any) now, so I don't
+> > plan to do so if I can't implement a full conversion.
+> 
+> I don't see why would you leave this for someone else to clean up later.
+> It's called "technical debt". Similarly, we have no ACPI-only sensor
+> drivers that would use ACPI specific functions that would not be available
+> on non-ACPI systems --- they've all used the fwnode API, missing just
+> regulators, clocks and GPIOs.
+
+I agree with Sakari. Let's reduce the scope of ACPI/OF/etc-specific functions
+in the drivers. There are really little that have no generic counterparts.
+And most of the usages are special cases.
+
+> If you like, I think we could have an fwnode version of the same function,
+> to be used with DT binding compliant format for the device in ACPI DSDT.
+> Plain ACPI would have no need for the function.
+
 -- 
-2.39.2
+With Best Regards,
+Andy Shevchenko
+
 
 
