@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FFBF7DCF3A
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4227DCF3E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:32:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92FC81C20C26
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:31:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADBBB1C20C1A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8159F1DDF5;
-	Tue, 31 Oct 2023 14:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39F923A2;
+	Tue, 31 Oct 2023 14:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DYb5EqzF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UdjZBZfv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF62199DC
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 14:31:13 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C28BEFE
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:31:10 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so9152374a12.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:31:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1E31DFD3
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 14:32:35 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55EDFDA
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:32:34 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53e08e439c7so9826989a12.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:32:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698762669; x=1699367469; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698762753; x=1699367553; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xm+VLoepgpEYkMz/3ZlsMQx033enDSAo3eSGoq/fDsw=;
-        b=DYb5EqzFmQVUMN0wsCuKKH7SgLE3PU4M8Y3LhxFBw6sXWAeuk13QWstPfn7E2B3APC
-         hnFKMOxcSneSUAbehPdwBoaUdN0duwwE/Jrb3CgiFCmHbJao+nleH/xqQmWMFLbhF/dS
-         DWzslWEoD3Lh9i3hnao5Xl4YNlsHYvvUN6ApEHfkY8NKB/p1rITfzjxaA4TrAyvSgVGP
-         IRSNgo9NqNbiSEezNIUSqbWpbT6+ye5S4jaI7b9R8Fla4NgeGxLZ2jAN1UPSNnQX4kv6
-         5hkZTyTEiYknPZy03QjTpcBX8zuKogcX3+EaLU4MezU3auF0Ga99QMPI0OsyoGSeHqFT
-         +9Nw==
+        bh=dhdK6RYmfsHn7tvjiF7rwYd88kFXnIwd6K4WdtC7FUc=;
+        b=UdjZBZfvwzObrUw0U6LWvZbMFIFoJr+Sp9zh9nvX2rfTZBDC3m0bz/s4U227EHjyAc
+         Ivet225NARynsJMeG5o4jbTS5IemdfrJCK7S7Q9XyMhlasa9RzvlzPdjma3IMEGtjkNC
+         C1pO4V28owE1iMwIXtINthOaKjc7RDaQQKSQc0Fb4nOe+Rw6+vyqp5u5eKBQbIGJJptH
+         HMmyQavTGBkcLbdFqC0U0mk5JUwJv8q58mgGugu8dtUqvILj5AXX99Rs4VOZF9LuUR1b
+         mOnv52Lcdo21qoQIqFr/6hopIOUsIQ+GdvGcu3kfWFPDA6cRbiy7NixMwggH8UdXPVHJ
+         gVhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698762669; x=1699367469;
+        d=1e100.net; s=20230601; t=1698762753; x=1699367553;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xm+VLoepgpEYkMz/3ZlsMQx033enDSAo3eSGoq/fDsw=;
-        b=ECx3vL7uDqVk4ZXNxP9tzbDYFLBUejWThxSVAhdZ6Da79vAdRj3VaEPM9ZJw3Oqno3
-         re4ZZQcKk2pe7MB6iN0MaxjIv37FM/fahtA58Ppn0gexojZhy1U7jN909HEiwguYwaRF
-         UWQ/qn6kbbE3K2c6Sd82BveeEr74Ytt29H7tMHy2mQX4ZEXR0d2cPm2/CNWWf9JiVGP7
-         HtIlvuu0A2mOOeopYFplO8JdO8ojn6vf7aCJZx5OvELfg+2Z3ulj9rEC+0A2YZzEesd1
-         e0Z3AwRTlbF4r9qKuo22+iG8pH4R1yyst8ePRogzvPOJn2m9ymQsup/UAFTmq9RsmBd2
-         horQ==
-X-Gm-Message-State: AOJu0YwLtneI5YkjyGCUFWMKQtn1Opx0qpJDUEiMzCICxOjbVF9qxEAs
-	ZsK8y3gWbI/HAHzQF5TBpoGS4Q==
-X-Google-Smtp-Source: AGHT+IEQkPSYVuPCL4yM410Y0bMFWAOzT9AuzwEo0dP79HBli0t7IMJNeWToEaMLYKUoI11woY+ziA==
-X-Received: by 2002:aa7:d50b:0:b0:53e:7d60:58bb with SMTP id y11-20020aa7d50b000000b0053e7d6058bbmr10891799edq.27.1698762668915;
-        Tue, 31 Oct 2023 07:31:08 -0700 (PDT)
+        bh=dhdK6RYmfsHn7tvjiF7rwYd88kFXnIwd6K4WdtC7FUc=;
+        b=HxFsL0LYaUUI5vJulB0pHLEQssLZFacZPHh8DgjcqVzCvIOZpAkDIDUimT47TR8vJh
+         XRQ1zrlRrwns+ZCNS9UA1yTW/4L8SqzfHp7WL3+u1nXNSqpfHmKicqz+qwLN2ikoXLl1
+         P+BMa8lVCFhRXiOfoynNvejvbJW0YNbjcjj2lJrSyk1L0WmJWewqlDZyzwXXM9CSQrE7
+         VrrBxXp5ZkZ2vmSFkVHgKoDpGRfo8EXWRpY/D9nZm/YBYzWQZFpBgKYxxCNEy1fKSMIH
+         0heRN5OzQf/PwNH8HmNlnsStlIW0U1EU9NBFQkVa65PMSXC3/h1e1Kh4JyEPwJD4ATkm
+         0URg==
+X-Gm-Message-State: AOJu0YwEV+iTSXBj3sjLJujjfpzJwB6QMrZohdlOmKh/ervmsodNVGHj
+	haI7F6ulDN+qot/r0UW+o8N57Q==
+X-Google-Smtp-Source: AGHT+IFInH0rqjthYwiCDnvPoh38gWztPoQ0d9DqfZCWiGcA+RXWEv24DQG42K9fofXIziWGiXVDow==
+X-Received: by 2002:a50:d49e:0:b0:543:566f:2e89 with SMTP id s30-20020a50d49e000000b00543566f2e89mr3078707edi.37.1698762752740;
+        Tue, 31 Oct 2023 07:32:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id v27-20020a50955b000000b0053e408aec8bsm1252059eda.6.2023.10.31.07.31.06
+        by smtp.gmail.com with ESMTPSA id v27-20020a50955b000000b0053e408aec8bsm1252059eda.6.2023.10.31.07.32.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 07:31:08 -0700 (PDT)
-Message-ID: <ac403ba5-b0e7-44ff-8b12-e6b559a99cfc@linaro.org>
-Date: Tue, 31 Oct 2023 15:31:06 +0100
+        Tue, 31 Oct 2023 07:32:32 -0700 (PDT)
+Message-ID: <7acc7231-f614-4f3d-b5ad-a2dac94f6709@linaro.org>
+Date: Tue, 31 Oct 2023 15:32:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: brcm,bcm59056: Convert to YAML
+Subject: Re: [PATCH v2 2/6] dt-bindings: mfd: brcm,bcm59056: Add compatible
+ for BCM59054
 Content-Language: en-US
 To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
@@ -81,7 +82,7 @@ To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
 Cc: Stanislav Jakubek <stano.jakubek@gmail.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20231030-bcm59054-v2-0-5fa4011aa5ba@gmail.com>
- <20231030-bcm59054-v2-1-5fa4011aa5ba@gmail.com>
+ <20231030-bcm59054-v2-2-5fa4011aa5ba@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,96 +128,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231030-bcm59054-v2-1-5fa4011aa5ba@gmail.com>
+In-Reply-To: <20231030-bcm59054-v2-2-5fa4011aa5ba@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30/10/2023 20:41, Artur Weber wrote:
-> Convert devicetree bindings for the Broadcom BCM59056 PMU MFD from
-> TXT to YAML format. This patch does not change any functionality;
-> the bindings remain the same.
+> The BCM59054 MFD is fairly similar to the BCM59056, and will use
+> the same driver. Add compatible and specify the allowed regulator
+> nodes.
 > 
 > Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
->  .../devicetree/bindings/mfd/brcm,bcm59056.txt      | 39 ----------
->  .../devicetree/bindings/mfd/brcm,bcm59056.yaml     | 91 ++++++++++++++++++++++
->  2 files changed, 91 insertions(+), 39 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.txt b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.txt
-> deleted file mode 100644
-> index be51a15e05f9..000000000000
-> --- a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.txt
-> +++ /dev/null
-> @@ -1,39 +0,0 @@
-> --------------------------------
-> -BCM590xx Power Management Units
-> --------------------------------
-> -
-> -Required properties:
-> -- compatible: "brcm,bcm59056"
-> -- reg: I2C slave address
-> -- interrupts: interrupt for the PMU. Generic interrupt client node bindings
-> -  are described in interrupt-controller/interrupts.txt
-> -
-> -------------------
-> -Voltage Regulators
-> -------------------
-> -
-> -Optional child nodes:
-> -- regulators: container node for regulators following the generic
-> -  regulator binding in regulator/regulator.txt
-> -
-> -  The valid regulator node names for BCM59056 are:
-> -  	rfldo, camldo1, camldo2, simldo1, simldo2, sdldo, sdxldo,
-> -	mmcldo1, mmcldo2, audldo, micldo, usbldo, vibldo,
-> -	csr, iosr1, iosr2, msr, sdsr1, sdsr2, vsr,
-> -	gpldo1, gpldo2, gpldo3, gpldo4, gpldo5, gpldo6,
-> -	vbus
-> -
-> -Example:
-> -	pmu: bcm59056@8 {
-> -		compatible = "brcm,bcm59056";
-> -		reg = <0x08>;
-> -		interrupts = <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-> -		regulators {
-> -			rfldo_reg: rfldo {
-> -				regulator-min-microvolt = <1200000>;
-> -				regulator-max-microvolt = <3300000>;
-> -			};
-> -
-> -			...
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
-> new file mode 100644
-> index 000000000000..6d6acc9fd312
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,bcm59056.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/brcm,bcm59056.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: BCM590xx Power Management Unit MFD
-> +
-> +maintainers:
-> +  - Artur Weber <aweber.kernel@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - "brcm,bcm59056"
+>  .../devicetree/bindings/mfd/brcm,bcm59056.yaml     | 125 +++++++++++++++------
+>  1 file changed, 88 insertions(+), 37 deletions(-)
 
-This is a friendly reminder during the review process.
+I guess I was reviewing your v1. Please do not send more than one
+version per day. Sending two versions within 5 minutes makes reviewers
+confused and eventually they might waste effort on reviewing wrong patchset.
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
+All my other comments apply.
 
 Best regards,
 Krzysztof
