@@ -1,222 +1,112 @@
-Return-Path: <devicetree+bounces-13047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E827DC6BB
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:51:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF5B7DC74C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E109428108C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 06:51:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950E3281626
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D2A6AB7;
-	Tue, 31 Oct 2023 06:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B6710952;
+	Tue, 31 Oct 2023 07:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="auV/mghX"
+	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="l1hUwc+M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F982EC6
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 06:51:24 +0000 (UTC)
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A1ACC9
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 23:51:13 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40907b82ab9so36802625e9.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 23:51:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1698735072; x=1699339872; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z03tBAD7kulHLciz+wyaNXrh/TRCLRTdw+sLgMToEro=;
-        b=auV/mghXFpoG33l9D7LeTCjJCsVLEGGVBDAHMEwpP87UyENpwPIpYHqSUGK3zfcsh/
-         6CoXjVlVIWPu1MOtbgKsAt62Cg0g8p99eX8xjqCQe9AN9OURF6dhslJU6jDOiqDxco2f
-         6U3RZyJJW+oKrDaOs0Vl/+SYC2963DCDsrQefFnDj/5kLZU7xO6LPujJqpqCg7nY4Pfb
-         jxX2rf/n/ZB82hYTTEilYGVEtew9S2xo636zcJ1+9XpHl0BezoquAv0x/xSs7rfNThKx
-         N+JbbWMwNKixvwdvv0D6X/APKWBUvBgz0fMhWLD1hE3K0gH7QaNNwmPOQO+iU/DND221
-         EeOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698735072; x=1699339872;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=z03tBAD7kulHLciz+wyaNXrh/TRCLRTdw+sLgMToEro=;
-        b=aUXsEmkAddTlDT5lcRZE3lOowAxHUtXF6+w3wDF7SEEsCRB8DsDm55wzV0e4VlIHRW
-         VrA35lIIoGadmqG74LgNxhqYEl06Mt1dz58PryAbmXXQSJdOFWFrNqYYGKufhqdzxZqG
-         H0yIWQavjSKY9huZP56C492X1TAGqh3TdWNdwgPmmHZb1bIJSPg9k2adhf9p/4NuXqSE
-         KPlr75mVVYdBXgERzRPVVZ0jruz4jOa0Tv2VUMlhADWq5EKaz4KbSu9GwHfMZQVKpl2Q
-         rAqpx5iO8C/zYjxN3X9r1+F+HHUOMyszBlj8dyihdb0p8WWbBdB3wJYD8x6ik8RLkWTb
-         wj7Q==
-X-Gm-Message-State: AOJu0YyALW5ar47/MqXZOEXl8bi7xSrJIrYMK2/hBazpLNFOv3VAoP94
-	cHSGxYiaAWtMhqhrefjsKLZzWA==
-X-Google-Smtp-Source: AGHT+IEzHyPRQE2zZhzDDa2oTzBfGeHjRLaOTVFZzI5RlRHxHNoXR6ODtgZmff9pqdm1ZlEPaclxXg==
-X-Received: by 2002:a05:6000:2a2:b0:32f:803e:3a06 with SMTP id l2-20020a05600002a200b0032f803e3a06mr1821538wry.7.1698735071261;
-        Mon, 30 Oct 2023 23:51:11 -0700 (PDT)
-Received: from localhost (mobiledyn-62-240-134-103.mrsn.at. [62.240.134.103])
-        by smtp.gmail.com with ESMTPSA id e13-20020a5d594d000000b00327bf4f2f14sm725497wri.88.2023.10.30.23.51.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 23:51:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B532010A00
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:29:38 +0000 (UTC)
+Received: from mx0b-002bf204.pphosted.com (mx0b-002bf204.pphosted.com [205.220.172.86])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88902C0;
+	Tue, 31 Oct 2023 00:29:37 -0700 (PDT)
+Received: from pps.filterd (m0207525.ppops.net [127.0.0.1])
+	by mx0a-002bf204.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39V3LBVR014430;
+	Mon, 30 Oct 2023 23:58:57 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	monolithicpower.com; h=from:to:cc:subject:date:message-id
+	:content-type:content-transfer-encoding:mime-version; s=pps1;
+	 bh=8AjB/JwrB69XBwDF9L++gF7xwO/o6qmFV/TAXkdYvA8=; b=l1hUwc+MJ3Le
+	SwG981NWfmlN5+T3PuZpDHmFwoxMErgRZkYyTiKCfAUK2ttTbjLL5O6gJyWAWacT
+	JQFc/a+55adTVRKD6JrRcDtVkANWtVoihlnxvn37akpyE5Ygt2p4kQcqgFMRTO62
+	xHbx/NEySRtLrdzABp6h0BPWIdj2Dv40o83YDWr971/20F1hAUw2L3Yz63mlljax
+	a+sCOgzwbVEh74lCvsSrw1DlCpfq34lG5UoASELjRPkOCiSSsPkyjFqhRPWR9x8U
+	vc1Vl0xvfFqI4c5tdCGuSxbYH0blfMg9y3NzXaPrFbpqRleRGFbsSpKygkVDSJxB
+	URO3nE8mhQ==
+Received: from webmail.monolithicpower.com (mps-vpn.monolithicpower.com [12.33.0.20] (may be forged))
+	by mx0a-002bf204.pphosted.com (PPS) with ESMTPS id 3u0xyyunyx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Mon, 30 Oct 2023 23:58:57 -0700 (PDT)
+Received: from CD-MSH02.monolithicpower.com (10.10.70.19) by
+ MPS-MSH04.monolithicpower.com (10.10.10.206) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Mon, 30 Oct 2023 23:58:55 -0700
+Received: from CD-MSH04.monolithicpower.com (10.10.70.213) by
+ CD-MSH02.monolithicpower.com (10.10.70.19) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Tue, 31 Oct 2023 14:58:53 +0800
+Received: from CD-MSH04.monolithicpower.com ([fe80::69c9:32c5:3392:58d]) by
+ CD-MSH04.monolithicpower.com ([fe80::69c9:32c5:3392:58d%2]) with mapi id
+ 15.01.2242.004; Tue, 31 Oct 2023 14:58:53 +0800
+From: "Yuxi (Yuxi) Wang" <Yuxi.Wang@monolithicpower.com>
+To: "pavel@ucw.cz" <pavel@ucw.cz>, "lee@kernel.org" <lee@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>
+CC: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "wyx137120466@gmail.com" <wyx137120466@gmail.com>,
+        "Yuxi (Yuxi) Wang"
+	<Yuxi.Wang@monolithicpower.com>
+Subject: [PATCH 0/2] leds: Add a driver for mp3326
+Thread-Topic: [PATCH 0/2] leds: Add a driver for mp3326
+Thread-Index: AdoLm4lJaIN3HyCNRxGHUTFD6lwVZg==
+Date: Tue, 31 Oct 2023 06:58:52 +0000
+Message-ID: <b2a603bac3aa47e2bfbcbcd7154a4166@monolithicpower.com>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.84.127]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 31 Oct 2023 07:51:08 +0100
-Message-Id: <CWMFBOXZ8IIL.3PDP1L7ZMG3MO@fairphone.com>
-Cc: "Andy Gross" <agross@kernel.org>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>,
- "Mathieu Poirier" <mathieu.poirier@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Manivannan Sadhasivam" <mani@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
- <robh@kernel.org>, =?utf-8?q?Matti_Lehtim=C3=A4ki?=
- <matti.lehtimaki@gmail.com>, <linux-arm-msm@vger.kernel.org>,
- <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 7/9] arm64: dts: qcom: sc7280: Add CDSP node
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Mukesh Ojha" <quic_mojha@quicinc.com>, "Doug Anderson"
- <dianders@chromium.org>
-X-Mailer: aerc 0.15.2
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
- <20231027-sc7280-remoteprocs-v1-7-05ce95d9315a@fairphone.com>
- <7934a36a-9438-719a-2ed0-4a78757b044b@quicinc.com>
- <CWLNP6QNUXN1.SNVACF2IEGI8@fairphone.com>
- <CAD=FV=U6mi0h0MBFMC+ba4oq-te6_+WR6fj1XjAq7tmUu64bUA@mail.gmail.com>
- <CWLUQWPZNAS5.3F4Y5W13OD08M@fairphone.com>
- <CAD=FV=XbwbjFgMjq-y_L-9EO+xfxwGo6RYV8Wh6P5oBR=oDf_g@mail.gmail.com>
- <d5d53346-ca3b-986a-e104-d87c37115b62@quicinc.com>
-In-Reply-To: <d5d53346-ca3b-986a-e104-d87c37115b62@quicinc.com>
+MIME-Version: 1.0
+X-Proofpoint-GUID: bxKeg3u0HYuvGmPBF0_9-VtJ6dx0ryBm
+X-Proofpoint-ORIG-GUID: bxKeg3u0HYuvGmPBF0_9-VtJ6dx0ryBm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-30_13,2023-10-31_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=645
+ spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ malwarescore=0 impostorscore=0 phishscore=0 suspectscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2310240000
+ definitions=main-2310310053
 
-On Tue Oct 31, 2023 at 7:44 AM CET, Mukesh Ojha wrote:
->
->
-> On 10/30/2023 8:33 PM, Doug Anderson wrote:
-> > Hi,
-> >=20
-> > On Mon, Oct 30, 2023 at 7:43=E2=80=AFAM Luca Weiss <luca.weiss@fairphon=
-e.com> wrote:
-> >>
-> >> On Mon Oct 30, 2023 at 3:11 PM CET, Doug Anderson wrote:
-> >>> Hi,
-> >>>
-> >>> On Mon, Oct 30, 2023 at 2:12=E2=80=AFAM Luca Weiss <luca.weiss@fairph=
-one.com> wrote:
-> >>>>
-> >>>> On Mon Oct 30, 2023 at 10:04 AM CET, Mukesh Ojha wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 10/27/2023 7:50 PM, Luca Weiss wrote:
-> >>>>>> Add the node for the ADSP found on the SC7280 SoC, using standard
-> >>>>>> Qualcomm firmware.
-> >>>>>>
-> >>>>>> The memory region for sc7280-chrome-common.dtsi is taken from msm-=
-5.4
-> >>>>>> yupik.dtsi since the other areas also seem to match that file ther=
-e,
-> >>>>>> though I cannot be sure there.
-> >>>>>>
-> >>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> >>>>>> ---
-> >>>>>>    arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   5 +
-> >>>>>>    arch/arm64/boot/dts/qcom/sc7280.dtsi               | 138 ++++++=
-+++++++++++++++
-> >>>>>>    2 files changed, 143 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/=
-arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> >>>>>> index eb55616e0892..6e5a9d4c1fda 100644
-> >>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> >>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> >>>>>> @@ -29,6 +29,11 @@ adsp_mem: memory@86700000 {
-> >>>>>>                      no-map;
-> >>>>>>              };
-> >>>>>>
-> >>>>>> +           cdsp_mem: memory@88f00000 {
-> >>>>>> +                   reg =3D <0x0 0x88f00000 0x0 0x1e00000>;
-> >>>>>> +                   no-map;
-> >>>>>> +           };
-> >>>>>> +
-> >>>>>
-> >>>>> Just a question, why to do it here, if chrome does not use this ?
-> >>>>
-> >>>> Other memory regions in sc7280.dtsi also get referenced but not actu=
-ally
-> >>>> defined in that file, like mpss_mem and wpss_mem. Alternatively we c=
-an
-> >>>> also try and solve this differently, but then we should probably als=
-o
-> >>>> adjust mpss and wpss to be consistent.
-> >>>>
-> >>>> Apart from either declaring cdsp_mem in sc7280.dtsi or
-> >>>> "/delete-property/ memory-region;" for CDSP I don't really have bett=
-er
-> >>>> ideas though.
-> >>>>
-> >>>> I also imagine these ChromeOS devices will want to enable cdsp at so=
-me
-> >>>> point but I don't know any plans there.
-> >>>
-> >>> Given that "remoteproc_cdsp" has status "disabled" in the dtsi, it
-> >>> feels like the dtsi shouldn't be reserving memory. I guess maybe
-> >>> memory regions can't be status "disabled"?
-> >>
-> >> Hi Doug,
-> >>
-> >> That's how it works in really any qcom dtsi though. I think in most/al=
-l
-> >> cases normally the reserved-memory is already declared in the SoC dtsi
-> >> file and also used with the memory-region property.
-> >>
-> >> I wouldn't be against adjusting sc7280.dtsi to match the way it's done
-> >> in the other dtsi files though, so to have all the required labels
-> >> already defined in the dtsi so it doesn't rely on these labels being
-> >> defined in the device dts.
-> >>
-> >> In other words, currently if you include sc7280.dtsi and try to build,
-> >> you first have to define the labels mpss_mem and wpss_mem (after this
-> >> patch series also cdsp_mem and adsp_mem) for it to build.
-> >>
-> >> I'm quite neutral either way, let me know :)
-> >=20
-> > I haven't done a ton of thinking about this, so if I'm spouting
-> > gibberish then feel free to ignore me. :-P It just feels weird that
-> > when all the "dtsi" files are combined and you look at what you end up
-> > on a sc7280 Chrome board that you'll be reserving 32MB of memory for a
-> > device that's set (in the same device tree) to be "disabled", right?
-> > ...the 32MB is completely wasted, I think. If we wanted to enable the
-> > CDSP we'd have to modify the device tree anyway, so it seems like that
-> > same modification would set the CDSP to "okay" and also reserve the
-> > memory...
-> >=20
-> > In that vein, it seems like maybe you could move the "cdsp_mem" to the
-> > SoC .dsti file with a status of "disabled". . I guess we don't do that
-> > elsewhere, but maybe we should be? As far as I can tell without
-> > testing it (just looking at fdt_scan_reserved_mem()) this should
-> > work...
->
-> What do you think about moving present reserve memory block from
-> sc7280-chrome-common to sc7280.dtsi and delete the stuff which
-> chrome does not need it sc7280-chrome-common ?
+Add the binding description and the corresponding driver for
+the mps mp3326.
 
-Hi Mukesh,
+Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+Yuxi Wang (2):
+  dt-bindings: leds: add mps mp3326 LED
+  leds: add mp3326 driver
 
-I'll do that in v2, thanks!
+ .../devicetree/bindings/leds/leds-mp3326.yaml | 184 +++++
+ drivers/leds/Kconfig                          |   7 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-mp3326.c                    | 632 ++++++++++++++++++
+ 4 files changed, 824 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-mp3326.yaml
+ create mode 100644 drivers/leds/leds-mp3326.c
 
-Regards
-Luca
-
->
-> -Mukesh
-> >=20
-> > -Doug
-
+--=20
+2.25.1
 
