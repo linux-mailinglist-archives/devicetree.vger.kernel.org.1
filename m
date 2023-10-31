@@ -1,109 +1,163 @@
-Return-Path: <devicetree+bounces-13100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572B47DC848
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:34:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3EC7DC881
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:38:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8708C1C20901
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:34:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA032B20A20
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C62134B3;
-	Tue, 31 Oct 2023 08:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCA7883D;
+	Tue, 31 Oct 2023 08:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GTurDuM0"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="eA9m+CUv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F7D11CA9
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:34:12 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA7FADE;
-	Tue, 31 Oct 2023 01:34:10 -0700 (PDT)
-X-UUID: 3e9ec33e77c811ee8051498923ad61e6-20231031
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=ubP+PTJjpJSFcwGbKQYBwEQnNMzAHq2GVbdn1Ak3XSU=;
-	b=GTurDuM0X+AqlbVrQVw5DdZ/RJyaks3CGily/lFb+SAwfMCs2F7HOcLuewdjYoEAe1JXY6cHwRTgre+W+I5fArcJU1SRHcvvdHvW5+yAzPQUJON/ql5KFb2xwsFRsSOAd2W+PS4lkwdQq2f+aBtwgVrQ77cSBBRzipNnAiMDz6U=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.33,REQID:11d17da0-f3e7-4e03-ba37-de499bbdbb12,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:364b77b,CLOUDID:5490d694-10ce-4e4b-85c2-c9b5229ff92b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 3e9ec33e77c811ee8051498923ad61e6-20231031
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 488370444; Tue, 31 Oct 2023 16:34:02 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 31 Oct 2023 16:34:01 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 31 Oct 2023 16:34:01 +0800
-From: Moudy Ho <moudy.ho@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Moudy
- Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v9 16/16] dt-bindings: display: mediatek: padding: add compatible for MT8195
-Date: Tue, 31 Oct 2023 16:33:57 +0800
-Message-ID: <20231031083357.13775-17-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20231031083357.13775-1-moudy.ho@mediatek.com>
-References: <20231031083357.13775-1-moudy.ho@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0CA6D22
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:38:31 +0000 (UTC)
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8179C1
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:38:15 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-5b7f3f470a9so3606660a12.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:38:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tweaklogic.com; s=google; t=1698741495; x=1699346295; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=28DXBAYX1XRtP2wWeR8rEQtVtlzWFlh45fzZ3wUwj5Y=;
+        b=eA9m+CUvm1HqM496Wb7XJXTX8jdqPpS1zzBpe4cZteYx43SrFTfz/uM6oPLZ0u/a63
+         9ATe395o4autr7RBpEsAXKaeSk6gYROtRg/gK1O5Ba7IvcXf1OiYkI9AQfV6zxGUA3MR
+         E8GzsqXqumCveOn0ZtFo7ij4BmM9VTLpuHA7cqJN3NopCUDRvZENLz7v5EBgPFRFs/kh
+         129PhNGECELk0BR3BmTcbTm6knTL94mig8IXUg9Zw99TmYLGvlq4yLgIa1SJjy1dMXaW
+         swL0T/UM5gRN68WCr/LJXuzeSQRV6BDRGdyukNuFj3JsD9v39Cf2qUwQNStIUPnqRKSM
+         T9jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698741495; x=1699346295;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=28DXBAYX1XRtP2wWeR8rEQtVtlzWFlh45fzZ3wUwj5Y=;
+        b=AT7z4+tRTxneZ4Xmi7AkhZ8L00XfDw6DlMxk94cikn6h8FFPlCOB/3r95UYULXX/LU
+         rfJYJEPVYHMIxA7q2lGYja0slwAaVqZK2z5/2yG3QNRKQ4/phz9ATGJIXVCpQ7UZbwYy
+         5tqY3YXV8SReySKA6Cmegxj4iDC4wJRSz/GvZIUz4u2aNimstSGAPnY8bDmg4ebCyHVu
+         Y81++uPKVbFWA7h8UXT+dToS4FZN9rdYv6hNT/xc/0a9NVpatCWAGlu3tdJRxUu4928v
+         43pz1qII8lfCGIr0l5gAZ3hltixcKV+i/+Najygqh+mnWbe2vC4wgbnFhHJKjIG+o7T1
+         CY9g==
+X-Gm-Message-State: AOJu0YzmJTDkrSVtQsfzJc9V7pXHd6l3GBymLF6T5m8i8VjJ09O6zJzF
+	1PRFYuIBaqs83jyah9xVV/HBfw==
+X-Google-Smtp-Source: AGHT+IHxkBTG12jtDz6LskO7p7yf/0lY5uSyZBd4OmXP62L9S3rUvHiBXN4T9B04oSxoA88vrWaQJw==
+X-Received: by 2002:a05:6a20:7f87:b0:15b:c800:48af with SMTP id d7-20020a056a207f8700b0015bc80048afmr12323973pzj.23.1698741495120;
+        Tue, 31 Oct 2023 01:38:15 -0700 (PDT)
+Received: from ?IPV6:2403:580d:82f4:0:d7db:fc6b:2721:a9be? (2403-580d-82f4-0-d7db-fc6b-2721-a9be.ip6.aussiebb.net. [2403:580d:82f4:0:d7db:fc6b:2721:a9be])
+        by smtp.gmail.com with ESMTPSA id u10-20020a17090282ca00b001c1f4edfb9csm792534plz.173.2023.10.31.01.38.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 01:38:14 -0700 (PDT)
+Message-ID: <2974aa13-796c-49ef-bef7-fd7f3f9b7f49@tweaklogic.com>
+Date: Tue, 31 Oct 2023 19:08:08 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
+Content-Language: en-US
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
+ <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+ <20231028162025.4259f1cc@jic23-huawei>
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20231028162025.4259f1cc@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add a compatible string for the PADDING block in MediaTek MT8195 that
-is controlled by MDP3.
+> 
+>> +static struct iio_event_spec apds9306_event_spec_als[] = {
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_RISING,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_FALLING,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+>> +			BIT(IIO_EV_INFO_ENABLE),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
+> This matches an entry above for type. Don't have separate entries.
+>> +	},
+>> +};
+>> +
+>> +static struct iio_event_spec apds9306_event_spec_clear[] = {
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
+>> +	},
+>> +};
+>> +
+>> +#define APDS9306_CHANNEL(_type) \
+>> +	.type = _type, \
+>> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) | \
+>> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+>> +	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) | \
+>> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> 
+> Scale on the intensity channel is interesting...  What are the units?
+> There tend not to be any well defined units for intensity (as opposed
+> to illuminance).  There may be gain on the signal, but it won't be in untils
+> that map directly to a scale userspace should apply.  This is one of the
+> rare reasons for using the HARDWARE_GAIN element of the ABI.
+> 
+> A tricky corner however as relationship between raw value and hardwaregain
+> is not tightly defined (as it can be really weird!)
+Hi Jonathan,
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
----
- .../bindings/display/mediatek/mediatek,padding.yaml           | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Thank you for taking time for reviewing and clearing all my tiny doubts and
+queries especially for the dt and versioning part. Much appreciated.
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-index 6bad7dc2d69f..be07bbdc54e3 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
-@@ -20,7 +20,9 @@ description:
- 
- properties:
-   compatible:
--    const: mediatek,mt8188-disp-padding
-+    enum:
-+      - mediatek,mt8188-disp-padding
-+      - mediatek,mt8195-mdp3-padding
- 
-   reg:
-     maxItems: 1
--- 
-2.18.0
+In the above case, should I not expose scale for the "clear" channel? Rather,
+how should I expose the "clear" channel to userspace?
+
+Regards,
+Subhajit Ghosh
+
+> 
+>> +
+>> +static struct iio_chan_spec apds9306_channels_without_events[] = {
+>> +	{
+>> +		APDS9306_CHANNEL(IIO_LIGHT)
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+>> +	}, {
+>> +		APDS9306_CHANNEL(IIO_INTENSITY)
+>> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+>> +		.modified = 1,
+>> +	},
+>> +};
+> 
+
 
 
