@@ -1,925 +1,247 @@
-Return-Path: <devicetree+bounces-13190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065A47DCD6F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:01:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D1B17DCD69
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:00:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A0F21C20C87
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:01:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2E0828170A
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F93125C4;
-	Tue, 31 Oct 2023 13:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D615E10976;
+	Tue, 31 Oct 2023 13:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1sbY9d26";
+	dkim=pass (1024-bit key) header.d=microchiptechnology.onmicrosoft.com header.i=@microchiptechnology.onmicrosoft.com header.b="TbeRMe/2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6F7134D6;
-	Tue, 31 Oct 2023 13:01:15 +0000 (UTC)
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C579FC9;
-	Tue, 31 Oct 2023 06:01:12 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39VD0G5b016146;
-	Tue, 31 Oct 2023 09:00:39 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3u1f5hy0n8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 09:00:37 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 39VCwIdu009268
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 31 Oct 2023 08:58:18 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 31 Oct 2023 08:58:17 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 31 Oct 2023 08:58:17 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 31 Oct 2023 08:58:17 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.145])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 39VCvsPC005020;
-	Tue, 31 Oct 2023 08:58:09 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni
-	<alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck
-	<linux@roeck-us.net>,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-hwmon@vger.kernel.org>
-Subject: [PATCH v2 2/2] rtc: max31335: add driver support
-Date: Tue, 31 Oct 2023 14:57:38 +0200
-Message-ID: <20231031125751.86566-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231031125751.86566-1-antoniu.miclaus@analog.com>
-References: <20231031125751.86566-1-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A86D294;
+	Tue, 31 Oct 2023 13:00:26 +0000 (UTC)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89E5DE;
+	Tue, 31 Oct 2023 06:00:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1698757224; x=1730293224;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=6lrPTOAiacMdmdOtTByxBYuJ3DvCdamR8i7qTarw3eY=;
+  b=1sbY9d26a7gHVllen7SSuxu/x+h9GLIvKPzX9wjmdQzVAjcmj1xyr2e/
+   v/MVziTeP0q3300rjvLMDx5jWme2JXz34DoycWuMv7fU8WfExkMrxMVk+
+   fY1k36CyQosRO627ayKOoKy6aybTrer4I5j0KyaetQDcO5kucgOBEdi55
+   HjV56jj9UNsMLgG0KYsrGGV3BuEv0NRYTwvm8g4dWtrcsNqewC2D6Kq/l
+   MWcaClEuPXPxDgAlM8w0SrcfmGEJj65+zMWwFo5BPvC2OOYghPAm/ujgQ
+   H2+0hQy4JzFejX5kgde4XzEcp+0kwYpYn4YU+7dqcVwtAZM/8yy4s3XCI
+   g==;
+X-CSE-ConnectionGUID: UQ1/csCVT4WZFdSox6Y0jQ==
+X-CSE-MsgGUID: +7+hkVYxTIu3Erl0yYv6ag==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="10890424"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 31 Oct 2023 06:00:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 31 Oct 2023 05:59:49 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21 via Frontend Transport; Tue, 31 Oct 2023 05:59:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cB+T7P9vYCVT4CDlH3hJ9vBHMwsjdQKtqVwXy4Dm/J4T7mdHOAMDJ8eoo2k/ObTPfa53h6D1sNJl9ZgR6L7K2smeml3Jx2dKr3RoHylSqZl0uVgrrSLCQ8Iipm1fpM2BN3BkZS5q7EIx+B0UUSXpotbNHv5GSKrxJQZser7Io2iOJ6L0RSfaAkXHSThIKgmyZps7LcgpWdJaw44aJyOg772199a2Zc9/hiD5/pnThDBH3Hp7ybYcQKDj3zGBfc2v3xWJoc0N6lvRY/VFaIuAYaeJ+ohxoLQ8FcT0W4+5bsvC6RNe7zBhuv9lkvCl9BaKPGw4AOMtK+EkOEHDybFZ0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6lrPTOAiacMdmdOtTByxBYuJ3DvCdamR8i7qTarw3eY=;
+ b=eoEdBJBxJg3KLmKSdiYklt9SNxJYiyONdqA/lmdtziaPPq0Kb6aDtAu7fIeQ+yrU/tyd1pBz893Lgcp3KerhFrHSzakSwQFTI8NmjXTss+HLSAhjzVszvrRpPRxkCXCLTJdh94OubO1I07tpT/BDzabqJ3BvmEI9/ue7xUZKhsHJRCIaNsZetZvzW5IrtzE69IDfr6xeMK5J3A7b3rzfReDSMwCNrCnSoSXjpE2Vf3K3AjNIWBfCOYZVbY/ohoHVEaKC6pGJasgBbmO5L6gtksQMswZOURFmR+bU8NBC05I2Q2HuxEigqJm36IvwrjsugxvV74DCfb/LvcKf8JAZ4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6lrPTOAiacMdmdOtTByxBYuJ3DvCdamR8i7qTarw3eY=;
+ b=TbeRMe/24mZSc8bCHV2m/0EECQq1vrk1A1hwz+KOCqUfQvsB7dmlDYz8MWA0caetiQ936XIBkIyiEnMDARKXyX8lykR2anwVqQ9C8h8NZcSbbzL5My0keT+gYQuxpo9mz9g5khWHe8jBGA6LVBFCGN7IKTSYY+sBpcEz6k/bkNI=
+Received: from DM6PR11MB3532.namprd11.prod.outlook.com (2603:10b6:5:70::25) by
+ IA0PR11MB7816.namprd11.prod.outlook.com (2603:10b6:208:407::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.28; Tue, 31 Oct
+ 2023 12:59:47 +0000
+Received: from DM6PR11MB3532.namprd11.prod.outlook.com
+ ([fe80::595f:f69d:149d:510]) by DM6PR11MB3532.namprd11.prod.outlook.com
+ ([fe80::595f:f69d:149d:510%4]) with mapi id 15.20.6933.029; Tue, 31 Oct 2023
+ 12:59:47 +0000
+From: <Parthiban.Veerasooran@microchip.com>
+To: <krzysztof.kozlowski@linaro.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<Horatiu.Vultur@microchip.com>, <Woojung.Huh@microchip.com>,
+	<Nicolas.Ferre@microchip.com>, <UNGLinuxDriver@microchip.com>,
+	<Thorsten.Kummermehr@microchip.com>, <davem@davemloft.net>,
+	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <corbet@lwn.net>, <Steen.Hegelund@microchip.com>,
+	<rdunlap@infradead.org>, <horms@kernel.org>, <casper.casan@gmail.com>,
+	<andrew@lunn.ch>
+Subject: Re: [PATCH net-next v2 4/9] dt-bindings: net: add OPEN Alliance
+ 10BASE-T1x MAC-PHY Serial Interface
+Thread-Topic: [PATCH net-next v2 4/9] dt-bindings: net: add OPEN Alliance
+ 10BASE-T1x MAC-PHY Serial Interface
+Thread-Index: AQHaBchdwqp9J78AZUCeswF+FBl/obBYkCcAgAtYjAA=
+Date: Tue, 31 Oct 2023 12:59:47 +0000
+Message-ID: <90b77b7e-4424-4436-8cec-055f41fa7470@microchip.com>
+References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
+ <20231023154649.45931-5-Parthiban.Veerasooran@microchip.com>
+ <478c0e7e-bdff-41af-a12f-f9930f1c665a@linaro.org>
+In-Reply-To: <478c0e7e-bdff-41af-a12f-f9930f1c665a@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Mozilla Thunderbird
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3532:EE_|IA0PR11MB7816:EE_
+x-ms-office365-filtering-correlation-id: 8ad1561d-6b5c-4bb7-209e-08dbda1142ac
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 5bwPfuGv4lKR+fq3luWWyI5GQBj4lGau1x4olX0CeaIqi487WAlnGsX12TBL5vPHPYkdANoP3f55JW6tEdlBgQl7ly2OJgdabqMZh9LL3SlRMId1BEEK6vB1XipcJSYaNV21Mpp0EO+vkTZBhM2TtnGZBTutWBqQ0vDcsFUGiQWX7N058MM8SODMpZqwY++cVx9f4zfxBeBf9/ZxA1cOX/NARUFnhsttYavv8HbtoTieh7PThy6eukv/InOSMwKWZ8ZyurbQfZF78c2teAGSgjxnT6NXkuQ7NhLrjVkEPGKNQsDztctm+Vs71PrcTlB4zB1c7iK0qlBYC3V84ceVG730TLCKKcCuq6Jnx9gyEGQO8FNHw6Z8WJVy4ZWyIptgsKxTbK+rJ8CSq8AROgF0GtE2s9PmjsQJVUwcolo52FQTd+CM1ifZFP95AlLMzSdGkn6fexf5PRMqOV0oZS10j+2YIa2ofwQCgd91NEoNF8n+mD/wRxXRGTqi6hFawPVXR4EkhaaLKr8NbRr5MftXvk7+gtLnNv/4kb73OOTTRsvYGF/cr/cdobKusH9vtBEO8ppsMlevOffquxy2mEhkM4gl6NMkfjvWKXB1NzcJjQrMeqyjcXbnKeapeggS2uyPxXxFsw0ZEapUJFO1/8GXo/n50uEa9FPfHxE0jXUozxcdigJdEBg+40dwVSPnBG2mW/jYSoFPbNTCS+L0vvaTcf7Uya915iQCmDprrvMYOJlkgzJ5RqjFB/k8HGaWicOk
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3532.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(346002)(376002)(136003)(366004)(230922051799003)(230273577357003)(230173577357003)(451199024)(64100799003)(1800799009)(186009)(38100700002)(2906002)(64756008)(122000001)(66476007)(66556008)(54906003)(76116006)(66446008)(66946007)(316002)(71200400001)(83380400001)(966005)(53546011)(6512007)(6486002)(478600001)(6916009)(6506007)(91956017)(2616005)(26005)(5660300002)(7416002)(41300700001)(8936002)(8676002)(4326008)(31696002)(86362001)(36756003)(38070700009)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NmxrVE5hblQ5NE1qUmtnOHBrb0NEdXhWWFdHWldlMkk0Y0thWG43Ym43dE9V?=
+ =?utf-8?B?RFE0MW1GcUplZzQ2djd2T2lhOTJvaDZnSEhOd09lOTlPNEoydlJBeEdqSlZ2?=
+ =?utf-8?B?YkRLN1U5WHZ0RS81Q01RRkNGL2MwMHdXek4vR0VXczJKU3gwS2VLZDR6SWJq?=
+ =?utf-8?B?a2pjWjV0K0lrNXV0L2E2VlI5cjVKTEhZUFBqMlFWbjF0TWxOSUhVTWpRbnZr?=
+ =?utf-8?B?V0RwS1l6dlkrSENLcjBYUTYvczVIUURuTm5aQUh0SFFKMHdtMjdnTEFlTGN5?=
+ =?utf-8?B?QSt3RnVXL2FGaThnVUJKWndrVUVUbjdjdXFndlJVRW4yREtyRUlHcE1MQkRx?=
+ =?utf-8?B?b2lxbm9RT21LV1JuMzM4YWlBK1ZySDRxVFVGTnhXZ3VvelN1S2x2bEExdVFq?=
+ =?utf-8?B?YitxaW5ZaUhCS1ZoVFB1YjhHelZ4NExMME5mY2RERXYwaFdHM0JuNnZaM0NB?=
+ =?utf-8?B?NmdaVHFZRE1yWmdUa2Eva1NKK1BYczM1eHk1UnV2MGM2NzZYM2RHQk9YU3JN?=
+ =?utf-8?B?WHQwSkszQldMSG1EOE5UWGZKcW5jL3UzN0YwTnVwM3FoVEw2cjJBWkxGOFA0?=
+ =?utf-8?B?S2xnWWZWVzd6MEkydGxsN1BnSnp6QUtCciszcDdndEhLZ3BETlV6OHgxeWJj?=
+ =?utf-8?B?Ylc0WXJPVTBjb25LOHRBY2hiZytERldxYjFMbitlMXNpU0ZjcDcybTlpRlZW?=
+ =?utf-8?B?WGJPYThKamh5RkhDNVQ2bDB3a3BMb0VSUnpndlZ0ZU5TcXVFYVJrOWlCVmll?=
+ =?utf-8?B?S1NIM0xMWC9vUGRBTTQreE0zanoyU2dzendIQWV6Y1NqV2dONDlmVUh5TUlK?=
+ =?utf-8?B?aDJieERUaFF0eXpSUldDalMrdnhMenFYRVY4cTVHZGFIamgyNTFwRWVXSmxR?=
+ =?utf-8?B?aFRMZmxVTEpSZjNrd3IxTTBWdmdvUUxxRVZQS0FKblNLQTlhbjhJbS9NV3Nl?=
+ =?utf-8?B?U1NXOVVXSEJZdC84T294UzlicitObTF2dTUyRWx5RnZ1Wm11clVTNEJoTHhw?=
+ =?utf-8?B?aUIxcGhzVjRPaVhNa2s0d3NlN2EvZVhvWk1kcTB2cnhsUHNGK0FhSWR0RWFy?=
+ =?utf-8?B?UWhqcFVwTEVyU3AyaE8xeWdFQ0xSWC9Ybngxck9GQVZIcFZZRkVGS0xVdEVY?=
+ =?utf-8?B?NGVZU0tyMjFBWXdUV3ZWYVJTam9vbnhyOTBmL0lVaG1pN25zVjJ2RHhKQk5u?=
+ =?utf-8?B?bnM5V2x6UVJkM2pYOXEzazcwd2VGVjRRdUhOZmJ0S2J5NzRxdncxUzVaemNk?=
+ =?utf-8?B?bW5XNU52MzduQW14SkdudzhGS1puMlJIZzA2MWcvazNEcGRHbEhUYnlzQVh5?=
+ =?utf-8?B?eDJPZ1B4WS9VMVgybkdRWElNUi9vMnhYTkRDTVBWdG4yNyt0aUlDSENzMTJT?=
+ =?utf-8?B?blJ6VnJQaERlL0F4NFNxRmp3TSswQ0F0ODNLbnlGRmJLQW54em1zMldCNVRZ?=
+ =?utf-8?B?eG81U3FRb0YyeEZKc3ozZTQvTDgvQUJSQ2xqZEZCa252R2FlTTJWeEE4bGdr?=
+ =?utf-8?B?OXdPelpUZ0FaVjZ3a0Z1Q05UUWZUTGVKNTJSMXRsaE5URjdJZGUwMFlBOVdk?=
+ =?utf-8?B?QnR6VHVSTWNhSEYyb2lXc1VRY1lGWHRacG40NlRoQ1d5eUZZTk5MNmpqZGdl?=
+ =?utf-8?B?cjNrdnhWOFlUZFdLUXIxcEdMRG5lVFZrcHpkeGlwS0M1L0lQWGkwTk1MWVZM?=
+ =?utf-8?B?OUdKOHlubTVwalJNeWp4RXk5UTdrS0VZNGE0V0NsbFJWR3NKcGthS2lvUElK?=
+ =?utf-8?B?Sk0xbENWblJRaG9wK2FKckxsM1A1cklHUXg0dGZkYjhpWVZpZEFnQ2ZZWjBw?=
+ =?utf-8?B?V3NyVXljemdJcEtXVXJvNnVvZmF6bXFiVktuOVRvYmRUaHNrUGxCMVJkeGpq?=
+ =?utf-8?B?WGFZNTlvNm9PSERqQVFxUzlhV3UrZTJsZGJ3Z3ZPWXMzTXdyZHVQZ0Vsa3dk?=
+ =?utf-8?B?RGR0bk94SHo2Z3kxb05lZzRhbVd0Yk43L0ZNaGpLK1k1NWE5bUpvL0VwMDNn?=
+ =?utf-8?B?NEVLUlNodWtWclBTME1HRFNlUkdoWkpjbE9EN2lKc0szMGFCYXA5OWk5UXl1?=
+ =?utf-8?B?K2kzenNXN2RDY0svbUFtUlRZcTcwb2oyamVDdVJPNlhsd1F0UnkvVjlFNWNS?=
+ =?utf-8?B?UE9ud25oOWFydC9TNjBoOGRZOEFqNXRoTXpMOTRtaFVaMEQrZngxRUFFdjdo?=
+ =?utf-8?Q?si8jxodJ9SiLCgf3LI0sdXQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2FED8DB2B3A1D447911838422D55EF85@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: YhuTw0FF5faIEgz_UIQcJj3sqUPqsOvW
-X-Proofpoint-ORIG-GUID: YhuTw0FF5faIEgz_UIQcJj3sqUPqsOvW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-31_01,2023-10-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 malwarescore=0 adultscore=0 impostorscore=0 bulkscore=0
- priorityscore=1501 phishscore=0 mlxscore=0 mlxlogscore=999 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2310240000 definitions=main-2310310103
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3532.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ad1561d-6b5c-4bb7-209e-08dbda1142ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2023 12:59:47.0855
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oO7M8Y6Be3gQRx2aMeVeEU4Md6u+PMZxXCwAAZDoBwM+0rggTYndgmj4EvNFDFAc/ZL8mZONpgbbQtPN6HF40AjAUPJnNrYsXPZRoGgZBASrGHj7iVE4XqtDt21LlbCp
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7816
 
-RTC driver for MAX31335 ±2ppm Automotive Real-Time Clock with
-Integrated MEMS Resonator.
-
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v2:
- - use `sizeof(*)`
- - use `dev_warn` for invalid trickle resistor value.
- - implement `aux-voltage-chargeable`
- - use `devm_clk_get_enabled`
- - improve comment un status read inside probe function
- - return false by default in `max31335_volatile_reg`
- drivers/rtc/Kconfig        |  11 +
- drivers/rtc/Makefile       |   1 +
- drivers/rtc/rtc-max31335.c | 774 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 786 insertions(+)
- create mode 100644 drivers/rtc/rtc-max31335.c
-
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index d7502433c78a..11c7d7fe1e85 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -373,6 +373,17 @@ config RTC_DRV_MAX8997
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-max8997.
- 
-+config RTC_DRV_MAX31335
-+	tristate "Analog Devices MAX31335"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  If you say yes here you get support for the Analog Devices
-+	  MAX31335.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called rtc-max31335.
-+
- config RTC_DRV_MAX77686
- 	tristate "Maxim MAX77686"
- 	depends on MFD_MAX77686 || MFD_MAX77620 || MFD_MAX77714 || COMPILE_TEST
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index fd209883ee2e..99e683a48240 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -88,6 +88,7 @@ obj-$(CONFIG_RTC_DRV_M41T94)	+= rtc-m41t94.o
- obj-$(CONFIG_RTC_DRV_M48T35)	+= rtc-m48t35.o
- obj-$(CONFIG_RTC_DRV_M48T59)	+= rtc-m48t59.o
- obj-$(CONFIG_RTC_DRV_M48T86)	+= rtc-m48t86.o
-+obj-$(CONFIG_RTC_DRV_MAX31335)	+= rtc-max31335.o
- obj-$(CONFIG_RTC_DRV_MAX6900)	+= rtc-max6900.o
- obj-$(CONFIG_RTC_DRV_MAX6902)	+= rtc-max6902.o
- obj-$(CONFIG_RTC_DRV_MAX6916)	+= rtc-max6916.o
-diff --git a/drivers/rtc/rtc-max31335.c b/drivers/rtc/rtc-max31335.c
-new file mode 100644
-index 000000000000..e6b1217f2684
---- /dev/null
-+++ b/drivers/rtc/rtc-max31335.c
-@@ -0,0 +1,774 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * RTC driver for the MAX31335
-+ *
-+ * Copyright (C) 2023 Analog Devices
-+ *
-+ * Antoniu Miclaus <antoniu.miclaus@analog.com>
-+ *
-+ */
-+
-+#include <asm-generic/unaligned.h>
-+#include <linux/bcd.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/hwmon.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+#include <linux/util_macros.h>
-+
-+/* MAX31335 Register Map */
-+#define MAX31335_STATUS1			0x00
-+#define MAX31335_INT_EN1			0x01
-+#define MAX31335_STATUS2			0x02
-+#define MAX31335_INT_EN2			0x03
-+#define MAX31335_RTC_RESET			0x04
-+#define MAX31335_RTC_CONFIG			0x05
-+#define MAX31335_RTC_CONFIG2			0x06
-+#define MAX31335_TIMESTAMP_CONFIG		0x07
-+#define MAX31335_TIMER_CONFIG			0x08
-+#define MAX31335_SECONDS_1_128			0x09
-+#define MAX31335_SECONDS			0x0A
-+#define MAX31335_MINUTES			0x0B
-+#define MAX31335_HOURS				0x0C
-+#define MAX31335_DAY				0x0D
-+#define MAX31335_DATE				0x0E
-+#define MAX31335_MONTH				0x0F
-+#define MAX31335_YEAR				0x0F
-+#define MAX31335_ALM1_SEC			0x11
-+#define MAX31335_ALM1_MIN			0x12
-+#define MAX31335_ALM1_HRS			0x13
-+#define MAX31335_ALM1_DAY_DATE			0x14
-+#define MAX31335_ALM1_MON			0x15
-+#define MAX31335_ALM1_YEAR			0x16
-+#define MAX31335_ALM2_MIN			0x17
-+#define MAX31335_ALM2_HRS			0x18
-+#define MAX31335_ALM2_DAY_DATE			0x19
-+#define MAX31335_TIMER_COUNT			0x1A
-+#define MAX31335_TIMER_INIT			0x1B
-+#define MAX31335_PWR_MGMT			0x1C
-+#define MAX31335_TRICKLE_REG			0x1D
-+#define MAX31335_AGING_OFFSET			0x1E
-+#define MAX31335_TS_CONFIG			0x30
-+#define MAX31335_TEMP_ALARM_HIGH_MSB		0x31
-+#define MAX31335_TEMP_ALARM_HIGH_LSB		0x32
-+#define MAX31335_TEMP_ALARM_LOW_MSB		0x33
-+#define MAX31335_TEMP_ALARM_LOW_LSB		0x34
-+#define MAX31335_TEMP_DATA_MSB			0x35
-+#define MAX31335_TEMP_DATA_LSB			0x36
-+#define MAX31335_TS0_SEC_1_128			0x40
-+#define MAX31335_TS0_SEC			0x41
-+#define MAX31335_TS0_MIN			0x42
-+#define MAX31335_TS0_HOUR			0x43
-+#define MAX31335_TS0_DATE			0x44
-+#define MAX31335_TS0_MONTH			0x45
-+#define MAX31335_TS0_YEAR			0x46
-+#define MAX31335_TS0_FLAGS			0x47
-+#define MAX31335_TS1_SEC_1_128			0x48
-+#define MAX31335_TS1_SEC			0x49
-+#define MAX31335_TS1_MIN			0x4A
-+#define MAX31335_TS1_HOUR			0x4B
-+#define MAX31335_TS1_DATE			0x4C
-+#define MAX31335_TS1_MONTH			0x4D
-+#define MAX31335_TS1_YEAR			0x4E
-+#define MAX31335_TS1_FLAGS			0x4F
-+#define MAX31335_TS2_SEC_1_128			0x50
-+#define MAX31335_TS2_SEC			0x51
-+#define MAX31335_TS2_MIN			0x52
-+#define MAX31335_TS2_HOUR			0x53
-+#define MAX31335_TS2_DATE			0x54
-+#define MAX31335_TS2_MONTH			0x55
-+#define MAX31335_TS2_YEAR			0x56
-+#define MAX31335_TS2_FLAGS			0x57
-+#define MAX31335_TS3_SEC_1_128			0x58
-+#define MAX31335_TS3_SEC			0x59
-+#define MAX31335_TS3_MIN			0x5A
-+#define MAX31335_TS3_HOUR			0x5B
-+#define MAX31335_TS3_DATE			0x5C
-+#define MAX31335_TS3_MONTH			0x5D
-+#define MAX31335_TS3_YEAR			0x5E
-+#define MAX31335_TS3_FLAGS			0x5F
-+
-+/* MAX31335_STATUS1 Bit Definitions */
-+#define MAX31335_STATUS1_PSDECT			BIT(7)
-+#define MAX31335_STATUS1_OSF			BIT(6)
-+#define MAX31335_STATUS1_PFAIL			BIT(5)
-+#define MAX31335_STATUS1_VBATLOW		BIT(4)
-+#define MAX31335_STATUS1_DIF			BIT(3)
-+#define MAX31335_STATUS1_TIF			BIT(2)
-+#define MAX31335_STATUS1_A2F			BIT(1)
-+#define MAX31335_STATUS1_A1F			BIT(0)
-+
-+/* MAX31335_INT_EN1 Bit Definitions */
-+#define MAX31335_INT_EN1_DOSF			BIT(6)
-+#define MAX31335_INT_EN1_PFAILE			BIT(5)
-+#define MAX31335_INT_EN1_VBATLOWE		BIT(4)
-+#define MAX31335_INT_EN1_DIE			BIT(3)
-+#define MAX31335_INT_EN1_TIE			BIT(2)
-+#define MAX31335_INT_EN1_A2IE			BIT(1)
-+#define MAX31335_INT_EN1_A1IE			BIT(0)
-+
-+/* MAX31335_STATUS2 Bit Definitions */
-+#define MAX31335_STATUS2_TEMP_RDY		BIT(2)
-+#define MAX31335_STATUS2_OTF			BIT(1)
-+#define MAX31335_STATUS2_UTF			BIT(0)
-+
-+/* MAX31335_INT_EN2 Bit Definitions */
-+#define MAX31335_INT_EN2_TEMP_RDY_EN		BIT(2)
-+#define MAX31335_INT_EN2_OTIE			BIT(1)
-+#define MAX31335_INT_EN2_UTIE			BIT(0)
-+
-+/* MAX31335_RTC_RESET Bit Definitions */
-+#define MAX31335_RTC_RESET_SWRST		BIT(0)
-+
-+/* MAX31335_RTC_CONFIG1 Bit Definitions */
-+#define MAX31335_RTC_CONFIG1_EN_IO		BIT(6)
-+#define MAX31335_RTC_CONFIG1_A1AC		GENMASK(5, 4)
-+#define MAX31335_RTC_CONFIG1_DIP		BIT(3)
-+#define MAX31335_RTC_CONFIG1_I2C_TIMEOUT	BIT(1)
-+#define MAX31335_RTC_CONFIG1_EN_OSC		BIT(0)
-+
-+/* MAX31335_RTC_CONFIG2 Bit Definitions */
-+#define MAX31335_RTC_CONFIG2_ENCLKO		BIT(2)
-+#define MAX31335_RTC_CONFIG2_CLKO_HZ		GENMASK(1, 0)
-+
-+/* MAX31335_TIMESTAMP_CONFIG Bit Definitions */
-+#define MAX31335_TIMESTAMP_CONFIG_TSVLOW	BIT(5)
-+#define MAX31335_TIMESTAMP_CONFIG_TSPWM		BIT(4)
-+#define MAX31335_TIMESTAMP_CONFIG_TSDIN		BIT(3)
-+#define MAX31335_TIMESTAMP_CONFIG_TSOW		BIT(2)
-+#define MAX31335_TIMESTAMP_CONFIG_TSR		BIT(1)
-+#define MAX31335_TIMESTAMP_CONFIG_TSE		BIT(0)
-+
-+/* MAX31335_TIMER_CONFIG Bit Definitions */
-+#define MAX31335_TIMER_CONFIG_TE		BIT(4)
-+#define MAX31335_TIMER_CONFIG_TPAUSE		BIT(3)
-+#define MAX31335_TIMER_CONFIG_TRPT		BIT(2)
-+#define MAX31335_TIMER_CONFIG_TFS		GENMASK(1, 0)
-+
-+/* MAX31335_HOURS Bit Definitions */
-+#define MAX31335_HOURS_F_24_12			BIT(6)
-+#define MAX31335_HOURS_HR_20_AM_PM		BIT(5)
-+
-+/* MAX31335_MONTH Bit Definitions */
-+#define MAX31335_MONTH_CENTURY			BIT(7)
-+
-+/* MAX31335_PWR_MGMT Bit Definitions */
-+#define MAX31335_PWR_MGMT_PFVT			BIT(0)
-+
-+/* MAX31335_TRICKLE_REG Bit Definitions */
-+#define MAX31335_TRICKLE_REG_TRICKLE		GENMASK(3, 1)
-+#define MAX31335_TRICKLE_REG_EN_TRICKLE		BIT(0)
-+
-+/* MAX31335_TS_CONFIG Bit Definitions */
-+#define MAX31335_TS_CONFIG_AUTO			BIT(4)
-+#define MAX31335_TS_CONFIG_CONVERT_T		BIT(3)
-+#define MAX31335_TS_CONFIG_TSINT		GENMASK(2, 0)
-+
-+/* MAX31335_TS_FLAGS Bit Definitions */
-+#define MAX31335_TS_FLAGS_VLOWF			BIT(3)
-+#define MAX31335_TS_FLAGS_VBATF			BIT(2)
-+#define MAX31335_TS_FLAGS_VCCF			BIT(1)
-+#define MAX31335_TS_FLAGS_DINF			BIT(0)
-+
-+/* MAX31335 Miscellaneous Definitions */
-+#define MAX31335_STATUS1_DEFAULT		0x40
-+#define MAX31335_RAM_SIZE			32
-+#define MAX31335_TIME_SIZE			0x07
-+
-+#define clk_hw_to_max31335(_hw) container_of(_hw, struct max31335_data, clkout)
-+
-+struct max31335_data {
-+	struct regmap *regmap;
-+	struct rtc_device *rtc;
-+	struct clk_hw clkout;
-+};
-+
-+static const int max31335_clkout_freq[] = { 1, 64, 1024, 32768 };
-+
-+static const u16 max31335_trickle_resistors[] = {3000, 6000, 11000};
-+
-+static bool max31335_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	/* time keeping registers */
-+	if (reg >= MAX31335_SECONDS &&
-+	    reg < MAX31335_SECONDS + MAX31335_TIME_SIZE)
-+		return true;
-+
-+	/* interrupt status register */
-+	if (reg == MAX31335_INT_EN1_A1IE)
-+		return true;
-+
-+	/* temperature registers */
-+	if (reg == MAX31335_TEMP_DATA_MSB || MAX31335_TEMP_DATA_LSB)
-+		return true;
-+
-+	return false;
-+}
-+
-+static const struct regmap_config regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x5F,
-+	.volatile_reg = max31335_volatile_reg,
-+};
-+
-+static int max31335_get_hour(u8 hour_reg)
-+{
-+	int hour;
-+
-+	/* 24Hr mode */
-+	if (!FIELD_GET(MAX31335_HOURS_F_24_12, hour_reg))
-+		return bcd2bin(hour_reg & 0x3f);
-+
-+	/* 12Hr mode */
-+	hour = bcd2bin(hour_reg & 0x1f);
-+	if (hour == 12)
-+		hour = 0;
-+
-+	if (FIELD_GET(MAX31335_HOURS_HR_20_AM_PM, hour_reg))
-+		hour += 12;
-+
-+	return hour;
-+}
-+
-+static int max31335_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	u8 date[7];
-+	int ret;
-+
-+	ret = regmap_bulk_read(max31335->regmap, MAX31335_SECONDS, date,
-+			       sizeof(date));
-+	if (ret)
-+		return ret;
-+
-+	tm->tm_sec  = bcd2bin(date[0] & 0x7f);
-+	tm->tm_min  = bcd2bin(date[1] & 0x7f);
-+	tm->tm_hour = max31335_get_hour(date[2]);
-+	tm->tm_wday = bcd2bin(date[3] & 0x7) - 1;
-+	tm->tm_mday = bcd2bin(date[4] & 0x3f);
-+	tm->tm_mon  = bcd2bin(date[5] & 0x1f) - 1;
-+	tm->tm_year = bcd2bin(date[6]) + 100;
-+
-+	if (FIELD_GET(MAX31335_MONTH_CENTURY, date[5]))
-+		tm->tm_year += 100;
-+
-+	return 0;
-+}
-+
-+static int max31335_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	u8 date[7];
-+
-+	date[0] = bin2bcd(tm->tm_sec);
-+	date[1] = bin2bcd(tm->tm_min);
-+	date[2] = bin2bcd(tm->tm_hour);
-+	date[3] = bin2bcd(tm->tm_wday + 1);
-+	date[4] = bin2bcd(tm->tm_mday);
-+	date[5] = bin2bcd(tm->tm_mon + 1);
-+	date[6] = bin2bcd(tm->tm_year % 100);
-+
-+	if (tm->tm_year >= 200)
-+		date[5] |= FIELD_PREP(MAX31335_MONTH_CENTURY, 1);
-+
-+	return regmap_bulk_write(max31335->regmap, MAX31335_SECONDS, date,
-+				 sizeof(date));
-+}
-+
-+static int max31335_read_offset(struct device *dev, long *offset)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	u32 value;
-+	int ret;
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_AGING_OFFSET, &value);
-+	if (ret)
-+		return ret;
-+
-+	*offset = value;
-+
-+	return 0;
-+}
-+
-+static int max31335_set_offset(struct device *dev, long offset)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+
-+	return regmap_write(max31335->regmap, MAX31335_AGING_OFFSET, offset);
-+}
-+
-+static int max31335_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	struct mutex *lock = &max31335->rtc->ops_lock;
-+	int ret, ctrl, status;
-+	struct rtc_time time;
-+	u8 regs[6];
-+
-+	mutex_lock(lock);
-+
-+	ret = regmap_bulk_read(max31335->regmap, MAX31335_ALM1_SEC, regs,
-+			       sizeof(regs));
-+	if (ret)
-+		goto exit;
-+
-+	alrm->time.tm_sec  = bcd2bin(regs[0] & 0x7f);
-+	alrm->time.tm_min  = bcd2bin(regs[1] & 0x7f);
-+	alrm->time.tm_hour = bcd2bin(regs[2] & 0x3f);
-+	alrm->time.tm_mday = bcd2bin(regs[3] & 0x3f);
-+	alrm->time.tm_mon  = bcd2bin(regs[4] & 0x1f) - 1;
-+	alrm->time.tm_year = bcd2bin(regs[5]) + 100;
-+
-+	ret = max31335_read_time(dev, &time);
-+	if (ret)
-+		goto exit;
-+
-+	if (time.tm_year >= 200)
-+		alrm->time.tm_year += 100;
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_INT_EN1, &ctrl);
-+	if (ret)
-+		goto exit;
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_STATUS1, &status);
-+	if (ret)
-+		goto exit;
-+
-+	alrm->enabled = FIELD_GET(MAX31335_INT_EN1_A1IE, ctrl);
-+	alrm->pending = FIELD_GET(MAX31335_STATUS1_A1F, status);
-+
-+exit:
-+	mutex_unlock(lock);
-+
-+	return ret;
-+}
-+
-+static int max31335_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	struct mutex *lock = &max31335->rtc->ops_lock;
-+	unsigned int reg;
-+	u8 regs[6];
-+	int ret;
-+
-+	regs[0] = bin2bcd(alrm->time.tm_sec);
-+	regs[1] = bin2bcd(alrm->time.tm_min);
-+	regs[2] = bin2bcd(alrm->time.tm_hour);
-+	regs[3] = bin2bcd(alrm->time.tm_mday);
-+	regs[4] = bin2bcd(alrm->time.tm_mon + 1);
-+	regs[5] = bin2bcd(alrm->time.tm_year % 100);
-+
-+	mutex_lock(lock);
-+
-+	ret = regmap_bulk_write(max31335->regmap, MAX31335_ALM1_SEC,
-+				regs, sizeof(regs));
-+	if (ret)
-+		goto exit;
-+
-+	reg = FIELD_PREP(MAX31335_INT_EN1_A1IE, alrm->enabled);
-+	ret = regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
-+				 MAX31335_INT_EN1_A1IE, reg);
-+	if (ret)
-+		goto exit;
-+
-+	ret = regmap_update_bits(max31335->regmap, MAX31335_STATUS1,
-+				 MAX31335_STATUS1_A1F, 0);
-+
-+exit:
-+	mutex_unlock(lock);
-+
-+	return ret;
-+}
-+
-+static int max31335_alarm_irq_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+
-+	return regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
-+				  MAX31335_INT_EN1_A1IE, enabled);
-+}
-+
-+static irqreturn_t max31335_handle_irq(int irq, void *dev_id)
-+{
-+	struct max31335_data *max31335 = dev_id;
-+	struct mutex *lock = &max31335->rtc->ops_lock;
-+	int ret, status;
-+
-+	mutex_lock(lock);
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_STATUS1, &status);
-+	if (ret)
-+		goto exit;
-+
-+	if (FIELD_GET(MAX31335_STATUS1_A1F, status)) {
-+		ret = regmap_update_bits(max31335->regmap, MAX31335_STATUS1,
-+					 MAX31335_STATUS1_A1F, 0);
-+		if (ret)
-+			goto exit;
-+
-+		rtc_update_irq(max31335->rtc, 1, RTC_AF | RTC_IRQF);
-+	}
-+
-+exit:
-+	mutex_unlock(lock);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct rtc_class_ops max31335_rtc_ops = {
-+	.read_time = max31335_read_time,
-+	.set_time = max31335_set_time,
-+	.read_offset = max31335_read_offset,
-+	.set_offset = max31335_set_offset,
-+	.read_alarm = max31335_read_alarm,
-+	.set_alarm = max31335_set_alarm,
-+	.alarm_irq_enable = max31335_alarm_irq_enable,
-+};
-+
-+static int max31335_trickle_charger_setup(struct device *dev,
-+					  struct max31335_data *max31335)
-+{
-+	u32 ohms, chargeable;
-+	bool diode = false;
-+	int i;
-+
-+	if (device_property_read_u32(dev, "trickle-resistor-ohms", &ohms))
-+		return 0;
-+
-+	if (!device_property_read_u32(dev, "aux-voltage-chargeable",
-+				      &chargeable)) {
-+		switch (chargeable) {
-+		case 0:
-+			diode = false;
-+			break;
-+		case 1:
-+			diode = true;
-+			break;
-+		default:
-+			dev_warn(dev,
-+				 "unsupported aux-voltage-chargeable value\n");
-+			break;
-+		}
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(max31335_trickle_resistors); i++)
-+		if (ohms == max31335_trickle_resistors[i])
-+			break;
-+
-+	if (i >= ARRAY_SIZE(max31335_trickle_resistors)) {
-+		dev_warn(dev, "invalid trickle resistor value\n");
-+
-+		return 0;
-+	}
-+
-+	if (diode)
-+		i = i + 4;
-+	else
-+		i = i + 1;
-+
-+	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
-+			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
-+				       MAX31335_TRICKLE_REG_EN_TRICKLE);
-+}
-+
-+static unsigned long max31335_clkout_recalc_rate(struct clk_hw *hw,
-+						 unsigned long parent_rate)
-+{
-+	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
-+	unsigned int freq_mask;
-+	unsigned int reg;
-+	int ret;
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_RTC_CONFIG2, &reg);
-+	if (ret)
-+		return 0;
-+
-+	freq_mask = __roundup_pow_of_two(ARRAY_SIZE(max31335_clkout_freq)) - 1;
-+
-+	return max31335_clkout_freq[reg & freq_mask];
-+}
-+
-+static long max31335_clkout_round_rate(struct clk_hw *hw, unsigned long rate,
-+				       unsigned long *prate)
-+{
-+	int index;
-+
-+	index = find_closest(rate, max31335_clkout_freq,
-+			     ARRAY_SIZE(max31335_clkout_freq));
-+
-+	return max31335_clkout_freq[index];
-+}
-+
-+static int max31335_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long parent_rate)
-+{
-+	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
-+	unsigned int freq_mask;
-+	int index;
-+
-+	index = find_closest(rate, max31335_clkout_freq,
-+			     ARRAY_SIZE(max31335_clkout_freq));
-+	freq_mask = __roundup_pow_of_two(ARRAY_SIZE(max31335_clkout_freq)) - 1;
-+
-+	return regmap_update_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-+				  freq_mask, index);
-+}
-+
-+static int max31335_clkout_enable(struct clk_hw *hw)
-+{
-+	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
-+
-+	return regmap_set_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-+			       MAX31335_RTC_CONFIG2_ENCLKO);
-+}
-+
-+static void max31335_clkout_disable(struct clk_hw *hw)
-+{
-+	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
-+
-+	regmap_clear_bits(max31335->regmap, MAX31335_RTC_CONFIG2,
-+			  MAX31335_RTC_CONFIG2_ENCLKO);
-+}
-+
-+static int max31335_clkout_is_enabled(struct clk_hw *hw)
-+{
-+	struct max31335_data *max31335 = clk_hw_to_max31335(hw);
-+	unsigned int reg;
-+	int ret;
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_RTC_CONFIG2, &reg);
-+	if (ret)
-+		return ret;
-+
-+	return !!(reg & MAX31335_RTC_CONFIG2_ENCLKO);
-+}
-+
-+static const struct clk_ops max31335_clkout_ops = {
-+	.recalc_rate = max31335_clkout_recalc_rate,
-+	.round_rate = max31335_clkout_round_rate,
-+	.set_rate = max31335_clkout_set_rate,
-+	.enable = max31335_clkout_enable,
-+	.disable = max31335_clkout_disable,
-+	.is_enabled = max31335_clkout_is_enabled,
-+};
-+
-+struct clk_init_data max31335_clk_init = {
-+	.name = "max31335-clkout",
-+	.ops = &max31335_clkout_ops,
-+};
-+
-+static int max31335_nvmem_reg_read(void *priv, unsigned int offset,
-+				   void *val, size_t bytes)
-+{
-+	struct max31335_data *max31335 = priv;
-+	unsigned int reg = MAX31335_TS0_SEC_1_128 + offset;
-+
-+	return regmap_bulk_read(max31335->regmap, reg, val, bytes);
-+}
-+
-+static int max31335_nvmem_reg_write(void *priv, unsigned int offset,
-+				    void *val, size_t bytes)
-+{
-+	struct max31335_data *max31335 = priv;
-+	unsigned int reg = MAX31335_TS0_SEC_1_128 + offset;
-+
-+	return regmap_bulk_write(max31335->regmap, reg, val, bytes);
-+}
-+
-+struct nvmem_config max31335_nvmem_cfg = {
-+	.reg_read = max31335_nvmem_reg_read,
-+	.reg_write = max31335_nvmem_reg_write,
-+	.word_size = 8,
-+	.size = MAX31335_RAM_SIZE,
-+};
-+
-+static int max31335_read_temp(struct device *dev, enum hwmon_sensor_types type,
-+			      u32 attr, int channel, long *val)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	u8 reg[2];
-+	s16 temp;
-+	int ret;
-+
-+	if (type != hwmon_temp || attr != hwmon_temp_input)
-+		return -EOPNOTSUPP;
-+
-+	ret = regmap_bulk_read(max31335->regmap, MAX31335_TEMP_DATA_MSB,
-+			       reg, 2);
-+	if (ret)
-+		return ret;
-+
-+	temp = get_unaligned_be16(reg);
-+
-+	*val = (temp / 64) * 250;
-+
-+	return 0;
-+}
-+
-+static umode_t max31335_is_visible(const void *data,
-+				   enum hwmon_sensor_types type,
-+				   u32 attr, int channel)
-+{
-+	if (type == hwmon_temp && attr == hwmon_temp_input)
-+		return 0444;
-+
-+	return 0;
-+}
-+
-+static const struct hwmon_channel_info *max31335_info[] = {
-+	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-+	NULL
-+};
-+
-+static const struct hwmon_ops max31335_hwmon_ops = {
-+	.is_visible = max31335_is_visible,
-+	.read = max31335_read_temp,
-+};
-+
-+static const struct hwmon_chip_info max31335_chip_info = {
-+	.ops = &max31335_hwmon_ops,
-+	.info = max31335_info,
-+};
-+
-+static int max31335_clkout_register(struct device *dev)
-+{
-+	struct max31335_data *max31335 = dev_get_drvdata(dev);
-+	int ret;
-+
-+	if (!device_property_present(dev, "#clock-cells"))
-+		return 0;
-+
-+	max31335->clkout.init = &max31335_clk_init;
-+
-+	ret = devm_clk_hw_register(dev, &max31335->clkout);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "cannot register clock\n");
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+					  &max31335->clkout);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "cannot add hw provider\n");
-+
-+	max31335->clkout.clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(max31335->clkout.clk))
-+		return dev_err_probe(dev, PTR_ERR(max31335->clkout.clk),
-+				     "cannot enable clkout\n");
-+
-+	return 0;
-+}
-+
-+static int max31335_probe(struct i2c_client *client)
-+{
-+	struct max31335_data *max31335;
-+	struct device *hwmon;
-+	int ret, status;
-+
-+	max31335 = devm_kzalloc(&client->dev, sizeof(*max31335), GFP_KERNEL);
-+	if (!max31335)
-+		return -ENOMEM;
-+
-+	max31335->regmap = devm_regmap_init_i2c(client, &regmap_config);
-+	if (IS_ERR(max31335->regmap))
-+		return PTR_ERR(max31335->regmap);
-+
-+	i2c_set_clientdata(client, max31335);
-+
-+	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 1);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(max31335->regmap, MAX31335_STATUS1, &status);
-+	if (ret)
-+		return ret;
-+
-+	if (status != MAX31335_STATUS1_DEFAULT)
-+		dev_err_probe(&client->dev, -EINVAL,
-+			      "Invalid default status register value.\n");
-+
-+	max31335->rtc = devm_rtc_allocate_device(&client->dev);
-+	if (IS_ERR(max31335->rtc))
-+		return PTR_ERR(max31335->rtc);
-+
-+	max31335->rtc->ops = &max31335_rtc_ops;
-+	max31335->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
-+	max31335->rtc->range_max = RTC_TIMESTAMP_END_2199;
-+
-+	ret = devm_rtc_register_device(max31335->rtc);
-+	if (ret)
-+		return ret;
-+
-+	ret = max31335_clkout_register(&client->dev);
-+	if (ret)
-+		return ret;
-+
-+	if (client->irq > 0) {
-+		ret = devm_request_threaded_irq(&client->dev, client->irq,
-+						NULL, max31335_handle_irq,
-+						IRQF_ONESHOT,
-+						"max31335", max31335);
-+		if (ret) {
-+			dev_warn(&client->dev,
-+				 "unable to request IRQ, alarm max31335 disabled\n");
-+			client->irq = 0;
-+		}
-+	}
-+
-+	if (!client->irq)
-+		clear_bit(RTC_FEATURE_ALARM, max31335->rtc->features);
-+
-+	max31335_nvmem_cfg.priv = max31335;
-+	ret = devm_rtc_nvmem_register(max31335->rtc, &max31335_nvmem_cfg);
-+	if (ret)
-+		dev_err_probe(&client->dev, ret, "cannot register rtc nvmem\n");
-+
-+	hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name,
-+						     max31335,
-+						     &max31335_chip_info,
-+						     NULL);
-+	if (IS_ERR(hwmon))
-+		dev_err_probe(&client->dev, PTR_ERR(hwmon),
-+			      "cannot register hwmon device\n");
-+
-+	return max31335_trickle_charger_setup(&client->dev, max31335);
-+}
-+
-+static const struct i2c_device_id max31335_id[] = {
-+	{ "max31335", 0 },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, max31335_id);
-+
-+static const struct of_device_id max31335_of_match[] = {
-+	{ .compatible = "adi,max31335" },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, max31335_of_match);
-+
-+static struct i2c_driver max31335_driver = {
-+	.driver = {
-+		.name = "rtc-max31335",
-+		.of_match_table = max31335_of_match,
-+	},
-+	.probe = max31335_probe,
-+	.id_table = max31335_id,
-+};
-+module_i2c_driver(max31335_driver);
-+
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("MAX31335 RTC driver");
-+MODULE_LICENSE("GPL");
--- 
-2.42.0
-
+SGkgS3J6eXN6dG9mDQoNCkFzIHBlciB0aGUgY29tbWVudHMgaW4gdGhlIG90aGVyIGVtYWlsIG9m
+IHRoaXMgcGF0Y2gsIHRoaXMgRFQgYmluZGluZ3MgDQphcmUgZ29pbmcgdG8gYmUgcmVtb3ZlZC4N
+Cg0KQmVzdCBSZWdhcmRzLA0KUGFydGhpYmFuIFYNCg0KT24gMjQvMTAvMjMgMToxNCBwbSwgS3J6
+eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBs
+aW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBz
+YWZlDQo+IA0KPiBPbiAyMy8xMC8yMDIzIDE3OjQ2LCBQYXJ0aGliYW4gVmVlcmFzb29yYW4gd3Jv
+dGU6DQo+PiBBZGQgRFQgYmluZGluZ3MgT1BFTiBBbGxpYW5jZSAxMEJBU0UtVDF4IE1BQ1BIWSBT
+ZXJpYWwgSW50ZXJmYWNlDQo+PiBwYXJhbWV0ZXJzLiBUaGVzZSBhcmUgZ2VuZXJpYyBwcm9wZXJ0
+aWVzIHRoYXQgY2FuIGFwcGx5IHRvIGFueSAxMEJBU0UtVDF4DQo+PiBNQUMtUEhZIHdoaWNoIHVz
+ZXMgT1BFTiBBbGxpYW5jZSBUQzYgc3BlY2lmaWNhdGlvbi4NCj4gDQo+IEV4Y2VwdCB0aGF0IGl0
+IHdhcyBub3QgdGVzdGVkIGF0IGFsbCBmZXcgbW9yZSBpc3N1ZXMuDQo+IA0KPj4NCj4+IFNpZ25l
+ZC1vZmYtYnk6IFBhcnRoaWJhbiBWZWVyYXNvb3JhbiA8UGFydGhpYmFuLlZlZXJhc29vcmFuQG1p
+Y3JvY2hpcC5jb20+DQo+PiAtLS0NCj4+ICAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L29h
+LXRjNi55YW1sICAgICAgIHwgNzIgKysrKysrKysrKysrKysrKysrKw0KPj4gICBNQUlOVEFJTkVS
+UyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMSArDQo+PiAgIDIgZmlsZXMg
+Y2hhbmdlZCwgNzMgaW5zZXJ0aW9ucygrKQ0KPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9vYS10YzYueWFtbA0KPj4NCj4+IGRpZmYg
+LS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L29hLXRjNi55YW1s
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9vYS10YzYueWFtbA0KPj4g
+bmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uOWY0NDJmYTZjYWNl
+DQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbmV0L29hLXRjNi55YW1sDQo+IA0KPiBGaWxlbmFtZSBiYXNlZCBvbiBjb21wYXRpYmxl
+Lg0KPiANCj4+IEBAIC0wLDAgKzEsNzIgQEANCj4+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
+OiBHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlDQo+PiArJVlBTUwgMS4yDQo+PiArLS0tDQo+
+PiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9uZXQvb2EtdGM2LnlhbWwjDQo+
+PiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwj
+DQo+PiArDQo+PiArdGl0bGU6IE9QRU4gQWxsaWFuY2UgMTBCQVNFLVQxeCBNQUMtUEhZIFNwZWNp
+ZmljYXRpb24gQ29tbW9uIFByb3BlcnRpZXMNCj4+ICsNCj4+ICttYWludGFpbmVyczoNCj4+ICsg
+IC0gUGFydGhpYmFuIFZlZXJhc29vcmFuIDxwYXJ0aGliYW4udmVlcmFzb29yYW5AbWljcm9jaGlw
+LmNvbT4NCj4+ICsNCj4+ICtkZXNjcmlwdGlvbjoNCj4+ICsgIFRoZXNlIGFyZSBnZW5lcmljIHBy
+b3BlcnRpZXMgdGhhdCBjYW4gYXBwbHkgdG8gYW55IDEwQkFTRS1UMXggTUFDLVBIWQ0KPj4gKyAg
+d2hpY2ggdXNlcyBPUEVOIEFsbGlhbmNlIFRDNiBzcGVjaWZpY2F0aW9uLg0KPj4gKw0KPj4gKyAg
+MTBCQVNFLVQxeCBNQUMtUEhZIFNlcmlhbCBJbnRlcmZhY2UgU3BlY2lmaWNhdGlvbiBjYW4gYmUg
+Zm91bmQgYXQ6DQo+PiArICAgIGh0dHBzOi8vb3BlbnNpZy5vcmcvYWJvdXQvc3BlY2lmaWNhdGlv
+bnMvDQo+PiArDQo+PiArcHJvcGVydGllczoNCj4+ICsgICRub2RlbmFtZToNCj4+ICsgICAgcGF0
+dGVybjogIl5vYS10YzYoQC4qKT8iDQo+IA0KPiBEcm9wDQo+IA0KPj4gKw0KPj4gKyAgIiNhZGRy
+ZXNzLWNlbGxzIjoNCj4+ICsgICAgY29uc3Q6IDENCj4+ICsNCj4+ICsgICIjc2l6ZS1jZWxscyI6
+DQo+PiArICAgIGNvbnN0OiAwDQo+IA0KPiBXaHk/DQo+IA0KPj4gKw0KPj4gKyAgb2EtY3BzOg0K
+Pj4gKyAgICBtYXhJdGVtczogMQ0KPj4gKyAgICBkZXNjcmlwdGlvbjoNCj4+ICsgICAgICBDaHVu
+ayBQYXlsb2FkIFNpemUuIENvbmZpZ3VyZXMgdGhlIGRhdGEgY2h1bmsgcGF5bG9hZCBzaXplIHRv
+IDJeTiwNCj4+ICsgICAgICB3aGVyZSBOIGlzIHRoZSB2YWx1ZSBvZiB0aGlzIGJpdGZpZWxkLiBU
+aGUgbWluaW11bSBwb3NzaWJsZSBkYXRhDQo+PiArICAgICAgY2h1bmsgcGF5bG9hZCBzaXplIGlz
+IDggYnl0ZXMgb3IgTiA9IDMuIFRoZSBkZWZhdWx0IGRhdGEgY2h1bmsNCj4+ICsgICAgICBwYXls
+b2FkIHNpemUgaXMgNjQgYnl0ZXMsIG9yIE4gPSA2LiBUaGUgbWluaW11bSBzdXBwb3J0ZWQgZGF0
+YSBjaHVuaw0KPj4gKyAgICAgIHBheWxvYWQgc2l6ZSBmb3IgdGhpcyBNQUMtUEhZIGRldmljZSBp
+cyBpbmRpY2F0ZWQgaW4gdGhlIENQU01JTg0KPj4gKyAgICAgIGZpZWxkIG9mIHRoZSBDQVBBQklM
+SVRZIHJlZ2lzdGVyLiBWYWxpZCB2YWx1ZXMgZm9yIHRoaXMgcGFyYW1ldGVyDQo+PiArICAgICAg
+YXJlIDgsIDE2LCAzMiBhbmQgNjQuIEFsbCBvdGhlciB2YWx1ZXMgYXJlIHJlc2VydmVkLg0KPj4g
+Kw0KPj4gKyAgb2EtdHhjdGU6DQo+PiArICAgIG1heEl0ZW1zOiAxDQo+PiArICAgIGRlc2NyaXB0
+aW9uOg0KPj4gKyAgICAgIFRyYW5zbWl0IEN1dC1UaHJvdWdoIEVuYWJsZS4gV2hlbiBzdXBwb3J0
+ZWQgYnkgdGhpcyBNQUMtUEhZIGRldmljZSwNCj4+ICsgICAgICB0aGlzIGJpdCBlbmFibGVzIHRo
+ZSBjdXQtdGhyb3VnaCBtb2RlIG9mIGZyYW1lIHRyYW5zZmVyIHRocm91Z2ggdGhlDQo+PiArICAg
+ICAgTUFDLVBIWSBkZXZpY2UgZnJvbSB0aGUgU1BJIGhvc3QgdG8gdGhlIG5ldHdvcmsuDQo+PiAr
+DQo+PiArICBvYS1yeGN0ZToNCj4+ICsgICAgbWF4SXRlbXM6IDENCj4+ICsgICAgZGVzY3JpcHRp
+b246DQo+PiArICAgICAgUmVjZWl2ZSBDdXQtVGhyb3VnaCBFbmFibGUuIFdoZW4gc3VwcG9ydGVk
+IGJ5IHRoaXMgTUFDLVBIWSBkZXZpY2UsDQo+PiArICAgICAgdGhpcyBiaXQgZW5hYmxlcyB0aGUg
+Y3V0LXRocm91Z2ggbW9kZSBvZiBmcmFtZSB0cmFuc2ZlciB0aHJvdWdoIHRoZQ0KPj4gKyAgICAg
+IE1BQy1QSFkgZGV2aWNlIGZyb20gdGhlIG5ldHdvcmsgdG8gdGhlIFNQSSBob3N0Lg0KPj4gKw0K
+Pj4gKyAgb2EtcHJvdGU6DQo+PiArICAgIG1heEl0ZW1zOiAxDQo+PiArICAgIGRlc2NyaXB0aW9u
+Og0KPj4gKyAgICAgIENvbnRyb2wgZGF0YSByZWFkL3dyaXRlIFByb3RlY3Rpb24gRW5hYmxlLiBX
+aGVuIHNldCwgYWxsIGNvbnRyb2wNCj4+ICsgICAgICBkYXRhIHdyaXR0ZW4gdG8gYW5kIHJlYWQg
+ZnJvbSB0aGUgTUFDLVBIWSB3aWxsIGJlIHRyYW5zZmVycmVkIHdpdGgNCj4+ICsgICAgICBpdHMg
+Y29tcGxlbWVudCBmb3IgZGV0ZWN0aW9uIG9mIGJpdCBlcnJvcnMuDQo+PiArDQo+PiArYWRkaXRp
+b25hbFByb3BlcnRpZXM6IHRydWUNCj4+ICsNCj4+ICtleGFtcGxlczoNCj4+ICsgIC0gfA0KPj4g
+KyAgICBvYS10YzYgew0KPj4gKyAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+PiArICAg
+ICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4gDQo+IFRoYXQncyBzb21lIHRvdGFsIG1lc3MgaW4gaW5k
+ZW50YXRpb24uDQo+IA0KPj4gKyAgICAgb2EtY3BzID0gPDY0PjsNCj4+ICsgICAgIG9hLXR4Y3Rl
+Ow0KPj4gKyAgICAgb2EtcnhjdGU7DQo+PiArICAgICBvYS1wcm90ZTsNCj4+ICsgICAgfTsNCj4g
+QmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCj4gDQoNCg==
 
