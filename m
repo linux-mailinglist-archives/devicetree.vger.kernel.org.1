@@ -1,149 +1,254 @@
-Return-Path: <devicetree+bounces-13320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636ED7DD7BB
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 22:25:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4CD7DD7DF
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 22:48:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 557691C20C19
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:25:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F9F71C20C69
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1BB249E5;
-	Tue, 31 Oct 2023 21:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z0cWYfl6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7525249F9;
+	Tue, 31 Oct 2023 21:48:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B327B12E57
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 21:25:46 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FEEAB9;
-	Tue, 31 Oct 2023 14:25:44 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39VLABc6017291;
-	Tue, 31 Oct 2023 21:25:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=unZ6NqdnfdtI5R71au3Jb8C1wEIqiz3WsgFB3Y+40SM=;
- b=Z0cWYfl6Kc6N50DZ7HUwzemDAH8uazQ7/JRQf5g0dcE21moDSeaGF4msIE9gQyh7VrY9
- TKrAXJ6NxjqgeVD7XlSLkoxCsOz0TgTqCKB0rlsQ8H8iijmmT3honN2N1zUsjQn1NXxU
- pYCPcS/LoMy1tehZq/atsC2/uL+4SurE6lI3B8yZcwQX7o4E+/CZO/r9K+6bxmIpBmEW
- FR9uC12avqeqLEw8lXaMq6i/wA4VNnhu/LOhCgOnBPzy4ZSp28boCNqys3LtmTUm4piF
- AZZYOLaIpSNhWBdoeyw6Pnprr4thBmgj/dx5QR6E4eK+yuvlQnSUDg17lzVQn+H04MTa VA== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u2fcb40fg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 21:25:34 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39VLPURg021799
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 21:25:30 GMT
-Received: from [10.71.108.203] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 31 Oct
- 2023 14:25:29 -0700
-Message-ID: <e8502221-30f7-4f92-9143-0e1a2a66b86b@quicinc.com>
-Date: Tue, 31 Oct 2023 14:25:29 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A69B23750
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 21:48:12 +0000 (UTC)
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A258E4;
+	Tue, 31 Oct 2023 14:48:10 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6d319933f9fso53396a34.2;
+        Tue, 31 Oct 2023 14:48:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698788889; x=1699393689;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kvA5jz1SY2yUj/xmQkBX3wSkbpuFj33iQKbU7myJsx0=;
+        b=W6Tq6hd8ZwOEXkCdr32k+AKCM+m3ZT8Ivcu/TTSIt4DGzuShse81NzidMGXpZi0YAs
+         QUb42OfSE91YmyErquKdMzWw6ktmEg94k8IuFdDx80Ii87TUEKA6AlMH4Pc+xPrDgpFl
+         2wyMbCB2OH/SaTCOlg+eCY5SiT/3+ToU/uQUrUGYElwPBYJrHK1El6zpl4ImxI7kWiKq
+         S6LO93R8G/0zm5QZUia7abjedUj0hOdvtKZFkIRoftZqlUbVZwYxPWz/vqGksozqrhIV
+         ca+IIhWY/A8kXxntbnQIiTzxtv0ivrXOogAJbU6mrdsPOLlUB18V9OafBw9fgyi7z34/
+         Oefw==
+X-Gm-Message-State: AOJu0YwdxJExYKnNy6hXpqVssNHmmHnRD+0AoBTB0Z6L5TBw4AYK57rf
+	uCc1tsHLjFBASq26chk3R2P/jQCjrw==
+X-Google-Smtp-Source: AGHT+IGgzJtDF/8nKZ8tgnktIFscURFPxpwSUwj7pp0nKY4N0sWLr704HBXZoTw5BeHtPIKcY416wg==
+X-Received: by 2002:a05:6830:2707:b0:6c4:cdce:5de8 with SMTP id j7-20020a056830270700b006c4cdce5de8mr14733384otu.26.1698788889580;
+        Tue, 31 Oct 2023 14:48:09 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id be14-20020a056830350e00b006ce32aac3e4sm26617otb.48.2023.10.31.14.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Oct 2023 14:48:08 -0700 (PDT)
+Received: (nullmailer pid 2184979 invoked by uid 1000);
+	Tue, 31 Oct 2023 21:48:08 -0000
+Date: Tue, 31 Oct 2023 16:48:08 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree updates for v6.7
+Message-ID: <20231031214808.GA2178025-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/2] dt-bindings: arm: Document reboot mode magic
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        "Mark
- Rutland" <mark.rutland@arm.com>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        Melody Olvera <quic_molvera@quicinc.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli
-	<florian.fainelli@broadcom.com>
-References: <20231030-arm-psci-system_reset2-vendor-reboots-v1-0-dcdd63352ad1@quicinc.com>
- <20231030-arm-psci-system_reset2-vendor-reboots-v1-1-dcdd63352ad1@quicinc.com>
- <20231031174855.GA1797181-robh@kernel.org>
-From: Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <20231031174855.GA1797181-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: HtKxEB-93UaumR6sj0jkwi9Ucp2TUHvM
-X-Proofpoint-GUID: HtKxEB-93UaumR6sj0jkwi9Ucp2TUHvM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-31_07,2023-10-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- suspectscore=0 mlxlogscore=999 bulkscore=0 phishscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2310310175
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+
+Linus,
+
+Please pull. Nothing scary here. ;)
+
+There's one conflict with the USB tree. The correct resolution is in 
+linux-next.
+
+Rob
 
 
+The following changes since commit 0bb80ecc33a8fb5a682236443c1e740d5c917d1d:
 
-On 10/31/2023 10:48 AM, Rob Herring wrote:
-> On Mon, Oct 30, 2023 at 02:31:33PM -0700, Elliot Berman wrote:
->> Add bindings to describe vendor-specific reboot modes. Values here
->> correspond to valid parameters to vendor-specific reset types in PSCI
->> SYSTEM_RESET2 call.
->>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/arm/psci.yaml | 13 +++++++++++++
->>  1 file changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
->> index 0c5381e081bd..dc23e901bd0a 100644
->> --- a/Documentation/devicetree/bindings/arm/psci.yaml
->> +++ b/Documentation/devicetree/bindings/arm/psci.yaml
->> @@ -122,6 +122,19 @@ patternProperties:
->>        [3] Documentation/devicetree/bindings/power/power-domain.yaml
->>        [4] Documentation/devicetree/bindings/power/domain-idle-state.yaml
->>  
->> +  "^reboot-mode-.*$":
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 1
->> +    maxItems: 2
->> +    description: |
->> +      Describes a vendor-specific reset type. The string after "reboot-mode-"
->> +      maps a reboot mode to the parameters in the PSCI SYSTEM_RESET2 call.
->> +
->> +      Parameters are named reboot-mode-xxx = <type[, cookie]>, where xxx
->> +      is the name of the magic reboot mode, type is the lower 31 bits
->> +      of the reset_type, and, optionally, the cookie value. If the cookie
->> +      is not provided, it is defaulted to zero.
-> 
-> Please use and possibly extend the existing reboot-mode binding.
-> 
+  Linux 6.6-rc1 (2023-09-10 16:28:41 -0700)
 
-Sure, I can do that. I noticed most of the reboot-mode devices not doing that, but they probably should.
+are available in the Git repository at:
 
-I've sent patches to fix that:
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.7
 
-https://lore.kernel.org/all/20231031-ref-reboot-mode-v1-1-18dde4faf7e8@quicinc.com/
-https://lore.kernel.org/all/20231031-ref-nvmem-reboot-mode-v1-1-c1af9070ce52@quicinc.com/
+for you to fetch changes up to fe612629746cf5cc7040529f780d46929605d0a6:
 
->> +
->>  required:
->>    - compatible
->>    - method
->>
->> -- 
->> 2.41.0
->>
+  dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add support for QMC HDLC (2023-10-30 16:28:19 -0500)
+
+----------------------------------------------------------------
+Devicetree updates for 6.7:
+
+- Add a kselftest to check for unprobed DT devices
+
+- Fix address translation for some 3 address cells cases
+
+- Refactor firmware node refcounting for AMBA bus
+
+- Add bindings for qcom,sm4450-pdc, Qualcomm Kryo 465 CPU, and Freescale
+  QMC HDLC
+
+- Add Marantec vendor prefix
+
+- Convert qcom,pm8921-keypad, cnxt,cx92755-wdt, da9062-wdt,
+  and atmel,at91rm9200-wdt bindings to DT schema
+
+- Several additionalProperties/unevaluatedProperties on child node
+  schemas fixes
+
+- Drop reserved-memory bindings which now live in dtschema project
+
+- Fix a reference to rockchip,inno-usb2phy.yaml
+
+- Remove backlight nodes from display panel examples
+
+- Expand example for using DT_SCHEMA_FILES
+
+- Merge simple LVDS panel bindings to one binding doc
+
+----------------------------------------------------------------
+Alexander Stein (1):
+      dt-bindings: timer: fsl,imxgpt: Add optional osc_per clock
+
+Andy Shevchenko (1):
+      amba: bus: balance firmware node reference counting
+
+Christoph Niedermaier (1):
+      dt-bindings: Add Marantec vendor prefix
+
+David Wronek (1):
+      dt-bindings: arm: cpus: Add Qualcomm Kryo 465
+
+Dmitry Baryshkov (1):
+      dt-bindings: input: qcom,pm8921-keypad: convert to YAML format
+
+Fabio Estevam (1):
+      dt-bindings: watchdog: fsl,scu-wdt: Document imx8dl
+
+Geert Uytterhoeven (1):
+      of: overlay: unittest: overlay_bad_unresolved: Spelling s/ok/okay/
+
+Herve Codina (6):
+      of: address: Fix address translation when address-size is greater than 2
+      of: address: Remove duplicated functions
+      of: unittest: Add tests for address translations
+      dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Fix example property name
+      dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add 'additionalProperties: false' in child nodes
+      dt-bindings: soc: fsl: cpm_qe: cpm1-scc-qmc: Add support for QMC HDLC
+
+Hugo Villeneuve (1):
+      dt-bindings: writing-schema: add example for multiple DT_SCHEMA_FILES
+
+Johan Jonker (1):
+      dt-bindings: usb: rockchip,dwc3: update inno usb2 phy binding name
+
+Liu Ying (1):
+      dt-bindings: display: panel: one file of all simple LVDS panels with dual ports
+
+Luca Ceresoli (1):
+      dt-bindings: display: remove backlight node from panel examples
+
+Nik Bune (3):
+      dt-bindings: watchdog: atmel,at91rm9200-wdt: convert txt to yaml
+      dt-bindings: watchdog: da9062-wdt: convert txt to yaml
+      dt-bindings: watchdog: cnxt,cx92755-wdt: convert txt to yaml
+
+Nícolas F. R. A. Prado (3):
+      dt: dt-extract-compatibles: Handle cfile arguments in generator function
+      dt: dt-extract-compatibles: Add flag for driver matching compatibles
+      kselftest: Add new test for detecting unprobed Devicetree devices
+
+Rob Herring (10):
+      dt-bindings: arm,psci: Add missing unevaluatedProperties on child node schemas
+      dt-bindings: usb: ti,tps6598x: Disallow undefined properties
+      dt-bindings: Drop kernel copy of common reserved-memory bindings
+      of: address: Store number of bus flag cells rather than bool
+      of: address: Consolidate bus .map() functions
+      media: dt-bindings: ti,ds90ub960: Add missing type for "i2c-alias"
+      dt-bindings: input: syna,rmi4: Make "additionalProperties: true" explicit
+      dt-bindings: soundwire: Add reference to soundwire-controller.yaml schema
+      dt-bindings: arm,coresight-cti: Drop type for 'cpu' property
+      dt-bindings: arm,coresight-cti: Add missing additionalProperties on child nodes
+
+Tengfei Fan (1):
+      dt-bindings: interrupt-controller: qcom,pdc: document qcom,sm4450-pdc
+
+ Documentation/devicetree/bindings/Makefile         |   2 +-
+ .../devicetree/bindings/arm/arm,coresight-cti.yaml |  34 ++--
+ Documentation/devicetree/bindings/arm/cpus.yaml    |   1 +
+ Documentation/devicetree/bindings/arm/psci.yaml    |   1 +
+ .../bindings/display/ilitek,ili9486.yaml           |   4 -
+ .../bindings/display/panel/ilitek,ili9163.yaml     |   4 -
+ .../panel/panel-simple-lvds-dual-ports.yaml        | 118 ++++++++++++++
+ .../bindings/display/panel/panel-simple.yaml       |  10 --
+ .../bindings/display/sitronix,st7735r.yaml         |   5 -
+ .../bindings/input/qcom,pm8921-keypad.yaml         |  89 ++++++++++
+ .../bindings/input/qcom,pm8xxx-keypad.txt          |  90 ----------
+ .../devicetree/bindings/input/syna,rmi4.yaml       |   2 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |   1 +
+ .../bindings/media/i2c/ti,ds90ub960.yaml           |   1 +
+ .../bindings/remoteproc/renesas,rcar-rproc.yaml    |   2 +-
+ .../bindings/reserved-memory/framebuffer.yaml      |  52 ------
+ .../bindings/reserved-memory/memory-region.yaml    |  40 -----
+ .../bindings/reserved-memory/reserved-memory.txt   |   2 +-
+ .../bindings/reserved-memory/reserved-memory.yaml  | 181 ---------------------
+ .../bindings/reserved-memory/shared-dma-pool.yaml  |  97 -----------
+ .../bindings/soc/fsl/cpm_qe/fsl,cpm1-scc-qmc.yaml  |  37 ++++-
+ .../bindings/sound/mediatek,mt8188-afe.yaml        |   2 +-
+ .../bindings/soundwire/qcom,soundwire.yaml         |  16 +-
+ .../devicetree/bindings/timer/fsl,imxgpt.yaml      |  27 +++
+ .../devicetree/bindings/usb/rockchip,dwc3.yaml     |   2 +-
+ .../devicetree/bindings/usb/ti,tps6598x.yaml       |   5 +-
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ .../bindings/watchdog/atmel,at91rm9200-wdt.yaml    |  33 ++++
+ .../bindings/watchdog/atmel-at91rm9200-wdt.txt     |   9 -
+ .../bindings/watchdog/cnxt,cx92755-wdt.yaml        |  45 +++++
+ .../devicetree/bindings/watchdog/da9062-wdt.txt    |  34 ----
+ .../devicetree/bindings/watchdog/digicolor-wdt.txt |  25 ---
+ .../bindings/watchdog/dlg,da9062-watchdog.yaml     |  50 ++++++
+ .../devicetree/bindings/watchdog/fsl,scu-wdt.yaml  |   4 +-
+ .../devicetree/bindings/writing-schema.rst         |   5 +-
+ MAINTAINERS                                        |   1 +
+ drivers/acpi/arm64/amba.c                          |   2 +-
+ drivers/amba/bus.c                                 |   5 +-
+ drivers/of/address.c                               |  85 ++++------
+ drivers/of/platform.c                              |   2 +-
+ .../of/unittest-data/overlay_bad_unresolved.dtso   |   2 +-
+ drivers/of/unittest-data/tests-address.dtsi        | 101 ++++++++++++
+ drivers/of/unittest.c                              |  77 +++++++++
+ scripts/dtc/dt-extract-compatibles                 |  74 +++++++--
+ tools/testing/selftests/Makefile                   |   1 +
+ tools/testing/selftests/dt/.gitignore              |   1 +
+ tools/testing/selftests/dt/Makefile                |  21 +++
+ tools/testing/selftests/dt/compatible_ignore_list  |   1 +
+ tools/testing/selftests/dt/ktap_helpers.sh         |  70 ++++++++
+ .../testing/selftests/dt/test_unprobed_devices.sh  |  83 ++++++++++
+ 50 files changed, 902 insertions(+), 656 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+ create mode 100644 Documentation/devicetree/bindings/input/qcom,pm8921-keypad.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
+ delete mode 100644 Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reserved-memory/memory-region.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml
+ create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/cnxt,cx92755-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/digicolor-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
+ create mode 100644 tools/testing/selftests/dt/.gitignore
+ create mode 100644 tools/testing/selftests/dt/Makefile
+ create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
+ create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
+ create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
 
