@@ -1,78 +1,61 @@
-Return-Path: <devicetree+bounces-13304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B767DD6F7
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:16:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F0B07DD747
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 21:47:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D7F8B20AA1
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 20:16:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B36A28188E
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 20:47:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3251B224CB;
-	Tue, 31 Oct 2023 20:16:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9387122EE5;
+	Tue, 31 Oct 2023 20:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QtrLEpzS"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="WbxX3QoR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C01822335
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 20:16:09 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1611BF3;
-	Tue, 31 Oct 2023 13:16:08 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c523ac38fbso89607461fa.0;
-        Tue, 31 Oct 2023 13:16:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698783366; x=1699388166; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tr19e9gv31OTc0mDwGXJDeruCxSwIiXl36Q8XiuObzo=;
-        b=QtrLEpzSEk252CqqLzZeRtOad3h3QL8unE5fzF9/2I4KCVWlHuXeaXqi+TVieN9QiL
-         YGF9J1IFyYrToS+0vSuXd69LOq0buZjOx6BgwBv3uUzxBbMUHAwRhoeBuyD8dVIBmQsy
-         ItOvyjmexquqw5tfTbnhG7ah/76qeYhXxvAxfw2RElKiubQ0R8YecVECZpYfdCHFgqZI
-         FbqPNKdGtKzGmlArS6vAQ01aaB6AM9imK6tFYNP/IGyl7f8V+4bZZzB/n708vualW+1o
-         Uc9/fOoPZ+IfzXu/3QRjabRWGOPdbLmxlDB6S2Temj99HXW8/2Do/2Y18cAd06CrUtTH
-         ku1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698783366; x=1699388166;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tr19e9gv31OTc0mDwGXJDeruCxSwIiXl36Q8XiuObzo=;
-        b=mje293xtVywUCNHMsZ0W7YD6LcHxm4uquMisBJDYDL0cO/48NcHTyqFtWrsaUofl0l
-         emr54qYlRV8MG3s2wj6hlOGAKzk6BHWUNwPG0yGmMyhBotrDKBbHFDwtJVQYiY3FSE7D
-         ej4WVNSwQna8MeeFlHePBWBW9tqGYjOB5yrhWbIlCBrXXXcOim7Ffo9efBjrb/k+uWiM
-         xOBSnTrmN/YnC11pJKQ4L2OnsYra0qIv9OqyW9hT91q3CKP5No8YicG/6oY6dSxCARpq
-         iJ+5upNQzeq5PQALnK90XZHXO7nJJCa9GqkWH6apNQpS+focMinpuFIk1qwa+2kvhU/6
-         xMOA==
-X-Gm-Message-State: AOJu0YxcL3Ghy+eadDkdJWJixgEfCKd2SO/Gp4r4qAVsEtGmkkR5vzY7
-	/ttUD2Gnq/RkkaPZ0AyqKWk=
-X-Google-Smtp-Source: AGHT+IEM57jvgzys/NWgC6l16I7lrfw7JpLgmsLDm/p+GDEwg1yosJo+9qd/8geccBmcinPWfCBwzw==
-X-Received: by 2002:ac2:4555:0:b0:507:9a12:b655 with SMTP id j21-20020ac24555000000b005079a12b655mr9585633lfm.23.1698783365935;
-        Tue, 31 Oct 2023 13:16:05 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:41b4:2058:a492:5d22])
-        by smtp.gmail.com with ESMTPSA id ec20-20020a0564020d5400b0053fa13e27dcsm66388edb.48.2023.10.31.13.16.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 Oct 2023 13:16:05 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	juhosg@openwrt.org
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5C1225D0
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 20:47:15 +0000 (UTC)
+Received: from mail.fris.de (unknown [IPv6:2a01:4f8:c2c:390b::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59633102;
+	Tue, 31 Oct 2023 13:47:11 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 76C5DC015D;
+	Tue, 31 Oct 2023 21:38:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1698784743; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=zJqjQl37oqSU7hpiBGUJniZ1omvW45N+RUaTYh4Bj3A=;
+	b=WbxX3QoR721ZrzUVN7wavQWMBaJZ54krK9EkpDPJiy9z7yEnruvNqXWoHb+aPmwEs4oL/0
+	vN/z9/sTU2T50eaKyKsYoZp6f03Pg4Zy4oKCSBABtqzbR+66mqgV9up0kW0ca72VeK2cTs
+	EUDABxvdk882uxi344mfXCozl8txWsEuMPvqm0+ddByG+QMz/kNqlsRkys3sU+kPp6F7V9
+	xdoR04MFe41gw11vcD5RkCPXSCk8crfEkrNssHGRdqIntXYo4tyQ3iDC47onuebcbak1fm
+	Z3rE02vNKGDVZoPBDDNJa9eII993UvG+C5YWMzCqk9zZI/c47uAzOK6XEo/xRw==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: watchdog: qca,ar7130-wdt: convert txt to yaml
-Date: Tue, 31 Oct 2023 21:16:02 +0100
-Message-Id: <20231031201602.28827-1-n2h9z4@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Marek Vasut <marex@denx.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 00/14] arm64: dts: imx8mm-kontron: DT updates
+Date: Tue, 31 Oct 2023 21:37:37 +0100
+Message-ID: <20231031203836.3888404-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,77 +63,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Convert txt file to yaml.
-Add mainteiners from git blame. 
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
----
- .../bindings/watchdog/qca,ar7130-wdt.yaml     | 33 +++++++++++++++++++
- .../bindings/watchdog/qca-ar7130-wdt.txt      | 13 --------
- 2 files changed, 33 insertions(+), 13 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt
+This patchset contains several improvements and updates for the devicetrees
+for the i.MX8MM modules and boards by Kontron Electronics GmbH.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml
-new file mode 100644
-index 000000000000..82040ca10eda
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/qca,ar7130-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Atheros AR7130 Watchdog Timer (WDT) Controller
-+
-+maintainers:
-+  - Gabor Juhos <juhosg@openwrt.org>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    const: qca,ar7130-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    watchdog@18060008 {
-+        compatible = "qca,ar7130-wdt";
-+        reg = <0x18060008 0x8>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt b/Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt
-deleted file mode 100644
-index 7a89e5f85415..000000000000
---- a/Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt
-+++ /dev/null
-@@ -1,13 +0,0 @@
--* Qualcomm Atheros AR7130 Watchdog Timer (WDT) Controller
--
--Required properties:
--- compatible: must be "qca,ar7130-wdt"
--- reg: physical base address of the controller and length of memory mapped
--  region.
--
--Example:
--
--wdt@18060008 {
--	compatible = "qca,ar9330-wdt", "qca,ar7130-wdt";
--	reg = <0x18060008 0x8>;
--};
+* HDMI/LVDS support for the BL/DL i.MX8MM
+* Misc cleanups and small fixes
+* OSM-S i.MX8MM module refactoring and update to latest HW revision
+
+Frieder Schrempf (14):
+  arm64: dts: imx8mm-kontron: Add support for display bridges on BL
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Add DL (Display-Line) overlay with LVDS
+    support
+  arm64: dts: imx8mm-kontron: Disable pullups for I2C signals on OSM-S
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Disable pullups for I2C signals on SL/BL
+    i.MX8MM
+  arm64: dts: imx8mm-kontron: Disable pullups for onboard UART signals
+    on BL OSM-S board
+  arm64: dts: imx8mm-kontron: Disable pullups for onboard UART signals
+    on BL board
+  arm64: dts: imx8mm-kontron: Disable pull resistors for SD card signals
+    on BL OSM-S board
+  arm64: dts: imx8mm-kontron: Disable pull resistors for SD card signals
+    on BL board
+  arm64: dts: imx8mm-kontron: Fix interrupt for RTC on OSM-S i.MX8MM
+    module
+  arm64: dts: imx8mm-kontron: Fix OSM-S devicetrees to match latest
+    hardware
+  arm64: dts: imx8mm-kontron: Disable uneffective PUE bit in SDIO IOMUX
+  arm64: dts: imx8mm-kontron: Remove useless trickle-diode-disable from
+    RTC node
+  arm64: dts: imx8mm-kontron: Add I2C EEPROM on OSM-S Kontron i.MX8MM
+  arm64: dts: imx8mm-kontron: Refactor devicetree for OSM-S module and
+    board
+
+ arch/arm64/boot/dts/freescale/Makefile        |   4 +
+ .../dts/freescale/imx8mm-kontron-bl-osm-s.dts | 295 +++------
+ .../boot/dts/freescale/imx8mm-kontron-bl.dts  | 187 +++++-
+ .../boot/dts/freescale/imx8mm-kontron-dl.dtso | 197 ++++++
+ .../dts/freescale/imx8mm-kontron-osm-s.dtsi   | 567 +++++++++++++++++-
+ .../boot/dts/freescale/imx8mm-kontron-sl.dtsi |   4 +-
+ 6 files changed, 1020 insertions(+), 234 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
+
 -- 
-2.34.1
-
+2.42.0
 
