@@ -1,798 +1,240 @@
-Return-Path: <devicetree+bounces-13048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429847DC6D2
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:01:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24417DC6F0
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F59281095
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:01:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 870D82816DD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 07:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8514D2F3;
-	Tue, 31 Oct 2023 07:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DC641078F;
+	Tue, 31 Oct 2023 07:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="JFBGSsos"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="csw6TDJa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A211360
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:01:18 +0000 (UTC)
-X-Greylist: delayed 120 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 31 Oct 2023 00:01:16 PDT
-Received: from mx0b-002bf204.pphosted.com (mx0b-002bf204.pphosted.com [205.220.172.86])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466D0BB;
-	Tue, 31 Oct 2023 00:01:16 -0700 (PDT)
-Received: from pps.filterd (m0207525.ppops.net [127.0.0.1])
-	by mx0a-002bf204.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39V3vDVI029443;
-	Tue, 31 Oct 2023 00:01:07 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	monolithicpower.com; h=from:to:cc:subject:date:message-id
-	:content-type:content-transfer-encoding:mime-version; s=pps1;
-	 bh=/BAjpaJkIrHpD/gb2GQdHuOIg9AmU8vqrDGNL+7f80E=; b=JFBGSsosLlsq
-	o4SDv1lZYXEu2DyCvjZwqus34b+T7nRSDu4wiUzLC2nINfIsOiXgjYOf93d8B24F
-	SF4eUgw5440op3qRISxn2WoT4CGh1C3Bd6QFEn0CCIFz4cZnBvlCwtLGiaMX2OZ2
-	ahdcdrtLXMl+aSv7T1sDM+9EbCWX7RGLueaQYg+MNEgjhE8wGaOLT7sej50XFAZs
-	EPwnIvZTCqSU6KQ/XUcZSAHInskjtdHHZ3IxNL7l+ZBrHaJMYLIcYbrJA/oZtV/N
-	IoVWhf7WdM1mtq2WP6yJB6oaaQt/sFc7llmLTgU23AH0LRan2Q9yfSOPdyHEjGbp
-	cqK0tXPVnw==
-Received: from webmail.monolithicpower.com (mps-vpn.monolithicpower.com [12.33.0.20] (may be forged))
-	by mx0a-002bf204.pphosted.com (PPS) with ESMTPS id 3u0xyyup3k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 31 Oct 2023 00:01:07 -0700 (PDT)
-Received: from CD-MSH02.monolithicpower.com (10.10.70.19) by
- MPS-MSH03.monolithicpower.com (10.10.10.205) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 31 Oct 2023 00:01:05 -0700
-Received: from CD-MSH04.monolithicpower.com (10.10.70.213) by
- CD-MSH02.monolithicpower.com (10.10.70.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 31 Oct 2023 15:01:03 +0800
-Received: from CD-MSH04.monolithicpower.com ([fe80::69c9:32c5:3392:58d]) by
- CD-MSH04.monolithicpower.com ([fe80::69c9:32c5:3392:58d%2]) with mapi id
- 15.01.2242.004; Tue, 31 Oct 2023 15:01:02 +0800
-From: "Yuxi (Yuxi) Wang" <Yuxi.Wang@monolithicpower.com>
-To: "pavel@ucw.cz" <pavel@ucw.cz>, "lee@kernel.org" <lee@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>
-CC: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "wyx137120466@gmail.com" <wyx137120466@gmail.com>
-Subject: [PATCH 2/2] leds: add mp3326 driver
-Thread-Topic: [PATCH 2/2] leds: add mp3326 driver
-Thread-Index: AdoLx+b9ERoaSp5CSa+Oy18KCe3oTg==
-Date: Tue, 31 Oct 2023 07:01:02 +0000
-Message-ID: <ab9663a6b41e4bd7b347f51f72f5c4a1@monolithicpower.com>
-Accept-Language: en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.10.84.127]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D35D2F3
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 07:11:42 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4C27C2;
+	Tue, 31 Oct 2023 00:11:40 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-507c91582fdso7692654e87.2;
+        Tue, 31 Oct 2023 00:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698736299; x=1699341099; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WC4FQ8HjBFyDld6QjIj9zYCdwxXzfSzp/WExAXAKuLo=;
+        b=csw6TDJadqiDUA0SVy6o82HPm/nM+acyVp/7Ij1m7Miis9H++OkSwy3QmlLryAPQGV
+         mXrSIMN+PyzxgDIcn0n35QGUf4TCCTrv4bwoKG9ge18ydAbzOpPMPrtxo9FT26a51HJh
+         JxrjENwmP0hZjyyQd2L6FzZ/M1WHJ7wm3bno6QV2zFv0TGUD5YZwWojbjlXBw8NNoHlq
+         S+iSTl1reLxSVGUINx/NOc2stNFce9OrH4DqsaJtSesWuPjMamaAyrnNBYc5FVbKXQ4X
+         3oJDFUYiTOkiWICqL54qldZ1qpFjBhjiKcBDibgyW3SuZygumhS3Wzf5EFdVm/arw30/
+         fqNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698736299; x=1699341099;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WC4FQ8HjBFyDld6QjIj9zYCdwxXzfSzp/WExAXAKuLo=;
+        b=xSyduuYKBnG3fn3zztObmpySyHJ3XvM+xelVHezNy+MS70mHYd9frxb9siRwupAJzS
+         TiUTeoX0cumZF044W25Pil3b7CE7dUDvmliwfLqzL6xAMaJvcbAdDEXC5xW5AR+kDa3R
+         7nV7J1USuBCRNWlMYcoP79injgM7+0yaIwGrEZpPnTFFYKdLJ+y1HWaAKksiI2Dj3PBJ
+         SfXl0RhfxJx5aa10GoSwwjigR670Q2mQDog9CkIZXsRBzqPPaD2o3RsSkl7Gb56ohTjn
+         3tug2WzsaQGKP1jzqzpRH8VBQMf7PbOSuszZzy9j+yloQWfPGFDm4dkRsHd6DhCMLGrf
+         RAPQ==
+X-Gm-Message-State: AOJu0YyMB8jFpXN/m29AhP0uNt8nyUMOTGqeqjExGYTPJ+TSTQxS1SQ+
+	5hPZt3ePexN3ScqKI6m0r6g=
+X-Google-Smtp-Source: AGHT+IFmHnzAN0wVPRXBOF2R+/P2XF0dD34/Bpdf81a0le7DmkR0WcDsG7xh6UnJSo3SqA8j3vfkGg==
+X-Received: by 2002:a19:f70c:0:b0:503:3278:3221 with SMTP id z12-20020a19f70c000000b0050332783221mr8238406lfe.69.1698736298744;
+        Tue, 31 Oct 2023 00:11:38 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id o17-20020ac24bd1000000b00501c673e773sm115215lfq.39.2023.10.31.00.11.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 00:11:38 -0700 (PDT)
+Message-ID: <d528b45c-123d-4ef7-b110-7efbfef91bc5@gmail.com>
+Date: Tue, 31 Oct 2023 09:11:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-GUID: 33HCEIRAiY7z9xkc8IpSfQW6KXoeTb4A
-X-Proofpoint-ORIG-GUID: 33HCEIRAiY7z9xkc8IpSfQW6KXoeTb4A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-30_13,2023-10-31_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
- spamscore=0 mlxscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- malwarescore=0 impostorscore=0 phishscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2310240000
- definitions=main-2310310053
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
+Content-Language: en-US, en-GB
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+ Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
+ <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+ <20231028162025.4259f1cc@jic23-huawei>
+ <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
+ <6a697c62-6a7c-4b31-bc8e-10f40db0363d@gmail.com>
+In-Reply-To: <6a697c62-6a7c-4b31-bc8e-10f40db0363d@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 10/30/23 12:21, Matti Vaittinen wrote:
+> Hi dee Ho peeps,
+> 
+> On 10/29/23 17:51, Matti Vaittinen wrote:
+>> On 10/28/23 18:20, Jonathan Cameron wrote:
+>>> On Fri, 27 Oct 2023 18:15:45 +1030
+>>> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+>>>
+>>>> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor 
+>>>> with als
+>>>> and clear channels with i2c interface. Hardware interrupt 
+>>>> configuration is
+>>>> optional. It is a low power device with 20 bit resolution and has
+>>>> configurable adaptive interrupt mode and interrupt persistence mode.
+>>>> The device also features inbuilt hardware gain, multiple integration 
+>>>> time
+>>>> selection options and sampling frequency selection options.
 
-This patch adds mp3326 led driver.
+...
 
-Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
----
- drivers/leds/Kconfig       |   7 +
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-mp3326.c | 632 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 640 insertions(+)
- create mode 100644 drivers/leds/leds-mp3326.c
+>>>> +static int apds9306_scale_set(struct apds9306_data *data, int val, 
+>>>> int val2)
+>>>> +{
+>>>> +    int i, ret, time_sel, gain_sel;
+>>>> +
+>>>> +    /* Rounding up the last digit by one, otherwise matching table 
+>>>> fails! */
+>>>
+>>> Interesting.  Sounds like a question for Matti?
+>>
+>> Sounds odd indeed. I assume this happens when scale setting is 
+>> requested using one of the exact values advertised by the available 
+>> scales from the GTS? This does not feel right and the +1 does not ring 
+>> a bell to me. I need to investigate what's going on. It would help if 
+>> you could provide the values used as val and val2 for the setting.
+>>
+>> This will take a while from me though - I'll try to get to this next 
+>> week. Thanks for pointing out the anomaly!
+>>
+> 
+> I think I have a rough understanding. I did a Kunit test which goes 
+> through all the available scales values from the 
+> gts->avail_all_scales_table and all integration times, and feeds them to 
+> the logic below. It seems the first culprit is hit by:
+> val = 0, val2 = 125025502.
+> 
+> Problem is that the 125025502 is rounded. The exact linearized NANO 
+> scale resulting from time multiplier 128, gain multiplier 1 is 
+> 125025502.5 - which means we will see rounding.
+> 
+>>>
+>>>> +    if (val2 % 10)
+>>>> +        val2 += 1;
+> 
+> For a while I was unsure if this check works for all cases because I see 
+> linearized scales:
+> 250051005 - multipliers 1x, 64x
+> 83350335 - multipliers 3x, 64x and 6x, 32x
+> 27783445 - multipliers 9x, 64x.
+> 
+> For those we will get + 1 added to val2 even though there is no 
+> rounding. It appears this is not a problem because the 
+> iio_gts_get_gain() (which is used to figure out the required total gain 
+> to get the desired scale) does not require the scale to be formed by 
+> exact multiples of gain.
 
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index b92208eccdea..ac8115bffc2e 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -260,6 +260,13 @@ config LEDS_MIKROTIK_RB532
- 	  This option enables support for the so called "User LED" of
- 	  Mikrotik's Routerboard 532.
-=20
-+config LEDS_MP3326
-+	tristate "LED Support for MPS MP3326"
-+	depends on LEDS_CLASS
-+	help
-+	  This option enables support for on-chip LED drivers found on
-+	  MPS MP3326.
-+
- config LEDS_MT6323
- 	tristate "LED Support for Mediatek MT6323 PMIC"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index d7348e8bc019..196befb56278 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -63,6 +63,7 @@ obj-$(CONFIG_LEDS_MENF21BMC)		+=3D leds-menf21bmc.o
- obj-$(CONFIG_LEDS_MIKROTIK_RB532)	+=3D leds-rb532.o
- obj-$(CONFIG_LEDS_MLXCPLD)		+=3D leds-mlxcpld.o
- obj-$(CONFIG_LEDS_MLXREG)		+=3D leds-mlxreg.o
-+obj-$(CONFIG_LEDS_MP3326)		+=3D leds-mp3326.o
- obj-$(CONFIG_LEDS_MT6323)		+=3D leds-mt6323.o
- obj-$(CONFIG_LEDS_NET48XX)		+=3D leds-net48xx.o
- obj-$(CONFIG_LEDS_NETXBIG)		+=3D leds-netxbig.o
-diff --git a/drivers/leds/leds-mp3326.c b/drivers/leds/leds-mp3326.c
-new file mode 100644
-index 000000000000..140c71b334f7
---- /dev/null
-+++ b/drivers/leds/leds-mp3326.c
-@@ -0,0 +1,632 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * MP3326 Led driver
-+ *
-+ * Copyright 2023 Monolithic Power Systems, Inc
-+ *
-+ * Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+ */
-+#include <linux/bits.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/i2c.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+#include <linux/interrupt.h>
-+#include <linux/mutex.h>
-+#include <linux/leds.h>
-+#include <linux/device.h>
-+#include <linux/led-class-multicolor.h>
-+
-+#define MP3326_PWM_DIM_FREQUENCY_CONFIG			0x00
-+#define MP3326_PWM_CTRL							0x01
-+#define MP3326_PWM_DIM_FREQUENCY_CONFIG			0x00
-+#define MP3326_PWM_CTRL_CHANNEL_9_16			0x04
-+#define MP3326_PWM_CTRL_CHANNEL_1_8				0x05
-+#define MP3326_PWM_OPEN_FAULT_CHANNEL_9_16		0x06
-+#define MP3326_PWM_OPEN_FAULT_CHANNEL_1_8		0x07
-+#define MP3326_PWM_SHORT_FAULT_CHANNEL_9_16		0x08
-+#define MP3326_PWM_SHORT_FAULT_CHANNEL_1_8		0x09
-+#define MP3326_PWM_CURRENT_SET_CHANNEL1			0x0A
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL1		0x0B
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL1		0x0C
-+#define MP3326_PWM_CURRENT_SET_CHANNEL2			0x0D
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL2		0x0E
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL2		0x0F
-+#define MP3326_PWM_CURRENT_SET_CHANNEL3			0x10
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL3		0x11
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL3		0x12
-+#define MP3326_PWM_CURRENT_SET_CHANNEL4			0x13
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL4		0x14
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL4		0x15
-+#define MP3326_PWM_CURRENT_SET_CHANNEL5			0x16
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL5		0x17
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL5		0x18
-+#define MP3326_PWM_CURRENT_SET_CHANNEL6			0x19
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL6		0x1A
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL6		0x1B
-+#define MP3326_PWM_CURRENT_SET_CHANNEL7			0x1C
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL7		0x1D
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL7		0x1E
-+#define MP3326_PWM_CURRENT_SET_CHANNEL8			0x1F
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL8		0x20
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL8		0x21
-+#define MP3326_PWM_CURRENT_SET_CHANNEL9			0x22
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL9		0x23
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL9		0x24
-+#define MP3326_PWM_CURRENT_SET_CHANNEL10		0x25
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL10		0x26
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL10		0x27
-+#define MP3326_PWM_CURRENT_SET_CHANNEL11		0x28
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL11		0x29
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL11		0x2A
-+#define MP3326_PWM_CURRENT_SET_CHANNEL12		0x2B
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL12		0x2C
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL12		0x2D
-+#define MP3326_PWM_CURRENT_SET_CHANNEL13		0x2E
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL13		0x2F
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL13		0x30
-+#define MP3326_PWM_CURRENT_SET_CHANNEL14		0x31
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL14		0x32
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL14		0x33
-+#define MP3326_PWM_CURRENT_SET_CHANNEL15		0x34
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL15		0x35
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL15		0x36
-+#define MP3326_PWM_CURRENT_SET_CHANNEL16		0x37
-+#define MP3326_PWM_DUTY_LSB_SET_CHANNEL16		0x38
-+#define MP3326_PWM_DUTY_MSB_SET_CHANNEL16		0x39
-+#define MAX_BRIGHTNESS	63
-+
-+enum led_ctrl {
-+	ENABLE =3D 0,
-+	BRIGHTNESS,
-+	COLOR_L4,
-+	COLOR_H8,
-+	OPEN_FAULT,
-+	SHORT_FAULT,
-+	Max_CTRL,
-+};
-+
-+enum mp3326_channel {
-+	Channel1,
-+	Channel2,
-+	Channel3,
-+	Channel4,
-+	Channel5,
-+	Channel6,
-+	Channel7,
-+	Channel8,
-+	Channel9,
-+	Channel10,
-+	Channel11,
-+	Channel12,
-+	Channel13,
-+	Channel14,
-+	Channel15,
-+	Channel16,
-+	Max_Channel,
-+};
-+
-+#define MP3326_Reg_Connect_Inner(prefix, range)	prefix##range
-+#define MP3326_Reg_Connect(prefix, range)		MP3326_Reg_Connect_Inner(prefix=
-, range)
-+#define MP3326_Reg_Field(reg, minbit, maxbit)	REG_FIELD(reg, minbit, maxbi=
-t)
-+#define Range1(a, b) MP3326_Reg_Connect_Inner(a, b)
-+#define Range2(a, b) MP3326_Reg_Connect_Inner(a, b)
-+
-+#define MP3326_Channel_FIELD(bit, num, range) { \
-+	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_CTRL_CHANNEL_, range), bit=
-, bit),	\
-+	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_CURRENT_SET_CHANNEL, num),=
- 0, 5),	\
-+	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_DUTY_LSB_SET_CHANNEL, num)=
-, 0, 3),	\
-+	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_DUTY_MSB_SET_CHANNEL, num)=
-, 0, 7),	\
-+	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_OPEN_FAULT_CHANNEL_, range=
-), bit, bit),	\
-+	MP3326_Reg_Field(MP3326_Reg_Connect(MP3326_PWM_SHORT_FAULT_CHANNEL_, rang=
-e), bit, bit), \
-+	}
-+struct mp3326_led {
-+	struct mp3326 *private_data;
-+	struct led_classdev cdev;
-+	struct mc_subled *subled_info;
-+	int num_colors;
-+};
-+
-+struct mp3326 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct regmap_field *regmap_fields[Max_Channel][Max_CTRL];
-+	int num_of_leds;
-+	struct mp3326_led leds[];
-+};
-+
-+static const struct regmap_config MP3326_regmap_config =3D {
-+	.reg_bits =3D 8,
-+	.val_bits =3D 8,
-+};
-+
-+static const struct reg_field channels_reg_fields[Max_Channel][Max_CTRL] =
-=3D {
-+	[Channel1] =3D MP3326_Channel_FIELD(0, 1, Range1(1_, 8)),
-+	[Channel2] =3D MP3326_Channel_FIELD(1, 2, Range1(1_, 8)),
-+	[Channel3] =3D MP3326_Channel_FIELD(2, 3, Range1(1_, 8)),
-+	[Channel4] =3D MP3326_Channel_FIELD(3, 4, Range1(1_, 8)),
-+	[Channel5] =3D MP3326_Channel_FIELD(4, 5, Range1(1_, 8)),
-+	[Channel6] =3D MP3326_Channel_FIELD(5, 6, Range1(1_, 8)),
-+	[Channel7] =3D MP3326_Channel_FIELD(6, 7, Range1(1_, 8)),
-+	[Channel8] =3D MP3326_Channel_FIELD(7, 8, Range1(1_, 8)),
-+	[Channel9] =3D MP3326_Channel_FIELD(0, 9, Range2(9_, 16)),
-+	[Channel10] =3D MP3326_Channel_FIELD(1, 10, Range2(9_, 16)),
-+	[Channel11] =3D MP3326_Channel_FIELD(2, 11, Range2(9_, 16)),
-+	[Channel12] =3D MP3326_Channel_FIELD(3, 12, Range2(9_, 16)),
-+	[Channel13] =3D MP3326_Channel_FIELD(4, 13, Range2(9_, 16)),
-+	[Channel14] =3D MP3326_Channel_FIELD(5, 14, Range2(9_, 16)),
-+	[Channel15] =3D MP3326_Channel_FIELD(6, 15, Range2(9_, 16)),
-+	[Channel16] =3D MP3326_Channel_FIELD(7, 16, Range2(9_, 16)),
-+};
-+
-+static int led_brightness_set(struct led_classdev *led_cdev, enum led_brig=
-htness brightness)
-+{
-+	struct mp3326_led *led =3D container_of(led_cdev, struct mp3326_led, cdev=
-);
-+	struct mp3326 *chip =3D led->private_data;
-+	int ret;
-+	int i;
-+
-+	if (brightness > led_cdev->max_brightness)
-+		brightness =3D led_cdev->max_brightness;
-+	if (brightness < 0)
-+		brightness =3D 0;
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		ret =3D regmap_field_write(
-+			chip->regmap_fields[led->subled_info[i].channel][BRIGHTNESS],
-+			brightness);
-+		if (ret)
-+			return ret;
-+		led->subled_info[i].brightness =3D brightness;
-+	}
-+	led_cdev->brightness =3D brightness;
-+	return 0;
-+}
-+
-+static ssize_t led_pwm_store(struct device *dev, struct device_attribute *=
-attr,
-+			 const char *buf, size_t count)
-+{
-+	struct led_classdev *lcdev =3D dev_get_drvdata(dev);
-+	struct mp3326_led *led =3D container_of(lcdev, struct mp3326_led, cdev);
-+	struct mp3326 *chip =3D led->private_data;
-+	ssize_t ret;
-+	int r_val, g_val, b_val;
-+	int i;
-+
-+	ret =3D sscanf(buf, "%i %i %i", &r_val, &g_val, &b_val);
-+	if (ret !=3D 3 && ret !=3D 1)
-+		return ret;
-+	r_val =3D r_val * 4095 / 255 + (r_val * 4095 % 255) / (255 / 2);
-+	g_val =3D g_val * 4095 / 255 + (g_val * 4095 % 255) / (255 / 2);
-+	b_val =3D b_val * 4095 / 255 + (b_val * 4095 % 255) / (255 / 2);
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		switch (led->subled_info[i].color_index) {
-+		case LED_COLOR_ID_RED:
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4],
-+				r_val & 0x0f);
-+			if (ret)
-+				return ret;
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8],
-+				r_val >> 4);
-+			if (ret)
-+				return ret;
-+			break;
-+		case LED_COLOR_ID_GREEN:
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4],
-+				g_val & 0x0f);
-+			if (ret)
-+				return ret;
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8],
-+				g_val >> 4);
-+			if (ret)
-+				return ret;
-+			break;
-+		case LED_COLOR_ID_BLUE:
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4],
-+				b_val & 0x0f);
-+			if (ret)
-+				return ret;
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8],
-+				b_val >> 4);
-+			if (ret)
-+				return ret;
-+			break;
-+		default:
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4],
-+				r_val & 0x0f);
-+			if (ret)
-+				return ret;
-+			ret =3D regmap_field_write(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8],
-+				r_val >> 4);
-+			if (ret)
-+				return ret;
-+			break;
-+		}
-+	}
-+	return count;
-+}
-+
-+static ssize_t led_pwm_show(struct device *dev, struct device_attribute *a=
-ttr,
-+			char *buf)
-+{
-+	struct led_classdev *lcdev =3D dev_get_drvdata(dev);
-+	struct mp3326_led *led =3D container_of(lcdev, struct mp3326_led, cdev);
-+	struct mp3326 *chip =3D led->private_data;
-+	ssize_t ret;
-+	int r_val =3D 0, g_val =3D 0, b_val =3D 0, val;
-+	int i;
-+
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		switch (led->subled_info[i].color_index) {
-+		case LED_COLOR_ID_RED:
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4], &val);
-+			if (ret)
-+				return ret;
-+			r_val |=3D val;
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8], &val);
-+			if (ret)
-+				return ret;
-+			r_val |=3D val << 4;
-+			break;
-+		case LED_COLOR_ID_GREEN:
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4], &val);
-+			if (ret)
-+				return ret;
-+			g_val |=3D val;
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8], &val);
-+			if (ret)
-+				return ret;
-+			g_val |=3D val << 4;
-+			break;
-+		case LED_COLOR_ID_BLUE:
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4], &val);
-+			if (ret)
-+				return ret;
-+			b_val |=3D val;
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8], &val);
-+			if (ret)
-+				return ret;
-+			b_val |=3D val << 4;
-+			break;
-+		default:
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_L4], &val);
-+			if (ret)
-+				return ret;
-+			r_val |=3D val;
-+			ret =3D regmap_field_read(
-+				chip->regmap_fields[led->subled_info[i].channel][COLOR_H8], &val);
-+			if (ret)
-+				return ret;
-+			r_val |=3D val << 4;
-+			break;
-+		}
-+	}
-+	r_val =3D r_val * 255 / 4095 + (r_val * 255 % 4095) / (4095 / 2);
-+	g_val =3D g_val * 255 / 4095 + (g_val * 255 % 4095) / (4095 / 2);
-+	b_val =3D b_val * 255 / 4095 + (b_val * 255 % 4095) / (4095 / 2);
-+	if (led->num_colors =3D=3D 1)
-+		return sysfs_emit(buf, "0x%x\n", r_val);
-+	else
-+		return sysfs_emit(buf, "0x%x 0x%x 0x%x\n", r_val, g_val, b_val);
-+}
-+
-+static ssize_t led_enable_store(struct device *dev, struct device_attribut=
-e *attr,
-+			 const char *buf, size_t count)
-+{
-+	struct led_classdev *lcdev =3D dev_get_drvdata(dev);
-+	struct mp3326_led *led =3D container_of(lcdev, struct mp3326_led, cdev);
-+	struct mp3326 *chip =3D led->private_data;
-+	ssize_t ret;
-+	uint val, i;
-+
-+	ret =3D kstrtouint(buf, 0, &val);
-+	if (ret)
-+		return ret;
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		ret =3D regmap_field_write(
-+			chip->regmap_fields[led->subled_info[i].channel][BRIGHTNESS],
-+			led->subled_info[i].brightness);
-+		if (ret)
-+			return ret;
-+		ret =3D regmap_field_write(
-+			chip->regmap_fields[led->subled_info[i].channel][ENABLE], !!val);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return count;
-+}
-+
-+static ssize_t led_enable_show(struct device *dev, struct device_attribute=
- *attr,
-+			char *buf)
-+{
-+	struct led_classdev *lcdev =3D dev_get_drvdata(dev);
-+	struct mp3326_led *led =3D container_of(lcdev, struct mp3326_led, cdev);
-+	struct mp3326 *chip =3D led->private_data;
-+	uint val, rval =3D 0;
-+	int i, ret;
-+
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		ret =3D regmap_field_read(
-+			chip->regmap_fields[led->subled_info[i].channel][ENABLE], &val);
-+
-+		rval |=3D val << i;
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (rval)
-+		return sysfs_emit(buf, "%s\n", "True");
-+	else
-+		return sysfs_emit(buf, "%s\n", "False");
-+}
-+
-+static ssize_t led_short_fault_show(struct device *dev, struct device_attr=
-ibute *attr,
-+			char *buf)
-+{
-+	struct led_classdev *lcdev =3D dev_get_drvdata(dev);
-+	struct mp3326_led *led =3D container_of(lcdev, struct mp3326_led, cdev);
-+	struct mp3326 *chip =3D led->private_data;
-+	uint val, rval =3D 0, i;
-+	int ret;
-+
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		ret =3D regmap_field_read(
-+			chip->regmap_fields[led->subled_info[i].channel][SHORT_FAULT], &val);
-+		rval |=3D val << i;
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (rval)
-+		return sysfs_emit(buf, "%s\n", "Occur");
-+	else
-+		return sysfs_emit(buf, "%s\n", "None");
-+}
-+
-+static ssize_t led_open_fault_show(struct device *dev, struct device_attri=
-bute *attr,
-+			char *buf)
-+{
-+	struct led_classdev *lcdev =3D dev_get_drvdata(dev);
-+	struct mp3326_led *led =3D container_of(lcdev, struct mp3326_led, cdev);
-+	struct mp3326 *chip =3D led->private_data;
-+	uint val, rval =3D 0, i;
-+	int ret;
-+
-+	for (i =3D 0; i < led->num_colors; i++) {
-+		ret =3D regmap_field_read(
-+			chip->regmap_fields[led->subled_info[i].channel][OPEN_FAULT], &val);
-+		rval |=3D val << i;
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (rval)
-+		return sysfs_emit(buf, "%s\n", "Occur");
-+	else
-+		return sysfs_emit(buf, "%s\n", "None");
-+}
-+
-+static DEVICE_ATTR_RW(led_pwm);
-+static DEVICE_ATTR_RW(led_enable);
-+static DEVICE_ATTR_RO(led_short_fault);
-+static DEVICE_ATTR_RO(led_open_fault);
-+
-+static struct attribute *led_sysfs_attrs[] =3D {
-+	&dev_attr_led_pwm.attr,
-+	&dev_attr_led_enable.attr,
-+	&dev_attr_led_short_fault.attr,
-+	&dev_attr_led_open_fault.attr,
-+	NULL,
-+};
-+
-+ATTRIBUTE_GROUPS(led_sysfs);
-+
-+static int mp3326_add_led(struct mp3326 *chip, struct device_node *np, int=
- index)
-+{
-+	struct mp3326_led *led =3D &chip->leds[index];
-+	struct mc_subled *info;
-+	struct device_node *child;
-+	struct led_classdev *cdev;
-+	struct led_init_data init_data =3D {};
-+	int ret;
-+	int i;
-+	int count;
-+	u32 color =3D 0;
-+	u32 reg =3D 0;
-+
-+	ret =3D of_property_read_u32(np, "color", &color);
-+	if (ret) {
-+		dev_err(&chip->client->dev, "Miss color in the node\n");
-+		return ret;
-+	}
-+	led->private_data =3D chip;
-+	if (color =3D=3D LED_COLOR_ID_RGB) {
-+		count =3D of_get_child_count(np);
-+		if (count !=3D 3) {
-+			dev_err(&chip->client->dev, "RGB must have three node.\n");
-+			return -EINVAL;
-+		}
-+
-+		info =3D devm_kcalloc(&chip->client->dev, 3, sizeof(*info), GFP_KERNEL);
-+		if (!info)
-+			return -ENOMEM;
-+
-+		for_each_available_child_of_node(np, child) {
-+			ret =3D of_property_read_u32(child, "reg", &reg);
-+			if (ret || reg > Max_Channel) {
-+				dev_err(&chip->client->dev,
-+				"reg must less or equal than %d\n", Max_Channel);
-+				return -EINVAL;
-+			}
-+
-+			ret =3D of_property_read_u32(child, "color", &color);
-+			if (ret) {
-+				dev_err(&chip->client->dev, "color must have value\n");
-+				return ret;
-+			}
-+
-+			if (color > 3 || !color) {
-+				dev_err(&chip->client->dev,
-+				"color must be Red, Green and Blue. The color is %d\n", color);
-+				return ret;
-+			}
-+			info[i].color_index =3D color;
-+			info[i].channel =3D reg - 1;
-+			info[i].brightness =3D 0;
-+			i++;
-+		}
-+
-+		led->subled_info =3D info;
-+		led->num_colors =3D 3;
-+		cdev =3D &led->cdev;
-+		cdev->max_brightness =3D MAX_BRIGHTNESS;
-+		cdev->brightness_set_blocking =3D led_brightness_set;
-+		cdev->groups =3D led_sysfs_groups;
-+		init_data.fwnode =3D &np->fwnode;
-+
-+		ret =3D devm_led_classdev_register_ext(&chip->client->dev, &led->cdev, &=
-init_data);
-+
-+		if (ret) {
-+			dev_err(&chip->client->dev, "Unable register multicolor:%s\n", cdev->na=
-me);
-+			return ret;
-+		}
-+	} else {
-+		ret =3D of_property_read_u32(np, "reg", &reg);
-+		if (ret || reg > Max_Channel) {
-+			dev_err(&chip->client->dev,
-+			"reg must less or equal than %d\n", Max_Channel);
-+			return -EINVAL;
-+		}
-+		info =3D devm_kcalloc(&chip->client->dev, 1, sizeof(*info), GFP_KERNEL);
-+		led->num_colors =3D 1;
-+		info[i].color_index =3D LED_COLOR_ID_WHITE;
-+		info[i].channel =3D reg - 1;
-+		info[i].brightness =3D 0;
-+		led->subled_info =3D info;
-+		cdev =3D &led->cdev;
-+		cdev->max_brightness =3D MAX_BRIGHTNESS;
-+		cdev->brightness_set_blocking =3D led_brightness_set;
-+		cdev->groups =3D led_sysfs_groups;
-+		init_data.fwnode =3D &np->fwnode;
-+		ret =3D devm_led_classdev_register_ext(&chip->client->dev, &led->cdev, &=
-init_data);
-+		if (ret) {
-+			dev_err(&chip->client->dev, "Unable register led:%s\n", cdev->name);
-+			return ret;
-+		}
-+	}
-+	return ret;
-+}
-+
-+static int mp3326_parse_dt(struct mp3326 *chip)
-+{
-+	struct device_node *np =3D dev_of_node(&chip->client->dev);
-+	struct device_node *child;
-+	int ret;
-+	int index;
-+	int val;
-+
-+	for_each_available_child_of_node(np, child) {
-+		ret =3D mp3326_add_led(chip, child, index);
-+		if (ret)
-+			return ret;
-+		index++;
-+	}
-+	ret =3D of_property_read_u32(np, "led-protect", &val);
-+	if (ret)
-+		return ret;
-+
-+	ret =3D regmap_update_bits(chip->regmap, 0x01, BIT(4) | BIT(5), val << 4)=
-;
-+
-+	ret =3D regmap_write(chip->regmap, MP3326_PWM_CTRL_CHANNEL_9_16, 0);
-+	if (ret)
-+		return ret;
-+	ret =3D regmap_write(chip->regmap, MP3326_PWM_CTRL_CHANNEL_1_8, 0);
-+	if (ret)
-+		return ret;
-+	return 0;
-+}
-+
-+static int mp3326_leds_probe(struct i2c_client *client)
-+{
-+	struct mp3326 *chip;
-+	const struct reg_field *reg_fields;
-+	int count, i, j;
-+
-+	count =3D device_get_child_node_count(&client->dev);
-+	if (!count) {
-+		return dev_err_probe(&client->dev, -EINVAL,
-+				"Incorrect number of leds (%d)", count);
-+	}
-+	chip =3D devm_kzalloc(&client->dev, struct_size(chip, leds, count), GFP_K=
-ERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->client =3D client;
-+	chip->num_of_leds =3D count;
-+	i2c_set_clientdata(client, chip);
-+	chip->regmap =3D devm_regmap_init_i2c(client, &MP3326_regmap_config);
-+	if (IS_ERR(chip->regmap))
-+		return PTR_ERR(chip->regmap);
-+
-+	for (i =3D 0; i < Max_Channel; i++) {
-+		reg_fields =3D channels_reg_fields[i];
-+		for (j =3D 0; j < Max_CTRL; j++) {
-+			chip->regmap_fields[i][j] =3D devm_regmap_field_alloc(&client->dev,
-+			chip->regmap, reg_fields[j]);
-+			if (IS_ERR(chip->regmap_fields[i][j])) {
-+				dev_err(&client->dev,
-+				"regmap field alloc fail, channel:%d, item: %d\n", i, j);
-+				return PTR_ERR(chip->regmap_fields[i][j]);
-+			}
-+		}
-+	}
-+	if (mp3326_parse_dt(chip))
-+		return 1;
-+	else
-+		return 0;
-+}
-+
-+static const struct i2c_device_id mp3326_id[] =3D {
-+	{"mp3326", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, mp3326_id);
-+
-+static const struct of_device_id mp3326_of_match[] =3D {
-+	{ .compatible =3D "mps,mp3326" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mp3326_of_match);
-+
-+static struct i2c_driver mp3326_driver =3D {
-+	.probe_new =3D mp3326_leds_probe,
-+	.driver =3D {
-+			.owner =3D THIS_MODULE,
-+			.name =3D "MP3326_led",
-+			.of_match_table =3D mp3326_of_match,
-+		   },
-+	.id_table =3D mp3326_id,
-+};
-+
-+module_i2c_driver(mp3326_driver);
-+MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-+MODULE_DESCRIPTION("MPS MP3326 LED driver");
-+MODULE_LICENSE("GPL");
---=20
-2.25.1
+...
+
+> I think it would be very nice if the gts-helpers could do the rounding 
+> when computing the available scales, but that'd require some thinking. 
+> Fixup patch is still very welcome ;)
+
+I did some further experimenting. Basically, I did a "hack" which always 
+rounds up the available-scales values if division results a remainder. 
+This way the values advertised by the available_scales did find the 
+matching table.
+
+It is a tiny bit icky because for example the scale 6945861.25 becomes 
+6945862 in available-scales. Also, I assume that if we "hack" just the 
+available-scales and don't fix the rest of the logic, setting 6945862 
+will read back as 6945861 (I haven't tested this though). Also, the 
+20837583.75 will be 20837583 in available-scales but 20837582 when read 
+back, resulting small error. (I haven't tested this either but I assume 
+the current GTS code is flooring the 20837583.75 to 20837583.
+
+I am wondering if changing the iio_gts_get_gain() to do rounding instead 
+of flooring and changing also the iio_gts_total_gain_to_scale() to 
+something like:
+
+int iio_gts_total_gain_to_scale(struct iio_gts *gts, int total_gain,
+				int *scale_int, int *scale_nano)
+{
+	u64 tmp;
+	int rem;
+
+	tmp = gts->max_scale;
+
+	rem = do_div(tmp, total_gain);
+	if (total_gain > 1 && rem >= total_gain / 2)
+		tmp += 1ULL;
+
+	return iio_gts_delinearize(tmp, NANO, scale_int, scale_nano);
+}
+
+would do the trick. It's just that I'm a bit afraid of touching the 
+iio_gts_get_gain() - by the very least I need to fire up the GTS tests 
+which I implemented but are not in-tree due to the test-device 
+dependency... :/
+
+Any thoughts?
+
+>>>> +
+>>>> +    ret = iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
+>>>> +                     data->intg_time_idx, val, val2, &gain_sel);
+>>>> +    if (ret) {
+>>>> +        for (i = 0; i < data->gts.num_itime; i++) {
+>>>> +            time_sel = data->gts.itime_table[i].sel;
+>>>> +
+>>>> +            if (time_sel == data->intg_time_idx)
+>>>> +                continue;
+>>>> +
+>>>> +            ret = 
+>>>> iio_gts_find_gain_sel_for_scale_using_time(&data->gts,
+>>>> +                        time_sel, val, val2, &gain_sel);
+>>>> +            if (!ret)
+>>>> +                break;
+>>>> +        }
+>>>> +        if (ret)
+>>>> +            return -EINVAL;
+>>>> +
+>>>> +        ret = apds9306_intg_time_set_hw(data, time_sel);
+>>>> +        if (ret)
+>>>> +            return ret;
+>>>> +    }
+>>>> +
+>>>> +    return apds9306_gain_set_hw(data, gain_sel);
+>>>> +}
+
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
 
