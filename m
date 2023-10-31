@@ -1,142 +1,117 @@
-Return-Path: <devicetree+bounces-13261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4A967DD250
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:41:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CD17DD26B
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:43:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51BA2B20AD0
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:41:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 685C1281825
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CA51B284;
-	Tue, 31 Oct 2023 16:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742AD1D6BD;
+	Tue, 31 Oct 2023 16:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Gl3UBQWy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eAJ/jKB3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F4F1946E
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 16:41:09 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB9330E5;
-	Tue, 31 Oct 2023 09:39:27 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39VGc99a004710;
-	Tue, 31 Oct 2023 11:38:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698770289;
-	bh=rMxQobL2C9Ih5ynT2fDAXkMqW1vSAxnXsdaxx4aMauw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Gl3UBQWyuntZv13eEWHDFlxwPnMUlvRRiMdggQvN7fwlmJcG+djBrJlocN1yp3H8e
-	 YWqPV7e8WPpeX0ZIWxjzp2aLh4ff9/lr10HdPwdcO55nBoDs+aXQA4SGhoCtIsYwXc
-	 21hV586kBu/5irnQAcKG6muKXMyp9P/qIRi1Yur4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39VGc9I8127636
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 31 Oct 2023 11:38:09 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 31
- Oct 2023 11:38:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 31 Oct 2023 11:38:09 -0500
-Received: from [10.249.132.69] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39VGc5E6011960;
-	Tue, 31 Oct 2023 11:38:06 -0500
-Message-ID: <5d251b55-7050-c212-c262-49127f86f32c@ti.com>
-Date: Tue, 31 Oct 2023 22:08:04 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E94720309
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 16:43:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7805212A;
+	Tue, 31 Oct 2023 09:43:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698770627; x=1730306627;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7B5NIFZnAMgt5AVmwDkbgyLx7q+R9dV1QKWlaH93HYc=;
+  b=eAJ/jKB3XxYX2GBdebnsIOuNISAeSsDvxOlerbvdbZpCHRHR5H9DHk98
+   nDC54MYcyBa4HAg8i6smZKei6j977mua+PjuzQ3x2XDK5SM7eG476oDwk
+   HZiyvMvIjsGVkfX/sw6N1uKR77KkNF44bSKBaJPEWT/Bzq4iKmhcctZJO
+   k+7A5mVVyzRn0iAJWi2VCmSq92XhDWD3kaGDC9ts0QpuZvXdh0iMLVDXf
+   GIwi13uVEJhgv6hwhcMFxOR6oaiCXh34FLuPo3Fj4je0/Q5fUsv1dpEXP
+   41Kl/qTaewsOz3N3V9qtx0hcneGoGmidcgpvtziyllZO0krEcQlfkFwKS
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="6950412"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="6950412"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 09:43:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1092068287"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="1092068287"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2023 09:43:42 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qxrq6-0000000ACtG-3U8G;
+	Tue, 31 Oct 2023 18:43:38 +0200
+Date: Tue, 31 Oct 2023 18:43:38 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] media: i2c: Add driver for THine THP7312
+Message-ID: <ZUEuuqLv7p0nB9a-@smile.fi.intel.com>
+References: <20231017132103.9914-4-laurent.pinchart@ideasonboard.com>
+ <ZTutbU1XG_jKZbIp@valkosipuli.retiisi.eu>
+ <20231027124529.GA19539@pendragon.ideasonboard.com>
+ <ZTvOIQSmpytUisUD@valkosipuli.retiisi.eu>
+ <20231028151858.GB20465@pendragon.ideasonboard.com>
+ <ZT9kwC3abUKR9fgQ@valkosipuli.retiisi.eu>
+ <20231030104241.GJ12144@pendragon.ideasonboard.com>
+ <ZUDatMX10WK0bdid@valkosipuli.retiisi.eu>
+ <ZUEEBXfjTPqnnL9b@smile.fi.intel.com>
+ <20231031142459.GB14322@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] scripts/dtc: Allow ports to have a single port@0 child
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: Frank Rowand <frowand.list@gmail.com>,
-        Devicetree List
-	<devicetree@vger.kernel.org>,
-        Linux Kernel List
-	<linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Devarsh Thakkar
-	<devarsht@ti.com>, Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary
-	<j-choudhary@ti.com>
-References: <20231013085424.7137-1-a-bhatia1@ti.com>
- <20231025193113.GA994152-robh@kernel.org>
-From: Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <20231025193113.GA994152-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231031142459.GB14322@pendragon.ideasonboard.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Tue, Oct 31, 2023 at 04:24:59PM +0200, Laurent Pinchart wrote:
+> On Tue, Oct 31, 2023 at 03:41:25PM +0200, Andy Shevchenko wrote:
+> > On Tue, Oct 31, 2023 at 10:45:32AM +0000, Sakari Ailus wrote:
 
+...
 
-On 26-Oct-23 01:01, Rob Herring wrote:
-> On Fri, Oct 13, 2023 at 02:24:24PM +0530, Aradhya Bhatia wrote:
->> Exempt 'ports' from the rule which asserts that nodes with single child
->> node having reg = 0, should not have the '#size-cells' and
->> '#address-cells' properties.
->>
->> Ports of certain hardware do need to be described as only having a
->> single child node 'port@0', especially when hardware has multiple ports,
->> and the other ports 'port@x' are planned to be added subsequently. In
->> such cases, just using 'port', would be an inaccurate hardware
->> description.
->>
->> For example, Texas Instruments' DSS (display-subsystem), which has 2 or
->> 4 video ports depending on the SoC. Describing the first video port with
->> just 'port' under ports would be inaccurate and even slightly
->> misleading. Simply using port@0 (when other ports are not added)
->> produces the following warning, while making dtbs with W=1 flag set[0].
+> > I agree with Sakari. Let's reduce the scope of ACPI/OF/etc-specific functions
+> > in the drivers. There are really little that have no generic counterparts.
+> > And most of the usages are special cases.
 > 
-> There's a reason this is behind W=1.
-> 
-> In general, if you only have a single 'port' it should be just 'port' 
-> which is equivalent to port 0. There's exceptions to that, so the 
-> warning is off by default.
+> Sakar has submitted a patch to add one missing fwnode function.
 
-Thank you for reviewing the patch, Rob!
+I have reviewed it already :-)
 
-I had a discussion offline, and I agree that the patch may not be needed
-after all.
+> If it gets accepted, I'll try it out and see if I can convert this driver.
 
-Moreover, upon looking at the tests provided in upstream dtc tree, I
-also realized that the check is exclusively limited to port@0, and does
-not include any random 'child@0'. This makes the patch make a lot less
-sense too.
+I'm sure we can make this happen, but let's see...
 
-Regards
-Aradhya
+> I will still not do a partial conversion if I hit any other blocker.
 
-> 
->> code-block ::
->>
->> 	Warning (graph_child_address): /bus@100000/dss@4a00000/ports:
->> 	graph node has single child node 'port@0',
->> 	#address-cells/#size-cells are not necessary
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->>
->> [0]: https://lore.kernel.org/all/570903b6-8239-d44a-5fac-71700804cb5d@ti.com/
->> ---
->>  scripts/dtc/checks.c | 11 ++++++++++-
->>  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> This is a copy of upstream dtc. We don't take patches for it (except in 
-> emergency). Look at the commit history.
-> 
-> Rob
+If any other issues, don't hesitate to report!
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
