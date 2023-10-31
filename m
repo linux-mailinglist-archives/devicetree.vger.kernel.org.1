@@ -1,233 +1,107 @@
-Return-Path: <devicetree+bounces-13174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10BF7DCC77
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25BD97DCC91
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:07:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39C04B20D71
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:03:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9E10B21080
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8671C68D;
-	Tue, 31 Oct 2023 12:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U+0xTrYb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F2C1DA3E;
+	Tue, 31 Oct 2023 12:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217A5107B4
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 12:03:52 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8761F5584;
-	Tue, 31 Oct 2023 05:03:51 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39VA9RQ1028243;
-	Tue, 31 Oct 2023 12:03:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=qcppdkim1;
- bh=qtUqTgzQz/X6OXajNpTGiJjqSqC/Bp2kFW5ZPsnmIdI=;
- b=U+0xTrYb4INDqcogLq0XdzDTFVVJVXNCRmTVFzjimW26Oe1DB+8b4zcvUO9Db6vTpit/
- 6nEZHk7sogaJ2bCHztPKHx4qKKzlC/Yr212BBFzCJ1bB8FthhORl6lgV3UQYrGIv9f19
- vKZrNN5RXYCXL9no/bu5phETw1zhvJ94Pc42ElUw0ChGFPL4u+ZmY2ABwqWn84mAA41N
- ej67webd1SqT+6BXWhGBZVj/dUYeGJe2cKQ0hhIUBsyKjfXu1yRXeuiYsWHrK8ya6VRb
- iXeEHC9sWBnVNL4w0LawrcLhRxoooTpe2/Dptsfj0MVp7xrv5miNFCTuTp/AkkkzK9In nQ== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u2mcyhp8h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 12:03:16 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 39VC3D92005310;
-	Tue, 31 Oct 2023 12:03:13 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3u0uckvvpv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 12:03:13 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 39VC3AjH005252;
-	Tue, 31 Oct 2023 12:03:13 GMT
-Received: from hu-devc-blr-u22-a.qualcomm.com (hu-mdalam-blr.qualcomm.com [10.131.36.157])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 39VC3Dp3005300
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 12:03:13 +0000
-Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 466583)
-	id 3F0E94162D; Tue, 31 Oct 2023 17:33:12 +0530 (+0530)
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, miquel.raynal@bootlin.com,
-        richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, quic_srichara@quicinc.com,
-        qpic_varada@quicinc.com
-Cc: quic_mdalam@quicinc.com
-Subject: [RFC PATCH 5/5] arm64: dts: qcom: ipq9574: Add support for SPI nand
-Date: Tue, 31 Oct 2023 17:33:07 +0530
-Message-Id: <20231031120307.1600689-6-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
-References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D461D553;
+	Tue, 31 Oct 2023 12:07:05 +0000 (UTC)
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F9755A7;
+	Tue, 31 Oct 2023 05:06:27 -0700 (PDT)
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6d2fedd836fso1053596a34.1;
+        Tue, 31 Oct 2023 05:06:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698753986; x=1699358786;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KwJ8AtoBrkBNCnTtlse8Ku4Ug1vP6CiFi0/b92qOz5g=;
+        b=qunxUNsDa0ah0eGMIQBYCC32757CZxANjgiTHEpG/EtyW7RiSoyEl6Dk2NmhAMOdED
+         n9PVDVm7gho4ZKfLvVpy3unJVBFJ8ekBabrWaLLHF2oSY1cm/VzrW6I4RqVSz8Cr9aE/
+         V3Vx0f34EG9WN/Epw3IuS2sUYZVlcvjp3NoO/eqWxxNyQZnyY4x7sslTGfCg9CtBYpz0
+         Ndsu4sBnefUMe3GU4s8sJJJGfNGTjdmhdFQM1bN+I8VsroMg3feF9DJuV87/WgWlZrYr
+         QswpwdcYJa/iaowV5CsvQDZGMqjfJrWj8P82kY3gNzeW/dQeN6QALilNA+Q3Enrn9mvN
+         E9Cw==
+X-Gm-Message-State: AOJu0YwxUHU4zYe6VUWX0CKLCkxIUmmQEwS9K5B/HIrN/hdt2ydHDg/Q
+	AdX5/ruuodaNCPlT0HJcguHfV+j69g==
+X-Google-Smtp-Source: AGHT+IHu8fXiqRuYtkRdrQjQjSqDkRBPAZCalDhDui3HwNZgqx7NW3lHH3Yy/XlMVwIbEf/3VVL7gw==
+X-Received: by 2002:a05:6830:7191:b0:6cd:9bc:b994 with SMTP id el17-20020a056830719100b006cd09bcb994mr15651079otb.1.1698753986331;
+        Tue, 31 Oct 2023 05:06:26 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b6-20020a9d4786000000b006c65f431799sm196375otf.23.2023.10.31.05.06.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Oct 2023 05:06:25 -0700 (PDT)
+Received: (nullmailer pid 1220257 invoked by uid 1000);
+	Tue, 31 Oct 2023 12:06:24 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: PQfZ8XCUGpMR_GKZ7TRZR8wmCWmWjqrc
-X-Proofpoint-ORIG-GUID: PQfZ8XCUGpMR_GKZ7TRZR8wmCWmWjqrc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-31_01,2023-10-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 mlxscore=0 impostorscore=0 mlxlogscore=888 phishscore=0
- suspectscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0 clxscore=1015
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2310310094
+From: Rob Herring <robh@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Alessandro Zummo <a.zummo@towertech.it>, Jean Delvare <jdelvare@suse.com>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, Alexandre Belloni <alexandre.belloni@bootlin.com>, Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-rtc@vger.kernel.org
+In-Reply-To: <20231030115016.97823-2-antoniu.miclaus@analog.com>
+References: <20231030115016.97823-1-antoniu.miclaus@analog.com>
+ <20231030115016.97823-2-antoniu.miclaus@analog.com>
+Message-Id: <169870508338.2649393.15101906939407889165.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Date: Tue, 31 Oct 2023 07:06:24 -0500
 
-Add support for QPIC SPI NAND for IPQ9574
 
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 56 ++++++++++-----------
- arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 30 ++++++++++-
- 2 files changed, 57 insertions(+), 29 deletions(-)
+On Mon, 30 Oct 2023 13:50:01 +0200, Antoniu Miclaus wrote:
+> Document the Analog Devices MAX31335 device tree bindings.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+>  .../devicetree/bindings/rtc/adi,max31335.yaml | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 1bb8d96c9a82..5e4200edb873 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -15,48 +15,48 @@ / {
- 	compatible = "qcom,ipq9574-ap-al02-c7", "qcom,ipq9574";
- };
- 
--&sdhc_1 {
--	pinctrl-0 = <&sdc_default_state>;
--	pinctrl-names = "default";
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	mmc-hs400-1_8v;
--	mmc-hs400-enhanced-strobe;
--	max-frequency = <384000000>;
--	bus-width = <8>;
--	status = "okay";
--};
--
- &tlmm {
--	sdc_default_state: sdc-default-state {
--		clk-pins {
-+	qspi_nand_pins: qspi_nand_pins {
-+		spi_clock {
- 			pins = "gpio5";
--			function = "sdc_clk";
-+			function = "qspi_clk";
- 			drive-strength = <8>;
- 			bias-disable;
- 		};
- 
--		cmd-pins {
-+		qspi_cs {
- 			pins = "gpio4";
--			function = "sdc_cmd";
-+			function = "qspi_cs";
- 			drive-strength = <8>;
- 			bias-pull-up;
- 		};
- 
--		data-pins {
--			pins = "gpio0", "gpio1", "gpio2",
--			       "gpio3", "gpio6", "gpio7",
--			       "gpio8", "gpio9";
--			function = "sdc_data";
-+		qspi_data {
-+			pins = "gpio0", "gpio1", "gpio2";
-+			function = "qspi_data";
- 			drive-strength = <8>;
- 			bias-pull-up;
- 		};
- 
--		rclk-pins {
--			pins = "gpio10";
--			function = "sdc_rclk";
--			drive-strength = <8>;
--			bias-pull-down;
--		};
-+	};
-+};
-+
-+&qpic_bam {
-+	status = "okay";
-+};
-+
-+&qpic_nand {
-+	status = "okay";
-+	pinctrl-0 = <&qspi_nand_pins>;
-+	pinctrl-names = "default";
-+	spi_nand: spi_nand@0 {
-+		compatible = "spi-nand";
-+		nand-ecc-engine = <&qpic_nand>;
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		nand-ecc-strength = <4>;
-+		nand-ecc-step-size = <512>;
-+		spi-max-frequency = <8000000>;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index b44acb1fac74..f9c21373f5e6 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -336,10 +336,38 @@ sdhc_1: mmc@7804000 {
- 			status = "disabled";
- 		};
- 
-+		qpic_bam: dma@7984000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0x7984000 0x1c000>;
-+			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_QPIC_AHB_CLK>;
-+			clock-names = "bam_clk";
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			status = "disabled";
-+		};
-+
-+		qpic_nand: spi@79b0000 {
-+			compatible = "qcom,ipq9574-nand";
-+			reg = <0x79b0000 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&gcc GCC_QPIC_CLK>,
-+			<&gcc GCC_QPIC_AHB_CLK>,
-+			<&gcc GCC_QPIC_IO_MACRO_CLK>;
-+			clock-names = "core", "aon", "io_macro";
-+			dmas = <&qpic_bam 0>,
-+				<&qpic_bam 1>,
-+				<&qpic_bam 2>;
-+			dma-names = "tx", "rx", "cmd";
-+			nand-ecc-engine = <&bch>;
-+			status = "disabled";
-+		};
-+
- 		bch: qpic_ecc {
- 			compatible = "qcom,ipq9574-ecc";
- 			status = "ok";
--		}
-+		};
- 
- 		blsp_dma: dma-controller@7884000 {
- 			compatible = "qcom,bam-v1.7.0";
--- 
-2.34.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rtc/adi,max31335.yaml: title: 'Analog Devices MAX31335 RTC Device Tree Bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/rtc/adi,max31335.yaml: trickle-diode-enable: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231030115016.97823-2-antoniu.miclaus@analog.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
