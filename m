@@ -1,179 +1,103 @@
-Return-Path: <devicetree+bounces-12993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5747DC27E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 23:31:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB7B7DC3BD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 02:00:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 196E5B20D63
-	for <lists+devicetree@lfdr.de>; Mon, 30 Oct 2023 22:31:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951FD1C209D8
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 01:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 905FB10A1A;
-	Mon, 30 Oct 2023 22:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D2137A;
+	Tue, 31 Oct 2023 01:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EHzBfcMj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="MvQr4gRt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2211DA2D;
-	Mon, 30 Oct 2023 22:31:00 +0000 (UTC)
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F8EE8;
-	Mon, 30 Oct 2023 15:30:59 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50931355d48so300549e87.3;
-        Mon, 30 Oct 2023 15:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698705057; x=1699309857; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TB8r/SdZ5J8wZVmDWaMJ5xCqtTR3SHgzsbmCs77mgpc=;
-        b=EHzBfcMjd2ryXNL9KsCeZ+bW6/PnFmaZp9/5oSVhNLQmsyx6nGpgK9vjOZWyPCsoln
-         hf4rtrjfvE6/Iz5mfL488ntc+ZMPkCHaf9p+XK8G9XfwqWVbSWSuGL/OUJdNBueN2lQ1
-         uKgzA6anCWBRg4Tszz8Dn6GJ67AUSLw4NvdphW/mir1S2CwBDwPB0/gbZIvI1FbVrfLB
-         P7nhLRKkPZvjj2SVclZ3HnH9qv9qeOcPMS1aPI9BRywnmJC2+RiWh7TNNthbr6J9XjDb
-         l525lp0TKfk0tXqvWKqQVsRjwtGjoGB2/oPqnMdoGFVghoX1kSZm/PWDlndT+B/6+nKJ
-         hnCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698705057; x=1699309857;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TB8r/SdZ5J8wZVmDWaMJ5xCqtTR3SHgzsbmCs77mgpc=;
-        b=ZobeSxaMXyBDAv+767AJzHxtTYq0hVZ8TewfX+BXJRIm4hFaF78c+8r8KDkIikDxrS
-         F4HZ8FoIaFdFiuqNMA5NL0du2YAgLx8H8MpAVMI3Ds2nh0GYM8fnj2RGIqcnaiwVs1o3
-         Fmq+US5eDDJ4QTlbNRYcpS1IP7viYKMeD4YL1AnO6YtCunvu+RiM3QpSA6ROAdGUtK5f
-         dcQL21r/3Emrw3UKyNGw0pn6EpmFPQDQdpGmIjYw5/6rUMe8gq+VxBCnVlF6PwOR56w7
-         I5abhoYIxKKhisRFLnzhaw286QdSCvjY6rQ6DMn8JQ0yNwp91FeHmyyqTcRR0Wf1VcEJ
-         TsjQ==
-X-Gm-Message-State: AOJu0Yz7zKspNn0zI9xrzKqEmZB+ui+A4x+RLo9Npd0weLzslUxWCA6v
-	1pSdiHnzv3ejKEZwHkYq3n/gjMp883+OAXT+Wsk=
-X-Google-Smtp-Source: AGHT+IGrwinIQ8yEEqopEv+9EL0QmlmPcr4E8zOJqdz5GZ/6OgIngxY/qm6YFuwLnQGT5nOiGM4r9Qc8IKBHjYjHgX0=
-X-Received: by 2002:ac2:5147:0:b0:507:cd39:a005 with SMTP id
- q7-20020ac25147000000b00507cd39a005mr7610340lfd.39.1698705057112; Mon, 30 Oct
- 2023 15:30:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A62D36D;
+	Tue, 31 Oct 2023 01:00:15 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AB2C1;
+	Mon, 30 Oct 2023 18:00:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=dQjReZhnkb4AP5DzfEzONPc2UVwhei3iUP21q72heac=; b=MvQr4gRtP5TUQzFcesFdjRrYme
+	5SXVO0QJTaYOP+EGzcQcN2ctQLXVp6Ppzk7tt8Zu7kE70nqeeKNu3DKtWXDCtEMVk4gQSpxPcpb49
+	Id365M9q0gSIlDJDxDrF2Cbq6lqo91fLnN0adXfK6zF7kVXekX0xMz9zeE8DKApQ6l8Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qxd6z-000Zkf-Ik; Tue, 31 Oct 2023 02:00:05 +0100
+Date: Tue, 31 Oct 2023 02:00:05 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Ante Knezic <ante.knezic@helmholz.de>, conor+dt@kernel.org,
+	o.rempel@pengutronix.de, UNGLinuxDriver@microchip.com,
+	davem@davemloft.net, devicetree@vger.kernel.org,
+	edumazet@google.com, f.fainelli@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, kuba@kernel.org,
+	linux-kernel@vger.kernel.org, marex@denx.de, netdev@vger.kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org, woojung.huh@microchip.com
+Subject: Re: [PATCH net-next v4 2/2] net:dsa:microchip: add property to select
+Message-ID: <aad5ac41-3c05-421d-a483-0546b579585c@lunn.ch>
+References: <20231024142426.GE3803936@pengutronix.de>
+ <20231027063743.28747-1-ante.knezic@helmholz.de>
+ <20231030174225.hqhc3afbayi7dmos@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231027190910.27044-1-luizluca@gmail.com> <20231027190910.27044-3-luizluca@gmail.com>
- <20231030131551.GA714112-robh@kernel.org>
-In-Reply-To: <20231030131551.GA714112-robh@kernel.org>
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Mon, 30 Oct 2023 19:30:45 -0300
-Message-ID: <CAJq09z6wcj7NY_XqJ-80yN+6=Z+fOCZqpXH60pL29jcE+zTugg@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 2/3] dt-bindings: net: dsa: realtek: add reset controller
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, linus.walleij@linaro.org, alsi@bang-olufsen.dk, 
-	andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com, 
-	olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, 
-	krzk+dt@kernel.org, arinc.unal@arinc9.com, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231030174225.hqhc3afbayi7dmos@skbuf>
 
-> On Fri, Oct 27, 2023 at 04:00:56PM -0300, Luiz Angelo Daros de Luca wrote:
-> > Realtek switches can use a reset controller instead of reset-gpios.
-> >
-> > Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> > Cc: devicetree@vger.kernel.org
-> > ---
-> >  .../devicetree/bindings/net/dsa/realtek.yaml  | 75 +++++++++++++++++++
-> >  1 file changed, 75 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> > index 46e113df77c8..ef7b27c3b1a3 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
-> > @@ -59,6 +59,9 @@ properties:
-> >      description: GPIO to be used to reset the whole device
-> >      maxItems: 1
-> >
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> >    realtek,disable-leds:
-> >      type: boolean
-> >      description: |
-> > @@ -385,3 +388,75 @@ examples:
-> >                      };
-> >              };
-> >        };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    platform {
-> > +            switch {
-> > +                    compatible = "realtek,rtl8365mb";
-> > +                    mdc-gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>;
-> > +                    mdio-gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-> > +
-> > +                    resets = <&rst 8>;
-> > +
-> > +                    ethernet-ports {
-> > +                            #address-cells = <1>;
-> > +                            #size-cells = <0>;
-> > +
-> > +                            ethernet-port@0 {
-> > +                                    reg = <0>;
-> > +                                    label = "wan";
-> > +                                    phy-handle = <&ethphy-0>;
-> > +                            };
-> > +                            ethernet-port@1 {
-> > +                                    reg = <1>;
-> > +                                    label = "lan1";
-> > +                                    phy-handle = <&ethphy-1>;
-> > +                            };
-> > +                            ethernet-port@2 {
-> > +                                    reg = <2>;
-> > +                                    label = "lan2";
-> > +                                    phy-handle = <&ethphy-2>;
-> > +                            };
-> > +                            ethernet-port@3 {
-> > +                                    reg = <3>;
-> > +                                    label = "lan3";
-> > +                                    phy-handle = <&ethphy-3>;
-> > +                            };
-> > +                            ethernet-port@4 {
-> > +                                    reg = <4>;
-> > +                                    label = "lan4";
-> > +                                    phy-handle = <&ethphy-4>;
-> > +                            };
-> > +                            ethernet-port@5 {
-> > +                                    reg = <5>;
-> > +                                    ethernet = <&eth0>;
-> > +                                    phy-mode = "rgmii";
-> > +                                    fixed-link {
-> > +                                            speed = <1000>;
-> > +                                            full-duplex;
-> > +                                    };
-> > +                            };
-> > +                    };
-> > +
-> > +                    mdio {
-> > +                            compatible = "realtek,smi-mdio";
-> > +                            #address-cells = <1>;
-> > +                            #size-cells = <0>;
-> > +
-> > +                            ethphy-0: ethernet-phy@0 {
->
-> You didn't test your binding (make dt_binding_check).
->
-> '-' is not valid in labels.
->
+> So, my opinion is that although what Oleksij would like to see is
+> admirable, I don't think that the REF_CLK direction is a matter of RMII
+> MAC vs PHY role, and thus, we wouldn't need to change "rmii" to "rev-rmii"
+> and cause breakage everywhere. It's just that - a matter of REF_CLK
+> direction. It's true, though, that this is a generic problem and that
+> the generic bindings for RMII that we currently have are under-specified.
+> We could try to devise an extended RMII binding which makes it clear for
+> both the MAC and the PHY who is responsible to drive this signal. You
+> are not attempting that, you are just coming up with yet another
+> vendor-specific MAC property which solves a generic problem. I can't say
+> I am completely opposed to that, either, which is why I haven't really
+> spoken out against it. The PHY maintainers would also have to weigh in,
+> and not all of them are CCed here.
 
-My bad. I (wrongly) fixed that in the realtek.example.dtb content,
-which is derived from the realtek.yaml.
-As it has a newer mtime, it was not updated with dt_binding_check.
+I would recommend looking around other PHYs and find a property which
+does what you want, and copy it.
 
->
-> Why do we have a whole other example just for 'resets' instead of
-> 'reset-gpios'? That's not really worth it.
+We do have all sorts of properties. There are some to enable the
+REF_CLK out of the PHY. Some to disable the REF_CLK out, some to
+disable it when the link is down, some to indicate what frequency it
+should tick at, etc.
 
-However, as it is not worth it, I'll drop it.
+If you want to go the extra mile, maybe you can make a summary of all
+these properties, and maybe we can produce a guide line for what we
+want the properties to be called going forward.
 
-> Rob
+> I am afraid that creating a CCF style binding for REF_CLK will be an
+> enormous hammer for a very small nail and will see very limited adoption
+> to other drivers, but I might as well be wrong about it. Compatibility
+> between RMII MACs and PHYs which may or may not be CCF-ready might also
+> be a concern.
+
+I also don't think using the CCF makes too much sense, except for
+where the SoC provides the lock, and already has a CCF covering it.
+
+I would also be hesitant to add more dependencies between the MAC and
+the PHY. The DT often has circular dependencies and we have had issues
+with probing being deferred because the core does not always
+understand these circular dependencies.
+
+	   Andrew
 
