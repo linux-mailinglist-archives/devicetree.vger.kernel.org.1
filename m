@@ -1,168 +1,133 @@
-Return-Path: <devicetree+bounces-13197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF86D7DCE22
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:47:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B688F7DCE45
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 14:54:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CFB0281046
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:47:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F07FA1C20BD0
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C31A11D681;
-	Tue, 31 Oct 2023 13:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5778E1DDC1;
+	Tue, 31 Oct 2023 13:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OqkwBCvX"
+	dkim=pass (1024-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="t9vBByn8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35D012B98;
-	Tue, 31 Oct 2023 13:47:08 +0000 (UTC)
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECEE4DE;
-	Tue, 31 Oct 2023 06:47:07 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6b1ef786b7fso5681661b3a.3;
-        Tue, 31 Oct 2023 06:47:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698760027; x=1699364827; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=szWjSuZzSBsgDHOkVrsEaBtEWrwcwItxo1aEsAkUX60=;
-        b=OqkwBCvXVDA6wfLEjmkHv2xJG8vX1+koutd+BawGbGy5dDRmXmqtaQt3zQWnxnpNpz
-         eHljFBzd0SoO9AafY1CdPx5QZtlN5eg3nzUBqgfAmO47gr1MfbPp052phN3kxaBnwiSg
-         eLf9BW17Gjth0U7dxRcknw2dyr8W9TyvjPxuGRv2hbNlIK4SvIh8a/cfxhhMhIvA5RTp
-         lqkoxTq50R74iPce+JKlvXej9IBytVehNCEtXydP8gXsUixPvacvAmFt3sguvJlnFMmN
-         ImFDsgnwbHgbyeYtW5GfH/eGBvOvM4NGnHcgEi4xs1hgXPjrBci0LHsutO7lGuN1eNP8
-         P4+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698760027; x=1699364827;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=szWjSuZzSBsgDHOkVrsEaBtEWrwcwItxo1aEsAkUX60=;
-        b=NW6pXlwqKeiW60rZUp5ibU1v12VY++L+yD6/QYgR21TGGlWjG1vl5DQxXLE3DX6Hom
-         HaCG/5cEibPlt9Cz8LkPTd/w1QaPN8Z4nStQqt8trRHxQDGFjpAUucXZrQlAnIVgKOzw
-         vsYyvgjHclJxGOU5JrTvELCHvVDDGJ5Y4OOgB/KjAdZWYr6hyq9rKsC+cIGO6SbVKO6X
-         WKcjPSumYAYrGObooIRZtLpdgJ+ZdwGnv9y8/kcyps/OT2yZA02ngMYDdtyEANNVGDd7
-         mClgVZefa0pA8h3dDCIKus9AhW+rfffARBsx4H1tcX2Kfs77MMUUTSNE/Zl/48ljusqF
-         Mu5w==
-X-Gm-Message-State: AOJu0Yzklc89PL3p2c8G2Y00OJXtcJmO8uL5WohBbKHUXH4PQG4xZRQp
-	jflg5CWOxuO1yvVxp5eJ4qsTbYh60Cg=
-X-Google-Smtp-Source: AGHT+IEss54PrDdJ/A6btq7yXlW0o9uW7P3aDmSlcSFpwKSRIpbSBtWxowwZRpjuhJlEhUCn+cuBUQ==
-X-Received: by 2002:a05:6a20:7d95:b0:169:cd02:65e9 with SMTP id v21-20020a056a207d9500b00169cd0265e9mr16505135pzj.33.1698760027378;
-        Tue, 31 Oct 2023 06:47:07 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y16-20020a056a00191000b0069268e3a659sm1263401pfi.132.2023.10.31.06.47.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 06:47:06 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e223764a-c081-4634-810b-56886a29804a@roeck-us.net>
-Date: Tue, 31 Oct 2023 06:47:04 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBB41CFBE
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 13:54:34 +0000 (UTC)
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 585009F;
+	Tue, 31 Oct 2023 06:54:32 -0700 (PDT)
+Message-ID: <714040ef-a032-41b4-9612-c739ecc25d33@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=donut; t=1698760470;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MZUERBcJomGwI5V072etc02VGxK584H2du5hts/zKNc=;
+	b=t9vBByn8fT/MAyShle8FMOMGPVDJgIICMdv+HbKIAILqNWsgHZrJQkHop3pB60d8TWiQ4t
+	KT6sC/EBXR0filNeqNPCFz0rhYmDy7W9p6C4TxHVGy8oGmF6iCQrJ5bM3DBRIf6RYuBkrq
+	Xc/kTh1y7XmTheMeQtK4xg15qYBfhhk=
+Date: Tue, 31 Oct 2023 14:52:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwmon: pmbus: Add ltc4286 driver
-Content-Language: en-US
-To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>,
- "patrick@stwcx.xyz" <patrick@stwcx.xyz>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>
-Cc: Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v3 3/4] ARM: dts: qcom: Add support for Samsung Galaxy Tab
+ 4 10.1 LTE (SM-T535)
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20231026081514.3610343-1-Delphine_CC_Chiu@Wiwynn.com>
- <20231026081514.3610343-3-Delphine_CC_Chiu@Wiwynn.com>
- <2ef2e804-d498-a2ae-9717-dd03bfd26853@roeck-us.net>
- <SG2PR04MB5543FEAFC1777ADE29239AC9A1A0A@SG2PR04MB5543.apcprd04.prod.outlook.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <SG2PR04MB5543FEAFC1777ADE29239AC9A1A0A@SG2PR04MB5543.apcprd04.prod.outlook.com>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20231025083952.12367-1-newbyte@postmarketos.org>
+ <20231025083952.12367-4-newbyte@postmarketos.org>
+ <a3162513-c4d0-4db6-9ff9-447f4249fc67@linaro.org>
+Content-Language: en-US
+From: Stefan Hansson <newbyte@postmarketos.org>
+In-Reply-To: <a3162513-c4d0-4db6-9ff9-447f4249fc67@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/30/23 23:46, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
-[ ... ]
+
+
+On 2023-10-31 12:08, Konrad Dybcio wrote:
+> On 25.10.2023 10:37, Stefan Hansson wrote:
+>> Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T535) LTE tablet
+>> based on the MSM8926 platform.
 >>
->>> +
->>> +     ret = of_property_read_u32(client->dev.of_node,
->>> +                                "shunt-resistor-micro-ohms",
->> &rsense);
->>> +     if (ret < 0)
->>> +             return ret;
->>> +
->>> +     if (rsense == 0)
->>> +             return -EINVAL;
->>> +
->>> +     info = &ltc4286_info;
->>> +
->>> +     /* Default of VRANGE_SELECT = 1, 102.4V */
->>> +     if (device_property_read_bool(&client->dev,
->> "adi,vrange-select-25p6")) {
+>> Signed-off-by: Stefan Hansson <newbyte@postmarketos.org>
+>> ---
+>>   arch/arm/boot/dts/qcom/Makefile               |  1 +
+>>   .../qcom/qcom-msm8926-samsung-matisselte.dts  | 36 +++++++++++++++++++
+>>   2 files changed, 37 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
 >>
->> What if the adi,vrange-select-25p6 property is not provided, but the chip
->> is programmed for this range ?
-> The binding document tells programmers how to fill the dts.
-> Thus, programmers must fill this property if their system is 25.6 volts voltage range.
-> 
+>> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
+>> index a3d293e40820..cab35eeb30f6 100644
+>> --- a/arch/arm/boot/dts/qcom/Makefile
+>> +++ b/arch/arm/boot/dts/qcom/Makefile
+>> @@ -34,6 +34,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>>   	qcom-msm8916-samsung-serranove.dtb \
+>>   	qcom-msm8926-microsoft-superman-lte.dtb \
+>>   	qcom-msm8926-microsoft-tesla.dtb \
+>> +	qcom-msm8926-samsung-matisselte.dtb \
+>>   	qcom-msm8960-cdp.dtb \
+>>   	qcom-msm8960-samsung-expressatt.dtb \
+>>   	qcom-msm8974-lge-nexus5-hammerhead.dtb \
+>> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
+>> new file mode 100644
+>> index 000000000000..6e25b1a74ce5
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
+>> @@ -0,0 +1,36 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2022, Matti Lehtimäki <matti.lehtimaki@gmail.com>
+>> + * Copyright (c) 2023, Stefan Hansson <newbyte@postmarketos.org>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "qcom-msm8226-samsung-matisse-common.dtsi"
+>> +
+>> +/ {
+>> +	model = "Samsung Galaxy Tab 4 10.1 LTE";
+>> +	compatible = "samsung,matisselte", "qcom,msm8926", "qcom,msm8226";
+>> +	chassis-type = "tablet";
+>> +};
+>> +
+>> +&pm8226_l3 {
+>> +	regulator-max-microvolt = <1350000>;
+>> +};
+>> +
+>> +&pm8226_s4 {
+>> +	regulator-max-microvolt = <2200000>;
+>> +};
+>> +
+>> +&reg_tsp_3p3v {
+>> +	gpio = <&tlmm 32 GPIO_ACTIVE_HIGH>;
+>> +};
+>> +
+>> +&sdhc_2 {
+>> +	/* SD card fails to probe with error -110 */
+>> +	status = "disabled";
+> Can you give us some logs?
 
-Sure, but there is no else case, meaning VRANGE_SELECT is
-unmodified in that case. There is no guarantee that the chip
-is in its power-on state.
+I tested it again just now, and it worked without issues. Maybe I used a 
+defective SD card to test it or hadn't inserted it properly. I'll send 
+another revision fixing this.
 
-Guenter
+> Konrad
 
+Stefan
 
