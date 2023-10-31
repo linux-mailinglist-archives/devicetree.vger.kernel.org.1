@@ -1,166 +1,335 @@
-Return-Path: <devicetree+bounces-13270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C117DD3ED
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:06:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D44B7DD415
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:07:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78ABDB20A1F
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:06:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F20B1F22332
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2033420329;
-	Tue, 31 Oct 2023 17:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29EC22031D;
+	Tue, 31 Oct 2023 17:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uIbPNRXp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gTqUAMRh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41E22031D;
-	Tue, 31 Oct 2023 17:06:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ACCDC433C7;
-	Tue, 31 Oct 2023 17:06:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698771972;
-	bh=IURdf+ELaMvBNjQ4JtTI42ePYhUeSVb18qPrqHz3arw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uIbPNRXpRvaa7V97Idx9HyKSfMSIIW0Six+5xZQeNIen57cDoX4WBjuIwP/WhYdzN
-	 bv1IleATgdUjejRfGBsPGttyyceo4hVQPsECH+/Z6H8WWHIBJA040qPp/nm6pXppby
-	 ovav7AninKn018A3P1GLs+aL/5HH6CkeSKmECkjBXDGpnVVm/IZxBYNir8zT9mK/AG
-	 tnXkDYQ+lAd7AE3x07prQWEcb//gEq5PbowbqjyV0FZD064B2DL0iZdQnx1pWu/Cpl
-	 HWPvZygc8n3KYb0puWS3JUE7jLi/fJf+VI5fnrikA53DwVaejdhcZ6fsFSjbI8hVuL
-	 dv3OiY80X+Haw==
-Date: Tue, 31 Oct 2023 17:06:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: patrick@stwcx.xyz, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-i2c@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
- bindings
-Message-ID: <20231031-sneeze-zoom-8fdb3ccebd25@spud>
-References: <20231031072124.201181-1-Delphine_CC_Chiu@Wiwynn.com>
- <20231031072124.201181-2-Delphine_CC_Chiu@Wiwynn.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D933C26
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:06:53 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B320125
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:06:50 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507be298d2aso8426724e87.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:06:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698772008; x=1699376808; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OYTMv8X3U5FI7ySCLoXYmLFVJr1LqDHNIhuGjQPgB7E=;
+        b=gTqUAMRhypIKmTAln9+WC/d7LDxmcLqq0wLN45BsvlVBt7ReFZ/zEtf6bO1zuLL/Ih
+         Br5cY3Jv5kE3cBf8AN+F+HW4UtjT/PfeAq3NbiTlT7c5wnwlVDQHSh5uGBdMhszsTnyg
+         dJjkWGb5lcrzmLYuxuSVsblr1p1vC8ZHVaNvj2e2FY9uiIgWtAkTB+3qsswcnfQ8F7n7
+         TkEGx2OKcPNfQwLhG87nhIQOwAOIl9BJDQjOx1nmIqClFkawjGgxvuoLtj17WGIPTyJz
+         jizNGeQZNwaTD01M5OT14a6yJ2wBmkZhdkps2qMx/FINCpH0iLaRQCSR1iIuKfJenIcj
+         doRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698772008; x=1699376808;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=OYTMv8X3U5FI7ySCLoXYmLFVJr1LqDHNIhuGjQPgB7E=;
+        b=R8VQk2sQ1KiIEEaFuMWzAEkZre0cRd3UzeeG/4rrK849bHi1MJG/M3oIujRtGm9N7i
+         EwCfPMX8plXdLc9m/14uUsnvTlwAgW7m/sdzXHBeB+voxvR6MErX8mm/2/kGGmmif48T
+         18tAxcH7CWCjDlP8vrpLPYtf2fYKM/mgmDmyc/FhONfE6rCHVwWQxTVi01iXitYtPs99
+         ffJ7rDYUp4QyhZMI7N/Gg2QdLgQs+TyNnuAQlnQaey+dShAizkFgNdnf4f0kNd9KH0ff
+         Hp0qcHW1AbwQcs91C8rtCfi6sQaZCHiI3r58JUsiyqhpNFak0fOlPMLAHC0B8W/ExfG5
+         AZrg==
+X-Gm-Message-State: AOJu0Yz7f4ctbJVbmiF64ZN+K1EbZycUJropEpq6LCVgtGl1x+z7nrHS
+	C40u96T4Ft1tIRCjrDPdDBvhdg==
+X-Google-Smtp-Source: AGHT+IHdbC76RrPmrObHCE9qXDnMZP5mg4FLxeHHnRQmER4pwL5yggT4juXMRirmPc0bFcflcC8HIg==
+X-Received: by 2002:ac2:511a:0:b0:507:984e:9f17 with SMTP id q26-20020ac2511a000000b00507984e9f17mr9305155lfb.34.1698772008298;
+        Tue, 31 Oct 2023 10:06:48 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4d69:3958:c5b9:5f3e? ([2a01:e0a:982:cbb0:4d69:3958:c5b9:5f3e])
+        by smtp.gmail.com with ESMTPSA id g8-20020a056000118800b0032db8cccd3asm1916388wrx.114.2023.10.31.10.06.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 10:06:47 -0700 (PDT)
+Message-ID: <65dcdd9c-a75b-4fe7-bdcf-471a5602db20@linaro.org>
+Date: Tue, 31 Oct 2023 18:06:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="f94SAZhlDIXtJjhr"
-Content-Disposition: inline
-In-Reply-To: <20231031072124.201181-2-Delphine_CC_Chiu@Wiwynn.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/3] remoteproc: qcom: pas: make region assign more
+ generic
+Content-Language: en-US, fr
+To: Mukesh Ojha <quic_mojha@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231030-topic-sm8650-upstream-remoteproc-v2-0-609ee572e0a2@linaro.org>
+ <20231030-topic-sm8650-upstream-remoteproc-v2-2-609ee572e0a2@linaro.org>
+ <8e71ba02-5d6a-4c7e-4a55-f9ef79c2f928@quicinc.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <8e71ba02-5d6a-4c7e-4a55-f9ef79c2f928@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
---f94SAZhlDIXtJjhr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 30/10/2023 14:10, Mukesh Ojha wrote:
+> 
+> 
+> On 10/30/2023 3:33 PM, Neil Armstrong wrote:
+>> The current memory region assign only supports a single
+>> memory region.
+>>
+>> But new platforms introduces more regions to make the
+>> memory requirements more flexible for various use cases.
+>> Those new platforms also shares the memory region between the
+>> DSP and HLOS.
+>>
+>> To handle this, make the region assign more generic in order
+>> to support more than a single memory region and also permit
+>> setting the regions permissions as shared.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/remoteproc/qcom_q6v5_pas.c | 102 ++++++++++++++++++++++++-------------
+>>   1 file changed, 66 insertions(+), 36 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+>> index 913a5d2068e8..4829fd26e17d 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+>> @@ -33,6 +33,8 @@
+>>   #define ADSP_DECRYPT_SHUTDOWN_DELAY_MS    100
+>> +#define MAX_ASSIGN_COUNT 2
+>> +
+>>   struct adsp_data {
+>>       int crash_reason_smem;
+>>       const char *firmware_name;
+>> @@ -51,6 +53,9 @@ struct adsp_data {
+>>       int ssctl_id;
+>>       int region_assign_idx;
+>> +    int region_assign_count;
+>> +    bool region_assign_shared;
+>> +    int region_assign_vmid;
+>>   };
+>>   struct qcom_adsp {
+>> @@ -87,15 +92,18 @@ struct qcom_adsp {
+>>       phys_addr_t dtb_mem_phys;
+>>       phys_addr_t mem_reloc;
+>>       phys_addr_t dtb_mem_reloc;
+>> -    phys_addr_t region_assign_phys;
+>> +    phys_addr_t region_assign_phys[MAX_ASSIGN_COUNT];
+>>       void *mem_region;
+>>       void *dtb_mem_region;
+>>       size_t mem_size;
+>>       size_t dtb_mem_size;
+>> -    size_t region_assign_size;
+>> +    size_t region_assign_size[MAX_ASSIGN_COUNT];
+>>       int region_assign_idx;
+>> -    u64 region_assign_perms;
+>> +    int region_assign_count;
+>> +    bool region_assign_shared;
+>> +    int region_assign_vmid;
+>> +    u64 region_assign_perms[MAX_ASSIGN_COUNT];
+>>       struct qcom_rproc_glink glink_subdev;
+>>       struct qcom_rproc_subdev smd_subdev;
+>> @@ -590,37 +598,52 @@ static int adsp_alloc_memory_region(struct qcom_adsp *adsp)
+>>   static int adsp_assign_memory_region(struct qcom_adsp *adsp)
+>>   {
+>> -    struct reserved_mem *rmem = NULL;
+>> -    struct qcom_scm_vmperm perm;
+>> +    struct qcom_scm_vmperm perm[MAX_ASSIGN_COUNT];
+>> +    unsigned int perm_size = 1;
+> 
+> AFAICS, not need of initialization.
 
-On Tue, Oct 31, 2023 at 03:21:21PM +0800, Delphine CC Chiu wrote:
-> Add a device tree bindings for ltc4286 device.
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
->=20
-> Changelog:
->   v3 - Revise adi,vrange-select-25p6 to adi,vrange-low-enable
->   v2 - Revise vrange_select_25p6 to adi,vrange-select-25p6
->      - Add type for adi,vrange-select-25p6
->      - Revise rsense-micro-ohms to shunt-resistor-micro-ohms
-> ---
->  .../bindings/hwmon/lltc,ltc4286.yaml          | 52 +++++++++++++++++++
->  MAINTAINERS                                   | 10 ++++
->  2 files changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/lltc,ltc4286.=
-yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml b/=
-Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
-> new file mode 100644
-> index 000000000000..4695bca77c05
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/lltc,ltc4286.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LTC4286 power monitors
-> +
-> +maintainers:
-> +  - Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lltc,ltc4286
-> +      - lltc,ltc4287
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  adi,vrange-low-enable:
-> +    description:
-> +      This property is a bool parameter to represent the
-> +      voltage range is 25.6 volts or 102.4 volts for
-> +      this chip.
-> +      The default is 102.4 volts.
+Indeed, removed
 
-You've got weird wrapping of text here (short lines). Either this
-property or the corollary work for me, depending on what Guenter
-wants. With two nits below,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+>>       struct device_node *node;
+>> -    int ret;
+>> +    int offset, ret;
+> 
+> Nit: one variable per line.
 
+Done
 
-> +    type: boolean
-> +
-> +  shunt-resistor-micro-ohms:
-> +    description:
-> +      Resistor value in micro-Ohm
+> 
+>>       if (!adsp->region_assign_idx)
+> 
+> Not related to this patch..
+> Should not this be valid only for > 1 ?
 
-micro-ohms
+I don't understand, only region_assign_idx > 1 triggers a memory_assign,
+and this check discards configurations with region_assign_idx == 0 as
+expected.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - shunt-resistor-micro-ohms
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        power-sensor@40 {
+> 
+> 
+>>           return 0;
+>> -    node = of_parse_phandle(adsp->dev->of_node, "memory-region", adsp->region_assign_idx);
+>> -    if (node)
+>> -        rmem = of_reserved_mem_lookup(node);
+>> -    of_node_put(node);
+>> -    if (!rmem) {
+>> -        dev_err(adsp->dev, "unable to resolve shareable memory-region\n");
+>> -        return -EINVAL;
+>> -    }
+>> +    for (offset = 0; offset < adsp->region_assign_count; ++offset) {
+>> +        struct reserved_mem *rmem = NULL;
+>> +
+>> +        node = of_parse_phandle(adsp->dev->of_node, "memory-region",
+>> +                    adsp->region_assign_idx + offset);
+>> +        if (node)
+>> +            rmem = of_reserved_mem_lookup(node);
+>> +        of_node_put(node);
+>> +        if (!rmem) {
+>> +            dev_err(adsp->dev, "unable to resolve shareable memory-region index %d\n",
+>> +                offset);
+>> +            return -EINVAL; > +        }
+> 
+> 
+>> -    perm.vmid = QCOM_SCM_VMID_MSS_MSA;
+>> -    perm.perm = QCOM_SCM_PERM_RW;
+>> +        if (adsp->region_assign_shared)  {
+>> +            perm[0].vmid = QCOM_SCM_VMID_HLOS;
+>> +            perm[0].perm = QCOM_SCM_PERM_RW;
+>> +            perm[1].vmid = adsp->region_assign_vmid;
+>> +            perm[1].perm = QCOM_SCM_PERM_RW;
+>> +            perm_size = 2;
+>> +        } else {
+>> +            perm[0].vmid = adsp->region_assign_vmid;
+>> +            perm[0].perm = QCOM_SCM_PERM_RW;
+>> +            perm_size = 1;
+>> +        }
+>> -    adsp->region_assign_phys = rmem->base;
+>> -    adsp->region_assign_size = rmem->size;
+>> -    adsp->region_assign_perms = BIT(QCOM_SCM_VMID_HLOS);
+>> +        adsp->region_assign_phys[offset] = rmem->base;
+>> +        adsp->region_assign_size[offset] = rmem->size;
+>> +        adsp->region_assign_perms[offset] = BIT(QCOM_SCM_VMID_HLOS);
+> 
+> Do we need array for this, is this changing ?
 
-the generic node name is "power-monitor".
+We need to keep region_assign_perms for unassign, but for the other 2 we would
+need to duplicate the code from adsp_assign_memory_region into
+adsp_unassign_memory_region.
 
-Cheers,
-Conor.
+> 
+>> -    ret = qcom_scm_assign_mem(adsp->region_assign_phys,
+>> -                  adsp->region_assign_size,
+>> -                  &adsp->region_assign_perms,
+>> -                  &perm, 1);
+>> -    if (ret < 0) {
+>> -        dev_err(adsp->dev, "assign memory failed\n");
+>> -        return ret;
+>> +        ret = qcom_scm_assign_mem(adsp->region_assign_phys[offset],
+>> +                      adsp->region_assign_size[offset],
+>> +                      &adsp->region_assign_perms[offset],
+>> +                      perm, perm_size);
+>> +        if (ret < 0) {
+>> +            dev_err(adsp->dev, "assign memory %d failed\n", offset);
+>> +            return ret;
+>> +        }
+>>       }
+>>       return 0;
+>> @@ -629,20 +652,22 @@ static int adsp_assign_memory_region(struct qcom_adsp *adsp)
+>>   static void adsp_unassign_memory_region(struct qcom_adsp *adsp)
+>>   {
+>>       struct qcom_scm_vmperm perm;
+>> -    int ret;
+>> +    int offset, ret;
+>> -    if (!adsp->region_assign_idx)
+>> +    if (!adsp->region_assign_idx || adsp->region_assign_shared)
+>>           return;
+>> -    perm.vmid = QCOM_SCM_VMID_HLOS;
+>> -    perm.perm = QCOM_SCM_PERM_RW;
+>> +    for (offset = 0; offset < adsp->region_assign_count; ++offset) {
+>> +        perm.vmid = QCOM_SCM_VMID_HLOS;
+>> +        perm.perm = QCOM_SCM_PERM_RW;
+> 
+>> -    ret = qcom_scm_assign_mem(adsp->region_assign_phys,
+>> -                  adsp->region_assign_size,
+>> -                  &adsp->region_assign_perms,
+>> -                  &perm, 1);
+>> -    if (ret < 0)
+>> -        dev_err(adsp->dev, "unassign memory failed\n");
+>> +        ret = qcom_scm_assign_mem(adsp->region_assign_phys[offset],
+>> +                      adsp->region_assign_size[offset],
+>> +                      &adsp->region_assign_perms[offset],
+>> +                      &perm, 1);
+>> +        if (ret < 0)
+>> +            dev_err(adsp->dev, "unassign memory failed\n");
+>> +    }
+>>   }
+>>   static int adsp_probe(struct platform_device *pdev)
+>> @@ -696,6 +721,9 @@ static int adsp_probe(struct platform_device *pdev)
+>>       adsp->info_name = desc->sysmon_name;
+>>       adsp->decrypt_shutdown = desc->decrypt_shutdown;
+>>       adsp->region_assign_idx = desc->region_assign_idx;
+>> +    adsp->region_assign_count = min_t(int, MAX_ASSIGN_COUNT, desc->region_assign_count);
+>> +    adsp->region_assign_vmid = desc->region_assign_vmid;
+>> +    adsp->region_assign_shared = desc->region_assign_shared;
+>>       if (dtb_fw_name) {
+>>           adsp->dtb_firmware_name = dtb_fw_name;
+>>           adsp->dtb_pas_id = desc->dtb_pas_id;
+>> @@ -1163,6 +1191,8 @@ static const struct adsp_data sm8550_mpss_resource = {
+>>       .sysmon_name = "modem",
+>>       .ssctl_id = 0x12,
+>>       .region_assign_idx = 2,
+>> +    .region_assign_count = 1,
+>> +    .region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
+>>   };
+>>   static const struct of_device_id adsp_of_match[] = {
+>>
+> 
+> -Mukesh
 
---f94SAZhlDIXtJjhr
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
+Neil
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUEz/wAKCRB4tDGHoIJi
-0nsPAPwMsm8WDMU9Aj1pA51Pw3mApuz03WqNCT0Y9+VAvpRndwD+LFNjRUGoV/sP
-lReVzQpXC55/MqJaHLpSmwwrgf6fKw0=
-=2uTo
------END PGP SIGNATURE-----
-
---f94SAZhlDIXtJjhr--
 
