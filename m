@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B1F77DCA5D
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 11:06:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0D57DCA60
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 11:07:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B556B20B91
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:06:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA21B28112C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 10:07:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048FCD28D;
-	Tue, 31 Oct 2023 10:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10780DF58;
+	Tue, 31 Oct 2023 10:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oh9TIwDC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pcB7fw22"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 713D220EE
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:06:51 +0000 (UTC)
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3502CFC
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 03:06:49 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507a5f2193bso6075125e87.1
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 03:06:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A63120EE
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:07:12 +0000 (UTC)
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64AA4109
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 03:07:10 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-507d7b73b74so7511157e87.3
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 03:07:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698746807; x=1699351607; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698746828; x=1699351628; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dSMdT3bgIwz4v1Mx9wkamTkECO9XGv8qtfa6U2f2xS4=;
-        b=oh9TIwDCR9EcjGFT8bTTcrgh42egGpipwBq2+pADqlqu1x6H1D0+Dz0Gw2I31YChF4
-         lciZ/p82eouqet/cc47TrBapQ0OrJK+4oSq3WVJfwFjCRTQtySRf08mUJc/z2/1la/Dz
-         74gQgaZ39q2rQwIH1g9f0KoooqHDznp/kvLMytPWMu+5W8Nf5FqIX3AD5Xw3V011gdql
-         p2vZ+kMpLQMnRQQn4pH60repNQU/ATaPlDbul2bvCmB88AwiY1C63I+tZCPS4A842wdk
-         VFAiehLS4a1nJjYqNTdQ4k7P+s5a5oB0cFHIgC8ILoi+SP0p7VST4fJl27NcqmeT4v0c
-         mMxg==
+        bh=frB5O4f+1jmhgXg9FZz+gua4r9L65Q4rQrld4sMEitY=;
+        b=pcB7fw22FJaSLyx03eVAUuvWrlyrQyyiHyfCgki06y8nIZwnr1cQsgbyVXTM079hs6
+         xrLw9fFSvf0m34ni36hqHh5Fxji7GrmxypDHaT95LOrtM02r9SXCm5xGv/cFOZqFOMT9
+         Gxg51TzYR1FQr+qNuztLDs95UPjJkAwx9Rk/RBIwNa6xtcbsXSTUTqwy9q7YYlmnuNcb
+         WivqmD6VaHROfkIMBNsEqYxAoTqzPnWS3odSzA6c1m+mFKAbzwvrwq1F1mSadKxarao5
+         cXPh5BjRDb/V+vNK/XWdRqrP5rEoMbgVQgQ4+5daUWfCuVXFjL1PEXZYheta3BKslY6C
+         f/dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698746807; x=1699351607;
+        d=1e100.net; s=20230601; t=1698746828; x=1699351628;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dSMdT3bgIwz4v1Mx9wkamTkECO9XGv8qtfa6U2f2xS4=;
-        b=w6kFpTACZJJvhtYQO6nHZjxsImaWWSXvx7jU3/jUj++TYsMR2Hjoxo/HoYEaD5Bf1r
-         PniGb8gITsA1vgx5We7re88cbqkfJamvAcax+Un2oCIckQsmgySHielU3xIq3tOaPgk/
-         DYplGeLxDMlkoXjHAiXI7DOl6ThbBJTYc2FwpLQDLY+vdYsJYDMGcihy8Jbh6ZwqBZVk
-         Lq9Yodbi5ZEC+RToDlG42zM5bytK0KcEvDNjoP/VeH3jCYcMzDGe3oRapvz65C5k47LG
-         T8t2//0WZeps2e6BGQKSxkZCg6FTYWziiZ1iYouPu0FK98ub0y7jztwhKxxWXwitpiAT
-         vv2w==
-X-Gm-Message-State: AOJu0YyaKjQFWeTcGlX8Py4WOq9f9Ko0UdxZENF94R+agJh1zWd0wuTY
-	MtdwJO0dfVD1U0cE45oFsymX2w==
-X-Google-Smtp-Source: AGHT+IFjtOa7kZn7L0qpsXnsTCc9IAB5Kfl8q9+JEvUP0t2bkIxxZzFFlR25mBlrP5/0f8RQV6SzJA==
-X-Received: by 2002:a05:6512:3ca9:b0:505:7163:c132 with SMTP id h41-20020a0565123ca900b005057163c132mr845191lfv.7.1698746807170;
-        Tue, 31 Oct 2023 03:06:47 -0700 (PDT)
+        bh=frB5O4f+1jmhgXg9FZz+gua4r9L65Q4rQrld4sMEitY=;
+        b=Ik7ZO7vYGy+xWF0hdq3/l7VrCgIQjGKRvt5vPSVnHrzf2gxwKFm25ZdvNCsavrDViR
+         ZigfrMJ1sx8WKWMORR2BfgqBHuTyM90mJ6Vp9YEnz5FGACerpnrwahHWIaXx0UPHraD5
+         /crxvosvZfjvh206EKhkfGhPxyJaxd4fH9mVdNmk00iktFHSJIK7bgEyPDmNTlh+47C6
+         DoTXHy+tNf8cIrUO7ze9n8qm/2rTfO0myBPF6bUpLAFbcZD2d9K7uGW/VFSusnkPXAgZ
+         xJGjYgy8rcW3kEWJ96YAWVxe7+qOhXXSI/E0LCFhI73PZjVBGcRLxpIYt7RXdjSGHcQ1
+         SY2Q==
+X-Gm-Message-State: AOJu0Yx1B8rbz/Uj1iUmahS9BBKohwettA9Gz8wSYf9q/VLL/JYcrNBE
+	VgjBOfMqSFdvrn9xo4X962xoIQ==
+X-Google-Smtp-Source: AGHT+IFJIfZHmdJoZZSuYGIOVo3i11fy4J+qIsHqkuYJObXFihYc7LKxcPSeCgn0p+xklx1OhU1QBA==
+X-Received: by 2002:a05:6512:618:b0:507:b15d:2ff1 with SMTP id b24-20020a056512061800b00507b15d2ff1mr7502828lfe.38.1698746828460;
+        Tue, 31 Oct 2023 03:07:08 -0700 (PDT)
 Received: from [192.168.143.96] (178235177091.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.91])
-        by smtp.gmail.com with ESMTPSA id i21-20020a056512341500b00507a0098421sm165357lfr.181.2023.10.31.03.06.45
+        by smtp.gmail.com with ESMTPSA id i21-20020a056512341500b00507a0098421sm165357lfr.181.2023.10.31.03.07.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 03:06:46 -0700 (PDT)
-Message-ID: <7d4140bb-9cc6-4686-8794-9388c7ab0792@linaro.org>
-Date: Tue, 31 Oct 2023 11:06:44 +0100
+        Tue, 31 Oct 2023 03:07:08 -0700 (PDT)
+Message-ID: <6048a2a3-cf0a-4f20-b96a-1855d69648ef@linaro.org>
+Date: Tue, 31 Oct 2023 11:07:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: acer-aspire1: Correct audio codec
- definition
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: acer-aspire1: Add sound
 Content-Language: en-US
 To: Nikita Travkin <nikita@trvn.ru>
 Cc: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>,
@@ -77,9 +76,10 @@ Cc: cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20231027-aspire1-sound-v1-0-5ff3cf8b5701@trvn.ru>
- <20231027-aspire1-sound-v1-2-5ff3cf8b5701@trvn.ru>
- <3a423cb7-cdf1-433a-a848-8636917640bb@linaro.org>
- <eda1c91bd2dce76e633dd82ad3105355@trvn.ru>
+ <20231027-aspire1-sound-v1-3-5ff3cf8b5701@trvn.ru>
+ <c2ad06fd-805f-44b9-bf4d-806ef20f272a@linaro.org>
+ <db624c01-a48c-4a8f-b9ea-548b25aa3091@linaro.org>
+ <8b13ec027d960a09aee9434055a12e15@trvn.ru>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -116,59 +116,53 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <eda1c91bd2dce76e633dd82ad3105355@trvn.ru>
+In-Reply-To: <8b13ec027d960a09aee9434055a12e15@trvn.ru>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 31.10.2023 08:20, Nikita Travkin wrote:
-> Konrad Dybcio писал(а) 31.10.2023 02:48:
->> On 27.10.2023 16:42, Nikita Travkin wrote:
->>> When initially added, a mistake was made in the definition of the codec.
+On 31.10.2023 08:26, Nikita Travkin wrote:
+> Konrad Dybcio писал(а) 31.10.2023 02:51:
+>> On 30.10.2023 22:50, Konrad Dybcio wrote:
+>>> On 27.10.2023 16:42, Nikita Travkin wrote:
+>>>> This laptop has two i2s speakers; an i2s audio codec for the headset
+>>>> jack; two DMIC microphones in the lid and the displayport audio channel.
+>>>>
+>>>> This commit adds the audio node that describes all of the above with the
+>>>> exception of the DMICs that require in-SoC digital codec to be brought
+>>>> up, which will be done later.
+>>>>
+>>>> Note that the displayport channel is connected here for completeness,
+>>>> but the displayport can't be used yet since the HPD signal is created by
+>>>> the embedded controller, which will be added later.
+>>>>
+>>>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>>>> ---
+>>> [...]
 >>>
->>> Despite the fact that the DMIC line is connected on the side of the
->>> codec chip, and relevant passive components, including 0-ohm resistors
->>> connecting the dmics, are present, the dmic line is still cut in
->>> another place on the board, which was overlooked.
 >>>
->>> Correct this by replacing the dmic configuration with a comment
->>> describing this hardware detail.
->>>
->>> While at it, also add missing regulators definitions. This is not a
->>> functional change as all the relevant regulators were already added via
->>> the other rail supplies.
->>>
->>> Fixes: 4a9f8f8f2ada ("arm64: dts: qcom: Add Acer Aspire 1")
->>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts | 17 +++++++++++++++--
->>>  1 file changed, 15 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
->>> index cfde8cd47107..00b442696618 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
->>> @@ -209,9 +209,22 @@ alc5682: codec@1a {
->>>  		AVDD-supply = <&vreg_l15a_1p8>;
->>>  		MICVDD-supply = <&reg_codec_3p3>;
->>>  		VBAT-supply = <&reg_codec_3p3>;
->>> +		DBVDD-supply = <&vreg_l15a_1p8>;
->>> +		LDO1-IN-supply = <&vreg_l15a_1p8>;
->>> +
->>> +		/*
->>> +		 * NOTE: The board has a path from this codec to the
->>> +		 * DMIC microphones in the lid, however some of the option
->>> +		 * resistors are absent and the microphones are connected
->>> +		 * to the SoC instead.
->> Would that not also require more DT changes and maybe UCM?
+>>>> +		primary-tx-dai-link {
+>>>> +			link-name = "Primary MI2S Capture";
+>>>> +
+>>>> +			cpu {
+>>>> +				sound-dai = <&q6afedai PRIMARY_MI2S_TX>;
+>>>> +			};
+>>>> +
+>>>> +			platform {
+>>>> +				sound-dai = <&q6routing>;
+>>>> +			};
+>>>> +
+>>>> +			codec {
+>>>> +				sound-dai = <&alc5682 0>;
+>>> Both RX and TX going to 5862 interface?
+>> interface1*
 > 
-> I don't think I had any other descriptions to support the dmic in
-> the initial set (first audio support for this board is 3/3 here)
-> and there is no upstream UCM yet - I will probably hold it off until
-> I get vamacro and dmic on it working.
-I was told that VAMACRO is "the easiest thing possible to get going"
-(paraphrasing), did you go through something like this sequence [1]?
-
-https://git.linaro.org/people/srinivas.kandagatla/alsa-ucm-conf.git/tree/ucm2/codecs/qcom-lpass/va-macro/DMIC0EnableSeq.conf?h=x13s&id=244979b03f5b9284e6a68eae6f9995f6ac735be8
+> Yes, indeed. The codec has a single i2s with rx and tx, and
+> shared i2s clocks. They are connected to the prim i2s.
+> 
+> Codec playback is headphone jack, and capture is headset
+> mic. It could have also been the lid dmics, like on trogdor
+> but 2/3 describes that sad story...
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
