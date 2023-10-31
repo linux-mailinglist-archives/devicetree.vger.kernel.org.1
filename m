@@ -1,408 +1,164 @@
-Return-Path: <devicetree+bounces-13227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6B57DD006
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:14:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3CF7DD072
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 16:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15863B20FD7
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:14:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 666B72811EE
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 15:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26DA31DFF4;
-	Tue, 31 Oct 2023 15:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41FC1E515;
+	Tue, 31 Oct 2023 15:23:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="IoHVfGog";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="La/XW0ZT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GwzTkYnH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC291DFEE;
-	Tue, 31 Oct 2023 15:14:10 +0000 (UTC)
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC5A10C;
-	Tue, 31 Oct 2023 08:14:04 -0700 (PDT)
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 39VCJjRf013616;
-	Tue, 31 Oct 2023 15:13:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:content-transfer-encoding:content-type:mime-version; s=
-	dk201812; bh=LlMPaIZm0OIaosP7B9Bi8LDXMsgJLgjM26UTMrYeXVA=; b=IoH
-	VfGogRLXrX8gNC/SlNQPMP31Xuylr+HGwlVlGlMDrCIa4AGE0a+TbqOhfKlqPLNf
-	7v+qDr93P3hicajnqWKMw8ZNJy2k4ffyo3/QgOW8+NwSsrJTQqaB4JwCkUju1xIf
-	o3uZvQboH3qa8eC26Bg0Q81F8lVrMfjZKyM8gASFmvBYfKBkPlULu4YGbxty6yH8
-	+xIHm1iAL8PMKYa8yTskHxC/ORtWD7XFwmqv7bauzXzWOm+jzR+TRU0hP3gaN0T3
-	ng6UE5qqobeWySVEv4f1q19tLAFgCzVg8cJwGd9cEwt6kfUY1qHmM8xZuVnCU6ht
-	ZnZI7W6yb6MiF8XWd3w==
-Received: from hhmail04.hh.imgtec.org ([217.156.249.195])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3u0rjntf42-2
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 31 Oct 2023 15:13:28 +0000 (GMT)
-Received: from HHMAIL04.hh.imgtec.org (10.100.10.119) by
- HHMAIL04.hh.imgtec.org (10.100.10.119) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 31 Oct 2023 15:13:28 +0000
-Received: from GBR01-LO2-obe.outbound.protection.outlook.com (104.47.21.51) by
- email.imgtec.com (10.100.10.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34 via Frontend
- Transport; Tue, 31 Oct 2023 15:13:27 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YHW0L+jEBHwI5mZzUldxoAJ62hyn2p4I4VtctiDNw1BMLbe/+8Tng5nDj/N645BJto3c146uSSPqeeLBCe5hrKnNibXlZu0mSkrDh4WH3Pep9ebxA2ImeC4mGwMI60/5q8gW0BtQ5QSjjRSr0AuLA/LaTCeY7fvgEsaPiSQOWvTHbywFBy5j6x6zgxrqVqEtzVbKW3luUz+tS58Hj9NCXOYh7k7Qv0bMVkW+x5RdGztt42SheBya19TLY1RD2OtKrwiL2RrbVWoMFmswBIU0jp8mg19ExnEthA7v91YhMcDffI81gSr9A6F5mxLGBdRfL2fIVQ83tqm2RA6u/rIl4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LlMPaIZm0OIaosP7B9Bi8LDXMsgJLgjM26UTMrYeXVA=;
- b=iGD0ZNIJWbJCSmqmcvkbOyR+CLZ141wNol+EorccY3nWtqDLCpUCpEwiR+Vmyl2aVuQ0nZZMat3QXoCz7c8+UnGGkb8hVxPnxjnQMtVKAXN1fHA7Zi3VyRG9PPz2AzuP3pgaxR16KWIj1YI8kZGddpH2eU8BrRTbhNbfpUpS84dqAyvSZaKc5r8UEFAOuUjy58CHzMTD82zXmV4mZO3Lq7rQqS9q+v4AwrdzMykAqfPklYJxCJdjFeVuLBZ/fwSjqaozDDAybq/3i1zqA2SaCTg6MG5x4lLsH2Q7aA9rN/hGCRo3gK6ZqOi61mdjU1PXdAx1zvEifINvTL+5EfqFeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77071D289
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 15:23:27 +0000 (UTC)
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99568E4
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:23:24 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-507c8316abcso8199866e87.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:23:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LlMPaIZm0OIaosP7B9Bi8LDXMsgJLgjM26UTMrYeXVA=;
- b=La/XW0ZTSy3L9zsCEO9MfmB+cGXfsZQorM+a3QjQvhcYrhnosJ0RisdfXvOl5vq58zF6J0sFN6vhRMSo2AlClJcRAUzrzRueSKAATWxYwggovrMo1WTqYuhBpkFK31IqxqwUFz34cXMB1E77jA0UyGA4WHACuztOhmWnnUES32g=
-Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:170::9)
- by CWLP265MB2018.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:6a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.25; Tue, 31 Oct
- 2023 15:13:26 +0000
-Received: from CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- ([fe80::eef1:bccc:508d:e086]) by CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- ([fe80::eef1:bccc:508d:e086%5]) with mapi id 15.20.6933.029; Tue, 31 Oct 2023
- 15:13:26 +0000
-From: Sarah Walker <sarah.walker@imgtec.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <frank.binns@imgtec.com>, <donald.robson@imgtec.com>,
-        <boris.brezillon@collabora.com>, <faith.ekstrand@collabora.com>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <afd@ti.com>, <hns@goldelico.com>,
-        <matthew.brost@intel.com>, <christian.koenig@amd.com>,
-        <luben.tuikov@amd.com>, <dakr@redhat.com>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Matt Coster <matt.coster@imgtec.com>
-Subject: [PATCH v8 20/20] drm/imagination: Add driver documentation
-Date: Tue, 31 Oct 2023 15:12:57 +0000
-Message-Id: <20231031151257.90350-21-sarah.walker@imgtec.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231031151257.90350-1-sarah.walker@imgtec.com>
-References: <20231031151257.90350-1-sarah.walker@imgtec.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: LO4P123CA0301.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:196::18) To CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:400:170::9)
+        d=linaro.org; s=google; t=1698765803; x=1699370603; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ATYS9nanviadzb566KV+seOqWKaS5f1isvxWfQD8QqA=;
+        b=GwzTkYnH4mqGBRxnnAYE++19bpnmNtwq0NHjE1zs0PZ5o0l6PoqKV0H3SPvsWPoTBw
+         HLlrFCVL46zkKquAeueyMT4EuiRsKJGQt1q6NBJ47SsFT65iUORBswGdZygrgmyjikqi
+         Azdx5APvK2o9lLaMlvif/Db4qxEtT70D7/DQJb5cRIWrxXfug/h4FhE3LnJW7DCvcsIP
+         m6wwnsrvS4K0bTfAb0QLPLSmYCcEkX8ZBdZCzWSGvbe4DFPt9NR2vdbw3T7tZ9in4goR
+         i2RvzXlqkQHAr4m5DhVMQRG0IBSsRRShUIgtx9hVnjEnJfeGnwVBsa2uEmT/7wuFtO+w
+         ZOig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698765803; x=1699370603;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ATYS9nanviadzb566KV+seOqWKaS5f1isvxWfQD8QqA=;
+        b=wGZvpvKGKaSYmUCp02vjkbh/KMcLERb+GfXBdgIrvhXt4iPRPvqyUEBJCEIQhTHfm1
+         bs3WBccUq8gtmADxPlrpc7toRMKqMfoXrYvR6EkUI1pkofpbtZ8Ls2XdCeoWTbAUu4Eh
+         1QJUCCa709U292rw6HfSYIsTF30MDBlkXVMbaBWk3Mv5izdveCmptbtoHj710sCbuU/X
+         PXyDYjwG9DMtW8ljj1dZbowcGgEUbokp5T96r1eOy/DONQ3e8DeXnmFn5oba4z5jjBsr
+         neqUOPa/SQ/qc2u7tlJR/Oh8LfJBfRp9dOcbCpwZnb82XPjkySujfkCwJOOE/qAuKsNG
+         jy4A==
+X-Gm-Message-State: AOJu0YwzEQE2+9LdnlnfsDmZp1fjrHIedpgxksjSjOqnIIvWjkhGwZ8E
+	YcZnGi6547OW81IvlLrPWnVc+g==
+X-Google-Smtp-Source: AGHT+IGb7omjnf0GkAFWUjhV7orO4W8kGX5+o4ozOOQdo5MzuuZDwFymNSCMD7ksBcg5ZYsq4MNoCw==
+X-Received: by 2002:ac2:4546:0:b0:507:9fe7:f321 with SMTP id j6-20020ac24546000000b005079fe7f321mr9092874lfm.54.1698765802622;
+        Tue, 31 Oct 2023 08:23:22 -0700 (PDT)
+Received: from [192.168.143.96] (178235177091.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.91])
+        by smtp.gmail.com with ESMTPSA id v17-20020ac25591000000b00503189d8b8csm233610lfg.198.2023.10.31.08.23.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 08:23:22 -0700 (PDT)
+Message-ID: <873c1b14-5b7c-4fb1-8f09-6344a4bf901b@linaro.org>
+Date: Tue, 31 Oct 2023 16:23:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CWLP265MB4817:EE_|CWLP265MB2018:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1cf6842c-5e16-48c2-957d-08dbda23ee4a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pKH3a/NhjsImC56InRkxcjGM//qKz5O3YzxA0sVVfHR8ySOOTWbdzscQFMFfMwbCf8vDcHJm8RTg6nYMaVKRDjK7QdTydnLIOQsdL5k5cZoYbDV2XhKWTB/M91PxBxX6EH3vs965l1imugkJHrE/X3xDibzfwzTx0yAc3fIUKbrWSPMpoQxl/nq65LfMvvVEg1HsuDa0x3txtMrTlgT4wXfcGeTH/3YKiq+0twrPYoYO9WG167x2JeMeo9lcc5nU0nb1IA3Vz+We2WWbWJOQZBfhWoX4aHYISJ3KawFXXoR429TP1jjI2MuHzcQFyq+v0uNiS5ckjow9qJqHh9ug66mCChHp4Y1lq2x8MHXNflqKSEcqmsQjQqc4apthInwB1GqPXZDJIev/EqPLAD/jtvSaYgqAan5Ur4ywKQTHC3AnrL9Hzw+ZsNPGqDbswFtRSveuVaeK1WjkQfqghQs2PE7B4PkHHVzVyUdnyY/r+w+QyeT4KZ/RTq3oQ/bh67FE1GU30Q8OKKcLmEeACAMAix80lquXJoYg/gjFex1NbG5vBlzDYA5KSnpHXZdTMVKn68Sc1VXsrXult9jC9wLPm76d61//O0j2alN+rg8lbP7cAaANb1G/tVKoq8JDeew3
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(366004)(39850400004)(346002)(396003)(230922051799003)(64100799003)(1800799009)(186009)(451199024)(2906002)(7416002)(41300700001)(5660300002)(44832011)(8676002)(4326008)(8936002)(38350700005)(36756003)(86362001)(38100700002)(107886003)(1076003)(316002)(6916009)(66946007)(66476007)(66556008)(2616005)(478600001)(6666004)(26005)(6512007)(6506007)(52116002)(6486002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AfyeOS3rWX4IXA5/VW1h4KeRUn8uYZs3jNBXRVN/RXukj/0e3lPI2oqCossw?=
- =?us-ascii?Q?VjHIJ5nhNKzEw2l7yO6gW2c3/r+jC7i/3TP8KrMLpB4rFYQQF3NSTQR+2rKZ?=
- =?us-ascii?Q?4f69pqnEUsCeASUuqOcr11+pIZ49Gb4D1lHTU9C9vy615crhu7oMZOIwMKrb?=
- =?us-ascii?Q?SqGrjTsnnX16cXf6K3CvgM02NH35etXQoWVJXPgU8yDNKjnTnMlGUpo/kNdq?=
- =?us-ascii?Q?2z+8YkzSp50Oryxr+u0kvZYcrcgRHdehWXcyI3iUDEvehhJ1i3TIQZkgIJXk?=
- =?us-ascii?Q?/GhOP51VO6ZEmZIx7DmfaGRcOgY7rHqbjxetwPZQizdoptLhExIvXRnvtJ8V?=
- =?us-ascii?Q?u2wsx9X3Sihj74AWN93r+2j+YZQHnOOy/YXgLgW8eChsdZ//oNd1+BdQ1+z1?=
- =?us-ascii?Q?e+di6ppNIxvTmPcmxVllXbaEb3g/9RHDX64sU1bJf4zrwA0sDF0nG4RSYJ2y?=
- =?us-ascii?Q?R1kvcn5aceL7AHujN/zzSILUy6GtJhw1T9xhK7+oU2WeGOWOXvvNw04tVq5F?=
- =?us-ascii?Q?cGpb0NwDi4EUyt78U7JNJR1e0MeRauZVvZvPHpPgYfKpAnbhqWmIvI/WSiEW?=
- =?us-ascii?Q?TNnrE71rvZ/PtIx+e3AHI7yUDHZ1xwaqlaVQC00GNYoFxEwELp9TaQfRU0vJ?=
- =?us-ascii?Q?f2uWXG6YUIO1pQvRM3FsQRmjLjog0USHDdPFuHA4C2o+VTWOCOX/rPKgOypv?=
- =?us-ascii?Q?7NiQn21P2aHrVeIUqW+rd/Yfs3QQlmWvLlPf5tInpAWHD8gNlPolMR6MhmaT?=
- =?us-ascii?Q?ElR8UDd+l8JSGEacDrNIkpIzdilJgDg8MZ3NTVkoGzVeSx5AmqaMW00KU7Tw?=
- =?us-ascii?Q?7l+33HAf5nVPqUHde1f3Xj3wPBCL7HKqb9xeKI4s1U2NQjSRv84aNXBwM5G9?=
- =?us-ascii?Q?jyAJ1bqHtBv8E5NMyk+84i0Ywq/a0Z6lkVwgIY9JQotNJoDrI0TnmdWve3S1?=
- =?us-ascii?Q?J3bUmKqMzpEDs8+uqyLE9exIf23r6FRgz3II9mRwcXvEj+b6lV1I9HPJH02V?=
- =?us-ascii?Q?8ZEM3Z0XxenDUGaKl3T3YDx/+HvRHYwsZdZ2AI5XaQRoio5BR5uLxkfu9neI?=
- =?us-ascii?Q?WZEeG6Q+7cMKdadReSB3tqBgUuYpVkQt/ZV6ow2yDXBQEpQVYVtVjjhPEgCH?=
- =?us-ascii?Q?1qeP1wPDY9F7ASOm3hztI0f1dtDdxW4vCMR4HJ1njRJKyOdqvtIDpPvjgwsd?=
- =?us-ascii?Q?Jg9zT00v5Cp5IWLgdbH25GlKihTgiGgyxckNDmiFPGFPVvdQ3oao8ZiY77wD?=
- =?us-ascii?Q?oun0ATgP3YCHa6fcP7qdArdwkzyKV37t4zz3hj1R8VzxzYcrtuCQbWMxVbEr?=
- =?us-ascii?Q?O6UOSZSzcp6H1ksXP5psI/3zPhmKJto1waafY8iSnIAc5o9HbRddBOXxX5rD?=
- =?us-ascii?Q?Ub1cQl8TfoxGQITNfShO+mhPiFmcEagHjAZEBoNJ+0c29mymOvENtgm5CWqq?=
- =?us-ascii?Q?9BiRgMF490rK0G++zXkMxevlIo307z8SJnlo9ItUrXKxQWyMSv9/IIbfpfQQ?=
- =?us-ascii?Q?+UI9yS4ldOQYt3TrJwVbBz0sQ78hKiTvmknr0yhNcNYewUwG6/suoh5G/OIJ?=
- =?us-ascii?Q?LBE+YGgBIbJZ8VdNDu9xxeQJQEao/eNnqC71tymesdmWSq/HhF9TWS2t7P+0?=
- =?us-ascii?Q?1Q=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cf6842c-5e16-48c2-957d-08dbda23ee4a
-X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB4817.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2023 15:13:26.0763
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hZsylP04SPcl/U3Yebvb6/BkYjBIXKLQaN4i9WE7gF4TtTddwXmpfUfxQj26d8KJnWJs3Av88tyOCjFlN1S3HQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB2018
-X-OriginatorOrg: imgtec.com
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-GUID: u5c7F83SyKU4oAlSVw8-n1jF5EGKDz5A
-X-Proofpoint-ORIG-GUID: u5c7F83SyKU4oAlSVw8-n1jF5EGKDz5A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 2/5] arm64: dts: qcom: ipq9574: Add ecc engine support
+Content-Language: en-US
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, miquel.raynal@bootlin.com,
+ richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-spi@vger.kernel.org, quic_srichara@quicinc.com, qpic_varada@quicinc.com
+References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+ <20231031120307.1600689-3-quic_mdalam@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231031120307.1600689-3-quic_mdalam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add documentation for the UAPI.
+On 31.10.2023 13:03, Md Sadre Alam wrote:
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+> ---
+Hello,
 
-Changes since v5:
-- Remove obsolete VM documentation
+you're missing:
 
-Co-developed-by: Matt Coster <matt.coster@imgtec.com>
-Signed-off-by: Matt Coster <matt.coster@imgtec.com>
-Co-developed-by: Donald Robson <donald.robson@imgtec.com>
-Signed-off-by: Donald Robson <donald.robson@imgtec.com>
-Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
----
- Documentation/gpu/drivers.rst           |   2 +
- Documentation/gpu/imagination/index.rst |  13 ++
- Documentation/gpu/imagination/uapi.rst  | 174 ++++++++++++++++++++++++
- MAINTAINERS                             |   1 +
- 4 files changed, 190 insertions(+)
- create mode 100644 Documentation/gpu/imagination/index.rst
- create mode 100644 Documentation/gpu/imagination/uapi.rst
+- dt-bindings (make dtbs_check is unhappy)
+- a commit message
+- Co-developed-by for Sricharan
 
-diff --git a/Documentation/gpu/drivers.rst b/Documentation/gpu/drivers.rst
-index 45a12e552091..cc6535f5f28c 100644
---- a/Documentation/gpu/drivers.rst
-+++ b/Documentation/gpu/drivers.rst
-@@ -3,9 +3,11 @@ GPU Driver Documentation
- ========================
- 
- .. toctree::
-+   :maxdepth: 3
- 
-    amdgpu/index
-    i915
-+   imagination/index
-    mcde
-    meson
-    pl111
-diff --git a/Documentation/gpu/imagination/index.rst b/Documentation/gpu/imagination/index.rst
-new file mode 100644
-index 000000000000..dc9579e758c3
---- /dev/null
-+++ b/Documentation/gpu/imagination/index.rst
-@@ -0,0 +1,13 @@
-+=======================================
-+drm/imagination PowerVR Graphics Driver
-+=======================================
-+
-+.. kernel-doc:: drivers/gpu/drm/imagination/pvr_drv.c
-+   :doc: PowerVR Graphics Driver
-+
-+Contents
-+========
-+.. toctree::
-+   :maxdepth: 2
-+
-+   uapi
-diff --git a/Documentation/gpu/imagination/uapi.rst b/Documentation/gpu/imagination/uapi.rst
-new file mode 100644
-index 000000000000..2227ea7e6222
---- /dev/null
-+++ b/Documentation/gpu/imagination/uapi.rst
-@@ -0,0 +1,174 @@
-+====
-+UAPI
-+====
-+The sources associated with this section can be found in ``pvr_drm.h``.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR UAPI
-+
-+OBJECT ARRAYS
-+=============
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_obj_array
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: DRM_PVR_OBJ_ARRAY
-+
-+IOCTLS
-+======
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: PVR_IOCTL
-+
-+DEV_QUERY
-+---------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL DEV_QUERY interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_dev_query
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_dev_query_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_dev_query_gpu_info
-+                 drm_pvr_dev_query_runtime_info
-+                 drm_pvr_dev_query_hwrt_info
-+                 drm_pvr_dev_query_quirks
-+                 drm_pvr_dev_query_enhancements
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_heap_id
-+                 drm_pvr_heap
-+                 drm_pvr_dev_query_heap_info
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for DRM_PVR_DEV_QUERY_HEAP_INFO_GET.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_static_data_area_usage
-+                 drm_pvr_static_data_area
-+                 drm_pvr_dev_query_static_data_areas
-+
-+CREATE_BO
-+---------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_BO interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_bo_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for CREATE_BO
-+
-+GET_BO_MMAP_OFFSET
-+------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL GET_BO_MMAP_OFFSET interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_get_bo_mmap_offset_args
-+
-+CREATE_VM_CONTEXT and DESTROY_VM_CONTEXT
-+----------------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_VM_CONTEXT and DESTROY_VM_CONTEXT interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_vm_context_args
-+                 drm_pvr_ioctl_destroy_vm_context_args
-+
-+VM_MAP and VM_UNMAP
-+-------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL VM_MAP and VM_UNMAP interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_vm_map_args
-+                 drm_pvr_ioctl_vm_unmap_args
-+
-+CREATE_CONTEXT and DESTROY_CONTEXT
-+----------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_CONTEXT and DESTROY_CONTEXT interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_context_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ctx_priority
-+                 drm_pvr_ctx_type
-+                 drm_pvr_static_render_context_state
-+                 drm_pvr_static_render_context_state_format
-+                 drm_pvr_reset_framework
-+                 drm_pvr_reset_framework_format
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_destroy_context_args
-+
-+CREATE_FREE_LIST and DESTROY_FREE_LIST
-+--------------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_FREE_LIST and DESTROY_FREE_LIST interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_free_list_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_destroy_free_list_args
-+
-+CREATE_HWRT_DATASET and DESTROY_HWRT_DATASET
-+--------------------------------------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL CREATE_HWRT_DATASET and DESTROY_HWRT_DATASET interfaces
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_create_hwrt_dataset_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_create_hwrt_geom_data_args
-+                 drm_pvr_create_hwrt_rt_data_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_destroy_hwrt_dataset_args
-+
-+SUBMIT_JOBS
-+-----------
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: PowerVR IOCTL SUBMIT_JOBS interface
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for the drm_pvr_sync_op object.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_ioctl_submit_jobs_args
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl geometry command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl fragment command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl compute command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :doc: Flags for SUBMIT_JOB ioctl transfer command.
-+
-+.. kernel-doc:: include/uapi/drm/pvr_drm.h
-+   :identifiers: drm_pvr_sync_op
-+                 drm_pvr_job_type
-+                 drm_pvr_hwrt_data_ref
-+                 drm_pvr_job
-+
-+Internal notes
-+==============
-+.. kernel-doc:: drivers/gpu/drm/imagination/pvr_device.h
-+   :doc: IOCTL validation helpers
-+
-+.. kernel-doc:: drivers/gpu/drm/imagination/pvr_device.h
-+   :identifiers: PVR_STATIC_ASSERT_64BIT_ALIGNED PVR_IOCTL_UNION_PADDING_CHECK
-+                 pvr_ioctl_union_padding_check
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8166ffd4349e..61aff30c856d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10265,6 +10265,7 @@ M:	Frank Binns <frank.binns@imgtec.com>
- M:	Donald Robson <donald.robson@imgtec.com>
- S:	Supported
- F:	Documentation/devicetree/bindings/gpu/img,powervr.yaml
-+F:	Documentation/gpu/imagination/
- F:	drivers/gpu/drm/imagination/
- F:	include/uapi/drm/pvr_drm.h
- 
--- 
-2.42.0
 
+status should read "okay" instead, but in this case it's unnecessary
+as you're defining the node and lack of the status property also means
+that device is enabled
+
+however
+
+this ECC engine seems to be a part of the NAND controller, so it's
+unlikely that the DT maintainers will agree for it to have a separate
+node
+
+Konrad
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 5f83ee42a719..b44acb1fac74 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -336,6 +336,11 @@ sdhc_1: mmc@7804000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		bch: qpic_ecc {
+> +			compatible = "qcom,ipq9574-ecc";
+> +			status = "ok";
+> +		}
+> +
+>  		blsp_dma: dma-controller@7884000 {
+>  			compatible = "qcom,bam-v1.7.0";
+>  			reg = <0x07884000 0x2b000>;
 
