@@ -1,258 +1,170 @@
-Return-Path: <devicetree+bounces-13172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02E367DCC58
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:55:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2A17DCC7F
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 13:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C160B20F59
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 11:55:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7E87B21037
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 12:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D671D532;
-	Tue, 31 Oct 2023 11:54:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7024F1C69D;
+	Tue, 31 Oct 2023 12:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GhrB0fHE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FB81DA35
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 11:54:53 +0000 (UTC)
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4E2DE;
-	Tue, 31 Oct 2023 04:54:51 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3B6DC814B;
-	Tue, 31 Oct 2023 19:54:50 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Oct
- 2023 19:54:50 +0800
-Received: from ubuntu.localdomain (113.72.146.247) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Oct
- 2023 19:54:49 +0800
-From: Minda Chen <minda.chen@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>, =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?=
-	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, "Daire
- McNamara" <daire.mcnamara@microchip.com>, Emil Renner Berthing
-	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>, Minda Chen
-	<minda.chen@starfivetech.com>
-Subject: [PATCH v10 20/20] riscv: dts: starfive: add PCIe dts configuration for JH7110
-Date: Tue, 31 Oct 2023 19:54:30 +0800
-Message-ID: <20231031115430.113586-21-minda.chen@starfivetech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231031115430.113586-1-minda.chen@starfivetech.com>
-References: <20231031115430.113586-1-minda.chen@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B559F107B4
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 12:03:59 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294235585;
+	Tue, 31 Oct 2023 05:03:58 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39VAAe1l025386;
+	Tue, 31 Oct 2023 12:03:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding;
+ s=qcppdkim1; bh=llA1mruceqzWtsjBtNGzppf1koFXpqBRTnaDNw4knRg=;
+ b=GhrB0fHEC/PZ/L8bqR8tq8xVgkueOy0nhxBuy4KPHqGicHPplHyQe3pycNYhpTADvHSH
+ Gond4VZiym8qJIhmGODCQprETjWkMJDK90PlPj/hIsoNEQomDFgPv01InUwUlrO8FbCO
+ L5k6Ch4w6vwgwqIs/cpjpSowQyW5yLafJ7pdw+hxwYtyrBtf3q+fWuvvyDv7G+1O6348
+ 230SRviKRXHvL+401d5rYj7hBBE1DsUzFoKcvejxL0kICMo1NK3d5dJG/tEVTMIT3p19
+ 2cHkEubJ0BjHOcEBB837bnreA2/OWa5AH/xhFM5ryZ6aOhhU+GqUyqsEudH1jhmCH6UP Ew== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u2fuvjc1m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 12:03:13 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 39VC395s005243;
+	Tue, 31 Oct 2023 12:03:09 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3u0uckvvnw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 12:03:09 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 39VC39uW005238;
+	Tue, 31 Oct 2023 12:03:09 GMT
+Received: from hu-devc-blr-u22-a.qualcomm.com (hu-mdalam-blr.qualcomm.com [10.131.36.157])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 39VC39iF005237
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 12:03:09 +0000
+Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 466583)
+	id D1F82414B1; Tue, 31 Oct 2023 17:33:08 +0530 (+0530)
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, miquel.raynal@bootlin.com,
+        richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, quic_srichara@quicinc.com,
+        qpic_varada@quicinc.com
+Cc: quic_mdalam@quicinc.com
+Subject: [RFC PATCH 0/5] Add QPIC SPI NAND driver support
+Date: Tue, 31 Oct 2023 17:33:02 +0530
+Message-Id: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.146.247]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 7JBJdyffZDxCCJL6xqn39Pao-CvL2emj
+X-Proofpoint-GUID: 7JBJdyffZDxCCJL6xqn39Pao-CvL2emj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-31_01,2023-10-31_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ spamscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1011 mlxscore=0
+ priorityscore=1501 phishscore=0 mlxlogscore=607 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2310310094
 
-Add PCIe dts configuraion for JH7110 SoC platform.
+Hi Miquel,
 
-Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 64 ++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
- 2 files changed, 150 insertions(+)
+This series is RFC for QPIC NAND driver design for
+both SPI NAND and RAW NAND.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 2c02358abd71..2124539f415d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -232,6 +232,22 @@
- 	status = "okay";
- };
- 
-+&pcie0 {
-+	perst-gpios = <&sysgpio 26 GPIO_ACTIVE_LOW>;
-+	phys = <&pciephy0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_pins>;
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	perst-gpios = <&sysgpio 28 GPIO_ACTIVE_LOW>;
-+	phys = <&pciephy1>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_pins>;
-+	status = "okay";
-+};
-+
- &qspi {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-@@ -402,6 +418,54 @@
- 		};
- 	};
- 
-+	pcie0_pins: pcie0-0 {
-+		clkreq-pins {
-+			pinmux = <GPIOMUX(27, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		wake-pins {
-+			pinmux = <GPIOMUX(32, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pcie1_pins: pcie1-0 {
-+		clkreq-pins {
-+			pinmux = <GPIOMUX(29, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-down;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		wake-pins {
-+			pinmux = <GPIOMUX(21, GPOUT_LOW,
-+					      GPOEN_DISABLE,
-+					      GPI_NONE)>;
-+			bias-pull-up;
-+			drive-strength = <2>;
-+			input-enable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	spi0_pins: spi0-0 {
- 		mosi-pins {
- 			pinmux = <GPIOMUX(52, GPOUT_SYS_SPI0_TXD,
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index e85464c328d0..1a1e97287c5e 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -1045,5 +1045,91 @@
- 			#reset-cells = <1>;
- 			power-domains = <&pwrc JH7110_PD_VOUT>;
- 		};
-+
-+		pcie0: pcie@940000000 {
-+			compatible = "starfive,jh7110-pcie";
-+			reg = <0x9 0x40000000 0x0 0x1000000>,
-+			      <0x0 0x2b000000 0x0 0x100000>;
-+			reg-names = "cfg", "apb";
-+			linux,pci-domain = <0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			ranges = <0x82000000  0x0 0x30000000  0x0 0x30000000 0x0 0x08000000>,
-+				 <0xc3000000  0x9 0x00000000  0x9 0x00000000 0x0 0x40000000>;
-+			interrupts = <56>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc0 0x1>,
-+					<0x0 0x0 0x0 0x2 &pcie_intc0 0x2>,
-+					<0x0 0x0 0x0 0x3 &pcie_intc0 0x3>,
-+					<0x0 0x0 0x0 0x4 &pcie_intc0 0x4>;
-+			msi-controller;
-+			device_type = "pci";
-+			starfive,stg-syscon = <&stg_syscon>;
-+			bus-range = <0x0 0xff>;
-+			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_TL>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_AXI_MST0>,
-+				 <&stgcrg JH7110_STGCLK_PCIE0_APB>;
-+			clock-names = "noc", "tl", "axi_mst0", "apb";
-+			resets = <&stgcrg JH7110_STGRST_PCIE0_AXI_MST0>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV0>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_BRG>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_CORE>,
-+				 <&stgcrg JH7110_STGRST_PCIE0_APB>;
-+			reset-names = "mst0", "slv0", "slv", "brg",
-+				      "core", "apb";
-+			status = "disabled";
-+
-+			pcie_intc0: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		pcie1: pcie@9c0000000 {
-+			compatible = "starfive,jh7110-pcie";
-+			reg = <0x9 0xc0000000 0x0 0x1000000>,
-+			      <0x0 0x2c000000 0x0 0x100000>;
-+			reg-names = "cfg", "apb";
-+			linux,pci-domain = <1>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			#interrupt-cells = <1>;
-+			ranges = <0x82000000  0x0 0x38000000  0x0 0x38000000 0x0 0x08000000>,
-+				 <0xc3000000  0x9 0x80000000  0x9 0x80000000 0x0 0x40000000>;
-+			interrupts = <57>;
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc1 0x1>,
-+					<0x0 0x0 0x0 0x2 &pcie_intc1 0x2>,
-+					<0x0 0x0 0x0 0x3 &pcie_intc1 0x3>,
-+					<0x0 0x0 0x0 0x4 &pcie_intc1 0x4>;
-+			msi-controller;
-+			device_type = "pci";
-+			starfive,stg-syscon = <&stg_syscon>;
-+			bus-range = <0x0 0xff>;
-+			clocks = <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_TL>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_AXI_MST0>,
-+				 <&stgcrg JH7110_STGCLK_PCIE1_APB>;
-+			clock-names = "noc", "tl", "axi_mst0", "apb";
-+			resets = <&stgcrg JH7110_STGRST_PCIE1_AXI_MST0>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV0>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_BRG>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_CORE>,
-+				 <&stgcrg JH7110_STGRST_PCIE1_APB>;
-+			reset-names = "mst0", "slv0", "slv", "brg",
-+				      "core", "apb";
-+			status = "disabled";
-+
-+			pcie_intc1: interrupt-controller {
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
- 	};
- };
+We have already discuss this design in the below link
+
+https://patchwork.kernel.org/project/linux-arm-msm/patch/1602307902-16761-3-git-send-email-mdalam@codeaurora.org/#25270814
+
+Since QPIC controller support both raw and as wel as
+serial nand, In these patch series I am trying to write
+these driver as per above discussion.
+
+As per this design we are having new drivrs for:
+
+1) SPI-NAND Driver
+2) RAW-NAND Driver
+3) QPIC-COMMON-API Driver
+4) ECC ENGINE Driver
+
+Could you plese review these RFC patches and let me know
+if i am doing as per design and my code are proper so that
+i can proceed further.
+
+I have testd SPI NAND enumeration with this new design.
+
+Command supported currently by spi nand driver
+1) RESET
+2) READ ID
+3) GET FEATURE
+4) SET FEATURE
+
+Currently READ_PAGE, WRITE_PAGE are dummy API. Will write
+this later on after your review.
+
+One more thisng wanted to add here Since for QPIC ECC engine
+its not a separte HW IP, and only one register is there to control ECC
+enable/disable. So for just for one register writing a separte driver
+is fine or not?
+In dt I have added like as below 
+
+ bch: qpic_ecc {
+                      compatible = "qcom,ipq9574-ecc";
+                      status = "ok";
+              };
+
+Is this ok ?
+
+Thanks,
+Alam.
+
+Md Sadre Alam (5):
+  mtd: nand: ecc-qcom: Add support for ECC Engine Driver
+  arm64: dts: qcom: ipq9574: Add ecc engine support
+  mtd: nand: qpic_common: Add support for qpic common API
+  spi: qpic: Add support for qpic spi nand driver
+  arm64: dts: qcom: ipq9574: Add support for SPI nand
+
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts |  56 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi       |  33 +
+ drivers/mtd/nand/Kconfig                    |   7 +
+ drivers/mtd/nand/Makefile                   |   1 +
+ drivers/mtd/nand/ecc-qcom.c                 | 198 +++++
+ drivers/mtd/nand/qpic_common.c              | 840 ++++++++++++++++++++
+ drivers/spi/Kconfig                         |   7 +
+ drivers/spi/Makefile                        |   1 +
+ drivers/spi/spi-qpic-snand.c                | 604 ++++++++++++++
+ include/linux/mtd/nand-qpic-common.h        | 641 +++++++++++++++
+ 10 files changed, 2360 insertions(+), 28 deletions(-)
+ create mode 100644 drivers/mtd/nand/ecc-qcom.c
+ create mode 100644 drivers/mtd/nand/qpic_common.c
+ create mode 100644 drivers/spi/spi-qpic-snand.c
+ create mode 100644 include/linux/mtd/nand-qpic-common.h
+
 -- 
-2.17.1
+2.34.1
 
 
