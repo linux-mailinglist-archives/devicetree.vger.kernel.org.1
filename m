@@ -1,158 +1,172 @@
-Return-Path: <devicetree+bounces-13007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721D57DC48E
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 03:37:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D987DC4EC
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 04:38:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1F0BB20D41
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 02:37:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E7E32814E8
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 03:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4987F2;
-	Tue, 31 Oct 2023 02:37:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487C553B8;
+	Tue, 31 Oct 2023 03:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PUvzfSJ1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB78EC6
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 02:37:21 +0000 (UTC)
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5D743FD;
-	Mon, 30 Oct 2023 19:37:08 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.110.17])
-	by gateway (Coremail) with SMTP id _____8Cx7+tOaEBli941AA--.38784S3;
-	Tue, 31 Oct 2023 10:37:02 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.110.17])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8AxH91LaEBlgEQ3AA--.55486S3;
-	Tue, 31 Oct 2023 10:37:01 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Thomas Gleixner <tglx@linutronix.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBF6524B
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 03:38:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82C7EB3;
+	Mon, 30 Oct 2023 20:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698723503; x=1730259503;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=F8GDi1EX8bU9UvI6orKS0N+PBl8cmuL30fdUKmURp+I=;
+  b=PUvzfSJ1xmITFwC4dVZA0AFNblEhPnDtaHGTBZw3++p1wmGeXAake9MZ
+   VDAW9qOdy9rcRcQ68NR9flocSUZvChxPKXw0u/ZDS8D//lDG/G10XLIUs
+   eTNR7RwVz7Ho+gAkVqDv6wQB2d4jMpC/tYQexbyPILxZA2Y8l24p0tdbd
+   LEDJ71qc2lHKznkJ5OyEfqQuR+70Mf+v7HMexaH22v+/lWg3v1+5EgyYk
+   nM62P6hk6IVoAfHO+sw+rWKei7/KmD89TqSWEm3yqARqfcvAA8fvQCsqC
+   67Jj1LdDG5TXvuIFSgnx4aF3DZ5vqBEZZkzs7d4iVT6FArz+d5ZDt0i60
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="392071614"
+X-IronPort-AV: E=Sophos;i="6.03,264,1694761200"; 
+   d="scan'208";a="392071614"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Oct 2023 20:38:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,264,1694761200"; 
+   d="scan'208";a="1711171"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 30 Oct 2023 20:38:19 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qxfa4-000DnL-12;
+	Tue, 31 Oct 2023 03:38:16 +0000
+Date: Tue, 31 Oct 2023 11:38:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	loongson-kernel@lists.loongnix.cn,
-	devicetree@vger.kernel.org,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	linux-mips@vger.kernel.org,
-	lvjianmin@loongson.cn,
-	WANG Xuerui <git@xen0n.name>,
-	loongarch@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v3 5/5] MIPS: Loongson64: DTS: Fix 'loongson,parent_int_map' references
-Date: Tue, 31 Oct 2023 10:36:58 +0800
-Message-Id: <aeb33087954df5adac49646b665af92d1b9adeb6.1698717154.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <cover.1698717154.git.zhoubinbin@loongson.cn>
-References: <cover.1698717154.git.zhoubinbin@loongson.cn>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH 4/6] mfd: bcm590xx: Add compatible for BCM59054
+Message-ID: <202310311110.QsKHR6Ap-lkp@intel.com>
+References: <20231030-bcm59054-v1-4-3517f980c1e3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8AxH91LaEBlgEQ3AA--.55486S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxZr13XFyxAFWkJw4fCw1DXFc_yoW5tr1fpw
-	13Aa18Gw4xKr17A398G34UJr1fZF90yFZrWF4xGFWxA39aga4UXr1fJF1rJrs3GrW5Xa42
-	9r1vgrWUKFy8CabCm3ZEXasCq-sJn29KB7ZKAUJUUUUf529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBvb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Wrv_ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
-	Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-	8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE
-	2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
-	AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIE
-	c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j2XdUUUUUU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231030-bcm59054-v1-4-3517f980c1e3@gmail.com>
 
-Since 'loongson,parent_int_map' has been deprecated, replace all
-relevant references in the MIPS loongson dts{i} with
-'loongson,parent-int-map'.
+Hi Artur,
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi       | 4 ++--
- arch/mips/boot/dts/loongson/loongson64c-package.dtsi     | 2 +-
- arch/mips/boot/dts/loongson/loongson64g-package.dtsi     | 2 +-
- arch/mips/boot/dts/loongson/loongson64v_4core_virtio.dts | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-index f878f47e4501..36f499a3772e 100644
---- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-@@ -71,7 +71,7 @@ liointc0: interrupt-controller@1fe11400 {
- 			interrupts = <2>;
- 			interrupt-names = "int0";
- 
--			loongson,parent_int_map = <0xffffffff>, /* int0 */
-+			loongson,parent-int-map = <0xffffffff>, /* int0 */
- 						<0x00000000>, /* int1 */
- 						<0x00000000>, /* int2 */
- 						<0x00000000>; /* int3 */
-@@ -91,7 +91,7 @@ liointc1: interrupt-controller@1fe11440 {
- 			interrupts = <3>;
- 			interrupt-names = "int1";
- 
--			loongson,parent_int_map = <0x00000000>, /* int0 */
-+			loongson,parent-int-map = <0x00000000>, /* int0 */
- 						<0xffffffff>, /* int1 */
- 						<0x00000000>, /* int2 */
- 						<0x00000000>; /* int3 */
-diff --git a/arch/mips/boot/dts/loongson/loongson64c-package.dtsi b/arch/mips/boot/dts/loongson/loongson64c-package.dtsi
-index 5bb876a4de52..38de0108e804 100644
---- a/arch/mips/boot/dts/loongson/loongson64c-package.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64c-package.dtsi
-@@ -35,7 +35,7 @@ liointc: interrupt-controller@3ff01400 {
- 			interrupts = <2>, <3>;
- 			interrupt-names = "int0", "int1";
- 
--			loongson,parent_int_map = <0xf0ffffff>, /* int0 */
-+			loongson,parent-int-map = <0xf0ffffff>, /* int0 */
- 						<0x0f000000>, /* int1 */
- 						<0x00000000>, /* int2 */
- 						<0x00000000>; /* int3 */
-diff --git a/arch/mips/boot/dts/loongson/loongson64g-package.dtsi b/arch/mips/boot/dts/loongson/loongson64g-package.dtsi
-index d4314f62ccc2..8972adcb83d6 100644
---- a/arch/mips/boot/dts/loongson/loongson64g-package.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64g-package.dtsi
-@@ -32,7 +32,7 @@ liointc: interrupt-controller@3ff01400 {
- 			interrupts = <2>, <3>;
- 			interrupt-names = "int0", "int1";
- 
--			loongson,parent_int_map = <0x00ffffff>, /* int0 */
-+			loongson,parent-int-map = <0x00ffffff>, /* int0 */
- 						<0xff000000>, /* int1 */
- 						<0x00000000>, /* int2 */
- 						<0x00000000>; /* int3 */
-diff --git a/arch/mips/boot/dts/loongson/loongson64v_4core_virtio.dts b/arch/mips/boot/dts/loongson/loongson64v_4core_virtio.dts
-index d0588d81e0c2..88642fee1bbd 100644
---- a/arch/mips/boot/dts/loongson/loongson64v_4core_virtio.dts
-+++ b/arch/mips/boot/dts/loongson/loongson64v_4core_virtio.dts
-@@ -34,7 +34,7 @@ liointc: interrupt-controller@3ff01400 {
- 			interrupts = <2>, <3>;
- 			interrupt-names = "int0", "int1";
- 
--			loongson,parent_int_map = <0x00000001>, /* int0 */
-+			loongson,parent-int-map = <0x00000001>, /* int0 */
- 						<0xfffffffe>, /* int1 */
- 						<0x00000000>, /* int2 */
- 						<0x00000000>; /* int3 */
+[auto build test WARNING on 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Artur-Weber/dt-bindings-mfd-brcm-bcm59056-Convert-to-YAML/20231031-040046
+base:   05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
+patch link:    https://lore.kernel.org/r/20231030-bcm59054-v1-4-3517f980c1e3%40gmail.com
+patch subject: [PATCH 4/6] mfd: bcm590xx: Add compatible for BCM59054
+config: loongarch-randconfig-001-20231031 (https://download.01.org/0day-ci/archive/20231031/202310311110.QsKHR6Ap-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231031/202310311110.QsKHR6Ap-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310311110.QsKHR6Ap-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/mfd/bcm590xx.c: In function 'bcm590xx_i2c_probe':
+>> drivers/mfd/bcm590xx.c:53:33: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+      53 |         bcm590xx->device_type = (unsigned int)of_device_get_match_data(bcm590xx->dev);
+         |                                 ^
+
+
+vim +53 drivers/mfd/bcm590xx.c
+
+    39	
+    40	static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
+    41	{
+    42		struct bcm590xx *bcm590xx;
+    43		int ret;
+    44	
+    45		bcm590xx = devm_kzalloc(&i2c_pri->dev, sizeof(*bcm590xx), GFP_KERNEL);
+    46		if (!bcm590xx)
+    47			return -ENOMEM;
+    48	
+    49		i2c_set_clientdata(i2c_pri, bcm590xx);
+    50		bcm590xx->dev = &i2c_pri->dev;
+    51		bcm590xx->i2c_pri = i2c_pri;
+    52	
+  > 53		bcm590xx->device_type = (unsigned int)of_device_get_match_data(bcm590xx->dev);
+    54	
+    55		bcm590xx->regmap_pri = devm_regmap_init_i2c(i2c_pri,
+    56							 &bcm590xx_regmap_config_pri);
+    57		if (IS_ERR(bcm590xx->regmap_pri)) {
+    58			ret = PTR_ERR(bcm590xx->regmap_pri);
+    59			dev_err(&i2c_pri->dev, "primary regmap init failed: %d\n", ret);
+    60			return ret;
+    61		}
+    62	
+    63		/* Secondary I2C slave address is the base address with A(2) asserted */
+    64		bcm590xx->i2c_sec = i2c_new_dummy_device(i2c_pri->adapter,
+    65						  i2c_pri->addr | BIT(2));
+    66		if (IS_ERR(bcm590xx->i2c_sec)) {
+    67			dev_err(&i2c_pri->dev, "failed to add secondary I2C device\n");
+    68			return PTR_ERR(bcm590xx->i2c_sec);
+    69		}
+    70		i2c_set_clientdata(bcm590xx->i2c_sec, bcm590xx);
+    71	
+    72		bcm590xx->regmap_sec = devm_regmap_init_i2c(bcm590xx->i2c_sec,
+    73							&bcm590xx_regmap_config_sec);
+    74		if (IS_ERR(bcm590xx->regmap_sec)) {
+    75			ret = PTR_ERR(bcm590xx->regmap_sec);
+    76			dev_err(&bcm590xx->i2c_sec->dev,
+    77				"secondary regmap init failed: %d\n", ret);
+    78			goto err;
+    79		}
+    80	
+    81		ret = devm_mfd_add_devices(&i2c_pri->dev, -1, bcm590xx_devs,
+    82					   ARRAY_SIZE(bcm590xx_devs), NULL, 0, NULL);
+    83		if (ret < 0) {
+    84			dev_err(&i2c_pri->dev, "failed to add sub-devices: %d\n", ret);
+    85			goto err;
+    86		}
+    87	
+    88		return 0;
+    89	
+    90	err:
+    91		i2c_unregister_device(bcm590xx->i2c_sec);
+    92		return ret;
+    93	}
+    94	
+
 -- 
-2.39.3
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
