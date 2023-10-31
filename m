@@ -1,85 +1,181 @@
-Return-Path: <devicetree+bounces-12995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-12996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CA617DC3CB
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 02:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 654127DC3CD
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 02:10:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16151281507
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 01:09:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E97D2814DB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 01:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C308936D;
-	Tue, 31 Oct 2023 01:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCD937C;
+	Tue, 31 Oct 2023 01:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikRR3M7e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949F47F2
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:09:51 +0000 (UTC)
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574F1CC;
-	Mon, 30 Oct 2023 18:09:49 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 49B4F24E1D1;
-	Tue, 31 Oct 2023 09:09:35 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Oct
- 2023 09:09:35 +0800
-Received: from [192.168.60.147] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 31 Oct
- 2023 09:09:34 +0800
-Message-ID: <15ef0a70-734e-280a-f014-41914a55d8cf@starfivetech.com>
-Date: Tue, 31 Oct 2023 09:09:34 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4217636D
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:10:26 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA5CA2;
+	Mon, 30 Oct 2023 18:10:24 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5079f9675c6so7773045e87.2;
+        Mon, 30 Oct 2023 18:10:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698714622; x=1699319422; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bqPoT4F9RmVDc8pr+IDxp35lpchtUg1Qh6Xpf92yaO8=;
+        b=ikRR3M7egHBwfmH46soRsjFkn5ofAN6lfjHPTCqRFfzrzWJqp0genw01VEUoLzthSP
+         cjyA+O1QhgTUZeFx1KAp/J48ZNRis6627VO9Q9e3TsevaxVcMuPCZTSh6W4uziUEJJY3
+         iLA1Ex/zR6O+YW2UtahArAarhkDfbDgSv7v0jOQs+tbvwcfp5oZFXGzNs+172uJaFPLb
+         fXEKSaHgZdkhamFtjG8rFC6mXjBhbAzG+GR8pT4ZtNFe2kDKBBXQcgi0Pqm6JPAtHngp
+         MI+4K+qmk3aA3P1dpZB5MUrJlDGrYBmBY8XVoUGSfMYnCMLk+jWJHDO3di8Kq1QaJHrv
+         gJlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698714622; x=1699319422;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bqPoT4F9RmVDc8pr+IDxp35lpchtUg1Qh6Xpf92yaO8=;
+        b=biHJX7r6IZzAlb8GQjb1gDLcT0q+Ln3ISB87JoMbE7VGC+u8GpNsJ6XpFxLak5aoTU
+         yYyBKM/wv2Ti4yfduGNVllK0pbKRZHtdLMksLtoV2E8pmTadSBeRp/eOmsq9jNyd8IcV
+         cKWE0dW+0+XxFI0BNQTD0ROqiJ7E5S2fieGhZZe3TDOhuScoyjvfAsmumgEx0g3qdwy8
+         7iHf2fHCV+nzXD16zM1TgQe6p7RBspB84gqB4a7KwzA7zAz8gqovKtHSfQj3JoptZzPo
+         Y8JzITAHvyCDCrifRCkaKpxh+Y444LwPrlUTZ3RqMYrHPfmlOVwWvFQpPHom3Tz4B3RL
+         oxIA==
+X-Gm-Message-State: AOJu0Yxyjdzp0lKapE8c32emMkQq7G1+F0x6bRQhgo6ASI1USHCHJrAg
+	GB/2E7mdTmcRK26jDO31mOgLOHujwo5aAQ==
+X-Google-Smtp-Source: AGHT+IEMqTcP5JE/a5KNIjbcNlQMvWCSkDmRmU6WhDaXBEEHn1kqWQDZgSMKsd/pZYZYOz5BJ3/Rqg==
+X-Received: by 2002:a05:6512:124f:b0:500:7fc1:414b with SMTP id fb15-20020a056512124f00b005007fc1414bmr10429837lfb.25.1698714622023;
+        Mon, 30 Oct 2023 18:10:22 -0700 (PDT)
+Received: from mobilestation ([89.113.151.243])
+        by smtp.gmail.com with ESMTPSA id dw24-20020a0565122c9800b004fdde1db756sm26123lfb.26.2023.10.30.18.10.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Oct 2023 18:10:21 -0700 (PDT)
+Date: Tue, 31 Oct 2023 04:10:17 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Niklas Cassel <nks@flawful.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Shawn Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>, 
+	Damien Le Moal <dlemoal@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Niklas Cassel <niklas.cassel@wdc.com>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: PCI: dwc: rockchip: Add optional dma
+ interrupts
+Message-ID: <jxsrtqplojsab4a64erm7ojjdm3kq5ohb5l7vf3lf7gzvx3q3d@ilyu4vg2xeze>
+References: <20231027145422.40265-1-nks@flawful.org>
+ <20231027145422.40265-3-nks@flawful.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v11 0/9] Add StarFive Camera Subsystem driver
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Foss
-	<rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-	<bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Laurent Pinchart
-	<laurent.pinchart@ideasonboard.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>
-CC: <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-	<changhuang.liang@starfivetech.com>
-References: <20231025031422.3695-1-jack.zhu@starfivetech.com>
-Content-Language: en-US
-From: Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <20231025031422.3695-1-jack.zhu@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231027145422.40265-3-nks@flawful.org>
 
-
-
-On 2023/10/25 11:14, Jack Zhu wrote:
-> Hi,
+On Fri, Oct 27, 2023 at 04:54:14PM +0200, Niklas Cassel wrote:
+> From: Niklas Cassel <niklas.cassel@wdc.com>
 > 
-> This series is the v11 series that attempts to support the Camera Subsystem
-> found on StarFive JH7110 SoC.
+> Even though rockchip-dw-pcie.yaml inherits snps,dw-pcie.yaml
+> using:
+> 
+> allOf:
+>   - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> 
+> and snps,dw-pcie.yaml does have the dma interrupts defined, in order to be
+> able to use these interrupts, while still making sure 'make CHECK_DTBS=y'
+> pass, we need to add these interrupts to rockchip-dw-pcie.yaml.
+> 
+> These dedicated interrupts for the eDMA are not always wired to all the
+> PCIe controllers on the same SoC. In other words, even for a specific
+> compatible, e.g. rockchip,rk3588-pcie, these dedicated eDMA interrupts
+> may or may not be wired.
+> 
+> Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+> ---
+>  .../bindings/pci/rockchip-dw-pcie.yaml         | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> index 6ca87ff4ae20..7ad6e1283784 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+> @@ -63,6 +63,7 @@ properties:
+>        - const: pipe
+>  
+>    interrupts:
+> +    minItems: 5
+>      items:
+>        - description:
+>            Combined system interrupt, which is used to signal the following
+> @@ -86,14 +87,31 @@ properties:
+>            interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
+>            tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
+>            nf_err_rx, f_err_rx, radm_qoverflow
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+> +      - description:
+> +          Indicates that the eDMA Tx/Rx transfer is complete or that an
+> +          error has occurred on the corresponding channel.
+>  
+>    interrupt-names:
+> +    minItems: 5
+>      items:
+>        - const: sys
+>        - const: pmc
+>        - const: msg
+>        - const: legacy
+>        - const: err
 
-Hi Hans and Laurent,
+> +      - const: dma0
+> +      - const: dma1
+> +      - const: dma2
+> +      - const: dma3
 
-Could you please help review the code?
-Thank you for your time!
+No. As you said yourself here
+https://lore.kernel.org/linux-pci/ZTl1ZsHvk3DDHWsm@x1-carbon/
+and in the response to my last message in v2, which for some reason
+hasn't got to the lore archive:
 
--- 
-Regards,
+On Fri, Oct 27, 2023 at 05:51:14PM +0200, Niklas Cassel wrote:
+> However, e.g. rk3568 only has one channel for reads and one for writes.
+> (Now this SoC doesn't have dedicated IRQs for the eDMA, but let's pretend
+> that it did.)
+> 
+> So for rk3568, it would then instead be:
+> dma0: wr0
+> dma1: rd0
+> dma2: <unused>
+> dma3: <unused>
 
-Jack Zhu
+rk3568 doesn't have IRQs supplied in a normal way, as separate
+signals.  Instead they are combined in the 'sys' IRQ. So you should
+define the IRQs constraint being device-specific by using for example
+the "allOf: if-else" pattern.
+
+-Serge(y)
+
+>  
+>    legacy-interrupt-controller:
+>      description: Interrupt controller node for handling legacy PCI interrupts.
+> -- 
+> 2.41.0
+> 
 
