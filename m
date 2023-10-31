@@ -1,133 +1,155 @@
-Return-Path: <devicetree+bounces-13299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227AB7DD609
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 19:28:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12DF27DD674
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 20:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5360A1C2089C
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:28:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C545B20DD0
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 19:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD73421A12;
-	Tue, 31 Oct 2023 18:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644F821A16;
+	Tue, 31 Oct 2023 19:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QHrR4KGl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WCZxeK3s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 237162599
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 18:28:39 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20475A3;
-	Tue, 31 Oct 2023 11:28:37 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39VHbc5L031484;
-	Tue, 31 Oct 2023 18:28:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
- subject : mime-version : content-type : content-transfer-encoding :
- message-id : to : cc; s=qcppdkim1;
- bh=I4RFhQ2hQV6Tnj5dqkgWY77r7FlmVBG3/GztMCq120Y=;
- b=QHrR4KGlVQ0xGDhzFqSYDrr6q7lzZ/jBGw6slv7J1eAZZpXx4OfUsYDO7RXENOjkav/o
- XPZv+2Et2DIA07GSm8W5jAmuropbZa2ZoSBeiS9aDOx3472xeS+DNkreBeyC6a88/Fyf
- qkbc9iBkU92omK01FJyQiSMspsHAZMLNGcyNr/fcO0RWcrpWIM4DDhmdf5bzF3eoCOkv
- +nkA7G9mfKi017yzWWd5bMk/rubmoO/Hy1iIUUmnkXmiSMNjqD7as9qdLYjknr59kqa2
- ZjY9Djk/ilY9mjxAAlld2j8g0COaSq1fQkYyLliWvtr6EhRog+bQ+4UmoKymoNE4dZ5p Qg== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u34sc0dj6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 18:28:33 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 39VISWDn024967
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 31 Oct 2023 18:28:32 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Tue, 31 Oct 2023 11:28:31 -0700
-From: Elliot Berman <quic_eberman@quicinc.com>
-Date: Tue, 31 Oct 2023 11:28:22 -0700
-Subject: [PATCH] dt-bindings: power: reset: $ref reboot-mode in
- nvmem-reboot-mode
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171FDEDA;
+	Tue, 31 Oct 2023 19:01:21 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 865AFE6;
+	Tue, 31 Oct 2023 12:01:20 -0700 (PDT)
+Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 49CD3660739C;
+	Tue, 31 Oct 2023 19:01:17 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1698778879;
+	bh=BsAPLmxB3DURCesPkkALL1Ia9odxLqJSAjKdGFe9DFk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WCZxeK3sLNVm9MIkijRBlhmkwy+YNEGi5hmdI3xqpapX61FnUrjRkL+OVx3VFmVRS
+	 drh0mK9vLQP+hiWGTMupWxpUK3dHW3AsVKlU0EwqPDsnW3mLKoKyOONwGZMpq8HWJz
+	 URc2exjGqu2/Y5ywgAZ3362kvT+5yZn7GlgWUx6EerBjLP2j+CTXlTQpy+Gph1EqW8
+	 xdk7eBBSBJaQlo1MDw8Ft/ZYBEpGJl4NnoHL3cFKCgnapNzn0knWhG6LPvdOaE5KHV
+	 vOBY59kZBj9096AbhYoDMrII3me6aa9boP5HBZtK6eIpo8fHs1vTeb4aHcbNZpukU5
+	 FKOXKuH1JbEVw==
+Message-ID: <4e71c2ff-6189-4a2d-8ec0-fb9fe4a9971f@collabora.com>
+Date: Tue, 31 Oct 2023 21:01:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/12] riscv: dts: starfive: jh7100: Add ccache DT node
+Content-Language: en-US
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-8-cristian.ciocaltea@collabora.com>
+ <CAJM55Z8D12XoRG4WGaf=PG0_yp7d_xk9EhOk7bnCKQRMok9eBA@mail.gmail.com>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <CAJM55Z8D12XoRG4WGaf=PG0_yp7d_xk9EhOk7bnCKQRMok9eBA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20231031-ref-nvmem-reboot-mode-v1-1-c1af9070ce52@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAEVHQWUC/x2MSwqAMAwFryJZG2htqehVxIWfqFm0lVaKIN7d4
- G4G5r0HMiWmDH31QKLCmWMQ0XUFyzGFnZBXcWhUY7QyGhNtGIonLzTHeKGPK6E2rutaZY0jC7I
- 9JeP7/x3G9/0AIPVzXmcAAAA=
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Elliot Berman <quic_eberman@quicinc.com>
-X-Mailer: b4 0.13-dev
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: s4FXohjvNU5aT42GKCEaqyCip83tRORd
-X-Proofpoint-GUID: s4FXohjvNU5aT42GKCEaqyCip83tRORd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-10-31_05,2023-10-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 mlxlogscore=999 bulkscore=0 phishscore=0 priorityscore=1501
- mlxscore=0 spamscore=0 clxscore=1015 adultscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2310310148
 
-nvmem-reboot-mode.yaml should $ref: reboot-mode.yaml, but instead
-rewrites the properties. Update so it $refs instead.
+On 10/31/23 16:38, Emil Renner Berthing wrote:
+> Cristian Ciocaltea wrote:
+>> Provide a DT node for the SiFive Composable Cache controller found on
+>> the StarFive JH7100 SoC.
+>>
+>> Note this is also used to support non-coherent DMA, via the
+>> sifive,cache-ops cache flushing operations.
+> 
+> This property is no longer needed:
+> https://lore.kernel.org/linux-riscv/20231031141444.53426-1-emil.renner.berthing@canonical.com/
 
-Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
----
- .../devicetree/bindings/power/reset/nvmem-reboot-mode.yaml        | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+Thanks for the heads up! I actually noticed that from v1 reviews and was
+just waiting for v2. :)
 
-diff --git a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-index 14a262bcbf7c..627f8a6078c2 100644
---- a/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/nvmem-reboot-mode.yaml
-@@ -28,17 +28,15 @@ properties:
-     items:
-       - const: reboot-mode
- 
--patternProperties:
--  "^mode-.+":
--    $ref: /schemas/types.yaml#/definitions/uint32
--    description: Vendor-specific mode value written to the mode register
-+allOf:
-+  - $ref: reboot-mode.yaml#
- 
- required:
-   - compatible
-   - nvmem-cells
-   - nvmem-cell-names
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
+> Also it would be nice to mention that these nodes are copied from my
+> visionfive patches ;)
 
----
-base-commit: ffc253263a1375a65fa6c9f62a893e9767fbebfa
-change-id: 20231031-ref-nvmem-reboot-mode-1369970436e4
+Ups, sorry about that! Those were initially taken from a patch adding a
+full DT (the repo is mentioned in the cover letter) with many
+contributors mentioned, without being clear who did what. That's why I
+didn't provide a Co-developed-by tag and, unfortunately, I also missed
+to add it in v2 (will handle this in v3 and also provide the link to the
+new repo), but I'm still not sure about the gmac stuff.
 
-Best regards,
--- 
-Elliot Berman <quic_eberman@quicinc.com>
+Thanks,
+Cristian
 
+>>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  arch/riscv/boot/dts/starfive/jh7100.dtsi | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+>> index 06bb157ce111..a8a5bb00b0d8 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
+>> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+>> @@ -32,6 +32,7 @@ U74_0: cpu@0 {
+>>  			i-tlb-sets = <1>;
+>>  			i-tlb-size = <32>;
+>>  			mmu-type = "riscv,sv39";
+>> +			next-level-cache = <&ccache>;
+>>  			riscv,isa = "rv64imafdc";
+>>  			riscv,isa-base = "rv64i";
+>>  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+>> @@ -60,6 +61,7 @@ U74_1: cpu@1 {
+>>  			i-tlb-sets = <1>;
+>>  			i-tlb-size = <32>;
+>>  			mmu-type = "riscv,sv39";
+>> +			next-level-cache = <&ccache>;
+>>  			riscv,isa = "rv64imafdc";
+>>  			riscv,isa-base = "rv64i";
+>>  			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicntr", "zicsr",
+>> @@ -147,6 +149,18 @@ soc {
+>>  		dma-noncoherent;
+>>  		ranges;
+>>
+>> +		ccache: cache-controller@2010000 {
+>> +			compatible = "starfive,jh7100-ccache", "sifive,ccache0", "cache";
+>> +			reg = <0x0 0x2010000 0x0 0x1000>;
+>> +			interrupts = <128>, <130>, <131>, <129>;
+>> +			cache-block-size = <64>;
+>> +			cache-level = <2>;
+>> +			cache-sets = <2048>;
+>> +			cache-size = <2097152>;
+>> +			cache-unified;
+>> +			sifive,cache-ops;
+>> +		};
+>> +
+>>  		clint: clint@2000000 {
+>>  			compatible = "starfive,jh7100-clint", "sifive,clint0";
+>>  			reg = <0x0 0x2000000 0x0 0x10000>;
+>> --
+>> 2.42.0
+>>
 
