@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BCB57DD445
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:08:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 561187DD457
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 18:11:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07B582814C5
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:08:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAE7EB20D9C
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 17:11:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4588A2032D;
-	Tue, 31 Oct 2023 17:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20252031D;
+	Tue, 31 Oct 2023 17:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JzOU3uur"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P6R5GU5y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A6C2031E
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:08:51 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94FED1AC
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:08:49 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9d2c54482fbso447619766b.2
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:08:49 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003922032C
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 17:11:14 +0000 (UTC)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C9BF3
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:11:13 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9adb9fa7200so7167666b.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 10:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698772128; x=1699376928; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698772271; x=1699377071; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+feQs+itGdxA7Jm7f8P6UpJRY3RLYxDN+ML61Wt8IfA=;
-        b=JzOU3uurkijpJ/gjOyKN0ODkzWPWcNf4xFkMis73Y6AJaGP+m9TBSbYZrkP+ivEkyi
-         m53D/eA0Sp+1bBosL9q4L6qKdSUIk4svlCJOdfbK5XQQW+rB6XZkNJzQTCSTWkfBC6yC
-         V+GjGilQx5d9Hmvz+fWNFSdBK8m/5lBBhAFyuTfXw0I8ij8vT1zFC0XSTkmy445JDj0e
-         KqcjcYVZ6U1sUDnt/+7A6iZcbpBK9LNWx330lsdHmNvesgyRnrcTADTjfBWuF6RF2kgT
-         hn1T0GcMlu+PmNROLhroTTGlEiaWNQx3KDo/MSOs4bQpZWV0LYKzOg2F02o565QDmBZO
-         orfw==
+        bh=uqSOgBlMAL0p4luVZj/K6kb8seEHM+WZo7c0FNWQQTQ=;
+        b=P6R5GU5yl/k9qwpqjvclAiKYf+sJS7uIMkujBQML+cgKlrdGifNcvT6cI87705AOjm
+         Z3tYqUFmvRKzX4Ea8+Il3RSastN7KkS1Fg29u6fZ/mBQnaIvNU4j4EXmtVzSQ7wAUXKB
+         r6ebNoAbxWCOpmJedT5vc2dihn/9csqeGSM+hzbWVXnD6xIkk/oT3vZbaVxO769zt2wL
+         4QB2N4R7nzS88aV7eZMJiES35F3vCEkLwM/xhB8pF+b6xlWDmATVxdrMXBQzxwea7zMs
+         D3k6Lf23iIPnA+Cgo8CHciItMlsXyZVkuEC1reavJBm8Lf840bjJKL05MGpiHFcb0SAg
+         0XZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698772128; x=1699376928;
+        d=1e100.net; s=20230601; t=1698772271; x=1699377071;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+feQs+itGdxA7Jm7f8P6UpJRY3RLYxDN+ML61Wt8IfA=;
-        b=acen/TOgbXVgez1lU1dvvIzd2QuL17m+dwUyP0Kk97n0qYfnBHM5PObEDJrOUyH7nV
-         gvi42BIUcpbVMsDLRul39XYctcNM3O2VZCAdVztfDZoCA/5C0VcI4vF+BeqfR6zcQt2v
-         PFk28BzT0nBqq1UEnudqy0xMDmBa3iT07/asqVMU1zq8oLBbGBcDgIl9qUzuUzYt45cQ
-         RFcl38lN+fmC4JMSiIw8HkTzooaizBfKfHkJ2BIYz3lw1csUIc6ULFzlskZRKiFCKHAP
-         BPJyv5h3LISjd3VFKPTnl7bZSjb2Mu+tWdw2YIKK1ziTrIET4HTw9iUpnn0raahe1v5P
-         nO0Q==
-X-Gm-Message-State: AOJu0YyM3nMXY3hVIE/tz0mGWrv3d/XrcjJaTvF/SvOaMauv2HBvoCbV
-	y3EaVDbV3w4SweRuIjWvBwzQSw==
-X-Google-Smtp-Source: AGHT+IHNVvDfKgiVTVWwyGmdsJki5ouK2yEzuxPef8Y/cOycrK5RxEm3D0Hzd3jvNoa64LCA73HpjQ==
-X-Received: by 2002:a17:906:c148:b0:9be:6ccb:6a8b with SMTP id dp8-20020a170906c14800b009be6ccb6a8bmr12321140ejc.10.1698772127901;
-        Tue, 31 Oct 2023 10:08:47 -0700 (PDT)
+        bh=uqSOgBlMAL0p4luVZj/K6kb8seEHM+WZo7c0FNWQQTQ=;
+        b=pWr78cWCWj3FrDZjFKlxIck3Vv4rwQp22F6+oeuhfd/13y+GLvGHFr9AxxnqStm1na
+         AcZx/HldtoeABns3gZh+E0c7qLU9LOZv1KXK80JJ4X2aMecXzHTozubEn1Qf/t/BipqE
+         4DxG9z40+r320k2HLTf8mkt1TuRGgK+EGqXsguYIIhS5mQoUxcv6XJj5yB+RX58H3Es8
+         SZzp2h8EeTC6+9q4NAzYbemgZ/xsUAGwOjInqZ55m7PahuJAi60z2DpMiiyMy159XgpF
+         D6/QEPU8Wa3smL/UIAS2/d6MRt3OWJ4QzzJUIgEnD8bk8yfNQh4/mTk2CFuCFS5Wc5ST
+         xelw==
+X-Gm-Message-State: AOJu0Yyom2+qgScCNI/qKiEVZYxpK+Ml20Pq3KsOFbR+ZJWMDLKv5AGc
+	2XtqxW73070AcID6Ccgf1x2SCw==
+X-Google-Smtp-Source: AGHT+IGPHvjQZdLx0skQOwgx1vhUZ3Q8/68RlhfDkl0id4LPnPh7EfNpx3PmhRPkfvwXsXvFFBXa/g==
+X-Received: by 2002:a17:906:d9d0:b0:9ae:6648:9b53 with SMTP id qk16-20020a170906d9d000b009ae66489b53mr240679ejb.23.1698772271133;
+        Tue, 31 Oct 2023 10:11:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id lg17-20020a170906f89100b0098e78ff1a87sm1259634ejb.120.2023.10.31.10.08.46
+        by smtp.gmail.com with ESMTPSA id pj17-20020a170906d79100b0099bc8bd9066sm1268384ejb.150.2023.10.31.10.11.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 10:08:47 -0700 (PDT)
-Message-ID: <084b6dd7-2078-43ca-90fe-3611c65dad8a@linaro.org>
-Date: Tue, 31 Oct 2023 18:08:45 +0100
+        Tue, 31 Oct 2023 10:11:10 -0700 (PDT)
+Message-ID: <b9af01d2-1a86-4b41-9bd6-3bf7a0dde1c0@linaro.org>
+Date: Tue, 31 Oct 2023 18:11:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Subject: Re: [RFC PATCH 1/5] mtd: nand: ecc-qcom: Add support for ECC Engine
+ Driver
 Content-Language: en-US
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ broonie@kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20231031153100.92939-1-antoniu.miclaus@analog.com>
+ linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+ quic_srichara@quicinc.com, qpic_varada@quicinc.com
+References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+ <20231031120307.1600689-2-quic_mdalam@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,74 +125,80 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231031153100.92939-1-antoniu.miclaus@analog.com>
+In-Reply-To: <20231031120307.1600689-2-quic_mdalam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 31/10/2023 16:30, Antoniu Miclaus wrote:
-> Document the Analog Devices MAX31335 device tree bindings.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+On 31/10/2023 13:03, Md Sadre Alam wrote:
+
+Eh? Empty?
+
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
 > ---
-> changes in v3:
->  - `trickle-resistor-ohms` description specifies that the property is mandatory
->     if trickle charger should be enabled.
->  .../devicetree/bindings/rtc/adi,max31335.yaml | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+>  drivers/mtd/nand/Kconfig    |   7 ++
+>  drivers/mtd/nand/Makefile   |   1 +
+>  drivers/mtd/nand/ecc-qcom.c | 198 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 206 insertions(+)
+>  create mode 100644 drivers/mtd/nand/ecc-qcom.c
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
-> new file mode 100644
-> index 000000000000..8da9cf2565be
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices MAX31335 RTC
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description:
-> +  Analog Devices MAX31335 I2C RTC ±2ppm Automotive Real-Time Clock with
-> +  Integrated MEMS Resonator.
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: adi,max31335
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    description:
-> +      RTC can be used as a clock source through its clock output pin.
-> +    const: 0
-> +
-> +  trickle-resistor-ohms:
-> +    description:
-> +      Selected resistor for trickle charger. Should be specified if trickle
-> +      charger should be enabled.
-> +    enum: [3000, 6000, 11000]
-> +
-> +  aux-voltage-chargeable: true
 
-Drop, it comes with rtc.yaml.
+...
 
-With this property removed:
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(qcom_ecc_config);
+> +
+> +void qcom_ecc_enable(struct qcom_ecc *ecc)
+> +{
+> +	ecc->use_ecc = true;
+> +}
+> +EXPORT_SYMBOL(qcom_ecc_enable);
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop this and all other exports. Nothing here explains the need for them.
+
+> +
+> +void qcom_ecc_disable(struct qcom_ecc *ecc)
+> +{
+> +	ecc->use_ecc = false;
+> +}
+> +EXPORT_SYMBOL(qcom_ecc_disable);
+> +
+> +static const struct of_device_id qpic_ecc_dt_match[] = {
+> +	{
+> +		.compatible = "qcom,ipq9574-ecc",
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+Checkpatch is preerquisite. Don't send patches which have obvious issues
+pointed out by checkpatch. It's a waste of reviewers time.
+
+> +	},
+> +	{},
+> +};
+> +
+> +static int qpic_ecc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct qpic_ecc *ecc;
+> +	u32 max_eccdata_size;
+> +
+> +	ecc = devm_kzalloc(dev, sizeof(*ecc), GFP_KERNEL);
+> +	if (!ecc)
+> +		return -ENOMEM;
+> +
+> +	ecc->caps = of_device_get_match_data(dev);
+> +
+> +	ecc->dev = dev;
+> +	platform_set_drvdata(pdev, ecc);
+> +	dev_info(dev, "probed\n");
+
+No, no such messages.
+
+
 
 Best regards,
 Krzysztof
