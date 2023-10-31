@@ -1,163 +1,152 @@
-Return-Path: <devicetree+bounces-13105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3EC7DC881
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:38:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 690FF7DC891
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 09:44:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA032B20A20
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:38:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AD591C209AB
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 08:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCA7883D;
-	Tue, 31 Oct 2023 08:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9DDD27E;
+	Tue, 31 Oct 2023 08:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="eA9m+CUv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wteoQUuS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0CA6D22
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:38:31 +0000 (UTC)
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8179C1
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:38:15 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-5b7f3f470a9so3606660a12.0
-        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:38:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D24A6D22
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 08:44:15 +0000 (UTC)
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4918DDE
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:44:13 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1cc37fb1310so18129625ad.1
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 01:44:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1698741495; x=1699346295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=28DXBAYX1XRtP2wWeR8rEQtVtlzWFlh45fzZ3wUwj5Y=;
-        b=eA9m+CUvm1HqM496Wb7XJXTX8jdqPpS1zzBpe4cZteYx43SrFTfz/uM6oPLZ0u/a63
-         9ATe395o4autr7RBpEsAXKaeSk6gYROtRg/gK1O5Ba7IvcXf1OiYkI9AQfV6zxGUA3MR
-         E8GzsqXqumCveOn0ZtFo7ij4BmM9VTLpuHA7cqJN3NopCUDRvZENLz7v5EBgPFRFs/kh
-         129PhNGECELk0BR3BmTcbTm6knTL94mig8IXUg9Zw99TmYLGvlq4yLgIa1SJjy1dMXaW
-         swL0T/UM5gRN68WCr/LJXuzeSQRV6BDRGdyukNuFj3JsD9v39Cf2qUwQNStIUPnqRKSM
-         T9jA==
+        d=linaro.org; s=google; t=1698741853; x=1699346653; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YZyTDgOu+Mk84MW1y8TY9+DV7jPCPdy2MJyiStmLRmc=;
+        b=wteoQUuS/mcbK96HWeBn6VsU3LJA4ZC11ZPSxAQreZjuQcceCTeHStrIq22y1/4+c1
+         7hAYNeK3kfNAxIcJBHED1JH+s3z/ECfnvDxHdRH0kCinE298Sv9wJg+/FWL9f13isKzS
+         0C264Zy8PULh7zEEdgYeYUQcVE9ToFgqzNZf/1xUYCjc6PT/aB+u60F2z9gI8SFFQqBl
+         r+QLTHs+5YFbPXtIIen7CQfJoEhEpVU5/Mgk9du6J+RgiGePrE7nUvioqR0ZCa4JR6Bz
+         8Y5TBMsxHNc1XdzkIdS9vFTdDbdeMyuAmqAUAihYXwhlfAETkkeSygkwS8qQevfaSfKB
+         mrBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698741495; x=1699346295;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=28DXBAYX1XRtP2wWeR8rEQtVtlzWFlh45fzZ3wUwj5Y=;
-        b=AT7z4+tRTxneZ4Xmi7AkhZ8L00XfDw6DlMxk94cikn6h8FFPlCOB/3r95UYULXX/LU
-         rfJYJEPVYHMIxA7q2lGYja0slwAaVqZK2z5/2yG3QNRKQ4/phz9ATGJIXVCpQ7UZbwYy
-         5tqY3YXV8SReySKA6Cmegxj4iDC4wJRSz/GvZIUz4u2aNimstSGAPnY8bDmg4ebCyHVu
-         Y81++uPKVbFWA7h8UXT+dToS4FZN9rdYv6hNT/xc/0a9NVpatCWAGlu3tdJRxUu4928v
-         43pz1qII8lfCGIr0l5gAZ3hltixcKV+i/+Najygqh+mnWbe2vC4wgbnFhHJKjIG+o7T1
-         CY9g==
-X-Gm-Message-State: AOJu0YzmJTDkrSVtQsfzJc9V7pXHd6l3GBymLF6T5m8i8VjJ09O6zJzF
-	1PRFYuIBaqs83jyah9xVV/HBfw==
-X-Google-Smtp-Source: AGHT+IHxkBTG12jtDz6LskO7p7yf/0lY5uSyZBd4OmXP62L9S3rUvHiBXN4T9B04oSxoA88vrWaQJw==
-X-Received: by 2002:a05:6a20:7f87:b0:15b:c800:48af with SMTP id d7-20020a056a207f8700b0015bc80048afmr12323973pzj.23.1698741495120;
-        Tue, 31 Oct 2023 01:38:15 -0700 (PDT)
-Received: from ?IPV6:2403:580d:82f4:0:d7db:fc6b:2721:a9be? (2403-580d-82f4-0-d7db-fc6b-2721-a9be.ip6.aussiebb.net. [2403:580d:82f4:0:d7db:fc6b:2721:a9be])
-        by smtp.gmail.com with ESMTPSA id u10-20020a17090282ca00b001c1f4edfb9csm792534plz.173.2023.10.31.01.38.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 01:38:14 -0700 (PDT)
-Message-ID: <2974aa13-796c-49ef-bef7-fd7f3f9b7f49@tweaklogic.com>
-Date: Tue, 31 Oct 2023 19:08:08 +1030
+        d=1e100.net; s=20230601; t=1698741853; x=1699346653;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YZyTDgOu+Mk84MW1y8TY9+DV7jPCPdy2MJyiStmLRmc=;
+        b=mapawIiUA2s3KerftqxS0rHSOSv6pc+hy+TtJQVlp6TZKdcBKPsnamisxLh0mXsZlQ
+         hmh+VE/kv9EGHal5PKkWnsg8t+GVSg/P8DW/E2aRZk6atG+ChPJtwYFgDVx7DqRMaufG
+         YAFA22Itw5JC/WQ2o/cg6/UEUNSyD12O8Zy/u5VK1Brtcwc9Mq9K8TUwuAa1O7AbNe39
+         CJiUFYnTt0ruil0sfbhkzQogaCj4Bcqyp0lKCcvcRxZ2w8wsa32dTGPsdFyOKH6d72zm
+         ImRbMQcXONcZnO/T8inzHoWA+dMMk/WfJl3LolwweBlCQjVC0l5eBqBB5TQm4GsODIjD
+         8DmQ==
+X-Gm-Message-State: AOJu0Yzy3aE2kKyeWGApaGJx9xb9+JniVGrlodCA+ohStT1oUmGSMEsq
+	fvQQxKoFAgjBuHks3/3Usfud4710NxXFxgywl3w=
+X-Google-Smtp-Source: AGHT+IE46TBsZ8WZ5WIF5n2a0wgB/ZoCaZ+M9uHGlPT7/gAOdKWxWCF6QOdyRyEewyBzqw8yxRCZYA==
+X-Received: by 2002:a17:902:ab81:b0:1cc:e66:3732 with SMTP id f1-20020a170902ab8100b001cc0e663732mr8974222plr.19.1698741852707;
+        Tue, 31 Oct 2023 01:44:12 -0700 (PDT)
+Received: from localhost ([122.172.80.14])
+        by smtp.gmail.com with ESMTPSA id 6-20020a170902c10600b001ca4c20003dsm812711pli.69.2023.10.31.01.44.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Oct 2023 01:44:11 -0700 (PDT)
+Date: Tue, 31 Oct 2023 14:14:09 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	rafael@kernel.org, ilia.lin@kernel.org, sivaprak@codeaurora.org,
+	quic_kathirav@quicinc.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v6 0/2] Enable cpufreq for IPQ5332 & IPQ9574
+Message-ID: <20231031084409.x5kqcs4ubmd5jh47@vireshk-i7>
+References: <cover.1698735972.git.quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
-Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Paul Gazzillo <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
- <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
- <20231028162025.4259f1cc@jic23-huawei>
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20231028162025.4259f1cc@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1698735972.git.quic_varada@quicinc.com>
 
+On 31-10-23, 12:41, Varadarajan Narayanan wrote:
+> This patch series aims to enable cpufreq for IPQ5332 and IPQ9574.
+> For IPQ5332, a minor enhancement to Stromer Plus ops and a safe
+> source switch is needed before cpu freq can be enabled.
 > 
->> +static struct iio_event_spec apds9306_event_spec_als[] = {
->> +	{
->> +		.type = IIO_EV_TYPE_THRESH,
->> +		.dir = IIO_EV_DIR_RISING,
->> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
->> +	}, {
->> +		.type = IIO_EV_TYPE_THRESH,
->> +		.dir = IIO_EV_DIR_FALLING,
->> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
->> +	}, {
->> +		.type = IIO_EV_TYPE_THRESH,
->> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
->> +	}, {
->> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
->> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
->> +			BIT(IIO_EV_INFO_ENABLE),
->> +	}, {
->> +		.type = IIO_EV_TYPE_THRESH,
->> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
-> This matches an entry above for type. Don't have separate entries.
->> +	},
->> +};
->> +
->> +static struct iio_event_spec apds9306_event_spec_clear[] = {
->> +	{
->> +		.type = IIO_EV_TYPE_THRESH,
->> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
->> +	},
->> +};
->> +
->> +#define APDS9306_CHANNEL(_type) \
->> +	.type = _type, \
->> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) | \
->> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_SAMP_FREQ), \
->> +	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) | \
->> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> These are also included in this series. Posting this as a single
+> series. Please let me know if this is not correct, will split in
+> the subsequent revisions.
 > 
-> Scale on the intensity channel is interesting...  What are the units?
-> There tend not to be any well defined units for intensity (as opposed
-> to illuminance).  There may be gain on the signal, but it won't be in untils
-> that map directly to a scale userspace should apply.  This is one of the
-> rare reasons for using the HARDWARE_GAIN element of the ABI.
+> Passed the following DT related validations
+> make W=1 ARCH=arm64 -j16 DT_CHECKER_FLAGS='-v -m' dt_binding_check DT_SCHEMA_FILES=qcom
+> make W=1 ARCH=arm64 -j16 CHECK_DTBS=y DT_SCHEMA_FILES=qcom dtbs_check
 > 
-> A tricky corner however as relationship between raw value and hardwaregain
-> is not tightly defined (as it can be really weird!)
-Hi Jonathan,
-
-Thank you for taking time for reviewing and clearing all my tiny doubts and
-queries especially for the dt and versioning part. Much appreciated.
-
-In the above case, should I not expose scale for the "clear" channel? Rather,
-how should I expose the "clear" channel to userspace?
-
-Regards,
-Subhajit Ghosh
-
+> For IPQ5332:
+> ~~~~~~~~~~~
+> 	* This patch series introduces stromer plus ops which
+> 	  builds on stromer ops and implements a different
+> 	  set_rate and determine_rate.
 > 
->> +
->> +static struct iio_chan_spec apds9306_channels_without_events[] = {
->> +	{
->> +		APDS9306_CHANNEL(IIO_LIGHT)
->> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
->> +	}, {
->> +		APDS9306_CHANNEL(IIO_INTENSITY)
->> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
->> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
->> +		.modified = 1,
->> +	},
->> +};
+> 	  A different set_rate is needed since stromer plus PLLs
+> 	  do not support dynamic frequency scaling. To switch
+> 	  between frequencies, we have to shut down the PLL,
+> 	  configure the L and ALPHA values and turn on again. So
+> 	  introduce the separate set of ops for Stromer Plus PLL.
 > 
+> 	* Update ipq_pll_stromer_plus to use clk_alpha_pll_stromer_plus_ops
+> 	  instead of clk_alpha_pll_stromer_ops.
+> 
+> 	* Set 'l' value to a value that is supported on all SKUs.
+> 
+> 	* Provide safe source switch for a53pll
+> 
+> 	* Include IPQ5332 in cpufreq nvmem framework
+> 
+> 	* Add OPP details to device tree
+> 
+> For IPQ9574:
+> ~~~~~~~~~~~
+> 	* Include IPQ9574 in cpufreq nvmem framework
+> 
+> 	* Add OPP details to device tree
+> 
+> Removed 2 patches from V1 as they have been merged
+> 	* dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ5332
+> 	* dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ9574
+> 
+> v4:	Included a patch to fix 'kernel test robot' build error --
+> 	https://lore.kernel.org/r/202310181650.g8THtfsm-lkp@intel.com/
+> 
+> v5:	Use devm_clk_notifier_register
+> 	Merge IPQ53xx and IPQ95xx cases with APQ8096 for speed bin selection
+> 	Add reviewed by tags
+> 
+> v6:	Except these 2 patches, rest have been merged...
+> 	Rebased these to latest top as they don't apply cleanly
+> 	(https://lore.kernel.org/linux-arm-msm/20231025062508.vccrmkem45p3fnwe@vireshk-i7/)
+> 
+> Varadarajan Narayanan (2):
+>   cpufreq: qti: Enable cpufreq for ipq53xx
+>   cpufreq: qti: Introduce cpufreq for ipq95xx
+> 
+>  drivers/cpufreq/cpufreq-dt-platdev.c |  2 ++
+>  drivers/cpufreq/qcom-cpufreq-nvmem.c | 12 ++++++++++++
+>  2 files changed, 14 insertions(+)
 
+Applied. Thanks.
 
+-- 
+viresh
 
