@@ -1,202 +1,150 @@
-Return-Path: <devicetree+bounces-13023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC947DC598
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 06:01:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE247DC5B7
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 06:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 440AC281090
-	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 05:01:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 797CC1C209B0
+	for <lists+devicetree@lfdr.de>; Tue, 31 Oct 2023 05:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8336FC0;
-	Tue, 31 Oct 2023 05:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B764379ED;
+	Tue, 31 Oct 2023 05:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xlUnVLJQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EkpJO5xS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6FC6D22
-	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 05:01:08 +0000 (UTC)
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31E1C9
-	for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 22:01:06 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-5079f9675c6so7964545e87.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Oct 2023 22:01:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698728465; x=1699333265; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0vSRGp3bpuT2D6maQLqwqNz6fES5NPFKKKSnA8K6yxw=;
-        b=xlUnVLJQFhu+PlTin0eHstC3cIXCZGpZuKRYjeuSWwBi+D9k/zXuqt7o0gr8JVJRF6
-         A/1S+kK/Hz7qfAeuez8tIgkMyKojoXubopEBP7Q0aOIFmaORJ7qk0P/AjLK1pghdiRHm
-         KUMTMdAHjQGR5oRibmN5KN6sBPDm9hXr3dWERkJbve7M9Ohvwfu8HERS48lFhNNX+UaE
-         6iTx8ETeenHSciWXM03xg7YZwXDAozneZ9z6PJe7NboepUjaeQEjtdHz4u24bDhPYMQW
-         jGr3ATQRwihayUPVCJ9K9r5bQnk1PiyaZ0fCQY+Guy9IZYcF+Q49JcnUrod0MSdJSN9D
-         te3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698728465; x=1699333265;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0vSRGp3bpuT2D6maQLqwqNz6fES5NPFKKKSnA8K6yxw=;
-        b=XH/NbpIJlFfxevDb/7VvKQSQ+0HJQHxWY+Sx01gl9czx5FDSXfkxPs9hIPz+GN9Sj2
-         awDLkmdFhvk5uraSMXdu5HxFYZgk8hfKlPDN4arkbrWiL75Du3si+uXaUY3D/ik89Kk4
-         xUvi5j3WhuR/jqRlMsbmv81hOiH4LbHIQRZp5HutbvSe7/TY+GXVfwx0DawBEHtV9AXs
-         1xxd5YGde6KKRj/S5fGt1QaNVgAdtQxPx+Hoa0AkVYUKnzBEF4Nh203j2MNnuZmOoq7X
-         crJaBL4w+t6MHH2J5iVvRYVXBQVGhPxaZ2MabnaGgXzlzagkHz/vqJoSX33NKmb9Maw6
-         nVqw==
-X-Gm-Message-State: AOJu0YwsnKKPsUzFhnI91PEl3xfl6Z+SC5TJpfSCh1uMf1G56w+Jp0XH
-	hDoqugDD+Cypl0pmcDEZPvRE6Q==
-X-Google-Smtp-Source: AGHT+IEF4WUHV6cbboqBhIbWpaxOcMcieHBy8PMxY6CmxF8crZuio6gENreTF3gHZ0uRaMYrjGp38Q==
-X-Received: by 2002:ac2:44da:0:b0:507:9740:b6db with SMTP id d26-20020ac244da000000b005079740b6dbmr7384721lfm.67.1698728465059;
-        Mon, 30 Oct 2023 22:01:05 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id j2-20020a170906830200b009a1a5a7ebacsm299859ejx.201.2023.10.30.22.01.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Oct 2023 22:01:04 -0700 (PDT)
-Message-ID: <9a003bb8-f4da-4ae5-9597-647474f05ad2@linaro.org>
-Date: Tue, 31 Oct 2023 06:01:01 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417E1748F
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 05:12:06 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D905FB3;
+	Mon, 30 Oct 2023 22:12:04 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 39V4gVOb022637;
+	Tue, 31 Oct 2023 05:11:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=WAcgGAuAQxwXsgXnigBI8tYHcRJaOWZ2/xe+Zex9xb0=;
+ b=EkpJO5xSHqksoGNOKbPVcix0MiAo5bzePVLTvhUE4rnONHeGufuP/TiUpakOuKuKY1er
+ EGw1PZecZ+xhS8dyjUTIv8V9rRd+5WzkiVQgbLy3wYhXHOEJugprlkixSUrTOMo8ublP
+ e0RslcncU90xJ7NrWM5U59oFssLDqZPbPY/9HW58x1/ZIKxo0ZHicDBssiUauM9SzMmQ
+ vXzPUlkyfNUbjG+0Wjq5vnmzO9Eu/ijt2uAdY2Yg3/uWxezlwk+kopfx11veSWTisYUI
+ 5p94jRXe+5oXPC1Y6I2geCshR6lqJ1lBDYmbqFe6Buwo0IgHZdyZqhwUYVjjnhAUeqis ZQ== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u2chyhx9d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 31 Oct 2023 05:11:56 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 39V5Bqxl009979;
+	Tue, 31 Oct 2023 05:11:52 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3u0ucktx8t-1;
+	Tue, 31 Oct 2023 05:11:52 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 39V5Bp9e009974;
+	Tue, 31 Oct 2023 05:11:51 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 39V5Bpq8009972;
+	Tue, 31 Oct 2023 05:11:51 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
+	id B97B3450D; Tue, 31 Oct 2023 10:41:50 +0530 (+0530)
+From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+To: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
+Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+        dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
+        quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
+        quic_schintav@quicinc.com, quic_shijose@quicinc.com,
+        Mrinmay Sarkar <quic_msarkar@quicinc.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@kernel.org>, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mhi@lists.linux.dev
+Subject: [PATCH v6 0/4] arm64: qcom: sa8775p: add support for EP PCIe
+Date: Tue, 31 Oct 2023 10:41:44 +0530
+Message-Id: <1698729108-27356-1-git-send-email-quic_msarkar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vlgpJvIjI8sn7Z5aP9Bhx-JdhldwyHxY
+X-Proofpoint-GUID: vlgpJvIjI8sn7Z5aP9Bhx-JdhldwyHxY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-10-30_13,2023-10-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxscore=0 adultscore=0 mlxlogscore=467 spamscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2310310039
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4][3/4] mmc: Add dw mobile mmc cmdq rtk driver
-To: =?UTF-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>,
- "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
- "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
- "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
- "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "asutoshd@codeaurora.org" <asutoshd@codeaurora.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "briannorris@chromium.org" <briannorris@chromium.org>,
- "doug@schmorgal.com" <doug@schmorgal.com>,
- "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
- "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
- "william.qiu@starfivetech.com" <william.qiu@starfivetech.com>
-References: <20231030062749.2840-1-jyanchou@realtek.com>
- <20231030062749.2840-4-jyanchou@realtek.com>
- <ebbbed14-ad93-4981-96f9-8cc344b63448@linaro.org>
- <225b6e3c21774f59a70c8a84378eded9@realtek.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <225b6e3c21774f59a70c8a84378eded9@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-On 31/10/2023 04:47, Jyan Chou [周芷安] wrote:
-> Hi Krzysztof,
-> 
-> Thanks for you to review our code and give some advices. We will check carefully and fix coding style of all,
-> also, we will drop useless function and message in our next push.
-> Since some advice we were not sure, we would like to discuss first and modified correctly in our next version.  
-> 
->>> +     priv = devm_kzalloc(host->dev, sizeof(struct 
->>> + dw_mci_rtkemmc_host), GFP_KERNEL);
-> 
->> sizeof(*)
-> 
-> Thanks. I will correct it in our next version.
-> 
->>> +     priv->pins_default = pinctrl_lookup_state(priv->pinctrl,
->>> +                                               PINCTRL_STATE_DEFAULT);
->>> +     if (IS_ERR(priv->pins_default))
->>> +             dev_warn(host->dev, "could not get default state\n");
->>> +
-> 
->> So this is required by the driver but not by the bindings.
-> 
-> Since our pinctrl driver supports different driver's usage, we may use bindings to get the correct pinctrl setting, so we add
-> different pinctrl-names in our bindings. It is correct, or am I misunderstand what you say?
+This series adds the relavent DT bindings, new compatible string,
+add support to EPF driver and add EP PCIe node in dtsi file for
+ep pcie0 controller.
 
-Printing warning means this is required. If driver requires it, so
-should bindings.
+v5 -> v6:
+- update cover letter.
 
-> 
->> dev_err_probe. Everywhere where applicable.
-> 
-> Thanks. I will correct it in our next version.
-> 
->> Read Linux coding style. Multiple times if needed.
-> 
-> Thanks. I will correct it in our next version.
-> 
->>> +     host->dev = &pdev->dev;
->>> +     host->irq_flags = 0;
->>> +     host->pdata = pdev->dev.platform_data;
->>> +
->>> +     regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +     host->regs = devm_ioremap_resource(&pdev->dev, regs);
-> 
->> Use helper for this.
-> 
->> Open existing, recent drivers and use the them as template or some set of patterns. Sorry, but upstreaming your vendor code will be painful, because you started from some old, buggier version.
-> 
-> Sorry for asking, but I would like to know what is the meaning of "Use helper for this." ? Does it mean we need to get rid of our code above or something else? Thanks a lot.  
+v4 -> v5:
+- add maxItems to the respective field to constrain io space and
+  interrupt in all variants.
 
-There is a helper combining two calls above.
+v3 -> v4:
+- add maxItems field in dt bindings
+- update comment in patch2
+- dropped PHY driver patch as it is already applied [1]
+- update comment in EPF driver patch
+- update commect in dtsi and add iommus instead of iommu-map
+
+[1] https://lore.kernel.org/all/169804254205.383714.18423881810869732517.b4-ty@kernel.org/
+
+v2 -> v3:
+- removed if/then schemas, added minItems for reg,
+  reg-bnames, interrupt and interrupt-names instead.
+- adding qcom,sa8775p-pcie-ep compitable for sa8775p
+  as we have some specific change to add.
+- reusing sm8450's pcs_misc num table as it is same as sa8775p.
+  used appropriate namespace for pcs.
+- remove const from sa8775p_header as kernel test robot
+  throwing some warnings due to this.
+- remove fallback compatiable as we are adding compatiable for sa8775p.
+
+v1 -> v2:
+- update description for dma
+- Reusing qcom,sdx55-pcie-ep compatibe so remove compaitable
+  for sa8775p
+- sort the defines in phy header file and remove extra defines
+- add const in return type pci_epf_header and remove MHI_EPF_USE_DMA
+  flag as hdma patch is not ready
+- add fallback compatiable as qcom,sdx55-pcie-ep, add iommu property
 
 
+Mrinmay Sarkar (4):
+  dt-bindings: PCI: qcom-ep: Add support for SA8775P SoC
+  PCI: qcom-ep: Add support for SA8775P SOC
+  PCI: epf-mhi: Add support for SA8775P
+  arm64: dts: qcom: sa8775p: Add ep pcie0 controller node
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 64 +++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 46 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom-ep.c          |  1 +
+ drivers/pci/endpoint/functions/pci-epf-mhi.c       | 17 ++++++
+ 4 files changed, 126 insertions(+), 2 deletions(-)
+
+-- 
+2.7.4
 
 
