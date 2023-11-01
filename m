@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-13508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724FF7DE62D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 19:54:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B81E7DE684
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 20:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90A2B1C20BE7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 18:54:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4A2D1C20D0B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 19:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC9618E1A;
-	Wed,  1 Nov 2023 18:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3BE19BDB;
+	Wed,  1 Nov 2023 19:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cdd3Y9sR"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tvLD5QyP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B871429C;
-	Wed,  1 Nov 2023 18:54:16 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97092ED;
-	Wed,  1 Nov 2023 11:54:11 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6D85CE0003;
-	Wed,  1 Nov 2023 18:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698864850;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q3sZj6RniyTzoHCodRr2i/ntz4jNs4JFrcHctmS81hg=;
-	b=cdd3Y9sRN8ttWyWYp4CktTx2h/eFQ4OzABlsf8uGELdQDyy4ZLTgQpLoQW2XFiinuPJHXW
-	RBWEDFR/7TXz2KOELIFqMaFIuN87guCVLfRaEZ2WkYKUJGe2NIcPHSTPUyyxIRW7qLMMpr
-	x/l4nfgGrrMf4WWlXWkrokf5igp3s34oN562NLrpUwAeV9atz5NOJFpDWO3LBuqIDzCcCA
-	4rIuyKnglUtAkHwI1Xeo8m0/zt3TxovMLAOr7sYgdO1qncnQfbqblUZaLcI22Xf0ay6had
-	L5Ltk/H2PXKdO/Tos5XGraWcb+wnP6t8a8mtDv5lB1CBHR/XZZYrx48SbvWPYA==
-Date: Wed, 1 Nov 2023 19:54:09 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Guenter Roeck <linux@roeck-us.net>,
-	Alessandro Zummo <a.zummo@towertech.it>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3685E125B4;
+	Wed,  1 Nov 2023 19:47:03 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954209F;
+	Wed,  1 Nov 2023 12:46:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=wYk75WWjhfRsVSIrzNnwPLbfZGcI7ZKnOifzPb2PiLY=; b=tvLD5QyPRht3WABrSXs9QsyqgP
+	AbCUa6QUcXE+QcecXR0Ri9H5FmW4mJfpQqR85pOJ+v3J80KphGVmNeE2GwZIaE5vMmKyf2ncclPqx
+	EIOnskEg7gE6oqw6PRMGXqHrQFKsvBRmVUzdPoaQ5KZZjL7v2hgka38ahFjbgtqmq/Og=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qyHAs-000hdr-5r; Wed, 01 Nov 2023 20:46:46 +0100
+Date: Wed, 1 Nov 2023 20:46:46 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] rtc: max31335: add driver support
-Message-ID: <202311011854099f524c30@mail.local>
-References: <20231031153100.92939-1-antoniu.miclaus@analog.com>
- <20231031153100.92939-2-antoniu.miclaus@analog.com>
- <95e41f16-4b5f-4f2a-bc31-17273032312b@roeck-us.net>
- <CY4PR03MB3399DEF73E052036AC7EDBA99BA0A@CY4PR03MB3399.namprd03.prod.outlook.com>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Robert Marko <robimarko@gmail.com>
+Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
+ support
+Message-ID: <6dca432f-2a25-4e34-b44e-7cca0b045566@lunn.ch>
+References: <20231101123608.11157-1-ansuelsmth@gmail.com>
+ <4b536ad3-2112-4f28-90e4-586b5745be20@lunn.ch>
+ <65427400.5d0a0220.41c58.0ded@mx.google.com>
+ <34a0b76e-aa0e-4148-ba01-c3b4608f17f7@lunn.ch>
+ <65427fd4.df0a0220.28d26.1955@mx.google.com>
+ <c9dad91a-1de1-4c30-ab7f-414552702009@lunn.ch>
+ <65428629.050a0220.b2431.1edc@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,57 +65,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CY4PR03MB3399DEF73E052036AC7EDBA99BA0A@CY4PR03MB3399.namprd03.prod.outlook.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <65428629.050a0220.b2431.1edc@mx.google.com>
 
-On 31/10/2023 16:28:07+0000, Miclaus, Antoniu wrote:
-> > According to the register map above, the chip does support
-> > low and high temperature limits as well as over- and undertemperature
-> > alarms and interrupts. I would suggest to add support for all of those.
-> > You might also consider adding support for temperature alarm interrupts
-> > and report temperature alarm events by calling hwmon_notify_event()
-> > if a thermal event occurs.
-> 
-> I've sent in the first version of this patch series a cover letter:
-> 
-> "Although the datasheet is not public yet, the driver can be made public (on
-> other linux custom trees it is already).
-> 
-> The driver was tested with actual hardware and works.
-> 
+> Do we have API to check this? Or I think I should just check the iram
+> and dram size and see if iram_size % sizeof(u32) is zero and return
+> error otherwise.
 
-Did you run rtctest? Please provide the output.
+Yes, that sounds correct.
 
-> Even though the datasheet is not available, if there are any queries about
-> the functionality of the part, these can be provided/inserted as code comments
-> inside the driver."
-> 
-> The reason why I am rushing this a bit is because the customer that uses the
-> driver wants the driver released and mainline kernel compliant.
-> 
-> This is an initial version of the driver covering the main use cases (which were
-> requested, therefore actually used).
-> 
-> Additional features can be added afterwards, if requested.
-> 
-> > 
-> > > +
-> > > +	hwmon = devm_hwmon_device_register_with_info(&client->dev,
-> > client->name,
-> > > +						     max31335,
-> > > +						     &max31335_chip_info,
-> > > +						     NULL);
-> > 
-> > There is no "depends on HWMON" in the Kconfig entry, meaning this will fail
-> > to compile if HWMON=n or if HWMON=m and RTC_DRV_MAX31335=y.
-> >
-> 
-> Will do in v4.
-> 
-> > Guenter
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+     Andrew
 
