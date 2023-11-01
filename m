@@ -1,575 +1,199 @@
-Return-Path: <devicetree+bounces-13407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D967DDFC7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7861A7DDFCB
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:52:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B55FF1C209F5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 10:51:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A96451C209E2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 10:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9C5101F7;
-	Wed,  1 Nov 2023 10:51:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B4A107B5;
+	Wed,  1 Nov 2023 10:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QhWnbdga"
+	dkim=pass (1024-bit key) header.d=dm.renesas.com header.i=@dm.renesas.com header.b="JmrS3/KC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C88979E6
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 10:51:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33BDAC433C7;
-	Wed,  1 Nov 2023 10:51:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698835867;
-	bh=PUb5cnlFGehCaLm9tBDLh1LIRhoSslutvGk/oy47Q/c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QhWnbdga9QU5q6D0VrSZRDntOmo1wrS6bith0nos9UiFN+Rcrg31M4RxpYnr4Xe4M
-	 2IVSQKirOZ0XMdAhq+W7Z+ce9ItU+TW+NYZeFwFfQPA4LdnuvIwdJaxDX5iWsljJdx
-	 4PCfO8Z7zdu5yuzYxrS04tnTYhB09uqBi2Un+0k0kSIik3jDWXZPMVEVR0lDhsyPeD
-	 bpFIiZLOIx1pumn2GVfxLoOM+ZBAXibkDRDOrF4j3rkW4sdfDebQpiex4s7NnPb4rq
-	 PKIkxiFwnnjFcfEE/Yd6CbiGX8PO0FETtVLLybVyJz+5VpwcV/HOsfJZjcAXOr1JFy
-	 XUfUpHx7bdOBg==
-Message-ID: <a2a87ae8-932a-4bc0-8c9c-f08bf109f0f2@kernel.org>
-Date: Wed, 1 Nov 2023 11:51:00 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3910110794
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 10:52:13 +0000 (UTC)
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2091.outbound.protection.outlook.com [40.107.114.91])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD2A8139;
+	Wed,  1 Nov 2023 03:51:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U0XMgZRfiYiQ6+e45392cWixnurx9Sox2JMbzM2yEUx1jy6Y5pNOasV4m+cViUF5Ki9aZugw8fTFppk4nSobclQ7/TfgTZuu1/v9T+3OjcSPylWi+UoJMuaPBQcoGK7JIhZV6G0lH080/ZXxfRiRfBQHupf9kCXlh5rvNgwOj+XC550icu98oD2c5pA8A72o8WanQOj8zTceaU1BQqMZ92/yz/9P7NxzV/CvCTxAGx1EkI7rWpNeAsV/yILgUyRDJhC90dwzXYT00EbRVMir+zG2ykcynzZzDcW1PDJDD1Rwzu9Ql4NsahBE9gFs786WzCYtYvLt+vg0kZhegRI7eQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gWDT/0GPAasSakCxy+CjfGi+7vuMLKCe40e1mF0tR1o=;
+ b=Fn7O4iozGhD9udYDd1eK1Ql1jBFtS19C1Dpk89W9BSeereJrsxrpgsh1T1QBIHw7v7xTaNqDQrLwgn4oOUk/8KLIDq6pD87CIFUzu2H49NztO25Z4hzpG+72cDgLMZIq3eK4PTU4Og/YERH9UH2d/Qq2bRZWCPs3TgwKWlJvLNfZSQ54cZQ0FrI7lU0Htm667cDU2kNn/Vk2WlV4D0yJOxzTcGVVnGoGgS2vxpNlNgsz2KCW4ATUVSzr/E2rLFiYUREfcTWBsB3XbJduvmGVAk0xNxcPN9UJlqY29lMFy3ThZ0+PUWdXRWHf8+I4e2NoFTq92sZaRr33ISuIGrH1HQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=dm.renesas.com; dmarc=pass action=none
+ header.from=dm.renesas.com; dkim=pass header.d=dm.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dm.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gWDT/0GPAasSakCxy+CjfGi+7vuMLKCe40e1mF0tR1o=;
+ b=JmrS3/KCZLt+DvNiEUxFc1Zi8tqKE8wTc2cbH19zsXJfpJtfTsWv8PcjyOFRgMRs2lekmSSdfzYVL5XmNmFt/oTeb1jQl7b3yO6XzFOiRQtrwknSahzWYYRzYGu3lPmH92Rzc65WT3BZ1xcdo2ZzPdlk8C3d3PZHuBGCxfiFcJg=
+Received: from TYCPR01MB8471.jpnprd01.prod.outlook.com (2603:1096:400:15d::10)
+ by TYWPR01MB8314.jpnprd01.prod.outlook.com (2603:1096:400:165::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.27; Wed, 1 Nov
+ 2023 10:51:53 +0000
+Received: from TYCPR01MB8471.jpnprd01.prod.outlook.com
+ ([fe80::5cef:817a:e68a:9c24]) by TYCPR01MB8471.jpnprd01.prod.outlook.com
+ ([fe80::5cef:817a:e68a:9c24%6]) with mapi id 15.20.6933.025; Wed, 1 Nov 2023
+ 10:51:53 +0000
+From: DLG Adam Ward <DLG-Adam.Ward.opensource@dm.renesas.com>
+To: Conor Dooley <conor@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>
+CC: Support Opensource <Support.Opensource@diasemi.com>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	David.Rau.opensource <David.Rau.opensource@dm.renesas.com>, Adam Ward
+	<Adam.Ward.opensource@diasemi.com>
+Subject: RE: [PATCH] dt-bindings: regulator: dlg,da9210: Convert to
+ json-schema
+Thread-Topic: [PATCH] dt-bindings: regulator: dlg,da9210: Convert to
+ json-schema
+Thread-Index: AQHaBaPKLhyYD1J3lE+D2j6IvZe2NrBXjemAgAAb+ICAAXqWAIAMJtng
+Date: Wed, 1 Nov 2023 10:51:53 +0000
+Message-ID:
+ <TYCPR01MB8471AC396C9A621904D101D6C2A7A@TYCPR01MB8471.jpnprd01.prod.outlook.com>
+References:
+ <bfd1cf9d620a8229f5a5e62e6fe9e59c153d0830.1698051619.git.geert+renesas@glider.be>
+ <20231023-sulfate-babble-695b239f52b5@spud>
+ <CAMuHMdW7UQ=c9V6rjpZdcaNPSXLOu5aEiLhreirPP6NXN0Ke2Q@mail.gmail.com>
+ <51a56a92254444d094b446c30637da71@AM7PR10MB3685.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To:
+ <51a56a92254444d094b446c30637da71@AM7PR10MB3685.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=dm.renesas.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB8471:EE_|TYWPR01MB8314:EE_
+x-ms-office365-filtering-correlation-id: f3f03f49-5667-4d97-b767-08dbdac88f1b
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ /UuUOmv5E0vwH9vbcbSbyRwKG4w9kvSvDimkiDST9Lk/AOlyAKGIZh+hSjbuN4z3WgTnxeRg3Y+NxZe6EaqbBhBQDl0KY6w2aRmPCJRyo9sBsFwR3v+jXpqbgw1CAfLfKE59TuPC4E8WyllAd+jISe6av2zwKBY7FE5il2IN8X2aPeVaG2KjXECDC+5FnZQnDJEMFd0y0NX/XlQIWBliD0U2GjFna+uxqpQL8nixthTzlvc3powExtrPnLOc0nUYA3C9EMLKtAZWeRScSLbE2Y3iohlw1xM6KnP1Rj/gQyd8Jt0UDt2YgAsHdYzUXf6EjCw1mT5+H5Gy/Rg6LBPUJKXGtTlatYao7r+9VMKcpkxhcXzl6HA59uDtsp7c6w2ifgG59HxdGeGdGVkuT+8F0vhPnIhDtbhtKFY52nmmCsipOODcBqpTit41GSB/VmHWEzbGBfAlFuM47g4Gi96KFwFqvwCkY0wBKjWKhT3ye5P+ded4AlHBaBfN2C9adl287JvvGDeJBFcNjTjrGaTTU8G23PKerRkbEFvXPibwFOrMnPb5Xmurduddam3/AXePn9jzqJnF3YyOUP8WN+tjqbMvzwFonGNJQTCWKuJ6fUspAxO5Tm/Sjtf/avXdYTkm
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB8471.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(376002)(366004)(396003)(39860400002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(9686003)(55016003)(71200400001)(6506007)(122000001)(38100700002)(7696005)(478600001)(76116006)(66946007)(26005)(83380400001)(53546011)(66556008)(64756008)(66446008)(66476007)(316002)(54906003)(55236004)(8936002)(4326008)(8676002)(7416002)(5660300002)(2906002)(33656002)(110136005)(86362001)(41300700001)(52536014)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?RTdwNXh1T04vUHo0YXkwemhUYUNrZFVKR0hTamdSbDE0cldxYnVvcFBxYWl5?=
+ =?utf-8?B?RVQ0WEYrRW9IVnZJdGpDVDVCR05pZkFqVEg0VzlDWFJOTzFqckhYZzJOVHRx?=
+ =?utf-8?B?VGJEMU5WMzFhV0NQd2Zaa21vc2tleStaK3lxcGsxYi9aYmF1em0yUzBpTzZL?=
+ =?utf-8?B?RkVjZUM1MmlySHF3aXArMjdrc1V4QnpDNjdweGxTRWtEMW9lNEYxSk1hcFR2?=
+ =?utf-8?B?d1VYZTlHRHpDVS9ONml4K2tKRlByN0t3S3hVUHUzMU55Y09nTmE1V1dFOFh2?=
+ =?utf-8?B?K05BMi9HRDBFaWxzVnpzWDRtTXB5RnJjWHc3MFBNKzNIUEROdWdwN1lvbHlq?=
+ =?utf-8?B?alR2SlY3WTV0WFJNeUVPbWJ5bjdYcXZIQ0IzSVZiZWpFYWFYU1YzOU42dTFB?=
+ =?utf-8?B?MjlMNSt1V01sNmpyRmppc3VNU1JPSEdhY0tJeTBsUTkyV3g5NG5jazBHVVNr?=
+ =?utf-8?B?M0lQUVhjcUZOaVdhdHZzZU0vV1RKMVpzR3RVa3hlQkY3NHdLc200WFBNSzdP?=
+ =?utf-8?B?WFBPRi80MHphclFlUnVEUzRwRzhWTEE1WkFjVU90QjM4aUVUeWphcWV1SFJo?=
+ =?utf-8?B?M3dQRW1kdXNYOFBmZDVIb1lDVjZwcDdJRlFsU3FORFgwREVDazVpUGV6Q1NC?=
+ =?utf-8?B?aS9ScytDT2NTWFJPWXFXUjJSOFFRZnM1cmRmcitFamFDanlLTE9qUE94VzNQ?=
+ =?utf-8?B?QW50cjhTY3BQN0lIek5ubzNmVjNtcU8wbS9LYi9CaTJzanhmREZIRXJ4SXE5?=
+ =?utf-8?B?d0NHYWNDSnh0VWNRblFTWmFiSnpsa2pnOWJmajFNRkFqamswTUZzTk1CZWlu?=
+ =?utf-8?B?eDlZbFdncVRVUy8vNGNFWWFOQ1d0ZUpSRjdTaXlpQVVEUTd6UC9GRmNua0wr?=
+ =?utf-8?B?Vjk2VTcrU0RNNGEzZUhzNkhLZkxFcFhEZ2pQQnZXaFdJbjMvTGxyM244Ylpw?=
+ =?utf-8?B?b2tTMHJvdWJ3OEtENUx1ditIWUFweDFiTmcwdjc2Qk1NUzhTS1pDQU82RW0z?=
+ =?utf-8?B?R0pRNlh1N014K0lETDZxQ1FLaWM4aVBsUG5EWE1vbnkvcEExU0xMc2ViYm5J?=
+ =?utf-8?B?MWovaGhKdG1PYlhVYjJVZFY2ZkhIbGgySEJ5VlVLTXY3dC9EMWhzTThPNTBE?=
+ =?utf-8?B?cDFCMkwxL3lrOERCUFZ0cDNSSkdDZGd1c2YwV1dHb2dHS1JwWUNOZVk3dGls?=
+ =?utf-8?B?cVFXTVcxcWZWQWhvdTd6ckRuMlNjNVEzYkxtK2h5dklnTld6T3EzVndxV3Rx?=
+ =?utf-8?B?RC83blZBb2ZHQXpYR1RLZTNLa3p2aERIUEZzUVdyV25yNjNLU01vdU9FeU1M?=
+ =?utf-8?B?bjVxdkwxRjNOaHBTSjZsR3lIV1UyU3FENklDSHNHaVczL1FhV2x1WWhSV3B2?=
+ =?utf-8?B?bDFsVVRiUngzQ2tBeVlpbk90QVJlQ0czQ0VFUEkzVmFPbXIxV3JXeTFVb2xZ?=
+ =?utf-8?B?WDQ4SVFoK1o4R3Z1eEtKM1BOZkhHc0lWM0hLWXU3TFM2d3dYZEZvM0FTQVNp?=
+ =?utf-8?B?NXdxMHo5Rlh3aEhBRFZWNUtWczhzSndRZUhQZmIvdjNVZWs5dWpWWVhpK2RO?=
+ =?utf-8?B?S1RPelpWVWJQT09USVhxOURlb3RnL0FTWnZjTWRUVzhXR0J0NTU3emM0WXFC?=
+ =?utf-8?B?dFdkcFYyVEpNNUpzbm5mOXZQTkMwaTgvM3dwUkdPUHYzM0xpZkV3WFJaSy9Y?=
+ =?utf-8?B?bytGNDdCK29DY2NQd1RWOGR3aWNLSW8yb0xYWHpOZnpxY0p4eml5S1UwTVJ4?=
+ =?utf-8?B?ejRIOWxUWFFMT2FZN2kyWjFJSi9lUHkzaGlOR1Vic1NvNTFNTW50QU1Rc2Nk?=
+ =?utf-8?B?TzBrYnB4ejdBclRPOVozYnZ5Y0MzL1U2bE1nU2xyenM0eUw3VWdzNWhId1Nn?=
+ =?utf-8?B?NEcvZ3Yrb1VUNnZ2ZzVHMWVybGhJRWI2emdHUnRVSzJYUFVPaXdiYTYzcHJy?=
+ =?utf-8?B?dGgvRlFDaGF2TDFGNkt1ZTFuSStwVjRMV29abjdCcDJzU1FFR1RaTXN6QnVP?=
+ =?utf-8?B?RHg2dDBmNTROa0tMTEJKSElQOTBraWxqYmVVeStieDhPNXNneklVa0hQTFRp?=
+ =?utf-8?B?S3lkYzRFTXgwUmw0bnhDaTZsTzBacTZ4WHdsRGE1L2tuU0htL0xQb2NqU0gw?=
+ =?utf-8?B?S3hhdktLUDFVajhHdTVRTW40WFhtYXNqSjh0U3VudHhyeTNxeFpEYjczc1Nv?=
+ =?utf-8?B?Rnc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] phy: sprd: Add Spreadtrum usb20 hsphy driver
-Content-Language: en-US
-To: Pu Li <pu.li@unisoc.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Zhiyong Liu <zhiyong.liu@unisoc.com>, Chunyan Zhang
- <zhang.lyra@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231101054432.27509-1-pu.li@unisoc.com>
- <20231101054432.27509-3-pu.li@unisoc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20231101054432.27509-3-pu.li@unisoc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: dm.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB8471.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3f03f49-5667-4d97-b767-08dbdac88f1b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Nov 2023 10:51:53.2231
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qlUpq3Bwq2ft2c9UPMZRBE5Ng+T9vvsjZyDxZVcbCR79xqYM9CMagyQ7p4YGL1mf+C8ZFaNMIab7jyZbzeYJ1JArunEW69fF3H75EVC3Jn0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8314
 
-On 01/11/2023 06:44, Pu Li wrote:
-> Add Spreadtrum platform USB20 HSPHY driver support. This driver
-> takes care of all the PHY functionality, normally paired with
-> DesignWare USB20 (DRD) Controller or Spreadtrum musb phy (DRD )controller.
-> 
-> Signed-off-by: Pu Li <pu.li@unisoc.com>
-> ---
-
-
-> +
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/iio/consumer.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +#include <linux/timer.h>
-> +#include <linux/usb/otg.h>
-> +#include <uapi/linux/usb/charger.h>
-> +
-> +#include "phy-sprd-usb20-hs.h"
-> +
-> +static const struct sprd_hsphy_cfg *phy_cfg;
-
-File-scope variables do not look good.
-
-> +
-
-...
-
-> +
-> +static int sprd_hsphy_cali_mode(void)
-> +{
-> +	struct device_node *cmdline_node;
-> +	const char *cmdline, *mode;
-> +	int ret;
-> +
-> +	cmdline_node = of_find_node_by_path("/chosen");
-> +	ret = of_property_read_string(cmdline_node, "bootargs", &cmdline);
-> +
-> +	if (ret) {
-> +		pr_err("Can't not parse bootargs\n");
-> +		return 0;
-> +	}
-> +
-> +	mode = strstr(cmdline, "androidboot.mode=cali");
-
-NAK, drop this nonsense.
-
-> +	if (mode)
-> +		return 1;
-> +
-> +	mode = strstr(cmdline, "sprdboot.mode=cali");
-
-NAK, drop this nonsense.
-
-
-> +	if (mode)
-> +		return 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static int sprd_hsphy_probe(struct platform_device *pdev)
-> +{
-> +	struct sprd_hsphy *phy;
-> +	struct resource *res;
-> +	struct device *dev = &pdev->dev;
-> +	int ret = 0, calimode = 0;
-> +	struct usb_otg *otg;
-> +
-> +	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	otg = devm_kzalloc(dev, sizeof(*otg), GFP_KERNEL);
-> +	if (!otg)
-> +		return -ENOMEM;
-> +
-> +	/* phy cfg data */
-> +	phy_cfg = of_device_get_match_data(dev);
-> +	if (!phy_cfg) {
-> +		dev_err(dev, "no matching driver data found\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* set vdd */
-> +	ret = of_property_read_u32(dev->of_node, "sprd,vdd-voltage",
-> +				   &phy->vdd_vol);
-> +	if (ret < 0) {
-> +		dev_err(dev, "unable to read hsphy vdd voltage\n");
-> +		return ret;
-> +	}
-> +
-> +	calimode = sprd_hsphy_cali_mode();
-> +	if (calimode) {
-> +		phy->vdd_vol = phy_cfg->parameters[FULLSPEED_USB33_TUNE];
-> +		dev_info(dev, "calimode vdd_vol:%d\n", phy->vdd_vol);
-> +	}
-> +
-> +	phy->vdd = devm_regulator_get(dev, "vdd");
-> +	if (IS_ERR(phy->vdd)) {
-> +		dev_err(dev, "unable to get hsphy vdd supply\n");
-
-You do not have regulators. You clearly did not test the code, DTS or
-the bindings. Maybe nothing here was tested.
-
-> +		return PTR_ERR(phy->vdd);
-
-Syntax is anyway return dev_err_probe().
-
-> +	}
-> +
-> +	ret = regulator_set_voltage(phy->vdd, phy->vdd_vol, phy->vdd_vol);
-> +	if (ret < 0) {
-> +		dev_err(dev, "fail to set hsphy vdd voltage at %dmV\n",
-> +			phy->vdd_vol);
-> +		return ret;
-> +	}
-> +
-> +	/* phy tune */
-> +	if (phy_cfg->phy_version == VERSION1) {
-> +		ret = of_property_read_u32(dev->of_node, "sprd,tune-value",
-
-Nope, it is not allowed in your bindings.
-
-> +					&phy->phy_tune);
-> +		if (ret < 0) {
-> +			dev_err(dev, "unable to read hsphy usb phy tune\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* phy base */
-> +	if (phy_cfg->phy_version == VERSION1 ||
-> +		phy_cfg->phy_version == VERSION2) {
-> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "phy_glb_regs");
-
-This was not expressed in the bindings.
-
-> +		if (!res) {
-> +			dev_err(dev, "missing USB PHY registers resource\n");
-> +			return -ENODEV;
-> +		}
-> +
-> +		phy->base = devm_ioremap(dev, res->start, resource_size(res));
-> +		if (IS_ERR(phy->base)) {
-> +			dev_err(dev, "unable to get phy base!\n");
-> +			return PTR_ERR(phy->base);
-> +		}
-> +	}
-> +
-> +	/* analog & aoapb & apahb regmap */
-> +	phy->aon_apb = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +				 "sprd,syscon-enable");
-> +	if (IS_ERR(phy->aon_apb)) {
-> +		dev_err(dev, "USB aon apb syscon failed!\n");
-
-return dev_err_probe, if it stays
-
-> +		return PTR_ERR(phy->aon_apb);
-> +	}
-> +
-> +	if (phy_cfg->phy_version == VERSION2) {
-
-
-> +		phy->ap_ahb = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +				 "sprd,syscon-apahb");
-
-NAK, there is no such property!
-
-> +		if (IS_ERR(phy->ap_ahb)) {
-> +			dev_err(dev, "USB apahb syscon failed!\n");
-
-> +			return PTR_ERR(phy->ap_ahb);
-> +		}
-> +	}
-> +
-> +	if (phy_cfg->phy_version != VERSION1) {
-
-This was not expressed in your bindings
-
-
-> +		phy->analog = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +				 "sprd,syscon-ana");
-
-
-> +		if (IS_ERR(phy->analog)) {
-> +			dev_err(dev, "USB analog syscon failed!\n");
-> +			return PTR_ERR(phy->analog);
-
-return dev_err_probe, if it stays, but I insist to remove it.
-
-> +		}
-> +	}
-> +
-> +	/* prepare eye pattern */
-> +	ret = sprd_eye_pattern_prepared(phy, dev);
-> +	if (ret < 0)
-> +		dev_warn(dev, "sprd_eye_pattern_prepared failed, ret = %d\n", ret);
-> +
-> +	/* enable usb module */
-> +	if (phy_cfg->phy_version == VERSION2 ||
-> +		phy_cfg->phy_version == VERSION3) {
-> +		phy_cfg->cfg_ops->usb_enable_ctrl(phy, CTRL2);
-> +	}
-> +
-> +	/* usb phy power down */
-> +	if (phy_cfg->phy_version != VERSION4)
-> +		phy_cfg->cfg_ops->usb_phy_power_ctrl(phy, CTRL2);
-> +
-> +	phy->dev = dev;
-> +	phy->phy.dev = dev;
-> +	phy->phy.label = "sprd-hsphy";
-> +	phy->phy.otg = otg;
-> +	phy->phy.init = sprd_hsphy_init;
-> +	phy->phy.shutdown = sprd_hsphy_shutdown;
-> +	phy->phy.set_vbus = sprd_hostphy_set;
-> +	phy->phy.type = USB_PHY_TYPE_USB2;
-> +	phy->phy.vbus_nb.notifier_call = sprd_hsphy_vbus_notify;
-> +	otg->usb_phy = &phy->phy;
-> +
-> +	device_init_wakeup(phy->dev, true);
-> +	phy->wake_lock = wakeup_source_register(phy->dev, "sprd-hsphy");
-> +	if (!phy->wake_lock) {
-> +		dev_err(dev, "fail to register wakeup lock.\n");
-> +		return -ENOMEM;
-> +	}
-> +	INIT_WORK(&phy->work, sprd_hsphy_charger_detect_work);
-> +	platform_set_drvdata(pdev, phy);
-> +
-> +	ret = usb_add_phy_dev(&phy->phy);
-> +	if (ret) {
-> +		dev_err(dev, "fail to add phy\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = sysfs_create_groups(&dev->kobj, usb_hsphy_groups);
-> +	if (ret)
-> +		dev_warn(dev, "failed to create usb hsphy attributes\n");
-> +
-> +	if (extcon_get_state(phy->phy.edev, EXTCON_USB) > 0)
-> +		usb_phy_set_charger_state(&phy->phy, USB_CHARGER_PRESENT);
-> +
-> +	dev_info(dev, "sprd usb phy probe ok !\n");
-
-Drop. This code looks very, very poor :(. Lack of testing is even worse.
-
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int __init sprd_hsphy_driver_init(void)
-> +{
-> +	return platform_driver_register(&sprd_hsphy_driver);
-> +}
-> +
-> +static void __exit sprd_hsphy_driver_exit(void)
-> +{
-> +	platform_driver_unregister(&sprd_hsphy_driver);
-> +}
-> +
-> +late_initcall(sprd_hsphy_driver_init);
-> +module_exit(sprd_hsphy_driver_exit);
-> +
-> +MODULE_ALIAS("platform:spreadtrum-usb20-hsphy");
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
-
-> +MODULE_AUTHOR("Pu Li <lip308226@gmail.com>");
-> +MODULE_DESCRIPTION("Spreadtrum USB20 HSPHY driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/phy/sprd/phy-sprd-usb20-hs.h b/drivers/phy/sprd/phy-sprd-usb20-hs.h
-> new file mode 100644
-> index 000000000000..897ee5e64482
-> --- /dev/null
-> +++ b/drivers/phy/sprd/phy-sprd-usb20-hs.h
-> @@ -0,0 +1,525 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * phy-sprd-usb20-hs.h - Spreadtrum usb20 phy Glue layer h file
-> + *
-> + * Copyright 2020-2023 Unisoc Inc.
-> + */
-> +
-> +#ifndef __SPRD_USB20_HS_H
-> +#define __SPRD_USB20_HS_H
-> +
-> +#include <linux/regmap.h>
-> +#include <linux/usb/phy.h>
-> +
-> +struct sprd_hsphy {
-> +	struct device		*dev;
-> +	struct usb_phy		phy;
-> +	void __iomem		*base;
-> +	struct regulator	*vdd;
-> +	struct regmap           *aon_apb;
-> +	struct regmap           *ap_ahb;
-> +	struct regmap           *analog;
-> +	struct wakeup_source	*wake_lock;
-> +	struct work_struct	work;
-> +	unsigned long event;
-> +	u32			vdd_vol;
-> +	u32			phy_tune;
-> +	u32			host_eye_pattern;
-> +	u32			device_eye_pattern;
-> +	u32			host_otg_ctrl0;
-> +	u32			device_otg_ctrl0;
-> +	u32			host_otg_ctrl1;
-> +	u32			device_otg_ctrl1;
-> +	atomic_t		reset;
-> +	atomic_t		inited;
-> +	bool			is_host;
-> +};
-> +
-> +enum hsphy_parameters {
-> +	TUNEHSAMP_SHIFT,
-> +	TUNEEQ_SHIFT,
-> +	TFREGRES_SHIFT,
-> +	FULLSPEED_USB33_TUNE,
-> +};
-> +
-> +enum sprd_hsphy_reg_layout {
-> +	REG_AON_APB_APB_RST1,
-> +	REG_AON_APB_APB_RST2,
-> +	REG_AON_APB_APB_EB1,
-> +	REG_AON_APB_APB_EB2,
-> +	REG_AON_APB_CGM_REG1,
-> +	REG_AON_APB_OTG_PHY_TEST,
-> +	REG_AON_APB_OTG_PHY_CTRL,
-> +	REG_AON_APB_PWR_CTRL,
-> +	REG_AON_APB_AON_SOC_USB_CTRL,
-> +	REG_AON_APB_MIPI_CSI_POWER_CTRL,
-> +	REG_AP_AHB_AHB_EB,
-> +	REG_AP_AHB_AHB_RST,
-> +	REG_AP_AHB_OTG_CTRL0,
-> +	REG_AP_AHB_OTG_CTRL1,
-> +	REG_AP_AHB_OTG_PHY_CTRL,
-> +	REG_AP_AHB_OTG_PHY_TUNE,
-> +	REG_AP_AHB_OTG_PHY_TEST,
-> +	REG_ANALOG_USB20_USB20_ISO_SW,
-> +	REG_ANALOG_USB20_USB20_BATTER_PLL,
-> +	REG_ANALOG_USB20_USB20_UTMI_CTL1,
-> +	REG_ANALOG_USB20_USB20_TRIMMING,
-> +	REG_ANALOG_USB20_USB20_UTMI_CTL2,
-> +	REG_ANALOG_USB20_REG_SEL_CFG_0,
-> +	REG_ANALOG_USB20_IDDG,
-> +	REG_ANALOG_USB20_USB20_PHY,
-> +};
-> +
-> +enum sprd_hsphy_mask_layout {
-> +	MASK_AON_APB_USB_PHY_PD_S,
-> +	MASK_AON_APB_USB_PHY_PD_L,
-> +	MASK_AON_APB_ANLG_APB_EB,
-> +	MASK_AON_APB_ANLG_EB,
-> +	MASK_AON_APB_OTG_REF_EB,
-> +	MASK_AON_APB_ANA_EB,
-> +	MASK_AON_APB_OTG_UTMI_EB,
-> +	MASK_AON_APB_AON_USB2_TOP_EB,
-> +	MASK_AON_APB_OTG_PHY_EB,
-> +	MASK_AON_APB_CGM_OTG_REF_EN,
-> +	MASK_AON_APB_CGM_DPHY_REF_EN,
-> +	MASK_AON_APB_USB_ISO_SW_EN,
-> +	MASK_AON_APB_OTG_PHY_SOFT_RST,
-> +	MASK_AON_APB_OTG_UTMI_SOFT_RST,
-> +	MASK_AON_APB_OTG_VBUS_VALID_PHYREG,
-> +	MASK_AON_APB_USB2_PHY_IDDIG,
-> +	MASK_AON_APB_UTMI_WIDTH_SEL,
-> +	MASK_AON_APB_USB20_CTRL_MUX_REG,
-> +	MASK_AON_APB_USB20_ISO_SW_EN,
-> +	MASK_AON_APB_C2G_ANALOG_USB20_USB20_PS_PD_S,
-> +	MASK_AON_APB_C2G_ANALOG_USB20_USB20_PS_PD_L,
-> +	MASK_AP_AHB_OTG_EB,
-> +	MASK_AP_AHB_OTG_PHY_SOFT_RST,
-> +	MASK_AP_AHB_OTG_UTMI_SOFT_RST,
-> +	MASK_AP_AHB_OTG_SOFT_RST,
-> +	MASK_AP_AHB_USB2_PHY_IDDIG,
-> +	MASK_AP_AHB_OTG_DPPULLDOWN,
-> +	MASK_AP_AHB_OTG_DMPULLDOWN,
-> +	MASK_AP_AHB_OTG_VBUS_VALID_EXT,
-> +	MASK_AP_AHB_OTG_VBUS_VALID_PHYREG,
-> +	MASK_AP_AHB_UTMI_WIDTH_SEL,
-> +	MASK_AP_AHB_USB2_DATABUS16_8,
-> +	MASK_AP_AHB_USB20_SAMPLER_SEL,
-> +	MASK_AP_AHB_USB20_TUNEHSAMP,
-> +	MASK_AP_AHB_USB20_TUNEEQ,
-> +	MASK_AP_AHB_USB20_TFREGRES,
-> +	MASK_ANALOG_USB20_USB20_VBUSVLDEXT,
-> +	MASK_ANALOG_USB20_USB20_DATABUS16_8,
-> +	MASK_DBG_SEL_ANALOG_USB20_USB20_DMPULLDOWN,
-> +	MASK_DBG_SEL_ANALOG_USB20_USB20_DPPULLDOWN,
-> +	MASK_ANALOG_USB20_USB20_DMPULLDOWN,
-> +	MASK_ANALOG_USB20_USB20_DPPULLDOWN,
-> +	MASK_ANALOG_USB20_UTMIOTG_IDDG,
-> +	MASK_ANALOG_USB20_USB20_PS_PD_S,
-> +	MASK_ANALOG_USB20_USB20_PS_PD_L,
-> +	MASK_ANALOG_USB20_USB20_RESERVED,
-> +	MASK_ANALOG_USB20_USB20_ISO_SW_EN,
-> +	MASK_ANALOG_USB20_USB20_TUNEHSAMP,
-> +	MASK_ANALOG_USB20_USB20_TUNEEQ,
-> +	MASK_ANALOG_USB20_USB20_TFREGRES,
-> +};
-> +
-> +enum {
-> +	CTRL0 = 0,
-> +	CTRL1,
-> +	CTRL2,
-> +};
-> +
-> +struct sprd_hsphy_cfg_ops {
-> +	void (*usb_enable_ctrl)(struct sprd_hsphy *phy, int on);
-> +	void (*usb_phy_power_ctrl)(struct sprd_hsphy *phy, int on);
-> +	void (*usb_vbus_ctrl)(struct sprd_hsphy *phy, int on);
-> +	void (*utmi_width_sel)(struct sprd_hsphy *phy);
-> +	void (*reset_core)(struct sprd_hsphy *phy);
-> +	int (*set_mode)(struct sprd_hsphy *phy, int on);
-> +};
-> +
-> +enum hsphy_ip_version {
-> +	VERSION1,
-> +	VERSION2,
-> +	VERSION3,
-> +	VERSION4,
-> +};
-> +
-> +enum hsphy_owner {
-> +	PIKE2,
-> +	SHARKLE,
-> +	SHARKL3,
-> +	SHARKL5,
-> +	SHARKL5PRO,
-> +	QOGIRL6,
-> +	QOGIRN6LITE,
-> +	UIS8520,
-> +};
-> +
-> +struct sprd_hsphy_cfg {
-> +	/* array of registers with different offsets */
-> +	const unsigned int *regs;
-> +
-> +	const unsigned int *masks;
-> +
-> +	/* private ops for each SOC */
-> +	const struct sprd_hsphy_cfg_ops *cfg_ops;
-> +
-> +	const unsigned int *parameters;
-> +
-> +	enum hsphy_ip_version phy_version;
-> +
-> +	enum hsphy_owner	owner;
-> +};
-> +
-> +static const unsigned int pike2_regs_layout[] = {
-
-Static data allocated in every unit including this header? No, this does
-not look like correct code (yeah, it compiles but it is just wrong).
-
-Best regards,
-Krzysztof
-
+T24gVHVlcywgT2N0IDI0LCAyMDIzIGF0IDU6MzQgUE0sIENvbm9yIERvb2xleSB3cm90ZToNCj4g
+T24gTW9uLCBPY3QgMjMsIDIwMjMgYXQgMDc6NTg6NTFQTSArMDIwMCwgR2VlcnQgVXl0dGVyaG9l
+dmVuIHdyb3RlOg0KPiA+IENDIERhdmlkLCBBZGFtDQo+ID4gDQo+ID4gT24gTW9uLCBPY3QgMjMs
+IDIwMjMgYXQgNjoxOOKAr1BNIENvbm9yIERvb2xleSA8Y29ub3JAa2VybmVsLm9yZz4gd3JvdGU6
+DQo+ID4gPiBPbiBNb24sIE9jdCAyMywgMjAyMyBhdCAxMTowNDo0NUFNICswMjAwLCBHZWVydCBV
+eXR0ZXJob2V2ZW4gd3JvdGU6DQo+DQo+ID4gPiA+ICttYWludGFpbmVyczoNCj4gPiA+ID4gKyAg
+LSBTdXBwb3J0IE9wZW5zb3VyY2UgPHN1cHBvcnQub3BlbnNvdXJjZUBkaWFzZW1pLmNvbT4NCj4g
+PiA+DQo+ID4gPiBUaGlzIHNob3VsZCByZWFsbHkgYmUgYSBwZXJzb24uLi4gRG9lcyB5b3VyIHdv
+cmsgd2l0aCBSZW5lc2FzIGNvdmVyIHlvdQ0KPiA+ID4gZm9yIGRpYWxvZyBzdHVmZiB0b28/DQo+
+ID4gDQo+ID4gSSdtIG5vdCByZWFsbHkgaW50byB0aGUgUE1JQ3MgZGVwYXJ0bWVudCwgb25seSBp
+bnRvIG1ha2luZyBkdGJzX2NoZWNrDQo+ID4gZm9yICJteSIgRFRTIGZpbGVzIGNsZWFuIDstKQ0K
+PiA+IEkgaG9wZSBvbmUgb2YgdGhlIERpYWxvZy9SZW5lc2FzIFBNSUMgcGVvcGxlIGNhbiBwb2lu
+dCBtZSB0byBhIGJldHRlcg0KPiA+IGFkZHJlc3MuICBTdGV2ZSBUd2lzcyBzZW50IGEgZ29vZGJ5
+ZSBtZXNzYWdlIHRvIHNvbWUga2VybmVsIHBlb3BsZQ0KPiA+IGFuZCBsa21sIHRocmVlIHllYXJz
+IGFnbywgYnV0IGl0IGlzIG5vdCBvbiBsb3JlLCBhcyBpdCBjb250YWluZWQgSFRNTC4NCj4gPiAN
+Cj4gPiBBaCwgYWNjb3JkaW5nIHRvIGdpdCBsb2csIERhdmlkIGFuZCBBZGFtIHRvdWNoZWQgc29t
+ZSBvZiB0aGUgZmlsZXMNCj4gPiBsYXRlbHksIHNvIHBlcmhhcHMgdGhleSBjYW4gaGVscD8NCj4N
+Cj4gSXQnZCBiZSBncmVhdCBpZiBvbmUgb2YgdGhlbSBjb3VsZCB2b2x1bnRlZXIsIGF5ZS4gSSBk
+byBmZWVsIGxpa2UgSQ0KPiByZWNhbGwgc2VlaW5nIG9uZSBvZiB0aGUgZm9sa3MgaW52b2x2ZWQg
+d2l0aCB0aGUgZGlhbG9nIHN0dWZmIGluDQo+IG1haW5saW5lIHN0ZXBwaW5nIGRvd24gc2hvcnRs
+eSBhZnRlciB0aGUgbWVyZ2VyIHRob3VnaCAgOnwNCg0KWWVzLCBBZGFtIFRob21zb24gYWxzbyBs
+ZWZ0IHRoZSBjb21wYW55LCBsZWF2aW5nIFBNSUMgZXhwZXJpZW5jZS9zdXBwb3J0IHJhdGhlciB0
+aGluLg0KVGhlIG1lcmdlciBpbXBsaWVkIHNlcnZlciBjaGFuZ2VzLCBhbmQgdGhlIGRpYXNlbWku
+Y29tIFVSTCBpcyBsaWtlbHkgdG8gYmUgZW5kLW9mLWxpZmVkLiANCkFkYW0gYXR0ZW1wdGVkIHRv
+IHVwZGF0ZSBNQUlOVEFJTkVSUyB3aXRoIHRoZSBzdXN0YWluYWJsZSBtYWlsaW5nIGxpc3QgYWRk
+cmVzcywgYnV0IHRoaXMgd2FzIHJlamVjdGVkLg0KDQpJIGFwcHJlY2lhdGUgdGhlIGRlc2lyZSBm
+b3IgYW4gYWNjb3VudGFibGUgbmFtZSwgYnV0IGl0J3Mgbm90IHRoYXQgY2xlYXItY3V0IHdobyBt
+YXkgYmUgYWJsZSB0byBwaWNrIHVwIGVmZm9ydC4NClRoZSBtYWlsaW5nIGxpc3Qgd2FzIGNyZWF0
+ZWQgYXMgYSBiYWNrc3RvcCBhZ2FpbnN0IGVtcGxveWVlIGNodXJuL2xlYXZlLCBzbyB3b3J0aCBr
+ZWVwaW5nIC0gYWxiZWl0IHVwZGF0ZWQuDQpXZSBkbyBoYXZlIGEgbmV3IGVtcGxveWVlIHdobyBp
+cyBzbG93bHkgZ2V0dGluZyBmYW1pbGlhciB3aXRoIHZhcmlvdXMgYXNwZWN0cywgYnV0IE1yIFQg
+bGVmdCBkZWNhZGUgc2l6ZWQgYm9vdHMgdG8gZmlsbCENCkF0IHRoZSByaXNrIG9mIHJlY2Vpdmlu
+ZyBldmVyeSBlbWFpbCB0d2ljZSwgSSBzdWdnZXN0Og0KDQorbWFpbnRhaW5lcnM6DQorICAtIEF0
+aWYgRW1yZSBPZmx1b2dsdSA8RExHLUF0aWYuT2ZsdW9nbHUub3BlbnNvdXJjZUBkbS5yZW5lc2Fz
+LmNvbT4NCisgIC0gQWRhbSBXYXJkIDxETEctQWRhbS5XYXJkLm9wZW5zb3VyY2VAZG0ucmVuZXNh
+cy5jb20+DQorICAtIERMRyBTdXBwb3J0IE9wZW5zb3VyY2UgPERMRy1TdXBwb3J0Lk9wZW5zb3Vy
+Y2VAbG0ucmVuZXNhcy5jb20+DQoNCkJ1dCwgZnJhbmtseSwgaGF2aW5nIGEgc3BlY2lmaWMgbmFt
+ZSB0byBuYWcgd2lsbCBub3QgaW5jcmVhc2UgcmVzb3VyY2VzIG5vciBhZGp1c3QgcHJpb3JpdGll
+czsgdGhlIGluY3JlYXNlIGluIHZpc2liaWxpdHkgaXMgaWxsdXNvcnkuDQpJJ2QgcmF0aGVyIGtl
+ZXAgdG8ganVzdCB0aGUgbWFpbGluZyBsaXN0LCBidXQgdGhpcyBpcyB0aGUgc2Vjb25kIHRpbWUg
+aXQncyBiZWVuIHJlYnVmZmVkLCBzby4uLg0KDQpJJ2xsIHRyeSB0byBnZXQgdGhlIGFib3ZlIGlu
+dG8gTUFJTlRBSU5FUlMgZm9yIFBNSUNzIChzcGxpdHRpbmcgb2ZmIEF1ZGlvIHByb2R1Y3RzIHRv
+IERhdmlkIFJhdSksIG9uY2UgSSBoYXZlIHRpbWUgdG8gZ2V0IG15IExpbnV4L0xLTUwgaGF0IHBy
+b3Blcmx5IG9uIGFnYWluLg0KUmlnaHQgbm93IEknbSBmaWdodGluZyBvdGhlciBmaXJlcy4uLg0K
+DQpBbnl3YXksIHRoYW5rcyBDb25vciBmb3IgdGFraW5nIHRoaXMgb24sIGFuZCBzb3JyeSBmb3Ig
+dGhlIHNsb3cgcmVzcG9uc2UuDQoNCg==
 
