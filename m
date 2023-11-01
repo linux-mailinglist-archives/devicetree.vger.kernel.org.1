@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73BDB7DDCFB
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB167DDD03
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE1CD280FB7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:11:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74D4B281443
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F14525C;
-	Wed,  1 Nov 2023 07:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3B8538F;
+	Wed,  1 Nov 2023 07:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q9u3rkh+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IohWOM3n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED86F538C
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:11:26 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9108E4
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 00:11:21 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-53e2dc8fa02so11204324a12.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 00:11:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836E82F48
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:13:33 +0000 (UTC)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB19107
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 00:13:28 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9adb9fa7200so119556166b.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 00:13:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698822680; x=1699427480; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698822806; x=1699427606; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cdY23XifuOs1pgzJmPJHQdXKP+0gYg26W2EQxD1+XuQ=;
-        b=q9u3rkh+MmnaS7htM/tVYU2EYKXgzvUovl8pwJcwLq/L3BDBx07MywdAm+70q4dDE1
-         JcfV95jfxGbDw7Z7pwrNyeHtBVKcq/pB88j3n2moJ5gqo+9CypeJU1jHekK63kVWpVbf
-         3WpJ5SPNL76/EWWOnDLS+nsKMWPjbIF4kjElGGU3nUlixafwS3HnPla515R+gkKHMCHm
-         RLAhHQV6qBrr8lSlH0wpNMDzxnqNyMSeMoFiBehKPjbCRLu5+Fp+Zf5MT7GOdkbwtk5T
-         RnPBatlEf9qi9AUHoncaSm61gpfPQsucIxsVX5yOYBXXvD9j0qHef3ml1b2oruiikkmE
-         TlGg==
+        bh=ENaMuPR8qfkGXGxRWAFLfxwcQPKTYImOPy2ccrDRxmU=;
+        b=IohWOM3nAGVBJZPQeC+6mGZvS8SfcbREBLxUahViOGvSq//7QAz9RN/OGaOl0vcIhT
+         RUumo+iUUxGDk2agg27gybEU8zwBxP+TO5QQudEKaZ7cBfgMCUcAVFfjhMweLYCOno/b
+         LzUeCFRbcJGNTwRCvsyOPJewVdUXC8eEOtbJA4aTOGz4DeBhskrB0cKXntRhQRKK/owv
+         T0Y5hzz0588XhyzDk3m/7E/qQDh0/M9rI6NePo3bDVpoIrNXuoXFLz6wyAxVhQVbJqyB
+         i30bZn3ZJ30jFzqw5njnpSwUFK3XnUA7Uq93JLDNIFAm7/aoD2rIdCxEM8Gn2jnAFfrT
+         ZxUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698822680; x=1699427480;
+        d=1e100.net; s=20230601; t=1698822806; x=1699427606;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdY23XifuOs1pgzJmPJHQdXKP+0gYg26W2EQxD1+XuQ=;
-        b=L4CjxAXUA5XjhpImqONwYf6u3hup5q3wQKPKbV02PzKZswnJOVrPdkH+m61IsNP/T0
-         OT+Wtnal18aqht2l3k1Sy+7vLzLRutU+vcCA4JJRS/oGEg4DNB27H+SClm3/mJJ3gnUy
-         eGMd48e8rpVNduI6PHcv5PkMIfUfPyS2grzQfby+8gOrfLIfrTCezGFZGSfYcx+J3P7u
-         2ROWkeXRF2r2/ApEzD0YX2KI2SZumAzQ9+yWcbD+y5vuL5uOh7518wM6KhnoVJ8+8f26
-         84D+ke02fzizivNGcl8bkhYh1hQhYEh4BjFOh7b8z1oNR+yklwa7SsfYnoqJZx6PJI+r
-         eHLQ==
-X-Gm-Message-State: AOJu0Yw91YlG4VkJuSxO6ezRvqPZWigS6MulHrlj/yFvzuPGji/ja1ZF
-	/9TUNPMOk2w6x5nxqCwnbGGGQA==
-X-Google-Smtp-Source: AGHT+IEOJBCutFdaggedvDwy/WSV0nAUlYeOUiD0DStd4oMGO31/idO53T+adXsgeS/KwQxT3RMNmQ==
-X-Received: by 2002:a05:6402:35c2:b0:53d:be55:5fc with SMTP id z2-20020a05640235c200b0053dbe5505fcmr14428165edc.27.1698822680160;
-        Wed, 01 Nov 2023 00:11:20 -0700 (PDT)
+        bh=ENaMuPR8qfkGXGxRWAFLfxwcQPKTYImOPy2ccrDRxmU=;
+        b=FPo1Bbhn2DC9xXVHtYUORzru2tLm+Pja9ePWeuBttxBfVkByk5dbi4GbXhFtcYJEvr
+         spetwnELa+L3h7OONnQhqKb/dNCtMa7ocHvxNYATp86MztadGt5nViUD9hpaBtwAp3EJ
+         OaP3FphOeenLKPsw3Q8N14LgjbxaVTV+ERYdPjUFGFTknJYMuBMe3v7v2AFtgpWMgABQ
+         9a4H23JYnCW+vcg5Nq+4gny0TnA9jkmO+ntuFDx7d8jrioa3pc3DcnoJ1z/qfRrEFh+T
+         gn+sivsS6SAYBkTGp/9Ltb5t++p1idCtIwHvrcpyiny/vB4MYbbjGPwD6xY+myx99KtJ
+         SuwA==
+X-Gm-Message-State: AOJu0YxbNHwFPbMcnd5ddfdWWQhGA/sfvCcukHO25YruCSPcgXOInmMN
+	LQm2rbebqjYkkRrNKLiZhf21Ag==
+X-Google-Smtp-Source: AGHT+IFA6hSi6XpPHUFncVCgMzMhp4wb56Px3YVwbUXjKoT7OJk+RGKnY7/dHtb7b57cFjarBTipGQ==
+X-Received: by 2002:a17:906:2408:b0:9ae:65d6:a51f with SMTP id z8-20020a170906240800b009ae65d6a51fmr1486666eja.18.1698822806422;
+        Wed, 01 Nov 2023 00:13:26 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z1-20020aa7c641000000b005402748cf29sm711141edr.50.2023.11.01.00.11.18
+        by smtp.gmail.com with ESMTPSA id rp16-20020a170906d97000b009ae57888718sm2034143ejb.207.2023.11.01.00.13.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 00:11:19 -0700 (PDT)
-Message-ID: <102d2314-b832-4889-9828-8d532f826652@linaro.org>
-Date: Wed, 1 Nov 2023 08:11:17 +0100
+        Wed, 01 Nov 2023 00:13:25 -0700 (PDT)
+Message-ID: <6a09f16e-0a41-4619-b7bb-b5561f7e36ce@linaro.org>
+Date: Wed, 1 Nov 2023 08:13:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: Add Spreadtrum usb20 hsphy yaml
+Subject: Re: [PATCH 2/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+ bindings
 Content-Language: en-US
-To: Pu Li <pu.li@unisoc.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Zhiyong Liu <zhiyong.liu@unisoc.com>, Chunyan Zhang
- <zhang.lyra@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+To: Tzuyi Chang <tychang@realtek.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20231101054432.27509-1-pu.li@unisoc.com>
- <20231101054432.27509-2-pu.li@unisoc.com>
+References: <20231101025802.3744-1-tychang@realtek.com>
+ <20231101025802.3744-3-tychang@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,117 +125,87 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231101054432.27509-2-pu.li@unisoc.com>
+In-Reply-To: <20231101025802.3744-3-tychang@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/11/2023 06:44, Pu Li wrote:
-> Add device tree binding Documentation details for Spreadtrum
-> usb20 hsphy driver.
+On 01/11/2023 03:58, Tzuyi Chang wrote:
+> This patch adds the device tree bindings for the Realtek DHC RTD SoCs
+> GPIO controllers.
 > 
-> Signed-off-by: Pu Li <pu.li@unisoc.com>
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
 > ---
->  .../bindings/phy/phy-sprd-usb20-hs.yaml       | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-sprd-usb20-hs.yaml
+>  .../bindings/gpio/realtek,rtd-gpio.yaml       | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
 
-Filename matching compatible syntax.
+How does your binding come after the user?
 
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-sprd-usb20-hs.yaml b/Documentation/devicetree/bindings/phy/phy-sprd-usb20-hs.yaml
+> diff --git a/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml b/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
 > new file mode 100644
-> index 000000000000..102b49d3482e
+> index 000000000000..6cab7ec50c88
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/phy-sprd-usb20-hs.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2020-2023 Unisoc Inc.
+> +++ b/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Realtek Semiconductor Corporation
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/phy/phy-sprd-usb20-hs.yaml#
+> +$id: http://devicetree.org/schemas/gpio/realtek,rtd-gpio.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Spreadtrum USB20 High Speed PHY
+> +title: Realtek DHC GPIO controller
+
+What is DHC? Where is it explained in the binding?
+
 > +
 > +maintainers:
-> +  - Pu Li <lip308226@gmail.com>
+> +  - TY Chang <tychang@realtek.com>
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
+> +    enum:
+> +      - realtek,rtd-gpio
 
-No need for oneOf.
+What is "rtd"? Generic name? Drop. You cannot have generic compatibles.
 
-> +      - items:
 
-No need of ritems,
-
-> +          - enum:
-> +              - sprd,pike2-phy
-> +              - sprd,sharkle-phy
-> +              - sprd,sharkl3-phy
-> +              - sprd,sharkl5-phy
-> +              - sprd,sharkl5pro-phy
-> +              - sprd,qogirl6-phy
-> +              - sprd,qogirn6lite-phy
-> +              - sprd,uis8520-phy
-
-What are these? pike2 is the SoC and the binding covers all phys? All?
-
+> +      - realtek,rtd1295-misc-gpio
+> +      - realtek,rtd1295-iso-gpio
+> +      - realtek,rtd1395-iso-gpio
+> +      - realtek,rtd1619-iso-gpio
 > +
 > +  reg:
-> +    maxItems: 1
+> +    maxItems: 2
+
+You need to describe the items instead.
+
 > +
-> +  reg-names:
-> +    const: phy_glb_regs
+> +  interrupts:
+> +    maxItems: 2
 
-Drop, not needed for one entry.
+You need to describe the items instead.
+
 > +
-> +  sprd,syscon-enable:
-> +    description:
-> +      Phandle to aon apb syscon register region.
-
-You called it syscon-enable but write aon-apb-syscon. Decide which one.
-Also, you need to describe the purpose.
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +  gpio-ranges: true
 > +
-> +  sprd,syscon-ana:
-> +    description:
-> +      Phandle to analog syscon register region.
-
-Two syscons? Nope, do not use syscons instead of regular abstractions.
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +  gpio-controller: true
 > +
-> +  sprd,vdd-voltage:
-> +    description:
-> +      It represents the value of one analog power supply of phy,
-> +      the unit is uV.
-
-Then you must use -microvolt unit suffix.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  "#phy-cells":
-> +    const: 0
+> +  "#gpio-cells":
+> +    const: 2
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - reg-names
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    hsphy@64570000 {
-
-phy@
-
-> +      compatible = "sprd,qogirl6-phy";
-
+> +  - interrupts
+> +  - gpio-ranges
+> +  - gpio-controller
+> +  - "#gpio-cells"
 
 Best regards,
 Krzysztof
