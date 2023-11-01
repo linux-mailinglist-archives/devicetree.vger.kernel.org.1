@@ -1,54 +1,65 @@
-Return-Path: <devicetree+bounces-13353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E496B7DDC60
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 06:51:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5B417DDC68
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:16:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98E812810E3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 05:51:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DE8828180B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 06:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C6F4A32;
-	Wed,  1 Nov 2023 05:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89B174C67;
+	Wed,  1 Nov 2023 06:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cRR3VSN3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RMj3aTIL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794141848
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 05:51:27 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8DA3DF;
-	Tue, 31 Oct 2023 22:51:22 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A15348n002105;
-	Wed, 1 Nov 2023 05:50:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GfLm8bZeUAykuu82ydWVftHzqeTVKiAcmOTSLXWPDDg=;
- b=cRR3VSN38PGsxg2BMtm6tFVOgb21bCnZBy8xFHAjvxRtn0Q6TYG3Q9qBPrC5cTiK2G4s
- df6hXirXQVo5ucpBl77nfpGP5ZHFNezACSVaYsu8ogYu39KAN8DxIvPW0L8opzUq15eO
- NcdGFypTD3VdthAB1C+nNBUROSdI8E2IVQQvy8yfvKhj+iGzMibayBZXhChgxcDVUJwG
- iuJSr0IbzZYtnSePx3WPWNP/McWFODjyzjAfy78dDDWrfctxsRU1r6qXYl3UIBSYitA2
- pCJWGCpbbdTZekZwcbT9LfSNqwr0jyKVaFcAIT5+Ru578xLdjqbwvHqvSNP0A+kkpPYi Pw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u3a5eh064-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 01 Nov 2023 05:50:57 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A15ouLW032477
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 1 Nov 2023 05:50:56 GMT
-Received: from [10.214.67.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 31 Oct
- 2023 22:50:49 -0700
-Message-ID: <a83b00c4-a33a-4687-b024-173c6c5a66a0@quicinc.com>
-Date: Wed, 1 Nov 2023 11:20:45 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AC33C2D
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 06:16:36 +0000 (UTC)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2612F3;
+	Tue, 31 Oct 2023 23:16:35 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507cd62472dso595148e87.0;
+        Tue, 31 Oct 2023 23:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698819394; x=1699424194; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F9yle7VrmIO9F6x8DetVeUxbscZ9DT3LOEfWagzVsSw=;
+        b=RMj3aTIL6/2bDCxX0snbze/zEAqpwF2gERFn9tAMnqOsdfZHRfPu9kDqK/KX9Z/bz3
+         I1NIlfRNjB1Yu89Cg1jgmJ4hk73pf92lr9lhYY53fMoVYtVIUpfs0bdsAVhzQwbWuuiw
+         wZ9lVGtueX1yT3326cDM0KGSjmGcQ620Kq0H0eCEhLwNpup42aXy/HmxjNSNNx3wgGIs
+         j24OV824hMJm0eqlWsLP08IBoILhl79VoM6E5SUMBlajVspU/DrTrJQlDLJjomUOhaOt
+         lTOoxRGVm2n6RsDKsMtBM/5ws5usroVSuKe+sNUpEHv5cjIHk2kwPZ7OaUYsCzWJZ//v
+         7BAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698819394; x=1699424194;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F9yle7VrmIO9F6x8DetVeUxbscZ9DT3LOEfWagzVsSw=;
+        b=X5CEmXK9d8Z5OLnjOFAluURPTXGymPohwWfYRtJcH7JxcgI/S6ybahDlCZ+ZDWXxNI
+         P+bWLijEfmAE+ayHNeNR0nTR0S6aNLnMB9TvjD7FQNlL2ODAeFPOPAtgVcZ3DqC/zagl
+         50A4qXfl0ZA9phBZFLY5z9UqK792Krj3AMOxYh+w8W193SxZOP41Xd71psDJCHEQG3qK
+         GVeolSf90qa0xTrD1OUt2ODMwCSkTDl9DTCqE6cvKPiue8pMXhXhZZ57H8+Te460X5E4
+         oZsDL9DIxIIQs8biUUbj7HowP5NpnhKKgnY3xuSef66Drs62ZYaZKPKkZgS3u5B9OvKR
+         RgVA==
+X-Gm-Message-State: AOJu0YwIUKNYbR9oOJmHkU2bshN6p9R7WwGGcLfSSD4qpWtoUkjqjyyA
+	OxFvG8dNnTCz3m8vSoCC1w6wERSY8pI+vg==
+X-Google-Smtp-Source: AGHT+IFWsxF2Ff5zf6/CiiCtuLXE3tIiPkLBLUgMyHvwmtbh+xotWxyPgxYtMMAnoTLo6COspJ0rvA==
+X-Received: by 2002:a05:6512:3ba9:b0:508:15dc:ec11 with SMTP id g41-20020a0565123ba900b0050815dcec11mr2047875lfv.30.1698819393536;
+        Tue, 31 Oct 2023 23:16:33 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id p6-20020a056512234600b005057830c24dsm130670lfu.141.2023.10.31.23.16.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 Oct 2023 23:16:32 -0700 (PDT)
+Message-ID: <6d553aaa-279f-48bf-96c9-30fdac1ae372@gmail.com>
+Date: Wed, 1 Nov 2023 08:16:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,111 +67,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] dt-bindings: reserved-memory: MediaTek: Add reserved
- memory for SVP
-Content-Language: en-US
-To: =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "christian.koenig@amd.com"
-	<christian.koenig@amd.com>,
-        "quic_vjitta@quicinc.com"
-	<quic_vjitta@quicinc.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-        "jstultz@google.com" <jstultz@google.com>,
-        "linaro-mm-sig@lists.linaro.org"
-	<linaro-mm-sig@lists.linaro.org>,
-        "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        =?UTF-8?B?SmlhbmppYW8gWmVuZyAo5pu+5YGl5aejKQ==?=
-	<Jianjiao.Zeng@mediatek.com>,
-        =?UTF-8?B?S3VvaG9uZyBXYW5nICjnjovlnIvptLsp?=
-	<kuohong.wang@mediatek.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Brian.Starkey@arm.com" <Brian.Starkey@arm.com>,
-        "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-        "tjmercier@google.com" <tjmercier@google.com>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
- <20230911023038.30649-9-yong.wu@mediatek.com>
- <d4d471e7-64cf-42bf-a061-82934c904691@quicinc.com>
- <2c3ad77806df3ef23cb69336f2049821529e337b.camel@mediatek.com>
-From: Jaskaran Singh <quic_jasksing@quicinc.com>
-In-Reply-To: <2c3ad77806df3ef23cb69336f2049821529e337b.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mvhv334wkL28YRcs-bX1bkeddaiQ8P7B
-X-Proofpoint-ORIG-GUID: mvhv334wkL28YRcs-bX1bkeddaiQ8P7B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-01_03,2023-10-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- priorityscore=1501 bulkscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 impostorscore=0 mlxscore=0 mlxlogscore=999
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311010050
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
+Content-Language: en-US, en-GB
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+ Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Gazzillo <paul@pgazz.com>,
+ Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
+ <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+ <20231028162025.4259f1cc@jic23-huawei>
+ <84d7c283-e8e5-4c98-835c-fe3f6ff94f4b@gmail.com>
+ <6a697c62-6a7c-4b31-bc8e-10f40db0363d@gmail.com>
+ <d528b45c-123d-4ef7-b110-7efbfef91bc5@gmail.com>
+ <ZUDZIEY_uTVMHh3C@smile.fi.intel.com>
+ <b01930d6-5bec-496c-89de-6cf6d178c860@gmail.com>
+ <ZUEET34K7AOkFf4A@smile.fi.intel.com>
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <ZUEET34K7AOkFf4A@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10/20/2023 3:20 PM, Yong Wu (吴勇) wrote:
-> On Thu, 2023-10-19 at 10:16 +0530, Vijayanand Jitta wrote:
->>  	 
->> Instead of having a vendor specific binding for cma area, How about
->> retrieving
->>
-> https://lore.kernel.org/lkml/1594948208-4739-1-git-send-email-hayashi.kunihiko@socionext.com/
->>  ?
->> dma_heap_add_cma can just associate cma region and create a heap. So,
->> we can reuse cma heap
->> code for allocation instead of replicating that code here.
->>
+On 10/31/23 15:42, Andy Shevchenko wrote:
+> On Tue, Oct 31, 2023 at 02:07:46PM +0200, Matti Vaittinen wrote:
+>> On 10/31/23 12:38, Andy Shevchenko wrote:
+>>> On Tue, Oct 31, 2023 at 09:11:37AM +0200, Matti Vaittinen wrote:
+>>>> On 10/30/23 12:21, Matti Vaittinen wrote:
+>>>>> On 10/29/23 17:51, Matti Vaittinen wrote:
+>>>>>> On 10/28/23 18:20, Jonathan Cameron wrote:
 > 
-> Thanks for the reference. I guess we can't use it. There are two
-> reasons:
->   
-> a) The secure heap driver is a pure software driver and we have no
-> device for it, therefore we cannot call dma_heap_add_cma.
->   
-
-Hi Yong,
-
-We're considering using struct cma as the function argument to
-dma_heap_add_cma() rather than struct device. Would this help
-resolve the problem of usage with dma_heap_add_cma()?
-
-> b) The CMA area here is dynamic for SVP. Normally this CMA can be used
-> in the kernel. In the SVP case we use cma_alloc to get it and pass the
-> entire CMA physical start address and size into TEE to protect the CMA
-> region. The original CMA heap cannot help with the TEE part.
->
-
-Referring the conversation at
-https://lore.kernel.org/lkml/7a2995de23c24ef22c071c6976c02b97e9b50126.camel@mediatek.com/;
-
-since we're considering abstracting secure mem ops, would it make sense
-to use the default CMA heap ops (cma_heap_ops), allocate buffers from it
-and secure each allocated buffer?
-
-Thanks,
-Jaskaran.
-
-> Thanks.
+> ...
 > 
->> Thanks,
->> Vijay
+>>>> 	tmp = gts->max_scale;
+>>>>
+>>>> 	rem = do_div(tmp, total_gain);
+>>>> 	if (total_gain > 1 && rem >= total_gain / 2)
+>>>> 		tmp += 1ULL;
+>>>
+>>> ...which is NIH DIV_ROUND_CLOSEST_ULL()
 >>
+>> There is a difference though. The DIV_ROUND_CLOSEST_ULL() does
 >>
+>> tmp + total_gain / 2;
 >>
+>> before division - which in theory may overflow.
+> 
+> Then you can fix it there for everybody, no?
+
+Now that I know of this macro - Maybe. It's just always scary to touch 
+things which seem like fundamental building blocks and which may be used 
+by many. Odds are something breaks, so I tend to be very conservative 
+when suggesting changes to widely used stuff. Especially when I have no 
+idea when and why the API has been added - and if the thing I'm trying 
+to "fix" has been a deliberate choice.
+
+Yours,
+	-- Matti.
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
 
