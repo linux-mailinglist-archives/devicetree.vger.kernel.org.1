@@ -1,94 +1,124 @@
-Return-Path: <devicetree+bounces-13463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C55C7DE2AE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 16:09:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB8C7DE2B8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 16:11:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BFDF28129C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 15:09:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF6111C209D4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 15:11:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0F013AF9;
-	Wed,  1 Nov 2023 15:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1644513FE7;
+	Wed,  1 Nov 2023 15:11:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EnWesh9d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HPDz1Oe5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D8C85667
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 15:09:02 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3978DFC;
-	Wed,  1 Nov 2023 08:08:58 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BE8347F8;
-	Wed,  1 Nov 2023 16:08:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1698851319;
-	bh=wIFbemmgPDF/9MIgM7vY1BMVQKNYseKOoSt+7lF/XQ8=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=EnWesh9dsin3ENfcwr7lV4shWQ0XgUAwV37K5V+GkW3XEJxGuH0SiV76VyCPmIXRP
-	 4l22st9ODXsyjT1N4q+tVSgsfuu4SkpwdmMYowL9T8ZWxrostr/QOcbc6Axf3f6TUU
-	 d7iOIvh17v+OiR0SYICWf3HaOLKWq53SbsBGQX8I=
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECECB20F4
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 15:11:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1009BC433C7;
+	Wed,  1 Nov 2023 15:11:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698851463;
+	bh=yo1/sF0ttFu5wR6aPa6Te2SqCTO7ZGRY9ZRNoDYt+Nw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HPDz1Oe5/mPIoa9hcRebOrJD0AVW3ajAPopnZaGTOyNUWkUsQDp1HgNOx3h1jAJIF
+	 5F4dm7jxAR+ReVQz2uwcHCo4JiCyXcBBumBANxWFxbCC7c9wyyFSMJjDulursjhOkE
+	 7PmmLPmu6zTOUIF/L4/X5AYyjz+GnH1UX01J4OuEYUdJiNAwUlwtGSTFXLAaOQwN3H
+	 dilnxD/YiPLJpjnit3XDWqawaADVLTaJo9zdqKY1yNtQM3AlhKKu5zQzqxKApYldNs
+	 fSvnaQfNO8DU5bQMPcRQXBRol8IW6Ar5eLKNtJs+lYIsWAdsd6m5ObkxPniD1Lx8wQ
+	 YkkYyQRzZiN/w==
+Date: Wed, 1 Nov 2023 15:10:58 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Vincent Knecht <vincent.knecht@mailoo.org>
+Cc: Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Yassine Oudjana <y.oudjana@protonmail.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] media: dt-bindings: ak7375: Add ak7345 support
+Message-ID: <20231101-wise-childless-ed44729657c6@spud>
+References: <20231101102257.1232179-1-vincent.knecht@mailoo.org>
+ <20231101102257.1232179-2-vincent.knecht@mailoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="pODw/iX2UkMAb4/N"
+Content-Disposition: inline
+In-Reply-To: <20231101102257.1232179-2-vincent.knecht@mailoo.org>
+
+
+--pODw/iX2UkMAb4/N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20231101-subscribe-massive-0a719216375d@spud>
-References: <20231101131354.2333498-1-kieran.bingham@ideasonboard.com> <20231101131354.2333498-2-kieran.bingham@ideasonboard.com> <20231101-subscribe-massive-0a719216375d@spud>
-Subject: Re: [PATCH v2 1/6] media: dt-bindings: media: imx335: Add supply bindings
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org, Umang Jain <umang.jain@ideasonboard.com>, Marco Felsch <m.felsch@pengutronix.de>, Paul J. Murphy <paul.j.murphy@intel.com>, Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
-To: Conor Dooley <conor@kernel.org>
-Date: Wed, 01 Nov 2023 15:08:54 +0000
-Message-ID: <169885133403.1233626.14541601594652787539@ping.linuxembedded.co.uk>
-User-Agent: alot/0.10
 
-Quoting Conor Dooley (2023-11-01 14:57:53)
-> On Wed, Nov 01, 2023 at 01:13:49PM +0000, Kieran Bingham wrote:
-> > Add the bindings for the supply references used on the IMX335.
-> >=20
-> > Reviewed-by: Umang Jain <umang.jain@ideasonboard.com>
-> > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> >=20
-> > ---
-> > v2:
-> >  - Remove the supplies from required properties to prevent ABI breakage.
-> >=20
-> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
->=20
-> FYI, double signoff, mb your tooling be acting up.
+On Wed, Nov 01, 2023 at 11:22:56AM +0100, Vincent Knecht wrote:
+> Document AK7345 bindings.
 
-Yup, I have:
+The commit message should mention why this device is incompatible with
+the 7375. Something like
 
-~/.gitconfig
+"Document the ak7345 voice coil motor actuator. Similar to the ak7375,
+this model has 4 unilateral phase detractors instead of 8."
 
-[format]
-	signOff =3D yes
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-So when I save out the patches with a changelog - it's erroneously
-adding another SoB that I didn't notice until they were sent.
-
-As it's 'after' the --- I hope the double sob will already get stripped
-by git am...
+Cheers,
+Conor.
 
 >=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks
-
---
-Kieran
-
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+>  .../devicetree/bindings/media/i2c/asahi-kasei,ak7375.yaml     | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >=20
-> Cheers,
-> Conor.
+> diff --git a/Documentation/devicetree/bindings/media/i2c/asahi-kasei,ak73=
+75.yaml b/Documentation/devicetree/bindings/media/i2c/asahi-kasei,ak7375.ya=
+ml
+> index 22a810fc7222..fe312cc6a873 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/asahi-kasei,ak7375.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/asahi-kasei,ak7375.yaml
+> @@ -15,7 +15,9 @@ description:
+> =20
+>  properties:
+>    compatible:
+> -    const: asahi-kasei,ak7375
+> +    enum:
+> +      - asahi-kasei,ak7345
+> +      - asahi-kasei,ak7375
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.41.0
+>=20
+>=20
+>=20
+
+--pODw/iX2UkMAb4/N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUJqggAKCRB4tDGHoIJi
+0slyAP9VpcF5IzeE9i4pnc3z2Dl/ml0Sd6jvPoRkLEufandUYwD+IC8ffkg6jBmB
+NHs9lJ26+uz0K/TlXllzodqhGmmjvQs=
+=tXf/
+-----END PGP SIGNATURE-----
+
+--pODw/iX2UkMAb4/N--
 
