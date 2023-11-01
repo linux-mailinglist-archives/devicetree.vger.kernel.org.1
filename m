@@ -1,175 +1,151 @@
-Return-Path: <devicetree+bounces-13363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68897DDCBA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:35:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D27FB7DDCF4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:05:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35431B210ED
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 06:35:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC4CA1C2092E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848CB186D;
-	Wed,  1 Nov 2023 06:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998721C27;
+	Wed,  1 Nov 2023 07:05:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="TxIxzSzr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dPTU29hL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A85D2579
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 06:35:44 +0000 (UTC)
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01hn2233.outbound.protection.outlook.com [52.100.0.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F188DDA;
-	Tue, 31 Oct 2023 23:35:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XFWDSO82lGqKvbtFWDXbIwlr5e0cpk0qawjzwiFZ0E72Wphb9NmvBbDkOmzTt+NoquODVR4F0x0QPkt1aacQ9Rbyk3euUCAZSDcmuugyDfiQ08FkFtOk0iKinB3G9PHdmgV1wNDexmxIyxxPJZyD1imJTMZPWCq9SI6tkvCUhEiyT4AK7G327KXzR/yrpzBeEbjiBiFjN1UajbHQ1xmv7PY3uaOe86UEnKw+ZiKznxquDf8Wo8TksKKdI436F9Nah8BEJVMvPypUPxvpg/NTUc/+NLKOqsI3Ndzjln+2Go5L1QNBr+wyNstzcH4FJnOvynKHHsqc6XbooPaYypu88Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VcaICetR5lyEKj6pIUQJ2asUqjV4ZwfHDhAFVDFV/yA=;
- b=ecMEr9RMVi9PbsoJp83TFiFTeNBX/lgp4/pxyYEBsanvhSTpcBKJzjmQkQfarHPSiIALdQwf5fp6liADdDJzL0iHKqVd7lFYRKfWyvJFKtY+3A7vWeV2raFA3X1v3Is+F+tq7k/y6DWoRp6V3bvBzKT2kthMHSWJ9UFafey0F7WBx/5siLpvssc30D4Pnq0/afftaXjI58UPEXvFzIv4fOhPwIOXAN3Ggj6RMIL67+bxdpOWSKDSOkvY1lSSnbsNnpS+kxhgoawJduJxew8fXg0iC232CmANxtt2smDj7P64J0qwmVBoGx170/T/1u8dU/500UU99nIwzPfC3G3j/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=nuvoton.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VcaICetR5lyEKj6pIUQJ2asUqjV4ZwfHDhAFVDFV/yA=;
- b=TxIxzSzrJvGMlRT0p1zwR6Ztt/DgVdUbqVg2MydSb99LBSnbd4ig8oEgKWFRsBFXWgEBvfegNwa5ebj24PQn7sO+Ai1V4riqKFSYXiycxU2bKUzYITIb+Ksfl8LtoAuOlI92DLMEpd/dG1aqYgRW7MXSdTu3lor59xljEo9VtCg=
-Received: from SG2PR06CA0205.apcprd06.prod.outlook.com (2603:1096:4:68::13) by
- SEZPR03MB8208.apcprd03.prod.outlook.com (2603:1096:101:19f::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6933.26; Wed, 1 Nov 2023 06:35:30 +0000
-Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
- (2603:1096:4:68:cafe::29) by SG2PR06CA0205.outlook.office365.com
- (2603:1096:4:68::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29 via Frontend
- Transport; Wed, 1 Nov 2023 06:35:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
- smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nuvoton.com;
-Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
- 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
-Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
- SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.6954.19 via Frontend Transport; Wed, 1 Nov 2023 06:35:30 +0000
-Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Wed, 1
- Nov 2023 14:35:18 +0800
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Wed, 1 Nov
- 2023 14:35:17 +0800
-Received: from localhost.localdomain (10.11.36.27) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Wed, 1 Nov 2023 14:35:17 +0800
-From: Seven Lee <wtli@nuvoton.com>
-To: <broonie@kernel.org>
-CC: <lgirdwood@gmail.com>, <alsa-devel@alsa-project.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <YHCHuang@nuvoton.com>,
-	<KCHSU0@nuvoton.com>, <CTLIN0@nuvoton.com>, <SJLIN0@nuvoton.com>,
-	<wtli@nuvoton.com>, <scott6986@gmail.com>, <supercraig0719@gmail.com>,
-	<dardar923@gmail.com>
-Subject: [PATCH v3 2/2] ASoC: nau8821: Add slew rate controls.
-Date: Wed, 1 Nov 2023 14:35:14 +0800
-Message-ID: <20231101063514.666754-3-wtli@nuvoton.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231101063514.666754-1-wtli@nuvoton.com>
-References: <20231101063514.666754-1-wtli@nuvoton.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A8C1C17
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:05:40 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A383F7
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 00:05:35 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9be02fcf268so944246266b.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 00:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698822334; x=1699427134; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=q7ANMdQBeVTGqhSHO1rP9w6x+E4E+JDk1Oiiy7igDF8=;
+        b=dPTU29hLWQKt5p8oUZVdhSVYIiTLHnBBKe6AqXLi2h1V3ncoUD5q4lryK1YvbuMo70
+         FNsHmi6o58VZGvagoQW07eb58GiXi/Gq4mrxt2ctQhhgprDYK4E859R4dFnjtNqpYE69
+         zM/iC5/bUXasvuo9nllfDb+nwDla1+VOLsiZrv4PQqqOqVhdW9DDvP9/McOOtBkWeUA8
+         a0X7/dx8B37BOO2bDl9X6BVf7C2vaGEhgFMJEZWniw48m87+DpQMaBGwANWJAuZ7YKew
+         ZeQDNznEsJ1oOwTizfZOTdcz7OcIsfCo4Eocrcw/2qB9MS0PlLlDklQ0Kue2AYSYkzBV
+         TNyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698822334; x=1699427134;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q7ANMdQBeVTGqhSHO1rP9w6x+E4E+JDk1Oiiy7igDF8=;
+        b=INLj/7gu5orBYuAkukJS68iNaf/68ZP2pvCpekzG8Pn/yWFjtURbLsrvQ7hmF8Epc/
+         +OspX17C81LXARBxZkXCpmzX6uKEk3Y4BPTZPrwimjnm9toMoNjzLXCeLMZVO8fr1iQL
+         XtLEbJwt15CNCXTxGJ5knqPUjBK4jiLi2IiwxWMZb46ZQoXno7J0Q91xOnJgXZGERZjD
+         S1FmUWp8fb68Bew2H1rU7SlJDI0SFk/gVMUyg38UT3AXp5mqq4jeUHSUCARThFaqg9dC
+         EHOkKx6+XuoLrX+ZF8pPOtuSKtsCmS6ZS2tbPdWO0Cytxld+d2FtzY+C0Cu+rO8bSk3+
+         qbGg==
+X-Gm-Message-State: AOJu0Yzm9EisTUyLzbIObABh6s6r6mu64wJCpS5+tNgwk8Jk1qpDDeoV
+	UimFReFEd6nxb0LkV4d08VAojQ==
+X-Google-Smtp-Source: AGHT+IEszHjUPy0gRFDTmaLrChOO46qbIl+d2bdwWbEN5RyXCrvvNxySKcypRz44blnYS+LojSwRPg==
+X-Received: by 2002:a17:907:86a6:b0:9c1:bee1:b7eb with SMTP id qa38-20020a17090786a600b009c1bee1b7ebmr1303855ejc.37.1698822333811;
+        Wed, 01 Nov 2023 00:05:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id l9-20020a170906078900b009adc81bb544sm2052523ejc.106.2023.11.01.00.05.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Nov 2023 00:05:33 -0700 (PDT)
+Message-ID: <df166846-b226-4c4c-afb0-5e1cbdaf2abb@linaro.org>
+Date: Wed, 1 Nov 2023 08:05:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|SEZPR03MB8208:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2bc017f8-2af8-41fe-f523-08dbdaa4be51
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	+Wi2A7PkDZk815I4cc1xCinNu78xRMA72et1mHFXwHdHHbSRxiy4FWOabThFnszq5LX1saSGgAsdhu18B5fifYPwyL+LMw18LAPZ21ZrVnya4CU4N3aAShYUSRvyMFnxs6A/u9yzbXnpFZ0sM6LEM6PUnr4cccsdm/Vx49STrrokBm5rx6dHIHwomlurx9/kdMJhQ0V+CBlZ3LclTeMcZsiD5NTIAnvBisvhpxbxaqNiQboBaFew2KBGCvnpKuLV67ABEfpASge85EYgGF0BfFARti12mTxA4MhC6yD3544GBeKy+oQJRAKDw3ZZOYUYueK0WB1rk9e0Nmnqfhp4WGqdv7cgYUX8eJDxqe5jpiG8sRjdBlZSmW9k7jqBtfnoN36v+kuPaZ/j6Z7FfJDs6N6qeT5mNSruc2VdQpGlb6A1xm/mdM4zXXpbb4T8OM8/8I9KJOYOreEeTjgCvcHbmEU41g7Nmo3hrJPCUbznuz3g40PPYsG+5jJoA/Lpn/7MzPvtvWwVo/DJKf6yM4jjeduD5+rTQhKYCYOCt6fXZ1Ze1xNu9NONPxruB743n+N4E2VTwp/y3MdMx0EVQrfKkl/dGYlwbLfYdgBjYJOtz+9CVXnRxhch3zwqabonVRaQ/58E7YwRm2z5VonroZDDbRGdzVmP0ysuDQTKgUf1fhHDmi1mdWbZu1nqP83PptAMAoTEGwbLze7tqoHdFvsjEIvuGE9dWLYT5lOO3et6aoqx1s3PxlTfsmDMgrY0knGzAAGVifmvfmaAVOsFO0kodcMDlvw4b6Am+JlSDx7lEGlB63VZM2LW5Us7MdcnpTL58j0TXOEAq8/7ybs8PKRVFa0Pi/fP8fw/Q6jkaxmwJ+8=
-X-Forefront-Antispam-Report:
-	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(136003)(376002)(346002)(230922051799003)(186009)(1800799009)(5400799018)(82310400011)(64100799003)(451199024)(46966006)(36840700001)(40470700004)(34020700004)(36860700001)(6916009)(54906003)(316002)(41300700001)(47076005)(8936002)(82740400003)(8676002)(86362001)(70586007)(70206006)(2906002)(4326008)(478600001)(40480700001)(81166007)(426003)(7416002)(336012)(5660300002)(356005)(36756003)(40460700003)(1076003)(83380400001)(26005)(2616005)(6666004)(12100799048);DIR:OUT;SFP:1501;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2023 06:35:30.4341
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bc017f8-2af8-41fe-f523-08dbdaa4be51
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66D0.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB8208
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/4] dt-bindings: PCI: qcom-ep: Add support for SA8775P
+ SoC
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org
+Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+ quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+ dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
+ quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
+ quic_schintav@quicinc.com, quic_shijose@quicinc.com,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, linux-pci@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mhi@lists.linux.dev
+References: <1698729108-27356-1-git-send-email-quic_msarkar@quicinc.com>
+ <1698729108-27356-2-git-send-email-quic_msarkar@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1698729108-27356-2-git-send-email-quic_msarkar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The patch supports DMIC clock slew rate controls.
+On 31/10/2023 06:11, Mrinmay Sarkar wrote:
+> Add devicetree bindings support for SA8775P SoC. It has DMA register
+> space and dma interrupt to support HDMA.
+> 
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+> ---
 
-Signed-off-by: Seven Lee <wtli@nuvoton.com>
----
- sound/soc/codecs/nau8821.c | 7 +++++++
- sound/soc/codecs/nau8821.h | 3 +++
- 2 files changed, 10 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/sound/soc/codecs/nau8821.c b/sound/soc/codecs/nau8821.c
-index 6e1b6b26298a..012e347e6391 100644
---- a/sound/soc/codecs/nau8821.c
-+++ b/sound/soc/codecs/nau8821.c
-@@ -1738,6 +1738,10 @@ static int nau8821_read_device_properties(struct device *dev,
- 		&nau8821->dmic_clk_threshold);
- 	if (ret)
- 		nau8821->dmic_clk_threshold = 3072000;
-+	ret = device_property_read_u32(dev, "nuvoton,dmic-slew-rate",
-+		&nau8821->dmic_slew_rate);
-+	if (ret)
-+		nau8821->dmic_slew_rate = 0;
- 
- 	return 0;
- }
-@@ -1797,6 +1801,9 @@ static void nau8821_init_regs(struct nau8821 *nau8821)
- 		NAU8821_ADC_SYNC_DOWN_MASK, NAU8821_ADC_SYNC_DOWN_64);
- 	regmap_update_bits(regmap, NAU8821_R2C_DAC_CTRL1,
- 		NAU8821_DAC_OVERSAMPLE_MASK, NAU8821_DAC_OVERSAMPLE_64);
-+	regmap_update_bits(regmap, NAU8821_R13_DMIC_CTRL,
-+		NAU8821_DMIC_SLEW_MASK, nau8821->dmic_slew_rate <<
-+		NAU8821_DMIC_SLEW_SFT);
- 	if (nau8821->left_input_single_end) {
- 		regmap_update_bits(regmap, NAU8821_R6B_PGA_MUTE,
- 			NAU8821_MUTE_MICNL_EN, NAU8821_MUTE_MICNL_EN);
-diff --git a/sound/soc/codecs/nau8821.h b/sound/soc/codecs/nau8821.h
-index 00a888ed07ce..62eaad130b2e 100644
---- a/sound/soc/codecs/nau8821.h
-+++ b/sound/soc/codecs/nau8821.h
-@@ -236,6 +236,8 @@
- #define NAU8821_DMIC_SRC_MASK	(0x3 << NAU8821_DMIC_SRC_SFT)
- #define NAU8821_CLK_DMIC_SRC	(0x2 << NAU8821_DMIC_SRC_SFT)
- #define NAU8821_DMIC_EN_SFT	0
-+#define NAU8821_DMIC_SLEW_SFT  8
-+#define NAU8821_DMIC_SLEW_MASK (0x7 << NAU8821_DMIC_SLEW_SFT)
- 
- /* GPIO12_CTRL (0x1a) */
- #define NAU8821_JKDET_PULL_UP	(0x1 << 11) /* 0 - pull down, 1 - pull up */
-@@ -573,6 +575,7 @@ struct nau8821 {
- 	int jack_eject_debounce;
- 	int fs;
- 	int dmic_clk_threshold;
-+	int dmic_slew_rate;
- 	int key_enable;
- };
- 
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
