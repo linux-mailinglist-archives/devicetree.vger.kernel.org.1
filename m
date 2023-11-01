@@ -1,89 +1,84 @@
-Return-Path: <devicetree+bounces-13430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877F77DE15E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:14:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138A57DE16D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:21:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42EC2281570
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:14:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3901B20DD1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34A6134A6;
-	Wed,  1 Nov 2023 13:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6037134A4;
+	Wed,  1 Nov 2023 13:21:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hvQ3tiua"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KLptjDmu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D107A12B9F
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 13:14:22 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED220126;
-	Wed,  1 Nov 2023 06:14:17 -0700 (PDT)
-Received: from Monstersaurus.local (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F29551BAE;
-	Wed,  1 Nov 2023 14:13:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1698844426;
-	bh=d0d7Rf2i4W+OeBaDehCuPFL1ycw0UNOszMGw/ErkDB8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hvQ3tiuanR7IGruQnZLms19/RyFFkoyLbgtZ/Ugcq/iB1EnKF1uE0r0SnQg5IWxpq
-	 1f+VBdOGgrRCaF7D3LbCGBDLlQ5ju+kej4KR8hYsoASkvMv5/cKR7jBR7zRiFnRrar
-	 xKRUgYfb2x5k9xNlTqRhzFqaAvgpbk+bDzmHK2+M=
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-To: devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Umang Jain <umang.jain@ideasonboard.com>,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 6/6] media: i2c: imx335: Fix hblank min/max values
-Date: Wed,  1 Nov 2023 13:13:54 +0000
-Message-Id: <20231101131354.2333498-7-kieran.bingham@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231101131354.2333498-1-kieran.bingham@ideasonboard.com>
-References: <20231101131354.2333498-1-kieran.bingham@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C18A134A0;
+	Wed,  1 Nov 2023 13:21:44 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB94FD;
+	Wed,  1 Nov 2023 06:21:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fTZGkY03HE3O8L5UizGWjCWSFnz27c8Zq89DTc21l7Q=; b=KLptjDmueC7lG8F5Qj23yozjFU
+	Mg93eV2M0Lo9dMPjed/qt0VczCYZJYbFIrPVCx+EzVsY6WI9Up1Nqmf04t3R/YFDtBu0qL7WYod3y
+	ALg2pDOXXEblD/S1pTUi4ssd3uANusNuIWNz+BmJdvbNFV8PkFILAGXPRgV0H4Wr9uwQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qyBA1-000gi8-KI; Wed, 01 Nov 2023 14:21:29 +0100
+Date: Wed, 1 Nov 2023 14:21:29 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v2 2/2] dt-bindings: Document bindings for
+ Marvell Aquantia PHY
+Message-ID: <fe8d7176-6f37-47cb-950f-257f54965339@lunn.ch>
+References: <20231101123608.11157-1-ansuelsmth@gmail.com>
+ <20231101123608.11157-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231101123608.11157-2-ansuelsmth@gmail.com>
 
-The V4L2_CID_HBLANK control is marked as readonly and can only be a
-single value.
+> +  Marvell Aquantia Ethernet PHY require a firmware to be loaded to actually
+> +  work.
+> +
+> +  This can be done and is implemented by OEM in 3 different way:
+> +    - Attached SPI directly to the PHY with the firmware. The PHY will
+> +      self load the firmware in the presence of this configuration.
+> +    - Dedicated partition on system NAND with firmware in it. NVMEM
+> +      subsystem will be used and the declared NVMEM cell will load
+> +      the firmware to the PHY using the PHY mailbox interface.
+> +    - Manually provided firmware using the sysfs interface. Firmware is
+> +      loaded using the PHY mailbox.
 
-Set the minimum and maximum value to match the mode value.
+sysfs is a linux concept. DT bindings should be OS agnostic. It would
+be better to say its loaded from a file in the file system.
 
-Reviewed-by: Umang Jain <umang.jain@ideasonboard.com>
-Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
----
- drivers/media/i2c/imx335.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I'm not sure mailbox is relevant here. All you really are trying to
+say is that if there is an SPI flash, the PHY will load the firmware
+itself. If not the driver will load the firmware.
 
-diff --git a/drivers/media/i2c/imx335.c b/drivers/media/i2c/imx335.c
-index ce41e9f669bc..5373775cf63f 100644
---- a/drivers/media/i2c/imx335.c
-+++ b/drivers/media/i2c/imx335.c
-@@ -1045,8 +1045,8 @@ static int imx335_init_controls(struct imx335 *imx335)
- 	imx335->hblank_ctrl = v4l2_ctrl_new_std(ctrl_hdlr,
- 						&imx335_ctrl_ops,
- 						V4L2_CID_HBLANK,
--						IMX335_REG_MIN,
--						IMX335_REG_MAX,
-+						mode->hblank,
-+						mode->hblank,
- 						1, mode->hblank);
- 	if (imx335->hblank_ctrl)
- 		imx335->hblank_ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
--- 
-2.34.1
-
+	Andrew
 
