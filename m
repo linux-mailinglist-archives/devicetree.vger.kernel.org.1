@@ -1,213 +1,137 @@
-Return-Path: <devicetree+bounces-13368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB167DDD03
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:13:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0544E7DDD07
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74D4B281443
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:13:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61707B20D35
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3B8538F;
-	Wed,  1 Nov 2023 07:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F5853A7;
+	Wed,  1 Nov 2023 07:15:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IohWOM3n"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VSRldrmC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836E82F48
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:13:33 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB19107
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 00:13:28 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9adb9fa7200so119556166b.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 00:13:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698822806; x=1699427606; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ENaMuPR8qfkGXGxRWAFLfxwcQPKTYImOPy2ccrDRxmU=;
-        b=IohWOM3nAGVBJZPQeC+6mGZvS8SfcbREBLxUahViOGvSq//7QAz9RN/OGaOl0vcIhT
-         RUumo+iUUxGDk2agg27gybEU8zwBxP+TO5QQudEKaZ7cBfgMCUcAVFfjhMweLYCOno/b
-         LzUeCFRbcJGNTwRCvsyOPJewVdUXC8eEOtbJA4aTOGz4DeBhskrB0cKXntRhQRKK/owv
-         T0Y5hzz0588XhyzDk3m/7E/qQDh0/M9rI6NePo3bDVpoIrNXuoXFLz6wyAxVhQVbJqyB
-         i30bZn3ZJ30jFzqw5njnpSwUFK3XnUA7Uq93JLDNIFAm7/aoD2rIdCxEM8Gn2jnAFfrT
-         ZxUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698822806; x=1699427606;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ENaMuPR8qfkGXGxRWAFLfxwcQPKTYImOPy2ccrDRxmU=;
-        b=FPo1Bbhn2DC9xXVHtYUORzru2tLm+Pja9ePWeuBttxBfVkByk5dbi4GbXhFtcYJEvr
-         spetwnELa+L3h7OONnQhqKb/dNCtMa7ocHvxNYATp86MztadGt5nViUD9hpaBtwAp3EJ
-         OaP3FphOeenLKPsw3Q8N14LgjbxaVTV+ERYdPjUFGFTknJYMuBMe3v7v2AFtgpWMgABQ
-         9a4H23JYnCW+vcg5Nq+4gny0TnA9jkmO+ntuFDx7d8jrioa3pc3DcnoJ1z/qfRrEFh+T
-         gn+sivsS6SAYBkTGp/9Ltb5t++p1idCtIwHvrcpyiny/vB4MYbbjGPwD6xY+myx99KtJ
-         SuwA==
-X-Gm-Message-State: AOJu0YxbNHwFPbMcnd5ddfdWWQhGA/sfvCcukHO25YruCSPcgXOInmMN
-	LQm2rbebqjYkkRrNKLiZhf21Ag==
-X-Google-Smtp-Source: AGHT+IFA6hSi6XpPHUFncVCgMzMhp4wb56Px3YVwbUXjKoT7OJk+RGKnY7/dHtb7b57cFjarBTipGQ==
-X-Received: by 2002:a17:906:2408:b0:9ae:65d6:a51f with SMTP id z8-20020a170906240800b009ae65d6a51fmr1486666eja.18.1698822806422;
-        Wed, 01 Nov 2023 00:13:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id rp16-20020a170906d97000b009ae57888718sm2034143ejb.207.2023.11.01.00.13.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 00:13:25 -0700 (PDT)
-Message-ID: <6a09f16e-0a41-4619-b7bb-b5561f7e36ce@linaro.org>
-Date: Wed, 1 Nov 2023 08:13:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBFA629A9
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:15:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945DDE4;
+	Wed,  1 Nov 2023 00:15:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698822922; x=1730358922;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YOamUtZBvPGFSqT3bJhAUQfsVZzAHn/s7THLW6Z58ac=;
+  b=VSRldrmCVUGDArECpCQC9ivs+24d3vxD5FiS9uZpT5BU4Ip3LcybJEr9
+   AQI+M6GAOrI4ebsEIAAV5gTCe0JrXPmzgkKLzMUJUdTdn5PfaA6z5keHr
+   dF8y3sVX7wrFcWZdYG5nwlmQb+MARD6xLAWgFCOvN73DQKVFBzVstfA+y
+   Csz1uVVNL/wtpMIXEde0jgb7YFoOpt8E2A3knIuoUeNn0E3AInRtl7ZNH
+   lZnu4OjfEfC3rvhZzC9TyHvJN9sFvYy/or5evlcxqdqrRXgv1NVQtgt1r
+   URHLRED4SWJ8GNPh4sRhoVU4U9GqJuRiMScQeVrht7tCQXio5QEZEso5h
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="7075759"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="7075759"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2023 00:15:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="831280524"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="831280524"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 01 Nov 2023 00:15:16 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qy5RZ-0000f2-2m;
+	Wed, 01 Nov 2023 07:15:13 +0000
+Date: Wed, 1 Nov 2023 15:15:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
+	adrian.hunter@intel.com, jh80.chung@samsung.com,
+	riteshh@codeaurora.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	asutoshd@codeaurora.org, p.zabel@pengutronix.de
+Cc: oe-kbuild-all@lists.linux.dev, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	arnd@arndb.de, briannorris@chromium.org, doug@schmorgal.com,
+	tonyhuang.sunplus@gmail.com, abel.vesa@linaro.org,
+	william.qiu@starfivetech.com, jyanchou@realtek.com
+Subject: Re: [PATCH V4][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
+Message-ID: <202311011551.QtHtdWmG-lkp@intel.com>
+References: <20231030062749.2840-3-jyanchou@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
- bindings
-Content-Language: en-US
-To: Tzuyi Chang <tychang@realtek.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231101025802.3744-1-tychang@realtek.com>
- <20231101025802.3744-3-tychang@realtek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231101025802.3744-3-tychang@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231030062749.2840-3-jyanchou@realtek.com>
 
-On 01/11/2023 03:58, Tzuyi Chang wrote:
-> This patch adds the device tree bindings for the Realtek DHC RTD SoCs
-> GPIO controllers.
-> 
+Hi Jyan,
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
+kernel test robot noticed the following build errors:
 
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-> ---
->  .../bindings/gpio/realtek,rtd-gpio.yaml       | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
+[auto build test ERROR on linus/master]
+[also build test ERROR on ulf-hansson-mmc-mirror/next v6.6 next-20231031]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-How does your binding come after the user?
+url:    https://github.com/intel-lab-lkp/linux/commits/Jyan-Chou/mmc-Add-Synopsys-DesignWare-mmc-cmdq-host-driver/20231030-144300
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20231030062749.2840-3-jyanchou%40realtek.com
+patch subject: [PATCH V4][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
+config: sparc64-allyesconfig (https://download.01.org/0day-ci/archive/20231101/202311011551.QtHtdWmG-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231101/202311011551.QtHtdWmG-lkp@intel.com/reproduce)
 
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml b/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
-> new file mode 100644
-> index 000000000000..6cab7ec50c88
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Realtek Semiconductor Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/realtek,rtd-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek DHC GPIO controller
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311011551.QtHtdWmG-lkp@intel.com/
 
-What is DHC? Where is it explained in the binding?
+All errors (new ones prefixed by >>):
 
-> +
-> +maintainers:
-> +  - TY Chang <tychang@realtek.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - realtek,rtd-gpio
-
-What is "rtd"? Generic name? Drop. You cannot have generic compatibles.
+>> drivers/mmc/host/dw_mmc_cqe.c:227:10: error: 'const struct cqhci_host_ops' has no member named 'setup_tran_desc'
+     227 |         .setup_tran_desc = dw_mci_cqe_setup_tran_desc,
+         |          ^~~~~~~~~~~~~~~
+>> drivers/mmc/host/dw_mmc_cqe.c:227:28: error: initialization of 'int (*)(struct cqhci_host *, const union cqhci_crypto_cfg_entry *, int)' from incompatible pointer type 'void (*)(struct mmc_data *, struct cqhci_host *, u8 *, int)' {aka 'void (*)(struct mmc_data *, struct cqhci_host *, unsigned char *, int)'} [-Werror=incompatible-pointer-types]
+     227 |         .setup_tran_desc = dw_mci_cqe_setup_tran_desc,
+         |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/mmc/host/dw_mmc_cqe.c:227:28: note: (near initialization for 'dw_mci_cqhci_host_ops.program_key')
+   In file included from include/linux/debugfs.h:16,
+                    from drivers/mmc/host/dw_mmc_cqe.c:12:
+   drivers/mmc/host/dw_mmc_cqe.c:96:23: warning: 'dw_mci_cqe_req_fops' defined but not used [-Wunused-const-variable=]
+      96 | DEFINE_SHOW_ATTRIBUTE(dw_mci_cqe_req);
+         |                       ^~~~~~~~~~~~~~
+   include/linux/seq_file.h:202:37: note: in definition of macro 'DEFINE_SHOW_ATTRIBUTE'
+     202 | static const struct file_operations __name ## _fops = {                 \
+         |                                     ^~~~~~
+   cc1: some warnings being treated as errors
 
 
-> +      - realtek,rtd1295-misc-gpio
-> +      - realtek,rtd1295-iso-gpio
-> +      - realtek,rtd1395-iso-gpio
-> +      - realtek,rtd1619-iso-gpio
-> +
-> +  reg:
-> +    maxItems: 2
+vim +227 drivers/mmc/host/dw_mmc_cqe.c
 
-You need to describe the items instead.
+   221	
+   222	static const struct cqhci_host_ops dw_mci_cqhci_host_ops = {
+   223		.enable = dw_mci_cqe_enable,
+   224		.dumpregs = dw_mci_cqe_dumpregs,
+   225		.pre_enable = dw_mci_cqe_pre_enable,
+   226		.post_disable = dw_mci_cqe_post_disable,
+ > 227		.setup_tran_desc = dw_mci_cqe_setup_tran_desc,
+   228	};
+   229	
 
-> +
-> +  interrupts:
-> +    maxItems: 2
-
-You need to describe the items instead.
-
-> +
-> +  gpio-ranges: true
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - gpio-ranges
-> +  - gpio-controller
-> +  - "#gpio-cells"
-
-Best regards,
-Krzysztof
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
