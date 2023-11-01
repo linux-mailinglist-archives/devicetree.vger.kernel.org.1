@@ -1,105 +1,293 @@
-Return-Path: <devicetree+bounces-13399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CF37DDF42
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:17:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B98A7DDF4B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A65C8B20F26
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 10:17:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23F5D1C20D76
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 10:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBAD101EB;
-	Wed,  1 Nov 2023 10:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73F410794;
+	Wed,  1 Nov 2023 10:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Khfnj0y2"
+	dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b="WzRqZuKx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B818E10789
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 10:17:28 +0000 (UTC)
-Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com [IPv6:2607:f8b0:4864:20::1149])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32C15102
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 03:17:26 -0700 (PDT)
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-5a8d9dcdd2bso115532847b3.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 03:17:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1698833845; x=1699438645; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vprtd1rnc+6PWmI9YtTse/TMvnp22Nc9rwicgWr4RkQ=;
-        b=Khfnj0y2ac9BFIyLjiz85G0lATt4TAJ02Vm3UaXjXQ3L3r0H6dedXWkWGhl49+O3wx
-         4urwKE+YDUeddAnNjVHiKU3Wtek8bfHfaumxL/tVjSP1Hsh1NpBulUGPTmADhEMlvP/j
-         24Zd7P5YppVwvdpoxJARrL6odJeu43oJtn4EImlnRGJlxPwYKCVXR79/NewPZHbEZJB4
-         Z/VG0YzHWZbLrcpmVY3WIMvelPauPlCIKanNR7GPE+2FQLcRErT4pLeiH02pYKDPoZIe
-         WyErqa/7sMmxDMxeVkEvwO+qsJWBbbLvs6TkHztS6WOnSiAyphEcI1FsNxKSvhm/h2iW
-         l2cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698833845; x=1699438645;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vprtd1rnc+6PWmI9YtTse/TMvnp22Nc9rwicgWr4RkQ=;
-        b=RqeormUmgjGMa6//3ct0ThdwWNNEOzVpjybTB3IBA8D6xNAPYH8sgzqdHbBPYklXcB
-         XnrM/coBswiepJLTj8XbehJUBqfcIEFnRRMw3HIYGly8JsBrnCzqOMiPb6oyQPe4Wd5W
-         ScJIEUfAPbqhLSjA+Iu/yqdDGwGJklpxtnS/XdeafUbwxla6kOqWyj3E2OfOqU/WYXN7
-         yrJzZlSIT6v2TmQt5ihHLC9CRJiVBXyiLKVXUPmz/njFw1RgKpe4U+WSDp0KuNh2CMpM
-         V1HkpJ1+U6jlNdarwLeXAr2iT5+gDRX6VVacpSHYtFCBm/IXPuNaUuHcd1rcrSoGzGP4
-         i7dQ==
-X-Gm-Message-State: AOJu0Yyb8iWG2eT+ATgnsbmT2NzIGUTZRgSBzWWD6gUD02dn8/LDGW8Y
-	iYIvzlUTfAQzn245wMT9EvTs7Pk0tyIl
-X-Google-Smtp-Source: AGHT+IGkfIXtBIMbWiSohH3G81opyz7YcOkbxfQvv4/AQ1loEffyLJXXLOsN3/OXjkkFqgKoDde5Qf0cSNH2
-X-Received: from mnkumar0.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:313a])
- (user=mnkumar job=sendgmr) by 2002:a25:ce94:0:b0:da0:3bea:cdc7 with SMTP id
- x142-20020a25ce94000000b00da03beacdc7mr263093ybe.2.1698833845477; Wed, 01 Nov
- 2023 03:17:25 -0700 (PDT)
-Date: Wed,  1 Nov 2023 10:16:25 +0000
-In-Reply-To: <20231101101625.4151442-1-mnkumar@google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC7F2570
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 10:23:49 +0000 (UTC)
+Received: from mailo.com (msg-2.mailo.com [213.182.54.12])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3684DA;
+	Wed,  1 Nov 2023 03:23:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+	t=1698834191; bh=quNt1nLuVEb2eBiyvC+3TU9/S5QcaZsokei6xTBuOdY=;
+	h=X-EA-Auth:From:To:Cc:Subject:Date:Message-ID:X-Mailer:
+	 MIME-Version:Content-Transfer-Encoding;
+	b=WzRqZuKxjKB9hmHEhylQn0I88Wmmbm4S7Rj6bP05zgmEiR2yl0uZoizzb4zhLF+j1
+	 DFO0s1UC+bguK3UGXPaUkkbfVQFH0r0Dpa+7FfGXqzV7vYHGXXVEVE0/aCKmMeLfu2
+	 S/FQIoXg5wrdQnaDuEV//uF51c3pfMga2H17FD/w=
+Received: by b221-2.in.mailobj.net [192.168.90.22] with ESMTP
+	via ip-22.mailoo.org [213.182.54.22]
+	Wed,  1 Nov 2023 11:23:11 +0100 (CET)
+X-EA-Auth: C7pc+fCpBu7fzUYZkZJbS4PhKIkeSMbNjcprzCCgDwhJez8H+DbewnQi7uHXLBoiVrqCUH1b06Z+l93hsRQUW2exu6P3arzefIUO2afeZWs=
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+To: Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Yassine Oudjana <y.oudjana@protonmail.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH 1/3] media: i2c: ak7375: Prepare for supporting another chip
+Date: Wed,  1 Nov 2023 11:22:55 +0100
+Message-ID: <20231101102257.1232179-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20231101101625.4151442-1-mnkumar@google.com>
-X-Mailer: git-send-email 2.42.0.820.g83a721a137-goog
-Message-ID: <20231101101625.4151442-3-mnkumar@google.com>
-Subject: [PATCH RESEND 2/2] dt-bindings: usb: add no-64-bit-support property
-From: Naveen Kumar <mnkumar@google.com>
-To: Mathias Nyman <mathias.nyman@intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, royluo@google.com, 
-	devicetree@vger.kernel.org, Naveen Kumar M <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-From: Naveen Kumar M <mnkumar@google.com>
+In view of adding support for at least one other chip,
+change the driver to move chip-specific properties and
+values in a common structure.
 
-Add a new DT option to specify whether a host controller is able to
-support 64-bit DMA memory pointers
+No functional changes.
 
-Signed-off-by: Naveen Kumar M <mnkumar@google.com>
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
- Documentation/devicetree/bindings/usb/usb-xhci.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/media/i2c/ak7375.c | 110 ++++++++++++++++++++++---------------
+ 1 file changed, 66 insertions(+), 44 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.yaml b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
-index 180a261c3e8f..20dc134004f3 100644
---- a/Documentation/devicetree/bindings/usb/usb-xhci.yaml
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
-@@ -25,6 +25,10 @@ properties:
-     description: Set if the controller has broken port disable mechanism
-     type: boolean
+diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
+index 463b51d46320..3a14eff41531 100644
+--- a/drivers/media/i2c/ak7375.c
++++ b/drivers/media/i2c/ak7375.c
+@@ -10,30 +10,45 @@
+ #include <media/v4l2-ctrls.h>
+ #include <media/v4l2-device.h>
  
-+  quirk-no-64-bit-support:
-+    description: Set if the xHC doesn't support 64-bit DMA memory pointers
-+    type: boolean
+-#define AK7375_MAX_FOCUS_POS	4095
+-/*
+- * This sets the minimum granularity for the focus positions.
+- * A value of 1 gives maximum accuracy for a desired focus position
+- */
+-#define AK7375_FOCUS_STEPS	1
+-/*
+- * This acts as the minimum granularity of lens movement.
+- * Keep this value power of 2, so the control steps can be
+- * uniformly adjusted for gradual lens movement, with desired
+- * number of control steps.
+- */
+-#define AK7375_CTRL_STEPS	64
+-#define AK7375_CTRL_DELAY_US	1000
+-/*
+- * The vcm may take up 10 ms (tDELAY) to power on and start taking
+- * I2C messages. Based on AK7371 datasheet.
+- */
+-#define AK7375_POWER_DELAY_US	10000
++struct ak73xx_chipdef {
++	u8 reg_position;
++	u8 reg_cont;
++	u8 shift_pos;
++	u8 mode_active;
++	u8 mode_standby;
++	u16 focus_pos_max;
++	/*
++	 * This sets the minimum granularity for the focus positions.
++	 * A value of 1 gives maximum accuracy for a desired focus position
++	 */
++	u16 focus_steps;
++	/*
++	 * This acts as the minimum granularity of lens movement.
++	 * Keep this value power of 2, so the control steps can be
++	 * uniformly adjusted for gradual lens movement, with desired
++	 * number of control steps.
++	 */
++	u16 ctrl_steps;
++	u16 ctrl_delay_us;
++	/*
++	 * The vcm may take time (tDELAY) to power on and start taking
++	 * I2C messages.
++	 */
++	u16 power_delay_us;
++};
+ 
+-#define AK7375_REG_POSITION	0x0
+-#define AK7375_REG_CONT		0x2
+-#define AK7375_MODE_ACTIVE	0x0
+-#define AK7375_MODE_STANDBY	0x40
++static const struct ak73xx_chipdef ak7375_cdef = {
++	.reg_position	= 0x0,
++	.reg_cont	= 0x2,
++	.shift_pos	= 4,	/* 12 bits position values, need to << 4 */
++	.mode_active	= 0x0,
++	.mode_standby	= 0x40,
++	.focus_pos_max	= 4095,
++	.focus_steps	= 1,
++	.ctrl_steps	= 64,
++	.ctrl_delay_us	= 1000,
++	.power_delay_us	= 10000,
++};
+ 
+ static const char * const ak7375_supply_names[] = {
+ 	"vdd",
+@@ -42,6 +57,7 @@ static const char * const ak7375_supply_names[] = {
+ 
+ /* ak7375 device structure */
+ struct ak7375_device {
++	const struct ak73xx_chipdef *cdef;
+ 	struct v4l2_ctrl_handler ctrls_vcm;
+ 	struct v4l2_subdev sd;
+ 	struct v4l2_ctrl *focus;
+@@ -86,10 +102,11 @@ static int ak7375_i2c_write(struct ak7375_device *ak7375,
+ static int ak7375_set_ctrl(struct v4l2_ctrl *ctrl)
+ {
+ 	struct ak7375_device *dev_vcm = to_ak7375_vcm(ctrl);
++	const struct ak73xx_chipdef *cdef = dev_vcm->cdef;
+ 
+ 	if (ctrl->id == V4L2_CID_FOCUS_ABSOLUTE)
+-		return ak7375_i2c_write(dev_vcm, AK7375_REG_POSITION,
+-					ctrl->val << 4, 2);
++		return ak7375_i2c_write(dev_vcm, cdef->reg_position,
++					ctrl->val << cdef->shift_pos, 2);
+ 
+ 	return -EINVAL;
+ }
+@@ -128,11 +145,12 @@ static int ak7375_init_controls(struct ak7375_device *dev_vcm)
+ {
+ 	struct v4l2_ctrl_handler *hdl = &dev_vcm->ctrls_vcm;
+ 	const struct v4l2_ctrl_ops *ops = &ak7375_vcm_ctrl_ops;
++	const struct ak73xx_chipdef *cdef = dev_vcm->cdef;
+ 
+ 	v4l2_ctrl_handler_init(hdl, 1);
+ 
+ 	dev_vcm->focus = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_ABSOLUTE,
+-		0, AK7375_MAX_FOCUS_POS, AK7375_FOCUS_STEPS, 0);
++		0, cdef->focus_pos_max, cdef->focus_steps, 0);
+ 
+ 	if (hdl->error)
+ 		dev_err(dev_vcm->sd.dev, "%s fail error: 0x%x\n",
+@@ -153,6 +171,8 @@ static int ak7375_probe(struct i2c_client *client)
+ 	if (!ak7375_dev)
+ 		return -ENOMEM;
+ 
++	ak7375_dev->cdef = device_get_match_data(&client->dev);
 +
-   imod-interval-ns:
-     description: Interrupt moderation interval
-     default: 5000
+ 	for (i = 0; i < ARRAY_SIZE(ak7375_supply_names); i++)
+ 		ak7375_dev->supplies[i].supply = ak7375_supply_names[i];
+ 
+@@ -206,30 +226,31 @@ static void ak7375_remove(struct i2c_client *client)
+ 
+ /*
+  * This function sets the vcm position, so it consumes least current
+- * The lens position is gradually moved in units of AK7375_CTRL_STEPS,
++ * The lens position is gradually moved in units of ctrl_steps,
+  * to make the movements smoothly.
+  */
+ static int __maybe_unused ak7375_vcm_suspend(struct device *dev)
+ {
+ 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	struct ak7375_device *ak7375_dev = sd_to_ak7375_vcm(sd);
++	const struct ak73xx_chipdef *cdef = ak7375_dev->cdef;
+ 	int ret, val;
+ 
+ 	if (!ak7375_dev->active)
+ 		return 0;
+ 
+-	for (val = ak7375_dev->focus->val & ~(AK7375_CTRL_STEPS - 1);
+-	     val >= 0; val -= AK7375_CTRL_STEPS) {
+-		ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_POSITION,
+-				       val << 4, 2);
++	for (val = ak7375_dev->focus->val & ~(cdef->ctrl_steps - 1);
++	     val >= 0; val -= cdef->ctrl_steps) {
++		ret = ak7375_i2c_write(ak7375_dev, cdef->reg_position,
++				       val << cdef->shift_pos, 2);
+ 		if (ret)
+ 			dev_err_once(dev, "%s I2C failure: %d\n",
+ 				     __func__, ret);
+-		usleep_range(AK7375_CTRL_DELAY_US, AK7375_CTRL_DELAY_US + 10);
++		usleep_range(cdef->ctrl_delay_us, cdef->ctrl_delay_us + 10);
+ 	}
+ 
+-	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
+-			       AK7375_MODE_STANDBY, 1);
++	ret = ak7375_i2c_write(ak7375_dev, cdef->reg_cont,
++			       cdef->mode_standby, 1);
+ 	if (ret)
+ 		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
+ 
+@@ -246,13 +267,14 @@ static int __maybe_unused ak7375_vcm_suspend(struct device *dev)
+ /*
+  * This function sets the vcm position to the value set by the user
+  * through v4l2_ctrl_ops s_ctrl handler
+- * The lens position is gradually moved in units of AK7375_CTRL_STEPS,
++ * The lens position is gradually moved in units of ctrl_steps,
+  * to make the movements smoothly.
+  */
+ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+ {
+ 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	struct ak7375_device *ak7375_dev = sd_to_ak7375_vcm(sd);
++	const struct ak73xx_chipdef *cdef = ak7375_dev->cdef;
+ 	int ret, val;
+ 
+ 	if (ak7375_dev->active)
+@@ -264,24 +286,24 @@ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+ 		return ret;
+ 
+ 	/* Wait for vcm to become ready */
+-	usleep_range(AK7375_POWER_DELAY_US, AK7375_POWER_DELAY_US + 500);
++	usleep_range(cdef->power_delay_us, cdef->power_delay_us + 500);
+ 
+-	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
+-		AK7375_MODE_ACTIVE, 1);
++	ret = ak7375_i2c_write(ak7375_dev, cdef->reg_cont,
++			       cdef->mode_active, 1);
+ 	if (ret) {
+ 		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
+ 		return ret;
+ 	}
+ 
+-	for (val = ak7375_dev->focus->val % AK7375_CTRL_STEPS;
++	for (val = ak7375_dev->focus->val % cdef->ctrl_steps;
+ 	     val <= ak7375_dev->focus->val;
+-	     val += AK7375_CTRL_STEPS) {
+-		ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_POSITION,
+-				       val << 4, 2);
++	     val += cdef->ctrl_steps) {
++		ret = ak7375_i2c_write(ak7375_dev, cdef->reg_position,
++				       val << cdef->shift_pos, 2);
+ 		if (ret)
+ 			dev_err_ratelimited(dev, "%s I2C failure: %d\n",
+ 						__func__, ret);
+-		usleep_range(AK7375_CTRL_DELAY_US, AK7375_CTRL_DELAY_US + 10);
++		usleep_range(cdef->ctrl_delay_us, cdef->ctrl_delay_us + 10);
+ 	}
+ 
+ 	ak7375_dev->active = true;
+@@ -290,7 +312,7 @@ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+ }
+ 
+ static const struct of_device_id ak7375_of_table[] = {
+-	{ .compatible = "asahi-kasei,ak7375" },
++	{ .compatible = "asahi-kasei,ak7375", .data = &ak7375_cdef, },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, ak7375_of_table);
 -- 
-2.42.0.820.g83a721a137-goog
+2.41.0
+
+
 
 
