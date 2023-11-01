@@ -1,210 +1,123 @@
-Return-Path: <devicetree+bounces-13340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2592D7DDBE1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 05:22:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8CD7DDBEA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 05:36:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC0A7281984
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 04:22:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAF001C20D98
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 04:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD841399;
-	Wed,  1 Nov 2023 04:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C11F15B3;
+	Wed,  1 Nov 2023 04:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VsDiDbBh"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="SNivXMfD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35EDF1852
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 04:22:02 +0000 (UTC)
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBCDB7;
-	Tue, 31 Oct 2023 21:21:59 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-6be1bc5aa1cso6521529b3a.3;
-        Tue, 31 Oct 2023 21:21:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7DF1874
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 04:36:51 +0000 (UTC)
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F191101
+	for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 21:36:48 -0700 (PDT)
+Received: by mail-ua1-x933.google.com with SMTP id a1e0cc1a2514c-7b5f28da928so1965553241.0
+        for <devicetree@vger.kernel.org>; Tue, 31 Oct 2023 21:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698812519; x=1699417319; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pZje7TQ/ZEluQMkAlttorTMy20pqANNs00Qqi1mxzH4=;
-        b=VsDiDbBhoedvNfWpJ9FsnKT8DqpS+ni+TFuW5dk52S2iijrMNvrBHBUHDV/0Ze18vA
-         fcQlG9LezqvzrP/pXx1fi/SLaEoOrTSJEJtNHVFgLwztiElmc/Jrt4Ob46OfFU21c/rH
-         8kfEM4x2NEn/c0mMfTQTqAgZ8MC1vKwZTUGjLhI3Jg9HXbHcEW/zGQeZqwGsv+MN1h35
-         x48EhOHSHp3kVQ1keOpSfezyYBj/YsDgMwesi66A0yzw3GGj1CXK8AWFPwe8PJqUuDPl
-         dAdXZ6pshHDf+rgCBc1Tu5+nzE4z+Ik1xvbgsCQVqQPDY+JzHHKH1unfsdRd0hgHtGXi
-         +FDg==
+        d=google.com; s=20230601; t=1698813407; x=1699418207; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ID+S04pHkx9aSKdp+ucIhh2PVs3MifW7Ts+8UbZjHPQ=;
+        b=SNivXMfD1r2UTkiVgFup6bvLT4FDiCVNeHZzBncHYLwxQ+nUWWnKk67ysW0pKA5PDd
+         W+uQ9GAsFJ9KMJPRF9oukF/ymb9GbxjHwWzBuuzNG0p5T9ez7sOwlih7OR1BJsslSAT4
+         1uG9ZuZbKMQGgiB9W5kZFctdYgcXSprni/YKNy7w20lABGwEVWMkwzSFtdUkcMcuT26P
+         h1JQs5Ypr+gbDzmubh8ei4Y0xbbhd/UQgUTFcZaFAMGmglSS5GqCF20cZYBnz9mG/48G
+         9fDsQu/Y2BEE5/PApQ09YHyw8ay8tYiQ/J4R37e09mKGsYCq0NSSPRl+zG4DGoBUOnyU
+         QSNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698812519; x=1699417319;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pZje7TQ/ZEluQMkAlttorTMy20pqANNs00Qqi1mxzH4=;
-        b=KBbhv2FqTk5aiRsZ9RHKWvxyeCSlu7DAG4CVtCebhETcWi34V41ipsrwjRiLMX1j0K
-         dJqpl38HU6MfZtdxSKfpfws9jYhMYZJs3CHAuTgE4MGXsZN4xiIiulAuiwjOu4LR7WSg
-         31Cl6kuCjmQedSgFL2S87PZd8THtW/07x4ZTQY574nlHWhIV8JPpNg/dpaXK3XzKBO7f
-         iROSEoMjXSN6NI/BUO4XKWP6pmhTdVCBN1sU+npnSb6+gIGSbE1XaHAdlYquBKCB4Ff6
-         sfiY7gw4tD/uhIPMbJSxsuO485zwo18J9lo1OL/HXD3rogEaa8oFRJ9pNqO1LqwLUa/0
-         WolA==
-X-Gm-Message-State: AOJu0YwdhtdRbIGlgXgwKnBsid+pNdngAFw/D1iheO8qSQqzDBXl6KKv
-	WvoMKwHDFGl1ejATR58t6T8=
-X-Google-Smtp-Source: AGHT+IFycs4ynpzgQCPJVIe0gKegH/PB1KIR2pxRM17SEbyyGsItILd2fM9wQxVYG4+KE+aVya45YQ==
-X-Received: by 2002:a05:6a20:1587:b0:15d:b243:6131 with SMTP id h7-20020a056a20158700b0015db2436131mr18156809pzj.44.1698812518745;
-        Tue, 31 Oct 2023 21:21:58 -0700 (PDT)
-Received: from ?IPV6:2401:4900:6274:7b8d:58b:47c1:d32d:b04a? ([2401:4900:6274:7b8d:58b:47c1:d32d:b04a])
-        by smtp.gmail.com with ESMTPSA id m11-20020a1709026bcb00b001c5eb2c4d8csm354261plt.160.2023.10.31.21.21.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 Oct 2023 21:21:58 -0700 (PDT)
-Message-ID: <152d15c4-10bb-45fe-9b9c-b323535a921f@gmail.com>
-Date: Wed, 1 Nov 2023 09:50:36 +0530
+        d=1e100.net; s=20230601; t=1698813407; x=1699418207;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ID+S04pHkx9aSKdp+ucIhh2PVs3MifW7Ts+8UbZjHPQ=;
+        b=GhSyCy0/sdDZkZPpWUNg6X3jPcS2krVF2XjNrmslJjSqate1SgIq6gmKzHLrguXZTP
+         aw+5t8OThZNS2fQJH+Cj1VyLH0jD5WcV/UWAkmxefLJjvR7HD7/3wwxEX944l1SyLET1
+         CoOwzBJVn8aXcpQK3WdCmzOvCEIOnIIJKXWeY/R5nrA+/b469B5LcRBt1mYAGVcNFNV2
+         8sDnd0/xmP2Lfe2v7IWmK/F3kKFQxJVxW02g55Vi0QdtOzHnZthkQuxI7lntCBJaxTqr
+         rYTyEBnCMtAhr5M4qTGv/lbcYFWXYJvULepGubtS5C6XH6zye+6iCKdcNEXUIzdix8sW
+         KE9Q==
+X-Gm-Message-State: AOJu0YwnJ4LznM37/A2kGtDbiKOe0PmgHyxCuJu/SOAEWqRMi8bVMxc5
+	8gpfMS5GeVXzJFrNDMkm9hTsH037CMIJjzWL+68mdg==
+X-Google-Smtp-Source: AGHT+IGGPNy92jDHvzo6JCYso3G1dtSpwuYY7OA/tZfjM1GsDrY498EUJvuQNbMJaRXlcFCh5cGPYqjJsOt5s/jDg6k=
+X-Received: by 2002:a67:e0d8:0:b0:45b:ede:fbcf with SMTP id
+ m24-20020a67e0d8000000b0045b0edefbcfmr9395038vsl.8.1698813407287; Tue, 31 Oct
+ 2023 21:36:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] input: joystick: driver for Adafruit Seesaw
- Gamepad
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas@t-8ch.de>
-Cc: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Jeff LaBundy <jeff@labundy.com>, Shuah Khan <skhan@linuxfoundation.org>,
- linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org
-References: <20231027051819.81333-1-anshulusr@gmail.com>
- <20231027051819.81333-2-anshulusr@gmail.com>
- <d1dd2142-546f-42b7-8966-ab75fd4f8817@t-8ch.de>
- <efea5ae2-7e41-4b78-a283-1f907be560b0@gmail.com>
- <9c9f6171-f879-46f5-81d2-6764257a49eb@t-8ch.de>
-From: Anshul Dalal <anshulusr@gmail.com>
-In-Reply-To: <9c9f6171-f879-46f5-81d2-6764257a49eb@t-8ch.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20231031044021.1162403-1-mnkumar@google.com> <20231031044021.1162403-3-mnkumar@google.com>
+ <CA+Hc5+4Gh6gDuD_NORmJR0zHx3qK6oTagx=wQ_EWf=_NJ0qy6A@mail.gmail.com>
+In-Reply-To: <CA+Hc5+4Gh6gDuD_NORmJR0zHx3qK6oTagx=wQ_EWf=_NJ0qy6A@mail.gmail.com>
+From: Naveen Kumar M <mnkumar@google.com>
+Date: Wed, 1 Nov 2023 10:06:36 +0530
+Message-ID: <CA+Hc5+72DurrRMNtMyzg9EDwJjDJx4iR1isU=L+6DG06Gx4iMQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: usb: add no-64-bit-support property
+To: Mathias Nyman <mathias.nyman@intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, royluo@google.com, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/31/23 07:53, Thomas Weißschuh wrote:
-> Oct 31, 2023 03:10:50 Anshul Dalal <anshulusr@gmail.com>:
-> 
->> Hello Thomas,
+Apologies for sending without plain text mode in the previous mail.
+Adding the reviewers/maintainers I missed in the initial mail to this
+patch
+
+On Wed, Nov 1, 2023 at 9:50=E2=80=AFAM Naveen Kumar M <mnkumar@google.com> =
+wrote:
+>
+> Adding the reviewers/maintainers I missed in the previous mail to this pa=
+tch
+>
+> On Tue, Oct 31, 2023 at 10:11=E2=80=AFAM Naveen Kumar <mnkumar@google.com=
+> wrote:
 >>
->> Thanks for the review! The requested changes will be addressed in the
->> next patch version though I had a few comments below:
+>> From: Naveen Kumar M <mnkumar@google.com>
 >>
->> On 10/27/23 11:44, Thomas Weißschuh wrote:
->>> Hi Anshul,
->>>
->>> thanks for the reworks!
->>>
->>> Some more comments inline.
->>>
->>> On 2023-10-27 10:48:11+0530, Anshul Dalal wrote:
-> 
-> [..]
-> 
->>>> +struct seesaw_button_description {
->>>> +   unsigned int code;
->>>> +   unsigned int bit;
->>>> +};
->>>> +
->>>> +static const struct seesaw_button_description seesaw_buttons[] = {
->>>> +   {
->>>> +       .code = BTN_EAST,
->>>> +       .bit = SEESAW_BUTTON_A,
->>>> +   },
->>>> +   {
->>>> +       .code = BTN_SOUTH,
->>>> +       .bit = SEESAW_BUTTON_B,
->>>> +   },
->>>> +   {
->>>> +       .code = BTN_NORTH,
->>>> +       .bit = SEESAW_BUTTON_X,
->>>> +   },
->>>> +   {
->>>> +       .code = BTN_WEST,
->>>> +       .bit = SEESAW_BUTTON_Y,
->>>> +   },
->>>> +   {
->>>> +       .code = BTN_START,
->>>> +       .bit = SEESAW_BUTTON_START,
->>>> +   },
->>>> +   {
->>>> +       .code = BTN_SELECT,
->>>> +       .bit = SEESAW_BUTTON_SELECT,
->>>> +   },
->>>> +};
->>>
->>> This looks very much like a sparse keymap which can be implemented with
->>> the helpers from <linux/input/sparse-keymap.h>.
->>>
+>> Add a new DT option to specify whether a host controller is able to
+>> support 64-bit DMA memory pointers
 >>
->> When going through the API provided by sparse-keymap, I could only see
->> the use for sparse_keymap_report_entry here. Which leads to the
->> following refactored code:
+>> Signed-off-by: Naveen Kumar M <mnkumar@google.com>
+>> ---
+>>  Documentation/devicetree/bindings/usb/usb-xhci.yaml | 4 ++++
+>>  1 file changed, 4 insertions(+)
 >>
->> static const struct key_entry seesaw_buttons_new[] = {
->>     {KE_KEY, SEESAW_BUTTON_A, {BTN_SOUTH}},
->>     {KE_KEY, SEESAW_BUTTON_B, {BTN_EAST}},
-> 
-> No braces I think.
-> 
-
-Since the last field in key_entry is a union, the braces seem to be
-required.
-
->>     ...
->> };
+>> diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.yaml b/Docum=
+entation/devicetree/bindings/usb/usb-xhci.yaml
+>> index 180a261c3e8f..20dc134004f3 100644
+>> --- a/Documentation/devicetree/bindings/usb/usb-xhci.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
+>> @@ -25,6 +25,10 @@ properties:
+>>      description: Set if the controller has broken port disable mechanis=
+m
+>>      type: boolean
 >>
->> for (i = 0; i < ARRAY_SIZE(seesaw_buttons_new); i++) {
->>     sparse_keymap_report_entry(input, &seesaw_buttons_new[i],
->>         data.button_state & BIT(seesaw_buttons_new[i].code),
->>         false);
->> }
+>> +  quirk-no-64-bit-support:
+>> +    description: Set if the xHC doesn't support 64-bit DMA memory point=
+ers
+>> +    type: boolean
+>> +
+>>    imod-interval-ns:
+>>      description: Interrupt moderation interval
+>>      default: 5000
+>> --
+>> 2.42.0.820.g83a721a137-goog
 >>
->> I don't think this significantly improves the code unless you had some
->> other way to use the API in mind.
-> 
-> I thought about sparse_keymap_setup() and sparse_keymap_report_event().
-> 
-> It does not significantly change the code but would be a standard API.
-> 
-
-Thanks for pointing me in the right direction, do you think the
-following implementation of the API is acceptable for the driver. Since
-I couldn't find a driver for any similar device using the API in this
-manner.
-
-inside seesaw_probe():
-
-err = sparse_keymap_setup(seesaw->input_dev, seesaw_buttons_new, NULL);
-if (err) {
-	dev_err(&client->dev,
-		"failed to set up input device keymap: %d\n", err);
-	return err;
-}
-
-inside seesaw_poll():
-
-for (i = 0; i < ARRAY_SIZE(seesaw_buttons_new); i++) {
-	if (!sparse_keymap_report_event(
-		input, seesaw_buttons_new[i].code,
-		data.button_state & BIT(seesaw_buttons_new[i].code),
-		false)) {
-		dev_err_ratelimited(
-			&input->dev,
-			"failed to report event for keycode: %d",
-			seesaw_buttons_new[i].keycode);
-		return;
-	}
-}
-
-> Thomas
-
-Best regards,
-Anshul
 
