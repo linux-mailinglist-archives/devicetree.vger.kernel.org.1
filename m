@@ -1,70 +1,71 @@
-Return-Path: <devicetree+bounces-13397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F207DDF3B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9637DDF3D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 058C91C20D44
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 10:17:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 962641C20BA1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 10:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A2F101EB;
-	Wed,  1 Nov 2023 10:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093E3D272;
+	Wed,  1 Nov 2023 10:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="aVNK09Id"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="iiubIDLj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BFCE101DB
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 10:17:12 +0000 (UTC)
-Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com [IPv6:2607:f8b0:4864:20::1149])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6032011C
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 03:17:10 -0700 (PDT)
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-5a7b9e83b70so5918717b3.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 03:17:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F0110781
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 10:17:20 +0000 (UTC)
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2982810D
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 03:17:19 -0700 (PDT)
+Received: by mail-yb1-xb49.google.com with SMTP id 3f1490d57ef6-da1aa98ec19so5718606276.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 03:17:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1698833829; x=1699438629; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GCfjHREs5pEMf72upJaooTRYe6HV9ikyCsileBJWqEU=;
-        b=aVNK09IdJxvTQCHQ+fsccUmEoyhcOpYU/N4CSeLUFEfOTfeZ2lcz7taXsvymPHQ5IF
-         QB7aDFdgKu6c1HiJ1CaCUhKBggV+HrS31IkuJEOMtkbr0Pwnn1GAGNd3t9ZYTNNLBbxG
-         1Qccdxx0McvW8iRZ/iEft18WIG8Cw1Kdj2TyT65GhsM3rxHpivQ6VKljM+TnrSkKAi9P
-         c32UR3gnSA7+/lDEf26VbLLpRvS8VKqnBZh9Y15qGTFE2Fa67/mgIYE9tHgiCA8Pmha/
-         zFzf6vyJ+ez2r23MadZD/lJJzwpy4HbIirVAjxe/7Q4PVayH1weyWwaO5Ff8ochGuYzx
-         0Kkg==
+        d=google.com; s=20230601; t=1698833838; x=1699438638; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eYwnCg3MzOCxaL6syOpApDs7eXE4N92NMNfKk1723ok=;
+        b=iiubIDLj9+fiCVO4MRpbpNiWATQLYfZHiBCO35SoWgZagmwID+7ufEeHiRa4+HlAkN
+         sP0sY+7jA9UEd9dB/nWZLLxUnc/XHy3xiXnsWWd7Wu6V3eTm2SjcRw3lcjf24d1lqaLP
+         2Due5leqljuEQc1plzedg+EhOxIMvpeAER0lnd+zngCkG4t3N4iWIsa05+oqyszpXG66
+         v3K/FismcNKh1F/jqiWKQ/p+mHqd2f56cBTz4Dv8h85sufn5JUPiGjMyCDw/glZIBUWI
+         Hsj3eEbSAy/NV2qcZ2KwyZjkdqswRkm6Cdqfiep/afgFQKz9guD+Ve4azVqRkl0TeP/t
+         PdGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698833829; x=1699438629;
-        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GCfjHREs5pEMf72upJaooTRYe6HV9ikyCsileBJWqEU=;
-        b=SVS5s2RJMzQ5D4zaZIkKVEzgEuwGFVHa3hUwgMMHmwxKd0OL9xeQT6aCTZQnOSXOxg
-         BPL82XhFFgQT++YMOEPiuL/B3oTwoMrq+8sJCbyHNzx/GICWXN6t0NvzP3pf4meDUUCC
-         CE3raCGuAbWnEDi5XAk8kTHWirete1jffLP4Gxd2t4yn960iUbLoHsQLflw9l4p2gKOW
-         hpVTLxk714rEBSc64mwgl4y+1HSuxDPSyBpGU+/n+tXuauzGliJyZx1Ujfc6/LNfHhZr
-         tS0BBe7pwcIsjIyOHEX26FfpAqjDVxGSCz2K9ReaH8Fb2/RIFOFJ59jPnxRliYfbhntR
-         iJYg==
-X-Gm-Message-State: AOJu0Yytt7juWjMWKUuNkJe58ZvKHdRNu3/eCJRpYdnW1EiFSf0I/nN5
-	T468h6k6lnL273Q41y5Rn6A62D9uzDWD
-X-Google-Smtp-Source: AGHT+IEjYMUpKpvpCvh+KfUDpQbFLjsINNUjpLZWsNpFXOjr+w4UtkwMZ6r3nPZ3BkLJJ1Y2MtAXmZNgKuvq
+        d=1e100.net; s=20230601; t=1698833838; x=1699438638;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eYwnCg3MzOCxaL6syOpApDs7eXE4N92NMNfKk1723ok=;
+        b=Zfes2aD4kGIZER9hdiwXuns6VV2x1Ft7hsljmmvqfIpu3mBOvzkDB/GfpRrEIsYsxO
+         Y3uphxKQRAW+GzTbisasEOvG5NU8bS9ioBAwo/k9jB2KreHzxeLm7FlIrOXNiMka19vb
+         gce5hZveeky0nJdB4eIc08DSZrXJQSeUV8ziGpuz/Gt8k84KLGfaaIeabvaMsY4lEMQf
+         hUKqi8hX9sqqehQJy2k6UyUGofhcEzzY90zvKnN10eYdkjJm9G2K0kuIs19wQYYWN6Ww
+         bh/JJ03K/ogZOe2G+w/Eo4KqPJTRekc69hTRihp7uuOdkhzi+c2iDsOp83uDrOWZDpXb
+         JzqA==
+X-Gm-Message-State: AOJu0YzBNmXvE8Ok6/NqZq48fv3clP8WtxCsVMO9utRFFgXSd1MRAVC2
+	1LqCxIQitcgpSgUqL4ygW1GPdCciVBdQ
+X-Google-Smtp-Source: AGHT+IHinYRwD8fj0nrrNZJpNGMVcxTbcgPusqm9nKng4RFXsyc4EKTfTVPgJ98yc1drhyuZAcOYzZfbiOsN
 X-Received: from mnkumar0.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:313a])
- (user=mnkumar job=sendgmr) by 2002:a05:690c:ecb:b0:5a7:b95c:a58f with SMTP id
- cs11-20020a05690c0ecb00b005a7b95ca58fmr63716ywb.1.1698833829577; Wed, 01 Nov
- 2023 03:17:09 -0700 (PDT)
-Date: Wed,  1 Nov 2023 10:16:23 +0000
+ (user=mnkumar job=sendgmr) by 2002:a25:bc52:0:b0:d9a:3d02:b55 with SMTP id
+ d18-20020a25bc52000000b00d9a3d020b55mr296671ybk.0.1698833838374; Wed, 01 Nov
+ 2023 03:17:18 -0700 (PDT)
+Date: Wed,  1 Nov 2023 10:16:24 +0000
+In-Reply-To: <20231101101625.4151442-1-mnkumar@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
+References: <20231101101625.4151442-1-mnkumar@google.com>
 X-Mailer: git-send-email 2.42.0.820.g83a721a137-goog
-Message-ID: <20231101101625.4151442-1-mnkumar@google.com>
-Subject: [PATCH RESEND 0/2] Add a quirk in xhci-plat for parent nodes to
- specify no 64 bit support
+Message-ID: <20231101101625.4151442-2-mnkumar@google.com>
+Subject: [PATCH RESEND 1/2] usb: host: xhci-plat: Add quirk-no-64-bit-support
 From: Naveen Kumar <mnkumar@google.com>
 To: Mathias Nyman <mathias.nyman@intel.com>, 
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -75,23 +76,29 @@ Content-Type: text/plain; charset="UTF-8"
 
 From: Naveen Kumar M <mnkumar@google.com>
 
-This patch aims to expose the XHCI_NO_64BIT_SUPPORT flag to the parent
-nodes of xhci for clients to specify if they can not support 64 bit DMA
-memory pointers. This issue was observed with a Google SoC that uses
-a DWC3 controller where the virtual address's higher order bits are
-truncated.
+This patch exposes the existing quirk XHCI_NO_64BIT_SUPPORT so that dwc3
+clients can also use this flag. Despite HCCPARAMS1 being set to 1 some
+clients may not support 64 bit addressing.
 
-Resending due to missing out some reviewers/maintainers in the original
-patch.
+Signed-off-by: Naveen Kumar M <mnkumar@google.com>
+---
+ drivers/usb/host/xhci-plat.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Naveen Kumar M (2):
-  usb: host: xhci-plat: Add quirk-no-64-bit-support
-  dt-bindings: usb: add no-64-bit-support property
-
- Documentation/devicetree/bindings/usb/usb-xhci.yaml | 4 ++++
- drivers/usb/host/xhci-plat.c                        | 3 +++
- 2 files changed, 7 insertions(+)
-
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index b93161374293..d5f37decb7da 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -249,6 +249,9 @@ int xhci_plat_probe(struct platform_device *pdev, struct device *sysdev, const s
+ 		if (device_property_read_bool(tmpdev, "quirk-broken-port-ped"))
+ 			xhci->quirks |= XHCI_BROKEN_PORT_PED;
+ 
++		if (device_property_read_bool(tmpdev, "quirk-no-64-bit-support"))
++			xhci->quirks |= XHCI_NO_64BIT_SUPPORT;
++
+ 		device_property_read_u32(tmpdev, "imod-interval-ns",
+ 					 &xhci->imod_interval);
+ 	}
 -- 
 2.42.0.820.g83a721a137-goog
 
