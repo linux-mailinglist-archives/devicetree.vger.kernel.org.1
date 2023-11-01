@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 345157DDD10
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 917A67DDD27
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:25:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 560A7B20D30
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:20:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10E01B210DD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0DE5675;
-	Wed,  1 Nov 2023 07:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6F2613A;
+	Wed,  1 Nov 2023 07:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N9mwQVKe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jqwH5+j5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358BC5385
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:20:15 +0000 (UTC)
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2632EE4
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 00:20:06 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-507973f3b65so9863521e87.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 00:20:06 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583695687
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 07:25:45 +0000 (UTC)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9BFF1
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 00:25:39 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99de884ad25so990352166b.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 00:25:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698823204; x=1699428004; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698823538; x=1699428338; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=t0L47L+wPJskmyf5FGy9RD77wnm5XsD8l5nmMpi4/I4=;
-        b=N9mwQVKeJADMPKuIiTE03cPm+qtIu+AsaI7bHebrI7aYqotzx6aGmcw+fRIEA3am4R
-         oCoENZnITJyKd+1HBCsPNg/C141eFN91UTcg9lrXlZjYvTN1FRKhhPCaaYO9FTn1lJNd
-         nMP9nmpLaRUiQgAyFWOKk5bP15UJYPgCM31n4OcOd7zMKeeO/7P2TlhI04f8A/v1RQ3u
-         VZ1UrenBH3qQEmmIL4DDc8tDEOS8YFtHM4uJVkJMGS3j5Rvehjnadpt2RjyHKd29aNRE
-         31Su+ZE3+ER8O5j7ICh0W+TE5nZocceHKmJGgmCf4/wjsqPJyBfH5+eccUpQY1J3Ogii
-         Tyjw==
+        bh=ei9ifcyiwD6rAq+W5zyosUCjwo/nBbQu5Zqme2epnNY=;
+        b=jqwH5+j5/arwEacKUMLKv/SV3lm6qEFh7BxLSY/QeY8HQ74i+Msxbx7cDIKLN+RyTB
+         5jFtANGOn3w/2yxIYNuf6cHglnRVIcrzg4ZyfRR7GNWp6rQ4U+oeBhSoXPtZwi6PFHFg
+         4B+Su8v8ZBy3A/tT5GKYjqw8MC19PYR++Ogm6Hxw80uuKzsH+0jpsUP5XDAclVBUrdvu
+         zff/pBTkM9/SGhNqWqRyajGP298zprsTLo75b5K+xAa/+PElsF1qQUzdBs22AD1kYTSA
+         1yz4XCUq70WHN8dDwkwqUziq9QK7zPIW+s/Ec0iORPTNXC2HlrnNnukBmN9283vTx+A4
+         eNZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698823204; x=1699428004;
+        d=1e100.net; s=20230601; t=1698823538; x=1699428338;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t0L47L+wPJskmyf5FGy9RD77wnm5XsD8l5nmMpi4/I4=;
-        b=mNtOeXAUtQC9Cc9SMboTyUlDUfiadzQKH/9mQFj+TKRYgA0fS+cKFliZklgoodC6Du
-         qPLbYXllvzJyphTeHrJDGthoEgKhdz6rAk0LZ4xBgaZ0hQE3PQHBG/XvZP8LM8J4jiNC
-         YNKD3u07Bg++NcXxNtkCAQX4jtzUR682qPOrLb4Nadosds86zo19EvKV/YjdUD7/TAeN
-         IPNH5YzQC72DdCBC1k3nmGQlI+HFGRkap5ggZJg6MhN/mxrNCQZ0XuUTn+xp80z44jgD
-         mjiFBKa+aNh2LxdDjA8IJsfMaG3JeM4pv0sqFrnU8ZY+o94ly1lRWXOVJ+1KFBOm1vVM
-         d3Hg==
-X-Gm-Message-State: AOJu0YzY011WZlI6KQuqkmKYEfebt8LrPH4SzmIu0n5qZUTXRBdFsHIc
-	jjOYX59yPQi6lin0H6M4nMQmBDkZ6NE+9oh9E+Y=
-X-Google-Smtp-Source: AGHT+IEEoAZmBMB7S7yWt8eJbiw44spVr1NZbvCnzXmSX2kJCZN/0qJPdtLMfv54TRr2ah2ANomRBA==
-X-Received: by 2002:a05:6512:2248:b0:4fe:7e7f:1328 with SMTP id i8-20020a056512224800b004fe7e7f1328mr14290307lfu.16.1698823204250;
-        Wed, 01 Nov 2023 00:20:04 -0700 (PDT)
+        bh=ei9ifcyiwD6rAq+W5zyosUCjwo/nBbQu5Zqme2epnNY=;
+        b=CNDCoe4JN37xdWm/LX/zRC5UNHMRdGryE/z+EJvBLpgLmztc1NtGqh/VcHMcdbRZtj
+         L1d+xfhTVBEuZ07kJug1vcSTqLtYROudMRfP4w9N3bmLVNo2WT+JmpWJMUqlWUZyvGPm
+         K8OAnym0ZAPhc7IovaSi8vhT9HIeHEJzkxRuIsM6jYI/SUEamAsN4A/wSoU44jltscGx
+         dOqsPvtSQ2gK0iN8r6fOVIsiTBWctjmyR0etR7/7DjxKaS9lx4EEVi9wU+FnAJA/GRiT
+         OW4Vfdm9CeqeNDmbLJJ6TJm5MntIxyLW2ZVXFMpDLPTgYYU8i0/I304j6V54ivJOK4hd
+         v+ug==
+X-Gm-Message-State: AOJu0YxP/Dl2JgKKjf2+w6VxnCTfNkK6esbcxHx3T7blWjPTGp1TMhjN
+	34tSZ1OYqF4EmSv7xjOA4o9IkQ==
+X-Google-Smtp-Source: AGHT+IGFibLNlsxfXXoJCK7lXzZag7dIPHV6/P6OTCQDcGlP+YXDsdhX59H7A/Xpjj7tmNImWbp3NA==
+X-Received: by 2002:a17:906:fd89:b0:9cd:26e9:a8ae with SMTP id xa9-20020a170906fd8900b009cd26e9a8aemr1356887ejb.42.1698823537829;
+        Wed, 01 Nov 2023 00:25:37 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ay19-20020a056402203300b00543820cd70asm694516edb.93.2023.11.01.00.20.02
+        by smtp.gmail.com with ESMTPSA id dx4-20020a170906a84400b00993664a9987sm2060059ejb.103.2023.11.01.00.25.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 00:20:03 -0700 (PDT)
-Message-ID: <9d5167b5-bdb2-45c5-926e-c85a1dfcff48@linaro.org>
-Date: Wed, 1 Nov 2023 08:20:01 +0100
+        Wed, 01 Nov 2023 00:25:37 -0700 (PDT)
+Message-ID: <83129bf1-da40-47b4-b75f-993fc5fd2edf@linaro.org>
+Date: Wed, 1 Nov 2023 08:25:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +67,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: watchdog: qca,ar7130-wdt: convert txt to
- yaml
+Subject: Re: [PATCH v3 3/4] dt-bindings: gpu: v3d: Add BCM2712's compatible
 Content-Language: en-US
-To: Nik Bune <n2h9z4@gmail.com>, wim@linux-watchdog.org, linux@roeck-us.net,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- skhan@linuxfoundation.org, juhosg@openwrt.org
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231031201602.28827-1-n2h9z4@gmail.com>
+To: =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Iago Toral Quiroga <itoral@igalia.com>, dri-devel@lists.freedesktop.org
+Cc: Emma Anholt <emma@anholt.net>, Melissa Wen <mwen@igalia.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Nicolas Saenz Julienne
+ <nsaenz@kernel.org>, Stefan Wahren <wahrenst@gmx.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel-dev@igalia.com
+References: <20231031073859.25298-1-itoral@igalia.com>
+ <20231031073859.25298-4-itoral@igalia.com>
+ <d3ed80e5-b3a1-e9ba-48eb-7c6fc58ef3f9@igalia.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,19 +128,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231031201602.28827-1-n2h9z4@gmail.com>
+In-Reply-To: <d3ed80e5-b3a1-e9ba-48eb-7c6fc58ef3f9@igalia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 31/10/2023 21:16, Nik Bune wrote:
-> Convert txt file to yaml.
-> Add mainteiners from git blame. 
-
-Keep it in one line and fix the typo: maintainers.
+On 31/10/2023 18:53, Maíra Canal wrote:
+> Hi,
 > 
+> I would like to ask the device tree maintainers if you are willing
+> to take this through your tree or should I push the entire series
+> through drm-misc/drm-misc-next.
 
-You lost one compatible, from the example. This should be mentioned in
-commit msg.
+You got the ack which answers this, doesn't it?
 
 Best regards,
 Krzysztof
