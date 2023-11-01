@@ -1,91 +1,144 @@
-Return-Path: <devicetree+bounces-13413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5674C7DE08C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 12:53:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518937DE0B7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD78E2812D6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 11:53:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01A1C1F215AB
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 12:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9665111720;
-	Wed,  1 Nov 2023 11:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F9911CB2;
+	Wed,  1 Nov 2023 12:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V7gYke/C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IsuqSlVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7760E111B9
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 11:53:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02D7AC433CB;
-	Wed,  1 Nov 2023 11:52:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698839579;
-	bh=kT+HA+zDzpFBdPHZSCST/qs7bSjbi8b7+JQSnoifHqc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V7gYke/CXiKI6sE+NGcUo/Cwih/+kR9UBpPGsQRyJhEHFrzHVo/pEga4OQS2k7Z9W
-	 gb6E/qb91m4td9dXkgvTLNvBpW1F5s6/8rBQOv1xvhkkVigbCFKkYXqODI4kYLCZ+6
-	 UY7DQS9VWZNIXh4xddKkC1SPAnvYitevBwIzdf8/1NvHX6/hR4O3rVOV3viWUVl+3b
-	 i9G5PD5idJJCpWRgmgNcke14CStmZJnuUO4uzPB2u9URSo/aSeTknCQXWl3a3lhkqW
-	 4j+ZmWN/fQfpCyI6h8cFTphp+vlopUGOaWVowCKMjy914W+Owp5H3ZGtveaHnX1l2C
-	 +c3neLnzUa79w==
-Date: Wed, 1 Nov 2023 11:52:55 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0DB3D74
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 12:22:19 +0000 (UTC)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22A0DC;
+	Wed,  1 Nov 2023 05:22:14 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-32f7c80ab33so2631979f8f.0;
+        Wed, 01 Nov 2023 05:22:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698841333; x=1699446133; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vaiRdQ1c+DDVs4Z20fjdvqfJxBU+ISFg2fzCunWfAwA=;
+        b=IsuqSlVnx6vaCfzFH+bBpTjezoe9Zl3nVe5FTa8vYfC3fN+I7Uu5/YAZB6dvzEr9Ba
+         sApdB5XDre8wPF5n2TdGE1m2D81o5lU3oRrYwRsZKlGFETWmngjTdjMctuBKZAEtoLOL
+         ZbHTI1QAazU6kx8bhVO2iLREPemifiAn9Wp1dBfO6v3WIxQ8kOVXcRf9d07w+VNERKYb
+         bQITypqFa+j5yeF8ooauZdSJfpTdH2eWrbtC01BgodtE84ew/eTC1LZJAGCE/LfRuQ+N
+         9xXnmkk0dSvJsv8l36CzLsIFzntCRbrmBhq/fpJRrLAAv+j1U15gWhW4J1VONp3SVs4m
+         NxfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698841333; x=1699446133;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vaiRdQ1c+DDVs4Z20fjdvqfJxBU+ISFg2fzCunWfAwA=;
+        b=usMTF9HOI1U4heH+y9cElVIsLQ5fswXkG6SHRFy7nq/NYlfHmXb/Qz1RVUpBN8ZVZ4
+         4DfNZ7bFSirKAEBJagot+xcoC4Db1Sq+YrTP4EWjVuJrKtdTzoqaxvjFH/FRNIuPpsI2
+         4nILCextgdhk9fNBBy2D2IpGeIMSZFjWUjScocftl94OkawP02+lgkopRQQEvWiGXhRA
+         FNSVbCQYAH5sw3tBFDkkLSnJEdfa1mMXNZYT5uNI0ZGvKctle+RxtMqyKQFl83K3rhNQ
+         V6ZT9rpKel+9gLbuktUxxKXDRZcC/AHIM9Rn6zWkfKtCvGwNjz+wxZBRda9R02/T3P9c
+         bK8A==
+X-Gm-Message-State: AOJu0YzjqztOxaMt2RONOQ9rMeJ1D7ctcyKHZGUf3aCcWI3e99mh9YlI
+	vA5MrOt3PhhA4ErQ7WykRWs=
+X-Google-Smtp-Source: AGHT+IFL0xaJ2LZC7bKqwYTxc3xJnQeVK+pV2ydwMPpZAhEcYAkwmqQreLHu3/bVl5tfowoyUVJmCA==
+X-Received: by 2002:adf:d1ca:0:b0:32f:7e24:418 with SMTP id b10-20020adfd1ca000000b0032f7e240418mr9825698wrd.10.1698841332944;
+        Wed, 01 Nov 2023 05:22:12 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-59-109.cust.vodafonedsl.it. [188.217.59.109])
+        by smtp.gmail.com with ESMTPSA id i17-20020a5d6311000000b0031ad5fb5a0fsm4024582wru.58.2023.11.01.05.22.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Nov 2023 05:22:12 -0700 (PDT)
+From: Tommaso Merciai <tomm.merciai@gmail.com>
+To: 
+Cc: laurent.pinchart@ideasonboard.com,
+	martin.hecht@avnet.eu,
+	michael.roeder@avnet.eu,
+	linuxfancy@googlegroups.com,
+	mhecht73@gmail.com,
+	sakari.ailus@linux.intel.com,
+	christophe.jaillet@wanadoo.fr,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Subject: Re: [PATCH v2 0/2] soc: sifive: ccache: Add StarFive JH7100 support
-Message-ID: <20231101-random-overlord-1315a03183fc@spud>
-References: <20231031141444.53426-1-emil.renner.berthing@canonical.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Nicholas Roth <nicholas@rothemail.net>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v12 1/3] dt-bindings: vendor-prefixes: Add prefix alliedvision
+Date: Wed,  1 Nov 2023 13:21:55 +0100
+Message-Id: <20231101122200.1203499-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231101122200.1203499-1-tomm.merciai@gmail.com>
+References: <20231101122200.1203499-1-tomm.merciai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XOUMIggm0qSyhk5k"
-Content-Disposition: inline
-In-Reply-To: <20231031141444.53426-1-emil.renner.berthing@canonical.com>
+Content-Transfer-Encoding: 8bit
 
+Add a vendor prefix entry for Allied Vision Technologies GmbH
+(https://www.alliedvision.com)
 
---XOUMIggm0qSyhk5k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+ - Collected tags from LPinchart, CDooley, KKozlowski
 
-On Tue, Oct 31, 2023 at 03:14:42PM +0100, Emil Renner Berthing wrote:
-> This series adds support for the StarFive JH7100 SoC to the SiFive cache
-> controller driver. The JH7100 was a "development version" of the JH7110
-> used on the BeagleV Starlight and VisionFive V1 boards. It has
-> non-coherent peripheral DMAs but was designed before the standard RISC-V
-> Zicbom extension, so it neeeds support in this driver for non-standard
-> cache management.
->=20
-> Since v1:
-> - Fix email threading, hopefully.
-> - Drop sifive,ccache-ops device tree property and just match on the
->   compatible. (Conor)
+Changes since v7:
+ - Fix company legal entity from Inc. to GmbH
 
-I'll grab these after the mw, presuming nothing comes up in the interim.
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
---XOUMIggm0qSyhk5k
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..4763fbfcd936 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -77,6 +77,8 @@ patternProperties:
+     description: ALFA Network Inc.
+   "^allegro,.*":
+     description: Allegro DVT
++  "^alliedvision,.*":
++    description: Allied Vision Technologies GmbH
+   "^allo,.*":
+     description: Allo.com
+   "^allwinner,.*":
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUI8FwAKCRB4tDGHoIJi
-0rPZAP923JPVEAE08sFKAd03mK5oK6G8QtIf3DWmwCgjl6rJgQD/beuiko2z//i2
-B35OMBkkNMjeAunNJpSTmY/KXCQbxA4=
-=l5J+
------END PGP SIGNATURE-----
-
---XOUMIggm0qSyhk5k--
 
