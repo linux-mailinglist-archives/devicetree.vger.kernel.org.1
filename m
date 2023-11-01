@@ -1,451 +1,200 @@
-Return-Path: <devicetree+bounces-13380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B55247DDDCD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 09:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C68797DDDDD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 09:45:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0C9A1C20A34
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:40:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 039811C20BCB
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 08:45:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC2D291E;
-	Wed,  1 Nov 2023 08:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC70568E;
+	Wed,  1 Nov 2023 08:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QuHNHq2K"
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="O/NmY7tT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27CEA1C28
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 08:40:13 +0000 (UTC)
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C2AF4
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 01:40:08 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-59b5484fbe6so64609737b3.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 01:40:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698828007; x=1699432807; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K3tVJb7zC/twbNf4ono3rkSWKHnaSolrnm8larmH8as=;
-        b=QuHNHq2KSJEnPs39WLT5W1d28a9Rvfh9Iav1vLf9siIOa5aM5OgJpISJyxpI4zEjhE
-         QCwwbURa+NKb/ziFI0MzrudnqrbeNF2ntSp1AkE+s4WbVuPG+qFJiMm3CE/2hFAqefXP
-         cCnadUF9l/1mf9y3BVWBWPnalM8i3bdkVQID8KQojZ91kZgwCCJGRMX8srZ/wsNp7mSq
-         0pleue1Evf29dq02VM7Qs9BWsgZRIuBJBZIAlqLcPbyzl22b1kUMgQRDTpnYNbIvzTsK
-         KeEAOYYcDgdGDEjqfd9EGhCGjSFKCiskx2SsdUYy2duulH996bhw2K5D3W6WGxxtSLOY
-         T0CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698828007; x=1699432807;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K3tVJb7zC/twbNf4ono3rkSWKHnaSolrnm8larmH8as=;
-        b=wgii+fwz2sckrzo3aEZCNK1DekfJrSKR8sXQbbNaeI1Xy0qlf4VsUdrhXO+tU8yDfP
-         V7glaPUMIMvP90KZQAP1CVf7LuJcCJ4S4OO6po6Su/FUpthG3MM/1ZK+bbHQzP9eF/tR
-         YJowvFvzqQHWt2c65djUMJpemJuPSnw1TxHNNt3erO+2m+f4TNaLPMgfB1mtabQyWLOr
-         7e1w8JBlDxchdmi+32Km5S3s66Fj7XmvTh/pgw4iDWyoV4iZzjuY20GqbJHx3F4uNw5L
-         Bbu+oM3Ub5QbJovtmW+EMwWQndnjUEPYAuyEMjPJnSIlczXagiiX/BDymhxdmwXWgkBQ
-         idlA==
-X-Gm-Message-State: AOJu0YwhkrHskFXUDykwRgYmPwyu1aQJFq2m3gjv6slYnetp6j5qF3bq
-	sO3Sq3mwG8kX3pA5SqNIPkwt+sGrhcuXM3BCss7BAw==
-X-Google-Smtp-Source: AGHT+IEh+4mXeLjP8A3zy+m99SXAUs37Oam9JI9gibkP9ZN0P91cbT1pp9wU3fc/6HScoQH6ItpqLzqg4JKjDXDVeGs=
-X-Received: by 2002:a05:690c:714:b0:5a8:d86f:bb3f with SMTP id
- bs20-20020a05690c071400b005a8d86fbb3fmr16456146ywb.8.1698828007637; Wed, 01
- Nov 2023 01:40:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 675FC46BD
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 08:45:22 +0000 (UTC)
+Received: from todd.t-8ch.de (todd.t-8ch.de [IPv6:2a01:4f8:c010:41de::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CAEA2;
+	Wed,  1 Nov 2023 01:45:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1698828315; bh=dUn69NpLHm95YlSQflbcp4YFtXVEb5UF3XD5Lg1d5gg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O/NmY7tTzxPyPRa6lTNocgFIqOJjvGDfR88RyqlmXkdEZ7KnUY4FVhnBV3jXO8kEI
+	 M2K26fSQ1MFk/XD4lCApNP3GBO+iQMfsLYdH+097QrWsdV0BaKT/kvH3dglzSYgE7e
+	 +x288rUcOvxWX4XNS3TIhOxl1Pwtol6ggbdpS4rA=
+Date: Wed, 1 Nov 2023 09:45:14 +0100
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jeff LaBundy <jeff@labundy.com>, Shuah Khan <skhan@linuxfoundation.org>, 
+	linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <2241e06f-ef90-4299-97cd-cfb8fd569065@t-8ch.de>
+References: <20231027051819.81333-1-anshulusr@gmail.com>
+ <20231027051819.81333-2-anshulusr@gmail.com>
+ <d1dd2142-546f-42b7-8966-ab75fd4f8817@t-8ch.de>
+ <efea5ae2-7e41-4b78-a283-1f907be560b0@gmail.com>
+ <9c9f6171-f879-46f5-81d2-6764257a49eb@t-8ch.de>
+ <152d15c4-10bb-45fe-9b9c-b323535a921f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231101025802.3744-1-tychang@realtek.com> <20231101025802.3744-2-tychang@realtek.com>
-In-Reply-To: <20231101025802.3744-2-tychang@realtek.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 1 Nov 2023 09:39:55 +0100
-Message-ID: <CACRpkdZiKCiVsmkPnJRW1c5SBfzNmBqCH9bS8XsgUszD6H=vPg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio: realtek: Add GPIO support for RTD SoC variants
-To: Tzuyi Chang <tychang@realtek.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Tzuyi!
-
-thanks for your patch!
-
-On Wed, Nov 1, 2023 at 3:58=E2=80=AFAM Tzuyi Chang <tychang@realtek.com> wr=
-ote:
-
-> This commit adds GPIO support for Realtek DHC RTD SoCs.
-
-What does "DHC" mean? Please spell it out in the commit and Kconfig
-so we know what it is.
-
-> This driver enables configuration of GPIO direction, GPIO values, GPIO
-> debounce settings and handles GPIO interrupts.
->
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-(...)
-> +config GPIO_RTD
-> +       tristate "Realtek DHC GPIO support"
-> +       depends on ARCH_REALTEK
-> +       default y
-> +       select GPIOLIB_IRQCHIP
-> +       help
-> +         Say yes here to support GPIO on Realtek DHC SoCs.
-
-Explain what DHC is i.e. the acronym expansion, family, use case or somethi=
-ng.
-
-> +#include <linux/bitops.h>
-> +#include <linux/gpio.h>
-
-Do not include this legacy header.
-Include <linux/gpio/driver.h>
-
-> +#include <linux/interrupt.h>
-> +#include <linux/irqchip.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/of_irq.h>
-
-I don't think you need any of thexe of_* includes.
-Try it without them.
-
-> +#include <linux/pinctrl/consumer.h>
-
-Why?
-
-> +/**
-> + * struct rtd_gpio_info - Specific GPIO register information
-> + * @name: GPIO device name
-> + * @type: RTD GPIO ID
-> + * @gpio_base: GPIO base number
-> + * @num_gpios: Number of GPIOs
-> + * @dir_offset: Offset for GPIO direction registers
-> + * @dato_offset: Offset for GPIO data output registers
-> + * @dati_offset: Offset for GPIO data input registers
-> + * @ie_offset: Offset for GPIO interrupt enable registers
-> + * @dp_offset: Offset for GPIO detection polarity registers
-> + * @gpa_offset: Offset for GPIO assert interrupt status registers
-> + * @gpda_offset: Offset for GPIO deassert interrupt status registers
-> + * @deb_offset: Offset for GPIO debounce registers
-> + */
-> +struct rtd_gpio_info {
-> +       const char *name;
-> +       enum rtd_gpio_type type;
-> +       unsigned int gpio_base;
-> +       unsigned int num_gpios;
-> +       unsigned int *dir_offset;
-> +       unsigned int *dato_offset;
-> +       unsigned int *dati_offset;
-> +       unsigned int *ie_offset;
-> +       unsigned int *dp_offset;
-> +       unsigned int *gpa_offset;
-> +       unsigned int *gpda_offset;
-> +       unsigned int *deb_offset;
-
-Use u8 instead of unsigned int for the offsets. It is clear from
-the arrays you assign them that they are all u8[].
-
-> +struct rtd_gpio {
-> +       struct platform_device *pdev;
-> +       const struct rtd_gpio_info *info;
-> +       void __iomem *base;
-> +       void __iomem *irq_base;
-> +       struct gpio_chip gpio_chip;
-> +       struct irq_chip irq_chip;
-
-Do not use a dynamic irq_chip, create an immutable irq_chip
-using a const struct.
-
-See recent commits and virtually all current drivers in the tree
-for examples on how to do that.
-
-> +       int assert_irq;
-> +       int deassert_irq;
-
-I don't quite understand these two, but let's see in the rest
-of the driver.
-
-> +       .deb_offset =3D (unsigned int []){ 0x30, 0x34, 0x38, 0x3c, 0x40, =
-0x44, 0x48, 0x4c },
-(...)
-> +       .deb_offset =3D (unsigned int []){ 0x50 },
-
-So clearly u8[]
-
-> +static unsigned int rtd_gpio_deb_offset(struct rtd_gpio *data, unsigned =
-int offset)
-> +{
-> +       return data->info->deb_offset[offset / 8];
-> +}
-
-So this is clearly counted by the GPIO number offset and the GPIO number
-determines how far into the array we can index.
-
-It looks a bit dangerous, it it possible to encode the array lengths better=
-?
-
-> +       if (data->info->type =3D=3D RTD1295_ISO_GPIO) {
-> +               shift =3D 0;
-> +               deb_val +=3D 1;
-> +               write_en =3D BIT(shift + 3);
-> +               reg_offset =3D rtd1295_gpio_deb_offset(data, offset);
-> +       } else if (data->info->type =3D=3D RTD1295_MISC_GPIO) {
-> +               shift =3D (offset >> 4) * 4;
-> +               deb_val +=3D 1;
-> +               write_en =3D BIT(shift + 3);
-> +               reg_offset =3D rtd1295_gpio_deb_offset(data, offset);
-> +       } else {
-> +               shift =3D (offset % 8) * 4;
-> +               write_en =3D BIT(shift + 3);
-> +               reg_offset =3D rtd_gpio_deb_offset(data, offset);
-> +       }
-
-These three different offset functions seem a bit awkward.
-Can we do this by just another index instead?
-
-> +static int rtd_gpio_request(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       return pinctrl_gpio_request(chip->base + offset);
-> +}
-> +
-> +static void rtd_gpio_free(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       pinctrl_gpio_free(chip->base + offset);
-> +}
-
-IIRC Bartosz has changed this for kernel v6.7, please check his upstream
-commits and adjust the code accordingly.
-
-> +static int rtd_gpio_to_irq(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +       struct rtd_gpio *data =3D gpiochip_get_data(chip);
-> +       u32 irq =3D 0;
-> +
-> +       irq =3D irq_find_mapping(data->domain, offset);
-> +       if (!irq) {
-> +               dev_err(&data->pdev->dev, "%s: can not find irq number fo=
-r hwirq=3D %d\n",
-> +                       __func__, offset);
-> +               return -EINVAL;
-> +       }
-> +       return irq;
-> +}
-
-Don't implement your own gpio_to_irq, just use the GPIOLIB_IRQCHIP
-helpers. See other drivers that select GPIOLIB_IRQCHIP, this
-driver is nothing special.
-
-> +       chained_irq_enter(chip, desc);
-> +
-> +       for (i =3D 0; i < data->info->num_gpios; i =3D i + 31) {
-> +               gpa_reg_offset =3D rtd_gpio_gpa_offset(data, i);
-> +               status =3D readl_relaxed(data->irq_base + gpa_reg_offset)=
- >> 1;
-> +               writel_relaxed(status << 1, data->irq_base + gpa_reg_offs=
-et);
-> +
-> +               while (status) {
-> +                       j =3D __ffs(status);
-> +                       status &=3D ~BIT(j);
-> +                       hwirq =3D i + j;
-> +                       if (rtd_gpio_check_ie(data, hwirq)) {
-> +                               int irq =3D irq_find_mapping(data->domain=
-, hwirq);
-> +
-> +                               generic_handle_irq(irq);
-> +                       }
-
-So you skip the interrupt handler if the interrupt is not enabled?
-
-I think you should report spurious interrupts if they occur without
-being enabled, unless there is some hardware flunky making these
-lines flicker with noise interrupts too much.
-
-> +static void rtd_gpio_deassert_irq_handle(struct irq_desc *desc)
-> +{
-> +       struct rtd_gpio *data =3D irq_desc_get_handler_data(desc);
-> +       struct irq_chip *chip =3D irq_desc_get_chip(desc);
-> +       unsigned int gpda_reg_offset;
-> +       u32 status;
-> +       int hwirq;
-> +       int i;
-> +       int j;
-> +
-> +       chained_irq_enter(chip, desc);
-> +
-> +       for (i =3D 0; i < data->info->num_gpios; i =3D i + 31) {
-> +               gpda_reg_offset =3D rtd_gpio_gpda_offset(data, i);
-> +               status =3D readl_relaxed(data->irq_base + gpda_reg_offset=
-) >> 1;
-> +               writel_relaxed(status << 1, data->irq_base + gpda_reg_off=
-set);
-> +
-> +               while (status) {
-> +                       j =3D __ffs(status);
-> +                       status &=3D ~BIT(j);
-> +                       hwirq =3D i + j;
-> +                       if (rtd_gpio_check_ie(data, hwirq)) {
-> +                               int irq =3D irq_find_mapping(data->domain=
-, hwirq);
-> +                               u32 irq_type =3D irq_get_trigger_type(irq=
-);
-> +
-> +                               if ((irq_type & IRQ_TYPE_SENSE_MASK) =3D=
-=3D IRQ_TYPE_EDGE_BOTH)
-> +                                       generic_handle_irq(irq);
-> +                       }
-> +               }
-> +       }
-> +
-> +       chained_irq_exit(chip, desc);
-> +}
-
-There is some code duplication here. Create wrapper calls with parameters
-so you don't need to have several functions that look almost the same.
-
-> +static int rtd_gpio_probe(struct platform_device *pdev)
-> +{
-> +       struct rtd_gpio *data;
-> +       const struct of_device_id *match;
-> +       struct device_node *node;
-
-Don't go looking by the OF node, use the device:
-
-struct device *dev =3D &pdev->dev;
-
-> +       int ret;
-> +       int i;
-> +
-> +       node =3D pdev->dev.of_node;
-
-Use #include <linux/property.h>
-
-> +       match =3D of_match_node(rtd_gpio_of_matches, pdev->dev.of_node);
-> +       if (!match || !match->data)
-> +               return -EINVAL;
-
-Use
-data->info =3D device_get_match_data(dev); instead
-if (!data->info)...
-
-> +
-> +       data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-
-With a local dev you can just devm_kzalloc(dev, ...) etc.
-
-> +       data->assert_irq =3D irq_of_parse_and_map(node, 0);
-> +       if (!data->assert_irq)
-> +               goto deferred;
-> +
-> +       data->deassert_irq =3D irq_of_parse_and_map(node, 1);
-> +       if (!data->deassert_irq)
-> +               goto deferred;
-
-So one handler for rising and one handler for falling edge?
-Hm that's different. I guess you need separate handlers.
-
-> +       data->base =3D of_iomap(node, 0);
-> +       if (!data->base)
-> +               return -ENXIO;
-
-Use
-data->base =3D devm_platform_ioremap_resource(pdev, 0);
-
-> +       data->irq_base =3D of_iomap(node, 1);
-> +       if (!data->irq_base)
-> +               return -ENXIO;
-
-Use
-data->irq_base =3D platform_get_irq(pdev, 1);
-
-> +       data->gpio_chip.parent =3D &pdev->dev;
-
-Don't assign this, the core will handle it.
-
-> +       data->gpio_chip.label =3D dev_name(&pdev->dev);
-> +       data->gpio_chip.of_gpio_n_cells =3D 2;
-
-This is the default, let the core handle OF translation.
-
-> +       data->gpio_chip.base =3D data->info->gpio_base;
-> +       data->gpio_chip.ngpio =3D data->info->num_gpios;
-> +       data->gpio_chip.request =3D rtd_gpio_request;
-> +       data->gpio_chip.free =3D rtd_gpio_free;
-> +       data->gpio_chip.get_direction =3D rtd_gpio_get_direction;
-> +       data->gpio_chip.direction_input =3D rtd_gpio_direction_input;
-> +       data->gpio_chip.direction_output =3D rtd_gpio_direction_output;
-> +       data->gpio_chip.set =3D rtd_gpio_set;
-> +       data->gpio_chip.get =3D rtd_gpio_get;
-> +       data->gpio_chip.set_config =3D rtd_gpio_set_config;
-> +       data->gpio_chip.to_irq =3D rtd_gpio_to_irq;
-
-Use the GPIOLIB_IRQCHIP to provide this for you.
-
-> +       data->irq_chip =3D rtd_gpio_irq_chip;
-
-Convert to use immutable irq_chip. (Maybe several struct irq_chip if you ne=
-ed!)
-
-> +       data->domain =3D irq_domain_add_linear(node, data->gpio_chip.ngpi=
-o,
-> +                               &irq_domain_simple_ops, data);
-> +       if (!data->domain) {
-> +               devm_kfree(&pdev->dev, data);
-> +               return -ENOMEM;
-> +       }
-> +
-> +       for (i =3D 0; i < data->gpio_chip.ngpio; i++) {
-> +               int irq =3D irq_create_mapping(data->domain, i);
-> +
-> +               irq_set_chip_data(irq, data);
-> +               irq_set_chip_and_handler(irq, &data->irq_chip, handle_sim=
-ple_irq);
-> +       }
-> +
-> +       irq_set_chained_handler_and_data(data->assert_irq, rtd_gpio_asser=
-t_irq_handle, data);
-> +       irq_set_chained_handler_and_data(data->deassert_irq, rtd_gpio_dea=
-ssert_irq_handle, data);
-
-Instead of doing this use GPIOLIB_IRQCHIP.
-
-Before registering the gpio_chip set up stuff somewhat like this:
-
-        girq =3D &data->gpio_chip.irq;
-        gpio_irq_chip_set_chip(girq, &my_irq_chip);
-        girq->parent_handler =3D my_gpio_irq_handler;
-        girq->num_parents =3D 1;
-        girq->parents =3D devm_kcalloc(dev, 1, sizeof(*girq->parents),
-                                     GFP_KERNEL);
-        if (!girq->parents)
-                ret =3D -ENOMEM;
-        girq->default_type =3D IRQ_TYPE_NONE;
-        girq->handler =3D handle_bad_irq;
-        girq->parents[0] =3D irq;
-
-But maybe in this case you want two parent IRQs? Not sure.
-
-> +deferred:
-> +       devm_kfree(&pdev->dev, data);
-> +       return -EPROBE_DEFER;
-
-Nope, when you return with an error from probe() all
-allocations using devm_* are automatically free:ed that
-is kind of the point of the managed resources.
-
-Yours,
-Linus Walleij
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <152d15c4-10bb-45fe-9b9c-b323535a921f@gmail.com>
+
+Hi Anshul,
+
+On 2023-11-01 09:50:36+0530, Anshul Dalal wrote:
+> On 10/31/23 07:53, Thomas Weißschuh wrote:
+> > Oct 31, 2023 03:10:50 Anshul Dalal <anshulusr@gmail.com>:
+> >> Thanks for the review! The requested changes will be addressed in the
+> >> next patch version though I had a few comments below:
+> >>
+> >> On 10/27/23 11:44, Thomas Weißschuh wrote:
+> >>> Hi Anshul,
+> >>>
+> >>> thanks for the reworks!
+> >>>
+> >>> Some more comments inline.
+> >>>
+> >>> On 2023-10-27 10:48:11+0530, Anshul Dalal wrote:
+> > 
+> > [..]
+> > 
+> >>>> +struct seesaw_button_description {
+> >>>> +   unsigned int code;
+> >>>> +   unsigned int bit;
+> >>>> +};
+> >>>> +
+> >>>> +static const struct seesaw_button_description seesaw_buttons[] = {
+> >>>> +   {
+> >>>> +       .code = BTN_EAST,
+> >>>> +       .bit = SEESAW_BUTTON_A,
+> >>>> +   },
+> >>>> +   {
+> >>>> +       .code = BTN_SOUTH,
+> >>>> +       .bit = SEESAW_BUTTON_B,
+> >>>> +   },
+> >>>> +   {
+> >>>> +       .code = BTN_NORTH,
+> >>>> +       .bit = SEESAW_BUTTON_X,
+> >>>> +   },
+> >>>> +   {
+> >>>> +       .code = BTN_WEST,
+> >>>> +       .bit = SEESAW_BUTTON_Y,
+> >>>> +   },
+> >>>> +   {
+> >>>> +       .code = BTN_START,
+> >>>> +       .bit = SEESAW_BUTTON_START,
+> >>>> +   },
+> >>>> +   {
+> >>>> +       .code = BTN_SELECT,
+> >>>> +       .bit = SEESAW_BUTTON_SELECT,
+> >>>> +   },
+> >>>> +};
+> >>>
+> >>> This looks very much like a sparse keymap which can be implemented with
+> >>> the helpers from <linux/input/sparse-keymap.h>.
+> >>>
+> >>
+> >> When going through the API provided by sparse-keymap, I could only see
+> >> the use for sparse_keymap_report_entry here. Which leads to the
+> >> following refactored code:
+> >>
+> >> static const struct key_entry seesaw_buttons_new[] = {
+> >>     {KE_KEY, SEESAW_BUTTON_A, {BTN_SOUTH}},
+> >>     {KE_KEY, SEESAW_BUTTON_B, {BTN_EAST}},
+> > 
+> > No braces I think.
+> > 
+> 
+> Since the last field in key_entry is a union, the braces seem to be
+> required.
+
+Indeed.
+
+To make the union more visible explicit this could be done:
+
+{ KE_KEY, SEESAW_BUTTON_A, .keycode = BTN_SOUTH }
+
+> 
+> >>     ...
+> >> };
+> >>
+> >> for (i = 0; i < ARRAY_SIZE(seesaw_buttons_new); i++) {
+> >>     sparse_keymap_report_entry(input, &seesaw_buttons_new[i],
+> >>         data.button_state & BIT(seesaw_buttons_new[i].code),
+> >>         false);
+> >> }
+> >>
+> >> I don't think this significantly improves the code unless you had some
+> >> other way to use the API in mind.
+> > 
+> > I thought about sparse_keymap_setup() and sparse_keymap_report_event().
+> > 
+> > It does not significantly change the code but would be a standard API.
+> > 
+> 
+> Thanks for pointing me in the right direction, do you think the
+> following implementation of the API is acceptable for the driver. Since
+> I couldn't find a driver for any similar device using the API in this
+> manner.
+> 
+> inside seesaw_probe():
+> 
+> err = sparse_keymap_setup(seesaw->input_dev, seesaw_buttons_new, NULL);
+> if (err) {
+> 	dev_err(&client->dev,
+> 		"failed to set up input device keymap: %d\n", err);
+> 	return err;
+> }
+
+Yes, and it replaces the calls to input_set_capability().
+
+> inside seesaw_poll():
+> 
+> for (i = 0; i < ARRAY_SIZE(seesaw_buttons_new); i++) {
+> 	if (!sparse_keymap_report_event(
+> 		input, seesaw_buttons_new[i].code,
+> 		data.button_state & BIT(seesaw_buttons_new[i].code),
+> 		false)) {
+> 		dev_err_ratelimited(
+> 			&input->dev,
+> 			"failed to report event for keycode: %d",
+> 			seesaw_buttons_new[i].keycode);
+> 		return;
+> 	}
+> }
+
+for_each_set_bit(i, (long *)&SEESAW_BUTTON_MASK, BITS_PER_TYPE(SEESAW_BUTTON_MASK))
+	sparse_keymap_report_event(input, BIT(i), data.button_state & BIT(i), false);
+
+The sparse keymap takes care of the translation.
+
+
+Notes:
+
+SEESAW_BUTTON_MASK is now an actual variable instead of a macro.
+It should be 'static const' in that case.
+
+When using the sparse keymap APIs the driver also needs to depend on
+INPUT_SPARSEKMAP.
+
+
+Thomas
 
