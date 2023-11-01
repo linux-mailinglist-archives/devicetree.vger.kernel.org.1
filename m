@@ -1,142 +1,204 @@
-Return-Path: <devicetree+bounces-13438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057C17DE1EA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 15:10:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A72EF7DE244
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 15:19:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 365FF1C20A91
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:10:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CED3B1C20A91
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185F6134BC;
-	Wed,  1 Nov 2023 14:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E136134DA;
+	Wed,  1 Nov 2023 14:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="N5L7RROl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F1120F6
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 14:10:35 +0000 (UTC)
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA201110;
-	Wed,  1 Nov 2023 07:10:31 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6ce2cc39d12so4239391a34.1;
-        Wed, 01 Nov 2023 07:10:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698847831; x=1699452631;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hJIap+tCQCXrXsRRf3ecX3dDJMX+ntMEJi4qcuSxVfc=;
-        b=gNhCOsPafqRfHVAmQ2clGAUZ7zHN/Sgq3VcHsAE6bp+AkZjdJy+0jV2WsYa3Gcjjwo
-         ig6kXakYNuOc0kiD+Vo4daEKztfP5zKL4G+tf6hu3d5o+keFckLDeWX8a2eNJfdK1nbS
-         NLLwcS1LmjuuAAIk5CM54V+mxUXf61/VWDWfAW/huZZOOI/0DWMM3wJfQ7jed0OeTpar
-         47pU9eMz13/2BmvRVlm2xGIlQNcmdnbZy9cZ5Y3L64eRRl5kuWF7WUgTYOX1+1DX7WuG
-         U8KnfZ+hFxajD7qgFvI+Lr5nKOlraNeFlnDwXAW3ftpaGa8BPFh+h61EDr+iz3o++bY2
-         DPow==
-X-Gm-Message-State: AOJu0YyzW50zTylgpmeMFGQeXoPAJcLVYl/azGi4og6/43iJUctMQuyC
-	xHxeGDpmjgymdQo/lCfmAJqJL0nlRQ==
-X-Google-Smtp-Source: AGHT+IH/87KuiC8dP6zyfc4p1YF9Mp+7bxURSq2rjTaXtjGK1fMj7tBOMpK/Hf6grESE8beZhbyRCQ==
-X-Received: by 2002:a05:6830:1d83:b0:6d3:1dc1:6ecc with SMTP id y3-20020a0568301d8300b006d31dc16eccmr1417903oti.19.1698847830885;
-        Wed, 01 Nov 2023 07:10:30 -0700 (PDT)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l6-20020a05683004a600b006ce292a8be4sm208006otd.10.2023.11.01.07.10.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Nov 2023 07:10:30 -0700 (PDT)
-Received: (nullmailer pid 23329 invoked by uid 1000);
-	Wed, 01 Nov 2023 14:10:29 -0000
-From: Rob Herring <robh@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: Simplify port schema
-Date: Wed,  1 Nov 2023 09:09:22 -0500
-Message-ID: <20231101140923.16344-2-robh@kernel.org>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4692B7489;
+	Wed,  1 Nov 2023 14:19:41 +0000 (UTC)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A980DC;
+	Wed,  1 Nov 2023 07:19:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=OCON80s5+YBfYIu8CqkppkNaABmnDO3nFsvKwtvLV2k=; b=N5L7RROlMKNHC0MTKFbiB/5ZxP
+	PT0zK4Q3Ip1YMbe8c4/sIZ+W0d3tKXM9N5XBFsihGEd1nksb4AWPgyrDqxf+T2YCzPQhoBZ67iqgJ
+	+D1SfnV/qssCq9Pu/kHQRz9LAMiVI5shaoSYbGTBS+YH9NZRY8qk9ziU03F+lDwBHwqo=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37880 helo=pettiford)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1qyC3x-0005yH-RT; Wed, 01 Nov 2023 10:19:22 -0400
+Date: Wed, 1 Nov 2023 10:19:16 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Conor Dooley
+ <conor@kernel.org>, a.zummo@towertech.it, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bruno.thomsen@gmail.com, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>
+Message-Id: <20231101101916.259618f7e5d4abfcac2ffe9b@hugovil.com>
+In-Reply-To: <20231011182330.393f4ec10ba53c85cb09c7e8@hugovil.com>
+References: <20230802191153.952667-1-hugo@hugovil.com>
+	<20230802191153.952667-2-hugo@hugovil.com>
+	<20230808-capsize-deodorize-5776d3dbb192@spud>
+	<20230808082533.b608c9a2a4bd922920643c4b@hugovil.com>
+	<202308081232266ec8a9b7@mail.local>
+	<20230808084426.fc7e432a9d85e5caf72d3ffe@hugovil.com>
+	<20230905113058.0fed933265fb68cd53b6d0fa@hugovil.com>
+	<20230919113423.6c8c48cb1b89275f5b4f3cc2@hugovil.com>
+	<20231011182330.393f4ec10ba53c85cb09c7e8@hugovil.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: add properties to set
+ battery-related functions
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-The use of 'definitions' is not necessary and also problematic because the
-dtschema tools don't process 'definitions' resulting in this spurious
-warning:
+On Wed, 11 Oct 2023 18:23:30 -0400
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-Documentation/devicetree/bindings/sound/renesas,rsnd.example.dtb: sound@ec500000: port:endpoint: Unevaluated properties are not allowed ('phandle' was unexpected)
-        from schema $id: http://devicetree.org/schemas/sound/renesas,rsnd.yaml#
+> On Tue, 19 Sep 2023 11:34:23 -0400
+> Hugo Villeneuve <hugo@hugovil.com> wrote:
+> 
+> > On Tue, 5 Sep 2023 11:30:58 -0400
+> > Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > 
+> > > On Tue, 8 Aug 2023 08:44:26 -0400
+> > > Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > 
+> > > > On Tue, 8 Aug 2023 14:32:26 +0200
+> > > > Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+> > > > 
+> > > > > On 08/08/2023 08:25:33-0400, Hugo Villeneuve wrote:
+> > > > > > On Tue, 8 Aug 2023 12:21:24 +0100
+> > > > > > Conor Dooley <conor@kernel.org> wrote:
+> > > > > > 
+> > > > > > > Hey Hugo,
+> > > > > > > 
+> > > > > > > On Wed, Aug 02, 2023 at 03:11:52PM -0400, Hugo Villeneuve wrote:
+> > > > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > > > 
+> > > > > > > > These properties can be defined in the board's device tree to set the
+> > > > > > > > default power-on values for battery-related functions.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > > > ---
+> > > > > > > >  .../devicetree/bindings/rtc/rtc.yaml          | 19 +++++++++++++++++++
+> > > > > > > >  1 file changed, 19 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/rtc/rtc.yaml b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > > > > > > index efb66df82782..0217d229e3fa 100644
+> > > > > > > > --- a/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > > > > > > +++ b/Documentation/devicetree/bindings/rtc/rtc.yaml
+> > > > > > > > @@ -26,6 +26,25 @@ properties:
+> > > > > > > >        0: not chargeable
+> > > > > > > >        1: chargeable
+> > > > > > > >  
+> > > > > > > > +  battery-low-detect:
+> > > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > > > +    enum: [0, 1]
+> > > > > > > > +    description: |
+> > > > > > > > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > > > > > > > +      used to configure the battery low detection reporting function:
+> > > > > > > > +      0: disabled
+> > > > > > > > +      1: enabled
+> > > > > > > > +
+> > > > > > > > +  battery-switch-over:
+> > > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > > > +    enum: [0, 1]
+> > > > > > > > +    description: |
+> > > > > > > > +      For RTC devices supporting a backup battery/supercap, this flag can be
+> > > > > > > > +      used to configure the battery switch over when the main voltage source is
+> > > > > > > > +      turned off:
+> > > > > > > > +      0: disabled
+> > > > > > > > +      1: enabled
+> > > > > > > 
+> > > > > > > Why are these implemented as enums? This seems to fall into the category
+> > > > > > > of using DT to determine software policy - why's it not sufficient to
+> > > > > > > have boolean properties that indicate hardware support and let the software
+> > > > > > > decide what to do with them?
+> > > > > > 
+> > > > > > Hi Conor,
+> > > > > > the reason is that I based the new properties on the existing property
+> > > > > > "aux-voltage-chargeable":
+> > > > > > 
+> > > > > > -------------------
+> > > > > >  aux-voltage-chargeable:
+> > > > > >     $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > >     enum: [0, 1]
+> > > > > >     description: |
+> > > > > >       Tells whether the battery/supercap of the RTC (if any) is
+> > > > > >       chargeable or not:
+> > > > > >       0: not chargeable
+> > > > > >       1: chargeable
+> > > > > > -------------------
+> > > > > > 
+> > > > > > I agree with you that a boolean would be more appropriate. Should I
+> > > > > > also submit a (separate) patch to fix the "aux-voltage-chargeable"
+> > > > > > property to a boolean?
+> > > > > > 
+> > > > > 
+> > > > > No, this is an enum on purpose.
+> > > > > I will not take battery switch over related properties, this is not
+> > > > > hardware description but software configuration. There is an ioctl for
+> > > > > this.
+> > > > 
+> > > > Hi Alexandre,
+> > > > can you suggest then how we can set default PWRMNG values for the
+> > > > PCF2131 then?
+> > > > 
+> > > > I looked at Documentation/ABI/testing/rtc-cdev but couldn't find an
+> > > > ioctl to activate the battery switch over function, nor one to activate
+> > > > the battery-low detection...
+> > > 
+> > > Ping...
+> > 
+> > Second ping...
+> > 
+> > Hugo.
+> 
+> Third ping...
 
-Fix this by moving the port schema to #/properties/port and referencing
-that directly from the 'ports' schema.
+Hi Alexandre,
+Fourth ping...
 
-Really, a binding should just always use 'ports' if multiple ports are
-possible. There's no benefit to supporting both forms. However, it appears
-there are already lots of users of this one with a single 'port' node.
+People are writing to me off the mailing
+list to indicate that there is a "bug" with the PCF2131 driver relating
+to PWRMNG incorrect values.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-Please apply for 6.7 to fix the warning.
+Can you answer my question so that we can find a solution to this
+problem?
 
- .../bindings/sound/renesas,rsnd.yaml          | 28 ++++++++-----------
- 1 file changed, 12 insertions(+), 16 deletions(-)
+Hugo.
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-index 13a5a0a10fe6..1174205286d4 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-@@ -9,20 +9,6 @@ title: Renesas R-Car Sound Driver
- maintainers:
-   - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
- 
--definitions:
--  port-def:
--    $ref: audio-graph-port.yaml#/definitions/port-base
--    unevaluatedProperties: false
--    patternProperties:
--      "^endpoint(@[0-9a-f]+)?":
--        $ref: audio-graph-port.yaml#/definitions/endpoint-base
--        properties:
--          playback:
--            $ref: /schemas/types.yaml#/definitions/phandle-array
--          capture:
--            $ref: /schemas/types.yaml#/definitions/phandle-array
--        unevaluatedProperties: false
--
- properties:
- 
-   compatible:
-@@ -125,7 +111,17 @@ properties:
- 
-   # ports is below
-   port:
--    $ref: "#/definitions/port-def"
-+    $ref: audio-graph-port.yaml#/definitions/port-base
-+    unevaluatedProperties: false
-+    patternProperties:
-+      "^endpoint(@[0-9a-f]+)?":
-+        $ref: audio-graph-port.yaml#/definitions/endpoint-base
-+        properties:
-+          playback:
-+            $ref: /schemas/types.yaml#/definitions/phandle-array
-+          capture:
-+            $ref: /schemas/types.yaml#/definitions/phandle-array
-+        unevaluatedProperties: false
- 
-   rcar_sound,dvc:
-     description: DVC subnode.
-@@ -269,7 +265,7 @@ patternProperties:
-     unevaluatedProperties: false
-     patternProperties:
-       '^port(@[0-9a-f]+)?$':
--        $ref: "#/definitions/port-def"
-+        $ref: "#/properties/port"
- 
- required:
-   - compatible
--- 
-2.42.0
 
+> > > > > > > > +
+> > > > > > > >    quartz-load-femtofarads:
+> > > > > > > >      description:
+> > > > > > > >        The capacitive load of the quartz(x-tal), expressed in femto
+> > > > > > > > -- 
+> > > > > > > > 2.30.2
+> > > > > > > > 
+> > > > > 
+> > > > > -- 
+> > > > > Alexandre Belloni, co-owner and COO, Bootlin
+> > > > > Embedded Linux and Kernel engineering
+> > > > > https://bootlin.com
+> > > 
 
