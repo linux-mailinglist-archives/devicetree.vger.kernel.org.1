@@ -1,67 +1,62 @@
-Return-Path: <devicetree+bounces-13435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780E57DE17E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:33:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF2387DE1B5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:38:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D61728129B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:33:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1336FB20D8E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5369134AE;
-	Wed,  1 Nov 2023 13:33:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ma+noyr4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AE8134C5;
+	Wed,  1 Nov 2023 13:38:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DA7125BA
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 13:33:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC96F7;
-	Wed,  1 Nov 2023 06:33:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698845607; x=1730381607;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TLfikYcSzIKUF7Psef+fS9e6czzFkIgyby047PInD7c=;
-  b=Ma+noyr4+ky2IkD6gSL/5CIjCqbwfCyflzPvmKn/Be9H5MjoYWPagBio
-   HI201hb5Vpm/Mrf4r9EaIm5WysbE8pbA8Y7RgiEPtGJUAprDPlIL/X0R0
-   MijUrogG1x1BD5beNEd+vIswKlCdwOaS/xX7XV6ECTTf9EritBMGLOb1K
-   2+LS9iKZ6fPweLlyiW2Ue5tvhKobwMmz0dbbsSfUDKCpvvUGijD7iINAs
-   UhY5l2Chv7y41d/+n/WfjRTLl54RUWaJUDfcgviFmDIu+NMEhiZG64mgc
-   CZKkU5swfOIAl8N64CnHtG2VlD13C8ah1oBpTtvYuYOGiECGTSEchihmO
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="391359976"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; 
-   d="scan'208";a="391359976"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2023 06:33:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="790114629"
-X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; 
-   d="scan'208";a="790114629"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2023 06:33:23 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 48DB41207A3;
-	Wed,  1 Nov 2023 15:33:22 +0200 (EET)
-Date: Wed, 1 Nov 2023 13:33:22 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/6] media: i2c: imx335: Enable regulator supplies
-Message-ID: <ZUJTold9QBOJeTt_@kekkonen.localdomain>
-References: <20231101131354.2333498-1-kieran.bingham@ideasonboard.com>
- <20231101131354.2333498-5-kieran.bingham@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0F520F6;
+	Wed,  1 Nov 2023 13:38:36 +0000 (UTC)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB178A2;
+	Wed,  1 Nov 2023 06:38:31 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3b2f2b9a176so4363933b6e.0;
+        Wed, 01 Nov 2023 06:38:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698845911; x=1699450711;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N9KfA3zYa4RuQNIKTFwtE9LoaDqeAECPgnjla+xhy8s=;
+        b=jw1k9OmfeDBjsmHvMk47jJ+drK05ufIy9GFOHKLrdLufA8l5jxqPrr5gWW3sj+3ZpO
+         TkzhH+2Ki0szPIMTPCwuPA9S/Gi+o3QPWzen5T/cHvoCBZMLO1we6uQodafpQJ6HQwGU
+         QT6uFurxIGAKDWF0Wa61QCIe1aZ73zJJR8HdYlsQPoFdm/Rkm8oWCVUITI4v8lxNUhQA
+         ahVHZvPwg6UL1fu9n7xaMrZqQrDmvbk7BQLD6U/nM7xDtNrOvrb4BnQfwchlh3i4EBAp
+         lIISna0sKp22ra47WFPYRrUYGp8qU7dvMkweNgY5eagjNSf2AZFCS8saEPmszMIykum7
+         W8gQ==
+X-Gm-Message-State: AOJu0YzSwpszB0XVdz+oAUCSaveYn29+ZgUyvXG43fNLuYYVvOszf+PZ
+	Get/VBOg0UsYTKndh10NDA==
+X-Google-Smtp-Source: AGHT+IFng2kWgDi/1hqDnOprjsKzdtQIpq3XJ04ryXRQbkhSKYvchZzbtrVi8LElnoloOtq2Rwli+w==
+X-Received: by 2002:a05:6808:8d0:b0:3af:75d5:e10b with SMTP id k16-20020a05680808d000b003af75d5e10bmr15564720oij.25.1698845910938;
+        Wed, 01 Nov 2023 06:38:30 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k16-20020a544410000000b003b2e7231faasm218911oiw.28.2023.11.01.06.38.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Nov 2023 06:38:29 -0700 (PDT)
+Received: (nullmailer pid 4121437 invoked by uid 1000);
+	Wed, 01 Nov 2023 13:38:28 -0000
+Date: Wed, 1 Nov 2023 08:38:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Eric Dumazet <edumazet@google.com>, "David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [net-next PATCH v2 2/2] dt-bindings: Document bindings for
+ Marvell Aquantia PHY
+Message-ID: <20231101133828.GA4116063-robh@kernel.org>
+References: <20231101123608.11157-1-ansuelsmth@gmail.com>
+ <20231101123608.11157-2-ansuelsmth@gmail.com>
+ <169884529967.4072013.2362625689707570358.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,135 +65,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231101131354.2333498-5-kieran.bingham@ideasonboard.com>
+In-Reply-To: <169884529967.4072013.2362625689707570358.robh@kernel.org>
 
-Hi Kieran,
-
-Thanks for the set.
-
-On Wed, Nov 01, 2023 at 01:13:52PM +0000, Kieran Bingham wrote:
-> Provide support for enabling and disabling regulator supplies to control
-> power to the camera sensor.
+On Wed, Nov 01, 2023 at 08:28:48AM -0500, Rob Herring wrote:
 > 
-> While updating the power on function, document that a sleep is
-> represented as 'T4' in the datasheet power on sequence.
+> On Wed, 01 Nov 2023 13:36:08 +0100, Christian Marangi wrote:
+> > Document bindings for Marvell Aquantia PHY.
+> > 
+> > The Marvell Aquantia PHY require a firmware to work correctly and there
+> > at least 3 way to load this firmware.
+> > 
+> > Describe all the different way and document the binding "firmware-name"
+> > to load the PHY firmware from userspace.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> > Changes v2:
+> > - Add DT patch
+> > 
+> >  .../bindings/net/marvell,aquantia.yaml        | 123 ++++++++++++++++++
+> >  1 file changed, 123 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> > 
 > 
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> ---
+> yamllint warnings/errors:
 > 
-> v2:
->  - document 'supplies' member variable
->  - disable regulators in error path
->  - Remove 'unhelpful' comments
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> ---
->  drivers/media/i2c/imx335.c | 38 ++++++++++++++++++++++++++++++++++++--
->  1 file changed, 36 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/imx335.c b/drivers/media/i2c/imx335.c
-> index 31c612c6bdd8..f17ce40b9c77 100644
-> --- a/drivers/media/i2c/imx335.c
-> +++ b/drivers/media/i2c/imx335.c
-> @@ -75,6 +75,14 @@ struct imx335_reg_list {
->  	const struct imx335_reg *regs;
->  };
->  
-> +static const char * const imx335_supply_name[] = {
-> +	"avdd", /* Analog (2.9V) supply */
-> +	"ovdd", /* Digital I/O (1.8V) supply */
-> +	"dvdd", /* Digital Core (1.2V) supply */
-> +};
-> +
-> +#define IMX335_NUM_SUPPLIES ARRAY_SIZE(imx335_supply_name)
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.example.dtb: ethernet-phy@4: compatible:0: 'ethernet-phy-ieee802.3-c45' is not one of ['ethernet-phy-id03a1.b445', 'ethernet-phy-id03a1.b460', 'ethernet-phy-id03a1.b4a2', 'ethernet-phy-id03a1.b4d0', 'ethernet-phy-id03a1.b4e0', 'ethernet-phy-id03a1.b5c2', 'ethernet-phy-id03a1.b4b0', 'ethernet-phy-id03a1.b662', 'ethernet-phy-id03a1.b712', 'ethernet-phy-id31c3.1c12']
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.example.dtb: ethernet-phy@4: compatible: ['ethernet-phy-ieee802.3-c45'] is too short
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.example.dtb: ethernet-phy@4: compatible:0: 'ethernet-phy-ieee802.3-c45' is not one of ['ethernet-phy-id03a1.b445', 'ethernet-phy-id03a1.b460', 'ethernet-phy-id03a1.b4a2', 'ethernet-phy-id03a1.b4d0', 'ethernet-phy-id03a1.b4e0', 'ethernet-phy-id03a1.b5c2', 'ethernet-phy-id03a1.b4b0', 'ethernet-phy-id03a1.b662', 'ethernet-phy-id03a1.b712', 'ethernet-phy-id31c3.1c12']
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.example.dtb: ethernet-phy@4: compatible: ['ethernet-phy-ieee802.3-c45'] is too short
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ethernet-phy.example.dtb: ethernet-phy@0: compatible:0: 'ethernet-phy-id0141.0e90' is not one of ['ethernet-phy-id03a1.b445', 'ethernet-phy-id03a1.b460', 'ethernet-phy-id03a1.b4a2', 'ethernet-phy-id03a1.b4d0', 'ethernet-phy-id03a1.b4e0', 'ethernet-phy-id03a1.b5c2', 'ethernet-phy-id03a1.b4b0', 'ethernet-phy-id03a1.b662', 'ethernet-phy-id03a1.b712', 'ethernet-phy-id31c3.1c12']
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.example.dtb: ethernet-phy@0: compatible:0: 'ethernet-phy-ieee802.3-c45' is not one of ['ethernet-phy-id03a1.b445', 'ethernet-phy-id03a1.b460', 'ethernet-phy-id03a1.b4a2', 'ethernet-phy-id03a1.b4d0', 'ethernet-phy-id03a1.b4e0', 'ethernet-phy-id03a1.b5c2', 'ethernet-phy-id03a1.b4b0', 'ethernet-phy-id03a1.b662', 'ethernet-phy-id03a1.b712', 'ethernet-phy-id31c3.1c12']
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.example.dtb: ethernet-phy@0: compatible: ['ethernet-phy-ieee802.3-c45'] is too short
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.example.dtb: ethernet-phy@0: Unevaluated properties are not allowed ('interrupt' was unexpected)
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.example.dtb: phy@0: $nodename:0: 'phy@0' does not match '^ethernet-phy(@[a-f0-9]+)?$'
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.example.dtb: phy@0: compatible:0: 'ethernet-phy-ieee802.3-c45' is not one of ['ethernet-phy-id03a1.b445', 'ethernet-phy-id03a1.b460', 'ethernet-phy-id03a1.b4a2', 'ethernet-phy-id03a1.b4d0', 'ethernet-phy-id03a1.b4e0', 'ethernet-phy-id03a1.b5c2', 'ethernet-phy-id03a1.b4b0', 'ethernet-phy-id03a1.b662', 'ethernet-phy-id03a1.b712', 'ethernet-phy-id31c3.1c12']
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.example.dtb: phy@0: compatible: ['ethernet-phy-ieee802.3-c45'] is too short
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nvidia,tegra234-mgbe.example.dtb: phy@0: Unevaluated properties are not allowed ('#phy-cells', 'compatible' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
 
-Please use plain ARRAY_SIZE() where you needed this.
+You need a custom 'select' with all the compatibles except 
+ethernet-phy-ieee802.3-c45 listed.
 
-> +
->  /**
->   * struct imx335_mode - imx335 sensor mode structure
->   * @width: Frame width
-> @@ -108,6 +116,7 @@ struct imx335_mode {
->   * @sd: V4L2 sub-device
->   * @pad: Media pad. Only one pad supported
->   * @reset_gpio: Sensor reset gpio
-> + * @supplies: Regulator supplies to handle power control
->   * @inclk: Sensor input clock
->   * @ctrl_handler: V4L2 control handler
->   * @link_freq_ctrl: Pointer to link frequency control
-> @@ -126,6 +135,8 @@ struct imx335 {
->  	struct v4l2_subdev sd;
->  	struct media_pad pad;
->  	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data supplies[IMX335_NUM_SUPPLIES];
-> +
->  	struct clk *inclk;
->  	struct v4l2_ctrl_handler ctrl_handler;
->  	struct v4l2_ctrl *link_freq_ctrl;
-> @@ -781,6 +792,17 @@ static int imx335_parse_hw_config(struct imx335 *imx335)
->  		return PTR_ERR(imx335->reset_gpio);
->  	}
->  
-> +	for (i = 0; i < IMX335_NUM_SUPPLIES; i++)
-> +		imx335->supplies[i].supply = imx335_supply_name[i];
-> +
-> +	ret = devm_regulator_bulk_get(imx335->dev,
-> +				      IMX335_NUM_SUPPLIES,
-> +				      imx335->supplies);
-> +	if (ret) {
-> +		dev_err(imx335->dev, "Failed to get regulators\n");
-> +		return ret;
-> +	}
-> +
->  	/* Get sensor input clock */
->  	imx335->inclk = devm_clk_get(imx335->dev, NULL);
->  	if (IS_ERR(imx335->inclk)) {
-> @@ -863,6 +885,17 @@ static int imx335_power_on(struct device *dev)
->  	struct imx335 *imx335 = to_imx335(sd);
->  	int ret;
->  
-> +	ret = regulator_bulk_enable(IMX335_NUM_SUPPLIES,
-> +				    imx335->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "%s: failed to enable regulators\n",
-> +			__func__);
-> +		return ret;
-> +	}
-> +
-> +	usleep_range(500, 550); /* Tlow */
-> +
-> +	/* Set XCLR */
->  	gpiod_set_value_cansleep(imx335->reset_gpio, 1);
->  
->  	ret = clk_prepare_enable(imx335->inclk);
-> @@ -871,12 +904,13 @@ static int imx335_power_on(struct device *dev)
->  		goto error_reset;
->  	}
->  
-> -	usleep_range(20, 22);
-> +	usleep_range(20, 22); /* T4 */
->  
->  	return 0;
->  
->  error_reset:
->  	gpiod_set_value_cansleep(imx335->reset_gpio, 0);
-> +	regulator_bulk_disable(IMX335_NUM_SUPPLIES, imx335->supplies);
->  
->  	return ret;
->  }
-> @@ -893,8 +927,8 @@ static int imx335_power_off(struct device *dev)
->  	struct imx335 *imx335 = to_imx335(sd);
->  
->  	gpiod_set_value_cansleep(imx335->reset_gpio, 0);
-> -
->  	clk_disable_unprepare(imx335->inclk);
-> +	regulator_bulk_disable(IMX335_NUM_SUPPLIES, imx335->supplies);
->  
->  	return 0;
->  }
-
--- 
-Regards,
-
-Sakari Ailus
+Rob
 
