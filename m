@@ -1,58 +1,56 @@
-Return-Path: <devicetree+bounces-13517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E67267DE80A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 23:23:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 132CB7DE80E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 23:24:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DA04B20B3D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 22:23:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46018B20D96
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 22:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454741BDDF;
-	Wed,  1 Nov 2023 22:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793C41C290;
+	Wed,  1 Nov 2023 22:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5hbScwE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pDlo0FOJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B3518E06
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 22:23:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B768C433C8;
-	Wed,  1 Nov 2023 22:23:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698877410;
-	bh=PiNESkCwicT3kj8jbpckjD4qQNgjxA4dxrb2+kC3aw0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=o5hbScwEhJfIvM2KJMCZ/nYYeWBEH8IaEVzX11nTIGg70kMdMyUrApl84214GVCcx
-	 g49c338k38KiKmSqmKCDEi6618JqnfXItWX0IMGrtAUp5NuPtbY7Jj1hBj78bsgNDB
-	 feywTViURQG3Yw229eI031CJStFayMlPJNnLAZPdL8G4w8eiRrDqu4LwpKVNjEIm/M
-	 UjOIZKHMuBWhHAa24+RPc3Z/yzGYFZh21prAxW18Jo/0sLnnzrTPqiAXrCRH4kin4J
-	 LXHFEwiAs7oWp1NiCYi0yg23nFr9xFHy/v+2VMDPoIJKlQqPCZh+CtYzBw5n/zcByg
-	 RgYxx90tF806g==
-Date: Wed, 1 Nov 2023 17:23:28 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Niklas Cassel <Niklas.Cassel@wdc.com>
-Cc: Serge Semin <fancer.lancer@gmail.com>, Niklas Cassel <nks@flawful.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616F318E06;
+	Wed,  1 Nov 2023 22:23:50 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00A411D;
+	Wed,  1 Nov 2023 15:23:44 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EB176E0003;
+	Wed,  1 Nov 2023 22:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698877423;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jggGNcvAtv9LxN7R6LMr0R964jtilEqQaxj50I5uJCg=;
+	b=pDlo0FOJY3L9dpP1BPmOMKhLX7DRNq7i/rYZcSimLwRXA11gf1G5FoHgBBrHWblhYwaQKU
+	t4i+DXCgpT02VcLii1qnacj9BPhztK6xsY1DxdqFExFVkxay88Zt9z/iyyLm9XJaoQFyAc
+	uzEAo1Dx4rimQRoi2v+SnOTGsbsur2+xwcj++drgxHUTFSbQMCu8ksjKJwfEqUMjO3jxRE
+	HmGk2+32EJ+QKxsZwYX4qgHuD0Msw3e7C24HbaBPyKpA8dLRuYyGAR9afFamRa4N7AEU+Z
+	qOgshuLXpppzLanr0PcUbLmlPtzbXUfD2gk7qIR9sf21aH8jcDTII1pDeZbrNg==
+Date: Wed, 1 Nov 2023 23:23:42 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Alessandro Zummo <a.zummo@towertech.it>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v3 2/6] dt-bindings: PCI: dwc: rockchip: Add optional dma
- interrupts
-Message-ID: <20231101222328.GA101333@bhelgaas>
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] rtc: max31335: add driver support
+Message-ID: <202311012223422e3387b3@mail.local>
+References: <20231101094835.51031-1-antoniu.miclaus@analog.com>
+ <20231101094835.51031-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,33 +59,340 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZUEiY5i7DUWThhNX@x1-carbon>
+In-Reply-To: <20231101094835.51031-2-antoniu.miclaus@analog.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Tue, Oct 31, 2023 at 03:51:03PM +0000, Niklas Cassel wrote:
-> On Tue, Oct 31, 2023 at 04:10:17AM +0300, Serge Semin wrote:
-> > On Fri, Oct 27, 2023 at 05:51:14PM +0200, Niklas Cassel wrote:
-> > > However, e.g. rk3568 only has one channel for reads and one for writes.
-> > > (Now this SoC doesn't have dedicated IRQs for the eDMA, but let's pretend
-> > > that it did.)
-> > > 
-> > > So for rk3568, it would then instead be:
-> > > dma0: wr0
-> > > dma1: rd0
-> > > dma2: <unused>
-> > > dma3: <unused>
-> > 
-> > rk3568 doesn't have IRQs supplied in a normal way, as separate
-> > signals.  Instead they are combined in the 'sys' IRQ. So you should
-> > define the IRQs constraint being device-specific by using for example
-> > the "allOf: if-else" pattern.
+On 01/11/2023 11:48:14+0200, Antoniu Miclaus wrote:
+> +static int max31335_get_hour(u8 hour_reg)
+> +{
+> +	int hour;
+> +
+> +	/* 24Hr mode */
+> +	if (!FIELD_GET(MAX31335_HOURS_F_24_12, hour_reg))
+> +		return bcd2bin(hour_reg & 0x3f);
+> +
+> +	/* 12Hr mode */
+> +	hour = bcd2bin(hour_reg & 0x1f);
+> +	if (hour == 12)
+> +		hour = 0;
+> +
+
+Do you really need to support 12h mode?
+
+> +	if (FIELD_GET(MAX31335_HOURS_HR_20_AM_PM, hour_reg))
+> +		hour += 12;
+> +
+> +	return hour;
+> +}
+> +
+> +static int max31335_read_offset(struct device *dev, long *offset)
+> +{
+> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
+> +	u32 value;
+> +	int ret;
+> +
+> +	ret = regmap_read(max31335->regmap, MAX31335_AGING_OFFSET, &value);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*offset = value;
+
+This is super dubious, what is the unit of MAX31335_AGING_OFFSET ?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int max31335_set_offset(struct device *dev, long offset)
+> +{
+> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
+> +
+> +	return regmap_write(max31335->regmap, MAX31335_AGING_OFFSET, offset);
+> +}
+> +
+> +static int max31335_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
+> +{
+> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
+> +	struct mutex *lock = &max31335->rtc->ops_lock;
+> +	int ret, ctrl, status;
+> +	struct rtc_time time;
+> +	u8 regs[6];
+> +
+> +	mutex_lock(lock);
+
+Use rtc_lock(), I'm not quite sure why you would need locking here
+though.
+
+> +
+> +	ret = regmap_bulk_read(max31335->regmap, MAX31335_ALM1_SEC, regs,
+> +			       sizeof(regs));
+> +	if (ret)
+> +		goto exit;
+> +
+> +	alrm->time.tm_sec  = bcd2bin(regs[0] & 0x7f);
+> +	alrm->time.tm_min  = bcd2bin(regs[1] & 0x7f);
+> +	alrm->time.tm_hour = bcd2bin(regs[2] & 0x3f);
+> +	alrm->time.tm_mday = bcd2bin(regs[3] & 0x3f);
+> +	alrm->time.tm_mon  = bcd2bin(regs[4] & 0x1f) - 1;
+> +	alrm->time.tm_year = bcd2bin(regs[5]) + 100;
+> +
+> +	ret = max31335_read_time(dev, &time);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	if (time.tm_year >= 200)
+> +		alrm->time.tm_year += 100;
+> +
+> +	ret = regmap_read(max31335->regmap, MAX31335_INT_EN1, &ctrl);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = regmap_read(max31335->regmap, MAX31335_STATUS1, &status);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	alrm->enabled = FIELD_GET(MAX31335_INT_EN1_A1IE, ctrl);
+> +	alrm->pending = FIELD_GET(MAX31335_STATUS1_A1F, status);
+> +
+> +exit:
+> +	mutex_unlock(lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int max31335_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
+> +{
+> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
+> +	struct mutex *lock = &max31335->rtc->ops_lock;
+> +	unsigned int reg;
+> +	u8 regs[6];
+> +	int ret;
+> +
+> +	regs[0] = bin2bcd(alrm->time.tm_sec);
+> +	regs[1] = bin2bcd(alrm->time.tm_min);
+> +	regs[2] = bin2bcd(alrm->time.tm_hour);
+> +	regs[3] = bin2bcd(alrm->time.tm_mday);
+> +	regs[4] = bin2bcd(alrm->time.tm_mon + 1);
+> +	regs[5] = bin2bcd(alrm->time.tm_year % 100);
+> +
+> +	mutex_lock(lock);
+
+I'm not sure why you need locking here either, maybe you should simply
+disable the alarm first?
+
+> +
+> +	ret = regmap_bulk_write(max31335->regmap, MAX31335_ALM1_SEC,
+> +				regs, sizeof(regs));
+> +	if (ret)
+> +		goto exit;
+> +
+> +	reg = FIELD_PREP(MAX31335_INT_EN1_A1IE, alrm->enabled);
+> +	ret = regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
+> +				 MAX31335_INT_EN1_A1IE, reg);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = regmap_update_bits(max31335->regmap, MAX31335_STATUS1,
+> +				 MAX31335_STATUS1_A1F, 0);
+> +
+> +exit:
+> +	mutex_unlock(lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int max31335_alarm_irq_enable(struct device *dev, unsigned int enabled)
+> +{
+> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
+> +
+> +	return regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
+> +				  MAX31335_INT_EN1_A1IE, enabled);
+> +}
+> +
+
+
+> +static int max31335_trickle_charger_setup(struct device *dev,
+> +					  struct max31335_data *max31335)
+> +{
+> +	u32 ohms, chargeable;
+> +	bool diode = false;
+> +	int i;
+> +
+> +	if (device_property_read_u32(dev, "trickle-resistor-ohms", &ohms))
+> +		return 0;
+> +
+> +	if (!device_property_read_u32(dev, "aux-voltage-chargeable",
+> +				      &chargeable)) {
+> +		switch (chargeable) {
+> +		case 0:
+> +			diode = false;
+> +			break;
+> +		case 1:
+> +			diode = true;
+> +			break;
+> +		default:
+> +			dev_warn(dev,
+> +				 "unsupported aux-voltage-chargeable value\n");
+
+I don't think the string is necessary, checking the DT should be done at
+compile time.
+
+> +			break;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(max31335_trickle_resistors); i++)
+> +		if (ohms == max31335_trickle_resistors[i])
+> +			break;
+> +
+> +	if (i >= ARRAY_SIZE(max31335_trickle_resistors)) {
+> +		dev_warn(dev, "invalid trickle resistor value\n");
+
+Ditto.
+
+> +
+> +		return 0;
+> +	}
+> +
+> +	if (diode)
+> +		i = i + 4;
+> +	else
+> +		i = i + 1;
+
+Do you actually need to configure the trickle charger when there is
+nothing to charge?
+
+> +
+> +	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
+> +			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
+> +				       MAX31335_TRICKLE_REG_EN_TRICKLE);
+> +}
+> +
+> +static int max31335_clkout_register(struct device *dev)
+> +{
+> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	if (!device_property_present(dev, "#clock-cells"))
+> +		return 0;
+
+Is the clock output disabled by default?
+
+> +
+> +static int max31335_probe(struct i2c_client *client)
+> +{
+> +	struct max31335_data *max31335;
+> +	struct device *hwmon;
+> +	int ret;
+> +
+> +	max31335 = devm_kzalloc(&client->dev, sizeof(*max31335), GFP_KERNEL);
+> +	if (!max31335)
+> +		return -ENOMEM;
+> +
+> +	max31335->regmap = devm_regmap_init_i2c(client, &regmap_config);
+> +	if (IS_ERR(max31335->regmap))
+> +		return PTR_ERR(max31335->regmap);
+> +
+> +	i2c_set_clientdata(client, max31335);
+> +
+> +	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 0);
+> +	if (ret)
+> +		return ret;
+
+What does this register do?
+
+> +
+> +	max31335->rtc = devm_rtc_allocate_device(&client->dev);
+> +	if (IS_ERR(max31335->rtc))
+> +		return PTR_ERR(max31335->rtc);
+> +
+> +	max31335->rtc->ops = &max31335_rtc_ops;
+> +	max31335->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
+> +	max31335->rtc->range_max = RTC_TIMESTAMP_END_2199;
+
+Please set alarm_offset_max too.
+
+> +
+> +	ret = devm_rtc_register_device(max31335->rtc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = max31335_clkout_register(&client->dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (client->irq > 0) {
+> +		ret = devm_request_threaded_irq(&client->dev, client->irq,
+> +						NULL, max31335_handle_irq,
+> +						IRQF_ONESHOT,
+> +						"max31335", max31335);
+> +		if (ret) {
+> +			dev_warn(&client->dev,
+> +				 "unable to request IRQ, alarm max31335 disabled\n");
+> +			client->irq = 0;
+> +		}
+> +	}
+> +
+> +	if (!client->irq)
+> +		clear_bit(RTC_FEATURE_ALARM, max31335->rtc->features);
+> +
+> +	max31335_nvmem_cfg.priv = max31335;
+> +	ret = devm_rtc_nvmem_register(max31335->rtc, &max31335_nvmem_cfg);
+> +	if (ret)
+> +		dev_err_probe(&client->dev, ret, "cannot register rtc nvmem\n");
+> +
+> +	hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name,
+> +						     max31335,
+> +						     &max31335_chip_info,
+> +						     NULL);
+> +	if (IS_ERR(hwmon))
+> +		dev_err_probe(&client->dev, PTR_ERR(hwmon),
+> +			      "cannot register hwmon device\n");
+> +
+> +	return max31335_trickle_charger_setup(&client->dev, max31335);
+
+You must never fail probe after calling devm_rtc_register_device, else
+you are open to a race condition with userspace.
+
+> +}
+> +
+> +static const struct i2c_device_id max31335_id[] = {
+> +	{ "max31335", 0 },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(i2c, max31335_id);
+> +
+> +static const struct of_device_id max31335_of_match[] = {
+> +	{ .compatible = "adi,max31335" },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, max31335_of_match);
+> +
+> +static struct i2c_driver max31335_driver = {
+> +	.driver = {
+> +		.name = "rtc-max31335",
+> +		.of_match_table = max31335_of_match,
+> +	},
+> +	.probe = max31335_probe,
+> +	.id_table = max31335_id,
+> +};
+> +module_i2c_driver(max31335_driver);
+> +
+> +MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
+> +MODULE_DESCRIPTION("MAX31335 RTC driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.42.0
 > 
-> Thank you for your review comment.
-> 
-> I agree. Will fix this in next version.
 
-When you do, would you mind capitalizing "ATU", "DMA", etc in your
-subject lines, commit logs, comments, etc?  Then it'll be more obvious
-that these aren't ordinary English words.
-
-Bjorn
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
