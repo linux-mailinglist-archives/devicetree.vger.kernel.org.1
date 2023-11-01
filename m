@@ -1,224 +1,101 @@
-Return-Path: <devicetree+bounces-13498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3562F7DE59A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 18:48:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E5AE7DE5F2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 19:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E14392812AC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 17:48:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC0A1C20DF4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 18:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BEB18025;
-	Wed,  1 Nov 2023 17:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A73218E16;
+	Wed,  1 Nov 2023 18:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="F07PzInd"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="uVwsJv3t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A32115E83
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 17:48:43 +0000 (UTC)
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3EDA2;
-	Wed,  1 Nov 2023 10:48:38 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 1101F120020;
-	Wed,  1 Nov 2023 20:48:37 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 1101F120020
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1698860917;
-	bh=EddFr7lOGf4NXOMM9jH9Co+otzGhI8EbkMU/xHevNXE=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=F07PzInd2aLutm3Xd9pZoDISSjegh06GAkp3cdqDW4Lx5dLB9WXbsgoFpvw7aEB+n
-	 kZ7/Yi0H+KQpjsyxGCqYJtfIi7mJXC6TRODY3mS2ZeumRl/GhqFWtI3lN9wC0yrQAw
-	 9bbnGqmGaekNiFh0K5/e+uI3u3FWG2BEExgEq09hnB1n6IPdh5X2BWc8rvxZhTQeuh
-	 RB3CIJnLtAOBkYvHgN9RkpIXfcTY1CB3OFpWGg08uy+/rlKM+x3nj2HIQuPRt2x6/H
-	 n2ZJc3YVzF137t7PWQr+Y08s8CKB5D/3nXAg6s3M7wYdaCLqoeALEpj+7GCZvwQq0i
-	 5ULJWT87MKiLQ==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed,  1 Nov 2023 20:48:36 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Wed, 1 Nov
- 2023 20:48:36 +0300
-Date: Wed, 1 Nov 2023 20:48:36 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Conor Dooley <conor@kernel.org>
-CC: <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-leds@vger.kernel.org>
-Subject: Re: [PATCH v3 11/11] dt-bindings: leds: aw200xx: fix led pattern and
- add reg constraints
-Message-ID: <20231101174836.2qlhkgao6pxjjs2e@CAB-WSD-L081021>
-References: <20231101142445.8753-1-ddrokosov@salutedevices.com>
- <20231101142445.8753-12-ddrokosov@salutedevices.com>
- <20231101-subzero-grimace-52a10da6a445@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2595018023
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 18:22:20 +0000 (UTC)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D452DB;
+	Wed,  1 Nov 2023 11:22:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=JPrvVeZ4WJpxhs/zACFVSRSZAXD8OIyWKpEcKjAp87c=; b=uVwsJv3t6f9XRdTGBUS41yY40T
+	30rrBu0jSn9bfHf+J8eRpMIl1rKtxcsWF/OUoI/tMilNfYXaeN9MlWX40BOdk31CIsHUKAAC3ArzE
+	UKV4RpxkPUmzKKt5RLQ6UggvlepwvMt6LGqvuK0siG1yw2BZE69l9sXTuxjRuaqLhi6M=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:57364 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1qyFqc-0000rC-Fa; Wed, 01 Nov 2023 14:21:51 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	hvilleneuve@dimonoff.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	leoyang.li@nxp.com,
+	robh@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	hugo@hugovil.com
+Date: Wed,  1 Nov 2023 14:21:37 -0400
+Message-Id: <20231101182140.2891578-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231101-subzero-grimace-52a10da6a445@spud>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 181058 [Nov 01 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/01 15:56:00 #22380151
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+Subject: [PATCH 0/3] board: imx8mn-rve-gateway: add support for RVE gateway board
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Conor,
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-On Wed, Nov 01, 2023 at 03:31:28PM +0000, Conor Dooley wrote:
-> On Wed, Nov 01, 2023 at 05:24:45PM +0300, Dmitry Rokosov wrote:
-> > AW200XX controllers have the capability to declare more than 0xf LEDs,
-> > therefore, it is necessary to accept LED names using an appropriate
-> > regex pattern.
-> > 
-> > The register offsets can be adjusted within the specified range, with
-> > the maximum value corresponding to the highest number of LEDs that can
-> > be connected to the controller.
-> > 
-> > Fixes: e338a05e76ca ("dt-bindings: leds: Add binding for AW200xx")
-> > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
-> 
-> You did correctly guess what I was getting at on the previous version.
-> Apologies for not replying - I got sick and things probably fell a bit
-> through the cracks.
+Hello,
+this patch series add support for the RVE gateway board.
 
-Don't worry! Take care and get well soon!
+Thank you.
 
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
+Link: [v1] https://lore.kernel.org/all/20231101144303.2653464-1-hugo@hugovil.com/raw
+           https://lore.kernel.org/all/20231101144057.2653271-1-hugo@hugovil.com/raw
 
-Should I include this tag in the next version with a fix for the 'reg'
-maxItems, or would you review this patch again?
+Changes for V2:
+- Combine separate patches as a series. Start series at 2 to avoid confusion.
 
-> Cheers,
-> Conor.
-> 
-> > ---
-> >  .../bindings/leds/awinic,aw200xx.yaml         | 64 +++++++++++++++++--
-> >  1 file changed, 58 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> > index 67c1d960db1d..ba4511664fb8 100644
-> > --- a/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
-> > @@ -45,17 +45,12 @@ properties:
-> >      maxItems: 1
-> >  
-> >  patternProperties:
-> > -  "^led@[0-9a-f]$":
-> > +  "^led@[0-9a-f]+$":
-> >      type: object
-> >      $ref: common.yaml#
-> >      unevaluatedProperties: false
-> >  
-> >      properties:
-> > -      reg:
-> > -        description:
-> > -          LED number
-> > -        maxItems: 1
-> > -
-> >        led-max-microamp:
-> >          default: 9780
-> >          description: |
-> > @@ -69,6 +64,63 @@ patternProperties:
-> >            where max-current-switch-number is determinated by led configuration
-> >            and depends on how leds are physically connected to the led driver.
-> >  
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: awinic,aw20036
-> > +    then:
-> > +      patternProperties:
-> > +        "^led@[0-9a-f]+$":
-> > +          properties:
-> > +            reg:
-> > +              items:
-> > +                minimum: 0
-> > +                maximum: 36
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: awinic,aw20054
-> > +    then:
-> > +      patternProperties:
-> > +        "^led@[0-9a-f]+$":
-> > +          properties:
-> > +            reg:
-> > +              items:
-> > +                minimum: 0
-> > +                maximum: 54
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: awinic,aw20072
-> > +    then:
-> > +      patternProperties:
-> > +        "^led@[0-9a-f]+$":
-> > +          properties:
-> > +            reg:
-> > +              items:
-> > +                minimum: 0
-> > +                maximum: 72
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: awinic,aw20108
-> > +    then:
-> > +      patternProperties:
-> > +        "^led@[0-9a-f]+$":
-> > +          properties:
-> > +            reg:
-> > +              items:
-> > +                minimum: 0
-> > +                maximum: 108
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > -- 
-> > 2.36.0
-> > 
+Hugo Villeneuve (3):
+  dt-bindings: vendor-prefixes: add rve
+  dt-bindings: arm: fsl: add RVE gateway board
+  arm64: dts: freescale: introduce rve-gateway board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8mn-rve-gateway.dts | 284 ++++++++++++++++++
+ 5 files changed, 295 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
 
 
-
+base-commit: 8bc9e6515183935fa0cccaf67455c439afe4982b
 -- 
-Thank you,
-Dmitry
+2.39.2
+
 
