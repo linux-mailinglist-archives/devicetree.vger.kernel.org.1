@@ -1,219 +1,140 @@
-Return-Path: <devicetree+bounces-13360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A043D7DDCAD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:33:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 888BB7DDCB8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 07:35:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28C5EB20F04
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 06:33:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 950C91C20CA2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 06:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A831104;
-	Wed,  1 Nov 2023 06:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9231139C;
+	Wed,  1 Nov 2023 06:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CcnVKKv8"
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="KAr7K29k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6EB63BB
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 06:33:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 320C1C433C8;
-	Wed,  1 Nov 2023 06:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698820420;
-	bh=3O26v4tTyNO7eM9tG/OxIgXtPpBxiNbtzfURLi8HCZk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CcnVKKv8EfTeuBLyyOLKSRwG+qCSvPSCwkfxkbo3TzyH3Hq0Y52w+78vCkJQRXpVA
-	 svekU5rFtLritpMRc9Gn+pvR4ZkWPHYHKQQAhOYSFZAzd2u2yiIbtfP5BB3bU0YMWA
-	 chrek2JJ+UXrd0CEtV3/RM9vbdorPAlFHyQ2N7yx4WNoWhCC9hktyArQWzTI5YNYYz
-	 SCyRKTCVzT+JYFE/QWO7u0A1l+X4NW3sZHo/3GFZkbqvyQQHhC6cEwAI4MbSerUoWk
-	 iEeqbJBlkrMAKNazjKGPbg0ke5dJVE4hd2w07id/zHg6CinmLBl1fohgw3Xsl8UMk9
-	 QDi6xA2BsfbWQ==
-Date: Wed, 1 Nov 2023 12:03:23 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, rafael@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-	quic_ramkri@quicinc.com, quic_parass@quicinc.com
-Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20231101063323.GH2897@thinkpad>
-References: <1694066433-8677-1-git-send-email-quic_krichai@quicinc.com>
- <1694066433-8677-6-git-send-email-quic_krichai@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294E41C3C
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 06:35:41 +0000 (UTC)
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01hn2217.outbound.protection.outlook.com [52.100.164.217])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1537115;
+	Tue, 31 Oct 2023 23:35:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GT25mPd2JzYrLtqgyFpDvxzoEIharESHQxEYftOLatZIrVYCxFeinkE/1JGGr30Y6jdfgJvtGYCUwuFuSJTZCh6q22UuqaGEJJvqi0OO5SLPeQ88YcyTzDHHa/pavjxdyasarZ8/+B21e0pVZCIIcwOqTEKgksWDsu/SlP7GspluUqb1A2IVvsMc0AWn6QIZtpdqf5um1YL+iCsuyKOkPbLv96KZs4sGONFYNWcYLo+qhHbe2taVP9TLT8cMENklR+Mjb1VKdc6B22BycLg0hHw2n+55NfDKsuC0RhALBTu0EF9jZ64zWf8+Fx/oefiOViJ/NIRsh1kUV6ugUw6XeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7pI1woDbbhMg0gbXK6xUmhQI1QmNxr4woQLsEAbCwLA=;
+ b=gs2ge/kiYy+wz6CFyacqhE0jWsM3/Bj8mERrrIPC13ApQ+CIJDmO7GGByyMDTG8Fedk3Mm2NsKi5zjCAdsS/Ox9ZxSMZjxrgEsr/hwL3eyNnWXlY8w6tBuVe7K5mjL1XN78Iq7PlT/PV9AtnYMs0bHNnbsXoMxKzohq1UkDFYrBPTIGHeFMhSA8Ra7j6yIfYGWjwZGWjBNwSYrAtiQV/i5o1Gvl+KDqvKKyS50xjIOOOLI5Y9e2yB0eM/9z3Y0Y0V6NbCcmOtA8AkwrVZ0B+cELsOHm2x0swXl7X+AoqAOPlJfRkeKZ67VlIPVEIc7/QNeoZhtW45WANN8apvK13Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nuvoton.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7pI1woDbbhMg0gbXK6xUmhQI1QmNxr4woQLsEAbCwLA=;
+ b=KAr7K29kcOnYfziUDdChXZJ3MTpOYzzpd25+S+7cHarJ0dUI7oGCk5txZ7Yq0jNrPnW+8mgpwURWWM5rmMjGa7CEWCsrBFbS9DWyR196CSyIdxlDbNBln2Dc/0ly6OVUYLuQrvbXx4jcrAOpFnsjKOVDNBVwYuvOzJGGHqYtKaw=
+Received: from SG2PR01CA0181.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:189::13) by TYZPR03MB5725.apcprd03.prod.outlook.com
+ (2603:1096:400:67::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Wed, 1 Nov
+ 2023 06:35:26 +0000
+Received: from SG2PEPF000B66CA.apcprd03.prod.outlook.com
+ (2603:1096:4:189:cafe::15) by SG2PR01CA0181.outlook.office365.com
+ (2603:1096:4:189::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29 via Frontend
+ Transport; Wed, 1 Nov 2023 06:35:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ SG2PEPF000B66CA.mail.protection.outlook.com (10.167.240.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.6954.19 via Frontend Transport; Wed, 1 Nov 2023 06:35:26 +0000
+Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.14; Wed, 1
+ Nov 2023 14:35:16 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
+ (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Wed, 1 Nov
+ 2023 14:35:15 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Wed, 1 Nov 2023 14:35:15 +0800
+From: Seven Lee <wtli@nuvoton.com>
+To: <broonie@kernel.org>
+CC: <lgirdwood@gmail.com>, <alsa-devel@alsa-project.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<robh+dt@kernel.org>, <conor+dt@kernel.org>, <YHCHuang@nuvoton.com>,
+	<KCHSU0@nuvoton.com>, <CTLIN0@nuvoton.com>, <SJLIN0@nuvoton.com>,
+	<wtli@nuvoton.com>, <scott6986@gmail.com>, <supercraig0719@gmail.com>,
+	<dardar923@gmail.com>
+Subject: [PATCH v3 0/2] Add DMIC slew rate controls 
+Date: Wed, 1 Nov 2023 14:35:12 +0800
+Message-ID: <20231101063514.666754-1-wtli@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1694066433-8677-6-git-send-email-quic_krichai@quicinc.com>
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CA:EE_|TYZPR03MB5725:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0aee090-7da1-46a3-8395-08dbdaa4bbd8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	kXZXUwxk3qxxkdNLPRRnau5hW1eRqL2Mgb0uakeCsC2scqeDHbKNzlEgAC0mKECyKGG2v4BLQoPDscSFyDuitSsH/tkEcgM0V0D0g/hicB5nn/BVYJwvgLoMnMhuomDqoC/IXFkcaqzhZExuDNPjelVLzW1cHNGh2rwIOjxuNMoSiJS4+OU4FS3zSxDnjbsFdU+W7aT7omlI6ZJEQLLQh+DoB8Sog9y6t7Ug4/FW+MW8NoXaAtusmxi4SuxNXJlMgbpF5wh6ruAm39HWaryXCdZU4qdlhTs2fNfO0ghA6CyayZIUpOnkHo1ZQUFi1TES90BoBXYQNuveiy1IzYKM2IH3pFDRK4m+bDQKdz9Kb/mUuwdq8zbv7TJTYW9dwdz4QUK0+W0sdzkQ02JjGvbXk+ZCEBe5P0z48hrCorSvK1jSFE5kjzz6QxGk+N3cB5YpJl3ry/Wo9TKHf9e9tqN2UgjyQM9lDGld+nD41xXRUPNk9BUmrrQBzpt7pMTSz9BvCeuJA8vsslvfOekF1o72oOE9vOVi7OnCWSZS9rkNNWEjRYmrHsn/w9Iy2S8sNIKs7qvqH0GWDE1zjbCGpVGAZztv9nnK0EkIEoqtKXIX7hGzjXdl5pTKAcC12FI4Rmhk2g6AQqZ29TgStXWuh2ISAsfr3qZ4Y0Rp+lsK+X6exQ1xrDtdZdFrdg2SpGNrqITGdUgK8w7cNo/bc9lau/5YdVYADA1Ec+MF7KGhpRla1LX3aHf6ImZ+tnNl7hxIbnQ73AZHFGcpQkhZjJH/f6QL3lYPBh0oy3lvdUbrmUjHUQJPlkPkr4EsqKkWHIPqkPGYNJvlP3odXnyijURj2VHdhOGN1irex5WfRzDKVv5xmPs=
+X-Forefront-Antispam-Report:
+	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(376002)(136003)(39860400002)(230922051799003)(82310400011)(186009)(64100799003)(1800799009)(451199024)(5400799018)(36840700001)(46966006)(40470700004)(26005)(1076003)(4744005)(40460700003)(356005)(34020700004)(2616005)(82740400003)(86362001)(36756003)(40480700001)(81166007)(426003)(336012)(7416002)(2906002)(83380400001)(36860700001)(478600001)(6666004)(47076005)(8936002)(4326008)(8676002)(316002)(54906003)(41300700001)(4743002)(70206006)(5660300002)(6916009)(70586007)(12100799048);DIR:OUT;SFP:1501;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2023 06:35:26.2983
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0aee090-7da1-46a3-8395-08dbdaa4bbd8
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CA.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5725
 
-On Thu, Sep 07, 2023 at 11:30:33AM +0530, Krishna chaitanya chundru wrote:
-> While scaling the interconnect clocks based on PCIe link speed, it is also
-> mandatory to scale the power domain performance state so that the SoC can
-> run under optimum power conditions.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 58 ++++++++++++++++++++++++++++------
->  1 file changed, 49 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index ca6350b..1817e96 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -22,6 +22,7 @@
->  #include <linux/of.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pci.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/pcie.h>
-> @@ -240,6 +241,7 @@ struct qcom_pcie {
->  	const struct qcom_pcie_cfg *cfg;
->  	struct dentry *debugfs;
->  	bool suspended;
-> +	bool opp_supported;
->  };
->  
->  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-> @@ -1357,14 +1359,13 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
->  	return 0;
->  }
->  
-> -static int qcom_pcie_icc_update(struct qcom_pcie *pcie)
-> +static int qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
->  {
->  	struct dw_pcie *pci = pcie->pci;
-> +	struct dev_pm_opp *opp;
->  	u32 offset, status, bw;
->  	int speed, width;
-> -
-> -	if (!pcie->icc_mem)
-> -		return 0;
-> +	int ret;
->  
->  	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->  	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
-> @@ -1391,7 +1392,21 @@ static int qcom_pcie_icc_update(struct qcom_pcie *pcie)
->  		break;
->  	}
->  
-> -	return icc_set_bw(pcie->icc_mem, 0, width * bw);
-> +	if (pcie->opp_supported) {
-> +		opp = dev_pm_opp_find_level_exact(pci->dev, speed);
-> +		if (!IS_ERR(opp)) {
-> +			ret = dev_pm_opp_set_opp(pci->dev, opp);
-> +			if (ret)
-> +				dev_err(pci->dev, "Failed to set opp: level %d ret %d\n",
-> +					dev_pm_opp_get_level(opp), ret);
-> +			dev_pm_opp_put(opp);
-> +		}
-> +	}
-> +
-> +	if (pcie->icc_mem)
-> +		ret = icc_set_bw(pcie->icc_mem, 0, width * bw);
+Determine DMIC slew rate via property setup.
 
-I think you should tie interconnect scaling with OPP as suggested by Viresh,
-since you are updating both OPP and BW at the same time.
+Change:
+V2 -> V3:
+ - Update description of DMIC slew rate and remove
+   "selection" key words from property name
+ - Corrected variable name of DMIC slew rate from c file
 
-- Mani
+V1 -> V2:
+ - Corrected description of DMIC slew rate.
 
-> +
-> +	return ret;
->  }
->  
->  static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-> @@ -1434,8 +1449,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
->  static int qcom_pcie_probe(struct platform_device *pdev)
->  {
->  	const struct qcom_pcie_cfg *pcie_cfg;
-> +	unsigned long max_level = INT_MAX;
->  	struct device *dev = &pdev->dev;
->  	struct qcom_pcie *pcie;
-> +	struct dev_pm_opp *opp;
->  	struct dw_pcie_rp *pp;
->  	struct resource *res;
->  	struct dw_pcie *pci;
-> @@ -1506,6 +1523,27 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_pm_runtime_put;
->  
-> +	/* OPP table is optional */
-> +	ret = devm_pm_opp_of_add_table(dev);
-> +	if (ret && ret != -ENODEV) {
-> +		dev_err_probe(dev, ret, "Failed to add OPP table\n");
-> +		goto err_pm_runtime_put;
-> +	}
-> +
-> +	/* vote for max level in the opp table if opp table is present */
-> +	if (ret != -ENODEV) {
-> +		opp = dev_pm_opp_find_level_floor(dev, &max_level);
-> +		if (!IS_ERR(opp)) {
-> +			ret = dev_pm_opp_set_opp(dev, opp);
-> +			if (ret)
-> +				dev_err_probe(pci->dev, ret,
-> +					      "Failed to set opp: level %d\n",
-> +					      dev_pm_opp_get_level(opp));
-> +			dev_pm_opp_put(opp);
-> +		}
-> +		pcie->opp_supported = true;
-> +	}
-> +
->  	ret = pcie->cfg->ops->get_resources(pcie);
->  	if (ret)
->  		goto err_pm_runtime_put;
-> @@ -1524,9 +1562,9 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  		goto err_phy_exit;
->  	}
->  
-> -	ret = qcom_pcie_icc_update(pcie);
-> +	ret = qcom_pcie_icc_opp_update(pcie);
->  	if (ret)
-> -		dev_err(dev, "failed to update interconnect bandwidth: %d\n",
-> +		dev_err(dev, "failed to update interconnect bandwidth/opp: %d\n",
->  			ret);
->  
->  	if (pcie->mhi)
-> @@ -1575,6 +1613,8 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
->  	 */
->  	if (!dw_pcie_link_up(pcie->pci)) {
->  		qcom_pcie_host_deinit(&pcie->pci->pp);
-> +		if (pcie->opp_supported)
-> +			dev_pm_opp_set_opp(dev, NULL);
->  		pcie->suspended = true;
->  	}
->  
-> @@ -1594,9 +1634,9 @@ static int qcom_pcie_resume_noirq(struct device *dev)
->  		pcie->suspended = false;
->  	}
->  
-> -	ret = qcom_pcie_icc_update(pcie);
-> +	ret = qcom_pcie_icc_opp_update(pcie);
->  	if (ret)
-> -		dev_err(dev, "failed to update interconnect bandwidth: %d\n",
-> +		dev_err(dev, "failed to update interconnect bandwidth/opp: %d\n",
->  			ret);
->  
->  	return 0;
-> -- 
-> 2.7.4
-> 
+Seven Lee (2):
+  ASoC: dt-bindings: nau8821: Add DMIC slew rate
+  ASoC: nau8821: Add slew rate controls.
+
+ .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
+ sound/soc/codecs/nau8821.c                                | 7 +++++++
+ sound/soc/codecs/nau8821.h                                | 3 +++
+ 3 files changed, 18 insertions(+)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
 
