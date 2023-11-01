@@ -1,187 +1,205 @@
-Return-Path: <devicetree+bounces-13326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045497DDAAB
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 02:42:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63EF57DDAB8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 02:47:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99175B20E7F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 01:42:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ACEC1C20CCE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 01:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBF365F;
-	Wed,  1 Nov 2023 01:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C663A46;
+	Wed,  1 Nov 2023 01:47:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NrmGem36"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Q6A30MLn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55CE97F6
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 01:42:26 +0000 (UTC)
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA09D119;
-	Tue, 31 Oct 2023 18:42:23 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-da0359751dbso411245276.1;
-        Tue, 31 Oct 2023 18:42:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698802943; x=1699407743; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EqP28swEoFqFBpOsPvURB6Dcv19Cyas9Sj5n5k9cRsM=;
-        b=NrmGem361rCdWpysmkJeD7d2pRTvDa//3MbgBE99zw/y7kH+4NNFlz0B9ykGqZ8AGE
-         fI90sAxBfDL1N98NCYkscRvl0miTjLfW63WTHfYSlJ5cOGKW91+b+k0/6DfLVIK6v8VM
-         im4amIZxsOiS95bNs9+65FVkD1z+GWK5cqsFxbD0lJvQu4+tsm7ckY2iLixCVpKCk1yT
-         Lr7K2s7P7mp7UQyumYw0advBWnwzqIIcr0goJjoNK0MG8IGu7cXFcfjRUouLrSi/5Ph7
-         EJI8P7h8eOWCly3Uy417xrlrR8N9p3g9mfG3oroigd9UmxTpDwcCoV2umGYaEyx7Q3Eg
-         lp5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698802943; x=1699407743;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EqP28swEoFqFBpOsPvURB6Dcv19Cyas9Sj5n5k9cRsM=;
-        b=vU9K4Sbw0aREZ7J8tPwpCY7D6U9+0LUD07+slkVRHj9Wlv59LJEFtNrjyiui3trKJ1
-         4E0GtJDP4d/ZRmU1m1+p5Dqgql5+U6fzDAdVO2get632wlu2vhmUNRgU0jdcEFZLsTGS
-         5X2sUwRokAInPenFxzGg811N6KJt11jvosW4dtJJl+kIbrjEYIxW42XOyeRLXnL+vf3M
-         Zi7zmQhBbRS4EjyHvJ4ffX70kMltZtzqKQvYqcChJEx1s8kD2U7O6O6fTfJDb71PEJo1
-         EnKEeOqj2kElUSWOl3BHIuUb9zbNMv7VMoeOagleRStaTASll8DmtdyruchPGT6WqlUH
-         XdxQ==
-X-Gm-Message-State: AOJu0YxuQA5+uWPEuQEB2o4dhzDbpBp1nhKfup3xZP89mbM6wrbv9lf5
-	scxu0T0T5yXBMWWz27/S5t05fH81YXgoAeyoC4s=
-X-Google-Smtp-Source: AGHT+IFa2JpmHdGFDcAM1sUzLsses6Qgyt8fsVsUd3nY2L/J+jzVc7x7mSCYmF8QOruW6ygQIYO6W7vsbej/b/cnyd4=
-X-Received: by 2002:a25:9307:0:b0:da0:7fe0:dc6 with SMTP id
- f7-20020a259307000000b00da07fe00dc6mr3496481ybo.14.1698802942978; Tue, 31 Oct
- 2023 18:42:22 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB11A35
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 01:47:53 +0000 (UTC)
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01olkn2012.outbound.protection.outlook.com [40.92.99.12])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9C5E4;
+	Tue, 31 Oct 2023 18:47:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DwXwOXR7qYMxUPr/4tXVwbU0aQSX1SKzE8j2qVlMRrAAxJ5ewLGtqacKrHABY0C1kmVTSqWHjkzTQ6hdp2Y/DNx6GCAuEIzrBuUYLIJrZb55rir/fqf5affk0Qgwn7jJO7dr6gYSxdYuf5j+NzlO/jqG20dUVjvtPKOYlOEmitLZ4F874bQw1Lnj33WMpNBYH6QOiek3008WzE1BzKSwhbcHRawPIkDvIpzlDRWaV9SqWqhgEeUOQdCQLdoTSDVMBgfgZY/6Q98/rkQVII3QAfPZpHvWUIBl+MyOYMEtrZcRJDukIaUr9dNAogV20F56eBp4t48Sx2Z7hQ+UNrQljw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oekaFV/H6G7/kTQrVCsZZH6TZkqMHF9EilX+awNCAGY=;
+ b=Iq/YXLsUqmhhy+v8Nq0ww7Vluf31n/+hhxdcOfoT0wO0nUrnvag4/sGJgiso+c7QcdT1V0YEzhNgxRHqCzwh0ywH3CzbSRmWybmk5ZwrpZ19vZPQ9KK876/88lVUe+G0YnuE3ArU3/LJpiZw45wTFsZ47BqLtTl/4jMdGI9ZsT926/OSRavrOsRCvRs56WRDLCQRZq+Adrj2xvoPildPqC2Tm2gti/5hIHzg6KYo19kZHyDxSTvnzQQyRIuSRPQwkF9VEQpOt8zhiUnb8kEyzMD0Hth/D3L6Pd4ltEs365Fznu6ZXZ2TJjdQJVp70mrAqE3cVVTho8Pk2/m5TnAyGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oekaFV/H6G7/kTQrVCsZZH6TZkqMHF9EilX+awNCAGY=;
+ b=Q6A30MLnKNBkxyBVDzj6f3VjnGWMXDyV76GR1ce5M9dGyQWb/4b9jMp0iuxB2Yx4yMFlXpSLIGWN+0Q9qdsAKzzATLc3cI+9DoIhcd/59nqcoml3JX1NFiHJcNa6l+txss7n9+r6KQB1xj+4uYYt1KVU8juwHFbLOmc2XtUpjjVO+6I9Z2dNtZYnLVK2uy3Lhkt19YUuQs1eYNcpZOrV7vtbk0MJcZe8BDujXUKcLeOGuJbaeC/k0qbPJxzMR16zU8RM47nnlw5te530QWsl5/ckJ1s6u1bjFGkXYiJNYcicx42oSzcQXErEocm8Sa14CCP0eYfnfQyjm8sCF6/EFw==
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
+ by TY3P286MB3795.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:406::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19; Wed, 1 Nov
+ 2023 01:47:43 +0000
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b%6]) with mapi id 15.20.6954.019; Wed, 1 Nov 2023
+ 01:47:43 +0000
+From: Shiji Yang <yangshiji66@outlook.com>
+To: robh@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	lee@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	oliver@schinagl.nl,
+	pavel@ucw.cz
+Subject: Re: [PATCH v2 2/2] dt-bindings: leds: add "internet" and "rssi" function definitions
+Date: Wed,  1 Nov 2023 09:47:31 +0800
+Message-ID:
+ <TYAP286MB0315C0414CC9420993D18DAABCA7A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231031180305.GA1813504-robh@kernel.org>
+References: <20231031180305.GA1813504-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TMN: [MX3eettV9n7PyP5EVhlpK+u/QOEr4qNB0/T1RBQXxek=]
+X-ClientProxiedBy: TY2PR02CA0023.apcprd02.prod.outlook.com
+ (2603:1096:404:56::35) To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:404:8041::8)
+X-Microsoft-Original-Message-ID:
+ <20231101014731.9270-1-yangshiji66@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1698717154.git.zhoubinbin@loongson.cn> <fd5efc8a21b94e044e4e225255655fc92beb0c63.1698717154.git.zhoubinbin@loongson.cn>
- <20231031175205.GA1803813-robh@kernel.org>
-In-Reply-To: <20231031175205.GA1803813-robh@kernel.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 1 Nov 2023 07:42:11 +0600
-Message-ID: <CAMpQs4+4bSKC+nUGoD=HpwcSfQ7AUZWm-N_moRZN7kc_q_SrAQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: interrupt-controller:
- loongson,liointc: Fix dtbs_check warning for reg-names
-To: Rob Herring <robh@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, lvjianmin@loongson.cn, 
-	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TY3P286MB3795:EE_
+X-MS-Office365-Filtering-Correlation-Id: 00b37e9d-3abc-4af0-ce81-08dbda7c89ca
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	0dZJJIHSikN1RWV+JS0Dq5hUme1cVgTlHWGHIyNkoCrze3hNjP03clPtIPWfaWYfc4R3MNsjUttKOfn9YIB43PG5PipgQT3sg0m2gRaCnD1NNkCfzs4JPWIZCUkfKfHrDpJ874o8rPWD3PlkzuxdTysKwuspkdvOqN14gSO0buLbOAHmTfcjfa9CyFERS/F5CDbK2VEjR+OD0EwtcPzH1XtTG9UtHsdM0o4iBDv+bLZtGlCgeUvvl4u1MW5Pamnxo5fnKAyvfpjF7cWL7vnY9tbDXe7iNBTSQfvkBaBYPy1Q7XVYhcc+LoZlBqQHaWqW2uhrHQt7+cB2szOVLi7RWKZ/XnlVY9ZPpHt2giZjl7tUuLRkCocasv+YG+TKZNmsy+dwIpwmxhrfh9yfA2MlerK7LhVnOmDLZ8mAszzKtMlE4OZwNFlFJojR33S0/hTLIbQIBC4OUTgkMZfaunI1AOw7RhMGA4TEiLJLY3MboTBP+HSXNyzpc9q9Z4KMWpYGM0IVjMyVR71QHxXf1ZsS/hrQZ/BsjbKLaFAG9W802wvuuNB11fK8jguvJCOCtKjQxxpQmH5DV7eLR90YZspm/dPFkxWbx+heFSnKxLQd+CM=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?b1huRzVRcWk2SWFJSFRrQm9mU2E3OHV6U3djTlJPTExwNy82bmpDL1FwdDdS?=
+ =?utf-8?B?YmdIYTZpeURoUXVGcWxhNEV1ZHU1QkN6dEJhQUxZSkFQSnY0ZFNlSkxleWo4?=
+ =?utf-8?B?aFdBZ0VpWnFabVlVTnFXQ2tYUnhDUXJzSmJFZ0prUVVXRGNObElzWSsvMXVl?=
+ =?utf-8?B?Wk9lOWd5NVdFUmFMZnVzS0swTVZZUXBsR2xaOXdvZXBkUGxSUncvQ05PTTZ3?=
+ =?utf-8?B?UjZseUpMWHl0Y2IvNXRWdmFWTVZsTWg0OG4zcXR6Q0dLeVZCc3E4RytmcnFl?=
+ =?utf-8?B?QlZtQ1JpYjRrZWVGU0hmRXVNdGM3Ym52ZGhpcWs2dERTODZSY2tUa24zaGpz?=
+ =?utf-8?B?S2tKdnJjNGpOa0VjenhUTkU2WFBWTEhjY1d3UkV5SVJTTWI5cnVkQjdvN0ZS?=
+ =?utf-8?B?SnZVMGM5Y0d2a0lOU3JOcndZUDk2c0hNK040dVlIck1ER25BMHhnaVA0L09Y?=
+ =?utf-8?B?aHNUTXBaZGVma2lkYVZsMTh3aEVPaVdyYWZNZy8zS2dOM1ZQVUVEQUd3OWY2?=
+ =?utf-8?B?LzhldjliTEJUS2V0WGM2R2s4RTNMNXNHUlJ2Y0k1TE1EckZ2RXVESWtvS2Rs?=
+ =?utf-8?B?YTg1MFY0NnlJb1N0RHdKOEZwQ3FsZ2cxbVRGU2V1YUpBYzhkTjdjSURIRlpW?=
+ =?utf-8?B?VFloTmJyMWF1d0JiODQ2dmZmTjlVSERWTStsTHlZUjhqeWlJc3JNeFVscWk3?=
+ =?utf-8?B?NVl5REp4YmFCaythaldQcXIrZ1JqSys4eGFUREI3VFZmQk9LQmlwc0UyejlV?=
+ =?utf-8?B?ZDd0M2R0NGd4QnRta1lFWGJTb3Foa1hyOG5OOFB3NnRQWjZvSGduZEs0MDM3?=
+ =?utf-8?B?NGZRQ1QxMlBWODE0Wm9XTEpjK3g5em9RUm00KzFaT01teEpIS01CdXZ5clZa?=
+ =?utf-8?B?Z29DQm9VNVZYRGpVSG9hNE1EWUwwdFVWKzNDWEVyZm9rTGY3UTlPMGpkS09N?=
+ =?utf-8?B?ZTByZVVrSUJZUkduelFzTklnQnU3UEp5NW5lRXZNclpmVEF3cnpkRFN3ZFg1?=
+ =?utf-8?B?NW14Z3haM05ESVRlbGhnQWkydlVJdmpkb21FVEZ5YStMZzlZZ1BERXVHbkxR?=
+ =?utf-8?B?UXhQQnpIeGdpdFQvOS9nQVRxbFdwRU5RczBvNVZFSW9RZ3J4N20wREtTai91?=
+ =?utf-8?B?citWcFl5WEc5RVlvY0pTUkxvK3RyUVFPMGRHU3F4L2RRZGhmbSswbzVaRjdj?=
+ =?utf-8?B?cTNzdTliYUIyVjNvQ1g0aEV3bkdvRkYyeXBJY3FzNjIzcWJ6TVYxM3NoZjAv?=
+ =?utf-8?B?Y1VhWElURzZGTmpQL0RaMElsSEt3M0FVODNqQzljSGxJaDlnd1ZlZXlZRGdu?=
+ =?utf-8?B?ZElzbkV4dll5ZDVGMmd6QjdHa1NkeCt2clVuWmo1WUpuV1RuZ0dpc1poMWpw?=
+ =?utf-8?B?eWZhZy9vWHo3YU15S3VDMktkSU0yQUt1b1J3N25UbjIxZVkwUnpxaFFIcHYy?=
+ =?utf-8?B?Z0pxcmwyVTJTSkp1R0kzM1dBcHJwcFh4ZFhTcWJLc2wyY1VUMkxyMUpIN0FO?=
+ =?utf-8?B?MFl6TUdwN2lhNzhwUFliZktDb2RnUmFJdW5talZOYisvaGtTb20yeC9WZU5N?=
+ =?utf-8?B?dGxhdHY3aURlQmhKWXpGRm9wS0ppZnd2ZERvK1VDY0kzaTNaNnFuWXJvK3pz?=
+ =?utf-8?Q?o/d9mJ22Ogjw6o+wedn5J4ImAN2GIUHcGzD23H5LQ3f4=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00b37e9d-3abc-4af0-ce81-08dbda7c89ca
+X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2023 01:47:43.3719
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3P286MB3795
 
-On Tue, Oct 31, 2023 at 11:52=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Tue, Oct 31, 2023 at 10:36:37AM +0800, Binbin Zhou wrote:
-> > As we know, the Loongson-2K0500 is a single-core CPU, and the
-> > core1-related register (isr1) does not exist, and we need a separate
-> > declaration.
-> >
-> > This fixes dtbs_check warning:
-> >
-> > DTC_CHK arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
-> > arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1=
-fe11400: reg-names: ['main', 'isr0'] is too short
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> > arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1=
-fe11400: Unevaluated properties are not allowed ('reg-names' was unexpected=
-)
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> > arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1=
-fe11400: reg: [[0, 534844416, 0, 64], [0, 534843456, 0, 8]] is too short
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> > arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1=
-fe11440: reg-names: ['main', 'isr0'] is too short
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../loongson,liointc.yaml                     | 22 ++++++++++++++-----
-> >  1 file changed, 16 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
-ngson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
-/loongson,liointc.yaml
-> > index 0d9511b8a792..7393d7dfbe82 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
-iointc.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
-iointc.yaml
-> > @@ -11,8 +11,13 @@ maintainers:
-> >
-> >  description: |
-> >    This interrupt controller is found in the Loongson-3 family of chips=
- and
-> > -  Loongson-2K1000 chip, as the primary package interrupt controller wh=
-ich
-> > +  Loongson-2K series chips, as the primary package interrupt controlle=
-r which
-> >    can route local I/O interrupt to interrupt lines of cores.
-> > +  Be aware of the following points.
-> > +  1.The Loongson-2K0500 is a single core CPU, the isr1 register could =
-not be defined;
-> > +  2.The Loongson-2K0500/2K1000 has 64 device interrupt sources as inpu=
-ts, so we
-> > +    need to define two nodes in dts{i} to describe the "0-31" and "32-=
-61" interrupt
-> > +    sources respectively.
-> >
-> >  allOf:
-> >    - $ref: /schemas/interrupt-controller.yaml#
-> > @@ -29,10 +34,14 @@ properties:
-> >      maxItems: 3
-> >
-> >    reg-names:
-> > -    items:
-> > -      - const: main
-> > -      - const: isr0
-> > -      - const: isr1
-> > +    oneOf:
-> > +      - items:
-> > +          - const: main
-> > +          - const: isr0
-> > +      - items:
-> > +          - const: main
-> > +          - const: isr0
-> > +          - const: isr1
->
-> Just adding 'minItems: 2' accomplishes the same thing without
-> duplicating the list.
+On Tue, 31 Oct 2023 13:03:05 -0500, Rob Herring wrote:
 
-OK, I will do it.
-
-Thanks.
-Binbin
+>On Tue, Oct 31, 2023 at 09:29:01PM +0800, Shiji Yang wrote:
+>> These two types of LEDs are widely used in routers and NICs. The
+>> RSSI (Received Signal Strength Indicator) LED is used to display
+>> the Wi-Fi signal strength, and the Internet LED can indicate
+>> whether the device can access a specific server.
+>> 
+>> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
+>> ---
+>>  include/dt-bindings/leds/common.h | 2 ++
+>>  1 file changed, 2 insertions(+)
+>> 
+>> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+>> index 9a0d33d02..55a426e39 100644
+>> --- a/include/dt-bindings/leds/common.h
+>> +++ b/include/dt-bindings/leds/common.h
+>> @@ -88,11 +88,13 @@
+>>  #define LED_FUNCTION_FLASH "flash"
+>>  #define LED_FUNCTION_HEARTBEAT "heartbeat"
+>>  #define LED_FUNCTION_INDICATOR "indicator"
+>> +#define LED_FUNCTION_INTERNET "internet"
 >
-> >
-> >    interrupt-controller: true
-> >
-> > @@ -94,7 +103,8 @@ if:
-> >  then:
-> >    properties:
-> >      reg:
-> > -      minItems: 3
-> > +      minItems: 2
-> > +      maxItems: 3
-> >
-> >    required:
-> >      - reg-names
-> > --
-> > 2.39.3
-> >
+>Duplicate of 'wan'.
+
+
+It's different from 'wan'. 'wan' usually indicates whether the WAN
+port is connected to the modem (internet services may still
+unavailable). But the 'internet' shows if the device can successfully
+ping servers like 8.8.8.8 to detected the internet connection status.
+When the router operates in AP only mode, we can even connect LAN port
+to the AC/modem to connect to the internet. In this case, 'internet'
+LED should still be on. On some routers, both 'internet' and 'wan'
+are available and be controled separately.
+
+Ref: OpenWrt has a lot of devices that require the 'internet' LED：
+https://git.openwrt.org/?p=openwrt%2Fopenwrt.git&a=search&h=HEAD&st=grep&s=label+%3D+.*net&sr=1
+
+Anyway, if it is still unacceptable, please let me know and I will
+remove it in v3.
+
+
+>
+>>  #define LED_FUNCTION_LAN "lan"
+>>  #define LED_FUNCTION_MAIL "mail"
+>>  #define LED_FUNCTION_MTD "mtd"
+>>  #define LED_FUNCTION_PANIC "panic"
+>>  #define LED_FUNCTION_PROGRAMMING "programming"
+>> +#define LED_FUNCTION_RSSI "rssi"
+>
+>'rx' or 'wlan'?
+
+
+'rx' and 'wlan' only shows the data transfer speed and on/off status, this
+one indicates the signal strength.
+
+>
+>Wouldn't you need multiple LEDs to indicate signal strength? Maybe 
+>'signal' or something would be more generic?
+
+
+Yes, usually there are 3~4 LEDs to indicate the signal strength, just like
+the signal icon on the mobile phone. We can use `function-enumerator` led
+property to mark the different leds in the signal group. I'll rename it to
+'signal' in v3.
+
+>
+>>  #define LED_FUNCTION_RX "rx"
+>>  #define LED_FUNCTION_SD "sd"
+>>  #define LED_FUNCTION_STANDBY "standby"
+>> -- 
+>> 2.39.2
+>> 
+
+Regards,
+Shiji Yang
 
