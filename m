@@ -1,152 +1,159 @@
-Return-Path: <devicetree+bounces-13496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3680A7DE50D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 18:10:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC707DE591
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 18:44:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9078F2812D2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 17:10:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F12C281239
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 17:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4C015E80;
-	Wed,  1 Nov 2023 17:10:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E3D15E80;
+	Wed,  1 Nov 2023 17:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="THiwWN2H"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ED7K3VOK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD13014A91;
-	Wed,  1 Nov 2023 17:09:58 +0000 (UTC)
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D201CA6;
-	Wed,  1 Nov 2023 10:09:51 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-32deb2809daso4420427f8f.3;
-        Wed, 01 Nov 2023 10:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698858590; x=1699463390; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=70RuBrWBQ0TSA8ytHNk00JeITSt1g+gvfLn5RbfFjBE=;
-        b=THiwWN2HVaVB6GoIDHajOenhzEJ+cDB5FYejEsog+GHfruWyAdQMw4NOKtQ2QADaKp
-         T2jaCIaRlr+3rf69yy8amD5KUA2N7Mza1vbEwQRqBB3R+PUaZNSFt8Nv+DfYVeddLyX2
-         PxPWwEstIvrKqiTF0PUUzXWeKvdm4MBUhTI+m8t5BKvp7mOoGZAkfPTtuBytMLZdKvT6
-         gx0qmtXsBImTrgOjukc8wIF9piZx884W+ihLRBjQIqcPhJvJqsK62HN8JwvO8hc4JNjh
-         4Z2D27hKV4H0eswBAA7OfdKeVNqHM0gTBHJFdO+4DKRrKDghpkT78EoYtX9ZhF/uJ2rz
-         ounw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698858590; x=1699463390;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=70RuBrWBQ0TSA8ytHNk00JeITSt1g+gvfLn5RbfFjBE=;
-        b=UQf4GYWLwJV6netmk2uimCqlwNJL+w38spGQmXsWJAgxzLjpQnvcNP7PCrO3sG9Der
-         TVe63CAFKf2g2Hy2KQAMjBV7VGricG3ra5eq87dB3e8CkdaBu9e01njsBWMN/t+t2c78
-         JHVaBuwLzWLWCsP7NBrf4N3MehhzOvaEk5hdAlKKRbKAD1YDhwnK8ZupiscZizpp00bp
-         aSWTIItlTTY8YaxvsixEPdwdvCBInJEYeSVIIhcz5vX7hhS7qZQUKii97y984ENCJg/G
-         IGxp3CKQroWwMtfkMjxMQ0G46vQ9ivhDv43dwYoJ4BITDA6scJACmz6O5oAYPvu6FmLa
-         xXqg==
-X-Gm-Message-State: AOJu0Yyv2kkXJG3uonR1AyOFSSXdfjgLetNPc1/ER7vzpkCTDaNp/1ly
-	YK6eJO06j+sW7iONjanFz1o=
-X-Google-Smtp-Source: AGHT+IF7FZ80ccgWOLhOoAWtSxnx8HuhVc/UzlQ2aCdxN6o1nYIq16H2uI6mv83/ALr0CN70rbxaCA==
-X-Received: by 2002:a5d:6d86:0:b0:32f:7f17:b049 with SMTP id l6-20020a5d6d86000000b0032f7f17b049mr9720763wrs.39.1698858590199;
-        Wed, 01 Nov 2023 10:09:50 -0700 (PDT)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id d8-20020adffd88000000b0032dcb08bf94sm287786wrr.60.2023.11.01.10.09.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Nov 2023 10:09:47 -0700 (PDT)
-Message-ID: <6542865b.df0a0220.82f9d.1bea@mx.google.com>
-X-Google-Original-Message-ID: <ZUKGVWlh01U1evki@Ansuel-xps.>
-Date: Wed, 1 Nov 2023 18:09:41 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Robert Marko <robimarko@gmail.com>
-Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
- support
-References: <20231101123608.11157-1-ansuelsmth@gmail.com>
- <5af21f93-bb2d-42b1-b4d4-ee4443ffaff9@gmail.com>
- <65424cd9.5d0a0220.20d9a.fe0f@mx.google.com>
- <f5f72cc3-0435-4ba0-8291-30d1ec2633a0@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB1A18E01
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 17:44:31 +0000 (UTC)
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9545110F;
+	Wed,  1 Nov 2023 10:44:26 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id EAC1A120020;
+	Wed,  1 Nov 2023 20:44:23 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru EAC1A120020
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1698860663;
+	bh=IFMjb5EThxVctmhDxs8Q+Vp71Ug13ebnpxJJFqjaR1Y=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=ED7K3VOKIYmV02lfi4q4r3obn44pKQEie/SSZ/VkH8lCv37v3BcVp7fO4fWKOQ1h1
+	 jkhXZBqyxpz4RBdRH3iBZ+zdOA3pu7LcKYeQkjosVEkK8viMCPvtxT244TFboJoYZs
+	 bWlPrrxWVWcv8ENMuCLTPNhnazNLnkrOZXMSWcjzDn7sbF+Ikjghv6Z0+AaYXGXRxl
+	 eJJRVQeYl0G14xcy4Qf0DiymqcwQrH7hIlGbF83KfYU6LO/ZgFTUaqiMOwXUJ7CmnY
+	 fZsoKL/RfotwRlyk6NZVW1t0QGkLqtsZpbM9Zj/krolyux5I4apxa6apajnLktYDQR
+	 C1B90Xa0wveTg==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed,  1 Nov 2023 20:44:22 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Wed, 1 Nov
+ 2023 20:44:22 +0300
+Date: Wed, 1 Nov 2023 20:44:22 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Rob Herring <robh@kernel.org>, <linux-leds@vger.kernel.org>,
+	<lee@kernel.org>, <linux-kernel@vger.kernel.org>, <kernel@sberdevices.ru>,
+	<andy.shevchenko@gmail.com>, <conor+dt@kernel.org>, <pavel@ucw.cz>,
+	<krzysztof.kozlowski+dt@linaro.org>, <rockosov@gmail.com>,
+	<robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 11/11] dt-bindings: leds: aw200xx: fix led pattern and
+ add reg constraints
+Message-ID: <20231101174422.zs5er6tqethm46ur@CAB-WSD-L081021>
+References: <20231101142445.8753-1-ddrokosov@salutedevices.com>
+ <20231101142445.8753-12-ddrokosov@salutedevices.com>
+ <169885374980.409399.3653628333009308100.robh@kernel.org>
+ <20231101-bolster-anaerobic-244cd1a8c205@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <f5f72cc3-0435-4ba0-8291-30d1ec2633a0@gmail.com>
+In-Reply-To: <20231101-bolster-anaerobic-244cd1a8c205@spud>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 181058 [Nov 01 2023]
+X-KSMG-AntiSpam-Version: 6.0.0.2
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 543 543 1e3516af5cdd92079dfeb0e292c8747a62cb1ee4, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;devicetree.org:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/11/01 16:22:00
+X-KSMG-LinksScanning: Clean, bases: 2023/11/01 16:22:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/11/01 15:56:00 #22380151
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Wed, Nov 01, 2023 at 05:57:50PM +0100, Heiner Kallweit wrote:
-> On 01.11.2023 13:57, Christian Marangi wrote:
-> > On Wed, Nov 01, 2023 at 02:01:33PM +0100, Heiner Kallweit wrote:
-> >> On 01.11.2023 13:36, Christian Marangi wrote:
-> >>> From: Robert Marko <robimarko@gmail.com>
-> >>>
-> >>> Aquantia PHY-s require firmware to be loaded before they start operating.
-> >>> It can be automatically loaded in case when there is a SPI-NOR connected
-> >>> to Aquantia PHY-s or can be loaded from the host via MDIO.
-> >>>
-> >>> This patch adds support for loading the firmware via MDIO as in most cases
-> >>> there is no SPI-NOR being used to save on cost.
-> >>> Firmware loading code itself is ported from mainline U-boot with cleanups.
-> >>>
-> >>> The firmware has mixed values both in big and little endian.
-> >>> PHY core itself is big-endian but it expects values to be in little-endian.
-> >>> The firmware is little-endian but CRC-16 value for it is stored at the end
-> >>> of firmware in big-endian.
-> >>>
-> >>> It seems the PHY does the conversion internally from firmware that is
-> >>> little-endian to the PHY that is big-endian on using the mailbox
-> >>> but mailbox returns a big-endian CRC-16 to verify the written data
-> >>> integrity.
-> >>>
-> >>> Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
-> >>> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> >>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> >>> ---
-> >>> Changes v2:
-> >>> - Move out of RFC
-> >>> - Address sanity check for offsets
-> >>> - Add additional comments on firmware load check
-> >>> - Fix some typo
-> >>> - Capitalize CRC in comments
-> >>> - Rename load_sysfs to load_fs
-> >>>
-> >>
-> >> To make the driver better maintainable: can the firmware handling code
-> >> be placed in a separate source code file, similar to what has been done
-> >> for the hwmon part?
-> >> If yes, then this could also be the right time to move the aquantia
-> >> driver to an own subdirectory.
-> >>
-> > 
-> > Sure! Np for me just is it really worth it? hwmod is a bigger one but
-> > this is really a few functions.
-> > 
-> r8169_firmware.c is even smaller and I've never regretted having it factored
-> out. Whether it makes sense depends on how much you share with the main module
-> and how the API is structured that you provide to the main module.
-> So I don't say you have to do it, I'm just saying it's worth considering it.
->
+Hello Conor,
 
-Already done! Will be part of this series with v3 :D
-
-> > Anyway if requested, I will move in v3 the driver to a dedicated
-> > directory and move the function to a separate file!
+On Wed, Nov 01, 2023 at 04:17:14PM +0000, Conor Dooley wrote:
+> On Wed, Nov 01, 2023 at 11:04:16AM -0500, Rob Herring wrote:
 > > 
+> > On Wed, 01 Nov 2023 17:24:45 +0300, Dmitry Rokosov wrote:
+> > > AW200XX controllers have the capability to declare more than 0xf LEDs,
+> > > therefore, it is necessary to accept LED names using an appropriate
+> > > regex pattern.
+> > > 
+> > > The register offsets can be adjusted within the specified range, with
+> > > the maximum value corresponding to the highest number of LEDs that can
+> > > be connected to the controller.
+> > > 
+> > > Fixes: e338a05e76ca ("dt-bindings: leds: Add binding for AW200xx")
+> > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > ---
+> > >  .../bindings/leds/awinic,aw200xx.yaml         | 64 +++++++++++++++++--
+> > >  1 file changed, 58 insertions(+), 6 deletions(-)
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/awinic,aw200xx.example.dtb: led-controller@3a: led@0: Unevaluated properties are not allowed ('reg' was unexpected)
+> > 	from schema $id: http://devicetree.org/schemas/leds/awinic,aw200xx.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/awinic,aw200xx.example.dtb: led-controller@3a: led@1: Unevaluated properties are not allowed ('reg' was unexpected)
+> > 	from schema $id: http://devicetree.org/schemas/leds/awinic,aw200xx.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/awinic,aw200xx.example.dtb: led-controller@3a: led@2: Unevaluated properties are not allowed ('reg' was unexpected)
+> > 	from schema $id: http://devicetree.org/schemas/leds/awinic,aw200xx.yaml#
 > 
+> Looks like you need to drop the second part of this hunk from the patch.
+> @@ -45,17 +45,12 @@ properties:
+>      maxItems: 1
+>  
+>  patternProperties:
+> -  "^led@[0-9a-f]$":
+> +  "^led@[0-9a-f]+$":
+>      type: object
+>      $ref: common.yaml#
+>      unevaluatedProperties: false
+>  
+>      properties:
+> -      reg:
+> -        description:
+> -          LED number
+> -        maxItems: 1
+> -
+>        led-max-microamp:
+>          default: 9780
+>          description: |
+> 
+> Each LED still only has one reg entry, right?
+
+You're right... the maxItems for 'reg' is still needed. I'll back it in
+the next version.
+But I don't understand, why my dt_binding_check run doesn't show me this
+problem... I don't specify DT_CHECKER_FLAGS, maybe this is a root cause.
 
 -- 
-	Ansuel
+Thank you,
+Dmitry
 
