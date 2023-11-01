@@ -1,277 +1,138 @@
-Return-Path: <devicetree+bounces-13420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8D147DE104
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:37:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2107DE135
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB4AF1C20CEB
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 12:37:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74BB8B20CA2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6763B11CA1;
-	Wed,  1 Nov 2023 12:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F86E12B90;
+	Wed,  1 Nov 2023 13:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bjCdOjYH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HppfvHQs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66616567B
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 12:37:15 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDDDC11F;
-	Wed,  1 Nov 2023 05:37:00 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9d2d8343dc4so558318666b.0;
-        Wed, 01 Nov 2023 05:37:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC2F312B7E;
+	Wed,  1 Nov 2023 13:04:42 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34087DC;
+	Wed,  1 Nov 2023 06:04:41 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-408002b5b9fso48829205e9.3;
+        Wed, 01 Nov 2023 06:04:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698842219; x=1699447019; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hS2BU2Xy6jRWmRKKb+9DIUtDN+SbabRL5SYoSqJL2BA=;
-        b=bjCdOjYHLpVTN9nlAR4Hzzf9cqtRwvmYZfToc0mdbNHvqfV8rFrXvLBAOJHPHkgeaE
-         Aq+tFTtc5SAJY/xHoEYUY3t949Tymnp5oPncPSnKfl+iH6pcLh7+Jc2H9zJJ7myJJeb/
-         IP9TpAaHA0sPdQVzGpPvoNWo8v8lslsfs52OvZJpRsv8gK9Ciz/gL9AI01EyUzKO6TGl
-         VRCS8XwtzoyydUGHX69Y2wKcIV1vxl5QKT1T9bMHGDcD2j4pM8dY3XX2CZh9Icwu7EuA
-         I334Trm/xk+1+rmfNEOcA4GRQnvG1O1wWOAmA1MSx3mLeHZhhjPlYOfFbZaZT2tpi5QH
-         IlQA==
+        d=gmail.com; s=20230601; t=1698843879; x=1699448679; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zoHYYOTWYndoQBZFoxc6RIjyMuCKUCTERW3y4krGlPk=;
+        b=HppfvHQs7G1SKSYKT6uPrpSZ3Nd60cN31HXXoOUyfVu4SBdnpBDjdOKMmUBBIKIOSK
+         +iTCABZITixfe60rsEWK8DtNDFgM8WObPYjKyYKmDoiWXxLHLULA3lSW2M2TKmXk0Min
+         u4EpyI5FIUy+BYUQkVijNqZzbWJcjBObuzZbiMK9GiynDgCvfQuC2vEFyD0mJZS+ZhFJ
+         BAsvmXZIcPniufItEc7GqZZiMe+UPwsJUQ+V4pCqtLS6UvK2Hk9x7T/ut5ebumVzdo7y
+         5dsQQ4UTK5Py5X/heQkp/Dq8Pp9NTMR1aWf12zV2NOLDW24dgMJQx1zEoNxjYkqOz0Ur
+         LFnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698842219; x=1699447019;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hS2BU2Xy6jRWmRKKb+9DIUtDN+SbabRL5SYoSqJL2BA=;
-        b=tE77jlJ4YPOTcKTA3YA8+2VZmEsZ6VAAjsycwDCPyl4r1/PWzE4E42wutbatdIXmXF
-         GViMcgz7mRqV6iKCwdda7ALpSo78T8WT/2RBVfQrTVnV6ZZSU8hvOneowrxl1iJytWP6
-         9QlYqDOdvLSr/X64NER77P75BaW2GNxfctnpzvJkAhvCadjem0Z/d/GsGbtUCCg3kDBC
-         ITOIlZerMZzTODg05TlHNNFxOuePtAVqaN4QflqiEJ2IR4z/67XdXQW7Y2VkvJLH9qj5
-         XuZrh4IWNUoDsu7/uF5dK0TIdMWdo69zKWng8Hdk82Bh07OsRMf4nJz1wzNyHtFZb7kW
-         /FKA==
-X-Gm-Message-State: AOJu0YwUoC9EV1ohW+OUubhYG0gjtul2Ls3G/l8uAbxNu/lcp8WfEwfN
-	D0ceTF4jnfJOXtnDRv6/eGN7dVKOoLl8aNo4ZY2tmyX4TfU=
-X-Google-Smtp-Source: AGHT+IE+lWrzQFIsry0ZA/uPdSIZVkDFkZbarYB+KPeEVVx38/1YqeYdPo3ycTxfGRczrxt0gxN3wv9M0xlx3rpBG4A=
-X-Received: by 2002:a17:906:db0d:b0:9d3:ccd1:a905 with SMTP id
- xj13-20020a170906db0d00b009d3ccd1a905mr1730174ejb.51.1698842219090; Wed, 01
- Nov 2023 05:36:59 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698843879; x=1699448679;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zoHYYOTWYndoQBZFoxc6RIjyMuCKUCTERW3y4krGlPk=;
+        b=LTnB7nH8BaCNk2a0z8A5XPMde5PNpn+L8A6p/Ymb2WXL2ppomux6cEg7jGaJMTO2sD
+         My5qYhJiCMsmqddlw4kLPXe5L420mW+E4qyNdg25iwF2Yqom2p8T/Xqxq4m11IvYTGvC
+         3g5/zyVi6NCpBx0tUqah5xd6epIUOQWeVje18mW4O92C7qec2GsEqmpfCshtPN1n46/J
+         CKLIsBgLoJsXXKC/r/yH65TsBJhyAEiKAY1gQ8JPa8ZIewagZg4SzR1LJquKR4BgKU3C
+         t/QBjuW/+e43DKnQCIqVf25HL1LtVKaOwSFRkQxh3xgZcs8mZ1A1dIhreEEp+dK0HJYP
+         UrOQ==
+X-Gm-Message-State: AOJu0YxhEobeEGRU1skOCPBmpVlCVNw7VOw5i5UoAh6t0q82/HZAWbog
+	IBQuH0pt9XEV2TDP4xqoo9A=
+X-Google-Smtp-Source: AGHT+IE8WPIQAqDRX1TbVkWvgKFQfFwmBQpx/dyhQO3K4HrNnF2WuvBdgtWNOPngpHUbzU7eIuO3fQ==
+X-Received: by 2002:adf:d1e1:0:b0:32f:7fa0:558 with SMTP id g1-20020adfd1e1000000b0032f7fa00558mr13342254wrd.49.1698843879187;
+        Wed, 01 Nov 2023 06:04:39 -0700 (PDT)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id v7-20020a5d6107000000b0032da49e18fasm4123612wrt.23.2023.11.01.06.04.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Nov 2023 06:04:25 -0700 (PDT)
+Message-ID: <65424cd9.5d0a0220.20d9a.fe0f@mx.google.com>
+X-Google-Original-Message-ID: <ZUJLUQevLrz84zSf@Ansuel-xps.>
+Date: Wed, 1 Nov 2023 13:57:53 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Robert Marko <robimarko@gmail.com>
+Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
+ support
+References: <20231101123608.11157-1-ansuelsmth@gmail.com>
+ <5af21f93-bb2d-42b1-b4d4-ee4443ffaff9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20231030230413eucas1p1c061adf636a7e8a58270a00725e1d0a2@eucas1p1.samsung.com>
- <CA+1FSign611=47=xLRucFhDjvs7A_TeFE9b8qO63WXDU8Pnkjg@mail.gmail.com>
- <7a71e348-f892-4fd4-8857-b72f35ab5134@samsung.com> <f441508b-736d-4bb4-a7d5-ce2fc2c58fc7@netscape.net>
-In-Reply-To: <f441508b-736d-4bb4-a7d5-ce2fc2c58fc7@netscape.net>
-From: Mario Marietto <marietto2008@gmail.com>
-Date: Wed, 1 Nov 2023 13:36:22 +0100
-Message-ID: <CA+1FSigYRqKr3dudUAL4++ckpm_zmDebb-qU0mxx4-h_gPXD2w@mail.gmail.com>
-Subject: Re: exynos-mixer 14450000.mixer: [drm:exynos_drm_register_dma]
- *ERROR* Device 14450000.mixer lacks support for IOMMU
-To: Chuck Zmudzinski <brchuckz@netscape.net>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Sylwester Nawrocki <snawrocki@kernel.org>, Stefano Stabellini <sstabellini@kernel.org>, 
-	Julien Grall <julien@xen.org>, xen-devel <xen-devel@lists.xenproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5af21f93-bb2d-42b1-b4d4-ee4443ffaff9@gmail.com>
 
-Hi Marek,
+On Wed, Nov 01, 2023 at 02:01:33PM +0100, Heiner Kallweit wrote:
+> On 01.11.2023 13:36, Christian Marangi wrote:
+> > From: Robert Marko <robimarko@gmail.com>
+> > 
+> > Aquantia PHY-s require firmware to be loaded before they start operating.
+> > It can be automatically loaded in case when there is a SPI-NOR connected
+> > to Aquantia PHY-s or can be loaded from the host via MDIO.
+> > 
+> > This patch adds support for loading the firmware via MDIO as in most cases
+> > there is no SPI-NOR being used to save on cost.
+> > Firmware loading code itself is ported from mainline U-boot with cleanups.
+> > 
+> > The firmware has mixed values both in big and little endian.
+> > PHY core itself is big-endian but it expects values to be in little-endian.
+> > The firmware is little-endian but CRC-16 value for it is stored at the end
+> > of firmware in big-endian.
+> > 
+> > It seems the PHY does the conversion internally from firmware that is
+> > little-endian to the PHY that is big-endian on using the mailbox
+> > but mailbox returns a big-endian CRC-16 to verify the written data
+> > integrity.
+> > 
+> > Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> > Changes v2:
+> > - Move out of RFC
+> > - Address sanity check for offsets
+> > - Add additional comments on firmware load check
+> > - Fix some typo
+> > - Capitalize CRC in comments
+> > - Rename load_sysfs to load_fs
+> > 
+> 
+> To make the driver better maintainable: can the firmware handling code
+> be placed in a separate source code file, similar to what has been done
+> for the hwmon part?
+> If yes, then this could also be the right time to move the aquantia
+> driver to an own subdirectory.
+> 
 
-I would like to recompile and install the kernel 6.6 on my ARM
-Chromebook. I would like to know if your patch has been accepted and
-included there. Thanks.
+Sure! Np for me just is it really worth it? hwmod is a bigger one but
+this is really a few functions.
 
-On Wed, Nov 1, 2023 at 8:48=E2=80=AFAM Chuck Zmudzinski <brchuckz@netscape.=
-net> wrote:
->
-> On 10/31/2023 8:08 AM, Marek Szyprowski wrote:
-> > Hi,
-> >
-> > On 31.10.2023 00:03, Mario Marietto wrote:
-> >> We are a team of linux enthusiasts who are trying to boot Xen on a
-> >> Samsung XE303C12 Chromebook aka "snow" following the suggestions in
-> >> the slide show presentation here:
-> >> https://www.slideshare.net/xen_com_mgr/xpds16-porting-xen-on-arm-to-a-=
-new-soc-julien-grall-arm
-> >> This device uses an exynos5250 SOC dual core 1.7 GHz with 2 MB RAM, it
-> >> is a Samsung armv7 chip with virtualization extensions. In particular,
-> >> we have it working fairly well both on the bare metal with a recent
-> >> 6.1.59 Linux LTS kernel and also with a recent 5.4.257 LTS kernel with
-> >> KVM, the older LTS kernel version is used to test KVM because support
-> >> for KVM on arm v7 was removed from Linux around kernel version 5.7. So
-> >> we know we have the hypervisor mode enabled because we were able to
-> >> use it with KVM. For Xen, we are using the latest Debian build of Xen
-> >> 4.17 for the Debian armhf architecture: (XEN) Xen version 4.17.2-pre
-> >> (Debian 4.17.1+2-gb773c48e36-1)
-> >> (pkg-xen-devel@xxxxxxxxxxxxxxxxxxxxxxx) (arm-linux-gnueabihf-gcc
-> >> (Debian 12.2.0-14) 12.2.0) debug=3Dn Thu May 18 19:26:30 UTC 2023 The
-> >> Linux kernel is a custom build that adds the Xen config kernel options
-> >> (CONFIG_XEN_DOM0, etc) on top of a kernel that works well on the same
-> >> Chromebook model on the bare metal. I can provide the config options
-> >> of the kernel that was used if that is helpful. Our method of booting
-> >> is to have u-boot boot the Xen hypervisor and load the device tree
-> >> after adding the dom0 to the otherwise unaltered device tree from the
-> >> Linux kernel using u-boot fdt commands to add a /chosen node, as
-> >> described on the Xen wiki and in the pages linked from there. We have
-> >> also tried adding and loading an initrd.img using the device tree
-> >> /chosen node but that made no difference in our tests. We actually
-> >> have the Linux LTS kernel version 6.1.59 working as dom0 with Xen
-> >> using the same version of u-boot that we used for KVM, but with a big
-> >> problem. The problem we see is that when booting the 6.1.59 kernel
-> >> version as dom0 with Xen, the screen is totally dark and the only way
-> >> to access the system is remotely through ssh. Logs indicate most
-> >> everything else is working, such as the wifi card so we can access it
-> >> remotely via ssh and a USB optical mouse lights up when connected so
-> >> USB is also working. Obviously, the disk is also working. The
-> >> Chromebook is configured to boot from the device's SD card slot by
-> >> turning on Chrome OS developer mode options to enable booting from the
-> >> SD card slot. The mystery is that when booting the exact same 6.1.59
-> >> kernel on the bare metal instead of booting it as dom0 on Xen, it
-> >> boots up with full access to the screen and we can interact with the
-> >> system using the X.org windows system. But booting as dom0 with Xen,
-> >> the screen is totally dark and the only access we have to the system
-> >> is through the network via ssh. Also, when booting the 5.4.257 kernel
-> >> with KVM in hypervisor mode, the screen works and we can interact with
-> >> the system through the X.org windows system. Exploring the log file,we
-> >> have seen the errors below :
-> >>
-> >> Without Xen (or in bare metal):
-> >>
-> >> devuan-bunsen kernel: [drm] Exynos DRM: using 14400000.fimd device for
-> >> DMA mapping operations
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14400000.fimd (ops
-> >> 0xc0d96354)
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14450000.mixer (ops
-> >> 0xc0d97554)
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: bound
-> >> 145b0000.dp-controller (ops 0xc0d97278)
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14530000.hdmi (ops
-> >> 0xc0d97bd0)
-> >> ...
-> >> devuan-bunsen kernel: Console: switching to colour frame buffer device
-> >> 170x48
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: [drm] fb0: exynosdrmfb
-> >> frame buffer device
-> >> devuan-bunsen kernel: [drm] Initialized exynos 1.1.0 20180330 for
-> >> exynos-drm on minor 0
-> >>
-> >> In this case,the kernel is able to use the exynos-drm kernel to start
-> >> the fb0 device. But with Xen we get this error with exynos-drm:
-> >>
-> >> devuan-bunsen kernel: [drm] Exynos DRM: using 14400000.fimd device for
-> >> DMA mapping operations
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: bound 14400000.fimd (ops
-> >> 0xc0d96354)
-> >> devuan-bunsen kernel: exynos-mixer 14450000.mixer:
-> >> [drm:exynos_drm_register_dma] *ERROR* Device 14450000.mixer lacks
-> >> support for IOMMU
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: failed to bind
-> >> 14450000.mixer (ops 0xc0d97554): -22
-> >> devuan-bunsen kernel: exynos-drm exynos-drm: adev bind failed: -22
-> >> devuan-bunsen kernel: exynos-dp: probe of 145b0000.dp-controller
-> >> failed with error -22
-> >>
-> >> I'm trying to find for a solution and I've googled a little bit and I
-> >> found this web site :
-> >> https://lore.kernel.org/linux-arm-kernel/20220208171823.226211-8-krzys=
-ztof.kozlowski@canonical.com/
-> >> with your email address and I tried to ask for some help for fixing
-> >> the bug. Any ideas why booting the same Linux kernel that results in a
-> >> working X.org display on the bare metal instead as dom0 on Xen would
-> >> cause the display to remain dark, but most other basic functions would
-> >> work, such as network, disk, and USB ? thanks.
-> >
-> >
-> > Thanks for the detailed description! Good to hear that those boards are
-> > still being used for various projects. I also have Snow Chromebook and
-> > use it for daily tests of linux-next branch.
->
-> Adding Julien Grall and Stefano Stabellini
->
-> Hi Marek,
->
-> Thanks for responding to Mario's question. I also have been doing these
-> experiments with a Chromebook Snow, and I am the one who reported this
-> problem on the xen-users ML here:
->
-> https://lists.xenproject.org/archives/html/xen-users/2023-10/msg00021.htm=
-l
->
-> You might find that thread interesting, especially here with some additio=
-nal
-> log messages from the exynos_drm driver (exynos_drm_dma.c, I believe):
->
-> https://lists.xenproject.org/archives/html/xen-users/2023-10/msg00032.htm=
-l
->
-> This issue is also discussed some on the xen-devel ML here:
->
-> https://lists.xenproject.org/archives/html/xen-devel/2023-11/msg00003.htm=
-l
->
-> >
-> > Frankly speaking I have no idea what might happen wrong. There have bee=
-n
-> > some changes recently in the Exynos IOMMU driver related to
-> > initialization, maybe your changes related to Xen enabling changed
-> > somehow the order of device initialization during boot. I assume that
-> > the device-tree you use for the bare metal run and Xen enabled run
-> > doesn't differ in the areas describing the hardware blocks.
-> >
-> > Please check if cherry-picking the commit
-> > https://github.com/torvalds/linux/commit/bbc4d205d93f52ee18dfa7858d5148=
-9c0506547f
-> > to your v6.1.59 based kernel helps anyhow.
->
-> I tried adding that fix of the exynos IOMMU initialization from
-> Linux > 6.2 on top of the 6.1.59 kernel I used for the original report,
-> but that made no difference on Xen - it still failed with the mixer lacks
-> support for IOMMU message and the screen is totally dark.
->
-> >
-> > If not, then as a temporary workaround please disable
-> > CONFIG_DRM_EXYNOS_MIXER and CONFIG_DRM_EXYNOS_HDMI in your kernel confi=
-g
-> > and check what will happen (You will lose the HDMI output, but maybe
-> > this won't a big issue).
->
-> This change causes the GPU to work fairly well AFAICS. Removing the mixer
-> and HDMI allowed the GPU to initialize, and the display manager started
-> normally and enabled logging into an ordinary X11 session. Based on the l=
-og
-> messages I was seeing, this was an obvious thing to try. Thanks for
-> suggesting it.
->
-> But I have a question:
->
-> How are the mixer and HDMI devices related to the main drm device? The pr=
-oblem
-> in the exynos_drm_dma driver was that on Xen, the main drm device wanted =
-to
-> use IOMMU version of dma_ops, but the mixer (and probably also the HDMI i=
-f
-> it wouldn't have exited first) wanted to use the Xen swiotlb version of d=
-ma_ops,
-> but on bare metal all three devices want to use the IOMMU version of dma_=
-ops.
->
-> The problem obviously has something to do with the fact that Xen does not
-> expose the same IOMMU capability to Linux as is available when running on
-> the bare metal.
->
-> Cheers,
->
-> >
-> >
-> > Best regards
->
+Anyway if requested, I will move in v3 the driver to a dedicated
+directory and move the function to a separate file!
 
-
---=20
-Mario.
+-- 
+	Ansuel
 
