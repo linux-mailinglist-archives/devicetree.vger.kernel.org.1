@@ -1,180 +1,97 @@
-Return-Path: <devicetree+bounces-13329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A80D87DDAD4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 03:06:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7EA7DDAEC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 03:23:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D36291C20BC6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 02:06:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 248E52818CE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 02:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42615A35;
-	Wed,  1 Nov 2023 02:06:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KewMRLCa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5C3EA6;
+	Wed,  1 Nov 2023 02:23:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ADE710EF
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 02:06:00 +0000 (UTC)
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C75B4;
-	Tue, 31 Oct 2023 19:05:58 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-d84c24a810dso5929638276.2;
-        Tue, 31 Oct 2023 19:05:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698804358; x=1699409158; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cEKlb9+ZY0B9mrv/T98IQK90StjaDbNde8cN8esmJ2I=;
-        b=KewMRLCavlkUTR3cNhriYucpF6RDEPSScNbMu4qbpZRcqy6VyMofzJJEMs7ROzaoUS
-         oiJ6OKL4gbo/GIdeZXHRhu94d9ny6JprulGkZ5/My2WYIRA9buFx1aC6oX4W7griBKSb
-         xtGKoD5fACuiEKMhuc7cmq7v+zztzeBfRAMwasvQ4N3DlPe6qN2wOOdAdYFeDns8hrlh
-         uYIhpsqHjc2XyfxLiBSwCxsZC4WBJJhZrD4aOekc8255Dasykwgx8y2ds68QB+Ojs8a6
-         3mgcPeZSZarHESGMC99azyGF4Ez4EQcDkKlKzdXAN+50D73vc1YnBi1ZkqfB/xUoJesK
-         Wnig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698804358; x=1699409158;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cEKlb9+ZY0B9mrv/T98IQK90StjaDbNde8cN8esmJ2I=;
-        b=BZWj9METYo9OFzJilYQVQhGiu6dY1k3MAsrZsoYhjsyLd9b3vvrqUJHEdQtdISNHD8
-         oL2BymAxyQ753uhUQNdDccF1PZT9z76b2dvW6/uLkc04Yc96en/xWYYbhwstqCsOT+se
-         LN+TGqvO9mhsN+e8YtroG/tRRxd7Bf9DLYVXX9jeNN3NQwWBO2LarguatqHiBiqqQK5W
-         O72yDxLdAMHZTE7qogpiOEA3y1EuNLIkgYzI5GEV5cA9oBcn07Rl4xyBOVTjzkwy3IgK
-         9ei0oIUAlDqEeldY2s85ABZGEULmBychLqrOzDMTny+0RZXpsWOKkmnyLTlewMKRImTa
-         monQ==
-X-Gm-Message-State: AOJu0Yz3oC7DkQ970W107QtEDWSG2zHbql0k0ptN/NOnXomggdLJgFH7
-	B7QXgUC1JzAi8KXuOLsxWCdFoT+prjMiWF+nx5Q=
-X-Google-Smtp-Source: AGHT+IFooif2X5+/CJeuSxxULskFOAk5A4KRknHkAg3yGC3gdg+4uZvRH2WSCmbJ5vxEtXGGlfsugeWUSMqdBCqfOcM=
-X-Received: by 2002:a25:68cd:0:b0:da0:4453:8f10 with SMTP id
- d196-20020a2568cd000000b00da044538f10mr12049799ybc.43.1698804357417; Tue, 31
- Oct 2023 19:05:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EAA10EE
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 02:23:00 +0000 (UTC)
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE33101;
+	Tue, 31 Oct 2023 19:22:57 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id A24B58139;
+	Wed,  1 Nov 2023 10:22:47 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Nov
+ 2023 10:22:47 +0800
+Received: from [192.168.120.47] (171.223.208.138) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 1 Nov
+ 2023 10:22:46 +0800
+Message-ID: <7d64ea1d-b573-4a69-ba0c-4cbfab638c5e@starfivetech.com>
+Date: Wed, 1 Nov 2023 10:22:44 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1698717154.git.zhoubinbin@loongson.cn> <7fae3ce932b455effcf73ff0208f4776959f2f44.1698717154.git.zhoubinbin@loongson.cn>
- <20231031175342.GA1805362-robh@kernel.org>
-In-Reply-To: <20231031175342.GA1805362-robh@kernel.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 1 Nov 2023 08:05:46 +0600
-Message-ID: <CAMpQs4+fz7Xx90QnU23kRAtcyaq9nFQAfp7Qa1RxWhpKr_TiHw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: interrupt-controller:
- loongson,liointc: Fix dtbs_check for interrupt-names
-To: Rob Herring <robh@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
-	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, lvjianmin@loongson.cn, 
-	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/4] pwm: opencores: Add PWM driver support
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>, "Emil Renner
+ Berthing" <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, Thierry Reding
+	<thierry.reding@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Hal Feng <hal.feng@starfivetech.com>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>
+References: <20231020103741.557735-1-william.qiu@starfivetech.com>
+ <20231020103741.557735-3-william.qiu@starfivetech.com>
+ <20231020112539.gctx5uj2rrhryulo@pengutronix.de>
+Content-Language: en-US
+From: William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <20231020112539.gctx5uj2rrhryulo@pengutronix.de>
 Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 31, 2023 at 11:53=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Tue, Oct 31, 2023 at 10:36:38AM +0800, Binbin Zhou wrote:
-> > The Loongson-2K0500/2K1000 CPUs have 64 interrupt sources as inputs, an=
-d
-> > a route-mapped node handles up to 32 interrupt sources, so two liointc
-> > nodes are defined in dts{i}.
-> > Of course, we need to ensure that the routing outputs (intx) of the two
-> > nodes cannot conflict.
-> >
-> > For example, in Loongson-2K1000, 'int0' is typically used by the lioint=
-c0
-> > node, then the liointc1 node can only use the outputs starting with
-> > 'int1'.
-> >
-> > So "interrupt-names" should be defined by "pattern".
-> >
-> > This fixes dtbs_check warning:
-> >
-> > DTC_CHK arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
-> > arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1=
-fe11440: interrupt-names:0: 'int0' was expected
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> > arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1=
-fe11440: Unevaluated properties are not allowed ('interrupt-names' was unex=
-pected)
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> > DTC_CHK arch/loongarch/boot/dts/loongson-2k1000-ref.dtb
-> > arch/loongarch/boot/dts/loongson-2k1000-ref.dtb: interrupt-controller@1=
-fe01440: interrupt-names:0: 'int0' was expected
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> > arch/loongarch/boot/dts/loongson-2k1000-ref.dtb: interrupt-controller@1=
-fe01440: Unevaluated properties are not allowed ('interrupt-names' was unex=
-pected)
-> >         From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  .../bindings/interrupt-controller/loongson,liointc.yaml    | 7 +++----
-> >  1 file changed, 3 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
-ngson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
-/loongson,liointc.yaml
-> > index 7393d7dfbe82..a90c609d351e 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
-iointc.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
-iointc.yaml
-> > @@ -54,11 +54,9 @@ properties:
-> >    interrupt-names:
-> >      description: List of names for the parent interrupts.
-> >      items:
-> > -      - const: int0
-> > -      - const: int1
-> > -      - const: int2
-> > -      - const: int3
-> > +      pattern: int[0-3]
-> >      minItems: 1
-> > +    maxItems: 4
-> >
-> >    '#interrupt-cells':
-> >      const: 2
-> > @@ -87,6 +85,7 @@ required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> > +  - interrupt-names
->
-> A new required property is an ABI break. Is that okay for this platform?
-> The commit msg should answer that if so.
 
-Hi Rob:
 
-Thanks for your reply.
+On 2023/10/20 19:25, Uwe Kleine-K=C3=B6nig wrote:
+>> +	void __iomem *base =3D pwm->data->get_ch_base ?
+>> +			     pwm->data->get_ch_base(pwm->regs, dev->hwpwm) : pwm->regs;
+>> +	u32 period_data, duty_data, ctrl_data;
+>> +
+>> +	period_data =3D readl(REG_OCPWM_LRC(base));
+>> +	duty_data =3D readl(REG_OCPWM_HRC(base));
+>> +	ctrl_data =3D readl(REG_OCPWM_CTRL(base));
+>> +
+>> +	state->period =3D DIV_ROUND_CLOSEST_ULL((u64)period_data * NSEC_PER_=
+SEC, pwm->clk_rate);
+>> +	state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL((u64)duty_data * NSEC_PE=
+R_SEC, pwm->clk_rate);
+>=20
+> Please test your driver with PWM_DEBUG enabled. The rounding is wrong
+> here.
+>=20
 
-In fact, 'interrupt-names' is essential for both liointc-1.0 and
-liointc-2.0, and we now pass it to get the corresponding interrupt
-number.
-To a certain extent, I think it's already 'required'.
-Of course, I'll try to explain it more clearly in the commit message.
+Hi Uwe,
 
-Thanks.
-Binbin
->
->
-> >    - interrupt-controller
-> >    - '#interrupt-cells'
-> >    - loongson,parent-int-map
-> > --
-> > 2.39.3
-> >
+The conclusion after checking is: when the period or duty_cycle value set
+by the user is not divisible (1000000000/49.5M), there will be an error.
+This error is due to hardware accuracy. So why is rounding is wrong?
+rockchip also has a similar implementation drivers/pwm/ pwm-rockchip.c
+
+Best regards,
+William
 
