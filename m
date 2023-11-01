@@ -1,186 +1,94 @@
-Return-Path: <devicetree+bounces-13471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672597DE2CF
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 16:16:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C55C7DE2AE
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 16:09:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86EE91C20D64
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 15:16:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BFDF28129C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 15:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C1DF134C7;
-	Wed,  1 Nov 2023 15:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0F013AF9;
+	Wed,  1 Nov 2023 15:09:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hefring-com.20230601.gappssmtp.com header.i=@hefring-com.20230601.gappssmtp.com header.b="16FnGJVv"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EnWesh9d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8D114016
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 15:16:00 +0000 (UTC)
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58363134
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 08:15:54 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id d75a77b69052e-41cd6e1d4fbso43413401cf.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 08:15:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hefring-com.20230601.gappssmtp.com; s=20230601; t=1698851753; x=1699456553; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ka+Xo95ntz292nY8csJ3Hgsgw+UrjlMRzQhCOM/x1Z8=;
-        b=16FnGJVv3gclY6/4YGPAcEyZaSh+UnHEGHpPeHJ/JufOwW4tMgYUgrF55R35qUrNKA
-         H16ZgFswZXNP5Y7yXaz3cQRBOV7Wi1SccxlW/rDED1EZOgdJsMMDi2onJELpbk7Ypl3s
-         WvfEsxoB0TVJLQlEIB/Zvo+Peqk7lLecEFw8lWBVDUjzJ8qfUT4JqetoP7EnEFdY9Iux
-         5KGYE/jVKCDr0rzvsQsfJOdq67wPW0de1m0c4aIAHdIEtpQ8XODW+dku066e4u6m5cdP
-         v4Z08EJ99kml6pihQKDNkUCHyREODyoPl9iCgim59Dy69Pktr3LS27pUkuHpgD8J7m3o
-         lB1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698851753; x=1699456553;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ka+Xo95ntz292nY8csJ3Hgsgw+UrjlMRzQhCOM/x1Z8=;
-        b=mScfCeMrxjFlQZZ/iXfc9vh8HqhFi6IhDQF9KWsB8tMIcXqSDBrEdJ/shmy3PgZDsT
-         ka4W94m2CB1Dk9nWAO5K35jSxLoliNaVT29RzFsI4RUqBGgTPoGlTclWeleGbAm9CD0g
-         G6SwuuHy0qTGG9YkWo1IsJxn9XVMAi/AX2eFkYP9VV5arzweOXR+tQCCJ5tZXiekhPMF
-         KS80ndiKaOwGvIEIBp6dbOtcF7Nc9P92JmJTLFOgQA5sQR6aCaEkD1zO1dftMbHy9BWq
-         s2Ei+LJfC/CZ/dd0jD8nm36Mrs2ZcP4CgLpXZw0k8Np38NsZ1tRkJtul7aBMlB9HwXrB
-         l/8w==
-X-Gm-Message-State: AOJu0YzsocLctrd/2tW/tPhlezyB/U+DSZ0ZWo2PFCtIaSujom0nq+kH
-	AEpt3h+nhg9mpLJOtsqPgAOHiA==
-X-Google-Smtp-Source: AGHT+IF5VM81oYwvQ5MLi+2yCpaV4iGZi7hf18wZewZpjtXTb4AdQdd0hTRe/Ks5cWFOL83O5V3kYA==
-X-Received: by 2002:a05:622a:c5:b0:418:22c2:a8ea with SMTP id p5-20020a05622a00c500b0041822c2a8eamr18228048qtw.1.1698851753449;
-        Wed, 01 Nov 2023 08:15:53 -0700 (PDT)
-Received: from localhost.localdomain ([50.212.55.89])
-        by smtp.gmail.com with ESMTPSA id dn5-20020a05622a470500b004181a8a3e2dsm1477165qtb.41.2023.11.01.08.15.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Nov 2023 08:15:52 -0700 (PDT)
-From: Ben Wolsieffer <ben.wolsieffer@hefring.com>
-To: linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Erwan Leray <erwan.leray@foss.st.com>,
-	Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-	Ben Wolsieffer <ben.wolsieffer@hefring.com>
-Subject: [PATCH 5/5] ARM: dts: stm32: add SPI support on STM32F746
-Date: Wed,  1 Nov 2023 11:08:10 -0400
-Message-ID: <20231101150811.2747455-6-ben.wolsieffer@hefring.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231101150811.2747455-1-ben.wolsieffer@hefring.com>
-References: <20231101150811.2747455-1-ben.wolsieffer@hefring.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D8C85667
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 15:09:02 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3978DFC;
+	Wed,  1 Nov 2023 08:08:58 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BE8347F8;
+	Wed,  1 Nov 2023 16:08:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1698851319;
+	bh=wIFbemmgPDF/9MIgM7vY1BMVQKNYseKOoSt+7lF/XQ8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=EnWesh9dsin3ENfcwr7lV4shWQ0XgUAwV37K5V+GkW3XEJxGuH0SiV76VyCPmIXRP
+	 4l22st9ODXsyjT1N4q+tVSgsfuu4SkpwdmMYowL9T8ZWxrostr/QOcbc6Axf3f6TUU
+	 d7iOIvh17v+OiR0SYICWf3HaOLKWq53SbsBGQX8I=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231101-subscribe-massive-0a719216375d@spud>
+References: <20231101131354.2333498-1-kieran.bingham@ideasonboard.com> <20231101131354.2333498-2-kieran.bingham@ideasonboard.com> <20231101-subscribe-massive-0a719216375d@spud>
+Subject: Re: [PATCH v2 1/6] media: dt-bindings: media: imx335: Add supply bindings
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org, Umang Jain <umang.jain@ideasonboard.com>, Marco Felsch <m.felsch@pengutronix.de>, Paul J. Murphy <paul.j.murphy@intel.com>, Daniele Alessandrelli <daniele.alessandrelli@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>;
+To: Conor Dooley <conor@kernel.org>
+Date: Wed, 01 Nov 2023 15:08:54 +0000
+Message-ID: <169885133403.1233626.14541601594652787539@ping.linuxembedded.co.uk>
+User-Agent: alot/0.10
 
-Add device tree nodes for the STM32F746 SPI controllers.
+Quoting Conor Dooley (2023-11-01 14:57:53)
+> On Wed, Nov 01, 2023 at 01:13:49PM +0000, Kieran Bingham wrote:
+> > Add the bindings for the supply references used on the IMX335.
+> >=20
+> > Reviewed-by: Umang Jain <umang.jain@ideasonboard.com>
+> > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> >=20
+> > ---
+> > v2:
+> >  - Remove the supplies from required properties to prevent ABI breakage.
+> >=20
+> > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+>=20
+> FYI, double signoff, mb your tooling be acting up.
 
-Signed-off-by: Ben Wolsieffer <ben.wolsieffer@hefring.com>
----
- arch/arm/boot/dts/st/stm32f746.dtsi | 60 +++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+Yup, I have:
 
-diff --git a/arch/arm/boot/dts/st/stm32f746.dtsi b/arch/arm/boot/dts/st/stm32f746.dtsi
-index cce6ab0e4617..15ad965f8d96 100644
---- a/arch/arm/boot/dts/st/stm32f746.dtsi
-+++ b/arch/arm/boot/dts/st/stm32f746.dtsi
-@@ -281,6 +281,26 @@ gcan3: gcan@40003600 {
- 			clocks = <&rcc 0 STM32F7_APB1_CLOCK(CAN3)>;
- 		};
- 
-+		spi2: spi@40003800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "st,stm32f7-spi";
-+			reg = <0x40003800 0x400>;
-+			interrupts = <36>;
-+			clocks = <&rcc 0 STM32F7_APB1_CLOCK(SPI2)>;
-+			status = "disabled";
-+		};
-+
-+		spi3: spi@40003c00 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "st,stm32f7-spi";
-+			reg = <0x40003c00 0x400>;
-+			interrupts = <51>;
-+			clocks = <&rcc 0 STM32F7_APB1_CLOCK(SPI3)>;
-+			status = "disabled";
-+		};
-+
- 		usart2: serial@40004400 {
- 			compatible = "st,stm32f7-uart";
- 			reg = <0x40004400 0x400>;
-@@ -498,6 +518,26 @@ sdio1: mmc@40012c00 {
- 			status = "disabled";
- 		};
- 
-+		spi1: spi@40013000 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "st,stm32f7-spi";
-+			reg = <0x40013000 0x400>;
-+			interrupts = <35>;
-+			clocks = <&rcc 0 STM32F7_APB2_CLOCK(SPI1)>;
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@40013400 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "st,stm32f7-spi";
-+			reg = <0x40013400 0x400>;
-+			interrupts = <84>;
-+			clocks = <&rcc 0 STM32F7_APB2_CLOCK(SPI4)>;
-+			status = "disabled";
-+		};
-+
- 		syscfg: syscon@40013800 {
- 			compatible = "st,stm32-syscfg", "syscon";
- 			reg = <0x40013800 0x400>;
-@@ -562,6 +602,26 @@ pwm {
- 			};
- 		};
- 
-+		spi5: spi@40015000 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "st,stm32f7-spi";
-+			reg = <0x40015000 0x400>;
-+			interrupts = <85>;
-+			clocks = <&rcc 0 STM32F7_APB2_CLOCK(SPI5)>;
-+			status = "disabled";
-+		};
-+
-+		spi6: spi@40015400 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "st,stm32f7-spi";
-+			reg = <0x40015400 0x400>;
-+			interrupts = <86>;
-+			clocks = <&rcc 0 STM32F7_APB2_CLOCK(SPI6)>;
-+			status = "disabled";
-+		};
-+
- 		ltdc: display-controller@40016800 {
- 			compatible = "st,stm32-ltdc";
- 			reg = <0x40016800 0x200>;
--- 
-2.42.0
+~/.gitconfig
 
+[format]
+	signOff =3D yes
+
+So when I save out the patches with a changelog - it's erroneously
+adding another SoB that I didn't notice until they were sent.
+
+As it's 'after' the --- I hope the double sob will already get stripped
+by git am...
+
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks
+
+--
+Kieran
+
+>=20
+> Cheers,
+> Conor.
 
