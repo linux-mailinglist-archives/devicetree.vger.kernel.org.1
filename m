@@ -1,134 +1,67 @@
-Return-Path: <devicetree+bounces-13421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075B57DE130
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:01:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 088197DE157
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 14:13:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54F8CB20C22
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:01:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4C7E281144
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 13:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237D411CBB;
-	Wed,  1 Nov 2023 13:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B6512B90;
+	Wed,  1 Nov 2023 13:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M+0nXtL3"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2ghNnb9O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EA4101D7;
-	Wed,  1 Nov 2023 13:01:37 +0000 (UTC)
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3956DA6;
-	Wed,  1 Nov 2023 06:01:36 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9c3aec5f326so172018066b.1;
-        Wed, 01 Nov 2023 06:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698843694; x=1699448494; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tLnRbhbdsdPLZ1Nf0yZZoZdfpMaZmBV3/I942pnqjQw=;
-        b=M+0nXtL34qAs7yIOCW3fSOs0AGQlUbPuevCTgxP3kpIdg/IuoIUl7vvneaSeSbxOgv
-         fVMHhXMAAoktlWa41osJ+9o4UKKSqqRCox+PG5RgTXqPH3SQvJgY2vqOlieb2pDUjDd6
-         nDhLpW/eo0ecrFW7MF0DLpUNVnONO+Q3uoQ1xI6/hT036B+jyHsgWBqiVrgdsHZwKFUn
-         Xn+KdFpCZccKuYuqPlCwbW3bZBkH2jKAg72Uz14J5R4Wi9INA0OpF1vKRj+HMt+9ctv7
-         vuar/qAFygXkuPaoPpgHzSsVsZ/QT3EkxpZFzsKmIlnbGtoK9JrU2IFvQNwmjnrZhPWJ
-         HF5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698843694; x=1699448494;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tLnRbhbdsdPLZ1Nf0yZZoZdfpMaZmBV3/I942pnqjQw=;
-        b=ZdfCN0C88gLDvoG1KgCSUANtzvIGzoCpiRYdbIaMX+PO2x91/AH6YzCoE6SMVIUb9+
-         Us5GlYjgr6ZC0f9qqIExIPc4mrTyZtKI6Tw/P8kG6DWemoVldNEN6Ntd/oBZFwH15feb
-         zyaueA/0+qMa9SIzYs6JBJvVlV4fGtOPS/dP6z4qDIuNFA9EF/26owTIegLp+NsDHKPY
-         NNwSpLLueykyD3jdavENmoqAP49XiLJhydkPW05PkiRC3l4Xb0Sp7dZlpu+e1ttBD0tC
-         e4UuVZ/L5duQl/4BMcfEulUuhgPorVTBIWnAVsnXWp9UVFtHqPrM4G4EtCkzAyw0CXgv
-         5hQw==
-X-Gm-Message-State: AOJu0YzMo5SVY759uXJ109XBrGmyZaBSZCryA9N3EAJ9FleIee+j6HsF
-	Ra6Jxlutlrpv7nUwORF+rdA=
-X-Google-Smtp-Source: AGHT+IFxOZAaj69a15FqtkTb+PwIUfqTTj3NB2lnLW800fd8bTcX08xAph+ck5SQSYuBwIU8s0kBJA==
-X-Received: by 2002:a17:906:3282:b0:9a9:405b:26d1 with SMTP id 2-20020a170906328200b009a9405b26d1mr1974753ejw.5.1698843694239;
-        Wed, 01 Nov 2023 06:01:34 -0700 (PDT)
-Received: from ?IPV6:2a01:c22:6f25:5100:302f:4dfd:b45b:b65a? (dynamic-2a01-0c22-6f25-5100-302f-4dfd-b45b-b65a.c22.pool.telefonica.de. [2a01:c22:6f25:5100:302f:4dfd:b45b:b65a])
-        by smtp.googlemail.com with ESMTPSA id z22-20020a170906715600b0099cb1a2cab0sm2394916ejj.28.2023.11.01.06.01.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 06:01:33 -0700 (PDT)
-Message-ID: <5af21f93-bb2d-42b1-b4d4-ee4443ffaff9@gmail.com>
-Date: Wed, 1 Nov 2023 14:01:33 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E6AAEA6;
+	Wed,  1 Nov 2023 13:13:19 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD95F7;
+	Wed,  1 Nov 2023 06:13:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=M+45Cj+tlJeBIKbQjG4guIFlM9iJ4DhgslzHQZ4dQoQ=; b=2ghNnb9OFRnFp3yANrj+Cgbehf
+	yXJwnwpkjmmah0/cU5QPbq08RYscc9du4ze3KitcNM4+NhZbR+qhPUtr4asIZplqCwwN5da10Q/zo
+	AIK/a6WeqS19FMGu//86WpHT4BOCA/c/qCoUatVICbTlKLjyBaKojfaYqOPPdKUQimAw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qyB1t-000gf4-2l; Wed, 01 Nov 2023 14:13:05 +0100
+Date: Wed, 1 Nov 2023 14:13:05 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Robert Marko <robimarko@gmail.com>
+Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
+ support
+Message-ID: <4b536ad3-2112-4f28-90e4-586b5745be20@lunn.ch>
+References: <20231101123608.11157-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
- support
-Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Robert Marko <robimarko@gmail.com>
-References: <20231101123608.11157-1-ansuelsmth@gmail.com>
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Autocrypt: addr=hkallweit1@gmail.com; keydata=
- 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
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <20231101123608.11157-1-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 01.11.2023 13:36, Christian Marangi wrote:
+On Wed, Nov 01, 2023 at 01:36:07PM +0100, Christian Marangi wrote:
 > From: Robert Marko <robimarko@gmail.com>
 > 
 > Aquantia PHY-s require firmware to be loaded before they start operating.
@@ -155,17 +88,180 @@ On 01.11.2023 13:36, Christian Marangi wrote:
 > ---
 > Changes v2:
 > - Move out of RFC
+
+Actually, since we are in the merge window, RFC would be correct.
+
 > - Address sanity check for offsets
 > - Add additional comments on firmware load check
 > - Fix some typo
 > - Capitalize CRC in comments
 > - Rename load_sysfs to load_fs
 > 
+>  drivers/net/phy/Kconfig         |   1 +
+>  drivers/net/phy/aquantia_main.c | 304 ++++++++++++++++++++++++++++++++
+>  2 files changed, 305 insertions(+)
+> 
+> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
+> index 421d2b62918f..46c7194efcea 100644
+> --- a/drivers/net/phy/Kconfig
+> +++ b/drivers/net/phy/Kconfig
+> @@ -98,6 +98,7 @@ config ADIN1100_PHY
+>  
+>  config AQUANTIA_PHY
+>  	tristate "Aquantia PHYs"
+> +	select CRC_CCITT
+>  	help
+>  	  Currently supports the Aquantia AQ1202, AQ2104, AQR105, AQR405
+>  
+> diff --git a/drivers/net/phy/aquantia_main.c b/drivers/net/phy/aquantia_main.c
+> index 334a6904ca5a..0f1b8d75cca0 100644
+> --- a/drivers/net/phy/aquantia_main.c
+> +++ b/drivers/net/phy/aquantia_main.c
+> @@ -12,6 +12,10 @@
+>  #include <linux/delay.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/phy.h>
+> +#include <linux/of.h>
+> +#include <linux/firmware.h>
+> +#include <linux/crc-ccitt.h>
+> +#include <linux/nvmem-consumer.h>
+>  
+>  #include "aquantia.h"
+>  
+> @@ -92,10 +96,40 @@
+>  #define MDIO_C22EXT_STAT_SGMII_TX_RUNT_FRAMES		0xd31b
+>  
+>  /* Vendor specific 1, MDIO_MMD_VEND1 */
+> +#define VEND1_GLOBAL_SC				0x0
+> +#define VEND1_GLOBAL_SC_SOFT_RESET		BIT(15)
+> +#define VEND1_GLOBAL_SC_LOW_POWER		BIT(11)
+> +
+>  #define VEND1_GLOBAL_FW_ID			0x0020
+>  #define VEND1_GLOBAL_FW_ID_MAJOR		GENMASK(15, 8)
+>  #define VEND1_GLOBAL_FW_ID_MINOR		GENMASK(7, 0)
+>  
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE1			0x0200
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE1_EXECUTE		BIT(15)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE1_WRITE		BIT(14)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE1_CRC_RESET	BIT(12)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE1_BUSY		BIT(8)
+> +
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE2			0x0201
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE3			0x0202
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR_MASK	GENMASK(15, 0)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR(x)	FIELD_PREP(VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR_MASK, (u16)((x) >> 16))
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE4			0x0203
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR_MASK	GENMASK(15, 2)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR(x)	FIELD_PREP(VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR_MASK, (u16)(x))
+> +
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE5			0x0204
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE5_MSW_DATA_MASK	GENMASK(15, 0)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE5_MSW_DATA(x)	FIELD_PREP(VEND1_GLOBAL_MAILBOX_INTERFACE5_MSW_DATA_MASK, (u16)((x) >> 16))
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE6			0x0205
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE6_LSW_DATA_MASK	GENMASK(15, 0)
+> +#define VEND1_GLOBAL_MAILBOX_INTERFACE6_LSW_DATA(x)	FIELD_PREP(VEND1_GLOBAL_MAILBOX_INTERFACE6_LSW_DATA_MASK, (u16)(x))
+> +
+> +#define VEND1_GLOBAL_CONTROL2			0xc001
+> +#define VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_RST	BIT(15)
+> +#define VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD	BIT(6)
+> +#define VEND1_GLOBAL_CONTROL2_UP_RUN_STALL	BIT(0)
+> +
+>  #define VEND1_GLOBAL_GEN_STAT2			0xc831
+>  #define VEND1_GLOBAL_GEN_STAT2_OP_IN_PROG	BIT(15)
+>  
+> @@ -152,6 +186,30 @@
+>  #define AQR107_OP_IN_PROG_SLEEP		1000
+>  #define AQR107_OP_IN_PROG_TIMEOUT	100000
+>  
+> +#define UP_RESET_SLEEP		100
+> +
+> +/* addresses of memory segments in the phy */
+> +#define DRAM_BASE_ADDR		0x3FFE0000
+> +#define IRAM_BASE_ADDR		0x40000000
+> +
+> +/* firmware image format constants */
+> +#define VERSION_STRING_SIZE		0x40
+> +#define VERSION_STRING_OFFSET		0x0200
+> +/* primary offset is written at an offset from the start of the fw blob */
+> +#define PRIMARY_OFFSET_OFFSET		0x8
+> +/* primary offset needs to be then added to a base offset */
+> +#define PRIMARY_OFFSET_SHIFT		12
+> +#define PRIMARY_OFFSET(x)		((x) << PRIMARY_OFFSET_SHIFT)
+> +#define HEADER_OFFSET			0x300
+> +
+> +struct aqr_fw_header {
+> +	u32 padding;
+> +	u8 iram_offset[3];
+> +	u8 iram_size[3];
+> +	u8 dram_offset[3];
+> +	u8 dram_size[3];
+> +} __packed;
+> +
+>  struct aqr107_hw_stat {
+>  	const char *name;
+>  	int reg;
+> @@ -677,6 +735,166 @@ static int aqr107_wait_processor_intensive_op(struct phy_device *phydev)
+>  	return 0;
+>  }
+>  
+> +/* load data into the phy's memory */
+> +static int aquantia_load_memory(struct phy_device *phydev, u32 addr,
+> +				const u8 *data, size_t len)
+> +{
 
-To make the driver better maintainable: can the firmware handling code
-be placed in a separate source code file, similar to what has been done
-for the hwmon part?
-If yes, then this could also be the right time to move the aquantia
-driver to an own subdirectory.
+> +	for (pos = 0; pos < len; pos += min(sizeof(u32), len - pos)) {
+> +		u32 word = 0;
+> +
+> +		memcpy(&word, data + pos, min(sizeof(u32), len - pos));
 
+Rather than do a memcpy, use the get_unaligned_ macros. They might map
+to a memcpy(), but some architectures can do unaligned accesses
+without problems.
+
+> +static int aqr_fw_boot(struct phy_device *phydev, const u8 *data, size_t size)
+> +{
+> +	const struct aqr_fw_header *header;
+> +	u32 iram_offset = 0, iram_size = 0;
+> +	u32 dram_offset = 0, dram_size = 0;
+> +	char version[VERSION_STRING_SIZE];
+> +	u16 calculated_crc, read_crc;
+> +	u32 primary_offset = 0;
+> +	int ret;
+> +
+> +	/* extract saved CRC at the end of the fw */
+> +	memcpy(&read_crc, data + size - 2, sizeof(read_crc));
+
+Say size == 1. You just had a buffer underrun.
+
+> +	/* CRC is saved in big-endian as PHY is BE */
+> +	read_crc = be16_to_cpu(read_crc);
+> +	calculated_crc = crc_ccitt_false(0, data, size - 2);
+> +	if (read_crc != calculated_crc) {
+> +		phydev_err(phydev, "bad firmware CRC: file 0x%04x calculated 0x%04x\n",
+> +			   read_crc, calculated_crc);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Get the primary offset to extract DRAM and IRAM sections. */
+> +	memcpy(&primary_offset, data + PRIMARY_OFFSET_OFFSET, sizeof(u16));
+
+What if PRIMARY_OFFSET_OFFSET + sizeof(u16) is greater than size? A
+buffer overrun.
+
+Assume the firmware is evil and is trying to hack you. Always test
+everything.
+
+I would suggest some helpers, something like
+
+int aqr_fw_get_u16(const u8 *data, size_t size, size_t offset, u16 *value)
+
+Check that offset + sizeof(u16) is within the firmware, and if not return -EINVAL.
+Otherwise set *value to the u16 from the firmware and return 0.
+
+This is where Rust would be nice :-)
+
+	Andrew
+
+---
+pw-bot: cr
 
