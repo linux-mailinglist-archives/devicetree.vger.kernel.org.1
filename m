@@ -1,148 +1,75 @@
-Return-Path: <devicetree+bounces-13515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F8A7DE6FE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 22:03:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 819107DE7F9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 23:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C275A1C20CA9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 21:03:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AB8C281239
+	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 22:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4173115E94;
-	Wed,  1 Nov 2023 21:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E7A915E83;
+	Wed,  1 Nov 2023 22:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cj1PRtb/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UflBDt7e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC0B33E7
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 21:03:20 +0000 (UTC)
-Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 809F010D;
-	Wed,  1 Nov 2023 14:03:16 -0700 (PDT)
-Received: by mail-oo1-xc2c.google.com with SMTP id 006d021491bc7-58706a0309dso117382eaf.1;
-        Wed, 01 Nov 2023 14:03:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698872596; x=1699477396; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=RScx1qr66w5tZeJKoWwKJE6rPcUWsAS1JE62t0G4k7Y=;
-        b=Cj1PRtb/7ZJXFAFCGloXeQnpnMzA6/ngMFMmIanSTUjdDbO6cCZfiKEHczp4p/o57M
-         1EhSEXOrXs9keFQOR99Wb1VdCHUs8gdKmbQvIyhnPFTcQFRGFFsbKPBp5ZGMRDKNPAIw
-         l7Urvt7p/ga28AIJxU+7JnDqf8R6uvPzet/lnYlMrULQ3sWvsJGgG5Bx7rOAK7YJCXOf
-         1MF6IHwr9mIDAGMlVB+nXjeKa/haAJHSSRogxfmvpA6tLEusNADyAbdsQRS0it17ieXQ
-         pKcyYC2p+DjgENKhVnA9y505snSh4VJrbjgAF6TIB2wIEaFELQGBR6XBzaQ1FJuwPjBn
-         opWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698872596; x=1699477396;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RScx1qr66w5tZeJKoWwKJE6rPcUWsAS1JE62t0G4k7Y=;
-        b=f7Tabf4NvA/A5I8/TLbZFJqxO67FMB7jvo+OvZAOE/CTFRhTTNjEJwtnU44ocw34fe
-         20e7/BV4zSlCgdIDbM8mURF1RP9iizXuw6psKW2ozRB1jV4Ft2jZ4S1uHowSKhumQu2o
-         NiJZrPO7n0jCqXJ983VfVCSgIPbLOwbpyXmDpX3L8zDbTmPSrBrMMZMxw66TyZCuJfTA
-         puLW6pjavDRaMZqyulxJFdeo8rLQvhciTH7J84MMP3rX7BGE/XEbc98ywF7o8BzyHyWv
-         5b024t5k2C+Sv4OrDKtth4WSePQseU7aIIjn07az0cLbIPxcEQabqAqIC4W8BRxQrRCK
-         xrXw==
-X-Gm-Message-State: AOJu0YyonYPjVerAUkMze3YVzl6x9ZA8K05PO9JMxU//ichc61MH3rLf
-	ADI9uDk5whAnWDAiEFGjdJg=
-X-Google-Smtp-Source: AGHT+IFimFIKEcKyxyBwVaK6WGCqQP39TPNh5fD3DjU6Nt8md4PIXCYxBzuPKbfyRqqRdYRed42agQ==
-X-Received: by 2002:a4a:da4f:0:b0:57b:ed7b:29cb with SMTP id f15-20020a4ada4f000000b0057bed7b29cbmr17036531oou.6.1698872595706;
-        Wed, 01 Nov 2023 14:03:15 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 2-20020a4a1a02000000b00581daa5c5fdsm751025oof.29.2023.11.01.14.03.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Nov 2023 14:03:14 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <74c8dd58-f4b8-41fa-b5da-d4e32326ffd1@roeck-us.net>
-Date: Wed, 1 Nov 2023 14:03:12 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DA3101CD
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 22:17:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B947C433C7;
+	Wed,  1 Nov 2023 22:17:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698877064;
+	bh=nyuKdgwIpK1RSgOQtbUwzcBNuY5rZc8qER6Dz4TIRyc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=UflBDt7eftMRf/joBP5ipLEU5vb7LxjqOOPo6Y//N0ou+4VykFBQDrn2sn0EFqMpN
+	 qltZXQTFtplhDRN3HzOvYmkVOXyB+Zp0J2Qx0Hp0xwY0Ofli5NJnE5Mwx2ob445Eq5
+	 jyJ8ToYXBSlOGo0wp7KI3bKoUCZTHeN8oHq1zmyIkSCm2DH8h+Nc8XSCoagPC14z2S
+	 wxHkQM9qMxxDSDUk8EQtf3GLh2HcpKjCnpX7uop7MqfE+ph097h6GD+FN49pkbRayt
+	 MGih3nCC2YGNqJuDWB121pISv/c8PZx1eahzFxNKX5RYIUG9Vm6vgdsIPbZtLyu+RZ
+	 rQOvx+DMJTVdg==
+Date: Wed, 1 Nov 2023 17:17:42 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, rafael@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+	quic_ramkri@quicinc.com, quic_parass@quicinc.com
+Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
+ state of power domain
+Message-ID: <20231101221742.GA101112@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: watchdog: qca,ar7130-wdt: convert txt to
- yaml
-Content-Language: en-US
-To: Nik Bune <n2h9z4@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, skhan@linuxfoundation.org,
- wim@linux-watchdog.org
-References: <20231101202722.48056-1-n2h9z4@gmail.com>
- <20231101203357.48478-1-n2h9z4@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20231101203357.48478-1-n2h9z4@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1694066433-8677-6-git-send-email-quic_krichai@quicinc.com>
 
-On 11/1/23 13:33, Nik Bune wrote:
-> Changes in v2: updated commit message.
-> 
-> v1 patch: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231031201602.28827-1-n2h9z4@gmail.com/
+On Thu, Sep 07, 2023 at 11:30:33AM +0530, Krishna chaitanya chundru wrote:
+> While scaling the interconnect clocks based on PCIe link speed, it is also
+> mandatory to scale the power domain performance state so that the SoC can
+> run under optimum power conditions.
 
+Can you expand "OPP" somewhere so we know what it stands for?  I'm
+sure everybody knows except me :)
 
-Unfortunately, you didn't run checkpatch on your uudate, meaning it missed
+This commit log says something is mandatory; can you phrase it so it
+says what the patch actually *does*?  The subject is kind of a title,
+and I think it's important for the log to make sense without the
+subject, so it's OK if the log repeats part or all of the subject.
 
-WARNING: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-
-Indeed, your patch now provides a single-line commit description with more than
-200 characters.
-
-I don't think "Keep it in one line" was meant to ask you to do that.
-The original description was substantially shorter and did fit into 75 characters.
-
-Guenter
-
+Bjorn
 
