@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-13567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69ACB7DEE80
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:57:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4CE7DEEC1
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 10:24:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDC7AB21112
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:57:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABD9D1C20E63
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9CFF749A;
-	Thu,  2 Nov 2023 08:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA71111BD;
+	Thu,  2 Nov 2023 09:24:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yYfx0z+6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UZmSCNuU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FA22119
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 08:57:21 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36457136
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 01:57:16 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9d224dca585so99785566b.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 01:57:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D601B1094B
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 09:24:02 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0665A12E
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:23:58 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9d2e6c8b542so100001366b.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 02:23:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698915434; x=1699520234; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ti8VRK44rRpfNSXAtpGWqBsh2GV0GvDCSbxVBHE7LHU=;
-        b=yYfx0z+6NmJspUHdVYQfqQ2QO5EBDy7hbpyDqi3ttFJvq8CC96TQhFhXFzZtxC1mNb
-         c6+ys//CiaW79E8hits65t+NIY/x7pCDDSqjtuPNX2RRaxw9i2bocNYxZO9Yni/IET+e
-         tVYs7CXscXMWiuaYiXsxN1+9t4BHU1nHoVi4L1/fgvIP1JSaukYDi7bSb3864Hx3B1DR
-         fwUEjGU28U311oeafV+sO0ascPdR9ibiGBdzk9Z53WllOz6abdWiXBxAI08ylqBjAcu9
-         U7RFdQxpY1NBHKCwPhP4Aj9qa8X8GG5tXylH22ZC6FpHBq9JPLbaaz2+EJ5m7usDoFx3
-         ilGQ==
+        d=linaro.org; s=google; t=1698917036; x=1699521836; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=N5TJxlMCH07V837adkdqn8iQGbiJkUTpVTRneCDNnEo=;
+        b=UZmSCNuU95NivWzecIO0jXfLF17k46Ocwx0S7XmjJrSoy4le7oYVPSDDgnuda/3/lM
+         gu8vUv6pPDkEgsjDzJfrPMzwnCdz3qCMSv+A8g5lHtp70GwXJ0J5RDixwn//rElwLXwt
+         umLD5v6UjzWvAgaYeYoojWCn7cVDJUMrItAYBm4ffIfskWQ9yrsIGbpdcB3KFwNyHRyb
+         WDHyj6Onim9/oZ4oHwG3JmbLFb+x7USmElcRi1Jw8YsBzZHqXydcNlXM2adn9B4GjcRG
+         fPGx6Jl6qQD6BdAuuDb89hFjozORrtv208A5fSVG4v6oydRADNo2BGoSr5S1+bG3Gwz+
+         vHQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698915434; x=1699520234;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ti8VRK44rRpfNSXAtpGWqBsh2GV0GvDCSbxVBHE7LHU=;
-        b=MXQcmfD1Gs3FzDX1HbtRCsrxUFXyZzd6Zw/OcV8U6KUhe1tzth9VP+09YmNJRglNCK
-         IO9ZZu1B/LJ67YtMwP53CAZ+Z/22jxjkZ+IWdCFx8ZdmHhLvlyd4W8BGFv60p4QusFcK
-         ZphSbdj4YXy/iRf2gj2as4C85Mv/lzWHsE4ACSUtqjTziGtRNpLfCUyDHfsOLBUNZd/r
-         KfG+ULOI2SJcN+LYcbEqyrhPEdX1wNBZheVZDq2zWuuZ7FL9ILq8euWwc3tDJcKonJta
-         KY5+46zAemF0pkuJL27O1QZDhoqwEzVmDRF1jWpJsmSMfr7orK3ig1+LM4Xf1dI9IFC/
-         GnSA==
-X-Gm-Message-State: AOJu0Yy6wBbFw/XM63pMDoBL66nHhfIeTQBonRMX42VOVh+u7iySc8l/
-	2G32UN5zuzfsKOVF0hhIUSv6SQ==
-X-Google-Smtp-Source: AGHT+IF+eiox49ggCtBVRyaFXSqOif7UUxrSxAuvywhajNlQ/L5vdqEjYxiyZHOrXcAKtd2vPahgrA==
-X-Received: by 2002:a17:906:fd89:b0:9ce:24d0:8a01 with SMTP id xa9-20020a170906fd8900b009ce24d08a01mr4203821ejb.60.1698915434658;
-        Thu, 02 Nov 2023 01:57:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698917036; x=1699521836;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N5TJxlMCH07V837adkdqn8iQGbiJkUTpVTRneCDNnEo=;
+        b=rAzFhC37zObidFT2K2IHnOJGVfQWwvmw/OZiJi4xNYWiXsC+5v8stW+rhooeF0N1ga
+         EKTtdiNnllgnz/qzkvRgSeep+altO77foMpf65G4tufqIx18sjVbQY1vsd/Vv7jK7y5v
+         YjQHguiv5hvLOybj5hErttBPvOxnrTyr0k0GefMk2L+KMyPH0/DeOtCVo1H/hs4xRBuI
+         2wuwAeX/TIYHPaNoeyhyiLhYJkFYmGskL98aCyERcnY6y+CQSJaSN82/koT9QPKEvrBB
+         TNIne9Nlx+M7ocXH19a+Yls1Zc8oAg+pWmwCqDykFoDbU0GT+Sfnqd2ww2JPtMqy/EWh
+         PXxQ==
+X-Gm-Message-State: AOJu0Yy2lpYG7PlvJtfZAVrT1HWACG9eN8VMEeubkSjasfL5wQ2MLlJk
+	3X6MgAVhdIMn2q9j/qm2SO6FHeerWRPJGaxPB6E=
+X-Google-Smtp-Source: AGHT+IFEwU2dpVBvCNOYsvcD1IhYjX9QPLpqtUTT7xB1cQFy2LSdQZhqEjqbIWPn3/7qatWqkgu4pg==
+X-Received: by 2002:a17:907:98a:b0:9ae:69b8:322b with SMTP id bf10-20020a170907098a00b009ae69b8322bmr3173013ejc.60.1698917036497;
+        Thu, 02 Nov 2023 02:23:56 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id t24-20020a170906065800b009b2b47cd757sm866237ejb.9.2023.11.02.01.57.12
+        by smtp.gmail.com with ESMTPSA id d14-20020a170906370e00b009b2d46425absm898105ejc.85.2023.11.02.02.23.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 01:57:14 -0700 (PDT)
-Message-ID: <9c083c35-a8fb-4ee3-90a3-96af7efec11f@linaro.org>
-Date: Thu, 2 Nov 2023 09:57:11 +0100
+        Thu, 02 Nov 2023 02:23:54 -0700 (PDT)
+Message-ID: <d7407122-8b51-4046-a360-999c3d3706ff@linaro.org>
+Date: Thu, 2 Nov 2023 10:23:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +68,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5][3/4] mmc: Add dw mobile mmc cmdq rtk driver
+Subject: Re: [PATCH 3/4] soc: amlogic: meson-gx-socinfo: export socinfo for
+ use in other modules
+To: Viacheslav Bocharov <adeep@lexina.in>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231102074916.3280809-1-adeep@lexina.in>
+ <20231102074916.3280809-4-adeep@lexina.in>
 Content-Language: en-US
-To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
- adrian.hunter@intel.com, jh80.chung@samsung.com, riteshh@codeaurora.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- asutoshd@codeaurora.org
-Cc: p.zabel@pengutronix.de, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, arnd@arndb.de,
- briannorris@chromium.org, doug@schmorgal.com, tonyhuang.sunplus@gmail.com,
- abel.vesa@linaro.org, william.qiu@starfivetech.com
-References: <20231102081514.22945-1-jyanchou@realtek.com>
- <20231102081514.22945-4-jyanchou@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,137 +124,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231102081514.22945-4-jyanchou@realtek.com>
+In-Reply-To: <20231102074916.3280809-4-adeep@lexina.in>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/11/2023 09:15, Jyan Chou wrote:
-> Add Realtek mmc driver to make good use Synopsys
-> DesignWare mmc cmdq host driver.
-> 
-> Signed-off-by: Jyan Chou <jyanchou@realtek.com>
-> 
-> ---
-> v4 -> v5:
-> - Fix linux coding style issues.
-> - Modify the use of sizeof(*).
-> - Remove useless function and parameter passing.
-> - Replace platform_get_resource by devm_platform_ioremap_resource().
+On 02/11/2023 08:49, Viacheslav Bocharov wrote:
+> Move socinfo variable to global scope and export it as meson_gx_socinfo.
 
-It's merge window. Sending big patchset every day won't get you far.
-
-> 
-> v3 -> v4:
-> - Modify dma setting's code to fix linux coding style.
-> - Drop useless function messages.
-> - Remove MODULE_ALIAS().
-> 
-> v0 -> v1:
-> - Seperate different support into single patch.
-> - Fix the compiler complains.
-> ---
-
-
-> +
-> +static int dw_mci_rtk_parse_dt(struct dw_mci *host)
-> +{
-> +	struct dw_mci_rtkemmc_host *priv;
-> +	const u32 *prop;
-> +	int size, ret;
-> +
-> +	priv = devm_kzalloc(host->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->pinctrl = devm_pinctrl_get(host->dev);
-> +	if (IS_ERR(priv->pinctrl))
-> +		dev_dbg(host->dev, "no pinctrl\n");
-> +
-> +	priv->pins_default = pinctrl_lookup_state(priv->pinctrl,
-> +						  PINCTRL_STATE_DEFAULT);
-> +	if (IS_ERR(priv->pins_default))
-> +		dev_warn(host->dev, "could not get default state\n");
-> +
-> +	priv->pins_sdr50 = pinctrl_lookup_state(priv->pinctrl,
-> +						"sdr50");
-> +	if (IS_ERR(priv->pins_sdr50))
-> +		dev_warn(host->dev, "could not get sdr50 state\n");
-> +
-> +	priv->pins_hs200 = pinctrl_lookup_state(priv->pinctrl,
-> +						"hs200");
-> +	if (IS_ERR(priv->pins_hs200))
-> +		dev_warn(host->dev, "could not get hs200 state\n");
-> +
-> +	priv->pins_hs400 = pinctrl_lookup_state(priv->pinctrl,
-> +						"hs400");
-> +	if (IS_ERR(priv->pins_hs400))
-> +		dev_warn(host->dev, "could not get hs400 state\n");
-> +
-> +	priv->pins_tune0 = pinctrl_lookup_state(priv->pinctrl,
-> +						"tune0");
-> +	if (IS_ERR(priv->pins_tune0))
-> +		dev_warn(host->dev, "could not get tune0 state\n");
-> +
-> +	priv->pins_tune1 = pinctrl_lookup_state(priv->pinctrl,
-> +						"tune1");
-> +	if (IS_ERR(priv->pins_tune1))
-> +		dev_warn(host->dev, "could not get tune1 state\n");
-> +
-> +	priv->pins_tune2 = pinctrl_lookup_state(priv->pinctrl,
-> +						"tune2");
-> +	if (IS_ERR(priv->pins_tune2))
-> +		dev_warn(host->dev, "could not get tune2 state\n");
-> +
-> +	priv->pins_tune3 = pinctrl_lookup_state(priv->pinctrl,
-> +						"tune3");
-> +	if (IS_ERR(priv->pins_tune3))
-> +		dev_warn(host->dev, "could not get tune3 state\n");
-> +
-> +	priv->pins_tune4 = pinctrl_lookup_state(priv->pinctrl,
-> +						"tune4");
-> +
-> +	if (IS_ERR(priv->pins_tune4))
-> +		dev_warn(host->dev, "could not get tune4 state\n");
-> +
-> +	priv->vp0 = devm_clk_get(host->dev, "vp0");
-> +	if (IS_ERR(priv->vp0))
-> +		dev_err_probe(host->dev, ret, "could not get vp0 clk\n");
-> +
-> +	priv->vp1 = devm_clk_get(host->dev, "vp1");
-> +	if (IS_ERR(priv->vp1))
-> +		dev_err_probe(host->dev, ret, "could not get vp1 clk\n");
-> +
-> +	if (of_property_read_bool(host->dev->of_node, "supports-cqe"))
-> +		priv->is_cqe = 1;
-> +	else
-> +		priv->is_cqe = 0;
-> +
-> +	prop = of_get_property(host->dev->of_node, "rdq-ctrl", &size);
-
-NAK
-
-> +	if (prop)
-> +		priv->rdq_ctrl = of_read_number(prop, 1);
-> +	else
-> +		priv->rdq_ctrl = 0;
-> +
-> +	priv->emmc_mode = 3;
-> +
-> +	priv->m2tmx = syscon_regmap_lookup_by_phandle(host->dev->of_node, "realtek,m2tmx");
-
-NAK, for the same reasons I mentioned for other patch.
-
-I will keep NAK-ing till you start testing your DTS.
-
-
-> +	if (IS_ERR_OR_NULL(priv->m2tmx))
-> +		dev_err_probe(host->dev, ret, "can not get m2mtx node.\n");
-> +
-> +	host->priv = priv;
-> +
-> +	return 0;
-> +}
-
+Why? What the patch is doing we can see from the diff. Commit msg should
+explain why.
 
 Best regards,
 Krzysztof
