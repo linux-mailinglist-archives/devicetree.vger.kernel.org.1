@@ -1,73 +1,151 @@
-Return-Path: <devicetree+bounces-13589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E0D7DF20B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:09:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C217DF213
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:11:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 051A41C20E6F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:09:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C6D61F226BE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA5715E90;
-	Thu,  2 Nov 2023 12:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SRW8Tc5F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DAEC168AF;
+	Thu,  2 Nov 2023 12:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6466013FED
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 12:09:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A021FC433C7;
-	Thu,  2 Nov 2023 12:09:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698926991;
-	bh=IwE9+OvFRLx91Mib23swemUFGjVhO8KF9WcxPps/jzs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=SRW8Tc5FZ8RxUVh+wdGHrbvjyKFIYpnUUNw2ZsH8qdEMiE0mEzoRZRaybRTTlYzDA
-	 NlxH7vHPtKL0xnIFxITJPqC6pr4xMU7oFmTKcYVPm5Ze2CJf+qsbXtCyhhBgEvh00w
-	 TUIsqio11IPhFjZK4IKJ6HTN2oFsZXKCxhHeRePwL2yuhU04m7c4LRsJL80RW1ETam
-	 nT5l44sn4SnYmLPAT1/n9uVMPjd9ysMXaCtTS1NefKIW6AM40widFo4v2IC61Ui63R
-	 PRm503pvXhyS2XsGk485oiiaq6n1PIo3xjnFWSZ4DiJFQb15aChjHPFh1Ie+6HXYzC
-	 AQvxUrpbeF2Rw==
-Date: Thu, 2 Nov 2023 07:09:50 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, rafael@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-	quic_ramkri@quicinc.com, quic_parass@quicinc.com
-Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20231102120950.GA115288@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9DA13FED
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 12:11:49 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC8081A6;
+	Thu,  2 Nov 2023 05:11:44 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9F8AA2F4;
+	Thu,  2 Nov 2023 05:12:26 -0700 (PDT)
+Received: from [10.1.25.180] (R90XJLFY.arm.com [10.1.25.180])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DDB113F67D;
+	Thu,  2 Nov 2023 05:11:42 -0700 (PDT)
+Message-ID: <e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com>
+Date: Thu, 2 Nov 2023 12:11:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231102053013.7yt7pxin5awlu7w7@vireshk-i7>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 3/3] kselftest: Add new test for detecting unprobed
+ Devicetree devices
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+Cc: Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev,
+ kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
+ Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Shuah Khan <shuah@kernel.org>
+References: <20230828211424.2964562-1-nfraprado@collabora.com>
+ <20230828211424.2964562-4-nfraprado@collabora.com>
+Content-Language: en-US
+From: Aishwarya TCV <aishwarya.tcv@arm.com>
+In-Reply-To: <20230828211424.2964562-4-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 02, 2023 at 11:00:13AM +0530, Viresh Kumar wrote:
-> On 01-11-23, 17:17, Bjorn Helgaas wrote:
-> > Can you expand "OPP" somewhere so we know what it stands for?  I'm
-> > sure everybody knows except me :)
-> 
-> It is "Operating Performance Points", defined here:
-> 
-> Documentation/power/opp.rst
 
-Thanks; I meant in the subject or commit log of the next revision, of
-course.
+
+On 28/08/2023 22:13, Nícolas F. R. A. Prado wrote:
+> Introduce a new kselftest to detect devices that were declared in the
+> Devicetree, and are expected to be probed by a driver, but weren't.
+> 
+> The test uses two lists: a list of compatibles that can match a
+> Devicetree device to a driver, and a list of compatibles that should be
+> ignored. The first is automatically generated by the
+> dt-extract-compatibles script, and is run as part of building this test.
+> The list of compatibles to ignore is a hand-crafted list to capture the
+> few exceptions of compatibles that are expected to match a driver but
+> not be bound to it.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: Shuah Khan <skhan@linuxfoundation.org>
+> 
+
+Hi Nicolas,
+
+Currently when building kselftest against next-master and
+mainline-master the below build error is observed. A bisect (full log
+below) identified this patch as introducing the failure.
+
+Full log from a failure:
+
+https://storage.kernelci.org/mainline/master/v6.6-9152-gdeefd5024f07/arm64/defconfig%2Bkselftest/gcc-10/logs/kselftest.log
+
+make[4]: Entering directory '/tmp/kci/linux/tools/testing/selftests/dt'
+/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-extract-compatibles
+-d /tmp/kci/linux/tools/testing/selftests/../../.. >
+/tmp/kci/linux/build/kselftest/dt/compatible_list
+Traceback (most recent call last):
+  File
+"/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-extract-compatibles",
+line 107, in <module>
+    compat_ignore_list.extend(parse_compatibles_to_ignore(f))
+  File
+"/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-extract-compatibles",
+line 67, in parse_compatibles_to_ignore
+    with open(file, 'r', encoding='utf-8') as f:
+OSError: [Errno 40] Too many levels of symbolic links:
+'/tmp/kci/linux/tools/testing/selftests/../../../build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/tools/testing/selftests/powerpc/vphn/vphn.c'
+make[4]: *** [Makefile:12:
+/tmp/kci/linux/build/kselftest/dt/compatible_list] Error 1
+make[4]: Leaving directory '/tmp/kci/linux/tools/testing/selftests/dt'
+
+
+The bisect log:
+
+git bisect start
+# good: [f9a7eda4d73d44dc1d17d05cdc9aeb9fc5660740] Merge tag
+'hwmon-for-v6.7' of
+git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging
+git bisect good f9a7eda4d73d44dc1d17d05cdc9aeb9fc5660740
+# bad: [8bc9e6515183935fa0cccaf67455c439afe4982b] Merge tag
+'devicetree-for-6.7' of
+git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect bad 8bc9e6515183935fa0cccaf67455c439afe4982b
+# good: [0a6d7f8275f255eda823c0f0b61d024f6f5b483d] Merge branch
+'clk-cleanup' into clk-next
+git bisect good 0a6d7f8275f255eda823c0f0b61d024f6f5b483d
+# good: [fe4ae2fab00b4751265580c5865fdf23b62d80b3] Merge tag
+'clk-for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux
+git bisect good fe4ae2fab00b4751265580c5865fdf23b62d80b3
+# good: [fc7b34ae1347f4eb36f065458e53d6065cd85928] power: supply:
+wm831x_backup: Convert to platform remove callback returning void
+git bisect good fc7b34ae1347f4eb36f065458e53d6065cd85928
+# bad: [f2147371a83c6de1128093c163dc17bc61096362] dt-bindings: soc: fsl:
+cpm_qe: cpm1-scc-qmc: Fix example property name
+git bisect bad f2147371a83c6de1128093c163dc17bc61096362
+# bad: [22c3888e55bf5c86be536a3d9e06a50e7bf3a39f] dt-bindings: watchdog:
+atmel,at91rm9200-wdt: convert txt to yaml
+git bisect bad 22c3888e55bf5c86be536a3d9e06a50e7bf3a39f
+# bad: [780967feb626c6f4efa1e4b3532f1be83884cd76] dt-bindings: Add
+Marantec vendor prefix
+git bisect bad 780967feb626c6f4efa1e4b3532f1be83884cd76
+# bad: [bc17fd92c1eb7589f1f3df1893e9f62bb35b8cc8] dt-bindings:
+interrupt-controller: qcom,pdc: document qcom,sm4450-pdc
+git bisect bad bc17fd92c1eb7589f1f3df1893e9f62bb35b8cc8
+# good: [365ba0c7a73cce407bf40cdf9900b86b945d4acb] dt:
+dt-extract-compatibles: Add flag for driver matching compatibles
+git bisect good 365ba0c7a73cce407bf40cdf9900b86b945d4acb
+# bad: [14571ab1ad213de59b3726a40aea7ca0365bf445] kselftest: Add new
+test for detecting unprobed Devicetree devices
+git bisect bad 14571ab1ad213de59b3726a40aea7ca0365bf445
+# first bad commit: [14571ab1ad213de59b3726a40aea7ca0365bf445]
+kselftest: Add new test for detecting unprobed Devicetree devices
+
+
+Thanks,
+Aishwarya
+
 
