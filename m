@@ -1,127 +1,110 @@
-Return-Path: <devicetree+bounces-13650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADCB7DF8CB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 18:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D63A7DF8D7
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 18:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0F66280FBA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 17:36:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46842281C3F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 17:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D9D20300;
-	Thu,  2 Nov 2023 17:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857982030F;
+	Thu,  2 Nov 2023 17:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nS8RJb4G"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="CMQEoFk5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDDF01DA2B;
-	Thu,  2 Nov 2023 17:36:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7937FC433C7;
-	Thu,  2 Nov 2023 17:36:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1698946591;
-	bh=E1TTEAOAkqbcpJE5z717MbPqX+Y4ObtvXO4GZpIrpbs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nS8RJb4GMZsLnV33wab1tAIurl5vrN/BaXAd984kYUysKdv9QSUmVI6QvhdB/Qd84
-	 T/rMu9CeKSFoCZ41Yi4ed53YPC9RMOAU3wueinCnNiWh3/nLB5Egs4GTEPuLb/hP64
-	 Vh10jMfNcgncDKB2M0aEneEm1eE+xBkhJngpNv2ILjvBRV7qWGpYdxHQNhgIQojn0j
-	 BTlSPCB6tL5T2++8TKNUxucf8I7PIbwzWGy1L6flKxQ4O7haW1KoVOMAWJ7lYOeaW6
-	 ubZaiAuvSzi4Aa4M0bgpZCMjrVSQAJinmbj6xdCSzIEwEZVXV61risvTQNWlPxVNO8
-	 zsiiXOAauJMPw==
-Date: Thu, 2 Nov 2023 17:36:25 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Naresh Kamboju <naresh.kamboju@linaro.org>
-Cc: Aishwarya TCV <aishwarya.tcv@arm.com>,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
-	kernelci@lists.linux.dev, kernel@collabora.com,
-	Guenter Roeck <groeck@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247F4208A1;
+	Thu,  2 Nov 2023 17:37:54 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435B218E;
+	Thu,  2 Nov 2023 10:37:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=AwjL71MzeBAOU4MURIsg1EVjWrpke9ZuNN+nhEn3EhY=; b=CMQEoFk5VPoCoRlU0pe6Wb6hoA
+	HzwVTLgbLMW4t31pglN1w4Nh6mnQVi7iCY/UaZ3uEEpl1VteLIZhNjYVya78nsTqkK2s10hP/4pYJ
+	oUk3WgTzgerJADJWK8EYHQk+226dl88aUocz1ggjHNl4nlkxBF1Rh03pUGM9qUoIAUOA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1qybdU-000lnS-4G; Thu, 02 Nov 2023 18:37:40 +0100
+Date: Thu, 2 Nov 2023 18:37:40 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Shuah Khan <shuah@kernel.org>
-Subject: Re: [PATCH v3 3/3] kselftest: Add new test for detecting unprobed
- Devicetree devices
-Message-ID: <e72e144a-c617-4a9e-adfb-e25ddabeb4c7@sirena.org.uk>
-References: <20230828211424.2964562-1-nfraprado@collabora.com>
- <20230828211424.2964562-4-nfraprado@collabora.com>
- <e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com>
- <CA+G9fYsbq28w7m-sf6LhMscXHdPs0cGXU7kK6YzjKdUFKuQ+6A@mail.gmail.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robimarko@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v3 3/4] net: phy: aquantia: add firmware
+ load support
+Message-ID: <e632a285-9cb2-4dc9-a4a2-f57e454b8ffe@lunn.ch>
+References: <20231102150032.10740-1-ansuelsmth@gmail.com>
+ <20231102150032.10740-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PzOuAaApHfvNPDUY"
-Content-Disposition: inline
-In-Reply-To: <CA+G9fYsbq28w7m-sf6LhMscXHdPs0cGXU7kK6YzjKdUFKuQ+6A@mail.gmail.com>
-X-Cookie: A is for Apple.
-
-
---PzOuAaApHfvNPDUY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20231102150032.10740-3-ansuelsmth@gmail.com>
 
-On Thu, Nov 02, 2023 at 07:15:58PM +0530, Naresh Kamboju wrote:
-> On Thu, 2 Nov 2023 at 17:41, Aishwarya TCV <aishwarya.tcv@arm.com> wrote:
+> +/* AQR firmware doesn't have fixed offsets for iram and dram section
+> + * but instead provide an header with the offset to use on reading
+> + * and parsing the firmware.
+> + *
+> + * AQR firmware can't be trusted and each offset is validated to be
+> + * not negative and be in the size of the firmware itself.
+> + */
+> +static inline bool aqr_fw_validate_get(size_t size, size_t offset, size_t get_size)
+> +{
+> +	return size + offset > 0 && offset + get_size <= size;
+> +}
 
-> > https://storage.kernelci.org/mainline/master/v6.6-9152-gdeefd5024f07/arm64/defconfig%2Bkselftest/gcc-10/logs/kselftest.log
+Please don't user inline in .c files. The compiler is better at
+deciding than we are.
 
-...
+Also, i wounder about size + offset > 0. size_t is unsigned. So they
+cannot be negative. So does this test make sense?
 
-> May be due to, A loop of symlinks that are pointing to self / same files ?
+> +static int aqr_fw_boot(struct phy_device *phydev, const u8 *data, size_t size,
+> +		       enum aqr_fw_src fw_src)
+> +{
+> +	u16 calculated_crc, read_crc, read_primary_offset;
+> +	u32 iram_offset = 0, iram_size = 0;
+> +	u32 dram_offset = 0, dram_size = 0;
+> +	char version[VERSION_STRING_SIZE];
+> +	u32 primary_offset = 0;
+> +	int ret;
+> +
+> +	/* extract saved CRC at the end of the fw
+> +	 * CRC is saved in big-endian as PHY is BE
+> +	 */
+> +	ret = aqr_fw_get_be16(data, size - sizeof(u16), size, &read_crc);
+> +	if (ret) {
+> +		phydev_err(phydev, "bad firmware CRC in firmware\n");
+> +		return ret;
+> +	}
 
-Right, it does look like something bad is going on with symlinks:
+So if size < sizeof(u16), we get a very big positive number. The > 0
+test does nothing for you here, but the other half of the test does
+trap the issue.
 
-> > '/tmp/kci/linux/tools/testing/selftests/../../../build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/tools/testing/selftests/powerpc/vphn/vphn.c'
+So i think you can remove the > 0 test.
 
-> Please build by using tuxmake and validate builds are working.
-
-Note that tuxmake does an in tree build of kselftest:
-
-  make --silent --keep-going --jobs=8 O=/home/tuxbuild/.cache/tuxmake/builds/1/build INSTALL_PATH=/home/tuxbuild/.cache/tuxmake/builds/1/build/kselftest_install ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabihf- 'CC=sccache aarch64-linux-gnu-gcc' 'HOSTCC=sccache gcc' kselftest-install
-
-and does it's own tarball build too, whereas kernelci does an out of
-tree build and uses kselftest-gen_tar:
-
-  make KBUILD_BUILD_USER=KernelCI FORMAT=.xz ARCH=arm64 HOSTCC=gcc CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabihf- CC="ccache aarch64-linux-gnu-gcc" O=/tmp/kci/linux/build -C/tmp/kci/linux -j10 kselftest-gen_tar
-
-and that the error is in the dt-extract-compatibles program which is
-part of the kernel (well, imported into the kernel from dtc upstream):
-
-  File "/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-extract-compatibles", line 107, in <module>
-    compat_ignore_list.extend(parse_compatibles_to_ignore(f))
-
-This all suggests that something to do with how the build is set up is
-resulting in the source symlink that gets created for out of tree builds
-blowing up, I guess it's not specifically the DT stuff that's blowing it
-up but rather that it's tripping over an existing bug.  Really does look
-like a legitimate bug though, the source link is set up by the in tree
-kernel build infrastructure.
-
-I did poke a bit at reproducing outside of the KernelCI scripts but
-didn't manage to yet.
-
---PzOuAaApHfvNPDUY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVD3hgACgkQJNaLcl1U
-h9CV1Af/XvDWEqs0dEvo3YSlq7hdCU87XwG4tii0WazqGAe4BTjhDtd9QMjkuiHa
-jbGSp4XI1Ip54USgUpM5MkQSXo2VAz+gAVSnK8Xv6OGHEbSS7ECve7ZUTBnyE7ld
-F6o2OIR3omBOfmdI8dXZbfemhcsBOMGzos8C1u/AmffeRtn7l75zyARxo2rsO5Dy
-2Ljz9xf1g3U2hQySTGRRYpF4ZmsQcevnh3lFoh1mwV6rr2E6+05khAIbpTvGUDhL
-o0d8MBGvot0pxqdlciZi3LX1Hd6UPe66pHnpf8HDvi1OgM6QTrngIbuCM2tdrVp5
-1QLv1gI2QfDJgR47QoV2AzS24XcHcw==
-=JKT+
------END PGP SIGNATURE-----
-
---PzOuAaApHfvNPDUY--
+   Andrew
 
