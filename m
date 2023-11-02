@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-13551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39BA77DED9D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 220D07DEDA0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:49:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F1BD1C20EF5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:49:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5339F1C20EB9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:49:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B6E6FA3;
-	Thu,  2 Nov 2023 07:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FDF6ABD;
+	Thu,  2 Nov 2023 07:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="HWBp2KY7"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="XjYThrOo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487886AB8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4662C6AB0
 	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:49:35 +0000 (UTC)
 Received: from mx.msync.work (mx.msync.work [62.182.159.68])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 247E212B;
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D4512C;
 	Thu,  2 Nov 2023 00:49:27 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0DC4F147AB2;
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 51175147AB3;
 	Thu,  2 Nov 2023 07:49:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
 	t=1698911365; h=from:subject:date:message-id:to:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=8Xr/QweSmgY7p0LBTNCDzfvzvoqHoF5yll89vV6bmZg=;
-	b=HWBp2KY7I80PU4n4CtgZLFQoURpXPvDGu6OdKU5iycx0g+S4FtILtkBU9671+oV8PNuLG8
-	hSPz04sYvUBGo8Um0j2QOafAylCkZiMhTehtGrc0Qo+Wx7s+V4WlLoPsQ4J6F9NuXaB/k4
-	DnPVjxzyO8NKz7VPxEyps1+FwvsjJxT7PKGtJlZvQ5jzGNgHkNDSTJSAyiciLxmtBxDpyk
-	ZGJE4S4W0FmmvuqUcSpYmbIMOAHCi36a455PzlAyYu1xmE70vuIVb1GO3qQmjX8d1ddNUC
-	GeqOOxSmmLhZ1kzqkveRn6wP0H90y7HIxs/1JNP1UR67+xnX6Sk88PaMMVS/Ow==
+	bh=DjHr33z5m71WBOI9v22JQkdNrW3bAbyGgJ/hgN+H1UM=;
+	b=XjYThrOooEoCn2gOa0CXNbfolL9znTB9eHjNnAULCFsbKw17PTWQTw8tgyMwzZXXFGR0i6
+	JLSM3sxt9joS5KLM3miIHWaRy7O9VU2BHfCYIiS/fWxBVtrR8qZvcSpQiyhac/HyS6g6qE
+	PdJcKJFsxm1f6At4NLzWyhMAe2YYshagVOSQv31BuFBgRfDDLLD2ZLuH55RN3i+XqUFfR6
+	hUybZQmu8JKHFkMP0a/LJ+3uxFSENmSxrRRbndDZ8qwovNjRg3VP/xAedcXHTZQEqnxWyk
+	3AA1C4HYr/nrYiVzx1GxagiiuDoEUi4Bbv2ZHlHDlXWQ9RVLY84hZMvvVP/vgg==
 From: Viacheslav Bocharov <adeep@lexina.in>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Kevin Hilman <khilman@baylibre.com>,
@@ -42,9 +42,9 @@ To: Neil Armstrong <neil.armstrong@linaro.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 3/4] soc: amlogic: meson-gx-socinfo: export socinfo for use in other modules
-Date: Thu,  2 Nov 2023 10:49:15 +0300
-Message-Id: <20231102074916.3280809-4-adeep@lexina.in>
+Subject: [PATCH 4/4] firmware: meson_sm: use meson_gx_socinfo for compatibility
+Date: Thu,  2 Nov 2023 10:49:16 +0300
+Message-Id: <20231102074916.3280809-5-adeep@lexina.in>
 In-Reply-To: <20231102074916.3280809-1-adeep@lexina.in>
 References: <20231102074916.3280809-1-adeep@lexina.in>
 Precedence: bulk
@@ -56,92 +56,50 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-Move socinfo variable to global scope and export it as meson_gx_socinfo.
+Use meson_gx_socinfo variable for chipid compatible call
+from meson-gx-socinfo driver if available.
 
 Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
 ---
- drivers/soc/amlogic/meson-gx-socinfo.c | 34 +++++++++++++++-----------
- 1 file changed, 20 insertions(+), 14 deletions(-)
+ drivers/firmware/meson/meson_sm.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 6abb730344ab..0517f96a383b 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -24,6 +24,10 @@
- #define SOCINFO_MINOR	GENMASK(15, 8)
- #define SOCINFO_MISC	GENMASK(7, 0)
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index 2820f4ac871b..29b53a8a6941 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -23,6 +23,10 @@
  
+ #include <linux/firmware/meson/meson_sm.h>
+ 
++#ifdef CONFIG_MESON_GX_SOCINFO
++extern unsigned int meson_gx_socinfo;
++#endif
 +
-+unsigned int meson_gx_socinfo;
-+EXPORT_SYMBOL(meson_gx_socinfo);
+ struct meson_sm_cmd {
+ 	unsigned int index;
+ 	u32 smc_id;
+@@ -310,7 +314,19 @@ static ssize_t chipid_show(struct device *dev, struct device_attribute *attr,
+ 		buff = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
+ 		if (!buff)
+ 			return -ENOMEM;
+-		((uint32_t *)buff)[0] = 0; // CPU_ID is empty
++#ifdef CONFIG_MESON_GX_SOCINFO
++		uint8_t *ch;
++		int i;
 +
- static const struct meson_gx_soc_id {
- 	const char *name;
- 	unsigned int id;
-@@ -131,10 +135,10 @@ static int __init meson_gx_socinfo_init(void)
- 	struct soc_device *soc_dev;
- 	struct device_node *np;
- 	struct regmap *regmap;
--	unsigned int socinfo;
- 	struct device *dev;
- 	int ret;
- 
-+	meson_gx_socinfo = 0;
- 	/* look up for chipid node */
- 	np = of_find_compatible_node(NULL, NULL, "amlogic,meson-gx-ao-secure");
- 	if (!np)
-@@ -160,11 +164,13 @@ static int __init meson_gx_socinfo_init(void)
- 		return -ENODEV;
- 	}
- 
--	ret = regmap_read(regmap, AO_SEC_SOCINFO_OFFSET, &socinfo);
--	if (ret < 0)
-+	ret = regmap_read(regmap, AO_SEC_SOCINFO_OFFSET, &meson_gx_socinfo);
-+	if (ret < 0) {
-+		meson_gx_socinfo = 0;
- 		return ret;
-+	}
- 
--	if (!socinfo) {
-+	if (!meson_gx_socinfo) {
- 		pr_err("%s: invalid chipid value\n", __func__);
- 		return -EINVAL;
- 	}
-@@ -175,13 +181,13 @@ static int __init meson_gx_socinfo_init(void)
- 
- 	soc_dev_attr->family = "Amlogic Meson";
- 	soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x:%x - %x:%x",
--					   socinfo_to_major(socinfo),
--					   socinfo_to_minor(socinfo),
--					   socinfo_to_pack(socinfo),
--					   socinfo_to_misc(socinfo));
-+					   socinfo_to_major(meson_gx_socinfo),
-+					   socinfo_to_minor(meson_gx_socinfo),
-+					   socinfo_to_pack(meson_gx_socinfo),
-+					   socinfo_to_misc(meson_gx_socinfo));
- 	soc_dev_attr->soc_id = kasprintf(GFP_KERNEL, "%s (%s)",
--					 socinfo_to_soc_id(socinfo),
--					 socinfo_to_package_id(socinfo));
-+					 socinfo_to_soc_id(meson_gx_socinfo),
-+					 socinfo_to_package_id(meson_gx_socinfo));
- 
- 	soc_dev = soc_device_register(soc_dev_attr);
- 	if (IS_ERR(soc_dev)) {
-@@ -194,10 +200,10 @@ static int __init meson_gx_socinfo_init(void)
- 
- 	dev_info(dev, "Amlogic Meson %s Revision %x:%x (%x:%x) Detected\n",
- 			soc_dev_attr->soc_id,
--			socinfo_to_major(socinfo),
--			socinfo_to_minor(socinfo),
--			socinfo_to_pack(socinfo),
--			socinfo_to_misc(socinfo));
-+			socinfo_to_major(meson_gx_socinfo),
-+			socinfo_to_minor(meson_gx_socinfo),
-+			socinfo_to_pack(meson_gx_socinfo),
-+			socinfo_to_misc(meson_gx_socinfo));
- 
- 	return 0;
- }
++		((uint32_t *)buff)[0] =
++			((meson_gx_socinfo & 0xff000000)        |       // Family ID
++			((meson_gx_socinfo << 8) & 0xff0000)    |       // Chip Revision
++			((meson_gx_socinfo >> 8) & 0xff00));            // Package ID
++
++		((uint32_t *)buff)[0] = htonl(((uint32_t *)buff)[0]);
++#else
++		((uint32)t *)buff)[0] = 0;
++#endif
+ 		/* Transform into expected order for display */
+ 		ch = (uint8_t *)(id_buf + 4);
+ 		for (i = 0; i < 12; i++)
 -- 
 2.34.1
 
