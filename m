@@ -1,186 +1,444 @@
-Return-Path: <devicetree+bounces-13564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9B817DEE24
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:24:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A724E7DEE65
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:53:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 730E4281A23
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:24:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FD44B20D54
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:53:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369CA746A;
-	Thu,  2 Nov 2023 08:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAA133E1;
+	Thu,  2 Nov 2023 08:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nathanrossi.com header.i=@nathanrossi.com header.b="XN76D0qf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TZ+8Hxog"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113706FDE
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 08:24:27 +0000 (UTC)
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B1518D
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 01:24:20 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-6b1e46ca282so710490b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 01:24:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F2E47474
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 08:53:39 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B78312D
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 01:53:32 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5435336ab0bso1057973a12.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 01:53:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nathanrossi.com; s=google; t=1698913460; x=1699518260; darn=vger.kernel.org;
-        h=mime-version:content-transfer-encoding:subject:cc:to:from
-         :message-id:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xBUQuJ95bR9IExrTX27aZhd9vx5/8o/0coGqo9/0lKA=;
-        b=XN76D0qf9qccoBYsNGY9TQmgd/fXtxErtOrsHLuW0Z1cD43uSSYaOY/KnaukFxA4VI
-         U+nAMP34XlJdo2exH7QJJILqse/XLIyZ9ZLzzahDSKpSX89RHBuOf83SNv6OqNRPLQiO
-         4EU3bP++84VJUugbGYHv7GbD1aOTBqGRanOzFy5G6ojtPDK3doF2OiWUWY8Vt5oVgTEC
-         /qIYAHEUiofVniLWzHEj5D81FZccXDeeMFINXnaqBDQxhIB1HVK8UhuGtod9WOdI87GJ
-         YMur4m3NmmWiloW+Rv9tNZeDwI4MQ0o7QMFm92zaaIoJcAiB1DkxVPhr5h0MKImcEJXY
-         xE7A==
+        d=linaro.org; s=google; t=1698915210; x=1699520010; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=8lUhLQnAKiB5QJAzwL6lpYBjp5gMlELZrTelsM0Z0Ew=;
+        b=TZ+8HxogxA1aU/PRyuSij/MNsCIrmOYjBcGZ0B0OtqdYG6N2jTGYqGWSsbMs+ASWry
+         RLnXE04Kwl7XklAFbuhCGAog4HDfkiCAt+1eoHVBeHCYh6vtY7bqYxTU2MffuVRFeK7r
+         Ul6BVdYaBKUEfS6d9/ZRDzAYcRq4vWb2dUfk4f6q7w2JYPTE2mqiF5cgUtOw2LENg7sJ
+         tQGTLkUiPmZYCRJvNSbwfgLSXiVEBnjbLA+AROzBv5Z8Y4RF5bwQPCciwvDn7fWbX+GD
+         xHu1zNQ3NFOf0s+hlkqB4rFVzHmVU1pTSJTT2lQjOY1WjgYIPZQbbziCPJ+a9NraW5nm
+         RgOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698913460; x=1699518260;
-        h=mime-version:content-transfer-encoding:subject:cc:to:from
-         :message-id:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1698915210; x=1699520010;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xBUQuJ95bR9IExrTX27aZhd9vx5/8o/0coGqo9/0lKA=;
-        b=wUK0FDpo9e7b3BRbLRP7jbr5SQq1jewlmWp8TU6KpnInHd/i9UAnjZD4KiqFcOVQUF
-         WKmNvDzHfy59Gbow2+N6/GTWGj/F9sNMRhOyd7AXzdUDUTq0GuKs/WeX4nTLZf1Vbwlj
-         tWWcpKcLW2xWZoEChhFZO11Ba9enEdgvNVGXbZvuqZHMEZKU46p5e/wXqPbX/1qRaXIH
-         SLRhdRD56FRNaoC65W9e4UT8uUhoSM9FPrRqvaJleed/8B+aeb1yCmJXN1otUcVAEDZu
-         f9ZL79RmHdjTnZf2f3irYvYxvx3Q02hivHnCB5UurTtrp21DoeP7xWt4GcN0Z/3RhbF9
-         v6LQ==
-X-Gm-Message-State: AOJu0YwYO+HcXPLahFAhjWteFvJaUpvL/dK+oD7f2Zm7qDs2S1RBBNg+
-	zJ7vlwhS4k/PgV4dwm2OxQA5sKZKguoz6HQ4356ngA==
-X-Google-Smtp-Source: AGHT+IGWoSCLnLh32r2nBJb5yLB11eB9zz7cDzMn2xD7NhlXicA2jMMVwXQYSf721kBBQsVM8ZfSWg==
-X-Received: by 2002:a05:6a21:6d9c:b0:162:4f45:b415 with SMTP id wl28-20020a056a216d9c00b001624f45b415mr23597403pzb.51.1698913459805;
-        Thu, 02 Nov 2023 01:24:19 -0700 (PDT)
-Received: from [127.0.1.1] (117-20-68-32.751444.bne.nbn.aussiebb.net. [117.20.68.32])
-        by smtp.gmail.com with UTF8SMTPSA id 20-20020a17090a199400b0027d0adf653bsm2172484pji.7.2023.11.02.01.24.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Nov 2023 01:24:19 -0700 (PDT)
-Date: Thu, 02 Nov 2023 08:24:06 +0000
-Message-Id: <20231102082406.1555227-1-nathan@nathanrossi.com>
-From: Nathan Rossi <nathan@nathanrossi.com>
-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: Nathan Rossi <nathan@nathanrossi.com>,
- Nathan Rossi <nathan.rossi@digi.com>, Li Jun <jun.li@nxp.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Subject:
- [PATCH] arm64: dts: imx8mp: imx8mq: Add parkmode-disable-ss-quirk on DWC3
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        bh=8lUhLQnAKiB5QJAzwL6lpYBjp5gMlELZrTelsM0Z0Ew=;
+        b=fg3EcS6Eo7dF/4hcjlEJvkzus7PXtgLm8+sbladqtaXX1vt8W4qqlFU2tW0oUxk2z+
+         R+1ZMK71BsIHWdgjuWuVtBtw8+UQIjVQarkYUmgK6krM2v1psAlVXoV0agme5SkdrC2R
+         vfty2+KWZAnbG9Zr+zzJcBVCH7QoSks2vyzD6ZZosNnoQqJMF8tkNWWys5gMY6l2CyTx
+         Gwi4lZblkK4XlmKwDquCAr1JMiV88BYRomg5c7CEMhPjzguhnS7qG9Rn6Zmu8EomfvoA
+         XpZ1yK9FH951pN0P/0OMRg8SsbpQtQrvE25BLTo8EnjmrS8PGcH6k+xaPl2yYoGdc0L3
+         zS/Q==
+X-Gm-Message-State: AOJu0YyNbE7JF3YFhmwxNrBv1Z4M2BqREYZvJ8rkVdTjnKUr+wws0q7H
+	RgMfNXDejuRAB3jS3Ltv3pIogj17gVIzdRAfN9w=
+X-Google-Smtp-Source: AGHT+IHYdcg7cB+6Xu6zxwcjtkQSSr1iXUeDbUcg/TK3ElyuuomUagyug7ZGCR3mEkxOs/JNO69rBw==
+X-Received: by 2002:aa7:dac2:0:b0:540:4b90:3dc3 with SMTP id x2-20020aa7dac2000000b005404b903dc3mr14274604eds.14.1698915210547;
+        Thu, 02 Nov 2023 01:53:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id cy24-20020a0564021c9800b005432f45bee9sm2018883edb.19.2023.11.02.01.53.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Nov 2023 01:53:29 -0700 (PDT)
+Message-ID: <c08ad574-d067-4557-a50c-802d6d7fe353@linaro.org>
+Date: Thu, 2 Nov 2023 09:53:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
+To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
+ adrian.hunter@intel.com, jh80.chung@samsung.com, riteshh@codeaurora.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ asutoshd@codeaurora.org
+Cc: p.zabel@pengutronix.de, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, arnd@arndb.de,
+ briannorris@chromium.org, doug@schmorgal.com, tonyhuang.sunplus@gmail.com,
+ abel.vesa@linaro.org, william.qiu@starfivetech.com
+References: <20231102081514.22945-1-jyanchou@realtek.com>
+ <20231102081514.22945-3-jyanchou@realtek.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231102081514.22945-3-jyanchou@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Nathan Rossi <nathan.rossi@digi.com>
+On 02/11/2023 09:15, Jyan Chou wrote:
+> We implemented cmdq feature on Synopsys DesignWare mmc driver.
+> The difference between dw_mmc.c and dw_mmc_cqe.c were distinct
+> register definitions, mmc user flow and the addition of cmdq.
+> 
+> New version of User Guide had modify mmc driver's usage flow,
+> we may need to renew code to precisely follow user guide.
+> 
+> More over, We added a wait status function to satisfy synopsys
+> user guide's description, since this flow might be specific in
+> synopsys host driver only.
 
-The i.MX8MP and i.MX8MQ devices both use the same DWC3 controller and
-are both affected by a known issue with the controller due to specific
-behaviour when park mode is enabled in SuperSpeed host mode operation.
+...
 
-Under heavy USB traffic from multiple endpoints the controller will
-sometimes incorrectly process transactions such that some transactions
-are lost, or the controller may hang when processing transactions. When
-the controller hangs it does not recover.
+> +	for (i = 0; i < host->dma_nents; i++, sg++) {
+> +		dma_len = sg_dma_len(sg);
+> +
+> +		/* blk_cnt must be the multiple of 512(0x200) */
+> +		if (dma_len < SZ_512)
+> +			blk_cnt = 1;
+> +		else
+> +			blk_cnt  = dma_len >> 9;
+> +
+> +		remain_blk_cnt  = blk_cnt;
+> +		dma_addr = sg_dma_address(sg);
+> +
+> +		while (remain_blk_cnt) {
+> +			/* DW_MCI_MAX_SCRIPT_BLK is the max
+> +			 * for each descriptor record
+> +			 */
+> +			if (remain_blk_cnt > DW_MCI_MAX_SCRIPT_BLK)
+> +				cur_blk_cnt = DW_MCI_MAX_SCRIPT_BLK;
+> +			else
+> +				cur_blk_cnt = remain_blk_cnt;
+> +
+> +			/* In Synopsys DesignWare Databook Page 84,
 
-This issue is documented partially within the linux-imx vendor kernel
-which references a Synopsys STAR number 9001415732 in commits [1] and
-additional details in [2]. Those commits provide some additional
-controller internal implementation specifics around the incorrect
-behaviour of the SuperSpeed host controller operation when park mode is
-enabled.
+/*
+ *
 
-The summary of this issue is that the host controller can incorrectly
-enter/exit park mode such that part of the controller is in a state
-which behaves as if in park mode even though it is not. In this state
-the controller incorrectly calculates the number of TRBs available which
-results in incorrect access of the internal caches causing the overwrite
-of pending requests in the cache which should have been processed but
-are ignored. This can cause the controller to drop the requests or hang
-waiting for the pending state of the dropped requests.
+I mentioned it last time. Use Linux coding style. For entire patchset.
 
-The workaround for this issue is to disable park mode for SuperSpeed
-operation of the controller through the GUCTL1[17] bit. This is already
-available as a quirk for the DWC3 controller and can be enabled via the
-'snps,parkmode-disable-ss-quirk' device tree property.
+> +			 * They mentioned the DMA 128MB restriction
+> +			 */
+> +			begin = dma_addr / SZ_128M;
+> +			end = (dma_addr + cur_blk_cnt * SZ_512) / SZ_128M;
+> +
+> +			/* If begin and end in the different 128MB memory zone */
+> +			if (begin != end)
+> +				cur_blk_cnt = (end * SZ_128M - dma_addr) / SZ_512;
+> +
+> +			if (dma_len < SZ_512)
+> +				tmp_val = ((dma_len) << 16) | VALID(0x1) | ACT(0x4);
+> +			else
+> +				tmp_val = ((cur_blk_cnt & 0x7f) << 25) | VALID(0x1) | ACT(0x4);
+> +
+> +			/* Last descriptor */
+> +			if (i == host->dma_nents - 1 && remain_blk_cnt == cur_blk_cnt)
+> +				tmp_val |= END(0x1);
+> +
+> +			desc_base[0] =  tmp_val;
+> +			desc_base[1] =  dma_addr;
+> +
+> +			dma_addr = dma_addr + (cur_blk_cnt << 9);
+> +			remain_blk_cnt -= cur_blk_cnt;
+> +			desc_base += 2;
+> +		}
+> +	}
+> +}
+> +
 
-It is possible to replicate this failure on an i.MX8MP EVK with a USB
-Hub connecting 4 SuperSpeed USB flash drives. Performing continuous
-small read operations (dd if=/dev/sd... of=/dev/null bs=16) on the block
-devices will result in device errors initially and will eventually
-result in the controller hanging.
+...
 
-  [13240.896936] xhci-hcd xhci-hcd.0.auto: WARN Event TRB for slot 4 ep 2 with no TDs queued?
-  [13240.990708] usb 2-1.3: reset SuperSpeed USB device number 5 using xhci-hcd
-  [13241.015582] sd 2:0:0:0: [sdc] tag#0 UNKNOWN(0x2003) Result: hostbyte=0x07 driverbyte=DRIVER_OK cmd_age=0s
-  [13241.025198] sd 2:0:0:0: [sdc] tag#0 CDB: opcode=0x28 28 00 00 00 03 e0 00 01 00 00
-  [13241.032949] I/O error, dev sdc, sector 992 op 0x0:(READ) flags 0x80700 phys_seg 25 prio class 2
-  [13272.150710] usb 2-1.2: reset SuperSpeed USB device number 4 using xhci-hcd
-  [13272.175469] sd 1:0:0:0: [sdb] tag#0 UNKNOWN(0x2003) Result: hostbyte=0x03 driverbyte=DRIVER_OK cmd_age=31s
-  [13272.185365] sd 1:0:0:0: [sdb] tag#0 CDB: opcode=0x28 28 00 00 00 03 e0 00 01 00 00
-  [13272.193385] I/O error, dev sdb, sector 992 op 0x0:(READ) flags 0x80700 phys_seg 18 prio class 2
-  [13434.846556] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command
-  [13434.854592] xhci-hcd xhci-hcd.0.auto: xHCI host controller not responding, assume dead
-  [13434.862553] xhci-hcd xhci-hcd.0.auto: HC died; cleaning up
+> +
+> +#ifdef CONFIG_OF
+> +static struct dw_mci_board *dw_mci_cqe_parse_dt(struct dw_mci *host)
+> +{
+> +	struct dw_mci_board *pdata;
+> +	struct device *dev = host->dev;
+> +	const struct dw_mci_drv_data *drv_data = host->drv_data;
+> +	int ret;
+> +	u32 clock_frequency;
+> +
+> +	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
+> +	if (!pdata)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	/* find reset controller when exist */
+> +	pdata->rstc = devm_reset_control_get_optional(dev, "reset");
 
-[1] https://github.com/nxp-imx/linux-imx/commit/97a5349d936b08cf301730b59e4e8855283f815c
-[2] https://github.com/nxp-imx/linux-imx/commit/b4b5cbc5a12d7c3b920d1d7cba0ada3379e4e42b
+Where is it described in the bindings?
 
-Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 2 ++
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 ++
- 2 files changed, 4 insertions(+)
+> +	if (IS_ERR(pdata->rstc)) {
+> +		if (PTR_ERR(pdata->rstc) == -EPROBE_DEFER)
+> +			return ERR_PTR(-EPROBE_DEFER);
+> +	}
+> +
+> +	device_property_read_u32(dev, "card-detect-delay",
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index c9a610ba48..1264da6012 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -2072,6 +2072,7 @@ usb_dwc3_0: usb@38100000 {
- 				phys = <&usb3_phy0>, <&usb3_phy0>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 				snps,gfladj-refclk-lpm-sel-quirk;
-+				snps,parkmode-disable-ss-quirk;
- 			};
- 
- 		};
-@@ -2114,6 +2115,7 @@ usb_dwc3_1: usb@38200000 {
- 				phys = <&usb3_phy1>, <&usb3_phy1>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 				snps,gfladj-refclk-lpm-sel-quirk;
-+				snps,parkmode-disable-ss-quirk;
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 4b1ce9fc17..c6dc3ba0d4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1649,6 +1649,7 @@ usb_dwc3_0: usb@38100000 {
- 			phys = <&usb3_phy0>, <&usb3_phy0>;
- 			phy-names = "usb2-phy", "usb3-phy";
- 			power-domains = <&pgc_otg1>;
-+			snps,parkmode-disable-ss-quirk;
- 			status = "disabled";
- 		};
- 
-@@ -1680,6 +1681,7 @@ usb_dwc3_1: usb@38200000 {
- 			phys = <&usb3_phy1>, <&usb3_phy1>;
- 			phy-names = "usb2-phy", "usb3-phy";
- 			power-domains = <&pgc_otg2>;
-+			snps,parkmode-disable-ss-quirk;
- 			status = "disabled";
- 		};
- 
----
-2.42.0
+Where is it described in the bindings? It's not. This is v5 but, sorry,
+but I do not see much improvements. You still send code which clearly is
+wrong.
+
+
+> +				 &pdata->detect_delay_ms);
+> +
+> +	if (!device_property_read_u32(dev, "clock-frequency", &clock_frequency))
+> +		pdata->bus_hz = clock_frequency;
+
+Drop property. I don't think it is needed. MMC and CCF has other ways to
+do it.
+
+> +
+> +	if (drv_data && drv_data->parse_dt) {
+> +		ret = drv_data->parse_dt(host);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +	}
+> +
+> +	return pdata;
+> +}
+> +
+> +#else /* CONFIG_OF */
+> +static struct dw_mci_board *dw_mci_cqe_parse_dt(struct dw_mci *host)
+> +{
+> +	return ERR_PTR(-EINVAL);
+> +}
+> +#endif /* CONFIG_OF */
+> +
+> +static void dw_mci_cqe_cto_timer(struct timer_list *t)
+> +{
+> +	struct dw_mci *host = from_timer(host, t, timer);
+> +
+> +	if (host->int_waiting) {
+> +		dev_err(host->dev, "fired, opcode=%d, arg=0x%x, irq status=0x%x, err irq=0x%x, auto err irq=0x%x\n",
+> +			host->opcode, host->arg,
+> +			host->normal_interrupt, host->error_interrupt,
+> +			host->auto_error_interrupt);
+> +
+> +		dw_mci_clr_signal_int(host);
+> +		dw_mci_get_int(host);
+> +
+> +		complete(host->int_waiting);
+> +	}
+> +}
+> +
+> +static void dw_mci_cqhci_init(struct dw_mci *host)
+> +{
+> +	if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE)) {
+> +		host->cqe = cqhci_pltfm_init(host->pdev);
+> +		if (PTR_ERR(host->cqe) == -EINVAL ||
+> +		    PTR_ERR(host->cqe) == -ENOMEM ||
+> +		    PTR_ERR(host->cqe) == -EBUSY) {
+> +			dev_err(host->dev, "Unable to get the cmdq related attribute,err = %ld\n",
+> +				PTR_ERR(host->cqe));
+> +			host->cqe = 0;
+> +			host->pdata->caps2 &= ~(MMC_CAP2_CQE | MMC_CAP2_CQE_DCMD);
+> +		} else {
+> +			host->cqe->ops = &dw_mci_cqhci_host_ops;
+> +			cqhci_init(host->cqe, host->slot->mmc, 0);
+> +		}
+> +	}
+> +}
+> +
+> +int dw_mci_cqe_probe(struct dw_mci *host)
+> +{
+> +	const struct dw_mci_drv_data *drv_data = host->drv_data;
+> +	int ret = 0;
+> +
+> +	if (!host->pdata) {
+> +		host->pdata = dw_mci_cqe_parse_dt(host);
+> +		if (PTR_ERR(host->pdata) == -EPROBE_DEFER) {
+> +			return -EPROBE_DEFER;
+> +		} else if (IS_ERR(host->pdata)) {
+> +			dev_err(host->dev, "platform data not available\n");
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	host->biu_clk = devm_clk_get(host->dev, "biu");
+> +	if (IS_ERR(host->biu_clk)) {
+> +		dev_dbg(host->dev, "biu clock not available\n");
+> +	} else {
+> +		ret = clk_prepare_enable(host->biu_clk);
+> +		if (ret) {
+> +			dev_err(host->dev, "failed to enable biu clock\n");
+> +			return ret;
+> +		}
+> +	}
+
+All this should be probably devm_clk_get_enabled().
+
+> +
+> +	host->ciu_clk = devm_clk_get(host->dev, "ciu");
+> +	if (IS_ERR(host->ciu_clk)) {
+> +		dev_dbg(host->dev, "ciu clock not available\n");
+> +		host->bus_hz = host->pdata->bus_hz;
+> +	} else {
+> +		ret = clk_prepare_enable(host->ciu_clk);
+> +		if (ret) {
+> +			dev_err(host->dev, "failed to enable ciu clock\n");
+> +			goto err_clk_biu;
+> +		}
+> +
+> +		if (host->pdata->bus_hz) {
+> +			ret = clk_set_rate(host->ciu_clk, host->pdata->bus_hz);
+> +			if (ret)
+> +				dev_warn(host->dev,
+> +					 "Unable to set bus rate to %uHz\n",
+> +					 host->pdata->bus_hz);
+> +		}
+
+All this should be probably devm_clk_get_enabled().
+
+
+> +		host->bus_hz = clk_get_rate(host->ciu_clk);
+
+So this proves that your property clock-frequency is useless.
+
+> +	}
+> +
+> +	if (!host->bus_hz) {
+> +		dev_err(host->dev,
+> +			"Platform data must supply bus speed\n");
+> +		ret = -ENODEV;
+> +		goto err_clk_ciu;
+> +	}
+> +
+> +	if (!IS_ERR(host->pdata->rstc)) {
+> +		reset_control_assert(host->pdata->rstc);
+> +		usleep_range(10, 50);
+> +		reset_control_deassert(host->pdata->rstc);
+> +	}
+> +
+> +	timer_setup(&host->timer, dw_mci_cqe_cto_timer, 0);
+> +
+> +	spin_lock_init(&host->lock);
+> +	spin_lock_init(&host->irq_lock);
+> +	init_rwsem(&host->cr_rw_sem);
+> +	tasklet_init(&host->tasklet, dw_mci_cqe_tasklet_func, (unsigned long)host);
+> +
+> +	dw_mci_cqe_setup(host);
+> +
+> +	dw_mci_cqe_init_dma(host);
+> +
+> +	host->tuning = 0;
+> +	host->current_speed = 0;
+> +
+> +	if (drv_data && drv_data->init) {
+> +		ret = drv_data->init(host);
+> +		if (ret) {
+> +			dev_err(host->dev,
+> +				"implementation specific init failed\n");
+> +			goto err_dmaunmap;
+> +		}
+> +	}
+> +
+> +	ret = dw_mci_cqe_init_slot(host);
+> +	if (ret) {
+> +		dev_err(host->dev, "slot 0 init failed\n");
+> +		goto err_dmaunmap;
+> +	}
+> +
+> +	ret = devm_request_irq(host->dev, host->irq, dw_mci_cqe_interrupt,
+> +			       host->irq_flags, "dw-mci-cqe", host);
+> +	if (ret)
+> +		goto err_dmaunmap;
+> +
+> +	dw_mci_cqhci_init(host);
+> +
+> +	return 0;
+> +
+> +err_dmaunmap:
+> +	if (!IS_ERR(host->pdata->rstc))
+> +		reset_control_assert(host->pdata->rstc);
+> +err_clk_ciu:
+> +	clk_disable_unprepare(host->ciu_clk);
+> +
+> +err_clk_biu:
+> +	clk_disable_unprepare(host->biu_clk);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(dw_mci_cqe_probe);
+
+EXPORT_SYMBOL_GPL
+
+I should have been more explicit:
+EXPORT_SYMBOL_GPL everywhere. In this patchset and all your future
+patchsets. For all your current and future code.
+
+> +
+> +void dw_mci_cqe_remove(struct dw_mci *host)
+> +{
+> +	if (host->slot)
+> +		dw_mci_cqe_cleanup_slot(host->slot);
+> +
+> +	if (!IS_ERR(host->pdata->rstc))
+> +		reset_control_assert(host->pdata->rstc);
+> +
+> +	clk_disable_unprepare(host->ciu_clk);
+> +	clk_disable_unprepare(host->biu_clk);
+> +}
+> +EXPORT_SYMBOL(dw_mci_cqe_remove);
+> +
+
+
+
+
+Best regards,
+Krzysztof
+
 
