@@ -1,120 +1,248 @@
-Return-Path: <devicetree+bounces-13625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C89A7DF5A4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:05:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E09DE7DF5B4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:08:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97CE5B21119
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:05:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F8CD1C20E83
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEEF61BDE6;
-	Thu,  2 Nov 2023 15:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD6C1BDEE;
+	Thu,  2 Nov 2023 15:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189821BDE2
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 15:04:57 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 847F9138;
-	Thu,  2 Nov 2023 08:04:55 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 428792F4;
-	Thu,  2 Nov 2023 08:05:37 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4ABEF3F738;
-	Thu,  2 Nov 2023 08:04:53 -0700 (PDT)
-Date: Thu, 2 Nov 2023 15:04:43 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc: "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4693B1C280
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 15:08:05 +0000 (UTC)
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 56A8713D;
+	Thu,  2 Nov 2023 08:08:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.03,271,1694703600"; 
+   d="scan'208";a="181575909"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 03 Nov 2023 00:07:59 +0900
+Received: from localhost.localdomain (unknown [10.226.92.132])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 463B1439497E;
+	Fri,  3 Nov 2023 00:07:52 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [RFC v5 2/5] drivers: firmware: scmi: Introduce
- scmi_get_max_msg_size function
-Message-ID: <ZUO6iyNIbit7PCQ8@pluto>
-References: <cover.1698353854.git.oleksii_moisieiev@epam.com>
- <fdfedf6dd0196afd887049877eae9fce0fe63eb2.1698353854.git.oleksii_moisieiev@epam.com>
- <ZUNP6BeUd4Ba_rUp@pluto>
- <9c9660c1-ab64-4186-917d-2007d88ce7c7@epam.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v12 1/4] dt-bindings: display: Document Renesas RZ/G2L DU bindings
+Date: Thu,  2 Nov 2023 15:07:41 +0000
+Message-Id: <20231102150744.28736-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231102150744.28736-1-biju.das.jz@bp.renesas.com>
+References: <20231102150744.28736-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9c9660c1-ab64-4186-917d-2007d88ce7c7@epam.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 02, 2023 at 01:57:24PM +0000, Oleksii Moisieiev wrote:
-> Hi Cristian,
-> 
+The RZ/G2L LCD controller is composed of Frame Compression Processor
+(FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
 
-Hi,
+The DU module supports the following hardware features
+− Display Parallel Interface (DPI) and MIPI LINK Video Interface
+− Display timing master
+− Generates video timings
+− Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
+− Supports Progressive
+− Input data format (from VSPD): RGB888, RGB666
+− Output data format: same as Input data format
+− Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
+− Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
 
-> Just found an interesting note in the PINCTRL_CONFIG_SET command 
-> description:
-> 
-> The maximum value of this field is limited by
-> the transport used. The agent needs to specify
-> this field such that the entire command can be
-> accommodated within the transport chosen.
-> 
+This patch documents the DU module found on RZ/G2L LCDC.
 
-Yes I am aware of that.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+v11->v12:
+ * Dropped quotes in ref handle for renesas,vsps property.
+ * Retained tags as it is trivial change.
+v10->v11:
+ * No change
+v9->v10:
+ * Added Rb tag from Laurent
+ * Updated the commit description.
+ * Updated description of the port by dropping the text "specified in
+   Documentation/devicetree/bindings/graph.txt."
+ * Dropped empty endpoint from example.
+v8->v9:
+ * No change
+v7->v8:
+ * No change
+v6->v7:
+ * No change
+v5->v6:
+ * No change.
+v4->v5:
+ * Added Rb tag from Rob.
+v3->v4:
+ * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
+ * started using same compatible for RZ/G2{L,LC}
+v3: New patch
+---
+ .../bindings/display/renesas,rzg2l-du.yaml    | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
 
-> Furthermore, I observed the absence of a skip_configs parameter.
-> 
->  From my understanding, this implies that the maximum number of 
-> configurations should not exceed the msg_max_size allowed by the 
-> protocol, enabling the transmission of only one message to the SCMI 
-> server at a time.
->
+diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+new file mode 100644
+index 000000000000..c0ad194c538d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L Display Unit (DU)
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description: |
++  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
++  and RZ/V2L SoCs.
++
++properties:
++  compatible:
++    enum:
++      - renesas,r9a07g044-du # RZ/G2{L,LC}
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Main clock
++      - description: Register access clock
++      - description: Video clock
++
++  clock-names:
++    items:
++      - const: aclk
++      - const: pclk
++      - const: vclk
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    description: |
++      The connections to the DU output video ports are modeled using the OF
++      graph bindings. The number of ports and their assignment are
++      model-dependent. Each port shall have a single endpoint.
++
++    patternProperties:
++      "^port@[0-1]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        unevaluatedProperties: false
++
++    required:
++      - port@0
++
++    unevaluatedProperties: false
++
++  renesas,vsps:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      items:
++        - description: phandle to VSP instance that serves the DU channel
++        - description: Channel index identifying the LIF instance in that VSP
++    description:
++      A list of phandle and channel index tuples to the VSPs that handle the
++      memory interfaces for the DU channels.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - power-domains
++  - ports
++  - renesas,vsps
++
++additionalProperties: false
++
++examples:
++  # RZ/G2L DU
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    display@10890000 {
++        compatible = "renesas,r9a07g044-du";
++        reg = <0x10890000 0x10000>;
++        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
++        clock-names = "aclk", "pclk", "vclk";
++        resets = <&cpg R9A07G044_LCDC_RESET_N>;
++        power-domains = <&cpg>;
++
++        renesas,vsps = <&vspd0 0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++            port@1 {
++                reg = <1>;
++            };
++        };
++    };
++
++...
+-- 
+2.25.1
 
-Yes that is correct, my understanding is that the transmitter is in
-charge of building a message whose payload can fit into the maximum
-message size allowed by the underlying configured transport.
-
-> Given this constraint, it seems we might not require additional helper 
-> functions. We could potentially just verify against msg_max_size.
-> 
-
-Indeed for that reason the scmi_get_max_msg_size that you introduced is
-just enough since it allows you to peek into the transport and get the
-max_msg_size...the misunderstanding is around the fact that I was simply
-meaning that you should plug it into some new helper_ops so that yo can
-call it like:
-
-  max_msg = ph->hops->get_max_msg_size(ph);
-
-(like iterators or get_extended_name)
-
-Because in this way you could use it also when the protocol is build as
-a loadable module, thing that now it is possible only for vendor defined
-protocols, but we could also easily switch all the base protocols to be
-selectable via Kconfig and =m in the future (if ever)
-
-Your helper is fine by itself it is just that it cannot be called by a
-protocol defined to loaded as a module because the symbol is not
-exported and, indeed, we introduced the ph->hops thing just for this
-reason, i.e. to have a set of common protocol utilities that can be
-called even from loadable modules protocols without the need to export
-every single symbol.
-
-The reference to iterators and extended_name was misleading
-probably...my bad...or I am still missing something :D
-
-Thanks,
-Cristian
 
