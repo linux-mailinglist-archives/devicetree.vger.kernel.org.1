@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-13542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA32F7DED1E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD7D7DED26
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E70F61C20DF0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:12:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE6271C208F8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E923553B9;
-	Thu,  2 Nov 2023 07:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 539545673;
+	Thu,  2 Nov 2023 07:14:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h/8USqGE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LXgNlZAv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21F05396
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:12:01 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 072DE184
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 00:11:56 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9a6190af24aso88347666b.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 00:11:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A68446BF
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:14:34 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CE412C
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 00:14:26 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9c53e8b7cf4so84178466b.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 00:14:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698909114; x=1699513914; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=XLLO2ZSj14ek5f9/G5cjQHYdHWJXlHxtegw6xtGQB1Q=;
-        b=h/8USqGETnfqV9O+2GuVzAJGlLcJ+QHGlzat+4iRoCFbAw2uL2dqizOBRdHOWLbHCb
-         uoBvOdOZqi86uNAeF9OR/Xuv0I2HjgVZs6QqZX6fxUFZgJcWTsj73pbDZO38ZTHnTSSZ
-         HjEHs7J8f1CZWFDavOuH1KF+QuI9gt32M5U8fLxMPIYv0rbl6TLk2JwMGFGbVLOwoT/w
-         sKzJGif2q53DlG4c9ZgtWzONeLRM64OtYJRMWNBg05l0thtsYjEMIsgif1TJ27IsuxaD
-         luKO9ovhirAyVvpeck+PQ8blVTZmWeNMYKm03co5tRu/+cNv3FzYUhVH5eMVV+/a7hxa
-         ZTgQ==
+        d=linaro.org; s=google; t=1698909265; x=1699514065; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=33gbO515Gu0/qLf4bxYYOPeKitrjt7A+LBZxiAjPEmk=;
+        b=LXgNlZAvnIbaD0gMzUULiDDm+p3KIaFpBb61LE/Kj7jJbLCl+/67g2aUWOODlyhkOW
+         pklV+/K4dBHQCzv5YBM1rrMqHg9tw9R42nYyPQaU2NIhupRBYzVtCLvmaKW3l6LW9XuH
+         wpzt+OrFB8dohhlYrG5gbyDrElQHMFYaj05nZrWydbt0GHZV/jeLhiGJIZu7qIqE61l1
+         XErVr5MWb5QhvcnPK+J98RTVGDPTxHw4OB/zPLPBSJNJjWTTYRB3m2BFbLobwkkAV/o8
+         ZtYEYS/iIlNNUvK0wytqUVjsCBduyA+PI6nsPFeVDiivV7p1ean3l2yaL10NzzDvxcuY
+         AGAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698909114; x=1699513914;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XLLO2ZSj14ek5f9/G5cjQHYdHWJXlHxtegw6xtGQB1Q=;
-        b=u3ZS3tv47i7+Vm7leBj+tkNLuwmTAjB66YVOt9+C+cD4eie5w9VJhQvDotEhmDB9Eg
-         SNG4cO/gUYnnjK/fHfdHNHIf19Ygto5fA56HKBSibgihNcfvjxvm3LBJL4OuoCDOK+aQ
-         8YhRjPIguwW1vOSAEjGPoYwPJRm4EhL2hauH29+Dxyob/rtyvGefYx50qdg6jFMiQbtS
-         JjhzvSBj/h9+Ik3bUjTsmsaN/GoqkPw4V4eI7+TtK9i0TZItyIJ8XPjM1+6SNvuOhd1a
-         HDprUrWv55aLqISU01zfEmiQwzQ1mvNoSZ+HEeDEO+O1pAR6zVxzKaSiAbhh0GFfDRn7
-         TN2A==
-X-Gm-Message-State: AOJu0YwJRB1cuNZWKYvnkmP5bQoHRigutURRpybLgiJkT4j8S0KN7C/5
-	Nj1tR9MQhChprAPHIgP2IQ9F/w==
-X-Google-Smtp-Source: AGHT+IFz3lqUCJbyM8gNJLVuu/e8iat9+bi5NZqTUB9AyPOtTnX6IbvZh5qzTZ1imC2JPhfNcs3Uzw==
-X-Received: by 2002:a17:906:6a15:b0:9c7:69d4:b264 with SMTP id qw21-20020a1709066a1500b009c769d4b264mr2938876ejc.77.1698909114191;
-        Thu, 02 Nov 2023 00:11:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698909265; x=1699514065;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=33gbO515Gu0/qLf4bxYYOPeKitrjt7A+LBZxiAjPEmk=;
+        b=gQv/AyF7f+E3cD3VwPbQisdp/EHMDIJLkWFoo1eFNuXlmLrV7rbvkRS6TubEk5P6/M
+         cfr8wdRJ3DO8lf2eaCI1LNp7DOfOrgnZ3mltUCdi4v567qfn85KfRXFenp1D2xF7wFVH
+         8mtacpQ3dK1IHIt04lpahJy/zkOTMhLoBhrSsI0dUbiBMJuPrU8QdtgvAtvdRGuwqGyE
+         7wJmgMvaBBjbuzSOjxVqnAz3/xbaUr5Q+9AEcgiU6B7BwXg72ZZKMdu+MQZRAW6KQumo
+         7Dzj41wzNJZLL0IAzeiqdx460Qjm4VeJlB5EZST0tTC6o+PHg06mjnFYhzuxCa8C8wtg
+         HzMg==
+X-Gm-Message-State: AOJu0YxNBQk2168tL0f7BjmsqO9p83qZBC7+wu+U/EW1/rF4C3i0FzT7
+	iXb6xO5I6CWKzCA+K5sHFDToJQ==
+X-Google-Smtp-Source: AGHT+IHAlrrTLe1/FRZ6aLXPNG81Bku5kkTibZn+xusOvDmVR0C+fM/9d8vWm6DAAEyPj2K5w1Rm+g==
+X-Received: by 2002:a17:907:3e89:b0:9be:315d:e607 with SMTP id hs9-20020a1709073e8900b009be315de607mr3457975ejc.28.1698909264657;
+        Thu, 02 Nov 2023 00:14:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id la22-20020a170906ad9600b009b8a4f9f20esm768710ejb.102.2023.11.02.00.11.52
+        by smtp.gmail.com with ESMTPSA id o21-20020a17090637d500b0099293cdbc98sm780825ejc.145.2023.11.02.00.14.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 00:11:53 -0700 (PDT)
-Message-ID: <4fc3fafa-6c9b-440a-99fe-1332cd3d5b1d@linaro.org>
-Date: Thu, 2 Nov 2023 08:11:51 +0100
+        Thu, 02 Nov 2023 00:14:23 -0700 (PDT)
+Message-ID: <8c15d904-bab0-4def-ac9a-db49aa80627a@linaro.org>
+Date: Thu, 2 Nov 2023 08:14:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,21 +67,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] gpio: realtek: Add GPIO support for RTD SoC variants
-To: =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20231101025802.3744-1-tychang@realtek.com>
- <20231101025802.3744-2-tychang@realtek.com>
- <e18a7ee0-a5e3-4180-9f8a-99b21d1303e6@linaro.org>
- <8e4c8676acaf4ba6bf3f57451b2eab40@realtek.com>
+Subject: Re: [PATCH V4][4/4] dt-bindings: mmc: Add dt-bindings for realtek mmc
+ driver
 Content-Language: en-US
+To: =?UTF-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>,
+ "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+ "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+ "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
+ "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "asutoshd@codeaurora.org" <asutoshd@codeaurora.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc: "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "briannorris@chromium.org" <briannorris@chromium.org>,
+ "doug@schmorgal.com" <doug@schmorgal.com>,
+ "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
+ "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+ "william.qiu@starfivetech.com" <william.qiu@starfivetech.com>
+References: <20231030062749.2840-1-jyanchou@realtek.com>
+ <20231030062749.2840-5-jyanchou@realtek.com>
+ <b116d46f-f28b-4b7c-afd2-0061b523b00d@linaro.org>
+ <dcb14bcf79ee4aaebe3ce8acbe8d1dac@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,56 +138,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8e4c8676acaf4ba6bf3f57451b2eab40@realtek.com>
+In-Reply-To: <dcb14bcf79ee4aaebe3ce8acbe8d1dac@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 02/11/2023 04:30, TY_Chang[張子逸] wrote:
-> Hi Krzysztof,
+On 02/11/2023 08:09, Jyan Chou [周芷安] wrote:
+> Hi Krzysztof, Rob,
 > 
->> On 01/11/2023 03:58, Tzuyi Chang wrote:
->>> This commit adds GPIO support for Realtek DHC RTD SoCs.
->>
->> Please do not use "This commit/patch", but imperative mood. See longer
->> explanation here:
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-
->> patches.rst#L95
->>
+> Thanks for your code review and advice.
 > 
-> I will remove these words.
+>> What? I asked to be the same.
 > 
->>> +static int rtd_gpio_probe(struct platform_device *pdev) {
->>> +     struct rtd_gpio *data;
->>> +     const struct of_device_id *match;
->>> +     struct device_node *node;
->>> +     int ret;
->>> +     int i;
->>> +
->>> +     node = pdev->dev.of_node;
->>> +     match = of_match_node(rtd_gpio_of_matches, pdev->dev.of_node);
->>> +     if (!match || !match->data)
->>> +             return -EINVAL;
->>> +
->>> +     data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
->>> +     if (!data)
->>> +             return -ENOMEM;
->>> +
->>> +     data->assert_irq = irq_of_parse_and_map(node, 0);
->>> +     if (!data->assert_irq)
->>> +             goto deferred;
->>> +
->>> +     data->deassert_irq = irq_of_parse_and_map(node, 1);
->>> +     if (!data->deassert_irq)
->>> +             goto deferred;
->>
->> So this goes to cleanup path...
->>
-> 
-> Since there is no need to do devm_free, I will directly return -EPROBE_DEFER here.
-
-That's not a correct return value. You do not return DEFER on missing
-IRQ. This should anyway be different call: platform_get_irq().
-
+Respond inline, not by copying some pieces out of context to another
+part of email. That's not mailing list style response.
 
 Best regards,
 Krzysztof
