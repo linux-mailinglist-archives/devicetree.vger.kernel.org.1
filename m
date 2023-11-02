@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55687DED48
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:30:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FE07DED4B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:30:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EDB5281A67
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:30:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9A0A1C20E03
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F745CB5;
-	Thu,  2 Nov 2023 07:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0A463C6;
+	Thu,  2 Nov 2023 07:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YiPT0u3U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f9mUxOV/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED61063BF
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:30:21 +0000 (UTC)
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E05D912F
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 00:30:15 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so944440a12.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 00:30:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3086C63BF
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:30:31 +0000 (UTC)
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53D98139
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 00:30:25 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so977568a12.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 00:30:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698910214; x=1699515014; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1698910224; x=1699515024; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XJl0L1OnhZsTZlttVg8i8yJZK8etXRMHjU1NghTcVu0=;
-        b=YiPT0u3UWT4Y0wAcYkem3Q+kmvwDalR/gc/73CLM/GzQ0jlcbrIfdie82pfHN/f5gI
-         pclWU41HGULbMDZbylE+iptU8DK1WDO0+XsM5797KUvIuEPzrK1Wh6ubJOlujAzDBFtq
-         526uYevmmVyJJ8+dhSGrEco5THrHvMI6mNXjBQz6WjIUzDqyaGvcBuj/F+oQoN0zdwZC
-         RRJvMqoDuNaoNqffdAVXT6kMuPJ9vqaq+fGIVdY1V9bHLt+3Yi7UeX81Nu92NRhZHlHs
-         sSCiN5dU8VkvpBx9Pmtpionrbz5BMoBo9yPfTZSsoLQlahCaKFYzjTc0IF2+f0Kz5jAQ
-         UcuA==
+        bh=Q1R0PNvMcliX4nlo0HsrCO4i8BJWsFqDLugFun1F4yY=;
+        b=f9mUxOV/Tzf3fo1Z7oahOf44HqCdjKW+V98cbMDgJXREiz+Qt+gsmpyENdBAM4L34g
+         8NAsopnJrIYl1w3Gpiv+Wf9oB8uYjmawdk8JzqjNZRY2j1ocSi7FwYui65akMX1VB44O
+         moQKFehyDbVrlLVFFaZr0+mqVpXRfbPMqCCZen6iu2zSZrl0hBXILWDro2PKbLn2VLDT
+         ZeAoQeejFEFKOGLul3EuMxnkyEaUKSqWUl+49kwjRjJtKB+DUhsGXxG23noXURy6mssV
+         KyTaj4LZfdL/lKSVouFAQhzJN1YgnaHvJsqyMYIF1PvGYv/IKSHcb48wU2WlJKW/PCq9
+         JuAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698910214; x=1699515014;
+        d=1e100.net; s=20230601; t=1698910224; x=1699515024;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XJl0L1OnhZsTZlttVg8i8yJZK8etXRMHjU1NghTcVu0=;
-        b=ThLcorD+oocK7P0AHKJAGKL9BMCHMURK+QHJizJe7vpSve/Fx/EzW8rXASdsqeOTP1
-         gQWHyzVe30AGihQBhQEqFhMszZGHnrwkijRD0b6HnjfkTkWw4NmymK4v0qzEQU+8hMKC
-         Gei9eX/RNq2rHO50gMjDItsmB0oGjjKhx5COi4KQO0jvEOiJOGgfFs7K0KEcelBVoEsZ
-         Ps8in2/U2/E+bidRh9UyK6v2ldyBhze0z7MRgIc8MA95jBFziraZOoJTE/p4dcNaUEkY
-         DWBSNGRslaPpxrBlVTMVeWJ7kyyfOGc1i0HbLoatPIt6/tIFuKzbBm2mYRYKZgpJ/Mp6
-         SMgw==
-X-Gm-Message-State: AOJu0YzgexpE3tosAQ3tmAhTJVGnzDUaJsUGCsCiwIHY6pRp3B1Bw4xV
-	UvqM22Zn0Es62orjam6oJ5ROFcuHhAAObwMf4j8=
-X-Google-Smtp-Source: AGHT+IHHgLxv+kd0YyxbjvrUvEc2nqIBAdQdeYyLM3S3WXucY5/rZNAL8nDPumxsFbqmg5MOxjAqYA==
-X-Received: by 2002:a50:d49e:0:b0:543:5741:c9cd with SMTP id s30-20020a50d49e000000b005435741c9cdmr6922917edi.34.1698910214289;
-        Thu, 02 Nov 2023 00:30:14 -0700 (PDT)
+        bh=Q1R0PNvMcliX4nlo0HsrCO4i8BJWsFqDLugFun1F4yY=;
+        b=ONBgC2VAKw9AHcpgEpy76xVlsUn0cDb970hGtCPWwQzoAnotMzxLl84t0eWQFpTtWe
+         IZvQh0XB3n/K7w6QVo594uqB7io9eXjBbvJK4b8pVg9RMmCb1Ur0CrQSReFUNy5ucMx8
+         YQNpWT6489Vp1nIgLik1YOLlX1nYEeBXSRYw+VLjGNHPeFc+NX42S1OiI/qpGzrxkKeg
+         qegupOwE6ZJtDZAvURcXNSd8PpMV7sg10/XO2amEKfnqgjO2SSkH+N/yYYrOZbchGBGr
+         Q46lsoQosFD+c5ziAZRKP9z2it1b3ySo0URwghKH7KNXXVbsYJEQcCTNfIXlP8aFlpfP
+         IFRw==
+X-Gm-Message-State: AOJu0Yx7u9MO4roVCWakEuwf3kCgpUGyEQ7pHRCKCa5DQZIVYxEtX6R6
+	9zMwIs7a6aAZGsvHPo95jStnqg==
+X-Google-Smtp-Source: AGHT+IFHJ/JOoMHdzIOR7crzZuRNyVRfvPIV9S0LFv1mt2OsYHeAeL1O08FulZUztCWbz9nAILpI8A==
+X-Received: by 2002:a05:6402:717:b0:53e:10a1:21d with SMTP id w23-20020a056402071700b0053e10a1021dmr13863907edx.35.1698910223829;
+        Thu, 02 Nov 2023 00:30:23 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id e14-20020a056402190e00b0053ebafe7a60sm1944096edz.59.2023.11.02.00.30.12
+        by smtp.gmail.com with ESMTPSA id e14-20020a056402190e00b0053ebafe7a60sm1944096edz.59.2023.11.02.00.30.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 00:30:13 -0700 (PDT)
-Message-ID: <b9f6eeec-ed32-4d0e-b161-c6190fb7551b@linaro.org>
-Date: Thu, 2 Nov 2023 08:30:11 +0100
+        Thu, 02 Nov 2023 00:30:23 -0700 (PDT)
+Message-ID: <fb5f0673-6457-4d0d-a0e2-144127920b64@linaro.org>
+Date: Thu, 2 Nov 2023 08:30:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add rve
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: fsl: add RVE gateway board
 Content-Language: en-US
 To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -77,7 +77,7 @@ To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20231101183549.2960083-1-hugo@hugovil.com>
- <20231101183549.2960083-2-hugo@hugovil.com>
+ <20231101183549.2960083-3-hugo@hugovil.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,15 +123,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231101183549.2960083-2-hugo@hugovil.com>
+In-Reply-To: <20231101183549.2960083-3-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 On 01/11/2023 19:35, Hugo Villeneuve wrote:
 > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Add vendor prefix for Recharge Véhicule Électrique (RVE), which
-> manufactures electric vehicle chargers infrastructure components.
+> Add DT compatible string for RVE gateway board based on a Variscite
+> VAR-SOM-NANO with a NXP MX8MN nano CPU.
 > 
 > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
