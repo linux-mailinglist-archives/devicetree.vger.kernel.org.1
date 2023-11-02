@@ -1,59 +1,75 @@
-Return-Path: <devicetree+bounces-13561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D02C7DEE05
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:16:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AC687DEE1C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CE361C20EAF
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C2151C20E6C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 08:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1396FDE;
-	Thu,  2 Nov 2023 08:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E6F7466;
+	Thu,  2 Nov 2023 08:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nJ1hciEz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FB256FD5
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 08:16:40 +0000 (UTC)
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395A0191;
-	Thu,  2 Nov 2023 01:16:35 -0700 (PDT)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3A28FP3K02678944, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3A28FP3K02678944
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 2 Nov 2023 16:15:25 +0800
-Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Thu, 2 Nov 2023 16:15:24 +0800
-Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
- RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 2 Nov 2023 16:15:23 +0800
-Received: from localhost.localdomain (172.21.252.101) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
- 15.1.2507.17 via Frontend Transport; Thu, 2 Nov 2023 16:15:23 +0800
-From: Jyan Chou <jyanchou@realtek.com>
-To: <ulf.hansson@linaro.org>, <adrian.hunter@intel.com>,
-        <jh80.chung@samsung.com>, <riteshh@codeaurora.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <asutoshd@codeaurora.org>
-CC: <p.zabel@pengutronix.de>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <arnd@arndb.de>, <briannorris@chromium.org>, <doug@schmorgal.com>,
-        <tonyhuang.sunplus@gmail.com>, <abel.vesa@linaro.org>,
-        <william.qiu@starfivetech.com>, <jyanchou@realtek.com>
-Subject: [PATCH V5][4/4] dt-bindings: mmc: Add dt-bindings for realtek mmc driver
-Date: Thu, 2 Nov 2023 16:15:14 +0800
-Message-ID: <20231102081514.22945-5-jyanchou@realtek.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231102081514.22945-1-jyanchou@realtek.com>
-References: <20231102081514.22945-1-jyanchou@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC15B6FD5;
+	Thu,  2 Nov 2023 08:22:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F7D111;
+	Thu,  2 Nov 2023 01:22:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698913359; x=1730449359;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=vBSds/gTpfNc10t6+hxe6aDfRKotMg4nmb4CB+V0TUo=;
+  b=nJ1hciEzQb02eqfnYs7ewhQ0j1Gh+qp0x2dNV+B2r3Dg0iUBlDfbZ7Ff
+   m6oA90k4YEHe74cKGeYHtBeO3rLZ6/nKh9B/m9MiL20p1B9YJxw+gyTQ/
+   kYRUr8Ilyqi1zfplSZqRFo2qvS8KoXSAKRbVBusGgVafXCH+nJpL1422P
+   9veOw9SJCjOzbHSG9rdSMdvkr0H0cJEzPO43/sS9y323s5w7DT7FMrQ6w
+   /gMWoAlDCvEBPEyqY8evzy59btTQ9YwZDxcMPnkQZrZ1rSgImRPZIFJUc
+   B0uJaRlcGB5Rz59IVBCqXoxnWp8fhr7jl+1z7IyJB751mWPE44v0RdQ8Q
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="385837180"
+X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; 
+   d="scan'208";a="385837180"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 01:22:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="878160265"
+X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; 
+   d="scan'208";a="878160265"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 01:22:34 -0700
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id B3C5111F9E8;
+	Thu,  2 Nov 2023 10:16:13 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-acpi@vger.kernel.org,
+	rafael@kernel.org
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-media@vger.kernel.org,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 1/1] device property: Add fwnode_name_eq()
+Date: Thu,  2 Nov 2023 10:16:11 +0200
+Message-Id: <20231102081611.1179964-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,206 +77,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-KSE-ServerInfo: RTEXMBS01.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: license violation
-X-KSE-Antivirus-Attachment-Filter-Interceptor-Info: license violation
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
 
-Document the device-tree bindings for Realtek SoCs mmc driver.
+Add fwnode_name_eq() to implement the functionality of of_node_name_eq()
+on fwnode property API. The same convention of ending the comparison at
+'@' (besides NUL) is applied on also both ACPI and swnode. The function
+is intended for comparing unit address-less node names on DT and firmware
+or swnodes compliant with DT bindings.
 
-Signed-off-by: Jyan Chou <jyanchou@realtek.com>
-
+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
-v4 -> v5:
-- Fix compatible to match filename.
-- Remove unused property, e.g.,cqe, resets, clock-freq-min-max.
-- Fix indentation.
+Hi Rafael,
 
-v3 -> v4:
-- Describe the items to make properties and item easy to understand.
-- Fix examples' indentation and compiling error.
-- Drop useless properties.
+Could we merge this via the media tree (pending further review comments,
+if any)? There'a a patch to be merged via that tree which will depend on
+fwnode_name_eq(), namely:
+<URL:https://lore.kernel.org/linux-media/20231030133247.11243-1-laurent.pinchart@ideasonboard.com/T/#m489b7e83cbc755815c5002f85454a76bfb41adb2>.
 
-v2 -> v3:
-- Modify dt-bindings' content and description.
-- Fix coding style.
-- Update the list of maintainers.
+since v2:
 
-v1 -> v2:
-- Add dt-bindings.
----
- .../bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml | 157 ++++++++++++++++++
- 1 file changed, 157 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
+- Use NUL instead of '\0' and "at" instead of "to" (before "stopping
+  comparison").
 
-diff --git a/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml b/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
-new file mode 100644
-index 000000000000..f422a216ff93
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
-@@ -0,0 +1,157 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/realtek,rtd-dw-cqe-emmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+ drivers/base/property.c  | 28 ++++++++++++++++++++++++++++
+ include/linux/property.h |  1 +
+ 2 files changed, 29 insertions(+)
+
+diff --git a/drivers/base/property.c b/drivers/base/property.c
+index 8667b13639d2..572e065e8797 100644
+--- a/drivers/base/property.c
++++ b/drivers/base/property.c
+@@ -595,6 +595,34 @@ const char *fwnode_get_name_prefix(const struct fwnode_handle *fwnode)
+ 	return fwnode_call_ptr_op(fwnode, get_name_prefix);
+ }
+ 
++/**
++ * fwnode_name_eq - Return true if node name is equal
++ * @fwnode: The firmware node
++ * @name: The name to which to compare the node name
++ *
++ * Compare the name provided as an argument to the name of the node, stopping
++ * the comparison at either NUL or '@' character, whichever comes first. This
++ * function is generally used for comparing node names while ignoring the
++ * possible unit address of the node.
++ *
++ * Return: true if the node name matches with the name provided in the @name
++ * argument, false otherwise.
++ */
++bool fwnode_name_eq(const struct fwnode_handle *fwnode, const char *name)
++{
++	const char *node_name;
++	size_t len;
 +
-+title: Realtek DesignWare mobile storage host controller
++	node_name = fwnode_get_name(fwnode);
++	if (!node_name)
++		return false;
 +
-+description:
-+  Realtek uses the Synopsys DesignWare mobile storage host controller
-+  to interface a SoC with storage medium. This file documents the Realtek
-+  specific extensions.
++	len = strchrnul(node_name, '@') - node_name;
 +
-+maintainers:
-+  - Jyan Chou <jyanchou@realtek.com>
++	return str_has_prefix(node_name, name) == len;
++}
++EXPORT_SYMBOL_GPL(fwnode_name_eq);
 +
-+allOf:
-+  - $ref: mmc-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - realtek,rtd-dw-cqe-emmc
-+
-+  reg:
-+    items:
-+      - description: emmc base address
-+      - description: cqhci base address
-+
-+  reg-names:
-+    items:
-+      - const: emmc
-+      - const: cqhci
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    description: Handles to input clocks
-+
-+  clock-names:
-+    items:
-+      - const: biu
-+      - const: ciu
-+      - const: vp0
-+      - const: vp1
-+
-+  clock-frequency:
-+    description:
-+      Operating frequency of realtek emmc controller clock
-+    minimum: 300000
-+    maximum: 400000000
-+
-+  vmmc-supply:
-+    description:
-+      Handle to fixed-voltage supply for the card power.
-+
-+  pinctrl-0:
-+    description:
-+      should contain default/high speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-1:
-+    description:
-+      should contain sdr50 mode pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-2:
-+    description:
-+      should contain ddr50 mode pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-3:
-+    description:
-+      should contain hs200 speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-4:
-+    description:
-+      should contain hs400 speed pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-5:
-+    description:
-+      should contain tune0 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-6:
-+    description:
-+      should contain tune1 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-7:
-+    description:
-+      should contain tune2 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-8:
-+    description:
-+      should contain tune3 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-9:
-+    description:
-+      should contain tune4 pin ctrl.
-+    maxItems: 1
-+
-+  pinctrl-names:
-+    maxItems: 10
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - clock-frequency
-+  - vmmc-supply
-+  - pinctrl-names
-+  - pinctrl-0
-+  - pinctrl-1
-+  - pinctrl-3
-+  - pinctrl-4
-+  - pinctrl-5
-+  - pinctrl-6
-+  - pinctrl-7
-+  - pinctrl-8
-+  - pinctrl-9
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    emmc: mmc@12000 {
-+      compatible = "realtek,rtd-dw-cqe-emmc";
-+      reg = <0x00012000 0x00600>,
-+            <0x00012180 0x00060>;
-+      reg-names = "emmc", "cqhci";
-+      interrupts = <0 42 4>;
-+      clocks = <&cc 22>, <&cc 26>, <&cc 121>, <&cc 122>;
-+      clock-names = "biu", "ciu", "vp0", "vp1";
-+      clock-frequency = <400000>;
-+      vmmc-supply = <&reg_vcc1v8>;
-+      pinctrl-names = "default", "sdr50", "ddr50", "hs200", "hs400",
-+                      "tune0","tune1", "tune2","tune3", "tune4";
-+      pinctrl-0 = <&emmc_pins_sdr50>;
-+      pinctrl-1 = <&emmc_pins_sdr50>;
-+      pinctrl-2 = <&emmc_pins_ddr50>;
-+      pinctrl-3 = <&emmc_pins_hs200>;
-+      pinctrl-4 = <&emmc_pins_hs400>;
-+      pinctrl-5 = <&emmc_pins_tune0>;
-+      pinctrl-6 = <&emmc_pins_tune1>;
-+      pinctrl-7 = <&emmc_pins_tune2>;
-+      pinctrl-8 = <&emmc_pins_tune3>;
-+      pinctrl-9 = <&emmc_pins_tune4>;
-+    };
+ /**
+  * fwnode_get_parent - Return parent firwmare node
+  * @fwnode: Firmware whose parent is retrieved
+diff --git a/include/linux/property.h b/include/linux/property.h
+index 083a1f41364b..096ade186601 100644
+--- a/include/linux/property.h
++++ b/include/linux/property.h
+@@ -108,6 +108,7 @@ struct fwnode_handle *fwnode_find_reference(const struct fwnode_handle *fwnode,
+ 
+ const char *fwnode_get_name(const struct fwnode_handle *fwnode);
+ const char *fwnode_get_name_prefix(const struct fwnode_handle *fwnode);
++bool fwnode_name_eq(const struct fwnode_handle *fwnode, const char *name);
+ 
+ struct fwnode_handle *fwnode_get_parent(const struct fwnode_handle *fwnode);
+ struct fwnode_handle *fwnode_get_next_parent(struct fwnode_handle *fwnode);
 -- 
-2.42.0
+2.39.2
 
 
