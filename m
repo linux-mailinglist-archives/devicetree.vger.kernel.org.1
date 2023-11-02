@@ -1,421 +1,217 @@
-Return-Path: <devicetree+bounces-13522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95AC27DEA71
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 02:51:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565D47DEAD9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 03:49:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7CCD1C20A9A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 01:51:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F36CB20D7A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 02:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA53F15AC;
-	Thu,  2 Nov 2023 01:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC372D60D;
+	Thu,  2 Nov 2023 02:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E0VsiOHQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YVyCPsow"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865ED1396
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 01:51:22 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665F6119;
-	Wed,  1 Nov 2023 18:51:17 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A200vRg016058;
-	Thu, 2 Nov 2023 01:50:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=fq1pqC+FAD+WkaUKkdVk3JNOO4Sx/o/JqSOCx+OkyUA=;
- b=E0VsiOHQvxW/zsH2xiuicpJ7Y3H70XfW88bdAABANmFfH8bbsWrrd+akZxjA6Yv+T3L4
- 0F1sOL1x1gbvyHw09QZkR7+kwW+MM1IhOnvKs3PaqDxDtfTSmDRW2iGkteQAPfRJXSZC
- msdaNZTIQWRMSGs0Tyl0jRg0VFuULYqOWjWJphO2l+mkvlB5yBSRTKlpOB2wIGeZgTTN
- sL/hVESVbg7exF9v+HJuzsqvEsFBd6WEhNdAqO1eZlq8CTfoKE/Zjed7igIUB+/qyH6D
- k3PBwVSdy7bQGeon7tXJhntEZtLJ2mUFgPI7HDsAJ5ZQ3jtrfOWBJD8GS19/RRVg3yWC 4Q== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u3xxer9nu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Nov 2023 01:50:46 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A21ojOn006274
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 2 Nov 2023 01:50:45 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 1 Nov
- 2023 18:50:40 -0700
-Message-ID: <a13c58c9-ce2c-4613-a2fc-a5fd2c46e1df@quicinc.com>
-Date: Thu, 2 Nov 2023 09:50:38 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C556915D2
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:49:10 +0000 (UTC)
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE7611B
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 19:49:08 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1cbf47fa563so3647515ad.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 19:49:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698893347; x=1699498147; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3tp4LNFiIF0pTxRkJsbksRH4Nx/gk/tWgjgJQ5eEll8=;
+        b=YVyCPsowy1VL4ffbzAgF9bwWBBs3tg20QNRfr7+1ULC3SrGrMdT/nJkXxB1vHOC4D8
+         mtSfSKYVtvkdilIpYMaaeYltiURPdgVELrR1xrpogLuqI843hDKesN3kkCSfDdMoTJ/S
+         HbX8/BN1ZEI6QoZT9e8mGfjk47fTE25gLC9Jv3INuMniw0qLv8AYXYk2//ide5Acz0DC
+         38zn1sr+bhw7mdVFWQxAiQ6opV3kmRstsokCg8nsIOBDEEC+fWHtT7XNB/78WHRZ819q
+         L1cg5wI9qN6/GQXepsIW/0NBcEgEYGdBhLAK9bLj7KUVUD4NjUe8KKrb7lcbDUILcTZA
+         lZIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698893347; x=1699498147;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3tp4LNFiIF0pTxRkJsbksRH4Nx/gk/tWgjgJQ5eEll8=;
+        b=jrKNZHPI83mkXSSS4BJZhCkVPfbeUEQ0Cx1veZON/cta4OW7o5N00SCtb09Xez50Zf
+         hUrrOZoQe5ZytsNUffKqyUbGUTB6GiAN8WLU/fHh4T6h3WfCo0SZG9c6CMuG2bP7C+wo
+         sBXMczucxg1S+RldAoviTbZOFYlQerc85UagIDSmyU6iJGZhTvajxF+4AYbu2Fr3wXPw
+         dQ0VoosV+tF2pF9j5EJrEHCiubg8wH/cHnRoARZHTz59Ptg5NkXwACzy3q+LEL3ZduNZ
+         kJ5TOS3ukzRqLwuM6z5f1jsNuamyDu/uI/YeTzTcfg7mejAV9WtE6kef4fI0+mrPuGya
+         umSg==
+X-Gm-Message-State: AOJu0YxiOpkcUhclVcuHE7DHyeCDUujUcz0wH9eueXcZgsz1onhIA1p7
+	P7YWlwn3WzxSri56I4DND2/Zsg==
+X-Google-Smtp-Source: AGHT+IFkOx/+76NcFaGViGGbeEoWR4UywZvbPMSVn3cN0A4jkLfE3prQTt7GHkUul/rKHHcq58eRPg==
+X-Received: by 2002:a17:902:ccca:b0:1bd:c7e2:462 with SMTP id z10-20020a170902ccca00b001bdc7e20462mr18207924ple.11.1698893347434;
+        Wed, 01 Nov 2023 19:49:07 -0700 (PDT)
+Received: from [127.0.1.1] ([2601:1c2:1800:f680:7e4c:4d4e:6943:bc0f])
+        by smtp.gmail.com with ESMTPSA id n4-20020a170902e54400b001b850c9d7b3sm1925787plf.249.2023.11.01.19.49.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Nov 2023 19:49:07 -0700 (PDT)
+From: Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH v4 0/7] RISC-V: Add MMC support for TH1520 boards
+Date: Wed, 01 Nov 2023 19:48:51 -0700
+Message-Id: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] coresight-tpda: Add support to configure CMB
- element
-Content-Language: en-US
-To: James Clark <james.clark@arm.com>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio
-	<konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <1698202408-14608-1-git-send-email-quic_taozha@quicinc.com>
- <1698202408-14608-3-git-send-email-quic_taozha@quicinc.com>
- <197007e5-e334-cd7e-0bbd-b84c828f5f7b@arm.com>
- <c1a46885-2dd0-4280-9318-798c873a0c78@quicinc.com>
- <f79adb8e-6545-f43b-c685-bc6b0d755702@arm.com>
-From: Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <f79adb8e-6545-f43b-c685-bc6b0d755702@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _3zJ2fP76a6_MqBurTKWTLwnQilWY93A
-X-Proofpoint-ORIG-GUID: _3zJ2fP76a6_MqBurTKWTLwnQilWY93A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-01_23,2023-11-01_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 phishscore=0
- suspectscore=0 spamscore=0 adultscore=0 malwarescore=0 mlxlogscore=999
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311020013
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABMOQ2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHQUlJIzE
+ vPSU3UzU4B8JSMDI2NDA2ND3ZIMQ1MjA93c3GTdJJNUCxOztFQzCzNLJaCGgqLUtMwKsGHRsbW
+ 1AM4vHaNcAAAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
+ Adrian Hunter <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, 
+ Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Conor Dooley <conor@kernel.org>
+Cc: Robert Nelson <robertcnelson@beagleboard.org>, 
+ Jason Kridner <jkridner@beagleboard.org>, Xi Ruoyao <xry111@xry111.site>, 
+ Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>, 
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Drew Fustini <dfustini@baylibre.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1698893345; l=5914;
+ i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
+ bh=9uwd3KxQTq2z1eqbCZTpoimys4YAiHwbzTNaQs8ZY48=;
+ b=qnZqPF3iTr1XNscIOCu+0fjWYOVL7Tmr8I/o612k83XRSmyldRaBL6WDqNqzj8jKVD6veifbe
+ PEajM+9mLkRCecWaHGaY2Nv2q5MIMcIrJtEwUm6qbeL2e9ko0ziBIwJ
+X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
+ pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 
+This series adds support for the MMC controller in the T-Head TH1520
+SoC, and it enables the eMMC and microSD slot on both the BeagleV
+Ahead and the Sipeed LicheePi 4A.
 
-On 11/1/2023 7:36 PM, James Clark wrote:
->
->
-> On 01/11/2023 08:53, Tao Zhang wrote:
->>
->> On 10/30/2023 7:11 PM, James Clark wrote:
->>>
->>> On 25/10/2023 03:53, Tao Zhang wrote:
->>>> Read the CMB element size from the device tree. Set the register
->>>> bit that controls the CMB element size of the corresponding port.
->>>>
->>>> Signed-off-by: Tao Zhang<quic_taozha@quicinc.com>
->>>> Signed-off-by: Mao Jinlong<quic_jinlmao@quicinc.com>
->>>> ---
->>>>   drivers/hwtracing/coresight/coresight-tpda.c | 108
->>>> ++++++++++++++++-----------
->>>>   drivers/hwtracing/coresight/coresight-tpda.h |   6 ++
->>>>   2 files changed, 69 insertions(+), 45 deletions(-)
->>>>
->>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c
->>>> b/drivers/hwtracing/coresight/coresight-tpda.c
->>>> index 5f82737..3101d2a 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->>>> @@ -28,24 +28,54 @@ static bool coresight_device_is_tpdm(struct
->>>> coresight_device *csdev)
->>>>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
->>>>   }
->>>>   +static void tpdm_clear_element_size(struct coresight_device *csdev)
->>>> +{
->>>> +    struct tpda_drvdata *drvdata = 
->>>> dev_get_drvdata(csdev->dev.parent);
->>>> +
->>>> +    if (drvdata->dsb_esize)
->>>> +        drvdata->dsb_esize = 0;
->>>> +    if (drvdata->cmb_esize)
->>>> +        drvdata->cmb_esize = 0;
->
-> The ifs don't do anything here, it's just the same as always setting 
-> to 0.
-I will update in the next patch series.
->
->>>> +}
->>>> +
->>>> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, u32
->>>> *val)
->>>> +{
->>>> +
->>>> +    if (drvdata->dsb_esize == 64)
->>>> +        *val |= TPDA_Pn_CR_DSBSIZE;
->>>> +    else if (drvdata->dsb_esize == 32)
->>>> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
->>>> +
->>>> +    if (drvdata->cmb_esize == 64)
->>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
->>>> +    else if (drvdata->cmb_esize == 32)
->>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
->>>> +    else if (drvdata->cmb_esize == 8)
->>>> +        *val &= ~TPDA_Pn_CR_CMBSIZE;
->>>> +}
->>>> +
->>>>   /*
->>>>    * Read the DSB element size from the TPDM device
->>>>    * Returns
->>>>    *    The dsb element size read from the devicetree if available.
->>> Hi Tao,
->>>
->>> I think the function description and the return value description above
->>> need updating now.
->> I will update this in the next patch series.
->>>
->>>>    *    0 - Otherwise, with a warning once.
->>>>    */
->>>> -static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
->>>> +static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
->>>> +                  struct coresight_device *csdev)
->>>>   {
->>>> -    int rc = 0;
->>>> -    u8 size = 0;
->>>> -
->>>> -    rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->>>> -            "qcom,dsb-element-size", &size);
->>>> +    int rc = -EEXIST;
->>>> +
->>>> +    if (!fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->>>> +            "qcom,dsb-element-size", &drvdata->dsb_esize))
->>>> +        rc &= 0;
->>> Is &= 0 significant? Why not = 0?
->> I will update this in the next patch series.
->>>
->>>> +    if (!fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->>>> +            "qcom,cmb-element-size", &drvdata->cmb_esize))
->>>> +        rc &= 0;
->>>>       if (rc)
->>>>           dev_warn_once(&csdev->dev,
->>>> -            "Failed to read TPDM DSB Element size: %d\n", rc);
->>>> +            "Failed to read TPDM Element size: %d\n", rc);
->>>>   -    return size;
->>>> +    return rc;
->>>>   }
->>>>     /*
->>>> @@ -56,13 +86,17 @@ static int tpdm_read_dsb_element_size(struct
->>>> coresight_device *csdev)
->>>>    * Parameter "inport" is used to pass in the input port number
->>>>    * of TPDA, and it is set to -1 in the recursize call.
->>>>    */
->>>> -static int tpda_get_element_size(struct coresight_device *csdev,
->>>> +static int tpda_get_element_size(struct tpda_drvdata *drvdata,
->>>> +                 struct coresight_device *csdev,
->>>>                    int inport)
->>>>   {
->>>> -    int dsb_size = -ENOENT;
->>>> -    int i, size;
->>>> +    int rc = -ENOENT;
->>>> +    int i;
->>>>       struct coresight_device *in;
->>>>   +    if (inport > 0)
->>>> +        tpdm_clear_element_size(csdev);
->>>> +
->>>>       for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->>>>           in = csdev->pdata->in_conns[i]->src_dev;
->>>>           if (!in)
->>>> @@ -74,25 +108,20 @@ static int tpda_get_element_size(struct
->>>> coresight_device *csdev,
->>>>               continue;
->>>>             if (coresight_device_is_tpdm(in)) {
->>>> -            size = tpdm_read_dsb_element_size(in);
->>>> +            if (rc)
->>>> +                rc = tpdm_read_element_size(drvdata, in);
->>>> +            else
->>>> +                return -EINVAL;
->>> This is quite hard to follow, is checking rc here before calling
->>> tpdm_read_element_size() some kind of way of only calling it once?
->>
->> Yes, there can only be one TPDM on one input port of TPDA. If
->> "tpdm_read_element_size" is called
->>
->> twice, it means that two TPDMs are found on one input port of TPDA.
->>
->>> rc isn't actually a return value at this point, it's just default
->>> initialised to -ENOENT.
->>
->> In this loop, "tpdm_read_element_size" will be called for the first time
->> TPDM found. If rc equals to
->>
->> 0, it means that at lease one TPDM has been found on the input port.
->> Does it make sense?
->>
->>> Then it's not clear why the else condition returns an error?
->> The same as the above.
->>>
->>>>           } else {
->>>>               /* Recurse down the path */
->>>> -            size = tpda_get_element_size(in, -1);
->>>> -        }
->>>> -
->>>> -        if (size < 0)
->>>> -            return size;
->>>> -
->>>> -        if (dsb_size < 0) {
->>>> -            /* Found a size, save it. */
->>>> -            dsb_size = size;
->>>> -        } else {
->>>> -            /* Found duplicate TPDMs */
->>>> -            return -EEXIST;
->>>> +            rc = tpda_get_element_size(drvdata, in, -1);
->>> And then why it's assigned here but not checked for an error in this
->>> case?
->>
->> |Remote ETM|                           |TPDM|
->>
->>             |    branch0                           | branch1
->>
->>                         --------------------------
->>
->>                                     funnel1
->>
->>                         ---------------------------
->>
->>                                           | input port 1
->>
->> -----------------------------
->>
->>                                                        TPDA1
->>
->> -----------------------------
->>
->> The  branches on some TPDA's input ports may not have TPDM. For example,
->> branch 0 doesn't has a
->>
->> TPDM connected, tpda_get_element_size will not return 0 here. This is a
->> normal situation. We need to
->>
->> continue to find TPDM on branch1 through recursion.
->>
->>>
->>> Maybe some comments explaining the flow would help. Or to me it seems
->>> like a second variable to track the thing that's actually intended 
->>> could
->>> be used as well. Like "bool found_element" or something, rather than
->>> re-using rc to also track another thing.
->>
->> Do you prefer to use "static bool found_element" to mark if we already
->> have read an element size in
->>
->> the recursion function?
->>
->
-> You could add a static, or you could use whether a set dsb or cmb size
-> exists to mark that one was found, which I think is already partially 
-> done.
->
-> My confusion comes from the fact that instead of just a recursive
-> search, the function doesn't stop at the first found one, it continues
-> to sanity check that there is only one connected across all ports.
->
-> And instead of just checking the error condition at the very end, it
-> does it mid recursion, relying on the rc value from a previous
-> iteration. IMO the following is a simplification because it always
-> returns at the first error found, and checks the final condition outside
-> of the recursive function. But you could probably leave it as you have
-> but with some comments explaining why:
->
->
-> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
-> b/drivers/hwtracing/coresight/coresight-tpda.c
-> index 3101d2a0671d..00b7607d36be 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpda.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
-> @@ -90,13 +90,10 @@ static int tpda_get_element_size(struct 
-> tpda_drvdata *drvdata,
->                                  struct coresight_device *csdev,
->                                  int inport)
->  {
-> -       int rc = -ENOENT;
-> +       int rc = 0;
->         int i;
->         struct coresight_device *in;
->
-> -       if (inport > 0)
-> -               tpdm_clear_element_size(csdev);
-> -
->         for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->                 in = csdev->pdata->in_conns[i]->src_dev;
->                 if (!in)
-> @@ -108,19 +105,23 @@ static int tpda_get_element_size(struct 
-> tpda_drvdata *drvdata,
->                         continue;
->
->                 if (coresight_device_is_tpdm(in)) {
-> -                       if (rc)
-> -                               rc = tpdm_read_element_size(drvdata, in);
-> -                       else
-> +                       if ((drvdata->dsb_esize) || 
-> (drvdata->cmb_esize)) {
-> +                               /* Error if already previously found 
-> and initialised one */
-> + dev_warn_once(&drvdata->csdev->dev,
-> +                                       "Detected multiple TPDMs on 
-> port %d", -EEXIST);
->                                 return -EINVAL;
-> +                       }
-> +                       rc = tpdm_read_element_size(drvdata, in);
-> +                       if (rc)
-> +                               return rc;
->                 } else {
->                         /* Recurse down the path */
->                         rc = tpda_get_element_size(drvdata, in, -1);
-> +                       if (rc)
-> +                               return rc;
->                 }
->         }
->
-> -       if ((drvdata->dsb_esize) || (drvdata->cmb_esize))
-> -               rc = 0;
-> -
->         return rc;
->  }
->
-> @@ -146,15 +147,17 @@ static int tpda_enable_port(struct tpda_drvdata 
-> *drvdata, int port)
->          * Set the bit to 0 if the size is 32
->          * Set the bit to 1 if the size is 64
->          */
-> +       tpdm_clear_element_size(drvdata->csdev);
->         rc = tpda_get_element_size(drvdata, drvdata->csdev, port);
-> -       if (!rc) {
-> +       if (!rc && ((drvdata->dsb_esize) || (drvdata->cmb_esize)))
-> +       {
->                 tpda_set_element_size(drvdata, &val);
->                 /* Enable the port */
->                 val |= TPDA_Pn_CR_ENA;
->                 writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
-> -       } else if (rc == -EINVAL) {
-> -               dev_warn_once(&drvdata->csdev->dev,
-> -                       "Detected multiple TPDMs on port %d", -EEXIST);
-> +       } else {
-> +               dev_warn_once(&drvdata->csdev->dev, "Didn't find TPDM 
-> elem size");
-> +               rc = -EINVAL;
->         }
->
->         return rc;
+I tested on top of v6.6 with riscv defconfig. I was able to boot the
+Ahead [1] and LPi4a [2] from eMMC. This patch series also exists as a
+git branch [3].
 
-Make sense. I will refine and update the code in the next patch series.
+Note: I have only tested eMMC and microSD. I have not yet configured
+or tested the mmc controller used for SDIO WiFi yet.
 
+References:
+[1] https://gist.github.com/pdp7/881342620ec1509685f23a387e2fc8d7
+[2] https://gist.github.com/pdp7/97017ad88d83fccac18eba69bff817b7
+[3] https://github.com/pdp7/linux/tree/b4/th1520-mmc
 
-Best,
+Changes in PATCH v4:
+- set DWCMSHC_CARD_IS_EMMC when (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)
+  as checking MMC_CAP_NONREMOVABLE is not sufficient
+- change prefix of phy functions from th1520 to dwcmshc as they are not
+  th1520 specific
+- remove unneeded check of priv in dwcmshc_phy_1_8v_init()
+- remove unneeded check of auto-tuning in th1520_execute_tuning() 
+- fix order of new nodes in th1520-beaglev-ahead.dts: move sdhci_clk
+  before uart_sclk, move mmc0 and mmc1 before uart0
+- fix comment typos pointed out by Adrian
+- add trailers that I missed from v2
 
-Tao
+Changes in PATCH v3:
+https://lore.kernel.org/r/20231023-th1520-mmc-v3-0-abc5e7491166@baylibre.com
+- always call th1520_sdhci_set_phy() in th1520_set_uhs_signaling()
+  and not only when timing is MMC_TIMING_MMC_HS400. This allows the
+  microSD slot to work as th1520_phy_3_3v_init() is called from
+  th1520_sdhci_set_phy().
+- add mmc1 node for mmc controller connected to the microSD slot
+- add enable mmc1 and add properties for microSD on the Ahead and LPi4A
 
->
->
+Changes in PATCH v2:
+https://lore.kernel.org/r/20231017-th1520-mmc-v2-0-4678c8cc4048@baylibre.com
+- make use of BIT(), GENMASK(), FIELD_PREP(), FIELD_GET()
+- add EXPORT_SYMBOL_GPL(__sdhci_execute_tuning)
+- call th1520_phy_1_8v_init() when FLAG_IO_FIXED_1V8 is set
+- set DWCMSHC_CARD_IS_EMMC when mmc caps contains MMC_CAP_NONREMOVABLE
+- remove manipulation of AT_CTRL_AT_EN from th1520_set_uhs_signaling()
+- remove unneccessary cycle of enabling and disabling AT_CTRL_AT_EN in
+  th1520_execute_tuning()
+- remove th1520_phy_1_8v_init_no_pull()
+- remove th1520_phy_3_3v_init_no_pull()
+- remove FLAG_PULL_UP_EN from priv->flags
+- remove thead,phy-pull-up device tree property
+
+Changes in PACH v1:
+https://lore.kernel.org/all/20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com/
+- ADMA mode now works correctly due to a patch from Jisheng on the list
+  ("riscv: dts: thead: set dma-noncoherent to soc bus") and this commit
+  from Icenowy that is now merged: 8eb8fe67e2c8 ("riscv: errata: fix
+  T-Head dcache.cva encoding").
+- Expose __sdhci_execute_tuning from sdhci.c so that it can be called
+  from th1520_execute_tuning()
+- Refactor the define macros for all the PHY related registers to make
+  it easier to understand the bit fields that the code is manipulating
+- Replace magic numbers in the PHY register writes with proper defines 
+- Replace non_removable in dwcmshc_priv with check of mmc_host.caps
+- Drop dt prop "thead,io-fixed-1v8" and instead check for existing
+  properties: "mmc-ddr-1_8v", "mmc-hs200-1_8v", or "mmc-hs400-1_8v"
+- Rename dt prop from "thead,pull-up" to "thead,phy-pull-up" and
+  improve the description in the dt binding
+- Replace pull_up_en in dwcmshc_priv with bit field in new flags field
+- Create th1520_set_uhs_signaling() and call dwcmshc_set_uhs_signaling()
+  from it instead of adding th1520 code to dwcmshc_set_uhs_signaling()
+- Return -EIO instead of -1 upon errors in th1520_execute_tuning()
+
+Changes in RFC v2:
+https://lore.kernel.org/linux-riscv/20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com/
+- Expand dwcmshc_priv based on driver in the T-Head 5.10 kernel:
+  delay_line, non_removable, pull_up_en, io_fixed_1v8
+- New boolean property "thead,pull-up" indicates phy pull-up config
+- New boolean property "thead,io-fixed-1v8" indicates that io voltage
+  should be set to 1.8V during reset
+- Add th1520_phy_1_8v_init() as voltage_switch op
+- Add th1520_execute_tuning() as the platform_execute_tuning op
+- Added th1520_sdhci_reset() as the .reset op. This function will set
+  io voltage to 1.8V after calling the standard sdhci_reset() function.
+- Modified dwcmshc_set_uhs_signaling() to enable SDHCI_CTRL_VDD_180 when
+  io_fixed_1v8 is true
+- Add many defines for register offsets and settings based on the mmc
+  support in the T-Head downstream v5.10 kernel
+
+RFC v1 series:
+https://lore.kernel.org/r/20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com
+
+Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+---
+Drew Fustini (7):
+      dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head TH1520 support
+      mmc: sdhci: add __sdhci_execute_tuning() to header
+      mmc: sdhci-of-dwcmshc: Add support for T-Head TH1520
+      riscv: defconfig: Enable mmc and dma drivers for T-Head TH1520
+      riscv: dts: thead: Add TH1520 mmc controllers and sdhci clock
+      riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
+      riscv: dts: thead: Enable LicheePi 4A eMMC and microSD
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml           |   1 +
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  20 ++
+ .../boot/dts/thead/th1520-lichee-module-4a.dtsi    |  20 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi              |  23 ++
+ arch/riscv/configs/defconfig                       |   2 +
+ drivers/mmc/host/sdhci-of-dwcmshc.c                | 348 +++++++++++++++++++++
+ drivers/mmc/host/sdhci.c                           |   3 +-
+ drivers/mmc/host/sdhci.h                           |   1 +
+ 8 files changed, 417 insertions(+), 1 deletion(-)
+---
+base-commit: 8cfd133bee055fb537d2338b808079a77de60052
+change-id: 20231031-th1520-mmc-b4e846fe6869
+
+Best regards,
+-- 
+Drew Fustini <dfustini@baylibre.com>
+
 
