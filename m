@@ -1,183 +1,130 @@
-Return-Path: <devicetree+bounces-13617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8614D7DF50C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:30:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6AB7DF551
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:52:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39409281B68
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 14:30:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF163B210FC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 14:52:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D7313AEE;
-	Thu,  2 Nov 2023 14:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2504514274;
+	Thu,  2 Nov 2023 14:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ajkelu3t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IAPghaxP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB3A11BDEB
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 14:30:13 +0000 (UTC)
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82EA6D7F
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:29:40 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32faea0fa1fso368271f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 07:29:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E18713AD9
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 14:52:33 +0000 (UTC)
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E98D136
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 07:52:29 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5af6c445e9eso12526917b3.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 07:52:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698935379; x=1699540179; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+zTIXrfkswX74UPgsg79qK4Ca7pyfesNXn6v+dgCKc8=;
-        b=Ajkelu3tJZ6qlpnLxibTPuXpJ7zDqzkHgethk5yy4oph04AhBlv27oDqcBSdRApLdn
-         vIEx9prhaU8GL45jFczNjkZ2m0L1RTT/AxG1dEDLYaWlfHhlQbfI2WkAHeMErte9Lsf9
-         euQvlB8bzv8fhQCVB1fON5f3awjTlbhLijH5yu/pVXjOQEtn0lEiaXqsLumGkiOhBo+l
-         OiUDr4o4XQRSO5CM22DmGWh32FZvPsGjq1b9ry1BZy0grFITUZHhz75mqHJTKtHN6FVV
-         apywaWaORAuag/ltC4cRoBRr97XJ0jtednvdaMVuovX0TEuWP45n3qU8neP/4WZ50pfl
-         XXqA==
+        d=linaro.org; s=google; t=1698936749; x=1699541549; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xbLEZ3Dvy6vK8c71cfbvowkvFzjH6f30mEWwF7xpWnk=;
+        b=IAPghaxPakTkeRKc0a8hHSHGrdyQTBCC1HXsGMy1RpMmyKowY1RdWXhSoW1Q2gHP6b
+         Li/4kVvbg93bsUkSvp5EbSYKb9JdLUUd6pnRWY8EVdSRsS2JztFt8rF2M5SvJxHJRHPY
+         +BLuuxgMq7zdikCJGs9lL1utzZg0slPx/IZn8UvxxJD29RXztci9P8TrEaUrU66/hMMb
+         0h3q2mqhZ44RfZlLht292+1q2yR6PAvxvXKar5EJu65elARv3xWals5w1oktg8ZVspiD
+         kFPiPQs832ri9ROO/2Vk7CtrIvV7eSeXROwCggzGWxDbOvCmbW8rvZrdMyZjRIUIEmXT
+         xW3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698935379; x=1699540179;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+zTIXrfkswX74UPgsg79qK4Ca7pyfesNXn6v+dgCKc8=;
-        b=b9QKSjLwY4iBMEBJIqqo//awiBPyNidxzO+eBVi0sdUg3gCPy1eOsB1kBeOyu0zu6X
-         ptV+bz+dg6RfnaT1WrD6byXPZhU3h7iX4IXWxk1YWuEMnspCsN2LKfV79gBYaN6OARs6
-         MW+nYI5VYeBKzYhjRRBTe53T0hRo3qSZjo6ajajiIPcQMo1TQHs3jo3y8aZJEOvZSoqd
-         TTCfTMOttJT0sokL3pDbDS5myIMl7g6VsmBiD/Bk0RWNcwT2G2wgmO1nhPTiVFkiWslG
-         pa5K8+rQBumCtht8EouGRUJdqtcPOhOCszRtbdahWBFce55w/EaRzsMieRV3M2BvLSzV
-         HWxA==
-X-Gm-Message-State: AOJu0YyFYwnZ6ujkJ8PAnePVio14SxAJGqLHCKaJpf5L8yVjOavt+onn
-	SsNWTxrmOTTV+IybtGCY0PjuHw==
-X-Google-Smtp-Source: AGHT+IGgX2MJYo2ApjloC6Zm/yknBo7VGdemxbW/96ZkWLnzIPO1lx+Et0ljnlBeTIuHOQiRVzEAWA==
-X-Received: by 2002:a5d:4a0c:0:b0:32f:922a:fc49 with SMTP id m12-20020a5d4a0c000000b0032f922afc49mr7100033wrq.21.1698935378579;
-        Thu, 02 Nov 2023 07:29:38 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:bd6b:8105:85a4:1102? ([2a05:6e02:1041:c10:bd6b:8105:85a4:1102])
-        by smtp.googlemail.com with ESMTPSA id w11-20020adfcd0b000000b00326f0ca3566sm2594397wrm.50.2023.11.02.07.29.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 07:29:38 -0700 (PDT)
-Message-ID: <a8f0011c-5689-4071-b5e0-90bd6b7c66bc@linaro.org>
-Date: Thu, 2 Nov 2023 15:29:37 +0100
+        d=1e100.net; s=20230601; t=1698936749; x=1699541549;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xbLEZ3Dvy6vK8c71cfbvowkvFzjH6f30mEWwF7xpWnk=;
+        b=XUobkPkoZVzIDe9I6xQOP43dXr9xmBT2HqxBRaH9hz+DBKMV8oC/rZN8CSY/r5/Prg
+         dGZcf4k2pluEW/K3rHUg4QsWt+nmd7QBvx9jLwHM8Vos5ge18FWAebvXZua4j7wGftkM
+         OlqTU1Dw1pjbc8truf1VYQ9hWU7U36d51ZM3CA7aQcpN3NIcxf5Hztylkt5P0ZrB3qaM
+         ocBwI0Mb32vwIenr5JH2c88LFGQNt9N21c/Wx6IgUzNpR5CfnnZFQxJEdlqxnxj/BLJd
+         9JDqjVUk2NKJiEIzQWd+9j6aGYE5xDcYb9WJa9vnZhuax8AFprUXerzBrwm+jVFNHSdB
+         rBoA==
+X-Gm-Message-State: AOJu0YxgAVNNEitJMklFVUO7MKP0l8vxMqk4etcQroqEidlkAVjELELK
+	i6XqFOaUun7aZ1QM7sjH1WcT+Xg6ZFvF/F1DPNBxKA==
+X-Google-Smtp-Source: AGHT+IEl7ofcy4D9X68NHHw7pUhvn8bxhJkochTuFAuTvhqv2XrX3jJ6UIKbAvIYl66RsjKik0g1glAWSst4hBH0Cf4=
+X-Received: by 2002:a05:690c:ecd:b0:5b3:f5f8:c5bf with SMTP id
+ cs13-20020a05690c0ecd00b005b3f5f8c5bfmr6756787ywb.9.1698936748715; Thu, 02
+ Nov 2023 07:52:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] clocksource: Add JH7110 timer driver
-Content-Language: en-US
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Walker Chen <walker.chen@starfivetech.com>,
- Samin Guo <samin.guo@starfivetech.com>, linux-kernel@vger.kernel.org,
- Conor Dooley <conor@kernel.org>
-References: <20231019053501.46899-1-xingyu.wu@starfivetech.com>
- <20231019053501.46899-3-xingyu.wu@starfivetech.com>
- <3f76f965-7c7b-109e-2ee0-3033e332e84b@linaro.org>
- <bb819333-52d3-49fc-9bb9-1a227bd5ca8f@starfivetech.com>
- <d0e70434-e273-4799-c5ec-bbee1b3f5cc7@linaro.org>
- <540136d4-6f8f-49a6-80ff-cc621f2f462b@starfivetech.com>
- <65c38717-3e0c-46d3-a124-29cae48f1a2e@linaro.org>
- <72ad5029-42b2-481a-887f-8f6079d8859b@starfivetech.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <72ad5029-42b2-481a-887f-8f6079d8859b@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231101025802.3744-1-tychang@realtek.com> <20231101025802.3744-2-tychang@realtek.com>
+ <CACRpkdZiKCiVsmkPnJRW1c5SBfzNmBqCH9bS8XsgUszD6H=vPg@mail.gmail.com> <12ada22542cf4b2991da2e8c2858c5d7@realtek.com>
+In-Reply-To: <12ada22542cf4b2991da2e8c2858c5d7@realtek.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 2 Nov 2023 15:52:16 +0100
+Message-ID: <CACRpkdYcK+sr5Ohh5su1cYv8R6BtKSxUUS-rAZP_iWmXbkL-Ug@mail.gmail.com>
+Subject: Re: [PATCH 1/2] gpio: realtek: Add GPIO support for RTD SoC variants
+To: =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Nov 2, 2023 at 1:40=E2=80=AFPM TY_Chang[=E5=BC=B5=E5=AD=90=E9=80=B8=
+] <tychang@realtek.com> wrote:
 
-Hi Xingyu,
+> >On Wed, Nov 1, 2023 at 3:58=E2=80=AFAM Tzuyi Chang <tychang@realtek.com>=
+ wrote:
+> >> +static unsigned int rtd_gpio_deb_offset(struct rtd_gpio *data,
+> >> +unsigned int offset) {
+> >> +       return data->info->deb_offset[offset / 8]; }
+> >
+> >So this is clearly counted by the GPIO number offset and the GPIO number
+> >determines how far into the array we can index.
+> >
+> >It looks a bit dangerous, it it possible to encode the array lengths bet=
+ter?
+>
+> I think I can add array size members for each offset array within the
+> rtd_gpio_info structure and utilize them to prevent accessing elements ou=
+tside the array.
 
-On 02/11/2023 14:15, Xingyu Wu wrote:
+I don't know about that for constant arrays, if you look at recent commits
+from Kees Cook you will find examples of how to use the compiler helpers
+for dynamic arrays, e.g.
 
-[ ... ]
+git log -p --author=3DKees
 
->>>>>>> +struct jh7110_clkevt { +    struct clock_event_device
->>>>>>> evt; + struct clocksource cs; +    bool cs_is_valid; +
->>>>>>> struct clk *clk; +    struct reset_control *rst; +    u32
->>>>>>> rate; +    u32 reload_val; +    void __iomem *base; +
->>>>>>> char name[sizeof("jh7110-timer.chX")]; +}; + +struct 
->>>>>>> jh7110_timer_priv { +    struct clk *pclk; +    struct 
->>>>>>> reset_control *prst; +    struct jh7110_clkevt 
->>>>>>> clkevt[JH7110_TIMER_CH_MAX];
->>>>>> 
->>>>>> Why do you need several clock events and clock sources ?
->>>>> 
->>>>> This timer has four counters (channels) which run
->>>>> independently. So each counter can have its own clock event
->>>>> and clock source to configure different settings.
->>>> 
->>>> The kernel only needs one clocksource. Usually multiple
->>>> clockevents are per-cpu based system.
->>>> 
->>>> The driver does not seem to have a per cpu timer but just 
->>>> initializing multiple clockevents which will end up unused,
->>>> wasting energy.
->>>> 
->>>> 
->>> 
->>> The board of the StarFive JH7110 SoC has two types of timer : 
->>> riscv-timer and jh7110-timer. It boots by
->>> riscv-timer(clocksource) and the jh7110-timer is optional and
->>> additional. I think I should initialize the four channels of
->>> jh7110-timer as clockevents not clocksource pre-cpu.
->> 
->> If no clocksource is needed on this SoC because riscv timers are
->> used, then it is not useful to register a clocksource for this
->> timer and the corresponding code can go away.
->> 
->> If the clockevent is optional why do you need this driver at all?
->> 
->> 
->> 
-> 
-> Hi Daniel,
-> 
-> Sorry, maybe I didn't express it clearly enough. I use this
-> jh7110-timer as a global timer on the SoC and riscv-timer as cpu
-> local timer. So these are something different.
-> 
-> These four counters in this jh7110-timer are exactly the same and
-> independent of each other. If this timer is used as a global timer,
-> do I use only one or all of the counters to register clocksource and
-> clockevent?
+will find you things like this:
 
-Yes.
+@@ -60,7 +60,7 @@ struct reset_control {
+ struct reset_control_array {
+        struct reset_control base;
+        unsigned int num_rstcs;
+-       struct reset_control *rstc[];
++       struct reset_control *rstc[] __counted_by(num_rstcs);
+ };
 
-The global timer is only there when the CPU is powered down at idle 
-time, so the time framework will switch to the broadcast timer and there 
-can be only one instance.
+So the compiler instruction __counted_by() is used pointing back to
+the variable above to avoid outofbounds accesses.
 
-If you register all the counters, only one will be used by the kernel, 
-so it pointless to add them all.
+BUT: those are *dynamic* arrays, placed *last* in the struct.
 
-On the clocksource side, you may want to question if it is really 
-useful. The riscv has a clocksource with a higher rate and flagged as 
-continuous [1]. So if the JH7110 clocksource is registered, it won't be 
-used too.
+You have several *constant* arrays, in the same struct (and
+C allows this).
 
-Hope that helps
+I don't really know what is the best practice for constants, maybe Kees
+has some pointers?
 
-   -- Daniel
+Maybe what you have is the best we can do.
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/drivers/clocksource/timer-riscv.c#n68
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Yours,
+Linus Walleij
 
