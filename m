@@ -1,136 +1,238 @@
-Return-Path: <devicetree+bounces-13654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C6B97DFA22
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 19:41:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1DA7DFAD3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 20:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE67B1F22810
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 18:41:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DED33B20F42
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 19:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB4C1D55D;
-	Thu,  2 Nov 2023 18:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F8721362;
+	Thu,  2 Nov 2023 19:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ulnjtFJn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iSB0J4lx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B385D1C2A0
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 18:41:08 +0000 (UTC)
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF41137
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 11:41:01 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c50305c5c4so18014101fa.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 11:41:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698950460; x=1699555260; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IEpZhe0N2sN6GVcRg3szCztdEpMXAkzbYdbkv3mYVKg=;
-        b=ulnjtFJnhHlwKCyC1/AZ1zSE6jmTjNnGl+1gPQ9y5WwhoY2j3Zz9bYXPidm0rIx7QQ
-         nW8jd00MIhV0SCLK5tPh33JCTPsPEgqkXjhZ/k+iAKRGweTzwac/BhJhrLKrXLcJnXqB
-         AMekWuvy9ntZniv+v6b/i1k8kcwUQYbR6ri1CCeiqeTVlLoQWTJDVasEWqot/hEZVKzp
-         Eh0OdoOqIm3YkU5E6efCiE2W5FNKctZZEiE/0nFPrBDUoiAhShEwLIZGubrQ2Ab7WVXX
-         +Hd7GS+j688NSzCG6Quf2788tdHucq+L1mofbLXSx/z//aDwpgPTmKMzwj5iBWNMHI6E
-         HiTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698950460; x=1699555260;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IEpZhe0N2sN6GVcRg3szCztdEpMXAkzbYdbkv3mYVKg=;
-        b=UNfSVBOTJuHjprRWxicGae4v4D4SVKd1zd8bomWH3ApiNQ7vlmsf64/psOzQKOvrmg
-         FOwlbGbwneFEz21dfoNo1z/cifcWn0SrNirtmsL0pX19X4ERXnMKX1QOJalWUpYDLD4o
-         klqaA5GdWGG3C5YfYxkVkGm+Qs3se4X/xlKE2xnwddgTJZcQJTENj/0abibfvhqU3kaj
-         WVQnSfsZyjTwKoUEojuBcrRhwxPfg/jYSa7kDVezolg9D6q3kt9R5B1tILYHYbamiY7V
-         q4yvSJeEWIKvNZjiTYsDepHqBDHwh1w1Mzjy29oFHsrlLCl0HFH3QbD+Th+XQOvU00uM
-         1NYQ==
-X-Gm-Message-State: AOJu0Ywj2Jromea1nnyrHLXNVDR1VU5Tm9rPf97A0dtMF9lMMxksgLnm
-	SiyFwjGLabvO/56szJY6x7Un+A==
-X-Google-Smtp-Source: AGHT+IHOG6JY6QHe6uEhX0t0A0QtG2EyhAEZkQBZ47BXTPo2Tx8sm8ASqdDLXlJVbPtHx31RMFUn0w==
-X-Received: by 2002:a05:651c:336:b0:2c5:15dc:ba99 with SMTP id b22-20020a05651c033600b002c515dcba99mr12946673ljp.51.1698950460025;
-        Thu, 02 Nov 2023 11:41:00 -0700 (PDT)
-Received: from [192.168.67.140] (92.40.204.37.threembb.co.uk. [92.40.204.37])
-        by smtp.gmail.com with ESMTPSA id a11-20020a05600c2d4b00b00405c33a9a12sm1481939wmg.0.2023.11.02.11.40.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 11:40:59 -0700 (PDT)
-Message-ID: <dbf4a48e-c808-4611-96b1-563ece1e451a@linaro.org>
-Date: Thu, 2 Nov 2023 18:40:57 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49AD82135D;
+	Thu,  2 Nov 2023 19:21:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82C412D;
+	Thu,  2 Nov 2023 12:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698952890; x=1730488890;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4aDocD7TV5qDTqX6O/0RElVFY8KP0asSIkNfWDNs/9s=;
+  b=iSB0J4lxgDB5cMq9Qs8vUJUfAZRjCEvP232d/C1zwTLYyD+vHyd+HHpN
+   Re7bRGG1vBN5e2do2/dOuNSJCc3hRrXvDYGjl+tXt8XjLLLdPai1BdxaQ
+   k6d7IwW7+43krM/eziHO3tsU9Rk9igrDwr30oeuDZ0bL15qQu2yIYqzrT
+   UoB1NWnYlNb4MQMvtYRwmKoXc7SKy3c0lyTrsyGQggoGVoYkhFBb1R9o/
+   71DI1FztGcVBVUQn2/bSkkzEuXYXiGLVOLwh7kZafzgmdNccuTtbdFmGg
+   sJ0bPS19h5FbGKcR2d8FwPXBRfTCONr8ZvxUIDKCIEOpJE8TQ2Z0avnDy
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="387671513"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
+   d="scan'208";a="387671513"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 12:21:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="737855631"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
+   d="scan'208";a="737855631"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 02 Nov 2023 12:21:25 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qydFr-0001nk-12;
+	Thu, 02 Nov 2023 19:21:23 +0000
+Date: Fri, 3 Nov 2023 03:21:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Robert Marko <robimarko@gmail.com>
+Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
+ support
+Message-ID: <202311030347.asaThH7R-lkp@intel.com>
+References: <20231101123608.11157-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
- runtime
-Content-Language: en-US
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: quic_wcheng@quicinc.com, linux-usb@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org,
- quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-2-quic_kriskura@quicinc.com>
- <272a9764-1cae-4d86-88b1-00175de83333@linaro.org>
- <960101cc-78c0-49cf-ab62-90614eeb9ee2@quicinc.com>
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <960101cc-78c0-49cf-ab62-90614eeb9ee2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231101123608.11157-1-ansuelsmth@gmail.com>
 
-> Hi Caleb,
-> 
->    There are two types of platforms, some use extcon and some use 
-> role-switch to deliver vbus/id notifications. Extcon targets already 
-> have this qscratch modifications present today in vbus and id handlers. 
-> But for role-switch based targets we don't have any way to get this 
-> notification to dwc3-qcom. In this implementation, I wanted to get those 
-> notications from core to glue and for this we implenented vendor hooks.
-> 
-> The property added has been used to do two things:
-> 
-> 1. Register glue's vendor hooks to core driver
-> 2. Do runtime_allow for glue (and by default for core as the dt is not 
-> flattened)
-> 
-> In case of extcon, we don't want to register vendor hooks as 
-> notifications are not necessary.
+Hi Christian,
 
-Could it just be enabled when role_switch is present then?
-> 
-> For xhci, we opted to enable runtime from userspace.
+kernel test robot noticed the following build warnings:
 
->>>         HS/FS/LS modes are supported.
->>>       type: boolean
->>> +  qcom,enable-rt:
->>> +    description:
->>> +      If present, register vendor hooks to facilitate runtime 
->>> suspend/resume
->>> +    type: boolean
->>
->> A Krzysztof pointed out, properties should define the hardware 
->> behaviour, not tot the implementation details. For this case the 
->> hardware isn't wired up to vbus, so maybe something like "qcom,no-vbus"?
->>> +
-> 
-> On all targets, vbus is not routed to hardware. This vbus toggle 
-> indication is given to controller via qscratch only.
-> 
-> Regards,
-> Krishna,
+[auto build test WARNING on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-Document-bindings-for-Marvell-Aquantia-PHY/20231101-203944
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20231101123608.11157-1-ansuelsmth%40gmail.com
+patch subject: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load support
+config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20231103/202311030347.asaThH7R-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231103/202311030347.asaThH7R-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311030347.asaThH7R-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/net/phy/aquantia_main.c: In function 'aqr_fw_boot':
+>> drivers/net/phy/aquantia_main.c:857:13: warning: the address of 'version' will always evaluate as 'true' [-Waddress]
+     857 |         if (!version) {
+         |             ^
+   during RTL pass: mach
+   drivers/net/phy/aquantia_main.c: In function 'aqr107_chip_info':
+   drivers/net/phy/aquantia_main.c:619:1: internal compiler error: in arc_ifcvt, at config/arc/arc.cc:9703
+     619 | }
+         | ^
+   0x5b78c1 arc_ifcvt
+   	/tmp/build-crosstools-gcc-13.2.0-binutils-2.41/gcc/gcc-13.2.0/gcc/config/arc/arc.cc:9703
+   0xe431b4 arc_reorg
+   	/tmp/build-crosstools-gcc-13.2.0-binutils-2.41/gcc/gcc-13.2.0/gcc/config/arc/arc.cc:8552
+   0xaed299 execute
+   	/tmp/build-crosstools-gcc-13.2.0-binutils-2.41/gcc/gcc-13.2.0/gcc/reorg.cc:3927
+   Please submit a full bug report, with preprocessed source (by using -freport-bug).
+   Please include the complete backtrace with any bug report.
+   See <https://gcc.gnu.org/bugs/> for instructions.
+
+
+vim +857 drivers/net/phy/aquantia_main.c
+
+   789	
+   790	static int aqr_fw_boot(struct phy_device *phydev, const u8 *data, size_t size)
+   791	{
+   792		const struct aqr_fw_header *header;
+   793		u32 iram_offset = 0, iram_size = 0;
+   794		u32 dram_offset = 0, dram_size = 0;
+   795		char version[VERSION_STRING_SIZE];
+   796		u16 calculated_crc, read_crc;
+   797		u32 primary_offset = 0;
+   798		int ret;
+   799	
+   800		/* extract saved CRC at the end of the fw */
+   801		memcpy(&read_crc, data + size - 2, sizeof(read_crc));
+   802		/* CRC is saved in big-endian as PHY is BE */
+   803		read_crc = be16_to_cpu(read_crc);
+   804		calculated_crc = crc_ccitt_false(0, data, size - 2);
+   805		if (read_crc != calculated_crc) {
+   806			phydev_err(phydev, "bad firmware CRC: file 0x%04x calculated 0x%04x\n",
+   807				   read_crc, calculated_crc);
+   808			return -EINVAL;
+   809		}
+   810	
+   811		/* Get the primary offset to extract DRAM and IRAM sections. */
+   812		memcpy(&primary_offset, data + PRIMARY_OFFSET_OFFSET, sizeof(u16));
+   813		if (!primary_offset) {
+   814			phydev_err(phydev, "bad primary offset in firmware\n");
+   815			return -EINVAL;
+   816		}
+   817		primary_offset = PRIMARY_OFFSET(le32_to_cpu(primary_offset));
+   818	
+   819		/* Find the DRAM and IRAM sections within the firmware file. */
+   820		header = (struct aqr_fw_header *)(data + primary_offset + HEADER_OFFSET);
+   821		memcpy(&iram_offset, &header->iram_offset, sizeof(u8) * 3);
+   822		if (!iram_offset) {
+   823			phydev_err(phydev, "bad iram offset in firmware\n");
+   824			return -EINVAL;
+   825		}
+   826		memcpy(&iram_size, &header->iram_size, sizeof(u8) * 3);
+   827		if (!iram_size) {
+   828			phydev_err(phydev, "invalid iram size in firmware\n");
+   829			return -EINVAL;
+   830		}
+   831		memcpy(&dram_offset, &header->dram_offset, sizeof(u8) * 3);
+   832		if (!dram_offset) {
+   833			phydev_err(phydev, "bad dram offset in firmware\n");
+   834			return -EINVAL;
+   835		}
+   836		memcpy(&dram_size, &header->dram_size, sizeof(u8) * 3);
+   837		if (!dram_size) {
+   838			phydev_err(phydev, "invalid dram size in firmware\n");
+   839			return -EINVAL;
+   840		}
+   841	
+   842		/* offset are in LE and values needs to be converted to cpu endian */
+   843		iram_offset = le32_to_cpu(iram_offset);
+   844		iram_size = le32_to_cpu(iram_size);
+   845		dram_offset = le32_to_cpu(dram_offset);
+   846		dram_size = le32_to_cpu(dram_size);
+   847	
+   848		/* Increment the offset with the primary offset. */
+   849		iram_offset += primary_offset;
+   850		dram_offset += primary_offset;
+   851	
+   852		phydev_dbg(phydev, "primary %d IRAM offset=%d size=%d DRAM offset=%d size=%d\n",
+   853			   primary_offset, iram_offset, iram_size, dram_offset, dram_size);
+   854	
+   855		strscpy(version, (char *)data + dram_offset + VERSION_STRING_OFFSET,
+   856			VERSION_STRING_SIZE);
+ > 857		if (!version) {
+   858			phydev_err(phydev, "invalid version in firmware\n");
+   859			return -EINVAL;
+   860		}
+   861		phydev_info(phydev, "loading firmware version '%s'\n", version);
+   862	
+   863		/* stall the microcprocessor */
+   864		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_CONTROL2,
+   865			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL | VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD);
+   866	
+   867		phydev_dbg(phydev, "loading DRAM 0x%08x from offset=%d size=%d\n",
+   868			   DRAM_BASE_ADDR, dram_offset, dram_size);
+   869		ret = aquantia_load_memory(phydev, DRAM_BASE_ADDR, data + dram_offset,
+   870					   dram_size);
+   871		if (ret)
+   872			return ret;
+   873	
+   874		phydev_dbg(phydev, "loading IRAM 0x%08x from offset=%d size=%d\n",
+   875			   IRAM_BASE_ADDR, iram_offset, iram_size);
+   876		ret = aquantia_load_memory(phydev, IRAM_BASE_ADDR, data + iram_offset,
+   877					   iram_size);
+   878		if (ret)
+   879			return ret;
+   880	
+   881		/* make sure soft reset and low power mode are clear */
+   882		phy_clear_bits_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_SC,
+   883				   VEND1_GLOBAL_SC_SOFT_RESET | VEND1_GLOBAL_SC_LOW_POWER);
+   884	
+   885		/* Release the microprocessor. UP_RESET must be held for 100 usec. */
+   886		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_CONTROL2,
+   887			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL |
+   888			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD |
+   889			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_RST);
+   890		usleep_range(UP_RESET_SLEEP, UP_RESET_SLEEP * 2);
+   891	
+   892		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_CONTROL2,
+   893			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD);
+   894	
+   895		return 0;
+   896	}
+   897	
 
 -- 
-// Caleb (they/them)
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
