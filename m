@@ -1,380 +1,164 @@
-Return-Path: <devicetree+bounces-13592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 997957DF240
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:24:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422EC7DF288
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:34:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 356B7B2111A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:24:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C985FB2117A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C371862A;
-	Thu,  2 Nov 2023 12:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2255214267;
+	Thu,  2 Nov 2023 12:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SKSSv3Hw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6537114F6C
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 12:24:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF41F112;
-	Thu,  2 Nov 2023 05:24:04 -0700 (PDT)
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="373739750"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; 
-   d="scan'208";a="373739750"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 05:24:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="904995201"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; 
-   d="scan'208";a="904995201"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 05:24:00 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
-	(envelope-from <andy@kernel.org>)
-	id 1qyWjt-0000000AgRR-2vm0;
-	Thu, 02 Nov 2023 14:23:57 +0200
-Date: Thu, 2 Nov 2023 14:23:57 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Jim Liu <jim.t90615@gmail.com>
-Cc: JJLIU0@nuvoton.com, krzysztof.kozlowski+dt@linaro.org,
-	linus.walleij@linaro.org, benjaminfair@google.com, brgl@bgdev.pl,
-	robh@kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v7 3/3] gpio: nuvoton: Add Nuvoton NPCM sgpio driver
-Message-ID: <ZUOU3eImmWnqmO8Q@smile.fi.intel.com>
-References: <20231101025110.1704543-1-jim.t90615@gmail.com>
- <20231101025110.1704543-4-jim.t90615@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 298CA18E1D
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 12:34:44 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54BC19A9;
+	Thu,  2 Nov 2023 05:34:39 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9adca291f99so130471066b.2;
+        Thu, 02 Nov 2023 05:34:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698928478; x=1699533278; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rsKFZV3nMxQi1oiVGFdNfQgyygad1bdQB+o4P9tAijg=;
+        b=SKSSv3HwjZP8vOFHQv6vFz/05iCay0wI6WE4oLkfCkSCB/Q1wIj/PzLg15HlFnzeIA
+         GnD6QYMbOg7JGz/iFQkxLz2DyF1yfOM4aLWThgenrCYuz36AVsiJOn+Ao1+tUoBVjlth
+         5JnEbSpso0avKMHiUdzDdObcD+vEYSKHO2jXrei1nT2OEkZlIXoFBCAYhb6IkHb7D0Rn
+         YS1cKTDyf23/MMknCy0CxG7VAauEIQc08avX7FfkJWS38kS442bTAOycM3WNvX2GwD+k
+         3E0CjdnJeDh8wkuVbOmC7klU+3OhiWo5avAwi6IiBFSE5jZwe6jaVyFZS+9Tx4f9CEc+
+         rr3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698928478; x=1699533278;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rsKFZV3nMxQi1oiVGFdNfQgyygad1bdQB+o4P9tAijg=;
+        b=j9EmVFkU1v2GJxMnXxzI9ykCKOVgzxkgx24Qw5uzjf58hhmmeB6TzNsowxZSV/xqr1
+         AoaqTD3gKbUet+oBfBpDwgYPAYm8Hgbxng9PIs+QOyB8NT4Sphmu8FsAkVB8rYX3ITgJ
+         E4Nc8J18y2Ur7fZALHNZ1KDhZ0Uxv2qWZQmC74b03W8SaSUfi806GhOaqpYlkTHWG8Sj
+         cwFQZQKGwD9VcAWZO7x6B5OL+I03Ap7Ax+OcSZ0s+czoRF7r3AvVPnNoJg2/dER05LNf
+         CdGyAu5ZjHUo6Jiqo6LJH4SW8KaTGIWinujp8w0dgCdrz8BoOfmnytqJ3uLMF+7AvRr1
+         Zjyg==
+X-Gm-Message-State: AOJu0YxWAFHLd5PRXxVIvU1ZYlEY1cBnpeEkdoMpnR1/xF0EniIdw/IR
+	TNDBcMeOeBPnMIm2KE/k8TCJ0LT7C5Myuw==
+X-Google-Smtp-Source: AGHT+IHbCh/IJZSGzt0gIABJ7y9ndea7qZv4B5H5UEA37VyBzCW20YKU9oOhMj55kNmOINPQ9aPzcA==
+X-Received: by 2002:a17:907:25c6:b0:9d1:a628:3e4f with SMTP id ae6-20020a17090725c600b009d1a6283e4fmr4065531ejc.32.1698928478015;
+        Thu, 02 Nov 2023 05:34:38 -0700 (PDT)
+Received: from localhost.localdomain (ip5f5af678.dynamic.kabel-deutschland.de. [95.90.246.120])
+        by smtp.gmail.com with ESMTPSA id e10-20020a1709067e0a00b009c921a8aae2sm1100112ejr.7.2023.11.02.05.34.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Nov 2023 05:34:37 -0700 (PDT)
+From: Nik Bune <n2h9z4@gmail.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	skhan@linuxfoundation.org,
+	juhosg@openwrt.org
+Cc: Nik Bune <n2h9z4@gmail.com>,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: watchdog: qca,ar7130-wdt: convert txt to yaml
+Date: Thu,  2 Nov 2023 13:32:34 +0100
+Message-Id: <20231102123234.62350-1-n2h9z4@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231101025110.1704543-4-jim.t90615@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Wed, Nov 01, 2023 at 10:51:10AM +0800, Jim Liu wrote:
-> Add Nuvoton BMC NPCM7xx/NPCM8xx sgpio driver support.
-> Nuvoton NPCM SGPIO module is combine serial to parallel IC (HC595)
-> and parallel to serial IC (HC165), and use APB3 clock to control it.
-> This interface has 4 pins  (D_out , D_in, S_CLK, LDSH).
-> BMC can use this driver to increase 64 gpi pins and 64 gpo pins to use.
-
-GPI
-GPO
-
-...
-
-> Reported-by: kernel test robot <lkp@intel.com>
-
-Can't be true. The absence of a new code may not be "reported".
-
-...
-
-> +config GPIO_NPCM_SGPIO
-> +	bool "Nuvoton SGPIO support"
-> +	depends on (ARCH_NPCM || COMPILE_TEST) && OF_GPIO
-
-No new driver should use OF_GPIO.
-And I do not see where it's being used. Care to elaborate?
-
-> +	select GPIO_GENERIC
-> +	select GPIOLIB_IRQCHIP
-
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/hashtable.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/string.h>
-
-...
-
-> +#define  NPCM_IXOEVCFG_MASK		0x3
-
-GENMASK()
-
-...
-
-> +#define  NPCM_IXOEVCFG_FALLING	0x2
-> +#define  NPCM_IXOEVCFG_RISING	0x1
-
-BIT()
-
-> +#define  NPCM_IXOEVCFG_BOTH		0x3
-
-#define  NPCM_IXOEVCFG_BOTH	(NPCM_IXOEVCFG_FALLING | NPCM_IXOEVCFG_RISING)
-
-...
-
-> +#define NPCM_CLK_TH 8000000
-
-Hmm... What is the units here? Hz? Can you use HZ_PER_MHZ multiplier?
-
-> +#define GPIO_BANK(x)    ((x) / 8)
-> +#define GPIO_BIT(x)     ((x) % 8)
-
-...
-
-> +struct npcm_clk_cfg {
-> +	const unsigned int *SFT_CLK;
-> +	const unsigned int *CLK_SEL;
-
-Why capital?
-
-> +	const unsigned int cfg_opt;
-> +};
-
-How const for all of them makes any sense here? Just mark the entire struct
-with const whenever you are using it.
-
-...
-
-> +struct npcm_sgpio {
-> +	struct gpio_chip chip;
-> +	struct clk *pclk;
-> +	struct irq_chip intc;
-> +	spinlock_t lock; /*protect event config*/
-
-Missing spaces inside the comment.
-
-> +	void __iomem *base;
-> +	int irq;
-> +	u8 nin_sgpio;
-> +	u8 nout_sgpio;
-> +	u8 in_port;
-> +	u8 out_port;
-> +	u8 int_type[MAX_NR_HW_SGPIO];
-> +};
-
-...
-
-> +static void __iomem *bank_reg(struct npcm_sgpio *gpio,
-> +			      const struct npcm_sgpio_bank *bank,
-> +				const enum npcm_sgpio_reg reg)
-
-Something wrong with indentation.
-
-> +{
-> +	switch (reg) {
-> +	case READ_DATA:
-> +		return gpio->base + bank->rdata_reg;
-> +	case WRITE_DATA:
-> +		return gpio->base + bank->wdata_reg;
-> +	case EVENT_CFG:
-> +		return gpio->base + bank->event_config;
-> +	case EVENT_STS:
-> +		return gpio->base + bank->event_status;
-> +	default:
-> +		/* actually if code runs to here, it's an error case */
-> +		WARN(true, "Getting here is an error condition");
-
-You have a device pointer, why not dev_WARN()?
-
-> +	}
-> +}
-
-...
-
-> +static void irqd_to_npcm_sgpio_data(struct irq_data *d,
-> +				    struct npcm_sgpio **gpio,
-> +				    const struct npcm_sgpio_bank **bank,
-> +				    u8 *bit, int *offset)
-
-offset should be of the proper type.
-
-> +{
-> +	struct npcm_sgpio *internal;
-> +
-> +	*offset = irqd_to_hwirq(d);
-> +	internal = irq_data_get_irq_chip_data(d);
-
-> +	WARN_ON(!internal);
-
-When does this make sense? I.o.w. when the internal can be NULL?
-
-> +
-> +	*gpio = internal;
-> +	*offset -= internal->nout_sgpio;
-> +	*bank = offset_to_bank(*offset);
-> +	*bit = GPIO_BIT(*offset);
-> +}
-
-...
-
-> +static int npcm_sgpio_init_port(struct npcm_sgpio *gpio)
-> +{
-> +	u8 in_port, out_port, set_port, reg;
-> +
-> +	in_port = gpio->nin_sgpio / 8;
-> +	if (gpio->nin_sgpio % 8 > 0)
-> +		in_port += 1;
-
-You created macros and you don't use them?
-
-> +	out_port = gpio->nout_sgpio / 8;
-> +	if (gpio->nout_sgpio % 8 > 0)
-> +		out_port += 1;
-
-Ditto.
-
-> +	gpio->in_port = in_port;
-> +	gpio->out_port = out_port;
-
-> +	set_port = ((out_port & 0xf) << 4) | (in_port & 0xf);
-
-GENMASK() ?
-
-> +	iowrite8(set_port, gpio->base + NPCM_IOXCFG2);
-> +
-> +	reg = ioread8(gpio->base + NPCM_IOXCFG2);
-> +
-> +	return reg == set_port ? 0 : -EINVAL;
-> +
-> +}
-
-...
-
-> +static int npcm_sgpio_dir_out(struct gpio_chip *gc, unsigned int offset, int val)
-> +{
-> +	struct npcm_sgpio *gpio = gpiochip_get_data(gc);
-> +
-> +	if (offset < gpio->nout_sgpio) {
-> +		gc->set(gc, offset, val);
-> +		return 0;
-> +	}
-
-> +	return -EINVAL;
-
-When is this true? Same question to all these checks over the code.
-
-> +}
-
-...
-
-> +	if (val)
-> +		reg |= (val << GPIO_BIT(offset));
-
-And if val == 3? See below as well.
-
-> +	else
-> +		reg &= ~(1 << GPIO_BIT(offset));
-
-Why not BIT() macro?
-
-...
-
-> +		reg = (reg >> GPIO_BIT(offset)) & 0x01;
-
-		reg = !!(reg & GPIO_BIT(...));
-
-...
-
-> +		reg = (reg >> GPIO_BIT(offset)) & 0x01;
-
-Ditto.
-
-...
-
-> +	.flags		= IRQCHIP_IMMUTABLE | IRQCHIP_MASK_ON_SUSPEND,
-
-Indentation issue...
-
-Check entire code for this.
-
-...
-
-It's a big driver and you have a lot of different kinds of problems.
-One of them is RT kernel support. You have an IRQ chip implementation
-here, can it be used in RT?
-If so, consider different type of lock.
-
-Also use cleanup.h.
-
-...
-
-> +static const struct of_device_id npcm_sgpio_of_table[] = {
-> +	{ .compatible = "nuvoton,npcm750-sgpio", .data = &npcm750_sgpio_pdata, },
-> +	{ .compatible = "nuvoton,npcm845-sgpio", .data = &npcm845_sgpio_pdata, },
-> +	{}
-> +};
-
-> +
-
-Redundant blank line.
-
-> +MODULE_DEVICE_TABLE(of, npcm_sgpio_of_table);
-
-...
-
-> +	rc = device_property_read_u32(&pdev->dev, "nuvoton,input-ngpios", &nin_gpios);
-> +	if (rc < 0) {
-> +		dev_err(&pdev->dev, "Could not read ngpios property\n");
-> +		return -EINVAL;
-
-		return dev_err_probe();
-
-> +	}
-
-...
-
-> +	rc = device_property_read_u32(&pdev->dev, "nuvoton,output-ngpios", &nout_gpios);
-> +	if (rc < 0) {
-> +		dev_err(&pdev->dev, "Could not read ngpios property\n");
-> +		return -EINVAL;
-
-Ditto. And so on for the entire ->probe() stage.
-
-> +	}
-
-...
-
-> +	gpio->pclk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(gpio->pclk)) {
-> +		dev_err(&pdev->dev, "Could not get pclk\n");
-> +		return PTR_ERR(gpio->pclk);
-
-Not using dev_err_probe() will spam the log.
-
-> +	}
-
-...
-
-> +	gpio->chip.request = NULL;
-> +	gpio->chip.free = NULL;
-> +	gpio->chip.set_config = NULL;
-
-Redundant assignments.
-
-...
-
-> +	dev_info(&pdev->dev, "NPCM: SGPIO module is ready\n");
-
-Useless noisy message.
-
-...
-
-> +
-
-Unneeded blank line.
-
-> +module_platform_driver(npcm_sgpio_driver);
-
+Content-Transfer-Encoding: 8bit
+
+Convert txt file to yaml. Add maintainers from git blame. 
+Drop qca,ar9330-wdt from example of compatible property
+and leave only qca,ar7130-wdt, as description of property
+mentioned must be qca,ar7130-wdt.
+
+Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+---
+
+Changes in v3:
+Did run checkpatch and updated the commit message accordingly. 
+
+v2 patch: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231101202722.48056-1-n2h9z4@gmail.com/ 
+
+ .../bindings/watchdog/qca,ar7130-wdt.yaml     | 33 +++++++++++++++++++
+ .../bindings/watchdog/qca-ar7130-wdt.txt      | 13 --------
+ 2 files changed, 33 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt
+
+diff --git a/Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml
+new file mode 100644
+index 000000000000..82040ca10eda
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/qca,ar7130-wdt.yaml
+@@ -0,0 +1,33 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/qca,ar7130-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Atheros AR7130 Watchdog Timer (WDT) Controller
++
++maintainers:
++  - Gabor Juhos <juhosg@openwrt.org>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    const: qca,ar7130-wdt
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@18060008 {
++        compatible = "qca,ar7130-wdt";
++        reg = <0x18060008 0x8>;
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt b/Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt
+deleted file mode 100644
+index 7a89e5f85415..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/qca-ar7130-wdt.txt
++++ /dev/null
+@@ -1,13 +0,0 @@
+-* Qualcomm Atheros AR7130 Watchdog Timer (WDT) Controller
+-
+-Required properties:
+-- compatible: must be "qca,ar7130-wdt"
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-
+-Example:
+-
+-wdt@18060008 {
+-	compatible = "qca,ar9330-wdt", "qca,ar7130-wdt";
+-	reg = <0x18060008 0x8>;
+-};
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
