@@ -1,99 +1,107 @@
-Return-Path: <devicetree+bounces-13537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2827DEC44
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 06:30:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 234D97DECD0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 07:19:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1956AB20E92
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 05:30:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C20D8281A48
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 06:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7161FCA;
-	Thu,  2 Nov 2023 05:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7756E5242;
+	Thu,  2 Nov 2023 06:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kU2w6Jhj"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="peJtDkTo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B311851
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 05:30:20 +0000 (UTC)
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26896116
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 22:30:16 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-280137f1a1bso549273a91.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 22:30:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698903015; x=1699507815; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JKCEzf5yVHcpzkImikTuiO91O0VK+CR5uA5YIy3x1ew=;
-        b=kU2w6Jhj8XZy/W2bEICFrHfug8qqWmT1twPkLkSsHbXASZ4b4Nmw4XyfHANykw7ON2
-         ZANemY5oNRoXQQEB4XxPfUS5+kr6dZtGp+WGchK1phtfc+IRPMw9YtB/GRQPcn/tf+Gn
-         sch+K7b7OAPTvYrSumF/83GyzifyKRfKCVy9WrrdK1vGPFHHCarMjMJYQ2bu1usCQSeP
-         lcKaxfYC88Y3iC3Uet/q1llpCFpBEk9teiqCIvxHZNevLw4sVBML4t04kaW6qEuivMiT
-         asCfSojo9rkXEW1KJ3/IqI/iS7Ig7DxtojT/gguGFCWLRjYLxRe45Te7XsotbqSBVUEM
-         MPiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698903015; x=1699507815;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JKCEzf5yVHcpzkImikTuiO91O0VK+CR5uA5YIy3x1ew=;
-        b=YeD1mwughuTsRL9RnS/0fWfDt/u2V3IfGZBu3VU0KuqPgoURsOBarUX43jqXwCt2CT
-         MPKmozkVYo4yQtzVWYE3QfKJ3BT6dQVsg0DsKo2+U+0TWXpHpcolJmqYN1y4iqkkDHxg
-         JgWIGtiCRJetFKEq/kv18HFbtlvkVpRMcosAJC4fCGrU/qeC9brc8yjWJC0yHQrT/v6i
-         cwziOl97EfBf1IPQMaMiItkiqVfG8JFxkMKhFiHrjI9r1ZRnPVYXLR0g5yrczjBAVb3A
-         YP7mnWrMNgFz8YWi7HzlA7ugHW+7OKBBJsQWQ152s+UWH9+A8Yf2eObr15dfMQaKiMJP
-         GqcQ==
-X-Gm-Message-State: AOJu0Yx1TW53/UwhO8OEi4oUG/oWYrl5UzWvpd0eVFhRbxdNSD4LBjJq
-	0o1y7HphX9oLHV/RmCzZGF4ErA==
-X-Google-Smtp-Source: AGHT+IG3F8uXNqd5WC2MJ/q+sokfpm9k5oUWZuAemt4onAJ/8yGMHkAdTP+qn3Wq/lucbP1uCp1EJQ==
-X-Received: by 2002:a17:90a:9b03:b0:280:1d6c:a6a8 with SMTP id f3-20020a17090a9b0300b002801d6ca6a8mr13213526pjp.23.1698903015532;
-        Wed, 01 Nov 2023 22:30:15 -0700 (PDT)
-Received: from localhost ([122.172.80.14])
-        by smtp.gmail.com with ESMTPSA id i1-20020a17090aee8100b0028012be0764sm1648185pjz.20.2023.11.01.22.30.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Nov 2023 22:30:15 -0700 (PDT)
-Date: Thu, 2 Nov 2023 11:00:13 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, rafael@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-	quic_ramkri@quicinc.com, quic_parass@quicinc.com
-Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20231102053013.7yt7pxin5awlu7w7@vireshk-i7>
-References: <1694066433-8677-6-git-send-email-quic_krichai@quicinc.com>
- <20231101221742.GA101112@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A4E5233
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 06:18:55 +0000 (UTC)
+X-Greylist: delayed 367 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 01 Nov 2023 23:18:51 PDT
+Received: from mx.msync.work (mx.msync.work [62.182.159.68])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D1EE4;
+	Wed,  1 Nov 2023 23:18:50 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0E10714745F;
+	Thu,  2 Nov 2023 06:12:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1698905560; h=from:subject:date:message-id:to:mime-version:
+	 content-transfer-encoding; bh=d6bGpQGMcWTfIFXeJnfNXYglphqaXvj//mewEVDo5i0=;
+	b=peJtDkTo1fNDhJPVKfV17W63VXWPpCxUauH1uYj6bxUZ9eoQ6v8ABr/dZwnxQXodj5zU0P
+	Rn9NfOkNTc2R8AhjMDeN5IPnDtA9UocjysHowSqFnVjwg6vF+tpC3vfcWL4ykOhqg3fvcL
+	HhfeCeu5q+g1BVH5A/CkAV5FO9743knw2OQCpPp7LyFh1/t6xK7zuguuz7QsN+odaXap3w
+	gwcNpZ3MwdVnBLWcOd9av3sWQvQEbxHKjEH0MTXTipikcb13fDUc2Wn/2sMHGB1hAXWKNF
+	LuVzo1MJInSYfw09bX3PyHDbqbMynCDwLi9uB4mrPf9pA/tHlscCB5ntarjeHQ==
+From: Viacheslav Bocharov <adeep@lexina.in>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson-axg: jethub-jxx add support for EEPROM
+Date: Thu,  2 Nov 2023 09:12:33 +0300
+Message-Id: <20231102061233.3113249-1-adeep@lexina.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231101221742.GA101112@bhelgaas>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 01-11-23, 17:17, Bjorn Helgaas wrote:
-> Can you expand "OPP" somewhere so we know what it stands for?  I'm
-> sure everybody knows except me :)
+Add dts node for EEPROM placed on baseboard in JetHub D1+ devices.
 
-It is "Operating Performance Points", defined here:
+Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+---
+ .../amlogic/meson-axg-jethome-jethub-j110-rev-2.dts  | 12 ++++++++++++
+ .../amlogic/meson-axg-jethome-jethub-j110-rev-3.dts  | 12 ++++++++++++
+ 2 files changed, 24 insertions(+)
 
-Documentation/power/opp.rst
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+index 0062667c4f65..2c684f0ca99a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-2.dts
+@@ -35,3 +35,15 @@ bluetooth {
+ 		device-wake-gpios = <&gpio GPIOZ_6 GPIO_ACTIVE_HIGH>;
+ 	};
+ };
++
++&i2c_AO {
++	/* EEPROM on base board */
++	eeprompd: eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++		pagesize = <0x20>;
++		label = "eeprompd";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+index c2d22b00c1cd..c356bd2cc63a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j110-rev-3.dts
+@@ -25,3 +25,15 @@ memory@0 {
+ &sd_emmc_b {
+ 	broken-cd;/* cd-gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;*/
+ };
++
++&i2c_AO {
++	/* EEPROM on base board */
++	eeprompd: eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++		pagesize = <0x20>;
++		label = "eeprompd";
++		address-width = <0x10>;
++		vcc-supply = <&vddao_3v3>;
++	};
++};
 -- 
-viresh
+2.34.1
+
 
