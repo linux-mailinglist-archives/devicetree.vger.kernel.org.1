@@ -1,398 +1,162 @@
-Return-Path: <devicetree+bounces-13518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 132CB7DE80E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 23:24:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D4A7DE93B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 01:17:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46018B20D96
-	for <lists+devicetree@lfdr.de>; Wed,  1 Nov 2023 22:23:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 384B71C20DA9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 00:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793C41C290;
-	Wed,  1 Nov 2023 22:23:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6DD195;
+	Thu,  2 Nov 2023 00:17:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pDlo0FOJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fjz3k9HJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616F318E06;
-	Wed,  1 Nov 2023 22:23:50 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00A411D;
-	Wed,  1 Nov 2023 15:23:44 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EB176E0003;
-	Wed,  1 Nov 2023 22:23:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698877423;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jggGNcvAtv9LxN7R6LMr0R964jtilEqQaxj50I5uJCg=;
-	b=pDlo0FOJY3L9dpP1BPmOMKhLX7DRNq7i/rYZcSimLwRXA11gf1G5FoHgBBrHWblhYwaQKU
-	t4i+DXCgpT02VcLii1qnacj9BPhztK6xsY1DxdqFExFVkxay88Zt9z/iyyLm9XJaoQFyAc
-	uzEAo1Dx4rimQRoi2v+SnOTGsbsur2+xwcj++drgxHUTFSbQMCu8ksjKJwfEqUMjO3jxRE
-	HmGk2+32EJ+QKxsZwYX4qgHuD0Msw3e7C24HbaBPyKpA8dLRuYyGAR9afFamRa4N7AEU+Z
-	qOgshuLXpppzLanr0PcUbLmlPtzbXUfD2gk7qIR9sf21aH8jcDTII1pDeZbrNg==
-Date: Wed, 1 Nov 2023 23:23:42 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Alessandro Zummo <a.zummo@towertech.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] rtc: max31335: add driver support
-Message-ID: <202311012223422e3387b3@mail.local>
-References: <20231101094835.51031-1-antoniu.miclaus@analog.com>
- <20231101094835.51031-2-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3F77E
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 00:17:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C268C433C7;
+	Thu,  2 Nov 2023 00:17:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1698884235;
+	bh=TOJiriu7zo/tOZp6wt6uoQqF/K8RoG8GBogF+O+OlHg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fjz3k9HJotc18Y2AY4yosYabz+yl+n9B5E2DMxuLA98Igdoc8atWUGT0w+Potdj6A
+	 vwaXd+5HCxLsFFXkHLjfI2gvOJCxDD4B39nauPuyv3sEEoJDz1HkBFHu37FoJErQ/L
+	 te5TuHlyVDtNK6u6J2UM/8xVrR9NnT70JwKk2XKUcws4GzIRlHV9Qqacaodm+VE7YA
+	 lWBAms4Kg4g33Uqcu4iLejvPxtJmK4y84z9URimUl4UZ4ArqtGty5L4+6b3BZJa5sc
+	 rdN7ZED6BS2xdswu9HFD3YCyfp5gV1Dxg8wlObHLVTXRMjzkgN+Q+XTR8+CpzamRHS
+	 Uw/8gSJq2YEJg==
+Date: Thu, 2 Nov 2023 00:17:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: Rob Herring <robh@kernel.org>, linux-leds@vger.kernel.org,
+	lee@kernel.org, linux-kernel@vger.kernel.org, kernel@sberdevices.ru,
+	andy.shevchenko@gmail.com, conor+dt@kernel.org, pavel@ucw.cz,
+	krzysztof.kozlowski+dt@linaro.org, rockosov@gmail.com,
+	robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 11/11] dt-bindings: leds: aw200xx: fix led pattern and
+ add reg constraints
+Message-ID: <20231102-concave-untapped-804a5956faab@spud>
+References: <20231101142445.8753-1-ddrokosov@salutedevices.com>
+ <20231101142445.8753-12-ddrokosov@salutedevices.com>
+ <169885374980.409399.3653628333009308100.robh@kernel.org>
+ <20231101-bolster-anaerobic-244cd1a8c205@spud>
+ <20231101174422.zs5er6tqethm46ur@CAB-WSD-L081021>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1KMrlXhM842v/S70"
+Content-Disposition: inline
+In-Reply-To: <20231101174422.zs5er6tqethm46ur@CAB-WSD-L081021>
+
+
+--1KMrlXhM842v/S70
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231101094835.51031-2-antoniu.miclaus@analog.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: quoted-printable
 
-On 01/11/2023 11:48:14+0200, Antoniu Miclaus wrote:
-> +static int max31335_get_hour(u8 hour_reg)
-> +{
-> +	int hour;
-> +
-> +	/* 24Hr mode */
-> +	if (!FIELD_GET(MAX31335_HOURS_F_24_12, hour_reg))
-> +		return bcd2bin(hour_reg & 0x3f);
-> +
-> +	/* 12Hr mode */
-> +	hour = bcd2bin(hour_reg & 0x1f);
-> +	if (hour == 12)
-> +		hour = 0;
-> +
+On Wed, Nov 01, 2023 at 08:44:22PM +0300, Dmitry Rokosov wrote:
+> Hello Conor,
+>=20
+> On Wed, Nov 01, 2023 at 04:17:14PM +0000, Conor Dooley wrote:
+> > On Wed, Nov 01, 2023 at 11:04:16AM -0500, Rob Herring wrote:
+> > >=20
+> > > On Wed, 01 Nov 2023 17:24:45 +0300, Dmitry Rokosov wrote:
+> > > > AW200XX controllers have the capability to declare more than 0xf LE=
+Ds,
+> > > > therefore, it is necessary to accept LED names using an appropriate
+> > > > regex pattern.
+> > > >=20
+> > > > The register offsets can be adjusted within the specified range, wi=
+th
+> > > > the maximum value corresponding to the highest number of LEDs that =
+can
+> > > > be connected to the controller.
+> > > >=20
+> > > > Fixes: e338a05e76ca ("dt-bindings: leds: Add binding for AW200xx")
+> > > > Signed-off-by: Dmitry Rokosov <ddrokosov@salutedevices.com>
+> > > > ---
+> > > >  .../bindings/leds/awinic,aw200xx.yaml         | 64 +++++++++++++++=
+++--
+> > > >  1 file changed, 58 insertions(+), 6 deletions(-)
+> > > >=20
+> > >=20
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_ch=
+eck'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > >=20
+> > > yamllint warnings/errors:
+> > >=20
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/leds/awinic,aw200xx.example.dtb: led-controller@3a: led@0: Unevaluated p=
+roperties are not allowed ('reg' was unexpected)
+> > > 	from schema $id: http://devicetree.org/schemas/leds/awinic,aw200xx.y=
+aml#
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/leds/awinic,aw200xx.example.dtb: led-controller@3a: led@1: Unevaluated p=
+roperties are not allowed ('reg' was unexpected)
+> > > 	from schema $id: http://devicetree.org/schemas/leds/awinic,aw200xx.y=
+aml#
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindin=
+gs/leds/awinic,aw200xx.example.dtb: led-controller@3a: led@2: Unevaluated p=
+roperties are not allowed ('reg' was unexpected)
+> > > 	from schema $id: http://devicetree.org/schemas/leds/awinic,aw200xx.y=
+aml#
+> >=20
+> > Looks like you need to drop the second part of this hunk from the patch.
+> > @@ -45,17 +45,12 @@ properties:
+> >      maxItems: 1
+> > =20
+> >  patternProperties:
+> > -  "^led@[0-9a-f]$":
+> > +  "^led@[0-9a-f]+$":
+> >      type: object
+> >      $ref: common.yaml#
+> >      unevaluatedProperties: false
+> > =20
+> >      properties:
+> > -      reg:
+> > -        description:
+> > -          LED number
+> > -        maxItems: 1
+> > -
+> >        led-max-microamp:
+> >          default: 9780
+> >          description: |
+> >=20
+> > Each LED still only has one reg entry, right?
+>=20
+> You're right... the maxItems for 'reg' is still needed. I'll back it in
+> the next version.
+> But I don't understand, why my dt_binding_check run doesn't show me this
+> problem... I don't specify DT_CHECKER_FLAGS, maybe this is a root cause.
 
-Do you really need to support 12h mode?
+I dunno! I do `make dt_binding_check W=3D1 DT_SCHEMA_FILES=3D"$filename"` to
+test stuff.
 
-> +	if (FIELD_GET(MAX31335_HOURS_HR_20_AM_PM, hour_reg))
-> +		hour += 12;
-> +
-> +	return hour;
-> +}
-> +
-> +static int max31335_read_offset(struct device *dev, long *offset)
-> +{
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +	u32 value;
-> +	int ret;
-> +
-> +	ret = regmap_read(max31335->regmap, MAX31335_AGING_OFFSET, &value);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*offset = value;
+Also, you can keep the tag.
 
-This is super dubious, what is the unit of MAX31335_AGING_OFFSET ?
+--1KMrlXhM842v/S70
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int max31335_set_offset(struct device *dev, long offset)
-> +{
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +
-> +	return regmap_write(max31335->regmap, MAX31335_AGING_OFFSET, offset);
-> +}
-> +
-> +static int max31335_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> +{
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +	struct mutex *lock = &max31335->rtc->ops_lock;
-> +	int ret, ctrl, status;
-> +	struct rtc_time time;
-> +	u8 regs[6];
-> +
-> +	mutex_lock(lock);
+-----BEGIN PGP SIGNATURE-----
 
-Use rtc_lock(), I'm not quite sure why you would need locking here
-though.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZULqhgAKCRB4tDGHoIJi
+0q4BAQC5YTzHsZRRP1WxLFh3vu211rMVno+IX+YO5RazUkgsMAEArUlNxt0UhTjw
+Nq+4zijW6+jINWj/Jd91+bh5kDWepgk=
+=fKHp
+-----END PGP SIGNATURE-----
 
-> +
-> +	ret = regmap_bulk_read(max31335->regmap, MAX31335_ALM1_SEC, regs,
-> +			       sizeof(regs));
-> +	if (ret)
-> +		goto exit;
-> +
-> +	alrm->time.tm_sec  = bcd2bin(regs[0] & 0x7f);
-> +	alrm->time.tm_min  = bcd2bin(regs[1] & 0x7f);
-> +	alrm->time.tm_hour = bcd2bin(regs[2] & 0x3f);
-> +	alrm->time.tm_mday = bcd2bin(regs[3] & 0x3f);
-> +	alrm->time.tm_mon  = bcd2bin(regs[4] & 0x1f) - 1;
-> +	alrm->time.tm_year = bcd2bin(regs[5]) + 100;
-> +
-> +	ret = max31335_read_time(dev, &time);
-> +	if (ret)
-> +		goto exit;
-> +
-> +	if (time.tm_year >= 200)
-> +		alrm->time.tm_year += 100;
-> +
-> +	ret = regmap_read(max31335->regmap, MAX31335_INT_EN1, &ctrl);
-> +	if (ret)
-> +		goto exit;
-> +
-> +	ret = regmap_read(max31335->regmap, MAX31335_STATUS1, &status);
-> +	if (ret)
-> +		goto exit;
-> +
-> +	alrm->enabled = FIELD_GET(MAX31335_INT_EN1_A1IE, ctrl);
-> +	alrm->pending = FIELD_GET(MAX31335_STATUS1_A1F, status);
-> +
-> +exit:
-> +	mutex_unlock(lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int max31335_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> +{
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +	struct mutex *lock = &max31335->rtc->ops_lock;
-> +	unsigned int reg;
-> +	u8 regs[6];
-> +	int ret;
-> +
-> +	regs[0] = bin2bcd(alrm->time.tm_sec);
-> +	regs[1] = bin2bcd(alrm->time.tm_min);
-> +	regs[2] = bin2bcd(alrm->time.tm_hour);
-> +	regs[3] = bin2bcd(alrm->time.tm_mday);
-> +	regs[4] = bin2bcd(alrm->time.tm_mon + 1);
-> +	regs[5] = bin2bcd(alrm->time.tm_year % 100);
-> +
-> +	mutex_lock(lock);
-
-I'm not sure why you need locking here either, maybe you should simply
-disable the alarm first?
-
-> +
-> +	ret = regmap_bulk_write(max31335->regmap, MAX31335_ALM1_SEC,
-> +				regs, sizeof(regs));
-> +	if (ret)
-> +		goto exit;
-> +
-> +	reg = FIELD_PREP(MAX31335_INT_EN1_A1IE, alrm->enabled);
-> +	ret = regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
-> +				 MAX31335_INT_EN1_A1IE, reg);
-> +	if (ret)
-> +		goto exit;
-> +
-> +	ret = regmap_update_bits(max31335->regmap, MAX31335_STATUS1,
-> +				 MAX31335_STATUS1_A1F, 0);
-> +
-> +exit:
-> +	mutex_unlock(lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int max31335_alarm_irq_enable(struct device *dev, unsigned int enabled)
-> +{
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +
-> +	return regmap_update_bits(max31335->regmap, MAX31335_INT_EN1,
-> +				  MAX31335_INT_EN1_A1IE, enabled);
-> +}
-> +
-
-
-> +static int max31335_trickle_charger_setup(struct device *dev,
-> +					  struct max31335_data *max31335)
-> +{
-> +	u32 ohms, chargeable;
-> +	bool diode = false;
-> +	int i;
-> +
-> +	if (device_property_read_u32(dev, "trickle-resistor-ohms", &ohms))
-> +		return 0;
-> +
-> +	if (!device_property_read_u32(dev, "aux-voltage-chargeable",
-> +				      &chargeable)) {
-> +		switch (chargeable) {
-> +		case 0:
-> +			diode = false;
-> +			break;
-> +		case 1:
-> +			diode = true;
-> +			break;
-> +		default:
-> +			dev_warn(dev,
-> +				 "unsupported aux-voltage-chargeable value\n");
-
-I don't think the string is necessary, checking the DT should be done at
-compile time.
-
-> +			break;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < ARRAY_SIZE(max31335_trickle_resistors); i++)
-> +		if (ohms == max31335_trickle_resistors[i])
-> +			break;
-> +
-> +	if (i >= ARRAY_SIZE(max31335_trickle_resistors)) {
-> +		dev_warn(dev, "invalid trickle resistor value\n");
-
-Ditto.
-
-> +
-> +		return 0;
-> +	}
-> +
-> +	if (diode)
-> +		i = i + 4;
-> +	else
-> +		i = i + 1;
-
-Do you actually need to configure the trickle charger when there is
-nothing to charge?
-
-> +
-> +	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
-> +			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
-> +				       MAX31335_TRICKLE_REG_EN_TRICKLE);
-> +}
-> +
-> +static int max31335_clkout_register(struct device *dev)
-> +{
-> +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	if (!device_property_present(dev, "#clock-cells"))
-> +		return 0;
-
-Is the clock output disabled by default?
-
-> +
-> +static int max31335_probe(struct i2c_client *client)
-> +{
-> +	struct max31335_data *max31335;
-> +	struct device *hwmon;
-> +	int ret;
-> +
-> +	max31335 = devm_kzalloc(&client->dev, sizeof(*max31335), GFP_KERNEL);
-> +	if (!max31335)
-> +		return -ENOMEM;
-> +
-> +	max31335->regmap = devm_regmap_init_i2c(client, &regmap_config);
-> +	if (IS_ERR(max31335->regmap))
-> +		return PTR_ERR(max31335->regmap);
-> +
-> +	i2c_set_clientdata(client, max31335);
-> +
-> +	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 0);
-> +	if (ret)
-> +		return ret;
-
-What does this register do?
-
-> +
-> +	max31335->rtc = devm_rtc_allocate_device(&client->dev);
-> +	if (IS_ERR(max31335->rtc))
-> +		return PTR_ERR(max31335->rtc);
-> +
-> +	max31335->rtc->ops = &max31335_rtc_ops;
-> +	max31335->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
-> +	max31335->rtc->range_max = RTC_TIMESTAMP_END_2199;
-
-Please set alarm_offset_max too.
-
-> +
-> +	ret = devm_rtc_register_device(max31335->rtc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = max31335_clkout_register(&client->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (client->irq > 0) {
-> +		ret = devm_request_threaded_irq(&client->dev, client->irq,
-> +						NULL, max31335_handle_irq,
-> +						IRQF_ONESHOT,
-> +						"max31335", max31335);
-> +		if (ret) {
-> +			dev_warn(&client->dev,
-> +				 "unable to request IRQ, alarm max31335 disabled\n");
-> +			client->irq = 0;
-> +		}
-> +	}
-> +
-> +	if (!client->irq)
-> +		clear_bit(RTC_FEATURE_ALARM, max31335->rtc->features);
-> +
-> +	max31335_nvmem_cfg.priv = max31335;
-> +	ret = devm_rtc_nvmem_register(max31335->rtc, &max31335_nvmem_cfg);
-> +	if (ret)
-> +		dev_err_probe(&client->dev, ret, "cannot register rtc nvmem\n");
-> +
-> +	hwmon = devm_hwmon_device_register_with_info(&client->dev, client->name,
-> +						     max31335,
-> +						     &max31335_chip_info,
-> +						     NULL);
-> +	if (IS_ERR(hwmon))
-> +		dev_err_probe(&client->dev, PTR_ERR(hwmon),
-> +			      "cannot register hwmon device\n");
-> +
-> +	return max31335_trickle_charger_setup(&client->dev, max31335);
-
-You must never fail probe after calling devm_rtc_register_device, else
-you are open to a race condition with userspace.
-
-> +}
-> +
-> +static const struct i2c_device_id max31335_id[] = {
-> +	{ "max31335", 0 },
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, max31335_id);
-> +
-> +static const struct of_device_id max31335_of_match[] = {
-> +	{ .compatible = "adi,max31335" },
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, max31335_of_match);
-> +
-> +static struct i2c_driver max31335_driver = {
-> +	.driver = {
-> +		.name = "rtc-max31335",
-> +		.of_match_table = max31335_of_match,
-> +	},
-> +	.probe = max31335_probe,
-> +	.id_table = max31335_id,
-> +};
-> +module_i2c_driver(max31335_driver);
-> +
-> +MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-> +MODULE_DESCRIPTION("MAX31335 RTC driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.42.0
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--1KMrlXhM842v/S70--
 
