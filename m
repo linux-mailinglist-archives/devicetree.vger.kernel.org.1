@@ -1,120 +1,118 @@
-Return-Path: <devicetree+bounces-13586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E44FE7DF155
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:42:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 061557DF1EA
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8119B281AAD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 11:42:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86554B20D3D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D4514AB8;
-	Thu,  2 Nov 2023 11:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3C5515490;
+	Thu,  2 Nov 2023 12:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lwZ2wSuk"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="DLXfjLgq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB1314AAB
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 11:42:18 +0000 (UTC)
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC2B1B4
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 04:42:09 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c504a5e1deso11001811fa.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 04:42:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7014B14AA3
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 12:01:57 +0000 (UTC)
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3ED197
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 05:01:52 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1cacde97002so6392035ad.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 05:01:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698925327; x=1699530127; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s8dxEzYVSeFJZ3l8QowPz73oS6HbY0588zpxHkYzDJg=;
-        b=lwZ2wSukMRBt/CLG/aWjyFNeWERxJerHRKZYwihDEsEfpaygbKp/n22F6n+9U+w3Q1
-         rhJaTFpw3C3FcD+jBbntZXVVGnDRxfY+4dmY3X//nODWK2+mRGshIS65rQnyszQF99Zu
-         fcfIiW0O5/hs2xCgtk8lokdctNe1tXEVK0fAM/vmKr7p11PIPW4Z4k/TuhGEHCjB2DPu
-         xhtnBlLHdMsl1ajV1GJGn0HUIFdsJ/vrKDop8TZ6483IOxl2URHz2numKP4rCWXXjGAD
-         R7HMtzyxhDyOpOWefwnm1myc+l7tKXzY/QkuTCfIoDNJ1opn2c2+QWQtWgMRCMylwckH
-         WUIQ==
+        d=sifive.com; s=google; t=1698926512; x=1699531312; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=jtFETPopYL9qQsqV12E64PSYpI6sEe2ykn1CxLszp0g=;
+        b=DLXfjLgqWwQ8vYW7sWxECI1BRXzLe8nIJ0Y7zbwjiXysayV1Z7mfWI+QkHSH3Spwbg
+         YCq92kvS7UQS8Vwue0Xp+Gl660UiyaOL6u2XrsZpIfNZHTGLpt0S33LSIa1+EjftN5fP
+         /h3k2iDz6iJxv7MbQQ0r9k42+FXkpigoyDr8AWu7wRZMdPmWFP2dj5nIM5pC0f4cuZ0J
+         O/J3s9dBVYr0m4uog+0wZw5VHB2Ap/j1b+QFh+IfLwZlFtND98iWq81wZ8hl3IQ3wXDb
+         jOspcklFNGzLoqrZsS866eujfNBK94G1Um8SdBFSJyjulgDeQKYOCfw6mj0ytRLlJtN5
+         mQbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698925327; x=1699530127;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s8dxEzYVSeFJZ3l8QowPz73oS6HbY0588zpxHkYzDJg=;
-        b=hhEyGTEQOC3usUDLbiEpaNk6JyxwDfX0FVkQkPoIzn4se7Y37bAQSJhc3lxJbsbtoF
-         mAqcPxCjE0ZScAEWT9529xnRjC6UBxI2PJ94JxcZ5/iS3jBy1eLwheTST6MXYPFXtudo
-         zxfcCen7KgbY8C/Xycw+EFuAX+JFFWN+Aa7/M3x7YOhD863uO8oEZ0FjDu/tSNcCtEd/
-         vxZQEYTklY1v6QVa19Aa/j0rlV5cr8+dsiBaBYapqjO/wOMOLI0uMZpbFA5tlY2Z+iDj
-         fLo6dyN4EGJiwvQ4ID7pVgZjhUkMkdt7vTnS25XWaZJ77h/J1g9N31cTb+lD//e+j/MK
-         8wgg==
-X-Gm-Message-State: AOJu0YzC64YYr+8N5rHWeVyqb9iAYGoDPhvOfA/sY7ByPiIbfi9ZHc1p
-	IRcivArOr3tvhrFEbO4Te53FVQ==
-X-Google-Smtp-Source: AGHT+IF+Nqgh2qvRrp3oGM6gzwl8LfwxtdCMH0YDfKUm6K9IhmLAwyJp3QIkCPDsvq7BCWVHc2aEkA==
-X-Received: by 2002:a2e:494a:0:b0:2c5:1a89:41c0 with SMTP id b10-20020a2e494a000000b002c51a8941c0mr12903032ljd.23.1698925327124;
-        Thu, 02 Nov 2023 04:42:07 -0700 (PDT)
-Received: from [127.0.0.1] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id j41-20020a05600c1c2900b004060f0a0fdbsm2717720wms.41.2023.11.02.04.42.06
+        d=1e100.net; s=20230601; t=1698926512; x=1699531312;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jtFETPopYL9qQsqV12E64PSYpI6sEe2ykn1CxLszp0g=;
+        b=Y8/gwnRCEizNqu8It5L9z9VINnJgQQaHSJ8sPibNeE5xm9+l45UMJfCosSAxCKn3iD
+         OCpMjZzzZtiREiVuKh397s3/QliYaqLyFYSbgtr9PExUici8qBrJo5Pc/ouqd0EFyKi/
+         RD257tnze3Pok1Hfi0YrQyoyE3KMzezRdUHnZ23581UFQQau0iD7O3pfNRanaNabMigP
+         2SW8M8NrVEY9GqxPssfQSXGeCTSkn2OU0kQd9Q/G4vh+IdQMUHtlFydAIu7I4jgRDMpi
+         RVUQchxHSx9KlK8IjP+Kni9X8NxlPHDu76kpJgXI6/6NGkBvAE3S08GUh21n0fFreUdq
+         wbog==
+X-Gm-Message-State: AOJu0YzHu/hsyNBJ45Hpwj1cuAWVEGp6Re5Ktt3pnt3cSPFceGw1qCiH
+	PrOg/9sVn0oVrh6SurjxlNz7JQ==
+X-Google-Smtp-Source: AGHT+IGLAFMFBtszNocU+qASkTznimPTF67YR80XaS1rd2vj4mW97ZI7ftQbfZbaIOnyHp9z4hHfiQ==
+X-Received: by 2002:a17:902:e5cf:b0:1cc:3c6c:ce23 with SMTP id u15-20020a170902e5cf00b001cc3c6cce23mr13093008plf.42.1698926512333;
+        Thu, 02 Nov 2023 05:01:52 -0700 (PDT)
+Received: from hsinchu26.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id l12-20020a170902f68c00b001cc0f6028b8sm2969008plg.106.2023.11.02.05.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Nov 2023 04:42:06 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Thu, 02 Nov 2023 11:41:59 +0000
-Subject: [PATCH 6/6] media: qcom: camss: vfe-17x: Rename camss-vfe-170 to
- camss-vfe-17x
+        Thu, 02 Nov 2023 05:01:51 -0700 (PDT)
+From: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+To: linux-riscv@lists.infradead.org,
+	kvm-riscv@lists.infradead.org
+Cc: greentime.hu@sifive.com,
+	vincent.chen@sifive.com,
+	tjytimi@163.com,
+	alex@ghiti.fr,
+	conor.dooley@microchip.com,
+	ajones@ventanamicro.com,
+	Yong-Xuan Wang <yongxuan.wang@sifive.com>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 2/4] dt-bindings: riscv: Add Svadu Entry
+Date: Thu,  2 Nov 2023 12:01:23 +0000
+Message-Id: <20231102120129.11261-3-yongxuan.wang@sifive.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231102120129.11261-1-yongxuan.wang@sifive.com>
+References: <20231102120129.11261-1-yongxuan.wang@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231102-b4-camss-sc8280xp-v1-6-9996f4bcb8f4@linaro.org>
-References: <20231102-b4-camss-sc8280xp-v1-0-9996f4bcb8f4@linaro.org>
-In-Reply-To: <20231102-b4-camss-sc8280xp-v1-0-9996f4bcb8f4@linaro.org>
-To: hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org, 
- matti.lehtimaki@gmail.com, grosikop@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.13-dev-83828
 
-vfe-170 and vfe-175 can be supported in the same file with some minimal
-indirection to differentiate between the silicon versions.
+Add an entry for the Svadu extension to the riscv,isa-extensions property.
 
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Signed-off-by: Yong-Xuan Wang <yongxuan.wang@sifive.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 ---
- drivers/media/platform/qcom/camss/Makefile                             | 2 +-
- drivers/media/platform/qcom/camss/{camss-vfe-170.c => camss-vfe-17x.c} | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-index 4e22223589739..0d4389ab312d1 100644
---- a/drivers/media/platform/qcom/camss/Makefile
-+++ b/drivers/media/platform/qcom/camss/Makefile
-@@ -14,7 +14,7 @@ qcom-camss-objs += \
- 		camss-vfe-4-1.o \
- 		camss-vfe-4-7.o \
- 		camss-vfe-4-8.o \
--		camss-vfe-170.o \
-+		camss-vfe-17x.o \
- 		camss-vfe-480.o \
- 		camss-vfe-gen1.o \
- 		camss-vfe.o \
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe-170.c b/drivers/media/platform/qcom/camss/camss-vfe-17x.c
-similarity index 100%
-rename from drivers/media/platform/qcom/camss/camss-vfe-170.c
-rename to drivers/media/platform/qcom/camss/camss-vfe-17x.c
-
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index cc1f546fdbdc..b5a0aed0165b 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -147,6 +147,12 @@ properties:
+             ratified at commit 3f9ed34 ("Add ability to manually trigger
+             workflow. (#2)") of riscv-time-compare.
+ 
++        - const: svadu
++          description: |
++            The standard Svadu supervisor-level extension for hardware updating
++            of PTE A/D bits as frozen at commit b65e07c ("move to Frozen
++            state") of riscv-svadu.
++
+         - const: svinval
+           description:
+             The standard Svinval supervisor-level extension for fine-grained
 -- 
-2.42.0
+2.17.1
 
 
