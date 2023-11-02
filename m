@@ -1,231 +1,170 @@
-Return-Path: <devicetree+bounces-13645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE47E7DF818
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 17:57:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 809977DF83E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 18:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE6781C20EF5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:57:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10D00B211F9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 17:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33A7E1DA53;
-	Thu,  2 Nov 2023 16:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E481DDDC;
+	Thu,  2 Nov 2023 17:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YS1ZbF5v"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N7AWHaRg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02D1F1DA29;
-	Thu,  2 Nov 2023 16:57:24 +0000 (UTC)
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59FE181;
-	Thu,  2 Nov 2023 09:57:16 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6356B40004;
-	Thu,  2 Nov 2023 16:57:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1698944235;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NVz3G4wL1rSrk0NYhI8ac9/fbtgh/W+2BcN82pui1bE=;
-	b=YS1ZbF5vPsUZVEV1gWd7BpaTy6XlyFUooET0lTUZk7BfYXMwO8LXKymhq1jnx1qLePrYXv
-	k18yCMxjUwyGi+jApbW4A2AzaOZq7khKIOfIRW5S1Tqr9UEHycwe+r50v4/3CsuCro/K64
-	lL4CeDsH9Sw3nQZphTqfBf/rLgJnFAQIkINRDnyY5NnUkS5x3nUiMOIc7+BLwfE6pt3H41
-	SZunbBcy6SXiY9RCxwtx+6+8gQ8wYvl6TqSN3y318g0tocXPZz05apbwa2lX0Hbx+k/R7U
-	iwqO4RDpVYJNbvT1/hRFLUNha1Q9wcqDlr0pWsKAlPC0yVmpSaeJJwn9KOrheQ==
-Date: Thu, 2 Nov 2023 17:57:13 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Alessandro Zummo <a.zummo@towertech.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Subject: Re: [PATCH v4 2/2] rtc: max31335: add driver support
-Message-ID: <20231102165713296ca50b@mail.local>
-References: <20231101094835.51031-1-antoniu.miclaus@analog.com>
- <20231101094835.51031-2-antoniu.miclaus@analog.com>
- <202311012223422e3387b3@mail.local>
- <CY4PR03MB3399BAAA3A3F6FC4B9A7A9FB9BA6A@CY4PR03MB3399.namprd03.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58E31DA2B;
+	Thu,  2 Nov 2023 17:02:48 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2112813A;
+	Thu,  2 Nov 2023 10:02:42 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A2FeGWX010878;
+	Thu, 2 Nov 2023 17:02:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=gsBsQo9gDD9IOvVzS0FvwfEweq3C/58AnmRRuIg7BgA=;
+ b=N7AWHaRg++8Gvzgi9jihUmtiBNZG16Ot0L4GM0xJPkEW63H7jAqRBy+vExWW0ylh5cMu
+ ysUrwnLxltIK/4hEfsAI0hFKseKlu1B0xiv3VEy5mEw80X+HLJOOGglpsu5swXV4cEdb
+ MfI32w+nWFmcwggwk27Kws0WSVI7KVjX3Hcf1g6YojeAe2QVafb/lyCsoZuwV4HQOpXN
+ XQeECkZZz7v/hpeDENL5A14ipxvp8H5A5GQj53R4SH2H5MboQ63W+KcZJOvLcSmK8wxT
+ pwYioUakoVqO+zov13Rvd6T+gS9+F941TOrmnHwLhIdD2jeFdFCyixYp3UeXSrYkVOwu RA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u3s6pat68-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 02 Nov 2023 17:02:27 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A2H2PYT031717
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 2 Nov 2023 17:02:25 GMT
+Received: from [10.249.8.135] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 2 Nov
+ 2023 10:02:19 -0700
+Message-ID: <960101cc-78c0-49cf-ab62-90614eeb9ee2@quicinc.com>
+Date: Thu, 2 Nov 2023 22:32:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
+ runtime
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+        Thinh Nguyen
+	<Thinh.Nguyen@synopsys.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-2-quic_kriskura@quicinc.com>
+ <272a9764-1cae-4d86-88b1-00175de83333@linaro.org>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <272a9764-1cae-4d86-88b1-00175de83333@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CY4PR03MB3399BAAA3A3F6FC4B9A7A9FB9BA6A@CY4PR03MB3399.namprd03.prod.outlook.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
-
-On 02/11/2023 13:44:16+0000, Miclaus, Antoniu wrote:
->  
-> > On 01/11/2023 11:48:14+0200, Antoniu Miclaus wrote:
-> > > +static int max31335_get_hour(u8 hour_reg)
-> > > +{
-> > > +	int hour;
-> > > +
-> > > +	/* 24Hr mode */
-> > > +	if (!FIELD_GET(MAX31335_HOURS_F_24_12, hour_reg))
-> > > +		return bcd2bin(hour_reg & 0x3f);
-> > > +
-> > > +	/* 12Hr mode */
-> > > +	hour = bcd2bin(hour_reg & 0x1f);
-> > > +	if (hour == 12)
-> > > +		hour = 0;
-> > > +
-> > 
-> > Do you really need to support 12h mode?
-> 
-> Is is a feature supported by the part, so I think is nice to have.
-> 
-
-Is anything on the system going to use it? This driver is not setting
-12h time so if there is no other component in the system accessing the
-time, there is no chance this is going to be used. Dead code is not nice
-to maintain.
-
-> > 
-> > > +	if (FIELD_GET(MAX31335_HOURS_HR_20_AM_PM, hour_reg))
-> > > +		hour += 12;
-> > > +
-> > > +	return hour;
-> > > +}
-> > > +
-> > > +static int max31335_read_offset(struct device *dev, long *offset)
-> > > +{
-> > > +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> > > +	u32 value;
-> > > +	int ret;
-> > > +
-> > > +	ret = regmap_read(max31335->regmap, MAX31335_AGING_OFFSET,
-> > &value);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	*offset = value;
-> > 
-> > This is super dubious, what is the unit of MAX31335_AGING_OFFSET ?
-> > 
-> 
-> There is not additional information on the AGING_OFFSET register (no
-> other offset registers).
-> I treated it as a raw value that user can write/read. Should I drop the 
-> offset implementation?
-> 
-
-The value exposed to userspace is in parts per billion. If you can't do
-the conversion, then you have to drop it.
-
-> > > +
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	if (diode)
-> > > +		i = i + 4;
-> > > +	else
-> > > +		i = i + 1;
-> > 
-> > Do you actually need to configure the trickle charger when there is
-> > nothing to charge?
-> 
-> These are the options for the trickle chager:
-> MAX31335_TRICKLE_REG_TRICKLE bits
-> 
-> 0x0: 3KΩ in series with a Schottky diode
-> 0x1: 3KΩ in series with a Schottky diode
-> 0x2: 6KΩ in series with a Schottky diode 
-> 0x3: 11KΩ in series with a Schottky diode
-> 0x4: 3KΩ in series with a diode+Schottky diode
-> 0x5: 3KΩ in series with a diode+Schottky diode
-> 0x6: 6KΩ in series with a diode+Schottky diode
-> 0x7: 11KΩ in series with a diode+Schottky diode
-> 
-
-Then you need a property to select with diodes you are going to use. The
-ABX80X supports something similar.
-
-> > 
-> > > +
-> > > +	return regmap_write(max31335->regmap, MAX31335_TRICKLE_REG,
-> > > +			    FIELD_PREP(MAX31335_TRICKLE_REG_TRICKLE, i) |
-> > > +				       MAX31335_TRICKLE_REG_EN_TRICKLE);
-> > > +}
-> > > +
-> > > +static int max31335_clkout_register(struct device *dev)
-> > > +{
-> > > +	struct max31335_data *max31335 = dev_get_drvdata(dev);
-> > > +	int ret;
-> > > +
-> > > +	if (!device_property_present(dev, "#clock-cells"))
-> > > +		return 0;
-> > 
-> > Is the clock output disabled by default?
-> 
-> No, I will disable it.
-
-The CCF is responsible to disable the clock, else you will have a glitch
-in the clock at boot time which will break use cases. But for this to
-work, you will have to always register the clock.
-
-> 
-> > 
-> > > +
-> > > +static int max31335_probe(struct i2c_client *client)
-> > > +{
-> > > +	struct max31335_data *max31335;
-> > > +	struct device *hwmon;
-> > > +	int ret;
-> > > +
-> > > +	max31335 = devm_kzalloc(&client->dev, sizeof(*max31335),
-> > GFP_KERNEL);
-> > > +	if (!max31335)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	max31335->regmap = devm_regmap_init_i2c(client,
-> > &regmap_config);
-> > > +	if (IS_ERR(max31335->regmap))
-> > > +		return PTR_ERR(max31335->regmap);
-> > > +
-> > > +	i2c_set_clientdata(client, max31335);
-> > > +
-> > > +	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 1);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = regmap_write(max31335->regmap, MAX31335_RTC_RESET, 0);
-> > > +	if (ret)
-> > > +		return ret;
-> > 
-> > What does this register do?
-> > 
-> 
-> RTC Software Reset Register: 
-> 0x0: Device is in normal mode.
-> 0x1: Resets the digital block and the I2C programmable registers except for
-> Timestamp/RAM registers and the SWRST bit. Oscillator is disabled.
-> 
-> The bit doesn't clear itself.
-> 
-
-Then you definitively don't want to do this, this will invalidate time
-and date as the oscillator is disabled and this renders the RTC useless.
-The whole point of the RTC is that it survives the reboot or shutdown of
-the system.
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: f2rf_tH3m84_VVWOfJQ8fUhn7B2RrSGj
+X-Proofpoint-ORIG-GUID: f2rf_tH3m84_VVWOfJQ8fUhn7B2RrSGj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-02_07,2023-11-02_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 phishscore=0 impostorscore=0 mlxscore=0
+ spamscore=0 suspectscore=0 clxscore=1011 bulkscore=0 mlxlogscore=818
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311020139
 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+On 11/2/2023 10:03 PM, Caleb Connolly wrote:
+> 
+> 
+> On 17/10/2023 14:18, Krishna Kurapati wrote:
+>> Add enable-rt binding to let the device register vendor hooks to
+>> core and facilitate runtime suspend and resume.
+> 
+> Hi Krishna,
+> 
+>  From reading through these patches, it's not clear to me why this 
+> behaviour should be conditional on a new devicetree property. Are there 
+> some platforms where this behaviour would be undesirable? And if so then 
+> would it be possible to determine this based on the QSCRATCH registers?
+>>
+
+Hi Caleb,
+
+   There are two types of platforms, some use extcon and some use 
+role-switch to deliver vbus/id notifications. Extcon targets already 
+have this qscratch modifications present today in vbus and id handlers. 
+But for role-switch based targets we don't have any way to get this 
+notification to dwc3-qcom. In this implementation, I wanted to get those 
+notications from core to glue and for this we implenented vendor hooks.
+
+The property added has been used to do two things:
+
+1. Register glue's vendor hooks to core driver
+2. Do runtime_allow for glue (and by default for core as the dt is not 
+flattened)
+
+In case of extcon, we don't want to register vendor hooks as 
+notifications are not necessary.
+
+For xhci, we opted to enable runtime from userspace.
+
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml 
+>> b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> index cb50261c6a36..788d9c510abc 100644
+>> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+>> @@ -151,6 +151,11 @@ properties:
+>>         HS/FS/LS modes are supported.
+>>       type: boolean
+>> +  qcom,enable-rt:
+>> +    description:
+>> +      If present, register vendor hooks to facilitate runtime 
+>> suspend/resume
+>> +    type: boolean
+> 
+> A Krzysztof pointed out, properties should define the hardware 
+> behaviour, not tot the implementation details. For this case the 
+> hardware isn't wired up to vbus, so maybe something like "qcom,no-vbus"?
+>> +
+
+On all targets, vbus is not routed to hardware. This vbus toggle 
+indication is given to controller via qscratch only.
+
+Regards,
+Krishna,
 
