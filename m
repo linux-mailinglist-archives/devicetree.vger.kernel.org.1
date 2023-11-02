@@ -1,66 +1,40 @@
-Return-Path: <devicetree+bounces-13603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2907DF313
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 14:00:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3FE7DF398
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 14:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1BAAB210C7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:00:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 158281C20B0A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 13:22:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7490B6FBE;
-	Thu,  2 Nov 2023 13:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OcW0Sxoh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01D013AF9;
+	Thu,  2 Nov 2023 13:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD8263AD
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 13:00:06 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E456FBD
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 06:00:02 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5435336ab0bso1509804a12.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 06:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698930001; x=1699534801; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7UIijsBokPQ3Ik9WO/jn5W1LYAuHXJVMrEPP6kOVn/s=;
-        b=OcW0Sxoh021AmjoTrG7TMeIpxu/gdCIJjgwrEJLXmmyJsKR8HVxusUCc3OFQWnqAH3
-         Y/8WjnLftxDTt9WC8vO6bLb37eD9FpFDMplhfTZ83NEVLtSm2JfSejbTmVZ3q8WXCzvR
-         mHuljsczpRj4GiK49c7lf+dM8RNzyg2hHBSvBo54D5jdDgxAcAQcAAH0t07eO3qMugVq
-         /SBQgTbCt2JjRdT3kTeMlRVIz/V2UVFK72zCY+8xZmTsN1YT5IkMbmZfAeaSb8s92NED
-         NQWDGbHAc8TJBqCYbCOL1mzkqiKVKfSEAIrMfByXooa5cjEvewhJYNKE9LVffuYU70zG
-         7pOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698930001; x=1699534801;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7UIijsBokPQ3Ik9WO/jn5W1LYAuHXJVMrEPP6kOVn/s=;
-        b=cw59pdqENp7KPbM6URXkTeGDuqV8V7Js2okjm/V9mRh1xpWOUpQOMb3W7hsxoA0jES
-         l0HujOeRaIXV/CVbFq+pZCZADXVuPVn9+vKvhavpvyYQHFCzf/7xjRJ0lZ7diW+OzGsm
-         /gmA0cyWkCoW8ICreduzzvlATlFnztLs018M42k+2balti7rc8oc0YrtGpd6M+mJqTwj
-         98Wr28SYufNuJjBuleYwbG36o3D1nC/AaKz4biFfdS17nfWU76hn5zpRNylgvC6zPCHH
-         bG0ZvzR/vRqycHWFlt6tt3QFKOGJbJZvpnefl9YTa6myl9etWEUK8B6VnRdiaxusBQSA
-         nTFA==
-X-Gm-Message-State: AOJu0Yws7ukAE/10Fekr+/IPuEevshn93qxEUOLYMY9sBDLUF73LSX0m
-	whqiZDkcj4dOvD5rQtOjzIYBng==
-X-Google-Smtp-Source: AGHT+IEsFX2E/00+0cMJyFay4zZ0avo4iUVUqug83gl0And8YaGIncS7KPrkyRst3C2718CMqqTZyA==
-X-Received: by 2002:aa7:c448:0:b0:53e:5dad:dce7 with SMTP id n8-20020aa7c448000000b0053e5daddce7mr15348496edr.29.1698930001393;
-        Thu, 02 Nov 2023 06:00:01 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id f6-20020a056402004600b00533e915923asm2277573edu.49.2023.11.02.06.00.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 06:00:00 -0700 (PDT)
-Message-ID: <121a8bb0-b15f-4de4-861f-4db46c845e3e@linaro.org>
-Date: Thu, 2 Nov 2023 13:59:59 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2ECA12B87
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 13:22:39 +0000 (UTC)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4A5D7;
+	Thu,  2 Nov 2023 06:22:35 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 73D7F24E3F6;
+	Thu,  2 Nov 2023 21:22:24 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 2 Nov
+ 2023 21:22:24 +0800
+Received: from [192.168.125.131] (113.72.146.247) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 2 Nov
+ 2023 21:22:23 +0800
+Message-ID: <72ad5029-42b2-481a-887f-8f6079d8859b@starfivetech.com>
+Date: Thu, 2 Nov 2023 21:15:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,76 +42,199 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: watchdog: qca,ar7130-wdt: convert txt to
- yaml
-To: Nik Bune <n2h9z4@gmail.com>, wim@linux-watchdog.org, linux@roeck-us.net,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- skhan@linuxfoundation.org, juhosg@openwrt.org
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231102123234.62350-1-n2h9z4@gmail.com>
+Subject: Re: [PATCH v7 2/3] clocksource: Add JH7110 timer driver
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner
+	<tglx@linutronix.de>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Christophe JAILLET
+	<christophe.jaillet@wanadoo.fr>
+CC: <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>, "Rob
+ Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Walker Chen
+	<walker.chen@starfivetech.com>, Samin Guo <samin.guo@starfivetech.com>,
+	<linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
+References: <20231019053501.46899-1-xingyu.wu@starfivetech.com>
+ <20231019053501.46899-3-xingyu.wu@starfivetech.com>
+ <3f76f965-7c7b-109e-2ee0-3033e332e84b@linaro.org>
+ <bb819333-52d3-49fc-9bb9-1a227bd5ca8f@starfivetech.com>
+ <d0e70434-e273-4799-c5ec-bbee1b3f5cc7@linaro.org>
+ <540136d4-6f8f-49a6-80ff-cc621f2f462b@starfivetech.com>
+ <65c38717-3e0c-46d3-a124-29cae48f1a2e@linaro.org>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231102123234.62350-1-n2h9z4@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <65c38717-3e0c-46d3-a124-29cae48f1a2e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [113.72.146.247]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-On 02/11/2023 13:32, Nik Bune wrote:
-> Convert txt file to yaml. Add maintainers from git blame. 
-> Drop qca,ar9330-wdt from example of compatible property
-> and leave only qca,ar7130-wdt, as description of property
-> mentioned must be qca,ar7130-wdt.
-> 
-> Signed-off-by: Nik Bune <n2h9z4@gmail.com>
-> ---
+On 2023/10/27 21:34, Daniel Lezcano wrote:
+>=20
+> On 27/10/2023 11:17, Xingyu Wu wrote:
+>> On 2023/10/25 22:39, Daniel Lezcano wrote:
+>>>
+>>> Hi Xingyu,
+>>>
+>>>
+>>> On 25/10/2023 11:04, Xingyu Wu wrote:
+>>>> On 2023/10/24 22:56, Daniel Lezcano wrote:
+>>>>>
+>>>>> Hi Xingyu,
+>>>>>
+>>>>>
+>>>>> On 19/10/2023 07:35, Xingyu Wu wrote:
+>>>>>> Add timer driver for the StarFive JH7110 SoC.
+>>>>>
+>>>>> As it is a new timer, please add a proper nice description
+>>>>> explaining the timer hardware, thanks.
+>>>>
+>>>> OK. Will add the description in next version.
+>>>>
+>>>>>
+>>>>>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com> --- MAINTAIN=
+ERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
+=C2=A0 7 + drivers/clocksource/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 11 + drivers/clocksource/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 + drivers/clocksource/timer-jh7110.c | 380
+>>>>>> +++++++++++++++++++++++++++++ 4 files changed, 399
+>>>>>> insertions(+) create mode 100644
+>>>>>> drivers/clocksource/timer-jh7110.c
+>>>>>>
+>>>>>> diff --git a/MAINTAINERS b/MAINTAINERS index
+>>>>>> 7a7bd8bd80e9..91c09b399131 100644 --- a/MAINTAINERS +++
+>>>>>> b/MAINTAINERS @@ -20473,6 +20473,13 @@ S:=C2=A0=C2=A0=C2=A0 Mainta=
+ined F:
+>>>>>> Documentation/devicetree/bindings/sound/starfive,jh7110-tdm.yaml
+>>>>>>
+>>>>>>
+> F:=C2=A0=C2=A0=C2=A0 sound/soc/starfive/jh7110_tdm.c
+>>>>>> +STARFIVE JH7110 TIMER DRIVER +M:=C2=A0=C2=A0=C2=A0 Samin Guo
+>>>>>> <samin.guo@starfivetech.com> +M:=C2=A0=C2=A0=C2=A0 Xingyu Wu
+>>>>>> <xingyu.wu@starfivetech.com> +S:=C2=A0=C2=A0=C2=A0 Supported +F:
+>>>>>> Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+>>>>>>
+>>>>>>
+> +F:=C2=A0=C2=A0=C2=A0 drivers/clocksource/timer-jh7110.c
+>>>>>> + STARFIVE JH71X0 CLOCK DRIVERS M:=C2=A0=C2=A0=C2=A0 Emil Renner B=
+erthing
+>>>>>> <kernel@esmil.dk> M:=C2=A0=C2=A0=C2=A0 Hal Feng <hal.feng@starfive=
+tech.com> diff --git a/drivers/clocksource/Kconfig
+>>>>>> b/drivers/clocksource/Kconfig index
+>>>>>> 0ba0dc4ecf06..821abcc1e517 100644 ---
+>>>>>> a/drivers/clocksource/Kconfig +++
+>>>>>> b/drivers/clocksource/Kconfig @@ -641,6 +641,17 @@ config
+>>>>>> RISCV_TIMER is accessed via both the SBI and the rdcycle
+>>>>>> instruction.=C2=A0 This is required for all RISC-V systems. +confi=
+g STARFIVE_JH7110_TIMER +=C2=A0=C2=A0=C2=A0 bool "Timer for the
+>>>>>> STARFIVE JH7110 SoC" +=C2=A0=C2=A0=C2=A0 depends on ARCH_STARFIVE =
+||
+>>>>>> COMPILE_TEST
+>>>>>
+>>>>> You may want to use ARCH_STARFIVE only if the platform can make
+>>>>> this timer optional. Otherwise, set the option from the
+>>>>> platform Kconfig and put the bool "bla bla" if COMPILE_TEST
+>>>>
+>>>> Yes, this timer only be used on the StarFive SoC. So I intend to
+>>>> modify to this:
+>>>>
+>>>> bool "Timer for the STARFIVE JH7110 SoC" if COMPILE_TEST depends
+>>>> on ARCH_STARFIVE
+>>>
+>>> In this case, you should change the platform config and select the
+>>> timer from there. Remove the depends on ARCH_STARFIVE so it is
+>>> possible enable cross test compilation. Otherwise COMPILE_TEST will
+>>> not work on other platforms.
+>>>
+>>> [ ... ]
+>>>
+>>
+>> It is not a kernel timer or clocksource. It will not work on other
+>> platforms and is just used on the JH7110 SoC. I think I needn't
+>> remove it. Maybe I modify to this:
+>>
+>> bool "Timer for the STARFIVE JH7110 SoC" if COMPILE_TEST depends on
+>> ARCH_STARFIVE || COMPILE_TEST
+>=20
+> I think there is a misunderstanding.
+>=20
+> If we want to compile on x86 drivers for other platforms, we select COM=
+PILE_TEST so we can enable the timer and do compilation testing.
+>=20
+> In this case, we may want to compile the STARFIVE JH7110 on x86 just to=
+ double check it is correctly compiling (eg. we do changes impacting all =
+the drivers). If the ARCH_STARFIVE dependency is set, then that won't be =
+possible.
+>=20
+> So it should be:
+>=20
+> bool "Timer for the STARFIVE JH7110 SoC" if COMPILE_TEST
+> ...
+>=20
+> And in arch/riscv/Kconfig.socs
+>=20
+> config SOC_STARFIVE
+> =C2=A0=C2=A0=C2=A0 ...
+> =C2=A0=C2=A0=C2=A0 select STARFIVE_JH7110_TIMER
+> =C2=A0=C2=A0=C2=A0 ...
+>=20
+>>>>>> +struct jh7110_clkevt { +=C2=A0=C2=A0=C2=A0 struct clock_event_dev=
+ice evt; +
+>>>>>> struct clocksource cs; +=C2=A0=C2=A0=C2=A0 bool cs_is_valid; +=C2=A0=
+=C2=A0=C2=A0 struct clk
+>>>>>> *clk; +=C2=A0=C2=A0=C2=A0 struct reset_control *rst; +=C2=A0=C2=A0=
+=C2=A0 u32 rate; +=C2=A0=C2=A0=C2=A0 u32
+>>>>>> reload_val; +=C2=A0=C2=A0=C2=A0 void __iomem *base; +=C2=A0=C2=A0=C2=
+=A0 char
+>>>>>> name[sizeof("jh7110-timer.chX")]; +}; + +struct
+>>>>>> jh7110_timer_priv { +=C2=A0=C2=A0=C2=A0 struct clk *pclk; +=C2=A0=C2=
+=A0=C2=A0 struct
+>>>>>> reset_control *prst; +=C2=A0=C2=A0=C2=A0 struct jh7110_clkevt
+>>>>>> clkevt[JH7110_TIMER_CH_MAX];
+>>>>>
+>>>>> Why do you need several clock events and clock sources ?
+>>>>
+>>>> This timer has four counters (channels) which run independently.
+>>>> So each counter can have its own clock event and clock source to
+>>>> configure different settings.
+>>>
+>>> The kernel only needs one clocksource. Usually multiple clockevents
+>>> are per-cpu based system.
+>>>
+>>> The driver does not seem to have a per cpu timer but just
+>>> initializing multiple clockevents which will end up unused, wasting
+>>> energy.
+>>>
+>>>
+>>
+>> The board of the StarFive JH7110 SoC has two types of timer :
+>> riscv-timer and jh7110-timer. It boots by riscv-timer(clocksource)
+>> and the jh7110-timer is optional and additional. I think I should
+>> initialize the four channels of jh7110-timer as clockevents not
+>> clocksource pre-cpu.
+>=20
+> If no clocksource is needed on this SoC because riscv timers are used, =
+then it is not useful to register a clocksource for this timer and the co=
+rresponding code can go away.
+>=20
+> If the clockevent is optional why do you need this driver at all?
+>=20
+>=20
+>=20
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Daniel,
 
-Best regards,
-Krzysztof
+Sorry, maybe I didn't express it clearly enough. I use this jh7110-timer =
+as a global timer on the SoC and riscv-timer as cpu local timer. So these=
+ are something different.
 
+These four counters in this jh7110-timer are exactly the same and indepen=
+dent of each other. If this timer is used as a global timer, do I use onl=
+y one or all of the counters to register clocksource and clockevent?
+
+Thanks,
+Xingyu Wu
 
