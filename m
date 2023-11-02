@@ -1,238 +1,109 @@
-Return-Path: <devicetree+bounces-13655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1DA7DFAD3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 20:21:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FA067DFAE9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 20:31:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DED33B20F42
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 19:21:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A91F81C20F69
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 19:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F8721362;
-	Thu,  2 Nov 2023 19:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBA02136A;
+	Thu,  2 Nov 2023 19:31:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iSB0J4lx"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="fALMgy1s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49AD82135D;
-	Thu,  2 Nov 2023 19:21:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82C412D;
-	Thu,  2 Nov 2023 12:21:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698952890; x=1730488890;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4aDocD7TV5qDTqX6O/0RElVFY8KP0asSIkNfWDNs/9s=;
-  b=iSB0J4lxgDB5cMq9Qs8vUJUfAZRjCEvP232d/C1zwTLYyD+vHyd+HHpN
-   Re7bRGG1vBN5e2do2/dOuNSJCc3hRrXvDYGjl+tXt8XjLLLdPai1BdxaQ
-   k6d7IwW7+43krM/eziHO3tsU9Rk9igrDwr30oeuDZ0bL15qQu2yIYqzrT
-   UoB1NWnYlNb4MQMvtYRwmKoXc7SKy3c0lyTrsyGQggoGVoYkhFBb1R9o/
-   71DI1FztGcVBVUQn2/bSkkzEuXYXiGLVOLwh7kZafzgmdNccuTtbdFmGg
-   sJ0bPS19h5FbGKcR2d8FwPXBRfTCONr8ZvxUIDKCIEOpJE8TQ2Z0avnDy
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="387671513"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
-   d="scan'208";a="387671513"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 12:21:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="737855631"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
-   d="scan'208";a="737855631"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 02 Nov 2023 12:21:25 -0700
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qydFr-0001nk-12;
-	Thu, 02 Nov 2023 19:21:23 +0000
-Date: Fri, 3 Nov 2023 03:21:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	Robert Marko <robimarko@gmail.com>
-Subject: Re: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load
- support
-Message-ID: <202311030347.asaThH7R-lkp@intel.com>
-References: <20231101123608.11157-1-ansuelsmth@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A35028FA
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 19:31:43 +0000 (UTC)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A842E7;
+	Thu,  2 Nov 2023 12:31:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=MMBoaFWvHyo5+Qwqx08k6Bz/JCRvP050Pf0KsFHli4Q=; b=fALMgy1syvvh+xxmUWxQp9t80L
+	tISZ3BtlrZ5jbtrh7VnbRmJxO7qr1efiaffe9YAh1z1uhUGu/I70xgodQjbYkemiYIrQGNCIHLSnN
+	ze0TjXa/cRhf45rCW9B3xd8y9ocS5ZmMn7xpFeWSl0JpKCpeF6yTrC71Tq4gHOwq7VaA=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:46024 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1qydPY-00042s-CR; Thu, 02 Nov 2023 15:31:29 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	leoyang.li@nxp.com,
+	robh@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	hugo@hugovil.com,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date: Thu,  2 Nov 2023 15:31:18 -0400
+Message-Id: <20231102193121.1676000-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231101123608.11157-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+Subject: [PATCH v3 0/3] board: imx8mn-rve-gateway: add support for RVE gateway board
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Hi Christian,
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-kernel test robot noticed the following build warnings:
+Hello,
+this patch series add support for the RVE gateway board.
 
-[auto build test WARNING on net-next/main]
+Thank you.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-Document-bindings-for-Marvell-Aquantia-PHY/20231101-203944
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231101123608.11157-1-ansuelsmth%40gmail.com
-patch subject: [net-next PATCH v2 1/2] net: phy: aquantia: add firmware load support
-config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20231103/202311030347.asaThH7R-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231103/202311030347.asaThH7R-lkp@intel.com/reproduce)
+Link: [v1] https://lore.kernel.org/all/20231101144303.2653464-1-hugo@hugovil.com/raw
+           https://lore.kernel.org/all/20231101144057.2653271-1-hugo@hugovil.com/raw
+      [v2] https://lore.kernel.org/all/20231101183549.2960083-1-hugo@hugovil.com/raw
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311030347.asaThH7R-lkp@intel.com/
+Changes for V2:
+- Combine separate patches as a series. Start series at 2 to avoid confusion.
 
-All warnings (new ones prefixed by >>):
+Changes for V3:
+- Fix coding style / indentation
+- Change vmmc supply for usdhc2 node
+- Disable uart2 node instead of removing it.
+- Remove MAINTAINERS board entry
+- Add SOM compatible string
+- Drop some status = "okay"
 
-   drivers/net/phy/aquantia_main.c: In function 'aqr_fw_boot':
->> drivers/net/phy/aquantia_main.c:857:13: warning: the address of 'version' will always evaluate as 'true' [-Waddress]
-     857 |         if (!version) {
-         |             ^
-   during RTL pass: mach
-   drivers/net/phy/aquantia_main.c: In function 'aqr107_chip_info':
-   drivers/net/phy/aquantia_main.c:619:1: internal compiler error: in arc_ifcvt, at config/arc/arc.cc:9703
-     619 | }
-         | ^
-   0x5b78c1 arc_ifcvt
-   	/tmp/build-crosstools-gcc-13.2.0-binutils-2.41/gcc/gcc-13.2.0/gcc/config/arc/arc.cc:9703
-   0xe431b4 arc_reorg
-   	/tmp/build-crosstools-gcc-13.2.0-binutils-2.41/gcc/gcc-13.2.0/gcc/config/arc/arc.cc:8552
-   0xaed299 execute
-   	/tmp/build-crosstools-gcc-13.2.0-binutils-2.41/gcc/gcc-13.2.0/gcc/reorg.cc:3927
-   Please submit a full bug report, with preprocessed source (by using -freport-bug).
-   Please include the complete backtrace with any bug report.
-   See <https://gcc.gnu.org/bugs/> for instructions.
+Hugo Villeneuve (3):
+  dt-bindings: vendor-prefixes: add rve
+  dt-bindings: arm: fsl: add RVE gateway board
+  arm64: dts: freescale: introduce rve-gateway board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8mn-rve-gateway.dts | 282 ++++++++++++++++++
+ 4 files changed, 286 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
 
 
-vim +857 drivers/net/phy/aquantia_main.c
-
-   789	
-   790	static int aqr_fw_boot(struct phy_device *phydev, const u8 *data, size_t size)
-   791	{
-   792		const struct aqr_fw_header *header;
-   793		u32 iram_offset = 0, iram_size = 0;
-   794		u32 dram_offset = 0, dram_size = 0;
-   795		char version[VERSION_STRING_SIZE];
-   796		u16 calculated_crc, read_crc;
-   797		u32 primary_offset = 0;
-   798		int ret;
-   799	
-   800		/* extract saved CRC at the end of the fw */
-   801		memcpy(&read_crc, data + size - 2, sizeof(read_crc));
-   802		/* CRC is saved in big-endian as PHY is BE */
-   803		read_crc = be16_to_cpu(read_crc);
-   804		calculated_crc = crc_ccitt_false(0, data, size - 2);
-   805		if (read_crc != calculated_crc) {
-   806			phydev_err(phydev, "bad firmware CRC: file 0x%04x calculated 0x%04x\n",
-   807				   read_crc, calculated_crc);
-   808			return -EINVAL;
-   809		}
-   810	
-   811		/* Get the primary offset to extract DRAM and IRAM sections. */
-   812		memcpy(&primary_offset, data + PRIMARY_OFFSET_OFFSET, sizeof(u16));
-   813		if (!primary_offset) {
-   814			phydev_err(phydev, "bad primary offset in firmware\n");
-   815			return -EINVAL;
-   816		}
-   817		primary_offset = PRIMARY_OFFSET(le32_to_cpu(primary_offset));
-   818	
-   819		/* Find the DRAM and IRAM sections within the firmware file. */
-   820		header = (struct aqr_fw_header *)(data + primary_offset + HEADER_OFFSET);
-   821		memcpy(&iram_offset, &header->iram_offset, sizeof(u8) * 3);
-   822		if (!iram_offset) {
-   823			phydev_err(phydev, "bad iram offset in firmware\n");
-   824			return -EINVAL;
-   825		}
-   826		memcpy(&iram_size, &header->iram_size, sizeof(u8) * 3);
-   827		if (!iram_size) {
-   828			phydev_err(phydev, "invalid iram size in firmware\n");
-   829			return -EINVAL;
-   830		}
-   831		memcpy(&dram_offset, &header->dram_offset, sizeof(u8) * 3);
-   832		if (!dram_offset) {
-   833			phydev_err(phydev, "bad dram offset in firmware\n");
-   834			return -EINVAL;
-   835		}
-   836		memcpy(&dram_size, &header->dram_size, sizeof(u8) * 3);
-   837		if (!dram_size) {
-   838			phydev_err(phydev, "invalid dram size in firmware\n");
-   839			return -EINVAL;
-   840		}
-   841	
-   842		/* offset are in LE and values needs to be converted to cpu endian */
-   843		iram_offset = le32_to_cpu(iram_offset);
-   844		iram_size = le32_to_cpu(iram_size);
-   845		dram_offset = le32_to_cpu(dram_offset);
-   846		dram_size = le32_to_cpu(dram_size);
-   847	
-   848		/* Increment the offset with the primary offset. */
-   849		iram_offset += primary_offset;
-   850		dram_offset += primary_offset;
-   851	
-   852		phydev_dbg(phydev, "primary %d IRAM offset=%d size=%d DRAM offset=%d size=%d\n",
-   853			   primary_offset, iram_offset, iram_size, dram_offset, dram_size);
-   854	
-   855		strscpy(version, (char *)data + dram_offset + VERSION_STRING_OFFSET,
-   856			VERSION_STRING_SIZE);
- > 857		if (!version) {
-   858			phydev_err(phydev, "invalid version in firmware\n");
-   859			return -EINVAL;
-   860		}
-   861		phydev_info(phydev, "loading firmware version '%s'\n", version);
-   862	
-   863		/* stall the microcprocessor */
-   864		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_CONTROL2,
-   865			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL | VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD);
-   866	
-   867		phydev_dbg(phydev, "loading DRAM 0x%08x from offset=%d size=%d\n",
-   868			   DRAM_BASE_ADDR, dram_offset, dram_size);
-   869		ret = aquantia_load_memory(phydev, DRAM_BASE_ADDR, data + dram_offset,
-   870					   dram_size);
-   871		if (ret)
-   872			return ret;
-   873	
-   874		phydev_dbg(phydev, "loading IRAM 0x%08x from offset=%d size=%d\n",
-   875			   IRAM_BASE_ADDR, iram_offset, iram_size);
-   876		ret = aquantia_load_memory(phydev, IRAM_BASE_ADDR, data + iram_offset,
-   877					   iram_size);
-   878		if (ret)
-   879			return ret;
-   880	
-   881		/* make sure soft reset and low power mode are clear */
-   882		phy_clear_bits_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_SC,
-   883				   VEND1_GLOBAL_SC_SOFT_RESET | VEND1_GLOBAL_SC_LOW_POWER);
-   884	
-   885		/* Release the microprocessor. UP_RESET must be held for 100 usec. */
-   886		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_CONTROL2,
-   887			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL |
-   888			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD |
-   889			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_RST);
-   890		usleep_range(UP_RESET_SLEEP, UP_RESET_SLEEP * 2);
-   891	
-   892		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_CONTROL2,
-   893			      VEND1_GLOBAL_CONTROL2_UP_RUN_STALL_OVD);
-   894	
-   895		return 0;
-   896	}
-   897	
-
+base-commit: 4652b8e4f3ffa48c706ec334f048c217a7d9750d
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.2
+
 
