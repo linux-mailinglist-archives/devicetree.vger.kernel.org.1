@@ -1,118 +1,106 @@
-Return-Path: <devicetree+bounces-13667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED5A7DFBA0
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 21:39:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 527877DFBCE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 22:00:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC257281D2E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 20:39:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C9061C20F7D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 21:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9434C11736;
-	Thu,  2 Nov 2023 20:39:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A641DDE9;
+	Thu,  2 Nov 2023 21:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X3R5u0l6"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JZIyIVCw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E0FD208CC;
-	Thu,  2 Nov 2023 20:39:34 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A922181;
-	Thu,  2 Nov 2023 13:39:33 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c5028e5b88so19453081fa.3;
-        Thu, 02 Nov 2023 13:39:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BE41D680
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 21:00:27 +0000 (UTC)
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E3818E
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 14:00:22 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6c10f098a27so1294791b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 14:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1698957571; x=1699562371; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=grYQIWgbXucL1+7FC1aZjuyPVvNYgF4xifW6xFLOhH8=;
-        b=X3R5u0l6B4WCxarz67HYg8Wky5p7NHsh6+0oQX+0KTj35uRkeaYnD/IAy+SmcylRmH
-         +0MjnjmdiHZMQ3/CI5MeD8QcVzoaTKAQ5RdhSCr/UPjykBDS8c3vZO3lGAv+6dGOcMaC
-         YEMlHRNKe/M53qdWOlXchJpWuoHIMxwOm74/C/D9AeWRsVSwCSk04YMiIe3fVnuuodzY
-         lE8z9lUk/7avYqtY+ZkmRkc9V+soRGO6sdtbDJHtzszsKsJ44hcR7Wq6dqUWRz0tpxHN
-         vbYry6WgH2S7KqGdg6O5fXN0e7ktPuNdl3v6Fa0O/RNCO1iwvI2/MFxItPxg+BiIndoQ
-         N7tw==
+        d=chromium.org; s=google; t=1698958822; x=1699563622; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=E8KFumTag/+mfUr046qXGDZHDIauHHYyGcdwD8EXFRY=;
+        b=JZIyIVCwD0ECTxQVk3G1/Ci2yYOqLuqNmMu2KPCbmd4HFX/q2nNzTTZYxyfmFDLYg0
+         bgFDBtojDff9NEPVAdbup66Ulfsc/yAOnuKDctVk7jf6dalWD5meSdtrbkSTA7uqjiZK
+         3UFg71SQe1vaYzXXRWpxMU9Kz777urhB4z6ts=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698957571; x=1699562371;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=grYQIWgbXucL1+7FC1aZjuyPVvNYgF4xifW6xFLOhH8=;
-        b=Xv+Ge+FlmMGGru3QhpwoOcAfDuyndovIAjuDeTLdjrYmRjHwGVag04M80bNh4LKv3v
-         lUGy7aO4l4/gK+v4xe5y/K+uvZxN2oMURxhDP/yxPx07DuAEYIyoDCmnvGfsM9g5FPj/
-         ZE0WaJbS0NYebVgaNguO8KehWVqYhXLcMuQw+pqEeK8r9mH7DNjWuZJ52Qit3UwIWFEr
-         xSk7Zx98abjIEXA0svpkIuKcRTkcfMtlrSwgsVCR0IBPnPRoJoOfdMXVQcIRu8ELSEFO
-         P6q7GhnUaOPwa/Gss8aDLrSWNg6bLtZrqZom2KDdz/21fdYSfIemtFtUgWskh0U5vcsP
-         mhhg==
-X-Gm-Message-State: AOJu0YyhKvankdyQdOwHz/+kEKBc67C6ht8RJ6uV+p6LVBF6Ge5k/d+b
-	oFcl2f/rPwjMLsFRx1I9J2o=
-X-Google-Smtp-Source: AGHT+IF78CK3Pd6QAPRZgbcYPcc9m7luJi71eDeYjOsgXNFou2RfWXhSxNNo4RMpfDsdPbxLJmKuJA==
-X-Received: by 2002:a2e:b53c:0:b0:2bf:b133:dd65 with SMTP id z28-20020a2eb53c000000b002bfb133dd65mr14376270ljm.38.1698957570956;
-        Thu, 02 Nov 2023 13:39:30 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:fc00:5a9d:a85b:5d31])
-        by smtp.gmail.com with ESMTPSA id d8-20020a05600c34c800b0040770ec2c19sm270175wmq.10.2023.11.02.13.39.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Nov 2023 13:39:30 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Vinod Koul <vkoul@kernel.org>,
+        d=1e100.net; s=20230601; t=1698958822; x=1699563622;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E8KFumTag/+mfUr046qXGDZHDIauHHYyGcdwD8EXFRY=;
+        b=mZuns8JOGwE+WM0Pez18Z2B9zVUjwoqx2YId6g70qI/6SPkU8Exx15nSyIkC06DDK1
+         aQQ8mV7S7o/eltQFzoqzkrxCHLAgKgmtJk1530a59GXMjlbmg/6HmXwBb1RTHLH6qX8c
+         xfpKm5xZBm/aUb026dxrG8Tghq+G4XWbvB3tWHRm6MU34CJ9ekF33gYE2JOIFFTnmZcO
+         5M1CB7eV1JAdf9X+dcJ1unhPkmsxevl0Bewp8LA8+7xdYtCdoV2WRqtMQJ+G1Uy6PP5A
+         YbkDUVipGeeSKfblZkVWkDvA5S8MxQZRVowtgGmNdRM3ew30J4T0i+LxmrT2aq+/Wz7y
+         fNgg==
+X-Gm-Message-State: AOJu0Yw4MDbtFNyb8RmiWfTG2bBomHVqcr76sOiZG+sqxNIW7tVl333N
+	+sr3Bws+R3h5llgUcayenUGZ4A==
+X-Google-Smtp-Source: AGHT+IHpWfHMpmZgu3Ki0ANwOyVLt9nZosdSKPzywMjZQkoftSaNFtV+rbheqzdq77GxD/borUX1wg==
+X-Received: by 2002:a05:6a21:18a:b0:181:74fe:ba83 with SMTP id le10-20020a056a21018a00b0018174feba83mr5241243pzb.40.1698958822357;
+        Thu, 02 Nov 2023 14:00:22 -0700 (PDT)
+Received: from localhost ([2620:15c:9d:2:a601:95c2:1e12:1936])
+        by smtp.gmail.com with UTF8SMTPSA id b7-20020a62cf07000000b0068842ebfd10sm174384pfg.160.2023.11.02.14.00.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Nov 2023 14:00:20 -0700 (PDT)
+Date: Thu, 2 Nov 2023 14:00:17 -0700
+From: Brian Norris <briannorris@chromium.org>
+To: Karel Balej <balejk@matfyz.cz>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] dt-bindings: dma: rz-dmac: Document RZ/Five SoC
-Date: Thu,  2 Nov 2023 20:39:22 +0000
-Message-Id: <20231102203922.548353-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 0/2] net: mwifiex: add support for the SD8777 chipset
+Message-ID: <ZUQN4Ua8byy-Fsy8@google.com>
+References: <20231029111807.19261-1-balejk@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231029111807.19261-1-balejk@matfyz.cz>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Sun, Oct 29, 2023 at 12:08:15PM +0100, Karel Balej wrote:
+> The driver requires proprietary firmware which is not yet part of
+> linux-firmware, but it is packaged in postmarketOS.
 
-The DMAC block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-SoC. "renesas,r9a07g043-dmac" compatible string will be used on the
-RZ/Five SoC so to make this clear, update the comment to include RZ/Five
-SoC.
+You gotta get that done:
 
-No driver changes are required as generic compatible string
-"renesas,rz-dmac" will be used as a fallback on RZ/Five SoC.
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches#new_driver
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+"have firmware images submitted for linux-firmware with an acceptable
+license allowing redistribution"
 
-diff --git a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-index c284abc6784a..a42b6a26a6d3 100644
---- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-@@ -16,7 +16,7 @@ properties:
-   compatible:
-     items:
-       - enum:
--          - renesas,r9a07g043-dmac # RZ/G2UL
-+          - renesas,r9a07g043-dmac # RZ/G2UL and RZ/Five
-           - renesas,r9a07g044-dmac # RZ/G2{L,LC}
-           - renesas,r9a07g054-dmac # RZ/V2L
-       - const: renesas,rz-dmac
--- 
-2.34.1
+We can't have a driver requesting a mrvl/sd8777_uapsta.bin firmware that
+isn't available for anyone [1].
 
+Until that's done, NAK.
+
+[1] I think you might be referring to this:
+https://github.com/xcover3/android_vendor_samsung_xcover3lte/commit/6e324b43b32dc607327d89148dd5d83a14429ee6
+
+But I don't see any license info, so I don't think that's going to be
+appropriate for linux-firmware.
 
