@@ -1,108 +1,132 @@
-Return-Path: <devicetree+bounces-13642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D1B7DF709
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:50:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B81537DF7C8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 17:34:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AF4CB20A68
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:50:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E21441C20FD3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79FC1D52A;
-	Thu,  2 Nov 2023 15:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD62D1DA5E;
+	Thu,  2 Nov 2023 16:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uFE0xkaq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wOiwZgvY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52F21D523;
-	Thu,  2 Nov 2023 15:49:58 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3E3192;
-	Thu,  2 Nov 2023 08:49:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1mL40+ExHNZuGaOB+rQdlmEOkODuu6jCTNDp6aVzkic=; b=uFE0xkaqy6iZ53No0pBhtodBPX
-	h/9SjeSRIwhwfwJFnK07vJv5ibpiyHuCps5CLD9qlsDJVRzhq56OVCo28GXOkaI5GaNn3MrTy8Pf4
-	lZzRMm+5Tvae5bkpZrVc/f1sqADUwinAG6Wi2EJamJvSu46rAh9ORfk+SmEvP7BnoB+Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1qyZwg-000lND-68; Thu, 02 Nov 2023 16:49:22 +0100
-Date: Thu, 2 Nov 2023 16:49:22 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Robert Marko <robimarko@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v3 1/4] net: phy: aquantia: move to separate
- directory
-Message-ID: <3af56cbe-dd9a-4747-b7a7-376367df6f79@lunn.ch>
-References: <20231102150032.10740-1-ansuelsmth@gmail.com>
- <5f60b2dc-4e97-49dc-8427-306400fb1b71@lunn.ch>
- <6543bb3e.df0a0220.385df.cdb1@mx.google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5079121348
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 16:34:39 +0000 (UTC)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C083E12D
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 09:34:33 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-32faea0fa1fso468663f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 09:34:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1698942872; x=1699547672; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Pf6+egC7wEh4Nlc1mgScW1ILeruY7HuDBJxg1UYN0M8=;
+        b=wOiwZgvYjp0ReUvC7YBIm7zrAbvhsX9u6tIY88Jjbi4O+9wV7ld+3jsEQEswvqh0H9
+         zp++/Vt6Afq33RULvZujOdvwM1m40TwB8y86rMrl4wiBKUw5z8EBpeNc+arH9uLzGm90
+         +QQ9nvAtzMxA6fXxBXTClxg5IStN5tJS8bXx6zxNPAGuWqI+EbbfUGN7AZrOh4QHHcPQ
+         MFpLNxMHIXEGbgExIw35dNUXYM7m8lAjwWz1akGzeaiywwF+bmLOXdjQOfKGfBPWcTXs
+         6kii7jC9qDL1YF9hECl9Nurh3gyPTiQ6M2LihI4cmG53hZQTIIs2yp5r8Lze9moau5Mz
+         jUQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698942872; x=1699547672;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pf6+egC7wEh4Nlc1mgScW1ILeruY7HuDBJxg1UYN0M8=;
+        b=SiJ1E0kdtY7mQq6AURZUTeXFiYeUWlO1p5vGl53G/B509+gLuaWynhiyUA3B/Psh7Y
+         YkjQDJRZwiNw89pfh3CKZeL4p3K8t+/EqG/73cMc3G89EiDB32aaybdvUsjPjNVVFlDd
+         ADYjWGkHxV9Bo4uS/UOVBLwt0BJpeUoHnj0aM06DOXjT6DgijuQ25ERpfcgqCH/igp5u
+         1RKfU0abtXH8ZLEHz5IT9pQ2bqjpB5fX9etClmuoJTrHyM78hvXlNmC/xqe3w8nhxABB
+         fZ2edsegKKthKiMnO7RWpKpx1HT4Hnaf5g/9YrodD7zKTVdLWzqIywjRhrtIInPNTYgi
+         Kk6g==
+X-Gm-Message-State: AOJu0YzwKvllHdyfaAFnDdp0Zu3uDIm+c2gViISpj7VaE0t92mtXVRXN
+	P5RO35RvPO8dRB/FQD2YwuP8Ag==
+X-Google-Smtp-Source: AGHT+IGtoGUpxxIbCzigG2VX+swrGvRJcm+9x+JnerHx+hb4qtVy636oxKeC9OepR+OM/OtMm1CkVg==
+X-Received: by 2002:a5d:6d06:0:b0:32f:8b51:3708 with SMTP id e6-20020a5d6d06000000b0032f8b513708mr34589wrq.2.1698942872155;
+        Thu, 02 Nov 2023 09:34:32 -0700 (PDT)
+Received: from [192.168.67.140] (92.40.204.238.threembb.co.uk. [92.40.204.238])
+        by smtp.gmail.com with ESMTPSA id j20-20020a05600c191400b00407752bd834sm25019wmq.1.2023.11.02.09.33.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Nov 2023 09:34:16 -0700 (PDT)
+Message-ID: <272a9764-1cae-4d86-88b1-00175de83333@linaro.org>
+Date: Thu, 2 Nov 2023 16:33:19 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6543bb3e.df0a0220.385df.cdb1@mx.google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
+ runtime
+Content-Language: en-US
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, quic_wcheng@quicinc.com
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-2-quic_kriskura@quicinc.com>
+From: Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20231017131851.8299-2-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 02, 2023 at 04:07:41PM +0100, Christian Marangi wrote:
-> On Thu, Nov 02, 2023 at 04:03:33PM +0100, Andrew Lunn wrote:
-> > > diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> > > index 421d2b62918f..4b2451dd6c45 100644
-> > > --- a/drivers/net/phy/Kconfig
-> > > +++ b/drivers/net/phy/Kconfig
-> > > @@ -68,6 +68,8 @@ config SFP
-> > >  
-> > >  comment "MII PHY device drivers"
-> > >  
-> > > +source "drivers/net/phy/aquantia/Kconfig"
-> > > +
-> > >  config AMD_PHY
-> > >  	tristate "AMD and Altima PHYs"
-> > >  	help
-> > > @@ -96,11 +98,6 @@ config ADIN1100_PHY
-> > >  	  Currently supports the:
-> > >  	  - ADIN1100 - Robust,Industrial, Low Power 10BASE-T1L Ethernet PHY
-> > >  
-> > > -config AQUANTIA_PHY
-> > > -	tristate "Aquantia PHYs"
-> > > -	help
-> > > -	  Currently supports the Aquantia AQ1202, AQ2104, AQR105, AQR405
-> > > -
-> > 
-> > Does this move the PHY in the make menuconfig menu? We try to keep it
-> > sorted based on the tristate string.
-> >
+
+
+On 17/10/2023 14:18, Krishna Kurapati wrote:
+> Add enable-rt binding to let the device register vendor hooks to
+> core and facilitate runtime suspend and resume.
+
+Hi Krishna,
+
+ From reading through these patches, it's not clear to me why this 
+behaviour should be conditional on a new devicetree property. Are there 
+some platforms where this behaviour would be undesirable? And if so then 
+would it be possible to determine this based on the QSCRATCH registers?
 > 
-> Oh wasn't aware... Yes it does move it to the top of the list... I can
-> just move the source entry where AQUANTIA_PHY was...
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>   Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index cb50261c6a36..788d9c510abc 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -151,6 +151,11 @@ properties:
+>         HS/FS/LS modes are supported.
+>       type: boolean
+>   
+> +  qcom,enable-rt:
+> +    description:
+> +      If present, register vendor hooks to facilitate runtime suspend/resume
+> +    type: boolean
 
-Yes, that would be best.
+A Krzysztof pointed out, properties should define the hardware 
+behaviour, not tot the implementation details. For this case the 
+hardware isn't wired up to vbus, so maybe something like "qcom,no-vbus"?
+> +
+>     wakeup-source: true
+>   
+>   # Required child node:
 
-Thanks
-
-    Andrew
-
----
-pw-bot: cr
-
+-- 
+// Caleb (they/them)
 
