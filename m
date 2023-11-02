@@ -1,145 +1,128 @@
-Return-Path: <devicetree+bounces-13530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DAD7DEADF
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 03:49:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A00387DEB30
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 04:12:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC8AD1C20901
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 02:49:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59ECE281888
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 03:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E529C15D2;
-	Thu,  2 Nov 2023 02:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MVBwdtE2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CFA2D620;
+	Thu,  2 Nov 2023 03:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1202E1849
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:49:41 +0000 (UTC)
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E48189
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 19:49:26 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1cc30bf9e22so4006825ad.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 19:49:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698893366; x=1699498166; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DnDZGk512Fn6FcfRLVRqtgZTjSOOBJwTCzWACAW0uhY=;
-        b=MVBwdtE22oU/EkqEguSUqZF1KYRN5UxJbzTyRNn8fzuqZvj+MYqAosKsycO5wulOZE
-         h6I8tExe+jaCjNOZykpoHsX6A4CteP5l8eZyCthHlHUeBocT0MJPW6VwE3GjJ2JWU314
-         aJEwTwonMNzMRoFKmCMSNxn6x1tLVETIpgS4Ck9JghDn7rsdt/uHK1rP4by8mnyav8jy
-         56VQTADy3D7E93zEaI1E4CuNzXerwVA/xBX7YMLzac6uj4lZupT1vDwH4L2PwsHsHbzX
-         fxzt4+zSlKVsxrIhDOD+yWNUXSr918GfEhBf1IVmOF6JAcmODjag40FlmpuMOvvVoSXZ
-         3HyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698893366; x=1699498166;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DnDZGk512Fn6FcfRLVRqtgZTjSOOBJwTCzWACAW0uhY=;
-        b=DcpHJd5F2L26EclILwYAD+bQjUh56B+Ikf4m2S22InMYWRyIenChAjYIJL3hvHZ8xU
-         hgspKPWZTTJ006/rVxGkNkvLCcUVBW2FQP1qNEyaih3W7QVeKwqh5xuu8i3QUVYKF+pk
-         hwKkSoC7kM2xXuFczV+3yUjBwZAzayGkAowbHLoVdYCKKCEv4fQlEl8WhjJ9D9nUYrta
-         GyOpA70uHzinzCaa6zMGcA1pj5En+BPaTHjctkke1FIq7ddtHxcHTAaZMKZqlCZy21PG
-         TH/vo+OOybNrNrXSyEcaDhr0V+tecRA+JHKbIBxlNCEoVv7hmD9MX9Pqn34OQ+q7gMHf
-         XUTQ==
-X-Gm-Message-State: AOJu0YzTOMdxFG86RbrbHmFP75LXzaAJir3fuVStkY+AO9ABdbD7steZ
-	kDmR+1HNVg0K1f+af2aFB58fKw==
-X-Google-Smtp-Source: AGHT+IFotN+N+05ghfeh6n+nIwmS9iXKFbCoDtCFHfdCTkyZqRbHe40loI/Ve+moBfFjdnP9WDRB8A==
-X-Received: by 2002:a17:902:dac9:b0:1cc:5ce4:f64b with SMTP id q9-20020a170902dac900b001cc5ce4f64bmr11068897plx.8.1698893366171;
-        Wed, 01 Nov 2023 19:49:26 -0700 (PDT)
-Received: from [127.0.1.1] ([2601:1c2:1800:f680:7e4c:4d4e:6943:bc0f])
-        by smtp.gmail.com with ESMTPSA id n4-20020a170902e54400b001b850c9d7b3sm1925787plf.249.2023.11.01.19.49.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Nov 2023 19:49:25 -0700 (PDT)
-From: Drew Fustini <dfustini@baylibre.com>
-Date: Wed, 01 Nov 2023 19:48:58 -0700
-Subject: [PATCH v4 7/7] riscv: dts: thead: Enable LicheePi 4A eMMC and
- microSD
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97DA62D61F
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 03:11:54 +0000 (UTC)
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5594D110;
+	Wed,  1 Nov 2023 20:11:49 -0700 (PDT)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3A23BT6J02297255, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+	by rtits2.realtek.com.tw (8.15.2/2.93/5.92) with ESMTPS id 3A23BT6J02297255
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 2 Nov 2023 11:11:30 +0800
+Received: from RTEXDAG02.realtek.com.tw (172.21.6.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Thu, 2 Nov 2023 11:11:30 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG02.realtek.com.tw (172.21.6.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 2 Nov 2023 11:11:29 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7]) by
+ RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7%5]) with mapi id
+ 15.01.2375.007; Thu, 2 Nov 2023 11:11:29 +0800
+From: =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Andy
+ Shevchenko" <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 2/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio bindings
+Thread-Topic: [PATCH 2/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+ bindings
+Thread-Index: AQHaDG9It5wA6xURlESdwF4Dx71B1LBkhtMAgAHPQEA=
+Date: Thu, 2 Nov 2023 03:11:29 +0000
+Message-ID: <eeded63e9e754e0e9a5b546e616be437@realtek.com>
+References: <20231101025802.3744-1-tychang@realtek.com>
+ <20231101025802.3744-3-tychang@realtek.com>
+ <6a09f16e-0a41-4619-b7bb-b5561f7e36ce@linaro.org>
+In-Reply-To: <6a09f16e-0a41-4619-b7bb-b5561f7e36ce@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-originating-ip: [172.21.181.166]
+x-kse-serverinfo: RTEXDAG02.realtek.com.tw, 9
+x-kse-antivirus-attachment-filter-interceptor-info: license violation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231101-th1520-mmc-v4-7-86e0216b5994@baylibre.com>
-References: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
-In-Reply-To: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, Guo Ren <guoren@kernel.org>, 
- Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: Robert Nelson <robertcnelson@beagleboard.org>, 
- Jason Kridner <jkridner@beagleboard.org>, Xi Ruoyao <xry111@xry111.site>, 
- Han Gao <gaohan@iscas.ac.cn>, Icenowy Zheng <uwu@icenowy.me>, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Drew Fustini <dfustini@baylibre.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1698893345; l=1102;
- i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=vZkA/Rp2zWEJvsAGA/badfpHmHgx6/3DqqLzYe2IxQc=;
- b=8GSfHaYjbAvdqR5aNak0qxCYTox6ynEJYklYiqEqs75Ahp961sktUsZMwhbfP69H8eDCKd2iX
- Qb0BX3cam5JBwzRquUhN8ceX4V+t4liKW0/NNfG/NOH4PRVtvHtorW+
-X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-Add mmc0 properties for the eMMC device and add mmc1 properties for
-the microSD slot. Set the frequency for the sdhci clock.
-
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi      | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index a802ab110429..94f1741435a5 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -29,6 +29,10 @@ &apb_clk {
- 	clock-frequency = <62500000>;
- };
- 
-+&sdhci_clk {
-+	clock-frequency = <198000000>;
-+};
-+
- &uart_sclk {
- 	clock-frequency = <100000000>;
- };
-@@ -36,3 +40,19 @@ &uart_sclk {
- &dmac0 {
- 	status = "okay";
- };
-+
-+&mmc0 {
-+	bus-width = <8>;
-+	max-frequency = <198000000>;
-+	mmc-hs400-1_8v;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	max-frequency = <198000000>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-
--- 
-2.34.1
-
+SGkgS3J6eXN6dG9mLA0KDQpUaGFuayB5b3UgZm9yIHRoZSByZXZpZXcuDQoNCj5PbiAwMS8xMS8y
+MDIzIDAzOjU4LCBUenV5aSBDaGFuZyB3cm90ZToNCj4+IFRoaXMgcGF0Y2ggYWRkcyB0aGUgZGV2
+aWNlIHRyZWUgYmluZGluZ3MgZm9yIHRoZSBSZWFsdGVrIERIQyBSVEQgU29Dcw0KPj4gR1BJTyBj
+b250cm9sbGVycy4NCj4+DQo+DQo+QSBuaXQsIHN1YmplY3Q6IGRyb3Agc2Vjb25kL2xhc3QsIHJl
+ZHVuZGFudCAiYmluZGluZ3MiLiBUaGUgImR0LWJpbmRpbmdzIiBwcmVmaXggaXMNCj5hbHJlYWR5
+IHN0YXRpbmcgdGhhdCB0aGVzZSBhcmUgYmluZGluZ3MuDQo+DQpJIHdpbGwgcmVtb3ZlIGl0Lg0K
+DQo+PiBTaWduZWQtb2ZmLWJ5OiBUenV5aSBDaGFuZyA8dHljaGFuZ0ByZWFsdGVrLmNvbT4NCj4+
+IC0tLQ0KPj4gIC4uLi9iaW5kaW5ncy9ncGlvL3JlYWx0ZWsscnRkLWdwaW8ueWFtbCAgICAgICB8
+IDU2ICsrKysrKysrKysrKysrKysrKysNCj4+ICAxIGZpbGUgY2hhbmdlZCwgNTYgaW5zZXJ0aW9u
+cygrKQ0KPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2dwaW8vcmVhbHRlayxydGQtZ3Bpby55YW1sDQo+DQo+SG93IGRvZXMgeW91ciBi
+aW5kaW5nIGNvbWUgYWZ0ZXIgdGhlIHVzZXI/DQo+DQoNCkkgd2lsIG1vdmUgdGhlIGJpbmRpbmcg
+dG8gdGhlIGZpcnN0IHBhdGNoLg0KDQo+Pg0KPj4gZGlmZiAtLWdpdA0KPj4gYS9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9yZWFsdGVrLHJ0ZC1ncGlvLnlhbWwNCj4+IGIv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2dwaW8vcmVhbHRlayxydGQtZ3Bpby55
+YW1sDQo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4gaW5kZXggMDAwMDAwMDAwMDAwLi42Y2Fi
+N2VjNTBjODgNCj4+IC0tLSAvZGV2L251bGwNCj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9ncGlvL3JlYWx0ZWsscnRkLWdwaW8ueWFtbA0KPj4gQEAgLTAsMCArMSw1
+NiBAQA0KPj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wIE9SIEJTRC0yLUNs
+YXVzZSkgIyBDb3B5cmlnaHQgMjAyMw0KPj4gK1JlYWx0ZWsgU2VtaWNvbmR1Y3RvciBDb3Jwb3Jh
+dGlvbiAlWUFNTCAxLjINCj4+ICstLS0NCj4+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9z
+Y2hlbWFzL2dwaW8vcmVhbHRlayxydGQtZ3Bpby55YW1sIw0KPj4gKyRzY2hlbWE6IGh0dHA6Ly9k
+ZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPj4gKw0KPj4gK3RpdGxlOiBS
+ZWFsdGVrIERIQyBHUElPIGNvbnRyb2xsZXINCj4NCj5XaGF0IGlzIERIQz8gV2hlcmUgaXMgaXQg
+ZXhwbGFpbmVkIGluIHRoZSBiaW5kaW5nPw0KPg0KDQpUaGlzIGlzIHRoZSBhYmJyZXZpYXRpb24g
+b2YgIkRpZ2l0YWwgSG9tZSBDZW50ZXIiLiBJIHdpbGwgYWRkIHRoZSBkZXNjcmlwdGlvbiB0byBl
+eHBsYWluIGl0Lg0KDQo+PiArDQo+PiArbWFpbnRhaW5lcnM6DQo+PiArICAtIFRZIENoYW5nIDx0
+eWNoYW5nQHJlYWx0ZWsuY29tPg0KPj4gKw0KPj4gK3Byb3BlcnRpZXM6DQo+PiArICBjb21wYXRp
+YmxlOg0KPj4gKyAgICBlbnVtOg0KPj4gKyAgICAgIC0gcmVhbHRlayxydGQtZ3Bpbw0KPg0KPldo
+YXQgaXMgInJ0ZCI/IEdlbmVyaWMgbmFtZT8gRHJvcC4gWW91IGNhbm5vdCBoYXZlIGdlbmVyaWMg
+Y29tcGF0aWJsZXMuDQo+DQoNClRoaXMgaXMgYSBnZW5lcmljIG5hbWUgZm9yIHRoZSBvdGhlcnMg
+U29DcyB3aXRob3V0IHRoZSBzcGVjaWZpYyBjb21wYXRpYmxlLg0KSSB3aWxsIGZpeCBpdC4NCg0K
+Pg0KPj4gKyAgICAgIC0gcmVhbHRlayxydGQxMjk1LW1pc2MtZ3Bpbw0KPj4gKyAgICAgIC0gcmVh
+bHRlayxydGQxMjk1LWlzby1ncGlvDQo+PiArICAgICAgLSByZWFsdGVrLHJ0ZDEzOTUtaXNvLWdw
+aW8NCj4+ICsgICAgICAtIHJlYWx0ZWsscnRkMTYxOS1pc28tZ3Bpbw0KPj4gKw0KPj4gKyAgcmVn
+Og0KPj4gKyAgICBtYXhJdGVtczogMg0KPg0KPllvdSBuZWVkIHRvIGRlc2NyaWJlIHRoZSBpdGVt
+cyBpbnN0ZWFkLg0KPg0KDQpJIHdpbGwgYWRkIHRoZSBkZXNjcmlwdGlvbi4NCg0KPj4gKw0KPj4g
+KyAgaW50ZXJydXB0czoNCj4+ICsgICAgbWF4SXRlbXM6IDINCj4NCj5Zb3UgbmVlZCB0byBkZXNj
+cmliZSB0aGUgaXRlbXMgaW5zdGVhZC4NCj4NCg0KSSB3aWxsIGFkZCB0aGUgZGVzY3JpcHRpb24u
+DQoNCj4+ICsNCj4+ICsgIGdwaW8tcmFuZ2VzOiB0cnVlDQo+PiArDQo+PiArICBncGlvLWNvbnRy
+b2xsZXI6IHRydWUNCj4+ICsNCj4+ICsgICIjZ3Bpby1jZWxscyI6DQo+PiArICAgIGNvbnN0OiAy
+DQo+PiArDQo+PiArcmVxdWlyZWQ6DQo+PiArICAtIGNvbXBhdGlibGUNCj4+ICsgIC0gcmVnDQo+
+PiArICAtIGludGVycnVwdHMNCj4+ICsgIC0gZ3Bpby1yYW5nZXMNCj4+ICsgIC0gZ3Bpby1jb250
+cm9sbGVyDQo+PiArICAtICIjZ3Bpby1jZWxscyINCj4NCj5CZXN0IHJlZ2FyZHMsDQo+S3J6eXN6
+dG9mDQoNCg0KVGhhbmtzLA0KVHp1eWkgQ2hhbmcNCg==
 
