@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-13528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 560F67DEADD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 03:49:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D175F7DEADE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 03:49:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D22AEB211E6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 02:49:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89B14281206
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 02:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36FF32D617;
-	Thu,  2 Nov 2023 02:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67BE15D2;
+	Thu,  2 Nov 2023 02:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mBRLAmU3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LprtyhiG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED4C1851
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:49:21 +0000 (UTC)
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ED7D13E
-	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 19:49:20 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-5b92b852442so343420a12.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 19:49:20 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63391849
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:49:31 +0000 (UTC)
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8681E13A
+	for <devicetree@vger.kernel.org>; Wed,  1 Nov 2023 19:49:24 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1cc0e78ec92so3226235ad.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Nov 2023 19:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698893359; x=1699498159; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1698893364; x=1699498164; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=frioRiPhaekRnCE/0ENvI5wkvdspg2jE1Z81EEiVDoc=;
-        b=mBRLAmU3c0YOvpdCTCvL7DpCik4cc3bhmdFg+Bt7i2jlLlY6kBIJHQHjyPW3C20Sec
-         z/LeT2hl9LfBMxbJgrdW6bnf2gJcpeQHUvfdATYk1mUQNzRUfN8gRStpBQoUkP1wxFyg
-         QBNJM7JHn1XADQ6Ueuo+b31TctK4Ub48IbZEhAv7KUFNdV51tMctJGlIFbhFhBjJhqUH
-         6+AOW4tQS1Ca0ELHC6RccHso7MapZHYDNbpL10lW44CQuhurpAN59PIO6wDL8CuGCIGI
-         /BMfIWhSP4UrQ4ypTAAGWSlCsgvaF6QIgBk6D3mI+ro9MyS13POkL5UwqpO0/R0glEWt
-         uTFA==
+        bh=uSa6NAVY2VMgd1nmwOwphCO64qKVXCiZUmGbVj1XUeM=;
+        b=LprtyhiGjftwOF8WmFLsGNxTAibLyKujXhR5b6myDxo4Vi83L8d2bJo973kCLRdPFK
+         7W/31UlCqsALSxvLTNdafqNB3kcW+NFgbx5BhsSD+tj84LYkHDooUJcrm01/VzKIUpKP
+         Jwk5gxvGYqlLenazr2O7lZgonJfdoPAOflPBu9jWlV24Llmrn5NGYwJfk3fFS8GBJgrN
+         dwKTGT2CjLrGodM+3dVU0DXr/sTY9JjXqSLGEj8Ttl7SALrFmrfqiqYardRaSo9K+oon
+         1b6s5QA74H97lh01kgoCVGUAkgEXw35fl6W2Hm6DWjjRhBPqKsS6Z6iy+z77+lGxmYG9
+         YGVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698893359; x=1699498159;
+        d=1e100.net; s=20230601; t=1698893364; x=1699498164;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=frioRiPhaekRnCE/0ENvI5wkvdspg2jE1Z81EEiVDoc=;
-        b=V+pTiXwUq9WknVK0VJz9YwfGH8XEntMyo9GxpvIkr+TVBuzZGQLaxnFhKKdga5fTLP
-         CNzhzYBV7P6NjXmQHzOtudIlJLWVnw1zsHDVOCY8aNNOz3LtCPlbdfbFLjX8btUABz4Z
-         8hJ0PTZqFwGFYUHpwftzeCmQblUms+6VVptFt4wifXmaRbGGX+oRf30AikJ75uGINsqw
-         m8L/Vtm+c2y9iTWDkREkLvAF9B4XjerhweF4V3ZSvQMp2nK4aRdIrY13GcvSImUK1W4J
-         wT46Hncu8oThq/zf6r9Pp08aM9EofAzG4SqOVN9VCtXIzxvIMXHe8Qzo2gA/vmAe8Gtn
-         C9Ng==
-X-Gm-Message-State: AOJu0YyYTAyj6M0U9VO/3jkttglDcoHmAZXPOjc87X/RIQpfqXOatCaT
-	M7R1mYG7aAwMomtXqUQmC5EGEQ==
-X-Google-Smtp-Source: AGHT+IGmGuJJ1mkzEGk8YjnKaLw6xeRQezkEH7j3sN61xb+Q4mvh0F4TOsQumwdOzPdJ/wKXNGt5mQ==
-X-Received: by 2002:a05:6a21:3290:b0:17b:129b:1817 with SMTP id yt16-20020a056a21329000b0017b129b1817mr17347005pzb.45.1698893359369;
-        Wed, 01 Nov 2023 19:49:19 -0700 (PDT)
+        bh=uSa6NAVY2VMgd1nmwOwphCO64qKVXCiZUmGbVj1XUeM=;
+        b=SnWiwLemiYKIOTnDnAbCtSOrtyDhO88YsURaqzfpgDxH3aNyjnoqMqHjqjP6xhav3L
+         N0pFOfTe3bL2UhhxDBsw7p6E59GJDIG/pyPCPmO8X7af0fZcHt9FK7W/zGDgs9q8aRSg
+         RREq1uz2G3eVuPN/Kedu7uYDKZZFnL+HR4oWSvUz8hpLyFLqk5x4jjc5IswJGG9v7KFf
+         f5AHqvhBwdezysPTqOXXNdobRDExV3NAl94t/4PByLPbZ/dwO1nMV4dBWJt4zEHVRwFy
+         5mdyiT+StJkoFUw2rf7Qr3HORIjLgf3JavpIPNAgdRNigRxZSxkMT46YS+JY1YcbfeZN
+         Zx/A==
+X-Gm-Message-State: AOJu0YzYg8wOiw/MeKyvHyfEfpgCfgjmm4A2tIGeoFbr6BU6a5DEWkJd
+	k64ilkWge9HXwvKSfQsO7U2P4w==
+X-Google-Smtp-Source: AGHT+IHX9AJrAVgWSnYbOXa7mutrw1tVdRN6GcBHN4fbPFOszvbXB4wUQnu7dVhwrk4ZcsOpXB+xQw==
+X-Received: by 2002:a17:903:cd:b0:1cc:5db8:7e92 with SMTP id x13-20020a17090300cd00b001cc5db87e92mr6755183plc.58.1698893363682;
+        Wed, 01 Nov 2023 19:49:23 -0700 (PDT)
 Received: from [127.0.1.1] ([2601:1c2:1800:f680:7e4c:4d4e:6943:bc0f])
-        by smtp.gmail.com with ESMTPSA id n4-20020a170902e54400b001b850c9d7b3sm1925787plf.249.2023.11.01.19.49.16
+        by smtp.gmail.com with ESMTPSA id n4-20020a170902e54400b001b850c9d7b3sm1925787plf.249.2023.11.01.19.49.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Nov 2023 19:49:18 -0700 (PDT)
+        Wed, 01 Nov 2023 19:49:23 -0700 (PDT)
 From: Drew Fustini <dfustini@baylibre.com>
-Date: Wed, 01 Nov 2023 19:48:56 -0700
-Subject: [PATCH v4 5/7] riscv: dts: thead: Add TH1520 mmc controllers and
- sdhci clock
+Date: Wed, 01 Nov 2023 19:48:57 -0700
+Subject: [PATCH v4 6/7] riscv: dts: thead: Enable BeagleV Ahead eMMC and
+ microSD
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +70,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231101-th1520-mmc-v4-5-86e0216b5994@baylibre.com>
+Message-Id: <20231101-th1520-mmc-v4-6-86e0216b5994@baylibre.com>
 References: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
 In-Reply-To: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -87,65 +87,60 @@ Cc: Robert Nelson <robertcnelson@beagleboard.org>,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
  Drew Fustini <dfustini@baylibre.com>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1698893345; l=1608;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1698893345; l=1108;
  i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=118IOeI3EDHQnRGvuv5ewuNsGEAnYvxtIZdzQTMEyXk=;
- b=eyKHDo5yqtNJ502x7Fih43LJiwPFfx23Zy+xbTqFt5fKit9A49CnrPno3Mm3ut0CzYLTtYrbA
- /vn+hYssfSJB6Sw6E+5blOk1/IPFdDAfudZiDruEEXAfuKyEA9hPRw1
+ bh=4bgo3aK3cuR26cRWBbMVA6MrvhUqOJ8As8gzvmDCzhs=;
+ b=aA13H2waFkFK8rdICEfWcJcPhFaGSH0ZRd4ROe0tmGrxSg7hrWq8+i/vrM2/4uVwYFqUm7YA2
+ XG5qUI7lWhuBylW5Vf6NOpK9BxdJC/LQDXKQpfLDXXSAcE3QiPgjyL3
 X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
  pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 
-Add node for the SDHCI fixed clock. Add mmc0 node for the first mmc
-controller instance which is typically connected to the eMMC device.
-Add mmc1 node for the second mmc controller instance which is typically
-connected to microSD slot.
+Add mmc0 properties for the eMMC device and add mmc1 properties for
+the microSD slot. Set the frequency for the sdhci clock.
 
 Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 ---
- arch/riscv/boot/dts/thead/th1520.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index ff364709a6df..f5ec9326c4b8 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -134,6 +134,13 @@ uart_sclk: uart-sclk-clock {
- 		#clock-cells = <0>;
- 	};
+diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+index 70e8042c8304..f91d94f95510 100644
+--- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
++++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
+@@ -48,6 +48,10 @@ &apb_clk {
+ 	clock-frequency = <62500000>;
+ };
  
-+	sdhci_clk: sdhci-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <198000000>;
-+		clock-output-names = "sdhci_clk";
-+		#clock-cells = <0>;
-+	};
++&sdhci_clk {
++	clock-frequency = <198000000>;
++};
 +
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -292,6 +299,22 @@ dmac0: dma-controller@ffefc00000 {
- 			status = "disabled";
- 		};
+ &uart_sclk {
+ 	clock-frequency = <100000000>;
+ };
+@@ -56,6 +60,22 @@ &dmac0 {
+ 	status = "okay";
+ };
  
-+		mmc0: mmc@ffe7080000 {
-+			compatible = "thead,th1520-dwcmshc";
-+			reg = <0xff 0xe7080000 0x0 0x10000>;
-+			interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sdhci_clk>;
-+			clock-names = "core";
-+		};
++&mmc0 {
++	bus-width = <8>;
++	max-frequency = <198000000>;
++	mmc-hs400-1_8v;
++	non-removable;
++	no-sdio;
++	no-sd;
++	status = "okay";
++};
 +
-+		mmc1: mmc@ffe7090000 {
-+			compatible = "thead,th1520-dwcmshc";
-+			reg = <0xff 0xe7090000 0x0 0x10000>;
-+			interrupts = <64 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&sdhci_clk>;
-+			clock-names = "core";
-+		};
++&mmc1 {
++	max-frequency = <198000000>;
++	bus-width = <4>;
++	status = "okay";
++};
 +
- 		timer0: timer@ffefc32000 {
- 			compatible = "snps,dw-apb-timer";
- 			reg = <0xff 0xefc32000 0x0 0x14>;
+ &uart0 {
+ 	status = "okay";
+ };
 
 -- 
 2.34.1
