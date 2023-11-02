@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-13568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4CE7DEEC1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 10:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B657DEECE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 10:26:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABD9D1C20E63
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:24:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DF081C20E3E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 09:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA71111BD;
-	Thu,  2 Nov 2023 09:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B2C11707;
+	Thu,  2 Nov 2023 09:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UZmSCNuU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fBIqUsmA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D601B1094B
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 09:24:02 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0665A12E
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:23:58 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9d2e6c8b542so100001366b.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 02:23:57 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E48D11701
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 09:26:50 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A895181
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 02:26:44 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9d8d3b65a67so98045866b.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 02:26:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698917036; x=1699521836; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=N5TJxlMCH07V837adkdqn8iQGbiJkUTpVTRneCDNnEo=;
-        b=UZmSCNuU95NivWzecIO0jXfLF17k46Ocwx0S7XmjJrSoy4le7oYVPSDDgnuda/3/lM
-         gu8vUv6pPDkEgsjDzJfrPMzwnCdz3qCMSv+A8g5lHtp70GwXJ0J5RDixwn//rElwLXwt
-         umLD5v6UjzWvAgaYeYoojWCn7cVDJUMrItAYBm4ffIfskWQ9yrsIGbpdcB3KFwNyHRyb
-         WDHyj6Onim9/oZ4oHwG3JmbLFb+x7USmElcRi1Jw8YsBzZHqXydcNlXM2adn9B4GjcRG
-         fPGx6Jl6qQD6BdAuuDb89hFjozORrtv208A5fSVG4v6oydRADNo2BGoSr5S1+bG3Gwz+
-         vHQA==
+        d=linaro.org; s=google; t=1698917202; x=1699522002; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ataWuMCNQtSNjb1644V2WY/4XAYPsVlzI3aY0q4XTyc=;
+        b=fBIqUsmAXA/SujvXJ4MJFaCIWcTSrCvNc/xOrEV+YZyRwQyqTm21p3Ihje0cTwEqhz
+         sKBTbafUamSuFXYBQc+rw05U2rh9wDDZ7ZNtoC5IzqhCc6VxF2iWCTBzQWSkAbEB7G/M
+         QFl2RuKzEUqVhdddCgEI2zb+JkfNMQtDX9aB8dOGxjf3YPhcPXkLdr/corV4/orKhPvG
+         jqn8I7wPmaMD/bb+W0zyI/5uytQ8w1NyTe3iInHYqCGGPGsk68oqoHI3zkyxYbj4GGuS
+         h19RubRQnZQNSwsXH5zeDKrwEHGfX6ZUCOTm26SWEeM15ofTBdMbE/pLQsuGcudXCAs/
+         T7Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698917036; x=1699521836;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=N5TJxlMCH07V837adkdqn8iQGbiJkUTpVTRneCDNnEo=;
-        b=rAzFhC37zObidFT2K2IHnOJGVfQWwvmw/OZiJi4xNYWiXsC+5v8stW+rhooeF0N1ga
-         EKTtdiNnllgnz/qzkvRgSeep+altO77foMpf65G4tufqIx18sjVbQY1vsd/Vv7jK7y5v
-         YjQHguiv5hvLOybj5hErttBPvOxnrTyr0k0GefMk2L+KMyPH0/DeOtCVo1H/hs4xRBuI
-         2wuwAeX/TIYHPaNoeyhyiLhYJkFYmGskL98aCyERcnY6y+CQSJaSN82/koT9QPKEvrBB
-         TNIne9Nlx+M7ocXH19a+Yls1Zc8oAg+pWmwCqDykFoDbU0GT+Sfnqd2ww2JPtMqy/EWh
-         PXxQ==
-X-Gm-Message-State: AOJu0Yy2lpYG7PlvJtfZAVrT1HWACG9eN8VMEeubkSjasfL5wQ2MLlJk
-	3X6MgAVhdIMn2q9j/qm2SO6FHeerWRPJGaxPB6E=
-X-Google-Smtp-Source: AGHT+IFEwU2dpVBvCNOYsvcD1IhYjX9QPLpqtUTT7xB1cQFy2LSdQZhqEjqbIWPn3/7qatWqkgu4pg==
-X-Received: by 2002:a17:907:98a:b0:9ae:69b8:322b with SMTP id bf10-20020a170907098a00b009ae69b8322bmr3173013ejc.60.1698917036497;
-        Thu, 02 Nov 2023 02:23:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1698917202; x=1699522002;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ataWuMCNQtSNjb1644V2WY/4XAYPsVlzI3aY0q4XTyc=;
+        b=IRMSodxqLZjTkxxUPrkQ6vgtVfwqkm2cHH0EPYGpwrcDDr3Kh8k75FjXrw7cRGFes/
+         BmxNeXWXWfwc7Rl/DgjXJyVFw0zbXOZUtQb/BivYRYarbqS5mvlQ0a2sEodt2HQSV3WT
+         JPLuOhJ+y7h5O9GGdly2t/AF7icGCQNrGYEXELMNJKWl9ZvVSVXBKvkcjItumpvcMw4E
+         xSr9LFlv6Bf81+qPRg4ZB4WcmQd7m1ZYaYPYVt8IDj+V3o4/QUbzE7p1RTpS2qXhly7F
+         eVfX+219upQba2dpmMa+5zYpGVnXffI0H+mSl3CXeF9f1hLYIapYj2PAUw2FZQRlHMrZ
+         8jMA==
+X-Gm-Message-State: AOJu0YyOJLX1klqKro6ML/638FQdlbbdU/2n6SNqZZCY2mjhLCmlKI0/
+	hqMRTgHK8kKGt0JETtZjA4pHrw==
+X-Google-Smtp-Source: AGHT+IGY8l5VKgOQ877//umRBNkqQl3Q4/S4KqzVDdppkNCZUvJHpRsIas/YI64Jq93XOX7zyroiRA==
+X-Received: by 2002:a17:907:3da2:b0:9be:e153:3f24 with SMTP id he34-20020a1709073da200b009bee1533f24mr3846557ejc.63.1698917202487;
+        Thu, 02 Nov 2023 02:26:42 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id d14-20020a170906370e00b009b2d46425absm898105ejc.85.2023.11.02.02.23.53
+        by smtp.gmail.com with ESMTPSA id f24-20020a170906561800b009920a690cd9sm891854ejq.59.2023.11.02.02.26.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Nov 2023 02:23:54 -0700 (PDT)
-Message-ID: <d7407122-8b51-4046-a360-999c3d3706ff@linaro.org>
-Date: Thu, 2 Nov 2023 10:23:52 +0100
+        Thu, 02 Nov 2023 02:26:42 -0700 (PDT)
+Message-ID: <e1fe390e-e0d4-475a-a83b-31c2d179e009@linaro.org>
+Date: Thu, 2 Nov 2023 10:26:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,8 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] soc: amlogic: meson-gx-socinfo: export socinfo for
- use in other modules
+Subject: Re: [PATCH 4/4] firmware: meson_sm: use meson_gx_socinfo for
+ compatibility
+Content-Language: en-US
 To: Viacheslav Bocharov <adeep@lexina.in>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -77,8 +77,7 @@ To: Viacheslav Bocharov <adeep@lexina.in>,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20231102074916.3280809-1-adeep@lexina.in>
- <20231102074916.3280809-4-adeep@lexina.in>
-Content-Language: en-US
+ <20231102074916.3280809-5-adeep@lexina.in>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,15 +123,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231102074916.3280809-4-adeep@lexina.in>
+In-Reply-To: <20231102074916.3280809-5-adeep@lexina.in>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 02/11/2023 08:49, Viacheslav Bocharov wrote:
-> Move socinfo variable to global scope and export it as meson_gx_socinfo.
+> Use meson_gx_socinfo variable for chipid compatible call
+> from meson-gx-socinfo driver if available.
+> 
 
-Why? What the patch is doing we can see from the diff. Commit msg should
-explain why.
+So we are back to something like ARMv7 platform/mach-code with drivers
+tightly coupled between subsystems. But it is not 2007 anymore and we
+have Devicetree for this. Use it instead.
+
+What's more, your commit msg does not explain at all why do you need to
+do it. This is some "show" callback, which does not exist in current
+code. Adding code in one patch and then changing it, looks like you add
+incomplete or buggy feature.
 
 Best regards,
 Krzysztof
