@@ -1,161 +1,392 @@
-Return-Path: <devicetree+bounces-13579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A017DF12E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:30:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 773217DF149
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 12:41:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF9721C20DE7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 11:30:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BA451C20DC8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 11:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF30A14ABD;
-	Thu,  2 Nov 2023 11:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E51914AAB;
+	Thu,  2 Nov 2023 11:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mpula0ut"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C7C14AA6
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 11:30:25 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBE9181
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 04:30:20 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qyVtz-0005lO-6l; Thu, 02 Nov 2023 12:30:19 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qyVtw-0063ea-Mn; Thu, 02 Nov 2023 12:30:16 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1qyVtw-00BVjO-DL; Thu, 02 Nov 2023 12:30:16 +0100
-Date: Thu, 2 Nov 2023 12:30:16 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: William Qiu <william.qiu@starfivetech.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v6 2/4] pwm: opencores: Add PWM driver support
-Message-ID: <20231102113016.jgsh7jru6vjv4vsp@pengutronix.de>
-References: <20231020103741.557735-1-william.qiu@starfivetech.com>
- <20231020103741.557735-3-william.qiu@starfivetech.com>
- <20231020112539.gctx5uj2rrhryulo@pengutronix.de>
- <7d64ea1d-b573-4a69-ba0c-4cbfab638c5e@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54062134DE
+	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 11:41:50 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97DF7133;
+	Thu,  2 Nov 2023 04:41:45 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A2BY6si010226;
+	Thu, 2 Nov 2023 11:41:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=HYFeSr3Ca6VgHP1HrIZZ/ANIQUbp9JhkZ49XbBpGA/o=;
+ b=mpula0utnFfPgbWqGkMSzrum9qRZTo8sixlTigyICyVzYQ8myw0tSxZbnguthD0ZBjTp
+ BOCqvWnQSBa5Swrc0FecCr3WGBjuxEJ589zA3JQrZF2X3lqNx018LD1Xt5Zm6lwLwo+V
+ WfN/iu2iNp7G3sIyzilBanmzVvxq/6Hp+MWm7zB/jNu+vkfXB0wwmp5xToAN2L0hGovx
+ ejga1e44vxxJw2VZ1+u9UVeK0DisXkEm5VHDnPRGXntUgNS9J7+UySIx+KjrE3l8Eipc
+ pfL3LE8Io+gDpzIv8MHDsECIHtkrjMDRa2nQTVP5wgQhLV7SuQ0IJ3gX4p2Q2Fe3F4TS 3g== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u3y5y19yt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 02 Nov 2023 11:41:34 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A2BfXPX013205
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 2 Nov 2023 11:41:33 GMT
+Received: from [10.216.63.119] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 2 Nov
+ 2023 04:41:28 -0700
+Message-ID: <fe8a7217-51af-1102-80eb-db4475bb47fc@quicinc.com>
+Date: Thu, 2 Nov 2023 17:11:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ltmjasklp4ngpzku"
-Content-Disposition: inline
-In-Reply-To: <7d64ea1d-b573-4a69-ba0c-4cbfab638c5e@starfivetech.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 2/3] remoteproc: qcom: pas: make region assign more
+ generic
+Content-Language: en-US
+To: <neil.armstrong@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn
+ Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20231030-topic-sm8650-upstream-remoteproc-v2-0-609ee572e0a2@linaro.org>
+ <20231030-topic-sm8650-upstream-remoteproc-v2-2-609ee572e0a2@linaro.org>
+ <8e71ba02-5d6a-4c7e-4a55-f9ef79c2f928@quicinc.com>
+ <65dcdd9c-a75b-4fe7-bdcf-471a5602db20@linaro.org>
+ <a6bffac4-8c9c-6b85-290e-c991e8ab319a@quicinc.com>
+ <c654555d-f50f-411c-b61d-190da598d5e1@linaro.org>
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <c654555d-f50f-411c-b61d-190da598d5e1@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: z982-KoIHuI-AiHPqKhDSTk_-B8ea3o2
+X-Proofpoint-ORIG-GUID: z982-KoIHuI-AiHPqKhDSTk_-B8ea3o2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-01_23,2023-11-02_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999 adultscore=0
+ phishscore=0 clxscore=1015 priorityscore=1501 spamscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311020093
 
 
---ltmjasklp4ngpzku
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello William,
+On 11/2/2023 3:56 PM, neil.armstrong@linaro.org wrote:
+> On 01/11/2023 15:42, Mukesh Ojha wrote:
+>>
+>>
+>> On 10/31/2023 10:36 PM, Neil Armstrong wrote:
+>>> Hi,
+>>>
+>>> On 30/10/2023 14:10, Mukesh Ojha wrote:
+>>>>
+>>>>
+>>>> On 10/30/2023 3:33 PM, Neil Armstrong wrote:
+>>>>> The current memory region assign only supports a single
+>>>>> memory region.
+>>>>>
+>>>>> But new platforms introduces more regions to make the
+>>>>> memory requirements more flexible for various use cases.
+>>>>> Those new platforms also shares the memory region between the
+>>>>> DSP and HLOS.
+>>>>>
+>>>>> To handle this, make the region assign more generic in order
+>>>>> to support more than a single memory region and also permit
+>>>>> setting the regions permissions as shared.
+>>>>>
+>>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>> ---
+>>>>>   drivers/remoteproc/qcom_q6v5_pas.c | 102 
+>>>>> ++++++++++++++++++++++++-------------
+>>>>>   1 file changed, 66 insertions(+), 36 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c 
+>>>>> b/drivers/remoteproc/qcom_q6v5_pas.c
+>>>>> index 913a5d2068e8..4829fd26e17d 100644
+>>>>> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+>>>>> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+>>>>> @@ -33,6 +33,8 @@
+>>>>>   #define ADSP_DECRYPT_SHUTDOWN_DELAY_MS    100
+>>>>> +#define MAX_ASSIGN_COUNT 2
+>>>>> +
+>>>>>   struct adsp_data {
+>>>>>       int crash_reason_smem;
+>>>>>       const char *firmware_name;
+>>>>> @@ -51,6 +53,9 @@ struct adsp_data {
+>>>>>       int ssctl_id;
+>>>>>       int region_assign_idx;
+>>>>> +    int region_assign_count;
+>>>>> +    bool region_assign_shared;
+>>>>> +    int region_assign_vmid;
+>>>>>   };
+>>>>>   struct qcom_adsp {
+>>>>> @@ -87,15 +92,18 @@ struct qcom_adsp {
+>>>>>       phys_addr_t dtb_mem_phys;
+>>>>>       phys_addr_t mem_reloc;
+>>>>>       phys_addr_t dtb_mem_reloc;
+>>>>> -    phys_addr_t region_assign_phys;
+>>>>> +    phys_addr_t region_assign_phys[MAX_ASSIGN_COUNT];
+>>>>>       void *mem_region;
+>>>>>       void *dtb_mem_region;
+>>>>>       size_t mem_size;
+>>>>>       size_t dtb_mem_size;
+>>>>> -    size_t region_assign_size;
+>>>>> +    size_t region_assign_size[MAX_ASSIGN_COUNT];
+>>>>>       int region_assign_idx;
+>>>>> -    u64 region_assign_perms;
+>>>>> +    int region_assign_count;
+>>>>> +    bool region_assign_shared;
+>>>>> +    int region_assign_vmid;
+>>>>> +    u64 region_assign_perms[MAX_ASSIGN_COUNT];
+>>>>>       struct qcom_rproc_glink glink_subdev;
+>>>>>       struct qcom_rproc_subdev smd_subdev;
+>>>>> @@ -590,37 +598,52 @@ static int adsp_alloc_memory_region(struct 
+>>>>> qcom_adsp *adsp)
+>>>>>   static int adsp_assign_memory_region(struct qcom_adsp *adsp)
+>>>>>   {
+>>>>> -    struct reserved_mem *rmem = NULL;
+>>>>> -    struct qcom_scm_vmperm perm;
+>>>>> +    struct qcom_scm_vmperm perm[MAX_ASSIGN_COUNT];
+>>>>> +    unsigned int perm_size = 1;
+>>>>
+>>>> AFAICS, not need of initialization.
+>>>
+>>> Indeed, removed
+>>>
+>>>>
+>>>>>       struct device_node *node;
+>>>>> -    int ret;
+>>>>> +    int offset, ret;
+>>>>
+>>>> Nit: one variable per line.
+>>>
+>>> Done
+>>>
+>>>>
+>>>>>       if (!adsp->region_assign_idx)
+>>>>
+>>>> Not related to this patch..
+>>>> Should not this be valid only for > 1 ?
+>>>
+>>> I don't understand, only region_assign_idx > 1 triggers a memory_assign,
+>>> and this check discards configurations with region_assign_idx == 0 as
+>>> expected.
+>>
+>> Ah, you can ignore the comments, I got the intention after commenting
+>> here ..
+>>
+>>>
+>>>>
+>>>>
+>>>>>           return 0;
+>>>>> -    node = of_parse_phandle(adsp->dev->of_node, "memory-region", 
+>>>>> adsp->region_assign_idx);
+>>>>> -    if (node)
+>>>>> -        rmem = of_reserved_mem_lookup(node);
+>>>>> -    of_node_put(node);
+>>>>> -    if (!rmem) {
+>>>>> -        dev_err(adsp->dev, "unable to resolve shareable 
+>>>>> memory-region\n");
+>>>>> -        return -EINVAL;
+>>>>> -    }
+>>>>> +    for (offset = 0; offset < adsp->region_assign_count; ++offset) {
+>>>>> +        struct reserved_mem *rmem = NULL;
+>>>>> +
+>>>>> +        node = of_parse_phandle(adsp->dev->of_node, "memory-region",
+>>>>> +                    adsp->region_assign_idx + offset);
+>>>>> +        if (node)
+>>>>> +            rmem = of_reserved_mem_lookup(node);
+>>>>> +        of_node_put(node);
+>>>>> +        if (!rmem) {
+>>>>> +            dev_err(adsp->dev, "unable to resolve shareable 
+>>>>> memory-region index %d\n",
+>>>>> +                offset);
+>>>>> +            return -EINVAL; > +        }
+>>>>
+>>>>
+>>>>> -    perm.vmid = QCOM_SCM_VMID_MSS_MSA;
+>>>>> -    perm.perm = QCOM_SCM_PERM_RW;
+>>>>> +        if (adsp->region_assign_shared)  {
+>>>>> +            perm[0].vmid = QCOM_SCM_VMID_HLOS;
+>>>>> +            perm[0].perm = QCOM_SCM_PERM_RW;
+>>>>> +            perm[1].vmid = adsp->region_assign_vmid;
+>>>>> +            perm[1].perm = QCOM_SCM_PERM_RW;
+>>>>> +            perm_size = 2;
+>>>>> +        } else {
+>>>>> +            perm[0].vmid = adsp->region_assign_vmid;
+>>>>> +            perm[0].perm = QCOM_SCM_PERM_RW;
+>>>>> +            perm_size = 1;
+>>>>> +        }
+>>>>> -    adsp->region_assign_phys = rmem->base;
+>>>>> -    adsp->region_assign_size = rmem->size;
+>>>>> -    adsp->region_assign_perms = BIT(QCOM_SCM_VMID_HLOS);
+>>>>> +        adsp->region_assign_phys[offset] = rmem->base;
+>>>>> +        adsp->region_assign_size[offset] = rmem->size;
+>>>>> +        adsp->region_assign_perms[offset] = BIT(QCOM_SCM_VMID_HLOS);
+>>>>
+>>>> Do we need array for this, is this changing ?
+>>>
+>>> We need to keep region_assign_perms for unassign, but for the other 2 
+>>> we would
+>>> need to duplicate the code from adsp_assign_memory_region into
+>>> adsp_unassign_memory_region.
+>>
+>> Thanks got it.
+>>
+>>>
+>>>>
+>>>>> -    ret = qcom_scm_assign_mem(adsp->region_assign_phys,
+>>>>> -                  adsp->region_assign_size,
+>>>>> -                  &adsp->region_assign_perms,
+>>>>> -                  &perm, 1);
+>>>>> -    if (ret < 0) {
+>>>>> -        dev_err(adsp->dev, "assign memory failed\n");
+>>>>> -        return ret;
+>>>>> +        ret = qcom_scm_assign_mem(adsp->region_assign_phys[offset],
+>>>>> +                      adsp->region_assign_size[offset],
+>>>>> +                      &adsp->region_assign_perms[offset],
+>>>>> +                      perm, perm_size);
+>>>>> +        if (ret < 0) {
+>>>>> +            dev_err(adsp->dev, "assign memory %d failed\n", offset);
+>>>>> +            return ret;
+>>>>> +        }
+>>>>>       }
+>>>>>       return 0;
+>>>>> @@ -629,20 +652,22 @@ static int adsp_assign_memory_region(struct 
+>>>>> qcom_adsp *adsp)
+>>>>>   static void adsp_unassign_memory_region(struct qcom_adsp *adsp)
+>>>>>   {
+>>>>>       struct qcom_scm_vmperm perm;
+>>>>> -    int ret;
+>>>>> +    int offset, ret;
+>>>>> -    if (!adsp->region_assign_idx)
+>>>>> +    if (!adsp->region_assign_idx || adsp->region_assign_shared)
+>>>>>           return;
+>>>>> -    perm.vmid = QCOM_SCM_VMID_HLOS;
+>>>>> -    perm.perm = QCOM_SCM_PERM_RW;
+>>>>> +    for (offset = 0; offset < adsp->region_assign_count; ++offset) {
+>>>>> +        perm.vmid = QCOM_SCM_VMID_HLOS;
+>>>>> +        perm.perm = QCOM_SCM_PERM_RW;
+>>>>
+>>>>> -    ret = qcom_scm_assign_mem(adsp->region_assign_phys,
+>>>>> -                  adsp->region_assign_size,
+>>>>> -                  &adsp->region_assign_perms,
+>>>>> -                  &perm, 1);
+>>>>> -    if (ret < 0)
+>>>>> -        dev_err(adsp->dev, "unassign memory failed\n");
+>>>>> +        ret = qcom_scm_assign_mem(adsp->region_assign_phys[offset],
+>>>>> +                      adsp->region_assign_size[offset],
+>>>>> +                      &adsp->region_assign_perms[offset],
+>>>>> +                      &perm, 1);
+>>>>> +        if (ret < 0)
+>>>>> +            dev_err(adsp->dev, "unassign memory failed\n");
+>>>>> +    }
+>>>>>   }
+>>>>>   static int adsp_probe(struct platform_device *pdev)
+>>>>> @@ -696,6 +721,9 @@ static int adsp_probe(struct platform_device 
+>>>>> *pdev)
+>>>>>       adsp->info_name = desc->sysmon_name;
+>>>>>       adsp->decrypt_shutdown = desc->decrypt_shutdown;
+>>>>>       adsp->region_assign_idx = desc->region_assign_idx;
+>>
+>> Should this also need
+>> min_t(int, MAX_ASSIGN_COUNT - 1, desc->region_assign_idx);
+>> as no where boundary check is being done.
 
-On Wed, Nov 01, 2023 at 10:22:44AM +0800, William Qiu wrote:
->=20
->=20
-> On 2023/10/20 19:25, Uwe Kleine-K=C3=B6nig wrote:
-> >> +	void __iomem *base =3D pwm->data->get_ch_base ?
-> >> +			     pwm->data->get_ch_base(pwm->regs, dev->hwpwm) : pwm->regs;
-> >> +	u32 period_data, duty_data, ctrl_data;
-> >> +
-> >> +	period_data =3D readl(REG_OCPWM_LRC(base));
-> >> +	duty_data =3D readl(REG_OCPWM_HRC(base));
-> >> +	ctrl_data =3D readl(REG_OCPWM_CTRL(base));
-> >> +
-> >> +	state->period =3D DIV_ROUND_CLOSEST_ULL((u64)period_data * NSEC_PER_=
-SEC, pwm->clk_rate);
-> >> +	state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL((u64)duty_data * NSEC_PE=
-R_SEC, pwm->clk_rate);
-> >=20
-> > Please test your driver with PWM_DEBUG enabled. The rounding is wrong
-> > here.
->=20
-> The conclusion after checking is: when the period or duty_cycle value set
-> by the user is not divisible (1000000000/49.5M), there will be an error.
-> This error is due to hardware accuracy. So why is rounding is wrong?
-> rockchip also has a similar implementation drivers/pwm/ pwm-rockchip.c
+I was wrong here.. MAX_ASSIGN_COUNT was relative to assign index.
 
-I fail to follow. Where is an error?
+> 
+> region_idx is the offset in the memory-region DT property where assigned 
+> memory starts,
+> so for example there's 2 memory regions on SM8650 CDSP, but only a 
+> single shared memory region
+> so we have the following:
+>   - region_assign_idx = 2
+>   - region_assign_count = 1
+> and in DT:
+>   memory-region = <&cdsp_mem>, <&q6_cdsp_dtb_mem>, <&global_sync_mem>;
+> -------------------------------------------------/\
+>                                         region_assign_idx
+> ------------------------------------------------[                    ]
+>                                         region_assign_count
+> 
+> and for MPSS, there's 2 of both:
+>   - region_assign_idx = 2
+>   - region_assign_count = 2
+> and in DT:
+> memory-region = <&mpss_mem>, <&q6_mpss_dtb_mem>, <&mpss_dsm_mem>, 
+> <&mpss_dsm_mem_2>;
+> -------------------------------------------------/\
+>                                         region_assign_idx
+> 
+> ------------------------------------------------[                                   ]
+>                                         region_assign_count
+> 
+> so we cannot add a bounday check.
+> 
+> In any case of_parse_phandle() will do the boundary check if DT has less 
+> phandles than expected.
 
-The general policy (for new drivers at least) is to implement the
-biggest period possible not bigger than the requested period. That means
-that .apply must round down and to make .apply =E2=88=98 .get_state idempot=
-ent
-=2Eget_state must round up to match.
+Thanks for explaining.
 
-Assuming a clkrate of 49500000 Hz the actual period for REG_OCPWM_LRC =3D
-400 is 8080.808ns and for REG_OCPWM_LRC =3D 401 is 8101.010.
-
-So with REG_OCPWM_LRC =3D 401 .get_state should report state.period =3D 8102
-[ns] because if you call .apply with .period =3D 8101 [ns] you're supposed
-to use REG_OCPWM_LRC =3D 400.
-
-Rounding using DIV_ROUND_CLOSEST doesn't give consistent behaviour in
-some cases. Consider a PWM that can implement the following periods (and
-none in between):
-
-	20.1 ns
-	20.4 ns
-	21.7 ns
-
-With round-to-nearest a request to configure 21 ns will yield 20.4 ns.
-If you call .get_state there the driver will return 20 ns. However
-configuring 20 ns results in a period of 20.1 ns.
-
-With rounding as requested above you get a consistent behaviour. After
-=2Eapply_state(period=3D21) .get_state() returns period=3D21.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ltmjasklp4ngpzku
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVDiEcACgkQj4D7WH0S
-/k5P5Qf/czkHt1isZ7/ZX5Q+xUYicANztUd5HO2YB1j1TaGv02Q8gE7OomO6Nk/8
-NYYx0uxugJPlJlUQ5omGaZzFBE0neKAIfZXuKL7OfIOIIL+dusgvYnY2TRGJWIBQ
-o8z9IyZKGh46aUnC2ZToUYJAYqYAxpr3TkUkPl8xVgSlPvgM8uwWAAxyuJWWR/Pk
-+rm6Kl2Hb3nZ1tnH1OpV2W8kisHQjtyBR0TWtpjioDSpO7IEp1wlg6ayVPcQQTJe
-kHkf/l/RUEVqo7D3nzmg17qT8vzzPGjk2kgm42A9ce6jUAcemq0MOIQtLfS7vWjJ
-vM/+J3PQqV+D4wuWImRyKwZ5chY6Pg==
-=rI74
------END PGP SIGNATURE-----
-
---ltmjasklp4ngpzku--
+-Mukesh
+> 
+> Neil
+> 
+>>
+>> -Mukesh
+>>>>> +    adsp->region_assign_count = min_t(int, MAX_ASSIGN_COUNT, 
+>>>>> desc->region_assign_count);
+>>>>> +    adsp->region_assign_vmid = desc->region_assign_vmid;
+>>>>> +    adsp->region_assign_shared = desc->region_assign_shared;
+>>>>>       if (dtb_fw_name) {
+>>>>>           adsp->dtb_firmware_name = dtb_fw_name;
+>>>>>           adsp->dtb_pas_id = desc->dtb_pas_id;
+>>>>> @@ -1163,6 +1191,8 @@ static const struct adsp_data 
+>>>>> sm8550_mpss_resource = {
+>>>>>       .sysmon_name = "modem",
+>>>>>       .ssctl_id = 0x12,
+>>>>>       .region_assign_idx = 2,
+>>>>> +    .region_assign_count = 1,
+>>>>> +    .region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
+>>>>>   };
+>>>>>   static const struct of_device_id adsp_of_match[] = {
+>>>>>
+>>>>
+>>>> -Mukesh
+>>>
+>>> Thanks,
+>>> Neil
+>>>
+> 
 
