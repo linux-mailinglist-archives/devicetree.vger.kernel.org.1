@@ -1,428 +1,233 @@
-Return-Path: <devicetree+bounces-13629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEAC47DF5C3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:10:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B2887DF5DF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 16:12:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92F12281BA2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:10:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A35051C20FB0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Nov 2023 15:12:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AC31BDF0;
-	Thu,  2 Nov 2023 15:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="U6mMWjbW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCF31C29F;
+	Thu,  2 Nov 2023 15:12:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3995227
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 15:10:48 +0000 (UTC)
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467E3DC;
-	Thu,  2 Nov 2023 08:10:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=6SoiL9YhDyjvs2Md8/XpQozMsOuUsRO0bsuBElGwhzc=; b=U6mMWjbWiqdGE0I0nEXGrFLvGU
-	5zfFBJBIDIMT2rADo5z4b1ETwlPKv0wIeaztdVrDrqoWMe6AgY1Wwy8cqucLX4Xl/dA+UcE0S4GB4
-	3r1djHOQwpucY4hoHJjU0QiXGFbcJ2w6H/tfClD0QK8xySvjkYsSdCeyHV8XcyiGDsW0=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:33560 helo=pettiford)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1qyZKz-00081h-1c; Thu, 02 Nov 2023 11:10:29 -0400
-Date: Thu, 2 Nov 2023 11:10:24 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, hvilleneuve@dimonoff.com, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, leoyang.li@nxp.com, robh@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Message-Id: <20231102111024.5b67f6b1bc238f3e1612463a@hugovil.com>
-In-Reply-To: <223f6bfe-4e99-4b04-98e8-73fc43dcd212@linaro.org>
-References: <20231101183549.2960083-1-hugo@hugovil.com>
-	<20231101183549.2960083-4-hugo@hugovil.com>
-	<223f6bfe-4e99-4b04-98e8-73fc43dcd212@linaro.org>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208BB1BDFF;
+	Thu,  2 Nov 2023 15:12:14 +0000 (UTC)
+Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BB8813D;
+	Thu,  2 Nov 2023 08:12:05 -0700 (PDT)
+Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id EC5F384901;
+	Thu,  2 Nov 2023 16:12:01 +0100 (CET)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Subject: [PATCH v7 00/10] Initial Marvell PXA1908 support
+Date: Thu, 02 Nov 2023 16:11:06 +0100
+Message-Id: <20231102-pxa1908-lkml-v7-0-cabb1a0cb52b@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-Subject: Re: [PATCH v2 3/3] arm64: dts: freescale: introduce rve-gateway
- board
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAq8Q2UC/4XOy07DMBCF4VepvMbRXOzYZsV7IBaJMyGml1QJR
+ EVV3h23EhC8YTkjfb/OVc0yJZnV4+6qJlnSnMZTPtzDTsWhOb2KTl2+FQExeGB9vjQYwOvD/nj
+ QtWcQ3zXGRqcyOU/Sp8s99/yS7yHN7+P0ea8vfPt+h8zf0MIatBfj+9iwgxCe5v14kGqY1K2z0
+ K915LCmAKGqgVGj7j7epDqmvHZcUiwgbiESAhiqCC3b/6TZznXFXJPnxpa96xy3xlJh7cYiFdZ
+ m29jOYmAnwqaw9Y9FQChsnW1LvUAgA7H3G7uu6xdEdd5OzgEAAA==
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
+ Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Leo Yan <leoy@marvell.com>, Zhangfei Gao <zhangfei.gao@marvell.com>, 
+ Lubomir Rintel <lkundrak@v3.sk>, Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Kees Cook <keescook@chromium.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-hardening@vger.kernel.org, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Karel Balej <balejk@matfyz.cz>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor.dooley@microchip.com>, 
+ kernel test robot <lkp@intel.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6396;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=kTxmtHu5Fo19on0/63ULuUPnJCIg72dD7UAdj8sHmQI=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBlQ7w4E5/JSxng67NOhYN8nkHemogz50Q03Akex
+ x4G2IbL2H2JAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZUO8OAAKCRCaEZ6wQi2W
+ 4c0ID/990vPNxBbaoCCbQ2VRw9X/Y2hNeTLvNlV1Ho699sCpDTuKeDglRFpye5Ev8+2dhTV0Uea
+ Yw5urc5fU3ocMtXHvIf0l0PLMEhk0687CxdZWV4tknUrDujzRU6W7islaSFG3cQ0sK8xLXdt43z
+ oQOD8D2HO2l5fUTLZob5MZKL5xvvMxel6jT/1Ekn14ZmWXFn6Zhnw8l92Yn5Gar56b5ACuhh8YQ
+ mpGTgPZcL81kUwj8hpktl6J0wwpFumj1T4wm7PRx60Qq5aolUsWnWyD+59rOGVRZ0sq3uoA6Vv0
+ gfTPIg8Emq6jDu/Le5yiDFXqyCe1MZQJijo7AyoPoXyWC4CCU2e2SNhPDwhBu7Sw/PiAGXBPiaH
+ gaQ4kLMpHFriQr6Q53QAxM+nZY1tODrYOSgALJkI5N1S3xcDbLudAsZ8cIUXMp4P2uoT5fgNW0n
+ sDFhg97n1nJM6hjjMBTJ5R9QDUbJXDp+f0/9dcv3r/YlzGcI6j39U0PSeSJIqe+KUGGtJ67ckPg
+ giwQh9NZWocsgTFfcPfLkS3ssi3dz4VMPYPSJ5jFDOBM74ADn/uXu2FSNW0GFnHyzmfYzaD+XNu
+ 7QoFl08l2ohPmTnaq9hMjtOVQblNNDJJo3zVuPa1McxZGgGfjTksoWqppJEl3WNoDR65I05g4Cv
+ 5ma0Wat5qgMq7bg==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
 
-On Thu, 2 Nov 2023 08:36:32 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hello,
 
-> On 01/11/2023 19:35, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > The RVE gateway board is based on a Variscite VAR-SOM-NANO,
-> > with a NXP MX8MN nano CPU.
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  MAINTAINERS                                   |   7 +
-> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> >  .../boot/dts/freescale/imx8mn-rve-gateway.dts | 284 ++++++++++++++++++
-> >  3 files changed, 292 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 43c5ed3c4508..9423b1bf35fc 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -18778,6 +18778,13 @@ F:	samples/rust/
-> >  F:	scripts/*rust*
-> >  K:	\b(?i:rust)\b
-> >  
-> > +RVE BOARD SUPPORT
-> > +M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> > +S:	Supported
-> > +W:	https://rve.ca
-> > +F:	arch/arm64/boot/dts/freescale/imx*rve-*.dts*
-> 
-> I still don't think individual boards should receive maintainer entry.
-> https://lore.kernel.org/all/20210809080204.8381-1-shawnguo@kernel.org/
+This series adds initial support for the Marvell PXA1908 SoC and
+"samsung,coreprimevelte", a smartphone using the SoC.
 
-Hi,
-ok, I was not aware of that. Will drop it for V3.
+USB works and the phone can boot a rootfs from an SD card, but there are
+some warnings in the dmesg:
 
+During SMP initialization:
+[    0.006519] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU1: 0x00000000000000
+[    0.006542] CPU features: Unsupported CPU feature variation detected.
+[    0.006589] CPU1: Booted secondary processor 0x0000000001 [0x410fd032]
+[    0.010710] Detected VIPT I-cache on CPU2
+[    0.010716] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU2: 0x00000000000000
+[    0.010758] CPU2: Booted secondary processor 0x0000000002 [0x410fd032]
+[    0.014849] Detected VIPT I-cache on CPU3
+[    0.014855] CPU features: SANITY CHECK: Unexpected variation in SYS_CNTFRQ_EL0. Boot CPU: 0x000000018cba80, CPU3: 0x00000000000000
+[    0.014895] CPU3: Booted secondary processor 0x0000000003 [0x410fd032]
 
-> > +
-> >  RXRPC SOCKETS (AF_RXRPC)
-> >  M:	David Howells <dhowells@redhat.com>
-> >  M:	Marc Dionne <marc.dionne@auristor.com>
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > index 89aee6c92576..760a0ca7adc3 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -89,6 +89,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr3l-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mn-rve-gateway.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-> > new file mode 100644
-> > index 000000000000..312718982a52
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-> > @@ -0,0 +1,284 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2023 DimOnOff
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/usb/pd.h>
-> > +#include "imx8mn-var-som.dtsi"
-> > +
-> > +/ {
-> > +	model = "RVE gateway";
-> > +	compatible = "rve,rve-gateway", "fsl,imx8mn";
-> 
-> Missing compatible of SoM.
+SMMU probing fails:
+[    0.101798] arm-smmu c0010000.iommu: probing hardware configuration...
+[    0.101809] arm-smmu c0010000.iommu: SMMUv1 with:
+[    0.101816] arm-smmu c0010000.iommu:         no translation support!
 
-Fixed in V3.
+On Samsung's PXA1908 phones, the bootloader does not start the ARM
+system timer, and my temporary solution (which isn't present in this
+series) was to put the code for starting the timer in the clock driver.
+Would this hack be accepted upstream in the form of a platform or
+clocksource driver such as drivers/clocksource/timer-mediatek-cpux.c?
 
+A 3.14 based Marvell tree is available on GitHub
+acorn-marvell/brillo_pxa_kernel, and a Samsung one on GitHub
+CoderCharmander/g361f-kernel.
 
-> 
-> > +
-> > +	crystal_duart_24m: crystal-duart-24m {
-> > +		compatible = "fixed-clock";
-> > +		#clock-cells = <0>;
-> > +		clock-frequency = <24000000>;
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> > +		status = "okay";
-> 
-> Drop
+Andreas Färber attempted to upstream support for this SoC in 2017:
+https://lore.kernel.org/lkml/20170222022929.10540-1-afaerber@suse.de/
 
-Fixed in V3.
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 
-> 
-> > +
-> > +		key-enter {
-> > +			label = "enter";
-> > +			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_ENTER>;
-> > +		};
-> > +
-> > +		key-exit {
-> > +			label = "exit";
-> > +			gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_ESC>;
-> > +		};
-> > +	};
-> > +
-> > +	lcd {
-> > +		compatible = "hit,hd44780";
-> > +		display-height-chars = <2>;
-> > +		display-width-chars = <20>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_lcd>;
-> > +		data-gpios =
-> > +			<&gpio5  1 GPIO_ACTIVE_HIGH>,
-> 
-> This should be after =, with the reset of lines properly aligned.
+Changes in v7:
+- Suppress SND_MMP_SOC_SSPA on ARM64
+- Update trailers
+- Rebase on v6.6-rc7
+- Link to v6: https://lore.kernel.org/r/20231010-pxa1908-lkml-v6-0-b2fe09240cf8@skole.hr
 
-Fixed in V3.
+Changes in v6:
+- Address maintainer comments:
+  - Add "marvell,pxa1908-padconf" binding to pinctrl-single driver
+- Drop GPIO patch as it's been pulled
+- Update trailers
+- Rebase on v6.6-rc5
+- Link to v5: https://lore.kernel.org/r/20230812-pxa1908-lkml-v5-0-a5d51937ee34@skole.hr
 
-> 
-> > +			<&gpio1  6 GPIO_ACTIVE_HIGH>,
-> > +			<&gpio1 14 GPIO_ACTIVE_HIGH>,
-> > +			<&gpio4 28 GPIO_ACTIVE_HIGH>,
-> > +			<&gpio5 24 GPIO_ACTIVE_HIGH>,
-> > +			<&gpio5  2 GPIO_ACTIVE_HIGH>,
-> > +			<&gpio1 12 GPIO_ACTIVE_HIGH>,
-> > +			<&gpio5 25 GPIO_ACTIVE_HIGH>;
-> > +		enable-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>;
-> > +		rs-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-> > +		rw-gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-> > +	};
-> > +
-> > +	reg_3p3v: regulator-3p3v {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "3P3V";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		regulator-always-on;
-> > +		};
-> 
-> Fix indentation.
+Changes in v5:
+- Address maintainer comments:
+  - Move *_NR_CLKS to clock driver from dt binding file
+- Allocate correct number of clocks for each block instead of blindly
+  allocating 50 for each
+- Link to v4: https://lore.kernel.org/r/20230807-pxa1908-lkml-v4-0-cb387d73b452@skole.hr
 
-Fixed in V3.
+Changes in v4:
+- Address maintainer comments:
+  - Relicense clock binding file to BSD-2
+- Add pinctrl-names to SD card node
+- Add vgic registers to GIC node
+- Rebase on v6.5-rc5
+- Link to v3: https://lore.kernel.org/r/20230804-pxa1908-lkml-v3-0-8e48fca37099@skole.hr
 
-> 
-> > +
-> > +	rotary: rotary-encoder { /* Bourns PEC12R rotary encoder, 24 steps. */
-> 
-> No comments after {. Put them in line before or after. This applies to
-> other places as well.
+Changes in v3:
+- Address maintainer comments:
+  - Drop GPIO dynamic allocation patch
+  - Move clock register offsets into driver (instead of bindings file)
+  - Add missing Tested-by trailer to u32_fract patch
+  - Move SoC binding to arm/mrvl/mrvl.yaml
+- Add serial0 alias and stdout-path to board dts to enable UART
+  debugging
+- Rebase on v6.5-rc4
+- Link to v2: https://lore.kernel.org/r/20230727162909.6031-1-duje.mihanovic@skole.hr
 
-Fixed all in V3.
+Changes in v2:
+- Remove earlycon patch as it's been merged into tty-next
+- Address maintainer comments:
+  - Clarify GPIO regressions on older PXA platforms
+  - Add Fixes tag to commit disabling GPIO pinctrl calls for this SoC
+  - Add missing includes to clock driver
+  - Clock driver uses HZ_PER_MHZ, u32_fract and GENMASK
+  - Dual license clock bindings
+  - Change clock IDs to decimal
+  - Fix underscores in dt node names
+  - Move chosen node to top of board dts
+  - Clean up documentation
+  - Reorder commits
+  - Drop pxa,rev-id
+- Rename muic-i2c to i2c-muic
+- Reword some commits
+- Move framebuffer node to chosen
+- Add aliases for mmc nodes
+- Rebase on v6.5-rc3
+- Link to v1: https://lore.kernel.org/r/20230721210042.21535-1-duje.mihanovic@skole.hr
 
-> 
-> > +		compatible = "rotary-encoder";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_rotary>;
-> > +		gpios =
-> > +			<&gpio1  5 GPIO_ACTIVE_LOW>, /* A */
-> 
-> This should be after =, with the reset of lines properly aligned.
+---
+Andy Shevchenko (1):
+      clk: mmp: Switch to use struct u32_fract instead of custom one
 
-Fixed in V3.
+Duje Mihanović (9):
+      dt-bindings: pinctrl: pinctrl-single: add marvell,pxa1908-padconf compatible
+      pinctrl: single: add marvell,pxa1908-padconf compatible
+      dt-bindings: clock: Add Marvell PXA1908 clock bindings
+      clk: mmp: Add Marvell PXA1908 clock driver
+      ASoC: pxa: Suppress SSPA on ARM64
+      dt-bindings: marvell: Document PXA1908 SoC
+      arm64: Kconfig.platforms: Add config for Marvell PXA1908 platform
+      arm64: dts: Add DTS for Marvell PXA1908 and samsung,coreprimevelte
+      MAINTAINERS: add myself as Marvell PXA1908 maintainer
 
-> 
-> 
-> > +			<&gpio3 21 GPIO_ACTIVE_LOW>; /* B */
-> > +		linux,axis = <0>; /* REL_X */
-> > +		rotary-encoder,encoding = "gray";
-> > +		rotary-encoder,relative-axis;
-> > +	};
-> > +};
-> > +
-> > +&ecspi1 {
-> > +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-> > +
-> > +	duart1: serial@0 {
-> > +		compatible = "nxp,sc16is752";
-> > +		reg = <0>;
-> > +		spi-rx-bus-width = <1>;
-> > +		spi-tx-bus-width = <1>;
-> > +		spi-max-frequency = <4000000>;
-> > +		clocks = <&crystal_duart_24m>;
-> > +		interrupt-parent = <&gpio3>;
-> > +		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "RADIO0", "RADIO1", "RADIO2", "RADIO3",
-> > +		"RADIO4", "RADIO_RESET", "TP12", "TP11";
-> > +		linux,rs485-enabled-at-boot-time;
-> > +		rs485-rts-active-low;
-> > +	};
-> > +
-> > +	/delete-node/ touchscreen@0;
-> > +};
-> > +
-> > +&ecspi2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_ecspi2>;
-> > +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > +	/delete-property/ dmas;
-> > +	/delete-property/ dma-names;
-> > +	status = "okay";
-> > +
-> > +	duart2: serial@0 {
-> > +		compatible = "nxp,sc16is752";
-> > +		reg = <0>;
-> > +		spi-rx-bus-width = <1>;
-> > +		spi-tx-bus-width = <1>;
-> > +		spi-max-frequency = <4000000>;
-> > +		clocks = <&crystal_duart_24m>;
-> > +		interrupt-parent = <&gpio3>;
-> > +		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "LED_B_USER", "LED_R_USER", "LED_G_USER",
-> > +		"GPIO_EXT3", "GPIO_EXT2", "GPIO_EXT1", "GPIO_EXT0", "TP13";
-> > +		linux,rs485-enabled-at-boot-time;
-> > +		rs485-rts-active-low;
-> > +	};
-> > +};
-> > +
-> > +/* Configure PWM pins in GPIO mode: */
-> > +&gpio5 {
-> > +	gpio-line-names = "", "", "", "PWM3", "PWM2", "PWM1";
-> > +};
-> > +
-> > +&gpu {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&i2c2 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c2>;
-> > +	status = "okay";
-> > +
-> > +	eeprom_cb: eeprom@56 { /* Carrier board EEPROM */
-> > +		compatible = "atmel,24c04";
-> > +		reg = <0x56>;
-> > +		pagesize = <16>;
-> > +		vcc-supply = <&reg_3p3v>;
-> > +	};
-> > +
-> > +	lm75: sensor@48 {
-> > +		compatible = "st,stlm75";
-> > +		reg = <0x48>;
-> > +		vs-supply = <&reg_3p3v>;
-> > +	};
-> > +
-> > +	mcp7940: rtc@6f {
-> > +		compatible = "microchip,mcp7940x";
-> > +		reg = <0x6f>;
-> > +	};
-> > +};
-> > +
-> > +&i2c3 {
-> > +	codec@1a {
-> > +		status = "disabled";
-> > +	};
-> > +};
-> > +
-> > +&i2c4 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c4>;
-> > +	status = "okay";
-> > +
-> > +	pcf8574_1: gpio@38 {
-> > +		status = "okay";
-> 
-> Drop
+ .../devicetree/bindings/arm/mrvl/mrvl.yaml         |   5 +
+ .../devicetree/bindings/clock/marvell,pxa1908.yaml |  48 +++
+ .../bindings/pinctrl/pinctrl-single.yaml           |   4 +
+ MAINTAINERS                                        |   9 +
+ arch/arm64/Kconfig.platforms                       |  11 +
+ arch/arm64/boot/dts/marvell/Makefile               |   3 +
+ .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 333 +++++++++++++++++++++
+ arch/arm64/boot/dts/marvell/pxa1908.dtsi           | 295 ++++++++++++++++++
+ drivers/clk/mmp/Makefile                           |   2 +-
+ drivers/clk/mmp/clk-frac.c                         |  57 ++--
+ drivers/clk/mmp/clk-of-mmp2.c                      |  26 +-
+ drivers/clk/mmp/clk-of-pxa168.c                    |   4 +-
+ drivers/clk/mmp/clk-of-pxa1908.c                   | 328 ++++++++++++++++++++
+ drivers/clk/mmp/clk-of-pxa1928.c                   |   6 +-
+ drivers/clk/mmp/clk-of-pxa910.c                    |   4 +-
+ drivers/clk/mmp/clk.h                              |  10 +-
+ drivers/pinctrl/pinctrl-single.c                   |   1 +
+ include/dt-bindings/clock/marvell,pxa1908.h        |  88 ++++++
+ sound/soc/pxa/Kconfig                              |   2 +-
+ 19 files changed, 1178 insertions(+), 58 deletions(-)
+---
+base-commit: 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
+change-id: 20230803-pxa1908-lkml-6830e8da45c7
 
-Fixed all in V3.
-
-> 
-> > +		compatible = "nxp,pcf8574";
-> > +		reg = <0x38>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "LED_B_COMM3", "LED_R_COMM3", "LED_G_COMM3",
-> > +		"TP14", "TP15", "LED_G_COMM4", "LED_R_COMM4", "LED_B_COMM4";
-> > +	};
-> > +
-> > +	pcf8574_2: gpio@39 {
-> > +		status = "okay";
-> 
-> Drop
-> 
-> 
-> > +		compatible = "nxp,pcf8574";
-> > +		reg = <0x39>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "LED_B_COMM2", "LED_G_COMM2", "LED_B_COMM1",
-> > +		"LED_R_COMM2", "LED_R_COMM1", "LED_G_COMM1", "TP16", "TP17";
-> > +	};
-> > +};
-> > +
-> > +&uart2 {
-> > +	/delete-node/ bluetooth;
-> 
-> Why? If the hardware does not exist, why it is even in the DTSI? It does
-> exist, so removing is not correct.
-
-The current SOM DTSI is a melting pot of all "potentially" available
-hardware, but there are a lot of SOM versions, with different
-combinations of hardware components that can be populated or not...
-
-The hardware do exist on some of our SOM versions, but not on some
-others, and we do not use it at the moment.
-
-In V3 I changed the line to:
-    status = "disabled";
-
-> 
-> 
-> > +};
-> > +
-> > +&usbotg1 {
-> > +	dr_mode = "host";
-> > +	disable-over-current;
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* SD interface on expansion connector. */
-> > +&usdhc2 {
-> > +	/delete-property/vmmc-supply;
-> 
-> Why? The supply is needed.
-
-The SOM dtsi references a regulator named reg_usdhc2_vmmc, but it
-is not present in the SOM dtsi itself. Since we do not have such a
-dedicated usdhc2 regulator on our board, initially I did this to get
-rid of this error:
-    Reference to non-existent node or label "reg_usdhc2_vmmc"
-
-But for V3, I will change the vmmc-supply to refer to our board fixed
-3.3V regulator:
-
- &usdhc2 {
-+       vmmc-supply = <&reg_3p3v>;
-
-Thank you for the review.
-
-Hugo.
+Best regards,
+-- 
+Duje Mihanović <duje.mihanovic@skole.hr>
 
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
 
