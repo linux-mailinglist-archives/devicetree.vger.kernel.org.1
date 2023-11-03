@@ -1,183 +1,295 @@
-Return-Path: <devicetree+bounces-13701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 213F37E0030
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:22:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED9B7E01A1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:43:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7B45281DE9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:22:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B225CB20A45
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4895614283;
-	Fri,  3 Nov 2023 10:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E322D62A;
+	Fri,  3 Nov 2023 10:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SGoL+g5y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MdH3eer/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295CA12B80
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 10:22:25 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C06D4E;
-	Fri,  3 Nov 2023 03:22:21 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A39DnDb005742;
-	Fri, 3 Nov 2023 10:22:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=nRY5lOltW/stmAHC4W+teHJxj9e8mY88qXIYFfyXbKQ=;
- b=SGoL+g5yIAHb39M3LwtjWJTL466p+0iGEJ1goME3jjjA/A9ysHi26p3GwOjDzVOy21cF
- nYTlQaKLN35KGtKDc0tXpyWsmesCKJ9AjPy76u4/bZxeobTv4xQi1cg+Ip+l3bViYmhQ
- oMo8nSqLmAR/+V+EaRiMhrfCwiciydDnY/rXGIjQjE/ABEpikZ9YSYnC5YPmS0XAu579
- qGHjGxQo/hPAR/h1jRmWxY6olFq3URwuOE6OWF2QteaAlXTSxg8lNh98ZzQyPoEkMs9g
- gScmfAgc5fgNGZlh+wNgWY2t2eVDO7lANUBpA+y1xegSLflgkf93yLy+XYLMiZ85o8cD Fg== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4r00gtmg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Nov 2023 10:22:07 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3AM6Cc020183
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Nov 2023 10:22:06 GMT
-Received: from [10.214.16.225] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
- 2023 03:22:00 -0700
-Message-ID: <9a2ff779-163c-415d-9e78-84756ad77c86@quicinc.com>
-Date: Fri, 3 Nov 2023 15:51:56 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AF5185F
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 10:43:03 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B834ED7;
+	Fri,  3 Nov 2023 03:43:00 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c501bd6ff1so27055481fa.3;
+        Fri, 03 Nov 2023 03:43:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699008179; x=1699612979; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rOiFKv22ji7PySyrKL0ewmg7pOgYyRXkIz/R1Hq2LC0=;
+        b=MdH3eer/ZlscSHIKoqI8qzCfyyp2akrS293WDe2Vj27KD2Nu33gIOA0q2NEGZfatTX
+         Kh6+tnHibGK62niFU7xGQ/MwUuOpqo7JaKkXLoIp8cZMxMiX22YcMV1vmotVkj9HRwQb
+         Qd4v8LnxiP+GYQvkjS4E8tgc2vSXV1IPaxKosZSq3QSvoW4fntZkX9CND5sK9cGhUaTo
+         peDRM3bxaQKb2rKZnFYAlL5je820dAWbgElu2dtTpjXa6BE8UdeKRn6syNe92hO4Qe7n
+         1qdnD37vbAPZE/RvBBVJ5NrrGpusvg3tW+3voZEnid8gG2SExLyCMKQ96SbYqycVdKaC
+         LhCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699008179; x=1699612979;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rOiFKv22ji7PySyrKL0ewmg7pOgYyRXkIz/R1Hq2LC0=;
+        b=cgkoklvl05avDpybMeinUcE/A8xhggMS+OcI7TjEkYzaBGI/Zf6G6CY7Xr8vZeW7w2
+         rbct2QaCqRzCR107yOCznbKqKNOTGFYqfhZYWLsTpgDeYLtOSZZBoBvBDoUSTJVnUtmZ
+         vg4jnWbsNBDQxShZBRJPrmu5YmyReSRkpiRqh18tm6JoMyAAwvQaEhMnkBtMB4NxRxJ6
+         DipSRMe3ZI8BsxslVXFZQmwWDjEZSauOLk+MpGkyocRV6PYuqaUvJ9GoxxsWix2q/aTy
+         jz78Dp4EvMp+X5337FmP+g5OP92UUpcu+ArTjJPrMaluWMlGEvfp2d5nJuMF2Kt6LZMc
+         1glQ==
+X-Gm-Message-State: AOJu0YwIMVtEabO9E6XdQwO6ZKGOaOyElHaY3GxpTYvTC63gpziaJfNh
+	otZ6Bi8ekKqS/yvWwGfT9oI=
+X-Google-Smtp-Source: AGHT+IGbn0nx+Y009fjMnwmpnZ70XY+afYMPUz8npLOVqOYkmnqFB4avZCMRxXE0cwwlR3mofK1gwg==
+X-Received: by 2002:ac2:410c:0:b0:509:4492:2a94 with SMTP id b12-20020ac2410c000000b0050944922a94mr4295780lfi.49.1699008178530;
+        Fri, 03 Nov 2023 03:42:58 -0700 (PDT)
+Received: from localhost.localdomain ([178.70.169.129])
+        by smtp.gmail.com with ESMTPSA id o25-20020ac25e39000000b00507f7eca29asm192001lfg.68.2023.11.03.03.42.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Nov 2023 03:42:57 -0700 (PDT)
+Date: Fri, 3 Nov 2023 13:42:55 +0300
+From: Ivan Bornyakov <brnkv.i1@gmail.com>
+To: Deborah Brouwer <deborah.brouwer@collabora.com>
+Cc: Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, NXP Linux Team <linux-imx@nxp.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Nas Chung <nas.chung@chipsnmedia.com>, 
+	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>, 
+	linux-kernel@vger.kernel.org, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Darren Etheridge <detheridge@ti.com>
+Subject: Re: [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
+Message-ID: <d7pzf5sirz6zdx4qenzbaitalm3owkie67weqdurcx7wfisebh@fxri7a37bapj>
+References: <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
+ <20231017221359.20164-1-brnkv.i1@gmail.com>
+ <ZUPXb10lU8UZHVQz@mz550>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ARM: dts: msm: Add capacity and DPC properties for
- sc7280 soc
-Content-Language: en-US
-To: <cros-qcom-dts-watchers@chromium.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_ashayj@quicinc.com>,
-        <quic_atulpant@quicinc.com>, <quic_rgottimu@quicinc.com>,
-        <quic_shashim@quicinc.com>, <quic_pkondeti@quicinc.com>
-References: <20231103095358.29312-1-quic_anshar@quicinc.com>
-From: Ankit Sharma <quic_anshar@quicinc.com>
-In-Reply-To: <20231103095358.29312-1-quic_anshar@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: aqXp8JEJkrk7SJ-V2BsLJslyR6rjFI1C
-X-Proofpoint-GUID: aqXp8JEJkrk7SJ-V2BsLJslyR6rjFI1C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-03_10,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- mlxlogscore=999 clxscore=1015 impostorscore=0 spamscore=0 bulkscore=0
- priorityscore=1501 suspectscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311030086
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZUPXb10lU8UZHVQz@mz550>
 
+Hi, Deborah
 
-On 11/3/2023 3:23 PM, Ankit Sharma wrote:
-> The "capacity-dmips-mhz" and "dynamic-power-coefficient" are
-> used to build Energy Model which in turn is used by EAS to take
-> placement decisions.
->
-> Change-Id: I57aa4b99734dc349034f84bd16b02609b4ac6e55
-> Signed-off-by: Ankit Sharma <quic_anshar@quicinc.com>
-> ---
-Please ignore this, will resend again. Sorry for the spam.
+On Thu, Nov 02, 2023 at 10:07:59AM -0700, Deborah Brouwer wrote:
+> On Wed, Oct 18, 2023 at 01:13:52AM +0300, Ivan Bornyakov wrote:
+> > Hi!
+> 
+> Hi Ivan,
+> 
+> > 
+> > On Thu, 12 Oct 2023 13:01:03 +0200, Sebastian Fricke wrote:
+> > > Add the decoder and encoder implementing the v4l2
+> > > API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
+> > > 
+> > > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+> > > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> > > Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
+> > > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> > > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> > > Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
+> > > ---
+> > >  drivers/media/platform/chips-media/Kconfig         |    1 +
+> > >  drivers/media/platform/chips-media/Makefile        |    1 +
+> > >  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
+> > >  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
+> > >  .../platform/chips-media/wave5/wave5-helper.c      |  213 +++
+> > >  .../platform/chips-media/wave5/wave5-helper.h      |   31 +
+> > >  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1953 ++++++++++++++++++++
+> > >  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++++++
+> > >  .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
+> > >  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
+> > >  .../platform/chips-media/wave5/wave5-vpuapi.h      |    2 -
+> > >  11 files changed, 4389 insertions(+), 2 deletions(-)
+> > 
+> > [...]
+> > 
+> > > diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
+> > > new file mode 100644
+> > > index 000000000000..74d1fae64fa4
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
+> > 
+> > [...]
+> > 
+> > > +static int wave5_vpu_dec_queue_setup(struct vb2_queue *q, unsigned int *num_buffers,
+> > > +				     unsigned int *num_planes, unsigned int sizes[],
+> > > +				     struct device *alloc_devs[])
+> > > +{
+> > > +	struct vpu_instance *inst = vb2_get_drv_priv(q);
+> > > +	struct v4l2_pix_format_mplane inst_format =
+> > > +		(q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) ? inst->src_fmt : inst->dst_fmt;
+> > > +	unsigned int i;
+> > > +
+> > > +	dev_dbg(inst->dev->dev, "%s: num_buffers: %u | num_planes: %u | type: %u\n", __func__,
+> > > +		*num_buffers, *num_planes, q->type);
+> > > +
+> > > +	/* the CREATE_BUFS case */
+> > > +	if (*num_planes) {
+> > > +		if (inst_format.num_planes != *num_planes)
+> > > +			return -EINVAL;
+> > > +
+> > > +		for (i = 0; i < *num_planes; i++) {
+> > > +			if (sizes[i] < inst_format.plane_fmt[i].sizeimage)
+> > > +				return -EINVAL;
+> > > +		}
+> > > +	/* the REQBUFS case */
+> > > +	} else {
+> > > +		*num_planes = inst_format.num_planes;
+> > > +
+> > > +		if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+> > > +			sizes[0] = inst_format.plane_fmt[0].sizeimage;
+> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u\n", __func__, sizes[0]);
+> > > +		} else if (*num_planes == 1) {
+> > 
+> > I think, you should also set *num_buffers to be inst->fbc_buf_count for
+> > V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE, like this:
+> > 
+> > 		} else if (q->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
+> > 			if (*num_buffers < inst->fbc_buf_count)
+> > 				*num_buffers = inst->fbc_buf_count;
+> > 
+> > 			switch (*num_planes) {
+> > 			case 1:
+> > 				...
+> > 			case 2:
+> > 				...
+> > 			case 3:
+> > 				...
+> > 			}
+> > 		}
+> 
+> I was able to reproduce this issue by requesting a small number of buffers
+> on the CAPTURE queue that was less than inst→fbc_buf_count. When this happens,
+> wave5_vpu_dec_job_ready() fails here:
+> (v4l2_m2m_num_dst_bufs_ready(m2m_ctx) < (inst->fbc_buf_count - 1)
+> 
+> I also tested your suggestion to set the *num_buffers to  inst→fbc_buf_count
+> in queue_setup() and it seems to be working well, thanks for this.
+> 
+> I've been working on ways to improve testing for stateful decoders so
+> I'm curious how you found this issue?
+> 
+> With fluster tests that we use, gstreamer seems to be calculating correct number of
+> CAPTURE buffers to request, so we wouldn't see this.
+> 
 
-Thanks,
-Ankit
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 8601253aec70..b1890824188c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -176,6 +176,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_0>;
->   			operating-points-v2 = <&cpu0_opp_table>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <100>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 0>;
-> @@ -204,6 +206,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_100>;
->   			operating-points-v2 = <&cpu0_opp_table>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <100>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 0>;
-> @@ -227,6 +231,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_200>;
->   			operating-points-v2 = <&cpu0_opp_table>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <100>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 0>;
-> @@ -250,6 +256,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_300>;
->   			operating-points-v2 = <&cpu0_opp_table>;
-> +			capacity-dmips-mhz = <1024>;
-> +			dynamic-power-coefficient = <100>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 0>;
-> @@ -273,6 +281,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_400>;
->   			operating-points-v2 = <&cpu4_opp_table>;
-> +			capacity-dmips-mhz = <1946>;
-> +			dynamic-power-coefficient = <520>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 1>;
-> @@ -296,6 +306,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_500>;
->   			operating-points-v2 = <&cpu4_opp_table>;
-> +			capacity-dmips-mhz = <1946>;
-> +			dynamic-power-coefficient = <520>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 1>;
-> @@ -319,6 +331,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_600>;
->   			operating-points-v2 = <&cpu4_opp_table>;
-> +			capacity-dmips-mhz = <1946>;
-> +			dynamic-power-coefficient = <520>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 1>;
-> @@ -342,6 +356,8 @@
->   					   &CLUSTER_SLEEP_0>;
->   			next-level-cache = <&L2_700>;
->   			operating-points-v2 = <&cpu7_opp_table>;
-> +			capacity-dmips-mhz = <1985>;
-> +			dynamic-power-coefficient = <552>;
->   			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
->   					<&epss_l3 MASTER_EPSS_L3_APPS &epss_l3 SLAVE_EPSS_L3_SHARED>;
->   			qcom,freq-domain = <&cpufreq_hw 2>;
+I use v4l2-ctl and ffmpeg for testing the decoder.
+
+The first time I've encountered the discussed issue was when v4l2-ctl was
+able to decode one file but not the other with bigger resolution.
+
+For v4l2-ctl command line will look like this:
+v4l2-ctl --stream-from src-file.h265 --stream-to out-file.yuv --stream-mmap --stream-out-mmap
+
+For ffmpeg command line will look like this:
+ffmpeg -c:v hevc_v4l2m2m -i src-file.h265 -fps_mode passthrough out-file.yuv
+
+Also for ffmpeg there are options -num_output_buffers and -num_capture_buffers 
+to set initial numbers of buffers in OUTPUT and CAPTURE queues, by
+default they are set to 20 or so.
+
+> > 
+> > The reason for that is if fbc_buf_count is greater than initial num_buffers,
+> > wave5_vpu_dec_job_ready() wouldn't allow to invoke wave5_vpu_dec_device_run()
+> > 
+> > Here is a part of the log of described situation:
+> > 
+> >   vdec 20410000.wave515: Switch state from NONE to OPEN.
+> >   [...]
+> >   vdec 20410000.wave515: wave5_vpu_dec_init_seq: init seq sent (queue 1 : 1)
+> >   vdec 20410000.wave515: wave5_vpu_dec_get_seq_info: init seq complete (queue 0 : 0)
+> >   [...]
+> >   vdec 20410000.wave515: handle_dynamic_resolution_change: width: 4112 height: 3008 profile: 1 | minbuffer: 6
+> >   ^^^^^^^^ note that minbuffer is 6
+> > 
+> >   vdec 20410000.wave515: Switch state from OPEN to INIT_SEQ.
+> >   [...]
+> >   vdec 20410000.wave515: decoder command: 1
+> >   [...]
+> >   vdec 20410000.wave515: wave5_vpu_dec_queue_setup: num_buffers: 4 | num_planes: 0 | type: 9
+> >   ^^^^^^^^ note that num_buffers is 4
+> > 
+> >   vdec 20410000.wave515: wave5_vpu_dec_queue_setup: size[0]: 18625536
+> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
+> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
+> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
+> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
+> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    0 size: ([0]=18625536, [1]=   0, [2]=   0)
+> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    1 size: ([0]=18625536, [1]=   0, [2]=   0)
+> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    2 size: ([0]=18625536, [1]=   0, [2]=   0)
+> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    3 size: ([0]=18625536, [1]=   0, [2]=   0)
+> >   vdec 20410000.wave515: wave5_vpu_dec_start_streaming: type: 9
+> >   vdec 20410000.wave515: No capture buffer ready to decode!
+> >   ^^^^^^^^ here v4l2_m2m_num_dst_bufs_ready(m2m_ctx) < (inst->fbc_buf_count - 1), namely 4 < 6
+> >   
+> >   vdec 20410000.wave515: wave5_vpu_dec_stop_streaming: type: 9
+> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 0, fail: -22
+> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 1, fail: -22
+> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 2, fail: -22
+> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 3, fail: -22
+> >   [...]
+> >   vdec 20410000.wave515: wave5_vpu_dec_close: dec_finish_seq complete
+> > 
+> > Altering num_buffers solves the issue for me.
+> > 
+> > > +			if (inst->output_format == FORMAT_422)
+> > > +				sizes[0] = inst_format.width * inst_format.height * 2;
+> > > +			else
+> > > +				sizes[0] = inst_format.width * inst_format.height * 3 / 2;
+> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u\n", __func__, sizes[0]);
+> > > +		} else if (*num_planes == 2) {
+> > > +			sizes[0] = inst_format.width * inst_format.height;
+> > > +			if (inst->output_format == FORMAT_422)
+> > > +				sizes[1] = inst_format.width * inst_format.height;
+> > > +			else
+> > > +				sizes[1] = inst_format.width * inst_format.height / 2;
+> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u | size[1]: %u\n",
+> > > +				__func__, sizes[0], sizes[1]);
+> > > +		} else if (*num_planes == 3) {
+> > > +			sizes[0] = inst_format.width * inst_format.height;
+> > > +			if (inst->output_format == FORMAT_422) {
+> > > +				sizes[1] = inst_format.width * inst_format.height / 2;
+> > > +				sizes[2] = inst_format.width * inst_format.height / 2;
+> > > +			} else {
+> > > +				sizes[1] = inst_format.width * inst_format.height / 4;
+> > > +				sizes[2] = inst_format.width * inst_format.height / 4;
+> > > +			}
+> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u | size[1]: %u | size[2]: %u\n",
+> > > +				__func__, sizes[0], sizes[1], sizes[2]);
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > 
+> > BTW I'm currently tinkering with your patchset on another C&M IP and would be
+> > gratefull if you Cc me in the future versions of the patchset, if any.
+> 
+> Yes, sorry for missing you on v13, thanks for taking the time to review.
+> 
+> Deborah
+> 
+> > 
+> > Thanks.
 
