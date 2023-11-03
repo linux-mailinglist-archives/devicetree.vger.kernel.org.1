@@ -1,267 +1,177 @@
-Return-Path: <devicetree+bounces-13810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008F47E0837
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 19:33:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D45747E0866
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 19:46:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EAB21C21025
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 18:33:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0337A1C21025
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 18:46:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D72224E7;
-	Fri,  3 Nov 2023 18:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1C92D626;
+	Fri,  3 Nov 2023 18:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="Dr+fLDGz"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PUfnytx8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78B5224FD
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 18:33:39 +0000 (UTC)
-X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 03 Nov 2023 11:33:28 PDT
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52C310C8
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 11:33:28 -0700 (PDT)
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 2023110318322526cfb45b310d5717da
-        for <devicetree@vger.kernel.org>;
-        Fri, 03 Nov 2023 19:32:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=jan.kiszka@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=4WJpUqrj+LUuDW4dZ+b/Jwm1qU0hHIjWOZTniXvb7og=;
- b=Dr+fLDGzpvfwIGguIxTVPmkIwTvmjJvQR11ZXoi0zoQns9Bu0I1jmhgPSm0i5/dpM3gJT9
- AP6J0upO7P16Vgz9LGUF8SH/cVi5BGWipxYzxbx4Byqa4BZ4RVzJflY2XV7ZE69jy7cofc0w
- v0ObVlbYxKeAGqyrQeDcDcNTuLTFs=;
-From: Jan Kiszka <jan.kiszka@siemens.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Bao Cheng Su <baocheng.su@siemens.com>,
-	Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-Subject: [PATCH v3 5/5] arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG2 devices
-Date: Fri,  3 Nov 2023 19:32:21 +0100
-Message-Id: <0a6cd0ee61ef78aa7dd85ae3cf09c755170f0b29.1699036341.git.jan.kiszka@siemens.com>
-In-Reply-To: <cover.1699036341.git.jan.kiszka@siemens.com>
-References: <cover.1699036341.git.jan.kiszka@siemens.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55CFF2D60B;
+	Fri,  3 Nov 2023 18:45:59 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E20D47;
+	Fri,  3 Nov 2023 11:45:54 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A3CpGZL021032;
+	Fri, 3 Nov 2023 18:45:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=zov6Y6tBNKAektcKCJXpK+HS1sRgAwgkSZbmDazZaRs=;
+ b=PUfnytx81Pp1lW41+5ixSc1KxjNrcbgmJD5hczogrSO2GimkmAXdYY0t9LdUDNmhxvnc
+ CF1X4U3jqSB1ib0rZYwSGPAa5Evt1iAv5DvkIkqa3tQGHY7z3c6Juwp22vXlETGwnmgJ
+ WVXx/4fdwLQh+HLJr9EUsQs/GckfzALOTeM11vakv4laQ9Chmf8h+oKacAxKb0n4Al/e
+ 7MoKfIelCFB6Znx9cXJW1QUCGBZxxaW32zC/VBYp2fjg5ec1yViflXKTKmbhoRoPAlu+
+ TQ2+CO+TsSpGrQlEOOHTxg8GfehVT+K495lQsgMRAIh2qwW1QjQlWyxsVbitnQ9M1ClQ Ug== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4yk0s1q4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Nov 2023 18:45:31 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3IjU5T027849
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 3 Nov 2023 18:45:31 GMT
+Received: from [10.249.21.155] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
+ 2023 11:45:24 -0700
+Message-ID: <5ef66bdc-9645-4bbe-8182-baa7fe4c583a@quicinc.com>
+Date: Sat, 4 Nov 2023 00:15:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-294854:519-21489:flowmailer
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 2/8] usb: dwc3: core: Register vendor hooks for dwc3-qcom
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>
+CC: <linux-usb@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Thinh
+ Nguyen" <Thinh.Nguyen@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_wcheng@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-3-quic_kriskura@quicinc.com>
+ <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: x5RUVOHXE67n6xp3Q_OmsmjC7yi1ZnP7
+X-Proofpoint-GUID: x5RUVOHXE67n6xp3Q_OmsmjC7yi1ZnP7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-03_18,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ priorityscore=1501 mlxscore=0 spamscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 mlxlogscore=999 bulkscore=0 lowpriorityscore=0
+ adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311030157
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
 
-Add the required nodes to enable ICSSG SR2.0 based prueth networking.
 
-As the driver still needs to be extended for SR1.0 support, keep related
-nodes disabled on PG1 devices.
+On 11/3/2023 8:44 PM, Bryan O'Donoghue wrote:
+> On 17/10/2023 14:18, Krishna Kurapati wrote:
+>>
+>> The following are the requirements aimed in this implementation:
+>>
+>> 1. When enum in device mode, Glue/core must stay active.
+>>
+>> 2. When cable is connected but UDC is not written yet, then glue/core
+>> must be suspended.
+>>
+>> 3. Upon removing cable in device mode, the disconnect event must be
+>> generated and unblock runtime suspend for dwc3 core.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> 
 
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
----
- .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    |  10 +-
- .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 128 ++++++++++++++++++
- 2 files changed, 137 insertions(+), 1 deletion(-)
+Hi Bryan,
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-index 51f902fa35a7..1d1979859583 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (c) Siemens AG, 2021
-+ * Copyright (c) Siemens AG, 2021-2023
-  *
-  * Authors:
-  *   Jan Kiszka <jan.kiszka@siemens.com>
-@@ -44,3 +44,11 @@ &tx_pru2_0 {
- &tx_pru2_1 {
- 	status = "disabled";
- };
-+
-+&icssg0_eth {
-+	status = "disabled";
-+};
-+
-+&icssg0_mdio {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index 53bd296ba310..ddde4161d2e8 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -11,6 +11,7 @@
- 
- #include "k3-am654.dtsi"
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/net/ti-dp83867.h>
- 
- / {
- 	aliases {
-@@ -27,6 +28,8 @@ aliases {
- 		spi0 = &mcu_spi0;
- 		mmc0 = &sdhci1;
- 		mmc1 = &sdhci0;
-+		ethernet1 = &icssg0_emac0;
-+		ethernet2 = &icssg0_emac1;
- 	};
- 
- 	chosen {
-@@ -111,6 +114,76 @@ dp_refclk: clock {
- 		#clock-cells = <0>;
- 		clock-frequency = <19200000>;
- 	};
-+
-+	/* Dual Ethernet application node on PRU-ICSSG0 */
-+	icssg0_eth: icssg0-eth {
-+		compatible = "ti,am654-icssg-prueth";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&icssg0_rgmii_pins_default>;
-+		sram = <&msmc_ram>;
-+
-+		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>,
-+			<&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
-+		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
-+
-+		ti,pruss-gp-mux-sel = <2>,      /* MII mode */
-+				      <2>,
-+				      <2>,
-+				      <2>,	/* MII mode */
-+				      <2>,
-+				      <2>;
-+
-+		ti,mii-g-rt = <&icssg0_mii_g_rt>;
-+		ti,mii-rt = <&icssg0_mii_rt>;
-+		ti,iep = <&icssg0_iep0>,  <&icssg0_iep1>;
-+
-+		interrupt-parent = <&icssg0_intc>;
-+		interrupts = <24 0 2>, <25 1 3>;
-+		interrupt-names = "tx_ts0", "tx_ts1";
-+
-+		dmas = <&main_udmap 0xc100>, /* egress slice 0 */
-+		       <&main_udmap 0xc101>, /* egress slice 0 */
-+		       <&main_udmap 0xc102>, /* egress slice 0 */
-+		       <&main_udmap 0xc103>, /* egress slice 0 */
-+		       <&main_udmap 0xc104>, /* egress slice 1 */
-+		       <&main_udmap 0xc105>, /* egress slice 1 */
-+		       <&main_udmap 0xc106>, /* egress slice 1 */
-+		       <&main_udmap 0xc107>, /* egress slice 1 */
-+		       <&main_udmap 0x4100>, /* ingress slice 0 */
-+		       <&main_udmap 0x4101>; /* ingress slice 1 */
-+		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-+			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-+			    "rx0", "rx1";
-+
-+		ethernet-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			icssg0_emac0: port@0 {
-+				reg = <0>;
-+				phy-handle = <&icssg0_eth0_phy>;
-+				phy-mode = "rgmii-id";
-+				ti,syscon-rgmii-delay = <&scm_conf 0x4100>;
-+				ti,half-duplex-capable;
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
-+
-+			icssg0_emac1: port@1 {
-+				reg = <1>;
-+				phy-handle = <&icssg0_eth1_phy>;
-+				phy-mode = "rgmii-id";
-+				ti,syscon-rgmii-delay = <&scm_conf 0x4104>;
-+				ti,half-duplex-capable;
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
-+		};
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -944,6 +1017,43 @@ AM65X_IOPAD(0x0074, PIN_INPUT,  5)  /* (T27) I2C2_SCL */
- 			AM65X_IOPAD(0x0070, PIN_INPUT,  5)  /* (R25) I2C2_SDA */
- 		>;
- 	};
-+
-+	icssg0_mdio_pins_default: icssg0-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0294, PIN_INPUT, 0) /* (AE26) PRG0_MDIO0_MDIO */
-+			AM65X_IOPAD(0x0298, PIN_OUTPUT, 0) /* (AE28) PRG0_MDIO0_MDC */
-+		>;
-+	};
-+
-+	icssg0_rgmii_pins_default: icssg0-rgmii-pins-default {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0244, PIN_INPUT, 2) /* (AB28) PRG0_PRU1_GPO0.PRG0_RGMII2_RD0 */
-+			AM65X_IOPAD(0x0248, PIN_INPUT, 2) /* (AC28) PRG0_PRU1_GPO1.PRG0_RGMII2_RD1 */
-+			AM65X_IOPAD(0x024c, PIN_INPUT, 2) /* (AC27) PRG0_PRU1_GPO2.PRG0_RGMII2_RD2 */
-+			AM65X_IOPAD(0x0250, PIN_INPUT, 2) /* (AB26) PRG0_PRU1_GPO3.PRG0_RGMII2_RD3 */
-+			AM65X_IOPAD(0x0274, PIN_OUTPUT, 2) /* (AC25) PRG0_PRU1_GPO12.PRG0_RGMII2_TD0 */
-+			AM65X_IOPAD(0x0278, PIN_OUTPUT, 2) /* (AD25) PRG0_PRU1_GPO13.PRG0_RGMII2_TD1 */
-+			AM65X_IOPAD(0x027c, PIN_OUTPUT, 2) /* (AD24) PRG0_PRU1_GPO14.PRG0_RGMII2_TD2 */
-+			AM65X_IOPAD(0x0280, PIN_OUTPUT, 2) /* (AE27) PRG0_PRU1_GPO15.PRG0_RGMII2_TD3 */
-+			AM65X_IOPAD(0x0284, PIN_INPUT, 2) /* (AC24) PRG0_PRU1_GPO16.PRG0_RGMII2_TXC */
-+			AM65X_IOPAD(0x0270, PIN_OUTPUT, 2) /* (AB24) PRG0_PRU1_GPO11.PRG0_RGMII2_TX_CTL */
-+			AM65X_IOPAD(0x025c, PIN_INPUT, 2) /* (AB27) PRG0_PRU1_GPO6.PRG0_RGMII2_RXC */
-+			AM65X_IOPAD(0x0254, PIN_INPUT, 2) /* (AA25) PRG0_PRU1_GPO4.PRG0_RGMII2_RX_CTL */
-+
-+			AM65X_IOPAD(0x01f4, PIN_INPUT, 2) /* (V24) PRG0_PRU0_GPO0.PRG0_RGMII1_RD0 */
-+			AM65X_IOPAD(0x01f8, PIN_INPUT, 2) /* (W25) PRG0_PRU0_GPO1.PRG0_RGMII1_RD1 */
-+			AM65X_IOPAD(0x01fc, PIN_INPUT, 2) /* (W24) PRG0_PRU0_GPO2.PRG0_RGMII1_RD2 */
-+			AM65X_IOPAD(0x0200, PIN_INPUT, 2) /* (AA27) PRG0_PRU0_GPO3.PRG0_RGMII1_RD3 */
-+			AM65X_IOPAD(0x0224, PIN_OUTPUT, 2) /* (AD27) PRG0_PRU0_GPO12.PRG0_RGMII1_TD0 */
-+			AM65X_IOPAD(0x0228, PIN_OUTPUT, 2) /* (AC26) PRG0_PRU0_GPO13.PRG0_RGMII1_TD1 */
-+			AM65X_IOPAD(0x022c, PIN_OUTPUT, 2) /* (AD26) PRG0_PRU0_GPO14.PRG0_RGMII1_TD2 */
-+			AM65X_IOPAD(0x0230, PIN_OUTPUT, 2) /* (AA24) PRG0_PRU0_GPO15.PRG0_RGMII1_TD3 */
-+			AM65X_IOPAD(0x0234, PIN_INPUT, 2) /* (AD28) PRG0_PRU0_GPO16.PRG0_RGMII1_TXC */
-+			AM65X_IOPAD(0x0220, PIN_OUTPUT, 2) /* (AB25) PRG0_PRU0_GPO11.PRG0_RGMII1_TX_CTL */
-+			AM65X_IOPAD(0x020c, PIN_INPUT, 2) /* (Y25) PRG0_PRU0_GPO6.PRG0_RGMII1_RXC */
-+			AM65X_IOPAD(0x0204, PIN_INPUT, 2) /* (Y24) PRG0_PRU0_GPO4.PRG0_RGMII1_RX_CTL */
-+		>;
-+	};
- };
- 
- &main_pmx1 {
-@@ -1316,3 +1426,21 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- 	mboxes = <&mailbox0_cluster1>, <&mbox_mcu_r5fss0_core1>;
- };
-+
-+&icssg0_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&icssg0_mdio_pins_default>;
-+
-+	icssg0_eth0_phy: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+	};
-+
-+	icssg0_eth1_phy: ethernet-phy@1 {
-+		reg = <1>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+	};
-+};
--- 
-2.35.3
+> What happens to this code if you
+> 
+> static int count;
+> 
+> 1. sleep in dwc3_probe for 10 milliseconds
+> 2. return -EPROBE_DEFER
+> 3. if count++ < 5 goto 1
+> 
+> i.e. if we simulate say waiting on a PHY driver to probe in dwc3_probe()
+> 
+The vendor hooks are used in __dwc3_set_mode and role_switch_set calls 
+in core and drd files respectively. These are invoked only if we are OTG 
+capable. The drd_work is initialized in core_init_mode which is called 
+at the end of dwc3_probe. If dwc3_probe fails and gets deferred before 
+that, none of the vendor hooks will be fired and dwc3_qcom_probe is also 
+deferred.
 
+However I see that if core_init_mode fails (the cleanup is already done 
+in drd to prevent set_role from getting invoked already),  I need to 
+cleanup vendor hooks in error path of dwc3_probe().
+
+> and what happens if we introduce a 100 millsecond sleep into 
+> dwc3_qcom_probe() - and run a fake disconnect event from 
+> dwc3_qcom_probe_core() directly ?
+> 
+> In other words if make it that dwc3_probe() completes and struct 
+> dwc3_glue_ops->notify_cable_disconnect() fires prior to 
+> dwc3_qcom_probe_core() completing ?
+> 
+> i.e. I don't immediately see how you've solved the probe() completion 
+> race condition here.
+> 
+Just wanted to understand the situation clearly. Is this the sequence 
+you are referring to ?
+
+1. dwc3_probe is successful and role switch is registered properly.
+2. added delay after dwc3_qcom_probe_core and before interconnect_init
+3. Between this delay, we got a disconnect notificiation from glink
+4. We are clearing the qscratch reg in case of device mode and 
+un-registering notifier in case of host mode.
+
+If so, firstly I don't see any issue if we process disconnect event 
+before qcom probe is complete. If we reached this stage, the clocks/gdsc 
+is definitely ON and register accesses are good to go.
+
+If we are in host mode at this point, we would just unregister to 
+usb-core notifier and mark last busy. If we are in device mode, we would 
+just clear the hs_phy_ctrl reg of qscratch. After the 100ms delay you 
+mentioned we would call dwc3_remove anyways and cleanup the vendor 
+hooks. But is the concern here that, what if we enter runtime_suspend at 
+this point ?
+
+Regards,
+Krishna,
 
