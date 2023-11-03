@@ -1,139 +1,153 @@
-Return-Path: <devicetree+bounces-13682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B25E7DFEDD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 06:35:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314ED7DFF56
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 08:06:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B1831C2092F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 05:35:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBD07B2127E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 07:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE9F17C5;
-	Fri,  3 Nov 2023 05:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D86E1C04;
+	Fri,  3 Nov 2023 07:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p2/i3aY+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JI28po6Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81F98464;
-	Fri,  3 Nov 2023 05:35:26 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D5E1A6;
-	Thu,  2 Nov 2023 22:35:22 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A34KPfK015248;
-	Fri, 3 Nov 2023 05:35:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=3QTZMrtNQ5iXV3Oe5LVRAtX8boxCFoz2CC9S7yIUmwY=;
- b=p2/i3aY+Apx1DCyzbVxvndiq5BURvy0PvlAgedw2EWo6nCD+xkDvhYSn6SMdnPIjlV0+
- FHGYQKuiZyIpPg2h08MMjsoUIMm2CYEc91HdjIXjs+AFJaUmnF4FfLcT84TA6vHxNMCF
- dkmviEXGhDfUr2HPGXGtybZZg1ADLp0PtiHmYaF34ZqzlxI1qYXupTE+ndGiS/7R4VSv
- VZzC/nJkdYq+EEwj4A1IMhTbA1pcol0SWjjXhLivqRyEMkjj+TUp4p7e9WwWLeG04Dbk
- VATgp7NI9F18P46zUJFLuDGiTPJ3sd/a+vRYexSQKJ5RNqmGOPuFbYNyKecggxdGAwdB Kg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u477ptctp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Nov 2023 05:35:09 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A35Z9hc019035
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Nov 2023 05:35:09 GMT
-Received: from [10.249.8.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 2 Nov
- 2023 22:35:03 -0700
-Message-ID: <f0820464-16d6-47fd-90bc-cf80b5d76058@quicinc.com>
-Date: Fri, 3 Nov 2023 11:04:59 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349377E;
+	Fri,  3 Nov 2023 07:06:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 460E9E3;
+	Fri,  3 Nov 2023 00:06:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698995201; x=1730531201;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=1ofqAl7afRyOSUQplGsgdUrTix8X8Am0OmSUM8fC2wk=;
+  b=JI28po6YPtVEAJ4pLslXR3CWozrQG4hCSuDrASgbO4YY0gf9PdBLUqFg
+   S4WGPxJpUzg81/HNGJVeK/XSSCjwh1gxtTHf0AsXYjCVov/vSiW692tjI
+   oEViQncn7Gp8y49aRI60axdnX+4zr629oGCgAYt0+T8ldnizAwPn7ib85
+   /OQE0vAs7Rp+STFX7k/VbdxSyPgyroJC6hJOs7l6nk9idJPJjZzGQwJ+7
+   qCnEXywaIfKaGmpdclK2oZZCpt8z6WGL5O5YamBAeWqdLZsW1mb2IlAKX
+   7MEV6b6nsdtw1SFIzr+aAarGve0sSCFyKubI7vBLAEEO5HECXLXFr5ld1
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="368238912"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; 
+   d="scan'208";a="368238912"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2023 00:06:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="755063681"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; 
+   d="scan'208";a="755063681"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2023 00:06:35 -0700
+Received: from svinhufvud.ger.corp.intel.com (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 40960120F5B;
+	Fri,  3 Nov 2023 09:06:32 +0200 (EET)
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: linux-acpi@vger.kernel.org,
+	rafael@kernel.org
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	linux-media@vger.kernel.org,
+	Paul Elder <paul.elder@ideasonboard.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v4 1/1] device property: Add fwnode_name_eq()
+Date: Fri,  3 Nov 2023 09:06:31 +0200
+Message-Id: <20231103070631.1223643-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
- runtime
-To: Caleb Connolly <caleb.connolly@linaro.org>,
-        Thinh Nguyen
-	<Thinh.Nguyen@synopsys.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-2-quic_kriskura@quicinc.com>
- <272a9764-1cae-4d86-88b1-00175de83333@linaro.org>
- <960101cc-78c0-49cf-ab62-90614eeb9ee2@quicinc.com>
- <dbf4a48e-c808-4611-96b1-563ece1e451a@linaro.org>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <dbf4a48e-c808-4611-96b1-563ece1e451a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xwJggyNvg_32N2PTZ1CiQ1B-Zou6tdu-
-X-Proofpoint-ORIG-GUID: xwJggyNvg_32N2PTZ1CiQ1B-Zou6tdu-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-03_05,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- phishscore=0 adultscore=0 clxscore=1015 priorityscore=1501 mlxscore=0
- mlxlogscore=746 bulkscore=0 impostorscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311030045
 
+Add fwnode_name_eq() to implement the functionality of of_node_name_eq()
+on fwnode property API. The same convention of ending the comparison at
+'@' (besides NUL) is applied on also both ACPI and swnode. The function
+is intended for comparing unit address-less node names on DT and firmware
+or swnodes compliant with DT bindings.
 
+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+since v3:
 
-On 11/3/2023 12:10 AM, Caleb Connolly wrote:
->> Hi Caleb,
->>
->>    There are two types of platforms, some use extcon and some use 
->> role-switch to deliver vbus/id notifications. Extcon targets already 
->> have this qscratch modifications present today in vbus and id 
->> handlers. But for role-switch based targets we don't have any way to 
->> get this notification to dwc3-qcom. In this implementation, I wanted 
->> to get those notications from core to glue and for this we implenented 
->> vendor hooks.
->>
->> The property added has been used to do two things:
->>
->> 1. Register glue's vendor hooks to core driver
->> 2. Do runtime_allow for glue (and by default for core as the dt is not 
->> flattened)
->>
->> In case of extcon, we don't want to register vendor hooks as 
->> notifications are not necessary.
-> 
-> Could it just be enabled when role_switch is present then?
->>
+- Use ptrdiff_t type for len.
 
-So we would register vendor hooks when usb-role-switch is present but 
-don't do runtime allow, and leave that option to user space right ?
-I think it would work and we can do away with the binding completely.
+ drivers/base/property.c  | 28 ++++++++++++++++++++++++++++
+ include/linux/property.h |  1 +
+ 2 files changed, 29 insertions(+)
 
-Will wait for comments from other folks as well on this approach.
+diff --git a/drivers/base/property.c b/drivers/base/property.c
+index 8667b13639d2..f20379c9a5c9 100644
+--- a/drivers/base/property.c
++++ b/drivers/base/property.c
+@@ -595,6 +595,34 @@ const char *fwnode_get_name_prefix(const struct fwnode_handle *fwnode)
+ 	return fwnode_call_ptr_op(fwnode, get_name_prefix);
+ }
+ 
++/**
++ * fwnode_name_eq - Return true if node name is equal
++ * @fwnode: The firmware node
++ * @name: The name to which to compare the node name
++ *
++ * Compare the name provided as an argument to the name of the node, stopping
++ * the comparison at either NUL or '@' character, whichever comes first. This
++ * function is generally used for comparing node names while ignoring the
++ * possible unit address of the node.
++ *
++ * Return: true if the node name matches with the name provided in the @name
++ * argument, false otherwise.
++ */
++bool fwnode_name_eq(const struct fwnode_handle *fwnode, const char *name)
++{
++	const char *node_name;
++	ptrdiff_t len;
++
++	node_name = fwnode_get_name(fwnode);
++	if (!node_name)
++		return false;
++
++	len = strchrnul(node_name, '@') - node_name;
++
++	return str_has_prefix(node_name, name) == len;
++}
++EXPORT_SYMBOL_GPL(fwnode_name_eq);
++
+ /**
+  * fwnode_get_parent - Return parent firwmare node
+  * @fwnode: Firmware whose parent is retrieved
+diff --git a/include/linux/property.h b/include/linux/property.h
+index 083a1f41364b..096ade186601 100644
+--- a/include/linux/property.h
++++ b/include/linux/property.h
+@@ -108,6 +108,7 @@ struct fwnode_handle *fwnode_find_reference(const struct fwnode_handle *fwnode,
+ 
+ const char *fwnode_get_name(const struct fwnode_handle *fwnode);
+ const char *fwnode_get_name_prefix(const struct fwnode_handle *fwnode);
++bool fwnode_name_eq(const struct fwnode_handle *fwnode, const char *name);
+ 
+ struct fwnode_handle *fwnode_get_parent(const struct fwnode_handle *fwnode);
+ struct fwnode_handle *fwnode_get_next_parent(struct fwnode_handle *fwnode);
+-- 
+2.39.2
 
-Thanks for the review,
-Krishna,
 
