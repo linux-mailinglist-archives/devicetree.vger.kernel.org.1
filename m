@@ -1,253 +1,102 @@
-Return-Path: <devicetree+bounces-13693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E0A7DFFE1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:00:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35577DFFE9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:10:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ABD8281D9E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 09:00:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74427B21296
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 09:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41BC88832;
-	Fri,  3 Nov 2023 09:00:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="Hp4iMuMv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 035608BEC;
+	Fri,  3 Nov 2023 09:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703AB2D604
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 09:00:21 +0000 (UTC)
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44EF91BC
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 02:00:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1699002013; x=1701594013;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wPaIaKEwhq9fF5yJIn7fquUjgqFfNUfDP0ZOFvXkcsk=;
-	b=Hp4iMuMv9WqcWgZuJGWfMK+NNXJeB367h8YbTnM0i8U/REsfKv4EST3cCoLCQqt5
-	Lep3aP/+iQnbvkJok7KdFkAkxEDJS4NOeUy+pozas1qivj6IH1xz1Y34oIlhg6mO
-	tHeTPHu0s4jQIgUNkfpOMvProUuyQ8pK9IEbGxHC/kU=;
-X-AuditID: ac14000a-b234a700000074e4-ea-6544b69da743
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 19.D5.29924.D96B4456; Fri,  3 Nov 2023 10:00:13 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 3 Nov 2023
- 10:00:12 +0100
-Message-ID: <5effa700-480b-4030-8335-304ebc4444b7@phytec.de>
-Date: Fri, 3 Nov 2023 10:00:11 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CE92D604
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 09:09:59 +0000 (UTC)
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC0A7CA;
+	Fri,  3 Nov 2023 02:09:56 -0700 (PDT)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3A399ZG404182808, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3A399ZG404182808
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 3 Nov 2023 17:09:35 +0800
+Received: from RTEXMBS02.realtek.com.tw (172.21.6.95) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Fri, 3 Nov 2023 17:09:35 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS02.realtek.com.tw (172.21.6.95) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Fri, 3 Nov 2023 17:09:35 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7]) by
+ RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7%5]) with mapi id
+ 15.01.2375.007; Fri, 3 Nov 2023 17:09:35 +0800
+From: =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "Andy
+ Shevchenko" <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/2] gpio: realtek: Add GPIO support for RTD SoC variants
+Thread-Topic: [PATCH 1/2] gpio: realtek: Add GPIO support for RTD SoC variants
+Thread-Index: AQHaDG9Hk0D/m9zpMEiXHZM9KcVyR7Bkh3iAgAHUOsD//70GgIACNh4w
+Date: Fri, 3 Nov 2023 09:09:35 +0000
+Message-ID: <c29e820575ba4c7fb833e960497f59cf@realtek.com>
+References: <20231101025802.3744-1-tychang@realtek.com>
+ <20231101025802.3744-2-tychang@realtek.com>
+ <e18a7ee0-a5e3-4180-9f8a-99b21d1303e6@linaro.org>
+ <8e4c8676acaf4ba6bf3f57451b2eab40@realtek.com>
+ <4fc3fafa-6c9b-440a-99fe-1332cd3d5b1d@linaro.org>
+In-Reply-To: <4fc3fafa-6c9b-440a-99fe-1332cd3d5b1d@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-originating-ip: [172.21.181.166]
+x-kse-serverinfo: RTEXMBS02.realtek.com.tw, 9
+x-kse-antivirus-attachment-filter-interceptor-info: license violation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: phycore-am64: Add R5F DMA Region and
- Mailboxes
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, Garrett Giordano <ggiordano@phytec.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<r-gunasekaran@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<upstream@lists.phytec.de>
-References: <20231102201216.3771589-1-ggiordano@phytec.com>
- <20231103001707.2ktwfgtqegpfiijy@subpanel>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20231103001707.2ktwfgtqegpfiijy@subpanel>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [172.25.0.11]
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsWyRpKBR3fuNpdUg0uzVSzW7D3HZDH/yDlW
-	i/VbfrNZLP88m92i78VDZotNj6+xWlzeNYfN4s2Ps0wWXa/b2S1a9x5ht+h+p27x/+wHdgce
-	j02rOtk87lzbw+axeUm9R393C6vHn4vvWD2O39jO5PF5k1wAexSXTUpqTmZZapG+XQJXxoZf
-	y1gKXqpXfPng3cB4TL6LkZNDQsBE4nbXJcYuRi4OIYHFTBI9X/6xQDh3GCUeL/zFCFLFK2Aj
-	0bfsMVCCnYNFQEWiVw0iKihxcuYTFhBbVEBe4v6tGewgtrBAqMSBWSvA4swC4hK3nsxn6mLk
-	4BARcJdouiEDMp1ZYB6TxN1bR8CmCwlkSHR8g+hlE1CXuLPhGyuIzSlgLvHl2C52iDkWEovf
-	HISy5SWat85mhuiVl3hxaTkLxC/yEtPOvWaGsEMljmxazTSBUXgWklNnITlpFpKxs5CMXcDI
-	sopRKDczOTu1KDNbryCjsiQ1WS8ldRMjKPpEGLh2MPbN8TjEyMTBeIhRgoNZSYTX0dslVYg3
-	JbGyKrUoP76oNCe1+BCjNAeLkjjv/R6mRCGB9MSS1OzU1ILUIpgsEwenVAPjeomg3qbaTxHb
-	el9oBLNmK7/aFNK+6ZddaGZQ7qHXbG4vzEuT69blXDrwYIeSSOfFF45Wd6aVSmg7ZD9ley3v
-	uUTH+deZY0vWdb/bNHvNPAd7p2fOfW27DTKvdt5pmhlv/tFsT1CV7aOJFeJ8a/033TqRf6jk
-	c/nVbVP4ozz9ZHrEyvpsEs4qsRRnJBpqMRcVJwIA9Nc5DKwCAAA=
 
-Hi Nishanth,
-
-Am 03.11.23 um 01:17 schrieb Nishanth Menon:
-> On 13:12-20231102, Garrett Giordano wrote:
->> Communication between the R5F subsystem and Linux takes place using DMA
->> memory regions and mailboxes. Here we add DT nodes for the memory
->> regions and mailboxes to facilitate communication between the R5
->> clusters and Linux as remoteproc will fail to start if no memory
->> regions or mailboxes are provided.
->>
->> Fixes: c48ac0efe6d7 ("arm64: dts: ti: Add support for phyBOARD-Electra-AM642")
-> is this fixes? Sounds more or less like rproc support is added in?
-
-I would say it is also a fix, as the R5 cores are enabled by default at 
-the SoC level devicetree and also require mboxes & memory regions to be 
-configured. The docs mention both as mandatory.
-
-Otherwise, we will encounter errors such as
-
-   platform 78000000.r5f: device does not have reserved memory regions, 
-ret = -22
-
-Regards,
-Wadim
-
->
->> Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
->> ---
->>   .../boot/dts/ti/k3-am64-phycore-som.dtsi      | 102 +++++++++++++++++-
->>   1 file changed, 101 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->> index 1c2c8f0daca9..37a33006c1fc 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
->> @@ -29,7 +29,7 @@ memory@80000000 {
->>   		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
->>   	};
->>   
->> -	reserved-memory {
->> +	reserved_memory: reserved-memory {
->>   		#address-cells = <2>;
->>   		#size-cells = <2>;
->>   		ranges;
->> @@ -39,6 +39,54 @@ secure_ddr: optee@9e800000 {
->>   			alignment = <0x1000>;
->>   			no-map;
->>   		};
->> +
->> +		main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa0000000 0x00 0x100000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss0_core0_memory_region: r5f-memory@a0100000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa0100000 0x00 0xf00000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa1000000 0x00 0x100000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss0_core1_memory_region: r5f-memory@a1100000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa1100000 0x00 0xf00000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss1_core0_dma_memory_region: r5f-dma-memory@a2000000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa2000000 0x00 0x100000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss1_core0_memory_region: r5f-memory@a2100000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa2100000 0x00 0xf00000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss1_core1_dma_memory_region: r5f-dma-memory@a3000000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa3000000 0x00 0x100000>;
->> +			no-map;
->> +		};
->> +
->> +		main_r5fss1_core1_memory_region: r5f-memory@a3100000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x00 0xa3100000 0x00 0xf00000>;
->> +			no-map;
->> +		};
->>   	};
->>   
->>   	leds {
->> @@ -160,6 +208,34 @@ &cpsw_port2 {
->>   	status = "disabled";
->>   };
->>   
->> +&mailbox0_cluster2 {
->> +	status = "okay";
->> +
->> +	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
->> +		ti,mbox-rx = <0 0 2>;
->> +		ti,mbox-tx = <1 0 2>;
->> +	};
->> +
->> +	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
->> +		ti,mbox-rx = <2 0 2>;
->> +		ti,mbox-tx = <3 0 2>;
->> +	};
->> +};
->> +
->> +&mailbox0_cluster4 {
->> +	status = "okay";
->> +
->> +	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
->> +		ti,mbox-rx = <0 0 2>;
->> +		ti,mbox-tx = <1 0 2>;
->> +	};
->> +
->> +	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
->> +		ti,mbox-rx = <2 0 2>;
->> +		ti,mbox-tx = <3 0 2>;
->> +	};
->> +};
->> +
->>   &main_i2c0 {
->>   	status = "okay";
->>   	pinctrl-names = "default";
->> @@ -180,6 +256,30 @@ i2c_som_rtc: rtc@52 {
->>   	};
->>   };
->>   
->> +&main_r5fss0_core0 {
->> +	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
->> +	memory-region = <&main_r5fss0_core0_dma_memory_region>,
->> +			<&main_r5fss0_core0_memory_region>;
->> +};
->> +
->> +&main_r5fss0_core1 {
->> +	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core1>;
->> +	memory-region = <&main_r5fss0_core1_dma_memory_region>,
->> +			<&main_r5fss0_core1_memory_region>;
->> +};
->> +
->> +&main_r5fss1_core0 {
->> +	mboxes = <&mailbox0_cluster4 &mbox_main_r5fss1_core0>;
->> +	memory-region = <&main_r5fss1_core0_dma_memory_region>,
->> +			<&main_r5fss1_core0_memory_region>;
->> +};
->> +
->> +&main_r5fss1_core1 {
->> +	mboxes = <&mailbox0_cluster4 &mbox_main_r5fss1_core1>;
->> +	memory-region = <&main_r5fss1_core1_dma_memory_region>,
->> +			<&main_r5fss1_core1_memory_region>;
->> +};
->> +
->>   &ospi0 {
->>   	status = "okay";
->>   	pinctrl-names = "default";
->> -- 
->> 2.25.1
->>
+SGkgS3J6eXN6dG9mLA0KDQo+Pj4+ICtzdGF0aWMgaW50IHJ0ZF9ncGlvX3Byb2JlKHN0cnVjdCBw
+bGF0Zm9ybV9kZXZpY2UgKnBkZXYpIHsNCj4+Pj4gKyAgICAgc3RydWN0IHJ0ZF9ncGlvICpkYXRh
+Ow0KPj4+PiArICAgICBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkICptYXRjaDsNCj4+Pj4gKyAg
+ICAgc3RydWN0IGRldmljZV9ub2RlICpub2RlOw0KPj4+PiArICAgICBpbnQgcmV0Ow0KPj4+PiAr
+ICAgICBpbnQgaTsNCj4+Pj4gKw0KPj4+PiArICAgICBub2RlID0gcGRldi0+ZGV2Lm9mX25vZGU7
+DQo+Pj4+ICsgICAgIG1hdGNoID0gb2ZfbWF0Y2hfbm9kZShydGRfZ3Bpb19vZl9tYXRjaGVzLCBw
+ZGV2LT5kZXYub2Zfbm9kZSk7DQo+Pj4+ICsgICAgIGlmICghbWF0Y2ggfHwgIW1hdGNoLT5kYXRh
+KQ0KPj4+PiArICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPj4+PiArDQo+Pj4+ICsgICAg
+IGRhdGEgPSBkZXZtX2t6YWxsb2MoJnBkZXYtPmRldiwgc2l6ZW9mKCpkYXRhKSwgR0ZQX0tFUk5F
+TCk7DQo+Pj4+ICsgICAgIGlmICghZGF0YSkNCj4+Pj4gKyAgICAgICAgICAgICByZXR1cm4gLUVO
+T01FTTsNCj4+Pj4gKw0KPj4+PiArICAgICBkYXRhLT5hc3NlcnRfaXJxID0gaXJxX29mX3BhcnNl
+X2FuZF9tYXAobm9kZSwgMCk7DQo+Pj4+ICsgICAgIGlmICghZGF0YS0+YXNzZXJ0X2lycSkNCj4+
+Pj4gKyAgICAgICAgICAgICBnb3RvIGRlZmVycmVkOw0KPj4+PiArDQo+Pj4+ICsgICAgIGRhdGEt
+PmRlYXNzZXJ0X2lycSA9IGlycV9vZl9wYXJzZV9hbmRfbWFwKG5vZGUsIDEpOw0KPj4+PiArICAg
+ICBpZiAoIWRhdGEtPmRlYXNzZXJ0X2lycSkNCj4+Pj4gKyAgICAgICAgICAgICBnb3RvIGRlZmVy
+cmVkOw0KPj4+DQo+Pj4gU28gdGhpcyBnb2VzIHRvIGNsZWFudXAgcGF0aC4uLg0KPj4+DQo+Pg0K
+Pj4gU2luY2UgdGhlcmUgaXMgbm8gbmVlZCB0byBkbyBkZXZtX2ZyZWUsIEkgd2lsbCBkaXJlY3Rs
+eSByZXR1cm4gLUVQUk9CRV9ERUZFUg0KPmhlcmUuDQo+DQo+VGhhdCdzIG5vdCBhIGNvcnJlY3Qg
+cmV0dXJuIHZhbHVlLiBZb3UgZG8gbm90IHJldHVybiBERUZFUiBvbiBtaXNzaW5nIElSUS4gVGhp
+cw0KPnNob3VsZCBhbnl3YXkgYmUgZGlmZmVyZW50IGNhbGw6IHBsYXRmb3JtX2dldF9pcnEoKS4N
+Cj4NCg0KSSBnb3QgaXQgLiBUaGFuayB5b3UgZm9yIHRoZSByZW1pbmRlci4NCg0KVGhhbmtzLA0K
+VHp1eWkgQ2hhbmcNCg==
 
