@@ -1,198 +1,182 @@
-Return-Path: <devicetree+bounces-13679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEFED7DFD82
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 01:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D12C7DFDC4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 02:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27B8A1C20C29
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 00:23:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12D2D1C20F74
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 01:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6068E620;
-	Fri,  3 Nov 2023 00:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4755010FB;
+	Fri,  3 Nov 2023 01:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZVz2EQip"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="IPyiseMH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B69C7E2
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 00:23:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B6D191;
-	Thu,  2 Nov 2023 17:22:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1698970979; x=1730506979;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jRcO1ajPVbh/cusEJQxYTj2Fddx+LSNylJw5TDJVCgc=;
-  b=ZVz2EQip0QDYQyP7OY/hod05adiMbOtWgRL2Yw5aYE3z6cTik8FB56qZ
-   zfuHDk96pqM39jIHH4l0b53JNjL9W1uIqXAvM2vee7eEbEFVEQGgrklQK
-   C8NhMSmEbh7tnZNCfUzDtz8gs6KzEgvT+unlEhjysq1xSRHCG2FKkjpmo
-   UD86OxQiIVnQGgcVFEARpgBisVdJqi7tdIgbZq4xJkSWbbzYzIdjR0soX
-   O8/mrzf7TOjRNGvCaCytYPjwC1kiiXrFRPY9YD04D0xBmO8S/n+rBEOEY
-   vdf8AUjYrZiq7Cq0QHW0Hk0SMAYQj5DuiDE++dHwSU2u8M4ZvGTtApEGT
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="391718695"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
-   d="scan'208";a="391718695"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 17:22:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="1008651143"
-X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
-   d="scan'208";a="1008651143"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 02 Nov 2023 17:22:56 -0700
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qyhxe-000238-1P;
-	Fri, 03 Nov 2023 00:22:54 +0000
-Date: Fri, 3 Nov 2023 08:22:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Viacheslav Bocharov <adeep@lexina.in>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 767C510E5
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 01:31:25 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01olkn2011.outbound.protection.outlook.com [40.92.98.11])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9899B1A4;
+	Thu,  2 Nov 2023 18:31:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y1739Jj2e3owu15uoK/5Of9tVCgUkGCIbxUe6LU/gc56RvKfdYtzyAhGAl2JHuuaEk1/N48kuzJjQ8hhi450ffLgcMen9LyX/g0zQzPRMbSwUNw5Cfyl5NDE6IShsqtId4zltr2l0Jh78xUr/oxFASeniqRfcPyDssJH5CfW1lEa2Hc7hQRg+jtrezVc5ep2EAKnPURzn+t03Qod5e1I3BZb3G+ZCZ+hfZnO5S5p/zEH/GxVmU5pDAw3Gx8oaqa/u96uj9A6d8c1/n70pNiBLBwgo3+KTNBlu1cFoNcB3ByN/FKjyNf+vflip1w5VuYC8k1S3EsgFq7aIBCO4TivvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RyD8tGt069pWXz7NSDkgYMS5MXvQRRKeuJlO5vmgTWY=;
+ b=CQR2GnIHWCxyOtsGvpALD0mxxlilsWDBzOn1kktdUKcB2cwXdt84A9LZU+ToyZkVz1TeOK1cOExXEMJ5XKTNp9FRlclAlUDjF8/GZoKr9hxmIXUjG/W+NeXy3KmY+SDo5JGzNOCzEGMebltOtRFTJFyPC6OBrcSdnEk0e0knFFaVB+zMnIURo03i8WbeFK+Dto6QzeWq6tKfCA1o3fMoINOkIvIb6o7A6vVL+zPJdf+OMaCgxlJJHmyjxTvlO1d8dXvauRYhQgY1znGQuPpQ3WNYR4NkcMNiKq/x60FkU561xXEdMfYYLxb3rQaGXadJCZYJVr27z/dUddF/mqrvSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RyD8tGt069pWXz7NSDkgYMS5MXvQRRKeuJlO5vmgTWY=;
+ b=IPyiseMHdO3bj/djQi3y/93irEs3UjBCjGeukmcf+vNeK9anzC+9pzTG3LiPHM0FR3XJkmseVUKI5m2iwyMm24No8B1IA8bE8sRx+REz2LL4KCwnDZtOICqAg3jyOJ7B30VP3vsSZnbU9IkZ5WWDLVm6/zmyeyb4DDIBrVIeG432WYuqhiOrf01yVWbLmtOP4wfzq5EFrjE10Ep4APP4UI58QoAwL7dGFoseumPbbIIa5K+bq4H2nVgMBeRDIsLfBgq2UiIM7EQdi/IiNucsQQ0WIHIhHu7G5vTOQVLzUyGv8NCXN1qx4c2oN3cOazqvxlzGlwNV/jG01krooo+Yhw==
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
+ by TYWP286MB3126.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:2a0::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Fri, 3 Nov
+ 2023 01:31:19 +0000
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b%6]) with mapi id 15.20.6954.022; Fri, 3 Nov 2023
+ 01:31:19 +0000
+From: Shiji Yang <yangshiji66@outlook.com>
+To: linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 4/4] firmware: meson_sm: use meson_gx_socinfo for
- compatibility
-Message-ID: <202311030839.2qiIuOUl-lkp@intel.com>
-References: <20231102074916.3280809-5-adeep@lexina.in>
+Cc: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Shiji Yang <yangshiji66@outlook.com>
+Subject: [PATCH v3] dt-bindings: leds: add 'internet' and 'signal' function definitions
+Date: Fri,  3 Nov 2023 09:30:58 +0800
+Message-ID:
+ <TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.39.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [pinm7NMrVH0X7bFV4bSovBDD9JLP8xvW]
+X-ClientProxiedBy: TYCP286CA0351.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:7c::20) To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:404:8041::8)
+X-Microsoft-Original-Message-ID:
+ <20231103013058.13089-1-yangshiji66@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231102074916.3280809-5-adeep@lexina.in>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TYWP286MB3126:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b1a5da0-2e8b-4398-b391-08dbdc0c9424
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	HYCTO5mRe60s8S6JROEdiMnqF0qNgAztmCDD56Jh/wAHk1TkWejkr8Torrl4oWyLbgIw2i5LGXVzsgNVog9ONbv8h+wpT9nIsipJUbVE5siu1PFgJ3JPINS1Iaa6SZlZyGjiZdEPtIWNUJVQEMvnBQttnXV1ZRcqSpOoz8Wxp+8CJ2ag95BTMbYNpZqaKu8TekuoVFktHskb7tZAsi2GbIM13Bmx6yVy5Cb3oOJn8jXxaxVue1MnHtRaGsGkdl46jef2i1p/6CtDa/IQw2EUvFEF8jpyOsYmI1uen32p+zk+ChVcFOur6PtJ1RdG+p5EuAn21G2FdhPmwOU86W9BGIpnmFX8QoSHlG7aYFqi32mvuY16Siq6IGCSHYj2p6V3DvjKTjjPgEy2UH4amQj/BEB9KXfScCOEKnLz/0pZib+7+xXxnBDqwWns2sRuGXdRqLLPPth9sZdYmNI0AfGJmdAiDfqD01993f+e4mZ6NH4VtMc7/Go1jNesBPsau97KI7B02vZWr+FAebRH0sKFor1UsGPt85jyNnjeX2ganvtJDm384i9L7TWqhkuU1H9Z9L5bPPtQ0WJsNhrjwphFCceihmkUotFuVyUooEnIE4H1W5Tk8/pMOeNru95HP4pum498HrSN9TjR1z57RP92Ew==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?lGb5snMdjF20b7RgHYvQHpaw8Hm3xiNgG+cB+6yXeV9gGE+VmzVDjgNqyvlA?=
+ =?us-ascii?Q?xCxjDKEXp8B+VID5eOqirKnj0Ln5D2JTvURQleRGVAQRDej5DqzPPeY5M5Rj?=
+ =?us-ascii?Q?aKo7jgkHAZZ6Dqtm6m6gFk6hOsA45ic8L19VoAbTN0geAH0UfKm99JAwvzMm?=
+ =?us-ascii?Q?DziW6TtIJ5WpYIvL9U/pklsssn6OLaWhwFsV21FXNC00kqjBO949d6rJ5fwE?=
+ =?us-ascii?Q?dt2QXqCOPMgRsqfoPYF7kQf1YDfTw9O3wo/N/rgR5+z4DskJ7QW9Kr9lSzyZ?=
+ =?us-ascii?Q?JC8Ca4VJfTFXm7rTLTiFfNk7k1yWNw1C+wthr8uZW5lZqkxqyw90J9kdmTaJ?=
+ =?us-ascii?Q?oWGo7GBuUv6edHO1mM1AuwH6SsaNna0G4Q33OyQTFsJJ49xSIRBlTWoiGvIL?=
+ =?us-ascii?Q?p88TbTxfMSvZ5/TtkvfOf7hkNQFkrgTfCoSFdxflvmsoFixtgHF1yD1kmLWH?=
+ =?us-ascii?Q?BWCfpkz46vNUbrtYZdv7WQ051FraCqnsLabEk+TuwPQhGIDx6N1LoOToSQ3M?=
+ =?us-ascii?Q?Z7AX7/aWtnBa68TB3TMQW0zzwqFcYJeg2DbClp8Tm6664xGUSht9jxyVqs28?=
+ =?us-ascii?Q?Tbhgr/127IJ/jAJwX9tvJaR4jT92Z0MYPbO/ml0Tc77AXFnOCrFuCPmh6xtV?=
+ =?us-ascii?Q?MXt/anBuOzQv3mKTnpBj3aXM8n4Rt2Oi6g80fi6B0EJ0hi0n89nluU/243vV?=
+ =?us-ascii?Q?b2FUUIaQciPiMi5kRHmEFrR3DfZiTdTJ3U55H7bHajevfJIVIrfLHyAUEbMm?=
+ =?us-ascii?Q?Xy///+imES3cuhXiAiyYVVcms6otTrVMmGj/qi957mj67g4eIsatgAkBdnCZ?=
+ =?us-ascii?Q?tqDlSenGNasJPOzpIWEHLUmMmeH1lR8fuQ3I6WgrWTZPRoYQnta3+QtF7Vce?=
+ =?us-ascii?Q?alA855+3o/jaqLH3O8hEySUVMc8grplaImg/KHPzbrVYUaEQxUBRrDJVhVW/?=
+ =?us-ascii?Q?MLxMBH7C8cR4s/tKVJQp75GnO1Eo9aSA/sncIWFXnYFUd4EC2MOE4M4EwyH2?=
+ =?us-ascii?Q?LUUVtK4mukAmwAoc6KcdCrHEUa3J0v7RhgSGnKrUKvFKKpKCVC8mbI+Cxscu?=
+ =?us-ascii?Q?lA22MRogkSbc7dXDuE3e06IWo/12sLtC0fiUl+SqRDS9TiAeznvaim5FPwfM?=
+ =?us-ascii?Q?DNem5gjqq8qsMQ+80pq6rOFtiY5Si+oXAW+qij7QWNSnAOE3123NPFJomsMq?=
+ =?us-ascii?Q?w2+iyy+/hi+jU/Ue6uTmRg/Y6hTDIY6adXD/rl/cYVTx2iqTuEE8m7T83ms?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b1a5da0-2e8b-4398-b391-08dbdc0c9424
+X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 01:31:19.5337
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWP286MB3126
 
-Hi Viacheslav,
+These two types of LEDs are widely used in routers and NICs.
 
-kernel test robot noticed the following build errors:
+The 'signal' LED is used to display the wireless signal strength.
+Usually, there are 3~4 LEDs in one group to indicate the signal
+strength, similar to the signal icon on a mobile phone.
 
-[auto build test ERROR on soc/for-next]
-[also build test ERROR on linus/master v6.6 next-20231102]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The 'internet' LED can indicate whether the device can access a
+specific server. It's different from 'wan'. 'wan' usually indicates
+whether the WAN port is connected to the modem (internet services
+may still be unavailable). But the 'internet' shows if the device
+can successfully ping servers such as 8.8.8.8 to detect the internet
+connection status. When the router is running in AP only mode, we
+can even connect LAN port to the AC/modem to connect to the internet.
+In this case, the 'internet' LED should be on. On some routers, both
+'internet' and 'wan' are available and can be controlled separately.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Viacheslav-Bocharov/firmware-meson-sm-change-sprintf-to-scnprintf/20231102-172556
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
-patch link:    https://lore.kernel.org/r/20231102074916.3280809-5-adeep%40lexina.in
-patch subject: [PATCH 4/4] firmware: meson_sm: use meson_gx_socinfo for compatibility
-config: arm64-randconfig-003-20231103 (https://download.01.org/0day-ci/archive/20231103/202311030839.2qiIuOUl-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231103/202311030839.2qiIuOUl-lkp@intel.com/reproduce)
+Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
+---
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311030839.2qiIuOUl-lkp@intel.com/
+Changes in v2:
+* Remove the LED name sorting patch as it changes the ABI.
+* Add "devicetree@vger.kernel.org" to '--to' list.
+  Thanks to Rob Herring and Krzysztof Kozlowski for letting me know I
+  can send patch to multiple mailing list at once.
 
-All errors (new ones prefixed by >>):
+Changes in v3:
+* Add more information about the new added LEDs.
+* Remove the missing LED fix as Jisheng Zhang has already sent a
+  similar one. I should search the mailing list first...
 
-   drivers/firmware/meson/meson_sm.c: In function 'chipid_show':
->> drivers/firmware/meson/meson_sm.c:328:19: error: 'uint32' undeclared (first use in this function); did you mean 'uint32_t'?
-     328 |                 ((uint32)t *)buff)[0] = 0;
-         |                   ^~~~~~
-         |                   uint32_t
-   drivers/firmware/meson/meson_sm.c:328:19: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/firmware/meson/meson_sm.c:328:26: error: expected ')' before 't'
-     328 |                 ((uint32)t *)buff)[0] = 0;
-         |                 ~        ^
-         |                          )
->> drivers/firmware/meson/meson_sm.c:328:30: error: expected ';' before 'buff'
-     328 |                 ((uint32)t *)buff)[0] = 0;
-         |                              ^~~~
-         |                              ;
->> drivers/firmware/meson/meson_sm.c:328:34: error: expected statement before ')' token
-     328 |                 ((uint32)t *)buff)[0] = 0;
-         |                                  ^
->> drivers/firmware/meson/meson_sm.c:328:35: error: expected expression before '[' token
-     328 |                 ((uint32)t *)buff)[0] = 0;
-         |                                   ^
-   drivers/firmware/meson/meson_sm.c:331:17: error: 'ch' undeclared (first use in this function)
-     331 |                 ch = (uint8_t *)(id_buf + 4);
-         |                 ^~
-   drivers/firmware/meson/meson_sm.c:332:22: error: 'i' undeclared (first use in this function)
-     332 |                 for (i = 0; i < 12; i++)
-         |                      ^
+v1:
+https://lore.kernel.org/all/TYAP286MB0315FE921FF113BF76F7B700BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
 
+v2:
+https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
 
-vim +328 drivers/firmware/meson/meson_sm.c
+ include/dt-bindings/leds/common.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-   281	
-   282	static ssize_t chipid_show(struct device *dev, struct device_attribute *attr,
-   283				 char *buf)
-   284	{
-   285		struct platform_device *pdev = to_platform_device(dev);
-   286		struct meson_sm_firmware *fw;
-   287		uint8_t *id_buf;
-   288		int ret;
-   289	
-   290		fw = platform_get_drvdata(pdev);
-   291	
-   292		id_buf = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
-   293		if (!id_buf)
-   294			return -ENOMEM;
-   295	
-   296		ret = meson_sm_call_read(fw, id_buf, SM_CHIP_ID_LENGTH, SM_GET_CHIP_ID,
-   297					 2, 0, 0, 0, 0);
-   298		if (ret < 0) {
-   299			kfree(id_buf);
-   300			return ret;
-   301		}
-   302	
-   303		int version = *((unsigned int *)id_buf);
-   304	
-   305		if (version == 2)
-   306			ret = scnprintf(buf, PAGE_SIZE, "%16phN\n", &id_buf[SM_CHIP_ID_OFFSET]);
-   307		else {
-   308			/**
-   309			 * Legacy 12-byte chip ID read out, transform data
-   310			 * to expected order format.
-   311			 */
-   312			uint8_t *buff;
-   313	
-   314			buff = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
-   315			if (!buff)
-   316				return -ENOMEM;
-   317	#ifdef CONFIG_MESON_GX_SOCINFO
-   318			uint8_t *ch;
-   319			int i;
-   320	
-   321			((uint32_t *)buff)[0] =
-   322				((meson_gx_socinfo & 0xff000000)        |       // Family ID
-   323				((meson_gx_socinfo << 8) & 0xff0000)    |       // Chip Revision
-   324				((meson_gx_socinfo >> 8) & 0xff00));            // Package ID
-   325	
-   326			((uint32_t *)buff)[0] = htonl(((uint32_t *)buff)[0]);
-   327	#else
- > 328			((uint32)t *)buff)[0] = 0;
-   329	#endif
-   330			/* Transform into expected order for display */
-   331			ch = (uint8_t *)(id_buf + 4);
-   332			for (i = 0; i < 12; i++)
-   333				buff[i + 4] = ch[11 - i];
-   334			ret = scnprintf(buf, PAGE_SIZE, "%16phN\n", &buff);
-   335			kfree(buff);
-   336		}
-   337	
-   338		kfree(id_buf);
-   339		return ret;
-   340	}
-   341	
-
+diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+index 9a0d33d02..55a426e39 100644
+--- a/include/dt-bindings/leds/common.h
++++ b/include/dt-bindings/leds/common.h
+@@ -88,11 +88,13 @@
+ #define LED_FUNCTION_FLASH "flash"
+ #define LED_FUNCTION_HEARTBEAT "heartbeat"
+ #define LED_FUNCTION_INDICATOR "indicator"
++#define LED_FUNCTION_INTERNET "internet"
+ #define LED_FUNCTION_LAN "lan"
+ #define LED_FUNCTION_MAIL "mail"
+ #define LED_FUNCTION_MTD "mtd"
+ #define LED_FUNCTION_PANIC "panic"
+ #define LED_FUNCTION_PROGRAMMING "programming"
++#define LED_FUNCTION_RSSI "rssi"
+ #define LED_FUNCTION_RX "rx"
+ #define LED_FUNCTION_SD "sd"
+ #define LED_FUNCTION_STANDBY "standby"
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.2
+
 
