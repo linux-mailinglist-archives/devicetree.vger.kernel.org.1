@@ -1,162 +1,176 @@
-Return-Path: <devicetree+bounces-13749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D056E7E0423
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 15:01:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB5C57E0428
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 15:02:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8505C2818BA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:01:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2237AB212CE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212521863E;
-	Fri,  3 Nov 2023 14:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P8m4ouBS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F5E18651;
+	Fri,  3 Nov 2023 14:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4271862F
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 14:00:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A93551A8;
-	Fri,  3 Nov 2023 07:00:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699020053; x=1730556053;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Rz6eCJm7BKehq5IHsWMYysRTu22nf253QJIHbXShJkA=;
-  b=P8m4ouBSa2Ierr8jXb/xdPcUPBpeFtR9e697xGd5M+DQlSV/Z9UJiw4E
-   hmUdHtQvDDsSczAhy5rcjkE6pOAe5FiBCkYnxqnoFoTWtd1I7ND3olz/2
-   5SI442U8mEUlpsPqsT/vpNHhemOQfVzHuJ4EG0r9LrpLViApIaERoa5uY
-   hzR6gUcaIJk/nIdcyy3r3ALZKTMDUcamnceRwppX8xM5cQSxHb9ifNBud
-   XHa1I58BKVn/gtJbWiNSMt2f5S7lPMlr1uQ4T9kYkc/z75gOymE2n8CTl
-   GcZyECgpCxKh3h0CmoGjJYBpTkAXYcGENQYGRgJ7snEgkUAMzFaDL1mVD
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="453243547"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; 
-   d="scan'208";a="453243547"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2023 07:00:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1093065345"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; 
-   d="scan'208";a="1093065345"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 03 Nov 2023 07:00:47 -0700
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qyuj7-0002Yu-1M;
-	Fri, 03 Nov 2023 14:00:45 +0000
-Date: Fri, 3 Nov 2023 21:59:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
-	agross@kernel.org, konrad.dybcio@linaro.org,
-	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v11 3/4] clk: qcom: common: commonize qcom_cc_really_probe
-Message-ID: <202311032153.n6opqP2e-lkp@intel.com>
-References: <20231103104846.30875-4-quic_luoj@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55AD1862F;
+	Fri,  3 Nov 2023 14:02:07 +0000 (UTC)
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6CDD4B;
+	Fri,  3 Nov 2023 07:02:02 -0700 (PDT)
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3A38gCiZ001828;
+	Fri, 3 Nov 2023 10:01:23 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3u4wk811r8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Nov 2023 10:01:22 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3A3E1LoD008711
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 3 Nov 2023 10:01:21 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 3 Nov 2023 10:01:20 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 3 Nov 2023 10:01:20 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 3 Nov 2023 10:01:20 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.145])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3A3E13ht020117;
+	Fri, 3 Nov 2023 10:01:06 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Alessandro Zummo
+	<a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, "Jean Delvare" <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>, <linux-rtc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Date: Fri, 3 Nov 2023 16:00:25 +0200
+Message-ID: <20231103140051.43174-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231103104846.30875-4-quic_luoj@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: cBisYt9uOPjCeFtmhXVBTQHHxdRfnr5D
+X-Proofpoint-ORIG-GUID: cBisYt9uOPjCeFtmhXVBTQHHxdRfnr5D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-03_12,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 clxscore=1015
+ suspectscore=0 spamscore=0 impostorscore=0 bulkscore=0 priorityscore=1501
+ phishscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2310240000
+ definitions=main-2311030117
 
-Hi Luo,
+Document the Analog Devices MAX31335 device tree bindings.
 
-kernel test robot noticed the following build errors:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+changes in v5:
+ - add `adi,tc-diode` property.
+ .../devicetree/bindings/rtc/adi,max31335.yaml | 69 +++++++++++++++++++
+ 1 file changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
 
-[auto build test ERROR on ff269e2cd5adce4ae14f883fc9c8803bc43ee1e9]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Luo-Jie/clk-qcom-branch-Add-clk_branch2_prepare_ops/20231103-185251
-base:   ff269e2cd5adce4ae14f883fc9c8803bc43ee1e9
-patch link:    https://lore.kernel.org/r/20231103104846.30875-4-quic_luoj%40quicinc.com
-patch subject: [PATCH v11 3/4] clk: qcom: common: commonize qcom_cc_really_probe
-config: csky-randconfig-002-20231103 (https://download.01.org/0day-ci/archive/20231103/202311032153.n6opqP2e-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231103/202311032153.n6opqP2e-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311032153.n6opqP2e-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/clk/qcom/gcc-sm4450.c: In function 'gcc_sm4450_probe':
->> drivers/clk/qcom/gcc-sm4450.c:2874:37: error: passing argument 1 of 'qcom_cc_really_probe' from incompatible pointer type [-Werror=incompatible-pointer-types]
-    2874 |         return qcom_cc_really_probe(pdev, &gcc_sm4450_desc, regmap);
-         |                                     ^~~~
-         |                                     |
-         |                                     struct platform_device *
-   In file included from drivers/clk/qcom/clk-regmap-mux.h:11,
-                    from drivers/clk/qcom/gcc-sm4450.c:19:
-   drivers/clk/qcom/common.h:61:48: note: expected 'struct device *' but argument is of type 'struct platform_device *'
-      61 | extern int qcom_cc_really_probe(struct device *dev,
-         |                                 ~~~~~~~~~~~~~~~^~~
-   cc1: some warnings being treated as errors
-
-
-vim +/qcom_cc_really_probe +2874 drivers/clk/qcom/gcc-sm4450.c
-
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2834  
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2835  static int gcc_sm4450_probe(struct platform_device *pdev)
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2836  {
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2837  	struct regmap *regmap;
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2838  	int ret;
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2839  
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2840  	regmap = qcom_cc_map(pdev, &gcc_sm4450_desc);
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2841  	if (IS_ERR(regmap))
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2842  		return PTR_ERR(regmap);
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2843  
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2844  	clk_lucid_evo_pll_configure(&gcc_gpll3, regmap, &gcc_gpll3_config);
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2845  	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks,
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2846  				       ARRAY_SIZE(gcc_dfs_clocks));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2847  	if (ret)
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2848  		return ret;
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2849  
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2850  	qcom_branch_set_force_mem_core(regmap, gcc_ufs_phy_ice_core_clk, true);
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2851  
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2852  	/*
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2853  	 * Keep clocks always enabled:
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2854  	 * gcc_camera_ahb_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2855  	 * gcc_camera_sleep_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2856  	 * gcc_camera_xo_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2857  	 * gcc_disp_ahb_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2858  	 * gcc_disp_xo_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2859  	 * gcc_gpu_cfg_ahb_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2860  	 * gcc_video_ahb_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2861  	 * gcc_video_xo_clk
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2862  	 */
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2863  	regmap_update_bits(regmap, 0x36004, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2864  	regmap_update_bits(regmap, 0x36018, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2865  	regmap_update_bits(regmap, 0x3601c, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2866  	regmap_update_bits(regmap, 0x37004, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2867  	regmap_update_bits(regmap, 0x37014, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2868  	regmap_update_bits(regmap, 0x81004, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2869  	regmap_update_bits(regmap, 0x42004, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2870  	regmap_update_bits(regmap, 0x42018, BIT(0), BIT(0));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2871  
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2872  	regmap_update_bits(regmap, 0x4201c, BIT(21), BIT(21));
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2873  
-c32c4ef98baca6d Ajit Pandey 2023-09-09 @2874  	return qcom_cc_really_probe(pdev, &gcc_sm4450_desc, regmap);
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2875  }
-c32c4ef98baca6d Ajit Pandey 2023-09-09  2876  
-
+diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+new file mode 100644
+index 000000000000..b82a8aa67428
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX31335 RTC
++
++maintainers:
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description:
++  Analog Devices MAX31335 I2C RTC ±2ppm Automotive Real-Time Clock with
++  Integrated MEMS Resonator.
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    const: adi,max31335
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#clock-cells":
++    description:
++      RTC can be used as a clock source through its clock output pin.
++    const: 0
++
++  adi,tc-diode:
++    description:
++      Select the diode configuration for the trickle charger.
++      schottky - Schottky diode in series.
++      standard+schottky - standard diode + Schottky diode in series.
++    enum: [schottky, standard+schottky]
++
++  trickle-resistor-ohms:
++    description:
++      Selected resistor for trickle charger. Should be specified if trickle
++      charger should be enabled.
++    enum: [3000, 6000, 11000]
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@68 {
++            compatible = "adi,max31335";
++            reg = <0x68>;
++            pinctrl-0 = <&rtc_nint_pins>;
++            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
++            trickle-resistor-ohms = <6000>;
++            adi,tc-diode = "schottky";
++        };
++    };
++...
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.0
+
 
