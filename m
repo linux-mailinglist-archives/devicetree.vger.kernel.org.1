@@ -1,145 +1,80 @@
-Return-Path: <devicetree+bounces-13688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 473727DFFA0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 09:11:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 354937DFFB3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 09:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78A521C2106B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 08:11:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E09AE281D9A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 08:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B5979CF;
-	Fri,  3 Nov 2023 08:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D85A8460;
+	Fri,  3 Nov 2023 08:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C2ssioIo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Q3gJxd9T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B86C847C
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 08:11:46 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E29701A8;
-	Fri,  3 Nov 2023 01:11:41 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A359R76014714;
-	Fri, 3 Nov 2023 08:11:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=u3JwXlcRcYPnxvK4HEmxg7Tn23cs0JQWAl1lXbwAKV0=;
- b=C2ssioIo2o3NeAxVbkPngBn48yRuC9fY5RUWjUHzkmB/RKMa1uv1MpH6/G9kCM9p3GSv
- GVeMaHq9RuAUzlAFddNsBKDEXBELfYHdc34Kbtln/z+3xg8lAJ4FXxNYrP65j9C+Ujd8
- KAR245B0IDRgbBLOe8yPmeshctzMT9e0omuMKrQwl2vEy5dZqHnkS7SEySHgziXPDDoZ
- 90p8K+zM4Ld4NlJpNZA4YRrO1qdkwy1f028gIbKEb/aS8a+3uyh9umJslu7dsryXReeO
- X5nb0yiNhL09p01FFDeNWWDWaa+zprCJTm5hOspS5kdyKYGVP7R3MqqqWGP+y//eN540 lA== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u477ptpat-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Nov 2023 08:11:34 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A38BX1o006588
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Nov 2023 08:11:33 GMT
-Received: from [10.216.16.147] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
- 2023 01:11:27 -0700
-Message-ID: <b6a023e9-bb54-44d6-8a48-5f6204da5b95@quicinc.com>
-Date: Fri, 3 Nov 2023 13:41:23 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16B38BE3
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 08:23:10 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E6DB131;
+	Fri,  3 Nov 2023 01:23:05 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7D12EC0002;
+	Fri,  3 Nov 2023 08:23:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1698999782;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kg/HZQyNEJyh61W61ZvN9JqFC68uxEc/k0ZZDJXIcjY=;
+	b=Q3gJxd9T6Wh0hhaNygTPywLxIUVhymxQRDuK88JIbNh7Bfhd2c4n3N4kBNkAS1sL/JFQjk
+	dnFy08a/MUFmxGCD27ayJ3JKZXKosqzM/4AHeVFPB+gsejeXY5rwV9GlaBZo4gIjO01URf
+	ywa/Zx+I62xaWBaEhrOhmewt47BmpfHIosBAtMlz+7Cf3PtLJiDG8mx1zurpQ61SbObK78
+	nwv4BFLMmIsr3zxGXJ01uY4lZpvy3G4nZDt5DzBy1fvNlbgDqt8GrzBeEPHech0xOFY1gQ
+	9L583DI3Enk0a8/kZsm8LUBpKxUwxyQTo9Mv335lmrzXNWVKEAKkCj8It9dJ8w==
+Date: Fri, 3 Nov 2023 09:23:00 +0100
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
+Subject: Re: [PATCH v9 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Message-ID: <ZUSt5GC4lALz/fq5@pc-70.home>
+References: <cover.1698666612.git.mehdi.djait@bootlin.com>
+ <f7367726eb077d43446c83591ecbf9acbc77ef5f.1698666612.git.mehdi.djait@bootlin.com>
+ <6f98b471-b139-4043-a8ab-e7a9f9608d60@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH V3 4/4] arm64: dts: qcom: ipq5018: Add tsens node
-Content-Language: en-US
-To: Robert Marko <robimarko@gmail.com>
-CC: Sricharan R <srichara@win-platform-upstream01.qualcomm.com>,
-        <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
-        <daniel.lezcano@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <dmitry.baryshkov@linaro.org>
-References: <20230922115116.2748804-1-srichara@win-platform-upstream01.qualcomm.com>
- <20230922115116.2748804-5-srichara@win-platform-upstream01.qualcomm.com>
- <1c6ecc92-89d3-3b7e-c2d0-e2fded9b446d@gmail.com>
- <f44b6e59-c26e-1026-49b7-e02ff02d7562@quicinc.com>
- <CAOX2RU6j75+8tFMTu=fVKY=mBkv8OaZJzWYUfnqkwfJY01QqYw@mail.gmail.com>
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <CAOX2RU6j75+8tFMTu=fVKY=mBkv8OaZJzWYUfnqkwfJY01QqYw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: dJiFYVTVgberLcXSF2KIYI7ivCo-g49y
-X-Proofpoint-ORIG-GUID: dJiFYVTVgberLcXSF2KIYI7ivCo-g49y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-03_06,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- phishscore=0 adultscore=0 clxscore=1011 priorityscore=1501 mlxscore=0
- mlxlogscore=999 bulkscore=0 impostorscore=0 lowpriorityscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311030066
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6f98b471-b139-4043-a8ab-e7a9f9608d60@wolfvision.net>
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-<..>
+Hello Michael,
 
->>> On 22. 09. 2023. 13:51, Sricharan R wrote:
->>>> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>>
->>>> IPQ5018 has tsens V1.0 IP with 4 sensors.
->>>> There is no RPM, so tsens has to be manually enabled. Adding the tsens
->>>> and nvmem node and IPQ5018 has 4 thermal sensors (zones). With the
->>>> critical temperature being 120'C and action is to reboot. Adding all
->>>> the 4 zones here.
->>>>
->>>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>>> ---
->>>>    [v3] Ordered the qfprom device node properties as per
->>>>         Krzysztof's comments
->>>>
->>>>    arch/arm64/boot/dts/qcom/ipq5018.dtsi | 169 ++++++++++++++++++++++++++
->>>>    1 file changed, 169 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>>> b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>>> index 9f13d2dcdfd5..9e28b54ebcbd 100644
->>>> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>>> @@ -93,6 +93,117 @@ soc: soc@0 {
->>>>            #size-cells = <1>;
->>>>            ranges = <0 0 0 0xffffffff>;
->>>> +        qfprom: qfprom@a0000 {
->>>> +            compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
->>> Hi,
->>>
->>> "qcom,ipq5018-qfprom" needs to be documented in QFPROM bindings first.
->>
->>    Already posted here [1]. Initially had it in the same series, but kept
->>    it separately based on review comments.
->>
->>    [1] https://www.spinics.net/lists/devicetree/msg633408.html
+On Tue, Oct 31, 2023 at 11:23:17PM +0100, Michael Riesch wrote:
+> Hi Mehdi,
 > 
-> Well, if it's not part of the same series then this addition would
-> cause a warning as its
-> undocumented.
+> Thanks for your work! Please find a few comments inline:
 > 
-> I also dont see where is it documented as part of the v2 series.
 
-  Then in that case, will keep it in same series again in V4
+thank you for the comments! 
 
-Regards,
-  Sricharan
+Have you been able to test this driver ? That would be really nice.
+
+--
+Kind Regards
+Mehdi Djait
 
