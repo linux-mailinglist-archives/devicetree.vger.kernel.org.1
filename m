@@ -1,107 +1,112 @@
-Return-Path: <devicetree+bounces-13769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3FA7E0584
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 16:23:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84B47E05A1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 16:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D08E1C20D46
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 15:23:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4975BB2123A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 15:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793B21BDD8;
-	Fri,  3 Nov 2023 15:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c5UWdx0x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3EDD1C2AC;
+	Fri,  3 Nov 2023 15:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820191BDC8;
-	Fri,  3 Nov 2023 15:23:50 +0000 (UTC)
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766F51B2;
-	Fri,  3 Nov 2023 08:23:42 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 09B0DE0011;
-	Fri,  3 Nov 2023 15:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699025020;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=g8ryr4CTwqaRwOZ9SeBJFG41MtR13B4b+uJQqQXGdSQ=;
-	b=c5UWdx0xVoSeLiTM333DovqAx0WFjCsLznzPEiyd15hot3X0XOPEHUTOr+jRT4YzA+QhxC
-	eZA7ccFmlGldmLzogsB+IGn86WFs5YfcmVoCihctZL/CUVFkeU563eukN/mcXsE5Hc/GIy
-	2KU8NgRCEqzGTspBlGwyP0RZ3basdmbb15jjtVGvFLVpwFbRieGVTnikr2Fft1jSwLIJMo
-	7bZS7Kw3cYBj3WSD8N3o9Rowl4MrAAxpw7y/EEbteZUr0rgAPde2I3zAPNTGqcEh8LpGfg
-	WNtGLzSOG/nvN9eCE8HYmeqiSX2FmJs8Evf/7cvNZVRQ2HGTAvK98HCFVLtQvQ==
-Date: Fri, 3 Nov 2023 16:23:34 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Alessandro Zummo <a.zummo@towertech.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: rtc: max31335: add max31335 bindings
-Message-ID: <20231103152334de221dfb@mail.local>
-References: <20231103140051.43174-1-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68AC101E3;
+	Fri,  3 Nov 2023 15:35:04 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1D9E3123;
+	Fri,  3 Nov 2023 08:35:02 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 878812F4;
+	Fri,  3 Nov 2023 08:35:44 -0700 (PDT)
+Received: from [10.57.81.32] (unknown [10.57.81.32])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8F56B3F64C;
+	Fri,  3 Nov 2023 08:34:56 -0700 (PDT)
+Message-ID: <ffb08cc2-705a-468e-b6d2-9ce591c08ab4@arm.com>
+Date: Fri, 3 Nov 2023 15:34:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231103140051.43174-1-antoniu.miclaus@analog.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 08/10] arm64: Kconfig.platforms: Add config for Marvell
+ PXA1908 platform
+Content-Language: en-GB
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>,
+ Robert Jarzmik <robert.jarzmik@free.fr>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Leo Yan <leoy@marvell.com>, Zhangfei Gao <zhangfei.gao@marvell.com>,
+ Lubomir Rintel <lkundrak@v3.sk>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Kees Cook <keescook@chromium.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G . Piccoli"
+ <gpiccoli@igalia.com>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-hardening@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Karel Balej <balejk@matfyz.cz>
+References: <20231102152033.5511-1-duje.mihanovic@skole.hr>
+ <20231102152033.5511-3-duje.mihanovic@skole.hr>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20231102152033.5511-3-duje.mihanovic@skole.hr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 03/11/2023 16:00:25+0200, Antoniu Miclaus wrote:
-> +  trickle-resistor-ohms:
-> +    description:
-> +      Selected resistor for trickle charger. Should be specified if trickle
-> +      charger should be enabled.
-> +    enum: [3000, 6000, 11000]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rtc@68 {
-> +            compatible = "adi,max31335";
-> +            reg = <0x68>;
-> +            pinctrl-0 = <&rtc_nint_pins>;
-> +            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
-> +            trickle-resistor-ohms = <6000>;
-
-This example would need aux-voltage-chargeable to ensure the charger is
-getting enabled
-
-> +            adi,tc-diode = "schottky";
-> +        };
-> +    };
-> +...
-> -- 
-> 2.42.0
+On 2023-11-02 3:20 pm, Duje Mihanović wrote:
+> Add ARCH_MMP configuration option for Marvell PXA1908 SoC.
 > 
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> ---
+>   arch/arm64/Kconfig.platforms | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index 6069120199bb..b417cae42c84 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -89,6 +89,17 @@ config ARCH_BERLIN
+>   	help
+>   	  This enables support for Marvell Berlin SoC Family
+>   
+> +config ARCH_MMP
+> +	bool "Marvell MMP SoC Family"
+> +	select ARM_GIC
+> +	select ARM_ARCH_TIMER
+> +	select ARM_SMMU
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+NAK, not only is selecting user-visible symbols generally frowned upon, 
+and ignoring their dependencies even worse, but for a multiplatform 
+kernel the user may well want this to be a module.
+
+If having the SMMU driver built-in is somehow fundamentally required for 
+this platform to boot, that would represent much bigger problems.
+
+Thanks,
+Robin.
+
+> +	select MMP_PDMA
+> +	select PINCTRL_SINGLE
+> +	help
+> +	  This enables support for Marvell MMP SoC family, currently
+> +	  supporting PXA1908 aka IAP140.
+> +
+>   config ARCH_BITMAIN
+>   	bool "Bitmain SoC Platforms"
+>   	help
 
