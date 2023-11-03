@@ -1,132 +1,219 @@
-Return-Path: <devicetree+bounces-13743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE1D7E03AF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:16:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E4367E03BC
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:24:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA4CE1C209A3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 13:16:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43047281DBA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 13:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F226218058;
-	Fri,  3 Nov 2023 13:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7D4182BD;
+	Fri,  3 Nov 2023 13:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="HVsdk43g"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UWhaPc+W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12CF815497
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 13:16:29 +0000 (UTC)
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599BE19D;
-	Fri,  3 Nov 2023 06:16:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XUoUlhIW7TwMqkgphOP0uuquEKi9nLTWmd6P0wlkvck=; b=HVsdk43gWifGDK+Mlw/qeo0e6u
-	WetGuSwRM3dD6HJfbhCVxWwiNaDHSx2Xro9bORaaUGP8NrGsiaGEHNvixSni0v0P35b/jEvCooAf4
-	rYSn5zejZ5R8rXLMqEUX7Jj3vlByYhtVv7dYyYFibKbKhskzy4BTZKOVjtfTWnvX0sywdu1yRxFlg
-	gbLL1uCW87i1+EG1EGxKJomNvngp2eIpcnotD9kRcizXara6IbyG1uvuwbgMtKHhmhpmDFFUbLNCP
-	tkpdZyDojnNh9S2saxIOhWgNn3QsrZPPNY6drVgBAAFIiFLE/kiVdagMQeoqjUVXxmK0SYPfuckrD
-	jogBtwEA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44854)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1qyu20-0005Yh-0l;
-	Fri, 03 Nov 2023 13:16:12 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1qyu20-0008RM-RX; Fri, 03 Nov 2023 13:16:12 +0000
-Date: Fri, 3 Nov 2023 13:16:12 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>,
-	Sam Ravnborg <sam@ravnborg.org>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: Add SKOV IMX8MP CPU revB
- board
-Message-ID: <ZUTynJpOSZVowuJk@shell.armlinux.org.uk>
-References: <20231103105305.2459143-1-o.rempel@pengutronix.de>
- <20231103105305.2459143-2-o.rempel@pengutronix.de>
- <1ee285d7-6bc9-43ad-9ec9-a8aaed4452b5@lunn.ch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147BC15497
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 13:24:19 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0066C111;
+	Fri,  3 Nov 2023 06:24:14 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A3Bumsn000971;
+	Fri, 3 Nov 2023 13:23:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=BXRh8XjjR22c6SWsyXduhIg6ETGYP+wKqm6uE98Zfhg=;
+ b=UWhaPc+WrKZaG0wngW56TD907NbHdKAn6A+WdpXe/KaE2p3X/KS20LOksyfpij06PpRP
+ XuA61cchGv/qw/1HITrzaPacGoi7QpMYQsMEYLMLKWYGC1lk8quFY89+B4wrNibL0DaH
+ F1On3sLoBqsrrcBeehjGv360IveKjyhXg+NCDbRLkYPxsaOVUasu9/mKCYp7TRZiDVqm
+ YNcykYLjdcDqImqcXCTLdVr8uci53kq+MhsObNa6JArhpLffadFwIsOkVgTGcEF8oSv6
+ kISlIlKM3KoiO4FwmIc3X/4FV/LWncgw4A54feCMhdf3q/LH0RuwMsj5uwI/uFiYkE23 QA== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4r00h660-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Nov 2023 13:23:56 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3DNtDR020775
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 3 Nov 2023 13:23:55 GMT
+Received: from [10.201.203.219] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
+ 2023 06:23:49 -0700
+Message-ID: <4b911907-44b9-c164-9648-3d399e557672@quicinc.com>
+Date: Fri, 3 Nov 2023 18:53:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1ee285d7-6bc9-43ad-9ec9-a8aaed4452b5@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [RFC PATCH 1/5] mtd: nand: ecc-qcom: Add support for ECC Engine
+ Driver
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <quic_srichara@quicinc.com>,
+        <qpic_varada@quicinc.com>
+References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
+ <20231031120307.1600689-2-quic_mdalam@quicinc.com>
+ <b9af01d2-1a86-4b41-9bd6-3bf7a0dde1c0@linaro.org>
+ <553c1373-c9a0-b2af-2286-058824e31bad@quicinc.com>
+ <CAA8EJpp-xsP1x==a5DH8pKpy7XH75UF-L8ewKWmeL8ePtxUq-A@mail.gmail.com>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <CAA8EJpp-xsP1x==a5DH8pKpy7XH75UF-L8ewKWmeL8ePtxUq-A@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yB9V2oOg36eNJzFEQMzSvY3DRh3BJmo2
+X-Proofpoint-GUID: yB9V2oOg36eNJzFEQMzSvY3DRh3BJmo2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-03_12,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
+ mlxlogscore=999 clxscore=1011 impostorscore=0 spamscore=0 bulkscore=0
+ priorityscore=1501 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311030112
 
-On Fri, Nov 03, 2023 at 01:35:46PM +0100, Andrew Lunn wrote:
-> > +			port@2 {
-> > +				reg = <2>;
-> > +				label = "cpu";
-> > +				ethernet = <&eqos>;
-> > +				/* 2ns rgmii-rxid is implemented on PCB.
-> > +				 * Switch should add only rgmii-txid.
-> > +				 */
+
+
+On 11/3/2023 6:03 PM, Dmitry Baryshkov wrote:
+> On Fri, 3 Nov 2023 at 14:25, Md Sadre Alam <quic_mdalam@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 10/31/2023 10:41 PM, Krzysztof Kozlowski wrote:
+>>> On 31/10/2023 13:03, Md Sadre Alam wrote:
+>>>
+>>> Eh? Empty?
+>>
+>> QPIC controller has the ecc pipelined so will keep the ecc support
+>> inlined in both raw nand and serial nand driver.
+>>
+>> Droping this driver since device node was NAK-ed
+>> https://www.spinics.net/lists/linux-arm-msm/msg177596.html
 > 
-> Its unusual to actually see that. Its even more unusual its only one
-> clock line. Can you actually see it on the PCB?
+> It seems, we have to repeat the same thing again and again:
 > 
-> > +				phy-mode = "rgmii-txid";
-> > +				tx-internal-delay-ps = <2000>;
+> It was not the device node that was NAKed. It was the patch that was
+> NAKed. Please read the emails carefully.
 > 
-> Is this actually needed? rgmii-txid should add 2ns delay. Since this
-> apparently works, i'm assuming setting tx-internal-delay-ps to 2ns
-> does nothing, otherwise you would have a 4ns delay.
+> And next time please perform dtbs_check, dt_binding_check and
+> checkpatch before sending the patch.
+> 
+> It is perfectly fine to ask questions 'like we are getting we are
+> getting this and that issues with the bindings, please advise'. It is
+> not fine to skip that step completely.
 
-Umm... I think we're getting confused again.
+Sorry in V1 will run all basic checks.
 
-Mode		Local end		Remote end
-RGMII		No added delays		No added delays
-RGMII-TXID	No added delays		2ns delay on TX
-RGMII-RXID	No added delays		2ns delay on RX
-RGMII-ID	No added delays		2ns delay on both TX and RX
+Based on below feedback [1] and NAK on the device node patch
+got idea of having separate device node for ECC is not acceptable.
+Could you please help to clarify that.
 
-In the case of a network interface with a PHY, "local end" is the
-MAC and "remote end" is the PHY.
+Since ECC block is inlined with QPIC controller so is the below
+device node acceptable ?
 
-For a switch port connected to an external PHY, the switch port is
-as the "MAC" as above.
+    bch: qpic_ecc {
+                           compatible = "qcom,ipq9574-ecc";
+                           status = "ok";
+                   };
 
-For a switch port connected to an ethernet MAC:
- - for the MAC declaration, the local end is the MAC. There is no
-   communication of the interface mode with the remote end under
-   Linux, so this is irrelevant for Linux. However, this is an
-   implementation, and it should be chosen according to the hardware.
+  [1] https://www.spinics.net/lists/linux-arm-msm/msg177525.html
 
- - for the switch port declaration, the local end is the switch port.
-   There is no communication of the interface mode with the remote
-   end under Linux. However, it should be chosen according to the
-   hardware.
-
-So, if the 2ns delay is implemented on the RX lines (from the switch
-perspective) then shouldn't the MAC side be using "rgmii-txid" to
-indicate that the delay is being applied by the remote end (switch).
-The switch side should be using "rgmii" because no delays are required
-from the remote end (MAC), and the delay on the TX lines should be
-specified using "tx-internal-delay-ps"?
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> 
+>>>
+>>>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>>>> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
+>>>> ---
+>>>>    drivers/mtd/nand/Kconfig    |   7 ++
+>>>>    drivers/mtd/nand/Makefile   |   1 +
+>>>>    drivers/mtd/nand/ecc-qcom.c | 198 ++++++++++++++++++++++++++++++++++++
+>>>>    3 files changed, 206 insertions(+)
+>>>>    create mode 100644 drivers/mtd/nand/ecc-qcom.c
+>>>>
+>>>
+>>> ...
+>>>
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +EXPORT_SYMBOL(qcom_ecc_config);
+>>>> +
+>>>> +void qcom_ecc_enable(struct qcom_ecc *ecc)
+>>>> +{
+>>>> +    ecc->use_ecc = true;
+>>>> +}
+>>>> +EXPORT_SYMBOL(qcom_ecc_enable);
+>>>
+>>> Drop this and all other exports. Nothing here explains the need for them.
+>>>
+>>>> +
+>>>> +void qcom_ecc_disable(struct qcom_ecc *ecc)
+>>>> +{
+>>>> +    ecc->use_ecc = false;
+>>>> +}
+>>>> +EXPORT_SYMBOL(qcom_ecc_disable);
+>>>> +
+>>>> +static const struct of_device_id qpic_ecc_dt_match[] = {
+>>>> +    {
+>>>> +            .compatible = "qcom,ipq9574-ecc",
+>>>
+>>> Please run scripts/checkpatch.pl and fix reported warnings. Some
+>>> warnings can be ignored, but the code here looks like it needs a fix.
+>>> Feel free to get in touch if the warning is not clear.
+>>>
+>>> Checkpatch is preerquisite. Don't send patches which have obvious issues
+>>> pointed out by checkpatch. It's a waste of reviewers time.
+>>>
+>>>> +    },
+>>>> +    {},
+>>>> +};
+>>>> +
+>>>> +static int qpic_ecc_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +    struct device *dev = &pdev->dev;
+>>>> +    struct qpic_ecc *ecc;
+>>>> +    u32 max_eccdata_size;
+>>>> +
+>>>> +    ecc = devm_kzalloc(dev, sizeof(*ecc), GFP_KERNEL);
+>>>> +    if (!ecc)
+>>>> +            return -ENOMEM;
+>>>> +
+>>>> +    ecc->caps = of_device_get_match_data(dev);
+>>>> +
+>>>> +    ecc->dev = dev;
+>>>> +    platform_set_drvdata(pdev, ecc);
+>>>> +    dev_info(dev, "probed\n");
+>>>
+>>> No, no such messages.
+>>>
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+> 
+> 
+> 
 
