@@ -1,106 +1,139 @@
-Return-Path: <devicetree+bounces-13681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52BDD7DFEA9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 06:13:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B25E7DFEDD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 06:35:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EC9A1C20F94
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 05:13:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B1831C2092F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 05:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205B62D62B;
-	Fri,  3 Nov 2023 05:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE9F17C5;
+	Fri,  3 Nov 2023 05:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="olZcH8W9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p2/i3aY+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A752E2D626
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 05:12:59 +0000 (UTC)
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9172A133
-	for <devicetree@vger.kernel.org>; Thu,  2 Nov 2023 22:12:52 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-2806cbd43b8so1592575a91.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Nov 2023 22:12:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1698988370; x=1699593170; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OixtEquTnHR2YZhEd0MDEhswdqqqsbVAp+5RHrt7SyY=;
-        b=olZcH8W9AllPK4gFcgNwx+AWhkczLaehkgn321GTYcJk/ckcLrAFRmjOD0YQFQYNF7
-         woOMIi00GXEyUCA/8BDlxiz6JI3anxj/zzYeXw16pmkL09/TT+GnVmynHnCX0UdEZFQf
-         n23QaP0dyooFNYC0ShlkzZoUxSxEeii/4J4JkENreIVAtigByG4cLC8UuEcWw88BD64B
-         hDZu2DFVjQltO7l/EWYrfpzpdzEs6Kt7Ym1RnVV5yh01C92KZqMUP73foEU7Ey5we70X
-         bRgVI0GnG5wnHZZJrzpJyPaQ0rqlg1uR5/a6SPpLxC7JWcchODi2oR7nphd3K5cX8vAB
-         jMPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1698988370; x=1699593170;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OixtEquTnHR2YZhEd0MDEhswdqqqsbVAp+5RHrt7SyY=;
-        b=DE0ko9VLScDyyVg80z633ne3tJYu8ARmVBRZv+3HeZZtHoVOik2amc5piWywMmF/Jn
-         /535ZGFChjk2SowdbFR3Hi95yoLEKdrhHBSS51Rg4CBG2JcNqbS0y0ACbFHqfO+mHjs3
-         Cu0oTEcc+Pi+iUoTYySilECDVMQ+Clf3CiBgQuRzrZTuMPB2oFQ6VTkoy3RjTuTvZSPF
-         kvkeEKBaJHo+8AzU0ty8jTP2Q5ZHnrI+w8ZGbSUk0pSvUqugVj4Yt77cc0Nvr8ODtP00
-         NQ/bTIOiGq0m+on2ehp8fcvEmZH5LDakTBz56wB+ICmlKlGGUf/VyyPNMqm8FMmbglJv
-         f/6A==
-X-Gm-Message-State: AOJu0YyOPu0qJumrfpEHPhTWqHqmTWCnL6ZitagbQYxLgNzFR0CyT043
-	mwcrd0g74nOjH5Rcq2MdG8MM3w==
-X-Google-Smtp-Source: AGHT+IFExr8ybCriMSgOLlaz6WAWaai4oOiYuReMXnpbJnZEcRwsDQDCfUwG4Y7Q7LrrQj7TnqqbKA==
-X-Received: by 2002:a17:90a:7e88:b0:280:c97:5968 with SMTP id j8-20020a17090a7e8800b002800c975968mr18934034pjl.5.1698988370217;
-        Thu, 02 Nov 2023 22:12:50 -0700 (PDT)
-Received: from localhost ([122.172.80.14])
-        by smtp.gmail.com with ESMTPSA id js4-20020a17090b148400b0027d15bd9fa2sm626409pjb.35.2023.11.02.22.12.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Nov 2023 22:12:49 -0700 (PDT)
-Date: Fri, 3 Nov 2023 10:42:47 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, rafael@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-	quic_ramkri@quicinc.com, quic_parass@quicinc.com
-Subject: Re: [PATCH v5 5/5] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20231103051247.u4cnckzstcvs4lf5@vireshk-i7>
-References: <20231102053013.7yt7pxin5awlu7w7@vireshk-i7>
- <20231102120950.GA115288@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81F98464;
+	Fri,  3 Nov 2023 05:35:26 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92D5E1A6;
+	Thu,  2 Nov 2023 22:35:22 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A34KPfK015248;
+	Fri, 3 Nov 2023 05:35:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=3QTZMrtNQ5iXV3Oe5LVRAtX8boxCFoz2CC9S7yIUmwY=;
+ b=p2/i3aY+Apx1DCyzbVxvndiq5BURvy0PvlAgedw2EWo6nCD+xkDvhYSn6SMdnPIjlV0+
+ FHGYQKuiZyIpPg2h08MMjsoUIMm2CYEc91HdjIXjs+AFJaUmnF4FfLcT84TA6vHxNMCF
+ dkmviEXGhDfUr2HPGXGtybZZg1ADLp0PtiHmYaF34ZqzlxI1qYXupTE+ndGiS/7R4VSv
+ VZzC/nJkdYq+EEwj4A1IMhTbA1pcol0SWjjXhLivqRyEMkjj+TUp4p7e9WwWLeG04Dbk
+ VATgp7NI9F18P46zUJFLuDGiTPJ3sd/a+vRYexSQKJ5RNqmGOPuFbYNyKecggxdGAwdB Kg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u477ptctp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Nov 2023 05:35:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A35Z9hc019035
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 3 Nov 2023 05:35:09 GMT
+Received: from [10.249.8.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 2 Nov
+ 2023 22:35:03 -0700
+Message-ID: <f0820464-16d6-47fd-90bc-cf80b5d76058@quicinc.com>
+Date: Fri, 3 Nov 2023 11:04:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231102120950.GA115288@bhelgaas>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/8] dt-bindings: usb: qcom,dwc3: Add bindings to enable
+ runtime
+To: Caleb Connolly <caleb.connolly@linaro.org>,
+        Thinh Nguyen
+	<Thinh.Nguyen@synopsys.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, Andy Gross <agross@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-2-quic_kriskura@quicinc.com>
+ <272a9764-1cae-4d86-88b1-00175de83333@linaro.org>
+ <960101cc-78c0-49cf-ab62-90614eeb9ee2@quicinc.com>
+ <dbf4a48e-c808-4611-96b1-563ece1e451a@linaro.org>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <dbf4a48e-c808-4611-96b1-563ece1e451a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: xwJggyNvg_32N2PTZ1CiQ1B-Zou6tdu-
+X-Proofpoint-ORIG-GUID: xwJggyNvg_32N2PTZ1CiQ1B-Zou6tdu-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-03_05,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ phishscore=0 adultscore=0 clxscore=1015 priorityscore=1501 mlxscore=0
+ mlxlogscore=746 bulkscore=0 impostorscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311030045
 
-On 02-11-23, 07:09, Bjorn Helgaas wrote:
-> On Thu, Nov 02, 2023 at 11:00:13AM +0530, Viresh Kumar wrote:
-> > On 01-11-23, 17:17, Bjorn Helgaas wrote:
-> > > Can you expand "OPP" somewhere so we know what it stands for?  I'm
-> > > sure everybody knows except me :)
-> > 
-> > It is "Operating Performance Points", defined here:
-> > 
-> > Documentation/power/opp.rst
+
+
+On 11/3/2023 12:10 AM, Caleb Connolly wrote:
+>> Hi Caleb,
+>>
+>>    There are two types of platforms, some use extcon and some use 
+>> role-switch to deliver vbus/id notifications. Extcon targets already 
+>> have this qscratch modifications present today in vbus and id 
+>> handlers. But for role-switch based targets we don't have any way to 
+>> get this notification to dwc3-qcom. In this implementation, I wanted 
+>> to get those notications from core to glue and for this we implenented 
+>> vendor hooks.
+>>
+>> The property added has been used to do two things:
+>>
+>> 1. Register glue's vendor hooks to core driver
+>> 2. Do runtime_allow for glue (and by default for core as the dt is not 
+>> flattened)
+>>
+>> In case of extcon, we don't want to register vendor hooks as 
+>> notifications are not necessary.
 > 
-> Thanks; I meant in the subject or commit log of the next revision, of
-> course.
+> Could it just be enabled when role_switch is present then?
+>>
 
-Yeah, I understood that. Krishna shall do it in next version I believe.
+So we would register vendor hooks when usb-role-switch is present but 
+don't do runtime allow, and leave that option to user space right ?
+I think it would work and we can do away with the binding completely.
 
--- 
-viresh
+Will wait for comments from other folks as well on this approach.
+
+Thanks for the review,
+Krishna,
 
