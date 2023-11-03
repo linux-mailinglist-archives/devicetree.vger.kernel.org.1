@@ -1,295 +1,265 @@
-Return-Path: <devicetree+bounces-13702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED9B7E01A1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:43:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F8AE7E01A5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:49:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B225CB20A45
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:43:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C455D281B70
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:49:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E322D62A;
-	Fri,  3 Nov 2023 10:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D485C11C89;
+	Fri,  3 Nov 2023 10:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MdH3eer/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LxPBcgR0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AF5185F
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 10:43:03 +0000 (UTC)
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B834ED7;
-	Fri,  3 Nov 2023 03:43:00 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c501bd6ff1so27055481fa.3;
-        Fri, 03 Nov 2023 03:43:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699008179; x=1699612979; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rOiFKv22ji7PySyrKL0ewmg7pOgYyRXkIz/R1Hq2LC0=;
-        b=MdH3eer/ZlscSHIKoqI8qzCfyyp2akrS293WDe2Vj27KD2Nu33gIOA0q2NEGZfatTX
-         Kh6+tnHibGK62niFU7xGQ/MwUuOpqo7JaKkXLoIp8cZMxMiX22YcMV1vmotVkj9HRwQb
-         Qd4v8LnxiP+GYQvkjS4E8tgc2vSXV1IPaxKosZSq3QSvoW4fntZkX9CND5sK9cGhUaTo
-         peDRM3bxaQKb2rKZnFYAlL5je820dAWbgElu2dtTpjXa6BE8UdeKRn6syNe92hO4Qe7n
-         1qdnD37vbAPZE/RvBBVJ5NrrGpusvg3tW+3voZEnid8gG2SExLyCMKQ96SbYqycVdKaC
-         LhCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699008179; x=1699612979;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOiFKv22ji7PySyrKL0ewmg7pOgYyRXkIz/R1Hq2LC0=;
-        b=cgkoklvl05avDpybMeinUcE/A8xhggMS+OcI7TjEkYzaBGI/Zf6G6CY7Xr8vZeW7w2
-         rbct2QaCqRzCR107yOCznbKqKNOTGFYqfhZYWLsTpgDeYLtOSZZBoBvBDoUSTJVnUtmZ
-         vg4jnWbsNBDQxShZBRJPrmu5YmyReSRkpiRqh18tm6JoMyAAwvQaEhMnkBtMB4NxRxJ6
-         DipSRMe3ZI8BsxslVXFZQmwWDjEZSauOLk+MpGkyocRV6PYuqaUvJ9GoxxsWix2q/aTy
-         jz78Dp4EvMp+X5337FmP+g5OP92UUpcu+ArTjJPrMaluWMlGEvfp2d5nJuMF2Kt6LZMc
-         1glQ==
-X-Gm-Message-State: AOJu0YwIMVtEabO9E6XdQwO6ZKGOaOyElHaY3GxpTYvTC63gpziaJfNh
-	otZ6Bi8ekKqS/yvWwGfT9oI=
-X-Google-Smtp-Source: AGHT+IGbn0nx+Y009fjMnwmpnZ70XY+afYMPUz8npLOVqOYkmnqFB4avZCMRxXE0cwwlR3mofK1gwg==
-X-Received: by 2002:ac2:410c:0:b0:509:4492:2a94 with SMTP id b12-20020ac2410c000000b0050944922a94mr4295780lfi.49.1699008178530;
-        Fri, 03 Nov 2023 03:42:58 -0700 (PDT)
-Received: from localhost.localdomain ([178.70.169.129])
-        by smtp.gmail.com with ESMTPSA id o25-20020ac25e39000000b00507f7eca29asm192001lfg.68.2023.11.03.03.42.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Nov 2023 03:42:57 -0700 (PDT)
-Date: Fri, 3 Nov 2023 13:42:55 +0300
-From: Ivan Bornyakov <brnkv.i1@gmail.com>
-To: Deborah Brouwer <deborah.brouwer@collabora.com>
-Cc: Sebastian Fricke <sebastian.fricke@collabora.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, NXP Linux Team <linux-imx@nxp.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Jackson Lee <jackson.lee@chipsnmedia.com>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Nas Chung <nas.chung@chipsnmedia.com>, 
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>, 
-	linux-kernel@vger.kernel.org, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
-	kernel@collabora.com, Robert Beckett <bob.beckett@collabora.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
-Message-ID: <d7pzf5sirz6zdx4qenzbaitalm3owkie67weqdurcx7wfisebh@fxri7a37bapj>
-References: <20230929-wave5_v13_media_master-v13-5-5ac60ccbf2ce@collabora.com>
- <20231017221359.20164-1-brnkv.i1@gmail.com>
- <ZUPXb10lU8UZHVQz@mz550>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8D02D632
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 10:49:29 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C87123;
+	Fri,  3 Nov 2023 03:49:25 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A39Av7j014409;
+	Fri, 3 Nov 2023 10:49:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=eL2tNiReguYOBRn9bHwh/h/ksokG8q6woRNw7Tx0SUo=;
+ b=LxPBcgR0+B1RK8pTXC3y/Xe7RaLgmcpBt6qjWacn8yhesXXaENNeilpqSAZ9269fsopO
+ g1hWuzufGNOX2CxneFq8ENTS77jf40iBjJsHAPQGEXgqzT1iWv7d4l5aQV3yjtiOgwIZ
+ AnsErDVcwu666+z083oKyg2WukF0onEneGq/xWFUhjT/a3Tlg4pZtPZj7f0r+Aun562P
+ ORsm1qfsqHDNLB73LEJnQpQUTBBFiOLn2vKFq3uXsCxqGJ3Lg/Hi7sDUTkoGjnzs56tl
+ JoOeOf7K8x0tfawO2CdFLHEOZV76R2Zsr1xleUfhQlROFWjeogWnPe2x3vg+VNHqZing LA== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4sft8ppu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 03 Nov 2023 10:49:12 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3An1aP003458
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 3 Nov 2023 10:49:01 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 3 Nov 2023 03:48:57 -0700
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andersson@kernel.org>, <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+Subject: [PATCH v11 0/4] add clock controller of qca8386/qca8084
+Date: Fri, 3 Nov 2023 18:48:42 +0800
+Message-ID: <20231103104846.30875-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZUPXb10lU8UZHVQz@mz550>
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: xbR_Ger_uPWHoBwUvJ3ckk6SIOI-mk6D
+X-Proofpoint-ORIG-GUID: xbR_Ger_uPWHoBwUvJ3ckk6SIOI-mk6D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-03_10,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 adultscore=0 spamscore=0 mlxscore=0 malwarescore=0
+ mlxlogscore=999 suspectscore=0 impostorscore=0 lowpriorityscore=0
+ phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311030090
 
-Hi, Deborah
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
 
-On Thu, Nov 02, 2023 at 10:07:59AM -0700, Deborah Brouwer wrote:
-> On Wed, Oct 18, 2023 at 01:13:52AM +0300, Ivan Bornyakov wrote:
-> > Hi!
-> 
-> Hi Ivan,
-> 
-> > 
-> > On Thu, 12 Oct 2023 13:01:03 +0200, Sebastian Fricke wrote:
-> > > Add the decoder and encoder implementing the v4l2
-> > > API. This patch also adds the Makefile and the VIDEO_WAVE_VPU config
-> > > 
-> > > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> > > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > > Signed-off-by: Deborah Brouwer <deborah.brouwer@collabora.com>
-> > > Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> > > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> > > Signed-off-by: Nas Chung <nas.chung@chipsnmedia.com>
-> > > ---
-> > >  drivers/media/platform/chips-media/Kconfig         |    1 +
-> > >  drivers/media/platform/chips-media/Makefile        |    1 +
-> > >  drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
-> > >  drivers/media/platform/chips-media/wave5/Makefile  |   10 +
-> > >  .../platform/chips-media/wave5/wave5-helper.c      |  213 +++
-> > >  .../platform/chips-media/wave5/wave5-helper.h      |   31 +
-> > >  .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1953 ++++++++++++++++++++
-> > >  .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++++++
-> > >  .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
-> > >  .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
-> > >  .../platform/chips-media/wave5/wave5-vpuapi.h      |    2 -
-> > >  11 files changed, 4389 insertions(+), 2 deletions(-)
-> > 
-> > [...]
-> > 
-> > > diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-> > > new file mode 100644
-> > > index 000000000000..74d1fae64fa4
-> > > --- /dev/null
-> > > +++ b/drivers/media/platform/chips-media/wave5/wave5-vpu-dec.c
-> > 
-> > [...]
-> > 
-> > > +static int wave5_vpu_dec_queue_setup(struct vb2_queue *q, unsigned int *num_buffers,
-> > > +				     unsigned int *num_planes, unsigned int sizes[],
-> > > +				     struct device *alloc_devs[])
-> > > +{
-> > > +	struct vpu_instance *inst = vb2_get_drv_priv(q);
-> > > +	struct v4l2_pix_format_mplane inst_format =
-> > > +		(q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) ? inst->src_fmt : inst->dst_fmt;
-> > > +	unsigned int i;
-> > > +
-> > > +	dev_dbg(inst->dev->dev, "%s: num_buffers: %u | num_planes: %u | type: %u\n", __func__,
-> > > +		*num_buffers, *num_planes, q->type);
-> > > +
-> > > +	/* the CREATE_BUFS case */
-> > > +	if (*num_planes) {
-> > > +		if (inst_format.num_planes != *num_planes)
-> > > +			return -EINVAL;
-> > > +
-> > > +		for (i = 0; i < *num_planes; i++) {
-> > > +			if (sizes[i] < inst_format.plane_fmt[i].sizeimage)
-> > > +				return -EINVAL;
-> > > +		}
-> > > +	/* the REQBUFS case */
-> > > +	} else {
-> > > +		*num_planes = inst_format.num_planes;
-> > > +
-> > > +		if (q->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
-> > > +			sizes[0] = inst_format.plane_fmt[0].sizeimage;
-> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u\n", __func__, sizes[0]);
-> > > +		} else if (*num_planes == 1) {
-> > 
-> > I think, you should also set *num_buffers to be inst->fbc_buf_count for
-> > V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE, like this:
-> > 
-> > 		} else if (q->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
-> > 			if (*num_buffers < inst->fbc_buf_count)
-> > 				*num_buffers = inst->fbc_buf_count;
-> > 
-> > 			switch (*num_planes) {
-> > 			case 1:
-> > 				...
-> > 			case 2:
-> > 				...
-> > 			case 3:
-> > 				...
-> > 			}
-> > 		}
-> 
-> I was able to reproduce this issue by requesting a small number of buffers
-> on the CAPTURE queue that was less than inst→fbc_buf_count. When this happens,
-> wave5_vpu_dec_job_ready() fails here:
-> (v4l2_m2m_num_dst_bufs_ready(m2m_ctx) < (inst->fbc_buf_count - 1)
-> 
-> I also tested your suggestion to set the *num_buffers to  inst→fbc_buf_count
-> in queue_setup() and it seems to be working well, thanks for this.
-> 
-> I've been working on ways to improve testing for stateful decoders so
-> I'm curious how you found this issue?
-> 
-> With fluster tests that we use, gstreamer seems to be calculating correct number of
-> CAPTURE buffers to request, so we wouldn't see this.
-> 
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_prepare_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
 
-I use v4l2-ctl and ffmpeg for testing the decoder.
+Changes in v2:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
 
-The first time I've encountered the discussed issue was when v4l2-ctl was
-able to decode one file but not the other with bigger resolution.
+Changes in v3:
+	* rename clk_branch2_qca8k_ops to clk_branch2_mdio_ops.
+	* fix review comments on yaml file.
+	* use dev_err_probe on driver probe error.
+	* only use the compatible "qcom,qca8084-nsscc".
+	* remove enable clock controller driver patch.
 
-For v4l2-ctl command line will look like this:
-v4l2-ctl --stream-from src-file.h265 --stream-to out-file.yuv --stream-mmap --stream-out-mmap
+Changes in v4:
+	* add _qcom_cc_really_probe function.
+	* commonizing the probe function.
+	* remove flag CLK_IS_CRITICAL from clocks only needed
+	to be enabled in switch device.
+	* update device tree property reg to 0x10. 
 
-For ffmpeg command line will look like this:
-ffmpeg -c:v hevc_v4l2m2m -i src-file.h265 -fps_mode passthrough out-file.yuv
+Changes in v5:
+	* commonize qcom_cc_really_probe.
+	* add halt_check for the branch clocks.
+	* fix the review comments on nsscc-qca8k.c. 
 
-Also for ffmpeg there are options -num_output_buffers and -num_capture_buffers 
-to set initial numbers of buffers in OUTPUT and CAPTURE queues, by
-default they are set to 20 or so.
+Changes in v6:
+	* rename clk_branch2_mdio_ops to clk_branch2_prepare_ops.
 
-> > 
-> > The reason for that is if fbc_buf_count is greater than initial num_buffers,
-> > wave5_vpu_dec_job_ready() wouldn't allow to invoke wave5_vpu_dec_device_run()
-> > 
-> > Here is a part of the log of described situation:
-> > 
-> >   vdec 20410000.wave515: Switch state from NONE to OPEN.
-> >   [...]
-> >   vdec 20410000.wave515: wave5_vpu_dec_init_seq: init seq sent (queue 1 : 1)
-> >   vdec 20410000.wave515: wave5_vpu_dec_get_seq_info: init seq complete (queue 0 : 0)
-> >   [...]
-> >   vdec 20410000.wave515: handle_dynamic_resolution_change: width: 4112 height: 3008 profile: 1 | minbuffer: 6
-> >   ^^^^^^^^ note that minbuffer is 6
-> > 
-> >   vdec 20410000.wave515: Switch state from OPEN to INIT_SEQ.
-> >   [...]
-> >   vdec 20410000.wave515: decoder command: 1
-> >   [...]
-> >   vdec 20410000.wave515: wave5_vpu_dec_queue_setup: num_buffers: 4 | num_planes: 0 | type: 9
-> >   ^^^^^^^^ note that num_buffers is 4
-> > 
-> >   vdec 20410000.wave515: wave5_vpu_dec_queue_setup: size[0]: 18625536
-> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-> >   vdec 20410000.wave515: CAPTURE queue must be streaming to queue jobs!
-> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    0 size: ([0]=18625536, [1]=   0, [2]=   0)
-> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    1 size: ([0]=18625536, [1]=   0, [2]=   0)
-> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    2 size: ([0]=18625536, [1]=   0, [2]=   0)
-> >   vdec 20410000.wave515: wave5_vpu_dec_buf_queue: type:    9 index:    3 size: ([0]=18625536, [1]=   0, [2]=   0)
-> >   vdec 20410000.wave515: wave5_vpu_dec_start_streaming: type: 9
-> >   vdec 20410000.wave515: No capture buffer ready to decode!
-> >   ^^^^^^^^ here v4l2_m2m_num_dst_bufs_ready(m2m_ctx) < (inst->fbc_buf_count - 1), namely 4 < 6
-> >   
-> >   vdec 20410000.wave515: wave5_vpu_dec_stop_streaming: type: 9
-> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 0, fail: -22
-> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 1, fail: -22
-> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 2, fail: -22
-> >   vdec 20410000.wave515: streamoff_capture: Setting display flag of buf index: 3, fail: -22
-> >   [...]
-> >   vdec 20410000.wave515: wave5_vpu_dec_close: dec_finish_seq complete
-> > 
-> > Altering num_buffers solves the issue for me.
-> > 
-> > > +			if (inst->output_format == FORMAT_422)
-> > > +				sizes[0] = inst_format.width * inst_format.height * 2;
-> > > +			else
-> > > +				sizes[0] = inst_format.width * inst_format.height * 3 / 2;
-> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u\n", __func__, sizes[0]);
-> > > +		} else if (*num_planes == 2) {
-> > > +			sizes[0] = inst_format.width * inst_format.height;
-> > > +			if (inst->output_format == FORMAT_422)
-> > > +				sizes[1] = inst_format.width * inst_format.height;
-> > > +			else
-> > > +				sizes[1] = inst_format.width * inst_format.height / 2;
-> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u | size[1]: %u\n",
-> > > +				__func__, sizes[0], sizes[1]);
-> > > +		} else if (*num_planes == 3) {
-> > > +			sizes[0] = inst_format.width * inst_format.height;
-> > > +			if (inst->output_format == FORMAT_422) {
-> > > +				sizes[1] = inst_format.width * inst_format.height / 2;
-> > > +				sizes[2] = inst_format.width * inst_format.height / 2;
-> > > +			} else {
-> > > +				sizes[1] = inst_format.width * inst_format.height / 4;
-> > > +				sizes[2] = inst_format.width * inst_format.height / 4;
-> > > +			}
-> > > +			dev_dbg(inst->dev->dev, "%s: size[0]: %u | size[1]: %u | size[2]: %u\n",
-> > > +				__func__, sizes[0], sizes[1], sizes[2]);
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > 
-> > BTW I'm currently tinkering with your patchset on another C&M IP and would be
-> > gratefull if you Cc me in the future versions of the patchset, if any.
-> 
-> Yes, sorry for missing you on v13, thanks for taking the time to review.
-> 
-> Deborah
-> 
-> > 
-> > Thanks.
+Changes in v7:
+	* remove the clock flag CLK_IS_CRITICAL.
+	* optimize the file nsscc-qca8k.c.
+	* identify & fix the comments from Stephen.
+
+Changes in v8:
+	* add dependency on ARM in Kconfig.
+
+Changes in v9:
+	* take the clk_ops clk_rcg2_mux_closest_ops to remove the
+	  redundant freq_tbls.
+
+Changes in v10:
+        * fix the patch CHECK and improve the comments.
+
+Changes in v11:
+	* update the clock names to reflect hardware connecton.
+	  NSS_CC_MAC4_SRDS1_CH2_XGMII_RX_DIV_CLK_SRC ->
+	  NSS_CC_MAC4_SRDS1_CH3_XGMII_RX_DIV_CLK_SRC
+
+	  NSS_CC_MAC4_SRDS1_CH2_XGMII_TX_DIV_CLK_SRC ->
+	  NSS_CC_MAC4_SRDS1_CH3_XGMII_TX_DIV_CLK_SRC
+        * resolve the qcom_cc_really_probe merge conflict based
+	  on the latest code.
+
+Luo Jie (4):
+  clk: qcom: branch: Add clk_branch2_prepare_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: common: commonize qcom_cc_really_probe
+  clk: qcom: add clock controller driver for qca8386/qca8084
+
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/apss-ipq6018.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7180.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7280.c               |    2 +-
+ drivers/clk/qcom/camcc-sdm845.c               |    2 +-
+ drivers/clk/qcom/camcc-sm6350.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8250.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8450.c               |    2 +-
+ drivers/clk/qcom/clk-branch.c                 |    7 +
+ drivers/clk/qcom/clk-branch.h                 |    1 +
+ drivers/clk/qcom/common.c                     |    7 +-
+ drivers/clk/qcom/common.h                     |    2 +-
+ drivers/clk/qcom/dispcc-qcm2290.c             |    2 +-
+ drivers/clk/qcom/dispcc-sc7180.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc7280.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc8280xp.c            |    2 +-
+ drivers/clk/qcom/dispcc-sdm845.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6115.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6125.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6350.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6375.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8250.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8450.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/gcc-ipq5018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq6018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq8074.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9607.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9615.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8917.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8939.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8953.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8976.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8996.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8998.c                |    2 +-
+ drivers/clk/qcom/gcc-qcm2290.c                |    2 +-
+ drivers/clk/qcom/gcc-qcs404.c                 |    2 +-
+ drivers/clk/qcom/gcc-qdu1000.c                |    2 +-
+ drivers/clk/qcom/gcc-sa8775p.c                |    2 +-
+ drivers/clk/qcom/gcc-sc7180.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc7280.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc8180x.c                |    2 +-
+ drivers/clk/qcom/gcc-sc8280xp.c               |    2 +-
+ drivers/clk/qcom/gcc-sdm660.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdm845.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdx55.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx65.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx75.c                  |    2 +-
+ drivers/clk/qcom/gcc-sm6115.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6125.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6375.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm7150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8250.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8450.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8550.c                 |    2 +-
+ drivers/clk/qcom/gpucc-msm8998.c              |    2 +-
+ drivers/clk/qcom/gpucc-sa8775p.c              |    2 +-
+ drivers/clk/qcom/gpucc-sc7180.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc7280.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc8280xp.c             |    2 +-
+ drivers/clk/qcom/gpucc-sdm660.c               |    2 +-
+ drivers/clk/qcom/gpucc-sdm845.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6115.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6125.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6375.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8150.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8250.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8450.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8550.c               |    2 +-
+ drivers/clk/qcom/lcc-ipq806x.c                |    2 +-
+ drivers/clk/qcom/lcc-msm8960.c                |    2 +-
+ drivers/clk/qcom/lpassaudiocc-sc7280.c        |    4 +-
+ drivers/clk/qcom/lpasscorecc-sc7180.c         |    2 +-
+ drivers/clk/qcom/lpasscorecc-sc7280.c         |    2 +-
+ drivers/clk/qcom/mmcc-msm8960.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8974.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8994.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8996.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8998.c               |    2 +-
+ drivers/clk/qcom/mmcc-sdm660.c                |    2 +-
+ drivers/clk/qcom/nsscc-qca8k.c                | 2139 +++++++++++++++++
+ drivers/clk/qcom/tcsrcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/videocc-sc7180.c             |    2 +-
+ drivers/clk/qcom/videocc-sc7280.c             |    2 +-
+ drivers/clk/qcom/videocc-sdm845.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8150.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8250.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8350.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8450.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8550.c             |    2 +-
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 99 files changed, 2506 insertions(+), 95 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
+
+
+base-commit: ff269e2cd5adce4ae14f883fc9c8803bc43ee1e9
+-- 
+2.42.0
+
 
