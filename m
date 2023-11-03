@@ -1,281 +1,144 @@
-Return-Path: <devicetree+bounces-13715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1397E7E023B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 12:31:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18A77E025C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 12:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 329891C20A27
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:31:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AA60281DF7
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217D51549C;
-	Fri,  3 Nov 2023 11:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652A615ACF;
+	Fri,  3 Nov 2023 11:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dw+BTf+2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="acZnqZHc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F094114F9F
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 11:31:41 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB685D49;
-	Fri,  3 Nov 2023 04:31:36 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A39uAFA024909;
-	Fri, 3 Nov 2023 11:31:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Y8JOeXpkaN/9qOWXaRwWuwLXex9oOmgIsk06K7x2svA=;
- b=dw+BTf+2CuPpJ+EcK3Ns0nrgKW+CsfGSq+YdPy5aS2sjS4DSal/T65ucBwYgpW0Nl8I6
- LxJO6bL1JZt5Uif8IJ1IlvEmfkGfLlhwDVN+X5kEmy7P/gXqIIBgz0YMlKE+f/3wHMHy
- z5ONcI27PyvuViIjpKaVVtxpbNyN8CNVkRgjnpufaxDevjbGx+3YdQmr1pL9E6bs36MC
- SBdohGfWOZEo5rF+1gPnwDkOGxnzB8/y3DqKDOaKlwcJqJ+Db6LfBj3RijOxpSRUQSrM
- E10hGCTs/EhsYj6YlixkaaeV5iNwml3EPFXvlf4mPni8yFiQZMgOvZLs11ACe5Dx/6ly Gg== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4wmjgamr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Nov 2023 11:31:20 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3BVJ1i001840
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Nov 2023 11:31:19 GMT
-Received: from [10.216.26.1] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
- 2023 04:31:14 -0700
-Message-ID: <fc8d57ad-d9c9-9db6-122e-00ca9cc915b9@quicinc.com>
-Date: Fri, 3 Nov 2023 17:01:10 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8445D1549C
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 11:50:24 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5A91A8
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 04:50:19 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-53dd3f169d8so3182845a12.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Nov 2023 04:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699012218; x=1699617018; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=T184NhzJ3PQVeKZ79wyB4FMRZP18kdYnQHUIPVy3gTc=;
+        b=acZnqZHcB3OQcB9FD9pVVXN6ThoJxy4livzY8Zuezpize4L1z4iABIL4U3TBxqiPGZ
+         6xu90zR15v+8TsXgY20tj4HoPvG6ypzevDKklaiLb3ovNeXilKucnpPt8aNebbcwXgnN
+         H1Izquke8pwFa1jBEHV1wUah0OIY9dkZQGWoe928iAJEzsYO7Nh5Tqhpwt19nCGlf+Pa
+         FCkRli9/wA8Yf5TKTnYDQ7YHrFHSVcBsFzmytpYQtpSVqFySBN2nx2LW4XThDMiUBM4W
+         j+f3oagHKh+gSKaONFfb3qm++Q7Pwrclc1V1O31mPSW7ULXVTdiTrfo6d1NQh5/6bP/A
+         qmPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699012218; x=1699617018;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T184NhzJ3PQVeKZ79wyB4FMRZP18kdYnQHUIPVy3gTc=;
+        b=W7hU//v+vKO5pqef/pRiubP8Bv0IH5FBCwmDTx8hcRYSyHdwfzy9cyun3E7VHN9q3d
+         /DTz7Av9/PjuK+PS9vAzjDae20E/zDcUi/p/GAUE9vhV2QUWdd7JoRXp5EJi3J6xRo7T
+         O8YIaSXoWLiggmAnSmDhFyuJdd6+9hQ32WA6j/+hH8m+y0mH3pSMfx3AIAo+GkQOtoYr
+         xMjoxiT2ciGBiMqWWyvcEJYeDRbLFdGFQ1iVfPeReKkKNb7nCeZKpxgEXkpx6zqwYhhO
+         ivyyDww/1oszaCzdsDiDgu7zV7Y7bdcKxTPCdmoUpc6Q1s2eviVkPk6Nv79scjwV1j/+
+         KFAw==
+X-Gm-Message-State: AOJu0YwrgpV3rYppBmVAklAGUiDCLdfyjEsAi2086jprGGr4Ol2qSDjX
+	8j8LSH95PnN5Pr6ZLHCgwCb6eA==
+X-Google-Smtp-Source: AGHT+IE7CtuAcX6Pg9hXWdBjZ0ZMwEzBobA91HbtqsJ8Rtq8Td8bDExGKH1DisXd32tmg+uPIaFMzA==
+X-Received: by 2002:aa7:d60a:0:b0:53e:6239:a04a with SMTP id c10-20020aa7d60a000000b0053e6239a04amr18153325edr.24.1699012217917;
+        Fri, 03 Nov 2023 04:50:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id l6-20020a50d6c6000000b00540f4715289sm887760edj.61.2023.11.03.04.50.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Nov 2023 04:50:17 -0700 (PDT)
+Message-ID: <f6835acb-bcb9-4dd9-a039-1de11ca7c1d9@linaro.org>
+Date: Fri, 3 Nov 2023 12:50:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [RFC PATCH 5/5] arm64: dts: qcom: ipq9574: Add support for SPI
- nand
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add compatible for SKOV i.MX8MP
+ RevB board
+To: Oleksij Rempel <o.rempel@pengutronix.de>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ =?UTF-8?Q?S=C3=B8ren_Andersen?= <san@skov.dk>,
+ Sam Ravnborg <sam@ravnborg.org>
+Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ NXP Linux Team <linux-imx@nxp.com>, Fabio Estevam <festevam@gmail.com>
+References: <20231103105305.2459143-1-o.rempel@pengutronix.de>
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>, <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <quic_srichara@quicinc.com>,
-        <qpic_varada@quicinc.com>
-References: <20231031120307.1600689-1-quic_mdalam@quicinc.com>
- <20231031120307.1600689-6-quic_mdalam@quicinc.com>
- <8be3b4f4-f3d1-41c8-bd4a-90adf1a02ea6@linaro.org>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <8be3b4f4-f3d1-41c8-bd4a-90adf1a02ea6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231103105305.2459143-1-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BYboVtFXiK2hGQ90Qzd1aAcM57amnlk_
-X-Proofpoint-GUID: BYboVtFXiK2hGQ90Qzd1aAcM57amnlk_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-03_11,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- suspectscore=0 bulkscore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=999 malwarescore=0 spamscore=0 adultscore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311030096
 
-
-
-On 10/31/2023 8:57 PM, Konrad Dybcio wrote:
-> On 31.10.2023 13:03, Md Sadre Alam wrote:
->> Add support for QPIC SPI NAND for IPQ9574
->>
->> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->> Signed-off-by: Sricharan R <quic_srichara@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 56 ++++++++++-----------
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 30 ++++++++++-
->>   2 files changed, 57 insertions(+), 29 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->> index 1bb8d96c9a82..5e4200edb873 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
->> @@ -15,48 +15,48 @@ / {
->>   	compatible = "qcom,ipq9574-ap-al02-c7", "qcom,ipq9574";
->>   };
->>   
->> -&sdhc_1 {
->> -	pinctrl-0 = <&sdc_default_state>;
->> -	pinctrl-names = "default";
->> -	mmc-ddr-1_8v;
->> -	mmc-hs200-1_8v;
->> -	mmc-hs400-1_8v;
->> -	mmc-hs400-enhanced-strobe;
->> -	max-frequency = <384000000>;
->> -	bus-width = <8>;
->> -	status = "okay";
->> -};
-> How is removing SDHCI related to adding support for SPI NAND flash?
-> You must explain your changes in the commit message.
->
-
-
-its my mistake will fix in V1
-
->> -
->>   &tlmm {
->> -	sdc_default_state: sdc-default-state {
->> -		clk-pins {
->> +	qspi_nand_pins: qspi_nand_pins {
-> node names (between : and {) must not include underscores, use
-> hyphens instead
-
-ok
-
+On 03/11/2023 11:53, Oleksij Rempel wrote:
+> Add DT compatible string for a SKOV i.MX8MP RevB climate controller board.
 > 
->> +		spi_clock {
->>   			pins = "gpio5";
->> -			function = "sdc_clk";
->> +			function = "qspi_clk";
->>   			drive-strength = <8>;
->>   			bias-disable;
->>   		};
->>   
->> -		cmd-pins {
->> +		qspi_cs {
->>   			pins = "gpio4";
->> -			function = "sdc_cmd";
->> +			function = "qspi_cs";
->>   			drive-strength = <8>;
->>   			bias-pull-up;
->>   		};
->>   
->> -		data-pins {
->> -			pins = "gpio0", "gpio1", "gpio2",
->> -			       "gpio3", "gpio6", "gpio7",
->> -			       "gpio8", "gpio9";
->> -			function = "sdc_data";
->> +		qspi_data {
->> +			pins = "gpio0", "gpio1", "gpio2";
->> +			function = "qspi_data";
->>   			drive-strength = <8>;
->>   			bias-pull-up;
->>   		};
->>   
->> -		rclk-pins {
->> -			pins = "gpio10";
->> -			function = "sdc_rclk";
->> -			drive-strength = <8>;
->> -			bias-pull-down;
->> -		};
->> +	};
->> +};
->> +
->> +&qpic_bam {
->> +	status = "okay";
->> +};
->> +
->> +&qpic_nand {
->> +	status = "okay";
-> status should come last
->> +	pinctrl-0 = <&qspi_nand_pins>;
->> +	pinctrl-names = "default";
->> +	spi_nand: spi_nand@0 {
-> no underscores in node names
-> missing newline between properties and subnodes
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
 
-ok
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> 
->> +		compatible = "spi-nand";
->> +		nand-ecc-engine = <&qpic_nand>;
->> +		reg = <0>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		nand-ecc-strength = <4>;
->> +		nand-ecc-step-size = <512>;
->> +		spi-max-frequency = <8000000>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index b44acb1fac74..f9c21373f5e6 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -336,10 +336,38 @@ sdhc_1: mmc@7804000 {
->>   			status = "disabled";
->>   		};
->>   
->> +		qpic_bam: dma@7984000 {
->> +			compatible = "qcom,bam-v1.7.0";
->> +			reg = <0x7984000 0x1c000>;
->> +			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&gcc GCC_QPIC_AHB_CLK>;
->> +			clock-names = "bam_clk";
->> +			#dma-cells = <1>;
->> +			qcom,ee = <0>;
->> +			status = "disabled";
->> +		};
-> You're modifying the SoC and board devicetrees in one go, this won't fly
+Best regards,
+Krzysztof
 
-Will fix in V1
-
-> 
->> +
->> +		qpic_nand: spi@79b0000 {
->> +			compatible = "qcom,ipq9574-nand";
->> +			reg = <0x79b0000 0x10000>;
-> 
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
-> these two properties usually go below status, at the end
-
-Ok
-
-> 
->> +			clocks = <&gcc GCC_QPIC_CLK>,
->> +			<&gcc GCC_QPIC_AHB_CLK>,
->> +			<&gcc GCC_QPIC_IO_MACRO_CLK>;
-> Indentation here is messy
-
-Will fix in V1
-
-> 
->> +			clock-names = "core", "aon", "io_macro";
-> one per line, please
-Ok
-> 
->> +			dmas = <&qpic_bam 0>,
->> +				<&qpic_bam 1>,
->> +				<&qpic_bam 2>;
-> ditto
-Ok
-> 
->> +			dma-names = "tx", "rx", "cmd";
-> ditto
-Ok
-> 
->> +			nand-ecc-engine = <&bch>;
->> +			status = "disabled";
->> +		};
->> +
->>   		bch: qpic_ecc {
->>   			compatible = "qcom,ipq9574-ecc";
->>   			status = "ok";
->> -		}
->> +		};
-> This means the previous dt patch would not compile
-
-Will fix in V1
-
-
-Regards
-Alam.
 
