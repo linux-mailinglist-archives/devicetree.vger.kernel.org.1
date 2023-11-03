@@ -1,177 +1,116 @@
-Return-Path: <devicetree+bounces-13811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45747E0866
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 19:46:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 809397E086D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 19:47:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0337A1C21025
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 18:46:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFD2D1C21041
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 18:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1C92D626;
-	Fri,  3 Nov 2023 18:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7EC2D626;
+	Fri,  3 Nov 2023 18:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PUfnytx8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LMwxpbwJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55CFF2D60B;
-	Fri,  3 Nov 2023 18:45:59 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E20D47;
-	Fri,  3 Nov 2023 11:45:54 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A3CpGZL021032;
-	Fri, 3 Nov 2023 18:45:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=zov6Y6tBNKAektcKCJXpK+HS1sRgAwgkSZbmDazZaRs=;
- b=PUfnytx81Pp1lW41+5ixSc1KxjNrcbgmJD5hczogrSO2GimkmAXdYY0t9LdUDNmhxvnc
- CF1X4U3jqSB1ib0rZYwSGPAa5Evt1iAv5DvkIkqa3tQGHY7z3c6Juwp22vXlETGwnmgJ
- WVXx/4fdwLQh+HLJr9EUsQs/GckfzALOTeM11vakv4laQ9Chmf8h+oKacAxKb0n4Al/e
- 7MoKfIelCFB6Znx9cXJW1QUCGBZxxaW32zC/VBYp2fjg5ec1yViflXKTKmbhoRoPAlu+
- TQ2+CO+TsSpGrQlEOOHTxg8GfehVT+K495lQsgMRAIh2qwW1QjQlWyxsVbitnQ9M1ClQ Ug== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4yk0s1q4-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E7C33E2
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 18:47:28 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7FF134;
+	Fri,  3 Nov 2023 11:47:24 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A3F9wGb028392;
+	Fri, 3 Nov 2023 18:47:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=cF5YEz4i9Js3iyz/f8C8Ioy6iZqlfrg1PIuDaaiS7gw=;
+ b=LMwxpbwJqbdq1UlVep5UHSoUN76ZnxRBkTJqkboQ3USnhAf9YGX4wD1eqF92s/b7JHOn
+ E8DKAuV8Gdy6VfGrm4KxsVs9WpTXuQKaTmsQ0s1+rbJNZ9yBc4tBOzuHvc9L51DfHBCX
+ Xj2Ty9yULfvPi7ypk+b498UuCpO1n8RAw2ZLRUCLjyeHJ/XL67xhDtqYh/30nyQa5AlG
+ C06CF4XUevel1smWHhgvA2A7oE8bdKYJInYn32ISSST7/XItGBnY5tm9/X35jhDyAbTs
+ 1m4owKTJJswwaJFSyheyeso6jGDtslg3zUag0U9ijkUjChP5GfVXlbZjaZetQdEWZ6Gk /Q== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4wmjhakf-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Nov 2023 18:45:31 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3IjU5T027849
+	Fri, 03 Nov 2023 18:47:18 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3IlHaV008789
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Nov 2023 18:45:31 GMT
-Received: from [10.249.21.155] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
- 2023 11:45:24 -0700
-Message-ID: <5ef66bdc-9645-4bbe-8182-baa7fe4c583a@quicinc.com>
-Date: Sat, 4 Nov 2023 00:15:20 +0530
+	Fri, 3 Nov 2023 18:47:17 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 3 Nov 2023 11:47:13 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_nainmeht@quicinc.com>,
+        Komal Bajaj
+	<quic_kbajaj@quicinc.com>
+Subject: [RFC PATCH 0/2] Add support for qcm6490 idp and rb3 board
+Date: Sat, 4 Nov 2023 00:16:53 +0530
+Message-ID: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 2/8] usb: dwc3: core: Register vendor hooks for dwc3-qcom
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>
-CC: <linux-usb@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Thinh
- Nguyen" <Thinh.Nguyen@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_wcheng@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-3-quic_kriskura@quicinc.com>
- <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.80.80.8]
 X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+ nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: x5RUVOHXE67n6xp3Q_OmsmjC7yi1ZnP7
-X-Proofpoint-GUID: x5RUVOHXE67n6xp3Q_OmsmjC7yi1ZnP7
+X-Proofpoint-ORIG-GUID: -pPPKMggYkMVIoiH9TiERNyDQ-2VRMNF
+X-Proofpoint-GUID: -pPPKMggYkMVIoiH9TiERNyDQ-2VRMNF
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-11-03_18,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- priorityscore=1501 mlxscore=0 spamscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 mlxlogscore=999 bulkscore=0 lowpriorityscore=0
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ suspectscore=0 bulkscore=0 clxscore=1011 priorityscore=1501
+ mlxlogscore=410 malwarescore=0 spamscore=0 adultscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.12.0-2310240000 definitions=main-2311030157
 
+The patch series is following from the discussion [1] and taking the
+suggestion, it is introducing a common dtsi, qcm6490-iot-common.dtsi,
+for IOT segment which would facilitate abstracting the memory map
+required for IOT without impacting SC7280 and avoid code duplication
+for the boards based on QCM6490. We would be posting the memory map
+changes subsequently once we converge on the approach. The series also
+introduces two boards for QCM6490, IDP and RB3.
 
+[1] https://lore.kernel.org/linux-arm-msm/d97ebf74-ad03-86d6-b826-b57be209b9e2@quicinc.com/
 
-On 11/3/2023 8:44 PM, Bryan O'Donoghue wrote:
-> On 17/10/2023 14:18, Krishna Kurapati wrote:
->>
->> The following are the requirements aimed in this implementation:
->>
->> 1. When enum in device mode, Glue/core must stay active.
->>
->> 2. When cable is connected but UDC is not written yet, then glue/core
->> must be suspended.
->>
->> 3. Upon removing cable in device mode, the disconnect event must be
->> generated and unblock runtime suspend for dwc3 core.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> 
+Komal Bajaj (2):
+  dt-bindings: arm: qcom: Add QCM6490 IDP and RB3 board
+  arm64: dts: qcom: qcm6490: Add qcm6490 idp and rb3 board
 
-Hi Bryan,
+ .../devicetree/bindings/arm/qcom.yaml         |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   2 +
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts      |  33 ++
+ .../boot/dts/qcom/qcm6490-iot-common.dtsi     | 291 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcm6490-rb3.dts      |  26 ++
+ 5 files changed, 354 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/qcm6490-rb3.dts
 
-> What happens to this code if you
-> 
-> static int count;
-> 
-> 1. sleep in dwc3_probe for 10 milliseconds
-> 2. return -EPROBE_DEFER
-> 3. if count++ < 5 goto 1
-> 
-> i.e. if we simulate say waiting on a PHY driver to probe in dwc3_probe()
-> 
-The vendor hooks are used in __dwc3_set_mode and role_switch_set calls 
-in core and drd files respectively. These are invoked only if we are OTG 
-capable. The drd_work is initialized in core_init_mode which is called 
-at the end of dwc3_probe. If dwc3_probe fails and gets deferred before 
-that, none of the vendor hooks will be fired and dwc3_qcom_probe is also 
-deferred.
+--
+2.42.0
 
-However I see that if core_init_mode fails (the cleanup is already done 
-in drd to prevent set_role from getting invoked already),  I need to 
-cleanup vendor hooks in error path of dwc3_probe().
-
-> and what happens if we introduce a 100 millsecond sleep into 
-> dwc3_qcom_probe() - and run a fake disconnect event from 
-> dwc3_qcom_probe_core() directly ?
-> 
-> In other words if make it that dwc3_probe() completes and struct 
-> dwc3_glue_ops->notify_cable_disconnect() fires prior to 
-> dwc3_qcom_probe_core() completing ?
-> 
-> i.e. I don't immediately see how you've solved the probe() completion 
-> race condition here.
-> 
-Just wanted to understand the situation clearly. Is this the sequence 
-you are referring to ?
-
-1. dwc3_probe is successful and role switch is registered properly.
-2. added delay after dwc3_qcom_probe_core and before interconnect_init
-3. Between this delay, we got a disconnect notificiation from glink
-4. We are clearing the qscratch reg in case of device mode and 
-un-registering notifier in case of host mode.
-
-If so, firstly I don't see any issue if we process disconnect event 
-before qcom probe is complete. If we reached this stage, the clocks/gdsc 
-is definitely ON and register accesses are good to go.
-
-If we are in host mode at this point, we would just unregister to 
-usb-core notifier and mark last busy. If we are in device mode, we would 
-just clear the hs_phy_ctrl reg of qscratch. After the 100ms delay you 
-mentioned we would call dwc3_remove anyways and cleanup the vendor 
-hooks. But is the concern here that, what if we enter runtime_suspend at 
-this point ?
-
-Regards,
-Krishna,
 
