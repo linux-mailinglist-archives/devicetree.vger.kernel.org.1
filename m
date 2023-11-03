@@ -1,237 +1,122 @@
-Return-Path: <devicetree+bounces-13699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 523CA7E0026
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:05:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7117E002E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 11:21:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15053281DE1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:05:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EAA8B212D5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 10:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4736A125CC;
-	Fri,  3 Nov 2023 10:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PSr2RwfJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67C7914002;
+	Fri,  3 Nov 2023 10:21:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676BA1427F;
-	Fri,  3 Nov 2023 10:05:25 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6FE194;
-	Fri,  3 Nov 2023 03:05:20 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A37Wbkx006642;
-	Fri, 3 Nov 2023 10:05:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=w6FqL10l1/tGnpvTNOJpbpF2a78TOMTeAEWMMMDXoGg=;
- b=PSr2RwfJTExWXOtPTcC8pCf3IzUs0Mwk20WbkptF6gYjMHocQbbhlb49/Xf4YDqMW8Wi
- dJCrtoVF1UUSLw3YBOQFMWUyf0zW4YKNNUFHfTMEvvLU9hnSlZ8NlwuWbQOQ85Ekivg/
- yZoxhSkzDdXQ+cTeuLq5tIGZgztF1LBbFYWvQNxyOtlzhvVVGbJXtRGuF5sLLdXBu2ad
- OBLMl1OGifshQbv4L82wboKEXryLZOX5pl3m0ntxkFx7ATTO/tBdqR1sb88KuZg9BUmZ
- iF5HLE8c/Dzzw22YY7sMKlprnw3TvJ6sLPDG00zDYnHkmIKzbtU/kwGM5cFv79Xo2kIi BA== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4r00gsk1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 03 Nov 2023 10:05:04 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A3A53Zv028334
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 3 Nov 2023 10:05:03 GMT
-Received: from [10.249.8.98] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 3 Nov
- 2023 03:04:55 -0700
-Message-ID: <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
-Date: Fri, 3 Nov 2023 15:34:52 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D9C12B80
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 10:21:26 +0000 (UTC)
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6416DD7;
+	Fri,  3 Nov 2023 03:21:21 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3b2ea7cc821so1151539b6e.1;
+        Fri, 03 Nov 2023 03:21:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699006880; x=1699611680;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LTK0kHcHXKMRZq1fvvgaafZQnou0Z3OBHj53xDl18ng=;
+        b=krDEccaDbi8+KyNYPJSB9o/DVnlanAGiJ+TMq3mKErSAx/8HKbtyFSRiswcCYOqm0w
+         twX2D4Je3U3fA+WnIldVeJta57lbsn8rd040pS3xxTj+dFJohTCfJYpYhVmJVmMOOsi8
+         xbOeGvdRnD/E4VHc9udSEmD30YeJ+zSC05WYwYibxtrN9Q+Xo3nEQz19R6UYM6XRLG/g
+         gRydDOL8CMBWEgt46H8rIyBLP+lb5sbq733M8YznjwNDyeiNBSB9JCVeqkw7lPE7d7mQ
+         V7y2DnBWT2mbzG3ngN/+UGdhuSIfpKBL07FGaxMBrEByXKiYOiJGRPUXQQlJipq3cR8p
+         UaIA==
+X-Gm-Message-State: AOJu0YyB1kTta9uVRqikz4tzKlFW8wclZzSl4mZOQdNpZbDvFgoiEgeX
+	ptTTPoQgbGeCU+FEILtcpQ==
+X-Google-Smtp-Source: AGHT+IHoi5Ah7YtWDdBl+iV5e4j5JCiHEOTBVVHtU82pAReNiVxK6n+DZFFTwx3DoOB3eowJfeBlBg==
+X-Received: by 2002:aca:1204:0:b0:3b2:ecab:900e with SMTP id 4-20020aca1204000000b003b2ecab900emr20799399ois.15.1699006880535;
+        Fri, 03 Nov 2023 03:21:20 -0700 (PDT)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u21-20020a056808115500b003af60f06629sm229573oiu.6.2023.11.03.03.21.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Nov 2023 03:21:19 -0700 (PDT)
+Received: (nullmailer pid 488800 invoked by uid 1000);
+	Fri, 03 Nov 2023 10:21:18 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-6-quic_kriskura@quicinc.com>
- <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
- <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LJHL5AOYb40FLNgUldoMsiMgivEWwG5e
-X-Proofpoint-GUID: LJHL5AOYb40FLNgUldoMsiMgivEWwG5e
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-03_10,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- mlxlogscore=881 clxscore=1015 impostorscore=0 spamscore=0 bulkscore=0
- priorityscore=1501 suspectscore=0 malwarescore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311030083
+From: Rob Herring <robh@kernel.org>
+To: Huangzheng Lai <Huangzheng.Lai@unisoc.com>
+Cc: Baolin Wang <baolin.wang@linux.alibaba.com>, Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, huangzheng lai <laihuangzheng@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Chunyan Zhang <zhang.lyra@gmail.com>, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>, Orson Zhai <orsonzhai@gmail.com>
+In-Reply-To: <20231103091653.4591-1-Huangzheng.Lai@unisoc.com>
+References: <20231103091653.4591-1-Huangzheng.Lai@unisoc.com>
+Message-Id: <169900687819.488783.15775505208515245193.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: i2c: Add yaml for Spreadtrum I2C
+ controller
+Date: Fri, 03 Nov 2023 05:21:18 -0500
 
 
-
-On 10/24/2023 12:26 PM, Johan Hovold wrote:
-> On Mon, Oct 23, 2023 at 10:42:31PM +0530, Krishna Kurapati PSSNV wrote:
->> On 10/23/2023 7:37 PM, Johan Hovold wrote:
+On Fri, 03 Nov 2023 17:16:53 +0800, Huangzheng Lai wrote:
+> Add a yaml file to replace the txt file. Due to the recent addition
+> of the 'reset' framework to the Spreadtrum I2C driver to reset the
+> controller, information related to the 'reset' attribute has been
+> added to the bindings file.
 > 
->>> Right. And I assume there are hs_phy_irqs also for the first two USB
->>> controllers on sc8280xp?
+> Change in V2
+> -Rename 'i2c-sprd.txt' to 'sprd,sc9860-i2c.yaml'.
+> -Add ref to i2c-controller.
+> -Drop items in 'compatible'.
+> -Add describe for 'reg' items.
+> -Drop 'clocks' description and just maxItems: 3.
+> -Fix typo in 'clo-frequency': Contains.
+> -Add explanation in commit message explaining why 'resets' be added.
+> -Drop '#size-cells' and 'address-cells' in properties and required.
+> -Drop description of 'resets'.
+> -Add child node in examples.
 > 
->> There are, I can dig through and find out. Atleast in downstream I don't
->> see any use of them.
-> 
-> Yes, please do post how these are wired as well for completeness.
-> 
->>> Can you find out anything more about what hs_phy_irq is used for? It
->>> appears to be an HS wakeup interrupt like the dp/dm ones, but there are
->>> not really any details on how it is supposed to be used.
->>
->>    This IRQ is really not used in downstream controllers. Not sure if its
->> a good idea to add driver code for that. I did some digging and I got
->> the reason why I first said that there is only one hs_phy_irq for
->> tertiary port of controller. The hardware programming sequence doesn't
->> specify usage of these 4 IRQ's but the hw specifics mention that there
->> are 4 of them. Adding driver support for these IRQ's is not a good idea
->> (atleast at this point because they are not used in downstream and I am
->> not sure what would be the side effect). For now I suggest we can add
->> them in bindings and DT and not handle the 4 hs_phy_irq's in the driver
->> code (meaning not add the hs_phy_irq to port structure we plan on adding
->> to dwc3_qcom).
-> 
-> But there is already support for these interrupts in the driver. You
-> work for Qualcomm who built the thing so surely you can figure how they
-> intended these to be used?
-> 
-> You need to provide this information so that we can determine what the
-> binding should look like. The implementation would also be simplified if
-> we don't have to add random hacks to it just because we don't know why
-> the vendor driver you refer does not use it currently on this particular
-> platform.
+> Signed-off-by: Huangzheng Lai <Huangzheng.Lai@unisoc.com>
+> ---
+>  .../devicetree/bindings/i2c/i2c-sprd.txt      | 31 --------
+>  .../bindings/i2c/sprd,sc9860-i2c.yaml         | 75 +++++++++++++++++++
+>  2 files changed, 75 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-sprd.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/sprd,sc9860-i2c.yaml
 > 
 
-Hi Johan,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Regarding the points of discussion we had last week on [1], here are 
-some clarifications:
+yamllint warnings/errors:
 
-1. We do have hs_phy_irq 1/2/3/4 for tertiary port of Sc8280 as 
-mentioned. Why do we need them and would we use it in multiport targets ?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/sprd,sc9860-i2c.example.dtb: i2c@2240000: '#address-cells', '#size-cells', 'charger@63' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/i2c/sprd,sc9860-i2c.yaml#
 
-DPSE and DMSE are single ended line state of DP and DM lines. The DP 
-line and DM line stay in steady High or Low during suspend and they flip 
-when there is a RESUME or REMOTE WAKE. This is what we do/check in 
-dwc3_qcom_enable_interrupts call for dp/dm irq's based on usb2_speed.
+doc reference errors (make refcheckdocs):
 
-Initially in QUSB2 targets, the interrupts were enabled and configured 
-in phy and the wakeup was interrupt was read on hs_phy_irq vector - [2].
-In that case, we modify DP/DM interrupts in phy registers, specifically 
-QUSB2PHY_INTR_CTRL and when wakeup signal comes in, hs_phy_irq is 
-triggered. But in femto targets, this is done via DP/DM interrupts and 
-there is no use of hs_phy_irq. Even hw folks confirmed they dont use 
-hs_ph_irq in femto phy targets.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231103091653.4591-1-Huangzheng.Lai@unisoc.com
 
-As an experiment, I tried to test wakeup by pressing buttons on 
-connected keyboard when in suspend state or connecting/disconnecting 
-keyboard in suspended state on different ports and only see dp/dm IRQ's 
-getting fired although we register for hs_phy_irq as well:
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-/ # cat /proc/interrupts  |grep phy_
-171:   1  0   0   0  0  0  0  0       PDC 127 Edge      dp_hs_phy_1
-172:   2  0   0   0  0  0  0  0       PDC 126 Edge      dm_hs_phy_1
-173:   3  0   0   0  0  0  0  0       PDC 129 Edge      dp_hs_phy_2
-174:   4  0   0   0  0  0  0  0       PDC 128 Edge      dm_hs_phy_2
-175:   0  0   0   0  0  0  0  0       PDC 131 Edge      dp_hs_phy_3
-176:   2  0   0   0  0  0  0  0       PDC 130 Edge      dm_hs_phy_3
-177:   2  0   0   0  0  0  0  0       PDC 133 Edge      dp_hs_phy_4
-178:   5  0   0   0  0  0  0  0       PDC 132 Edge      dm_hs_phy_4
-179:   0  0   0   0  0  0  0  0       PDC  16 Level     ss_phy_1
-180:   0  0   0   0  0  0  0  0       PDC  17 Level     ss_phy_2
-181:   0  0   0   0  0  0  0  0     GICv3 163 Level     hs_phy_1
-182:   0  0   0   0  0  0  0  0     GICv3 168 Level     hs_phy_2
-183:   0  0   0   0  0  0  0  0     GICv3 892 Level     hs_phy_3
-184:   0  0   0   0  0  0  0  0     GICv3 891 Level     hs_phy_4
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Since the hs_phy_irq is applicable only for qusb2 targets, do we still 
-need to add it to DT.
+pip3 install dtschema --upgrade
 
-2. BAM Irq usage (u_usb31_scnd_mvs_pipe_wrapper_usb31_bam_irq[0]):
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-BAM IRQ is not needed in host-only controller. It was just added in 
-process of porting/deriving code from DRD controllers and is 
-non-functional (confirmed by HW team here). We can skip this from DT of 
-multiport.
-
-3. ctrl_irq[1] usage:
-
-This is a feature of SNPS controller, not qcom glue wrapper, and is 
-present on all targets (non-QC as well probably). As mentioned before on 
-[3], this is used for HW acceleration.
-
-In host mode, XHCI spec does allow for multiple interrupters when 
-multiple event rings are used. A possible usage is multiple execution 
-environments something like what we are doing on mobile with ADSP audio 
-offload [4]. Another possibility could be some of virtualization where 
-host/hyp would manage the first interrupter and could allow a guest to 
-operate only with the second (though current design does not go far 
-enough to offer true isolation for real VM type workloads). The 
-additional interrupts (ones other than ctrl_irq[0]) are either for 
-virtualization use cases, or for our various “hw offload” features. In 
-device mode, these are used for offloading tethering functionality to 
-IPA FW.
-
-Since the DeviceTree passed to the OS, should describe the hardware to 
-the OS, and should represent the hardware from the point-of-view of the 
-OS, adding one interrupt (ctrl_irq[0]) might be sufficient as Linux 
-would not use the other interrupts. Furthermore AFAIK even UEFI/Windows 
-also use only ctrl_irq[0] for host mode in their execution environment 
-today. Do we still need to add this to bindings and DT ?
-
-[1]: https://lore.kernel.org/all/ZTJ_T1UL8-s2cgNz@hovoldconsulting.com/
-[2]: 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/phy/qualcomm/phy-qcom-qusb2.c?h=v6.6#n626
-[3]: https://lore.kernel.org/all/ZTduh5LULBMYf3wq@hovoldconsulting.com/
-[4]: 
-https://lore.kernel.org/all/20231017200109.11407-1-quic_wcheng@quicinc.com/
-
-Regards,
-Krishna,
 
