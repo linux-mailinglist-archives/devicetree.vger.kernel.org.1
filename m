@@ -1,88 +1,138 @@
-Return-Path: <devicetree+bounces-13816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B494A7E08B6
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 20:04:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E177E0954
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 20:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B456D1C20967
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 19:04:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B7BC1C21033
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 19:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1028121107;
-	Fri,  3 Nov 2023 19:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N4Lw034G"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257FF1C285;
+	Fri,  3 Nov 2023 19:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7BD224D7
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 19:04:07 +0000 (UTC)
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AADBD;
-	Fri,  3 Nov 2023 12:04:02 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 727D1FF805;
-	Fri,  3 Nov 2023 19:04:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699038241;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dss+61W/+HYAg0e5xd/Pz/gyDtB4Y0Iwbk0N61bIATc=;
-	b=N4Lw034G7uM2A93eso9Bw/JSrNQnmJRPBniVBxbVSxgtyFjQf2yN8hb5Qn/H58vXodfjbQ
-	JBcHn0KksFszWgp+TxmL7M3e5uuL2/V8IZvbrcgnmS2/xKjOG3kkYIre4IHNgqCkdJvh2f
-	eYkc8FCMLZYt1PPEjJGSCqb9FpCPf5oHDyAANyrA8mRhaIgBmfX0yh53NCpu7pmdXEkARN
-	lBHtaZvS8FLV1kaJRReVBMYGeKlRwg4RrAUlaN/rqXMXCF+UHYzceETrKY52ucqr8v4C6q
-	miXWqx3hX9O15Kugv8k5M8iQX0UTgt6j47M06dyGPiXeatYmYGQEMblSD1Vcng==
-Date: Fri, 3 Nov 2023 20:04:00 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: miquel.raynal@bootlin.com, Frank Li <Frank.Li@nxp.com>
-Cc: alexander.stein@ew.tq-group.com, conor+dt@kernel.org,
-	conor.culhane@silvaco.com, conor@kernel.org,
-	devicetree@vger.kernel.org, festevam@gmail.com, haibo.chen@nxp.com,
-	imx@lists.linux.dev, joe@perches.com, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-i3c@lists.infradead.org,
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org, peng.fan@nxp.com,
-	ping.bai@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
-	shawnguo@kernel.org, sherry.sun@nxp.com, xiaoning.wang@nxp.com
-Subject: Re: [PATCH v2 1/2] i3c: master: svc: fix compatibility string
- mismatch with binding doc
-Message-ID: <169903821819.391162.6378829151615918079.b4-ty@bootlin.com>
-References: <20231017194657.3199749-1-Frank.Li@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBBB33E2
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 19:17:00 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E359D51
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 12:16:56 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qyzes-0006vn-Cx; Fri, 03 Nov 2023 20:16:42 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qyzer-006OQX-A0; Fri, 03 Nov 2023 20:16:41 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qyzer-000FWp-7D; Fri, 03 Nov 2023 20:16:41 +0100
+Date: Fri, 3 Nov 2023 20:16:41 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>,
+	Sam Ravnborg <sam@ravnborg.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: Add SKOV IMX8MP CPU revB
+ board
+Message-ID: <20231103191641.GD40819@pengutronix.de>
+References: <20231103105305.2459143-1-o.rempel@pengutronix.de>
+ <20231103105305.2459143-2-o.rempel@pengutronix.de>
+ <1ee285d7-6bc9-43ad-9ec9-a8aaed4452b5@lunn.ch>
+ <ZUTynJpOSZVowuJk@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231017194657.3199749-1-Frank.Li@nxp.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <ZUTynJpOSZVowuJk@shell.armlinux.org.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-On Tue, 17 Oct 2023 15:46:56 -0400, Frank Li wrote:
-> In the binding documentation, the compatible string is specified as
-> 'silvaco,i3c-master-v1', but in the driver, it is defined as
-> 'silvaco,i3c-master'.
+On Fri, Nov 03, 2023 at 01:16:12PM +0000, Russell King (Oracle) wrote:
+> On Fri, Nov 03, 2023 at 01:35:46PM +0100, Andrew Lunn wrote:
+> > > +			port@2 {
+> > > +				reg = <2>;
+> > > +				label = "cpu";
+> > > +				ethernet = <&eqos>;
+> > > +				/* 2ns rgmii-rxid is implemented on PCB.
+> > > +				 * Switch should add only rgmii-txid.
+> > > +				 */
+> > 
+> > Its unusual to actually see that. Its even more unusual its only one
+> > clock line. Can you actually see it on the PCB?
+> > 
+> > > +				phy-mode = "rgmii-txid";
+> > > +				tx-internal-delay-ps = <2000>;
+> > 
+> > Is this actually needed? rgmii-txid should add 2ns delay. Since this
+> > apparently works, i'm assuming setting tx-internal-delay-ps to 2ns
+> > does nothing, otherwise you would have a 4ns delay.
 > 
-> Rename 'silvaco,i3c-master' to 'silvaco,i3c-master-v1' to ensure
-> compatibility with the documentation.
+> Umm... I think we're getting confused again.
 > 
-> [...]
+> Mode		Local end		Remote end
+> RGMII		No added delays		No added delays
+> RGMII-TXID	No added delays		2ns delay on TX
+> RGMII-RXID	No added delays		2ns delay on RX
+> RGMII-ID	No added delays		2ns delay on both TX and RX
+> 
+> In the case of a network interface with a PHY, "local end" is the
+> MAC and "remote end" is the PHY.
+> 
+> For a switch port connected to an external PHY, the switch port is
+> as the "MAC" as above.
+> 
+> For a switch port connected to an ethernet MAC:
+>  - for the MAC declaration, the local end is the MAC. There is no
+>    communication of the interface mode with the remote end under
+>    Linux, so this is irrelevant for Linux. However, this is an
+>    implementation, and it should be chosen according to the hardware.
+> 
+>  - for the switch port declaration, the local end is the switch port.
+>    There is no communication of the interface mode with the remote
+>    end under Linux. However, it should be chosen according to the
+>    hardware.
+> 
+> So, if the 2ns delay is implemented on the RX lines (from the switch
+> perspective) then shouldn't the MAC side be using "rgmii-txid" to
+> indicate that the delay is being applied by the remote end (switch).
+> The switch side should be using "rgmii" because no delays are required
+> from the remote end (MAC), and the delay on the TX lines should be
+> specified using "tx-internal-delay-ps"?
 
-Applied, thanks!
+Ack. It make sense. Will fix it.
 
-[1/2] i3c: master: svc: fix compatibility string mismatch with binding doc
-      commit: 8911eae9c8a947e5c1cc4fcce40473f1f5e475cd
-
-Best regards,
-
+Regards,
+Oleksij
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
