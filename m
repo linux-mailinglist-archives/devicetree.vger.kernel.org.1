@@ -1,166 +1,111 @@
-Return-Path: <devicetree+bounces-13738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 009677E0350
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:02:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0F77E0335
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 13:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84E40B21298
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 13:02:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EDDA281E05
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 12:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B51C171B7;
-	Fri,  3 Nov 2023 13:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=carlosaurelio.net header.i=@carlosaurelio.net header.b="d1bqnMWB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4084F171AB;
+	Fri,  3 Nov 2023 12:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC19171CA
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 13:02:31 +0000 (UTC)
-Received: from h5.fbrelay.privateemail.com (h5.fbrelay.privateemail.com [162.0.218.228])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C778C134;
-	Fri,  3 Nov 2023 06:02:26 -0700 (PDT)
-Received: from MTA-12-4.privateemail.com (mta-12-1.privateemail.com [198.54.122.106])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4E28860136;
-	Fri,  3 Nov 2023 12:52:49 +0000 (UTC)
-Received: from mta-12.privateemail.com (localhost [127.0.0.1])
-	by mta-12.privateemail.com (Postfix) with ESMTP id 4F89418000A2;
-	Fri,  3 Nov 2023 08:52:47 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=carlosaurelio.net;
-	s=default; t=1699015967;
-	bh=7x6abVPdbko5LarCk/0BZn1SkuXjeT6liiRK10w8DLQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=d1bqnMWBVt8/q7tRhYhjuT27rxqblzI1eR/EgXyN5SZiCLMKLC2bFJtAwN8wVNp26
-	 ZH31E2cz4DNKSKYJ0OJ/qARjq8moF6jPJYXlgAdKYbYBEZfddo4DSkdRqJJrbcKxOE
-	 uBqa8CBRFM+fJWdsYFrFTgo8nEt4m3Umukp85uv9wHSA8kY5+lN5NZ7VvhQs6UyrIA
-	 h0m7SRD4FvVi/648FHhDpRF6rZWaqHNUkNJ/Za365ZYFVXyf7GMpbMWfTMO0BjPjEq
-	 ohh7E6B8wBVHbRDpnKMYnFHEY+aK48KrjzyVAv8vkU6crXXRxdOnQNH2tAD9JbDFTa
-	 hcZDq7Sw8zmbA==
-Received: from GB2-C0476.gertec.local (unknown [187.11.35.108])
-	by mta-12.privateemail.com (Postfix) with ESMTPA;
-	Fri,  3 Nov 2023 08:52:30 -0400 (EDT)
-From: Carlos Menin <menin@carlosaurelio.net>
-To: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org
-Cc: Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C62D168DE
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 12:53:14 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F4D5CE
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 05:53:10 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qytff-0007Wx-6h; Fri, 03 Nov 2023 13:53:07 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qytfe-006Jv8-9h; Fri, 03 Nov 2023 13:53:06 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1qytfe-000CD8-6q; Fri, 03 Nov 2023 13:53:06 +0100
+Date: Fri, 3 Nov 2023 13:53:06 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+	kernel@pengutronix.de, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Carlos Menin <menin@carlosaurelio.net>,
-	Sergio Prado <sergio.prado@e-labworks.com>
-Subject: [PATCH v2 2/2] dt-bindings: rtc: add pcf85053a
-Date: Fri,  3 Nov 2023 09:51:06 -0300
-Message-Id: <20231103125106.78220-2-menin@carlosaurelio.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231103125106.78220-1-menin@carlosaurelio.net>
-References: <20231103125106.78220-1-menin@carlosaurelio.net>
+	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: Add SKOV IMX8MP CPU revB
+ board
+Message-ID: <20231103125306.GB40819@pengutronix.de>
+References: <20231103105305.2459143-1-o.rempel@pengutronix.de>
+ <20231103105305.2459143-2-o.rempel@pengutronix.de>
+ <1ee285d7-6bc9-43ad-9ec9-a8aaed4452b5@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1ee285d7-6bc9-43ad-9ec9-a8aaed4452b5@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add YAML bindings for NXP's PCF85053A RTC chip.
+Hi Andrew,
 
-Signed-off-by: Carlos Menin <menin@carlosaurelio.net>
-Reviewed-by: Sergio Prado <sergio.prado@e-labworks.com>
----
- .../bindings/rtc/nxp,pcf85053a.yaml           | 71 +++++++++++++++++++
- 1 file changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
+On Fri, Nov 03, 2023 at 01:35:46PM +0100, Andrew Lunn wrote:
+> > +			port@2 {
+> > +				reg = <2>;
+> > +				label = "cpu";
+> > +				ethernet = <&eqos>;
+> > +				/* 2ns rgmii-rxid is implemented on PCB.
+> > +				 * Switch should add only rgmii-txid.
+> > +				 */
+> 
+> Its unusual to actually see that. Its even more unusual its only one
+> clock line. Can you actually see it on the PCB?
 
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
-new file mode 100644
-index 000000000000..a1fc29dd30f8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85053a.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/nxp,pcf85053a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP PCF85053A Real Time Clock
-+
-+maintainers:
-+  - Carlos Menin <menin@carlosaurelio.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,pcf85053a
-+
-+  reg:
-+    maxItems: 1
-+
-+  quartz-load-femtofarads:
-+    description:
-+      The capacitive load of the crystal, expressed in femto Farad (fF).
-+    enum: [6000, 7000, 12500]
-+    default: 12500
-+
-+  nxp,quartz-drive-control:
-+    description:
-+      The oscillator is designed to be used with quartz with a series resistance
-+      up to 100 kOhms. This covers the typical range of 32.768 kHz quartz
-+      crystals. A low drive mode is available for low series resistance quartz
-+      (up to 60 kOhms). This reduces the current consumption. For very high
-+      series resistance quartz (up to 500 kOhms), there is a high drive mode.
-+      Current consumption increases substantially in this mode.
-+    enum: [low, normal, high]
-+    default: normal
-+
-+  nxp,low-jitter-mode:
-+    description:
-+      If set to true, will decrease the CLK output jitter, at the cost of
-+      increasing the current consumption.
-+    type: boolean
-+    default: false
-+
-+  nxp,clk-inverted:
-+    description:
-+      Invert clock output. Normally, the low jitter mode reduces jitter on the
-+      rising edge of the output clock. If this property is set to true, then the
-+      low jitter mode will affect the falling edge of the output clock.
-+    type: boolean
-+    default: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@6f {
-+            compatible = "nxp,pcf85053a";
-+            reg = <0x6f>;
-+        };
-+    };
+Yes. I even made a delay calculation by measuring this trace on PCB,
+just to make sure I see it correctly.
+
+> > +				phy-mode = "rgmii-txid";
+> > +				tx-internal-delay-ps = <2000>;
+> 
+> Is this actually needed? rgmii-txid should add 2ns delay. Since this
+> apparently works, i'm assuming setting tx-internal-delay-ps to 2ns
+> does nothing, otherwise you would have a 4ns delay.
+
+Without it the driver will complain:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/dsa/microchip/ksz_common.c?h=v6.6#n3496
+
+but it works as expected.
+
+Regards,
+Oleksij
 -- 
-2.34.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
