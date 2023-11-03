@@ -1,386 +1,405 @@
-Return-Path: <devicetree+bounces-13757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC607E04B2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 15:29:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06CF17E04C9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 15:36:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E319CB21365
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:29:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1157A1C20FEE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 14:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C62A1A284;
-	Fri,  3 Nov 2023 14:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8DF2904;
+	Fri,  3 Nov 2023 14:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="WG8kH2K9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P5dOTNJH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680EC168AB
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 14:29:31 +0000 (UTC)
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D81FD48;
-	Fri,  3 Nov 2023 07:29:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=N/2FR5XgREo2owYdfgPOLRpgoh9tf+0eP6E/Ob0CAgE=; b=WG8kH2K9kmnfOpqRySGGdRWeUy
-	L668m6A8fFG1NVdyd2EL2qDUb2pJJyLfFokQmxDl4aczyc+1IEsjkVsCkVYBFIsLCug21s7ji+IJj
-	og8JaZmH7PhbqQe1lJnkY29hz3BnOKr9jQ3HVM6ZHMQdDUePyBuJ0lcLP5KgurT70wTo=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:53152 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1qyvAl-0005If-64; Fri, 03 Nov 2023 10:29:24 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	leoyang.li@nxp.com,
-	robh@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	hugo@hugovil.com,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Date: Fri,  3 Nov 2023 10:28:31 -0400
-Message-Id: <20231103142831.2116163-4-hugo@hugovil.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231103142831.2116163-1-hugo@hugovil.com>
-References: <20231103142831.2116163-1-hugo@hugovil.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3FC2D631;
+	Fri,  3 Nov 2023 14:35:58 +0000 (UTC)
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8213CCA;
+	Fri,  3 Nov 2023 07:35:54 -0700 (PDT)
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-5a9bc2ec556so2265693a12.0;
+        Fri, 03 Nov 2023 07:35:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699022154; x=1699626954; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=761s3ZSOYqOl5OlbDmAC3O99DhhGiHJQ6guQs2cNdZI=;
+        b=P5dOTNJHCbWFDzRjj+4ecrnV6oPo1jfBpl3H1pgcr9Sn+S2fWX1T6xfi8BKU+Gu4Po
+         1d9+OynI6VGlEf2BQlJaXXOXS50NyEB9qShFU/ZeuA7QRB1Pvx7Tl8PtV8eNQvORc+jw
+         QX2l0Fjs0Zb5yO7NJOudROPvSsoCitkN2GzF/+X5tCDFhXDOlXuI/1KYiR4pkRqmly27
+         IvYqKKH3PFsY/KrPOoZm//yVP8zhEYFz4dKwOd7uovP6HKm/1adfzWrTKyS4f0dIwbcU
+         Z7in1BZstFBE/T9RNCz5P5+a6ZTVGdVt8kjSlegMOWFmvWATfk7HyCly00KS5vucRaUC
+         2Jag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699022154; x=1699626954;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=761s3ZSOYqOl5OlbDmAC3O99DhhGiHJQ6guQs2cNdZI=;
+        b=SZFt7Hve77Cx2AZoAFnQItMGW+9Ie93r1N+/DVAVMrbWQXSH3P34oCESN05zvxFk7U
+         T6YVgpW9jTlY+Vd95mI7F0qVWxAPzasmbppeM+qkYHTu+wPiW7sF3WLwHifTkGpGnbzL
+         wkHVmlcFoUsLgBKVEzWdiydqoOkVbfPSK5DgcB2ePBFQbMLPEHAeOMJdljvqgZxdEHMy
+         JuDaFQ+tm32USHfYhdLRDTW/pJJs7C79SxAUAnzHEfuk1J0fHRkP5+JJ9YO+EweLeiiE
+         IyDL3hb3pCyrDq/AHTAsrkImDuXjOASpRZvR+6j55bLrvqS34p+NYCXUwku4kdDOaVSd
+         /ZEg==
+X-Gm-Message-State: AOJu0Yw7jabClUMbfgDSVtm7iQ7fKZNF5vl5IKoaDrtPHvW0qThmQkTy
+	3wuNv+QuaGE7maZGNWF5whU=
+X-Google-Smtp-Source: AGHT+IHUT/dm23d8TBn14uWekihNltgnRe4oE+RQjflOX1AUX56bPQ4u06LltGcVEc4Ow97sparAtA==
+X-Received: by 2002:a05:6a21:4983:b0:180:5965:a772 with SMTP id ax3-20020a056a21498300b001805965a772mr2055886pzc.28.1699022153805;
+        Fri, 03 Nov 2023 07:35:53 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n4-20020a056a000d4400b006934a1c69f8sm1532704pfv.24.2023.11.03.07.35.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Nov 2023 07:35:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <c74beccd-26ea-4e63-906b-bd5508465cbc@roeck-us.net>
+Date: Fri, 3 Nov 2023 07:35:51 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-Subject: [PATCH v4 3/3] arm64: dts: freescale: introduce rve-gateway board
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
+ mp5990
+Content-Language: en-US
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231103080128.1204218-1-peteryin.openbmc@gmail.com>
+ <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 11/3/23 01:01, Peter Yin wrote:
+> Add support for mp5990 device from Monolithic Power Systems, Inc. (MPS)
+> vendor. This is a Hot-Swap Controller.
+> 
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
+>   Documentation/hwmon/index.rst  |  1 +
+>   Documentation/hwmon/mp5990.rst | 84 +++++++++++++++++++++++++++++++
+>   drivers/hwmon/pmbus/Kconfig    |  9 ++++
+>   drivers/hwmon/pmbus/Makefile   |  1 +
+>   drivers/hwmon/pmbus/mp5990.c   | 90 ++++++++++++++++++++++++++++++++++
+>   5 files changed, 185 insertions(+)
+>   create mode 100644 Documentation/hwmon/mp5990.rst
+>   create mode 100644 drivers/hwmon/pmbus/mp5990.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 042e1cf9501b..8c70e10fc795 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -157,6 +157,7 @@ Hardware Monitoring Kernel Drivers
+>      mp2888
+>      mp2975
+>      mp5023
+> +   mp5990
+>      nct6683
+>      nct6775
+>      nct7802
+> diff --git a/Documentation/hwmon/mp5990.rst b/Documentation/hwmon/mp5990.rst
+> new file mode 100644
+> index 000000000000..8fc4e388ff7b
+> --- /dev/null
+> +++ b/Documentation/hwmon/mp5990.rst
+> @@ -0,0 +1,84 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver mp5990
+> +====================
+> +
+> +Supported chips:
+> +
+> +  * MPS MP5990
+> +
+> +    Prefix: 'mp5990'
+> +
+> +  * Datasheet
+> +
+> +    Publicly available at the MPS website : https://www.monolithicpower.com/en/mp5990.html
+> +
+> +Author:
+> +
+> +	Peter Yin <peteryin.openbmc@gmail.com>
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
+> +MP5990 Hot-Swap Controller.
+> +
+> +Device complaint with:
 
-The RVE gateway board is based on a Variscite VAR-SOM-NANO,
-with a NXP MX8MN nano CPU.
+compliant
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8mn-rve-gateway.dts | 282 ++++++++++++++++++
- 2 files changed, 283 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
+> +
+> +- PMBus rev 1.3 interface.
+> +
+> +Device supports direct format for reading input voltage, output voltage,
+> +output current, input power and temperature.
+> +
+> +The driver exports the following attributes via the 'sysfs' files
+> +for input voltage:
+> +
+> +**in1_input**
+> +
+> +**in1_label**
+> +
+> +**in1_max**
+> +
+> +**in1_max_alarm**
+> +
+> +**in1_min**
+> +
+> +**in1_min_alarm**
+> +
+> +The driver provides the following attributes for output voltage:
+> +
+> +**in2_input**
+> +
+> +**in2_label**
+> +
+> +**in2_alarm**
+> +
+> +The driver provides the following attributes for output current:
+> +
+> +**curr1_input**
+> +
+> +**curr1_label**
+> +
+> +**curr1_alarm**
+> +
+> +**curr1_max**
+> +
+> +The driver provides the following attributes for input power:
+> +
+> +**power1_input**
+> +
+> +**power1_label**
+> +
+> +**power1_alarm**
+> +
+> +The driver provides the following attributes for temperature:
+> +
+> +**temp1_input**
+> +
+> +**temp1_max**
+> +
+> +**temp1_max_alarm**
+> +
+> +**temp1_crit**
+> +
+> +**temp1_crit_alarm**
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 270b6336b76d..65a116f7744d 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -326,6 +326,15 @@ config SENSORS_MP5023
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called mp5023.
+>   
+> +config SENSORS_MP5990
+> +	tristate "MPS MP5990"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for MPS
+> +	  MP5990.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called mp5990.
+> +
+>   config SENSORS_MPQ7932_REGULATOR
+>   	bool "Regulator support for MPQ7932"
+>   	depends on SENSORS_MPQ7932 && REGULATOR
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 84ee960a6c2d..212d9ca0acc9 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -35,6 +35,7 @@ obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
+>   obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+>   obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>   obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+> +obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+>   obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
+>   obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
+>   obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+> diff --git a/drivers/hwmon/pmbus/mp5990.c b/drivers/hwmon/pmbus/mp5990.c
+> new file mode 100644
+> index 000000000000..c3b31af9f750
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mp5990.c
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Driver for MPS MP5990 Hot-Swap Controller
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pmbus.h>
+> +#include "pmbus.h"
+> +
+> +static int mp5990_read_byte_data(struct i2c_client *client, int page, int reg)
+> +{
+> +	switch (reg) {
+> +	case PMBUS_VOUT_MODE:
+> +		/*
+> +		  Enforce VOUT direct format, C4h reg BIT9
+> +		  default val is not match vout format
+> +		 */
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 300049037eb0..c99da779ef7b 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr3l-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mn-rve-gateway.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-new file mode 100644
-index 000000000000..186f54fd06c6
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-@@ -0,0 +1,282 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 DimOnOff
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/usb/pd.h>
-+#include "imx8mn-var-som.dtsi"
-+
-+/ {
-+	model = "RVE gateway";
-+	compatible = "rve,rve-gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
-+
-+	crystal_duart_24m: crystal-duart-24m {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_keys>;
-+
-+		key-enter {
-+			label = "enter";
-+			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_ENTER>;
-+		};
-+
-+		key-exit {
-+			label = "exit";
-+			gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_ESC>;
-+		};
-+	};
-+
-+	lcd {
-+		compatible = "hit,hd44780";
-+		display-height-chars = <2>;
-+		display-width-chars = <20>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_lcd>;
-+		data-gpios = <&gpio5  1 GPIO_ACTIVE_HIGH>,
-+			     <&gpio1  6 GPIO_ACTIVE_HIGH>,
-+			     <&gpio1 14 GPIO_ACTIVE_HIGH>,
-+			     <&gpio4 28 GPIO_ACTIVE_HIGH>,
-+			     <&gpio5 24 GPIO_ACTIVE_HIGH>,
-+			     <&gpio5  2 GPIO_ACTIVE_HIGH>,
-+			     <&gpio1 12 GPIO_ACTIVE_HIGH>,
-+			     <&gpio5 25 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>;
-+		rs-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-+		rw-gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	/* Bourns PEC12R rotary encoder, 24 steps. */
-+	rotary: rotary-encoder {
-+		compatible = "rotary-encoder";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rotary>;
-+		gpios = <&gpio1  5 GPIO_ACTIVE_LOW>, /* A */
-+			<&gpio3 21 GPIO_ACTIVE_LOW>; /* B */
-+		linux,axis = <0>; /* REL_X */
-+		rotary-encoder,encoding = "gray";
-+		rotary-encoder,relative-axis;
-+	};
-+};
-+
-+&ecspi1 {
-+	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+
-+	duart1: serial@0 {
-+		compatible = "nxp,sc16is752";
-+		reg = <0>;
-+		spi-rx-bus-width = <1>;
-+		spi-tx-bus-width = <1>;
-+		spi-max-frequency = <4000000>;
-+		clocks = <&crystal_duart_24m>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "RADIO0", "RADIO1", "RADIO2", "RADIO3",
-+		"RADIO4", "RADIO_RESET", "TP12", "TP11";
-+		linux,rs485-enabled-at-boot-time;
-+		rs485-rts-active-low;
-+	};
-+
-+	/delete-node/ touchscreen@0;
-+};
-+
-+&ecspi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	/delete-property/ dmas;
-+	/delete-property/ dma-names;
-+	status = "okay";
-+
-+	duart2: serial@0 {
-+		compatible = "nxp,sc16is752";
-+		reg = <0>;
-+		spi-rx-bus-width = <1>;
-+		spi-tx-bus-width = <1>;
-+		spi-max-frequency = <4000000>;
-+		clocks = <&crystal_duart_24m>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "LED_B_USER", "LED_R_USER", "LED_G_USER",
-+		"GPIO_EXT3", "GPIO_EXT2", "GPIO_EXT1", "GPIO_EXT0", "TP13";
-+		linux,rs485-enabled-at-boot-time;
-+		rs485-rts-active-low;
-+	};
-+};
-+
-+/* Configure PWM pins in GPIO mode: */
-+&gpio5 {
-+	gpio-line-names = "", "", "", "PWM3", "PWM2", "PWM1";
-+};
-+
-+&gpu {
-+	status = "disabled";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	/* Carrier board EEPROM */
-+	eeprom_cb: eeprom@56 {
-+		compatible = "atmel,24c04";
-+		reg = <0x56>;
-+		pagesize = <16>;
-+		vcc-supply = <&reg_3p3v>;
-+	};
-+
-+	lm75: sensor@48 {
-+		compatible = "st,stlm75";
-+		reg = <0x48>;
-+		vs-supply = <&reg_3p3v>;
-+	};
-+
-+	mcp7940: rtc@6f {
-+		compatible = "microchip,mcp7940x";
-+		reg = <0x6f>;
-+	};
-+};
-+
-+&i2c3 {
-+	codec@1a {
-+		status = "disabled";
-+	};
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	status = "okay";
-+
-+	pcf8574_1: gpio@38 {
-+		compatible = "nxp,pcf8574";
-+		reg = <0x38>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "LED_B_COMM3", "LED_R_COMM3", "LED_G_COMM3",
-+		"TP14", "TP15", "LED_G_COMM4", "LED_R_COMM4", "LED_B_COMM4";
-+	};
-+
-+	pcf8574_2: gpio@39 {
-+		compatible = "nxp,pcf8574";
-+		reg = <0x39>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "LED_B_COMM2", "LED_G_COMM2", "LED_B_COMM1",
-+		"LED_R_COMM2", "LED_R_COMM1", "LED_G_COMM1", "TP16", "TP17";
-+	};
-+};
-+
-+/* Bluetooth */
-+&uart2 {
-+	status = "disabled";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+/* SD interface on expansion connector. */
-+&usdhc2 {
-+	vmmc-supply = <&reg_3p3v>;
-+	cd-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-+};
-+
-+&iomuxc {
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK	0x13
-+			MX8MN_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI	0x13
-+			MX8MN_IOMUXC_ECSPI1_MISO_ECSPI1_MISO	0x13
-+			MX8MN_IOMUXC_ECSPI1_SS0_GPIO5_IO9	0x13 /* SS0 */
-+			MX8MN_IOMUXC_SAI5_RXD1_GPIO3_IO22	0x13 /* SC16 IRQ */
-+		>;
-+	};
-+
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0x13
-+			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0x13
-+			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0x13
-+			MX8MN_IOMUXC_ECSPI2_SS0_GPIO5_IO13	0x13 /* SS0 */
-+			MX8MN_IOMUXC_SAI5_RXC_GPIO3_IO20	0x13 /* SC16 IRQ */
-+		>;
-+	};
-+
-+	pinctrl_gpio_keys: gpiokeysgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO01_GPIO1_IO1	0xc6 /* Enter */
-+			MX8MN_IOMUXC_SAI5_RXD2_GPIO3_IO23	0xc6 /* Exit */
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-+			MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
-+			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_lcd: lcdgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI3_TXD_GPIO5_IO1		0x00000156 /* D0 */
-+			MX8MN_IOMUXC_GPIO1_IO06_GPIO1_IO6	0x00000156 /* D1 */
-+			MX8MN_IOMUXC_GPIO1_IO14_GPIO1_IO14	0x00000156 /* D2 */
-+			MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x00000156 /* D3 */
-+			MX8MN_IOMUXC_UART2_RXD_GPIO5_IO24	0x00000156 /* D4 */
-+			MX8MN_IOMUXC_SAI3_MCLK_GPIO5_IO2	0x00000156 /* D5 */
-+			MX8MN_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x00000156 /* D6 */
-+			MX8MN_IOMUXC_UART2_TXD_GPIO5_IO25	0x00000156 /* D7 */
-+			MX8MN_IOMUXC_UART1_TXD_GPIO5_IO23	0x00000156 /* E */
-+			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x00000156 /* RS */
-+			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x00000156 /* R/W */
-+		>;
-+	};
-+
-+	pinctrl_rotary: rotarygrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO05_GPIO1_IO5	0x00000156 /* A */
-+			MX8MN_IOMUXC_SAI5_RXD0_GPIO3_IO21	0x00000156 /* B */
-+		>;
-+	};
-+
-+	/* Override Card Detect function GPIO value (GPIO1_IO10) from SOM: */
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x41
-+		>;
-+	};
-+};
--- 
-2.39.2
+/*
+  * Please use proper multi-line comments. Also, the problem here is that the
+  * chip does not support the VOUT_MODE command, which should be mentioned.
+  *
+  * On top of that, overwriting PMBUS_VOUT_MODE result from the chip is only
+  * necessary if the chip does not return an error when reading the value.
+  * If that is the case, it should be mentioned in the comment. The above
+  * does not explain why this would be needed, even if the command is not
+  * (officially) supported by the chip. What does it return that requires
+  * an overwrite ?
+  */
+
+> +		return PB_VOUT_MODE_DIRECT;
+> +	default:
+> +		return -ENODATA;
+> +	}
+> +}
+> +
+> +static struct pmbus_driver_info mp5990_info = {
+> +	.pages = 1,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +	.format[PSC_CURRENT_OUT] = direct,
+> +	.format[PSC_POWER] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.m[PSC_VOLTAGE_IN] = 32,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = 0,
+> +	.m[PSC_VOLTAGE_OUT] = 32,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +	.R[PSC_VOLTAGE_OUT] = 0,
+> +	.m[PSC_CURRENT_OUT] = 16,
+> +	.b[PSC_CURRENT_OUT] = 0,
+> +	.R[PSC_CURRENT_OUT] = 0,
+> +	.m[PSC_POWER] = 1,
+> +	.b[PSC_POWER] = 0,
+> +	.R[PSC_POWER] = 0,
+> +	.m[PSC_TEMPERATURE] = 1,
+> +	.b[PSC_TEMPERATURE] = 0,
+> +	.R[PSC_TEMPERATURE] = 0,
+> +	.func[0] =
+> +		PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
+> +		PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT |
+> +		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
+> +	.read_byte_data = mp5990_read_byte_data,
+> +};
+> +
+> +static int mp5990_probe(struct i2c_client *client)
+> +{
+> +	int ret;
+> +
+> +	ret = i2c_smbus_write_byte_data(client, PMBUS_VOUT_MODE,
+> +					PB_VOUT_MODE_DIRECT);
+
+According to the datasheet, the chip does not support the VOUT_MODE
+command. Supposedly, direct vs. linear mode is selected with bit 9
+of EFUSE_CFG. Even if the chip happens to "silently" support the command,
+the official command should be used to select the chip mode.
+
+Next question: Why use direct mode ? Linear mode is supported and would
+be much more flexible.
+
+> +	if (ret < 0)
+> +		return ret;
+> +	return pmbus_do_probe(client, &mp5990_info);
+> +}
+> +
+> +static const struct of_device_id mp5990_of_match[] = {
+> +	{ .compatible = "mps,mp5990" },
+> +	{}
+> +};
+> +
+> +static const struct i2c_device_id mp5990_id[] = {
+> +	{"mp5990", 0},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, mp5990_id);
+> +
+> +static struct i2c_driver mp5990_driver = {
+> +	.driver = {
+> +		   .name = "mp5990",
+> +		   .of_match_table = of_match_ptr(mp5990_of_match),
+
+Using of_match_ptr() will result in a build failure if CONFIG_OF=n.
+
+> +	},
+> +	.probe = mp5990_probe,
+> +	.id_table = mp5990_id,
+> +};
+> +module_i2c_driver(mp5990_driver);
+> +
+> +MODULE_AUTHOR("Peter Yin <peter.yin@quantatw.com>");
+> +MODULE_DESCRIPTION("PMBus driver for MP5990 HSC");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
 
 
