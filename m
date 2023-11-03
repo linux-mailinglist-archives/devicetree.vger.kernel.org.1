@@ -1,232 +1,198 @@
-Return-Path: <devicetree+bounces-13678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFFE27DFD80
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 01:17:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFED7DFD82
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 01:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6709CB21294
-	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 00:17:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27B8A1C20C29
+	for <lists+devicetree@lfdr.de>; Fri,  3 Nov 2023 00:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B33197;
-	Fri,  3 Nov 2023 00:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6068E620;
+	Fri,  3 Nov 2023 00:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YMx2G7c9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZVz2EQip"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E88180
-	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 00:17:36 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB1018B;
-	Thu,  2 Nov 2023 17:17:31 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3A30H7I7092746;
-	Thu, 2 Nov 2023 19:17:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1698970627;
-	bh=RgzIT9OB6Zeq4JHzbfNAKMnpLwUj791MZhEp6sdxjTQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=YMx2G7c9HGs0NqnCm/+reyBAluxZYmi8fuSzvSuhW26gV43TxKPrzq6oc/+xV37MP
-	 5YPQxjw/oUAqcxVgleCecwcNy9GWi7Z5aU7Pbk9sPnqagTLJgFerWHXHqIPzDZ0Qz5
-	 +dRuQ/5obIpR1uSMCgAjzirReeRU2EnV+1r+9SBw=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3A30H76U009629
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 2 Nov 2023 19:17:07 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
- Nov 2023 19:17:07 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 2 Nov 2023 19:17:07 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3A30H7Bd013139;
-	Thu, 2 Nov 2023 19:17:07 -0500
-Date: Thu, 2 Nov 2023 19:17:07 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Garrett Giordano <ggiordano@phytec.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <r-gunasekaran@ti.com>, <w.egorov@phytec.de>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@ls-patchwork.phytec.de>
-Subject: Re: [PATCH] arm64: dts: ti: phycore-am64: Add R5F DMA Region and
- Mailboxes
-Message-ID: <20231103001707.2ktwfgtqegpfiijy@subpanel>
-References: <20231102201216.3771589-1-ggiordano@phytec.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B69C7E2
+	for <devicetree@vger.kernel.org>; Fri,  3 Nov 2023 00:23:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B6D191;
+	Thu,  2 Nov 2023 17:22:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1698970979; x=1730506979;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jRcO1ajPVbh/cusEJQxYTj2Fddx+LSNylJw5TDJVCgc=;
+  b=ZVz2EQip0QDYQyP7OY/hod05adiMbOtWgRL2Yw5aYE3z6cTik8FB56qZ
+   zfuHDk96pqM39jIHH4l0b53JNjL9W1uIqXAvM2vee7eEbEFVEQGgrklQK
+   C8NhMSmEbh7tnZNCfUzDtz8gs6KzEgvT+unlEhjysq1xSRHCG2FKkjpmo
+   UD86OxQiIVnQGgcVFEARpgBisVdJqi7tdIgbZq4xJkSWbbzYzIdjR0soX
+   O8/mrzf7TOjRNGvCaCytYPjwC1kiiXrFRPY9YD04D0xBmO8S/n+rBEOEY
+   vdf8AUjYrZiq7Cq0QHW0Hk0SMAYQj5DuiDE++dHwSU2u8M4ZvGTtApEGT
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="391718695"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
+   d="scan'208";a="391718695"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2023 17:22:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="1008651143"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
+   d="scan'208";a="1008651143"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 02 Nov 2023 17:22:56 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qyhxe-000238-1P;
+	Fri, 03 Nov 2023 00:22:54 +0000
+Date: Fri, 3 Nov 2023 08:22:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Viacheslav Bocharov <adeep@lexina.in>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 4/4] firmware: meson_sm: use meson_gx_socinfo for
+ compatibility
+Message-ID: <202311030839.2qiIuOUl-lkp@intel.com>
+References: <20231102074916.3280809-5-adeep@lexina.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231102201216.3771589-1-ggiordano@phytec.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20231102074916.3280809-5-adeep@lexina.in>
 
-On 13:12-20231102, Garrett Giordano wrote:
-> Communication between the R5F subsystem and Linux takes place using DMA
-> memory regions and mailboxes. Here we add DT nodes for the memory
-> regions and mailboxes to facilitate communication between the R5
-> clusters and Linux as remoteproc will fail to start if no memory
-> regions or mailboxes are provided.
-> 
-> Fixes: c48ac0efe6d7 ("arm64: dts: ti: Add support for phyBOARD-Electra-AM642")
+Hi Viacheslav,
 
-is this fixes? Sounds more or less like rproc support is added in?
+kernel test robot noticed the following build errors:
 
-> Signed-off-by: Garrett Giordano <ggiordano@phytec.com>
-> ---
->  .../boot/dts/ti/k3-am64-phycore-som.dtsi      | 102 +++++++++++++++++-
->  1 file changed, 101 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> index 1c2c8f0daca9..37a33006c1fc 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> @@ -29,7 +29,7 @@ memory@80000000 {
->  		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
->  	};
->  
-> -	reserved-memory {
-> +	reserved_memory: reserved-memory {
->  		#address-cells = <2>;
->  		#size-cells = <2>;
->  		ranges;
-> @@ -39,6 +39,54 @@ secure_ddr: optee@9e800000 {
->  			alignment = <0x1000>;
->  			no-map;
->  		};
-> +
-> +		main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa0000000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa0100000 0x00 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa1000000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss0_core1_memory_region: r5f-memory@a1100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa1100000 0x00 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss1_core0_dma_memory_region: r5f-dma-memory@a2000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa2000000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss1_core0_memory_region: r5f-memory@a2100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa2100000 0x00 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss1_core1_dma_memory_region: r5f-dma-memory@a3000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa3000000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		main_r5fss1_core1_memory_region: r5f-memory@a3100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa3100000 0x00 0xf00000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	leds {
-> @@ -160,6 +208,34 @@ &cpsw_port2 {
->  	status = "disabled";
->  };
->  
-> +&mailbox0_cluster2 {
-> +	status = "okay";
-> +
-> +	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-> +		ti,mbox-rx = <0 0 2>;
-> +		ti,mbox-tx = <1 0 2>;
-> +	};
-> +
-> +	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-> +		ti,mbox-rx = <2 0 2>;
-> +		ti,mbox-tx = <3 0 2>;
-> +	};
-> +};
-> +
-> +&mailbox0_cluster4 {
-> +	status = "okay";
-> +
-> +	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-> +		ti,mbox-rx = <0 0 2>;
-> +		ti,mbox-tx = <1 0 2>;
-> +	};
-> +
-> +	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-> +		ti,mbox-rx = <2 0 2>;
-> +		ti,mbox-tx = <3 0 2>;
-> +	};
-> +};
-> +
->  &main_i2c0 {
->  	status = "okay";
->  	pinctrl-names = "default";
-> @@ -180,6 +256,30 @@ i2c_som_rtc: rtc@52 {
->  	};
->  };
->  
-> +&main_r5fss0_core0 {
-> +	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
-> +	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-> +			<&main_r5fss0_core0_memory_region>;
-> +};
-> +
-> +&main_r5fss0_core1 {
-> +	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core1>;
-> +	memory-region = <&main_r5fss0_core1_dma_memory_region>,
-> +			<&main_r5fss0_core1_memory_region>;
-> +};
-> +
-> +&main_r5fss1_core0 {
-> +	mboxes = <&mailbox0_cluster4 &mbox_main_r5fss1_core0>;
-> +	memory-region = <&main_r5fss1_core0_dma_memory_region>,
-> +			<&main_r5fss1_core0_memory_region>;
-> +};
-> +
-> +&main_r5fss1_core1 {
-> +	mboxes = <&mailbox0_cluster4 &mbox_main_r5fss1_core1>;
-> +	memory-region = <&main_r5fss1_core1_dma_memory_region>,
-> +			<&main_r5fss1_core1_memory_region>;
-> +};
-> +
->  &ospi0 {
->  	status = "okay";
->  	pinctrl-names = "default";
-> -- 
-> 2.25.1
-> 
+[auto build test ERROR on soc/for-next]
+[also build test ERROR on linus/master v6.6 next-20231102]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Viacheslav-Bocharov/firmware-meson-sm-change-sprintf-to-scnprintf/20231102-172556
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
+patch link:    https://lore.kernel.org/r/20231102074916.3280809-5-adeep%40lexina.in
+patch subject: [PATCH 4/4] firmware: meson_sm: use meson_gx_socinfo for compatibility
+config: arm64-randconfig-003-20231103 (https://download.01.org/0day-ci/archive/20231103/202311030839.2qiIuOUl-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231103/202311030839.2qiIuOUl-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311030839.2qiIuOUl-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/firmware/meson/meson_sm.c: In function 'chipid_show':
+>> drivers/firmware/meson/meson_sm.c:328:19: error: 'uint32' undeclared (first use in this function); did you mean 'uint32_t'?
+     328 |                 ((uint32)t *)buff)[0] = 0;
+         |                   ^~~~~~
+         |                   uint32_t
+   drivers/firmware/meson/meson_sm.c:328:19: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/firmware/meson/meson_sm.c:328:26: error: expected ')' before 't'
+     328 |                 ((uint32)t *)buff)[0] = 0;
+         |                 ~        ^
+         |                          )
+>> drivers/firmware/meson/meson_sm.c:328:30: error: expected ';' before 'buff'
+     328 |                 ((uint32)t *)buff)[0] = 0;
+         |                              ^~~~
+         |                              ;
+>> drivers/firmware/meson/meson_sm.c:328:34: error: expected statement before ')' token
+     328 |                 ((uint32)t *)buff)[0] = 0;
+         |                                  ^
+>> drivers/firmware/meson/meson_sm.c:328:35: error: expected expression before '[' token
+     328 |                 ((uint32)t *)buff)[0] = 0;
+         |                                   ^
+   drivers/firmware/meson/meson_sm.c:331:17: error: 'ch' undeclared (first use in this function)
+     331 |                 ch = (uint8_t *)(id_buf + 4);
+         |                 ^~
+   drivers/firmware/meson/meson_sm.c:332:22: error: 'i' undeclared (first use in this function)
+     332 |                 for (i = 0; i < 12; i++)
+         |                      ^
+
+
+vim +328 drivers/firmware/meson/meson_sm.c
+
+   281	
+   282	static ssize_t chipid_show(struct device *dev, struct device_attribute *attr,
+   283				 char *buf)
+   284	{
+   285		struct platform_device *pdev = to_platform_device(dev);
+   286		struct meson_sm_firmware *fw;
+   287		uint8_t *id_buf;
+   288		int ret;
+   289	
+   290		fw = platform_get_drvdata(pdev);
+   291	
+   292		id_buf = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
+   293		if (!id_buf)
+   294			return -ENOMEM;
+   295	
+   296		ret = meson_sm_call_read(fw, id_buf, SM_CHIP_ID_LENGTH, SM_GET_CHIP_ID,
+   297					 2, 0, 0, 0, 0);
+   298		if (ret < 0) {
+   299			kfree(id_buf);
+   300			return ret;
+   301		}
+   302	
+   303		int version = *((unsigned int *)id_buf);
+   304	
+   305		if (version == 2)
+   306			ret = scnprintf(buf, PAGE_SIZE, "%16phN\n", &id_buf[SM_CHIP_ID_OFFSET]);
+   307		else {
+   308			/**
+   309			 * Legacy 12-byte chip ID read out, transform data
+   310			 * to expected order format.
+   311			 */
+   312			uint8_t *buff;
+   313	
+   314			buff = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
+   315			if (!buff)
+   316				return -ENOMEM;
+   317	#ifdef CONFIG_MESON_GX_SOCINFO
+   318			uint8_t *ch;
+   319			int i;
+   320	
+   321			((uint32_t *)buff)[0] =
+   322				((meson_gx_socinfo & 0xff000000)        |       // Family ID
+   323				((meson_gx_socinfo << 8) & 0xff0000)    |       // Chip Revision
+   324				((meson_gx_socinfo >> 8) & 0xff00));            // Package ID
+   325	
+   326			((uint32_t *)buff)[0] = htonl(((uint32_t *)buff)[0]);
+   327	#else
+ > 328			((uint32)t *)buff)[0] = 0;
+   329	#endif
+   330			/* Transform into expected order for display */
+   331			ch = (uint8_t *)(id_buf + 4);
+   332			for (i = 0; i < 12; i++)
+   333				buff[i + 4] = ch[11 - i];
+   334			ret = scnprintf(buf, PAGE_SIZE, "%16phN\n", &buff);
+   335			kfree(buff);
+   336		}
+   337	
+   338		kfree(id_buf);
+   339		return ret;
+   340	}
+   341	
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
