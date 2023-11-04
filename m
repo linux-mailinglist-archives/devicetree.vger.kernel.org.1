@@ -1,192 +1,352 @@
-Return-Path: <devicetree+bounces-13874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9AC37E1071
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 18:03:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9307E108E
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 18:56:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F84C281778
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 17:03:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4B4A1C20933
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 17:56:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFA01F61C;
-	Sat,  4 Nov 2023 17:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C1821376;
+	Sat,  4 Nov 2023 17:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FxfoIHL/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cMElj5nO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C308474;
-	Sat,  4 Nov 2023 17:03:23 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC62D6;
-	Sat,  4 Nov 2023 10:03:21 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A4H0CeS007386;
-	Sat, 4 Nov 2023 17:03:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=k18Ts0ut2IoH66o6ZrcLWBPsRz7WH3GCevTUNI4/wF4=;
- b=FxfoIHL/lVWG9StWBQ3w5B4TrH+7Br7xta36I1rf5d+SUV/PQRX8aKKhCZyOXCixZwoH
- 0oP8Dn+m2yveImUNf4KLaJjWH9X+TUVhnlW7seNf+e+h8oLsiuJd4FJWDrx/OEwIV8eg
- FncsxVlr9OftKw2rbdKtJOFCWPtX8pDG66AUffuqWFG3YGKaZcWGD5zWapvfrFqQLuqA
- ylFJzjCOTkKoTsOSstKqG+1FX3CDwhdB4rIvw9AV6/DmF1TLiJ4oZMqSCrxQ2t9e8FvW
- 0h33rSdz0w6mznz7IYWeZrlpiDyEdu39KI4WoBv8RUjDg1XTTcC4f+5NspD7Wd2c9UW8 XQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u5eu60w35-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 04 Nov 2023 17:03:05 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A4H34CY022940
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 4 Nov 2023 17:03:04 GMT
-Received: from [10.249.19.93] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Sat, 4 Nov
- 2023 10:02:58 -0700
-Message-ID: <ea919050-22a8-4d28-ade2-fd16a99876cb@quicinc.com>
-Date: Sat, 4 Nov 2023 22:32:55 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3378C3C34
+	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 17:55:59 +0000 (UTC)
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DFEC1BF;
+	Sat,  4 Nov 2023 10:55:56 -0700 (PDT)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20231104175551epoutp038dee6faf81e88a4de2fd866340b44704~UfSOVVy0k2540825408epoutp035;
+	Sat,  4 Nov 2023 17:55:51 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20231104175551epoutp038dee6faf81e88a4de2fd866340b44704~UfSOVVy0k2540825408epoutp035
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1699120551;
+	bh=8SQFweZFT2qkQXT9SzdYwsQOMSumC6gbjgqHXBAgq3U=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=cMElj5nOb8jVxz0oaZTj41zLV++As1fsVl9/jpt4TtkhAFw3pwKsDifBrF5xpT8yu
+	 iK7SEHs6sh5ACGPiz9D00b9/F+SeOpqVhWemipCKq6BIHw2Y0SY6hmepp63GtCyMYL
+	 gw3pc8TCVPI6niWP4QryuXYdb+ya7T84ztSu/CfY=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+	20231104175550epcas5p4b5b3366b81916f4715a0cf92fc30479e~UfSNv7cfm0577505775epcas5p4K;
+	Sat,  4 Nov 2023 17:55:50 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.182]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4SN4z86Nrhz4x9Pp; Sat,  4 Nov
+	2023 17:55:48 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	E8.77.09672.4A586456; Sun,  5 Nov 2023 02:55:48 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20231104175548epcas5p2864681cfefc5e51407be861e73bccd0e~UfSLjNoNh0403204032epcas5p2f;
+	Sat,  4 Nov 2023 17:55:48 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231104175548epsmtrp1cdc7a3d1732aae9c7d8f576c700ecad0~UfSLgvgc21119811198epsmtrp1k;
+	Sat,  4 Nov 2023 17:55:48 +0000 (GMT)
+X-AuditID: b6c32a4b-60bfd700000025c8-46-654685a4c4ac
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	89.E9.08755.3A586456; Sun,  5 Nov 2023 02:55:48 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20231104175543epsmtip2796d467482f93c7cb4325b0bf416726d~UfSHVXMog3243132431epsmtip2J;
+	Sat,  4 Nov 2023 17:55:43 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Maksym
+ Holovach'" <maksym.holovach.an.2022@lpnu.ua>, "'Peter Griffin'"
+	<peter.griffin@linaro.org>
+Cc: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<mturquette@baylibre.com>, <conor+dt@kernel.org>, <sboyd@kernel.org>,
+	<tomasz.figa@gmail.com>, <s.nawrocki@samsung.com>,
+	<linus.walleij@linaro.org>, <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>,
+	<olof@lixom.net>, <cw00.choi@samsung.com>, <tudor.ambarus@linaro.org>,
+	<andre.draszik@linaro.org>, <semen.protsenko@linaro.org>,
+	<saravanak@google.com>, <willmcvicker@google.com>, <soc@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+	<kernel-team@android.com>, <linux-serial@vger.kernel.org>, "'MOHAMMED RAFIQ
+ KAMAL BASHA'" <md.rafiq@samsung.com>
+In-Reply-To: <c0b8f356-0f26-459d-850d-ec0fa1fd3987@linaro.org>
+Subject: RE: [PATCH v2 00/20] Add minimal Tensor/GS101 SoC support and
+ Oriole/Pixel6 board
+Date: Sat, 4 Nov 2023 23:25:42 +0530
+Message-ID: <000001da0f48$24041440$6c0c3cc0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 2/8] usb: dwc3: core: Register vendor hooks for dwc3-qcom
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>
-CC: <linux-usb@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Thinh
- Nguyen" <Thinh.Nguyen@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_wcheng@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-3-quic_kriskura@quicinc.com>
- <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
- <5ef66bdc-9645-4bbe-8182-baa7fe4c583a@quicinc.com>
- <3be5e95f-85d2-4abf-a8b4-18b019341602@quicinc.com>
- <cf553cd8-45f8-4a61-b016-69e7a80eee9f@linaro.org>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <cf553cd8-45f8-4a61-b016-69e7a80eee9f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3qUD6-cNryyq5LI22b-kPDdWjCZuSzC6
-X-Proofpoint-ORIG-GUID: 3qUD6-cNryyq5LI22b-kPDdWjCZuSzC6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-04_16,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- phishscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999 spamscore=0
- impostorscore=0 clxscore=1015 suspectscore=0 malwarescore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310240000
- definitions=main-2311040145
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGPgbmEF6+ub3qtRjh359af8ajCkQMZWII3AhbeOfwCeEklngH5ou0XAhseapKwoZdPQA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA02TfVRTZRzHe+7ddgfnzG6TDo8zcSw9JQqygPlgQEFANynOOvZC+UILbswj
+	3I29ZFjnuFMiMHAIhinkQBDQHVIYLyEwLUTmG2aJAjpNBUTEN5D0qAPauFr897m/5/N9fs/v
+	uefh48LjhIi/jtHRGkaRKuF5cpqOLnrNf29mLB3Ye8wPNdyq56CJwk4C3avKA6jGdgZDPeND
+	XFTacYaLmn/1Qqab13BkG2kk0I/OagxZ+y9w0WjeFS6qL3UCtPOPwxg6XbGVQL0HDhNoYM9p
+	DJ0r6sBQ56WtPPTnyRh0sucBD9XunOSgTFsHgY7ezuIiY/sED01eqOOgIZMr39/j5CFLi2u7
+	sYtr0WZHCLKMTQHUPzyJv+1LNbU2cakacw2gnj4pBNS93kyCOlR8maDKrHrKasnhUY4LbTxq
+	f00Nl6rfu4nqPv49l6o7cMZlPTIQlKnBAqgHVh/5i5+vD1PSimRaI6aZJFXyOiYlXBK3MvGd
+	xBBZoNRfGoqWScSMIo0Ol0S/L/ePXZfqujSJ+GtFqt5Vkiu0WsnSiDCNSq+jxUqVVhcuodXJ
+	qepgdYBWkabVMykBDK1bLg0MfCPEJX6xXnm7YQxX1676ZoejExhA90oj8OBDMhjabYUcI/Dk
+	C8lWAM9da+ayH2MAOgxDmNsSkg8BPHpv/vOEacLMYyUbgEWjd57FbwJYMtVHuC0e6Q+bK7ZM
+	W15kJYDn7SU89wJO9vGg2bbazR5kBKw8bJ1uMZtcDZ3GnVw3c8gFsPPUeY6bBWQotOw34yy/
+	BE/sGuCw+yyGVXtGcPZIYvh4sGo660V+AjOdrTjreMPhYx2E+xCQNHnCs780EmwgGtYZ7/JY
+	ng1v2Rue1UVwOH+Li/kupmC5U8SWlfBO9UHA8lvwt+6fOW4FJxfBgy1L2Vaz4NanAxibFMDs
+	LULWXgh/uMtOAsm5sCA3l8syBScdf+HbgG/xjMGKZwxWPGOA4v+blQGOBcyh1dq0FFobog5i
+	6A3//e8kVZoVTD8pv7hmcP3q/YB2gPFBO4B8XOIliIyLpoWCZEXGRlqjStToU2ltOwhx3XYB
+	Lno5SeV6k4wuURocGhgsk8mCQ4NkUom3YCRzd7KQTFHo6PU0raY1z3MY30NkwFZ49O5eNpUb
+	+8qRzHlXfC6mVb6pHRV8nGeIur+ibXV6lPL1Y2VXP/Oen9DYn1d3m1klgkkla778Z9+39ILl
+	Mdv8ZvXqs4PMa3P/1nf0mdoc8QnlP3VtfqF0Ir3AT2HzjEnPD5tXfQhr/urUjizfruXyVbM2
+	2FMCcoYYQ1PAYC3zZHhhemR2l+8Rp3jbB9vXPJpKnpRaChvyo3yS4iMzxNsrQh/n3P/03Q99
+	NlYLWje9mhYmsCeY+uaWLxnk/J7fskQ354Zznxll+Zuun7wxFxNaTjSqxi+Hd+tHSgwrxqq9
+	H0ZORTR3Mq3Gs4s375KV2r+L+Uj/HpTLM86PRxBFAT0bGp9eipdwtEqF1A/XaBX/AuDRBkDb
+	BAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0yTVxjHd957u6CvlIUzdW5WPzCUahccx8yRETf3TjfiMlITtgwa+gY6
+	AUsLorsIwaEBbEO8DOmylotCeG2MFMUqwpJSEZipkzKKa8FxE7lsduK2dJQyaLeFb7/n+V+e
+	8+EweKSVXMuoc/N5ba4yW0qJidZO6ctxF0r38Ns9HgxdnW4h0MLpLho9aTgFkKXdiSH3s0kS
+	mR1OEtmuRyHD4xEctc9co9HZQCOGrGMDJPr91DCJWswBgM7f68DQ3Xo9jQYvd9BovPYuhlzn
+	HBjq8ugpdL/3HdTrnqPQlfNBApW2O2jUOXuSROX2BQoFB5oJNGlYyo+5AxQSbi7VPf35U/S1
+	dwcSni4CNDYVxN/ayLW2tZKcxWQB3PzfpwH3ZLCU5m4Yh2iuxlrAWYUyivMO3KK4JouF5Fou
+	FHH93SUk13zZueT6q5jmDFcFwM1ZN+xfnSrepeKz1Yd57bbEdHGWvuaAZvG9I/77icXg4Rvl
+	QMRANh4aFkxUORAzkWwbgM9aLVhYWAfdzZV0mCWwKThJh02PALxjKwHLAsXGQVv9iVA6ir0I
+	oKHPiS8PODtPwcaHLuLfCAaPV54IdYnYRHixwxq6IWFT4W8/+ollJtjNsOuHn0Icwe6EQpMJ
+	D/Ma2FM9Htrj7BY48WDif26oncHD73sF+icayGWOYhWwNNCGhz3RcOq2g64EEuOKKuOKKuOK
+	KuOKSA0gBPAir9HlZObo5Bp5Ll8o0ylzdAW5mbKMQzlWEPpWsa/awHXBJ7MDjAF2ABlcGhWR
+	tO9tPjJCpTz6Oa89lKYtyOZ1drCOIaTREdGP9apINlOZzx/keQ2v/U/FGNHaYqwhafBNT943
+	W32Bwt7n+lV7bwnbHDeLLt046dpQldFVVii2aOJ2zo58pgYJX20q23ImLrk/RjbT8+exqdfM
+	u4/65F886Jmru933qFHUnP68IrZiePaXPRnfKoJXXkKX1KOSs5iwj6s1mefk8WObJHnTmu4h
+	+8cHUd0LQv+46Y5lpHvel1Iymjy+d0Eyba1O99cd/yMBejOHvPmpSY1uU/3rfR+setemIY8l
+	SNaTq9Qin3n3os8RcH+S9uGvG2OOeNe4MhK+H/KMXiMkVfeKtuZ/5Co7sD7ekOw/nNKn0O/I
+	Gp5k80Sre9K2f/dlaqWsOkXhfN9/pirYydAxFSoPrNglJXRZSnksrtUp/wH96bGHxQMAAA==
+X-CMS-MailID: 20231104175548epcas5p2864681cfefc5e51407be861e73bccd0e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231103144922epcas5p2673f35f0742690827b0e974d674f44e0
+References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+	<3d489d6c-2098-4f0c-9ec4-f6040665753e@lpnu.ua>
+	<CADrjBPp+fyNoPdix6=Wp4cDCRFq2Mui8NS6WENejcHn+H1M-jA@mail.gmail.com>
+	<48e1c0bd-9518-4927-b490-f3206256bbd4@lpnu.ua>
+	<CGME20231103144922epcas5p2673f35f0742690827b0e974d674f44e0@epcas5p2.samsung.com>
+	<c0b8f356-0f26-459d-850d-ec0fa1fd3987@linaro.org>
 
+Hi Krzysztof
 
+Thanks for CCing me to the tread, I have not yet looked into the patches (a=
+s those never landed in my inbox).
 
-
->>> Hi Bryan,
->>>
->>>> What happens to this code if you
->>>>
->>>> static int count;
->>>>
->>>> 1. sleep in dwc3_probe for 10 milliseconds
->>>> 2. return -EPROBE_DEFER
->>>> 3. if count++ < 5 goto 1
->>>>
->>>> i.e. if we simulate say waiting on a PHY driver to probe in 
->>>> dwc3_probe()
->>>>
->>> The vendor hooks are used in __dwc3_set_mode and role_switch_set 
->>> calls in core and drd files respectively. These are invoked only if 
->>> we are OTG capable. The drd_work is initialized in core_init_mode 
->>> which is called at the end of dwc3_probe. If dwc3_probe fails and 
->>> gets deferred before that, none of the vendor hooks will be fired and 
->>> dwc3_qcom_probe is also deferred.
->>>
->>> However I see that if core_init_mode fails (the cleanup is already 
->>> done in drd to prevent set_role from getting invoked already),  I 
->>> need to cleanup vendor hooks in error path of dwc3_probe().
->>>
->>>> and what happens if we introduce a 100 millsecond sleep into 
->>>> dwc3_qcom_probe() - and run a fake disconnect event from 
->>>> dwc3_qcom_probe_core() directly ?
->>>>
->>>> In other words if make it that dwc3_probe() completes and struct 
->>>> dwc3_glue_ops->notify_cable_disconnect() fires prior to 
->>>> dwc3_qcom_probe_core() completing ?
->>>>
->>>> i.e. I don't immediately see how you've solved the probe() 
->>>> completion race condition here.
->>>>
->>> Just wanted to understand the situation clearly. Is this the sequence 
->>> you are referring to ?
->>>
->>> 1. dwc3_probe is successful and role switch is registered properly.
->>> 2. added delay after dwc3_qcom_probe_core and before interconnect_init
->>> 3. Between this delay, we got a disconnect notificiation from glink
->>> 4. We are clearing the qscratch reg in case of device mode and 
->>> un-registering notifier in case of host mode.
->>>
->>> If so, firstly I don't see any issue if we process disconnect event 
->>> before qcom probe is complete. If we reached this stage, the 
->>> clocks/gdsc is definitely ON and register accesses are good to go.
->>>
->>> If we are in host mode at this point, we would just unregister to 
->>> usb-core notifier and mark last busy. If we are in device mode, we 
->>> would just clear the hs_phy_ctrl reg of qscratch. After the 100ms 
->>> delay you mentioned we would call dwc3_remove anyways and cleanup the 
->>> vendor hooks. But is the concern here that, what if we enter 
->>> runtime_suspend at this point ?
->>>
->>
->> Just to clarify one more thing. The probe completion requirement came 
->> in because, before the device tree was flattened, dwc3-qcom and core 
->> are two different platform devices. And if the dwc3 core device probe 
->> got deferred, dwc3-qcom probe still gets successfully completed. The 
->> glue would never know when to register vendor hook callbacks to 
->> dwc3-core as it would never know when the core probe was completed.
->>
->> That is the reason we wanted to find out accurate point where core 
->> probe is done to ensure we can properly register these callbacks.
-> 
-> Are you saying to you require/rely on both of these series being applied 
-> first ?
-> 
-> [1]: 
-> https://lore.kernel.org/all/af60c05b-4a0f-51b8-486a-1fc601602515@quicinc.com/
-> [2]: 
-> https://lore.kernel.org/all/20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com/
-> 
-> Must be, nothing applies for me in this series.
-
-The first one is not a patch. It is just a discussion thread I started 
-to get community's opinion before on disconnect interrupt handling. The 
-current series is based on top of [2] made by Bjorn (as you already 
-found out) and as I mentioned in cover letter of my series.
-
-Regards,
-Krishna,
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
+> Sent: Friday, November 3, 2023 8:19 PM
+> To: Maksym Holovach <maksym.holovach.an.2022=40lpnu.ua>; Peter Griffin
+> <peter.griffin=40linaro.org>
+> Cc: robh+dt=40kernel.org; krzysztof.kozlowski+dt=40linaro.org;
+> mturquette=40baylibre.com; conor+dt=40kernel.org; sboyd=40kernel.org;
+> tomasz.figa=40gmail.com; s.nawrocki=40samsung.com; linus.walleij=40linaro=
+.org;
+> wim=40linux-watchdog.org; linux=40roeck-us.net; catalin.marinas=40arm.com=
+;
+> will=40kernel.org; arnd=40arndb.de; olof=40lixom.net; cw00.choi=40samsung=
+.com;
+> tudor.ambarus=40linaro.org; andre.draszik=40linaro.org;
+> semen.protsenko=40linaro.org; saravanak=40google.com;
+> willmcvicker=40google.com; soc=40kernel.org; devicetree=40vger.kernel.org=
+;
+> linux-arm-kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.o=
+rg;
+> linux-clk=40vger.kernel.org; linux-gpio=40vger.kernel.org; linux-
+> watchdog=40vger.kernel.org; kernel-team=40android.com; linux-
+> serial=40vger.kernel.org; Alim Akhtar <alim.akhtar=40samsung.com>
+> Subject: Re: =5BPATCH v2 00/20=5D Add minimal Tensor/GS101 SoC support an=
+d
+> Oriole/Pixel6 board
+>=20
+> On 03/11/2023 14:56, Maksym Holovach wrote:
+> > Hi Peter,
+> >
+> > On 11/3/23 15:11, Peter Griffin wrote:
+> >> Hi Maksym,
+> >>
+> >> Thanks for your feedback.
+> >>
+> >> On Thu, 2 Nov 2023 at 22:32, Maksym Holovach
+> >> <maksym.holovach.an.2022=40lpnu.ua> wrote:
+> >>> Hi, all
+> >>>
+> >>> I wanted to inquire about how do you all feel about calling this SoC
+> >>> by the Google =22gs101=22 name.
+> >> Interesting question, I think calling it gs101 is the correct
+> >> approach see below for my rationale.
+> >>
+> >>> I believe the proper name for it should be the actual Samsung name,
+> >>> written in the silicon and reported in the Chip ID hardware: Exynos98=
+45.
+> >>> This also touches the Tensor G2 (Exynos9855), Tensor G3
+> >>> (Exynos9865), and possibly the =22Tesla=22 SoCs.
+> >>>
+> >>> I do not think the Linux kernel should be a marketing material: it
+> >>> should reflect reality. The chip is almost 100% composed of Samsung
+> >>> Exynos IP blocks and should be called that way.
+> >> As you alluded to Tesla fsd and Axis artpec8 SoCs are also based on
+> >> Exynos designs and support upstream uses the axis,artpec8* or
+> >> tesla,fsd* compatibles.
+> >>
+> >> So using google,gs101 is consistent with the existing upstream naming
+> >> scheme, for customized ASICs that were based off a Exynos design. But
+> >> it also reflects the reality that this SoC is not a Exynos9845 as
+> >> there is also a lot of Google owned and other third party IP
+> >> integrated that is not found in Exynos9845.
+> >
+> > A quick question: Do you imply Exynos9845 exists outside of the
+> > context of Tensor G1? I used to believe Exynos9845 **is** Tensor G1.
+> >
+> > Also, what kind of Google IP are you talking about? I believe only the
+> > neural accelerator should be custom-ish.
+> >
+> > Additionally, I believe it having or not having Google IP is irrelevant=
+:
+> > for example, the new Raspberry Pi 5 Broadcom SoC has a lot of
+> > Raspberry's own IP, but it's still called Broadcom as it's the real
+> > manufacturer and designer of the chip.
+>=20
+> That's a good argument. Indeed BCM2712 contains =22New Raspberry Pi-
+> developed ISP=22.
+> https://www.raspberrypi.com/documentation/computers/processors.html
+>=20
+> There aren't many patches but GPU is still called brcm,2712.
+>=20
+> For Tesla FSD, there was discussion and output was not very consisting.
+> First, the name itself was used for everything - SoC architecture, one gi=
+ven
+> SoC and eventually the board.
+> https://lore.kernel.org/all/5ab62673-8d46-ec1d-1c80-
+> 696421ab69ca=40canonical.com/
+>=20
+> Eventually the last part - board - was renamed to =22Evaluation board=22,=
+ but I
+> don't know how true or real it is.
+>=20
+> See also:
+> =22I would argue that if this SoC shares the pinctrl, clock, spi, adc, an=
+d timer
+> implementation with Exynos, we should consider it part of the Exynos
+> family,=22
+> https://lore.kernel.org/all/CAK8P3a31bCHNcNWrLX+QW+4RuK=3DDBpxLA_j5B
+> FKxXxXKCT8PFQ=40mail.gmail.com/
+>=20
+> However it was also claimed:
+>=20
+> =22AFA architecture is concerns both Exynos and FSD has completely differ=
+ent
+> architecture (at least at HW level).=22
+> https://lore.kernel.org/all/07ce01d8091e=249a6fd9c0=24cf4f8d40=24=40samsu=
+ng.co
+> m/
+>=20
+Yes it is, IMO SoC belongs to a =E2=80=9Cvendor=E2=80=9D.=20Just=20because=
+=20it=20uses=20some=20common=20IPs,=0D=0Adoes=20not=20make=20it=20belong=20=
+to=20the=20some=20base=20family=20(in=20this=20case=20Exynos).=0D=0AI=20hav=
+e=20being=20working=20on=20Exynos=20since=20Exynos4=20days=0D=0A(and=20most=
+=20of=20the=20Exynos=20series=20you=20have=20also=20worked=20on)=20and=20ma=
+ny=20more=20=E2=80=9Cvendor=E2=80=9D=20specific=20SoC,=20like=20FSD=20etc.=
+=0D=0AAnd=20you=20know,=20it=20is=20not=20the=20IPs=20which=20differentiate=
+s=20SoC=20but=20it=20is=20SoC=20micro=20architecture=20which=20differentiat=
+e=20various=20SoC=20and=0D=0Ahence=20should=20be=20considered=20as=20differ=
+ent=20SoC.=0D=0A=0D=0A>=20>>=20I=20guess=20the=20same=20is=20also=20true=20=
+for=20=60axis,artpec8=60=20and=20=60tesla,fsd=60=20SoCs.=0D=0A>=20>>=20IMO=
+=20the=20SoC=20compatible=20string=20should=20be=20uniquely=20identifying=
+=20the=0D=0A>=20>>=20actual=20SoC,=20not=20a=20close=20relative.=0D=0A>=20>=
+>=0D=0A>=20>>=20Regarding=20product_id=20you=20are=20correct=20this=20reads=
+=200x09845000=20but=20even=0D=0A>=20>>=20within=20Samsung=20Exynos=20family=
+=20there=20are=20examples=20where=20the=20register=0D=0A>=20>>=20value=20do=
+es=20not=20match=20the=20SoC=20compatible.=20For=20example=20Exynos850=20So=
+C=0D=0A>=20>>=20has=20a=20product=20ID=20value=20of=20=22E3830=22.=20Where=
+=20the=20Linux=20compatible=20is=0D=0A>=20>>=20matching=20the=20Samsung=20m=
+arketing=20name,=20not=20the=20internal/outdated=20name.=0D=0A>=20>=0D=0A>=
+=20>=20I=20did=20not=20know=20Exynos=20850=20is=20also=20not=20going=20unde=
+r=20it's=20real=20name.=0D=0A>=20>=20Ultimately,=20I=20believe=20all=20of=
+=20those=20SoCs=20should=20go=20under=20their=0D=0A>=20>=20technical=20name=
+=20in=20the=20exynos/=20directory.=0D=0A>=20=0D=0A>=20The=20initial=20techn=
+ical=20name=20does=20not=20exist=20outside=20of=20vendor=20sources=20and=20=
+part=0D=0A>=20name.=20E.g.=20Winlink=20E850=20board=20hardware=20manual=20c=
+alls=20it:=0D=0A>=20=22Samsung=20Exynos=20850,=20S5E3830=22=0D=0A>=20and=20=
+everywhere=20else=20Exynos=20850=20SoC=20is=20used.=0D=0A>=20=0D=0A>=20If=
+=20you=20start=20calling=20it=20Exynos=203830,=20only=20me=20and=20Sam=20(w=
+ho=20mainlined=20it)=20would=0D=0A>=20know=20what=20is=20it.=20Everyone=20e=
+lse,=20all=20users=20of=20kernel,=20would=20be=20confused.=0D=0A>=20=0D=0A>=
+=20Therefore=20using=20well=20known=20final=20product=20name=20is=20for=20E=
+xynos850=20reasonable.=0D=0A>=20=0D=0AYou=20are=20right,=20the=20final=20pr=
+oduct=20name=20should=20be=20used,=20which=20is,=20in=20case=20of=20FSD=20i=
+s=20FDS=20=5B1=5D=20and=20may=20be=20same=20is=20true=20for=20GS101=20(I=20=
+am=20not=20sure=20about=20GS101=20though).=0D=0A=5B1=5D=20https://www.autop=
+ilotreview.com/tesla-custom-ai-chips-hardware-3/=0D=0A=0D=0A>=20>=0D=0A>=20=
+>=20Another=20concern=20is=20that=20Google=20could=20in=20the=20future=20li=
+cense=20other=20SoC:=0D=0A>=20>=20be=20it=20Qualcomm,=20Nvidia=20or=20anyth=
+ing.=20If=20we=20put=20completely=20different=20hw=0D=0A>=20>=20under=20goo=
+gle/=20directory,=20does=20it=20really=20make=20sense?=20In=20that=20case,=
+=0D=0A>=20>=20who'll=20maintain=20the=20google/=20directory?=20Exynos=20peo=
+ple?=20Qualcomm=20people=0D=0A>=20>=20if=20they=20license=20it?=20Some=20ot=
+her=20people?=0D=0A>=20=0D=0A>=20That's=20indeed=20a=20problem.=20Future=20=
+Tesla=20SoC=20might=20have=20just=20few=20pieces=20similar=0D=0A>=20to=20FS=
+D.=20There=20would=20be=20no=20common=20SoC=20part,=20except=20the=20actual=
+=20Tesla=20IP.=0D=0A>=20=0D=0A>=20Same=20for=20Google.=20Future=20GSXXX,=20=
+if=20done=20by=20Qualcomm,=20will=20be=20absolutely=0D=0A>=20different=20th=
+an=20GS101=20and=20the=20only=20common=20part=20would=20be=20the=20TPU=20(T=
+ensor).=0D=0A>=20=0D=0A>=20So=20now=20let's=20decide=20what=20is=20the=20co=
+mmon=20denominator:=0D=0A>=201.=20Core=20SoC=20architecture,=20like=20buses=
+,=20pinctrl,=20clocks,=20timers,=20serial,=20and=20many=20IP=0D=0A>=20block=
+s,=20which=20constitute=2095%=20of=20Devicetree=20bindings=20and=20drivers,=
+=202.=20The=20one,=0D=0A>=20big=20piece=20made=20by=20Samsung's=20customer:=
+=20TPU,=20NPU=20or=20whatever.=0D=0A>=20=0D=0AJust=20to=20keep=20things=20s=
+imple,=20IMO=20it=20should=20belong=20to=20=22vendor=22=20=0D=0Aas=20they=
+=20are=20the=20one=20who=20has=20or=20knows=20the=20current=20and=20future=
+=20uses/plans=20for=20SoC/SoCs.=0D=0ABecause=20an=20IP=20can=20be=20sourced=
+=20from=20many/any=20IP=20vendors.=20=0D=0A=0D=0AAFA=20maintenance=20is=20c=
+oncerns,=20people=20who=20is/are=20doing=20upstreaming=20does=20have=20an=
+=20entry=20in=20the=20MAINTAINERS=20list=20for=20the=20SoC.=0D=0A=20=20=0D=
+=0A>=20>=0D=0A>=20>=20Then,=20I=20don't=20think=20Tensor=20G3=20has=20a=20p=
+roper=20=22GS=22=20name,=20it=20goes=20by=20=22Zuma=22=0D=0A>=20>=20in=20de=
+compiled=20kernel=20modules=20as=20far=20as=20I=20see.=0D=0A>=20>=0D=0A>=20=
+>=20Finally,=20Tesla=20people=20already=20tried=20to=20submit=20drivers=20c=
+alled=20by=20Tesla=0D=0A>=20>=20name,=20but=20which=20basically=20copied=20=
+the=20functionality=20of=20the=20Exynos=0D=0A>=20>=20drivers.=20We=20would=
+=20want=20to=20avoid=20that,=20ideally.=0D=0A>=20>=0D=0A>=20>=20My=20opinio=
+n=20is=20that=20all=20the=20Tesla=20and=20Google=20SoCs=20should=20be=20in=
+=20the=0D=0A>=20>=20exynos/=20directory,=20not=20only=20because=20they=20ar=
+e=20basically=20Samsung=20Exynos,=0D=0A>=20>=20but=20also=20because=20they=
+=20don't=20really=20need=20a=20separate=20directory:=20neither=0D=0A>=20>=
+=20Google=20nor=20Tesla=20didn't=20neither=20manufacture=20or=20design=20th=
+ose=20SoCs=20from=0D=0A>=20>=20scratch.=20The=20only=20reason=20I=20can=20t=
+hink=20of=20for=20them=20to=20have=20it=20in=20a=0D=0A>=20>=20separate=20di=
+rectory=20is=20maybe=20because=20Google=20and=20Tesla=20actually=20paid=0D=
+=0A>=20>=20Samsung=20money=20for=20the=20right=20to=20call=20Exynos=20=22Go=
+ogle=20designed=22=20SoCs,=20but=0D=0A>=20>=20I=20believe=20the=20kernel=20=
+should=20be=20left=20out=20of=20that.=0D=0A>=20=0D=0A>=20For=20some=20reaso=
+n,=20although=20I=20know=20which,=20Cc-list=20is=20here=20trimmed=20and=20m=
+isses=0D=0A>=20Alim...=0D=0A>=20=0D=0AThanks=20Again.=0D=0A=0D=0A>=20So=20s=
+tandard=20reply=20follow=20(it=20makes=20me=20really,=20really=20grumpy,=20=
+because=20it=20means=0D=0A>=20you=20develop=20on=20some=20crazy=20old=20ker=
+nel=20or=20do=20not=20use=20tools=20which=20automate=0D=0A>=20the=20process=
+):=0D=0A>=20=0D=0A>=20Please=20use=20scripts/get_maintainers.pl=20to=20get=
+=20a=20list=20of=20necessary=20people=20and=0D=0A>=20lists=20to=20CC=20(and=
+=20consider=20--no-git-fallback=20argument).=20It=20might=20happen,=20that=
+=0D=0A>=20command=20when=20run=20on=20an=20older=20kernel,=20gives=20you=20=
+outdated=20entries.=0D=0A>=20Therefore=20please=20be=20sure=20you=20base=20=
+your=20patches=20on=20recent=20Linux=20kernel.=0D=0A>=20=0D=0A>=20Best=20re=
+gards,=0D=0A>=20Krzysztof=0D=0A=0D=0A=0D=0A
 
