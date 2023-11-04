@@ -1,386 +1,191 @@
-Return-Path: <devicetree+bounces-13872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7360F7E1022
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 16:47:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B977E1028
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 17:01:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E7B0281A2C
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 15:47:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F79B1C2093F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 16:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A371CAAB;
-	Sat,  4 Nov 2023 15:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6771DDF4;
+	Sat,  4 Nov 2023 16:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L9p1U/n0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758141BDD9
-	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 15:46:57 +0000 (UTC)
-Received: from connect.vanmierlo.com (fieber.vanmierlo.com [84.243.197.177])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F644DB;
-	Sat,  4 Nov 2023 08:46:53 -0700 (PDT)
-X-Footer: dmFubWllcmxvLmNvbQ==
-Received: from roundcube.vanmierlo.com ([192.168.37.37])
-	(authenticated user m.brock@vanmierlo.com)
-	by connect.vanmierlo.com (Kerio Connect 10.0.2 patch 1) with ESMTPA;
-	Sat, 4 Nov 2023 16:46:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAEC79F5
+	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 16:00:58 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B2749D
+	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 09:00:56 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507bd644a96so4366834e87.3
+        for <devicetree@vger.kernel.org>; Sat, 04 Nov 2023 09:00:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699113654; x=1699718454; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eSOeu9EpYpJ/96EOikBzVA0+kSTrdPO9sr2PRTgzQXk=;
+        b=L9p1U/n06CMh0kWNYLt8Frl0ERyF7jb3AtOG+1xuRLrcIaTXQBi3LkoWmd9RzI/2HU
+         yo1RhAU+8ImATj8CbYSjkNz6F02PpQsfx7V3kRl1Vsj4cfi8zDRuhRxAlp7f6P5zmaqO
+         ge0/3pxqxu0m7XXDgIQljyLW/SKAJrAkKlYvZgMxH5/TN7RMyC9jUDTHqit1nA5xKtcS
+         +poN0wtJsN7LNy+SAaJ3UdxBRmjUZuXLg/ffq0rOLp6QpsIeMp84qZ4VgD5oD/5bUoi8
+         aWQT72q4m6xXjPyfTGMAVQZojmoGJiFA4NUImHbU7FfGdNH5epx6OD6SeUHX9EH54Tvf
+         WNlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699113654; x=1699718454;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eSOeu9EpYpJ/96EOikBzVA0+kSTrdPO9sr2PRTgzQXk=;
+        b=eFRaqJy+aGZTkJz9LEXr9qToNCX0Qd+OtkdvmOmR7JRJhRfmBansXbPZTFDSnMQnP3
+         piSkqujfhy5wm3XIkalD+xsBRjCeoY/Um5scKGdBofLatiwbi2BT/vimO6XEF8hK3/iZ
+         ouc4EXc/Q0fwFTzZkertOlJXxmthOmrfG7hMO+g/LHoXy6TiwkUqMFULCMDvZ4jYknyX
+         Lbg24AvketNLVFhUZKbqsJLySlJVwVlio33o5Nsr2+rRcmDKLzW2xTGrSu5c6pBYocom
+         3PMaPTLkKSfb9Mnahv2Ws/K/uBObce6F+9DBDSX4E0B70cLVl2hTu63Qyl6jry8vC/d6
+         sGsw==
+X-Gm-Message-State: AOJu0YzedGeQpKmLW52XQh3Mp5QPW354OP+Z1up76vTNEGC0HQtR+gcv
+	XrynFxdO+R79HxdN6m6pVIxWDg==
+X-Google-Smtp-Source: AGHT+IEPFqS5qonFd1aRtub85qdr3gusVqvFUojB09NVZXRDEniZKfoVgllNgXVG5nE7usZpKuyvZg==
+X-Received: by 2002:ac2:5306:0:b0:507:9d5d:5901 with SMTP id c6-20020ac25306000000b005079d5d5901mr17819048lfh.7.1699113654226;
+        Sat, 04 Nov 2023 09:00:54 -0700 (PDT)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id d13-20020adfe2cd000000b0032ddf2804ccsm4683537wrj.83.2023.11.04.09.00.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Nov 2023 09:00:53 -0700 (PDT)
+Message-ID: <cf553cd8-45f8-4a61-b016-69e7a80eee9f@linaro.org>
+Date: Sat, 4 Nov 2023 16:00:52 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 04 Nov 2023 16:46:45 +0100
-From: m.brock@vanmierlo.com
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Cc: git@amd.com, michal.simek@amd.com, gregkh@linuxfoundation.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, jirislaby@kernel.org,
- linux-arm-kernel@lists.infradead.org, radhey.shyam.pandey@amd.com,
- srinivas.goud@amd.com, shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-Subject: Re: [PATCH V3 2/2] tty: serial: uartps: Add rs485 support to uartps
- driver
-In-Reply-To: <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
-References: <20231024144847.2316941-1-manikanta.guntupalli@amd.com>
- <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
-Message-ID: <22a8b01cf7a1df0dffd78eb80bfab819@vanmierlo.com>
-X-Sender: m.brock@vanmierlo.com
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 2/8] usb: dwc3: core: Register vendor hooks for dwc3-qcom
+Content-Language: en-US
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel@vger.kernel.org, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
+ quic_jackp@quicinc.com, quic_wcheng@quicinc.com,
+ Andy Gross <agross@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-3-quic_kriskura@quicinc.com>
+ <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
+ <5ef66bdc-9645-4bbe-8182-baa7fe4c583a@quicinc.com>
+ <3be5e95f-85d2-4abf-a8b4-18b019341602@quicinc.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <3be5e95f-85d2-4abf-a8b4-18b019341602@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Manikanta Guntupalli wrote on 2023-10-24 16:48:
-> @@ -193,6 +196,7 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-255");
->   * @clk_rate_change_nb:	Notifier block for clock changes
->   * @quirks:		Flags for RXBS support.
->   * @cts_override:	Modem control state override
-> + * @gpiod:		Pointer to the gpio descriptor
-
-Change gpiod to gpiod_rts maybe?
-Later someone might want to use a gpio for cts/dtr/dsr/dcd/ri as well.
-
->   */
->  struct cdns_uart {
->  	struct uart_port	*port;
-> @@ -203,10 +207,19 @@ struct cdns_uart {
->  	struct notifier_block	clk_rate_change_nb;
->  	u32			quirks;
->  	bool cts_override;
-> +	struct gpio_desc	*gpiod;
->  };
->  struct cdns_platform_data {
->  	u32 quirks;
->  };
-> +
-> +struct serial_rs485 cdns_rs485_supported = {
-> +	.flags = SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
-> +		 SER_RS485_RTS_AFTER_SEND,
-> +	.delay_rts_before_send = 1,
-> +	.delay_rts_after_send = 1,
-> +};
-> +
->  #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
->  		clk_rate_change_nb)
+On 03/11/2023 18:49, Krishna Kurapati PSSNV wrote:
 > 
-> @@ -305,6 +318,79 @@ static void cdns_uart_handle_rx(void *dev_id,
-> unsigned int isrstatus)
->  	tty_flip_buffer_push(&port->state->port);
->  }
 > 
-> +/**
-> + * cdns_rs485_config_gpio_rts_high - Configure GPIO/RTS to high
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_config_gpio_rts_high(struct cdns_uart 
-> *cdns_uart)
-> +{
-> +	u32 val;
-> +
-> +	if (cdns_uart->gpiod) {
-> +		gpiod_set_value(cdns_uart->gpiod, 1);
-> +	} else {
-> +		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +		val &= ~CDNS_UART_MODEMCR_RTS;
-> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +	}
-> +}
-> +
-> +/**
-> + * cdns_rs485_config_gpio_rts_low - Configure GPIO/RTS to low
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_config_gpio_rts_low(struct cdns_uart 
-> *cdns_uart)
-> +{
-> +	u32 val;
-> +
-> +	if (cdns_uart->gpiod) {
-> +		gpiod_set_value(cdns_uart->gpiod, 0);
-> +	} else {
-> +		val = readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +		val |= CDNS_UART_MODEMCR_RTS;
-> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +	}
-> +}
-> +
-> +/**
-> + * cdns_rs485_tx_setup - Tx setup specific to rs485
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_tx_setup(struct cdns_uart *cdns_uart)
-> +{
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_ON_SEND)
-> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
-> +	else
-> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
-> +}
-> +
-> +/**
-> + * cdns_rs485_rx_setup - Rx setup specific to rs485
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_rx_setup(struct cdns_uart *cdns_uart)
-> +{
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
-> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
-> +	else
-> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
-> +}
-
-Why not simply create:
-void cdns_rs485_driver_enable(struct cdns_uart *cdns_uart, bool enable)
-
-And let it handle the rs485.flags itself?
-
-> +
-> +/**
-> + * cdns_uart_tx_empty -  Check whether TX is empty
-> + * @port: Handle to the uart port structure
-> + *
-> + * Return: TIOCSER_TEMT on success, 0 otherwise
-> + */
-> +static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-> +{
-> +	unsigned int status;
-> +
-> +	status = readl(port->membase + CDNS_UART_SR) &
-> +		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
-> +	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-> +}
-> +
->  /**
->   * cdns_uart_handle_tx - Handle the bytes to be Txed.
->   * @dev_id: Id of the UART port
-> @@ -571,6 +657,8 @@ static int cdns_uart_clk_notifier_cb(struct
-> notifier_block *nb,
->  static void cdns_uart_start_tx(struct uart_port *port)
->  {
->  	unsigned int status;
-> +	unsigned long time_out;
-> +	struct cdns_uart *cdns_uart = port->private_data;
+> On 11/4/2023 12:15 AM, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 11/3/2023 8:44 PM, Bryan O'Donoghue wrote:
+>>> On 17/10/2023 14:18, Krishna Kurapati wrote:
+>>>>
+>>>> The following are the requirements aimed in this implementation:
+>>>>
+>>>> 1. When enum in device mode, Glue/core must stay active.
+>>>>
+>>>> 2. When cable is connected but UDC is not written yet, then glue/core
+>>>> must be suspended.
+>>>>
+>>>> 3. Upon removing cable in device mode, the disconnect event must be
+>>>> generated and unblock runtime suspend for dwc3 core.
+>>>>
+>>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>>
+>>
+>> Hi Bryan,
+>>
+>>> What happens to this code if you
+>>>
+>>> static int count;
+>>>
+>>> 1. sleep in dwc3_probe for 10 milliseconds
+>>> 2. return -EPROBE_DEFER
+>>> 3. if count++ < 5 goto 1
+>>>
+>>> i.e. if we simulate say waiting on a PHY driver to probe in dwc3_probe()
+>>>
+>> The vendor hooks are used in __dwc3_set_mode and role_switch_set calls 
+>> in core and drd files respectively. These are invoked only if we are 
+>> OTG capable. The drd_work is initialized in core_init_mode which is 
+>> called at the end of dwc3_probe. If dwc3_probe fails and gets deferred 
+>> before that, none of the vendor hooks will be fired and 
+>> dwc3_qcom_probe is also deferred.
+>>
+>> However I see that if core_init_mode fails (the cleanup is already 
+>> done in drd to prevent set_role from getting invoked already),  I need 
+>> to cleanup vendor hooks in error path of dwc3_probe().
+>>
+>>> and what happens if we introduce a 100 millsecond sleep into 
+>>> dwc3_qcom_probe() - and run a fake disconnect event from 
+>>> dwc3_qcom_probe_core() directly ?
+>>>
+>>> In other words if make it that dwc3_probe() completes and struct 
+>>> dwc3_glue_ops->notify_cable_disconnect() fires prior to 
+>>> dwc3_qcom_probe_core() completing ?
+>>>
+>>> i.e. I don't immediately see how you've solved the probe() completion 
+>>> race condition here.
+>>>
+>> Just wanted to understand the situation clearly. Is this the sequence 
+>> you are referring to ?
+>>
+>> 1. dwc3_probe is successful and role switch is registered properly.
+>> 2. added delay after dwc3_qcom_probe_core and before interconnect_init
+>> 3. Between this delay, we got a disconnect notificiation from glink
+>> 4. We are clearing the qscratch reg in case of device mode and 
+>> un-registering notifier in case of host mode.
+>>
+>> If so, firstly I don't see any issue if we process disconnect event 
+>> before qcom probe is complete. If we reached this stage, the 
+>> clocks/gdsc is definitely ON and register accesses are good to go.
+>>
+>> If we are in host mode at this point, we would just unregister to 
+>> usb-core notifier and mark last busy. If we are in device mode, we 
+>> would just clear the hs_phy_ctrl reg of qscratch. After the 100ms 
+>> delay you mentioned we would call dwc3_remove anyways and cleanup the 
+>> vendor hooks. But is the concern here that, what if we enter 
+>> runtime_suspend at this point ?
+>>
 > 
->  	if (uart_tx_stopped(port))
->  		return;
-> @@ -589,8 +677,31 @@ static void cdns_uart_start_tx(struct uart_port 
-> *port)
+> Just to clarify one more thing. The probe completion requirement came in 
+> because, before the device tree was flattened, dwc3-qcom and core are 
+> two different platform devices. And if the dwc3 core device probe got 
+> deferred, dwc3-qcom probe still gets successfully completed. The glue 
+> would never know when to register vendor hook callbacks to dwc3-core as 
+> it would never know when the core probe was completed.
 > 
->  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_ISR);
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		cdns_rs485_tx_setup(cdns_uart);
-> +		if (cdns_uart->port->rs485.delay_rts_before_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_before_send);
+> That is the reason we wanted to find out accurate point where core probe 
+> is done to ensure we can properly register these callbacks.
 
-Would it not be better to start a timer here with a callback that 
-enables
-the TXEMPTY interrupt? That would automatically call 
-cdns_uart_handle_tx().
+Are you saying to you require/rely on both of these series being applied 
+first ?
 
-> +	}
-> +
->  	cdns_uart_handle_tx(port);
-> 
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		time_out = jiffies + usecs_to_jiffies(TX_TIMEOUT);
-> +		/* Wait for tx completion */
-> +		while ((cdns_uart_tx_empty(cdns_uart->port) != TIOCSER_TEMT) &&
-> +		       time_before(jiffies, time_out))
-> +			cpu_relax();
-> +
-> +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-> +
-> +		/*
-> +		 * Default Rx should be setup, because RX signaling path
-> +		 * need to enable to receive data.
-> +		 */
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +	}
+[1]: 
+https://lore.kernel.org/all/af60c05b-4a0f-51b8-486a-1fc601602515@quicinc.com/
+[2]: 
+https://lore.kernel.org/all/20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com/
 
-I think this should be done from the TXEMPTY interrupt. And again 
-schedule a
-timer to drop the DE line. You really can do this without using 
-mdelay().
-
-> +
->  	/* Enable the TX Empty interrupt */
->  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
->  }
-> @@ -602,6 +713,14 @@ static void cdns_uart_start_tx(struct uart_port 
-> *port)
->  static void cdns_uart_stop_tx(struct uart_port *port)
->  {
->  	unsigned int regval;
-> +	struct cdns_uart *cdns_uart = port->private_data;
-> +
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-> +
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +	}
-
-Again, start a timer and wait for completion?
-
->  	regval = readl(port->membase + CDNS_UART_CR);
->  	regval |= CDNS_UART_CR_TX_DIS;
-> @@ -626,21 +745,6 @@ static void cdns_uart_stop_rx(struct uart_port 
-> *port)
->  	writel(regval, port->membase + CDNS_UART_CR);
->  }
-> 
-> -/**
-> - * cdns_uart_tx_empty -  Check whether TX is empty
-> - * @port: Handle to the uart port structure
-> - *
-> - * Return: TIOCSER_TEMT on success, 0 otherwise
-> - */
-> -static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-> -{
-> -	unsigned int status;
-> -
-> -	status = readl(port->membase + CDNS_UART_SR) &
-> -		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
-> -	return (status == CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-> -}
-> -
->  /**
->   * cdns_uart_break_ctl - Based on the input ctl we have to start or 
-> stop
->   *			transmitting char breaks
-> @@ -829,6 +933,9 @@ static int cdns_uart_startup(struct uart_port 
-> *port)
->  		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
->  		cpu_relax();
-> 
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED)
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +
->  	/*
->  	 * Clear the RX disable bit and then set the RX enable bit to enable
->  	 * the receiver.
-> @@ -1455,6 +1562,23 @@ MODULE_DEVICE_TABLE(of, cdns_uart_of_match);
->  /* Temporary variable for storing number of instances */
->  static int instances;
-> 
-> +/**
-> + * cdns_rs485_config - Called when an application calls TIOCSRS485 
-> ioctl.
-> + * @port: Pointer to the uart_port structure
-> + * @termios: Pointer to the ktermios structure
-> + * @rs485: Pointer to the serial_rs485 structure
-> + *
-> + * Return: 0
-> + */
-> +static int cdns_rs485_config(struct uart_port *port, struct ktermios 
-> *termios,
-> +			     struct serial_rs485 *rs485)
-> +{
-> +	if (rs485->flags & SER_RS485_ENABLED)
-> +		dev_dbg(port->dev, "Setting UART to RS485\n");
-> +
-
-Shouldn't you force automatic RTS control off here?
-And also call cdns_rs485_rx_setup()
-
-> +	return 0;
-> +}
-> +
->  /**
->   * cdns_uart_probe - Platform driver probe
->   * @pdev: Pointer to the platform device structure
-> @@ -1463,6 +1587,7 @@ static int instances;
->   */
->  static int cdns_uart_probe(struct platform_device *pdev)
->  {
-> +	u32 val;
->  	int rc, id, irq;
->  	struct uart_port *port;
->  	struct resource *res;
-> @@ -1597,9 +1722,23 @@ static int cdns_uart_probe(struct 
-> platform_device *pdev)
->  	port->private_data = cdns_uart_data;
->  	port->read_status_mask = CDNS_UART_IXR_TXEMPTY | CDNS_UART_IXR_RXTRIG 
-> |
->  			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
-> +	port->rs485_config = cdns_rs485_config;
-> +	port->rs485_supported = cdns_rs485_supported;
->  	cdns_uart_data->port = port;
->  	platform_set_drvdata(pdev, port);
-> 
-> +	rc = uart_get_rs485_mode(port);
-> +	if (rc)
-> +		goto err_out_clk_notifier;
-> +
-> +	cdns_uart_data->gpiod = devm_gpiod_get_optional(&pdev->dev, "rts",
-> +							GPIOD_OUT_LOW);
-> +	if (IS_ERR(cdns_uart_data->gpiod)) {
-> +		rc = PTR_ERR(cdns_uart_data->gpiod);
-> +		dev_err(port->dev, "xuartps: devm_gpiod_get_optional failed\n");
-> +		goto err_out_clk_notifier;
-> +	}
-> +
->  	pm_runtime_use_autosuspend(&pdev->dev);
->  	pm_runtime_set_autosuspend_delay(&pdev->dev, 
-> UART_AUTOSUSPEND_TIMEOUT);
->  	pm_runtime_set_active(&pdev->dev);
-> @@ -1638,6 +1777,16 @@ static int cdns_uart_probe(struct 
-> platform_device *pdev)
->  	cdns_uart_data->cts_override = 
-> of_property_read_bool(pdev->dev.of_node,
->  							     "cts-override");
-> 
-> +	if (cdns_uart_data->port->rs485.flags & SER_RS485_ENABLED) {
-> +		if (!cdns_uart_data->gpiod) {
-> +			val = readl(cdns_uart_data->port->membase
-> +				    + CDNS_UART_MODEMCR);
-> +			val |= CDNS_UART_MODEMCR_RTS;
-> +			writel(val, cdns_uart_data->port->membase
-> +			       + CDNS_UART_MODEMCR);
-> +		}
-> +	}
-
-Simply call cdns_rs485_rx_setup() ?
-
-> +
->  	instances++;
-> 
->  	return 0;
-> @@ -1646,6 +1795,7 @@ static int cdns_uart_probe(struct platform_device 
-> *pdev)
->  	pm_runtime_disable(&pdev->dev);
->  	pm_runtime_set_suspended(&pdev->dev);
->  	pm_runtime_dont_use_autosuspend(&pdev->dev);
-> +err_out_clk_notifier:
->  #ifdef CONFIG_COMMON_CLK
->  	clk_notifier_unregister(cdns_uart_data->uartclk,
->  			&cdns_uart_data->clk_rate_change_nb);
-
-Please also modify cdns_uart_[s|g]et_mctrl() so they support rts-gpios.
-
-Maarten
-
+Must be, nothing applies for me in this series.
 
