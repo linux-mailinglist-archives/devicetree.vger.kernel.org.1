@@ -1,266 +1,177 @@
-Return-Path: <devicetree+bounces-13864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB5B17E0E5D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 09:52:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8D27E0F14
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 12:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43F06281FE4
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 08:52:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E97B51C20959
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 11:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76633C2C6;
-	Sat,  4 Nov 2023 08:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="A2kDYOYq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05FA8156D9;
+	Sat,  4 Nov 2023 11:28:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A33CC120
-	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 08:52:27 +0000 (UTC)
-Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81EB4D50
-	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 01:52:24 -0700 (PDT)
-Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 202311040852228741266ab6de62bc15
-        for <devicetree@vger.kernel.org>;
-        Sat, 04 Nov 2023 09:52:22 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=jan.kiszka@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=ywFwNboZZKYcNPO0K9ZuTF1g7+TmpkPYE9IXZevrQiw=;
- b=A2kDYOYqp3QkQekYaqwZ3n7pImD3cnIgFYxxC/Jua/2QVjCg+KgRtKtXGjGTG5bPsa4654
- fTaN6zCU4DI1EEVAowAdhBeacPybGg2lmjkLZhEc2sdDb+kJdUV456TFCSWyIjWHQGDW/HwJ
- FibktR3+/tRRgIzitGEuUdEaci0hE=;
-From: Jan Kiszka <jan.kiszka@siemens.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Bao Cheng Su <baocheng.su@siemens.com>,
-	Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-Subject: [PATCH v4 5/5] arm64: dts: ti: iot2050: Add icssg-prueth nodes for PG2 devices
-Date: Sat,  4 Nov 2023 09:52:19 +0100
-Message-Id: <565d31a5fd29c4dd0cf28e347049a1247a6e446c.1699087938.git.jan.kiszka@siemens.com>
-In-Reply-To: <cover.1699087938.git.jan.kiszka@siemens.com>
-References: <cover.1699087938.git.jan.kiszka@siemens.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F5603D68;
+	Sat,  4 Nov 2023 11:28:47 +0000 (UTC)
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 486991AA;
+	Sat,  4 Nov 2023 04:28:46 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3A48tWlC006209;
+	Sat, 4 Nov 2023 07:28:20 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3u5jv1g9y0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 04 Nov 2023 07:28:20 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 3A4BSJrg052666
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 4 Nov 2023 07:28:19 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Sat, 4 Nov 2023 07:28:18 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Sat, 4 Nov 2023 07:28:18 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Sat, 4 Nov 2023 07:28:18 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (JPALOMIN-L01.ad.analog.com [10.65.41.83] (may be forged))
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3A4BS0Sj031918;
+	Sat, 4 Nov 2023 07:28:02 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Alessandro Zummo
+	<a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, "Jean Delvare" <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>, <linux-rtc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 1/2] dt-bindings: rtc: max31335: add max31335 bindings
+Date: Sat, 4 Nov 2023 13:27:40 +0200
+Message-ID: <20231104112752.3217-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-294854:519-21489:flowmailer
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 4c_qXT-kmUY-K1UW_mvgzwuASM_QlEYM
+X-Proofpoint-ORIG-GUID: 4c_qXT-kmUY-K1UW_mvgzwuASM_QlEYM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-04_10,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=999 suspectscore=0 adultscore=0
+ priorityscore=1501 mlxscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2310240000 definitions=main-2311040096
 
-From: Jan Kiszka <jan.kiszka@siemens.com>
+Document the Analog Devices MAX31335 device tree bindings.
 
-Add the required nodes to enable ICSSG SR2.0 based prueth networking.
-
-As the driver still needs to be extended for SR1.0 support, keep related
-nodes disabled on PG1 devices.
-
-Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 ---
- .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    |  10 +-
- .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 128 ++++++++++++++++++
- 2 files changed, 137 insertions(+), 1 deletion(-)
+changes in v6:
+ - add aux-voltage-chargeable property back in the example
+ .../devicetree/bindings/rtc/adi,max31335.yaml | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/adi,max31335.yaml
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-index 51f902fa35a7..1d1979859583 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Copyright (c) Siemens AG, 2021
-+ * Copyright (c) Siemens AG, 2021-2023
-  *
-  * Authors:
-  *   Jan Kiszka <jan.kiszka@siemens.com>
-@@ -44,3 +44,11 @@ &tx_pru2_0 {
- &tx_pru2_1 {
- 	status = "disabled";
- };
+diff --git a/Documentation/devicetree/bindings/rtc/adi,max31335.yaml b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+new file mode 100644
+index 000000000000..0125cf6727cc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/adi,max31335.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/adi,max31335.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&icssg0_eth {
-+	status = "disabled";
-+};
++title: Analog Devices MAX31335 RTC
 +
-+&icssg0_mdio {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index d2b6439cf496..ab1dffa5c1c6 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -11,6 +11,7 @@
- 
- #include "k3-am654.dtsi"
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/net/ti-dp83867.h>
- 
- / {
- 	aliases {
-@@ -27,6 +28,8 @@ aliases {
- 		spi0 = &mcu_spi0;
- 		mmc0 = &sdhci1;
- 		mmc1 = &sdhci0;
-+		ethernet1 = &icssg0_emac0;
-+		ethernet2 = &icssg0_emac1;
- 	};
- 
- 	chosen {
-@@ -111,6 +114,76 @@ dp_refclk: clock {
- 		#clock-cells = <0>;
- 		clock-frequency = <19200000>;
- 	};
++maintainers:
++  - Antoniu Miclaus <antoniu.miclaus@analog.com>
 +
-+	/* Dual Ethernet application node on PRU-ICSSG0 */
-+	icssg0_eth: icssg0-eth {
-+		compatible = "ti,am654-icssg-prueth";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&icssg0_rgmii_pins_default>;
-+		sram = <&msmc_ram>;
++description:
++  Analog Devices MAX31335 I2C RTC ±2ppm Automotive Real-Time Clock with
++  Integrated MEMS Resonator.
 +
-+		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>,
-+			<&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
-+		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
++allOf:
++  - $ref: rtc.yaml#
 +
-+		ti,pruss-gp-mux-sel = <2>,      /* MII mode */
-+				      <2>,
-+				      <2>,
-+				      <2>,	/* MII mode */
-+				      <2>,
-+				      <2>;
++properties:
++  compatible:
++    const: adi,max31335
 +
-+		ti,mii-g-rt = <&icssg0_mii_g_rt>;
-+		ti,mii-rt = <&icssg0_mii_rt>;
-+		ti,iep = <&icssg0_iep0>,  <&icssg0_iep1>;
++  reg:
++    maxItems: 1
 +
-+		interrupt-parent = <&icssg0_intc>;
-+		interrupts = <24 0 2>, <25 1 3>;
-+		interrupt-names = "tx_ts0", "tx_ts1";
++  interrupts:
++    maxItems: 1
 +
-+		dmas = <&main_udmap 0xc100>, /* egress slice 0 */
-+		       <&main_udmap 0xc101>, /* egress slice 0 */
-+		       <&main_udmap 0xc102>, /* egress slice 0 */
-+		       <&main_udmap 0xc103>, /* egress slice 0 */
-+		       <&main_udmap 0xc104>, /* egress slice 1 */
-+		       <&main_udmap 0xc105>, /* egress slice 1 */
-+		       <&main_udmap 0xc106>, /* egress slice 1 */
-+		       <&main_udmap 0xc107>, /* egress slice 1 */
-+		       <&main_udmap 0x4100>, /* ingress slice 0 */
-+		       <&main_udmap 0x4101>; /* ingress slice 1 */
-+		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-+			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-+			    "rx0", "rx1";
++  "#clock-cells":
++    description:
++      RTC can be used as a clock source through its clock output pin.
++    const: 0
 +
-+		ethernet-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			icssg0_emac0: port@0 {
-+				reg = <0>;
-+				phy-handle = <&icssg0_eth0_phy>;
-+				phy-mode = "rgmii-id";
-+				ti,syscon-rgmii-delay = <&scm_conf 0x4100>;
-+				ti,half-duplex-capable;
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
++  adi,tc-diode:
++    description:
++      Select the diode configuration for the trickle charger.
++      schottky - Schottky diode in series.
++      standard+schottky - standard diode + Schottky diode in series.
++    enum: [schottky, standard+schottky]
 +
-+			icssg0_emac1: port@1 {
-+				reg = <1>;
-+				phy-handle = <&icssg0_eth1_phy>;
-+				phy-mode = "rgmii-id";
-+				ti,syscon-rgmii-delay = <&scm_conf 0x4104>;
-+				ti,half-duplex-capable;
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
-+		};
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -944,6 +1017,43 @@ AM65X_IOPAD(0x0074, PIN_INPUT,  5)  /* (T27) I2C2_SCL */
- 			AM65X_IOPAD(0x0070, PIN_INPUT,  5)  /* (R25) I2C2_SDA */
- 		>;
- 	};
++  trickle-resistor-ohms:
++    description:
++      Selected resistor for trickle charger. Should be specified if trickle
++      charger should be enabled.
++    enum: [3000, 6000, 11000]
 +
-+	icssg0_mdio_pins_default: icssg0-mdio-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0294, PIN_INPUT, 0) /* (AE26) PRG0_MDIO0_MDIO */
-+			AM65X_IOPAD(0x0298, PIN_OUTPUT, 0) /* (AE28) PRG0_MDIO0_MDC */
-+		>;
-+	};
++required:
++  - compatible
++  - reg
 +
-+	icssg0_rgmii_pins_default: icssg0-rgmii-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0244, PIN_INPUT, 2) /* (AB28) PRG0_PRU1_GPO0.PRG0_RGMII2_RD0 */
-+			AM65X_IOPAD(0x0248, PIN_INPUT, 2) /* (AC28) PRG0_PRU1_GPO1.PRG0_RGMII2_RD1 */
-+			AM65X_IOPAD(0x024c, PIN_INPUT, 2) /* (AC27) PRG0_PRU1_GPO2.PRG0_RGMII2_RD2 */
-+			AM65X_IOPAD(0x0250, PIN_INPUT, 2) /* (AB26) PRG0_PRU1_GPO3.PRG0_RGMII2_RD3 */
-+			AM65X_IOPAD(0x0274, PIN_OUTPUT, 2) /* (AC25) PRG0_PRU1_GPO12.PRG0_RGMII2_TD0 */
-+			AM65X_IOPAD(0x0278, PIN_OUTPUT, 2) /* (AD25) PRG0_PRU1_GPO13.PRG0_RGMII2_TD1 */
-+			AM65X_IOPAD(0x027c, PIN_OUTPUT, 2) /* (AD24) PRG0_PRU1_GPO14.PRG0_RGMII2_TD2 */
-+			AM65X_IOPAD(0x0280, PIN_OUTPUT, 2) /* (AE27) PRG0_PRU1_GPO15.PRG0_RGMII2_TD3 */
-+			AM65X_IOPAD(0x0284, PIN_INPUT, 2) /* (AC24) PRG0_PRU1_GPO16.PRG0_RGMII2_TXC */
-+			AM65X_IOPAD(0x0270, PIN_OUTPUT, 2) /* (AB24) PRG0_PRU1_GPO11.PRG0_RGMII2_TX_CTL */
-+			AM65X_IOPAD(0x025c, PIN_INPUT, 2) /* (AB27) PRG0_PRU1_GPO6.PRG0_RGMII2_RXC */
-+			AM65X_IOPAD(0x0254, PIN_INPUT, 2) /* (AA25) PRG0_PRU1_GPO4.PRG0_RGMII2_RX_CTL */
++unevaluatedProperties: false
 +
-+			AM65X_IOPAD(0x01f4, PIN_INPUT, 2) /* (V24) PRG0_PRU0_GPO0.PRG0_RGMII1_RD0 */
-+			AM65X_IOPAD(0x01f8, PIN_INPUT, 2) /* (W25) PRG0_PRU0_GPO1.PRG0_RGMII1_RD1 */
-+			AM65X_IOPAD(0x01fc, PIN_INPUT, 2) /* (W24) PRG0_PRU0_GPO2.PRG0_RGMII1_RD2 */
-+			AM65X_IOPAD(0x0200, PIN_INPUT, 2) /* (AA27) PRG0_PRU0_GPO3.PRG0_RGMII1_RD3 */
-+			AM65X_IOPAD(0x0224, PIN_OUTPUT, 2) /* (AD27) PRG0_PRU0_GPO12.PRG0_RGMII1_TD0 */
-+			AM65X_IOPAD(0x0228, PIN_OUTPUT, 2) /* (AC26) PRG0_PRU0_GPO13.PRG0_RGMII1_TD1 */
-+			AM65X_IOPAD(0x022c, PIN_OUTPUT, 2) /* (AD26) PRG0_PRU0_GPO14.PRG0_RGMII1_TD2 */
-+			AM65X_IOPAD(0x0230, PIN_OUTPUT, 2) /* (AA24) PRG0_PRU0_GPO15.PRG0_RGMII1_TD3 */
-+			AM65X_IOPAD(0x0234, PIN_INPUT, 2) /* (AD28) PRG0_PRU0_GPO16.PRG0_RGMII1_TXC */
-+			AM65X_IOPAD(0x0220, PIN_OUTPUT, 2) /* (AB25) PRG0_PRU0_GPO11.PRG0_RGMII1_TX_CTL */
-+			AM65X_IOPAD(0x020c, PIN_INPUT, 2) /* (Y25) PRG0_PRU0_GPO6.PRG0_RGMII1_RXC */
-+			AM65X_IOPAD(0x0204, PIN_INPUT, 2) /* (Y24) PRG0_PRU0_GPO4.PRG0_RGMII1_RX_CTL */
-+		>;
-+	};
- };
- 
- &main_pmx1 {
-@@ -1316,3 +1426,21 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- 	mboxes = <&mailbox0_cluster1>, <&mbox_mcu_r5fss0_core1>;
- };
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+&icssg0_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&icssg0_mdio_pins_default>;
-+
-+	icssg0_eth0_phy: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+	};
-+
-+	icssg0_eth1_phy: ethernet-phy@1 {
-+		reg = <1>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+	};
-+};
++        rtc@68 {
++            compatible = "adi,max31335";
++            reg = <0x68>;
++            pinctrl-0 = <&rtc_nint_pins>;
++            interrupts-extended = <&gpio1 16 IRQ_TYPE_LEVEL_HIGH>;
++            aux-voltage-chargeable = <1>;
++            trickle-resistor-ohms = <6000>;
++            adi,tc-diode = "schottky";
++        };
++    };
++...
 -- 
-2.35.3
+2.42.0
 
 
