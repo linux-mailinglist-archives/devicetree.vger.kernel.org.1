@@ -1,194 +1,272 @@
-Return-Path: <devicetree+bounces-13854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839257E0CFA
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 02:01:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C647E0D8A
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 04:49:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C31F281E31
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 01:01:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3C9C1C210F1
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 03:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9229E7FF;
-	Sat,  4 Nov 2023 01:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90C91FC9;
+	Sat,  4 Nov 2023 03:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=126.com header.i=@126.com header.b="nxzESeJR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C667yC8V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9571A399
-	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 01:01:03 +0000 (UTC)
-Received: from m1524.mail.126.com (m1524.mail.126.com [220.181.15.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0533ED50;
-	Fri,  3 Nov 2023 18:00:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=6zQfb+8twt4T4FD2mQ4A4tTb1mluKFRDvk1KlxsrBK4=; b=n
-	xzESeJRAlwObEdw5a4GFmXx0aYrmCTlmGRuTZrKYsp0+SyhnmNQZnvsmlMn7v4ch
-	bEV+lB5HeEOV3Gc2pvNW3SYJ7lpvkJ1klEtUSg0eZHzVvbB4vzknMCIPtPf1dVS5
-	1/ZmnKdOfNZ/B7TAUXJiJtS1pA+YqwOTX3NQYHpQt4=
-Received: from figure1802$126.com ( [183.193.16.145] ) by
- ajax-webmail-wmsvr24 (Coremail) ; Sat, 4 Nov 2023 08:58:10 +0800 (CST)
-X-Originating-IP: [183.193.16.145]
-Date: Sat, 4 Nov 2023 08:58:10 +0800 (CST)
-From: Ben  <figure1802@126.com>
-To: "Anup Patel" <apatel@ventanamicro.com>
-Cc: "Palmer Dabbelt" <palmer@dabbelt.com>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Thomas Gleixner" <tglx@linutronix.de>, 
-	"Rob Herring" <robh+dt@kernel.org>, 
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, 
-	"Frank Rowand" <frowand.list@gmail.com>, 
-	"Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	"Saravana Kannan" <saravanak@google.com>, 
-	"Marc Zyngier" <maz@kernel.org>, "Anup Patel" <anup@brainfault.org>, 
-	linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Bj=C3=B6rn_T=C3=B6pel?= <bjorn@kernel.org>, 
-	"Atish Patra" <atishp@atishpatra.org>, 
-	linux-riscv@lists.infradead.org, 
-	"Andrew Jones" <ajones@ventanamicro.com>
-Subject: Re:[PATCH v11 12/14] irqchip/riscv-aplic: Add support for MSI-mode
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
- Copyright (c) 2002-2023 www.mailtech.cn 126com
-In-Reply-To: <20231023172800.315343-13-apatel@ventanamicro.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-13-apatel@ventanamicro.com>
-X-NTES-SC: AL_QuySC/yetkwi5iCZbekfm08Xhew/XsK1vfkm3I5QN5FwjAnkxyI9b2VZAGbp4uS2DDCzvAKNSwF1w+lFZ4JIfqg0k76SzIPhAEayQPBd9VSaeQ==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F663D86
+	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 03:49:26 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314C5184;
+	Fri,  3 Nov 2023 20:49:25 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A43UnVS013951;
+	Sat, 4 Nov 2023 03:49:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=z7J4w8AIQhBfo6voAmDy+eiFvgXqP4usPxjhxkdfAOg=;
+ b=C667yC8Vwx9IBSQmBvswotkE5o0LvUYuVEEu48ecSZhgn4NLW9eVnJmAUjwV0nCclMaW
+ lPgRZMn3I+dfO40vpM2LNitW4KIUZvUcC+M4WDWP98iBTwexiIapb2gQobMHJXHLJjHA
+ ok6oZqhfRwIfxIygEWiXHpliivAVr9osVfHh4rZKdqEnOmP8OWwXDfLQorvm+TFTZYtg
+ 0P4Yi8wAxmu0Jn0GW21NBIlyhMBmki58bZn+i/Hd0eap16uyNNVElLYxM+cdBh5WYCFj
+ i4EAw52ENL6aPge9jHiSvkCKPFNmqcLe97bM5JkFqbGu9WVHvSVR/AgayIRmkki+9+XO Vg== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u4cw9v3gg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 04 Nov 2023 03:49:12 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A43nBQt002651
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 4 Nov 2023 03:49:11 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 3 Nov 2023 20:49:08 -0700
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andersson@kernel.org>, <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+Subject: [PATCH v12 0/4] add clock controller of qca8386/qca8084
+Date: Sat, 4 Nov 2023 11:48:54 +0800
+Message-ID: <20231104034858.9159-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:GMqowAD3H3kjl0Vl+44YAA--.30406W
-X-CM-SenderInfo: pilj32bhryija6rslhhfrp/1tbiqAcdXlpECV3s7wAGsj
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZJz12lcaSA8H_ODmkbaJ220QooFhjQc3
+X-Proofpoint-ORIG-GUID: ZJz12lcaSA8H_ODmkbaJ220QooFhjQc3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-04_01,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
+ mlxscore=0 malwarescore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2310240000
+ definitions=main-2311040031
 
-QXQgMjAyMy0xMC0yNCAwMToyNzo1OCwgIkFudXAgUGF0ZWwiIDxhcGF0ZWxAdmVudGFuYW1pY3Jv
-LmNvbT4gd3JvdGU6Cj5UaGUgUklTQy1WIGFkdmFuY2VkIHBsYXRmb3JtLWxldmVsIGludGVycnVw
-dCBjb250cm9sbGVyIChBUExJQykgaGFzCj50d28gbW9kZXMgb2Ygb3BlcmF0aW9uOiAxKSBEaXJl
-Y3QgbW9kZSBhbmQgMikgTVNJIG1vZGUuCj4oRm9yIG1vcmUgZGV0YWlscywgcmVmZXIgaHR0cHM6
-Ly9naXRodWIuY29tL3Jpc2N2L3Jpc2N2LWFpYSkKPgo+SW4gQVBMSUMgTVNJLW1vZGUsIHdpcmVk
-IGludGVycnVwdHMgYXJlIGZvcndhcmVkIGFzIG1lc3NhZ2Ugc2lnbmFsZWQKPmludGVycnVwdHMg
-KE1TSXMpIHRvIENQVXMgdmlhIElNU0lDLgo+Cj5XZSBleHRlbmQgdGhlIGV4aXN0aW5nIEFQTElD
-IGlycWNoaXAgZHJpdmVyIHRvIHN1cHBvcnQgTVNJLW1vZGUgZm9yCj5SSVNDLVYgcGxhdGZvcm1z
-IGhhdmluZyBib3RoIHdpcmVkIGludGVycnVwdHMgYW5kIE1TSXMuCj4KPlNpZ25lZC1vZmYtYnk6
-IEFudXAgUGF0ZWwgPGFwYXRlbEB2ZW50YW5hbWljcm8uY29tPgo+LS0tCj4gZHJpdmVycy9pcnFj
-aGlwL0tjb25maWcgICAgICAgICAgICAgICAgfCAgIDYgKwo+IGRyaXZlcnMvaXJxY2hpcC9NYWtl
-ZmlsZSAgICAgICAgICAgICAgIHwgICAxICsKPiBkcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFw
-bGljLW1haW4uYyB8ICAgMiArLQo+IGRyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFp
-bi5oIHwgICA4ICsKPiBkcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jICB8IDI4
-NSArKysrKysrKysrKysrKysrKysrKysrKysrCj4gNSBmaWxlcyBjaGFuZ2VkLCAzMDEgaW5zZXJ0
-aW9ucygrKSwgMSBkZWxldGlvbigtKQo+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2lycWNo
-aXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jCj4KPmRpZmYgLS1naXQgYS9kcml2ZXJzL2lycWNoaXAv
-S2NvbmZpZyBiL2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnCj5pbmRleCAxOTk2Y2M2ZjY2NmEuLjdh
-ZGM0ZGJlMDdmZiAxMDA2NDQKPi0tLSBhL2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnCj4rKysgYi9k
-cml2ZXJzL2lycWNoaXAvS2NvbmZpZwo+QEAgLTU1MSw2ICs1NTEsMTIgQEAgY29uZmlnIFJJU0NW
-X0FQTElDCj4gCWRlcGVuZHMgb24gUklTQ1YKPiAJc2VsZWN0IElSUV9ET01BSU5fSElFUkFSQ0hZ
-Cj4gCj4rY29uZmlnIFJJU0NWX0FQTElDX01TSQo+Kwlib29sCj4rCWRlcGVuZHMgb24gUklTQ1Zf
-QVBMSUMKPisJc2VsZWN0IEdFTkVSSUNfTVNJX0lSUQo+KwlkZWZhdWx0IFJJU0NWX0FQTElDCj4r
-Cj4gY29uZmlnIFJJU0NWX0lNU0lDCj4gCWJvb2wKPiAJZGVwZW5kcyBvbiBSSVNDVgo+ZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9NYWtlZmlsZSBiL2RyaXZlcnMvaXJxY2hpcC9NYWtlZmls
-ZQo+aW5kZXggN2Y4Mjg5NzkwZWQ4Li40Nzk5NWZkYjJjNjAgMTAwNjQ0Cj4tLS0gYS9kcml2ZXJz
-L2lycWNoaXAvTWFrZWZpbGUKPisrKyBiL2RyaXZlcnMvaXJxY2hpcC9NYWtlZmlsZQo+QEAgLTk2
-LDYgKzk2LDcgQEAgb2JqLSQoQ09ORklHX0NTS1lfTVBJTlRDKQkJKz0gaXJxLWNza3ktbXBpbnRj
-Lm8KPiBvYmotJChDT05GSUdfQ1NLWV9BUEJfSU5UQykJCSs9IGlycS1jc2t5LWFwYi1pbnRjLm8K
-PiBvYmotJChDT05GSUdfUklTQ1ZfSU5UQykJCSs9IGlycS1yaXNjdi1pbnRjLm8KPiBvYmotJChD
-T05GSUdfUklTQ1ZfQVBMSUMpCQkrPSBpcnEtcmlzY3YtYXBsaWMtbWFpbi5vIGlycS1yaXNjdi1h
-cGxpYy1kaXJlY3Qubwo+K29iai0kKENPTkZJR19SSVNDVl9BUExJQ19NU0kpCQkrPSBpcnEtcmlz
-Y3YtYXBsaWMtbXNpLm8KPiBvYmotJChDT05GSUdfUklTQ1ZfSU1TSUMpCQkrPSBpcnEtcmlzY3Yt
-aW1zaWMtc3RhdGUubyBpcnEtcmlzY3YtaW1zaWMtZWFybHkubyBpcnEtcmlzY3YtaW1zaWMtcGxh
-dGZvcm0ubwo+IG9iai0kKENPTkZJR19TSUZJVkVfUExJQykJCSs9IGlycS1zaWZpdmUtcGxpYy5v
-Cj4gb2JqLSQoQ09ORklHX0lNWF9JUlFTVEVFUikJCSs9IGlycS1pbXgtaXJxc3RlZXIubwo+ZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jIGIvZHJpdmVy
-cy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmMKPmluZGV4IDg3NDUwNzA4YTczMy4uZDFi
-MzQyYjY2NTUxIDEwMDY0NAo+LS0tIGEvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1t
-YWluLmMKPisrKyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jCj5AQCAt
-MjA1LDcgKzIwNSw3IEBAIHN0YXRpYyBpbnQgYXBsaWNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2Rl
-dmljZSAqcGRldikKPiAJCW1zaV9tb2RlID0gb2ZfcHJvcGVydHlfcHJlc2VudCh0b19vZl9ub2Rl
-KGRldi0+Zndub2RlKSwKPiAJCQkJCQkibXNpLXBhcmVudCIpOwo+IAlpZiAobXNpX21vZGUpCj4t
-CQlyYyA9IC1FTk9ERVY7Cj4rCQlyYyA9IGFwbGljX21zaV9zZXR1cChkZXYsIHJlZ3MpOwo+IAll
-bHNlCj4gCQlyYyA9IGFwbGljX2RpcmVjdF9zZXR1cChkZXYsIHJlZ3MpOwo+IAlpZiAocmMpIHsK
-PmRpZmYgLS1naXQgYS9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1haW4uaCBiL2Ry
-aXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5oCj5pbmRleCA0NzRhMDQyMjkzMzQu
-Ljc4MjY3ZWM1ODA5OCAxMDA2NDQKPi0tLSBhL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBs
-aWMtbWFpbi5oCj4rKysgYi9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1haW4uaAo+
-QEAgLTQxLDUgKzQxLDEzIEBAIHZvaWQgYXBsaWNfaW5pdF9od19nbG9iYWwoc3RydWN0IGFwbGlj
-X3ByaXYgKnByaXYsIGJvb2wgbXNpX21vZGUpOwo+IGludCBhcGxpY19zZXR1cF9wcml2KHN0cnVj
-dCBhcGxpY19wcml2ICpwcml2LCBzdHJ1Y3QgZGV2aWNlICpkZXYsCj4gCQkgICAgIHZvaWQgX19p
-b21lbSAqcmVncyk7Cj4gaW50IGFwbGljX2RpcmVjdF9zZXR1cChzdHJ1Y3QgZGV2aWNlICpkZXYs
-IHZvaWQgX19pb21lbSAqcmVncyk7Cj4rI2lmZGVmIENPTkZJR19SSVNDVl9BUExJQ19NU0kKPitp
-bnQgYXBsaWNfbXNpX3NldHVwKHN0cnVjdCBkZXZpY2UgKmRldiwgdm9pZCBfX2lvbWVtICpyZWdz
-KTsKPisjZWxzZQo+K3N0YXRpYyBpbmxpbmUgaW50IGFwbGljX21zaV9zZXR1cChzdHJ1Y3QgZGV2
-aWNlICpkZXYsIHZvaWQgX19pb21lbSAqcmVncykKPit7Cj4rCXJldHVybiAtRU5PREVWOwo+K30K
-PisjZW5kaWYKPiAKPiAjZW5kaWYKPmRpZmYgLS1naXQgYS9kcml2ZXJzL2lycWNoaXAvaXJxLXJp
-c2N2LWFwbGljLW1zaS5jIGIvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tc2kuYwo+
-bmV3IGZpbGUgbW9kZSAxMDA2NDQKPmluZGV4IDAwMDAwMDAwMDAwMC4uMDg2ZDAwZTA0MjllCj4t
-LS0gL2Rldi9udWxsCj4rKysgYi9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5j
-Cj5AQCAtMCwwICsxLDI4NSBAQAo+Ky8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4w
-Cj4rLyoKPisgKiBDb3B5cmlnaHQgKEMpIDIwMjEgV2VzdGVybiBEaWdpdGFsIENvcnBvcmF0aW9u
-IG9yIGl0cyBhZmZpbGlhdGVzLgo+KyAqIENvcHlyaWdodCAoQykgMjAyMiBWZW50YW5hIE1pY3Jv
-IFN5c3RlbXMgSW5jLgo+KyAqLwo+Kwo+KyNpbmNsdWRlIDxsaW51eC9iaXRvcHMuaD4KPisjaW5j
-bHVkZSA8bGludXgvY3B1Lmg+Cj4rI2luY2x1ZGUgPGxpbnV4L2ludGVycnVwdC5oPgo+KyNpbmNs
-dWRlIDxsaW51eC9pcnFjaGlwLmg+Cj4rI2luY2x1ZGUgPGxpbnV4L2lycWNoaXAvcmlzY3YtYXBs
-aWMuaD4KPisjaW5jbHVkZSA8bGludXgvaXJxY2hpcC9yaXNjdi1pbXNpYy5oPgo+KyNpbmNsdWRl
-IDxsaW51eC9tb2R1bGUuaD4KPisjaW5jbHVkZSA8bGludXgvbXNpLmg+Cj4rI2luY2x1ZGUgPGxp
-bnV4L29mX2lycS5oPgo+KyNpbmNsdWRlIDxsaW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4KPisjaW5j
-bHVkZSA8bGludXgvcHJpbnRrLmg+Cj4rI2luY2x1ZGUgPGxpbnV4L3NtcC5oPgo+Kwo+KyNpbmNs
-dWRlICJpcnEtcmlzY3YtYXBsaWMtbWFpbi5oIgo+Kwo+K3N0YXRpYyB2b2lkIGFwbGljX21zaV9p
-cnFfdW5tYXNrKHN0cnVjdCBpcnFfZGF0YSAqZCkKPit7Cj4rCWFwbGljX2lycV91bm1hc2soZCk7
-Cj4rCWlycV9jaGlwX3VubWFza19wYXJlbnQoZCk7Cj4rfQo+Kwo+K3N0YXRpYyB2b2lkIGFwbGlj
-X21zaV9pcnFfbWFzayhzdHJ1Y3QgaXJxX2RhdGEgKmQpCj4rewo+KwlhcGxpY19pcnFfbWFzayhk
-KTsKPisJaXJxX2NoaXBfbWFza19wYXJlbnQoZCk7Cj4rfQo+Kwo+K3N0YXRpYyB2b2lkIGFwbGlj
-X21zaV9pcnFfZW9pKHN0cnVjdCBpcnFfZGF0YSAqZCkKPit7Cj4rCXN0cnVjdCBhcGxpY19wcml2
-ICpwcml2ID0gaXJxX2RhdGFfZ2V0X2lycV9jaGlwX2RhdGEoZCk7Cj4rCXUzMiByZWdfb2ZmLCBy
-ZWdfbWFzazsKPisKPisJLyoKPisJICogRU9JIGhhbmRsaW5nIG9ubHkgcmVxdWlyZWQgb25seSBm
-b3IgbGV2ZWwtdHJpZ2dlcmVkCj4rCSAqIGludGVycnVwdHMgaW4gQVBMSUMgTVNJIG1vZGUuCj4r
-CSAqLwo+Kwo+KwlyZWdfb2ZmID0gQVBMSUNfQ0xSSVBfQkFTRSArICgoZC0+aHdpcnEgLyBBUExJ
-Q19JUlFCSVRTX1BFUl9SRUcpICogNCk7Cj4rCXJlZ19tYXNrID0gQklUKGQtPmh3aXJxICUgQVBM
-SUNfSVJRQklUU19QRVJfUkVHKTsKPisJc3dpdGNoIChpcnFkX2dldF90cmlnZ2VyX3R5cGUoZCkp
-IHsKPisJY2FzZSBJUlFfVFlQRV9MRVZFTF9MT1c6Cj4rCQlpZiAoIShyZWFkbChwcml2LT5yZWdz
-ICsgcmVnX29mZikgJiByZWdfbWFzaykpCj4rCQkJd3JpdGVsKGQtPmh3aXJxLCBwcml2LT5yZWdz
-ICsgQVBMSUNfU0VUSVBOVU1fTEUpOwo+KwkJYnJlYWs7Cj4rCWNhc2UgSVJRX1RZUEVfTEVWRUxf
-SElHSDoKPisJCWlmIChyZWFkbChwcml2LT5yZWdzICsgcmVnX29mZikgJiByZWdfbWFzaykKPisJ
-CQl3cml0ZWwoZC0+aHdpcnEsIHByaXYtPnJlZ3MgKyBBUExJQ19TRVRJUE5VTV9MRSk7Cj4rCQli
-cmVhazsKPisJfQo+K30KPisKPitzdGF0aWMgc3RydWN0IGlycV9jaGlwIGFwbGljX21zaV9jaGlw
-ID0gewo+KwkubmFtZQkJPSAiQVBMSUMtTVNJIiwKPisJLmlycV9tYXNrCT0gYXBsaWNfbXNpX2ly
-cV9tYXNrLAo+KwkuaXJxX3VubWFzawk9IGFwbGljX21zaV9pcnFfdW5tYXNrLAo+KwkuaXJxX3Nl
-dF90eXBlCT0gYXBsaWNfaXJxX3NldF90eXBlLAo+KwkuaXJxX2VvaQk9IGFwbGljX21zaV9pcnFf
-ZW9pLAo+KyNpZmRlZiBDT05GSUdfU01QCj4rCS5pcnFfc2V0X2FmZmluaXR5ID0gaXJxX2NoaXBf
-c2V0X2FmZmluaXR5X3BhcmVudCwKPisjZW5kaWYKPisJLmZsYWdzCQk9IElSUUNISVBfU0VUX1RZ
-UEVfTUFTS0VEIHwKPisJCQkgIElSUUNISVBfU0tJUF9TRVRfV0FLRSB8Cj4rCQkJICBJUlFDSElQ
-X01BU0tfT05fU1VTUEVORCwKPit9Owo+Kwo+K3N0YXRpYyBpbnQgYXBsaWNfbXNpX2lycWRvbWFp
-bl90cmFuc2xhdGUoc3RydWN0IGlycV9kb21haW4gKmQsCj4rCQkJCQkgc3RydWN0IGlycV9md3Nw
-ZWMgKmZ3c3BlYywKPisJCQkJCSB1bnNpZ25lZCBsb25nICpod2lycSwKPisJCQkJCSB1bnNpZ25l
-ZCBpbnQgKnR5cGUpCj4rewo+KwlzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiA9IHBsYXRmb3JtX21z
-aV9nZXRfaG9zdF9kYXRhKGQpOwo+Kwo+KwlyZXR1cm4gYXBsaWNfaXJxZG9tYWluX3RyYW5zbGF0
-ZShmd3NwZWMsIHByaXYtPmdzaV9iYXNlLCBod2lycSwgdHlwZSk7Cj4rfQo+Kwo+K3N0YXRpYyBp
-bnQgYXBsaWNfbXNpX2lycWRvbWFpbl9hbGxvYyhzdHJ1Y3QgaXJxX2RvbWFpbiAqZG9tYWluLAo+
-KwkJCQkgICAgIHVuc2lnbmVkIGludCB2aXJxLCB1bnNpZ25lZCBpbnQgbnJfaXJxcywKPisJCQkJ
-ICAgICB2b2lkICphcmcpCj4rewo+KwlpbnQgaSwgcmV0Owo+Kwl1bnNpZ25lZCBpbnQgdHlwZTsK
-PisJaXJxX2h3X251bWJlcl90IGh3aXJxOwo+KwlzdHJ1Y3QgaXJxX2Z3c3BlYyAqZndzcGVjID0g
-YXJnOwo+KwlzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiA9IHBsYXRmb3JtX21zaV9nZXRfaG9zdF9k
-YXRhKGRvbWFpbik7Cj4rCj4rCXJldCA9IGFwbGljX2lycWRvbWFpbl90cmFuc2xhdGUoZndzcGVj
-LCBwcml2LT5nc2lfYmFzZSwgJmh3aXJxLCAmdHlwZSk7Cj4rCWlmIChyZXQpCj4rCQlyZXR1cm4g
-cmV0OwoKSW4geW91ciBwYXRjaHNldCwgdGhlIHdpcmVkIElSUSBhbmQgSVJRIG9mIHBsYXRmb3Jt
-IGRldmljZSB3aWxsIGdvIGludG8gQVBMSUMtTVNJIGRvbWFpbiBmaXJzdGx5LgpMZXQgbWUgYXNz
-dW1lIGhlcmUgaXMgYSBNU0kgSVJRIG5vdCB3aXJlZCBJUlEgb24gYSBkZXZpY2UsIGFuZCBpdCBp
-cyBhIHBsYXRmb3JtIGRldmljZSBpbiBzeXN0ZW0uCnNvIGluIGFwbGljX2lycWRvbWFpbl90cmFu
-c2xhdGUoKSBmdW5jdGlvbiwgaXQgd2lsbCBwYXJzZSB0aGUgQVBMSUMgcGh5c2ljYWwgSVJRIG51
-bWJlciBieSBmd3NwZWMtPnBhcmFtWzBdLApidXQgdGhpcyBpcyBub3QgYSB3cmllZCBJUlEsIGl0
-IGlzIGEgTVNJIElSUSwgaXQgc2hvdWxkIG5vdCBoYXMgYSBBUExJQyBwaHlzaWNhbCBJUlEgbnVt
-YmVyLCB0aGUgaHdpcnEgbnVtYmVyIHNob3VsZCBiZSBhbGxvY2F0ZWQgYnkgTVNJIGJpdG1hcCwK
-d2hhdCB2YWx1ZSB3aWxsIGJlIHBhcnNlIGJ5IERUUz8gemVybyBvciBuZWdhdGl2ZT8gCgppZiB0
-aGlzIGlzIGEgbm9uZXhpc3RlbnQgcGh5c2ljYWwgSVJRIG51bWJlciBmb3IgQVBMSUMsIGluIGFw
-bGljX21zaV9pcnFfdW5tYXNrKCktPmFwbGljX2lycV91bm1hc2soKSwgaG93IGl0IHdvcmtzPwoK
-d3JpdGVsKGQtPmh3aXJxLCBwcml2LT5yZWdzICsgQVBMSUNfU0VUSUVOVU0pOwoKCg==
+qca8xxx is 4 * 2.5GBaseT ports chip, working as switch mode
+named by qca8386, or working as PHY mode named by qca8084,
+clock hardware reigster is accessed by MDIO bus.
+
+This patch series add the clock controller of qca8363/qca8084,
+and add the clock ops clk_branch2_prepare_ops to avoid spin lock
+used during the clock operation of qca8k clock controller where
+the sleep happens when accessing clock control register by MDIO
+bus.
+
+Changes in v2:
+	* remove clock flag CLK_ENABLE_MUTEX_LOCK.
+	* add clock ops clk_branch2_qca8k_ops.
+	* improve yaml file for fixing dtschema warnings.
+	* enable clock controller driver in defconfig.
+
+Changes in v3:
+	* rename clk_branch2_qca8k_ops to clk_branch2_mdio_ops.
+	* fix review comments on yaml file.
+	* use dev_err_probe on driver probe error.
+	* only use the compatible "qcom,qca8084-nsscc".
+	* remove enable clock controller driver patch.
+
+Changes in v4:
+	* add _qcom_cc_really_probe function.
+	* commonizing the probe function.
+	* remove flag CLK_IS_CRITICAL from clocks only needed
+	to be enabled in switch device.
+	* update device tree property reg to 0x10. 
+
+Changes in v5:
+	* commonize qcom_cc_really_probe.
+	* add halt_check for the branch clocks.
+	* fix the review comments on nsscc-qca8k.c. 
+
+Changes in v6:
+	* rename clk_branch2_mdio_ops to clk_branch2_prepare_ops.
+
+Changes in v7:
+	* remove the clock flag CLK_IS_CRITICAL.
+	* optimize the file nsscc-qca8k.c.
+	* identify & fix the comments from Stephen.
+
+Changes in v8:
+	* add dependency on ARM in Kconfig.
+
+Changes in v9:
+	* take the clk_ops clk_rcg2_mux_closest_ops to remove the
+	  redundant freq_tbls.
+
+Changes in v10:
+        * fix the patch CHECK and improve the comments.
+
+Changes in v11:
+	* update the clock names to reflect hardware connecton.
+	  NSS_CC_MAC4_SRDS1_CH2_XGMII_RX_DIV_CLK_SRC ->
+	  NSS_CC_MAC4_SRDS1_CH3_XGMII_RX_DIV_CLK_SRC
+
+	  NSS_CC_MAC4_SRDS1_CH2_XGMII_TX_DIV_CLK_SRC ->
+	  NSS_CC_MAC4_SRDS1_CH3_XGMII_TX_DIV_CLK_SRC
+        * resolve the qcom_cc_really_probe merge conflict based
+	  on the latest code.
+
+Changes in v12:
+	* Fix the compile error caused by the parameter of
+	  qcom_cc_really_probe updated from pdev to &pdev->dev in the
+	  new merged clock driver gcc-sm4450.c and camcc-sm8550.c.
+
+Luo Jie (4):
+  clk: qcom: branch: Add clk_branch2_prepare_ops
+  dt-bindings: clock: add qca8386/qca8084 clock and reset definitions
+  clk: qcom: common: commonize qcom_cc_really_probe
+  clk: qcom: add clock controller driver for qca8386/qca8084
+
+ .../bindings/clock/qcom,qca8k-nsscc.yaml      |   79 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/apss-ipq6018.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7180.c               |    2 +-
+ drivers/clk/qcom/camcc-sc7280.c               |    2 +-
+ drivers/clk/qcom/camcc-sdm845.c               |    2 +-
+ drivers/clk/qcom/camcc-sm6350.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8250.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8450.c               |    2 +-
+ drivers/clk/qcom/camcc-sm8550.c               |    2 +-
+ drivers/clk/qcom/clk-branch.c                 |    7 +
+ drivers/clk/qcom/clk-branch.h                 |    1 +
+ drivers/clk/qcom/common.c                     |    7 +-
+ drivers/clk/qcom/common.h                     |    2 +-
+ drivers/clk/qcom/dispcc-qcm2290.c             |    2 +-
+ drivers/clk/qcom/dispcc-sc7180.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc7280.c              |    2 +-
+ drivers/clk/qcom/dispcc-sc8280xp.c            |    2 +-
+ drivers/clk/qcom/dispcc-sdm845.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6115.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6125.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6350.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm6375.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8250.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8450.c              |    2 +-
+ drivers/clk/qcom/dispcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/gcc-ipq5018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq6018.c                |    2 +-
+ drivers/clk/qcom/gcc-ipq8074.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9607.c                |    2 +-
+ drivers/clk/qcom/gcc-mdm9615.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8917.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8939.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8953.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8976.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8996.c                |    2 +-
+ drivers/clk/qcom/gcc-msm8998.c                |    2 +-
+ drivers/clk/qcom/gcc-qcm2290.c                |    2 +-
+ drivers/clk/qcom/gcc-qcs404.c                 |    2 +-
+ drivers/clk/qcom/gcc-qdu1000.c                |    2 +-
+ drivers/clk/qcom/gcc-sa8775p.c                |    2 +-
+ drivers/clk/qcom/gcc-sc7180.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc7280.c                 |    2 +-
+ drivers/clk/qcom/gcc-sc8180x.c                |    2 +-
+ drivers/clk/qcom/gcc-sc8280xp.c               |    2 +-
+ drivers/clk/qcom/gcc-sdm660.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdm845.c                 |    2 +-
+ drivers/clk/qcom/gcc-sdx55.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx65.c                  |    2 +-
+ drivers/clk/qcom/gcc-sdx75.c                  |    2 +-
+ drivers/clk/qcom/gcc-sm4450.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6115.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6125.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm6375.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm7150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8150.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8250.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8350.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8450.c                 |    2 +-
+ drivers/clk/qcom/gcc-sm8550.c                 |    2 +-
+ drivers/clk/qcom/gpucc-msm8998.c              |    2 +-
+ drivers/clk/qcom/gpucc-sa8775p.c              |    2 +-
+ drivers/clk/qcom/gpucc-sc7180.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc7280.c               |    2 +-
+ drivers/clk/qcom/gpucc-sc8280xp.c             |    2 +-
+ drivers/clk/qcom/gpucc-sdm660.c               |    2 +-
+ drivers/clk/qcom/gpucc-sdm845.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6115.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6125.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm6375.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8150.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8250.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8350.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8450.c               |    2 +-
+ drivers/clk/qcom/gpucc-sm8550.c               |    2 +-
+ drivers/clk/qcom/lcc-ipq806x.c                |    2 +-
+ drivers/clk/qcom/lcc-msm8960.c                |    2 +-
+ drivers/clk/qcom/lpassaudiocc-sc7280.c        |    4 +-
+ drivers/clk/qcom/lpasscorecc-sc7180.c         |    2 +-
+ drivers/clk/qcom/lpasscorecc-sc7280.c         |    2 +-
+ drivers/clk/qcom/mmcc-msm8960.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8974.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8994.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8996.c               |    2 +-
+ drivers/clk/qcom/mmcc-msm8998.c               |    2 +-
+ drivers/clk/qcom/mmcc-sdm660.c                |    2 +-
+ drivers/clk/qcom/nsscc-qca8k.c                | 2139 +++++++++++++++++
+ drivers/clk/qcom/tcsrcc-sm8550.c              |    2 +-
+ drivers/clk/qcom/videocc-sc7180.c             |    2 +-
+ drivers/clk/qcom/videocc-sc7280.c             |    2 +-
+ drivers/clk/qcom/videocc-sdm845.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8150.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8250.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8350.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8450.c             |    2 +-
+ drivers/clk/qcom/videocc-sm8550.c             |    2 +-
+ include/dt-bindings/clock/qcom,qca8k-nsscc.h  |  101 +
+ include/dt-bindings/reset/qcom,qca8k-nsscc.h  |   75 +
+ 101 files changed, 2508 insertions(+), 97 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qca8k-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-qca8k.c
+ create mode 100644 include/dt-bindings/clock/qcom,qca8k-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,qca8k-nsscc.h
+
+
+base-commit: ff269e2cd5adce4ae14f883fc9c8803bc43ee1e9
+-- 
+2.42.0
+
 
