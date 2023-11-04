@@ -1,160 +1,169 @@
-Return-Path: <devicetree+bounces-13876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64CE7E109A
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 19:28:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C0017E1102
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 21:56:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EF96281587
-	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 18:28:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87621B20D2F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Nov 2023 20:56:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A6422301;
-	Sat,  4 Nov 2023 18:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700F72420E;
+	Sat,  4 Nov 2023 20:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GIXvjkis"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XP9QZvbE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39FF923768
-	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 18:28:47 +0000 (UTC)
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE9C1BC;
-	Sat,  4 Nov 2023 11:28:45 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54366784377so5090481a12.3;
-        Sat, 04 Nov 2023 11:28:45 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC141A584
+	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 20:56:44 +0000 (UTC)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0FC2D64
+	for <devicetree@vger.kernel.org>; Sat,  4 Nov 2023 13:56:41 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9ae2cc4d17eso495842966b.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Nov 2023 13:56:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699122523; x=1699727323; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WdFHPaqOz+WT1YBXptEVmqeCWrPlYqYYh+DFTeXE4sE=;
-        b=GIXvjkisZXJBmtUxKktQstIEZcek0ACINCbXbfcJWvil+8nbqhDrVnsNQNN/rnSUKf
-         AV+cCfbxhuTTqgmluEGnUrT9Bfc2QKhxPr89fMWR0hqsW/l7Q0v4nCcPH8o7jB8F4GZe
-         KLoTmt0GsRWmVE+A/REQYAytRhZLqxd4h6R7B3rYgwuUCvC3mJsLp9eR9S0mCf0MJ0cf
-         hHgkdcJ1wUqm/QayYmGNxBjjC1lI6ulj1UxxwTZrXFkouvkTngOTrbeMi2J6ba+ewRU+
-         sNUd5LoKST/VLVB6IY/tYNW+vPl6f75QYc75tDWpUzlY2VbVUC1gKzBaWk3PLd/zow8p
-         zitQ==
+        d=linaro.org; s=google; t=1699131400; x=1699736200; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T7icGMbUiQy+im0g/40WS9gOLOWKvv5vy2jRH0rcsEI=;
+        b=XP9QZvbEq7LT4Cgmb65oHZtoOplKBje4/cgfPyjWwAvAfjhfeNjZWL3w/BWhFJCanf
+         ++teN2u8J5zOHsuYpUz7HNHqwLVNZVOp6KwYHRwZBndhdpzvKnKGn/iC016RwUyuf+xi
+         N5CANWLnUHVCXSfXOmhs++w0n6nubi9J1f3Z79cLoKP94Zj8ZYkLAIdIgaz8TWIWrfla
+         k/PnhfRNYmki9pKLBEXVzh+x/g+dFeJ60NE23977zMERl1ibNLB4V46+54x788Qdz3T3
+         zDBcsI1WsHnA008ydyrPx5smEuvsiu9PTL1lLzEzsbY/QEjdGUbcueMiNLhNIJFVPTBv
+         cxmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699122523; x=1699727323;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1699131400; x=1699736200;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WdFHPaqOz+WT1YBXptEVmqeCWrPlYqYYh+DFTeXE4sE=;
-        b=g9BZSSDNOemjkQVRlVDyj3IJu600/HJwaZ2nhWuyN/pRGmwBQIfnhebugBdC4PcfBj
-         RCTPDt9PNy6lF3lTJemjQ6KDl74MbSFZJZpjlUhsrp6GZK1jOrrSUAYoQm99GJR1ZC8F
-         DQeVtu5Q8RLO27o3GIH2wtdExUP5SYQa7kZXimAAO8uvrCrJTlP4mQ+xapvA86k3pXJK
-         QQRxCE/6KZl27dauh1LRpXGVV/Atj+7DgNDmnBxHRgdUA5fl2mNFuIw5Wergpztv948i
-         HAhDnWvD4feQ3OMSnoutmGwYJpn/+F5y4DnOY7L8gbNV45qI8143r/VWgj6/Dg3KVazR
-         q5hA==
-X-Gm-Message-State: AOJu0YwMvcSsyRVqDSs4wBFIXPTVTguBfcoz1WUo6Ggha8bcfdVZsMt7
-	CbRcfuB7EtodVu15SrJf032sqNe/mAqDWw==
-X-Google-Smtp-Source: AGHT+IFKhlpSvHKpmz5r1GFRfKk14+C8AnYuparle3xIsqQTLkJu8rYtYJzqz8yzirV9W2xC9PperA==
-X-Received: by 2002:a50:8d1a:0:b0:543:6828:f129 with SMTP id s26-20020a508d1a000000b005436828f129mr13244148eds.23.1699122523314;
-        Sat, 04 Nov 2023 11:28:43 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:8109:8c00:3664:8aeb:c98d:49fc:fefe])
-        by smtp.gmail.com with ESMTPSA id i23-20020a508717000000b0054353639161sm2099683edb.89.2023.11.04.11.28.42
+        bh=T7icGMbUiQy+im0g/40WS9gOLOWKvv5vy2jRH0rcsEI=;
+        b=HldROGDlCTdSEJDC5HnxcyvtcH/tDnXSjY+mZIT/uj+WFsTIcOZaWOHjL/e/cSPeNS
+         qs+1fmeRKEdvr+Plwk4NJJH5OdqVy13JSLjz5BJbHAQHBvXZu6QNxQyJWrPqCGM0j/1x
+         vVAmdGGygxfQwCykrbW2V4Wx0qH2lOZksH4hd/67SWzFf/X6d9dA2UdMdROnjCCcMQz7
+         XAEgJ62YH004JrMXb+PwfaUsH/mHFIAcWbhwe5i9mGgP1VRDiyZAn19TgtY6dHBSGcRK
+         dWlRKFQwBr+UNx3TQLFgxXUzq9gkvnYFNPHJ5vCC2iq6XtvXl86dMnhrY12IDDwbIJWX
+         oZIQ==
+X-Gm-Message-State: AOJu0YyTA7MBzpscgBY7iRdsfnRC4j3ACcW4sCXsm+zeLrPiUyWn8eKK
+	Ip1aOE1tyh07QmCAUVHhiz3/bA==
+X-Google-Smtp-Source: AGHT+IGv3YNSF0IVhDKBUbB3aVjdbRB8a3+Ft8elorpFbjAPVZeTw8+lFVFOC7Haxe5NnAj/loEd8Q==
+X-Received: by 2002:a17:907:928c:b0:9b2:b9ad:ddd1 with SMTP id bw12-20020a170907928c00b009b2b9adddd1mr8916181ejc.28.1699131400428;
+        Sat, 04 Nov 2023 13:56:40 -0700 (PDT)
+Received: from [127.0.1.1] (178235177017.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.17])
+        by smtp.gmail.com with ESMTPSA id u21-20020a170906655500b00985ed2f1584sm2295075ejn.187.2023.11.04.13.56.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Nov 2023 11:28:43 -0700 (PDT)
-From: Nik Bune <n2h9z4@gmail.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	skhan@linuxfoundation.org,
-	stigge@antcom.de
-Cc: Nik Bune <n2h9z4@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: watchdog: nxp,pnx4008-wdt: convert txt to yaml
-Date: Sat,  4 Nov 2023 19:28:13 +0100
-Message-Id: <20231104182813.80055-1-n2h9z4@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Sat, 04 Nov 2023 13:56:40 -0700 (PDT)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Date: Sat, 04 Nov 2023 21:56:35 +0100
+Subject: [PATCH] arm64: dts: qcom: qrb4210-rb2: Enable MPSS and Wi-Fi
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231104-topic-rb2_wifi-v1-1-fd45ae535d2f@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAAKwRmUC/x3MQQqAIBBA0avIrBPSEqGrRETZTM2mZIwKwrsnL
+ d/i/xcSCmOCTr0geHHiYy8wlYKwTfuKmpdisLVtjKlbfR6Rg5bZjjcTa5q8b4Ij5zBAiaIg8fM
+ P+yHnDxPten1gAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.13-dev-0438c
 
-Convert txt file to yaml. Add maintainers from git blame. 
+Enable the remote processors and tighten up the regulators to enable
+Wi-Fi functionality on the RB2.
 
-Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+For reference, the hw/sw identifies as:
+
+qmi chip_id 0x150 chip_family 0x4002 board_id 0xff soc_id 0x40670000
+qmi fw_version 0x337302d3 fw_build_timestamp 2023-01-06 01:50
+fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.3.3.7.c2-00723-QCAHLSWMTPLZ-1
+wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
+kconfig debug 0 debugfs 0 tracing 0 dfs 0 testmode 0
+firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi
+crc32 b3d4b790
+htt-ver 3.114 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../bindings/watchdog/nxp,pnx4008-wdt.yaml    | 34 +++++++++++++++++++
- .../bindings/watchdog/pnx4008-wdt.txt         | 17 ----------
- 2 files changed, 34 insertions(+), 17 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/pnx4008-wdt.txt
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 24 ++++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml b/Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml
-new file mode 100644
-index 000000000000..86b691a339b5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/nxp,pnx4008-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+index 9738c0dacd58..c2d7e3998d05 100644
+--- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
++++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+@@ -280,6 +280,12 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&remoteproc_mpss {
++	firmware-name = "qcom/qrb4210/modem.mbn";
 +
-+title: NXP PNX watchdog timer
++	status = "okay";
++};
 +
-+allOf:
-+  - $ref: watchdog.yaml#
+ &rpm_requests {
+ 	regulators {
+ 		compatible = "qcom,rpm-pm6125-regulators";
+@@ -346,8 +352,8 @@ vreg_l7a_1p256: l7 {
+ 		};
+ 
+ 		vreg_l8a_0p664: l8 {
+-			regulator-min-microvolt = <400000>;
+-			regulator-max-microvolt = <728000>;
++			regulator-min-microvolt = <640000>;
++			regulator-max-microvolt = <640000>;
+ 		};
+ 
+ 		vreg_l9a_1p8: l9 {
+@@ -424,8 +430,8 @@ vreg_l22a_2p96: l22 {
+ 		};
+ 
+ 		vreg_l23a_3p3: l23 {
+-			regulator-min-microvolt = <3200000>;
+-			regulator-max-microvolt = <3400000>;
++			regulator-min-microvolt = <3312000>;
++			regulator-max-microvolt = <3312000>;
+ 		};
+ 
+ 		vreg_l24a_2p96: l24 {
+@@ -535,6 +541,16 @@ &usb_qmpphy {
+ 	status = "okay";
+ };
+ 
++&wifi {
++	vdd-0.8-cx-mx-supply = <&vreg_l8a_0p664>;
++	vdd-1.8-xo-supply = <&vreg_l16a_1p3>;
++	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
++	vdd-3.3-ch0-supply = <&vreg_l23a_3p3>;
++	qcom,ath10k-calibration-variant = "Thundercomm_RB2";
 +
-+maintainers:
-+  - Roland Stigge <stigge@antcom.de>
++	status = "okay";
++};
 +
-+properties:
-+  compatible:
-+    const: nxp,pnx4008-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    watchdog@4003c000 {
-+        compatible = "nxp,pnx4008-wdt";
-+        reg = <0x4003C000 0x1000>;
-+        timeout-sec = <10>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/pnx4008-wdt.txt b/Documentation/devicetree/bindings/watchdog/pnx4008-wdt.txt
-deleted file mode 100644
-index 4b76bec62af9..000000000000
---- a/Documentation/devicetree/bindings/watchdog/pnx4008-wdt.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--* NXP PNX watchdog timer
--
--Required properties:
--- compatible: must be "nxp,pnx4008-wdt"
--- reg: physical base address of the controller and length of memory mapped
--  region.
--
--Optional properties:
--- timeout-sec: contains the watchdog timeout in seconds.
--
--Example:
--
--	watchdog@4003c000 {
--		compatible = "nxp,pnx4008-wdt";
--		reg = <0x4003C000 0x1000>;
--		timeout-sec = <10>;
--	};
+ &xo_board {
+ 	clock-frequency = <19200000>;
+ };
+
+---
+base-commit: e27090b1413ff236ca1aec26d6b022149115de2c
+change-id: 20231104-topic-rb2_wifi-fa773c5f55ec
+
+Best regards,
 -- 
-2.34.1
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
 
