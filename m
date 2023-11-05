@@ -1,177 +1,98 @@
-Return-Path: <devicetree+bounces-13901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD147E13DC
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 15:22:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6B9E7E1428
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 16:50:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57348281282
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 14:22:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAEE3B20D1F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 15:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5E0D312;
-	Sun,  5 Nov 2023 14:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A6C10940;
+	Sun,  5 Nov 2023 15:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GNIy0GTu"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ekvqwAmw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C32D2FF
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 14:22:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D92D6;
-	Sun,  5 Nov 2023 06:22:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699194142; x=1730730142;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=toY6pyEYbBKJg/bhP6bai1KvDXetaJWeInK0Nmn3nX0=;
-  b=GNIy0GTu2qw+xMzamgTBc70OM3d90qwQgKs56oOxjWyIh9CCLgqrbhkF
-   wA6sSS30Nw8f73vBBoQ+hxfB1CSdmimGheodYMjfVuF4gknffRf9krMHQ
-   XbP2JRIZKnGBGgXOmvnXyMes1tTfHFL0/7H9eZOulM8wQXy+DbbWgqkUy
-   JTTwz1kw7bKpKI89v3GWyYXsAMo67ilrOP9QITDMPCkK9beB4gkc2tCBu
-   JR5i72Go1QQMPokV0RQR3qGMca6jabtgk4rb1ADlsJ94cPku3AGJb02Z2
-   JG9Svn5MDucRzPWIZKfCt7yw47FWR/DNyN/XnxMHD48gHH+mzyr88d5V8
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="2059769"
-X-IronPort-AV: E=Sophos;i="6.03,279,1694761200"; 
-   d="scan'208";a="2059769"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2023 06:22:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="935568580"
-X-IronPort-AV: E=Sophos;i="6.03,279,1694761200"; 
-   d="scan'208";a="935568580"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 05 Nov 2023 06:22:16 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qze10-0005W3-25;
-	Sun, 05 Nov 2023 14:22:14 +0000
-Date: Sun, 5 Nov 2023 22:22:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E008F71
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 15:50:28 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA497E0;
+	Sun,  5 Nov 2023 07:50:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1699199406; x=1699804206; i=wahrenst@gmx.net;
+	bh=T/ZwzeL/J9vx/YU4GSF8/MWxms/yiys6g8xIEPFOdZg=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=ekvqwAmwH+UeW15r44be01HDY6UhwLu5TprSKuLu0YmXFlM/5i2aJOVOjYPsYU8R
+	 nm8YiWknml38Qez8G44myz411KlY+8I2jXGhL6ZOJf9u86NqvsxgM6JKRhQJo20bV
+	 MgFqJflYxMsifIDuk1uRY1cbCbiihnUakAdaXBA+2OT9dSM5h63qo9GYWfojkVMxd
+	 0BVmN1Vr7+uSIxarlci1IAym6ued+XE5AhE73FoiSru19O5xo7NVpu37QyoS1l8N/
+	 JWAo39RmXLURCwnpCTbiofCQTgO4sW4jErxxHQX9YdmCGxA8IJ7qZKfQGFNyadlyj
+	 OCpeORFzn8H2heJ8ug==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M2wGi-1r0lJS1PuW-003Lgm; Sun, 05
+ Nov 2023 16:50:06 +0100
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>
+Cc: bcm-kernel-feedback-list@broadcom.com,
 	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Paul Gazzillo <paul@pgazz.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
-	Matt Ranostay <matt@ranostay.sg>,
-	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
-Message-ID: <202311052102.1GrBH0gk-lkp@intel.com>
-References: <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-leds@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH 0/2] ARM: dts: bcm2711-rpi-400: Fix delete-node of led_act
+Date: Sun,  5 Nov 2023 16:49:38 +0100
+Message-Id: <20231105154940.97688-1-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:nPk57frDAbAXpxz3sxLR4MY2e7EIv8OsNQc3iYrJdOFHaHP7RVe
+ dHngzqKmvK1edDXIn+vsD2HeZaBbo0FX4Fywilg9SpeGm+RxOrsY1KA9BY/BrZ/FtuAJHGR
+ AM6TlKSGmfo6CE24yj/bgfmQjrql1+EJfymivYJjxGmzkU6BH2kRwdWSZCYwjK/FpT6U9tn
+ uziLl9qx8vLP7aaik6AOw==
+UI-OutboundReport: notjunk:1;M01:P0:MU7uD95rWP0=;bmW74QmVBhLvOXNOE7rYY5MfxgP
+ stI/EY+hcT22VXgKMAAwlTFlW+1CbWX939cP/vZSwxMqdLz5mAfnb6nGhlPjjoArmjUWa9WqW
+ jaGWRWlt2xb7qrOsNjq0kRCKUMSo3HfASYqb2P/WTDG5PUXPnWVK8HkLUpzDBRchLhPH8aECh
+ tXuN+4CvlENK+YT277Pqa0n4CVQKCzqzuJt85dre7ct95Nogne15Er+xNWzzU+PfjdzbrBSYh
+ l60bPg80XNEpX37FOaw2KomtIEyqVrwxgme8lL9rAorfzOPc/0e0MMyJ9lV/fnEHrwVsg9BQu
+ rFyOZiS1RMLHAvapGX8AMperMgC7M34z5ajTOQyobUUdF1+G3CnT5LsX9dTtYCccG7FW2tTgx
+ dSa6182c0DcRd7hmyxIHUjJaf0v5/DVUkSi4m9IUa/8zk9ggREyjdMXhQbQfytepi/7tesGRE
+ JWwucLHIXhS+XHH2gSF1+q8jO/uGscjeaWc6rqhDZmvOA8kBsx6ODA6xCWQo5vRzYe471XQTM
+ RMn4Ne/1gpyG9CvRyG/zT/Cf94VHIeryDiUWsrFuH0FvAdlSFqVoqAcV4We5TTPUJWGjK8ssL
+ 13k+pvVcQy8ZIdIlkCFMO5ZWrhBtyKvgVAlWrAohD45ZsBztZp1/IX0gndeJoh259TuVDxZda
+ iWvD7ZQrLpebHw9V6dJUODabuFpZ3L/mT4hImlJDsmoSTrMpF+wXy2fGOF9ZsyG1wsFja3Qce
+ aHFkRstibnbuFCfTEvvAPGTEnT5R3X8PEyeCD+2dbab07yXL6eoqK1NFxl6N4bXmZ5/c0z33Y
+ tJANIvtGp+lN6eSxPtEuH7soWhoS8mpWkAKALuFtQTTH4Syz4fd7Pb3ok5K7gjS/LF6q+TXae
+ K8sv/m0g706EfQqwtaumbBJNHUReJsa3vXXmH+3zLzl/WPJJWbd4+C6Jvn84jn+JDdlayy/kj
+ 5e/3Qg==
 
-Hi Subhajit,
+This series fixes the probing of leds-gpio on the Raspberry Pi 400.
+Also try to improve the error logging of leds-gpio.
 
-kernel test robot noticed the following build warnings:
+Stefan Wahren (2):
+  leds: gpio: Add kernel log if devm_fwnode_gpiod_get fails
+  ARM: dts: bcm2711-rpi-400: Fix delete-node of led_act
 
-[auto build test WARNING on 611da07b89fdd53f140d7b33013f255bf0ed8f34]
+ arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts | 4 +---
+ drivers/leds/leds-gpio.c                       | 2 ++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Subhajit-Ghosh/dt-bindings-iio-light-Avago-APDS9306/20231027-154954
-base:   611da07b89fdd53f140d7b33013f255bf0ed8f34
-patch link:    https://lore.kernel.org/r/20231027074545.6055-3-subhajit.ghosh%40tweaklogic.com
-patch subject: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
-config: powerpc64-allyesconfig (https://download.01.org/0day-ci/archive/20231105/202311052102.1GrBH0gk-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231105/202311052102.1GrBH0gk-lkp@intel.com/reproduce)
+=2D-
+2.34.1
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311052102.1GrBH0gk-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/light/apds9306.c:598:10: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
-     598 |                 return ret;
-         |                        ^~~
-   drivers/iio/light/apds9306.c:593:9: note: initialize the variable 'ret' to silence this warning
-     593 |         int ret, intg_old, gain_old, gain_new, gain_new_closest;
-         |                ^
-         |                 = 0
-   1 warning generated.
-
-
-vim +/ret +598 drivers/iio/light/apds9306.c
-
-   589	
-   590	static int apds9306_intg_time_set(struct apds9306_data *data, int val2)
-   591	{
-   592		struct device *dev = data->dev;
-   593		int ret, intg_old, gain_old, gain_new, gain_new_closest;
-   594		bool ok;
-   595	
-   596		if (!iio_gts_valid_time(&data->gts, val2)) {
-   597			dev_err(dev, "Unsupported integration time %u\n", val2);
- > 598			return ret;
-   599		}
-   600	
-   601		intg_old = iio_gts_find_int_time_by_sel(&data->gts,
-   602							data->intg_time_idx);
-   603		if (ret < 0)
-   604			return ret;
-   605	
-   606		if (intg_old == val2)
-   607			return 0;
-   608	
-   609		gain_old = iio_gts_find_gain_by_sel(&data->gts, data->gain_idx);
-   610		if (gain_old < 0)
-   611			return gain_old;
-   612	
-   613		ret = iio_gts_find_new_gain_by_old_gain_time(&data->gts, gain_old,
-   614							     intg_old, val2, &gain_new);
-   615		if (gain_new < 0) {
-   616			dev_err(dev, "Unsupported gain with time\n");
-   617			return gain_new;
-   618		}
-   619	
-   620		gain_new_closest = iio_find_closest_gain_low(&data->gts, gain_new, &ok);
-   621		if (gain_new_closest < 0) {
-   622			gain_new_closest = iio_gts_get_min_gain(&data->gts);
-   623			if (gain_new_closest < 0)
-   624				return gain_new_closest < 0;
-   625		}
-   626		if (!ok)
-   627			dev_dbg(dev, "Unable to find optimum gain, setting minimum");
-   628	
-   629		ret = iio_gts_find_sel_by_int_time(&data->gts, val2);
-   630		if (ret < 0)
-   631			return ret;
-   632	
-   633		ret = apds9306_intg_time_set_hw(data, ret);
-   634		if (ret)
-   635			return ret;
-   636	
-   637		ret = iio_gts_find_sel_by_gain(&data->gts, gain_new_closest);
-   638		if (ret < 0)
-   639			return ret;
-   640	
-   641		return apds9306_gain_set_hw(data, ret);
-   642	}
-   643	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
