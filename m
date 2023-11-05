@@ -1,181 +1,121 @@
-Return-Path: <devicetree+bounces-13919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD0D7E15F8
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 20:05:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2A97E160F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 20:32:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DC8C2812C0
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 19:05:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B289B1C209AC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 19:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FE05210B;
-	Sun,  5 Nov 2023 19:05:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762CF156F2;
+	Sun,  5 Nov 2023 19:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FsX1qqd+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Imx+mV+w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE588C01
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 19:05:10 +0000 (UTC)
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA4BFB;
-	Sun,  5 Nov 2023 11:05:09 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1cc9784dbc1so19085935ad.2;
-        Sun, 05 Nov 2023 11:05:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6EBA156DA
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 19:32:16 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7CFDD;
+	Sun,  5 Nov 2023 11:32:15 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9c2a0725825so549081766b.2;
+        Sun, 05 Nov 2023 11:32:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699211109; x=1699815909; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=c5aJnbwY/RGv4IwQ+W4JxKXW6o+bXcs3kEPisirKZZU=;
-        b=FsX1qqd+BmvCZehgX8joaDpEiGJCEQmSCo2aNNNM1lFpICplMsStR5+ch67qMCjoxI
-         hFTuGWvZFfyvWjv5ZXFN5B/F++no49EvWNmb2dUlta/66p/nrhHtbjwN7s4qSo62t0RM
-         iX958HToWPd2gAMDk6GREQPcRMhQTNfXZ6ZCuK4qaE/CTW+BTEbVq6D/I0Of5zN3fSFe
-         f6UGgg5siWTVrSbhOfBIF5uB5mRtAp8BAzTlnodHWL+gPcbQGjLGS7y90z9ylNZbGygQ
-         QkVJH50fOR2NSvFI3YrQjUrbxU8AJzp2S2eXETIgaPUHKv8RJ7CZpGNzTBv5/jgt+2hv
-         bz5Q==
+        d=gmail.com; s=20230601; t=1699212734; x=1699817534; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vleltte9bqYNVxoqP70DPmoJepyBKDB/qLui5qjstUc=;
+        b=Imx+mV+wr4Jq82FlpBy6iPAkSwDx5ZZQMW8BZK64S7GdGQQUwRBjGSYq/dP0Sh65LH
+         Sm5yz3jtkyPq/VVX4+8iejTxxHRNM51oRHZ3urs60guyZj68q/CtY6ziU/EUdTEiam51
+         VSkLIlZcC5HMJP0goLjrh4DPb5DIc9R4kvEpK9KhEBRqpiXQsqrpeOG1x6fsrIQvV5Te
+         1OiBgyFLEYokhjeTeIhxjWv4iEIYvuZS3zN6cZn68jpCJCmTlVUJngNaG8fJYp5gUyRP
+         KmxeT/nTNdjQ+WirKKC6ceajqSQmf/V4hcwuD6O8rCuXkxmH2OI/BIUOYCGfkfJFcmHL
+         iSBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699211109; x=1699815909;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1699212734; x=1699817534;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=c5aJnbwY/RGv4IwQ+W4JxKXW6o+bXcs3kEPisirKZZU=;
-        b=N8dKPdaSDy6wGdEKIdY0BbNZReGVC4Zk7ovLTAGeBDsa5KZfOGT84zaNLyCiLBjVTv
-         e/4jGpyd3LQONQfbho6WQ175EyDYW9/jZqtgvTk2AqwEX6n5IdMp22zJcIM8Ha8e3VAc
-         5oQHVJ6hvRV2G/LKgzgiJYNI/4K+DlIcAFB2Gj5wk9HrzcHv+zDQP1Hro3P5As76hflE
-         qRSGRFGhbGj9EVRS9fdyOny0+YjtGk1AaYwzeBZXzBah+AjN/8mugQoRJVPyqQDw7+cV
-         +vYWm8jwjApo9vFdAyd/30GcZeBs7t3RUvEJqoD3W5J6ed2G0xTe1C2Ae4VLLUktwNdE
-         qiKg==
-X-Gm-Message-State: AOJu0YwEWcTDSgjvVij2HinIoSoNhG1NJ260WzYr9l65mnTv6NbtC8cE
-	gbWFbYOoEo16FZsI4x8kFtw=
-X-Google-Smtp-Source: AGHT+IFjMnoD4qzJp9xw6sci48+8ezy6wjYLj5Xul69GJ2rxOXcCqRM0n9M6XG3tAaH65LT22t1sJw==
-X-Received: by 2002:a17:902:f64e:b0:1c9:e765:e14a with SMTP id m14-20020a170902f64e00b001c9e765e14amr28891113plg.1.1699211108997;
-        Sun, 05 Nov 2023 11:05:08 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170902ea0400b001c61bde04a7sm4457615plg.276.2023.11.05.11.05.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Nov 2023 11:05:08 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <d2111a1f-ae15-4270-9946-7e732fbd3fc8@roeck-us.net>
-Date: Sun, 5 Nov 2023 11:05:07 -0800
+        bh=vleltte9bqYNVxoqP70DPmoJepyBKDB/qLui5qjstUc=;
+        b=gXDv51NL2eBXBJZOd17LhIF+IXKHE8ME1z/6zOg97SIwhfExuDD0+78f5RPA30k8bF
+         fHwpXazKsjtRraqlOqiKWFDz7Ifl4PrM8dSKhEqEPR6PvC0O4NfwtJf2HiG83q9Q+9Jv
+         z/uhZvGahUe7PPcHm7fQ+fZNEGvqhC3ndQ81xlY5gY0nIB1C2ieQVFw9lNM/Wpf9feRT
+         I1VJN1dmSg31De2PJGq+0yUmtktyGew5rxpf+UykWbTyWgyuHNG3WuxwfSRaCDTQx72X
+         hUfOvV/VlID+MOrgmWnCzAUcvRasT/QjUijqLNDX6s9HCjVxNhwTi411YTOLkOKassNi
+         tvVQ==
+X-Gm-Message-State: AOJu0YxhNPhFn6uF2C+iWtxD86btnH6FkDB+nBVeEySwJqFmEWGTK+BX
+	QFfEns4MtNOW+r0dWvJyNx4=
+X-Google-Smtp-Source: AGHT+IG5YMre6qZJMtlewbPjPz7g4uPVaNPoH86enWch0Sj16kYSPmGech8CbjnYPAyhSh26dX6DqQ==
+X-Received: by 2002:a17:907:25cd:b0:9c7:4d98:981f with SMTP id ae13-20020a17090725cd00b009c74d98981fmr11167835ejc.33.1699212733678;
+        Sun, 05 Nov 2023 11:32:13 -0800 (PST)
+Received: from spiri.. ([5.14.137.80])
+        by smtp.gmail.com with ESMTPSA id d26-20020a1709064c5a00b009b947aacb4bsm3300259ejw.191.2023.11.05.11.32.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Nov 2023 11:32:13 -0800 (PST)
+From: alisadariana@gmail.com
+To: 
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Alexandru Tachici <alexandru.tachici@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Maksim Kiselev <bigunclemax@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Cosmin Tanislav <demonsingur@gmail.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Okan Sahin <okan.sahin@analog.com>,
+	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] iio: adc: ad7192: Add support for AD7194
+Date: Sun,  5 Nov 2023 21:31:28 +0200
+Message-Id: <20231105193132.47009-1-alisadariana@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: watchdog: intel,keembay: reference
- common watchdog schema
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Julius Werner <jwerner@chromium.org>, Evan Benn <evanbenn@chromium.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Maxime Ripard <mripard@kernel.org>,
- Oleksij Rempel <linux@rempel-privat.de>, Justin Chen
- <justinpopo6@gmail.com>, =?UTF-8?B?77+9ZWNraQ==?= <rafal@milecki.pl>,
- Baruch Siach <baruch@tkos.co.il>,
- Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
- Marc Zyngier <maz@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Jamie Iles <jamie@jamieiles.com>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- asahi@lists.linux.dev
-References: <20231105184154.43700-1-krzysztof.kozlowski@linaro.org>
- <20231105184154.43700-2-krzysztof.kozlowski@linaro.org>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20231105184154.43700-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/5/23 10:41, Krzysztof Kozlowski wrote:
-> Reference common watchdog.yaml schema to allow "timeout-sec" property
-> and enforce proper device node name.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Alisa-Dariana Roman <alisa.roman@analog.com>
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Dear maintainers,
 
-> ---
->   .../devicetree/bindings/watchdog/intel,keembay-wdt.yaml      | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml b/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-> index 1437ff8a122f..8231dde2bfa6 100644
-> --- a/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-> @@ -9,6 +9,9 @@ title: Intel Keem Bay SoC non-secure Watchdog Timer
->   maintainers:
->     - Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
->   
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
->   properties:
->     compatible:
->       enum:
-> @@ -37,7 +40,7 @@ required:
->     - interrupt-names
->     - clocks
->   
-> -additionalProperties: false
-> +unevaluatedProperties: false
->   
->   examples:
->     - |
+I am submitting a series of patches to improve the ad7192 driver by
+adding suport for AD7194 also.
+
+Please consider applying these patches in order.
+
+Thank you for your time and attention.
+
+Kind regards,
+
+Alisa-Dariana Roman (3):
+  iio: adc: ad7192: Use device api
+  dt-bindings: iio: adc: ad7192: Add AD7194 support
+  iio: adc: ad7192: Add AD7194 support
+
+ .../bindings/iio/adc/adi,ad7192.yaml          |  69 +++++++
+ drivers/iio/adc/Kconfig                       |   4 +-
+ drivers/iio/adc/ad7192.c                      | 176 ++++++++++++++++--
+ 3 files changed, 228 insertions(+), 21 deletions(-)
+
+-- 
+2.34.1
 
 
