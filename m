@@ -1,124 +1,188 @@
-Return-Path: <devicetree+bounces-13904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243297E1427
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 16:50:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7707E158F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 18:45:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F6E21C209CB
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 15:50:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD5AA1C20918
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 17:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73F3C1119D;
-	Sun,  5 Nov 2023 15:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B64816414;
+	Sun,  5 Nov 2023 17:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="qyxjDqzT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AD5ufH6Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB2EFC06
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 15:50:29 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 255ECEB;
-	Sun,  5 Nov 2023 07:50:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1699199407; x=1699804207; i=wahrenst@gmx.net;
-	bh=uE3UgaMWX691oAfqe3827yIFDo67qS1ai4DImMS0WyQ=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:
-	 References;
-	b=qyxjDqzTe6CkwKH4t4pExQHehM3dRSOJGYz1DuFAg1szidA/2FdA/jPzL0RgVkbV
-	 pJ1AitIcwVQiEG7yvEvLwmJLZgayT/M4F1O8HqD4ukVTnQ295gmFfUQ8EesIvv449
-	 aMitE43e4IsMRox4Ek8Y4kh3PscUDZNdGuXyLebe6xmzN7aWETGQYtMwpr6/mTvNP
-	 zQzWiakoYY9lMrasfEcICgbg0YJUU41voA7uP+IvS9bhJsT2yzCCZv2GVqv1r8L9y
-	 awxTnFQ9TzuDgQ8rmNhq1uKe0PTEX1r6fsK6LjvtUuwVL/bio4MtdWv8Iz+pQhuhI
-	 xmSZLkcqMkvggyIEeg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1McH5Q-1rZp110qa4-00cgRM; Sun, 05
- Nov 2023 16:50:07 +0100
-From: Stefan Wahren <wahrenst@gmx.net>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>
-Cc: bcm-kernel-feedback-list@broadcom.com,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-leds@vger.kernel.org,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 2/2] ARM: dts: bcm2711-rpi-400: Fix delete-node of led_act
-Date: Sun,  5 Nov 2023 16:49:40 +0100
-Message-Id: <20231105154940.97688-3-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231105154940.97688-1-wahrenst@gmx.net>
-References: <20231105154940.97688-1-wahrenst@gmx.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F9E2F46
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 17:45:07 +0000 (UTC)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90EE0D9
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 09:45:04 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c509f2c46cso52145051fa.1
+        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 09:45:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699206303; x=1699811103; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vs2X2TC3aDgjhTmsm2pl3o3Tuf0i4SGLrwDNMlOpie8=;
+        b=AD5ufH6Y5YZWI/owFG2qHUAkLLckwuaifyHefPfBEIMfTi+YUw3WMXYCqtlls5nOk5
+         TDJ4JkeSSI+2X/doBmPMQjWyVgvPHL6YEw1GwjM5CF9oI9Bl/5jW4ZvGvTczfiT5/jt4
+         BIhy0mhN81ERBVurdRamDp8ofT7tP+9d+Z9YSZoDPTnyj3yrP1EqxZ7thXVP36VgL06o
+         TmWgpu4mlNie+Y/snbcMYN5RaPuz7lTMppmn16UC9rdjjJIO7hPMDppDV2WupPXOtP3Z
+         Y6pYQi21sgXJUYFRZznNPSaZ1XH2VqJjWHTLc5ZJlroKpFQ5g/mG2R1rmrC5e/cjT3r8
+         BpHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699206303; x=1699811103;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vs2X2TC3aDgjhTmsm2pl3o3Tuf0i4SGLrwDNMlOpie8=;
+        b=QXolPWs5wZm7CJUF1dgGSj+T2aJ8u6D3fPPVp6VDHqY+NkHoT9tUVnBO1WaAIfIJaQ
+         0yTUz8IEFt6jjBwkV0mw4vd6PQCiodAj5+R5NHoeUkP7KQPJp0uB8XlMEj4oDGNNM8WA
+         ASJwVF0HnTeYMeB+/cJTWemsHjV6REAO0vBvaQLBVWfrqBbZKz9zM4onvZsb5EE6ubMN
+         0t+JgEgnZRS/b4Oh4EwtZ1+wMMV/LoHcu+y08RCZluuL/MDs7pa/wSSSkor67XQrEr/t
+         Ri4BSfIHWSIC+E82U2JiNC5HNV2rRUL1ztRehRrMg535kmvA9QpM27UWzA9nL8pBi59k
+         Z44g==
+X-Gm-Message-State: AOJu0Yw1RIYUxAPdoPsQcK2mZ+5PamtgViXU5FfXaVHwg9K25tElt0Ye
+	jb0V+GzFlM6YOXTbCV666zW8IA==
+X-Google-Smtp-Source: AGHT+IGtdNn5u7/gsPQPsmxiIo3xFFeBvAYua2DHDn5mAefSlgnlXsioKcpVAsoPWOujMRB2NtMRaw==
+X-Received: by 2002:a2e:8090:0:b0:2c5:183d:42bf with SMTP id i16-20020a2e8090000000b002c5183d42bfmr19958196ljg.45.1699206302309;
+        Sun, 05 Nov 2023 09:45:02 -0800 (PST)
+Received: from [127.0.0.1] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id t10-20020a05600c198a00b004064ac107cfsm9553346wmq.39.2023.11.05.09.45.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Nov 2023 09:45:01 -0800 (PST)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 0/6] media: qcom: camss: Add sc8280xp support
+Date: Sun, 05 Nov 2023 17:44:59 +0000
+Message-Id: <20231105-b4-camss-sc8280xp-v3-0-4b3c372ff0f4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:yE+EMzZ0PR2YLKgEndDFQodmVFovqB414WbBD1C9qQ+A+8/gjuo
- //PQfm6b4pGhNkJ6xcoUQSWVy3uLFzZvcnT63BdTH5Fd8gN9faaScbM/xIBa/zhk5KAZGUz
- DWhZiSKXl222Gc3CWBPBycSd4vAD+lM2SxeHBMxzjDPhgoUxGpNVlHS9BijMTCn/Zpr/hgD
- CIucu/YEjdlM1zBvk8X9Q==
-UI-OutboundReport: notjunk:1;M01:P0:oox4eGqyIoE=;IAyfsC81YxD0LyoyaNG9SZs4sP4
- 0eG2SjqnHL39KzNxpbBjDp9yJWMBcp5pDtsLh1vmJ3MEJOqEnEMv0tcrc9ZIbAtBxv5x+4jje
- Jv0wB8uW4flpAiHTAto3HAb2pwWzMEsTyzNfiR19bKKoRrMA9aUfIEubI+ovoJUGDBHsYsbr4
- N7c/juyeSgwBFyD4cCkzJhpOlEMIsYIgWsNgLJrDPJLx3t5nNioRfJbIle57KXN9dQ9muNLwk
- GBFzXd5uPGJp46oTRBQXBySie/CwMETyN1Rg/PMgfKiBYk28S4ixq3kYFgUl8Lfdbg1eD5vY9
- mkVA8wx5QeRXi5NNtYdeMYFrJrOKDBDSTreCPYKVlF5+/yjd3A2yMiO9KiDsCSCmMLM8obwGx
- 6CHvZdBMNsqpEg+IpdfVQMP5b+2p6YYRxSfmI75MwEpIeC0EtjFtSSESiHTBJ3wJcIo5Bjt21
- vwX56VhUd3/poeduxVzSGc8i91uLqhcrZERnQfP7q+o1wjn7o9BKqVP2UXIMD8yz/EzaDucMg
- 3d4RazkXyLl84xKMoTK/u0rbbs4GwtzUqQNpazLwvJHCiAzlT+rbeKIJqayCgrw/dL/+e9H7Q
- 4VbU82L0khL4ih4qW+JbFc1gZdYJefN7h39A5L5DN3ozFaRpVwyKfafToQR1CK+4U3bbmpS2N
- ObWaqISNoonJZvtqE+pUP3QtXiF02wHA6VeAj5zkbpGMFXCRCqR2crllePk/AqLdJ6QsQ+bax
- EIBRGJzOTqBPGvBZ7+TYC+NA1rj9//B7V6+eMUbdM4DIhvlrGya36txUCBFIehKy24ZWhA/od
- wXjNPVNi7UYOylsDCdzUs3SKEwv9KiSAFWRI/EGzKjmLrR6Df/KhcGrajfokmYbBDefgbNARj
- qjPIPm1jJPviVUHiFmVbovuix4cuUTD0alyvt9ygHoFmgsYazNTXcsLzdAIup5813DrPBfpSg
- G/AoIg==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJvUR2UC/23N0QrCIBTG8VcZXmd4jlZzV71HdKFON6Hm0JDF2
+ LvnBkHBLv8fnN+ZSbLR20SaaibRZp98GErwQ0VMr4bOUt+WJsiQAzCgWlCjninRZGqs2TRSZkF
+ LsBpBO1Luxmidnzbzdi/d+/QK8b29yLCuXw13tAyUUSnl2QltdO3E9eEHFcMxxI6sXMZfgu8RW
+ Ah9UU60eOIK2R+xLMsH19WlTvYAAAA=
+To: hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org, 
+ matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-26615
 
-The LED ACT which is included from bcm2711-rpi-4-b doesn't exists
-on the Raspberry Pi 400. So the bcm2711-rpi-400.dts tries to
-use the delete-node directive in order to remove the complete
-node. Unfortunately the usage get broken in commit 1156e3a78bcc
-("ARM: dts: bcm283x: Move ACT LED into separate dtsi")
-and now ACT and PWR LED using the same GPIO and this prevent
-probing of led-gpios on Raspberry Pi 400:
+V3:
+- Strip pointer to dependencies from yaml patch
+  I was hoping the robot would understand the links but it doesn't -
+  Krzysztof
 
-    leds-gpio: probe of leds failed with error -16
+Link to v2: https://lore.kernel.org/r/20231103-b4-camss-sc8280xp-v2-0-b7af4d253a20@linaro.org
 
-So fix the delete-node directive.
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v3
 
-Fixes: 1156e3a78bcc ("ARM: dts: bcm283x: Move ACT LED into separate dtsi")
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-=2D--
- arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+V2:
+- Rebase to capture is_lite flag from named power-domain series
+- Amends commit log of final patch to give more detail on rename - Konrad
+- Opted not to change switch() statements with returns. - bod/Konrad
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts b/arch/arm/boo=
-t/dts/broadcom/bcm2711-rpi-400.dts
-index 1ab8184302db..5a2869a18bd5 100644
-=2D-- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-400.dts
-@@ -36,9 +36,7 @@ &led_pwr {
- 	gpios =3D <&gpio 42 GPIO_ACTIVE_HIGH>;
- };
+Requires CAMCC for sc8280xp which applies to qcom/clk-for-6.7:
+https://lore.kernel.org/linux-arm-msm/20231026105345.3376-1-bryan.odonoghue@linaro.org/
+b4 shazam 20231026105345.3376-1-bryan.odonoghue@linaro.org
 
--&leds {
--	/delete-node/ led_act;
--};
-+/delete-node/ &led_act;
+Requires the named power-domain patches which apply to media-tree/*:
+https://lore.kernel.org/linux-arm-msm/20231103-b4-camss-named-power-domains-v4-0-33a905359dbc@linaro.org/
+b4 shazam e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org
 
- &pm {
- 	/delete-property/ system-power-controller;
-=2D-
-2.34.1
+Link to v1:
+https://lore.kernel.org/r/20231102-b4-camss-sc8280xp-v1-0-9996f4bcb8f4@linaro.org
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v2
+
+V1:
+sc8280xp is the SoC found in the Lenovo X13s. This series adds support to
+bring up the CSIPHY, CSID, VFE/RDI interfaces.
+
+A number of precursor patches make this series smaller overall than
+previous series.
+
+sc8280xp provides
+
+- 4 x VFE, 4 RDI per VFE
+- 4 x VFE Lite, 4 RDI per VFE
+- 4 x CSID
+- 4 x CSID Lite
+- 4 x CSI PHY
+
+I've taken the yaml from a dtsi series and included it here since 1) I sent
+the yaml to the wrong person and 2) it already has RB from Krzysztof.
+
+Requires CAMCC for sc8280xp which applies to qcom/clk-for-6.7:
+https://lore.kernel.org/linux-arm-msm/20231026105345.3376-1-bryan.odonoghue@linaro.org/
+b4 shazam 20231026105345.3376-1-bryan.odonoghue@linaro.org
+
+Requires the named power-domain patches which apply to media-tree/* :
+https://lore.kernel.org/linux-arm-msm/20231101-b4-camss-named-power-domains-v3-5-bbdf5f22462a@linaro.org/
+b4 shazam 20231101-b4-camss-named-power-domains-v3-5-bbdf5f22462a@linaro.org
+
+To use the camera on x13s with say Google Hangouts or Microsoft Teams you
+will need to
+
+1. Run Firefox
+2. Update about:config to enable pipewire
+3. Use this WIP version of libcamera
+   https://gitlab.freedesktop.org/camera/libcamera-softisp
+
+A working bootable tree can be found here:
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/lenovo-x13s-linux-6.5.y
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (6):
+      media: dt-bindings: media: camss: Add qcom,sc8280xp-camss binding
+      media: qcom: camss: Add CAMSS_SC8280XP enum
+      media: qcom: camss: csiphy-3ph: Add Gen2 v1.1 two-phase MIPI CSI-2 DPHY init
+      media: qcom: camss: Add sc8280xp resource details
+      media: qcom: camss: Add sc8280xp support
+      media: qcom: camss: vfe-17x: Rename camss-vfe-170 to camss-vfe-17x
+
+ .../bindings/media/qcom,sc8280xp-camss.yaml        | 581 +++++++++++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   2 +-
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 108 +++-
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ .../camss/{camss-vfe-170.c => camss-vfe-17x.c}     |   0
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  25 +-
+ drivers/media/platform/qcom/camss/camss-video.c    |   1 +
+ drivers/media/platform/qcom/camss/camss.c          | 383 ++++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 9 files changed, 1093 insertions(+), 9 deletions(-)
+---
+base-commit: 89e965e1a58f58cd359472b14c0cc25587bcf264
+change-id: 20231101-b4-camss-sc8280xp-0e1b91eb21bf
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
 
