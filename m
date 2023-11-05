@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F84D7E136B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 13:55:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209C47E136F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 13:58:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 569181C20912
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 12:55:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2335C1C208BC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 12:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D872F26;
-	Sun,  5 Nov 2023 12:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5372E848C;
+	Sun,  5 Nov 2023 12:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CaNzr7/U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P6cBt1Ov"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68AA523B3
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 12:55:28 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 672DFDE
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 04:55:25 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32fb190bf9bso1742263f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 04:55:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B272723B3
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 12:58:30 +0000 (UTC)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FBAE1
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 04:58:28 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9d216597f64so532023966b.3
+        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 04:58:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699188924; x=1699793724; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1699189107; x=1699793907; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8i/3mh5WDqmmmM9Z6FDZd0W9FDy4ya/bnT+QUsoI2es=;
-        b=CaNzr7/UfSBqcTMcedK0M/FP60ls1bdKp0SvdwSvXxF+N7LeieA+wh4D+91gsXNjMp
-         haKqJXPSHyiZ/U8VeFsaCM1YkkMvQ3GPvfviEYz9nq91S+PulvM//L//eVay3prnHg4Q
-         dQS3ogjW+vikH1ctUE+WhC0bd3xPUWo4J9TSUM6xdUUNRhQd1mFxT8cRl3X5lB27NZ1G
-         XsfZpI9PCXNu6WP0nVjr3tkSJfDcu2+MzCFw8CB8CQY/ZVXY03KrZQ6n06Oh3CNstFwW
-         PxOZsHyWzBrT76utWSQKFhSWsDH0DUmO7HNU/HBoIAtkYShl8YnsjIsIrtJxsyE1cc95
-         XEiQ==
+        bh=bkpEaVM2Dxrs1saXGQCI2CPXp4qWCJBHJyK0mt90sZI=;
+        b=P6cBt1OvzLtweDcKTM9Xzyc4XyzKrB6w/gNusxRLcYK++OtgbcLbsgGwIYRGL4k34G
+         +lVw08KzpuRmdEu/3eIH9IBnw9Glc3wNaIDSatPK0SVHe308DlqTRoaIjpOJEQx4dJDW
+         BvKRyFtnr8QJeOr65afPsy889ASo0ZttUdBH293FNrnGiUCTU0QQKieTU30WSVwe6iCg
+         YQh7bLGfH0y8wguZ3ZSWOXGl3vrIEUbMpXSm+9/JwI4MrXqNiPEZXdgSVSPKjhSLYrSF
+         o+l/J40N/dQ9n1sWtLiiprmQQh84GcOinVUM2EmGOzJlXul9cA9/6wT3DZqbh38saPph
+         dvEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699188924; x=1699793724;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699189107; x=1699793907;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8i/3mh5WDqmmmM9Z6FDZd0W9FDy4ya/bnT+QUsoI2es=;
-        b=h8Ca1tewxqrefmnFm3kWrXdC41lmhSY7aocaMQ4qoGi5wg4Uwz6ZgVfIpY34Wprsya
-         YKT66C9ZAVmwMb/ng4HBQ92pGsaaFgVXC5EVfXTSMLldA4s7gOfCH9bZxi9X7++4Qp75
-         ssku1LI4eozmzoP8iBD8kj5y6OeWM+N1947sgBz4Wf5ga2CxU5SDHHr8eE/KRccfU7l8
-         QggJQ3aje8SM0TXrqGtQr+bYEzR83KG6s4uJHSmnNk6r8NFLYI+KIC+7oadcQTCMDYWZ
-         pdGX+doT4UY6uW9jiH4JRQfFwXxtmeX4Ss8QgPdgrX4BUwXrL/6HmYq/LAEEwZ9rPvRu
-         MY+g==
-X-Gm-Message-State: AOJu0Yz7UXb9h4MXUkDDA1HrunNdMBltksyDhwW77gG4zPsVrsowUtHr
-	BcLLcDnc1IjzlW9SmefCIFoZbQ==
-X-Google-Smtp-Source: AGHT+IGotoTPxGsPEmQX0OO1pIHfgoG6jxm/sjljDf2jb1JfzJa+8eOx/xTViquFW+Sh2/cnzvCObQ==
-X-Received: by 2002:a5d:6d06:0:b0:32f:83cf:8326 with SMTP id e6-20020a5d6d06000000b0032f83cf8326mr8267887wrq.24.1699188923875;
-        Sun, 05 Nov 2023 04:55:23 -0800 (PST)
+        bh=bkpEaVM2Dxrs1saXGQCI2CPXp4qWCJBHJyK0mt90sZI=;
+        b=jMYOJa4fviBpRGPlBn5IfbXcwWWgb33zd/HpXtXr+pYfLYoQZT3rv5+7SqsRw1V3bA
+         7AejBadJX/xw+TD4LE3KsxU6O60OBKh0kUt3guzteiyWXTlXg9CvfLttk8zn0CuDo3X8
+         gpDG8harbVf3MMau4ORrOmzeB8JtNGJopZAKOfWq3sfdsDOl1pEgJZ1cXe9iMQ2qW8V0
+         5ZzlPjwQKDVKG8rs25Zh4BPCfpidNruCa48dPdtgQU6A6ltE3DKJn2PBljaMAHzJpvg5
+         hUHWXnRM5HT46+FZe5SS8HSoWCp7vvsoFf9Le2wnRnTwPP/vnCUTHVNMwudbhJ+qVrPF
+         QD/A==
+X-Gm-Message-State: AOJu0YyAgq6yq6gPe+kXDZiua2le9sYwIq7WN4Oy94KUy8wbaSsdBxs0
+	No3trgblARFUBgdArBVTq0He1w==
+X-Google-Smtp-Source: AGHT+IF7Fo1bDwh0kPNKZtS5tky93wHqLj7b9rPnd6tDWCHeGZYWbVwkjZRjZGecgfe0yLbUO+OJ0A==
+X-Received: by 2002:a17:907:9452:b0:9d3:85b9:afda with SMTP id dl18-20020a170907945200b009d385b9afdamr11213613ejc.34.1699189107086;
+        Sun, 05 Nov 2023 04:58:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id k18-20020adff292000000b0032f7fab0712sm6780913wro.52.2023.11.05.04.55.22
+        by smtp.gmail.com with ESMTPSA id z20-20020a1709060ad400b0099c53c4407dsm2998858ejf.78.2023.11.05.04.58.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Nov 2023 04:55:23 -0800 (PST)
-Message-ID: <7371257e-3fb0-4538-ad0f-07bd0a827120@linaro.org>
-Date: Sun, 5 Nov 2023 13:55:20 +0100
+        Sun, 05 Nov 2023 04:58:26 -0800 (PST)
+Message-ID: <0e082f72-a770-49fb-8bd4-f8248a3a9579@linaro.org>
+Date: Sun, 5 Nov 2023 13:58:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +67,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add sound card
+Subject: Re: [PATCH v2 1/6] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
 Content-Language: en-US
-To: Elliot Berman <quic_eberman@quicinc.com>, Andy Gross <agross@kernel.org>,
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, hverkuil-cisco@xs4all.nl,
+ laurent.pinchart@ideasonboard.com, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org,
+ matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230612173758.286411-1-krzysztof.kozlowski@linaro.org>
- <17535d7a-73e2-465b-941c-99db4092327a@quicinc.com>
+References: <20231103-b4-camss-sc8280xp-v2-0-b7af4d253a20@linaro.org>
+ <20231103-b4-camss-sc8280xp-v2-1-b7af4d253a20@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,32 +128,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <17535d7a-73e2-465b-941c-99db4092327a@quicinc.com>
+In-Reply-To: <20231103-b4-camss-sc8280xp-v2-1-b7af4d253a20@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/11/2023 00:10, Elliot Berman wrote:
-> Hi Krzysztof,
+On 03/11/2023 17:25, Bryan O'Donoghue wrote:
+> Add bindings for qcom,sc8280xp-camss in order to support the camera
+> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
 > 
-> On 6/12/2023 10:37 AM, Krzysztof Kozlowski wrote:
->> Add the sound card node with tested playback over WSA8845 speakers and
->> WCD9385 headset over USB Type-C.  The recording links were not tested,
->> but should be similar to previous platforms.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Bindings for the sound card were not sent to LKML. Work-in-progress is
->> available here:
->> https://github.com/krzk/linux/tree/n/audio-wsa884x-on-top-of-wip-sm8450-audio-on-next
-> 
-> Do you plan to send the bindings up? I can send this patch out if you don't have the cycle:
-> 
-> https://github.com/krzk/linux/commit/f678691570386a11eb75dceca7291b4e05d981da
+> This patch depends on:
+> https://lore.kernel.org/linux-arm-msm/20231026105345.3376-2-bryan.odonoghue@linaro.org/
+> https://lore.kernel.org/linux-arm-msm/20231026105345.3376-3-bryan.odonoghue@linaro.org/
 
-The patch itself does not make sense without dependencies. It should be
-sent after dependencies are sent.
+Do not put dependencies in the commit log. Once this is merged, it does
+not make any sense in Git history. Dependencies should be mentioned only
+in the changelog ---.
+
 
 Best regards,
 Krzysztof
