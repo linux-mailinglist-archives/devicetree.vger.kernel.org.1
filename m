@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209C47E136F
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 13:58:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A8D17E1378
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 14:03:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2335C1C208BC
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 12:58:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EFD51C20901
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 13:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5372E848C;
-	Sun,  5 Nov 2023 12:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15654BA53;
+	Sun,  5 Nov 2023 13:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P6cBt1Ov"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qoTzNg8u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B272723B3
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 12:58:30 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FBAE1
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 04:58:28 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9d216597f64so532023966b.3
-        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 04:58:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A5223B3
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 13:03:15 +0000 (UTC)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC22AE1
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 05:03:13 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-32da4ffd7e5so2125842f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 05:03:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699189107; x=1699793907; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699189392; x=1699794192; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bkpEaVM2Dxrs1saXGQCI2CPXp4qWCJBHJyK0mt90sZI=;
-        b=P6cBt1OvzLtweDcKTM9Xzyc4XyzKrB6w/gNusxRLcYK++OtgbcLbsgGwIYRGL4k34G
-         +lVw08KzpuRmdEu/3eIH9IBnw9Glc3wNaIDSatPK0SVHe308DlqTRoaIjpOJEQx4dJDW
-         BvKRyFtnr8QJeOr65afPsy889ASo0ZttUdBH293FNrnGiUCTU0QQKieTU30WSVwe6iCg
-         YQh7bLGfH0y8wguZ3ZSWOXGl3vrIEUbMpXSm+9/JwI4MrXqNiPEZXdgSVSPKjhSLYrSF
-         o+l/J40N/dQ9n1sWtLiiprmQQh84GcOinVUM2EmGOzJlXul9cA9/6wT3DZqbh38saPph
-         dvEg==
+        bh=2KBTcZFRrRnggqoCJ9tY6Zm1rKCADbDaQM0EqS6zsGU=;
+        b=qoTzNg8uBlaqqEpg94fbBsuwUAsFayeXQg+PUDqo0Iz7vvNTZBzyEWhkhzHiXqBfuy
+         PPv1/Zu0HjEIBrMQWLhjFe6Xgk/Vg39kulmLH1jf8QHUMAgGKykC9J0tTSyHAZagO4a+
+         KVX+7vIL6YlFqN0js6jFQf7CAGQjJ/F0n1Xe7nsr+bbPWMNuoKSXm53QlghXCeO6m8oM
+         XW8PhfkMGH03RSz5yEuD+uIaEluu5MYvZGzm32t5TIhX0sPefT2mDhwci4Za+YbEwvdF
+         wzyhVc+lp08HslqTrjayR5O0IxRRQ8mNSdGP7xvlV0bwyxjWiQzhyDIm/BL/Q4Ix9SFO
+         VRFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699189107; x=1699793907;
+        d=1e100.net; s=20230601; t=1699189392; x=1699794192;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bkpEaVM2Dxrs1saXGQCI2CPXp4qWCJBHJyK0mt90sZI=;
-        b=jMYOJa4fviBpRGPlBn5IfbXcwWWgb33zd/HpXtXr+pYfLYoQZT3rv5+7SqsRw1V3bA
-         7AejBadJX/xw+TD4LE3KsxU6O60OBKh0kUt3guzteiyWXTlXg9CvfLttk8zn0CuDo3X8
-         gpDG8harbVf3MMau4ORrOmzeB8JtNGJopZAKOfWq3sfdsDOl1pEgJZ1cXe9iMQ2qW8V0
-         5ZzlPjwQKDVKG8rs25Zh4BPCfpidNruCa48dPdtgQU6A6ltE3DKJn2PBljaMAHzJpvg5
-         hUHWXnRM5HT46+FZe5SS8HSoWCp7vvsoFf9Le2wnRnTwPP/vnCUTHVNMwudbhJ+qVrPF
-         QD/A==
-X-Gm-Message-State: AOJu0YyAgq6yq6gPe+kXDZiua2le9sYwIq7WN4Oy94KUy8wbaSsdBxs0
-	No3trgblARFUBgdArBVTq0He1w==
-X-Google-Smtp-Source: AGHT+IF7Fo1bDwh0kPNKZtS5tky93wHqLj7b9rPnd6tDWCHeGZYWbVwkjZRjZGecgfe0yLbUO+OJ0A==
-X-Received: by 2002:a17:907:9452:b0:9d3:85b9:afda with SMTP id dl18-20020a170907945200b009d385b9afdamr11213613ejc.34.1699189107086;
-        Sun, 05 Nov 2023 04:58:27 -0800 (PST)
+        bh=2KBTcZFRrRnggqoCJ9tY6Zm1rKCADbDaQM0EqS6zsGU=;
+        b=LUfI89WNjICIQV5xhclijTyFYP2z5EqqXfCLcIVhrWZaZs/D73EhIQWMUiXLqB3LLx
+         GgmDk+DPPwNLFe+gPbkBwen+pQ8wLvsy5LUq0I7KEcF1OXJ0T/CETCqHr28UbeUiQ0oC
+         tZD2NwFqPaXQ47f8ueupVfJhGsfRGNt+JbqQf6yPy1PejHpMYfkJgxYd5s4TgJVr6oj7
+         r0mNWrTyv+zC0tce1WwuKqxJnPk5egi45np1jaSWX7SYVERPsb/RD+VYPjbXUEr0LUgy
+         6PVFIGibZrnrc3/iyEpJo6bs7Xp0wX2zPtg1NWjfWMlqk9LYXJGbCC+2Q8dPODAb1ucG
+         uqnw==
+X-Gm-Message-State: AOJu0Yz08mUSn64EdfvgF83hBB5ZvIt+WeMN369oiwWSf6Z7aDoroosV
+	PYtQsWiAHURICZje7kDba+2mpA==
+X-Google-Smtp-Source: AGHT+IES/1bRaf53dFdjpbxLr+J48y6hOa+AEW7LfMBqJ9XlX1pmtutA9xN+eE5XLZ+TF4RljhTpgA==
+X-Received: by 2002:a5d:64a4:0:b0:32f:7eb0:2ed3 with SMTP id m4-20020a5d64a4000000b0032f7eb02ed3mr8956204wrp.5.1699189392406;
+        Sun, 05 Nov 2023 05:03:12 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z20-20020a1709060ad400b0099c53c4407dsm2998858ejf.78.2023.11.05.04.58.24
+        by smtp.gmail.com with ESMTPSA id y3-20020adfe6c3000000b003140f47224csm6766651wrm.15.2023.11.05.05.03.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Nov 2023 04:58:26 -0800 (PST)
-Message-ID: <0e082f72-a770-49fb-8bd4-f8248a3a9579@linaro.org>
-Date: Sun, 5 Nov 2023 13:58:24 +0100
+        Sun, 05 Nov 2023 05:03:11 -0800 (PST)
+Message-ID: <04707003-531c-4c58-af74-e770d22d85e4@linaro.org>
+Date: Sun, 5 Nov 2023 14:03:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
+Subject: Re: [RESEND PATCH] dt-bindings: crypto: qcom,prng: Add SM8450
 Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, hverkuil-cisco@xs4all.nl,
- laurent.pinchart@ideasonboard.com, Andy Gross <agross@kernel.org>,
+To: Elliot Berman <quic_eberman@quicinc.com>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org,
- matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231103-b4-camss-sc8280xp-v2-0-b7af4d253a20@linaro.org>
- <20231103-b4-camss-sc8280xp-v2-1-b7af4d253a20@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-arm-msm@vger.kernel.org,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231103225255.867243-1-quic_eberman@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,22 +125,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231103-b4-camss-sc8280xp-v2-1-b7af4d253a20@linaro.org>
+In-Reply-To: <20231103225255.867243-1-quic_eberman@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/11/2023 17:25, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
+On 03/11/2023 23:52, Elliot Berman wrote:
+> From: Konrad Dybcio <konrad.dybcio@linaro.org>
 > 
-> This patch depends on:
-> https://lore.kernel.org/linux-arm-msm/20231026105345.3376-2-bryan.odonoghue@linaro.org/
-> https://lore.kernel.org/linux-arm-msm/20231026105345.3376-3-bryan.odonoghue@linaro.org/
+> SM8450's PRNG does not require a core clock reference. Add a new
+> compatible with a qcom,prng-ee fallback and handle that.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+> I noticed this patch got missed while running make dtbs_check. No
+> changes to this patch from the original version:
+> 
+> https://lore.kernel.org/all/2c208796-5ad6-c362-dabc-1228b978ca1d@linaro.org/
+> 
 
-Do not put dependencies in the commit log. Once this is merged, it does
-not make any sense in Git history. Dependencies should be mentioned only
-in the changelog ---.
-
+I don't understand why do you send this. This is not a correct patch,
+was rejected. Different patch was already merged.
 
 Best regards,
 Krzysztof
