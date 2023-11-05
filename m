@@ -1,52 +1,63 @@
-Return-Path: <devicetree+bounces-13880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D497E12CA
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 10:29:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3E97E12CB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 10:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37B5E1C20752
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 09:29:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C5152813F6
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 09:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5FA8C16;
-	Sun,  5 Nov 2023 09:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965458F45;
+	Sun,  5 Nov 2023 09:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="GOqsPTQg"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="kSpmB+Wj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA73D320B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA9B8C13
 	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 09:29:19 +0000 (UTC)
 Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E164F2
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 01:29:17 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2C2112
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 01:29:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=4dwyhc7I5VMK+p
-	3joAdQ6muDlyj3lJuFlgGGOnOLLkM=; b=GOqsPTQgSakmrjtRYAs0RNIjZY7DM9
-	2mY6o3VlX4huWsGyJs2yTgEpgrICr2KSM3ToL1DPIfKkx6tYWIKMJGdwGypuUCyj
-	JGu28X97KaHSoMHnxURUf++gozdPrtWWNzgowUeKcOZkWWx/aLso0S76DxxCpBHE
-	OfXURWT2z2s1MC7VzTvkc3eFYpqaNcxREsjR9XEPBh0foJZsf2Y/DbehZkOQrd8c
-	U+D+Wd3f43E7LUkKb+QnGrmMPomHYyNTdRLB8ilOy3bjHNxi1OcivmPkNI7u0oQt
-	s8AEu4in1EaqkMA8BEgGp+70+Sb6se/le4XSAAc/bws5tChfeVytTy8Q==
-Received: (qmail 1670058 invoked from network); 5 Nov 2023 10:29:15 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Nov 2023 10:29:15 +0100
-X-UD-Smtp-Session: l3s3148p1@um33XmQJZsQgAQnoAFPQANY41GnTzLIh
+	:in-reply-to:references:mime-version:content-transfer-encoding;
+	 s=k1; bh=km1S8zZEcbuRQRFhnQ+j9vTvoJEJFWsqJkELKGUX9fM=; b=kSpmB+
+	WjJUUQlaH8pW9NUeMMQm6llUyaZnex187z5aCpAz8XimaWIUo3ezDAUzZYY7u/4I
+	wrvw9LUQs00afzc79wJHC6TH23rbkScdZermgZa0/xlvbBVXCPuVXFtGY2gB9SoD
+	Ov86eaL1/VbOkqUyZtqF1khqFowpv9fKBZuj5qhHZt3ziIC5NEn7G2Bi1g4nI9fC
+	bIlWrtggx407/p5tW4vCVuTzC1kUoccYJB7lUPnl6CtdROUNeKpfspcTZYHb0Of2
+	i7YOn1ve5jrpJ8qdbQxxCUvcLUx3tZIWfsJfWXwo1QBV1fv0PZVomKUlVAbKo0e/
+	dnzkzutH9f0s/veQ==
+Received: (qmail 1670102 invoked from network); 5 Nov 2023 10:29:16 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Nov 2023 10:29:16 +0100
+X-UD-Smtp-Session: l3s3148p1@wFMDX2QJasQgAQnoAFPQANY41GnTzLIh
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: linux-renesas-soc@vger.kernel.org
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v5 RESEND 0/2] PCI: rcar: support regulators for PCIe
-Date: Sun,  5 Nov 2023 10:29:06 +0100
-Message-Id: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 RESEND 1/2] dt-bindings: PCI: rcar-pci-host: add optional regulators
+Date: Sun,  5 Nov 2023 10:29:07 +0100
+Message-Id: <20231105092908.3792-2-wsa+renesas@sang-engineering.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
+References: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,21 +66,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Here are the patches to make PCIe cards work in slot CN15 on a Renesas
-KingFisher board. Please apply.
+Support regulators found on the KingFisher board for miniPCIe (1.5 and
+3.3v). For completeness, describe a 12v regulator while we are here.
 
-Changes since v4:
-* rebased to 6.6
-* added ack from Mani (Thanks!)
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/pci/rcar-pci-host.yaml        | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Wolfram Sang (2):
-  dt-bindings: PCI: rcar-pci-host: add optional regulators
-  PCI: rcar-host: add support for optional regulators
-
- .../devicetree/bindings/pci/rcar-pci-host.yaml   | 11 +++++++++++
- drivers/pci/controller/pcie-rcar-host.c          | 16 +++++++++++++++-
- 2 files changed, 26 insertions(+), 1 deletion(-)
-
+diff --git a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+index 8fdfbc763d70..b6a7cb32f61e 100644
+--- a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
++++ b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+@@ -68,6 +68,15 @@ properties:
+   phy-names:
+     const: pcie
+ 
++  vpcie1v5-supply:
++    description: The 1.5v regulator to use for PCIe.
++
++  vpcie3v3-supply:
++    description: The 3.3v regulator to use for PCIe.
++
++  vpcie12v-supply:
++    description: The 12v regulator to use for PCIe.
++
+ required:
+   - compatible
+   - reg
+@@ -121,5 +130,7 @@ examples:
+              clock-names = "pcie", "pcie_bus";
+              power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
+              resets = <&cpg 319>;
++             vpcie3v3-supply = <&pcie_3v3>;
++             vpcie12v-supply = <&pcie_12v>;
+          };
+     };
 -- 
 2.35.1
 
