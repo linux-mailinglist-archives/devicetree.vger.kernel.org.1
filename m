@@ -1,148 +1,113 @@
-Return-Path: <devicetree+bounces-13912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66E77E15AD
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 18:55:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5E17E15CA
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 19:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EACF281360
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 17:55:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5D45B20D97
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 18:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A86E168BF;
-	Sun,  5 Nov 2023 17:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="IqXVHE7t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379E8171AE;
+	Sun,  5 Nov 2023 18:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B2D16406
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 17:55:41 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAEDDB
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 09:55:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1699206939;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fd/39Q+ldoVf5VWKnHQ/ghXrqcDy2syROa9KrYZuz/I=;
-	b=IqXVHE7tfpxVOeimPXn4vyvH7OY2t3kQqxvtrcPGQru73zPBo30S+fpExZk81iANyfk6tv
-	boEQWrMeaDpMj0U1KyE0BeObcS+QyzrEbIfSfyZeZh4N1wpGH4GP+kg0Dqdu8fPz5NfynA
-	LRW05RH0mhNQrWV3FT5v268dz1WrbPI=
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com
- [209.85.210.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-480-s7G8BuiUP5GVqFVXGUyl7w-1; Sun, 05 Nov 2023 12:55:37 -0500
-X-MC-Unique: s7G8BuiUP5GVqFVXGUyl7w-1
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-6c334d2fd40so3305201b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 09:55:37 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF0F10940
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 18:25:17 +0000 (UTC)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55E0BE;
+	Sun,  5 Nov 2023 10:25:16 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6ce2c71c61fso1975863a34.1;
+        Sun, 05 Nov 2023 10:25:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699206936; x=1699811736;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fd/39Q+ldoVf5VWKnHQ/ghXrqcDy2syROa9KrYZuz/I=;
-        b=qDi59/U11LWgOqh9eETY0WNLHaZe6oqTCi30scKa2C3iDkSskBFBg6ey7cRCDreivv
-         Mz+el6D/RcGCEu17+H2OAlq9fpnHB9hMZHglgaCrg+Z41QE3AGWPclitu0143UTtSUyJ
-         qx3S1gnmAis2NZ6wfDVtqeESeTtSDcX8rjPBm1wRqI5UIFRRgmE8kdhgVW/0IakXvALb
-         yDKhLTAKeMsZoUWqF2TjbS1RidtH+L7kFdchogNtLo3yg4Ejrsqapg89QgZ3+DsuClRt
-         ZbmNvzdisvvRgILP3ru0d48ve1wgBXJLqVZL7qV76GUIdz9AdWf5Op4c1gvTHOaLfC9X
-         k+sg==
-X-Gm-Message-State: AOJu0Yw87aaXYFoFJZg69EMqbSFLzh0cwDOtXmNtb/g543IGSIkAOsl/
-	RDGh5eRMszSR+G1Mik6SLZo0TvePNbzJ/iJgQQNSgC6zvwUa1O9P2EPYEBpJXJqR66vkoc83hqw
-	9WKkvUYvhUGEThi//a917Og==
-X-Received: by 2002:a05:6a00:14d6:b0:6be:4e6e:2a85 with SMTP id w22-20020a056a0014d600b006be4e6e2a85mr36240600pfu.30.1699206936709;
-        Sun, 05 Nov 2023 09:55:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFk2pBjd4CJ2rMONJoZ1WOco/rxQ9zWrHoyH1EeQbHLv9sJvLzIuEzeP3ARVcsr8N00dE/hMg==
-X-Received: by 2002:a05:6a00:14d6:b0:6be:4e6e:2a85 with SMTP id w22-20020a056a0014d600b006be4e6e2a85mr36240554pfu.30.1699206936324;
-        Sun, 05 Nov 2023 09:55:36 -0800 (PST)
-Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
-        by smtp.gmail.com with ESMTPSA id ff7-20020a056a002f4700b0068620bee456sm4312142pfb.209.2023.11.05.09.55.35
+        d=1e100.net; s=20230601; t=1699208716; x=1699813516;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=A4y1IraQYh3H6lxTiJ29Tx+EfGHZDN1CM++p6MjOMyQ=;
+        b=ubA1qNkcrr1oXVt2WZhldHJLVKrbrRSbYkJ56wLf2VE/zfVNvDJYeLsEPT9wtMPWnW
+         BVBrt4jYmkGNbSeWAHO2tRZj1gAosR/Qf2FhW627W9m3e/JdkW4XD10U1CiL63//N44z
+         nKxsLWBnaHoeYuXmUET6EfwuD802EKApm/o3Mj5t6Xs0iS+tPBVdD5sxB1BdDsOY93D5
+         5+RQl0Ixmj3NtpCe94mru3AegkXQS7xFJq/gEON6vzJ0aVNpMBHF18rEnT/byA1wtpvr
+         dZKDVGY1seLAqT8ZmyxxOPe+Y1947zV97344XujyfcPxXqhvKCVzjplAXcSr1B8SaG1W
+         udog==
+X-Gm-Message-State: AOJu0Yws2LITbaXQRxHeQ9BzPZlG1DdF5CRdjggGMeQvUYGuJ0WCUCS4
+	Y1oDqtdc6n/Cfjl8vxjCGQ==
+X-Google-Smtp-Source: AGHT+IF3HbEEGHEXV5dgj5RM8rXJl21RMytOnVR9czMyioFRoUl0OUSu2mcz4KNZRXxseJD3Iy+jGQ==
+X-Received: by 2002:a9d:7d8c:0:b0:6b9:9bcd:32fe with SMTP id j12-20020a9d7d8c000000b006b99bcd32femr23214919otn.17.1699208715753;
+        Sun, 05 Nov 2023 10:25:15 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r9-20020a9d7cc9000000b006b96384ba1csm992643otn.77.2023.11.05.10.25.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Nov 2023 09:55:35 -0800 (PST)
-Date: Sun, 5 Nov 2023 10:55:34 -0700
-From: Jerry Snitselaar <jsnitsel@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: acpica-devel@lists.linuxfoundation.org, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
-	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, 
-	Christoph Hellwig <hch@lst.de>, iommu@lists.linux.dev, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Robert Moore <robert.moore@intel.com>, 
-	Rob Herring <robh+dt@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
-	Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Krishna Reddy <vdumpa@nvidia.com>, 
-	Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux-foundation.org, 
-	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
-	Zhenhua Huang <quic_zhenhuah@quicinc.com>
-Subject: Re: [PATCH RFC 04/17] acpi: Do not return struct iommu_ops from
- acpi_iommu_configure_id()
-Message-ID: <oe2b62jjtcki7ti4qw6ktzvat7eszrpm7vphgsdvfp5uwdoj3r@wc62cpauchw6>
-References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
- <4-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
- <xvgdxrlcpvafst6qypgwehtleaihsedgoiat6akv6au2j4xrjw@rk4dl4xbnq6o>
- <20231105132409.GA258408@nvidia.com>
+        Sun, 05 Nov 2023 10:25:15 -0800 (PST)
+Received: (nullmailer pid 1778778 invoked by uid 1000);
+	Sun, 05 Nov 2023 18:25:13 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231105132409.GA258408@nvidia.com>
+From: Rob Herring <robh@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Todor Tomov <todor.too@gmail.com>, Robert Foss <rfoss@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-msm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, Andy Gross <agross@kernel.org>, hverkuil-cisco@xs4all.nl, Rob Herring <robh+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, matti.lehtimaki@gmail.com, Bjorn Andersson <andersson@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, laurent.pinchart@ideasonboard.com, vincent.knecht@mailoo.org, devicetree@vger.kernel.org, quic_grosikop@quicinc.com, Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20231105-b4-camss-sc8280xp-v3-1-4b3c372ff0f4@linaro.org>
+References: <20231105-b4-camss-sc8280xp-v3-0-4b3c372ff0f4@linaro.org>
+ <20231105-b4-camss-sc8280xp-v3-1-4b3c372ff0f4@linaro.org>
+Message-Id: <169920871369.1778750.12101674904903495174.robh@kernel.org>
+Subject: Re: [PATCH v3 1/6] media: dt-bindings: media: camss: Add
+ qcom,sc8280xp-camss binding
+Date: Sun, 05 Nov 2023 12:25:13 -0600
 
-On Sun, Nov 05, 2023 at 09:24:09AM -0400, Jason Gunthorpe wrote:
-> On Fri, Nov 03, 2023 at 05:48:01PM -0700, Jerry Snitselaar wrote:
-> > > @@ -1632,10 +1633,15 @@ int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
-> > >  
-> > >  	acpi_arch_dma_setup(dev);
-> > >  
-> > > -	iommu = acpi_iommu_configure_id(dev, input_id);
-> > > -	if (PTR_ERR(iommu) == -EPROBE_DEFER)
-> > > +	ret = acpi_iommu_configure_id(dev, input_id);
-> > > +	if (ret == -EPROBE_DEFER)
-> > >  		return -EPROBE_DEFER;
-> > >  
-> >                 return ret; ?
+
+On Sun, 05 Nov 2023 17:45:00 +0000, Bryan O'Donoghue wrote:
+> Add bindings for qcom,sc8280xp-camss in order to support the camera
+> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
 > 
-> Maybe? Like this seemed to be a pattern in this code so I left it
-
-Yeah, it is fine. I think it just caught my eye, because of this earlier
-bit in the patch:
-
-        if (err == -EPROBE_DEFER) {
--               return ERR_PTR(err);
-+               return err;
-
-which needed to get rid of the ERR_PTR.
-
-Regards,
-Jerry
-
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/media/qcom,sc8280xp-camss.yaml        | 581 +++++++++++++++++++++
+>  1 file changed, 581 insertions(+)
 > 
-> > > +	/*
-> > > +	 * Historically this routine doesn't fail driver probing due to errors
-> > > +	 * in acpi_iommu_configure()
-> > 
-> >               acpi_iommu_configure_id()
-> 
-> Thanks
-> 
-> Jason
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,sc8280xp-camcc.h: No such file or directory
+   26 |         #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231105-b4-camss-sc8280xp-v3-1-4b3c372ff0f4@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
