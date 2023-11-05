@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF887E138D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 14:08:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF8C7E1394
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 14:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 493A02813F6
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 13:08:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19C711C2085F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 13:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFA4BE5D;
-	Sun,  5 Nov 2023 13:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9023BE50;
+	Sun,  5 Nov 2023 13:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="atGXLwu/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uiNdfudB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 406D1A95A
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 13:08:29 +0000 (UTC)
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82A0BB
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 05:08:28 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40839652b97so27528105e9.3
-        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 05:08:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6AF33E9
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 13:14:33 +0000 (UTC)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61FB1EB
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 05:14:31 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c5210a1515so50262141fa.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 05:14:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699189707; x=1699794507; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699190069; x=1699794869; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kA5HbJ1nAC1HbU6KlOKuy+GraCyrQG/02+Rf4rzbG0k=;
-        b=atGXLwu/s2hkHDILkHkTPrTtSdEs6dCW5V9yNlg+xfIQNPVQxROHh93KEPTKhxjeQW
-         GZp0pjbwDN1NOkAnWzzPq0IiC3Vrt4CmppwW2MY+Ar89DAKznhMjcWCFzLEXRB99Ya8D
-         gyzKFVXfaAHrh6C3+GaKTO07YLVejbfyWegTwHRGhtgMRLnbrDs6mEUoExp32xSdCw9V
-         cAMzPg1OFZ0t9GNc9tiVj1AN2loG6E2Zy7C9BR+XRTTs0enlQTAAh0IcuAUHX86AgNxe
-         oOdBHu4eYawxoQG5lt0yz4LEwlEb9pUORmXjn1/rHgQRp39AYjGOtRHwlfs3rGw6izzF
-         duLw==
+        bh=yqSv2UnZ+U1pe5KGwf29GbAFTynYSNuIgS0ilx1Gh6k=;
+        b=uiNdfudBiCcsNQNDXsk+cinHgAvz74PPBwjQ8AgBK8+Ok4/cSY/xJCETjpaKBMtFMx
+         RdjKw8d5QfudrCtWNB82U0RjNJmFoufxnrt0AJfGNAfJDCviawRk1ldDRIkR9oFpDYnz
+         jkgm2WGcQD/2t6WUMCwSmypXf2olRfcq3g8xZPqanu6WN8qsqLDx6FiuYr8FJM5G7lur
+         6T9OBtNQHlg7m33W1U0yhecAcCs8OCPUVyAwPV6c9pMv0o0wLiZBUQw3YjxwDz0aI9kO
+         s0mAceMcdlFMKbAUwKcua7JcK9snqjsnyHQG6VjzBkYmoBf1i5b+ZHlVpQbz7LZyG3WV
+         dv+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699189707; x=1699794507;
+        d=1e100.net; s=20230601; t=1699190069; x=1699794869;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kA5HbJ1nAC1HbU6KlOKuy+GraCyrQG/02+Rf4rzbG0k=;
-        b=o10sUgaRT3X/3XtVj9iBQrZcq5KiRzBNSDSAxZ16/I7gFc51GEQ53nMZtctqmZcGBp
-         EXTRF+nlvXZ/dDvgo5Urto2dPiHeqEX9STBD4G7LeRg358bboyxjGBXgEKLBGJbnoYqJ
-         DiTQf3bqZu6u9Q0KovK/m69CZsf3zPW2nosgIkCV8/7+vsdUxCUkNbSgPzAeYxKt+SMT
-         7fqWmBAK7hpjsX/JpmMyEMovuYDU/LiE9UOK3ueM2fR9r6PHcZzegxYp93NzG3G8SAzW
-         Gb4Gd51lT7FxbBTYWCCeZ7i/MAAT/gVrs8rjtxaE/WFook32NTZ/7aEs3pKs6P0El4Sm
-         OSLw==
-X-Gm-Message-State: AOJu0Yz+6jW5goHEX2Gos6wqIQ43FTOEJKehM0p7+quj8IMtnbW33yzb
-	UwzBAT4H6tBVWJBWM0V1XqeSfg==
-X-Google-Smtp-Source: AGHT+IHArqkEU1cHnDuJ82f7/D8SJobPuk02DcB3+uYQo6EjWky+brGhKkVzsPK3MrFiIPF+u1uIaA==
-X-Received: by 2002:a05:600c:1e11:b0:406:53aa:7a5f with SMTP id ay17-20020a05600c1e1100b0040653aa7a5fmr21253548wmb.10.1699189707074;
-        Sun, 05 Nov 2023 05:08:27 -0800 (PST)
+        bh=yqSv2UnZ+U1pe5KGwf29GbAFTynYSNuIgS0ilx1Gh6k=;
+        b=a2aAOdfZfuDiySDjh8gd1ZuHe+wTAUvkeZKp4lL+eDYaxbQqPHVx3ar2Ztz731HTUJ
+         La9ykctuHLZJA6WXDz+gW+YWEslzqaWQs7DPj8yQjQkp2tffjul6m8bs7kUAFBuRPo+A
+         D3SaLg09vcDDTP8sP9l+Jl7B3hGoNb5EFqepQ67sArImJNiytDjRyUxnBpK9ePpGJ7HI
+         2ykDzV4BJ0dk9OJDmfXSDiTU+SpsrGoNSp2FEkTK4EOckZPrREUmHY8+nf24BUqaZZMt
+         W/LHwRTAN7t/3/FCozF8q3uwkmwBvQ9Hn9qZEmbayEJdm7xgwG/i4ajlqS5XbSqFyXaN
+         wBCA==
+X-Gm-Message-State: AOJu0Ywgm4EaXaL5S4UgMUm82W1pV9q8lMKukJ6gXLgh3yid0Ylsgwfo
+	ATF6mTZPwtU+P6d16sU/e8Vh8Q==
+X-Google-Smtp-Source: AGHT+IGnKSMKqoVLMGiYGZbCupSjzNBC45bZJAUhZDif0PqgX/r7v34/Obqmw9T2Y6euojIAW4UL7A==
+X-Received: by 2002:a2e:9246:0:b0:2c5:724:fd64 with SMTP id v6-20020a2e9246000000b002c50724fd64mr20383790ljg.46.1699190069521;
+        Sun, 05 Nov 2023 05:14:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id i20-20020a05600c355400b0040839fcb217sm8935931wmq.8.2023.11.05.05.08.25
+        by smtp.gmail.com with ESMTPSA id ay8-20020a05600c1e0800b0040772138bb7sm9025518wmb.2.2023.11.05.05.14.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Nov 2023 05:08:26 -0800 (PST)
-Message-ID: <1830fc44-7bac-4db5-af59-112410d73a64@linaro.org>
-Date: Sun, 5 Nov 2023 14:08:24 +0100
+        Sun, 05 Nov 2023 05:14:29 -0800 (PST)
+Message-ID: <17aed57a-5e40-494b-a1d6-293533498804@linaro.org>
+Date: Sun, 5 Nov 2023 14:14:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
- rb3 board
+Subject: Re: [PATCH v2 00/20] Add minimal Tensor/GS101 SoC support and
+ Oriole/Pixel6 board
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_nainmeht@quicinc.com
-References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
- <20231103184655.23555-3-quic_kbajaj@quicinc.com>
- <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: William McVicker <willmcvicker@google.com>,
+ Maksym Holovach <maksym.holovach.an.2022@lpnu.ua>,
+ Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ olof@lixom.net, cw00.choi@samsung.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com,
+ soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>
+References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+ <3d489d6c-2098-4f0c-9ec4-f6040665753e@lpnu.ua>
+ <CADrjBPp+fyNoPdix6=Wp4cDCRFq2Mui8NS6WENejcHn+H1M-jA@mail.gmail.com>
+ <48e1c0bd-9518-4927-b490-f3206256bbd4@lpnu.ua>
+ <c0b8f356-0f26-459d-850d-ec0fa1fd3987@linaro.org>
+ <ZUUvp3kqM7NPlyZ_@google.com>
+ <cee1b28d-5bd9-46eb-b9f4-facbad10b5d7@linaro.org>
+ <2023110535-rare-underdone-b508@gregkh>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,42 +138,57 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+In-Reply-To: <2023110535-rare-underdone-b508@gregkh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/11/2023 23:22, Dmitry Baryshkov wrote:
-> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+On 05/11/2023 14:08, Greg KH wrote:
+> On Sun, Nov 05, 2023 at 01:52:22PM +0100, Krzysztof Kozlowski wrote:
+>> On 03/11/2023 18:36, William McVicker wrote:
 >>
->> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
->> platform. QCM6490 is derived from SC7280 meant for various
->> form factor including IoT.
+>>>>
+>>>> That's indeed a problem. Future Tesla SoC might have just few pieces
+>>>> similar to FSD. There would be no common SoC part, except the actual
+>>>> Tesla IP.
+>>>>
+>>>> Same for Google. Future GSXXX, if done by Qualcomm, will be absolutely
+>>>> different than GS101 and the only common part would be the TPU (Tensor).
+>>>>
+>>>> So now let's decide what is the common denominator:
+>>>> 1. Core SoC architecture, like buses, pinctrl, clocks, timers, serial,
+>>>> and many IP blocks, which constitute 95% of Devicetree bindings and drivers,
+>>>> 2. The one, big piece made by Samsung's customer: TPU, NPU or whatever.
+>>>
+>>> As mentioned above, I think this should be based on how the DTBs and DTBOs are
+>>> used and distributed.
 >>
->> Supported features are, as of now:
->> * Debug UART
->> * eMMC (only in IDP)
->> * USB
->>
-
-...
-
->> +
->> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
->> new file mode 100644
->> index 000000000000..01adc97789d0
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+>> None of existing platforms do it. Nowhere. All chromebooks are split per
+>> SoC, not "how DTBs should be used and distributed". There is no google,
+>> no Chromebook directory. None of Samsung phones have it. No
+>> Samsung-phone directory. None of Google phones have Pixel directory.
 > 
-> I have mixed feelings towards this file. Usually we add such 'common'
-> files only for the phone platforms where most of the devices are
-> common.
-> Do you expect that IDP and RB3 will have a lot of common code other
-> than these regulator settings?
+> but for code we have:
+> 	drivers/patform/chrome/
+> 	drivers/firmware/google/
+> 	drivers/net/ethernet/google/
+> 
+> don't know if that matters or not, but thought I would mention it...
 
-I agree here. What exactly is common in the real hardware between IDP
-and RB3? Commit msg does not explain it, so I do not see enough
-justification for common file. Just because some DTS looks similar for
-different hardware does not mean you should creat common file.
+Yes, for the drivers for the similar hardware we have it. We have
+drivers for Chromebook's Embedded Controller - let's put it in one
+place, so that maintenance and review will be easier.
+
+Now for DTS, the common hardware is not "Samsung phones", but "Samsung
+SoC". We organize it like:
+1. Samsung phones with Samsung SoC -> arm64/dts/samsung
+2. Samsung phones with Qualcomm SoC -> arm64/dts/qcom
+
+because the main common part is the SoC, not the rest of the phone.
+There is no reviewer or maintainer for Samsung phones. There is no need
+for such. No benefits, almost not many common parts except some touchscreen.
+
+Why Google Pixel suddenly should be exception from the way we handle DTS
+of all ARM64 platforms?
 
 Best regards,
 Krzysztof
