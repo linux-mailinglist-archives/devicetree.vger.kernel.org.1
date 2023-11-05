@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-13914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF277E15CE
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 19:27:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6306A7E15D7
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 19:30:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69595281201
-	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 18:27:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA5FB281224
+	for <lists+devicetree@lfdr.de>; Sun,  5 Nov 2023 18:30:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5820B168DA;
-	Sun,  5 Nov 2023 18:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCDC171AE;
+	Sun,  5 Nov 2023 18:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mSG+4x7I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bq1183+e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C92710940
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 18:27:42 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFD3DD
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 10:27:41 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9c3aec5f326so961544666b.1
-        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 10:27:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB330179B3
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 18:30:14 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8B3DE
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 10:30:12 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-543456dbd7bso9414846a12.1
+        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 10:30:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699208859; x=1699813659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YtYkXhJiAwD/4ufZ+WtKMO/gc4P5uXt0+RprooKJdVQ=;
-        b=mSG+4x7IH3j1QuRk76PJYayFKOgtei0Z6ISRkDi/quKgnrcTzJ1hATnQqIBbn2wbeS
-         qlzQcpMHqBKAzOcYzd2zDSGlwmD7dbgsRkwmkMs/0FlVpuyth/czMphxPBF1c8IAb5YR
-         xrMz9kQzxMnPuABmf1wrsMYIwh1GZd5PtlXLklmpXTaADzAoFraVKTHxCc4m3jgziSBG
-         C8sEqV0EbWSK93yzdh76RRfLVMoVqjbwVFyaTOyMG3W4SUjYtVSMCgAORnLy/qzn19tU
-         i+2kGi/s5rVHRnm/IMSqTd033OWmtTCRZK0MXq5C5QcvGmsM7S58uJQLu32iNNQ9rrEX
-         7FuQ==
+        d=linaro.org; s=google; t=1699209011; x=1699813811; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1JgzTXBbhRyisUO6sPY7HiShCzr7lEBz4B4CkSwt2k0=;
+        b=Bq1183+eJP6JJKDUq0XJmnzL1PtRLN1MyuKMBHe1t2QIONm4xCZedEYg6BMQ7Oask6
+         jqczEO9eR5NkGBxImM3PEUow1s76T4lm9IiWqkDuSmKiswYxREpRIIjEEjVtSxgDeknA
+         kCETBQWPek2ZPcaNjhn0r58Ft32JpCWgDA5fOAUX86WAogoqxJZMvfbIlIXFDBHgTQPH
+         g5gd6m6xEp+EkF93+NvdV3+1O2kOWyEE6HtKYZRPJh9fx9u81FqWvju39VpDaDfWwXM8
+         dS1sZIOfvhwUWcOYXtyzLXAQHmy0ne8vmL10f8XCzttxuOZwhUXU9NKKa6vKEfgNDzP9
+         HHew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699208859; x=1699813659;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YtYkXhJiAwD/4ufZ+WtKMO/gc4P5uXt0+RprooKJdVQ=;
-        b=kHvT4Tdhdu+et1Mvp5lL4jTmyqnKWu6/P8mxTWUilB+Kxe0xyMg14tuK4EFUHsuNvP
-         kQpbOxoaDO/22PBSRA96rT3z6b43ZnCEmlT6dxlxYjMQ2UV746TN7VUqcyx7OhIySaZE
-         X6BOWk50swNBlq7RJWafSWtX31G7Oh3opyJpfxesiDjwFSju+Qlpcj7weAgfEOnISPUC
-         x98UHd2bzx3aZul7QQX3XS7JhuS0FKZpME23AgblMAaEQdEZJZhMHB31ZYL3wTdHapm1
-         WSzGcY64jRsgWIEznp/qYsyk3Zg9lH0UkzjEbLmjsPfaCyO8S+Zb/GSsjGic3MbmRzin
-         n0Bw==
-X-Gm-Message-State: AOJu0YzbBTbsd17ydy5M5Ow1WnKB54Kt6CfWgbAjeZQmT7WNiWFWF08o
-	QTBozAPiwyknlwEIfuS/Lc26qw==
-X-Google-Smtp-Source: AGHT+IFS1d3GXEaispR9wFYf4yHxCKtyI7B6Tw5NSCyAMnJnezeIylVNMQBzEk3MadZg6UGwWTRssg==
-X-Received: by 2002:a17:906:c107:b0:9a2:295a:9bbc with SMTP id do7-20020a170906c10700b009a2295a9bbcmr7412421ejc.37.1699208859541;
-        Sun, 05 Nov 2023 10:27:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699209011; x=1699813811;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1JgzTXBbhRyisUO6sPY7HiShCzr7lEBz4B4CkSwt2k0=;
+        b=VtL0a8UikUnNpgAXWypXi3LAYMhRYdqA+R6+M2darS0xPPW14ZFffHuQsiTcL3AUup
+         ubI6e95sAopH4bYmwa1qrIDjrg1hdckjbUG7x0LpdOzhjrPJsfVbHzF98Omw15wp6yqh
+         1yo1mIqWgyi0lFMvbfVMNTQ+lGyEx0GEnXjt2VvzoJrTgIqv8N/eLa/BpTnbPLPuoqOu
+         HsioPAU0xy5W50BE0tQ6SM5MkVhz0P/nyoDdaoKkF/fy5NqRc6IPjdhtcaDYqSuDZfp9
+         H8kjT+dlF46K65di9MWiwZTJgn7d2GK1sceWqPsHPNfhtDSYxCT5PAaUlLVsgJfBED5h
+         77SA==
+X-Gm-Message-State: AOJu0Yx/TmykSs8uG4vr9kd6szy3BtPWJKdmUhZ5h4rga7Jzah/cgD60
+	Kx3ijzLvsoVOHYLCdS+qJmcGpA==
+X-Google-Smtp-Source: AGHT+IH4Mi6VdRFQSZCrtAado1C9bPxDJGo6dDICGD5mb7WYKphowKb3Z3RDANWw6ekwGhlIqknMqA==
+X-Received: by 2002:a17:906:b84a:b0:9ad:cbc0:9f47 with SMTP id ga10-20020a170906b84a00b009adcbc09f47mr6362645ejb.12.1699209010855;
+        Sun, 05 Nov 2023 10:30:10 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id n9-20020a170906688900b009a9fbeb15f5sm3231093ejr.46.2023.11.05.10.27.37
+        by smtp.gmail.com with ESMTPSA id fx2-20020a170906b74200b0099bd7b26639sm3291367ejb.6.2023.11.05.10.30.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Nov 2023 10:27:39 -0800 (PST)
-Message-ID: <ac1433a0-2dca-444f-8145-c6fee7d2e782@linaro.org>
-Date: Sun, 5 Nov 2023 19:27:36 +0100
+        Sun, 05 Nov 2023 10:30:10 -0800 (PST)
+Message-ID: <894de0ea-d532-4bf3-88ae-91c766e703c5@linaro.org>
+Date: Sun, 5 Nov 2023 19:30:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,22 +67,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] media: dt-bindings: media: camss: Add
- qcom,sc8280xp-camss binding
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, hverkuil-cisco@xs4all.nl,
- laurent.pinchart@ideasonboard.com, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org,
- matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231105-b4-camss-sc8280xp-v3-0-4b3c372ff0f4@linaro.org>
- <20231105-b4-camss-sc8280xp-v3-1-4b3c372ff0f4@linaro.org>
+Subject: Re: [PATCH] dt-bindings: watchdog: nxp,pnx4008-wdt: convert txt to
+ yaml
 Content-Language: en-US
+To: Nik Bune <n2h9z4@gmail.com>, wim@linux-watchdog.org, linux@roeck-us.net,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ skhan@linuxfoundation.org, stigge@antcom.de
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231104182813.80055-1-n2h9z4@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,22 +121,76 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231105-b4-camss-sc8280xp-v3-1-4b3c372ff0f4@linaro.org>
+In-Reply-To: <20231104182813.80055-1-n2h9z4@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/11/2023 18:45, Bryan O'Donoghue wrote:
-> Add bindings for qcom,sc8280xp-camss in order to support the camera
-> subsystem for sc8280xp as found in the Lenovo x13s Laptop.
+On 04/11/2023 19:28, Nik Bune wrote:
+> Convert txt file to yaml. Add maintainers from git blame. 
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Nik Bune <n2h9z4@gmail.com>
+
+Thank you for your patch. There is something to discuss/improve - few nits.
+
+
 > ---
+>  .../bindings/watchdog/nxp,pnx4008-wdt.yaml    | 34 +++++++++++++++++++
+>  .../bindings/watchdog/pnx4008-wdt.txt         | 17 ----------
+>  2 files changed, 34 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/pnx4008-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml b/Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml
+> new file mode 100644
+> index 000000000000..86b691a339b5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/nxp,pnx4008-wdt.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/nxp,pnx4008-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP PNX watchdog timer
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
 
-For the future (no need to resend):
+Put allOf: after maintainers: block. I know that many files do not
+follow this convention...
 
-The information about dependencies is still expected - but here. I only
-asked to move it from the commit log to the changelog.
+> +
+> +maintainers:
+> +  - Roland Stigge <stigge@antcom.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,pnx4008-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +unevaluatedProperties: false
+
+And this goes after required: block.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    watchdog@4003c000 {
+> +        compatible = "nxp,pnx4008-wdt";
+> +        reg = <0x4003C000 0x1000>;
+
+Lower-case hex please.
+
+> +        timeout-sec = <10>;
+> +    };
+
 
 Best regards,
 Krzysztof
