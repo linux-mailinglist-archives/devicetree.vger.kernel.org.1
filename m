@@ -1,279 +1,190 @@
-Return-Path: <devicetree+bounces-13964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EDC7E1A19
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 07:13:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967EB7E1A3C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 07:27:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B57DB28125A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 06:13:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF24AB20CE5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 06:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C312B661;
-	Mon,  6 Nov 2023 06:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1E0B673;
+	Mon,  6 Nov 2023 06:27:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="TsdwIYUV"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="mFHOAA88"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB282F3D
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 06:13:29 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 611A4DB;
-	Sun,  5 Nov 2023 22:13:25 -0800 (PST)
-X-UUID: 7b5be84a7c6b11ee8051498923ad61e6-20231106
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=YmkqDSVC3kwhnhOLomVtUvOZ3zUE9YdmyqA2XgHXMFg=;
-	b=TsdwIYUViszbclkcSxH4PM+M3ZtOtP5HDN8vM2xykoBwwmcjtbGrwbkXwP5GYaG/GfdI61LiyDvOdGsRG5WuSL1y8CnJz+4ok4FZgVPkDXPMjgKH16UnOp9NH8pNwvJyxYPesM5ZyZKeMa0JVBRGcobrEuJK9yGHRwFRat8aqz4=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.33,REQID:0ee435fc-c249-46d1-9574-dfc528191690,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:364b77b,CLOUDID:35100e95-10ce-4e4b-85c2-c9b5229ff92b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 7b5be84a7c6b11ee8051498923ad61e6-20231106
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <jian.yang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2005346325; Mon, 06 Nov 2023 14:12:36 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 6 Nov 2023 14:12:36 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 6 Nov 2023 14:12:35 +0800
-From: Jian Yang <jian.yang@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?=
-	<kw@linux.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, Jianjun Wang
-	<jianjun.wang@mediatek.com>
-CC: <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<Chuanjia.Liu@mediatek.com>, <Jieyy.Yang@mediatek.com>,
-	<Qizhong.Cheng@mediatek.com>, <Jianguo.Zhang@mediatek.com>, jian.yang
-	<jian.yang@mediatek.com>
-Subject: [PATCH v4 2/2] PCI: mediatek-gen3: Add power and reset control feature for downstream component
-Date: Mon, 6 Nov 2023 14:12:20 +0800
-Message-ID: <20231106061220.21485-3-jian.yang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231106061220.21485-1-jian.yang@mediatek.com>
-References: <20231106061220.21485-1-jian.yang@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BFC12F58
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 06:27:29 +0000 (UTC)
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01olkn2063.outbound.protection.outlook.com [40.92.98.63])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19D9B8;
+	Sun,  5 Nov 2023 22:27:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JheXT6UxzODZPBuGhAAjs/eKzPOYqgl57+DUBZVJm0DydrYPVxataRbvIhN0dgn2zxefZKZZQyjUmkuL+a+4JHGcJQhLEVrENvOevg3mC7AQGv8nX4oRm3QyvzPvX/wnPRvzMfwMNzijlJna6JeSyBnaf0O7yHzfAaMbzy+atNpJvmgvRR+BsoLUv6t8s6AVcek+xaLfxiKUBI7BWF/rDIt1U5VNbY5BPEYz+NnzfXq9qMhOxNmOGqBfd9XCJ57A+3ecNxYspsr4qnKJm08uH+NoZKnaJOp3k9qDnGf6vMPKrjcOXZVjKBERZ239Repb/S6qR/YGSKQ24tE1z/7gIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iJ651AL1iOYHGhpZcB2u908BUH/4wvbqx5MxAwswnno=;
+ b=M7K1JIFf4uCzzaAERhxDxYuY81+/iVEW+c14GBmkY4Ro5jxq3/Nri1dDpkgryvQ1z6qidY+tYomolV5yCXe7XYEFN0VLrXuWhjBfAH3L9bzBicBSXZ+53fOBF1YG+LuQzYcpExX+uiW3dThfWHnn+kQ3Z1HTlfDlQmPBZGAy0UTNe0kHMphPuds+m8vynQ3VRgtigx/RMy+5NT50WGsq02xXIHYX9q6tyxtYCkecrx3iG6ZQh9/CZvvD6S0G0cOFDixo3opWBpaES+mqr+dHnVLzTVjMU1IZ8npb/laq3sGbHYanze2su4mgwdOMmdbNUr44WUo7tbb0KBF5mHbe9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iJ651AL1iOYHGhpZcB2u908BUH/4wvbqx5MxAwswnno=;
+ b=mFHOAA88KGIQmS8AB216xbQSr90ZeI3nXIPIvzKwqSph/SNirkp+9lRSAzBROQAqok5DrLbiUtUzqxxJcYuNQDCCztP4RMbwS2cLAvIWsb/n0DyWwpAnsYhGc8gkM8UQNjtVstj28vDlDxmT+lQZG/oshAJ8byMjFgP8uYYFWdRowO4Te23c3glXU6sS2gkmyQKoRMt/vc2UlIoy7QOP9zWhtGMSh8W344PsTYj9qTnAGI2i7ql/TcK3R1RVjG385ZD8XAVm3LD5UOl1wTXg6W64MEie3pEbotatDtJbwsmbSg0kqj9pu+EHg6HoJWk3fZarIsEGfVNz8E/ubn31ag==
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
+ by TYCP286MB2367.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:18b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Mon, 6 Nov
+ 2023 06:27:22 +0000
+Received: from TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b]) by TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::465a:2534:4d99:a25b%6]) with mapi id 15.20.6954.028; Mon, 6 Nov 2023
+ 06:27:22 +0000
+From: Shiji Yang <yangshiji66@outlook.com>
+To: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Shiji Yang <yangshiji66@outlook.com>
+Subject: [PATCH v4] dt-bindings: leds: add 'internet' and 'signal' function definitions
+Date: Mon,  6 Nov 2023 14:26:51 +0800
+Message-ID:
+ <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+X-Mailer: git-send-email 2.39.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [+IcjH/6JQ/NEElEnZktObtPbbM7gCv3o]
+X-ClientProxiedBy: TY1PR01CA0198.jpnprd01.prod.outlook.com (2603:1096:403::28)
+ To TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM (2603:1096:404:8041::8)
+X-Microsoft-Original-Message-ID:
+ <20231106062652.5466-1-yangshiji66@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--6.845200-8.000000
-X-TMASE-MatchedRID: LTAc3o+XUF8kYRdjNXG/+XTnOygHVQpOmX+W7bzPOQHdyLGp/yhwWgoe
-	ktpGiVj3mcuyb+ll2ykfKM+QT8rKpGhyvm9EcIhqk3ewifG2MNNCX8V1FiRRkt9RlPzeVuQQost
-	SmZzTxtotz23lNbS2WkTQlgPQUcNkszLAY5oHhBCQOktEo73GFKX1XMd/SqvuNE5yhKhaSOqtbj
-	X4EGqr77NyHVC04zQVHX4qwBWZhmIEshQLfIZrynV7tdtvoibauIQDHu9PGw7IvQIyugvKdfhTq
-	8/WMstvSKl2ec1F2FACBaHxOPbQry7SCjRWRA7yngIgpj8eDcAZ1CdBJOsoY8RB0bsfrpPIHm9g
-	gFVoCcCae0xuCE6SloLmVf1Oz5IJeDr6+lnJI54SJccXQyNS9q2cWYzIPEUTftwZ3X11IV0=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--6.845200-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	FBC6504F0D296C67EA13FAFA0C365FA72A700DCFA6FBBE2AB20BE0898D022E522000:8
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYAP286MB0315:EE_|TYCP286MB2367:EE_
+X-MS-Office365-Filtering-Correlation-Id: b187daea-9432-4f49-d427-08dbde916ed5
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	jsufzQ4KG+RcG1PFGVJtEdv4Aw2YUS6n4S5hEdyzoAymPPPHoKO7EB7utReW6/ZB4tnBFI5vkBTXN1RN4CxTLhjelF+7h1qgKGr77WA42Xj/DFSt/NqWGlJuQfcYAqtZwwJGTFTeoWAZjbqbcYw8wdhx0kXES9KJZXUc349HjRoLnE8DNGGFfKoEuANzS8/hQNMQ5QhA6EWUkTEqJWAuG8bI0+EHTra6OzXr/D+FgmvfCtj+Gp637Y3hHp7YGV+wusqkWhPh9iA4clbsJC4+KF8n+YjdbSAs0FqDRKc2/JYgR4J4buRE12QByq/uIWdd1gurk70EByMaUkADR00LBMmK3z7b9vnPcBLdLYt7xQp9lNYH/UmVXebrBg7AGpedKErgFAt2pLUN2eOaE9Lhwyw1f/bctZUBrw6ruLspiARGDvh0m+1cIk767qY1lu+rSRLenoqHe+gJ746GKi1tqCaxhdmL41nylmrgW7A2NMHK5Fxm8cJs8BZjfKXC78aOQTCF78aw1Uc0g+mbYiSUzThfo0zf0dpqJvTBTZh6Md9Z+I6SzhG4vytmjePBYDwKKVI6gHgYKdpaQDsCLWB2I/2B4+sqKG6gcTt5xXZmvQhPTyEVAnuOCM47j4pTPqHTo1/bJzs0x48SynpHRtZnpA==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?aF8MxX802yYxpc0OS1ErXHMx2rR/35yBPtAls15DWopKI9XH1Mr5JZj2TbWe?=
+ =?us-ascii?Q?u7q1NHgu/y3lkcHbbWrhTNEWFodw+QV0v4JaDgVzKUabkpjFAmTmR/07PIOT?=
+ =?us-ascii?Q?RownfyJBALfAELtyADm9j+747YJv6sEdKDUgtmbqRE5yxwjZnZ4eFdhBBHB6?=
+ =?us-ascii?Q?DusnD7Mcumy44rAFpjWnOxey/QorbYBgk3ZlA2XyGGLNqqanM5O1tEhw2RKp?=
+ =?us-ascii?Q?4xCgunYp3DvdoLKu+ucgNPOYBzm7w220KWMb5GiOWWNYQqsi/WlP8sLAmIda?=
+ =?us-ascii?Q?kLvRW/1UOymlAHd1IS9sMsC+grpfc10SYLVmh6IpsPW8T4HuRub4wb8N7oVq?=
+ =?us-ascii?Q?TlsHfbpReBTPnz4KxgeZ61FO00MtfAUfTVJ582PZgZJclGaCZUovOlNkhftn?=
+ =?us-ascii?Q?ReIqB3UI/1igBOzYBThlcSGsJqX9N87ufvHcWXA4OcwR+9CXEY0+A49TLiap?=
+ =?us-ascii?Q?167I9SLVMZcjzX59armHz1zZBtIQnhZyyZh3uYRr8wLwT/IEMOoIYO9Ttar+?=
+ =?us-ascii?Q?D53Wbo80DrEMHujp7O6BEGcNTyN+xYJw3lrCXQFIIyLqpgiXwAaiCdhq38in?=
+ =?us-ascii?Q?WegpVTppjBzMUiHXQNqXcu+2oJL9rN6w2eI1MxLGMNTprDJvTnM3l/Rw1FBs?=
+ =?us-ascii?Q?Wv7zxueRYUIK/Z0OX8cvR9/G40g1aI6+X53fFyKNdhVaI7iIOjlVOebIfYgN?=
+ =?us-ascii?Q?F8/iVGcyqAVcKow4WXcG20tLOlOTUa8tJFM7mMFPUoPE0lqgId8srrxcl19K?=
+ =?us-ascii?Q?8VpH7DhQYLDCyNWzDPDR9ntwH3ytdAIOk3PMbCh4/TowvAlXvBj5id4PgUDZ?=
+ =?us-ascii?Q?vRxQwuqVz2biajEycBfDQNMqDXj/RdVyM5nYffCOHeDRVkU1rZ5PlyJ89G5m?=
+ =?us-ascii?Q?Zmx0e2c76nbNWjFvmpyDuDizEWQlXLr0InhKbJQIPSjvz9I6NM0xFJzQNVLm?=
+ =?us-ascii?Q?inzenjp0MjrZPOduhiDBMQ+6d8j7e5Lqpv062l2lUkNimFQHrUjlv8OmUz7W?=
+ =?us-ascii?Q?Tr/PZJ3NFVUpkLCbcH191OEaKDxg9TkLwUttPJCSHdKKjM3cQ5oj0vWmM5DU?=
+ =?us-ascii?Q?bSS8SqjSHsWUKakpEJ92uzebktWi6bCPlnKHDnB5jg01z+hwtSDLhk9ydfY+?=
+ =?us-ascii?Q?tYmRC/NrND4ZwcmLgsLzlKhCj+wd83NzfI7IQnFsvnWObKk6RycOLqMJf0Ds?=
+ =?us-ascii?Q?pODub6QQ4GTYXCLeqPAnAblrIydF3t0CmBZcU19PPY1oxXKt16Wg2nIg5Ug?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b187daea-9432-4f49-d427-08dbde916ed5
+X-MS-Exchange-CrossTenant-AuthSource: TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2023 06:27:22.5335
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCP286MB2367
 
-From: "jian.yang" <jian.yang@mediatek.com>
+These two types of LEDs are widely used in routers and NICs.
 
-Make MediaTek's controller driver capable of controlling power
-supplies and reset pin of a downstream component in power-on and
-power-off process.
+The 'signal' LED is used to display the wireless signal strength.
+Usually, there are 3~4 LEDs in one group to indicate the signal
+strength, similar to the signal icon on a mobile phone.
 
-Some downstream components (e.g., a WIFI chip) may need an extra
-reset other than PERST# and their power supplies, depending on
-the requirements of platform, may need to controlled by their
-parent's driver. To meet the requirements described above, I add this
-feature to MediaTek's PCIe controller driver as an optional feature.
+The 'internet' LED can indicate whether the device can access a
+specific server. It's different from 'wan'. 'wan' usually indicates
+whether the WAN port is connected to the modem (internet services
+may still be unavailable). But the 'internet' shows if the device
+can successfully ping servers such as 8.8.8.8 to detect the internet
+connection status. When the router is running in AP only mode, we
+can even connect LAN port to the AC/modem to connect to the internet.
+In this case, the 'internet' LED should be on. On some routers, both
+'internet' and 'wan' are available and can be controlled separately.
 
-Signed-off-by: jian.yang <jian.yang@mediatek.com>
+Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
 ---
- drivers/pci/controller/pcie-mediatek-gen3.c | 89 ++++++++++++++++++++-
- 1 file changed, 88 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-index e0e27645fdf4..51d30331db5a 100644
---- a/drivers/pci/controller/pcie-mediatek-gen3.c
-+++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/iopoll.h>
- #include <linux/irq.h>
- #include <linux/irqchip/chained_irq.h>
-@@ -20,6 +21,8 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-+#include <linux/pm_wakeup.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/reset.h>
- 
- #include "../pci.h"
-@@ -100,6 +103,13 @@
- #define PCIE_ATR_TLP_TYPE_MEM		PCIE_ATR_TLP_TYPE(0)
- #define PCIE_ATR_TLP_TYPE_IO		PCIE_ATR_TLP_TYPE(2)
- 
-+/* Downstream Component power supplies used by MediaTek PCIe */
-+static const char *const dsc_power_supplies[] = {
-+	"vpcie1v8",
-+	"vpcie3v3",
-+	"vpcie12v",
-+};
-+
- /**
-  * struct mtk_msi_set - MSI information for each set
-  * @base: IO mapped register base
-@@ -122,6 +132,9 @@ struct mtk_msi_set {
-  * @phy: PHY controller block
-  * @clks: PCIe clocks
-  * @num_clks: PCIe clocks count for this port
-+ * @supplies: Downstream Component power supplies
-+ * @num_supplies: Downstream Component power supplies count
-+ * @dsc_reset: The GPIO pin to reset Downstream component
-  * @irq: PCIe controller interrupt number
-  * @saved_irq_state: IRQ enable state saved at suspend time
-  * @irq_lock: lock protecting IRQ register access
-@@ -141,6 +154,9 @@ struct mtk_gen3_pcie {
- 	struct phy *phy;
- 	struct clk_bulk_data *clks;
- 	int num_clks;
-+	struct regulator_bulk_data *supplies;
-+	int num_supplies;
-+	struct gpio_desc *dsc_reset;
- 
- 	int irq;
- 	u32 saved_irq_state;
-@@ -763,7 +779,7 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 	struct device *dev = pcie->dev;
- 	struct platform_device *pdev = to_platform_device(dev);
- 	struct resource *regs;
--	int ret;
-+	int i, ret;
- 
- 	regs = platform_get_resource_byname(pdev, IORESOURCE_MEM, "pcie-mac");
- 	if (!regs)
-@@ -809,14 +825,82 @@ static int mtk_pcie_parse_port(struct mtk_gen3_pcie *pcie)
- 		return pcie->num_clks;
- 	}
- 
-+	pcie->num_supplies = ARRAY_SIZE(dsc_power_supplies);
-+	pcie->supplies = devm_kcalloc(dev, pcie->num_supplies,
-+				      sizeof(*pcie->supplies),
-+				      GFP_KERNEL);
-+	if (!pcie->supplies)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < pcie->num_supplies; i++)
-+		pcie->supplies[i].supply = dsc_power_supplies[i];
-+
-+	ret = devm_regulator_bulk_get(dev, pcie->num_supplies, pcie->supplies);
-+	if (ret)
-+		return ret;
-+
-+	pcie->dsc_reset = devm_gpiod_get_optional(dev, "dsc-reset",
-+						  GPIOD_OUT_LOW);
-+	if (IS_ERR(pcie->dsc_reset))
-+		return dev_err_probe(dev, PTR_ERR(pcie->dsc_reset),
-+				     "failed to request DSC reset gpio\n");
-+
- 	return 0;
- }
- 
-+static int mtk_pcie_dsc_power_up(struct mtk_gen3_pcie *pcie)
-+{
-+	struct device *dev = pcie->dev;
-+	int ret;
-+
-+	/*
-+	 * Skip powering up the downstream component if it was kept powered on
-+	 * while system entered suspend state
-+	 */
-+	if (device_wakeup_path(dev))
-+		return 0;
-+
-+	/* Assert Downstream Component reset */
-+	if (pcie->dsc_reset)
-+		gpiod_set_value_cansleep(pcie->dsc_reset, 1);
-+
-+	ret = regulator_bulk_enable(pcie->num_supplies, pcie->supplies);
-+	if (ret)
-+		dev_err(dev, "failed to enable DSC power supplies: %d\n", ret);
-+
-+	/* De-assert Downstream Component reset */
-+	if (pcie->dsc_reset)
-+		gpiod_set_value_cansleep(pcie->dsc_reset, 0);
-+
-+	return ret;
-+}
-+
-+static void mtk_pcie_dsc_power_down(struct mtk_gen3_pcie *pcie)
-+{
-+	/*
-+	 * Keep downstream component powered on if it is capable of waking up
-+	 * the system in suspend state
-+	 */
-+	if (device_wakeup_path(pcie->dev))
-+		return;
-+
-+	/* Assert Downstream Component reset */
-+	if (pcie->dsc_reset)
-+		gpiod_set_value_cansleep(pcie->dsc_reset, 1);
-+
-+	regulator_bulk_disable(pcie->num_supplies, pcie->supplies);
-+}
-+
- static int mtk_pcie_power_up(struct mtk_gen3_pcie *pcie)
- {
- 	struct device *dev = pcie->dev;
- 	int err;
- 
-+	/* Downstream Component power up before RC */
-+	err = mtk_pcie_dsc_power_up(pcie);
-+	if (err)
-+		return err;
-+
- 	/* PHY power on and enable pipe clock */
- 	reset_control_deassert(pcie->phy_reset);
- 
-@@ -855,6 +939,7 @@ static int mtk_pcie_power_up(struct mtk_gen3_pcie *pcie)
- 	phy_exit(pcie->phy);
- err_phy_init:
- 	reset_control_assert(pcie->phy_reset);
-+	mtk_pcie_dsc_power_down(pcie);
- 
- 	return err;
- }
-@@ -870,6 +955,8 @@ static void mtk_pcie_power_down(struct mtk_gen3_pcie *pcie)
- 	phy_power_off(pcie->phy);
- 	phy_exit(pcie->phy);
- 	reset_control_assert(pcie->phy_reset);
-+
-+	mtk_pcie_dsc_power_down(pcie);
- }
- 
- static int mtk_pcie_setup(struct mtk_gen3_pcie *pcie)
+Changes in v2:
+* Remove the LED name sorting patch as it changes the ABI.
+* Add "devicetree@vger.kernel.org" to '--to' list.
+  Thanks to Rob Herring and Krzysztof Kozlowski for letting me know I
+  can send patch to multiple mailing list at once.
+
+Changes in v3:
+* Add more information about the new added LEDs.
+* Remove the missing LED fix as Jisheng Zhang has already sent a
+  similar one. I should search the mailing list first...
+
+Changes in v4:
+* Rename 'rssi' LED to more generic name 'signal'. I forgot to update
+  the source file in v3.
+
+v1:
+https://lore.kernel.org/all/TYAP286MB0315FE921FF113BF76F7B700BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+
+v2:
+https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+
+v3:
+https://lore.kernel.org/all/TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+
+ include/dt-bindings/leds/common.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+index 9a0d33d02..f831c5dba 100644
+--- a/include/dt-bindings/leds/common.h
++++ b/include/dt-bindings/leds/common.h
+@@ -88,6 +88,7 @@
+ #define LED_FUNCTION_FLASH "flash"
+ #define LED_FUNCTION_HEARTBEAT "heartbeat"
+ #define LED_FUNCTION_INDICATOR "indicator"
++#define LED_FUNCTION_INTERNET "internet"
+ #define LED_FUNCTION_LAN "lan"
+ #define LED_FUNCTION_MAIL "mail"
+ #define LED_FUNCTION_MTD "mtd"
+@@ -95,6 +96,7 @@
+ #define LED_FUNCTION_PROGRAMMING "programming"
+ #define LED_FUNCTION_RX "rx"
+ #define LED_FUNCTION_SD "sd"
++#define LED_FUNCTION_SIGNAL "signal"
+ #define LED_FUNCTION_STANDBY "standby"
+ #define LED_FUNCTION_TORCH "torch"
+ #define LED_FUNCTION_TX "tx"
 -- 
-2.18.0
+2.39.2
 
 
