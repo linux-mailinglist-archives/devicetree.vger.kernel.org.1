@@ -1,173 +1,422 @@
-Return-Path: <devicetree+bounces-14039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 180947E1D6D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:47:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC0B7E1D76
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:51:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6C0E2812BF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:47:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 704901C2085C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25225168A3;
-	Mon,  6 Nov 2023 09:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81060168A6;
+	Mon,  6 Nov 2023 09:51:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FBvkGuoJ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="g51Jn2il"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC32E16420
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 09:47:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F330BE1;
-	Mon,  6 Nov 2023 01:47:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699264044; x=1730800044;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=T6rFshZG1CW8KfWnm5omhJa4XbvWrABFG0f01qNAl9s=;
-  b=FBvkGuoJ+aKKeTpt6+z9jhK+ngqkRaqF8B3lACfVP3Bf+o7cBypVgVTn
-   jsatam8SeVpcx7Glrgb4n7LVlBNa/z3ypNU71jSdJI0VlCV3GtF78gFNQ
-   iJty4vfVicj9E7RtdTko1VPdJuBAsJKijMNSMcE3ASSAKKpUXufLitd7H
-   JZ/Z1K9ye5isw9nstrBQ52oSzP5aVDEj7lkoOUQOSMQCCqFevQE2S3swE
-   6lyZZV+u3z0n/YqM9kW0yFzXjd6vlXGE77edRWHtPGFRMvsuWym1dQAhS
-   ZujZHcCxcA5On5f3kjLivQrmymbj01ZiShX80p2DXK0Pvxhc6p54p/UIv
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="420355796"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="420355796"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 01:47:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="738756979"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="738756979"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 06 Nov 2023 01:47:19 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1qzwCT-0006JE-1D;
-	Mon, 06 Nov 2023 09:47:17 +0000
-Date: Mon, 6 Nov 2023 17:46:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75D216420
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 09:51:40 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D09BDB;
+	Mon,  6 Nov 2023 01:51:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1699264298; x=1730800298;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=gjF0M2PpCgYk+/ZTgC61t7QmzFXN08axmI0slI2iSbQ=;
+  b=g51Jn2ilBU3yN4iPZ/b0FSeeW5cjRBsk6NlDxCVJNqTkiDGZ6F/0224A
+   trB8UUUz4r0BcqOgSy7yRLlYp/AgZRarfQ2JsXXrzLW9mFT76q7cNXATR
+   Xq1L/tlxY5GRsx5w5VfE0OsjtfcR59dLapGAFovIcSUib/juKwG/+dCRB
+   N76A+eqSLVz6A/3+Cl94G17uWfCES8nBubw3BF+lERZ10WYTwnBgCcXdB
+   cM5Q9/NS10pFnOcpKFa665Z7qCaj0366dtIjGx57W+TFoONgUl5u884nR
+   L7HhY4xm4WCBLevloY1e8Db+erOzo4pkuiCe0qV2WzT+kSxRfzJAAnm0e
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.03,281,1694728800"; 
+   d="scan'208";a="33823082"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Nov 2023 10:51:35 +0100
+Received: from localhost.localdomain (SCHIFFERM-M2.tq-net.de [10.121.49.20])
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 1C8DB28007F;
+	Mon,  6 Nov 2023 10:51:35 +0100 (CET)
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Sasha Levin <sashal@kernel.org>,
+	stable@vger.kernel.org
+Cc: Faiz Abbas <faiz_abbas@ti.com>,
+	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Artur Weber <aweber.kernel@gmail.com>
-Subject: Re: [PATCH 4/6] mfd: bcm590xx: Add compatible for BCM59054
-Message-ID: <202311061654.4074XhbV-lkp@intel.com>
-References: <20231030-bcm59054-v1-4-3517f980c1e3@gmail.com>
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH 5.4] Revert "ARM: dts: Move am33xx and am43xx mmc nodes to sdhci-omap driver"
+Date: Mon,  6 Nov 2023 10:50:48 +0100
+Message-ID: <20231106095048.8396-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231030-bcm59054-v1-4-3517f980c1e3@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Artur,
+This reverts commit d0c69c722ff16ce2481a5e0932c6d5b172109f21.
 
-kernel test robot noticed the following build warnings:
+The reverted commit completely breaks MMC on the AM33xx/AM437x for
+multiple reasons:
 
-[auto build test WARNING on 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1]
+- The changed compatible strings ti,am335-sdhci and ti,am437-sdhci
+  aren't supported on Linux 5.4 at all, so no driver is found
+- Even when additionally backporting the support for these compatible
+  strings in the sdhci-omap driver, I could not the the MMC interfaces
+  to work on our TQMa335x SoM - the interface would time out during card
+  initialization for both an eMMC and an SD card.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Artur-Weber/dt-bindings-mfd-brcm-bcm59056-Convert-to-YAML/20231031-040046
-base:   05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
-patch link:    https://lore.kernel.org/r/20231030-bcm59054-v1-4-3517f980c1e3%40gmail.com
-patch subject: [PATCH 4/6] mfd: bcm590xx: Add compatible for BCM59054
-config: powerpc64-allyesconfig (https://download.01.org/0day-ci/archive/20231106/202311061654.4074XhbV-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231106/202311061654.4074XhbV-lkp@intel.com/reproduce)
+I did not investigate the cause of the timeouts further, and instead
+just reverted the commit - switching to a different MMC driver in a stable
+kernel seems like a rather risky change unless it's thoroughly tested,
+which has obviously not happened in this case.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311061654.4074XhbV-lkp@intel.com/
+The reverted commit is also given as a Stable-dep-of commit 2eb502f496f7
+("ARM: dts: am33xx: Fix MMCHS0 dma properties"), however the conflict
+resulting when only the one commit is reverted is trivial to resolve,
+which leads to working MMC controllers again.
 
-All warnings (new ones prefixed by >>):
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+---
 
->> drivers/mfd/bcm590xx.c:53:26: warning: cast to smaller integer type 'unsigned int' from 'const void *' [-Wvoid-pointer-to-int-cast]
-      53 |         bcm590xx->device_type = (unsigned int)of_device_get_match_data(bcm590xx->dev);
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 warning generated.
+I have not checked if other stable kernels exhibit the same breakage; it
+might be a good idea to revert the change for all stable branches unless
+it is proven that the sdhci-omap driver actually works.
 
 
-vim +53 drivers/mfd/bcm590xx.c
+ arch/arm/boot/dts/am335x-baltos.dtsi              | 2 +-
+ arch/arm/boot/dts/am335x-boneblack-common.dtsi    | 1 -
+ arch/arm/boot/dts/am335x-boneblack-wireless.dts   | 1 +
+ arch/arm/boot/dts/am335x-boneblue.dts             | 1 +
+ arch/arm/boot/dts/am335x-bonegreen-wireless.dts   | 1 +
+ arch/arm/boot/dts/am335x-evm.dts                  | 3 ++-
+ arch/arm/boot/dts/am335x-evmsk.dts                | 2 +-
+ arch/arm/boot/dts/am335x-lxm.dts                  | 2 +-
+ arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi | 2 +-
+ arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dts    | 2 +-
+ arch/arm/boot/dts/am335x-pepper.dts               | 4 ++--
+ arch/arm/boot/dts/am335x-phycore-som.dtsi         | 2 +-
+ arch/arm/boot/dts/am33xx-l4.dtsi                  | 6 ++++--
+ arch/arm/boot/dts/am33xx.dtsi                     | 3 +--
+ arch/arm/boot/dts/am4372.dtsi                     | 3 +--
+ arch/arm/boot/dts/am437x-cm-t43.dts               | 2 +-
+ arch/arm/boot/dts/am437x-gp-evm.dts               | 4 ++--
+ arch/arm/boot/dts/am437x-l4.dtsi                  | 5 +++--
+ arch/arm/boot/dts/am437x-sk-evm.dts               | 2 +-
+ 19 files changed, 26 insertions(+), 22 deletions(-)
 
-    39	
-    40	static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
-    41	{
-    42		struct bcm590xx *bcm590xx;
-    43		int ret;
-    44	
-    45		bcm590xx = devm_kzalloc(&i2c_pri->dev, sizeof(*bcm590xx), GFP_KERNEL);
-    46		if (!bcm590xx)
-    47			return -ENOMEM;
-    48	
-    49		i2c_set_clientdata(i2c_pri, bcm590xx);
-    50		bcm590xx->dev = &i2c_pri->dev;
-    51		bcm590xx->i2c_pri = i2c_pri;
-    52	
-  > 53		bcm590xx->device_type = (unsigned int)of_device_get_match_data(bcm590xx->dev);
-    54	
-    55		bcm590xx->regmap_pri = devm_regmap_init_i2c(i2c_pri,
-    56							 &bcm590xx_regmap_config_pri);
-    57		if (IS_ERR(bcm590xx->regmap_pri)) {
-    58			ret = PTR_ERR(bcm590xx->regmap_pri);
-    59			dev_err(&i2c_pri->dev, "primary regmap init failed: %d\n", ret);
-    60			return ret;
-    61		}
-    62	
-    63		/* Secondary I2C slave address is the base address with A(2) asserted */
-    64		bcm590xx->i2c_sec = i2c_new_dummy_device(i2c_pri->adapter,
-    65						  i2c_pri->addr | BIT(2));
-    66		if (IS_ERR(bcm590xx->i2c_sec)) {
-    67			dev_err(&i2c_pri->dev, "failed to add secondary I2C device\n");
-    68			return PTR_ERR(bcm590xx->i2c_sec);
-    69		}
-    70		i2c_set_clientdata(bcm590xx->i2c_sec, bcm590xx);
-    71	
-    72		bcm590xx->regmap_sec = devm_regmap_init_i2c(bcm590xx->i2c_sec,
-    73							&bcm590xx_regmap_config_sec);
-    74		if (IS_ERR(bcm590xx->regmap_sec)) {
-    75			ret = PTR_ERR(bcm590xx->regmap_sec);
-    76			dev_err(&bcm590xx->i2c_sec->dev,
-    77				"secondary regmap init failed: %d\n", ret);
-    78			goto err;
-    79		}
-    80	
-    81		ret = devm_mfd_add_devices(&i2c_pri->dev, -1, bcm590xx_devs,
-    82					   ARRAY_SIZE(bcm590xx_devs), NULL, 0, NULL);
-    83		if (ret < 0) {
-    84			dev_err(&i2c_pri->dev, "failed to add sub-devices: %d\n", ret);
-    85			goto err;
-    86		}
-    87	
-    88		return 0;
-    89	
-    90	err:
-    91		i2c_unregister_device(bcm590xx->i2c_sec);
-    92		return ret;
-    93	}
-    94	
-
+diff --git a/arch/arm/boot/dts/am335x-baltos.dtsi b/arch/arm/boot/dts/am335x-baltos.dtsi
+index ee84155844adb..ed235f263e293 100644
+--- a/arch/arm/boot/dts/am335x-baltos.dtsi
++++ b/arch/arm/boot/dts/am335x-baltos.dtsi
+@@ -381,7 +381,7 @@
+ &mmc2 {
+ 	status = "okay";
+ 	vmmc-supply = <&wl12xx_vmmc>;
+-	non-removable;
++	ti,non-removable;
+ 	bus-width = <4>;
+ 	cap-power-off-card;
+ 	pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/am335x-boneblack-common.dtsi b/arch/arm/boot/dts/am335x-boneblack-common.dtsi
+index dd932220a8bf7..91f93bc89716d 100644
+--- a/arch/arm/boot/dts/am335x-boneblack-common.dtsi
++++ b/arch/arm/boot/dts/am335x-boneblack-common.dtsi
+@@ -22,7 +22,6 @@
+ 	pinctrl-0 = <&emmc_pins>;
+ 	bus-width = <8>;
+ 	status = "okay";
+-	non-removable;
+ };
+ 
+ &am33xx_pinmux {
+diff --git a/arch/arm/boot/dts/am335x-boneblack-wireless.dts b/arch/arm/boot/dts/am335x-boneblack-wireless.dts
+index e07dd79795868..3124d94c0b3cc 100644
+--- a/arch/arm/boot/dts/am335x-boneblack-wireless.dts
++++ b/arch/arm/boot/dts/am335x-boneblack-wireless.dts
+@@ -75,6 +75,7 @@
+ 	bus-width = <4>;
+ 	non-removable;
+ 	cap-power-off-card;
++	ti,needs-special-hs-handling;
+ 	keep-power-in-suspend;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc3_pins &wl18xx_pins>;
+diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
+index 30b62de86b5b1..2f6652ef9a157 100644
+--- a/arch/arm/boot/dts/am335x-boneblue.dts
++++ b/arch/arm/boot/dts/am335x-boneblue.dts
+@@ -389,6 +389,7 @@
+ 	bus-width = <4>;
+ 	non-removable;
+ 	cap-power-off-card;
++	ti,needs-special-hs-handling;
+ 	keep-power-in-suspend;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc3_pins &wl18xx_pins>;
+diff --git a/arch/arm/boot/dts/am335x-bonegreen-wireless.dts b/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
+index 609c8db687ec6..4092cd193b8a6 100644
+--- a/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
++++ b/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
+@@ -75,6 +75,7 @@
+ 	bus-width = <4>;
+ 	non-removable;
+ 	cap-power-off-card;
++	ti,needs-special-hs-handling;
+ 	keep-power-in-suspend;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc3_pins &wl18xx_pins>;
+diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
+index af25b42e85f4d..a00145705c9be 100644
+--- a/arch/arm/boot/dts/am335x-evm.dts
++++ b/arch/arm/boot/dts/am335x-evm.dts
+@@ -782,7 +782,8 @@
+ 	bus-width = <4>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc3_pins &wlan_pins>;
+-	non-removable;
++	ti,non-removable;
++	ti,needs-special-hs-handling;
+ 	cap-power-off-card;
+ 	keep-power-in-suspend;
+ 
+diff --git a/arch/arm/boot/dts/am335x-evmsk.dts b/arch/arm/boot/dts/am335x-evmsk.dts
+index 7805b0618a4fb..e28a5b82fdf30 100644
+--- a/arch/arm/boot/dts/am335x-evmsk.dts
++++ b/arch/arm/boot/dts/am335x-evmsk.dts
+@@ -700,7 +700,7 @@
+ &mmc2 {
+ 	status = "okay";
+ 	vmmc-supply = <&wl12xx_vmmc>;
+-	non-removable;
++	ti,non-removable;
+ 	bus-width = <4>;
+ 	cap-power-off-card;
+ 	keep-power-in-suspend;
+diff --git a/arch/arm/boot/dts/am335x-lxm.dts b/arch/arm/boot/dts/am335x-lxm.dts
+index c3bfd8ed5f884..a8005e975ea24 100644
+--- a/arch/arm/boot/dts/am335x-lxm.dts
++++ b/arch/arm/boot/dts/am335x-lxm.dts
+@@ -361,7 +361,7 @@
+ 	pinctrl-0 = <&emmc_pins>;
+ 	vmmc-supply = <&vmmcsd_fixed>;
+ 	bus-width = <8>;
+-	non-removable;
++	ti,non-removable;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi b/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
+index 7749122dad71d..671d4a5da9c43 100644
+--- a/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
++++ b/arch/arm/boot/dts/am335x-moxa-uc-2100-common.dtsi
+@@ -176,7 +176,7 @@
+ 	vmmc-supply = <&vmmcsd_fixed>;
+ 	bus-width = <8>;
+ 	pinctrl-0 = <&mmc1_pins_default>;
+-	non-removable;
++	ti,non-removable;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dts b/arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dts
+index 66a5c09ff388a..783d411f2cefe 100644
+--- a/arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dts
++++ b/arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dts
+@@ -473,7 +473,7 @@
+ 	vmmc-supply = <&vmmcsd_fixed>;
+ 	bus-width = <8>;
+ 	pinctrl-0 = <&mmc2_pins_default>;
+-	non-removable;
++	ti,non-removable;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/am335x-pepper.dts b/arch/arm/boot/dts/am335x-pepper.dts
+index 03852eff2b3ce..e7764ecdf65f8 100644
+--- a/arch/arm/boot/dts/am335x-pepper.dts
++++ b/arch/arm/boot/dts/am335x-pepper.dts
+@@ -341,7 +341,7 @@
+ 	pinctrl-0 = <&emmc_pins>;
+ 	vmmc-supply = <&ldo3_reg>;
+ 	bus-width = <8>;
+-	non-removable;
++	ti,non-removable;
+ };
+ 
+ &mmc3 {
+@@ -351,7 +351,7 @@
+ 	pinctrl-0 = <&wireless_pins>;
+ 	vmmmc-supply = <&v3v3c_reg>;
+ 	bus-width = <4>;
+-	non-removable;
++	ti,non-removable;
+ 	dmas = <&edma_xbar 12 0 1
+ 		&edma_xbar 13 0 2>;
+ 	dma-names = "tx", "rx";
+diff --git a/arch/arm/boot/dts/am335x-phycore-som.dtsi b/arch/arm/boot/dts/am335x-phycore-som.dtsi
+index 7e46b4c027094..3d0672b53d779 100644
+--- a/arch/arm/boot/dts/am335x-phycore-som.dtsi
++++ b/arch/arm/boot/dts/am335x-phycore-som.dtsi
+@@ -69,7 +69,7 @@
+ 	pinctrl-0 = <&emmc_pins>;
+ 	vmmc-supply = <&vmmc_reg>;
+ 	bus-width = <8>;
+-	non-removable;
++	ti,non-removable;
+ 	status = "disabled";
+ };
+ 
+diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
+index cacd564b4d28b..8ec6c4500fd59 100644
+--- a/arch/arm/boot/dts/am33xx-l4.dtsi
++++ b/arch/arm/boot/dts/am33xx-l4.dtsi
+@@ -1333,8 +1333,10 @@
+ 			ranges = <0x0 0x60000 0x1000>;
+ 
+ 			mmc1: mmc@0 {
+-				compatible = "ti,am335-sdhci";
++				compatible = "ti,omap4-hsmmc";
++				ti,dual-volt;
+ 				ti,needs-special-reset;
++				ti,needs-special-hs-handling;
+ 				dmas = <&edma 24 0>, <&edma 25 0>;
+ 				dma-names = "tx", "rx";
+ 				interrupts = <64>;
+@@ -1824,7 +1826,7 @@
+ 			ranges = <0x0 0xd8000 0x1000>;
+ 
+ 			mmc2: mmc@0 {
+-				compatible = "ti,am335-sdhci";
++				compatible = "ti,omap4-hsmmc";
+ 				ti,needs-special-reset;
+ 				dmas = <&edma 2 0
+ 					&edma 3 0>;
+diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
+index efe36f395bdd0..77fa7c0f21046 100644
+--- a/arch/arm/boot/dts/am33xx.dtsi
++++ b/arch/arm/boot/dts/am33xx.dtsi
+@@ -259,11 +259,10 @@
+ 			ranges = <0x0 0x47810000 0x1000>;
+ 
+ 			mmc3: mmc@0 {
+-				compatible = "ti,am335-sdhci";
++				compatible = "ti,omap4-hsmmc";
+ 				ti,needs-special-reset;
+ 				interrupts = <29>;
+ 				reg = <0x0 0x1000>;
+-				status = "disabled";
+ 			};
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/am4372.dtsi b/arch/arm/boot/dts/am4372.dtsi
+index c5b67993743d6..14bbc438055fd 100644
+--- a/arch/arm/boot/dts/am4372.dtsi
++++ b/arch/arm/boot/dts/am4372.dtsi
+@@ -250,11 +250,10 @@
+ 			ranges = <0x0 0x47810000 0x1000>;
+ 
+ 			mmc3: mmc@0 {
+-				compatible = "ti,am437-sdhci";
++				compatible = "ti,omap4-hsmmc";
+ 				ti,needs-special-reset;
+ 				interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x0 0x1000>;
+-				status = "disabled";
+ 			};
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/am437x-cm-t43.dts b/arch/arm/boot/dts/am437x-cm-t43.dts
+index a6b4fca8626ac..063113a5da2d4 100644
+--- a/arch/arm/boot/dts/am437x-cm-t43.dts
++++ b/arch/arm/boot/dts/am437x-cm-t43.dts
+@@ -291,7 +291,7 @@
+ 	pinctrl-0 = <&emmc_pins>;
+ 	vmmc-supply = <&vmmc_3v3>;
+ 	bus-width = <8>;
+-	non-removable;
++	ti,non-removable;
+ };
+ 
+ &spi0 {
+diff --git a/arch/arm/boot/dts/am437x-gp-evm.dts b/arch/arm/boot/dts/am437x-gp-evm.dts
+index 448853701d3d1..126965a34841e 100644
+--- a/arch/arm/boot/dts/am437x-gp-evm.dts
++++ b/arch/arm/boot/dts/am437x-gp-evm.dts
+@@ -872,7 +872,7 @@
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <&emmc_pins_default>;
+ 	pinctrl-1 = <&emmc_pins_sleep>;
+-	non-removable;
++	ti,non-removable;
+ };
+ 
+ &mmc3 {
+@@ -889,7 +889,7 @@
+ 	pinctrl-1 = <&mmc3_pins_sleep>;
+ 	cap-power-off-card;
+ 	keep-power-in-suspend;
+-	non-removable;
++	ti,non-removable;
+ 
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/am437x-l4.dtsi b/arch/arm/boot/dts/am437x-l4.dtsi
+index 8c9e7e723fc97..64fdd5079d49b 100644
+--- a/arch/arm/boot/dts/am437x-l4.dtsi
++++ b/arch/arm/boot/dts/am437x-l4.dtsi
+@@ -1104,8 +1104,9 @@
+ 			ranges = <0x0 0x60000 0x1000>;
+ 
+ 			mmc1: mmc@0 {
+-				compatible = "ti,am437-sdhci";
++				compatible = "ti,omap4-hsmmc";
+ 				reg = <0x0 0x1000>;
++				ti,dual-volt;
+ 				ti,needs-special-reset;
+ 				dmas = <&edma 24 0>,
+ 					<&edma 25 0>;
+@@ -1640,7 +1641,7 @@
+ 			ranges = <0x0 0xd8000 0x1000>;
+ 
+ 			mmc2: mmc@0 {
+-				compatible = "ti,am437-sdhci";
++				compatible = "ti,omap4-hsmmc";
+ 				reg = <0x0 0x1000>;
+ 				ti,needs-special-reset;
+ 				dmas = <&edma 2 0>,
+diff --git a/arch/arm/boot/dts/am437x-sk-evm.dts b/arch/arm/boot/dts/am437x-sk-evm.dts
+index 292153c6cb5d3..74eaa6a3b258c 100644
+--- a/arch/arm/boot/dts/am437x-sk-evm.dts
++++ b/arch/arm/boot/dts/am437x-sk-evm.dts
+@@ -694,7 +694,7 @@
+ 	pinctrl-1 = <&mmc3_pins_sleep>;
+ 	cap-power-off-card;
+ 	keep-power-in-suspend;
+-	non-removable;
++	ti,non-removable;
+ 
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
+
 
