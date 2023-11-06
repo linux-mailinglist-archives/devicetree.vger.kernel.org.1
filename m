@@ -1,191 +1,211 @@
-Return-Path: <devicetree+bounces-14193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BFE7E2A5D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:51:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E967E2A91
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A8031C20B9E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:51:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54E23B20CAE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 975CF29437;
-	Mon,  6 Nov 2023 16:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD97129415;
+	Mon,  6 Nov 2023 17:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="3kC6Bxk7"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gCOXWxg/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B695728E27
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 16:51:08 +0000 (UTC)
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77CA9B8;
-	Mon,  6 Nov 2023 08:51:03 -0800 (PST)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3A6C6bjB004731;
-	Mon, 6 Nov 2023 17:50:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=selector1; bh=b1Xh2LilT7GMG6HQY5JGB
-	/PrQK61B1TX/eGNos2qtjw=; b=3kC6Bxk7/M9HIXm9lapWmkT9q9pgZRDJuca40
-	uT/kHarRSWfvGr1UrDvKtqdnV+xcFGuQoYb0nPtj0xfksGhtiLjWfHtX3/5xaDGB
-	9fDAqd8q+hWFw1V14r0tzsckwBTd7p6R3Xlf+2kDTa4NDL698ixRHuP8rftm0A0f
-	BiORIzaq2aLl0RYLXUrGdvclPuNBVapYAJGAopkH1JDFPbeYSBTQMw4C0VtneBpR
-	Rgf8x81qy2798Zp8kAW+8NS1S5DdEnTQE8VLEUHRU82uBo1ITkX73BLJVsCBa10p
-	OXOlWoJXXTB7MiF95Kfet65UEreVWhEBPtocBEufexH5Qx1Zg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3u5ej0qxrm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 Nov 2023 17:50:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 75E62100059;
-	Mon,  6 Nov 2023 17:50:48 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 65D5026C075;
-	Mon,  6 Nov 2023 17:50:48 +0100 (CET)
-Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 6 Nov
- 2023 17:50:48 +0100
-Date: Mon, 6 Nov 2023 17:50:40 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Sakari Ailus <sakari.ailus@iki.fi>
-CC: Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-        Kieran Bingham
-	<kieran.bingham@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: media: i2c: add galaxycore,gc2145
- dt-bindings
-Message-ID: <20231106165040.GA3075668@gnbcxd0016.gnb.st.com>
-Mail-Followup-To: Sakari Ailus <sakari.ailus@iki.fi>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231011175735.1824782-1-alain.volmat@foss.st.com>
- <20231011175735.1824782-3-alain.volmat@foss.st.com>
- <ZUJRbI9ff83gH6Ng@valkosipuli.retiisi.eu>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1211A15AF2
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 17:02:19 +0000 (UTC)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4025A191
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 09:02:18 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-507973f3b65so6265770e87.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 09:02:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1699290136; x=1699894936; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ONrkCNODdlggpLA5mWEcjOQapfgKfPxTrYxnVyq0KIA=;
+        b=gCOXWxg/C2HU/XiLxZpUvINvwvJtFwDM4OMQLVnGU4vbrvrMR8gpVlsuMhyhkN5TH0
+         y9i3t/kjZ6PjT8lufCBdGlhJHLVKq9d0YGettdhXdhnI1fqeS0qg+dOd4CVm8eaEmTr0
+         gnhfZ9HdLDoQrZ0rVstWaF6gQ5+VrRUya9xpE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699290136; x=1699894936;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ONrkCNODdlggpLA5mWEcjOQapfgKfPxTrYxnVyq0KIA=;
+        b=SKQcyYqQi3nwSmTzlAy++6KmEgY1dUI3Fink74jQxTUS9YHi+lIgrVF8oKVZFlP4Qb
+         tV2amBtikTIA3MQfkVm8thCDzlDWugpH0PygtPvlurIVjT/oRDrtwoa6P5w8dMIJjiPc
+         R27kOx+ZUqJXrFzWsCiInUnyOvMAr8Ai4U2NQoCUQ4Tiv9xeGziy5Rs1oGUd+tqNuv3U
+         Wp1/vAWfTDvVV2FwRyfqTV/IE7DrD2ewRZRoykTE0i7mbnY8wDBErFCKYbeY/BIaLdmP
+         47fh6CLgh5meWMy5mamTYRyRO3ByUogrcIr8IJ++nwyGN8+/uJJk7xVmGMx1XbzswEfa
+         P1FA==
+X-Gm-Message-State: AOJu0YyK9AjwaQlWipS/i8AOkqz0WlzqynFCKLkKqkDK9eOMSOGKN8mu
+	E3Own4B0OJYGV1nYsmJAKzXEci/uJ4IEZ0GTzzxp6IZb
+X-Google-Smtp-Source: AGHT+IFD70MLhYYJebdmfL57HRlmJPdhYrNJWXTud3awD3sVOSWF04mwu8DP9Kz89wHg/7//FEUQUg==
+X-Received: by 2002:a05:6512:3287:b0:500:aed0:cb1b with SMTP id p7-20020a056512328700b00500aed0cb1bmr22919339lfe.24.1699290135772;
+        Mon, 06 Nov 2023 09:02:15 -0800 (PST)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
+        by smtp.gmail.com with ESMTPSA id h22-20020ac25976000000b004f85d80ca64sm25499lfp.221.2023.11.06.09.02.15
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Nov 2023 09:02:15 -0800 (PST)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-507c9305727so6003e87.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 09:02:15 -0800 (PST)
+X-Received: by 2002:a05:600c:4c19:b0:3f6:f4b:d4a6 with SMTP id
+ d25-20020a05600c4c1900b003f60f4bd4a6mr146334wmp.7.1699289651347; Mon, 06 Nov
+ 2023 08:54:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZUJRbI9ff83gH6Ng@valkosipuli.retiisi.eu>
-X-Disclaimer: ce message est personnel / this message is private
-X-Originating-IP: [10.129.178.213]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-06_12,2023-11-02_03,2023-05-22_02
+References: <20231103105440.23904-1-quic_anshar@quicinc.com>
+In-Reply-To: <20231103105440.23904-1-quic_anshar@quicinc.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 6 Nov 2023 08:53:59 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=XOyHr9hNA0gEdssGz5qqyXHU75K9TUH3HSHK3+jpfswg@mail.gmail.com>
+Message-ID: <CAD=FV=XOyHr9hNA0gEdssGz5qqyXHU75K9TUH3HSHK3+jpfswg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add capacity and DPC properties
+To: Ankit Sharma <quic_anshar@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org, agross@kernel.org, 
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_ashayj@quicinc.com, 
+	quic_atulpant@quicinc.com, quic_rgottimu@quicinc.com, 
+	quic_shashim@quicinc.com, quic_pkondeti@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sakari,
+Hi,
 
-On Wed, Nov 01, 2023 at 01:23:56PM +0000, Sakari Ailus wrote:
-> Hi Alain,
-> 
-> On Wed, Oct 11, 2023 at 07:57:29PM +0200, Alain Volmat wrote:
-> > Introduction of the Galaxy Core GC2145 XVGA CMOS camera sensor.
-> > 
-> > Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> > ---
-> >  .../bindings/media/i2c/galaxycore,gc2145.yaml | 104 ++++++++++++++++++
-> >  1 file changed, 104 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> > new file mode 100644
-> > index 000000000000..94d194cf5452
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> > @@ -0,0 +1,104 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc2145.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Galaxy Core 1/5'' UXGA CMOS Image Sensor
-> > +
-> > +maintainers:
-> > +  - Alain Volmat <alain.volmat@foss.st.com>
-> > +
-> > +description:
-> > +  The Galaxy Core GC2145 is a high quality 2 Mega CMOS image sensor, for mobile
-> > +  phone camera applications and digital camera products. GC2145 incorporates a
-> > +  1616V x 1232H active pixel array, on-chip 10-bit ADC, and image signal
-> > +  processor. It is programmable through an I2C interface. Image data is sent
-> > +  either through a parallel interface or through MIPI CSI-2.
-> > +
-> > +allOf:
-> > +  - $ref: ../video-interface-devices.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: galaxycore,gc2145
-> > +
-> > +  reg:
-> > +    const: 0x3c
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  powerdown-gpios:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +
-> > +  iovdd-supply:
-> > +    description: Power Supply for I/O circuits (1.7 - 3V).
-> > +
-> > +  avdd-supply:
-> > +    description: Power for analog circuit/sensor array (2.7 - 3V).
-> > +
-> > +  dvdd-supply:
-> > +    description: Power for digital core (1.7 - 1.9V).
-> > +
-> > +  orientation: true
-> > +
-> > +  rotation: true
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +    required:
-> > +      - endpoint
-> 
-> Could you add link-frequencies here, too?
+On Fri, Nov 3, 2023 at 3:54=E2=80=AFAM Ankit Sharma <quic_anshar@quicinc.co=
+m> wrote:
+>
+> The "capacity-dmips-mhz" and "dynamic-power-coefficient" are
+> used to build Energy Model which in turn is used by EAS to take
+> placement decisions. So add it to SC7280 soc.
+>
+> Signed-off-by: Ankit Sharma <quic_anshar@quicinc.com>
+> ---
+> changes in v2: https://lore.kernel.org/all/20231103095358.29312-1-quic_an=
+shar@quicinc.com/
+>  - updated commit message and subject.
+>
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/q=
+com/sc7280.dtsi
+> index 8601253aec70..b1890824188c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -176,6 +176,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_0>;
+>                         operating-points-v2 =3D <&cpu0_opp_table>;
+> +                       capacity-dmips-mhz =3D <1024>;
+> +                       dynamic-power-coefficient =3D <100>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 0>;
+> @@ -204,6 +206,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_100>;
+>                         operating-points-v2 =3D <&cpu0_opp_table>;
+> +                       capacity-dmips-mhz =3D <1024>;
+> +                       dynamic-power-coefficient =3D <100>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 0>;
+> @@ -227,6 +231,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_200>;
+>                         operating-points-v2 =3D <&cpu0_opp_table>;
+> +                       capacity-dmips-mhz =3D <1024>;
+> +                       dynamic-power-coefficient =3D <100>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 0>;
+> @@ -250,6 +256,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_300>;
+>                         operating-points-v2 =3D <&cpu0_opp_table>;
+> +                       capacity-dmips-mhz =3D <1024>;
+> +                       dynamic-power-coefficient =3D <100>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 0>;
+> @@ -273,6 +281,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_400>;
+>                         operating-points-v2 =3D <&cpu4_opp_table>;
+> +                       capacity-dmips-mhz =3D <1946>;
 
-This sensor is only used for the time being (as far as I know) on the
-the stm32mp135f-dk board which can well handle the 3 link-frequencies.
-(some other usages exist, however in parallel mode, which this driver
-doesn't support yet).
-I was hoping to only add the link-frequencies check when it becomes
-necessary to use it on another board.
-Do that make sense ?
+Though I don't think it's technically required, in other systems
+(including the examples in the documentation) the biggest CPU gets
+1024 "capacity-dmips-mhz" and the other ones are scaled to that.
 
-Regards,
-Alain
+
+> +                       dynamic-power-coefficient =3D <520>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 1>;
+> @@ -296,6 +306,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_500>;
+>                         operating-points-v2 =3D <&cpu4_opp_table>;
+> +                       capacity-dmips-mhz =3D <1946>;
+> +                       dynamic-power-coefficient =3D <520>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 1>;
+> @@ -319,6 +331,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_600>;
+>                         operating-points-v2 =3D <&cpu4_opp_table>;
+> +                       capacity-dmips-mhz =3D <1946>;
+> +                       dynamic-power-coefficient =3D <520>;
+>                         interconnects =3D <&gem_noc MASTER_APPSS_PROC 3 &=
+mc_virt SLAVE_EBI1 3>,
+>                                         <&epss_l3 MASTER_EPSS_L3_APPS &ep=
+ss_l3 SLAVE_EPSS_L3_SHARED>;
+>                         qcom,freq-domain =3D <&cpufreq_hw 1>;
+> @@ -342,6 +356,8 @@
+>                                            &CLUSTER_SLEEP_0>;
+>                         next-level-cache =3D <&L2_700>;
+>                         operating-points-v2 =3D <&cpu7_opp_table>;
+> +                       capacity-dmips-mhz =3D <1985>;
+> +                       dynamic-power-coefficient =3D <552>;
+
+The fact that cpu7 has different values for capacity-dmips-mhz and
+dynamic-power-coefficient is surprising to me. I think what this means
+is that at the same MHz this core can process more instructions than
+the other big CPUs but that (at the same MHz) it burns more power
+doing so. Is that really true? I thought that this core was
+essentially the same as the other big cores but was simply anointed to
+be able to run a little faster.
+
+
+-Doug
 
