@@ -1,206 +1,173 @@
-Return-Path: <devicetree+bounces-14038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0A97E1D65
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:43:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180947E1D6D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A46CB20D0B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:43:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6C0E2812BF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE3AC1641B;
-	Mon,  6 Nov 2023 09:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25225168A3;
+	Mon,  6 Nov 2023 09:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tn/boXB5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FBvkGuoJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BB316413;
-	Mon,  6 Nov 2023 09:43:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D1CDC433C8;
-	Mon,  6 Nov 2023 09:43:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699263820;
-	bh=mW57g3/oo1AgcyVKDztTrcwktcxhtqaiT1BLrsHk/WM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tn/boXB5eKY5pI6iM/T1MWnfyTzOajgPL6jvcIBqLVRYycUwM0Jci7ErTJRpBiHBs
-	 Ba85sQTjKSR97qqj/Q9eNy8Ougm3Jz+L9kh0HhJX6KSxKt1Dbe2L0br/zEogSPZmFf
-	 1lpVerA/r+Ox/SlOXsRqEU/Lx44E/++VN/pGSutCXMQ5gmjxUFImPkMM+6zjOL396N
-	 ksYT0tZJmqh/aFQyXfmTLxrk3oCd78BkuYmfafk/kfVbjB9gzHzpqmqodmI9CYdL57
-	 K4cagrLD6Gyfcs9KYUHZTyFCrV8sLAezXFJmxlfL1+28+zz4R9Kwh1olam7LY4DcPr
-	 2WjKY59BBrtyQ==
-Date: Mon, 6 Nov 2023 10:43:37 +0100
-From: "mripard@kernel.org" <mripard@kernel.org>
-To: Frank Binns <Frank.Binns@imgtec.com>
-Cc: "faith.ekstrand@collabora.com" <faith.ekstrand@collabora.com>, 
-	Sarah Walker <Sarah.Walker@imgtec.com>, "corbet@lwn.net" <corbet@lwn.net>, 
-	"luben.tuikov@amd.com" <luben.tuikov@amd.com>, "christian.koenig@amd.com" <christian.koenig@amd.com>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	"dakr@redhat.com" <dakr@redhat.com>, "hns@goldelico.com" <hns@goldelico.com>, 
-	"afd@ti.com" <afd@ti.com>, "daniel@ffwll.ch" <daniel@ffwll.ch>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "matthew.brost@intel.com" <matthew.brost@intel.com>, 
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"airlied@gmail.com" <airlied@gmail.com>
-Subject: Re: [PATCH v8 00/20] Imagination Technologies PowerVR DRM driver
-Message-ID: <a2eo2cloaiswrujkn6qffswobi2foc5ifuc676jx2k2jyuahgu@meuurfcb4uel>
-References: <20231031151257.90350-1-sarah.walker@imgtec.com>
- <lg7cdw3qlak74zefbx25f5pnazrburteldueoqz7o7cphydqp7@q56er3qa5muf>
- <eb0dcfe7a5f4da207bdbbd9630e5d6e5c940dfa5.camel@imgtec.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC32E16420
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 09:47:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F330BE1;
+	Mon,  6 Nov 2023 01:47:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699264044; x=1730800044;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=T6rFshZG1CW8KfWnm5omhJa4XbvWrABFG0f01qNAl9s=;
+  b=FBvkGuoJ+aKKeTpt6+z9jhK+ngqkRaqF8B3lACfVP3Bf+o7cBypVgVTn
+   jsatam8SeVpcx7Glrgb4n7LVlBNa/z3ypNU71jSdJI0VlCV3GtF78gFNQ
+   iJty4vfVicj9E7RtdTko1VPdJuBAsJKijMNSMcE3ASSAKKpUXufLitd7H
+   JZ/Z1K9ye5isw9nstrBQ52oSzP5aVDEj7lkoOUQOSMQCCqFevQE2S3swE
+   6lyZZV+u3z0n/YqM9kW0yFzXjd6vlXGE77edRWHtPGFRMvsuWym1dQAhS
+   ZujZHcCxcA5On5f3kjLivQrmymbj01ZiShX80p2DXK0Pvxhc6p54p/UIv
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="420355796"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
+   d="scan'208";a="420355796"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 01:47:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="738756979"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
+   d="scan'208";a="738756979"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 06 Nov 2023 01:47:19 -0800
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1qzwCT-0006JE-1D;
+	Mon, 06 Nov 2023 09:47:17 +0000
+Date: Mon, 6 Nov 2023 17:46:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Stanislav Jakubek <stano.jakubek@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Artur Weber <aweber.kernel@gmail.com>
+Subject: Re: [PATCH 4/6] mfd: bcm590xx: Add compatible for BCM59054
+Message-ID: <202311061654.4074XhbV-lkp@intel.com>
+References: <20231030-bcm59054-v1-4-3517f980c1e3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="r3wyv22s6z5b2f2v"
-Content-Disposition: inline
-In-Reply-To: <eb0dcfe7a5f4da207bdbbd9630e5d6e5c940dfa5.camel@imgtec.com>
-
-
---r3wyv22s6z5b2f2v
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231030-bcm59054-v1-4-3517f980c1e3@gmail.com>
 
-Hi Frank,
+Hi Artur,
 
-On Wed, Nov 01, 2023 at 10:15:15AM +0000, Frank Binns wrote:
-> Hi Maxime,
->=20
-> On Tue, 2023-10-31 at 17:31 +0100, Maxime Ripard wrote:
-> > Hi Sarah, Faith, Frank,
-> >=20
-> > On Tue, Oct 31, 2023 at 03:12:37PM +0000, Sarah Walker wrote:
-> > > This patch series adds the initial DRM driver for Imagination Technol=
-ogies PowerVR
-> > > GPUs, starting with those based on our Rogue architecture. It's worth=
- pointing
-> > > out that this is a new driver, written from the ground up, rather tha=
-n a
-> > > refactored version of our existing downstream driver (pvrsrvkm).
-> > >=20
-> > > This new DRM driver supports:
-> > > - GEM shmem allocations
-> > > - dma-buf / PRIME
-> > > - Per-context userspace managed virtual address space
-> > > - DRM sync objects (binary and timeline)
-> > > - Power management suspend / resume
-> > > - GPU job submission (geometry, fragment, compute, transfer)
-> > > - META firmware processor
-> > > - MIPS firmware processor
-> > > - GPU hang detection and recovery
-> > >=20
-> > > Currently our main focus is on the AXE-1-16M GPU. Testing so far has =
-been done
-> > > using a TI SK-AM62 board (AXE-1-16M GPU). The driver has also been co=
-nfirmed to
-> > > work on the BeaglePlay board. Firmware for the AXE-1-16M can befound =
-here:
-> > > https://gitlab.freedesktop.org/frankbinns/linux-firmware/-/tree/power=
-vr
-> > >=20
-> > > A Vulkan driver that works with our downstream kernel driver has alre=
-ady been
-> > > merged into Mesa [1][2]. Support for this new DRM driver is being mai=
-ntained in
-> > > a merge request [3], with the branch located here:
-> > > https://gitlab.freedesktop.org/frankbinns/mesa/-/tree/powervr-winsys
-> > >=20
-> > > Job stream formats are documented at:
-> > > https://gitlab.freedesktop.org/mesa/mesa/-/blob/f8d2b42ae65c2f16f36a4=
-3e0ae39d288431e4263/src/imagination/csbgen/rogue_kmd_stream.xml
-> > >=20
-> > > The Vulkan driver is progressing towards Vulkan 1.0. The current comb=
-ination of this
-> > > kernel driver with the Mesa Vulkan driver (powervr-mesa-next branch) =
-successfully
-> > > completes Vulkan CTS 1.3.4.1 in our local runs. The driver is expecte=
-d to pass the
-> > > Khronos Conformance Process once the submission is made.
-> > >=20
-> > > The code in this patch series, along with the needed dts changes can =
-be found here:
-> > > https://gitlab.freedesktop.org/sarah-walker-imgtec/powervr/-/tree/dev=
-/v8_dts
-> > > The full development history can be found here:
-> > > https://gitlab.freedesktop.org/frankbinns/powervr/-/tree/powervr-next
-> >=20
-> > Awesome, thanks for sending a new version of that series.
-> >=20
-> > At XDC, we all agreed that we would merge this version if the changes
-> > requested by Faith were fixed, and if the Mesa PR was updated to match
-> > that new kernel series.
-> >=20
-> > Are we there yet?
->=20
-> We've made all the changes that were requested at XDC. There are a couple=
- of
-> questions Faith had for me that I still need to respond to. I'll hopefull=
-y be
-> getting to these today.
->=20
-> The Mesa MR adding support for this kernel driver is all up to date:
-> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/15507
+kernel test robot noticed the following build warnings:
 
-Ok, great :)
+[auto build test WARNING on 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1]
 
-> > If so, Faith, should we add your Reviewed-by/Acked-by tag to the UAPI p=
-atch?
-> >=20
-> > > This patch series has dependencies on a number of patches not yet mer=
-ged. They
-> > > are listed below :
-> > >=20
-> > > drm/sched: Convert drm scheduler to use a work queue rather than kthr=
-ead:
-> > >   https://lore.kernel.org/dri-devel/20230404002211.3611376-2-matthew.=
-brost@intel.com/
-> > > drm/sched: Move schedule policy to scheduler / entity:
-> > >   https://lore.kernel.org/dri-devel/20230404002211.3611376-3-matthew.=
-brost@intel.com/
-> > > drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy:
-> > >   https://lore.kernel.org/dri-devel/20230404002211.3611376-4-matthew.=
-brost@intel.com/
-> > > drm/sched: Start run wq before TDR in drm_sched_start:
-> > >   https://lore.kernel.org/dri-devel/20230404002211.3611376-6-matthew.=
-brost@intel.com/
-> > > drm/sched: Submit job before starting TDR:
-> > >   https://lore.kernel.org/dri-devel/20230404002211.3611376-7-matthew.=
-brost@intel.com/
-> > > drm/sched: Add helper to set TDR timeout:
-> > >   https://lore.kernel.org/dri-devel/20230404002211.3611376-8-matthew.=
-brost@intel.com/
-> >=20
-> > What is the state of those patches? Iirc, we were expecting them to be
-> > merged soon at XDC
->=20
-> I see there was a new version posted yesterday:
-> https://lists.freedesktop.org/archives/dri-devel/2023-October/428612.html
->=20
-> It looks pretty close now. We'll rebase our patches so hopefully we have a
-> trivial rebase once they get merged.
+url:    https://github.com/intel-lab-lkp/linux/commits/Artur-Weber/dt-bindings-mfd-brcm-bcm59056-Convert-to-YAML/20231031-040046
+base:   05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
+patch link:    https://lore.kernel.org/r/20231030-bcm59054-v1-4-3517f980c1e3%40gmail.com
+patch subject: [PATCH 4/6] mfd: bcm590xx: Add compatible for BCM59054
+config: powerpc64-allyesconfig (https://download.01.org/0day-ci/archive/20231106/202311061654.4074XhbV-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231106/202311061654.4074XhbV-lkp@intel.com/reproduce)
 
-It looks like it's been merged last Wednesday, so I guess we can move
-forward on this?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311061654.4074XhbV-lkp@intel.com/
 
-Maxime
+All warnings (new ones prefixed by >>):
 
---r3wyv22s6z5b2f2v
-Content-Type: application/pgp-signature; name="signature.asc"
+>> drivers/mfd/bcm590xx.c:53:26: warning: cast to smaller integer type 'unsigned int' from 'const void *' [-Wvoid-pointer-to-int-cast]
+      53 |         bcm590xx->device_type = (unsigned int)of_device_get_match_data(bcm590xx->dev);
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZUi1SQAKCRDj7w1vZxhR
-xdUsAP4i+05ShczLQ2FI8+SrV8Li2WkzO07REWaHFGt3x7dGewEA7dZ9GE1aIscC
-uvLu+cPb1BHF93SCBChUim7WcipZJgE=
-=OnRV
------END PGP SIGNATURE-----
+vim +53 drivers/mfd/bcm590xx.c
 
---r3wyv22s6z5b2f2v--
+    39	
+    40	static int bcm590xx_i2c_probe(struct i2c_client *i2c_pri)
+    41	{
+    42		struct bcm590xx *bcm590xx;
+    43		int ret;
+    44	
+    45		bcm590xx = devm_kzalloc(&i2c_pri->dev, sizeof(*bcm590xx), GFP_KERNEL);
+    46		if (!bcm590xx)
+    47			return -ENOMEM;
+    48	
+    49		i2c_set_clientdata(i2c_pri, bcm590xx);
+    50		bcm590xx->dev = &i2c_pri->dev;
+    51		bcm590xx->i2c_pri = i2c_pri;
+    52	
+  > 53		bcm590xx->device_type = (unsigned int)of_device_get_match_data(bcm590xx->dev);
+    54	
+    55		bcm590xx->regmap_pri = devm_regmap_init_i2c(i2c_pri,
+    56							 &bcm590xx_regmap_config_pri);
+    57		if (IS_ERR(bcm590xx->regmap_pri)) {
+    58			ret = PTR_ERR(bcm590xx->regmap_pri);
+    59			dev_err(&i2c_pri->dev, "primary regmap init failed: %d\n", ret);
+    60			return ret;
+    61		}
+    62	
+    63		/* Secondary I2C slave address is the base address with A(2) asserted */
+    64		bcm590xx->i2c_sec = i2c_new_dummy_device(i2c_pri->adapter,
+    65						  i2c_pri->addr | BIT(2));
+    66		if (IS_ERR(bcm590xx->i2c_sec)) {
+    67			dev_err(&i2c_pri->dev, "failed to add secondary I2C device\n");
+    68			return PTR_ERR(bcm590xx->i2c_sec);
+    69		}
+    70		i2c_set_clientdata(bcm590xx->i2c_sec, bcm590xx);
+    71	
+    72		bcm590xx->regmap_sec = devm_regmap_init_i2c(bcm590xx->i2c_sec,
+    73							&bcm590xx_regmap_config_sec);
+    74		if (IS_ERR(bcm590xx->regmap_sec)) {
+    75			ret = PTR_ERR(bcm590xx->regmap_sec);
+    76			dev_err(&bcm590xx->i2c_sec->dev,
+    77				"secondary regmap init failed: %d\n", ret);
+    78			goto err;
+    79		}
+    80	
+    81		ret = devm_mfd_add_devices(&i2c_pri->dev, -1, bcm590xx_devs,
+    82					   ARRAY_SIZE(bcm590xx_devs), NULL, 0, NULL);
+    83		if (ret < 0) {
+    84			dev_err(&i2c_pri->dev, "failed to add sub-devices: %d\n", ret);
+    85			goto err;
+    86		}
+    87	
+    88		return 0;
+    89	
+    90	err:
+    91		i2c_unregister_device(bcm590xx->i2c_sec);
+    92		return ret;
+    93	}
+    94	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
