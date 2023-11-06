@@ -1,117 +1,262 @@
-Return-Path: <devicetree+bounces-14047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C017E1DBB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5CE97E1DC8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:01:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6551E1C209CD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:58:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF9041C209C5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA66171A9;
-	Mon,  6 Nov 2023 09:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3BD171B4;
+	Mon,  6 Nov 2023 10:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rZvpMRrx"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ccw0qAUH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D381168DB
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 09:58:26 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1472125;
-	Mon,  6 Nov 2023 01:58:24 -0800 (PST)
-Received: from [127.0.1.1] (91-158-149-209.elisa-laajakaista.fi [91.158.149.209])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2783C13AC;
-	Mon,  6 Nov 2023 10:58:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1699264682;
-	bh=bCGMJiX9pW7HAN0UX6C7RxU6jaO0RofSA0XWj512TVE=;
-	h=From:Date:Subject:To:Cc:From;
-	b=rZvpMRrxXN2Lcg1XI58Cv2YBDSIDVVKX4dkzNmmPowXXYxm/Q9Z3JXrf3YU31yhzd
-	 xL9Pm4cRDaYE9qW6TqsHSaZ1iNBu0c74Etc6fTC3hpdiLhOThMC7xBh7BoiixQDkTi
-	 owZN8RKTmg3inKDunro6ZPfsbDWR8XVEg4hEm/cs=
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Mon, 06 Nov 2023 11:57:48 +0200
-Subject: [PATCH] arm64: dts: ti: k3-am65-main: Fix DSS irq trigger type
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3133B168DB
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:01:00 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D41EA6;
+	Mon,  6 Nov 2023 02:00:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1699264858; x=1730800858;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=OIDyp/g50d55txnxogYWipBT01q6u2+t7gX+4MtqKDA=;
+  b=ccw0qAUHwFuNap7kh6kWh22G/7t1RJf7S4oSLQblRChYHFNOkClihHkQ
+   FlLUQlLMSzvuNPzJ/lJFKrwOeUFK9jHUnjHtiPVvB5HynrS5haPbEdZA7
+   ijeSX13cFEnlX4ASR4LO0UIhryz0MVzhq0g4KNg2QW0RVbdjVqbYDLIW1
+   lYwdARl0Cwq2TT7/dDQ81xDyeo60l6Yn6W2N5NYREmzvb0gHb1JIqW3l0
+   N/9wxlbXtegFSofgCdNQ2xvDJ1i/G2Atoqepx2KhRVhmDXwWDWeEUOJX6
+   +Ovzmz4KwaGfN8pmFW6V8om8UkEHnl/vQRf3gpV+GEmXzpuyCNQdeHIxF
+   A==;
+X-IronPort-AV: E=Sophos;i="6.03,281,1694728800"; 
+   d="scan'208";a="33823323"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Nov 2023 11:00:55 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7F70428007F;
+	Mon,  6 Nov 2023 11:00:55 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>, Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 2/2] clk: rs9: Add support for 9FGV0841
+Date: Mon, 06 Nov 2023 11:00:57 +0100
+Message-ID: <5732995.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <TYCPR01MB11269765042382E404A16FAB986AAA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+References: <20231105200812.62849-1-marek.vasut+renesas@mailbox.org> <20231105200812.62849-2-marek.vasut+renesas@mailbox.org> <TYCPR01MB11269765042382E404A16FAB986AAA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231106-am65-dss-clk-edge-v1-1-4a959fec0e1e@ideasonboard.com>
-X-B4-Tracking: v=1; b=H4sIAJu4SGUC/x2MSQqAMAwAvyI5G2iVqvgV8aBNqsGVBkQQ/27xO
- DAzDyhHYYU2eyDyJSrHnsDmGfh52CdGocRQmKK01lQ4bJVDUkW/LsiUhJrsSFR7E1wDqTsjB7n
- /Z9e/7wcTZfYbYwAAAA==
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Aradhya Bhatia <a-bhatia1@ti.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1461;
- i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=bCGMJiX9pW7HAN0UX6C7RxU6jaO0RofSA0XWj512TVE=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBlSLi6cvpFRvR+MBUm93OYcll36SndxspyXYJNP
- R+7CVq+PoCJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZUi4ugAKCRD6PaqMvJYe
- 9WNqD/40POYjydCN/gA7/aKulSsuQ2NmyAp0NfjkpCTtedx4Akc2Hg7xwvRDsR3+HXDrV7yGL8d
- rJELklG9a0qUZpAlJWPtw5aS4E3jH/Bk7Ne4OwW811yS88eIZ7OYe+/XoC33sdka/acyH0QXqy7
- HAor04fg7kfOTWiQeJOf2CrgidZQA0yv2/Rf/0fgMxCCx48d8e9v6wk+AVqLFeWzf9WV1Pha/8u
- AaPBz93osRRiWDhs3vR6YujTmD8YiKraJjmM2S+T1o6UvPdpHGdNNQd94v/yfE2TDwZdfYo/bWr
- DwoZuk/SuLuUytdUT/azmTjGILiOuWyQD9f6XfMMXPh1QpBZoNPLrBZDCsMNO2FaRTodHzqcApd
- mL50COwjfi9wOp356omx47I/7OVsK1OhKIHn9h+hQO1Kzp60wtKbYCTTeew/lPGfak6OSDDnLMq
- DNpwsskk6PcA2xgbauSJucb9oSEBO4vr9zZVfJtoOkvpy5TiWVlLhy9nBU4Y+QDFxEjPBl7TNrX
- nICw71t2BN7sezRG75hqAZjOWoTZblXWagiGRodjbNmjK/a1lYLzcOLaaYSYg5gExcRypNAzkIm
- iSmbCUSM+9QAURKpmtSa9t2iSrJuylyG9qYFp1ExmkOdwPBB0JlhPpsFBmARPtHLkyJAr0gnqDz
- vN0JJxtb3iKzRtw==
-X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
- fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-DSS irq trigger type is set to IRQ_TYPE_EDGE_RISING in the DT file, but
-the TRM says it is level triggered.
+Hi,
 
-For some reason triggering on rising edge results in double the amount
-of expected interrupts, e.g. for normal page flipping test the number of
-interrupts per second is 2 * fps. It is as if the IRQ triggers on both
-edges. There are no other side effects to this issue than slightly
-increased CPU & power consumption due to the extra interrupt.
+Am Montag, 6. November 2023, 08:49:10 CET schrieb Biju Das:
+> Hi Marek,
+>=20
+> Thanks for the patch.
+>=20
+> > -----Original Message-----
+> > From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> > Sent: Sunday, November 5, 2023 8:08 PM
+> > Subject: [PATCH 2/2] clk: rs9: Add support for 9FGV0841
+> >=20
+> > This model is similar to 9FGV0441, the DIFx bits start at bit 0 again,
+> > except this chip has 8 outputs. Adjust rs9_calc_dif() to special-case t=
+he
+> > 9FGV0241 where DIFx bits start at 1. Extract only vendor ID from VID
+> > register, the top 4 bits are revision ID which are not useful for the
+> > vendor ID check.
+> >=20
+> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> > ---
+> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > Cc: Michael Turquette <mturquette@baylibre.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-clk@vger.kernel.org
+> > Cc: linux-renesas-soc@vger.kernel.org
+> > ---
+> >=20
+> >  drivers/clk/clk-renesas-pcie.c | 23 +++++++++++++++++++----
+> >  1 file changed, 19 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/drivers/clk/clk-renesas-pcie.c b/drivers/clk/clk-renesas-
+> > pcie.c index 6606aba253c5..f8dd79b18d5a 100644
+> > --- a/drivers/clk/clk-renesas-pcie.c
+> > +++ b/drivers/clk/clk-renesas-pcie.c
+> > @@ -7,6 +7,7 @@
+> >=20
+> >   * Currently supported:
+> >   *   - 9FGV0241
+> >   *   - 9FGV0441
+> >=20
+> > + *   - 9FGV0841
+> >=20
+> >   *
+> >   * Copyright (C) 2022 Marek Vasut <marex@denx.de>
+> >   */
+> >=20
+> > @@ -42,6 +43,7 @@
+> >=20
+> >  #define RS9_REG_DID				0x6
+> >  #define RS9_REG_BCP				0x7
+> >=20
+> > +#define RS9_REG_VID_MASK			GENMASK(3, 0)
+> >=20
+> >  #define RS9_REG_VID_IDT				0x01
+> > =20
+> >  #define RS9_REG_DID_TYPE_FGV			(0x0 <<=20
+RS9_REG_DID_TYPE_SHIFT)
+> >=20
+> > @@ -53,6 +55,7 @@
+> >=20
+> >  enum rs9_model {
+> > =20
+> >  	RENESAS_9FGV0241,
+> >  	RENESAS_9FGV0441,
+> >=20
+> > +	RENESAS_9FGV0841,
+> >=20
+> >  };
+> > =20
+> >  /* Structure to describe features of a particular 9-series model */ @@=
+ -
+> >=20
+> > 162,12 +165,15 @@ static u8 rs9_calc_dif(const struct rs9_driver_data
+> > *rs9, int idx)  {
+> >=20
+> >  	enum rs9_model model =3D rs9->chip_info->model;
+> >=20
+> > +	/*
+> > +	 * On 9FGV0241, the DIF OE0 is BIT(1) and DIF OE(1) is BIT(2),
+> > +	 * on 9FGV0441 and 9FGV0841 the DIF OE0 is BIT(0) and so on.
+> > +	 * Increment the index in the 9FGV0241 special case here.
+> > +	 */
+>=20
+> I guess model enum variable in struct rs9_chip_info can be replaced with a
+> variable for the above hardware differences(eg: BIT(idx) value in struct
+> rs9_chip_inf) . Then you don't need this function at all.
 
-Switching to IRQ_TYPE_LEVEL_HIGH is correct and fixes the issue, so
-let's do that.
-
-Fixes: fc539b90eda2 ("arm64: dts: ti: am654: Add DSS node")
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index bc460033a37a..c98068b6c122 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -1034,7 +1034,7 @@ dss: dss@4a00000 {
- 		assigned-clocks = <&k3_clks 67 2>;
- 		assigned-clock-parents = <&k3_clks 67 5>;
- 
--		interrupts = <GIC_SPI 166 IRQ_TYPE_EDGE_RISING>;
-+		interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
- 
- 		dma-coherent;
- 
-
----
-base-commit: ffc253263a1375a65fa6c9f62a893e9767fbebfa
-change-id: 20231106-am65-dss-clk-edge-7d1bdd7c0f58
+That's true for 9FGV family. If support for 9QXL family will ever be added=
+=20
+(the header claims the support can be added), this enum is required again a=
+s=20
+the register model is completely different.
 
 Best regards,
--- 
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Alexander
+
+> Cheers,
+> Biju
+>=20
+> >  	if (model =3D=3D RENESAS_9FGV0241)
+> >=20
+> > -		return BIT(idx + 1);
+> > -	else if (model =3D=3D RENESAS_9FGV0441)
+> > -		return BIT(idx);
+> > +		idx++;
+> >=20
+> > -	return 0;
+> > +	return BIT(idx);
+> >=20
+> >  }
+> > =20
+> >  static int rs9_get_output_config(struct rs9_driver_data *rs9, int idx)=
+ @@
+> >=20
+> > -333,6 +339,7 @@ static int rs9_probe(struct i2c_client *client)
+> >=20
+> >  	if (ret < 0)
+> >  =09
+> >  		return ret;
+> >=20
+> > +	vid &=3D RS9_REG_VID_MASK;
+> >=20
+> >  	if (vid !=3D RS9_REG_VID_IDT || did !=3D rs9->chip_info->did)
+> >  =09
+> >  		return dev_err_probe(&client->dev, -ENODEV,
+> >  	=09
+> >  				     "Incorrect VID/DID: %#02x, %#02x.
+> >=20
+> > Expected %#02x, %#02x\n", @@ -391,9 +398,16 @@ static const struct
+> > rs9_chip_info renesas_9fgv0441_info =3D {
+> >=20
+> >  	.did		=3D RS9_REG_DID_TYPE_FGV | 0x04,
+> > =20
+> >  };
+> >=20
+> > +static const struct rs9_chip_info renesas_9fgv0841_info =3D {
+> > +	.model		=3D RENESAS_9FGV0841,
+> > +	.num_clks	=3D 8,
+> > +	.did		=3D RS9_REG_DID_TYPE_FGV | 0x08,
+> > +};
+> > +
+> >=20
+> >  static const struct i2c_device_id rs9_id[] =3D {
+> > =20
+> >  	{ "9fgv0241", .driver_data =3D
+> >=20
+> > (kernel_ulong_t)&renesas_9fgv0241_info },
+> >=20
+> >  	{ "9fgv0441", .driver_data =3D
+> >=20
+> > (kernel_ulong_t)&renesas_9fgv0441_info },
+> > +	{ "9fgv0841", .driver_data =3D
+> > (kernel_ulong_t)&renesas_9fgv0841_info },
+> >=20
+> >  	{ }
+> > =20
+> >  };
+> >  MODULE_DEVICE_TABLE(i2c, rs9_id);
+> >=20
+> > @@ -401,6 +415,7 @@ MODULE_DEVICE_TABLE(i2c, rs9_id);  static const str=
+uct
+> > of_device_id clk_rs9_of_match[] =3D {
+> >=20
+> >  	{ .compatible =3D "renesas,9fgv0241", .data =3D
+> >=20
+> > &renesas_9fgv0241_info },
+> >=20
+> >  	{ .compatible =3D "renesas,9fgv0441", .data =3D
+> >=20
+> > &renesas_9fgv0441_info },
+> > +	{ .compatible =3D "renesas,9fgv0841", .data =3D
+> > &renesas_9fgv0841_info },
+> >=20
+> >  	{ }
+> > =20
+> >  };
+> >  MODULE_DEVICE_TABLE(of, clk_rs9_of_match);
+> >=20
+> > --
+> > 2.42.0
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
