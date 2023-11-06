@@ -1,97 +1,143 @@
-Return-Path: <devicetree+bounces-13999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E772A7E1C19
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:26:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 662637E1BD9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:21:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 244CC1C209D9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:26:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20400280ED8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25381401B;
-	Mon,  6 Nov 2023 08:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE13FC03;
+	Mon,  6 Nov 2023 08:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QfSJq4Od"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CC2134BF
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:26:36 +0000 (UTC)
-X-Greylist: delayed 941 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Nov 2023 00:26:31 PST
-Received: from 5.mo576.mail-out.ovh.net (5.mo576.mail-out.ovh.net [46.105.43.105])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8B61739
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 00:26:31 -0800 (PST)
-Received: from director2.ghost.mail-out.ovh.net (unknown [10.108.1.170])
-	by mo576.mail-out.ovh.net (Postfix) with ESMTP id EFC9D29C62
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:10:48 +0000 (UTC)
-Received: from ghost-submission-6684bf9d7b-wwxds (unknown [10.110.103.14])
-	by director2.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 3C6D81FEB6;
-	Mon,  6 Nov 2023 08:10:45 +0000 (UTC)
-Received: from RCM-web8.webmail.mail.ovh.net ([151.80.29.22])
-	by ghost-submission-6684bf9d7b-wwxds with ESMTPSA
-	id 7H6TDIWfSGVAfQQAGogUGA
-	(envelope-from <rafal@milecki.pl>); Mon, 06 Nov 2023 08:10:45 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46FAF11711
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:21:15 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89027100;
+	Mon,  6 Nov 2023 00:21:12 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so7039637a12.3;
+        Mon, 06 Nov 2023 00:21:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699258871; x=1699863671; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vaiRdQ1c+DDVs4Z20fjdvqfJxBU+ISFg2fzCunWfAwA=;
+        b=QfSJq4OdRjjyGEApLEquTzMlT9+zB8YKfzrh7PwB1CAgL5wp2+YNNZG2yiQjBegNTG
+         YYVdrzcjbCxXYuzGyswwICnR+EfQw+MmkpYmMKHVdpfokYPQq85Cjtn91hbAO1pBHtlw
+         Q+KCf13dfv5f6LwRnVCf063/Uex7fwVdqhdgh7h8ZdZGwlaCGiOeCuMLCHRZN8/k6qDd
+         bTHwc1IWzppMtC3PGg3TYuetuk9vOzoSMrH5pPLy/SaacnegCFobGZIGzGZsAiEmfZ+f
+         cyqP5MeP/1lv8i6wk1/OCZO1bZJGvSRoSliaGDgAMAZ2LCyIBi9uz+rsdT0ZzwO93Oo8
+         1PGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699258871; x=1699863671;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vaiRdQ1c+DDVs4Z20fjdvqfJxBU+ISFg2fzCunWfAwA=;
+        b=PgHaTts3BfA8K2Hrx6QA7BR5tLhLviqadAGxYtkYbYM6C3BR3U//uH/Xindc2nagXv
+         CImVcOp7xBZzV74VfdR9acbbu152VTa85y3Pc4OrZdKkeZMZkJRJZEtKMzsaYl91i88T
+         tO5LlWTkrtNkIq72IYxtdxTk2zgsFM/s21k049C4dCZkI4LO8vNyo+yLg8W2UNx4KzS8
+         Tc9j0lHNHEYq6gAgxKicLrxm3Ez97FDfmQa1p43/JIy4B00Sk8P5xRAtAdtns0EXt0FE
+         jR++iHqMs7ME3zA9rS+g+cio6dz6uAugs8xvIgNuduutgjXfQ49IFlvfetxDyfLKXl+W
+         XiTQ==
+X-Gm-Message-State: AOJu0YzLJGtpOc8cToFyvKq85gIocdgxrSQGsxhgcqWDTlVMjLHLinzw
+	4JPZj6tYvD+v5S5VC8yyFEY=
+X-Google-Smtp-Source: AGHT+IEKtqsrKB1kb71jbhsBeqfKpuKEo8Mpz0qgW31whm9CYTmPVCnOab2ipxX4HfKaenFakbVAlg==
+X-Received: by 2002:a50:8e5d:0:b0:543:c50c:cacc with SMTP id 29-20020a508e5d000000b00543c50ccaccmr10881395edx.41.1699258870749;
+        Mon, 06 Nov 2023 00:21:10 -0800 (PST)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-59-109.cust.vodafonedsl.it. [188.217.59.109])
+        by smtp.gmail.com with ESMTPSA id x1-20020a50ba81000000b005434e3d8e7bsm4221884ede.1.2023.11.06.00.21.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Nov 2023 00:21:10 -0800 (PST)
+From: Tommaso Merciai <tomm.merciai@gmail.com>
+To: 
+Cc: sakari.ailus@linux.intel.com,
+	martin.hecht@avnet.eu,
+	michael.roeder@avnet.eu,
+	mhecht73@gmail.com,
+	linuxfancy@googlegroups.com,
+	laurent.pinchart@ideasonboard.com,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Sebastian Reichel <sre@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Gerald Loacker <gerald.loacker@wolfvision.net>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	Nicholas Roth <nicholas@rothemail.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v13 1/3] dt-bindings: vendor-prefixes: Add prefix alliedvision
+Date: Mon,  6 Nov 2023 09:20:56 +0100
+Message-Id: <20231106082102.368937-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231106082102.368937-1-tomm.merciai@gmail.com>
+References: <20231106082102.368937-1-tomm.merciai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 06 Nov 2023 09:10:44 +0100
-From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Hector Martin <marcan@marcan.st>, Sven
- Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, Julius
- Werner <jwerner@chromium.org>, Evan Benn <evanbenn@chromium.org>, Florian
- Fainelli <florian.fainelli@broadcom.com>, Broadcom internal kernel review
- list <bcm-kernel-feedback-list@broadcom.com>, Maxime Ripard
- <mripard@kernel.org>, Oleksij Rempel <linux@rempel-privat.de>, Justin Chen
- <justinpopo6@gmail.com>, Baruch Siach <baruch@tkos.co.il>, Ahmad Zainie
- <wan.ahmad.zainie.wan.mohamad@intel.com>, Marc Zyngier <maz@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Jamie Iles <jamie@jamieiles.com>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, asahi@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: re-order entries to match
- coding convention
-In-Reply-To: <20231105184154.43700-1-krzysztof.kozlowski@linaro.org>
-References: <20231105184154.43700-1-krzysztof.kozlowski@linaro.org>
-User-Agent: Roundcube Webmail/1.4.15
-Message-ID: <300293570c0d29d5d4a39762121b5bef@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 31.11.218.106
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 11495438051932285714
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedruddufedgudduiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjedvlefguedthfefleehgeeftdeludeluedvgfeffeevhfevtdehteejteefheegnecukfhppeduvdejrddtrddtrddupdefuddruddurddvudekrddutdeipdduhedurdektddrvdelrddvvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeduvdejrddtrddtrddupdhmrghilhhfrhhomhepoehrrghfrghlsehmihhlvggtkhhirdhplheqpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehjeeipdhmohguvgepshhmthhpohhuth
 
-On 2023-11-05 19:41, Krzysztof Kozlowski wrote:
-> The Devicetree bindings coding convention, as used in most of the files
-> and expressed in Documentation/devicetree/bindings/example-schema.yaml,
-> expects:
-> 1. "allOf:" block just before "properties:" (or after "required:" for
->    more complex cases),
-> 2. additionalProperties/unevaluatedProperties at the end of the file,
->    just before the examples section.
-> 
-> Re-order few schemas to match the convention to avoid repeating review
-> comments for new patches using existing code as template.  No 
-> functional
-> changes.
+Add a vendor prefix entry for Allied Vision Technologies GmbH
+(https://www.alliedvision.com)
 
-It's surely going to help a bit but for a long time solution maybe you
-could consider adding proper check to Rob's bot and/or checkpatch.pl.
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+ - Collected tags from LPinchart, CDooley, KKozlowski
 
+Changes since v7:
+ - Fix company legal entity from Inc. to GmbH
+
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..4763fbfcd936 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -77,6 +77,8 @@ patternProperties:
+     description: ALFA Network Inc.
+   "^allegro,.*":
+     description: Allegro DVT
++  "^alliedvision,.*":
++    description: Allied Vision Technologies GmbH
+   "^allo,.*":
+     description: Allo.com
+   "^allwinner,.*":
 -- 
-Rafał Miłecki
+2.34.1
+
 
