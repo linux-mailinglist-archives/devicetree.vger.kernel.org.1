@@ -1,58 +1,50 @@
-Return-Path: <devicetree+bounces-14078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BE97E1F73
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:07:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE36B7E1FA1
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46D7F1C20BBB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:07:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57220B23374
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB2718646;
-	Mon,  6 Nov 2023 11:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E0318AE4;
+	Mon,  6 Nov 2023 11:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HLLJpl3F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAiBlpRe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E0918644
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:07:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EB3C433C7;
-	Mon,  6 Nov 2023 11:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07FFC1862D
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:10:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A99BDC433C7;
+	Mon,  6 Nov 2023 11:10:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699268828;
-	bh=QlAAP/B7tLRo9OBBNhArUNZWvgOjEW4JKbbEzOMYoTI=;
+	s=k20201202; t=1699269010;
+	bh=Bw6MnMTTrDr7uSxkR5WanV+zHgmO66ylaD0/WXM95VQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HLLJpl3FSRHGYK4RcM36IIUHPWPY5+mSfc9sBlmTA5nFd7YdorB/4xjP9w+0/+k3O
-	 lDdvP7mCDIz9ybQL+fcgXoSME3t0t8GKQjM0a6vZx33xVKp+BffmtN/BnOfkoFa5RT
-	 86rkAa7wnW9yrlBBGBx3cVjcmfcIHBK/rLnJZt0D0k2AGqAuRzpyNA48vlI1Rz4bPX
-	 dfSNJvj8gS/ZWXF83OdngFraVMETZ1JpAtBGReFysmCvbH4VextVYpSk4UJ+RMYgyD
-	 G3gDn/odqOD12tq1ZY/pUN+k8oHvXn+ZJpVoy/gWsycd2sTFoclOztfFXe25PgLZZC
-	 FZI7GwkqumvLw==
-Date: Mon, 6 Nov 2023 11:07:01 +0000
+	b=dAiBlpReuCecGSGvVCXXIv3WzDStlrN6NBjeVSBpjKCsZhXBczwrwqFYQ3v4NCDFQ
+	 velTv7qtQ2gjJfdY3nxVMVjZTBuBjG1AB88+jHq/qTvALkmSYZuD89arf0i3zhXbRG
+	 ll3eBoJFf9EOneOswnTb+s2RrINRnd5G7c9pais1+/FRhMEbGv42oG2e4kWh0U0807
+	 EuyZK/sAFLGBlAGbx3dxeimO4sx9/b92cEzfXrRDeUk5r0lOdkdExa2DEKOKXLcf2o
+	 ASoCJt2e8faoGt1kz0UjVRybQPaYdWpv7zXi8FqQNl6/qkxT3ExaC4w8iau0wmWnc8
+	 lG9G2otmx5MIQ==
+Date: Mon, 6 Nov 2023 11:10:05 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: alisadariana@gmail.com, Alisa-Dariana Roman <alisa.roman@analog.com>,
- Alexandru Tachici <alexandru.tachici@analog.com>, Lars-Peter Clausen
+To: Ana-Maria Cusco <anamaria.cuscoo@gmail.com>
+Cc: Ana-Maria Cusco <ana-maria.cusco@analog.com>, Lars-Peter Clausen
  <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
  Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Maksim Kiselev <bigunclemax@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- Cosmin Tanislav <demonsingur@gmail.com>, Okan Sahin
- <okan.sahin@analog.com>, Ibrahim Tilki <Ibrahim.Tilki@analog.com>, Marius
- Cristea <marius.cristea@microchip.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
- Marcus Folkesson <marcus.folkesson@gmail.com>, Niklas Schnelle
- <schnelle@linux.ibm.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: adc: ad7192: Add AD7194 support
-Message-ID: <20231106110701.0c2a9a25@jic23-huawei>
-In-Reply-To: <ZUi_kWzZBMRBs3EU@smile.fi.intel.com>
-References: <20231105193132.47009-1-alisadariana@gmail.com>
-	<20231105193132.47009-4-alisadariana@gmail.com>
-	<ZUi_kWzZBMRBs3EU@smile.fi.intel.com>
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add ADRF5740 driver
+Message-ID: <20231106111005.6fd278fd@jic23-huawei>
+In-Reply-To: <20231103150130.1090246-1-anamaria.cuscoo@gmail.com>
+References: <20231103150130.1090246-1-anamaria.cuscoo@gmail.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,32 +55,31 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 6 Nov 2023 12:27:29 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+On Fri,  3 Nov 2023 17:01:28 +0200
+Ana-Maria Cusco <anamaria.cuscoo@gmail.com> wrote:
 
-> On Sun, Nov 05, 2023 at 09:31:31PM +0200, alisadariana@gmail.com wrote:
-> > From: Alisa-Dariana Roman <alisa.roman@analog.com>
-> > 
-> > Unlike the other AD719Xs, AD7194 has configurable differential
-> > channels. The default configuration for these channels can be changed
-> > from the devicetree.
-> > 
-> > The default configuration is hardcoded in order to have a stable number
-> > of channels.  
-> 
-> ...
-> 
-> >  config AD7192
-> > -	tristate "Analog Devices AD7190 AD7192 AD7193 AD7195 ADC driver"
-> > +	tristate "Analog Devices AD7190 AD7192 AD7193 AD7194 AD7195 ADC driver"  
-> 
-> This doesn't scale. Please change this and below like:
-> 
-> 	tristate "Analog Devices AD719x ADC driver"
-Also tends to cause trouble given habit of manufacturers to not have consistent
-naming.
+> From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+Hi Ana-Maria,
 
-"AD7194 and similar ADC driver"
-would be my preference.
+If you do a v2, then make it clear in the title that this is adding support
+to an additional driver rather than a whole new one.
+
+
+> 
+> This patch series adds support for ADRF5740 Attenuator.
+> 
+> The ADRF5740 is a silicon, 4-bit digital attenuator with 22 dB
+> attenuation control range in 2 dB steps.
+> It offers parallel control mode through four digitally controlled inputs.
+> 
+> Ana-Maria Cusco (2):
+>   iio: amplifiers: adrf5740: Add Support ADRF5740 4-bit Attenuator
+>   dt-bindings: iio: hmc425a: add entry for ADRF5740
+> 
+>  .../bindings/iio/amplifiers/adi,hmc425a.yaml  |  4 ++++
+>  drivers/iio/amplifiers/hmc425a.c              | 23 +++++++++++++++++++
+>  2 files changed, 27 insertions(+)
+> 
+
 
 
