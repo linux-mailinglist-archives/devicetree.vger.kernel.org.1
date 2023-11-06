@@ -1,185 +1,160 @@
-Return-Path: <devicetree+bounces-14072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1247E1ED4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:48:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED7317E1ED9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:48:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EC791C2093A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:48:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 294EA1C2074A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8116C17730;
-	Mon,  6 Nov 2023 10:48:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="so3RjZhl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEF817993;
+	Mon,  6 Nov 2023 10:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046FC18030
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:48:10 +0000 (UTC)
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411D592;
-	Mon,  6 Nov 2023 02:48:09 -0800 (PST)
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4SP7Nj2S11z49PxL;
-	Mon,  6 Nov 2023 12:48:02 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1699267685;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EFt+BGmAPnhgn1cZ5dvrGmly2meJ+ws2AZ1QjFXNz74=;
-	b=so3RjZhleUxiEbMGYS1Q6eZgdNgPsUrMAMr3DBAAU/nN94VqeMDbwHpMycmS8Qd/oPjnly
-	Y6KQzmmGKDy6q95FyzyVmKtWIAPdr8waf3LdY2uDL5+A8yN5BIJ1yI0/TJ4WkOIGZ1InTa
-	MSLTSlnvbRLfsMZuR/bLF6NQBxIl50vnlvafuX16xRxd+ZcwmrYJFLxfcJDXUVAiJRvRv4
-	N2dD1eH6JAgiOmXGMpkCYwQjvM0hXFhij5axHYzZzWEiq8L/dCarowF1H90AtDn/n3Flkd
-	4lhrzDT65oNv0nIVfJW3eMPZLjhE2YdvAxpr9A+RLFLGUD20b7xt41k+fi0R8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1699267685;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EFt+BGmAPnhgn1cZ5dvrGmly2meJ+ws2AZ1QjFXNz74=;
-	b=YbkqxpEc0ob+UGs9xbZySWCHtcxQLbpRb+svLX0QHvjhNSSSvPPikgRRCmfxd4xyAYVTHN
-	Pi9OXN0UCNrqfEDXItjLpg1nMwyHXhuOqVB8QTzGZhiCZWgPUT3jrB1zDYBuoDK9v64pf6
-	V8WGbP72VgGNHejb6QRm/7RzQYICyR+lwYpbOZ5UWIfgRS+ULBYLkI98qQc+5Q4smRLjvd
-	2RTINIPzD0PGG9yndZJQ1qO9cqT7ZTFxltQioUkAt9JsAWw6X3X+9+IHJ3iHzs5jj0lDxK
-	Qzo20fCwq2EU2EqYiFzb6duZwYnp75wSq43e3PMGs6JQ9jlS+SXuoA9wgrmgoQ==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1699267685; a=rsa-sha256;
-	cv=none;
-	b=gBnAAGcJd9s5fR+lpWWx4We+vRs4QDxkW1RD5/iSovLkX2It/1myrD9yl9lbg/8QkhlOAQ
-	kJtXJeJdUeK1aecyzKsXPVXPGV7ke0/Z4A3YUjahwEK2BwYZOQmKIhjJbz4xwg6gmiRieP
-	q7htoJYzQu3RQlje4U3AVkbgz90q5OEWygcg/eJ3U3RAGQXa2H6fUPzfN1fOi90wSil8ws
-	MpXbtY4u5bn5+/x/p8cPiSgXxS7c72ZXUeudtdbO2aOO1vGPyML4pGA76fP6KEhXOJtGev
-	+2xENRWWihPQKMDQay94QC2NTgeeGWDmfmiErqAYpv+QUHM77Sri0MeSxPVnzg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2E79B634C93;
-	Mon,  6 Nov 2023 12:48:01 +0200 (EET)
-Date: Mon, 6 Nov 2023 10:48:01 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53F117751
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:48:52 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F419CC
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 02:48:51 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qzx9w-0007kV-3g; Mon, 06 Nov 2023 11:48:44 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qzx9u-0070Nx-Vz; Mon, 06 Nov 2023 11:48:43 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qzx9u-00DZ6f-Mb; Mon, 06 Nov 2023 11:48:42 +0100
+Date: Mon, 6 Nov 2023 11:48:42 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] media: i2c: gc2145: Galaxy Core GC2145 sensor
- support
-Message-ID: <ZUjEYYH9jgaAjGfd@valkosipuli.retiisi.eu>
-References: <20231011175735.1824782-1-alain.volmat@foss.st.com>
- <20231011175735.1824782-4-alain.volmat@foss.st.com>
- <kwlierdzflnm4ignc3huklbrkxq6wftr2ks3lmdmm3dfk7z654@fvpszg7jywz7>
- <20231030163711.GA2977022@gnbcxd0016.gnb.st.com>
- <ocohxhbo2rrngjy5g6twy4exxqaeuhws2tnjo7uiv7ja24etot@7wgzo3xrnon6>
- <20231106095546.GA3071306@gnbcxd0016.gnb.st.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] arm64: dts: freescale: imx8-ss-lsio: Fix #pwm-cells
+Message-ID: <20231106104842.ooxzow6slw575xrs@pengutronix.de>
+References: <20231106095205.231210-1-alexander.stein@ew.tq-group.com>
+ <20231106095205.231210-3-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oz2nobh3znr42n5o"
 Content-Disposition: inline
-In-Reply-To: <20231106095546.GA3071306@gnbcxd0016.gnb.st.com>
+In-Reply-To: <20231106095205.231210-3-alexander.stein@ew.tq-group.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Alain, Jacopo,
 
-On Mon, Nov 06, 2023 at 10:55:46AM +0100, Alain Volmat wrote:
-> Hi,
-> 
-> On Tue, Oct 31, 2023 at 09:05:32AM +0100, Jacopo Mondi wrote:
-> > Hi Alain
-> > 
-> > On Mon, Oct 30, 2023 at 05:37:11PM +0100, Alain Volmat wrote:
-> > > Hi Jacopo,
-> > >
-> > > On Mon, Oct 23, 2023 at 10:38:59AM +0200, Jacopo Mondi wrote:
-> > > > Hi Alain
-> > > >
-> > > > On Wed, Oct 11, 2023 at 07:57:30PM +0200, Alain Volmat wrote:
-> > > > > Addition of support for the Galaxy Core GC2145 XVGA sensor.
-> > > > > The sensor supports both DVP and CSI-2 interfaces however for
-> > > > > the time being only CSI-2 is implemented.
-> > > > >
-> > > > > Configurations is currently based on initialization scripts
-> > > > > coming from Galaxy Core and for that purpose only 3 static
-> > > > > resolutions are supported with static framerates.
-> > > > >  - 640x480 (30fps)
-> > > > >  - 1280x720 (30fps)
-> > > > >  - 1600x1200 (20fps)
-> > > >
-> > > > Anything blocking having a writable VBLANK ? This is a YUV sensor but
-> > > > GC2145_REG_VBLANK seems to be writable. I don't want to push you to
-> > > > more work that what you actually need, but configurable blankings (and
-> > > > then frame durations) seems like an important feature ? (and if I
-> > > > recall right you want to use this sensor with libcamera, which will
-> > > > require blankings to be controllable (if the sensor supports any RAW
-> > > > format)
-> > >
-> > > No, nothing prevents to write the VBLANK register.  I just did some
-> > > tests directly via rwmem into a running sensor and vertical blanking can
-> > > be updated, allowing to tune the framerate.
-> > >
-> > > >
-> > > > I don't see any RAW format being supported in this version. Is this
-> > > > something you plan to do on top ?
-> > >
-> > > Yes, absolutely, it is possible to output RAW formats as well however
-> > > this version of the driver doesn't support it yet.  The plan is indeed
-> > > to add it on top of this.
-> > > Several things to be addressed on top of this serie:
-> > >   - RAW format
-> > >   - frame_interval vs H/V blank control.  Is my understanding correct if
-> > >     I say that if a sensor has RAW format (even if it ALSO has YUV /
-> > >     RGB) then control is done via H/V blanking controls rather than
-> > >     frame_interval ?
-> > 
-> > I'll reply here to this question that is asked in a few other places.
-> > 
-> > I can only point you to the ov5640 driver, which is capable of both
-> > YUV/RGB and RAW as this sensor is. The ov5640 driver supports both the
-> > g/s/enum_frame_interval and has writable blankings. I guess it's more
-> > for historical reasons, as when blankings have been made writable
-> > users of the frame_interval API would have been displeased if that
-> > interface went away.
-> > 
-> > The resulting implementation is not nice, as changing vblank doesn't
-> > update the framerate reported through g_frame_interval, and keeping
-> > the two in sync is not trivial.
-> > 
-> > I would suggest to go for writable blankings, and if you already plan
-> > to remove frame_interval then not add it in first place so there won't
-> > be displeased users.
-> > 
-> > Sakari, Laurent, what's your opinion here ?
-> 
-> Sakari, Laurent, do you have opinion regarding how to control the
-> framerate on this sensor.  It is a YUV sensor but which might also (not
-> yet made available in this first serie) support RAW format.
-> Should I expose the g_frame_interval / s_frame_interval or only blanking
-> ctrls ?
+--oz2nobh3znr42n5o
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-As this is a new driver, I'm leaning towards implementing blanking controls
-only.
+Hello,
 
--- 
-Regards,
+[again Cc -=3D Philippe Schenker]
 
-Sakari Ailus
+On Mon, Nov 06, 2023 at 10:52:04AM +0100, Alexander Stein wrote:
+> i.MX8QM/QXP supports inverted PWM output, thus #pwm-cells needs to be set
+> to 3.
+>=20
+> Fixes: a05c329644d81 ("arm64: dts: freescale: imx8-ss-lsio: add support f=
+or lsio_pwm0-3")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi b/arch/arm64=
+/boot/dts/freescale/imx8-ss-lsio.dtsi
+> index 49ad3413db948..7e510b21bbac5 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
+> @@ -29,7 +29,7 @@ lsio_pwm0: pwm@5d000000 {
+>  			 <&pwm0_lpcg 1>;
+>  		assigned-clocks =3D <&clk IMX_SC_R_PWM_0 IMX_SC_PM_CLK_PER>;
+>  		assigned-clock-rates =3D <24000000>;
+> -		#pwm-cells =3D <2>;
+> +		#pwm-cells =3D <3>;
+>  		interrupts =3D <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
+>  		status =3D "disabled";
+>  	};
+> @@ -42,7 +42,7 @@ lsio_pwm1: pwm@5d010000 {
+>  			 <&pwm1_lpcg 1>;
+>  		assigned-clocks =3D <&clk IMX_SC_R_PWM_1 IMX_SC_PM_CLK_PER>;
+>  		assigned-clock-rates =3D <24000000>;
+> -		#pwm-cells =3D <2>;
+> +		#pwm-cells =3D <3>;
+>  		interrupts =3D <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+>  		status =3D "disabled";
+>  	};
+> @@ -55,7 +55,7 @@ lsio_pwm2: pwm@5d020000 {
+>  			 <&pwm2_lpcg 1>;
+>  		assigned-clocks =3D <&clk IMX_SC_R_PWM_2 IMX_SC_PM_CLK_PER>;
+>  		assigned-clock-rates =3D <24000000>;
+> -		#pwm-cells =3D <2>;
+> +		#pwm-cells =3D <3>;
+>  		interrupts =3D <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+>  		status =3D "disabled";
+>  	};
+> @@ -68,7 +68,7 @@ lsio_pwm3: pwm@5d030000 {
+>  			 <&pwm3_lpcg 1>;
+>  		assigned-clocks =3D <&clk IMX_SC_R_PWM_3 IMX_SC_PM_CLK_PER>;
+>  		assigned-clock-rates =3D <24000000>;
+> -		#pwm-cells =3D <2>;
+> +		#pwm-cells =3D <3>;
+>  		interrupts =3D <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+>  		status =3D "disabled";
+>  	};
+
+Even without patch #1 this is a good change. There are no usages of the
+lsio_pwm* handles as of today's next. So no consumers need adaption.
+
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--oz2nobh3znr42n5o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVIxIkACgkQj4D7WH0S
+/k40nAf/QSWz/OiLCpPMO4U/eFmLBdCl3/nDYgwvGMIW2vFrimwdjICw7PQSQlLI
+5XgN15jx1vhgkWCg1a68515xVC0I9yaD1klXNs2UyuP/Nrk2Q+3dcNpFYPDf9ivU
+96qHk9Qa3thyDyypICQcyXhfjaY4DrYNrG21sxdotLRvInDuT/oaHPxFom9zSbSs
+QEgsOHcjPoWIjE/qbRQH8RuHmYys/uI5b/Pg+ckIsMX9EHwRD9pfdKTDDVk3BciP
+irKXUONM9s69zdUNBc3/cHn6/WzUE2uHf/1CfJUrlt0nurAVbHYwifcrHu1ja602
+9eVWL3/UEEpTR27J960Yg+V5f3yeZQ==
+=KdPw
+-----END PGP SIGNATURE-----
+
+--oz2nobh3znr42n5o--
 
