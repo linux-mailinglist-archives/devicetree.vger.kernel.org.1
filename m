@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B317E2394
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 14:12:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 225367E23A6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 14:13:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D972A1C20BC2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:12:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82C92B20D82
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669E220316;
-	Mon,  6 Nov 2023 13:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 465E520316;
+	Mon,  6 Nov 2023 13:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i52A2ABz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R+nt6NhL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E94210F7
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 13:12:50 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E960E136
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 05:12:48 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40859c466efso32951525e9.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 05:12:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A5B200BA
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 13:13:17 +0000 (UTC)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD48010B
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 05:13:15 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4083f613275so33239615e9.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 05:13:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699276367; x=1699881167; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699276394; x=1699881194; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JJ0+kaOpg+3z6G1zKqoh226t5IxqKvRMGEF8Z/xZ5Xk=;
-        b=i52A2ABzLqZcJN4EKT/93QDJRWZXGV4gReUqU1Rrg/0Q054kUZgtbROKfYnZCz9H/D
-         pnQAllTCT8R85qsZTb804cRwTciiqhvRRCN08oxYrh6y7v+g7mCVhaHHcZwugIA8r98e
-         pxhz5eiz3AaB82SV6QV5lBCWBrYfSTrhf7XxmS6lSht3g7zJIBrwKBrkmZ1PWJUhb68n
-         HgHx1aK7xFWSrSngq1KF/vdzkA/J6X/RnAfanZSKUmi2RnUu9fkRYuQzB37oWezEQ9zv
-         Cw18Kt+XuAGiYG5xRgLHCtohBvqkKrhgTLks4Ead+aGBnymEqkYhqvSfoxGrgsTmgFC9
-         QzYg==
+        bh=cdWLT4oiKUt6XUK1xIusnrArH5p4BS6iX0+tFOuwyx0=;
+        b=R+nt6NhLklvJ6tx3ztCPqsvF5wy1qaITTpLF/F4+/2dX3PUigtcTMcRsJaFxZE9izx
+         1SlvCKCdIU6+/ZODNtrgs0lczkDybbabVieLhSaeR3GSE2bOvJ4kJfGnSEImbR5dNzUB
+         lH1ug6fWzKYOiF1s8lWuoCxynATyFSo4JTQKiallBTBvjoKBJrbZ+E8Q1pbIfXqVdKH7
+         4rvVXbaWSdbMzOaPkwaHi+8aHVP3JzxyW0r88xo20IxsCZ2euYCEJIBN0F7jxXHlav2s
+         rKzfOjczc0kgjjS7SWPsbAodQXhfV2ThaazBcSp/nbQaZK1BkAtiKy0HY9bp1zmitb9G
+         1jnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699276367; x=1699881167;
+        d=1e100.net; s=20230601; t=1699276394; x=1699881194;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JJ0+kaOpg+3z6G1zKqoh226t5IxqKvRMGEF8Z/xZ5Xk=;
-        b=Zv0q4ek14VjYj/FoPoTJXQJMwuT45JL2EPDNPSAIv7VuhiOPRDMimx5PASxyvM21/n
-         cHbUMnMEZOIWF/3pJoeg0PTHXywJCcEbk2Hizvb7z0xJauPmGTuQn92i6Ax9ByseGjjL
-         lQeSrTekLZ9yGjAhKVE6pEHoymmLOGF6O5sR0cg4sZV6jPcQNInbPUXhUGJu98Q0qmuC
-         uOTPwEp6witcjXS5rWkPggYR6bnY4tjN0K/2DQxJzzJ/D22OlcCiBP6x+Vt95a5etiwb
-         p1NNEtPfalmGNTw9Hgvrd8ciq/ITA5Z/hdAn+Tt9Wvx7Byo4/rs6eQ4MUBRU9r+Tx950
-         WUXA==
-X-Gm-Message-State: AOJu0Ywc3+/T+QKMhGHytuC4yiDOwX72xWo6qWgZm3ZC2bBsUToRuFQN
-	w6h9LN8neP0yT9rCX1IO7eLRJQ==
-X-Google-Smtp-Source: AGHT+IEKZarLFbIaEN7VapDV/NV7XAMUhU2LUq/O8HJJR5tq2UvP4VOgwdbs8xuCnpGnO9LHulF0yw==
-X-Received: by 2002:a05:6000:1849:b0:32f:7acd:8743 with SMTP id c9-20020a056000184900b0032f7acd8743mr22932030wri.11.1699276367351;
-        Mon, 06 Nov 2023 05:12:47 -0800 (PST)
+        bh=cdWLT4oiKUt6XUK1xIusnrArH5p4BS6iX0+tFOuwyx0=;
+        b=MX0zupcd8O2YnIMqXiDKV/6RxDXBhbr3VfWw6WIDMqy097t5216owA0keS2hafHsSX
+         DMMF7fLs9rRJZSY6gRbNuVebC/3VQ9mD9ePEtMHrIpcPSQaOdD35p3AAvIOL+JV0Kf4y
+         sWx5Scmbx8f+ksovzKTUWSrEC5zXrcf1Pp9T+vi7L74cjW6u+eLt15Akfzb4riRpJB4p
+         92xOHMnjCTP34zkyOcYt7p/vKBJBV7jxe+F8ns7PuGgxFoJav8KES1T3ckSC3UlIFUda
+         gAgDMmrO/M57nYJgIC+B+qqH7IcQOpdMua7TNRZMQiWMQZ9S/W309tMR0kKnRCb3IWdL
+         1OVg==
+X-Gm-Message-State: AOJu0YwCpfIWNpRiqfXHTMlsTeMwAfRysxIGbz2O5Oy2q0Jf+0DV4LPY
+	//WyCg12xgxMfk8oBnK0MuJKGA==
+X-Google-Smtp-Source: AGHT+IEoVtuiTdRTzwpO/BE9cg/PvTzCZusoQxLVzEDNEjq6S1OHiKhjaD7Dl3jPV+4dEHBB93Z9RA==
+X-Received: by 2002:a05:600c:1394:b0:409:7aa9:a903 with SMTP id u20-20020a05600c139400b004097aa9a903mr4883892wmf.19.1699276394341;
+        Mon, 06 Nov 2023 05:13:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id s6-20020a5d4ec6000000b0032f79e55eb8sm9431850wrv.16.2023.11.06.05.12.45
+        by smtp.gmail.com with ESMTPSA id s6-20020a5d4ec6000000b0032f79e55eb8sm9431850wrv.16.2023.11.06.05.13.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Nov 2023 05:12:46 -0800 (PST)
-Message-ID: <1de70780-936d-4d43-9dd6-ab5d4824c631@linaro.org>
-Date: Mon, 6 Nov 2023 14:12:44 +0100
+        Mon, 06 Nov 2023 05:13:13 -0800 (PST)
+Message-ID: <518b6855-e8c7-4aa5-8d0b-b5802aa36b1b@linaro.org>
+Date: Mon, 6 Nov 2023 14:13:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/8] dt-bindings: regulator: qcom,spmi-regulator: Document
- PM8937 PMIC
+Subject: Re: [PATCH 6/8] dt-bindings: regulator: qcom,smd-rpm-regulator:
+ Document PM8937 IC
 Content-Language: en-US
 To: Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -81,7 +81,7 @@ To: Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
- <20231106-pm8937-v1-4-ec51d9eeec53@riseup.net>
+ <20231106-pm8937-v1-6-ec51d9eeec53@riseup.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,18 +127,16 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231106-pm8937-v1-4-ec51d9eeec53@riseup.net>
+In-Reply-To: <20231106-pm8937-v1-6-ec51d9eeec53@riseup.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 06/11/2023 13:08, Dang Huynh wrote:
-> Add support for qcom,pm8937-regulators compatible string and add
-> relevant supplies in QCOM's SPMI regulator documentation.
+> Document the pm8937 compatible string and available regulators in
+> the QCOM SMD RPM regulator documentation.
 > 
 > Signed-off-by: Dang Huynh <danct12@riseup.net>
 > ---
->  .../bindings/regulator/qcom,spmi-regulator.yaml       | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
