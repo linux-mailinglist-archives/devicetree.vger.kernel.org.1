@@ -1,131 +1,155 @@
-Return-Path: <devicetree+bounces-14061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA54D7E1E50
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:31:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF4C87E1E64
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:33:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 490FDB20AE8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:31:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F9AAB20D24
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92EC9156EB;
-	Mon,  6 Nov 2023 10:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13C818045;
+	Mon,  6 Nov 2023 10:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D07PgeBV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WPRBBWX3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB1718035
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:31:12 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74634DB;
-	Mon,  6 Nov 2023 02:31:10 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A6ARSi6004882;
-	Mon, 6 Nov 2023 10:31:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=twDtchG+/R75fbDoRiyiuTcAio91V8MdtWGBxzqo184=;
- b=D07PgeBVpBolQjmYk0zbY3NYekOmrizGKvAx5s7Ldj+PocOQ7dJYYM+/cA5hgBJoqagV
- a9CMCfXVsxJYVqXL0F2xAOYTPUSyRWGDyTN9MUIGeTGMqP1PppuO0gLXLUQ6FSBJ/a7v
- GeA2m9QpCSs9Em7cvmutUWspraBWJ2TaIl71jKRBQoE26BbwbOfW0pdWKw46umPpwJsS
- 8Py57JqYxijKSzs3Z+QYiCNZsNqq4JP7JVqhD8BkXKN2E9Pc9U/D5m361mxa47IiBkGb
- zCnbRWQwvfW0O+tndWuHs7XtpEYdRuIk2IqiIeNFWgcleiPpJpvtvZ3fAqTj2/ggzCH8 ZQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u5f523pnn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 06 Nov 2023 10:31:07 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A6AV63n029432
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 6 Nov 2023 10:31:06 GMT
-Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Mon, 6 Nov 2023 02:31:01 -0800
-From: Imran Shaik <quic_imrashai@quicinc.com>
-To: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: Taniya Das <quic_tdas@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-Subject: [PATCH V3 4/4] arm64: dts: qcom: qdu1000: Add ECPRI clock controller
-Date: Mon, 6 Nov 2023 16:00:27 +0530
-Message-ID: <20231106103027.3988871-5-quic_imrashai@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231106103027.3988871-1-quic_imrashai@quicinc.com>
-References: <20231106103027.3988871-1-quic_imrashai@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE4E18041
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:33:23 +0000 (UTC)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25ED894
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 02:33:21 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-32fb190bf9bso2168199f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 02:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699266799; x=1699871599; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jlw5HxIULTW6/Y+wZ7qEz5z78H/my/JnN6AqQuvllNo=;
+        b=WPRBBWX3uYXHjnG4cN1t9SOL7xnD2U4rn66tf52L1f9zcPESNEgcvuk6ZHNBr+5sxp
+         45ilXqSiWLq48TV9Sou5eTKFGe1o3JjI23wNZu52vLpIGxYR539tz1Bl5DY/Aa0l7XMk
+         napLjUxiZ8VIcHTQVUX35UcpvSB2rX1Y3hYgqzBNkQ6P98P27PEHXU2LdJSXqiFznWgt
+         tRqMTb/M18rMiH1SroqfH3usviStWu6j6ayBqSkiQtTjBpfke+8vYLwziJ2UpOZswMn/
+         +sLXot5U7Ikj1GFI4PzeHdA7nMpmHU0gsNHKbm9zntCkkXCq1QXgzQy396DsxYsvyQYc
+         MmfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699266799; x=1699871599;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jlw5HxIULTW6/Y+wZ7qEz5z78H/my/JnN6AqQuvllNo=;
+        b=eRXkfhh29G8cDLP8IJGsoPVXixxSb4ssKPxvwuAeVVom0IUEFcZ03/zpBWQRtBRdCx
+         Zrf9h4bKiv968VUrkR/YNijrKBH5p1pzVl/heHS8JZOfD0OGP9fsUzOZjQdj3CxDtEHP
+         xyJ93f7J2M9/Qo5JwZPl+L8VtxFb5riBXacG1IiFyPeUjvFf4VdAUvo4OdkbmhKF6Ej9
+         GriJlSwK6Qw+MBGPaWAP7RXHxiLWiY9h8vvUlBqyNckKv/c1GlEOUw6Whda3rH0qK7Iy
+         5YSax/4hhuT4wazQcH2mUd80bm0iaOYOrnzF8rB+P8xMiT14VeR5brxRT+M6uMv3Fs77
+         VUHw==
+X-Gm-Message-State: AOJu0Yy76Cog7GWfklzV1KUTEk7Mx3WVcdK89aFutfhfoPG9Fg2vumOJ
+	wsRfiRWBnZAMBvP4+qMNrhLahA==
+X-Google-Smtp-Source: AGHT+IHzv/E3x2UyZHstlPEHYl4kHcZKQvmPeHGYQ167btT+c+1bBfLcj35EW0Wc7pkdgodfZZ7zXw==
+X-Received: by 2002:adf:ed4f:0:b0:32d:a366:7073 with SMTP id u15-20020adfed4f000000b0032da3667073mr9251507wro.14.1699266799485;
+        Mon, 06 Nov 2023 02:33:19 -0800 (PST)
+Received: from toaster.lan ([2a01:e0a:3c5:5fb1:fabf:ec8c:b644:5d3])
+        by smtp.googlemail.com with ESMTPSA id d1-20020a056000114100b0032415213a6fsm9033602wrx.87.2023.11.06.02.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Nov 2023 02:33:19 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	linux-pwm@vger.kernel.org,
+	JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: [PATCH 0/6] pwm: meson: dt-bindings fixup
+Date: Mon,  6 Nov 2023 11:32:47 +0100
+Message-ID: <20231106103259.703417-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: y_Pm4sEtqHfa9hXkX1NrQmpPSb5xYcp9
-X-Proofpoint-GUID: y_Pm4sEtqHfa9hXkX1NrQmpPSb5xYcp9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-06_08,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- priorityscore=1501 bulkscore=0 mlxlogscore=803 phishscore=0
- lowpriorityscore=0 mlxscore=0 suspectscore=0 spamscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311060087
 
-Add device node for ECPRI clock controller on qcom QDU1000
-and QRU1000 SoCs.
+This patchset aims to:
+* Fix the incorrect bindings for the s4 type of pwm that was introduced
+  while converting the documentation from txt to yaml format.
+* Introduce a new compatible for the existing PWMs to better describe the
+  HW in DT, instead of describing settings.
+* Make the introduction of a new pwm variant (s4) slightly easier.
+* Migrate the supported SoCs to the new compatible.
 
-Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qdu1000.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Usually, I prefer to send to dts patches separately. This time it seemed
+important to illustrate the change. I don't mind splitting this out and
+re-spinning if this is annoying for the maintainers.
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index 1c0e5d271e91..1552b5c119bb 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -381,6 +381,20 @@ gcc: clock-controller@80000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		ecpricc: clock-controller@280000 {
-+			compatible = "qcom,qdu1000-ecpricc";
-+			reg = <0x0 0x00280000 0x0 0x31c00>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_ECPRI_CC_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL1_EVEN_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL2_EVEN_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL3_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL4_CLK_SRC>,
-+				 <&gcc GCC_ECPRI_CC_GPLL5_EVEN_CLK_SRC>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		gpi_dma0: dma-controller@900000  {
- 			compatible = "qcom,qdu1000-gpi-dma", "qcom,sm6350-gpi-dma";
- 			reg = <0x0 0x900000 0x0 0x60000>;
+Jerome Brunet (6):
+  dt-bindings: pwm: amlogic: fix s4 bindings
+  dt-bindings: pwm: amlogic: add new compatible for meson8 pwm type
+  pwm: meson: prepare addition of new compatible types
+  pwm: meson: add generic compatible for meson8 to sm1
+  arm: dts: amlogic: migrate pwms to new meson8 v2 binding
+  arm64: dts: amlogic: migrate pwms to new meson8 v2 binding
+
+ .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 101 +++++-
+ arch/arm/boot/dts/amlogic/meson.dtsi          |   4 +-
+ arch/arm/boot/dts/amlogic/meson8.dtsi         |  16 +-
+ arch/arm/boot/dts/amlogic/meson8b-ec100.dts   |   2 -
+ arch/arm/boot/dts/amlogic/meson8b-mxq.dts     |   2 -
+ .../arm/boot/dts/amlogic/meson8b-odroidc1.dts |   2 -
+ arch/arm/boot/dts/amlogic/meson8b.dtsi        |  16 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  24 +-
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  28 +-
+ .../dts/amlogic/meson-g12a-radxa-zero.dts     |   4 -
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    |   4 -
+ .../boot/dts/amlogic/meson-g12a-u200.dts      |   2 -
+ .../boot/dts/amlogic/meson-g12a-x96-max.dts   |   4 -
+ .../amlogic/meson-g12b-a311d-libretech-cc.dts |   2 -
+ .../dts/amlogic/meson-g12b-bananapi-cm4.dtsi  |   7 -
+ .../boot/dts/amlogic/meson-g12b-bananapi.dtsi |   4 -
+ .../dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   4 -
+ .../boot/dts/amlogic/meson-g12b-odroid.dtsi   |   4 -
+ .../dts/amlogic/meson-g12b-radxa-zero2.dts    |   8 -
+ .../boot/dts/amlogic/meson-g12b-w400.dtsi     |   6 -
+ .../dts/amlogic/meson-gx-libretech-pc.dtsi    |   6 -
+ .../boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  |   2 -
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   8 +-
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts |   2 -
+ .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    |   2 -
+ .../boot/dts/amlogic/meson-gxbb-p20x.dtsi     |   2 -
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |   2 -
+ .../boot/dts/amlogic/meson-gxbb-wetek.dtsi    |   2 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   |  26 ++
+ .../boot/dts/amlogic/meson-gxl-s805x-p241.dts |   2 -
+ .../meson-gxl-s905w-jethome-jethub-j80.dts    |   2 -
+ .../meson-gxl-s905x-hwacom-amazetv.dts        |   2 -
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |   2 -
+ .../amlogic/meson-gxl-s905x-nexbox-a95x.dts   |   2 -
+ .../dts/amlogic/meson-gxl-s905x-p212.dtsi     |   2 -
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |  26 ++
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     |   4 -
+ .../boot/dts/amlogic/meson-gxm-rbox-pro.dts   |   2 -
+ .../amlogic/meson-libretech-cottonwood.dtsi   |   6 -
+ .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     |   6 -
+ .../dts/amlogic/meson-sm1-khadas-vim3l.dts    |   2 -
+ .../boot/dts/amlogic/meson-sm1-odroid.dtsi    |   2 -
+ .../boot/dts/amlogic/meson-sm1-sei610.dts     |   6 -
+ drivers/pwm/pwm-meson.c                       | 312 +++++++++++-------
+ 44 files changed, 407 insertions(+), 267 deletions(-)
+
 -- 
-2.25.1
+2.42.0
 
 
