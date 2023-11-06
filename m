@@ -1,70 +1,60 @@
-Return-Path: <devicetree+bounces-14076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA9B37E1F02
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:58:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD977E1F26
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:02:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D73A01C20803
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:58:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A623C28121A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A9B18041;
-	Mon,  6 Nov 2023 10:58:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Th/nT6Ve"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB0118035;
+	Mon,  6 Nov 2023 11:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FCC618035;
-	Mon,  6 Nov 2023 10:58:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AD3EC433C7;
-	Mon,  6 Nov 2023 10:58:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699268329;
-	bh=Sg8f81K8kk3/SHGG8dWL3FhrCJtkIiWJ0jEsgKtTGhg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Th/nT6VeS2zk1OlULtw+APVIYXcTssnx5cdpxe9RWD0rBicD+1gbBEBPHnoIJ2JxS
-	 y0BaJK13gBKtKqEq76LNJbcJooPSje3Rwa686by63MpTCvKZ9nW0vsP+ImT+OBHxlT
-	 /nq79xJlOCrCMBfTp/K2hw05nNLWY9683dIA1GR968Irjlhm1oNjc/Q7Rh5/ujtfpE
-	 EJyXp/JtyEqTP9GYp16IRj+3RmdFZfOV5og+MqYW5QDIk7bLhEYHgjdSpFJKPghEE1
-	 8DyuRWRhuQF5tpNI71knoBGV9foel4lRcP/XoizdI/dUMengOwxo81jAxXZMKfiSbY
-	 cDmyD6XWbes/Q==
-Date: Mon, 6 Nov 2023 10:58:46 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300411863A
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:02:39 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E22EBD
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 03:02:37 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qzxNL-0002Ho-O0; Mon, 06 Nov 2023 12:02:35 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qzxNK-0070S0-VC; Mon, 06 Nov 2023 12:02:34 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1qzxNK-00Da6k-LF; Mon, 06 Nov 2023 12:02:34 +0100
+Date: Mon, 6 Nov 2023 12:02:34 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-pwm@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>, Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Leo Yan <leoy@marvell.com>, Zhangfei Gao <zhangfei.gao@marvell.com>,
-	Lubomir Rintel <lkundrak@v3.sk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Kees Cook <keescook@chromium.org>,
-	Tony Luck <tony.luck@intel.com>,
-	"Guilherme G . Piccoli" <gpiccoli@igalia.com>,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-hardening@vger.kernel.org,
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	Karel Balej <balejk@matfyz.cz>, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v7 06/10] ASoC: pxa: Suppress SSPA on ARM64
-Message-ID: <ZUjG5tUrBvm6PDvB@finisterre.sirena.org.uk>
-References: <20231102152033.5511-1-duje.mihanovic@skole.hr>
- <dc7aaff0-f767-494e-9a3a-40fcacc1674e@sirena.org.uk>
- <3b4ac48b-e29d-415f-89f1-6d354f18c4a4@arm.com>
- <4855402.GXAFRqVoOG@radijator>
+	Shawn Guo <shawnguo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: pwm: imx-pwm: Add constraints for
+ #pwm-cells
+Message-ID: <20231106110234.d62xhsk2za5ohr6d@pengutronix.de>
+References: <20231106095205.231210-1-alexander.stein@ew.tq-group.com>
+ <20231106095205.231210-2-alexander.stein@ew.tq-group.com>
+ <20231106103621.2fh6fkpdafpz4toa@pengutronix.de>
+ <8300676.T7Z3S40VBb@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,47 +62,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cDAfE28G8f8xdnBg"
+	protocol="application/pgp-signature"; boundary="vno4u6qwlv7yrytv"
 Content-Disposition: inline
-In-Reply-To: <4855402.GXAFRqVoOG@radijator>
-X-Cookie: Save energy:  Drive a smaller shell.
+In-Reply-To: <8300676.T7Z3S40VBb@steina-w>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
---cDAfE28G8f8xdnBg
-Content-Type: text/plain; charset=utf-8
+--vno4u6qwlv7yrytv
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 03, 2023 at 05:58:05PM +0100, Duje Mihanovi=C4=87 wrote:
+On Mon, Nov 06, 2023 at 11:49:19AM +0100, Alexander Stein wrote:
+> Hello Uwe,
+>=20
+> Am Montag, 6. November 2023, 11:36:21 CET schrieb Uwe Kleine-K=F6nig:
+> > Hello,
+> >=20
+> > [dropped Philippe Schenker from Cc as his email bounced in the past]
+> >=20
+> > On Mon, Nov 06, 2023 at 10:52:03AM +0100, Alexander Stein wrote:
+> > > Only fsl,imx1-pwm comptabile devices use #pwm-cells =3D <2>. Newer So=
+Cs
+> > > supportinverted PWM output, thus #pwm-cells needs to be set to 3.
+> > >=20
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > >=20
+> > >  .../devicetree/bindings/pwm/imx-pwm.yaml      | 20 ++++++++++++++++-=
+--
+> > >  1 file changed, 17 insertions(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> > > b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml index
+> > > c01dff3b7f843..59a981c0f39ab 100644
+> > > --- a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> > > +++ b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> > > @@ -9,9 +9,6 @@ title: Freescale i.MX PWM controller
+> > >=20
+> > >  maintainers:
+> > >    - Philipp Zabel <p.zabel@pengutronix.de>
+> > >=20
+> > > -allOf:
+> > > -  - $ref: pwm.yaml#
+> > > -
+> > >=20
+> > >  properties:
+> > >    "#pwm-cells":
+> > >      description: |
+> > >=20
+> > > @@ -74,6 +71,23 @@ required:
+> > >  additionalProperties: false
+> > >=20
+> > > +allOf:
+> > > +  - $ref: pwm.yaml#
+> > > +
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: fsl,imx1-pwm
+> > > +    then:
+> > > +      properties:
+> > > +        "#pwm-cells":
+> > > +          enum: [2]
+> >=20
+> > Given that arch/arm/boot/dts/nxp/imx/imx1.dtsi has:
+> >=20
+> > 	pwm: pwm@208000 {
+> > 		#pwm-cells =3D <3>;
+> > 		compatible =3D "fsl,imx1-pwm";
+> > 		...
+> >=20
+> > this looks wrong.
+>=20
+> Indeed, something i doesn't match. Checking with [1] section 22.4.1 there=
+ are=20
+> no bits regarding output inversion. Also pwm_imx1_apply returns -EINVAL i=
+f=20
+> state->polarity !=3D PWM_POLARITY_NORMAL.
+> So IMO "#pwm-cells =3D <3>" is wrong for imx1. If fixed to 2, this also m=
+atches=20
+> the description for the value of #pwm-cells in imx-pwm.yaml.
 
-> I just looked at it again and it looks like no code in sound/soc/pxa/* or=
-=20
-> sound/arm/pxa* depends on AACI in any way. Therefore, I believe that to f=
-ix=20
-> this correctly, I would have to remove "select SND_ARM" from sound/soc/px=
-a/
-> Kconfig and optionally move the PXA2xx code out of sound/arm/ and into so=
-und/
-> soc/pxa/. Is this correct? If so, I'd also split that fix into a separate=
-=20
-> series.
+The reasoning only works in one direction, i.e. if your PWM supports
+inversed polarity you need #pwm-cells =3D <3>. But there no problem in
+using 3 cells for a PWM that doesn't support inversed output. Some might
+call it unnecessary verboseness, other might call it consistency.
 
-There's the pxa-ac97 driver to consider...
+I'd say the right thing to do here is to stick to =3D 3 and adapt this
+patch and the already existing comment in imx-pwm.yaml.
 
---cDAfE28G8f8xdnBg
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--vno4u6qwlv7yrytv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVIxuUACgkQJNaLcl1U
-h9AeGAf/c2+d+tcgxFoSAkZXFPkCaz/eMgb8h+BgUpxjiuIheHzsxvbKE0zqEpob
-LLb77Y8RJuFjRED+1HDwewAzExBafqDv6jOitYbrJDCL+ERlb72HhaWK7jrSvo9y
-OjupBMTVvmLY0W64K7Vb2NM0T2/OIxrKApBbEMUxxpEagmmM1I09erf7m1Gi0Sfl
-31oZwOnmH810ZaG0mtQuZijawmCMSuEnpl0vjhrQe0D8mSieZRdlT8IdpMVN7sm+
-IZ6qvIh644bG7uf1E9a0QV6eM9ziLMDdId1h4W3hCTssoFesy9wWw6dV2mZiKrat
-/yjpAz05qMaAFLHi45RxQYjqwdAKQw==
-=jjeN
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVIx8kACgkQj4D7WH0S
+/k6uOwf6A3+Bwg80EL0j4sXYxSFniVgXaJSG3Nu8tJhUYFDbOi6Bkq/i6Xmeon8P
+n4CaO0gezvrIFciVA3o+XP8kqpm1z4vzq8OLgoVRGyZ14F1NlQwA1uRxNnjAyu7M
+HEtarFuqLekNmDOj0ckLudiIoqXiN8sJDJyzsw5L08cyvKUXFQlZy6NyDP9UaG2G
+9F1T9K47UA2vIQjWBXhfr8kBEkEuvn3Q45rv5Ia2IzRhlyp8G2oBoSzpqa7a6zDD
+gNNqrOWJvsaYeWbuql29bAap1hyiUsSxjPH4vVe1XIHz3aj1f1eBfMuNG4mqS54L
+TzycPjksXSaoNA6xNqbbDWpRnFZe6w==
+=VXcD
 -----END PGP SIGNATURE-----
 
---cDAfE28G8f8xdnBg--
+--vno4u6qwlv7yrytv--
 
