@@ -1,377 +1,132 @@
-Return-Path: <devicetree+bounces-13980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078017E1BA3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:05:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 000DA7E1BAF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:08:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 298201C2096B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:05:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC99A28119F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D90F9EA;
-	Mon,  6 Nov 2023 08:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D512BFBE9;
+	Mon,  6 Nov 2023 08:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="leuYKql7"
+	dkim=pass (2048-bit key) header.d=mai.rs header.i=@mai.rs header.b="BHNqdNH7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="E0kwt/84"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CBFFBE9;
-	Mon,  6 Nov 2023 08:05:15 +0000 (UTC)
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2129B;
-	Mon,  6 Nov 2023 00:05:13 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1cc2f17ab26so28332825ad.0;
-        Mon, 06 Nov 2023 00:05:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699257912; x=1699862712; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N09PcoGLLyn3TXL/ksZQjeaRYWu7Qp2r7aIZDVfbVi0=;
-        b=leuYKql707XRTHc7eu1GL0GDX5z9zHI2QPWFPwPnqzJgO6V1z4CN4g5ETXIVBXeoSb
-         8gFv8i6xjCSW63oyIx24MCBo0tnAthVtRXqFcffl7nfs/cmeM7n4REhWq3hvmSJ40AhO
-         8C/k5j3hxXVwP9Kood8+swU+AYCUPgWDMe9AbFrAYDacrcXSZQqzt+1zmfGzaj7APm3G
-         wqbwCu9y+M7i/ATb/LiEZSMtwKtXlIMGhFwQfKyiSPAwohIl78pNMeMEXaPTztguqGez
-         CxQcLvEoKWzZ33Rz/ZHWtZwz8SAaW8Og6Ts+ZyTZV4+YQUyw7eFr7UdmRC3xx4flQ1dK
-         If+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699257912; x=1699862712;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N09PcoGLLyn3TXL/ksZQjeaRYWu7Qp2r7aIZDVfbVi0=;
-        b=gdVgHVQ3URAd502olHioqGr81Cg7qNzZVzChA3OOyRUgJ1qMGXQDQhfWe+xuY0aUfd
-         aZ7qHfiOk9nJeomJXwSn7f1t2/olfDhaj8BaLoxK2UI41ga8HyZRbriLOHZNNG/KfJQt
-         YysIERZXdckJksz1HUXDEIpAhiSe33TeUxo9+IlvVK27kowcol7BacPXdysMSQjI5uRu
-         Je601wbsZI9xy4iCzG5B3LB8Kzw2WzpnEA1OHVBKRhOGTHFY5wToyQh0WnH6FWxzX7gg
-         M9Ty/CF0qH9HqSPfOB6wL4PGSd4wHRZmZPa41WMEVXApBhq8RXuMRlW8HMX55mGTevwI
-         nZAw==
-X-Gm-Message-State: AOJu0YzXCYmyyTtCTyyVO/V8RR7Kx1ZugJ6gI+uV6p2jksi4pC6OiPu5
-	G0bphqeJEVS1Im3RNgaJvA1VZuRzjc0=
-X-Google-Smtp-Source: AGHT+IFqpeSTFsJKgyrHyqKq/HcJ/QEldOhHc20I7bDjngPTcBCAQwbyj0MUWfRPDtcO27GGRkLooQ==
-X-Received: by 2002:a17:902:f093:b0:1cc:2f9d:6e9b with SMTP id p19-20020a170902f09300b001cc2f9d6e9bmr17972691pla.20.1699257912320;
-        Mon, 06 Nov 2023 00:05:12 -0800 (PST)
-Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id ji5-20020a170903324500b001cc32261bdfsm5315059plb.38.2023.11.06.00.05.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Nov 2023 00:05:11 -0800 (PST)
-Message-ID: <b635d3b1-8854-443f-ba16-8df1ff8f2019@gmail.com>
-Date: Mon, 6 Nov 2023 16:02:56 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC51B9471
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:08:08 +0000 (UTC)
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 980B09B;
+	Mon,  6 Nov 2023 00:08:07 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id 0299A5C01E2;
+	Mon,  6 Nov 2023 03:08:07 -0500 (EST)
+Received: from imap49 ([10.202.2.99])
+  by compute3.internal (MEProxy); Mon, 06 Nov 2023 03:08:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mai.rs; h=cc
+	:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm2; t=1699258086; x=1699344486; bh=aa
+	lE5VObBiIUcCq3ni6lb0qhFxT4MrqRCVeFdCozL7A=; b=BHNqdNH7Ch5AkyRktE
+	+SoeXLGzPREraJwsA9w383xPI/wTYEhW3Ehac8H1rlpaNfgjFrCv2/yLeUEsg/0u
+	lBHvlHiR5hcqoVCfTFqqFk3pvfoNsyF2WhJKE/iA8Rug9R1G1k2v1lJTFnaYwNJ6
+	/7sV0j38HQq4rEqQ5o9jbPSnmjKyWhM/mAFkQtuK0W42bSih5GQNmB2QnDrBZgUX
+	c66+4yRw1R3RjuryhzH61scTztJaah4oplN1kbxrHx8d+MraAovCuNml/9sAEghl
+	LLoH5b53NfsCoqUSGiO9qkmMYI5ZNOLMlXI+KeJ/1dNCm347RQSk5lk/e4dLLRx6
+	gzsQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm3; t=1699258086; x=1699344486; bh=aalE5VObBiIUc
+	Cq3ni6lb0qhFxT4MrqRCVeFdCozL7A=; b=E0kwt/84I34ZUbtxVKtvK8EhXywSP
+	vrlipddahJUgUMwc66j6yWP5ixeRUoAO+g3oW65js5HTKM1PZCix9biDWWH4a8Fy
+	Nci7MAHDK9dBP+8LNU1SGqbNlFmJe1ZvmxoSvQTY18oYgjZKzLaiYmj199qtUu1b
+	Tw8SU0jgju9my4C69ZUWqmlmS3Q/HXDps+gUv1w4941nl4KPW+MbYqEQqmo9/bt2
+	t0wK3z8dqsY0tDKakHSnMxU7MHDr2CKXdWWPQFwR3ehFEYf4Hl1JNlQbyiu7HTfs
+	cGxeb4HpUVyouGwWH418SQYrop/UpSAKUobKzv58E5R0tlCX0DgFUbVQA==
+X-ME-Sender: <xms:5p5IZc58ISmHJnKWccxyMICTyiQwMvOxGQUEmGwAQCA_WxohMqwF4Q>
+    <xme:5p5IZd5TQZOWkicW4MFX0o4ZtDEKNp4YqIy1u5YOujSKkqLu2FYokfJiJtZEarwku
+    LYaha7iyPCcPlSA2g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedruddufedgudduiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfuehr
+    higrnhhtucforghirhhsfdcuoegsrhihrghnthesmhgrihdrrhhsqeenucggtffrrghtth
+    gvrhhnpeekgeeivdehkefhleelueduudevfeeujedvkeegtddvhfffieelgefgiefhiedu
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegsrh
+    ihrghnthesmhgrihdrrhhs
+X-ME-Proxy: <xmx:5p5IZbeBMjAtubcr0sDq7cNRySJ2efXrSBfI-ce4uFQwX66BP9FS-w>
+    <xmx:5p5IZRIRo3GEpBH26LMV1jyq1vtFLsgtv3oSXy5AGFmfkNotvaTnag>
+    <xmx:5p5IZQI1oHjYJNhD_KvSFSQZsd_seQA8lcR_BYQMZS_XdNb1fO5n-Q>
+    <xmx:5p5IZdALZja0hkIfq9i1--WPe6DkBQuNQqO6_ahSZnR7qZdxLhUuRg>
+Feedback-ID: i891b436e:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id A831715A0091; Mon,  6 Nov 2023 03:08:06 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1108-g3a29173c6d-fm-20231031.005-g3a29173c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
- mp5990
-Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>, patrick@stwcx.xyz,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20231103080128.1204218-1-peteryin.openbmc@gmail.com>
- <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
- <c74beccd-26ea-4e63-906b-bd5508465cbc@roeck-us.net>
-From: PeterYin <peteryin.openbmc@gmail.com>
-In-Reply-To: <c74beccd-26ea-4e63-906b-bd5508465cbc@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Message-Id: <8a2743f5-86e1-45ae-b9b3-85b788749686@app.fastmail.com>
+In-Reply-To: <1ea6c498-09bc-4491-a083-37fa242766c8@linaro.org>
+References: <20231105204759.37107-1-bryant@mai.rs>
+ <20231105204759.37107-3-bryant@mai.rs>
+ <1ea6c498-09bc-4491-a083-37fa242766c8@linaro.org>
+Date: Mon, 06 Nov 2023 09:07:44 +0100
+From: "Bryant Mairs" <bryant@mai.rs>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+ "Andy Gross" <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org
+Subject: Re: [PATCH 2/7] dt-bindings: arm: qcom: Document samsung,milletwifi device
+Content-Type: text/plain
 
+Sending again in plain text, sorry about that!
 
+-----
+That's a good question. Note that there is also samsung-matisselte, so I wasn't certain what the policy was on naming, which is why I deferred to the manufacturer naming scheme, which seems to be the most common approach.
 
-Guenter Roeck 於 11/3/23 22:35 寫道:
-> On 11/3/23 01:01, Peter Yin wrote:
->> Add support for mp5990 device from Monolithic Power Systems, Inc. (MPS)
->> vendor. This is a Hot-Swap Controller.
->>
->> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
->> ---
->>   Documentation/hwmon/index.rst  |  1 +
->>   Documentation/hwmon/mp5990.rst | 84 +++++++++++++++++++++++++++++++
->>   drivers/hwmon/pmbus/Kconfig    |  9 ++++
->>   drivers/hwmon/pmbus/Makefile   |  1 +
->>   drivers/hwmon/pmbus/mp5990.c   | 90 ++++++++++++++++++++++++++++++++++
->>   5 files changed, 185 insertions(+)
->>   create mode 100644 Documentation/hwmon/mp5990.rst
->>   create mode 100644 drivers/hwmon/pmbus/mp5990.c
->>
->> diff --git a/Documentation/hwmon/index.rst 
->> b/Documentation/hwmon/index.rst
->> index 042e1cf9501b..8c70e10fc795 100644
->> --- a/Documentation/hwmon/index.rst
->> +++ b/Documentation/hwmon/index.rst
->> @@ -157,6 +157,7 @@ Hardware Monitoring Kernel Drivers
->>      mp2888
->>      mp2975
->>      mp5023
->> +   mp5990
->>      nct6683
->>      nct6775
->>      nct7802
->> diff --git a/Documentation/hwmon/mp5990.rst 
->> b/Documentation/hwmon/mp5990.rst
->> new file mode 100644
->> index 000000000000..8fc4e388ff7b
->> --- /dev/null
->> +++ b/Documentation/hwmon/mp5990.rst
->> @@ -0,0 +1,84 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +
->> +Kernel driver mp5990
->> +====================
->> +
->> +Supported chips:
->> +
->> +  * MPS MP5990
->> +
->> +    Prefix: 'mp5990'
->> +
->> +  * Datasheet
->> +
->> +    Publicly available at the MPS website : 
->> https://www.monolithicpower.com/en/mp5990.html
->> +
->> +Author:
->> +
->> +    Peter Yin <peteryin.openbmc@gmail.com>
->> +
->> +Description
->> +-----------
->> +
->> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
->> +MP5990 Hot-Swap Controller.
->> +
->> +Device complaint with:
+On Mon, Nov 6, 2023, at 08:37, Krzysztof Kozlowski wrote:
+> On 05/11/2023 21:46, Bryant Mairs wrote:
+> > Add binding documentation for Samsung Galaxy Tab 4 8.0 Wi-Fi
+> > tablet which is based on Snapdragon 400 (apq8026) SoC.
+> > 
+> > Signed-off-by: Bryant Mairs <bryant@mai.rs>
+> > ---
+> >  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > index 88b84035e7b1..c66980b79f59 100644
+> > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > @@ -156,6 +156,7 @@ properties:
+> >                - huawei,sturgeon
+> >                - lg,lenok
+> >                - samsung,matisse-wifi
+> > +              - samsung,milletwifi
 > 
-> compliant
+> Not millet-wifi like the other one?
 > 
-Thanks, I will fix it.
->> +
->> +- PMBus rev 1.3 interface.
->> +
->> +Device supports direct format for reading input voltage, output voltage,
->> +output current, input power and temperature.
->> +
->> +The driver exports the following attributes via the 'sysfs' files
->> +for input voltage:
->> +
->> +**in1_input**
->> +
->> +**in1_label**
->> +
->> +**in1_max**
->> +
->> +**in1_max_alarm**
->> +
->> +**in1_min**
->> +
->> +**in1_min_alarm**
->> +
->> +The driver provides the following attributes for output voltage:
->> +
->> +**in2_input**
->> +
->> +**in2_label**
->> +
->> +**in2_alarm**
->> +
->> +The driver provides the following attributes for output current:
->> +
->> +**curr1_input**
->> +
->> +**curr1_label**
->> +
->> +**curr1_alarm**
->> +
->> +**curr1_max**
->> +
->> +The driver provides the following attributes for input power:
->> +
->> +**power1_input**
->> +
->> +**power1_label**
->> +
->> +**power1_alarm**
->> +
->> +The driver provides the following attributes for temperature:
->> +
->> +**temp1_input**
->> +
->> +**temp1_max**
->> +
->> +**temp1_max_alarm**
->> +
->> +**temp1_crit**
->> +
->> +**temp1_crit_alarm**
->> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
->> index 270b6336b76d..65a116f7744d 100644
->> --- a/drivers/hwmon/pmbus/Kconfig
->> +++ b/drivers/hwmon/pmbus/Kconfig
->> @@ -326,6 +326,15 @@ config SENSORS_MP5023
->>         This driver can also be built as a module. If so, the module will
->>         be called mp5023.
->> +config SENSORS_MP5990
->> +    tristate "MPS MP5990"
->> +    help
->> +      If you say yes here you get hardware monitoring support for MPS
->> +      MP5990.
->> +
->> +      This driver can also be built as a module. If so, the module will
->> +      be called mp5990.
->> +
->>   config SENSORS_MPQ7932_REGULATOR
->>       bool "Regulator support for MPQ7932"
->>       depends on SENSORS_MPQ7932 && REGULATOR
->> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
->> index 84ee960a6c2d..212d9ca0acc9 100644
->> --- a/drivers/hwmon/pmbus/Makefile
->> +++ b/drivers/hwmon/pmbus/Makefile
->> @@ -35,6 +35,7 @@ obj-$(CONFIG_SENSORS_MAX8688)    += max8688.o
->>   obj-$(CONFIG_SENSORS_MP2888)    += mp2888.o
->>   obj-$(CONFIG_SENSORS_MP2975)    += mp2975.o
->>   obj-$(CONFIG_SENSORS_MP5023)    += mp5023.o
->> +obj-$(CONFIG_SENSORS_MP5990)    += mp5990.o
->>   obj-$(CONFIG_SENSORS_MPQ7932)    += mpq7932.o
->>   obj-$(CONFIG_SENSORS_PLI1209BC)    += pli1209bc.o
->>   obj-$(CONFIG_SENSORS_PM6764TR)    += pm6764tr.o
->> diff --git a/drivers/hwmon/pmbus/mp5990.c b/drivers/hwmon/pmbus/mp5990.c
->> new file mode 100644
->> index 000000000000..c3b31af9f750
->> --- /dev/null
->> +++ b/drivers/hwmon/pmbus/mp5990.c
->> @@ -0,0 +1,90 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later
->> +/*
->> + * Driver for MPS MP5990 Hot-Swap Controller
->> + */
->> +
->> +#include <linux/i2c.h>
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
->> +#include <linux/pmbus.h>
->> +#include "pmbus.h"
->> +
->> +static int mp5990_read_byte_data(struct i2c_client *client, int page, 
->> int reg)
->> +{
->> +    switch (reg) {
->> +    case PMBUS_VOUT_MODE:
->> +        /*
->> +          Enforce VOUT direct format, C4h reg BIT9
->> +          default val is not match vout format
->> +         */
+> Best regards,
+> Krzysztof
 > 
-> /*
->   * Please use proper multi-line comments. Also, the problem here is 
-> that the
->   * chip does not support the VOUT_MODE command, which should be mentioned.
->   *
->   * On top of that, overwriting PMBUS_VOUT_MODE result from the chip is 
-> only
->   * necessary if the chip does not return an error when reading the value.
->   * If that is the case, it should be mentioned in the comment. The above
->   * does not explain why this would be needed, even if the command is not
->   * (officially) supported by the chip. What does it return that requires
->   * an overwrite ?
->   */
->
-The datasheet does not support the VOUT command, but the device responds 
-with a default value of 0x17. In the standard, 0x17 represents linear mode.
->> +        return PB_VOUT_MODE_DIRECT;
->> +    default:
->> +        return -ENODATA;
->> +    }
->> +}
->> +
->> +static struct pmbus_driver_info mp5990_info = {
->> +    .pages = 1,
->> +    .format[PSC_VOLTAGE_IN] = direct,
->> +    .format[PSC_VOLTAGE_OUT] = direct,
->> +    .format[PSC_CURRENT_OUT] = direct,
->> +    .format[PSC_POWER] = direct,
->> +    .format[PSC_TEMPERATURE] = direct,
->> +    .m[PSC_VOLTAGE_IN] = 32,
->> +    .b[PSC_VOLTAGE_IN] = 0,
->> +    .R[PSC_VOLTAGE_IN] = 0,
->> +    .m[PSC_VOLTAGE_OUT] = 32,
->> +    .b[PSC_VOLTAGE_OUT] = 0,
->> +    .R[PSC_VOLTAGE_OUT] = 0,
->> +    .m[PSC_CURRENT_OUT] = 16,
->> +    .b[PSC_CURRENT_OUT] = 0,
->> +    .R[PSC_CURRENT_OUT] = 0,
->> +    .m[PSC_POWER] = 1,
->> +    .b[PSC_POWER] = 0,
->> +    .R[PSC_POWER] = 0,
->> +    .m[PSC_TEMPERATURE] = 1,
->> +    .b[PSC_TEMPERATURE] = 0,
->> +    .R[PSC_TEMPERATURE] = 0,
->> +    .func[0] =
->> +        PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
->> +        PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT |
->> +        PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
->> +    .read_byte_data = mp5990_read_byte_data,
->> +};
->> +
->> +static int mp5990_probe(struct i2c_client *client)
->> +{
->> +    int ret;
->> +
->> +    ret = i2c_smbus_write_byte_data(client, PMBUS_VOUT_MODE,
->> +                    PB_VOUT_MODE_DIRECT);
-> 
-> According to the datasheet, the chip does not support the VOUT_MODE
-> command. Supposedly, direct vs. linear mode is selected with bit 9
-> of EFUSE_CFG. Even if the chip happens to "silently" support the command,
-> the official command should be used to select the chip mode.
-> 
-> Next question: Why use direct mode ? Linear mode is supported and would
-> be much more flexible.
->
-The MP5990, the VOUT linear mode is linear11, not linear16. Therefore, 
-we should enforce the VOUT in the direct format.
-
->> +    if (ret < 0)
->> +        return ret;
->> +    return pmbus_do_probe(client, &mp5990_info);
->> +}
->> +
->> +static const struct of_device_id mp5990_of_match[] = {
->> +    { .compatible = "mps,mp5990" },
->> +    {}
->> +};
->> +
->> +static const struct i2c_device_id mp5990_id[] = {
->> +    {"mp5990", 0},
->> +    { }
->> +};
->> +MODULE_DEVICE_TABLE(i2c, mp5990_id);
->> +
->> +static struct i2c_driver mp5990_driver = {
->> +    .driver = {
->> +           .name = "mp5990",
->> +           .of_match_table = of_match_ptr(mp5990_of_match),
-> 
-> Using of_match_ptr() will result in a build failure if CONFIG_OF=n.
->
-Should I use .of_match_table = mp5990_of_match, ?
-
->> +    },
->> +    .probe = mp5990_probe,
->> +    .id_table = mp5990_id,
->> +};
->> +module_i2c_driver(mp5990_driver);
->> +
->> +MODULE_AUTHOR("Peter Yin <peter.yin@quantatw.com>");
->> +MODULE_DESCRIPTION("PMBus driver for MP5990 HSC");
->> +MODULE_LICENSE("GPL");
->> +MODULE_IMPORT_NS(PMBUS);
 > 
 
