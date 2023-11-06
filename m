@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-14025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 939C67E1C99
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:46:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C907E1C9F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:49:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E216281208
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:46:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D7E3B20C73
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04FEE525F;
-	Mon,  6 Nov 2023 08:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5A36AB3;
+	Mon,  6 Nov 2023 08:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jMOAsqIN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L+uQ+HyH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8972912
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:46:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3131C433C8;
-	Mon,  6 Nov 2023 08:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC54C525F
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:49:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 606F6C433C8;
+	Mon,  6 Nov 2023 08:48:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699260413;
-	bh=EaE06MUOi4Z9hzm+8bzA2VlC213fJCA/ZHevwrNS3qc=;
+	s=k20201202; t=1699260540;
+	bh=3kUvMLllZC7k4tgPL27MuqZrMvRrgrW6s8SmGJN+mGg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jMOAsqINnXt3znOUvi4mL6sl+x+5lSJXYViB8rfO8rEXSimHD/joRpCtkhV2/GKfI
-	 XD4Fhw5Q8ey+5T5Ef0baW8japB7kubRw+YZLgmO2qqMCe6omPxnQQQQawADalQihZ+
-	 hC5AEKPIl9HxHOMcDVHXXu5sVLastfgioI9TZl8nCZ8gqmKAGN5jBWl/l9OOS6GKIT
-	 ehkQGDGOwst3seD5O+uahvD+kKANrJjatz22IF0EXrqLuH1QKaeb4f7KkEdUAvTGaH
-	 4ct4baQfiPXrDclMYeMUtXKKdj84I+gOgo6U+4VGVlzShYX3lvDyF8sJRw0jnpgrLw
-	 pR1uxhi1fZQFQ==
-Message-ID: <1b66b6bc-2a9a-4caa-b4f5-c88f098475e2@kernel.org>
-Date: Mon, 6 Nov 2023 09:46:42 +0100
+	b=L+uQ+HyHFx+Yu5IQWXR82kbYPe3HfizXjY22JrCHyjA2TLxeenomtJJP17ruuyLiJ
+	 esBr5LJIS0D/bAtkN+w9UZ2y8Py9SZZQZE+ob3aQEH3+oMymQh4A5zSpBgms3P6/Hz
+	 GdNA+EAf/XXzOzOto8poXNBh0UYnbTQTVSy7ltTukQfiuLxP29LdXZ3N6mVzCLTcW6
+	 A7TI9c+7dBRVHxGf61HjAR3jyTO3//AbXUFRXc5Vw67n292UG4QXvPHxjcCRYpYfal
+	 uI4GusQRFZJ0xH/mFo8uZyMVqFAHYLjSL6hExyJe7STUEy7UyBqnDC2MXDWdDKQq/H
+	 fYOm+7EqGWmlw==
+Message-ID: <d2f18887-6920-461c-8c1d-2abd1f7101a0@kernel.org>
+Date: Mon, 6 Nov 2023 09:48:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,12 +41,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] PCI: mediatek-gen3: Add power and reset control
- feature for downstream component
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jian Yang <jian.yang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
+Subject: Re: [PATCH v4 1/2] dt-bindings: PCI: mediatek-gen3: Add support for
+ controlling power and reset
+Content-Language: en-US
+To: Jian Yang <jian.yang@mediatek.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
  Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
  Jianjun Wang <jianjun.wang@mediatek.com>
 Cc: linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
@@ -54,14 +55,9 @@ Cc: linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com,
  Chuanjia.Liu@mediatek.com, Jieyy.Yang@mediatek.com,
- Qizhong.Cheng@mediatek.com, Jianguo.Zhang@mediatek.com,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>
+ Qizhong.Cheng@mediatek.com, Jianguo.Zhang@mediatek.com
 References: <20231106061220.21485-1-jian.yang@mediatek.com>
- <20231106061220.21485-3-jian.yang@mediatek.com>
- <ce2c96f9-7895-41fc-a5f9-617b79f64f96@kernel.org>
- <74e491ce-24c6-4d7a-a1b3-708857f03887@collabora.com>
-Content-Language: en-US
+ <20231106061220.21485-2-jian.yang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -106,52 +102,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <74e491ce-24c6-4d7a-a1b3-708857f03887@collabora.com>
+In-Reply-To: <20231106061220.21485-2-jian.yang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/11/2023 09:36, AngeloGioacchino Del Regno wrote:
-> Il 06/11/23 08:53, Krzysztof Kozlowski ha scritto:
->> On 06/11/2023 07:12, Jian Yang wrote:
->>> From: "jian.yang" <jian.yang@mediatek.com>
->>>
->>> Make MediaTek's controller driver capable of controlling power
->>> supplies and reset pin of a downstream component in power-on and
->>> power-off process.
->>>
->>> Some downstream components (e.g., a WIFI chip) may need an extra
->>> reset other than PERST# and their power supplies, depending on
->>> the requirements of platform, may need to controlled by their
->>> parent's driver. To meet the requirements described above, I add this
->>> feature to MediaTek's PCIe controller driver as an optional feature.
->>
->> NAK, strong NAK. This should be done in a generic way because nothing
->> here is specific to Mediatek.
->>
->> You just implement power sequencing of devices through quirks specific
->> to one controller.
->>
->> Work with others to provide common solution.
->> https://lpc.events/event/17/contributions/1507/
->>
+On 06/11/2023 07:12, Jian Yang wrote:
+> From: "jian.yang" <jian.yang@mediatek.com>
 > 
-> I agree that working with everyone else by adding pwrseq is a must, but other
-> other PCIe controllers are doing the exact same as this patch: if the supply
-> and gpio names are aligned with the others, why shouldn't we let this in and
-> then convert this driver, along with the others, to the new pwrseq subsystem
-> when it's ready?
-
-Because you already push to the PCI controller bindings new properties
-which are not properties of the PCI controller.
-
+> Add new properties to support control power supplies and reset pin of
+> a downstream component.
 > 
-> That, because I expect the pwrseq to require a bit more time before being
-> ready to get upstream.
+> Signed-off-by: jian.yang <jian.yang@mediatek.com>
+> ---
+>  .../bindings/pci/mediatek-pcie-gen3.yaml      | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> P.S.: Check Tegra, Broadcom, RockChip DW, IMX6Q-pcie.
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> index 7e8c7a2a5f9b..a4f6b48d57fa 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> @@ -84,6 +84,26 @@ properties:
+>      items:
+>        enum: [ phy, mac ]
+>  
+> +  vpcie1v8-supply:
+> +    description:
+> +      The regulator phandle that provides 1.8V power from root port to a
+> +      downstream component.
+> +
+> +  vpcie3v3-supply:
+> +    description:
+> +      The regulator phandle that provides 3.3V power from root port to a
+> +      downstream component.
 
-Every new hack will not make it faster. :( At some point one have to say
-- enough of hacks, start doing it properly with upstream.
+How 3.3V supply can go from root port to downstream? Do you mean that
+root port is the regulator itself (regulator provider)?
+
+Sorry, all these supplies look like hacks - stuffing PCI device
+properties into the PCI controller node.
 
 Best regards,
 Krzysztof
