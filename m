@@ -1,133 +1,91 @@
-Return-Path: <devicetree+bounces-14146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1012A7E2625
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 14:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4FFE7E264E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 15:10:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 253C41C20B00
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:56:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 019571C20B27
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 14:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80BD250EA;
-	Mon,  6 Nov 2023 13:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yIgCa0Td"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576E8273FB;
+	Mon,  6 Nov 2023 14:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79117156F4
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 13:55:55 +0000 (UTC)
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0F39DB
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 05:55:53 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-307d58b3efbso2615406f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 05:55:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699278952; x=1699883752; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k7K/G0f6ZEQYZQT5cSn0nDVYnEltfi7z57xwENHHtHM=;
-        b=yIgCa0TdliwwR3nTmefjuk9/SE/lTLg32cZhAUOcF6Tng54SFntxkfZ/hgtom/zQ1R
-         +Uc7dUu2so/zvQeQLZbSP0WCtxIsk+ylZp4Os6Dt2vuu2pKpN50mIUMra+6QBqUISUPE
-         rCeSYWTqo1HmFl0amqd6yhnleUnqbU7+yt8nlYhfP8JooVG9WFW0oe+gFE5Oz/oa+PqT
-         RuwdR6ohFqJmt9ZTTU7YKIMCpqTyMd4jGH4lnntcfHZugpBAkvgFxqowpNIcZzmQ9SaH
-         wzUfeayW1ZaWaSLyNYsduj6tVgflEDfzqVq1LHXpHzqhaKYPl2wXSIqRVxUEKxDTDCBz
-         v0lw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF78273F9
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 14:10:28 +0000 (UTC)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60788BF;
+	Mon,  6 Nov 2023 06:10:27 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6ce291b5df9so2895380a34.2;
+        Mon, 06 Nov 2023 06:10:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699278952; x=1699883752;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k7K/G0f6ZEQYZQT5cSn0nDVYnEltfi7z57xwENHHtHM=;
-        b=HKzsLZy2+KP8HHGbh/2oEoKKmQ4hosQ0WPwTfNVz0Hak1t4xYhBDZM/5BjbzMsBIlV
-         U7JWf+gY8Vbsdj4sTZR/6Qohddk6TN/Uu0Ed2wOvMGOVvdHRmgjfuxEONa0aAEkbVXer
-         cfrCBqajofRMMaWvpL2Opy2IQdmwDIxW8nRqW+mnZf3u8B4hYcYp9mDv9l82NUfmJ3Ne
-         oGW4mrJB0wa1uo4kGRc/gW6TtouSSGjRJ9MmEdSVs6LY1I/x1mQ+2BOQVE9HM7HNEAyq
-         pjCjEU0eCkhYXvPcxg1A9Kj1xPfSj8RBxzOPboclnwILvRPXWmrjc0EIobD6IPt8gKMV
-         lPqw==
-X-Gm-Message-State: AOJu0YyqeEMotk+nN3Kvmjvkdz1iTMN7SfoUNZCbJ3LL1aQIDgOrUFPW
-	43YhLMemkVZ2enm4du7V6CCdZA==
-X-Google-Smtp-Source: AGHT+IGR+a68DIJMCWA87zZmPqnk0K4fWbuHIkwr5qAkD+KetGDdjDJSkrxRV54oIblYdbBTES4HNw==
-X-Received: by 2002:adf:f646:0:b0:31f:db1b:7296 with SMTP id x6-20020adff646000000b0031fdb1b7296mr18563924wrp.21.1699278952438;
-        Mon, 06 Nov 2023 05:55:52 -0800 (PST)
-Received: from [192.168.1.7] (host-92-25-138-185.as13285.net. [92.25.138.185])
-        by smtp.gmail.com with ESMTPSA id g8-20020a5d4888000000b0032f7cc56509sm1932116wrq.98.2023.11.06.05.55.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Nov 2023 05:55:51 -0800 (PST)
-Message-ID: <f6848c84-ba5a-473b-9a98-8115611c1789@linaro.org>
-Date: Mon, 6 Nov 2023 13:55:51 +0000
+        d=1e100.net; s=20230601; t=1699279826; x=1699884626;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Klrpc9/HMitoNsxi5eUxwCyC1GjEBwFfy1ew9+R/Oi4=;
+        b=iQbUwz95c/REL6UrjmdTE4JPDh1LZYGRxr5sawPQDtu/xQRLHvBzevP8hog/J6b6Xm
+         5SEW59pWombhW5VkhYcj2CHuR03WyaqNEyx0uvXN7mLbCNaZsZ5SQ7JqyornryDndSA8
+         ackeL86uFsK8kkpmJmo0qaS8lt7xnP9R6+UXq338DXmfM46rp0T3BS/6clMi0MmgbyGh
+         JokSjx16+O7k91ubckKf7GyalOliGPpuJn42hr8zH/gSOvKr9mKHXVIAg2cfwG4RebKr
+         WD0SBN8gCVON9N4Lhdby7Yypm3vMcns3WiFUa5q17dxHgjo69h045xqV5lAdUrhpZSVM
+         u6ng==
+X-Gm-Message-State: AOJu0Yxul6Elew3nJIR6Lt3/poIjwrnJ+fjsuRScn6tlXbMUk0+Ppx9H
+	sr3ZmuDzKARI2Q5tSfI8nA==
+X-Google-Smtp-Source: AGHT+IH9k4iHDl+o7Uuw5S+gQLCcJqGlXx7N0fl3/Hzby7Ru3jSa5a6u0muTzBb+4QVMKQFJfJPnKA==
+X-Received: by 2002:a05:6830:a:b0:6bd:1059:8212 with SMTP id c10-20020a056830000a00b006bd10598212mr29309594otp.26.1699279826655;
+        Mon, 06 Nov 2023 06:10:26 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x46-20020a05683040ae00b006b8e8884f2fsm1273579ott.51.2023.11.06.06.10.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Nov 2023 06:10:26 -0800 (PST)
+Received: (nullmailer pid 219226 invoked by uid 1000);
+	Mon, 06 Nov 2023 14:10:25 -0000
+Date: Mon, 6 Nov 2023 08:10:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Andy Gross <agross@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>, Marc Zyngier <maz@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [RESEND PATCH v2] dt-bindings: qcom,pdc: Add compatible for
+ SM8550
+Message-ID: <169927974215.213488.494934081428498717.robh@kernel.org>
+References: <20231103224304.764730-1-quic_eberman@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] mfd: qcom-spmi-pmic: Add support for PM8937
-Content-Language: en-US
-To: Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Robert Marko <robimarko@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
- <20231106-pm8937-v1-1-ec51d9eeec53@riseup.net>
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20231106-pm8937-v1-1-ec51d9eeec53@riseup.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231103224304.764730-1-quic_eberman@quicinc.com>
 
 
-
-On 06/11/2023 12:08, Dang Huynh wrote:
-> Add the subtype and compatible strings for PM8937.
+On Fri, 03 Nov 2023 15:43:03 -0700, Elliot Berman wrote:
+> From: Abel Vesa <abel.vesa@linaro.org>
 > 
-> The PM8937 is found in various SoCs, including MSM8917, MSM8937,
-> MSM8940 and APQ variants.
+> Document the compatible for SM8550 PDC.
 > 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > ---
->  drivers/mfd/qcom-spmi-pmic.c      | 1 +
->  include/soc/qcom/qcom-spmi-pmic.h | 1 +
->  2 files changed, 2 insertions(+)
+> I noticed this patch was never picked up while running make dtbs_check.
+> No changes since it was last sent except the trivial rebase that came
+> from me picking the change up.
 > 
-> diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-> index 4549fa9f7d4b..eab5bf6cff10 100644
-> --- a/drivers/mfd/qcom-spmi-pmic.c
-> +++ b/drivers/mfd/qcom-spmi-pmic.c
-> @@ -53,6 +53,7 @@ static const struct of_device_id pmic_spmi_id_table[] = {
->  	{ .compatible = "qcom,pm8901", .data = N_USIDS(2) },
->  	{ .compatible = "qcom,pm8909", .data = N_USIDS(2) },
->  	{ .compatible = "qcom,pm8916", .data = N_USIDS(2) },
-> +	{ .compatible = "qcom,pm8937", .data = N_USIDS(2) },
->  	{ .compatible = "qcom,pm8941", .data = N_USIDS(2) },
->  	{ .compatible = "qcom,pm8950", .data = N_USIDS(2) },
->  	{ .compatible = "qcom,pm8994", .data = N_USIDS(2) },
-> diff --git a/include/soc/qcom/qcom-spmi-pmic.h b/include/soc/qcom/qcom-spmi-pmic.h
-> index c47cc71a999e..17a0a8c3d656 100644
-> --- a/include/soc/qcom/qcom-spmi-pmic.h
-> +++ b/include/soc/qcom/qcom-spmi-pmic.h
-> @@ -31,6 +31,7 @@
->  #define PM8998_SUBTYPE		0x14
->  #define PMI8998_SUBTYPE		0x15
->  #define PM8005_SUBTYPE		0x18
-> +#define PM8937_SUBTYPE		0x19
->  #define PM660L_SUBTYPE		0x1a
->  #define PM660_SUBTYPE		0x1b
->  #define PM8150_SUBTYPE		0x1e
+> Original patch:
+> https://lore.kernel.org/lkml/20230127132558.1176730-1-abel.vesa@linaro.org/
+> 
+>  .../devicetree/bindings/interrupt-controller/qcom,pdc.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
--- 
-// Caleb (they/them)
+Applied, thanks!
+
 
