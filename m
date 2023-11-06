@@ -1,163 +1,159 @@
-Return-Path: <devicetree+bounces-14217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC127E2CA5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 20:12:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893B37E2CDD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 20:32:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F299280E23
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 19:12:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B72C81C2031C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 19:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D07C6225A8;
-	Mon,  6 Nov 2023 19:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECEA20B23;
+	Mon,  6 Nov 2023 19:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ALb6jTxQ"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="A47wv3mV";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="PKWoXJs2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A9715AE9;
-	Mon,  6 Nov 2023 19:12:40 +0000 (UTC)
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF87A2;
-	Mon,  6 Nov 2023 11:11:50 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6ce2b6b3cb6so3171393a34.3;
-        Mon, 06 Nov 2023 11:11:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699297910; x=1699902710; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjxyr63IgmgRdCkCZDYvIKtFKHrkFcVGXga7i17d8lg=;
-        b=ALb6jTxQKM7zfcw08Ep7fbsuMV6lXmIOdP4eclZKq1eCRe3CLGSB4hHqE1E+2e2hn+
-         pvHM361dii4RjT10HXeu/fxCKQakL6kBTXILw/DIUyMB/qAz+uvA+RMCKlXAHtWI/Shd
-         ksez47NXNPbIpkWqGwKDYYOorBl85Jdr3hHqBh0/wk/qu1+13RW7unKR8mQc+pmBF1LR
-         eauZLrCepiADoSJEkc++oWBnKcRz6e3geHIqvQIIVIwcIZVOOSFXGpYm0NCbDeaDpJpI
-         yF9pZlccCRi1U5GqUY0lsmG7d8ypnTmGrEyltGhZfzJoWvumugs37gPmOP63HcirNbLI
-         eAkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699297910; x=1699902710;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zjxyr63IgmgRdCkCZDYvIKtFKHrkFcVGXga7i17d8lg=;
-        b=qbVhIruzz9fX7LLynQlkSqeN7QZjZmhod/OKXn8reRW3UZQjGD7Re1Q97evXp540tC
-         IpHYzk9/wJTQvoePigXb8CGiDkUHUQNKts12Yfpko7p/mgvDtxV4bQIZ8cUHOlxEv4zn
-         ZimsNf/sjpF+wx8za0SfhKYA0ztd6FLVIqTYqQPg56TFqdb7r/PbpIRlIkrUPyMhBDWe
-         6bb7l8ru74taLfrh2kqH1Joz4Lno6oaqek6dQ+mYMB60TyB+siyqbgIIUJ0oPDUJd6K5
-         G/2teHmkP1j9cZeAVu3EYBxzzt+q3cfs1JBG5Tse3t6wmX9cj5stoS7peyeMheqdau4i
-         almQ==
-X-Gm-Message-State: AOJu0YxzqhbcrpmD6KvTqUHjeXqdH481gjOsGJc0ZuDwVh3xKQVb4F3v
-	F13Ly1Nd2WTe+a5Xs/kKs+M=
-X-Google-Smtp-Source: AGHT+IHNqThK6+F04nA70NWCal75UfK7NSaaOwL/Ksj+FzdvM2TxYIARKQ4JXlbwevF7aGCPOLs3BA==
-X-Received: by 2002:a05:6358:5e16:b0:169:7f96:7f84 with SMTP id q22-20020a0563585e1600b001697f967f84mr17713052rwn.1.1699297909983;
-        Mon, 06 Nov 2023 11:11:49 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id h24-20020a63e158000000b005af9dcb4756sm119952pgk.42.2023.11.06.11.11.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Nov 2023 11:11:48 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f7506203-8633-4b94-aa66-ebab4436f300@roeck-us.net>
-Date: Mon, 6 Nov 2023 11:11:47 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37DD168BC
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 19:32:18 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.166])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76315103;
+	Mon,  6 Nov 2023 11:32:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1699299133; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=XgdK8DDDpP7P/1cRCviflvC29vjgRoykNcFhCm6wzuO5yiCNenKwOZFVDeIawWXRBz
+    /tV82bPOlkiaZiWDf1Yqjne2h17MUcpdnqNlojZAmh9Rf7REU2M4Vz8qGRkGox/36Uun
+    1xHoZE/+nKlbGYzdHi2q+zTHIYDlESTk35rlP/ieTi1YXgwlZdA3qlGExsxwiMi+hHgK
+    H6J+Q3kqC1anvaXvePgdQn9o6lI09CDc12GCDegHVjmYswGlH2aG/rOCXyvn+Tr8fTr6
+    v6eYOHACHB9dtrDQ4IyzpaBKoN+cpOUfo466LNqILm1dgAEy0S2m/gN0tN/kxgZsA8dN
+    02iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1699299133;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=57RQjPWYE9g4BN2v5kN64PfbhlJAlDmf3yAW/OfR5M8=;
+    b=hflZzDUklEr6swZnMYCJG8fxNOm/pxuM7zc3ADVSDRblZSwVmNSdgiWnwuo/8Fxyja
+    cVDrAh+RnaV8RXMJPFFGBwSTHVEdk1VcTsIDKqH++YGfVjq3rWAHLPOGM/SayZ0fTrwx
+    7h6Sk5/iWGj6tTUryMmfAoN5sS8JPlPse9f8CH8iYzfatgs6Sb726XKhAHMbH7OGpNbh
+    UOADSycJf3WuBVAaYK6egytk9b15mNHg3nXJo4LkfBnHno/IJVYbt3YRc1oxApcVKduT
+    Vi76UlXLTOuUBOXHRcs5rONMc+zDZolHKZa0kUP2f5PkWZXw4MijVBa43Y8jVGTvNxZP
+    TYZQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1699299133;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=57RQjPWYE9g4BN2v5kN64PfbhlJAlDmf3yAW/OfR5M8=;
+    b=A47wv3mVHbDnzv9hd/VX6KibC7qG5NS2NA+nCQmgDeZoGy7B0AuRYAu8EURvXyux+V
+    GsupN8BpaRN6r/Zy479y43i6qONdLD3Gm9+1R9lOxMuZE8M387RK+SE+KdmksolunMbO
+    4MDEqfx61XVJvV8pQxY83ssUqpdS9HDKsvubSj0UyIw/KDr/cYH+lbkWaFrzdq37Gq6+
+    PgceXAKiEB9B7httlLbRPYJNg5+BXdp1LZBf4IRYla+2urK5FpLNN/g82Tg+6xJ15Rbl
+    2ChTQ/6cyG21GX6khluN1KYoPekV5wf6P0JF+yS2Ew/ItN3NgU2tXSiqUBaufdblM3bY
+    X9fQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1699299133;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=57RQjPWYE9g4BN2v5kN64PfbhlJAlDmf3yAW/OfR5M8=;
+    b=PKWoXJs2g1NzjZFqNDhnkHqrZds63JVCS15UTRSumafGZY+WrzTLn4NBgLZbMbho3p
+    ZauCBFKuaWaZQAw1Y7DQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z2L1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.1 DYNA|AUTH)
+    with ESMTPSA id Lbb8e2zA6JWDXXQ
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Mon, 6 Nov 2023 20:32:13 +0100 (CET)
+Date: Mon, 6 Nov 2023 20:32:06 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Robert Marko <robimarko@gmail.com>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/8] regulator: qcom_smd: Add PM8937 regulators
+Message-ID: <ZUk_NmR9Hb922ZFF@gerhold.net>
+References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
+ <20231106-pm8937-v1-5-ec51d9eeec53@riseup.net>
+ <CAA8EJprRT=thU-7_rfX6Qhk55iC9Hc0d8x46uyt-p4DOHCrrwQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
- mp5990
-Content-Language: en-US
-To: PeterYin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
- Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20231103080128.1204218-1-peteryin.openbmc@gmail.com>
- <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
- <c74beccd-26ea-4e63-906b-bd5508465cbc@roeck-us.net>
- <b635d3b1-8854-443f-ba16-8df1ff8f2019@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <b635d3b1-8854-443f-ba16-8df1ff8f2019@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJprRT=thU-7_rfX6Qhk55iC9Hc0d8x46uyt-p4DOHCrrwQ@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
 
-On 11/6/23 00:02, PeterYin wrote:
+On Mon, Nov 06, 2023 at 02:15:12PM +0200, Dmitry Baryshkov wrote:
+> On Mon, 6 Nov 2023 at 14:11, Dang Huynh <danct12@riseup.net> wrote:
+> >
+> > The PM8937 is found on boards with MSM8917, MSM8937, MSM8940 SoCs and
+> > APQ variants.
+> >
+> > It provides 6 SMPS (two are controlled by SPMI) and 23 LDO regulators.
+> >
+> > Signed-off-by: Dang Huynh <danct12@riseup.net>
 > 
-[ ... ]
->>> +
->>> +static const struct of_device_id mp5990_of_match[] = {
->>> +    { .compatible = "mps,mp5990" },
->>> +    {}
->>> +};
->>> +
->>> +static const struct i2c_device_id mp5990_id[] = {
->>> +    {"mp5990", 0},
->>> +    { }
->>> +};
->>> +MODULE_DEVICE_TABLE(i2c, mp5990_id);
->>> +
->>> +static struct i2c_driver mp5990_driver = {
->>> +    .driver = {
->>> +           .name = "mp5990",
->>> +           .of_match_table = of_match_ptr(mp5990_of_match),
->>
->> Using of_match_ptr() will result in a build failure if CONFIG_OF=n.
->>
-> Should I use .of_match_table = mp5990_of_match, ?
-> 
+> I haven't checked LDO / SMPS types.
 
-Yes.
+That's kind of the part where one would most likely make mistakes
+though. :D
+
+I checked them based on the log Dang posted on IRC, by cross-referencing
+the voltage ranges with the regulator types in the SPMI regulator driver.
+
+Looks good :)
+
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
 
 Thanks,
-Guenter
+Stephan
 
+(bootloader) Detected PMIC 0x10019
+(bootloader)   s1: 1225000 mV, disabled,   fast  (smps)
+(bootloader)   s2: 1162500 mV,  enabled,   fast  (smps)
+(bootloader)   s3: 1412500 mV,  enabled,   fast  (smps)
+(bootloader)   s4: 2050000 mV,  enabled,   fast  (smps)
+(bootloader)   s5: 1225000 mV,  enabled,   fast  (ftsmps2p5)
+(bootloader)   s6: 1225000 mV,  enabled,   fast  (ftsmps2p5)
+(bootloader)   l1: 1000000 mV, disabled, normal  (ult_nldo)
+(bootloader)   l2: 1250000 mV,  enabled, normal  (ult_nldo)
+(bootloader)   l3: 1350000 mV,  enabled,   idle  (ult_nldo)
+(bootloader)   l4: 1800000 mV, disabled, normal  (ult_pldo)
+(bootloader)   l5: 1800000 mV,  enabled,   idle  (ult_pldo)
+(bootloader)   l6: 1800000 mV,  enabled, normal  (ult_pldo)
+(bootloader)   l7: 1800000 mV,  enabled, normal  (ult_pldo)
+(bootloader)   l8: 2900000 mV,  enabled, normal  (ult_pldo)
+(bootloader)   l9: 3300000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l10: 2800000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l11: 2950000 mV,  enabled, normal  (ult_pldo)
+(bootloader)  l12: 2950000 mV,  enabled, normal  (ult_pldo)
+(bootloader)  l13: 3075000 mV,  enabled, normal  (ult_pldo)
+(bootloader)  l14: 1800000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l15: 1800000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l16: 1800000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l17: 2850000 mV,  enabled, normal  (ult_pldo)
+(bootloader)  l18: 2700000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l19: 1300000 mV, disabled, normal  (ult_nldo)
+(bootloader)  l20: 1740000 mV, disabled  (ln_ldo)
+(bootloader)  l21: 1740000 mV, disabled  (ln_ldo)
+(bootloader)  l22: 2800000 mV, disabled, normal  (ult_pldo)
+(bootloader)  l23: 1300000 mV, disabled, normal  (nldo1)
 
