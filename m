@@ -1,59 +1,51 @@
-Return-Path: <devicetree+bounces-14204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3EF7E2AB6
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B077E2AC5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:13:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B823280FFD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:11:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D07D2814C8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE8F29CEE;
-	Mon,  6 Nov 2023 17:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0413B2941E;
+	Mon,  6 Nov 2023 17:13:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XkcaW3mI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfBt/3if"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D4D2F38;
-	Mon,  6 Nov 2023 17:11:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92D5BC433C9;
-	Mon,  6 Nov 2023 17:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0B029CE1
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 17:13:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BCBCC433C7;
+	Mon,  6 Nov 2023 17:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699290689;
-	bh=xusVlf2bPpkS2PxlobjXC4orjcybspLeRLkKRoSVFco=;
+	s=k20201202; t=1699290820;
+	bh=RH8aQ6Z1i9EfK9n1klLE7C93NNkM5so1vcNS443yUpE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XkcaW3mII+LuoahYljzVUZljrlfW8ZwFt1ANIK8NuKpTpwDUtoX4iRDX+zmGVIezt
-	 XRs7E9nZ+CotROXaDkDdhcu7nUMlz2IM7bM4mN0msXffkcfww2ucyJa3BKoHmO+Frh
-	 2son5iW99BOQlRDFeutmx17PlhIaHBmWvP5laTUwdFA1fMvQyeQ0MdENn8/tjAYq3v
-	 CMlMJb7WR9D5suuhbTTGt8OA9528NvRhw4vxaweo7Z/kOtFrotXzTYNp3qp9H6mtZt
-	 YE8Jt9odyDVsoGGr2/tOSA28ECCP/0FILClEyCSSXBTs66KGE0Cro849SD4gBehocH
-	 liQRx1l0hf+qg==
-Date: Mon, 6 Nov 2023 17:11:23 +0000
+	b=hfBt/3iflon/viupAp7T+oB0xxkAoQLfUHsXbL0DDvV5I1HqseSp2D6RMY1xbrKz8
+	 tHkJr3kdzo75kslwVbZXKm0Q7hteIqLcdtHx4nq8p3fBWA8qHT1p6IM2wBHTtQ1Epv
+	 e7FqeyLR3tpFiZveJecEhvoPQ1pGdULP/Hc7JIcAFPA09kT8NUSUnz0goOsUao8iVT
+	 q/pczvTY05/dyqUgzaE5U8zEcM+m2hAFpQbme2UdhLoWC5BH5Y/azgzVkHxcL9/5Wz
+	 wxbWalMH3OLcL8c67hIYXnmDgMl2CGAr53zhCzZGoubykyI5VLye1rKEgKiv2iKSZ7
+	 l5rA8yxTkz5ZA==
+Date: Mon, 6 Nov 2023 17:13:35 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-clk@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Christopher Obbard <chris.obbard@collabora.com>,
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/9] media: dt-bindings: rockchip,vdec: Add RK3288
- compatible
-Message-ID: <20231106-mongrel-aground-bd559a461ed0@spud>
-References: <20231105233630.3927502-1-jonas@kwiboo.se>
- <20231105233630.3927502-7-jonas@kwiboo.se>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clk: rs9: Add 9FGV0841
+Message-ID: <20231106-deafening-multitude-7d08c8400915@spud>
+References: <20231105200812.62849-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,21 +53,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fGrMI8XIaRiy8S6e"
+	protocol="application/pgp-signature"; boundary="hlbvNfl+ZbMiI2kB"
 Content-Disposition: inline
-In-Reply-To: <20231105233630.3927502-7-jonas@kwiboo.se>
+In-Reply-To: <20231105200812.62849-1-marek.vasut+renesas@mailbox.org>
 
 
---fGrMI8XIaRiy8S6e
+--hlbvNfl+ZbMiI2kB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 05, 2023 at 11:36:13PM +0000, Jonas Karlman wrote:
-> Add a RK3288 compatible for a version of the Rockchip VDEC IP that only
-> support HEVC decoding.
+On Sun, Nov 05, 2023 at 09:07:58PM +0100, Marek Vasut wrote:
+> This is an 8-channel variant of 9FGV series.
 >=20
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
@@ -83,39 +74,63 @@ Thanks,
 Conor.
 
 > ---
->  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-clk@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+>  .../devicetree/bindings/clock/renesas,9series.yaml     | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b=
-/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> index 08b02ec16755..0f00e9c86737 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> @@ -16,7 +16,9 @@ description: |-
->  properties:
->    compatible:
->      oneOf:
-> -      - const: rockchip,rk3399-vdec
-> +      - enum:
-> +          - rockchip,rk3288-vdec
-> +          - rockchip,rk3399-vdec
->        - items:
->            - enum:
->                - rockchip,rk3228-vdec
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml=
+ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+> index 3afdebdb52ad..af6319697b1c 100644
+> --- a/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+> +++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+> @@ -21,6 +21,15 @@ description: |
+>      1 -- DIF1
+>      2 -- DIF2
+>      3 -- DIF3
+> +  - 9FGV0841:
+> +    0 -- DIF0
+> +    1 -- DIF1
+> +    2 -- DIF2
+> +    3 -- DIF3
+> +    4 -- DIF4
+> +    5 -- DIF5
+> +    6 -- DIF6
+> +    7 -- DIF7
+> =20
+>  maintainers:
+>    - Marek Vasut <marex@denx.de>
+> @@ -30,6 +39,7 @@ properties:
+>      enum:
+>        - renesas,9fgv0241
+>        - renesas,9fgv0441
+> +      - renesas,9fgv0841
+> =20
+>    reg:
+>      description: I2C device address
 > --=20
 > 2.42.0
 >=20
 
---fGrMI8XIaRiy8S6e
+--hlbvNfl+ZbMiI2kB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUkeOwAKCRB4tDGHoIJi
-0lr4AP9aW5NhxtpSLd4D73zYMC0XsxpeB3bwz7XcktPhtsuHKwEAjOIaEXKcLSUJ
-5fdyRess2G11op/gkXF5bLmu2Kde8AQ=
-=9q4o
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUkevwAKCRB4tDGHoIJi
+0n1zAP4xwoLWdi1lpSe+pYZHYEJckK8LBPbOQNWNqREJ1yHmLAEAn0Sh6HKnp+9p
+H369wX4qgAHu51TjPz3x4bL4XQQVmQ0=
+=rIgl
 -----END PGP SIGNATURE-----
 
---fGrMI8XIaRiy8S6e--
+--hlbvNfl+ZbMiI2kB--
 
