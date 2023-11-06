@@ -1,145 +1,121 @@
-Return-Path: <devicetree+bounces-14203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7297E2AB2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:10:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E3EF7E2AB6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:11:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6C1CB20E44
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:10:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B823280FFD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA29529CED;
-	Mon,  6 Nov 2023 17:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE8F29CEE;
+	Mon,  6 Nov 2023 17:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQaJvupT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XkcaW3mI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E75B29CEB
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 17:09:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4302DC433CC;
-	Mon,  6 Nov 2023 17:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D4D2F38;
+	Mon,  6 Nov 2023 17:11:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92D5BC433C9;
+	Mon,  6 Nov 2023 17:11:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699290598;
-	bh=UFzUofNNLBASgkPIJgDuNdjyCEGP5bQHseuE8TRa7W0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hQaJvupT4KjzsBJdf632gxvpFt08jPP2HUDi32DeJFMsVaQqfn9+Ll6lnsXFhbVsU
-	 +b+Uav8d70GJwoVLBcWGbauVZbqJyurllHJlodYjkF6SDrEnGz3fnAOCBkBac+VmM2
-	 phkpuBXi7HP8IMxpaip3rkmLqlZcM7mVARX6ASdBtDbHE+vnJaf+kRheCDZAmVo1ON
-	 luwtZETkz9Wbr8zxDVN1wz4WWSh0J+fC7LZ4QWtWv/MT1K/1X5AcAZwsLPk40G7sB1
-	 iEPNu4LejFDtl2mkefC5ZDw8eZsClBKglllw9L+IK68px2zWyh4hNO2BAaNrlk34XZ
-	 7xZTEWkPoai4w==
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50970c2115eso1670521e87.1;
-        Mon, 06 Nov 2023 09:09:58 -0800 (PST)
-X-Gm-Message-State: AOJu0Yw2IKqAJPS+2Fkxq0EZP056hMXrFq21oAH0ITMOhJQjMEefwdyV
-	zs+mm5NpysbD2AMDQorVKJdP8yVbWhLP0ZXjbQ==
-X-Google-Smtp-Source: AGHT+IGpMZ2uYxaFKvHqjpiuPBw5ga6h3w246K/OsJC2VAWaxh57/wBNpyznpCnRCwVbLEpl1hL6RVNZkRP/FNRR2yI=
-X-Received: by 2002:ac2:53ab:0:b0:507:ce2f:8f0c with SMTP id
- j11-20020ac253ab000000b00507ce2f8f0cmr22254953lfh.35.1699290596382; Mon, 06
- Nov 2023 09:09:56 -0800 (PST)
+	s=k20201202; t=1699290689;
+	bh=xusVlf2bPpkS2PxlobjXC4orjcybspLeRLkKRoSVFco=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XkcaW3mII+LuoahYljzVUZljrlfW8ZwFt1ANIK8NuKpTpwDUtoX4iRDX+zmGVIezt
+	 XRs7E9nZ+CotROXaDkDdhcu7nUMlz2IM7bM4mN0msXffkcfww2ucyJa3BKoHmO+Frh
+	 2son5iW99BOQlRDFeutmx17PlhIaHBmWvP5laTUwdFA1fMvQyeQ0MdENn8/tjAYq3v
+	 CMlMJb7WR9D5suuhbTTGt8OA9528NvRhw4vxaweo7Z/kOtFrotXzTYNp3qp9H6mtZt
+	 YE8Jt9odyDVsoGGr2/tOSA28ECCP/0FILClEyCSSXBTs66KGE0Cro849SD4gBehocH
+	 liQRx1l0hf+qg==
+Date: Mon, 6 Nov 2023 17:11:23 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Christopher Obbard <chris.obbard@collabora.com>,
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 6/9] media: dt-bindings: rockchip,vdec: Add RK3288
+ compatible
+Message-ID: <20231106-mongrel-aground-bd559a461ed0@spud>
+References: <20231105233630.3927502-1-jonas@kwiboo.se>
+ <20231105233630.3927502-7-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230828211424.2964562-1-nfraprado@collabora.com>
- <20230828211424.2964562-4-nfraprado@collabora.com> <e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com>
- <CA+G9fYsbq28w7m-sf6LhMscXHdPs0cGXU7kK6YzjKdUFKuQ+6A@mail.gmail.com> <e72e144a-c617-4a9e-adfb-e25ddabeb4c7@sirena.org.uk>
-In-Reply-To: <e72e144a-c617-4a9e-adfb-e25ddabeb4c7@sirena.org.uk>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 6 Nov 2023 11:09:44 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL-3O6omPf4HcPFctgid+br04QW5p81qDx0CPMqh_eXTg@mail.gmail.com>
-Message-ID: <CAL_JsqL-3O6omPf4HcPFctgid+br04QW5p81qDx0CPMqh_eXTg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] kselftest: Add new test for detecting unprobed
- Devicetree devices
-To: Mark Brown <broonie@kernel.org>, =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Naresh Kamboju <naresh.kamboju@linaro.org>, Aishwarya TCV <aishwarya.tcv@arm.com>, 
-	kernelci@lists.linux.dev, kernel@collabora.com, 
-	Guenter Roeck <groeck@chromium.org>, Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
-	Frank Rowand <frowand.list@gmail.com>, Shuah Khan <shuah@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fGrMI8XIaRiy8S6e"
+Content-Disposition: inline
+In-Reply-To: <20231105233630.3927502-7-jonas@kwiboo.se>
+
+
+--fGrMI8XIaRiy8S6e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 2, 2023 at 12:36=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Thu, Nov 02, 2023 at 07:15:58PM +0530, Naresh Kamboju wrote:
-> > On Thu, 2 Nov 2023 at 17:41, Aishwarya TCV <aishwarya.tcv@arm.com> wrot=
-e:
->
-> > > https://storage.kernelci.org/mainline/master/v6.6-9152-gdeefd5024f07/=
-arm64/defconfig%2Bkselftest/gcc-10/logs/kselftest.log
->
-> ...
->
-> > May be due to, A loop of symlinks that are pointing to self / same file=
-s ?
->
-> Right, it does look like something bad is going on with symlinks:
->
-> > > '/tmp/kci/linux/tools/testing/selftests/../../../build/source/build/s=
-ource/build/source/build/source/build/source/build/source/build/source/buil=
-d/source/build/source/build/source/build/source/build/source/build/source/b=
-uild/source/build/source/build/source/build/source/build/source/build/sourc=
-e/build/source/build/source/build/source/build/source/build/source/build/so=
-urce/build/source/build/source/build/source/build/source/build/source/build=
-/source/build/source/build/source/build/source/build/source/build/source/bu=
-ild/source/build/source/build/source/build/source/tools/testing/selftests/p=
-owerpc/vphn/vphn.c'
->
-> > Please build by using tuxmake and validate builds are working.
->
-> Note that tuxmake does an in tree build of kselftest:
->
->   make --silent --keep-going --jobs=3D8 O=3D/home/tuxbuild/.cache/tuxmake=
-/builds/1/build INSTALL_PATH=3D/home/tuxbuild/.cache/tuxmake/builds/1/build=
-/kselftest_install ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- CROSS_CO=
-MPILE_COMPAT=3Darm-linux-gnueabihf- 'CC=3Dsccache aarch64-linux-gnu-gcc' 'H=
-OSTCC=3Dsccache gcc' kselftest-install
->
-> and does it's own tarball build too, whereas kernelci does an out of
-> tree build and uses kselftest-gen_tar:
->
->   make KBUILD_BUILD_USER=3DKernelCI FORMAT=3D.xz ARCH=3Darm64 HOSTCC=3Dgc=
-c CROSS_COMPILE=3Daarch64-linux-gnu- CROSS_COMPILE_COMPAT=3Darm-linux-gnuea=
-bihf- CC=3D"ccache aarch64-linux-gnu-gcc" O=3D/tmp/kci/linux/build -C/tmp/k=
-ci/linux -j10 kselftest-gen_tar
->
-> and that the error is in the dt-extract-compatibles program which is
-> part of the kernel (well, imported into the kernel from dtc upstream):
->
->   File "/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-ex=
-tract-compatibles", line 107, in <module>
->     compat_ignore_list.extend(parse_compatibles_to_ignore(f))
->
-> This all suggests that something to do with how the build is set up is
-> resulting in the source symlink that gets created for out of tree builds
-> blowing up, I guess it's not specifically the DT stuff that's blowing it
-> up but rather that it's tripping over an existing bug.  Really does look
-> like a legitimate bug though, the source link is set up by the in tree
-> kernel build infrastructure.
->
-> I did poke a bit at reproducing outside of the KernelCI scripts but
-> didn't manage to yet.
+On Sun, Nov 05, 2023 at 11:36:13PM +0000, Jonas Karlman wrote:
+> Add a RK3288 compatible for a version of the Rockchip VDEC IP that only
+> support HEVC decoding.
+>=20
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
-I can repro with "make dt_compatible_check". The problem is with an
-'out of tree' build within the tree. That's my normal setup, but the
-difference is I have ".build" directories. If I use "build" instead,
-then I can repro. The issue is the iglob will recurse into "build" but
-not hidden directories (by default). There's no option to not follow
-symlinks which would solve this (there is an open python issue since
-2017 to add it). I don't see a simple solution in python other than
-getting a full list with glob(), convert to absolute paths, and remove
-duplicates. I imagine that will be somewhat slow.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-A simple solution would be instead of passing the source tree root to
-dt-extract-compatibles, pass 'arch', 'drivers', and 'sound' instead.
-There shouldn't be compatibles anywhere else.
+Thanks,
+Conor.
 
-Rob
+> ---
+>  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b=
+/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> index 08b02ec16755..0f00e9c86737 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+> @@ -16,7 +16,9 @@ description: |-
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - const: rockchip,rk3399-vdec
+> +      - enum:
+> +          - rockchip,rk3288-vdec
+> +          - rockchip,rk3399-vdec
+>        - items:
+>            - enum:
+>                - rockchip,rk3228-vdec
+> --=20
+> 2.42.0
+>=20
+
+--fGrMI8XIaRiy8S6e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUkeOwAKCRB4tDGHoIJi
+0lr4AP9aW5NhxtpSLd4D73zYMC0XsxpeB3bwz7XcktPhtsuHKwEAjOIaEXKcLSUJ
+5fdyRess2G11op/gkXF5bLmu2Kde8AQ=
+=9q4o
+-----END PGP SIGNATURE-----
+
+--fGrMI8XIaRiy8S6e--
 
