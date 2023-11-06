@@ -1,97 +1,276 @@
-Return-Path: <devicetree+bounces-14134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629847E21D7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:36:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5567E2226
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:46:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FABF1C20AFD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:36:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 560E62810BE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:46:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBF8443D;
-	Mon,  6 Nov 2023 12:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9B419443;
+	Mon,  6 Nov 2023 12:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n93W4Tnm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AR1gaqFy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5EA1946A
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 12:36:10 +0000 (UTC)
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29CDB7
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 04:36:08 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-579de633419so52616777b3.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 04:36:08 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F5A16428
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 12:46:42 +0000 (UTC)
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD6A1704
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 04:46:21 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-da41e70e334so3745267276.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 04:46:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699274168; x=1699878968; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699274780; x=1699879580; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VJDUivzyJwXlqL5M091869BzocP1uyzJFbwtw7gtmyI=;
-        b=n93W4TnmXfrquQ1mFVO0lpT4bmOFN8EQYJmZyzH1qj35in4fkxhxkdFYpbwSw5jShh
-         cTo2NCtMdrDjY4PxOVpEQ6ZzHUr0fQdnp1sMxmyFRnNzgJi2U7PtOGoeyfCzPxjS7sig
-         QgbmuLS91qWzeTofIZM+bucqkHema413soikx9FbjwbrKt9oK8pG7jplq7P1nepvxZFr
-         IK37XM9Sx/++WeTaQIP2KrCrGDLI0QR127fv0s57tzPEzKhlDgB3bsENSko+PfGEwFJN
-         +ELTbAvlmzfq+Yn8ibzt6GbL8is1qEC2NYW7B7QlG835GtkUcRHm+1cW+2VukOEB8XCe
-         dJ6g==
+        bh=HWAObhP5Y4Ruw2zeVW2EcRdOCA3o8d+11pOULKBklzI=;
+        b=AR1gaqFyReJ98U6ZDl3Pwgck3qQ9sBss1lW/gd2qgn1wDx8ojqFsF7jFpO3QETp97c
+         n7AkRk1iOO7At0NFFJx4uGx+MrPDuVuHbojOI8qHDrkTI4L6xu8yLhJ05MkKUIf4QYWM
+         o5oVTw9Mv+fnnsRyx941GUEJyUfo2dXyotVsk5Rx9rqz1CxREa3hXnSGPmckpXiwAJkg
+         VmOn8AuJKoMCURfJKTpjz3Y7TX1Zagn/6QU+f7qjGJg3GmWff10IrDLLDvLUAjc6CEBB
+         1TXj9GjB0Fx4TspwsnVwZCWdeH2mSG2c99keZnSmmaWDSyIeEUO6dH1Fqp8xrt6mYjZm
+         8gHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699274168; x=1699878968;
+        d=1e100.net; s=20230601; t=1699274780; x=1699879580;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VJDUivzyJwXlqL5M091869BzocP1uyzJFbwtw7gtmyI=;
-        b=I8ZbOwIJ5xcubeQz0gUkso5hB+Hm7AmbA+y8O9Rsuy6ZUVkdpyJflUFs2F4HtYnVMs
-         4Q4DaAhHnzZNJOk8HSXG9IMunvHQCwi2tjf9Sf6i9WAF4Pd9ogiQnOkLZqd3OwFdhFJ5
-         3oECskb5UJLWEZaStNmM7KzIuCPKiXUqB7N7Xn8EqqvotIhj4R/yAxtGGwZzo2ZxOycE
-         6RU4B4rCcTun+UAE1m0/PLAJuc9TbBp7iBuS3IhPdP1yxsbcFSoVYUsFw+9efnZLgrq4
-         3hCFZvY0nceSS3MPpvCOFrmJmWEQsIgaaTEecJnl/siORVvFJgeJ91Ed8mtM4h+OXMjm
-         b6qg==
-X-Gm-Message-State: AOJu0YwsaS22H6ghjOOFlQOopLDuYnAGZR+A8ZoE1DMYWRvhJZsVH/ZA
-	HIqqUZPYqPevO4r73n1ajfTjdaIjFSTStOH60OFUWA==
-X-Google-Smtp-Source: AGHT+IGhS2m7ZE2zGAOmmnn1e6cpTmJkjwjC9JdnNOFUffxfIaqaxIrJ5/28oPGlMryE9W1BYGXDofXV+sJNA0Q6mr4=
-X-Received: by 2002:a81:6d11:0:b0:58f:a19f:2b79 with SMTP id
- i17-20020a816d11000000b0058fa19f2b79mr11127022ywc.9.1699274167864; Mon, 06
- Nov 2023 04:36:07 -0800 (PST)
+        bh=HWAObhP5Y4Ruw2zeVW2EcRdOCA3o8d+11pOULKBklzI=;
+        b=lwTkFlGPxfKzPjhm7ZNe3hBdTv6319obudBhCju/sOnLZmULBZPpHxXxOCvxDUpWuK
+         L9mmpC1GpIfmRzgJFs+7jRtY18J0jYYSgFyF10aVuPTEtRX3SthHjvK6h9o74ipygppw
+         Z5PnX0/GXOLAWmsphH7fx63C7p9RDaYF5e3MUEB/ws5SzP5lPsdiGXsLWZS3jO5Zmueg
+         samNdhLUjMH6NGiWU5gS2R/fXKPv7IPhniKy/+dTTfVzO1U7ihwqOuYyqEL+TvWuz63R
+         RxhWUK2t7hRJ6lbH0Qu6FZMwovpztfkyv586OVysit3RjwGm/FHpOqoCuhnoX5YYdwMx
+         w9gA==
+X-Gm-Message-State: AOJu0YwG77j8q7f/2BvuNaCgmsJbSfutw8i4Pvt367BUI+uTEv9mL3IW
+	uxLt0AIPg2hCFmyjujNrzDFIXiDZzQk5Z/scIqL72Q==
+X-Google-Smtp-Source: AGHT+IH0bQGrPvMEjqnPy2jbrB9q4MxjXaupGC2/8uUWT1XpgjHaJ8J2tt+u28M2q1iqEh+RdBAv9noS6tYeUvUMiq0=
+X-Received: by 2002:a25:aaae:0:b0:d9a:5666:7ab5 with SMTP id
+ t43-20020a25aaae000000b00d9a56667ab5mr30049732ybi.10.1699274780413; Mon, 06
+ Nov 2023 04:46:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net> <20231106-pm8937-v1-3-ec51d9eeec53@riseup.net>
-In-Reply-To: <20231106-pm8937-v1-3-ec51d9eeec53@riseup.net>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 6 Nov 2023 14:35:56 +0200
-Message-ID: <CAA8EJprJQMMPwtZQ5AMB=SLA0YhT7pYORNaAqAopZxS2nRu3EQ@mail.gmail.com>
-Subject: Re: [PATCH 3/8] regulator: qcom_spmi: Add PM8937 SPMI regulator
-To: Dang Huynh <danct12@riseup.net>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Robert Marko <robimarko@gmail.com>, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+ <3d489d6c-2098-4f0c-9ec4-f6040665753e@lpnu.ua> <CADrjBPp+fyNoPdix6=Wp4cDCRFq2Mui8NS6WENejcHn+H1M-jA@mail.gmail.com>
+ <48e1c0bd-9518-4927-b490-f3206256bbd4@lpnu.ua>
+In-Reply-To: <48e1c0bd-9518-4927-b490-f3206256bbd4@lpnu.ua>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 6 Nov 2023 12:46:08 +0000
+Message-ID: <CADrjBPqB5MOQeMV6uSJHLVyMJYWm7Nm_1XGSq331gPRfO1jkzg@mail.gmail.com>
+Subject: Re: [PATCH v2 00/20] Add minimal Tensor/GS101 SoC support and
+ Oriole/Pixel6 board
+To: Maksym Holovach <maksym.holovach.an.2022@lpnu.ua>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, cw00.choi@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 6 Nov 2023 at 14:19, Dang Huynh <danct12@riseup.net> wrote:
+Hi Maksym,
+
+On Fri, 3 Nov 2023 at 13:56, Maksym Holovach
+<maksym.holovach.an.2022@lpnu.ua> wrote:
 >
-> The PM8937 has 4 HFSMPS, 2 FTSMPS2.5 (for controlling APC voltage)
-> and 23 LDO regulators.
-> Add the configuration for this chip.
+> Hi Peter,
 >
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
->  drivers/regulator/qcom_spmi-regulator.c | 34 +++++++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
+> On 11/3/23 15:11, Peter Griffin wrote:
+> > Hi Maksym,
+> >
+> > Thanks for your feedback.
+> >
+> > On Thu, 2 Nov 2023 at 22:32, Maksym Holovach
+> > <maksym.holovach.an.2022@lpnu.ua> wrote:
+> >> Hi, all
+> >>
+> >> I wanted to inquire about how do you all feel about calling this SoC by
+> >> the Google "gs101" name.
+> > Interesting question, I think calling it gs101 is the correct approach see
+> > below for my rationale.
+> >
+> >> I believe the proper name for it should be the actual Samsung name,
+> >> written in the silicon and reported in the Chip ID hardware: Exynos9845.
+> >> This also touches the Tensor G2 (Exynos9855), Tensor G3 (Exynos9865),
+> >> and possibly the "Tesla" SoCs.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Also Exynos850 as I pointed out previously. I think that is the wrong approach
+and very confusing. This SoC is not commonly known by anyone as
+Exynos9845.
+
+The same as the Exynos850 isn't known by anyone apart from Samsung folks
+as Exynos 3830, and the tesla fsd SoC isn't known by whatever internal Samsung
+name that presumably had.
+
+Maybe Alim can comment what tesla fsd SoC has in the product id register.
+
+> >>
+> >> I do not think the Linux kernel should be a marketing material: it
+> >> should reflect reality. The chip is almost 100% composed of Samsung
+> >> Exynos IP blocks and should be called that way.
+
+Where does this 'almost 100%' number come from? Are you measuring the die
+area here or something else?
+
+> > As you alluded to Tesla fsd and Axis artpec8 SoCs are also based on
+> > Exynos designs and support upstream uses the axis,artpec8* or tesla,fsd*
+> > compatibles.
+> >
+> > So using google,gs101 is consistent with the existing upstream naming
+> > scheme, for customized ASICs that were based off a Exynos design. But
+> > it also reflects the reality that this SoC is not a Exynos9845 as there is
+> > also a lot of Google owned and other third party IP integrated that is not
+> > found in Exynos9845.
+>
+> A quick question: Do you imply Exynos9845 exists outside of the context
+> of Tensor G1? I used to believe Exynos9845 **is** Tensor G1.
+
+You are correct. William clarified that point for us. Thanks William!
+
+>
+> Also, what kind of Google IP are you talking about? I believe only the
+> neural accelerator should be custom-ish.
+
+This should not be considered an exhaustive list, but whilst looking in the
+downstream public drivers at least the following Google IPs in the SoC
+
+TPU/ML accelerator
+Bigocean av1 video accelerator
+Emerald hill compression engine
+Camera ISP blocks
+(AoC) Always on Compute
+
+Plus of course Arm IPs (CPU+GPU), Synopsis IPs (USB, PCI. phys) etc.
+
+The Exynos based IPs tend to be for things like pinmux, clocks, i2c, spi,
+uart, mfc, display controller, timer etc.
+
+>
+> Additionally, I believe it having or not having Google IP is irrelevant:
+> for example, the new Raspberry Pi 5 Broadcom SoC has a lot of
+> Raspberry's own IP, but it's still called Broadcom as it's the real
+> manufacturer and designer of the chip.
+
+I think RPi / Broadcom is a very different situation to this. The original SoC
+in RPi 1 was wholly designed by Broadcom, and marketed as a Broadcom
+SoC [1].
+
+Further iterations of the SoC until now have also not had RPi IP integrated.
+RPi themselves refer to them as "Broadcom SoCs" on their webpage [2],
+so it is completely expected that they live in a broadcom directory.
+
+BCM2717 has integrated the RPi ISP, but to all intents and purposes this is a
+Broadcom owned and designed SoC, albeit only now sold to one customer.
+
+[1] https://web.archive.org/web/20120215080023/https://www.broadcom.com/products/BCM2835
+[2] https://www.raspberrypi.com/documentation/computers/processors.html
+
+> >
+> > I guess the same is also true for `axis,artpec8` and `tesla,fsd` SoCs.
+> > IMO the SoC compatible string should be uniquely identifying the actual
+> > SoC, not a close relative.
+> >
+> > Regarding product_id you are correct this reads 0x09845000 but even
+> > within Samsung Exynos family there are examples where the register
+> > value does not match the SoC compatible. For example Exynos850 SoC
+> > has a product ID value of "E3830". Where the Linux compatible is
+> > matching the Samsung marketing name, not the internal/outdated name.
+>
+> I did not know Exynos 850 is also not going under it's real name.
+
+It is going by its real name :) just not by its internal name that nobody has
+heard of.
+
+> Ultimately, I believe all of those SoCs should go under their technical
+> name in the exynos/ directory.
+>
+> Another concern is that Google could in the future license other SoC: be
+> it Qualcomm, Nvidia or anything. If we put completely different hw under
+> google/ directory, does it really make sense? In that case, who'll
+> maintain the google/ directory? Exynos people? Qualcomm people if they
+> license it? Some other people?
+
+I expect Google, or Google sponsored devs (as is the case for Linaro) to be
+helping maintain the Google SoCs upstream. See the MAINTAINERS entry
+for this series of who I expect to maintain this google directory.
+
+>
+> Then, I don't think Tensor G3 has a proper "GS" name, it goes by "Zuma"
+> in decompiled kernel modules as far as I see.
+
+That is correct, it is named Zuma downstream and they did away with the
+gs101, gs201 type naming scheme.
+
+>
+> Finally, Tesla people already tried to submit drivers called by Tesla
+> name, but which basically copied the functionality of the Exynos
+> drivers. We would want to avoid that, ideally.
+
+As you can see from this series we are not proposing that. Any IPs that
+use Exynos IP we are using the existing upstream driver and enhance
+it where we have features that aren't present upstream.
+
+>
+> My opinion is that all the Tesla and Google SoCs should be in the
+> exynos/ directory, not only because they are basically Samsung Exynos,
+> but also because they don't really need a separate directory: neither
+> Google nor Tesla didn't neither manufacture or design those SoCs from
+> scratch.
+
+Who manufactures it seems irrelevant. Qcom and Broadcom don't
+manufacture their SoCs either, but they still live in qcom and broadcom
+directories upstream. Whether they designed the SoC from scratch or not
+is also IMO largely irrelevant. In many cases the upstream community
+has no way to determine whether things were outsourced or not anyway.
+Did Apple outsource things in their silicon design? Who knows, and why
+do we care? It's an apple branded chip in an apple branded product
+let's call the directory apple.
+
+Interestingly apple uses the same uart driver as Tensor, when I check back
+through the commits in the driver.
+
+fcbba344907afe26da487f1ed0b0e285c06a547b
+
+tty: serial: samsung_tty: Add support for Apple UARTs
+
+Apple SoCs are a distant descendant of Samsung designs and use yet
+ another variant of their UART style, with different interrupt handling.
 
 
+> The only reason I can think of for them to have it in a
+> separate directory is maybe because Google and Tesla actually paid
+> Samsung money for the right to call Exynos "Google designed" SoCs, but I
+> believe the kernel should be left out of that.
 
---
-With best wishes
-Dmitry
+Also the fact that they contain IPs not found in Samsung designed devices,
+aren't known to most people as Exynos, and the maintenance issues of
+having all the Google, Tesla, Axis, Exynos based SoCs in the same directory
+(and who knows how many other ASIC customers in the future).
+
+Ultimately it is Krzysztof's decision I think. I followed what he had previously
+accepted for other SoCs for consistency and also because it seemed like the
+correct approach to help scale up and ease the maintenance burden. If I look
+at the number of tensor based SoCs, phones per SoC and board variants per
+phone model, then you end up having a lot of files in the exynos directory over
+time.
+
+regards,
+
+Peter
 
