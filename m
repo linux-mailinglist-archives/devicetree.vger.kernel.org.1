@@ -1,262 +1,157 @@
-Return-Path: <devicetree+bounces-14048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5CE97E1DC8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C38DB7E1DE0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF9041C209C5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D885E1C209E4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3BD171B4;
-	Mon,  6 Nov 2023 10:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F0E917728;
+	Mon,  6 Nov 2023 10:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ccw0qAUH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XQB9+tCY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3133B168DB
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:01:00 +0000 (UTC)
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D41EA6;
-	Mon,  6 Nov 2023 02:00:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1699264858; x=1730800858;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=OIDyp/g50d55txnxogYWipBT01q6u2+t7gX+4MtqKDA=;
-  b=ccw0qAUHwFuNap7kh6kWh22G/7t1RJf7S4oSLQblRChYHFNOkClihHkQ
-   FlLUQlLMSzvuNPzJ/lJFKrwOeUFK9jHUnjHtiPVvB5HynrS5haPbEdZA7
-   ijeSX13cFEnlX4ASR4LO0UIhryz0MVzhq0g4KNg2QW0RVbdjVqbYDLIW1
-   lYwdARl0Cwq2TT7/dDQ81xDyeo60l6Yn6W2N5NYREmzvb0gHb1JIqW3l0
-   N/9wxlbXtegFSofgCdNQ2xvDJ1i/G2Atoqepx2KhRVhmDXwWDWeEUOJX6
-   +Ovzmz4KwaGfN8pmFW6V8om8UkEHnl/vQRf3gpV+GEmXzpuyCNQdeHIxF
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432A4171D9
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:07:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 031E81BF;
+	Mon,  6 Nov 2023 02:07:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699265255; x=1730801255;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XJEcXmB6TalkxyxKKmu2KMtpz3YCZ01vFQnK5Fy50Hk=;
+  b=XQB9+tCYgDUP8mAlBcBOKu4kaUVutdSzWW7QfWmIOhFxRQvefaR3bVEu
+   b28GOCmggXDlQIzo9lLYyW3o+tNyICpweNjt2H/XhywNHdg6wn108saR4
+   Q6LKnSMm1JthYdOm0lMpEVfvPWN2NU+nZnSfrStw8kLNzJ3bwsC3egQgW
+   zMqCAyzhUy7VsR7KO7msvB0oXuhAGmsu7PkgTBcUKRfro7gEg05/RQ0eC
+   VjWYV7awDh3MhFzGxNhXqabEMTcVDWj5mbjcNus0CG1iNgkMzVHqwRNBc
+   RB6o7WEaU1wP4kkeQX8j0EDKWFk/hb02dM3mTOlVq38nnKrsk3Jv4kWL6
    A==;
-X-IronPort-AV: E=Sophos;i="6.03,281,1694728800"; 
-   d="scan'208";a="33823323"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 06 Nov 2023 11:00:55 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7F70428007F;
-	Mon,  6 Nov 2023 11:00:55 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>, Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 2/2] clk: rs9: Add support for 9FGV0841
-Date: Mon, 06 Nov 2023 11:00:57 +0100
-Message-ID: <5732995.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <TYCPR01MB11269765042382E404A16FAB986AAA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-References: <20231105200812.62849-1-marek.vasut+renesas@mailbox.org> <20231105200812.62849-2-marek.vasut+renesas@mailbox.org> <TYCPR01MB11269765042382E404A16FAB986AAA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="392113610"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
+   d="scan'208";a="392113610"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 02:07:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="832680493"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
+   d="scan'208";a="832680493"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 02:07:29 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qzwVy-0000000Bku0-1d3n;
+	Mon, 06 Nov 2023 12:07:26 +0200
+Date: Mon, 6 Nov 2023 12:07:26 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: kernel test robot <lkp@intel.com>
+Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Paul Gazzillo <paul@pgazz.com>, llvm@lists.linux.dev,
+	oe-kbuild-all@lists.linux.dev, Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light Sensor
+Message-ID: <ZUi63hP2ifKTBHL8@smile.fi.intel.com>
+References: <20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
+ <202311052102.1GrBH0gk-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202311052102.1GrBH0gk-lkp@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi,
+On Sun, Nov 05, 2023 at 10:22:07PM +0800, kernel test robot wrote:
 
-Am Montag, 6. November 2023, 08:49:10 CET schrieb Biju Das:
-> Hi Marek,
->=20
-> Thanks for the patch.
->=20
-> > -----Original Message-----
-> > From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> > Sent: Sunday, November 5, 2023 8:08 PM
-> > Subject: [PATCH 2/2] clk: rs9: Add support for 9FGV0841
-> >=20
-> > This model is similar to 9FGV0441, the DIFx bits start at bit 0 again,
-> > except this chip has 8 outputs. Adjust rs9_calc_dif() to special-case t=
-he
-> > 9FGV0241 where DIFx bits start at 1. Extract only vendor ID from VID
-> > register, the top 4 bits are revision ID which are not useful for the
-> > vendor ID check.
-> >=20
-> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> > ---
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Michael Turquette <mturquette@baylibre.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-clk@vger.kernel.org
-> > Cc: linux-renesas-soc@vger.kernel.org
-> > ---
-> >=20
-> >  drivers/clk/clk-renesas-pcie.c | 23 +++++++++++++++++++----
-> >  1 file changed, 19 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/drivers/clk/clk-renesas-pcie.c b/drivers/clk/clk-renesas-
-> > pcie.c index 6606aba253c5..f8dd79b18d5a 100644
-> > --- a/drivers/clk/clk-renesas-pcie.c
-> > +++ b/drivers/clk/clk-renesas-pcie.c
-> > @@ -7,6 +7,7 @@
-> >=20
-> >   * Currently supported:
-> >   *   - 9FGV0241
-> >   *   - 9FGV0441
-> >=20
-> > + *   - 9FGV0841
-> >=20
-> >   *
-> >   * Copyright (C) 2022 Marek Vasut <marex@denx.de>
-> >   */
-> >=20
-> > @@ -42,6 +43,7 @@
-> >=20
-> >  #define RS9_REG_DID				0x6
-> >  #define RS9_REG_BCP				0x7
-> >=20
-> > +#define RS9_REG_VID_MASK			GENMASK(3, 0)
-> >=20
-> >  #define RS9_REG_VID_IDT				0x01
-> > =20
-> >  #define RS9_REG_DID_TYPE_FGV			(0x0 <<=20
-RS9_REG_DID_TYPE_SHIFT)
-> >=20
-> > @@ -53,6 +55,7 @@
-> >=20
-> >  enum rs9_model {
-> > =20
-> >  	RENESAS_9FGV0241,
-> >  	RENESAS_9FGV0441,
-> >=20
-> > +	RENESAS_9FGV0841,
-> >=20
-> >  };
-> > =20
-> >  /* Structure to describe features of a particular 9-series model */ @@=
- -
-> >=20
-> > 162,12 +165,15 @@ static u8 rs9_calc_dif(const struct rs9_driver_data
-> > *rs9, int idx)  {
-> >=20
-> >  	enum rs9_model model =3D rs9->chip_info->model;
-> >=20
-> > +	/*
-> > +	 * On 9FGV0241, the DIF OE0 is BIT(1) and DIF OE(1) is BIT(2),
-> > +	 * on 9FGV0441 and 9FGV0841 the DIF OE0 is BIT(0) and so on.
-> > +	 * Increment the index in the 9FGV0241 special case here.
-> > +	 */
->=20
-> I guess model enum variable in struct rs9_chip_info can be replaced with a
-> variable for the above hardware differences(eg: BIT(idx) value in struct
-> rs9_chip_inf) . Then you don't need this function at all.
+> >> drivers/iio/light/apds9306.c:598:10: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+>      598 |                 return ret;
+>          |                        ^~~
+>    drivers/iio/light/apds9306.c:593:9: note: initialize the variable 'ret' to silence this warning
+>      593 |         int ret, intg_old, gain_old, gain_new, gain_new_closest;
+>          |                ^
+>          |                 = 0
+>    1 warning generated.
 
-That's true for 9FGV family. If support for 9QXL family will ever be added=
-=20
-(the header claims the support can be added), this enum is required again a=
-s=20
-the register model is completely different.
+Bad advice, just use correct error code instead of ret.
 
-Best regards,
-Alexander
+>    590	static int apds9306_intg_time_set(struct apds9306_data *data, int val2)
+>    591	{
+>    592		struct device *dev = data->dev;
+>    593		int ret, intg_old, gain_old, gain_new, gain_new_closest;
+>    594		bool ok;
+>    595	
+>    596		if (!iio_gts_valid_time(&data->gts, val2)) {
+>    597			dev_err(dev, "Unsupported integration time %u\n", val2);
+>  > 598			return ret;
+>    599		}
+>    600	
+>    601		intg_old = iio_gts_find_int_time_by_sel(&data->gts,
+>    602							data->intg_time_idx);
+>    603		if (ret < 0)
+>    604			return ret;
+>    605	
+>    606		if (intg_old == val2)
+>    607			return 0;
+>    608	
+>    609		gain_old = iio_gts_find_gain_by_sel(&data->gts, data->gain_idx);
+>    610		if (gain_old < 0)
+>    611			return gain_old;
+>    612	
+>    613		ret = iio_gts_find_new_gain_by_old_gain_time(&data->gts, gain_old,
+>    614							     intg_old, val2, &gain_new);
+>    615		if (gain_new < 0) {
+>    616			dev_err(dev, "Unsupported gain with time\n");
+>    617			return gain_new;
+>    618		}
+>    619	
+>    620		gain_new_closest = iio_find_closest_gain_low(&data->gts, gain_new, &ok);
+>    621		if (gain_new_closest < 0) {
+>    622			gain_new_closest = iio_gts_get_min_gain(&data->gts);
+>    623			if (gain_new_closest < 0)
+>    624				return gain_new_closest < 0;
+>    625		}
+>    626		if (!ok)
+>    627			dev_dbg(dev, "Unable to find optimum gain, setting minimum");
+>    628	
+>    629		ret = iio_gts_find_sel_by_int_time(&data->gts, val2);
+>    630		if (ret < 0)
+>    631			return ret;
+>    632	
+>    633		ret = apds9306_intg_time_set_hw(data, ret);
+>    634		if (ret)
+>    635			return ret;
+>    636	
+>    637		ret = iio_gts_find_sel_by_gain(&data->gts, gain_new_closest);
+>    638		if (ret < 0)
+>    639			return ret;
+>    640	
+>    641		return apds9306_gain_set_hw(data, ret);
+>    642	}
 
-> Cheers,
-> Biju
->=20
-> >  	if (model =3D=3D RENESAS_9FGV0241)
-> >=20
-> > -		return BIT(idx + 1);
-> > -	else if (model =3D=3D RENESAS_9FGV0441)
-> > -		return BIT(idx);
-> > +		idx++;
-> >=20
-> > -	return 0;
-> > +	return BIT(idx);
-> >=20
-> >  }
-> > =20
-> >  static int rs9_get_output_config(struct rs9_driver_data *rs9, int idx)=
- @@
-> >=20
-> > -333,6 +339,7 @@ static int rs9_probe(struct i2c_client *client)
-> >=20
-> >  	if (ret < 0)
-> >  =09
-> >  		return ret;
-> >=20
-> > +	vid &=3D RS9_REG_VID_MASK;
-> >=20
-> >  	if (vid !=3D RS9_REG_VID_IDT || did !=3D rs9->chip_info->did)
-> >  =09
-> >  		return dev_err_probe(&client->dev, -ENODEV,
-> >  	=09
-> >  				     "Incorrect VID/DID: %#02x, %#02x.
-> >=20
-> > Expected %#02x, %#02x\n", @@ -391,9 +398,16 @@ static const struct
-> > rs9_chip_info renesas_9fgv0441_info =3D {
-> >=20
-> >  	.did		=3D RS9_REG_DID_TYPE_FGV | 0x04,
-> > =20
-> >  };
-> >=20
-> > +static const struct rs9_chip_info renesas_9fgv0841_info =3D {
-> > +	.model		=3D RENESAS_9FGV0841,
-> > +	.num_clks	=3D 8,
-> > +	.did		=3D RS9_REG_DID_TYPE_FGV | 0x08,
-> > +};
-> > +
-> >=20
-> >  static const struct i2c_device_id rs9_id[] =3D {
-> > =20
-> >  	{ "9fgv0241", .driver_data =3D
-> >=20
-> > (kernel_ulong_t)&renesas_9fgv0241_info },
-> >=20
-> >  	{ "9fgv0441", .driver_data =3D
-> >=20
-> > (kernel_ulong_t)&renesas_9fgv0441_info },
-> > +	{ "9fgv0841", .driver_data =3D
-> > (kernel_ulong_t)&renesas_9fgv0841_info },
-> >=20
-> >  	{ }
-> > =20
-> >  };
-> >  MODULE_DEVICE_TABLE(i2c, rs9_id);
-> >=20
-> > @@ -401,6 +415,7 @@ MODULE_DEVICE_TABLE(i2c, rs9_id);  static const str=
-uct
-> > of_device_id clk_rs9_of_match[] =3D {
-> >=20
-> >  	{ .compatible =3D "renesas,9fgv0241", .data =3D
-> >=20
-> > &renesas_9fgv0241_info },
-> >=20
-> >  	{ .compatible =3D "renesas,9fgv0441", .data =3D
-> >=20
-> > &renesas_9fgv0441_info },
-> > +	{ .compatible =3D "renesas,9fgv0841", .data =3D
-> > &renesas_9fgv0841_info },
-> >=20
-> >  	{ }
-> > =20
-> >  };
-> >  MODULE_DEVICE_TABLE(of, clk_rs9_of_match);
-> >=20
-> > --
-> > 2.42.0
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
