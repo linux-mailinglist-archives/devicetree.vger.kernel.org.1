@@ -1,167 +1,256 @@
-Return-Path: <devicetree+bounces-14206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15FBA7E2ADE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:22:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8A017E2AFF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:33:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A72051F21D18
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:22:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B170B20EBB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:33:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AD129CFA;
-	Mon,  6 Nov 2023 17:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B258429D00;
+	Mon,  6 Nov 2023 17:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="LXNAN7IK";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="flX/bOir"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F98Wpxiw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8AE29D05
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 17:22:04 +0000 (UTC)
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDC4E1BC;
-	Mon,  6 Nov 2023 09:22:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1699291320; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=TbvFJH4XprGZfb2hvMmc5ctU8eEq21Oh5g6LOJJdkowBZupRkiv26u49ZCsj8DgBSq
-    lR76qWA/4/oNjZAyoYvTNiBKmwXDz+4uH76Qs/Q+Ar701gGHy+XZCjYwAv+DqqMsazyR
-    NGlC0OjUpb/BlMo85ojxyorVsLhFo2P3BlYSwOJzDXxMpp4dYycizQSQ5LUG9uMRHuH8
-    d4c+Jv3BliIGQcZITW/HxcUmao37YJS2COuT7+Dh3pKFb0xhDpAJzQFyhTOBZUDnJXKW
-    gf+/vdzEDxfhGOi9bSNv99Pwp2r/l7I6loK9sTSRnOikw/YwkpgcoxIXRJqzKUMq8qPV
-    jxmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1699291320;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=xhpTO12snhTyUAudCCBknK/y5KS1BxQ8Az7BF7pqWV8=;
-    b=qrYBKbbHO6JObFJMSAryUKngOdRg+UlGqO46xU8f1TkEFdIZib1+D9u+3UOmK1VQG8
-    K2Gh9HJhsV1EOtDE0iuMmEE2eENob4mYuFIeNnfF4qLIV62gDOZQgSAP/1s1ioih4EKT
-    vaejLZHJwINN3ako5nOnZTRF+XTCgvtVhkZbHDzZ5JxsBaQFXBx9LaDclvDfAv1hgam6
-    Dt71wg+OV67MufuQvA4zW3bz+m5nrjralo4D7rc02uZ2tRIA1rcsYMeYX2FAAW33CxTa
-    LGVTPwWNKLA8bWHSurP3VEaN7/FrbvAwr8w/XzhcG7lmJAP06v5WKUCFVV7HsgQwJwtc
-    vJmQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1699291320;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=xhpTO12snhTyUAudCCBknK/y5KS1BxQ8Az7BF7pqWV8=;
-    b=LXNAN7IKiWGOs2CPJoHeQzmNma/6JEW6U+IX7NYsP9CXTYkswXoftiSz8wSYupCpvM
-    YjcKAHbST0itDn8+70faXGYSPAdUl2l3L8T+GCVUx3/BnHxi9j1LnwKNKDJCYCBxBJiR
-    4nQTyC5wS0bvcZZ5txQZ9rEUznb2V+pAJvguLKFNuVw3XVffCjmS2Mwa5VYsYwaGYUrR
-    6x+lMwO8w+SVe+SQ7u57ca4UBiouHkF+iCKXX6BGzCDH6GRqqlpN9ljPonfGfDfQ4J58
-    6kM3HMn6pSqYOGYtwxvfdNA2BZCgFUjT3rEnE8I7/8FT9mXSvteCjF6EpxK3rjtNYNlI
-    ZvbQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1699291320;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=xhpTO12snhTyUAudCCBknK/y5KS1BxQ8Az7BF7pqWV8=;
-    b=flX/bOirgwI//BSG7vd8VfmRD6zPXJC4wHgnejIbeEYvO3dNRud3C03D0a1aE9kjDj
-    e6mO8fPfqgAm1drbZbDQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z2L1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.9.1 DYNA|AUTH)
-    with ESMTPSA id Lbb8e2zA6HLxXHV
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Mon, 6 Nov 2023 18:21:59 +0100 (CET)
-Date: Mon, 6 Nov 2023 18:21:53 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Dang Huynh <danct12@riseup.net>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3E229420;
+	Mon,  6 Nov 2023 17:33:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8389C433C7;
+	Mon,  6 Nov 2023 17:33:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699292022;
+	bh=oOcDWz4H6EBWQZ8XRRFn7yilwzV+aCmfOKBCXufKkEY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F98WpxiwlABjLnTlC53iqz0UZ/avBbM4z0K08bsO8UinsyRhiHLr4d/VdaGgXHjFs
+	 hbp/KzU+RkYgF4qtjf944AAgi1q0MpdnGUwvEcAZ2p4zHPqTXXfMbbeAFrEbrMt27y
+	 HyrQBYLc8VuRI8aHJerD3OWeliIJKf+QYKvyRvqZTl0A4R1yav+mqMJhf9W4JRXGdZ
+	 lco0JJ2ZhSA74E0bLiwKcOdV2J5eMkn2pbJMIEs4Doe0QqOBSohaSohew6u8WHbOYR
+	 ZZhEXLUdmEQCOmoygJb7kNh2IorPhmBhHZqqlnmxPxhJCckiG4vn43K3SGJXf5CzUr
+	 8E1Bz0PS1GPUw==
+Date: Mon, 6 Nov 2023 17:33:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Robert Marko <robimarko@gmail.com>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: Add PM8937 PMIC
-Message-ID: <ZUkgsW4pyojMBtD9@gerhold.net>
-References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
- <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robimarko@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v5 4/4] dt-bindings: Document bindings for
+ Marvell Aquantia PHY
+Message-ID: <20231106-plentiful-kilt-9f228cbbe6e0@spud>
+References: <20231106165433.2746-1-ansuelsmth@gmail.com>
+ <20231106165433.2746-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="L/mZ8GihQdWIG/0t"
+Content-Disposition: inline
+In-Reply-To: <20231106165433.2746-4-ansuelsmth@gmail.com>
+
+
+--L/mZ8GihQdWIG/0t
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 06, 2023 at 07:08:35PM +0700, Dang Huynh wrote:
-> The PM8937 features integrated peripherals like ADC, GPIO controller,
-> MPPs, PON keys and others.
-> 
-> Add the device tree so that any boards with this PMIC can use it.
-> 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
+On Mon, Nov 06, 2023 at 05:54:33PM +0100, Christian Marangi wrote:
+> Document bindings for Marvell Aquantia PHY.
+>=20
+> The Marvell Aquantia PHY require a firmware to work correctly and there
+> at least 3 way to load this firmware.
+>=20
+> Describe all the different way and document the binding "firmware-name"
+> to load the PHY firmware from userspace.
+>=20
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/pm8937.dtsi | 202 +++++++++++++++++++++++++++++++++++
->  1 file changed, 202 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8937.dtsi b/arch/arm64/boot/dts/qcom/pm8937.dtsi
+> Changes v5:
+> - Drop extra entry not related to HW description
+> Changes v3:
+> - Make DT description more OS agnostic
+> - Use custom select to fix dtbs checks
+> Changes v2:
+> - Add DT patch
+>=20
+>  .../bindings/net/marvell,aquantia.yaml        | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/marvell,aquanti=
+a.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml =
+b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
 > new file mode 100644
-> index 000000000000..6091d6938885
+> index 000000000000..7106c5bdf73c
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pm8937.dtsi
-> @@ -0,0 +1,202 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
-> + */
+> +++ b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-> +#include <dt-bindings/spmi/spmi.h>
+> +title: Marvell Aquantia Ethernet PHY
 > +
-> [...]
-> +&spmi_bus {
-> +	pmic@0 {
-> +		compatible = "qcom,pm8937", "qcom,spmi-pmic";
-> +		reg = <0x0 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
 > +
-> +		pon@800 {
-> +			compatible = "qcom,pm8916-pon";
-> +			reg = <0x800>;
-> +			mode-bootloader = <0x2>;
-> +			mode-recovery = <0x1>;
+> +description: |
+> +  Marvell Aquantia Ethernet PHY require a firmware to be loaded to actua=
+lly
+> +  work.
 > +
-> +			pm8937_pwrkey: pwrkey {
-> +				compatible = "qcom,pm8941-pwrkey";
-> +				interrupts = <0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				linux,code = <KEY_POWER>;
-> +			};
-> +
-> +			pm8937_resin: resin {
-> +				compatible = "qcom,pm8941-resin";
-> +				interrupts = <0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-> +				debounce = <15625>;
-> +				bias-pull-up;
-> +				linux,code = <KEY_VOLUMEDOWN>;
+> +  This can be done and is implemented by OEM in 3 different way:
+> +    - Attached SPI flash directly to the PHY with the firmware. The PHY
+> +      will self load the firmware in the presence of this configuration.
 
-Please move the linux,code into the board-specific part and make this
-status = "disabled" by default, like in the other PMIC dtsi files.
+> +    - Dedicated partition on system NAND with firmware in it. NVMEM
+> +      subsystem will be used and the declared NVMEM cell will load
+> +      the firmware to the PHY using the PHY mailbox interface.
 
-One could theoretically assign any other function to this key. Also,
-some devices don't have this hooked up at all.
+I'd probably phrase this one as something more like "Read from a
+dedicated partition on system NAND declared in an NVMEM cell, and loaded
+to the PHY using its mailbox interface." or something like that - mostly
+to get rid of the linux specific "NVMEM subsystem" from the description.
 
-Thanks,
-Stephan
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> +    - Manually provided firmware loaded from a file in the filesystem.
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ethernet-phy-id03a1.b445
+> +          - ethernet-phy-id03a1.b460
+> +          - ethernet-phy-id03a1.b4a2
+> +          - ethernet-phy-id03a1.b4d0
+> +          - ethernet-phy-id03a1.b4e0
+> +          - ethernet-phy-id03a1.b5c2
+> +          - ethernet-phy-id03a1.b4b0
+> +          - ethernet-phy-id03a1.b662
+> +          - ethernet-phy-id03a1.b712
+> +          - ethernet-phy-id31c3.1c12
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    description: specify the name of PHY firmware to load
+> +
+> +  nvmem-cells:
+> +    description: phandle to the firmware nvmem cell
+> +    maxItems: 1
+> +
+> +  nvmem-cell-names:
+> +    const: firmware
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mdio {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        ethernet-phy@0 {
+> +            /*  Only needed to make DT lint tools work. Do not copy/paste
+> +             *  into real DTS files.
+> +             */
+> +            compatible =3D "ethernet-phy-id31c3.1c12",
+> +                         "ethernet-phy-ieee802.3-c45";
+> +
+> +            reg =3D <0>;
+> +            firmware-name =3D "AQR-G4_v5.4.C-AQR_CIG_WF-1945_0x8_ID44776=
+_VER1630.cld";
+> +        };
+> +
+> +        ethernet-phy@1 {
+> +            /*  Only needed to make DT lint tools work. Do not copy/paste
+> +             *  into real DTS files.
+> +             */
+> +            compatible =3D "ethernet-phy-id31c3.1c12",
+> +                         "ethernet-phy-ieee802.3-c45";
+> +
+> +            reg =3D <0>;
+> +            nvmem-cells =3D <&aqr_fw>;
+> +            nvmem-cell-names =3D "firmware";
+> +        };
+> +    };
+> +
+> +    flash {
+> +        compatible =3D "jedec,spi-nor";
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +
+> +        partitions {
+> +            compatible =3D "fixed-partitions";
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <1>;
+> +
+> +            /* ... */
+> +
+> +            partition@650000 {
+> +                compatible =3D "nvmem-cells";
+> +                label =3D "0:ethphyfw";
+> +                reg =3D <0x650000 0x80000>;
+> +                read-only;
+> +                #address-cells =3D <1>;
+> +                #size-cells =3D <1>;
+> +
+> +                aqr_fw: aqr_fw@0 {
+> +                    reg =3D <0x0 0x5f42a>;
+> +                };
+> +            };
+> +
+> +            /* ... */
+> +
+> +        };
+> +    };
+> --=20
+> 2.40.1
+>=20
+
+--L/mZ8GihQdWIG/0t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUkjcAAKCRB4tDGHoIJi
+0nWmAQD/6caNNaXg4llLe5jQkRunI0dM64BFefhMSwUhRP5KugD/TbX4eaFaejKE
+darP3qusg8I9T17zUTxt8PN8F35mbAc=
+=Kg0u
+-----END PGP SIGNATURE-----
+
+--L/mZ8GihQdWIG/0t--
 
