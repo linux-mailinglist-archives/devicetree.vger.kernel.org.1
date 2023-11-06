@@ -1,99 +1,137 @@
-Return-Path: <devicetree+bounces-14083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35467E2003
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:29:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6057E2022
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:37:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A01C1C20445
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:29:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58514281115
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AE118C07;
-	Mon,  6 Nov 2023 11:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6A218C2E;
+	Mon,  6 Nov 2023 11:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LNFB0DSQ"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="knDFHnno"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F3F199A1;
-	Mon,  6 Nov 2023 11:29:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3043BB;
-	Mon,  6 Nov 2023 03:29:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699270170; x=1730806170;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dVbgGjQlfi/ag2GwhO/7mrluIesj2NDfOw+Ao81CCzM=;
-  b=LNFB0DSQAY5z8PBu1ya2aw1pjbI3+BXOrd/i4jmjgm+CgbGcZ/UPHGf4
-   2xmsADEfoolGvIKzoPNFwWRnxx38AeZhV4ETJ6Y97498ienrjmU8YIO+s
-   78D+JCde5iqKNsqvaXt7TGVCpuABNTkmGPsgMLSC/z36zLqxiZj14CB8L
-   csIn95LzcuU5kodBqsVIpsXO1GIMcp5Uw+vmsgR1theE/NXGlQK3LiWM/
-   zTEp+0MXwUkOk0aPMuCkEVROweNNZ7WdC/Gu7b5+5lrCasPZGQggTrxrj
-   3MU/VeaTVHA8NMIFnZgR1VkNRzBrlANowkvnWCmByvOivvW+KUN8XNaYY
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="386431930"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="386431930"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 03:29:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="762294686"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="762294686"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 03:29:26 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qzxnH-0000000BmAW-0nCG;
-	Mon, 06 Nov 2023 13:29:23 +0200
-Date: Mon, 6 Nov 2023 13:29:22 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-acpi@vger.kernel.org, rafael@kernel.org,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 1/1] device property: Add fwnode_name_eq()
-Message-ID: <ZUjOEsQSjom4SdOg@smile.fi.intel.com>
-References: <20231103070631.1223643-1-sakari.ailus@linux.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B71E318044
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:37:52 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2051.outbound.protection.outlook.com [40.107.93.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D896C9;
+	Mon,  6 Nov 2023 03:37:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LX+d9vP7+ST9XqmmTcMMJl8NFHzy1gASjzg0Kdd7yvotKgxGtGNzDQI3lwJLU6Kv+Ez9UiLqHMW/DaQ/9cOkWNQw6dvvHggbDsxOajoSgm4nPTFyCixyoIi95E3KS8rsPMNc1HD81VcdJlG0j8qAwBh9KDbAFbG0m+BZjF8rG0KfFWEJXStxLn1Ua/7wJHB8mHfGXaTKB+oEo1mW4mgPTH+OOWbc001YJZlW4+yRMr6EK2yt29WqA3QudSy8MdGv/o3ctamiEX4O1XNzYw9VwGgupyMVSyT/STiUwT7Z5pAQQ/fgS6zlGNhGroQimW5My2BUgHv2kwOVxNKaMFkrdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NaGt9hTZSBqN0T4fS+Jsob93A7Lkuy+bZK/a7sxL2OU=;
+ b=lGlGCyzc8L7zbyS26pNXaqWKVjPfJZtGmxRoNUS0IZb8xweokh5fTdm0pFUtvLkgnOCjP9RvatAd+KB29YacF/J8kjkWztVlkWH1BHZTg4M7VwP+aMmX31VKbo7iCawvs8/5AvFLP23SQFeDAXSEpVzXpN7QUlaH+nqhQFtKr0bNCZfiyurcm+TqyMGIJ+G07GGZweplOzjAHmecuNxESBH7t7OpWc2lovYpxpq8DQQhXT7i4ibGzlRhP+qRej+IV2EQGf+D9EOxeQ/YMat2+QIozyM2YGUHYtv2Ldi4VsbsiHO43kQFFTpsqhJYAOkGPYDIqXyTBtsoazOEznAATg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NaGt9hTZSBqN0T4fS+Jsob93A7Lkuy+bZK/a7sxL2OU=;
+ b=knDFHnno0bCPCAvsuZk63sPn3Hx9BARe32l376ucjYR2KoDr1bHAMj0lmZPtKIxUbKK0pnhOlR9W9XMihJuiCM4wRUynYY3B+z3BgaVR+m08IU8Lbg627j/0p6PGXCc9hcPbmzlycsQn1OPJJcmMrSwLIoPCW6B+NzWMizfQWC8=
+Received: from BL1PR13CA0412.namprd13.prod.outlook.com (2603:10b6:208:2c2::27)
+ by BL1PR12MB5142.namprd12.prod.outlook.com (2603:10b6:208:312::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Mon, 6 Nov
+ 2023 11:37:49 +0000
+Received: from BL6PEPF0001AB72.namprd02.prod.outlook.com
+ (2603:10b6:208:2c2:cafe::3d) by BL1PR13CA0412.outlook.office365.com
+ (2603:10b6:208:2c2::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.16 via Frontend
+ Transport; Mon, 6 Nov 2023 11:37:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB72.mail.protection.outlook.com (10.167.242.165) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6977.16 via Frontend Transport; Mon, 6 Nov 2023 11:37:49 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Mon, 6 Nov
+ 2023 05:37:47 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Palmer Dabbelt
+	<palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring
+	<robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>
+Subject: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
+Date: Mon, 6 Nov 2023 12:37:47 +0100
+Message-ID: <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231103070631.1223643-1-sakari.ailus@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Developer-Signature: v=1; a=openpgp-sha256; l=776; i=michal.simek@amd.com; h=from:subject:message-id; bh=GDvq6KqQCHIitPu5PpTWyii0iccwgdh5z1vhjvJcVwo=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhlSPC6zfGjfnNkvOtrZXXaukxllaseVvvNXuh5zC0dsct if8ePepI5aFQZCJQVZMkUXa5sqZvZUzpghfPCwHM4eVCWQIAxenAExEQ4VhfmadlVvD5idP5oXu 8L50u7+4f/ODAIa5Mu92NL6eKK/XMeXQk1lPYqTtGy2eAwA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB72:EE_|BL1PR12MB5142:EE_
+X-MS-Office365-Filtering-Correlation-Id: f5e80ce2-fe9b-4cbe-d9bc-08dbdebcce1f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	JI37KEr9Ztjy9iq/c2/zB7kbdsiM1ZP6uv9hiBBb09fQoeBcVBqKs4Pr0q3htZXgrLfH/LsLm/czE2n76IVdMrMj6gIcZvmG6i/N4dCm/kI2GdDiwwsXyYDZhQC3PTDrLSaMnJEssqG+2kH3YJzBAZjXIOem6StszpzAHNJJq2bnKorUmwi9zJAEuSx4SBfuJ9t9t4bWV0D7D+M28KUusrEux+oYlXaqiU/7//zcA2SSgXoywQS539Y60kL81/LJkeLtpJhzd5ZXbymWzR01UulbBv5cqliG0SBTBxvpF7LsK5FkM9XSpR/G8rl39kg0FncGNA96bg7S0mBnzaaf3lcGcsBHFM7Kmt2VxE6PGRJJ85peen+hZyCi7ujuDJzzxRcf3K0yRoetl21kd4EgCEOWenuejJ9tv4J/jQOy6oxaGUQE5lpPe7g7tfjvRjK4CQh86ppshuQa1Ki4wVskzH1HQTDWJAJRrlpx44nqMJcuShgxEDZJebgPbVPVO/JabTGGPSeRVla+YZONUwbLmFtmMeJonVlcaMTKkhP0DzzF2XlNuj1VaKfA0O9KteZytKSPjt8iUOugO0ZgsC2Cl85aPUmcDzItvMnHciEV+edMz6R/7FANcoDe0tJQZ3GucnJwHj53kirBxoxk2cmHAuwHGeE12/Ga7k7vs20FWYktrq4tIJBt/bag+BKpSGeMDHfbv7do8bQ8aO3xpHSnfg6AQcC5DPFvahO2dJwrA5UqCyKV+knibHn+09ucwqBHzfgCkZ+G6Z+8bI4jMmG8tX7Ob7xlMW9ECKWI57LNL6g=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(376002)(396003)(136003)(346002)(230922051799003)(186009)(1800799009)(82310400011)(64100799003)(451199024)(40470700004)(46966006)(36840700001)(36860700001)(47076005)(316002)(356005)(81166007)(82740400003)(110136005)(478600001)(16526019)(426003)(336012)(70206006)(54906003)(26005)(70586007)(2616005)(7416002)(5660300002)(2906002)(8676002)(4744005)(36756003)(41300700001)(86362001)(4326008)(44832011)(8936002)(40480700001)(40460700003)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2023 11:37:49.5531
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5e80ce2-fe9b-4cbe-d9bc-08dbdebcce1f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB72.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5142
 
-On Fri, Nov 03, 2023 at 09:06:31AM +0200, Sakari Ailus wrote:
-> Add fwnode_name_eq() to implement the functionality of of_node_name_eq()
-> on fwnode property API. The same convention of ending the comparison at
-> '@' (besides NUL) is applied on also both ACPI and swnode. The function
-> is intended for comparing unit address-less node names on DT and firmware
-> or swnodes compliant with DT bindings.
+MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+It is hardware compatible with classic MicroBlaze processor.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-I believe I gave already the tag...
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index 97e8441eda1c..7b077af62b27 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -32,6 +32,7 @@ properties:
+     oneOf:
+       - items:
+           - enum:
++              - amd,mbv32
+               - andestech,ax45mp
+               - canaan,k210
+               - sifive,bullet0
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.36.1
 
 
