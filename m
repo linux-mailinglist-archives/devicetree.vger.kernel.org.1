@@ -1,172 +1,135 @@
-Return-Path: <devicetree+bounces-14057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E48F7E1E39
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:27:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8497E1E44
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:30:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 154CFB20D25
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:27:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87C2E281383
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD01E17985;
-	Mon,  6 Nov 2023 10:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00619CA48;
+	Mon,  6 Nov 2023 10:30:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V7jfu8o0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FnoVll+R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C1B4422
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:27:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A7CD8;
-	Mon,  6 Nov 2023 02:27:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699266460; x=1730802460;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VV8FhN3eu/AlRFbG+72mkF5xgKloicJTe1Nvqf9cbbs=;
-  b=V7jfu8o0XDeBstCe/3s0cmyxvdUkCfcUH0sgr9sUivztgpZuCZAZWEqg
-   2E4Xs05SxZzLwJ/91Hbe8/8nudJRffPEGSV5sJUQ/baHTpfrdbHq8vdvv
-   J7Ri7vRIuPULJ0SOkUJLoIjpYm1P6sfdza3jFLLXL/zdiwKO6I/0Z+noo
-   AAbjBWxVQeYg1kDY75J0lC5naUcuY70fFVwtKQAQO9mzAQE4ZC6+Tlvx/
-   Xkyd5KDNyHWG3kXWKd8fzxqoEpjCf6fUnZ2Lafch6km+kHk9dMt8hxzY5
-   6Pb7tXvzYpQKTlonjfNDFJyFWMoH3Wi4L42+Bt1LHghkOMKBAY++apB29
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="2157336"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="2157336"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 02:27:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="738761530"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="738761530"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 02:27:33 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1qzwpN-0000000BlGy-385G;
-	Mon, 06 Nov 2023 12:27:29 +0200
-Date: Mon, 6 Nov 2023 12:27:29 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: alisadariana@gmail.com
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Alexandru Tachici <alexandru.tachici@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Cosmin Tanislav <demonsingur@gmail.com>,
-	Okan Sahin <okan.sahin@analog.com>,
-	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	ChiaEn Wu <chiaen_wu@richtek.com>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: adc: ad7192: Add AD7194 support
-Message-ID: <ZUi_kWzZBMRBs3EU@smile.fi.intel.com>
-References: <20231105193132.47009-1-alisadariana@gmail.com>
- <20231105193132.47009-4-alisadariana@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 375BC18031
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 10:30:52 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7573E136;
+	Mon,  6 Nov 2023 02:30:51 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A67scqR002206;
+	Mon, 6 Nov 2023 10:30:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Sdt/GjxjduuVynXxUKwvzjGwM8ufIG++52aWAu3gFOc=;
+ b=FnoVll+RZy0ER+iUHcXRlK6c1FJQQ43KjJuSSpwcxDX9EUiAzeE41nnM+GZNkqLBgNEA
+ pztQsXIbqFsTeDPajBOJOBfzJwyEIrzfUiz+CJsHQHgVN9EC5OsyOnfOsEgMONBN5lQZ
+ NtRp4YhgUurrX1tVqhYTgNqALD17z/pmpxQeaoOERlDyBtgpRdlDMeKyUxzZ8fvDXzxq
+ 2VXW0tgqHUYRAa3Vpe89v7O8bzp70CjmF9OIZMDtXrz4shJnSLGTEoI1a//hfI6Ka7wp
+ 8tDwxj5nSWRqU5/tRpCjVjdFUS4+ypaNy7F4rzfZIwgh3R305snIw2wrmWCdKY3k2F6T Aw== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u5eqn3rs0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 Nov 2023 10:30:47 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A6AUkbH028807
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 6 Nov 2023 10:30:46 GMT
+Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Mon, 6 Nov 2023 02:30:41 -0800
+From: Imran Shaik <quic_imrashai@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+CC: Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+Subject: [PATCH V3 0/4] Add support for Qualcomm ECPRI clock controller
+Date: Mon, 6 Nov 2023 16:00:23 +0530
+Message-ID: <20231106103027.3988871-1-quic_imrashai@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231105193132.47009-4-alisadariana@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Zy9cysLxFC-UmyUkR6Af65om494pUYm7
+X-Proofpoint-ORIG-GUID: Zy9cysLxFC-UmyUkR6Af65om494pUYm7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-06_09,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ malwarescore=0 clxscore=1011 adultscore=0 impostorscore=0 mlxlogscore=794
+ priorityscore=1501 phishscore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311060087
 
-On Sun, Nov 05, 2023 at 09:31:31PM +0200, alisadariana@gmail.com wrote:
-> From: Alisa-Dariana Roman <alisa.roman@analog.com>
-> 
-> Unlike the other AD719Xs, AD7194 has configurable differential
-> channels. The default configuration for these channels can be changed
-> from the devicetree.
-> 
-> The default configuration is hardcoded in order to have a stable number
-> of channels.
+The ECPRI clock controller support for QDU1000 and QRU1000. The clock
+controller has a special branch which requires an additional memory to
+be enabled/disabled before the branch ops.
 
-...
+Changes since v2:
+ - Updated the mem ops implementation as per the latest review comments
+ - Updated the ecpricc driver as per the review comments
 
->  config AD7192
-> -	tristate "Analog Devices AD7190 AD7192 AD7193 AD7195 ADC driver"
-> +	tristate "Analog Devices AD7190 AD7192 AD7193 AD7194 AD7195 ADC driver"
+Changes since v1:
+ - Updated the dt-bindings
+ - Modified mem ops logic as per the review comments
+ - Update all the hex values to lowercase
+ - Aligned the clock entries in DT as per the review comment
 
-This doesn't scale. Please change this and below like:
+Previous series:
+v2 - https://lore.kernel.org/linux-arm-msm/20231011090028.1706653-1-quic_imrashai@quicinc.com/
+v1 - https://lore.kernel.org/linux-arm-msm/20230808051407.647395-1-quic_imrashai@quicinc.com/
 
-	tristate "Analog Devices AD719x ADC driver"
+Imran Shaik (3):
+  dt-bindings: clock: qcom: Add ECPRICC clocks for QDU1000 and QRU1000
+  clk: qcom: Add ECPRICC driver support for QDU1000 and QRU1000
+  arm64: dts: qcom: qdu1000: Add ECPRI clock controller
 
->  	depends on SPI
->  	select AD_SIGMA_DELTA
->  	help
->  	  Say yes here to build support for Analog Devices AD7190,
-> -	  AD7192, AD7193 or AD7195 SPI analog to digital converters (ADC).
-> +	  AD7192, AD7193, AD7194 or AD7195 SPI analog to digital converters (ADC).
+Taniya Das (1):
+  clk: qcom: branch: Add mem ops support for branch2 clocks
 
-	  Say yes here to build support for Analog Devices SPI analog to
-	  digital converters (ADC):
-	  - AD7190
-	  - AD7192
-	  - AD7193
-	  - AD7194
-	  - AD7195
-
->  	  If unsure, say N (but it's safe to say "Y").
-
-With above change adding a new one will be just a mater of adding a single
-line.
-
-...
-
-> +static int ad7192_parse_channel(struct iio_dev *indio_dev,
-> +				struct fwnode_handle *child)
-> +{
-> +	u32 reg, ain[2];
-> +	int ret;
-> +
-> +	ret = fwnode_property_read_u32(child, "reg", &reg);
-> +	if (ret)
-> +		return ret;
-
-> +	if (reg < AD7194_CH_DIFF_NR_MIN || reg > AD7194_CH_DIFF_NR_MAX)
-> +		return -EINVAL;
-
-in_range()
-
-
-> +	ret = fwnode_property_read_u32_array(child, "diff-channels", ain,
-> +					     ARRAY_SIZE(ain));
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (ain[0] < AD7194_CH_AIN_MIN || ain[0] > AD7194_CH_AIN_MAX ||
-> +	    ain[1] < AD7194_CH_AIN_MIN || ain[1] > AD7194_CH_AIN_MAX)
-
-Ditto.
-
-> +		return -EINVAL;
-> +
-> +	ad7194_channels[reg].channel = ain[0];
-> +	ad7194_channels[reg].channel2 = ain[1];
-> +	ad7194_channels[reg].address = AD7194_CH_DIFF(ain[0], ain[1]);
-> +
-> +	return 0;
-> +}
+ .../bindings/clock/qcom,qdu1000-ecpricc.yaml  |   68 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi         |   14 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-branch.c                 |   39 +
+ drivers/clk/qcom/clk-branch.h                 |   21 +
+ drivers/clk/qcom/ecpricc-qdu1000.c            | 2456 +++++++++++++++++
+ .../dt-bindings/clock/qcom,qdu1000-ecpricc.h  |  147 +
+ 8 files changed, 2755 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+ create mode 100644 drivers/clk/qcom/ecpricc-qdu1000.c
+ create mode 100644 include/dt-bindings/clock/qcom,qdu1000-ecpricc.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
 
