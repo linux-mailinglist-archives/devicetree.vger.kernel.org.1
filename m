@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-14129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08377E211B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:16:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C16567E213B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 13:20:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 614A3B20D33
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:16:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F24061C20AAE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38501EB4B;
-	Mon,  6 Nov 2023 12:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39C31EB4C;
+	Mon,  6 Nov 2023 12:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iVKi3UrY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H92pnSDe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C71D1EB36
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 12:16:52 +0000 (UTC)
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D51292
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 04:16:51 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a7c08b7744so51115647b3.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 04:16:51 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE3A1EB36
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 12:20:46 +0000 (UTC)
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C945AB
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 04:20:44 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-da2e786743aso4456424276.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 04:20:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699273010; x=1699877810; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EG5hPBkq6PdY2a7ADFXt5X7TvO05wy+79EbofVcknJU=;
-        b=iVKi3UrYIKExlErMrrMt/p6fGWPgVTndPYFq5Ijsg1jAJorYt9P9uw9z5fZfhvH4h+
-         eyhJ4IcBtyl3O2gVQJvDBKY/fX4mzoW978nG0isdTejvt2DUixctMT4ty4zPJn/w9cVF
-         M92Vm+bgc62Nx+dQ/f87myQBMY+foYyBVxvjIFvciYmsfuEphpqapFyWSqgloISMJS/i
-         SeGJHw0QpzDNQJ0vF9UwKDWmGjun24v6iVPdCfjQR3DSkYdDrBFXDqZ4GzeKhHvVE99x
-         W+Jsx8jl1A0fnTEwIANY6kUWb5N7GoA+tgdT4vc8c9t661Lf2ob/uiVmdE5cFxh4ka9l
-         Emdg==
+        d=linaro.org; s=google; t=1699273243; x=1699878043; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jNrBmQOtJ17ojJmeT7du8FrKMIIzYnoq4n1GU13u2lU=;
+        b=H92pnSDeWr3e9AcWDs2HT161bar1Tlz7Fq0xkqPxFqi/+B9Gy3Q4RKTt7i7pMaq0U/
+         5G7Po1GNkVT5+BKPE9njjgFfxM8uvnc9MATXcBpooaRBgp1wENAsNdc9ZQzMfpEP/D3a
+         1DByK9X+a2bCTMkzxzTiDcJQC6mBh5Fyw2QctbKPe0tn7LiMuzhuS5ExvE9pI+Kvsqcx
+         yOVTm5+6m+83KiSOCULLpTyzssZWWIUZjfHdXO7Ntg6bIVwPltR9XvarUPODItRCc+V5
+         QHTsznETSfzbZlmPWcVXhqtoIn8imhPZHcrASvA1dHKuUa2WmamaqoD5ma3Q54THTUQ+
+         cHRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699273010; x=1699877810;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EG5hPBkq6PdY2a7ADFXt5X7TvO05wy+79EbofVcknJU=;
-        b=WGW/MueJk9bVIoDCsRBENXo/c6ztZ9vL++BQny53NC3OqJWI/NG5sUB13HVzMjeqz5
-         vEZxd8ZevTLtZ/Adv2G44SExmlMxFWfkCT8OgtATMP1WYMkhkrAYJdtBPUzbGH+Zmkq2
-         tyFF7EJ8hDvuUzO7eFeD7Vl8a+9o9T0AMd+pV3la5+s1m/3JWIbmeypX+29at0mLYnGo
-         dfS12xHhg1f6YzviNSdUnv/7fTM4tObW08hwLyRWimGBdWDt149Q3S7yzOU1ua7us+Cz
-         hwd342N/mpsdSGaXdk+fHiFngRk5pfrjXgChoo60U3kQHnRpBDC7d7J4/btU7+YrBvW9
-         jkHA==
-X-Gm-Message-State: AOJu0Yyj5WhfK5MsmMNGz3bBB23hlKjD1bM/cO7dqXDFKFaM0H9oso4b
-	gVad6DYMzK0KsUnm4iNS3HCSM7i+n83Lr3iC8uhAvlqXOueFwDvP
-X-Google-Smtp-Source: AGHT+IG7dtNNGP1ku33ub7+LjOzGjTE/fFbQpbNgMJ2o1/7LKgwSis/m8AWYoCjq4YmlJ9tbh+mHzEnAH0AONcOeeAU=
-X-Received: by 2002:a81:6cc8:0:b0:5b3:f5f8:c5bf with SMTP id
- h191-20020a816cc8000000b005b3f5f8c5bfmr11384244ywc.9.1699273010303; Mon, 06
- Nov 2023 04:16:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699273243; x=1699878043;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jNrBmQOtJ17ojJmeT7du8FrKMIIzYnoq4n1GU13u2lU=;
+        b=D2DBznVDP1zaGQVCpR7AiMRRZtIL+sVN8XebfXeakyubTcUdYxlnyF5YZ7BacDL94x
+         1zfjycXPzthv5+5XCE/uTBXcs/DnCizplRYWDkVRb9RMTnw+ZrW7RBy6iOYbvCYjNxnW
+         BvcdFU5FNDB3wIaRDQwPdOsZ47BJ4Unf0u/DOIEi19ZOKT1Umbp3SzxG9aqTx9dryoql
+         hshGEtyi30Qe/ddQG4BxKDhtYlu8Yur99s45h3hRXuAhZKRiLeSNdsSiMivti5HTYn3j
+         WqCZrS56I56oWEQPFBSnKQh/3Wz2KpknqchA5d1/BHtQLtG7+fB/97StJDNacRrCSmfL
+         hikQ==
+X-Gm-Message-State: AOJu0YxyT5j+JsnxnkxZ6+ZyUnXKvFjqRv9eo7Vr9HTjdeUTMrnmxTn6
+	63ELuccXijpFOuwIp5YXTL9K+MFQis2hizLcFyRmIg==
+X-Google-Smtp-Source: AGHT+IEWI+f1HNKNSeeVWXlqh/hIENbIf83dLNlmNVJ1X8gb5errhSt5Vw0iEDS5BYJhLkKMzUml4nTi0qHyePAxOUU=
+X-Received: by 2002:a25:324c:0:b0:da0:6cf3:c629 with SMTP id
+ y73-20020a25324c000000b00da06cf3c629mr24702415yby.41.1699273243154; Mon, 06
+ Nov 2023 04:20:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
-In-Reply-To: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
+References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net> <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
+In-Reply-To: <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 6 Nov 2023 14:16:38 +0200
-Message-ID: <CAA8EJpoSCVX=Pv1unN+oKzfT3RkwHkcEb5smEYufDP3TMBcDhQ@mail.gmail.com>
-Subject: Re: [PATCH 0/8] Add PM8937 PMIC support
+Date: Mon, 6 Nov 2023 14:20:31 +0200
+Message-ID: <CAA8EJprKNPiaMi1OxVUHtY-YxzUuy_uZhrNemmU6dQeFEukv0w@mail.gmail.com>
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: Add PM8937 PMIC
 To: Dang Huynh <danct12@riseup.net>
 Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
 	Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
@@ -75,49 +76,83 @@ Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 	Robert Marko <robimarko@gmail.com>, linux-arm-msm@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 On Mon, 6 Nov 2023 at 14:11, Dang Huynh <danct12@riseup.net> wrote:
 >
-> PM8937 is a power management IC. It is used in various boards with
-> MSM8917, MSM8937, MSM8940 and APQ variants.
+> The PM8937 features integrated peripherals like ADC, GPIO controller,
+> MPPs, PON keys and others.
+>
+> Add the device tree so that any boards with this PMIC can use it.
 >
 > Signed-off-by: Dang Huynh <danct12@riseup.net>
 > ---
-> Dang Huynh (8):
->       mfd: qcom-spmi-pmic: Add support for PM8937
->       dt-bindings: mfd: qcom-spmi-pmic: Document PM8937 PMIC
->       regulator: qcom_spmi: Add PM8937 SPMI regulator
->       dt-bindings: regulator: qcom,spmi-regulator: Document PM8937 PMIC
->       regulator: qcom_smd: Add PM8937 regulators
->       dt-bindings: regulator: qcom,smd-rpm-regulator: Document PM8937 IC
->       arm64: dts: qcom: Add PM8937 PMIC
->       soc: qcom: socinfo: Add PM8937 Power IC
-
-It seems that some of the patches didn't get it to linux-arm-msm@.
-Could you please check, what was wrong and resend your patchset?
-
+>  arch/arm64/boot/dts/qcom/pm8937.dtsi | 202 +++++++++++++++++++++++++++++=
+++++++
+>  1 file changed, 202 insertions(+)
 >
->  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |   1 +
->  .../bindings/regulator/qcom,smd-rpm-regulator.yaml |   4 +
->  .../bindings/regulator/qcom,spmi-regulator.yaml    |  19 ++
->  arch/arm64/boot/dts/qcom/pm8937.dtsi               | 202 +++++++++++++++++++++
->  drivers/mfd/qcom-spmi-pmic.c                       |   1 +
->  drivers/regulator/qcom_smd-regulator.c             |  34 ++++
->  drivers/regulator/qcom_spmi-regulator.c            |  34 ++++
->  drivers/soc/qcom/socinfo.c                         |   2 +-
->  include/soc/qcom/qcom-spmi-pmic.h                  |   1 +
->  9 files changed, 297 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 12c9e8890929813dc852d9739f8d900ff51d9814
-> change-id: 20231106-pm8937-000e423a75fb
->
-> Best regards,
-> --
-> Dang Huynh <danct12@riseup.net>
->
+> diff --git a/arch/arm64/boot/dts/qcom/pm8937.dtsi b/arch/arm64/boot/dts/q=
+com/pm8937.dtsi
+> new file mode 100644
+> index 000000000000..6091d6938885
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm8937.dtsi
+> @@ -0,0 +1,202 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
+> + */
+> +
+> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +/ {
+> +       thermal-zones {
+> +               pm8937-thermal {
+> +                       polling-delay-passive =3D <0>;
+> +                       polling-delay =3D <0>;
+> +                       thermal-sensors =3D <&pm8937_temp>;
+> +
+> +                       trips {
+> +                               pm8937_trip0: pm8937-trip0 {
+
+I don't think you need labels here. Also you can drop PMIC name from
+trip point node names.
+
+> +                                       temperature =3D <105000>;
+> +                                       hysteresis =3D <0>;
+> +                                       type =3D "passive";
+> +                               };
+> +                               pm8937_trip1: pm8937-trip1 {
+> +                                       temperature =3D <125000>;
+> +                                       hysteresis =3D <0>;
+> +                                       type =3D "passive";
+> +                               };
+> +                               pm8937_trip2: pm8937-trip2 {
+> +                                       temperature =3D <145000>;
+> +                                       hysteresis =3D <0>;
+> +                                       type =3D "passive";
+
+145=C2=B0C is very hot for the passive trip point
+
+Comparing this with other platforms, 125=C2=B0C can be "hot" and 145=C2=B0C=
+ is "critical".
+
+Other than that:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +};
 
 
--- 
+--=20
 With best wishes
 Dmitry
 
