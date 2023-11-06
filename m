@@ -1,152 +1,107 @@
-Return-Path: <devicetree+bounces-14080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1AA7E1FB7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:14:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9A27E1FCC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:19:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 502741C20829
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:14:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0030528107B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D29182AA;
-	Mon,  6 Nov 2023 11:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80FD1864D;
+	Mon,  6 Nov 2023 11:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M0f8UiyC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cubp9twL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0798A1772D
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:14:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F952C433C8;
-	Mon,  6 Nov 2023 11:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699269241;
-	bh=3rFOHrsFOQYq+raXX3AQ97EcKFDbUZXhJyj0nxmUet8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=M0f8UiyCntVadWOwOWAEI2Yz0mZtXoSOrbRWAqk0fbr7inHullOT1DiNpwz83cqsU
-	 fTSa2Uf1EcZV4ZcihO5dJf17tk/9LerZ0H1LuiM8pJbJBoJFmKyaiGEQ1BUJjPYWnr
-	 uOtBmRi9wtTZSf+HfWKQvezMTDReOO1f8InVtDvfDdzRk/zmhbM+8yGCeZyEcLP8kD
-	 zX6TSwm5m49x/m2WYaMb9XOR4HmDpXJyCL0FFVlYxLGblu+KPhi25UyfUC78m4HSbT
-	 tgz/z1N2M25PGBaZJGgNb10wnmUEVUlAxujMheydJrxdyy4aI1YsfACCUCLJPXDSVP
-	 ypIicqxm3dyKA==
-Date: Mon, 6 Nov 2023 11:13:55 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Paul Gazzillo
- <paul@pgazz.com>, Matt Ranostay <matt@ranostay.sg>, Stefan Windfeldt-Prytz
- <stefan.windfeldt-prytz@axis.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for APDS9306 Light
- Sensor
-Message-ID: <20231106111355.2f8dfaa1@jic23-huawei>
-In-Reply-To: <2974aa13-796c-49ef-bef7-fd7f3f9b7f49@tweaklogic.com>
-References: <20231027074545.6055-1-subhajit.ghosh@tweaklogic.com>
-	<20231027074545.6055-3-subhajit.ghosh@tweaklogic.com>
-	<20231028162025.4259f1cc@jic23-huawei>
-	<2974aa13-796c-49ef-bef7-fd7f3f9b7f49@tweaklogic.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD3A17754
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:19:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C764FB6;
+	Mon,  6 Nov 2023 03:19:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699269568; x=1730805568;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UZ2mllwSITLMwigLdMMHTXlcJTSw0v3IiGJDOlJ2u+Y=;
+  b=cubp9twLVqAxNpl/F+C5/a0vGXxUQc/jCZ87Bau8HV/DZ1YDUumTDWjq
+   IEnYptHgPTAaSW3PcIem+V0ZmlHvjWUnuCoHgcGZlFqP8s6VM+Y3LBTXu
+   edZOCxQEJZ+IxnuegaWJgiuFFDtcAIFMwquELuZp2K3IHq+CNS7oXzxYA
+   vF0rBKFdeQMsUS0+VH/LdSrYY3XVY3d7d09bBOCOoJ8vbZ1/nF3yu3gxe
+   whuy21sI0S0aIHD9U1+jDWwqEr/LoksYZvMRjJnpLfce2Wl4O1WOiwTJH
+   e7cGTioKKtg18pvDPp4ujXoNmyhVDWK++IK9M4c3uWJv98XXbYEe0Z2tU
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="369461450"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
+   d="scan'208";a="369461450"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 03:19:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="1009491417"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
+   d="scan'208";a="1009491417"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 03:19:25 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1qzxda-0000000Blvc-10qR;
+	Mon, 06 Nov 2023 13:19:22 +0200
+Date: Mon, 6 Nov 2023 13:19:21 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH 1/2] leds: gpio: Add kernel log if devm_fwnode_gpiod_get
+ fails
+Message-ID: <ZUjLuTPppvI9xlOD@smile.fi.intel.com>
+References: <20231105154940.97688-1-wahrenst@gmx.net>
+ <20231105154940.97688-2-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231105154940.97688-2-wahrenst@gmx.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, 31 Oct 2023 19:08:08 +1030
-Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
-
-> >   
-> >> +static struct iio_event_spec apds9306_event_spec_als[] = {
-> >> +	{
-> >> +		.type = IIO_EV_TYPE_THRESH,
-> >> +		.dir = IIO_EV_DIR_RISING,
-> >> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-> >> +	}, {
-> >> +		.type = IIO_EV_TYPE_THRESH,
-> >> +		.dir = IIO_EV_DIR_FALLING,
-> >> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-> >> +	}, {
-> >> +		.type = IIO_EV_TYPE_THRESH,
-> >> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
-> >> +	}, {
-> >> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
-> >> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
-> >> +			BIT(IIO_EV_INFO_ENABLE),
-> >> +	}, {
-> >> +		.type = IIO_EV_TYPE_THRESH,
-> >> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),  
-> > This matches an entry above for type. Don't have separate entries.  
-> >> +	},
-> >> +};
-> >> +
-> >> +static struct iio_event_spec apds9306_event_spec_clear[] = {
-> >> +	{
-> >> +		.type = IIO_EV_TYPE_THRESH,
-> >> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
-> >> +	},
-> >> +};
-> >> +
-> >> +#define APDS9306_CHANNEL(_type) \
-> >> +	.type = _type, \
-> >> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) | \
-> >> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_SAMP_FREQ), \
-> >> +	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) | \
-> >> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_SAMP_FREQ), \  
-> > 
-> > Scale on the intensity channel is interesting...  What are the units?
-> > There tend not to be any well defined units for intensity (as opposed
-> > to illuminance).  There may be gain on the signal, but it won't be in untils
-> > that map directly to a scale userspace should apply.  This is one of the
-> > rare reasons for using the HARDWARE_GAIN element of the ABI.
-> > 
-> > A tricky corner however as relationship between raw value and hardwaregain
-> > is not tightly defined (as it can be really weird!)  
-> Hi Jonathan,
+On Sun, Nov 05, 2023 at 04:49:39PM +0100, Stefan Wahren wrote:
+> In case leds-gpio fails to get the GPIO from the DT (e.g. the GPIO is
+> already requested) the driver doesn't provide any helpful error log:
 > 
-> Thank you for taking time for reviewing and clearing all my tiny doubts and
-> queries especially for the dt and versioning part. Much appreciated.
+>     leds-gpio: probe of leds failed with error -16
 > 
-> In the above case, should I not expose scale for the "clear" channel? Rather,
-> how should I expose the "clear" channel to userspace?
-What is the scale?  What units to you get after applying it?
+> So add a new error log in case devm_fwnode_gpiod_get() fails.
 
-I suspect it's not well defined.
+...
 
-Not sure what we've done in similar cases in the past.  Perhaps have
-a look at those.  There may be precedence for still using scale.
+>  		led.gpiod = devm_fwnode_gpiod_get(dev, child, NULL, GPIOD_ASIS,
+>  						  NULL);
+>  		if (IS_ERR(led.gpiod)) {
+> +			dev_err(dev, "Failed to get gpio '%pfw': %ld\n",
+> +				child, PTR_ERR(led.gpiod));
 
-I'm about to jump on a long haul flight (delayed - sigh) so don't have
-time to look myself!
+Perhaps %pe ?
 
-Jonathan
+>  			fwnode_handle_put(child);
+>  			return ERR_CAST(led.gpiod);
+>  		}
 
-> 
-> Regards,
-> Subhajit Ghosh
-> 
-> >   
-> >> +
-> >> +static struct iio_chan_spec apds9306_channels_without_events[] = {
-> >> +	{
-> >> +		APDS9306_CHANNEL(IIO_LIGHT)
-> >> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> >> +	}, {
-> >> +		APDS9306_CHANNEL(IIO_INTENSITY)
-> >> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> >> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> >> +		.modified = 1,
-> >> +	},
-> >> +};  
-> >   
-> 
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
