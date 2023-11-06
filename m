@@ -1,136 +1,167 @@
-Return-Path: <devicetree+bounces-14205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83B077E2AC5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:13:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FBA7E2ADE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 18:22:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D07D2814C8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:13:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A72051F21D18
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0413B2941E;
-	Mon,  6 Nov 2023 17:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AD129CFA;
+	Mon,  6 Nov 2023 17:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hfBt/3if"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="LXNAN7IK";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="flX/bOir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0B029CE1
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 17:13:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BCBCC433C7;
-	Mon,  6 Nov 2023 17:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699290820;
-	bh=RH8aQ6Z1i9EfK9n1klLE7C93NNkM5so1vcNS443yUpE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hfBt/3iflon/viupAp7T+oB0xxkAoQLfUHsXbL0DDvV5I1HqseSp2D6RMY1xbrKz8
-	 tHkJr3kdzo75kslwVbZXKm0Q7hteIqLcdtHx4nq8p3fBWA8qHT1p6IM2wBHTtQ1Epv
-	 e7FqeyLR3tpFiZveJecEhvoPQ1pGdULP/Hc7JIcAFPA09kT8NUSUnz0goOsUao8iVT
-	 q/pczvTY05/dyqUgzaE5U8zEcM+m2hAFpQbme2UdhLoWC5BH5Y/azgzVkHxcL9/5Wz
-	 wxbWalMH3OLcL8c67hIYXnmDgMl2CGAr53zhCzZGoubykyI5VLye1rKEgKiv2iKSZ7
-	 l5rA8yxTkz5ZA==
-Date: Mon, 6 Nov 2023 17:13:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-clk@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8AE29D05
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 17:22:04 +0000 (UTC)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDC4E1BC;
+	Mon,  6 Nov 2023 09:22:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1699291320; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=TbvFJH4XprGZfb2hvMmc5ctU8eEq21Oh5g6LOJJdkowBZupRkiv26u49ZCsj8DgBSq
+    lR76qWA/4/oNjZAyoYvTNiBKmwXDz+4uH76Qs/Q+Ar701gGHy+XZCjYwAv+DqqMsazyR
+    NGlC0OjUpb/BlMo85ojxyorVsLhFo2P3BlYSwOJzDXxMpp4dYycizQSQ5LUG9uMRHuH8
+    d4c+Jv3BliIGQcZITW/HxcUmao37YJS2COuT7+Dh3pKFb0xhDpAJzQFyhTOBZUDnJXKW
+    gf+/vdzEDxfhGOi9bSNv99Pwp2r/l7I6loK9sTSRnOikw/YwkpgcoxIXRJqzKUMq8qPV
+    jxmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1699291320;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=xhpTO12snhTyUAudCCBknK/y5KS1BxQ8Az7BF7pqWV8=;
+    b=qrYBKbbHO6JObFJMSAryUKngOdRg+UlGqO46xU8f1TkEFdIZib1+D9u+3UOmK1VQG8
+    K2Gh9HJhsV1EOtDE0iuMmEE2eENob4mYuFIeNnfF4qLIV62gDOZQgSAP/1s1ioih4EKT
+    vaejLZHJwINN3ako5nOnZTRF+XTCgvtVhkZbHDzZ5JxsBaQFXBx9LaDclvDfAv1hgam6
+    Dt71wg+OV67MufuQvA4zW3bz+m5nrjralo4D7rc02uZ2tRIA1rcsYMeYX2FAAW33CxTa
+    LGVTPwWNKLA8bWHSurP3VEaN7/FrbvAwr8w/XzhcG7lmJAP06v5WKUCFVV7HsgQwJwtc
+    vJmQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1699291320;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=xhpTO12snhTyUAudCCBknK/y5KS1BxQ8Az7BF7pqWV8=;
+    b=LXNAN7IKiWGOs2CPJoHeQzmNma/6JEW6U+IX7NYsP9CXTYkswXoftiSz8wSYupCpvM
+    YjcKAHbST0itDn8+70faXGYSPAdUl2l3L8T+GCVUx3/BnHxi9j1LnwKNKDJCYCBxBJiR
+    4nQTyC5wS0bvcZZ5txQZ9rEUznb2V+pAJvguLKFNuVw3XVffCjmS2Mwa5VYsYwaGYUrR
+    6x+lMwO8w+SVe+SQ7u57ca4UBiouHkF+iCKXX6BGzCDH6GRqqlpN9ljPonfGfDfQ4J58
+    6kM3HMn6pSqYOGYtwxvfdNA2BZCgFUjT3rEnE8I7/8FT9mXSvteCjF6EpxK3rjtNYNlI
+    ZvbQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1699291320;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=xhpTO12snhTyUAudCCBknK/y5KS1BxQ8Az7BF7pqWV8=;
+    b=flX/bOirgwI//BSG7vd8VfmRD6zPXJC4wHgnejIbeEYvO3dNRud3C03D0a1aE9kjDj
+    e6mO8fPfqgAm1drbZbDQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z2L1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.9.1 DYNA|AUTH)
+    with ESMTPSA id Lbb8e2zA6HLxXHV
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Mon, 6 Nov 2023 18:21:59 +0100 (CET)
+Date: Mon, 6 Nov 2023 18:21:53 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Dang Huynh <danct12@riseup.net>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clk: rs9: Add 9FGV0841
-Message-ID: <20231106-deafening-multitude-7d08c8400915@spud>
-References: <20231105200812.62849-1-marek.vasut+renesas@mailbox.org>
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Robert Marko <robimarko@gmail.com>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: Add PM8937 PMIC
+Message-ID: <ZUkgsW4pyojMBtD9@gerhold.net>
+References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
+ <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hlbvNfl+ZbMiI2kB"
-Content-Disposition: inline
-In-Reply-To: <20231105200812.62849-1-marek.vasut+renesas@mailbox.org>
-
-
---hlbvNfl+ZbMiI2kB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
+Content-Transfer-Encoding: 7bit
 
-On Sun, Nov 05, 2023 at 09:07:58PM +0100, Marek Vasut wrote:
-> This is an 8-channel variant of 9FGV series.
->=20
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+On Mon, Nov 06, 2023 at 07:08:35PM +0700, Dang Huynh wrote:
+> The PM8937 features integrated peripherals like ADC, GPIO controller,
+> MPPs, PON keys and others.
+> 
+> Add the device tree so that any boards with this PMIC can use it.
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ---
+>  arch/arm64/boot/dts/qcom/pm8937.dtsi | 202 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 202 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8937.dtsi b/arch/arm64/boot/dts/qcom/pm8937.dtsi
+> new file mode 100644
+> index 000000000000..6091d6938885
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm8937.dtsi
+> @@ -0,0 +1,202 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
+> + */
+> +
+> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> [...]
+> +&spmi_bus {
+> +	pmic@0 {
+> +		compatible = "qcom,pm8937", "qcom,spmi-pmic";
+> +		reg = <0x0 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pon@800 {
+> +			compatible = "qcom,pm8916-pon";
+> +			reg = <0x800>;
+> +			mode-bootloader = <0x2>;
+> +			mode-recovery = <0x1>;
+> +
+> +			pm8937_pwrkey: pwrkey {
+> +				compatible = "qcom,pm8941-pwrkey";
+> +				interrupts = <0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
+> +				debounce = <15625>;
+> +				bias-pull-up;
+> +				linux,code = <KEY_POWER>;
+> +			};
+> +
+> +			pm8937_resin: resin {
+> +				compatible = "qcom,pm8941-resin";
+> +				interrupts = <0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
+> +				debounce = <15625>;
+> +				bias-pull-up;
+> +				linux,code = <KEY_VOLUMEDOWN>;
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Please move the linux,code into the board-specific part and make this
+status = "disabled" by default, like in the other PMIC dtsi files.
+
+One could theoretically assign any other function to this key. Also,
+some devices don't have this hooked up at all.
 
 Thanks,
-Conor.
-
-> ---
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-clk@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
->  .../devicetree/bindings/clock/renesas,9series.yaml     | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml=
- b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
-> index 3afdebdb52ad..af6319697b1c 100644
-> --- a/Documentation/devicetree/bindings/clock/renesas,9series.yaml
-> +++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
-> @@ -21,6 +21,15 @@ description: |
->      1 -- DIF1
->      2 -- DIF2
->      3 -- DIF3
-> +  - 9FGV0841:
-> +    0 -- DIF0
-> +    1 -- DIF1
-> +    2 -- DIF2
-> +    3 -- DIF3
-> +    4 -- DIF4
-> +    5 -- DIF5
-> +    6 -- DIF6
-> +    7 -- DIF7
-> =20
->  maintainers:
->    - Marek Vasut <marex@denx.de>
-> @@ -30,6 +39,7 @@ properties:
->      enum:
->        - renesas,9fgv0241
->        - renesas,9fgv0441
-> +      - renesas,9fgv0841
-> =20
->    reg:
->      description: I2C device address
-> --=20
-> 2.42.0
->=20
-
---hlbvNfl+ZbMiI2kB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUkevwAKCRB4tDGHoIJi
-0n1zAP4xwoLWdi1lpSe+pYZHYEJckK8LBPbOQNWNqREJ1yHmLAEAn0Sh6HKnp+9p
-H369wX4qgAHu51TjPz3x4bL4XQQVmQ0=
-=rIgl
------END PGP SIGNATURE-----
-
---hlbvNfl+ZbMiI2kB--
+Stephan
 
