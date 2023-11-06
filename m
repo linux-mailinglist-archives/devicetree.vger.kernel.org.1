@@ -1,128 +1,99 @@
-Return-Path: <devicetree+bounces-14034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 857DE7E1CD5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:00:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0D5C7E1D1F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 10:22:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12B00B20F42
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:00:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B0EE28121F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0911C156FF;
-	Mon,  6 Nov 2023 08:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ferroamp-se.20230601.gappssmtp.com header.i=@ferroamp-se.20230601.gappssmtp.com header.b="pYN/Nujv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1392615AE7;
+	Mon,  6 Nov 2023 09:22:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15B6156CB
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:59:54 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867A8CC
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 00:59:51 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-507e85ebf50so5175880e87.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 00:59:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ferroamp-se.20230601.gappssmtp.com; s=20230601; t=1699261190; x=1699865990; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aypV7mLvbDAZeh5nBCa8xfdYAz42GegtC5Ieo6iBXzQ=;
-        b=pYN/Nujv4bUjScDhpaO8ACPfYELWMnufbyhSaulW8Ust1pW4Pd8nyJKeWulJHwUxJc
-         kYRNhOzFCMMI2nwJ4hSx86FmeJRi7ZNP7IkVThwbx3qCYSPMP4T+MZFVbneNJYIM3cHa
-         oRNGcfTpArNaTzKLUSYFoFM1kMhmFaWru/+zixQIyxoVhweB2NlytbpcksFuhbEeM4Yi
-         XkNs4pIhVejWnhfFhQp0kr4fP6ijVn0VGcFw5IOyBuWzFyUGuTYtunI82qhyVObvis3k
-         jm5vl8sHBOW5He2ew0Xy04UAd2mo3JhMz3gMFATJBeWoC7Q40mb7PkQGiiR7unse0Mim
-         KJkg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1C6DF51
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 09:22:15 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBEFDF;
+	Mon,  6 Nov 2023 01:22:12 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-991c786369cso614750366b.1;
+        Mon, 06 Nov 2023 01:22:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699261190; x=1699865990;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aypV7mLvbDAZeh5nBCa8xfdYAz42GegtC5Ieo6iBXzQ=;
-        b=exGx32BRVte52BOHfDAi4xqxjxZUdoet3ZCAvAAh5FFVmjn9gdioece4OYDuPsqDjy
-         ozAPXk84my3q2UjS1W1t+O9WuLXCKAieVuChJibsi72zYVfqGtgUQhQLUEyPVnvooQQG
-         DQ8DP+1nb96LI7OqbSIL9S90tpywglMfjm2vXxEPd3Wxrwj7hZ1UoVs8Piy1tAMDl1mv
-         zLuXDNn5Se/yPmvtTReGC+Qg4b50Sft2xmocy8c6Itvp6FfkQR29JY0OsbozVLbfa1zE
-         gliJDqVvyblZKx/KcM2+h+OMkr17nFfH+jCjwaVpsbLoLthQo4A15Kx+3KTYoJyYRCYn
-         ug1A==
-X-Gm-Message-State: AOJu0YxBnMSbCd0A+X+vYCfy1S1PaaX0gooQ/mF9c4gbOozJZVXjERc0
-	oORfllV4E8JBXJHiP2JeJmIRpQ==
-X-Google-Smtp-Source: AGHT+IG3Cna/LlnMuAYULkcn1Mo/PI9szbO58Pc5YOQN/aE33Cm+GjVDfxyc/hIwpG6p77cqtp0yZA==
-X-Received: by 2002:a05:6512:688:b0:507:9a13:27bd with SMTP id t8-20020a056512068800b005079a1327bdmr27380714lfe.7.1699261189709;
-        Mon, 06 Nov 2023 00:59:49 -0800 (PST)
-Received: from debian ([185.117.107.42])
-        by smtp.gmail.com with ESMTPSA id y36-20020a0565123f2400b00507a8789b43sm1080387lfa.269.2023.11.06.00.59.47
+        d=1e100.net; s=20230601; t=1699262530; x=1699867330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7vxzdd7hvG1LZGKkqhTZumSilwKU2j2TuY6Cx8E9gJo=;
+        b=ZAVfNjQXQ9iIYVR8xPs5bXtfwI1GmrzhAY0nAmwC7iJiEGthN41WxKuvWbTOpGCvah
+         SlgAzOFzdowtHPre1yIbkLyWQ/T0NlnjO2jVqopbS5kmwsk22HS+fIqkl/323RdoNJJq
+         RXqHD6Q2ZTV0wJqoW0dX505zax0MBFOv4iWE0CoUFJnjbsj0iVJBwbihusnAJbNQqWJs
+         CT9LFrd21T2LmLGfrxRVfBam9vTsmk0RI2HoDc0t+51CbdQsqLm8DJ2gMlLvECrek2id
+         PUpC/yr3kfdrceEpXaV0syosNb0VAaeGZ5IqZa2scXL7nESbAf/2nCSfuKEpPAJvHuwb
+         NTwA==
+X-Gm-Message-State: AOJu0YwB3G+xi3XtrrTD1rwA4YNoaMIN/DMXy9dOJ4PdXXDsRYTIdCFW
+	ddXbL5rbiYx/CtM0NOl+Ex2fBrmMT04=
+X-Google-Smtp-Source: AGHT+IF++APSwFNH6r2Ey/Q67hM2PkyNzMGIaLHd/q7k/8mo1G5861RXhVzAIHRm7zWxfkxBUM9UWQ==
+X-Received: by 2002:a17:907:31c3:b0:9bf:122a:7db2 with SMTP id xf3-20020a17090731c300b009bf122a7db2mr13821438ejb.66.1699262529951;
+        Mon, 06 Nov 2023 01:22:09 -0800 (PST)
+Received: from ramallet.home (cst-prg-38-127.cust.vodafone.cz. [46.135.38.127])
+        by smtp.gmail.com with ESMTPSA id w5-20020a05640234c500b005402748cf29sm4098608edc.50.2023.11.06.01.22.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Nov 2023 00:59:48 -0800 (PST)
-Date: Mon, 6 Nov 2023 09:59:46 +0100
-From: =?iso-8859-1?Q?Ram=F3n?= Nordin Rodriguez <ramon.nordin.rodriguez@ferroamp.se>
-To: Parthiban.Veerasooran@microchip.com
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	corbet@lwn.net, Steen.Hegelund@microchip.com, rdunlap@infradead.org,
-	horms@kernel.org, casper.casan@gmail.com, andrew@lunn.ch,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	Horatiu.Vultur@microchip.com, Woojung.Huh@microchip.com,
-	Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com
-Subject: Re: [PATCH net-next v2 8/9] microchip: lan865x: add driver support
- for Microchip's LAN865X MACPHY
-Message-ID: <ZUirAkfDahc50Oti@debian>
-References: <20231023154649.45931-1-Parthiban.Veerasooran@microchip.com>
- <20231023154649.45931-9-Parthiban.Veerasooran@microchip.com>
- <ZUOUGf-PMGo8z1s-@debian>
- <aa175902-560c-4fad-9e0b-aa4efa0482c2@microchip.com>
+        Mon, 06 Nov 2023 01:22:09 -0800 (PST)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+To: linux-kernel@vger.kernel.org
+Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support)
+Subject: [PATCH RESEND] arm64: dts: VIM3: Set the rates of the clocks for the NPU
+Date: Mon,  6 Nov 2023 10:22:02 +0100
+Message-ID: <20231106092202.11127-1-tomeu@tomeuvizoso.net>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aa175902-560c-4fad-9e0b-aa4efa0482c2@microchip.com>
 
-> I understand that you are using two LAN8650, isn't it? if so are they 
-> both running simultaneously? or you are doing the testing with one alone?
+Otherwise they are left at 24MHz and the NPU runs very slowly.
 
-Currently we've only got one running, hopefully we've wrapped up the
-board bring up in the next few days and will be able to run the second
-mac/phy as well.
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Suggested-by: Lucas Stach <l.stach@pengutronix.de>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> > With this setup I'm getting a maximum throughput of about 90kB/s.
-> > If I increase the chunk size / oa-cps to 64 I get a might higher
-> > throughput ~900kB/s, but after 0-2s I get dump below (or similar).
-> Did you or possible to try a test case with below configuration?
-> 
-> - Single LAN8650 enabled
-> - UDP
-> - oa_cps = 64
-> - spi-max-frequency = 15000000,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index ff68b911b729..9d5eab6595d0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -2502,6 +2502,9 @@ npu: npu@ff100000 {
+ 		clocks = <&clkc CLKID_NNA_CORE_CLK>,
+ 			 <&clkc CLKID_NNA_AXI_CLK>;
+ 		clock-names = "core", "bus";
++		assigned-clocks = <&clkc CLKID_NNA_CORE_CLK>,
++				  <&clkc CLKID_NNA_AXI_CLK>;
++		assigned-clock-rates = <800000000>, <800000000>;
+ 		resets = <&reset RESET_NNA>;
+ 		status = "disabled";
+ 	};
+-- 
+2.41.0
 
-I'll set that up and will get back to you, all testing I have performed
-has been with tcp.
-
-> 
-> Did you run iperf3 test? or any other tool?
-> If iperf3 then can you share the configuration you used?
-
-I just tried copying a file over the network with rsync, but I'll run some
-udp tests with iperf.
-I'll do my best to get back to you with results today.
-
-> 
-> I don't know whether these may audiences are needed in the CC for this 
-> thread. Let's see what's Andrew Lunn thinks about it?
-
-No opinions on my end at least.
-
-BR
-Ramón
 
