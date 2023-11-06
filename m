@@ -1,182 +1,133 @@
-Return-Path: <devicetree+bounces-14175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 433207E2898
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:25:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E88A7E28DF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C968B20CDB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 15:25:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D84421C20821
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 15:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC2128DDD;
-	Mon,  6 Nov 2023 15:25:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="knpEVn63"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E47428E1F;
+	Mon,  6 Nov 2023 15:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D3428DCF
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 15:25:26 +0000 (UTC)
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30898112;
-	Mon,  6 Nov 2023 07:25:20 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8B9891C000B;
-	Mon,  6 Nov 2023 15:25:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699284319;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2pwOlCKgsrVcnlIDxwm0ouSDhVl6OxMQWtLYHRhmGAA=;
-	b=knpEVn63z2yCNIIMxHFSmyOeMz//fJuxK6DCZgKiPmy5oiiG+KIQ9fNi70eGyIi7bKtugE
-	u8uXai1z8wePIrWPd5QMXxTpTmvd1m4DSztlokiwCQgA9x5gQO6bhrR0yoOUUjWpWzQegn
-	NMcIjTwPC/o3i9W3Wy3yTgWbMaEKyWMeLbHxm/g8KOysa6zIjxkottB8jgDnOTxZQPWgS4
-	TGSV1POUAJLQd+bhTwvVITfZ29xU+VTnqlq5Uo5bowlTKsutKHkAGHmjemhAAe1galVy9W
-	G1K1hpHBeT/4s0tbzSyFNkzqJZsY5DL8wY8pwRhQDAHZQyaVo2YXawtqz0+fzA==
-Date: Mon, 6 Nov 2023 16:25:18 +0100
-From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com
-Subject: Re: [PATCH v7 3/3] media: i2c: Introduce a driver for the Techwell
- TW9900 decoder
-Message-ID: <ZUkFXl7vBS36y4Qi@aptenodytes>
-References: <cover.1697463708.git.mehdi.djait@bootlin.com>
- <c3cd9002b2db69a6fb155722adc8410cd6e1f9ab.1697463708.git.mehdi.djait@bootlin.com>
- <ZUNz_h1fn9RH9Uc5@aptenodytes>
- <ZUj/FQTyajQJrxoU@pc-70.home>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A98E250EA
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 15:39:39 +0000 (UTC)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF67FA
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 07:39:38 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1r01hI-0006JE-Bc; Mon, 06 Nov 2023 16:39:28 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1r01hH-0074nU-Dn; Mon, 06 Nov 2023 16:39:27 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1r01hH-00Dmog-4J; Mon, 06 Nov 2023 16:39:27 +0100
+Date: Mon, 6 Nov 2023 16:39:26 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: imx-pwm: Unify #pwm-cells for
+ all compatibles
+Message-ID: <20231106153926.dqvx56fegqpmw3k7@pengutronix.de>
+References: <20231106151326.812099-1-alexander.stein@ew.tq-group.com>
+ <20231106151326.812099-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jRydKXW23g1fMu1P"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4hmeir5x3txiqj45"
 Content-Disposition: inline
-In-Reply-To: <ZUj/FQTyajQJrxoU@pc-70.home>
-X-GND-Sasl: paul.kocialkowski@bootlin.com
+In-Reply-To: <20231106151326.812099-2-alexander.stein@ew.tq-group.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
---jRydKXW23g1fMu1P
-Content-Type: text/plain; charset=utf-8
+--4hmeir5x3txiqj45
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mehdi,
-
-On Mon 06 Nov 23, 15:58, Mehdi Djait wrote:
-> Hi Paul,
+On Mon, Nov 06, 2023 at 04:13:24PM +0100, Alexander Stein wrote:
+> Use #pwm-cells for all i.MX variants. Only fsl,imx1-pwm does not support
+> inverted PWM output. Keep it the same for consistency.
 >=20
-> thank you for the review!
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
 >=20
-> On Thu, Nov 02, 2023 at 11:03:42AM +0100, Paul Kocialkowski wrote:
-> > > +static int tw9900_write_reg(struct i2c_client *client, u8 reg, u8 va=
-l)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	ret =3D i2c_smbus_write_byte_data(client, reg, val);
-> >=20
-> > Is this an SMBUS device in particular? Or is there any reason to use th=
-e SMBUS
-> > API instead of the general I2C API?
-> >=20
->=20
-> I think I will keep using the SMBUS API here. The reason is in the
-> kernel documentation:
->=20
-> -------------------------------------------------------------------------=
--------
-> If you write a driver for some I2C device, please try to use the SMBus co=
-mmands=20
-> if at all possible (if the device uses only that subset of the I2C protoc=
-ol).=20
-> This makes it possible to use the device driver on both SMBus adapters an=
-d I2C=20
-> adapters (the SMBus command set is automatically translated to I2C on I2C=
-=20
-> adapters, but plain I2C commands can not be handled at all on most pure S=
-MBus=20
-> adapters).
-> -------------------------------------------------------------------------=
--------
->=20
-> And the vast majority of the drivers under /media/i2c are using the
-> SMBUS API.
+> diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml b/Documen=
+tation/devicetree/bindings/pwm/imx-pwm.yaml
+> index c01dff3b7f843..a84a240a61dc1 100644
+> --- a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> @@ -14,12 +14,10 @@ allOf:
+> =20
+>  properties:
+>    "#pwm-cells":
+> -    description: |
+> -      Should be 2 for i.MX1 and 3 for i.MX27 and newer SoCs. See pwm.yaml
+> -      in this directory for a description of the cells format.
+> -    enum:
+> -      - 2
+> -      - 3
+> +    description:
+> +      The only third cell flag supported by this binding is
+> +      PWM_POLARITY_INVERTED. fsl,imx1-pwm does not support this flags.
+> +    const: 3
 
-That is a good reason, so let's keep it that way then.
+You dropped the | from the description line, but with my understanding
+of yaml this should be fine.
 
-> > > +static void tw9900_fill_fmt(const struct tw9900_mode *mode,
-> > > +			    struct v4l2_mbus_framefmt *fmt)
-> > > +{
-> > > +	fmt->code =3D MEDIA_BUS_FMT_UYVY8_2X8;
-> > > +	fmt->width =3D mode->width;
-> > > +	fmt->height =3D mode->height;
-> > > +	fmt->field =3D V4L2_FIELD_NONE;
-> > > +	fmt->quantization =3D V4L2_QUANTIZATION_DEFAULT;
-> > > +	fmt->colorspace =3D V4L2_COLORSPACE_SMPTE170M;
-> > > +	fmt->xfer_func =3D V4L2_MAP_XFER_FUNC_DEFAULT(V4L2_COLORSPACE_SMPTE=
-170M);
-> > > +	fmt->ycbcr_enc =3D V4L2_MAP_YCBCR_ENC_DEFAULT(V4L2_COLORSPACE_SMPTE=
-170M);
-> > > +}
-> > > +
-> > > +static int tw9900_cfg_fmt(struct v4l2_subdev *sd,
-> >=20
-> > You might have to differentiate between set_fmt/get_fmt to return -EBUSY
-> > if streaming is on in set_fmt. However I understand it will just copy t=
-he
-> > current mode in both cases, but this might still be required to follow =
-v4l2
-> > semantics (please double-check).
-> >=20
->=20
-> This should be done in the driver calling the pad subdev_call set_fmt,
-> right ?
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
-Well the two things are distinct, even though it's not obvious to think abo=
-ut
-a case where you wouldn't have a video device to grab the frames.
-
-For instance you can see this being done here:
-https://elixir.bootlin.com/linux/latest/source/drivers/media/i2c/ov5648.c#L=
-2259
-
-I'm just not sure about what the V4L2 subdev API mandates. It would be usef=
-ul
-to find some piece of documentation that clarifies the requirement.
-
-Cheers,
-
-Paul
+Thanks
+Uwe
 
 --=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---jRydKXW23g1fMu1P
+--4hmeir5x3txiqj45
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVJBV0ACgkQ3cLmz3+f
-v9FwFggAkmEu8/zZmjJt0uuqaLlW5ilh1yfYyBAbinAXrrXXvKZLbwnZGl76b0s4
-Iuj1fF6Vwwidx2H6t8qkw1hbmUsUIp1f8fE5XKgTdJrGU54+sB7TGY/bOET4DH6S
-v5YD7r817UNAn7DnoEIfbxQefxGpbRVqc6y70diZAqgwet5HmJnuhobqFkOVuksS
-//AFxaYIi9CzT6DNrkaS0n+gX4FOx6AJzhHzFxJKe2nHvUY5X2FT5OH2uCrsNteo
-LwsTFyKGTy7RriIdgusMcK2sUdwtmsAk09XZvVtstaZIPUO80yYTlKeBTOfB6jYn
-JWaWT92Bu051DjWLC5NruF8F0dI0lg==
-=ZPJU
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVJCK4ACgkQj4D7WH0S
+/k5AWgf/TNn/SASCnyF9eHuY6Z9NqLqPNW2jli5o4YbL4+x2kGgt9SnHBKKLr/6G
+oXtNYH/N7E7t7L02lejEMeKfdRmh8w6xCGb3OcScOF5VzkTNXXqywimSB5dcAO1o
+ldNpprYBVOoUBawXnnc4kLhwnAm3cDjzv1PFTcezvqvS7Rwu6oc4bJ1M1Pbi5wZw
+M8w7Yzex41d+Vu6uEe9Kpeci0wMu2PoMBxvBKCqNDbXEfL9r7u5PIzYkXDhx7daw
+BYei1ViDxWTRB1WzzNzYIEj7rTTDGXorP9GEY6Gd9C7XJKvYgmkwwraG6i2ROS19
+b3u+YTRWULToG1MfelSbO55wOq+tDw==
+=iLvq
 -----END PGP SIGNATURE-----
 
---jRydKXW23g1fMu1P--
+--4hmeir5x3txiqj45--
 
