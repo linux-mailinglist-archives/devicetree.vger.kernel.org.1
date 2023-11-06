@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-14184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED657E2954
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:02:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A32D7E295F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 17:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 622B92811BC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:02:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C27A62811A7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2AA250FE;
-	Mon,  6 Nov 2023 16:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA0028E35;
+	Mon,  6 Nov 2023 16:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yDcxkfIn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KXqy1A4T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD297465
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 16:02:40 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24061107
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:02:39 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4084e49a5e5so40548525e9.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 08:02:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89CBB29400
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 16:04:19 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D208D51
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 08:04:17 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c503da4fd6so62848651fa.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 08:04:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699286557; x=1699891357; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+9b+WrpVJ5Bra4/8dNX9onA4RcJtXe4j7EycQNcq2/s=;
-        b=yDcxkfInypp6EsGgnI20nRuMkgYanDpi/ZqcBMi2wZLlK4ux399ZYLqp/oRI7j9vbl
-         4Vq0EiPgo2HUQh8tOHC8RJhw3u2EADK43EIfKotu9vaSiZCkmx2Lakh9pPudA7ExIbcO
-         kjsrCTql8PhclVVLTeqo1Vrg8+mBBiuoJCSBsWLN3VSDvZ8p+OtQGdtjstj+pcVSmis5
-         NeF1YV1h75M3sDnNT8cbUFRwx/yHb20jM2RjTiLpLPWAz0TyIXAcxr8LNd6OZe9L+xi4
-         yoazdrmNOshZ96J7R/JhNTaGh3ttT6ZYCVMU7xBygQ3z/zmPPOsCtKXzTzkTRvdIS13/
-         T8og==
+        d=linaro.org; s=google; t=1699286656; x=1699891456; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aH7QaIpa6g6T5bYkp64GaIwpentra1wGCZo7o0CJjFE=;
+        b=KXqy1A4TCAtMhlUwB3KMsA7wAEqAIjvzqWI+hjR9MAumr2z77bNiq/FFAC+v6mBntq
+         8YQ9/Qgo89oI9QoZgvcPTXD4p1MyX83zEllUYHqNTYVh+3V2dzeLr1pAs0N9ZHbMbeCt
+         fyTBAnPQFzkOlXw7y9w4qGp79HL9VNgEx0uq49w3bpzYzTWZ3R2YE3IuaONSymgnmApi
+         nRppJZYiyeYPy/R9BAcpFNRJhtBRS5btUTAbieSiLUawI9d1A0g5R0RcCK3se1s/VloS
+         ktPdgGAqdW9aNmKpZLw+nUdTzviXp7tif6wQNoqJJ5N8VjfDu1m4wzwSsHegKnRsE/3k
+         vSAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699286557; x=1699891357;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+9b+WrpVJ5Bra4/8dNX9onA4RcJtXe4j7EycQNcq2/s=;
-        b=bttPAWe6EHKLxKVTYbDyKSWRUt6XOExqsZb7U5on/uWSEM0HgbD4AGULvmXq7KD2cq
-         qba70mpIY0ex0Pw69BAhG4ZyzXYgCFj+OS1Ju170ilj32kr67ccR8mQkZe6S8vyKZ1g9
-         FstTXFo1Qrlp9uCfv4H6S+1uzD5/Dy8AlTQpcEUeGqHoZ1Sotb0XLlQ5jlEVkHcyDnaX
-         bstK35DrSYXUdgaHebA87GSw7YcSuU4o7dDFkZCJCpgQjBwqfxyHOiWbnhto2rB2zWQA
-         SNpyo1kalxocFKW4a4OZjc3C88fN0ayam9k3p/6GD1BWmMO3JVKCwHiftRumojpHF/TP
-         oy/Q==
-X-Gm-Message-State: AOJu0YzGX1dYcG3CXZPXctvNnQHeN08UxrbbXH/8RhNDO5c98Y7F3hF4
-	jNFvf21cozhc6ixHOdJA7WEewA==
-X-Google-Smtp-Source: AGHT+IFSjIBCq6IEeVd+jRNKgGBxZoq6cOWS+01kPWKw9GGWS2LVMBl4b6MFK3+CGY0XuHOoUi2KtA==
-X-Received: by 2002:a05:6000:1f83:b0:32f:84e3:9db5 with SMTP id bw3-20020a0560001f8300b0032f84e39db5mr19602538wrb.6.1699286557461;
-        Mon, 06 Nov 2023 08:02:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699286656; x=1699891456;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aH7QaIpa6g6T5bYkp64GaIwpentra1wGCZo7o0CJjFE=;
+        b=GnYtehtPBZFlfQ2Swak/+kWJhkv7bjiveaaVbKx7p2M6jnlHph12W/e2QDtO/BdxS5
+         Hg+PNK8laeAnYksdPFVjEpjExjY80JHvvnU+m3I7TnGR3ivIGOQsGTpzhDreOjcczqxk
+         zByJmYvbzoyqrmnvQpvgoXJi2b0kShCA/9TgYTGZYZ5Gx14pzYGxyQZkUykaAWLv05Xw
+         jyT+HmFXF6AkJD8BY3HWwZHTzwfm6n9aOzoFqx8XrhliDo88k15ybvnHP+x2tAit/k8+
+         JyTrfZWUYqQxz5vQrS8VKW14Mtu2u6cOtDebCE+Z3aWu9nrhHNvyUneQVnZO7BYX3iMv
+         AGHA==
+X-Gm-Message-State: AOJu0YwtjwwUa//0XPwbor1ou04aD/IO1pGlCHSGpU4Lt8DrjnkLtTM2
+	utcGaARpBavlpJQ+EoTbBSNt5A==
+X-Google-Smtp-Source: AGHT+IH5t9FnBmEkz2wT1SfYPCe5I/Y+MmcpJoUOokIajQH1qSYy7wk7dHmDi6zvpnnm80QedV7ufQ==
+X-Received: by 2002:a2e:9e4d:0:b0:2c5:d52:a08e with SMTP id g13-20020a2e9e4d000000b002c50d52a08emr22258707ljk.20.1699286655675;
+        Mon, 06 Nov 2023 08:04:15 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id g8-20020a5d4888000000b0032f7cc56509sm2203853wrq.98.2023.11.06.08.02.35
+        by smtp.gmail.com with ESMTPSA id g8-20020a5d4888000000b0032f7cc56509sm2203853wrq.98.2023.11.06.08.04.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Nov 2023 08:02:36 -0800 (PST)
-Message-ID: <757e9f3c-e70e-457e-a6d5-6d204b7294c5@linaro.org>
-Date: Mon, 6 Nov 2023 17:02:35 +0100
+        Mon, 06 Nov 2023 08:04:15 -0800 (PST)
+Message-ID: <12778a24-f73f-44da-b384-7ee06633500d@linaro.org>
+Date: Mon, 6 Nov 2023 17:04:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,6 +71,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix soundwire controllers node
  name
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
  <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
@@ -78,7 +80,7 @@ To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20231106-topic-sm8450-upstream-soundwire-bindings-fix-v1-1-41d4844a5a7d@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <757e9f3c-e70e-457e-a6d5-6d204b7294c5@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -123,16 +125,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231106-topic-sm8450-upstream-soundwire-bindings-fix-v1-1-41d4844a5a7d@linaro.org>
+In-Reply-To: <757e9f3c-e70e-457e-a6d5-6d204b7294c5@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/11/2023 16:58, Neil Armstrong wrote:
-> Fix the following dt bindings check:
-> arch/arm64/boot/dts/qcom/sm8450-hdk.dtb: soundwire-controller@31f0000: $nodename:0: 'soundwire-controller@31f0000' does not match '^soundwire(@.*)?$'
->         from schema $id: http://devicetree.org/schemas/soundwire/qcom,soundwire.yaml#
+On 06/11/2023 17:02, Krzysztof Kozlowski wrote:
+> On 06/11/2023 16:58, Neil Armstrong wrote:
+>> Fix the following dt bindings check:
+>> arch/arm64/boot/dts/qcom/sm8450-hdk.dtb: soundwire-controller@31f0000: $nodename:0: 'soundwire-controller@31f0000' does not match '^soundwire(@.*)?$'
+>>         from schema $id: http://devicetree.org/schemas/soundwire/qcom,soundwire.yaml#
+> 
+> Wait, how did you get this? There is no such pattern enforcement.
 
-Wait, how did you get this? There is no such pattern enforcement.
+Never mind, I found recent patch:
+https://lore.kernel.org/all/20231016155537.2973625-1-robh@kernel.org/
 
 Best regards,
 Krzysztof
