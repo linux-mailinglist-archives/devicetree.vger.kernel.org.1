@@ -1,158 +1,195 @@
-Return-Path: <devicetree+bounces-14089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C4C7E2075
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:53:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D93BD7E2083
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 12:55:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7DA91C209D4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:53:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FF40281170
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 11:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927FC1A5B8;
-	Mon,  6 Nov 2023 11:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37E61A5BB;
+	Mon,  6 Nov 2023 11:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="mn3ahO2O"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IxG8Zu4w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41731A5A4
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:53:51 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2083.outbound.protection.outlook.com [40.107.237.83])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD0EEA;
-	Mon,  6 Nov 2023 03:53:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j61vRowqoIzuBlZWrPl+lcan17UynL/8i7W8TMeUYk8R1XYTVQ7T+6oZ/NxZNlssNDtV8jWg0p3UBHWrgjX8tohj+wX5bxvh57OEahih6OvomhHPsKipkvmJYXU+m8D/mGgqYyKbL1AYM7vEOfCxWr6z9CX0JrliGykTBIk0KpseNAsBbiqt8MHxohmJ2dlF19GIEixYHsHpDLMzgSrBfRp2+VeNFWy1mFmvH09nVUtmBTFkeTb7jLBuKT+IccRyoHAYVnQ5s8NH3nmVZEDO2AyoqF0RKMRN2jBs+s6E1mu6cJqqAry/LKOUHICrj5feymVQG5AXUempYdDZVitcyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NxztdKt2LTnu6rdoHzDmCD0NVqNKmqsjzMvrtfnihNQ=;
- b=fY19fIo6oDcSBijP+HHqbOjc7Afaj2Z7242LARO99Qpw0hb4m/HDYKJC8KTMvpL0AIg8/qS9ABFC/k6Kj+WTI0gUyPsPzsNX0Lv82Z11iE+SVeDOjkNPPDmqsYll5r9m7/ATZyMy9AILQi963hT64SQiDWwKhwBcgHF54jC82In07Y5XtWVbZ/grBRfAiBpMYkZWcrFuRTjdmACtDG5dT+zvDJ3CeAmIyMUuske6kQY2sGoNdPb9f/SSrk9ltE8LVMb0PHNPVGOpYSLjMrXvaL6dvp2+EuomdOjXBimyIQKflQO1L6WA54SlvQ32jGYgJ9VS+8sgyBxbryHnLVYeoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NxztdKt2LTnu6rdoHzDmCD0NVqNKmqsjzMvrtfnihNQ=;
- b=mn3ahO2OYzAKEWxvpqrGGy6RjVJAxoBE6ySqZUU4Pt9QELKVT3vp4GZ9blMh4ai4mt8hmSZkWopDAn6Gk4DIDw6FOQRRNNiP2rvc0nA4HKVe/iC0uJIl9iXFnFQD8fbSHwjds+inHVYtXsgoxuM1bIKnxjpFJqqkC0EN3KbF8Qs=
-Received: from BL0PR0102CA0041.prod.exchangelabs.com (2603:10b6:208:25::18) by
- BN9PR12MB5356.namprd12.prod.outlook.com (2603:10b6:408:105::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Mon, 6 Nov
- 2023 11:53:48 +0000
-Received: from BL02EPF0001A105.namprd05.prod.outlook.com
- (2603:10b6:208:25:cafe::df) by BL0PR0102CA0041.outlook.office365.com
- (2603:10b6:208:25::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28 via Frontend
- Transport; Mon, 6 Nov 2023 11:53:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0001A105.mail.protection.outlook.com (10.167.241.137) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6977.16 via Frontend Transport; Mon, 6 Nov 2023 11:53:48 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Mon, 6 Nov
- 2023 05:53:46 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH] dt-bindings: soc: Add new board description for MicroBlaze V
-Date: Mon, 6 Nov 2023 12:53:40 +0100
-Message-ID: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121431A5A4
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 11:55:07 +0000 (UTC)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F4C7EA
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 03:55:05 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5a81ab75f21so52198127b3.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 03:55:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699271704; x=1699876504; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0lvjeJMZ5Z3vzScyAhd0JNzf6RjNdiewooYz+s8E+Mo=;
+        b=IxG8Zu4w5kG0OGqDQcEdggmwT4vP6Cm5BoFips/TLwicbfYV3tWCOK5ccoZH15ZhnQ
+         DsMvXsU+Y6NWDb6jGcpFErkL5pXsIjWokJwDnaLU/89DMLLOV2CrzubYkOOxnxwuJ5ug
+         mIg+qEzkAALxcwP97iWQNGQSVMoJx/0tWFT3q4WkqSIUCC6u/BT3uGUb0ElgO+sD6DJR
+         q/acNhBPsVa6zFcJ5+hCpacjI2ZU6kxXt3O1f4Iich3F2daFP5H4grYNl6GQJd7l6Ojj
+         kBJk05Le8TRpKUH020PT0oCcfK4UeAQeXKBTLVHO4e/GhOBi47tHNvwURXjonQkjdpil
+         CvZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699271704; x=1699876504;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0lvjeJMZ5Z3vzScyAhd0JNzf6RjNdiewooYz+s8E+Mo=;
+        b=ZuapHwFJcla2EAQmz1ExiV+6CQobZkwe+PMmbCL472Fb7MR/Q6m6j71H3uhIPuQjD3
+         IPKHKjE6LuBkqoJH87Odzaff9hRp5qYU+MUsontNW8aisIct7+X8e1CP1BwdLcGlJ60A
+         ptD0uMUJC77HKtf3eTyCmNk3qSyWVKR3a06GSR1C2uTQPg9Nl+dZDtr0IoIA/cJESZQe
+         Z8Q2c26QlAY9CWFCbz+viansV2qD6dAtLkDgRaEN3/myMxiBu6MS2/ccKEwbOeh+iH9e
+         sDP+5fMVSs2CrJfUqVEHO99gnRbeliAvxjTc/FtOplU/neoUuHtiu5nzfulDeLa/l20Z
+         0mlw==
+X-Gm-Message-State: AOJu0YwgORq3+kcMTqA6mnwl3HNs3rTDR+kjWbfv0Tcp01dyIPFDiG/o
+	/s9Cwo7+Bx+c2lGwSib12RYO8G5cMWo48K/zP6n7ZA==
+X-Google-Smtp-Source: AGHT+IFrUdolTDqB2qWVKUbHuQAih3w13pnTWXfUwjZW6gMNyXVS9vqD2MJyPXUfRGJsFfWDUDOyEH1iAEkw6Gph070=
+X-Received: by 2002:a0d:ebc5:0:b0:5a7:aa54:42b1 with SMTP id
+ u188-20020a0debc5000000b005a7aa5442b1mr10277254ywe.28.1699271704503; Mon, 06
+ Nov 2023 03:55:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1285; i=michal.simek@amd.com; h=from:subject:message-id; bh=rquOInBbWhUh7O0DOSCKM4I1RqSUPsURm6mD4B4bozY=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhlSPy4d/aT+d8Mvw/ZTyuL9NZ2tn8YaGKKXKXr70sz1Ds Slu3sczHbEsDIJMDLJiiizSNlfO7K2cMUX44mE5mDmsTCBDGLg4BWAis5MY5hlPkmJee1VzNU/U 8y1MHvbcr28svc0wv0jum8fZ+hmfHuqucljzn/F0luY/IQA=
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|BN9PR12MB5356:EE_
-X-MS-Office365-Filtering-Correlation-Id: a83d6757-2cbe-4b5a-bd1c-08dbdebf096a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	psQ0QtdDWf2zXc9wP94+6EDOALotEt3DeciwDVSQ9oFk7GV80mzit2d8XBMuWwbQvXWuTkRki47oeUwOvAGMWEYlOqZ2lb0iYNmOX4p16YR7A77gUt+xvvcbC9xMXyfb4+N8ZMQ9TCo1S8KtStRvzvxOTzq/aY2yfwtf4rx7LByUFWOPVllc+TjTwrk4BMCkS1ZicLSpjkd3z1HV1rIqBLfPikoXCkRJhGuIJwRz5JNbcqTYBgxGEi3zHXGAeSbXnDxB7JsUclx4+4q5rOIR6p5jsEHsZfnTWVjudOF85m16tJhVxCcUWomVWIldQy9Y6Dzkt+SAjqSzod3i5UUs3pS1a7eJPMO6m0JqYKlZYVA90p4y2a1LmNCt5jluF4b5mENwTcwVA5zoxfj5lzAE2kxyVrWKtVqq06r6k1lnoZgVtJABQ2bCW3Xgd4ykGD8iopmlPoqg3mbLbJMyD2qjVnI1wh99S5KKEhjeBZXBjdpiZeIaPyGlBCE3t6RR1oYOttDoqpedEUK9obntjJp3mI45SI+UFGZUCCWF9cbPWO3RqqAZmmIN/ugHlG6aMV/587cecCDFTrJ7UbCW2W5WxQqoH/mrnLSvcNb4zjATk5H8/SChwylE20r7utbtfZ5tDA+B8kvp3BZqXGhr7hWYPK8WBd3fOFvkxHd5WYUh0m7wH3bhMjhH7LPzkx57SmGW5rTKiA4UEyDsiGm4amwvLtL4WpCLfsapQpvsDHDOe+CRaDB+5vjeq9XtnHbQ9Uh398I10EUBuVO031gksM/IrIeel+sCFzE3DLB+5wMXsuBajNDXo37h+Hg7pUdwOunH
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(376002)(39860400002)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(82310400011)(46966006)(40470700004)(36840700001)(40480700001)(2906002)(356005)(4326008)(8676002)(8936002)(41300700001)(5660300002)(36860700001)(81166007)(86362001)(47076005)(40460700003)(426003)(336012)(82740400003)(70206006)(70586007)(44832011)(2616005)(110136005)(316002)(54906003)(6666004)(26005)(966005)(16526019)(478600001)(36756003)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2023 11:53:48.0698
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a83d6757-2cbe-4b5a-bd1c-08dbdebf096a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL02EPF0001A105.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5356
+References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
+ <20231103184655.23555-3-quic_kbajaj@quicinc.com> <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+ <1830fc44-7bac-4db5-af59-112410d73a64@linaro.org> <af05dbdb-21bf-34f0-e9b3-9f6b9a0c3115@quicinc.com>
+In-Reply-To: <af05dbdb-21bf-34f0-e9b3-9f6b9a0c3115@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 6 Nov 2023 13:54:52 +0200
+Message-ID: <CAA8EJpq89g9EeyKcogU+Mt9ie6Bk-rmgi=GqyycYBm_291i1Bw@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
+ rb3 board
+To: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Komal Bajaj <quic_kbajaj@quicinc.com>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_nainmeht@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
-It is hardware compatible with classic MicroBlaze processor. Processor can
-be used with standard AMD/Xilinx IPs including interrupt controller and
-timer.
+On Mon, 6 Nov 2023 at 13:41, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+>
+>
+> On 11/5/2023 6:38 PM, Krzysztof Kozlowski wrote:
+> > On 03/11/2023 23:22, Dmitry Baryshkov wrote:
+> >> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+> >>>
+> >>> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
+> >>> platform. QCM6490 is derived from SC7280 meant for various
+> >>> form factor including IoT.
+> >>>
+> >>> Supported features are, as of now:
+> >>> * Debug UART
+> >>> * eMMC (only in IDP)
+> >>> * USB
+> >>>
+> >
+> > ...
+> >
+> >>> +
+> >>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+> >>> new file mode 100644
+> >>> index 000000000000..01adc97789d0
+> >>> --- /dev/null
+> >>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+> >>
+> >> I have mixed feelings towards this file. Usually we add such 'common'
+> >> files only for the phone platforms where most of the devices are
+> >> common.
+> >> Do you expect that IDP and RB3 will have a lot of common code other
+> >> than these regulator settings?
+> >
+> > I agree here. What exactly is common in the real hardware between IDP
+> > and RB3? Commit msg does not explain it, so I do not see enough
+> > justification for common file. Just because some DTS looks similar for
+> > different hardware does not mean you should creat common file.
+>
+> @Dmitry/@Krzysztof,
+>
+> Thank you for reviewing the RFC, we wanted to continue the
+> suggestion/discussion given on [1] , where we discussed that this
+> qcm6490 is going to be targeted for IOT segment and will have different
+> memory map and it is going to use some of co-processors like adsp/cdsp
+> which chrome does not use.
+>
+> So to your question what is common between RB3 and IDP, mostly they will
+> share common memory map(similar to [2]) and regulator settings and both
+> will use adsp/cdsp etc., we will be posting the memory map changes as
+> well in coming weeks once this RFC is acked.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+Is the memory map going to be the same as the one used on Fairphone5?
 
- .../devicetree/bindings/soc/amd/amd.yaml      | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/amd/amd.yaml
+Are ADSP and CDSP physically present on sc7280?
 
-diff --git a/Documentation/devicetree/bindings/soc/amd/amd.yaml b/Documentation/devicetree/bindings/soc/amd/amd.yaml
-new file mode 100644
-index 000000000000..21adf28756fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/amd/amd.yaml
-@@ -0,0 +1,26 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/amd/amd.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AMD Platforms
-+
-+maintainers:
-+  - Michal Simek <michal.simek@amd.com>
-+
-+description: |
-+  AMD boards with MicroBlaze V SOC
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: AMD MicroBlaze V
-+        items:
-+          - const: amd,mbv
-+
-+additionalProperties: true
-+
-+...
+I think that your goal should be to:
+- populate missing device in sc7280.dtsi
+- maybe add qcm6490.dtsi which defines SoC-level common data (e.g. memory map)
+- push the rest to board files.
+
+I don't think that putting regulators to the common file is a good
+idea. Platforms will further change and limit voltage limits and
+modes, so they usually go to the board file.
+
+>
+>
+> Thanks,
+> Mukesh
+>
+> [1]
+> https://lore.kernel.org/linux-arm-msm/d97ebf74-ad03-86d6-b826-b57be209b9e2@quicinc.com/
+>
+> [2]
+> commit 90c856602e0346ce9ff234062e86a198d71fa723
+> Author: Douglas Anderson <dianders@chromium.org>
+> Date:   Tue Jan 25 14:44:20 2022 -0800
+>
+>      arm64: dts: qcom: sc7280: Factor out Chrome common fragment
+>
+>      This factors out a device tree fragment from some sc7280 device
+>      trees. It represents the device tree bits that should be included for
+>      "Chrome" based sc7280 boards. On these boards the bootloader (Coreboot
+>      + Depthcharge) configures things slightly different than the
+>      bootloader that Qualcomm provides. The modem firmware on these boards
+>      also works differently than on other Qulacomm products and thus the
+>      reserved memory map needs to be adjusted.
+>
+>      NOTES:
+>      - This is _not_ quite a no-op change. The "herobrine" and "idp"
+>        fragments here were different and it looks like someone simply
+>        forgot to update the herobrine version. This updates a few numbers
+>        to match IDP. This will also cause the `pmk8350_pon` to be disabled
+>        on idp/crd, which I belive is a correct change.
+>      - At the moment this assumes LTE skus. Once it's clearer how WiFi SKUs
+>        will work (how much of the memory map they can reclaim) we may add
+>        an extra fragment that will rejigger one way or the other.
+>
+>      Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>      Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>      Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+>      Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>      Link:
+> https://lore.kernel.org/r/20220125144316.v2.3.Iac012fa8d727be46448d47027a1813ea716423ce@changeid
+>
+>
+> >
+> > Best regards,
+> > Krzysztof
+> >
+
+
+
 -- 
-2.36.1
-
+With best wishes
+Dmitry
 
