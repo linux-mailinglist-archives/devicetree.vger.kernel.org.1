@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-13974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E870A7E1B68
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:40:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 956A07E1B6C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F04FD1C209D4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 07:40:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37917B20C76
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 07:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F84CDDBB;
-	Mon,  6 Nov 2023 07:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEF1DDC9;
+	Mon,  6 Nov 2023 07:41:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J9niIEDZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OYf0cjkd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D04DDAA
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 07:40:49 +0000 (UTC)
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752D5DB
-	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 23:40:47 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c50906f941so59444941fa.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 23:40:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3AC63C4
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 07:40:59 +0000 (UTC)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5762D51
+	for <devicetree@vger.kernel.org>; Sun,  5 Nov 2023 23:40:56 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c5629fdbf8so51596841fa.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Nov 2023 23:40:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699256445; x=1699861245; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699256455; x=1699861255; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JmqTrOYNtDPmBkwNAHZr1Cesr1m1VYhAo3UET3rJVVU=;
-        b=J9niIEDZr1NVInwskLB0ZqND+Rk3S6TyC1mOfD57km+n81+L/wg9eSoBOk20fH2CxY
-         QPf8hUMECfU+dpFMJaYEak0yNq8RiwdMKUNYTdHACaE3UWibPG3xZB6528rBz86Kr0ue
-         WpZmULbGueMObdn5/+25/Lccf16/4POWDqP4Y7s+/SogDFKMMlNirqQU2RJMnd5aFS/M
-         HjwxQ2nV2y31u5fm2D6JdazHsiuaUU5lAmx33HcyNNkmRIMyS1HMkByXeZ95xlwRr645
-         viNp9ho9/eN/d4HfndCZiaHPs9KLKRrPOfryf52hqZVDXjGrXHO/ar1Xibb2HVZNldFq
-         gPgg==
+        bh=zZtAMBRWYfS3ZEecMf62oA+uLVzuLeNQUxImYAURQqs=;
+        b=OYf0cjkd5oNUe2dQCdmVZX3cRGGMWsKvOQnmfzqXUg7kVXkhOIDFY4/9FR/IjfBUQO
+         x0+1djbsmSc94c5pSzowuKP4zijVxYKrbgSXvAvSHlPfgvp7AV0ZbrIv3sEV9H0rbPP4
+         Al6LOIbRofcemwZSiXfEuw3G4FgUQXx6V2noQW2i77hMaPDpmOO3FP+1qJFqCcQSErgL
+         gylGxhsjn73P489LsiyYk06f+5F6t1Im43ZxaOW3poaDRfBC5E3fOhORvMeRtdtMynG3
+         8Nhi7rNYCXMZSy2cQreaTC4ahkMOcXOCBIQZI9n4SKSXWVaZsDDaBGmNhBMO4SVVQ/nw
+         fBMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699256445; x=1699861245;
+        d=1e100.net; s=20230601; t=1699256455; x=1699861255;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JmqTrOYNtDPmBkwNAHZr1Cesr1m1VYhAo3UET3rJVVU=;
-        b=w13eK3XmUdxW8fRsSxdcORhubVE0IvCqa/dhojEPtAmDNujZzFkg3GXeNu20gzLAcK
-         4FE1bqEMO+5sncH+Pd2BNX+9CK24GU8FgAe7chws9fiieXF6Ndy13elyDVI82FlJZ50N
-         x2dQn+QqiTcDkV9fiWlWEqIBrDLX2C9JPDXxFCvmKODYetvJ6jcmHr8mO2/f4t2huQEy
-         m6l11peU9zHYTPPPamNvx1zRv9x57bkJePssalacXzUqBhuMWNENNT7v7iYpEjV8EPl7
-         Dct0+vha09fRl8uLfdBwYXK4/I0k0TjqTcGCBpT095w7huU9Am02T+SvB51KrexB8q5/
-         qPqg==
-X-Gm-Message-State: AOJu0YxYE55oWyWDSRT0BMClYv/6UgOUdnJQskHthuXtVlPmddDUDkjL
-	KIHwsNXgtEowLyKGF6iEIyPdhw==
-X-Google-Smtp-Source: AGHT+IEFy+GYGWH1jiJLdv5hdtx8dmCqwLxu2m++pzY2tw2EguQxIuOxCtYwk+/Trat0+SmHNFMqlw==
-X-Received: by 2002:a05:6512:33c3:b0:509:489f:d84e with SMTP id d3-20020a05651233c300b00509489fd84emr11939322lfg.37.1699256445742;
-        Sun, 05 Nov 2023 23:40:45 -0800 (PST)
+        bh=zZtAMBRWYfS3ZEecMf62oA+uLVzuLeNQUxImYAURQqs=;
+        b=FvJhMdwwSjpS18m9KR7f3q9oBnsRsaMbg+I23TS8XWQ4+CVLaM8KuK/Kn05cXC5hH3
+         kCH2zMObJqvNV/xdqP17GVYg0r08QOL4kLQdqXoHd8L5WWMXo9ZZ+zwQdQF1Z5CeJS5b
+         8gYlchCF+ymAhKitNI0idBAnWGbwfe5AjbQvqOwwcNPUhChWuQcVJD5NM8ZK1EDxgts3
+         3989Qk8YI1oFNtvSmVIz7H79is+kJVzSkBSiGgSd94I0hcyzlYyv43Yb+FCblYFwa3J4
+         LeU2VRq+YYKu09MEl7m+rXzQVZeVu7jl4Tad/V0Zs3bzkPFttbQPZW0Wb5rQbop8KuJo
+         zfgw==
+X-Gm-Message-State: AOJu0YxeoJZXXQmvSs1WerCm2mFxtdgeyW+YPMTNsax/B55EraGQxmfn
+	Bj3pkx1FtPMucsH+sL+1FNm60A==
+X-Google-Smtp-Source: AGHT+IFltuEmUKFldA0/lrmtPMQMOc8+F6NWE7QplkX7MaWYlFeyM1D6r7AVIHNWCdBztiuWwKxhSw==
+X-Received: by 2002:a2e:9d15:0:b0:2c6:ed8b:5f81 with SMTP id t21-20020a2e9d15000000b002c6ed8b5f81mr9536227lji.44.1699256455034;
+        Sun, 05 Nov 2023 23:40:55 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id e10-20020a05600c4e4a00b00406447b798bsm11486805wmq.37.2023.11.05.23.40.44
+        by smtp.gmail.com with ESMTPSA id e10-20020a05600c4e4a00b00406447b798bsm11486805wmq.37.2023.11.05.23.40.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Nov 2023 23:40:45 -0800 (PST)
-Message-ID: <8c6fc5db-520e-4fb0-9b15-647221a8bd84@linaro.org>
-Date: Mon, 6 Nov 2023 08:40:44 +0100
+        Sun, 05 Nov 2023 23:40:54 -0800 (PST)
+Message-ID: <a99c7041-f023-4bd4-8f8a-5a72a7b0c44c@linaro.org>
+Date: Mon, 6 Nov 2023 08:40:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] ARM: dts: qcom: apq8026-samsung-milletwifi: Enable
- charger
+Subject: Re: [PATCH 6/7] ARM: dts: qcom: apq8026-samsung-milletwifi: Enable
+ Wi-Fi and Bluetooth
 Content-Language: en-US
 To: Bryant Mairs <bryant@mai.rs>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -80,7 +80,7 @@ To: Bryant Mairs <bryant@mai.rs>, Andy Gross <agross@kernel.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-input@vger.kernel.org
 References: <20231105204759.37107-1-bryant@mai.rs>
- <20231105204759.37107-6-bryant@mai.rs>
+ <20231105204759.37107-7-bryant@mai.rs>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,20 +126,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231105204759.37107-6-bryant@mai.rs>
+In-Reply-To: <20231105204759.37107-7-bryant@mai.rs>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 05/11/2023 21:46, Bryant Mairs wrote:
-> Enable charging support.
+> Enable Wi-Fi and Bluetooth support for milletwifi. This device
+> uses the WCN3660A that is already supported, so it only needs to be
+> enabled in the DTS.
 > 
-> Signed-off-by: Bryant Mairs <bryant@mai.rs>
-> ---
->  .../qcom/qcom-apq8026-samsung-milletwifi.dts  | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
 
-Squash with new board. One logical change is to add new board. Not add
-incomplete board and immediately fix it.
+Squash.
 
 Best regards,
 Krzysztof
