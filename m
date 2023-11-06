@@ -1,39 +1,65 @@
-Return-Path: <devicetree+bounces-13979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-13980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364247E1B87
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:54:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 078017E1BA3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 09:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A3FF1C209BB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 07:54:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 298201C2096B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 08:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88969DF66;
-	Mon,  6 Nov 2023 07:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D90F9EA;
+	Mon,  6 Nov 2023 08:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ofG0kCc5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="leuYKql7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CA7F9C8
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 07:53:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E34C7C433C9;
-	Mon,  6 Nov 2023 07:53:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699257236;
-	bh=1lvQWl4CfXhED/r0/C0UpDtEwhQ6AYy9bJQipe3ejXU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ofG0kCc5SbUIgrx/dTCQm9AwEADHP45pCfaAeoAHH8SrbN+CBJTvbWqPm4ngtiuHI
-	 7LunnXGceG5/cVHyyBElA3a9+DvIBu2VAnpBLCeUHDI4q60GtoaXcl+qkNlq4dpxi+
-	 xsnjr/+xs9e67yR5AFhyaoXKOdQkbJQDs+CMzlmNzjFauP2dKjfi1UdAkwOkzDFoRg
-	 vdp5qz6hX8ceGdOilo8IS1krv0YiChtOdIUeJAVLoG98vxmWMqIAMXN5Tvl6ywyzOo
-	 HDWC9R3B0RevLw7TGbT0hPuqz8HDE8+f+lw4o/+N7fVsoq72EVqzmMEfcRfZesJuFD
-	 F+3kE6/iTAUfg==
-Message-ID: <ce2c96f9-7895-41fc-a5f9-617b79f64f96@kernel.org>
-Date: Mon, 6 Nov 2023 08:53:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CBFFBE9;
+	Mon,  6 Nov 2023 08:05:15 +0000 (UTC)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2129B;
+	Mon,  6 Nov 2023 00:05:13 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1cc2f17ab26so28332825ad.0;
+        Mon, 06 Nov 2023 00:05:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699257912; x=1699862712; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N09PcoGLLyn3TXL/ksZQjeaRYWu7Qp2r7aIZDVfbVi0=;
+        b=leuYKql707XRTHc7eu1GL0GDX5z9zHI2QPWFPwPnqzJgO6V1z4CN4g5ETXIVBXeoSb
+         8gFv8i6xjCSW63oyIx24MCBo0tnAthVtRXqFcffl7nfs/cmeM7n4REhWq3hvmSJ40AhO
+         8C/k5j3hxXVwP9Kood8+swU+AYCUPgWDMe9AbFrAYDacrcXSZQqzt+1zmfGzaj7APm3G
+         wqbwCu9y+M7i/ATb/LiEZSMtwKtXlIMGhFwQfKyiSPAwohIl78pNMeMEXaPTztguqGez
+         CxQcLvEoKWzZ33Rz/ZHWtZwz8SAaW8Og6Ts+ZyTZV4+YQUyw7eFr7UdmRC3xx4flQ1dK
+         If+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699257912; x=1699862712;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N09PcoGLLyn3TXL/ksZQjeaRYWu7Qp2r7aIZDVfbVi0=;
+        b=gdVgHVQ3URAd502olHioqGr81Cg7qNzZVzChA3OOyRUgJ1qMGXQDQhfWe+xuY0aUfd
+         aZ7qHfiOk9nJeomJXwSn7f1t2/olfDhaj8BaLoxK2UI41ga8HyZRbriLOHZNNG/KfJQt
+         YysIERZXdckJksz1HUXDEIpAhiSe33TeUxo9+IlvVK27kowcol7BacPXdysMSQjI5uRu
+         Je601wbsZI9xy4iCzG5B3LB8Kzw2WzpnEA1OHVBKRhOGTHFY5wToyQh0WnH6FWxzX7gg
+         M9Ty/CF0qH9HqSPfOB6wL4PGSd4wHRZmZPa41WMEVXApBhq8RXuMRlW8HMX55mGTevwI
+         nZAw==
+X-Gm-Message-State: AOJu0YzXCYmyyTtCTyyVO/V8RR7Kx1ZugJ6gI+uV6p2jksi4pC6OiPu5
+	G0bphqeJEVS1Im3RNgaJvA1VZuRzjc0=
+X-Google-Smtp-Source: AGHT+IFqpeSTFsJKgyrHyqKq/HcJ/QEldOhHc20I7bDjngPTcBCAQwbyj0MUWfRPDtcO27GGRkLooQ==
+X-Received: by 2002:a17:902:f093:b0:1cc:2f9d:6e9b with SMTP id p19-20020a170902f09300b001cc2f9d6e9bmr17972691pla.20.1699257912320;
+        Mon, 06 Nov 2023 00:05:12 -0800 (PST)
+Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id ji5-20020a170903324500b001cc32261bdfsm5315059plb.38.2023.11.06.00.05.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Nov 2023 00:05:11 -0800 (PST)
+Message-ID: <b635d3b1-8854-443f-ba16-8df1ff8f2019@gmail.com>
+Date: Mon, 6 Nov 2023 16:02:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -41,96 +67,311 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] PCI: mediatek-gen3: Add power and reset control
- feature for downstream component
+Subject: Re: [PATCH v1 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
+ mp5990
 Content-Language: en-US
-To: Jian Yang <jian.yang@mediatek.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bjorn Helgaas <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Jianjun Wang <jianjun.wang@mediatek.com>
-Cc: linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Chuanjia.Liu@mediatek.com, Jieyy.Yang@mediatek.com,
- Qizhong.Cheng@mediatek.com, Jianguo.Zhang@mediatek.com,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>
-References: <20231106061220.21485-1-jian.yang@mediatek.com>
- <20231106061220.21485-3-jian.yang@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231106061220.21485-3-jian.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: Guenter Roeck <linux@roeck-us.net>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231103080128.1204218-1-peteryin.openbmc@gmail.com>
+ <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
+ <c74beccd-26ea-4e63-906b-bd5508465cbc@roeck-us.net>
+From: PeterYin <peteryin.openbmc@gmail.com>
+In-Reply-To: <c74beccd-26ea-4e63-906b-bd5508465cbc@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 06/11/2023 07:12, Jian Yang wrote:
-> From: "jian.yang" <jian.yang@mediatek.com>
+
+
+Guenter Roeck 於 11/3/23 22:35 寫道:
+> On 11/3/23 01:01, Peter Yin wrote:
+>> Add support for mp5990 device from Monolithic Power Systems, Inc. (MPS)
+>> vendor. This is a Hot-Swap Controller.
+>>
+>> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+>> ---
+>>   Documentation/hwmon/index.rst  |  1 +
+>>   Documentation/hwmon/mp5990.rst | 84 +++++++++++++++++++++++++++++++
+>>   drivers/hwmon/pmbus/Kconfig    |  9 ++++
+>>   drivers/hwmon/pmbus/Makefile   |  1 +
+>>   drivers/hwmon/pmbus/mp5990.c   | 90 ++++++++++++++++++++++++++++++++++
+>>   5 files changed, 185 insertions(+)
+>>   create mode 100644 Documentation/hwmon/mp5990.rst
+>>   create mode 100644 drivers/hwmon/pmbus/mp5990.c
+>>
+>> diff --git a/Documentation/hwmon/index.rst 
+>> b/Documentation/hwmon/index.rst
+>> index 042e1cf9501b..8c70e10fc795 100644
+>> --- a/Documentation/hwmon/index.rst
+>> +++ b/Documentation/hwmon/index.rst
+>> @@ -157,6 +157,7 @@ Hardware Monitoring Kernel Drivers
+>>      mp2888
+>>      mp2975
+>>      mp5023
+>> +   mp5990
+>>      nct6683
+>>      nct6775
+>>      nct7802
+>> diff --git a/Documentation/hwmon/mp5990.rst 
+>> b/Documentation/hwmon/mp5990.rst
+>> new file mode 100644
+>> index 000000000000..8fc4e388ff7b
+>> --- /dev/null
+>> +++ b/Documentation/hwmon/mp5990.rst
+>> @@ -0,0 +1,84 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +
+>> +Kernel driver mp5990
+>> +====================
+>> +
+>> +Supported chips:
+>> +
+>> +  * MPS MP5990
+>> +
+>> +    Prefix: 'mp5990'
+>> +
+>> +  * Datasheet
+>> +
+>> +    Publicly available at the MPS website : 
+>> https://www.monolithicpower.com/en/mp5990.html
+>> +
+>> +Author:
+>> +
+>> +    Peter Yin <peteryin.openbmc@gmail.com>
+>> +
+>> +Description
+>> +-----------
+>> +
+>> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
+>> +MP5990 Hot-Swap Controller.
+>> +
+>> +Device complaint with:
 > 
-> Make MediaTek's controller driver capable of controlling power
-> supplies and reset pin of a downstream component in power-on and
-> power-off process.
+> compliant
 > 
-> Some downstream components (e.g., a WIFI chip) may need an extra
-> reset other than PERST# and their power supplies, depending on
-> the requirements of platform, may need to controlled by their
-> parent's driver. To meet the requirements described above, I add this
-> feature to MediaTek's PCIe controller driver as an optional feature.
+Thanks, I will fix it.
+>> +
+>> +- PMBus rev 1.3 interface.
+>> +
+>> +Device supports direct format for reading input voltage, output voltage,
+>> +output current, input power and temperature.
+>> +
+>> +The driver exports the following attributes via the 'sysfs' files
+>> +for input voltage:
+>> +
+>> +**in1_input**
+>> +
+>> +**in1_label**
+>> +
+>> +**in1_max**
+>> +
+>> +**in1_max_alarm**
+>> +
+>> +**in1_min**
+>> +
+>> +**in1_min_alarm**
+>> +
+>> +The driver provides the following attributes for output voltage:
+>> +
+>> +**in2_input**
+>> +
+>> +**in2_label**
+>> +
+>> +**in2_alarm**
+>> +
+>> +The driver provides the following attributes for output current:
+>> +
+>> +**curr1_input**
+>> +
+>> +**curr1_label**
+>> +
+>> +**curr1_alarm**
+>> +
+>> +**curr1_max**
+>> +
+>> +The driver provides the following attributes for input power:
+>> +
+>> +**power1_input**
+>> +
+>> +**power1_label**
+>> +
+>> +**power1_alarm**
+>> +
+>> +The driver provides the following attributes for temperature:
+>> +
+>> +**temp1_input**
+>> +
+>> +**temp1_max**
+>> +
+>> +**temp1_max_alarm**
+>> +
+>> +**temp1_crit**
+>> +
+>> +**temp1_crit_alarm**
+>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+>> index 270b6336b76d..65a116f7744d 100644
+>> --- a/drivers/hwmon/pmbus/Kconfig
+>> +++ b/drivers/hwmon/pmbus/Kconfig
+>> @@ -326,6 +326,15 @@ config SENSORS_MP5023
+>>         This driver can also be built as a module. If so, the module will
+>>         be called mp5023.
+>> +config SENSORS_MP5990
+>> +    tristate "MPS MP5990"
+>> +    help
+>> +      If you say yes here you get hardware monitoring support for MPS
+>> +      MP5990.
+>> +
+>> +      This driver can also be built as a module. If so, the module will
+>> +      be called mp5990.
+>> +
+>>   config SENSORS_MPQ7932_REGULATOR
+>>       bool "Regulator support for MPQ7932"
+>>       depends on SENSORS_MPQ7932 && REGULATOR
+>> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+>> index 84ee960a6c2d..212d9ca0acc9 100644
+>> --- a/drivers/hwmon/pmbus/Makefile
+>> +++ b/drivers/hwmon/pmbus/Makefile
+>> @@ -35,6 +35,7 @@ obj-$(CONFIG_SENSORS_MAX8688)    += max8688.o
+>>   obj-$(CONFIG_SENSORS_MP2888)    += mp2888.o
+>>   obj-$(CONFIG_SENSORS_MP2975)    += mp2975.o
+>>   obj-$(CONFIG_SENSORS_MP5023)    += mp5023.o
+>> +obj-$(CONFIG_SENSORS_MP5990)    += mp5990.o
+>>   obj-$(CONFIG_SENSORS_MPQ7932)    += mpq7932.o
+>>   obj-$(CONFIG_SENSORS_PLI1209BC)    += pli1209bc.o
+>>   obj-$(CONFIG_SENSORS_PM6764TR)    += pm6764tr.o
+>> diff --git a/drivers/hwmon/pmbus/mp5990.c b/drivers/hwmon/pmbus/mp5990.c
+>> new file mode 100644
+>> index 000000000000..c3b31af9f750
+>> --- /dev/null
+>> +++ b/drivers/hwmon/pmbus/mp5990.c
+>> @@ -0,0 +1,90 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>> +/*
+>> + * Driver for MPS MP5990 Hot-Swap Controller
+>> + */
+>> +
+>> +#include <linux/i2c.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/pmbus.h>
+>> +#include "pmbus.h"
+>> +
+>> +static int mp5990_read_byte_data(struct i2c_client *client, int page, 
+>> int reg)
+>> +{
+>> +    switch (reg) {
+>> +    case PMBUS_VOUT_MODE:
+>> +        /*
+>> +          Enforce VOUT direct format, C4h reg BIT9
+>> +          default val is not match vout format
+>> +         */
+> 
+> /*
+>   * Please use proper multi-line comments. Also, the problem here is 
+> that the
+>   * chip does not support the VOUT_MODE command, which should be mentioned.
+>   *
+>   * On top of that, overwriting PMBUS_VOUT_MODE result from the chip is 
+> only
+>   * necessary if the chip does not return an error when reading the value.
+>   * If that is the case, it should be mentioned in the comment. The above
+>   * does not explain why this would be needed, even if the command is not
+>   * (officially) supported by the chip. What does it return that requires
+>   * an overwrite ?
+>   */
+>
+The datasheet does not support the VOUT command, but the device responds 
+with a default value of 0x17. In the standard, 0x17 represents linear mode.
+>> +        return PB_VOUT_MODE_DIRECT;
+>> +    default:
+>> +        return -ENODATA;
+>> +    }
+>> +}
+>> +
+>> +static struct pmbus_driver_info mp5990_info = {
+>> +    .pages = 1,
+>> +    .format[PSC_VOLTAGE_IN] = direct,
+>> +    .format[PSC_VOLTAGE_OUT] = direct,
+>> +    .format[PSC_CURRENT_OUT] = direct,
+>> +    .format[PSC_POWER] = direct,
+>> +    .format[PSC_TEMPERATURE] = direct,
+>> +    .m[PSC_VOLTAGE_IN] = 32,
+>> +    .b[PSC_VOLTAGE_IN] = 0,
+>> +    .R[PSC_VOLTAGE_IN] = 0,
+>> +    .m[PSC_VOLTAGE_OUT] = 32,
+>> +    .b[PSC_VOLTAGE_OUT] = 0,
+>> +    .R[PSC_VOLTAGE_OUT] = 0,
+>> +    .m[PSC_CURRENT_OUT] = 16,
+>> +    .b[PSC_CURRENT_OUT] = 0,
+>> +    .R[PSC_CURRENT_OUT] = 0,
+>> +    .m[PSC_POWER] = 1,
+>> +    .b[PSC_POWER] = 0,
+>> +    .R[PSC_POWER] = 0,
+>> +    .m[PSC_TEMPERATURE] = 1,
+>> +    .b[PSC_TEMPERATURE] = 0,
+>> +    .R[PSC_TEMPERATURE] = 0,
+>> +    .func[0] =
+>> +        PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
+>> +        PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT |
+>> +        PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
+>> +    .read_byte_data = mp5990_read_byte_data,
+>> +};
+>> +
+>> +static int mp5990_probe(struct i2c_client *client)
+>> +{
+>> +    int ret;
+>> +
+>> +    ret = i2c_smbus_write_byte_data(client, PMBUS_VOUT_MODE,
+>> +                    PB_VOUT_MODE_DIRECT);
+> 
+> According to the datasheet, the chip does not support the VOUT_MODE
+> command. Supposedly, direct vs. linear mode is selected with bit 9
+> of EFUSE_CFG. Even if the chip happens to "silently" support the command,
+> the official command should be used to select the chip mode.
+> 
+> Next question: Why use direct mode ? Linear mode is supported and would
+> be much more flexible.
+>
+The MP5990, the VOUT linear mode is linear11, not linear16. Therefore, 
+we should enforce the VOUT in the direct format.
 
-NAK, strong NAK. This should be done in a generic way because nothing
-here is specific to Mediatek.
+>> +    if (ret < 0)
+>> +        return ret;
+>> +    return pmbus_do_probe(client, &mp5990_info);
+>> +}
+>> +
+>> +static const struct of_device_id mp5990_of_match[] = {
+>> +    { .compatible = "mps,mp5990" },
+>> +    {}
+>> +};
+>> +
+>> +static const struct i2c_device_id mp5990_id[] = {
+>> +    {"mp5990", 0},
+>> +    { }
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, mp5990_id);
+>> +
+>> +static struct i2c_driver mp5990_driver = {
+>> +    .driver = {
+>> +           .name = "mp5990",
+>> +           .of_match_table = of_match_ptr(mp5990_of_match),
+> 
+> Using of_match_ptr() will result in a build failure if CONFIG_OF=n.
+>
+Should I use .of_match_table = mp5990_of_match, ?
 
-You just implement power sequencing of devices through quirks specific
-to one controller.
-
-Work with others to provide common solution.
-https://lpc.events/event/17/contributions/1507/
-
-Best regards,
-Krzysztof
-
+>> +    },
+>> +    .probe = mp5990_probe,
+>> +    .id_table = mp5990_id,
+>> +};
+>> +module_i2c_driver(mp5990_driver);
+>> +
+>> +MODULE_AUTHOR("Peter Yin <peter.yin@quantatw.com>");
+>> +MODULE_DESCRIPTION("PMBus driver for MP5990 HSC");
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_IMPORT_NS(PMBUS);
+> 
 
