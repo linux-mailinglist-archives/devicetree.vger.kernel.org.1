@@ -1,76 +1,67 @@
-Return-Path: <devicetree+bounces-14169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC10D7E282B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:07:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DF1C7E2876
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 16:16:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B4D61F217A5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 15:07:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EB071C20B59
+	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 15:16:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD1E28DC3;
-	Mon,  6 Nov 2023 15:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F37428DD7;
+	Mon,  6 Nov 2023 15:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="djREu5+u"
+	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="QR638+RB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672EC28DBF
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 15:07:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929A9EA;
-	Mon,  6 Nov 2023 07:07:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699283263; x=1730819263;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HBna61a+8rIfPlKVfjaxNnwqpA7hlHdDJ4XgsD9bOdI=;
-  b=djREu5+uuaFaAJtenyzzjVnDSKWiX6bo98WbnTuHhiuxYr4XTZbfOaTg
-   7zF7c96cjrzreR7JtFZHIS0HiSvf/sMStkS/Jx8aziyHJKg0MVXz0AmpZ
-   pFitQ8eBQ4yplNnA66w8dKb++Ftmw9bL/W4/2fgJzbNlkWWRCvjuKJynw
-   A5uiUJl2d+u5nOpZbDA8w87IkLe/FcXePmT96LLHcdbh4QQO1Q0covurm
-   bdRYdVS2s5e1LXpA4OIO01tT99zlMC2pwkVQS6JpzWgU3HyknJYyrOTsr
-   aGFBZqHnCGsygrK9FqfOp4nQ/++nci5w8t7E3jX4imC7YACvPgtZNtnv4
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="388172677"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="388172677"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 07:06:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="1093805687"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; 
-   d="scan'208";a="1093805687"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 06 Nov 2023 07:06:40 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r01BV-0006Um-2K;
-	Mon, 06 Nov 2023 15:06:37 +0000
-Date: Mon, 6 Nov 2023 23:04:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Artur Weber <aweber.kernel@gmail.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Stanislav Jakubek <stano.jakubek@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A1C628E0D
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 15:16:34 +0000 (UTC)
+X-Greylist: delayed 349 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Nov 2023 07:16:31 PST
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFCD61B2
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 07:16:31 -0800 (PST)
+Date: Mon, 6 Nov 2023 16:10:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+	t=1699283440;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8IseJkdw2ZJ4O7QHhV2msEv4n+4BZunk72A86TeVvNk=;
+	b=QR638+RBEN1ZHFuLBGLLLrN272CNfvCND66lm1i+46gFJNp6vZDMtp8k1YAKbFmkRujKH+
+	r+YZGpmpBotCu6G1KjbUd8OaC7opFiOjxzygN0tcKlomn/80U23ZP18rLgK0w4t550aIgN
+	jHd1GSjM5rrNfyeFi3RTFyrvDTVcj8A=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Henrik Grimler <henrik@grimler.se>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Maksym Holovach <maksym.holovach.an.2022@lpnu.ua>,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com,
+	linus.walleij@linaro.org, wim@linux-watchdog.org,
+	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org,
+	arnd@arndb.de, olof@lixom.net, cw00.choi@samsung.com,
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+	semen.protsenko@linaro.org, saravanak@google.com,
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	Artur Weber <aweber.kernel@gmail.com>
-Subject: Re: [PATCH 5/6] regulator: bcm590xx: Add support for BCM59054
-Message-ID: <202311062220.2gWiPqvR-lkp@intel.com>
-References: <20231030-bcm59054-v1-5-3517f980c1e3@gmail.com>
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	kernel-team@android.com, linux-serial@vger.kernel.org,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH v2 00/20] Add minimal Tensor/GS101 SoC support and
+ Oriole/Pixel6 board
+Message-ID: <ZUkB6yVyxEmldVPs@samsung-a5>
+References: <20231010224928.2296997-1-peter.griffin@linaro.org>
+ <3d489d6c-2098-4f0c-9ec4-f6040665753e@lpnu.ua>
+ <CADrjBPp+fyNoPdix6=Wp4cDCRFq2Mui8NS6WENejcHn+H1M-jA@mail.gmail.com>
+ <48e1c0bd-9518-4927-b490-f3206256bbd4@lpnu.ua>
+ <c0b8f356-0f26-459d-850d-ec0fa1fd3987@linaro.org>
+ <CADrjBPqXQa0ZhM3YFToH5kZcOU27ZuSajm-gj5mWybGTRM++-Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,140 +70,113 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231030-bcm59054-v1-5-3517f980c1e3@gmail.com>
+In-Reply-To: <CADrjBPqXQa0ZhM3YFToH5kZcOU27ZuSajm-gj5mWybGTRM++-Q@mail.gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Artur,
+Hi all,
 
-kernel test robot noticed the following build warnings:
+On Mon, Nov 06, 2023 at 01:36:24PM +0000, Peter Griffin wrote:
+> Hi Krzysztof,
+> 
+> On Fri, 3 Nov 2023 at 14:49, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 03/11/2023 14:56, Maksym Holovach wrote:
+> > > Hi Peter,
+> > >
+> > > On 11/3/23 15:11, Peter Griffin wrote:
+> > >> Hi Maksym,
+> > >>
+> > >> Thanks for your feedback.
 
-[auto build test WARNING on 05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1]
+[ ... ]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Artur-Weber/dt-bindings-mfd-brcm-bcm59056-Convert-to-YAML/20231031-040046
-base:   05d3ef8bba77c1b5f98d941d8b2d4aeab8118ef1
-patch link:    https://lore.kernel.org/r/20231030-bcm59054-v1-5-3517f980c1e3%40gmail.com
-patch subject: [PATCH 5/6] regulator: bcm590xx: Add support for BCM59054
-config: powerpc64-allyesconfig (https://download.01.org/0day-ci/archive/20231106/202311062220.2gWiPqvR-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231106/202311062220.2gWiPqvR-lkp@intel.com/reproduce)
+> > >> I guess the same is also true for `axis,artpec8` and `tesla,fsd` SoCs.
+> > >> IMO the SoC compatible string should be uniquely identifying the actual
+> > >> SoC, not a close relative.
+> > >>
+> > >> Regarding product_id you are correct this reads 0x09845000 but even
+> > >> within Samsung Exynos family there are examples where the register
+> > >> value does not match the SoC compatible. For example Exynos850 SoC
+> > >> has a product ID value of "E3830". Where the Linux compatible is
+> > >> matching the Samsung marketing name, not the internal/outdated name.
+> > >
+> > > I did not know Exynos 850 is also not going under it's real name.
+> > > Ultimately, I believe all of those SoCs should go under their technical
+> > > name in the exynos/ directory.
+> >
+> > The initial technical name does not exist outside of vendor sources and
+> > part name. E.g. Winlink E850 board hardware manual calls it:
+> > "Samsung Exynos 850, S5E3830"
+> > and everywhere else Exynos 850 SoC is used.
+> >
+> > If you start calling it Exynos 3830, only me and Sam (who mainlined it)
+> > would know what is it. Everyone else, all users of kernel, would be
+> > confused.
+> >
+> > Therefore using well known final product name is for Exynos850 reasonable.
+> 
+> I agree that was the correct decision IMO, and it is a very similar
+> situation here
+> as far as I'm concerned. Most people don't know Tensor G1 SoC as Exynos
+> 9845.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311062220.2gWiPqvR-lkp@intel.com/
+I am not sure if Exynos 3830 and the like would be *that* confusing to
+users. It does not seem like the internal names (like Exynos 3830) are
+well guarded secret. The wikipedia article for Exynos even sort of
+gives these names for recent Exynos models, Exynos 850 is called
+S5E3830 for example, see section for Exynos 800:
+https://en.wikipedia.org/wiki/Exynos#Exynos_800_series
 
-All warnings (new ones prefixed by >>):
+Exynos 9845/S5E9845 is not mentioned in the article though.
 
->> drivers/regulator/bcm590xx-regulator.c:591:13: warning: variable 'n_regulators' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-     591 |         } else if (pmu->mfd->device_type == BCM59056_TYPE) {
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/regulator/bcm590xx-regulator.c:597:6: note: uninitialized use occurs here
-     597 |                                  n_regulators,
-         |                                  ^~~~~~~~~~~~
-   drivers/regulator/bcm590xx-regulator.c:591:9: note: remove the 'if' if its condition is always true
-     591 |         } else if (pmu->mfd->device_type == BCM59056_TYPE) {
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/regulator/bcm590xx-regulator.c:577:18: note: initialize the variable 'n_regulators' to silence this warning
-     577 |         int n_regulators;
-         |                         ^
-         |                          = 0
-   1 warning generated.
+[ ... ]
 
+> > > Another concern is that Google could in the future license other SoC: be
+> > > it Qualcomm, Nvidia or anything. If we put completely different hw under
+> > > google/ directory, does it really make sense? In that case, who'll
+> > > maintain the google/ directory? Exynos people? Qualcomm people if they
+> > > license it? Some other people?
+> >
+> > That's indeed a problem. Future Tesla SoC might have just few pieces
+> > similar to FSD. There would be no common SoC part, except the actual
+> > Tesla IP.
+> >
+> > Same for Google. Future GSXXX, if done by Qualcomm, will be absolutely
+> > different than GS101 and the only common part would be the TPU (Tensor).
+> 
+> There is more Google IP than TPU but I see the point you're making.
+> 
+> >
+> > So now let's decide what is the common denominator:
+> > 1. Core SoC architecture, like buses, pinctrl, clocks, timers, serial,
+> > and many IP blocks, which constitute 95% of Devicetree bindings and drivers,
+> > 2. The one, big piece made by Samsung's customer: TPU, NPU or whatever.
+> 
+> Or multiple big pieces of IP.
+> 
+> Does having it all under the exynos directory help you somehow with
+> maintenance? Has having Alim maintain tesla-fsd in a separate directory
+> caused issues?
+> 
+> I structured it like this as I thought it would scale better, and also
+> because it was
+> consistent with what you had accepted previously for other Exynos derived SoCs
+> like Tesla.
 
-vim +591 drivers/regulator/bcm590xx-regulator.c
+Another small benefit of putting GS101 in exynos/ is that it makes it
+easier for future contributors to find the code. If someone is for
+example trying to add mainline support for their Samsung Galaxy S21
+(Exynos 2100/Exynos 9840) and want to find somewhat related boards to
+draw inspiration from then it is not clear at a first glance that
+google/gs101-* are (somewhat) related.
 
-   569	
-   570	static int bcm590xx_probe(struct platform_device *pdev)
-   571	{
-   572		struct bcm590xx *bcm590xx = dev_get_drvdata(pdev->dev.parent);
-   573		struct bcm590xx_reg *pmu;
-   574		struct regulator_config config = { };
-   575		struct bcm590xx_info *info;
-   576		struct regulator_dev *rdev;
-   577		int n_regulators;
-   578		int i;
-   579	
-   580		pmu = devm_kzalloc(&pdev->dev, sizeof(*pmu), GFP_KERNEL);
-   581		if (!pmu)
-   582			return -ENOMEM;
-   583	
-   584		pmu->mfd = bcm590xx;
-   585	
-   586		platform_set_drvdata(pdev, pmu);
-   587	
-   588		if (pmu->mfd->device_type == BCM59054_TYPE) {
-   589			info = bcm59054_regs;
-   590			n_regulators = BCM59054_NUM_REGS;
- > 591		} else if (pmu->mfd->device_type == BCM59056_TYPE) {
-   592			info = bcm59056_regs;
-   593			n_regulators = BCM59056_NUM_REGS;
-   594		}
-   595	
-   596		pmu->desc = devm_kcalloc(&pdev->dev,
-   597					 n_regulators,
-   598					 sizeof(struct regulator_desc),
-   599					 GFP_KERNEL);
-   600		if (!pmu->desc)
-   601			return -ENOMEM;
-   602	
-   603		/* Register the regulators */
-   604		for (i = 0; i < n_regulators; i++, info++) {
-   605			pmu->desc[i].name = info->name;
-   606			pmu->desc[i].of_match = of_match_ptr(info->name);
-   607			pmu->desc[i].regulators_node = of_match_ptr("regulators");
-   608			pmu->desc[i].supply_name = info->vin_name;
-   609			pmu->desc[i].id = i;
-   610			pmu->desc[i].volt_table = info->volt_table;
-   611			pmu->desc[i].n_voltages = info->n_voltages;
-   612			pmu->desc[i].linear_ranges = info->linear_ranges;
-   613			pmu->desc[i].n_linear_ranges = info->n_linear_ranges;
-   614	
-   615			if (bcm590xx_reg_is_ldo(pmu, i) || \
-   616					bcm590xx_reg_is_gpldo(pmu, i)) {
-   617				pmu->desc[i].ops = &bcm590xx_ops_ldo;
-   618				pmu->desc[i].vsel_mask = BCM590XX_LDO_VSEL_MASK;
-   619			} else if (bcm590xx_reg_is_static(pmu, i)) {
-   620				pmu->desc[i].ops = &bcm590xx_ops_static;
-   621			} else {
-   622				pmu->desc[i].ops = &bcm590xx_ops_dcdc;
-   623				pmu->desc[i].vsel_mask = BCM590XX_SR_VSEL_MASK;
-   624			}
-   625	
-   626			if (bcm590xx_reg_is_vbus(pmu, i)) {
-   627				pmu->desc[i].enable_mask = BCM590XX_VBUS_ENABLE;
-   628			} else {
-   629				pmu->desc[i].vsel_reg = \
-   630					bcm590xx_get_vsel_register(pmu, i);
-   631				pmu->desc[i].enable_mask = \
-   632					bcm590xx_get_enable_mask(pmu, i);
-   633				pmu->desc[i].enable_is_inverted = true;
-   634			}
-   635			pmu->desc[i].enable_reg = \
-   636				bcm590xx_get_enable_register(pmu, i);
-   637			pmu->desc[i].type = REGULATOR_VOLTAGE;
-   638			pmu->desc[i].owner = THIS_MODULE;
-   639	
-   640			config.dev = pmu->mfd->dev;
-   641			config.driver_data = pmu;
-   642			if (bcm590xx_reg_is_secondary(pmu, i))
-   643				config.regmap = pmu->mfd->regmap_sec;
-   644			else
-   645				config.regmap = pmu->mfd->regmap_pri;
-   646	
-   647			rdev = devm_regulator_register(&pdev->dev, &pmu->desc[i],
-   648						       &config);
-   649			if (IS_ERR(rdev)) {
-   650				dev_err(bcm590xx->dev,
-   651					"failed to register %s regulator\n",
-   652					pdev->name);
-   653				return PTR_ERR(rdev);
-   654			}
-   655		}
-   656	
-   657		return 0;
-   658	}
-   659	
+[ ... ]
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> Thanks,
+> 
+> Peter.
+
+Best regards,
+Henrik Grimler
 
