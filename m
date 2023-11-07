@@ -1,141 +1,267 @@
-Return-Path: <devicetree+bounces-14281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C01CB7E364A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 09:06:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 432D87E3662
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 09:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECEF0B20B8D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 08:06:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95CF2B20B4C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 08:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3BC4DDD4;
-	Tue,  7 Nov 2023 08:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641D7D527;
+	Tue,  7 Nov 2023 08:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p+oR8st7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nNW3A0i7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8BBD301
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:06:13 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDB011F
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 00:06:11 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9df8d0c556eso313032366b.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 00:06:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699344370; x=1699949170; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=as2Hs0glk0n7cHtkFgTQ1tFtleiN9++r91ctEFoDXP4=;
-        b=p+oR8st79MrzRAPvJaS75mavxFAPilOkSGPs3f5ff1RfyJJRnFxEbI4z/3GUL4lWgS
-         RpNQuk9gz9HLPGuLVqzw+nuQFPV1LlF8fKJmQShLRi+7t4yDDKHB29TUN+vQzd0qi6er
-         hHA1/VTIqkAZS9ADHfzYCdIt1IV9wvCf3Rmb77hVRiAELfGarBtb76WB4qoJ4sT5UMUb
-         OnSSF0GkmGe2xnq1Wl7jz+LAct3xDDTa/MMICqX1PDnC2xsoVBGkoeXiwKHSWgLRdRyf
-         yJ6y5F4gN9xSpXdS4F+Vz8NRxyaEyZWHgwZN4+IW7Ukfb1v9VD5wqex4xIb1iznM5dDO
-         osZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699344370; x=1699949170;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=as2Hs0glk0n7cHtkFgTQ1tFtleiN9++r91ctEFoDXP4=;
-        b=lFHkxNhXkEp4gYH5LRmgoU8IX4iaH4V09b209nhnW4r1bVAhMsfovtiMpQa/kGnIdS
-         CNkDiS362pycfdambHJCbAo8ZTm2DgTOQJ0/0eOvevDilwnT4hr4niclFIA9ohbW6xqz
-         G10r5m6BkSc2FeRp6vB/6bPKUZQQjz4EbZrmpmKinzvO+BQwAfCAdVvz9E5vLq9mxu/0
-         wK7KvHk9+kLTKXfyJgjHbdgWiZwnbj8/TbNWio45kNYJkSLkUHCrZcamyV9Kkac+1CB1
-         ayl0m+CbK+VjBZBRdx+dkFK/4E/LAXKpw5HCw84K/s+vWybOMqVu4cqVeoN+dh2+YIYh
-         jsuQ==
-X-Gm-Message-State: AOJu0Yzn80PybPNK16gRhrfUf49LWyREh2utRd3CWYRrE877hIXplqRS
-	xoK7+8l+H3h/koZt3VtLepFG1A==
-X-Google-Smtp-Source: AGHT+IEXWKeoVqK+tM3neZNF4WUiuOTnADpR0mKaCSr0yoI7KtoFI/anbyZmHgCRxxGmHwBTT4uSYw==
-X-Received: by 2002:a17:907:9813:b0:9b2:babd:cd51 with SMTP id ji19-20020a170907981300b009b2babdcd51mr16130031ejc.5.1699344370040;
-        Tue, 07 Nov 2023 00:06:10 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id o10-20020a170906288a00b009d2526048acsm735447ejd.40.2023.11.07.00.06.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 00:06:09 -0800 (PST)
-Message-ID: <db0f47cc-5c44-4671-ab2b-cc8a315212eb@linaro.org>
-Date: Tue, 7 Nov 2023 09:06:07 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73C2D301;
+	Tue,  7 Nov 2023 08:11:16 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BA5E8;
+	Tue,  7 Nov 2023 00:11:14 -0800 (PST)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A77FM6P021374;
+	Tue, 7 Nov 2023 08:11:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=iAYtNOkAIRo3sKTrbX74WDoDS58vLaORXWI/W6hBHwg=;
+ b=nNW3A0i7ynLeTgm8OBRbZluYDDVmPc5pREEG1gQJVTirCiKULiwijJ34z1yv5lWuCEUg
+ 1B11OM0hLUyfgdEc2Um9LHn8YMdS8j6tbEvXqamk/toswKyN4wOwQON28FVhfggS/JWQ
+ p5GBy8FqxZ9iufUPqkzQi1QDjqEGWfI/zxhGNr1++jAWWCbEYAHuPbZTnpgtrzf3g7Y4
+ K0qNVRVSx5CbJ4jWRoMV16NQaTk71tzob8Cfqzbpb+ZAFJl39JParl5dEL0/arEHahKX
+ OulMAktK3hmKr6eOqCkJRjSuniWd0lWtAUiXoneVe2TD/HQfM9WgWUrhVUmbeEeoVPib 6g== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u71bra65q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Nov 2023 08:11:09 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A78B81G016652
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Nov 2023 08:11:08 GMT
+Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 7 Nov
+ 2023 00:11:03 -0800
+Message-ID: <62650f39-9703-fdc5-c72a-801b8e9f6470@quicinc.com>
+Date: Tue, 7 Nov 2023 13:40:46 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v1 1/3] ASoC: dt-bindings: mt8188-mt6359: add es8326 support
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
+ rb3 board
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Luca Weiss
+	<luca.weiss@fairphone.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Komal Bajaj
+	<quic_kbajaj@quicinc.com>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_nainmeht@quicinc.com>
+References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
+ <20231103184655.23555-3-quic_kbajaj@quicinc.com>
+ <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+ <1830fc44-7bac-4db5-af59-112410d73a64@linaro.org>
+ <af05dbdb-21bf-34f0-e9b3-9f6b9a0c3115@quicinc.com>
+ <CAA8EJpq89g9EeyKcogU+Mt9ie6Bk-rmgi=GqyycYBm_291i1Bw@mail.gmail.com>
+ <d5492e4d-6c70-7d6c-3f5b-a0b5d9266ab0@quicinc.com>
+ <CAA8EJpr+8MSEHbziTJhhnkeFhPemRARL_bpWEvHmVvAcbp++Cw@mail.gmail.com>
 Content-Language: en-US
-To: Rui Zhou <zhourui@huaqin.corp-partner.google.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, angelogioacchino.delregno@collabora.com,
- perex@perex.cz, allen-kh.cheng@mediatek.com,
- kuninori.morimoto.gx@renesas.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20231107031442.2768765-1-zhourui@huaqin.corp-partner.google.com>
- <20231107031442.2768765-2-zhourui@huaqin.corp-partner.google.com>
- <8a1f5d6e-3753-4ff5-94a6-dee7925b902b@linaro.org>
- <CABRjgzstdYKDCBDiD=ciwmP2X3CJ4PnDN7dLFF-F4yOVR6ex-g@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CABRjgzstdYKDCBDiD=ciwmP2X3CJ4PnDN7dLFF-F4yOVR6ex-g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <CAA8EJpr+8MSEHbziTJhhnkeFhPemRARL_bpWEvHmVvAcbp++Cw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: v74MEUtBvkeSxktRPiAdjAhVAfaFNBqt
+X-Proofpoint-GUID: v74MEUtBvkeSxktRPiAdjAhVAfaFNBqt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-06_15,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ malwarescore=0 spamscore=0 adultscore=0 suspectscore=0 bulkscore=0
+ lowpriorityscore=0 mlxlogscore=999 phishscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311070067
 
-On 07/11/2023 08:59, Rui Zhou wrote:
-> Thank you very much for your reminder, I will pay attention next time.
 
-Next time? Does it mean you are not going to fix the patch as I asked
-about the order?
 
-Best regards,
-Krzysztof
+On 11/7/2023 4:02 AM, Dmitry Baryshkov wrote:
+> On Mon, 6 Nov 2023 at 16:46, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 11/6/2023 5:24 PM, Dmitry Baryshkov wrote:
+>>> On Mon, 6 Nov 2023 at 13:41, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+>>>>
+>>>>
+>>>> On 11/5/2023 6:38 PM, Krzysztof Kozlowski wrote:
+>>>>> On 03/11/2023 23:22, Dmitry Baryshkov wrote:
+>>>>>> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>>>>>>>
+>>>>>>> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
+>>>>>>> platform. QCM6490 is derived from SC7280 meant for various
+>>>>>>> form factor including IoT.
+>>>>>>>
+>>>>>>> Supported features are, as of now:
+>>>>>>> * Debug UART
+>>>>>>> * eMMC (only in IDP)
+>>>>>>> * USB
+>>>>>>>
+>>>>>
+>>>>> ...
+>>>>>
+>>>>>>> +
+>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..01adc97789d0
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+>>>>>>
+>>>>>> I have mixed feelings towards this file. Usually we add such 'common'
+>>>>>> files only for the phone platforms where most of the devices are
+>>>>>> common.
+>>>>>> Do you expect that IDP and RB3 will have a lot of common code other
+>>>>>> than these regulator settings?
+>>>>>
+>>>>> I agree here. What exactly is common in the real hardware between IDP
+>>>>> and RB3? Commit msg does not explain it, so I do not see enough
+>>>>> justification for common file. Just because some DTS looks similar for
+>>>>> different hardware does not mean you should creat common file.
+>>>>
+>>>> @Dmitry/@Krzysztof,
+>>>>
+>>>> Thank you for reviewing the RFC, we wanted to continue the
+>>>> suggestion/discussion given on [1] , where we discussed that this
+>>>> qcm6490 is going to be targeted for IOT segment and will have different
+>>>> memory map and it is going to use some of co-processors like adsp/cdsp
+>>>> which chrome does not use.
+>>>>
+>>>> So to your question what is common between RB3 and IDP, mostly they will
+>>>> share common memory map(similar to [2]) and regulator settings and both
+>>>> will use adsp/cdsp etc., we will be posting the memory map changes as
+>>>> well in coming weeks once this RFC is acked.
+>>>
+>>> Is the memory map going to be the same as the one used on Fairphone5?
+>>
+>> No, Fairphone5 looks to be using chrome memory map and i suggested
+>> here to move them into sc7280.dtsi
+>>
+>> https://lore.kernel.org/lkml/d5d53346-ca3b-986a-e104-d87c37115b62@quicinc.com/
+>>
+>>>
+>>> Are ADSP and CDSP physically present on sc7280?
+>>
+>> Yes, they are present but not used.
+> 
+> So ADSP and CDSP should go into sc7280.dtsi. They will anyway have
+> status = "disabled";
+> 
+>>
+>>>
+>>> I think that your goal should be to:
+>>> - populate missing device in sc7280.dtsi
+>>> - maybe add qcm6490.dtsi which defines SoC-level common data (e.g. memory map)
+>>> - push the rest to board files.
+>>
+>> Agree to all of the point.
+>> We started with the same thought at[3] but it got lost in discussion
+>> due to its differentiation with mobile counter part(fairphone) which
+>> follow chrome memory map and hence we came up with qcm6490-iot-common.
+>> Do you think, qcm6490-iot.dtsi should be good ?
+> 
+> No. DT describes hardware, and -iot is not a hardware abstraction / unification.
+> If you consider your memory map to be generic for the qcm6490 (and FP5
+> being the only exception), add it to the qcm6490.dtsi (and let FP5
+> override it, like some of the phones do). If it can not be considered
+> generic for the SoC, then you have no other choice than to replicate
+> it to all board files.
 
+Thanks for the suggestion.
+Let me add @Luca here for information, if he want to share
+anything about qcm6490 fp5 memory map.
+
+-Mukesh
+> 
+>>
+>> [3]
+>> https://lore.kernel.org/linux-arm-msm/20231003175456.14774-3-quic_kbajaj@quicinc.com/
+>>
+>> -Mukesh
+>>>
+>>> I don't think that putting regulators to the common file is a good
+>>> idea. Platforms will further change and limit voltage limits and
+>>> modes, so they usually go to the board file.
+>>>
+>>>>
+>>>>
+>>>> Thanks,
+>>>> Mukesh
+>>>>
+>>>> [1]
+>>>> https://lore.kernel.org/linux-arm-msm/d97ebf74-ad03-86d6-b826-b57be209b9e2@quicinc.com/
+>>>>
+>>>> [2]
+>>>> commit 90c856602e0346ce9ff234062e86a198d71fa723
+>>>> Author: Douglas Anderson <dianders@chromium.org>
+>>>> Date:   Tue Jan 25 14:44:20 2022 -0800
+>>>>
+>>>>        arm64: dts: qcom: sc7280: Factor out Chrome common fragment
+>>>>
+>>>>        This factors out a device tree fragment from some sc7280 device
+>>>>        trees. It represents the device tree bits that should be included for
+>>>>        "Chrome" based sc7280 boards. On these boards the bootloader (Coreboot
+>>>>        + Depthcharge) configures things slightly different than the
+>>>>        bootloader that Qualcomm provides. The modem firmware on these boards
+>>>>        also works differently than on other Qulacomm products and thus the
+>>>>        reserved memory map needs to be adjusted.
+>>>>
+>>>>        NOTES:
+>>>>        - This is _not_ quite a no-op change. The "herobrine" and "idp"
+>>>>          fragments here were different and it looks like someone simply
+>>>>          forgot to update the herobrine version. This updates a few numbers
+>>>>          to match IDP. This will also cause the `pmk8350_pon` to be disabled
+>>>>          on idp/crd, which I belive is a correct change.
+>>>>        - At the moment this assumes LTE skus. Once it's clearer how WiFi SKUs
+>>>>          will work (how much of the memory map they can reclaim) we may add
+>>>>          an extra fragment that will rejigger one way or the other.
+>>>>
+>>>>        Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>>>>        Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>>>>        Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+>>>>        Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>>        Link:
+>>>> https://lore.kernel.org/r/20220125144316.v2.3.Iac012fa8d727be46448d47027a1813ea716423ce@changeid
+>>>>
+>>>>
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>
+>>>
+>>>
+> 
+> 
+> 
 
