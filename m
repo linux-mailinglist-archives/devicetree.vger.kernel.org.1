@@ -1,101 +1,108 @@
-Return-Path: <devicetree+bounces-14411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185677E44FE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:00:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 805937E451C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7B8928123D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:00:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF493B20A1F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CBE321AE;
-	Tue,  7 Nov 2023 16:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B37E321AF;
+	Tue,  7 Nov 2023 16:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="SVNFB5hd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4457830D1E;
-	Tue,  7 Nov 2023 16:00:17 +0000 (UTC)
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B2B7AA3;
-	Tue,  7 Nov 2023 08:00:16 -0800 (PST)
-Received: from i53875a93.versanet.de ([83.135.90.147] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1r0OUt-0005nU-7g; Tue, 07 Nov 2023 17:00:11 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: davem@davemloft.net, herbert@gondor.apana.org.au,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
- Corentin Labbe <clabbe@baylibre.com>
-Cc: ricardo@pardini.net, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH 4/6] ARM64: dts: rk356x: add crypto node
-Date: Tue, 07 Nov 2023 17:00:10 +0100
-Message-ID: <4334358.iZASKD2KPV@diego>
-In-Reply-To: <20231107155532.3747113-5-clabbe@baylibre.com>
-References:
- <20231107155532.3747113-1-clabbe@baylibre.com>
- <20231107155532.3747113-5-clabbe@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90C830D1E
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:01:32 +0000 (UTC)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B285D2BBCE;
+	Tue,  7 Nov 2023 08:01:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=xGRenfqQZdi2lQn1cViqb8siKduR9EzX8BshZ0vUjaM=; b=SVNFB5hdMjgsNycHzMQD7ahyNc
+	txV6przMnRMbx9KJk/GVy+uO0h0rRjl6P7fVRT8IwCE6mTccdilG376b8ilPXUue0/Z0ba15VeKWV
+	DSwxKfyD1f46xuUKfv1lMrC/cxXZxc7YlrewOo+ToZQERzccdLobEoQtmy2s+rQ7gSds=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:35618 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1r0OW4-0007eo-A3; Tue, 07 Nov 2023 11:01:24 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>
+Cc: hugo@hugovil.com,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Date: Tue,  7 Nov 2023 11:01:22 -0500
+Message-Id: <20231107160122.1648093-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+Subject: [PATCH] arm64: dts: imx8mn-var-som: reorder reg properties after compatible strings
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Am Dienstag, 7. November 2023, 16:55:30 CET schrieb Corentin Labbe:
-> Both RK3566 and RK3568 have a crypto IP handled by the rk3588 crypto driver so adds a
-> node for it.
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-please follow other commits in the subject line, i.e.:
+Move reg nodes after the compatible string, to follow DT conventions.
 
-"arm64: dts: rockchip: add rk356x crypto node"
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+index b8946edf317b..9124476500f8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som.dtsi
+@@ -60,8 +60,8 @@ &ecspi1 {
+ 
+ 	/* Resistive touch controller */
+ 	touchscreen@0 {
+-		reg = <0>;
+ 		compatible = "ti,ads7846";
++		reg = <0>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_restouch>;
+ 		interrupt-parent = <&gpio1>;
+@@ -292,8 +292,8 @@ &usdhc1 {
+ 	status = "okay";
+ 
+ 	brcmf: bcrmf@1 {
+-		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
++		reg = <1>;
+ 	};
+ };
+ 
 
-Thanks
-Heiko
-> 
-> Tested-by: Ricardo Pardini <ricardo@pardini.net>
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index 0964761e3ce9..c94a1b535c32 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -1070,6 +1070,18 @@ sdhci: mmc@fe310000 {
->  		status = "disabled";
->  	};
->  
-> +	crypto: crypto@fe380000 {
-> +		compatible = "rockchip,rk3568-crypto";
-> +		reg = <0x0 0xfe380000 0x0 0x2000>;
-> +		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru ACLK_CRYPTO_NS>, <&cru HCLK_CRYPTO_NS>,
-> +			 <&cru CLK_CRYPTO_NS_CORE>;
-> +		clock-names = "aclk", "hclk", "core";
-> +		resets = <&cru SRST_CRYPTO_NS_CORE>;
-> +		reset-names = "core";
-> +		status = "okay";
-> +	};
-> +
->  	i2s0_8ch: i2s@fe400000 {
->  		compatible = "rockchip,rk3568-i2s-tdm";
->  		reg = <0x0 0xfe400000 0x0 0x1000>;
-> 
-
-
-
+base-commit: be3ca57cfb777ad820c6659d52e60bbdd36bf5ff
+-- 
+2.39.2
 
 
