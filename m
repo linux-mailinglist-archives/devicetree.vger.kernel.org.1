@@ -1,267 +1,146 @@
-Return-Path: <devicetree+bounces-14282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 432D87E3662
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 09:11:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A15057E3676
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 09:14:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95CF2B20B4C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 08:11:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 584E9280EB3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 08:14:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641D7D527;
-	Tue,  7 Nov 2023 08:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 242E4D527;
+	Tue,  7 Nov 2023 08:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nNW3A0i7"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="0YNlzwK0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73C2D301;
-	Tue,  7 Nov 2023 08:11:16 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BA5E8;
-	Tue,  7 Nov 2023 00:11:14 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A77FM6P021374;
-	Tue, 7 Nov 2023 08:11:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=iAYtNOkAIRo3sKTrbX74WDoDS58vLaORXWI/W6hBHwg=;
- b=nNW3A0i7ynLeTgm8OBRbZluYDDVmPc5pREEG1gQJVTirCiKULiwijJ34z1yv5lWuCEUg
- 1B11OM0hLUyfgdEc2Um9LHn8YMdS8j6tbEvXqamk/toswKyN4wOwQON28FVhfggS/JWQ
- p5GBy8FqxZ9iufUPqkzQi1QDjqEGWfI/zxhGNr1++jAWWCbEYAHuPbZTnpgtrzf3g7Y4
- K0qNVRVSx5CbJ4jWRoMV16NQaTk71tzob8Cfqzbpb+ZAFJl39JParl5dEL0/arEHahKX
- OulMAktK3hmKr6eOqCkJRjSuniWd0lWtAUiXoneVe2TD/HQfM9WgWUrhVUmbeEeoVPib 6g== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u71bra65q-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40576DF44
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:14:23 +0000 (UTC)
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85258EA;
+	Tue,  7 Nov 2023 00:14:21 -0800 (PST)
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3A77tx7v026287;
+	Tue, 7 Nov 2023 09:14:10 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=Mikgiow
+	IDgDD0WkWQ6PwrxUlJkzGRTxRL9d3olsWFgM=; b=0YNlzwK0ND8LjDyOfEbDn8w
+	ybCcpN5cy+V0LMe9sd/F5Xkcl+esZijk79A16uW59j03ErNChWr85ZqWc4CRcWsR
+	PsJbc9PfLYGQ+w8BAn2xmLEFDwW5Xpif5snTv/ekXnxZG4hmfx4p2vF1mZEoBQdV
+	6cjNv5l9Q5mPDmuTGZOg5CKFDwIqM+FSTPSBhRbfP1Mt+g10yb+fSEC5BwZPw5uI
+	RTFmjeHV3a8265CsiwSooIohdhJPE81y4Y8NouTIhuKsn0rOGZD2A1PdpfrKmMmB
+	/p/jApycDkRhXe8JB0fiTDq5aTWfSOTe7clc5DaMO/3hmgYIUdVwPZ4I/jF1IaA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3u61sngqaq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Nov 2023 08:11:09 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A78B81G016652
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Nov 2023 08:11:08 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 7 Nov
- 2023 00:11:03 -0800
-Message-ID: <62650f39-9703-fdc5-c72a-801b8e9f6470@quicinc.com>
-Date: Tue, 7 Nov 2023 13:40:46 +0530
+	Tue, 07 Nov 2023 09:14:10 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5B42A10005E;
+	Tue,  7 Nov 2023 09:14:08 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 49F00212FB4;
+	Tue,  7 Nov 2023 09:14:08 +0100 (CET)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 7 Nov
+ 2023 09:14:08 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Alain Volmat <alain.volmat@foss.st.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Jacopo Mondi
+	<jacopo.mondi@ideasonboard.com>,
+        Kieran Bingham
+	<kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/3] media: i2c: gc2145: GC2145 sensor support
+Date: Tue, 7 Nov 2023 09:13:37 +0100
+Message-ID: <20231107081345.3172392-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
- rb3 board
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Luca Weiss
-	<luca.weiss@fairphone.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Komal Bajaj
-	<quic_kbajaj@quicinc.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_nainmeht@quicinc.com>
-References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
- <20231103184655.23555-3-quic_kbajaj@quicinc.com>
- <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
- <1830fc44-7bac-4db5-af59-112410d73a64@linaro.org>
- <af05dbdb-21bf-34f0-e9b3-9f6b9a0c3115@quicinc.com>
- <CAA8EJpq89g9EeyKcogU+Mt9ie6Bk-rmgi=GqyycYBm_291i1Bw@mail.gmail.com>
- <d5492e4d-6c70-7d6c-3f5b-a0b5d9266ab0@quicinc.com>
- <CAA8EJpr+8MSEHbziTJhhnkeFhPemRARL_bpWEvHmVvAcbp++Cw@mail.gmail.com>
-Content-Language: en-US
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <CAA8EJpr+8MSEHbziTJhhnkeFhPemRARL_bpWEvHmVvAcbp++Cw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: v74MEUtBvkeSxktRPiAdjAhVAfaFNBqt
-X-Proofpoint-GUID: v74MEUtBvkeSxktRPiAdjAhVAfaFNBqt
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.129.178.213]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-11-06_15,2023-11-02_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- malwarescore=0 spamscore=0 adultscore=0 suspectscore=0 bulkscore=0
- lowpriorityscore=0 mlxlogscore=999 phishscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2310240000 definitions=main-2311070067
 
+This serie adds support for the GalaxyCore GC2145 sensor.
+Initialization is based on scripts provided by GalaxyCore,
+allowing 3 fixed configurations supported for the time being.
 
+Minimum controls have been added in order to allow it to
+be successfully used with libcamera and dcmipp driver (under
+review) on STM32MP13 platform.
 
-On 11/7/2023 4:02 AM, Dmitry Baryshkov wrote:
-> On Mon, 6 Nov 2023 at 16:46, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
->>
->>
->>
->> On 11/6/2023 5:24 PM, Dmitry Baryshkov wrote:
->>> On Mon, 6 Nov 2023 at 13:41, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
->>>>
->>>>
->>>> On 11/5/2023 6:38 PM, Krzysztof Kozlowski wrote:
->>>>> On 03/11/2023 23:22, Dmitry Baryshkov wrote:
->>>>>> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
->>>>>>>
->>>>>>> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
->>>>>>> platform. QCM6490 is derived from SC7280 meant for various
->>>>>>> form factor including IoT.
->>>>>>>
->>>>>>> Supported features are, as of now:
->>>>>>> * Debug UART
->>>>>>> * eMMC (only in IDP)
->>>>>>> * USB
->>>>>>>
->>>>>
->>>>> ...
->>>>>
->>>>>>> +
->>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..01adc97789d0
->>>>>>> --- /dev/null
->>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
->>>>>>
->>>>>> I have mixed feelings towards this file. Usually we add such 'common'
->>>>>> files only for the phone platforms where most of the devices are
->>>>>> common.
->>>>>> Do you expect that IDP and RB3 will have a lot of common code other
->>>>>> than these regulator settings?
->>>>>
->>>>> I agree here. What exactly is common in the real hardware between IDP
->>>>> and RB3? Commit msg does not explain it, so I do not see enough
->>>>> justification for common file. Just because some DTS looks similar for
->>>>> different hardware does not mean you should creat common file.
->>>>
->>>> @Dmitry/@Krzysztof,
->>>>
->>>> Thank you for reviewing the RFC, we wanted to continue the
->>>> suggestion/discussion given on [1] , where we discussed that this
->>>> qcm6490 is going to be targeted for IOT segment and will have different
->>>> memory map and it is going to use some of co-processors like adsp/cdsp
->>>> which chrome does not use.
->>>>
->>>> So to your question what is common between RB3 and IDP, mostly they will
->>>> share common memory map(similar to [2]) and regulator settings and both
->>>> will use adsp/cdsp etc., we will be posting the memory map changes as
->>>> well in coming weeks once this RFC is acked.
->>>
->>> Is the memory map going to be the same as the one used on Fairphone5?
->>
->> No, Fairphone5 looks to be using chrome memory map and i suggested
->> here to move them into sc7280.dtsi
->>
->> https://lore.kernel.org/lkml/d5d53346-ca3b-986a-e104-d87c37115b62@quicinc.com/
->>
->>>
->>> Are ADSP and CDSP physically present on sc7280?
->>
->> Yes, they are present but not used.
-> 
-> So ADSP and CDSP should go into sc7280.dtsi. They will anyway have
-> status = "disabled";
-> 
->>
->>>
->>> I think that your goal should be to:
->>> - populate missing device in sc7280.dtsi
->>> - maybe add qcm6490.dtsi which defines SoC-level common data (e.g. memory map)
->>> - push the rest to board files.
->>
->> Agree to all of the point.
->> We started with the same thought at[3] but it got lost in discussion
->> due to its differentiation with mobile counter part(fairphone) which
->> follow chrome memory map and hence we came up with qcm6490-iot-common.
->> Do you think, qcm6490-iot.dtsi should be good ?
-> 
-> No. DT describes hardware, and -iot is not a hardware abstraction / unification.
-> If you consider your memory map to be generic for the qcm6490 (and FP5
-> being the only exception), add it to the qcm6490.dtsi (and let FP5
-> override it, like some of the phones do). If it can not be considered
-> generic for the SoC, then you have no other choice than to replicate
-> it to all board files.
+The sensor also supports Bayer formats however I removed
+them for the time being since they would require more
+controls to be exposed.  They will be added again later on.
 
-Thanks for the suggestion.
-Let me add @Luca here for information, if he want to share
-anything about qcm6490 fp5 memory map.
+v3: - fix copyright year
+    - add more gc2145_ func or variable prefixes
+    - removal of colorspace within struct gc2145_format
+    - use 1X16 formats since driver is supporting CSI-2 interface only
+    - use msleep instead of usleep_range
+    - add pm_runtime_ last_busy & autosuspend handling
+    - only start streaming AFTER applying ctrls
+    - correct RGB565 format to generate _LE instead of _BE
+    - perform pm_runtime configuration prior to v4l2_async_register_subdev_sensor
+    - remove frame_interval handling and expose HBLANK/VBLANK ctrls
+      instead
 
--Mukesh
-> 
->>
->> [3]
->> https://lore.kernel.org/linux-arm-msm/20231003175456.14774-3-quic_kbajaj@quicinc.com/
->>
->> -Mukesh
->>>
->>> I don't think that putting regulators to the common file is a good
->>> idea. Platforms will further change and limit voltage limits and
->>> modes, so they usually go to the board file.
->>>
->>>>
->>>>
->>>> Thanks,
->>>> Mukesh
->>>>
->>>> [1]
->>>> https://lore.kernel.org/linux-arm-msm/d97ebf74-ad03-86d6-b826-b57be209b9e2@quicinc.com/
->>>>
->>>> [2]
->>>> commit 90c856602e0346ce9ff234062e86a198d71fa723
->>>> Author: Douglas Anderson <dianders@chromium.org>
->>>> Date:   Tue Jan 25 14:44:20 2022 -0800
->>>>
->>>>        arm64: dts: qcom: sc7280: Factor out Chrome common fragment
->>>>
->>>>        This factors out a device tree fragment from some sc7280 device
->>>>        trees. It represents the device tree bits that should be included for
->>>>        "Chrome" based sc7280 boards. On these boards the bootloader (Coreboot
->>>>        + Depthcharge) configures things slightly different than the
->>>>        bootloader that Qualcomm provides. The modem firmware on these boards
->>>>        also works differently than on other Qulacomm products and thus the
->>>>        reserved memory map needs to be adjusted.
->>>>
->>>>        NOTES:
->>>>        - This is _not_ quite a no-op change. The "herobrine" and "idp"
->>>>          fragments here were different and it looks like someone simply
->>>>          forgot to update the herobrine version. This updates a few numbers
->>>>          to match IDP. This will also cause the `pmk8350_pon` to be disabled
->>>>          on idp/crd, which I belive is a correct change.
->>>>        - At the moment this assumes LTE skus. Once it's clearer how WiFi SKUs
->>>>          will work (how much of the memory map they can reclaim) we may add
->>>>          an extra fragment that will rejigger one way or the other.
->>>>
->>>>        Signed-off-by: Douglas Anderson <dianders@chromium.org>
->>>>        Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->>>>        Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
->>>>        Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>>>        Link:
->>>> https://lore.kernel.org/r/20220125144316.v2.3.Iac012fa8d727be46448d47027a1813ea716423ce@changeid
->>>>
->>>>
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>>
->>>
->>>
->>>
-> 
-> 
-> 
+v2: - split vendor-prefixes update into a separate commit
+    - correction into dt-bindings (description, const i2c address,
+      lowcase of supplies, node naming
+    - correct KConfig (avoid VIDEO_V4L2_SUBDEV_API, V4L2_FWNODE and add
+      V4L2_CCI_I2C)
+    - usage of v4l2-cci framework for accessing to device registers
+    - correction in power-on / power-off sequences and update
+      usleep_range delay
+    - detail MIPI configuration and stop register access to stop
+      streaming
+    - removal of SYSTEM_SLEEP_PM_OPS (and streaming variable)
+    - various small fixes, typo, oneline functions
+    - removal of useless HBLANK control considereing that RAW isn't
+      supported for the time being
+    - removal of RAW parts
+    - usage of dev_err_probe
+
+Alain Volmat (3):
+  dt-bindings: vendor-prefixes: Add prefix for GalaxyCore Inc.
+  dt-bindings: media: i2c: add galaxycore,gc2145 dt-bindings
+  media: i2c: gc2145: Galaxy Core GC2145 sensor support
+
+ .../bindings/media/i2c/galaxycore,gc2145.yaml |  104 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc2145.c                    | 1404 +++++++++++++++++
+ 6 files changed, 1529 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+ create mode 100644 drivers/media/i2c/gc2145.c
+
+-- 
+2.25.1
+
 
