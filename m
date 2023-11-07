@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2AF7E476B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89FB87E477C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:47:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4A68280CB6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:46:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44283280DD9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59D530D08;
-	Tue,  7 Nov 2023 17:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A7E321B3;
+	Tue,  7 Nov 2023 17:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fcHK/fOa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dzvKNjIE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D7328E29
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 17:46:10 +0000 (UTC)
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B566C1704
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 09:46:09 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so10187528a12.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 09:46:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317DE30CFD
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 17:47:38 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C14412C
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 09:47:37 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5441ba3e53cso7603363a12.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 09:47:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699379168; x=1699983968; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699379256; x=1699984056; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/phQShbLiFQzOkp+07zaJC2xh5u6a3NtoTaiSALQ5P4=;
-        b=fcHK/fOaNbl3C/dc5pZEhWJeSDGG0l6+co+/37RlQZKAdAUV4lSWx7mKNnzKdYVdu9
-         iqXxCkC+deaHgJdUKs11Dbmwxu1l+9qufQdAyVlmk2zu4+JryvxQlTwLPnZ1kdynmddl
-         YhQp+J+iY+cYbAMiEvtq4d6wRKZD6s1RtFsicuCq8ifLJ069jwpnBbsQA/yMVi7V58+y
-         kIUBeyPo7gkE4YRksLFyTtUloDDgWiTfLYxzf5OLhwEVhOAv4E6ut2aiZXbd3VnDZUet
-         uFU8qNqzbI58DeznhQfoehXHKJwmKq5/qwyactOQZOQtFZWj6QApVe4HsYWeeVJtQfGk
-         sY7w==
+        bh=WSmUDYezrRMsQxCZGKuJaXceyDK4AjhEJzY0uxoMoug=;
+        b=dzvKNjIEDQa0VtPhxodAhvWZTrhL3MiOgeyAlbQ8X22jE4ThK3KNbOrGUQ1V7ZQHSj
+         y0Y0+chu6OR5BN7QD/gZh21tJ5bTFOXunNP/43NzigaPrf4KpSIWd9g54ivhEkzJ40F8
+         ptfyQjy7HCaBNXr0BcPJd5JBIhlH/aKqOA5BpdksaR++Y0r93VuHOtOGqgM3ae1DiIQ6
+         tS5zohkmFkZwJauHHdpLtKZyvzwFLDrZQEfH4ZktGR6K6k2CmW7VYd9hE96DHPBKeUL/
+         XwaAMxwIpUmdCvmTeMe6ter5dMqMkZS6kBb7vKNTjNPP/AzJ5V3QlfdXjmYoV+W7UiQk
+         D0ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699379168; x=1699983968;
+        d=1e100.net; s=20230601; t=1699379256; x=1699984056;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/phQShbLiFQzOkp+07zaJC2xh5u6a3NtoTaiSALQ5P4=;
-        b=OBGKz61vmjNDqSAnEmL9586lU06ziRqKDgWKngVCEPrIB0eiwwfNmieAuvtko8wkI6
-         PXfQQHyFRjtNsxXG7kBPI6LAa0rysqno5WZ3WOoJn0WddpOM1XZblESBKWG+8wTfk7T3
-         pFpYAAfq36axxDxZQLid8K5o/wDnN/PFD6PNWPtkio0YjN7xoIl/gULwDtLekLWNoIKQ
-         PDWTFsXuU/uP5xxXFvLkZ8CMWhrWmo+EFtgzdoH7I7DOzks3L4BuhwWcZ3QZIMQFA+lI
-         seIO+lltWNEGs97Tev6tGnjqFfVbyua/masQiq/CpwAz0tZb6xngn57YliD3qZw2fXVJ
-         RecQ==
-X-Gm-Message-State: AOJu0YyQZ6hRwzRi/wlcBv9mHRf1Khzaiyz8tZvcqqNtKinBnFoLtg7c
-	ZQAPCnu1WCnWifaMrTd57pT/ZA==
-X-Google-Smtp-Source: AGHT+IE6U4ZE0F76e4gyMzHtlTFPYuHPtbb89mz7h0vnkXm+UZtdMOyfWkyQ1nm5YlDkhmOXKORO4A==
-X-Received: by 2002:a17:907:9603:b0:9d3:f436:6807 with SMTP id gb3-20020a170907960300b009d3f4366807mr18756477ejc.42.1699379168133;
-        Tue, 07 Nov 2023 09:46:08 -0800 (PST)
+        bh=WSmUDYezrRMsQxCZGKuJaXceyDK4AjhEJzY0uxoMoug=;
+        b=qxORUNwzSnradJlRzOLQU6SLiFOe0c5ih4AC2ANI49CFz/V972qB92H8Ayp9foWyIn
+         ApRG12FCgDw1406NkZ7NHfldjZVXM7xWz1uVuxsb4Vgp/PILKBm4Fl+mT649p8GNlrNt
+         QqjbusxTc0VsmHkFhv6bLwTnuU0zhUTAhhrai/oJX1jf9shKL9kWMum+F/xq+YaGy/cN
+         HxpBTztzJ8qCbCOzECxl2cdfZyMVVuLw45LPlDNXP1uegRkzfl7RplYGnL+Vd9Xm83TI
+         gIMKME/fyHD5jLgcyeXJDmBwtBBeJuh4X48d5lcgcRU1ZZM6J2oKkD14V707kuYyr0bG
+         KSLw==
+X-Gm-Message-State: AOJu0YzhRkO4m23xtgV1vD62upFslJL23RUB4GlHMztA3lveEVhsr0vk
+	0fCVIPAA8Um/lvUO0zjlv2xPMA==
+X-Google-Smtp-Source: AGHT+IHZt7HQgSljJImaRxyY9TMyowW0nqCjfkOaHJNL5xG/2Y1xYnrOOIiXaOSqEyyvpJZDCaX2wA==
+X-Received: by 2002:a17:907:3f03:b0:9be:aebc:d479 with SMTP id hq3-20020a1709073f0300b009beaebcd479mr16973571ejc.19.1699379255769;
+        Tue, 07 Nov 2023 09:47:35 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ox11-20020a170907100b00b009dd949b75c7sm1288243ejb.151.2023.11.07.09.46.06
+        by smtp.gmail.com with ESMTPSA id ox11-20020a170907100b00b009dd949b75c7sm1288243ejb.151.2023.11.07.09.47.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 09:46:07 -0800 (PST)
-Message-ID: <87762a47-9caf-435a-9b73-397384660b11@linaro.org>
-Date: Tue, 7 Nov 2023 18:46:06 +0100
+        Tue, 07 Nov 2023 09:47:35 -0800 (PST)
+Message-ID: <1d5d1357-0b53-4639-add9-2b3f38aae744@linaro.org>
+Date: Tue, 7 Nov 2023 18:47:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add asair
+Subject: Re: [PATCH 2/3] dt-bindings: trivial-devices: add asair,ags02ma
 Content-Language: en-US
 To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org
@@ -77,6 +77,7 @@ Cc: Rob Herring <robh+dt@kernel.org>,
  Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
  <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
 References: <20231107173100.62715-1-anshulusr@gmail.com>
+ <20231107173100.62715-2-anshulusr@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,36 +123,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107173100.62715-1-anshulusr@gmail.com>
+In-Reply-To: <20231107173100.62715-2-anshulusr@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/11/2023 18:30, Anshul Dalal wrote:
-> Aosong Electronic Co., LTD. is a supplier for MEMS sensors such as AHT20
-> temperature and humidity sensor under the name Asair
-
-The name of the company is Aosong Electronic or Asair? What does Asair
-stands for? Sensors name? Then it is not a vendor prefix.
-
+> Add bindings for Asair AGS02MA TVOC sensor to trivial devices.
+> 
+> The sensor communicates over i2c with the default address 0x1a.
+> TVOC values can be read in the units of ppb and ug/m^3 at register 0x00.
+> 
+> Datasheet:
+>   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
+> Product-Page:
+>   http://www.aosong.com/m/en/products-33.html
 > 
 > Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
 >  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 573578db9509..df3204f9dda6 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -143,6 +143,8 @@ patternProperties:
->      description: Artesyn Embedded Technologies Inc.
->    "^asahi-kasei,.*":
->      description: Asahi Kasei Corp.
-> +  "^asair,.*":
-> +    description: Aosong Electronic Co., Ltd.
->    "^asc,.*":
->      description: All Sensors Corporation
->    "^asix,.*":
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index cd58179ae337..9cd67b758a88 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -47,6 +47,8 @@ properties:
+>            - adi,lt7182s
+>              # AMS iAQ-Core VOC Sensor
+>            - ams,iaq-core
+> +            # TVOC (Total Volatile Organic Compounds) i2c sensor
+> +          - asair,ags02ma
+
+I think you miss VDD supply.
 
 Best regards,
 Krzysztof
