@@ -1,146 +1,257 @@
-Return-Path: <devicetree+bounces-14393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568B67E3FFC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 14:22:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A350B7E4153
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 14:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 873ED1C2093D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:22:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C57C31C20A82
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59102FE3E;
-	Tue,  7 Nov 2023 13:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7A130D1E;
+	Tue,  7 Nov 2023 13:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dWR92nuM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IjbOo4fa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5499D2FE3A
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 13:22:32 +0000 (UTC)
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE3C19E
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 05:22:30 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-32f7c44f6a7so3370877f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 05:22:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6093D182C8
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 13:57:23 +0000 (UTC)
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66987A2
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 05:57:21 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id 6a1803df08f44-66d87554434so39616906d6.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 05:57:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699363349; x=1699968149; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SEoushjES+DwBl1rVrReF3/FM581TjNrW33PzAuo7Lg=;
-        b=dWR92nuMoLw7iRexaGAhx1Em8Dz/tRGy3BOJ2EJ0RxeoUnoHfmT2g0QwVdJrxKEzJ9
-         5+qgAWk7dhiTDCK6OmNyOY3cl3NCHUmYlRXI+VbcBTuAXiKPsy8TvJE7JffcaxNTz+J6
-         0fncYkB1uKlDbMjLsTwfZQZJ/X8kPqSuZpMiTPVa+pgDqfSA5Pli5gZq3I5fbQb55vRu
-         6yDvALIgGpvZkmn3XmruIPs+L281gy4HuEifLOUcfv/OqNqIYab6OjL3veBOUcC7fr5S
-         TBRuXmFePO/mc4es1ZBVl4ZkP0xiDSustQdUw3TH3S4F3kzbwsTFBubSsvmflZTIViEA
-         gTPg==
+        d=linaro.org; s=google; t=1699365440; x=1699970240; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CbqpJ5gw9GOJ91Wt05ZBQ3B3ajCS3+ZL+yYMKlVS/7w=;
+        b=IjbOo4faoEMViNBUpWlV1QZx/HopQt16gv26gV9X86KEP+BznglaZRA2Kyg+2RcgIa
+         kB2tYLVfGWnyV1RRKFQgjLg4FIFYiYYLL808Vj7ABZrkZhv7UjnCvy8zIFHYlfzFCjEr
+         6f3AyfnEoZNDcEWae0QE/xQJkjv3nspH8oUtzJ6qDyVuKsc680CMk+LS1RsSOdromTek
+         w0RTpbaWmoYMiPXafccIL482Sg+cXP06FSClyO2WvGrRCBq4u4m8v7BSRuqnJeT7fAOb
+         nhMlVfrKYvTBcEHYLbHT1Mi+chI1SEcRmgS9xkx/cM7TgmPOv+8qOiPhwJBvz/KGVDEg
+         GBHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699363349; x=1699968149;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SEoushjES+DwBl1rVrReF3/FM581TjNrW33PzAuo7Lg=;
-        b=W3IxAcqJhcNJrmTRmF9hdsUbD1aBx8oWghqKROKwTKSViRIlgGYDoosJvxhCRHkUTM
-         /ECP0Ep9du0FJoGbKyWdSbkUVlI5QlVLMZZJhKw+3DbRgMPe/oKhVd5v1K4/O78H/WPJ
-         6ygLrzJs3NyMeJOVYq4VN8FRVJY3YqaOpdr7V+o9tD6g+8bPhI6fUhDxuIUnNVGHrFiq
-         ZXZrFYpTOy1THqkes8GGYljKqan+g1W/ajFaVPrXL1TzGIBO+pUF7u93UTJLF0ZJGGjp
-         9n39QRs1bM0qaLra9cHHnox5hZcqSze7VRNZiTjFlRmn2wB20tsDFlK7Z5p1HE1X8uaf
-         IMJQ==
-X-Gm-Message-State: AOJu0YxAjZaMbW+zw+Hi1AaUd4hB61kVGE0BLtawtjAkmKD4V9NdHv6k
-	Mu5JaYma7TbKh9wrnBZpv7CiNtWeq4x5SiSf6H8=
-X-Google-Smtp-Source: AGHT+IE6cGqsqD7zKCvSSRwih0X3B/WKbg0N1PfNpI+XprBvAyMe9pAacbyQuX4VAT3Ak+GVMC7g8g==
-X-Received: by 2002:a05:6000:1842:b0:32f:73d2:f196 with SMTP id c2-20020a056000184200b0032f73d2f196mr24662335wri.35.1699363349280;
-        Tue, 07 Nov 2023 05:22:29 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id a1-20020adfe5c1000000b0032f7cfac0fesm2357936wrn.51.2023.11.07.05.22.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 05:22:28 -0800 (PST)
-Message-ID: <25ba13d7-cc84-49fc-a220-1c53c1004634@linaro.org>
-Date: Tue, 7 Nov 2023 14:22:27 +0100
+        d=1e100.net; s=20230601; t=1699365440; x=1699970240;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CbqpJ5gw9GOJ91Wt05ZBQ3B3ajCS3+ZL+yYMKlVS/7w=;
+        b=jzzl6tJaJyrqAwmcUVXphZ22L4w0XXCBoOdXxJVlCEV6LFbVK6rVG3KgCx1kTiiPqG
+         B7Qrim0lPEwmBdChQJpbqtJ+XJ30PYylN6MR2+f3SoJCbvzho0q/AHCHaL3gtXPM7Ru4
+         2DmSSgPP0qnXDaL+1+ESksfgQ1g4St8XO+RDALW07v0HVwrgK/DLWNLiCqEvCpxUaId8
+         xIGqfeykCMgd7K+H9OUC+B/k4k545Q4p6lqJXMVGAVBU5a1OcnG9sw8UEYEkgoLVzRV5
+         uLOE+xzaTaOmJ4J9OoFb/sepCe2rV5NJ8apqSOLfmQU4HRpm0TlxCzk5mwdSs9A3yN9U
+         jxYQ==
+X-Gm-Message-State: AOJu0YzzirWn2oMfn4Tps5Gm7uTqls29SpUFnHKdoJ66F9nosxaAZFSW
+	o4ThuACOn4aTx1iZT4VeeUyoMVYT5vTXpVAMKo2J/A==
+X-Google-Smtp-Source: AGHT+IFPmCDJWmXuqEspf2Hkzm+uYMa/h3WFcFn4tmvryaRRUPo6gpp0HW4f25qoMF9Xg4paJyLmxWpEpUjIXDfQnzY=
+X-Received: by 2002:a05:6214:529b:b0:66d:3474:a93a with SMTP id
+ kj27-20020a056214529b00b0066d3474a93amr37508496qvb.30.1699365440438; Tue, 07
+ Nov 2023 05:57:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: hmc425a: add entry for ADRF5740
- Attenuator
-Content-Language: en-US
-To: Ana-Maria Cusco <anamaria.cuscoo@gmail.com>,
- Ana-Maria Cusco <ana-maria.cusco@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231107132118.1165494-1-anamaria.cuscoo@gmail.com>
- <20231107132118.1165494-3-anamaria.cuscoo@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107132118.1165494-3-anamaria.cuscoo@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-11-peter.griffin@linaro.org> <aae4e6cd-dcfc-442d-9ed7-d5a73c419ba8@kernel.org>
+In-Reply-To: <aae4e6cd-dcfc-442d-9ed7-d5a73c419ba8@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 7 Nov 2023 13:57:09 +0000
+Message-ID: <CADrjBPrUsSigThoLU9thmZiaG4690B9-BcZYrBn44K9Fc8z3vg@mail.gmail.com>
+Subject: Re: [PATCH v3 10/20] clk: samsung: clk-gs101: Add cmu_top registers,
+ plls, mux and gates
+To: Chanwoo Choi <chanwoo@kernel.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/11/2023 14:21, Ana-Maria Cusco wrote:
-> From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
-> 
-> The ADRF5740 is a silicon, 4-bit digital attenuator with 22 dB
-> attenuation control range in 2 dB steps.
-> 
-> Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
-> ---
+Hi Chanwoo,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for your review!
 
-Best regards,
-Krzysztof
+On Wed, 18 Oct 2023 at 17:51, Chanwoo Choi <chanwoo@kernel.org> wrote:
+>
+> Hi Peter,
+>
+> On 23. 10. 12. 03:48, Peter Griffin wrote:
+> > CMU_TOP is the top level clock management unit which contains PLLs, muxes
+> > and gates that feed the other clock management units.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  drivers/clk/samsung/Kconfig     |    9 +
+> >  drivers/clk/samsung/Makefile    |    2 +
+> >  drivers/clk/samsung/clk-gs101.c | 1551 +++++++++++++++++++++++++++++++
+> >  3 files changed, 1562 insertions(+)
+> >  create mode 100644 drivers/clk/samsung/clk-gs101.c
+> >
+> > diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+> > index 76a494e95027..14362ec9c543 100644
+> > --- a/drivers/clk/samsung/Kconfig
+> > +++ b/drivers/clk/samsung/Kconfig
+> > @@ -12,6 +12,7 @@ config COMMON_CLK_SAMSUNG
+> >       select EXYNOS_5410_COMMON_CLK if ARM && SOC_EXYNOS5410
+> >       select EXYNOS_5420_COMMON_CLK if ARM && SOC_EXYNOS5420
+> >       select EXYNOS_ARM64_COMMON_CLK if ARM64 && ARCH_EXYNOS
+> > +     select GOOGLE_GS101_COMMON_CLK if ARM64 && ARCH_GOOGLE_TENSOR
+> >       select TESLA_FSD_COMMON_CLK if ARM64 && ARCH_TESLA_FSD
+> >
+> >  config S3C64XX_COMMON_CLK
+> > @@ -95,6 +96,14 @@ config EXYNOS_CLKOUT
+> >         status of the certains clocks from SoC, but it could also be tied to
+> >         other devices as an input clock.
+> >
+> > +config GOOGLE_GS101_COMMON_CLK
+> > +     bool "Google gs101 clock controller support" if COMPILE_TEST
+> > +     depends on COMMON_CLK_SAMSUNG
+> > +     depends on EXYNOS_ARM64_COMMON_CLK
+> > +     help
+> > +       Support for the clock controller present on the Google gs101 SoC.
+> > +       Choose Y here only if you build for this SoC.
+> > +
+>
+> (snip)
+>
+> > +
+> > +/* gs101 */
+> > +static const struct samsung_mux_clock cmu_top_mux_clks[] __initconst = {
+> > +     /* CMU_TOP_PURECLKCOMP */
+> > +     MUX(CLK_MOUT_SHARED0_PLL, "mout_shared0_pll", mout_shared0_pll_p,
+> > +         PLL_CON0_PLL_SHARED0, 4, 1),
+> > +     MUX(CLK_MOUT_SHARED1_PLL, "mout_shared1_pll", mout_shared1_pll_p,
+> > +         PLL_CON0_PLL_SHARED1, 4, 1),
+> > +     MUX(CLK_MOUT_SHARED2_PLL, "mout_shared2_pll", mout_shared2_pll_p,
+> > +         PLL_CON0_PLL_SHARED2, 4, 1),
+> > +     MUX(CLK_MOUT_SHARED3_PLL, "mout_shared3_pll", mout_shared3_pll_p,
+> > +         PLL_CON0_PLL_SHARED3, 4, 1),
+> > +     MUX(CLK_MOUT_SPARE_PLL, "mout_spare_pll", mout_spare_pll_p,
+> > +         PLL_CON0_PLL_SPARE, 4, 1),
+> > +
+> > +     /* BUS0 */
+> > +     MUX(CLK_MOUT_BUS0_BUS, "mout_cmu_bus0_bus", mout_cmu_bus0_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_BUS0_BUS, 0, 2),
+> > +     MUX(CLK_MOUT_CMU_BOOST, "mout_cmu_boost", mout_cmu_cmu_boost_p,
+>
+> In order to keep the consistent naming style,
+> I think that need to change from 'mout_cmu_boost' to 'mout_cmu_cmu_boost'.
 
+Yes, that's a good point, and a good spot! Will fix it in v4.
+
+>
+> > +         CLK_CON_MUX_MUX_CLKCMU_CMU_BOOST, 0, 2),
+> > +
+> > +     /* BUS1 */
+> > +     MUX(CLK_MOUT_BUS1_BUS, "mout_cmu_bus1_bus", mout_cmu_bus1_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_BUS1_BUS, 0, 2),
+> > +
+> > +     /* BUS2 */
+> > +     MUX(CLK_MOUT_BUS2_BUS, "mout_cmu_bus2_bus", mout_cmu_bus2_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_BUS2_BUS, 0, 2),
+> > +
+> > +     /* CORE */
+> > +     MUX(CLK_MOUT_CORE_BUS, "mout_cmu_core_bus", mout_cmu_core_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_CORE_BUS, 0, 2),
+> > +
+> > +     /* EH */
+> > +     MUX(CLK_MOUT_EH_BUS, "mout_cmu_eh_bus", mout_cmu_eh_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_CORE_BUS, 0, 2),
+>
+> 'mout_cmu_core_bus' and 'mout_cmu_eh_bus' uses the same register/shift/width information.
+> I think it should be modified by changing the regiter or changing the shift/width information.
+
+It should be using the CLK_CON_MUX_MUX_CLKCMU_EH_BUS register.
+Will fix it in v4.
+
+>
+> > +
+> > +     /* CPUCL{0,1,2,} */
+> > +     MUX(CLK_MOUT_CPUCL2_SWITCH, "mout_cmu_cpucl2_switch", mout_cmu_cpucl2_switch_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_CPUCL2_SWITCH, 0, 2),
+> > +
+> > +     MUX(CLK_MOUT_CPUCL1_SWITCH, "mout_cmu_cpucl1_switch", mout_cmu_cpucl1_switch_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_CPUCL1_SWITCH, 0, 2),
+> > +
+> > +     MUX(CLK_MOUT_CPUCL0_SWITCH, "mout_cmu_cpucl0_switch", mout_cmu_cpucl0_switch_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_CPUCL0_SWITCH, 0, 2),
+> > +
+> > +     MUX(CLK_MOUT_CPUCL0_DBG, "mout_cmu_cpucl0_dbg", mout_cmu_cpucl0_dbg_p,
+> > +         CLK_CON_DIV_CLKCMU_CPUCL0_DBG, 0, 2),
+> > +
+> > +     MUX(CLK_MOUT_CMU_HPM, "mout_cmu_hpm", mout_cmu_hpm_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_HPM, 0, 2),
+> >
+>
+> (snip)
+>
+> > +     /* PDP */
+> > +     MUX(CLK_MOUT_PDP_BUS, "mout_cmu_pdp_bus", mout_cmu_pdp_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_PDP_BUS, 0, 2),
+> > +
+> > +     /* PDP */
+> > +     MUX(CLK_MOUT_PDP_VRA, "mout_cmu_pdp_vra", mout_cmu_pdp_vra_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_PDP_VRA, 0, 2),
+> > +
+> > +     /* IPP */
+> > +     MUX(CLK_MOUT_IPP_BUS, "mout_cmu_ipp_bus", mout_cmu_ipp_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_IPP_BUS, 0, 2),
+> > +
+> > +     /* G3AA */
+> > +     MUX(CLK_MOUT_G3AA, "mout_cmu_g3aa", mout_cmu_g3aa_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_G3AA_G3AA, 0, 2),
+>
+> I think that need to change the mux name and mux parent name
+> because other mux name use the twice word according to the register name
+> even if use the same work such as 'mout_cmu_g2d_g2d', 'mout_cmu_mcsc_mcsc' and 'mout_cmu_mfc_mfc'.
+> - mout_cmu_g3aa -> mout_cmu_g3aa_g3aa
+> - mout_cmu_g3aa_p -> mount_cmu_g3aa_g3aa_p
+
+Will fix in v4
+
+>
+> (snip)
+>
+> > +     /* CSIS */
+> > +     GATE(CLK_GOUT_CSIS, "gout_cmu_csis_bus", "mout_cmu_csis_bus",
+> > +          CLK_CON_GAT_GATE_CLKCMU_CSIS_BUS, 21, 0, 0),
+> > +     /* PDP */
+> > +     GATE(CLK_GOUT_PDP_BUS, "gout_cmu_pdp_bus", "mout_cmu_pdp_bus",
+> > +          CLK_CON_GAT_GATE_CLKCMU_PDP_BUS, 21, 0, 0),
+> > +
+> > +     GATE(CLK_GOUT_PDP_VRA, "gout_cmu_pdp_vra", "mout_cmu_pdp_vra",
+> > +          CLK_CON_GAT_GATE_CLKCMU_PDP_BUS, 21, 0, 0),
+> > +
+> > +     /* IPP */
+> > +     GATE(CLK_GOUT_IPP_BUS, "gout_cmu_ipp_bus", "mout_cmu_ipp_bus",
+> > +          CLK_CON_GAT_GATE_CLKCMU_IPP_BUS, 21, 0, 0),
+> > +     /* G3AA */
+> > +     GATE(CLK_GOUT_G3AA, "gout_cmu_g3aa", "mout_cmu_g3aa",
+> > +          CLK_CON_MUX_MUX_CLKCMU_G3AA_G3AA, 21, 0, 0),
+>
+> ditto.
+> gout_cmu_g3aa -> gout_cmu_g3aa_g3aa
+> mout_cmu_g3aa -> mout_cmu_g3aa_g3aa
+
+Will fix in V4
+
+regards,
+
+Peter.
 
