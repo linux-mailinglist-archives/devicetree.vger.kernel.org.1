@@ -1,183 +1,292 @@
-Return-Path: <devicetree+bounces-14358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 333C67E3BE6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:10:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C47BA7E3BD6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:10:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62B151C20CA4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:10:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E68321C20CD6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:10:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1006A2E41E;
-	Tue,  7 Nov 2023 12:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8162E405;
+	Tue,  7 Nov 2023 12:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULo87XkE"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="b8XME6k6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85DD2E410
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:10:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5E80C433CA;
-	Tue,  7 Nov 2023 12:10:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699359044;
-	bh=dN7/KtImMvyag0cEUmZ23oKenryc3mgEBKQkieEj3Gk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ULo87XkEjTt8dimqE17voZhEbfrJ4YTftBrfor5T6Y2C/gsFTokvRdvjbHJDbSwsW
-	 Cb3sRNDCAOoec+J5F8Nr+eY6n3k26hBazN0oyqqKhDHfkiHXxbcRzUmO8lhX6PY3oB
-	 2GzZoR3djCoHNioCTydoGPnGqePg5+1hrWoyE53O838Hh23AwS0JJfWklk8nn3jClP
-	 Yblud6HePp7AFrXjBQUWHeyGxKY7/TJypXz59nwa26WTbE7OIoCwrbjQ+fSIVpofW+
-	 X/rmoPekBrfNZV50e0m8Qdc1BI7SuHp2eHmKCi//zGVgvHf8gxO94MWkmAXzYbZRXs
-	 fyya1ZOw2M4wQ==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	robh+dt@kernel.org,
-	frowand.list@gmail.com,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.5 29/30] of: address: Fix address translation when address-size is greater than 2
-Date: Tue,  7 Nov 2023 07:08:44 -0500
-Message-ID: <20231107120922.3757126-29-sashal@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107120922.3757126-1-sashal@kernel.org>
-References: <20231107120922.3757126-1-sashal@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA132E3F5
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:10:09 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2077.outbound.protection.outlook.com [40.107.237.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0192324F;
+	Tue,  7 Nov 2023 04:10:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YFLsa86YGNoSmzVLVxqPTMdj5qxI7/Lx0vVl2Q3sThPk3B/9mcyp6U5n0h8X7kEt57LCO6ULqpi6WsnrO/in20TeVxKVlx8pWKo2EPIWjn1Eu49h6SnSj8jRKn674ITKwFxni9PTnnbH9sBoMDOAeJKfGF97hiqSmn8FhAraFFKHWY5lFnScWt1mYsmnGGmmeYVTrUheOn7GOOMi8FpAQvE9MVfoLjwoWC3LjXym/4NvEji6Kyzcr3Xlv2k2o37y+adfSHYs3x7SC/Lh6OY8EJb+ps2L/seGh9MeRntqjAw/MICizqOFvR5O1mYFmn944Zi30951QQuZBeojVkJ04w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yh95DnEO/9RHOPOzXIYLGsC+ZT38hNI9PwHv1cTyDmY=;
+ b=LPx5B7W/TnohE8q5DI7ljDIz78fnWVTKtFs+0qEgKTGl9bACWf5bowFJ55moGj9Egd1OjoJJi2A6g8WOGuZqlRZYEXJrcKjxhj3Ztt0GRMFMmDs+j/wocGowvaKfo5kz9hprLyB1jZ0GTfRpSiuFa8pGth/PUyK+66yO9fCXD1zlAm+Bza01QBOsEV1Mn39Nl9frel1zbueh0IDzmeIPbR7x69HEOK87HrSpMNemN9xB0JbPwb7jvGcNdB5MuP6NfuaNDwjbRgLCI6+e1xEQUbOSGHZ7XUmvvLCpBcsywmqKE0bC0N+9DpFL60bGsSjDMt8Mb2xXgUu3DSvGOv5KmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yh95DnEO/9RHOPOzXIYLGsC+ZT38hNI9PwHv1cTyDmY=;
+ b=b8XME6k6W7HBf4tPto//+wjqDXdQPrlp1XTuYxg6eGKSPgyLILTaKWAnBiqg/XVH8pTI0VngQsg54ixyKsyciY+f/lEi8Y74Gyco4M2R4m6cz/HwUgnu3R4cxReDP7SgtMCAaiEjmM/ToDw/+UHS7A+xctP0qvJU1C3Cyl7hA1s=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
+ by SA3PR12MB8804.namprd12.prod.outlook.com (2603:10b6:806:31f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Tue, 7 Nov
+ 2023 12:10:00 +0000
+Received: from BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::1d07:c316:b830:70c9]) by BYAPR12MB4758.namprd12.prod.outlook.com
+ ([fe80::1d07:c316:b830:70c9%4]) with mapi id 15.20.6954.027; Tue, 7 Nov 2023
+ 12:10:00 +0000
+Message-ID: <92d95425-5bae-4ada-8fc3-966e7bfbd815@amd.com>
+Date: Tue, 7 Nov 2023 13:09:45 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: soc: Add new board description for
+ MicroBlaze V
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
+ <20231106-hangnail-prankster-a04e713bed35@spud>
+ <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
+ <e9fef49e-c0ca-4f7d-9618-151216e25280@linaro.org>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ 3i3l5DA=
+In-Reply-To: <e9fef49e-c0ca-4f7d-9618-151216e25280@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0119.eurprd06.prod.outlook.com
+ (2603:10a6:803:8c::48) To BYAPR12MB4758.namprd12.prod.outlook.com
+ (2603:10b6:a03:a5::28)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.5.10
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|SA3PR12MB8804:EE_
+X-MS-Office365-Filtering-Correlation-Id: a078c99b-4d1c-4bf1-c4ea-08dbdf8a7725
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Emb5u8Xd9fefYZzjXbHKJMBNApIJSBKdPI1/Nj06OXWIMyaNezL2rON2D1vFwUTB8mzONpY7BzgKvxcpoM8AfJCz/epB8K04GadeTlPpOKpI3bIQpd49LbRO391bda+QbHpNFouJTw8iXN/rJgIadNOesDhZMj1VJX8whN5Dg8aTm2vMNiydkNTUArp4eqZSICozMpbok1qvPG7x6k+lN3pMamjeCHCQFGy25UssDzkj1UFXn1WGrRByws4sx/euglpnXeQs3ncVRMpriE2sQROCVUMQwd41OZZV5tB+uhiB7JKJDgO5CtlxDtO+507QqHV+NGqylijJ1L5sffEXjH95xtNuMnWrehE/Pn4NgRNRWDNE6cGpF72JEGwnOfkRNJF3Mk3vMeyYg8m5Oel8txvvU8OdP1g/UXNX+WHzv4UrpB/oN/YBqIyo+/H9ISr+1kdOvWoo9XpWu+qZGJYEDCPMp25CqAcF4etYUpEG83ojpD//4GiIA6dTRHHeUtC/u0RLzWalbjHi5YCnc32AcovbLAVI6ohD32UjR9aVzY+yikfF3v1LS8QeL50QZ5z4cXpoTxrGh+//zviLJhnUZwIhTi7r05b0bqN/3+TIkqKo0UMdNyfWMkiBx438aGRihZWOQqjS7SnNaMK97rFYsL1aUnSHJDMLU0glPlSjRKTG7pECpbwvNhZncbKlz9vY
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(346002)(136003)(366004)(39860400002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(53546011)(6512007)(6666004)(26005)(2616005)(6506007)(478600001)(54906003)(66946007)(316002)(66556008)(66476007)(4326008)(8936002)(8676002)(36756003)(38100700002)(110136005)(2906002)(41300700001)(44832011)(7416002)(31696002)(86362001)(5660300002)(966005)(31686004)(6486002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NXpVcys3OWN1YkM3UGRoSkxacWlYS0pCWm9rTVJ4dUl4ekJ0bHBxanVscXNk?=
+ =?utf-8?B?eTg1L1YyMWYvQWo0NWxUMkFFR2Z2M2hiOXZKcG05dWhQTU5VWG1mb3M1T2NM?=
+ =?utf-8?B?cURIK1F6dmpZVzVXTXl1d3RHenBKMTB0UjlvaHdoSHIyWTBmTFZDbEF5azZN?=
+ =?utf-8?B?MFRLdmJHOFZ3TFdNaXJ3azQwN1lFU2dkRHZBaHM5ajR1RDBlWHRrVnRnU2Rk?=
+ =?utf-8?B?dThqZDd3UHZxQ1J6ZVZJb21uRERORHlDUGdzSHF0NDYwK3V6R3crSjlMWkI1?=
+ =?utf-8?B?MWdPR3JNZ1l2b0pBQ291SmtRTFRtRDg1K1krVTNwbm90MFFRRlFSVyt5emVL?=
+ =?utf-8?B?OFViVGlaMGFZMjR2UTM5UCtlMVkrYUd5VjNTTUMyTFdveDBqZzlBTjBoZWZv?=
+ =?utf-8?B?MGs0YXdMOWt6L2RENmRNYjk3Skpvb1lOTy95aFBiUTRFMUFCM1NhdzNFTnI5?=
+ =?utf-8?B?Uk40M2VzeEdzZVhTMWhWMGZnRGRZRzgwSzZZUzBoSVIwM2puYmxwUDFhSDdo?=
+ =?utf-8?B?bExiZlR6YkNZd1k5VmVKenVhU1Brb3g1dEw3UDI3RDJiOENBNTg1YUdxTmZ6?=
+ =?utf-8?B?dXF1Ti9maVN3OEtuc2w2Qm5xSHFndEY2U0E1Z2V1Q0E2TUQ1L0RrRi84c1Qr?=
+ =?utf-8?B?bC83aHphaVh1ZFBnbnFWdlhhQVRtRzlieWxVQU44Y05PR0Z0bU4yWTlKRjMv?=
+ =?utf-8?B?MnU3MG83YjMrOFVWL1haUDV0eDd0U3pibnVWaVF0REVoWG1FbzZJOXRmWlpm?=
+ =?utf-8?B?Zm5kNk9XTk1FOE9BOFhJbERoOTFKK0w3NkZ1VzVKblFoZWNHamprRC9uR0pt?=
+ =?utf-8?B?R3dDSWE3bkFOUE43OW5xNmJ2UUkvck5xQ0xlNVZUUEJsYzZ4T0I4dVdYMnEz?=
+ =?utf-8?B?MnFoYUpyQXFpRFpUaUxyU284dlVkZmRqa2FnUm9IMHBYYWdYRGExWGZodG9N?=
+ =?utf-8?B?NXNOSjRYbFhpYlljQllMbk9PZGVmc2V1UHFHNXFYKzhwRmJDWmxXWEQxYUhM?=
+ =?utf-8?B?bitJREE0OHlxU01BYmV5Z1JZTmpNWVN1MlFBYnlJWHRQamRobVAxcWV4YkN3?=
+ =?utf-8?B?d2xKM1hPeXJ4ZDIxSi93RnVZdVhuOE9VenpUbkJqSkZ6bzdKVmNob2RCOHU4?=
+ =?utf-8?B?MlFEZklnMmx2dEl3MktpZzI3TmN4Tlh1MFVBQnhtdUI4Qk8vbmRPUks4d2Vm?=
+ =?utf-8?B?WWwyRk1YZWVhRTV3bWtHb2JXeHJ4Qm1UajA4TVVDOGNkMGUyTDUwdjY0Kzdr?=
+ =?utf-8?B?M1ZmbnFuQXFqNGJoT3QwWTZRL1NDV01rRm0zVERtNDhiTnFKaDUrVWNPNlhF?=
+ =?utf-8?B?YVhOazFEdlhrcGhlNUloRzRncm00ZzU0RHdwaVVlNHhzdms0dDZQb25RbUVq?=
+ =?utf-8?B?dTRQVjdhZ2kzUE42OG1YSENyOUt4djhaUVVnZW9ISGpRN3NrVldBc0w4Njgz?=
+ =?utf-8?B?VkRBM0RUdWR6VUp2a3Q1WE5hZWdQRFVGVVFpRlQvWU00amZ3YUp4UzZCQmhT?=
+ =?utf-8?B?UmhGNWdyUWFMZTJqSEpiWDR6Y3EvcWt0VTBJcU1ySStocUQvYkozWjRWSjBV?=
+ =?utf-8?B?c0VDR2hnckp6N1hNMjFVRnFOMVdsdTZaV1hKQjNFcnZ2cVdvN1BjTE9HOFRJ?=
+ =?utf-8?B?NVVaa1lOM1ZKVFZaVkpLR1BHczE2azFUQ3k3NTdXbnRBN25wWUlJQ29yaXU0?=
+ =?utf-8?B?OFlKZmVsa3NEMU4wbkpROXhZcmRHRFlBcXFEMkxKMnVtZ1dGQkhCcXRNbCtj?=
+ =?utf-8?B?em5tSElrMWtQVDJ0WnZuSDIyMEtIdWI2MDY5Q1FYc2xielRUdTZFdDN1QU4v?=
+ =?utf-8?B?S3pkUHZuMmNWV0JPZUhKTkhPbHorbTNyVzR3Z1dDZXREdUkxQm4xby9uSUtD?=
+ =?utf-8?B?U2ZzTTlnUXhraDNhZGs1STl0TlpIaEhkY2dvazFHQ0VXUDF6ZmdVdEg2TThC?=
+ =?utf-8?B?MWhwZ0RHREN6Y2ZWalQ4eUp4dzVyYm1PSnpuSm1za3NydjlKVlYrYnY1UFV4?=
+ =?utf-8?B?M0JUWVlFemV5VFA0WFlzM2hLZCtvQ24vS044Ukg0STdscktva0N3TVVJTU9W?=
+ =?utf-8?B?NUNycmt3UEFMa3Fzd3A5U29iKzhBY0MrU1hiaER6S3Z2RTJLRVhoYmN6RHVo?=
+ =?utf-8?Q?IPYEb5kxo9w8t+tZoff94SGUN?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a078c99b-4d1c-4bf1-c4ea-08dbdf8a7725
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2023 12:10:00.3504
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jIpeQxescFE9t6R6tPg5haoPmppzGxTpcTQ/jZ92d4Alb+w5EXz8JO4+CHJc2f4h
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8804
 
-From: Herve Codina <herve.codina@bootlin.com>
 
-[ Upstream commit 42604f8eb7ba04b589375049cc76282dad4677d2 ]
 
-With the recent addition of of_pci_prop_ranges() in commit 407d1a51921e
-("PCI: Create device tree node for bridge"), the ranges property can
-have a 3 cells child address, a 3 cells parent address and a 2 cells
-child size.
+On 11/7/23 12:27, Krzysztof Kozlowski wrote:
+> On 07/11/2023 12:09, Michal Simek wrote:
+>>
+>>
+>> On 11/6/23 18:07, Conor Dooley wrote:
+>>> On Mon, Nov 06, 2023 at 12:53:40PM +0100, Michal Simek wrote:
+>>>> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+>>>> It is hardware compatible with classic MicroBlaze processor. Processor can
+>>>> be used with standard AMD/Xilinx IPs including interrupt controller and
+>>>> timer.
+>>>>
+>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>>> ---
+>>>>
+>>>>    .../devicetree/bindings/soc/amd/amd.yaml      | 26 +++++++++++++++++++
+>>>
+>>> Bindings for SoCs (and by extension boards with them) usually go to in
+>>> $arch/$vendor.yaml not into soc/$vendor/$vendor.yaml. Why is this any
+>>> different?
+>>
+>> I actually found it based on tracking renesas.yaml which describes one of risc-v
+>> board. No problem to move it under bindings/riscv/
+>>
+>>>
+>>>>    1 file changed, 26 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/soc/amd/amd.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/soc/amd/amd.yaml b/Documentation/devicetree/bindings/soc/amd/amd.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..21adf28756fa
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/soc/amd/amd.yaml
+>>>> @@ -0,0 +1,26 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/soc/amd/amd.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: AMD Platforms
+>>>> +
+>>>> +maintainers:
+>>>> +  - Michal Simek <michal.simek@amd.com>
+>>>> +
+>>>> +description: |
+>>>> +  AMD boards with MicroBlaze V SOC
+>>>> +
+>>>> +properties:
+>>>> +  $nodename:
+>>>> +    const: '/'
+>>>> +  compatible:
+>>>> +    oneOf:
+>>>> +      - description: AMD MicroBlaze V
+>>>> +        items:
+>>>> +          - const: amd,mbv
+>>>
+>>> You don't actually list any boards here, but instead permit having only
+>>> the SoC compatible and no board one. The SoC compatible is also
+>>> incredibly generic. Personally I don't think this binding makes any
+>>> sense as it appears to exist as a catch all for anything using your
+>>> new cores in any combination.
+>>
+>> I think I need to define any string for compatibility because it is standard
+>> property. Because this is soft core it can be added to any board with AMD/Xilinx
+>> chip. I don't have really an option to list all boards.
+> 
+> Why? Either there is a product with this soft-core or there is not. It
+> cannot be both.
 
-A range item property for a PCI device is filled as follow:
-  <BAR_nbr> 0 0 <phys.hi> <phys.mid> <phys.low> <BAR_sizeh> <BAR_sizel>
-  <-- Child --> <-- Parent (PCI definition) --> <- BAR size (64bit) -->
+I am doing basic enablement. I am not making product. Product will be done by 
+our customers using this core.
+There will be thousands of different configurations done by customers which will 
+have products with it. Also there could be hundreds configurations done on the 
+same board.
 
-This allow to translate BAR addresses from the DT. For instance:
-pci@0,0 {
-  #address-cells = <0x03>;
-  #size-cells = <0x02>;
-  device_type = "pci";
-  compatible = "pci11ab,100", "pciclass,060400", "pciclass,0604";
-  ranges = <0x82000000 0x00 0xe8000000
-            0x82000000 0x00 0xe8000000
-	    0x00 0x4400000>;
-  ...
-  dev@0,0 {
-    #address-cells = <0x03>;
-    #size-cells = <0x02>;
-    compatible = "pci1055,9660", "pciclass,020000", "pciclass,0200";
-    /* Translations for BAR0 to BAR5 */
-    ranges = <0x00 0x00 0x00 0x82010000 0x00 0xe8000000 0x00 0x2000000
-              0x01 0x00 0x00 0x82010000 0x00 0xea000000 0x00 0x1000000
-              0x02 0x00 0x00 0x82010000 0x00 0xeb000000 0x00 0x800000
-              0x03 0x00 0x00 0x82010000 0x00 0xeb800000 0x00 0x800000
-              0x04 0x00 0x00 0x82010000 0x00 0xec000000 0x00 0x20000
-              0x05 0x00 0x00 0x82010000 0x00 0xec020000 0x00 0x2000>;
-    ...
-    pci-ep-bus@0 {
-      #address-cells = <0x01>;
-      #size-cells = <0x01>;
-      compatible = "simple-bus";
-      /* Translate 0xe2000000 to BAR0 and 0xe0000000 to BAR1 */
-      ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
-                0xe0000000 0x01 0x00 0x00 0x1000000>;
-      ...
-    };
-  };
-};
+Does it make sense to have board related compatible string like this if this 
+evaluation board is used by a lot of customers?
+"amd,kcu105-mbv-ABC-vXYZ", "amd,kcu105-mbv", "amd,mbv"
 
-During the translation process, the "default-flags" map() function is
-used to select the matching item in the ranges table and determine the
-address offset from this matching item.
-This map() function simply calls of_read_number() and when address-size
-is greater than 2, the map() function skips the extra high address part
-(ie part over 64bit). This lead to a wrong matching item and a wrong
-offset computation.
-Also during the translation itself, the extra high part related to the
-parent address is not present in the translated address.
+Or I can define qemu one.
+"amd,qemu-mbv", "amd,mbv"
 
-Fix the "default-flags" map() and translate() in order to take into
-account the child extra high address part in map() and the parent extra
-high address part in translate() and so having a correct address
-translation for ranges patterns such as the one given in the example
-above.
+I think customers should be adding their compatible string in front of generic one.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Link: https://lore.kernel.org/r/20231017110221.189299-2-herve.codina@bootlin.com
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/address.c | 30 ++++++++++++++++++++++++++++--
- 1 file changed, 28 insertions(+), 2 deletions(-)
+Years ago I have done the same thing with Microblaze where compatible is defined 
+as xlnx,microblaze only. When customer take this soft core, put IPs around and 
+create a product they should extend it to be for example like this.
+"xyz,my-product-1.0", "xlnx,microblaze";
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index e692809ff8227..3219c51777507 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -100,6 +100,32 @@ static unsigned int of_bus_default_get_flags(const __be32 *addr)
- 	return IORESOURCE_MEM;
- }
- 
-+static u64 of_bus_default_flags_map(__be32 *addr, const __be32 *range, int na,
-+				    int ns, int pna)
-+{
-+	u64 cp, s, da;
-+
-+	/* Check that flags match */
-+	if (*addr != *range)
-+		return OF_BAD_ADDR;
-+
-+	/* Read address values, skipping high cell */
-+	cp = of_read_number(range + 1, na - 1);
-+	s  = of_read_number(range + na + pna, ns);
-+	da = of_read_number(addr + 1, na - 1);
-+
-+	pr_debug("default flags map, cp=%llx, s=%llx, da=%llx\n", cp, s, da);
-+
-+	if (da < cp || da >= (cp + s))
-+		return OF_BAD_ADDR;
-+	return da - cp;
-+}
-+
-+static int of_bus_default_flags_translate(__be32 *addr, u64 offset, int na)
-+{
-+	/* Keep "flags" part (high cell) in translated address */
-+	return of_bus_default_translate(addr + 1, offset, na - 1);
-+}
- 
- #ifdef CONFIG_PCI
- static unsigned int of_bus_pci_get_flags(const __be32 *addr)
-@@ -374,8 +400,8 @@ static struct of_bus of_busses[] = {
- 		.addresses = "reg",
- 		.match = of_bus_default_flags_match,
- 		.count_cells = of_bus_default_count_cells,
--		.map = of_bus_default_map,
--		.translate = of_bus_default_translate,
-+		.map = of_bus_default_flags_map,
-+		.translate = of_bus_default_flags_translate,
- 		.has_flags = true,
- 		.get_flags = of_bus_default_flags_get_flags,
- 	},
--- 
-2.42.0
+And over all of years I have never seen any single customer to try to push dt 
+description for any Microblaze based product.
 
+>>
+>> I am happy to change it to something else but not sure to what.
+> 
+> Alone this compatible does not bring you anything.
+
+I don't agree with it. It is standard property and I have to define it somehow.
+If not, I get an error.
+.../xilinx-mbv32.dtb: /: 'compatible' is a required property
+
+And it tells me that this risc-v compatible core runs on AMD fpga and it is 
+compatible with it.
+
+Thanks,
+Michal
 
