@@ -1,128 +1,139 @@
-Return-Path: <devicetree+bounces-14454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCD77E4C13
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:56:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5987E4C67
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:03:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA7152812EF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 22:56:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0FA3281328
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37ADF30647;
-	Tue,  7 Nov 2023 22:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6774E30657;
+	Tue,  7 Nov 2023 23:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TSRwOKld"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nT+oFqWT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928C030643
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 22:56:34 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE0918C;
-	Tue,  7 Nov 2023 14:56:33 -0800 (PST)
-Received: from notapiano.myfiosgateway.com (cola.collaboradmins.com [195.201.22.229])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A2B30654
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 23:02:56 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F71410C8;
+	Tue,  7 Nov 2023 15:02:55 -0800 (PST)
+Received: from notapiano (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id F2FAD66074D4;
-	Tue,  7 Nov 2023 22:56:28 +0000 (GMT)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id CFE8366074D8;
+	Tue,  7 Nov 2023 23:02:50 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1699397791;
-	bh=+pDcPxfGlA0dL3Lp3d6m5ZR8VLuzhaRJSUxxc7deZkY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=TSRwOKldf9y0mBtzI4DQa9H5Sut50EXy9J5zVXmcBHeE+8v9iL2TsLhtRXbyzPOJ4
-	 Gz5rkIQ9WpHc5J0adUZmoxuwzgOZzpTq7pFP5oHy0qJd2sv2yA4pa/cJ7sFgr00OiC
-	 hFLkg/yXTFxij0m3cg3wGm8y1LBV88LfpMMZveYtdH7Ys2rC6L62Rq5X2Swhw7iu47
-	 1iXwOwUXoIM5l+nWmexqJQZsQqhCC0cak6RWYMwDeqCisQbjYv4DoRCKGWqkUDCw7d
-	 EbtVsZUwEeQb8rPlKE5r7U86lpfq2xu57iRagX5HxtzhbkThlVJ0Q6XX8ZmupfBDEm
-	 2Y9Mdr98cAH0w==
-From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
+	s=mail; t=1699398173;
+	bh=HNuFXAmcr38Mjsj1EcQwzGsMmMNd5OK9/yCfyVW4N7E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nT+oFqWTGc+4wcTmMdloWWi/XInr7UbLO36ivjlKIj541/njlF6/1JmYBN/9SdZXF
+	 KLSi6IH9AO5SU9we2nGYDD7XiN9ovEDl9BeJPMFKLiX9JF79hgHfT3mn3jDqzlelKx
+	 crgKKPLIm8Hgju51OfnZ9/R9lVg4TXpWQoa5y7m0WBlD8vrJGg/VlMBG9d4Ubmnz+9
+	 K+vo2TLj9Q9w6CR/9W1rZsHX+9RnCjHSbodX4wN3Z1FEIdwyEh03iOEuXHdyotN7fw
+	 U82ZVuC2fE8Wh45D+BNIunm8YuRvMZ477t4NNemoQWYA5ypwIi6kPcjhBXBQHOhwe+
+	 9LxEOu/MGP6/w==
+Date: Tue, 7 Nov 2023 18:02:47 -0500
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
 To: Rob Herring <robh+dt@kernel.org>
-Cc: Naresh Kamboju <naresh.kamboju@linaro.org>,
-	Aishwarya TCV <aishwarya.tcv@arm.com>,
-	Mark Brown <broonie@kernel.org>,
-	kernel@collabora.com,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
+Cc: Mark Brown <broonie@kernel.org>,
+	Naresh Kamboju <naresh.kamboju@linaro.org>,
+	Aishwarya TCV <aishwarya.tcv@arm.com>, kernelci@lists.linux.dev,
+	kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
 	Frank Rowand <frowand.list@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt: dt-extract-compatibles: Don't follow symlinks when walking tree
-Date: Tue,  7 Nov 2023 17:55:28 -0500
-Message-ID: <20231107225624.9811-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.42.0
+	Shuah Khan <shuah@kernel.org>
+Subject: Re: [PATCH v3 3/3] kselftest: Add new test for detecting unprobed
+ Devicetree devices
+Message-ID: <59bca032-2657-46a8-9070-7528ffcc3e28@notapiano>
+References: <20230828211424.2964562-1-nfraprado@collabora.com>
+ <20230828211424.2964562-4-nfraprado@collabora.com>
+ <e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com>
+ <CA+G9fYsbq28w7m-sf6LhMscXHdPs0cGXU7kK6YzjKdUFKuQ+6A@mail.gmail.com>
+ <e72e144a-c617-4a9e-adfb-e25ddabeb4c7@sirena.org.uk>
+ <CAL_JsqL-3O6omPf4HcPFctgid+br04QW5p81qDx0CPMqh_eXTg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqL-3O6omPf4HcPFctgid+br04QW5p81qDx0CPMqh_eXTg@mail.gmail.com>
 
-The iglob function, which we use to find C source files in the kernel
-tree, always follows symbolic links. This can cause unintentional
-recursions whenever a symbolic link points to a parent directory. A
-common scenario is building the kernel with the output set to a
-directory inside the kernel tree, which will contain such a symlink.
+On Mon, Nov 06, 2023 at 11:09:44AM -0600, Rob Herring wrote:
+> On Thu, Nov 2, 2023 at 12:36 PM Mark Brown <broonie@kernel.org> wrote:
+> >
+> > On Thu, Nov 02, 2023 at 07:15:58PM +0530, Naresh Kamboju wrote:
+> > > On Thu, 2 Nov 2023 at 17:41, Aishwarya TCV <aishwarya.tcv@arm.com> wrote:
+> >
+> > > > https://storage.kernelci.org/mainline/master/v6.6-9152-gdeefd5024f07/arm64/defconfig%2Bkselftest/gcc-10/logs/kselftest.log
+> >
+> > ...
+> >
+> > > May be due to, A loop of symlinks that are pointing to self / same files ?
+> >
+> > Right, it does look like something bad is going on with symlinks:
+> >
+> > > > '/tmp/kci/linux/tools/testing/selftests/../../../build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/tools/testing/selftests/powerpc/vphn/vphn.c'
+> >
+> > > Please build by using tuxmake and validate builds are working.
+> >
+> > Note that tuxmake does an in tree build of kselftest:
+> >
+> >   make --silent --keep-going --jobs=8 O=/home/tuxbuild/.cache/tuxmake/builds/1/build INSTALL_PATH=/home/tuxbuild/.cache/tuxmake/builds/1/build/kselftest_install ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabihf- 'CC=sccache aarch64-linux-gnu-gcc' 'HOSTCC=sccache gcc' kselftest-install
+> >
+> > and does it's own tarball build too, whereas kernelci does an out of
+> > tree build and uses kselftest-gen_tar:
+> >
+> >   make KBUILD_BUILD_USER=KernelCI FORMAT=.xz ARCH=arm64 HOSTCC=gcc CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabihf- CC="ccache aarch64-linux-gnu-gcc" O=/tmp/kci/linux/build -C/tmp/kci/linux -j10 kselftest-gen_tar
+> >
+> > and that the error is in the dt-extract-compatibles program which is
+> > part of the kernel (well, imported into the kernel from dtc upstream):
+> >
+> >   File "/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-extract-compatibles", line 107, in <module>
+> >     compat_ignore_list.extend(parse_compatibles_to_ignore(f))
+> >
+> > This all suggests that something to do with how the build is set up is
+> > resulting in the source symlink that gets created for out of tree builds
+> > blowing up, I guess it's not specifically the DT stuff that's blowing it
+> > up but rather that it's tripping over an existing bug.  Really does look
+> > like a legitimate bug though, the source link is set up by the in tree
+> > kernel build infrastructure.
+> >
+> > I did poke a bit at reproducing outside of the KernelCI scripts but
+> > didn't manage to yet.
+> 
+> I can repro with "make dt_compatible_check". The problem is with an
+> 'out of tree' build within the tree. That's my normal setup, but the
+> difference is I have ".build" directories. If I use "build" instead,
+> then I can repro. The issue is the iglob will recurse into "build" but
+> not hidden directories (by default). There's no option to not follow
+> symlinks which would solve this (there is an open python issue since
+> 2017 to add it). I don't see a simple solution in python other than
+> getting a full list with glob(), convert to absolute paths, and remove
+> duplicates. I imagine that will be somewhat slow.
 
-Instead of using the iglob function, use os.walk to traverse the
-directory tree, which by default doesn't follow symbolic links. fnmatch
-is then used to match the glob on the filename, as well as ignore hidden
-files (which were ignored by default with iglob).
+Hi, sorry for the delay, I was on vacation last week.
 
-This approach runs just as fast as using iglob.
+I was able to reproduce the issue the way you described. And I also suspected
+an alternative approach would be slower, but after trying it out it ran just as
+fast as the current one, even on cold cache, so I sent it out:
 
-Fixes: b6acf8073517 ("dt: Add a check for undocumented compatible strings in kernel")
-Reported-by: Aishwarya TCV <aishwarya.tcv@arm.com>
-Closes: https://lore.kernel.org/all/e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+https://lore.kernel.org/all/20231107225624.9811-1-nfraprado@collabora.com
 
----
+Let me know your thoughts there.
 
- scripts/dtc/dt-extract-compatibles | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
-
-diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
-index bd07477dd144..5ffb2364409b 100755
---- a/scripts/dtc/dt-extract-compatibles
-+++ b/scripts/dtc/dt-extract-compatibles
-@@ -1,8 +1,8 @@
- #!/usr/bin/env python3
- # SPDX-License-Identifier: GPL-2.0-only
- 
-+import fnmatch
- import os
--import glob
- import re
- import argparse
- 
-@@ -81,10 +81,20 @@ def print_compat(filename, compatibles):
- 	else:
- 		print(*compatibles, sep='\n')
- 
-+def glob_without_symlinks(root, glob):
-+	for path, dirs, files in os.walk(root):
-+		# Ignore hidden directories
-+		for d in dirs:
-+			if fnmatch.fnmatch(d, ".*"):
-+				dirs.remove(d)
-+		for f in files:
-+			if fnmatch.fnmatch(f, glob):
-+				yield os.path.join(path, f)
-+
- def files_to_parse(path_args):
- 	for f in path_args:
- 		if os.path.isdir(f):
--			for filename in glob.iglob(f + "/**/*.c", recursive=True):
-+			for filename in glob_without_symlinks(f, "*.c"):
- 				yield filename
- 		else:
- 			yield f
--- 
-2.42.0
-
+Thanks,
+Nícolas
 
