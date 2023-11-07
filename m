@@ -1,139 +1,125 @@
-Return-Path: <devicetree+bounces-14455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5987E4C67
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:03:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36C17E4CB0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:22:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0FA3281328
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:03:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58081B20F22
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6774E30657;
-	Tue,  7 Nov 2023 23:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6FE930678;
+	Tue,  7 Nov 2023 23:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nT+oFqWT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="inf+WCrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A2B30654
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 23:02:56 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F71410C8;
-	Tue,  7 Nov 2023 15:02:55 -0800 (PST)
-Received: from notapiano (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id CFE8366074D8;
-	Tue,  7 Nov 2023 23:02:50 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1699398173;
-	bh=HNuFXAmcr38Mjsj1EcQwzGsMmMNd5OK9/yCfyVW4N7E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nT+oFqWTGc+4wcTmMdloWWi/XInr7UbLO36ivjlKIj541/njlF6/1JmYBN/9SdZXF
-	 KLSi6IH9AO5SU9we2nGYDD7XiN9ovEDl9BeJPMFKLiX9JF79hgHfT3mn3jDqzlelKx
-	 crgKKPLIm8Hgju51OfnZ9/R9lVg4TXpWQoa5y7m0WBlD8vrJGg/VlMBG9d4Ubmnz+9
-	 K+vo2TLj9Q9w6CR/9W1rZsHX+9RnCjHSbodX4wN3Z1FEIdwyEh03iOEuXHdyotN7fw
-	 U82ZVuC2fE8Wh45D+BNIunm8YuRvMZ477t4NNemoQWYA5ypwIi6kPcjhBXBQHOhwe+
-	 9LxEOu/MGP6/w==
-Date: Tue, 7 Nov 2023 18:02:47 -0500
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>,
-	Naresh Kamboju <naresh.kamboju@linaro.org>,
-	Aishwarya TCV <aishwarya.tcv@arm.com>, kernelci@lists.linux.dev,
-	kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
-	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	Frank Rowand <frowand.list@gmail.com>,
-	Shuah Khan <shuah@kernel.org>
-Subject: Re: [PATCH v3 3/3] kselftest: Add new test for detecting unprobed
- Devicetree devices
-Message-ID: <59bca032-2657-46a8-9070-7528ffcc3e28@notapiano>
-References: <20230828211424.2964562-1-nfraprado@collabora.com>
- <20230828211424.2964562-4-nfraprado@collabora.com>
- <e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com>
- <CA+G9fYsbq28w7m-sf6LhMscXHdPs0cGXU7kK6YzjKdUFKuQ+6A@mail.gmail.com>
- <e72e144a-c617-4a9e-adfb-e25ddabeb4c7@sirena.org.uk>
- <CAL_JsqL-3O6omPf4HcPFctgid+br04QW5p81qDx0CPMqh_eXTg@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B473066C;
+	Tue,  7 Nov 2023 23:22:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E8CC433C9;
+	Tue,  7 Nov 2023 23:22:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699399360;
+	bh=0QmTRPmgmn8UfXnnBetJxKx9fT3u6QCiV/IBazpqvW4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=inf+WCrdnatV+R5sI51JnfYYypM9HjsztiGaB/VbGR6fLpsv1ELFoefQ1xZA0Ueqk
+	 f88yl+AEw3lK+mAD/ooYMF7aV50iA0Dpk/s5EQzr2PWhd9/JEhpqLZJF44/52V6LWY
+	 o+3UnJPD0aKKfMXDufNRZvhz34HdnyYMj1zXuc00V6OJcGB4ItJYnSEe0Ku1pF1vAU
+	 qXbU8HjYvplp2DmqapDVH/pCT69YMb4qEV/GN35tSgKPZQ4Su8B6dPQRl7WLDv0OzT
+	 4OxwuKpatJY1UHNmBwuBznYPd/oGSTREA0IEGve8/fTCTvzrVZt9EdiV9KtnAjjzhD
+	 k4TatgAdUQbhA==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Sasha Levin <sashal@kernel.org>,
+	agross@kernel.org,
+	andersson@kernel.org,
+	kishon@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	abel.vesa@linaro.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.6 04/18] dt-bindings: phy: qcom,snps-eusb2-repeater: Add magic tuning overrides
+Date: Tue,  7 Nov 2023 18:21:58 -0500
+Message-ID: <20231107232231.3775605-4-sashal@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231107232231.3775605-1-sashal@kernel.org>
+References: <20231107232231.3775605-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.6
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqL-3O6omPf4HcPFctgid+br04QW5p81qDx0CPMqh_eXTg@mail.gmail.com>
 
-On Mon, Nov 06, 2023 at 11:09:44AM -0600, Rob Herring wrote:
-> On Thu, Nov 2, 2023 at 12:36 PM Mark Brown <broonie@kernel.org> wrote:
-> >
-> > On Thu, Nov 02, 2023 at 07:15:58PM +0530, Naresh Kamboju wrote:
-> > > On Thu, 2 Nov 2023 at 17:41, Aishwarya TCV <aishwarya.tcv@arm.com> wrote:
-> >
-> > > > https://storage.kernelci.org/mainline/master/v6.6-9152-gdeefd5024f07/arm64/defconfig%2Bkselftest/gcc-10/logs/kselftest.log
-> >
-> > ...
-> >
-> > > May be due to, A loop of symlinks that are pointing to self / same files ?
-> >
-> > Right, it does look like something bad is going on with symlinks:
-> >
-> > > > '/tmp/kci/linux/tools/testing/selftests/../../../build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/build/source/tools/testing/selftests/powerpc/vphn/vphn.c'
-> >
-> > > Please build by using tuxmake and validate builds are working.
-> >
-> > Note that tuxmake does an in tree build of kselftest:
-> >
-> >   make --silent --keep-going --jobs=8 O=/home/tuxbuild/.cache/tuxmake/builds/1/build INSTALL_PATH=/home/tuxbuild/.cache/tuxmake/builds/1/build/kselftest_install ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabihf- 'CC=sccache aarch64-linux-gnu-gcc' 'HOSTCC=sccache gcc' kselftest-install
-> >
-> > and does it's own tarball build too, whereas kernelci does an out of
-> > tree build and uses kselftest-gen_tar:
-> >
-> >   make KBUILD_BUILD_USER=KernelCI FORMAT=.xz ARCH=arm64 HOSTCC=gcc CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabihf- CC="ccache aarch64-linux-gnu-gcc" O=/tmp/kci/linux/build -C/tmp/kci/linux -j10 kselftest-gen_tar
-> >
-> > and that the error is in the dt-extract-compatibles program which is
-> > part of the kernel (well, imported into the kernel from dtc upstream):
-> >
-> >   File "/tmp/kci/linux/tools/testing/selftests/../../../scripts/dtc/dt-extract-compatibles", line 107, in <module>
-> >     compat_ignore_list.extend(parse_compatibles_to_ignore(f))
-> >
-> > This all suggests that something to do with how the build is set up is
-> > resulting in the source symlink that gets created for out of tree builds
-> > blowing up, I guess it's not specifically the DT stuff that's blowing it
-> > up but rather that it's tripping over an existing bug.  Really does look
-> > like a legitimate bug though, the source link is set up by the in tree
-> > kernel build infrastructure.
-> >
-> > I did poke a bit at reproducing outside of the KernelCI scripts but
-> > didn't manage to yet.
-> 
-> I can repro with "make dt_compatible_check". The problem is with an
-> 'out of tree' build within the tree. That's my normal setup, but the
-> difference is I have ".build" directories. If I use "build" instead,
-> then I can repro. The issue is the iglob will recurse into "build" but
-> not hidden directories (by default). There's no option to not follow
-> symlinks which would solve this (there is an open python issue since
-> 2017 to add it). I don't see a simple solution in python other than
-> getting a full list with glob(), convert to absolute paths, and remove
-> duplicates. I imagine that will be somewhat slow.
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Hi, sorry for the delay, I was on vacation last week.
+[ Upstream commit c20b59b2996c89c4f072c3312e6210528a298330 ]
 
-I was able to reproduce the issue the way you described. And I also suspected
-an alternative approach would be slower, but after trying it out it ran just as
-fast as the current one, even on cold cache, so I sent it out:
+The EUSB2 repeater requires some alterations to its init sequence,
+depending on board design.
 
-https://lore.kernel.org/all/20231107225624.9811-1-nfraprado@collabora.com
+Add support for making the necessary changes to that sequence to make USB
+functional on SM8550-based Xperia 1 V.
 
-Let me know your thoughts there.
+They all have lackluster description due to lack of information.
 
-Thanks,
-Nícolas
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20230830-topic-eusb2_override-v2-1-7d8c893d93f6@linaro.org
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ .../phy/qcom,snps-eusb2-repeater.yaml         | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+index 029569d5fcf35..24c733c10e0e9 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+@@ -32,6 +32,27 @@ properties:
+ 
+   vdd3-supply: true
+ 
++  qcom,tune-usb2-disc-thres:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: High-Speed disconnect threshold
++    minimum: 0
++    maximum: 7
++    default: 0
++
++  qcom,tune-usb2-amplitude:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: High-Speed trasmit amplitude
++    minimum: 0
++    maximum: 15
++    default: 8
++
++  qcom,tune-usb2-preem:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: High-Speed TX pre-emphasis tuning
++    minimum: 0
++    maximum: 7
++    default: 5
++
+ required:
+   - compatible
+   - reg
+-- 
+2.42.0
+
 
