@@ -1,153 +1,272 @@
-Return-Path: <devicetree+bounces-14375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCF8C7E3DC1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:30:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A98B7E3E76
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:38:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1980B1C20B91
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:30:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A32D1C20B2F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A9F2D7A9;
-	Tue,  7 Nov 2023 12:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C777B2F509;
+	Tue,  7 Nov 2023 12:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mAYEOZAc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OvyVx7LC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDE32FE31
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:30:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A420FC433C7;
-	Tue,  7 Nov 2023 12:30:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699360240;
-	bh=FCraxpZ/ln5cZ32lci7Dq7LGqWdWc8yhBgLj5dz5k+Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mAYEOZAczWsw1fnIs8fPaBoxVyoQfL4e49vc7vTS/0JH4Q0summAgREES5nI5sRkS
-	 U8NJSzYaBpNMcryXYrof+l9O0z7AE17sbD0lLrYvzDXlzGNXNjCqjfXe3QcSgT3Oiu
-	 Y9vBZCUGSnrLBm36lXPZblWi8LbCgirWqznIdzMBjUPm2jkx/MvDjX5RTJo/dMB1tv
-	 VhPNCChuX48wZc2Y2y9xs0egNj19BFcfAKU/8uZgHBdirpJtqt58LFCzY/+h2BptlB
-	 8I7tJhc2ptd2QHcBg7PfDz2QpYG2GbMBi2bA6SRMVdLGi/epPA8qjr5oETugqw20T7
-	 7GiqoP63LKLRA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	leoyang.li@nxp.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 19/20] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
-Date: Tue,  7 Nov 2023 07:29:13 -0500
-Message-ID: <20231107122940.3762228-19-sashal@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107122940.3762228-1-sashal@kernel.org>
-References: <20231107122940.3762228-1-sashal@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B522DF9F
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:38:31 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99ED4592A
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 04:38:19 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-53e751aeb3cso9269807a12.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 04:38:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699360698; x=1699965498; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WPGfSruBJgLSYw4TIGvl7IJRrntMu98wAh3JYdEPHTw=;
+        b=OvyVx7LCpLCdHFNpAo4OiA4IEELNiciH5KbpT/s81b+XNkClMRUtDwuHo66TP9e7qt
+         EMVXPdblbNY0WuWCiL87gjk0g60xG1kg05ljJIfXWsLELT4xjzYcfTOqQ7fu6G0UYHr+
+         Hv1DY+bknDO23e/+Zkm9uZB3g5WUn46jJhlGuBjythv8A0iL1F+XJe2wzr2lmFptu5yj
+         U/6EBIk3GRhazTi46fCiadKlQTSG4zvMbXYTjw0cOljuMz+3mm7VseSuqL+yEkEGhqbf
+         dgZ+jO96n0w4DMQynbUS8ekBFWIbegnr4PklGxkTSIXkJGvQ0HnsYTgYa+dOh6pTjVsE
+         IUtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699360698; x=1699965498;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WPGfSruBJgLSYw4TIGvl7IJRrntMu98wAh3JYdEPHTw=;
+        b=IWXdApTd2mvp59FvUTFCvD89LJslCTG/X8nSp5nkjFncEtWfvdQQL48eucHTyw/dC3
+         0Tnehi9A/oQTuqoVvdS+gYcbK1GbH9jH773IVN0PQDUw5nB0cRbmz0zRe8YWvJmsI/n1
+         we0HGnrXNRLoD2uEml0HCAHhqxCtB0IJCcO7kmDEDxZwBZXgJp9o8BQSBtvkDUgBfT1y
+         IPIX4uBZUPu7QY2CCXgSpgPe+8y09SDMo6v5AbQBuq3NCcppAVfNDnB8IR8N5VqAuT9o
+         5mj0zSyiNv3K8uEbxGrJylW854Wm5xwsKqa8BMMsVirD1CA3OwHkDvZFo82k+XKo9ZEK
+         cVFw==
+X-Gm-Message-State: AOJu0YxLORvBG8HB3QUshEUxUEqfRmsTMyvW8qBN5S6Z+z0uPvURHiBh
+	0wpnUhCP9vaab7Rjn170M84Y3Q==
+X-Google-Smtp-Source: AGHT+IG5yeN8OQBMRW8DhTHa+scnKpZxTfF/YJYQodnrPdQNY2aSPM/LO8/j1EEfKeglr0muI7Tc4g==
+X-Received: by 2002:aa7:c454:0:b0:53e:1741:d76b with SMTP id n20-20020aa7c454000000b0053e1741d76bmr25262953edr.39.1699360697962;
+        Tue, 07 Nov 2023 04:38:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id q7-20020a056402248700b00536ad96f867sm5303639eda.11.2023.11.07.04.38.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Nov 2023 04:38:17 -0800 (PST)
+Message-ID: <90f9991e-26a3-498e-9449-c96663987459@linaro.org>
+Date: Tue, 7 Nov 2023 13:38:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.137
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: soc: Add new board description for
+ MicroBlaze V
+Content-Language: en-US
+To: Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
+ <20231106-hangnail-prankster-a04e713bed35@spud>
+ <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
+ <e9fef49e-c0ca-4f7d-9618-151216e25280@linaro.org>
+ <92d95425-5bae-4ada-8fc3-966e7bfbd815@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <92d95425-5bae-4ada-8fc3-966e7bfbd815@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+On 07/11/2023 13:09, Michal Simek wrote:
+> 
+> 
+> On 11/7/23 12:27, Krzysztof Kozlowski wrote:
+>> On 07/11/2023 12:09, Michal Simek wrote:
+>>>
+>>>
+>>> On 11/6/23 18:07, Conor Dooley wrote:
+>>>> On Mon, Nov 06, 2023 at 12:53:40PM +0100, Michal Simek wrote:
+>>>>> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+>>>>> It is hardware compatible with classic MicroBlaze processor. Processor can
+>>>>> be used with standard AMD/Xilinx IPs including interrupt controller and
+>>>>> timer.
+>>>>>
+>>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>>>> ---
+>>>>>
+>>>>>    .../devicetree/bindings/soc/amd/amd.yaml      | 26 +++++++++++++++++++
+>>>>
+>>>> Bindings for SoCs (and by extension boards with them) usually go to in
+>>>> $arch/$vendor.yaml not into soc/$vendor/$vendor.yaml. Why is this any
+>>>> different?
+>>>
+>>> I actually found it based on tracking renesas.yaml which describes one of risc-v
+>>> board. No problem to move it under bindings/riscv/
+>>>
+>>>>
+>>>>>    1 file changed, 26 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/soc/amd/amd.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/soc/amd/amd.yaml b/Documentation/devicetree/bindings/soc/amd/amd.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..21adf28756fa
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/soc/amd/amd.yaml
+>>>>> @@ -0,0 +1,26 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/soc/amd/amd.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: AMD Platforms
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Michal Simek <michal.simek@amd.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  AMD boards with MicroBlaze V SOC
+>>>>> +
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    const: '/'
+>>>>> +  compatible:
+>>>>> +    oneOf:
+>>>>> +      - description: AMD MicroBlaze V
+>>>>> +        items:
+>>>>> +          - const: amd,mbv
+>>>>
+>>>> You don't actually list any boards here, but instead permit having only
+>>>> the SoC compatible and no board one. The SoC compatible is also
+>>>> incredibly generic. Personally I don't think this binding makes any
+>>>> sense as it appears to exist as a catch all for anything using your
+>>>> new cores in any combination.
+>>>
+>>> I think I need to define any string for compatibility because it is standard
+>>> property. Because this is soft core it can be added to any board with AMD/Xilinx
+>>> chip. I don't have really an option to list all boards.
+>>
+>> Why? Either there is a product with this soft-core or there is not. It
+>> cannot be both.
+> 
+> I am doing basic enablement. I am not making product. Product will be done by 
+> our customers using this core.
+> There will be thousands of different configurations done by customers which will 
+> have products with it. Also there could be hundreds configurations done on the 
+> same board.
 
-[ Upstream commit b39d5016456871a88f5cd141914a5043591b46f3 ]
+If this is the same board, then why there is compatible for it?
 
-Wrap the usb controllers in an intermediate simple-bus and use it to
-constrain the dma address size of these usb controllers to the 40b
-that they generate toward the interconnect. This is required because
-the SoC uses 48b address sizes and this mismatch would lead to smmu
-context faults [1] because the usb generates 40b addresses while the
-smmu page tables are populated with 48b wide addresses.
+> 
+> Does it make sense to have board related compatible string like this if this 
+> evaluation board is used by a lot of customers?
+> "amd,kcu105-mbv-ABC-vXYZ", "amd,kcu105-mbv", "amd,mbv"
 
-[1]
-xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
-xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
-xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
-xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
-xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
+I miss the point what is the hardware. Evaluation board is the hardware.
+If someone changes it and makes a new product, it is a new product.
 
-Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
- 1 file changed, 27 insertions(+), 19 deletions(-)
+> 
+> Or I can define qemu one.
+> "amd,qemu-mbv", "amd,mbv"
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 12e59777363fe..9bb360db6b195 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -1179,26 +1179,34 @@ sata1: sata@3210000 {
- 			dma-coherent;
- 		};
- 
--		usb0: usb@3100000 {
--			status = "disabled";
--			compatible = "snps,dwc3";
--			reg = <0x0 0x3100000 0x0 0x10000>;
--			interrupts = <0 80 0x4>; /* Level high type */
--			dr_mode = "host";
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
--		};
-+		bus: bus {
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			compatible = "simple-bus";
-+			ranges;
-+			dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x00000000>;
-+
-+			usb0: usb@3100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3100000 0x0 0x10000>;
-+				interrupts = <0 80 0x4>; /* Level high type */
-+				dr_mode = "host";
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+				status = "disabled";
-+			};
- 
--		usb1: usb@3110000 {
--			status = "disabled";
--			compatible = "snps,dwc3";
--			reg = <0x0 0x3110000 0x0 0x10000>;
--			interrupts = <0 81 0x4>; /* Level high type */
--			dr_mode = "host";
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+			usb1: usb@3110000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3110000 0x0 0x10000>;
-+				interrupts = <0 81 0x4>; /* Level high type */
-+				dr_mode = "host";
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		ccn@4000000 {
--- 
-2.42.0
+QEMU is not hardware, so not.
+
+> 
+> I think customers should be adding their compatible string in front of generic one.
+
+To what? To evaluation board? Why?
+
+> 
+> Years ago I have done the same thing with Microblaze where compatible is defined 
+> as xlnx,microblaze only. 
+
+Again, what is the use of such binding?
+
+> When customer take this soft core, put IPs around and 
+> create a product they should extend it to be for example like this.
+> "xyz,my-product-1.0", "xlnx,microblaze";
+
+So there is a product, not evaluation board.
+
+> 
+> And over all of years I have never seen any single customer to try to push dt 
+> description for any Microblaze based product.
+> 
+>>>
+>>> I am happy to change it to something else but not sure to what.
+>>
+>> Alone this compatible does not bring you anything.
+> 
+> I don't agree with it. It is standard property and I have to define it somehow.
+
+The property is already defined, you do not have to define it. What you
+define here is the value for compatible. Why do you need to define it
+somehow? Who asks for that?
+
+> If not, I get an error.
+> .../xilinx-mbv32.dtb: /: 'compatible' is a required property
+
+So you have a board? The patches must be linked to each other, e.g.
+preferred way is to send them in one patchset.
+
+> 
+> And it tells me that this risc-v compatible core runs on AMD fpga and it is 
+> compatible with it.
+
+
+Best regards,
+Krzysztof
 
 
