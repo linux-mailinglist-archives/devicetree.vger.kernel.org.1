@@ -1,375 +1,137 @@
-Return-Path: <devicetree+bounces-14248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183337E31FA
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 01:06:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB94B7E320F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 01:12:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B3951C20873
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 00:06:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BF75B20A87
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 00:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423DE7FD;
-	Tue,  7 Nov 2023 00:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C897FD;
+	Tue,  7 Nov 2023 00:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tDWtFmQ+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iS2m562n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8F17F9
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 00:06:25 +0000 (UTC)
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F066134
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 16:06:21 -0800 (PST)
-Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-359472f74c5so20135055ab.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 16:06:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699315580; x=1699920380; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Mf5g5Mm+du9QPsx6fgXbExZqjKh6NGageD+9eQdsEU=;
-        b=tDWtFmQ+/ki0PLTxKznwnq8NxcYfFaYtzbX5z7CX39dqY1JM5S8g6JwjcuCYQv+3A0
-         1/BpWv+mOuvw50fdaXcFofcChVH9Mgduf5/1+N16BRzjQjuZ7FWEpdEvw1G+u/d6J2wR
-         zlMSUxzmqCHORhu+GLFZDOiUB+fa5YeCPE1iYV6YRhKWySCIlzjokXlZpx57xRX4G9gc
-         T1fhtTXROC+QxAzaBOhXZK4UaNflIT0/xj7+pH7+VPoFjJMtcXQBNOdtaKzOVwig98UL
-         724J/y1V5o9vnX1Yo/tSA5XnrjGZUaDOk3J8Ig1amlPLgCJxd5CW3JJV9e0MqcPROdKW
-         dsVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699315580; x=1699920380;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/Mf5g5Mm+du9QPsx6fgXbExZqjKh6NGageD+9eQdsEU=;
-        b=QxOwFImRw6C8UCctuMe/PseCk8CPusCReYHPtJfuUtXQS+DRXDdhe0/EJLyTYi1x+W
-         hLTWKPPYJ0zWT8AwA4elEuBaCv2JA5mqBB+i8HZOEnoPK4wVBd+gOLVkGrkKuCjeMRYt
-         /yVOumYUm7A444IbmiShTIYifirvddbJeeBHNYGdRl8VVSp1TxchvQiH+QUeTwGwC0JY
-         Q7Ul/enSjzdqiQ9/0afcko24WcO/8FVagg3fLV/2sKCc5gNJobMgJiSJ3uRmpN4eAZmR
-         jD9/tRmIf/8Zx3nsnhjoTlQIaAowa6RfGuc0qh/gAEoh5hGWXwdVoU16R2LSL4hGTnJr
-         eXjQ==
-X-Gm-Message-State: AOJu0YwflR7WKSSCN0/ZBGhFJd7g3NCKaNW//JGwc1s1ASr2SaPI5mye
-	RCrFH7g9pDnMHw7E22+LuRSLJg==
-X-Google-Smtp-Source: AGHT+IGXGG7HlkQp7iDky/26odlQ2a4tHbOjMyliqsuluLh9F4tJK0Fjp95oKzUTCi0p0F55n2bikA==
-X-Received: by 2002:a05:6e02:1bc3:b0:352:a73a:16f5 with SMTP id x3-20020a056e021bc300b00352a73a16f5mr1132291ilv.18.1699315580523;
-        Mon, 06 Nov 2023 16:06:20 -0800 (PST)
-Received: from x1 ([2601:1c2:1800:f680:9fcd:449f:a3b9:e442])
-        by smtp.gmail.com with ESMTPSA id i14-20020aa787ce000000b006b76cb6523dsm6108528pfo.165.2023.11.06.16.06.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Nov 2023 16:06:19 -0800 (PST)
-Date: Mon, 6 Nov 2023 16:06:15 -0800
-From: Drew Fustini <dfustini@baylibre.com>
-To: Adrian Hunter <adrian.hunter@intel.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Robert Nelson <robertcnelson@beagleboard.org>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
-	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 3/7] mmc: sdhci-of-dwcmshc: Add support for T-Head
- TH1520
-Message-ID: <ZUl/dw8/SnBpgLeG@x1>
-References: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
- <20231101-th1520-mmc-v4-3-86e0216b5994@baylibre.com>
- <6f68ab16-5512-4a48-ae28-e86ce989f578@intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0955E633;
+	Tue,  7 Nov 2023 00:12:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 71E1FC433C8;
+	Tue,  7 Nov 2023 00:12:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699315934;
+	bh=IzvDcSXVc6Sv1zIOCJrJxYCGu8IPPHkKg7fcM6qoiKw=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=iS2m562nrCl1RiKX+Sy1RYiunIDGdiPcDySe5O4CZMNtjC83k6cd0IFZQBUoyP6En
+	 vrvhJ1P4lLueHCUDlA0vqNJnmLZwNsAPscRt1Zx+x3n0xL/NUOk8GjE5oTvn/HqRdQ
+	 Dd2afZgesSkF0Ox6WEAfoM7jdhVQO8QFsw3LI3h/rxZFhy29zGyft7PTfB/p4oXYxQ
+	 lqgTq/pqJ33QiB0GNjpSWb9Zk/timrYiIzLFiOWS29ALBzDdJisVc1zYOGe5WEk10I
+	 /WAEFww3iu25SOTtLJsGHO+cSN5v/U20sR2IzOlAEs6Q7ay/2ZVjT8O+kp0azA4OGw
+	 IDWMf14m+H7FQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54BD3C4332F;
+	Tue,  7 Nov 2023 00:12:14 +0000 (UTC)
+From: Steev Klimaszewski via B4 Relay <devnull+steev.kali.org@kernel.org>
+Date: Mon, 06 Nov 2023 18:12:11 -0600
+Subject: [PATCH] arm64: dts: qcom: sdm850-lenovo-yoga: Add wakeup-sources
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6f68ab16-5512-4a48-ae28-e86ce989f578@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231106-wakeup-source-v1-1-36b1f39e67fd@kali.org>
+X-B4-Tracking: v=1; b=H4sIANqASWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDQwMz3fLE7NTSAt3i/NKi5FRdQ9PENLM000QzYyNLJaCegqLUtMwKsHn
+ RsbW1AGuFZptfAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1699315933; l=1648;
+ i=steev@kali.org; s=20231106; h=from:subject:message-id;
+ bh=XxMr1pRCV6LxTCL9BHo4MJtPNXm2qJQqiz+fIboTk1I=;
+ b=vjaUjZqT8uoer/iEV4k7jfxyJNb8OqOWndAP7CAxWb8vSu85CqW+CrAoPCv+59Z0xqc9erI5Z
+ +Yjw6KDVd3UCDvzeJtXYgZ7om7X9WAhiQfVPZbUTqH4bva01E/4mHYB
+X-Developer-Key: i=steev@kali.org; a=ed25519;
+ pk=KY+JnLRNy7Hdf04yfpE5ubOsDBIIfXAWnBijkySXbb4=
+X-Endpoint-Received: by B4 Relay for steev@kali.org/20231106 with auth_id=97
+X-Original-From: Steev Klimaszewski <steev@kali.org>
+Reply-To: <steev@kali.org>
 
-On Mon, Nov 06, 2023 at 08:42:38PM +0200, Adrian Hunter wrote:
-> On 2/11/23 04:48, Drew Fustini wrote:
-> > Add support for the mmc controller in the T-Head TH1520 with the new
-> > compatible "thead,th1520-dwcmshc". Implement custom sdhci_ops for
-> > set_uhs_signaling, reset, voltage_switch, and platform_execute_tuning.
-> > 
-> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> 
-> One question below, otherwise:
-> 
-> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> 
-> > ---
-> >  drivers/mmc/host/sdhci-of-dwcmshc.c | 348 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 348 insertions(+)
-> > 
-> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > index 3a3bae6948a8..1a1386b742c1 100644
-> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > @@ -8,6 +8,7 @@
-> >   */
-> >  
-> >  #include <linux/acpi.h>
-> > +#include <linux/bitfield.h>
-> >  #include <linux/clk.h>
-> >  #include <linux/dma-mapping.h>
-> >  #include <linux/iopoll.h>
-> > @@ -35,6 +36,21 @@
-> >  #define DWCMSHC_CARD_IS_EMMC		BIT(0)
-> >  #define DWCMSHC_ENHANCED_STROBE		BIT(8)
-> >  #define DWCMSHC_EMMC_ATCTRL		0x40
-> > +/* Tuning and auto-tuning fields in AT_CTRL_R control register */
-> > +#define AT_CTRL_AT_EN			BIT(0) /* autotuning is enabled */
-> > +#define AT_CTRL_CI_SEL			BIT(1) /* interval to drive center phase select */
-> > +#define AT_CTRL_SWIN_TH_EN		BIT(2) /* sampling window threshold enable */
-> > +#define AT_CTRL_RPT_TUNE_ERR		BIT(3) /* enable reporting framing errors */
-> > +#define AT_CTRL_SW_TUNE_EN		BIT(4) /* enable software managed tuning */
-> > +#define AT_CTRL_WIN_EDGE_SEL_MASK	GENMASK(11, 8) /* bits [11:8] */
-> > +#define AT_CTRL_WIN_EDGE_SEL		0xf /* sampling window edge select */
-> > +#define AT_CTRL_TUNE_CLK_STOP_EN	BIT(16) /* clocks stopped during phase code change */
-> > +#define AT_CTRL_PRE_CHANGE_DLY_MASK	GENMASK(18, 17) /* bits [18:17] */
-> > +#define AT_CTRL_PRE_CHANGE_DLY		0x1  /* 2-cycle latency */
-> > +#define AT_CTRL_POST_CHANGE_DLY_MASK	GENMASK(20, 19) /* bits [20:19] */
-> > +#define AT_CTRL_POST_CHANGE_DLY		0x3  /* 4-cycle latency */
-> > +#define AT_CTRL_SWIN_TH_VAL_MASK	GENMASK(31, 24) /* bits [31:24] */
-> > +#define AT_CTRL_SWIN_TH_VAL		0x9  /* sampling window threshold */
-> >  
-> >  /* Rockchip specific Registers */
-> >  #define DWCMSHC_EMMC_DLL_CTRL		0x800
-> > @@ -72,6 +88,82 @@
-> >  	(((x) & DWCMSHC_EMMC_DLL_TIMEOUT) == 0))
-> >  #define RK35xx_MAX_CLKS 3
-> >  
-> > +/* PHY register area pointer */
-> > +#define DWC_MSHC_PTR_PHY_R	0x300
-> > +
-> > +/* PHY general configuration */
-> > +#define PHY_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x00)
-> > +#define PHY_CNFG_RSTN_DEASSERT	0x1  /* Deassert PHY reset */
-> > +#define PHY_CNFG_PAD_SP_MASK	GENMASK(19, 16) /* bits [19:16] */
-> > +#define PHY_CNFG_PAD_SP		0x0c /* PMOS TX drive strength */
-> > +#define PHY_CNFG_PAD_SN_MASK	GENMASK(23, 20) /* bits [23:20] */
-> > +#define PHY_CNFG_PAD_SN		0x0c /* NMOS TX drive strength */
-> > +
-> > +/* PHY command/response pad settings */
-> > +#define PHY_CMDPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x04)
-> > +
-> > +/* PHY data pad settings */
-> > +#define PHY_DATAPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x06)
-> > +
-> > +/* PHY clock pad settings */
-> > +#define PHY_CLKPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x08)
-> > +
-> > +/* PHY strobe pad settings */
-> > +#define PHY_STBPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x0a)
-> > +
-> > +/* PHY reset pad settings */
-> > +#define PHY_RSTNPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x0c)
-> > +
-> > +/* Bitfields are common for all pad settings */
-> > +#define PHY_PAD_RXSEL_1V8		0x1 /* Receiver type select for 1.8V */
-> > +#define PHY_PAD_RXSEL_3V3		0x2 /* Receiver type select for 3.3V */
-> > +
-> > +#define PHY_PAD_WEAKPULL_MASK		GENMASK(4, 3) /* bits [4:3] */
-> > +#define PHY_PAD_WEAKPULL_PULLUP		0x1 /* Weak pull up enabled */
-> > +#define PHY_PAD_WEAKPULL_PULLDOWN	0x2 /* Weak pull down enabled */
-> > +
-> > +#define PHY_PAD_TXSLEW_CTRL_P_MASK	GENMASK(8, 5) /* bits [8:5] */
-> > +#define PHY_PAD_TXSLEW_CTRL_P		0x3 /* Slew control for P-Type pad TX */
-> > +#define PHY_PAD_TXSLEW_CTRL_N_MASK	GENMASK(12, 9) /* bits [12:9] */
-> > +#define PHY_PAD_TXSLEW_CTRL_N		0x3 /* Slew control for N-Type pad TX */
-> > +
-> > +/* PHY CLK delay line settings */
-> > +#define PHY_SDCLKDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x1d)
-> > +#define PHY_SDCLKDL_CNFG_UPDATE	BIT(4) /* set before writing to SDCLKDL_DC */
-> > +
-> > +/* PHY CLK delay line delay code */
-> > +#define PHY_SDCLKDL_DC_R		(DWC_MSHC_PTR_PHY_R + 0x1e)
-> > +#define PHY_SDCLKDL_DC_INITIAL		0x40 /* initial delay code */
-> > +#define PHY_SDCLKDL_DC_DEFAULT		0x32 /* default delay code */
-> > +#define PHY_SDCLKDL_DC_HS400		0x18 /* delay code for HS400 mode */
-> > +
-> > +/* PHY drift_cclk_rx delay line configuration setting */
-> > +#define PHY_ATDL_CNFG_R			(DWC_MSHC_PTR_PHY_R + 0x21)
-> > +#define PHY_ATDL_CNFG_INPSEL_MASK	GENMASK(3, 2) /* bits [3:2] */
-> > +#define PHY_ATDL_CNFG_INPSEL		0x3 /* delay line input source */
-> > +
-> > +/* PHY DLL control settings */
-> > +#define PHY_DLL_CTRL_R			(DWC_MSHC_PTR_PHY_R + 0x24)
-> > +#define PHY_DLL_CTRL_DISABLE		0x0 /* PHY DLL is enabled */
-> > +#define PHY_DLL_CTRL_ENABLE		0x1 /* PHY DLL is disabled */
-> > +
-> > +/* PHY DLL  configuration register 1 */
-> > +#define PHY_DLL_CNFG1_R			(DWC_MSHC_PTR_PHY_R + 0x25)
-> > +#define PHY_DLL_CNFG1_SLVDLY_MASK	GENMASK(5, 4) /* bits [5:4] */
-> > +#define PHY_DLL_CNFG1_SLVDLY		0x2 /* DLL slave update delay input */
-> > +#define PHY_DLL_CNFG1_WAITCYCLE		0x5 /* DLL wait cycle input */
-> > +
-> > +/* PHY DLL configuration register 2 */
-> > +#define PHY_DLL_CNFG2_R			(DWC_MSHC_PTR_PHY_R + 0x26)
-> > +#define PHY_DLL_CNFG2_JUMPSTEP		0xa /* DLL jump step input */
-> > +
-> > +/* PHY DLL master and slave delay line configuration settings */
-> > +#define PHY_DLLDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x28)
-> > +#define PHY_DLLDL_CNFG_SLV_INPSEL_MASK	GENMASK(6, 5) /* bits [6:5] */
-> > +#define PHY_DLLDL_CNFG_SLV_INPSEL	0x3 /* clock source select for slave DL */
-> > +
-> > +#define FLAG_IO_FIXED_1V8	BIT(0)
-> > +
-> >  #define BOUNDARY_OK(addr, len) \
-> >  	((addr | (SZ_128M - 1)) == ((addr + len - 1) | (SZ_128M - 1)))
-> >  
-> > @@ -92,6 +184,8 @@ struct dwcmshc_priv {
-> >  	struct clk	*bus_clk;
-> >  	int vendor_specific_area1; /* P_VENDOR_SPECIFIC_AREA reg */
-> >  	void *priv; /* pointer to SoC private stuff */
-> > +	u16 delay_line;
-> > +	u16 flags;
-> >  };
-> >  
-> >  /*
-> > @@ -157,6 +251,126 @@ static void dwcmshc_request(struct mmc_host *mmc, struct mmc_request *mrq)
-> >  	sdhci_request(mmc, mrq);
-> >  }
-> >  
-> > +static void dwcmshc_phy_1_8v_init(struct sdhci_host *host)
-> > +{
-> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> > +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> > +	u32 val;
-> > +
-> > +	/* deassert phy reset & set tx drive strength */
-> > +	val = PHY_CNFG_RSTN_DEASSERT;
-> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SP_MASK, PHY_CNFG_PAD_SP);
-> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SN_MASK, PHY_CNFG_PAD_SN);
-> > +	sdhci_writel(host, val, PHY_CNFG_R);
-> > +
-> > +	/* disable delay line */
-> > +	sdhci_writeb(host, PHY_SDCLKDL_CNFG_UPDATE, PHY_SDCLKDL_CNFG_R);
-> > +
-> > +	/* set delay line */
-> > +	sdhci_writeb(host, priv->delay_line, PHY_SDCLKDL_DC_R);
-> > +	sdhci_writeb(host, PHY_DLL_CNFG2_JUMPSTEP, PHY_DLL_CNFG2_R);
-> > +
-> > +	/* enable delay lane */
-> > +	val = sdhci_readb(host, PHY_SDCLKDL_CNFG_R);
-> > +	val &= ~(PHY_SDCLKDL_CNFG_UPDATE);
-> > +	sdhci_writeb(host, val, PHY_SDCLKDL_CNFG_R);
-> > +
-> > +	/* configure phy pads */
-> > +	val = PHY_PAD_RXSEL_1V8;
-> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLUP);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
-> > +	sdhci_writew(host, val, PHY_CMDPAD_CNFG_R);
-> > +	sdhci_writew(host, val, PHY_DATAPAD_CNFG_R);
-> > +	sdhci_writew(host, val, PHY_RSTNPAD_CNFG_R);
-> > +
-> > +	val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
-> > +	sdhci_writew(host, val, PHY_CLKPAD_CNFG_R);
-> > +
-> > +	val = PHY_PAD_RXSEL_1V8;
-> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLDOWN);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
-> > +	sdhci_writew(host, val, PHY_STBPAD_CNFG_R);
-> > +
-> > +	/* enable data strobe mode */
-> > +	sdhci_writeb(host, FIELD_PREP(PHY_DLLDL_CNFG_SLV_INPSEL_MASK, PHY_DLLDL_CNFG_SLV_INPSEL),
-> > +		     PHY_DLLDL_CNFG_R);
-> > +
-> > +	/* enable phy dll */
-> > +	sdhci_writeb(host, PHY_DLL_CTRL_ENABLE, PHY_DLL_CTRL_R);
-> > +}
-> > +
-> > +static void dwcmshc_phy_3_3v_init(struct sdhci_host *host)
-> > +{
-> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> > +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> > +	u32 val;
-> > +
-> > +	/* deassert phy reset & set tx drive strength */
-> > +	val = PHY_CNFG_RSTN_DEASSERT;
-> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SP_MASK, PHY_CNFG_PAD_SP);
-> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SN_MASK, PHY_CNFG_PAD_SN);
-> > +	sdhci_writel(host, val, PHY_CNFG_R);
-> > +
-> > +	/* disable delay line */
-> > +	sdhci_writeb(host, PHY_SDCLKDL_CNFG_UPDATE, PHY_SDCLKDL_CNFG_R);
-> > +
-> > +	/* set delay line */
-> > +	sdhci_writeb(host, priv->delay_line, PHY_SDCLKDL_DC_R);
-> > +	sdhci_writeb(host, PHY_DLL_CNFG2_JUMPSTEP, PHY_DLL_CNFG2_R);
-> > +
-> > +	/* enable delay lane */
-> > +	val = sdhci_readb(host, PHY_SDCLKDL_CNFG_R);
-> > +	val &= ~(PHY_SDCLKDL_CNFG_UPDATE);
-> > +	sdhci_writeb(host, val, PHY_SDCLKDL_CNFG_R);
-> > +
-> > +	/* configure phy pads */
-> > +	val = PHY_PAD_RXSEL_3V3;
-> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLUP);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
-> > +	sdhci_writew(host, val, PHY_CMDPAD_CNFG_R);
-> > +	sdhci_writew(host, val, PHY_DATAPAD_CNFG_R);
-> > +	sdhci_writew(host, val, PHY_RSTNPAD_CNFG_R);
-> > +
-> > +	val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
-> > +	sdhci_writew(host, val, PHY_CLKPAD_CNFG_R);
-> > +
-> > +	val = PHY_PAD_RXSEL_3V3;
-> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLDOWN);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
-> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
-> > +	sdhci_writew(host, val, PHY_STBPAD_CNFG_R);
-> > +
-> > +	/* enable phy dll */
-> > +	sdhci_writeb(host, PHY_DLL_CTRL_ENABLE, PHY_DLL_CTRL_R);
-> > +}
-> > +
-> > +static void th1520_sdhci_set_phy(struct sdhci_host *host)
-> > +{
-> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> > +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> > +	u16 emmc_ctrl;
-> > +
-> > +	/* Before power on, set PHY configs */
-> > +	if (priv->flags & FLAG_IO_FIXED_1V8)
-> > +		dwcmshc_phy_1_8v_init(host);
-> > +	else
-> > +		dwcmshc_phy_3_3v_init(host);
-> > +
-> > +	if (host->mmc->caps2 & (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)) {
-> 
-> Perhaps you mean both MMC_CAP2_NO_SD and MMC_CAP2_NO_SDIO which would be as below?
-> 
-> 	if ((host->mmc->caps2 & (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)) == (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)) {
-> 
-> or
-> 
-> 	if (host->mmc->caps2 & MMC_CAP2_NO_SD && host->mmc->caps2 & MMC_CAP2_NO_SDIO) {
-> 
-> or some such?
+From: Steev Klimaszewski <steev@kali.org>
 
-Thanks for catching this. Yes, what I did is incorrect.
+The keyboard, touchpad and touchscreen can all be used to wake the
+computer up from sleep, so mark them as such in the dts file.
 
-In fact, Jisheng had suggested this code in the v2 thread:
+Signed-off-by: Steev Klimaszewski <steev@kali.org>
+---
+It would be nice to wake up the Lenovo Yoga C630 from suspend by hitting
+the keyboard or touchpad or even touchscreen, so this patch enables that
+ability.
 
-u32 tmp = MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO;
-if ((cap2 & tmp) == tmp) {
-	blablabla...
-}
+I'm not married to enabling it for the touchscreen, so if anyone wants
+me to drop that hunk, I'd be fine with it.
+---
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-This is similar to your first suggestion above.
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index 92a812b5f423..9ddffb98408d 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -384,6 +384,8 @@ tsel: hid@15 {
+ 		hid-descr-addr = <0x1>;
+ 
+ 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
++
++		wakeup-source;
+ 	};
+ 
+ 	tsc2: hid@2c {
+@@ -392,6 +394,8 @@ tsc2: hid@2c {
+ 		hid-descr-addr = <0x20>;
+ 
+ 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
++
++		wakeup-source;
+ 	};
+ };
+ 
+@@ -408,6 +412,8 @@ tsc1: hid@10 {
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&i2c5_hid_active>;
++
++		wakeup-source;
+ 	};
+ };
+ 
+@@ -482,6 +488,8 @@ ecsh: hid@5c {
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&i2c11_hid_active>;
++
++		wakeup-source;
+ 	};
+ };
+ 
 
-I'll fix this in v5.
+---
+base-commit: 3ff7a5781ceee3befb9224d29cef6e6a4766c5fe
+change-id: 20231106-wakeup-source-15af6f5a6329
 
-thanks,
-drew
+Best regards,
+-- 
+Steev Klimaszewski <steev@kali.org>
+
 
