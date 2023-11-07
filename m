@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-14398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5BB17E435D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:26:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5387E4373
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D72E21C20C7E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 15:26:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 527C0280F45
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 15:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1A531591;
-	Tue,  7 Nov 2023 15:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F36A31594;
+	Tue,  7 Nov 2023 15:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QIgT+Gdx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vF6r8eb8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7CF30D0B
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 15:26:24 +0000 (UTC)
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E001FC6
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 07:26:23 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-543456dbd7bso13381499a12.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 07:26:23 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF58AD52
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 15:30:36 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A42311F
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 07:30:36 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9e213f198dfso158882366b.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 07:30:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699370782; x=1699975582; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=PNFhMc7ni11X+CIntXbMfTwWzVrqZzB8JwspUtoZfOQ=;
-        b=QIgT+GdxL4Br5BapqsN0xjy02B9hMv0g7dmH0Nl6nlHu24QYMJ8ssQ3zap0NTvj8gy
-         hZQHBV/SeiX7jpmkJDroh7fgnV5GOf3ZFhfg0ORILTomMofWnwSqBihpePkUh663KCTM
-         wzra/tETbMQhXHOHQ/hG8Ny/RwBGU6fIqFcLGqsfHmpJ4xUiidCx4o1pyuPueMm7FyTS
-         Nu6ir8ubr132NuK92HeE+kEUkNjG6yZQaJjpGee+tSoYZ0xLABtHbV5e+cCcY84f4eiz
-         tBVourC501TChvgUBAQA3Nv41XwbQ1MSbQu5noakdzSQ8lN/B6lfEsAUjBXEhl1ZNhSn
-         tDuA==
+        d=linaro.org; s=google; t=1699371034; x=1699975834; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X533tTgWb1eLSTyAkSIxe6pqYTgEk5kDQ0hSy0Z6A+g=;
+        b=vF6r8eb8FPJqc4JsQhpM68hdN64k8qev5hseB1tCWmS+BgehaT8vqGtxLmFKNKMTPc
+         s8QrmZSlsosD+c9FjMs6byZMePPNd4Z32f/ItATsKMhZUZsVA4lB4SiIib3AKjSmsFlq
+         aIVZXzjek52pnSan+L0JQDP+rOsgIrL2e88vjuTkF6YcWrBVkbSS6IJh9Y6g/7ZGfgB9
+         laxnnUBSpp2e85JzF3+/mldsfy8hY9Qt7xuIcLl2dXHu54L7ZI9NBebOiupKnaCPagfJ
+         vCCD3404oG6cbiMFf5eIb+RjVOxOhcVqpM9aCz2xqm6OdCaFy1vPZlOunfkDPj0em3Hk
+         KddA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699370782; x=1699975582;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PNFhMc7ni11X+CIntXbMfTwWzVrqZzB8JwspUtoZfOQ=;
-        b=utZi/kjaDhXSUrRFurOr5y7M2L+AEDAZtOcHd3ZmDtcG4t5cwSIMWPiGVYETEUPvJY
-         wZVbMFDIs6YONNIiSm5UvBm3ZGn6jQ+rfNwsKoAYuobFXbceHDiAl9TtWQjAn+53edLP
-         eAhkoWBzj9CpIZ37mEQ2Aj0nq+CKNxkFDwRhiN/+kL0xyaDE9ufy/Jbe/o37GmfdYQj5
-         d6GlQ6+gjhvd394T8/n+crzbyu2TdI69OXLc0To8SjxMjTrS5LXdL0npxxGPCHmfXGP7
-         tFBTYkG6ZEoQ7TCgwg9zTaBC91fBOvsr9EwuyJwbdH+2yddvxV5rhHtWmyLy0bkIforw
-         X5kw==
-X-Gm-Message-State: AOJu0YzQs6FyA9pQE+54wJ8SZGu2xv8wIymwJBNHxsCmcWaUr7xJ5DSO
-	YnkD6v+PsGn/22jAuydL0Y8DFg==
-X-Google-Smtp-Source: AGHT+IFn2O96/abPIXmMw7eMollD5P1Ra0QFGt9oWSBzn4n9Z0/DCxLvfUiZ/71S/nzOgfuMXGrm6g==
-X-Received: by 2002:a17:907:72cd:b0:9a1:b528:d0f6 with SMTP id du13-20020a17090772cd00b009a1b528d0f6mr2212487ejc.27.1699370781621;
-        Tue, 07 Nov 2023 07:26:21 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699371034; x=1699975834;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X533tTgWb1eLSTyAkSIxe6pqYTgEk5kDQ0hSy0Z6A+g=;
+        b=FJoXie4uhF9bTiVSFYXLdmitkwJ0f1VsLZvLaCyG/59f8Wp6Ik0kBeu4+VDlUpi74a
+         4Ak3Cougs+L1M+FJWta+1EN4/8cjfwco6tkY/0wZdxeoTspnmTyrneLkURdZ1pZxkBUB
+         ChkLMyQct6j2cxv7utUzoHhMEmu9ffpy4MKblDggR2rczsrDMcpa7PY1BsIj32sGDhFf
+         L31DkjzjZaoPDkmfv3tcLYeQlH21TBZ5lBjWau4nNZ4xUVmFEPr20ZKA5FQyFRijbfQJ
+         4nGBz26nFEgVBqJuJCD/qSlHk+MR6bqeIYA8FVsjL+eb01vkmiIHk2z0nNd9mlciyMKe
+         x94A==
+X-Gm-Message-State: AOJu0Yzbl9Z6/xUnyWSoLc6jleGs1ir3OeCv4kXvKEg8sQns7ZeVCmQo
+	RqF93yccBHjP6z2VLVXw9Cyklg==
+X-Google-Smtp-Source: AGHT+IHqRzlMQW1322zEZU++nyEQZu6GAp3fMN+6lhVBpMx1K3kqRuYNwaOZb8vjH8JBTiw5Npdhcw==
+X-Received: by 2002:a17:907:9815:b0:9b2:b152:b0f2 with SMTP id ji21-20020a170907981500b009b2b152b0f2mr17810273ejc.10.1699371034593;
+        Tue, 07 Nov 2023 07:30:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id jt21-20020a170906ca1500b009b65a698c16sm1143858ejb.220.2023.11.07.07.26.18
+        by smtp.gmail.com with ESMTPSA id i20-20020a17090671d400b009ddf38056f8sm1163639ejk.118.2023.11.07.07.30.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 07:26:21 -0800 (PST)
-Message-ID: <3bc959e4-9308-4827-ae6d-2ec6fc47d946@linaro.org>
-Date: Tue, 7 Nov 2023 16:26:16 +0100
+        Tue, 07 Nov 2023 07:30:34 -0800 (PST)
+Message-ID: <d2c4e571-fbc4-4c3b-b382-1dabb88fbcb9@linaro.org>
+Date: Tue, 7 Nov 2023 16:30:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +67,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] coresight: Add remote etm support
+Subject: Re: [PATCH v1 2/2] dt-bindings: arm: Add remote etm driver
+Content-Language: en-US
 To: Mao Jinlong <quic_jinlmao@quicinc.com>,
  Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
  <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
@@ -82,8 +82,7 @@ Cc: linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
  devicetree@vger.kernel.org, Yuanfang Zhang <quic_yuanfang@quicinc.com>,
  Tao Zhang <quic_taozha@quicinc.com>
 References: <20231107060939.13449-1-quic_jinlmao@quicinc.com>
- <20231107060939.13449-2-quic_jinlmao@quicinc.com>
-Content-Language: en-US
+ <20231107060939.13449-3-quic_jinlmao@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,554 +128,109 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107060939.13449-2-quic_jinlmao@quicinc.com>
+In-Reply-To: <20231107060939.13449-3-quic_jinlmao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/11/2023 07:09, Mao Jinlong wrote:
-> Add support for ETM trace collection on remote processor using
-> coreSight framework.
+> Add new coresight-remote-etm.yaml file describing the bindings required
+> to define coresight remote etm in the device trees.
+
+Subject: drop driver. Bindings are about hardware, not drivers.
+
 > 
 > Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 > ---
->  drivers/hwtracing/coresight/Kconfig           |   9 +
->  drivers/hwtracing/coresight/Makefile          |   1 +
->  drivers/hwtracing/coresight/coresight-core.c  |   3 +
->  drivers/hwtracing/coresight/coresight-qmi.h   | 109 ++++++
->  .../coresight/coresight-remote-etm.c          | 325 ++++++++++++++++++
->  include/linux/coresight.h                     |   1 +
->  6 files changed, 448 insertions(+)
->  create mode 100644 drivers/hwtracing/coresight/coresight-qmi.h
->  create mode 100644 drivers/hwtracing/coresight/coresight-remote-etm.c
+>  .../arm/qcom,coresight-remote-etm.yaml        | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
 > 
-> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
-> index 06f0a7594169..425886ab7401 100644
-> --- a/drivers/hwtracing/coresight/Kconfig
-> +++ b/drivers/hwtracing/coresight/Kconfig
-> @@ -247,4 +247,13 @@ config CORESIGHT_DUMMY
->  
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called coresight-dummy.
-> +
-> +config CORESIGHT_REMOTE_ETM
-> +	tristate "Remote processor ETM trace support"
-> +	select QCOM_QMI_HELPERS
-> +	help
-> +	  Enables support for ETM trace collection on remote processor using
-> +	  CoreSight framework. Enabling this will allow turning on ETM
-> +	  tracing on remote processor via sysfs by configuring the required
-> +	  CoreSight components.
->  endif
-> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> index 995d3b2c76df..a5283cab0bc0 100644
-> --- a/drivers/hwtracing/coresight/Makefile
-> +++ b/drivers/hwtracing/coresight/Makefile
-> @@ -29,5 +29,6 @@ obj-$(CONFIG_CORESIGHT_TPDM) += coresight-tpdm.o
->  obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
->  coresight-cti-y := coresight-cti-core.o	coresight-cti-platform.o \
->  		   coresight-cti-sysfs.o
-> +obj-$(CONFIG_CORESIGHT_REMOTE_ETM) += coresight-remote-etm.o
->  obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
->  obj-$(CONFIG_CORESIGHT_DUMMY) += coresight-dummy.o
-> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
-> index d7f0e231feb9..f365a3899821 100644
-> --- a/drivers/hwtracing/coresight/coresight-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-core.c
-> @@ -1094,6 +1094,7 @@ static int coresight_validate_source(struct coresight_device *csdev,
->  	if (subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_PROC &&
->  	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE &&
->  	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM &&
-> +	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_REMOTE_PROC &&
->  	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS) {
->  		dev_err(&csdev->dev, "wrong device subtype in %s\n", function);
->  		return -EINVAL;
-> @@ -1164,6 +1165,7 @@ int coresight_enable(struct coresight_device *csdev)
->  		break;
->  	case CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE:
->  	case CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM:
-> +	case CORESIGHT_DEV_SUBTYPE_SOURCE_REMOTE_PROC:
->  	case CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS:
->  		/*
->  		 * Use the hash of source's device name as ID
-> @@ -1215,6 +1217,7 @@ void coresight_disable(struct coresight_device *csdev)
->  		break;
->  	case CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE:
->  	case CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM:
-> +	case CORESIGHT_DEV_SUBTYPE_SOURCE_REMOTE_PROC:
->  	case CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS:
->  		hash = hashlen_hash(hashlen_string(NULL, dev_name(&csdev->dev)));
->  		/* Find the path by the hash. */
-> diff --git a/drivers/hwtracing/coresight/coresight-qmi.h b/drivers/hwtracing/coresight/coresight-qmi.h
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
 > new file mode 100644
-> index 000000000000..4c35ba8c8a05
+> index 000000000000..04bb57b48d96
 > --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-qmi.h
-> @@ -0,0 +1,109 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2021-2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-remote-etm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef _CORESIGHT_QMI_H
-> +#define _CORESIGHT_QMI_H
-> +
-> +#include <linux/soc/qcom/qmi.h>
-> +
-> +#define CORESIGHT_QMI_SVC_ID			(0x33)
-> +#define CORESIGHT_QMI_VERSION			(1)
-> +
-> +#define CORESIGHT_QMI_GET_ETM_REQ_V01		(0x002B)
-> +#define CORESIGHT_QMI_GET_ETM_RESP_V01		(0x002B)
-> +#define CORESIGHT_QMI_SET_ETM_REQ_V01		(0x002C)
-> +#define CORESIGHT_QMI_SET_ETM_RESP_V01		(0x002C)
-> +
-> +#define CORESIGHT_QMI_GET_ETM_REQ_MAX_LEN	(0)
-> +#define CORESIGHT_QMI_GET_ETM_RESP_MAX_LEN	(14)
-> +#define CORESIGHT_QMI_SET_ETM_REQ_MAX_LEN	(7)
-> +#define CORESIGHT_QMI_SET_ETM_RESP_MAX_LEN	(7)
-> +
-> +#define TIMEOUT_MS				(10000)
-> +
-> +enum coresight_etm_state_enum_type_v01 {
-> +	/* To force a 32 bit signed enum. Do not change or use */
-> +	CORESIGHT_ETM_STATE_ENUM_TYPE_MIN_ENUM_VAL_V01 = INT_MIN,
-> +	CORESIGHT_ETM_STATE_DISABLED_V01 = 0,
-> +	CORESIGHT_ETM_STATE_ENABLED_V01 = 1,
-> +	CORESIGHT_ETM_STATE_ENUM_TYPE_MAX_ENUM_VAL_01 = INT_MAX,
-> +};
-> +
-> +struct coresight_get_etm_req_msg_v01 {
-> +	/*
-> +	 * This element is a placeholder to prevent declaration of
-> +	 * empty struct. Do not change.
-> +	 */
-> +	char __placeholder;
-> +};
-> +
-> +struct coresight_get_etm_resp_msg_v01 {
-> +	/* Mandatory */
-> +	/* QMI result Code */
-> +	struct qmi_response_type_v01 resp;
-> +
-> +	/* Optional */
-> +	/* ETM output state, must be set to true if state is being passed */
-> +	uint8_t state_valid;
-> +	/* Present when result code is QMI_RESULT_SUCCESS */
-> +	enum coresight_etm_state_enum_type_v01 state;
-> +};
-> +
-> +struct coresight_set_etm_req_msg_v01 {
-> +	/* Mandatory */
-> +	/* ETM output state */
-> +	enum coresight_etm_state_enum_type_v01 state;
-> +};
-> +
-> +struct coresight_set_etm_resp_msg_v01 {
-> +	/* Mandatory */
-> +	struct qmi_response_type_v01 resp;
-> +};
-> +
-> +static struct qmi_elem_info coresight_set_etm_req_msg_v01_ei[] = {
-> +	{
-> +		.data_type = QMI_UNSIGNED_4_BYTE,
-> +		.elem_len  = 1,
-> +		.elem_size = sizeof(enum coresight_etm_state_enum_type_v01),
-> +		.array_type  = NO_ARRAY,
-> +		.tlv_type  = 0x01,
-> +		.offset    = offsetof(struct coresight_set_etm_req_msg_v01,
-> +				      state),
-> +		.ei_array  = NULL,
-> +	},
-> +	{
-> +		.data_type = QMI_EOTI,
-> +		.elem_len  = 0,
-> +		.elem_size = 0,
-> +		.array_type  = NO_ARRAY,
-> +		.tlv_type  = 0,
-> +		.offset    = 0,
-> +		.ei_array  = NULL,
-> +	},
-> +};
-> +
-> +static struct qmi_elem_info coresight_set_etm_resp_msg_v01_ei[] = {
-> +	{
-> +		.data_type = QMI_STRUCT,
-> +		.elem_len  = 1,
-> +		.elem_size = sizeof(struct qmi_response_type_v01),
-> +		.array_type  = NO_ARRAY,
-> +		.tlv_type  = 0x02,
-> +		.offset    = offsetof(struct coresight_set_etm_resp_msg_v01,
-> +				      resp),
-> +		.ei_array  = qmi_response_type_v01_ei,
-> +	},
-> +	{
-> +		.data_type = QMI_EOTI,
-> +		.elem_len  = 0,
-> +		.elem_size = 0,
-> +		.array_type  = NO_ARRAY,
-> +		.tlv_type  = 0,
-> +		.offset    = 0,
-> +		.ei_array  = NULL,
-> +	},
-> +};
-> +
-> +#endif
-> diff --git a/drivers/hwtracing/coresight/coresight-remote-etm.c b/drivers/hwtracing/coresight/coresight-remote-etm.c
-> new file mode 100644
-> index 000000000000..d895dc5d14c2
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-remote-etm.c
-> @@ -0,0 +1,325 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/init.h>
-> +#include <linux/types.h>
-> +#include <linux/device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/io.h>
-> +#include <linux/err.h>
-> +#include <linux/sysfs.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/coresight.h>
-> +#include "coresight-qmi.h"
-> +#include "coresight-priv.h"
-> +
-> +#define REMOTE_ETM_TRACE_ID_START	192
-> +
-> +DEFINE_CORESIGHT_DEVLIST(remote_etm_devs, "remote-etm");
+> +title: Qualcomm Coresight Remote ETM
 
-
-Why do you define file-scope variables?
+What is ETM?
 
 > +
-> +static DEFINE_MUTEX(remote_etm_lock);
+> +maintainers:
+> +  - Jinlong Mao <quic_jinlmao@quicinc.com>
+> +  - Tao Zhang <quic_taozha@quicinc.com>
+> +
+> +description: |
 
-Drop, not used.
+Do not need '|' unless you need to preserve formatting.
 
-> +static LIST_HEAD(remote_etm_list);
+> +  Support for ETM trace collection on remote processor using coresight
+> +  framework. Enabling this will allow turning on ETM tracing on remote
+> +  processor via sysfs and collecting the trace via TMC sinks.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: qcom,coresight-remote-etm
+> +
+> +  qcom,inst-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Instance id of remote etm.
 
-Drop, not used.
-
-> +
-> +struct remote_etm_drvdata {
-> +	struct device			*dev;
-> +	struct coresight_device		*csdev;
-> +	struct mutex			mutex;
-> +	struct qmi_handle		handle;
-> +	uint32_t			inst_id;
-> +	bool				enable;
-> +	bool service_connected;
-
-Your indentation is a mess.
-
-> +	bool security;
-> +	struct sockaddr_qrtr s_addr;
-> +	struct list_head link;
-> +};
-> +
-> +static int service_remote_etm_new_server(struct qmi_handle *qmi,
-> +		struct qmi_service *svc)
-> +{
-> +	struct remote_etm_drvdata *drvdata = container_of(qmi,
-> +					struct remote_etm_drvdata, handle);
-> +
-> +	drvdata->s_addr.sq_family = AF_QIPCRTR;
-> +	drvdata->s_addr.sq_node = svc->node;
-> +	drvdata->s_addr.sq_port = svc->port;
-> +	drvdata->service_connected = true;
-> +	dev_info(drvdata->dev,
-> +		"Connection established between QMI handle and %d service\n",
-> +		drvdata->inst_id);
-> +
-> +	return 0;
-> +}
-> +
-> +static void service_remote_etm_del_server(struct qmi_handle *qmi,
-> +		struct qmi_service *svc)
-> +{
-> +	struct remote_etm_drvdata *drvdata = container_of(qmi,
-> +					struct remote_etm_drvdata, handle);
-> +	drvdata->service_connected = false;
-> +	dev_info(drvdata->dev,
-> +		"Connection disconnected between QMI handle and %d service\n",
-> +		drvdata->inst_id);
-> +}
-> +
-> +static struct qmi_ops server_ops = {
-> +	.new_server = service_remote_etm_new_server,
-> +	.del_server = service_remote_etm_del_server,
-> +};
-> +
-> +static int remote_etm_enable(struct coresight_device *csdev,
-> +			     struct perf_event *event, u32 mode)
-> +{
-> +	struct remote_etm_drvdata *drvdata =
-> +		dev_get_drvdata(csdev->dev.parent);
-> +	struct coresight_set_etm_req_msg_v01 req;
-> +	struct coresight_set_etm_resp_msg_v01 resp = { { 0, 0 } };
-> +	struct qmi_txn txn;
-> +	int ret;
-> +
-> +	mutex_lock(&drvdata->mutex);
-> +
-> +	if (!drvdata->service_connected) {
-> +		dev_err(drvdata->dev, "QMI service not connected!\n");
-> +		ret = EINVAL;
-> +		goto err;
-> +	}
-> +	/*
-> +	 * The QMI handle may be NULL in the following scenarios:
-> +	 * 1. QMI service is not present
-> +	 * 2. QMI service is present but attempt to enable remote ETM is earlier
-> +	 *    than service is ready to handle request
-> +	 * 3. Connection between QMI client and QMI service failed
-> +	 *
-> +	 * Enable CoreSight without processing further QMI commands which
-> +	 * provides the option to enable remote ETM by other means.
-> +	 */
-> +	req.state = CORESIGHT_ETM_STATE_ENABLED_V01;
-> +
-> +	ret = qmi_txn_init(&drvdata->handle, &txn,
-> +			coresight_set_etm_resp_msg_v01_ei,
-> +			&resp);
-> +
-> +	if (ret < 0) {
-> +		dev_err(drvdata->dev, "QMI tx init failed , ret:%d\n",
-> +				ret);
-> +		goto err;
-> +	}
-> +
-> +	ret = qmi_send_request(&drvdata->handle, &drvdata->s_addr,
-> +			&txn, CORESIGHT_QMI_SET_ETM_REQ_V01,
-> +			CORESIGHT_QMI_SET_ETM_REQ_MAX_LEN,
-> +			coresight_set_etm_req_msg_v01_ei,
-> +			&req);
-> +	if (ret < 0) {
-> +		dev_err(drvdata->dev, "QMI send ACK failed, ret:%d\n",
-> +				ret);
-> +		qmi_txn_cancel(&txn);
-> +		goto err;
-> +	}
-> +
-> +	ret = qmi_txn_wait(&txn, msecs_to_jiffies(TIMEOUT_MS));
-> +	if (ret < 0) {
-> +		dev_err(drvdata->dev, "QMI qmi txn wait failed, ret:%d\n",
-> +				ret);
-> +		goto err;
-> +	}
-> +
-> +	/* Check the response */
-> +	if (resp.resp.result != QMI_RESULT_SUCCESS_V01)
-> +		dev_err(drvdata->dev, "QMI request failed 0x%x\n",
-> +				resp.resp.error);
-> +
-> +	drvdata->enable = true;
-> +	mutex_unlock(&drvdata->mutex);
-> +
-> +	dev_info(drvdata->dev, "Remote ETM tracing enabled for instance %d\n",
-> +				drvdata->inst_id);
-
-Why do you print so many info messages?
-
-> +	return 0;
-> +err:
-> +	mutex_unlock(&drvdata->mutex);
-> +	return ret;
-> +}
-> +
-> +static void remote_etm_disable(struct coresight_device *csdev,
-> +			       struct perf_event *event)
-> +{
-> +	struct remote_etm_drvdata *drvdata =
-> +		 dev_get_drvdata(csdev->dev.parent);
-> +	struct coresight_set_etm_req_msg_v01 req;
-> +	struct coresight_set_etm_resp_msg_v01 resp = { { 0, 0 } };
-> +	struct qmi_txn txn;
-> +	int ret;
-> +
-> +	mutex_lock(&drvdata->mutex);
-> +	if (!drvdata->service_connected) {
-> +		dev_err(drvdata->dev, "QMI service not connected!\n");
-> +		goto err;
-> +	}
-> +
-> +	req.state = CORESIGHT_ETM_STATE_DISABLED_V01;
-> +
-> +	ret = qmi_txn_init(&drvdata->handle, &txn,
-> +			coresight_set_etm_resp_msg_v01_ei,
-> +			&resp);
-> +
-> +	if (ret < 0) {
-> +		dev_err(drvdata->dev, "QMI tx init failed , ret:%d\n",
-> +				ret);
-> +		goto err;
-> +	}
-> +
-> +	ret = qmi_send_request(&drvdata->handle, &drvdata->s_addr,
-> +			&txn, CORESIGHT_QMI_SET_ETM_REQ_V01,
-> +			CORESIGHT_QMI_SET_ETM_REQ_MAX_LEN,
-> +			coresight_set_etm_req_msg_v01_ei,
-> +			&req);
-> +	if (ret < 0) {
-> +		dev_err(drvdata->dev, "QMI send req failed, ret:%d\n",
-> +				 ret);
-> +		qmi_txn_cancel(&txn);
-> +		goto err;
-> +	}
-> +
-> +	ret = qmi_txn_wait(&txn, msecs_to_jiffies(TIMEOUT_MS));
-> +	if (ret < 0) {
-> +		dev_err(drvdata->dev, "QMI qmi txn wait failed, ret:%d\n",
-> +				ret);
-> +		goto err;
-> +	}
-> +
-> +	/* Check the response */
-> +	if (resp.resp.result != QMI_RESULT_SUCCESS_V01) {
-> +		dev_err(drvdata->dev, "QMI request failed 0x%x\n",
-> +				resp.resp.error);
-> +		goto err;
-> +	}
-> +
-> +	drvdata->enable = false;
-> +	dev_info(drvdata->dev, "Remote ETM tracing disabled for instance %d\n",
-> +				drvdata->inst_id);
-> +err:
-> +	mutex_unlock(&drvdata->mutex);
-> +}
-> +
-> +static const struct coresight_ops_source remote_etm_source_ops = {
-> +	.enable		= remote_etm_enable,
-> +	.disable	= remote_etm_disable,
-> +};
-> +
-> +static const struct coresight_ops remote_cs_ops = {
-> +	.source_ops	= &remote_etm_source_ops,
-> +};
-> +
-> +static int remote_etm_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct coresight_platform_data *pdata;
-> +	struct remote_etm_drvdata *drvdata;
-> +	struct coresight_desc desc = {0 };
-> +	int ret;
-> +
-> +	desc.name = coresight_alloc_device_name(&remote_etm_devs, dev);
-> +	if (!desc.name)
-> +		return -ENOMEM;
-> +	pdata = coresight_get_platform_data(dev);
-> +	if (IS_ERR(pdata))
-> +		return PTR_ERR(pdata);
-> +	pdev->dev.platform_data = pdata;
-> +
-> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	drvdata->dev = &pdev->dev;
-> +	platform_set_drvdata(pdev, drvdata);
-> +
-> +	ret = of_property_read_u32(pdev->dev.of_node, "qcom,inst-id",
-> +			&drvdata->inst_id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mutex_init(&drvdata->mutex);
-> +
-> +	ret = qmi_handle_init(&drvdata->handle,
-> +			CORESIGHT_QMI_SET_ETM_REQ_MAX_LEN,
-> +			&server_ops, NULL);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Remote ETM client init failed ret:%d\n", ret);
-> +		return ret;
-
-Use return dev_err_probe()
-
-> +	}
-> +
-> +	qmi_add_lookup(&drvdata->handle,
-> +			CORESIGHT_QMI_SVC_ID,
-> +			CORESIGHT_QMI_VERSION,
-> +			drvdata->inst_id);
-> +
-> +	desc.type = CORESIGHT_DEV_TYPE_SOURCE;
-> +	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_REMOTE_PROC;
-> +	desc.ops = &remote_cs_ops;
-> +	desc.pdata = pdev->dev.platform_data;
-> +	desc.dev = &pdev->dev;
-> +	drvdata->csdev = coresight_register(&desc);
-> +	if (IS_ERR(drvdata->csdev)) {
-> +		ret = PTR_ERR(drvdata->csdev);
-> +		goto err;
-> +	}
-> +	dev_info(dev, "Remote ETM initialized\n");
-
-Drop, quite useless.
+It's the first time this property appears... Why do you need to
+hard-code it and why would it differ between each board? If you want to
+use existing, accepted property, then you must use exactly the same.
 
 > +
-> +	pm_runtime_enable(dev);
-> +	if (drvdata->inst_id >= sizeof(int)*BITS_PER_BYTE)
-> +		dev_err(dev, "inst_id greater than boot_enable bit mask\n");
+> +  out-ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    additionalProperties: false
 > +
-> +	list_add_tail(&drvdata->link, &remote_etm_list);
+> +    properties:
+> +      port:
+> +        description: Output connection to the CoreSight Trace bus.
+> +        $ref: /schemas/graph.yaml#/properties/port
 > +
-> +	return 0;
-> +err:
-> +	qmi_handle_release(&drvdata->handle);
-> +	return ret;
-> +}
+> +required:
+> +  - compatible
+> +  - qcom,inst-id
+> +  - out-ports
 > +
-> +static int remote_etm_remove(struct platform_device *pdev)
-> +{
-> +	struct remote_etm_drvdata *drvdata = platform_get_drvdata(pdev);
-> +	struct device *dev = &pdev->dev;
+> +unevaluatedProperties: false
 > +
-> +	list_del(&drvdata->link);
-> +	pm_runtime_disable(dev);
-> +	qmi_handle_release(&drvdata->handle);
-> +	coresight_unregister(drvdata->csdev);
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id remote_etm_match[] = {
-> +	{.compatible = "qcom,coresight-remote-etm"},
+> +examples:
+> +  - |
+> +    modem_etm0 {
 
-Please order your patches correctly, so binding is documented before the
-users.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-> +	{}
-> +};
-> +
-> +static struct platform_driver remote_etm_driver = {
-> +	.probe          = remote_etm_probe,
-> +	.remove         = remote_etm_remove,
-> +	.driver         = {
-> +		.name   = "coresight-remote-etm",
-> +		.of_match_table = remote_etm_match,
-> +	},
-> +};
-> +
-> +int __init remote_etm_init(void)
-> +{
-> +	return platform_driver_register(&remote_etm_driver);
-> +}
-> +module_init(remote_etm_init);
-> +
-> +void __exit remote_etm_exit(void)
-> +{
-> +	platform_driver_unregister(&remote_etm_driver);
-> +}
-> +module_exit(remote_etm_exit);
+Underscores are not allowed.
 
-Why aren't you using module platform driver?
+> +        compatible = "qcom,coresight-remote-etm";
+> +        qcom,inst-id = <2>;
+> +
+> +        out-ports {
+> +            port {
+> +                modem_etm0_out_funnel_modem: endpoint {
+> +                remote-endpoint =
+> +                    <&funnel_modem_in_modem_etm0>;
+
+Fix wrapping.
+
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
 
 Best regards,
 Krzysztof
