@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-14421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 253C27E463D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:40:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD64D7E464F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:42:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF06C281255
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:40:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60C622814F7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66452321B6;
-	Tue,  7 Nov 2023 16:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B591315B9;
+	Tue,  7 Nov 2023 16:42:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HuAOEZ5p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CNkaL2V2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DF531A9D
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:40:30 +0000 (UTC)
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E367B98
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:40:29 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4083dbc43cfso36917795e9.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:40:29 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADD5315A7
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:42:11 +0000 (UTC)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA3A93
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:42:10 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40859dee28cso44715295e9.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:42:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699375228; x=1699980028; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bG5teDoMIWZEcMWM7WJvlB8DFst5lIgACt5uFYgl748=;
-        b=HuAOEZ5pKuKs223ym/Rr+5JSH5iZDVHpivezUlcaoFoYX59W1bXD+KsR8wsI6rXded
-         TryvjlUxrGw+/zLVlt2JbzcUOp91Isr5qG3OG+kg9zTvx5PCkREAbcsiqtgH8gj9jMkZ
-         UjzuQVZ0lSV4Ncw1yj5UFj5SUrjDs1l7Fxf5SG8AFa/mShFxXsz/n9yeoRQxEb8qe3N0
-         wE30nltpwGqXJi3tvyWUkEO3pH3tdq0WXUS3hqvy3RwxI20lVcaUST/OElia4TIwvHDU
-         9zerO+dSYuo0M5vzUESBRVv3GY6iSPXJ+MAFH/Tr6gTHTOBbSD9WizQ45fbfFJJC7q6L
-         Z0kQ==
+        d=linaro.org; s=google; t=1699375329; x=1699980129; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aAG3sacWPBXSFUKSzpLXVeo1JwNyPZim0mcCKaII7ao=;
+        b=CNkaL2V2W7+FJ6YDANmoPGm47YrR16icM2je6IHnBGh+XPTwZw/MGd+JWbc1r8vMmn
+         5bxHZDMmsL66HowPYhbiol/kmk7Z0ymokIbqbAWAjJO0L3huQ6Cyhha9WdvSOsdKHeyt
+         5ae78Z8CG0wrviym9bpebuABGo6CMG1WkdQhCBTzm4PctK5o2iaSV1KTlhbfXNVA2nDj
+         VarJXs3wDRVvsbxvu0Q47XkrTjH3BLbKZPvkLtH1CSERKjzRpjhglME6iGCuBvmMMuKY
+         WhQYrXph9V7T2yRwfixgMgXqa/P/2vd1oCFYeH8uoyEvzzALKT8Ql0I0FDqfc6kqekHx
+         Ft0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699375228; x=1699980028;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bG5teDoMIWZEcMWM7WJvlB8DFst5lIgACt5uFYgl748=;
-        b=FT0eOl9YDPhKJaXZv7Ab8tRXLG7SCS5wh1DGrk1nY3H6QFYzJZ2OoZUfntqqQkCBl/
-         DT2Igw1vmqvvM+LHKELkyIekXeG/HuMlj60mrXqAG2JUv+qACW7CdFqNCfYCrY+MjBI0
-         CpVC8EdAl0x6RpPEEcP8FsOXcXGmcCJTHLLuYgDInNYmX++NRVyXUZyuQFonR3qFxO/u
-         TYru1rnyojbYLi0R++gaCgYIlxN5e6Jpbfvf7BQOFxAR6F0OwwyV6iSnEpTtBsNexqCN
-         Mdn9BjixAIFDF4fzfpjZG+6M20B07vU6AeGMNBkDrhyu/nm3z4mR2yUXs9QWMk5QRhia
-         FZrA==
-X-Gm-Message-State: AOJu0YysU+K0a0W1uIC5GoHGgPR/oqyJX06IkuOHC6OEHhqBycbkBudQ
-	lJAz7WzHuzQTEEi/wrq7IQCUwA==
-X-Google-Smtp-Source: AGHT+IERQ39mfz81xK6TupD6lTbERubU2eecqEgDvKphyDqxxJ+tvVdXiWkmZuRczqJaEPyqFh4G9A==
-X-Received: by 2002:a05:600c:181b:b0:408:53d6:10b3 with SMTP id n27-20020a05600c181b00b0040853d610b3mr2932701wmp.22.1699375227473;
-        Tue, 07 Nov 2023 08:40:27 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699375329; x=1699980129;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aAG3sacWPBXSFUKSzpLXVeo1JwNyPZim0mcCKaII7ao=;
+        b=D4sE+uuhl2bzC93ModqBL3o7lHp/xqua8X25UuJciGFa6Rof6YUqz/ZQty8vR1pJ6I
+         YxWg4ypx8GJuwF9sLqN3YMaZ0THsXVpBQqnFUsnbxxjI4qSJ1dQHdWgvL02i7S/l/XbX
+         J3UWOYp9z8ImjZaV+CY921R98QAe3wX5RJk/9l8iNrVRZKKw/H5AxYkx0mgtqHjmLKp8
+         yFweW5+UY6UIP0vlKbGZHT91D5L4E/Jq7ytBv4pDlA8f1TSu4lOZZzm0g1p+zeSjpc4q
+         wa4eeIm9tHJAnA92H/1WMtKMZMgFoWrB9izOx+3GweHfm13vLz/4vIX/YhNas3tChZAU
+         qqug==
+X-Gm-Message-State: AOJu0YxF/u+eD8UfFuyYIt4urLGYvr+Qy/uYP3K1WR4DsNMmlYXIjtdv
+	NpJ9sT+IgxWOAazzNrGq3Sj27w==
+X-Google-Smtp-Source: AGHT+IGtV8OXtohdPAz3Te0I370Z73N5I/MwJUUSOLej4VBNI6ZYLhl9YpdbBnIh49F+ckhoVho50g==
+X-Received: by 2002:a05:600c:6023:b0:409:718b:33e0 with SMTP id az35-20020a05600c602300b00409718b33e0mr2932919wmb.16.1699375329097;
+        Tue, 07 Nov 2023 08:42:09 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ay8-20020a05600c1e0800b0040772138bb7sm16560031wmb.2.2023.11.07.08.40.25
+        by smtp.gmail.com with ESMTPSA id ay8-20020a05600c1e0800b0040772138bb7sm16560031wmb.2.2023.11.07.08.42.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 08:40:26 -0800 (PST)
-Message-ID: <97ae9fa0-0a6c-41d2-8a6c-1706b920d7ea@linaro.org>
-Date: Tue, 7 Nov 2023 17:40:24 +0100
+        Tue, 07 Nov 2023 08:42:08 -0800 (PST)
+Message-ID: <a683c2b1-5caa-4014-b8bb-9caed303adb2@linaro.org>
+Date: Tue, 7 Nov 2023 17:42:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,9 +68,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: crypto: add support for
- rockchip,crypto-rk3588
+Subject: Re: [PATCH 6/6] crypto: rockchip: add rk3588 driver
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
  heiko@sntech.de, herbert@gondor.apana.org.au,
  krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
@@ -79,8 +80,8 @@ Cc: ricardo@pardini.net, devicetree@vger.kernel.org,
  linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20231107155532.3747113-1-clabbe@baylibre.com>
- <20231107155532.3747113-2-clabbe@baylibre.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <20231107155532.3747113-7-clabbe@baylibre.com>
+ <07bbb8c3-b6c0-4e5e-8fe9-2fcbb71b7dbc@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -125,89 +126,112 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107155532.3747113-2-clabbe@baylibre.com>
+In-Reply-To: <07bbb8c3-b6c0-4e5e-8fe9-2fcbb71b7dbc@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/11/2023 16:55, Corentin Labbe wrote:
-> Add device tree binding documentation for the Rockchip cryptographic
-> offloader V2.
+On 07/11/2023 17:35, Krzysztof Kozlowski wrote:
+> On 07/11/2023 16:55, Corentin Labbe wrote:
+>> RK3588 have a new crypto IP, this patch adds basic support for it.
+>> Only hashes and cipher are handled for the moment.
+>>
+>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+>> ---
+>>  drivers/crypto/Kconfig                        |  29 +
+>>  drivers/crypto/rockchip/Makefile              |   5 +
+>>  drivers/crypto/rockchip/rk2_crypto.c          | 739 ++++++++++++++++++
+>>  drivers/crypto/rockchip/rk2_crypto.h          | 246 ++++++
+>>  drivers/crypto/rockchip/rk2_crypto_ahash.c    | 344 ++++++++
+>>  drivers/crypto/rockchip/rk2_crypto_skcipher.c | 576 ++++++++++++++
+>>  6 files changed, 1939 insertions(+)
+>>  create mode 100644 drivers/crypto/rockchip/rk2_crypto.c
+>>  create mode 100644 drivers/crypto/rockchip/rk2_crypto.h
+>>  create mode 100644 drivers/crypto/rockchip/rk2_crypto_ahash.c
+>>  create mode 100644 drivers/crypto/rockchip/rk2_crypto_skcipher.c
+>>
+>> diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
+>> index 79c3bb9c99c3..b6a2027b1f9a 100644
+>> --- a/drivers/crypto/Kconfig
+>> +++ b/drivers/crypto/Kconfig
+>> @@ -660,6 +660,35 @@ config CRYPTO_DEV_ROCKCHIP_DEBUG
+>>  	  the number of requests per algorithm and other internal stats.
+>>  
+>>  
+>> +config CRYPTO_DEV_ROCKCHIP2
+>> +	tristate "Rockchip's cryptographic offloader V2"
+>> +	depends on OF && ARCH_ROCKCHIP
+>> +	depends on PM
+>> +	select CRYPTO_ECB
+>> +	select CRYPTO_CBC
+>> +	select CRYPTO_AES
+>> +	select CRYPTO_MD5
+>> +	select CRYPTO_SHA1
+>> +	select CRYPTO_SHA256
+>> +	select CRYPTO_SHA512
+>> +	select CRYPTO_SM3_GENERIC
+>> +	select CRYPTO_HASH
+>> +	select CRYPTO_SKCIPHER
+>> +	select CRYPTO_ENGINE
+>> +
+>> +	help
+>> +	  This driver interfaces with the hardware crypto offloader present
+>> +	  on RK3566, RK3568 and RK3588.
+>> +
+>> +config CRYPTO_DEV_ROCKCHIP2_DEBUG
+>> +	bool "Enable Rockchip V2 crypto stats"
+>> +	depends on CRYPTO_DEV_ROCKCHIP2
+>> +	depends on DEBUG_FS
+>> +	help
+>> +	  Say y to enable Rockchip crypto debug stats.
+>> +	  This will create /sys/kernel/debug/rk3588_crypto/stats for displaying
+>> +	  the number of requests per algorithm and other internal stats.
+>> +
+>>  config CRYPTO_DEV_ZYNQMP_AES
+>>  	tristate "Support for Xilinx ZynqMP AES hw accelerator"
+>>  	depends on ZYNQMP_FIRMWARE || COMPILE_TEST
+>> diff --git a/drivers/crypto/rockchip/Makefile b/drivers/crypto/rockchip/Makefile
+>> index 785277aca71e..452a12ff6538 100644
+>> --- a/drivers/crypto/rockchip/Makefile
+>> +++ b/drivers/crypto/rockchip/Makefile
+>> @@ -3,3 +3,8 @@ obj-$(CONFIG_CRYPTO_DEV_ROCKCHIP) += rk_crypto.o
+>>  rk_crypto-objs := rk3288_crypto.o \
+>>  		  rk3288_crypto_skcipher.o \
+>>  		  rk3288_crypto_ahash.o
+>> +
+>> +obj-$(CONFIG_CRYPTO_DEV_ROCKCHIP2) += rk_crypto2.o
+>> +rk_crypto2-objs := rk2_crypto.o \
+>> +		  rk2_crypto_skcipher.o \
+>> +		  rk2_crypto_ahash.o
+>> diff --git a/drivers/crypto/rockchip/rk2_crypto.c b/drivers/crypto/rockchip/rk2_crypto.c
+>> new file mode 100644
+>> index 000000000000..f3b8d27924da
+>> --- /dev/null
+>> +++ b/drivers/crypto/rockchip/rk2_crypto.c
+>> @@ -0,0 +1,739 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * hardware cryptographic offloader for RK3568/RK3588 SoC
+>> + *
+>> + * Copyright (c) 2022-2023, Corentin Labbe <clabbe@baylibre.com>
+>> + */
+>> +
+>> +#include "rk2_crypto.h"
+>> +#include <linux/clk.h>
+>> +#include <linux/crypto.h>
+>> +#include <linux/dma-mapping.h>
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/reset.h>
+>> +
+>> +static struct rockchip_ip rocklist = {
+>> +	.dev_list = LIST_HEAD_INIT(rocklist.dev_list),
+>> +	.lock = __SPIN_LOCK_UNLOCKED(rocklist.lock),
 > 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../crypto/rockchip,rk3588-crypto.yaml        | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
-> new file mode 100644
-> index 000000000000..07024cf4fb0e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/rockchip,rk3588-crypto.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip cryptographic offloader V2
+> Drop it, not needed.
 
-v2? Where is any documentation of this versioning? From where does it
-come from?
-
-> +
-> +maintainers:
-> +  - Corentin Labbe <clabbe@baylibre.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3568-crypto
-> +      - rockchip,rk3588-crypto
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-
-You also must describe the items instead.
-
-Where do you see any binding using minItems alone?
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: a
-> +      - const: h
-> +
-> +  resets:
-> +    minItems: 1
-
-No, maxItems.
-
-> +
-> +  reset-names:
-> +    items:
-> +      - const: core
-
-Drop reset-names, not really needed and not useful.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-
+To clarify: I mean entire structure.
 
 Best regards,
 Krzysztof
