@@ -1,103 +1,139 @@
-Return-Path: <devicetree+bounces-14258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20FB07E3453
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 04:51:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD14F7E350F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 07:10:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4607280E2A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 03:51:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 690FEB20B52
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 06:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F9C6FD9;
-	Tue,  7 Nov 2023 03:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63018C19;
+	Tue,  7 Nov 2023 06:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mISH3v7+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TfQsnYm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5696FB8;
-	Tue,  7 Nov 2023 03:51:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC68CC433C8;
-	Tue,  7 Nov 2023 03:51:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699329067;
-	bh=+X/hKJ32hWOaYLZj2LTvR6+JnyM9c+DOTeGM5OWPGd0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mISH3v7+T+GCIROhQKnt36obHCbBRgrPkPS4NNc53prAZ9MQ94P06ipdtp3U/ZZRW
-	 nQ/KQcYeWhmoQGV7eZi6DLG1ezyNHN13mqUsx5e0NTdDP/Z4CIkdpAwXZs+edy9fzH
-	 Nl7pzb+nMQPGEDX8bxlCZ+XyQ8ArVG0z5Nh8bsQh7emOfD5x8GqfX9k59moV4MduaQ
-	 ptc/Xplz8EwviVZdaHPZosg34pyHWeiopFrj99l9pgsMZSEVSeiwMPoVxwvLWnSjSy
-	 XQaXpaYdHgoqEt3lILVcdM4WZdgvazTVmxDw+hWblh3jqsfgiQAooh1RSo6+zi7AFB
-	 jE8zVpiTm+RUw==
-Date: Mon, 6 Nov 2023 19:55:07 -0800
-From: Bjorn Andersson <andersson@kernel.org>
-To: Caleb Connolly <caleb.connolly@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, 
-	Bhupesh Sharma <bhupesh.linux@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Thara Gopinath <thara.gopinath@gmail.com>, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: thermal: Add qcom,qmi-cooling yaml
- bindings
-Message-ID: <6mgpjpdfsswww7mqqtub45afjz6mjyqfkigji3zsy73qwnq57u@rlstudlwkddn>
-References: <20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org>
- <20230905-caleb-qmi_cooling-v1-2-5aa39d4164a7@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D33D1FD2;
+	Tue,  7 Nov 2023 06:10:08 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ECCD10F;
+	Mon,  6 Nov 2023 22:10:06 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A75QHOg009740;
+	Tue, 7 Nov 2023 06:09:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=TJ6K7QS0tX20YF3a9J4LB3meI6Sg6zcVszwc0Lz3C3k=;
+ b=TfQsnYm6xQIOf683WMo98Rc6eYJaiXQQ72dULwCT3jMaa/OZeYIXPemTm1F4OkXXVcpc
+ qck4aGt1gNUSC2DbZI3QyvYfIMll+J89TSLahSq9SaiBSWUtpF1QTZ8ePG6UQ4lodXcf
+ Zm26Zwc1Xn+JVZc2MyS9M+BtQe/fkQZjvKydUgpWm6YzduAVwRVH9W81eC2vu1N7VjS2
+ snrEqqlo8CRWgfxikxvDLpwBIBocaeXREQFfwdmuCTNabJuBnMm1zcSoxB15LooXjKTW
+ ZWGO2jXsTgr5cW9OMpzgHTQYiOvag1K8a0T44AAlHdYN09C8tXtPTV/Q4keZPOvZuhSL kg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u72avssu5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Nov 2023 06:09:53 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A769p6J019474
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Nov 2023 06:09:51 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Mon, 6 Nov 2023 22:09:51 -0800
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        "Alexander
+ Shishkin" <alexander.shishkin@linux.intel.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <linux-kernel@vger.kernel.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Yuanfang Zhang
+	<quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>
+Subject: [PATCH v1 0/2] coresight: Add remote etm support
+Date: Mon, 6 Nov 2023 22:09:33 -0800
+Message-ID: <20231107060939.13449-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230905-caleb-qmi_cooling-v1-2-5aa39d4164a7@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: llF_Nw759j3z7MjuQrLA2kX7XyWzG2UG
+X-Proofpoint-GUID: llF_Nw759j3z7MjuQrLA2kX7XyWzG2UG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-06_15,2023-11-02_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ mlxlogscore=690 impostorscore=0 phishscore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 spamscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311070048
 
-On Fri, Sep 29, 2023 at 05:16:18PM +0100, Caleb Connolly wrote:
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
-> +definitions:
-> +  tmd:
-> +    type: object
-> +    description: |
+The system on chip (SoC) consists of main APSS(Applications processor
+subsytem) and additional processors like modem, lpass. There is
+coresight-etm driver for etm trace of APSS. Coresight remote etm driver
+is for enabling and disabling the etm trace of remote processors.
+It uses QMI interface to communicate with remote processors' software
+and uses coresight framework to configure the connection from remote
+etm source to TMC sinks.
 
-No need to preserve formatting (which is what '|' denotes).
+Example to capture the remote etm trace:
 
-> +      A single Thermal Mitigation Device exposed by a remote subsystem.
-> +    properties:
-> +      label:
-> +        maxItems: 1
-> +      "#cooling-cells":
-> +        $ref: /schemas/thermal/thermal-cooling-devices.yaml#/properties/#cooling-cells
-> +
-> +    required:
-> +      - label
-> +      - "#cooling-cells"
-> +
-> +    additionalProperties: false
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qmi-cooling-modem
-> +      - qcom,qmi-cooling-adsp
-> +      - qcom,qmi-cooling-cdsp
-> +      - qcom,qmi-cooling-slpi
-> +
-> +  vdd:
-> +    $ref: "#/definitions/tmd"
-> +    description:
-> +      Restrict primary rail minimum voltage to "nominal" setting.
+Enable source:
+echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
+echo 1 > /sys/bus/coresight/devices/remote_etm0/enable_source
 
-Isn't this one of the "heating" thermal mitigations? (I.e. something
-being tripped when the temperature goes below some level) Which afaik
-the framework doesn't support still?
+Capture the trace:
+cat /dev/tmc_etf0 > /data/remote_etm.bin
 
-Regards,
-Bjorn
+Disable source:
+echo 0 > /sys/bus/coresight/devices/remote_etm0/enable_source
+
+Mao Jinlong (2):
+  coresight: Add remote etm support
+  dt-bindings: arm: Add remote etm driver
+
+ .../arm/qcom,coresight-remote-etm.yaml        |  59 ++++
+ drivers/hwtracing/coresight/Kconfig           |   9 +
+ drivers/hwtracing/coresight/Makefile          |   1 +
+ drivers/hwtracing/coresight/coresight-core.c  |   3 +
+ drivers/hwtracing/coresight/coresight-qmi.h   | 109 ++++++
+ .../coresight/coresight-remote-etm.c          | 325 ++++++++++++++++++
+ include/linux/coresight.h                     |   1 +
+ 7 files changed, 507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+ create mode 100644 drivers/hwtracing/coresight/coresight-qmi.h
+ create mode 100644 drivers/hwtracing/coresight/coresight-remote-etm.c
+
+-- 
+2.41.0
+
 
