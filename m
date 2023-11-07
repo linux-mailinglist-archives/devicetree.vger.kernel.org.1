@@ -1,137 +1,122 @@
-Return-Path: <devicetree+bounces-14249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB94B7E320F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 01:12:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B79037E3292
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 02:27:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BF75B20A87
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 00:12:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66122280E16
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 01:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C897FD;
-	Tue,  7 Nov 2023 00:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC48A93A;
+	Tue,  7 Nov 2023 01:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iS2m562n"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FQv/T+GN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0955E633;
-	Tue,  7 Nov 2023 00:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 71E1FC433C8;
-	Tue,  7 Nov 2023 00:12:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699315934;
-	bh=IzvDcSXVc6Sv1zIOCJrJxYCGu8IPPHkKg7fcM6qoiKw=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=iS2m562nrCl1RiKX+Sy1RYiunIDGdiPcDySe5O4CZMNtjC83k6cd0IFZQBUoyP6En
-	 vrvhJ1P4lLueHCUDlA0vqNJnmLZwNsAPscRt1Zx+x3n0xL/NUOk8GjE5oTvn/HqRdQ
-	 Dd2afZgesSkF0Ox6WEAfoM7jdhVQO8QFsw3LI3h/rxZFhy29zGyft7PTfB/p4oXYxQ
-	 lqgTq/pqJ33QiB0GNjpSWb9Zk/timrYiIzLFiOWS29ALBzDdJisVc1zYOGe5WEk10I
-	 /WAEFww3iu25SOTtLJsGHO+cSN5v/U20sR2IzOlAEs6Q7ay/2ZVjT8O+kp0azA4OGw
-	 IDWMf14m+H7FQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54BD3C4332F;
-	Tue,  7 Nov 2023 00:12:14 +0000 (UTC)
-From: Steev Klimaszewski via B4 Relay <devnull+steev.kali.org@kernel.org>
-Date: Mon, 06 Nov 2023 18:12:11 -0600
-Subject: [PATCH] arm64: dts: qcom: sdm850-lenovo-yoga: Add wakeup-sources
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4373A933;
+	Tue,  7 Nov 2023 01:27:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E16103;
+	Mon,  6 Nov 2023 17:27:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699320453; x=1730856453;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7/MIcgTpmOPNsaRiTaeyhdRNpxjoAXZKIkVQzxSboUU=;
+  b=FQv/T+GN3ybCxoKYnloIzREfiOz5OOk7keqqApeJq/NhHH9n3pAeXmR1
+   F2DdKIKifIwTJp/Am0xLUTYwBgV3Ro7rhOBnoPyyEL1gvLeP/lSDXIexR
+   LNlIfNVi+U5tyt434f9FjGjuzaz38d4LZMsRF2diUmh0Tj4JFa2dlVYFN
+   TbMcJiGv4cVJO3+TWnqoi8VlgCKsRyMVo0dEn7CX80QmA85AsOYrAelLN
+   TmDnysssXWK3IdZX9VI773viam9yBb6tpTzv8wVC2GsX3Uei6TbWP6GpA
+   G5/O8LPE2Fg2YyDAt16CDwg8GRyhInSHYSlkFdyhXnsIOmNLfK5oxddws
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="10946743"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; 
+   d="scan'208";a="10946743"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 17:27:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="906241833"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; 
+   d="scan'208";a="906241833"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 06 Nov 2023 17:27:28 -0800
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r0AsI-0006se-1G;
+	Tue, 07 Nov 2023 01:27:26 +0000
+Date: Tue, 7 Nov 2023 09:27:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v1 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
+ mp5990
+Message-ID: <202311070822.cgjfXGD7-lkp@intel.com>
+References: <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231106-wakeup-source-v1-1-36b1f39e67fd@kali.org>
-X-B4-Tracking: v=1; b=H4sIANqASWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI2NDQwMz3fLE7NTSAt3i/NKi5FRdQ9PENLM000QzYyNLJaCegqLUtMwKsHn
- RsbW1AGuFZptfAAAA
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699315933; l=1648;
- i=steev@kali.org; s=20231106; h=from:subject:message-id;
- bh=XxMr1pRCV6LxTCL9BHo4MJtPNXm2qJQqiz+fIboTk1I=;
- b=vjaUjZqT8uoer/iEV4k7jfxyJNb8OqOWndAP7CAxWb8vSu85CqW+CrAoPCv+59Z0xqc9erI5Z
- +Yjw6KDVd3UCDvzeJtXYgZ7om7X9WAhiQfVPZbUTqH4bva01E/4mHYB
-X-Developer-Key: i=steev@kali.org; a=ed25519;
- pk=KY+JnLRNy7Hdf04yfpE5ubOsDBIIfXAWnBijkySXbb4=
-X-Endpoint-Received: by B4 Relay for steev@kali.org/20231106 with auth_id=97
-X-Original-From: Steev Klimaszewski <steev@kali.org>
-Reply-To: <steev@kali.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231103080128.1204218-3-peteryin.openbmc@gmail.com>
 
-From: Steev Klimaszewski <steev@kali.org>
+Hi Peter,
 
-The keyboard, touchpad and touchscreen can all be used to wake the
-computer up from sleep, so mark them as such in the dts file.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Steev Klimaszewski <steev@kali.org>
----
-It would be nice to wake up the Lenovo Yoga C630 from suspend by hitting
-the keyboard or touchpad or even touchscreen, so this patch enables that
-ability.
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on linus/master v6.6 next-20231106]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I'm not married to enabling it for the touchscreen, so if anyone wants
-me to drop that hunk, I'd be fine with it.
----
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Yin/dt-bindings-hwmon-Add-mps-mp5990-driver-bindings/20231103-160759
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20231103080128.1204218-3-peteryin.openbmc%40gmail.com
+patch subject: [PATCH v1 2/2] hwmon: (pmbus) Add support for MPS Multi-phase mp5990
+config: xtensa-randconfig-001-20231107 (https://download.01.org/0day-ci/archive/20231107/202311070822.cgjfXGD7-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231107/202311070822.cgjfXGD7-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 92a812b5f423..9ddffb98408d 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -384,6 +384,8 @@ tsel: hid@15 {
- 		hid-descr-addr = <0x1>;
- 
- 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		wakeup-source;
- 	};
- 
- 	tsc2: hid@2c {
-@@ -392,6 +394,8 @@ tsc2: hid@2c {
- 		hid-descr-addr = <0x20>;
- 
- 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		wakeup-source;
- 	};
- };
- 
-@@ -408,6 +412,8 @@ tsc1: hid@10 {
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&i2c5_hid_active>;
-+
-+		wakeup-source;
- 	};
- };
- 
-@@ -482,6 +488,8 @@ ecsh: hid@5c {
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&i2c11_hid_active>;
-+
-+		wakeup-source;
- 	};
- };
- 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311070822.cgjfXGD7-lkp@intel.com/
 
----
-base-commit: 3ff7a5781ceee3befb9224d29cef6e6a4766c5fe
-change-id: 20231106-wakeup-source-15af6f5a6329
+All warnings (new ones prefixed by >>):
 
-Best regards,
+>> drivers/hwmon/pmbus/mp5990.c:66:34: warning: 'mp5990_of_match' defined but not used [-Wunused-const-variable=]
+      66 | static const struct of_device_id mp5990_of_match[] = {
+         |                                  ^~~~~~~~~~~~~~~
+
+
+vim +/mp5990_of_match +66 drivers/hwmon/pmbus/mp5990.c
+
+    65	
+  > 66	static const struct of_device_id mp5990_of_match[] = {
+    67		{ .compatible = "mps,mp5990" },
+    68		{}
+    69	};
+    70	
+
 -- 
-Steev Klimaszewski <steev@kali.org>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
