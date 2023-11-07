@@ -1,61 +1,74 @@
-Return-Path: <devicetree+bounces-14440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98BF17E491D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 20:22:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2E97E493D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 20:35:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 375BF1F217A5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 19:22:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C629FB20E87
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 19:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3470C36AEA;
-	Tue,  7 Nov 2023 19:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1007C36AF0;
+	Tue,  7 Nov 2023 19:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fKHX/0bx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776A436AE3;
-	Tue,  7 Nov 2023 19:22:35 +0000 (UTC)
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97BC93;
-	Tue,  7 Nov 2023 11:22:34 -0800 (PST)
-Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5875e24c749so2857892eaf.1;
-        Tue, 07 Nov 2023 11:22:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699384954; x=1699989754;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C2LVUxVn/WYGw09VaClNEKd1bIRB6aUmkJKhH9M8Zr8=;
-        b=GnkdB9nO/1i2Ddbr+4x4ViK2+FnYUiwmV9hCTTftzKlaa1MnhbYxpgn/IKn1r07w4N
-         KgFY6Qfg1BoHY5xrl2Dv56silMlwg0WwAyWWPJNYVqN9YMuABBGyo2bZAMb3x+/rBWtg
-         Hap2u6l6/SuwRZkXYVh+qAS6nNJ1y+8ylU99EJAIbnrx0zYxti/WyRZZ3MpQ/xCrwPTF
-         wWhYNH+qa3D07GDES/Qt2vK1xth/JWXN2xT66iSKNNWDGJD6BRFASUp6tAY4duv/ydda
-         LFoxM8N4J8LtxoN7rJ8pB4WLxuUrcB2p3U4Mr8nN2HbnSHoQ+ksG9MreVuohVkfgjVdx
-         WRRg==
-X-Gm-Message-State: AOJu0YxVe4VjjAxYjZsn+7JAF+GqOEpE0oN0Rzyf8/0Svh0RanbDc5NM
-	o0t3YMzZK+kad3q5pXT8Ug==
-X-Google-Smtp-Source: AGHT+IFXGZPFxTsmKHVs8vrn/0NhY6nr60EHAu+d/pvNfIoUxLdTw46mI0g8UGJwBLUFArpxUJJnnA==
-X-Received: by 2002:a05:6870:d28e:b0:1ef:b809:3f26 with SMTP id d14-20020a056870d28e00b001efb8093f26mr4490129oae.17.1699384953861;
-        Tue, 07 Nov 2023 11:22:33 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j9-20020a9d7389000000b006cd0a847138sm1673512otk.2.2023.11.07.11.22.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Nov 2023 11:22:33 -0800 (PST)
-Received: (nullmailer pid 3312908 invoked by uid 1000);
-	Tue, 07 Nov 2023 19:22:32 -0000
-Date: Tue, 7 Nov 2023 13:22:32 -0600
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Robert Marko <robimarko@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v5 4/4] dt-bindings: Document bindings for
- Marvell Aquantia PHY
-Message-ID: <20231107192232.GA3296102-robh@kernel.org>
-References: <20231106165433.2746-1-ansuelsmth@gmail.com>
- <20231106165433.2746-4-ansuelsmth@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A13330CFC
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 19:34:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F03184;
+	Tue,  7 Nov 2023 11:34:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699385697; x=1730921697;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=91osQpReCsR7gq9k1QepRGDJYtuDgzaUF/hpb6LJpqo=;
+  b=fKHX/0bx8sjrTdE2OH1oRh4bDF37yD2qmE5J0OmZHE9zvzvpiCRerVk8
+   fdZZBGRWH427AjQCjwyUvzrvpQ1CvQZsbzedznmWkkeLLsC/huiLBSCgb
+   wVmHq9tsnwu5n8eITAqUhKCe15AaU2gTUXejVhePbZAdCOYkggVcwB2qf
+   44UAvp/I/LPMiB0ddjrPKlZsXCwtbtJZUUbPFWuY4MsSi9lq8RAI0GSiw
+   KuaaUHm0UMfPp36hONhCJX/j+iZPfPTUuQBNdyr8oerXv6n3ENI+mNzYu
+   KOEQGWYyhdt3hPVMN1hcCp+gt1/GsdAmPTkawgGKm1pNENFWvRHYA8ctq
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="2539081"
+X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; 
+   d="scan'208";a="2539081"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2023 11:34:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="828720602"
+X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; 
+   d="scan'208";a="828720602"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 07 Nov 2023 11:34:53 -0800
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r0Rqc-0007MC-2j;
+	Tue, 07 Nov 2023 19:34:50 +0000
+Date: Wed, 8 Nov 2023 03:34:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Anshul Dalal <anshulusr@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Jeff LaBundy <jeff@labundy.com>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <202311080319.73n9aQfj-lkp@intel.com>
+References: <20231106164134.114668-2-anshulusr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,127 +77,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231106165433.2746-4-ansuelsmth@gmail.com>
+In-Reply-To: <20231106164134.114668-2-anshulusr@gmail.com>
 
-On Mon, Nov 06, 2023 at 05:54:33PM +0100, Christian Marangi wrote:
-> Document bindings for Marvell Aquantia PHY.
+Hi Anshul,
 
-For the subject: dt-bindings: net: Add Marvell Aquantia PHY
+kernel test robot noticed the following build errors:
 
-('Document bindings' is redundant)
+[auto build test ERROR on dtor-input/next]
+[also build test ERROR on dtor-input/for-linus hid/for-next linus/master v6.6 next-20231107]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> 
-> The Marvell Aquantia PHY require a firmware to work correctly and there
-> at least 3 way to load this firmware.
-> 
-> Describe all the different way and document the binding "firmware-name"
-> to load the PHY firmware from userspace.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v5:
-> - Drop extra entry not related to HW description
-> Changes v3:
-> - Make DT description more OS agnostic
-> - Use custom select to fix dtbs checks
-> Changes v2:
-> - Add DT patch
-> 
->  .../bindings/net/marvell,aquantia.yaml        | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-> new file mode 100644
-> index 000000000000..7106c5bdf73c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell Aquantia Ethernet PHY
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description: |
-> +  Marvell Aquantia Ethernet PHY require a firmware to be loaded to actually
-> +  work.
-> +
-> +  This can be done and is implemented by OEM in 3 different way:
-> +    - Attached SPI flash directly to the PHY with the firmware. The PHY
-> +      will self load the firmware in the presence of this configuration.
-> +    - Dedicated partition on system NAND with firmware in it. NVMEM
-> +      subsystem will be used and the declared NVMEM cell will load
-> +      the firmware to the PHY using the PHY mailbox interface.
-> +    - Manually provided firmware loaded from a file in the filesystem.
-> +
-> +allOf:
-> +  - $ref: ethernet-phy.yaml#
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - ethernet-phy-id03a1.b445
-> +          - ethernet-phy-id03a1.b460
-> +          - ethernet-phy-id03a1.b4a2
-> +          - ethernet-phy-id03a1.b4d0
-> +          - ethernet-phy-id03a1.b4e0
-> +          - ethernet-phy-id03a1.b5c2
-> +          - ethernet-phy-id03a1.b4b0
-> +          - ethernet-phy-id03a1.b662
-> +          - ethernet-phy-id03a1.b712
-> +          - ethernet-phy-id31c3.1c12
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  firmware-name:
-> +    description: specify the name of PHY firmware to load
-> +
-> +  nvmem-cells:
-> +    description: phandle to the firmware nvmem cell
-> +    maxItems: 1
-> +
-> +  nvmem-cell-names:
-> +    const: firmware
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    mdio {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet-phy@0 {
-> +            /*  Only needed to make DT lint tools work. Do not copy/paste
-> +             *  into real DTS files.
-> +             */
+url:    https://github.com/intel-lab-lkp/linux/commits/Anshul-Dalal/input-joystick-driver-for-Adafruit-Seesaw-Gamepad/20231107-004813
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20231106164134.114668-2-anshulusr%40gmail.com
+patch subject: [PATCH v7 2/2] input: joystick: driver for Adafruit Seesaw Gamepad
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231108/202311080319.73n9aQfj-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231108/202311080319.73n9aQfj-lkp@intel.com/reproduce)
 
-I don't agree with this statement. Pretty sure we've been through this 
-before...
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311080319.73n9aQfj-lkp@intel.com/
 
-If we have a node, we need to define what it is. The way that is done is 
-with compatible. Whether some particular OS implementation (currently) 
-needs compatible or not is irrelevant. It's not about dtschema needing 
-it, that just exposes the issue.
+All errors (new ones prefixed by >>):
 
-These MDIO PHY bindings are all broken because they are never actually 
-applied to anything.
+>> make[6]: *** No rule to make target 'drivers/input/joystick/adafruit_seesaw.o', needed by 'drivers/input/joystick/built-in.a'.
+   make[6]: Target 'drivers/input/joystick/' not remade because of errors.
 
-Rob
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
