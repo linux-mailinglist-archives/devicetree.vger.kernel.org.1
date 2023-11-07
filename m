@@ -1,458 +1,108 @@
-Return-Path: <devicetree+bounces-14425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 644C07E4675
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:58:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE2C7E4712
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:33:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BEC3CB20C43
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:58:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F6BA1C20BD2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BAB31A79;
-	Tue,  7 Nov 2023 16:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711CA347D6;
+	Tue,  7 Nov 2023 17:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="k6OD2vyc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a33X0WKZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA20315BC
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:57:57 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D9695
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:57:57 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5440f25dcc7so7897155a12.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:57:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3002347AD
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 17:33:21 +0000 (UTC)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 008A8121;
+	Tue,  7 Nov 2023 09:33:20 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-2800229592aso5450067a91.2;
+        Tue, 07 Nov 2023 09:33:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1699376275; x=1699981075; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ya+2+6taOcYMazVndyG/Hpkj8Moi4Ilb8BzUHtUH9Hg=;
-        b=k6OD2vycJLE2ifmGk1hkZxbQpxE1xzpS+x3REqoxrLBIPfK548oPVvGm2NkEL3X+Sp
-         otiqxp/ZQgCS1BR2y4P4jn5uYyXoiK8laNaG/QcnmHobK09QsWO4EJVNDLkgHAO16AT7
-         CDSwu1NEuf8fLV/QuvXQok3Eo2pEStKLz4qHU=
+        d=gmail.com; s=20230601; t=1699378400; x=1699983200; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OfvBeM19p1hbFY3xaolUZcqgGO7w8iDi+t8l9XRgS0A=;
+        b=a33X0WKZ6Hi/BaC3lOwHyZAEqyretTfnXc49WJfEFswAeDxbDKm1bEFKvAHoeIi/av
+         nYX1Bhl1NMVBcOpawyuazSlCErrroeU7sKuuEHtiqn8X513Vdre8rxMOSkGGrtYan58m
+         Fj2l5xn0/Ewp5c/l+zCgbc9wZO1GlUkyLZLWhTBqziB7Mt8NTisO/Fb75qgRR0m/UlTI
+         ONaiHAdYkCFNSo4PZbeXqMa/hHPjndjIQJXqV4AAFhwTr0lhC9nC6afZKOOwF54Jhk+Z
+         gC2IMZCjuMQowXKLzDvLP4+Ybg7vVxUj9P/OL3azd7vYVv70WnMOhelPQLPGjBHdz+Cr
+         oFWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699376275; x=1699981075;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ya+2+6taOcYMazVndyG/Hpkj8Moi4Ilb8BzUHtUH9Hg=;
-        b=I5rGGGCeTNiY9Vgaib8GeFwTA18J8x2NjqP4UQ4l3EmfNZlXT6/fxWLKosjsIm9wkN
-         AK6pSkwjqMSvKHMcqaECJ+reI1q/JvifYDdta2KspQGs8TExkbhpSqZVPJ2N151AJKnj
-         q23C8nt+pTVApoJTjij9SJLze6k64CvQIq1tKm4FqO2M1SvToRwD5eXeaCVrRda1cQeC
-         8sQZje1S65At4MjVNRaEMqFt4ilMFb0fcwh9cUKsDUtqhoY/WNSasnuddv1SQm7pkwZI
-         H7IbemO7D9n+tIo44lBd7QaZwv5jHpONoVg/tUmU1koZp33rxlVHmSFvk+C+Cl5UUR6A
-         hf8w==
-X-Gm-Message-State: AOJu0YwGR71AVAkdoPqw7e8Oe8XR5glzhKihSgy/9nnjXb6jd49mnBg0
-	tojqplhKfKG8V8jpThYhmW0EBComJn1VqKFtHB2vtA==
-X-Google-Smtp-Source: AGHT+IFzT0Yj7s8jOoIKBAlADODMM4QqvdtqenEKQJasAwd1/OYnUK4adWGZBt8VZ0rU0oQN8LNfYUrX0n4JLDMBEzc=
-X-Received: by 2002:a50:d0d5:0:b0:542:dcb4:37f with SMTP id
- g21-20020a50d0d5000000b00542dcb4037fmr23411840edf.41.1699376275107; Tue, 07
- Nov 2023 08:57:55 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699378400; x=1699983200;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OfvBeM19p1hbFY3xaolUZcqgGO7w8iDi+t8l9XRgS0A=;
+        b=NAB6I4xmz699MNcTAek5i6SJBGARtezmdr2Nvf72PVKL9ELetNHJ1forXEY8cKvi/X
+         yVKI103og0jiDKstF8iO6qmPYrshTHkncHDz3hlvneerNmptMWi0Z9+7QHFY5kONUBAL
+         9I2lJGwKSRxDUX46pHX1rmKPXrbgAD2F0VhMsII34TYsyn9ypCKyFSpx5T1Ah/JZAkBV
+         9sVLpgw5nbnalaLVduz2x7TWD9Z0mmJUWiPAeWB3vkdhh3b1WLn9D6LKxQdEg3iKRhf0
+         EIX34x+vU8opnXn4QLKZqReNJA+wiDoy/0MtYWjEzAILbn3/BbL+0RD7/5QVL9TvZiAE
+         c2IA==
+X-Gm-Message-State: AOJu0YyvgcFU+JnA+64SV97t56m5ysBK8xf4jaCY9rOgWIevQcj5E8wv
+	CqkOjXEiAElfEoKT/PPLsNUOVRt7iulp92dR
+X-Google-Smtp-Source: AGHT+IGR3+HJYG52VcNjUg0FdvJh9y+cC7+ByeGqBIax5M2hvjKP6JYJ9GFht6qdSvm4/gNZEHkltA==
+X-Received: by 2002:a17:90b:3eca:b0:280:f534:6b9c with SMTP id rm10-20020a17090b3eca00b00280f5346b9cmr6194419pjb.21.1699378399965;
+        Tue, 07 Nov 2023 09:33:19 -0800 (PST)
+Received: from archlinux.srmu.edu.in ([59.152.80.69])
+        by smtp.gmail.com with ESMTPSA id a13-20020a170902b58d00b001c9db5e2929sm103116pls.93.2023.11.07.09.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Nov 2023 09:33:19 -0800 (PST)
+From: Anshul Dalal <anshulusr@gmail.com>
+To: linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Anshul Dalal <anshulusr@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add asair
+Date: Tue,  7 Nov 2023 23:00:53 +0530
+Message-ID: <20231107173100.62715-1-anshulusr@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
- <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
- <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
- <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com>
- <CAPnjgZ0LrsJ2_ENTYoBrnyFaH3UKdHs3D2XWY=TzBuBpBoTXZA@mail.gmail.com>
- <CAL_Jsq+DQugkEDESW5wySFbLLN8HNqGDJCio8Wpi6fe0LeHKUA@mail.gmail.com>
- <CAPnjgZ0cmKP5hoGCyQ_Rp8ZQXUVwaPYJMWyidXuOOjMVkDoMDw@mail.gmail.com>
- <CAL_JsqJH=vJ40PNTg_i0LoKA-c0hhMJkL8zCC3_bB-tOkFWWsw@mail.gmail.com>
- <CAPnjgZ1FrdGKjGAxUbkQoL2vHwhC_2Oa2KT+0cm25dQAuAjxAQ@mail.gmail.com> <CAPnjgZ19-xR6QxS=fR53skz0VuAty2Z2w2vQTjP7g=tbTFpaqw@mail.gmail.com>
-In-Reply-To: <CAPnjgZ19-xR6QxS=fR53skz0VuAty2Z2w2vQTjP7g=tbTFpaqw@mail.gmail.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Tue, 7 Nov 2023 09:57:35 -0700
-Message-ID: <CAPnjgZ0r6yuiwmQLm-=M5mrtDqHP9J+tL7SrKYH4rtbgUxioRQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: Rob Herring <robh@kernel.org>
-Cc: Ard Biesheuvel <ardb@kernel.org>, devicetree@vger.kernel.org, 
-	Mark Rutland <mark.rutland@arm.com>, Lean Sheng Tan <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
-	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
-	U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Aosong Electronic Co., LTD. is a supplier for MEMS sensors such as AHT20
+temperature and humidity sensor under the name Asair
 
+Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Tue, 31 Oct 2023 at 09:56, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi Rob,
->
-> On Mon, 16 Oct 2023 at 15:54, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Mon, 16 Oct 2023 at 10:50, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Fri, Oct 13, 2023 at 4:09=E2=80=AFPM Simon Glass <sjg@chromium.org=
-> wrote:
-> > > >
-> > > > Hi Rob,
-> > > >
-> > > > On Fri, 13 Oct 2023 at 13:42, Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Fri, Oct 6, 2023 at 7:03=E2=80=AFPM Simon Glass <sjg@chromium.=
-org> wrote:
-> > > > > >
-> > > > > > Hi Ard,
-> > > > > >
-> > > > > > On Fri, 6 Oct 2023 at 17:00, Ard Biesheuvel <ardb@kernel.org> w=
-rote:
-> > > > > > >
-> > > > > > > On Fri, 6 Oct 2023 at 20:17, Simon Glass <sjg@chromium.org> w=
-rote:
-> > > > > > > >
-> > > > > > > > Hi Ard,
-> > > > > > > >
-> > > > > > > > On Fri, 6 Oct 2023 at 11:33, Ard Biesheuvel <ardb@kernel.or=
-g> wrote:
-> > > > > > > > >
-> > > > > > > > > On Mon, 2 Oct 2023 at 19:54, Simon Glass <sjg@chromium.or=
-g> wrote:
-> > > > > > > > > >
-> > > > > > > > > > Hi Rob,
-> > > > > > > > > >
-> > > > > > > > > > On Tue, 26 Sept 2023 at 13:42, Simon Glass <sjg@chromiu=
-m.org> wrote:
-> > > > > > > > > > >
-> > > > > > > > > > > It is common to split firmware into 'Platform Init', =
-which does the
-> > > > > > > > > > > initial hardware setup and a "Payload" which selects =
-the OS to be booted.
-> > > > > > > > > > > Thus an handover interface is required between these =
-two pieces.
-> > > > > > > > > > >
-> > > > > > > > > > > Where UEFI boot-time services are not available, but =
-UEFI firmware is
-> > > > > > > > > > > present on either side of this interface, information=
- about memory usage
-> > > > > > > > > > > and attributes must be presented to the "Payload" in =
-some form.
-> > > > > > > > > > >
-> > > > > > > > > > > This aims to provide an small schema addition for the=
- memory mapping
-> > > > > > > > > > > needed to keep these two pieces working together well=
-.
-> > > > > > > > > > >
-> > > > > > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > > > > > > > > ---
-> > > > > > > > > > >
-> > > > > > > > > > > Changes in v7:
-> > > > > > > > > > > - Rename acpi-reclaim to acpi
-> > > > > > > > > > > - Drop individual mention of when memory can be recla=
-imed
-> > > > > > > > > > > - Rewrite the item descriptions
-> > > > > > > > > > > - Add back the UEFI text (with trepidation)
-> > > > > > > > > >
-> > > > > > > > > > I am again checking on this series. Can it be applied, =
-please?
-> > > > > > > > > >
-> > > > > > > > >
-> > > > > > > > > Apologies for the delay in response. I have been away.
-> > > > > > > >
-> > > > > > > > OK, I hope you had a nice trip.
-> > > > > > > >
-> > > > > > >
-> > > > > > > Thanks, it was wonderful!
-> > > > > > >
-> > > > > > > > >
-> > > > > > > > > >
-> > > > > > > > > > >
-> > > > > > > > > > > Changes in v6:
-> > > > > > > > > > > - Drop mention of UEFI
-> > > > > > > > > > > - Use compatible strings instead of node names
-> > > > > > > > > > >
-> > > > > > > > > > > Changes in v5:
-> > > > > > > > > > > - Drop the memory-map node (should have done that in =
-v4)
-> > > > > > > > > > > - Tidy up schema a bit
-> > > > > > > > > > >
-> > > > > > > > > > > Changes in v4:
-> > > > > > > > > > > - Make use of the reserved-memory node instead of cre=
-ating a new one
-> > > > > > > > > > >
-> > > > > > > > > > > Changes in v3:
-> > > > > > > > > > > - Reword commit message again
-> > > > > > > > > > > - cc a lot more people, from the FFI patch
-> > > > > > > > > > > - Split out the attributes into the /memory nodes
-> > > > > > > > > > >
-> > > > > > > > > > > Changes in v2:
-> > > > > > > > > > > - Reword commit message
-> > > > > > > > > > >
-> > > > > > > > > > >  .../reserved-memory/common-reserved.yaml      | 71 +=
-++++++++++++++++++
-> > > > > > > > > > >  1 file changed, 71 insertions(+)
-> > > > > > > > > > >  create mode 100644 dtschema/schemas/reserved-memory/=
-common-reserved.yaml
-> > > > > > > > > > >
-> > > > > > > > > > > diff --git a/dtschema/schemas/reserved-memory/common-=
-reserved.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > > > > > > > > new file mode 100644
-> > > > > > > > > > > index 0000000..f7fbdfd
-> > > > > > > > > > > --- /dev/null
-> > > > > > > > > > > +++ b/dtschema/schemas/reserved-memory/common-reserve=
-d.yaml
-> > > > > > > > > > > @@ -0,0 +1,71 @@
-> > > > > > > > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Cla=
-use
-> > > > > > > > > > > +%YAML 1.2
-> > > > > > > > > > > +---
-> > > > > > > > > > > +$id: http://devicetree.org/schemas/reserved-memory/c=
-ommon-reserved.yaml#
-> > > > > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yam=
-l#
-> > > > > > > > > > > +
-> > > > > > > > > > > +title: Common memory reservations
-> > > > > > > > > > > +
-> > > > > > > > > > > +description: |
-> > > > > > > > > > > +  Specifies that the reserved memory region can be u=
-sed for the purpose
-> > > > > > > > > > > +  indicated by its compatible string.
-> > > > > > > > > > > +
-> > > > > > > > > > > +  Clients may reuse this reserved memory if they und=
-erstand what it is for,
-> > > > > > > > > > > +  subject to the notes below.
-> > > > > > > > > > > +
-> > > > > > > > > > > +maintainers:
-> > > > > > > > > > > +  - Simon Glass <sjg@chromium.org>
-> > > > > > > > > > > +
-> > > > > > > > > > > +allOf:
-> > > > > > > > > > > +  - $ref: reserved-memory.yaml
-> > > > > > > > > > > +
-> > > > > > > > > > > +properties:
-> > > > > > > > > > > +  compatible:
-> > > > > > > > > > > +    description: |
-> > > > > > > > > > > +      This describes some common memory reservations=
-, with the compatible
-> > > > > > > > > > > +      string indicating what it is used for:
-> > > > > > > > > > > +
-> > > > > > > > > > > +         acpi: Advanced Configuration and Power Inte=
-rface (ACPI) tables
-> > > > > > > > > > > +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory=
- (NVS). This is reserved by
-> > > > > > > > > > > +           the firmware for its use and is required =
-to be saved and restored
-> > > > > > > > > > > +           across an NVS sleep
-> > > > > > > > > > > +         boot-code: Contains code used for booting w=
-hich is not needed by the OS
-> > > > > > > > > > > +         boot-code: Contains data used for booting w=
-hich is not needed by the OS
-> > > > > > > > > > > +         runtime-code: Contains code used for intera=
-cting with the system when
-> > > > > > > > > > > +           running the OS
-> > > > > > > > > > > +         runtime-data: Contains data used for intera=
-cting with the system when
-> > > > > > > > > > > +           running the OS
-> > > > > > > > > > > +
-> > > > > > > > > > > +    enum:
-> > > > > > > > > > > +      - acpi
-> > > > > > > > > > > +      - acpi-nvs
-> > > > > > > > > > > +      - boot-code
-> > > > > > > > > > > +      - boot-data
-> > > > > > > > > > > +      - runtime-code
-> > > > > > > > > > > +      - runtime-data
-> > > > > > > > > > > +
-> > > > > > > > >
-> > > > > > > > > As I mentioned a few times already, I don't think these c=
-ompatibles
-> > > > > > > > > should be introduced here.
-> > > > > > > > >
-> > > > > > > > > A reserved region has a specific purpose, and the compati=
-ble should be
-> > > > > > > > > more descriptive than the enum above. If the consumer doe=
-s not
-> > > > > > > > > understand this purpose, it should simply treat the memor=
-y as reserved
-> > > > > > > > > and not touch it. Alternatively, these regions can be ref=
-erenced from
-> > > > > > > > > other DT nodes using phandles if needed.
-> > > > > > > >
-> > > > > > > > We still need some description of what these regions are us=
-ed for, so
-> > > > > > > > that the payload can use the correct regions. I do not have=
- any other
-> > > > > > > > solution to this problem. We are in v7 at present. At least=
- explain
-> > > > > > > > where you want the compatible strings to be introduced.
-> > > > > > > >
-> > > > > > >
-> > > > > > > My point is really that by themselves, these regions are not =
-usable by
-> > > > > > > either a payload or an OS that consumes this information. Unl=
-ess there
-> > > > > > > is some other information being provided (via DT I imagine) t=
-hat
-> > > > > > > describes how these things are supposed to be used, they are =
-nothing
-> > > > > > > more than memory reservations that should be honored, and pro=
-viding
-> > > > > > > this arbitrary set of labels is unnecessary.
-> > > > > > >
-> > > > > > > > What sort of extra detail are you looking for? Please be sp=
-ecific and
-> > > > > > > > preferably add some suggestions so I can close this out ASA=
-P.
-> > > > > > > >
-> > > > > > >
-> > > > > > > A payload or OS can do nothing with a memory reservation call=
-ed
-> > > > > > > 'runtime-code' it it doesn't know what is inside.
-> > > > >
-> > > > > Agreed. The question is WHAT runtime-code? The compatible needs t=
-o answer that.
-> > > > >
-> > > > > For example, we have 'ramoops' as a compatible in reserved memory=
-.
-> > > > > That tells us *exactly* what's there. We know how to parse it. If=
- we
-> > > > > know ramoops is not supported, then we know we can toss it out an=
-d
-> > > > > reclaim the memory.
-> > > >
-> > > > So if we said:
-> > > >
-> > > >    compatible =3D "runtime-code-efi"
-> > > >
-> > > > would that be OK? We seem to be in catch 22 here, because if I don'=
-t
-> > > > mention EFI unhappy, but if I do, Ard is unhappy.
-> > >
-> > > Better yes, because then it is for something specific. However, AIUI,
-> > > that's setup for the OS and defining that region is already defined b=
-y
-> > > the EFI memory map. That's Ard's issue. If there's a need outside of
-> > > the EFI to OS handoff,
-> >
-> > There is a need. Here is part of the commit message again. If there is
-> > something else you need to know, please ask.
-> >
-> > >>>>
-> > It is common to split firmware into 'Platform Init', which does the
-> > initial hardware setup and a "Payload" which selects the OS to be boote=
-d.
-> > Thus an handover interface is required between these two pieces.
-> >
-> > Where UEFI boot-time services are not available, but UEFI firmware is
-> > present on either side of this interface, information about memory usag=
-e
-> > and attributes must be presented to the "Payload" in some form.
-> > <<<
-> >
-> > > then you need to define what that usecase looks
-> > > like. Describe the problem rather than present your solution.
-> > >
-> > > If this is all specific to EDK2 then it should say that rather than
-> > > 'efi'. I imagine Ard would be happier with something tied to EDK2 tha=
-n
-> > > *all* UEFI. Though maybe the problem could be any implementation? IDK=
-.
-> > > Maybe it's TF-A that needs to define where the EFI runtime services
-> > > region is and that needs to be passed all the way thru to the EFI
-> > > implementation? So again, define the problem.
-> >
-> > It is not specific to EDK2. Imagine this boot sequence:
-> >
-> > - Platform Init (U-Boot) starts up
-> > - U-Boot uses its platform knowledge to sets some ACPI tables and put
-> > various things in memory
-> > - U-Boot sets up some runtime code and data for the OS
-> > - U-Boot jumps to the Tianocore payload **
-> > - Payload (Tianocore) wants to know where the ACPI tables are, for exam=
-ple
-> > - Tianocore needs to provide boot services to the OS, so needs to know
-> > the memory map, etc.
-> >
-> > ** At this point we want to use DT to pass the required information.
-> >
-> > Of course, Platform Init could be coreboot or Tianocore or some
-> > strange private binary. Payload could be U-Boot or something else.
-> > That is the point of this effort, to build interoperability.
-> >
-> > >
-> > > > What about the boottime code....you want to know which project it i=
-s from?
-> > >
-> > > I think it is the same.
-> > >
-> > > >
-> > > > +      - acpi
-> > > > +      - acpi-nvs
-> > > >
-> > > > Those two should be enough info, right?
-> > >
-> > > I think so. NVS is not a term I've heard in relation to ACPI, but tha=
-t
-> > > may just be my limited ACPI knowledge.
-> >
-> > Perhaps it is only an Intel thing. It stands for Non-Volatile-Sleeping
-> > Memory and it has various platform settings in a binary format that is
-> > normally SoC-specific.
-> >
-> > >
-> > > > +      - boot-code
-> > > > +      - boot-data
-> > > >
-> > > > For these, they don't pertain to the OS, so perhaps they are OK?
-> > >
-> > > Hard to tell that just from the name... 'boot' could be any component
-> > > involved in booting including the OS.
-> >
-> >  suggested that 'boot' should mean booting the OS. If the OS does lots
-> > of fixup stuff at the start of it, I don't know what that is called.
-> >
-> > So if boot-code is no good, what do you suggest?
-> >
-> > Alternatively I could remove these for now, if it will help make progre=
-ss.
-> >
-> > >
-> > > > In
-> > > > any case, using a generic term like this makes some sense to me. We
-> > > > can always add a new compatible like "efi-boottime-services" later.=
- It
-> > > > may be that the boottime services would be handled by the payload, =
-so
-> > > > not needed in all cases.
-> > >
-> > > Why later? You have a specific use in mind and I imagine Ard has
-> > > thoughts on that.
-> >
-> > Because we don't need it right away, and just want to make some progres=
-s.
-> >
-> > Perhaps the problem here is that Linux has tied itself up in knots
-> > with its EFI stuff and DT fixups and what-not. But this is not that.
-> > It is a simple handoff between two pieces of firmware, Platform Init
-> > and Payload. It has nothing to do with the OS. With Tianocore they are
-> > typically combined, but with this usage they are split, and we can
-> > swap out one project for another on either side of the DT interface.
-> >
-> > I do have views on the 'EFI' opt-out with reserved-memory, if you are
-> > interested, but that relates to the OS. If you are wanting to place
-> > some constraints on /reserved-memory and /memory we could do that
-> > e.g. that the DT and the map returned by EFI boot services must be
-> > consistent. But as it is, the nodes are ignored by the OS when booting
-> > with EFI, aren't they?
->
-> Can this be applied, please? If there are further comments, please let me=
- know.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 573578db9509..df3204f9dda6 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -143,6 +143,8 @@ patternProperties:
+     description: Artesyn Embedded Technologies Inc.
+   "^asahi-kasei,.*":
+     description: Asahi Kasei Corp.
++  "^asair,.*":
++    description: Aosong Electronic Co., Ltd.
+   "^asc,.*":
+     description: All Sensors Corporation
+   "^asix,.*":
+-- 
+2.42.0
 
-Any update, please?
-
-Regards,
-Simon
 
