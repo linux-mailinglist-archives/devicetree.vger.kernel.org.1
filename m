@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-14374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAF97E3D8E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:29:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCF8C7E3DC1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80761B20BE7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:29:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1980B1C20B91
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902682FE2B;
-	Tue,  7 Nov 2023 12:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A9F2D7A9;
+	Tue,  7 Nov 2023 12:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FvsCWaXy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mAYEOZAc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744562EB02
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:29:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1273C433C7;
-	Tue,  7 Nov 2023 12:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BDE32FE31
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:30:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A420FC433C7;
+	Tue,  7 Nov 2023 12:30:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699360151;
-	bh=gLDrGUYg97xAln8MkIW3PthO5c6w6QuVMnV3i0P3sb4=;
+	s=k20201202; t=1699360240;
+	bh=FCraxpZ/ln5cZ32lci7Dq7LGqWdWc8yhBgLj5dz5k+Q=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FvsCWaXyHEBOdQ2hku1/2/DOF1ZdqjCEVMUBitr3BtQQLT+SPDHwntc+YxmUxK6tx
-	 xo3YxE6FwUhfIU2XaIScvtpDlmqINxeF4qTe1Y+B3Tdj7qZgKjudGHjvp2REnG+6Ge
-	 Oqb01p2HywjqaSuCjL7YwJ+4wgIOicmL2sCz4t/jILOlEwrBIiYVL/OQQK2p0Y0Cly
-	 +obJm35hE835dQFedNTeUI+0jlRKFLsrCySDXD8RcrNGge2zkEitEhEJCLCzLfQMAO
-	 XIiT2a/5ZIhvbSw7XUZ3irYtzsTHO8Wg5CGaAKpIYlyUOR+I5JpQpKFlC/gaw1+ipH
-	 OoVwWA6U3ELDw==
+	b=mAYEOZAczWsw1fnIs8fPaBoxVyoQfL4e49vc7vTS/0JH4Q0summAgREES5nI5sRkS
+	 U8NJSzYaBpNMcryXYrof+l9O0z7AE17sbD0lLrYvzDXlzGNXNjCqjfXe3QcSgT3Oiu
+	 Y9vBZCUGSnrLBm36lXPZblWi8LbCgirWqznIdzMBjUPm2jkx/MvDjX5RTJo/dMB1tv
+	 VhPNCChuX48wZc2Y2y9xs0egNj19BFcfAKU/8uZgHBdirpJtqt58LFCzY/+h2BptlB
+	 8I7tJhc2ptd2QHcBg7PfDz2QpYG2GbMBi2bA6SRMVdLGi/epPA8qjr5oETugqw20T7
+	 7GiqoP63LKLRA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -44,12 +44,12 @@ Cc: Laurentiu Tudor <laurentiu.tudor@nxp.com>,
 	conor+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 24/25] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
-Date: Tue,  7 Nov 2023 07:27:03 -0500
-Message-ID: <20231107122745.3761613-24-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 19/20] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
+Date: Tue,  7 Nov 2023 07:29:13 -0500
+Message-ID: <20231107122940.3762228-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107122745.3761613-1-sashal@kernel.org>
-References: <20231107122745.3761613-1-sashal@kernel.org>
+In-Reply-To: <20231107122940.3762228-1-sashal@kernel.org>
+References: <20231107122940.3762228-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.1.61
+X-stable-base: Linux 5.15.137
 Content-Transfer-Encoding: 8bit
 
 From: Laurentiu Tudor <laurentiu.tudor@nxp.com>
@@ -90,10 +90,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 27 insertions(+), 19 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 348d9e3a91252..b53d74aee12ad 100644
+index 12e59777363fe..9bb360db6b195 100644
 --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
 +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -1186,26 +1186,34 @@ sata1: sata@3210000 {
+@@ -1179,26 +1179,34 @@ sata1: sata@3210000 {
  			dma-coherent;
  		};
  
