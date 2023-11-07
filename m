@@ -1,53 +1,55 @@
-Return-Path: <devicetree+bounces-14362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A8F7E3CE5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:21:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 861947E3CE6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:21:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 952851C20A1F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:21:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CCF4281066
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29D02FE0D;
-	Tue,  7 Nov 2023 12:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C122FE0F;
+	Tue,  7 Nov 2023 12:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pqt5dWuh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XTGhxBv5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DC42E65B
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:21:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52962C433C7;
-	Tue,  7 Nov 2023 12:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFF82E65B
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:21:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ADCAC433C8;
+	Tue,  7 Nov 2023 12:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699359690;
-	bh=sJvfKz8oWu48VSTzTVbiaDkgpOeWpsluRxOhhd9WOPA=;
+	s=k20201202; t=1699359701;
+	bh=fbCE/3wGbrk0VpscWgRWMhvjTR4+0eLeBxvgG53oMa0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pqt5dWuh8iR/zGvbLiNxbgadOV40oOkqQCqFEpxj/FVoxemWjACbQfcMB2efl1pLF
-	 djCaXUbB9auK2/w0KRDzaDaqAcQAIRbOGWbr2Fm+24bObeAKjaTME4FPTeHa3+DhQL
-	 4KHn7fbmPAGGC5axyN769C1yqaBwt47PO3Qg7LibawosM6TiWbk2Ls6FduOPznD1pJ
-	 MFRB9q0HLjnbdc1/t/UOA786ytiILZT+aUHi8J7rbxDkrJSYUdxGpl9YWRMh5TiC5L
-	 soRJ9MXM7C2w5HW8j9Iyc7j2Fg4eREzqcL/IN3ZXUX9tflTjdJWg95OMrt6Acv/0/d
-	 kKxwp6eXow6Fw==
+	b=XTGhxBv5xY2zGgTFp7ip1XJKUJVdc9RBmZv9of7lOmB6p4wLpWvGfbpdYwBHUt0HH
+	 FhW+fMxpqlmJfNDUcnQFuoVOaXRzPjfDgzDjORSwAzTudLfwF4lbLg8TZCsmIWuoWj
+	 B4HKTJ0TzJUOTwOX1Z++R/tUvo1dbRzUItxT/hCLGhnbCOi/1kAqAY5Ung5wmUD5A6
+	 YdkOquJX0croYu7xZnigqGbdgfqk9UePk6o1yRXyuKKM2m/TFPriOXEFGGaGDyWr5P
+	 KNz/sinTtR81oH228rsps8hD9pVmLx5oMBwqq0BqQX5KzysFhN826sRRKwMouQxz2/
+	 N7gGqFqU1RpQw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Chris Morgan <macromorgan@hotmail.com>,
+Cc: John Clark <inindev@gmail.com>,
 	Heiko Stuebner <heiko@sntech.de>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
+	macromorgan@hotmail.com,
 	jagan@edgeble.ai,
+	tmckahan@singleboardsolutions.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.6 37/40] arm64: dts: rockchip: add USB2 to rk3588s-indiedroid
-Date: Tue,  7 Nov 2023 07:16:39 -0500
-Message-ID: <20231107121837.3759358-37-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.6 38/40] arm64: dts: rockchip: Add NanoPC T6 PCIe e-key support
+Date: Tue,  7 Nov 2023 07:16:40 -0500
+Message-ID: <20231107121837.3759358-38-sashal@kernel.org>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231107121837.3759358-1-sashal@kernel.org>
 References: <20231107121837.3759358-1-sashal@kernel.org>
@@ -62,73 +64,96 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.6
 Content-Transfer-Encoding: 8bit
 
-From: Chris Morgan <macromorgan@hotmail.com>
+From: John Clark <inindev@gmail.com>
 
-[ Upstream commit aee432b50f6e15886bddcb6f92028265db4b254e ]
+[ Upstream commit ac76b786cc370b000c76f3115a5d2ee76ff05c08 ]
 
-Enable USB2 (EHCI and OCHI mode) support for the Indiedroid Nova. This
-adds support for USB for the 4 full size USB-A ports. Note that USB 3
-(the two blue full-size USB-A ports) is still outstanding, as is
-support for USB on the USB-C ports. The controller is not yet supported
-for these ports.
+before
+~~~~
+0000:00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:20:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:21:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+0004:40:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0004:41:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Link: https://lore.kernel.org/r/20230918173255.1325-3-macroalpha82@gmail.com
+after
+~~~
+0000:00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:20:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:21:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+0003:30:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0003:31:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8822CE 802.11ac PCIe Wireless Network Adapter
+0004:40:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0004:41:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+
+Signed-off-by: John Clark <inindev@gmail.com>
+Link: https://lore.kernel.org/r/20230906012305.7113-1-inindev@gmail.com
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 646f49cc9e53d..1e2336d3065b0 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -751,6 +751,24 @@ &tsadc {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+index 0bd80e5157544..97af4f9128285 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+@@ -137,6 +137,18 @@ vbus5v0_typec: vbus5v0-typec-regulator {
+ 		vin-supply = <&vcc5v0_sys>;
+ 	};
+ 
++	vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pcie_m2_1_pwren>;
++		regulator-name = "vcc3v3_pcie2x1l0";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
+ 	vcc3v3_pcie30: vcc3v3-pcie30-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -421,6 +433,14 @@ &pcie2x1l0 {
  	status = "okay";
  };
  
-+&u2phy2 {
++&pcie2x1l1 {
++	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
++	vpcie3v3-supply = <&vcc3v3_pcie2x1l0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_1_rst>;
 +	status = "okay";
 +};
 +
-+&u2phy2_host {
-+	phy-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
+ &pcie2x1l2 {
+ 	reset-gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc_3v3_pcie20>;
+@@ -467,6 +487,10 @@ pcie2_0_rst: pcie2-0-rst {
+ 			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
++		pcie2_1_rst: pcie2-1-rst {
++			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
 +
-+&u2phy3 {
-+	status = "okay";
-+};
+ 		pcie2_2_rst: pcie2-2-rst {
+ 			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+@@ -474,6 +498,10 @@ pcie2_2_rst: pcie2-2-rst {
+ 		pcie_m2_0_pwren: pcie-m20-pwren {
+ 			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
 +
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
-+
- &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
-@@ -775,3 +793,19 @@ bluetooth {
- 		pinctrl-names = "default";
++		pcie_m2_1_pwren: pcie-m21-pwren {
++			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
  	};
- };
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
+ 
+ 	usb {
 -- 
 2.42.0
 
