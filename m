@@ -1,121 +1,181 @@
-Return-Path: <devicetree+bounces-14346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54F47E3A94
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 11:56:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A75A7E3AB5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:03:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60415281009
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 10:56:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87316B20AD6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 11:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFDE2D02D;
-	Tue,  7 Nov 2023 10:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F401B2D04A;
+	Tue,  7 Nov 2023 11:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="qkxdtbQu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o6f7W2Nu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873C02C87C
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 10:56:34 +0000 (UTC)
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974D71725
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 02:56:29 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-32fa4183535so811526f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 02:56:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1699354586; x=1699959386; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hiqFYUrrovnf1rhzBHvSluIgSBMGKUT9Q2F8cmlGclI=;
-        b=qkxdtbQucEK7DLbiv1cKdTpCrLREePIFWimgYLnxfcHCSbA7Hw/4RlMhTwX/1y8H3i
-         2AiDmSFI5R39zutNt6ytF7rgteIp6ZWOcZSOkBaIw2Yft/iUbjHP5yYW0OrFlOl+OhmD
-         qj/HHvD5wAp/Tg5wI6GLNdwgE09YsQ5v1vCByiqUjqJjY06RVKGCfYkpAvVYZSUP/ccp
-         DvkUxcUGFC3nLlqONCqce/kgc2zhXkFw71pd2axoIKSvio7w0nO9p5mcvIRaSWF4Oayv
-         cqw5JLEsEUKTgB4Xrr0sBDAjMmWNXO5X69EVzHR7Dihj2OnZIXZUHCQ3vAgHPSGM/hmZ
-         cPyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699354586; x=1699959386;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hiqFYUrrovnf1rhzBHvSluIgSBMGKUT9Q2F8cmlGclI=;
-        b=AFZb3rfd0VSYXoP8w4/qrU7+suRy4Y5S+epmdcVJ3LomVZOsz0OfNlaZ5AVDB08JoH
-         SzGGgjJ1iIiCbcP8TdRghglAv5AfRjD9MZZGjwJy5HyDOr9Voc+GAxMpQi5Xr273OSAI
-         e1dnDY86GbXkWAV+U8+4CiQ4fqTDmYYAsYS4Ab9YpPEtmKXD4o8THQQ/wFjfyoh/p32o
-         ZuB8Bt0GdFoKRP8fwmql6scXdf5kTtryhyM/E0vmUrtH3145PziU3AUJ7vWR5lFInusr
-         JEtJltgLrqNqPq7ibRmojvEn6+UJIej+N7T99RTRiNynQAyL3q+hTkFx+KhOTboihW4b
-         q4Ww==
-X-Gm-Message-State: AOJu0YyvBo+yjwN+OsWtTjw381JONZsdB/+DaDioS0yhLRS7wXLIa9Bo
-	SOIxp0iJH341l8caK7wGZxSPCQ==
-X-Google-Smtp-Source: AGHT+IF7Zo2YtACLiPHwQ6dLVhxCBp4VHRs60nrkUPyWwGQZ1utTTeaxqjcqGnJKdNMWHeSZvxGiKQ==
-X-Received: by 2002:a05:600c:3b91:b0:407:52f0:b01a with SMTP id n17-20020a05600c3b9100b0040752f0b01amr26054980wms.2.1699354585803;
-        Tue, 07 Nov 2023 02:56:25 -0800 (PST)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:7db3:bdd9:4cab:2ee3])
-        by smtp.gmail.com with ESMTPSA id n30-20020a05600c501e00b00405442edc69sm15396853wmr.14.2023.11.07.02.56.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Nov 2023 02:56:24 -0800 (PST)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Palmer Dabbelt <palmer@rivosinc.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Evan Green <evan@rivosinc.com>,
-	Conor Dooley <conor@kernel.org>,
-	Samuel Ortiz <sameo@rivosinc.com>
-Subject: [PATCH v3 20/20] dt-bindings: riscv: add Zfa ISA extension description
-Date: Tue,  7 Nov 2023 11:55:56 +0100
-Message-ID: <20231107105556.517187-21-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107105556.517187-1-cleger@rivosinc.com>
-References: <20231107105556.517187-1-cleger@rivosinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9882D039;
+	Tue,  7 Nov 2023 11:03:06 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 596A7114;
+	Tue,  7 Nov 2023 03:03:05 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A7ADrx4029500;
+	Tue, 7 Nov 2023 11:02:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=SFRYKwU5koGWL5dv8W4KKvT9e10tazgxHr6Z4LinXI8=;
+ b=o6f7W2NuUH8oSnUhvHydTzahuShmT1Mny2h94uCM5ff6zpNJbMZMQOvNGZq6NZglJwlB
+ S0/GavH2bfBBHDFQtSIOtcnqz2P4BVlFcQMtNgX4UC0qc0Vi4Ff/Drd9gRZkJ0Dn/fXX
+ jL7+EBmbYqppZs/M3+rAJJO06N080P8sDuQjI1MQsjbep5I3pLZhd6NtZnbNyiru60GS
+ 5VUKR9lEcq6Yu6Q2L0ZJAI52Ew/vsy+ConhB3Ynox3x4vgDU2qvMei0Pi3VnRcjaYSVS
+ K3Coyx3aBR7ev1VWTGKVFHwsFMqlnHtGGlm2B54WGx6UQmBgqM4O/umUN8Rm0P0oqKNr Jw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u6xdub4bh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Nov 2023 11:02:52 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A7B2puZ018234
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 7 Nov 2023 11:02:51 GMT
+Received: from [10.249.29.138] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Tue, 7 Nov
+ 2023 03:02:46 -0800
+Message-ID: <70b5cdc9-f0e1-4fad-a1ab-858fff3c110c@quicinc.com>
+Date: Tue, 7 Nov 2023 16:32:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 2/8] usb: dwc3: core: Register vendor hooks for dwc3-qcom
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>
+CC: <linux-usb@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Thinh
+ Nguyen" <Thinh.Nguyen@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <quic_wcheng@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
+ <20231017131851.8299-3-quic_kriskura@quicinc.com>
+ <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
+ <5ef66bdc-9645-4bbe-8182-baa7fe4c583a@quicinc.com>
+ <3be5e95f-85d2-4abf-a8b4-18b019341602@quicinc.com>
+ <cf553cd8-45f8-4a61-b016-69e7a80eee9f@linaro.org>
+ <ea919050-22a8-4d28-ade2-fd16a99876cb@quicinc.com>
+ <105d84b6-cbea-4758-9eba-1c104fa7a670@quicinc.com>
+ <f94ca738-476c-4664-a8f1-e3ef3ac8220a@linaro.org>
+ <4b3e1f66-31e0-4b7a-9cc0-0b7a7a6ef2f5@linaro.org>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <4b3e1f66-31e0-4b7a-9cc0-0b7a7a6ef2f5@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Mxfa6Z2ES4PVL7h7l10ERvgnqaGGyPkf
+X-Proofpoint-ORIG-GUID: Mxfa6Z2ES4PVL7h7l10ERvgnqaGGyPkf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-07_01,2023-11-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=876 priorityscore=1501
+ spamscore=0 impostorscore=0 mlxscore=0 malwarescore=0 clxscore=1015
+ bulkscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2310240000 definitions=main-2311070091
 
-Add description for the Zfa ISA extension[1] which can now be
-reported through hwprobe for userspace usage.
 
-Link: https://drive.google.com/file/d/1VT6QIggpb59-8QRV266dEE4T8FZTxGq4/view [1]
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
----
- Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index 87c7e3608217..dcba5380f923 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -214,6 +214,12 @@ properties:
-             instructions as ratified at commit 6d33919 ("Merge pull request #158
-             from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
- 
-+        - const: zfa
-+          description:
-+            The standard Zfa extension for additional floating point
-+            instructions, as ratified in commit 056b6ff ("Zfa is ratified") of
-+            riscv-isa-manual.
-+
-         - const: zfh
-           description:
-             The standard Zfh extension for 16-bit half-precision binary
--- 
-2.42.0
+On 11/7/2023 4:25 PM, Bryan O'Donoghue wrote:
+> On 07/11/2023 10:41, Bryan O'Donoghue wrote:
+>> On 07/11/2023 08:33, Krishna Kurapati PSSNV wrote:
+>>>
+>>>
+>>> On 11/4/2023 10:32 PM, Krishna Kurapati PSSNV wrote:
+>>>>>
+>>>>> Are you saying to you require/rely on both of these series being 
+>>>>> applied first ?
+>>>>>
+>>>>> [1]: 
+>>>>> https://lore.kernel.org/all/af60c05b-4a0f-51b8-486a-1fc601602515@quicinc.com/
+>>>>> [2]: 
+>>>>> https://lore.kernel.org/all/20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com/
+>>>>>
+>>>>> Must be, nothing applies for me in this series.
+>>>>
+>>>> The first one is not a patch. It is just a discussion thread I 
+>>>> started to get community's opinion before on disconnect interrupt 
+>>>> handling. The current series is based on top of [2] made by Bjorn 
+>>>> (as you already found out) and as I mentioned in cover letter of my 
+>>>> series.
+>>>>
+>>>
+>>> Hi Bryan,
+>>>
+>>>    Are you able to apply the series after including Bjorn's patches ? 
+>>> Also can you confirm if the comments provided to your queries on [1] 
+>>> are proper and if you have any other comments w.r.t probe deferral.
+>>>
+>>> [1]: 
+>>> https://lore.kernel.org/all/e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org/
+>>>
+>>> Regards,
+>>> Krishna,
+>>
+>> I wonder could you give a base SHA to apply the various series on ?
+>>
+>> Your referenced precursor doesn't apply to usb-next
+> 
+> Well now, that doesn't point where I thought it pointed usb-next/master 
+> is extremely old
+> 
+>   b3a9e3b9622ae - (HEAD -> usb-next-23-10-07-usb-glue-test, tag: 
+> v5.8-rc1, usb-next/master, origin/tracking-qcomlt-sm8150-gcc, 
+> linaro/tracking-qcomlt-sm8150-gcc, fecked-old, delete-this-branch2, 
+> delete-this-branch) Linux 5.8-rc1 (3 years, 5 months ago)
+> 
+> I want usb-next/main
+> 
+> *   d2f51b3516dad - (usb-next/usb-testing, usb-next/usb-next, 
+> usb-next/main) Merge tag 'rtc-6.7' of 
+> git://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux (32 hours ago)
+> 
+> Everything applies there.
 
+Hi Bryan,
+
+   I should have mentioned that series is pushed on top of usb-next. 
+Apologies.
+
+> 
+> Anyway, your pointing to Bjorn's series answers my question re: 
+> sequencing of the probe.
+
+Perfect. Thanks for the confirmation.
+
+Regards,
+Krishna,
 
