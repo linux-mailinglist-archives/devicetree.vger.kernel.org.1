@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-14356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38E997E3BAE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:08:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333C67E3BE6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:10:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7056281014
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:08:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62B151C20CA4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:10:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F342E3FB;
-	Tue,  7 Nov 2023 12:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1006A2E41E;
+	Tue,  7 Nov 2023 12:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="phqfPuQp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ULo87XkE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FBC2DF96
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:08:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 842B0C433CB;
-	Tue,  7 Nov 2023 12:08:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85DD2E410
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:10:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5E80C433CA;
+	Tue,  7 Nov 2023 12:10:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699358920;
+	s=k20201202; t=1699359044;
 	bh=dN7/KtImMvyag0cEUmZ23oKenryc3mgEBKQkieEj3Gk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=phqfPuQp4ViIBKMFujNOQ9qhuFN3AL+7ZCpiU0XFXWJnMSWAyfI3oVId8ACqsJOOK
-	 XAQ+A2mpp66svXITqI5i9lImSLmWtegO1zOwwmlaAjBI7SKbUbQUr3qP0s8vpGgi+w
-	 WaDj3xONXGTKh2xc7LKk3cYtGsTWU2KyPixY6UlBFJB3ygtlHym1TApWeRNkMkNalM
-	 bJtZTC1TFX1kQTa1Rte3dFnRoc/UgDdEcLAWQ9UREeKUGqg+R5T/NtiTLWlZsrfsMx
-	 5hB8vf4YJ0bQjAxs3YPlBtyWhvoQ95AIr0QdDhlL0M73uFKbcZa+BcmhRwkROy9b3D
-	 zIaAPpUsQ6yiA==
+	b=ULo87XkEjTt8dimqE17voZhEbfrJ4YTftBrfor5T6Y2C/gsFTokvRdvjbHJDbSwsW
+	 Cb3sRNDCAOoec+J5F8Nr+eY6n3k26hBazN0oyqqKhDHfkiHXxbcRzUmO8lhX6PY3oB
+	 2GzZoR3djCoHNioCTydoGPnGqePg5+1hrWoyE53O838Hh23AwS0JJfWklk8nn3jClP
+	 Yblud6HePp7AFrXjBQUWHeyGxKY7/TJypXz59nwa26WTbE7OIoCwrbjQ+fSIVpofW+
+	 X/rmoPekBrfNZV50e0m8Qdc1BI7SuHp2eHmKCi//zGVgvHf8gxO94MWkmAXzYbZRXs
+	 fyya1ZOw2M4wQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -41,12 +41,12 @@ Cc: Herve Codina <herve.codina@bootlin.com>,
 	robh+dt@kernel.org,
 	frowand.list@gmail.com,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 30/31] of: address: Fix address translation when address-size is greater than 2
-Date: Tue,  7 Nov 2023 07:06:17 -0500
-Message-ID: <20231107120704.3756327-30-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.5 29/30] of: address: Fix address translation when address-size is greater than 2
+Date: Tue,  7 Nov 2023 07:08:44 -0500
+Message-ID: <20231107120922.3757126-29-sashal@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107120704.3756327-1-sashal@kernel.org>
-References: <20231107120704.3756327-1-sashal@kernel.org>
+In-Reply-To: <20231107120922.3757126-1-sashal@kernel.org>
+References: <20231107120922.3757126-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6
+X-stable-base: Linux 6.5.10
 Content-Transfer-Encoding: 8bit
 
 From: Herve Codina <herve.codina@bootlin.com>
