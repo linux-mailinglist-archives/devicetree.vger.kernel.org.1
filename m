@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABE37E4760
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:45:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2AF7E476B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0373FB20CE7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:45:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4A68280CB6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B046930D08;
-	Tue,  7 Nov 2023 17:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59D530D08;
+	Tue,  7 Nov 2023 17:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k6//Xuk7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fcHK/fOa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8734634CE9
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 17:45:10 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EEB810D8
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 09:45:07 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a6190af24aso918663666b.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 09:45:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D7328E29
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 17:46:10 +0000 (UTC)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B566C1704
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 09:46:09 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so10187528a12.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 09:46:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699379106; x=1699983906; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699379168; x=1699983968; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ILUIzwGAmI1ZGqr+mNktROdUm42J2cs6GtRudtdLn1E=;
-        b=k6//Xuk7EFxONKIWFXKIhqD4lS6yflujqs6eb/A0d9TVQ+qhvd0VMXbWNtQZ8WmEzQ
-         YgALl56qVYGnGpQ0jCH+sXKdUktIIpq0OnCBLUVSi4eFtkR4ncFw14uxyX8HkaqUoUyZ
-         Fvp9YvrOl9cP9MjfRNuMZRoOzBi/y2NTDDH+XDfwfv1kPI7qIhvWlVQTyhrzfhTQmP41
-         b56XCMgxGc0XR+AF3UWBCxZy7pRE4F2IlePbgoHe4+wM9k9cFKhyRZmBTRUtwVpo9/BJ
-         c+aMOQxpuauUDuj2pvFqSjp7fwqs991Y8OVM+zDwmXUgs+w1R2xTnvKk+n9OHohNrcVN
-         eiUg==
+        bh=/phQShbLiFQzOkp+07zaJC2xh5u6a3NtoTaiSALQ5P4=;
+        b=fcHK/fOaNbl3C/dc5pZEhWJeSDGG0l6+co+/37RlQZKAdAUV4lSWx7mKNnzKdYVdu9
+         iqXxCkC+deaHgJdUKs11Dbmwxu1l+9qufQdAyVlmk2zu4+JryvxQlTwLPnZ1kdynmddl
+         YhQp+J+iY+cYbAMiEvtq4d6wRKZD6s1RtFsicuCq8ifLJ069jwpnBbsQA/yMVi7V58+y
+         kIUBeyPo7gkE4YRksLFyTtUloDDgWiTfLYxzf5OLhwEVhOAv4E6ut2aiZXbd3VnDZUet
+         uFU8qNqzbI58DeznhQfoehXHKJwmKq5/qwyactOQZOQtFZWj6QApVe4HsYWeeVJtQfGk
+         sY7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699379106; x=1699983906;
+        d=1e100.net; s=20230601; t=1699379168; x=1699983968;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ILUIzwGAmI1ZGqr+mNktROdUm42J2cs6GtRudtdLn1E=;
-        b=fppJzpeR4LcNZB8s8I+jcWMpPhv8v/J27bnt4ayg6p+rqMXlFxVLicRaOrbxSiUhoE
-         DyO2UXiPV6j1Tc+eeY8tMPHZZwCJ0ntnBQmgzpkQeH8Ik4bmiE19Pfoo1R2H/Az/zMmR
-         a6sYP0Zy4G6vqO2wlEdZBc7FkE2w1tTyHhTVRrTK/0luHGaIpHZAgMmUVK6OHPe3V8m6
-         +8t4SSzggqFFCGRc1IDltvQEZjnyKncf/3VgVrunp1UBpRPdXJ9tZvWfCmIvQUmot7RD
-         BuHsMwZIKC/qVQtd4D4vDZerqlIYe+bxHJglaqsGzClL2sD9XCLG6Iv6bwuu2fxFllra
-         uniQ==
-X-Gm-Message-State: AOJu0YwSV3/lVS5Cws0cK8s5a+s/dslkzYFNi5+kgW91doshCaVd1Ijy
-	uNwBlA4CBno32bJwRj6dOSQLmw==
-X-Google-Smtp-Source: AGHT+IFKDLQKbTn7D5fZTBdaWJNTm4HkaW0LdlsOEsJrS4CxylI8TwfduuE4pveznNmb6DhIWPmxRw==
-X-Received: by 2002:a17:907:6d27:b0:9ba:2fe3:c97e with SMTP id sa39-20020a1709076d2700b009ba2fe3c97emr15896949ejc.11.1699379105480;
-        Tue, 07 Nov 2023 09:45:05 -0800 (PST)
+        bh=/phQShbLiFQzOkp+07zaJC2xh5u6a3NtoTaiSALQ5P4=;
+        b=OBGKz61vmjNDqSAnEmL9586lU06ziRqKDgWKngVCEPrIB0eiwwfNmieAuvtko8wkI6
+         PXfQQHyFRjtNsxXG7kBPI6LAa0rysqno5WZ3WOoJn0WddpOM1XZblESBKWG+8wTfk7T3
+         pFpYAAfq36axxDxZQLid8K5o/wDnN/PFD6PNWPtkio0YjN7xoIl/gULwDtLekLWNoIKQ
+         PDWTFsXuU/uP5xxXFvLkZ8CMWhrWmo+EFtgzdoH7I7DOzks3L4BuhwWcZ3QZIMQFA+lI
+         seIO+lltWNEGs97Tev6tGnjqFfVbyua/masQiq/CpwAz0tZb6xngn57YliD3qZw2fXVJ
+         RecQ==
+X-Gm-Message-State: AOJu0YyQZ6hRwzRi/wlcBv9mHRf1Khzaiyz8tZvcqqNtKinBnFoLtg7c
+	ZQAPCnu1WCnWifaMrTd57pT/ZA==
+X-Google-Smtp-Source: AGHT+IE6U4ZE0F76e4gyMzHtlTFPYuHPtbb89mz7h0vnkXm+UZtdMOyfWkyQ1nm5YlDkhmOXKORO4A==
+X-Received: by 2002:a17:907:9603:b0:9d3:f436:6807 with SMTP id gb3-20020a170907960300b009d3f4366807mr18756477ejc.42.1699379168133;
+        Tue, 07 Nov 2023 09:46:08 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ox11-20020a170907100b00b009dd949b75c7sm1288243ejb.151.2023.11.07.09.45.03
+        by smtp.gmail.com with ESMTPSA id ox11-20020a170907100b00b009dd949b75c7sm1288243ejb.151.2023.11.07.09.46.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 09:45:05 -0800 (PST)
-Message-ID: <d82865bc-29a7-4150-876e-489e0d797699@linaro.org>
-Date: Tue, 7 Nov 2023 18:45:03 +0100
+        Tue, 07 Nov 2023 09:46:07 -0800 (PST)
+Message-ID: <87762a47-9caf-435a-9b73-397384660b11@linaro.org>
+Date: Tue, 7 Nov 2023 18:46:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/6] reset: rockchip: secure reset must be used by SCMI
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add asair
 Content-Language: en-US
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
- herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, p.zabel@pengutronix.de, robh+dt@kernel.org,
- sboyd@kernel.org
-Cc: ricardo@pardini.net, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20231107155532.3747113-1-clabbe@baylibre.com>
- <20231107155532.3747113-6-clabbe@baylibre.com>
- <f1b24f19-c210-4f55-b40f-ab063e7eeb22@linaro.org> <11278271.CDJkKcVGEf@diego>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231107173100.62715-1-anshulusr@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,151 +122,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <11278271.CDJkKcVGEf@diego>
+In-Reply-To: <20231107173100.62715-1-anshulusr@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 07/11/2023 18:35, Heiko Stübner wrote:
-> Am Dienstag, 7. November 2023, 17:21:41 CET schrieb Krzysztof Kozlowski:
->> On 07/11/2023 16:55, Corentin Labbe wrote:
->>> While working on the rk3588 crypto driver, I loose lot of time
->>> understanding why resetting the IP failed.
->>> This is due to RK3588_SECURECRU_RESET_OFFSET being in the secure world,
->>> so impossible to operate on it from the kernel.
->>> All resets in this block must be handled via SCMI call.
->>>
->>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
->>> ---
->>>  drivers/clk/rockchip/rst-rk3588.c             | 42 ------------
->>>  .../dt-bindings/reset/rockchip,rk3588-cru.h   | 68 +++++++++----------
->>
->> Please run scripts/checkpatch.pl and fix reported warnings. Some
->> warnings can be ignored, but the code here looks like it needs a fix.
->> Feel free to get in touch if the warning is not clear.
->>
->>>  2 files changed, 34 insertions(+), 76 deletions(-)
->>>
->>> diff --git a/drivers/clk/rockchip/rst-rk3588.c b/drivers/clk/rockchip/rst-rk3588.c
->>> index e855bb8d5413..6556d9d3c7ab 100644
->>> --- a/drivers/clk/rockchip/rst-rk3588.c
->>> +++ b/drivers/clk/rockchip/rst-rk3588.c
->>> @@ -16,9 +16,6 @@
->>>  /* 0xFD7C8000 + 0x0A00 */
->>>  #define RK3588_PHPTOPCRU_RESET_OFFSET(id, reg, bit) [id] = (0x8000*4 + reg * 16 + bit)
->>>  
->>> -/* 0xFD7D0000 + 0x0A00 */
->>> -#define RK3588_SECURECRU_RESET_OFFSET(id, reg, bit) [id] = (0x10000*4 + reg * 16 + bit)
->>> -
->>>  /* 0xFD7F0000 + 0x0A00 */
->>>  #define RK3588_PMU1CRU_RESET_OFFSET(id, reg, bit) [id] = (0x30000*4 + reg * 16 + bit)
->>>  
->>> @@ -806,45 +803,6 @@ static const int rk3588_register_offset[] = {
->>>  	RK3588_PMU1CRU_RESET_OFFSET(SRST_P_PMU0IOC, 5, 4),
->>>  	RK3588_PMU1CRU_RESET_OFFSET(SRST_P_GPIO0, 5, 5),
->>>  	RK3588_PMU1CRU_RESET_OFFSET(SRST_GPIO0, 5, 6),
->>> -
->>> -	/* SECURECRU_SOFTRST_CON00 */
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_SECURE_NS_BIU, 0, 10),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SECURE_NS_BIU, 0, 11),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_SECURE_S_BIU, 0, 12),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SECURE_S_BIU, 0, 13),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_SECURE_S_BIU, 0, 14),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_CRYPTO_CORE, 0, 15),
->>> -
->>> -	/* SECURECRU_SOFTRST_CON01 */
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_CRYPTO_PKA, 1, 0),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_CRYPTO_RNG, 1, 1),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_CRYPTO, 1, 2),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_CRYPTO, 1, 3),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_KEYLADDER_CORE, 1, 9),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_KEYLADDER_RNG, 1, 10),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_KEYLADDER, 1, 11),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_KEYLADDER, 1, 12),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_OTPC_S, 1, 13),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_OTPC_S, 1, 14),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_WDT_S, 1, 15),
->>> -
->>> -	/* SECURECRU_SOFTRST_CON02 */
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_T_WDT_S, 2, 0),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_BOOTROM, 2, 1),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_DCF, 2, 2),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_DCF, 2, 3),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_BOOTROM_NS, 2, 5),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_KEYLADDER, 2, 14),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_TRNG_S, 2, 15),
->>> -
->>> -	/* SECURECRU_SOFTRST_CON03 */
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_TRNG_NS, 3, 0),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_D_SDMMC_BUFFER, 3, 1),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SDMMC, 3, 2),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SDMMC_BUFFER, 3, 3),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_SDMMC, 3, 4),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_TRNG_CHK, 3, 5),
->>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_TRNG_S, 3, 6),
->>>  };
->>>  
->>>  void rk3588_rst_init(struct device_node *np, void __iomem *reg_base)
->>> diff --git a/include/dt-bindings/reset/rockchip,rk3588-cru.h b/include/dt-bindings/reset/rockchip,rk3588-cru.h
->>> index d4264db2a07f..c0d08ae78cd5 100644
->>> --- a/include/dt-bindings/reset/rockchip,rk3588-cru.h
->>> +++ b/include/dt-bindings/reset/rockchip,rk3588-cru.h
->>> @@ -716,39 +716,39 @@
->>>  #define SRST_P_GPIO0			627
->>>  #define SRST_GPIO0			628
->>>  
->>> -#define SRST_A_SECURE_NS_BIU		629
->>> -#define SRST_H_SECURE_NS_BIU		630
->>> -#define SRST_A_SECURE_S_BIU		631
->>> -#define SRST_H_SECURE_S_BIU		632
->>> -#define SRST_P_SECURE_S_BIU		633
->>> -#define SRST_CRYPTO_CORE		634
->>> -
->>> -#define SRST_CRYPTO_PKA			635
->>> -#define SRST_CRYPTO_RNG			636
->>> -#define SRST_A_CRYPTO			637
->>> -#define SRST_H_CRYPTO			638
->>> -#define SRST_KEYLADDER_CORE		639
->>> -#define SRST_KEYLADDER_RNG		640
->>> -#define SRST_A_KEYLADDER		641
->>> -#define SRST_H_KEYLADDER		642
->>> -#define SRST_P_OTPC_S			643
->>> -#define SRST_OTPC_S			644
->>> -#define SRST_WDT_S			645
->>> -
->>> -#define SRST_T_WDT_S			646
->>> -#define SRST_H_BOOTROM			647
->>> -#define SRST_A_DCF			648
->>> -#define SRST_P_DCF			649
->>> -#define SRST_H_BOOTROM_NS		650
->>> -#define SRST_P_KEYLADDER		651
->>> -#define SRST_H_TRNG_S			652
->>> -
->>> -#define SRST_H_TRNG_NS			653
->>> -#define SRST_D_SDMMC_BUFFER		654
->>> -#define SRST_H_SDMMC			655
->>> -#define SRST_H_SDMMC_BUFFER		656
->>> -#define SRST_SDMMC			657
->>> -#define SRST_P_TRNG_CHK			658
->>> -#define SRST_TRNG_S			659
->>> +#define SRST_A_SECURE_NS_BIU		10
->>
->> NAK. You just broke all users.
-> 
-> If I'm reading the commit message correctly, all resets in that area
-> couldn't have any users to begin with, as the registers controlling them
-> are in the secure space, and need a higher exception level
-> 
-> So if  anything is trying to handle these resets, would end up with some
-> security exception right now.
-> 
-> Though I guess we might want to use different names and not reuse the
-> existing ones. scmi clocks use a SCMI_CLK_* id scheme, so maybe SCMI_SRST_* ?
+On 07/11/2023 18:30, Anshul Dalal wrote:
+> Aosong Electronic Co., LTD. is a supplier for MEMS sensors such as AHT20
+> temperature and humidity sensor under the name Asair
 
-I don't quite get what the patch wants to achieve. Why dropping driver
-support for given reset ID is connected with changing the value of
-binding for given reset?
+The name of the company is Aosong Electronic or Asair? What does Asair
+stands for? Sensors name? Then it is not a vendor prefix.
 
-What is the point of this define SRST_A_SECURE_NS_BIU 10?
+> 
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 573578db9509..df3204f9dda6 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -143,6 +143,8 @@ patternProperties:
+>      description: Artesyn Embedded Technologies Inc.
+>    "^asahi-kasei,.*":
+>      description: Asahi Kasei Corp.
+> +  "^asair,.*":
+> +    description: Aosong Electronic Co., Ltd.
+>    "^asc,.*":
+>      description: All Sensors Corporation
+>    "^asix,.*":
 
 Best regards,
 Krzysztof
