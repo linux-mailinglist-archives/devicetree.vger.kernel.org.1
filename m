@@ -1,169 +1,152 @@
-Return-Path: <devicetree+bounces-14370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680027E3D40
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:26:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFAF97E3D8E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FDBE2810BE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:26:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80761B20BE7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8129A2FE1E;
-	Tue,  7 Nov 2023 12:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902682FE2B;
+	Tue,  7 Nov 2023 12:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bBKanvrG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FvsCWaXy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FF32FE18;
-	Tue,  7 Nov 2023 12:26:48 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F06F1711;
-	Tue,  7 Nov 2023 04:26:47 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A7Bqufj004981;
-	Tue, 7 Nov 2023 12:26:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : date :
- subject : mime-version : content-type : content-transfer-encoding :
- message-id : references : in-reply-to : to : cc; s=qcppdkim1;
- bh=1+9ZqMfTmOVm6k2O/7cypKmKcfs7Lw4ecgmh68LjS5M=;
- b=bBKanvrGRqem3I0j0VN3YleGu6/FXSAZOMm8kynqqbOTzpS0HeaF6HumUbt1zJ5p9qQ9
- 1tHAXgiqYZJjdF7FVC0k4fpjA6FddFbySPh+6JWdwIbWFVw2XlrAZHOOnqL+jfe9NttG
- M3m+31UKyCSydGQZ0aSLbWL7nkcADel54z1IeoxxxpwHjirCEi8PZVOXDRJyvZBOFstC
- VysCumeG2fVAil6CHDSiAjXf55x8JL8Qs43QBSmZcvxlx/gQWiitU6vD0izeNBzCdVAV
- zExpNPhoQM8eatN/YAsm0R+n7vW4oJJ8KX35CjnJqA5bH1WTqQ3jHnmBONqM7L8U9Xi1 zw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u72c02j8q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Nov 2023 12:26:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A7CQgN1016439
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 7 Nov 2023 12:26:42 GMT
-Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Tue, 7 Nov 2023 04:26:36 -0800
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Date: Tue, 7 Nov 2023 17:56:15 +0530
-Subject: [PATCH v2 3/3] phy: qcom-qmp-pcie: Add support for keeping refclk
- always on
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744562EB02
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:29:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1273C433C7;
+	Tue,  7 Nov 2023 12:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699360151;
+	bh=gLDrGUYg97xAln8MkIW3PthO5c6w6QuVMnV3i0P3sb4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=FvsCWaXyHEBOdQ2hku1/2/DOF1ZdqjCEVMUBitr3BtQQLT+SPDHwntc+YxmUxK6tx
+	 xo3YxE6FwUhfIU2XaIScvtpDlmqINxeF4qTe1Y+B3Tdj7qZgKjudGHjvp2REnG+6Ge
+	 Oqb01p2HywjqaSuCjL7YwJ+4wgIOicmL2sCz4t/jILOlEwrBIiYVL/OQQK2p0Y0Cly
+	 +obJm35hE835dQFedNTeUI+0jlRKFLsrCySDXD8RcrNGge2zkEitEhEJCLCzLfQMAO
+	 XIiT2a/5ZIhvbSw7XUZ3irYtzsTHO8Wg5CGaAKpIYlyUOR+I5JpQpKFlC/gaw1+ipH
+	 OoVwWA6U3ELDw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sasha Levin <sashal@kernel.org>,
+	leoyang.li@nxp.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 24/25] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
+Date: Tue,  7 Nov 2023 07:27:03 -0500
+Message-ID: <20231107122745.3761613-24-sashal@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231107122745.3761613-1-sashal@kernel.org>
+References: <20231107122745.3761613-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20231107-refclk_always_on-v2-3-de23962fc4b3@quicinc.com>
-References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
-In-Reply-To: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
-        <quic_vpernami@quicinc.com>, <quic_parass@quicinc.com>,
-        "Krishna chaitanya
- chundru" <quic_krichai@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699359980; l=2354;
- i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
- bh=JUk/FJ9xXUwVyUZKmKOaplZAA11pO+CSXisdJEVQfMI=;
- b=jj+fJ1UdhMPYxXep+1d1C+YY3FbEJCWNbzCj4/x28dGib8YJmQ/2yaiStFPYYjeV5L9I6OJ5t
- 94g2ELn1WTvBN1hEbkZIGRmTwRMBFVinYHXq0ILXfdpLsiI4Qmkt22s
-X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: K17XiqBscUn3sI-3vsp3g-DXUJ9Hlfr-
-X-Proofpoint-GUID: K17XiqBscUn3sI-3vsp3g-DXUJ9Hlfr-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-07_02,2023-11-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 mlxscore=0 mlxlogscore=999 clxscore=1015
- priorityscore=1501 malwarescore=0 bulkscore=0 lowpriorityscore=0
- adultscore=0 spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2310240000 definitions=main-2311070102
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.1.61
+Content-Transfer-Encoding: 8bit
 
-In PCIe low power states like L1.1 or L1.2 the phy will stop
-supplying refclk to endpoint. If endpoint asserts clkreq to bring
-back link L0, then RC needs to provide refclk to endpoint.
+From: Laurentiu Tudor <laurentiu.tudor@nxp.com>
 
-If there is some issues in platform with clkreq signal propagation
-to host and due to that host will not send refclk which results PCIe link
-down. For those platforms phy needs to provide refclk even in low power
-states.
+[ Upstream commit b39d5016456871a88f5cd141914a5043591b46f3 ]
 
-Add a flag to keep refclk always supplied to endpoint.
+Wrap the usb controllers in an intermediate simple-bus and use it to
+constrain the dma address size of these usb controllers to the 40b
+that they generate toward the interconnect. This is required because
+the SoC uses 48b address sizes and this mismatch would lead to smmu
+context faults [1] because the usb generates 40b addresses while the
+smmu page tables are populated with 48b wide addresses.
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+[1]
+xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
+xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
+xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
+xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
+xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
+xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
+
+Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
+ 1 file changed, 27 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index 74d03d217ff2..a8d6d69e3f74 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -43,6 +43,8 @@
- /* QPHY_PCS_STATUS bit */
- #define PHYSTATUS				BIT(6)
- #define PHYSTATUS_4_20				BIT(7)
-+/* PCS_PCIE_ENDPOINT_REFCLK_CNTRL */
-+#define EPCLK_ALWAYS_ON_EN			BIT(6)
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index 348d9e3a91252..b53d74aee12ad 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -1186,26 +1186,34 @@ sata1: sata@3210000 {
+ 			dma-coherent;
+ 		};
  
- #define PHY_INIT_COMPLETE_TIMEOUT		10000
- 
-@@ -2264,6 +2266,8 @@ struct qmp_pcie {
- 	struct phy *phy;
- 	int mode;
- 
-+	bool refclk_always_on;
+-		usb0: usb@3100000 {
+-			status = "disabled";
+-			compatible = "snps,dwc3";
+-			reg = <0x0 0x3100000 0x0 0x10000>;
+-			interrupts = <0 80 0x4>; /* Level high type */
+-			dr_mode = "host";
+-			snps,quirk-frame-length-adjustment = <0x20>;
+-			snps,dis_rxdet_inp3_quirk;
+-			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
+-		};
++		bus: bus {
++			#address-cells = <2>;
++			#size-cells = <2>;
++			compatible = "simple-bus";
++			ranges;
++			dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x00000000>;
 +
- 	struct clk_fixed_rate pipe_clk_fixed;
- };
++			usb0: usb@3100000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x3100000 0x0 0x10000>;
++				interrupts = <0 80 0x4>; /* Level high type */
++				dr_mode = "host";
++				snps,quirk-frame-length-adjustment = <0x20>;
++				snps,dis_rxdet_inp3_quirk;
++				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++				status = "disabled";
++			};
  
-@@ -3179,6 +3183,10 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
- 	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
- 	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+-		usb1: usb@3110000 {
+-			status = "disabled";
+-			compatible = "snps,dwc3";
+-			reg = <0x0 0x3110000 0x0 0x10000>;
+-			interrupts = <0 81 0x4>; /* Level high type */
+-			dr_mode = "host";
+-			snps,quirk-frame-length-adjustment = <0x20>;
+-			snps,dis_rxdet_inp3_quirk;
+-			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++			usb1: usb@3110000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0x3110000 0x0 0x10000>;
++				interrupts = <0 81 0x4>; /* Level high type */
++				dr_mode = "host";
++				snps,quirk-frame-length-adjustment = <0x20>;
++				snps,dis_rxdet_inp3_quirk;
++				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
++				status = "disabled";
++			};
+ 		};
  
-+	if (qmp->refclk_always_on && cfg->regs[QPHY_PCS_ENDPOINT_REFCLK_CNTRL])
-+		qphy_setbits(pcs_misc, cfg->regs[QPHY_PCS_ENDPOINT_REFCLK_CNTRL],
-+			     EPCLK_ALWAYS_ON_EN);
-+
- 	if (cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
- 		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
- 		qmp_pcie_init_port_b(qmp, tbls);
-@@ -3701,6 +3709,12 @@ static int qmp_pcie_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_node_put;
- 
-+	qmp->refclk_always_on = of_property_read_bool(dev->of_node, "qcom,refclk-always-on");
-+	if (qmp->refclk_always_on && !qmp->cfg->regs[QPHY_PCS_ENDPOINT_REFCLK_CNTRL]) {
-+		dev_err(dev, "refclk is always on is present but refclk cntrl offset is not present\n");
-+		goto err_node_put;
-+	}
-+
- 	ret = phy_pipe_clk_register(qmp, np);
- 	if (ret)
- 		goto err_node_put;
-
+ 		ccn@4000000 {
 -- 
 2.42.0
 
