@@ -1,109 +1,128 @@
-Return-Path: <devicetree+bounces-14453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39807E4B39
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 22:57:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BCD77E4C13
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:56:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 948B6B20F80
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 21:57:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA7152812EF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 22:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8DD72F85D;
-	Tue,  7 Nov 2023 21:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37ADF30647;
+	Tue,  7 Nov 2023 22:56:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H69agnHW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TSRwOKld"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D6C2F859
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 21:57:29 +0000 (UTC)
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0DA710DD
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 13:57:28 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c54c8934abso87988371fa.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 13:57:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699394247; x=1699999047; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FK647JTOvb77Maf2VTj+zONIf/6LvdRZnkupw91tgPE=;
-        b=H69agnHWvFVT++YuBUxyhVyyDEO0NqyIjlSctOPhX093UG8r+DewbemJW2fcOgqKae
-         Ub3gHCKh+3xXsBl53xq7je+C7Rp/MnCU8prJESjSVx68xkySYt1NXEqbI/jlU/86D1p3
-         e6J1FQvDq982F3OxydQBsDO8reb9nJVWmPU+uyh4wJaScF/1veMsXVle8/fHf26XpTjb
-         jaM52uw8IyMLm3Ft2qolCWY8UjN/Tk39H5Hl81ehrzIvEec9e5VjAqFjazaJYdMsBLTP
-         9klhp8EKKp4eb0qgEBiksF0IkOaPltoZcGNH8o70yIZ7oPLn95mZVDgKHWnrUMzfbL7M
-         vgKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699394247; x=1699999047;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FK647JTOvb77Maf2VTj+zONIf/6LvdRZnkupw91tgPE=;
-        b=ta0TJQA+uulegEZLheBiOkx28I0GeLyduPqlkWWXSVu6p/Jw6lPvkwNhlqfDhn3UM3
-         CTm3OE/09cbEbW0q2z1rDcgmaXM7APJB8+gzhjzh/guDbes9TBJBLG3w2CQosCaz78CA
-         Q/4nj87+qM/zufQmWJveNwZneNrbD2sFScuuFxnlkr/km7sKT6RpjubtyrXZuI9wbXfG
-         VYqL26CHXDYmIg7CF+Mo5Tplz0rF7KMXIrkdGgr6stc6ordeF4gJa/6L1sOB4ND9wZzp
-         pR8Vh22U8YQ1yeUm/erRhbswtM+9xk0z7TEYfhYUDrMhW5ynS2B38iyGVm8tVCy5MvHN
-         FNaQ==
-X-Gm-Message-State: AOJu0Yzj9oqL80fSNmcGc5MByBBwU5GGYVOtbHFsoqntSeDKw1tPelDG
-	1E5nhTGzlUkzmLAHb3z12o3xMA==
-X-Google-Smtp-Source: AGHT+IGYyAg9ZJkuOrbMHatl2BVJxk8o6k2iosy2VGIvJ4FeYqR6CRHdhVaeJZCe9djWbe++GOivMA==
-X-Received: by 2002:a05:651c:324:b0:2bc:bf29:18d3 with SMTP id b4-20020a05651c032400b002bcbf2918d3mr192132ljp.31.1699394247074;
-        Tue, 07 Nov 2023 13:57:27 -0800 (PST)
-Received: from [172.30.205.109] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id a18-20020a2e8612000000b002b9bf5b071bsm1611555lji.20.2023.11.07.13.57.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 13:57:26 -0800 (PST)
-Message-ID: <8a12ccba-908d-405a-8fcb-411d50a66ebe@linaro.org>
-Date: Tue, 7 Nov 2023 22:57:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 928C030643
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 22:56:34 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE0918C;
+	Tue,  7 Nov 2023 14:56:33 -0800 (PST)
+Received: from notapiano.myfiosgateway.com (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id F2FAD66074D4;
+	Tue,  7 Nov 2023 22:56:28 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1699397791;
+	bh=+pDcPxfGlA0dL3Lp3d6m5ZR8VLuzhaRJSUxxc7deZkY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=TSRwOKldf9y0mBtzI4DQa9H5Sut50EXy9J5zVXmcBHeE+8v9iL2TsLhtRXbyzPOJ4
+	 Gz5rkIQ9WpHc5J0adUZmoxuwzgOZzpTq7pFP5oHy0qJd2sv2yA4pa/cJ7sFgr00OiC
+	 hFLkg/yXTFxij0m3cg3wGm8y1LBV88LfpMMZveYtdH7Ys2rC6L62Rq5X2Swhw7iu47
+	 1iXwOwUXoIM5l+nWmexqJQZsQqhCC0cak6RWYMwDeqCisQbjYv4DoRCKGWqkUDCw7d
+	 EbtVsZUwEeQb8rPlKE5r7U86lpfq2xu57iRagX5HxtzhbkThlVJ0Q6XX8ZmupfBDEm
+	 2Y9Mdr98cAH0w==
+From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Naresh Kamboju <naresh.kamboju@linaro.org>,
+	Aishwarya TCV <aishwarya.tcv@arm.com>,
+	Mark Brown <broonie@kernel.org>,
+	kernel@collabora.com,
+	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt: dt-extract-compatibles: Don't follow symlinks when walking tree
+Date: Tue,  7 Nov 2023 17:55:28 -0500
+Message-ID: <20231107225624.9811-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] phy: qcom-qmp-pcie: Add support to keep refclk
- always on
-Content-Language: en-US
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
- quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
- quic_vpernami@quicinc.com, quic_parass@quicinc.com
-References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+The iglob function, which we use to find C source files in the kernel
+tree, always follows symbolic links. This can cause unintentional
+recursions whenever a symbolic link points to a parent directory. A
+common scenario is building the kernel with the output set to a
+directory inside the kernel tree, which will contain such a symlink.
 
+Instead of using the iglob function, use os.walk to traverse the
+directory tree, which by default doesn't follow symbolic links. fnmatch
+is then used to match the glob on the filename, as well as ignore hidden
+files (which were ignored by default with iglob).
 
-On 11/7/23 13:26, Krishna chaitanya chundru wrote:
-> This series adds support to provide refclk to endpoint even in low
-> power states.
-> 
-> Due to some platform specific issues with CLKREQ signal, it is not being
-> propagated to the host and as host doesn't know the clkreq signal host is
-> not sending refclk. Due to this endpoint is seeing linkdown and going
-> to bad state.
-> To avoid those ref clk should be provided always to the endpoint. The
-> issue is coming only when ep intiates the L1.1 or L1.2 exit and clkreq
-> is not being propagated properly to the host.
-I'm gonna sound like a broken record, but:
+This approach runs just as fast as using iglob.
 
-How much power does this consume? Would it matter if we kept this
-clock always-on for all platforms with this version of the phy?
+Fixes: b6acf8073517 ("dt: Add a check for undocumented compatible strings in kernel")
+Reported-by: Aishwarya TCV <aishwarya.tcv@arm.com>
+Closes: https://lore.kernel.org/all/e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Konrad
+---
+
+ scripts/dtc/dt-extract-compatibles | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/dtc/dt-extract-compatibles b/scripts/dtc/dt-extract-compatibles
+index bd07477dd144..5ffb2364409b 100755
+--- a/scripts/dtc/dt-extract-compatibles
++++ b/scripts/dtc/dt-extract-compatibles
+@@ -1,8 +1,8 @@
+ #!/usr/bin/env python3
+ # SPDX-License-Identifier: GPL-2.0-only
+ 
++import fnmatch
+ import os
+-import glob
+ import re
+ import argparse
+ 
+@@ -81,10 +81,20 @@ def print_compat(filename, compatibles):
+ 	else:
+ 		print(*compatibles, sep='\n')
+ 
++def glob_without_symlinks(root, glob):
++	for path, dirs, files in os.walk(root):
++		# Ignore hidden directories
++		for d in dirs:
++			if fnmatch.fnmatch(d, ".*"):
++				dirs.remove(d)
++		for f in files:
++			if fnmatch.fnmatch(f, glob):
++				yield os.path.join(path, f)
++
+ def files_to_parse(path_args):
+ 	for f in path_args:
+ 		if os.path.isdir(f):
+-			for filename in glob.iglob(f + "/**/*.c", recursive=True):
++			for filename in glob_without_symlinks(f, "*.c"):
+ 				yield filename
+ 		else:
+ 			yield f
+-- 
+2.42.0
+
 
