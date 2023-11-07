@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA5C7E4628
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 253C27E463D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:40:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83C842811C8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:37:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF06C281255
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:40:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6812D798;
-	Tue,  7 Nov 2023 16:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66452321B6;
+	Tue,  7 Nov 2023 16:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YcVMC4Ki"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HuAOEZ5p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6875C328AC
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:37:49 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12C5DF
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:37:48 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9d216597f64so902369366b.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:37:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DF531A9D
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:40:30 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E367B98
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:40:29 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4083dbc43cfso36917795e9.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:40:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699375067; x=1699979867; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699375228; x=1699980028; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oRE0rJPoXdr6vvLlfACKEBy1qwIZcj3DZnZvblAbHMk=;
-        b=YcVMC4KiNV6gnF8eAcg9Lvk+4s4n0TGNgSPysW1GtSjOhFUOS/saANhvGzdNTm6aFJ
-         h+R57vNzppcFKEMD042wFmf8+81OLkfVCIMPzflmlAs4TbUrayD4xfmTlHYP3O1ewekB
-         ogRTPha7aLEUEaiWdlo/nmbKqCcqkStWKh6n60CepqENR3HhF6gak1D0d8Idv97wS475
-         lwUcEYY+bSm/daQz7SUlX08+00c+fgHiOBQGzsY9963kGD9nah5TulbTFlmOywTQ8y3X
-         Al542jt9ShyONsxlPnCPlXNRy5UoMxwN1KkNxHJn9RqFS8BPtNRovryTClAZtwvxOV9+
-         MRng==
+        bh=bG5teDoMIWZEcMWM7WJvlB8DFst5lIgACt5uFYgl748=;
+        b=HuAOEZ5pKuKs223ym/Rr+5JSH5iZDVHpivezUlcaoFoYX59W1bXD+KsR8wsI6rXded
+         TryvjlUxrGw+/zLVlt2JbzcUOp91Isr5qG3OG+kg9zTvx5PCkREAbcsiqtgH8gj9jMkZ
+         UjzuQVZ0lSV4Ncw1yj5UFj5SUrjDs1l7Fxf5SG8AFa/mShFxXsz/n9yeoRQxEb8qe3N0
+         wE30nltpwGqXJi3tvyWUkEO3pH3tdq0WXUS3hqvy3RwxI20lVcaUST/OElia4TIwvHDU
+         9zerO+dSYuo0M5vzUESBRVv3GY6iSPXJ+MAFH/Tr6gTHTOBbSD9WizQ45fbfFJJC7q6L
+         Z0kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699375067; x=1699979867;
+        d=1e100.net; s=20230601; t=1699375228; x=1699980028;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRE0rJPoXdr6vvLlfACKEBy1qwIZcj3DZnZvblAbHMk=;
-        b=o9yznAlpmNpktdTJOUxAYQwQH/ch0O6aczfAcVYmWDwBsMZ3tHIf4lqqG3wyXM25YU
-         gUQ6KhP1EQ3pU7vXN9VUQGruyXk8CLpcMNt79bGQmYUpgc1//IHLhskflzkXOEp9aFAA
-         nydiMObUYx9Z4Dmv/9Tw183CINeCvHdOCYQIB+B7y0HZFC9spj9h5UJOBflIvFfxKiaA
-         eH40JdV7lRzKURe0GE9uVi9PJCBQKIYON48S7WeY+X6uOVUeJHZ+RnJPl8SbRe6pWCcx
-         J4qb8EQ/qTOwb1G+VemoYIuLiVMCMXCMQ/NNk3vIT1+d0gh+kAYgcvSJbjnMBY4ouV9t
-         IvDg==
-X-Gm-Message-State: AOJu0YxAD2ZZPpsesBdjAWeZCDBMIPwf+S59NEvTG+ggKI/crka9LN9N
-	GdGnWzacHOijjc1s4RIsNbPgpw==
-X-Google-Smtp-Source: AGHT+IGrGhqnHq47hQtCz9ySBxfwH0bFksWeZyc3LWKNKTkokvRQjEwj+fyLNPXwlvdqCwXQ4D1h+Q==
-X-Received: by 2002:a17:907:9815:b0:9b2:b152:b0f2 with SMTP id ji21-20020a170907981500b009b2b152b0f2mr17997879ejc.10.1699375067037;
-        Tue, 07 Nov 2023 08:37:47 -0800 (PST)
+        bh=bG5teDoMIWZEcMWM7WJvlB8DFst5lIgACt5uFYgl748=;
+        b=FT0eOl9YDPhKJaXZv7Ab8tRXLG7SCS5wh1DGrk1nY3H6QFYzJZ2OoZUfntqqQkCBl/
+         DT2Igw1vmqvvM+LHKELkyIekXeG/HuMlj60mrXqAG2JUv+qACW7CdFqNCfYCrY+MjBI0
+         CpVC8EdAl0x6RpPEEcP8FsOXcXGmcCJTHLLuYgDInNYmX++NRVyXUZyuQFonR3qFxO/u
+         TYru1rnyojbYLi0R++gaCgYIlxN5e6Jpbfvf7BQOFxAR6F0OwwyV6iSnEpTtBsNexqCN
+         Mdn9BjixAIFDF4fzfpjZG+6M20B07vU6AeGMNBkDrhyu/nm3z4mR2yUXs9QWMk5QRhia
+         FZrA==
+X-Gm-Message-State: AOJu0YysU+K0a0W1uIC5GoHGgPR/oqyJX06IkuOHC6OEHhqBycbkBudQ
+	lJAz7WzHuzQTEEi/wrq7IQCUwA==
+X-Google-Smtp-Source: AGHT+IERQ39mfz81xK6TupD6lTbERubU2eecqEgDvKphyDqxxJ+tvVdXiWkmZuRczqJaEPyqFh4G9A==
+X-Received: by 2002:a05:600c:181b:b0:408:53d6:10b3 with SMTP id n27-20020a05600c181b00b0040853d610b3mr2932701wmp.22.1699375227473;
+        Tue, 07 Nov 2023 08:40:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id c3-20020a170906d18300b009c0c511bd62sm1214341ejz.197.2023.11.07.08.37.45
+        by smtp.gmail.com with ESMTPSA id ay8-20020a05600c1e0800b0040772138bb7sm16560031wmb.2.2023.11.07.08.40.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 08:37:46 -0800 (PST)
-Message-ID: <c81b364e-a36e-4f56-b2c4-d4ca889281ed@linaro.org>
-Date: Tue, 7 Nov 2023 17:37:44 +0100
+        Tue, 07 Nov 2023 08:40:26 -0800 (PST)
+Message-ID: <97ae9fa0-0a6c-41d2-8a6c-1706b920d7ea@linaro.org>
+Date: Tue, 7 Nov 2023 17:40:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som: reorder reg properties after
- compatible strings
+Subject: Re: [PATCH 1/6] dt-bindings: crypto: add support for
+ rockchip,crypto-rk3588
 Content-Language: en-US
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231107160122.1648093-1-hugo@hugovil.com>
- <8534fc67-83b3-4f41-a1e3-635866e1dd9c@linaro.org>
- <20231107112804.e854521b47caeafdc642a2f3@hugovil.com>
+To: Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
+ heiko@sntech.de, herbert@gondor.apana.org.au,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org
+Cc: ricardo@pardini.net, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20231107155532.3747113-1-clabbe@baylibre.com>
+ <20231107155532.3747113-2-clabbe@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,39 +125,89 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107112804.e854521b47caeafdc642a2f3@hugovil.com>
+In-Reply-To: <20231107155532.3747113-2-clabbe@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/11/2023 17:28, Hugo Villeneuve wrote:
-> On Tue, 7 Nov 2023 17:19:20 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 07/11/2023 16:55, Corentin Labbe wrote:
+> Add device tree binding documentation for the Rockchip cryptographic
+> offloader V2.
 > 
->> On 07/11/2023 17:01, Hugo Villeneuve wrote:
->>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->>>
->>> Move reg nodes after the compatible string, to follow DT conventions.
->>
->> This is a bit of churn... like patches for checkpatch. But unlike
->> checkpatch, it's not even documented.
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  .../crypto/rockchip,rk3588-crypto.yaml        | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
 > 
-> Hi,
-> I do not really understand your point or if I must change
-> something...
-> 
-> But looking at a lot of dts, the reg property is always following the
-> compatible string, so I assumed it was an undocumented convention or
-> best practice...
-> 
+> diff --git a/Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml b/Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
+> new file mode 100644
+> index 000000000000..07024cf4fb0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/rockchip,rk3588-crypto.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/rockchip,rk3588-crypto.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip cryptographic offloader V2
 
-Patches fixing only checkpatch --strict are usually welcomed only in
-staging. But even there no one wants to deal with one patch changing one
-style issue in one file.
+v2? Where is any documentation of this versioning? From where does it
+come from?
 
-You are doing the same, outside of staging, but relying on undocumented
-practice. Such patches are unnecessary churn. Documenting the practice
-and fixing entire subsystems or groups of devices would be welcomed.
-Fixing line by line some style issue is just effort for maintainers.
+> +
+> +maintainers:
+> +  - Corentin Labbe <clabbe@baylibre.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3568-crypto
+> +      - rockchip,rk3588-crypto
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+
+You also must describe the items instead.
+
+Where do you see any binding using minItems alone?
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: a
+> +      - const: h
+> +
+> +  resets:
+> +    minItems: 1
+
+No, maxItems.
+
+> +
+> +  reset-names:
+> +    items:
+> +      - const: core
+
+Drop reset-names, not really needed and not useful.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+
 
 Best regards,
 Krzysztof
