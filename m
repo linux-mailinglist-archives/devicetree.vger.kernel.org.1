@@ -1,166 +1,231 @@
-Return-Path: <devicetree+bounces-14386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25E07E3F91
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 14:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDFB7E3F9B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 14:06:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E9F5B20E33
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:05:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF407B20B2E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155502EB0E;
-	Tue,  7 Nov 2023 13:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72132DF91;
+	Tue,  7 Nov 2023 13:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Da/+w396"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WicRZ38K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE2F2D79D;
-	Tue,  7 Nov 2023 13:05:18 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F01C30E7;
-	Tue,  7 Nov 2023 05:05:14 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A7BUEgO011638;
-	Tue, 7 Nov 2023 13:05:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=LYIjBF5JP/2bLliJ47+748C3UONippzd0SirokcGhoQ=;
- b=Da/+w396bv3hPS0OIvgwI24w5QCdQ51IAEtgT2161YDvpPn9K1fj2/4u7VPPcm0mtKxq
- Jlr01RbGePRj3JmX7WirnBvasTdizdQYaSUlcBuwmGYdqzE0WotiYEyuf3qN6JBgmtaM
- jkTGGu+ShAh1Hvwci8mlMZcadYGFAyFWrjNYUSHG4UlaqgcWDpXS7HEwZpI0eD3h6Ffq
- n8znGZLNO5eFcU85eS5CXrk0gCQclxOL6+0Ens+AkGm4ttm4/HraHbMkC23UPwrGdIIj
- nTDRVqv1tLss7odY+6Itb6cQLuYAK64F2TJ5aCTjWWezy28mU0+8D50HVJorK2fq8Y3N 5w== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u758n237f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 07 Nov 2023 13:05:02 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3A7D4vmV010872;
-	Tue, 7 Nov 2023 13:04:59 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3u5f1kwjg6-1;
-	Tue, 07 Nov 2023 13:04:59 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3A7D4xKV010909;
-	Tue, 7 Nov 2023 13:04:59 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3A7D4wQ2010907;
-	Tue, 07 Nov 2023 13:04:59 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-	id CA6184C76; Tue,  7 Nov 2023 18:34:57 +0530 (+0530)
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-To: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org,
-        robh+dt@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        dmitry.baryshkov@linaro.org, robh@kernel.org, quic_krichai@quicinc.com,
-        quic_vbadigan@quicinc.com, quic_parass@quicinc.com,
-        quic_schintav@quicinc.com, quic_shijjose@quicinc.com,
-        Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: [PATCH v1 2/2] arm64: dts: qcom: sa8775p: Add ep pcie1 controller node
-Date: Tue,  7 Nov 2023 18:34:53 +0530
-Message-Id: <1699362294-15558-3-git-send-email-quic_msarkar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1699362294-15558-1-git-send-email-quic_msarkar@quicinc.com>
-References: <1699362294-15558-1-git-send-email-quic_msarkar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WQQYaKHxbPVlsMUQkAf1BeCwVuVPH4so
-X-Proofpoint-ORIG-GUID: WQQYaKHxbPVlsMUQkAf1BeCwVuVPH4so
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-07_04,2023-11-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 mlxscore=0 mlxlogscore=999 spamscore=0 suspectscore=0
- adultscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2310240000 definitions=main-2311070108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35AEA29CE9
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 13:06:36 +0000 (UTC)
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB3F30F0
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 05:06:34 -0800 (PST)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5a86b6391e9so68163767b3.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 05:06:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699362393; x=1699967193; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=VpeyORNuSizmDrRB2g688RvYszoR2DBekJuTr7PcuM0=;
+        b=WicRZ38KN4WL2EXIyBMvBMMQpKHEOVKsQ9gs+hXrf7CQuyHgNkzzw3VIHInmtTsfb6
+         DwFnsocoaDHE0W5qtQyPQ3Wt0X2ClPuLiW4wGZdHI0gra4Wh5mSStVPT/QNQ1hN7hPFg
+         KrwYLhaBrYQSVVr6lJxggaJbzSo81r5VGeBSXFAfLdfSgJdSItgHft4RTaE35j1fuLAw
+         JOA0ndjdjsfjfwVKJf0jbwQTm90LyIJzwhAYTbNHVeGZ6mmlHy2pmMdiY0WaENKSS4Ft
+         zmaLvQ+fnmw5LEyUg/fi0Fz2U+Tnie4ftU+i+eSHi4WeShY46T0dUgpgeZ9Hdf7a7Oo1
+         3+BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699362393; x=1699967193;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VpeyORNuSizmDrRB2g688RvYszoR2DBekJuTr7PcuM0=;
+        b=jnGKB7FT28hELUJ3zsdNXEen9EtfBQeyQEXhJl/7jl9V+KfTGVMOlbc9+KcLjc+ed1
+         dMzALxA/uZSa+wfydEGXbunEmhNWYN4XOpq8qyfuoMqSDypW0MO9Odr29dPfUehvQ7uu
+         D1LuVZOm26/H59RVxYgTeG1+BNsGuNTE3tbrIwEuKPtnhXITUmu8dx0xvdRfm9LZ2GsT
+         gTZLI/UAPpD8jr5O9pwp9Bf/qFsTsAc7ACtTD/Uo8XaiT7TH8rxSaa/YmAnVA0BR8MIy
+         F8kTPes23P/021GcRPn/erRp2z/625JdzT/e3Dt7RlFRkfCvzsSaX+6ukQZm77Xd0zoY
+         bs6w==
+X-Gm-Message-State: AOJu0Yw2JpsPNvYyc2OnYZTFn4xohA+T4b4RFwruXxGe1tHLFWnZRDQy
+	9/8WB79PEt7Fy6GX4wGYLSo0Cco5bunmUcHfQaDlDw==
+X-Google-Smtp-Source: AGHT+IEw64WfuhV/VAJ5h7y4+mgyq9+AiOgzXcHht2Xl+7ufPjUsXCd8tsAlA2DXiG8eMlgYKartctcAFgD5/T8Z61M=
+X-Received: by 2002:a81:52d5:0:b0:5a8:435d:8ca9 with SMTP id
+ g204-20020a8152d5000000b005a8435d8ca9mr13532798ywb.25.1699362393389; Tue, 07
+ Nov 2023 05:06:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com> <20231107-refclk_always_on-v2-2-de23962fc4b3@quicinc.com>
+In-Reply-To: <20231107-refclk_always_on-v2-2-de23962fc4b3@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 7 Nov 2023 15:06:22 +0200
+Message-ID: <CAA8EJpr8Y+k2FJqFfZVagWxfgsUEnZ1010-xaaUg=c6tqu8Hsw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] phy: qcom-qmp-pcie: Add endpoint refclk control
+ register offset
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com, 
+	quic_skananth@quicinc.com, quic_vpernami@quicinc.com, quic_parass@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Add ep pcie dtsi node for pcie1 controller found on sa8775p platform.
-It supports gen4 and x4 link width. Limiting the speed to Gen3 due to
-stability issues.
+On Tue, 7 Nov 2023 at 14:26, Krishna chaitanya chundru
+<quic_krichai@quicinc.com> wrote:
+>
+> Some platforms needs to keep endpoint refclk always on, for this
+> purpose add this offset for all the applicable phy versions.
+>
+> And also add reg layout for few controllers as we are adding
+> endpoint refclk control register which changes based upon phy version.
+>
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
-Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 48 +++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 7eab458..acd7bd8 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3732,6 +3732,54 @@
- 		status = "disabled";
- 	};
- 
-+	pcie1_ep: pcie-ep@1c10000 {
-+		compatible = "qcom,sa8775p-pcie-ep";
-+		reg = <0x0 0x01c10000 0x0 0x3000>,
-+		      <0x0 0x60000000 0x0 0xf20>,
-+		      <0x0 0x60000f20 0x0 0xa8>,
-+		      <0x0 0x60001000 0x0 0x4000>,
-+		      <0x0 0x60200000 0x0 0x100000>,
-+		      <0x0 0x01c13000 0x0 0x1000>,
-+			  <0x0 0x60005000 0x0 0x2000>;
-+		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
-+			    "mmio", "dma";
-+
-+		clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
-+			 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-+			 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
-+			 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
-+			 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>;
-+
-+		clock-names = "aux",
-+			      "cfg",
-+			      "bus_master",
-+			      "bus_slave",
-+			      "slave_q2a";
-+
-+		interrupts = <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
-+					 <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-+					 <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		interrupt-names = "global", "doorbell", "dma";
-+
-+		interconnects = <&pcie_anoc MASTER_PCIE_1 0 &mc_virt SLAVE_EBI1 0>,
-+				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_1 0>;
-+		interconnect-names = "pcie-mem", "cpu-pcie";
-+
-+		dma-coherent;
-+
-+		iommus = <&pcie_smmu 0x80 0x7f>;
-+		resets = <&gcc GCC_PCIE_1_BCR>;
-+		reset-names = "core";
-+		power-domains = <&gcc PCIE_1_GDSC>;
-+		phys = <&pcie1_phy>;
-+		phy-names = "pciephy";
-+		max-link-speed = <3>; /* FIXME: Limiting the Gen speed due to stability issues */
-+		num-lanes = <4>;
-+
-+		status = "disabled";
-+	};
-+
- 	pcie1_phy: phy@1c14000 {
- 		compatible = "qcom,sa8775p-qmp-gen4x4-pcie-phy";
- 		reg = <0x0 0x1c14000 0x0 0x4000>;
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 26 +++++++++++++++++++---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h    |  1 +
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |  1 +
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h |  1 +
+>  4 files changed, 26 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index a63ca7424974..74d03d217ff2 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -77,6 +77,7 @@ enum qphy_reg_layout {
+>         QPHY_START_CTRL,
+>         QPHY_PCS_STATUS,
+>         QPHY_PCS_POWER_DOWN_CONTROL,
+> +       QPHY_PCS_ENDPOINT_REFCLK_CNTRL,
+>         /* Keep last to ensure regs_layout arrays are properly initialized */
+>         QPHY_LAYOUT_SIZE
+>  };
+> @@ -93,6 +94,7 @@ static const unsigned int pciephy_v3_regs_layout[QPHY_LAYOUT_SIZE] = {
+>         [QPHY_START_CTRL]               = QPHY_V3_PCS_START_CONTROL,
+>         [QPHY_PCS_STATUS]               = QPHY_V3_PCS_PCS_STATUS,
+>         [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V3_PCS_POWER_DOWN_CONTROL,
+> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V3_PCS_ENDPOINT_REFCLK_CNTRL,
+>  };
+>
+>  static const unsigned int sdm845_qhp_pciephy_regs_layout[QPHY_LAYOUT_SIZE] = {
+> @@ -107,6 +109,7 @@ static const unsigned int pciephy_v4_regs_layout[QPHY_LAYOUT_SIZE] = {
+>         [QPHY_START_CTRL]               = QPHY_V4_PCS_START_CONTROL,
+>         [QPHY_PCS_STATUS]               = QPHY_V4_PCS_PCS_STATUS1,
+>         [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V4_PCS_POWER_DOWN_CONTROL,
+> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V4_PCS_PCIE_ENDPOINT_REFCLK_CNTRL,
+>  };
+>
+>  static const unsigned int pciephy_v5_regs_layout[QPHY_LAYOUT_SIZE] = {
+> @@ -114,6 +117,23 @@ static const unsigned int pciephy_v5_regs_layout[QPHY_LAYOUT_SIZE] = {
+>         [QPHY_START_CTRL]               = QPHY_V5_PCS_START_CONTROL,
+>         [QPHY_PCS_STATUS]               = QPHY_V5_PCS_PCS_STATUS1,
+>         [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V5_PCS_POWER_DOWN_CONTROL,
+> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_CNTRL,
+> +};
+> +
+> +static const unsigned int pciephy_v5_20_regs_layout[QPHY_LAYOUT_SIZE] = {
+> +       [QPHY_SW_RESET]                 = QPHY_V5_PCS_SW_RESET,
+> +       [QPHY_START_CTRL]               = QPHY_V5_PCS_START_CONTROL,
+> +       [QPHY_PCS_STATUS]               = QPHY_V5_PCS_PCS_STATUS1,
+> +       [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V5_PCS_POWER_DOWN_CONTROL,
+
+Nit: we should probably define V5_20 and v6_20 versions of these registers
+
+If you were to send v3 for any reason, could you please add them?
+
+> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V5_20_PCS_PCIE_ENDPOINT_REFCLK_CNTRL,
+> +};
+> +
+> +static const unsigned int pciephy_v6_20_regs_layout[QPHY_LAYOUT_SIZE] = {
+> +       [QPHY_SW_RESET]                 = QPHY_V5_PCS_SW_RESET,
+> +       [QPHY_START_CTRL]               = QPHY_V5_PCS_START_CONTROL,
+> +       [QPHY_PCS_STATUS]               = QPHY_V5_PCS_PCS_STATUS1,
+> +       [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V5_PCS_POWER_DOWN_CONTROL,
+> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_PCIE_V6_20_PCS_ENDPOINT_REFCLK_CNTRL,
+>  };
+>
+>  static const struct qmp_phy_init_tbl msm8998_pcie_serdes_tbl[] = {
+> @@ -2956,7 +2976,7 @@ static const struct qmp_phy_cfg sm8450_qmp_gen4x2_pciephy_cfg = {
+>         .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
+>         .vreg_list              = qmp_phy_vreg_l,
+>         .num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
+> -       .regs                   = pciephy_v5_regs_layout,
+> +       .regs                   = pciephy_v5_20_regs_layout,
+>
+>         .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
+>         .phy_status             = PHYSTATUS_4_20,
+> @@ -3012,7 +3032,7 @@ static const struct qmp_phy_cfg sm8550_qmp_gen4x2_pciephy_cfg = {
+>         .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
+>         .vreg_list              = sm8550_qmp_phy_vreg_l,
+>         .num_vregs              = ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
+> -       .regs                   = pciephy_v5_regs_layout,
+> +       .regs                   = pciephy_v6_20_regs_layout,
+>
+>         .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
+>         .phy_status             = PHYSTATUS_4_20,
+> @@ -3047,7 +3067,7 @@ static const struct qmp_phy_cfg sa8775p_qmp_gen4x2_pciephy_cfg = {
+>         .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
+>         .vreg_list              = qmp_phy_vreg_l,
+>         .num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
+> -       .regs                   = pciephy_v5_regs_layout,
+> +       .regs                   = pciephy_v5_20_regs_layout,
+>
+>         .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
+>         .phy_status             = PHYSTATUS_4_20,
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h
+> index a469ae2a10a1..9b166286afda 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h
+> @@ -11,6 +11,7 @@
+>  #define QPHY_V5_PCS_PCIE_POWER_STATE_CONFIG2           0x0c
+>  #define QPHY_V5_PCS_PCIE_POWER_STATE_CONFIG4           0x14
+>  #define QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_DRIVE         0x20
+> +#define QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_CNTRL         0x24
+>  #define QPHY_V5_PCS_PCIE_INT_AUX_CLK_CONFIG1           0x54
+>  #define QPHY_V5_PCS_PCIE_OSC_DTCT_ACTIONS              0x94
+>  #define QPHY_V5_PCS_PCIE_EQ_CONFIG2                    0xa8
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
+> index cdf8c04ea078..8b114e538a07 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
+> @@ -9,6 +9,7 @@
+>  /* Only for QMP V5_20 PHY - PCIe PCS registers */
+>  #define QPHY_V5_20_PCS_PCIE_POWER_STATE_CONFIG2                0x00c
+>  #define QPHY_V5_20_PCS_PCIE_ENDPOINT_REFCLK_DRIVE      0x01c
+> +#define QPHY_V5_20_PCS_PCIE_ENDPOINT_REFCLK_CNTRL      0x020
+>  #define QPHY_V5_20_PCS_PCIE_OSC_DTCT_MODE2_CONFIG5     0x084
+>  #define QPHY_V5_20_PCS_PCIE_OSC_DTCT_ACTIONS           0x090
+>  #define QPHY_V5_20_PCS_PCIE_EQ_CONFIG1                 0x0a0
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
+> index e3eb08776339..f7abe95c49ad 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
+> @@ -10,6 +10,7 @@
+>  #define QPHY_PCIE_V6_20_PCS_POWER_STATE_CONFIG2                0x00c
+>  #define QPHY_PCIE_V6_20_PCS_TX_RX_CONFIG               0x018
+>  #define QPHY_PCIE_V6_20_PCS_ENDPOINT_REFCLK_DRIVE      0x01c
+> +#define QPHY_PCIE_V6_20_PCS_ENDPOINT_REFCLK_CNTRL      0x020
+>  #define QPHY_PCIE_V6_20_PCS_OSC_DTCT_ATCIONS           0x090
+>  #define QPHY_PCIE_V6_20_PCS_EQ_CONFIG1                 0x0a0
+>  #define QPHY_PCIE_V6_20_PCS_EQ_CONFIG5                 0x108
+>
+> --
+> 2.42.0
+>
+>
+
+
 -- 
-2.7.4
-
+With best wishes
+Dmitry
 
