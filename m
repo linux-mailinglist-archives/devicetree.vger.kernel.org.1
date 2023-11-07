@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69077E3596
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 08:14:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3AE47E35B0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 08:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 157F81C20944
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 07:14:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E408D1C209FF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 07:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C79C15B;
-	Tue,  7 Nov 2023 07:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2275C8E4;
+	Tue,  7 Nov 2023 07:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PvOJyXKq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qiaWWFUJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCF51C15
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 07:14:09 +0000 (UTC)
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7951A4
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 23:14:07 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40842752c6eso40727505e9.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 23:14:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90611C2DF
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 07:17:50 +0000 (UTC)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AFA120
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 23:17:48 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2c5210a1515so73227071fa.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 23:17:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699341246; x=1699946046; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699341466; x=1699946266; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GlUBqdRrlVAsgwbLNX4JnMxLG2jvyre0Yux7RYT8Ceo=;
-        b=PvOJyXKqXL0rQzAeyAMUCM9+lA4Y2fUdaS/jJfzA0+hZZoexqk6bJltlR+MAd9nbRf
-         N12u53DD4rNXmG7tayoDqFxjVNUrZC0PP8ccbvXQ71EISnAT83bUkapfc5e1XuKQnb5d
-         UghSeBNOjv9FmPwa6M8DX72FdWHG9T1nnUmoXHJGm63wUptRTZPVHVubcNjeYGbJqyk/
-         UKyYau3UdAp67bQC5b0jqMc+UA4cSjwyG/WPPEzWmJ24T4Lveih0uVIo3kSUsbczn/ZM
-         rWwzs+gxLgdYSeS4qFMg0Dg4ltpHLlbjEEBb9VHd1MAf/apAx81PVE8e9yej2C53IyxC
-         stgg==
+        bh=nASf+QHEzLORw+EVUpqrol5aZdpAh5vbBF30u3IcjA4=;
+        b=qiaWWFUJmIGVRzuZQCzlqJsQDhIlYgu/1SOrsB6aO7PI2+Gve5TQ7rXLp/HzEYI8oI
+         E5swef/a8NSBJkJ0aex4Cg4JQSka/zvC6ONIXChc40K84vZSubbTljrdAp5tx2gtQbQE
+         nJbbmrck0RpWY8aQBdIx+EpnZ7cXAWnX6M/VrNIM4XdxFn/s0ZZ0XkCZ+YiFOlGyHELf
+         EAra/3DQhFSTxLZZSY1x86wwSbPqPVc0x9bBLK/vDznzIYQ7tZjqO2SEZiIa4v8DMptN
+         2VOW2fsthFfcWFXbOxVLaoBvIq2eRTuHt5mUPIwg80yZuIASbjHOTnSMEVOVKoIAkuje
+         RMQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699341246; x=1699946046;
+        d=1e100.net; s=20230601; t=1699341466; x=1699946266;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GlUBqdRrlVAsgwbLNX4JnMxLG2jvyre0Yux7RYT8Ceo=;
-        b=QlaM4zZnEkweqzOjjUC1u1sFD/4QXsNXpI9k+Va53wnHWS7wWm5XGD/8+UH7t2aWnK
-         sGQ8WF3OmM6BgVljCRLlSCYNYT2R3zJ9IT41zWMehQms1sEyLcOc+UJqyU1Ij4t3fqB1
-         xUGj8gCkaXBYVC9pD7vpTqCP18m3Knn0EQg59d9t8x9vfsSgQtT1Ce+jwV1DoYdhDOY0
-         D6SZSqExsHV+ou94FE8Ci5fi5SLsKXq9OaRViggJ1tynVlksS2EM4D+ZM+6/ynKKSfdO
-         b6S4UmIKPXMUZxjtL3Bxhc4QcI6xZPnplSzWtpWR403BoziFvzypg620A1KS1png66ti
-         ejjw==
-X-Gm-Message-State: AOJu0Ywzohj4PDmVcKONBYCvJ+Oi4a773Od8dP6DDRUvWw3U5hT275Cz
-	IrzfGV8OvUKHRWfgUtddUMYFtg==
-X-Google-Smtp-Source: AGHT+IH3CSvw/4yXmXI6MiKV4Q9Qi5/8UvR5mgIKe3bvhZVOr8oGYdE/1bFGh2HTXQZBV1KghjpNdg==
-X-Received: by 2002:a7b:c3c8:0:b0:409:67bd:6fa1 with SMTP id t8-20020a7bc3c8000000b0040967bd6fa1mr1442758wmj.18.1699341245980;
-        Mon, 06 Nov 2023 23:14:05 -0800 (PST)
+        bh=nASf+QHEzLORw+EVUpqrol5aZdpAh5vbBF30u3IcjA4=;
+        b=Qn38hthryjBH1heLH+OOMqLrDidCITMGb2DCowOmSszTrABad85w+prhINbc9hMSeD
+         ihW2L5gcU5oPWWzZkXdW5mw9xR9q0dl4JYd+ZEW0jYiUft6bXgahYJLZdZZiwLT4Fpci
+         EUFoz31rwDH8U4nzWX2Vsb7FEvUrZrxyGAibUO/LRHk+gbb6/n2d/kKrvzdnpEByrdDk
+         Y5BOBZUOXANN9GMXVeVjH149DBpruvKPy2HU6Y74WH0ZgjW2P8kwH8I0nxgaQgjZJ14Y
+         crNfN7Zm7LmZuFommRQvSL8yjz1y4kDep/TyfOq4RES8RoksIXSfZV1D6H74r7wr37lK
+         84/g==
+X-Gm-Message-State: AOJu0YwgCBxR6Lm0B5xE/73h6YepzBw+5pUB/5JM48OeUZhkZsYXDcKp
+	HAeaYU6wG0Rw3rbtzCjjtpRTNA==
+X-Google-Smtp-Source: AGHT+IE0+ePQ3C8IzL5uD42npxCkEz93Hpe9E3QTPpvFKXFh18c6VmQk7WB5N6EaMYVPyyOlybUHtQ==
+X-Received: by 2002:a2e:8904:0:b0:2c0:300a:82f1 with SMTP id d4-20020a2e8904000000b002c0300a82f1mr24281212lji.14.1699341466594;
+        Mon, 06 Nov 2023 23:17:46 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id t13-20020adff60d000000b0032f7c563ffasm1494105wrp.36.2023.11.06.23.14.04
+        by smtp.gmail.com with ESMTPSA id bg13-20020a05600c3c8d00b0040644e699a0sm14643720wmb.45.2023.11.06.23.17.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Nov 2023 23:14:05 -0800 (PST)
-Message-ID: <78ee82da-bad9-4253-8aba-35ce6a36b65c@linaro.org>
-Date: Tue, 7 Nov 2023 08:14:03 +0100
+        Mon, 06 Nov 2023 23:17:46 -0800 (PST)
+Message-ID: <b3366685-f704-41e8-82aa-61efeabef23b@linaro.org>
+Date: Tue, 7 Nov 2023 08:17:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som-symphony: add vcc supply for
- PCA9534
+Subject: Re: [PATCH v3 01/11] dt-bindings: clock: qcom: document the SM8650
+ TCSR Clock Controller
 Content-Language: en-US
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231106185736.668966-1-hugo@hugovil.com>
- <e4884c86-0b8c-4e73-9280-296be98d57b1@linaro.org>
- <20231106163633.764707a8140dfe750f875dc3@hugovil.com>
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Taniya Das <quic_tdas@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231106-topic-sm8650-upstream-clocks-v3-0-761a6fadb4c0@linaro.org>
+ <20231106-topic-sm8650-upstream-clocks-v3-1-761a6fadb4c0@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,49 +127,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231106163633.764707a8140dfe750f875dc3@hugovil.com>
+In-Reply-To: <20231106-topic-sm8650-upstream-clocks-v3-1-761a6fadb4c0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/11/2023 22:36, Hugo Villeneuve wrote:
-> On Mon, 6 Nov 2023 21:39:42 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 06/11/2023 09:25, Neil Armstrong wrote:
+> Add bindings documentation for the SM8650 TCSR Clock Controller.
 > 
->> On 06/11/2023 19:57, Hugo Villeneuve wrote:
->>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->>>
->>> The following warning is shown when probing device:
->>>
->>>     pca953x 1-0020: supply vcc not found, using dummy regulator
->>>
->>> Add fixed 3.3v regulator as vcc supply to silence the warning.
->>>
->>
->> This is not really a warning. It's perfectly fine to use dummy
->> regulator. Adding such fixed supply has sense in following cases:
->> 1. Bindings require the supply,
->> 2. This is in fact exactly that supply (verified on schematics).
->>
->> Best regards,
->> Krzysztof
-> 
-> Hi Krzysztof,
-> this is case #2, but looking more closely at the carrier board
-> (symphony) schematics, it is not exactly the "reg_3v3_fixed" supply I
-> mentioned in the patch, as "reg_3v3_fixed" is located on the SOM and
-> only powers SOM components.
-> 
-> However, "reg_3v3_fixed", which is an always-on regulator (no software
-> enable control), is used as the enable input to a mosfet switch (Q2) on
-> the carrier board to generate the 3.3V (label BASE_PER_3V3 on the
-> schematics) used by all peripherals on that carrier board.
-> 
-> I guess I could then define a new "always-on" regulator labeled as,
-> for example, base_per_3v3, and then assign the pca953x vcc-supply
-> property to it?
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-I guess this could be the same supply, even if this is not 100% true.
-However it would be good if you put above explanation in the commit msg.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
