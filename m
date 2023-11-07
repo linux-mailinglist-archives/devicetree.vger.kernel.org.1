@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C2597E45C9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A847E45CE
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:20:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58C971C20B85
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:19:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A2281C20977
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 16:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3B2328A2;
-	Tue,  7 Nov 2023 16:19:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EB1328B4;
+	Tue,  7 Nov 2023 16:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WRZkizYt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dp+3Oc2m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CF52D033
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:19:25 +0000 (UTC)
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352328FA1
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:19:24 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9d216597f64so898702166b.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:19:24 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A3132D033
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:20:50 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C391FD4
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 08:20:49 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-543c3756521so9793663a12.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 08:20:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699373962; x=1699978762; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699374048; x=1699978848; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kryoNEcuHcB4DYQSahwFyLn9Wa6ermLbRI/J6Zae97s=;
-        b=WRZkizYt+eWZaJw/3KXKgQ0fLUj2C1lrFLUQrYntDU1H74wMc1xCbVV5FMMjPSwqOh
-         nVyeGcLGKtZzMvqAEb+tM3uXcEsYA8lFqNRIih8AS7nrnQGlvLVLjpO8LSUDRtjQ7I3X
-         +PFUJMBKQBV89q+rne7CGS1QMegAWcWtEHNx6R5tClGYFXFXKmu5652S5BJp1Ws2QQdT
-         2al7WboxSiZ0w/m/jxeCQePtoJEIuE8t7X0Ommkjt6bikz1S/6GZQ1Uc3g2wlRjvNdZq
-         B4vPXR5fKI/vyI1ppd6Vv68Q1TilvPpPIt80i7HdjV55KKKhtmpS8xbq2hXQelzWOH4y
-         omDg==
+        bh=Zi4WsQmpgwd6QfsBGUqaWmLWb1Y4ymfyxxy1U+ZNJLU=;
+        b=Dp+3Oc2m33vaHJ1NJUe5rmMZrlcRmxiicO0q7+IyAE/rvunwZFugWhYli6tRTbcIQF
+         byPmIQnVhLvwkp2kmvCZ5iFEq7I11HJ+JqjYdN/L3n6MpUc6a5FUmfWobfNtvIkkWfLM
+         iWFHm/LNRSY6ruWSN84LqoFEDFXhzGfPWNkiIhgUj34jVzctf44v7WajKbQLOJhPhsh3
+         XLR01tl7+1MkokYBDASeZeObh+gQPQiXwsHNE4LrLVfl1Rhc64BYx4eBDfKtd1T9leyV
+         0GD12xiThSDA4xWOrPNKzaVMiaamCZSTgxMp2hbIzIzFlzneZyR8jb1cVt3JtCCOO59S
+         rBEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699373962; x=1699978762;
+        d=1e100.net; s=20230601; t=1699374048; x=1699978848;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kryoNEcuHcB4DYQSahwFyLn9Wa6ermLbRI/J6Zae97s=;
-        b=Tqs5BFxLRdxnFBon2r0YDkRdNqYOBT7tIWaI3w2yP+3cRhfbQyEo1QI+xK14z3dJ8w
-         lcriHeeW5roGR3aDrqruRdwFh7hNlar/2zmqnIvCv2ODYf+vF328IJtqLYTMmxCjRdmM
-         7fAj0JZSw6kYuktC6+4NYm7mL3Uy/Q2/WUvojDFXI9y18BJtx/R7vfpqQtd+bmjR1KXL
-         BMVrql+ftA90NDwRlAWQl3fWrtsJ8wAy2SA624PSoTreLMNJ1m0/zgs9mfqbPLX026c/
-         4NaM9+jjMlisP9SVh68fhXkBEBwQkGrGSUZP4VHJk8Vp0+l7wLotyFsY0cmhiN/qEy0L
-         kmMg==
-X-Gm-Message-State: AOJu0YzUxzh2NZKF1tn0AzI0pTcrJvEgdL+Qgumo6/t7nA/dGmXjy9aL
-	qXSVZzUbPzsZk1vHLiK+qlG3vA==
-X-Google-Smtp-Source: AGHT+IGXyR3N27d2zaBG+F7iq0jryuKEAoo8viwqSg/lyz+aEooTExrf0x8CNzsSF9lGNWGoXm58fg==
-X-Received: by 2002:a17:907:3e8e:b0:9bd:dfaa:3f2 with SMTP id hs14-20020a1709073e8e00b009bddfaa03f2mr21868636ejc.6.1699373962670;
-        Tue, 07 Nov 2023 08:19:22 -0800 (PST)
+        bh=Zi4WsQmpgwd6QfsBGUqaWmLWb1Y4ymfyxxy1U+ZNJLU=;
+        b=BCV8lnv0mrc/uFsr0DwrdLTDAZYBRmDtwtHqFV4g0w1+O1lmZxUoc+FYfaN7Tv8jAk
+         oMQpFZL/H2c65GNzR5F3HBLf7D7MHObGHQVrIZVQGorsA+Yd2ZG4qL1cVWDH86j4nW6x
+         bJU+3PXUwcYLxNgnZjk8Og4bJVlvpKp7YeMpmhXz0Ckmchs/laWwzOxq2O5s71kSVWtm
+         EEjgsG5n2BWTPHc7cU6hBNs1EgALk86dk06MrlpyV6k6dAFX5hLv9x73dvEI/W9B+Wat
+         sgw7aQPzM5jv6SeKyxg22IZfqY5SgHsMHylEgOQ9rYm3pw+lvM33BSX9jXBM2tOdKV9c
+         dO1g==
+X-Gm-Message-State: AOJu0Yxf51ygkLDSZyaBvMIRqjXJJ09j2q/UfkMVNxDcmFlhFlZZ1zwa
+	tSKhpbel/lq2UwDk81KEgLVSrg==
+X-Google-Smtp-Source: AGHT+IHcCqpOanizxqDfIUxTNvb6ChZH7XoH+qq6PzYWF7LKKLjgNjiOV3qiVIypGMMqVPS9lh+IwQ==
+X-Received: by 2002:a17:906:dac4:b0:9ae:5120:5147 with SMTP id xi4-20020a170906dac400b009ae51205147mr16972555ejb.38.1699374048163;
+        Tue, 07 Nov 2023 08:20:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id cw25-20020a170906c79900b0099c53c44083sm1212333ejb.79.2023.11.07.08.19.21
+        by smtp.gmail.com with ESMTPSA id cw25-20020a170906c79900b0099c53c44083sm1212333ejb.79.2023.11.07.08.20.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 08:19:22 -0800 (PST)
-Message-ID: <8534fc67-83b3-4f41-a1e3-635866e1dd9c@linaro.org>
-Date: Tue, 7 Nov 2023 17:19:20 +0100
+        Tue, 07 Nov 2023 08:20:47 -0800 (PST)
+Message-ID: <6ba4585a-b7a1-46f9-ba89-a1e605cbdda3@linaro.org>
+Date: Tue, 7 Nov 2023 17:20:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som: reorder reg properties after
- compatible strings
+Subject: Re: [PATCH 2/6] MAINTAINERS: add new dt-binding doc to the right
+ entry
 Content-Language: en-US
-To: Hugo Villeneuve <hugo@hugovil.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231107160122.1648093-1-hugo@hugovil.com>
+To: Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
+ heiko@sntech.de, herbert@gondor.apana.org.au,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org
+Cc: ricardo@pardini.net, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20231107155532.3747113-1-clabbe@baylibre.com>
+ <20231107155532.3747113-3-clabbe@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,17 +125,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107160122.1648093-1-hugo@hugovil.com>
+In-Reply-To: <20231107155532.3747113-3-clabbe@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/11/2023 17:01, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 07/11/2023 16:55, Corentin Labbe wrote:
+> Rockchip crypto driver have a new file to be added.
 > 
-> Move reg nodes after the compatible string, to follow DT conventions.
 
-This is a bit of churn... like patches for checkpatch. But unlike
-checkpatch, it's not even documented.
+It does not have sense patch to be separate commit. It's not like you
+add new entry. New file is introduced in a patch? Then this patch
+touches maintainers.
 
 Best regards,
 Krzysztof
