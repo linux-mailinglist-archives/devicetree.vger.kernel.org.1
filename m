@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822A17E4A93
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 22:26:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F147E4AB6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 22:30:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B19CF1C20CE0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 21:26:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 897FEB20A72
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 21:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78448A21;
-	Tue,  7 Nov 2023 21:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E67FA21;
+	Tue,  7 Nov 2023 21:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lZ/lXuYl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fqNvVEDf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0F01371
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 21:26:26 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03A812F
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 13:26:25 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507b96095abso7820486e87.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 13:26:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B542E2A1D0
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 21:29:55 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7A8D7A
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 13:29:54 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c5210a1515so84898541fa.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 13:29:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699392384; x=1699997184; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699392593; x=1699997393; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v8ZbabYnEZ0TbrYO0L9GGQTYabN7EWJlrXz4ovvinYE=;
-        b=lZ/lXuYleOyNqWTK8ZA4sjS2tO+gvQdpLhmWJmF1TCX0whdZjac6mdl2CnDi7xaNrR
-         5rBpTb0qXh+a97HZzN3KrFdyi3lT6qZiGwnYarCdb7bBd3OVNnqjOQyAX7EFqx2j23OW
-         k+Ysxq9nzyqToJAuM4GrGo3R3BW3dIUOlV+CbXO3Yv6KxRLuSCT5q6HF25QnnL2vioYp
-         5yPwSfi8EbVsRUUJecpX97JZa5pjickrk1n5RPxlxuo4Mo5qniwNKJlN9cw5xlERc7hk
-         ObNNNxVP3wPECg2GRfOdgKo3XC8xzoC1qgM+TcTbKfIRKYSQZdN5WqF9y4DPMzRWeYSF
-         2pzA==
+        bh=/Ne2c9ju+9bn3Zice6izrVWXVkuEMpaweGZBq2tsOcY=;
+        b=fqNvVEDfXZxqcyPv87zXIznJXrF3mxveQmvZprIvMJbT2M7248aj8QyLTcBZ/elw/g
+         IXYb0OaVEqlvfM0/2ZKdfeaLOiP1IYnhExl1m4G+VwETExp75tIghsgtTIhUMYZ4rzIK
+         KmJFxaEOJRtIVWwwke2nLGDncp8MBmO+/hXmgPCuj0oSDhnG9rKAsFHTSsi4VXO+Dn0b
+         j/qVh8tpwxBN0ZWpFD8A7bA7GXPPPaD4SEEZDB4qh2bad1q6TuqpmVlb7y1yCqWtgnh8
+         WWu/WxRgfhoUQfQ1dY+u1S4VQFuprUTGsj7WdCEsOn/HE4EapfvhXBkkrhEwBkKAbjZu
+         +ENA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699392384; x=1699997184;
+        d=1e100.net; s=20230601; t=1699392593; x=1699997393;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v8ZbabYnEZ0TbrYO0L9GGQTYabN7EWJlrXz4ovvinYE=;
-        b=A+dDFGUkypksBaEkc90hQwXUYVk0uB2oOhCJqNRnDcgzs9s8NYlP4lDYN7yCRtckXB
-         593yBFE2gr1A65XCyXiu73CaNGTYhTyW3pg8DU6pm8FniJfsliC/6rSjXOv8//tcYJF4
-         gQvv7KeYFXHQpjpFXwHld+Q1fGxou8kXaVRoBga+M6rTL7LFChdnNbcbX4SisyQHqaWc
-         GBTBUXxMi4WULZB9yi+g8KAJIqm4AvTwGlfFog0QV9wyPo2C3U7YmNo8b9Nm/mTRF+Zh
-         egnpJqMqqcjw2tgsBg9+DyNxH3dzMy/ngEEaTXgt7hL2j2zrOSkgjUFMQ8OmsDY4bUBJ
-         Jp5A==
-X-Gm-Message-State: AOJu0YzmqwKVl/y6m3qWlOv+TCRwpFwdA5hQKnZXLups8ehGfDpYGLJ/
-	myqDsj1qaytfK3rl1CQ6B6OHIjhmw3+yyob+ahZWtw==
-X-Google-Smtp-Source: AGHT+IHgLJN+d/IqcqroFzMDSTAI3G6hIBS/d7pJb3zhOOeHlWT4o81L0maEKBm4+T2uZ7Y4KtUPDg==
-X-Received: by 2002:a05:6512:31d0:b0:508:1332:558a with SMTP id j16-20020a05651231d000b005081332558amr31609895lfe.2.1699392383665;
-        Tue, 07 Nov 2023 13:26:23 -0800 (PST)
+        bh=/Ne2c9ju+9bn3Zice6izrVWXVkuEMpaweGZBq2tsOcY=;
+        b=sD74UTvnq6ACJfkpkNVNcYsOnhFT8UKsxIDE/HF7os9PrlHtPuoGtznkOUZM8ovjEg
+         dfLLa6KYez8bZ8/10+T1qxHGCGoYt8OmuK8TcWKoT1qeIE6cvKU0Qf8R5e9R9MxeINwM
+         MUJeMwcLWWLAyTEyHXsbNXZ2PBNLt/o1wMUCpbMgr6gCfb4lQMOrhm1sVnNOB1L20uZd
+         5bq7mQ3jMQhyDqdsA1WA1ItsZhhRvsDRSSED3WcI/m+fL0GjFo8BWcvzrjWBdb5xmu84
+         gTUV+I5+98lNQhDRRAZ8U7WGofELSvEPTM2mm3ex0B0MM+suqFBHyU4L3nkKulggnycU
+         eXzg==
+X-Gm-Message-State: AOJu0YylD4Y1Oa4DEjYk2O46yM17seD+BtBbd4FOPyJauuOS8xPPly53
+	bwXwvnaaQRitKLXhbwOrBj6Tow==
+X-Google-Smtp-Source: AGHT+IFItNos92G2Fef/m/cJIcLTaZPhUJCAiAccAcfKSmQhgxJraEQl0R/ly17xOKTTQlxmPAi/8Q==
+X-Received: by 2002:a2e:3c05:0:b0:2c5:b3c4:7b17 with SMTP id j5-20020a2e3c05000000b002c5b3c47b17mr182193lja.38.1699392592906;
+        Tue, 07 Nov 2023 13:29:52 -0800 (PST)
 Received: from [172.30.205.109] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id t14-20020ac243ae000000b005094bb01fc4sm457208lfl.275.2023.11.07.13.26.21
+        by smtp.gmail.com with ESMTPSA id t4-20020a05651c148400b002b6daa3fa2csm1607587lje.69.2023.11.07.13.29.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 13:26:23 -0800 (PST)
-Message-ID: <c0201df3-b1de-4761-a4a1-c2bd2e3c14f3@linaro.org>
-Date: Tue, 7 Nov 2023 22:26:20 +0100
+        Tue, 07 Nov 2023 13:29:52 -0800 (PST)
+Message-ID: <9c3dad0b-b5c9-4d73-8fea-1b3a44d89c62@linaro.org>
+Date: Tue, 7 Nov 2023 22:29:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,39 +67,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sdm850-lenovo-yoga: Add wakeup-sources
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: Add PM8937 PMIC
 Content-Language: en-US
-To: steev@kali.org, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231106-wakeup-source-v1-1-36b1f39e67fd@kali.org>
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Robert Marko <robimarko@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
+ <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231106-wakeup-source-v1-1-36b1f39e67fd@kali.org>
+In-Reply-To: <20231106-pm8937-v1-7-ec51d9eeec53@riseup.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 11/7/23 01:12, Steev Klimaszewski via B4 Relay wrote:
-> From: Steev Klimaszewski <steev@kali.org>
+On 11/6/23 13:08, Dang Huynh wrote:
+> The PM8937 features integrated peripherals like ADC, GPIO controller,
+> MPPs, PON keys and others.
 > 
-> The keyboard, touchpad and touchscreen can all be used to wake the
-> computer up from sleep, so mark them as such in the dts file.
+> Add the device tree so that any boards with this PMIC can use it.
 > 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
 > ---
-> It would be nice to wake up the Lenovo Yoga C630 from suspend by hitting
-> the keyboard or touchpad or even touchscreen, so this patch enables that
-> ability.
+>   arch/arm64/boot/dts/qcom/pm8937.dtsi | 202 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 202 insertions(+)
 > 
-> I'm not married to enabling it for the touchscreen, so if anyone wants
-> me to drop that hunk, I'd be fine with it.
-Does the touchscreen power off? Would touching it when the laptop is
-asleep wake the device up? If so, I'd say that leaving it out makes
-more sense by default
+> diff --git a/arch/arm64/boot/dts/qcom/pm8937.dtsi b/arch/arm64/boot/dts/qcom/pm8937.dtsi
+> new file mode 100644
+> index 000000000000..6091d6938885
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pm8937.dtsi
+> @@ -0,0 +1,202 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
+> + */
+> +
+> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +/ {
+> +	thermal-zones {
+> +		pm8937-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&pm8937_temp>;
+> +
+> +			trips {
+> +				pm8937_trip0: pm8937-trip0 {
+> +					temperature = <105000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+Add a newline between the subnodes, please
+
+[...]
+
+> +			pm8937_resin: resin {
+> +				compatible = "qcom,pm8941-resin";
+> +				interrupts = <0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
+> +				debounce = <15625>;
+> +				bias-pull-up;
+> +				linux,code = <KEY_VOLUMEDOWN>;
+This keycode varies per-device, please move it out
+
+
+> +			};
+> +		};
+> +
+> +		pm8937_gpios: gpio@c000 {
+> +			compatible = "qcom,pm8937-gpio", "qcom,spmi-gpio";
+> +			reg = <0xc000>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pm8937_gpios 0 0 8>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		pm8937_mpps: mpps@a000 {
+> +			compatible = "qcom,pm8937-mpp", "qcom,spmi-mpp";
+> +			reg = <0xa000>;
+
+[...]
+
+> +
+> +		rtc@6000 {
+> +			compatible = "qcom,pm8941-rtc";
+> +			reg = <0x6000>, <0x6100>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
+This is probably IRQ_TYPE_EDGE_RISING
 
 Konrad
 
