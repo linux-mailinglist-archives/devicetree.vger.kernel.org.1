@@ -1,107 +1,375 @@
-Return-Path: <devicetree+bounces-14247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF277E3181
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 00:34:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183337E31FA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 01:06:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9396280D94
-	for <lists+devicetree@lfdr.de>; Mon,  6 Nov 2023 23:34:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B3951C20873
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 00:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC492F506;
-	Mon,  6 Nov 2023 23:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423DE7FD;
+	Tue,  7 Nov 2023 00:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cacUSlw/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tDWtFmQ+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C818D29D07
-	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 23:34:35 +0000 (UTC)
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C4A10FB;
-	Mon,  6 Nov 2023 15:34:30 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id d75a77b69052e-41e1921da84so31854531cf.1;
-        Mon, 06 Nov 2023 15:34:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8F17F9
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 00:06:25 +0000 (UTC)
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F066134
+	for <devicetree@vger.kernel.org>; Mon,  6 Nov 2023 16:06:21 -0800 (PST)
+Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-359472f74c5so20135055ab.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Nov 2023 16:06:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699313669; x=1699918469; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=b+/MoxP2Xl3kPb8t5U8uMRuNrhyDRJQ0FvpXcM+0XLY=;
-        b=cacUSlw/uUsbdiJIGNpSTTa3Pclv3Pkdr3zATixVBcCL6Qyo1fJokJ4vXYuZ2M/QTc
-         hhpldK3s1OpaR/BZzKoIAYFxn3zOV3u4yhp3LGS7IxlrJxrZwSD5PIfYo5HAiJr+LIxe
-         GUnHTi7rv+98fA0gb3NRurBECg31IpapVb8aiywBNdF9Pp6ca51wwMxOrL1zgbcQiEOR
-         PP5b8rpBf4QZfipMA9EuqEurXUNO3tAnz90/uB9ZEf3sOhhFKcd8sYfUMvH285b8luPZ
-         0/UJRnggCM4dlxd/sh/0Z4R3ixl8i5uxUe47MZVuoMIxNLd6DlxmLi7nq1vuPtFMuq+E
-         aTlQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699315580; x=1699920380; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Mf5g5Mm+du9QPsx6fgXbExZqjKh6NGageD+9eQdsEU=;
+        b=tDWtFmQ+/ki0PLTxKznwnq8NxcYfFaYtzbX5z7CX39dqY1JM5S8g6JwjcuCYQv+3A0
+         1/BpWv+mOuvw50fdaXcFofcChVH9Mgduf5/1+N16BRzjQjuZ7FWEpdEvw1G+u/d6J2wR
+         zlMSUxzmqCHORhu+GLFZDOiUB+fa5YeCPE1iYV6YRhKWySCIlzjokXlZpx57xRX4G9gc
+         T1fhtTXROC+QxAzaBOhXZK4UaNflIT0/xj7+pH7+VPoFjJMtcXQBNOdtaKzOVwig98UL
+         724J/y1V5o9vnX1Yo/tSA5XnrjGZUaDOk3J8Ig1amlPLgCJxd5CW3JJV9e0MqcPROdKW
+         dsVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699313669; x=1699918469;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b+/MoxP2Xl3kPb8t5U8uMRuNrhyDRJQ0FvpXcM+0XLY=;
-        b=nOYhSjbce3611FIqOz+0ilvV71Mq8tfk3hl4Hy1tfw2XzzCzQTT2j8lyuBkXvgYXUi
-         F+i9cBxfg3OIYFgAkSEnOyYumwGemxAogTT/pbBfRZJ9vKJyZtejbgX9qb7ZjVIYSKmB
-         i2Sxsb7h/qze6rWfEj7SLQDggDkyS6vnu34eDKCvDiKDKfuHgjMqJLPGxTlA8wXCqPgD
-         Tl6h+1l0IxAqLpVgfPcrnVeXW+hhS/k4+9KSEeiJnHzzH2zbdXypEtPrtbbBAPE+ahBj
-         oE7pu8SzAhiTpG2eiDnRShGTtaOO1vXNdEUJAKLjBU7knrltYL1ZxeQRWPROdu1ca2/d
-         EE1Q==
-X-Gm-Message-State: AOJu0YyQuiVoyqtHFDRw04HRtA00dk3Y7hdOzAT8PygogZaV9DhTW2vT
-	G8GAkMvxrElxOHJ63y29aVVkGFv5HX4shKjxu17GwQE2yAQ=
-X-Google-Smtp-Source: AGHT+IEuJx38f9AfK2nfNYw6omo2opuv+TtWLwt4yCZcsClAXV9J9sN0YqQlMeJS+t5pr7xXqNglIk7XVKRgP/sK11A=
-X-Received: by 2002:ac8:5987:0:b0:41c:bac1:6d0 with SMTP id
- e7-20020ac85987000000b0041cbac106d0mr36688325qte.36.1699313668926; Mon, 06
- Nov 2023 15:34:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699315580; x=1699920380;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/Mf5g5Mm+du9QPsx6fgXbExZqjKh6NGageD+9eQdsEU=;
+        b=QxOwFImRw6C8UCctuMe/PseCk8CPusCReYHPtJfuUtXQS+DRXDdhe0/EJLyTYi1x+W
+         hLTWKPPYJ0zWT8AwA4elEuBaCv2JA5mqBB+i8HZOEnoPK4wVBd+gOLVkGrkKuCjeMRYt
+         /yVOumYUm7A444IbmiShTIYifirvddbJeeBHNYGdRl8VVSp1TxchvQiH+QUeTwGwC0JY
+         Q7Ul/enSjzdqiQ9/0afcko24WcO/8FVagg3fLV/2sKCc5gNJobMgJiSJ3uRmpN4eAZmR
+         jD9/tRmIf/8Zx3nsnhjoTlQIaAowa6RfGuc0qh/gAEoh5hGWXwdVoU16R2LSL4hGTnJr
+         eXjQ==
+X-Gm-Message-State: AOJu0YwflR7WKSSCN0/ZBGhFJd7g3NCKaNW//JGwc1s1ASr2SaPI5mye
+	RCrFH7g9pDnMHw7E22+LuRSLJg==
+X-Google-Smtp-Source: AGHT+IGXGG7HlkQp7iDky/26odlQ2a4tHbOjMyliqsuluLh9F4tJK0Fjp95oKzUTCi0p0F55n2bikA==
+X-Received: by 2002:a05:6e02:1bc3:b0:352:a73a:16f5 with SMTP id x3-20020a056e021bc300b00352a73a16f5mr1132291ilv.18.1699315580523;
+        Mon, 06 Nov 2023 16:06:20 -0800 (PST)
+Received: from x1 ([2601:1c2:1800:f680:9fcd:449f:a3b9:e442])
+        by smtp.gmail.com with ESMTPSA id i14-20020aa787ce000000b006b76cb6523dsm6108528pfo.165.2023.11.06.16.06.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Nov 2023 16:06:19 -0800 (PST)
+Date: Mon, 6 Nov 2023 16:06:15 -0800
+From: Drew Fustini <dfustini@baylibre.com>
+To: Adrian Hunter <adrian.hunter@intel.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Robert Nelson <robertcnelson@beagleboard.org>,
+	Jason Kridner <jkridner@beagleboard.org>,
+	Xi Ruoyao <xry111@xry111.site>, Han Gao <gaohan@iscas.ac.cn>,
+	Icenowy Zheng <uwu@icenowy.me>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 3/7] mmc: sdhci-of-dwcmshc: Add support for T-Head
+ TH1520
+Message-ID: <ZUl/dw8/SnBpgLeG@x1>
+References: <20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com>
+ <20231101-th1520-mmc-v4-3-86e0216b5994@baylibre.com>
+ <6f68ab16-5512-4a48-ae28-e86ce989f578@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rani Hod <rani.hod@gmail.com>
-Date: Tue, 7 Nov 2023 01:34:00 +0200
-Message-ID: <CAJD4rqFKYrvg4oFOffCAUss1bmEXDFsTedwLZK3jX3QWTF8VXQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: leds: add "internet" and "rssi"
- function definitions
-To: robh@kernel.org
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, 
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, oliver@schinagl.nl, 
-	pavel@ucw.cz, yangshiji66@outlook.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6f68ab16-5512-4a48-ae28-e86ce989f578@intel.com>
 
-On Tue, Oct 31, 2023 at 09:29:01PM +0800, Shiji Yang wrote:
-> These two types of LEDs are widely used in routers and NICs. The
-> RSSI (Received Signal Strength Indicator) LED is used to display
-> the Wi-Fi signal strength, and the Internet LED can indicate
-> whether the device can access a specific server.
+On Mon, Nov 06, 2023 at 08:42:38PM +0200, Adrian Hunter wrote:
+> On 2/11/23 04:48, Drew Fustini wrote:
+> > Add support for the mmc controller in the T-Head TH1520 with the new
+> > compatible "thead,th1520-dwcmshc". Implement custom sdhci_ops for
+> > set_uhs_signaling, reset, voltage_switch, and platform_execute_tuning.
+> > 
+> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> 
+> One question below, otherwise:
+> 
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> 
+> > ---
+> >  drivers/mmc/host/sdhci-of-dwcmshc.c | 348 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 348 insertions(+)
+> > 
+> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > index 3a3bae6948a8..1a1386b742c1 100644
+> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> > @@ -8,6 +8,7 @@
+> >   */
+> >  
+> >  #include <linux/acpi.h>
+> > +#include <linux/bitfield.h>
+> >  #include <linux/clk.h>
+> >  #include <linux/dma-mapping.h>
+> >  #include <linux/iopoll.h>
+> > @@ -35,6 +36,21 @@
+> >  #define DWCMSHC_CARD_IS_EMMC		BIT(0)
+> >  #define DWCMSHC_ENHANCED_STROBE		BIT(8)
+> >  #define DWCMSHC_EMMC_ATCTRL		0x40
+> > +/* Tuning and auto-tuning fields in AT_CTRL_R control register */
+> > +#define AT_CTRL_AT_EN			BIT(0) /* autotuning is enabled */
+> > +#define AT_CTRL_CI_SEL			BIT(1) /* interval to drive center phase select */
+> > +#define AT_CTRL_SWIN_TH_EN		BIT(2) /* sampling window threshold enable */
+> > +#define AT_CTRL_RPT_TUNE_ERR		BIT(3) /* enable reporting framing errors */
+> > +#define AT_CTRL_SW_TUNE_EN		BIT(4) /* enable software managed tuning */
+> > +#define AT_CTRL_WIN_EDGE_SEL_MASK	GENMASK(11, 8) /* bits [11:8] */
+> > +#define AT_CTRL_WIN_EDGE_SEL		0xf /* sampling window edge select */
+> > +#define AT_CTRL_TUNE_CLK_STOP_EN	BIT(16) /* clocks stopped during phase code change */
+> > +#define AT_CTRL_PRE_CHANGE_DLY_MASK	GENMASK(18, 17) /* bits [18:17] */
+> > +#define AT_CTRL_PRE_CHANGE_DLY		0x1  /* 2-cycle latency */
+> > +#define AT_CTRL_POST_CHANGE_DLY_MASK	GENMASK(20, 19) /* bits [20:19] */
+> > +#define AT_CTRL_POST_CHANGE_DLY		0x3  /* 4-cycle latency */
+> > +#define AT_CTRL_SWIN_TH_VAL_MASK	GENMASK(31, 24) /* bits [31:24] */
+> > +#define AT_CTRL_SWIN_TH_VAL		0x9  /* sampling window threshold */
+> >  
+> >  /* Rockchip specific Registers */
+> >  #define DWCMSHC_EMMC_DLL_CTRL		0x800
+> > @@ -72,6 +88,82 @@
+> >  	(((x) & DWCMSHC_EMMC_DLL_TIMEOUT) == 0))
+> >  #define RK35xx_MAX_CLKS 3
+> >  
+> > +/* PHY register area pointer */
+> > +#define DWC_MSHC_PTR_PHY_R	0x300
+> > +
+> > +/* PHY general configuration */
+> > +#define PHY_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x00)
+> > +#define PHY_CNFG_RSTN_DEASSERT	0x1  /* Deassert PHY reset */
+> > +#define PHY_CNFG_PAD_SP_MASK	GENMASK(19, 16) /* bits [19:16] */
+> > +#define PHY_CNFG_PAD_SP		0x0c /* PMOS TX drive strength */
+> > +#define PHY_CNFG_PAD_SN_MASK	GENMASK(23, 20) /* bits [23:20] */
+> > +#define PHY_CNFG_PAD_SN		0x0c /* NMOS TX drive strength */
+> > +
+> > +/* PHY command/response pad settings */
+> > +#define PHY_CMDPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x04)
+> > +
+> > +/* PHY data pad settings */
+> > +#define PHY_DATAPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x06)
+> > +
+> > +/* PHY clock pad settings */
+> > +#define PHY_CLKPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x08)
+> > +
+> > +/* PHY strobe pad settings */
+> > +#define PHY_STBPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x0a)
+> > +
+> > +/* PHY reset pad settings */
+> > +#define PHY_RSTNPAD_CNFG_R	(DWC_MSHC_PTR_PHY_R + 0x0c)
+> > +
+> > +/* Bitfields are common for all pad settings */
+> > +#define PHY_PAD_RXSEL_1V8		0x1 /* Receiver type select for 1.8V */
+> > +#define PHY_PAD_RXSEL_3V3		0x2 /* Receiver type select for 3.3V */
+> > +
+> > +#define PHY_PAD_WEAKPULL_MASK		GENMASK(4, 3) /* bits [4:3] */
+> > +#define PHY_PAD_WEAKPULL_PULLUP		0x1 /* Weak pull up enabled */
+> > +#define PHY_PAD_WEAKPULL_PULLDOWN	0x2 /* Weak pull down enabled */
+> > +
+> > +#define PHY_PAD_TXSLEW_CTRL_P_MASK	GENMASK(8, 5) /* bits [8:5] */
+> > +#define PHY_PAD_TXSLEW_CTRL_P		0x3 /* Slew control for P-Type pad TX */
+> > +#define PHY_PAD_TXSLEW_CTRL_N_MASK	GENMASK(12, 9) /* bits [12:9] */
+> > +#define PHY_PAD_TXSLEW_CTRL_N		0x3 /* Slew control for N-Type pad TX */
+> > +
+> > +/* PHY CLK delay line settings */
+> > +#define PHY_SDCLKDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x1d)
+> > +#define PHY_SDCLKDL_CNFG_UPDATE	BIT(4) /* set before writing to SDCLKDL_DC */
+> > +
+> > +/* PHY CLK delay line delay code */
+> > +#define PHY_SDCLKDL_DC_R		(DWC_MSHC_PTR_PHY_R + 0x1e)
+> > +#define PHY_SDCLKDL_DC_INITIAL		0x40 /* initial delay code */
+> > +#define PHY_SDCLKDL_DC_DEFAULT		0x32 /* default delay code */
+> > +#define PHY_SDCLKDL_DC_HS400		0x18 /* delay code for HS400 mode */
+> > +
+> > +/* PHY drift_cclk_rx delay line configuration setting */
+> > +#define PHY_ATDL_CNFG_R			(DWC_MSHC_PTR_PHY_R + 0x21)
+> > +#define PHY_ATDL_CNFG_INPSEL_MASK	GENMASK(3, 2) /* bits [3:2] */
+> > +#define PHY_ATDL_CNFG_INPSEL		0x3 /* delay line input source */
+> > +
+> > +/* PHY DLL control settings */
+> > +#define PHY_DLL_CTRL_R			(DWC_MSHC_PTR_PHY_R + 0x24)
+> > +#define PHY_DLL_CTRL_DISABLE		0x0 /* PHY DLL is enabled */
+> > +#define PHY_DLL_CTRL_ENABLE		0x1 /* PHY DLL is disabled */
+> > +
+> > +/* PHY DLL  configuration register 1 */
+> > +#define PHY_DLL_CNFG1_R			(DWC_MSHC_PTR_PHY_R + 0x25)
+> > +#define PHY_DLL_CNFG1_SLVDLY_MASK	GENMASK(5, 4) /* bits [5:4] */
+> > +#define PHY_DLL_CNFG1_SLVDLY		0x2 /* DLL slave update delay input */
+> > +#define PHY_DLL_CNFG1_WAITCYCLE		0x5 /* DLL wait cycle input */
+> > +
+> > +/* PHY DLL configuration register 2 */
+> > +#define PHY_DLL_CNFG2_R			(DWC_MSHC_PTR_PHY_R + 0x26)
+> > +#define PHY_DLL_CNFG2_JUMPSTEP		0xa /* DLL jump step input */
+> > +
+> > +/* PHY DLL master and slave delay line configuration settings */
+> > +#define PHY_DLLDL_CNFG_R		(DWC_MSHC_PTR_PHY_R + 0x28)
+> > +#define PHY_DLLDL_CNFG_SLV_INPSEL_MASK	GENMASK(6, 5) /* bits [6:5] */
+> > +#define PHY_DLLDL_CNFG_SLV_INPSEL	0x3 /* clock source select for slave DL */
+> > +
+> > +#define FLAG_IO_FIXED_1V8	BIT(0)
+> > +
+> >  #define BOUNDARY_OK(addr, len) \
+> >  	((addr | (SZ_128M - 1)) == ((addr + len - 1) | (SZ_128M - 1)))
+> >  
+> > @@ -92,6 +184,8 @@ struct dwcmshc_priv {
+> >  	struct clk	*bus_clk;
+> >  	int vendor_specific_area1; /* P_VENDOR_SPECIFIC_AREA reg */
+> >  	void *priv; /* pointer to SoC private stuff */
+> > +	u16 delay_line;
+> > +	u16 flags;
+> >  };
+> >  
+> >  /*
+> > @@ -157,6 +251,126 @@ static void dwcmshc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+> >  	sdhci_request(mmc, mrq);
+> >  }
+> >  
+> > +static void dwcmshc_phy_1_8v_init(struct sdhci_host *host)
+> > +{
+> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
+> > +	u32 val;
+> > +
+> > +	/* deassert phy reset & set tx drive strength */
+> > +	val = PHY_CNFG_RSTN_DEASSERT;
+> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SP_MASK, PHY_CNFG_PAD_SP);
+> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SN_MASK, PHY_CNFG_PAD_SN);
+> > +	sdhci_writel(host, val, PHY_CNFG_R);
+> > +
+> > +	/* disable delay line */
+> > +	sdhci_writeb(host, PHY_SDCLKDL_CNFG_UPDATE, PHY_SDCLKDL_CNFG_R);
+> > +
+> > +	/* set delay line */
+> > +	sdhci_writeb(host, priv->delay_line, PHY_SDCLKDL_DC_R);
+> > +	sdhci_writeb(host, PHY_DLL_CNFG2_JUMPSTEP, PHY_DLL_CNFG2_R);
+> > +
+> > +	/* enable delay lane */
+> > +	val = sdhci_readb(host, PHY_SDCLKDL_CNFG_R);
+> > +	val &= ~(PHY_SDCLKDL_CNFG_UPDATE);
+> > +	sdhci_writeb(host, val, PHY_SDCLKDL_CNFG_R);
+> > +
+> > +	/* configure phy pads */
+> > +	val = PHY_PAD_RXSEL_1V8;
+> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLUP);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
+> > +	sdhci_writew(host, val, PHY_CMDPAD_CNFG_R);
+> > +	sdhci_writew(host, val, PHY_DATAPAD_CNFG_R);
+> > +	sdhci_writew(host, val, PHY_RSTNPAD_CNFG_R);
+> > +
+> > +	val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
+> > +	sdhci_writew(host, val, PHY_CLKPAD_CNFG_R);
+> > +
+> > +	val = PHY_PAD_RXSEL_1V8;
+> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLDOWN);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
+> > +	sdhci_writew(host, val, PHY_STBPAD_CNFG_R);
+> > +
+> > +	/* enable data strobe mode */
+> > +	sdhci_writeb(host, FIELD_PREP(PHY_DLLDL_CNFG_SLV_INPSEL_MASK, PHY_DLLDL_CNFG_SLV_INPSEL),
+> > +		     PHY_DLLDL_CNFG_R);
+> > +
+> > +	/* enable phy dll */
+> > +	sdhci_writeb(host, PHY_DLL_CTRL_ENABLE, PHY_DLL_CTRL_R);
+> > +}
+> > +
+> > +static void dwcmshc_phy_3_3v_init(struct sdhci_host *host)
+> > +{
+> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
+> > +	u32 val;
+> > +
+> > +	/* deassert phy reset & set tx drive strength */
+> > +	val = PHY_CNFG_RSTN_DEASSERT;
+> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SP_MASK, PHY_CNFG_PAD_SP);
+> > +	val |= FIELD_PREP(PHY_CNFG_PAD_SN_MASK, PHY_CNFG_PAD_SN);
+> > +	sdhci_writel(host, val, PHY_CNFG_R);
+> > +
+> > +	/* disable delay line */
+> > +	sdhci_writeb(host, PHY_SDCLKDL_CNFG_UPDATE, PHY_SDCLKDL_CNFG_R);
+> > +
+> > +	/* set delay line */
+> > +	sdhci_writeb(host, priv->delay_line, PHY_SDCLKDL_DC_R);
+> > +	sdhci_writeb(host, PHY_DLL_CNFG2_JUMPSTEP, PHY_DLL_CNFG2_R);
+> > +
+> > +	/* enable delay lane */
+> > +	val = sdhci_readb(host, PHY_SDCLKDL_CNFG_R);
+> > +	val &= ~(PHY_SDCLKDL_CNFG_UPDATE);
+> > +	sdhci_writeb(host, val, PHY_SDCLKDL_CNFG_R);
+> > +
+> > +	/* configure phy pads */
+> > +	val = PHY_PAD_RXSEL_3V3;
+> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLUP);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
+> > +	sdhci_writew(host, val, PHY_CMDPAD_CNFG_R);
+> > +	sdhci_writew(host, val, PHY_DATAPAD_CNFG_R);
+> > +	sdhci_writew(host, val, PHY_RSTNPAD_CNFG_R);
+> > +
+> > +	val = FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
+> > +	sdhci_writew(host, val, PHY_CLKPAD_CNFG_R);
+> > +
+> > +	val = PHY_PAD_RXSEL_3V3;
+> > +	val |= FIELD_PREP(PHY_PAD_WEAKPULL_MASK, PHY_PAD_WEAKPULL_PULLDOWN);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_P_MASK, PHY_PAD_TXSLEW_CTRL_P);
+> > +	val |= FIELD_PREP(PHY_PAD_TXSLEW_CTRL_N_MASK, PHY_PAD_TXSLEW_CTRL_N);
+> > +	sdhci_writew(host, val, PHY_STBPAD_CNFG_R);
+> > +
+> > +	/* enable phy dll */
+> > +	sdhci_writeb(host, PHY_DLL_CTRL_ENABLE, PHY_DLL_CTRL_R);
+> > +}
+> > +
+> > +static void th1520_sdhci_set_phy(struct sdhci_host *host)
+> > +{
+> > +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
+> > +	u16 emmc_ctrl;
+> > +
+> > +	/* Before power on, set PHY configs */
+> > +	if (priv->flags & FLAG_IO_FIXED_1V8)
+> > +		dwcmshc_phy_1_8v_init(host);
+> > +	else
+> > +		dwcmshc_phy_3_3v_init(host);
+> > +
+> > +	if (host->mmc->caps2 & (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)) {
+> 
+> Perhaps you mean both MMC_CAP2_NO_SD and MMC_CAP2_NO_SDIO which would be as below?
+> 
+> 	if ((host->mmc->caps2 & (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)) == (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)) {
+> 
+> or
+> 
+> 	if (host->mmc->caps2 & MMC_CAP2_NO_SD && host->mmc->caps2 & MMC_CAP2_NO_SDIO) {
+> 
+> or some such?
 
-Two more LED functions somewhat common to wireless APs that should be
-considered here IMHO are
+Thanks for catching this. Yes, what I did is incorrect.
 
-(i) a function for cellular (3g/4g/5g/...) connectivity or activity.
-LED_FUNCTION_LTE might age poorly, but LED_FUNCTION_WWAN [1] could fit
-in with existing network functions.
-Alternatively, LED_FUNCTION_MODEM seems both more inclusive and more specific.
+In fact, Jisheng had suggested this code in the v2 thread:
 
-(ii) a function for signaling mesh (= wireless inter-AP) connectivity
-or activity.
-LED_FUNCTION_MESH jumps to mind first, but perhaps there's a better
-name that could fit wireless repeaters as well.
-This function is close to, but does not fall IMHO under the suggested
-LED_FUNCTION_SIGNAL, as this one serves to indicate activity on a
-wireless connection between wireless APs (e.g. 802.11s) regardless of
-signal quality.
+u32 tmp = MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO;
+if ((cap2 & tmp) == tmp) {
+	blablabla...
+}
 
-Thanks and best,
-R.
+This is similar to your first suggestion above.
 
-P.S.
-Sorry if it looks like trying to steal the focus from OP, but I
-believe it makes sense to discuss these additions here rather than
-restart the discussion wrt a separate patch.
+I'll fix this in v5.
 
-[1] name suggested here:
-https://www.mail-archive.com/openwrt-devel@lists.openwrt.org/msg61810.html
+thanks,
+drew
 
