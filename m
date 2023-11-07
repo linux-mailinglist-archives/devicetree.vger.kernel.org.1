@@ -1,113 +1,104 @@
-Return-Path: <devicetree+bounces-14441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2E97E493D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 20:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B1E7E4A73
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 22:18:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C629FB20E87
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 19:35:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10271B20E71
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 21:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1007C36AF0;
-	Tue,  7 Nov 2023 19:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D3F2A1C3;
+	Tue,  7 Nov 2023 21:18:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fKHX/0bx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDJAeHgu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A13330CFC
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 19:34:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F03184;
-	Tue,  7 Nov 2023 11:34:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699385697; x=1730921697;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=91osQpReCsR7gq9k1QepRGDJYtuDgzaUF/hpb6LJpqo=;
-  b=fKHX/0bx8sjrTdE2OH1oRh4bDF37yD2qmE5J0OmZHE9zvzvpiCRerVk8
-   fdZZBGRWH427AjQCjwyUvzrvpQ1CvQZsbzedznmWkkeLLsC/huiLBSCgb
-   wVmHq9tsnwu5n8eITAqUhKCe15AaU2gTUXejVhePbZAdCOYkggVcwB2qf
-   44UAvp/I/LPMiB0ddjrPKlZsXCwtbtJZUUbPFWuY4MsSi9lq8RAI0GSiw
-   KuaaUHm0UMfPp36hONhCJX/j+iZPfPTUuQBNdyr8oerXv6n3ENI+mNzYu
-   KOEQGWYyhdt3hPVMN1hcCp+gt1/GsdAmPTkawgGKm1pNENFWvRHYA8ctq
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="2539081"
-X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; 
-   d="scan'208";a="2539081"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2023 11:34:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="828720602"
-X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; 
-   d="scan'208";a="828720602"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 07 Nov 2023 11:34:53 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r0Rqc-0007MC-2j;
-	Tue, 07 Nov 2023 19:34:50 +0000
-Date: Wed, 8 Nov 2023 03:34:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Anshul Dalal <anshulusr@gmail.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Anshul Dalal <anshulusr@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Jeff LaBundy <jeff@labundy.com>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] input: joystick: driver for Adafruit Seesaw
- Gamepad
-Message-ID: <202311080319.73n9aQfj-lkp@intel.com>
-References: <20231106164134.114668-2-anshulusr@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691752A1A4
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 21:18:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECCACC433C8;
+	Tue,  7 Nov 2023 21:18:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699391900;
+	bh=ERY6UoPM1GU+DApAE6GlRP0eE5/JGMTXNItE6V115wA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hDJAeHguvCHh9PnNxdYfWKpS3BeRZVKZHNNj3AofUcu6WTNBu5vyAl+fzuzBKDBGL
+	 TMftQr7ws8l27wuaVsrB2xI8SGzVcJJK7HfNQ1Uv7LuvqGQDEnOpVXaZrq1FACn8L6
+	 iksu1TvG2EbSL3u6XxXXr8RJ+iH5qiDZxzFIrWXpfx7R7ahSGdmGJN7jefI5yf5AQP
+	 Mq+ZjrPN1SxVTXgM06oGGmn9IOdNu0VVdiLBt1If5RcXj2XlVTIAXGzV494IXPkP21
+	 viz2kFv8dYWcqueZMoscfNB5qtwMwcpU/3fiG5pHqkmJPXwRgHThZM9gqxS7+IoZ2C
+	 ZLu/X0tHLQA9w==
+Date: Tue, 7 Nov 2023 21:18:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: Add new board description for
+ MicroBlaze V
+Message-ID: <20231107-expensive-jitters-92e454f77ea8@spud>
+References: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
+ <20231106-hangnail-prankster-a04e713bed35@spud>
+ <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="l64Ovq0UtbQtisQg"
+Content-Disposition: inline
+In-Reply-To: <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
+
+
+--l64Ovq0UtbQtisQg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231106164134.114668-2-anshulusr@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Anshul,
+On Tue, Nov 07, 2023 at 12:09:58PM +0100, Michal Simek wrote:
+>=20
+>=20
+> On 11/6/23 18:07, Conor Dooley wrote:
+> > On Mon, Nov 06, 2023 at 12:53:40PM +0100, Michal Simek wrote:
+> > > MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+> > > It is hardware compatible with classic MicroBlaze processor. Processo=
+r can
+> > > be used with standard AMD/Xilinx IPs including interrupt controller a=
+nd
+> > > timer.
+> > >=20
+> > > Signed-off-by: Michal Simek <michal.simek@amd.com>
+> > > ---
+> > >=20
+> > >   .../devicetree/bindings/soc/amd/amd.yaml      | 26 ++++++++++++++++=
++++
+> >=20
+> > Bindings for SoCs (and by extension boards with them) usually go to in
+> > $arch/$vendor.yaml not into soc/$vendor/$vendor.yaml. Why is this any
+> > different?
+>=20
+> I actually found it based on tracking renesas.yaml which describes one of
+> risc-v board. No problem to move it under bindings/riscv/
 
-kernel test robot noticed the following build errors:
+That one is kinda a special case, as it contains arm/arm64/riscv.
 
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on dtor-input/for-linus hid/for-next linus/master v6.6 next-20231107]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+--l64Ovq0UtbQtisQg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Anshul-Dalal/input-joystick-driver-for-Adafruit-Seesaw-Gamepad/20231107-004813
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20231106164134.114668-2-anshulusr%40gmail.com
-patch subject: [PATCH v7 2/2] input: joystick: driver for Adafruit Seesaw Gamepad
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20231108/202311080319.73n9aQfj-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231108/202311080319.73n9aQfj-lkp@intel.com/reproduce)
+-----BEGIN PGP SIGNATURE-----
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311080319.73n9aQfj-lkp@intel.com/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUqpmAAKCRB4tDGHoIJi
+0sWaAP4q1cECiBH/VWu1Z2ske7bzSK4pWDsxCedqUlVDPzU2GwD/TfyjYTvKNOov
+Sg/a6SEckcmadodqQO0MZ0ca30P0bQA=
+=DNsf
+-----END PGP SIGNATURE-----
 
-All errors (new ones prefixed by >>):
-
->> make[6]: *** No rule to make target 'drivers/input/joystick/adafruit_seesaw.o', needed by 'drivers/input/joystick/built-in.a'.
-   make[6]: Target 'drivers/input/joystick/' not remade because of errors.
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--l64Ovq0UtbQtisQg--
 
