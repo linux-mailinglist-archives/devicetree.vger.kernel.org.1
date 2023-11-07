@@ -1,152 +1,190 @@
-Return-Path: <devicetree+bounces-14439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7817E48ED
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 20:02:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98BF17E491D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 20:22:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA3C28138E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 19:02:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 375BF1F217A5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 19:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5C7358B6;
-	Tue,  7 Nov 2023 19:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mRAgALkF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3470C36AEA;
+	Tue,  7 Nov 2023 19:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D903158C;
-	Tue,  7 Nov 2023 19:02:46 +0000 (UTC)
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E80810A;
-	Tue,  7 Nov 2023 11:02:46 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-577fff1cae6so4446426a12.1;
-        Tue, 07 Nov 2023 11:02:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699383766; x=1699988566; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=uETg7nqrlrw09uZVX3TWZA1o4y5dupi3TkwOXHUBO7A=;
-        b=mRAgALkFcnQ9qaPnI8wkPD6ZK+Esne4h82Wrqt1nYAdcVBRc4ncBkCA1taQ94oivac
-         GezeZyf3wwEZCwVc5pASkE62C1h0FAm0AEniei96UGIVI7g07KaP7VZFTsVn8DljtX7+
-         /H1H9KxU9ti03hGNY7sc96AmBv2QIq877lgTrBVdXjnFuySJoAlLRW9BqbcBP8v3zCW5
-         k9wv3krjlnxiOsIYwn7jCFXBlPDzFO39L3HY9k0qkQAafA/2yDvadi6ywHWdWi2ZUYxQ
-         kjYIdzq9WdMw1y1G33zneWa2A7DFhMvBfrniYA44e+gksHvhOsUacWXV9i+vgQ/TAq7E
-         wGFA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776A436AE3;
+	Tue,  7 Nov 2023 19:22:35 +0000 (UTC)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97BC93;
+	Tue,  7 Nov 2023 11:22:34 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id 006d021491bc7-5875e24c749so2857892eaf.1;
+        Tue, 07 Nov 2023 11:22:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699383766; x=1699988566;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uETg7nqrlrw09uZVX3TWZA1o4y5dupi3TkwOXHUBO7A=;
-        b=mJihnsEPXDFOeM1I4ZYJw0j4aIfDFYjllYtEPL7WAV+5qa+X49we5VTs0vyrdho1hq
-         RPjgt0P69KRvomu1RdbIFDQnlLOUflkUM66bpAz1H017tcw16Zm9A0Neg4mrwdbAOi2b
-         ov33kKIM/V/c6wuGd7j0iqaGFa6AuUF9oNSQdB+do88ktD7if7WoKDyCQKbfUPeqR7gW
-         32665CxZyG/ELBawTtFF4cdkW+A4j1XaBJXCqFsgpFyBPZ9ZlHV6quNoqixYfCtF/SZr
-         ioiryMEuj3Se8XM4lQWi4mdyAcEiNbYhgPbgx+3Gk3RSlscXvVkdD2o5457MAqFwM4iw
-         y5KQ==
-X-Gm-Message-State: AOJu0YzW9hj1cjaq3Dr7ufEfqUKhXVAsHw6SUV8wTt2cu/AvtTFNrkht
-	tHY+rjsql2KmmIHIaL3Qj5Y=
-X-Google-Smtp-Source: AGHT+IHG8f7EVbCLP390BSgk3BzXB03QP5F0o2Xp+ILvSlT1DunvIht/tDZx/zCvjzJxc3fvFoyW5A==
-X-Received: by 2002:a17:90b:4d12:b0:280:2b48:f264 with SMTP id mw18-20020a17090b4d1200b002802b48f264mr5256854pjb.0.1699383765604;
-        Tue, 07 Nov 2023 11:02:45 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q22-20020a17090a2e1600b00280c6f35546sm150057pjd.49.2023.11.07.11.02.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 11:02:45 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <3ea9ef0c-27c0-4304-8bf7-26710224c3b1@roeck-us.net>
-Date: Tue, 7 Nov 2023 11:02:43 -0800
+        d=1e100.net; s=20230601; t=1699384954; x=1699989754;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C2LVUxVn/WYGw09VaClNEKd1bIRB6aUmkJKhH9M8Zr8=;
+        b=GnkdB9nO/1i2Ddbr+4x4ViK2+FnYUiwmV9hCTTftzKlaa1MnhbYxpgn/IKn1r07w4N
+         KgFY6Qfg1BoHY5xrl2Dv56silMlwg0WwAyWWPJNYVqN9YMuABBGyo2bZAMb3x+/rBWtg
+         Hap2u6l6/SuwRZkXYVh+qAS6nNJ1y+8ylU99EJAIbnrx0zYxti/WyRZZ3MpQ/xCrwPTF
+         wWhYNH+qa3D07GDES/Qt2vK1xth/JWXN2xT66iSKNNWDGJD6BRFASUp6tAY4duv/ydda
+         LFoxM8N4J8LtxoN7rJ8pB4WLxuUrcB2p3U4Mr8nN2HbnSHoQ+ksG9MreVuohVkfgjVdx
+         WRRg==
+X-Gm-Message-State: AOJu0YxVe4VjjAxYjZsn+7JAF+GqOEpE0oN0Rzyf8/0Svh0RanbDc5NM
+	o0t3YMzZK+kad3q5pXT8Ug==
+X-Google-Smtp-Source: AGHT+IFXGZPFxTsmKHVs8vrn/0NhY6nr60EHAu+d/pvNfIoUxLdTw46mI0g8UGJwBLUFArpxUJJnnA==
+X-Received: by 2002:a05:6870:d28e:b0:1ef:b809:3f26 with SMTP id d14-20020a056870d28e00b001efb8093f26mr4490129oae.17.1699384953861;
+        Tue, 07 Nov 2023 11:22:33 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j9-20020a9d7389000000b006cd0a847138sm1673512otk.2.2023.11.07.11.22.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Nov 2023 11:22:33 -0800 (PST)
+Received: (nullmailer pid 3312908 invoked by uid 1000);
+	Tue, 07 Nov 2023 19:22:32 -0000
+Date: Tue, 7 Nov 2023 13:22:32 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Robert Marko <robimarko@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v5 4/4] dt-bindings: Document bindings for
+ Marvell Aquantia PHY
+Message-ID: <20231107192232.GA3296102-robh@kernel.org>
+References: <20231106165433.2746-1-ansuelsmth@gmail.com>
+ <20231106165433.2746-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v10 0/3] Support pwm/tach driver for aspeed ast26xx
-Content-Language: en-US
-To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au,
- andrew@aj.id.au, corbet@lwn.net, thierry.reding@gmail.com,
- u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
- naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
- patrick@stwcx.xyz
-References: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231106165433.2746-4-ansuelsmth@gmail.com>
 
-On 11/7/23 02:50, Billy Tsai wrote:
-> Unlike the old design that the register setting of the TACH should based
-> on the configure of the PWM. In ast26xx, the dependency between pwm and
-> tach controller is eliminated and becomes a separate hardware block. One
-> is used to provide pwm output and another is used to monitor the frequency
-> of the input. This driver implements them by exposing two kernel
-> subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
-> existing drivers for controlling elements such as fans (pwm-fan.c),
-> beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
-> provides sysfs interfaces for fan.
+On Mon, Nov 06, 2023 at 05:54:33PM +0100, Christian Marangi wrote:
+> Document bindings for Marvell Aquantia PHY.
+
+For the subject: dt-bindings: net: Add Marvell Aquantia PHY
+
+('Document bindings' is redundant)
+
 > 
-> Changes since v9:
-> Change the type of fan-driving-mode to string
-> Fix some typos and formatting issues.
+> The Marvell Aquantia PHY require a firmware to work correctly and there
+> at least 3 way to load this firmware.
 > 
+> Describe all the different way and document the binding "firmware-name"
+> to load the PHY firmware from userspace.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v5:
+> - Drop extra entry not related to HW description
+> Changes v3:
+> - Make DT description more OS agnostic
+> - Use custom select to fix dtbs checks
+> Changes v2:
+> - Add DT patch
+> 
+>  .../bindings/net/marvell,aquantia.yaml        | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> new file mode 100644
+> index 000000000000..7106c5bdf73c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/marvell,aquantia.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Aquantia Ethernet PHY
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description: |
+> +  Marvell Aquantia Ethernet PHY require a firmware to be loaded to actually
+> +  work.
+> +
+> +  This can be done and is implemented by OEM in 3 different way:
+> +    - Attached SPI flash directly to the PHY with the firmware. The PHY
+> +      will self load the firmware in the presence of this configuration.
+> +    - Dedicated partition on system NAND with firmware in it. NVMEM
+> +      subsystem will be used and the declared NVMEM cell will load
+> +      the firmware to the PHY using the PHY mailbox interface.
+> +    - Manually provided firmware loaded from a file in the filesystem.
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ethernet-phy-id03a1.b445
+> +          - ethernet-phy-id03a1.b460
+> +          - ethernet-phy-id03a1.b4a2
+> +          - ethernet-phy-id03a1.b4d0
+> +          - ethernet-phy-id03a1.b4e0
+> +          - ethernet-phy-id03a1.b5c2
+> +          - ethernet-phy-id03a1.b4b0
+> +          - ethernet-phy-id03a1.b662
+> +          - ethernet-phy-id03a1.b712
+> +          - ethernet-phy-id31c3.1c12
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
+> +  firmware-name:
+> +    description: specify the name of PHY firmware to load
+> +
+> +  nvmem-cells:
+> +    description: phandle to the firmware nvmem cell
+> +    maxItems: 1
+> +
+> +  nvmem-cell-names:
+> +    const: firmware
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ethernet-phy@0 {
+> +            /*  Only needed to make DT lint tools work. Do not copy/paste
+> +             *  into real DTS files.
+> +             */
 
-What is the resend about ?
+I don't agree with this statement. Pretty sure we've been through this 
+before...
 
-Guenter
+If we have a node, we need to define what it is. The way that is done is 
+with compatible. Whether some particular OS implementation (currently) 
+needs compatible or not is irrelevant. It's not about dtschema needing 
+it, that just exposes the issue.
 
+These MDIO PHY bindings are all broken because they are never actually 
+applied to anything.
+
+Rob
 
