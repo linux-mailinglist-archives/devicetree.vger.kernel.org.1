@@ -1,160 +1,135 @@
-Return-Path: <devicetree+bounces-14365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF30E7E3CED
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:23:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C3D7E3D38
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:26:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D10281061
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:23:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CBE61C20B2F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BB92FE1F;
-	Tue,  7 Nov 2023 12:23:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B8A2FE2B;
+	Tue,  7 Nov 2023 12:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yaKLipwy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ntmFM7zV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4612FE0F
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:23:24 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9364C28A70
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 04:18:33 -0800 (PST)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-579de633419so67202477b3.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 04:18:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699359512; x=1699964312; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=AjUrVizqyH1nfI6x/UZaYgw1z+MKM3l8dtyFAmAVDWw=;
-        b=yaKLipwya77Nb9STHS6f5skNVFquQj9pxhrnBIy2ZOUQXhjwxxZ4DX79l/+lRFDIiw
-         zDFUnybuJO3nLdzgtIO+5Cy+DsdzxBer0kY4Bb4KeKdg6w6qZ9mRMWYjpEx+ivHny6vt
-         2nWCGqyaWhriac5mfb+XpB6Vjv1V1yJ12CT7Ii50NVnStSye11JRJuGLParf5lk4xYkk
-         tOUxhS6zXvRTdoFmmV50HkmUuwEW6XH2JlYhKFE+vIrNd6QL8fu/GoDiuSQt6eaIucvQ
-         it3dGbFKcjBQHYGKbveLKw0sJachoGYFKF/dJgSJMen8OrMQySq09VlGpe8Kcd6yZTjk
-         NSrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699359512; x=1699964312;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AjUrVizqyH1nfI6x/UZaYgw1z+MKM3l8dtyFAmAVDWw=;
-        b=M7r+n1/qMEBj2BBdeSonpgeE7/an6VsHHFeFFC6Ab+q2ul2lPzTlTr7jNSSqXk2/G1
-         uWJgjiGOODwwJn6z0+ULxte3Ulb1sjUhImAWP55Yd7aOh/+I+WD8WeBIMiSUm6XQutRZ
-         3fdDPwx1AgXB/94zbiOypIQT+MX1PJ3PlDrnuQnhN9i1oxz3bie9E2uOV3Vyyd9w1X8v
-         qlymHByYOZLc7EvkNGAluQwMEKxMqmHjbsqfq0ttT12iGO+T4OX67ZbH+CDMt/7lORki
-         7KXhex65NzvsJ1rHXOZ8PN3fbakmKDbM+Gs2bECUMqyA9qx/uwXAuTuIAn4vFOqFBA4L
-         DJJA==
-X-Gm-Message-State: AOJu0Yzo3nMe7vAc6u5zmYAqboTA1NrA64C1xDRJm3eKP6MZujmaAYmw
-	ahevBomlYdW2dKh15Rrd8lFdSofQYtrox6Kx6Kp7QA==
-X-Google-Smtp-Source: AGHT+IEfNk5GXDy4Op4JDSJ5jjpGKCs5RJ5m+Jq4s18y1HSS1sLqrMJRFHEjKKMGNS3lWsWeWVrZ/XIvsrSt6UA57OM=
-X-Received: by 2002:a0d:e6cb:0:b0:5a8:62f2:996a with SMTP id
- p194-20020a0de6cb000000b005a862f2996amr14903778ywe.6.1699359511723; Tue, 07
- Nov 2023 04:18:31 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A412FE26
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:26:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98EACC433C8;
+	Tue,  7 Nov 2023 12:26:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699360003;
+	bh=mV6nnOYneyUTZ+Dr37hMYmU8r271XhHRrhZrDDmeQ3Y=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=ntmFM7zV90X9d3i+u3DUtjDWzK5Iek4yFtiVMux6OXn132ik9NgnDs78uRuBe1J8d
+	 jGwFEfg+iFETtjNNYvuc+snW88lYd8zZVZPDMmeaKzNwqm86DledJ9Zj9nTg+dc9YU
+	 OvszBJ3nz0HmPk1kt3+z7LwudSlDNxJotbfmwV8Ev/OxoF65z4Jq12YSBQcYWGEUeo
+	 qPcaBGP2wYKN0lzSYanGESKl2K9XCNTomXkkcnVpFy3uUYHc34dXMv43alLeXyLGtg
+	 AiKdYMWbt7v+KgyBte6jyf4xXrV+S6aCUMT5V2+iU/FaipZyk//ANi8lZj1bniDZ0m
+	 F7SlzIuONwzOw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sasha Levin <sashal@kernel.org>,
+	magnus.damm@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.5 33/37] arm64: dts: renesas: r8a779f0: spider: Enable PCIe Host ch0
+Date: Tue,  7 Nov 2023 07:21:44 -0500
+Message-ID: <20231107122407.3760584-33-sashal@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231107122407.3760584-1-sashal@kernel.org>
+References: <20231107122407.3760584-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011184823.443959-1-peter.griffin@linaro.org>
- <20231011184823.443959-7-peter.griffin@linaro.org> <20231016134106.GA2643742-robh@kernel.org>
-In-Reply-To: <20231016134106.GA2643742-robh@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 7 Nov 2023 12:18:20 +0000
-Message-ID: <CADrjBPqB_tDjo68qODKsJMQLmDRoQo9U-LFR7os8bExjDNeEZw@mail.gmail.com>
-Subject: Re: [PATCH v3 06/20] dt-bindings: pinctrl: samsung: add
- google,gs101-pinctrl compatible
-To: Rob Herring <robh@kernel.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, 
-	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, 
-	s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, 
-	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
-	olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.5.10
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+From: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Thanks for your review.
+[ Upstream commit c588e1c9846b32182fd5a0ceb637b983810e7100 ]
 
-On Mon, 16 Oct 2023 at 14:41, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Oct 11, 2023 at 07:48:09PM +0100, Peter Griffin wrote:
-> > Add the "google,gs101-pinctrl" compatible to the dt-schema bindings
-> > documentation.
-> >
-> > Add maxItems of 50 for the interrupts property as gs101 can have
-> > multiple irqs.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  .../bindings/pinctrl/samsung,pinctrl.yaml     | 22 ++++++++++++++++++-
-> >  1 file changed, 21 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-> > index 26614621774a..6dc648490668 100644
-> > --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-> > +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
-> > @@ -35,6 +35,7 @@ properties:
-> >
-> >    compatible:
-> >      enum:
-> > +      - google,gs101-pinctrl
-> >        - samsung,s3c2412-pinctrl
-> >        - samsung,s3c2416-pinctrl
-> >        - samsung,s3c2440-pinctrl
-> > @@ -58,7 +59,8 @@ properties:
-> >    interrupts:
-> >      description:
-> >        Required for GPIO banks supporting external GPIO interrupts.
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 50
-> >
-> >    power-domains:
-> >      maxItems: 1
-> > @@ -134,6 +136,24 @@ allOf:
-> >            minItems: 1
-> >            maxItems: 1
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: google,gs101-pinctrl
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          description:
-> > +            Required for external wakeup interrupts. List all external
->
-> Is it external GPIO interrupts or wakeup interrupts?
+Enable PCIe Host controller channel 0 on R-Car S4-8 Spider board.
 
-These are external wakeup interrupts.
+Since this board has an Oculink connector, CLKREQ# pin of PFC for PCIe
+should not be used. So, using a GPIO is used to output the clock instead.
+Otherwise the controller cannot detect a PCIe device.
 
-Looking again I believe this can be dropped entirely as re-reading
-samsung,pinctrl-gpio-bank.yaml we are already defining the
-external wake-up interrupts on each bank in gs101-pinctrl.dtsi.
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Link: https://lore.kernel.org/r/20230905012404.2915246-3-yoshihiro.shimoda.uh@renesas.com
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ .../boot/dts/renesas/r8a779f0-spider-cpu.dtsi | 24 +++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
->
-> > +            wakeup interrupts supported by this bank.
-> > +          minItems: 1
-> > +          maxItems: 50
->
-> For a given SoC, I don't see how this is variable? If it is variable,
-> how do you know which entry is what?
+diff --git a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
+index dd8e0e1595260..d959105f83bcc 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
+@@ -33,6 +33,12 @@ memory@480000000 {
+ 		reg = <0x4 0x80000000 0x0 0x80000000>;
+ 	};
+ 
++	rc21012_pci: clk-rc21012-pci {
++		compatible = "fixed-clock";
++		clock-frequency = <100000000>;
++		#clock-cells = <0>;
++	};
++
+ 	rc21012_ufs: clk-rc21012-ufs {
+ 		compatible = "fixed-clock";
+ 		clock-frequency = <38400000>;
+@@ -86,6 +92,12 @@ gpio_exp_20: gpio@20 {
+ 		reg = <0x20>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++
++		rc21012-gpio2-hog {
++			gpio-hog;
++			gpios = <5 GPIO_ACTIVE_LOW>;
++			output-high;
++		};
+ 	};
+ };
+ 
+@@ -125,6 +137,18 @@ &mmc0 {
+ 	status = "okay";
+ };
+ 
++&pcie0_clkref {
++	compatible = "gpio-gate-clock";
++	clocks = <&rc21012_pci>;
++	enable-gpios = <&gpio2 15 GPIO_ACTIVE_LOW>;
++	/delete-property/ clock-frequency;
++};
++
++&pciec0 {
++	reset-gpio = <&gpio_exp_20 0 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
+ &pfc {
+ 	pinctrl-0 = <&scif_clk_pins>;
+ 	pinctrl-names = "default";
+-- 
+2.42.0
 
-It isn't variable.
-
-Peter.
 
