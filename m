@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-14456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36C17E4CB0
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E48717E4CD3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:23:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58081B20F22
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:22:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDA69B211C5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 23:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6FE930678;
-	Tue,  7 Nov 2023 23:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89A442F853;
+	Tue,  7 Nov 2023 23:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="inf+WCrd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmUfYLsf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B473066C;
-	Tue,  7 Nov 2023 23:22:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E8CC433C9;
-	Tue,  7 Nov 2023 23:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E0530670;
+	Tue,  7 Nov 2023 23:23:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 681BDC433C8;
+	Tue,  7 Nov 2023 23:23:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699399360;
-	bh=0QmTRPmgmn8UfXnnBetJxKx9fT3u6QCiV/IBazpqvW4=;
+	s=k20201202; t=1699399419;
+	bh=iHy+GyJ9NrsW/tearCxVFHDU40FeYw6GBtWc/Y5XfUU=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=inf+WCrdnatV+R5sI51JnfYYypM9HjsztiGaB/VbGR6fLpsv1ELFoefQ1xZA0Ueqk
-	 f88yl+AEw3lK+mAD/ooYMF7aV50iA0Dpk/s5EQzr2PWhd9/JEhpqLZJF44/52V6LWY
-	 o+3UnJPD0aKKfMXDufNRZvhz34HdnyYMj1zXuc00V6OJcGB4ItJYnSEe0Ku1pF1vAU
-	 qXbU8HjYvplp2DmqapDVH/pCT69YMb4qEV/GN35tSgKPZQ4Su8B6dPQRl7WLDv0OzT
-	 4OxwuKpatJY1UHNmBwuBznYPd/oGSTREA0IEGve8/fTCTvzrVZt9EdiV9KtnAjjzhD
-	 k4TatgAdUQbhA==
+	b=cmUfYLsfzr6xtgSYobCf1VTXJeBB5718clHDdFmRbOrbve022s/yeMwwBjELMgijk
+	 Xg1HlfT5sSwmX3DkZEVkNOm5Ee4SmlT3gZqvBn+/CfNyioRMrD8MdSJbxrc3SPBvlb
+	 iLnOr9iNYW5Ub3L//tIV66xBIQg4tS0dyKUmzVnl/cikiulk9x8BVrMP3v1TWg5QR7
+	 WFG1vkMbF44NVWmTw09SvbGf88881WFgs11bE1x+N0aQvLsZIeu29mqNy3j+I7Zf6O
+	 6EqLBErTrp8alQucDlbHGSX/IiWVKFmt0utBDYlqBlGHHVi7QJLL5PDvbNezaAFBua
+	 2wQ/FLwKkdZbw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -49,12 +49,12 @@ Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	linux-arm-msm@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 04/18] dt-bindings: phy: qcom,snps-eusb2-repeater: Add magic tuning overrides
-Date: Tue,  7 Nov 2023 18:21:58 -0500
-Message-ID: <20231107232231.3775605-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.5 04/18] dt-bindings: phy: qcom,snps-eusb2-repeater: Add magic tuning overrides
+Date: Tue,  7 Nov 2023 18:22:59 -0500
+Message-ID: <20231107232330.3776001-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107232231.3775605-1-sashal@kernel.org>
-References: <20231107232231.3775605-1-sashal@kernel.org>
+In-Reply-To: <20231107232330.3776001-1-sashal@kernel.org>
+References: <20231107232330.3776001-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6
+X-stable-base: Linux 6.5.10
 Content-Transfer-Encoding: 8bit
 
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
@@ -88,10 +88,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 21 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
-index 029569d5fcf35..24c733c10e0e9 100644
+index 083fda530b484..828650d4c4b09 100644
 --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
 +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
-@@ -32,6 +32,27 @@ properties:
+@@ -27,6 +27,27 @@ properties:
  
    vdd3-supply: true
  
