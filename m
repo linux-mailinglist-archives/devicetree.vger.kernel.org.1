@@ -1,153 +1,160 @@
-Return-Path: <devicetree+bounces-14364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0EF7E3CE7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF30E7E3CED
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 13:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88AB728109F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:21:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D10281061
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 12:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A672FE15;
-	Tue,  7 Nov 2023 12:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8BB92FE1F;
+	Tue,  7 Nov 2023 12:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IF1ZDzf6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yaKLipwy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88352E65B
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:21:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B7DEC433C7;
-	Tue,  7 Nov 2023 12:21:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699359703;
-	bh=2zbrzKpabxnWLwoLUzcvzgh7tyD/KjiahFGmtsSlE+k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=IF1ZDzf64jOVU0I1hKeqiMqsv/q6Hwv6roTymDw9apgcsMRuI+oxzeCtTGluhyXh5
-	 bFVsTIrJYdGf13g15kx8+1UUYx6VN8eR4WTKEQyxsoCkhykn5UWjd4/U04AUvFb/nL
-	 qF4GNyzrbfrf2oE4iIhYcsEuX8IbJknDOaOYvt8iZXiFQROE+FXgqtFRm2vTgghomS
-	 H//qu6lPzzIAcVZ6gn2Nt4EmvR71KqoVYymWQFVhNuuiCClGayKqBtt0ehJFA8231w
-	 lWDpqexie8etEyaTCbbyu38jANFFVbA9HvdV1zdI6f44u15s6NtxgA0rjU+R1d7Uy/
-	 NhSCbCezr7Ayw==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Laurentiu Tudor <laurentiu.tudor@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sasha Levin <sashal@kernel.org>,
-	leoyang.li@nxp.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 39/40] arm64: dts: ls208xa: use a pseudo-bus to constrain usb dma size
-Date: Tue,  7 Nov 2023 07:16:41 -0500
-Message-ID: <20231107121837.3759358-39-sashal@kernel.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231107121837.3759358-1-sashal@kernel.org>
-References: <20231107121837.3759358-1-sashal@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4612FE0F
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 12:23:24 +0000 (UTC)
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9364C28A70
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 04:18:33 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-579de633419so67202477b3.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 04:18:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699359512; x=1699964312; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AjUrVizqyH1nfI6x/UZaYgw1z+MKM3l8dtyFAmAVDWw=;
+        b=yaKLipwya77Nb9STHS6f5skNVFquQj9pxhrnBIy2ZOUQXhjwxxZ4DX79l/+lRFDIiw
+         zDFUnybuJO3nLdzgtIO+5Cy+DsdzxBer0kY4Bb4KeKdg6w6qZ9mRMWYjpEx+ivHny6vt
+         2nWCGqyaWhriac5mfb+XpB6Vjv1V1yJ12CT7Ii50NVnStSye11JRJuGLParf5lk4xYkk
+         tOUxhS6zXvRTdoFmmV50HkmUuwEW6XH2JlYhKFE+vIrNd6QL8fu/GoDiuSQt6eaIucvQ
+         it3dGbFKcjBQHYGKbveLKw0sJachoGYFKF/dJgSJMen8OrMQySq09VlGpe8Kcd6yZTjk
+         NSrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699359512; x=1699964312;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AjUrVizqyH1nfI6x/UZaYgw1z+MKM3l8dtyFAmAVDWw=;
+        b=M7r+n1/qMEBj2BBdeSonpgeE7/an6VsHHFeFFC6Ab+q2ul2lPzTlTr7jNSSqXk2/G1
+         uWJgjiGOODwwJn6z0+ULxte3Ulb1sjUhImAWP55Yd7aOh/+I+WD8WeBIMiSUm6XQutRZ
+         3fdDPwx1AgXB/94zbiOypIQT+MX1PJ3PlDrnuQnhN9i1oxz3bie9E2uOV3Vyyd9w1X8v
+         qlymHByYOZLc7EvkNGAluQwMEKxMqmHjbsqfq0ttT12iGO+T4OX67ZbH+CDMt/7lORki
+         7KXhex65NzvsJ1rHXOZ8PN3fbakmKDbM+Gs2bECUMqyA9qx/uwXAuTuIAn4vFOqFBA4L
+         DJJA==
+X-Gm-Message-State: AOJu0Yzo3nMe7vAc6u5zmYAqboTA1NrA64C1xDRJm3eKP6MZujmaAYmw
+	ahevBomlYdW2dKh15Rrd8lFdSofQYtrox6Kx6Kp7QA==
+X-Google-Smtp-Source: AGHT+IEfNk5GXDy4Op4JDSJ5jjpGKCs5RJ5m+Jq4s18y1HSS1sLqrMJRFHEjKKMGNS3lWsWeWVrZ/XIvsrSt6UA57OM=
+X-Received: by 2002:a0d:e6cb:0:b0:5a8:62f2:996a with SMTP id
+ p194-20020a0de6cb000000b005a862f2996amr14903778ywe.6.1699359511723; Tue, 07
+ Nov 2023 04:18:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6
-Content-Transfer-Encoding: 8bit
+References: <20231011184823.443959-1-peter.griffin@linaro.org>
+ <20231011184823.443959-7-peter.griffin@linaro.org> <20231016134106.GA2643742-robh@kernel.org>
+In-Reply-To: <20231016134106.GA2643742-robh@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 7 Nov 2023 12:18:20 +0000
+Message-ID: <CADrjBPqB_tDjo68qODKsJMQLmDRoQo9U-LFR7os8bExjDNeEZw@mail.gmail.com>
+Subject: Re: [PATCH v3 06/20] dt-bindings: pinctrl: samsung: add
+ google,gs101-pinctrl compatible
+To: Rob Herring <robh@kernel.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, 
+	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, 
+	s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, 
+	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Laurentiu Tudor <laurentiu.tudor@nxp.com>
+Hi Rob,
 
-[ Upstream commit b39d5016456871a88f5cd141914a5043591b46f3 ]
+Thanks for your review.
 
-Wrap the usb controllers in an intermediate simple-bus and use it to
-constrain the dma address size of these usb controllers to the 40b
-that they generate toward the interconnect. This is required because
-the SoC uses 48b address sizes and this mismatch would lead to smmu
-context faults [1] because the usb generates 40b addresses while the
-smmu page tables are populated with 48b wide addresses.
+On Mon, 16 Oct 2023 at 14:41, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Oct 11, 2023 at 07:48:09PM +0100, Peter Griffin wrote:
+> > Add the "google,gs101-pinctrl" compatible to the dt-schema bindings
+> > documentation.
+> >
+> > Add maxItems of 50 for the interrupts property as gs101 can have
+> > multiple irqs.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  .../bindings/pinctrl/samsung,pinctrl.yaml     | 22 ++++++++++++++++++-
+> >  1 file changed, 21 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> > index 26614621774a..6dc648490668 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> > @@ -35,6 +35,7 @@ properties:
+> >
+> >    compatible:
+> >      enum:
+> > +      - google,gs101-pinctrl
+> >        - samsung,s3c2412-pinctrl
+> >        - samsung,s3c2416-pinctrl
+> >        - samsung,s3c2440-pinctrl
+> > @@ -58,7 +59,8 @@ properties:
+> >    interrupts:
+> >      description:
+> >        Required for GPIO banks supporting external GPIO interrupts.
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 50
+> >
+> >    power-domains:
+> >      maxItems: 1
+> > @@ -134,6 +136,24 @@ allOf:
+> >            minItems: 1
+> >            maxItems: 1
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: google,gs101-pinctrl
+> > +    then:
+> > +      properties:
+> > +        interrupts:
+> > +          description:
+> > +            Required for external wakeup interrupts. List all external
+>
+> Is it external GPIO interrupts or wakeup interrupts?
 
-[1]
-xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 1
-xhci-hcd xhci-hcd.0.auto: hcc params 0x0220f66d hci version 0x100 quirks 0x0000000002000010
-xhci-hcd xhci-hcd.0.auto: irq 108, io mem 0x03100000
-xhci-hcd xhci-hcd.0.auto: xHCI Host Controller
-xhci-hcd xhci-hcd.0.auto: new USB bus registered, assigned bus number 2
-xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-arm-smmu 5000000.iommu: Unhandled context fault: fsr=0x402, iova=0xffffffb000, fsynr=0x0, cbfrsynra=0xc01, cb=3
+These are external wakeup interrupts.
 
-Signed-off-by: Laurentiu Tudor <laurentiu.tudor@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 46 +++++++++++--------
- 1 file changed, 27 insertions(+), 19 deletions(-)
+Looking again I believe this can be dropped entirely as re-reading
+samsung,pinctrl-gpio-bank.yaml we are already defining the
+external wake-up interrupts on each bank in gs101-pinctrl.dtsi.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index d2f5345d05600..717288bbdb8b6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -1186,26 +1186,34 @@ sata1: sata@3210000 {
- 			dma-coherent;
- 		};
- 
--		usb0: usb@3100000 {
--			status = "disabled";
--			compatible = "snps,dwc3";
--			reg = <0x0 0x3100000 0x0 0x10000>;
--			interrupts = <0 80 0x4>; /* Level high type */
--			dr_mode = "host";
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
--		};
-+		bus: bus {
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			compatible = "simple-bus";
-+			ranges;
-+			dma-ranges = <0x0 0x0 0x0 0x0 0x100 0x00000000>;
-+
-+			usb0: usb@3100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3100000 0x0 0x10000>;
-+				interrupts = <0 80 0x4>; /* Level high type */
-+				dr_mode = "host";
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+				status = "disabled";
-+			};
- 
--		usb1: usb@3110000 {
--			status = "disabled";
--			compatible = "snps,dwc3";
--			reg = <0x0 0x3110000 0x0 0x10000>;
--			interrupts = <0 81 0x4>; /* Level high type */
--			dr_mode = "host";
--			snps,quirk-frame-length-adjustment = <0x20>;
--			snps,dis_rxdet_inp3_quirk;
--			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+			usb1: usb@3110000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0x3110000 0x0 0x10000>;
-+				interrupts = <0 81 0x4>; /* Level high type */
-+				dr_mode = "host";
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+				snps,dis_rxdet_inp3_quirk;
-+				snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		ccn@4000000 {
--- 
-2.42.0
+>
+> > +            wakeup interrupts supported by this bank.
+> > +          minItems: 1
+> > +          maxItems: 50
+>
+> For a given SoC, I don't see how this is variable? If it is variable,
+> how do you know which entry is what?
 
+It isn't variable.
+
+Peter.
 
