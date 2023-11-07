@@ -1,115 +1,204 @@
-Return-Path: <devicetree+bounces-14251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1845A7E3296
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 02:28:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 049A87E32F9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 03:33:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48BFC1C20968
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 01:28:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E60DD1C2099F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 02:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32CB0186C;
-	Tue,  7 Nov 2023 01:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6C8CA59;
+	Tue,  7 Nov 2023 02:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OFKtISmp"
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="D9GDA0XG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B64186E;
-	Tue,  7 Nov 2023 01:28:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10037D51;
-	Mon,  6 Nov 2023 17:28:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699320514; x=1730856514;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KGp1FTMlLvE0W7RuyMeG9Bl9f53olpKJMGfeLaVZB9c=;
-  b=OFKtISmpMfGma0vNO745XiRn11LkB8K/pSSCBCrXJWuDr/1LniUTTQd8
-   XO/sKpcqUMOYRG2EBhQOD/QSbxv9+Aa24GEBrmXLIhrZN/2KQxGeID7e4
-   Mm8yx9htyRE6gLtPBroorlU/yJ7vY49xyAbLkQryeqQjlEloFd/K7wZlO
-   hLiH7giEiFjY86s+DgG7lOinlQjahDnWDh3PvXsIqPAxqrHLk9uC49vsW
-   4p12wmzJ1/vkHP/f9PP7xN/rX5rVeilxwRH2dHokcw1JFgYVgR3QCwZs5
-   z4Z9ViVrhoT7IdCuOBNqyrLYZp9OLSRB4WR0xgUWNDaX6N9ZLoaXCO83U
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="386577560"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; 
-   d="scan'208";a="386577560"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2023 17:28:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="756022146"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; 
-   d="scan'208";a="756022146"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by orsmga007.jf.intel.com with ESMTP; 06 Nov 2023 17:28:30 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r0AtH-0006sm-2W;
-	Tue, 07 Nov 2023 01:28:27 +0000
-Date: Tue, 7 Nov 2023 09:28:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Bryant Mairs <bryant@mai.rs>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 3/7] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4
- 8.0 Wi-Fi
-Message-ID: <202311070844.zoUJwRlS-lkp@intel.com>
-References: <20231105204759.37107-4-bryant@mai.rs>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A6ACA62
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 02:32:58 +0000 (UTC)
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2068.outbound.protection.outlook.com [40.107.117.68])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6A7C10F;
+	Mon,  6 Nov 2023 18:32:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DeBze1FNxGEPIRjVIYm+XmlBa3B4VcsDJEp1pPjmcvPKi+qzQmsnyXo3GCTW3xh7/uJiO141an/5NOuZ201cCQx2n4Gt7zyZWJJ8rNJLd9d2+x6uvYS5LRsCVT5bDiFiuoZ8VbLvSoMAXdkM2Tcau9DjuepdSazmnwh5PeC6LKdhAuqCGio0LREEH5xGhSYFw32umyNTJLS3y9rnaVdvLgr+hyY1ZqLlmMcjLkktWhcPEhp8P5hrkZm9yCXPj6Bx34VPQo1qh5/QmQEd6NC33qXpBYXoIXtgRCACYb2S80cAMi+CJs5RbvEis6pHLmUoEjlgDN/t3ujIDY8ZEQT9DA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VH7MZMkC7l7hMIS1j8vw+n34SNG13UkLmvc6xTfbg3Y=;
+ b=ADAbEdX9jpu5WsPVs8JxpZqBRnl5f9l4JHZrPhYkCpTK973jmt0SfUEMdJUI8K7JvWehTVbevgMSSzHW9k2K/eDwprXmjsR2Z7ZEQNo2dL6+X0+Sh6/Kw0ZkefDM/2HxhN5OLVCpDq4F9uE//MxgVfkIHZ/72SZZqqml8Z3rI48QgPDJbf41Zf4DVwVSZm+FkYaqW9NxQFq8DpSL1g+g6aCaugi7pHWR073mMOQIIYbXqMN0oVMy4TJh8B6n/AtAZkc2ipmWA1DgCPT1sJBVpVlaCnibcfKJyohCsZH5JSbQxEGCiqT88FAjqZuj8XcGub3R+tnS5Lepgvh3LBPOYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
+ dkim=pass header.d=nuvoton.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VH7MZMkC7l7hMIS1j8vw+n34SNG13UkLmvc6xTfbg3Y=;
+ b=D9GDA0XGA+psvNfuIEpAZJP7/g2BapsZtn9ut72RbWWkj6qujB7ZNDDV5gZu86O1jzfavs1/fQSCsZV38nDL2I5eemhPXkn6+NK/nhbarrtNDZgVTRfltsVENAZIL6BlZcDekQOYRkZpMWlraX0acWg/ZzfKTsNsnTkWb4sB5c8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nuvoton.com;
+Received: from SL2PR03MB4348.apcprd03.prod.outlook.com (2603:1096:100:5c::17)
+ by TYZPR03MB7667.apcprd03.prod.outlook.com (2603:1096:400:428::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.25; Tue, 7 Nov
+ 2023 02:32:52 +0000
+Received: from SL2PR03MB4348.apcprd03.prod.outlook.com
+ ([fe80::6e67:b9c9:aef3:6759]) by SL2PR03MB4348.apcprd03.prod.outlook.com
+ ([fe80::6e67:b9c9:aef3:6759%4]) with mapi id 15.20.6954.028; Tue, 7 Nov 2023
+ 02:32:52 +0000
+Message-ID: <1f4666c4-ad5d-bdc1-1d86-ddf5fc824a12@nuvoton.com>
+Date: Tue, 7 Nov 2023 10:32:45 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: nau8821: Add DMIC slew rate
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ conor+dt@kernel.org, YHCHuang@nuvoton.com, KCHSU0@nuvoton.com,
+ CTLIN0@nuvoton.com, SJLIN0@nuvoton.com, scott6986@gmail.com,
+ supercraig0719@gmail.com, dardar923@gmail.com
+References: <20231101063514.666754-1-wtli@nuvoton.com>
+ <20231101063514.666754-2-wtli@nuvoton.com>
+ <20231106144141.GA312869-robh@kernel.org>
+From: AS50 WTLi <WTLI@nuvoton.com>
+In-Reply-To: <20231106144141.GA312869-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SI2P153CA0005.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::11) To SL2PR03MB4348.apcprd03.prod.outlook.com
+ (2603:1096:100:5c::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231105204759.37107-4-bryant@mai.rs>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SL2PR03MB4348:EE_|TYZPR03MB7667:EE_
+X-MS-Office365-Filtering-Correlation-Id: bcc2e9f1-22e4-474e-05f4-08dbdf39d705
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	N4QKv+9xQmTS6YatpVT08//NgiJdciEBXrfye72kZIGAUnyYrjhdVTblg4aLQA/BailViBdCg2R+9sSANoy2tGJrnPSxDRR9jksHpZs4X2x+n/F/XgYViCWxYNB2C8Q/bIImiYJIdU9Kng41L5SG9csGdQi3NAjOGPaAgvYAVpqNnR+GWAE5yrfA2avvhTrwEKVXDQYapzK/Kzmh1SrixUafdeT9etJhluY5MsIQuW0XUawEyYoFokjBAKvK/NoCWwg2oWKWPWCgozVSxUzMS820qyUqMFTIoROBjB4xSw+u6wMLcJOjLv/f8myy9HxafF9xfpjakheIwRXB7UqzIOltD5gYU96cV5iX95y4L9yE+y1OEmqiVjdL0qG4jQBEOTbP2R6YTmbIqIMEo0zEO0MNtuHrxOTppJ9lgMpzlaEZVdWjDCHeVHf7fVd18tjt3JLMW8zOYfpL9hFfgHq1jo1TTHZoe/2Pwiqh5PWC1bNqi7MTWqQxonUzisKbhw7/RQ7/VN4xN21eYLpVgb8uCP7o5bNLqVRelrd8kCRNrTzTJ/bOPvUXQHTqv7hxHs4MdSrTShrJiUZuInOdm5X4qw7uO7sWgnzePZZX/DsMxpnhWQ/x7Vd5mFlcIhPVJ6skjGXbKYkPMss46vpWo9Xo2EIZzBt+2WYUCMdwqBp1cyjJ8BnpjTPSyOcvHuGSB3+HZswRdyGLzwH0LG/IaUD5HZjiT2BZZVdD7jJWPydaFBuugVnlta6+t/ud8UxYcQiG
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2PR03MB4348.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(39860400002)(396003)(376002)(366004)(230922051799003)(230273577357003)(230173577357003)(451199024)(1800799009)(186009)(64100799003)(66556008)(7416002)(5660300002)(41300700001)(2906002)(38100700002)(36756003)(6916009)(66476007)(31696002)(86362001)(66946007)(6486002)(6512007)(2616005)(26005)(6666004)(6506007)(53546011)(478600001)(83380400001)(4326008)(316002)(8936002)(31686004)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?b0x1Qi82OWE3NjJSZ0RFei9CTm9NeXRkTTFoOG1meUlCaGtsWVFHVXFrSWVK?=
+ =?utf-8?B?WkFFNkgwRDZRd3g1dzBEQkQ4Z2hzbGFBUnl3aTZIUHd3NW1LVEhsRzBXTzkz?=
+ =?utf-8?B?b3hnVUhYMnk3WXpCUll6UFVFaWRURjUrMUpzbmxYbnlNQlVHZjI0TFJzQ0VL?=
+ =?utf-8?B?WVo0Znl5cHVaMUNocExoM1JzeGZrTllNdVVJSGNsUTBFai9uUjlsR3NsS3pi?=
+ =?utf-8?B?UjUrVi9TK3UrZTEvYnhmNEhYTGdiL3RYTXdMQXlvOHk0QmZzdkJiYitZRGZ2?=
+ =?utf-8?B?REtXb3RTa1hEUGU1MTMwb2xiNDEzeDY1dlJwemNCUnBEMENwcUg5ang3aysx?=
+ =?utf-8?B?eE5TdmtDNzQxSnlZemx6b1ZqVDBGYlNHcDB0bmJqUlBzeW5QcDcrVDc2SnpO?=
+ =?utf-8?B?WjlZSDFXaElEK1BCaVI2Nm5rcForOWsyZDlhSVh2RjhteExjZ2xCZStXTnFx?=
+ =?utf-8?B?bXpWR3h3dVVaQVVnNmtiWXlTSmRCc0xQM2ZWSFg1S1E4VTl6OTlqUHNISkM1?=
+ =?utf-8?B?ZVdzRXYrQlFIYStJR0ZlT3ZaWnRPbTVIajl5cnZMUUNtSnhhUk5waEFRdFo3?=
+ =?utf-8?B?dHcwREY1SjBIM29uZTNxVENLc1R1eU9lVE8yTjdSOGxYZnZXdUozRGk1S09i?=
+ =?utf-8?B?aGFvOWNXdWdEZGFOZGZrT2FlY3lmT0RKUE02OUZ0R0JXZm85SFJCem1hRU13?=
+ =?utf-8?B?YWQ2a3JaZFVUM1p6RHAzQ2Y2VVBzTTJwWkxFTGJjMDhic3pEM2ZLMEZTNzgy?=
+ =?utf-8?B?aHJqMUdrOWNEUVc1Z242NVI1STF6WWtLbG9CYU1Md1NsSk5hRU1ZOExGemxX?=
+ =?utf-8?B?YjNuQzVkekxHUC9sU1p2TzdtL2RXdnVwWVB0UG9OSnBUQXhUV05Odm54dERv?=
+ =?utf-8?B?NWNuNTg5aVlyemM1bkhNcXdyQU01Rk9SaWFUQmt0Tjk0aXBvb25JYTA5Uy9w?=
+ =?utf-8?B?QlliNEdZSzB0MVBwcjg3Zk02OXQ4YmVTbStYWWVYbXQ3bVV2K3ZGQzNpa0xO?=
+ =?utf-8?B?SmhUczMwL1dUdmFMWktRbFpkMGdGWE1GQzRxSUxKeTcyZkw4eFVIM3F0S1Rm?=
+ =?utf-8?B?cG02dzlQUnlYNVVNb2FQV2w5ZExDYVJPUmVJRWI5eHpzUzZ4Nm0veGJiZ09n?=
+ =?utf-8?B?Y0J0SEppdTl3T0gyWmhxdGRBc2Z4SDdsRzJVUmVlcVJCbFhnOTJiRG9Mcy8v?=
+ =?utf-8?B?UXVERmE3OEtlKzBndjQwbVJEazM1K0s5aDROTFh5aEQxZVhiYkh6TzkrT0I2?=
+ =?utf-8?B?cGpiNWp3N1YxSUFXYlQ2cTlRL0ErRFVJcU1MNlN6TmtDNlROMWZPYzFERnV2?=
+ =?utf-8?B?TnJHNlR1T0pOdjRBTi9ZZ0ZEY3dLL2V2RThweUJkMXhub2tEN0hHS1ZQeEQ0?=
+ =?utf-8?B?YnNZaTlIcUlDbjNQdmMrR0cwRHY0SEgra1pqMHZOYnZGZVBuVmp6c3htVkhW?=
+ =?utf-8?B?Z2VkeSswNkk2UWd2TjdwTDdFdFBaVnVnNTB5eDd0Wjd0VVo4dCs1K24raHdw?=
+ =?utf-8?B?RFVDQXY5NzVubkF0alZWclovMWQwL0lLN2VEM0R6c3U5bGN5Wk5LQVp3dUlv?=
+ =?utf-8?B?NXJ5OU8vRHk4ZXlsdm1sNXQyNGxSZzc0cUNNa3BQOHZEbGZYcXlaa0JsZkVT?=
+ =?utf-8?B?d25IMTlKallLbnRUV3gvVUN2b1JDTHFkbTFjZ2FxeWV3dzVhOVdWa0lJcmFR?=
+ =?utf-8?B?a0pIc1MrcFV2TnBjdnNqOE9nTzB5WDJwR0p1aUs1Um55ZkxKMDVCZlN0endj?=
+ =?utf-8?B?eGFHM3Npb0VEeXd0dllycnNQTC9UTnVMeDhxakQ2eHFJMURwdFpBTXhObEl6?=
+ =?utf-8?B?OWRzYmIrNU1KTjdlVWc4aDNMMW5kM25RUWMxdUp1VXNSNHB6MGhGdGRnRWZB?=
+ =?utf-8?B?aldpTEdBcXRxTklxa1hDUE9EaUw0djU1SkxtLzI5ZnBxb3RIVzhDcEEvN1kw?=
+ =?utf-8?B?bXlQYjY4cWxHeEZSdEF2OHB3dWhwenhTcXlEem9ZNmVnb0lZY0pEMktVdkVB?=
+ =?utf-8?B?MmI1eUNtWGVJUTEydzVaQml5SzlqOHJwa3NlbDZsYWxSeXFqT3ppU2VjZEhW?=
+ =?utf-8?B?MkdXbHgyTVJwNStCZFVoVGRQbVd1elpRTkdvSVRBdmFxZjc2ek5NeGVDNERB?=
+ =?utf-8?Q?PhSOeNuL5wiBatfZYQ651uvYo?=
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bcc2e9f1-22e4-474e-05f4-08dbdf39d705
+X-MS-Exchange-CrossTenant-AuthSource: SL2PR03MB4348.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2023 02:32:51.9278
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2nu5Mr918mLHgYhUE8pGPOhuZxugKwkHU+jXY7v4z8el/ZyekkqIRPTn4saeo5cx2iBNahMcz7/GBUME/M3tHw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7667
 
-Hi Bryant,
 
-kernel test robot noticed the following build errors:
+On 11/6/2023 10:41 PM, Rob Herring wrote:
+> CAUTION - External Email: Do not click links or open attachments unless y=
+ou acknowledge the sender and content.
+>
+>
+> On Wed, Nov 01, 2023 at 02:35:13PM +0800, Seven Lee wrote:
+>> Add input with DMIC slew rate controls
+>>
+>> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+>> ---
+>>   .../devicetree/bindings/sound/nuvoton,nau8821.yaml        | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yam=
+l b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+>> index 3e54abd4ca74..48c389276a15 100644
+>> --- a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+>> @@ -89,6 +89,13 @@ properties:
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>       default: 3072000
+>>
+>> +  nuvoton,dmic-slew-rate:
+>> +    description: The range 0 to 7 represents the speed of DMIC slew rat=
+e.
+>> +        The lowest value 0 means the slowest rate and the highest value
+>> +        7 means the fastest rate.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    default: 0
+> Don't write constraints in prose:
+>
+> maximum: 7
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on dtor-input/next linus/master v6.6 next-20231106]
-[cannot apply to dtor-input/for-linus]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+okay, I will add maximum: 7 description. Thanks.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Bryant-Mairs/dt-bindings-input-melfas-mms114-add-MMS252-compatible/20231106-045021
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231105204759.37107-4-bryant%40mai.rs
-patch subject: [PATCH 3/7] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4 8.0 Wi-Fi
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20231107/202311070844.zoUJwRlS-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231107/202311070844.zoUJwRlS-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311070844.zoUJwRlS-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm/boot/dts/qcom/qcom-apq8026-samsung-milletwifi.dts:14.15-26 Label or path mba_region not found
->> Error: arch/arm/boot/dts/qcom/qcom-apq8026-samsung-milletwifi.dts:15.15-27 Label or path mpss_region not found
->> Error: arch/arm/boot/dts/qcom/qcom-apq8026-samsung-milletwifi.dts:17.15-28 Label or path wcnss_region not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+>> +
+>>     nuvoton,left-input-single-end:
+>>       description: Enable left input with single-ended settings if set.
+>>           For the headset mic application, the single-ended control is
+>> @@ -127,6 +134,7 @@ examples:
+>>               nuvoton,jack-insert-debounce =3D <7>;
+>>               nuvoton,jack-eject-debounce =3D <0>;
+>>               nuvoton,dmic-clk-threshold =3D <3072000>;
+>> +            nuvoton,dmic-slew-rate=3D <0>;
+>>               #sound-dai-cells =3D <0>;
+>>           };
+>>       };
+>> --
+>> 2.25.1
+>>
+________________________________
+________________________________
+ The privileged confidential information contained in this email is intende=
+d for use only by the addressees as indicated by the original sender of thi=
+s email. If you are not the addressee indicated in this email or are not re=
+sponsible for delivery of the email to such a person, please kindly reply t=
+o the sender indicating this fact and delete all copies of it from your com=
+puter and network server immediately. Your cooperation is highly appreciate=
+d. It is advised that any unauthorized use of confidential information of N=
+uvoton is strictly prohibited; and any information in this email irrelevant=
+ to the official business of Nuvoton shall be deemed as neither given nor e=
+ndorsed by Nuvoton.
 
