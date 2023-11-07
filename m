@@ -1,162 +1,141 @@
-Return-Path: <devicetree+bounces-14432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89FB87E477C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:47:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC537E47D6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 19:09:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44283280DD9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 17:47:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA59F2811A8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 18:09:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A7E321B3;
-	Tue,  7 Nov 2023 17:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44683589B;
+	Tue,  7 Nov 2023 18:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dzvKNjIE"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="P9Hf0Bt/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317DE30CFD
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 17:47:38 +0000 (UTC)
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C14412C
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 09:47:37 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5441ba3e53cso7603363a12.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 09:47:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699379256; x=1699984056; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WSmUDYezrRMsQxCZGKuJaXceyDK4AjhEJzY0uxoMoug=;
-        b=dzvKNjIEDQa0VtPhxodAhvWZTrhL3MiOgeyAlbQ8X22jE4ThK3KNbOrGUQ1V7ZQHSj
-         y0Y0+chu6OR5BN7QD/gZh21tJ5bTFOXunNP/43NzigaPrf4KpSIWd9g54ivhEkzJ40F8
-         ptfyQjy7HCaBNXr0BcPJd5JBIhlH/aKqOA5BpdksaR++Y0r93VuHOtOGqgM3ae1DiIQ6
-         tS5zohkmFkZwJauHHdpLtKZyvzwFLDrZQEfH4ZktGR6K6k2CmW7VYd9hE96DHPBKeUL/
-         XwaAMxwIpUmdCvmTeMe6ter5dMqMkZS6kBb7vKNTjNPP/AzJ5V3QlfdXjmYoV+W7UiQk
-         D0ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699379256; x=1699984056;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WSmUDYezrRMsQxCZGKuJaXceyDK4AjhEJzY0uxoMoug=;
-        b=qxORUNwzSnradJlRzOLQU6SLiFOe0c5ih4AC2ANI49CFz/V972qB92H8Ayp9foWyIn
-         ApRG12FCgDw1406NkZ7NHfldjZVXM7xWz1uVuxsb4Vgp/PILKBm4Fl+mT649p8GNlrNt
-         QqjbusxTc0VsmHkFhv6bLwTnuU0zhUTAhhrai/oJX1jf9shKL9kWMum+F/xq+YaGy/cN
-         HxpBTztzJ8qCbCOzECxl2cdfZyMVVuLw45LPlDNXP1uegRkzfl7RplYGnL+Vd9Xm83TI
-         gIMKME/fyHD5jLgcyeXJDmBwtBBeJuh4X48d5lcgcRU1ZZM6J2oKkD14V707kuYyr0bG
-         KSLw==
-X-Gm-Message-State: AOJu0YzhRkO4m23xtgV1vD62upFslJL23RUB4GlHMztA3lveEVhsr0vk
-	0fCVIPAA8Um/lvUO0zjlv2xPMA==
-X-Google-Smtp-Source: AGHT+IHZt7HQgSljJImaRxyY9TMyowW0nqCjfkOaHJNL5xG/2Y1xYnrOOIiXaOSqEyyvpJZDCaX2wA==
-X-Received: by 2002:a17:907:3f03:b0:9be:aebc:d479 with SMTP id hq3-20020a1709073f0300b009beaebcd479mr16973571ejc.19.1699379255769;
-        Tue, 07 Nov 2023 09:47:35 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ox11-20020a170907100b00b009dd949b75c7sm1288243ejb.151.2023.11.07.09.47.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 09:47:35 -0800 (PST)
-Message-ID: <1d5d1357-0b53-4639-add9-2b3f38aae744@linaro.org>
-Date: Tue, 7 Nov 2023 18:47:34 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4A53588D
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 18:09:00 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2075.outbound.protection.outlook.com [40.107.95.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8562A8F;
+	Tue,  7 Nov 2023 10:08:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=d7Sl9otDKet0IbnhOBQH6Wk9DQzzx2vqtRFdZYg61JIYoUMxd9xl7yo2dzmTgwYNrPh4hXRiMGHSHNyH5xMUcpOxLuZZEcLNzC4is7f0z9GUH5GuFw25wjAnUXwd4jkhXra8iqu2hUN2qlaNvTFQ/z2DmwxiWe6Q3yZ4PJYuc0KDJPi0jrCc+4m4zhXxxcrKoPasbKiPG/c1rQRqkAjnJzdlmV+3ZtwqF7WfjtdMjEYlMVEJja/3YfqtU27PHsICPxkeN3/RwV58+wFNOHTqmBF2abo3mvzqCOcK4NhuNP2ewbuzTnmQR0jLvPNYi3tIYd9aHBmxCe+ik+kmbMkcYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U4mRU53y0dqC3uaRoCbDQ1YkAjHv1Pf+rCTKVce8BIc=;
+ b=jp43SYwOG9Th8HfvYM/zo6RJry5t7OoelwchQMiZ/ZW+DCYA2qOta/rGW3+oFRWH+5Q7j3/gN74KxTCQzB4uZkh0d8ILq7KoBudxiWbl3pmcpQ7ZWUfGy6B7F/qYO/oGvnuITi0+cKnFDEhWQr7dhoSgLBBn8/h9C4xo4ftBmj60cOjou4RI59NMWiSJTJaVDRPEuTHP69wT96KWJBAbKhevmw8umEozQo3x4Ea5TmhyOVyR1WsA3/XHWC6aKNCt0ypos83TNRcvGkFvTOgk+RYrclwOJhkkM+DaB2Tx8HpZOthM8LFEibWFh2oRgmeVCGbl2NOtjm9pwDtsEw/o8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U4mRU53y0dqC3uaRoCbDQ1YkAjHv1Pf+rCTKVce8BIc=;
+ b=P9Hf0Bt/d2DbNjKyNJ4xFNO8gdF/aS0yEEeuP24H795INAaJMqmoBtGQQyQryp9KTan74TFNX3OggzY6VTQtQtl8oBRctpGnZ6HjGJfoxFzQ5LNrpktq6Bl2HmNxqSevGT0jAjK53jzGFDgbjavGy8VM90i/77P+HtLU+lkQUOY=
+Received: from SA1P222CA0183.NAMP222.PROD.OUTLOOK.COM (2603:10b6:806:3c4::7)
+ by CH0PR12MB5252.namprd12.prod.outlook.com (2603:10b6:610:d3::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Tue, 7 Nov
+ 2023 18:08:54 +0000
+Received: from SN1PEPF00026369.namprd02.prod.outlook.com
+ (2603:10b6:806:3c4:cafe::55) by SA1P222CA0183.outlook.office365.com
+ (2603:10b6:806:3c4::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.18 via Frontend
+ Transport; Tue, 7 Nov 2023 18:08:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF00026369.mail.protection.outlook.com (10.167.241.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6977.16 via Frontend Transport; Tue, 7 Nov 2023 18:08:54 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Tue, 7 Nov
+ 2023 12:08:53 -0600
+Received: from xsjapps58.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32 via Frontend
+ Transport; Tue, 7 Nov 2023 12:08:52 -0600
+From: Kris Chaplin <kris.chaplin@amd.com>
+To: <kris.chaplin@amd.com>, <thomas.delev@amd.com>, <michal.simek@amd.com>,
+	<krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<git@amd.com>
+Subject: [PATCH v3 0/2] w1: Add AXI 1-wire host driver for AMD programmable logic IP core
+Date: Tue, 7 Nov 2023 10:06:50 -0800
+Message-ID: <20231107180814.615933-1-kris.chaplin@amd.com>
+X-Mailer: git-send-email 2.42.GIT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: trivial-devices: add asair,ags02ma
-Content-Language: en-US
-To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
- <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
-References: <20231107173100.62715-1-anshulusr@gmail.com>
- <20231107173100.62715-2-anshulusr@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107173100.62715-2-anshulusr@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026369:EE_|CH0PR12MB5252:EE_
+X-MS-Office365-Filtering-Correlation-Id: 70cd50d2-8d67-4a52-4cb5-08dbdfbc9a74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	xx8JcdCcziLt2SPe+LGhxM04lIwBGz31GoDWj+d7MxKsoYXiAuYkzyyfazXjSP/G1DPVB75rSEB8oVyRsIETZW61GfeIQ/vZ1KaZcIWH4xEqoP17Ki8DDJbhgdqwNCn36HNU4hFmKUWUHhSwSkk5x8JC5Q0D6XY3SOzK1ATCftA5AmknsVkj7q+Rp4NFoe2MNxQIDOB5H4p9I/UuaKLBX/DeBHxxRF8WBqrLqMcUO9yy8Hoqfp7IA5Lr4VscEjnO9rYuTQDlZOg/spna/1N/VNXTLxaqdR4EO7yhMWuDFssgIEjI+kKmh19zEssHWLMfE3rujPPE/cjjnNGnISnSiDR/JiLc+JM0AAczZGY8+B2CeReiSvV0zpNG7Z2SDbRp7j+EO+I2WdEANb8f5AoCskjkapyPj2xY1vBN2K6OJ5UJNW3r/hYGqV+eqGrAAnG7UYk8xlnYD8KEEJwFgOeEFDIJpJufstzbgIpiGmTZnWi6cgrlT8IuZZ9K3QYwxAc4QgvSyOzm7f2WI3hiQlTTRnIkQbaZthe7eHAuOcUBhW25HABg9QU7PJK3s3t2eqwI6G4BodEsPdSbILw1jmrD0eQLhtA/Po6A5XGt5vvWaPkJNe+jRja3hpLJVmLodUSljhtYErhV3a5FH70DQQ5lCTn/IRF8DA1dbclGSM1WIxanpMUglG6+uLt+q5k04WtVtHnrpQjDW7iIPiiiEJkUfOAAuViUvFYkxFbr2EZICfIGVPNV8Ee3zpbR5CHC14rHzSzkmDodHsTkco8ZAbt0Og==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(376002)(136003)(39860400002)(346002)(230922051799003)(82310400011)(64100799003)(451199024)(1800799009)(186009)(46966006)(36840700001)(40470700004)(40460700003)(40480700001)(83380400001)(36860700001)(47076005)(36756003)(478600001)(44832011)(8936002)(4326008)(86362001)(41300700001)(8676002)(2906002)(110136005)(356005)(82740400003)(316002)(81166007)(70586007)(5660300002)(54906003)(70206006)(26005)(426003)(2616005)(1076003)(336012)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2023 18:08:54.0590
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70cd50d2-8d67-4a52-4cb5-08dbdfbc9a74
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF00026369.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5252
 
-On 07/11/2023 18:30, Anshul Dalal wrote:
-> Add bindings for Asair AGS02MA TVOC sensor to trivial devices.
-> 
-> The sensor communicates over i2c with the default address 0x1a.
-> TVOC values can be read in the units of ppb and ug/m^3 at register 0x00.
-> 
-> Datasheet:
->   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
-> Product-Page:
->   http://www.aosong.com/m/en/products-33.html
-> 
-> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index cd58179ae337..9cd67b758a88 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -47,6 +47,8 @@ properties:
->            - adi,lt7182s
->              # AMS iAQ-Core VOC Sensor
->            - ams,iaq-core
-> +            # TVOC (Total Volatile Organic Compounds) i2c sensor
-> +          - asair,ags02ma
+Changes since v2:
+ Updated binding patch commit description to specify that version is detected
+ using a register in IP.
 
-I think you miss VDD supply.
+Changes since v1:
+ Updated IP name and binding to axi-1wire-host and filenames to match. Comment
+ pruning where operation obvious, additional comments where not. Unwrapped
+ helper functions for register read/writes. Removed un-necessary device reset
+ on fail to add device. Fixed duplicate clock disable in remove function. Move
+ bus master structure to per instance. Improved hardware testing with multiple
+ w1 instances.
 
-Best regards,
-Krzysztof
+Add a host driver to support the AMD 1-Wire programmable logic IP block.
+This block guarantees protocol timing for driving off-board devices such as
+thermal sensors, proms, etc.
+
+Kris Chaplin (2):
+  dt-bindings: w1: Add YAML DT schema for AMD AXI w1 host and
+    MAINTAINERS entry
+  w1: Add AXI 1-wire host driver for AMD programmable logic IP core
+
+ .../bindings/w1/amd,axi-1wire-host.yaml       |  44 ++
+ MAINTAINERS                                   |   8 +
+ drivers/w1/masters/Kconfig                    |  11 +
+ drivers/w1/masters/Makefile                   |   1 +
+ drivers/w1/masters/amd_axi_w1.c               | 395 ++++++++++++++++++
+ 5 files changed, 459 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
+ create mode 100644 drivers/w1/masters/amd_axi_w1.c
+
+-- 
+2.42.GIT
 
 
