@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436497E3A13
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 11:41:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BC27E3A1F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 11:43:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0A4A280FC8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 10:41:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0C95280FC7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Nov 2023 10:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630B729422;
-	Tue,  7 Nov 2023 10:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21B3329420;
+	Tue,  7 Nov 2023 10:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O37E3DG6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iuVmiiFa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA21F28E29
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 10:41:19 +0000 (UTC)
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E91DED
-	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 02:41:17 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40790b0a224so41277695e9.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 02:41:17 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8451864A
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 10:43:01 +0000 (UTC)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1291A3
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 02:42:59 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5409bc907edso9129371a12.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 02:42:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699353675; x=1699958475; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1699353778; x=1699958578; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sieNHgKFMufLfZS/x+ERBd5dxwAS53P7pOyGN5G0KI8=;
-        b=O37E3DG6p+HOfARyN97Q/oCOUO/TbybKTCTVACtLgWRVMVkP6EO+tlmGfDPm1ZXQXi
-         UclSU9CYexNc2lrUT4gZZnNvucq4odst3tbCUuwJe8kWzUw7z7ZvkjNHdfX/YebHtt4N
-         C9/P1gwKRWrP5QITbVE4oyqBhZS1sYaHwrvPS4lHdgVEt4NH4onSoBz9aLeT/s65pp4I
-         iLdxPa0ZSTxXLHNIZMpMiNA3lSEXUbSHwwS+b1e+XnfwRaZa6zHaBGgafa7nMY1CMz0Z
-         TuSJSPNJJUyFtk9Dpguxjw7BUYujWAGT1Mw/tBimajzB8MJXIqONPIRso5JAdDTeAtQc
-         Da0A==
+        bh=bsmfEqZyHLXQYIDEHlob9aAnGjDF7uO/0bK6CtZNc4o=;
+        b=iuVmiiFaZ7lOe3cJQVULgjIb+5/0eYv2g+wyGGkJPXKlI856h5KKVxP9NmEXq62KCn
+         OMbnFwmmtd/yGRobLxHkknEVWb/kxxHwnDepCc9zw9kAlBfDpjINt/5PmoiiGvbf46Ch
+         i8UP/AGKL3dniqrr9syNQLHF4wohBXzwK8t7hPa/EymiogIBmwk3JNf8M5kXm39w6vt9
+         BCasOf2vhDFrg5fQ3EyuwOCcwee2Vukr2iqnarpI/QLg/xSIPqZmHNnOq/XZNcYmhCMs
+         D1C+C0FekxsRV09Ty9D0mBWCdkSHkLEY13O5wxQp0vpxzgaCCD5FGfKQz8eEUvN03GA7
+         PfXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699353675; x=1699958475;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20230601; t=1699353778; x=1699958578;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sieNHgKFMufLfZS/x+ERBd5dxwAS53P7pOyGN5G0KI8=;
-        b=LkxF1En6HIWMZiCBf8QICrbFxlOxsoZ2/DR5Qrl4Zh0PbxABbqQVVnIq4EkaTK2Hnw
-         87d9xvmxLg+wpS9uKPKb4XPd7sjI3VigcixDVeSkbbBsTjXaZhewtx1MP+eZMMySJp8l
-         dQjtyYL8xxPhU8pofGHIx+N4njrlVmLmWmO8nX+j7eEIUzqDJSOmszCYrQ0dqcQZvYFa
-         Kd9crPdj6BiXuMCn7wZhKsc8GBcv0hZfCIjbUNB5Pjzdx3rat7INnSQMjtCIdXgrD7Ps
-         LU0o/mAaMxbFyCHo3gKPScinM+cFydAbA0a9VyYryfBoXi7KWVZNjuRyNL52R/8a+SWo
-         UPAw==
-X-Gm-Message-State: AOJu0YwDTlgD03SMtpw3c6lDTddgDAeazyfIMb+lpfERzWoWC67lBkUc
-	inCqdDP4oGhmT0sgxjxpY4V5nA==
-X-Google-Smtp-Source: AGHT+IHo3GaRGX6QxrETyItSGPni1XwJu7CfTVMiNpshaJEkePhGrzcYQMqz8OP93kQcIVWIOX8Dpw==
-X-Received: by 2002:a5d:5846:0:b0:32f:7e2f:4454 with SMTP id i6-20020a5d5846000000b0032f7e2f4454mr22645157wrf.46.1699353675455;
-        Tue, 07 Nov 2023 02:41:15 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id o3-20020a056000010300b0032da4f70756sm2010923wrx.5.2023.11.07.02.41.14
+        bh=bsmfEqZyHLXQYIDEHlob9aAnGjDF7uO/0bK6CtZNc4o=;
+        b=iqIZVehaN+MSWPmakg2T3MrHBxNsKzw9pLJgxoeK6OoaGDDYPcESdVi/DP7ttoKpDa
+         xCYdgJ1JRpxPOBbX27lz368rsee98OChe/kQlVcTA5tE6RVbK5zJYtLhr2YW9QIzJtt+
+         IDw+UCyZ2J00S90PnRPIFDJwclgw0aNgITbjLJOl575/7qOb85rDgphLQ1hVIlQ/OKg3
+         vO0OTCXejlr+FE+RHF3TGOzbWGd4+z9R9wQxpck3Cm0KILIff7EQoOlR818zxQXwfatR
+         suFBkLY0araIHsxxu/MRelim2hWcB6oY07ZCkQFbXXSMjTb7WJ/IrtparS2zqmlV7Ohy
+         RI2A==
+X-Gm-Message-State: AOJu0Yxv5Rqt6kwikfBe3gBWMF061Wo6rjSQAREG2+3JtJaipc+uueWf
+	65kG/lrCn64OK/ezxZuM725pQg==
+X-Google-Smtp-Source: AGHT+IF9cFcbABaZ1rzrsL5Af7aCgLA33g5E+q1qAw1ZEVp1MYxE2yYrhDyN01QLgCq+ioiG13m+ng==
+X-Received: by 2002:a17:906:dace:b0:9ae:55ae:587f with SMTP id xi14-20020a170906dace00b009ae55ae587fmr18187072ejb.37.1699353778191;
+        Tue, 07 Nov 2023 02:42:58 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id a23-20020a1709063a5700b009bf7a4d591bsm886616ejf.45.2023.11.07.02.42.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 02:41:14 -0800 (PST)
-Message-ID: <f94ca738-476c-4664-a8f1-e3ef3ac8220a@linaro.org>
-Date: Tue, 7 Nov 2023 10:41:13 +0000
+        Tue, 07 Nov 2023 02:42:57 -0800 (PST)
+Message-ID: <3d9e50db-19f0-43b3-8042-2f80a1e7b79e@linaro.org>
+Date: Tue, 7 Nov 2023 11:42:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,165 +67,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 2/8] usb: dwc3: core: Register vendor hooks for dwc3-qcom
+Subject: Re: [PATCH v10 0/3] Support pwm/tach driver for aspeed ast26xx
 Content-Language: en-US
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-usb@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-kernel@vger.kernel.org, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
- quic_jackp@quicinc.com, quic_wcheng@quicinc.com,
- Andy Gross <agross@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-References: <20231017131851.8299-1-quic_kriskura@quicinc.com>
- <20231017131851.8299-3-quic_kriskura@quicinc.com>
- <e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org>
- <5ef66bdc-9645-4bbe-8182-baa7fe4c583a@quicinc.com>
- <3be5e95f-85d2-4abf-a8b4-18b019341602@quicinc.com>
- <cf553cd8-45f8-4a61-b016-69e7a80eee9f@linaro.org>
- <ea919050-22a8-4d28-ade2-fd16a99876cb@quicinc.com>
- <105d84b6-cbea-4758-9eba-1c104fa7a670@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <105d84b6-cbea-4758-9eba-1c104fa7a670@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
+ linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ joel@jms.id.au, andrew@aj.id.au, corbet@lwn.net, thierry.reding@gmail.com,
+ u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+ naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
+ patrick@stwcx.xyz
+References: <20231107103955.1166655-1-billy_tsai@aspeedtech.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231107103955.1166655-1-billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 07/11/2023 08:33, Krishna Kurapati PSSNV wrote:
+On 07/11/2023 11:39, Billy Tsai wrote:
+> Unlike the old design that the register setting of the TACH should based
+> on the configure of the PWM. In ast26xx, the dependency between pwm and
+> tach controller is eliminated and becomes a separate hardware block. One
+> is used to provide pwm output and another is used to monitor the frequency
+> of the input. This driver implements them by exposing two kernel
+> subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
+> existing drivers for controlling elements such as fans (pwm-fan.c),
+> beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
+> provides sysfs interfaces for fan.
 > 
-> 
-> On 11/4/2023 10:32 PM, Krishna Kurapati PSSNV wrote:
->>>
->>> Are you saying to you require/rely on both of these series being 
->>> applied first ?
->>>
->>> [1]: 
->>> https://lore.kernel.org/all/af60c05b-4a0f-51b8-486a-1fc601602515@quicinc.com/
->>> [2]: 
->>> https://lore.kernel.org/all/20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com/
->>>
->>> Must be, nothing applies for me in this series.
->>
->> The first one is not a patch. It is just a discussion thread I started 
->> to get community's opinion before on disconnect interrupt handling. 
->> The current series is based on top of [2] made by Bjorn (as you 
->> already found out) and as I mentioned in cover letter of my series.
->>
-> 
-> Hi Bryan,
-> 
->    Are you able to apply the series after including Bjorn's patches ? 
-> Also can you confirm if the comments provided to your queries on [1] are 
-> proper and if you have any other comments w.r.t probe deferral.
-> 
-> [1]: 
-> https://lore.kernel.org/all/e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org/
-> 
-> Regards,
-> Krishna,
+> Changes since v9:
+> Change the type of fan-driving-mode to string
+> Fix some typos and formatting issues.
 
-I wonder could you give a base SHA to apply the various series on ?
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
 
-Your referenced precursor doesn't apply to usb-next
+Best regards,
+Krzysztof
 
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ b4 shazam 
-20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com
-Grabbing thread from 
-lore.kernel.org/all/20231016-dwc3-refactor-v1-0-ab4a84165470@quicinc.com/t.mbox.gz
-Checking for newer revisions
-Grabbing search results from lore.kernel.org
-Analyzing 27 messages in the thread
-Checking attestation on all messages, may take a moment...
----
-   [PATCH 1/12] dt-bindings: usb: qcom,dwc3: Add qcom,sc8180x-dwc3
-   [PATCH 2/12] usb: dwc3: qcom: Rename dwc3 platform_device reference
-     + Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-   [PATCH 3/12] usb: dwc3: qcom: Merge resources from urs_usb device
-   [PATCH 4/12] usb: dwc3: Expose core driver as library
-   [PATCH 5/12] usb: dwc3: Override end of dwc3 memory resource
-     + Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-   [PATCH 6/12] usb: dwc3: qcom: Add dwc3 core reference in driver state
-   [PATCH 7/12] usb: dwc3: qcom: Instantiate dwc3 core directly
-   [PATCH 8/12] usb: dwc3: qcom: Inline the qscratch constants
-     + Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-   [PATCH 9/12] dt-bindings: usb: qcom,dwc3: Rename to "glue"
-     + Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-   [PATCH 10/12] dt-bindings: usb: qcom,dwc3: Introduce flattened 
-qcom,dwc3 binding
-   [PATCH 11/12] usb: dwc3: qcom: Flatten the Qualcomm dwc3 binding and 
-implementation
-   [PATCH 12/12] arm64: dts: qcom: sc8180x: flatten usb_sec node
-   ---
-   ✗ No key: ed25519/quic_bjorande@quicinc.com
-   ---
-   NOTE: install dkimpy for DKIM signature verification
----
-Total patches: 12
----
-  Base: using specified base-commit 4d0515b235dec789578d135a5db586b25c5870cb
-Applying: dt-bindings: usb: qcom,dwc3: Add qcom,sc8180x-dwc3
-Patch failed at 0001 dt-bindings: usb: qcom,dwc3: Add qcom,sc8180x-dwc3
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-error: patch failed: Documentation/devicetree/bindings/usb/qcom,dwc3.yaml:29
-error: Documentation/devicetree/bindings/usb/qcom,dwc3.yaml: patch does 
-not apply
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git diff
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am --skip
-Applying: usb: dwc3: qcom: Rename dwc3 platform_device reference
-error: patch failed: drivers/usb/dwc3/dwc3-qcom.c:67
-error: drivers/usb/dwc3/dwc3-qcom.c: patch does not apply
-Patch failed at 0002 usb: dwc3: qcom: Rename dwc3 platform_device reference
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am --skip
-Applying: usb: dwc3: qcom: Merge resources from urs_usb device
-error: patch failed: drivers/usb/dwc3/dwc3-qcom.c:68
-error: drivers/usb/dwc3/dwc3-qcom.c: patch does not apply
-Patch failed at 0003 usb: dwc3: qcom: Merge resources from urs_usb device
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am --skip
-Applying: usb: dwc3: Expose core driver as library
-error: patch failed: drivers/usb/dwc3/core.c:1876
-error: drivers/usb/dwc3/core.c: patch does not apply
-error: patch failed: drivers/usb/dwc3/core.h:1568
-error: drivers/usb/dwc3/core.h: patch does not apply
-Patch failed at 0004 usb: dwc3: Expose core driver as library
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am --skip
-Applying: usb: dwc3: Override end of dwc3 memory resource
-error: patch failed: drivers/usb/dwc3/core.c:1908
-error: drivers/usb/dwc3/core.c: patch does not apply
-Patch failed at 0005 usb: dwc3: Override end of dwc3 memory resource
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am --skip
-Applying: usb: dwc3: qcom: Add dwc3 core reference in driver state
-error: patch failed: drivers/usb/dwc3/dwc3-qcom.c:67
-error: drivers/usb/dwc3/dwc3-qcom.c: patch does not apply
-Patch failed at 0006 usb: dwc3: qcom: Add dwc3 core reference in driver 
-state
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ git am --abort
-
----
-bod
 
