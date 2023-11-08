@@ -1,90 +1,95 @@
-Return-Path: <devicetree+bounces-14605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F407E5ABC
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5777E5ABD
 	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:59:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33F0FB20DB0
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19BDBB20D6A
 	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA1C30667;
-	Wed,  8 Nov 2023 15:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KKWV5oa4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345B43065B;
+	Wed,  8 Nov 2023 15:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E5F30654
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:59:09 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A28D31BC3;
-	Wed,  8 Nov 2023 07:59:08 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 705276000A;
-	Wed,  8 Nov 2023 15:59:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699459147;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+kB2MAhqd2CZLOXA9zNCWTpxhkyv6CSvJsAidaTRfM8=;
-	b=KKWV5oa4oO9WQ67xnEEwSXBsBlzSskaYTpOkboLkWa5FAVNWFeSdcUgK/5QaocyH62Qu1k
-	TcmmbOUN8DpF27Jw8fuIno/znuahXsLUsmLAFLlMLYEzn9foFKHbiC3yZ7snvoHnzjDnsQ
-	3Wop1gCuH2cYUViRgtcxTAO/dWjCdALBNakXOjYcWAzxyAKpwj/irGRtn5HO3UO69a0epX
-	a6jfLehliImS1qxCAWFp8gvFanv7Admk4FH+Vqly/M5x7Y2hv5gHnV+aDv9A/7cPsqkS0r
-	pk29HXu8SZexmLp88HPpYegT1eFpPPdJWNMTVNFNfDXl5AnYSdZZkEWkUoN4HA==
-Date: Wed, 8 Nov 2023 16:59:05 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Janusz Krzysztofik
- <jmkrzyszt@gmail.com>, Tony Lindgren <tony@atomide.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Ben Dooks
- <ben.dooks@codethink.co.uk>, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org
-Subject: Re: [PATCH 6/6] mtd: rawnand: gpio: Rename file
-Message-ID: <20231108165905.4675430e@xps-13>
-In-Reply-To: <20231108-fix-mips-nand-v1-6-5fc5586d04de@linaro.org>
-References: <20231108-fix-mips-nand-v1-0-5fc5586d04de@linaro.org>
-	<20231108-fix-mips-nand-v1-6-5fc5586d04de@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92E7530670
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:59:11 +0000 (UTC)
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09537172E;
+	Wed,  8 Nov 2023 07:59:11 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6d2fedd836fso4446913a34.1;
+        Wed, 08 Nov 2023 07:59:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699459150; x=1700063950;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4SB2xZBeUHY9tW0Z5bPgemVNWFJ1fMH1n44RF7oFvdo=;
+        b=kq9PZNd1flJY9AOGFu4dqU1wuabV2Zr30DlKi9Q0QokKP/eOQpIRyq08RD8usareN2
+         w41Xj0y7bGJwXSwwj4OIA42Rg6FBhwNEJ4mocMCiIFjVtFy1/JvCZ+rtjjJqhlbW5cZw
+         5o8WRvNV5VSnUx81hBSQwk29UiEB5MUFTMJoCOlQMen1yrbWLUXU/lSAQhfgJRnE+dSJ
+         Ra8UZfzLoy9RphBrzY6R6/BEXg4WsUuclj8ysjNvfRJUIIWIzGPpx7N9UwmL+RRGQQkF
+         JE9IVMxzkeUETK8s1mQwdnyWbkOUsFT/8JSh7omB4j6iI73yKEAI1bmCtq1uUTcs9kGJ
+         SU5Q==
+X-Gm-Message-State: AOJu0YyZnorpdI7hEk7/PrUXIGJ0nICUf7n4e7hkTCPzVI5WKvofTAoR
+	o+7DEc7qY3pXbDwJRVgUhA==
+X-Google-Smtp-Source: AGHT+IFPkHmc9Gut1oDzvsyGl3MaVkOIp9Cv5V7L2F3h+o/eVBBXPzNdpmWGSNoWy6Av9Z8q2d08ew==
+X-Received: by 2002:a05:6830:1641:b0:6be:fc8b:40fc with SMTP id h1-20020a056830164100b006befc8b40fcmr2058226otr.36.1699459150302;
+        Wed, 08 Nov 2023 07:59:10 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n14-20020a056820054e00b00581d57c908esm2421269ooj.36.2023.11.08.07.59.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Nov 2023 07:59:09 -0800 (PST)
+Received: (nullmailer pid 2202207 invoked by uid 1000);
+	Wed, 08 Nov 2023 15:59:05 -0000
+Date: Wed, 8 Nov 2023 09:59:05 -0600
+From: Rob Herring <robh@kernel.org>
+To: Kris Chaplin <kris.chaplin@amd.com>
+Cc: thomas.delev@amd.com, michal.simek@amd.com, krzysztof.kozlowski@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI
+ w1 host and MAINTAINERS entry
+Message-ID: <20231108155905.GA2198732-robh@kernel.org>
+References: <20231107180814.615933-1-kris.chaplin@amd.com>
+ <20231107180814.615933-2-kris.chaplin@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231107180814.615933-2-kris.chaplin@amd.com>
 
-Hi Linus,
+On Tue, Nov 07, 2023 at 10:06:51AM -0800, Kris Chaplin wrote:
+> Add YAML DT schema for the AMD AXI w1 host IP.
 
-linus.walleij@linaro.org wrote on Wed, 08 Nov 2023 15:33:54 +0100:
+Sorry for not noticing earlier, but if there's another spin, drop 'YAML 
+DT schema for ' from the subject. You already said that with 
+'dt-bindings'.
 
-> The implementation of the GPIO NAND controller is just "gpio"
-> with the usecase for NAND implied from the folder nand/raw.
->=20
-> This is not so great when the module gets the name "gpio.ko".
-> Rename the implementation to nand-gpio.c so the module is
-> named nand-gpio.ko which is more reasonable.
->=20
-> We put "nand" first instead of "gpio" because the order is
-> usually <subsystem>-<driver>.c, cf ls drivers/gpio/
+Acked-by: Rob Herring <robh@kernel.org>
 
-Do you mind if we take the "english" version which would rather be
-"gpio-nand-controller.c/o"? I _really_ want people to understand we
-don't emulate the storage but the host part here.
-
-Thanks,
-Miqu=C3=A8l
+> 
+> This hardware guarantees protocol timing for driving off-board devices such
+> as thermal sensors, proms, etc using the 1wire protocol.  The IP has a register
+> to detect hardware version and so the binding does not have an explict version
+> number.
+> 
+> Add MAINTAINERS entry for DT schema.
+> 
+> Co-developed-by: Thomas Delev <thomas.delev@amd.com>
+> Signed-off-by: Thomas Delev <thomas.delev@amd.com>
+> Signed-off-by: Kris Chaplin <kris.chaplin@amd.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/w1/amd,axi-1wire-host.yaml       | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/w1/amd,axi-1wire-host.yaml
 
