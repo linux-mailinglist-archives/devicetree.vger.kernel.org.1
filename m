@@ -1,82 +1,61 @@
-Return-Path: <devicetree+bounces-14656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF56D7E5D85
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:56:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EF27E5DB3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:00:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3534CB20CCD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:56:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38D321C20BA4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50ADD32C8D;
-	Wed,  8 Nov 2023 18:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A573714E;
+	Wed,  8 Nov 2023 19:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED26832C82;
-	Wed,  8 Nov 2023 18:56:33 +0000 (UTC)
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45212210D;
-	Wed,  8 Nov 2023 10:56:33 -0800 (PST)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1f0f94943d9so1269626fac.2;
-        Wed, 08 Nov 2023 10:56:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10F3358B4
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 19:00:19 +0000 (UTC)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46BE22112;
+	Wed,  8 Nov 2023 11:00:19 -0800 (PST)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5842a7fdc61so3638869eaf.3;
+        Wed, 08 Nov 2023 11:00:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699469792; x=1700074592;
+        d=1e100.net; s=20230601; t=1699470018; x=1700074818;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C0s3leUhfdCXtqd2GQERP13Q2t1M8oOeLUmcRLyKV8Y=;
-        b=kCHCZdLlgHL2Z8THYqohXsXQLyceJubLKF+B9kWnJIbjy74FfGwGcf8nDZKlI+98yI
-         vVFYoAEalh04e/y69MlLQVtAUdoQvFZ/6LfvU0GaXL0SP4MmVZGLA+diOrVN2RKkNlUf
-         s5ggPo8kUvFz3SXkfH6r3ZHrNPfhuccZmToh5CSgGXj1iHECfhh2Ub2Jaq+FXy2DfZqD
-         dugVwK29TgynEpAZT4sTnq4kOJO6WgJvpCcNB7oZ46Mmi01hFYM9Ac1E58m8jKzGyDxE
-         UjHonWdNpCSKqs1SyegXnS4EBgMchxYvn0ZAJwFXTVN83nIDrWaFNephfOJVmDAfU/62
-         R1AA==
-X-Gm-Message-State: AOJu0YxGrZg9s8KlZb+1tTEWVn3LGopjphhD99+LHS6I9SEFM94cS2jU
-	4JdtqnLs3ObX6XBfjkBkVw==
-X-Google-Smtp-Source: AGHT+IE0mbiHvR9GjYeolkzHi9SUwOP9v8XsmJuVs9xWh9Zkn8dD1A7MBvs46KqOAxR54Xhtj5FP+A==
-X-Received: by 2002:a05:6870:fe91:b0:1e9:af81:54c2 with SMTP id qm17-20020a056870fe9100b001e9af8154c2mr2838245oab.45.1699469792539;
-        Wed, 08 Nov 2023 10:56:32 -0800 (PST)
+        bh=p45+mKXA0+RLf0VAOhIL47ZOwEm+iVY06oIBhHYqI6I=;
+        b=FmNjAKPev26JaZWfjR9IurRdrLIXWCh24Es6PzVfLxV9kOJhO8pCtKp0QeP0JXg6ku
+         YapcpLdZY3V/lXTI6pNjCXIcYoWLESJHeW4pTE4prOX+0onHry5cdE9BkI20sNzqEw/D
+         zIsdAEZ75WYAmCcTV3pBMVFP3QP6GAud2pIxBm3A/JzmILeehnonq3I8nQDNXcdaMRdm
+         Wat3A7WRaEydcPqpLXTffDRpR7JM2VjgDyvJlJDNZWSF7t/7PyX2SfHOyY7NcF3C5wsl
+         TB9n6g1IrD8oxOmkWBx+COQasB/+cYEaGzhWHaxS8yEd/lkdpC/vuJHiu7zNGJOBD9Da
+         uaDg==
+X-Gm-Message-State: AOJu0YwwX9t6JCBGv7gBfH9UnmeFqCyRUaHtnbzZrCxBDZwLFnjgfXyg
+	z9m0CjXbl7yooNNcO9WB7A==
+X-Google-Smtp-Source: AGHT+IEkYyb1Djykhk9kxaGlJRraar7VoY33K8knI8yAYqllxKdOZYsj5PzVppWGa3zReGgIqhfOrg==
+X-Received: by 2002:a4a:a70c:0:b0:582:99ae:ca4c with SMTP id g12-20020a4aa70c000000b0058299aeca4cmr2672180oom.8.1699470018240;
+        Wed, 08 Nov 2023 11:00:18 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ef4-20020a0568701a8400b001efb3910402sm408267oab.0.2023.11.08.10.56.30
+        by smtp.gmail.com with ESMTPSA id z45-20020a4a9870000000b00587b9063e07sm1422833ooi.2.2023.11.08.11.00.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 10:56:31 -0800 (PST)
-Received: (nullmailer pid 2748787 invoked by uid 1000);
-	Wed, 08 Nov 2023 18:56:30 -0000
-Date: Wed, 8 Nov 2023 12:56:30 -0600
+        Wed, 08 Nov 2023 11:00:17 -0800 (PST)
+Received: (nullmailer pid 2754062 invoked by uid 1000);
+	Wed, 08 Nov 2023 19:00:16 -0000
+Date: Wed, 8 Nov 2023 13:00:16 -0600
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-i2c@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-serial@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Andi Shyti <andi.shyti@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Maxime Ripard <mripard@kernel.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Alessandro Zummo <a.zummo@towertech.it>, 
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
-	Sam Protsenko <semen.protsenko@linaro.org>, linux-gpio@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, dri-devel@lists.freedesktop.org, 
-	Thomas Zimmermann <tzimmermann@suse.de>, linux-iio@vger.kernel.org, 
-	Jaehoon Chung <jh80.chung@samsung.com>, Rob Herring <robh+dt@kernel.org>, linux-pwm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Lee Jones <lee@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, alsa-devel@alsa-project.org, 
-	linux-mmc@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-sound@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, David Airlie <airlied@gmail.com>
-Subject: Re: [PATCH 01/17] dt-bindings: hwinfo: samsung,exynos-chipid: add
- specific compatibles for existing SoC
-Message-ID: <169946978921.2748598.1967407376619995212.robh@kernel.org>
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
- <20231108104343.24192-2-krzysztof.kozlowski@linaro.org>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com, laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org, hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org, maxime.chevallier@bootlin.com, mchehab@kernel.org, robh+dt@kernel.org, heiko@sntech.de, linux-media@vger.kernel.org, thomas.petazzoni@bootlin.com, conor+dt@kernel.org, alexandre.belloni@bootlin.com
+Subject: Re: [PATCH v8 2/3] media: dt-bindings: media: i2c: Add bindings for
+ TW9900
+Message-ID: <169947001607.2754020.4176816227714592571.robh@kernel.org>
+References: <cover.1699449537.git.mehdi.djait@bootlin.com>
+ <0af5607f13b95e1312a1e8df516c8f3d6d0b20f0.1699449537.git.mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,31 +64,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231108104343.24192-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <0af5607f13b95e1312a1e8df516c8f3d6d0b20f0.1699449537.git.mehdi.djait@bootlin.com>
 
 
-On Wed, 08 Nov 2023 11:43:27 +0100, Krzysztof Kozlowski wrote:
-> Samsung Exynos SoC reuses several devices from older designs, thus
-> historically we kept the old (block's) compatible only.  This works fine
-> and there is no bug here, however guidelines expressed in
-> Documentation/devicetree/bindings/writing-bindings.rst state that:
-> 1. Compatibles should be specific.
-> 2. We should add new compatibles in case of bugs or features.
+On Wed, 08 Nov 2023 14:27:13 +0100, Mehdi Djait wrote:
+> The Techwell TW9900 is a video decoder supporting multiple input
+> standards such as PAL and NTSC and has a parallel BT.656 output
+> interface.
 > 
-> Add compatibles specific to each SoC in front of all old-SoC-like
-> compatibles.
+> It's designed to be low-power, posesses some features such as a
+> programmable comb-filter, and automatic input standard detection
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
 > ---
+> V7->V8:
+> - fixed the number of analog input ports: it is just one.
+> - added endpoints of the analog input port
+> - added vdd-supply to the required in the dt-binding documentation
 > 
-> I propose to take the patch through Samsung SoC (me). See cover letter
-> for explanation.
-> ---
->  .../bindings/hwinfo/samsung,exynos-chipid.yaml  | 17 ++++++++++++++---
->  1 file changed, 14 insertions(+), 3 deletions(-)
+> V6->V7:
+> - added powerdown-gpios and input ports
+> - used 4 spaces for example identation
+> 
+> V5->V6:
+> - This commit had a "Reviewed-by: Rob Herring <robh@kernel.org>" Tag but
+>   decided not to collect it because the last Iteration was more than 2
+>   years ago
+> - removed SECAM from the mentioned standards
+> - changed maintainer
+> 
+> V4->V5:
+> - renamed the file to match the compatible string, and referenced
+>   the graph.yaml schema
+> 
+> V3->V4:
+> - add the missing reset-gpios node to the binding
+> 
+> V2->V3:
+> - fix the example not compiling due to a typo in the reset-gpios
+>   node.
+> 
+>  .../bindings/media/i2c/techwell,tw9900.yaml   | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
