@@ -1,119 +1,101 @@
-Return-Path: <devicetree+bounces-14622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B36C7E5BAA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:46:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C917E5BC2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:55:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA0E6281342
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:46:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D13DB20C66
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:55:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B041C1078E;
-	Wed,  8 Nov 2023 16:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EC018B16;
+	Wed,  8 Nov 2023 16:55:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IOO81/BO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2F8D50E
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 16:45:58 +0000 (UTC)
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AE61FEB;
-	Wed,  8 Nov 2023 08:45:57 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3b3f55e1bbbso4396551b6e.2;
-        Wed, 08 Nov 2023 08:45:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699461957; x=1700066757;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F36F179BE;
+	Wed,  8 Nov 2023 16:55:18 +0000 (UTC)
+Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4618D1FD5;
+	Wed,  8 Nov 2023 08:55:18 -0800 (PST)
+Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-4ac10aacd27so2056791e0c.0;
+        Wed, 08 Nov 2023 08:55:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699462517; x=1700067317; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+2/em8px25lvvpBU9rvHFbF1HeCeuyI1nkJj1hjrCcE=;
-        b=cdf6MVQCwN+UF1Ks6dRTdla+uJa6hPZ5/sN0UW/3Y04JkCtQSblGmqQgR+aCTW85ql
-         HSqKd21g0/vcMpFj3nUa9has388xWL0XlqjI/YkmlPd/Bxcl7RfkMEYo6gF5aPnOrhZ7
-         gH66hnnKP1OFln7f28NOvobGwH5h3mdZhbr5nvQdrIbWuu9wkD7iKH/daOY9u6+Z9yMS
-         X2gbY+uwmj/89X7oci5rJbCPpmHh9cSaSQzC/oORgvh+S4pa/m0yHyMSc3UWueCtx+aE
-         eM2AYtfsOJaaIVMflGjyGASKU0/Z28VBXiv4F12qKVv3QrZFuPcH/1jsfwVbw55MK7C8
-         EbIw==
-X-Gm-Message-State: AOJu0Yw8kAVDFG9xcUDuk8a0njsz8sjjy0RO3wod3H/OoKvD1r3ctsbk
-	/atnIW7m/0KSJ/ZmOppEWg==
-X-Google-Smtp-Source: AGHT+IFvlYjPpMwWNKajh1aieaxBmAkZnibFukFibLaHOGujo2dJzvubHc1EDt/gC2K4PeXz+9SVqw==
-X-Received: by 2002:a05:6808:f15:b0:3ac:aae1:6d63 with SMTP id m21-20020a0568080f1500b003acaae16d63mr2822787oiw.44.1699461957004;
-        Wed, 08 Nov 2023 08:45:57 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u6-20020a056808150600b003af6eeed9b6sm1951981oiw.27.2023.11.08.08.45.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 08:45:56 -0800 (PST)
-Received: (nullmailer pid 2370821 invoked by uid 1000);
-	Wed, 08 Nov 2023 16:45:55 -0000
-Date: Wed, 8 Nov 2023 10:45:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: Shiji Yang <yangshiji66@outlook.com>
-Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v4] dt-bindings: leds: add 'internet' and 'signal'
- function definitions
-Message-ID: <169946195473.2370763.12041367537748658964.robh@kernel.org>
-References: <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+        bh=UBPNIHzctJ5VyvVEDbR23ellQErdbcNvpRDxmI1DH+8=;
+        b=IOO81/BOiGtxL9FTEEnm172Dx/xfz6n1Ik9FvHxS5IVdws2uFJz4mLxdzvCR8unBhc
+         0G/LV+KG3nNAUvWe1tCbw8pCbu01OEKtbRKkKPOxff+BRQ3H+REh58D81s+YUw8XRI1j
+         JS+ZT82HEPAR2JPYAdlrQtKQO2sjBfUyG2qQjSgAABo32HLjMK8YU84TApOrt6rQX+Ar
+         wPdU6JasPffG0AxJY/iz7dh12XBPrzM34ei8DHiANL+TdieuZCnnp1D0A/w72hPhj2M2
+         J7HHFWKcm3uSfPLPSTnriU+xTblKF4p1XvAY2rqE5Cd3JWlgP9/D9CYzr0YXifoggqDk
+         IxPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699462517; x=1700067317;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UBPNIHzctJ5VyvVEDbR23ellQErdbcNvpRDxmI1DH+8=;
+        b=wKK3VobtGa4zJVKmv5yrv6ap1h2T4GuTKeigbQtAMYmUaBqVtaN20c56hnV0ZoQGKq
+         SeRxdlB8sdPToN/r53qvE+lbbVt5I5L3ZvhfPFcavzaZqQOuHnZjxaP5vLZ3ru9oLwu5
+         R36wOzLyaLdBFx8lhtXZn3GvEli5CCgMELNJPKqqugtB6zJYUmpPEQtFsmRmyJcU7Akk
+         hm65x1GH6L87T/9CVUcOM5f3mnnkLQ9EUt9fjPM+cgSLLJ04BzkSwu30eadF8Bo0pYAW
+         vI1X3Ox2KPQ6SRgqp9yWPbW5HVSklkoQ+PZOP2EhtdM2XbdvEnQeWlwOH+UX3pTxzI70
+         wliw==
+X-Gm-Message-State: AOJu0YwWgN4PPwyGbsWy109WBCyq6706box1svI7iHIIZ9tCD52egzcu
+	fIBHXznG2Z/TZF3pfgOZ4+JtbYA8FL6XiwLfNbgzFT84uv8=
+X-Google-Smtp-Source: AGHT+IFGlxbatls+dJ9UND+WtA6kB9hpacgRjcHyqqVij+RDXjr/gBwATg6CaFmACF/FgasZzZsas4/C0weNmEN4BWQ=
+X-Received: by 2002:a1f:244e:0:b0:4ac:7098:4992 with SMTP id
+ k75-20020a1f244e000000b004ac70984992mr2333929vkk.14.1699462517333; Wed, 08
+ Nov 2023 08:55:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+References: <20230913151606.69494-1-romain.perier@gmail.com>
+ <20230913151606.69494-3-romain.perier@gmail.com> <20230913-depress-bootlace-6b88bfd83966@spud>
+ <CABgxDoK2T3xkKYDVeqRuDXMHfVEJcRkkBOBBkMJ5=XUv9Y5MsQ@mail.gmail.com>
+ <20230914-coagulant-unbroken-2461d32274a1@wendy> <CABgxDoJhfKQesDtV3WJ=C-DPB8P+0LDmzbY9Zy909yr3v1FQKQ@mail.gmail.com>
+ <20231108-emergency-poker-8be712fdbf8e@spud>
+In-Reply-To: <20231108-emergency-poker-8be712fdbf8e@spud>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Wed, 8 Nov 2023 17:55:06 +0100
+Message-ID: <CABgxDoL3_-RzqSMQgWzvUa=tdjsrSVCPUt0ZtE=YtNDHBPsy5w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: rtc: Add Mstar SSD202D RTC
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Alessandro Zummo <a.zummo@towertech.it>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Palmer <daniel@0x0f.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Le mer. 8 nov. 2023 =C3=A0 16:44, Conor Dooley <conor@kernel.org> a =C3=A9c=
+rit :
+>
+> On Wed, Nov 08, 2023 at 02:27:37PM +0100, Romain Perier wrote:
+> > Hi,
+> >
+> > Alexandre seems to be okay with the current (merged) dt-binding, what
+> > do I do ? I can send a v3 for trivial-rtc.yaml that's not a problem
+> > for me but both of you seem to disagree :)
+>
+> Meh, I wouldn't waste your time moving it.
 
-On Mon, 06 Nov 2023 14:26:51 +0800, Shiji Yang wrote:
-> These two types of LEDs are widely used in routers and NICs.
-> 
-> The 'signal' LED is used to display the wireless signal strength.
-> Usually, there are 3~4 LEDs in one group to indicate the signal
-> strength, similar to the signal icon on a mobile phone.
-> 
-> The 'internet' LED can indicate whether the device can access a
-> specific server. It's different from 'wan'. 'wan' usually indicates
-> whether the WAN port is connected to the modem (internet services
-> may still be unavailable). But the 'internet' shows if the device
-> can successfully ping servers such as 8.8.8.8 to detect the internet
-> connection status. When the router is running in AP only mode, we
-> can even connect LAN port to the AC/modem to connect to the internet.
-> In this case, the 'internet' LED should be on. On some routers, both
-> 'internet' and 'wan' are available and can be controlled separately.
-> 
-> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
-> ---
-> 
-> Changes in v2:
-> * Remove the LED name sorting patch as it changes the ABI.
-> * Add "devicetree@vger.kernel.org" to '--to' list.
->   Thanks to Rob Herring and Krzysztof Kozlowski for letting me know I
->   can send patch to multiple mailing list at once.
-> 
-> Changes in v3:
-> * Add more information about the new added LEDs.
-> * Remove the missing LED fix as Jisheng Zhang has already sent a
->   similar one. I should search the mailing list first...
-> 
-> Changes in v4:
-> * Rename 'rssi' LED to more generic name 'signal'. I forgot to update
->   the source file in v3.
-> 
-> v1:
-> https://lore.kernel.org/all/TYAP286MB0315FE921FF113BF76F7B700BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
-> 
-> v2:
-> https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
-> 
-> v3:
-> https://lore.kernel.org/all/TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
-> 
->  include/dt-bindings/leds/common.h | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Ok, so I will just send a v3 with an update of the MAINTAINERS file
+for the driver (I have completely forgot, my bad)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Regards,
+Romain
 
