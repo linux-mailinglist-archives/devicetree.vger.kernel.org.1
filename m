@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18F07E52FC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 11:03:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050267E5305
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 11:06:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 278FC1C20DBF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 10:03:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC2722813B7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 10:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551DA1095C;
-	Wed,  8 Nov 2023 10:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67DC4FC19;
+	Wed,  8 Nov 2023 10:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rujnSOcB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oWFkTutF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BDF10941
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 10:03:17 +0000 (UTC)
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A29D1723
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 02:03:17 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a87ac9d245so80625837b3.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 02:03:17 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3187410953
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 10:06:20 +0000 (UTC)
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99725170F
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 02:06:19 -0800 (PST)
+Received: by mail-qk1-x733.google.com with SMTP id af79cd13be357-77a453eb01cso436283985a.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 02:06:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699437796; x=1700042596; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1699437979; x=1700042779; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+hHQVK2U6/kZAUYO7M6ukUkQi1h7K41srJttLODmFqQ=;
-        b=rujnSOcBArl0FiVttRREX0ihVoTFt25sawGwTJlPWseCWecqyHoc07q5ApSSzTveaf
-         e/Qo/hBRYGnPz512k0jCPOxPU7DPdSMGydXC7VNPjPqA+NaJ3Z0u/IfSxhLPdos1EInG
-         LJLGqsiV0ot+LYcA31EuQvvy0bFn9ASjxfdOqbNIIteIrSLmIQh5z2NmhS1pozq7eNxQ
-         RWLeeMHWSQKiQjS3qbiysTQOh5aN7MB5ccnIaFJ5cDvNUEfjvZwVSWpeLIdYJpjW5o6d
-         kqqJCxrkmg4wSTZSk+glx+Rj+NMLPKk35L6R2nDA7yyXTUbSngke8Sdlm+lXoBp77Wni
-         4vkw==
+        bh=rr7gS752VmDAnEEC2uCNu6BHcbWN9XZEmhatGiJJf1A=;
+        b=oWFkTutFxvQq6N86TQjSF5P/JEESnp0OXvRK+kS4lbEIQcoNBum9JQT1+l2DHKmYc7
+         iUlY8QqpuWk1bst4hsNbgFo0fNVfuzdDW56NZXL64Fr1nm5lKANcKOtQe58/RH6sILIn
+         x5d3rQExSc3wvwzteygysIb3M8sD6IYUAQmSMCZIWPWUrsWq4Tol/vws/KkumnGhphOw
+         dsaEI9GUW5kpykmWu/F69yrVUlVcb1r+nfxni1T1VS251ioWmZa5k+PfAfaxPjx1Nfia
+         rvC0JjQnyEmo9WPfCz/vuRF92bbKABSc+8B2SmoJz2jpkBVa0VeSSa+8zo2x28ONVJKm
+         YYlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699437796; x=1700042596;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699437979; x=1700042779;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+hHQVK2U6/kZAUYO7M6ukUkQi1h7K41srJttLODmFqQ=;
-        b=IuDd9pI1z6vqNxvQtsALf05YGDTd2AHDiSRXPYjYyKm+nuUN4PwGG2NV3kvgMDvpYQ
-         FiQI8oRKIFdQiEvo3gmcGbiyQPxoiYegB2oS6VYtInCfohtKd0xSRm6BdOVpUCJHDXnn
-         Y2QU6QzwG4NglrtjH8aiI/Mj2lza1xLwT/HP3v2HMhdOMWJHVGwYX6EGMyqPEj5kX1vG
-         wzn2f1Dcd4CPQSQA8fv924Nv9ixaxSh0CFevOC+9cIB16Z65mghYDPAsiRJDrZoRA02Z
-         aZDX/uq/1iTkwnS1KBa2GyTBRRX+1ubgK0AqBxYlpGtFW7k0cLRQu7+g3H1/5JAyhXoy
-         O/Og==
-X-Gm-Message-State: AOJu0Yw0Xe6YJ2XAcmp17ieaQsQmm8U/5k+qQQcIhBnj5F+ZGxS9o2oZ
-	eG/JZe+5O3hJKb6NTB4apc7Onw==
-X-Google-Smtp-Source: AGHT+IFic12v75dCBwbm4Rz+UAC0cBlweltnHJyTInK6P+k7Nbnogudom9am8MvSpwal/ROHctaSsA==
-X-Received: by 2002:a81:a549:0:b0:59f:5361:d18c with SMTP id v9-20020a81a549000000b0059f5361d18cmr1415761ywg.41.1699437796322;
-        Wed, 08 Nov 2023 02:03:16 -0800 (PST)
+        bh=rr7gS752VmDAnEEC2uCNu6BHcbWN9XZEmhatGiJJf1A=;
+        b=GbE9OqmutFqn1Y6NPkz3SYPykVb3W/JAMhM5uYXf9bloMjuR/OK/DI5nZ04AsS+ErU
+         1o2dkJW1QhZ8llYbC2nR410nVSmCISaQgcaBW6GWK5Y+cKZqgxSMPY5DLP71ZboiVnMx
+         +tSqwpW9YAMAlTm2Q3DAp8GABcNmNbjUwa7aYwX4sovtAd7r3THM9hUbX69jTWaUrpgm
+         u6MUkcj4T7jP2ctsvVznMQxegzmgiS+faW4XtCtrSGJ8QkdzN1VM6TIxWHlRQZnPnBS9
+         HNNk2fTaXyzyqu1bBFRdheGDJ74YtmTr5xZ6IFk9vYP+LN62555ofcYOKMbFTrMEuit9
+         biuA==
+X-Gm-Message-State: AOJu0YwNfr8voX/38k+nITD7PF66yJ2me8nzqS4+KkrboRdoEERwgvv3
+	NCzeLWfjgOta4uomUp55polY3g==
+X-Google-Smtp-Source: AGHT+IGx7lgqtx9S/oyIp/5xMeMdu5UbG0dUZcFvMTcnc6s3J0nohJbZResltcIJRIscBeM3h7M0qQ==
+X-Received: by 2002:a05:620a:4055:b0:77b:9a8c:b0b5 with SMTP id i21-20020a05620a405500b0077b9a8cb0b5mr1278087qko.57.1699437978763;
+        Wed, 08 Nov 2023 02:06:18 -0800 (PST)
 Received: from [172.30.205.23] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id o16-20020a056214109000b006717ddb4d47sm888826qvr.28.2023.11.08.02.03.13
+        by smtp.gmail.com with ESMTPSA id w2-20020a05620a0e8200b007789a3499casm858664qkm.115.2023.11.08.02.06.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Nov 2023 02:03:16 -0800 (PST)
-Message-ID: <bd268e9f-2e41-443f-ba29-163a552b5b09@linaro.org>
-Date: Wed, 8 Nov 2023 11:03:11 +0100
+        Wed, 08 Nov 2023 02:06:18 -0800 (PST)
+Message-ID: <8f7db00f-aae0-43d9-bd6a-47374a91d546@linaro.org>
+Date: Wed, 8 Nov 2023 11:06:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,36 +67,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm850-lenovo-yoga: Add
- wakeup-sources
-To: steev@kali.org, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231107-wakeup-source-v2-1-bf1562ef9367@kali.org>
+Subject: Re: [PATCH] ARM: dts: qcom: Add LPG LED device description
 Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, quic_huliu@quicinc.com
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_fenglinw@quicinc.com, quic_uchheda@quicinc.com, kamalw@qti.qualcomm.com
+References: <20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com>
+ <CAA8EJpogiYXVPCNXSu+kq29nbn1uxGDAYMn9+qk8CwDz0bfyjg@mail.gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231107-wakeup-source-v2-1-bf1562ef9367@kali.org>
+In-Reply-To: <CAA8EJpogiYXVPCNXSu+kq29nbn1uxGDAYMn9+qk8CwDz0bfyjg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 11/8/23 06:17, Steev Klimaszewski via B4 Relay wrote:
-> From: Steev Klimaszewski <steev@kali.org>
+On 11/8/23 07:59, Dmitry Baryshkov wrote:
+> On Wed, 8 Nov 2023 at 08:05, Hui Liu via B4 Relay
+> <devnull+quic_huliu.quicinc.com@kernel.org> wrote:
+>>
+>> From: Hui Liu <quic_huliu@quicinc.com>
+>>
+>> Add LPG LED device description.
 > 
-> The keyboard and touchpad can be used to wake the machine
-> up from sleep, so mark them as such in the dts file.
+> No. You are not adding "LPG LED device description". You are adding
+> definition for three LEDs.
 > 
-> Signed-off-by: Steev Klimaszewski <steev@kali.org>
-> ---
-> It would be nice to wake up the Lenovo Yoga C630 from suspend by hitting
-> the keyboard or touchpad, so this patch enables that
-> ability.
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>
+>> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+>> ---
+Aside from Dmitry's valid comments, the subject is wrong.
+
+ARM points to arch/arm/ (arm32) and you're missing the name of
+the file that you're modifying. Check the git log for that file
+to get a grasp of it.
 
 Konrad
 
