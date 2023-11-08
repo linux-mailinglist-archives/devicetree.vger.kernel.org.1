@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB0E7E567B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:45:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D93A7E5690
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:55:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07C2D280DC3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:45:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9411C209B0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124A7DF53;
-	Wed,  8 Nov 2023 12:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0C810785;
+	Wed,  8 Nov 2023 12:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Psu9YFrV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aIoqscuB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDE363C1;
-	Wed,  8 Nov 2023 12:44:57 +0000 (UTC)
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D171BF0;
-	Wed,  8 Nov 2023 04:44:56 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9d10f94f70bso1038202566b.3;
-        Wed, 08 Nov 2023 04:44:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A48DF53
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 12:55:23 +0000 (UTC)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857081BF6;
+	Wed,  8 Nov 2023 04:55:23 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1cc5b7057d5so62017695ad.2;
+        Wed, 08 Nov 2023 04:55:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699447495; x=1700052295; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1699448123; x=1700052923; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bfIYw/eqVYS+oY4d930Rw+98Y2voJ1fI6YN4DdZy5xw=;
-        b=Psu9YFrVuMTSGQu1GTHajw6CvqGbu7OQL/Ouqkq4R9O4EOAaJTSaYN2GW2+HPmEeb+
-         70QOeL9k+b/eAzJFPYvEbn8HonlWjP8O6nI1Owa8SXnnVA1nQCbwfZ5pzRihXh/uCryC
-         ZizHsnr1lJuYamdErkb/+Yw7BkvRDK3wIfhKJmzm9C3tN5lgkq9p1nqA/Dl/+deSlBjK
-         kNDSs7JGQjMBu9xon1GadH4qzUVkmgsC3WE2shAHvQLjyo08CYLVv00/wuY+2khiRfi5
-         Z5l/+3Tcj1G3w6poHwKd5saFMF0XGOSvKDrIv+mtjcgDcbRp40m4e7yc3YL25lneq11Z
-         X6ng==
+        bh=cnFnGa1Xq3NRu1+Ex0WsMtBFHv4Yfs3kHDcwQXFSzNU=;
+        b=aIoqscuB0S3rqTjBvVxNyDGXyscccXl99cGr2UR5Jz3LCJeW1Vz0oiHw4rSbndkvH4
+         S0Q4RsZP13vx310dw3bIYO6pZEgAeBm45R6V48tiGy8sWL6ZB71loHS9+9jIdHCzz75m
+         fOW3WY3Wpag708onJp4CavwpXNawEaY4jeJdYsMZdyzi44HNHo4tiD31cSlYkPZD8fCE
+         s/gxukKAXegJ5DfQf2CJiRz4gvjo4luj0huPo1BW4R5qLZs+VNHvfOkcA9yra27SYzhg
+         SMw8cQjUSlrMP5LPGca2uG7y0Ts+QGkdrxqf/mvP67BXGSTxUkc7srUfgq8Fn07cUBa8
+         bskA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699447495; x=1700052295;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699448123; x=1700052923;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bfIYw/eqVYS+oY4d930Rw+98Y2voJ1fI6YN4DdZy5xw=;
-        b=ZZn/w80VTWHedGYW691sFvd4WIpS4PHx4aeHQBXEtdNlUqyPHfmzcNwuN0sQ/PUut2
-         wi9gd2WqLi1+w8xMoKqYSUMlo3Qr/M5q4vkW3gDDpohEk342797yhyT0SsmFOzCtsHXP
-         Xcf5vfXwFvGc+bFPYCh8G8jFOfDVW/REvQq7vi4mQ9K8Hdl1tkzKmI/gMUwvHjF/eQ5Q
-         iJ+CClefaG7YTAyy79AOk5zBSlCKuLuYG7H3vNQ2VotqpSsJ+JMkALzewWhIDWCO1Re9
-         rM8Rmakysx6pbSjioJrqt1WEckw7UEvEnoFge9IDxQVXzyP5B8QjUwUbUyTHXe38S3zm
-         2ZZA==
-X-Gm-Message-State: AOJu0YwCD8cp1GdhujnDYadqHnshC8OR9aUdG16RYy6E6YblgMV2hqsA
-	m8YhbpNvJBqff7/SuAm3x5k=
-X-Google-Smtp-Source: AGHT+IHpd7EMYPwzVeWvMT/QxCTbAiO3+AWFKUFV0YS7L4f+kzaa4xw/++1WEvWsaPebdQlm/g8/ow==
-X-Received: by 2002:a17:907:934b:b0:9c4:67f:3ef5 with SMTP id bv11-20020a170907934b00b009c4067f3ef5mr1448237ejc.50.1699447495312;
-        Wed, 08 Nov 2023 04:44:55 -0800 (PST)
-Received: from ?IPV6:2a02:8389:41cf:e200:8f74:d45a:3701:5b6? (2a02-8389-41cf-e200-8f74-d45a-3701-05b6.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:8f74:d45a:3701:5b6])
-        by smtp.gmail.com with ESMTPSA id gz11-20020a170906f2cb00b009b2d46425absm989612ejb.85.2023.11.08.04.44.53
+        bh=cnFnGa1Xq3NRu1+Ex0WsMtBFHv4Yfs3kHDcwQXFSzNU=;
+        b=r8U/bjizn0e9DFHeLPAAzWwj/rQwMKL999pa0N4072RYH0cLNk6vzDD23ZqU5UBBL3
+         jTuISfrJt9PlrcwFb+zC4CQANesFkUh2YaWVN1VaJAjDBb+N+4YQj2Bql2jPxsvyPDO1
+         Dyi5Zr/4rlPk1XOSQWRe5oF8SNLoe1TU7go4Xa+b13KDCBPzG08ANM+jcwBOJVmLDjvG
+         KP2sgjII+cOZe3fpniNRS/unf7Ec+fqCY8j8HnSx+N3+ynuCM18RiB7ARpOcqKgwW0nn
+         fm4Z1iF298O29cSnyEzVqtYOpsRUwEgoAyUU1OKvfdBp9+KQK6tbISw9dxxLl/lK3jfD
+         aDww==
+X-Gm-Message-State: AOJu0Yy2u+mwuUcyMDCUMTU8OKvMopxSlfxIXCFbwsM6Q4lms7nQFudo
+	Ujw3n3d31ri47LBU93yUz5M=
+X-Google-Smtp-Source: AGHT+IGrbJU4UhYwNZD8MuOWryrbZUlLrn0fvKGeRWexgJYA0rdUWu3Ogr2W8YqZPCXVFJU2nxeJFQ==
+X-Received: by 2002:a17:902:c403:b0:1ca:7086:60f7 with SMTP id k3-20020a170902c40300b001ca708660f7mr2494532plk.28.1699448122932;
+        Wed, 08 Nov 2023 04:55:22 -0800 (PST)
+Received: from ?IPV6:2401:4900:2353:8963:b940:1ac0:2fbc:6b6? ([2401:4900:2353:8963:b940:1ac0:2fbc:6b6])
+        by smtp.gmail.com with ESMTPSA id ju1-20020a170903428100b001b8622c1ad2sm1695286plb.130.2023.11.08.04.55.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Nov 2023 04:44:54 -0800 (PST)
-Message-ID: <269222d8-b72f-4c7a-a19e-a82964e29ec8@gmail.com>
-Date: Wed, 8 Nov 2023 13:44:52 +0100
+        Wed, 08 Nov 2023 04:55:22 -0800 (PST)
+Message-ID: <e192a58e-47f8-4410-81a5-de1ebab3251d@gmail.com>
+Date: Wed, 8 Nov 2023 18:23:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,111 +67,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dt-bindings: hwmon: Add Amphenol ChipCap 2
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20231020-topic-chipcap2-v1-0-087e21d4b1ed@gmail.com>
- <20231020-topic-chipcap2-v1-4-087e21d4b1ed@gmail.com>
- <5a35f02d-31d0-4cef-9b46-f231d0611c7a@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: trivial-devices: add asair,ags02ma
 Content-Language: en-US
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <5a35f02d-31d0-4cef-9b46-f231d0611c7a@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231107173100.62715-1-anshulusr@gmail.com>
+ <20231107173100.62715-2-anshulusr@gmail.com>
+ <1d5d1357-0b53-4639-add9-2b3f38aae744@linaro.org>
+ <90cacd34-4812-4792-9bf0-362200431452@gmail.com>
+ <77e1d308-6ac3-4200-b72a-6d5717869b06@linaro.org>
+ <7501036c-4e1f-4993-97a7-6c36c7cc8358@gmail.com>
+ <6f654341-a9c0-4412-ac87-5800d6122023@linaro.org>
+From: Anshul Dalal <anshulusr@gmail.com>
+In-Reply-To: <6f654341-a9c0-4412-ac87-5800d6122023@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hello,
 
-On 08.11.23 13:34, Krzysztof Kozlowski wrote:
-> On 08/11/2023 13:29, Javier Carrasco wrote:
->> Add device tree bindings and an example for the ChipCap 2 humidity
->> and temperature sensor.
+
+On 11/8/23 17:59, Krzysztof Kozlowski wrote:
+> On 08/11/2023 13:15, Anshul Dalal wrote:
+>> On 11/8/23 17:31, Krzysztof Kozlowski wrote:
+>>> On 08/11/2023 12:54, Anshul Dalal wrote:
+>>>>
+>>>> Hello Krzysztof,
+>>>>
+>>>> On 11/7/23 23:17, Krzysztof Kozlowski wrote:
+>>>>> On 07/11/2023 18:30, Anshul Dalal wrote:
+>>>>>> Add bindings for Asair AGS02MA TVOC sensor to trivial devices.
+>>>>>>
+>>>>>> The sensor communicates over i2c with the default address 0x1a.
+>>>>>> TVOC values can be read in the units of ppb and ug/m^3 at register 0x00.
+>>>>>>
+>>>>>> Datasheet:
+>>>>>>   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
+>>>>>> Product-Page:
+>>>>>>   http://www.aosong.com/m/en/products-33.html
+>>>>>>
+>>>>>> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>>>>>  1 file changed, 2 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>>>> index cd58179ae337..9cd67b758a88 100644
+>>>>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>>>> @@ -47,6 +47,8 @@ properties:
+>>>>>>            - adi,lt7182s
+>>>>>>              # AMS iAQ-Core VOC Sensor
+>>>>>>            - ams,iaq-core
+>>>>>> +            # TVOC (Total Volatile Organic Compounds) i2c sensor
+>>>>>> +          - asair,ags02ma
+>>>>>
+>>>>> I think you miss VDD supply.
+>>>>
+>>>> I am sorry but I'm not sure what you meant. Are you referring to the
+>>>> addition of some information in the commit description?
+>>>
+>>> I meant that your device might not be trivial. Your device takes VDD
+>>> supply, which is now not described in the bindings. Do you want to say
+>>> that VDD supply in all possible designs is hard-wired to
+>>> non-controllable regulator supply?
 >>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> ---
+>> I can't speak for all possible designs but for testing this driver I had
+>> just connected the VDD pin to 5V out of the Raspberry Pi. I have since
+>> verified 3.3V to also work.
+>> Could you explain why `vdd-supply` is a property or point me to further
+>> sources. Wouldn't almost all devices have a VDD/VCC pin for power in?
 > 
-> ...
+> Most of the devices have such pin. For most of the devices we include it
+> in the bindings.
 > 
->> +maintainers:
->> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> +
->> +description: |
->> +  Relative humidity and temperature sensor on I2C bus.
->> +
->> +  Datasheets:
->> +    https://www.amphenol-sensors.com/en/telaire/humidity/527-humidity-sensors/3095-chipcap-2
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - amphenol,cc2dxx
->> +      - amphenol,cc2dxxs
+> git grep regulator_get -- drivers/iio/
+> git grep vdd -- drivers/iio/
 > 
-> What does xx stand for? Wildcard? I do not see cc2dxx in part numbers.
-> We expect specific compatibles, not generic. What are the differences
-> between all parts?
-> 
-There are two device families: cc2dxx and cc2dxxs, where xx indicates
-the voltage and the accuracy. That does not change how the devices works
-and it is not relevant for the driver. The 's' indicates that it is a
-sleep device, and that modifies how it works.
-I listed the supported part numbers in the hwmon documentation, where
-they are also divided into these two families.
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 3
->> +    description: |
->> +      The device provides three optional interrupts. READY indicates that
->> +      a measurement was finished. LOW indicates a low humidity alarm and
->> +      HIGH a high humidity alarm.
->> +      All interrupts must be IRQ_TYPE_RISING_EDGE.
-> 
-> Instead use items: with description: for each item.
-> 
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: READY
->> +      - const: LOW
->> +      - const: HIGH
-> 
-> Lowercase names
-> 
->> +
->> +  vdd-supply:
->> +    description:
->> +      Dedicated, controllable supply-regulator to reset the device and
->> +      enter in command mode. If defined, it must provide a GPIO for its
->> +      control.
-> 
-> I don't understand what GPIO has anything to do with power supply.
-> 
->> +      If not defined, no alarms will be available.
->> +
->> +
-> 
-> Only one blank line.
-> 
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
-> 
-> Best regards,
-> Krzysztof
-> 
-Thanks for your review.
+> If you do not describe it in the bindings, then your device will have to
+> be supplied by always-on regulators (and marking controllable regulator
+> as always-on because of this is not correct).
+>
+Thanks for the explanation Krzysztof. If I understand correctly, having
+an vdd-supply in the binding indicates that the device may be powered by
+a controllable power source instead of one that is always on.
 
-Best regards,
-Javier Carrasco
+> If you are unsure and you just work on some sensor not used for final
+> product, I think it's fine as is, so to add the regulator later if ever
+> needed.
+
+No problem, I can add the required properties in the next patch version.
+I need to make a few changes to the driver anyways.
+
+Just out of curiosity, the sensor supports reassigning of the i2c
+address by writing to the 0x21 register from the default address of
+0x1a. Is there some way to represent this in the binding.
+For future reference, is there some exhaustive list or specification
+document for all the allowed properties.
+
+Thanks for the help,
+Anshul
 
