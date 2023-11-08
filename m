@@ -1,113 +1,119 @@
-Return-Path: <devicetree+bounces-14621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D007E5B93
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:41:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B36C7E5BAA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 610AA1C20B02
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:41:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA0E6281342
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:46:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25481078E;
-	Wed,  8 Nov 2023 16:41:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mHEkXpn0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B041C1078E;
+	Wed,  8 Nov 2023 16:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3222171C1;
-	Wed,  8 Nov 2023 16:41:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE3EFC433C9;
-	Wed,  8 Nov 2023 16:41:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699461714;
-	bh=mTSad6bJhZGA212S/cPdKprvVKPQ/Wzqui55Qdqk7Q0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mHEkXpn0YUGCi5tDa5stf8TWfMEbxcSgszu1XhzbVhTBRgxBnyU/PzKxof2V9XnaY
-	 zuYUA7lRdYFVNhIGuPpGjAzNGK9m6qjHSad5xZq9BXgyC7S8qhsGji0Ws70V9ECWQW
-	 jJoXZW/EGelR6dVh/x8jxbO2B5fARPBf47voCmN+SWIdg/iQeJBUS+Yd3MJoHVi6ab
-	 DGmxVQMHM/QW683mvTs3EjeZs6+grLIqhLcS5nMjoq9FdFM+A/2Cc4onYm75xzfDY4
-	 F/4s2fEWLVRP2PVf719XdVQKnBtekM8cBdJNMMOwLap8uCWbX1q7vDSzfyPAn2wgCM
-	 XZ+PJnY19Z6bg==
-Date: Wed, 8 Nov 2023 16:41:43 +0000
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaehoon Chung <jh80.chung@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 11/17] ASoC: dt-bindings: samsung-i2s: add specific
- compatibles for existing SoC
-Message-ID: <20231108164143.GC8909@google.com>
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
- <20231108104343.24192-12-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2F8D50E
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 16:45:58 +0000 (UTC)
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AE61FEB;
+	Wed,  8 Nov 2023 08:45:57 -0800 (PST)
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3b3f55e1bbbso4396551b6e.2;
+        Wed, 08 Nov 2023 08:45:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699461957; x=1700066757;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+2/em8px25lvvpBU9rvHFbF1HeCeuyI1nkJj1hjrCcE=;
+        b=cdf6MVQCwN+UF1Ks6dRTdla+uJa6hPZ5/sN0UW/3Y04JkCtQSblGmqQgR+aCTW85ql
+         HSqKd21g0/vcMpFj3nUa9has388xWL0XlqjI/YkmlPd/Bxcl7RfkMEYo6gF5aPnOrhZ7
+         gH66hnnKP1OFln7f28NOvobGwH5h3mdZhbr5nvQdrIbWuu9wkD7iKH/daOY9u6+Z9yMS
+         X2gbY+uwmj/89X7oci5rJbCPpmHh9cSaSQzC/oORgvh+S4pa/m0yHyMSc3UWueCtx+aE
+         eM2AYtfsOJaaIVMflGjyGASKU0/Z28VBXiv4F12qKVv3QrZFuPcH/1jsfwVbw55MK7C8
+         EbIw==
+X-Gm-Message-State: AOJu0Yw8kAVDFG9xcUDuk8a0njsz8sjjy0RO3wod3H/OoKvD1r3ctsbk
+	/atnIW7m/0KSJ/ZmOppEWg==
+X-Google-Smtp-Source: AGHT+IFvlYjPpMwWNKajh1aieaxBmAkZnibFukFibLaHOGujo2dJzvubHc1EDt/gC2K4PeXz+9SVqw==
+X-Received: by 2002:a05:6808:f15:b0:3ac:aae1:6d63 with SMTP id m21-20020a0568080f1500b003acaae16d63mr2822787oiw.44.1699461957004;
+        Wed, 08 Nov 2023 08:45:57 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u6-20020a056808150600b003af6eeed9b6sm1951981oiw.27.2023.11.08.08.45.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Nov 2023 08:45:56 -0800 (PST)
+Received: (nullmailer pid 2370821 invoked by uid 1000);
+	Wed, 08 Nov 2023 16:45:55 -0000
+Date: Wed, 8 Nov 2023 10:45:55 -0600
+From: Rob Herring <robh@kernel.org>
+To: Shiji Yang <yangshiji66@outlook.com>
+Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v4] dt-bindings: leds: add 'internet' and 'signal'
+ function definitions
+Message-ID: <169946195473.2370763.12041367537748658964.robh@kernel.org>
+References: <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231108104343.24192-12-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <TYAP286MB0315F4D71698370875F58F6EBCAAA@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
 
-On Wed, 08 Nov 2023, Krzysztof Kozlowski wrote:
 
-> Samsung Exynos SoC reuses several devices from older designs, thus
-> historically we kept the old (block's) compatible only.  This works fine
-> and there is no bug here, however guidelines expressed in
-> Documentation/devicetree/bindings/writing-bindings.rst state that:
-> 1. Compatibles should be specific.
-> 2. We should add new compatibles in case of bugs or features.
+On Mon, 06 Nov 2023 14:26:51 +0800, Shiji Yang wrote:
+> These two types of LEDs are widely used in routers and NICs.
 > 
-> Add compatibles specific to each SoC in front of all old-SoC-like
-> compatibles.
+> The 'signal' LED is used to display the wireless signal strength.
+> Usually, there are 3~4 LEDs in one group to indicate the signal
+> strength, similar to the signal icon on a mobile phone.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The 'internet' LED can indicate whether the device can access a
+> specific server. It's different from 'wan'. 'wan' usually indicates
+> whether the WAN port is connected to the modem (internet services
+> may still be unavailable). But the 'internet' shows if the device
+> can successfully ping servers such as 8.8.8.8 to detect the internet
+> connection status. When the router is running in AP only mode, we
+> can even connect LAN port to the AC/modem to connect to the internet.
+> In this case, the 'internet' LED should be on. On some routers, both
+> 'internet' and 'wan' are available and can be controlled separately.
 > 
+> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
 > ---
 > 
-> I propose to take the patch through Samsung SoC (me). See cover letter
-> for explanation.
-> ---
->  .../mfd/samsung,exynos5433-lpass.yaml         |  2 +-
->  .../bindings/sound/samsung-i2s.yaml           | 19 ++++++++++++-------
->  2 files changed, 13 insertions(+), 8 deletions(-)
+> Changes in v2:
+> * Remove the LED name sorting patch as it changes the ABI.
+> * Add "devicetree@vger.kernel.org" to '--to' list.
+>   Thanks to Rob Herring and Krzysztof Kozlowski for letting me know I
+>   can send patch to multiple mailing list at once.
+> 
+> Changes in v3:
+> * Add more information about the new added LEDs.
+> * Remove the missing LED fix as Jisheng Zhang has already sent a
+>   similar one. I should search the mailing list first...
+> 
+> Changes in v4:
+> * Rename 'rssi' LED to more generic name 'signal'. I forgot to update
+>   the source file in v3.
+> 
+> v1:
+> https://lore.kernel.org/all/TYAP286MB0315FE921FF113BF76F7B700BCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+> 
+> v2:
+> https://lore.kernel.org/all/TYAP286MB03159A83A77E6FD59F271D9BBCA0A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+> 
+> v3:
+> https://lore.kernel.org/all/TYAP286MB0315AE8F62E6AB48E3F9A0DDBCA5A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM/
+> 
+>  include/dt-bindings/leds/common.h | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Acked-by: Lee Jones <lee@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
--- 
-Lee Jones [李琼斯]
 
