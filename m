@@ -1,138 +1,140 @@
-Return-Path: <devicetree+bounces-14570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491067E5814
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F0F7E5834
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:57:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79FB11C208E5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:44:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 989BB1C208DA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB4519479;
-	Wed,  8 Nov 2023 13:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 148C21947C;
+	Wed,  8 Nov 2023 13:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="b1YwFl1N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLLvN3zb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCCB171D4
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 13:44:42 +0000 (UTC)
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294B91BFC
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 05:44:42 -0800 (PST)
-Received: by mail-ej1-x641.google.com with SMTP id a640c23a62f3a-9d267605ceeso1052118466b.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 05:44:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1699451080; x=1700055880; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IVv5mcW5zUgVSiSOauQHcHZhJPg5UCLoWJRDvmkhj7k=;
-        b=b1YwFl1N0rh28F9ndwx1VKdwqN7JVkUNnJL2HRiTWVsaqG9xjSomQWBarF3j4Evojx
-         lhyUROga4guIUM85JJEScrWyltJwqlw6y2xNAu5hWI33OtNnqyOWu8vxIW0kdrsJ7ni9
-         GOEivr5H/1hxC9NtsiFuCsZi71RyZNBqN4AOY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699451080; x=1700055880;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IVv5mcW5zUgVSiSOauQHcHZhJPg5UCLoWJRDvmkhj7k=;
-        b=oAHJ4D6DUklBkJHsWCp9R5hvHeAk5NVbA0DMxDusyqPen8hxgZ/5RcoW5sudxu6V1g
-         rnD9rDPn41Cvwsc+kQs6Bp/7RTtoSpDgChfNvZqQqRQyamnlu97wCUY4quDAPq8ZOfKM
-         iowFLsYQz/9UBYwvks3f8uLLQpOPX5trGllLWOjzfxMU3shDWkbXp0JNnalbEkwmftmu
-         h24pcTXPH7BQGKIzXhdBkKBn+MfbkBTDcVxNUipFTD+daSEF/BFlJ4FsOjnxWtHghqXk
-         JTIEv7eU3Axzy/oNT3jzLYpUm+5hQccrjG2xxePCeU0e52GCDiH+QT2mBnEE+VrrTGg9
-         qKuw==
-X-Gm-Message-State: AOJu0Yx/LGxcCNdT36bNjR0Dp4HntYb1Qeqpf+orsQ6sxIRYwZ5KkM9E
-	cVMmCHeWO40ckO0z2nguuWrcMw==
-X-Google-Smtp-Source: AGHT+IEn/7ehRYp2n2E4vkCWEuoVxQ7nZKTWTIBc8HV+mV3MsZL6jh3kxXkuRcD9ZyWoygMo5iN7MA==
-X-Received: by 2002:a17:907:987:b0:9e0:4910:1649 with SMTP id bf7-20020a170907098700b009e049101649mr1775121ejc.8.1699451080611;
-        Wed, 08 Nov 2023 05:44:40 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-20-97-182.retail.telecomitalia.it. [79.20.97.182])
-        by smtp.gmail.com with ESMTPSA id kj3-20020a170907764300b009bf7a4d591csm1091457ejc.11.2023.11.08.05.44.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 05:44:40 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [RESEND PATCH] ARM: dts: stm32f469-disco: use the same 3v3 for SD and DSI nodes
-Date: Wed,  8 Nov 2023 14:44:06 +0100
-Message-ID: <20231108134426.4174699-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.42.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CA3199A5;
+	Wed,  8 Nov 2023 13:57:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E97CC43391;
+	Wed,  8 Nov 2023 13:57:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699451849;
+	bh=oAMyGLNvlEk2Z3kcyrMLZHtZ2K7CmXV47NgxDhyFDAI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TLLvN3zbeCodFityx/4ypnt/Ii/fLaigJHu+596F82grUSxrOKhUp5VnJ10ovHhGv
+	 TQVt+OifIzv1INb3RTscv+PKfnTR/VZ8VqSq7/ZL66e4nDpmbbBAPs7YOBrYmZnGlO
+	 qF/ZUayfqAma1ZWC5m63Ga58DPZ99AmzuijezXivJABvO1R0GUBdOomF7mVGJ5DcPD
+	 SatYDtXoRSRvA2oZRCgQjl+dEgpfDW1nV+g1uZLgS2hEEu8CerEmr+rFNBtjpTaqsv
+	 XzS65rJj1xOOVKWSPvaaJUKjsWRz/XhhvcYjMSAefJnHMH/E/5ioxrSdzr1Td/5o/U
+	 AmTn32Jy6Wjfg==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-507ad511315so9991958e87.0;
+        Wed, 08 Nov 2023 05:57:29 -0800 (PST)
+X-Gm-Message-State: AOJu0YwHrkJ5csqhd4zb3ihEruA5yGxTE5EufmxkrNjMbvsscjqt2ms7
+	3tpZxYznzF8FEarKSW2IStkf1vUk1rc6Wtq9Cw==
+X-Google-Smtp-Source: AGHT+IGuwHUp+aEG6CZkAVv9OagCbfM3Ciyh9iJ50ppoxMFJJ3ItGNnVmTiHOsiB5o//EA7YPSpGzVzEkTMc7343V6w=
+X-Received: by 2002:ac2:5397:0:b0:507:b9db:61dc with SMTP id
+ g23-20020ac25397000000b00507b9db61dcmr1259652lfh.48.1699451847501; Wed, 08
+ Nov 2023 05:57:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+ <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
+ <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
+ <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com>
+ <CAPnjgZ0LrsJ2_ENTYoBrnyFaH3UKdHs3D2XWY=TzBuBpBoTXZA@mail.gmail.com>
+ <CAL_Jsq+DQugkEDESW5wySFbLLN8HNqGDJCio8Wpi6fe0LeHKUA@mail.gmail.com>
+ <CAPnjgZ0cmKP5hoGCyQ_Rp8ZQXUVwaPYJMWyidXuOOjMVkDoMDw@mail.gmail.com>
+ <CAL_JsqJH=vJ40PNTg_i0LoKA-c0hhMJkL8zCC3_bB-tOkFWWsw@mail.gmail.com>
+ <CAPnjgZ1FrdGKjGAxUbkQoL2vHwhC_2Oa2KT+0cm25dQAuAjxAQ@mail.gmail.com>
+ <CAPnjgZ19-xR6QxS=fR53skz0VuAty2Z2w2vQTjP7g=tbTFpaqw@mail.gmail.com>
+ <CAL_JsqL+X1DatsGk_Cn1HsbG2GV9AngFWXVysWTiNRu_d9tDqw@mail.gmail.com> <CAMj1kXHfh40wxerZGjOn2JJ5Skm5C--Rz2jy8p3XZ2UXKGjw+g@mail.gmail.com>
+In-Reply-To: <CAMj1kXHfh40wxerZGjOn2JJ5Skm5C--Rz2jy8p3XZ2UXKGjw+g@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 8 Nov 2023 07:57:15 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLpea+FU4gXpaSUSeBP70szJ+mRjJtFei=QW2VoHCFOuA@mail.gmail.com>
+Message-ID: <CAL_JsqLpea+FU4gXpaSUSeBP70szJ+mRjJtFei=QW2VoHCFOuA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: Ard Biesheuvel <ardb@kernel.org>
+Cc: Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org, 
+	Mark Rutland <mark.rutland@arm.com>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In the board schematic, the power supply for the SD card is the same 3.3
-volts used to power the LCD panel and other peripherals. By generalizing
-the name of the voltage regulator, it simplifies the device tree and makes
-it more readable.
+On Wed, Nov 8, 2023 at 5:38=E2=80=AFAM Ard Biesheuvel <ardb@kernel.org> wro=
+te:
+>
+> On Tue, 7 Nov 2023 at 19:07, Rob Herring <robh@kernel.org> wrote:
+> >
+> >
+> > All of this:
+> >
+>
+> > > On Mon, 16 Oct 2023 at 15:54, Simon Glass <sjg@chromium.org> wrote:
+> > > >
+> > > > It is not specific to EDK2. Imagine this boot sequence:
+> > > >
+> > > > - Platform Init (U-Boot) starts up
+> > > > - U-Boot uses its platform knowledge to sets some ACPI tables and p=
+ut
+> > > > various things in memory
+> > > > - U-Boot sets up some runtime code and data for the OS
+> > > > - U-Boot jumps to the Tianocore payload **
+> > > > - Payload (Tianocore) wants to know where the ACPI tables are, for =
+example
+> > > > - Tianocore needs to provide boot services to the OS, so needs to k=
+now
+> > > > the memory map, etc.
+> > > >
+> > > > ** At this point we want to use DT to pass the required information=
+.
+> > > >
+> > > > Of course, Platform Init could be coreboot or Tianocore or some
+> > > > strange private binary. Payload could be U-Boot or something else.
+> > > > That is the point of this effort, to build interoperability.
+> >
+> > [...]
+> >
+> > > > Perhaps the problem here is that Linux has tied itself up in knots
+> > > > with its EFI stuff and DT fixups and what-not. But this is not that=
+.
+> > > > It is a simple handoff between two pieces of firmware, Platform Ini=
+t
+> > > > and Payload. It has nothing to do with the OS. With Tianocore they =
+are
+> > > > typically combined, but with this usage they are split, and we can
+> > > > swap out one project for another on either side of the DT interface=
+.
+> >
+> > Is perhaps the clearest description of the problem you want to solve.
+> > It's clearly related to EFI though not the interface to the OS. IIRC,
+> > "platform init" and "payload" are terms in the UEFI spec, right?
+>
+> No they are not. This is from the universal payload specification that
+> is being drafted here
+>
+> https://universalpayload.github.io/spec/index.html
+>
+> but the UEFI specification does not use this terminology.
 
-Link: https://www.st.com/en/evaluation-tools/32f469idiscovery.html#cad-resources
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Then I'm confused as to what this is:
 
----
+https://uefi.org/specs/PI/1.8/index.html
 
- arch/arm/boot/dts/st/stm32f469-disco.dts | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
-
-diff --git a/arch/arm/boot/dts/st/stm32f469-disco.dts b/arch/arm/boot/dts/st/stm32f469-disco.dts
-index cbbd521bf010..8a4f8ddd083d 100644
---- a/arch/arm/boot/dts/st/stm32f469-disco.dts
-+++ b/arch/arm/boot/dts/st/stm32f469-disco.dts
-@@ -69,16 +69,9 @@ aliases {
- 		serial0 = &usart3;
- 	};
- 
--	mmc_vcard: mmc_vcard {
-+	vcc_3v3: vcc-3v3 {
- 		compatible = "regulator-fixed";
--		regulator-name = "mmc_vcard";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--	};
--
--	vdd_dsi: vdd-dsi {
--		compatible = "regulator-fixed";
--		regulator-name = "vdd_dsi";
-+		regulator-name = "vcc_3v3";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 	};
-@@ -164,7 +157,7 @@ panel@0 {
- 		compatible = "orisetech,otm8009a";
- 		reg = <0>; /* dsi virtual channel (0..3) */
- 		reset-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
--		power-supply = <&vdd_dsi>;
-+		power-supply = <&vcc_3v3>;
- 		status = "okay";
- 
- 		port {
-@@ -219,7 +212,7 @@ timer@2 {
- 
- &sdio {
- 	status = "okay";
--	vmmc-supply = <&mmc_vcard>;
-+	vmmc-supply = <&vcc_3v3>;
- 	cd-gpios = <&gpiog 2 GPIO_ACTIVE_LOW>;
- 	broken-cd;
- 	pinctrl-names = "default", "opendrain";
--- 
-2.42.0
-
+Rob
 
