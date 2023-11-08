@@ -1,130 +1,91 @@
-Return-Path: <devicetree+bounces-14474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6797E4FE4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:17:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183C47E5013
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:38:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D4E51C20BEF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 05:17:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90181B20B16
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 05:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3956123;
-	Wed,  8 Nov 2023 05:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D5ABE51;
+	Wed,  8 Nov 2023 05:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Aiqcqysj"
+	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="n2r7PWWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84AEA8F5D;
-	Wed,  8 Nov 2023 05:17:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0F0E3C433C8;
-	Wed,  8 Nov 2023 05:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699420634;
-	bh=PiEA1nwpNZ7TIn0iVbmCqXuNqt+dMIvNxBd2gHiIqeA=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=Aiqcqysj8WSgJGkbPvLx+T2mLDBYuIwWabw8x47oDZE/We+sLp0vrmSOZeo+lgJ+Q
-	 BQuQoiPBRTi2sK+IVxnlqVKhF3Hm490Q+XzNdF008Vb5QftMAqQY9lXE7Ee8rW+4au
-	 QyEdz6BumydNEFZFOf6q01NjT1wehBoC8zqnx/KmKo0iq2iIeHi+VT46S7mlGzppGs
-	 nLV2vVfGxg3uUuj6dHXC08CQqLPkwRXFwSfk3+UIpMvi8RyN/rAs9buYu6TZP9pke5
-	 dUTbJc7uaOgtUuk1JlCZd2wXO5gQqV0nI6kV9PjVZ0+sWnZ8re50i/OuKBsqwO6Us7
-	 ON1QXXWj92U8w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E49A8C4332F;
-	Wed,  8 Nov 2023 05:17:13 +0000 (UTC)
-From: Steev Klimaszewski via B4 Relay <devnull+steev.kali.org@kernel.org>
-Date: Tue, 07 Nov 2023 23:17:10 -0600
-Subject: [PATCH v2] arm64: dts: qcom: sdm850-lenovo-yoga: Add
- wakeup-sources
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85CB8F7E;
+	Wed,  8 Nov 2023 05:38:19 +0000 (UTC)
+X-Greylist: delayed 149365 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 07 Nov 2023 21:38:19 PST
+Received: from mx0.riseup.net (mx0.riseup.net [198.252.153.6])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177E7D79;
+	Tue,  7 Nov 2023 21:38:19 -0800 (PST)
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx0.riseup.net (Postfix) with ESMTPS id 4SQDQL0D30z9sZl;
+	Wed,  8 Nov 2023 05:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+	t=1699421898; bh=hnp+MRetZIeRthwcZt8YAw+DaHaqqmUcyacYecXNAWY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=n2r7PWWHSYKLXYEP0X9fa4eP3tTl0mFt7+N/KzSU0pJINQt5nJO6wMP7pfj8o393B
+	 UVjnbftZbdJ5JYpVmL+rAWeEHXdrtWt+W1Z/EdzkW/5gH4Tr8PVEB9km+hxyp+3ri1
+	 JKEjcA5leBDjDdcez/nguaIBKgg4kmRPZUfU7ZMo=
+X-Riseup-User-ID: 4F845E5C8472CAF32BD62747F514CB998E4B9C350F494338EE95BEACC9A4466E
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4SQDQG6LQczJmtY;
+	Wed,  8 Nov 2023 05:38:14 +0000 (UTC)
+From: Dang Huynh <danct12@riseup.net>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Robert Marko <robimarko@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 8/8] soc: qcom: socinfo: Add PM8937 Power IC
+Date: Wed, 08 Nov 2023 05:38:02 +0000
+Message-ID: <6027616.lOV4Wx5bFT@melttower>
+In-Reply-To: <6715dfd5-acf5-434c-a9bd-0a5bcdd72010@linaro.org>
+References:
+ <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
+ <20231106-pm8937-v1-8-ec51d9eeec53@riseup.net>
+ <6715dfd5-acf5-434c-a9bd-0a5bcdd72010@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231107-wakeup-source-v2-1-bf1562ef9367@kali.org>
-X-B4-Tracking: v=1; b=H4sIANUZS2UC/3XMQQ6CMBCF4auQWVvDtKEGV96DsKgwhQmGkqmgh
- vTuVvYu/5e8b4dIwhThWuwgtHHkMOfQpwK60c0DKe5zgy61QSytermJ1kXFsEpHCivnra+cNbq
- G/FmEPL8Pr2lzjxyfQT4Hv+Fv/SdtqFAZe0dvarIX398m9+BzkAHalNIXbIqAvKkAAAA=
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Steev Klimaszewski <steev@kali.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699420633; l=1476;
- i=steev@kali.org; s=20231106; h=from:subject:message-id;
- bh=hOaVryeA8/dNuUZsiO2uJEGRMT7i9AIrp/ZBfau6X9Q=;
- b=9wHrEPFbaFJvva63VF0vjULs/N1mDpxpdj//WykGfE7qJhoLJUxnfDOBEn+bimJ4kXb7tR9r9
- OdBPKQsTZf/AKD5HmITT0TL70Hu8woeoWyRusNCeGIaFlJE5lXUfQwJ
-X-Developer-Key: i=steev@kali.org; a=ed25519;
- pk=KY+JnLRNy7Hdf04yfpE5ubOsDBIIfXAWnBijkySXbb4=
-X-Endpoint-Received: by B4 Relay for steev@kali.org/20231106 with auth_id=97
-X-Original-From: Steev Klimaszewski <steev@kali.org>
-Reply-To: <steev@kali.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Steev Klimaszewski <steev@kali.org>
+On Tuesday, November 7, 2023 9:30:34 PM UTC Konrad Dybcio wrote:
+> On 11/6/23 13:08, Dang Huynh wrote:
+> > The PM8917 and PM8937 uses the same SUBTYPE ID.
+> > 
+> > The PM8937 is found in boards with MSM8917, MSM8937 and MSM8940
+> > and APQ variants.
+> > 
+> > Signed-off-by: Dang Huynh <danct12@riseup.net>
+> > ---
+> 
+> Are they secretly the same thing? Do you know somebody with a PM8917-
+> equipped device to check that theory out?
+> 
+> Konrad
 
-The keyboard and touchpad can be used to wake the machine
-up from sleep, so mark them as such in the dts file.
+I don't know anyone with a PM8917 device, but I did check with downstream 
+source and all the reference to pm8917 are either not used in any dts or point 
+towards pm8937.
 
-Signed-off-by: Steev Klimaszewski <steev@kali.org>
----
-It would be nice to wake up the Lenovo Yoga C630 from suspend by hitting
-the keyboard or touchpad, so this patch enables that
-ability.
----
-Changes in v2:
-- Drop touchscreen from being a wakeup-source.
-- Link to v1: https://lore.kernel.org/r/20231106-wakeup-source-v1-1-36b1f39e67fd@kali.org
----
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Dang
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 92a812b5f423..8f68c99965cd 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -392,6 +392,8 @@ tsc2: hid@2c {
- 		hid-descr-addr = <0x20>;
- 
- 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		wakeup-source;
- 	};
- };
- 
-@@ -408,6 +410,8 @@ tsc1: hid@10 {
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&i2c5_hid_active>;
-+
-+		wakeup-source;
- 	};
- };
- 
-@@ -482,6 +486,8 @@ ecsh: hid@5c {
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&i2c11_hid_active>;
-+
-+		wakeup-source;
- 	};
- };
- 
-
----
-base-commit: 5cd631a52568a18b12fd2563418985c8cb63e4b0
-change-id: 20231106-wakeup-source-15af6f5a6329
-
-Best regards,
--- 
-Steev Klimaszewski <steev@kali.org>
 
 
