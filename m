@@ -1,141 +1,149 @@
-Return-Path: <devicetree+bounces-14545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6497E560B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:17:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF3797E5611
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:17:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9017F1C208A8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:17:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0707CB20D36
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB47B171D6;
-	Wed,  8 Nov 2023 12:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 680DB16404;
+	Wed,  8 Nov 2023 12:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iG7w/PAL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTnF/3Eu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69E516400
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 12:16:57 +0000 (UTC)
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC261BCC;
-	Wed,  8 Nov 2023 04:16:57 -0800 (PST)
-Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-6b709048f32so6195099b3a.0;
-        Wed, 08 Nov 2023 04:16:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699445817; x=1700050617; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a0odlHwOtNd/gQ2OSreSLITmOX7RsQ54slrLEuU0nUY=;
-        b=iG7w/PALHQgB9i8Zpgf8ymo5m07IYdCqCnznMlmwuLebRQkKkrWY884X1gAJL3QT/3
-         4DJ7RcKjfneZGwUj0Cb1QgBCPblP2CPHOk4o5HH5pq5HBk9uUa3xPDgvtrkq4ZzHo0if
-         wXjDQBsRdvePndQ4shjZfQrg1oipjKa0SkC4XZDb9HgBHFDWjRz0CosF9keg+mKnjf0R
-         6NrDhgyBPytOqxZ7g0bYu0chKj/qwWqSjqfRMKKwTpHMaaI7SR5iXEcnrAHOx3LMlzUf
-         LSyNqkLB4InwV/NLzLmNtsVMxVB/fA6yRksiypvx7btcakDzdibiX3hN9tFXRrYbJElv
-         wy0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699445817; x=1700050617;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a0odlHwOtNd/gQ2OSreSLITmOX7RsQ54slrLEuU0nUY=;
-        b=D63sUZXMw7m0+NWjeC5GYRpZgXkeEa/UVJbVukvqKlzOpVA3EfSwlmm+spJzCTXj9b
-         N4powreraNSR6BQK0kpqzZy6oJoWRMOiuKnwYEPFOO5bFD2xr3YbkgF/luB5potDzgya
-         zfqULV1/VCxNNaosE59VsY7FMiSY9Vdg4tcyV9V013NyVN7qeSnwSCaztWpdWlL4HbGS
-         CDYa/4mUX52NHtF/hR4m9Iauefnjza7ceNDBolE1cDpUbcaCMbaeG4z98iFkXBNOeYWW
-         AfG0T2zv4is0wrCCqHqIKlJs7QT2MGzhlZiQWsBsZQFuJvS+xOe25WQNZR1Vn62Ztc7X
-         NShw==
-X-Gm-Message-State: AOJu0Yxmelgmt1wrJk2t5i3bs38+VKx6aFiOjJlSpZINlCab0kJVi35t
-	jkAD/4iVesuxnQ2EEnWdYc0=
-X-Google-Smtp-Source: AGHT+IEgvBlfFoAm3o5yLspuEPCkpGv8ovqzhX0voi151tq5DxVHhnPFdmjziZe7SPm7I5oHL/driA==
-X-Received: by 2002:a05:6a00:88b:b0:6c2:cb9a:885e with SMTP id q11-20020a056a00088b00b006c2cb9a885emr1597966pfj.15.1699445816503;
-        Wed, 08 Nov 2023 04:16:56 -0800 (PST)
-Received: from ?IPV6:2401:4900:2353:8963:b940:1ac0:2fbc:6b6? ([2401:4900:2353:8963:b940:1ac0:2fbc:6b6])
-        by smtp.gmail.com with ESMTPSA id b21-20020a056a0002d500b00688965c5227sm8836395pft.120.2023.11.08.04.16.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Nov 2023 04:16:56 -0800 (PST)
-Message-ID: <7501036c-4e1f-4993-97a7-6c36c7cc8358@gmail.com>
-Date: Wed, 8 Nov 2023 17:45:24 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438D417727;
+	Wed,  8 Nov 2023 12:17:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A168C433C8;
+	Wed,  8 Nov 2023 12:17:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699445843;
+	bh=7V/UrnIoKR1hXQNmM3fHYk4TXHGghxFBDI9RetIrR3U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lTnF/3EunAy/n/EtkQHaJx3vItL4cSDVDLs/F9tkv5i7pc0qpx9Ljy0DdpI9RNMUj
+	 y+4ePbrg5HnrgO1qS6jnxhqG7uAnuxEN5M85JJg+3cO6OIM0QseItr2gK/riow4nYO
+	 GtyTOe6EKUEw+3c0A2sGr6ANhuzP9MDpdxttFp07scZCfMVYn7V81E9oUMoD9asPJZ
+	 LE5BxKejmYHkTjJ1BSpXqScS1UW/gu9/YXbBr4KN4f7QHEHq8PYzAE7tUw40KifrKV
+	 loQGxwzW062JR+Bic9nBu+j+mvNX/LyMtwzCcdQbvRmGB29igTeQJ2q5BRz+CpznHE
+	 ckiETsNNJvO5Q==
+Date: Wed, 8 Nov 2023 12:17:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Ryan Lee <ryans.lee@analog.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: use "soundwire" as controller's node
+ name in examples
+Message-ID: <20231108-outback-composed-c620cd86c234@spud>
+References: <20231107101610.13728-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: trivial-devices: add asair,ags02ma
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
- <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
-References: <20231107173100.62715-1-anshulusr@gmail.com>
- <20231107173100.62715-2-anshulusr@gmail.com>
- <1d5d1357-0b53-4639-add9-2b3f38aae744@linaro.org>
- <90cacd34-4812-4792-9bf0-362200431452@gmail.com>
- <77e1d308-6ac3-4200-b72a-6d5717869b06@linaro.org>
-From: Anshul Dalal <anshulusr@gmail.com>
-In-Reply-To: <77e1d308-6ac3-4200-b72a-6d5717869b06@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6PrPU5pOkEEUIIG5"
+Content-Disposition: inline
+In-Reply-To: <20231107101610.13728-1-krzysztof.kozlowski@linaro.org>
 
-On 11/8/23 17:31, Krzysztof Kozlowski wrote:
-> On 08/11/2023 12:54, Anshul Dalal wrote:
->>
->> Hello Krzysztof,
->>
->> On 11/7/23 23:17, Krzysztof Kozlowski wrote:
->>> On 07/11/2023 18:30, Anshul Dalal wrote:
->>>> Add bindings for Asair AGS02MA TVOC sensor to trivial devices.
->>>>
->>>> The sensor communicates over i2c with the default address 0x1a.
->>>> TVOC values can be read in the units of ppb and ug/m^3 at register 0x00.
->>>>
->>>> Datasheet:
->>>>   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
->>>> Product-Page:
->>>>   http://www.aosong.com/m/en/products-33.html
->>>>
->>>> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>>>  1 file changed, 2 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->>>> index cd58179ae337..9cd67b758a88 100644
->>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->>>> @@ -47,6 +47,8 @@ properties:
->>>>            - adi,lt7182s
->>>>              # AMS iAQ-Core VOC Sensor
->>>>            - ams,iaq-core
->>>> +            # TVOC (Total Volatile Organic Compounds) i2c sensor
->>>> +          - asair,ags02ma
->>>
->>> I think you miss VDD supply.
->>
->> I am sorry but I'm not sure what you meant. Are you referring to the
->> addition of some information in the commit description?
-> 
-> I meant that your device might not be trivial. Your device takes VDD
-> supply, which is now not described in the bindings. Do you want to say
-> that VDD supply in all possible designs is hard-wired to
-> non-controllable regulator supply?
 
-I can't speak for all possible designs but for testing this driver I had
-just connected the VDD pin to 5V out of the Raspberry Pi. I have since
-verified 3.3V to also work.
-Could you explain why `vdd-supply` is a property or point me to further
-sources. Wouldn't almost all devices have a VDD/VCC pin for power in?
+--6PrPU5pOkEEUIIG5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards,
-Anshul
+On Tue, Nov 07, 2023 at 11:16:10AM +0100, Krzysztof Kozlowski wrote:
+> Soundwire Devicetree bindings expect the Soundwire controller device
+> node to be named just "soundwire".  Correct examples, so the incorrect
+> code will not be re-used.
+>=20
+> Reported-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+FWIW, there are a few instances of "soundwire-controller" in qcom
+devicetrees that you might also want to change.
+
+> ---
+>  Documentation/devicetree/bindings/sound/adi,max98363.yaml | 2 +-
+>  Documentation/devicetree/bindings/sound/qcom,wsa883x.yaml | 2 +-
+>  Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/adi,max98363.yaml b/=
+Documentation/devicetree/bindings/sound/adi,max98363.yaml
+> index a844b63f3930..c388cda56011 100644
+> --- a/Documentation/devicetree/bindings/sound/adi,max98363.yaml
+> +++ b/Documentation/devicetree/bindings/sound/adi,max98363.yaml
+> @@ -39,7 +39,7 @@ unevaluatedProperties: false
+> =20
+>  examples:
+>    - |
+> -    soundwire-controller@3250000 {
+> +    soundwire@3250000 {
+>          #address-cells =3D <2>;
+>          #size-cells =3D <0>;
+>          reg =3D <0x3250000 0x2000>;
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa883x.yaml b/=
+Documentation/devicetree/bindings/sound/qcom,wsa883x.yaml
+> index ba572a7f4f3c..8e462cdf0018 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,wsa883x.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa883x.yaml
+> @@ -52,7 +52,7 @@ examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> =20
+> -    soundwire-controller@3250000 {
+> +    soundwire@3250000 {
+>          #address-cells =3D <2>;
+>          #size-cells =3D <0>;
+>          reg =3D <0x3250000 0x2000>;
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml b/=
+Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
+> index e6723c9e312a..d717017b0fdb 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa8840.yaml
+> @@ -48,7 +48,7 @@ examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> =20
+> -    soundwire-controller {
+> +    soundwire {
+>          #address-cells =3D <2>;
+>          #size-cells =3D <0>;
+> =20
+> --=20
+> 2.34.1
+>=20
+
+--6PrPU5pOkEEUIIG5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUt8TAAKCRB4tDGHoIJi
+0jpSAP48y9NqKH1qbbnEmCHyS9qNSJNgiOaoUevxsgcpPscGzwEAqFquFreorzyT
+zAoJ1HXSZDG4PAhSwyJDUwtZ/wPGhQE=
+=CPNX
+-----END PGP SIGNATURE-----
+
+--6PrPU5pOkEEUIIG5--
 
