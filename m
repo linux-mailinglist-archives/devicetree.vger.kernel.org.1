@@ -1,104 +1,145 @@
-Return-Path: <devicetree+bounces-14672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADB37E6018
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 22:45:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 869B97E607D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 23:51:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BB0C1F21386
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 21:45:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37E082812B2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 22:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5A51A594;
-	Wed,  8 Nov 2023 21:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8EF51C6AD;
+	Wed,  8 Nov 2023 22:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GdXWk7r/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYhT3dfi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F1510A06
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 21:45:25 +0000 (UTC)
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCEF2594
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 13:45:25 -0800 (PST)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-5afbdbf3a19so2237157b3.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 13:45:25 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350BB30355
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 22:51:29 +0000 (UTC)
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C9C210A;
+	Wed,  8 Nov 2023 14:51:28 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-daec4e4c5eeso267855276.1;
+        Wed, 08 Nov 2023 14:51:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699479924; x=1700084724; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1699483888; x=1700088688; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uNZCsb+J0tCXIr/CtNET2AcsXu2SaYf1CY84TShlm6Q=;
-        b=GdXWk7r/Ww0irC7aIsHcw7wDikNbFo3tRY3z+MPolck9u3bmv9yN23/z52w3m3460W
-         RGIKDGXc6mHT+IlxrCECRrX729Zoxl0AOKSZ/qdy/dKS/QyiPw8If7/gOXI/N9CTJ6hd
-         o1wgAF+pHv8PA3b9FHohHi5b/mRMt3lCOOwPQNjPQaXf9sH9EKz2xlAQI55UGYRrb0Xg
-         PAJfT4PXMmh37cXNfYIA3v2Xq7RzphXqFnprFrnz8ZNCI51SBt27fMPB0aXwjWE15qYR
-         rrJGGjPYJDfQPbxHRAIoAzQ2Q7mZM+RHaETChVl2CmOmh5GWqqpoOKxwdq5OJGWjjude
-         RTPg==
+        bh=BzcCOTkzTMNtkGk4euDjQYgNxZ6bCe93/Di6zU8gTRc=;
+        b=OYhT3dfiQ+8P75cwsUoERA1LvUy4+2q50BsYasVlKsFD90rebJmAgKBs50YgKbHNvJ
+         Z3x9/56o4T+7I9TteFPJwpdpPDVMkWfs7vOznH7c9FMO1z9C9yKafHpI0ZSyT/L9ojyN
+         shzd6d6ehINPh9Mko+c9q3XDrNy6Y0e/D7qimbPzmgwZPWrlLMBXW3eUpwBgGF6Uz1d3
+         7NPpL5KVMRH4Y256CmdriyjKMsrExaNrqzsVN1VCrcqq/caWEYvoM43Pw6yGQ45pQMr3
+         SLlBxZ6emXE9o7RGSKZ4tY0uRtYfHbTSQXe/vrd+3HtiSN7Mo3J4IgI3Rwc1lOTO5w2o
+         C/GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699479924; x=1700084724;
+        d=1e100.net; s=20230601; t=1699483888; x=1700088688;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uNZCsb+J0tCXIr/CtNET2AcsXu2SaYf1CY84TShlm6Q=;
-        b=NRn7hUeOGxEMDjvzcUVgo4DNQE/TmXafgj8JV7hpAQsMMYcjuCikfMK2x29aZEBn+l
-         vpaFTqrabzpdD92pt/4kXYLyL279f8X55WVu41tP9XFjXHfj+/2fbM0FHg82O8kSBxkp
-         Tpwqd6K6QxyKqko3fMQiBdyGnRl77YQWTFz/k2Ud2xrrz+HEt5Wkso98zuYivU5eMPxt
-         SvK8OWNRMmUQ+eu4zJ224zKhX4AVT0K5AcbCEr3S1Tb1BYPgBGIy1w7VC+INcaivXUlJ
-         k+mAR1XPX5NiUIpw325Zwnt05ViKsG+ZVpSBUP8ZiwRsi2MQ+pkp6SUlwY08rgH1L5n2
-         F08w==
-X-Gm-Message-State: AOJu0Yxk6ahxb7ZXpZS96OZEpGsQWOPgj+BlnwB/3wDwMlzCQIhpFU9d
-	8mhSgLyp3bXrb+trX7wMQHkyqMSBCWQhyMWq4tzdlw==
-X-Google-Smtp-Source: AGHT+IFY9jFZdG7cvJAasqldeYVJV1lp20ykF6CM/T97HTYZUi8l1zfwxOIgQ7l5PF/miWNeoGVOLOXt0F0G6C0TYx8=
-X-Received: by 2002:a81:6cd6:0:b0:5a7:f002:4fe4 with SMTP id
- h205-20020a816cd6000000b005a7f0024fe4mr3127115ywc.23.1699479924475; Wed, 08
- Nov 2023 13:45:24 -0800 (PST)
+        bh=BzcCOTkzTMNtkGk4euDjQYgNxZ6bCe93/Di6zU8gTRc=;
+        b=uYNbQwKpv5jrFCaG9byPq3L78oNUBGL9nb3esSJq/l1eW1RwtHF5wM1u7JbFP9lbMS
+         PEHBv01ouuZjaPFBz0IrMS2pOd3lD8WqUR3572orq6Iug4pmNLtNE87olwvFmPlQ4D2V
+         zdVADutg5RKxjQIUffgwz87aBzt3COZSI71d2WQ7MgM2M5qiwpQBTUyXLpNVn2mE1skN
+         SQG9RoJPvXt7sUFCoXEY2psX2aLVLENgJaxkVQK6lWPQ5cDrKb4ZOcAA2YdUgWVNGmDI
+         YR+rqYK2BnmBOVGpOjiDqLFm2GH26Vl/GBsCLlxa/ckD2BIfCGAXDFdfEqg7vYAlRkOJ
+         PvDA==
+X-Gm-Message-State: AOJu0YyTNQWPa9RAHes/Hs+11oOU7Xv4G5UTU7lNrz1MCm/n1FPRGfZA
+	9qF+RTbgq0TTqSjjM7YLfI3TmpHCBqVp+TcipdI=
+X-Google-Smtp-Source: AGHT+IEaPPgupPflU8R86zuD+7wlQveR1k2/ggwNpSfSGhYs/wVLpwaJbU2+nlsyvvQuG0YuKPt60F6hliIU31rjKcI=
+X-Received: by 2002:a25:b123:0:b0:da3:ab41:31f3 with SMTP id
+ g35-20020a25b123000000b00da3ab4131f3mr3017189ybj.8.1699483887797; Wed, 08 Nov
+ 2023 14:51:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231108-fix-mips-nand-v1-0-5fc5586d04de@linaro.org>
- <20231108-fix-mips-nand-v1-2-5fc5586d04de@linaro.org> <20231108191125.GA2754195-robh@kernel.org>
-In-Reply-To: <20231108191125.GA2754195-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 8 Nov 2023 22:45:11 +0100
-Message-ID: <CACRpkdZx9icF7s5HoS2r40Wuj4sPbEZPiaPsD9GZ94J4LKY5+g@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: mtd: Rewrite gpio-control-nand in schema
-To: Rob Herring <robh@kernel.org>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, 
-	Tony Lindgren <tony@atomide.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+References: <20231102231130.13ca0513@pcn112> <CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com>
+In-Reply-To: <CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com>
+From: Bruno Thomsen <bruno.thomsen@gmail.com>
+Date: Wed, 8 Nov 2023 23:51:11 +0100
+Message-ID: <CAH+2xPBdpYiNRzPP+0Diqrc+GfdJYbiTDheD6n2fb42w65LNFg@mail.gmail.com>
+Subject: Re: [PATCH v1] ARM: dts: imx: tqma7: add lm75a sensor (rev. 01xxx)
+To: Fabio Estevam <festevam@gmail.com>
+Cc: =?UTF-8?Q?Jo=C3=A3o_Rodrigues?= <jrodrigues@ubimet.com>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Ben Dooks <ben.dooks@codethink.co.uk>, 
-	linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Howard Harte <hharte@magicandroidapps.com>
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 8, 2023 at 8:11=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Nov 08, 2023 at 03:33:50PM +0100, Linus Walleij wrote:
-
-> > This creates a schema for GPIO controlled NAND. The txt
-> > schema was old and wrong.
-> >
-> > Mark the old way of passing GPIOs in a long array as
-> > deprecated and encourage per-pin GPIO assignments with
-> > the named nnn-gpios phandles.
+Den fre. 3. nov. 2023 kl. 22.07 skrev Fabio Estevam <festevam@gmail.com>:
 >
-> We have 1 user upstream with only a single commit adding it in 2017.
-> This doesn't seem like something that's going to gain new users either.
-> Is it really worth modernizing this binding?
+> [Adding Bruno and Alexander]
+>
+> On Thu, Nov 2, 2023 at 7:12=E2=80=AFPM Jo=C3=A3o Rodrigues <jrodrigues@ub=
+imet.com> wrote:
+> >
+> > From: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
+> >
+> > TQMa7x (revision 01xxx) uses a LM75A temperature sensor.
+> > The two sensors use different I2C addresses, so we can set both sensors
+> > simultaneously.
 
-The whole ordeal was actually prompted by the emergence of a
-new user who wants to add a device tree for a new device.
-So I don't want to add new users for the old bindings.
+Hi Jo=C3=A3o,
 
-Yours,
-Linus Walleij
+Looks correct to me and an elegant way of adding support for rev 01xx board=
+s.
+
+Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+
+After this change the imx7d-flex-concentrator.dts needs to be updated
+as it uses TQMa7d rev 02xx boards with something like this:
+
+/* TQMa7d 02xx */
+&se97b {
+        status =3D "okay";
+};
+
+I can send a follow up patch when this change lands.
+
+/Bruno
+
+> >
+> > Signed-off-by: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
+> > ---
+> >  arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi b/arch/arm/boot/=
+dts/nxp/imx/imx7-tqma7.dtsi
+> > index fe42b0a4683..3fc3130f9de 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
+> > @@ -128,11 +128,16 @@ vgen6_reg: vldo4 {
+> >                 };
+> >         };
+> >
+> > -       /* NXP SE97BTP with temperature sensor + eeprom */
+> > +       /* LM75A temperature sensor, TQMa7x 01xx */
+> > +       lm75a: temperature-sensor@48 {
+> > +               compatible =3D "national,lm75a";
+> > +               reg =3D <0x48>;
+> > +       };
+> > +
+> > +       /* NXP SE97BTP with temperature sensor + eeprom, TQMa7x 02xx */
+> >         se97b: temperature-sensor-eeprom@1e {
+> >                 compatible =3D "nxp,se97b", "jedec,jc-42.4-temp";
+> >                 reg =3D <0x1e>;
+> > -               status =3D "okay";
+> >         };
+> >
+> >         /* ST M24C64 */
+> > --
+> > 2.25.1
+> >
 
