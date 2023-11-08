@@ -1,275 +1,151 @@
-Return-Path: <devicetree+bounces-14480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC5267E5059
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 07:28:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A577E504B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 07:24:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 370BFB20F0D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:28:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 749382813A7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A6ED277;
-	Wed,  8 Nov 2023 06:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49071CA78;
+	Wed,  8 Nov 2023 06:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="DEJFrhQe"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Sc4Bvbch"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F2BD26A;
-	Wed,  8 Nov 2023 06:27:59 +0000 (UTC)
-X-Greylist: delayed 527 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 07 Nov 2023 22:27:58 PST
-Received: from mail-m92236.xmail.ntesmail.com (mail-m92236.xmail.ntesmail.com [103.126.92.236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BF94170A;
-	Tue,  7 Nov 2023 22:27:57 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=DEJFrhQeNYu/Fjs3Ra2KwwBpG5RYQekcQo+CSiHjbvAL8wxW5wLu9ldlnXtfdFTvv38mg8DBU19b3Wea0dgBJVaNlPyUAzUQqXSsvq1pfvhGqk5nmbOUedx6ej5WF57MmJw2vDz4XKnO08muMr1782CGgVx46dNvHdQjaqYLQeg=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=n6VPuO680wxPCco2i+SUrSBekN9TrTNjUMhnSF/EmHw=;
-	h=date:mime-version:subject:message-id:from;
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id 71AEA40026E;
-	Wed,  8 Nov 2023 14:18:31 +0800 (CST)
-From: Elaine Zhang <zhangqing@rock-chips.com>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	kever.yang@rock-chips.com,
-	zhangqing@rock-chips.com,
-	heiko@sntech.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	huangtao@rock-chips.com,
-	andy.yan@rock-chips.com
-Subject: [PATCH v5 4/4] clk: rockchip: rk3588: Adjust the GATE_LINK parameter
-Date: Wed,  8 Nov 2023 14:18:22 +0800
-Message-Id: <20231108061822.4871-5-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231108061822.4871-1-zhangqing@rock-chips.com>
-References: <20231108061822.4871-1-zhangqing@rock-chips.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkMfSVYZGBpJGRhKTB9DHkpVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8bad951a0d2eb3kusn71aea40026e
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PU06NAw*Dzw*TAoNFiw9TyId
-	VhZPFDNVSlVKTUJCT0lPSEpJTklLVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpIQ01ONwY+
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A08D262
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 06:24:38 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2048.outbound.protection.outlook.com [40.107.21.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31BE61BE;
+	Tue,  7 Nov 2023 22:24:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hFokB6vaIU9wpXq3rPXX9DZj0cOlFq13YNfUCuUCHdzir1SwPrfL7L7YE8waB6av0tJez5pfqFbZwniP/TpG8i+yGuY5I583g+l0TKnuEAvhMO0DpLCkdEIsxUdhOKN2LHd5ljL+vc06LfZAyLnZy5E7h/kkaOp9LcUuTFAwvdQsr4ERikctgifykxJzX5B7pOocyBIvMx0yn8284J73XP69W9Wx2NcjbhFtP86IZI0qO2rQAK8sat2uBm3Qq2US/pl2YWk52roiYvREgoB/4T8u1eWjfmU/oVQriGDqKcs93nUsyd9dGSKimjQAkEwan1LiRePdmKfg3sJGwu3lTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EwMKfCDZCAnJJx5NRznZew8zBpUHIxvum9p5E+A8BUU=;
+ b=R7Raf6rqZqtmSmRllxCoopBlqbZDSDf/puEe9IFWh1gxWnIlNWM1EJGaIKbtG5SZ0D5EkKeGkPE1IDcjwtt7JkOjOW9cdSSQ9zOxk7tztsbZycHCsilA9Q+x3RAc+vABLXK+8lDepMRkwku++wmWRwg/KF3sPK7djtrltOclFMmfSbrTooRstjTWHQ07ZA0kfs+Q2aEMD7sePkGIl78d//T/pqw3WHlXAPR2515i0pp15IOnQpxXrtXWtTbHBeO39Ya4vhiCFKC+/ltGWgsw6cj48aH3hPdICn7GlZFhLt2eKF69tCkc6DnZlrGaUBH23c9+7pQ9IP6smmzEW/kdvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EwMKfCDZCAnJJx5NRznZew8zBpUHIxvum9p5E+A8BUU=;
+ b=Sc4BvbchzWBFi0m2H/gXUeZSYXv4ufavWXabKQVD0iVjK8m4f7+lzS11UainDIC011UGqZ3OMu3EHV38UN/ncbbBG5+umNBIFvaUCELJ2P1h3UcFlE5qgR+s8prtTwqBjkrpPHfM0UsRU6kbo17RriFK58yz8lQpBXhZ7gOTn2Y=
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com (2603:10a6:10:360::21)
+ by PAXPR04MB9445.eurprd04.prod.outlook.com (2603:10a6:102:2b4::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.13; Wed, 8 Nov
+ 2023 06:24:35 +0000
+Received: from DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::dffc:1d:4398:7768]) by DB9PR04MB9498.eurprd04.prod.outlook.com
+ ([fe80::dffc:1d:4398:7768%6]) with mapi id 15.20.6977.013; Wed, 8 Nov 2023
+ 06:24:35 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: kernel test robot <lkp@intel.com>, "lgirdwood@gmail.com"
+	<lgirdwood@gmail.com>, "broonie@kernel.org" <broonie@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>
+CC: "oe-kbuild-all@lists.linux.dev" <oe-kbuild-all@lists.linux.dev>
+Subject: RE: Re: [PATCH v2 1/3] arm64: dts: imx93: Add audio device nodes
+Thread-Topic: Re: [PATCH v2 1/3] arm64: dts: imx93: Add audio device nodes
+Thread-Index: AQHaEgw+yQ8/45VgA0yJ6AjMoryevQ==
+Date: Wed, 8 Nov 2023 06:24:35 +0000
+Message-ID:
+ <DB9PR04MB94982ADA36691F017F48D88DE3A8A@DB9PR04MB9498.eurprd04.prod.outlook.com>
+References: <20231010133838.799714-2-chancel.liu@nxp.com>
+ <202310210636.dtEPMrF8-lkp@intel.com>
+In-Reply-To: <202310210636.dtEPMrF8-lkp@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB9PR04MB9498:EE_|PAXPR04MB9445:EE_
+x-ms-office365-filtering-correlation-id: 09f895d2-f340-4f36-dfd3-08dbe023609e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ otgu94pvpS9CBPdyFSJWthbow/+t0D+AOtDmqtYRZGpLCY66PWvGJO91/4oQrJRmTT4IBO5zNBXM4ou62XvEqQau6LFRwcv1RqAzQMzTueKozhTGmXij1n4uIAaUCcSL6gzjVFO/kBs0hZa+unf+dZcAHQmVmb16Ve65o0qYKRWJOZIsSjVygQaFKQB4G3BX1Q0uGFwz+MVdNMbvPqqWhp9rPSjJZngxXpduaTEedu68QLkKvdaMonvbqvepk4aWMfqr0I+8sHcBiQ2xpB9OT2Qr9LuG0h+BR9iHZcCdNJUNPDGu3UD0g5q5gHBDGqx+SUJjN993LUeXektMR6fuSKPc/fRzhb/MsoIQWgMlctioTLf3f/qyY/dQJeOoMP7C3IQSDdU6SB4DD7XNVEzdSoaPA8M2ovLhwHQZfxyJSypUdmV21F7yGCscKDJA3m4aQaYJgR2tz3GGQuY6HhMiwmj9l7JVlVvyjlrsSwn2+zsHvZ6FGlKQRdGFgFWjWqdPCWBK81H+xDhiHqCZg/RB65/1Zz8aTZrFgNvrGccL8kkIRUQNpCmKxwzj46QoxaRdwbyLbNJkj4vhRQhX/wncyO7g/w1q6TkF/l1hMa5VS8rTtkA6KuA+9vIu+JfM74gDwjlUZjbmN2oHB8Wrck8rSpksfl5G91RSqxEDV9Z2tBY=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9498.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(346002)(39860400002)(136003)(366004)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(64756008)(66946007)(44832011)(41300700001)(110136005)(66446008)(76116006)(66556008)(66476007)(8676002)(8936002)(4326008)(52536014)(478600001)(6506007)(7696005)(7416002)(5660300002)(316002)(9686003)(4744005)(2906002)(71200400001)(26005)(83380400001)(921008)(55016003)(38070700009)(122000001)(33656002)(38100700002)(2013699003)(86362001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?iDdSObbrohAH/W5Gy8D2kXd4q6oW+lZVTw3Fhk98grs7RYbRz8gm6ja7F4YG?=
+ =?us-ascii?Q?zDca9hOIwIFqI3T/hmS2VgkCqRZPzM2mrHy9cFgc4IjLlNpWR46/Vqkw/6k2?=
+ =?us-ascii?Q?03xE+pBBzWFr5vzahGw5JDdr9YcDrh5PC8WWN5Z2MqbJjj+ya2w4ZgyITdvd?=
+ =?us-ascii?Q?kAGkRzehLTQ49y/DuR5WBV/hI3QrTo5yX6rUv1MS9nhcQylQ0h1+veMNqXWn?=
+ =?us-ascii?Q?ZEGSgC9S4hOEvjHOXQWgNXU7r7KLL2GTmW5Xwi0ehMLQYXSBRDVytKIO73Ld?=
+ =?us-ascii?Q?Du1Iecx6on7A9a4xxViHuKbRKslbXIw8pLew9cDxTvusPly8ByULCg6A6DEh?=
+ =?us-ascii?Q?NxUxtKLQKNvOubkQE/L8QOVv47I6sWa09Bxi82OVZ3DdysURc6i7Y85c5e6H?=
+ =?us-ascii?Q?BaoPPdjD0J8RQrNPQU+qDuIjGGQCJTeYzqRUVsb4ldeFEJFXnPJZtwOPOswv?=
+ =?us-ascii?Q?as4Hr1sCok9WoSwgFgqhJuVK4e2JPND6yhc+m9DSx63rnqszoTYUs4HucsWJ?=
+ =?us-ascii?Q?PcqsRdZ4QIfG93bh8DFxRsRJiSHb63y+R55Y+bD4t933X/iL7YIsKBIOhySp?=
+ =?us-ascii?Q?4MrgdAU1n2F6lUh3PZL8wobXDg7wbUdLUy6egjRI1H6I0Jn9cBJwa7fODQrr?=
+ =?us-ascii?Q?RaxS4dzN4l39QR5fnhYDkn8gyaPtWWLBA2jTXxdJXRceCDilTUSa3GPTeqXl?=
+ =?us-ascii?Q?4I0SuwapS+3H3AqOOKqbHd7IvdtnW0CrGHKfVXmsS+HZEYrHqBwMvBdksMOB?=
+ =?us-ascii?Q?trohRF8Qt7PSYQ1u4+OWQOXC6MjBdA4YlqOjOdnZv/riIFbTwER2IkiDZGUR?=
+ =?us-ascii?Q?lgc1pVpeKsCXZ8DHzfzcdn2N0wxzWfGLPNslcKgNXqzZhrJopyLGR/IfbZB6?=
+ =?us-ascii?Q?LEbyhLrep+wD7FR0YLMqMNobTECcVQaDIkow51mGphyr5NAfJGj1oytYGQor?=
+ =?us-ascii?Q?rBWlJc7ENE7Io3zjAYqRGxfRxIpOyYl3Vr7fXSKSL3koQaNaylRstUCrzbnD?=
+ =?us-ascii?Q?+2LaV6A1XU0hqTNyTKkp81wQPy7Ci8BvkUHKZKR5Vv3LH539wtQeeTEVe7Ed?=
+ =?us-ascii?Q?llN9KHPpetXDJXQMdHtFHS0d2LZIYptlSf7EjEYkZdPxONRln+gOBqGr8/iS?=
+ =?us-ascii?Q?DDybLzKKTv6OJaahuG80z6dyzh7OBGfZ/c+WSZQprambcAap0Uios1rwhYrI?=
+ =?us-ascii?Q?HfWjQE6S+RVmgRdCns/GKd74WpfxQPPbnD05959Gy5U0PgKwxz6ByTzYckjo?=
+ =?us-ascii?Q?Vg55xmnUwO7hgU7MmnG6wOgEWpeIDcrdgvG24LNOWtnRMQOyA3onzX5+WIoK?=
+ =?us-ascii?Q?RSzeLWKr/eDmJOmH9a7C405nB26QBi07t58/PH46O/63pD5SAjb9Yv2CN+RW?=
+ =?us-ascii?Q?i+wriI4uxWOQHxkhhUYZhRgu5QgabIPw4cYo9uRRNj07qolrunZgc5nZOmKq?=
+ =?us-ascii?Q?me2EL9eYgKXxMZJpAk239hEN3jKbySnbAFZbv7StP6Q9hprEo5lK2DmxRqm8?=
+ =?us-ascii?Q?fQ71ky3EwVNfzPS/2GVCP2ZvKDZTgPKs0BSAxZnUairJI0xxRd87DlVhCrOT?=
+ =?us-ascii?Q?2jvQS1qU3WBMr8VSHjAqrPf7K7os8gfWwoKcgzo3?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9498.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09f895d2-f340-4f36-dfd3-08dbe023609e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2023 06:24:35.2315
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: A1/RNLnsFKzOUm5HJlxq8uLNk/X+VPcjYMj5ycTSKTZ3qrlnJMA6vdds/BfhRSYPSpn73//YD0tBZ+vUUPsK4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9445
 
-Export PCLK_VO1GRF clk id.
-Using Id instead of name, if use name needs to use __clk_lookup().
-But __clk_lookup() is not exported and is not friendly for GKI.
+> Hi Chancel,
+>=20
+> kernel test robot noticed the following build errors:
+>=20
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on broonie-sound/for-next linus/master v6.6-rc6
+> next-20231020]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
----
- drivers/clk/rockchip/clk-rk3588.c | 114 ++++++++++++++++--------------
- 1 file changed, 59 insertions(+), 55 deletions(-)
+This patch set should be applied to shawnguo/ for-next.
 
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index 6994165e0395..1e0aec8c7f63 100644
---- a/drivers/clk/rockchip/clk-rk3588.c
-+++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -12,28 +12,6 @@
- #include <dt-bindings/clock/rockchip,rk3588-cru.h>
- #include "clk.h"
- 
--/*
-- * Recent Rockchip SoCs have a new hardware block called Native Interface
-- * Unit (NIU), which gates clocks to devices behind them. These effectively
-- * need two parent clocks.
-- *
-- * Downstream enables the linked clock via runtime PM whenever the gate is
-- * enabled. This implementation uses separate clock nodes for each of the
-- * linked gate clocks, which leaks parts of the clock tree into DT.
-- *
-- * The GATE_LINK macro instead takes the second parent via 'linkname', but
-- * ignores the information. Once the clock framework is ready to handle it, the
-- * information should be passed on here. But since these clocks are required to
-- * access multiple relevant IP blocks, such as PCIe or USB, we mark all linked
-- * clocks critical until a better solution is available. This will waste some
-- * power, but avoids leaking implementation details into DT or hanging the
-- * system.
-- */
--#define GATE_LINK(_id, cname, pname, linkname, f, o, b, gf) \
--	GATE(_id, cname, pname, f, o, b, gf)
--#define RK3588_LINKED_CLK		CLK_IS_CRITICAL
--
--
- #define RK3588_GRF_SOC_STATUS0		0x600
- #define RK3588_PHYREF_ALT_GATE		0xc38
- 
-@@ -1456,7 +1434,7 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 	COMPOSITE_NODIV(HCLK_NVM_ROOT,  "hclk_nvm_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(77), 0, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(31), 0, GFLAGS),
--	COMPOSITE(ACLK_NVM_ROOT, "aclk_nvm_root", gpll_cpll_p, RK3588_LINKED_CLK,
-+	COMPOSITE(ACLK_NVM_ROOT, "aclk_nvm_root", gpll_cpll_p, 0,
- 			RK3588_CLKSEL_CON(77), 7, 1, MFLAGS, 2, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(31), 1, GFLAGS),
- 	GATE(ACLK_EMMC, "aclk_emmc", "aclk_nvm_root", 0,
-@@ -1685,13 +1663,13 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(42), 9, GFLAGS),
- 
- 	/* vdpu */
--	COMPOSITE(ACLK_VDPU_ROOT, "aclk_vdpu_root", gpll_cpll_aupll_p, RK3588_LINKED_CLK,
-+	COMPOSITE(ACLK_VDPU_ROOT, "aclk_vdpu_root", gpll_cpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(98), 5, 2, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(44), 0, GFLAGS),
- 	COMPOSITE_NODIV(ACLK_VDPU_LOW_ROOT, "aclk_vdpu_low_root", mux_400m_200m_100m_24m_p, 0,
- 			RK3588_CLKSEL_CON(98), 7, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(44), 1, GFLAGS),
--	COMPOSITE_NODIV(HCLK_VDPU_ROOT, "hclk_vdpu_root", mux_200m_100m_50m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(HCLK_VDPU_ROOT, "hclk_vdpu_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(98), 9, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(44), 2, GFLAGS),
- 	COMPOSITE(ACLK_JPEG_DECODER_ROOT, "aclk_jpeg_decoder_root", gpll_cpll_aupll_spll_p, 0,
-@@ -1742,9 +1720,9 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 	COMPOSITE(ACLK_RKVENC0_ROOT, "aclk_rkvenc0_root", gpll_cpll_npll_p, 0,
- 			RK3588_CLKSEL_CON(102), 7, 2, MFLAGS, 2, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(47), 1, GFLAGS),
--	GATE(HCLK_RKVENC0, "hclk_rkvenc0", "hclk_rkvenc0_root", RK3588_LINKED_CLK,
-+	GATE(HCLK_RKVENC0, "hclk_rkvenc0", "hclk_rkvenc0_root", 0,
- 			RK3588_CLKGATE_CON(47), 4, GFLAGS),
--	GATE(ACLK_RKVENC0, "aclk_rkvenc0", "aclk_rkvenc0_root", RK3588_LINKED_CLK,
-+	GATE(ACLK_RKVENC0, "aclk_rkvenc0", "aclk_rkvenc0_root", 0,
- 			RK3588_CLKGATE_CON(47), 5, GFLAGS),
- 	COMPOSITE(CLK_RKVENC0_CORE, "clk_rkvenc0_core", gpll_cpll_aupll_npll_p, 0,
- 			RK3588_CLKSEL_CON(102), 14, 2, MFLAGS, 9, 5, DFLAGS,
-@@ -1754,10 +1732,10 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(48), 6, GFLAGS),
- 
- 	/* vi */
--	COMPOSITE(ACLK_VI_ROOT, "aclk_vi_root", gpll_cpll_npll_aupll_spll_p, RK3588_LINKED_CLK,
-+	COMPOSITE(ACLK_VI_ROOT, "aclk_vi_root", gpll_cpll_npll_aupll_spll_p, 0,
- 			RK3588_CLKSEL_CON(106), 5, 3, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(49), 0, GFLAGS),
--	COMPOSITE_NODIV(HCLK_VI_ROOT, "hclk_vi_root", mux_200m_100m_50m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(HCLK_VI_ROOT, "hclk_vi_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(106), 8, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(49), 1, GFLAGS),
- 	COMPOSITE_NODIV(PCLK_VI_ROOT, "pclk_vi_root", mux_100m_50m_24m_p, 0,
-@@ -1851,8 +1829,6 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(56), 0, GFLAGS),
- 	GATE(PCLK_TRNG0, "pclk_trng0", "pclk_vo0_root", 0,
- 			RK3588_CLKGATE_CON(56), 1, GFLAGS),
--	GATE(PCLK_VO0GRF, "pclk_vo0grf", "pclk_vo0_root", CLK_IGNORE_UNUSED,
--			RK3588_CLKGATE_CON(55), 10, GFLAGS),
- 	COMPOSITE(CLK_I2S4_8CH_TX_SRC, "clk_i2s4_8ch_tx_src", gpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(118), 5, 1, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(56), 11, GFLAGS),
-@@ -1929,10 +1905,10 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 	COMPOSITE(ACLK_VOP_ROOT, "aclk_vop_root", gpll_cpll_dmyaupll_npll_spll_p, 0,
- 			RK3588_CLKSEL_CON(110), 5, 3, MFLAGS, 0, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(52), 0, GFLAGS),
--	COMPOSITE_NODIV(ACLK_VOP_LOW_ROOT, "aclk_vop_low_root", mux_400m_200m_100m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(ACLK_VOP_LOW_ROOT, "aclk_vop_low_root", mux_400m_200m_100m_24m_p, 0,
- 			RK3588_CLKSEL_CON(110), 8, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(52), 1, GFLAGS),
--	COMPOSITE_NODIV(HCLK_VOP_ROOT, "hclk_vop_root", mux_200m_100m_50m_24m_p, RK3588_LINKED_CLK,
-+	COMPOSITE_NODIV(HCLK_VOP_ROOT, "hclk_vop_root", mux_200m_100m_50m_24m_p, 0,
- 			RK3588_CLKSEL_CON(110), 10, 2, MFLAGS,
- 			RK3588_CLKGATE_CON(52), 2, GFLAGS),
- 	COMPOSITE_NODIV(PCLK_VOP_ROOT, "pclk_vop_root", mux_100m_50m_24m_p, 0,
-@@ -1998,8 +1974,6 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 			RK3588_CLKGATE_CON(60), 9, GFLAGS),
- 	GATE(PCLK_TRNG1, "pclk_trng1", "pclk_vo1_root", 0,
- 			RK3588_CLKGATE_CON(60), 10, GFLAGS),
--	GATE(0, "pclk_vo1grf", "pclk_vo1_root", CLK_IGNORE_UNUSED,
--			RK3588_CLKGATE_CON(59), 12, GFLAGS),
- 	GATE(PCLK_S_EDP0, "pclk_s_edp0", "pclk_vo1_s_root", 0,
- 			RK3588_CLKGATE_CON(59), 14, GFLAGS),
- 	GATE(PCLK_S_EDP1, "pclk_s_edp1", "pclk_vo1_s_root", 0,
-@@ -2433,26 +2407,56 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
- 	GATE(ACLK_AV1, "aclk_av1", "aclk_av1_pre", 0,
- 			RK3588_CLKGATE_CON(68), 2, GFLAGS),
- 
--	GATE_LINK(ACLK_ISP1_PRE, "aclk_isp1_pre", "aclk_isp1_root", "aclk_vi_root", 0, RK3588_CLKGATE_CON(26), 6, GFLAGS),
--	GATE_LINK(HCLK_ISP1_PRE, "hclk_isp1_pre", "hclk_isp1_root", "hclk_vi_root", 0, RK3588_CLKGATE_CON(26), 8, GFLAGS),
--	GATE_LINK(HCLK_NVM, "hclk_nvm", "hclk_nvm_root", "aclk_nvm_root", RK3588_LINKED_CLK, RK3588_CLKGATE_CON(31), 2, GFLAGS),
--	GATE_LINK(ACLK_USB, "aclk_usb", "aclk_usb_root", "aclk_vo1usb_top_root", 0, RK3588_CLKGATE_CON(42), 2, GFLAGS),
--	GATE_LINK(HCLK_USB, "hclk_usb", "hclk_usb_root", "hclk_vo1usb_top_root", 0, RK3588_CLKGATE_CON(42), 3, GFLAGS),
--	GATE_LINK(ACLK_JPEG_DECODER_PRE, "aclk_jpeg_decoder_pre", "aclk_jpeg_decoder_root", "aclk_vdpu_root", 0, RK3588_CLKGATE_CON(44), 7, GFLAGS),
--	GATE_LINK(ACLK_VDPU_LOW_PRE, "aclk_vdpu_low_pre", "aclk_vdpu_low_root", "aclk_vdpu_root", 0, RK3588_CLKGATE_CON(44), 5, GFLAGS),
--	GATE_LINK(ACLK_RKVENC1_PRE, "aclk_rkvenc1_pre", "aclk_rkvenc1_root", "aclk_rkvenc0", 0, RK3588_CLKGATE_CON(48), 3, GFLAGS),
--	GATE_LINK(HCLK_RKVENC1_PRE, "hclk_rkvenc1_pre", "hclk_rkvenc1_root", "hclk_rkvenc0", 0, RK3588_CLKGATE_CON(48), 2, GFLAGS),
--	GATE_LINK(HCLK_RKVDEC0_PRE, "hclk_rkvdec0_pre", "hclk_rkvdec0_root", "hclk_vdpu_root", 0, RK3588_CLKGATE_CON(40), 5, GFLAGS),
--	GATE_LINK(ACLK_RKVDEC0_PRE, "aclk_rkvdec0_pre", "aclk_rkvdec0_root", "aclk_vdpu_root", 0, RK3588_CLKGATE_CON(40), 6, GFLAGS),
--	GATE_LINK(HCLK_RKVDEC1_PRE, "hclk_rkvdec1_pre", "hclk_rkvdec1_root", "hclk_vdpu_root", 0, RK3588_CLKGATE_CON(41), 4, GFLAGS),
--	GATE_LINK(ACLK_RKVDEC1_PRE, "aclk_rkvdec1_pre", "aclk_rkvdec1_root", "aclk_vdpu_root", 0, RK3588_CLKGATE_CON(41), 5, GFLAGS),
--	GATE_LINK(ACLK_HDCP0_PRE, "aclk_hdcp0_pre", "aclk_vo0_root", "aclk_vop_low_root", 0, RK3588_CLKGATE_CON(55), 9, GFLAGS),
--	GATE_LINK(HCLK_VO0, "hclk_vo0", "hclk_vo0_root", "hclk_vop_root", 0, RK3588_CLKGATE_CON(55), 5, GFLAGS),
--	GATE_LINK(ACLK_HDCP1_PRE, "aclk_hdcp1_pre", "aclk_hdcp1_root", "aclk_vo1usb_top_root", 0, RK3588_CLKGATE_CON(59), 6, GFLAGS),
--	GATE_LINK(HCLK_VO1, "hclk_vo1", "hclk_vo1_root", "hclk_vo1usb_top_root", 0, RK3588_CLKGATE_CON(59), 9, GFLAGS),
--	GATE_LINK(ACLK_AV1_PRE, "aclk_av1_pre", "aclk_av1_root", "aclk_vdpu_root", 0, RK3588_CLKGATE_CON(68), 1, GFLAGS),
--	GATE_LINK(PCLK_AV1_PRE, "pclk_av1_pre", "pclk_av1_root", "hclk_vdpu_root", 0, RK3588_CLKGATE_CON(68), 4, GFLAGS),
--	GATE_LINK(HCLK_SDIO_PRE, "hclk_sdio_pre", "hclk_sdio_root", "hclk_nvm", 0, RK3588_CLKGATE_CON(75), 1, GFLAGS),
-+	/*
-+	 * Recent Rockchip SoCs have a new hardware block called Native Interface
-+	 * Unit (NIU), which gates clocks to devices behind them. These effectively
-+	 * need two parent clocks.
-+	 */
-+	GATE_LINK(ACLK_ISP1_PRE, "aclk_isp1_pre", "aclk_isp1_root", ACLK_VI_ROOT, 0,
-+			RK3588_CLKGATE_CON(26), 6, GFLAGS),
-+	GATE_LINK(HCLK_ISP1_PRE, "hclk_isp1_pre", "hclk_isp1_root", HCLK_VI_ROOT, 0,
-+			RK3588_CLKGATE_CON(26), 8, GFLAGS),
-+	GATE_LINK(HCLK_NVM, "hclk_nvm", "hclk_nvm_root", ACLK_NVM_ROOT, 0,
-+			RK3588_CLKGATE_CON(31), 2, GFLAGS),
-+	GATE_LINK(ACLK_USB, "aclk_usb", "aclk_usb_root", ACLK_VO1USB_TOP_ROOT, 0,
-+			RK3588_CLKGATE_CON(42), 2, GFLAGS),
-+	GATE_LINK(HCLK_USB, "hclk_usb", "hclk_usb_root", HCLK_VO1USB_TOP_ROOT, 0,
-+			RK3588_CLKGATE_CON(42), 3, GFLAGS),
-+	GATE_LINK(ACLK_JPEG_DECODER_PRE, "aclk_jpeg_decoder_pre", "aclk_jpeg_decoder_root",
-+			ACLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(44), 7, GFLAGS),
-+	GATE_LINK(ACLK_VDPU_LOW_PRE, "aclk_vdpu_low_pre", "aclk_vdpu_low_root", ACLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(44), 5, GFLAGS),
-+	GATE_LINK(ACLK_RKVENC1_PRE, "aclk_rkvenc1_pre", "aclk_rkvenc1_root", ACLK_RKVENC0, 0,
-+			RK3588_CLKGATE_CON(48), 3, GFLAGS),
-+	GATE_LINK(HCLK_RKVENC1_PRE, "hclk_rkvenc1_pre", "hclk_rkvenc1_root", HCLK_RKVENC0, 0,
-+			RK3588_CLKGATE_CON(48), 2, GFLAGS),
-+	GATE_LINK(HCLK_RKVDEC0_PRE, "hclk_rkvdec0_pre", "hclk_rkvdec0_root", HCLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(40), 5, GFLAGS),
-+	GATE_LINK(ACLK_RKVDEC0_PRE, "aclk_rkvdec0_pre", "aclk_rkvdec0_root", ACLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(40), 6, GFLAGS),
-+	GATE_LINK(HCLK_RKVDEC1_PRE, "hclk_rkvdec1_pre", "hclk_rkvdec1_root", HCLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(41), 4, GFLAGS),
-+	GATE_LINK(ACLK_RKVDEC1_PRE, "aclk_rkvdec1_pre", "aclk_rkvdec1_root", ACLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(41), 5, GFLAGS),
-+	GATE_LINK(ACLK_HDCP0_PRE, "aclk_hdcp0_pre", "aclk_vo0_root", ACLK_VOP_LOW_ROOT, 0,
-+			RK3588_CLKGATE_CON(55), 9, GFLAGS),
-+	GATE_LINK(HCLK_VO0, "hclk_vo0", "hclk_vo0_root", HCLK_VOP_ROOT, 0,
-+			RK3588_CLKGATE_CON(55), 5, GFLAGS),
-+	GATE_LINK(ACLK_HDCP1_PRE, "aclk_hdcp1_pre", "aclk_hdcp1_root", ACLK_VO1USB_TOP_ROOT, 0,
-+			RK3588_CLKGATE_CON(59), 6, GFLAGS),
-+	GATE_LINK(HCLK_VO1, "hclk_vo1", "hclk_vo1_root", HCLK_VO1USB_TOP_ROOT, 0,
-+			RK3588_CLKGATE_CON(59), 9, GFLAGS),
-+	GATE_LINK(ACLK_AV1_PRE, "aclk_av1_pre", "aclk_av1_root", ACLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(68), 1, GFLAGS),
-+	GATE_LINK(PCLK_AV1_PRE, "pclk_av1_pre", "pclk_av1_root", HCLK_VDPU_ROOT, 0,
-+			RK3588_CLKGATE_CON(68), 4, GFLAGS),
-+	GATE_LINK(HCLK_SDIO_PRE, "hclk_sdio_pre", "hclk_sdio_root", HCLK_NVM, 0,
-+			RK3588_CLKGATE_CON(75), 1, GFLAGS),
-+	GATE_LINK(PCLK_VO0GRF, "pclk_vo0grf", "pclk_vo0_root", HCLK_VO0, 0,
-+			RK3588_CLKGATE_CON(55), 10, GFLAGS),
-+	GATE_LINK(PCLK_VO1GRF, "pclk_vo1grf", "pclk_vo1_root", HCLK_VO1, 0,
-+			RK3588_CLKGATE_CON(59), 12, GFLAGS),
- };
- 
- static void __init rk3588_clk_init(struct device_node *np)
--- 
-2.17.1
-
+Regards,=20
+Chancel Liu
 
