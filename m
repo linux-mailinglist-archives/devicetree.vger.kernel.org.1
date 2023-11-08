@@ -1,145 +1,137 @@
-Return-Path: <devicetree+bounces-14673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 869B97E607D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 23:51:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC42E7E611E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 00:39:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37E082812B2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 22:51:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D74C1C20843
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 23:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8EF51C6AD;
-	Wed,  8 Nov 2023 22:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E512374FB;
+	Wed,  8 Nov 2023 23:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OYhT3dfi"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N5+lAS1Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350BB30355
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 22:51:29 +0000 (UTC)
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C9C210A;
-	Wed,  8 Nov 2023 14:51:28 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-daec4e4c5eeso267855276.1;
-        Wed, 08 Nov 2023 14:51:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699483888; x=1700088688; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BzcCOTkzTMNtkGk4euDjQYgNxZ6bCe93/Di6zU8gTRc=;
-        b=OYhT3dfiQ+8P75cwsUoERA1LvUy4+2q50BsYasVlKsFD90rebJmAgKBs50YgKbHNvJ
-         Z3x9/56o4T+7I9TteFPJwpdpPDVMkWfs7vOznH7c9FMO1z9C9yKafHpI0ZSyT/L9ojyN
-         shzd6d6ehINPh9Mko+c9q3XDrNy6Y0e/D7qimbPzmgwZPWrlLMBXW3eUpwBgGF6Uz1d3
-         7NPpL5KVMRH4Y256CmdriyjKMsrExaNrqzsVN1VCrcqq/caWEYvoM43Pw6yGQ45pQMr3
-         SLlBxZ6emXE9o7RGSKZ4tY0uRtYfHbTSQXe/vrd+3HtiSN7Mo3J4IgI3Rwc1lOTO5w2o
-         C/GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699483888; x=1700088688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BzcCOTkzTMNtkGk4euDjQYgNxZ6bCe93/Di6zU8gTRc=;
-        b=uYNbQwKpv5jrFCaG9byPq3L78oNUBGL9nb3esSJq/l1eW1RwtHF5wM1u7JbFP9lbMS
-         PEHBv01ouuZjaPFBz0IrMS2pOd3lD8WqUR3572orq6Iug4pmNLtNE87olwvFmPlQ4D2V
-         zdVADutg5RKxjQIUffgwz87aBzt3COZSI71d2WQ7MgM2M5qiwpQBTUyXLpNVn2mE1skN
-         SQG9RoJPvXt7sUFCoXEY2psX2aLVLENgJaxkVQK6lWPQ5cDrKb4ZOcAA2YdUgWVNGmDI
-         YR+rqYK2BnmBOVGpOjiDqLFm2GH26Vl/GBsCLlxa/ckD2BIfCGAXDFdfEqg7vYAlRkOJ
-         PvDA==
-X-Gm-Message-State: AOJu0YyTNQWPa9RAHes/Hs+11oOU7Xv4G5UTU7lNrz1MCm/n1FPRGfZA
-	9qF+RTbgq0TTqSjjM7YLfI3TmpHCBqVp+TcipdI=
-X-Google-Smtp-Source: AGHT+IEaPPgupPflU8R86zuD+7wlQveR1k2/ggwNpSfSGhYs/wVLpwaJbU2+nlsyvvQuG0YuKPt60F6hliIU31rjKcI=
-X-Received: by 2002:a25:b123:0:b0:da3:ab41:31f3 with SMTP id
- g35-20020a25b123000000b00da3ab4131f3mr3017189ybj.8.1699483887797; Wed, 08 Nov
- 2023 14:51:27 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE4E374EB;
+	Wed,  8 Nov 2023 23:39:01 +0000 (UTC)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4583025B5;
+	Wed,  8 Nov 2023 15:38:59 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1BEB6240002;
+	Wed,  8 Nov 2023 23:38:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699486737;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZWGdlfzeQ997IaAZInKpU2sKbuC+Orz4F3vDh0PjvMg=;
+	b=N5+lAS1QuxDD2SdkvbVdLw6qWEExpftDZPduFcY4jvX3tX20kCAWoNxKTCbZRtf9w+ouLF
+	l4fKQQcmYAJfL8NzZdxIG/Zw2NQvea1Blg8JDbZhLzGFqwUFZSMLAZQbKEtgh+f0oxmK4T
+	EpVXWt1UurkD/XfaaScPMdGHnbdIhAsxc8NUUIWyZcFHTWS+vs9cASEwT34LE+hQQNy3eN
+	0IDd6wLXmMcmnxq54uddsLKPdwBZzrwtOTy4lTn/ffsBGYKNJFjj8vvBRXDFioGx8SKIzF
+	K8zpiBozZs5QOnMp5PMhArdwmbRirW7GuvBX/PaIdsbwc92dALc61l+dNbST7Q==
+Date: Thu, 9 Nov 2023 00:38:54 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Tomasz Figa <tomasz.figa@gmail.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaehoon Chung <jh80.chung@samsung.com>,
+	Sam Protsenko <semen.protsenko@linaro.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 06/17] dt-bindings: rtc: s3c-rtc: add specific
+ compatibles for existing SoC
+Message-ID: <202311082338542f79f576@mail.local>
+References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
+ <20231108104343.24192-7-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231102231130.13ca0513@pcn112> <CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com>
-In-Reply-To: <CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com>
-From: Bruno Thomsen <bruno.thomsen@gmail.com>
-Date: Wed, 8 Nov 2023 23:51:11 +0100
-Message-ID: <CAH+2xPBdpYiNRzPP+0Diqrc+GfdJYbiTDheD6n2fb42w65LNFg@mail.gmail.com>
-Subject: Re: [PATCH v1] ARM: dts: imx: tqma7: add lm75a sensor (rev. 01xxx)
-To: Fabio Estevam <festevam@gmail.com>
-Cc: =?UTF-8?Q?Jo=C3=A3o_Rodrigues?= <jrodrigues@ubimet.com>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231108104343.24192-7-krzysztof.kozlowski@linaro.org>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-Den fre. 3. nov. 2023 kl. 22.07 skrev Fabio Estevam <festevam@gmail.com>:
->
-> [Adding Bruno and Alexander]
->
-> On Thu, Nov 2, 2023 at 7:12=E2=80=AFPM Jo=C3=A3o Rodrigues <jrodrigues@ub=
-imet.com> wrote:
-> >
-> > From: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-> >
-> > TQMa7x (revision 01xxx) uses a LM75A temperature sensor.
-> > The two sensors use different I2C addresses, so we can set both sensors
-> > simultaneously.
+On 08/11/2023 11:43:32+0100, Krzysztof Kozlowski wrote:
+> Samsung Exynos SoC reuses several devices from older designs, thus
+> historically we kept the old (block's) compatible only.  This works fine
+> and there is no bug here, however guidelines expressed in
+> Documentation/devicetree/bindings/writing-bindings.rst state that:
+> 1. Compatibles should be specific.
+> 2. We should add new compatibles in case of bugs or features.
+> 
+> Add compatibles specific to each SoC in front of all old-SoC-like
+> compatibles.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Hi Jo=C3=A3o,
+> 
+> ---
+> 
+> I propose to take the patch through Samsung SoC (me). See cover letter
+> for explanation.
+> ---
+>  Documentation/devicetree/bindings/rtc/s3c-rtc.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
+> index d51b236939bf..bf4e11d6dffb 100644
+> --- a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
+> @@ -17,6 +17,11 @@ properties:
+>            - samsung,s3c2416-rtc
+>            - samsung,s3c2443-rtc
+>            - samsung,s3c6410-rtc
+> +      - items:
+> +          - enum:
+> +              - samsung,exynos7-rtc
+> +              - samsung,exynos850-rtc
+> +          - const: samsung,s3c6410-rtc
+>        - const: samsung,exynos3250-rtc
+>          deprecated: true
+>  
+> -- 
+> 2.34.1
+> 
+> 
 
-Looks correct to me and an elegant way of adding support for rev 01xx board=
-s.
-
-Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
-
-After this change the imx7d-flex-concentrator.dts needs to be updated
-as it uses TQMa7d rev 02xx boards with something like this:
-
-/* TQMa7d 02xx */
-&se97b {
-        status =3D "okay";
-};
-
-I can send a follow up patch when this change lands.
-
-/Bruno
-
-> >
-> > Signed-off-by: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-> > ---
-> >  arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi b/arch/arm/boot/=
-dts/nxp/imx/imx7-tqma7.dtsi
-> > index fe42b0a4683..3fc3130f9de 100644
-> > --- a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-> > +++ b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-> > @@ -128,11 +128,16 @@ vgen6_reg: vldo4 {
-> >                 };
-> >         };
-> >
-> > -       /* NXP SE97BTP with temperature sensor + eeprom */
-> > +       /* LM75A temperature sensor, TQMa7x 01xx */
-> > +       lm75a: temperature-sensor@48 {
-> > +               compatible =3D "national,lm75a";
-> > +               reg =3D <0x48>;
-> > +       };
-> > +
-> > +       /* NXP SE97BTP with temperature sensor + eeprom, TQMa7x 02xx */
-> >         se97b: temperature-sensor-eeprom@1e {
-> >                 compatible =3D "nxp,se97b", "jedec,jc-42.4-temp";
-> >                 reg =3D <0x1e>;
-> > -               status =3D "okay";
-> >         };
-> >
-> >         /* ST M24C64 */
-> > --
-> > 2.25.1
-> >
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
