@@ -1,176 +1,146 @@
-Return-Path: <devicetree+bounces-14498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7C57E522D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 09:50:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D7F87E5269
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 10:10:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B295A1C20AB3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 08:50:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DEB31C20403
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 09:10:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9A86AC2;
-	Wed,  8 Nov 2023 08:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A30DDD1;
+	Wed,  8 Nov 2023 09:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="qKCfBNYT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TIojes5u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EC6D528
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 08:50:32 +0000 (UTC)
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2058.outbound.protection.outlook.com [40.107.104.58])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF93D4A;
-	Wed,  8 Nov 2023 00:50:31 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L4psnGKtR/muTS6ZlNRA1982Yiyk1fyqui4denLyatzSoS9DYfn0RWBbQcqV+PnowoYOWy5zn9ATK7me+yRS43i3lMjCvkfOXhxvvXi+7NvpZC89ic1K7s1yl1Km/B7zsimtDb/XxdY0p8KbTcOllXx7ic9Meo4o1Ib36+UftYRWerMeA0cgysF6BXSc7PXFl/0ihlzok4zKWQGz2xyBI+rwVwBhHt4WNjNLy2k0mH9SpGOWEYgonNAITqIS4GxNMejPKBenet2TYGUG6rMsk4HXZ8rGO7DD3WBF3QskDvn9TURHeCnTwPR+TuRPAZphFNQCgYL52X4ADDK8z16v9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o+SsvbMIjK4bUnIJBrpx0bxLRuOArzLYnDLKS84isyM=;
- b=O5e0Tf9pk1Cx7eeg0cHlXlIu7AZs98sBTo8PmHq5WQkCk/1bSW52dcBGaFttm8wSt5F4+e3UgDcER2gcIrs9I74BvGN4m8i/a3w7YzFCkcCVpdZvfVV8SKdUBd7mLEOLgeGX3H/Mxuf7owBTSwO1D2o2E40JKLXO86tZuTPJEePGPAdNgAZJl0QZhNCwcGWTD1n87FtB8iBu9rWjkrCiiszFLjRMNEJn3+0xYSb9eHwxngN+4b7FOvWzLh7/lKupjMwnZxNzRZI6yBs82pcpI76ABoESxdkZCGWZ6Ty06lGTMNcZnNo7wtRNlox2YSLiP/P1etqY/TapvqdtAPNAcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o+SsvbMIjK4bUnIJBrpx0bxLRuOArzLYnDLKS84isyM=;
- b=qKCfBNYT5AygjIC6FCpnmXD/a6L/Z2GFRSIPFEw6ve34aSK6WZO3FeLP+WIOdq3nuQABq5xytGI9qlTjrf60JNwzVtIpXpOKx8wfxkjLaOx9MevOTjMpuGOMXQokBtxg9NmJu6wQgMwDS8epDLLVqwr1UqB9jNYzrteIbsca4zg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by PR3PR08MB5657.eurprd08.prod.outlook.com (2603:10a6:102:87::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.29; Wed, 8 Nov
- 2023 08:50:28 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::87b4:3635:b89d:c07c]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::87b4:3635:b89d:c07c%7]) with mapi id 15.20.6954.027; Wed, 8 Nov 2023
- 08:50:28 +0000
-Message-ID: <2afa69d0-93f6-4033-ad87-c3bf01588ba9@wolfvision.net>
-Date: Wed, 8 Nov 2023 09:50:25 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/3] media: rockchip: Add a driver for Rockchip's
- camera interface
-Content-Language: en-US
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
- alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
- paul.kocialkowski@bootlin.com
-References: <cover.1698666612.git.mehdi.djait@bootlin.com>
- <f7367726eb077d43446c83591ecbf9acbc77ef5f.1698666612.git.mehdi.djait@bootlin.com>
- <6f98b471-b139-4043-a8ab-e7a9f9608d60@wolfvision.net>
- <ZUSt5GC4lALz/fq5@pc-70.home>
-From: Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <ZUSt5GC4lALz/fq5@pc-70.home>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR08CA0228.eurprd08.prod.outlook.com
- (2603:10a6:802:15::37) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA387323D
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 09:10:40 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74B569F
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 01:10:39 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-507973f3b65so8990349e87.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 01:10:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699434638; x=1700039438; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jcINFlc5Bxzgrbc4MTS9NCkyZbTVVfqU+tkYks0UGuM=;
+        b=TIojes5uZi5ODO1/HeGKpmgUoiZFB2chcG1klfGC25xIEYLnafb1JzIXLSn6TUT9Pj
+         2ivMtpKXsCczZNURs7hhGOJZOjmV8YVRHae9UOmkwL2M3A6Rglu93QN/+6avliklGFGI
+         RFpMqwX1Xb2Cc7Dh8NAVWIoll/n3kHO+IlSxN1luzTTvTy8NHoeEM9x/o72u/Dys9ebD
+         aUPmlOMPgLCmjMFGTImAkfVPjXjwG4toL7ZqdjyKyRm7zxeSmbH4hWf7UvclEm5ANe1F
+         kfMVAGQWGLaEexjpBRrvGXonueIc4R6P6eC6eZ2t4N7TJCddGYDbTVlq8VKVIJY3FN/p
+         unnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699434638; x=1700039438;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jcINFlc5Bxzgrbc4MTS9NCkyZbTVVfqU+tkYks0UGuM=;
+        b=IZ7DacdiiOhpzPYkwxQpsfcXxqq5pmXwgg/kof/cVq+13K3+i3SJooEk6nQNhukeIo
+         lr2LzYa6yJXZmJUjuuMBwEP/mfUCGObEGDpjBZuhmIhllSTBTcjefAOFGwyWM5Gp3NOh
+         AJgDOn+1089VENd8VNw3KV4IRv9kr/8oj2zcrbbvEznM9YhTsZTTKtiyCao8+aavw60K
+         bVDo7uBdgrnMCihJattA2PWcEZ/gJ6T0M5mV8m9rGzghKUq/nQRtTn+ki4Dbn0mUe17Y
+         iD+VeG1PA9d4TYJjGbO3W8I8M3VY6BB616sc/XnNooB5gvvc1LJUMc4jSkQSAhjrdeI/
+         hsSQ==
+X-Gm-Message-State: AOJu0YzxQIDw3VqIrb2K9UMoXmKJE/Zy+tsEMa8pUtNPeqLdZhL+rDek
+	nPfQnhnN0P/LKHsMsxi9Azmv2A==
+X-Google-Smtp-Source: AGHT+IFWrJhq0yyPZFGkfsmVVYe9rpitNrcZX/tgpoj4oWjopGFCXaydqgPa9BfS1sjHZGerGEiZTg==
+X-Received: by 2002:a19:4351:0:b0:504:2d54:b4d0 with SMTP id m17-20020a194351000000b005042d54b4d0mr788039lfj.19.1699434637594;
+        Wed, 08 Nov 2023 01:10:37 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:55a2:c282:5ca3:a855? ([2a05:6e02:1041:c10:55a2:c282:5ca3:a855])
+        by smtp.googlemail.com with ESMTPSA id y11-20020adff6cb000000b0032fc609c118sm4397265wrp.66.2023.11.08.01.10.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Nov 2023 01:10:37 -0800 (PST)
+Message-ID: <1dd3d765-c583-4db9-a0aa-303bfcf871db@linaro.org>
+Date: Wed, 8 Nov 2023 10:10:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PR3PR08MB5657:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08751431-dd0d-4bd8-e27a-08dbe037c1da
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	tOFfI+k+++amUAeM3lUKa98/dZgQZXHFkc+jCB5lN4k/BZfuFyQoQQ4a83/QZ2q7evzZwRTUlh1KOVMOt+q9TH2MNEoiqY+FZqZZNQmPBgfe5UT/9DIuBk9Ltu9X2bvBhVEkywHm8wjVI9S7aND8WdCzd8w96y8krIx/Rp4EFeh78QB2HUggFydul1rdpnNH+RNoQtzCVnZrjrG0YJzrpcczmoOR3m3Fo3AybgJuIu/rUGHtR7Mo1BRkCZsod/JbELxcQpxj6tamHc44CzbA1/Ja2u7v7w/SmH+U6XCdgxL36/zz5gI265Edmd+HN0AoJNGX6Vu7945C4kmN22CKdl23SEg4A604QGeaBaXoAGgT9ZM3foTrLz1cz8JC++0nEstk/bwkP+BsI/5zFIv+e5XOfHZV6Xlz+i2dIntdPD/r6XI8nIwXfAoAPYbFpXvuvHxhqokSy0zYhS48I35pWM3Gh5Ffgdrctp56Mz4Ghdrkigzsd3up9/nDRWeGSUEb/o/bLQnzNyzWF7oGpPCMFPt0pRPeyJJJPagGaHpncEjAh09r51rJEZpvBeKVvruT62wX6SdBecxwaAmnkQdZij8S/wDgM4C+gNKRjonVuS3EpFDGNCSh6tUxB1u6eQHIOPhN8ayxkavuPMYAKE0gVA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39850400004)(396003)(376002)(346002)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(26005)(2906002)(83380400001)(41300700001)(38100700002)(8936002)(6666004)(478600001)(4326008)(8676002)(6486002)(86362001)(44832011)(36916002)(53546011)(6506007)(66946007)(66556008)(66476007)(6916009)(7416002)(2616005)(5660300002)(6512007)(31696002)(316002)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YlY2ZHYrVUZGMEkwSjJmTGhGZFlVUWZMY3dIaEh4SHFpNDVMcUZFSGYwQnJZ?=
- =?utf-8?B?WEdOSUtJVFVkaUVYL3BMcXA3VFNqaWpLV1dtQ3I0RTU4b3JldjVzNy9MNVdG?=
- =?utf-8?B?RmJ3T3Npb2ZIZXQ0a0NjeE9FQ1B6bUZXR2crUmNaQ1hGc2RyQmRnekVBbVZS?=
- =?utf-8?B?cXpjZ2o2UTgwaTdNYTc5bzU4TG1oZlFndS82bEhpbGp3RVdzVDgzZUdVdkdl?=
- =?utf-8?B?bGExRHpESmZPRHVERkZYQnJiM1hOUVhrWEU1a1lhWG91ZE5mbEd3c29VbGZn?=
- =?utf-8?B?ejBnREpRMFptdkNPR1NZTjFTV0pEUW9VbUhldlFUQzVBZWMrdTZERk9aRzRS?=
- =?utf-8?B?eGhWSWhBZ0hiN2hBQUpPek1rcU4yQ1VuWGRxT2owZ0hNNUNCa0dwdWZ1a3Vy?=
- =?utf-8?B?VlVhMnB6VHppWmwwYlEwLzRRVmRJL2U3Q2dnYkNhQWNCbFkzQm9FTjF6cldZ?=
- =?utf-8?B?Ty9kNThQazNLU09TT25zMUhnVUl1TW15ZVJuL1NjbmtkTzJoY095MjdkaEJB?=
- =?utf-8?B?UU0zbU56Z0lYZWEyeTA0NG44UDcxZFI1d0dvK29KYVFFQ2J1L1FKRkNwN1c4?=
- =?utf-8?B?Z0JPY1RMUXQrTGpGVm1DMjFnckZQaStlNWFmempmMDFWNlRaTXg4bEJpNnpV?=
- =?utf-8?B?VkFRY0Y5OHA0UlQzV2pkQnptUzFBdk8xNFp1dUh1dk9SU2plMmJaSTlwU1RW?=
- =?utf-8?B?Tk4wZVYyK1BxcGNuN2k3RllwMmR6UGtLdE5zcjlEMTgySG8rTW5KUHBSaU1v?=
- =?utf-8?B?WGZrNld2b2xYM0VLME9ySTNPMW8rS0ZGbktBY1pkTzNnTzVrbjZ1UmsrYkx6?=
- =?utf-8?B?VUM4NmRaeUhkdFp6R09rMGlYZ1dDMlNxN3Fwc3cyZE8wSmh6ZTdSQjFpVVNG?=
- =?utf-8?B?ZlBJajRWdXEvbmFJVnRvb0ZKM2tseWpvQzdKUVhsREMxckZTNUhjaWVBUG9r?=
- =?utf-8?B?NCs0dHZUMnpyRTN3WlprSWhtZ3RXVHlQSVNEZkFiQ0tJR1RrKzlIRWhFZ3F4?=
- =?utf-8?B?TEtpUEFjclZnVnlEQ2dGR0tPRCtoVkU4emtqd0hicWFKVTZzVE5Db0piMG5N?=
- =?utf-8?B?Tkt6QnF6dWxNS3M2UkZhZHZYSEpvam9jVjltQlNMQjYwZTB3QTJSMDU3TEtD?=
- =?utf-8?B?cHRTVzVuaEZOQW5CcGpFaEZFZ2E3QThZbys1RG9HcmpSUlRLVnBIcGJlRWc4?=
- =?utf-8?B?dklKV083aklLQUdCdDBqeFpCMTR4dzc3L3lNSWN4WEg3K3NlckZ6WkhGbTBa?=
- =?utf-8?B?UE5yS2lqekc1TTh3MkVkU2loZEdkNkJUTTJla2FIZFNLdEVPaFJEOUhLdmhW?=
- =?utf-8?B?bW5XY2ZBalNxbXhMNFB2b2pBKzZlKzN2OFMvUEgxM1NPY2JoaFdRWWdzM29J?=
- =?utf-8?B?Rmc2VTRsWnJNUnY0NjNEVEVJZUhCS2hlRzFKeXNqZFJVNG5UaC92Zk8xWHhG?=
- =?utf-8?B?Z3RIbURuUW15TXdoUXBwR0FVWUlBVjVmN2tPVmY5V3JidjJuc0xGMks1RmJ6?=
- =?utf-8?B?TWZmdVlIWjJZYW9EeUMrdHZ6d1BpL2lZTHRpeVRBRUFQMTZqRlBRSzJ4YXM5?=
- =?utf-8?B?ak9ZRTZocytGekdkNE5LM0ZhZGhhZzczME13SHZjdkpsR0JJMWxEdVBNZ3hz?=
- =?utf-8?B?eVAwNHd4NzRQVi9mSldjUE5ZdnM1ZStoQUVWRVN5RVFScEk0eXVhTUJBbDVX?=
- =?utf-8?B?NEoyNU01NG40cmZ6aGNIKzJKNXJhUlFKQ09GdlpFNFRScGsrVGhJYkIrOXFK?=
- =?utf-8?B?NTFycjg1YVpIVVdsNnhLSGR0MDRlSGtHSWl6dEJUVHAvN1lJYmVvN0I0UHdK?=
- =?utf-8?B?dnhJUnNXNHlJU0ZOZGZycERyMUQxbzdCREE2OW9PMUJUTXZyeG40SlZXUGZE?=
- =?utf-8?B?LzR6TDY5eXhFS3VwQ0R5Wld4Ylp1RTJPMWh2eGJPajBhQm1wNzVOa2poL2No?=
- =?utf-8?B?am5yclI4ckxrRXpta1Zqdk9YRVBrZTdPSC9DWmpBUEtlU00xNmU4RHl5TEE2?=
- =?utf-8?B?UFRJLzlaNzZ2cDFlOCtsQno0TlJtTVc5aDZqWGx3aVhmU3BUV0g5Z0ZyejI4?=
- =?utf-8?B?ZTdzdkdkelNleW9nb0t5emZoZUNCcDQ0cEFPVEpQMXI4d3FxZWNmeklrN3l3?=
- =?utf-8?B?SlplanBzL3hLQmlLMzQvVUFlcTVReitpMjZKazQvbkFxK2tWWVlXcHJNdjY2?=
- =?utf-8?B?a3c9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08751431-dd0d-4bd8-e27a-08dbe037c1da
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 08:50:28.4883
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AWqbQWRoCNmZahBG8Qvcazfvtq3oCT/ADa2/AZAKyxLymAtvvbqXWmrRdMD8gqIamB6xs9Qbqj+KcScvPK3ABAX1p2hyOYhHtTKyFjH50I4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR08MB5657
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/3] clocksource: Add JH7110 timer driver
+Content-Language: en-US
+To: Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Walker Chen <walker.chen@starfivetech.com>,
+ Samin Guo <samin.guo@starfivetech.com>, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor@kernel.org>
+References: <20231019053501.46899-1-xingyu.wu@starfivetech.com>
+ <20231019053501.46899-3-xingyu.wu@starfivetech.com>
+ <3f76f965-7c7b-109e-2ee0-3033e332e84b@linaro.org>
+ <bb819333-52d3-49fc-9bb9-1a227bd5ca8f@starfivetech.com>
+ <d0e70434-e273-4799-c5ec-bbee1b3f5cc7@linaro.org>
+ <540136d4-6f8f-49a6-80ff-cc621f2f462b@starfivetech.com>
+ <65c38717-3e0c-46d3-a124-29cae48f1a2e@linaro.org>
+ <72ad5029-42b2-481a-887f-8f6079d8859b@starfivetech.com>
+ <a8f0011c-5689-4071-b5e0-90bd6b7c66bc@linaro.org>
+ <b402eb4d-a770-4988-8274-8a2544362229@starfivetech.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <b402eb4d-a770-4988-8274-8a2544362229@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Mehdi,
+On 08/11/2023 04:45, Xingyu Wu wrote:
+> On 2023/11/2 22:29, Daniel Lezcano wrote:
 
-On 11/3/23 09:23, Mehdi Djait wrote:
-> Hello Michael,
+[ ... ]
+
+> Thanks. The riscv-timer has a clocksource with a higher rating but a
+> clockevent with lower rating[1] than jh7110-timer. I tested the
+> jh7110-timer as clockevent and flagged as one shot, which could do
+> some of the works instead of riscv-timer. And the current_clockevent
+> changed to jh7110-timer.
 > 
-> On Tue, Oct 31, 2023 at 11:23:17PM +0100, Michael Riesch wrote:
->> Hi Mehdi,
->>
->> Thanks for your work! Please find a few comments inline:
->>
-> 
-> thank you for the comments! 
-> 
-> Have you been able to test this driver ? That would be really nice.
+> Because the jh7110-timer works as clocksource with lower rating and
+> only will be used as global timer at CPU idle time. Is it necessary
+> to be registered as clocksource? If not, should it just be registered
+> as clockevent?
 
-I applied your patches and added some modifications (= crude hacks) on
-top of them to bring up the RK3568 VICAP (note that I don't have any
-PX30 hardware). This setup is not yet able to capture the input stream
-(from a HDMI receiver chip), but I am on it.
+Yes, you can register the clockevent without the clocksource.
 
-One question popped up: to get the cif driver to probe with my device
-tree I had to request the IRQ with IRQF_SHARED. This is due to the
-approach that the CIF block has one IRQ but is represented by two
-drivers: the cif driver and the rockchip-iommu driver.
+You mentioned the JH7110 has a better rating than the CPU architected 
+timers. The rating is there to "choose" the best timer, so it is up to 
+the author of the driver check against which timers it compares on the 
+platform.
 
-Subsequently I was surprised that you are not using the MMU at all,
-although the PX30 VIP features one. Is there any particular reason for that?
+Usually, CPU timers are the best.
 
-Can we request the IRQ with IRQF_SHARED anyway?
+It is surprising the timer-riscv has a so low rating. You may double 
+check if jh7110 is really better. If it is the case, then implementing a 
+clockevent per cpu would make more sense, otherwise one clockevent as a 
+global timer is enough.
 
-Thanks and best regards,
-Michael
+Unused clocksource, clockevents should be stopped in case the firmware 
+let them in a undetermined state.
+
+
+> [1]
+> https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/drivers/clocksource/timer-riscv.c#n45
+>
+>  Thanks, Xingyu Wu
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
