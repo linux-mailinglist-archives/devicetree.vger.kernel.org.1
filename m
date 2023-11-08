@@ -1,183 +1,494 @@
-Return-Path: <devicetree+bounces-14660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438C37E5E7B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:22:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3DA7E5E8E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03337281258
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:22:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC69F1C20AD7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C6236B05;
-	Wed,  8 Nov 2023 19:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460A336B18;
+	Wed,  8 Nov 2023 19:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Okr8wsay"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="M40h79oR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD6C36B06;
-	Wed,  8 Nov 2023 19:22:12 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2057.outbound.protection.outlook.com [40.107.94.57])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4792110;
-	Wed,  8 Nov 2023 11:22:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nCzV3zqGRwGfZRRYn40OKH7OcmXqx4emEQwQ2uAHHvKkb9MBFPFICSCAYNYRZk9vvgYG3quVjeG15W6HIwkCcbkc3tlqBTLEdGrkQnRdBeX1T2ukOhTnkhhOZuMZoVNMgqfaO7uJyHCeNokVQBo+EYOMylmo62wY1YBhRDklwcJP5YjLcPU2/yDBRCO9fYRORVulYIdhQQh0qQ6Wuvrnoe9cFlC0iLRkcPbcttfKf48F9OKftIUd+/VnbsVXqE34gABql0KnhTnBJRx5t4NqtlEnS0DRqCaVUH1HH1UIz+TArbyiXW6st7i8F9mhE9TVKK8b9Kgkt/nhE991BTKtGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bhI/syNnnLZfO82lXNasbC8mRMqQloP0BGi253z0Ies=;
- b=Y9P7O19asJZsOrnEEJloKFDwEKQxw44gol70UA8BPAQoz5OmlqO75SSNK0/lGac/Yp4L1VSu3YHH/jJcqruxUQfxhfpeSeMKurYVoSombdEeBLRxwLGlAn4vVjLU5N1ArOsz9tmPMspo/ALscNSr54rXNgkOid89UDU9tFQEN/kRor0UVNsqvgv991xLuZGi1dU2AD+9GME4R1vnXZM8vvRb3mru1wGJURNNcrB8YgO/zJm3tNBNGGFnBkQ9tcls2jnIQQ/zmzh2yqa7y6XtKZ0vMpXMGvvlWkem4xybKKM5QPD44WTjPvu5exUxKbNYzPRCVjAIkhr90g3iJXReYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bhI/syNnnLZfO82lXNasbC8mRMqQloP0BGi253z0Ies=;
- b=Okr8wsayB1BTwoC/SF8LFsrGPbL2sn/TgLmSDf1XLrQXoWuVvAbiDrhv3/0II1b0aUFZ2T/DGplFdb+8FoIIgLhcRwoA5Q2kQqWQCfGCljy+CLJXONAVlW1TghPoVnIYn14/Y0NBU4rM1OgVhOzfMPahd0kqABB2/eEr0lLF4oiyuy5xjjQDMAT72iYYR1mtOdbny05S7ON81a/U52+y4xiEroHdo8QUi9oa4tWJGjEMxIKCrc4dTB1kJeE5CDU1t9D0RK8PNi9tO6fEEc5JWUicL9UwSARTE32UZGYDUr4NV1gvcCZLItwhb8lUOEerw8G8waxu6ECbYlm8BehWrw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by BL0PR12MB4884.namprd12.prod.outlook.com (2603:10b6:208:1ca::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.29; Wed, 8 Nov
- 2023 19:22:09 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::60d4:c1e3:e1aa:8f93]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::60d4:c1e3:e1aa:8f93%4]) with mapi id 15.20.6977.018; Wed, 8 Nov 2023
- 19:22:09 +0000
-Date: Wed, 8 Nov 2023 15:22:07 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: =?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>
-Cc: Zhenhua Huang <quic_zhenhuah@quicinc.com>,
-	acpica-devel@lists.linuxfoundation.org,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
-	David Woodhouse <dwmw2@infradead.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Christoph Hellwig <hch@lst.de>, iommu@lists.linux.dev,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
-	linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Hector Martin <marcan@marcan.st>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Robert Moore <robert.moore@intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Sven Peter <sven@svenpeter.dev>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
-	virtualization@lists.linux-foundation.org,
-	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>
-Subject: Re: [PATCH RFC 00/17] Solve iommu probe races around iommu_fwspec
-Message-ID: <20231108192207.GV4488@nvidia.com>
-References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
- <d6664edcccd81edc5caa54e8da43b5c571a3ea76.camel@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d6664edcccd81edc5caa54e8da43b5c571a3ea76.camel@linaro.org>
-X-ClientProxiedBy: SN7PR04CA0181.namprd04.prod.outlook.com
- (2603:10b6:806:126::6) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D35A36B06
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 19:29:28 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74DCB1FF3;
+	Wed,  8 Nov 2023 11:29:27 -0800 (PST)
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 6E28F66076A0;
+	Wed,  8 Nov 2023 19:29:25 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1699471765;
+	bh=X+SQAkV/qD1VwHqpCoToQMLPVB+sfkGWnjVVTEV5k5g=;
+	h=From:Subject:Date:To:Cc:From;
+	b=M40h79oRDnbbWP7SsYrMYhrDtZYx7xhipO+TybQKK/YuS3ANvFiVTDaL5x2x42nE2
+	 tuEMHig0/OA029wI+xjca9dbBdF0CNXxiF0vdxoobrrhXg5AaYnatichWA8jTivT6x
+	 hufrv7sBLvhaEp+kSkDjDWwopHeq07hlVTGge049PpedqsvAab7CjmK1fUn/C4PSqU
+	 MuOsRZ3Mv0Lo79D7/S1/Wz7BkU8+sYp7dO1NTTLGO1Dy13zKra4rHw4OC76zUKpb0L
+	 cQZK+3RMjbGSYDwQnIlvKm/TScWQSeo+ninV00+kQHASxK/GspVC2nhnhuojbCyhNB
+	 nYEvIBXmHGh9w==
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+Subject: [PATCH v14 0/8] Wave5 codec driver
+Date: Wed, 08 Nov 2023 20:29:20 +0100
+Message-Id: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|BL0PR12MB4884:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0ab60bf-adcf-42c9-ccac-08dbe0900060
-X-LD-Processed: 43083d15-7273-40c1-b7db-39efd9ccc17a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	gJjK4yfFfRd8HivVDOWysBZIAEQFz8CLebpcVIMK017+pIGgezWjN4pBfT/LD1Dt8NWCw6RptD4sooCyaGgDZbLpq+6Fnrsq/ClAJEr4ZrVUHFDyvw9ESIMycoSpzTNng29sFmnF8wsfe5Hu/nqyW5APwUr1RlE7I6VuDV54DkAxyJIXbAsJzx/PyD6UkRe5NTxzI5HTMOsTGNNVg3CbnSZQ8YxAQkLGl4ZZLF9I3dn4qWdTUCvciwU/iOn09XI+BOssVZ6pTb0y0HzjePtohaohNajphWAxS/FgW+Orv1XZ2Vv+bh+UjBVWUnT/8OCB79dj217hhwpeimkjXDa1+SfqgPOS1V0N9vFtTPuuq6op5wtMDfE0KXNvrJ/cUHu+WmD+to+roCCATBntstZ0pymT3ath995pCRmThrbXcdHM7H91XCRR1/22BzTMottlISO+Uee3bpjhqAnnSMrpqEfknkvkKYQFP7a+CP1++nF1zfC/07lpVdmxHU/YHlKXYTV8gnX4a9EF4E6MznSHZkFcWBwRftDCRKzVP3CwFV709ysRDK5bMAWa7HfQOt2Q
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(346002)(366004)(39860400002)(376002)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(33656002)(36756003)(6506007)(5660300002)(8676002)(4326008)(8936002)(6486002)(6512007)(41300700001)(2906002)(7416002)(2616005)(4744005)(7406005)(316002)(54906003)(6916009)(26005)(1076003)(66556008)(66946007)(478600001)(66476007)(86362001)(38100700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VnNQSVppNVIrM2RsSGtkSkFaRmNwZ1lJSTBwSlJoRjdYZTBLbW14UjJFdHA4?=
- =?utf-8?B?NzRlVVZaM1U5Q21BZWc3bURrVTZKU09CTXhibVZNemJsS1lLTllnT245WnpI?=
- =?utf-8?B?SUNmT1BSK04zd0tJMEhiOWRBRDRDNk9WOXBYMk5TcEY5RG5lNlJtWWNweDRB?=
- =?utf-8?B?YlQ1VHhVK1ROQ1Rib0xsVEJ0TTB4WFYxYW1sSmU2aW5WYm4yNTRhdmh1TW54?=
- =?utf-8?B?Z3pDbGlsSWhISmRHVnlsSTNoTjczNnRIeWVqaGFERG9ZT1NJaXpEWTF6Ti9q?=
- =?utf-8?B?dXJKdTZYU1RXTWdtVy8xbGVVWnMwSU50YkI3TFZjb0NhWGp0Z1ZnUm1Geitt?=
- =?utf-8?B?dzF1VTU3QkNGR3FkSytYN0hQb3N0ZU93c1Bta3F6ZmZoWkRkZUl2dTFUWk5X?=
- =?utf-8?B?cWluQ2o0SDhYUCtDU1pPUUlCVTV4OC9YQmttbEFEcUVmdzFXcHhOUzJFemZU?=
- =?utf-8?B?SVB5Z0djYnY1OTFaTXg0QU1WS2I3TEp6cDFncmNyOTBtQkxuQUxDYXNVRDRr?=
- =?utf-8?B?Q2tqdG9ISXRmVDZNOS91YzhmRjRsbS8wdnBXQXhHd1NxNnRha1FGYXI5Y0VP?=
- =?utf-8?B?WkR5b2djbkp2eVJIZVdlZklacGZXQ3g0aC92ZVBpSzR1SnU4eW5zMDdBa01R?=
- =?utf-8?B?aXNTZTVrTjFaeUR6cDQrWElEUkw0cjdDREc2ejJtVjNzRlArRDhEZGJOcXZG?=
- =?utf-8?B?K2Zvc1Mva3NkZU1oeFNuME5BYWhDYUpscmhOSGVSYmdBVlVVQnQ2ajJhLzZP?=
- =?utf-8?B?RkVrUWpZY1RXbXo5cmtaQ2tRRFczUlltM2ZURVVoalg5TWJmVDM4YmZrVXUx?=
- =?utf-8?B?cUpFL2ZDeHZVR1NNbXZrMFpZcmlWSnA4SDkzcW5xendPcEQ1Q2NOYkRMS2ZU?=
- =?utf-8?B?Z2tsM2tXS2k3QW4zUDhhUTdzOFlGQXVxazlTZVM3bXRoTVQvUlZOSm1qNTZu?=
- =?utf-8?B?WXlEaXVoZm9zS2lXMTJtYUF2SjdoTkVYZW1DN1B6VWlPd3oweS9kYjl5cy9q?=
- =?utf-8?B?bWxlTForOWdTbnk2VDZjOXQwK2FXbEYycTJBS09xRHF1cjQ5ZFNjL3A0OVE4?=
- =?utf-8?B?eXFvR3pjYmFJWFByWjVYZlFocVIxQTZaelI3d3h6ZHJ4NWFzcGxWTlJ1THEz?=
- =?utf-8?B?ZzdoZXdGanFLZHpjMmxsNjkxelFWRi9nRmVuRkRrYkp0TlhkUWlkQk5DNEVL?=
- =?utf-8?B?ZXVUVWpCZWZOTXpBNmlJMzlqUFJ3YlZac3lwTVFJNHpiQ3BwZUtmdFFSVjA3?=
- =?utf-8?B?djdhSXNmUVk0TjdxM2FLR3ZoSlU4Vi9pOXdHeVI1NXAvdTBybkxNaEtZem55?=
- =?utf-8?B?Sm5NWnFXeFNTSm9RSjg4bjkzYzljcGpKQnNJSGFhUkVZWlMrenpLMlZla2pH?=
- =?utf-8?B?UVQwVXBKM3JjQkt0REFrOXhJZ0RPQ2x2WmVaY3poeHo2T2dmenZKYUljMUp5?=
- =?utf-8?B?OGF0S1psSDRHZUIweFZRYUFac2JydGMvVkk3K3ZJSnFhSlVTNUhaL3lnVDlU?=
- =?utf-8?B?Z1RvMkNQNVFCMHh1QW1YZFpUeERJblZSaFNOQ3ZxMHloNVMvTVpRMmRrOHpu?=
- =?utf-8?B?L0gwQjU0SmdvWXErdlN4QUxua0NwdWZ5bzcva2R6SC9rbVFsN2dyMVI0VVB2?=
- =?utf-8?B?Y3poSDlHeUxtQkdLYlQ4bE95d1FXSGphdHlKbXdmOWE1L21XUzFNYjB4bHlH?=
- =?utf-8?B?UEU2WE5ESHBIM3RyWmlKaStnWE1iZUdKK0NqanZXeHpWcE4xUUpCNTVLOURK?=
- =?utf-8?B?bDdWZFQ1NCtWbmdLOGo0enIzTFByTloxbmlTam04QXMyNWtaaENnaUdZV1JY?=
- =?utf-8?B?a2NaMVd3aHplak1pYU81K1VBbWVzWStyOFFZQVpFK3hqRjY2eXVEZ1NKdFFj?=
- =?utf-8?B?cHFPbEdZNGlxNUtBL1A2Mll1R0VrdGJoS251bE1qQTI3SzBuRE80a3poRHRJ?=
- =?utf-8?B?WWpNbkppK2tzdDlIM2xTMjc1U0kzZlY3TnJBNEg0ZE9JSDh3d01MaUN4ZkZU?=
- =?utf-8?B?a1YzTGM4ZjJuM3Z6OTVTUm95Rk54ekIveXlCaVMwZTZpMzlFQlIxK0lzRktv?=
- =?utf-8?B?RXNTU1dNWXNZTE5oVUdwL3pWQlE4cEFyUS95YXVxUXZOTVptakRHN1hsOUVk?=
- =?utf-8?Q?OZhk=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0ab60bf-adcf-42c9-ccac-08dbe0900060
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 19:22:09.1244
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xHLey/g4iVAxmaibMCMXp0RFpBSIvC1cJKJHiXUfEsdys9J/0xAEAfbfwVg+yc8w
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4884
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJDhS2UC/2WNSw6DMAwFr4K8riVMza9XQV0E4oI3aeVIAQlx9
+ ybddvlGbzQnRDGVCI/qBJOkUd8hD+JbBcvmwiqoPgNo6uZOVA+4uyQtJmI0mV0UjyN3re967kdi
+ yF6hOJsLy1bMP6F8PiYvPX7h6XldX7dbxJeIAAAA
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Conor Dooley <conor+dt@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>,
+ Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>
+Cc: Ivan Bornyakov <brnkv.i1@gmail.com>,
+ Deborah Brouwer <deborah.brouwer@collabora.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>, devicetree@vger.kernel.org,
+ Robert Beckett <bob.beckett@collabora.com>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+X-Mailer: b4 0.11.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1699471762; l=17636;
+ i=sebastian.fricke@collabora.com; s=linux-media; h=from:subject:message-id;
+ bh=X+SQAkV/qD1VwHqpCoToQMLPVB+sfkGWnjVVTEV5k5g=;
+ b=hdQ30SHTY0XlVcS+WLc3TAwamCXtVfYTLVhXikkWGrHWj6maOd3lqVO6Qf3QfxmorQUMQ1vQwzNz
+ o+PUf31iDgG5z15ot75+umltxrL6gV/IWL4iULuTVJA+NCQp9GBR
+X-Developer-Key: i=sebastian.fricke@collabora.com; a=ed25519;
+ pk=pYXedPwrTtErcj7ERYeo/IpTrpe4QbJuEzSB52fslBg=
 
-On Wed, Nov 08, 2023 at 06:34:58PM +0000, André Draszik wrote:
+The Wave5 codec driver is a stateful encoder/decoder.
+It is found on the J721S2 SoC, JH7100 SoC, ssd202d SoC. Etc.
+But current test report is based on J721S2 SoC and pre-silicon FPGA.
 
-> For me, it's working fine so far on master, and I've also done my own back port
-> to 6.1 and am currently testing both. An official back port once finalised
-> could be useful, though :-)
+The driver currently supports V4L2_PIX_FMT_HEVC, V4L2_PIX_FMT_H264
+for both encoding and decoding.
 
-Great, I'll post a non-RFC version next week (LPC permitting)
+This driver has so far been tested on J721S2 EVM board and pre-silicon
+FPGA.
 
-BTW, kbuild 0-day caught your note in the other email and a bunch of
-other wonky stuff I've fixed on the github version.
+Testing on J721S2 EVM board shows it working fine both decoder and
+encoder.
+The driver is successfully working with gstreamer v4l2 good-plugin
+without any modification.
 
-Thanks,
-Jason
+We have based the tree on top of the latest
+https://git.linuxtv.org/media_tree.git repository.
+
+M2M framework modification:
+===========================
+
+(Patch 1 & 2)
+Added a set of changes to enable ignoring the streaming state of one or more
+queues while checking whether a new job can be inserted into the ready queue.
+The use-case we encountered for this is a stateful decoder/encoder chip with a
+tight connection to a firmware. On that firmware the bitstream is first
+analyzed and the firmware produces output indicating the requirements for the
+output of the decode (e.g. the buffers of the CAPTURE queue). We want to be
+able to perform this action within the M2M job workflow in order to rely on the
+concurrency safety provided by the M2M jobs.
+
+v4l2-compliance results:
+========================
+
+v4l2-compliance 1.25.0-5110, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 3d6682746de5 2023-10-22 09:43:18
+
+Buffer ioctls:
+	    warn: v4l2-test-buffers.cpp(693): VIDIOC_CREATE_BUFS not supported
+	    warn: v4l2-test-buffers.cpp(693): VIDIOC_CREATE_BUFS not supported
+    test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+    test VIDIOC_EXPBUF: OK
+    test Requests: OK (Not Supported)
+
+Total for wave5-dec device /dev/video0: 45, Succeeded: 45, Failed: 0, Warnings: 2
+
+Total for wave5-enc device /dev/video1: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+Fluster test results:
+=====================
+
+Running test suite JCT-VC-HEVC_V1 with decoder GStreamer-H.265-V4L2-Gst1.0
+Using 1 parallel job(s)
+Ran 133/147 tests successfully               in 95.898 secs
+
+(1 test fails because of a missing frame and slight corruption, 2 tests fail
+because of sizes which are incompatible with the IP, 11 tests fail because of
+unsupported 10 bit format)
+
+Running test suite JVT-AVC_V1 with decoder GStreamer-H.264-V4L2-Gst1.0
+Using 1 parallel job(s)
+Ran 78/135 tests successfully               in 57.198 secs
+
+(57 fail because the hardware is unable to decode
+ MBAFF / FMO / Field / Extended profile streams.)
+
+Encoder testing:
+================
+
+Among other tests the driver is able to produce valid output with the following test:
+`gst-launch-1.0 videotestsrc num-buffers=300 ! v4l2h264enc ! h264parse ! qtmux ! filesink location=test.mp4`
+
+Known missing features:
+=======================
+
+* 48 bit memory addressing
+* Runtime suspend/resume support
+* Encoder support for the YUV 422 format
+* Support for the Background Detection encoder feature of the IP block
+* Support for the Region Of Interest encoder feature of the IP block
+
+Changes since v13:
+==================
+
+* For [PATCH v13 4/8] media: chips-media: wave5: Add vpuapi layer
+   - return variable 'ret' instead of 0 in wave5_vpu_dec_give_command()
+   - remove unnecessary initialization of ret in dec_clr_disp_flag()
+
+* For [PATCH v13 5/8] media: chips-media: wave5: Add the v4l2 layer
+   - fix decoder fail when payload size and sizeimage are different
+   - remove CREATE_BUFS entirely from decoder
+   - queue_setup: increase the number of CAPTURE buffers requested if
+     less than the frame buffer count
+   - bind driver to ti,k3-j721s2-wave521c instead of fallback compatible
+
+* [PATCH v13 6/8] media: dt-bindings: wave5: add Chips&Media 521c codec IP support
+   - remove -vpu suffix from fallback compatible name
+   - fix $id path and example to match fallback compatible name
+   - add vendor implementation to compatible property
+   - remove interrupts from required property
+
+* [PATCH v13 8/8] arm64: dts: ti: k3-j721s2-main: add wave5 video encoder/decoder node
+   - add vendor implementation to DT compatible string
+
+Changes since v12:
+==================
+
+* Add patch "arm64: dts: ti: k3-j721s2-main: add wave5 video encoder/decoder node"
+* Fix locking issues when mutex hw_lock is taken while holding state_spinlock
+
+* For [PATCH v12 1/7] media: v4l2: Add ignore_streaming flag:
+  - rename flag: ignore_streaming -> ignore_cap_streaming
+  - move flag from v4l2_m2m_queue_ctx to v4l2_m2m_ctx
+
+* For [PATCH v12 2/7] media: v4l2: Allow M2M job queuing w/o streaming
+  CAP queue:
+  - use renamed ignore_cap_streaming flag
+
+* For [PATCH v12 4/7] media: chips-media: wave5: Add vpuapi layer
+  - refactor: wave5_bit_issue_command() accepts additional parameters
+  - refactor: use wave5_send_query() where possible, clean up return values
+  - fix: initialize additional registers and fix typo
+  - fix: do not warn when rotation isn't enabled
+  - fix: prevent decoder close failure by returning 0 from reset_auxiliary_buffers
+
+* For [PATCH v12 5/7] media: chips-media: wave5: Add the v4l2 layer
+  - reduce interrupt handling to one function called by the irq handler thread
+  - use dma_set_mask_and_coherent() and check if it returns an error
+  - extend copyright: 2021 -> 2021-2023
+  - remove redundant work (e.g. type checking) already handled by v4l2 core
+  - queue_setup: remove src_buf_count and dst_buf_count and rely on v4l2 counts
+  - create_bufs: return EOPNOTSUPP when ioctl is unsupported by a queue
+  - start_streaming: return buffers properly on error
+  - minor fixes for typos, adding comments and small refactoring improvements
+
+* For [PATCH v12 6/7] dt-bindings: media: wave5: add yaml devicetree bindings
+  - rename patch "media: dt-bindings: wave5: add Chips&Media 521c codec IP support"
+  - remove clock-names; fix formatting
+
+Changes since v11:
+==================
+
+* Major rework of the decoder
+  - Fix concurrency issues by moving the commands that invoke actions on the
+    firmware into the device_run function from M2M, effectively causing M2M to
+    take care of the concurrency via its job queue.
+    - In order to do that device_run needs to be able to run before both queues
+      are ready, as a sequence needs to be initialized on the firmware to get
+      the required buffer count & communicate the result back to userspace,
+      thus we added a routine to allow jobs to be queued in M2M with only one
+      of two queues being started. (See: "Add ignore_streaming flag to M2M"
+      series)
+  - Add support for more output formats (YUV422P, YUV422M, NV16, NV16M, NV61,
+    NV61M)
+  - Add proper state switch function to verify state switches 
+  - Simplify the queue_setup function and move the decoder opening to STREAMON
+    as request in the review of V11
+  - Enable handling dynamic resolution change and seeking
+  - Remove thumbnail mode
+
+* Similar reworks on the encoder
+  - Move encoding into device_run and encoder opening + sequence intialization
+    to STREAMON, this change simplifies the encoder as it previously was able
+    to run multiple encode jobs simultaneously
+
+* Remove unused configurations and support for untested hardware
+  - Remove the ability to configure the endianess of memory writes as only a
+    single hardware can be tested so far
+  - Remove the ability to configure the bitstream_mode, as the driver is
+    currently hardcoded for the INTERRUPT mode
+  - Remove support for all CODECS, that were not tested (everything besides
+    H264/HEVC encoder + decoder)
+  - The encoder currently contains a lot of configurable parameter, which are
+    hard-coded in the `wave5_set_enc_openparam` function, remove all parameters
+    which aren't currently specified in that configuration
+  - Remove unused rotation and mirroring options from the decoder
+
+* Add FLUSH_FIRMWARE firmware command
+* Refactoring
+  * Add wrappers for frequently used routines or to make the code more
+    descriptive
+    - Wrapper for firmware command calling `send_firmware_command`
+    - Wrappers to intialize the sequence and to set up the framebuffers in the
+      decoder and encoder
+    - Using more general kernel functions and macros in various places
+  * Add Macros for constant values and bit shifts
+  * Fix typos and improve comments
+
+* Fix bug with M2M instance stored in the driver instance, multiple
+  simultaneous instances would overwrite the M2M handler of each other. Use a
+  M2M handler per device instead to avoid overwriting.
+* Adjust TRACE_PATH in the coda directory as highlighted in the review of V11
+* Applied requested changes from review to the devicetree bindings file
+  (the bindings check didn't return any warnings or errors)
+
+Changes since v10:
+==================
+
+* Remove structure member from the encoder and decoder output info
+  structs, that have assigned values from the registers but aren't used
+  in the driver, add comments to describe the register values in the
+  register definitions
+* Fix issue with decoding videos with a dimension where the height is
+  not a multiple of 16 (270, 360, 540, 1024 etc.)
+* Fix incorrect variable format identifiers in printks
+* Use debug logs in loops to avoid flooding the message log
+* Use the swap() function instead of manual swapping of two values
+* Add extended controls for the encoder
+* Fix control flow issue while handling bitstream buffers, where an
+  error while writing the source buffer into the hardware ring buffer
+  would result in skipping the problematic buffer, which in turn causes
+  a reordering of source buffers
+* Use the rectangle format as described by the hardware, the hardware
+  uses for rectangles like the display rectangle 4 offsets (top, bottom,
+  left, right), which depict the offset from the respective edge. Use
+  this format instead of implicitly converting the bottom and right
+  attributes to width and height attributes.
+* Return an error upon reading the sequence header while STREAMON
+* Squash the VDI and the VPUAPI layer commits as they had circular
+  dependencies
+
+changes since v9:
+=================
+
+* Move from staging to the media directory
+  * Move coda driver to sub-directory
+
+* Fixes:
+  * Use platform_get_irq instead of platform_get_resource to fetch the IRQ
+
+* General cleanups:
+  * Add missing error messages to error conditions
+  * Improve messages/variable names/comments, align parameter names across the driver
+  * Use macros instead of magic numbers in multiple occassions
+  * Reduce code duplication in multiple places
+  * Fix whitespace, newline and tab alignment issues
+  * Remove unused struct fields & commented out code
+  * Convert signed integers to unsigned if signed is not necessary
+  * Convert int/unsigned int to s32/u32, when the variable is assigned to the
+    return of a register read or provided as a parameter for a register write
+    (and vice versa)
+  * Fix incorrect bitwise operators where logical operators are appropriate
+  * Multiple smaller changes
+
+* Generalization:
+  * Add new helper file providing generalized routines for vpu-dec & vpu-enc
+  * Generalize luma & chroma table size calculation and stride calculation
+
+* Resource cleanup and error handling:
+  * Add error handling to all calls with ignored return codes
+  * Handle DMA resource cleanup properly
+  * Fix insufficient instance cleanup while opening dec/enc
+
+Changes since v8:
+=================
+
+* add 'wave5' to DEV_NAME
+* update to support Multi-stream
+* update to support loop test/dynamic resolution change
+* remove unnecessary memset, g_volatile, old version option
+
+Changes since v7:
+=================
+
+* update v4l2-compliance test report
+* fix build error on linux-kernel 5.18.0-rc4
+
+Changes since v6:
+=================
+
+* update TODO file
+* get sram info from device tree
+
+Changes since v5:
+=================
+
+* support NV12/NV21 pixelformat for encoder and decoder
+* handle adnormal exit and EOS
+
+Changes since v4:
+=================
+
+* refactor functions in wave5-hw and fix bug reported by Daniel Palmer
+* rename functions and variables to better names
+* change variable types such as replacing s32 with u32 and int with bool
+* as appropriate
+
+Changes since v3:
+=================
+
+* Fixing all issues commented by Dan Carpenter
+* Change file names to have wave5- prefix
+* In wave5_vpu_probe, enable the clocks before reading registers, as
+* commented from Daniel Palmer
+* Add more to the TODO list,
+
+Changes since v2:
+=================
+
+Main fixes includes:
+* change the yaml and dirver code to support up to 4 clks (instead of
+* one)
+* fix Kconfig format
+* remove unneeded cast,
+* change var types
+* change var names, func names
+* checkpatch fixes
+
+Changes since v1:
+=================
+
+Fix changes due to comments from Ezequiel and Dan Carpenter. Main fixes
+inclueds:
+* move all files to one dir 'wave5'
+* replace private error codes with standard error codes
+* fix extra spaces
+* various checkpatch fixes
+* replace private 'DPRINTK' macro with standard 'dev_err/dbg ..'
+* fix error handling
+* add more possible fixes to the TODO file
+
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Hans Verkuil <hverkuil@xs4all.nl>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: Shawn Guo <shawnguo@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pengutronix Kernel Team <kernel@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>
+To: NXP Linux Team <linux-imx@nxp.com>
+To: Jackson Lee <jackson.lee@chipsnmedia.com>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: deborah.brouwer@collabora.com
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Robert Beckett <bob.beckett@collabora.com>
+Cc: Nas Chung <nas.chung@chipsnmedia.com>
+CC: kernel@collabora.com
+CC: brnkv.i1@gmail.com
+Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+
+---
+- Link to v13: https://lore.kernel.org/r/20230929-wave5_v13_media_master-v13-0-5ac60ccbf2ce@collabora.com
+
+---
+Darren Etheridge (1):
+      arm64: dts: ti: k3-j721s2-main: add wave5 video encoder/decoder node
+
+Nas Chung (2):
+      media: chips-media: wave5: Add vpuapi layer
+      media: chips-media: wave5: Add the v4l2 layer
+
+Robert Beckett (2):
+      dt-bindings: media: wave5: add yaml devicetree bindings
+      media: chips-media: wave5: Add wave5 driver to maintainers file
+
+Sebastian Fricke (3):
+      media: v4l2: Add ignore_streaming flag
+      media: v4l2: Allow M2M job queuing w/o streaming CAP queue
+      media: platform: chips-media: Move Coda to separate folder
+
+ .../devicetree/bindings/media/cnm,wave521c.yaml    |   61 +
+ MAINTAINERS                                        |   10 +-
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi         |   14 +
+ drivers/media/platform/chips-media/Kconfig         |   18 +-
+ drivers/media/platform/chips-media/Makefile        |    6 +-
+ drivers/media/platform/chips-media/coda/Kconfig    |   18 +
+ drivers/media/platform/chips-media/coda/Makefile   |    6 +
+ .../platform/chips-media/{ => coda}/coda-bit.c     |    0
+ .../platform/chips-media/{ => coda}/coda-common.c  |    0
+ .../platform/chips-media/{ => coda}/coda-gdi.c     |    0
+ .../platform/chips-media/{ => coda}/coda-h264.c    |    0
+ .../platform/chips-media/{ => coda}/coda-jpeg.c    |    0
+ .../platform/chips-media/{ => coda}/coda-mpeg2.c   |    0
+ .../platform/chips-media/{ => coda}/coda-mpeg4.c   |    0
+ .../media/platform/chips-media/{ => coda}/coda.h   |    0
+ .../platform/chips-media/{ => coda}/coda_regs.h    |    0
+ .../platform/chips-media/{ => coda}/imx-vdoa.c     |    0
+ .../platform/chips-media/{ => coda}/imx-vdoa.h     |    0
+ .../media/platform/chips-media/{ => coda}/trace.h  |    2 +-
+ drivers/media/platform/chips-media/wave5/Kconfig   |   12 +
+ drivers/media/platform/chips-media/wave5/Makefile  |   10 +
+ .../platform/chips-media/wave5/wave5-helper.c      |  213 ++
+ .../platform/chips-media/wave5/wave5-helper.h      |   31 +
+ .../media/platform/chips-media/wave5/wave5-hw.c    | 2554 ++++++++++++++++++++
+ .../platform/chips-media/wave5/wave5-regdefine.h   |  732 ++++++
+ .../media/platform/chips-media/wave5/wave5-vdi.c   |  205 ++
+ .../media/platform/chips-media/wave5/wave5-vdi.h   |   35 +
+ .../platform/chips-media/wave5/wave5-vpu-dec.c     | 1932 +++++++++++++++
+ .../platform/chips-media/wave5/wave5-vpu-enc.c     | 1794 ++++++++++++++
+ .../media/platform/chips-media/wave5/wave5-vpu.c   |  291 +++
+ .../media/platform/chips-media/wave5/wave5-vpu.h   |   83 +
+ .../platform/chips-media/wave5/wave5-vpuapi.c      |  960 ++++++++
+ .../platform/chips-media/wave5/wave5-vpuapi.h      |  870 +++++++
+ .../platform/chips-media/wave5/wave5-vpuconfig.h   |   77 +
+ .../platform/chips-media/wave5/wave5-vpuerror.h    |  292 +++
+ drivers/media/platform/chips-media/wave5/wave5.h   |  114 +
+ drivers/media/v4l2-core/v4l2-mem2mem.c             |    9 +-
+ include/media/v4l2-mem2mem.h                       |    7 +
+ 38 files changed, 10331 insertions(+), 25 deletions(-)
+---
+base-commit: 3e238417254bfdcc23fe207780b59cbb08656762
+change-id: 20231108-wave5-v14-rebased-9465d6747914
+
+Best regards,
+-- 
+Sebastian Fricke <sebastian.fricke@collabora.com>
 
