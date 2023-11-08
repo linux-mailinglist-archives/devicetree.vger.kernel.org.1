@@ -1,162 +1,238 @@
-Return-Path: <devicetree+bounces-14654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00E97E5D52
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:35:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C67E7E5D5E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:38:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D5031C20B2B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:35:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 112AE281497
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5796F15EBB;
-	Wed,  8 Nov 2023 18:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6D715EBB;
+	Wed,  8 Nov 2023 18:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="hawzqf1G"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CQ3pGXf8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F5330340
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 18:35:28 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08CDB2102;
-	Wed,  8 Nov 2023 10:35:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RlfzFyW+wdPT7WkUPG+I8BsUX8JYdeUCZZuNoBo2S6bAk6J0FyV3wPaF6aUFcQLB8Y/J07ci8T/4r8DaMdh1bvb3/u1fYLyFYcMjMms03z0WExX395zqJ081KTFLlVmvFnsk4J3UMN0WZ1tWDqah1vF06J4UlqRk2BepOe0GNLepztB1z7Umxt5lc0aAfilHP1Ru7CXy3TF0mr4TrAZUaudGBlYdqPJXcI7ClCPU+JdGe4sByj5nPC6tHva0HDgprocDF2JZ7QvJanf0Xqe+fsAuVBtEjjvQAD/yuWZgHpOVZIf6DvexFalieW5bYQCg+7aXFd4TvV75xu57KY2U4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B4XABRoRHl9i6EUraLOSg1e9sWZ5uslUE2GTqeuF3Wc=;
- b=HGgClvX31lRKk/cbhhdnzAWnpCkCZ932YK4w9Th0a4aN5mU32LdtlSyiCv2pjOgqbU+X2OhiiQJO0x/7/WMAvXXOso59g8UX8Oa3fvyNtiujg1Mk7ny7GA5KbXp559vagF5zQ54LFrFZ5kksBCkCOfc5D+2hYkFO33Bm46KedOBtwt6ITD3Gz8sgjaYBKOyRcG2RBUFJxOSVA1KuDE4NeAWimqpYeg8+zSO4eayM0MP5Mr4RRX5SA4AXTZDPjzEPmkYuhTdVaFvhsQUMj3A9xHF7/jnfyOY+MgyFh7YUldicpc8iKo+e6JHGZifGh4pqgB4AXb2/FzMjUkZFMBVFpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B4XABRoRHl9i6EUraLOSg1e9sWZ5uslUE2GTqeuF3Wc=;
- b=hawzqf1GwECWWSONXdGrhU7wLmhIgobF74IqkHwLrtQ1TX6U8zihGkqga+3ttS2HvPX6IJMuPDtf3B27glLrNQIada/tpokemhGXR6v2qNXWoGZhm1723NCbYqE9o0rqo0V0QzTk/Y2+Vue3jYNvJr97dC2/AUJOE/G//1sBEfQ=
-Received: from DM6PR12MB2666.namprd12.prod.outlook.com (2603:10b6:5:4d::11) by
- BN9PR12MB5308.namprd12.prod.outlook.com (2603:10b6:408:105::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Wed, 8 Nov
- 2023 18:35:25 +0000
-Received: from DM6PR12MB2666.namprd12.prod.outlook.com
- ([fe80::6e40:ba51:d4b7:9ea5]) by DM6PR12MB2666.namprd12.prod.outlook.com
- ([fe80::6e40:ba51:d4b7:9ea5%5]) with mapi id 15.20.6954.028; Wed, 8 Nov 2023
- 18:35:25 +0000
-From: "Keryell, Ronan (XILINX LABS)" <ronan.keryell@amd.com>
-To: Rob Herring <robh@kernel.org>, "Simek, Michal" <michal.simek@amd.com>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"monstr@monstr.eu" <monstr@monstr.eu>, "michal.simek@xilinx.com"
-	<michal.simek@xilinx.com>, "git@xilinx.com" <git@xilinx.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V compatible
-Thread-Topic: [PATCH] dt-bindings: riscv: cpus: Add AMD MicroBlaze V
- compatible
-Thread-Index: AQHaEKWtAFUIQ2k7oEumWIc06MYNBrBwrBeAgAAXSQA=
-Date: Wed, 8 Nov 2023 18:35:25 +0000
-Message-ID: <5d2563a8-dd26-417b-a3ba-1b12b6c37bae@amd.com>
-References:
- <d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com>
- <20231108171203.GA2434548-robh@kernel.org>
-In-Reply-To: <20231108171203.GA2434548-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla Thunderbird
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM6PR12MB2666:EE_|BN9PR12MB5308:EE_
-x-ms-office365-filtering-correlation-id: 5d4395d9-6209-4529-24dd-08dbe089792d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- fxraDz89581vw2jcdoz7slWmaZcJZF9e+kIIVd6gHYzfrtdU6xKApk9tSt466yqM+gw+h76Ah07s9SnxyLn/oXkkOVsgDyi9cxsarwatkuCjNaeTnfPlbVsHT0qG9cd2DM4IwF5c/vS+rnEJrDzdJzfulP3iACcD2a9yfVJInc+OOAthoXyaxdVVC4Su3lkgRw1pNYeqqfgoHIr37HABbsSQZJVuqciwsI6BaErwPCDYkOsGYeyNqtbBU0G70Mx2BI25GJrtVvIVhVndpQ5a3BLswkNSzhgMe1XeJrl8oOed19BpS/AabjYdMq1yn5qTF/1qe21r9YEISU84gO29YrAUa1HhnNq0pWivjwB11L4vJmZJBfZEmO6YBO6raB89jStTzIwRzZT84pbZdjmobAFJ1G/Dq4trEWuBhGps0K8lUjTP63y011hv/wGAS5KUWq+r+PhtV6Y1z0wF4ylrRj6/iT2U3dTk5Qr+1tdjdHVPw1vw1hvuP+yKUaG2+E5iG1hU21iT5qFM5VoW092ekKqLZviWmbNdjC1sJenSeCNZs410rmj0MEI8VPavdn6Y1Ws29h3C+/T53ejwCmpIN+7koiPlf/O6CJ0DYHOdyEaCHXAoKl54pzslnnXxPAxSBnt0Vob+YTvA/zuwfdaOPhJqOgMmxjZRIeYO3ytjFxSIK+f17TqEDzSCNRPX/lvy
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR12MB2666.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(136003)(376002)(346002)(366004)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(53546011)(6512007)(71200400001)(26005)(6506007)(2616005)(64756008)(478600001)(6636002)(316002)(66446008)(66556008)(4326008)(91956017)(8936002)(8676002)(36756003)(38100700002)(76116006)(110136005)(2906002)(66946007)(4744005)(41300700001)(66476007)(86362001)(5660300002)(7416002)(31696002)(31686004)(122000001)(6486002)(54906003)(38070700009)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NUk0RXRCTW4yYkp2ZVlUcU81UlBWd2dYTWt5Nzd6QzJEcXlQYnh6UFpmdHVG?=
- =?utf-8?B?bjR0YXRpVlF1U09TbEs0anhoVEtBVmdldTZ0RE9HMTZNV0w0SW5qaGl0dldm?=
- =?utf-8?B?RXJvK2J4c3ZIS2d4ZXdpVzlHSTUxMFhyb3NhOURpVTJxQnptbSs0cWd5cFJF?=
- =?utf-8?B?a21JL09Xb2trZEZEb1UxWUNrOENsYkF0Zkg0SnBpenpMRDc4MGNPVkQ5N0V5?=
- =?utf-8?B?RUdPSlprOHlzZ1l0VGRUeW10VjZsRk5taXJpZk5HUHFWUm9ZQTIwaXJseWpJ?=
- =?utf-8?B?SVVyQ0lCbTM4QzViUEd0ZDhkS2lEL29YMlBXMW5QQ1BaL3dXdSs0QjJWYmU4?=
- =?utf-8?B?RzlZaWpYdXplSU5pNTY1NnlGNzNwYldWSFdFRTFjVEFQL1pjSHNYbkZOYnkw?=
- =?utf-8?B?YkxuZWRqSmNDNk9hZDVJbWdMNVlLS1FDbm1rTGJ5K3BPb2dJY2hPQk1NbGU3?=
- =?utf-8?B?MWNMQjRuR3dvY2sxbGx6dEVnQWpuWFdjb1BUNnBlek9ZSWlYa0FzS0Mvb2J4?=
- =?utf-8?B?Z3dWWHZQRk5MRzlLZnE0UWo5S0RpSitTMDRzN1lpQ3U3QXQrczZFS0thbHNy?=
- =?utf-8?B?Y1BzWU1SUFIxVTMxVGI2Yy9RazhzVjF3Sk12TWw2REFnRUpJTlVQZ0g1V3R0?=
- =?utf-8?B?ekxsUVFTTWYrS3JSNVhtcnpVUk1GNmZraU96UjhNb0lzcEVCMXRLbXlGUWkr?=
- =?utf-8?B?TjFqR3FrRVVieUhqZUJTYkZ5ZlJML3Q2OGsyUlVLWFdieEt6L0ZWTUQybndM?=
- =?utf-8?B?Y2JaT2NWdFN3S214UzBaVWcwZU9EL2xJa3d5M0RRdzlXTGdLVjdSSEV0aTFM?=
- =?utf-8?B?Q1lrTnVXbHFBMWQ1WnZ6VGszU0JRd0NxdkIxeDIwTjAwSDRtZ0R3Y0lBOWsv?=
- =?utf-8?B?a3BtOTNURjFXZmtySzBiYkV0Zkh4eENZdW5PcUQ1cDMwM1dJTzVzRWZwRjht?=
- =?utf-8?B?T3NmS2xEUnBjK1l4dkl4MG1yZTRxMmhmOEIwUHRSTVZYMlN5NytKWFY3NC84?=
- =?utf-8?B?bHFHc1dldE42cnlnanlId0t2T3pDRDFVdi8xdmlKYy9BQzZBZGtaOWJiK1hJ?=
- =?utf-8?B?QUxOcXFmSGFITWxlQnE5SEdiQ0srTEJNQlJZaXVQTW5KWm1qZTV6RFBOd2NC?=
- =?utf-8?B?UHYzNjRpNzJCVFRENUVaeGthOEo4WWFsTHJMSDJuQkpBYWpZODhPUHJLd25K?=
- =?utf-8?B?aDlwZE1VYWJHSjlydUk2ODREcTcrNmkxZ0JpQWJXb3ZkU21GTHNQS09WUEN1?=
- =?utf-8?B?WGhBSG1sTEdHU0ZKemtvL2l5NnpkaExEdFRBUUV1YWNhQiszRnlJa2VnUjVN?=
- =?utf-8?B?WHdPU2pDK1VZYUhVOWdQMjhwVkFPWjlIUHhRY0UxQTU2b21nYmo0WWdTS1Iv?=
- =?utf-8?B?bVpDcFppZW40V0k5NkhXcUxFS0pDVi80SkwrekZyTnNkUlE1RHZENVZKUUVI?=
- =?utf-8?B?M0lvM2hBeFNvU0hHT25mTzllTmFwMVd2bjNwRlRqbGoxMVRxc1oxbDNnSCtV?=
- =?utf-8?B?WW81b0h1UlkrVloyR1dkYXhwbWUyTmczR1UvWGtKVnE0YlFseHE3d09oTy8w?=
- =?utf-8?B?QVhXbU42YlRGRUcyMFpkTmdFQ3NUMGNkMHp4QU5oT3JUOTl5MG1MNjNDZWd4?=
- =?utf-8?B?a1Z4MVJ5c2Z4S3p3WW9UZkNYQTRuQ0Q3ZjdSVmEwQldZenN6cm4reG9EOHVy?=
- =?utf-8?B?V3NLODRyTG94S3IrbjZ6akdUbkpxVlpvU2VEcHJBUjU5Y3poOUg1bTZLenAw?=
- =?utf-8?B?WDVGd3c1T0k2aE5PMkZ0REt2TlRRZXdXZFpKVm95Y2xuSms0akE0aktIYWNy?=
- =?utf-8?B?Qit0ZUMzOEw2MndDVjNvUG5kYU5Xa3pwaUt1U2hZNTRBZXlwZWxzYXlrYVUz?=
- =?utf-8?B?TlpYZWkvaVBpZ3ptSU15ejNzUWRVYTh3Mkpsd3RWUlZHclN4TS9LRUNoWS9m?=
- =?utf-8?B?Z3pvd1Nua1BLdDNwRDhBUWxibzE2ZEY3WklFODhWbGM4SkRpZFV3dVR4NExM?=
- =?utf-8?B?aFNvem5UVDNrUXYxbGFxZm5nbk9icVpvcTRyVHY3UEVjMEdyN3RkTTc3OGFV?=
- =?utf-8?B?aWRhclZlNFVrVGo5dFdoVTB3Y014YVppRTdyQm12Mk1UMis3bVNPZjk5L0pZ?=
- =?utf-8?Q?MozA=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B8BD3BF40BD4204D87FA49D4B149D9E9@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 340301C36;
+	Wed,  8 Nov 2023 18:38:32 +0000 (UTC)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE282105;
+	Wed,  8 Nov 2023 10:38:31 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5a7b91faf40so185527b3.1;
+        Wed, 08 Nov 2023 10:38:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699468711; x=1700073511; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnRY8hgDaxFo76ZgJWjN69ov12zpJHTXkWZBmrfUhmM=;
+        b=CQ3pGXf8uFHpi780DRUOkvxfTuMl4TRfdA3mJFutpf2t8zLFhKYvva6pOnjJ7K2Si9
+         wFmTCgj4/C7Nqd36oSOZ/EBs62bYSVFUtPegzRC/D1KHO+FgTtcVCcv4IZskAPHQuxl+
+         IE8+WYQiWAG6QDZZxc8b++FZ68OXiiLsodLt+M7zO4HJA/6C30mE8cDUFHsPwe3wdE36
+         irk4wJZNJmPYgo5xVLxQZG3LpVEY31xeqbvnGw3sassV9NpBHKQa9kMurhjw4LHW6/R4
+         kIH2pUrueGwtpAWNqKuvARMfP1UC/GQMxnPJwZipmQoju6UNuKkuXVCfBJCMsgGCzAbZ
+         Hz2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699468711; x=1700073511;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gnRY8hgDaxFo76ZgJWjN69ov12zpJHTXkWZBmrfUhmM=;
+        b=BSGBPuaGKQ/VlEX8u15RgEqlKWUNiKYoUA72oVn7AwKscLxPQQAESS3djcq8WWCqbd
+         4jvHQKWD9wCDU1dKFA1QAswLGluGEpsUQc+UJtbdvSHAT36HSeUiwWl+bU1TQ5HZUu9f
+         9nwNbFrmZgmusGueliA0mzExiZtiTdpo325+uIBYfXf7dl3MIAyqk6HgOu60Decv0QR8
+         4M07oY9cEbCM0eCS6b0U7woSjoTr8tMW8douALGSq5uaoHQO4MyZUUcDdQwFJqBuJNi8
+         ZYJX8FhTGAqzG5B1O6B/e/exPWLev8xUdXBN9yXpCdwzSBp7aP8JBTGnfoyS8FFRZCo3
+         XUrA==
+X-Gm-Message-State: AOJu0YyK+1BwSd4meZp5gcjfzt1aB/OkeKExS4+M5D4YwODpgQ9P5oyI
+	ZM+yCGIU0Y91cIDqP8a5G/0=
+X-Google-Smtp-Source: AGHT+IF5UCiZdRU27t6uGR6Xd3CxkQN829PGDg05me1nIK2Rmn3euTUJlk/yBnlm83LSrqEfb7D+wA==
+X-Received: by 2002:a0d:f301:0:b0:583:b186:d817 with SMTP id c1-20020a0df301000000b00583b186d817mr2454238ywf.27.1699468710710;
+        Wed, 08 Nov 2023 10:38:30 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x184-20020a814ac1000000b0057a8de72338sm7119235ywa.68.2023.11.08.10.38.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Nov 2023 10:38:30 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d3204361-2d4c-41f9-8365-5826195aa884@roeck-us.net>
+Date: Wed, 8 Nov 2023 10:38:27 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2666.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d4395d9-6209-4529-24dd-08dbe089792d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2023 18:35:25.0874
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ASsEdCr/sx3saKfFgrpAXhccVHHmgggngRDfhvUff01veEhEVgW0JmFWs1NKRk4J
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5308
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v10 1/3] dt-bindings: hwmon: fan: Add fan binding
+ to schema
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: jdelvare@suse.com, krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au,
+ andrew@aj.id.au, corbet@lwn.net, thierry.reding@gmail.com,
+ u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+ naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
+ patrick@stwcx.xyz
+References: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
+ <20231107105025.1480561-2-billy_tsai@aspeedtech.com>
+ <20231108181654.GA2664986-robh@kernel.org>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231108181654.GA2664986-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-T24gMTEvOC8yMyAwOToxMiwgUm9iIEhlcnJpbmcgd3JvdGU6DQoNCj4gT24gTW9uLCBOb3YgMDYs
-IDIwMjMgYXQgMTI6Mzc6NDdQTSArMDEwMCwgTWljaGFsIFNpbWVrIHdyb3RlOg0KPj4gTWljcm9C
-bGF6ZSBWIGlzIG5ldyBBTUQvWGlsaW54IHNvZnQtY29yZSAzMmJpdCBSSVNDLVYgcHJvY2Vzc29y
-IElQLg0KPj4gSXQgaXMgaGFyZHdhcmUgY29tcGF0aWJsZSB3aXRoIGNsYXNzaWMgTWljcm9CbGF6
-ZSBwcm9jZXNzb3IuDQo+IA0KPiBIb3cgaXMgdGhhdCBwb3NzaWJsZT8gSXQncyBhIGRpZmZlcmVu
-dCBpbnN0cnVjdGlvbiBzZXQsIHJpZ2h0PyBJIHN1cHBvc2UNCj4gdGhlIElQIGludGVyZmFjZXMg
-KHNpZ25hbHMpIGFyZSB0aGUgc2FtZS9jb21wYXRpYmxlLg0KDQpDb2luY2lkZW50YWxseSwgSSBh
-c2tlZCBteXNlbGYgdGhlIHNhbWUgcXVlc3Rpb24sIHNvIEkgYXNrZWQgbXkgZm9ybWVyIA0KbWFu
-YWdlciB3aG8gZGVzaWduZWQgdGhlIGFuY2VzdG9yIG9mIHRoaXMgcHJvY2Vzc29yLiBUaGUgYW5z
-d2VyIGlzDQoNCnwgSXQgaXMgc3RpbGwgdGhlIHNhbWUgTWljcm9CbGF6ZSBwaXBlbGluZSBqdXN0
-IHdpdGggYSBkaWZmZXJlbnQNCnwgaW5zdHJ1Y3Rpb24gZGVjb2RlciB1cCBmcm9udC4gVGhlIOKA
-nG1hY3JvIG9wc+KAnSBhcmUgbm93IFJJU0MgVg0KfCBpbnN0cnVjdGlvbnMsIHRoZSDigJxtaWNy
-by1vcHPigJ0gYXJlIHN0aWxsIHRoZSBzYW1lIG9wZXJhdGlvbnMgaW4gdGhlDQp8IHZhcmlvdXMg
-TWljcm9CbGF6ZSBwaXBlbGluZSBzdGFnZXMuDQoNClNvLCB5ZXMsIGFsbCB0aGUgaGFyZHdhcmUg
-aW50ZXJmYWNlIGlzIHRoZSBzYW1lLg0KLS0gDQpSb25hbiBLRVJZRUxMLCBSZXNlYXJjaCBMYWJz
-IC8gU2FuIEpvc8OpLCBDYWxpZm9ybmlhLg0KQU1EIFJlc2VhcmNoIGFuZCBBZHZhbmNlZCBEZXZl
-bG9wbWVudC4NCg0K
+On 11/8/23 10:16, Rob Herring wrote:
+> On Tue, Nov 07, 2023 at 06:50:23PM +0800, Billy Tsai wrote:
+>> From: Naresh Solanki <naresh.solanki@9elements.com>
+>>
+>> Add common fan properties bindings to a schema.
+>>
+>> Bindings for fan controllers can reference the common schema for the
+>> fan
+>>
+>> child nodes:
+>>
+>>    patternProperties:
+>>      "^fan@[0-2]":
+>>        type: object
+>>        $ref: fan-common.yaml#
+>>        unevaluatedProperties: false
+>>
+>> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+>> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+>> ---
+>>   .../devicetree/bindings/hwmon/fan-common.yaml | 78 +++++++++++++++++++
+>>   1 file changed, 78 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
+> 
+> Looking pretty good to me. It's disappointing that no one else
+> interested in upstreaming their fan controller can be bothered to
+> comment.
+> 
+
+FWIW, I declined to comment since it basically looks ok to me
+and because at this point I'd rather have something (whatever it is)
+instead of nothing.
+
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+>> new file mode 100644
+>> index 000000000000..be4ce3bd7f22
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
+>> @@ -0,0 +1,78 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Common Fan Properties
+>> +
+>> +maintainers:
+>> +  - Naresh Solanki <naresh.solanki@9elements.com>
+>> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+>> +
+>> +properties:
+>> +  max-rpm:
+>> +    description:
+>> +      Max RPM supported by fan.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    maximum: 100000
+>> +
+>> +  min-rpm:
+>> +    description:
+>> +      Min RPM supported by fan.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    maximum: 1000
+>> +
+>> +  pulses-per-revolution:
+>> +    description:
+>> +      The number of pulse from fan sensor per revolution.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    maximum: 4
+>> +
+>> +  tach-div:
+>> +    description:
+>> +      Divisor for the tach sampling clock, which determines the sensitivity of the tach pin.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +  target-rpm:
+>> +    description:
+>> +      The default desired fan speed in RPM.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +  fan-driving-mode:
+>> +    description:
+>> +      Select the driving mode of the fan.(DC, PWM and so on)
+>> +    $ref: /schemas/types.yaml#/definitions/string
+> 
+> You need to define the possible values. I assume it's:
+> 
+> enum:
+>    - dc
+>    - pwm
+>    - anything else???
+> 
+
+I am not aware of any other possible method. dc and pwm is all
+I have ever seen.
+
+Guenter
+
+> With that,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
 
