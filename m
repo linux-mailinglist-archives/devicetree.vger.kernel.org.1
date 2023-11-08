@@ -1,101 +1,187 @@
-Return-Path: <devicetree+bounces-14623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C917E5BC2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:55:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6657C7E5BF3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:04:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D13DB20C66
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:55:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE8428136C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EC018B16;
-	Wed,  8 Nov 2023 16:55:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IOO81/BO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D460830338;
+	Wed,  8 Nov 2023 17:04:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F36F179BE;
-	Wed,  8 Nov 2023 16:55:18 +0000 (UTC)
-Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4618D1FD5;
-	Wed,  8 Nov 2023 08:55:18 -0800 (PST)
-Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-4ac10aacd27so2056791e0c.0;
-        Wed, 08 Nov 2023 08:55:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699462517; x=1700067317; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UBPNIHzctJ5VyvVEDbR23ellQErdbcNvpRDxmI1DH+8=;
-        b=IOO81/BOiGtxL9FTEEnm172Dx/xfz6n1Ik9FvHxS5IVdws2uFJz4mLxdzvCR8unBhc
-         0G/LV+KG3nNAUvWe1tCbw8pCbu01OEKtbRKkKPOxff+BRQ3H+REh58D81s+YUw8XRI1j
-         JS+ZT82HEPAR2JPYAdlrQtKQO2sjBfUyG2qQjSgAABo32HLjMK8YU84TApOrt6rQX+Ar
-         wPdU6JasPffG0AxJY/iz7dh12XBPrzM34ei8DHiANL+TdieuZCnnp1D0A/w72hPhj2M2
-         J7HHFWKcm3uSfPLPSTnriU+xTblKF4p1XvAY2rqE5Cd3JWlgP9/D9CYzr0YXifoggqDk
-         IxPA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14AB01A27C
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 17:04:52 +0000 (UTC)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4001FF9;
+	Wed,  8 Nov 2023 09:04:52 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b565e35fedso4123410b6e.2;
+        Wed, 08 Nov 2023 09:04:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699462517; x=1700067317;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UBPNIHzctJ5VyvVEDbR23ellQErdbcNvpRDxmI1DH+8=;
-        b=wKK3VobtGa4zJVKmv5yrv6ap1h2T4GuTKeigbQtAMYmUaBqVtaN20c56hnV0ZoQGKq
-         SeRxdlB8sdPToN/r53qvE+lbbVt5I5L3ZvhfPFcavzaZqQOuHnZjxaP5vLZ3ru9oLwu5
-         R36wOzLyaLdBFx8lhtXZn3GvEli5CCgMELNJPKqqugtB6zJYUmpPEQtFsmRmyJcU7Akk
-         hm65x1GH6L87T/9CVUcOM5f3mnnkLQ9EUt9fjPM+cgSLLJ04BzkSwu30eadF8Bo0pYAW
-         vI1X3Ox2KPQ6SRgqp9yWPbW5HVSklkoQ+PZOP2EhtdM2XbdvEnQeWlwOH+UX3pTxzI70
-         wliw==
-X-Gm-Message-State: AOJu0YwWgN4PPwyGbsWy109WBCyq6706box1svI7iHIIZ9tCD52egzcu
-	fIBHXznG2Z/TZF3pfgOZ4+JtbYA8FL6XiwLfNbgzFT84uv8=
-X-Google-Smtp-Source: AGHT+IFGlxbatls+dJ9UND+WtA6kB9hpacgRjcHyqqVij+RDXjr/gBwATg6CaFmACF/FgasZzZsas4/C0weNmEN4BWQ=
-X-Received: by 2002:a1f:244e:0:b0:4ac:7098:4992 with SMTP id
- k75-20020a1f244e000000b004ac70984992mr2333929vkk.14.1699462517333; Wed, 08
- Nov 2023 08:55:17 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699463091; x=1700067891;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4xj1XYIPtCt7xD0Af65okNbQPMnt8v3pzIoFtsXE0fE=;
+        b=GiRe0k50ybgAKeQPcW3albPIEh4xRxhDVZXDYPHf8PHPe//drYqsn1042BLlx5j87j
+         d1+3Ha05T+vA0oC10YKv3nQNCINgQThkLKXlxzukUTeuIb/IIQdcSK8Yem630wtnQjD5
+         KjEQtL4I/GpFmk/Ye/zQqwCCObCceWbXULZgyU5/YLefHn7XMNOQHmOY0VKxe1L7y4+Q
+         S7LThh4cbQ7URKHwQpnQfGQXUbtJgh6xu7AUS+23sq7UgwH70KOjQ1hESDDp86T4FZDM
+         fsg7qMW4sfGDpnGyvSMpkHoTo9QOaTNwkSH3jrychthJbMvwF0eEHl/mMILRqj3WC4Dk
+         8/ng==
+X-Gm-Message-State: AOJu0YwgprbiaYhYAIUt+dM4MqVPwA5LvM4vrp1B3eAJW2JhKV9MYD53
+	9o42rUxsisazZ1EfRLPZPcIN6YvNeA==
+X-Google-Smtp-Source: AGHT+IFUgayMAUgXghb9NJTuV24YA3ejycTle65azlc47oD34VwRdZy3OlWJTd6DlfLxmK7vh9ke9w==
+X-Received: by 2002:a05:6808:1382:b0:3ac:aae1:6d64 with SMTP id c2-20020a056808138200b003acaae16d64mr3049174oiw.2.1699463090240;
+        Wed, 08 Nov 2023 09:04:50 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u5-20020a056808000500b003ae51628725sm1963024oic.13.2023.11.08.09.04.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Nov 2023 09:04:49 -0800 (PST)
+Received: (nullmailer pid 2416480 invoked by uid 1000);
+	Wed, 08 Nov 2023 17:04:48 -0000
+Date: Wed, 8 Nov 2023 11:04:48 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH 1/6] dt-bindings: pwm: amlogic: fix s4 bindings
+Message-ID: <20231108170448.GA2388329-robh@kernel.org>
+References: <20231106103259.703417-1-jbrunet@baylibre.com>
+ <20231106103259.703417-2-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230913151606.69494-1-romain.perier@gmail.com>
- <20230913151606.69494-3-romain.perier@gmail.com> <20230913-depress-bootlace-6b88bfd83966@spud>
- <CABgxDoK2T3xkKYDVeqRuDXMHfVEJcRkkBOBBkMJ5=XUv9Y5MsQ@mail.gmail.com>
- <20230914-coagulant-unbroken-2461d32274a1@wendy> <CABgxDoJhfKQesDtV3WJ=C-DPB8P+0LDmzbY9Zy909yr3v1FQKQ@mail.gmail.com>
- <20231108-emergency-poker-8be712fdbf8e@spud>
-In-Reply-To: <20231108-emergency-poker-8be712fdbf8e@spud>
-From: Romain Perier <romain.perier@gmail.com>
-Date: Wed, 8 Nov 2023 17:55:06 +0100
-Message-ID: <CABgxDoL3_-RzqSMQgWzvUa=tdjsrSVCPUt0ZtE=YtNDHBPsy5w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: rtc: Add Mstar SSD202D RTC
-To: Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Alessandro Zummo <a.zummo@towertech.it>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Palmer <daniel@0x0f.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231106103259.703417-2-jbrunet@baylibre.com>
 
-Le mer. 8 nov. 2023 =C3=A0 16:44, Conor Dooley <conor@kernel.org> a =C3=A9c=
-rit :
->
-> On Wed, Nov 08, 2023 at 02:27:37PM +0100, Romain Perier wrote:
-> > Hi,
-> >
-> > Alexandre seems to be okay with the current (merged) dt-binding, what
-> > do I do ? I can send a v3 for trivial-rtc.yaml that's not a problem
-> > for me but both of you seem to disagree :)
->
-> Meh, I wouldn't waste your time moving it.
+On Mon, Nov 06, 2023 at 11:32:48AM +0100, Jerome Brunet wrote:
+> s4 has been added to the compatible list while converting the Amlogic PWM
+> binding documentation from txt to yaml.
+> 
+> However, on the s4, the clock bindings have different meaning compared to
+> previous SoCs.
+> 
+> On previous SoCs the clock bindings used to describe which input the PWM
+> channel multiplexer should pick among its possible parents.
+> 
+> This is very much tied to the driver implementation, instead of describing
+> the HW for what it is. When support for the Amlogic PWM was first added,
+> how to deal with clocks through DT was not as clear as it nowadays.
+> The Linux driver now ignores this DT setting, but still relies on the
+> hard-coded list of clock sources.
+> 
+> On the s4, the input multiplexer is gone. The clock bindings actually
+> describe the clock as it exists, not a setting. The property has a
+> different meaning, even if it is still 2 clocks and it would pass the check
+> when support is actually added.
+> 
+> Also the s4 cannot work if the clocks are not provided, so the property no
+> longer optional.
+> 
+> Finally, for once it makes sense to see the input as being numbered
+> somehow. No need to bother with clock-names on the s4 type of PWM.
+> 
+> Fixes: 43a1c4ff3977 ("dt-bindings: pwm: Convert Amlogic Meson PWM binding")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 68 ++++++++++++++++---
+>  1 file changed, 59 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> index 527864a4d855..754b70fc2db0 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> @@ -9,9 +9,6 @@ title: Amlogic PWM
+>  maintainers:
+>    - Heiner Kallweit <hkallweit1@gmail.com>
+>  
+> -allOf:
+> -  - $ref: pwm.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -43,12 +40,8 @@ properties:
+>      maxItems: 2
+>  
+>    clock-names:
+> -    oneOf:
+> -      - items:
+> -          - enum: [clkin0, clkin1]
+> -      - items:
+> -          - const: clkin0
+> -          - const: clkin1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    "#pwm-cells":
+>      const: 3
+> @@ -57,6 +50,56 @@ required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,meson8-pwm
+> +              - amlogic,meson8b-pwm
+> +              - amlogic,meson-gxbb-pwm
+> +              - amlogic,meson-gxbb-ao-pwm
+> +              - amlogic,meson-axg-ee-pwm
+> +              - amlogic,meson-axg-ao-pwm
+> +              - amlogic,meson-g12a-ee-pwm
+> +              - amlogic,meson-g12a-ao-pwm-ab
+> +              - amlogic,meson-g12a-ao-pwm-cd
+> +              - amlogic,meson-gx-pwm
+> +              - amlogic,meson-gx-ao-pwm
+> +    then:
+> +      # Historic bindings tied to the driver implementation
+> +      # The clocks provided here are meant to be matched with the input
+> +      # known (hard-coded) in the driver and used to select pwm clock
+> +      # source. Currently, the linux driver ignores this.
+> +      properties:
+> +        clock-names:
+> +          oneOf:
+> +            - items:
+> +                - enum: [clkin0, clkin1]
+> +            - items:
+> +                - const: clkin0
+> +                - const: clkin1
+> +
+> +  # Newer IP block take a single input per channel, instead of 4 inputs
+> +  # for both channels
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - amlogic,meson-s4-pwm
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: input clock of PWM channel A
+> +            - description: input clock of PWM channel B
+> +      required:
+> +        - clocks
 
-Ok, so I will just send a v3 with an update of the MAINTAINERS file
-for the driver (I have completely forgot, my bad)
+What are the 'clock-names' in this case? Because it's still allowed.
 
-Regards,
-Romain
+Rob
 
