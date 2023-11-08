@@ -1,476 +1,247 @@
-Return-Path: <devicetree+bounces-14588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9667E5A09
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AA37E5A13
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:34:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D93E1C2098A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:31:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 230761C20909
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ACB43033C;
-	Wed,  8 Nov 2023 15:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293AF30346;
+	Wed,  8 Nov 2023 15:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESrLPyde"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=126.com header.i=@126.com header.b="mbFyo92Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29D14C6A
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:31:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37EB6C433C8;
-	Wed,  8 Nov 2023 15:31:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699457495;
-	bh=r+LQL3WkM7KPM9fb4q4P1CaxPmhRBEVJJOiD0rMInZA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ESrLPyde+OSfrDE4VLOq4VYxCl9CrkzVGEyoibZQIPMEwlaOwKpJGI4p3UitALOOU
-	 LAJ++LBzcjSw4oFBzgtorWrJLBDPkeXi+GVkcepaYBqZD2Ec7inVg7zo/iQ6n4VWsk
-	 Vb7p84ZN5JWzcY4ceTJc9bgx1EMSh2aJhtCB3rg9kgitBgKzvhfeJ7ch0pOxseNOue
-	 W1q3FKtfHOJ/nR7koERdROB5IQfkUbLBmaxj5nTpkkw/2KauJwPa18JpT3eAdN2ICE
-	 U0i6/i+0FQaJJ8ZpLBcxF32zIbLV9wTF1+vSv3snh1NaQYjUW/8zteiyEs4MyYudAk
-	 MGnRX2M9R8hCw==
-Date: Wed, 8 Nov 2023 09:31:33 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	bhelgaas@google.com, lpieralisi@kernel.org, robh@kernel.org,
-	kw@linux.com, michal.simek@amd.com,
-	krzysztof.kozlowski+dt@linaro.org, bharat.kumar.gogada@amd.com
-Subject: Re: [PATCH v6 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
-Message-ID: <20231108153133.GA393726@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41593033C
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:34:00 +0000 (UTC)
+Received: from m1550.mail.126.com (m1550.mail.126.com [220.181.15.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7833D1BE6;
+	Wed,  8 Nov 2023 07:33:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=qyIfxtu9nPmVRuNVYJoQdt5iV2wDLJ7co+wVyG4555I=; b=m
+	bFyo92QB+35hEPd4O8w/e45uO0cg9iRDLmSL972M2ZsBj1V5NoAeHis3iJrqQDJp
+	ooLpjfg8Bj7h5giOWNENMNqp/5xVws6jp0dvdVCXrbVs1/XKhOssW3yv4E+XC2Fa
+	iiJa6ucrUI0qjxBuzB8E53//5h2KwgKXDzutHBn4O0=
+Received: from figure1802$126.com ( [183.193.16.145] ) by
+ ajax-webmail-wmsvr50 (Coremail) ; Wed, 8 Nov 2023 23:32:41 +0800 (CST)
+X-Originating-IP: [183.193.16.145]
+Date: Wed, 8 Nov 2023 23:32:41 +0800 (CST)
+From: Ben  <figure1802@126.com>
+To: "Anup Patel" <apatel@ventanamicro.com>
+Cc: "Palmer Dabbelt" <palmer@dabbelt.com>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Thomas Gleixner" <tglx@linutronix.de>, 
+	"Rob Herring" <robh+dt@kernel.org>, 
+	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, 
+	"Frank Rowand" <frowand.list@gmail.com>, 
+	"Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	"Saravana Kannan" <saravanak@google.com>, 
+	"Marc Zyngier" <maz@kernel.org>, "Anup Patel" <anup@brainfault.org>, 
+	linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?Bj=C3=B6rn_T=C3=B6pel?= <bjorn@kernel.org>, 
+	"Atish Patra" <atishp@atishpatra.org>, 
+	linux-riscv@lists.infradead.org, 
+	"Andrew Jones" <ajones@ventanamicro.com>
+Subject: Re:Re: Re: [PATCH v11 12/14] irqchip/riscv-aplic: Add support for
+ MSI-mode
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
+ Copyright (c) 2002-2023 www.mailtech.cn 126com
+In-Reply-To: <CAK9=C2Vr6BmmdNN11rn+-7JjvERiawVKOgPhMjncrUSG8x+W2Q@mail.gmail.com>
+References: <20231023172800.315343-1-apatel@ventanamicro.com>
+ <20231023172800.315343-13-apatel@ventanamicro.com>
+ <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
+ <CAK9=C2WPhROWKGKmLbLyS+q2ncCNTJEHnFKcYqCGJoNK4Uz=LQ@mail.gmail.com>
+ <8624cc4.5923.18baf6adca4.Coremail.figure1802@126.com>
+ <CAK9=C2Vr6BmmdNN11rn+-7JjvERiawVKOgPhMjncrUSG8x+W2Q@mail.gmail.com>
+X-NTES-SC: AL_QuySC/ieuE0t5yWQYekfm08Xhew/XsK1vfkm3I5QN5FwjCDn4T8Ldm5SOGLQ8e2oAT6pqQmGTTlk8s1ZT7J0Z4guNZ7M/eg9+J13fWz5qVSrMw==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230818093507.24435-4-thippeswamy.havalige@amd.com>
+Message-ID: <6c8a531.585f.18baf9073f3.Coremail.figure1802@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:MsqowAD3v84Zqktl4jUaAA--.64066W
+X-CM-SenderInfo: pilj32bhryija6rslhhfrp/1tbiLRIiXlpEBxTAUwADse
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Fri, Aug 18, 2023 at 03:05:07PM +0530, Thippeswamy Havalige wrote:
-> Add support for Xilinx XDMA Soft IP core as Root Port.
-> 
-> The Zynq UltraScale+ MPSoCs devices support XDMA soft IP module in
-> programmable logic.
-> 
-> The integrated XDMA soft IP block has integrated bridge function that
-> can act as PCIe Root Port.
-> 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
-> ---
-> changes in v6:
-> - Replaced chained irq's with regular interrupts.
-> - Modified interrupt names.
-> - Aligned to 80 columns
-> changes in v5:
-> - Added detailed comments for link_up check.
-> - Modified upper case hex values to lower case. 
-> ...
-
-I really appreciate the chained IRQ to regular IRQ conversion here,
-and I'm just pulling out the diff between v5 and v6 here because it's
-a good example that may be useful to anybody who has the opportunity
-to do similar conversions for other drivers.
-
-These are the v5 and v6 xilinx-xdma patches:
-
-  v5 https://lore.kernel.org/r/20230628092812.1592644-4-thippeswamy.havalige@amd.com
-  v6 https://lore.kernel.org/r/20230818093507.24435-4-thippeswamy.havalige@amd.com
-
-And here's the diff between them:
-
-diff --git a/drivers/pci/controller/pcie-xilinx-dma-pl.c b/drivers/pci/controller/pcie-xilinx-dma-pl.c
-index 938c6934839c..c9673e905f4b 100644
---- a/drivers/pci/controller/pcie-xilinx-dma-pl.c
-+++ b/drivers/pci/controller/pcie-xilinx-dma-pl.c
-@@ -8,7 +8,6 @@
- #include <linux/interrupt.h>
- #include <linux/irq.h>
- #include <linux/irqdomain.h>
--#include <linux/irqchip/chained_irq.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/msi.h>
-@@ -96,9 +95,8 @@ struct xilinx_msi {
-  * @pldma_domain: PL DMA IRQ domain pointer
-  * @resources: Bus Resources
-  * @msi: MSI information
-- * @irq_misc: Legacy and error interrupt number
-- * @intx_irq: legacy interrupt number
-- * @lock: lock protecting shared register access
-+ * @intx_irq: INTx error interrupt number
-+ * @lock: Lock protecting shared register access
-  */
- struct pl_dma_pcie {
- 	struct device			*dev;
-@@ -110,7 +108,6 @@ struct pl_dma_pcie {
- 	struct irq_domain		*pldma_domain;
- 	struct list_head		resources;
- 	struct xilinx_msi		msi;
--	int				irq_misc;
- 	int				intx_irq;
- 	raw_spinlock_t			lock;
- };
-@@ -143,19 +140,23 @@ static void xilinx_pl_dma_pcie_clear_err_interrupts(struct pl_dma_pcie *port)
- 	}
- }
- 
--static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus, unsigned int devfn)
-+static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus,
-+					    unsigned int devfn)
- {
- 	struct pl_dma_pcie *port = bus->sysdata;
- 
- 	/* Check if link is up when trying to access downstream ports */
- 	if (!pci_is_root_bus(bus)) {
- 		/*
--		 * If the link goes down after we check for link-up, we have a problem:
--		 * if a PIO request is initiated while link-down, the whole controller
--		 * hangs, and even after link comes up again, previous PIO requests
--		 * won't work, and a reset of the whole PCIe controller is needed.
--		 * Henceforth we need link-up check here to avoid sending PIO request
--		 * when link is down.
-+		 * Checking whether link is up here is a last line of defence,
-+		 * if the link goes down after we check for link-up, we have a
-+		 * problem: if a PIO request is initiated while link-down, the
-+		 * whole controller hangs, and even after link comes up again,
-+		 * previous PIO requests won't work, and a reset of the whole
-+		 * PCIe controller is needed. Henceforth we need link-up check
-+		 * here to avoid sending PIO request when link is down. This
-+		 * check is racy by definition and does not make controller hang
-+		 * if the link goes down after this check is performed.
- 		 */
- 		if (!xilinx_pl_dma_pcie_link_up(port))
- 			return false;
-@@ -178,7 +179,7 @@ static void __iomem *xilinx_pl_dma_pcie_map_bus(struct pci_bus *bus,
- }
- 
- /* PCIe operations */
--static const struct pci_ecam_ops xilinx_pl_dma_pcie_ops = {
-+static struct pci_ecam_ops xilinx_pl_dma_pcie_ops = {
- 	.pci_ops = {
- 		.map_bus = xilinx_pl_dma_pcie_map_bus,
- 		.read	= pci_generic_config_read,
-@@ -221,13 +222,13 @@ static void xilinx_unmask_intx_irq(struct irq_data *data)
- }
- 
- static struct irq_chip xilinx_leg_irq_chip = {
--	.name		= "INTx",
-+	.name		= "pl_dma:INTx",
- 	.irq_mask	= xilinx_mask_intx_irq,
- 	.irq_unmask	= xilinx_unmask_intx_irq,
- };
- 
--static int xilinx_pl_dma_pcie_intx_map(struct irq_domain *domain, unsigned int irq,
--				       irq_hw_number_t hwirq)
-+static int xilinx_pl_dma_pcie_intx_map(struct irq_domain *domain,
-+				       unsigned int irq, irq_hw_number_t hwirq)
- {
- 	irq_set_chip_and_handler(irq, &xilinx_leg_irq_chip, handle_level_irq);
- 	irq_set_chip_data(irq, domain->host_data);
-@@ -241,55 +242,54 @@ static const struct irq_domain_ops intx_domain_ops = {
- 	.map = xilinx_pl_dma_pcie_intx_map,
- };
- 
--static void xilinx_pl_dma_pcie_handle_msi_irq(struct pl_dma_pcie *port,
--					      u32 status_reg)
-+static irqreturn_t xilinx_pl_dma_pcie_msi_handler_high(int irq, void *args)
- {
- 	struct xilinx_msi *msi;
- 	unsigned long status;
- 	u32 bit, virq;
-+	struct pl_dma_pcie *port = args;
-+
-+	msi = &port->msi;
-+
-+	while ((status = pcie_read(port, XILINX_PCIE_DMA_REG_MSI_HI)) != 0) {
-+		for_each_set_bit(bit, &status, 32) {
-+			pcie_write(port, 1 << bit, XILINX_PCIE_DMA_REG_MSI_HI);
-+			bit = bit + 32;
-+			virq = irq_find_mapping(msi->dev_domain, bit);
-+			if (virq)
-+				generic_handle_irq(virq);
-+		}
-+	}
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t xilinx_pl_dma_pcie_msi_handler_low(int irq, void *args)
-+{
-+	struct pl_dma_pcie *port = args;
-+	struct xilinx_msi *msi;
-+	unsigned long status;
-+	u32 bit, virq;
- 
- 	msi = &port->msi;
- 
--	while ((status = pcie_read(port, status_reg)) != 0) {
-+	while ((status = pcie_read(port, XILINX_PCIE_DMA_REG_MSI_LOW)) != 0) {
- 		for_each_set_bit(bit, &status, 32) {
--			pcie_write(port, 1 << bit, status_reg);
--			if (status_reg == XILINX_PCIE_DMA_REG_MSI_HI)
--				bit = bit + 32;
-+			pcie_write(port, 1 << bit, XILINX_PCIE_DMA_REG_MSI_LOW);
- 			virq = irq_find_mapping(msi->dev_domain, bit);
- 			if (virq)
- 				generic_handle_irq(virq);
- 		}
- 	}
-+
-+	return IRQ_HANDLED;
- }
- 
--static void xilinx_pl_dma_pcie_msi_handler_high(struct irq_desc *desc)
-+static irqreturn_t xilinx_pl_dma_pcie_event_flow(int irq, void *args)
- {
--	struct pl_dma_pcie *port = irq_desc_get_handler_data(desc);
--	struct irq_chip *chip = irq_desc_get_chip(desc);
--
--	chained_irq_enter(chip, desc);
--	xilinx_pl_dma_pcie_handle_msi_irq(port, XILINX_PCIE_DMA_REG_MSI_HI);
--	chained_irq_exit(chip, desc);
--}
--
--static void xilinx_pl_dma_pcie_msi_handler_low(struct irq_desc *desc)
--{
--	struct pl_dma_pcie *port = irq_desc_get_handler_data(desc);
--	struct irq_chip *chip = irq_desc_get_chip(desc);
--
--	chained_irq_enter(chip, desc);
--	xilinx_pl_dma_pcie_handle_msi_irq(port, XILINX_PCIE_DMA_REG_MSI_LOW);
--	chained_irq_exit(chip, desc);
--}
--
--static void xilinx_pl_dma_pcie_event_flow(struct irq_desc *desc)
--{
--	struct pl_dma_pcie *port = irq_desc_get_handler_data(desc);
--	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	struct pl_dma_pcie *port = args;
- 	unsigned long val;
- 	int i;
- 
--	chained_irq_enter(chip, desc);
- 	val = pcie_read(port, XILINX_PCIE_DMA_REG_IDR);
- 	val &= pcie_read(port, XILINX_PCIE_DMA_REG_IMR);
- 	for_each_set_bit(i, &val, 32)
-@@ -297,7 +297,7 @@ static void xilinx_pl_dma_pcie_event_flow(struct irq_desc *desc)
- 
- 	pcie_write(port, val, XILINX_PCIE_DMA_REG_IDR);
- 
--	chained_irq_exit(chip, desc);
-+	return IRQ_HANDLED;
- }
- 
- #define _IC(x, s)                              \
-@@ -313,8 +313,6 @@ static const struct {
- 	_IC(CORRECTABLE,	"Correctable error message"),
- 	_IC(NONFATAL,		"Non fatal error message"),
- 	_IC(FATAL,		"Fatal error message"),
--	_IC(INTX,		"INTX error message"),
--	_IC(MSI,		"MSI message received"),
- 	_IC(SLV_UNSUPP,		"Slave unsupported request"),
- 	_IC(SLV_UNEXP,		"Slave unexpected completion"),
- 	_IC(SLV_COMPL,		"Slave completion timeout"),
-@@ -350,7 +348,7 @@ static irqreturn_t xilinx_pl_dma_pcie_intr_handler(int irq, void *dev_id)
- }
- 
- static struct irq_chip xilinx_msi_irq_chip = {
--	.name = "pl_dma_pciepcie:msi",
-+	.name = "pl_dma:PCIe MSI",
- 	.irq_enable = pci_msi_unmask_irq,
- 	.irq_disable = pci_msi_mask_irq,
- 	.irq_mask = pci_msi_mask_irq,
-@@ -380,7 +378,7 @@ static int xilinx_msi_set_affinity(struct irq_data *irq_data,
- }
- 
- static struct irq_chip xilinx_irq_chip = {
--	.name = "Xilinx MSI",
-+	.name = "pl_dma:MSI",
- 	.irq_compose_msi_msg = xilinx_compose_msi_msg,
- 	.irq_set_affinity = xilinx_msi_set_affinity,
- };
-@@ -427,12 +425,6 @@ static const struct irq_domain_ops dev_msi_domain_ops = {
- 	.free	= xilinx_irq_domain_free,
- };
- 
--static void xilinx_pl_dma_pcie_free_interrupts(struct pl_dma_pcie *port)
--{
--	irq_set_chained_handler_and_data(port->msi.irq_msi0, NULL, NULL);
--	irq_set_chained_handler_and_data(port->msi.irq_msi1, NULL, NULL);
--}
--
- static void xilinx_pl_dma_pcie_free_irq_domains(struct pl_dma_pcie *port)
- {
- 	struct xilinx_msi *msi = &port->msi;
-@@ -487,22 +479,23 @@ static int xilinx_pl_dma_pcie_init_msi_irq_domain(struct pl_dma_pcie *port)
- 	return -ENOMEM;
- }
- 
--static void xilinx_pl_dma_pcie_intx_flow(struct irq_desc *desc)
-+/* INTx error interrupts are Xilinx controller specific interrupt, used to
-+ * notify user about error's such as cfg timeout, slave unsupported requests,
-+ * fatal and non fatal error etc.
-+ */
-+
-+static irqreturn_t xilinx_pl_dma_pcie_intx_flow(int irq, void *args)
- {
--	struct pl_dma_pcie *port = irq_desc_get_handler_data(desc);
--	struct irq_chip *chip = irq_desc_get_chip(desc);
- 	unsigned long val;
- 	int i;
--
--	chained_irq_enter(chip, desc);
-+	struct pl_dma_pcie *port = args;
- 
- 	val = FIELD_GET(XILINX_PCIE_DMA_IDRN_MASK,
- 			pcie_read(port, XILINX_PCIE_DMA_REG_IDRN));
- 
- 	for_each_set_bit(i, &val, PCI_NUM_INTX)
- 		generic_handle_domain_irq(port->intx_domain, i);
--
--	chained_irq_exit(chip, desc);
-+	return IRQ_HANDLED;
- }
- 
- static void xilinx_pl_dma_pcie_mask_event_irq(struct irq_data *d)
-@@ -530,7 +523,7 @@ static void xilinx_pl_dma_pcie_unmask_event_irq(struct irq_data *d)
- }
- 
- static struct irq_chip xilinx_pl_dma_pcie_event_irq_chip = {
--	.name		= "RC-Event",
-+	.name		= "pl_dma:RC-Event",
- 	.irq_mask	= xilinx_pl_dma_pcie_mask_event_irq,
- 	.irq_unmask	= xilinx_pl_dma_pcie_unmask_event_irq,
- };
-@@ -602,7 +595,7 @@ static int xilinx_pl_dma_pcie_setup_irq(struct pl_dma_pcie *port)
- {
- 	struct device *dev = port->dev;
- 	struct platform_device *pdev = to_platform_device(dev);
--	int i, irq;
-+	int i, irq, err;
- 
- 	port->irq = platform_get_irq(pdev, 0);
- 	if (port->irq < 0)
-@@ -621,7 +614,7 @@ static int xilinx_pl_dma_pcie_setup_irq(struct pl_dma_pcie *port)
- 		}
- 
- 		err = devm_request_irq(dev, irq, xilinx_pl_dma_pcie_intr_handler,
--				       0, intr_cause[i].sym, port);
-+				       IRQF_SHARED | IRQF_NO_THREAD, intr_cause[i].sym, port);
- 		if (err) {
- 			dev_err(dev, "Failed to request IRQ %d\n", irq);
- 			return err;
-@@ -635,14 +628,18 @@ static int xilinx_pl_dma_pcie_setup_irq(struct pl_dma_pcie *port)
- 		return -ENXIO;
- 	}
- 
--	/* Plug the INTx chained handler */
--	irq_set_chained_handler_and_data(port->intx_irq,
--					 xilinx_pl_dma_pcie_intx_flow, port);
--
--	/* Plug the main event chained handler */
--	irq_set_chained_handler_and_data(port->irq,
--					 xilinx_pl_dma_pcie_event_flow, port);
--
-+	err = devm_request_irq(dev, port->intx_irq, xilinx_pl_dma_pcie_intx_flow,
-+			       IRQF_SHARED | IRQF_NO_THREAD, NULL, port);
-+	if (err) {
-+		dev_err(dev, "Failed to request INTx IRQ %d\n", irq);
-+		return err;
-+	}
-+	err = devm_request_irq(dev, port->irq, xilinx_pl_dma_pcie_event_flow,
-+			       IRQF_SHARED | IRQF_NO_THREAD, NULL, port);
-+	if (err) {
-+		dev_err(dev, "Failed to request event IRQ %d\n", irq);
-+		return err;
-+	}
- 	return 0;
- }
- 
-@@ -666,7 +663,7 @@ static void xilinx_pl_dma_pcie_init_port(struct pl_dma_pcie *port)
- 	pcie_write(port, XILINX_PCIE_DMA_IDR_ALL_MASK, XILINX_PCIE_DMA_REG_MSI_LOW_MASK);
- 	pcie_write(port, XILINX_PCIE_DMA_IDR_ALL_MASK, XILINX_PCIE_DMA_REG_MSI_HI_MASK);
- 
--	/*set the Bridge enable bit */
-+	/* Set the Bridge enable bit */
- 	pcie_write(port, pcie_read(port, XILINX_PCIE_DMA_REG_RPSC) |
- 			 XILINX_PCIE_DMA_REG_RPSC_BEN,
- 		   XILINX_PCIE_DMA_REG_RPSC);
-@@ -676,29 +673,32 @@ static int xilinx_request_msi_irq(struct pl_dma_pcie *port)
- {
- 	struct device *dev = port->dev;
- 	struct platform_device *pdev = to_platform_device(dev);
-+	int ret;
- 
- 	port->msi.irq_msi0 = platform_get_irq_byname(pdev, "msi0");
- 	if (port->msi.irq_msi0 <= 0) {
- 		dev_err(dev, "Unable to find msi0 IRQ line\n");
- 		return port->msi.irq_msi0;
- 	}
--
--	irq_set_chained_handler_and_data(port->msi.irq_msi0,
--					 xilinx_pl_dma_pcie_msi_handler_low,
--					 port);
--
-+	ret = devm_request_irq(dev, port->msi.irq_msi0, xilinx_pl_dma_pcie_msi_handler_low,
-+			       IRQF_SHARED | IRQF_NO_THREAD, "xlnx-pcie-dma-pl",
-+			       port);
-+	if (ret) {
-+		dev_err(dev, "Failed to register interrupt\n");
-+		return ret;
-+		}
- 	port->msi.irq_msi1 = platform_get_irq_byname(pdev, "msi1");
- 	if (port->msi.irq_msi1 <= 0) {
--		irq_set_chained_handler_and_data(port->msi.irq_msi0,
--						 NULL, NULL);
- 		dev_err(dev, "Unable to find msi1 IRQ line\n");
- 		return port->msi.irq_msi1;
- 	}
--
--	irq_set_chained_handler_and_data(port->msi.irq_msi1,
--					 xilinx_pl_dma_pcie_msi_handler_high,
--					 port);
--
-+	ret = devm_request_irq(dev, port->msi.irq_msi1, xilinx_pl_dma_pcie_msi_handler_high,
-+			       IRQF_SHARED | IRQF_NO_THREAD, "xlnx-pcie-dma-pl",
-+			       port);
-+	if (ret) {
-+		dev_err(dev, "Failed to register interrupt\n");
-+		return ret;
-+		}
- 	return 0;
- }
- 
-@@ -712,7 +712,7 @@ static int xilinx_pl_dma_pcie_parse_dt(struct pl_dma_pcie *port,
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	if (!res) {
--		dev_err(dev, "missing \"reg\" property\n");
-+		dev_err(dev, "Missing \"reg\" property\n");
- 		return -ENXIO;
- 	}
- 	port->phys_reg_base = res->start;
-@@ -767,7 +767,7 @@ static int xilinx_pl_dma_pcie_probe(struct platform_device *pdev)
- 	err = xilinx_pl_dma_pcie_setup_irq(port);
- 
- 	bridge->sysdata = port;
--	bridge->ops = (struct pci_ops *)&xilinx_pl_dma_pcie_ops.pci_ops;
-+	bridge->ops = &xilinx_pl_dma_pcie_ops.pci_ops;
- 
- 	err = pci_host_probe(bridge);
- 	if (err < 0)
-@@ -780,7 +780,6 @@ static int xilinx_pl_dma_pcie_probe(struct platform_device *pdev)
- 
- err_irq_domain:
- 	pci_ecam_free(port->cfg);
--	xilinx_pl_dma_pcie_free_interrupts(port);
- 	return err;
- }
- 
+CkF0IDIwMjMtMTEtMDggMjI6NTY6NTksICJBbnVwIFBhdGVsIiA8YXBhdGVsQHZlbnRhbmFtaWNy
+by5jb20+IHdyb3RlOgo+T24gV2VkLCBOb3YgOCwgMjAyMyBhdCA4OjIz4oCvUE0gQmVuIDxmaWd1
+cmUxODAyQDEyNi5jb20+IHdyb3RlOgo+Pgo+PiBBdCAyMDIzLTExLTA4IDIyOjQzOjI1LCAiQW51
+cCBQYXRlbCIgPGFwYXRlbEB2ZW50YW5hbWljcm8uY29tPiB3cm90ZToKPj4gPk9uIFNhdCwgTm92
+IDQsIDIwMjMgYXQgNjozMOKAr0FNIEJlbiA8ZmlndXJlMTgwMkAxMjYuY29tPiB3cm90ZToKPj4g
+Pj4KPj4gPj4gQXQgMjAyMy0xMC0yNCAwMToyNzo1OCwgIkFudXAgUGF0ZWwiIDxhcGF0ZWxAdmVu
+dGFuYW1pY3JvLmNvbT4gd3JvdGU6Cj4+ID4+ID5UaGUgUklTQy1WIGFkdmFuY2VkIHBsYXRmb3Jt
+LWxldmVsIGludGVycnVwdCBjb250cm9sbGVyIChBUExJQykgaGFzCj4+ID4+ID50d28gbW9kZXMg
+b2Ygb3BlcmF0aW9uOiAxKSBEaXJlY3QgbW9kZSBhbmQgMikgTVNJIG1vZGUuCj4+ID4+ID4oRm9y
+IG1vcmUgZGV0YWlscywgcmVmZXIgaHR0cHM6Ly9naXRodWIuY29tL3Jpc2N2L3Jpc2N2LWFpYSkK
+Pj4gPj4gPgo+PiA+PiA+SW4gQVBMSUMgTVNJLW1vZGUsIHdpcmVkIGludGVycnVwdHMgYXJlIGZv
+cndhcmVkIGFzIG1lc3NhZ2Ugc2lnbmFsZWQKPj4gPj4gPmludGVycnVwdHMgKE1TSXMpIHRvIENQ
+VXMgdmlhIElNU0lDLgo+PiA+PiA+Cj4+ID4+ID5XZSBleHRlbmQgdGhlIGV4aXN0aW5nIEFQTElD
+IGlycWNoaXAgZHJpdmVyIHRvIHN1cHBvcnQgTVNJLW1vZGUgZm9yCj4+ID4+ID5SSVNDLVYgcGxh
+dGZvcm1zIGhhdmluZyBib3RoIHdpcmVkIGludGVycnVwdHMgYW5kIE1TSXMuCj4+ID4+ID4KPj4g
+Pj4gPlNpZ25lZC1vZmYtYnk6IEFudXAgUGF0ZWwgPGFwYXRlbEB2ZW50YW5hbWljcm8uY29tPgo+
+PiA+PiA+LS0tCj4+ID4+ID4gZHJpdmVycy9pcnFjaGlwL0tjb25maWcgICAgICAgICAgICAgICAg
+fCAgIDYgKwo+PiA+PiA+IGRyaXZlcnMvaXJxY2hpcC9NYWtlZmlsZSAgICAgICAgICAgICAgIHwg
+ICAxICsKPj4gPj4gPiBkcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1haW4uYyB8ICAg
+MiArLQo+PiA+PiA+IGRyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5oIHwgICA4
+ICsKPj4gPj4gPiBkcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jICB8IDI4NSAr
+KysrKysrKysrKysrKysrKysrKysrKysrCj4+ID4+ID4gNSBmaWxlcyBjaGFuZ2VkLCAzMDEgaW5z
+ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+PiA+PiA+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
+ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jCj4+ID4+ID4KPj4gPj4gPmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2lycWNoaXAvS2NvbmZpZyBiL2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnCj4+
+ID4+ID5pbmRleCAxOTk2Y2M2ZjY2NmEuLjdhZGM0ZGJlMDdmZiAxMDA2NDQKPj4gPj4gPi0tLSBh
+L2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnCj4+ID4+ID4rKysgYi9kcml2ZXJzL2lycWNoaXAvS2Nv
+bmZpZwo+PiA+PiA+QEAgLTU1MSw2ICs1NTEsMTIgQEAgY29uZmlnIFJJU0NWX0FQTElDCj4+ID4+
+ID4gICAgICAgZGVwZW5kcyBvbiBSSVNDVgo+PiA+PiA+ICAgICAgIHNlbGVjdCBJUlFfRE9NQUlO
+X0hJRVJBUkNIWQo+PiA+PiA+Cj4+ID4+ID4rY29uZmlnIFJJU0NWX0FQTElDX01TSQo+PiA+PiA+
+KyAgICAgIGJvb2wKPj4gPj4gPisgICAgICBkZXBlbmRzIG9uIFJJU0NWX0FQTElDCj4+ID4+ID4r
+ICAgICAgc2VsZWN0IEdFTkVSSUNfTVNJX0lSUQo+PiA+PiA+KyAgICAgIGRlZmF1bHQgUklTQ1Zf
+QVBMSUMKPj4gPj4gPisKPj4gPj4gPiBjb25maWcgUklTQ1ZfSU1TSUMKPj4gPj4gPiAgICAgICBi
+b29sCj4+ID4+ID4gICAgICAgZGVwZW5kcyBvbiBSSVNDVgo+PiA+PiA+ZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvaXJxY2hpcC9NYWtlZmlsZSBiL2RyaXZlcnMvaXJxY2hpcC9NYWtlZmlsZQo+PiA+PiA+
+aW5kZXggN2Y4Mjg5NzkwZWQ4Li40Nzk5NWZkYjJjNjAgMTAwNjQ0Cj4+ID4+ID4tLS0gYS9kcml2
+ZXJzL2lycWNoaXAvTWFrZWZpbGUKPj4gPj4gPisrKyBiL2RyaXZlcnMvaXJxY2hpcC9NYWtlZmls
+ZQo+PiA+PiA+QEAgLTk2LDYgKzk2LDcgQEAgb2JqLSQoQ09ORklHX0NTS1lfTVBJTlRDKSAgICAg
+ICAgICAgICs9IGlycS1jc2t5LW1waW50Yy5vCj4+ID4+ID4gb2JqLSQoQ09ORklHX0NTS1lfQVBC
+X0lOVEMpICAgICAgICAgICArPSBpcnEtY3NreS1hcGItaW50Yy5vCj4+ID4+ID4gb2JqLSQoQ09O
+RklHX1JJU0NWX0lOVEMpICAgICAgICAgICAgICArPSBpcnEtcmlzY3YtaW50Yy5vCj4+ID4+ID4g
+b2JqLSQoQ09ORklHX1JJU0NWX0FQTElDKSAgICAgICAgICAgICArPSBpcnEtcmlzY3YtYXBsaWMt
+bWFpbi5vIGlycS1yaXNjdi1hcGxpYy1kaXJlY3Qubwo+PiA+PiA+K29iai0kKENPTkZJR19SSVND
+Vl9BUExJQ19NU0kpICAgICAgICAgKz0gaXJxLXJpc2N2LWFwbGljLW1zaS5vCj4+ID4+ID4gb2Jq
+LSQoQ09ORklHX1JJU0NWX0lNU0lDKSAgICAgICAgICAgICArPSBpcnEtcmlzY3YtaW1zaWMtc3Rh
+dGUubyBpcnEtcmlzY3YtaW1zaWMtZWFybHkubyBpcnEtcmlzY3YtaW1zaWMtcGxhdGZvcm0ubwo+
+PiA+PiA+IG9iai0kKENPTkZJR19TSUZJVkVfUExJQykgICAgICAgICAgICAgKz0gaXJxLXNpZml2
+ZS1wbGljLm8KPj4gPj4gPiBvYmotJChDT05GSUdfSU1YX0lSUVNURUVSKSAgICAgICAgICAgICs9
+IGlycS1pbXgtaXJxc3RlZXIubwo+PiA+PiA+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9p
+cnEtcmlzY3YtYXBsaWMtbWFpbi5jIGIvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1t
+YWluLmMKPj4gPj4gPmluZGV4IDg3NDUwNzA4YTczMy4uZDFiMzQyYjY2NTUxIDEwMDY0NAo+PiA+
+PiA+LS0tIGEvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmMKPj4gPj4gPisr
+KyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jCj4+ID4+ID5AQCAtMjA1
+LDcgKzIwNSw3IEBAIHN0YXRpYyBpbnQgYXBsaWNfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2Rldmlj
+ZSAqcGRldikKPj4gPj4gPiAgICAgICAgICAgICAgIG1zaV9tb2RlID0gb2ZfcHJvcGVydHlfcHJl
+c2VudCh0b19vZl9ub2RlKGRldi0+Zndub2RlKSwKPj4gPj4gPiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIm1zaS1wYXJlbnQiKTsKPj4gPj4gPiAgICAgICBp
+ZiAobXNpX21vZGUpCj4+ID4+ID4tICAgICAgICAgICAgICByYyA9IC1FTk9ERVY7Cj4+ID4+ID4r
+ICAgICAgICAgICAgICByYyA9IGFwbGljX21zaV9zZXR1cChkZXYsIHJlZ3MpOwo+PiA+PiA+ICAg
+ICAgIGVsc2UKPj4gPj4gPiAgICAgICAgICAgICAgIHJjID0gYXBsaWNfZGlyZWN0X3NldHVwKGRl
+diwgcmVncyk7Cj4+ID4+ID4gICAgICAgaWYgKHJjKSB7Cj4+ID4+ID5kaWZmIC0tZ2l0IGEvZHJp
+dmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmggYi9kcml2ZXJzL2lycWNoaXAvaXJx
+LXJpc2N2LWFwbGljLW1haW4uaAo+PiA+PiA+aW5kZXggNDc0YTA0MjI5MzM0Li43ODI2N2VjNTgw
+OTggMTAwNjQ0Cj4+ID4+ID4tLS0gYS9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1h
+aW4uaAo+PiA+PiA+KysrIGIvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmgK
+Pj4gPj4gPkBAIC00MSw1ICs0MSwxMyBAQCB2b2lkIGFwbGljX2luaXRfaHdfZ2xvYmFsKHN0cnVj
+dCBhcGxpY19wcml2ICpwcml2LCBib29sIG1zaV9tb2RlKTsKPj4gPj4gPiBpbnQgYXBsaWNfc2V0
+dXBfcHJpdihzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiwgc3RydWN0IGRldmljZSAqZGV2LAo+PiA+
+PiA+ICAgICAgICAgICAgICAgICAgICB2b2lkIF9faW9tZW0gKnJlZ3MpOwo+PiA+PiA+IGludCBh
+cGxpY19kaXJlY3Rfc2V0dXAoc3RydWN0IGRldmljZSAqZGV2LCB2b2lkIF9faW9tZW0gKnJlZ3Mp
+Owo+PiA+PiA+KyNpZmRlZiBDT05GSUdfUklTQ1ZfQVBMSUNfTVNJCj4+ID4+ID4raW50IGFwbGlj
+X21zaV9zZXR1cChzdHJ1Y3QgZGV2aWNlICpkZXYsIHZvaWQgX19pb21lbSAqcmVncyk7Cj4+ID4+
+ID4rI2Vsc2UKPj4gPj4gPitzdGF0aWMgaW5saW5lIGludCBhcGxpY19tc2lfc2V0dXAoc3RydWN0
+IGRldmljZSAqZGV2LCB2b2lkIF9faW9tZW0gKnJlZ3MpCj4+ID4+ID4rewo+PiA+PiA+KyAgICAg
+IHJldHVybiAtRU5PREVWOwo+PiA+PiA+K30KPj4gPj4gPisjZW5kaWYKPj4gPj4gPgo+PiA+PiA+
+ICNlbmRpZgo+PiA+PiA+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBs
+aWMtbXNpLmMgYi9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jCj4+ID4+ID5u
+ZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiA+PiA+aW5kZXggMDAwMDAwMDAwMDAwLi4wODZkMDBlMDQy
+OWUKPj4gPj4gPi0tLSAvZGV2L251bGwKPj4gPj4gPisrKyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEt
+cmlzY3YtYXBsaWMtbXNpLmMKPj4gPj4gPkBAIC0wLDAgKzEsMjg1IEBACj4+ID4+ID4rLy8gU1BE
+WC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAKPj4gPj4gPisvKgo+PiA+PiA+KyAqIENvcHly
+aWdodCAoQykgMjAyMSBXZXN0ZXJuIERpZ2l0YWwgQ29ycG9yYXRpb24gb3IgaXRzIGFmZmlsaWF0
+ZXMuCj4+ID4+ID4rICogQ29weXJpZ2h0IChDKSAyMDIyIFZlbnRhbmEgTWljcm8gU3lzdGVtcyBJ
+bmMuCj4+ID4+ID4rICovCj4+ID4+ID4rCj4+ID4+ID4rI2luY2x1ZGUgPGxpbnV4L2JpdG9wcy5o
+Pgo+PiA+PiA+KyNpbmNsdWRlIDxsaW51eC9jcHUuaD4KPj4gPj4gPisjaW5jbHVkZSA8bGludXgv
+aW50ZXJydXB0Lmg+Cj4+ID4+ID4rI2luY2x1ZGUgPGxpbnV4L2lycWNoaXAuaD4KPj4gPj4gPisj
+aW5jbHVkZSA8bGludXgvaXJxY2hpcC9yaXNjdi1hcGxpYy5oPgo+PiA+PiA+KyNpbmNsdWRlIDxs
+aW51eC9pcnFjaGlwL3Jpc2N2LWltc2ljLmg+Cj4+ID4+ID4rI2luY2x1ZGUgPGxpbnV4L21vZHVs
+ZS5oPgo+PiA+PiA+KyNpbmNsdWRlIDxsaW51eC9tc2kuaD4KPj4gPj4gPisjaW5jbHVkZSA8bGlu
+dXgvb2ZfaXJxLmg+Cj4+ID4+ID4rI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPgo+
+PiA+PiA+KyNpbmNsdWRlIDxsaW51eC9wcmludGsuaD4KPj4gPj4gPisjaW5jbHVkZSA8bGludXgv
+c21wLmg+Cj4+ID4+ID4rCj4+ID4+ID4rI2luY2x1ZGUgImlycS1yaXNjdi1hcGxpYy1tYWluLmgi
+Cj4+ID4+ID4rCj4+ID4+ID4rc3RhdGljIHZvaWQgYXBsaWNfbXNpX2lycV91bm1hc2soc3RydWN0
+IGlycV9kYXRhICpkKQo+PiA+PiA+K3sKPj4gPj4gPisgICAgICBhcGxpY19pcnFfdW5tYXNrKGQp
+Owo+PiA+PiA+KyAgICAgIGlycV9jaGlwX3VubWFza19wYXJlbnQoZCk7Cj4+ID4+ID4rfQo+PiA+
+PiA+Kwo+PiA+PiA+K3N0YXRpYyB2b2lkIGFwbGljX21zaV9pcnFfbWFzayhzdHJ1Y3QgaXJxX2Rh
+dGEgKmQpCj4+ID4+ID4rewo+PiA+PiA+KyAgICAgIGFwbGljX2lycV9tYXNrKGQpOwo+PiA+PiA+
+KyAgICAgIGlycV9jaGlwX21hc2tfcGFyZW50KGQpOwo+PiA+PiA+K30KPj4gPj4gPisKPj4gPj4g
+PitzdGF0aWMgdm9pZCBhcGxpY19tc2lfaXJxX2VvaShzdHJ1Y3QgaXJxX2RhdGEgKmQpCj4+ID4+
+ID4rewo+PiA+PiA+KyAgICAgIHN0cnVjdCBhcGxpY19wcml2ICpwcml2ID0gaXJxX2RhdGFfZ2V0
+X2lycV9jaGlwX2RhdGEoZCk7Cj4+ID4+ID4rICAgICAgdTMyIHJlZ19vZmYsIHJlZ19tYXNrOwo+
+PiA+PiA+Kwo+PiA+PiA+KyAgICAgIC8qCj4+ID4+ID4rICAgICAgICogRU9JIGhhbmRsaW5nIG9u
+bHkgcmVxdWlyZWQgb25seSBmb3IgbGV2ZWwtdHJpZ2dlcmVkCj4+ID4+ID4rICAgICAgICogaW50
+ZXJydXB0cyBpbiBBUExJQyBNU0kgbW9kZS4KPj4gPj4gPisgICAgICAgKi8KPj4gPj4gPisKPj4g
+Pj4gPisgICAgICByZWdfb2ZmID0gQVBMSUNfQ0xSSVBfQkFTRSArICgoZC0+aHdpcnEgLyBBUExJ
+Q19JUlFCSVRTX1BFUl9SRUcpICogNCk7Cj4+ID4+ID4rICAgICAgcmVnX21hc2sgPSBCSVQoZC0+
+aHdpcnEgJSBBUExJQ19JUlFCSVRTX1BFUl9SRUcpOwo+PiA+PiA+KyAgICAgIHN3aXRjaCAoaXJx
+ZF9nZXRfdHJpZ2dlcl90eXBlKGQpKSB7Cj4+ID4+ID4rICAgICAgY2FzZSBJUlFfVFlQRV9MRVZF
+TF9MT1c6Cj4+ID4+ID4rICAgICAgICAgICAgICBpZiAoIShyZWFkbChwcml2LT5yZWdzICsgcmVn
+X29mZikgJiByZWdfbWFzaykpCj4+ID4+ID4rICAgICAgICAgICAgICAgICAgICAgIHdyaXRlbChk
+LT5od2lycSwgcHJpdi0+cmVncyArIEFQTElDX1NFVElQTlVNX0xFKTsKPj4gPj4gPisgICAgICAg
+ICAgICAgIGJyZWFrOwo+PiA+PiA+KyAgICAgIGNhc2UgSVJRX1RZUEVfTEVWRUxfSElHSDoKPj4g
+Pj4gPisgICAgICAgICAgICAgIGlmIChyZWFkbChwcml2LT5yZWdzICsgcmVnX29mZikgJiByZWdf
+bWFzaykKPj4gPj4gPisgICAgICAgICAgICAgICAgICAgICAgd3JpdGVsKGQtPmh3aXJxLCBwcml2
+LT5yZWdzICsgQVBMSUNfU0VUSVBOVU1fTEUpOwo+PiA+PiA+KyAgICAgICAgICAgICAgYnJlYWs7
+Cj4+ID4+ID4rICAgICAgfQo+PiA+PiA+K30KPj4gPj4gPisKPj4gPj4gPitzdGF0aWMgc3RydWN0
+IGlycV9jaGlwIGFwbGljX21zaV9jaGlwID0gewo+PiA+PiA+KyAgICAgIC5uYW1lICAgICAgICAg
+ICA9ICJBUExJQy1NU0kiLAo+PiA+PiA+KyAgICAgIC5pcnFfbWFzayAgICAgICA9IGFwbGljX21z
+aV9pcnFfbWFzaywKPj4gPj4gPisgICAgICAuaXJxX3VubWFzayAgICAgPSBhcGxpY19tc2lfaXJx
+X3VubWFzaywKPj4gPj4gPisgICAgICAuaXJxX3NldF90eXBlICAgPSBhcGxpY19pcnFfc2V0X3R5
+cGUsCj4+ID4+ID4rICAgICAgLmlycV9lb2kgICAgICAgID0gYXBsaWNfbXNpX2lycV9lb2ksCj4+
+ID4+ID4rI2lmZGVmIENPTkZJR19TTVAKPj4gPj4gPisgICAgICAuaXJxX3NldF9hZmZpbml0eSA9
+IGlycV9jaGlwX3NldF9hZmZpbml0eV9wYXJlbnQsCj4+ID4+ID4rI2VuZGlmCj4+ID4+ID4rICAg
+ICAgLmZsYWdzICAgICAgICAgID0gSVJRQ0hJUF9TRVRfVFlQRV9NQVNLRUQgfAo+PiA+PiA+KyAg
+ICAgICAgICAgICAgICAgICAgICAgIElSUUNISVBfU0tJUF9TRVRfV0FLRSB8Cj4+ID4+ID4rICAg
+ICAgICAgICAgICAgICAgICAgICAgSVJRQ0hJUF9NQVNLX09OX1NVU1BFTkQsCj4+ID4+ID4rfTsK
+Pj4gPj4gPisKPj4gPj4gPitzdGF0aWMgaW50IGFwbGljX21zaV9pcnFkb21haW5fdHJhbnNsYXRl
+KHN0cnVjdCBpcnFfZG9tYWluICpkLAo+PiA+PiA+KyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHN0cnVjdCBpcnFfZndzcGVjICpmd3NwZWMsCj4+ID4+ID4rICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQgbG9uZyAqaHdpcnEsCj4+ID4+
+ID4rICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQgaW50ICp0
+eXBlKQo+PiA+PiA+K3sKPj4gPj4gPisgICAgICBzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiA9IHBs
+YXRmb3JtX21zaV9nZXRfaG9zdF9kYXRhKGQpOwo+PiA+PiA+Kwo+PiA+PiA+KyAgICAgIHJldHVy
+biBhcGxpY19pcnFkb21haW5fdHJhbnNsYXRlKGZ3c3BlYywgcHJpdi0+Z3NpX2Jhc2UsIGh3aXJx
+LCB0eXBlKTsKPj4gPj4gPit9Cj4+ID4+ID4rCj4+ID4+ID4rc3RhdGljIGludCBhcGxpY19tc2lf
+aXJxZG9tYWluX2FsbG9jKHN0cnVjdCBpcnFfZG9tYWluICpkb21haW4sCj4+ID4+ID4rICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBpbnQgdmlycSwgdW5zaWduZWQg
+aW50IG5yX2lycXMsCj4+ID4+ID4rICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2
+b2lkICphcmcpCj4+ID4+ID4rewo+PiA+PiA+KyAgICAgIGludCBpLCByZXQ7Cj4+ID4+ID4rICAg
+ICAgdW5zaWduZWQgaW50IHR5cGU7Cj4+ID4+ID4rICAgICAgaXJxX2h3X251bWJlcl90IGh3aXJx
+Owo+PiA+PiA+KyAgICAgIHN0cnVjdCBpcnFfZndzcGVjICpmd3NwZWMgPSBhcmc7Cj4+ID4+ID4r
+ICAgICAgc3RydWN0IGFwbGljX3ByaXYgKnByaXYgPSBwbGF0Zm9ybV9tc2lfZ2V0X2hvc3RfZGF0
+YShkb21haW4pOwo+PiA+PiA+Kwo+PiA+PiA+KyAgICAgIHJldCA9IGFwbGljX2lycWRvbWFpbl90
+cmFuc2xhdGUoZndzcGVjLCBwcml2LT5nc2lfYmFzZSwgJmh3aXJxLCAmdHlwZSk7Cj4+ID4+ID4r
+ICAgICAgaWYgKHJldCkKPj4gPj4gPisgICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4+ID4+Cj4+
+ID4+IEluIHlvdXIgcGF0Y2hzZXQsIHRoZSB3aXJlZCBJUlEgYW5kIElSUSBvZiBwbGF0Zm9ybSBk
+ZXZpY2Ugd2lsbCBnbyBpbnRvIEFQTElDLU1TSSBkb21haW4gZmlyc3RseS4KPj4gPgo+PiA+WWVz
+LCB0aGF0IGlzIGNvcnJlY3QuIEluIGdlbmVyYWwsIHRoaXMgYXBwbGllcyB0byBBSUEgc3BlY2lm
+aWNhdGlvbgo+PiA+YW5kIG5vdGhpbmcgdG8gZG8gd2l0aCB0aGlzIHBhdGNoc2V0Lgo+PiA+Cj4+
+ID4+IExldCBtZSBhc3N1bWUgaGVyZSBpcyBhIE1TSSBJUlEgbm90IHdpcmVkIElSUSBvbiBhIGRl
+dmljZSwgYW5kIGl0IGlzIGEgcGxhdGZvcm0gZGV2aWNlIGluIHN5c3RlbS4KPj4gPj4gc28gaW4g
+YXBsaWNfaXJxZG9tYWluX3RyYW5zbGF0ZSgpIGZ1bmN0aW9uLCBpdCB3aWxsIHBhcnNlIHRoZSBB
+UExJQyBwaHlzaWNhbCBJUlEgbnVtYmVyIGJ5IGZ3c3BlYy0+cGFyYW1bMF0sCj4+ID4+IGJ1dCB0
+aGlzIGlzIG5vdCBhIHdyaWVkIElSUSwgaXQgaXMgYSBNU0kgSVJRLCBpdCBzaG91bGQgbm90IGhh
+cyBhIEFQTElDIHBoeXNpY2FsIElSUSBudW1iZXIsIHRoZSBod2lycSBudW1iZXIgc2hvdWxkIGJl
+IGFsbG9jYXRlZCBieSBNU0kgYml0bWFwLAo+PiA+PiB3aGF0IHZhbHVlIHdpbGwgYmUgcGFyc2Ug
+YnkgRFRTPyB6ZXJvIG9yIG5lZ2F0aXZlPwo+PiA+Cj4+ID5Gb3IgcGxhdGZvcm0gZGV2aWNlcyB3
+aXRoIE1TSSBzdXBwb3J0LCB0aGUgTVNJcyB3aWxsIGRpcmVjdGx5IHRhcmdldAo+PiA+dGhlIHBl
+ci1IQVJUCj4+ID5JTVNJQ3MgYW5kIHRoZSBEVCBub2RlIG9mIHN1Y2ggZGV2aWNlcyB3aWxsIG5l
+dmVyIHBvaW50IHRvIEFQTElDIGFzIHRoZSBwYXJlbnQKPj4gPk1TSSBjb250cm9sbGVyLgo+PiA+
+Cj4+Cj4+ID5UaGUgSU1TSUMgZHJpdmVyIGltcGxlbWVudHMgdGhlIElNU0lDLVBMQVQgZG9tYWlu
+IGZvciBwbGF0Zm9ybSBNU0lzLgo+Pgo+PiBIYXZlIHlvdSB0ZXN0IHRoaXMgY2FzZSBvbiBRRU1V
+PyB3b3VsZCB5b3UgbGlrZSBzaGFyZSB0aGUgdGVzdCBzdGVwcz8KPgo+VGhlIEFQTElDIGluIE1T
+SS1tb2RlIGFjdHMgbGlrZSBhIHBsYXRmb3JtIGRldmljZSB3aXRoIE1TSXMgc28geWVzIHRoaXMK
+PmlzIHRlc3RlZCBvbiBRRU1VLgoKeWV0LCBJIGtub3cgdGhlIHdpcmVkIGludGVycnVwdCB3aXRo
+IE1TSS1tb2RlIG9mIEFQTElDIGhhcyB0ZXN0ZWQgb24gUUVNVSBieSB2aXJ0aW8gZGV2aWNlcywg
+YnV0IGkgd2FudCB0byBrbm93IGhvdyBhYm91dCB0aGUgTVNJIGludGVycnVwdCB3aXRoIG5vbi1Q
+Q0kgZGV2aWNlPwpoYXZlIHlvdSB0ZXN0ZWQgdGhpcyBjYXNlPwoK
 
