@@ -1,314 +1,227 @@
-Return-Path: <devicetree+bounces-14581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1347E5965
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:43:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A95E7E5982
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF34BB2112B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:43:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 981231C208DD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E024815;
-	Wed,  8 Nov 2023 14:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7563A611C;
+	Wed,  8 Nov 2023 14:53:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="RwylyeUN"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=126.com header.i=@126.com header.b="j6tKCHM9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE08334577
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 14:43:37 +0000 (UTC)
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC251BD7
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 06:43:37 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-27ff7fe7fbcso6165128a91.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 06:43:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1699454616; x=1700059416; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PDkHjPb8pb21TKY2YVZ2Y6qV7ih7L1jZyKVUM2SNT9o=;
-        b=RwylyeUNyjvOe7tx63Ba+/MU3tkt6+7bXIU1A2xonlc+fYo2FmssxPNBV4Dev8az20
-         w7UJrEdvqgo4coZaFZvfWwQzPfEuzH5g6gs/G9WtDZ4IZz3z6vaIeLxq0ExybFf+JdhD
-         azWTCWxlH/KuOBHdPgOQxM+yu+pMgueO+UIFM6m69bqoWtP4QsNctOp9QvLWy6yphIIb
-         4INokRFMWg7+a1SnbOm1hipZVcu1rQRf0FRVTutXEyoYuDAAomkMi+3yacNskeK8JcBF
-         eEMjHAVk46CBj9XGL6mmfj7BCB8tVSc42WLdUzYa7pMhbzAeTvSw1xWdfDzbzH9ZlhQN
-         ty+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699454616; x=1700059416;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PDkHjPb8pb21TKY2YVZ2Y6qV7ih7L1jZyKVUM2SNT9o=;
-        b=JBPx5psq6T4eCKJNkBVoHlHJI/0ELafbkZrsnvZZfBK72/62r/Q3dBIsO9ybyu4BxM
-         mT38BdhzDkkw4zDRVjOGmlUftGV4P3XVS04wi6MrtdqbGcy1A31oAeZ1iFdcjVDD+HAd
-         iFHu+zSw5DyarZHWCLOO7axpwBI+IStqxhDSfjWzkZkxuYvmiCjJwTTvcEh4m0gW+MyT
-         duUAXJ71XJFblL771DgNdReMPFVKpIHLWJSG/i2sXQPQuybU13vXkRF2UgNSFj4iXpmN
-         fX+D6If4hkjEFyTAEeIrjXgTFk+hRL2JeLMdTyot8cwEnP495/LO6DwvnSQjWvP3pZ/3
-         f/pA==
-X-Gm-Message-State: AOJu0YzUHcIvmitChPxu+KVRSqKyuOHle994WbZOah7wCh29v1Ajtdh9
-	qbrumBFSobxgy2/4vPQUSoVRFpyO/YSxp2BuUN1CWg==
-X-Google-Smtp-Source: AGHT+IEcCYyR/0LSXmWtKIwa67gb5v19A99n53aXkpoAi+SlFv6wJfn37p2kEkDybBnfjDcmPYBQ82qYSXcE9+2s5bg=
-X-Received: by 2002:a17:90b:4c42:b0:280:cc88:2a46 with SMTP id
- np2-20020a17090b4c4200b00280cc882a46mr2027155pjb.4.1699454616246; Wed, 08 Nov
- 2023 06:43:36 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68BA34577
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 14:53:17 +0000 (UTC)
+Received: from m1563.mail.126.com (m1563.mail.126.com [220.181.15.63])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 035091BDD;
+	Wed,  8 Nov 2023 06:53:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=EVWroMyHVrrxakuUOXknp8HKK0Q4+TM8p1zF9fInbo0=; b=j
+	6tKCHM9Ef2YdGgf7PM5O5CJsuJLvvmp/ABnH/lQJzdXVDka5Pho57Al0RxviARTL
+	W+6ZoKNas0ApIYki9kVR75zPamd0xBsN914k+hVSeycr+de1d7D27IjXXTnyOdFt
+	1zeb4jU55Rw9HwM3fnAaWIDQwBA6hldPPfpwcGjLXc=
+Received: from figure1802$126.com ( [183.193.16.145] ) by
+ ajax-webmail-wmsvr63 (Coremail) ; Wed, 8 Nov 2023 22:51:38 +0800 (CST)
+X-Originating-IP: [183.193.16.145]
+Date: Wed, 8 Nov 2023 22:51:38 +0800 (CST)
+From: Ben  <figure1802@126.com>
+To: "Anup Patel" <apatel@ventanamicro.com>
+Cc: "Palmer Dabbelt" <palmer@dabbelt.com>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Thomas Gleixner" <tglx@linutronix.de>, 
+	"Rob Herring" <robh+dt@kernel.org>, 
+	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, 
+	"Frank Rowand" <frowand.list@gmail.com>, 
+	"Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	"Saravana Kannan" <saravanak@google.com>, 
+	"Marc Zyngier" <maz@kernel.org>, "Anup Patel" <anup@brainfault.org>, 
+	linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?Bj=C3=B6rn_T=C3=B6pel?= <bjorn@kernel.org>, 
+	"Atish Patra" <atishp@atishpatra.org>, 
+	linux-riscv@lists.infradead.org, 
+	"Andrew Jones" <ajones@ventanamicro.com>
+Subject: Re:Re: [PATCH v11 12/14] irqchip/riscv-aplic: Add support for
+ MSI-mode
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
+ Copyright (c) 2002-2023 www.mailtech.cn 126com
+In-Reply-To: <CAK9=C2WPhROWKGKmLbLyS+q2ncCNTJEHnFKcYqCGJoNK4Uz=LQ@mail.gmail.com>
+References: <20231023172800.315343-1-apatel@ventanamicro.com>
+ <20231023172800.315343-13-apatel@ventanamicro.com>
+ <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
+ <CAK9=C2WPhROWKGKmLbLyS+q2ncCNTJEHnFKcYqCGJoNK4Uz=LQ@mail.gmail.com>
+X-NTES-SC: AL_QuySC/ieukgi7iCZY+kfm08Xhew/XsK1vfkm3I5QN5FwjD3n4xE7X2FoJUnu1MCENR2ViTO8Sz5zwOFVdqtZZr8SxtzoiLB4THzYwVSEJBKaog==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-13-apatel@ventanamicro.com> <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
-In-Reply-To: <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 8 Nov 2023 20:13:25 +0530
-Message-ID: <CAK9=C2WPhROWKGKmLbLyS+q2ncCNTJEHnFKcYqCGJoNK4Uz=LQ@mail.gmail.com>
-Subject: Re: [PATCH v11 12/14] irqchip/riscv-aplic: Add support for MSI-mode
-To: Ben <figure1802@126.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>, 
-	linux-kernel@vger.kernel.org, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org, 
-	Andrew Jones <ajones@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <8624cc4.5923.18baf6adca4.Coremail.figure1802@126.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:P8qowAD3f916oEtlVXEcAA--.28857W
+X-CM-SenderInfo: pilj32bhryija6rslhhfrp/1tbiYB4iXlpEM9tJ7AACsT
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Sat, Nov 4, 2023 at 6:30=E2=80=AFAM Ben <figure1802@126.com> wrote:
->
-> At 2023-10-24 01:27:58, "Anup Patel" <apatel@ventanamicro.com> wrote:
-> >The RISC-V advanced platform-level interrupt controller (APLIC) has
-> >two modes of operation: 1) Direct mode and 2) MSI mode.
-> >(For more details, refer https://github.com/riscv/riscv-aia)
-> >
-> >In APLIC MSI-mode, wired interrupts are forwared as message signaled
-> >interrupts (MSIs) to CPUs via IMSIC.
-> >
-> >We extend the existing APLIC irqchip driver to support MSI-mode for
-> >RISC-V platforms having both wired interrupts and MSIs.
-> >
-> >Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >---
-> > drivers/irqchip/Kconfig                |   6 +
-> > drivers/irqchip/Makefile               |   1 +
-> > drivers/irqchip/irq-riscv-aplic-main.c |   2 +-
-> > drivers/irqchip/irq-riscv-aplic-main.h |   8 +
-> > drivers/irqchip/irq-riscv-aplic-msi.c  | 285 +++++++++++++++++++++++++
-> > 5 files changed, 301 insertions(+), 1 deletion(-)
-> > create mode 100644 drivers/irqchip/irq-riscv-aplic-msi.c
-> >
-> >diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> >index 1996cc6f666a..7adc4dbe07ff 100644
-> >--- a/drivers/irqchip/Kconfig
-> >+++ b/drivers/irqchip/Kconfig
-> >@@ -551,6 +551,12 @@ config RISCV_APLIC
-> >       depends on RISCV
-> >       select IRQ_DOMAIN_HIERARCHY
-> >
-> >+config RISCV_APLIC_MSI
-> >+      bool
-> >+      depends on RISCV_APLIC
-> >+      select GENERIC_MSI_IRQ
-> >+      default RISCV_APLIC
-> >+
-> > config RISCV_IMSIC
-> >       bool
-> >       depends on RISCV
-> >diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> >index 7f8289790ed8..47995fdb2c60 100644
-> >--- a/drivers/irqchip/Makefile
-> >+++ b/drivers/irqchip/Makefile
-> >@@ -96,6 +96,7 @@ obj-$(CONFIG_CSKY_MPINTC)            +=3D irq-csky-mpi=
-ntc.o
-> > obj-$(CONFIG_CSKY_APB_INTC)           +=3D irq-csky-apb-intc.o
-> > obj-$(CONFIG_RISCV_INTC)              +=3D irq-riscv-intc.o
-> > obj-$(CONFIG_RISCV_APLIC)             +=3D irq-riscv-aplic-main.o irq-r=
-iscv-aplic-direct.o
-> >+obj-$(CONFIG_RISCV_APLIC_MSI)         +=3D irq-riscv-aplic-msi.o
-> > obj-$(CONFIG_RISCV_IMSIC)             +=3D irq-riscv-imsic-state.o irq-=
-riscv-imsic-early.o irq-riscv-imsic-platform.o
-> > obj-$(CONFIG_SIFIVE_PLIC)             +=3D irq-sifive-plic.o
-> > obj-$(CONFIG_IMX_IRQSTEER)            +=3D irq-imx-irqsteer.o
-> >diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqchip/ir=
-q-riscv-aplic-main.c
-> >index 87450708a733..d1b342b66551 100644
-> >--- a/drivers/irqchip/irq-riscv-aplic-main.c
-> >+++ b/drivers/irqchip/irq-riscv-aplic-main.c
-> >@@ -205,7 +205,7 @@ static int aplic_probe(struct platform_device *pdev)
-> >               msi_mode =3D of_property_present(to_of_node(dev->fwnode),
-> >                                               "msi-parent");
-> >       if (msi_mode)
-> >-              rc =3D -ENODEV;
-> >+              rc =3D aplic_msi_setup(dev, regs);
-> >       else
-> >               rc =3D aplic_direct_setup(dev, regs);
-> >       if (rc) {
-> >diff --git a/drivers/irqchip/irq-riscv-aplic-main.h b/drivers/irqchip/ir=
-q-riscv-aplic-main.h
-> >index 474a04229334..78267ec58098 100644
-> >--- a/drivers/irqchip/irq-riscv-aplic-main.h
-> >+++ b/drivers/irqchip/irq-riscv-aplic-main.h
-> >@@ -41,5 +41,13 @@ void aplic_init_hw_global(struct aplic_priv *priv, bo=
-ol msi_mode);
-> > int aplic_setup_priv(struct aplic_priv *priv, struct device *dev,
-> >                    void __iomem *regs);
-> > int aplic_direct_setup(struct device *dev, void __iomem *regs);
-> >+#ifdef CONFIG_RISCV_APLIC_MSI
-> >+int aplic_msi_setup(struct device *dev, void __iomem *regs);
-> >+#else
-> >+static inline int aplic_msi_setup(struct device *dev, void __iomem *reg=
-s)
-> >+{
-> >+      return -ENODEV;
-> >+}
-> >+#endif
-> >
-> > #endif
-> >diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqchip/irq=
--riscv-aplic-msi.c
-> >new file mode 100644
-> >index 000000000000..086d00e0429e
-> >--- /dev/null
-> >+++ b/drivers/irqchip/irq-riscv-aplic-msi.c
-> >@@ -0,0 +1,285 @@
-> >+// SPDX-License-Identifier: GPL-2.0
-> >+/*
-> >+ * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> >+ * Copyright (C) 2022 Ventana Micro Systems Inc.
-> >+ */
-> >+
-> >+#include <linux/bitops.h>
-> >+#include <linux/cpu.h>
-> >+#include <linux/interrupt.h>
-> >+#include <linux/irqchip.h>
-> >+#include <linux/irqchip/riscv-aplic.h>
-> >+#include <linux/irqchip/riscv-imsic.h>
-> >+#include <linux/module.h>
-> >+#include <linux/msi.h>
-> >+#include <linux/of_irq.h>
-> >+#include <linux/platform_device.h>
-> >+#include <linux/printk.h>
-> >+#include <linux/smp.h>
-> >+
-> >+#include "irq-riscv-aplic-main.h"
-> >+
-> >+static void aplic_msi_irq_unmask(struct irq_data *d)
-> >+{
-> >+      aplic_irq_unmask(d);
-> >+      irq_chip_unmask_parent(d);
-> >+}
-> >+
-> >+static void aplic_msi_irq_mask(struct irq_data *d)
-> >+{
-> >+      aplic_irq_mask(d);
-> >+      irq_chip_mask_parent(d);
-> >+}
-> >+
-> >+static void aplic_msi_irq_eoi(struct irq_data *d)
-> >+{
-> >+      struct aplic_priv *priv =3D irq_data_get_irq_chip_data(d);
-> >+      u32 reg_off, reg_mask;
-> >+
-> >+      /*
-> >+       * EOI handling only required only for level-triggered
-> >+       * interrupts in APLIC MSI mode.
-> >+       */
-> >+
-> >+      reg_off =3D APLIC_CLRIP_BASE + ((d->hwirq / APLIC_IRQBITS_PER_REG=
-) * 4);
-> >+      reg_mask =3D BIT(d->hwirq % APLIC_IRQBITS_PER_REG);
-> >+      switch (irqd_get_trigger_type(d)) {
-> >+      case IRQ_TYPE_LEVEL_LOW:
-> >+              if (!(readl(priv->regs + reg_off) & reg_mask))
-> >+                      writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
-> >+              break;
-> >+      case IRQ_TYPE_LEVEL_HIGH:
-> >+              if (readl(priv->regs + reg_off) & reg_mask)
-> >+                      writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
-> >+              break;
-> >+      }
-> >+}
-> >+
-> >+static struct irq_chip aplic_msi_chip =3D {
-> >+      .name           =3D "APLIC-MSI",
-> >+      .irq_mask       =3D aplic_msi_irq_mask,
-> >+      .irq_unmask     =3D aplic_msi_irq_unmask,
-> >+      .irq_set_type   =3D aplic_irq_set_type,
-> >+      .irq_eoi        =3D aplic_msi_irq_eoi,
-> >+#ifdef CONFIG_SMP
-> >+      .irq_set_affinity =3D irq_chip_set_affinity_parent,
-> >+#endif
-> >+      .flags          =3D IRQCHIP_SET_TYPE_MASKED |
-> >+                        IRQCHIP_SKIP_SET_WAKE |
-> >+                        IRQCHIP_MASK_ON_SUSPEND,
-> >+};
-> >+
-> >+static int aplic_msi_irqdomain_translate(struct irq_domain *d,
-> >+                                       struct irq_fwspec *fwspec,
-> >+                                       unsigned long *hwirq,
-> >+                                       unsigned int *type)
-> >+{
-> >+      struct aplic_priv *priv =3D platform_msi_get_host_data(d);
-> >+
-> >+      return aplic_irqdomain_translate(fwspec, priv->gsi_base, hwirq, t=
-ype);
-> >+}
-> >+
-> >+static int aplic_msi_irqdomain_alloc(struct irq_domain *domain,
-> >+                                   unsigned int virq, unsigned int nr_i=
-rqs,
-> >+                                   void *arg)
-> >+{
-> >+      int i, ret;
-> >+      unsigned int type;
-> >+      irq_hw_number_t hwirq;
-> >+      struct irq_fwspec *fwspec =3D arg;
-> >+      struct aplic_priv *priv =3D platform_msi_get_host_data(domain);
-> >+
-> >+      ret =3D aplic_irqdomain_translate(fwspec, priv->gsi_base, &hwirq,=
- &type);
-> >+      if (ret)
-> >+              return ret;
->
-> In your patchset, the wired IRQ and IRQ of platform device will go into A=
-PLIC-MSI domain firstly.
-
-Yes, that is correct. In general, this applies to AIA specification
-and nothing to do with this patchset.
-
-> Let me assume here is a MSI IRQ not wired IRQ on a device, and it is a pl=
-atform device in system.
-> so in aplic_irqdomain_translate() function, it will parse the APLIC physi=
-cal IRQ number by fwspec->param[0],
-> but this is not a wried IRQ, it is a MSI IRQ, it should not has a APLIC p=
-hysical IRQ number, the hwirq number should be allocated by MSI bitmap,
-> what value will be parse by DTS? zero or negative?
-
-For platform devices with MSI support, the MSIs will directly target
-the per-HART
-IMSICs and the DT node of such devices will never point to APLIC as the par=
-ent
-MSI controller.
-
-The IMSIC driver implements the IMSIC-PLAT domain for platform MSIs.
-
->
-> if this is a nonexistent physical IRQ number for APLIC, in aplic_msi_irq_=
-unmask()->aplic_irq_unmask(), how it works?
->
-> writel(d->hwirq, priv->regs + APLIC_SETIENUM);
->
->
-
-The platform wired IRQs and platform MSIs are not handled/described
-in the same way. The APLIC has NO ROLE in platform MSI handling.
-
-Regards,
-Anup
+QXQgMjAyMy0xMS0wOCAyMjo0MzoyNSwgIkFudXAgUGF0ZWwiIDxhcGF0ZWxAdmVudGFuYW1pY3Jv
+LmNvbT4gd3JvdGU6Cj5PbiBTYXQsIE5vdiA0LCAyMDIzIGF0IDY6MzDigK9BTSBCZW4gPGZpZ3Vy
+ZTE4MDJAMTI2LmNvbT4gd3JvdGU6Cj4+Cj4+IEF0IDIwMjMtMTAtMjQgMDE6Mjc6NTgsICJBbnVw
+IFBhdGVsIiA8YXBhdGVsQHZlbnRhbmFtaWNyby5jb20+IHdyb3RlOgo+PiA+VGhlIFJJU0MtViBh
+ZHZhbmNlZCBwbGF0Zm9ybS1sZXZlbCBpbnRlcnJ1cHQgY29udHJvbGxlciAoQVBMSUMpIGhhcwo+
+PiA+dHdvIG1vZGVzIG9mIG9wZXJhdGlvbjogMSkgRGlyZWN0IG1vZGUgYW5kIDIpIE1TSSBtb2Rl
+Lgo+PiA+KEZvciBtb3JlIGRldGFpbHMsIHJlZmVyIGh0dHBzOi8vZ2l0aHViLmNvbS9yaXNjdi9y
+aXNjdi1haWEpCj4+ID4KPj4gPkluIEFQTElDIE1TSS1tb2RlLCB3aXJlZCBpbnRlcnJ1cHRzIGFy
+ZSBmb3J3YXJlZCBhcyBtZXNzYWdlIHNpZ25hbGVkCj4+ID5pbnRlcnJ1cHRzIChNU0lzKSB0byBD
+UFVzIHZpYSBJTVNJQy4KPj4gPgo+PiA+V2UgZXh0ZW5kIHRoZSBleGlzdGluZyBBUExJQyBpcnFj
+aGlwIGRyaXZlciB0byBzdXBwb3J0IE1TSS1tb2RlIGZvcgo+PiA+UklTQy1WIHBsYXRmb3JtcyBo
+YXZpbmcgYm90aCB3aXJlZCBpbnRlcnJ1cHRzIGFuZCBNU0lzLgo+PiA+Cj4+ID5TaWduZWQtb2Zm
+LWJ5OiBBbnVwIFBhdGVsIDxhcGF0ZWxAdmVudGFuYW1pY3JvLmNvbT4KPj4gPi0tLQo+PiA+IGRy
+aXZlcnMvaXJxY2hpcC9LY29uZmlnICAgICAgICAgICAgICAgIHwgICA2ICsKPj4gPiBkcml2ZXJz
+L2lycWNoaXAvTWFrZWZpbGUgICAgICAgICAgICAgICB8ICAgMSArCj4+ID4gZHJpdmVycy9pcnFj
+aGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmMgfCAgIDIgKy0KPj4gPiBkcml2ZXJzL2lycWNoaXAv
+aXJxLXJpc2N2LWFwbGljLW1haW4uaCB8ICAgOCArCj4+ID4gZHJpdmVycy9pcnFjaGlwL2lycS1y
+aXNjdi1hcGxpYy1tc2kuYyAgfCAyODUgKysrKysrKysrKysrKysrKysrKysrKysrKwo+PiA+IDUg
+ZmlsZXMgY2hhbmdlZCwgMzAxIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4gPiBjcmVh
+dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tc2kuYwo+PiA+
+Cj4+ID5kaWZmIC0tZ2l0IGEvZHJpdmVycy9pcnFjaGlwL0tjb25maWcgYi9kcml2ZXJzL2lycWNo
+aXAvS2NvbmZpZwo+PiA+aW5kZXggMTk5NmNjNmY2NjZhLi43YWRjNGRiZTA3ZmYgMTAwNjQ0Cj4+
+ID4tLS0gYS9kcml2ZXJzL2lycWNoaXAvS2NvbmZpZwo+PiA+KysrIGIvZHJpdmVycy9pcnFjaGlw
+L0tjb25maWcKPj4gPkBAIC01NTEsNiArNTUxLDEyIEBAIGNvbmZpZyBSSVNDVl9BUExJQwo+PiA+
+ICAgICAgIGRlcGVuZHMgb24gUklTQ1YKPj4gPiAgICAgICBzZWxlY3QgSVJRX0RPTUFJTl9ISUVS
+QVJDSFkKPj4gPgo+PiA+K2NvbmZpZyBSSVNDVl9BUExJQ19NU0kKPj4gPisgICAgICBib29sCj4+
+ID4rICAgICAgZGVwZW5kcyBvbiBSSVNDVl9BUExJQwo+PiA+KyAgICAgIHNlbGVjdCBHRU5FUklD
+X01TSV9JUlEKPj4gPisgICAgICBkZWZhdWx0IFJJU0NWX0FQTElDCj4+ID4rCj4+ID4gY29uZmln
+IFJJU0NWX0lNU0lDCj4+ID4gICAgICAgYm9vbAo+PiA+ICAgICAgIGRlcGVuZHMgb24gUklTQ1YK
+Pj4gPmRpZmYgLS1naXQgYS9kcml2ZXJzL2lycWNoaXAvTWFrZWZpbGUgYi9kcml2ZXJzL2lycWNo
+aXAvTWFrZWZpbGUKPj4gPmluZGV4IDdmODI4OTc5MGVkOC4uNDc5OTVmZGIyYzYwIDEwMDY0NAo+
+PiA+LS0tIGEvZHJpdmVycy9pcnFjaGlwL01ha2VmaWxlCj4+ID4rKysgYi9kcml2ZXJzL2lycWNo
+aXAvTWFrZWZpbGUKPj4gPkBAIC05Niw2ICs5Niw3IEBAIG9iai0kKENPTkZJR19DU0tZX01QSU5U
+QykgICAgICAgICAgICArPSBpcnEtY3NreS1tcGludGMubwo+PiA+IG9iai0kKENPTkZJR19DU0tZ
+X0FQQl9JTlRDKSAgICAgICAgICAgKz0gaXJxLWNza3ktYXBiLWludGMubwo+PiA+IG9iai0kKENP
+TkZJR19SSVNDVl9JTlRDKSAgICAgICAgICAgICAgKz0gaXJxLXJpc2N2LWludGMubwo+PiA+IG9i
+ai0kKENPTkZJR19SSVNDVl9BUExJQykgICAgICAgICAgICAgKz0gaXJxLXJpc2N2LWFwbGljLW1h
+aW4ubyBpcnEtcmlzY3YtYXBsaWMtZGlyZWN0Lm8KPj4gPitvYmotJChDT05GSUdfUklTQ1ZfQVBM
+SUNfTVNJKSAgICAgICAgICs9IGlycS1yaXNjdi1hcGxpYy1tc2kubwo+PiA+IG9iai0kKENPTkZJ
+R19SSVNDVl9JTVNJQykgICAgICAgICAgICAgKz0gaXJxLXJpc2N2LWltc2ljLXN0YXRlLm8gaXJx
+LXJpc2N2LWltc2ljLWVhcmx5Lm8gaXJxLXJpc2N2LWltc2ljLXBsYXRmb3JtLm8KPj4gPiBvYmot
+JChDT05GSUdfU0lGSVZFX1BMSUMpICAgICAgICAgICAgICs9IGlycS1zaWZpdmUtcGxpYy5vCj4+
+ID4gb2JqLSQoQ09ORklHX0lNWF9JUlFTVEVFUikgICAgICAgICAgICArPSBpcnEtaW14LWlycXN0
+ZWVyLm8KPj4gPmRpZmYgLS1naXQgYS9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1h
+aW4uYyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jCj4+ID5pbmRleCA4
+NzQ1MDcwOGE3MzMuLmQxYjM0MmI2NjU1MSAxMDA2NDQKPj4gPi0tLSBhL2RyaXZlcnMvaXJxY2hp
+cC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jCj4+ID4rKysgYi9kcml2ZXJzL2lycWNoaXAvaXJxLXJp
+c2N2LWFwbGljLW1haW4uYwo+PiA+QEAgLTIwNSw3ICsyMDUsNyBAQCBzdGF0aWMgaW50IGFwbGlj
+X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+ID4gICAgICAgICAgICAgICBt
+c2lfbW9kZSA9IG9mX3Byb3BlcnR5X3ByZXNlbnQodG9fb2Zfbm9kZShkZXYtPmZ3bm9kZSksCj4+
+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJtc2ktcGFy
+ZW50Iik7Cj4+ID4gICAgICAgaWYgKG1zaV9tb2RlKQo+PiA+LSAgICAgICAgICAgICAgcmMgPSAt
+RU5PREVWOwo+PiA+KyAgICAgICAgICAgICAgcmMgPSBhcGxpY19tc2lfc2V0dXAoZGV2LCByZWdz
+KTsKPj4gPiAgICAgICBlbHNlCj4+ID4gICAgICAgICAgICAgICByYyA9IGFwbGljX2RpcmVjdF9z
+ZXR1cChkZXYsIHJlZ3MpOwo+PiA+ICAgICAgIGlmIChyYykgewo+PiA+ZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5oIGIvZHJpdmVycy9pcnFjaGlwL2ly
+cS1yaXNjdi1hcGxpYy1tYWluLmgKPj4gPmluZGV4IDQ3NGEwNDIyOTMzNC4uNzgyNjdlYzU4MDk4
+IDEwMDY0NAo+PiA+LS0tIGEvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmgK
+Pj4gPisrKyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5oCj4+ID5AQCAt
+NDEsNSArNDEsMTMgQEAgdm9pZCBhcGxpY19pbml0X2h3X2dsb2JhbChzdHJ1Y3QgYXBsaWNfcHJp
+diAqcHJpdiwgYm9vbCBtc2lfbW9kZSk7Cj4+ID4gaW50IGFwbGljX3NldHVwX3ByaXYoc3RydWN0
+IGFwbGljX3ByaXYgKnByaXYsIHN0cnVjdCBkZXZpY2UgKmRldiwKPj4gPiAgICAgICAgICAgICAg
+ICAgICAgdm9pZCBfX2lvbWVtICpyZWdzKTsKPj4gPiBpbnQgYXBsaWNfZGlyZWN0X3NldHVwKHN0
+cnVjdCBkZXZpY2UgKmRldiwgdm9pZCBfX2lvbWVtICpyZWdzKTsKPj4gPisjaWZkZWYgQ09ORklH
+X1JJU0NWX0FQTElDX01TSQo+PiA+K2ludCBhcGxpY19tc2lfc2V0dXAoc3RydWN0IGRldmljZSAq
+ZGV2LCB2b2lkIF9faW9tZW0gKnJlZ3MpOwo+PiA+KyNlbHNlCj4+ID4rc3RhdGljIGlubGluZSBp
+bnQgYXBsaWNfbXNpX3NldHVwKHN0cnVjdCBkZXZpY2UgKmRldiwgdm9pZCBfX2lvbWVtICpyZWdz
+KQo+PiA+K3sKPj4gPisgICAgICByZXR1cm4gLUVOT0RFVjsKPj4gPit9Cj4+ID4rI2VuZGlmCj4+
+ID4KPj4gPiAjZW5kaWYKPj4gPmRpZmYgLS1naXQgYS9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2
+LWFwbGljLW1zaS5jIGIvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tc2kuYwo+PiA+
+bmV3IGZpbGUgbW9kZSAxMDA2NDQKPj4gPmluZGV4IDAwMDAwMDAwMDAwMC4uMDg2ZDAwZTA0Mjll
+Cj4+ID4tLS0gL2Rldi9udWxsCj4+ID4rKysgYi9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFw
+bGljLW1zaS5jCj4+ID5AQCAtMCwwICsxLDI4NSBAQAo+PiA+Ky8vIFNQRFgtTGljZW5zZS1JZGVu
+dGlmaWVyOiBHUEwtMi4wCj4+ID4rLyoKPj4gPisgKiBDb3B5cmlnaHQgKEMpIDIwMjEgV2VzdGVy
+biBEaWdpdGFsIENvcnBvcmF0aW9uIG9yIGl0cyBhZmZpbGlhdGVzLgo+PiA+KyAqIENvcHlyaWdo
+dCAoQykgMjAyMiBWZW50YW5hIE1pY3JvIFN5c3RlbXMgSW5jLgo+PiA+KyAqLwo+PiA+Kwo+PiA+
+KyNpbmNsdWRlIDxsaW51eC9iaXRvcHMuaD4KPj4gPisjaW5jbHVkZSA8bGludXgvY3B1Lmg+Cj4+
+ID4rI2luY2x1ZGUgPGxpbnV4L2ludGVycnVwdC5oPgo+PiA+KyNpbmNsdWRlIDxsaW51eC9pcnFj
+aGlwLmg+Cj4+ID4rI2luY2x1ZGUgPGxpbnV4L2lycWNoaXAvcmlzY3YtYXBsaWMuaD4KPj4gPisj
+aW5jbHVkZSA8bGludXgvaXJxY2hpcC9yaXNjdi1pbXNpYy5oPgo+PiA+KyNpbmNsdWRlIDxsaW51
+eC9tb2R1bGUuaD4KPj4gPisjaW5jbHVkZSA8bGludXgvbXNpLmg+Cj4+ID4rI2luY2x1ZGUgPGxp
+bnV4L29mX2lycS5oPgo+PiA+KyNpbmNsdWRlIDxsaW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4KPj4g
+PisjaW5jbHVkZSA8bGludXgvcHJpbnRrLmg+Cj4+ID4rI2luY2x1ZGUgPGxpbnV4L3NtcC5oPgo+
+PiA+Kwo+PiA+KyNpbmNsdWRlICJpcnEtcmlzY3YtYXBsaWMtbWFpbi5oIgo+PiA+Kwo+PiA+K3N0
+YXRpYyB2b2lkIGFwbGljX21zaV9pcnFfdW5tYXNrKHN0cnVjdCBpcnFfZGF0YSAqZCkKPj4gPit7
+Cj4+ID4rICAgICAgYXBsaWNfaXJxX3VubWFzayhkKTsKPj4gPisgICAgICBpcnFfY2hpcF91bm1h
+c2tfcGFyZW50KGQpOwo+PiA+K30KPj4gPisKPj4gPitzdGF0aWMgdm9pZCBhcGxpY19tc2lfaXJx
+X21hc2soc3RydWN0IGlycV9kYXRhICpkKQo+PiA+K3sKPj4gPisgICAgICBhcGxpY19pcnFfbWFz
+ayhkKTsKPj4gPisgICAgICBpcnFfY2hpcF9tYXNrX3BhcmVudChkKTsKPj4gPit9Cj4+ID4rCj4+
+ID4rc3RhdGljIHZvaWQgYXBsaWNfbXNpX2lycV9lb2koc3RydWN0IGlycV9kYXRhICpkKQo+PiA+
+K3sKPj4gPisgICAgICBzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiA9IGlycV9kYXRhX2dldF9pcnFf
+Y2hpcF9kYXRhKGQpOwo+PiA+KyAgICAgIHUzMiByZWdfb2ZmLCByZWdfbWFzazsKPj4gPisKPj4g
+PisgICAgICAvKgo+PiA+KyAgICAgICAqIEVPSSBoYW5kbGluZyBvbmx5IHJlcXVpcmVkIG9ubHkg
+Zm9yIGxldmVsLXRyaWdnZXJlZAo+PiA+KyAgICAgICAqIGludGVycnVwdHMgaW4gQVBMSUMgTVNJ
+IG1vZGUuCj4+ID4rICAgICAgICovCj4+ID4rCj4+ID4rICAgICAgcmVnX29mZiA9IEFQTElDX0NM
+UklQX0JBU0UgKyAoKGQtPmh3aXJxIC8gQVBMSUNfSVJRQklUU19QRVJfUkVHKSAqIDQpOwo+PiA+
+KyAgICAgIHJlZ19tYXNrID0gQklUKGQtPmh3aXJxICUgQVBMSUNfSVJRQklUU19QRVJfUkVHKTsK
+Pj4gPisgICAgICBzd2l0Y2ggKGlycWRfZ2V0X3RyaWdnZXJfdHlwZShkKSkgewo+PiA+KyAgICAg
+IGNhc2UgSVJRX1RZUEVfTEVWRUxfTE9XOgo+PiA+KyAgICAgICAgICAgICAgaWYgKCEocmVhZGwo
+cHJpdi0+cmVncyArIHJlZ19vZmYpICYgcmVnX21hc2spKQo+PiA+KyAgICAgICAgICAgICAgICAg
+ICAgICB3cml0ZWwoZC0+aHdpcnEsIHByaXYtPnJlZ3MgKyBBUExJQ19TRVRJUE5VTV9MRSk7Cj4+
+ID4rICAgICAgICAgICAgICBicmVhazsKPj4gPisgICAgICBjYXNlIElSUV9UWVBFX0xFVkVMX0hJ
+R0g6Cj4+ID4rICAgICAgICAgICAgICBpZiAocmVhZGwocHJpdi0+cmVncyArIHJlZ19vZmYpICYg
+cmVnX21hc2spCj4+ID4rICAgICAgICAgICAgICAgICAgICAgIHdyaXRlbChkLT5od2lycSwgcHJp
+di0+cmVncyArIEFQTElDX1NFVElQTlVNX0xFKTsKPj4gPisgICAgICAgICAgICAgIGJyZWFrOwo+
+PiA+KyAgICAgIH0KPj4gPit9Cj4+ID4rCj4+ID4rc3RhdGljIHN0cnVjdCBpcnFfY2hpcCBhcGxp
+Y19tc2lfY2hpcCA9IHsKPj4gPisgICAgICAubmFtZSAgICAgICAgICAgPSAiQVBMSUMtTVNJIiwK
+Pj4gPisgICAgICAuaXJxX21hc2sgICAgICAgPSBhcGxpY19tc2lfaXJxX21hc2ssCj4+ID4rICAg
+ICAgLmlycV91bm1hc2sgICAgID0gYXBsaWNfbXNpX2lycV91bm1hc2ssCj4+ID4rICAgICAgLmly
+cV9zZXRfdHlwZSAgID0gYXBsaWNfaXJxX3NldF90eXBlLAo+PiA+KyAgICAgIC5pcnFfZW9pICAg
+ICAgICA9IGFwbGljX21zaV9pcnFfZW9pLAo+PiA+KyNpZmRlZiBDT05GSUdfU01QCj4+ID4rICAg
+ICAgLmlycV9zZXRfYWZmaW5pdHkgPSBpcnFfY2hpcF9zZXRfYWZmaW5pdHlfcGFyZW50LAo+PiA+
+KyNlbmRpZgo+PiA+KyAgICAgIC5mbGFncyAgICAgICAgICA9IElSUUNISVBfU0VUX1RZUEVfTUFT
+S0VEIHwKPj4gPisgICAgICAgICAgICAgICAgICAgICAgICBJUlFDSElQX1NLSVBfU0VUX1dBS0Ug
+fAo+PiA+KyAgICAgICAgICAgICAgICAgICAgICAgIElSUUNISVBfTUFTS19PTl9TVVNQRU5ELAo+
+PiA+K307Cj4+ID4rCj4+ID4rc3RhdGljIGludCBhcGxpY19tc2lfaXJxZG9tYWluX3RyYW5zbGF0
+ZShzdHJ1Y3QgaXJxX2RvbWFpbiAqZCwKPj4gPisgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBzdHJ1Y3QgaXJxX2Z3c3BlYyAqZndzcGVjLAo+PiA+KyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgKmh3aXJxLAo+PiA+KyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGludCAqdHlwZSkKPj4g
+Pit7Cj4+ID4rICAgICAgc3RydWN0IGFwbGljX3ByaXYgKnByaXYgPSBwbGF0Zm9ybV9tc2lfZ2V0
+X2hvc3RfZGF0YShkKTsKPj4gPisKPj4gPisgICAgICByZXR1cm4gYXBsaWNfaXJxZG9tYWluX3Ry
+YW5zbGF0ZShmd3NwZWMsIHByaXYtPmdzaV9iYXNlLCBod2lycSwgdHlwZSk7Cj4+ID4rfQo+PiA+
+Kwo+PiA+K3N0YXRpYyBpbnQgYXBsaWNfbXNpX2lycWRvbWFpbl9hbGxvYyhzdHJ1Y3QgaXJxX2Rv
+bWFpbiAqZG9tYWluLAo+PiA+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5z
+aWduZWQgaW50IHZpcnEsIHVuc2lnbmVkIGludCBucl9pcnFzLAo+PiA+KyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgdm9pZCAqYXJnKQo+PiA+K3sKPj4gPisgICAgICBpbnQgaSwg
+cmV0Owo+PiA+KyAgICAgIHVuc2lnbmVkIGludCB0eXBlOwo+PiA+KyAgICAgIGlycV9od19udW1i
+ZXJfdCBod2lycTsKPj4gPisgICAgICBzdHJ1Y3QgaXJxX2Z3c3BlYyAqZndzcGVjID0gYXJnOwo+
+PiA+KyAgICAgIHN0cnVjdCBhcGxpY19wcml2ICpwcml2ID0gcGxhdGZvcm1fbXNpX2dldF9ob3N0
+X2RhdGEoZG9tYWluKTsKPj4gPisKPj4gPisgICAgICByZXQgPSBhcGxpY19pcnFkb21haW5fdHJh
+bnNsYXRlKGZ3c3BlYywgcHJpdi0+Z3NpX2Jhc2UsICZod2lycSwgJnR5cGUpOwo+PiA+KyAgICAg
+IGlmIChyZXQpCj4+ID4rICAgICAgICAgICAgICByZXR1cm4gcmV0Owo+Pgo+PiBJbiB5b3VyIHBh
+dGNoc2V0LCB0aGUgd2lyZWQgSVJRIGFuZCBJUlEgb2YgcGxhdGZvcm0gZGV2aWNlIHdpbGwgZ28g
+aW50byBBUExJQy1NU0kgZG9tYWluIGZpcnN0bHkuCj4KPlllcywgdGhhdCBpcyBjb3JyZWN0LiBJ
+biBnZW5lcmFsLCB0aGlzIGFwcGxpZXMgdG8gQUlBIHNwZWNpZmljYXRpb24KPmFuZCBub3RoaW5n
+IHRvIGRvIHdpdGggdGhpcyBwYXRjaHNldC4KPgo+PiBMZXQgbWUgYXNzdW1lIGhlcmUgaXMgYSBN
+U0kgSVJRIG5vdCB3aXJlZCBJUlEgb24gYSBkZXZpY2UsIGFuZCBpdCBpcyBhIHBsYXRmb3JtIGRl
+dmljZSBpbiBzeXN0ZW0uCj4+IHNvIGluIGFwbGljX2lycWRvbWFpbl90cmFuc2xhdGUoKSBmdW5j
+dGlvbiwgaXQgd2lsbCBwYXJzZSB0aGUgQVBMSUMgcGh5c2ljYWwgSVJRIG51bWJlciBieSBmd3Nw
+ZWMtPnBhcmFtWzBdLAo+PiBidXQgdGhpcyBpcyBub3QgYSB3cmllZCBJUlEsIGl0IGlzIGEgTVNJ
+IElSUSwgaXQgc2hvdWxkIG5vdCBoYXMgYSBBUExJQyBwaHlzaWNhbCBJUlEgbnVtYmVyLCB0aGUg
+aHdpcnEgbnVtYmVyIHNob3VsZCBiZSBhbGxvY2F0ZWQgYnkgTVNJIGJpdG1hcCwKPj4gd2hhdCB2
+YWx1ZSB3aWxsIGJlIHBhcnNlIGJ5IERUUz8gemVybyBvciBuZWdhdGl2ZT8KPgo+Rm9yIHBsYXRm
+b3JtIGRldmljZXMgd2l0aCBNU0kgc3VwcG9ydCwgdGhlIE1TSXMgd2lsbCBkaXJlY3RseSB0YXJn
+ZXQKPnRoZSBwZXItSEFSVAo+SU1TSUNzIGFuZCB0aGUgRFQgbm9kZSBvZiBzdWNoIGRldmljZXMg
+d2lsbCBuZXZlciBwb2ludCB0byBBUExJQyBhcyB0aGUgcGFyZW50Cj5NU0kgY29udHJvbGxlci4K
+PgoKPlRoZSBJTVNJQyBkcml2ZXIgaW1wbGVtZW50cyB0aGUgSU1TSUMtUExBVCBkb21haW4gZm9y
+IHBsYXRmb3JtIE1TSXMuCgpIYXZlIHlvdSB0ZXN0IHRoaXMgY2FzZSBvbiBRRU1VPyB3b3VsZCB5
+b3UgbGlrZSBzaGFyZSB0aGUgdGVzdCBzdGVwcz8K
 
