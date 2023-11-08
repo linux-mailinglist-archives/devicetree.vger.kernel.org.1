@@ -1,125 +1,116 @@
-Return-Path: <devicetree+bounces-14585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702407E599B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:59:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F267E59D0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:11:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A13851C20A98
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:59:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DC411C20919
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D022FE3A;
-	Wed,  8 Nov 2023 14:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC3E30332;
+	Wed,  8 Nov 2023 15:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOouj4dW"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="a4Mk9mfH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC5A30320;
-	Wed,  8 Nov 2023 14:59:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B67CFC433C7;
-	Wed,  8 Nov 2023 14:59:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699455559;
-	bh=rADyy5yr7+H2mZjnMvdRbduD7lwAsCfnNVr4XTzxvPg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FOouj4dWsfpzr7uI3jxC/aKkHDlSoefrYgRLHG21Aw4jKD+yk6+xED90b/4JBfL/L
-	 7PTh+vFsRqMi/x30EjFg64dOrfpTwGWdVicx4fpNwaoQY+5ET1azdTK38QR7T+Ff/G
-	 ozx+5nw8ZflmPwrlXXj1dngTr5myZusiD9aIwEKa1sW0WZ9x5DB/C2IL5Mngm4jeIM
-	 8aHj3NqUFG1AkIwkkxs81gZsr3BWcd+OdsbrQeIBqkZRU1ULdOaF1oLWaRuoapKabm
-	 cwx/SqgrQ2rAkLgVoFEcBNXnJN8vZ+aHOjlvYURgPb8+HXGB+zLCE9JaNucDkL0H2x
-	 GxuI/gGwx3PXw==
-Date: Wed, 8 Nov 2023 14:59:14 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	Palmer Dabbelt <palmer@rivosinc.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Evan Green <evan@rivosinc.com>, Samuel Ortiz <sameo@rivosinc.com>
-Subject: Re: [PATCH v3 20/20] dt-bindings: riscv: add Zfa ISA extension
- description
-Message-ID: <20231108-basics-delete-710d0682bf0e@spud>
-References: <20231107105556.517187-1-cleger@rivosinc.com>
- <20231107105556.517187-21-cleger@rivosinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5193032D
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:11:42 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08788188
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 07:11:42 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507a3af69d8so2205150e87.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 07:11:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1699456300; x=1700061100; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UUxKSl5xvPnPZc8xesOknmD+ele1gvP9a4k80mJzrYs=;
+        b=a4Mk9mfHLqk/vZgx/naAa18UdyyXhBudweECCBHX+AUJfgMQsOrAzKkSIMmNQlNHZn
+         pJAL6L6vCB6IbFs0U5BY/B8tzRynpcJWtXMCsNk4DVDyj9Pz1QabIrc6xPB/f03BpXup
+         6Y/dhf11TvJHk2m9lUcBJkSMHLeWaN9I1yAkLlbrzoyQKoySFxlwbpLLFb8xpnvR20qF
+         O8U5H90TVJQSG1z2UpZFkAhYGb08572T3dLPvBOJx0mCD3OwreILHETE5ZP74seQ2wmP
+         Nz+Nx5O6eUtx6dBGYb+WTJ+r/z5VzLfWRXXhXa8HhXr2oVRbS7MxetIwjF+oUEdmUm8e
+         7Oog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699456300; x=1700061100;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UUxKSl5xvPnPZc8xesOknmD+ele1gvP9a4k80mJzrYs=;
+        b=X2sqfAwOhuiHussWZgNPAW6rx9OuXuBsecO9XOdGvOWkoo+poes39gsUJDLkhtIbLh
+         TZPhTyw5jJfNoV10wrDan/r+YwuS7hX+bZ9B8a9laLEaxoONwqmAbrg5XJW0atfrQeGu
+         8HGz83bH2EeZKEKMKDrabnRMzoL4INCSzC8e62KFrKtNmEpd9xgQfKVwjXE7j+PliCHr
+         0VaAvFHfp3sCxGgL+QH+Ki5oSZGlRIlZ0PnxGAqz+/4mHSb8Uk7ncxuP/fgeEcKX+lbO
+         ZMsoaiGQILozQHEHjrEF0jOKE4Z8cwvkkxIQlkAZDlkhpmNZEWuI3blaHF47u0nhyj8/
+         A7dg==
+X-Gm-Message-State: AOJu0Yz9YffskZRxQceg9Xek5ghrpap59rJ3L5fN5aKiV2lzoJPgZkB8
+	OPffWB6WXjTDKkSvVukQGKWysg==
+X-Google-Smtp-Source: AGHT+IGgd3SIwzRo05crHQZcZdIwfB08YjDuFbDQxrEcjaJXxfyUwP7xDu63tVHI4IbBCdiWq8CvpQ==
+X-Received: by 2002:a19:ad45:0:b0:509:3806:b86 with SMTP id s5-20020a19ad45000000b0050938060b86mr1403227lfd.3.1699456300131;
+        Wed, 08 Nov 2023 07:11:40 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:999:a3a0:22d4:745b:9658:6dd? ([2a01:e0a:999:a3a0:22d4:745b:9658:6dd])
+        by smtp.gmail.com with ESMTPSA id m13-20020adffa0d000000b003143867d2ebsm5159107wrr.63.2023.11.08.07.11.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Nov 2023 07:11:39 -0800 (PST)
+Message-ID: <c5766c6b-5a85-48ab-89c5-9bc43aeb20bd@rivosinc.com>
+Date: Wed, 8 Nov 2023 16:11:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JkYUf/ZcAWjBoFXV"
-Content-Disposition: inline
-In-Reply-To: <20231107105556.517187-21-cleger@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 05/20] dt-bindings: riscv: add scalar crypto ISA
+ extensions description
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Palmer Dabbelt <palmer@rivosinc.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
+ Andrew Jones <ajones@ventanamicro.com>, Evan Green <evan@rivosinc.com>,
+ Samuel Ortiz <sameo@rivosinc.com>
+References: <20231107105556.517187-1-cleger@rivosinc.com>
+ <20231107105556.517187-6-cleger@rivosinc.com>
+ <20231108-grower-handwash-63526d449e9c@spud>
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20231108-grower-handwash-63526d449e9c@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---JkYUf/ZcAWjBoFXV
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 07, 2023 at 11:55:56AM +0100, Cl=E9ment L=E9ger wrote:
-> Add description for the Zfa ISA extension[1] which can now be
-> reported through hwprobe for userspace usage.
+On 08/11/2023 15:57, Conor Dooley wrote:
+> Yo,
+> 
+> On Tue, Nov 07, 2023 at 11:55:41AM +0100, Clément Léger wrote:
+>> +        - const: zkr
+>> +          description:
+>> +            The standard Zkr entropy source extension as ratified in version
+>> +            1.0 of RISC-V Cryptography Extensions Volume I specification.
+> 
+> So the topic of the seed CSR came up on the U-Boot ML in the last few
+> days:
+> https://lore.kernel.org/u-boot/20231107212431.GP6601@bill-the-cat
+> I think we need to document that having zkr in riscv,isa-extensions
+> means that the CSR is accessible at the privilege level to which that
+> devicetree has been provided.
 
-FWIW, hwprobe is not relevant for the dt-bindings.
+Hi Conor,
 
-> Link: https://drive.google.com/file/d/1VT6QIggpb59-8QRV266dEE4T8FZTxGq4/v=
-iew [1]
-> Signed-off-by: Cl=E9ment L=E9ger <cleger@rivosinc.com>
+Indeed, seems like a good idea.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks,
 
-Cheers,
-Conor.
+Clément
 
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
-cumentation/devicetree/bindings/riscv/extensions.yaml
-> index 87c7e3608217..dcba5380f923 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -214,6 +214,12 @@ properties:
->              instructions as ratified at commit 6d33919 ("Merge pull requ=
-est #158
->              from hirooih/clmul-fix-loop-end-condition") of riscv-bitmani=
-p.
-> =20
-> +        - const: zfa
-> +          description:
-> +            The standard Zfa extension for additional floating point
-> +            instructions, as ratified in commit 056b6ff ("Zfa is ratifie=
-d") of
-> +            riscv-isa-manual.
-> +
->          - const: zfh
->            description:
->              The standard Zfh extension for 16-bit half-precision binary
-> --=20
-> 2.42.0
->=20
-
---JkYUf/ZcAWjBoFXV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUuiQgAKCRB4tDGHoIJi
-0llOAQCViniwIMqamKiIXGkYgPVn8XIdcV77SvS/CGDxg7coMgEA0h28x+pWr9FN
-yF1FraJ1KQm8FDdMDJdiNn511fAr8wI=
-=q5Lh
------END PGP SIGNATURE-----
-
---JkYUf/ZcAWjBoFXV--
 
