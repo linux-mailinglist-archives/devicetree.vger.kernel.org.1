@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5A87E4E2C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 01:34:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F40727E4E32
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 01:36:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B81FB2102E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:34:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31AE21C20D87
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 00:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D45C1375;
-	Wed,  8 Nov 2023 00:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAAE1C29;
+	Wed,  8 Nov 2023 00:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UNqvd+IF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MJ7iTFmg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD309EA3
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 00:34:20 +0000 (UTC)
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1FBD1BD6;
-	Tue,  7 Nov 2023 16:34:19 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1ccce410660so22260135ad.3;
-        Tue, 07 Nov 2023 16:34:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1CE1375
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 00:36:05 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0A1310F9
+	for <devicetree@vger.kernel.org>; Tue,  7 Nov 2023 16:36:04 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-507a29c7eefso8003329e87.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Nov 2023 16:36:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699403659; x=1700008459; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1699403763; x=1700008563; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Bo+wNYvdH42XBot0MOWGC8vCva7jElVxl1Yf8J6aNZU=;
-        b=UNqvd+IFDSjtEVdd4F99EVHEK84W6x8mMLmJQq7Ljt+OeEA4PYqx9DziNvJI5R4Uu0
-         Dx6G6lJun7F0V91m0ebnDEA/0a54U4EQNWXT4/cy27/0PAofSEdPHlA8411L/P8jh/8t
-         G+h5lS4l47mu1yUU3mrH74ptf0qNssYSNiP2aTgvr1pLP1R5hAlDx9Bqh6U4k1IJZMB+
-         re5rdveirWHdCaufeb41jcD/IUipH3jLZ911W3lyhUSrWwhedNkSW3dZVKLLwfvUlbtJ
-         EGqFU4YK92aMQ7pZMJnBvBVHk5j2iMDUQI0+QfB7fjvX23Akg09YpnqjPkygf2TVnL3X
-         4BLQ==
+        bh=tLCtsTg94ZkYKlxM35PI/7QpN+IW2xY9/USBi3sx8e0=;
+        b=MJ7iTFmgyaWBmmY4IGaip5aDrJrcOq9jDFtsabyuT1LUHyrsNQMcm/ctN1gzE7fygf
+         eoZTJ1wqNcXJQBq+10gxZsont/tB/4blfYDuXM1XPjQsgZI1MMjg6l4EtN9UUJ/Aoh62
+         zyUst9rAuz8ZP5boXAsW3fv2b2SEdXajpuV0CcYJdQegfazIVJaes3KFjNM66MVZClXT
+         yaLFq2Xlpq6LOsbgeyej1sYmrBqpqeOK6dRAo7VyEov8YVsObJEkZOCSHKo33rjbmHAp
+         XAjS1msE1UQkRIgZa+wJcT5NEF5P6Bc7oE741KOYwU6S/lplbdssm3egY1zIFdU1B1L5
+         s+lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699403659; x=1700008459;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699403763; x=1700008563;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bo+wNYvdH42XBot0MOWGC8vCva7jElVxl1Yf8J6aNZU=;
-        b=bYFD95thV+6K0G/TmmXBWHznwta2JcmZLeWHoR7UK+nfJGy2CWEDCgDWCu8cqbilYP
-         ETcAv33JkuYuxuVRXurRCG0CwAS7zaYdesa+bDomCcyit0u089outJRyvUjIi16lANUy
-         1rayU94sPndqPmg+jAAHxvG0+Frg87DOsFWT//DEyM4lYr/O8PqH2HsIFFnlMxAi6Sm1
-         pBd+pDRZAbO3oA3u9TYbqnp64MSf2Wx2hz3/a0MlJFGD4uc6rLOLhhXjqzHlBiivOE7A
-         lh9PheNfXM1UnZHRrhLAhKMjpKajEFbn47+R6XZgzg9qFUK3MwpYPdEAIMPaIwZMC2/y
-         dpnA==
-X-Gm-Message-State: AOJu0YwQCpw6dptGJIGJEQ2+FYteiYo3Ztnv42mRXXDKnYmeii94bgTd
-	DIaI9hP+BHKgQ+l9EhrNETJEujguY4rzbY04
-X-Google-Smtp-Source: AGHT+IFDPzQtLh6+yY5GKCHMN9W6XwtxJ90L36jbtGh9dSGXzUV4r7YpeRT7sM7ArPOdn2NSQT8ExQ==
-X-Received: by 2002:a17:902:e9c5:b0:1cc:4ff3:c837 with SMTP id 5-20020a170902e9c500b001cc4ff3c837mr517996plk.68.1699403659132;
-        Tue, 07 Nov 2023 16:34:19 -0800 (PST)
-Received: from [10.3.171.174] ([103.4.222.252])
-        by smtp.gmail.com with ESMTPSA id j24-20020a170902759800b001c47541ecd7sm396385pll.250.2023.11.07.16.34.16
+        bh=tLCtsTg94ZkYKlxM35PI/7QpN+IW2xY9/USBi3sx8e0=;
+        b=th7AWVFbSgYu0BCT4hB5bHF4PVY/Lsb4q40TR3AGmCxMz8mD8duns8xyqaVvdmP0jo
+         kJXC3KNLIhMgrw1nMovkwipxm1GZ0D4Rke3fuX7fnado2epJ3OJDoB43284W5hkdWULb
+         H1mjwnjRa/RaJiED/nPUqoyAo6Oj70WgxaALLi9FbA+bcE9jR79Cr3EpWOf/cRcTNyGD
+         O0QJi81HvMro1KPsrCAmgZFaIFSlVEEAZpYEp6MoA46rmrRBkN93mYcNQH3w7Wxua63w
+         2V56+wRIC6KfEbyR/CC/bbjb/TrtmCS1Hxi2xn3WBJKzs51h2wAo6cRgwwezXIqJfFHA
+         RefQ==
+X-Gm-Message-State: AOJu0YzjFgfDn2HCdDi81u+J516BooUcTh7a9vFrhRgJXx96KW+ql+VO
+	/vtKwcnUX2CFxYWZL1cVuF4mri5FVs1d5NoPVI3PiQ==
+X-Google-Smtp-Source: AGHT+IHl+VAYGxe/DNmWYTV7boSYThTTOIb/X3vqD8Z9d7rD2VPoeP9ac4YqJU0Le6n452fR4Otgrw==
+X-Received: by 2002:ac2:4f06:0:b0:507:9a8c:a8fe with SMTP id k6-20020ac24f06000000b005079a8ca8femr219318lfr.53.1699403762869;
+        Tue, 07 Nov 2023 16:36:02 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id a4-20020a5d53c4000000b0032f7d7ec4adsm3581791wrw.92.2023.11.07.16.36.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Nov 2023 16:34:18 -0800 (PST)
-Message-ID: <f66cab34-266d-4e9f-b53f-26a2948f863f@gmail.com>
-Date: Wed, 8 Nov 2023 06:02:52 +0530
+        Tue, 07 Nov 2023 16:36:02 -0800 (PST)
+Message-ID: <27cb79f8-2c44-48db-8f6d-c2ec861dc249@linaro.org>
+Date: Wed, 8 Nov 2023 00:36:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,58 +67,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add asair
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
- <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
-References: <20231107173100.62715-1-anshulusr@gmail.com>
- <87762a47-9caf-435a-9b73-397384660b11@linaro.org>
+Subject: Re: [PATCH v3 3/6] media: qcom: camss: csiphy-3ph: Add Gen2 v1.1
+ two-phase MIPI CSI-2 DPHY init
 Content-Language: en-US
-From: Anshul Dalal <anshulusr@gmail.com>
-In-Reply-To: <87762a47-9caf-435a-9b73-397384660b11@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, hverkuil-cisco@xs4all.nl,
+ laurent.pinchart@ideasonboard.com, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org,
+ matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231105-b4-camss-sc8280xp-v3-0-4b3c372ff0f4@linaro.org>
+ <20231105-b4-camss-sc8280xp-v3-3-4b3c372ff0f4@linaro.org>
+ <ff8532ca-fe74-4f52-bab9-b14f6a4599b1@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ff8532ca-fe74-4f52-bab9-b14f6a4599b1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 11/7/23 23:16, Krzysztof Kozlowski wrote:
-> On 07/11/2023 18:30, Anshul Dalal wrote:
->> Aosong Electronic Co., LTD. is a supplier for MEMS sensors such as AHT20
->> temperature and humidity sensor under the name Asair
+On 07/11/2023 21:43, Konrad Dybcio wrote:
 > 
-> The name of the company is Aosong Electronic or Asair? What does Asair
-> stands for? Sensors name? Then it is not a vendor prefix.
 > 
-
-Asair is the brand name under which Aosong Electronics sells their
-products. I thought Asair would be the better choice since
-all their products use that as the manufacturer name instead of Aosong
-as well as all the retail suppliers of their sensors.
-
+> On 11/5/23 18:45, Bryan O'Donoghue wrote:
+>> Add a PHY configuration sequence for the sc8280xp which uses a Qualcomm
+>> Gen 2 version 1.1 CSI-2 PHY.
 >>
->> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+>> The PHY can be configured as two phase or three phase in C-PHY or D-PHY
+>> mode. This configuration supports two-phase D-PHY mode.
+>>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 >> ---
->>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index 573578db9509..df3204f9dda6 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -143,6 +143,8 @@ patternProperties:
->>      description: Artesyn Embedded Technologies Inc.
->>    "^asahi-kasei,.*":
->>      description: Asahi Kasei Corp.
->> +  "^asair,.*":
->> +    description: Aosong Electronic Co., Ltd.
->>    "^asc,.*":
->>      description: All Sensors Corporation
->>    "^asix,.*":
+> Makes it sound like the current 2ph/3ph split is rather nonsensical?
 > 
-> Best regards,
-> Krzysztof
+> Perhaps we should restructure it to match hw revision? Especially since
+> one can get it from the hardware itself..
 > 
+> Konrad
+
+For the C-PHY though we have to either add or remove caps - I forget 
+which on ~ all of our reference platforms.
+
+"The PHY can do it" but I'd be surprised to find there's a single real 
+implementation of it outside of a silicon test bench.
+
+---
+bod
 
