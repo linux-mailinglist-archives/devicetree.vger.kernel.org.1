@@ -1,312 +1,205 @@
-Return-Path: <devicetree+bounces-14639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0EC7E5C74
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:34:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D327E5C8F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:41:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB2C5B20D3C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:34:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5749A1C20933
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A4E328A7;
-	Wed,  8 Nov 2023 17:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PAs55n9U"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDCD321B9;
+	Wed,  8 Nov 2023 17:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE1B18C3A
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 17:34:00 +0000 (UTC)
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE511FFC
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 09:33:59 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-2809fb0027cso5504899a91.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 09:33:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699464838; x=1700069638; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sAWSOoeAjfBbJekhTKUv9QwV6bzlMliXHO1btit3MQo=;
-        b=PAs55n9UN0Tt4azZuzlN/v4fOpAQkVUhX1VuQsYZhU0jHvGaVLULti+ZZd2hhS1CPg
-         lcJPvfGofMpQ8x8KjEyqQ37WRb0aeqwbmSt7r8bLqRFOxeKkAxsZiPgH2AVJn6Pfnfnf
-         ROZxj/y8NDoH0G/VUip3RR9Jqnc2sOyGKuQhcfj7mF/DVB9ybWbBzx9rQG/Nj9GxVExg
-         N8U4TR5MAvenuZMFnJOsSS3CBJX7ob6xMg7AV4QDqMEtUZbKLOfMf2Onc/Zpmv2dOcr9
-         iYOEJGKcz897YYDG3ynCmFFDcmU3euYGFCU5QOi6XwttWgO46PIBpu4HalMhZ5RdSYgw
-         jJeA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 200F9328D2
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 17:41:43 +0000 (UTC)
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654EA1BEB;
+	Wed,  8 Nov 2023 09:41:42 -0800 (PST)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6ce37683cf6so4235727a34.3;
+        Wed, 08 Nov 2023 09:41:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699464838; x=1700069638;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sAWSOoeAjfBbJekhTKUv9QwV6bzlMliXHO1btit3MQo=;
-        b=q6uylJ2ngAyiYQu9t8b+pbP2nYJ615eSf/ALHZdp0jqZdr7nmrBXuWpGq3T6lmICal
-         5N6EGB8evnTFgPoMc1RvrAQaK+1euGQW7JSdRCKidStepzN3MKaQo4YBFZEC/1TOBcb4
-         sI/BgdHoi9ZuLfLonbNk8ZBb2CnjBk+oezE0fwFFxRAxudU7vksTCqyzw6tHJoPDux9V
-         vpfY6pa9qVEllslTzpxguOpqnEhavvEe+ryHGBKDyEJ+rrPVTEyapFT30lP1R0Lc8C98
-         PSDCohhlFRRPIUC3CFYNTXZGRfVeQdWPoexdaUfRtaFYS/6R8YqoHX+mWTOyv+XiwE4q
-         mObg==
-X-Gm-Message-State: AOJu0YyQ/qNf7ueNeEHdxiFh0mtZuTrj6Qv5Q8PReIH+SnI8sshNwfjx
-	FLNqlot8+lZ/zjzMoa0jrNBbNfojwdudWkLjc/5jZQ==
-X-Google-Smtp-Source: AGHT+IGY4VBAJ38xlUtcmXFmIEhynykPBn3dfo+SVZRmQxxurhZcoKtbYoXN1XDKnlHvImSQIH0q75kjXSAbWt8IHAw=
-X-Received: by 2002:a17:90a:6888:b0:281:da1:4b96 with SMTP id
- a8-20020a17090a688800b002810da14b96mr2347498pjd.22.1699464838284; Wed, 08 Nov
- 2023 09:33:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699465301; x=1700070101;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NMG/0PoSeUv8+GtzpYfiSBWL8BztOuyiTF9fdbSo1LQ=;
+        b=oNE7hhCV2Rx1k9Dfc2DlYWKHKz6QyPYAhsAUzM9PWel64/aL1DAYQ4PT0Gya2J+LgF
+         i0sHHW/0W3g3ZYZjq2wtGnP4oLwTZnfwFtlURFCJ+XEVRw0zzB1gY4I1KIVhUXxXS9og
+         MNJwK83yTf5cZRYLhGCf/kLF7KtuoczxDrVfLJZa7a87spR7eC42P8v3bs6m1xn+9bYa
+         WbqZWuc8kl1ProXD5GDpE2s5iOvCcY6hoxgFfve/2yts/b5ju4SfCyQqVmIxLJO+LDCO
+         B8TZJbDlHf749Jv0F1eWqgna2br/VMos6ZtgGXwt8YiFxCFoJIXn+vAip+CxiSDBE86T
+         3F0A==
+X-Gm-Message-State: AOJu0Yz6dfAtVdTGbzew+vZzDelSMOo68kmATGPu6qYXQ1FW4ZJtL7S0
+	zCdbr74+J8EqKWijbsIruA==
+X-Google-Smtp-Source: AGHT+IFTttXnMCmbDF/OfTZ9eKrHb0JNjsrpgyGxTLR0++d1/rwsFkGnx9Mf8IFRM4ThG/CmdTwCrg==
+X-Received: by 2002:a05:6808:3c8d:b0:3af:8050:369f with SMTP id gs13-20020a0568083c8d00b003af8050369fmr3564543oib.6.1699465301587;
+        Wed, 08 Nov 2023 09:41:41 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bk31-20020a0568081a1f00b003a7a34a4ed8sm1957459oib.33.2023.11.08.09.41.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Nov 2023 09:41:40 -0800 (PST)
+Received: (nullmailer pid 2547190 invoked by uid 1000);
+	Wed, 08 Nov 2023 17:41:40 -0000
+Date: Wed, 8 Nov 2023 11:41:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: Add new board description for
+ MicroBlaze V
+Message-ID: <20231108174140.GA2494040-robh@kernel.org>
+References: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
+ <20231106-hangnail-prankster-a04e713bed35@spud>
+ <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
+ <e9fef49e-c0ca-4f7d-9618-151216e25280@linaro.org>
+ <92d95425-5bae-4ada-8fc3-966e7bfbd815@amd.com>
+ <90f9991e-26a3-498e-9449-c96663987459@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011184823.443959-1-peter.griffin@linaro.org>
- <20231011184823.443959-11-peter.griffin@linaro.org> <aae4e6cd-dcfc-442d-9ed7-d5a73c419ba8@kernel.org>
- <CADrjBPrUsSigThoLU9thmZiaG4690B9-BcZYrBn44K9Fc8z3vg@mail.gmail.com>
-In-Reply-To: <CADrjBPrUsSigThoLU9thmZiaG4690B9-BcZYrBn44K9Fc8z3vg@mail.gmail.com>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Wed, 8 Nov 2023 11:33:46 -0600
-Message-ID: <CAPLW+4m+n-U4cAkJZTeCsoE_e6r1j8srYmVjSLawPWwHi6SEAw@mail.gmail.com>
-Subject: Re: [PATCH v3 10/20] clk: samsung: clk-gs101: Add cmu_top registers,
- plls, mux and gates
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Chanwoo Choi <chanwoo@kernel.org>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, 
-	conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com, 
-	s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org, 
-	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
-	olof@lixom.net, gregkh@linuxfoundation.org, cw00.choi@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <90f9991e-26a3-498e-9449-c96663987459@linaro.org>
 
-On Tue, Nov 7, 2023 at 7:57=E2=80=AFAM Peter Griffin <peter.griffin@linaro.=
-org> wrote:
->
-> Hi Chanwoo,
->
-> Thanks for your review!
->
-> On Wed, 18 Oct 2023 at 17:51, Chanwoo Choi <chanwoo@kernel.org> wrote:
-> >
-> > Hi Peter,
-> >
-> > On 23. 10. 12. 03:48, Peter Griffin wrote:
-> > > CMU_TOP is the top level clock management unit which contains PLLs, m=
-uxes
-> > > and gates that feed the other clock management units.
-> > >
-> > > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > > ---
-> > >  drivers/clk/samsung/Kconfig     |    9 +
-> > >  drivers/clk/samsung/Makefile    |    2 +
-> > >  drivers/clk/samsung/clk-gs101.c | 1551 +++++++++++++++++++++++++++++=
-++
-> > >  3 files changed, 1562 insertions(+)
-> > >  create mode 100644 drivers/clk/samsung/clk-gs101.c
-> > >
-> > > diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfi=
-g
-> > > index 76a494e95027..14362ec9c543 100644
-> > > --- a/drivers/clk/samsung/Kconfig
-> > > +++ b/drivers/clk/samsung/Kconfig
-> > > @@ -12,6 +12,7 @@ config COMMON_CLK_SAMSUNG
-> > >       select EXYNOS_5410_COMMON_CLK if ARM && SOC_EXYNOS5410
-> > >       select EXYNOS_5420_COMMON_CLK if ARM && SOC_EXYNOS5420
-> > >       select EXYNOS_ARM64_COMMON_CLK if ARM64 && ARCH_EXYNOS
-> > > +     select GOOGLE_GS101_COMMON_CLK if ARM64 && ARCH_GOOGLE_TENSOR
-> > >       select TESLA_FSD_COMMON_CLK if ARM64 && ARCH_TESLA_FSD
-> > >
-> > >  config S3C64XX_COMMON_CLK
-> > > @@ -95,6 +96,14 @@ config EXYNOS_CLKOUT
-> > >         status of the certains clocks from SoC, but it could also be =
-tied to
-> > >         other devices as an input clock.
-> > >
-> > > +config GOOGLE_GS101_COMMON_CLK
-> > > +     bool "Google gs101 clock controller support" if COMPILE_TEST
-> > > +     depends on COMMON_CLK_SAMSUNG
-> > > +     depends on EXYNOS_ARM64_COMMON_CLK
-> > > +     help
-> > > +       Support for the clock controller present on the Google gs101 =
-SoC.
-> > > +       Choose Y here only if you build for this SoC.
-> > > +
-> >
-> > (snip)
-> >
-> > > +
-> > > +/* gs101 */
-> > > +static const struct samsung_mux_clock cmu_top_mux_clks[] __initconst=
- =3D {
-> > > +     /* CMU_TOP_PURECLKCOMP */
-> > > +     MUX(CLK_MOUT_SHARED0_PLL, "mout_shared0_pll", mout_shared0_pll_=
-p,
-> > > +         PLL_CON0_PLL_SHARED0, 4, 1),
-> > > +     MUX(CLK_MOUT_SHARED1_PLL, "mout_shared1_pll", mout_shared1_pll_=
-p,
-> > > +         PLL_CON0_PLL_SHARED1, 4, 1),
-> > > +     MUX(CLK_MOUT_SHARED2_PLL, "mout_shared2_pll", mout_shared2_pll_=
-p,
-> > > +         PLL_CON0_PLL_SHARED2, 4, 1),
-> > > +     MUX(CLK_MOUT_SHARED3_PLL, "mout_shared3_pll", mout_shared3_pll_=
-p,
-> > > +         PLL_CON0_PLL_SHARED3, 4, 1),
-> > > +     MUX(CLK_MOUT_SPARE_PLL, "mout_spare_pll", mout_spare_pll_p,
-> > > +         PLL_CON0_PLL_SPARE, 4, 1),
-> > > +
-> > > +     /* BUS0 */
-> > > +     MUX(CLK_MOUT_BUS0_BUS, "mout_cmu_bus0_bus", mout_cmu_bus0_bus_p=
-,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_BUS0_BUS, 0, 2),
-> > > +     MUX(CLK_MOUT_CMU_BOOST, "mout_cmu_boost", mout_cmu_cmu_boost_p,
-> >
-> > In order to keep the consistent naming style,
-> > I think that need to change from 'mout_cmu_boost' to 'mout_cmu_cmu_boos=
-t'.
->
-> Yes, that's a good point, and a good spot! Will fix it in v4.
->
+On Tue, Nov 07, 2023 at 01:38:15PM +0100, Krzysztof Kozlowski wrote:
+> On 07/11/2023 13:09, Michal Simek wrote:
+> > 
+> > 
+> > On 11/7/23 12:27, Krzysztof Kozlowski wrote:
+> >> On 07/11/2023 12:09, Michal Simek wrote:
+> >>>
+> >>>
+> >>> On 11/6/23 18:07, Conor Dooley wrote:
+> >>>> On Mon, Nov 06, 2023 at 12:53:40PM +0100, Michal Simek wrote:
+> >>>>> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
+> >>>>> It is hardware compatible with classic MicroBlaze processor. Processor can
+> >>>>> be used with standard AMD/Xilinx IPs including interrupt controller and
+> >>>>> timer.
+> >>>>>
+> >>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> >>>>> ---
+> >>>>>
+> >>>>>    .../devicetree/bindings/soc/amd/amd.yaml      | 26 +++++++++++++++++++
+> >>>>
+> >>>> Bindings for SoCs (and by extension boards with them) usually go to in
+> >>>> $arch/$vendor.yaml not into soc/$vendor/$vendor.yaml. Why is this any
+> >>>> different?
+> >>>
+> >>> I actually found it based on tracking renesas.yaml which describes one of risc-v
+> >>> board. No problem to move it under bindings/riscv/
+> >>>
+> >>>>
+> >>>>>    1 file changed, 26 insertions(+)
+> >>>>>    create mode 100644 Documentation/devicetree/bindings/soc/amd/amd.yaml
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/soc/amd/amd.yaml b/Documentation/devicetree/bindings/soc/amd/amd.yaml
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..21adf28756fa
+> >>>>> --- /dev/null
+> >>>>> +++ b/Documentation/devicetree/bindings/soc/amd/amd.yaml
+> >>>>> @@ -0,0 +1,26 @@
+> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>>> +%YAML 1.2
+> >>>>> +---
+> >>>>> +$id: http://devicetree.org/schemas/soc/amd/amd.yaml#
+> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>> +
+> >>>>> +title: AMD Platforms
+> >>>>> +
+> >>>>> +maintainers:
+> >>>>> +  - Michal Simek <michal.simek@amd.com>
+> >>>>> +
+> >>>>> +description: |
+> >>>>> +  AMD boards with MicroBlaze V SOC
+> >>>>> +
+> >>>>> +properties:
+> >>>>> +  $nodename:
+> >>>>> +    const: '/'
+> >>>>> +  compatible:
+> >>>>> +    oneOf:
+> >>>>> +      - description: AMD MicroBlaze V
+> >>>>> +        items:
+> >>>>> +          - const: amd,mbv
+> >>>>
+> >>>> You don't actually list any boards here, but instead permit having only
+> >>>> the SoC compatible and no board one. The SoC compatible is also
+> >>>> incredibly generic. Personally I don't think this binding makes any
+> >>>> sense as it appears to exist as a catch all for anything using your
+> >>>> new cores in any combination.
+> >>>
+> >>> I think I need to define any string for compatibility because it is standard
+> >>> property. Because this is soft core it can be added to any board with AMD/Xilinx
+> >>> chip. I don't have really an option to list all boards.
+> >>
+> >> Why? Either there is a product with this soft-core or there is not. It
+> >> cannot be both.
+> > 
+> > I am doing basic enablement. I am not making product. Product will be done by 
+> > our customers using this core.
+> > There will be thousands of different configurations done by customers which will 
+> > have products with it. Also there could be hundreds configurations done on the 
+> > same board.
+> 
+> If this is the same board, then why there is compatible for it?
+> 
+> > 
+> > Does it make sense to have board related compatible string like this if this 
+> > evaluation board is used by a lot of customers?
+> > "amd,kcu105-mbv-ABC-vXYZ", "amd,kcu105-mbv", "amd,mbv"
+> 
+> I miss the point what is the hardware. Evaluation board is the hardware.
+> If someone changes it and makes a new product, it is a new product.
+> 
+> > 
+> > Or I can define qemu one.
+> > "amd,qemu-mbv", "amd,mbv"
+> 
+> QEMU is not hardware, so not.
 
-Why do we need cmu_cmu part at all? From the look of it, renaming all
-*_cmu_cmu_* clocks to just cmu wouldn't cause any naming conflicts. So
-I don't see any benefit of double cmu prefix really.
+But QEMU is an implementation with its own quirks and implementation 
+details, and compatibles are tied to specific implementations. I'm fine 
+with it and IIRC we already have some cases. I prefer saying 'qemu' here 
+rather than just allowing a "generic" compatible alone because folks 
+will tend to not think they can just reuse the qemu compatible when they 
+will do that for a generic compatible. 
 
-> >
-> > > +         CLK_CON_MUX_MUX_CLKCMU_CMU_BOOST, 0, 2),
-> > > +
-> > > +     /* BUS1 */
-> > > +     MUX(CLK_MOUT_BUS1_BUS, "mout_cmu_bus1_bus", mout_cmu_bus1_bus_p=
-,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_BUS1_BUS, 0, 2),
-> > > +
-> > > +     /* BUS2 */
-> > > +     MUX(CLK_MOUT_BUS2_BUS, "mout_cmu_bus2_bus", mout_cmu_bus2_bus_p=
-,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_BUS2_BUS, 0, 2),
-> > > +
-> > > +     /* CORE */
-> > > +     MUX(CLK_MOUT_CORE_BUS, "mout_cmu_core_bus", mout_cmu_core_bus_p=
-,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_CORE_BUS, 0, 2),
-> > > +
-> > > +     /* EH */
-> > > +     MUX(CLK_MOUT_EH_BUS, "mout_cmu_eh_bus", mout_cmu_eh_bus_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_CORE_BUS, 0, 2),
-> >
-> > 'mout_cmu_core_bus' and 'mout_cmu_eh_bus' uses the same register/shift/=
-width information.
-> > I think it should be modified by changing the regiter or changing the s=
-hift/width information.
->
-> It should be using the CLK_CON_MUX_MUX_CLKCMU_EH_BUS register.
-> Will fix it in v4.
->
-> >
-> > > +
-> > > +     /* CPUCL{0,1,2,} */
-> > > +     MUX(CLK_MOUT_CPUCL2_SWITCH, "mout_cmu_cpucl2_switch", mout_cmu_=
-cpucl2_switch_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_CPUCL2_SWITCH, 0, 2),
-> > > +
-> > > +     MUX(CLK_MOUT_CPUCL1_SWITCH, "mout_cmu_cpucl1_switch", mout_cmu_=
-cpucl1_switch_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_CPUCL1_SWITCH, 0, 2),
-> > > +
-> > > +     MUX(CLK_MOUT_CPUCL0_SWITCH, "mout_cmu_cpucl0_switch", mout_cmu_=
-cpucl0_switch_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_CPUCL0_SWITCH, 0, 2),
-> > > +
-> > > +     MUX(CLK_MOUT_CPUCL0_DBG, "mout_cmu_cpucl0_dbg", mout_cmu_cpucl0=
-_dbg_p,
-> > > +         CLK_CON_DIV_CLKCMU_CPUCL0_DBG, 0, 2),
-> > > +
-> > > +     MUX(CLK_MOUT_CMU_HPM, "mout_cmu_hpm", mout_cmu_hpm_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_HPM, 0, 2),
-> > >
-> >
-> > (snip)
-> >
-> > > +     /* PDP */
-> > > +     MUX(CLK_MOUT_PDP_BUS, "mout_cmu_pdp_bus", mout_cmu_pdp_bus_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_PDP_BUS, 0, 2),
-> > > +
-> > > +     /* PDP */
-> > > +     MUX(CLK_MOUT_PDP_VRA, "mout_cmu_pdp_vra", mout_cmu_pdp_vra_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_PDP_VRA, 0, 2),
-> > > +
-> > > +     /* IPP */
-> > > +     MUX(CLK_MOUT_IPP_BUS, "mout_cmu_ipp_bus", mout_cmu_ipp_bus_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_IPP_BUS, 0, 2),
-> > > +
-> > > +     /* G3AA */
-> > > +     MUX(CLK_MOUT_G3AA, "mout_cmu_g3aa", mout_cmu_g3aa_p,
-> > > +         CLK_CON_MUX_MUX_CLKCMU_G3AA_G3AA, 0, 2),
-> >
-> > I think that need to change the mux name and mux parent name
-> > because other mux name use the twice word according to the register nam=
-e
-> > even if use the same work such as 'mout_cmu_g2d_g2d', 'mout_cmu_mcsc_mc=
-sc' and 'mout_cmu_mfc_mfc'.
-> > - mout_cmu_g3aa -> mout_cmu_g3aa_g3aa
-> > - mout_cmu_g3aa_p -> mount_cmu_g3aa_g3aa_p
->
-> Will fix in v4
->
+nit: qemu,mbv or something as 'qemu' is the vendor.
 
-That consistent name duplication, while not causing any conflicts when
-being removed, looks suspicious to me. That's probably some internal
-scheme which doesn't make much sense for us and doesn't bring any
-value, in terms of clock drivers. Maybe it'll be better to instead get
-rid of such duplication throughout the driver, at least for clock name
-strings? I mention this, because that's what I did in clk-exynos850.
-With the only exception being the main domain clocks, which basically
-enables/disables the whole unit internally, e.g.
+> 
+> > 
+> > I think customers should be adding their compatible string in front of generic one.
+> 
+> To what? To evaluation board? Why?
+> 
+> > 
+> > Years ago I have done the same thing with Microblaze where compatible is defined 
+> > as xlnx,microblaze only. 
+> 
+> Again, what is the use of such binding?
+> 
+> > When customer take this soft core, put IPs around and 
+> > create a product they should extend it to be for example like this.
+> > "xyz,my-product-1.0", "xlnx,microblaze";
+> 
+> So there is a product, not evaluation board.
+> 
+> > 
+> > And over all of years I have never seen any single customer to try to push dt 
+> > description for any Microblaze based product.
 
-    GATE(CLK_GOUT_G3D_CMU_G3D_PCLK, "gout_g3d_cmu_g3d_pclk", ...
+I think this FPGA stuff is all a bit special. I would ignore the 
+customer product aspect because as Michal says here, we'll never see it. 
+For upstream, just define something for what you are testing upstream 
+with. 
 
-which "G3D domain gate clock that enables/disables G3D", or something
-like that. But clk-exynos850 doesn't have any duplicating bits like
-"cmu_cmu" or "g3d_g3d". And the reason why I did that is I wanted
-those clock names appear short and nice in device tree, as there were
-no benefits in those duplicating bits.
-
-> >
-> > (snip)
-> >
-> > > +     /* CSIS */
-> > > +     GATE(CLK_GOUT_CSIS, "gout_cmu_csis_bus", "mout_cmu_csis_bus",
-> > > +          CLK_CON_GAT_GATE_CLKCMU_CSIS_BUS, 21, 0, 0),
-> > > +     /* PDP */
-> > > +     GATE(CLK_GOUT_PDP_BUS, "gout_cmu_pdp_bus", "mout_cmu_pdp_bus",
-> > > +          CLK_CON_GAT_GATE_CLKCMU_PDP_BUS, 21, 0, 0),
-> > > +
-> > > +     GATE(CLK_GOUT_PDP_VRA, "gout_cmu_pdp_vra", "mout_cmu_pdp_vra",
-> > > +          CLK_CON_GAT_GATE_CLKCMU_PDP_BUS, 21, 0, 0),
-> > > +
-> > > +     /* IPP */
-> > > +     GATE(CLK_GOUT_IPP_BUS, "gout_cmu_ipp_bus", "mout_cmu_ipp_bus",
-> > > +          CLK_CON_GAT_GATE_CLKCMU_IPP_BUS, 21, 0, 0),
-> > > +     /* G3AA */
-> > > +     GATE(CLK_GOUT_G3AA, "gout_cmu_g3aa", "mout_cmu_g3aa",
-> > > +          CLK_CON_MUX_MUX_CLKCMU_G3AA_G3AA, 21, 0, 0),
-> >
-> > ditto.
-> > gout_cmu_g3aa -> gout_cmu_g3aa_g3aa
-> > mout_cmu_g3aa -> mout_cmu_g3aa_g3aa
->
-
-Ditto.
-
-> Will fix in V4
->
-> regards,
->
-> Peter.
+Rob
 
