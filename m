@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96477E51D5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 09:20:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD887E51E6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 09:23:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47D921F21C4B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 08:20:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9B052813D4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 08:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FE6D53B;
-	Wed,  8 Nov 2023 08:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AFFDDA9;
+	Wed,  8 Nov 2023 08:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CXv2WDUo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NyxWF19D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119A9D52F
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 08:20:34 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2381DD40
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 00:20:33 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso55975465e9.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 00:20:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19DADDA2
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 08:23:19 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB98410DA
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 00:23:18 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9d2d8343dc4so997894866b.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 00:23:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699431631; x=1700036431; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699431797; x=1700036597; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bnhlHTwiokHhmctr17r56Ro8xCuYEkb6KBSQHzT8NCQ=;
-        b=CXv2WDUodNvdiKkfxhhKvEhZEvx/AAZTpt96POdGdrtM2acUQ+/lCS9c++bSHs3j1C
-         oFporpoWuV1vQ9Z0rCd5nixYJTpnsmOrP397eTHNUKCpUUWymddrbuqfy5BtW/91aRxr
-         ntsqFJNQQ5AtJXY+jYtn/cfLUFOg2KlUYepo8NK2RkVje7dnuoMXSXDPqBwtyRQBipN8
-         Fhtl3s60UDLQC0EZy8y76hWcRFsKa0mAJMGEd8TmhxQftYCRQX2xMvqK6Aanludm4/2D
-         hvTQ/K0UPqdD12SHs3mX699bHC0tDcKWaZvYrLrWNxaALQ+zahoSAm9AzDBmbVxurdmg
-         3qYA==
+        bh=nBjF3QN4NW+kJO0QDov6tV4WhsDG0WNZQqs4Q9mGR9s=;
+        b=NyxWF19DieW76Vmj5vMQzSrwZIYwCR3Hkqu2KbP1HrR3Uhs6JxJfUJJdSdNtEhzpUJ
+         K2ZqPGh0pNgFu2FfvZx+VKm/MvtRvmMlJOYVqvR249LDRmCzpGdcOwZaFYWxlvHvs9IB
+         sN4epeawmXL7V1BPvmZJO12lycWAHwQHLbJWrLO2k5+DAd1xZ/zDz6uFcfwZT4Mkt/Es
+         LB5jYJVpgpjXPc8+pA7gB4oGhUCqIsmxycw9ugsuxbBiFtWWCnu6NKIqJItpHWAeRCyU
+         R0Z43DKcaKZ/bp8f+lrCJEFVSZvnOIUmNsE4kdwe5VAmAKL8EXsOWMQ+E8LB9Mwyg3cB
+         TYSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699431631; x=1700036431;
+        d=1e100.net; s=20230601; t=1699431797; x=1700036597;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bnhlHTwiokHhmctr17r56Ro8xCuYEkb6KBSQHzT8NCQ=;
-        b=DuqS8+Gf109VwcituW1oORErBPHrC7/tJWlUawkvF9JBFwuibl8TCQJ3wo+/9RCOC4
-         eUe5buFiQ3oTYKybRp7VEWa8+136cw0TkFMnKk+XP5ZlsmXZrlG4bGuGhzX5hdJdO+xL
-         dpjStfGq6TrOR713h998cW+pAeGS3gkA0W5BNlx7V9CrwNFq60DjeWJDoDn2GxQGTm+J
-         MVLKcqwQMm63gz6B94fOWYN1UeRzMQClxnyrGDvCVIPpnkMUtE30ETcQ1lqTH4VgTK3I
-         0U5mPSpt8MK0tccld3e2VIZp0LIha1hE6+wmZVN8By3teZ46b18cN2RfflJtYFq7sfQ6
-         lMpQ==
-X-Gm-Message-State: AOJu0Ywxr0PAH20QsPbt514hkZW1PZ7ggke3XxAyhgD2xP6GO+kf620a
-	qXGkCUOyJwM9WBoqvaT5C63r3Q==
-X-Google-Smtp-Source: AGHT+IGdYI3YNDkHChjjpO/jsIFJQfwCYioERT64zHIkqUSPHOu6MXeIzlKufukgH3/HWJBCMrvD/Q==
-X-Received: by 2002:a05:600c:3b8b:b0:409:5bd2:aa03 with SMTP id n11-20020a05600c3b8b00b004095bd2aa03mr1010197wms.9.1699431631507;
-        Wed, 08 Nov 2023 00:20:31 -0800 (PST)
+        bh=nBjF3QN4NW+kJO0QDov6tV4WhsDG0WNZQqs4Q9mGR9s=;
+        b=Y5n6geaduyOnOgn0If1Dy6gSDxQ/AvsJXXdHbXv7uEFEtCEhbkz44o6onM/fiMKElM
+         CbQy7HpXtdpLBHTSAiiiVLEyVXKRu1PXD8SZPn4pALCsYFR1JC57Yvj9ZEflQekdeow/
+         NmYr+SKRGHxMm5riWHZMKuP8fKHHLOnH3Fwq1inevPaWQDuPKs+QhGGxddeFJF9vzuUL
+         SEopRQ+xuoQ8eVKtpvkAUtpLKFEG7Q+hZ1TUagK8rzvIYUXQtWwwI9C5p1uwdICLO5JG
+         YD0rZaiHo2RAyYiGEfHK6rxH1z9L+m0JQF4DUr9UHp4I5OjX1CRAWnH/XgEYBrElC4Bf
+         gU0Q==
+X-Gm-Message-State: AOJu0Ywwi7VaV14+RIxXVWXagcrajU7vVQS6RpGPTHlvlUjbIKBP4Mda
+	Txhqt6lAxUT4xNzayKlMpi9hGg==
+X-Google-Smtp-Source: AGHT+IG1slbMQdc3iD4IplZd1GXWm4ZNIZx6J+HwA5F+hJhHWbb4OszY7uOgSqB1iMw4isTGb/PTQQ==
+X-Received: by 2002:a17:906:ee81:b0:9c7:5db4:c943 with SMTP id wt1-20020a170906ee8100b009c75db4c943mr780034ejb.40.1699431797248;
+        Wed, 08 Nov 2023 00:23:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id x17-20020a05600c2d1100b004077219aed5sm17906388wmf.6.2023.11.08.00.20.30
+        by smtp.gmail.com with ESMTPSA id j24-20020a170906255800b009932337747esm656436ejb.86.2023.11.08.00.23.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Nov 2023 00:20:31 -0800 (PST)
-Message-ID: <e63fbf69-fe21-45cc-ae46-7b95dae9151e@linaro.org>
-Date: Wed, 8 Nov 2023 09:20:29 +0100
+        Wed, 08 Nov 2023 00:23:16 -0800 (PST)
+Message-ID: <1f62ab04-1679-44b1-b95e-e3954afbfa88@linaro.org>
+Date: Wed, 8 Nov 2023 09:23:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +67,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add mps mp3326 LED
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add asair
 Content-Language: en-US
-To: Yuxi Wang <wyx137120466@gmail.com>, pavel@ucw.cz, lee@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- Yuxi.Wang@monolithicpower.com
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231108032921.3134115-1-wyx137120466@gmail.com>
- <20231108032921.3134115-2-wyx137120466@gmail.com>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231107173100.62715-1-anshulusr@gmail.com>
+ <87762a47-9caf-435a-9b73-397384660b11@linaro.org>
+ <f66cab34-266d-4e9f-b53f-26a2948f863f@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,245 +124,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231108032921.3134115-2-wyx137120466@gmail.com>
+In-Reply-To: <f66cab34-266d-4e9f-b53f-26a2948f863f@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/11/2023 04:29, Yuxi Wang wrote:
-> Document mps mp3326 LED driver devicetree bindings.
+On 08/11/2023 01:32, Anshul Dalal wrote:
+> On 11/7/23 23:16, Krzysztof Kozlowski wrote:
+>> On 07/11/2023 18:30, Anshul Dalal wrote:
+>>> Aosong Electronic Co., LTD. is a supplier for MEMS sensors such as AHT20
+>>> temperature and humidity sensor under the name Asair
+>>
+>> The name of the company is Aosong Electronic or Asair? What does Asair
+>> stands for? Sensors name? Then it is not a vendor prefix.
+>>
 > 
-> Signed-off-by: Yuxi Wang <wyx137120466@gmail.com>
-> ---
->  .../devicetree/bindings/leds/leds-mp3326.yaml | 184 ++++++++++++++++++
->  1 file changed, 184 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-mp3326.yaml
+> Asair is the brand name under which Aosong Electronics sells their
+> products. I thought Asair would be the better choice since
+> all their products use that as the manufacturer name instead of Aosong
+> as well as all the retail suppliers of their sensors.
 
-Except that this was not tested :(, few more comments.
-
-Filename like compatible.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-mp3326.yaml b/Documentation/devicetree/bindings/leds/leds-mp3326.yaml
-> new file mode 100644
-> index 000000000000..899cf568f647
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-mp3326.yaml
-> @@ -0,0 +1,184 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mps,mp3326.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MPS MP3326 RGB/White LED Driver
-> +
-> +maintainers:
-> +  - Yuxi Wang <wyx137120466@gmail.com>
-> +
-> +description: |
-> +  The MP3326 is a RGB/White LED driver with I2C interface.
-> +
-> +  For more product information please see the link below:
-> +  https://www.monolithicpower.com/en/products/mp3326.html
-> +
-> +properties:
-> +  compatible:
-> +    - const: mps,mp3326
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  mps,led-protect:
-> +    description: |
-> +      LED short protection threshold.
-
-threshold? So in some units? What does it mean? What do the values mean?
-
-> +    enum: [0, 1, 2, 3]
-> +
-> +  multi-led:
-> +    type: object
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +      "#size-cells":
-> +        const: 0
-> +
-> +      color:
-> +        description: RGB module
-> +        const: LED_COLOR_ID_RGB
-> +
-> +      led_r:
-
-Nope. First, no underscores in names. Second, please open existing
-bindings and look how it is done there.
-
-> +        type: object
-> +
-> +        properties:
-> +          "#address-cells":
-> +            const: 1
-> +          "#size-cells":
-> +            const: 0
-
-Why do you have the,?
-
-> +          reg:
-> +            description: Index of the LED.
-> +            minimum: 1
-> +            maximum: 16
-
-Please format it properly. You miss blank lines between each property
-description.
-
-> +          color:
-> +            description: Red.
-> +            const: LED_COLOR_ID_RED
-> +          required:
-> +            - reg
-> +            - color
-> +
-> +      led_g:
-> +        type: object
-> +
-> +        properties:
-> +          "#address-cells":
-> +            const: 1
-> +          "#size-cells":
-> +            const: 0
-> +        reg:
-> +          description: Index of the LED.
-> +          minimum: 1
-> +          maximum: 16
-> +        color:
-> +          description: Green.
-> +          const: LED_COLOR_ID_GREEN
-> +        required:
-> +          - reg
-> +          - color
-> +
-> +      led_b:
-> +        type: object
-> +
-> +        properties:
-> +          "#address-cells":
-> +            const: 1
-> +          "#size-cells":
-> +            const: 0
-> +        reg:
-> +          description: Index of the LED.
-> +          minimum: 1
-> +          maximum: 16
-> +        color:
-> +          description: Blue.
-> +          const: LED_COLOR_ID_BLUE
-> +        required:
-> +          - reg
-> +          - color
-> +
-> +  patternProperties:
-> +    "^led@[0-3]$":
-> +      type: object
-> +
-> +      properties:
-> +        reg:
-> +          description: Index of the LED.
-> +          minimum: 1
-> +          maximum: 16
-> +
-> +        required:
-> +          - reg
-> +          - color
-
-Missing required, additionalProperties.
-
-Open existing binding and use it as example.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mp3326@30 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            compatible = "mps,mp3326";
-> +            reg = <0x30>;
-> +            led-protect =<3>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            multi-led {
-> +              color = <LED_COLOR_ID_RGB>;
-> +              #address-cells = <1>;
-> +              #size-cells = <0>;
-> +
-> +              rgb_r@1 {
-> +                  #address-cells = <1>;
-> +                  #size-cells = <0>;
-> +                  reg  = <1>;
-> +                  color = <LED_COLOR_ID_RED>;
-> +              };
-> +              rgb_g@2 {
-> +                  #address-cells = <1>;
-> +                  #size-cells = <0>;
-> +                  reg = <2>;
-> +                  color = <LED_COLOR_ID_GREEN>;
-> +              };
-> +              rgb_b@3 {
-> +                  #address-cells = <1>;
-> +                  #size-cells = <0>;
-> +                  reg = <3>;
-> +                  color = <LED_COLOR_ID_BLUE>;
-> +              };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mp3326@30 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            compatible = "mps,mp3326";
-> +            reg = <0x30>;
-> +            led-protect =<3>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            led0@0 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg= <5>;
-> +                color = <LED_COLOR_ID_WHITE>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
+What if Aosong sells new product, e.g. power supply, under name Aosong.
+Would you create new prefix? One vendor should have one prefix, so in
+that case all other products not sold under Asair should be with "asair".
 
 Best regards,
 Krzysztof
