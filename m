@@ -1,131 +1,96 @@
-Return-Path: <devicetree+bounces-14669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7497E5EA2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 550CE7E5EE0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:53:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3953E1C20BEC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:29:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 727521C20AC7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:53:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26843715A;
-	Wed,  8 Nov 2023 19:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9C5199B0;
+	Wed,  8 Nov 2023 19:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gCZrvwAH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IEouo/RJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C748321B4
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 19:29:52 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B892591;
-	Wed,  8 Nov 2023 11:29:51 -0800 (PST)
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 6FF6066076A4;
-	Wed,  8 Nov 2023 19:29:50 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1699471790;
-	bh=5EEmjqlfCXr8f+nuvWUkqpYUqLb0BgV0iKNe92KcenM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=gCZrvwAHe2TWO1Wo0jrUc/A2yRzfk3/yQekgz37lh4W33cS+Z8pyvKZE+I0DgW+qw
-	 SPSRKV12dyF8KpweC/+/Z1NMlc4sizlTBsDp5LNlhdzzkGGUsKinbZjP0OBanO4cSi
-	 UWUp00EdVpvfuVRnETm5bP9i+ZVX1HyY7oi6TWdytPzedss0vxYrkhJTFNZcDrIrWM
-	 bEh20O2cNrWjY7u2IOmHAtjAmS6+YCwj8TgK9igVNoPyeJfNeuzUOuY7Y7FRmZx/iZ
-	 L1ylJBm1QB0GyZLZPf4Xfabboyo3oE9wf2GI2bUl/ykicufXncFeckeFp0VuuZ/ER1
-	 ybWRNxRgYEDYg==
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-Date: Wed, 08 Nov 2023 20:29:27 +0100
-Subject: [PATCH v14 8/8] arm64: dts: ti: k3-j721s2-main: add wave5 video
- encoder/decoder node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F193715C
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 19:53:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC4D9C433CB;
+	Wed,  8 Nov 2023 19:53:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699473222;
+	bh=uT2KLmrmUhN94cnP4FFn+d3WsX8llgsbYO6eI4at6Hk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=IEouo/RJYW1+/AfIoWmlqz43ruAZ3V9b/TyWvEIUmLwSQrEhZoNXKvafzNzREdsZg
+	 n7MQKQRbWowrebqRKZ3gHECViOtfm03WeJ72gLuq9772xk7Ac4jZP5bFKCzyk+tIPV
+	 r0LpGgQoI8fwdQtWqAiyZt9UIALB6uZ2hh08qC1eEVwQdPEumQ7m6p+jRE9IAWx2i9
+	 g7QHIVAuU/ESOMvcet+rN8FslsKXqCMiWMX3Y41Uu7q6ff+wkenYTcrLMXVi3Tv3qB
+	 YDvvm1aI3zRc7pVuSTNZWIs+CZdfJ6WoYDi/YKltokBwtWPHmfSwYi6Xf1FzrppLwA
+	 u3imYGV90Ya9Q==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50930f126b1so52906e87.3;
+        Wed, 08 Nov 2023 11:53:42 -0800 (PST)
+X-Gm-Message-State: AOJu0YxqGuyCeo50H5Xib8zpVNSEyqcNPfLFvFaEfhdhBf1z3sBiSyRF
+	Ej9frBm2H8BOpArgn+iivRIcQuNFebGy65IJjw==
+X-Google-Smtp-Source: AGHT+IEfaijtVt5S6gSGT0Feyn+VLPUayVxp9jPnXP+x+3OxSEhYIiLXr3Gogz7S/reOMPV0b65sB891YA/tpnig+M0=
+X-Received: by 2002:a19:691c:0:b0:4fb:7559:aea3 with SMTP id
+ e28-20020a19691c000000b004fb7559aea3mr1887853lfc.39.1699473220973; Wed, 08
+ Nov 2023 11:53:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231108-wave5-v14-rebased-v14-8-0b4af1258656@collabora.com>
-References: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com>
-In-Reply-To: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- NXP Linux Team <linux-imx@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Conor Dooley <conor+dt@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>,
- Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jackson Lee <jackson.lee@chipsnmedia.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>
-Cc: Ivan Bornyakov <brnkv.i1@gmail.com>,
- Deborah Brouwer <deborah.brouwer@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>, devicetree@vger.kernel.org,
- Robert Beckett <bob.beckett@collabora.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-X-Mailer: b4 0.11.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699471762; l=1390;
- i=sebastian.fricke@collabora.com; s=linux-media; h=from:subject:message-id;
- bh=ZxxGJD9eMM+hOducG8IQEAUt1ctZIrZFPl7ACJTXwpI=;
- b=ULMruYYepXYnx5ZGL4Yi0xYANNcVDQIfUYv/ik3kVlgeqK+GSY0iMkrim4bQ7fwkp96nVNkrAIuV
- +0w4Pj09BzCLigutmVsX7EYmHYm2lxWd/1imKbSYl0IMU+WucExb
-X-Developer-Key: i=sebastian.fricke@collabora.com; a=ed25519;
- pk=pYXedPwrTtErcj7ERYeo/IpTrpe4QbJuEzSB52fslBg=
+References: <20231108155647.1812835-1-jiriv@axis.com> <20231108155647.1812835-4-jiriv@axis.com>
+In-Reply-To: <20231108155647.1812835-4-jiriv@axis.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 8 Nov 2023 13:53:28 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL3veRuuDqWnZ+eUTP5Mvz5WffYktrBh6HqyARRThzmYQ@mail.gmail.com>
+Message-ID: <CAL_JsqL3veRuuDqWnZ+eUTP5Mvz5WffYktrBh6HqyARRThzmYQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] Input: cap11xx - remove unnecessary IRQ parsing
+To: Jiri Valek - 2N <jiriv@axis.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Darren Etheridge <detheridge@ti.com>
+On Wed, Nov 8, 2023 at 9:57=E2=80=AFAM Jiri Valek - 2N <jiriv@axis.com> wro=
+te:
+>
+> Separate IRQ parsing is not necessary, I2C core do the job.
+>
+> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
+> ---
+>  drivers/input/keyboard/cap11xx.c | 10 ++--------
+>  1 file changed, 2 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/ca=
+p11xx.c
+> index 4711ea985627..ccca9936ef25 100644
+> --- a/drivers/input/keyboard/cap11xx.c
+> +++ b/drivers/input/keyboard/cap11xx.c
+> @@ -518,7 +518,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_c=
+lient)
+>         struct device *dev =3D &i2c_client->dev;
+>         struct cap11xx_priv *priv;
+>         const struct cap11xx_hw_model *cap;
+> -       int i, error, irq;
+> +       int i, error;
+>         unsigned int val, rev;
+>
+>         if (id->driver_data >=3D ARRAY_SIZE(cap11xx_devices)) {
+> @@ -624,13 +624,7 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_=
+client)
+>         if (error)
+>                 return error;
+>
+> -       irq =3D irq_of_parse_and_map(dev->of_node, 0);
 
-Add the Chips and Media wave521cl video decoder/encoder node on J721S2.
-
-This functional block also requires an SRAM buffer as a bandwidth saving
-temporary store so we need to add a carve out of 126K for this as
-specified in the documentation.
-
-Signed-off-by: Darren Etheridge <detheridge@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index 084f8f5b6699..70ed17c4c81b 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -28,6 +28,10 @@ atf-sram@0 {
- 			reg = <0x0 0x20000>;
- 		};
- 
-+		vpu_sram: vpu-sram@20000 {
-+			reg = <0x20000 0x1f800>;
-+		};
-+
- 		tifs-sram@1f0000 {
- 			reg = <0x1f0000 0x10000>;
- 		};
-@@ -716,6 +720,16 @@ main_i2c6: i2c@2060000 {
- 		status = "disabled";
- 	};
- 
-+	vpu: video-codec@4210000 {
-+		compatible = "ti,k3-j721s2-wave521c", "cnm,wave521c";
-+		reg = <0x00 0x4210000 0x00 0x10000>;
-+		interrupts = <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&k3_clks 179 2>;
-+		clock-names = "vcodec";
-+		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
-+		sram = <&vpu_sram>;
-+	};
-+
- 	main_sdhci0: mmc@4f80000 {
- 		compatible = "ti,j721e-sdhci-8bit";
- 		reg = <0x00 0x04f80000 0x00 0x1000>,
-
--- 
-2.25.1
+Probably can drop the include of of_irq.h as well.
 
