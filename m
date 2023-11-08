@@ -1,87 +1,351 @@
-Return-Path: <devicetree+bounces-14636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 173747E5C52
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:22:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99FC7E5C57
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:25:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C63222813FE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:22:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5042C2813FE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 17:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBCE0321B7;
-	Wed,  8 Nov 2023 17:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784F6328A7;
+	Wed,  8 Nov 2023 17:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="uSu07+Ph"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C21931A9E
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 17:22:47 +0000 (UTC)
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 62268E8;
-	Wed,  8 Nov 2023 09:22:46 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="6.03,286,1694703600"; 
-   d="scan'208";a="186045096"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 09 Nov 2023 02:22:45 +0900
-Received: from localhost.localdomain (unknown [10.226.92.247])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4B0E1400294E;
-	Thu,  9 Nov 2023 02:22:42 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v4 2/2] arm64: dts: renesas: rzg2lc-smarc-som: Enable 4-bit tx support
-Date: Wed,  8 Nov 2023 17:22:32 +0000
-Message-Id: <20231108172232.259301-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231108172232.259301-1-biju.das.jz@bp.renesas.com>
-References: <20231108172232.259301-1-biju.das.jz@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A631D321B9
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 17:25:08 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDAE4E8
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 09:25:07 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c5b7764016so96229561fa.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 09:25:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1699464306; x=1700069106; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TgXbt/tSz6pXr3eMyUOOwY6ppW+qNuHG/V68FJAtKZ8=;
+        b=uSu07+PhM+8qNPnikhX09BA2bWurar5ZPn90GXRzaLxARuxNjBglkFVEHBgN1MloiK
+         226wECTjzUdwS9pjMomXUFmTiqfLOEhM6t8pt2Cer/u7fjK/ow1DrL88mvzMK0VofP/b
+         0AyyiJMPlhfqyiRFeMQvrvmJjGiFXE3fjvqXRB72X0U2NDV5bC1r+oSi9jYpkiY30Mb1
+         ikG2nU5YqkbMOMM/n0YnFz5Q6diSmPTbsg0wyfG3uq6X0x0zDqXlmOqXzJ4qW1CtCELJ
+         omcGl6pyiZXsBX1uX3LuAZ4kGhNXfLLSgn3BDhOSxN7Fdvhd046jT2HoTz5jxHbKlkmi
+         xrOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699464306; x=1700069106;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TgXbt/tSz6pXr3eMyUOOwY6ppW+qNuHG/V68FJAtKZ8=;
+        b=BeftwcZYdEP04AJiYkk2weGSkCzTuMWBF/jrd0d++602DfWXf6fxJLXagpXE44zZyY
+         bWUxg8fTnoAXzBWLkXIzGVdk7H/5pZAmlvZR7D+ISGNFM3UMPhAeBSKAosukxOGcDUlR
+         oLp9tUvxLVK66S0AiAvo4WFSgIT7Ia9Wy2eIw1uhjxnT7bQoCTOw1MeBc7sA9d56DwoU
+         KzTRfieZrotAfi6GyAhtSyqjNQggIOYflpKBm/YeemuChs6nCUJS73Qsv2Fdfh5pibPk
+         h31R3lIB5GbfSfLsKfso/usoMevek0lSq0a9jNqHFYPkqPDpAeBqPV4nl6i6vKSYQhDN
+         9v8w==
+X-Gm-Message-State: AOJu0YziOM8NUWTVaBnIK88GA1jgkcdkGSpBqPxstmM412HYyHrmpoFW
+	4R4RZ0Q65iPtPWFInnJtMHHVok7hi9rULEa5U9GSKg==
+X-Google-Smtp-Source: AGHT+IGm43VkRXWESCDlywlhjFOk4zqNOdsRleac97ixErFCfl7hVxzvVKSYewTEgdKSLkWI1Lk3/sGzoUp7lvJShj8=
+X-Received: by 2002:a2e:6e0c:0:b0:2c6:ebfb:dd28 with SMTP id
+ j12-20020a2e6e0c000000b002c6ebfbdd28mr1918300ljc.0.1699464305900; Wed, 08 Nov
+ 2023 09:25:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231107105556.517187-1-cleger@rivosinc.com> <20231107105556.517187-4-cleger@rivosinc.com>
+In-Reply-To: <20231107105556.517187-4-cleger@rivosinc.com>
+From: Evan Green <evan@rivosinc.com>
+Date: Wed, 8 Nov 2023 09:24:29 -0800
+Message-ID: <CALs-HssQFQWDi=MM0gVaqc7GJg9gpp6oKc4+=G7mV12CFNQs1A@mail.gmail.com>
+Subject: Re: [PATCH v3 03/20] riscv: add ISA extension parsing for scalar crypto
+To: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Palmer Dabbelt <palmer@rivosinc.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jonathan Corbet <corbet@lwn.net>, Andrew Jones <ajones@ventanamicro.com>, 
+	Conor Dooley <conor@kernel.org>, Samuel Ortiz <sameo@rivosinc.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable 4-bit tx support for sbc node.
+On Tue, Nov 7, 2023 at 2:56=E2=80=AFAM Cl=C3=A9ment L=C3=A9ger <cleger@rivo=
+sinc.com> wrote:
+>
+> From: Evan Green <evan@rivosinc.com>
+>
+> The Scalar Crypto specification defines Zk as a shorthand for the
+> Zkn, Zkr and Zkt extensions. The same follows for both Zkn, Zks and Zbk,
+> which are all shorthands for various other extensions. The detailed
+> breakdown can be found in their dt-binding entries.
+>
+> Since Zkn also implies the Zbkb, Zbkc and Zbkx extensions, simply passing
+> "zk" through a DT should enable all of Zbkb, Zbkc, Zbkx, Zkn, Zkr and Zkt=
+.
+> For example, setting the "riscv,isa" DT property to "rv64imafdc_zk"
+> should generate the following cpuinfo output:
+> "rv64imafdc_zicntr_zicsr_zifencei_zihpm_zbkb_zbkc_zbkx_zknd_zkne_zknh_zkr=
+_zkt"
+>
+> riscv_isa_ext_data grows a pair of new members, to permit setting the
+> relevant bits for "bundled" extensions, both while parsing the ISA string
+> and the new dedicated extension properties.
+>
+> Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Evan Green <evan@rivosinc.com>
+> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <cleger@rivosinc.com>
+> ---
+>  arch/riscv/include/asm/hwcap.h |  16 ++++-
+>  arch/riscv/kernel/cpufeature.c | 115 ++++++++++++++++++++++++++-------
+>  2 files changed, 107 insertions(+), 24 deletions(-)
+>
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index 6fc51c1b34cf..69cc659cf65e 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -60,8 +60,20 @@
+>  #define RISCV_ISA_EXT_ZIHPM            42
+>  #define RISCV_ISA_EXT_SMSTATEEN                43
+>  #define RISCV_ISA_EXT_ZICOND           44
+> +#define RISCV_ISA_EXT_ZBC              45
+> +#define RISCV_ISA_EXT_ZBKB             46
+> +#define RISCV_ISA_EXT_ZBKC             47
+> +#define RISCV_ISA_EXT_ZBKX             48
+> +#define RISCV_ISA_EXT_ZKND             49
+> +#define RISCV_ISA_EXT_ZKNE             50
+> +#define RISCV_ISA_EXT_ZKNH             51
+> +#define RISCV_ISA_EXT_ZKR              52
+> +#define RISCV_ISA_EXT_ZKSED            53
+> +#define RISCV_ISA_EXT_ZKSH             54
+> +#define RISCV_ISA_EXT_ZKT              55
+>
+>  #define RISCV_ISA_EXT_MAX              64
+> +#define RISCV_ISA_EXT_INVALID          U32_MAX
+>
+>  #ifdef CONFIG_RISCV_M_MODE
+>  #define RISCV_ISA_EXT_SxAIA            RISCV_ISA_EXT_SMAIA
+> @@ -79,6 +91,8 @@ struct riscv_isa_ext_data {
+>         const unsigned int id;
+>         const char *name;
+>         const char *property;
+> +       const unsigned int *subset_ext_ids;
+> +       const unsigned int subset_ext_size;
+>  };
+>
+>  extern const struct riscv_isa_ext_data riscv_isa_ext[];
+> @@ -89,7 +103,7 @@ unsigned long riscv_isa_extension_base(const unsigned =
+long *isa_bitmap);
+>
+>  #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
+>
+> -bool __riscv_isa_extension_available(const unsigned long *isa_bitmap, in=
+t bit);
+> +bool __riscv_isa_extension_available(const unsigned long *isa_bitmap, un=
+signed int bit);
+>  #define riscv_isa_extension_available(isa_bitmap, ext) \
+>         __riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_##ext)
+>
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index e3803822ab5a..0d78791288da 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -68,7 +68,7 @@ EXPORT_SYMBOL_GPL(riscv_isa_extension_base);
+>   *
+>   * NOTE: If isa_bitmap is NULL then Host ISA bitmap will be used.
+>   */
+> -bool __riscv_isa_extension_available(const unsigned long *isa_bitmap, in=
+t bit)
+> +bool __riscv_isa_extension_available(const unsigned long *isa_bitmap, un=
+signed int bit)
+>  {
+>         const unsigned long *bmap =3D (isa_bitmap) ? isa_bitmap : riscv_i=
+sa;
+>
+> @@ -100,17 +100,53 @@ static bool riscv_isa_extension_check(int id)
+>                         return false;
+>                 }
+>                 return true;
+> +       case RISCV_ISA_EXT_INVALID:
+> +               return false;
+>         }
+>
+>         return true;
+>  }
+>
+> -#define __RISCV_ISA_EXT_DATA(_name, _id) {     \
+> -       .name =3D #_name,                         \
+> -       .property =3D #_name,                     \
+> -       .id =3D _id,                              \
+> +#define _RISCV_ISA_EXT_DATA(_name, _id, _subset_exts, _subset_exts_size)=
+ {     \
+> +       .name =3D #_name,                                                =
+         \
+> +       .property =3D #_name,                                            =
+         \
+> +       .id =3D _id,                                                     =
+         \
+> +       .subset_ext_ids =3D _subset_exts,                                =
+         \
+> +       .subset_ext_size =3D _subset_exts_size                           =
+         \
+>  }
+>
+> +#define __RISCV_ISA_EXT_DATA(_name, _id) _RISCV_ISA_EXT_DATA(_name, _id,=
+ NULL, 0)
+> +
+> +/* Used to declare pure "lasso" extension (Zk for instance) */
+> +#define __RISCV_ISA_EXT_BUNDLE(_name, _bundled_exts) \
+> +       _RISCV_ISA_EXT_DATA(_name, RISCV_ISA_EXT_INVALID, _bundled_exts, =
+ARRAY_SIZE(_bundled_exts))
+> +
+> +static const unsigned int riscv_zk_bundled_exts[] =3D {
+> +       RISCV_ISA_EXT_ZBKB,
+> +       RISCV_ISA_EXT_ZBKC,
+> +       RISCV_ISA_EXT_ZBKX,
+> +       RISCV_ISA_EXT_ZKND,
+> +       RISCV_ISA_EXT_ZKNE,
+> +       RISCV_ISA_EXT_ZKR,
+> +       RISCV_ISA_EXT_ZKT,
+> +};
+> +
+> +static const unsigned int riscv_zkn_bundled_exts[] =3D {
+> +       RISCV_ISA_EXT_ZBKB,
+> +       RISCV_ISA_EXT_ZBKC,
+> +       RISCV_ISA_EXT_ZBKX,
+> +       RISCV_ISA_EXT_ZKND,
+> +       RISCV_ISA_EXT_ZKNE,
+> +       RISCV_ISA_EXT_ZKNH,
+> +};
+> +
+> +static const unsigned int riscv_zks_bundled_exts[] =3D {
+> +       RISCV_ISA_EXT_ZBKB,
+> +       RISCV_ISA_EXT_ZBKC,
+> +       RISCV_ISA_EXT_ZKSED,
+> +       RISCV_ISA_EXT_ZKSH
+> +};
+> +
+>  /*
+>   * The canonical order of ISA extension names in the ISA string is defin=
+ed in
+>   * chapter 27 of the unprivileged specification.
+> @@ -174,7 +210,21 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D =
+{
+>         __RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
+>         __RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
+>         __RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+> +       __RISCV_ISA_EXT_DATA(zbc, RISCV_ISA_EXT_ZBC),
+> +       __RISCV_ISA_EXT_DATA(zbkb, RISCV_ISA_EXT_ZBKB),
+> +       __RISCV_ISA_EXT_DATA(zbkc, RISCV_ISA_EXT_ZBKC),
+> +       __RISCV_ISA_EXT_DATA(zbkx, RISCV_ISA_EXT_ZBKX),
+>         __RISCV_ISA_EXT_DATA(zbs, RISCV_ISA_EXT_ZBS),
+> +       __RISCV_ISA_EXT_BUNDLE(zk, riscv_zk_bundled_exts),
+> +       __RISCV_ISA_EXT_BUNDLE(zkn, riscv_zkn_bundled_exts),
+> +       __RISCV_ISA_EXT_DATA(zknd, RISCV_ISA_EXT_ZKND),
+> +       __RISCV_ISA_EXT_DATA(zkne, RISCV_ISA_EXT_ZKNE),
+> +       __RISCV_ISA_EXT_DATA(zknh, RISCV_ISA_EXT_ZKNH),
+> +       __RISCV_ISA_EXT_DATA(zkr, RISCV_ISA_EXT_ZKR),
+> +       __RISCV_ISA_EXT_BUNDLE(zks, riscv_zks_bundled_exts),
+> +       __RISCV_ISA_EXT_DATA(zkt, RISCV_ISA_EXT_ZKT),
+> +       __RISCV_ISA_EXT_DATA(zksed, RISCV_ISA_EXT_ZKSED),
+> +       __RISCV_ISA_EXT_DATA(zksh, RISCV_ISA_EXT_ZKSH),
+>         __RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
+>         __RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
+>         __RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
+> @@ -187,6 +237,27 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D =
+{
+>
+>  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
+>
+> +static void __init match_isa_ext(const struct riscv_isa_ext_data *ext, c=
+onst char *name,
+> +                                const char *name_end, struct riscv_isain=
+fo *isainfo)
+> +{
+> +       if ((name_end - name =3D=3D strlen(ext->name)) &&
+> +            !strncasecmp(name, ext->name, name_end - name)) {
+> +               /*
+> +                * If this is a bundle, enable all the ISA extensions tha=
+t
+> +                * comprise the bundle.
+> +                */
+> +               if (ext->subset_ext_size) {
+> +                       for (int i =3D 0; i < ext->subset_ext_size; i++) =
+{
+> +                               if (riscv_isa_extension_check(ext->subset=
+_ext_ids[i]))
+> +                                       set_bit(ext->subset_ext_ids[i], i=
+sainfo->isa);
+> +                       }
+> +               }
+> +
+> +               if (riscv_isa_extension_check(ext->id))
+> +                       set_bit(ext->id, isainfo->isa);
+> +       }
+> +}
+> +
+>  static void __init riscv_parse_isa_string(unsigned long *this_hwcap, str=
+uct riscv_isainfo *isainfo,
+>                                           unsigned long *isa2hwcap, const=
+ char *isa)
+>  {
+> @@ -318,14 +389,6 @@ static void __init riscv_parse_isa_string(unsigned l=
+ong *this_hwcap, struct risc
+>                 if (*isa =3D=3D '_')
+>                         ++isa;
+>
+> -#define SET_ISA_EXT_MAP(name, bit)                                      =
+       \
+> -               do {                                                     =
+       \
+> -                       if ((ext_end - ext =3D=3D strlen(name)) &&       =
+           \
+> -                            !strncasecmp(ext, name, strlen(name)) &&    =
+       \
+> -                            riscv_isa_extension_check(bit))             =
+       \
+> -                               set_bit(bit, isainfo->isa);              =
+       \
+> -               } while (false)                                          =
+       \
+> -
+>                 if (unlikely(ext_err))
+>                         continue;
+>                 if (!ext_long) {
+> @@ -337,10 +400,8 @@ static void __init riscv_parse_isa_string(unsigned l=
+ong *this_hwcap, struct risc
+>                         }
+>                 } else {
+>                         for (int i =3D 0; i < riscv_isa_ext_count; i++)
+> -                               SET_ISA_EXT_MAP(riscv_isa_ext[i].name,
+> -                                               riscv_isa_ext[i].id);
+> +                               match_isa_ext(&riscv_isa_ext[i], ext, ext=
+_end, isainfo);
+>                 }
+> -#undef SET_ISA_EXT_MAP
+>         }
+>  }
+>
+> @@ -439,18 +500,26 @@ static int __init riscv_fill_hwcap_from_ext_list(un=
+signed long *isa2hwcap)
+>                 }
+>
+>                 for (int i =3D 0; i < riscv_isa_ext_count; i++) {
+> +                       const struct riscv_isa_ext_data ext =3D riscv_isa=
+_ext[i];
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v3->v4:
- * Rebased and tested with latest renesas-devel.
-v2->v3:
- * Added Rb tag from Geert.
-v2:
- * New patch
----
- arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-index 56ff92453976..5e4209d6fb42 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
-@@ -241,6 +241,7 @@ flash@0 {
- 		m25p,fast-read;
- 		spi-max-frequency = <50000000>;
- 		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
- 
- 		partitions {
- 			compatible = "fixed-partitions";
--- 
-2.25.1
-
+Not a biggie, but a pointer would seem more appropriate to me than
+copying the struct into a local.
 
