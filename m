@@ -1,104 +1,140 @@
-Return-Path: <devicetree+bounces-14598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A707E5A8A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:54:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C02347E5AA2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 16:57:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A2B82813EA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:54:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D45BB20D1E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA7E30642;
-	Wed,  8 Nov 2023 15:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41FF30651;
+	Wed,  8 Nov 2023 15:57:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JMmrAxt6"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="Km/EBo3f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCED30640
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:54:06 +0000 (UTC)
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2821BC3;
-	Wed,  8 Nov 2023 07:54:04 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C80EA60008;
-	Wed,  8 Nov 2023 15:53:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699458843;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bYS94S7++WYKx+tHBKHHGfIvXY84QiR+o61nAhem3TE=;
-	b=JMmrAxt6CfsPfRIT849ExEJi2VTTQkFSMaqLfqgUH4rvB5ZfddAYUbwUnjgGxDIq8YaOxl
-	B5Zs58doliOu1V5XAgr5Tw38Z1+5CRVNvd7AZsFJ5YKyTc5v/EX8df+BFjxU/kDeqmhRWV
-	8mifPlDY5iQb3p6b6jxvAmqf0Y87HAK6Iz/dWJ2ogWB2MW6jdZshdyV/tjYtH+CDrseL6c
-	tW0wdNCF061azZnNKVx9kSNfGNTvWf/PXpbdSKGyKItVc1PwwFQztE7OqJlQDOQ8QYNGuv
-	K+J87XKp360j9MWnbE3DsJ5UTmGYXLso7wSAid5sirjABqj0oBrNjYf/fsuuPg==
-Date: Wed, 8 Nov 2023 16:53:59 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Janusz Krzysztofik
- <jmkrzyszt@gmail.com>, Tony Lindgren <tony@atomide.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Ben Dooks
- <ben.dooks@codethink.co.uk>, linux-omap@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org
-Subject: Re: [PATCH 4/6] mtd: rawnand: gpio: Use device properties
-Message-ID: <20231108165359.33dccef0@xps-13>
-In-Reply-To: <20231108-fix-mips-nand-v1-4-5fc5586d04de@linaro.org>
-References: <20231108-fix-mips-nand-v1-0-5fc5586d04de@linaro.org>
-	<20231108-fix-mips-nand-v1-4-5fc5586d04de@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA4E6ABF
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 15:57:09 +0000 (UTC)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2075.outbound.protection.outlook.com [40.107.14.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E361BC3;
+	Wed,  8 Nov 2023 07:57:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JrtChNqOIZcmcgpWRYnZ+13Q0gimyFEkf5Cd9E8Q4z8vyJBFjzJqzYmAVKkhLGzKZOesP4A8BmQw7KTG7d6yNkNjIHfsA9noVPfJRDH1Lc6zk4xHWouT6y4t7OI4WVVD+otV3WH5CU4sP+UZGWKsFx/oGMTZHV0Xoh2Rj6ysrNVbF2lp+KmOxc01Sk/aQZBh1iAQMYDmcqGkSMdt1Ky3j2VNh9NdjdAR58zmCiiA2CfET8Uk/ULJ2i+ferLfPn0nELIjRlk8AqkTtNmfXdDqOUGAnw3cb7C+PRFGJVRCFBHwv3HofkyNrvkRrOZdFfHkuSyspuvWBOPFnlNmDCVHWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5xQe0ZSfxo8hZWt5rpcjHQRYKCgdfUclVsr9eP8/VuU=;
+ b=LLSSe/7BKcNNZsVO3xA7pQmQffyf2oPSJeqgHp1GnXcbA7DVZmZr0VaHfH3bmt3VL4tMjGRWNBAWNe1wsXlC7rmi5grabvP4N6q82/8xAb8q4//oGxI86hviaj2742ZLe5yZEUFxPV2CZNXD8R74vl3WEK0LpdTJRa4RkyeNfzQy4On+HU39uLkEnZRj/FhqbT2Dd9uD7MRKRVdYjRs7TYU0QW+ktqoOdQ2ZP0Wpw63+GlemqLrR/5PKjLoIzQ9DQos1cdhHmCpNUrkO5PZ5/erSbSo7fjzgMX9/n1pVWiTqIPkCftthFwk67J+tBydgHKOl6ujPxpFGTEOmQdqUTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=linaro.org smtp.mailfrom=2n.com; dmarc=fail
+ (p=none sp=none pct=100) action=none header.from=axis.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5xQe0ZSfxo8hZWt5rpcjHQRYKCgdfUclVsr9eP8/VuU=;
+ b=Km/EBo3fIs+q3Z+DCg7KcHqo4mGEiwxP2x4e19At5fm9Kl833r0aqkyVO73iprVcxPtbcD3Jjs20SByct0RLwru2PAxb4OMRCoQziaXqbZ7+Mg1J4mAfroujgNOC+lgYBahDSjomvDYky5296OfOWKYg7ivfAmq2P7Zqy+lWrMw=
+Received: from AS9PR01CA0001.eurprd01.prod.exchangelabs.com
+ (2603:10a6:20b:540::6) by AM9PR02MB6835.eurprd02.prod.outlook.com
+ (2603:10a6:20b:2c4::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.29; Wed, 8 Nov
+ 2023 15:57:06 +0000
+Received: from AM2PEPF0001C714.eurprd05.prod.outlook.com
+ (2603:10a6:20b:540:cafe::8) by AS9PR01CA0001.outlook.office365.com
+ (2603:10a6:20b:540::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.18 via Frontend
+ Transport; Wed, 8 Nov 2023 15:57:06 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
+ smtp.mailfrom=2n.com; dkim=none (message not signed) header.d=none;dmarc=fail
+ action=none header.from=axis.com;
+Received-SPF: Fail (protection.outlook.com: domain of 2n.com does not
+ designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com;
+Received: from mail.axis.com (195.60.68.100) by
+ AM2PEPF0001C714.mail.protection.outlook.com (10.167.16.184) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6977.17 via Frontend Transport; Wed, 8 Nov 2023 15:57:05 +0000
+Received: from lap5cg227217h.axis.com (10.0.5.60) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Wed, 8 Nov
+ 2023 16:57:04 +0100
+From: Jiri Valek - 2N <jiriv@axis.com>
+To: <krzysztof.kozlowski+dt@linaro.org>, <dmitry.torokhov@gmail.com>
+CC: <jiriv@axis.com>, <devicetree@vger.kernel.org>,
+	<linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<robh+dt@kernel.org>, <u.kleine-koenig@pengutronix.de>
+Subject: [PATCH v5 0/3] Input: cap11xx add advanced sensitivity settings
+Date: Wed, 8 Nov 2023 16:56:44 +0100
+Message-ID: <20231108155647.1812835-1-jiriv@axis.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail02w.axis.com (10.20.40.8) To se-mail01w.axis.com
+ (10.20.40.7)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM2PEPF0001C714:EE_|AM9PR02MB6835:EE_
+X-MS-Office365-Filtering-Correlation-Id: b41ccd38-05a8-4f4b-62b4-08dbe0735b08
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	R3i79IkxFN5TXq5jjGcoRlNnOCl0de4kc5aA3VLjaaj8OdzrEOYu3rjBQM44nEj9G2J1HPP+LXyk/gHO4KRJyKz1KUb1K7XGCjPcJej51m0qsu86mUkxLScvvUd3s3QpEdHkIpjofpMg0W8PI9cPwSf/LfPQ5z6PjuLg/cNczlGvdwYWcKT2ObZlhatY//XCjKd+l90jfKSz53+K6NhLM4TylUIMlpAY0SE41NkwoiE0W4fVvx/7en22laRnil7gqQBJYbeSTy9pE+X7HmZuz06cCyuGcZrtFRlJDSpxRfZX3evHJsMzLcLD89Uw4xe1MaIHO78Spa+2N32gs4Unsy1k4zJTpl3i/9eT1GtJM4xWZayvHrhTeg7oTTZ3t6dxQI04KLG4NntwNwT6vdx3u6CoRoalqMPttK8FT0YP/63btZSkqUAPRZ6EjJ3RyRUDdifsK8NWe0lI+ICHPywKXNEwaATfxL1penrXxiE//cVrTFF0O5rBZH2nooor1YYcFSr9hEMa0zT0lPzjIeKrWrpGFU4jU/6AW5y05d8HHeKHUJK7P7KHbVWgxiT8ziixjcLauttq/y1j0YdLTs59JuzRbOLLg/LHoL4FDWqXVSk53+OssdTH9Lm+4GdRpEgX8x1KZx/gqQKHJg98IhZorsGkGpx8WeFLCwQzX9fGjSnXTYeBBxa2+Y/Y1LpraLF1uhREpkLkVOHGTR/Wz7oiB2pYoLCqULatCZBZ3YBZpuzwwgjqNY4PeNj0Z+NinuR8CFivKq+HGGU2dO0ugdIlXQ==
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(396003)(346002)(39860400002)(376002)(230922051799003)(451199024)(82310400011)(64100799003)(186009)(1800799009)(46966006)(36840700001)(40470700004)(40460700003)(40480700001)(2616005)(478600001)(26005)(36860700001)(47076005)(36756003)(16526019)(356005)(82740400003)(83170400001)(83380400001)(81166007)(70206006)(42882007)(426003)(336012)(316002)(7696005)(54906003)(70586007)(1076003)(6666004)(2906002)(5660300002)(4744005)(110136005)(41300700001)(8936002)(8676002)(4326008)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 15:57:05.5881
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b41ccd38-05a8-4f4b-62b4-08dbe0735b08
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM2PEPF0001C714.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR02MB6835
 
-Hi Linus,
+PATCH 1 - add documentation for new options
+PATCH 2 - add support for advanced settings into driver
+PATCH 3 - remove unnecessary IRQ parsing
 
-linus.walleij@linaro.org wrote on Wed, 08 Nov 2023 15:33:52 +0100:
+Changes in v2:
+  - Removed "sensitivity-base-shift" parameter (not HW propertie) in PATCH 2.
+  - Used IRQ from I2C subsystem instead of parsing it again.
+  - Fixed some documentation issues in PATCH 1
+  
+Changes in v3:
+  - Remove incorrectly used "Reviewed-by" tag in PATCH 1 and 2
 
-> The platform data (struct gpio_nand_platdata) isn't really used
-> in any boardfile in the kernel: the only probe path is from
-> device tree.
->=20
-> Convert the driver to not use the platform data header at all
-> and read out the device tree properties using device
-> properties so we don't need to have the driver be exclusively
-> device tree either: ACPI or software nodes work fine if
-> need be. Drop the ifdeffery around CONFIG_OF as a consequence.
->=20
-> The code reads "bank-width" to plat->options flags and passes
-> it directly to the NAND chip struct, so just assign this
-> directly to the chip instead.
->=20
-> The code reads one property "chip-delay" that it stores
-> in pdata->delay and never use, so drop this altogether.
-> If timings should be supported this can probably be done in
-> a more detailed way using the new elaborate timings structs
-> that exist for NAND.
->=20
-> The platform data contains a callback to augment partitions,
-> but since there are no board files using this platform
-> data to define a gpio NAND device, this is never used so
-> the code handling it can be deleted.
+Changes in v4:
+  - Remove unused variable in PATCH 2
 
-Nice cleanup. I'm a bit more reluctant on the bindings side, I'll come
-back to it later, but the driver side looks neat.
+Changes in v5:
+  - Revert IRQ parsing in PATCH 2 and move to separate PATCH 3
+  - Fix 'if' condition for properties in PATCH 1
 
-Thanks,
-Miqu=C3=A8l
+Jiri Valek - 2N (3):
+  dt-bindings: input: microchip,cap11xx: add advanced sensitivity
+    settings
+  Input: cap11xx - add advanced sensitivity settings
+  Input: cap11xx - remove unnecessary IRQ parsing
+
+ .../bindings/input/microchip,cap11xx.yaml     |  76 +++++-
+ drivers/input/keyboard/cap11xx.c              | 248 ++++++++++++++----
+ 2 files changed, 269 insertions(+), 55 deletions(-)
+
+-- 
+2.25.1
+
 
