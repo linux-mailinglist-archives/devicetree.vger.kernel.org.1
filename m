@@ -1,52 +1,58 @@
-Return-Path: <devicetree+bounces-14542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75837E55E3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:02:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7BA47E55E6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A7DD1F217C9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:02:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE0401C20991
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1317816419;
-	Wed,  8 Nov 2023 12:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D828171A7;
+	Wed,  8 Nov 2023 12:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsWY3mQR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2FLrWlB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5ABE46AD;
-	Wed,  8 Nov 2023 12:01:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3C1C433C7;
-	Wed,  8 Nov 2023 12:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D506817;
+	Wed,  8 Nov 2023 12:06:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A35BC433C7;
+	Wed,  8 Nov 2023 12:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699444916;
-	bh=kutHs17/gbiKysQ/W1InFavUEoGmwsEhseHr6fk22qQ=;
+	s=k20201202; t=1699445217;
+	bh=E8ffCvvVSy06+RkLnh3gDcrcEXxVvHjtlU89OGGbBwU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FsWY3mQRJ//puz3e1Jo4bv+2xsysMMdkCggHX8mUQ/8RD88aMWeocjGRnLbTw2sg2
-	 gS7IMEa6Gbl8M62fvq7nZpelfVky5GKL6AIgtYFYjdlp5majhoG8+5q5hSYw+nz4Un
-	 PTX4A0sW0kE0ARqhLbo/jt0KOni6CB5bpEIU6PMeOWLhEIxkzTlkTqZyUHZpcNsdsH
-	 vsq+gFptzmBxathMBXguyFSq8hav8hPEgl9e1rlVOXhjcH0XslAAMYNrrWWzqVbSab
-	 1zl+NxgwQRqxgyH1ghE4CRGwosUgX7Yq+q8631ryj+PFxvAhp8tWeS2CShK2pgTB7L
-	 v2BkLCMphNZ9A==
-Date: Wed, 8 Nov 2023 12:01:51 +0000
+	b=h2FLrWlBUaAsotYQvQXCbzq+GBtEZGHCW66vHWouh/atqF8maj3CV6pi4Jq89NMRe
+	 7w1e9PO3usdQ/dHZPJv8NugSwScFCCLLtBJjBmAGsXwRFG1h3E5XeAxVmu6wMS1OtK
+	 kc5xrJgr60JD5RNa4VWX3f7g77QmGulaW+KBLXFIMe529nSJgm9p50N/Jp1j2HzP/F
+	 4Zy5fSPptinnCqvhNqJzPhDMnx0/XMOWMDqMjIcqNkqwE6ilwb2yU2ngvtZLxwsLu1
+	 4Z2bzp5iMD8ih9oaN12oEwwef4ZOsAnDp/g5Ow3yJHdp2KggL7LmD1XeqN/VGzXZBG
+	 l1HpKeVl9RUNA==
+Date: Wed, 8 Nov 2023 12:06:51 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
-	heiko@sntech.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
-	andy.yan@rock-chips.com
-Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF
- clk id
-Message-ID: <20231108-donation-uncertain-c4d0f560c420@spud>
-References: <20231108061822.4871-1-zhangqing@rock-chips.com>
- <20231108061822.4871-4-zhangqing@rock-chips.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display/msm: qcom,sm8250-mdss: add
+ DisplayPort controller node
+Message-ID: <20231108-shady-fretted-04b62ebc3a9d@spud>
+References: <20231107103600.27424-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,60 +60,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iMx7EvP7YSPnohIE"
+	protocol="application/pgp-signature"; boundary="nKFadshYx5Iq5ePI"
 Content-Disposition: inline
-In-Reply-To: <20231108061822.4871-4-zhangqing@rock-chips.com>
+In-Reply-To: <20231107103600.27424-1-krzysztof.kozlowski@linaro.org>
 
 
---iMx7EvP7YSPnohIE
+--nKFadshYx5Iq5ePI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
-> export PCLK_VO1GRF for DT.
+On Tue, Nov 07, 2023 at 11:36:00AM +0100, Krzysztof Kozlowski wrote:
+> Document the DisplayPort controller node in MDSS binding, already used
+> in DTS:
 >=20
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>   sm8250-xiaomi-elish-boe.dtb: display-subsystem@ae00000: Unevaluated pro=
+perties are not allowed ('displayport-controller@ae90000' was unexpected)
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
 > ---
->  include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../bindings/display/msm/qcom,sm8250-mdss.yaml         | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 >=20
-> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt=
--bindings/clock/rockchip,rk3588-cru.h
-> index 5790b1391201..50ba72980190 100644
-> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
-> @@ -733,8 +733,9 @@
->  #define ACLK_AV1_PRE			718
->  #define PCLK_AV1_PRE			719
->  #define HCLK_SDIO_PRE			720
-> +#define PCLK_VO1GRF			721
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-md=
+ss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.ya=
+ml
+> index 994975909fea..51368cda7b2f 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
+> @@ -52,6 +52,16 @@ patternProperties:
+>        compatible:
+>          const: qcom,sm8250-dpu
 > =20
-
-> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
-> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
-
-This definition is part of the ABI, if it is safe to change it, then it
-is safe to delete it.
-
-> =20
->  /* scmi-clocks indices */
-> =20
+> +  "^displayport-controller@[0-9a-f]+$":
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: qcom,sm8250-dp
+> +          - const: qcom,sm8350-dp
+> +
+>    "^dsi@[0-9a-f]+$":
+>      type: object
+>      additionalProperties: true
 > --=20
-> 2.17.1
->=20
+> 2.34.1
 >=20
 
---iMx7EvP7YSPnohIE
+--nKFadshYx5Iq5ePI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUt4rwAKCRB4tDGHoIJi
-0qX4AQCiaZUvu8Hjo9g0xzPpB6/puP40C/jatJp8HVIooO70JgD+NnBufAYVlNOR
-UzY9jxnud216SsWfIFVq8L7Lq+cjEQA=
-=rTEt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZUt52wAKCRB4tDGHoIJi
+0jNCAP913yxIWogE9QqPm+1GT8ZYPoNmJBQ48DPDYxIIJTtx+QD/bAY8GRpKjJ4K
+z0nP0V083UgpjsG73rOJ4pFJl5Vx6gE=
+=YNNb
 -----END PGP SIGNATURE-----
 
---iMx7EvP7YSPnohIE--
+--nKFadshYx5Iq5ePI--
 
