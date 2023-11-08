@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-14657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EF27E5DB3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:00:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C3D7E5E60
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 20:11:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38D321C20BA4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:00:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24A7B2812B5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A573714E;
-	Wed,  8 Nov 2023 19:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C683136B0C;
+	Wed,  8 Nov 2023 19:11:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10F3358B4
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 19:00:19 +0000 (UTC)
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46BE22112;
-	Wed,  8 Nov 2023 11:00:19 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5842a7fdc61so3638869eaf.3;
-        Wed, 08 Nov 2023 11:00:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C36F36B14
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 19:11:28 +0000 (UTC)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02CB210A;
+	Wed,  8 Nov 2023 11:11:27 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6ce31c4a653so4418730a34.3;
+        Wed, 08 Nov 2023 11:11:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699470018; x=1700074818;
+        d=1e100.net; s=20230601; t=1699470687; x=1700075487;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p45+mKXA0+RLf0VAOhIL47ZOwEm+iVY06oIBhHYqI6I=;
-        b=FmNjAKPev26JaZWfjR9IurRdrLIXWCh24Es6PzVfLxV9kOJhO8pCtKp0QeP0JXg6ku
-         YapcpLdZY3V/lXTI6pNjCXIcYoWLESJHeW4pTE4prOX+0onHry5cdE9BkI20sNzqEw/D
-         zIsdAEZ75WYAmCcTV3pBMVFP3QP6GAud2pIxBm3A/JzmILeehnonq3I8nQDNXcdaMRdm
-         Wat3A7WRaEydcPqpLXTffDRpR7JM2VjgDyvJlJDNZWSF7t/7PyX2SfHOyY7NcF3C5wsl
-         TB9n6g1IrD8oxOmkWBx+COQasB/+cYEaGzhWHaxS8yEd/lkdpC/vuJHiu7zNGJOBD9Da
-         uaDg==
-X-Gm-Message-State: AOJu0YwwX9t6JCBGv7gBfH9UnmeFqCyRUaHtnbzZrCxBDZwLFnjgfXyg
-	z9m0CjXbl7yooNNcO9WB7A==
-X-Google-Smtp-Source: AGHT+IEkYyb1Djykhk9kxaGlJRraar7VoY33K8knI8yAYqllxKdOZYsj5PzVppWGa3zReGgIqhfOrg==
-X-Received: by 2002:a4a:a70c:0:b0:582:99ae:ca4c with SMTP id g12-20020a4aa70c000000b0058299aeca4cmr2672180oom.8.1699470018240;
-        Wed, 08 Nov 2023 11:00:18 -0800 (PST)
+        bh=1u7VYnOagIS9pU6lT0JPQUPsCHt998/w+J9rxTrBSoA=;
+        b=XSR6jNL9ozufKPBv09tppwB9pjHHuH/c3aYJm/Pmvn6B7V6StsjBwqjJfpTrF/Gir7
+         AOrqjOVsSHnNxSkz6jIWhR/opGcQY1aHTpEUPxWnnsylK5v7TTc4gPrbyAYbyLoQi4cw
+         f4WXpxF1+uOMp0xF6ctjxaF5vEBbeBdhOn2q3PQGtzcTv1zyss5ItTy49hoXr9Di6bcd
+         xChZlswVVwEdLHyeuksqfkG4HPG88//2wxs0nqkAImUlNRZkB2vljj4jypL3JM2mWfX8
+         OH9TVOrB3RPzzihY98klFE8SYs6zl3vOfyFawUUtkHhkISbjdfHotMl5X98DkLA5wLEq
+         G3vw==
+X-Gm-Message-State: AOJu0Yxzlt3NX6RkuSi5JKxrd3fIV0KLVVFlprIYT1kwAch4LR1Q8B62
+	+wGJ1BajIZ2mctLaX0rM6A==
+X-Google-Smtp-Source: AGHT+IEQxcoP2w100Rf4cT1thURGIfqiKk7j/H0pCBg1+7YdEio2W+/30kOdWF9bH2ez152xfdG2Sg==
+X-Received: by 2002:a05:6830:1bc6:b0:6c4:c3ac:a9dc with SMTP id v6-20020a0568301bc600b006c4c3aca9dcmr3256504ota.21.1699470687064;
+        Wed, 08 Nov 2023 11:11:27 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z45-20020a4a9870000000b00587b9063e07sm1422833ooi.2.2023.11.08.11.00.17
+        by smtp.gmail.com with ESMTPSA id az5-20020a056830458500b006c4727812fdsm1983578otb.15.2023.11.08.11.11.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 11:00:17 -0800 (PST)
-Received: (nullmailer pid 2754062 invoked by uid 1000);
-	Wed, 08 Nov 2023 19:00:16 -0000
-Date: Wed, 8 Nov 2023 13:00:16 -0600
+        Wed, 08 Nov 2023 11:11:26 -0800 (PST)
+Received: (nullmailer pid 2771930 invoked by uid 1000);
+	Wed, 08 Nov 2023 19:11:25 -0000
+Date: Wed, 8 Nov 2023 13:11:25 -0600
 From: Rob Herring <robh@kernel.org>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com, laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org, hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org, maxime.chevallier@bootlin.com, mchehab@kernel.org, robh+dt@kernel.org, heiko@sntech.de, linux-media@vger.kernel.org, thomas.petazzoni@bootlin.com, conor+dt@kernel.org, alexandre.belloni@bootlin.com
-Subject: Re: [PATCH v8 2/3] media: dt-bindings: media: i2c: Add bindings for
- TW9900
-Message-ID: <169947001607.2754020.4176816227714592571.robh@kernel.org>
-References: <cover.1699449537.git.mehdi.djait@bootlin.com>
- <0af5607f13b95e1312a1e8df516c8f3d6d0b20f0.1699449537.git.mehdi.djait@bootlin.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, Tony Lindgren <tony@atomide.com>, Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Ben Dooks <ben.dooks@codethink.co.uk>, linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, linux-mips@vger.kernel.org, Howard Harte <hharte@magicandroidapps.com>
+Subject: Re: [PATCH 2/6] dt-bindings: mtd: Rewrite gpio-control-nand in schema
+Message-ID: <20231108191125.GA2754195-robh@kernel.org>
+References: <20231108-fix-mips-nand-v1-0-5fc5586d04de@linaro.org>
+ <20231108-fix-mips-nand-v1-2-5fc5586d04de@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,51 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0af5607f13b95e1312a1e8df516c8f3d6d0b20f0.1699449537.git.mehdi.djait@bootlin.com>
+In-Reply-To: <20231108-fix-mips-nand-v1-2-5fc5586d04de@linaro.org>
 
+On Wed, Nov 08, 2023 at 03:33:50PM +0100, Linus Walleij wrote:
+> This creates a schema for GPIO controlled NAND. The txt
+> schema was old and wrong.
+> 
+> Mark the old way of passing GPIOs in a long array as
+> deprecated and encourage per-pin GPIO assignments with
+> the named nnn-gpios phandles.
 
-On Wed, 08 Nov 2023 14:27:13 +0100, Mehdi Djait wrote:
-> The Techwell TW9900 is a video decoder supporting multiple input
-> standards such as PAL and NTSC and has a parallel BT.656 output
-> interface.
-> 
-> It's designed to be low-power, posesses some features such as a
-> programmable comb-filter, and automatic input standard detection
-> 
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> ---
-> V7->V8:
-> - fixed the number of analog input ports: it is just one.
-> - added endpoints of the analog input port
-> - added vdd-supply to the required in the dt-binding documentation
-> 
-> V6->V7:
-> - added powerdown-gpios and input ports
-> - used 4 spaces for example identation
-> 
-> V5->V6:
-> - This commit had a "Reviewed-by: Rob Herring <robh@kernel.org>" Tag but
->   decided not to collect it because the last Iteration was more than 2
->   years ago
-> - removed SECAM from the mentioned standards
-> - changed maintainer
-> 
-> V4->V5:
-> - renamed the file to match the compatible string, and referenced
->   the graph.yaml schema
-> 
-> V3->V4:
-> - add the missing reset-gpios node to the binding
-> 
-> V2->V3:
-> - fix the example not compiling due to a typo in the reset-gpios
->   node.
-> 
->  .../bindings/media/i2c/techwell,tw9900.yaml   | 137 ++++++++++++++++++
->  1 file changed, 137 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/techwell,tw9900.yaml
-> 
+We have 1 user upstream with only a single commit adding it in 2017. 
+This doesn't seem like something that's going to gain new users either. 
+Is it really worth modernizing this binding? 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Rob
 
