@@ -1,166 +1,132 @@
-Return-Path: <devicetree+bounces-14652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B15E47E5D17
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:21:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A0147E5D51
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 19:35:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E30321C20B25
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:21:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D217B20DBC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 18:35:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF0135884;
-	Wed,  8 Nov 2023 18:21:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403B130358;
+	Wed,  8 Nov 2023 18:35:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ag/sekfg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F1332C67;
-	Wed,  8 Nov 2023 18:21:38 +0000 (UTC)
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6404ED4F;
-	Wed,  8 Nov 2023 10:21:38 -0800 (PST)
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6ce2cf67be2so4300335a34.2;
-        Wed, 08 Nov 2023 10:21:38 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC4330341
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 18:35:04 +0000 (UTC)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82AA3210D
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 10:35:03 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4079ed65582so53613865e9.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 10:35:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699468502; x=1700073302; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=n9ZiV2Esj98CTfgH59OBDcgahkXqDMdEC5lhTkmlSa0=;
+        b=Ag/sekfgYdN+QO2qNzC+r6BzqCMo9dzcsxvOu4xJN0ribyHewu9zogJx6FWNSomfI9
+         4Sjlt/qA4mplNZMnvot6/g+6cmnze23j+AP62wX8o67Qahuu0IX9K7PX266zjkQY/wRe
+         hNpOh576uhk6o2F1atbxeeQelw6dBU2ObOSQ9yQGCGBdBys3mjvoiuXA1WEspYXM7dqL
+         8or59NUpDHRURUG6WDvo92ajLicd3w5fF4NJHO6NtHIf4rNDQeB2t6EQLDVDKgiNAp4S
+         f8GgfhkHm4K6E2W6wIdOxZzpJIJC9NgohDiD7zD6auJ87yEubapy07YfOPudCdJ85XuR
+         nD9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699467697; x=1700072497;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z8YDEMLMN/UPwuHPhRNHU6MkX7vnIvjMYf9zFqGmA3g=;
-        b=X2SdbRg0il2O4Perq5BRn9QXzs/ucXLuNAhMbAib+hqb9+OpmK2YQyNjFSTtjen5FO
-         eFEWuHBlgkU5lvQrBW2QsIlh5T9ePLvHD8p4xgj/Lh3ufLEPkIHyb2aoa62MU3PaR4aY
-         Jt/2uzh10mDZDO/zDP90G0eMf5WyYQQrxnVZBt8pUVGPu/3FNDsYINY9bMakuQQozT0w
-         a7wJK/vZ5VaoMaFhpxb+LCxILZvijnWTV/T69MMxiEvEzwoItr3Betl/5TmzMjuA9pO/
-         ku3mNxYAM9I9IfykAzUO/mdF7bSLgHt6PqPud9QCh9r+8OaZ+mpbqG5PLb6nzx5pE3bl
-         FGWw==
-X-Gm-Message-State: AOJu0Yybz8/58MZqyK6SB6p3vwL0vRxD/Teiluh0ilG7G7oSzXew0v6b
-	uaLciGZ5dQourXiZaJ8pfw==
-X-Google-Smtp-Source: AGHT+IH936tksBL7gMvhFH0Cu8Ga+1XdgbOvw2iCgQmNwYAwBNf4BgvoX3nEqEXZcFtRnb72jnyg2w==
-X-Received: by 2002:a9d:4801:0:b0:6d3:194f:f132 with SMTP id c1-20020a9d4801000000b006d3194ff132mr2370150otf.30.1699467697587;
-        Wed, 08 Nov 2023 10:21:37 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dw1-20020a05683033a100b006ce46212341sm1966690otb.54.2023.11.08.10.21.36
+        d=1e100.net; s=20230601; t=1699468502; x=1700073302;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n9ZiV2Esj98CTfgH59OBDcgahkXqDMdEC5lhTkmlSa0=;
+        b=LTg6+HVr0bLpEA3k/ZPNEyV2dHvb7aNA+/3DkNAd6ilyFcUHFTehrVNoTgR3lEw746
+         0PCUtdqAk9GgMvSBnNWZXGPVrhJVj2x18ruAfWAbayQBmZXWwt60Cr5G1TplpdynnoX9
+         vyE3B6j4oEAXlrxeN8sOE7vIMlyJJzzGYoMJIQG+zCbjlqeUZ4Ujcw2xUhPpqRQNB4V3
+         mBdZiDMJ4OKnryrnTyrw05NRAR3G/u/GsBVdR3CSBfLbI8ASA1SQ0Eg9B89uBf6q939I
+         uOU41ek3q8ds35kNEnXaG/rCQoOtsQaf4uJtTBt5sQxXH2KBkib+q6cwjVvWTngRxJ8Z
+         OvPg==
+X-Gm-Message-State: AOJu0YxChCwxUl2GP8vgTT52FI63xlTw6TCN5tZ3wCx2umWFc4VqPnT5
+	HNT4fxRS4JPF72FFvEK+D/t62A==
+X-Google-Smtp-Source: AGHT+IEerzRoblFu8LqWqAyQVzl32Dow78v7sZDoe2sPpmQgBWRRfSrEcftCpyNmsXV1yimnvtHQ6A==
+X-Received: by 2002:a05:600c:190e:b0:405:1c19:b747 with SMTP id j14-20020a05600c190e00b004051c19b747mr2262734wmq.15.1699468501866;
+        Wed, 08 Nov 2023 10:35:01 -0800 (PST)
+Received: from salami.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id g4-20020a05600c310400b004068e09a70bsm20156528wmo.31.2023.11.08.10.34.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 10:21:37 -0800 (PST)
-Received: (nullmailer pid 2703586 invoked by uid 1000);
-	Wed, 08 Nov 2023 18:21:35 -0000
-Date: Wed, 8 Nov 2023 12:21:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: jdelvare@suse.com, linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au, corbet@lwn.net, thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de, naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Subject: Re: [PATCH RESEND v10 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM
- TACH Control
-Message-ID: <20231108182135.GA2698015-robh@kernel.org>
-References: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
- <20231107105025.1480561-3-billy_tsai@aspeedtech.com>
+        Wed, 08 Nov 2023 10:35:00 -0800 (PST)
+Message-ID: <d6664edcccd81edc5caa54e8da43b5c571a3ea76.camel@linaro.org>
+Subject: Re: [PATCH RFC 00/17] Solve iommu probe races around iommu_fwspec
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Zhenhua Huang <quic_zhenhuah@quicinc.com>, 
+ acpica-devel@lists.linuxfoundation.org, Alyssa Rosenzweig
+ <alyssa@rosenzweig.io>,  Albert Ou <aou@eecs.berkeley.edu>,
+ asahi@lists.linux.dev, Lu Baolu <baolu.lu@linux.intel.com>,  Catalin
+ Marinas <catalin.marinas@arm.com>, Dexuan Cui <decui@microsoft.com>,
+ devicetree@vger.kernel.org, David Woodhouse <dwmw2@infradead.org>, Frank
+ Rowand <frowand.list@gmail.com>, Hanjun Guo <guohanjun@huawei.com>, Haiyang
+ Zhang <haiyangz@microsoft.com>, Christoph Hellwig <hch@lst.de>,
+ iommu@lists.linux.dev, Jean-Philippe Brucker <jean-philippe@linaro.org>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>, "K.
+ Y. Srinivasan" <kys@microsoft.com>,  Len Brown <lenb@kernel.org>,
+ linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org, 
+ linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>, Lorenzo
+ Pieralisi <lpieralisi@kernel.org>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Robert Moore
+ <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, Suravee
+ Suthikulpanit <suravee.suthikulpanit@amd.com>, Sven Peter
+ <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>, Thomas
+ Bogendoerfer <tsbogend@alpha.franken.de>,  Krishna Reddy
+ <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>, 
+ virtualization@lists.linux-foundation.org, Wei Liu <wei.liu@kernel.org>,
+ Will Deacon <will@kernel.org>
+Date: Wed, 08 Nov 2023 18:34:58 +0000
+In-Reply-To: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231107105025.1480561-3-billy_tsai@aspeedtech.com>
 
-On Tue, Nov 07, 2023 at 06:50:24PM +0800, Billy Tsai wrote:
-> Document the compatible for aspeed,ast2600-pwm-tach device, which can
-> support up to 16 PWM outputs and 16 fan tach input.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> new file mode 100644
-> index 000000000000..c615fb10705c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2023 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED G6 PWM and Fan Tach controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The ASPEED PWM controller can support up to 16 PWM outputs.
-> +  The ASPEED Fan Tacho controller can support up to 16 fan tach input.
-> +  They are independent hardware blocks, which are different from the
-> +  previous version of the ASPEED chip.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-pwm-tach
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +patternProperties:
-> +  "^fan-[0-9]+$":
-> +    $ref: fan-common.yaml#
-> +    unevaluatedProperties: false
-> +    required:
-> +      - tach-ch
-> +
-> +required:
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - "#pwm-cells"
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +    pwm_tach: pwm-tach-controller@1e610000 {
-> +      compatible = "aspeed,ast2600-pwm-tach";
-> +      reg = <0x1e610000 0x100>;
-> +      clocks = <&syscon ASPEED_CLK_AHB>;
-> +      resets = <&syscon ASPEED_RESET_PWM>;
-> +      #pwm-cells = <3>;
-> +
-> +      fan-0 {
+Hi Jason,
 
-I assume there's a PWM connection here? How do you know which PWM? You 
-said the tach channel is independent, so it is not that.
+On Fri, 2023-11-03 at 13:44 -0300, Jason Gunthorpe wrote:
+> This is a more complete solution that the first attempt here:
+> https://lore.kernel.org/r/1698825902-10685-1-git-send-email-quic_zhenhuah=
+@quicinc.com
+>=20
+> I haven't been able to test this on any HW that touches these paths, so i=
+f
+> some people with HW can help get it in shape it can become non-RFC.
 
-It should not be 0 from 'fan-0' because that's just a meaningless index. 
+Thank you for this series.
 
-You either need 'pwms' here or you can use 'reg' and the reg value is 
-the PWM channel.
+Please note that we're also observing this issue on 6.1.
+I think this series is a good candidate for a back port (slightly complicat=
+ed by
+the fact that various refactors have happened since).
 
-> +        tach-ch = /bits/ 8 <0x0>;
-> +      };
-> +
-> +      fan-1 {
-> +        tach-ch = /bits/ 8 <0x1 0x2>;
-> +      };
-> +    };
-> -- 
-> 2.25.1
-> 
+For me, it's working fine so far on master, and I've also done my own back =
+port
+to 6.1 and am currently testing both. An official back port once finalised
+could be useful, though :-)
+
+
+Cheers,
+Andre'
+
 
