@@ -1,203 +1,176 @@
-Return-Path: <devicetree+bounces-14573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A267E5899
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:22:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677FE7E588F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 15:20:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEC99B20CF5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:22:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97CF71C209E0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB08415AD1;
-	Wed,  8 Nov 2023 14:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4497B15AD1;
+	Wed,  8 Nov 2023 14:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=126.com header.i=@126.com header.b="IqBRb8AG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWV9Xw8N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4F719BA8
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 14:22:32 +0000 (UTC)
-Received: from m1563.mail.126.com (m1563.mail.126.com [220.181.15.63])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 996171FC2;
-	Wed,  8 Nov 2023 06:22:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=ETzSHXEE7w/Yufa7DZyCIIqAzyabzEzJwUezfaNJedA=; b=I
-	qBRb8AGzeW3c4z1jeW6MVFHDUuiYSFcFaDKSRupgN2YmVvuQI5reiBBzHzHBEoPy
-	k3Qen0YPdScP3pKKpYz2veejlcdpqt9L8W/UZfH8BkymcnGlqMAvztSIseIJEgXb
-	WLQNFVGwI9NvfHbtzI1qgqTtx/cUFnoZdxsCWSzr6c=
-Received: from figure1802$126.com ( [183.193.16.145] ) by
- ajax-webmail-wmsvr63 (Coremail) ; Wed, 8 Nov 2023 22:20:09 +0800 (CST)
-X-Originating-IP: [183.193.16.145]
-Date: Wed, 8 Nov 2023 22:20:09 +0800 (CST)
-From: Ben  <figure1802@126.com>
-To: "Anup Patel" <apatel@ventanamicro.com>
-Cc: "Palmer Dabbelt" <palmer@dabbelt.com>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Thomas Gleixner" <tglx@linutronix.de>, 
-	"Rob Herring" <robh+dt@kernel.org>, 
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, 
-	"Frank Rowand" <frowand.list@gmail.com>, 
-	"Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	"Saravana Kannan" <saravanak@google.com>, 
-	"Marc Zyngier" <maz@kernel.org>, "Anup Patel" <anup@brainfault.org>, 
-	linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Bj=C3=B6rn_T=C3=B6pel?= <bjorn@kernel.org>, 
-	"Atish Patra" <atishp@atishpatra.org>, 
-	linux-riscv@lists.infradead.org, 
-	"Andrew Jones" <ajones@ventanamicro.com>
-Subject: Re:Re:[PATCH v11 12/14] irqchip/riscv-aplic: Add support for
- MSI-mode
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
- Copyright (c) 2002-2023 www.mailtech.cn 126com
-In-Reply-To: <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-13-apatel@ventanamicro.com>
- <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
-X-NTES-SC: AL_QuySC/ievEor7yOYZ+kfm08Xhew/XsK1vfkm3I5QN5FwjD3n4xE7X2FoJUnu1MCENR2ViTO8Sz5zwOFVdqtZZr8S8+CyQJdKJrlBrPGvK1p2iw==
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E6B1C2D;
+	Wed,  8 Nov 2023 14:20:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED9BCC43397;
+	Wed,  8 Nov 2023 14:20:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699453252;
+	bh=E82DmwfH2dcxbs9xwMmLiAaOTn5D4Ow/0Cpeotwv8Tc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=rWV9Xw8NQwgrRa5bh7nxobt3EqPIBdZysZTWWrerABqOhIeuc1Jnby1BN2RDe6jSo
+	 wMC3krMIgAV9h8cHBuiFMh3OnoC3PvFNYfXcFr8asqoC8PUIh9NLWF0HfK/5X9PJna
+	 FtNp1qyXtzlxe51KM8v9HXKo949wd8TvzBYHFjWrIpr/fJT718UUvyZZYNHdr9Gz87
+	 lpBiEXfyw04EV1dbr6WISFxIDQcdQfSpYgg7s8OXdUzU7Wl5EHf9NVIujRA8jtvOAS
+	 4hYRkewHrL2b9sIIiuVIjloxGRyoSp0Rqw3Z1EVhordXWA9/lMH6d3wK30okromWFX
+	 DblWljL7w3jaw==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2c594196344so92025811fa.3;
+        Wed, 08 Nov 2023 06:20:51 -0800 (PST)
+X-Gm-Message-State: AOJu0YxNzAwn+kyozMipu4tA12kmdCNAdHxh7r8QxGe5Sh4I3n4PM3Zb
+	qugjZEhxUfrsFar4RObmLehup1eEX7JbHoVBkGQ=
+X-Google-Smtp-Source: AGHT+IF3AlqJpBLUhu1DTarhTz6FDwvlN0RLFjtbhZO/9hXihKmHvPiQC4/ncAP2kR3ROp5UFGC31vCUAe8Gj7r8AZQ=
+X-Received: by 2002:a2e:8e3c:0:b0:2c6:eaf8:49ff with SMTP id
+ r28-20020a2e8e3c000000b002c6eaf849ffmr1584451ljk.37.1699453250122; Wed, 08
+ Nov 2023 06:20:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <246db5c.5817.18baf4e0ad9.Coremail.figure1802@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:P8qowAD3f9MamUtlOHAcAA--.29571W
-X-CM-SenderInfo: pilj32bhryija6rslhhfrp/1tbiuR8iXlpECjIOvgACsO
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
+ <CAPnjgZ0Xf3U1aj32LbU-xiU1AqwnM3JL1F8xX-wZ18oEmg+irw@mail.gmail.com>
+ <CAMj1kXEXcX7BkDyfy-6_5Vnch=N+onza-yfWfsVaGLE93h2c+Q@mail.gmail.com>
+ <CAPnjgZ2SEby-ndrs=W_afBJH56eqc=-mhp1F1nwkvWks+=B54Q@mail.gmail.com>
+ <CAMj1kXED3S+0cq+VT7naBrmWrUwT=HZAaZOBRMv8Ui1Pey1QNQ@mail.gmail.com>
+ <CAPnjgZ0LrsJ2_ENTYoBrnyFaH3UKdHs3D2XWY=TzBuBpBoTXZA@mail.gmail.com>
+ <CAL_Jsq+DQugkEDESW5wySFbLLN8HNqGDJCio8Wpi6fe0LeHKUA@mail.gmail.com>
+ <CAPnjgZ0cmKP5hoGCyQ_Rp8ZQXUVwaPYJMWyidXuOOjMVkDoMDw@mail.gmail.com>
+ <CAL_JsqJH=vJ40PNTg_i0LoKA-c0hhMJkL8zCC3_bB-tOkFWWsw@mail.gmail.com>
+ <CAPnjgZ1FrdGKjGAxUbkQoL2vHwhC_2Oa2KT+0cm25dQAuAjxAQ@mail.gmail.com>
+ <CAPnjgZ19-xR6QxS=fR53skz0VuAty2Z2w2vQTjP7g=tbTFpaqw@mail.gmail.com>
+ <CAL_JsqL+X1DatsGk_Cn1HsbG2GV9AngFWXVysWTiNRu_d9tDqw@mail.gmail.com>
+ <CAMj1kXHfh40wxerZGjOn2JJ5Skm5C--Rz2jy8p3XZ2UXKGjw+g@mail.gmail.com> <CAL_JsqLpea+FU4gXpaSUSeBP70szJ+mRjJtFei=QW2VoHCFOuA@mail.gmail.com>
+In-Reply-To: <CAL_JsqLpea+FU4gXpaSUSeBP70szJ+mRjJtFei=QW2VoHCFOuA@mail.gmail.com>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Wed, 8 Nov 2023 15:20:38 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXHPVXB2ojzhKbAO47+EDMDzODqjLZ+iOKw=u=Bc7=HPCQ@mail.gmail.com>
+Message-ID: <CAMj1kXHPVXB2ojzhKbAO47+EDMDzODqjLZ+iOKw=u=Bc7=HPCQ@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+To: Rob Herring <robh@kernel.org>
+Cc: Simon Glass <sjg@chromium.org>, devicetree@vger.kernel.org, 
+	Mark Rutland <mark.rutland@arm.com>, Lean Sheng Tan <sheng.tan@9elements.com>, 
+	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
+	Maximilian Brune <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
+	Guo Dong <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
+	ron minnich <rminnich@gmail.com>, Gua Guo <gua.guo@intel.com>, 
+	Chiu Chasel <chasel.chiu@intel.com>, linux-acpi@vger.kernel.org, 
+	U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-CgoKQXQgMjAyMy0xMS0wNCAwODo1ODoxMCwgIkJlbiIgPGZpZ3VyZTE4MDJAMTI2LmNvbT4gd3Jv
-dGU6Cj5BdCAyMDIzLTEwLTI0IDAxOjI3OjU4LCAiQW51cCBQYXRlbCIgPGFwYXRlbEB2ZW50YW5h
-bWljcm8uY29tPiB3cm90ZToKPj5UaGUgUklTQy1WIGFkdmFuY2VkIHBsYXRmb3JtLWxldmVsIGlu
-dGVycnVwdCBjb250cm9sbGVyIChBUExJQykgaGFzCj4+dHdvIG1vZGVzIG9mIG9wZXJhdGlvbjog
-MSkgRGlyZWN0IG1vZGUgYW5kIDIpIE1TSSBtb2RlLgo+PihGb3IgbW9yZSBkZXRhaWxzLCByZWZl
-ciBodHRwczovL2dpdGh1Yi5jb20vcmlzY3YvcmlzY3YtYWlhKQo+Pgo+PkluIEFQTElDIE1TSS1t
-b2RlLCB3aXJlZCBpbnRlcnJ1cHRzIGFyZSBmb3J3YXJlZCBhcyBtZXNzYWdlIHNpZ25hbGVkCj4+
-aW50ZXJydXB0cyAoTVNJcykgdG8gQ1BVcyB2aWEgSU1TSUMuCj4+Cj4+V2UgZXh0ZW5kIHRoZSBl
-eGlzdGluZyBBUExJQyBpcnFjaGlwIGRyaXZlciB0byBzdXBwb3J0IE1TSS1tb2RlIGZvcgo+PlJJ
-U0MtViBwbGF0Zm9ybXMgaGF2aW5nIGJvdGggd2lyZWQgaW50ZXJydXB0cyBhbmQgTVNJcy4KPj4K
-Pj5TaWduZWQtb2ZmLWJ5OiBBbnVwIFBhdGVsIDxhcGF0ZWxAdmVudGFuYW1pY3JvLmNvbT4KPj4t
-LS0KPj4gZHJpdmVycy9pcnFjaGlwL0tjb25maWcgICAgICAgICAgICAgICAgfCAgIDYgKwo+PiBk
-cml2ZXJzL2lycWNoaXAvTWFrZWZpbGUgICAgICAgICAgICAgICB8ICAgMSArCj4+IGRyaXZlcnMv
-aXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jIHwgICAyICstCj4+IGRyaXZlcnMvaXJxY2hp
-cC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5oIHwgICA4ICsKPj4gZHJpdmVycy9pcnFjaGlwL2lycS1y
-aXNjdi1hcGxpYy1tc2kuYyAgfCAyODUgKysrKysrKysrKysrKysrKysrKysrKysrKwo+PiA1IGZp
-bGVzIGNoYW5nZWQsIDMwMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4+IGNyZWF0ZSBt
-b2RlIDEwMDY0NCBkcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jCj4+Cj4+ZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnIGIvZHJpdmVycy9pcnFjaGlwL0tjb25m
-aWcKPj5pbmRleCAxOTk2Y2M2ZjY2NmEuLjdhZGM0ZGJlMDdmZiAxMDA2NDQKPj4tLS0gYS9kcml2
-ZXJzL2lycWNoaXAvS2NvbmZpZwo+PisrKyBiL2RyaXZlcnMvaXJxY2hpcC9LY29uZmlnCj4+QEAg
-LTU1MSw2ICs1NTEsMTIgQEAgY29uZmlnIFJJU0NWX0FQTElDCj4+IAlkZXBlbmRzIG9uIFJJU0NW
-Cj4+IAlzZWxlY3QgSVJRX0RPTUFJTl9ISUVSQVJDSFkKPj4gCj4+K2NvbmZpZyBSSVNDVl9BUExJ
-Q19NU0kKPj4rCWJvb2wKPj4rCWRlcGVuZHMgb24gUklTQ1ZfQVBMSUMKPj4rCXNlbGVjdCBHRU5F
-UklDX01TSV9JUlEKPj4rCWRlZmF1bHQgUklTQ1ZfQVBMSUMKPj4rCj4+IGNvbmZpZyBSSVNDVl9J
-TVNJQwo+PiAJYm9vbAo+PiAJZGVwZW5kcyBvbiBSSVNDVgo+PmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2lycWNoaXAvTWFrZWZpbGUgYi9kcml2ZXJzL2lycWNoaXAvTWFrZWZpbGUKPj5pbmRleCA3Zjgy
-ODk3OTBlZDguLjQ3OTk1ZmRiMmM2MCAxMDA2NDQKPj4tLS0gYS9kcml2ZXJzL2lycWNoaXAvTWFr
-ZWZpbGUKPj4rKysgYi9kcml2ZXJzL2lycWNoaXAvTWFrZWZpbGUKPj5AQCAtOTYsNiArOTYsNyBA
-QCBvYmotJChDT05GSUdfQ1NLWV9NUElOVEMpCQkrPSBpcnEtY3NreS1tcGludGMubwo+PiBvYmot
-JChDT05GSUdfQ1NLWV9BUEJfSU5UQykJCSs9IGlycS1jc2t5LWFwYi1pbnRjLm8KPj4gb2JqLSQo
-Q09ORklHX1JJU0NWX0lOVEMpCQkrPSBpcnEtcmlzY3YtaW50Yy5vCj4+IG9iai0kKENPTkZJR19S
-SVNDVl9BUExJQykJCSs9IGlycS1yaXNjdi1hcGxpYy1tYWluLm8gaXJxLXJpc2N2LWFwbGljLWRp
-cmVjdC5vCj4+K29iai0kKENPTkZJR19SSVNDVl9BUExJQ19NU0kpCQkrPSBpcnEtcmlzY3YtYXBs
-aWMtbXNpLm8KPj4gb2JqLSQoQ09ORklHX1JJU0NWX0lNU0lDKQkJKz0gaXJxLXJpc2N2LWltc2lj
-LXN0YXRlLm8gaXJxLXJpc2N2LWltc2ljLWVhcmx5Lm8gaXJxLXJpc2N2LWltc2ljLXBsYXRmb3Jt
-Lm8KPj4gb2JqLSQoQ09ORklHX1NJRklWRV9QTElDKQkJKz0gaXJxLXNpZml2ZS1wbGljLm8KPj4g
-b2JqLSQoQ09ORklHX0lNWF9JUlFTVEVFUikJCSs9IGlycS1pbXgtaXJxc3RlZXIubwo+PmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1haW4uYyBiL2RyaXZlcnMv
-aXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbWFpbi5jCj4+aW5kZXggODc0NTA3MDhhNzMzLi5kMWIz
-NDJiNjY1NTEgMTAwNjQ0Cj4+LS0tIGEvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1t
-YWluLmMKPj4rKysgYi9kcml2ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1haW4uYwo+PkBA
-IC0yMDUsNyArMjA1LDcgQEAgc3RhdGljIGludCBhcGxpY19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1f
-ZGV2aWNlICpwZGV2KQo+PiAJCW1zaV9tb2RlID0gb2ZfcHJvcGVydHlfcHJlc2VudCh0b19vZl9u
-b2RlKGRldi0+Zndub2RlKSwKPj4gCQkJCQkJIm1zaS1wYXJlbnQiKTsKPj4gCWlmIChtc2lfbW9k
-ZSkKPj4tCQlyYyA9IC1FTk9ERVY7Cj4+KwkJcmMgPSBhcGxpY19tc2lfc2V0dXAoZGV2LCByZWdz
-KTsKPj4gCWVsc2UKPj4gCQlyYyA9IGFwbGljX2RpcmVjdF9zZXR1cChkZXYsIHJlZ3MpOwo+PiAJ
-aWYgKHJjKSB7Cj4+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMt
-bWFpbi5oIGIvZHJpdmVycy9pcnFjaGlwL2lycS1yaXNjdi1hcGxpYy1tYWluLmgKPj5pbmRleCA0
-NzRhMDQyMjkzMzQuLjc4MjY3ZWM1ODA5OCAxMDA2NDQKPj4tLS0gYS9kcml2ZXJzL2lycWNoaXAv
-aXJxLXJpc2N2LWFwbGljLW1haW4uaAo+PisrKyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3Yt
-YXBsaWMtbWFpbi5oCj4+QEAgLTQxLDUgKzQxLDEzIEBAIHZvaWQgYXBsaWNfaW5pdF9od19nbG9i
-YWwoc3RydWN0IGFwbGljX3ByaXYgKnByaXYsIGJvb2wgbXNpX21vZGUpOwo+PiBpbnQgYXBsaWNf
-c2V0dXBfcHJpdihzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiwgc3RydWN0IGRldmljZSAqZGV2LAo+
-PiAJCSAgICAgdm9pZCBfX2lvbWVtICpyZWdzKTsKPj4gaW50IGFwbGljX2RpcmVjdF9zZXR1cChz
-dHJ1Y3QgZGV2aWNlICpkZXYsIHZvaWQgX19pb21lbSAqcmVncyk7Cj4+KyNpZmRlZiBDT05GSUdf
-UklTQ1ZfQVBMSUNfTVNJCj4+K2ludCBhcGxpY19tc2lfc2V0dXAoc3RydWN0IGRldmljZSAqZGV2
-LCB2b2lkIF9faW9tZW0gKnJlZ3MpOwo+PisjZWxzZQo+PitzdGF0aWMgaW5saW5lIGludCBhcGxp
-Y19tc2lfc2V0dXAoc3RydWN0IGRldmljZSAqZGV2LCB2b2lkIF9faW9tZW0gKnJlZ3MpCj4+K3sK
-Pj4rCXJldHVybiAtRU5PREVWOwo+Pit9Cj4+KyNlbmRpZgo+PiAKPj4gI2VuZGlmCj4+ZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvaXJxY2hpcC9pcnEtcmlzY3YtYXBsaWMtbXNpLmMgYi9kcml2ZXJzL2ly
-cWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jCj4+bmV3IGZpbGUgbW9kZSAxMDA2NDQKPj5pbmRl
-eCAwMDAwMDAwMDAwMDAuLjA4NmQwMGUwNDI5ZQo+Pi0tLSAvZGV2L251bGwKPj4rKysgYi9kcml2
-ZXJzL2lycWNoaXAvaXJxLXJpc2N2LWFwbGljLW1zaS5jCj4+QEAgLTAsMCArMSwyODUgQEAKPj4r
-Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAKPj4rLyoKPj4rICogQ29weXJpZ2h0
-IChDKSAyMDIxIFdlc3Rlcm4gRGlnaXRhbCBDb3Jwb3JhdGlvbiBvciBpdHMgYWZmaWxpYXRlcy4K
-Pj4rICogQ29weXJpZ2h0IChDKSAyMDIyIFZlbnRhbmEgTWljcm8gU3lzdGVtcyBJbmMuCj4+KyAq
-Lwo+PisKPj4rI2luY2x1ZGUgPGxpbnV4L2JpdG9wcy5oPgo+PisjaW5jbHVkZSA8bGludXgvY3B1
-Lmg+Cj4+KyNpbmNsdWRlIDxsaW51eC9pbnRlcnJ1cHQuaD4KPj4rI2luY2x1ZGUgPGxpbnV4L2ly
-cWNoaXAuaD4KPj4rI2luY2x1ZGUgPGxpbnV4L2lycWNoaXAvcmlzY3YtYXBsaWMuaD4KPj4rI2lu
-Y2x1ZGUgPGxpbnV4L2lycWNoaXAvcmlzY3YtaW1zaWMuaD4KPj4rI2luY2x1ZGUgPGxpbnV4L21v
-ZHVsZS5oPgo+PisjaW5jbHVkZSA8bGludXgvbXNpLmg+Cj4+KyNpbmNsdWRlIDxsaW51eC9vZl9p
-cnEuaD4KPj4rI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPgo+PisjaW5jbHVkZSA8
-bGludXgvcHJpbnRrLmg+Cj4+KyNpbmNsdWRlIDxsaW51eC9zbXAuaD4KPj4rCj4+KyNpbmNsdWRl
-ICJpcnEtcmlzY3YtYXBsaWMtbWFpbi5oIgo+PisKPj4rc3RhdGljIHZvaWQgYXBsaWNfbXNpX2ly
-cV91bm1hc2soc3RydWN0IGlycV9kYXRhICpkKQo+Pit7Cj4+KwlhcGxpY19pcnFfdW5tYXNrKGQp
-Owo+PisJaXJxX2NoaXBfdW5tYXNrX3BhcmVudChkKTsKPj4rfQo+PisKPj4rc3RhdGljIHZvaWQg
-YXBsaWNfbXNpX2lycV9tYXNrKHN0cnVjdCBpcnFfZGF0YSAqZCkKPj4rewo+PisJYXBsaWNfaXJx
-X21hc2soZCk7Cj4+KwlpcnFfY2hpcF9tYXNrX3BhcmVudChkKTsKPj4rfQo+PisKPj4rc3RhdGlj
-IHZvaWQgYXBsaWNfbXNpX2lycV9lb2koc3RydWN0IGlycV9kYXRhICpkKQo+Pit7Cj4+KwlzdHJ1
-Y3QgYXBsaWNfcHJpdiAqcHJpdiA9IGlycV9kYXRhX2dldF9pcnFfY2hpcF9kYXRhKGQpOwo+PisJ
-dTMyIHJlZ19vZmYsIHJlZ19tYXNrOwo+PisKPj4rCS8qCj4+KwkgKiBFT0kgaGFuZGxpbmcgb25s
-eSByZXF1aXJlZCBvbmx5IGZvciBsZXZlbC10cmlnZ2VyZWQKPj4rCSAqIGludGVycnVwdHMgaW4g
-QVBMSUMgTVNJIG1vZGUuCj4+KwkgKi8KPj4rCj4+KwlyZWdfb2ZmID0gQVBMSUNfQ0xSSVBfQkFT
-RSArICgoZC0+aHdpcnEgLyBBUExJQ19JUlFCSVRTX1BFUl9SRUcpICogNCk7Cj4+KwlyZWdfbWFz
-ayA9IEJJVChkLT5od2lycSAlIEFQTElDX0lSUUJJVFNfUEVSX1JFRyk7Cj4+Kwlzd2l0Y2ggKGly
-cWRfZ2V0X3RyaWdnZXJfdHlwZShkKSkgewo+PisJY2FzZSBJUlFfVFlQRV9MRVZFTF9MT1c6Cj4+
-KwkJaWYgKCEocmVhZGwocHJpdi0+cmVncyArIHJlZ19vZmYpICYgcmVnX21hc2spKQo+PisJCQl3
-cml0ZWwoZC0+aHdpcnEsIHByaXYtPnJlZ3MgKyBBUExJQ19TRVRJUE5VTV9MRSk7Cj4+KwkJYnJl
-YWs7Cj4+KwljYXNlIElSUV9UWVBFX0xFVkVMX0hJR0g6Cj4+KwkJaWYgKHJlYWRsKHByaXYtPnJl
-Z3MgKyByZWdfb2ZmKSAmIHJlZ19tYXNrKQo+PisJCQl3cml0ZWwoZC0+aHdpcnEsIHByaXYtPnJl
-Z3MgKyBBUExJQ19TRVRJUE5VTV9MRSk7Cj4+KwkJYnJlYWs7Cj4+Kwl9Cj4+K30KPj4rCj4+K3N0
-YXRpYyBzdHJ1Y3QgaXJxX2NoaXAgYXBsaWNfbXNpX2NoaXAgPSB7Cj4+KwkubmFtZQkJPSAiQVBM
-SUMtTVNJIiwKPj4rCS5pcnFfbWFzawk9IGFwbGljX21zaV9pcnFfbWFzaywKPj4rCS5pcnFfdW5t
-YXNrCT0gYXBsaWNfbXNpX2lycV91bm1hc2ssCj4+KwkuaXJxX3NldF90eXBlCT0gYXBsaWNfaXJx
-X3NldF90eXBlLAo+PisJLmlycV9lb2kJPSBhcGxpY19tc2lfaXJxX2VvaSwKPj4rI2lmZGVmIENP
-TkZJR19TTVAKPj4rCS5pcnFfc2V0X2FmZmluaXR5ID0gaXJxX2NoaXBfc2V0X2FmZmluaXR5X3Bh
-cmVudCwKPj4rI2VuZGlmCj4+KwkuZmxhZ3MJCT0gSVJRQ0hJUF9TRVRfVFlQRV9NQVNLRUQgfAo+
-PisJCQkgIElSUUNISVBfU0tJUF9TRVRfV0FLRSB8Cj4+KwkJCSAgSVJRQ0hJUF9NQVNLX09OX1NV
-U1BFTkQsCj4+K307Cj4+Kwo+PitzdGF0aWMgaW50IGFwbGljX21zaV9pcnFkb21haW5fdHJhbnNs
-YXRlKHN0cnVjdCBpcnFfZG9tYWluICpkLAo+PisJCQkJCSBzdHJ1Y3QgaXJxX2Z3c3BlYyAqZndz
-cGVjLAo+PisJCQkJCSB1bnNpZ25lZCBsb25nICpod2lycSwKPj4rCQkJCQkgdW5zaWduZWQgaW50
-ICp0eXBlKQo+Pit7Cj4+KwlzdHJ1Y3QgYXBsaWNfcHJpdiAqcHJpdiA9IHBsYXRmb3JtX21zaV9n
-ZXRfaG9zdF9kYXRhKGQpOwo+PisKPj4rCXJldHVybiBhcGxpY19pcnFkb21haW5fdHJhbnNsYXRl
-KGZ3c3BlYywgcHJpdi0+Z3NpX2Jhc2UsIGh3aXJxLCB0eXBlKTsKPj4rfQo+PisKPj4rc3RhdGlj
-IGludCBhcGxpY19tc2lfaXJxZG9tYWluX2FsbG9jKHN0cnVjdCBpcnFfZG9tYWluICpkb21haW4s
-Cj4+KwkJCQkgICAgIHVuc2lnbmVkIGludCB2aXJxLCB1bnNpZ25lZCBpbnQgbnJfaXJxcywKPj4r
-CQkJCSAgICAgdm9pZCAqYXJnKQo+Pit7Cj4+KwlpbnQgaSwgcmV0Owo+PisJdW5zaWduZWQgaW50
-IHR5cGU7Cj4+KwlpcnFfaHdfbnVtYmVyX3QgaHdpcnE7Cj4+KwlzdHJ1Y3QgaXJxX2Z3c3BlYyAq
-ZndzcGVjID0gYXJnOwo+PisJc3RydWN0IGFwbGljX3ByaXYgKnByaXYgPSBwbGF0Zm9ybV9tc2lf
-Z2V0X2hvc3RfZGF0YShkb21haW4pOwo+PisKPj4rCXJldCA9IGFwbGljX2lycWRvbWFpbl90cmFu
-c2xhdGUoZndzcGVjLCBwcml2LT5nc2lfYmFzZSwgJmh3aXJxLCAmdHlwZSk7Cj4+KwlpZiAocmV0
-KQo+PisJCXJldHVybiByZXQ7Cj4KPkluIHlvdXIgcGF0Y2hzZXQsIHRoZSB3aXJlZCBJUlEgYW5k
-IElSUSBvZiBwbGF0Zm9ybSBkZXZpY2Ugd2lsbCBnbyBpbnRvIEFQTElDLU1TSSBkb21haW4gZmly
-c3RseS4KPkxldCBtZSBhc3N1bWUgaGVyZSBpcyBhIE1TSSBJUlEgbm90IHdpcmVkIElSUSBvbiBh
-IGRldmljZSwgYW5kIGl0IGlzIGEgcGxhdGZvcm0gZGV2aWNlIGluIHN5c3RlbS4KPnNvIGluIGFw
-bGljX2lycWRvbWFpbl90cmFuc2xhdGUoKSBmdW5jdGlvbiwgaXQgd2lsbCBwYXJzZSB0aGUgQVBM
-SUMgcGh5c2ljYWwgSVJRIG51bWJlciBieSBmd3NwZWMtPnBhcmFtWzBdLAo+YnV0IHRoaXMgaXMg
-bm90IGEgd3JpZWQgSVJRLCBpdCBpcyBhIE1TSSBJUlEsIGl0IHNob3VsZCBub3QgaGFzIGEgQVBM
-SUMgcGh5c2ljYWwgSVJRIG51bWJlciwgdGhlIGh3aXJxIG51bWJlciBzaG91bGQgYmUgYWxsb2Nh
-dGVkIGJ5IE1TSSBiaXRtYXAsCj53aGF0IHZhbHVlIHdpbGwgYmUgcGFyc2UgYnkgRFRTPyB6ZXJv
-IG9yIG5lZ2F0aXZlPyAKPgo+aWYgdGhpcyBpcyBhIG5vbmV4aXN0ZW50IHBoeXNpY2FsIElSUSBu
-dW1iZXIgZm9yIEFQTElDLCBpbiBhcGxpY19tc2lfaXJxX3VubWFzaygpLT5hcGxpY19pcnFfdW5t
-YXNrKCksIGhvdyBpdCB3b3Jrcz8KPgo+d3JpdGVsKGQtPmh3aXJxLCBwcml2LT5yZWdzICsgQVBM
-SUNfU0VUSUVOVU0pOwoKaGkgQW51cCwKQW55IGNvbW1lbnRzIGFib3V0IHRoaXMgcXVlc3Rpb24g
-Zm9yIGFuIE1TSSBpbnRlcnJ1cHQgKG5vdCB3aXJlZCBpbnRlcnJ1cHQpIG9mIG5vbi1QQ0kgZGV2
-aWNlPwoKVGhhbmtzLApCZW4KCgo=
+On Wed, 8 Nov 2023 at 14:57, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Nov 8, 2023 at 5:38=E2=80=AFAM Ard Biesheuvel <ardb@kernel.org> w=
+rote:
+> >
+> > On Tue, 7 Nov 2023 at 19:07, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > >
+> > > All of this:
+> > >
+> >
+> > > > On Mon, 16 Oct 2023 at 15:54, Simon Glass <sjg@chromium.org> wrote:
+> > > > >
+> > > > > It is not specific to EDK2. Imagine this boot sequence:
+> > > > >
+> > > > > - Platform Init (U-Boot) starts up
+> > > > > - U-Boot uses its platform knowledge to sets some ACPI tables and=
+ put
+> > > > > various things in memory
+> > > > > - U-Boot sets up some runtime code and data for the OS
+> > > > > - U-Boot jumps to the Tianocore payload **
+> > > > > - Payload (Tianocore) wants to know where the ACPI tables are, fo=
+r example
+> > > > > - Tianocore needs to provide boot services to the OS, so needs to=
+ know
+> > > > > the memory map, etc.
+> > > > >
+> > > > > ** At this point we want to use DT to pass the required informati=
+on.
+> > > > >
+> > > > > Of course, Platform Init could be coreboot or Tianocore or some
+> > > > > strange private binary. Payload could be U-Boot or something else=
+.
+> > > > > That is the point of this effort, to build interoperability.
+> > >
+> > > [...]
+> > >
+> > > > > Perhaps the problem here is that Linux has tied itself up in knot=
+s
+> > > > > with its EFI stuff and DT fixups and what-not. But this is not th=
+at.
+> > > > > It is a simple handoff between two pieces of firmware, Platform I=
+nit
+> > > > > and Payload. It has nothing to do with the OS. With Tianocore the=
+y are
+> > > > > typically combined, but with this usage they are split, and we ca=
+n
+> > > > > swap out one project for another on either side of the DT interfa=
+ce.
+> > >
+> > > Is perhaps the clearest description of the problem you want to solve.
+> > > It's clearly related to EFI though not the interface to the OS. IIRC,
+> > > "platform init" and "payload" are terms in the UEFI spec, right?
+> >
+> > No they are not. This is from the universal payload specification that
+> > is being drafted here
+> >
+> > https://universalpayload.github.io/spec/index.html
+> >
+> > but the UEFI specification does not use this terminology.
+>
+> Then I'm confused as to what this is:
+>
+> https://uefi.org/specs/PI/1.8/index.html
+>
+
+The PI and UEFI specifications are both maintained by the UEFI forum.
+
+The UEFI specification covers external APIs for firmware
+implementations, i.e., the OS visible interface and the public API for
+UEFI device drivers that are not tightly integrated with system
+firmware (for example, the GPU boot time driver in the ROM of an
+add-in card)
+
+The UEFI forum's PI spec describes system firmware internals, and
+defines the SEC, PEI DXE and BDS boot phases, among other things.
+
+It is possible to implement UEFI without PI (which is what uboot does,
+for instance), but Tianocore/EDK2 is the reference implementation for
+both PI and UEFI, and sadly, there is no discernible distinction
+between the two (e.g., both PI and UEFI use identifiers with EFI_ type
+and enum identifier prefixes)
+
+'platform init' in the context of this discussion is something
+completely separate, and has zero bearing on the PI<->UEFI handover in
+Tianocore (which is not really a handover to begin with).
+
+There is code in Tianocore which allows it to run as a 'payload',
+which means [presumably] that only the DXE and subsequent phases are
+launched from a 'platform init' component that describes the platform
+using some of the DT bindings that are under discussion here. In this
+case, I can see how some of the ACPI descriptions provided by the
+'platform init' might be inherited by the 'payload'. However, I don't
+see how such a Tianocore payload would make meaningful use of
+boot/runtime code/data described in general terms using this proposed
+binding, which is why I keep asking for an example scenario.
 
