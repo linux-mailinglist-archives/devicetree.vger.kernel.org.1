@@ -1,157 +1,214 @@
-Return-Path: <devicetree+bounces-14472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B2B7E4FAD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 05:16:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A67B27E4FDD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:12:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BFF11F21707
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 04:16:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF6F21C209E0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 05:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E490E5664;
-	Wed,  8 Nov 2023 04:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94999523A;
+	Wed,  8 Nov 2023 05:12:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="JXjaudJH";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="dHnaXYyO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE9636116
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 04:16:01 +0000 (UTC)
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3171C1B8;
-	Tue,  7 Nov 2023 20:16:01 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6ce353df504so3675595a34.3;
-        Tue, 07 Nov 2023 20:16:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699416960; x=1700021760;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=nKgsZ+Eseabfl1OWusfWxjl7x3m5wmowJcnJqg8xyXY=;
-        b=j88bj+iZn/enUEL/sv6OOq5vR+1g22UK4gGnmntzWdxRLW2VVtZlhJO5isb+XsROBw
-         Qh502MydrWbGrBjPgFfxH8GLx+G/Zq7MUl42+FVsqJMCZCVztZ4ev8PWtckGJVcmR9vb
-         YTYrRoGBVlWHyHG2iWiOFih0ubNudB9ia6tkeVhH7xUtiLArgh9J3M+fkkw+hThPCc92
-         J67N/i9Pn/FSycdiNsKKGal5AD5LMKr4Iw6cQXpFsW6pOFQxVWabSiWwY89Ym4gQ5G7e
-         fCT4VWhzMxarR+1IAhUfRRc/4hQF6Wd/amyv1D4E53zyoVmYJ5rs8W/OxVCUTyNSCxpi
-         PLDw==
-X-Gm-Message-State: AOJu0Ywee3x9YQQgfVOc+oFiLO0TuzAcPhsTmnJqrmdhbDO9FLRLPBU4
-	Ub/dSq/S2PYtHlA+9Q5PqQ==
-X-Google-Smtp-Source: AGHT+IGOhnYnbqats/IQfTcB3RV+0w4aVKCUmapLobVvEWF3InX51kLKZoglMoj9/S5nLNbBdv/kTA==
-X-Received: by 2002:a05:6830:1683:b0:6d3:1a0e:a7aa with SMTP id k3-20020a056830168300b006d31a0ea7aamr974997otr.3.1699416960241;
-        Tue, 07 Nov 2023 20:16:00 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j9-20020a9d7389000000b006cd0a847138sm1799271otk.2.2023.11.07.20.15.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Nov 2023 20:15:59 -0800 (PST)
-Received: (nullmailer pid 118424 invoked by uid 1000);
-	Wed, 08 Nov 2023 04:15:58 -0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5259456
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 05:12:35 +0000 (UTC)
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 398281A2;
+	Tue,  7 Nov 2023 21:12:33 -0800 (PST)
+X-UUID: 670074027df511ee8051498923ad61e6-20231108
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=c4NHK4sz1YFcaubaSDwJMMyBTQxMpuqgaI3wLAeCeh4=;
+	b=JXjaudJHWpdehGfXW0XXSZDYFPxFg8l8x6orULqEqEfne9pf3BXH6rC/eKPNE0O4gn3jCzVvI+cCydEKNtXfQe9qDJrEjgoGtcl9sujNe/5fD3ELpMEULh5aU2qrS4qYRAVS+2ms5wNDKuNkvTrpDnceBYh8DNOO71XaoASRIZ8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.33,REQID:7621bbab-ff36-4c03-a242-6c6ba282b7ba,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:364b77b,CLOUDID:4bbd2495-10ce-4e4b-85c2-c9b5229ff92b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
+X-UUID: 670074027df511ee8051498923ad61e6-20231108
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <trevor.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2135662676; Wed, 08 Nov 2023 13:12:24 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 8 Nov 2023 13:12:21 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 8 Nov 2023 13:12:21 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LzoOOwaTlihMzulIoq6aMHy3TjwS8vFkEVe8nNHXf1QA1fIu+pWK9m08ClqaGvd41StL8czAKnZDWMoC9BAGfZCcqOdFp83GrkPoQGALOWI1w1k/ziFfzoU3d4ghHd4yOxafTC+7cNWQ7ciLJXG5V889psISC2GH2IpgogEepE+1o1IODt7iDncJeT2X/rH4A/NxsW0WP15myJbi+XxikTiyPiiumjwiJZhHtxQxQkUEXmAS+q0SUXS9Sw50mNZQ5OpF5oqXDOW4muczmaSwhQnf0P8SdiENbfuuYuOUtJbj8vQx1C/8JsyBmJe8A0V2zcNRBodMvhxQeAPUD4Htig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c4NHK4sz1YFcaubaSDwJMMyBTQxMpuqgaI3wLAeCeh4=;
+ b=ZF+f82PxcXVm8Y6bZ4PeQWdzIQXqLz6D7CipEpZuhlapg6PfOcX8GQEjrUVHGK9m51ztQkea+nbuXP89bDGw9dpuggiJhDfBTUOsUg5lIo+dkRcZ5dz6PWajJ4iLzZzgUQn8KP/BooNM9ILmLeA3ne2Hak9aWi3oM3jF4yiA+cIDIg0/OpsTuvRQfHTKfngEuaxg9SfBKrpdB7Fa6ZMhuinPp+S8rT+0HqTroA7srh915WMxR/Gwm79DiQffVR1Vk4nLgyNP5LDutjnWi0DLVHPY8LfliWz+PCr5VICwntJ7VhO8Vs2/SrBCZYtqwejpvQ4+i7uVAUarMfTq58FsEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c4NHK4sz1YFcaubaSDwJMMyBTQxMpuqgaI3wLAeCeh4=;
+ b=dHnaXYyO2WfHnmNbqiN/D/6tXX5h6Ym4gs6C6uNgrmjVd9zmdCxZzDc3Ay1bw4XYchJC0Ny1d/DtT8uEbVh0nKBe+JnqT6cRKicMLigUkHsaWkZMvy0QgFa8qxdt9sYZOyqdZqG4VZWi8ssBU4sdEGFduMVmolF7AkNRf1jo4Hg=
+Received: from SI2PR03MB6686.apcprd03.prod.outlook.com (2603:1096:4:1e9::14)
+ by TYZPR03MB5629.apcprd03.prod.outlook.com (2603:1096:400:53::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.29; Wed, 8 Nov
+ 2023 05:12:19 +0000
+Received: from SI2PR03MB6686.apcprd03.prod.outlook.com
+ ([fe80::a5d6:6ceb:3133:7f69]) by SI2PR03MB6686.apcprd03.prod.outlook.com
+ ([fe80::a5d6:6ceb:3133:7f69%5]) with mapi id 15.20.6954.028; Wed, 8 Nov 2023
+ 05:12:19 +0000
+From: =?utf-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>
+To: "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	=?utf-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsik=?=
+	<Allen-KH.Cheng@mediatek.com>, "zhourui@huaqin.corp-partner.google.com"
+	<zhourui@huaqin.corp-partner.google.com>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "kuninori.morimoto.gx@renesas.com"
+	<kuninori.morimoto.gx@renesas.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "perex@perex.cz" <perex@perex.cz>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>
+CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] ASoC: mediatek: mt8188-mt6359: Limit RT5682s to
+ only supports dual channels
+Thread-Topic: [PATCH v2 3/3] ASoC: mediatek: mt8188-mt6359: Limit RT5682s to
+ only supports dual channels
+Thread-Index: AQHaEeKzkyc9wIFOQU66LjnV04O7MbBv4IQA
+Date: Wed, 8 Nov 2023 05:12:19 +0000
+Message-ID: <35837139c1aca2408f64b87c4eb13862e002c089.camel@mediatek.com>
+References: <20231108012617.3973539-1-zhourui@huaqin.corp-partner.google.com>
+	 <20231108012617.3973539-4-zhourui@huaqin.corp-partner.google.com>
+In-Reply-To: <20231108012617.3973539-4-zhourui@huaqin.corp-partner.google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SI2PR03MB6686:EE_|TYZPR03MB5629:EE_
+x-ms-office365-filtering-correlation-id: b068f76b-1e00-4c60-18e7-08dbe0194862
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AZflBPVR5naHDh9opyXcDGoC+r2P0klXIaF7/NYhJtk/MoRaD9evQgmInRtRnIHrxR2Jqi2zcMDEZVX/3mSvCf4GRCWBrV/oXfbb2MJVyDBmQ+qV/mCQDrlqi9SI7kLwPz9RnMkwknlq35crF8AocfG60B7MnoE7tF7oB15/gfOtWAoRd9IMQSPW0fuPuF5GGM7EI9dVpYNx7qNLYJczS4QzkAySEEKoLAkQSx27p0z7tr50AB5jokzEx4nRwDusNoJk8Syxc6MS0C4pTf8LBgmtiriJAxS3zQbeaBO8WZq0Aih2ar4QjD2y9vIauyltzXBzy8YO7wyHjuB11JW3XncaB0ydvSyxfa4u003gAfDWJrKbfMgTEF+xaGr0nIX0h/8w+SI40xkNpQX+LQ0hKbjT9ylC16aTF4hSopEXpFEd0o1cv4E1XF8kxzLXm0mzQps8FB1T2aogqvIUgBaaQMQsAlYuf1+1cDxTMobgfS6Eci75+QtmU4XNPDr4zYD5WXXBSzx2yJ4XykzPVcRZyNmTgCCrXvHjWxOJqcZugwJys2taBjeF09Ge/9HffGoo6klpy2nl9LVUkhYSWmgZRzJybwJ40HgnNUrbGDspOzpnNcDn+08vPcbDsYLJ3EV6cawGJPBvC/0ZnUIv4K9mYpRvwnbotkTbml7QeGNe94I=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SI2PR03MB6686.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(39860400002)(396003)(366004)(136003)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(38070700009)(36756003)(85182001)(8676002)(316002)(6512007)(83380400001)(8936002)(110136005)(66476007)(64756008)(66446008)(66556008)(26005)(66946007)(54906003)(91956017)(4326008)(76116006)(5660300002)(2906002)(7416002)(478600001)(41300700001)(6486002)(2616005)(71200400001)(6506007)(122000001)(86362001)(38100700002)(99106002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eDBnWmdDemw0aGo5NWdDTHQrbi9GQklPbGN6T1BLc2ExYVBnMGxqcTlKL0kv?=
+ =?utf-8?B?cHZSTkdVVlZ5SEYzanhpNWpCU0pBbWZoSkJYUDRUQThST3VIbnhONkh3ZlFv?=
+ =?utf-8?B?dFRvUlVSWmU2WW40ZmF4MFY0UHlxTTNON1NRNER0TVBKS1NadVVQdzNaS0lS?=
+ =?utf-8?B?d3REYU5GRC9UUGFxaE9kTElXQ1B0REZKWUVkMHJkeUlaSWw4MjY3blltd3hw?=
+ =?utf-8?B?bFJXS01tNVhTMEFMSEllY1YweUk4VXZPYUQzUEFYYm1scDUzdnhTS05Rb3ZS?=
+ =?utf-8?B?Rlo5VEFzTWV1YkRhVHVDRC9yRldhTmVjNmh5MTloVTZJeDdxQWw4Z1VwREhS?=
+ =?utf-8?B?aUlVSjBlaXliVmtBdWJNR2RERmVERXBFbVdrOXFabXFxYTVxZ2s0bHJPUjlz?=
+ =?utf-8?B?UEhPUkZQYjRZK2xicklWTFowNEdFM0J0YWhsVTJReVNVRmVrNExXRzdBeHBo?=
+ =?utf-8?B?YlRNdW5JOUFMcTBldUN0cGhMQ1NBSUtKeEV0U2g0L204VDY2RFkvT1M5RHA1?=
+ =?utf-8?B?T1hDM2h4RWRwUWxFUnV0LzM0UklYTFVmVFZRM203cFhkL2Q3L21jUDIxN3RV?=
+ =?utf-8?B?YmxJU2JJd1NKZnIwdFlLWi8rYjZXeTdlaGUzb0xXTGl3WlM5cUQzNFEvS0Vj?=
+ =?utf-8?B?RFRyM1ZrUG1jV0ZxOVhvQ3ZXeGV6eDBRVi9Obk1adHpoaWZ2SjRmOGw3QXc0?=
+ =?utf-8?B?MDc4YVJkTUx6Z3ZzOFpESzIrOUM3TENJNVV1WmppRmlPVE9vTG10d1RzVjBy?=
+ =?utf-8?B?RnNzbS92bWtkNU9BK0NrMVJHM29uUUR0V1JSS2pJaDZrSjhxc0UzdlM2Q3Zl?=
+ =?utf-8?B?QzlBK3RLc0FGVzlNT29JU1lCVkFBeXJncm8yTSswMXA3UjdwMFVBUG1IeVI1?=
+ =?utf-8?B?cHN5K0JzU1Eyd0IvRDZTNGpMT0VkQjlHTEhQekV5cmZHanhXdDVQdythNjZh?=
+ =?utf-8?B?ZEVzVzJGdElPTWV0cUh2bW42SGlibUx3TmROaUxVQnRTeUozeTR6Z0wvTGx6?=
+ =?utf-8?B?Nmt2aWtDRTFwbitneWp3WGplOXBGVnFmZTMyS0VxQjVWT0ZiajU1RnVhcWlV?=
+ =?utf-8?B?bmFaWDM4bldvOEFONU5FQXJvaCswbXF0OTM2VzZYVXpQS2hmL1p4S2Y2dk03?=
+ =?utf-8?B?S3E2V1M3aWNaNFF3NGtmWi9tbU9ibzJ4SW9MdFluVGhyNmlzdkpXYzlBWnA0?=
+ =?utf-8?B?bEJjcWc1bEh3NFRPejNMdmxDejliRVdSd1FIaHZGWk1iMTUzUFlyTmZ0TVI3?=
+ =?utf-8?B?VElWZTRSWlBNRllPOFUxdnZJbTE1Kyt3QXUwWmphQ2lsZmFuOWtGWkMvVUpo?=
+ =?utf-8?B?UjdjNVVScGtqVW51VWdxNnFOUWpEVGRYa3FsQkIwRnk0czJDazVyM25KV0VF?=
+ =?utf-8?B?MGs4dVUxb0hkb01ONHozdlU4UVp3UUI0RVpLS3hQZHI0eGtIQkRtOGFRQXAr?=
+ =?utf-8?B?eDlrcU93L2dueXVzR0U0YkpQTFQ3US9PeXh4c1A5RjV0RlNsMEVjYlYxalZy?=
+ =?utf-8?B?SkdTTlV1T2FpeERyL3c0QjNTazFUb3BrWDFrODZVak9yaVRreDl2T0tCOEM2?=
+ =?utf-8?B?RWdJUERqTEhEYXpxLzlVRklIaTZxeGxvbEVQNkc3ZXNjQWpBWVFuZGVpckIr?=
+ =?utf-8?B?bjdIZUxHc1lUUlk4d3pBOU5JZTloT0FkZ1ZhUVRqSmRNMk1XckhqZlpuUTdj?=
+ =?utf-8?B?V1lRL3EzWHpjdzViZjRQTTlMcU1VUU9rWXQ0VU1pZmgzbDNmTEdjOGJXYkRk?=
+ =?utf-8?B?czZNTy8yNVRqMkQwamJ1cEVGcEV6eis1Ykl2b3JCQXdnWktPL3hOeE5wOWdN?=
+ =?utf-8?B?NUJ6OFF4WkFvbVVSYWpUVUNRejRtaUtVN2pPa2ZHbzdpYS9hYWNTSjZ2aG1O?=
+ =?utf-8?B?UXFQZHpJeksxK2ZvOEFDNCtPc0ZsWjU1QVN5Q3d6T2VENVM0dHBCZ2FvdmVw?=
+ =?utf-8?B?K1RyNkNyTHR5YTJyMlF6NW4rbE5nR2tVY2lYT05paXlUN3ZLaFU5QUVsVmlO?=
+ =?utf-8?B?dzQxczlSd2hMelVRVXRQZ014MGdNbEJlUmhSSVdjOXRkekpnL0szb1NoZzhR?=
+ =?utf-8?B?YmV4MXZhUEpkN2h3RFh3U09IN0V0SzlMYk5IOHhnYUd0SkJVR05sNDh0czVG?=
+ =?utf-8?B?aGoza1I1Y1lCTVVpVy9vTlpIWG1PRHhvVk9XT2tOeEpwMkNQaVhiNElsb3lL?=
+ =?utf-8?B?V1E9PQ==?=
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-ID: <9BCCFFCB971FB94F91E6C10988DF8570@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Yuxi Wang <wyx137120466@gmail.com>
-Cc: linux-leds@vger.kernel.org, Yuxi.Wang@monolithicpower.com, krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org, pavel@ucw.cz
-In-Reply-To: <20231108032921.3134115-2-wyx137120466@gmail.com>
-References: <20231108032921.3134115-1-wyx137120466@gmail.com>
- <20231108032921.3134115-2-wyx137120466@gmail.com>
-Message-Id: <169941695839.118408.11939642206111290913.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add mps mp3326 LED
-Date: Tue, 07 Nov 2023 22:15:58 -0600
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SI2PR03MB6686.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b068f76b-1e00-4c60-18e7-08dbe0194862
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2023 05:12:19.5664
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8q4H2EaRdqLcRpxmLi+hbkv2Qv0MNw2TUjL37hPZuSk+R2CD6GWjHwJ3nBTIQI9XgFRF4+uJvFMclInYzG0abg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5629
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--7.273800-8.000000
+X-TMASE-MatchedRID: ge9e+QLSeazUL3YCMmnG4ia1MaKuob8PC/ExpXrHizxeARTvhomDChFw
+	/zDQmHu968Npu3b7wViuB6WcjahkUVEAXL0Ub1O9i/vfAS7Q3HuX0RsAdZZVkhHfiujuTbedduS
+	l0OECBiYsmvr/DPyX3Od+3E2h0GvH57uLJZMteEkpoxDq3DugMkyQ5fRSh265CqIJhrrDy2/KT8
+	XTcq9Z++LzNWBegCW2PZex/kxUIHW3sNbcHjySQd0H8LFZNFG7CKFCmhdu5cX88faW7jshmTRC4
+	8Ap7sFlIUjsQ9cgDI/eNAysPh4jjn0NeTxK54nOST5+TXF95kogtyjtYdlCq0e0F0P2a93JzSin
+	UNQzP5S5ZyimlDMxyA56xhuba2WuZ86KY3oNT3zIO0Si2Tuenp6oP1a0mRIj
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--7.273800-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	40A3D759620949A1CD8A679BED5B9AD6DC423FECF8587FE9FD382F6E3EF9AD742000:8
+X-MTK: N
 
-
-On Wed, 08 Nov 2023 11:29:20 +0800, Yuxi Wang wrote:
-> Document mps mp3326 LED driver devicetree bindings.
-> 
-> Signed-off-by: Yuxi Wang <wyx137120466@gmail.com>
-> ---
->  .../devicetree/bindings/leds/leds-mp3326.yaml | 184 ++++++++++++++++++
->  1 file changed, 184 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-mp3326.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_r:properties:required: ['reg', 'color'] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:compatible: [{'const': 'mps,mp3326'}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties: 'patternProperties' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-	hint: A json-schema keyword was found instead of a DT property name.
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_r:properties: 'required' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-	hint: A json-schema keyword was found instead of a DT property name.
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_r:properties:required: ['reg', 'color'] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_g: 'anyOf' conditional failed, one must be fixed:
-	'reg' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_g: 'anyOf' conditional failed, one must be fixed:
-	'color' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_b: 'anyOf' conditional failed, one must be fixed:
-	'reg' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_b: 'anyOf' conditional failed, one must be fixed:
-	'color' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:compatible: [{'const': 'mps,mp3326'}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:patternProperties: 'anyOf' conditional failed, one must be fixed:
-	'^led@[0-3]$' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	'type' was expected
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_g: 'reg' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/nodes.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_g: 'color' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/nodes.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_b: 'reg' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/nodes.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: properties:multi-led:properties:led_b: 'color' is not one of ['type', 'description', 'dependencies', 'dependentRequired', 'dependentSchemas', 'properties', 'patternProperties', 'additionalProperties', 'unevaluatedProperties', 'deprecated', 'required', 'not', 'allOf', 'anyOf', 'oneOf', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/nodes.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/mps,mp3326.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: mps,led-protect: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-mp3326.yaml: patternProperties: missing type definition
-Documentation/devicetree/bindings/leds/leds-mp3326.example.dtb: /example-0/i2c/mp3326@30: failed to match any schema with compatible: ['mps,mp3326']
-Documentation/devicetree/bindings/leds/leds-mp3326.example.dtb: /example-1/i2c/mp3326@30: failed to match any schema with compatible: ['mps,mp3326']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231108032921.3134115-2-wyx137120466@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+T24gV2VkLCAyMDIzLTExLTA4IGF0IDA5OjI2ICswODAwLCBSdWkgWmhvdSB3cm90ZToNCj4gIExp
+bWl0IFJUNTY4MnMgdG8gb25seSBzdXBwb3J0IGR1YWwgY2hhbm5lbHMsIG5vdCBmb3VyIGNoYW5u
+ZWxzLg0KDQpIaSBSdWksDQoNClRoZSB0aXRsZSBpcyBzdGlsbCBjb25mdXNpbmcsIG1heWJlIHVw
+ZGF0ZSB0aGUgdGl0bGUgYmFzZWQgb24gQW5nZWxvJ3MNCnN1Z2dlc3Rpb24gaW4gdjFbMV0/DQpJ
+biBhZGRpdGlvbiwgcGxlYXNlIG1vZGlmeSB0aGUgY29tbWl0IGRlc2NyaXB0aW9uIHRvIG1lbnRp
+b24gc3VwcG9ydA0KZm9yIHN0ZXJlbyBNQVg5ODM5MCBzcGVjaWZpY2FsbHkgZm9yIHRoZSBtdDgx
+ODgtcnQ1NjgycyBib2FyZC4gTm93LCBpdA0KcmVhZHMgbGlrZSB5b3UgYXJlIGFkZGluZyB0aGUg
+ZHVhbCBSVDU2ODJzIHN1cHBvcnQuDQoNClsxXWh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcv
+Y29tbWVudC8yNTU4NDA2Ni8NCg0KVGhhbmtzLA0KVHJldm9yDQoNCj4gUmV2aWV3ZWQtYnk6IEFu
+Z2Vsb0dpb2FjY2hpbm8gRGVsIFJlZ25vIDwNCj4gYW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bj
+b2xsYWJvcmEuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBSdWkgWmhvdSA8emhvdXJ1aUBodWFxaW4u
+Y29ycC1wYXJ0bmVyLmdvb2dsZS5jb20+DQo+IC0tLQ0KPiAgc291bmQvc29jL21lZGlhdGVrL210
+ODE4OC9tdDgxODgtbXQ2MzU5LmMgfCAyICstDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
+b24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9zb3VuZC9zb2MvbWVkaWF0
+ZWsvbXQ4MTg4L210ODE4OC1tdDYzNTkuYw0KPiBiL3NvdW5kL3NvYy9tZWRpYXRlay9tdDgxODgv
+bXQ4MTg4LW10NjM1OS5jDQo+IGluZGV4IGU5OTRmYWEzNTU2Yi4uOTE3NjQwOTM5NjIxIDEwMDY0
+NA0KPiAtLS0gYS9zb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTg4L210ODE4OC1tdDYzNTkuYw0KPiAr
+KysgYi9zb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTg4L210ODE4OC1tdDYzNTkuYw0KPiBAQCAtMTU0
+OSw3ICsxNTQ5LDcgQEAgc3RhdGljIHN0cnVjdCBtdDgxODhfY2FyZF9kYXRhDQo+IG10ODE4OF9u
+YXU4ODI1X2NhcmQgPSB7DQo+ICANCj4gIHN0YXRpYyBzdHJ1Y3QgbXQ4MTg4X2NhcmRfZGF0YSBt
+dDgxODhfcnQ1Njgyc19jYXJkID0gew0KPiAgCS5uYW1lID0gIm10ODE4OF9ydDU2ODJzIiwNCj4g
+LQkucXVpcmsgPSBSVDU2ODJTX0hTX1BSRVNFTlQsDQo+ICsJLnF1aXJrID0gUlQ1NjgyU19IU19Q
+UkVTRU5UIHwgTUFYOTgzOTBfVFdPX0FNUCwNCj4gIH07DQo+ICANCj4gIHN0YXRpYyBzdHJ1Y3Qg
+bXQ4MTg4X2NhcmRfZGF0YSBtdDgxODhfZXM4MzI2X2NhcmQgPSB7DQo+IC0tIA0KPiAyLjI1LjEN
+Cj4gDQo=
 
