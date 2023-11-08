@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAC297E55F9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:12:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6497E560B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:17:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06E571C20926
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:12:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9017F1C208A8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 12:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB1D171CC;
-	Wed,  8 Nov 2023 12:12:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB47B171D6;
+	Wed,  8 Nov 2023 12:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ef4YgSTe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iG7w/PAL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C242171BE
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 12:12:51 +0000 (UTC)
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E4A1BF1
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 04:12:50 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9c603e2354fso148800366b.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 04:12:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69E516400
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 12:16:57 +0000 (UTC)
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC261BCC;
+	Wed,  8 Nov 2023 04:16:57 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-6b709048f32so6195099b3a.0;
+        Wed, 08 Nov 2023 04:16:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699445569; x=1700050369; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1699445817; x=1700050617; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sJVgrec/1Dk121wZtbJlx4BtNg2X7nZzXaaCAUZMs8g=;
-        b=Ef4YgSTeg+P4XBBcq742HBGxdFR1g8YYeAQoRfv17ccCeh14rvQ36DnDP0M28r535F
-         BCr0glBDhZipoEFdVs4PHty7KFECdivO2h+OJ7fgJItakUDu3ubmlkkNWFS+pNWgalaj
-         /MHmgT98bw3fyEWNS5nNcnGYgOz1NCP10BKrKbirKEnIpzqNXk54Ds2M9rK4BPAxfRPD
-         GThZX2KFSPH2JUrdEOv9mR1jqH/Htl/Hsacu2l3vWKUGXpUZYAyKAprk5gZZfavW+vOe
-         2JtgxWb8aARgdvugPRwEyfb838z6bOUv6wsxURCDeljYgz1henmHdKby1ZKacR6KnSwN
-         7RrA==
+        bh=a0odlHwOtNd/gQ2OSreSLITmOX7RsQ54slrLEuU0nUY=;
+        b=iG7w/PALHQgB9i8Zpgf8ymo5m07IYdCqCnznMlmwuLebRQkKkrWY884X1gAJL3QT/3
+         4DJ7RcKjfneZGwUj0Cb1QgBCPblP2CPHOk4o5HH5pq5HBk9uUa3xPDgvtrkq4ZzHo0if
+         wXjDQBsRdvePndQ4shjZfQrg1oipjKa0SkC4XZDb9HgBHFDWjRz0CosF9keg+mKnjf0R
+         6NrDhgyBPytOqxZ7g0bYu0chKj/qwWqSjqfRMKKwTpHMaaI7SR5iXEcnrAHOx3LMlzUf
+         LSyNqkLB4InwV/NLzLmNtsVMxVB/fA6yRksiypvx7btcakDzdibiX3hN9tFXRrYbJElv
+         wy0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699445569; x=1700050369;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699445817; x=1700050617;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sJVgrec/1Dk121wZtbJlx4BtNg2X7nZzXaaCAUZMs8g=;
-        b=SONfMqk0KuAQxvtgRbUWrzAbS4ZoFS51R+ITVV1fh4vXYCWGqMy1NYqPuUPm86yseC
-         sFY4ytYbIjKXSOK8s2HqMQtQYpiqktILE2byxdO68TCU6Y9C6H4YkX0ndOz9DadkZUfF
-         xXko0xzOWwiW3kyzfhXyrZ38oXluHSrCNYhpmzAkSrasBd6H2lvvxJUqwgQ9XMYgYhpf
-         aBjlLBqK48DDqPZqnG4ax/gSwual8wyZaWJq648BdXqBp8wD13+ToaMcGintD51PgnzG
-         77f21V8oE1V48Wsma43YA8nKlw5GPqHY5BmEwL3rm/ImoK/W/kwCe6T35hvE0Zl14s85
-         Zyxw==
-X-Gm-Message-State: AOJu0Yw8W48Em2+06KBhjyZYNxwh57eUP6gXdpr9WQXmnU9Pz3QvDCg/
-	XCAaZGortvyEizUwnoDo5lG8wQ==
-X-Google-Smtp-Source: AGHT+IHoT69iLwX4AuDuQh/YICySUXvYA5Wo/yYozzA3garsHeGHKAmZm/8Mak7gAmMvJDs/ppPJYg==
-X-Received: by 2002:a17:907:9303:b0:9a1:f1b2:9f2e with SMTP id bu3-20020a170907930300b009a1f1b29f2emr1425533ejc.2.1699445568761;
-        Wed, 08 Nov 2023 04:12:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id gf23-20020a170906e21700b009920a690cd9sm945593ejb.59.2023.11.08.04.12.46
+        bh=a0odlHwOtNd/gQ2OSreSLITmOX7RsQ54slrLEuU0nUY=;
+        b=D63sUZXMw7m0+NWjeC5GYRpZgXkeEa/UVJbVukvqKlzOpVA3EfSwlmm+spJzCTXj9b
+         N4powreraNSR6BQK0kpqzZy6oJoWRMOiuKnwYEPFOO5bFD2xr3YbkgF/luB5potDzgya
+         zfqULV1/VCxNNaosE59VsY7FMiSY9Vdg4tcyV9V013NyVN7qeSnwSCaztWpdWlL4HbGS
+         CDYa/4mUX52NHtF/hR4m9Iauefnjza7ceNDBolE1cDpUbcaCMbaeG4z98iFkXBNOeYWW
+         AfG0T2zv4is0wrCCqHqIKlJs7QT2MGzhlZiQWsBsZQFuJvS+xOe25WQNZR1Vn62Ztc7X
+         NShw==
+X-Gm-Message-State: AOJu0Yxmelgmt1wrJk2t5i3bs38+VKx6aFiOjJlSpZINlCab0kJVi35t
+	jkAD/4iVesuxnQ2EEnWdYc0=
+X-Google-Smtp-Source: AGHT+IEgvBlfFoAm3o5yLspuEPCkpGv8ovqzhX0voi151tq5DxVHhnPFdmjziZe7SPm7I5oHL/driA==
+X-Received: by 2002:a05:6a00:88b:b0:6c2:cb9a:885e with SMTP id q11-20020a056a00088b00b006c2cb9a885emr1597966pfj.15.1699445816503;
+        Wed, 08 Nov 2023 04:16:56 -0800 (PST)
+Received: from ?IPV6:2401:4900:2353:8963:b940:1ac0:2fbc:6b6? ([2401:4900:2353:8963:b940:1ac0:2fbc:6b6])
+        by smtp.gmail.com with ESMTPSA id b21-20020a056a0002d500b00688965c5227sm8836395pft.120.2023.11.08.04.16.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Nov 2023 04:12:48 -0800 (PST)
-Message-ID: <211178ae-295e-4e99-bd08-4cd887bdfadf@linaro.org>
-Date: Wed, 8 Nov 2023 13:12:45 +0100
+        Wed, 08 Nov 2023 04:16:56 -0800 (PST)
+Message-ID: <7501036c-4e1f-4993-97a7-6c36c7cc8358@gmail.com>
+Date: Wed, 8 Nov 2023 17:45:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,99 +67,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF clk
- id
+Subject: Re: [PATCH 2/3] dt-bindings: trivial-devices: add asair,ags02ma
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
- heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- huangtao@rock-chips.com, andy.yan@rock-chips.com
-References: <20231108061822.4871-1-zhangqing@rock-chips.com>
- <20231108061822.4871-4-zhangqing@rock-chips.com>
- <20231108-donation-uncertain-c4d0f560c420@spud>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231108-donation-uncertain-c4d0f560c420@spud>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231107173100.62715-1-anshulusr@gmail.com>
+ <20231107173100.62715-2-anshulusr@gmail.com>
+ <1d5d1357-0b53-4639-add9-2b3f38aae744@linaro.org>
+ <90cacd34-4812-4792-9bf0-362200431452@gmail.com>
+ <77e1d308-6ac3-4200-b72a-6d5717869b06@linaro.org>
+From: Anshul Dalal <anshulusr@gmail.com>
+In-Reply-To: <77e1d308-6ac3-4200-b72a-6d5717869b06@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/11/2023 13:01, Conor Dooley wrote:
-> On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
->> export PCLK_VO1GRF for DT.
+On 11/8/23 17:31, Krzysztof Kozlowski wrote:
+> On 08/11/2023 12:54, Anshul Dalal wrote:
 >>
->> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->> ---
->>  include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
+>> Hello Krzysztof,
 >>
->> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->> index 5790b1391201..50ba72980190 100644
->> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
->> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->> @@ -733,8 +733,9 @@
->>  #define ACLK_AV1_PRE			718
->>  #define PCLK_AV1_PRE			719
->>  #define HCLK_SDIO_PRE			720
->> +#define PCLK_VO1GRF			721
->>  
+>> On 11/7/23 23:17, Krzysztof Kozlowski wrote:
+>>> On 07/11/2023 18:30, Anshul Dalal wrote:
+>>>> Add bindings for Asair AGS02MA TVOC sensor to trivial devices.
+>>>>
+>>>> The sensor communicates over i2c with the default address 0x1a.
+>>>> TVOC values can be read in the units of ppb and ug/m^3 at register 0x00.
+>>>>
+>>>> Datasheet:
+>>>>   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
+>>>> Product-Page:
+>>>>   http://www.aosong.com/m/en/products-33.html
+>>>>
+>>>> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>>>  1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>> index cd58179ae337..9cd67b758a88 100644
+>>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>>> @@ -47,6 +47,8 @@ properties:
+>>>>            - adi,lt7182s
+>>>>              # AMS iAQ-Core VOC Sensor
+>>>>            - ams,iaq-core
+>>>> +            # TVOC (Total Volatile Organic Compounds) i2c sensor
+>>>> +          - asair,ags02ma
+>>>
+>>> I think you miss VDD supply.
+>>
+>> I am sorry but I'm not sure what you meant. Are you referring to the
+>> addition of some information in the commit description?
 > 
->> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
->> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
-> 
-> This definition is part of the ABI, if it is safe to change it, then it
-> is safe to delete it.
-> 
+> I meant that your device might not be trivial. Your device takes VDD
+> supply, which is now not described in the bindings. Do you want to say
+> that VDD supply in all possible designs is hard-wired to
+> non-controllable regulator supply?
 
-+1
-(and we already started doing this for some platforms)
+I can't speak for all possible designs but for testing this driver I had
+just connected the VDD pin to 5V out of the Raspberry Pi. I have since
+verified 3.3V to also work.
+Could you explain why `vdd-supply` is a property or point me to further
+sources. Wouldn't almost all devices have a VDD/VCC pin for power in?
 
-Best regards,
-Krzysztof
-
+Best Regards,
+Anshul
 
