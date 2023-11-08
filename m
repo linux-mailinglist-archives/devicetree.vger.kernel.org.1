@@ -1,138 +1,121 @@
-Return-Path: <devicetree+bounces-14464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837F87E4EF8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 03:35:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B712C7E4F04
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 03:44:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B45721C20D59
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 02:35:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5410CB20DF5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 02:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 719DDEA3;
-	Wed,  8 Nov 2023 02:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE59AEBC;
+	Wed,  8 Nov 2023 02:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="B5EOhYUV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A+Ui7wsh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D612481F;
-	Wed,  8 Nov 2023 02:35:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A636181;
-	Tue,  7 Nov 2023 18:35:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699410902; x=1730946902;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lIQhC7POCcImWvUOeBOHOOcj+sBmsQejKlKpslScH84=;
-  b=B5EOhYUVDl7RvKPgSXTl8LnrJVF7WaFFTZ0KaqjRbw0LW766ZSn10xlg
-   eaK4Wrbdb1g87ETx5fK3NLKktpn+Ux5MwlSalMLDj9rrXPm4q5Hq5N7Q9
-   qid8bjIYh/omZxMtrNBDNH+CPXJxfhNaKOHSdb7Mp1OPzon7oDpEPVsOS
-   FCkxaN0Y2XuiaTkIGYpmWBt7qa/4vZhYbbtBxVdMWi5LrXhBe/0/eUdBh
-   Tje85udLMuZCy5mxUVqbucFlozLRQMAt+sMbSscOlpwpaKjsvq7UOQNh4
-   08ZLpPubKyC+s5wNU4SPMeroYxmkhqk5vTmXJamanW8PupzinipNwE/88
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="374716880"
-X-IronPort-AV: E=Sophos;i="6.03,285,1694761200"; 
-   d="scan'208";a="374716880"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2023 18:35:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="828822431"
-X-IronPort-AV: E=Sophos;i="6.03,285,1694761200"; 
-   d="scan'208";a="828822431"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 07 Nov 2023 18:34:57 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r0YP9-0007ZI-0E;
-	Wed, 08 Nov 2023 02:34:55 +0000
-Date: Wed, 8 Nov 2023 10:34:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F70EA3;
+	Wed,  8 Nov 2023 02:44:29 +0000 (UTC)
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA4D0184;
+	Tue,  7 Nov 2023 18:44:28 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1cc3c51f830so49098595ad.1;
+        Tue, 07 Nov 2023 18:44:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699411468; x=1700016268; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=V/wwdfRphBwJ10ItYJstxVI8q7C8OR1Gp20sJ7bfRFs=;
+        b=A+Ui7wshVSwaOHJtbR9v+IawFMwF5KmHuhLClQbPBb9UNMtdNW7Na4rHP2421XyER7
+         d0EOfwueIh9cBVOnX4toqWYb5KpwZfhdzrmV5D7VlTht7fMri0Dywszx6atQfs60fkvQ
+         oMHF16nJImv/2V8Hu4jdnOo4RsWth0W8A0ugmdPce0fAY08WoOkexwI8WIYzXjR3KDOv
+         dbd6WyKsS3skB/yo3qdcaYme7Eb3aMZmSwZryOHMjKTWfb6kWgZfxlmaRPWRxylN10I4
+         2M1BzpWMcU1XzEgctMJhgfSKGiraEil9di2HgI3ZlgAonCZImZrRyNp5srp6g/8TsWRm
+         yOvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699411468; x=1700016268;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V/wwdfRphBwJ10ItYJstxVI8q7C8OR1Gp20sJ7bfRFs=;
+        b=cletc0LnNFDEIFtX7+7eqlxLp3z4fvfSiSdzZAiisJZVhz6499I2xjvhqYLsZYemvw
+         79e/rFAKipwfXtiyvsPHboeuQdh18aYX4L1k8KuQkHWJ0wdknd2hgJ8JSzkjxEfs0EZr
+         e0cTeVQtKPDVBmmj2dcCOkur0CMEzQo8UDbHo409edcbbo6X1Oj/dDfe1ePtKtKWvf84
+         rWzBBZYwbBBnHGuNfkJxi9JG7yXHg6QiANKOhix+61PtdQwhEPRWcfm9Pv7dgHVvS1Mv
+         HNZiJCij3ZlSSzBagNfqUBcJTm/WqT/q1Cwc1OlcSYaJA3bU+vzOSmd6zn1chY3rnTQG
+         PWPg==
+X-Gm-Message-State: AOJu0YzABACGwiIbK8W1/9n/BzGpzOMFseyYRsXQ5KmmsALX/U8WCxd0
+	RGszsbo7jNQwmTLn/QoQ78I=
+X-Google-Smtp-Source: AGHT+IEOr1W+M8OwGU0II7Hj4G2oaJUl4uxectMyrXLZDreeT37M3r1Jc9zixvuwENvZpSAFSNcemQ==
+X-Received: by 2002:a17:902:ead4:b0:1cc:ef37:664a with SMTP id p20-20020a170902ead400b001ccef37664amr777261pld.31.1699411468266;
+        Tue, 07 Nov 2023 18:44:28 -0800 (PST)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id a3-20020a1709027d8300b001c62e3e1286sm501681plm.166.2023.11.07.18.44.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Nov 2023 18:44:27 -0800 (PST)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+X-Google-Original-From: Peter Yin <peter.yin@quantatw.com>
+To: patrick@stwcx.xyz,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, Mao Jinlong <quic_jinlmao@quicinc.com>,
-	linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Mark Brown <broonie@kernel.org>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	Peter Yin <peteryin.openbmc@gmail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
 	devicetree@vger.kernel.org,
-	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>
-Subject: Re: [PATCH v1 1/2] coresight: Add remote etm support
-Message-ID: <202311081053.fWRkXGH0-lkp@intel.com>
-References: <20231107060939.13449-2-quic_jinlmao@quicinc.com>
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: [PATCH v1 0/2] hwmon: (pmbus) Add support for MPS Multi-phase mp2856/mp2857 controller
+Date: Wed,  8 Nov 2023 10:42:17 +0800
+Message-Id: <20231108024222.2026546-1-peter.yin@quantatw.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231107060939.13449-2-quic_jinlmao@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Mao,
+From: Peter Yin <peteryin.openbmc@gmail.com>
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on next-20231107]
-[cannot apply to robh/for-next linus/master v6.6 v6.6-rc7 v6.6-rc6 v6.6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/coresight-Add-remote-etm-support/20231107-141331
-base:   next-20231107
-patch link:    https://lore.kernel.org/r/20231107060939.13449-2-quic_jinlmao%40quicinc.com
-patch subject: [PATCH v1 1/2] coresight: Add remote etm support
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231108/202311081053.fWRkXGH0-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231108/202311081053.fWRkXGH0-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311081053.fWRkXGH0-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/hwtracing/coresight/coresight-remote-etm.c:312:12: warning: no previous prototype for 'remote_etm_init' [-Wmissing-prototypes]
-     312 | int __init remote_etm_init(void)
-         |            ^~~~~~~~~~~~~~~
->> drivers/hwtracing/coresight/coresight-remote-etm.c:318:13: warning: no previous prototype for 'remote_etm_exit' [-Wmissing-prototypes]
-     318 | void __exit remote_etm_exit(void)
-         |             ^~~~~~~~~~~~~~~
+Add support for mp2856/mp2857 device from Monolithic Power Systems, Inc.
+(MPS) vendor. This is a dual-loop, digital, multi-phase,
+modulation controller.
 
 
-vim +/remote_etm_init +312 drivers/hwtracing/coresight/coresight-remote-etm.c
+Change log:
 
-   311	
- > 312	int __init remote_etm_init(void)
-   313	{
-   314		return platform_driver_register(&remote_etm_driver);
-   315	}
-   316	module_init(remote_etm_init);
-   317	
- > 318	void __exit remote_etm_exit(void)
-   319	{
-   320		platform_driver_unregister(&remote_etm_driver);
-   321	}
-   322	module_exit(remote_etm_exit);
-   323	
+v1: Add support mp2856/mp2857
+---
+Peter Yin (2):
+  dt-bindings: Add MP2856/MP2857 voltage regulator device
+  hwmon: (pmbus) Add support for MPS Multi-phase mp2856/mp2857
+    controller
+
+ .../devicetree/bindings/trivial-devices.yaml  |   4 +
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/mp2856.rst                | 101 ++++++
+ drivers/hwmon/pmbus/Kconfig                   |   9 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/mp2856.c                  | 327 ++++++++++++++++++
+ 6 files changed, 443 insertions(+)
+ create mode 100644 Documentation/hwmon/mp2856.rst
+ create mode 100644 drivers/hwmon/pmbus/mp2856.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
 
