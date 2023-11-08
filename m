@@ -1,91 +1,132 @@
-Return-Path: <devicetree+bounces-14475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183C47E5013
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:38:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF887E5037
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 07:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90181B20B16
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 05:38:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB6E51C209B0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 06:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D5ABE51;
-	Wed,  8 Nov 2023 05:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634A5C8D2;
+	Wed,  8 Nov 2023 06:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="n2r7PWWH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dsUdkLgX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85CB8F7E;
-	Wed,  8 Nov 2023 05:38:19 +0000 (UTC)
-X-Greylist: delayed 149365 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 07 Nov 2023 21:38:19 PST
-Received: from mx0.riseup.net (mx0.riseup.net [198.252.153.6])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177E7D79;
-	Tue,  7 Nov 2023 21:38:19 -0800 (PST)
-Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx0.riseup.net (Postfix) with ESMTPS id 4SQDQL0D30z9sZl;
-	Wed,  8 Nov 2023 05:38:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-	t=1699421898; bh=hnp+MRetZIeRthwcZt8YAw+DaHaqqmUcyacYecXNAWY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=n2r7PWWHSYKLXYEP0X9fa4eP3tTl0mFt7+N/KzSU0pJINQt5nJO6wMP7pfj8o393B
-	 UVjnbftZbdJ5JYpVmL+rAWeEHXdrtWt+W1Z/EdzkW/5gH4Tr8PVEB9km+hxyp+3ri1
-	 JKEjcA5leBDjDdcez/nguaIBKgg4kmRPZUfU7ZMo=
-X-Riseup-User-ID: 4F845E5C8472CAF32BD62747F514CB998E4B9C350F494338EE95BEACC9A4466E
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4SQDQG6LQczJmtY;
-	Wed,  8 Nov 2023 05:38:14 +0000 (UTC)
-From: Dang Huynh <danct12@riseup.net>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Robert Marko <robimarko@gmail.com>, Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH 8/8] soc: qcom: socinfo: Add PM8937 Power IC
-Date: Wed, 08 Nov 2023 05:38:02 +0000
-Message-ID: <6027616.lOV4Wx5bFT@melttower>
-In-Reply-To: <6715dfd5-acf5-434c-a9bd-0a5bcdd72010@linaro.org>
-References:
- <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
- <20231106-pm8937-v1-8-ec51d9eeec53@riseup.net>
- <6715dfd5-acf5-434c-a9bd-0a5bcdd72010@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8F1CA61;
+	Wed,  8 Nov 2023 06:05:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AFA9EC433C7;
+	Wed,  8 Nov 2023 06:05:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699423519;
+	bh=jPf+EyCFsnTuZYFqVKcAr8GvhtDbrpKc2fnaZTnUvME=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=dsUdkLgXcLrmh02Wvi3sYoRj3QXSGKjbTy5O9sfKJu915lnSE64zSOMamWChmkJsJ
+	 V1M9C7f3DZCtiVDCGzlIkVoMEEViIrrN/tTHMwgbKSZhayjjHpaqXqk6wCbdTb9F/L
+	 PtrWFJwUHTkVhqT5AZVaj7AiORHK5AGQmOoqXg2LtaPL0op+KgmHEGi2wtOhvLJEZL
+	 kEv1fHnZhSqJAHuuVpep8R+UnMVkLMePZ+zflqLkwAqVUCl7ZnOt3aFxIDzesjHYXJ
+	 f5Yf80lJGO0dN8EdCTycDzo3OAMrIZ4QfaOq6fDqOX9WMJ1ZzFnV4abvo6YvmcGh6V
+	 1y2RTtSCtX1qg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96238C4332F;
+	Wed,  8 Nov 2023 06:05:19 +0000 (UTC)
+From: Hui Liu via B4 Relay <devnull+quic_huliu.quicinc.com@kernel.org>
+Date: Wed, 08 Nov 2023 14:05:12 +0800
+Subject: [PATCH] ARM: dts: qcom: Add LPG LED device description
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIABklS2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDQwML3cLk/Nz4nNSUYt1k4ySDJHMDI0sDAwsloPqCotS0zAqwWdGxtbU
+ AJTBULVsAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, quic_fenglinw@quicinc.com, 
+ quic_uchheda@quicinc.com, kamalw@qti.qualcomm.com, 
+ Hui Liu <quic_huliu@quicinc.com>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1699423518; l=1242;
+ i=quic_huliu@quicinc.com; s=20230823; h=from:subject:message-id;
+ bh=NDo+ug2xivotbN/xsmZgwuX6Kewv3ppT7LsFeWs76Jw=;
+ b=RljxyHRNT45DJuHIAuZuGUdPAx1iNvdE50l+UdUDEOalLsuw49dIGrF8fUhBac0Cgpic77vmG
+ QPJ6QM17/SDC1A5fMZ8TeAn2e9q1TxYc5bOQbl0TZutUnDGAKgrX2Hw
+X-Developer-Key: i=quic_huliu@quicinc.com; a=ed25519;
+ pk=1z+A50UnTuKe/FdQv2c0W3ajDsJOYddwIHo2iivhTTA=
+X-Endpoint-Received:
+ by B4 Relay for quic_huliu@quicinc.com/20230823 with auth_id=80
+X-Original-From: Hui Liu <quic_huliu@quicinc.com>
+Reply-To: <quic_huliu@quicinc.com>
 
-On Tuesday, November 7, 2023 9:30:34 PM UTC Konrad Dybcio wrote:
-> On 11/6/23 13:08, Dang Huynh wrote:
-> > The PM8917 and PM8937 uses the same SUBTYPE ID.
-> > 
-> > The PM8937 is found in boards with MSM8917, MSM8937 and MSM8940
-> > and APQ variants.
-> > 
-> > Signed-off-by: Dang Huynh <danct12@riseup.net>
-> > ---
-> 
-> Are they secretly the same thing? Do you know somebody with a PM8917-
-> equipped device to check that theory out?
-> 
-> Konrad
+From: Hui Liu <quic_huliu@quicinc.com>
 
-I don't know anyone with a PM8917 device, but I did check with downstream 
-source and all the reference to pm8917 are either not used in any dts or point 
-towards pm8937.
+Add LPG LED device description.
 
-Dang
+Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+index f28e71487d5c..11b9f384d99c 100644
+--- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/spmi/spmi.h>
+ 
+ &spmi_bus {
+@@ -34,6 +35,27 @@ pm8350c_pwm: pwm {
+ 			compatible = "qcom,pm8350c-pwm";
+ 			#pwm-cells = <2>;
+ 			status = "disabled";
++
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			led@1 {
++				reg = <1>;
++				color = <LED_COLOR_ID_RED>;
++				label = "red";
++			};
++
++			led@2 {
++				reg = <2>;
++				color = <LED_COLOR_ID_GREEN>;
++				label = "green";
++			};
++
++			led@3 {
++				reg = <3>;
++				color = <LED_COLOR_ID_BLUE>;
++				label = "blue";
++			};
+ 		};
+ 	};
+ };
+
+---
+base-commit: b9604be241587fb29c0f40450e53d0a37dc611b5
+change-id: 20231108-qcom_leds-c3b0b7029008
+
+Best regards,
+-- 
+Hui Liu <quic_huliu@quicinc.com>
 
 
