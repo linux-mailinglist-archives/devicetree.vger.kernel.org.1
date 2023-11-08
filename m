@@ -1,474 +1,138 @@
-Return-Path: <devicetree+bounces-14569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F0F7E5811
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:44:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 491067E5814
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 14:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3854B20D2E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:44:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79FB11C208E5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 13:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A191F19479;
-	Wed,  8 Nov 2023 13:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB4519479;
+	Wed,  8 Nov 2023 13:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BQlTNXw6"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="b1YwFl1N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DFB19474
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 13:44:10 +0000 (UTC)
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F361FC0
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 05:44:09 -0800 (PST)
-Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-66cfc96f475so43006156d6.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 05:44:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCCB171D4
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 13:44:42 +0000 (UTC)
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294B91BFC
+	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 05:44:42 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id a640c23a62f3a-9d267605ceeso1052118466b.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Nov 2023 05:44:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699451049; x=1700055849; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IKZCqhm8AFVwxssH7/r5DfL10FHFsNmRP1Oyhjan5RA=;
-        b=BQlTNXw6zOjHi/LvJn0KoA2nMQCq6fsPTjpmBbX7i5BJk2ADz/Ngbg+pbrm4Qmmfv5
-         r68x+6zvtgQ7t5qIz8FbaA3UYVUq/jN0NXWhPc8xvuI4rzzK2wujHTwgiTbPa/AxBMQh
-         W2Pa++tdktSG30zsZiELkjMcMb1zvr68nV7v7V1NzGNZ8CGVyqz61fTVCW0p0oumXP0S
-         r9XND1mpPZ1r93J933CphphSMnVRZ5I6QeF/9UUHuH4iVAwXe2HE943Gqo5L9Jv5xf7E
-         LGK6p6etUPXPgAxifPtbIFnMjSdQ0UzcVuPkH2LxEwKztoQnKqFf6g6tmKddZ0tAfFYs
-         VqNQ==
+        d=amarulasolutions.com; s=google; t=1699451080; x=1700055880; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IVv5mcW5zUgVSiSOauQHcHZhJPg5UCLoWJRDvmkhj7k=;
+        b=b1YwFl1N0rh28F9ndwx1VKdwqN7JVkUNnJL2HRiTWVsaqG9xjSomQWBarF3j4Evojx
+         lhyUROga4guIUM85JJEScrWyltJwqlw6y2xNAu5hWI33OtNnqyOWu8vxIW0kdrsJ7ni9
+         GOEivr5H/1hxC9NtsiFuCsZi71RyZNBqN4AOY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699451049; x=1700055849;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IKZCqhm8AFVwxssH7/r5DfL10FHFsNmRP1Oyhjan5RA=;
-        b=PIU/iw9HRKwMD+hF8De6ZPXMfS5ym6QQo61p9/VO/APRuKa6YYvMThhZrFcmW0lRRY
-         Nca9UK22o+39AfeFs+ICyKO0GJe7TeJk7uOQNhVvAV4OlYlNPn+J0Jt3t7C1gakdjFfj
-         VqfX/JGUAloCl2/EPluKc9VleM/RF6TE4AeZiHblXPQ64sNT/nsIWzW7eky+Kzba9aec
-         A+FVAO2U2XkhnaWBME61Hpimne8JYnoulZthG2vHfrm1eRMomkjdCAHZgy+OBn5sShHp
-         MEkXW9tEs9gWmUmZQxdZ2BbLxytCyXd+4MAIznUCXepeByyw0pBCMsFYOQmI14Gju7GE
-         YF2A==
-X-Gm-Message-State: AOJu0Yx39rtCv1H1xvv6Sm3okiZ5YGE+J+cTtw7KLq83C2VPAaeGkfmq
-	BgH6WRcpe8XJCNephQLMGiZ3fYP+islhm+AIR5wr/g==
-X-Google-Smtp-Source: AGHT+IFCylc77uwZLvhx0FoVd3Sqb6tdP1R7uRKdeK/yHH/BSnU0lGTI2P0BS/e2M0CMWQshI0m8jEkumkFoqMUNR+c=
-X-Received: by 2002:a05:6214:494:b0:673:b0e7:1916 with SMTP id
- pt20-20020a056214049400b00673b0e71916mr2527276qvb.2.1699451048900; Wed, 08
- Nov 2023 05:44:08 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699451080; x=1700055880;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IVv5mcW5zUgVSiSOauQHcHZhJPg5UCLoWJRDvmkhj7k=;
+        b=oAHJ4D6DUklBkJHsWCp9R5hvHeAk5NVbA0DMxDusyqPen8hxgZ/5RcoW5sudxu6V1g
+         rnD9rDPn41Cvwsc+kQs6Bp/7RTtoSpDgChfNvZqQqRQyamnlu97wCUY4quDAPq8ZOfKM
+         iowFLsYQz/9UBYwvks3f8uLLQpOPX5trGllLWOjzfxMU3shDWkbXp0JNnalbEkwmftmu
+         h24pcTXPH7BQGKIzXhdBkKBn+MfbkBTDcVxNUipFTD+daSEF/BFlJ4FsOjnxWtHghqXk
+         JTIEv7eU3Axzy/oNT3jzLYpUm+5hQccrjG2xxePCeU0e52GCDiH+QT2mBnEE+VrrTGg9
+         qKuw==
+X-Gm-Message-State: AOJu0Yx/LGxcCNdT36bNjR0Dp4HntYb1Qeqpf+orsQ6sxIRYwZ5KkM9E
+	cVMmCHeWO40ckO0z2nguuWrcMw==
+X-Google-Smtp-Source: AGHT+IEn/7ehRYp2n2E4vkCWEuoVxQ7nZKTWTIBc8HV+mV3MsZL6jh3kxXkuRcD9ZyWoygMo5iN7MA==
+X-Received: by 2002:a17:907:987:b0:9e0:4910:1649 with SMTP id bf7-20020a170907098700b009e049101649mr1775121ejc.8.1699451080611;
+        Wed, 08 Nov 2023 05:44:40 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-20-97-182.retail.telecomitalia.it. [79.20.97.182])
+        by smtp.gmail.com with ESMTPSA id kj3-20020a170907764300b009bf7a4d591csm1091457ejc.11.2023.11.08.05.44.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Nov 2023 05:44:40 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [RESEND PATCH] ARM: dts: stm32f469-disco: use the same 3v3 for SD and DSI nodes
+Date: Wed,  8 Nov 2023 14:44:06 +0100
+Message-ID: <20231108134426.4174699-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231011184823.443959-1-peter.griffin@linaro.org>
- <20231011184823.443959-15-peter.griffin@linaro.org> <CAPLW+4=k1qZgOKUUXgJYgXOzzRujyjW+Ua0Sej-gDcZsvCWirw@mail.gmail.com>
-In-Reply-To: <CAPLW+4=k1qZgOKUUXgJYgXOzzRujyjW+Ua0Sej-gDcZsvCWirw@mail.gmail.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 8 Nov 2023 13:43:57 +0000
-Message-ID: <CADrjBPoYqduCmd_j4cp0pSEXzRAOML7=YianTwNsvxuzvGpOtA@mail.gmail.com>
-Subject: Re: [PATCH v3 14/20] pinctrl: samsung: Add gs101 SoC pinctrl configuration
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	cw00.choi@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com, soc@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org, 
-	kernel-team@android.com, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Sam,
+In the board schematic, the power supply for the SD card is the same 3.3
+volts used to power the LCD panel and other peripherals. By generalizing
+the name of the voltage regulator, it simplifies the device tree and makes
+it more readable.
 
-On Thu, 12 Oct 2023 at 07:00, Sam Protsenko <semen.protsenko@linaro.org> wr=
-ote:
->
-> On Wed, Oct 11, 2023 at 1:49=E2=80=AFPM Peter Griffin <peter.griffin@lina=
-ro.org> wrote:
-> >
-> > Add support for the pin-controller found on the gs101 SoC used in
-> > Pixel 6 phones.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 163 ++++++++++++++++++
-> >  drivers/pinctrl/samsung/pinctrl-exynos.c      |   2 +
-> >  drivers/pinctrl/samsung/pinctrl-exynos.h      |  34 ++++
-> >  drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
-> >  drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
-> >  5 files changed, 202 insertions(+)
-> >
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/p=
-inctrl/samsung/pinctrl-exynos-arm64.c
-> > index cb965cf93705..db47001d1b35 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> > @@ -796,3 +796,166 @@ const struct samsung_pinctrl_of_match_data fsd_of=
-_data __initconst =3D {
-> >         .ctrl           =3D fsd_pin_ctrl,
-> >         .num_ctrl       =3D ARRAY_SIZE(fsd_pin_ctrl),
-> >  };
-> > +
-> > +/*
-> > + * bank type for non-alive type
-> > + * (CON bit field: 4, DAT bit field: 1, PUD bit field: 4, DRV bit fiel=
-d: 4)
-> > + * (CONPDN bit field: 2, PUDPDN bit field: 4)
-> > + */
-> > +static struct samsung_pin_bank_type gs101_bank_type_off  =3D {
-> > +       .fld_width =3D { 4, 1, 4, 4, 2, 4, },
-> > +       .reg_offset =3D { 0x00, 0x04, 0x08, 0x0c, 0x10, 0x14, },
-> > +};
-> > +
-> > +/*
-> > + * bank type for alive type
-> > + * (CON bit field: 4, DAT bit field: 1, PUD bit field: 4, DRV bit fiel=
-d: 4)
-> > + */
-> > +static const struct samsung_pin_bank_type gs101_bank_type_alive =3D {
-> > +       .fld_width =3D { 4, 1, 4, 4, },
-> > +       .reg_offset =3D { 0x00, 0x04, 0x08, 0x0c, },
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (ALIVE) */
-> > +static const struct samsung_pin_bank_data gs101_pin_alive[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 8, 0x0, "gpa0", 0=
-x00, 0x00, FLT_SELECTABLE),
->
-> Here and further: please keep 80 characters per line when possible.
+Link: https://www.st.com/en/evaluation-tools/32f469idiscovery.html#cad-resources
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-Will fix.
+---
 
->
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 7, 0x20, "gpa1", =
-0x04, 0x08, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 5, 0x40, "gpa2", =
-0x08, 0x10, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 4, 0x60, "gpa3", =
-0x0c, 0x18, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 4, 0x80, "gpa4", =
-0x10, 0x1c, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 7, 0xa0, "gpa5", =
-0x14, 0x20, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 8, 0xc0, "gpa9", =
-0x18, 0x28, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 2, 0xe0, "gpa10",=
- 0x1c, 0x30, FLT_SELECTABLE),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (FAR_ALIVE) */
-> > +static const struct samsung_pin_bank_data gs101_pin_far_alive[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 8, 0x0, "gpa6", 0=
-x00, 0x00, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 4, 0x20, "gpa7", =
-0x04, 0x08, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 8, 0x40, "gpa8", =
-0x08, 0x0c, FLT_SELECTABLE),
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 2, 0x60, "gpa11",=
- 0x0c, 0x14, FLT_SELECTABLE),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (GSACORE) */
-> > +static const struct samsung_pin_bank_data gs101_pin_gsacore[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x0, "gps0", 0x0=
-0, 0x00, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 8, 0x20, "gps1", 0x=
-04, 0x04, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 3, 0x40, "gps2", 0x=
-08, 0x0c, FLT_DEFAULT),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (GSACTRL) */
-> > +static const struct samsung_pin_bank_data gs101_pin_gsactrl[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTW(gs101_bank_type_alive, 6, 0x0, "gps3", 0=
-x00, 0x00, FLT_DEFAULT),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (PERIC0) */
-> > +static const struct samsung_pin_bank_data gs101_pin_peric0[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 5, 0x0, "gpp0", 0x0=
-0, 0x00, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x20, "gpp1", 0x=
-04, 0x08, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x40, "gpp2", 0x=
-08, 0x0c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x60, "gpp3", 0x=
-0c, 0x10, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x80, "gpp4", 0x=
-10, 0x14, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0xa0, "gpp5", 0x=
-14, 0x18, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0xc0, "gpp6", 0x=
-18, 0x1c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0xe0, "gpp7", 0x=
-1c, 0x20, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x100, "gpp8", 0=
-x20, 0x24, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x120, "gpp9", 0=
-x24, 0x28, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x140, "gpp10", =
-0x28, 0x2c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x160, "gpp11", =
-0x2c, 0x30, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x180, "gpp12", =
-0x30, 0x34, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x1a0, "gpp13", =
-0x34, 0x38, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x1c0, "gpp14", =
-0x38, 0x3c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x1e0, "gpp15", =
-0x3c, 0x40, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x200, "gpp16", =
-0x40, 0x44, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x220, "gpp17", =
-0x44, 0x48, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x240, "gpp18", =
-0x48, 0x4c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x260, "gpp19", =
-0x4c, 0x50, FLT_DEFAULT),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (PERIC1) */
-> > +static const struct samsung_pin_bank_data gs101_pin_peric1[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 8, 0x0, "gpp20", 0x=
-00, 0x00, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x20, "gpp21", 0=
-x04, 0x08, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x40, "gpp22", 0=
-x08, 0x0c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 8, 0x60, "gpp23", 0=
-x0c, 0x10, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0x80, "gpp24", 0=
-x10, 0x18, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0xa0, "gpp25", 0=
-x14, 0x1c, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 5, 0xc0, "gpp26", 0=
-x18, 0x20, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 4, 0xe0, "gpp27", 0=
-x1c, 0x28, FLT_DEFAULT),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (HSI1) */
-> > +static const struct samsung_pin_bank_data gs101_pin_hsi1[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 6, 0x0, "gph0", 0x0=
-0, 0x00, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 7, 0x20, "gph1", 0x=
-04, 0x08, FLT_DEFAULT),
-> > +};
-> > +
-> > +/* pin banks of gs101 pin-controller (HSI2) */
-> > +static const struct samsung_pin_bank_data gs101_pin_hsi2[] =3D {
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 6, 0x0, "gph2", 0x0=
-0, 0x00, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 2, 0x20, "gph3", 0x=
-04, 0x08, FLT_DEFAULT),
-> > +       EXYNOS9_PIN_BANK_EINTG(gs101_bank_type_off, 6, 0x40, "gph4", 0x=
-08, 0x0c, FLT_DEFAULT),
-> > +};
-> > +
-> > +static const struct samsung_pin_ctrl gs101_pin_ctrl[] __initconst =3D =
-{
-> > +       {
-> > +               /* pin banks of gs101 pin-controller (ALIVE) */
-> > +               .pin_banks      =3D gs101_pin_alive,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_alive),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +               .eint_wkup_init =3D exynos_eint_wkup_init,
->
-> Is it ok to have both .eint_gpio_init and .eint_wkup_init set here and
-> further? I remember doing something like that for Exynos850 before,
-> only to realize further if was a mistake. Please check commit
-> 96f79935015c ("pinctrl: samsung: Remove EINT handler for Exynos850
-> ALIVE and CMGP gpios"). Maybe it's ok in your case.
+ arch/arm/boot/dts/st/stm32f469-disco.dts | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
 
-Thanks for the hint :) You're correct eint_gpio_init is not required on ali=
-ve,
-far_alive, gsacore and gsactrl banks. Will update in v4.
+diff --git a/arch/arm/boot/dts/st/stm32f469-disco.dts b/arch/arm/boot/dts/st/stm32f469-disco.dts
+index cbbd521bf010..8a4f8ddd083d 100644
+--- a/arch/arm/boot/dts/st/stm32f469-disco.dts
++++ b/arch/arm/boot/dts/st/stm32f469-disco.dts
+@@ -69,16 +69,9 @@ aliases {
+ 		serial0 = &usart3;
+ 	};
+ 
+-	mmc_vcard: mmc_vcard {
++	vcc_3v3: vcc-3v3 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "mmc_vcard";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-	};
+-
+-	vdd_dsi: vdd-dsi {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vdd_dsi";
++		regulator-name = "vcc_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+@@ -164,7 +157,7 @@ panel@0 {
+ 		compatible = "orisetech,otm8009a";
+ 		reg = <0>; /* dsi virtual channel (0..3) */
+ 		reset-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
+-		power-supply = <&vdd_dsi>;
++		power-supply = <&vcc_3v3>;
+ 		status = "okay";
+ 
+ 		port {
+@@ -219,7 +212,7 @@ timer@2 {
+ 
+ &sdio {
+ 	status = "okay";
+-	vmmc-supply = <&mmc_vcard>;
++	vmmc-supply = <&vcc_3v3>;
+ 	cd-gpios = <&gpiog 2 GPIO_ACTIVE_LOW>;
+ 	broken-cd;
+ 	pinctrl-names = "default", "opendrain";
+-- 
+2.42.0
 
->
-> > +               .suspend        =3D exynos_pinctrl_suspend,
-> > +               .resume         =3D exynos_pinctrl_resume,
->
-> Did you manage to actually test those suspend/resume callbacks
-> somehow? If so, can you please share the procedure? I guess I had some
-> Power Domains and clock related problems on Exynos850 when I tried
-> that before, so just curious.
-
-You can test the callbacks using
-echo mem > /sys/power/state
-
-Thanks,
-
-Peter.
-
-
-
-
->
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (FAR_ALIVE) */
-> > +               .pin_banks      =3D gs101_pin_far_alive,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_far_alive),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +               .eint_wkup_init =3D exynos_eint_wkup_init,
-> > +               .suspend        =3D exynos_pinctrl_suspend,
-> > +               .resume         =3D exynos_pinctrl_resume,
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (GSACORE) */
-> > +               .pin_banks      =3D gs101_pin_gsacore,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_gsacore),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (GSACTRL) */
-> > +               .pin_banks      =3D gs101_pin_gsactrl,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_gsactrl),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (PERIC0) */
-> > +               .pin_banks      =3D gs101_pin_peric0,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_peric0),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +               .suspend        =3D exynos_pinctrl_suspend,
-> > +               .resume         =3D exynos_pinctrl_resume,
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (PERIC1) */
-> > +               .pin_banks      =3D gs101_pin_peric1,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_peric1),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +               .suspend        =3D exynos_pinctrl_suspend,
-> > +               .resume =3D exynos_pinctrl_resume,
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (HSI1) */
-> > +               .pin_banks      =3D gs101_pin_hsi1,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_hsi1),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +               .suspend        =3D exynos_pinctrl_suspend,
-> > +               .resume         =3D exynos_pinctrl_resume,
-> > +       }, {
-> > +               /* pin banks of gs101 pin-controller (HSI2) */
-> > +               .pin_banks      =3D gs101_pin_hsi2,
-> > +               .nr_banks       =3D ARRAY_SIZE(gs101_pin_hsi2),
-> > +               .eint_gpio_init =3D exynos_eint_gpio_init,
-> > +               .suspend        =3D exynos_pinctrl_suspend,
-> > +               .resume         =3D exynos_pinctrl_resume,
-> > +       },
-> > +};
-> > +
-> > +const struct samsung_pinctrl_of_match_data gs101_of_data __initconst =
-=3D {
-> > +       .ctrl           =3D gs101_pin_ctrl,
-> > +       .num_ctrl       =3D ARRAY_SIZE(gs101_pin_ctrl),
-> > +};
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.c b/drivers/pinctrl=
-/samsung/pinctrl-exynos.c
-> > index 800831aa8357..014f0c37f97f 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-exynos.c
-> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos.c
-> > @@ -533,6 +533,8 @@ static const struct of_device_id exynos_wkup_irq_id=
-s[] =3D {
-> >                         .data =3D &exynos7_wkup_irq_chip },
-> >         { .compatible =3D "samsung,exynosautov9-wakeup-eint",
-> >                         .data =3D &exynos7_wkup_irq_chip },
-> > +       { .compatible =3D "google,gs101-wakeup-eint",
-> > +                       .data =3D &exynos7_wkup_irq_chip },
-> >         { }
-> >  };
-> >
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.h b/drivers/pinctrl=
-/samsung/pinctrl-exynos.h
-> > index 63b2426ad5d6..0dd013654bd2 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-exynos.h
-> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos.h
-> > @@ -147,6 +147,40 @@
-> >                 .name           =3D id                            \
-> >         }
-> >
-> > +#define EXYNOS9_PIN_BANK_EINTN(types, pins, reg, id)   \
-> > +       {                                               \
-> > +               .type           =3D &types,               \
-> > +               .pctl_offset    =3D reg,                  \
-> > +               .nr_pins        =3D pins,                 \
-> > +               .eint_type      =3D EINT_TYPE_NONE,       \
-> > +               .fltcon_type    =3D FLT_DEFAULT           \
-> > +               .name           =3D id                    \
-> > +       }
-> > +
-> > +#define EXYNOS9_PIN_BANK_EINTG(types, pins, reg, id, offs, fltcon_offs=
-, fltcontype) \
-> > +       {                                               \
-> > +               .type           =3D &types,               \
-> > +               .pctl_offset    =3D reg,                  \
-> > +               .nr_pins        =3D pins,                 \
-> > +               .eint_type      =3D EINT_TYPE_GPIO,       \
-> > +               .eint_offset    =3D offs,                 \
-> > +               .fltcon_type    =3D fltcontype,           \
-> > +               .fltcon_offset  =3D fltcon_offs,          \
-> > +               .name           =3D id                    \
-> > +       }
-> > +
-> > +#define EXYNOS9_PIN_BANK_EINTW(types, pins, reg, id, offs, fltcon_offs=
-, fltcontype) \
-> > +       {                                               \
-> > +               .type           =3D &types,               \
-> > +               .pctl_offset    =3D reg,                  \
-> > +               .nr_pins        =3D pins,                 \
-> > +               .eint_type      =3D EINT_TYPE_WKUP,       \
-> > +               .eint_offset    =3D offs,                 \
-> > +               .fltcon_type    =3D fltcontype,           \
-> > +               .fltcon_offset  =3D fltcon_offs,          \
-> > +               .name           =3D id                    \
-> > +       }
-> > +
->
-> Looks to me that instead of adding new macros the already existing
-> EXYNOS850_PIN_BANK_* should be extended and re-used. Because those
-> pinctrl IP-cores on all modern Exynos chips look very similar, even if
-> you compare the downstream code. If EXYNOS850 prefix looks confusing,
-> maybe it can be renamed to EXYNOS9 or something like that. Those
-> filter parameters are also present in Exynos850 downstream kernel
-> code. So I just feel like the proper way to add that feature would be
-> to add that also for all modern ARM64 Exynos variants while at it.
->
-> >  /**
-> >   * struct exynos_weint_data: irq specific data for all the wakeup inte=
-rrupts
-> >   * generated by the external wakeup interrupt controller.
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctr=
-l/samsung/pinctrl-samsung.c
-> > index 449f8109d8b5..12176f98440d 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
-> > +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
-> > @@ -1321,6 +1321,8 @@ static const struct of_device_id samsung_pinctrl_=
-dt_match[] =3D {
-> >                 .data =3D &exynosautov9_of_data },
-> >         { .compatible =3D "tesla,fsd-pinctrl",
-> >                 .data =3D &fsd_of_data },
-> > +       { .compatible =3D "google,gs101-pinctrl",
-> > +               .data =3D &gs101_of_data },
-> >  #endif
-> >  #ifdef CONFIG_PINCTRL_S3C64XX
-> >         { .compatible =3D "samsung,s3c64xx-pinctrl",
-> > diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctr=
-l/samsung/pinctrl-samsung.h
-> > index de2ca8e8b378..e62e909fb10d 100644
-> > --- a/drivers/pinctrl/samsung/pinctrl-samsung.h
-> > +++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
-> > @@ -374,6 +374,7 @@ extern const struct samsung_pinctrl_of_match_data e=
-xynos7885_of_data;
-> >  extern const struct samsung_pinctrl_of_match_data exynos850_of_data;
-> >  extern const struct samsung_pinctrl_of_match_data exynosautov9_of_data=
-;
-> >  extern const struct samsung_pinctrl_of_match_data fsd_of_data;
-> > +extern const struct samsung_pinctrl_of_match_data gs101_of_data;
-> >  extern const struct samsung_pinctrl_of_match_data s3c64xx_of_data;
-> >  extern const struct samsung_pinctrl_of_match_data s3c2412_of_data;
-> >  extern const struct samsung_pinctrl_of_match_data s3c2416_of_data;
-> > --
-> > 2.42.0.655.g421f12c284-goog
-> >
 
