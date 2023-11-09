@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D417E6684
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:20:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891297E6691
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:21:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 127B61C2096E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:20:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43897280FCA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A960A11192;
-	Thu,  9 Nov 2023 09:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BE5111A8;
+	Thu,  9 Nov 2023 09:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uJOOgZbf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AqHxak94"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC9611195
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 09:20:10 +0000 (UTC)
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69AED26B1
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 01:20:09 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9d2c54482fbso98917466b.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 01:20:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC5412B7B
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 09:21:40 +0000 (UTC)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE0DB2702
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 01:21:39 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9c2a0725825so101406466b.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 01:21:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699521608; x=1700126408; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699521698; x=1700126498; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0vyFZgshh+dS7jGWpFlg17tBqzL9luaMWJZKdCdlEUk=;
-        b=uJOOgZbf/DylYPsx4oW5m9cxGNG8FhwM1j4l8INkKVRgiU/vXo+LR7NWO1Hjs4kqhm
-         qz3SGWTuywudxMd9DvF7NDiTRmz/wff7Fk9aYH3YNJWdM5DL5bOh+Z/bABg4BnfVggc/
-         Qz/LanwTgyew27wrrKYQOoj47WOmUP/c2c0cxrzBmVbgiTgJNKrOjuewjja648fkG4oa
-         Zela8O2mpkB97gg3oC+NBIvYI4eIkhjlGSIuNr17vETj6Vm2n2v6oSV4S9BT71Kd2ReH
-         wToCokuh7lQ4raU0+p/cAmWlr8YEgqFqwqf05RDhJSe8MC00U/n3GNUt5Dx0X7QUHoqI
-         uQZg==
+        bh=BIEWXOtpcXDDh9Sw+1v3A922xDR5FEkBx8qfcGj1QTI=;
+        b=AqHxak94m1SGDs/E38pGkKCiPlwSAUN+9yW3T3LiwdUbiyT+RMxm+fjLbeK2qLqLJj
+         2FqGCBehmTW4uNAtBkARXytvFlwpq8o8Rq3lgl1VcKjnPOlOybMmBA4vaOSQI/qLMWc4
+         YboZd21QJqjpP1cSZSuLgwZMURpoHDFsa6/awHZ2GQNUYuedm6tEAYXexZnA2eboPkfT
+         8oO6rzDvRdl+e/Q4b1Sv2w56IOjEiGcNnzudFKoSbIuToDFNc+WhnNbvikmkNwF/XaTG
+         +rIGHWX10dRbItTSwLNTpFvGMG75lJZszFN/YIAqkllLbnmH66YqPbtfzzGEfFYMT8Q9
+         nONQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699521608; x=1700126408;
+        d=1e100.net; s=20230601; t=1699521698; x=1700126498;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0vyFZgshh+dS7jGWpFlg17tBqzL9luaMWJZKdCdlEUk=;
-        b=xGE3wBfwfI9TKcRtDVTs0cQxqJHnVPLNzjRWpj3qkJOMeraeXZ0WzSgfweRKgyUyGP
-         mGOUIDd+RAPr20ZliM2yCjO5JJ1JFOw6iErA16eNE7igtTLk89gy4GU2MG0z3IdmysoU
-         Ta47+VAHJbpL4oYrCVoFkZS7rU11cKIFXBAvYaN9Wml2fv8OKquiISlRNHx5vckWFSAV
-         0uP7qXtrOayQ4fOi88PKRO12yFlxYDhmHXfWJNXubt4ULpde8zw/2aB2q/gj4sWk9UP7
-         JGaL+ROHcOzhaAcbyVQsmvVi7XYhHwjO9yFulVejV6JeUu7hA6yi2uNolTiQfabRd63m
-         I5uw==
-X-Gm-Message-State: AOJu0YwafuhA8wOC0hmZndkbpO3Xd6SmSoobAnQOObRU1CGPFK6phXe9
-	zy/KKV0ju4IR98TcImB+pEgI4g==
-X-Google-Smtp-Source: AGHT+IGH+NJHQnwKGOJbdY9S0j2s0lppdIB6kZvn9yLs2zyUjodkEDgVCLQ4mBrxMsWOoAFJYkkORw==
-X-Received: by 2002:a17:907:d27:b0:9b2:abb1:a4ab with SMTP id gn39-20020a1709070d2700b009b2abb1a4abmr4362146ejc.65.1699521607819;
-        Thu, 09 Nov 2023 01:20:07 -0800 (PST)
+        bh=BIEWXOtpcXDDh9Sw+1v3A922xDR5FEkBx8qfcGj1QTI=;
+        b=B1VP1TvyyqXPkFFitBk/JDIhjkmrL9sHls4zwSIRiglOUJLetF6XzXoV3NevPKOkrP
+         dhnkEG9CWijhg3dz1MqYOfeU7JpTTtyCc79SbGL7bpl8hdPNjAYFAxbFUJ2GaBnrNDDO
+         /wbqPDgZ12bUin0E5+91Wdth/VEZeTJXuZzOAQDvQhHsbDyin7EDXL2Bj0abATnfHyyK
+         RtMe9rBGCw9cNgnoAPZ0yvLliQUMm0x5l4zOuzq6rpsTQcJjcUbC5zBf5+xxCPuh2fU9
+         vsE2Z748m8xn32p7t9Xwau/bqYmWIsQkL/R0TLL8aTV9B79qHsKqHqLGIZvniHjw0cVo
+         2wjA==
+X-Gm-Message-State: AOJu0YzFBwuUazZXq/oV8bZqLaXSNnG3pm9mGG3G6N8dTWEpXCrBcXc5
+	l8nCOdm7ZMFdlfO49XyQlxxCXw==
+X-Google-Smtp-Source: AGHT+IGUkEePx9ZZQ3Cy21pr+de50eN/JMepIiZVhG3rkBnamulTMP43M0o7MUDslg6atFYmnXmmOQ==
+X-Received: by 2002:a17:907:9807:b0:9bf:388e:8e97 with SMTP id ji7-20020a170907980700b009bf388e8e97mr3655759ejc.67.1699521698295;
+        Thu, 09 Nov 2023 01:21:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id dc17-20020a170906c7d100b009b9aa8fffdasm2274367ejb.131.2023.11.09.01.20.06
+        by smtp.gmail.com with ESMTPSA id dc17-20020a170906c7d100b009b9aa8fffdasm2274367ejb.131.2023.11.09.01.21.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 01:20:07 -0800 (PST)
-Message-ID: <9fb14ef2-ee2e-41c6-a080-01df2e947091@linaro.org>
-Date: Thu, 9 Nov 2023 10:20:05 +0100
+        Thu, 09 Nov 2023 01:21:37 -0800 (PST)
+Message-ID: <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
+Date: Thu, 9 Nov 2023 10:21:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +67,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: hwmon: Add Amphenol ChipCap 2
+Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF clk
+ id
 Content-Language: en-US
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
- <20231020-topic-chipcap2-v2-4-f5c325966fdb@gmail.com>
- <008715d1-de4a-47dd-955c-e2fb7af36a25@linaro.org>
- <0b103837-54e7-430f-8a01-94b620b84f89@gmail.com>
+To: zhangqing <zhangqing@rock-chips.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
+ sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ andy.yan@rock-chips.com, Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20231108061822.4871-1-zhangqing@rock-chips.com>
+ <20231108061822.4871-4-zhangqing@rock-chips.com>
+ <20231108-donation-uncertain-c4d0f560c420@spud>
+ <2e520a06-0ff1-76ef-2a72-ab6663738b45@rock-chips.com>
+ <20231109-send-pushchair-45b37551102a@wendy>
+ <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,68 +130,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <0b103837-54e7-430f-8a01-94b620b84f89@gmail.com>
+In-Reply-To: <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/11/2023 10:02, Javier Carrasco wrote:
+On 09/11/2023 09:06, zhangqing wrote:
 > 
-> 
-> On 09.11.23 09:53, Krzysztof Kozlowski wrote:
->> On 08/11/2023 16:37, Javier Carrasco wrote:
->>> Add device tree bindings and an example for the ChipCap 2 humidity
->>> and temperature sensor.
+> 在 2023/11/9 15:29, Conor Dooley 写道:
+>> On Thu, Nov 09, 2023 at 02:27:38PM +0800, zhangqing wrote:
+>>> Hi:
 >>>
->>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->>> ---
->>>  .../bindings/hwmon/amphenol,chipcap2.yaml          | 68 ++++++++++++++++++++++
->>>  1 file changed, 68 insertions(+)
+>>> 在 2023/11/8 20:01, Conor Dooley 写道:
+>>>> On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
+>>>>> export PCLK_VO1GRF for DT.
+>>>>>
+>>>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>>>>> ---
+>>>>>    include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
+>>>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>> index 5790b1391201..50ba72980190 100644
+>>>>> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>> @@ -733,8 +733,9 @@
+>>>>>    #define ACLK_AV1_PRE			718
+>>>>>    #define PCLK_AV1_PRE			719
+>>>>>    #define HCLK_SDIO_PRE			720
+>>>>> +#define PCLK_VO1GRF			721
+>>>>> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
+>>>>> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
+>>>> This definition is part of the ABI, if it is safe to change it, then it
+>>>> is safe to delete it.
+>>> The new ID is to solve the niu clock dependency problem(Used in PATCH V5
+>>> 4/4).This new ID will also be used in DTS in the future.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml b/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
->>> new file mode 100644
->>> index 000000000000..8bb6daa293d3
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
->>> @@ -0,0 +1,68 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/hwmon/amphenol,chipcap2.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: ChipCap 2 humidity and temperature iio sensor
->>> +
->>> +maintainers:
->>> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
->>> +
->>> +description: |
->>> +  Relative humidity and temperature sensor on I2C bus.
->>> +
->>> +  Datasheets:
->>> +    https://www.amphenol-sensors.com/en/telaire/humidity/527-humidity-sensors/3095-chipcap-2
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - amphenol,cc2dxx
->>> +      - amphenol,cc2dxxs
->>> +
->>
->> Nothing improved.
->>
->> Really, you just ignored the review.
->>
->> Best regards,
->> Krzysztof
->>
-> I am sorry if I missed something from your first review. I changed the
-> interrupt description to have one per item as you suggested and removed
-> the empty line. I did not change the compatible enum to add all part
-> numbers because it was still under discussion, but now that I know that
-> I have to add all of them, I will change for the next version.
+>>> CLK_NR_CLKS represents the number of clocks used by the
+>>> drivers/clk/rockchip/clk-rkxxx.c. It is safe to modify it, but cannot delete
+>>> it.
+>> Then delete it from the header and move it to clk-rkxxx.c
+> I don't think it's more appropriate to move to clk-rkxxx.c.
+> Because if there are new requirements later, and add new clk id, it is 
+> not in the same file, maybe forget to modify CLK_NR_CLKS.
 
-And a new patch should not be sent while discussion happens. Literally I
-had no chances to respond to your comment and v2 appears.
+Then you are not allowed to change it. It's part of ABI.
 
 Best regards,
 Krzysztof
