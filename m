@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C91D7E6535
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:23:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C74C7E6549
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F9E61C208EA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:23:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 179631F21E33
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7045910947;
-	Thu,  9 Nov 2023 08:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B1110944;
+	Thu,  9 Nov 2023 08:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XI5l2jTn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xh7DDRhM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA11E10944
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:23:50 +0000 (UTC)
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B2BC2D55
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:23:50 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-53db360294fso868372a12.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:23:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF00AD304
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:27:59 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1834C2D50
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:27:59 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40806e4106dso3213115e9.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:27:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699518229; x=1700123029; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699518477; x=1700123277; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=H4KlDa2s73U5ZR+WLe1Ye4zeFuM3NNyCjUsipdRrEUo=;
-        b=XI5l2jTnkLCIdwCr7HGSn/eeEawFnHl40bbJ8QS/I718cqt14cZISfKsQYcz1bboxo
-         Tdwpy1NA4Do4Sks44FK2Id8aKn1YgSvfLUZdDpVbbpcBwAyDrbj7pwPlCn8EVUYo1Q86
-         bg1l8S+/m6/Bz981oAbvx95iwlXyLoATh22iZYAIGwwfSocWEMV5es3oIadc4GmN/38G
-         S1twYgOETXpmX6Xkc9guNa39kVGLTCLgq63aVkTg9sroEmAzZ6hUqbk4rjdN7mobnHRU
-         RojDR8c/r6/mU/JaXbt5qfGZNUlRuWpisM82CPyItJXE/Cl26k9VITyCwqjbdcuWHmk0
-         4NSw==
+        bh=f8DuB8h8ES/BpLoLVP2cNgaCu2vzRglHmcimDInihuk=;
+        b=Xh7DDRhMkn9RftQYwAaHmTGsISO77WAxdOoNaTp/Z9/vCTJJKZ/gFWTcM8uJUOR9/M
+         DeM2YckF4aWJ4PQfmpVHc/37nMB82AT8y22+QPzU4a1tTdp7EP1xjB49JtNP6fZ8GGzD
+         36sr5HUYtdW6KrYcBlukC3JbM1Jbm23mJnYwp0lStzCY2U5i0nBFD75VJ70p2yIqlRu6
+         1tXcpfcEK+xyZZ8zgfYQffMiGXWEGDa3XQ//4IaLsQTUGP/zKNAIDOmsjV3GaH9YAKtx
+         7WvsfxdDFUl6lezA5zy7efYdJ8llSGXMIofNHHf5nK39WwMA9Qd95AyYq34G25i2CpLq
+         3igw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699518229; x=1700123029;
+        d=1e100.net; s=20230601; t=1699518477; x=1700123277;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H4KlDa2s73U5ZR+WLe1Ye4zeFuM3NNyCjUsipdRrEUo=;
-        b=dggjagIB8KcktPCH0OPnU0qg6mHi7UStOYXYzFH89t04O23m9JewUpZaEF1DuvkHqO
-         3tGN1ytuPt6PzgrwcOz9dXjdLBHFyRc4z9QS83dPJ9HgvdGTdAqenswKRpOGOqvm/pAv
-         b5CFCTfVuJ+Qf3iLVMW9LyI4mBHdcNhBji/HqlgWs6h/Ne0KxUvWP6aZcVJZEBSxslJd
-         GC8dOeow4MrcV6sDXUFS9/h1fpVyK40o1emoOBA9MszMjKIy5PG/Q5ZWU546rUB3mn/N
-         /sdVBzMH7PidZDmf61BsrHh0yTnDHZW1QjyC5WAeeQvlLREWQ7q9Fcpy/ffXjnWPWoJF
-         eRIw==
-X-Gm-Message-State: AOJu0YwQWiuS+sTr8DSDcb8dLhB3Hz1NwV5vsCdXYAc1jFKQCvvusAnG
-	Xe6kJYWyqTjN9wmvOgXlzwKpoA==
-X-Google-Smtp-Source: AGHT+IH9osJXKtdxF363YAoh9Q62JQgp3QvNBOfLZ2Dbr8h3wEggBPgGAlxYveXAoo2El57DxFB+7g==
-X-Received: by 2002:a50:d4dc:0:b0:543:7812:63cd with SMTP id e28-20020a50d4dc000000b00543781263cdmr3512102edj.17.1699518228753;
-        Thu, 09 Nov 2023 00:23:48 -0800 (PST)
+        bh=f8DuB8h8ES/BpLoLVP2cNgaCu2vzRglHmcimDInihuk=;
+        b=dQCmTaXknkn76DA/BW47UWf5pDoBpyUCzVsUnQ1u/kYLSz45sTvMkokuIeFJYhERtE
+         OUBDsLLkQq89+N0W6FhzDzFNYTdYFefRLvQHWQqx1J4dEeCP/AkRFOT6eQzPAmcbwrh8
+         SApJ/gTJuAHVKayIDeIeaULlIr80qO0/sAj7l8BLUzqdm/BXwLGqIADYQ3rCyN+7ZlRT
+         nZDi7sBtUqLV2Hp7psc24NSkF45YDcAmweQmrfipxCk8VZMd+mJPwMhWc2TlffVzMuix
+         sEVqaxljpJXuC7HTK/ZteL0bNzE3uXqZGxGJ/kIY1XU/QoUcNv8oikwxbhb/cEJZbrsn
+         /fmw==
+X-Gm-Message-State: AOJu0Yxq6YNVo6imyqIy8xMgHxKu5UGmh6Gu8qkRPXPL5eC2/7b3Zdwx
+	PQh9oq2Mwmdol5LrI+eEQvYydA==
+X-Google-Smtp-Source: AGHT+IHp74YVHchpSk1tozdSn6wVl9GtxAoEqEUndh5yV20UM/FZX0sKzvPOdsrx9S5Ld1CbW1R90g==
+X-Received: by 2002:a05:600c:510e:b0:403:aced:f7f4 with SMTP id o14-20020a05600c510e00b00403acedf7f4mr10275828wms.12.1699518477433;
+        Thu, 09 Nov 2023 00:27:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id ba26-20020a0564021ada00b00533dad8a9c5sm7739126edb.38.2023.11.09.00.23.47
+        by smtp.gmail.com with ESMTPSA id w23-20020a05600c2a1700b003fe23b10fdfsm1293753wme.36.2023.11.09.00.27.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 00:23:48 -0800 (PST)
-Message-ID: <545b681e-2da7-4adf-9c3c-0d292951ef94@linaro.org>
-Date: Thu, 9 Nov 2023 09:23:46 +0100
+        Thu, 09 Nov 2023 00:27:57 -0800 (PST)
+Message-ID: <f989f789-9934-45fe-b30b-b916c2d92043@linaro.org>
+Date: Thu, 9 Nov 2023 09:27:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/10] dt-bindings: pwm: samsung: add exynosautov9
- compatible
+Subject: Re: [PATCH V5][3/4] mmc: Add dw mobile mmc cmdq rtk driver
 Content-Language: en-US
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Jaewon Kim <jaewon02.kim@samsung.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20231031094852.118677-1-jaewon02.kim@samsung.com>
- <CGME20231031095017epcas2p306a504619cbaf1fc260f6c46f8b75dd8@epcas2p3.samsung.com>
- <20231031094852.118677-5-jaewon02.kim@samsung.com>
- <20231109062807.ko53f63arpxgigd5@pengutronix.de>
+To: =?UTF-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>,
+ "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+ "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+ "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
+ "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "asutoshd@codeaurora.org" <asutoshd@codeaurora.org>
+Cc: "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "briannorris@chromium.org" <briannorris@chromium.org>,
+ "doug@schmorgal.com" <doug@schmorgal.com>,
+ "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
+ "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+ "william.qiu@starfivetech.com" <william.qiu@starfivetech.com>
+References: <20231102081514.22945-1-jyanchou@realtek.com>
+ <20231102081514.22945-4-jyanchou@realtek.com>
+ <9c083c35-a8fb-4ee3-90a3-96af7efec11f@linaro.org>
+ <6da3391700204ebc8d2c0bb5e927d2c8@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,39 +137,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231109062807.ko53f63arpxgigd5@pengutronix.de>
+In-Reply-To: <6da3391700204ebc8d2c0bb5e927d2c8@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 09/11/2023 07:28, Uwe Kleine-König wrote:
-> Hello,
+On 09/11/2023 08:34, Jyan Chou [周芷安] wrote:
+>>> +     priv->m2tmx = 
+>>> + syscon_regmap_lookup_by_phandle(host->dev->of_node, 
+>>> + "realtek,m2tmx");
 > 
-> On Tue, Oct 31, 2023 at 06:47:46PM +0900, Jaewon Kim wrote:
->> Add samsung,exynosautov920-pwm compatible string to binding document.
->>
->> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
->> ---
->>  Documentation/devicetree/bindings/pwm/pwm-samsung.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->> index 2162f661ed5a..b6beca2ae81e 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->> @@ -30,6 +30,7 @@ properties:
->>        - items:
->>            - enum:
->>                - samsung,exynosautov9-pwm
->> +              - samsung,exynosautov920-pwm
->>            - const: samsung,exynos4210-pwm
+>> NAK, for the same reasons I mentioned for other patch.
 > 
-> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>> I will keep NAK-ing till you start testing your DTS.
 > 
-> What is the merge plan here? Should this go via the pwm tree, or can it
-> better go via some exynos tree together with the dts files?
+> Sorry, I am not sure whether I modify the correct thing you said. I will add
+> 
+> realtek,m2tmx in bindings.
 
-I propose I will take it. I will have conflicting change and keeping
-bindings with DTS together allows smooth dtbs_check.
+Upstream a tested DTS. I don't trust that you test it, so I need to see it.
+
 
 Best regards,
 Krzysztof
