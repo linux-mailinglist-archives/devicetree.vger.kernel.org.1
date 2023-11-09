@@ -1,187 +1,107 @@
-Return-Path: <devicetree+bounces-14706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B177E64D0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:55:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E528F7E64D9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:00:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53A81280E99
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 07:55:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2233D1C2081B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CE0FC16;
-	Thu,  9 Nov 2023 07:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PDzgTFvd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C96F101C3;
+	Thu,  9 Nov 2023 08:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03344FC0A
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 07:55:37 +0000 (UTC)
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36EE81716;
-	Wed,  8 Nov 2023 23:55:37 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9becde9ea7bso349223166b.0;
-        Wed, 08 Nov 2023 23:55:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699516535; x=1700121335; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=4DT7KbStmBKIyXguUJVsEhwW3sZLd8u/CViWdFU++us=;
-        b=PDzgTFvd+vBIfxWwAaPCtNmC6E9/9arN58U7XKlT67+1m0S8qhNjcl3yj8HGgLYQXb
-         eiiumBNylBlJETv+eEhY54Utk6xRCGqKAiZ1vASUuqfRjbP4z/o58w94TBBqW9dWSgeY
-         KLrfa7z/mdv3U7J8uzK1TAOLGC7riRbRCm6ScheKHPiUk4Egd1Dy/QPuZ2+2wOSHzwtB
-         bAfvnKwuMemfOWcwWAcQg94Veob2Jkb7+6JmhaDmib8CxOTwc+s3W9iZR8+TE7FJtSyY
-         VZlfu6JiqnrHFI8VsPY37rQVB09ZduCUilTPjUv+RBAWSlxQ84gAVebF3/CLRQLSE6FS
-         d9jQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85252CA5
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:00:22 +0000 (UTC)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496012715;
+	Thu,  9 Nov 2023 00:00:22 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5a7c08b7744so7180907b3.3;
+        Thu, 09 Nov 2023 00:00:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699516535; x=1700121335;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4DT7KbStmBKIyXguUJVsEhwW3sZLd8u/CViWdFU++us=;
-        b=wfev15Sq+ak0ImmOv/FpaMeDxH0S3SVi8TfsGjC+9ijHLuCJJDszOC5LQowaHHUj+e
-         mS/p60TBOTvGkhGblnOw+orToUfQoUmWda0pJiB0AGmTZPHrGk3rIELPGrrSHkGcnDJw
-         hRioYjGDwdrMXkp3yRzyaw9N1rX2Db1qlX7Lqqvu5THBJgyT+ZAoHI5jXaQD2831wVaO
-         p0BlD3tHMEBSn87/z54BCSmwzrbEyxdxQTUukMjuFjkMVd6LMHKyUWWcpkZecJoMaOMM
-         ahpHAEkslMoZmfXThfETS8CH97jVza42erJ6iAnPnx5cGOr/6kbDEevwniXCznXjHM40
-         nWFA==
-X-Gm-Message-State: AOJu0Yye6Graya7mkQYgjkbin5K5bD6cA3Ttu8NTo1JL17p9yq3dxyYu
-	K2mLlEnp2TJBoyGRyET75dw=
-X-Google-Smtp-Source: AGHT+IHoZaA0GKZk6O7gCurRmuDoN2dF5sTBZ6TfLPTfaTomNuRl4tfRrqcffYnM+MhuHKNZcDUzIw==
-X-Received: by 2002:a17:907:d89:b0:9bd:d405:4e8a with SMTP id go9-20020a1709070d8900b009bdd4054e8amr4394735ejc.17.1699516535329;
-        Wed, 08 Nov 2023 23:55:35 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:361b:8f29:1cbf:5e69? (p200300f6ef1b2000361b8f291cbf5e69.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:361b:8f29:1cbf:5e69])
-        by smtp.gmail.com with ESMTPSA id bo17-20020a170906d05100b009dddec5a96fsm2234918ejb.170.2023.11.08.23.55.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Nov 2023 23:55:34 -0800 (PST)
-Message-ID: <9b9df9a9dec28ff46fef6df1c482e5a09f338891.camel@gmail.com>
-Subject: Re: [PATCH v2 1/2] iio: amplifiers: hmc425a: add support for
- ADRF5740 Attenuator
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Ana-Maria Cusco <anamaria.cuscoo@gmail.com>, Ana-Maria Cusco
-	 <ana-maria.cusco@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Thu, 09 Nov 2023 08:58:30 +0100
-In-Reply-To: <20231107132118.1165494-2-anamaria.cuscoo@gmail.com>
-References: <20231107132118.1165494-1-anamaria.cuscoo@gmail.com>
-	 <20231107132118.1165494-2-anamaria.cuscoo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1 
+        d=1e100.net; s=20230601; t=1699516821; x=1700121621;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R60uGQl/nGeZjkDEsodGckqWXW+USFr7sz7RLj2b6RQ=;
+        b=SLf85QzII5eN+Xg+ucU18pkDkJ2jKOVA2F2ka6XZbBZJZLdl+6lVsn4DS2aBMKDRLa
+         oCClgdG1o92wBrn4FZ/W8aspY7SPOCF1FrKejmRzM8J9Gzv54ZCNx5z2UTkHLa5LMHw5
+         AOxtJREy+wL8kw/EhQBRBh2ZdKMyDTb8emNTMsQGKV7VzeV/i9d2szroHjmVRzs+diVT
+         VQoAS0sTgD0mztSjS8PyiJz11mf5qi8Nx0R31aRrHmaQ+8A+Q0PZfN+zElof/d5hdoiA
+         PtcEaeKhV4BbXzTPGEKwOeqARruSOeHJsjxOB/bZkwIbg/pXDgMD6p0avOF/dZycQCq2
+         KbPA==
+X-Gm-Message-State: AOJu0YzIFSZeUC39ajYoshj9ngdUw3w4J2ThdASOR2ypL+9QR4SRGIvJ
+	lWSCA0/FEqgsinl+nyFTfcLTBBDQJ2eJzA==
+X-Google-Smtp-Source: AGHT+IFbkoQhrktQgmanPhaHbB8XY4wED6I/RjXQs/76LfPWcDZEfQ3AyU8OORTImAOqUbFdZvAqrw==
+X-Received: by 2002:a81:49d0:0:b0:5a7:ab45:539d with SMTP id w199-20020a8149d0000000b005a7ab45539dmr4140899ywa.2.1699516821315;
+        Thu, 09 Nov 2023 00:00:21 -0800 (PST)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id g200-20020a0dddd1000000b00583f8f41cb8sm7781075ywe.63.2023.11.09.00.00.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 00:00:21 -0800 (PST)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5a7c08b7744so7180827b3.3;
+        Thu, 09 Nov 2023 00:00:21 -0800 (PST)
+X-Received: by 2002:a0d:ff44:0:b0:5a7:cc48:208d with SMTP id
+ p65-20020a0dff44000000b005a7cc48208dmr3625498ywf.5.1699516820874; Thu, 09 Nov
+ 2023 00:00:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231108172232.259301-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20231108172232.259301-1-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 9 Nov 2023 09:00:09 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWWgq=gnM+h-GNwvFTxZFXWTtsx=+LFJ1-cwbLi0GXJEw@mail.gmail.com>
+Message-ID: <CAMuHMdWWgq=gnM+h-GNwvFTxZFXWTtsx=+LFJ1-cwbLi0GXJEw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] Enable 4-bit tx support for RZ/{G2L,G2LC,V2L}
+ SMARC EVKs
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2023-11-07 at 15:21 +0200, Ana-Maria Cusco wrote:
-> From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
->=20
-> This adds support for the Analog Devices ADRF5740 2 dB LSB, 4-Bit,
-> Silicon Digital Attenuator, 10 MHz to 60 GHz
->=20
-> Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
-> ---
-> =C2=A0drivers/iio/amplifiers/hmc425a.c | 23 +++++++++++++++++++++++
-> =C2=A01 file changed, 23 insertions(+)
->=20
-> diff --git a/drivers/iio/amplifiers/hmc425a.c
-> b/drivers/iio/amplifiers/hmc425a.c
-> index e87d35d50a95..ed4d72922696 100644
-> --- a/drivers/iio/amplifiers/hmc425a.c
-> +++ b/drivers/iio/amplifiers/hmc425a.c
-> @@ -5,6 +5,7 @@
-> =C2=A0 * Copyright 2020 Analog Devices Inc.
-> =C2=A0 */
-> =C2=A0
-> +#include <linux/bitops.h>
-> =C2=A0#include <linux/device.h>
-> =C2=A0#include <linux/err.h>
-> =C2=A0#include <linux/gpio/consumer.h>
-> @@ -22,6 +23,7 @@
-> =C2=A0enum hmc425a_type {
-> =C2=A0	ID_HMC425A,
-> =C2=A0	ID_HMC540S,
-> +	ID_ADRF5740
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct hmc425a_chip_info {
-> @@ -74,6 +76,10 @@ static int hmc425a_read_raw(struct iio_dev *indio_dev,
-> =C2=A0		case ID_HMC540S:
-> =C2=A0			gain =3D ~code * -1000;
-> =C2=A0			break;
-> +		case ID_ADRF5740:
-> +			code =3D code & BIT(3) ? code & ~BIT(2) : code;
-> +			gain =3D code * -2000;
-> +			break;
-> =C2=A0		}
-> =C2=A0
-> =C2=A0		*val =3D gain / 1000;
-> @@ -113,6 +119,10 @@ static int hmc425a_write_raw(struct iio_dev *indio_d=
-ev,
-> =C2=A0	case ID_HMC540S:
-> =C2=A0		code =3D ~((abs(gain) / 1000) & 0xF);
-> =C2=A0		break;
-> +	case ID_ADRF5740:
-> +		code =3D (abs(gain) / 2000) & 0xF;
-> +		code =3D code & BIT(3) ? code | BIT(2) : code;
-> +		break;
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	mutex_lock(&st->lock);
-> @@ -165,6 +175,7 @@ static const struct iio_chan_spec hmc425a_channels[] =
-=3D {
-> =C2=A0static const struct of_device_id hmc425a_of_match[] =3D {
-> =C2=A0	{ .compatible =3D "adi,hmc425a", .data =3D (void *)ID_HMC425A },
-> =C2=A0	{ .compatible =3D "adi,hmc540s", .data =3D (void *)ID_HMC540S },
-> +	{ .compatible =3D "adi,adrf5740", .data =3D (void *)ID_ADRF5740 },
-> =C2=A0	{},
-> =C2=A0};
-> =C2=A0MODULE_DEVICE_TABLE(of, hmc425a_of_match);
-> @@ -188,6 +199,15 @@ static struct hmc425a_chip_info hmc425a_chip_info_tb=
-l[] =3D
-> {
-> =C2=A0		.gain_max =3D 0,
-> =C2=A0		.default_gain =3D -0x10, /* set default gain -15.0db*/
-> =C2=A0	},
-> +	[ID_ADRF5740] =3D {
-> +		.name =3D "adrf5740",
-> +		.channels =3D hmc425a_channels,
-> +		.num_channels =3D ARRAY_SIZE(hmc425a_channels),
-> +		.num_gpios =3D 4,
-> +		.gain_min =3D -22000,
-> +		.gain_max =3D 0,
-> +		.default_gain =3D 0xF, /* set default gain -22.0db*/
-> +	},
-> =C2=A0};
-> =C2=A0
-> =C2=A0static int hmc425a_probe(struct platform_device *pdev)
-> @@ -229,6 +249,9 @@ static int hmc425a_probe(struct platform_device *pdev=
-)
-> =C2=A0	indio_dev->info =3D &hmc425a_info;
-> =C2=A0	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> =C2=A0
-> +	/* Set default gain */
-> +	hmc425a_write(indio_dev, st->gain);
-> +
+Hi Biju,
 
-This is an unrelated change. It's simple enough to sneak it in but you shou=
-ld at
-least mention it in the commit message.
+On Wed, Nov 8, 2023 at 6:22=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+> This patch series aims to enable 4-bit tx support for
+> RZ/{G2L,G2LC,V2L} SMARC EVKs.
 
+Thanks for your series!
 
-With that,
+> Note:
+>  This patch series doesn't have any driver dependency as 4-bit tx mode
+>  works fine with the latest renesas-devel and linux-next.
 
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+Can you please tell me why there is no longer a driver dependency?
+What has changed?
 
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
