@@ -1,42 +1,36 @@
-Return-Path: <devicetree+bounces-14891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD327E740F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 22:56:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ACDC7E7506
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 00:11:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0D2C281336
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 21:56:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AB5F1C20BDF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 23:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F0A38F98;
-	Thu,  9 Nov 2023 21:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Es0Kx0xR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D0B38DCB;
+	Thu,  9 Nov 2023 23:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F600468C;
-	Thu,  9 Nov 2023 21:56:18 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D2161FDF;
-	Thu,  9 Nov 2023 13:56:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ik3c7d8hsm0kgnnmU8zPPgMQeaya/wakATwAYdDt1wE=; b=Es0Kx0xRNjpRcUR78zokfpRewx
-	SPl+kZgtYZnY7bjGgg24Khp/V4iIp4C+HPLuthYwXbps/j9NrmaCvTCJWuHHAxAWYTBJAzW5idZj6
-	UvAy6ZLEVPi3FCI2psVYQ0g50xXPPIi3QcwizGYR9QQ367r96ncgKVHadwz9zmjAFi9U=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r1D0F-001F8X-65; Thu, 09 Nov 2023 22:55:55 +0100
-Date: Thu, 9 Nov 2023 22:55:55 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Daniel Golle <daniel@makrotopia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C211F374E5;
+	Thu,  9 Nov 2023 23:11:32 +0000 (UTC)
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325262D56;
+	Thu,  9 Nov 2023 15:11:32 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1r1EB5-0003nC-0D;
+	Thu, 09 Nov 2023 23:11:11 +0000
+Date: Thu, 9 Nov 2023 23:11:02 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
 Cc: "David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -61,9 +55,10 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
 Subject: Re: [RFC PATCH 1/8] dt-bindings: phy: mediatek,xfi-pextp: add new
  bindings
-Message-ID: <797ea94b-9c26-43a2-85d7-633990ed8c57@lunn.ch>
+Message-ID: <ZU1nBgdspMtsI5aS@makrotopia.org>
 References: <cover.1699565880.git.daniel@makrotopia.org>
  <924c2c6316e6d51a17423eded3a2c5c5bbf349d2.1699565880.git.daniel@makrotopia.org>
+ <797ea94b-9c26-43a2-85d7-633990ed8c57@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,17 +67,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <924c2c6316e6d51a17423eded3a2c5c5bbf349d2.1699565880.git.daniel@makrotopia.org>
+In-Reply-To: <797ea94b-9c26-43a2-85d7-633990ed8c57@lunn.ch>
 
-> +  mediatek,usxgmii-performance-errata:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      USXGMII0 on MT7988 suffers from a performance problem in 10GBase-R
-> +      mode which needs a work-around in the driver. The work-around is
-> +      enabled using this flag.
+Hi Andrew,
 
-Is there more details about this? I'm just wondering if this should be
-based on the compatible, rather than a bool property.
+On Thu, Nov 09, 2023 at 10:55:55PM +0100, Andrew Lunn wrote:
+> > +  mediatek,usxgmii-performance-errata:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      USXGMII0 on MT7988 suffers from a performance problem in 10GBase-R
+> > +      mode which needs a work-around in the driver. The work-around is
+> > +      enabled using this flag.
+> 
+> Is there more details about this? I'm just wondering if this should be
+> based on the compatible, rather than a bool property.
 
-      Andrew
+The vendor sources where this is coming from are here:
+
+https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/a500d94cd47e279015ce22947e1ce396a7516598%5E%21/#F0
+
+And I'm afraid this is as much detail as it gets. And yes, we could
+also base this on the compatible and just have two different ones for
+the two PEXTP instances found in MT7988.
+Let me know your conclusion in that regard.
+
+
+Cheers
+
+
+Daniel
 
