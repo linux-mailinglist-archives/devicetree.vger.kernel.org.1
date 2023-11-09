@@ -1,132 +1,151 @@
-Return-Path: <devicetree+bounces-14695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D6D7E63E0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 07:28:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D599A7E6410
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 07:57:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 764D8B20BC0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 06:28:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CEF9281060
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 06:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73C2D524;
-	Thu,  9 Nov 2023 06:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD91023D3;
+	Thu,  9 Nov 2023 06:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="QpvpNKWJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7736D506
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 06:28:29 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13EE72118
-	for <devicetree@vger.kernel.org>; Wed,  8 Nov 2023 22:28:29 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r0yWQ-0003Jy-QX; Thu, 09 Nov 2023 07:28:10 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r0yWN-007iJD-W2; Thu, 09 Nov 2023 07:28:08 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r0yWN-00Flde-MN; Thu, 09 Nov 2023 07:28:07 +0100
-Date: Thu, 9 Nov 2023 07:28:07 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jaewon Kim <jaewon02.kim@samsung.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 04/10] dt-bindings: pwm: samsung: add exynosautov9
- compatible
-Message-ID: <20231109062807.ko53f63arpxgigd5@pengutronix.de>
-References: <20231031094852.118677-1-jaewon02.kim@samsung.com>
- <CGME20231031095017epcas2p306a504619cbaf1fc260f6c46f8b75dd8@epcas2p3.samsung.com>
- <20231031094852.118677-5-jaewon02.kim@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B10C29AD
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 06:57:37 +0000 (UTC)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23CF32D4F;
+	Wed,  8 Nov 2023 22:57:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1699513056; x=1731049056;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=PAqbVjcJpwJv+qGmjw/YAS9SG5eyJvGIFMhJR66DceA=;
+  b=QpvpNKWJVaR8vnr5KVCc6AtTVSzPzhDWxitdwhdk0Zus90twur43yGRk
+   DadBv1X/rWOlmieDQj4BB59VO1xu6YTjkGAqpGSytptbJwqv8zIakKMpm
+   3iVhn1iESZRy1Ssps3vzI61vst7tfCGAdU9DV+5s3XrpBLm4rRHVWSeBn
+   U+gwAZtBUdy5FkMNvNH/45diGyLLhn2O2y6/UGxvrGXLG74//H2mE/+i1
+   IGehHTIlszvbVMwl/yuSZ8uJSZXgYLiKY+QDHGiFEGVfBYDVTcvP2UcnU
+   V68UmuP+TxVgUYEwRDQwumPoDagQZA4Yw4NjwQ+zc0QL8odLT09SOA36m
+   g==;
+X-IronPort-AV: E=Sophos;i="6.03,288,1694728800"; 
+   d="scan'208";a="33887871"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Nov 2023 07:57:33 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8966628007F;
+	Thu,  9 Nov 2023 07:57:33 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: =?ISO-8859-1?Q?Jo=E3o?= Rodrigues <jrodrigues@ubimet.com>, Bruno Thomsen <bruno.thomsen@gmail.com>, Fabio Estevam <festevam@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] ARM: dts: imx: tqma7: add lm75a sensor (rev. 01xxx)
+Date: Thu, 09 Nov 2023 07:57:36 +0100
+Message-ID: <1783737.VLH7GnMWUR@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <2253436.iZASKD2KPV@steina-w>
+References: <20231102231130.13ca0513@pcn112> <CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com> <2253436.iZASKD2KPV@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="phrujihovcq5oywv"
-Content-Disposition: inline
-In-Reply-To: <20231031094852.118677-5-jaewon02.kim@samsung.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---phrujihovcq5oywv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+Hi Jo=C3=A3o,
 
-On Tue, Oct 31, 2023 at 06:47:46PM +0900, Jaewon Kim wrote:
-> Add samsung,exynosautov920-pwm compatible string to binding document.
+Am Dienstag, 7. November 2023, 07:34:32 CET schrieb Alexander Stein:
+> Hi,
 >=20
-> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-samsung.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Am Freitag, 3. November 2023, 22:07:08 CET schrieb Fabio Estevam:
+> > [Adding Bruno and Alexander]
+> >=20
+> > On Thu, Nov 2, 2023 at 7:12=E2=80=AFPM Jo=C3=A3o Rodrigues <jrodrigues@=
+ubimet.com>=20
+wrote:
+> > > From: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
+> > >=20
+> > > TQMa7x (revision 01xxx) uses a LM75A temperature sensor.
+> > > The two sensors use different I2C addresses, so we can set both senso=
+rs
+> > > simultaneously.
 >=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Doc=
-umentation/devicetree/bindings/pwm/pwm-samsung.yaml
-> index 2162f661ed5a..b6beca2ae81e 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-> @@ -30,6 +30,7 @@ properties:
->        - items:
->            - enum:
->                - samsung,exynosautov9-pwm
-> +              - samsung,exynosautov920-pwm
->            - const: samsung,exynos4210-pwm
+> I've contacted responsible department and I am waiting for more details.
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+I got response that REV.01xx was just a prototype and not released official=
+ly.
 
-What is the merge plan here? Should this go via the pwm tree, or can it
-better go via some exynos tree together with the dts files?
+> Best regards,
+> Alexander
+>=20
+> > > Signed-off-by: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
+> > > ---
+> > >=20
+> > >  arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 9 +++++++--
+> > >  1 file changed, 7 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
+> > > b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi index
+> > > fe42b0a4683..3fc3130f9de 100644
+> > > --- a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
+> > > +++ b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
+> > > @@ -128,11 +128,16 @@ vgen6_reg: vldo4 {
+> > >=20
+> > >                 };
+> > >        =20
+> > >         };
+> > >=20
+> > > -       /* NXP SE97BTP with temperature sensor + eeprom */
+> > > +       /* LM75A temperature sensor, TQMa7x 01xx */
+> > > +       lm75a: temperature-sensor@48 {
+> > > +               compatible =3D "national,lm75a";
+> > > +               reg =3D <0x48>;
+> > > +       };
 
-Best regards
-Uwe
+I don't like the idea of adding an i2c device for everybody. This restricts/
+affects usage of i2c address 0x48 for all rev.02xx users, no?
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Best regards,
+Alexander
 
---phrujihovcq5oywv
-Content-Type: application/pgp-signature; name="signature.asc"
+> > > +
+> > > +       /* NXP SE97BTP with temperature sensor + eeprom, TQMa7x 02xx =
+*/
+> > >=20
+> > >         se97b: temperature-sensor-eeprom@1e {
+> > >        =20
+> > >                 compatible =3D "nxp,se97b", "jedec,jc-42.4-temp";
+> > >                 reg =3D <0x1e>;
+> > >=20
+> > > -               status =3D "okay";
+> > >=20
+> > >         };
+> > >        =20
+> > >         /* ST M24C64 */
+> > >=20
+> > > --
+> > > 2.25.1
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVMe/YACgkQj4D7WH0S
-/k4EXggAlFjY54YEO/PoOnIolDxKx9chBDVEVMJlsOyI2QZet0UQWoLYDkiYs/dr
-HK9yQQNy4yPzu6/SvsDCEWPUYiE4VxlVBD3ZHopuEw1ALgsbVgpr80/LOVtmah/h
-oE0A1eRVmw0DcjltUE0z+jkMPwPWK2TrDf+g/lWlhDU2mAXXZRVUDr51AMaP2CQ9
-bZMmgTi1mpHrbs3QqUwvLrA7vgAQJyGE0XnGbBDY14Ay+Se5Nqw3n8BpwnnKuIFP
-+mR1DrMlbkRwWaGGlXd3XpUzXCSTE++0lH1DZAkbpaIe4vkmOXF4UNTqVJ1ZWVeH
-XI7tMTivTMbH9Nlwdtonbq/Qu8z/wg==
-=pKZI
------END PGP SIGNATURE-----
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
 
---phrujihovcq5oywv--
+
 
