@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76EB27E67DB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:25:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28467E67F8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:27:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 997221C20A2B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:25:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2ECF1C20965
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0044218C3B;
-	Thu,  9 Nov 2023 10:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DAB418E26;
+	Thu,  9 Nov 2023 10:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cS70pRn9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c1SJrL7c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE61B18C17
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 10:25:00 +0000 (UTC)
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 182742584
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 02:25:00 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40838915cecso4604935e9.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 02:25:00 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2DA519445
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 10:27:12 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40A9F2D76
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 02:27:11 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-32dc9ff4a8fso377161f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 02:27:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699525498; x=1700130298; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699525629; x=1700130429; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cEa65zbadXb56guqlzS9fYt6eXzoAqSRXIuLeM4+qbs=;
-        b=cS70pRn99t/g68K0RdcbIlF9FjqPXjqvUBQnX8uomPLZ1YViv1SFQZASlcQ6mqzlbz
-         DmKWbz3mHG8gwrC8o0tP0Rs6Zo3rDNH8WNAuTKIFukFK4eyG3h8H8BDYFa/qiRc4erkF
-         dug1Dda9YROuV4a/ePHSQfedHeyrMJ3+uU1rgYz5wCskJR3IEVml3TxJctmdkUWHFMlo
-         Qmh1vGXBRl4uQJq2Nv2bKsaewrL0eIgLR07CTRU2OVptEaU/5K5V0mXdyygZR+RzfUX8
-         eux9DsQ8mU0HZDIvIFNb96JOvhvrq8U1ak7X2IlcGIBqJrbMM3B00JQ4pDkc9Gn40tnk
-         7fZQ==
+        bh=xPjZqSoOPUFNGMJDM83VjmMrlwNr9JDON4HQIlUKGKY=;
+        b=c1SJrL7c5dDAfkDIq9uyrC25Lz0Ff1dCw/c47KrBQdCg+xRdCPRXJ9MA0Seda0kZva
+         b5S2T95HlXpARjkByiJQLBWcOo3QAiidUvw48veBMpqBseAdCIaE0L/UJJrqm4PG6dXM
+         bXGl8vajYEJKUaEOZt2U1yA8bVS21cFJqAaKYTbmtWKHSPHpGZ0VyfhumK1SQ0L+DfFk
+         p+Usjx4k1uJ1gayu4nMLmdBkv5HNRQPbhBIK9YVFWoxfuCR+cbjc3giuAUHaZJ+3FvD6
+         oelWVIHXy+n/Oii845BTKVcfQQB5iQGNnYG8PA1jMIF3YRQ9EeOWX8Qy8bkPaAJD8xOA
+         bhaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699525498; x=1700130298;
+        d=1e100.net; s=20230601; t=1699525629; x=1700130429;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cEa65zbadXb56guqlzS9fYt6eXzoAqSRXIuLeM4+qbs=;
-        b=Zp6glbGhdM/U3EA4jSvtTxz4pfmmm21l1fHa+1iDeyJM0NhE0m5eoYcNiXD586zEKS
-         oloV1I9QsXZOZoQBiQCd8x/d9RDZvKdNbva3YVbaK+Z7mutyFqU55ea8Hn5dD7RFAcBT
-         lbUV0LeAdKeyUcVV50+1orft1LjpNkDw9ZcRKKRJl6nDS+wJCdLXdTQEWEoqmvGpp0RJ
-         VhjFwxI2OjEB57pZltyHD+JJO21giPGBNWad9zZ5dLD4GOwhdptWfaHG3bNQKxV34ZR8
-         Xx8gSs6qE1ATWUKDjyTyi/ah0Hv9q+KqTMnmzRGmalSKiu8R+d8MIMaBDQSBMvJSBAvP
-         RLFA==
-X-Gm-Message-State: AOJu0YwhEMtNn4AQZeMx/R5LzHkm4BmTHkOYIn32WFlS0dXPafLxiK+W
-	A5Oy4B4pGgpmP+CiT22lgiLptw==
-X-Google-Smtp-Source: AGHT+IE37xNQ1PNI1ZTi31vf3M1OMcSN8bEeLxMU3Z3hZ/5we4zJ+aAbyZH0DVkyGOqEozLn7LRjbQ==
-X-Received: by 2002:adf:e3cd:0:b0:32d:d879:1c3 with SMTP id k13-20020adfe3cd000000b0032dd87901c3mr4180617wrm.31.1699525498376;
-        Thu, 09 Nov 2023 02:24:58 -0800 (PST)
+        bh=xPjZqSoOPUFNGMJDM83VjmMrlwNr9JDON4HQIlUKGKY=;
+        b=JLFTZbJtfzRMZTgkU1qmtI+XPKHwv3fRwNhkJ+x/YvJNR6sOaEfJQsxC+7kd8ZQaYM
+         gluhStQJuBoOm52cEV4RSZolssOW9JfpSmJdnPWHVY3sepbcLtZQl9acukGsM3FmOEYM
+         /BvupDJjB/Gi1fQmpgJJpt+CyMcpYis5kJpCozuoJRbWN2X0Oqc8iKEDOCxgXB98iprI
+         hEwhx/6GJQ04AvqxP8FQblhCGuPqootC+agg8kxEFxKygEsWUojYAlzbdiKBlsGL2QKv
+         gOI6pwLuS97Ywd/Dg2V0cVxlv8lVqZRi5CDwuKqT7V0RIvXwFFT6NSBAxbX38LLKy75V
+         NO9A==
+X-Gm-Message-State: AOJu0Yz3Ilsn5XiHpgmJFa6hY2+uSK37zEYxHAX84XAxzv+zfvJmX3zl
+	CIiyWw7+JdD+GelVUg26RaRt2A==
+X-Google-Smtp-Source: AGHT+IHDfZPEt8fjvIOuKozIo0wUuMjDPZMUhrM6VSOGwD64Tmr4U/laOnrM1sIddBTVvWmXzzPCxg==
+X-Received: by 2002:a5d:6483:0:b0:32f:7ae7:da49 with SMTP id o3-20020a5d6483000000b0032f7ae7da49mr3137589wri.51.1699525629601;
+        Thu, 09 Nov 2023 02:27:09 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id c7-20020a5d4cc7000000b0032fa66bda58sm7074001wrt.101.2023.11.09.02.24.56
+        by smtp.gmail.com with ESMTPSA id s1-20020adff801000000b003313069be5dsm2519379wrp.46.2023.11.09.02.27.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 02:24:57 -0800 (PST)
-Message-ID: <f58c8f3f-7b34-47e7-a33a-bddb6106fec7@linaro.org>
-Date: Thu, 9 Nov 2023 11:24:56 +0100
+        Thu, 09 Nov 2023 02:27:09 -0800 (PST)
+Message-ID: <f7fea4d1-c1ae-4ab5-bcbd-30683ad7a349@linaro.org>
+Date: Thu, 9 Nov 2023 11:27:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,26 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF clk
- id
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: add ltr390
 Content-Language: en-US
-To: zhangqing <zhangqing@rock-chips.com>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
- sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
- andy.yan@rock-chips.com, Sebastian Reichel <sebastian.reichel@collabora.com>
-References: <20231108061822.4871-1-zhangqing@rock-chips.com>
- <20231108061822.4871-4-zhangqing@rock-chips.com>
- <20231108-donation-uncertain-c4d0f560c420@spud>
- <2e520a06-0ff1-76ef-2a72-ab6663738b45@rock-chips.com>
- <20231109-send-pushchair-45b37551102a@wendy>
- <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
- <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
- <f013df81-670e-37c4-c1a7-e1302352ca20@rock-chips.com>
+To: Anshul Dalal <anshulusr@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Shuah Khan
+ <skhan@linuxfoundation.org>, linux-kernel-mentees@lists.linuxfoundation.org,
+ linux-kernel@vger.kernel.org
+References: <20231109090456.814230-1-anshulusr@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,63 +123,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f013df81-670e-37c4-c1a7-e1302352ca20@rock-chips.com>
+In-Reply-To: <20231109090456.814230-1-anshulusr@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 09/11/2023 11:05, zhangqing wrote:
+On 09/11/2023 10:04, Anshul Dalal wrote:
+> Add binding for Lite-On LTR390 which is an Ambient/UV light sensor that
+> communicates over i2c with an address of 0x53.
 > 
-> 在 2023/11/9 17:21, Krzysztof Kozlowski 写道:
->> On 09/11/2023 09:06, zhangqing wrote:
->>> 在 2023/11/9 15:29, Conor Dooley 写道:
->>>> On Thu, Nov 09, 2023 at 02:27:38PM +0800, zhangqing wrote:
->>>>> Hi:
->>>>>
->>>>> 在 2023/11/8 20:01, Conor Dooley 写道:
->>>>>> On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
->>>>>>> export PCLK_VO1GRF for DT.
->>>>>>>
->>>>>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->>>>>>> ---
->>>>>>>     include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
->>>>>>>     1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->>>>>>> index 5790b1391201..50ba72980190 100644
->>>>>>> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
->>>>>>> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->>>>>>> @@ -733,8 +733,9 @@
->>>>>>>     #define ACLK_AV1_PRE			718
->>>>>>>     #define PCLK_AV1_PRE			719
->>>>>>>     #define HCLK_SDIO_PRE			720
->>>>>>> +#define PCLK_VO1GRF			721
->>>>>>> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
->>>>>>> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
->>>>>> This definition is part of the ABI, if it is safe to change it, then it
->>>>>> is safe to delete it.
->>>>> The new ID is to solve the niu clock dependency problem(Used in PATCH V5
->>>>> 4/4).This new ID will also be used in DTS in the future.
->>>>>
->>>>> CLK_NR_CLKS represents the number of clocks used by the
->>>>> drivers/clk/rockchip/clk-rkxxx.c. It is safe to modify it, but cannot delete
->>>>> it.
->>>> Then delete it from the header and move it to clk-rkxxx.c
->>> I don't think it's more appropriate to move to clk-rkxxx.c.
->>> Because if there are new requirements later, and add new clk id, it is
->>> not in the same file, maybe forget to modify CLK_NR_CLKS.
->> Then you are not allowed to change it. It's part of ABI.
+> Datasheet:
+>   https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf
 > 
-> If you just don't want me to modify CLK_NR_CLKS, can I use an unused ID, 
-> like [PATCH V4 3/4]:
-> 
-> -#define MBIST_MCLK_PDM1                        24
-> +#define PCLK_VO1GRF                    24
+> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
 
-You cannot change the ABI.
 
-I don't understand why do you insist on this path. You got clear
-comments: either this is ABI, so it cannot be changed, or it has to be
-dropped. You know insist on some third path. There is no such.
+> +  interrupts:
+> +    maxItems: 1
+> +    description: |
+> +      Level interrupt pin with open drain output.
+> +      The sensor pulls this pin low when the measured reading is greater than
+> +      some configured threshold.
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        light-sensor@53 {
+> +            compatible = "liteon,ltr390";
+> +            reg = <0x53>;
+
+Please extend the example to be complete - interrupts and vdd-supply.
 
 Best regards,
 Krzysztof
