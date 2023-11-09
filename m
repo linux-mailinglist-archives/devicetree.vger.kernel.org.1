@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-14867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A40D7E7247
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 20:24:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCFF7E7279
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 20:50:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE8F1280F65
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 19:24:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DA701C2094C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 19:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D879347C9;
-	Thu,  9 Nov 2023 19:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC5B3714D;
+	Thu,  9 Nov 2023 19:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U7WLsYJF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AxQChHjm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443D2341BF
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 19:24:46 +0000 (UTC)
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB0B3C1B
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 11:24:45 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-409299277bbso8331385e9.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 11:24:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 468F136B14;
+	Thu,  9 Nov 2023 19:50:22 +0000 (UTC)
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B3F3C14;
+	Thu,  9 Nov 2023 11:50:21 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-5bcfc508d14so1029224a12.3;
+        Thu, 09 Nov 2023 11:50:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699557884; x=1700162684; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=l1CJqeZ8u7eaD4Q/icHyhIHN2vLT3h3xpvRo3vUPhJI=;
-        b=U7WLsYJFwFsCsJMq5C4u34AUFHM4ajgWIHUo1upHZTe3crLKA4SIwekPvzJJSWtPSN
-         HIQT9EQNuLHLpmpU/JBUUtRyNPIqkU8NTzXTdDDUBbhG/DDkEibMfNGnmmmjT2aCO/kI
-         UW61bP426YTlKNwgywHex1V+QtFhfvUPAnPssoOopRumx6phBa9+DzmeXQ+wx/a0kVrx
-         K6+un3WZfZLz6t0v/5m3T9QsE2mXcUcIEQaBO0QTj+2FaVINQXtYyCvl/g10Nj8oEwog
-         s0p4xM/bFSJYNBGwU+Pj4hz/0BqNVEufFJ0aQl8vLEp4Byics5+/161odwkMh/21N2UW
-         3BDQ==
+        d=gmail.com; s=20230601; t=1699559421; x=1700164221; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=EBtLQKS0NK7CR945P937kTGYgAdDYuND1Sz4PktQEo8=;
+        b=AxQChHjm/LV3CIuRkdNBRAKpobENOLcE12/cQegtLhk/6or92EjK+v8ZM875qPe25S
+         56X7LrL734bM3U9Y9YxBlKy4TuO1hTFJB9U+g8omBaAPQxKqFLT09iwrVROLaFPQGNIa
+         zM9Q4evMOrFHQLQVAsfJ1OImvxo+w2+rvrdaaUPg3shiNp+I/a2qGsBA8coZCnYpyqJM
+         nfn4B4PYV1Lm/tFkphIhKy0k33K80hQwV/HV1ePwMxod8av8CQjqZVFIZ5VlTGUpyimj
+         DQ6uyhiX0F9sZ5NyNf/PgeQepPabABzsjohXGjiPdufJwaGy2zWUJSRAsDKUnXOeL1ym
+         J+kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699557884; x=1700162684;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l1CJqeZ8u7eaD4Q/icHyhIHN2vLT3h3xpvRo3vUPhJI=;
-        b=qlF5IBNLvxg1RD17u+gp4QU/sxAv/e5fzJVDxgMIw0ITU/6LZEKy5sfDGxQcqOY62m
-         Sn2BeWTDaYGxVLmvY17GiUYIGFj34+rLaVh8hSvBmim6pf6cEIfPhRuZ4NxGt1dau0Zt
-         Femol90LlZ2nz+FA8l4MQMjAyBNAg+iVgL0qBDLp2FUdKJqQ8i3f8IBvl5fgy3+w2Vbl
-         tlMMOVGlXVPbAJ7ekECoHHG4rl9mP6TB6T1vVoX85mkSsZITV7bAuzYIuCi5JGHbuPwi
-         7Hy/6/RgaYrz9T47jl+nVAhe7gm5PQFhYULLYLRW4s4jdsin6cKEneE4Dc56V6W4Do9Y
-         dojA==
-X-Gm-Message-State: AOJu0YwpdJPCdVLDt681aUddLFXt+E1jMH4FHLvpNaOdLrZVDOQlxWOm
-	lfufnREycknGVYp3Mqda9x/a+Q==
-X-Google-Smtp-Source: AGHT+IF/BLKulO6qnWwr/aMbGCtJwiiTSp3nZlhJ8ghABo6m4xXeqoIy0WP2LNWq5jaUk7wkGbi3dg==
-X-Received: by 2002:a05:600c:450d:b0:402:f55c:faee with SMTP id t13-20020a05600c450d00b00402f55cfaeemr5287667wmo.26.1699557883893;
-        Thu, 09 Nov 2023 11:24:43 -0800 (PST)
-Received: from [10.66.66.2] (9.ip-51-91-159.eu. [51.91.159.9])
-        by smtp.gmail.com with ESMTPSA id p8-20020a05600c430800b00405d9a950a2sm2903833wme.28.2023.11.09.11.24.40
+        d=1e100.net; s=20230601; t=1699559421; x=1700164221;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EBtLQKS0NK7CR945P937kTGYgAdDYuND1Sz4PktQEo8=;
+        b=CgCQP/8UNCNI7RY1C3bPo/3duwvRiTsmNBD1G+XwoeHkjFfCjfQgdnfmgdhRzdybjX
+         jy5xnUq3NHwJw0T/4tvOGiuUf3Al2I7rnF//UMEtg0+wVeK9dW+PmlFBJWSctvYZgzMm
+         8llNRYeIGAD+Bvbq12I7rCOLoyTv1wbV7bQLH3Lu8Yuxh5P6kfIOBrFe//cXzVGrVXM9
+         d9Jk4yIzv5CYRNnwJUl26TFj6h2CP8EBAyvH9sUJ4allrXaY50EVIVKXoj+ueQFSn5BR
+         T8hSEQovHVdJPOMUOOwthJZtzkY0ifUGf4dSw5ljHS3CDWAzMIcip8H4EdE1NInzSo3x
+         xZ7Q==
+X-Gm-Message-State: AOJu0Yz8cRQDc7Ekwv0uitnPL3WlNM7wk1oplGTj8/KziGSaXP7wn9E0
+	zTDcj54ZKBLnBmcQGvV0azA=
+X-Google-Smtp-Source: AGHT+IHgEn896T8HF0M77ehIx6l76xd9t8FpRIr2oRCUxIxjdDPqwp+PRiY6WW9LNacKmPHYmDRqEg==
+X-Received: by 2002:a17:90a:1a04:b0:281:61c:1399 with SMTP id 4-20020a17090a1a0400b00281061c1399mr2653144pjk.3.1699559421145;
+        Thu, 09 Nov 2023 11:50:21 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a17-20020a17090abe1100b002775281b9easm170807pjs.50.2023.11.09.11.50.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 11:24:43 -0800 (PST)
-Message-ID: <4f56327d-abe1-44fa-8979-17edf86cd406@linaro.org>
-Date: Thu, 9 Nov 2023 20:24:39 +0100
+        Thu, 09 Nov 2023 11:50:20 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <1fcf588d-ea37-4f86-a920-4da21302192c@roeck-us.net>
+Date: Thu, 9 Nov 2023 11:50:19 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,83 +69,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] media: qcom: camss: csiphy-3ph: Add Gen2 v1.1
- two-phase MIPI CSI-2 DPHY init
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, hverkuil-cisco@xs4all.nl,
- laurent.pinchart@ideasonboard.com, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org,
- matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231109-b4-camss-sc8280xp-v4-0-58a58bc200f9@linaro.org>
- <20231109-b4-camss-sc8280xp-v4-3-58a58bc200f9@linaro.org>
- <0e325a57-f07d-47e6-8456-523cfa04c52b@linaro.org>
- <1e99ddcc-db3b-4a79-a2d1-815bebb5a5c9@linaro.org>
+Subject: Re: [PATCH v4 2/2] hwmon: pmbus: Add ltc4286 driver
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1e99ddcc-db3b-4a79-a2d1-815bebb5a5c9@linaro.org>
+From: Guenter Roeck <linux@roeck-us.net>
+To: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231109014948.2334465-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231109014948.2334465-3-Delphine_CC_Chiu@Wiwynn.com>
+ <065e97b5-23ce-45f3-95ec-40e798c8a22e@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <065e97b5-23ce-45f3-95ec-40e798c8a22e@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+On 11/9/23 09:27, Guenter Roeck wrote:
+> On 11/8/23 17:49, Delphine CC Chiu wrote:
 
+>> +        info->m[PSC_POWER] = temp_setting;
+>> +    } else {
+>> +        info->m[PSC_POWER] = rsense;
+> 
+> I told you before, the default range needs to be set. The range may have been
+> changed by the BIOS/ROMMON, or someone could have changed it manually with
+> i2cset or some other application, or some other operating system was loaded
+> earlier which did its own setting.
+> 
+> I do understand by now that you don't want to do that, but I won't accept
+> the driver without it, sorry.
+> 
 
-On 11/9/23 18:11, Bryan O'Donoghue wrote:
-> On 09/11/2023 13:55, Konrad Dybcio wrote:
->>
->>
->> On 11/9/23 12:30, Bryan O'Donoghue wrote:
->>> Add a PHY configuration sequence for the sc8280xp which uses a Qualcomm
->>> Gen 2 version 1.1 CSI-2 PHY.
->>>
->>> The PHY can be configured as two phase or three phase in C-PHY or D-PHY
->>> mode. This configuration supports two-phase D-PHY mode.
->>>
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> ---
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>
->> Aside from initialization, looks like the reset seq should be more
->> complex:
->>
->> https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel/-/blob/LA.AU.1.3.7-02900-gen3_gvmgh.0/drivers/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_1_hwreg.h?ref_type=tags#L39-45
->>
->> https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel/-/blob/LA.AU.1.3.7-02900-gen3_gvmgh.0/drivers/cam_sensor_module/cam_csiphy/cam_csiphy_core.c#L133-154
->>
->> similarly for the "common regs" that seem to extend the init seq
->>
->> https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel/-/blob/LA.AU.1.3.7-02900-gen3_gvmgh.0/drivers/cam_sensor_module/cam_csiphy/cam_csiphy_core.c#L491-527
->>
->> Konrad
-> 
-> So..
-> 
-> https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel/-/blob/LA.AU.1.3.7-02900-gen3_gvmgh.0/drivers/cam_sensor_module/cam_csiphy/include/cam_csiphy_1_1_hwreg.h?ref_type=tags#L39
-> 
-> static struct csiphy_reg_t csiphy_reset_reg_1_1[] = {
->      {0x0814, 0x00, 0x05, CSIPHY_LANE_ENABLE}, // this is interesting
->                                                    // powers off lanemask
->                                                    // seems like a good
->                                                    // idea to me
->      {0x0818, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS}, [1]
->      {0x081C, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS}, [2]
->      {0x0800, 0x01, 0x01, CSIPHY_DEFAULT_PARAMS}, // this we already
->      {0x0800, 0x00, 0x00, CSIPHY_DEFAULT_PARAMS}, // do right now
-> };
-> 
-> [1] [2] I don't see why you need that and I'd imagine the reset drives these values to zero anyway.. it should as I read the reg docs, I'd guess this is a reset sequence that comes out of a Si test bench.
-Since it's there on shipped devices, I'd skew towards including it, maybe some
-chips with this block had an erratum wrt the reset value
+As a follow-up on this, it turns out that LTC4287 supports an external EEPROM to
+store its configuration as well as "STORE_USER_ALL" and "RESTORE_USER_ALL"
+PMBus commands. It is therefore very well possible and even likely that the
+voltage range (together with other configurable parameters) was set during
+system production.
 
+With that in mind, it seems to me that not only the default (property not present)
+case has to be handled, but that a boolean property to reflect the voltage range
+is insufficient. I think what is needed instead is a property which specifies
+the requested range and which, if not present, explicitly means "use whatever
+is currently programmed into the chip".
 
-> 
-> The 0x814 warrants an investigation - i.e. can we add it across platforms without breaking existing setups.
-> 
-> I'll kick that to a separate - one LOC "series", so we can take our time validating if it has any unexpected side-effects across our various platforms.
-Sure, that's what I had in mind
+Thanks,
+Guenter
 
-Konrad
 
