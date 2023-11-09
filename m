@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E71217E6E7B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:18:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA9B97E6E8B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:22:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DC07281055
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 16:18:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBFFB1C204F8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 16:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37331210F1;
-	Thu,  9 Nov 2023 16:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F492210EE;
+	Thu,  9 Nov 2023 16:22:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wNHjboC/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WWZ7Mi9s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A204520B10
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 16:18:29 +0000 (UTC)
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD7D173E
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:18:28 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c515527310so13769411fa.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 08:18:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 314F921A16
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 16:22:51 +0000 (UTC)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499D735AB
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:22:50 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-507a3b8b113so1310392e87.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 08:22:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699546707; x=1700151507; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699546968; x=1700151768; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oemg/XuC5ShAmdM2pBXqSj3mgBLJ/7eTLgLFmATn+qY=;
-        b=wNHjboC/vN1Lk/7SIJN+6S0a3OFzpkNiR2Sbm41FumPg7FY1EM9IxZp45ZHUaCut/2
-         n/a5Zt0R1AAVDpqcL59OIZUe+R87vA5mMtAq9Z1aruAeq5xRAsMcYy8azhxK7KIKq95m
-         4N9ZUvsOS4NEymejZcTWuSb4DTrUjYVpcsn0lKvJM/bss+u91UTifgPkidKrdAanfdj1
-         73EAIGP8Ro22EgIgV8Lb+fU3F1a/3KYeYZVHWTXbK6kvYZ0UFfjjygfXfMIeKfDUKeUo
-         GNbfZjjjhMBt40cvbcRHGDYkq5j/HX2T6xaesvUI8prjIS7UKAlb5O+bVskLhx2hUWDD
-         x9Fg==
+        bh=SlrCzGct6Lpx6z7xP3//KDAUNER14xBsUIT3wpM4fpg=;
+        b=WWZ7Mi9soEY9bKFbOc0hRDkFKZLWH3eHuZ8C2uxFGvbtPfppw5HqLU7d3D3atR9tvO
+         yfsMhPzmx3sPg6PGdhvyCCt2CzxbYtc7xN5ysvSnFDGtBLQt7Lypte10Mh9R52rIdRHu
+         I3gTBXugKlqLWoeQ9Lg8tbqsRMV1W7p7v8rr2beby04EIcaVT++KV8Bi4S/f+KW1IlPU
+         AFTr3H4wy8Bc9pXt6X6fcDajduJq8LlWUGPWm8ehT46q4b8RGxD9oamyjcekfZBlSlu0
+         evS/BYgvKO1br9+iQA9+6ETfvhZ/EqVou6I6KvpEFI6VTGNq6j3aK79Rg8GNlbaE02Xo
+         xqhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699546707; x=1700151507;
+        d=1e100.net; s=20230601; t=1699546968; x=1700151768;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oemg/XuC5ShAmdM2pBXqSj3mgBLJ/7eTLgLFmATn+qY=;
-        b=tnhqL48a4JeYZDBFs4eb8/HBNYdHonSM/aNQ/qFoTrFjDzLnKqnnhkdhN39HWTPWpd
-         LhMLF4cs09GU+DBCpLol8+dUMoWKo5ZBbV/GzOavel9jeq/8PwCDJE7sV8PegXOkQpup
-         dJpVBELQQ+dfs+1YmG8L7yv8O+WRW317ABNpC7uz7BSFl6fpWTwu3IfGFPw7DuD43dyo
-         5kIVklMSeI2TIoDurGuP5/FgfZPEK9Hsccm4OLsL005AMJYfV3LSQZlHtDJFMeFJWa/T
-         XbBRIHOm4w2Afrtbaa2rNDfGhtovAMyizPLynBhs2iEMxeQFAjmqzpqZw1LJUjvqYYnr
-         W40A==
-X-Gm-Message-State: AOJu0YxF1cet75JcytpJ1fk5Ybj450VDplV5wmdjCMgsyZwDzZU69B5B
-	3JWQoWMKC0Vwt0fneoLKglYutQ==
-X-Google-Smtp-Source: AGHT+IEuxRek3oq49L9luwn9G58dmX/rvNzgu6excSWHSKuvyj5kAvMPai/Nz6EfosKiOOceVRQEAA==
-X-Received: by 2002:a05:6512:3141:b0:500:9a45:63b with SMTP id s1-20020a056512314100b005009a45063bmr1663721lfi.13.1699546706923;
-        Thu, 09 Nov 2023 08:18:26 -0800 (PST)
+        bh=SlrCzGct6Lpx6z7xP3//KDAUNER14xBsUIT3wpM4fpg=;
+        b=fSrIegLnQTxT2LhVJeK2Zf2u8pvpfXS+FwTspYSPrs+n+iwOVasx+EU+oGmp86kVss
+         XFUVrOBeH7/Ya8PYsfUKBtkeWywNLC2HTnMsISR1SZDluik4fdp9QuDM8Efuc0/UKdlh
+         1BzK0ieQU1uk+vy93EeRuhIaCF9y9JcwRgEu8YoSC00Ro51pLp3jgXRkewpaq4xzG4mq
+         zd1dS0xz6lzxrYsA9fOkMeHW+Lb3a5H+twT4ys4pZ3lsjxFnV2pbZDvPAYjC+XvoDmLy
+         /2045843BkIKc5hGwhJRu4jZEHup/vOo95MbRvvj047h4XNhnwf4laBvhz6C4B2pCtf8
+         +WNg==
+X-Gm-Message-State: AOJu0YyUlBxtuaTw7qVSuxyelhb8Y0l6AMbNuDn5EiMz7Kr6Gq9nebot
+	bg90c+6yOwGypTB7k773rWReUg==
+X-Google-Smtp-Source: AGHT+IGgXqc0yMAFIHY2eRZZaHei8dFOjeflGpnumK7lKqJOvNpDKPNJ2WXN+DZgGTnpSkONhXMARg==
+X-Received: by 2002:a19:505a:0:b0:509:4ab3:a8a3 with SMTP id z26-20020a19505a000000b005094ab3a8a3mr1850064lfj.22.1699546968366;
+        Thu, 09 Nov 2023 08:22:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id x21-20020a1c7c15000000b0040a3f9862e3sm622112wmc.1.2023.11.09.08.18.25
+        by smtp.gmail.com with ESMTPSA id j14-20020a05600c190e00b004094c5d929asm2586094wmq.10.2023.11.09.08.22.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 08:18:26 -0800 (PST)
-Message-ID: <daae2f05-66ea-4f21-a47d-6e384bd35dee@linaro.org>
-Date: Thu, 9 Nov 2023 17:18:24 +0100
+        Thu, 09 Nov 2023 08:22:47 -0800 (PST)
+Message-ID: <71ca3812-9226-4a83-a655-78401e4ed33f@linaro.org>
+Date: Thu, 9 Nov 2023 17:22:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,22 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] hwmon: Add support for Amphenol ChipCap 2
+Subject: Re: [PATCH V6][4/4] dt-bindings: mmc: Add dt-bindings for realtek mmc
+ driver
 Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
- <20231020-topic-chipcap2-v2-3-f5c325966fdb@gmail.com>
- <30ccb0a9-c0bd-491e-817f-def0aeda11c6@linaro.org>
- <d5692ab7-6d11-41f3-89ec-246a2fc045a8@roeck-us.net>
+To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
+ adrian.hunter@intel.com, jh80.chung@samsung.com, riteshh@codeaurora.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc: conor+dt@kernel.org, asutoshd@codeaurora.org, p.zabel@pengutronix.de,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arnd@arndb.de, briannorris@chromium.org,
+ doug@schmorgal.com, tonyhuang.sunplus@gmail.com, abel.vesa@linaro.org,
+ william.qiu@starfivetech.com
+References: <20231109082043.27147-1-jyanchou@realtek.com>
+ <20231109082043.27147-5-jyanchou@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,35 +125,123 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d5692ab7-6d11-41f3-89ec-246a2fc045a8@roeck-us.net>
+In-Reply-To: <20231109082043.27147-5-jyanchou@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/11/2023 15:55, Guenter Roeck wrote:
->>> +	if (IS_ERR(data->hwmon)) {
->>> +		ret = PTR_ERR(data->hwmon);
->>> +		goto cleanup;
->>> +	}
->>> +
->>> +	return 0;
->>> +
->>> +cleanup:
->>> +	if (cc2_disable(data))
->>> +		dev_dbg(dev, "Failed to disable device");
->>> +
->>> +	return dev_err_probe(dev, ret,
->>> +			     "Unable to register hwmon device\n");
->>
->> Drop or move to each error path.
->>
-> This actually follows Documentation/process/coding-style.rst, chapter 7
-> (Centralized exiting of functions).
+On 09/11/2023 09:20, Jyan Chou wrote:
+> Document the device-tree bindings for Realtek SoCs mmc driver.
 
-The point is that centralized message of error is useless. Probe failure
-is already handled by core, thus another message doing the same is
-redundant. What is needed to explain the true reason of failure, thus
-the error message should be next to each type of failure. Missing
-regulator? Say it. Missing clock? Say something else.
+Subject and commit msg - drop driver and describe hardware instead.
+s/mmc/MMC/
+
+> 
+> Signed-off-by: Jyan Chou <jyanchou@realtek.com>
+> 
+> ---
+> v5 -> v6:
+> - Drop the incorrect, generic compatible and modify it to specific.
+> - Drop useless properties.
+
+Which ones?
+
+> - Modify bindings to make DTS and driver match.
+> 
+> v4 -> v5:
+> - Remove unused property, e.g.,cqe, resets, clock-freq-min-max.
+> - Fix indentation.
+> 
+> v3 -> v4:
+> - Describe the items to make properties and item easy to understand.
+> - Fix examples' indentation and compiling error.
+> - Drop useless properties.
+> 
+> v2 -> v3:
+> - Modify dt-bindings' content and description.
+> - Fix coding style.
+> - Update the list of maintainers.
+> 
+> v1 -> v2:
+> - Add dt-bindings.
+> ---
+>  .../bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml | 162 ++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml b/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
+> new file mode 100644
+> index 000000000000..d7118cf457e8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/realtek,rtd-dw-cqe-emmc.yaml
+> @@ -0,0 +1,162 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/realtek,rtd-dw-cqe-emmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek DesignWare mobile storage host controller
+> +
+> +description:
+> +  Realtek uses the Synopsys DesignWare mobile storage host controller
+> +  to interface a SoC with storage medium. This file documents the Realtek
+> +  specific extensions.
+> +
+> +maintainers:
+> +  - Jyan Chou <jyanchou@realtek.com>
+> +
+> +allOf:
+> +  - $ref: synopsys-dw-mshc-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - realtek,rtd1325-dw-cqe-emmc
+> +      - realtek,rtd1319-dw-cqe-emmc
+> +      - realtek,rtd1315e-dw-cqe-emmc
+> +      - realtek,rtd1619b-dw-cqe-emmc
+> +
+> +  reg:
+> +    items:
+> +      - description: emmc base address
+> +      - description: cqhci base address
+> +
+> +  reg-names:
+> +    items:
+> +      - const: emmc
+> +      - const: cqhci
+> +
+> +  realtek,m2tmx:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to m2tmx syscon register region.
+
+There is no such stuff as "syscon register region". Syscon is Linux
+term. Please write here instead the full name of the hardware block and
+describe its purpose (for what is it needed for).
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: biu
+> +      - const: ciu
+> +      - const: vp0
+> +      - const: vp1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: reset
+
+Nothing improved here.
+
+Go back to previous versions and implement the feedback you received.
 
 Best regards,
 Krzysztof
