@@ -1,208 +1,253 @@
-Return-Path: <devicetree+bounces-14862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 353B37E71AD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 19:45:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0EA87E720C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 20:14:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3545281357
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:45:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 424DAB20B77
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 19:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B29199A3;
-	Thu,  9 Nov 2023 18:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A6432C82;
+	Thu,  9 Nov 2023 19:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DCL0waF5"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LB+sRhR+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B782032A
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 18:44:58 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273213C11;
-	Thu,  9 Nov 2023 10:44:58 -0800 (PST)
-Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 930B36607413;
-	Thu,  9 Nov 2023 18:44:56 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1699555496;
-	bh=ZUf7+KMB7mHUMnfEwhG5jA7NsEB2Vt5a4r0e0mZrdUE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DCL0waF5eZ2gElTCx4o2iSeatWr8Fekpn5otBrcMkH1OTocWJRtlJs79VkwE4cdLj
-	 ltcJVEYxaCPGxtG1zkJlubDt3dZXQGdzjrxTFq0teRPR8ecRAsZkMSjXmBb6H3t3Oq
-	 F94uaXizP+yaaGehOEEx2fEtvtAOFRzY6cSRjpORXCtf6WlJkbyrsEcYysN4lF39xn
-	 ejlRbpUvkA+T5K5VYOeSDhta6TFuAYejG0AXu43c8hmofBdqUjAt5UhD6Rn4PuqWWv
-	 IAm4XkXDuI5d98o+WBUusquW/E4uB8gzimaHTC1Sbo4molbSzIizb8RV3miA4ooZaJ
-	 3vaDnOuNxsk7A==
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 0C5AD4800CD; Thu,  9 Nov 2023 19:44:54 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A76C32C6E
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 19:14:02 +0000 (UTC)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13BE43A98
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 11:14:02 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-2800f7c8125so1880536a91.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 11:14:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1699557241; x=1700162041; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a1ZtU5ZMqolp0WxYrzaGdVT64DAjDav43NBRtTZWZHI=;
+        b=LB+sRhR+MQlmymmyzzMP1DpQgtsiTk8FsmCx6jSOHEXV/JseAZ+m2W1YWo8zGQNiiY
+         FdSJWsB6QmPKyz6LQdMzTptJyJnhDjPsTAnl9eOojoUp3W0ZtExTS6XgsAX5P8qJUQzu
+         zsPRHb4CALst5AhKH514C2h7VYSoExLliczS8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699557241; x=1700162041;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=a1ZtU5ZMqolp0WxYrzaGdVT64DAjDav43NBRtTZWZHI=;
+        b=DFtx0vkOut1RYSLRijVByQyMKFhdnamGjElNlSWlC1x4N5LnUkjV0/EfHkk/xtj0pq
+         KVC0AbKspNuC38758E7bwTxYkQIFK1z2fndp5KLwgb0X3eo9P+jq/4Guoea3/GhTbZH6
+         uefDl/RSybjzeexJdJg7TRKzCvyAjRYgD+vZku27cwivQmtaO1B5qwxO3JIYqARyeI6y
+         tb+EPpSvpkWp//Wbe75xfZoYbaOM803rIaEVy+ZTtjCchhaXdA7UtsbH9uMrKxoRFTeg
+         YPCc4b9k5GvCT/UoIKwwQUrVGxsHdfCkYkiYXcVKnsEbFYJrHm0EV/Fv5TSWNyTFoJyC
+         9JDw==
+X-Gm-Message-State: AOJu0YyU9uVt043S+sJlBdAxxTmcFkNAHPnybDzal1pTSq73x9roEUxv
+	EK0IlGHG/ayUwmyGY1EuW1lDfg==
+X-Google-Smtp-Source: AGHT+IFKQeIXiKgMCFmgv5wuFvvQpoXMS9T66pTeCj0K9JdFQuOHrsmo5pzd0sX82qkWa+oU9//dtQ==
+X-Received: by 2002:a17:90a:cb86:b0:280:963d:9cb with SMTP id a6-20020a17090acb8600b00280963d09cbmr181421pju.23.1699557241455;
+        Thu, 09 Nov 2023 11:14:01 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id pj9-20020a17090b4f4900b00282ecb631a9sm124069pjb.25.2023.11.09.11.13.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Nov 2023 11:14:00 -0800 (PST)
+From: Jim Quinlan <james.quinlan@broadcom.com>
+To: linux-pci@vger.kernel.org,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Cyril Brulebois <kibi@debian.org>,
+	Phil Elwell <phil@raspberrypi.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	james.quinlan@broadcom.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-rockchip@lists.infradead.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com
-Subject: [PATCH v1 2/2] arm64: dts: rockchip: add analog audio to RK3588 EVB1
-Date: Thu,  9 Nov 2023 19:44:44 +0100
-Message-ID: <20231109184453.108676-2-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231109184453.108676-1-sebastian.reichel@collabora.com>
-References: <20231109184453.108676-1-sebastian.reichel@collabora.com>
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list),
+	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v7 0/3] PCI: brcmstb: Configure appropriate HW CLKREQ# mode
+Date: Thu,  9 Nov 2023 14:13:51 -0500
+Message-Id: <20231109191355.27738-1-james.quinlan@broadcom.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000acd8020609bd014d"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Add support for the EVB1 analog audio to its devicetree. Only
-the headphone has been tested, since I don't have matching
-peripherals to test headset or speakers.
+--000000000000acd8020609bd014d
 
-I also didn't manage to record sound from the onboard microphone,
-but that also fails with the vendor kernel. Thus I assume the
-microphone on my board is fried.
+v7 -- Manivannan Sadhasivam suggested (a) making the property look like a
+      network phy-mode and (b) keeping the code simple (not counting clkreq
+      signal appearances, un-advertising capabilites, etc).  This is
+      what I have done.  The property is now "brcm,clkreq-mode" and
+      the values may be one of "safe", "default", and "no-l1ss".  The
+      default setting is to employ the most capable power savings mode.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../boot/dts/rockchip/rk3588-evb1-v10.dts     | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
+v6 -- No code has been changed.
+   -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
+   -- Changed sign-off and author email address for all commits.
+      This was due to a change in Broadcom's upstreaming policy.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index b9d789d57862..3369065f897d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -56,6 +56,63 @@ button-escape {
- 		};
- 	};
- 
-+	analog-sound {
-+		compatible = "simple-audio-card";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+		simple-audio-card,name = "RK3588 EVB1 Audio";
-+		simple-audio-card,aux-devs = <&amp_headphone>, <&amp_speaker>;
-+		simple-audio-card,bitclock-master = <&masterdai>;
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&masterdai>;
-+		simple-audio-card,hp-det-gpio = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
-+		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,pin-switches = "Headphones", "Speaker";
-+		simple-audio-card,routing =
-+			"Speaker Amplifier INL", "LOUT2",
-+			"Speaker Amplifier INR", "ROUT2",
-+			"Speaker", "Speaker Amplifier OUTL",
-+			"Speaker", "Speaker Amplifier OUTR",
-+			"Headphones Amplifier INL", "LOUT1",
-+			"Headphones Amplifier INR", "ROUT1",
-+			"Headphones", "Headphones Amplifier OUTL",
-+			"Headphones", "Headphones Amplifier OUTR",
-+			"LINPUT1", "Onboard Microphone",
-+			"RINPUT1", "Onboard Microphone",
-+			"LINPUT2", "Microphone Jack",
-+			"RINPUT2", "Microphone Jack";
-+		simple-audio-card,widgets =
-+			"Microphone", "Microphone Jack",
-+			"Microphone", "Onboard Microphone",
-+			"Headphone", "Headphones",
-+			"Speaker", "Speaker";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&i2s0_8ch>;
-+		};
-+
-+		masterdai: simple-audio-card,codec {
-+			sound-dai = <&es8388>;
-+			system-clock-frequency = <12288000>;
-+		};
-+	};
-+
-+	amp_headphone: headphone-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&headphone_amplifier_en>;
-+		sound-name-prefix = "Headphones Amplifier";
-+	};
-+
-+	amp_speaker: speaker-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&speaker_amplifier_en>;
-+		sound-name-prefix = "Speaker Amplifier";
-+	};
-+
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
- 		power-supply = <&vcc12v_dcin>;
-@@ -240,6 +297,32 @@ hym8563: rtc@51 {
- 	};
- };
- 
-+&i2c7 {
-+	status = "okay";
-+
-+	es8388: audio-codec@11 {
-+		compatible = "everest,es8388";
-+		reg = <0x11>;
-+		clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
-+		assigned-clock-rates = <12288000>;
-+		AVDD-supply = <&avcc_1v8_codec_s0>;
-+		DVDD-supply = <&avcc_1v8_codec_s0>;
-+		HPVDD-supply = <&vcc_3v3_s0>;
-+		PVDD-supply = <&vcc_3v3_s0>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&i2s0_8ch {
-+	pinctrl-0 = <&i2s0_lrck
-+		     &i2s0_mclk
-+		     &i2s0_sclk
-+		     &i2s0_sdi0
-+		     &i2s0_sdo0>;
-+	status = "okay";
-+};
-+
- &mdio0 {
- 	rgmii_phy: ethernet-phy@1 {
- 		/* RTL8211F */
-@@ -273,6 +356,20 @@ &pcie3x4 {
- };
- 
- &pinctrl {
-+	audio {
-+		hp_detect: headphone-detect {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		headphone_amplifier_en: headphone-amplifier-en {
-+			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		speaker_amplifier_en: speaker-amplifier-en {
-+			rockchip,pins = <1 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	rtl8111 {
- 		rtl8111_isolate: rtl8111-isolate {
- 			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
+v5 -- Remove DT property "brcm,completion-timeout-us" from	 
+      "DT bindings" commit.  Although this error may be reported	 
+      as a completion timeout, its cause was traced to an	 
+      internal bus timeout which may occur even when there is	 
+      no PCIe access being processed.  We set a timeout of four	 
+      seconds only if we are operating in "L1SS CLKREQ#" mode.
+   -- Correct CEM 2.0 reference provided by HW engineer,
+      s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
+   -- Add newline to dev_info() string (Stefan)
+   -- Change variable rval to unsigned (Stefan)
+   -- s/implementaion/implementation/ (Bjorn)
+   -- s/superpowersave/powersupersave/ (Bjorn)
+   -- Slightly modify message on "PERST#" commit.
+   -- Rebase to torvalds master
+
+v4 -- New commit that asserts PERST# for 2711/RPi SOCs at PCIe RC
+      driver probe() time.  This is done in Raspian Linux and its
+      absence may be the cause of a failing test case.
+   -- New commit that removes stale comment.
+
+v3 -- Rewrote commit msgs and comments refering panics if L1SS
+      is enabled/disabled; the code snippet that unadvertises L1SS
+      eliminates the panic scenario. (Bjorn)
+   -- Add reference for "400ns of CLKREQ# assertion" blurb (Bjorn)
+   -- Put binding names in DT commit Subject (Bjorn)
+   -- Add a verb to a commit's subject line (Bjorn)
+   -- s/accomodat(\w+)/accommodat$1/g (Bjorn)
+   -- Rewrote commit msgs and comments refering panics if L1SS
+      is enabled/disabled; the code snippet that unadvertises L1SS
+      eliminates the panic scenario. (Bjorn)
+
+v2 -- Changed binding property 'brcm,completion-timeout-msec' to
+      'brcm,completion-timeout-us'.  (StefanW for standard suffix).
+   -- Warn when clamping timeout value, and include clamped
+      region in message. Also add min and max in YAML. (StefanW)
+   -- Qualify description of "brcm,completion-timeout-us" so that
+      it refers to PCIe transactions. (StefanW)
+   -- Remvove mention of Linux specifics in binding description. (StefanW)
+   -- s/clkreq#/CLKREQ#/g (Bjorn)
+   -- Refactor completion-timeout-us code to compare max and min to
+      value given by the property (as opposed to the computed value).
+
+v1 -- The current driver assumes the downstream devices can
+      provide CLKREQ# for ASPM.  These commits accomodate devices
+      w/ or w/o clkreq# and also handle L1SS-capable devices.
+
+   -- The Raspian Linux folks have already been using a PCIe RC
+      property "brcm,enable-l1ss".  These commits use the same
+      property, in a backward-compatible manner, and the implementaion
+      adds more detail and also automatically identifies devices w/o
+      a clkreq# signal, i.e. most devices plugged into an RPi CM4
+      IO board.
+
+
+Jim Quinlan (3):
+  dt-bindings: PCI: brcmstb: Add property "brcm,clkreq-mode"
+  PCI: brcmstb: Configure HW CLKREQ# mode appropriate for downstream
+    device
+  PCI: brcmstb: Set higher value for internal bus timeout
+
+ .../bindings/pci/brcm,stb-pcie.yaml           | 21 +++++
+ drivers/pci/controller/pcie-brcmstb.c         | 81 ++++++++++++++++---
+ 2 files changed, 92 insertions(+), 10 deletions(-)
+
+
+base-commit: 305230142ae0637213bf6e04f6d9f10bbcb74af8
 -- 
-2.42.0
+2.17.1
 
+
+--000000000000acd8020609bd014d
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
+uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
+AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
+c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
+AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
+TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
+L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
+BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
+VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
+z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
+b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
++R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
+AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
+75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
+AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
+AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
+MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCluiOmK1bpo6Y1SFURlIrABZniuq2R
+g9QwsPIvq/uCzTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMzEx
+MDkxOTE0MDFaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
+hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
+AgEwDQYJKoZIhvcNAQEBBQAEggEAWwynl9iEyzgULqJBFyOJKEs980DuqJQqbtPBsqdu/nfyLE6N
+ZKSeL5oksqXynfT+U24KQgyti6Yali2s0vT1E/HkNdBcJ4/2PTa99R36a6iZ6gNjxMNAra8h+91Y
+TgBlMxNaCewV9WaMCcCWzzcsKb1/ZJFXhdtcoUQ3HDzORBly5AzAqz48Wj0mAw68XXn9Ur2ZyCCJ
+RyWHNGI6Zv3mSv5fK1CeqUnYE/oMlKJwoUWGWhik6jkxX6JMF4eNxgQyvNxAP2rkfAf5deidhnE2
+qm0Qc8Qn7LubP1vrSYm6FyrmmZppspEG4iuHTirZBWwAtFMpkIedPmeGF42AZ63EaQ==
+--000000000000acd8020609bd014d--
 
