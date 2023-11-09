@@ -1,168 +1,81 @@
-Return-Path: <devicetree+bounces-14726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 012E47E6594
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77B627E6596
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:50:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D08711C2093A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:50:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7DEA1C209C3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D002BDDDE;
-	Thu,  9 Nov 2023 08:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB35FD2FE;
+	Thu,  9 Nov 2023 08:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ubimet.com header.i=@ubimet.com header.b="QY2yQPPB"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="aDZLp3j1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11704D2EE
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:50:09 +0000 (UTC)
-Received: from mx2-at.ubimet.com (mx2-at.ubimet.com [141.98.226.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4E01FFB;
-	Thu,  9 Nov 2023 00:50:09 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mx2-at.ubimet.com (Postfix) with ESMTP id 4AD1F81216;
-	Thu,  9 Nov 2023 08:50:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ubimet.com;
-	s=20200131mdel; t=1699519807;
-	bh=J0/vL/p9yQkjEpM+8f9htE5cT3g34rqFDusxOvHBm9Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QY2yQPPBQkl/JfpaV0Ad2EH0CI4mRW9PM4FORj1FmKDK0X17Jz26IaTVKUKl6tAIA
-	 Yv6qNOnlJAswXw7km70icDhypqA4PHGg0eRX9HdlvFzcnLxvLw1S2ApBIOuZfdjvhR
-	 MHRCUrQwoRwCT3NKkOzQsDDy24tumP5DJVWXkYxzt3a+H6vqBFgO2VFqi9iarZX0wJ
-	 iIyASnaZXiwEvbm09sTutABrUcDHTqfL+MiBb1HL3askPeyHMMA9FSONGLjWbs1ofY
-	 yvKt7dvk7pc0RStasa+8yZjjb+RRABqJ5KDLCTh+tCe6jr4ptc+TPzz1g/3l4EKJyl
-	 jzGWdfa0D1cMw==
-Received: from mx2-at.ubimet.com ([127.0.0.1])
-	by localhost (mx02.dmz.dc.at.ubimet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id pFy8DpHO8JVP; Thu,  9 Nov 2023 08:50:07 +0000 (UTC)
-Received: from zimbra-mta01.ext.dc.at.ubimet.com (zimbra-mta01.ext.dc.at.ubimet.com [10.1.18.22])
-	by mx2-at.ubimet.com (Postfix) with ESMTPS id 37EC381213;
-	Thu,  9 Nov 2023 08:50:07 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTP id 1F25580762;
-	Thu,  9 Nov 2023 08:50:07 +0000 (UTC)
-Received: from zimbra-mta01.ext.dc.at.ubimet.com ([127.0.0.1])
- by localhost (zimbra-mta01.ext.dc.at.ubimet.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 9De7x--wzeqJ; Thu,  9 Nov 2023 08:50:06 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTP id 0F393806B0;
-	Thu,  9 Nov 2023 08:50:06 +0000 (UTC)
-X-Virus-Scanned: amavis at zimbra-mta01.ext.dc.at.ubimet.com
-Received: from zimbra-mta01.ext.dc.at.ubimet.com ([127.0.0.1])
- by localhost (zimbra-mta01.ext.dc.at.ubimet.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 7TVYlce6KwT9; Thu,  9 Nov 2023 08:50:05 +0000 (UTC)
-Received: from pcn112 (pcn112.it.hub.at.ubimet.com [10.15.66.143])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTPSA id 8DCDB806EE;
-	Thu,  9 Nov 2023 08:50:05 +0000 (UTC)
-Date: Thu, 9 Nov 2023 09:49:30 +0100
-From: jrodrigues <jrodrigues@ubimet.com>
-To: Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc: Fabio Estevam <festevam@gmail.com>, Alexander Stein
- <alexander.stein@ew.tq-group.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] ARM: dts: imx: tqma7: add lm75a sensor (rev. 01xxx)
-Message-ID: <20231109094930.635cf59a@pcn112>
-In-Reply-To: <CAH+2xPBdpYiNRzPP+0Diqrc+GfdJYbiTDheD6n2fb42w65LNFg@mail.gmail.com>
-References: <20231102231130.13ca0513@pcn112>
-	<CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com>
-	<CAH+2xPBdpYiNRzPP+0Diqrc+GfdJYbiTDheD6n2fb42w65LNFg@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1E7D291
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:50:36 +0000 (UTC)
+Received: from mx.msync.work (mx.msync.work [62.182.159.68])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0C0210A;
+	Thu,  9 Nov 2023 00:50:35 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 517661506C8;
+	Thu,  9 Nov 2023 08:50:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1699519834; h=from:subject:date:message-id:to:mime-version:
+	 content-transfer-encoding; bh=cD6HIvwS1+eD7lmzk4U069SbWiB68SgbaID0yXccmhM=;
+	b=aDZLp3j11jfHj1w+dkJjDQmX75SXmjAGrwYH6Y+rWWJgRthl68IQSJ3K8OSASbFeTYp66O
+	/RK8a6rfbE0genlAmaLhir3mWSRvghogQ52JhRjFm30t3M296Z3zjqtd5pYUwVZzeP2EX7
+	vpTxg+7Hg5iJ7xu1HKGBB65gZZ3kjtUSQ8mmumz+oYmT8d4BKPyf0ZhRzc9YGVIc4vqkhS
+	PUylTPi1gEPSMk+Wzstc3R+giHWZgeWgAoemjqNTYq3/KRtgMUb3vuVzGnTVFt3xOtatL0
+	S+1tLvIYO1HHk4sIHdadttgBE0YDcnnXLIj5VnFVnvBlsOgjXwXRB8n7OVv9eQ==
+From: Viacheslav Bocharov <adeep@lexina.in>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] firmware: meson-sm: change sprintf to scnprintf
+Date: Thu,  9 Nov 2023 11:50:29 +0300
+Message-Id: <20231109085029.2079176-1-adeep@lexina.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, 8 Nov 2023 23:51:11 +0100
-Bruno Thomsen <bruno.thomsen@gmail.com> wrote:
+Update sprintf in serial_show frunction to scnprintf command to
+prevent sysfs buffer overflow (buffer always is PAGE_SIZE bytes).
 
-> Den fre. 3. nov. 2023 kl. 22.07 skrev Fabio Estevam
-> <festevam@gmail.com>:
-> >
-> > [Adding Bruno and Alexander]
-> >
-> > On Thu, Nov 2, 2023 at 7:12=E2=80=AFPM Jo=C3=A3o Rodrigues
-> > <jrodrigues@ubimet.com> wrote: =20
-> > >
-> > > From: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-> > >
-> > > TQMa7x (revision 01xxx) uses a LM75A temperature sensor.
-> > > The two sensors use different I2C addresses, so we can set both
-> > > sensors simultaneously. =20
->=20
-> Hi Jo=C3=A3o,
->=20
-> Looks correct to me and an elegant way of adding support for rev 01xx
-> boards.
->=20
-> Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
->=20
-> After this change the imx7d-flex-concentrator.dts needs to be updated
-> as it uses TQMa7d rev 02xx boards with something like this:
->=20
-> /* TQMa7d 02xx */
-> &se97b {
->         status =3D "okay";
-> };
->=20
-> I can send a follow up patch when this change lands.
->=20
-> /Bruno
->=20
+Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+---
+ drivers/firmware/meson/meson_sm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi Bruno,
-
-Thank you for the review.
-Taking the status out was a request from Krzysztof in the initial version of
-the patch, since the default for status is "okay". I have also tested (and
-confirmed) this works as expected, with the appropriate temperature sensor
-being recognised by the kernel.
-
-Kind regards,
-Jo=C3=A3o
-
-> > >
-> > > Signed-off-by: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-> > > ---
-> > >  arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 9 +++++++--
-> > >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-> > > b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi index
-> > > fe42b0a4683..3fc3130f9de 100644 ---
-> > > a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi +++
-> > > b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi @@ -128,11 +128,16 @@
-> > > vgen6_reg: vldo4 { };
-> > >         };
-> > >
-> > > -       /* NXP SE97BTP with temperature sensor + eeprom */
-> > > +       /* LM75A temperature sensor, TQMa7x 01xx */
-> > > +       lm75a: temperature-sensor@48 {
-> > > +               compatible =3D "national,lm75a";
-> > > +               reg =3D <0x48>;
-> > > +       };
-> > > +
-> > > +       /* NXP SE97BTP with temperature sensor + eeprom, TQMa7x
-> > > 02xx */ se97b: temperature-sensor-eeprom@1e {
-> > >                 compatible =3D "nxp,se97b", "jedec,jc-42.4-temp";
-> > >                 reg =3D <0x1e>;
-> > > -               status =3D "okay";
-> > >         };
-> > >
-> > >         /* ST M24C64 */
-> > > --
-> > > 2.25.1
-> > > =20
+diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
+index ed60f1103053..c1c694b485ee 100644
+--- a/drivers/firmware/meson/meson_sm.c
++++ b/drivers/firmware/meson/meson_sm.c
+@@ -265,7 +265,7 @@ static ssize_t serial_show(struct device *dev, struct device_attribute *attr,
+ 		return ret;
+ 	}
+ 
+-	ret = sprintf(buf, "%12phN\n", &id_buf[SM_CHIP_ID_OFFSET]);
++	ret = scnprintf(buf, PAGE_SIZE, "%12phN\n", &id_buf[SM_CHIP_ID_OFFSET]);
+ 
+ 	kfree(id_buf);
+ 
+-- 
+2.34.1
 
 
