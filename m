@@ -1,264 +1,143 @@
-Return-Path: <devicetree+bounces-14770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981C17E6744
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:02:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C55CA7E674E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:06:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D26028122A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:02:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75DAE1F2150D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7395413ADD;
-	Thu,  9 Nov 2023 10:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3299813AFD;
+	Thu,  9 Nov 2023 10:06:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IbGUfOav"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PobSEOGI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6FF15EB6;
-	Thu,  9 Nov 2023 10:02:50 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37682D71;
-	Thu,  9 Nov 2023 02:02:49 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A99Lxsw005639;
-	Thu, 9 Nov 2023 10:02:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=jywSraARRq/yplpEFCl9ORlZL7C7NmQpq/tXK2hjFOQ=;
- b=IbGUfOavrkpNGI25ys0TYcKlTtg5SfzsXigz+ImhCWw6845kPh34yKg11w+Yi6w2lsmh
- F1/4q5fzsZ3mOffCvPYQyLhhQUz80st3COaYg7i6lPHKV7pT1D4jps4aXEqV2GmlVox5
- XdtHLGIfjMLyOmpCcV9hDyJ1ii3cPkC1XoqF1/5L0R+Ml3Aj9Tak5jqywuOWumngC+st
- BPqc7Q5rcHiPyzVA2unqCgvlrEILsC736fT+Wz3NbLFrfs+dNZ8TAkR4IGyATBjFYdM+
- TFfBSm2/sKiQ0HMb4av+hbfeDPU9WVmqHJMqZP5mb79bhbhZn+aFj+NyWpWompnIz9Y8 JA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u8ehnj7nq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Nov 2023 10:02:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A9A2d4K021903
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Nov 2023 10:02:39 GMT
-Received: from [10.217.219.216] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
- 2023 02:02:33 -0800
-Message-ID: <d45765de-5ea1-09c3-b962-3c508f5bc40a@quicinc.com>
-Date: Thu, 9 Nov 2023 15:32:30 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 556E316408;
+	Thu,  9 Nov 2023 10:06:35 +0000 (UTC)
+Received: from mail-m49205.qiye.163.com (mail-m49205.qiye.163.com [45.254.49.205])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1728C111;
+	Thu,  9 Nov 2023 02:06:33 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=PobSEOGIS9lPsDVpgl5L4VgjJF2twsVrPB+k5DLkehUUM/5a/qCNjTn7sWoj7AcO3H1MUOmDdp+TpajML6W3MakeMhxjsEaVYsm8C98KgvddQUy9Yy3q4roYsl45UUUBZMQlAU/u83VMXyNkaOrey4K7Kkw1rKRCCpXIMDmO6zs=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=+o1lwrhYekZaebnXtEiZSTT6cTUQnls9uE9T48+orDQ=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.49] (unknown [58.22.7.114])
+	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id 39D6A4002B7;
+	Thu,  9 Nov 2023 18:05:52 +0800 (CST)
+Message-ID: <f013df81-670e-37c4-c1a7-e1302352ca20@rock-chips.com>
+Date: Thu, 9 Nov 2023 18:05:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v2 2/3] phy: qcom-qmp-pcie: Add endpoint refclk control
- register offset
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_vpernami@quicinc.com>,
-        <quic_parass@quicinc.com>
-References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
- <20231107-refclk_always_on-v2-2-de23962fc4b3@quicinc.com>
- <CAA8EJpr8Y+k2FJqFfZVagWxfgsUEnZ1010-xaaUg=c6tqu8Hsw@mail.gmail.com>
- <d2556aad-24cc-c0d1-d71d-bf43bc832036@quicinc.com>
- <CAA8EJppeUpmGsoqueRoq_jo1FnyP6uO8P8egmYpysNcD8A8KAA@mail.gmail.com>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <CAA8EJppeUpmGsoqueRoq_jo1FnyP6uO8P8egmYpysNcD8A8KAA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ekSFIk3TLDrpV3HsVSLB4ARJe6tN7K_i
-X-Proofpoint-GUID: ekSFIk3TLDrpV3HsVSLB4ARJe6tN7K_i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-09_08,2023-11-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 mlxscore=0 mlxlogscore=940 priorityscore=1501 impostorscore=0
- bulkscore=0 spamscore=0 suspectscore=0 malwarescore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311090076
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF clk
+ id
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
+ sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ andy.yan@rock-chips.com, Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20231108061822.4871-1-zhangqing@rock-chips.com>
+ <20231108061822.4871-4-zhangqing@rock-chips.com>
+ <20231108-donation-uncertain-c4d0f560c420@spud>
+ <2e520a06-0ff1-76ef-2a72-ab6663738b45@rock-chips.com>
+ <20231109-send-pushchair-45b37551102a@wendy>
+ <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
+ <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
+From: zhangqing <zhangqing@rock-chips.com>
+In-Reply-To: <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQx1MT1YfSE5IShpPGRoaHk9VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8bb38b9aa12eb3kusn39d6a4002b7
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MAg6MDo*Gjw4Fw4JKU8pFClP
+	Mx4aC0JVSlVKTUJCTklPSE5ISEJOVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1ITEI3Bg++
 
 
-On 11/9/2023 3:15 PM, Dmitry Baryshkov wrote:
-> On Thu, 9 Nov 2023 at 11:36, Krishna Chaitanya Chundru
-> <quic_krichai@quicinc.com> wrote:
->>
->> On 11/7/2023 6:36 PM, Dmitry Baryshkov wrote:
->>> On Tue, 7 Nov 2023 at 14:26, Krishna chaitanya chundru
->>> <quic_krichai@quicinc.com> wrote:
->>>> Some platforms needs to keep endpoint refclk always on, for this
->>>> purpose add this offset for all the applicable phy versions.
+在 2023/11/9 17:21, Krzysztof Kozlowski 写道:
+> On 09/11/2023 09:06, zhangqing wrote:
+>> 在 2023/11/9 15:29, Conor Dooley 写道:
+>>> On Thu, Nov 09, 2023 at 02:27:38PM +0800, zhangqing wrote:
+>>>> Hi:
 >>>>
->>>> And also add reg layout for few controllers as we are adding
->>>> endpoint refclk control register which changes based upon phy version.
+>>>> 在 2023/11/8 20:01, Conor Dooley 写道:
+>>>>> On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
+>>>>>> export PCLK_VO1GRF for DT.
+>>>>>>
+>>>>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>>>>>> ---
+>>>>>>     include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
+>>>>>>     1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>>> index 5790b1391201..50ba72980190 100644
+>>>>>> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>>> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>>> @@ -733,8 +733,9 @@
+>>>>>>     #define ACLK_AV1_PRE			718
+>>>>>>     #define PCLK_AV1_PRE			719
+>>>>>>     #define HCLK_SDIO_PRE			720
+>>>>>> +#define PCLK_VO1GRF			721
+>>>>>> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
+>>>>>> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
+>>>>> This definition is part of the ABI, if it is safe to change it, then it
+>>>>> is safe to delete it.
+>>>> The new ID is to solve the niu clock dependency problem(Used in PATCH V5
+>>>> 4/4).This new ID will also be used in DTS in the future.
 >>>>
->>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>
->>>> ---
->>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 26 +++++++++++++++++++---
->>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h    |  1 +
->>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h |  1 +
->>>>    drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h |  1 +
->>>>    4 files changed, 26 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>>> index a63ca7424974..74d03d217ff2 100644
->>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
->>>> @@ -77,6 +77,7 @@ enum qphy_reg_layout {
->>>>           QPHY_START_CTRL,
->>>>           QPHY_PCS_STATUS,
->>>>           QPHY_PCS_POWER_DOWN_CONTROL,
->>>> +       QPHY_PCS_ENDPOINT_REFCLK_CNTRL,
->>>>           /* Keep last to ensure regs_layout arrays are properly initialized */
->>>>           QPHY_LAYOUT_SIZE
->>>>    };
->>>> @@ -93,6 +94,7 @@ static const unsigned int pciephy_v3_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>>           [QPHY_START_CTRL]               = QPHY_V3_PCS_START_CONTROL,
->>>>           [QPHY_PCS_STATUS]               = QPHY_V3_PCS_PCS_STATUS,
->>>>           [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V3_PCS_POWER_DOWN_CONTROL,
->>>> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V3_PCS_ENDPOINT_REFCLK_CNTRL,
->>>>    };
->>>>
->>>>    static const unsigned int sdm845_qhp_pciephy_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>> @@ -107,6 +109,7 @@ static const unsigned int pciephy_v4_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>>           [QPHY_START_CTRL]               = QPHY_V4_PCS_START_CONTROL,
->>>>           [QPHY_PCS_STATUS]               = QPHY_V4_PCS_PCS_STATUS1,
->>>>           [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V4_PCS_POWER_DOWN_CONTROL,
->>>> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V4_PCS_PCIE_ENDPOINT_REFCLK_CNTRL,
->>>>    };
->>>>
->>>>    static const unsigned int pciephy_v5_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>> @@ -114,6 +117,23 @@ static const unsigned int pciephy_v5_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>>           [QPHY_START_CTRL]               = QPHY_V5_PCS_START_CONTROL,
->>>>           [QPHY_PCS_STATUS]               = QPHY_V5_PCS_PCS_STATUS1,
->>>>           [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V5_PCS_POWER_DOWN_CONTROL,
->>>> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_CNTRL,
->>>> +};
->>>> +
->>>> +static const unsigned int pciephy_v5_20_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>> +       [QPHY_SW_RESET]                 = QPHY_V5_PCS_SW_RESET,
->>>> +       [QPHY_START_CTRL]               = QPHY_V5_PCS_START_CONTROL,
->>>> +       [QPHY_PCS_STATUS]               = QPHY_V5_PCS_PCS_STATUS1,
->>>> +       [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V5_PCS_POWER_DOWN_CONTROL,
->>> Nit: we should probably define V5_20 and v6_20 versions of these registers
->> We don't have separate defines for v5_20 and v6_20 for these registers,
->> that is why we are using these.
->>
->> And the offsets are same for those version. That is why I tried to use
->> macros.
-> Mixing versions in a single table can quickly lead to a disaster.
+>>>> CLK_NR_CLKS represents the number of clocks used by the
+>>>> drivers/clk/rockchip/clk-rkxxx.c. It is safe to modify it, but cannot delete
+>>>> it.
+>>> Then delete it from the header and move it to clk-rkxxx.c
+>> I don't think it's more appropriate to move to clk-rkxxx.c.
+>> Because if there are new requirements later, and add new clk id, it is
+>> not in the same file, maybe forget to modify CLK_NR_CLKS.
+> Then you are not allowed to change it. It's part of ABI.
 
-I will add then in the next series.
+If you just don't want me to modify CLK_NR_CLKS, can I use an unused ID, 
+like [PATCH V4 3/4]:
 
-- Krishna Chaitanya
+-#define MBIST_MCLK_PDM1                        24
++#define PCLK_VO1GRF                    24
 
->> - Krishna Chaitanya.
->>
->>> If you were to send v3 for any reason, could you please add them?
->>>
->>>> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_V5_20_PCS_PCIE_ENDPOINT_REFCLK_CNTRL,
->>>> +};
->>>> +
->>>> +static const unsigned int pciephy_v6_20_regs_layout[QPHY_LAYOUT_SIZE] = {
->>>> +       [QPHY_SW_RESET]                 = QPHY_V5_PCS_SW_RESET,
->>>> +       [QPHY_START_CTRL]               = QPHY_V5_PCS_START_CONTROL,
->>>> +       [QPHY_PCS_STATUS]               = QPHY_V5_PCS_PCS_STATUS1,
->>>> +       [QPHY_PCS_POWER_DOWN_CONTROL]   = QPHY_V5_PCS_POWER_DOWN_CONTROL,
->>>> +       [QPHY_PCS_ENDPOINT_REFCLK_CNTRL]        = QPHY_PCIE_V6_20_PCS_ENDPOINT_REFCLK_CNTRL,
->>>>    };
->>>>
->>>>    static const struct qmp_phy_init_tbl msm8998_pcie_serdes_tbl[] = {
->>>> @@ -2956,7 +2976,7 @@ static const struct qmp_phy_cfg sm8450_qmp_gen4x2_pciephy_cfg = {
->>>>           .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
->>>>           .vreg_list              = qmp_phy_vreg_l,
->>>>           .num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
->>>> -       .regs                   = pciephy_v5_regs_layout,
->>>> +       .regs                   = pciephy_v5_20_regs_layout,
->>>>
->>>>           .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
->>>>           .phy_status             = PHYSTATUS_4_20,
->>>> @@ -3012,7 +3032,7 @@ static const struct qmp_phy_cfg sm8550_qmp_gen4x2_pciephy_cfg = {
->>>>           .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
->>>>           .vreg_list              = sm8550_qmp_phy_vreg_l,
->>>>           .num_vregs              = ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
->>>> -       .regs                   = pciephy_v5_regs_layout,
->>>> +       .regs                   = pciephy_v6_20_regs_layout,
->>>>
->>>>           .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
->>>>           .phy_status             = PHYSTATUS_4_20,
->>>> @@ -3047,7 +3067,7 @@ static const struct qmp_phy_cfg sa8775p_qmp_gen4x2_pciephy_cfg = {
->>>>           .num_resets             = ARRAY_SIZE(sdm845_pciephy_reset_l),
->>>>           .vreg_list              = qmp_phy_vreg_l,
->>>>           .num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
->>>> -       .regs                   = pciephy_v5_regs_layout,
->>>> +       .regs                   = pciephy_v5_20_regs_layout,
->>>>
->>>>           .pwrdn_ctrl             = SW_PWRDN | REFCLK_DRV_DSBL,
->>>>           .phy_status             = PHYSTATUS_4_20,
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h
->>>> index a469ae2a10a1..9b166286afda 100644
->>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h
->>>> @@ -11,6 +11,7 @@
->>>>    #define QPHY_V5_PCS_PCIE_POWER_STATE_CONFIG2           0x0c
->>>>    #define QPHY_V5_PCS_PCIE_POWER_STATE_CONFIG4           0x14
->>>>    #define QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_DRIVE         0x20
->>>> +#define QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_CNTRL         0x24
->>>>    #define QPHY_V5_PCS_PCIE_INT_AUX_CLK_CONFIG1           0x54
->>>>    #define QPHY_V5_PCS_PCIE_OSC_DTCT_ACTIONS              0x94
->>>>    #define QPHY_V5_PCS_PCIE_EQ_CONFIG2                    0xa8
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
->>>> index cdf8c04ea078..8b114e538a07 100644
->>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5_20.h
->>>> @@ -9,6 +9,7 @@
->>>>    /* Only for QMP V5_20 PHY - PCIe PCS registers */
->>>>    #define QPHY_V5_20_PCS_PCIE_POWER_STATE_CONFIG2                0x00c
->>>>    #define QPHY_V5_20_PCS_PCIE_ENDPOINT_REFCLK_DRIVE      0x01c
->>>> +#define QPHY_V5_20_PCS_PCIE_ENDPOINT_REFCLK_CNTRL      0x020
->>>>    #define QPHY_V5_20_PCS_PCIE_OSC_DTCT_MODE2_CONFIG5     0x084
->>>>    #define QPHY_V5_20_PCS_PCIE_OSC_DTCT_ACTIONS           0x090
->>>>    #define QPHY_V5_20_PCS_PCIE_EQ_CONFIG1                 0x0a0
->>>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
->>>> index e3eb08776339..f7abe95c49ad 100644
->>>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
->>>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-pcie-v6_20.h
->>>> @@ -10,6 +10,7 @@
->>>>    #define QPHY_PCIE_V6_20_PCS_POWER_STATE_CONFIG2                0x00c
->>>>    #define QPHY_PCIE_V6_20_PCS_TX_RX_CONFIG               0x018
->>>>    #define QPHY_PCIE_V6_20_PCS_ENDPOINT_REFCLK_DRIVE      0x01c
->>>> +#define QPHY_PCIE_V6_20_PCS_ENDPOINT_REFCLK_CNTRL      0x020
->>>>    #define QPHY_PCIE_V6_20_PCS_OSC_DTCT_ATCIONS           0x090
->>>>    #define QPHY_PCIE_V6_20_PCS_EQ_CONFIG1                 0x0a0
->>>>    #define QPHY_PCIE_V6_20_PCS_EQ_CONFIG5                 0x108
->>>>
->>>> --
->>>> 2.42.0
->>>>
->>>>
 >
+> Best regards,
+> Krzysztof
 >
+-- 
+张晴
+瑞芯微电子股份有限公司
+Rockchip Electronics Co.,Ltd
+地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
+Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
+Tel:+86-0591-83991906-8601
+邮编：350003
+E-mail:elaine.zhang@rock-chips.com
+****************************************************************************
+保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
+
+IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
+
+****************************************************************************
+
 
