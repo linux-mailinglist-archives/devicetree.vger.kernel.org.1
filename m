@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65E107E65B4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:53:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC9D7E65BD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:53:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CCAA28130A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:53:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D91F1C2093A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C8CDF6A;
-	Thu,  9 Nov 2023 08:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B694A10782;
+	Thu,  9 Nov 2023 08:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NRpaQ2Tl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OOwGhTxC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF1F10782
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:53:22 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5DD9E8
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:53:21 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-32f78dcf036so1054021f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:53:21 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2321097E
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:53:45 +0000 (UTC)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663111BDF
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:53:44 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32dcd3e5f3fso367482f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:53:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699520000; x=1700124800; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699520023; x=1700124823; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6WtvZr36Dx714TjkyzkHcNu6c/9REnmB1ZaRgn3rKTg=;
-        b=NRpaQ2Tl6XF2XwXr/kFNkTCDBVxqquYvkrp03iUqO3mXdD3B13k2JTdcLWLBNXZbw6
-         +9ic9L6yOkx+s1c5mQxOteXm+n73Y6oOnQEPCeRklfgnp227+R8iM4eHjxZaLtVd1wtU
-         8VHRWozNTJwDoNyeEmb/GViaPnbuwrRQRy/qknvTFIQ5/QPbkf0KTim1sOTbRZa4azOE
-         ri8BFyQ6hDU8iJaBqV/FPI7cukJy68lcsCzzFBLIljau2fCgCo3NgbAUMeycVZgpIhSb
-         01LYvNj6WOPYdMFax3nJuQxkuCnwk7PM/7xVebMU9Hd+iJGSFv3bA2UqKE0mHQnkHJYt
-         NUUg==
+        bh=m3yImQCKVYVP/hw+lGjw+bq25vA1XBEmQlhdof4Nol0=;
+        b=OOwGhTxCq2pO6LwbKUYCehEfLyNOGgPIoZxTDpXZyQZE6W+X7cYbUB/HgphZsTF80y
+         tFJJi0MQePq4a5ZvJ4mBGiJn6uxkk9cY2Y5ct3Qa3oi0MBPNn/A+S7smOAnFkl1jmHCB
+         4pismWRWxi1zOZPq3hOoBBtC/MzmdDOzdqXfAluRE10FJgIzGuggT0feutByTHML9aCY
+         /rszb28LFCJMR0mr93UR6KXYFc7ktq73K6TJl9V25icpKTvXMQHLVmGaYG1+yfTsOeMc
+         UhG6phTVh4t0+3K9Ex+bLtZwmZ39X/S1MOOwap+MpnaBsApCQTFHyUZMHDdZ/IZ+zpVB
+         gWSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699520000; x=1700124800;
+        d=1e100.net; s=20230601; t=1699520023; x=1700124823;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6WtvZr36Dx714TjkyzkHcNu6c/9REnmB1ZaRgn3rKTg=;
-        b=HOTXCaIVjO08bha9I9SZQpesnZwJTQQk0X08uZVk5iDUZkQZIrcMbHQRdtfJY286Gk
-         Hp8qIn4y1kEybDyke60flHPbD3i9op+seIW9BS0uVF9RyvXw1RKhmptJARsinm2VgiKr
-         gH5qf0R4y03TZSdScpfB7Q7JGWNrWI0+90SRtviJMhF59bcDGMKSrSnt7rcT7JTjmJ2U
-         aWbMfJjP0WrXG5ay3VLesNM47hH45xw7K8mTKh7BfNcmKXjwV+ZCKhHG0uUFMFX2aZuw
-         O74pU/ofomfYAwdFUS/YPXg0MnRz5ALI4b5fb5+can5koXeUWcy9iZ7P3MlZixM0ewMP
-         0ENA==
-X-Gm-Message-State: AOJu0YwHObNi1vrYgZ9BMXOnlkv2i63Qe4CrRn1IdA2eqjA5gs0w1Vp3
-	+kHcb7JzayNQQazep76j6GbsYQ==
-X-Google-Smtp-Source: AGHT+IG+ZxFgrKf3lO9MrFJqCBT7KfkszmNhuqk+YCfDPTRDFMxhO4G7Kn904eaLk+03Rr0T46kD/g==
-X-Received: by 2002:adf:d1c6:0:b0:32f:7d50:62f8 with SMTP id b6-20020adfd1c6000000b0032f7d5062f8mr6552479wrd.3.1699520000087;
-        Thu, 09 Nov 2023 00:53:20 -0800 (PST)
+        bh=m3yImQCKVYVP/hw+lGjw+bq25vA1XBEmQlhdof4Nol0=;
+        b=VMWwr9OCFl3yVyWC8Zb7xeIuZZLq1WpeoMhJ2gyBAM9qAcf/gjFm8g5btBhv8bMCQP
+         zj6IweK8BUii7WtatUoyuviL115HK5nd+/lHYEeuV5LodkTv4x+QtWJTM98Pk65qpyQc
+         Af/s+tmCaXqRqImw5ujNA8sr9xDUHGzMwNPYIsB2BjCPQVy+LQ/KJEMN9T5lBH76hYAu
+         QcHfcb9R0fAVcFpqlbCF3PYZ1tEPMWbbyv7W0rU98lPCRaKCm55E4EZNc9qD1MtKWVJP
+         qPpvl+vf6awjvtl1EdpzBtEzTupAEV/NdgB4OE4YaP6yEGk8D1d4OtEV8pPgoJbhZZ+B
+         qelw==
+X-Gm-Message-State: AOJu0YxZTOod4iG5WWkFfulWsfNwlbC0eA20Q829mebqXiYhQQR0GvcY
+	+MCQyOIPGxs6JixKaGfgS7pFng==
+X-Google-Smtp-Source: AGHT+IG0rMPzekOk4l/8iTBLQEffoSSaY5oVaJ7wQodyRL7mAaWa6HJPQTwl7jj6RAmJmujgAAZ6Kw==
+X-Received: by 2002:adf:e781:0:b0:32d:9a8f:6245 with SMTP id n1-20020adfe781000000b0032d9a8f6245mr3649213wrm.68.1699520022948;
+        Thu, 09 Nov 2023 00:53:42 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id v5-20020adfa1c5000000b0032d81837433sm6944964wrv.30.2023.11.09.00.53.18
+        by smtp.gmail.com with ESMTPSA id v5-20020adfa1c5000000b0032d81837433sm6944964wrv.30.2023.11.09.00.53.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 00:53:19 -0800 (PST)
-Message-ID: <008715d1-de4a-47dd-955c-e2fb7af36a25@linaro.org>
-Date: Thu, 9 Nov 2023 09:53:18 +0100
+        Thu, 09 Nov 2023 00:53:42 -0800 (PST)
+Message-ID: <805967a5-5fdf-4580-9327-82a3c99d427a@linaro.org>
+Date: Thu, 9 Nov 2023 09:53:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: hwmon: Add Amphenol ChipCap 2
+Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: add Amphenol
 Content-Language: en-US
 To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
@@ -79,7 +79,7 @@ Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
  linux-doc@vger.kernel.org
 References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
- <20231020-topic-chipcap2-v2-4-f5c325966fdb@gmail.com>
+ <20231020-topic-chipcap2-v2-1-f5c325966fdb@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,52 +125,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231020-topic-chipcap2-v2-4-f5c325966fdb@gmail.com>
+In-Reply-To: <20231020-topic-chipcap2-v2-1-f5c325966fdb@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 08/11/2023 16:37, Javier Carrasco wrote:
-> Add device tree bindings and an example for the ChipCap 2 humidity
-> and temperature sensor.
+> Add vendor prefix for Amphenol (https://www.amphenol-sensors.com)
 > 
 > Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 > ---
->  .../bindings/hwmon/amphenol,chipcap2.yaml          | 68 ++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml b/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
-> new file mode 100644
-> index 000000000000..8bb6daa293d3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/amphenol,chipcap2.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/amphenol,chipcap2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChipCap 2 humidity and temperature iio sensor
-> +
-> +maintainers:
-> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> +
-> +description: |
-> +  Relative humidity and temperature sensor on I2C bus.
-> +
-> +  Datasheets:
-> +    https://www.amphenol-sensors.com/en/telaire/humidity/527-humidity-sensors/3095-chipcap-2
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amphenol,cc2dxx
-> +      - amphenol,cc2dxxs
-> +
 
-Nothing improved.
-
-Really, you just ignored the review.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
