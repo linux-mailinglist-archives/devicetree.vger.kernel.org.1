@@ -1,247 +1,96 @@
-Return-Path: <devicetree+bounces-14855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 829B97E70EF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4611B7E70F5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:57:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3659E280FDE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:54:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA2628104B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1DEB30FB2;
-	Thu,  9 Nov 2023 17:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZzCzhH+o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24455225D7;
+	Thu,  9 Nov 2023 17:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D72C30340
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 17:54:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77FCD3A81;
-	Thu,  9 Nov 2023 09:54:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699552484; x=1731088484;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W+SHpRUTX0bjysEqjA1XdgPiJiwC/4AQT1Ukvj3HDhQ=;
-  b=ZzCzhH+o8KycKVCBQS8bUHF7VfpciT21DTI/LTuSMnlijTKAmVE0H3v6
-   gyt8eE+EyNn+vUXxbU+08PMFpgF+CsnguTU1LGw1IOG5zgANvF+T5L4wA
-   89efGH4uR1Xpll7HeExWOrb+YaSrsbq8u5oP/kbcheLUunvZXB2D51d1F
-   laOno1z6ZaPJgHS0lNpdyVeO8wv8kxzhQPlLSEJHurnXR1v1cYPhmkzPG
-   CJ+jqZIKJtvTuQl/WII1gHVxqP/sZ4c9MIs8/RbXrbmwwGnZSfYklacH/
-   AEy2EgJtVIf46j32gVRkKR4lrjVe4pHfJ3GtxIVMCBs8fwcWMmi8j3Xp8
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="389845723"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; 
-   d="scan'208";a="389845723"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2023 09:54:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="854147773"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; 
-   d="scan'208";a="854147773"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by FMSMGA003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2023 09:54:37 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1r19Ef-0000000Cekh-33M3;
-	Thu, 09 Nov 2023 19:54:33 +0200
-Date: Thu, 9 Nov 2023 19:54:33 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org,
-	broonie@kernel.org, gregkh@linuxfoundation.org, hdegoede@redhat.com,
-	james.clark@arm.com, james@equiv.tech, keescook@chromium.org,
-	petr.tesarik.ext@huawei.com, rafael@kernel.org, tglx@linutronix.de,
-	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>
-Subject: Re: [RFC PATCH v2 2/7] of: Introduce hardware prober driver
-Message-ID: <ZU0c2fuRSoqrpffA@smile.fi.intel.com>
-References: <20231109100606.1245545-1-wenst@chromium.org>
- <20231109100606.1245545-3-wenst@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42B431A63
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 17:57:02 +0000 (UTC)
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C013AA4;
+	Thu,  9 Nov 2023 09:57:02 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1f03db0a410so629276fac.1;
+        Thu, 09 Nov 2023 09:57:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699552621; x=1700157421;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ahGv3h71TMlXo9IWrcIVCfdBV4TBPnVCQHHMMkvxImc=;
+        b=sivO7rgA0IJRYr7X2nNYA5TkSiANZ3iT/P3mtdPTqEMAuvMfDI7g4mkhApAmcWixxx
+         jwjeBpzcCcWX+3Xb/TGfuKWXNfV+qan0FY3hXNrM4qYrP25BlIA78lz9Wjlewm0iC4XM
+         kaR5EYi19UgfVDUPDfElxH8GAr/qc9Wo3H3xgOUfphG7j8h9GVpjDZ2A/qJSNCQix4NJ
+         iJIzso3vBfJ4LdafguzC1x4hBcbbJ3Ejs0EClRG4epxl2UgPfysNwNpVg7a/BDcfivkt
+         RqY5ekjmX2cmCX4pnKrdQ1PW+7jxMt1pIJK/Bt1jhaK0K+47dKztf8EdFKvqeOgJQ6Nv
+         HdAg==
+X-Gm-Message-State: AOJu0YyQeMJfvH2j1fvhXH5I8GBNWyPspgTaVHxu0kaTtIwoM5VXLO4h
+	DKoHow0C2BXd0LMtJmDgyD3biImnBw==
+X-Google-Smtp-Source: AGHT+IEx2gv5KzYWxNgThvFHI01AaDRSpM+cu4t4TxmJmbKoTyF6VnPXOkxYAWwwc3uiKbRFdmiFng==
+X-Received: by 2002:a05:6870:934b:b0:1e9:8ab9:e20 with SMTP id j11-20020a056870934b00b001e98ab90e20mr5739955oak.58.1699552621363;
+        Thu, 09 Nov 2023 09:57:01 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id kr13-20020a0568719ecd00b001dd17c5356dsm791581oac.11.2023.11.09.09.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Nov 2023 09:57:00 -0800 (PST)
+Received: (nullmailer pid 1617335 invoked by uid 1000);
+	Thu, 09 Nov 2023 17:56:59 -0000
+Date: Thu, 9 Nov 2023 11:56:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, kernel@collabora.com, Mark Brown <broonie@kernel.org>, Aishwarya TCV <aishwarya.tcv@arm.com>, Rob Herring <robh+dt@kernel.org>, Naresh Kamboju <naresh.kamboju@linaro.org>
+Subject: Re: [PATCH] dt: dt-extract-compatibles: Don't follow symlinks when
+ walking tree
+Message-ID: <169955261140.1617124.16120515959862033493.robh@kernel.org>
+References: <20231107225624.9811-1-nfraprado@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231109100606.1245545-3-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231107225624.9811-1-nfraprado@collabora.com>
 
-On Thu, Nov 09, 2023 at 06:05:59PM +0800, Chen-Yu Tsai wrote:
-> Some devices are designed and manufactured with some components having
-> multiple drop-in replacement options. These components are often
-> connected to the mainboard via ribbon cables, having the same signals
-> and pin assignments across all options. These may include the display
-> panel and touchscreen on laptops and tablets, and the trackpad on
-> laptops. Sometimes which component option is used in a particular device
-> can be detected by some firmware provided identifier, other times that
-> information is not available, and the kernel has to try to probe each
-> device.
+On Tue, 07 Nov 2023 17:55:28 -0500, Nícolas F. R. A. Prado wrote:
+> The iglob function, which we use to find C source files in the kernel
+> tree, always follows symbolic links. This can cause unintentional
+> recursions whenever a symbolic link points to a parent directory. A
+> common scenario is building the kernel with the output set to a
+> directory inside the kernel tree, which will contain such a symlink.
 > 
-> This change attempts to make the "probe each device" case cleaner. The
-> current approach is to have all options added and enabled in the device
-> tree. The kernel would then bind each device and run each driver's probe
-> function. This works, but has been broken before due to the introduction
-> of asynchronous probing, causing multiple instances requesting "shared"
-> resources, such as pinmuxes, GPIO pins, interrupt lines, at the same
-> time, with only one instance succeeding. Work arounds for these include
-> moving the pinmux to the parent I2C controller, using GPIO hogs or
-> pinmux settings to keep the GPIO pins in some fixed configuration, and
-> requesting the interrupt line very late. Such configurations can be seen
-> on the MT8183 Krane Chromebook tablets, and the Qualcomm sc8280xp-based
-> Lenovo Thinkpad 13S.
+> Instead of using the iglob function, use os.walk to traverse the
+> directory tree, which by default doesn't follow symbolic links. fnmatch
+> is then used to match the glob on the filename, as well as ignore hidden
+> files (which were ignored by default with iglob).
 > 
-> Instead of this delicate dance between drivers and device tree quirks,
-> this change introduces a simple I2C component prober. For any given
-> class of devices on the same I2C bus, it will go through all of them,
-> doing a simple I2C read transfer and see which one of them responds.
-> It will then enable the device that responds.
+> This approach runs just as fast as using iglob.
 > 
-> This requires some minor modifications in the existing device tree.
-> The status for all the device nodes for the component options must be
-> set to "failed-needs-probe-xxx". This makes it clear that some mechanism
-> is needed to enable one of them, and also prevents the prober and device
-> drivers running at the same time.
+> Fixes: b6acf8073517 ("dt: Add a check for undocumented compatible strings in kernel")
+> Reported-by: Aishwarya TCV <aishwarya.tcv@arm.com>
+> Closes: https://lore.kernel.org/all/e90cb52f-d55b-d3ba-3933-6cc7b43fcfbc@arm.com
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> ---
+> 
+>  scripts/dtc/dt-extract-compatibles | 14 ++++++++++++--
+>  1 file changed, 12 insertions(+), 2 deletions(-)
+> 
 
-...
-
-> +config HW_PROBER
-
-config OF_HW_PROBER // or anything with explicit OF
-
-Don't give a false impression that this is something that may works without
-OF support.
-
-...
-
-> +	bool "Hardware Prober driver"
-
-Ditto.
-
-...
-
-> +/*
-> + * hw_prober.c - Hardware prober driver
-
-Do not include filename into the file itself.
-
-> + *
-> + * Copyright (c) 2023 Google LLC
-> + */
-
-...
-
-> +	node = of_find_node_by_name(NULL, node_name);
-> +	if (!node)
-> +		return dev_err_probe(&pdev->dev, -ENODEV, "Could not find %s device node\n",
-> +				     node_name);
-
-With
-
-	struct device *dev = &pdev->dev;
-
-this and other lines can be made neater.
-
-...
-
-
-For better maintenance it's good to have ret assignment be placed here
-
-	ret = 0;
-
-> +	for_each_child_of_node(i2c_node, node) {
-> +		struct property *prop;
-> +		union i2c_smbus_data data;
-> +		u32 addr;
-> +
-> +		if (!of_node_name_prefix(node, node_name))
-> +			continue;
-> +		if (of_property_read_u32(node, "reg", &addr))
-> +			continue;
-> +		if (i2c_smbus_xfer(i2c, addr, 0, I2C_SMBUS_READ, 0, I2C_SMBUS_BYTE, &data) < 0)
-> +			continue;
-> +
-> +		dev_info(&pdev->dev, "Enabling %pOF\n", node);
-> +
-> +		prop = kzalloc(sizeof(*prop), GFP_KERNEL);
-> +		if (!prop) {
-> +			ret = -ENOMEM;
-> +			of_node_put(node);
-> +			break;
-> +		}
-> +
-> +		prop->name	= "status";
-> +		prop->length	= 5;
-> +		prop->value	= "okay";
-> +
-> +		/* Found a device that is responding */
-> +		ret = of_update_property(node, prop);
-> +		if (ret)
-> +			kfree(prop);
-> +
-> +		of_node_put(node);
-> +		break;
-> +	}
-
-...
-
-> +static const struct hw_prober_entry hw_prober_platforms[] = {
-> +	{ .compatible = "google,hana", .prober = i2c_component_prober, .data = "touchscreen" },
-> +	{ .compatible = "google,hana", .prober = i2c_component_prober, .data = "trackpad" },
-> +};
-
-Why can't OF ID table be used for this?
-
-...
-
-> +	for (int i = 0; i < ARRAY_SIZE(hw_prober_platforms); i++)
-
-unsigned?
-
-> +		if (of_machine_is_compatible(hw_prober_platforms[i].compatible)) {
-> +			int ret;
-> +
-> +			ret = hw_prober_platforms[i].prober(pdev, hw_prober_platforms[i].data);
-> +			if (ret)
-> +				return ret;
-> +		}
-
-...
-
-> +	pdev = platform_device_register_simple(DRV_NAME, -1, NULL, 0);
-
--1 is defined in the header, use that definition.
-
-> +	if (!IS_ERR(pdev))
-> +		return 0;
-> +
-> +	platform_driver_unregister(&hw_prober_driver);
-> +
-> +	return PTR_ERR(pdev);
-
-Can you use standard pattern, i.e. checking for the _error_ condition?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Applied, thanks!
 
 
