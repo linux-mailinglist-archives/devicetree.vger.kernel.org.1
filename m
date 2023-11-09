@@ -1,246 +1,181 @@
-Return-Path: <devicetree+bounces-14859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1410D7E7128
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 19:06:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 187D87E7137
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 19:07:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC5A62810D6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:06:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6499AB20BEF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:07:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E69132C90;
-	Thu,  9 Nov 2023 18:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A311832C82;
+	Thu,  9 Nov 2023 18:07:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="fZJV8SvM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P69XAWub"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2820F32C82;
-	Thu,  9 Nov 2023 18:06:06 +0000 (UTC)
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 362A93AA5;
-	Thu,  9 Nov 2023 10:06:06 -0800 (PST)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231109180604epoutp0203d5183f1c25af849c509750f8f2a288~WBpkvgpMu0327303273epoutp02F;
-	Thu,  9 Nov 2023 18:06:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231109180604epoutp0203d5183f1c25af849c509750f8f2a288~WBpkvgpMu0327303273epoutp02F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1699553164;
-	bh=+s1GQ6cxkAoMLjQHQuQK7i4/jrzq4jIiFYnAJpIQAEg=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=fZJV8SvM9AfYAMlrJAfY9poiOHXvmFKyFZdqqynP0HbcsJUE0WsGeEHJmrPBoEOyv
-	 uOxFNNfpAPIaMnLjFlEZEzqtGgOwfkouJWYMZ6t/3eX/dS9Q3bYz/lFUO2FueC3+D9
-	 Pr5T+j3Roa4XMe6ST/Zt60H6RGOgnO3fH8pZCDpw=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-	20231109180603epcas5p3e7b62e16ea0b7ef816115bef9ceda331~WBpkQ5v2s2548325483epcas5p33;
-	Thu,  9 Nov 2023 18:06:03 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.180]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4SR8yf2CFmz4x9Pp; Thu,  9 Nov
-	2023 18:06:02 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	76.D0.09634.A8F1D456; Fri, 10 Nov 2023 03:06:02 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20231109180601epcas5p35d2a5cf24cd906dede19c27213ad49df~WBpiOm5-92217322173epcas5p3w;
-	Thu,  9 Nov 2023 18:06:01 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231109180601epsmtrp1783e1075e75b37e27b73c9f8317adad1~WBpiKb3q02657326573epsmtrp1R;
-	Thu,  9 Nov 2023 18:06:01 +0000 (GMT)
-X-AuditID: b6c32a49-eebff700000025a2-47-654d1f8aa957
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	8F.16.18939.98F1D456; Fri, 10 Nov 2023 03:06:01 +0900 (KST)
-Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20231109180556epsmtip22b32d0e0ae0460b24729fae93c0cf165~WBpdFE6PW2620526205epsmtip2P;
-	Thu,  9 Nov 2023 18:05:56 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'David
- Airlie'" <airlied@gmail.com>, "'Daniel Vetter'" <daniel@ffwll.ch>, "'Maarten
- Lankhorst'" <maarten.lankhorst@linux.intel.com>, "'Maxime Ripard'"
-	<mripard@kernel.org>, "'Thomas Zimmermann'" <tzimmermann@suse.de>, "'Rob
- Herring'" <robh+dt@kernel.org>, "'Krzysztof Kozlowski'"
-	<krzysztof.kozlowski+dt@linaro.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
-	"'Andi Shyti'" <andi.shyti@kernel.org>, "'Jonathan Cameron'"
-	<jic23@kernel.org>, "'Lars-Peter Clausen'" <lars@metafoo.de>, "'Lee Jones'"
-	<lee@kernel.org>, "'Ulf Hansson'" <ulf.hansson@linaro.org>, "'Tomasz	Figa'"
-	<tomasz.figa@gmail.com>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-	"'Linus Walleij'" <linus.walleij@linaro.org>, "'Thierry Reding'"
-	<thierry.reding@gmail.com>, =?utf-8?Q?'Uwe_Kleine-K=C3=B6nig'?=
-	<u.kleine-koenig@pengutronix.de>, "'Alessandro Zummo'"
-	<a.zummo@towertech.it>, "'Alexandre Belloni'"
-	<alexandre.belloni@bootlin.com>, "'Greg Kroah-Hartman'"
-	<gregkh@linuxfoundation.org>, "'Jiri Slaby'" <jirislaby@kernel.org>, "'Liam
- Girdwood'" <lgirdwood@gmail.com>, "'Mark Brown'" <broonie@kernel.org>,
-	"'Jaehoon	Chung'" <jh80.chung@samsung.com>, "'Sam Protsenko'"
-	<semen.protsenko@linaro.org>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<linux-mmc@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<linux-pwm@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-	<linux-serial@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-	<linux-sound@vger.kernel.org>
-In-Reply-To: <20231108104343.24192-3-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 02/17] dt-bindings: i2c: exynos5: add specific
- compatibles for existing SoC
-Date: Thu, 9 Nov 2023 23:35:54 +0530
-Message-ID: <02bb01da1337$65caf5e0$3160e1a0$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DBC32C98
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 18:07:31 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EABD3AA9;
+	Thu,  9 Nov 2023 10:07:30 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1D407FF806;
+	Thu,  9 Nov 2023 18:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699553248;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9OAy7O2pDM0Q2lNPrJvA1RTrYu+NHPhFDgK9JaSNblI=;
+	b=P69XAWubg7xOLRSNWxmEnBgjZLTzexfhp+VS1f8A3gtIXVp/bEgGmbiw75e0pNGymQsLIG
+	JrEaDaG1cN3LyAPU1VJ0yxrefc6LhQUeAN5BCUM4j9db6XDfeL1CkksToePmmc7NMkA1Q8
+	NZ3YRBjuXHWZwlYAj9YVKKw6bIqC1Q+Aqy+1SA0E5aY4NgO45CytezfCaLfH3xQ81CbtLs
+	i4qGbIp7iCyazjFSN7ahxX0ocobomYhEls74JJLDz2Pp2/u95g+BlCHFQbhUNISRy8r6bx
+	sbpULUC10Wb7LYuA6R0J5R2OKF0/9wu1WVU0Vslb7JTQqPo4gWw5j4rd78I1EQ==
+Date: Thu, 9 Nov 2023 19:07:27 +0100
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>, Mehdi Djait <mehdi.djait@bootlin.com>,
+	mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, michael.riesch@wolfvision.net
+Subject: Re: [PATCH v10 1/3] media: dt-bindings: media: add bindings for
+ Rockchip CIF
+Message-ID: <ZU0f33clFwlsTw16@aptenodytes>
+References: <cover.1699460637.git.mehdi.djait@bootlin.com>
+ <037bcabf97294d37b271537e4b11fb88cf9bb6f6.1699460637.git.mehdi.djait@bootlin.com>
+ <20231109-closable-superglue-5e7f39739cf1@spud>
+ <ZU0avuRRaITV4jws@aptenodytes>
+ <e5b1f0dd-0aab-4ce5-82ba-879a4d736e7e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Mob4Dz8HybFSM/IA"
+Content-Disposition: inline
+In-Reply-To: <e5b1f0dd-0aab-4ce5-82ba-879a4d736e7e@linaro.org>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
+
+
+--Mob4Dz8HybFSM/IA
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGWJB6kbFUwx2+cGuz2YrV1SxstmQJIJYa1AlRjzhGw1UCPMA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Te1BUZRSf7+59LBR0A8IvKqRNxyB5rAF920CIMnZDZXAifNC0rHBdGGDZ
-	2QU0bUaDXBDkFaK08lAhkBXCeA2gZK085DEo8YqEeBYQCAkKrsDQLtfM/37nd37n+51zvjl8
-	ntk8ZcUPlUWxCpkkXEAa49W3bbfYJ27cyzpdbCdRQWcPhe70XcFQ/Gwhhbo7tRgaepwAUObI
-	OIlK6jswtFadzkN5DR0E6n48R6K4/DIS/fZURaDhWA2GZnPeRCmTIzxUP11FoYKMPALVqC7j
-	aLE7AUPnVoowVD7WS6CKvBWAElYfAZTbMIujrrpsEjWspQI0OKgBqOlaN4my7v6Eofb8ZArl
-	/HWOhy4/rMKR6kwhgU7XN1Do9kw8gSZS9BJdXS6ONHX69ypn0gl0Pz0DoObS/dttmesLsSST
-	W3KCqV+8hDO16kGKKdecIZmB3pt6vmUfcyunhGKGkpoxpqLgJFMwoyWY1FUnJqVSA5iKthPM
-	hVwdxiyUW/vSh8LcQlhJMKuwYWVBkcGhMqm7YPen4p1iF1cnob1QhD4Q2MgkEay7wGuPr/2u
-	0HD9ggU2MZLwaD3lK1EqBY4fuSkio6NYm5BIZZS7gJUHh8ud5Q5KSYQyWiZ1kLFRHwqdnLa5
-	6IWBYSE/XsXl7cJjJcN14BTocUwERnxIO8PspV95BmxG3wAwfvVgIjDW43kA+79vJJ4Ha2PZ
-	ehV/vSKxVczxtQA+Sh3BuWASwLa8JsLwFEnbw5p8FWlIWNA3TGDXrVHckDCiveC9+AuYAZvT
-	EvhgMXOdx+lN8On12HXehBbB2sVvAIdfhS3fja9rePR7sPDyNI/r2wbq/iwkDB1Z0Dtg59dy
-	TrIBTjU2UAZfSNcbwybN1Wd6L5g6EYdz2Bz+3VxJcdgKTqWqKG4yBl5ZseLoEPigqAxw2AP+
-	3J2NGyQ82haW1TlyVqYweXkc4ypNYILKjFNvhnGzPc+M3oDpSUkEhxmo7j1PcavqBHBgQUOk
-	ARv1C0OqXxhS/cI06v+dLwFcA15n5coIKat0kQtl7NHnvx0UGVEO1o/P7pMaMDj8j4MWYHyg
-	BZDPE1iY3HPew5qZBEu+PM4qIsWK6HBWqQUu+s2n86xeC4rUX68sSix0Fjk5u7q6OovedxUK
-	NphMn84JNqOlkig2jGXlrOK/OoxvZHUKK7dLCqtZ9txYkexV6dns/0oiyusv3Oph6p9Gfrsj
-	AHylzJpW89/W7VNNWor8wo5o/QuWRyytbx/yptzzmzZjbwVu6yhlPvPuO5zsQHi8e2zLWOp2
-	44NVk3eWPKMHU45X96uWNvsHaItNi3U7ha0WRTHmoR6i0iwscyumC6fF2JPdUr8vGjzNE3xq
-	BlZ0qPDzAd6B0rujAZbv3G9esmybOB84d81vqqk1xLo79KFiO1q07/Gu/qNm7rB0mbLOOCqW
-	xv8wvNHYZ28feTjIT7Kp9eLH9mcaW6pvunf5FTcKe+fP9jxxG2UtQn8PSkt46cguxYGY5iG7
-	PJHPyV/297wc3JHrK8CVIRKhHU+hlPwL3AsNxgUFAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUxTVwCGd+43TbrdVRx3VAoWYgARZHPZcS5qJj/uD5lTpia6BSrcFLYC
-	zW1hU2MGVcvHHB9DhpZRZDTFlapQKF+hG5ZqVRwDrTAURJyABoLbgGYorKM0W/j35H2f8+ac
-	5FCo6DYeSKVlqDk+Q6aQEgKspVsavKkgOJ7bbLgqgYb+eyS8MfgDAvNmjCR09dsRODqfD2D5
-	2BMCmm29CPS0lKKw2tGLQ9f8cwKerL1CwN9eaHH4SGNC4EzVOlj0dAyFtikrCQ1l1Ths09Zg
-	0O3KR+DZxToEWn4fwGFT9SKA+UtzAOodMxi82/E9AR2eYgBHRkwAXq93EfDcrz8h8HbtNySs
-	mjiLwpo/rRjUFhhxeNrmIGH3dB4OJ4uWlYUOPQZNHct7zdOlOHxQWgag89LBnRFsw6yGYPXm
-	46zNfQFj23UjJGsxFRDs8EDncn5zL/tzlZlkR792ImyT4SvWMG3H2eKlzWxRswmwTT3H2Qr9
-	AsLOWiQf0YcE76dwirRsjo/ZniRIdTnNpPJM2JePut0gB4wGFQKKYugtTOGtxEIgoER0K2C+
-	7bCDQuC3nIuZwcYS0sdrmB//mSR90gRgRlobcW9B0JuYtlot4WV/ekjI9Azv8Um/AMbqOIV6
-	Cz86junLq0C8vIZOZKw2D+ZljA5jXjRoVnIhvZVpd58CPn6duXn+yYqD0huZ8aHx/9lYM4X6
-	bhTCLIwbce8L/OkPmP5cpU8JYJ5dc5AlQKRbtaRbtaRbtaRbdeQCwExgLadUpcvTk5Wx0SpZ
-	uiorQx6dnJluASsfLnJfGzBeWYq2A4QCdsBQqNRf2LdlNycSpsiOHuP4zEQ+S8Gp7EBMYdIA
-	YaiiIEVEy2Vq7nOOU3L8fy1C+QXmIAcElYt/bAiJUKvj+LmiXj7s5Xv40fMhor/eUu+4u35o
-	f9/a/R++M9DUbHotTS5+80bOrbmu+ofXxCec8Gpv+7bWoIqYNn1NzB6jIbSk585T/4/nB69H
-	fvd8QnLATSTNPJ4wiDURe8vkLYFpc+aL998+UnIp1PxGud/LhNKEIa2e8hw5/HdU9cWN8Zcr
-	1y/yFsnWispRYb0rPnXXofHs4vCp3V3OT3Z8au16BW0tD351XWdAruLhu8nYg8oWIrdxw0Ld
-	44xnJwcC9JrMscSwfbHbEsLR7jue05LAnSd25ZwLj2qIrovabuatks77kwfPJGU5Lld9kW3O
-	x2c/Cxo+fC8u65jNI8VUqbLYSJRXyf4FqdWDf98DAAA=
-X-CMS-MailID: 20231109180601epcas5p35d2a5cf24cd906dede19c27213ad49df
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231108104407epcas5p4c52f140b035727b6110ff7d3c0f81bc0
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
-	<CGME20231108104407epcas5p4c52f140b035727b6110ff7d3c0f81bc0@epcas5p4.samsung.com>
-	<20231108104343.24192-3-krzysztof.kozlowski@linaro.org>
 
+Hi,
 
+On Thu 09 Nov 23, 18:53, Krzysztof Kozlowski wrote:
+> On 09/11/2023 18:45, Paul Kocialkowski wrote:
+> > Hi,
+> >=20
+> > On Thu 09 Nov 23, 17:24, Conor Dooley wrote:
+> >> On Wed, Nov 08, 2023 at 05:38:56PM +0100, Mehdi Djait wrote:
+> >>> Add a documentation for the Rockchip Camera Interface binding.
+> >>>
+> >>> the name of the file rk3066 is the first Rockchip SoC generation that=
+ uses cif
+> >>> instead of the px30 which is just one of the many iterations of the u=
+nit.
+> >>
+> >> I think this is becoming ridiculous. You've now removed the compatible
+> >> for the rk3066 but kept it in the filename. I don't understand the
+> >> hangup about naming the file after the px30-vip, but naming it after
+> >> something that is not documented here at all makes no sense to me.
+> >> Either document the rk3066 properly, or remove all mention of it IMO.
+> >=20
+> > I think the opposite is ridiculous. We have spent some time investigati=
+ng the
+> > history of this unit, to find out that RK3066 is the first occurence wh=
+ere
+> > it exists. Since we want the binding to cover all generations of the sa=
+me unit
+> > and give it a name that reflects this, rk3066 is the natural choice tha=
+t comes
+> > to mind. As far as I understand, this is the normal thing to do to name
+> > bindings: name after the earliest known occurence of the unit.
+> >=20
+> > What is the rationale behind naming the file after a generation of the =
+unit
+> > that happens to be the one introducing the binding? This is neither the=
+ first
+> > nor the last one to include this unit. The binding will be updated late=
+r to
+> > cover other generations. Do we want to rename the file each time an a g=
+eneration
+> > earlier than px30 is introduced? That sounds quite ridiculous too.
+> >=20
+> > We've done the research work to give it the most relevant name here.
+> > I'd expect some strong arguments not to use it. Can you ellaborate?
+>=20
+> If you do not have rk3066 documented here, it might be added to entirely
+> different file (for whatever reasons, including that binding would be
+> quite different than px30). Thus you would have rk3066 in
+> rockchip,rk3066-cif-added-later.yaml and px30 in rockchip,rk3066-cif.yaml
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
-> Sent: Wednesday, November 8, 2023 4:13 PM
-> To: David Airlie <airlied=40gmail.com>; Daniel Vetter <daniel=40ffwll.ch>=
-;
-> Maarten Lankhorst <maarten.lankhorst=40linux.intel.com>; Maxime Ripard
-> <mripard=40kernel.org>; Thomas Zimmermann <tzimmermann=40suse.de>;
-> Rob Herring <robh+dt=40kernel.org>; Krzysztof Kozlowski
-> <krzysztof.kozlowski+dt=40linaro.org>; Conor Dooley
-> <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>; Andi
-> Shyti <andi.shyti=40kernel.org>; Jonathan Cameron <jic23=40kernel.org>; L=
-ars-
-> Peter Clausen <lars=40metafoo.de>; Lee Jones <lee=40kernel.org>; Ulf
-> Hansson <ulf.hansson=40linaro.org>; Tomasz Figa <tomasz.figa=40gmail.com>=
-;
-> Sylwester Nawrocki <s.nawrocki=40samsung.com>; Linus Walleij
-> <linus.walleij=40linaro.org>; Thierry Reding <thierry.reding=40gmail.com>=
-; Uwe
-> Kleine-K=C3=B6nig=20<u.kleine-koenig=40pengutronix.de>;=20Alessandro=20Zu=
-mmo=0D=0A>=20<a.zummo=40towertech.it>;=20Alexandre=20Belloni=0D=0A>=20<alex=
-andre.belloni=40bootlin.com>;=20Greg=20Kroah-Hartman=0D=0A>=20<gregkh=40lin=
-uxfoundation.org>;=20Jiri=20Slaby=20<jirislaby=40kernel.org>;=20Liam=0D=0A>=
-=20Girdwood=20<lgirdwood=40gmail.com>;=20Mark=20Brown=20<broonie=40kernel.o=
-rg>;=0D=0A>=20Jaehoon=20Chung=20<jh80.chung=40samsung.com>;=20Sam=20Protsen=
-ko=0D=0A>=20<semen.protsenko=40linaro.org>;=20dri-devel=40lists.freedesktop=
-.org;=0D=0A>=20devicetree=40vger.kernel.org;=20linux-kernel=40vger.kernel.o=
-rg;=20linux-arm-=0D=0A>=20kernel=40lists.infradead.org;=20linux-samsung-soc=
-=40vger.kernel.org;=20linux-=0D=0A>=20i2c=40vger.kernel.org;=20linux-iio=40=
-vger.kernel.org;=20linux-mmc=40vger.kernel.org;=0D=0A>=20linux-gpio=40vger.=
-kernel.org;=20linux-pwm=40vger.kernel.org;=20linux-=0D=0A>=20rtc=40vger.ker=
-nel.org;=20linux-serial=40vger.kernel.org;=20alsa-devel=40alsa-=0D=0A>=20pr=
-oject.org;=20linux-sound=40vger.kernel.org=0D=0A>=20Cc:=20Krzysztof=20Kozlo=
-wski=20<krzysztof.kozlowski=40linaro.org>=0D=0A>=20Subject:=20=5BPATCH=2002=
-/17=5D=20dt-bindings:=20i2c:=20exynos5:=20add=20specific=20compatibles=20fo=
-r=0D=0A>=20existing=20SoC=0D=0A>=20=0D=0A>=20Samsung=20Exynos=20SoC=20reuse=
-s=20several=20devices=20from=20older=20designs,=20thus=0D=0A>=20historicall=
-y=20we=20kept=20the=20old=20(block's)=20compatible=20only.=20=20This=20work=
-s=20fine=20and=0D=0A>=20there=20is=20no=20bug=20here,=20however=20guideline=
-s=20expressed=20in=0D=0A>=20Documentation/devicetree/bindings/writing-bindi=
-ngs.rst=20state=20that:=0D=0A>=201.=20Compatibles=20should=20be=20specific.=
-=0D=0A>=202.=20We=20should=20add=20new=20compatibles=20in=20case=20of=20bug=
-s=20or=20features.=0D=0A>=20=0D=0A>=20Add=20compatibles=20specific=20to=20e=
-ach=20SoC=20in=20front=20of=20all=20old-SoC-like=20compatibles.=0D=0A>=20=
-=0D=0A>=20Signed-off-by:=20Krzysztof=20Kozlowski=20<krzysztof.kozlowski=40l=
-inaro.org>=0D=0A>=20=0D=0A>=20---=0D=0A>=20=0D=0A>=20I=20propose=20to=20tak=
-e=20the=20patch=20through=20Samsung=20SoC=20(me).=20See=20cover=20letter=20=
-for=0D=0A>=20explanation.=0D=0A>=20---=0D=0A>=20=20Documentation/devicetree=
-/bindings/i2c/i2c-exynos5.yaml=20=7C=2010=20+++++++++-=0D=0A>=20=20.../devi=
-cetree/bindings/soc/samsung/exynos-usi.yaml=20=20=20=20=7C=20=202=20+-=0D=
-=0A>=20=202=20files=20changed,=2010=20insertions(+),=202=20deletions(-)=0D=
-=0A>=20=0D=0A>=20diff=20--git=20a/Documentation/devicetree/bindings/i2c/i2c=
--exynos5.yaml=0D=0A>=20b/Documentation/devicetree/bindings/i2c/i2c-exynos5.=
-yaml=0D=0A>=20index=203e52a0db6c41..c1f5d2cb7709=20100644=0D=0A>=20---=20a/=
-Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml=0D=0A>=20+++=20b/Doc=
-umentation/devicetree/bindings/i2c/i2c-exynos5.yaml=0D=0A>=20=40=40=20-25,7=
-=20+25,15=20=40=40=20properties:=0D=0A>=20=20=20=20=20=20=20=20=20=20=20=20=
--=20samsung,exynos5250-hsi2c=20=20=20=20=23=20Exynos5250=20and=20Exynos5420=
-=0D=0A>=20=20=20=20=20=20=20=20=20=20=20=20-=20samsung,exynos5260-hsi2c=20=
-=20=20=20=23=20Exynos5260=0D=0A>=20=20=20=20=20=20=20=20=20=20=20=20-=20sam=
-sung,exynos7-hsi2c=20=20=20=20=20=20=20=23=20Exynos7=0D=0A>=20-=20=20=20=20=
-=20=20=20=20=20=20-=20samsung,exynosautov9-hsi2c=20=20=23=20ExynosAutoV9=20=
-and=20Exynos850=0D=0A>=20+=20=20=20=20=20=20=20=20=20=20-=20samsung,exynosa=
-utov9-hsi2c=0D=0A>=20+=20=20=20=20=20=20-=20items:=0D=0A>=20+=20=20=20=20=
-=20=20=20=20=20=20-=20enum:=0D=0A>=20+=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20-=20samsung,exynos5433-hsi2c=0D=0A>=20+=20=20=20=20=20=20=20=20=20=20=
--=20const:=20samsung,exynos7-hsi2c=0D=0A>=20+=20=20=20=20=20=20-=20items:=
-=0D=0A>=20+=20=20=20=20=20=20=20=20=20=20-=20enum:=0D=0A>=20+=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20-=20samsung,exynos850-hsi2c=0D=0ADoes=20this=
-=20need=20an=20entry=20in=20allOf:?=20to=20indicate=20exynos850=20also=20ha=
-s=202=20clocks?=0D=0A=0D=0A>=20+=20=20=20=20=20=20=20=20=20=20-=20const:=20=
-samsung,exynosautov9-hsi2c=0D=0A>=20=20=20=20=20=20=20=20-=20const:=20samsu=
-ng,exynos5-hsi2c=20=20=20=20=23=20Exynos5250=20and=20Exynos5420=0D=0A>=20=
-=20=20=20=20=20=20=20=20=20deprecated:=20true=0D=0A>=20=0D=0A>=20diff=20--g=
-it=20a/Documentation/devicetree/bindings/soc/samsung/exynos-=0D=0A>=20usi.y=
-aml=20b/Documentation/devicetree/bindings/soc/samsung/exynos-=0D=0A>=20usi.=
-yaml=0D=0A>=20index=20a6836904a4f8..5b7ab69546c4=20100644=0D=0A>=20---=20a/=
-Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml=0D=0A>=20+++=
-=20b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml=0D=0A>=
-=20=40=40=20-155,7=20+155,7=20=40=40=20examples:=0D=0A>=20=20=20=20=20=20=
-=20=20=20=20=7D;=0D=0A>=20=0D=0A>=20=20=20=20=20=20=20=20=20=20hsi2c_0:=20i=
-2c=4013820000=20=7B=0D=0A>=20-=20=20=20=20=20=20=20=20=20=20=20=20compatibl=
-e=20=3D=20=22samsung,exynosautov9-hsi2c=22;=0D=0A>=20+=20=20=20=20=20=20=20=
-=20=20=20=20=20compatible=20=3D=20=22samsung,exynos850-hsi2c=22,=0D=0A>=20+=
-=20=22samsung,exynosautov9-hsi2c=22;=0D=0A>=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20reg=20=3D=20<0x13820000=200xc0>;=0D=0A>=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20interrupts=20=3D=20<GIC_SPI=20227=20IRQ_TYPE_LEVEL_HIGH>;=
-=0D=0A>=20=20=20=20=20=20=20=20=20=20=20=20=20=20=23address-cells=20=3D=20<=
-1>;=0D=0A>=20--=0D=0A>=202.34.1=0D=0A=0D=0A=0D=0A
+As far as I could see we generally manage to include support for different
+hardware setups in the same binding document using conditionals on the
+compatible, so this feels a bit far-fetched.
+
+Of course you're the maintainer and have significantly more experience here
+so there might be a lot that I'm not seeing, but I'm not very convinced by =
+this
+reasoning to be honest.
+
+> Just use the filename matching the compatible. That's what we always
+> ask. In every review.
+
+Yeah and we very often end up with naming that is less than optimal (to stay
+polite). I'm generally quite appalled by the overall lack of interest that
+naming gets, as if it was something secondary. Naming is one of the most
+important and difficult things in our field of work and it needs to be
+considered with care.
+
+This is not just a problem with device-tree, it's a kernel-wide issue that
+nobody seems to be interested in addressing. I'm quite unhappy to see that =
+when
+time is spent trying to improve the situation on one particular instance, w=
+e are
+shown the door because it doesn't match what is generally done (and often d=
+one
+wrong).
+
+This is definitely a rant. I really want to express this issue loud and cle=
+ar
+and encourage everyone to consider it for what it is.
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--Mob4Dz8HybFSM/IA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVNH98ACgkQ3cLmz3+f
+v9G9twf+JR5dsdM2G3sgKunvWuC3i7/cbQl17nAbAGUF5eB6ctWTGGrxSLcyl+Q6
+uBup3E59JYwmKlPE2gLeKDbETumExf5UnlQdHt01QrriMEdKggUYPPmwJ8jQItQE
+byTo9DcSZWHqAB66pkyZQaTpwTPCjky3OM2H2rQ2fHbmh2wjicQbdAstt17sblkv
+RNjkyiMVjSOAukV1iGtVKEZYl/QVpQnwvnchxJF/2wSTw1YEhcYGDw6Yndl3WfbU
+ox4G7bjP5QRUv93bCW80M7uWl7LRSnSo8hK84WfrvNYEdWfMfs8PZVRnTfitn3YL
+kXFdLP3ZAKW6iqU6UCjxaI75xtMrzg==
+=+UTG
+-----END PGP SIGNATURE-----
+
+--Mob4Dz8HybFSM/IA--
 
