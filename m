@@ -1,103 +1,204 @@
-Return-Path: <devicetree+bounces-14793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99DD7E6944
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 12:11:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795D77E6996
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 12:30:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8256C2816EF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:11:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF9A9B20CD3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D464B199C0;
-	Thu,  9 Nov 2023 11:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81CC0199DD;
+	Thu,  9 Nov 2023 11:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="orwuOxKJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eR4U1ZiR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62037199B2;
-	Thu,  9 Nov 2023 11:11:40 +0000 (UTC)
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0503D11D;
-	Thu,  9 Nov 2023 03:11:38 -0800 (PST)
-X-UUID: bc5bf2ea7ef011ee8051498923ad61e6-20231109
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=CrbH5jSvwKEfAicuaeneYJiIQg2KhQyoAfzoj9721xc=;
-	b=orwuOxKJ0Z86lP/wQUkFPkJPVgmayrVjpaOqzVY0zu3waMSxyVvc6zpadbAYDFCrBPfF8Xk+0lt0JVPWhxeZ0wT2WHuUcmtUjDfENT9lROpWyt9PABnfTBS/6DcfbWD3nwY1jte1oNYyXefKO7i0b/jaQkF76WVd8MKEmQqfL5A=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.33,REQID:ae7d1d05-0ce7-4ccd-bdd2-9296a229a37a,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:364b77b,CLOUDID:2e343495-10ce-4e4b-85c2-c9b5229ff92b,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: bc5bf2ea7ef011ee8051498923ad61e6-20231109
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <yu-chang.lee@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1758212856; Thu, 09 Nov 2023 19:11:31 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 9 Nov 2023 19:11:30 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 9 Nov 2023 19:11:29 +0800
-From: yu-chang.lee <yu-chang.lee@mediatek.com>
-To: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: "Nancy . Lin" <nancy.lin@mediatek.com>, Nathan Lu
-	<nathan.lu@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, "Jason-JH . Lin"
-	<jason-jh.lin@mediatek.com>, Garmin Chang <garmin.chang@mediatek.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, yu-chang.lee
-	<yu-chang.lee@mediatek.com>
-Subject: [RESEND 3/3] dt-bindings: arm:mediatek: mmsys: Add VPPSYS compatible for MT8188
-Date: Thu, 9 Nov 2023 19:11:22 +0800
-Message-ID: <20231109111122.371-4-yu-chang.lee@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20231109111122.371-1-yu-chang.lee@mediatek.com>
-References: <20231109111122.371-1-yu-chang.lee@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9F8199DB
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 11:30:26 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47292D76
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 03:30:25 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5098e423ba2so823389e87.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 03:30:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699529424; x=1700134224; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pJoIDcfn+3mdNzUBBidZSIASenQqfUSASLt21agqt48=;
+        b=eR4U1ZiRviRhGMFpi+ARmzYfEbsnxDtucEGzmi2owNqPTgQhS/Tg2X2Se1nEJRnnCX
+         ChzKRjXvguDDqrNMOL+Mxsz0PqALdkOL1ecA8xPXbB/94dqz0JOJDPskluTfrzbQSwLq
+         QtlWGO104lOUwh2J1qMYvH42R2cc9NBk2Nv5fLV+08l5g32/nvSqLc1G1o1jjRAL0RFI
+         oumy70BQpp+hnRqkBN7YpaqZFQqLcEts4eRKFOEZ7uHCUxowAj7T9/FHvSSq+dGtb9hx
+         OPqe8xQlipZ7qXNNwsTB/eoJROfrQ3pdogeV85ZFlZkYjylrLTa9eUvcH9TCtN/cPq8o
+         HL1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699529424; x=1700134224;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pJoIDcfn+3mdNzUBBidZSIASenQqfUSASLt21agqt48=;
+        b=QQDzMm5DLec37ljmsTdPuFckAkktJUehtzDCnwGSNR6tICMrxvq97xWHz9JOnTLeto
+         T0bfjGTvffN/bPHgKFyvERacl2c+0epI3mVVu94fZ2GWi7aj0ZvTRjSW7d9xsAuP+Wzo
+         a4OguRr37Ewgwh+8JzR8iZOO5bl6AdNyk/i+NsMxS285t+PVYOCF90gZ/qxPQxbtVfBJ
+         1LbTmrKiS+p8ip8Z4VhvJrOmGmEvv3C6mjzbsS9vJX7gnqHC06G22MYup5DFl/ZJDuwv
+         Vr0cNfTJUeRKdrtFFN2A6L9yagCSIm6c/YGiznqPb3kzqQpnPmbKeNC5pmExtPpPFKfI
+         5h2A==
+X-Gm-Message-State: AOJu0YymGbqgpZQ6Q7X7VMTsjc7o+enMb0SPcA8JlBlk6HhCeL0VmIJR
+	F7jRpAWjxfTYIQON9lrF+Kx6Lg==
+X-Google-Smtp-Source: AGHT+IEcdHFW7ZQYbhUiW+ZpOhod9pDDItDwwyR60fpNpcWAPP0PntypZbEFufZXWbBXh2V3H5ykaw==
+X-Received: by 2002:a19:2d41:0:b0:500:9214:b308 with SMTP id t1-20020a192d41000000b005009214b308mr998897lft.65.1699529423642;
+        Thu, 09 Nov 2023 03:30:23 -0800 (PST)
+Received: from [127.0.0.1] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id a11-20020adfed0b000000b0032d9337e7d1sm7185790wro.11.2023.11.09.03.30.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Nov 2023 03:30:23 -0800 (PST)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 0/6] media: qcom: camss: Add sc8280xp support
+Date: Thu, 09 Nov 2023 11:30:20 +0000
+Message-Id: <20231109-b4-camss-sc8280xp-v4-0-58a58bc200f9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMzCTGUC/23OUQuCMBDA8a8Se26xu83Unvoe0cM2Nx2Uky2GI
+ X73phBI+fg/uN/dRKIJzkRyOUwkmOSi830OcTwQ3cm+NdQ1uQky5AAMqBJUy2eMNOoKKzYOlBl
+ QNRiFoCzJe0Mw1o2rebvn7lx8+fBeTyRYpl8Nd7QElNG6rs9WKK0qK64P18vgTz60ZOESbgm+R
+ 2AmVCmtaLDgEtkfwbdEsUfwTAjFNS/RWvbzxTzPH6tW21s5AQAA
+To: hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Todor Tomov <todor.too@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org, 
+ matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13-dev-26615
 
-Add VPPSYS0, VPPSYS1 compatible on Mediatek MT8188.
+V4:
+- Drops all _src clocks and _SRC indexes in series.
+  True enough the CAMCC driver has all of the appropriate SET_PARENT flags
+  so there's no need to represent _src clocks. - Konrad
 
-Signed-off-by: yu-chang.lee <yu-chang.lee@mediatek.com>
+- I've opted not to split C-PHY and D-PHY init sequences up unless/until
+  we have a C-PHY init sequence upstream. - bod/Konrad
+
+- b4 trailes --update -> + Konrad's Acks
+
+Link to v3: https://lore.kernel.org/r/20231105-b4-camss-sc8280xp-v3-0-4b3c372ff0f4@linaro.org
+Link to tree: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v4
+
+A working bootable tree including this series
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/lenovo-x13s-linux-6.5.y
+
+V3:
+- Strip pointer to dependencies from yaml patch
+  I was hoping the robot would understand the links but it doesn't -
+  Krzysztof
+
+Link to v2: https://lore.kernel.org/r/20231103-b4-camss-sc8280xp-v2-0-b7af4d253a20@linaro.org
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v3
+
+V2:
+- Rebase to capture is_lite flag from named power-domain series
+- Amends commit log of final patch to give more detail on rename - Konrad
+- Opted not to change switch() statements with returns. - bod/Konrad
+
+Requires CAMCC for sc8280xp which applies to qcom/clk-for-6.7:
+https://lore.kernel.org/linux-arm-msm/20231026105345.3376-1-bryan.odonoghue@linaro.org/
+b4 shazam 20231026105345.3376-1-bryan.odonoghue@linaro.org
+
+Requires the named power-domain patches which apply to media-tree/*:
+https://lore.kernel.org/linux-arm-msm/20231103-b4-camss-named-power-domains-v4-0-33a905359dbc@linaro.org/
+b4 shazam e700133b-58f7-4a4d-8e5c-0d04441b789b@linaro.org
+
+Link to v1:
+https://lore.kernel.org/r/20231102-b4-camss-sc8280xp-v1-0-9996f4bcb8f4@linaro.org
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp-v2
+
+V1:
+sc8280xp is the SoC found in the Lenovo X13s. This series adds support to
+bring up the CSIPHY, CSID, VFE/RDI interfaces.
+
+A number of precursor patches make this series smaller overall than
+previous series.
+
+sc8280xp provides
+
+- 4 x VFE, 4 RDI per VFE
+- 4 x VFE Lite, 4 RDI per VFE
+- 4 x CSID
+- 4 x CSID Lite
+- 4 x CSI PHY
+
+I've taken the yaml from a dtsi series and included it here since 1) I sent
+the yaml to the wrong person and 2) it already has RB from Krzysztof.
+
+Requires CAMCC for sc8280xp which applies to qcom/clk-for-6.7:
+https://lore.kernel.org/linux-arm-msm/20231026105345.3376-1-bryan.odonoghue@linaro.org/
+b4 shazam 20231026105345.3376-1-bryan.odonoghue@linaro.org
+
+Requires the named power-domain patches which apply to media-tree/* :
+https://lore.kernel.org/linux-arm-msm/20231101-b4-camss-named-power-domains-v3-5-bbdf5f22462a@linaro.org/
+b4 shazam 20231101-b4-camss-named-power-domains-v3-5-bbdf5f22462a@linaro.org
+
+To use the camera on x13s with say Google Hangouts or Microsoft Teams you
+will need to
+
+1. Run Firefox
+2. Update about:config to enable pipewire
+3. Use this WIP version of libcamera
+   https://gitlab.freedesktop.org/camera/libcamera-softisp
+
+A working bootable tree can be found here:
+Link: https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/lenovo-x13s-linux-6.5.y
+
+b4 base:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/b4/camss-sc8280xp
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
- 1 file changed, 2 insertions(+)
+Bryan O'Donoghue (6):
+      media: dt-bindings: media: camss: Add qcom,sc8280xp-camss binding
+      media: qcom: camss: Add CAMSS_SC8280XP enum
+      media: qcom: camss: csiphy-3ph: Add Gen2 v1.1 two-phase MIPI CSI-2 DPHY init
+      media: qcom: camss: Add sc8280xp resource details
+      media: qcom: camss: Add sc8280xp support
+      media: qcom: camss: vfe-17x: Rename camss-vfe-170 to camss-vfe-17x
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-index 536f5a5ebd24..50324248b965 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-@@ -32,6 +32,8 @@ properties:
-               - mediatek,mt8183-mmsys
-               - mediatek,mt8186-mmsys
-               - mediatek,mt8188-vdosys0
-+              - mediatek,mt8188-vppsys0
-+              - mediatek,mt8188-vppsys1
-               - mediatek,mt8192-mmsys
-               - mediatek,mt8195-vdosys1
-               - mediatek,mt8195-vppsys0
+ .../bindings/media/qcom,sc8280xp-camss.yaml        | 512 +++++++++++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   2 +-
+ .../platform/qcom/camss/camss-csiphy-3ph-1-0.c     | 108 ++++-
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ .../camss/{camss-vfe-170.c => camss-vfe-17x.c}     |   0
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  25 +-
+ drivers/media/platform/qcom/camss/camss-video.c    |   1 +
+ drivers/media/platform/qcom/camss/camss.c          | 307 ++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 9 files changed, 948 insertions(+), 9 deletions(-)
+---
+base-commit: 89e965e1a58f58cd359472b14c0cc25587bcf264
+change-id: 20231101-b4-camss-sc8280xp-0e1b91eb21bf
+
+Best regards,
 -- 
-2.18.0
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
 
