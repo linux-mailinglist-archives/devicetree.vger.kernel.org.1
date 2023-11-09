@@ -1,195 +1,188 @@
-Return-Path: <devicetree+bounces-14692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DFE57E63AE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 07:20:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D1C7E63D1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 07:24:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FE4A1C20873
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 06:20:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 658BF1C208C5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 06:24:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036AED289;
-	Thu,  9 Nov 2023 06:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B26D506;
+	Thu,  9 Nov 2023 06:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nb8jKAT7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZAwL1C0a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4F4D2E5;
-	Thu,  9 Nov 2023 06:20:04 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A89A4;
-	Wed,  8 Nov 2023 22:20:03 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A96F2Fg030849;
-	Thu, 9 Nov 2023 06:19:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=o6WFDsYVLdv/n5kPtsDAkcnUc1GRBkPe5QQGlolDK88=;
- b=nb8jKAT7snJZdn1rTKxZdLCrx2yagf/amaHtQX4Qfee4el4wHiVbJsefIVtDSP0swdVh
- iOcBl52ga37yU2pOaH4S0/rLIhylWYQu3mdjNGr4ekGm6j8f3iTE9laWAEPgI6Eb0WN8
- IsheiV0iAoeA319VeMJ+sHdG3AiO1/UNuSKLW+KRymnO99U41WMo2nodraW7Lz88UoYr
- 4Bb5HGQzuTu9rtPaxL602ZPCtgchRp+Ym9+/07Epz05TEPzOM/XWfw2opXG6xC2qsPhw
- /8pl1UsEAJzEQ7UzguB9at0YE+5cyPRT98mwUhQQgLO+65ShjeDr6RCnFQoB5weBTmvB rA== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u8s0885mm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Nov 2023 06:19:55 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A96JsQF028324
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Nov 2023 06:19:54 GMT
-Received: from [10.239.133.9] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 8 Nov
- 2023 22:19:50 -0800
-Message-ID: <d59bd2c4-5730-a4c4-7b82-07ce564ae84c@quicinc.com>
-Date: Thu, 9 Nov 2023 14:19:47 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D0C125BB;
+	Thu,  9 Nov 2023 06:24:05 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87EAF19A5;
+	Wed,  8 Nov 2023 22:24:04 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5435336ab0bso721158a12.1;
+        Wed, 08 Nov 2023 22:24:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699511043; x=1700115843; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FFc9wQ4/Iy4PKdImLLDNhJ0n+o/UegEm1+YAiGXRu/I=;
+        b=ZAwL1C0awC3N5mH8oJe1R0PBt0rDt0vj5S7RO1z09sLpFyWsQPzOkOCG0QzJHO/3Sl
+         MoCdBb/0WObcJBRdjgremGqpOQTIPoIqptXtnoU0XktVyj3QKs6XkW82/CdmHhMNV4zb
+         /IoynoPSTbBmi8ZnO7d1q/kW9pGaVZXPwWpPAq4e+k/P3rKmwSJ0+w5U/zD3qTZG6p+s
+         VmckaZddrfuArUv2gyIswuCTe5MkDvcPQ2+YQyZzkTM8m/RUg1iRw8nCw/7KdQmZm3Si
+         KdX1ZrMSk4plPIbjdJCrWnfvq92Y4lbfC5Dkn7ZzlhLDr6XJwWypUopzswVoXQPSk1pd
+         BSHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699511043; x=1700115843;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FFc9wQ4/Iy4PKdImLLDNhJ0n+o/UegEm1+YAiGXRu/I=;
+        b=WLK6+FiJcIPfkEqxVUHrVtWMHX3uDLNQjJWQ5oaqT/VprYewYg1Qtp3iVMlZPB1Tm7
+         ol6sTl4p4o6IaTpWM+yj4raLHi7lcUEzfciQly/JNgYXtbw6PKgUt/CMX/RVcUCiMsmZ
+         iHZeN2LYmtJDZ9DhCAH3QNkrQgNI+jsA8IGMpPPE//ewfFliXSRem6yqi3i+XfyjwsEv
+         HPmdjCl/fd4crfYVfAtYwcyUYCT6Y0NrKTZYsvWuGnRb76Cfh4sN2NmzfPR1DT3LiGEb
+         MmZaoXVoquyLFoeLHpyxqJgOEaag26GuDxkm+8Lr/6bi6kB3WcaNFI7aD9MERdaaeZ3d
+         hD9A==
+X-Gm-Message-State: AOJu0Yy0UXWXfYOxsbXHvWdRuIwZ1Ftvcmzq1VXNvwMRaNVxRaR1Phn9
+	mDpjstngkoc3fVWpb7wLhuk=
+X-Google-Smtp-Source: AGHT+IE3cZ3DuOosirJu/INcFn53+KMAee5oRE7ari9VJt9LqcTKD/HTiWbXWDDQb1upLYWEojsleQ==
+X-Received: by 2002:a17:907:7294:b0:9e2:b250:98ca with SMTP id dt20-20020a170907729400b009e2b25098camr2948628ejc.28.1699511042727;
+        Wed, 08 Nov 2023 22:24:02 -0800 (PST)
+Received: from [192.168.100.74] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id c7-20020a170906694700b0099293cdbc98sm2122227ejs.145.2023.11.08.22.24.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Nov 2023 22:24:02 -0800 (PST)
+Message-ID: <25059951-ca50-4b19-8f74-5631b34c719b@gmail.com>
+Date: Thu, 9 Nov 2023 07:24:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 1/2] coresight: Add remote etm support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] hwmon: (core) Add support for humidity min/max
+ alarm
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
+ <20231020-topic-chipcap2-v2-2-f5c325966fdb@gmail.com>
+ <44f1eaa3-a90d-42cf-9808-4f39aacbf270@roeck-us.net>
 Content-Language: en-US
-To: James Clark <james.clark@arm.com>
-CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        "Tao Zhang" <quic_taozha@quicinc.com>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Alexander
- Shishkin <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-References: <20231107060939.13449-1-quic_jinlmao@quicinc.com>
- <20231107060939.13449-2-quic_jinlmao@quicinc.com>
- <d396d9ba-9574-8f11-8bbb-d1fd939421c5@arm.com>
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <d396d9ba-9574-8f11-8bbb-d1fd939421c5@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VjY_-4w8KGhmRAuyOfByjDGBklUm9DZT
-X-Proofpoint-ORIG-GUID: VjY_-4w8KGhmRAuyOfByjDGBklUm9DZT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-09_04,2023-11-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- adultscore=0 mlxlogscore=999 priorityscore=1501 suspectscore=0
- malwarescore=0 bulkscore=0 clxscore=1015 spamscore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311090050
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <44f1eaa3-a90d-42cf-9808-4f39aacbf270@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hello,
 
-On 11/8/2023 7:19 PM, James Clark wrote:
->
-> On 07/11/2023 06:09, Mao Jinlong wrote:
->> Add support for ETM trace collection on remote processor using
->> coreSight framework.
+On 09.11.23 01:02, Guenter Roeck wrote:
+> On 11/8/23 07:37, Javier Carrasco wrote:
+>> Add min_alarm and max_alarm attributes for humidityX to support devices
+>> that can generate these alarms.
+>> Such attributes already exist for other magnitudes such as tempX.
 >>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>> Tested with a ChipCap 2 temperature-humidity sensor.
+>>
+> 
+> No objection, but the new attributes also need to be added to the ABI
+> documentation at
+> Documentation/ABI/testing/sysfs-class-hwmon and
+> Documentation/hwmon/sysfs-interface.rst
+> 
+> Which made me notice that humidityX_alarm isn't documented either.
+> Please document that attribute as well while you are at it.
+> 
+> Thanks,
+> Guenter
+> 
+Actually there are several attributes without ABI documentation or at
+least the attributes enum is much larger than the objects in the ABI
+documentation (in testing/sysfs-class-hwmon).
+For humidity there is only input, enable, rated_min and rated_max. Are
+some attributes not described for a good reason or should all be
+documented? the current humidity_attributes contains:
+
+hwmon_humidity_enable -> documented in sysfs-class-hwmon
+hwmon_humidity_input -> documented in sysfs-class-hwmon
+hwmon_humidity_label
+hwmon_humidity_min
+hwmon_humidity_min_hyst
+hwmon_humidity_max
+hwmon_humidity_max_hyst
+hwmon_humidity_alarm
+hwmon_humidity_fault
+hwmon_humidity_rated_min -> documented in sysfs-class-hwmon
+hwmon_humidity_rated_max -> documented in sysfs-class-hwmon
+
+I could not find the temperature counterparts of my new additions
+(temp_min_alarm and temp_max_alarm).
+
+Should all be added to sysfs-class-hwmon or am I missing some other
+document? I am alright adding the ones I mentioned.
+
+>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 >> ---
->>   drivers/hwtracing/coresight/Kconfig           |   9 +
->>   drivers/hwtracing/coresight/Makefile          |   1 +
->>   drivers/hwtracing/coresight/coresight-core.c  |   3 +
->>   drivers/hwtracing/coresight/coresight-qmi.h   | 109 ++++++
->>   .../coresight/coresight-remote-etm.c          | 325 ++++++++++++++++++
->>   include/linux/coresight.h                     |   1 +
->>   6 files changed, 448 insertions(+)
->>   create mode 100644 drivers/hwtracing/coresight/coresight-qmi.h
->>   create mode 100644 drivers/hwtracing/coresight/coresight-remote-etm.c
+>>   drivers/hwmon/hwmon.c | 2 ++
+>>   include/linux/hwmon.h | 4 ++++
+>>   2 files changed, 6 insertions(+)
 >>
->> diff --git a/drivers/hwtracing/coresight/Kconfig b/drivers/hwtracing/coresight/Kconfig
->> index 06f0a7594169..425886ab7401 100644
->> --- a/drivers/hwtracing/coresight/Kconfig
->> +++ b/drivers/hwtracing/coresight/Kconfig
->> @@ -247,4 +247,13 @@ config CORESIGHT_DUMMY
->>   
->>   	  To compile this driver as a module, choose M here: the module will be
->>   	  called coresight-dummy.
->> +
->> +config CORESIGHT_REMOTE_ETM
->> +	tristate "Remote processor ETM trace support"
->> +	select QCOM_QMI_HELPERS
->> +	help
->> +	  Enables support for ETM trace collection on remote processor using
->> +	  CoreSight framework. Enabling this will allow turning on ETM
->> +	  tracing on remote processor via sysfs by configuring the required
->> +	  CoreSight components.
->>   endif
->> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
->> index 995d3b2c76df..a5283cab0bc0 100644
->> --- a/drivers/hwtracing/coresight/Makefile
->> +++ b/drivers/hwtracing/coresight/Makefile
->> @@ -29,5 +29,6 @@ obj-$(CONFIG_CORESIGHT_TPDM) += coresight-tpdm.o
->>   obj-$(CONFIG_CORESIGHT_TPDA) += coresight-tpda.o
->>   coresight-cti-y := coresight-cti-core.o	coresight-cti-platform.o \
->>   		   coresight-cti-sysfs.o
->> +obj-$(CONFIG_CORESIGHT_REMOTE_ETM) += coresight-remote-etm.o
->>   obj-$(CONFIG_ULTRASOC_SMB) += ultrasoc-smb.o
->>   obj-$(CONFIG_CORESIGHT_DUMMY) += coresight-dummy.o
->> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
->> index d7f0e231feb9..f365a3899821 100644
->> --- a/drivers/hwtracing/coresight/coresight-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-core.c
->> @@ -1094,6 +1094,7 @@ static int coresight_validate_source(struct coresight_device *csdev,
->>   	if (subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_PROC &&
->>   	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE &&
->>   	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM &&
->> +	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_REMOTE_PROC &&
-......
-> +{
-> +	return platform_driver_register(&remote_etm_driver);
-> +}
-> +module_init(remote_etm_init);
-> +
-> +void __exit remote_etm_exit(void)
-> +{
-> +	platform_driver_unregister(&remote_etm_driver);
-> +}
-> +module_exit(remote_etm_exit);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("CoreSight Remote ETM driver");
-> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
-> index a4cb7dd6ca23..f0a947a61680 100644
-> --- a/include/linux/coresight.h
-> +++ b/include/linux/coresight.h
-> @@ -65,6 +65,7 @@ enum coresight_dev_subtype_source {
->   	CORESIGHT_DEV_SUBTYPE_SOURCE_BUS,
->   	CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE,
->   	CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM,
-> +	CORESIGHT_DEV_SUBTYPE_SOURCE_REMOTE_PROC,
->   	CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS,
->   };
->   
-Thanks for the review. I will check the comments and address your 
-comments in next version.
-
-Thanks
-Jinlong Mao
-
+>> diff --git a/drivers/hwmon/hwmon.c b/drivers/hwmon/hwmon.c
+>> index c7dd3f5b2bd5..7f92984c37d9 100644
+>> --- a/drivers/hwmon/hwmon.c
+>> +++ b/drivers/hwmon/hwmon.c
+>> @@ -579,8 +579,10 @@ static const char * const
+>> hwmon_humidity_attr_templates[] = {
+>>       [hwmon_humidity_input] = "humidity%d_input",
+>>       [hwmon_humidity_label] = "humidity%d_label",
+>>       [hwmon_humidity_min] = "humidity%d_min",
+>> +    [hwmon_humidity_min_alarm] = "humidity%d_min_alarm",
+>>       [hwmon_humidity_min_hyst] = "humidity%d_min_hyst",
+>>       [hwmon_humidity_max] = "humidity%d_max",
+>> +    [hwmon_humidity_max_alarm] = "humidity%d_max_alarm",
+>>       [hwmon_humidity_max_hyst] = "humidity%d_max_hyst",
+>>       [hwmon_humidity_alarm] = "humidity%d_alarm",
+>>       [hwmon_humidity_fault] = "humidity%d_fault",
+>> diff --git a/include/linux/hwmon.h b/include/linux/hwmon.h
+>> index 8cd6a6b33593..154de35e34ac 100644
+>> --- a/include/linux/hwmon.h
+>> +++ b/include/linux/hwmon.h
+>> @@ -286,8 +286,10 @@ enum hwmon_humidity_attributes {
+>>       hwmon_humidity_input,
+>>       hwmon_humidity_label,
+>>       hwmon_humidity_min,
+>> +    hwmon_humidity_min_alarm,
+>>       hwmon_humidity_min_hyst,
+>>       hwmon_humidity_max,
+>> +    hwmon_humidity_max_alarm,
+>>       hwmon_humidity_max_hyst,
+>>       hwmon_humidity_alarm,
+>>       hwmon_humidity_fault,
+>> @@ -299,8 +301,10 @@ enum hwmon_humidity_attributes {
+>>   #define HWMON_H_INPUT            BIT(hwmon_humidity_input)
+>>   #define HWMON_H_LABEL            BIT(hwmon_humidity_label)
+>>   #define HWMON_H_MIN            BIT(hwmon_humidity_min)
+>> +#define HWMON_H_MIN_ALARM        BIT(hwmon_humidity_min_alarm)
+>>   #define HWMON_H_MIN_HYST        BIT(hwmon_humidity_min_hyst)
+>>   #define HWMON_H_MAX            BIT(hwmon_humidity_max)
+>> +#define HWMON_H_MAX_ALARM        BIT(hwmon_humidity_max_alarm)
+>>   #define HWMON_H_MAX_HYST        BIT(hwmon_humidity_max_hyst)
+>>   #define HWMON_H_ALARM            BIT(hwmon_humidity_alarm)
+>>   #define HWMON_H_FAULT            BIT(hwmon_humidity_fault)
+>>
+> 
+Best regards,
+Javier Carrasco
 
