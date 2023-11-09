@@ -1,100 +1,164 @@
-Return-Path: <devicetree+bounces-14834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C8F7E6E70
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:17:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71217E6E7B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:18:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71BBD1C20364
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 16:17:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DC07281055
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 16:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C972A210F1;
-	Thu,  9 Nov 2023 16:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37331210F1;
+	Thu,  9 Nov 2023 16:18:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DqAcvwh7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wNHjboC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB61D1DDF2
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 16:17:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 424CFC433BA;
-	Thu,  9 Nov 2023 16:17:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699546634;
-	bh=MHoWuekJf7fZq+eCzFMo8ejeVfJQEuG6O0L8sRZ3zdw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DqAcvwh7gcbigIUgyDm0Ck7aJoA4cCqzACaIpsw3g6pDS3duLYNexl9TunWAd0Yvk
-	 PjAyS+/TfSLFabNdbHPo4F9JO6hKZP9jsn0xeAciukKn/Y00maYsvLoegWa0vfkWpG
-	 JW/TOSvV1FpH7yx6m1s97E720GZEvIJNVd+wtiNwr6rSL6RNUpL5ZrVwmyTlwkN7cy
-	 AYbVC5PeVt043B5OA9if0qFzxRCQNccX75V9/dAcwgGOmjrNYof17yHvc6YpdHpLtn
-	 fDO/j8cwBHfluPB5JYQxy9D6UlltFK9P66LmSwo03Ia0oYL9e8x96yxB4+Jda+tWlJ
-	 Qte/CugKciSww==
-Date: Thu, 9 Nov 2023 21:46:56 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bart Van Assche <bvanassche@acm.org>,
-	Ziqi Chen <quic_ziqichen@quicinc.com>, quic_asutoshd@quicinc.com,
-	quic_cang@quicinc.com, beanhuo@micron.com, avri.altman@wdc.com,
-	junwoo80.lee@samsung.com, martin.petersen@oracle.com,
-	quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
-	quic_rampraka@quicinc.com, linux-scsi@vger.kernel.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Wolfram Sang <wsa@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: ufs: Add msi-parent for UFS MCQ
-Message-ID: <20231109161656.GH3752@thinkpad>
-References: <1698835699-28550-1-git-send-email-quic_ziqichen@quicinc.com>
- <20231106144831.GA317907-robh@kernel.org>
- <5850d5ac-e735-4358-866d-f410b00ba39d@acm.org>
- <CAL_Jsq+XB5p_K3C+rc5XetQ-Xfxu4umNFzcF0idB2hhZvS7HLA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A204520B10
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 16:18:29 +0000 (UTC)
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD7D173E
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:18:28 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c515527310so13769411fa.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 08:18:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699546707; x=1700151507; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oemg/XuC5ShAmdM2pBXqSj3mgBLJ/7eTLgLFmATn+qY=;
+        b=wNHjboC/vN1Lk/7SIJN+6S0a3OFzpkNiR2Sbm41FumPg7FY1EM9IxZp45ZHUaCut/2
+         n/a5Zt0R1AAVDpqcL59OIZUe+R87vA5mMtAq9Z1aruAeq5xRAsMcYy8azhxK7KIKq95m
+         4N9ZUvsOS4NEymejZcTWuSb4DTrUjYVpcsn0lKvJM/bss+u91UTifgPkidKrdAanfdj1
+         73EAIGP8Ro22EgIgV8Lb+fU3F1a/3KYeYZVHWTXbK6kvYZ0UFfjjygfXfMIeKfDUKeUo
+         GNbfZjjjhMBt40cvbcRHGDYkq5j/HX2T6xaesvUI8prjIS7UKAlb5O+bVskLhx2hUWDD
+         x9Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699546707; x=1700151507;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oemg/XuC5ShAmdM2pBXqSj3mgBLJ/7eTLgLFmATn+qY=;
+        b=tnhqL48a4JeYZDBFs4eb8/HBNYdHonSM/aNQ/qFoTrFjDzLnKqnnhkdhN39HWTPWpd
+         LhMLF4cs09GU+DBCpLol8+dUMoWKo5ZBbV/GzOavel9jeq/8PwCDJE7sV8PegXOkQpup
+         dJpVBELQQ+dfs+1YmG8L7yv8O+WRW317ABNpC7uz7BSFl6fpWTwu3IfGFPw7DuD43dyo
+         5kIVklMSeI2TIoDurGuP5/FgfZPEK9Hsccm4OLsL005AMJYfV3LSQZlHtDJFMeFJWa/T
+         XbBRIHOm4w2Afrtbaa2rNDfGhtovAMyizPLynBhs2iEMxeQFAjmqzpqZw1LJUjvqYYnr
+         W40A==
+X-Gm-Message-State: AOJu0YxF1cet75JcytpJ1fk5Ybj450VDplV5wmdjCMgsyZwDzZU69B5B
+	3JWQoWMKC0Vwt0fneoLKglYutQ==
+X-Google-Smtp-Source: AGHT+IEuxRek3oq49L9luwn9G58dmX/rvNzgu6excSWHSKuvyj5kAvMPai/Nz6EfosKiOOceVRQEAA==
+X-Received: by 2002:a05:6512:3141:b0:500:9a45:63b with SMTP id s1-20020a056512314100b005009a45063bmr1663721lfi.13.1699546706923;
+        Thu, 09 Nov 2023 08:18:26 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id x21-20020a1c7c15000000b0040a3f9862e3sm622112wmc.1.2023.11.09.08.18.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 08:18:26 -0800 (PST)
+Message-ID: <daae2f05-66ea-4f21-a47d-6e384bd35dee@linaro.org>
+Date: Thu, 9 Nov 2023 17:18:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+XB5p_K3C+rc5XetQ-Xfxu4umNFzcF0idB2hhZvS7HLA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] hwmon: Add support for Amphenol ChipCap 2
+Content-Language: en-US
+To: Guenter Roeck <linux@roeck-us.net>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
+ <20231020-topic-chipcap2-v2-3-f5c325966fdb@gmail.com>
+ <30ccb0a9-c0bd-491e-817f-def0aeda11c6@linaro.org>
+ <d5692ab7-6d11-41f3-89ec-246a2fc045a8@roeck-us.net>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d5692ab7-6d11-41f3-89ec-246a2fc045a8@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 09, 2023 at 07:55:14AM -0600, Rob Herring wrote:
-> On Mon, Nov 6, 2023 at 11:56 AM Bart Van Assche <bvanassche@acm.org> wrote:
-> >
-> > On 11/6/23 06:48, Rob Herring wrote:
-> > > On Wed, Nov 01, 2023 at 06:48:13PM +0800, Ziqi Chen wrote:
-> > >> The Message Signaled Interrupts (MSI) has been introduced
-> > >> to UFS driver since the MCQ be enabled.
-> > >
-> > > Not really relevant when a driver supported MSI, but the when the h/w
-> > > did. Has UFS always supported MSI? It was added in some version of the
-> > > spec?
-> >
-> > MSI support has been introduced in UFSHCI version 4.0 and I think that
-> > the controller vendor can decide whether or not to implement MSI. Does
-> > this mean that the patch needs to be improved?
-> 
-> Yes, this information is what should be in the commit msg rather than
-> driver details.
-> 
+On 09/11/2023 15:55, Guenter Roeck wrote:
+>>> +	if (IS_ERR(data->hwmon)) {
+>>> +		ret = PTR_ERR(data->hwmon);
+>>> +		goto cleanup;
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +
+>>> +cleanup:
+>>> +	if (cc2_disable(data))
+>>> +		dev_dbg(dev, "Failed to disable device");
+>>> +
+>>> +	return dev_err_probe(dev, ret,
+>>> +			     "Unable to register hwmon device\n");
+>>
+>> Drop or move to each error path.
+>>
+> This actually follows Documentation/process/coding-style.rst, chapter 7
+> (Centralized exiting of functions).
 
-Yes, agreed. Ziqi, please update the commit message to incorporate the hw
-details about when MCQ/MSI got introduced. Devicetree binding should describe
-the hw, not the driver.
+The point is that centralized message of error is useless. Probe failure
+is already handled by core, thus another message doing the same is
+redundant. What is needed to explain the true reason of failure, thus
+the error message should be next to each type of failure. Missing
+regulator? Say it. Missing clock? Say something else.
 
-- Mani
+Best regards,
+Krzysztof
 
-> Rob
-
--- 
-மணிவண்ணன் சதாசிவம்
 
