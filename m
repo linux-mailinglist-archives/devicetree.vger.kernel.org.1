@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC9D7E65BD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0085A7E65C1
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:54:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D91F1C2093A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:53:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 235BA1C209C3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B694A10782;
-	Thu,  9 Nov 2023 08:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B27107A3;
+	Thu,  9 Nov 2023 08:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OOwGhTxC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZiNgEDLc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2321097E
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:53:45 +0000 (UTC)
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663111BDF
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:53:44 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-32dcd3e5f3fso367482f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:53:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F81410947
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:54:13 +0000 (UTC)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C72D171D
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:54:12 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32d9d8284abso358841f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:54:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699520023; x=1700124823; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699520051; x=1700124851; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m3yImQCKVYVP/hw+lGjw+bq25vA1XBEmQlhdof4Nol0=;
-        b=OOwGhTxCq2pO6LwbKUYCehEfLyNOGgPIoZxTDpXZyQZE6W+X7cYbUB/HgphZsTF80y
-         tFJJi0MQePq4a5ZvJ4mBGiJn6uxkk9cY2Y5ct3Qa3oi0MBPNn/A+S7smOAnFkl1jmHCB
-         4pismWRWxi1zOZPq3hOoBBtC/MzmdDOzdqXfAluRE10FJgIzGuggT0feutByTHML9aCY
-         /rszb28LFCJMR0mr93UR6KXYFc7ktq73K6TJl9V25icpKTvXMQHLVmGaYG1+yfTsOeMc
-         UhG6phTVh4t0+3K9Ex+bLtZwmZ39X/S1MOOwap+MpnaBsApCQTFHyUZMHDdZ/IZ+zpVB
-         gWSA==
+        bh=H36Ek5KB/UgwujT3xbiViE29+ATs5ttXCeDqco+etqY=;
+        b=ZiNgEDLc4Fn3WA8YhOCWpj5Ax2O66PmangvFyQNOZ3I08iEGT4rLSf8U1IsC5Mut7q
+         c3XHooWVpkzlUwSnJpwPc+DIDfAJ9ia4X5lF5uc7UXr2Az70q4FapiYK5YawiZO8+XKy
+         iWUf06fA7sugTY73E5PFWVnJpJRMqT5FKV8nSFV7aYHnPYvE83Ai7xd9Ar/U/QzO8aa3
+         YMAfQfN7gJEvj4zbYAWv4hoyfzA+oXesRIFVQNq8WbPKuEH+gNv/ZtxnICGlCBK5KUc9
+         tfKVPtkF5n2y8szXAdlE9Xqmq1jXiwDw1As7YEk101+Byv2wZpbMHHkYXJayfXRdZ3t6
+         JrYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699520023; x=1700124823;
+        d=1e100.net; s=20230601; t=1699520051; x=1700124851;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m3yImQCKVYVP/hw+lGjw+bq25vA1XBEmQlhdof4Nol0=;
-        b=VMWwr9OCFl3yVyWC8Zb7xeIuZZLq1WpeoMhJ2gyBAM9qAcf/gjFm8g5btBhv8bMCQP
-         zj6IweK8BUii7WtatUoyuviL115HK5nd+/lHYEeuV5LodkTv4x+QtWJTM98Pk65qpyQc
-         Af/s+tmCaXqRqImw5ujNA8sr9xDUHGzMwNPYIsB2BjCPQVy+LQ/KJEMN9T5lBH76hYAu
-         QcHfcb9R0fAVcFpqlbCF3PYZ1tEPMWbbyv7W0rU98lPCRaKCm55E4EZNc9qD1MtKWVJP
-         qPpvl+vf6awjvtl1EdpzBtEzTupAEV/NdgB4OE4YaP6yEGk8D1d4OtEV8pPgoJbhZZ+B
-         qelw==
-X-Gm-Message-State: AOJu0YxZTOod4iG5WWkFfulWsfNwlbC0eA20Q829mebqXiYhQQR0GvcY
-	+MCQyOIPGxs6JixKaGfgS7pFng==
-X-Google-Smtp-Source: AGHT+IG0rMPzekOk4l/8iTBLQEffoSSaY5oVaJ7wQodyRL7mAaWa6HJPQTwl7jj6RAmJmujgAAZ6Kw==
-X-Received: by 2002:adf:e781:0:b0:32d:9a8f:6245 with SMTP id n1-20020adfe781000000b0032d9a8f6245mr3649213wrm.68.1699520022948;
-        Thu, 09 Nov 2023 00:53:42 -0800 (PST)
+        bh=H36Ek5KB/UgwujT3xbiViE29+ATs5ttXCeDqco+etqY=;
+        b=U8iHUz8eTvQfR8GQQ7Bq/C8AtqYg53weJM1SuVyhl7efyhC4MB69tIfu2WSulpKS9F
+         dlAIOXf+tjhQ6NIEB5Qrb7JxeQdEq2Q1ojcLryZfZCicLKpm4Xe8ckdMu39TMFVhHYFo
+         moin9rrR4+WIYntxCU0J+VUgej3ET9dtRQ5Pv2erhTVsBsEbks9N66LyAeR1+Xm0gsuj
+         7V29HAWr/mnn5EWRRIbOicFOtZsAKL1c8ZHrTl4Y/wBcf3xSrTxm92XykGhk/yZ4ENMy
+         kR3lcs7XrMzYxFT2j/plQ3ybE9hHbJ0Ek5OYkppI8/j6d4BGUMt73PZ9+YGnjCXVV2l5
+         tx6Q==
+X-Gm-Message-State: AOJu0YxTdGJ2NG6aKfS33uM8mplAal08gSaxM2upnVLGo0s2QyeYcA5N
+	8dAx16ZCVOcmCVPLme/FeAXbHQ==
+X-Google-Smtp-Source: AGHT+IEM44//IRgFor0P70nqVRCCjc2lA9SQP5VDfZCvrF8RUCDzLH7V6dgfqRvmKCqGdz/hpsZUng==
+X-Received: by 2002:a5d:5389:0:b0:32f:7c6c:aa18 with SMTP id d9-20020a5d5389000000b0032f7c6caa18mr3618369wrv.38.1699520050852;
+        Thu, 09 Nov 2023 00:54:10 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id v5-20020adfa1c5000000b0032d81837433sm6944964wrv.30.2023.11.09.00.53.41
+        by smtp.gmail.com with ESMTPSA id v5-20020adfa1c5000000b0032d81837433sm6944964wrv.30.2023.11.09.00.54.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 00:53:42 -0800 (PST)
-Message-ID: <805967a5-5fdf-4580-9327-82a3c99d427a@linaro.org>
-Date: Thu, 9 Nov 2023 09:53:40 +0100
+        Thu, 09 Nov 2023 00:54:10 -0800 (PST)
+Message-ID: <0221ef7f-7043-4959-9df1-64182d325c69@linaro.org>
+Date: Thu, 9 Nov 2023 09:54:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,19 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: add Amphenol
+Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
 Content-Language: en-US
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
- <20231020-topic-chipcap2-v2-1-f5c325966fdb@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oxffffaa@gmail.com, kernel@sberdevices.ru,
+ Liang Yang <liang.yang@amlogic.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231109053100.3849655-1-avkrasnov@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,17 +126,29 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231020-topic-chipcap2-v2-1-f5c325966fdb@gmail.com>
+In-Reply-To: <20231109053100.3849655-1-avkrasnov@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/11/2023 16:37, Javier Carrasco wrote:
-> Add vendor prefix for Amphenol (https://www.amphenol-sensors.com)
+On 09/11/2023 06:30, Arseniy Krasnov wrote:
+> Add pinctrl node for the Meson NAND controller.
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
 > ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index a49aa62e3f9f..98a17953e969 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -432,6 +432,27 @@ mux-1 {
+>  					};
+>  				};
+>  
+> +				nand_all_pins: nand_all_pins {
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No underscores in node names. Doesn't dtbs_check point it?
 
 Best regards,
 Krzysztof
