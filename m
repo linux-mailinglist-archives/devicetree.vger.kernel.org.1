@@ -1,65 +1,67 @@
-Return-Path: <devicetree+bounces-14822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AC67E6BD0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 14:58:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9073D7E6C9F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 15:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FE8B1C20BCB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 13:58:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA1221C204DA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 14:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2D81E51A;
-	Thu,  9 Nov 2023 13:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE5F1944D;
+	Thu,  9 Nov 2023 14:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pR9Ny5mG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cVArIc5N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B071DFF1
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 13:58:05 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F35272C
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 05:58:04 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40907b82ab9so12276785e9.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 05:58:04 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1608D179B1;
+	Thu,  9 Nov 2023 14:47:16 +0000 (UTC)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE09325B;
+	Thu,  9 Nov 2023 06:47:15 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5bf58914bacso8362237b3.3;
+        Thu, 09 Nov 2023 06:47:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699538283; x=1700143083; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KbosBewO6sn8YQ6qsTc+eHOzmL2IQ1+JtifimKJRbp8=;
-        b=pR9Ny5mGS+dZdVHmvxPKbMMkTCBMbDJsnQJxpJ9ZUVTJQEo7ftzPIS8mHwZnsWfmYP
-         6Fip9YSnYikDZNDRuaz7ZmmvYPzI8Ce+/dZPXTye+2JSPdWNlF4QLsSKNyq8ee+vEHJ1
-         Q+ZUy8DEWxWyeggZuA8FhjpRGkOaRep12+Eib1ZZKvA3P69C14Voe+OL6fV5jItejECO
-         aQhW4H+FdAntxMpT7l/s+d6AwYfLhRxp23dcPODgjMCIQtPLp4YUAdow0eo/P8FxLvi4
-         h0QU57EPjDrYF0aXf0NqObEc1s+Yi/0MaOgShjBTTVzsxnrlcZ5xXqnSAEGS+kCqcxVH
-         Gr0w==
+        d=gmail.com; s=20230601; t=1699541234; x=1700146034; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=VV7Jzetcl/qBR3tZg/th8WOMrz/y0Xa/41dX+nUFncU=;
+        b=cVArIc5NnIDhvODhcATVnppXcf0tW7TUlz6JsNj6YBIJx2CDR++8rcGCblZb5HKGLq
+         /1uYTTCKBzR95mpYvnDylcBkLo0ewM0piiMf1kbIfkwOM0NYWi8eB4sTfvwaeSnIP5ws
+         HDstmoBoC8o3IF7BRLZJjLClsFWWDf6vrNNMSjIXptQydCdAGvvY8z/mLQaja9lBFv8y
+         Mdb1crGf0As7QrTyTu/MYEwj8olyc7oQ/rbtLoZsYMboXLVg7VGe3U+NiTAmB5MOlgmP
+         VJHkfjyxKC1zmRw4UPpaRQEymhrMgmb+A34cpi/srHBoCDTpEv77Ocwc9Mtjr0NwBPVH
+         8VZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699538283; x=1700143083;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KbosBewO6sn8YQ6qsTc+eHOzmL2IQ1+JtifimKJRbp8=;
-        b=b5taIhcVuFYQ1mLIdvldJF5OOTbY3Kdwp48hbE/bcMhS0UOkNkN21YkAauDZ64jL3G
-         QP2Nf9ir+CThc/Yv2r4VbjGWey2uhg9V3lBI9QBoxNv2vDZiM2WJyGS7STVvXfAjCGZf
-         7vSNghZ2ZUdfMh4j0TRVWZvfGAlm5m4L8AmQ/0wXtM9BXaqr9SQyzsG/7ODDHeH66LRk
-         7QSC5/YdudJU8uzIo3+bi+I3BUcGOtqabjdneBlmdclZyki7ePBn0dsUYr8B/UcukZej
-         6fs0/+mP7/nTyjsJQNlMir58lFSvEGNqRkh/9fZzton7jE1PCbnZziqKYauMpbmfo5Le
-         djPg==
-X-Gm-Message-State: AOJu0Yzp79WEsGH9HE7s4XV9GyjG14BLWpQY8l9MGNmrVWD8jtJp1+YO
-	REJOAogfxCfmi41A/dEIZ4TfoQ==
-X-Google-Smtp-Source: AGHT+IF1UNg9lqHDFjFhxuqcIqTN1ABswd71CmIMUjOHWfOJBv+DeHRKi2Y/T8fea7smmbNiLIU8Dg==
-X-Received: by 2002:a05:600c:5008:b0:405:358c:ba74 with SMTP id n8-20020a05600c500800b00405358cba74mr10749655wmr.0.1699538282673;
-        Thu, 09 Nov 2023 05:58:02 -0800 (PST)
-Received: from [10.66.66.2] (9.ip-51-91-159.eu. [51.91.159.9])
-        by smtp.gmail.com with ESMTPSA id m6-20020a05600c3b0600b004077219aed5sm2225410wms.6.2023.11.09.05.57.59
+        d=1e100.net; s=20230601; t=1699541234; x=1700146034;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VV7Jzetcl/qBR3tZg/th8WOMrz/y0Xa/41dX+nUFncU=;
+        b=G/RmpeUF6AUU2xlez4NfUNdEGas34G/9T6gKYHDXzxT2LFg0rTLSMzxeIzLsb15bRV
+         DHRwV5QsOgLAK59UVq6YVQjoWYhjkTBs4PRkf3Wrxo1E0S+7Q1o7cuv4+cB6aSsy9rxh
+         MnabfHUOAyjquYU6NQ+So3YyjrRTcqQrPerW6Osy1ysuKkaAttWvRjyu2oHl9IxoMqny
+         gVZlmlc1eunbzOuy+FSrRAYqN8v/GD0HBRWmPiFoZ4aYDG4q9512cl+mexli9zFvXs+3
+         koMw51AIE8su+HspsTJxjQweGJyEgtolLLKdxIPObdGeXk3hT8U9/aKbXuWDzSeYCzUM
+         MeiQ==
+X-Gm-Message-State: AOJu0YzN8FVe6iMCuzHgHbhqOJ9rqx+VlLFZ4V04OrzMCYm/XOTXpXJh
+	ru7kFR+fv/NiBRzA/1meKB4=
+X-Google-Smtp-Source: AGHT+IF5d6+q7krI10WZ5H1tVxnyyAaWQzgSB26UudFbzvdHGfsdsyHA/ahP9nbwbvoRFD236bXdGA==
+X-Received: by 2002:a0d:dd53:0:b0:594:e97b:f6fa with SMTP id g80-20020a0ddd53000000b00594e97bf6famr5234134ywe.30.1699541234472;
+        Thu, 09 Nov 2023 06:47:14 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id s38-20020a814526000000b005a7bf2aff15sm8060983ywa.95.2023.11.09.06.47.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 05:58:02 -0800 (PST)
-Message-ID: <fcf81479-6137-4290-8c71-5a72d7ff5398@linaro.org>
-Date: Thu, 9 Nov 2023 14:57:58 +0100
+        Thu, 09 Nov 2023 06:47:13 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <55391a93-2848-4885-b619-09a11b0ffb5c@roeck-us.net>
+Date: Thu, 9 Nov 2023 06:47:11 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,59 +69,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] phy: qcom-qmp-pcie: Add support to keep refclk
- always on
+Subject: Re: [PATCH 4/4] dt-bindings: hwmon: Add Amphenol ChipCap 2
 Content-Language: en-US
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
- quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
- quic_vpernami@quicinc.com, quic_parass@quicinc.com
-References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
- <8a12ccba-908d-405a-8fcb-411d50a66ebe@linaro.org>
- <65d2bba9-b04c-f91b-100a-ffb07e9b615a@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <65d2bba9-b04c-f91b-100a-ffb07e9b615a@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v1-0-087e21d4b1ed@gmail.com>
+ <20231020-topic-chipcap2-v1-4-087e21d4b1ed@gmail.com>
+ <5a35f02d-31d0-4cef-9b46-f231d0611c7a@linaro.org>
+ <269222d8-b72f-4c7a-a19e-a82964e29ec8@gmail.com>
+ <4b1d6fe8-529b-4cf4-ba0a-697c7aeac174@linaro.org>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <4b1d6fe8-529b-4cf4-ba0a-697c7aeac174@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-
-
-On 11/9/23 10:32, Krishna Chaitanya Chundru wrote:
+On 11/9/23 00:41, Krzysztof Kozlowski wrote:
+> On 08/11/2023 13:44, Javier Carrasco wrote:
 > 
-> On 11/8/2023 3:27 AM, Konrad Dybcio wrote:
->>
->>
->> On 11/7/23 13:26, Krishna chaitanya chundru wrote:
->>> This series adds support to provide refclk to endpoint even in low
->>> power states.
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - amphenol,cc2dxx
+>>>> +      - amphenol,cc2dxxs
 >>>
->>> Due to some platform specific issues with CLKREQ signal, it is not being
->>> propagated to the host and as host doesn't know the clkreq signal host is
->>> not sending refclk. Due to this endpoint is seeing linkdown and going
->>> to bad state.
->>> To avoid those ref clk should be provided always to the endpoint. The
->>> issue is coming only when ep intiates the L1.1 or L1.2 exit and clkreq
->>> is not being propagated properly to the host.
->> I'm gonna sound like a broken record, but:
->>
->> How much power does this consume? Would it matter if we kept this
->> clock always-on for all platforms with this version of the phy?
->>
->> Konrad
+>>> What does xx stand for? Wildcard? I do not see cc2dxx in part numbers.
+>>> We expect specific compatibles, not generic. What are the differences
+>>> between all parts?
+>>>
+>> There are two device families: cc2dxx and cc2dxxs, where xx indicates
+>> the voltage and the accuracy. That does not change how the devices works
+>> and it is not relevant for the driver. The 's' indicates that it is a
+>> sleep device, and that modifies how it works.
+>> I listed the supported part numbers in the hwmon documentation, where
+>> they are also divided into these two families.
 > 
-> We see about 22mw extra power consumption with refclk always on.
+> If the number of devices is relatively small, list them all. Otherwise
+> choose one device model and use it. No family models. No wildcards.
 > 
-> We can't keep this property always on as there is impact on power consumption.
-Ooeheh, that's not far away from a low-clocked efficiency CPU core..
 
-Thanks for checking!
+Agreed. There is no guarantee that CC2D[00..99][X] will be the same
+devices.
 
-Konrad
+Guenter
 
