@@ -1,182 +1,129 @@
-Return-Path: <devicetree+bounces-14760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06F47E66B8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:27:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E61E7E66D7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:32:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D057F1C2080C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:27:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD33F281147
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:32:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03EB111B6;
-	Thu,  9 Nov 2023 09:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D08A125BB;
+	Thu,  9 Nov 2023 09:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ubimet.com header.i=@ubimet.com header.b="XJcQ6NVV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JYrzbt93"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1088711C97
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 09:27:05 +0000 (UTC)
-Received: from mx2-at.ubimet.com (mx2-at.ubimet.com [141.98.226.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F192590;
-	Thu,  9 Nov 2023 01:27:05 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mx2-at.ubimet.com (Postfix) with ESMTP id 0A93F811B2;
-	Thu,  9 Nov 2023 09:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ubimet.com;
-	s=20200131mdel; t=1699522024;
-	bh=7+ZKL25OyeOqccAovsHAB5v+Outjv3oP0OVWKABhcBk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=XJcQ6NVVVdDMcHM2e/Xa5F+RGFN/H1Ke5lrnLn7Kl8A8/iDZz0qOsqOtbkcac3NBP
-	 8dVaMFbVA9fqRLOO+ge3pABKvkJkVgnmPZRkMJukvFj8kN+GH3UJkK1KPu+j+ChxBm
-	 aaOB0yZR+DxWjXCblHoDKN/+mzOz4/xHBqUiAenNFZj2WIYD0Bw+ix4/HUlVS0za8j
-	 Y6A+lViZAz7HVf0y+WaVWC/wcFzjvMunfdEX4jxWss2yHVmp7sIDgmEnRJWkuqhGWX
-	 4Mfg5HxI4RNIXJSs1ZlWS3exhXuhgA/UK2JTxwiYb5YUqswu0k803MxAUKacZe2iMB
-	 O7Zc92dVTDhLA==
-Received: from mx2-at.ubimet.com ([127.0.0.1])
-	by localhost (mx02.dmz.dc.at.ubimet.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id OFw0DCezmNWE; Thu,  9 Nov 2023 09:27:03 +0000 (UTC)
-Received: from zimbra-mta01.ext.dc.at.ubimet.com (webmail-dc.at.ubimet.com [10.1.18.22])
-	by mx2-at.ubimet.com (Postfix) with ESMTPS id EBF4D80C23;
-	Thu,  9 Nov 2023 09:27:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTP id D03C780727;
-	Thu,  9 Nov 2023 09:27:03 +0000 (UTC)
-Received: from zimbra-mta01.ext.dc.at.ubimet.com ([127.0.0.1])
- by localhost (zimbra-mta01.ext.dc.at.ubimet.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id EMYkdeiCukID; Thu,  9 Nov 2023 09:27:02 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTP id 7D0B080758;
-	Thu,  9 Nov 2023 09:27:02 +0000 (UTC)
-X-Virus-Scanned: amavis at zimbra-mta01.ext.dc.at.ubimet.com
-Received: from zimbra-mta01.ext.dc.at.ubimet.com ([127.0.0.1])
- by localhost (zimbra-mta01.ext.dc.at.ubimet.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id qk1lHTgh8MgM; Thu,  9 Nov 2023 09:27:02 +0000 (UTC)
-Received: from pcn112 (pcn112.it.hub.at.ubimet.com [10.15.66.143])
-	by zimbra-mta01.ext.dc.at.ubimet.com (Postfix) with ESMTPSA id 1316680727;
-	Thu,  9 Nov 2023 09:27:02 +0000 (UTC)
-Date: Thu, 9 Nov 2023 10:26:27 +0100
-From: jrodrigues <jrodrigues@ubimet.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Bruno Thomsen <bruno.thomsen@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] ARM: dts: imx: tqma7: add lm75a sensor (rev. 01xxx)
-Message-ID: <20231109102627.0bafc531@pcn112>
-In-Reply-To: <1783737.VLH7GnMWUR@steina-w>
-References: <20231102231130.13ca0513@pcn112>
-	<CAOMZO5C8wq=72HUqSb9bdQK2ji2zcEKByByovnKzUt6A5H3K8Q@mail.gmail.com>
-	<2253436.iZASKD2KPV@steina-w>
-	<1783737.VLH7GnMWUR@steina-w>
-Followup-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D661413AC0;
+	Thu,  9 Nov 2023 09:32:27 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F80F26B1;
+	Thu,  9 Nov 2023 01:32:27 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A96P0WG020094;
+	Thu, 9 Nov 2023 09:32:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=MSo0Vd/69lNAkS5dSr1C0Fck1TJ8I+/LEIYMTgmoCzE=;
+ b=JYrzbt93maSKFhnVd+VaV9VBcQoaVHJRep8WTGN1AzlGsR1+lWHk4P7bzy8S23pXfCPU
+ ctjX+YD4np4DTE1cr+cdxP0E8FHoEuQN/r7pTBfzj6CjL5RxA4UPQCWZMOTcLJUdaqdu
+ wF64Jm+nahfxlHXNHZ7myajDI4Vb8sCW11lJGP5FzZaDQjIwCOTxhKEmCkrUjbd3KXhh
+ KcjOzTp/RAfZ8LlKt9bOLsrPpkI77wQ+TTkCIQJrA79WnmWaSb6Xn7a+rMHgB1ebD9HS
+ 9UNsTwmb17FQuuD6RPPpgURcohh5OvBD59R39Y83398ibAktduWGe4RW6maKgeiRKB0E vg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u8s088tq6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Nov 2023 09:32:11 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A99WApj002213
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Nov 2023 09:32:10 GMT
+Received: from [10.217.219.216] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
+ 2023 01:32:05 -0800
+Message-ID: <65d2bba9-b04c-f91b-100a-ffb07e9b615a@quicinc.com>
+Date: Thu, 9 Nov 2023 15:02:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v2 0/3] phy: qcom-qmp-pcie: Add support to keep refclk
+ always on
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_vpernami@quicinc.com>, <quic_parass@quicinc.com>
+References: <20231107-refclk_always_on-v2-0-de23962fc4b3@quicinc.com>
+ <8a12ccba-908d-405a-8fcb-411d50a66ebe@linaro.org>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <8a12ccba-908d-405a-8fcb-411d50a66ebe@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8cMpDyCswSDpKModc_41BgKMsQz2H4aa
+X-Proofpoint-ORIG-GUID: 8cMpDyCswSDpKModc_41BgKMsQz2H4aa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-09_08,2023-11-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ adultscore=0 mlxlogscore=760 priorityscore=1501 suspectscore=0
+ malwarescore=0 bulkscore=0 clxscore=1015 spamscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311090075
 
-Hi Alexander,
 
-On Thu, 09 Nov 2023 07:57:36 +0100
-Alexander Stein <alexander.stein@ew.tq-group.com> wrote:
+On 11/8/2023 3:27 AM, Konrad Dybcio wrote:
+>
+>
+> On 11/7/23 13:26, Krishna chaitanya chundru wrote:
+>> This series adds support to provide refclk to endpoint even in low
+>> power states.
+>>
+>> Due to some platform specific issues with CLKREQ signal, it is not being
+>> propagated to the host and as host doesn't know the clkreq signal 
+>> host is
+>> not sending refclk. Due to this endpoint is seeing linkdown and going
+>> to bad state.
+>> To avoid those ref clk should be provided always to the endpoint. The
+>> issue is coming only when ep intiates the L1.1 or L1.2 exit and clkreq
+>> is not being propagated properly to the host.
+> I'm gonna sound like a broken record, but:
+>
+> How much power does this consume? Would it matter if we kept this
+> clock always-on for all platforms with this version of the phy?
+>
+> Konrad
 
-> Hi Jo=C3=A3o,
->=20
-> Am Dienstag, 7. November 2023, 07:34:32 CET schrieb Alexander Stein:
-> > Hi,
-> >=20
-> > Am Freitag, 3. November 2023, 22:07:08 CET schrieb Fabio Estevam: =20
-> > > [Adding Bruno and Alexander]
-> > >=20
-> > > On Thu, Nov 2, 2023 at 7:12=E2=80=AFPM Jo=C3=A3o Rodrigues
-> > > <jrodrigues@ubimet.com>  =20
-> wrote:
-> > > > From: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-> > > >=20
-> > > > TQMa7x (revision 01xxx) uses a LM75A temperature sensor.
-> > > > The two sensors use different I2C addresses, so we can set both
-> > > > sensors simultaneously. =20
-> >=20
-> > I've contacted responsible department and I am waiting for more
-> > details. =20
->=20
-> I got response that REV.01xx was just a prototype and not released
-> officially.
+We see about 22mw extra power consumption with refclk always on.
 
-But REV. 01xx was not an internal-only prototype.=20
-Furthermore, in the board manual,
-https://www.tq-group.com/filedownloads/files/products/embedded/manuals/arm/=
-carrierboard/MBa7x/MBa7x.UM.0101.pdf
-section 4.1.2, the old version is still referenced.
+We can't keep this property always on as there is impact on power 
+consumption.
 
->=20
-> > Best regards,
-> > Alexander
-> >  =20
-> > > > Signed-off-by: Jo=C3=A3o Rodrigues <jrodrigues@ubimet.com>
-> > > > ---
-> > > >=20
-> > > >  arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi | 9 +++++++--
-> > > >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > > >=20
-> > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-> > > > b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi index
-> > > > fe42b0a4683..3fc3130f9de 100644
-> > > > --- a/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-> > > > +++ b/arch/arm/boot/dts/nxp/imx/imx7-tqma7.dtsi
-> > > > @@ -128,11 +128,16 @@ vgen6_reg: vldo4 {
-> > > >=20
-> > > >                 };
-> > > >        =20
-> > > >         };
-> > > >=20
-> > > > -       /* NXP SE97BTP with temperature sensor + eeprom */
-> > > > +       /* LM75A temperature sensor, TQMa7x 01xx */
-> > > > +       lm75a: temperature-sensor@48 {
-> > > > +               compatible =3D "national,lm75a";
-> > > > +               reg =3D <0x48>;
-> > > > +       }; =20
->=20
-> I don't like the idea of adding an i2c device for everybody. This
-> restricts/ affects usage of i2c address 0x48 for all rev.02xx users,
-> no?
+- Krishna Chaitanya
 
-Yes, it restricts the usage of I2C address 0x48 in I2C1.
-While I2C1 is not exclusive to the SoM, the TQMa7x manual states
-"I2C1 is used for devices on the TQMa7x".
-As a counterpoint, the MBa7x carrier board also uses I2C1.
-
->=20
-> Best regards,
-> Alexander
-> > > > +
-> > > > +       /* NXP SE97BTP with temperature sensor + eeprom, TQMa7x
-> > > > 02xx */
-> > > >=20
-> > > >         se97b: temperature-sensor-eeprom@1e {
-> > > >        =20
-> > > >                 compatible =3D "nxp,se97b", "jedec,jc-42.4-temp";
-> > > >                 reg =3D <0x1e>;
-> > > >=20
-> > > > -               status =3D "okay";
-> > > >=20
-> > > >         };
-> > > >        =20
-> > > >         /* ST M24C64 */
-> > > >=20
-> > > > --
-> > > > 2.25.1 =20
->=20
->=20
 
 
