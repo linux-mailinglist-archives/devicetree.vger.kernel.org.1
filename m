@@ -1,122 +1,117 @@
-Return-Path: <devicetree+bounces-14876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75AD07E73A4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 22:33:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB487E73D5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 22:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30D99280F8B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 21:33:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B16591F20622
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 21:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3DA38DDB;
-	Thu,  9 Nov 2023 21:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93EA138DF3;
+	Thu,  9 Nov 2023 21:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MKNxzbGa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pq67HwjB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD72838DD8
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 21:33:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9F83C433C8;
-	Thu,  9 Nov 2023 21:33:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699565598;
-	bh=ksMXL7JuxLefyNW85J+EYnJjuVKz/X0dBos8onrG1LY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=MKNxzbGaY6mBpEZtn1QzDfV4ts54b26DJKnhlTleYCCLiUj+7IesrVrsftXrpWn95
-	 n1JLCypQlzJOqt6XbvxnEPnUopUxKlGGn8julyNr59DiAYSn+cCLfzta3O7w5Kkr2D
-	 w+2VaLMrcKC9OcKIvTH8LIYrulkxJBBMkWrDiHgcRkaaz28hcO5CBWGYf1uZ56NAgd
-	 i8FMFyfVlwlGk9fDcMB/Cp8xjF3vPV88ejhKsVKWe5Tgm9I5tDEpHlXYDo0mTlX43S
-	 J/WctStnl47pFWDjcx7Jd+8eMldIhSyUTm8COzi6nkGttcr44SECEJrqeovVyw7vRs
-	 /e4ld6Grc5XQA==
-Date: Thu, 9 Nov 2023 15:33:15 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	Cyril Brulebois <kibi@debian.org>,
-	Phil Elwell <phil@raspberrypi.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 1/3] dt-bindings: PCI: brcmstb: Add property
- "brcm,clkreq-mode"
-Message-ID: <20231109213315.GA492812@bhelgaas>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ABD337157
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 21:50:16 +0000 (UTC)
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F8F3AA8
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 13:50:15 -0800 (PST)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-1f03fdfcfacso731763fac.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 13:50:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699566615; x=1700171415; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KHWtDVUYZSf0Guk+L6n4AjbYj4AnCFaIY1Xxcyv3l2c=;
+        b=Pq67HwjBmGK6z4ZuKgjP0OotFcZbRoNiqSCXB0sNehJ6XjRsEn+IG1R/txbEVCswHF
+         JzjUtViBR1/In2HKHdilYtV+Arp0IlY4hpMKdFR430HpAxVnIlApeocWsvbS1zFfJk5S
+         h5PhW1O2bQ0s8t4CGbm3aEz41ZpaKna9DGHRhII98G2F/pt8R5fOqYHatYt2jRzDXQk2
+         SKsIMkqIToeaW2ktgdXmz/tnuCoJt+Kv8qPIOCX19N/EVe097RmZMTmiHKYgKnN//vBC
+         rlkruQVqTROCF1V1PrRoFKAiYGzr4bFmtTq0KqUfnDYM/dZgKsOMK5LOVRjzHMYRXQH4
+         +/Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699566615; x=1700171415;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KHWtDVUYZSf0Guk+L6n4AjbYj4AnCFaIY1Xxcyv3l2c=;
+        b=ZGB2dgBrKU+6mFxYacaYMSp6CKUtHL7sLFH1IAr9HEGUIYN7jpP+Eio+VkxjrKY7ss
+         b0kc6BvUFkZJQdQBeITGeLIDbtJg8aCc4xJL9pAckb5InzxSGliUPGP/fOGwBFtmGPwa
+         BrZj+i0wWcQJvJu9lyOmgaPOTEfESRusaaTyC37tb5XSawdNutWH54/L0KnXwXOgKSNl
+         NcFmIauEFWMUS9nbABkTdw6LgGwACD/HOeMK4QLxxb35MzHUnA2zJXxeA1f9FBpy9oZl
+         mr49epzEy0epAkNNCCMSxx0HV5kWoZASpfw5qQA4GXFlZBfAwjpGUFue8bJsL97lfR+u
+         DLvw==
+X-Gm-Message-State: AOJu0YziTqMMR05Ss9MpRYAMQvUEhbMHij3htUWqJ6jj6Y1lqXTxB8/F
+	yT2N9AA7bL/sghnN0lZlzo0=
+X-Google-Smtp-Source: AGHT+IG1tUCieKLhfvTf/RY4xeb9CnluV/OI/K5u8iVdMN1jloug13hPXlZ6R1USTMrKbhXhGYgFWw==
+X-Received: by 2002:a05:6871:723:b0:1ea:fd4:58fb with SMTP id f35-20020a056871072300b001ea0fd458fbmr6987340oap.52.1699566614875;
+        Thu, 09 Nov 2023 13:50:14 -0800 (PST)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id tp22-20020a0568718b9600b001d4d8efa7f9sm864003oab.4.2023.11.09.13.50.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Nov 2023 13:50:14 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	daniel@ffwll.ch,
+	airlied@gmail.com,
+	sam@ravnborg.org,
+	neil.armstrong@linaro.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V2 0/4] rockchip: Add Powkiddy RK2023
+Date: Thu,  9 Nov 2023 15:50:03 -0600
+Message-Id: <20231109215007.66826-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231109191355.27738-2-james.quinlan@broadcom.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 09, 2023 at 02:13:52PM -0500, Jim Quinlan wrote:
-> The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-> requires the driver to deliberately place the RC HW one of three CLKREQ#
-> modes.  The "brcm,clkreq-mode" property allows the user to override the
-> default setting.  If this property is omitted, the default mode shall be
-> "default".
-> 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 7e15aae7d69e..992b35e915a5 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -64,6 +64,27 @@ properties:
->  
->    aspm-no-l0s: true
->  
-> +  brcm,clkreq-mode:
-> +    description: A string that determines the operating
-> +      clkreq mode of the PCIe RC HW WRT controlling the refclk signal.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-I assume "WRT" is shorthand for "with respect to", but it's slightly
-confusing following all the other acronyms.
+Add support for the Powkiddy RK2023, which is extremely similar to
+existing devices from Anbernic.
 
-> +      There are three different modes --
-> +      "safe", which drives the
-> +      refclk signal unconditionally and will work for all devices but does
-> +      not provide any power savings;
-> +      "no-l1ss" -- which provides Clock Power Management, L0s, and
-> +      L1, but cannot provide L1 substate (L1SS) power
-> +      savings. If the downstream device connected to the RC is
-> +      L1SS capable AND the OS enables L1SS, all PCIe traffic
-> +      may abruptly halt, potentially hanging the system;
-> +      "default" -- which provides L0s, L1, and L1SS, but not
-> +      compliant to provide Clock Power Management;
-> +      specifically, may not be able to meet the Tclron max
-> +      timing of 400ns as specified in "Dynamic Clock Control",
-> +      section 3.2.5.2.2 of the PCIe spec.  This situation is
-> +      atypical and should happen only with older devices.
+Changes since V1:
+ - Necessary clock changes have been accepted to mainline, so removed
+   from this series.
+   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?id=f1db0865b4628d5e2e85347350c077a71f0629d2
+ - Combined Powkiddy RK3566 devices in devicetree documentation.
+   Dropped ack from binding as this change is vastly different than
+   the previous update.
+ - Updated panel driver to hold panel in reset status after unprepare.
 
-These are all weirdly wrapped.  Really no reason to use lines shorter
-than 80.
+Chris Morgan (4):
+  dt-bindings: display: panel: Update NewVision NV3051D compatibles
+  nv3051d: Add Powkiddy RK2023 Panel Support
+  dt-bindings: arm: rockchip: Add Powkiddy RK2023
+  arm64: dts: rockchip: add Powkiddy RK2023
 
-Same spec citation question as in patch 2/3.
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +-
+ .../display/panel/newvision,nv3051d.yaml      |   2 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3566-powkiddy-rk2023.dts   | 161 ++++++++++++++++++
+ .../gpu/drm/panel/panel-newvision-nv3051d.c   |  57 +++++--
+ 5 files changed, 213 insertions(+), 14 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
 
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [ safe, no-l1ss, default ]
-> +
->    brcm,scb-sizes:
->      description: u64 giving the 64bit PCIe memory
->        viewport size of a memory controller.  There may be up to
+-- 
+2.34.1
+
 
