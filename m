@@ -1,285 +1,199 @@
-Return-Path: <devicetree+bounces-14780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EAFF7E679E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:15:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE107E67D3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6067B209DF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:15:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D80C8B20B41
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F9A1804D;
-	Thu,  9 Nov 2023 10:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D170A18C0A;
+	Thu,  9 Nov 2023 10:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KxI8Z5hS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F561802E
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 10:15:19 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5C6983592;
-	Thu,  9 Nov 2023 02:15:18 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D6F91063;
-	Thu,  9 Nov 2023 02:16:02 -0800 (PST)
-Received: from [10.1.36.59] (e127643.arm.com [10.1.36.59])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 74F2E3F703;
-	Thu,  9 Nov 2023 02:15:15 -0800 (PST)
-Message-ID: <1196a091-0af1-1658-338e-dba981d94ec3@arm.com>
-Date: Thu, 9 Nov 2023 10:15:13 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54B6D19440
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 10:23:49 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F09630C2
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 02:23:48 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4083740f92dso4569625e9.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 02:23:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699525427; x=1700130227; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=abqWbKoJvRUeVNOukLsY6JyZVWc7/K+e07P4bm1fqIQ=;
+        b=KxI8Z5hSGwOcPU5ncTuVj+7Dyhw2INrRjEOY1YyfKHV6lNulP8Lo6RutiKXRLZaU5p
+         LU3W+IaLKtOh90O4kFLMXdc5S4FuZo8GoTTHfprAGGEdFKf/PYhvifycr+my6W0gLUTh
+         h+BCF/4aBSct7dT8JJ5EY+KebJ1EbCYcPkriVRm3ngDTptcvHkpaLX+SkK1x2SdCq5nz
+         muXUcqven469/t9J5e1N7d8POT1qDvOkwpa6joQxu6gjFbSS3EMBOHbOeRCoBe0KePd1
+         vULmxOkqHR7k1EQjmVCOu8vZlADMdxu4PcvGIZzroZtReeXpjMpGoyr0mX6kGH3X6YGr
+         oE+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699525427; x=1700130227;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=abqWbKoJvRUeVNOukLsY6JyZVWc7/K+e07P4bm1fqIQ=;
+        b=PYRtL4tTILO1IUpV6UYsGVPoByhcYRsICGYfTPrwVmmqGLJXVaB6zmRItTbdTenM8r
+         3YOMuGU+fGPrWGOK5S0Fa1jiAaGi56KjYGRYRrZrxZia/1XExv8bOMZfnIuPjFgL5sQN
+         X2qzXlUUsOXDFHeFLmGsxdCNNG7U1ygO4S6Mx0/0lzpNyxTG/gYov2KS6rBvzKxqsXbc
+         nqLBX3NI3IHhY+Bb0WI3UmgaBBYTAQriOHC6a8S/I0p+yWUocnRj76iJxfuZBr4dytJ3
+         nIe7OSogncrQhmu7COFAqK5woM1CCRQYSHCP/EfCHP89x48oYK36OjmsntsYSoADZRPW
+         I/ow==
+X-Gm-Message-State: AOJu0YzSf4x0vpKIQgIQpyFWBHSEvjjX3wT0BIrtO5QXTEy+8QlGe7Q9
+	EnEikxwGV2DQkxaPuKnkd+afnA==
+X-Google-Smtp-Source: AGHT+IGmY55gJMxKush80aN1LgQ1fO7f8p1GzdPHjal1IkKOXJ4zpKUZHPMzk28dHOeAxpE2avGMAQ==
+X-Received: by 2002:a05:600c:524e:b0:402:bcac:5773 with SMTP id fc14-20020a05600c524e00b00402bcac5773mr4106560wmb.38.1699525426990;
+        Thu, 09 Nov 2023 02:23:46 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id c7-20020a5d4cc7000000b0032fa66bda58sm7074001wrt.101.2023.11.09.02.23.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 02:23:46 -0800 (PST)
+Message-ID: <3af60fa2-bcf3-4e38-952d-ad14253c415a@linaro.org>
+Date: Thu, 9 Nov 2023 11:23:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [EXT] Re: [PATCH 5/7] coresight: tmc: Add support for reading
- tracedata from previous boot
-To: Linu Cherian <lcherian@marvell.com>,
- "suzuki.poulose@arm.com" <suzuki.poulose@arm.com>,
- "mike.leach@linaro.org" <mike.leach@linaro.org>,
- "leo.yan@linaro.org" <leo.yan@linaro.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Sunil Kovvuri Goutham <sgoutham@marvell.com>,
- George Cherian <gcherian@marvell.com>,
- Anil Kumar Reddy H <areddy3@marvell.com>
-References: <20230929133754.857678-1-lcherian@marvell.com>
- <20230929133754.857678-6-lcherian@marvell.com>
- <acc2a406-2cff-eb3b-7661-1a93d4749bf2@arm.com>
- <9b519a19-548c-dec0-ed69-52695ff12a69@arm.com>
- <PH0PR18MB50021A139FE779A51257C41BCECDA@PH0PR18MB5002.namprd18.prod.outlook.com>
- <CO3PR18MB500522338168207AA463A642CEAFA@CO3PR18MB5005.namprd18.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] hwmon: Add support for Amphenol ChipCap 2
 Content-Language: en-US
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <CO3PR18MB500522338168207AA463A642CEAFA@CO3PR18MB5005.namprd18.prod.outlook.com>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v1-0-087e21d4b1ed@gmail.com>
+ <20231020-topic-chipcap2-v1-3-087e21d4b1ed@gmail.com>
+ <e58cdedb-1825-4713-9d3f-5239bb182230@linaro.org>
+ <285ec1d8-d277-403c-961f-3de523fc799f@gmail.com>
+ <a5b63eb4-4168-425e-a235-15cc7a6f2df3@linaro.org>
+ <f1c6efd3-fad1-453a-b922-41485495385b@gmail.com>
+ <037f44d9-7240-4daf-9fe1-ac89fae9499c@linaro.org>
+ <1a7adaca-7971-4739-8a0b-04429c08f683@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1a7adaca-7971-4739-8a0b-04429c08f683@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 09/11/2023 10:52, Javier Carrasco wrote:
+> On 09.11.23 10:35, Krzysztof Kozlowski wrote:
+>> On 09/11/2023 09:59, Javier Carrasco wrote:
+>>>
+>>>
+>>> On 09.11.23 09:40, Krzysztof Kozlowski wrote:
+>>>> On 08/11/2023 17:35, Javier Carrasco wrote:
+>>>>>>> +
+>>>>>>> +	data->regulator = devm_regulator_get_optional(dev, "vdd");
+>>>>>>> +	if (!IS_ERR(data->regulator)) {
+>>>>>>> +		ret = cc2_retrive_alarm_config(data);
+>>>>>>> +		if (ret)
+>>>>>>> +			goto cleanup;
+>>>>>>> +	} else {
+>>>>>>> +		/* No access to EEPROM without regulator: no alarm control */
+>>>>>>
+>>>>>> Test your code with deferred probe. Are you sure you handle it
+>>>>>> correctly? To me, it looks like you handle deferred probe the same as
+>>>>>> any error.
+>>>>>>
+>>>>> The -EPROBE_DEFER is propagated to the probe function and it is the
+>>>>> returned value. I clarified the error path in v2 so no error messages
+>>>>
+>>>> Really?
+>>>>
+>>>> I see:
+>>>> if (!IS_ERR(data->regulator)) {
+>>>> 	// so you do not go here
+>>>> } else {
+>>>> 	goto dev_register;
+>>>> }
+>>>> dev_register is not error path. So how do you return EPROBE_DEFER?
+>>>>
+>>>> Which line of code does it?
+>>>>
+>>> EPROBE_DEFER is returned if the command window was missed, which is
+>>
+>> How "command window was missed" is related to the place I commented?
+>>
+> it is right below the comment you added and hence the misunderstanding.
+> But focusing on the line where your comment is, there is no probe
+> deferring in that case. This is why I asked if you were talking about
+> devm_regulator_get_optional() failing, which is not covered by the
+> deferring mechanism in the current form.
+> 
+> I have never experienced the case where the regulator was still not
+> available, but I suppose there is no reason why that should never happen.
+
+Defer on regulators, just like several other resources, is quite likely,
+so all code must be ready for this.
+
+> The regulator is not mandatory and there is no reason to retry if it is
+> not defined. But in case it is defined and not available, the deferring
+> would make sense. I could consider that case as well.
+
+Your code should consider it always.
 
 
-On 09/11/2023 01:08, Linu Cherian wrote:
-> Hi James,
-> 
->> -----Original Message-----
->> From: Linu Cherian <lcherian@marvell.com>
->> Sent: Tuesday, October 10, 2023 6:53 PM
->> To: James Clark <james.clark@arm.com>; suzuki.poulose@arm.com;
->> mike.leach@linaro.org; leo.yan@linaro.org
->> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org; linux-
->> kernel@vger.kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
->> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>; Anil
->> Kumar Reddy H <areddy3@marvell.com>
->> Subject: RE: [EXT] Re: [PATCH 5/7] coresight: tmc: Add support for reading
->> tracedata from previous boot
->>
->> Hi James,
->>
->>> -----Original Message-----
->>> From: James Clark <james.clark@arm.com>
->>> Sent: Wednesday, October 4, 2023 7:18 PM
->>> To: Linu Cherian <lcherian@marvell.com>; suzuki.poulose@arm.com;
->>> mike.leach@linaro.org; leo.yan@linaro.org
->>> Cc: linux-arm-kernel@lists.infradead.org; coresight@lists.linaro.org;
->>> linux- kernel@vger.kernel.org; robh+dt@kernel.org;
->>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->>> devicetree@vger.kernel.org; Sunil Kovvuri Goutham
->>> <sgoutham@marvell.com>; George Cherian <gcherian@marvell.com>; Anil
->>> Kumar Reddy H <areddy3@marvell.com>; Tanmay Jagdale
->>> <tanmay@marvell.com>
->>> Subject: [EXT] Re: [PATCH 5/7] coresight: tmc: Add support for reading
->>> tracedata from previous boot
->>>
->>> External Email
->>>
->>> ----------------------------------------------------------------------
->>>
->>>
->>> On 03/10/2023 17:43, James Clark wrote:
->>>>
->>>>
->>>> On 29/09/2023 14:37, Linu Cherian wrote:
->>>>> * Introduce a new mode CS_MODE_READ_PREVBOOT for reading
->>> tracedata
->>>>>   captured in previous boot.
->>>>>
->>>>> * Add special handlers for preparing ETR/ETF for this special mode
->>>>>
->>>>> * User can read the trace data as below
->>>>>
->>>>>   For example, for reading trace data from tmc_etf sink
->>>>>
->>>>>   1. cd /sys/bus/coresight/devices/tmc_etfXX/
->>>>>
->>>>>   2. Change mode to READ_PREVBOOT
->>>>>
->>>>>      #echo 1 > read_prevboot
->>>>>
->>>>>   3. Dump trace buffer data to a file,
->>>>>
->>>>>      #dd if=/dev/tmc_etrXX of=~/cstrace.bin
->>>>>
->>>>>   4. Reset back to normal mode
->>>>>
->>>>>      #echo 0 > read_prevboot
->>>>>
->>>>> Signed-off-by: Anil Kumar Reddy <areddy3@marvell.com>
->>>>> Signed-off-by: Tanmay Jagdale <tanmay@marvell.com>
->>>>> Signed-off-by: Linu Cherian <lcherian@marvell.com>
->>>>> ---
->>>>>  .../coresight/coresight-etm4x-core.c          |   1 +
->>>>>  .../hwtracing/coresight/coresight-tmc-core.c  |  81 +++++++++-
->>>>>  .../hwtracing/coresight/coresight-tmc-etf.c   |  62 ++++++++
->>>>>  .../hwtracing/coresight/coresight-tmc-etr.c   | 145
->> +++++++++++++++++-
->>>>>  drivers/hwtracing/coresight/coresight-tmc.h   |   6 +
->>>>>  include/linux/coresight.h                     |  13 ++
->>>>>  6 files changed, 306 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> index 77b0271ce6eb..513baf681280 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> @@ -1010,6 +1010,7 @@ static void etm4_disable(struct
->>>>> coresight_device *csdev,
->>>>>
->>>>>  	switch (mode) {
->>>>>  	case CS_MODE_DISABLED:
->>>>> +	case CS_MODE_READ_PREVBOOT:
->>>>>  		break;
->>>>>  	case CS_MODE_SYSFS:
->>>>>  		etm4_disable_sysfs(csdev);
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> b/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> index 6658ce76777b..65c15c9f821b 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
->>>>> @@ -103,6 +103,45 @@ u32 tmc_get_memwidth_mask(struct
->>> tmc_drvdata *drvdata)
->>>>>  	return mask;
->>>>>  }
->>>>>
->>>>> +int tmc_read_prepare_prevboot(struct tmc_drvdata *drvdata) {
->>>>> +	int ret = 0;
->>>>> +	struct tmc_register_snapshot *reg_ptr;
->>>>> +	struct coresight_device *csdev = drvdata->csdev;
->>>>> +
->>>>> +	if (!drvdata->metadata.vaddr) {
->>>>> +		ret = -ENOMEM;
->>>>> +		goto out;
->>>>> +	}
->>>>> +
->>>>> +	reg_ptr = drvdata->metadata.vaddr;
->>>>> +	if (!reg_ptr->valid) {
->>>>> +		dev_err(&drvdata->csdev->dev,
->>>>> +			"Invalid metadata captured from previous boot\n");
->>>>> +		ret = -EINVAL;
->>>>> +		goto out;
->>>>> +	}
->>>>
->>>> I'm wondering if a more robust check is needed than the valid flag,
->>>> like a checksum or something. I didn't debug it yet but I ended up
->>>> with an invalid set of metadata after a panic reboot, see below. I'm
->>>> not sure if it's just a logic bug or something got lost during the
->>>> reboot, I didn't debug it yet. But I suppose unless you assume the
->>>> panic didn't affect writing the metadata, then it could be partially
->>>> written and shouldn't be trusted?
->>>>
->>>> [...]
->>>>> +
->>>>> +static int tmc_etr_sync_prevboot_buf(struct tmc_drvdata *drvdata) {
->>>>> +	u32 status;
->>>>> +	u64 rrp, rwp, dba;
->>>>> +	struct tmc_register_snapshot *reg_ptr;
->>>>> +	struct etr_buf *etr_buf = drvdata->prevboot_buf;
->>>>> +
->>>>> +	reg_ptr = drvdata->metadata.vaddr;
->>>>> +
->>>>> +	rrp = reg_ptr->rrp;
->>>>> +	rwp = reg_ptr->rwp;
->>>>> +	dba = reg_ptr->dba;
->>>>> +	status = reg_ptr->sts;
->>>>> +
->>>>> +	etr_buf->full = !!(status & TMC_STS_FULL);
->>>>> +
->>>>> +	/* Sync the buffer pointers */
->>>>> +	etr_buf->offset = rrp - dba;
->>>>> +	if (etr_buf->full)
->>>>> +		etr_buf->len = etr_buf->size;
->>>>> +	else
->>>>> +		etr_buf->len = rwp - rrp;
->>>>> +
->>>>> +	/* Sanity checks for validating metadata */
->>>>> +	if ((etr_buf->offset > etr_buf->size) ||
->>>>> +	    (etr_buf->len > etr_buf->size))
->>>>> +		return -EINVAL;
->>>>
->>>> The values I got here are 0x781b67182aa346f9 0x8000000 0x8000000 for
->>>> offset, size and len respectively. This fails the first check. It
->>>> would also be nice to have a dev_dbg here as well, it's basically
->>>> the same as the valid check above which does have one.
->>>>
->>>
->>> So I debugged it and the issue is that after the panic I was doing a
->>> cold boot rather than a warm boot and the memory was being randomised.
->>>
->>> The reason that 0x8000000 seemed to be initialised is because they are
->>> based on the reserved region size, rather than anything from the
->>> metadata. When I examined the metadata it was all randomised.
->>>
->>> That leads me to think that the single bit for 'valid' is insufficient.
->>> There is a simple hashing function in include/linux/stringhash.h that
->>> we could use on the whole metadata struct, but that specifically says:
->>>
->>>  * These hash functions are NOT GUARANTEED STABLE between kernel
->>>  * versions, architectures, or even repeated boots of the same kernel.
->>>  * (E.g. they may depend on boot-time hardware detection or be
->>>  * deliberately randomized.)
->>>
->>> Although I'm not sure how true the repeated boots of the same kernel
->>> part is.
->>>
->>> Maybe something in include/crypto/hash.h could be used instead, or
->>> make our own simple hash.
->>
->> Thanks for the pointers. Will take a look at it.
-> 
-> Since the purpose is to identify any data corruption, crc32(using crc32_le API) looks okay to me. Any thoughts on this ?
-> May be we could add crc32 checks for trace data as well ?
-> 
-> Thanks.
-> 
+Best regards,
+Krzysztof
 
-Seems fine to me. Maybe doing it on the trace data is overkill if you
-already know the metadata is fine, but at the same time it might not do
-any harm either. It might catch some edge case where the firmware or
-device is doing something strange.
-
-> 
-> 
-> 
->>
->>
->>
->>
->>
->>
->>
->> _______________________________________________
->> CoreSight mailing list -- coresight@lists.linaro.org To unsubscribe send an
->> email to coresight-leave@lists.linaro.org
 
