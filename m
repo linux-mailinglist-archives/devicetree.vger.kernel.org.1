@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0085A7E65C1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:54:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6057E65CB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:56:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 235BA1C209C3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:54:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBB961C20940
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B27107A3;
-	Thu,  9 Nov 2023 08:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D7D1094F;
+	Thu,  9 Nov 2023 08:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZiNgEDLc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="acNULdN1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F81410947
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:54:13 +0000 (UTC)
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C72D171D
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:54:12 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-32d9d8284abso358841f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:54:12 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799F246BA
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:56:15 +0000 (UTC)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F5BE8
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:56:14 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4079ed65582so3772325e9.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:56:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699520051; x=1700124851; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1699520173; x=1700124973; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=H36Ek5KB/UgwujT3xbiViE29+ATs5ttXCeDqco+etqY=;
-        b=ZiNgEDLc4Fn3WA8YhOCWpj5Ax2O66PmangvFyQNOZ3I08iEGT4rLSf8U1IsC5Mut7q
-         c3XHooWVpkzlUwSnJpwPc+DIDfAJ9ia4X5lF5uc7UXr2Az70q4FapiYK5YawiZO8+XKy
-         iWUf06fA7sugTY73E5PFWVnJpJRMqT5FKV8nSFV7aYHnPYvE83Ai7xd9Ar/U/QzO8aa3
-         YMAfQfN7gJEvj4zbYAWv4hoyfzA+oXesRIFVQNq8WbPKuEH+gNv/ZtxnICGlCBK5KUc9
-         tfKVPtkF5n2y8szXAdlE9Xqmq1jXiwDw1As7YEk101+Byv2wZpbMHHkYXJayfXRdZ3t6
-         JrYw==
+        bh=C/Oc2Ri08TlARcuCbFX7jlwJIbMzeX1P2oeV470H4hk=;
+        b=acNULdN1ij2WrwhgGcnf7bHJtkAORvy+gP/mpevmLEDxPg22hZRZ7i1NWSEeUeZ/oq
+         TnlBBT9f7hbJp7sViFWMHXmdBh8FGAWCE7r2Q98zQ2gbVHf552w2ENmt6cU1laZvLTTj
+         py5gNyF3jum2O1BKm3+YnZxDfJ6SrNypYRpKoiwkURr89WNyyq9JfF7j/Z/VxCTtJUnY
+         HZIk1THyQUSCwDLrd01t3PNETwhD1IYMKiu4C6rKkdAEPgo70UcOGnU/+8ikpnyxCQ8L
+         eQ9WQ7uWow46tNb3ESsa8MKU88A/vw4ZtkOBu88D72RefyM4VRrr7dJAj/YY4Dm22LtK
+         qT7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699520051; x=1700124851;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699520173; x=1700124973;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H36Ek5KB/UgwujT3xbiViE29+ATs5ttXCeDqco+etqY=;
-        b=U8iHUz8eTvQfR8GQQ7Bq/C8AtqYg53weJM1SuVyhl7efyhC4MB69tIfu2WSulpKS9F
-         dlAIOXf+tjhQ6NIEB5Qrb7JxeQdEq2Q1ojcLryZfZCicLKpm4Xe8ckdMu39TMFVhHYFo
-         moin9rrR4+WIYntxCU0J+VUgej3ET9dtRQ5Pv2erhTVsBsEbks9N66LyAeR1+Xm0gsuj
-         7V29HAWr/mnn5EWRRIbOicFOtZsAKL1c8ZHrTl4Y/wBcf3xSrTxm92XykGhk/yZ4ENMy
-         kR3lcs7XrMzYxFT2j/plQ3ybE9hHbJ0Ek5OYkppI8/j6d4BGUMt73PZ9+YGnjCXVV2l5
-         tx6Q==
-X-Gm-Message-State: AOJu0YxTdGJ2NG6aKfS33uM8mplAal08gSaxM2upnVLGo0s2QyeYcA5N
-	8dAx16ZCVOcmCVPLme/FeAXbHQ==
-X-Google-Smtp-Source: AGHT+IEM44//IRgFor0P70nqVRCCjc2lA9SQP5VDfZCvrF8RUCDzLH7V6dgfqRvmKCqGdz/hpsZUng==
-X-Received: by 2002:a5d:5389:0:b0:32f:7c6c:aa18 with SMTP id d9-20020a5d5389000000b0032f7c6caa18mr3618369wrv.38.1699520050852;
-        Thu, 09 Nov 2023 00:54:10 -0800 (PST)
+        bh=C/Oc2Ri08TlARcuCbFX7jlwJIbMzeX1P2oeV470H4hk=;
+        b=xScc6vaheTO2M9uhp426xj1hU5cj6bM6YtL6PvHHiDymsKS+TgAe1nErFrTHGaDU5Z
+         8CLf/OHDYwQTdKtz5tAMWeF+LbLxcJQgoEmmObwFZEiV/Q1hRfjNz4QaLk4ofi9h63Jb
+         LEyMzQlctsCtJEbyS2vencoZ3AgnEsHZn9kyVJHYK2pyIef7GzHNjbUDkiZPPPYXWJVB
+         GVWJS/h7yDwNnMsS8AM7pmINDzkba15w6Byni+Us2+3c28Mjfkb2auk2Qk3r2pdWuuoB
+         hdgWkXX2jYcdTZyKUbTmJzsMxauOa6A6A1eB/2H75KU5/JMg+imLPuOhGLL3mtASFuV7
+         iF3w==
+X-Gm-Message-State: AOJu0YxdIAk3SGhS1xLrkBvajzMVDAiA+zDGruD77dGsNDra7l7GEIoA
+	GIOMZi8iabtl9ZufEgype6u69w==
+X-Google-Smtp-Source: AGHT+IHxV0c5K+HW648KGXbRUM/dBxgAWN/R3MureWTsp8lzf6mVtsfAt6CPWUk7l/CmSjN0DyPJ7w==
+X-Received: by 2002:a05:600c:32a7:b0:408:fe93:a2f7 with SMTP id t39-20020a05600c32a700b00408fe93a2f7mr4067831wmp.37.1699520173091;
+        Thu, 09 Nov 2023 00:56:13 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id v5-20020adfa1c5000000b0032d81837433sm6944964wrv.30.2023.11.09.00.54.08
+        by smtp.gmail.com with ESMTPSA id q3-20020a05600c46c300b00405442edc69sm1412660wmo.14.2023.11.09.00.56.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 00:54:10 -0800 (PST)
-Message-ID: <0221ef7f-7043-4959-9df1-64182d325c69@linaro.org>
-Date: Thu, 9 Nov 2023 09:54:08 +0100
+        Thu, 09 Nov 2023 00:56:12 -0800 (PST)
+Message-ID: <f9d25b19-ef26-480a-ae47-60dcba704ee5@linaro.org>
+Date: Thu, 9 Nov 2023 09:56:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-axg: pinctrl node for NAND
+Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: Add mps mp5990 driver bindings
 Content-Language: en-US
-To: Arseniy Krasnov <avkrasnov@salutedevices.com>,
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: oxffffaa@gmail.com, kernel@sberdevices.ru,
- Liang Yang <liang.yang@amlogic.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231109053100.3849655-1-avkrasnov@salutedevices.com>
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231109044844.614007-1-peteryin.openbmc@gmail.com>
+ <20231109044844.614007-2-peteryin.openbmc@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,29 +123,55 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231109053100.3849655-1-avkrasnov@salutedevices.com>
+In-Reply-To: <20231109044844.614007-2-peteryin.openbmc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/11/2023 06:30, Arseniy Krasnov wrote:
-> Add pinctrl node for the Meson NAND controller.
+On 09/11/2023 05:48, Peter Yin wrote:
+> Add a device tree bindings for mp5990 device.
 > 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
+>  .../devicetree/bindings/hwmon/mps,mp5990.yaml | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/mps,mp5990.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index a49aa62e3f9f..98a17953e969 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -432,6 +432,27 @@ mux-1 {
->  					};
->  				};
->  
-> +				nand_all_pins: nand_all_pins {
+> diff --git a/Documentation/devicetree/bindings/hwmon/mps,mp5990.yaml b/Documentation/devicetree/bindings/hwmon/mps,mp5990.yaml
+> new file mode 100644
+> index 000000000000..bfd0cf7d3470
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/mps,mp5990.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/mps,mp5990.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Monolithic Power Systems Devices MP5990 Hot-Swap Controller
+> +
+> +maintainers:
+> +  - Peter Yin <peteryin.openbmc@gmail.com>
+> +
+> +description: |
+> +  Monolithic Power Systems Devices MP5990 Hot-Swap Controller
+> +
+> +  Datasheets:
+> +  https://www.monolithicpower.com/en/mp5990.html
+> +
+> +properties:
+> +  compatible:
+> +    const: mps,mp5990
+> +
+> +  reg:
+> +    maxItems: 1
 
-No underscores in node names. Doesn't dtbs_check point it?
+This is missing some properties... or is a candidate for
+trivial-devices.yaml.
+
+I guess it is fine as initial submission:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
