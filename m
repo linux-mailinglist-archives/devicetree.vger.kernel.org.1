@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92AF7E6563
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:36:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C647E6576
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:40:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC7B91C2028E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01D421C208BE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:40:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A5FCA66;
-	Thu,  9 Nov 2023 08:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E877D294;
+	Thu,  9 Nov 2023 08:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruekoEvJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tk58RRY0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846FB10A21
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:36:51 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6162210A
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:36:50 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9d2c54482fbso92269066b.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:36:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265A46AA6
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:40:33 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E99E210A
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:40:32 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9a6190af24aso99849066b.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:40:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699519009; x=1700123809; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699519231; x=1700124031; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HM+DFmrG6wa8ydEQeoV3Vc8//oFV5vln5+Xv9+Di6Zo=;
-        b=ruekoEvJjH5EnF8dw47kbm/t0P2gHjJFyXfuixLWa9duAMeww2eyUQjqa9mpkmtOKs
-         FiQ6fcIv2/mT5no1mWvRpjazYZ4RUqKONKyUym7uLNOpovhqrofalv3/U6Os/DxP+K5U
-         rLckK2+8gugOYNEZCMioeDpkQvewjg9SObbwFMDwBmgkvObo1RB3KaGtDs3uf+5c3rmA
-         XSc/CsEksdwv1Sq7aOf3KCFt/T0U1jX7pkOyNQ0sHjYjEz7QRe5S5MEaYfszUFCBh4Kg
-         fIJXL0YfZXHfhPjMq3BbT5SwEg8oToL8Kx+86KLlAfJkZBk0ZUG1gID8gQwWqptHYwDi
-         pZsQ==
+        bh=ap+aKL5g53m3TLoyw+LcX3FR8eWuItSX+wa0xplAHUY=;
+        b=tk58RRY0PbmldA75RL7euE4PU4VF73FuDWp8JwwF6XTay1iBTpSWLrsn2uHwm+iv94
+         Ovzas0fRa6y8PJWrT2zN9oJJZXUuo2bZ4paAsdzJcvotEmT5GcpepJ5VRbYUXxLj5vJ1
+         6ZqYwU62+nfc+YlZA2PtCM7lZA8vtJlVLhBr9RZeOkPlBIk9W86z4XeIpwX0t98Sa6/L
+         9GYQZ1IYMvn0lTO61lAfLFwsovvAAHoYybxfSN+6UZrwO7V3ecwblqzfw5+/MNbmbi9R
+         z+vNaPgm8slwpjZQg+aswAA/77CH5bTeJywAg0/EX/QH4WTdcBV0QrqYRnJpL2dQmHPQ
+         qhYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699519009; x=1700123809;
+        d=1e100.net; s=20230601; t=1699519231; x=1700124031;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HM+DFmrG6wa8ydEQeoV3Vc8//oFV5vln5+Xv9+Di6Zo=;
-        b=NQEByrJcI+XqQo90mYWcKHN4/TF3kzh2UhUKiivvPJRWsqKMVZQ6vWOXWZ2l6faFCw
-         0iHVZwC0iXcmpkLD7MfeFRVIn/Ii/vwYG8IK9fxWh/HG/dM2yR7tGwdbnPP+WuAUyPm7
-         vmmI95mn4ZUKIKW9l0c0YGL+IDCdsfKlSy0nWzawoMLUQSYuSaqV2Ccxerkoe7Rm8xIz
-         tl0xh1urmS/nGANd9zRr6tN1U7Q6X/1ZYQIpcwsQINr7EpkHsxZVIjUwdmqbWGQarzs5
-         ozA65DZRno21gM+WUrCOFQ1BzpORe6r7deyMIzemsnpWfHtafYt9xeB9tfy0nOyUMU2j
-         +Djg==
-X-Gm-Message-State: AOJu0Yzn7sodO5yV/t+/OnQyHay5mZOVyDkc6HMw5dZ5HeL4AA6TtKpa
-	1gCpzGG2g7/fN9feI5rM0HxCcg==
-X-Google-Smtp-Source: AGHT+IEDyH3wJqJ/md+1tYIycG5iM5Sf6AN9x90DWZ62ddR60zBSCsVIw9iYz43G9HRDfmx3dCKcfQ==
-X-Received: by 2002:a17:906:c144:b0:9e2:b250:98c9 with SMTP id dp4-20020a170906c14400b009e2b25098c9mr4174428ejc.21.1699519009031;
-        Thu, 09 Nov 2023 00:36:49 -0800 (PST)
+        bh=ap+aKL5g53m3TLoyw+LcX3FR8eWuItSX+wa0xplAHUY=;
+        b=fMC7AbOcOGpUnH5uRtBkBLkpdEVwdXRfyw+Ye8q6xrcnc9RTEjglw4oY4TU0RHA3U6
+         LbXwaAn2CUTOwTniGlque8Y9ckfb9fER9ErPaB3rOvxbX4fTFw3vFPzFg29n0tPUelmv
+         rQLVH3l1hyJC81bhB1+nxEhAO/GuUck3V16mSllufUxQayiyYe7SyaJQ7KWlC3VIjKe8
+         YpRSZobBHx4gP7PGSQaoPTYkCBPUsHi4po3xUXmpSqf3L+Ui7mzBnK2flbwq8arOofDo
+         r8vwFM/Kep8nMeTog/imhU3ByHWY2NN34AFvDrpiOQZxh1XtKsZT00zp/gMP7ThVtUc7
+         4ktg==
+X-Gm-Message-State: AOJu0YzXusgcCitkYR6mvurVh48VD9oc9iYcky7cndIxaONZHiZ71V0u
+	uzFv51sTscqjkio2wUr4/cV3OA==
+X-Google-Smtp-Source: AGHT+IGNnImLMqbxq+paW4gNCQufTdedF88DlLHT7K2sxaf+X2b4APdnLfKtQKIrLovveuIc+vKItw==
+X-Received: by 2002:a17:907:3ea4:b0:9bd:dfaa:3f2 with SMTP id hs36-20020a1709073ea400b009bddfaa03f2mr3659648ejc.6.1699519230941;
+        Thu, 09 Nov 2023 00:40:30 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id t27-20020a170906179b00b009a1dbf55665sm2210950eje.161.2023.11.09.00.36.47
+        by smtp.gmail.com with ESMTPSA id r5-20020a170906c28500b009929ab17be0sm2203166ejz.162.2023.11.09.00.40.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 00:36:48 -0800 (PST)
-Message-ID: <04242b1b-477b-45cd-bcb8-0125e705b71a@linaro.org>
-Date: Thu, 9 Nov 2023 09:36:46 +0100
+        Thu, 09 Nov 2023 00:40:30 -0800 (PST)
+Message-ID: <a5b63eb4-4168-425e-a235-15cc7a6f2df3@linaro.org>
+Date: Thu, 9 Nov 2023 09:40:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: soc: Add new board description for
- MicroBlaze V
+Subject: Re: [PATCH 3/4] hwmon: Add support for Amphenol ChipCap 2
 Content-Language: en-US
-To: Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
- git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, palmer@dabbelt.com
-References: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
- <20231106-hangnail-prankster-a04e713bed35@spud>
- <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
- <e9fef49e-c0ca-4f7d-9618-151216e25280@linaro.org>
- <92d95425-5bae-4ada-8fc3-966e7bfbd815@amd.com>
- <90f9991e-26a3-498e-9449-c96663987459@linaro.org>
- <20231107-darkening-daylong-deef34169798@spud>
- <872007e1-6e57-4dc4-89f5-62fea3c969a5@amd.com>
- <b1b5b020-600d-48c0-aec8-c866c4c29c7a@linaro.org>
- <d62a1b46-d44f-48b9-9f93-647fe2a6f8a2@amd.com>
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v1-0-087e21d4b1ed@gmail.com>
+ <20231020-topic-chipcap2-v1-3-087e21d4b1ed@gmail.com>
+ <e58cdedb-1825-4713-9d3f-5239bb182230@linaro.org>
+ <285ec1d8-d277-403c-961f-3de523fc799f@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,156 +127,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d62a1b46-d44f-48b9-9f93-647fe2a6f8a2@amd.com>
+In-Reply-To: <285ec1d8-d277-403c-961f-3de523fc799f@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/11/2023 11:11, Michal Simek wrote:
->> I meant that creating a binding for something which is not and will not
->> be a product does not bring any benefits. Why do we even care to
->> document it? Who requires it? I don't. I don't see DTS or driver, no
->> need for compatible.
+On 08/11/2023 17:35, Javier Carrasco wrote:
+>>> +
+>>> +	data->regulator = devm_regulator_get_optional(dev, "vdd");
+>>> +	if (!IS_ERR(data->regulator)) {
+>>> +		ret = cc2_retrive_alarm_config(data);
+>>> +		if (ret)
+>>> +			goto cleanup;
+>>> +	} else {
+>>> +		/* No access to EEPROM without regulator: no alarm control */
 >>
->> That's why entire discussion starts with DTS (and/or driver).
-> 
-> We have dt description for soft IPs like uartlite
-> Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-> 
-> We have 16550 compatible IP with
-> Documentation/devicetree/bindings/serial/8250.yaml
-> 
-> Simple ethernet core
-> Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-> 
-> Axi ethernet
-> Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> 
-> Adi clock generator
-> Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
-> 
-> Adi fan control
-> Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yam
-> 
-> Adi adcs
-> Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> 
-> and much more.
-> 
-> They are IPs from vendor catalogs. We can talk if it is a product (definitely 
-> yes if you need to buy it for your design). But all of them fit to the same 
-> category that you are composing your HW design with them.
-> All of them as standalone can't run. You will never create a product with just 
-> uartlite IP. You need to add cpu, clocks, reset logic and others around to make 
-> a product out of it.
-> 
-> Our mental model is HW designer create new IP, we are writing driver for it, 
-> customers can buy it (or get it for free) and use it.
-> They put it to their design, create custom board and sell it as a product.
-> 
-> And in this particular case HW designed create risc-v compatible CPU.
-> I expect this should fine
-> https://lore.kernel.org/r/d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com
-> 
-> And discussion what we are having is pretty much about how to share the view on 
-> the system.
-
-That's different category. All of these are part of SoC. Here we talk
-about the SoC and I had impression that you added compatible for the SoC
-alone.
-
-> 
->>>
->>>>
->>>> I spoke to Palmer a bit about this, and what I think would make sense is
->>>> if you had some sort of "reference design" bitstream that people could
->>>> download and run on xyz AMD devkit. If that existed, then we could
->>>> document that configuration etc. Otherwise you're in the same spot that
->>>> a lot of IP vendor stuff is, where without there being something that
->>>> qualifies as "real hardware" using the core, it doesn't make sense to
->>>> try and create bindings etc. It's the same for the various people in
->>>> the RISC-V community that created their own CPUs that they run on FPGAs.
->>>
->>> Aren't all ARM FVP models enabled by SW before soc vendors put them to a real
->>> chip? Is there any real product available at that time?
+>> Test your code with deferred probe. Are you sure you handle it
+>> correctly? To me, it looks like you handle deferred probe the same as
+>> any error.
 >>
->> FVP also finished one. They do not claim they added compatible for a SoC
->> or CPU. And that's my impression here.
-> 
-> Are these real chips?
->          compatible = "arm,foundation-aarch64", "arm,vexpress";
->          compatible = "arm,fvp-base-revc", "arm,vexpress";
-> 
-> FVP are Fixed Virtual Platforms. Pretty much emulators similar to QEMU.
+> The -EPROBE_DEFER is propagated to the probe function and it is the
+> returned value. I clarified the error path in v2 so no error messages
 
-If your case is this one, then few parts of description should be
-rephrased in the bindings.
+Really?
 
-> 
->>
->>>
->>> I will try to find out if there is any official plan for releasing any reference
->>> design against any evaluation board with commitment to supporting it.
->>>
->>>>>> Or I can define qemu one.
->>>>>> "amd,qemu-mbv", "amd,mbv"
->>>>>
->>>>> QEMU is not hardware, so not.
->>>
->>> I am still trying to wrap my head around it. In qemu we are actually going to
->>> create model for this configuration but based on what you are saying here we
->>> shouldn't really have DT which describes it.
->>> That's why we likely end up in situation that qemu create DT description self,
->>> put it to memory and u-boot/kernel will consume it. The only difference is going
->>> to be that DT will be used but won't be checked against dt-schema.
->>> I personally prefer to have DT pass dt-schema checking and tell qemu guys, this
->>> is what qemu should generate.
->>> But if you think that this is wrong approach I will let them generate whatever
->>> they want and will just check functionality. It means u-boot won't have DT,
->>> Linux won't have DT and I am done.
->>
->>
->> Sorry, I am confused now. Are we talking about real hardware or QEMU SW
->> model? Your description clearly said:
->> "AMD boards with MicroBlaze V SOC"
->> so QEMU is not a board. Board has a physical form, a shape. Usually flat.
-> 
-> Let me describe what we do for all our SOCs but Microblaze is the best example here.
-> Customers open design tools (right know Vivado) and design their system there.
-> Choose cpu and it's configuration like barrel shifter, divider, multiplicator, 
-> size of caches. Then put there interrupt controller, timer, consoles, ethernet, 
-> spi, i2c, etc. For all IPs you need to choose mmio base address and connect them 
-> to any interrupt line you like.
-> You normally target a board, evaluation platforms or just standalone chips which 
-> you use on your custom boards.
-> And build bitstream (configuration for FPGA) and also going over our device tree 
-> generators which generate DT for describing the system.
-> Very old example is for example visible here
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/microblaze/boot/dts/system.dts?h=v6.6
-> 
-> Another example is mb-v description mentioned in previous thread.
-> 
-> The reason is simple with a lot of IPs in the design none will be able to get 
-> description right in connection to addresses and especially interrupt numbers.
-> 
-> It means at this stage you have bistream for your board and you have DTS 
-> (without board specific information like i2c devices, ethernet phy, etc)
-> 
-> For 10+ years our qemu is taking input as DTB and create qemu model based on it. 
-> It means you say via DT I want this cpu core, this timer at 0x..., interrupt at 
-> 0x..., uart at 0x..., etc. and qemu generates model for it. Pretty much the same 
-> DT can be consumed by SW to run it on the model.
-> 
-> We reached the state that you have qemu model which reflects your design choice 
-> and at the same time you have hardware for your board.
-> 
-> It means same DT describe qemu configuration and also hardware.
+I see:
+if (!IS_ERR(data->regulator)) {
+	// so you do not go here
+} else {
+	goto dev_register;
+}
+dev_register is not error path. So how do you return EPROBE_DEFER?
 
-So you can run it under QEMU. I misunderstood your proposal of adding
-qemu compatibles few emails before.
+Which line of code does it?
 
-But if the QEMU model and also the hardware is called "AMD MicroBlaze
-V", then how the heck is SoC called?
-
+> are displayed in that case, going directly to the dev_err_probe in the
+> probe cleanup.
+> When the EPROBE_DEFER error is returned, the probe function is deferred
+> and called again later on, which is the desired behavior.
+> 
 
 
 Best regards,
