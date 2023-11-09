@@ -1,211 +1,532 @@
-Return-Path: <devicetree+bounces-14846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8AC47E7019
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 911E67E703E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 18:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 465DEB209AA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:25:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC05BB20B16
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 17:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D381E20B34;
-	Thu,  9 Nov 2023 17:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B3B225A5;
+	Thu,  9 Nov 2023 17:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ahwpEWSR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CPzQ3Ptc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E4D208D5
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 17:25:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D861C433C8;
-	Thu,  9 Nov 2023 17:25:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699550703;
-	bh=5lpxQ9QZpcq4MHwqEuxoeAoDZzPULQBYufhut1xfm98=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ahwpEWSRbpXNk2xJBR4vrs1UbEHSY+ungKbNLz8JkEkrJPlBBzJeduq8yXf4XymDL
-	 3egAXO675AUj0ySfLveZLJ/ZtsBEIeutDyd+fAejx+2t/vmkaTZvooU2TQKBipSLsJ
-	 HI7o2XXdenWiJ1qYtS9ncIR5hwZILqD6YUIRUpbKxX1wPBP14hsj9+P97MjJy6ndng
-	 RdMIDdzB67VTCj2qX4WFXGPLGDHsnxvD0O9a1845WrHaIWibd2fbq07Aoe9J7p2gPO
-	 NtKekWg7puRL9b/TXD3qAA8rviJyCyPlluLnFfFHb/mTJEPjvhM8ywPqiI8h2aihP/
-	 8w96gJqoi8EDw==
-Date: Thu, 9 Nov 2023 17:24:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
-	michael.riesch@wolfvision.net
-Subject: Re: [PATCH v10 1/3] media: dt-bindings: media: add bindings for
- Rockchip CIF
-Message-ID: <20231109-closable-superglue-5e7f39739cf1@spud>
-References: <cover.1699460637.git.mehdi.djait@bootlin.com>
- <037bcabf97294d37b271537e4b11fb88cf9bb6f6.1699460637.git.mehdi.djait@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9BE22329;
+	Thu,  9 Nov 2023 17:27:42 +0000 (UTC)
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3578B93;
+	Thu,  9 Nov 2023 09:27:42 -0800 (PST)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-5a84204e7aeso13741147b3.0;
+        Thu, 09 Nov 2023 09:27:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699550861; x=1700155661; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=vRiA8JxjoD2NjKIcDOlUOfv4VQnMOeyr7clgpYm5X6w=;
+        b=CPzQ3Ptc+kjI5R4bYstMY0AvTjWjPexSlAPemIKdQ7O4c7a+0Uc4q3ULTSIbpAT4EO
+         famXOZYrYP22g5/aXFRpo+30KaGYJ/vsUeYhCpvFHDT3eEmqbJ2Fn7lCDXyQkorMBPAf
+         7WxOATXiDgxg5kJlh0ngqj4/krRTBllHKQJzkFKShZzxNCNDq3DgahCQyOvuF35APb4V
+         IDMIaPBmIh1Kr/Oc0vsJ3XzeaQLz+b//1pRCWG0DVVVkGgZWD1fziZqSIShUKpmWNPd7
+         W4arIuWERu0iv7BIPABV0rmxQpWkw1aF4XjDaTfiuSx5MEGB+yi/N14zFRWo09IWq+4X
+         +hEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699550861; x=1700155661;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vRiA8JxjoD2NjKIcDOlUOfv4VQnMOeyr7clgpYm5X6w=;
+        b=MFzzWunUeX00j6/cZ6PYusdv5yHrPzng7UvFG1RDpcze5kh7P20l8N6eKxia1dJ6lh
+         G0D35qcG/RuIXk9o6HDRkyr20sbEqldVM82AD+/n9ZDTYRNsbwdG1rEJ+qeo3fs1u0G3
+         7pRbSejlbM3p0Vy/wK+izRgObARzS715Sg4Q2DHYjv5AW2nmiAm+5YHbrWnn79IIUuIF
+         TdqmU6OU0pyLU8f3reXFz9BoQY+dN3DmJFXaRoV15bg0qN7KSZKt3lKIXaPTKZ8+eOZU
+         ckQH8H4HyfdbY2tOdQpoG57MIHH5mygXexFL4sRH0rbi3h+CV+WFXdvxgABc55NDW4w9
+         nEfQ==
+X-Gm-Message-State: AOJu0YxjMvOQMTPVKsIpcR+TeVMvamNy8K7iWz7XzaKeGkaX9Keu7cdK
+	9C8EeQRSv28Jg7HV3YjNoQg=
+X-Google-Smtp-Source: AGHT+IH1Mugy42a9uBExGt4NdSrQEpv4KL34qy/YVOmoiAxARLbYEjwxN6x8CWIQ0lYwnF3uzvNekw==
+X-Received: by 2002:a81:4893:0:b0:5a7:fcae:f3e2 with SMTP id v141-20020a814893000000b005a7fcaef3e2mr5860452ywa.43.1699550861262;
+        Thu, 09 Nov 2023 09:27:41 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t15-20020a81c24f000000b00594fb0e2db3sm8067834ywg.138.2023.11.09.09.27.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 09:27:40 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <065e97b5-23ce-45f3-95ec-40e798c8a22e@roeck-us.net>
+Date: Thu, 9 Nov 2023 09:27:38 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="O1tsATRDNJs2XQ+S"
-Content-Disposition: inline
-In-Reply-To: <037bcabf97294d37b271537e4b11fb88cf9bb6f6.1699460637.git.mehdi.djait@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] hwmon: pmbus: Add ltc4286 driver
+Content-Language: en-US
+To: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231109014948.2334465-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231109014948.2334465-3-Delphine_CC_Chiu@Wiwynn.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231109014948.2334465-3-Delphine_CC_Chiu@Wiwynn.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
---O1tsATRDNJs2XQ+S
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Nov 08, 2023 at 05:38:56PM +0100, Mehdi Djait wrote:
-> Add a documentation for the Rockchip Camera Interface binding.
->=20
-> the name of the file rk3066 is the first Rockchip SoC generation that use=
-s cif
-> instead of the px30 which is just one of the many iterations of the unit.
-
-I think this is becoming ridiculous. You've now removed the compatible
-for the rk3066 but kept it in the filename. I don't understand the
-hangup about naming the file after the px30-vip, but naming it after
-something that is not documented here at all makes no sense to me.
-Either document the rk3066 properly, or remove all mention of it IMO.
-
-Cheers,
-Conor.
-
->=20
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+On 11/8/23 17:49, Delphine CC Chiu wrote:
+> Add a driver to support ltc4286 chip
+> 
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> 
+> Changelog:
+>    v4 - Add empty line before "config SENSORS_LTC4286" in Kconfig
+>       - Add ltc4286 to Documentation/hwmon/index.rst
+>       - Revise comment typo
+>       - Use devm_kmemdup instead of memcpy
+>       - Check MBR value before writting into
+>    v3 - Use dev_err_probe() instead of dev_err()
+>       - The VRANGE_SELECT bit only be written if it actually changed
+>       - Avoid the info pointer being overwritten
+>       - Check the MBR value range to avoid overflow
+>       - Revise ltc4286.rst to corrcet description
+>    v2 - Revise Linear Technologies LTC4286 to
+>         Analog Devices LTC4286 in Kconfig
+>       - Add more description for this driver in Kconfig
+>       - Add some comments for MBR setting in ltc4286.c
+>       - Add ltc4286.rst
 > ---
->  .../bindings/media/rockchip,rk3066-cif.yaml   | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/rockchip,rk30=
-66-cif.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3066-cif.=
-yaml b/Documentation/devicetree/bindings/media/rockchip,rk3066-cif.yaml
+>   Documentation/hwmon/index.rst   |   1 +
+>   Documentation/hwmon/ltc4286.rst |  95 +++++++++++++++++
+>   drivers/hwmon/pmbus/Kconfig     |  10 ++
+>   drivers/hwmon/pmbus/Makefile    |   1 +
+>   drivers/hwmon/pmbus/ltc4286.c   | 177 ++++++++++++++++++++++++++++++++
+>   5 files changed, 284 insertions(+)
+>   create mode 100644 Documentation/hwmon/ltc4286.rst
+>   create mode 100644 drivers/hwmon/pmbus/ltc4286.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 72f4e6065bae..080827cc4c34 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -128,6 +128,7 @@ Hardware Monitoring Kernel Drivers
+>      ltc4245
+>      ltc4260
+>      ltc4261
+> +   ltc4286
+>      max127
+>      max15301
+>      max16064
+> diff --git a/Documentation/hwmon/ltc4286.rst b/Documentation/hwmon/ltc4286.rst
 > new file mode 100644
-> index 000000000000..c3a5cd2baf71
+> index 000000000000..2cd149676d86
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3066-cif.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,rk3066-cif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/Documentation/hwmon/ltc4286.rst
+> @@ -0,0 +1,95 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
 > +
-> +title: Rockchip CIF Camera Interface
+> +Kernel driver ltc4286
+> +=====================
 > +
-> +maintainers:
-> +  - Mehdi Djait <mehdi.djait@bootlin.com>
+> +Supported chips:
 > +
-> +description:
-> +  CIF is a camera interface present on some rockchip SoCs. It receives t=
-he data
-> +  from Camera sensor or CCIR656 encoder and transfers it into system mai=
-n memory
-> +  by AXI bus.
+> +  * Analog Devices LTC4286
 > +
-> +properties:
-> +  compatible:
-> +    const: rockchip,px30-vip
+> +    Prefix: 'ltc4286'
 > +
-> +  reg:
-> +    maxItems: 1
+> +    Addresses scanned: -
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +    Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4286.pdf
 > +
-> +  clocks:
-> +    items:
-> +      - description: ACLK
-> +      - description: HCLK
-> +      - description: PCLK
+> +  * Analog Devices LTC4287
 > +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +      - const: hclk
-> +      - const: pclk
+> +    Prefix: 'ltc4287'
 > +
-> +  resets:
-> +    items:
-> +      - description: AXI
-> +      - description: AHB
-> +      - description: PCLK IN
+> +    Addresses scanned: -
 > +
-> +  reset-names:
-> +    items:
-> +      - const: axi
-> +      - const: ahb
-> +      - const: pclkin
+> +    Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4287.pdf
 > +
-> +  power-domains:
-> +    maxItems: 1
+> +Author: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
 > +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: A connection to a sensor or decoder
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - port
+> +Description
+> +-----------
 > +
-> +additionalProperties: false
+> +This driver supports hardware monitoring for Analog Devices LTC4286
+> +and LTC4287 Hot-Swap Controller and Digital Power Monitors.
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/px30-cru.h>
-> +    #include <dt-bindings/power/px30-power.h>
+> +LTC4286 and LTC4287 are hot-swap controllers that allow a circuit board
+> +to be removed from or inserted into a live backplane. They also feature
+> +current and voltage readback via an integrated 12 bit analog-to-digital
+> +converter (ADC), accessed using a PMBus interface.
 > +
-> +    parent {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
+> +The driver is a client driver to the core PMBus driver. Please see
+> +Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
 > +
-> +        video-capture@ff490000 {
-> +            compatible =3D "rockchip,px30-vip";
-> +            reg =3D <0x0 0xff490000 0x0 0x200>;
-> +            interrupts =3D <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks =3D <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>;
-> +            clock-names =3D "aclk", "hclk", "pclk";
-> +            resets =3D <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_=
-CIF_PCLKIN>;
-> +            reset-names =3D "axi", "ahb", "pclkin";
-> +            power-domains =3D <&power PX30_PD_VI>;
 > +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint =3D <&tw9900_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> --=20
-> 2.41.0
->=20
+> +Usage Notes
+> +-----------
+> +
+> +This driver does not auto-detect devices. You will have to instantiate the
+> +devices explicitly. Please see Documentation/i2c/instantiating-devices.rst for
+> +details.
+> +
+> +The shunt value in micro-ohms can be set via device tree at compile-time. Please
+> +refer to the Documentation/devicetree/bindings/hwmon/lltc,ltc4286.yaml for bindings
+> +if the device tree is used.
+> +
+> +
+> +Platform data support
+> +---------------------
+> +
+> +The driver supports standard PMBus driver platform data. Please see
+> +Documentation/hwmon/pmbus.rst for details.
+> +
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +The following attributes are supported. Limits are read-write, history reset
+> +attributes are write-only, all other attributes are read-only.
+> +
+> +======================= =======================================================
+> +in1_label		"vin"
+> +in1_input		Measured voltage.
+> +in1_alarm		Input voltage alarm.
+> +in1_min 		Minimum input voltage.
+> +in1_max 		Maximum input voltage.
+> +
+> +in2_label		"vout1"
+> +in2_input		Measured voltage.
+> +in2_alarm		Output voltage alarm.
+> +in2_min 		Minimum output voltage.
+> +in2_max 		Maximum output voltage.
+> +
+> +curr1_label		"iout1"
+> +curr1_input		Measured current.
+> +curr1_alarm		Output current alarm.
+> +curr1_max		Maximum current.
+> +
+> +power1_label		"pin"
+> +power1_input		Input power.
+> +power1_alarm		Input power alarm.
+> +power1_max		Maximum poewr.
+> +
+> +temp1_input		Chip temperature.
+> +temp1_min		Minimum chip temperature.
+> +temp1_max		Maximum chip temperature.
+> +temp1_crit		Critical chip temperature.
+> +temp1_alarm		Chip temperature alarm.
+> +======================= =======================================================
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index b4e93bd5835e..2d4f972e5a65 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -227,6 +227,16 @@ config SENSORS_LTC3815
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called ltc3815.
+>   
+> +config SENSORS_LTC4286
+> +	bool "Analog Devices LTC4286"
+> +	help
+> +	  LTC4286 is an integrated solution for hot swap applications that
+> +	  allows a board to be safely inserted and removed from a live
+> +	  backplane.
+> +	  This chip could be used to monitor voltage, current, ...etc.
+> +	  If you say yes here you get hardware monitoring support for Analog
+> +	  Devices LTC4286.
+> +
+>   config SENSORS_MAX15301
+>   	tristate "Maxim MAX15301"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 84ee960a6c2d..94e28f6d6a61 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -24,6 +24,7 @@ obj-$(CONFIG_SENSORS_LM25066)	+= lm25066.o
+>   obj-$(CONFIG_SENSORS_LT7182S)	+= lt7182s.o
+>   obj-$(CONFIG_SENSORS_LTC2978)	+= ltc2978.o
+>   obj-$(CONFIG_SENSORS_LTC3815)	+= ltc3815.o
+> +obj-$(CONFIG_SENSORS_LTC4286)	+= ltc4286.o
+>   obj-$(CONFIG_SENSORS_MAX15301)	+= max15301.o
+>   obj-$(CONFIG_SENSORS_MAX16064)	+= max16064.o
+>   obj-$(CONFIG_SENSORS_MAX16601)	+= max16601.o
+> diff --git a/drivers/hwmon/pmbus/ltc4286.c b/drivers/hwmon/pmbus/ltc4286.c
+> new file mode 100644
+> index 000000000000..e6690b38349a
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/ltc4286.c
+> @@ -0,0 +1,177 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pmbus.h>
+> +#include "pmbus.h"
+> +
+> +/* LTC4286 register */
+> +#define LTC4286_MFR_CONFIG1	0xF2
+> +
+> +/* LTC4286 configuration */
+> +#define VRANGE_SELECT_BIT	BIT(1)
+> +
+> +#define LTC4286_MFR_ID_SIZE	3
+> +#define VRANGE_25P6		0
+> +
+> +/*
+> + * Initialize the MBR as default settings which is referred to LTC4286 datasheet
+> + * (March 22, 2022 version) table 3 page 16
+> + */
+> +static struct pmbus_driver_info ltc4286_info = {
+> +	.pages = 1,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +	.format[PSC_CURRENT_OUT] = direct,
+> +	.format[PSC_POWER] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.m[PSC_VOLTAGE_IN] = 32,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = 1,
+> +	.m[PSC_VOLTAGE_OUT] = 32,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +	.R[PSC_VOLTAGE_OUT] = 1,
+> +	.m[PSC_CURRENT_OUT] = 1024,
+> +	.b[PSC_CURRENT_OUT] = 0,
+> +	/*
+> +	 * The rsense value used in MBR formula in LTC4286 datasheet should be ohm unit.
+> +	 * However, the rsense value that user input is micro ohm.
+> +	 * Thus, the MBR setting which involves rsense should be shifted by 6 digits.
+> +	 */
+> +	.R[PSC_CURRENT_OUT] = 3 - 6,
+> +	.m[PSC_POWER] = 1,
+> +	.b[PSC_POWER] = 0,
+> +	/*
+> +	 * The rsense value used in MBR formula in LTC4286 datasheet should be ohm unit.
+> +	 * However, the rsense value that user input is micro ohm.
+> +	 * Thus, the MBR setting which involves rsense should be shifted by 6 digits.
+> +	 */
+> +	.R[PSC_POWER] = 4 - 6,
+> +	.m[PSC_TEMPERATURE] = 1,
+> +	.b[PSC_TEMPERATURE] = 273,
+> +	.R[PSC_TEMPERATURE] = 0,
+> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+> +		   PMBUS_HAVE_PIN | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_VOUT |
+> +		   PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_TEMP,
+> +};
+> +
+> +static const struct i2c_device_id ltc4286_id[] = { { "ltc4286", 0 },
+> +						   { "ltc4287", 1 },
+> +						   {} };
 
---O1tsATRDNJs2XQ+S
-Content-Type: application/pgp-signature; name="signature.asc"
+Please fix that formatting and use the more common style.
 
------BEGIN PGP SIGNATURE-----
+static const struct i2c_device_id ltc4286_id[] = {
+	{ "ltc4286", 0 },
+	{ "ltc4287", 1 },
+	{}
+};
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZU0V6QAKCRB4tDGHoIJi
-0tIVAQCnznf8ilvNDYfcTWkh/NYq14MqMEXMy175sMtbTlLBZgEA0MpYtcUZwsoQ
-SgVP2XghmtqSpdg89Vi7kk6D6AmmiA0=
-=NqA3
------END PGP SIGNATURE-----
+> +MODULE_DEVICE_TABLE(i2c, ltc4286_id);
+> +
+> +static int ltc4286_probe(struct i2c_client *client)
+> +{
+> +	int ret;
+> +	int temp_setting;
+> +	const struct i2c_device_id *mid;
+> +	u8 block_buffer[I2C_SMBUS_BLOCK_MAX + 1];
+> +	struct pmbus_driver_info *info;
+> +	u32 rsense;
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, block_buffer);
+> +	if (ret < 0) {
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to read manufacturer id\n");
+> +	}
+> +
+> +	/*
+> +	 * Refer to ltc4286 datasheet page 20
+> +	 * the manufacturer id is LTC
+> +	 */
+> +	if (ret != LTC4286_MFR_ID_SIZE ||
+> +	    strncmp(block_buffer, "LTC", LTC4286_MFR_ID_SIZE)) {
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Manufacturer id mismatch\n");
+> +	}
+> +
+> +	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, block_buffer);
+> +	if (ret < 0) {
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to read manufacturer model\n");
+> +	}
+> +
+> +	for (mid = ltc4286_id; mid->name[0]; mid++) {
+> +		if (!strncasecmp(mid->name, block_buffer, strlen(mid->name)))
+> +			break;
+> +	}
+> +	if (!mid->name[0])
+> +		return dev_err_probe(&client->dev, -ENODEV,
+> +				     "Unsupported device\n");
+> +
+> +	ret = of_property_read_u32(client->dev.of_node,
+> +				   "shunt-resistor-micro-ohms", &rsense);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (rsense == 0)
+> +		return -EINVAL;
+> +
+> +	if (rsense > INT_MAX)
+> +		return -ERANGE;
+> +
 
---O1tsATRDNJs2XQ+S--
+This is not "Math result not representable". See below.
+
+> +	info = devm_kmemdup(&client->dev, &ltc4286_info, sizeof(*info),
+> +			    GFP_KERNEL);
+> +	if (!info)
+> +		return -ENOMEM;
+> +
+> +	/* Default of VRANGE_SELECT = 1, 102.4V */
+> +	if (device_property_read_bool(&client->dev, "adi,vrange-low-enable")) {
+> +		/* Setup MFR1 CONFIG register bit 1 VRANGE_SELECT */
+> +		ret = i2c_smbus_read_word_data(client, LTC4286_MFR_CONFIG1);
+> +		if (ret < 0)
+> +			return dev_err_probe(
+> +				&client->dev, ret,
+> +				"Failed to read manufacturer configuration one\n");
+> +
+> +		ret &= ~VRANGE_SELECT_BIT; /* VRANGE_SELECT = 0, 25.6V */
+> +		ret = i2c_smbus_write_word_data(client, LTC4286_MFR_CONFIG1,
+> +						ret);
+> +		if (ret < 0)
+> +			return dev_err_probe(&client->dev, ret,
+> +					     "Failed to set vrange\n");
+> +
+> +		info->m[PSC_VOLTAGE_IN] = 128;
+> +		info->m[PSC_VOLTAGE_OUT] = 128;
+> +
+> +		temp_setting = 4 * rsense;
+> +		if (temp_setting > INT_MAX)
+
+This will still overflow for values of rsense larger than INT_MAX / 4.
+temp_setting is an int, and its value will never be > INT_MAX.
+
+> +			return dev_err_probe(&client->dev, -ERANGE,
+> +					     "Power coefficient overflow\n");
+
+ERANGE is "Math result not representable", which is not the case here.
+This (and the above above) error needs to be -EINVAL.
+
+
+> +		info->m[PSC_POWER] = temp_setting;
+> +	} else {
+> +		info->m[PSC_POWER] = rsense;
+
+I told you before, the default range needs to be set. The range may have been
+changed by the BIOS/ROMMON, or someone could have changed it manually with
+i2cset or some other application, or some other operating system was loaded
+earlier which did its own setting.
+
+I do understand by now that you don't want to do that, but I won't accept
+the driver without it, sorry.
+
+> +	}
+> +
+> +	temp_setting = 1024 * rsense;
+> +	if (temp_setting > INT_MAX)
+> +		return dev_err_probe(&client->dev, -ERANGE,
+> +				     "Current coefficient overflow\n");
+
+Same comments as above for both overflow detection and error code. This also
+means that rsense must _always_ be <= INT_MAX / 1024. I would suggest to
+check that once after reading rsense instead of having three different checks
+in different places.
+
+Also, having an error message here but not with the initial check against
+0 and INT_MAX is inconsistent. I'd suggest no error message, but if you want
+to have error messages please make it consistent.
+
+> +	info->m[PSC_CURRENT_OUT] = temp_setting;
+> +
+> +	return pmbus_do_probe(client, info);
+> +}
+> +
+> +static const struct of_device_id ltc4286_of_match[] = {
+> +	{ .compatible = "lltc,ltc4286" },
+> +	{ .compatible = "lltc,ltc4287" },
+> +	{}
+> +};
+> +
+> +static struct i2c_driver ltc4286_driver = {
+> +	.driver = {
+> +		.name = "ltc4286",
+> +		.of_match_table = ltc4286_of_match,
+> +	},
+> +	.probe = ltc4286_probe,
+> +	.id_table = ltc4286_id,
+> +};
+> +
+> +module_i2c_driver(ltc4286_driver);
+> +
+> +MODULE_AUTHOR("Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>");
+> +MODULE_DESCRIPTION("PMBUS driver for LTC4286 and compatibles");
+> +MODULE_LICENSE("GPL");
+
 
