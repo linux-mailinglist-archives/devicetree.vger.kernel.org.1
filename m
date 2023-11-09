@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4895A7E686B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:39:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7783C7E688A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 11:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 796FA1C20A3E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:39:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FF421F2225D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 10:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95027F4;
-	Thu,  9 Nov 2023 10:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196517F4;
+	Thu,  9 Nov 2023 10:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="dpufDYmy"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="gO5+tRU6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 820F5199C4
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 10:39:07 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3AD52139
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 02:39:06 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-408434ce195so1535495e9.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 02:39:06 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59601807
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 10:42:26 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C3FB7
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 02:42:25 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c504a51a18so1670391fa.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 02:42:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1699526345; x=1700131145; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1699526544; x=1700131344; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MmGbwmaXtBtukBQbSz5/AjnhxMx8QNKzqe9+KNioNp0=;
-        b=dpufDYmyevNF6IVh+HAMmA+4yya5tgBTewSwwUyBn5wa3+qOROWDB9OVo/cyFtRViS
-         kwr5rFV2cDJ7tvmbGW5Rbf1NgFE6pxZTd9TwEFpLwq1TohczHNnzCnTqAwzYzomxAu6v
-         247To/UFiA5Mf05KYfpWKfXJM+n0P5XUFzWtMbvO3OWEHuvbmyCmo1sS6/rT0WZXN+hJ
-         JdQJYfvNI+7UHrUcj8/rrEHSNe2S2EO7TA9qoFd62qQkTivnk7cEtFi3awafAXSNi9x2
-         Wjd6co14z4Y7xZ6Pn6+RBE8gJjinzT9LHFJfeXRwuKOHymI4vDxPGDhc2IvznoVx7MyB
-         KZpA==
+        bh=/T3nAMPk3GrqIEl5q2gbW7BDPvpAe0liQvy3DzEQmwc=;
+        b=gO5+tRU6acrLCeoOk7D9VSAGkDWyj3JJCd78lAiExFb8o9sE75sbX8gsxiSn535yfz
+         9OAEx2JJ53HQzZMaF0mpKqMrKZA/+YRZEZdyG1AxC6xOKHJPlFQSZQm6hg9/4C2t8HJr
+         ieb5+80p3dxDvIiarWbFa9+FXhgo9i7Bi6YXzYiKi9mcoYr8K7i3gTkfFmwUdS9eTYvw
+         FB7QeV3jTstK+HXmYeLr1hhedxaIeoNdEBEUTayXPGkoebAA0spDafTYIDK+cI97S4dB
+         TMAG87H1v58sZsiQkkqxqe8ZH6whv9mH7YCtOReFWDvjgxp8BySTm5fZp36mW2tqcqrZ
+         uVUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699526345; x=1700131145;
+        d=1e100.net; s=20230601; t=1699526544; x=1700131344;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MmGbwmaXtBtukBQbSz5/AjnhxMx8QNKzqe9+KNioNp0=;
-        b=efvAP6IPZiGpKlBXm8lInziOsstzcbF82ERGL0yCl7AXOU+ZZhKl+UqIRA8gwQ+AVK
-         zGBLl6NwOpThs3YcRYGh8MG4M/EBwEijkRU0l/He0JKKXeuRq0lLr6udj6kw9lEufS6h
-         LPMHNhgOSTkbDgpCXx59vFIu3gBaSGpez1ci+U2nBhPeR/y4E3BSBIUD0sE4e0VyPnkP
-         mbwt0dioj34byLYjpYi3ORNNuYebQ6MlvvDvcHmKktpt15b3oCUgEDDYbMvvmATOepJV
-         bSeXvN/EskpSuv6KGDLx05o9Q8rSEKB9SyKtNIasD/7+JFUWtRJ0mwQNXmkQMO6WjWXA
-         RzaA==
-X-Gm-Message-State: AOJu0Yyqh3qj/+SYxGrDD14OQ61DfIBIX/HuRZ024l6YMkgHbgpKbSh+
-	awobyyJpHJZjehmEhu01C26r8w==
-X-Google-Smtp-Source: AGHT+IGJDtJU0vy2RLytoP9NwcqdfAiEsZKNe2CEhkkrVnWPGJ8hlOjTlrHY/RwmZQGojP3I0Fa1xA==
-X-Received: by 2002:a7b:c4d7:0:b0:408:3836:525f with SMTP id g23-20020a7bc4d7000000b004083836525fmr4014084wmk.1.1699526344873;
-        Thu, 09 Nov 2023 02:39:04 -0800 (PST)
+        bh=/T3nAMPk3GrqIEl5q2gbW7BDPvpAe0liQvy3DzEQmwc=;
+        b=F8ytDqQswnZzripZfIwZi+fNVlgZMO22N1fPAJpO7+G5kMdXDkI9m3HnXYr+ECfzwA
+         LulaJPyTJ0rnoUxDwa2kOm/HYHhjCzZhtkRcmz0afsSKJSBlGJylFl9rfFOxSiW3stZF
+         eoOjcA8Py9mX0m+LtGJ+2Ij39z1bZpNYdpChl2ZWNCPW6wTcxkMJtpPDY12MQHYAuZAr
+         R7Y5D4C8Ised1CjnvUwe4G4k7yduRUo7ExkMSGwBthGMx7WONm9MYuuStdhyaEgEEEzU
+         p2VoZufEd++Uiq/mr6a/Et/lhyD8i8pCTzsj8/oGyyQWzAJD77dIfxEUiHRbx8OM4yW5
+         zdOQ==
+X-Gm-Message-State: AOJu0YxVXkDy2dLJwTMxSkQX2FuweaiTL7lt4CthOCywR24q3HWQMEyu
+	8oLTnhm18vGjUxo21jTmBK2czQ==
+X-Google-Smtp-Source: AGHT+IHcJMnl4Agc3MEocHCsrLtdMFFEcJLC2XSn3K1KlAQHuyrsJ6xuAtI3wP4NAa7wEFjA1O7D4w==
+X-Received: by 2002:a05:6512:3f0d:b0:509:8d70:49e8 with SMTP id y13-20020a0565123f0d00b005098d7049e8mr1595802lfa.6.1699526543435;
+        Thu, 09 Nov 2023 02:42:23 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:999:a3a0:87b4:87b9:6476:5df7? ([2a01:e0a:999:a3a0:87b4:87b9:6476:5df7])
-        by smtp.gmail.com with ESMTPSA id p22-20020a05600c359600b004080f0376a0sm1662458wmq.42.2023.11.09.02.39.03
+        by smtp.gmail.com with ESMTPSA id h7-20020a05600c350700b004090ca6d785sm1698384wmq.2.2023.11.09.02.42.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 02:39:04 -0800 (PST)
-Message-ID: <fd022864-f276-4c4c-84ea-0752b915a9b3@rivosinc.com>
-Date: Thu, 9 Nov 2023 11:39:03 +0100
+        Thu, 09 Nov 2023 02:42:23 -0800 (PST)
+Message-ID: <5cb0a3ae-405c-4b07-adaa-0e3109e76c69@rivosinc.com>
+Date: Thu, 9 Nov 2023 11:42:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,11 +67,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 06/20] riscv: add ISA extension parsing for vector
- crypto
+Subject: Re: [PATCH v3 20/20] dt-bindings: riscv: add Zfa ISA extension
+ description
 Content-Language: en-US
-To: Jerry Shih <jerry.shih@sifive.com>,
- Conor Dooley <conor.dooley@microchip.com>
+To: Conor Dooley <conor@kernel.org>
 Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
  Palmer Dabbelt <palmer@rivosinc.com>,
@@ -79,66 +78,62 @@ Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Albert Ou <aou@eecs.berkeley.edu>, Jonathan Corbet <corbet@lwn.net>,
  Andrew Jones <ajones@ventanamicro.com>, Evan Green <evan@rivosinc.com>,
- Conor Dooley <conor@kernel.org>, Samuel Ortiz <sameo@rivosinc.com>
+ Samuel Ortiz <sameo@rivosinc.com>
 References: <20231107105556.517187-1-cleger@rivosinc.com>
- <20231107105556.517187-7-cleger@rivosinc.com>
- <5EF129A2-195B-4207-A2F6-DBA1FBB9F65D@sifive.com>
- <20231109-revolver-heat-9f4788c51bbf@wendy>
- <20231109-prevalent-serrated-d40eb5f71236@wendy>
- <F2C4CCA2-0513-4988-94C4-1ECEB9F1D578@sifive.com>
+ <20231107105556.517187-21-cleger@rivosinc.com>
+ <20231108-basics-delete-710d0682bf0e@spud>
 From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <F2C4CCA2-0513-4988-94C4-1ECEB9F1D578@sifive.com>
+In-Reply-To: <20231108-basics-delete-710d0682bf0e@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 
 
-On 09/11/2023 10:45, Jerry Shih wrote:
-> On Nov 9, 2023, at 15:54, Conor Dooley <conor.dooley@microchip.com> wrote:
->> On Thu, Nov 09, 2023 at 07:44:46AM +0000, Conor Dooley wrote:
->>> On Thu, Nov 09, 2023 at 10:58:41AM +0800, Jerry Shih wrote:
->>>> On Nov 7, 2023, at 18:55, Clément Léger <cleger@rivosinc.com> wrote:
->>>> The Zvknha and Zvknhb are exclusive. It's not the superset relationship.
->>>>
->>>> Please check:
->>>> https://github.com/riscv/riscv-crypto/issues/364#issuecomment-1726782096
->>>
->>> You got a response to this on the previous version, but didn't engage
->>> with it:
->>> https://lore.kernel.org/all/c64d9ddb-edbd-4c8f-b56f-1b90d82100b7@rivosinc.com/#t
+On 08/11/2023 15:59, Conor Dooley wrote:
+> On Tue, Nov 07, 2023 at 11:55:56AM +0100, Clément Léger wrote:
+>> Add description for the Zfa ISA extension[1] which can now be
+>> reported through hwprobe for userspace usage.
 > 
-> Reply for the thread:
-> https://lore.kernel.org/all/c64d9ddb-edbd-4c8f-b56f-1b90d82100b7@rivosinc.com/#t
-
-Hi Jerry,
-
-Sorry for that, I actually thought my mailer was broken and fixed the
-mail the first time I answered but not the second time...
-
+> FWIW, hwprobe is not relevant for the dt-bindings.
 > 
->> Yes, but for instance, what happens if the user query the zvknha (if it
->> only needs SHA256) but zvknhb is present. If we don't declare zvknha,
->> then it will fail but the support would actually be present due to
->> zvknhb being there.
-> 
-> If we needs SHA256 only, then we should check whether we have zvknha `or` zvknhb.
-> https://github.com/openssl/openssl/blob/4d4657cb6ba364dfa60681948b0a30c40bee31ca/crypto/sha/sha_riscv.c#L24
 
-Ok, and if there is already some userspace code that behaves like that,
-let's go this way and do not treat that as a superset.
+Ok, since I'll resend a V4, I will remove this mention top hwprobe.
+
+>> Link: https://drive.google.com/file/d/1VT6QIggpb59-8QRV266dEE4T8FZTxGq4/view [1]
+>> Signed-off-by: Clément Léger <cleger@rivosinc.com>
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 
 Clément
 
 > 
->> Ahh, I now see what that happened. Your mailer is broken and puts the
->> message-id of what you are replying to in the In-Reply-To and Reply-To
->> headers. The former is correct, the latter is bogus & means you don't even
->> get delivered the response.
+> Cheers,
+> Conor.
 > 
-> I use mac builtin `mail` client. And I think I put the `in-reply-to` address to
-> the `reply to` field. Hope this one works well. Thank you for the thread forwarding.
-> 
-> -Jerry
+>> ---
+>>  Documentation/devicetree/bindings/riscv/extensions.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> index 87c7e3608217..dcba5380f923 100644
+>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> @@ -214,6 +214,12 @@ properties:
+>>              instructions as ratified at commit 6d33919 ("Merge pull request #158
+>>              from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>>  
+>> +        - const: zfa
+>> +          description:
+>> +            The standard Zfa extension for additional floating point
+>> +            instructions, as ratified in commit 056b6ff ("Zfa is ratified") of
+>> +            riscv-isa-manual.
+>> +
+>>          - const: zfh
+>>            description:
+>>              The standard Zfh extension for 16-bit half-precision binary
+>> -- 
+>> 2.42.0
+>>
 
