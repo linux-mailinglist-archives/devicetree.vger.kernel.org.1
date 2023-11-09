@@ -1,182 +1,289 @@
-Return-Path: <devicetree+bounces-14721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23A07E656D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:39:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C92AF7E6563
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 09:36:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 177171C20B08
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:39:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC7B91C2028E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 08:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B91D297;
-	Thu,  9 Nov 2023 08:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A5FCA66;
+	Thu,  9 Nov 2023 08:36:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="efnhyxMs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruekoEvJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD0110956
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:39:03 +0000 (UTC)
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FB532717
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:39:02 -0800 (PST)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231109083900epoutp048e04ae05323abab4f90b240f4fb8af3e~V56dgOBxI2624026240epoutp04e
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:39:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231109083900epoutp048e04ae05323abab4f90b240f4fb8af3e~V56dgOBxI2624026240epoutp04e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1699519140;
-	bh=IA8tVDEiR3OUTboPQ/PY/TxTQuBZRkJALEc43ISnuNw=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=efnhyxMsGaqfr7z8Na7Z/qh30v8tBNgLijusUHWi6q01cSuhLt5yQfssJqyr41RTt
-	 rkbNP6cuPL/vDT3c54BV7m2c40IFjc/WQw7UkpjxXS3bvVSq8iwGEqmI/AYo78B6bt
-	 YoJJjPNED8O6l2y74/vmFNrRIUK1dURpFcBpJ1rI=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-	20231109083900epcas2p39eed51ad7909b12b62e08be1ac5800ee~V56dJWP7F1153011530epcas2p3N;
-	Thu,  9 Nov 2023 08:39:00 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.89]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4SQwNM3dj6z4x9Pp; Thu,  9 Nov
-	2023 08:38:59 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	D8.23.10006.3AA9C456; Thu,  9 Nov 2023 17:38:59 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20231109083858epcas2p48cae9d866b6b51405c76b01156b4ce95~V56cIIqxB0079200792epcas2p4z;
-	Thu,  9 Nov 2023 08:38:58 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231109083858epsmtrp2538ba1605409bc6c9cca25c453e2662c~V56cHPEKs2879728797epsmtrp24;
-	Thu,  9 Nov 2023 08:38:58 +0000 (GMT)
-X-AuditID: b6c32a45-179ff70000002716-20-654c9aa3d2f2
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	78.56.08817.2AA9C456; Thu,  9 Nov 2023 17:38:58 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20231109083858epsmtip151265ef90607b87f0931ae4cf9ce8288~V56bwhdvF0398903989epsmtip16;
-	Thu,  9 Nov 2023 08:38:58 +0000 (GMT)
-Message-ID: <7c98023e-9207-c6fe-8a98-c8277c6d2c1a@samsung.com>
-Date: Thu, 9 Nov 2023 17:36:12 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846FB10A21
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 08:36:51 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6162210A
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 00:36:50 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9d2c54482fbso92269066b.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 00:36:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699519009; x=1700123809; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HM+DFmrG6wa8ydEQeoV3Vc8//oFV5vln5+Xv9+Di6Zo=;
+        b=ruekoEvJjH5EnF8dw47kbm/t0P2gHjJFyXfuixLWa9duAMeww2eyUQjqa9mpkmtOKs
+         FiQ6fcIv2/mT5no1mWvRpjazYZ4RUqKONKyUym7uLNOpovhqrofalv3/U6Os/DxP+K5U
+         rLckK2+8gugOYNEZCMioeDpkQvewjg9SObbwFMDwBmgkvObo1RB3KaGtDs3uf+5c3rmA
+         XSc/CsEksdwv1Sq7aOf3KCFt/T0U1jX7pkOyNQ0sHjYjEz7QRe5S5MEaYfszUFCBh4Kg
+         fIJXL0YfZXHfhPjMq3BbT5SwEg8oToL8Kx+86KLlAfJkZBk0ZUG1gID8gQwWqptHYwDi
+         pZsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699519009; x=1700123809;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HM+DFmrG6wa8ydEQeoV3Vc8//oFV5vln5+Xv9+Di6Zo=;
+        b=NQEByrJcI+XqQo90mYWcKHN4/TF3kzh2UhUKiivvPJRWsqKMVZQ6vWOXWZ2l6faFCw
+         0iHVZwC0iXcmpkLD7MfeFRVIn/Ii/vwYG8IK9fxWh/HG/dM2yR7tGwdbnPP+WuAUyPm7
+         vmmI95mn4ZUKIKW9l0c0YGL+IDCdsfKlSy0nWzawoMLUQSYuSaqV2Ccxerkoe7Rm8xIz
+         tl0xh1urmS/nGANd9zRr6tN1U7Q6X/1ZYQIpcwsQINr7EpkHsxZVIjUwdmqbWGQarzs5
+         ozA65DZRno21gM+WUrCOFQ1BzpORe6r7deyMIzemsnpWfHtafYt9xeB9tfy0nOyUMU2j
+         +Djg==
+X-Gm-Message-State: AOJu0Yzn7sodO5yV/t+/OnQyHay5mZOVyDkc6HMw5dZ5HeL4AA6TtKpa
+	1gCpzGG2g7/fN9feI5rM0HxCcg==
+X-Google-Smtp-Source: AGHT+IEDyH3wJqJ/md+1tYIycG5iM5Sf6AN9x90DWZ62ddR60zBSCsVIw9iYz43G9HRDfmx3dCKcfQ==
+X-Received: by 2002:a17:906:c144:b0:9e2:b250:98c9 with SMTP id dp4-20020a170906c14400b009e2b25098c9mr4174428ejc.21.1699519009031;
+        Thu, 09 Nov 2023 00:36:49 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id t27-20020a170906179b00b009a1dbf55665sm2210950eje.161.2023.11.09.00.36.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 00:36:48 -0800 (PST)
+Message-ID: <04242b1b-477b-45cd-bcb8-0125e705b71a@linaro.org>
+Date: Thu, 9 Nov 2023 09:36:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-	Thunderbird/102.11.0
-Subject: Re: [PATCH 04/10] dt-bindings: pwm: samsung: add exynosautov9
- compatible
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: soc: Add new board description for
+ MicroBlaze V
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	=?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Linus Walleij
-	<linus.walleij@linaro.org>, Thierry Reding <thierry.reding@gmail.com>, Greg
-	Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
-	<jirislaby@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <545b681e-2da7-4adf-9c3c-0d292951ef94@linaro.org>
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFJsWRmVeSWpSXmKPExsWy7bCmqe7iWT6pBs+Wi1o8mLeNzWLN3nNM
-	FvOPnGO1aF68ns3i3VwZi72vt7JbTPmznMli0+NrrBab5/9htLi8aw6bxd27qxgtZpzfx2Rx
-	ZnEvu0Xr3iPsFofftLNa/Nw1j8Vi1S6gutsTJzM6CHnsnHWX3WPTqk42jzvX9rB57J+7ht1j
-	85J6j/6/Bh59W1YxenzeJBfAEZVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6k
-	kJeYm2qr5OIToOuWmQP0iZJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwLxArzgx
-	t7g0L10vL7XEytDAwMgUqDAhO+Nq4wf2go3cFTMWnmdvYOzl7GLk5JAQMJHYcOY1SxcjF4eQ
-	wA5GiY71n9ggnE+MEkceH2OFcL4xSpw9P58VpuXykutQLXsZJSbfW8YE4bxmlDj09Dc7SBWv
-	gJ3E41d9YDaLgIrE8gkHmSHighInZz5hAbFFBaIlWpfdZwOxhQWCJaYvnQZmMwuIS9x6Mp8J
-	xBYRqJP4Pukj2DZmgUssEksWvgMbxCagLfF9/WKwkziBlq2/3wXVLC/RvHU2M8Spbzgkft1O
-	gLBdJI68bGCEsIUlXh3fwg5hS0l8freXDcLOlmif/gfqzQqJixtmQ8WNJWY9awfq5QCarymx
-	fpc+iCkhoCxx5BYLxFY+iY7Df9khwrwSHW1CEI1qEvennoMaIiMx6chKJgjbQ2LyzVamCYyK
-	s5ACZRaS52ch+WUWwt4FjCyrGMVSC4pz01OLjQoM4ZGdnJ+7iRGcyLVcdzBOfvtB7xAjEwfj
-	IUYJDmYlEd4LJj6pQrwpiZVVqUX58UWlOanFhxhNgVEzkVlKNDkfmEvySuINTSwNTMzMDM2N
-	TA3MlcR577XOTRESSE8sSc1OTS1ILYLpY+LglGpgWr1/zu/j8Y5rtfs1NT6XP/VqZ5rf/GbW
-	/Mxz6yblPfv2+Zrg4T9brYr0JnUUSj48kLJjxY9ZfDXF04QSJ7h8dRY02x97z822eOnPTZFv
-	K0y3/xLLnlwby/69ZqZ39j1FIZ3dGywS5spvMooVXblnRW3d08lBLXJrqwTynC66m1bsX5i2
-	SPt7yukn7LotLv+y3LVlK1bb8KRunqGjl3HxoF/AkayDPgcn1iXqzWJ5c+z59VNSz65umT5t
-	/gft26bpzBcCbic63+jfM+dCTodf1WKj1fwRd926RNe/ivy+h8tM31rmy62y/PmfWIqv7ZjO
-	vursOVl+/pka1aWWspwlfcFTDRd6LTul6Xhyul2RqRJLcUaioRZzUXEiAGma4ohtBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsWy7bCSnO6iWT6pBpceG1s8mLeNzWLN3nNM
-	FvOPnGO1aF68ns3i3VwZi72vt7JbTPmznMli0+NrrBab5/9htLi8aw6bxd27qxgtZpzfx2Rx
-	ZnEvu0Xr3iPsFofftLNa/Nw1j8Vi1S6gutsTJzM6CHnsnHWX3WPTqk42jzvX9rB57J+7ht1j
-	85J6j/6/Bh59W1YxenzeJBfAEcVlk5Kak1mWWqRvl8CVcbXxA3vBRu6KGQvPszcw9nJ2MXJy
-	SAiYSFxecp0FxBYS2M0o8WlrCERcRmL5sz42CFtY4n7LEVaImpeMErPf64DYvAJ2Eo9f9bGD
-	2CwCKhLLJxxkhogLSpyc+QRspqhAtMTqzxfAeoUFgiWmL50GNpNZQFzi1pP5TCC2iECdxKqX
-	f4HmcAHFr7BIvHr8hgnEERJYxyTReG47WAebgLbE9/WLwSZxAm1ef78LapKZRNfWLkYIW16i
-	eets5gmMQrOQHDILycJZSFpmIWlZwMiyilEytaA4Nz232LDAKC+1XK84Mbe4NC9dLzk/dxMj
-	OHq1tHYw7ln1Qe8QIxMH4yFGCQ5mJRHeCyY+qUK8KYmVValF+fFFpTmpxYcYpTlYlMR5v73u
-	TRESSE8sSc1OTS1ILYLJMnFwSjUwWa58IjpNT8dJ4+jmWU3b+Z0PJt959vhV4+LD2fluel53
-	jqwyfvzv5eSMRWdSHxiF79zMO0mghoHP5MGFQqu4sMX/fl9bVxCUvJJZrCziNde1txZnYiId
-	k7iTv54/cNuhebJmWZam6oEVfzrmvM2327d4X86UbL4/kz8I/fmwuOFcuqnQA/XTjz+9nxh4
-	ZHvC2zTp7q+T77NHR3R9T2KaH8XTs/1kWsd1IWevJZ/dbv5bZjjvu9O8TR9Mti2Vubfy0P50
-	0ZjGGyGM8tYzfWf8WlB/RDCwbdu5qk3/WSeWXu5mv2Gy2tNqWdfrshUTDt7wbPP/87pngmB0
-	0LOGKJ6I3bGtt09dKp144Kiq/vq+L5uVWIozEg21mIuKEwFVLcuKTQMAAA==
-X-CMS-MailID: 20231109083858epcas2p48cae9d866b6b51405c76b01156b4ce95
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231031095017epcas2p306a504619cbaf1fc260f6c46f8b75dd8
-References: <20231031094852.118677-1-jaewon02.kim@samsung.com>
-	<CGME20231031095017epcas2p306a504619cbaf1fc260f6c46f8b75dd8@epcas2p3.samsung.com>
-	<20231031094852.118677-5-jaewon02.kim@samsung.com>
-	<20231109062807.ko53f63arpxgigd5@pengutronix.de>
-	<545b681e-2da7-4adf-9c3c-0d292951ef94@linaro.org>
+To: Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, palmer@dabbelt.com
+References: <50c277c92c41a582ef171fb75efc6a6a4f860be2.1699271616.git.michal.simek@amd.com>
+ <20231106-hangnail-prankster-a04e713bed35@spud>
+ <4223470c-5596-4168-9c89-e701559fbbed@amd.com>
+ <e9fef49e-c0ca-4f7d-9618-151216e25280@linaro.org>
+ <92d95425-5bae-4ada-8fc3-966e7bfbd815@amd.com>
+ <90f9991e-26a3-498e-9449-c96663987459@linaro.org>
+ <20231107-darkening-daylong-deef34169798@spud>
+ <872007e1-6e57-4dc4-89f5-62fea3c969a5@amd.com>
+ <b1b5b020-600d-48c0-aec8-c866c4c29c7a@linaro.org>
+ <d62a1b46-d44f-48b9-9f93-647fe2a6f8a2@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d62a1b46-d44f-48b9-9f93-647fe2a6f8a2@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On 23. 11. 9. 17:23, Krzysztof Kozlowski wrote:
-> On 09/11/2023 07:28, Uwe Kleine-König wrote:
->> Hello,
+On 08/11/2023 11:11, Michal Simek wrote:
+>> I meant that creating a binding for something which is not and will not
+>> be a product does not bring any benefits. Why do we even care to
+>> document it? Who requires it? I don't. I don't see DTS or driver, no
+>> need for compatible.
 >>
->> On Tue, Oct 31, 2023 at 06:47:46PM +0900, Jaewon Kim wrote:
->>> Add samsung,exynosautov920-pwm compatible string to binding document.
+>> That's why entire discussion starts with DTS (and/or driver).
+> 
+> We have dt description for soft IPs like uartlite
+> Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+> 
+> We have 16550 compatible IP with
+> Documentation/devicetree/bindings/serial/8250.yaml
+> 
+> Simple ethernet core
+> Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
+> 
+> Axi ethernet
+> Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
+> 
+> Adi clock generator
+> Documentation/devicetree/bindings/clock/adi,axi-clkgen.yaml
+> 
+> Adi fan control
+> Documentation/devicetree/bindings/hwmon/adi,axi-fan-control.yam
+> 
+> Adi adcs
+> Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> 
+> and much more.
+> 
+> They are IPs from vendor catalogs. We can talk if it is a product (definitely 
+> yes if you need to buy it for your design). But all of them fit to the same 
+> category that you are composing your HW design with them.
+> All of them as standalone can't run. You will never create a product with just 
+> uartlite IP. You need to add cpu, clocks, reset logic and others around to make 
+> a product out of it.
+> 
+> Our mental model is HW designer create new IP, we are writing driver for it, 
+> customers can buy it (or get it for free) and use it.
+> They put it to their design, create custom board and sell it as a product.
+> 
+> And in this particular case HW designed create risc-v compatible CPU.
+> I expect this should fine
+> https://lore.kernel.org/r/d442d916204d26f82c1c3a924a4cdfb117960e1b.1699270661.git.michal.simek@amd.com
+> 
+> And discussion what we are having is pretty much about how to share the view on 
+> the system.
+
+That's different category. All of these are part of SoC. Here we talk
+about the SoC and I had impression that you added compatible for the SoC
+alone.
+
+> 
 >>>
->>> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
->>> ---
->>>   Documentation/devicetree/bindings/pwm/pwm-samsung.yaml | 1 +
->>>   1 file changed, 1 insertion(+)
+>>>>
+>>>> I spoke to Palmer a bit about this, and what I think would make sense is
+>>>> if you had some sort of "reference design" bitstream that people could
+>>>> download and run on xyz AMD devkit. If that existed, then we could
+>>>> document that configuration etc. Otherwise you're in the same spot that
+>>>> a lot of IP vendor stuff is, where without there being something that
+>>>> qualifies as "real hardware" using the core, it doesn't make sense to
+>>>> try and create bindings etc. It's the same for the various people in
+>>>> the RISC-V community that created their own CPUs that they run on FPGAs.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->>> index 2162f661ed5a..b6beca2ae81e 100644
->>> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->>> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->>> @@ -30,6 +30,7 @@ properties:
->>>         - items:
->>>             - enum:
->>>                 - samsung,exynosautov9-pwm
->>> +              - samsung,exynosautov920-pwm
->>>             - const: samsung,exynos4210-pwm
->> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>>> Aren't all ARM FVP models enabled by SW before soc vendors put them to a real
+>>> chip? Is there any real product available at that time?
 >>
->> What is the merge plan here? Should this go via the pwm tree, or can it
->> better go via some exynos tree together with the dts files?
-> I propose I will take it. I will have conflicting change and keeping
-> bindings with DTS together allows smooth dtbs_check.
->
-> Best regards,
-> Krzysztof
->
->
+>> FVP also finished one. They do not claim they added compatible for a SoC
+>> or CPU. And that's my impression here.
+> 
+> Are these real chips?
+>          compatible = "arm,foundation-aarch64", "arm,vexpress";
+>          compatible = "arm,fvp-base-revc", "arm,vexpress";
+> 
+> FVP are Fixed Virtual Platforms. Pretty much emulators similar to QEMU.
 
-I also agree it would be better to enter the exynos tree.
+If your case is this one, then few parts of description should be
+rephrased in the bindings.
 
-Thanks Krzysztof.
+> 
+>>
+>>>
+>>> I will try to find out if there is any official plan for releasing any reference
+>>> design against any evaluation board with commitment to supporting it.
+>>>
+>>>>>> Or I can define qemu one.
+>>>>>> "amd,qemu-mbv", "amd,mbv"
+>>>>>
+>>>>> QEMU is not hardware, so not.
+>>>
+>>> I am still trying to wrap my head around it. In qemu we are actually going to
+>>> create model for this configuration but based on what you are saying here we
+>>> shouldn't really have DT which describes it.
+>>> That's why we likely end up in situation that qemu create DT description self,
+>>> put it to memory and u-boot/kernel will consume it. The only difference is going
+>>> to be that DT will be used but won't be checked against dt-schema.
+>>> I personally prefer to have DT pass dt-schema checking and tell qemu guys, this
+>>> is what qemu should generate.
+>>> But if you think that this is wrong approach I will let them generate whatever
+>>> they want and will just check functionality. It means u-boot won't have DT,
+>>> Linux won't have DT and I am done.
+>>
+>>
+>> Sorry, I am confused now. Are we talking about real hardware or QEMU SW
+>> model? Your description clearly said:
+>> "AMD boards with MicroBlaze V SOC"
+>> so QEMU is not a board. Board has a physical form, a shape. Usually flat.
+> 
+> Let me describe what we do for all our SOCs but Microblaze is the best example here.
+> Customers open design tools (right know Vivado) and design their system there.
+> Choose cpu and it's configuration like barrel shifter, divider, multiplicator, 
+> size of caches. Then put there interrupt controller, timer, consoles, ethernet, 
+> spi, i2c, etc. For all IPs you need to choose mmio base address and connect them 
+> to any interrupt line you like.
+> You normally target a board, evaluation platforms or just standalone chips which 
+> you use on your custom boards.
+> And build bitstream (configuration for FPGA) and also going over our device tree 
+> generators which generate DT for describing the system.
+> Very old example is for example visible here
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/microblaze/boot/dts/system.dts?h=v6.6
+> 
+> Another example is mb-v description mentioned in previous thread.
+> 
+> The reason is simple with a lot of IPs in the design none will be able to get 
+> description right in connection to addresses and especially interrupt numbers.
+> 
+> It means at this stage you have bistream for your board and you have DTS 
+> (without board specific information like i2c devices, ethernet phy, etc)
+> 
+> For 10+ years our qemu is taking input as DTB and create qemu model based on it. 
+> It means you say via DT I want this cpu core, this timer at 0x..., interrupt at 
+> 0x..., uart at 0x..., etc. and qemu generates model for it. Pretty much the same 
+> DT can be consumed by SW to run it on the model.
+> 
+> We reached the state that you have qemu model which reflects your design choice 
+> and at the same time you have hardware for your board.
+> 
+> It means same DT describe qemu configuration and also hardware.
+
+So you can run it under QEMU. I misunderstood your proposal of adding
+qemu compatibles few emails before.
+
+But if the QEMU model and also the hardware is called "AMD MicroBlaze
+V", then how the heck is SoC called?
 
 
-Thanks,
 
-Jaewon Kim
+Best regards,
+Krzysztof
 
 
