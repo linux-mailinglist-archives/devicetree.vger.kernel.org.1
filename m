@@ -1,160 +1,213 @@
-Return-Path: <devicetree+bounces-14831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FAED7E6D4E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 16:23:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D240A7E6D81
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 16:36:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FF66B20C6B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 15:23:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F0F61F21250
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 15:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3351D1A73B;
-	Thu,  9 Nov 2023 15:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C1F20324;
+	Thu,  9 Nov 2023 15:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mDafDizY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kzMGmkHR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8647420322
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 15:23:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D918B30DC;
-	Thu,  9 Nov 2023 07:23:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1699543395; x=1731079395;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Dca00f8u/HRqNH6WddJ2+DC+wgMmjo7ZhH+sIjOxTuI=;
-  b=mDafDizY9Z9e859ixzS7YYfRT/mMyXOcEFVGKypNVj8NnmBdaltdaFBJ
-   vp2mmHrGn/8YbynRLlHW2YjdDv+2lIZzy9T/W82XhGTjmqU4RourXS+rr
-   ZLvIt2xKrGZ0jZV7QCrHtLvy7Pufrnp5jAE/duQS+qCt0+ZyQB3nvPJSF
-   BA2x/z/8U4QSeCMQK0H1ZImOIVvUpNyhae6EZs9h3+gpXXAzFrAmZZfbU
-   6mckWqQULsgGXjH71VJMV4kOtoRoHwQSxfqV035IdpNJpg5mwMUz1Sfbo
-   LvFVmz6ZzSO6K/9A4bJo35exTPCA2EviTIGnxI8Jb3Ky/r7c74q9l5vev
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="2972920"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; 
-   d="scan'208";a="2972920"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2023 07:23:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="907148487"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; 
-   d="scan'208";a="907148487"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 09 Nov 2023 07:23:10 -0800
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r16s7-0008q8-2g;
-	Thu, 09 Nov 2023 15:23:07 +0000
-Date: Thu, 9 Nov 2023 23:22:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jyan Chou <jyanchou@realtek.com>, ulf.hansson@linaro.org,
-	adrian.hunter@intel.com, jh80.chung@samsung.com,
-	riteshh@codeaurora.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Cc: oe-kbuild-all@lists.linux.dev, conor+dt@kernel.org,
-	asutoshd@codeaurora.org, p.zabel@pengutronix.de,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, arnd@arndb.de,
-	briannorris@chromium.org, doug@schmorgal.com,
-	tonyhuang.sunplus@gmail.com, abel.vesa@linaro.org,
-	william.qiu@starfivetech.com, jyanchou@realtek.com
-Subject: Re: [PATCH V6][1/4] mmc: solve DMA boundary limitation of CQHCI
- driver
-Message-ID: <202311092347.9A8MgzyN-lkp@intel.com>
-References: <20231109082043.27147-2-jyanchou@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68D320321;
+	Thu,  9 Nov 2023 15:36:07 +0000 (UTC)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 130CD30D3;
+	Thu,  9 Nov 2023 07:36:07 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9e213f198dfso171574966b.2;
+        Thu, 09 Nov 2023 07:36:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699544165; x=1700148965; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wi1QpsAJgHUTB4YFMyuEyqEplHtXIeaZSET719WZmlw=;
+        b=kzMGmkHRyQcJYdL73ZjHXmkXhDet2Af3hEO0cNiRTIt1GoB/mSVA4Z+afItzjfohCl
+         RmMEVfIqW8rzsVQPgslD26p5uko0v9SouYXKGy+yZI3ZTUt7X7xqKaGIGR0mvlNFYueA
+         cHlFGHSohHwBEyiqDDNd/sBn3RfjCjH4Mu8H/MEdml/HYzutXkfMmFBqHoSa1ZWLSPUa
+         U7hBq3Cpp9RybHPGjuunI+fsiXsEn6O+x9itbYP4jCxJR5wuvattgtM9hsAVG+QPI2jp
+         WuNoB9zmmBQm0E9dbDwJbbK40JMTadSCtZd+s5JIXd8qan26YTmyIpk91RhMkdZE85oF
+         Sadg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699544165; x=1700148965;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wi1QpsAJgHUTB4YFMyuEyqEplHtXIeaZSET719WZmlw=;
+        b=gUINNlZgAHRn4Seak8vbNMyavZdhsjLeZ/pzwOwUV41O/2YcJHgFZQqDhiR5D6cHxb
+         hMo3Pj52qWB8jxJdCPqRzrsHxfM6pM+N4RhvdgAHy8xLD4jKWY1/pcMebbRB32SGDYqA
+         0iNP/Vvyu8GkV1l0XMRKP3fTk7JTcINATAFfmTpJIG9+7SV9W6TnVK8UXpOwCu3iHXAW
+         eO0B/5nFMNOc4UjSuy7s9198BsGHuAIlmo5iRpxOlUECWtvXhVW24FHFl+1XaFE1tdX8
+         gsumxaHKlICi+EFcGXl4bOtBE2A3jnWfTHXWeEXUAPyFGtG2iFASekBkPcoaU7d4GfRm
+         nmhw==
+X-Gm-Message-State: AOJu0YzzuFncSASzbD+y3TF4EK0ntM2/YkQ5w05Ly84NWpkPpneeb7Z0
+	CQAsScijOmyPPO4ZrcM0YAo=
+X-Google-Smtp-Source: AGHT+IFbOVY6fsmj2hkbcNOUMKkyN6BOqaHSSpWwITRx/8cZ3c6X7LtCsDYKBVixxOl9OZltWZkK1A==
+X-Received: by 2002:a17:906:4796:b0:9bf:10f3:e435 with SMTP id cw22-20020a170906479600b009bf10f3e435mr5055466ejc.1.1699544165234;
+        Thu, 09 Nov 2023 07:36:05 -0800 (PST)
+Received: from [192.168.100.74] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id x13-20020a1709065acd00b00992b8d56f3asm2669896ejs.105.2023.11.09.07.36.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Nov 2023 07:36:04 -0800 (PST)
+Message-ID: <a04cc8d1-5239-486a-8c1d-e9bd8bd7868d@gmail.com>
+Date: Thu, 9 Nov 2023 16:36:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231109082043.27147-2-jyanchou@realtek.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] hwmon: Add support for Amphenol ChipCap 2
+Content-Language: en-US
+To: Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
+ <20231020-topic-chipcap2-v2-3-f5c325966fdb@gmail.com>
+ <30ccb0a9-c0bd-491e-817f-def0aeda11c6@linaro.org>
+ <d5692ab7-6d11-41f3-89ec-246a2fc045a8@roeck-us.net>
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <d5692ab7-6d11-41f3-89ec-246a2fc045a8@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Jyan,
+On 09.11.23 15:55, Guenter Roeck wrote:
+> On 11/9/23 00:52, Krzysztof Kozlowski wrote:
+>> On 08/11/2023 16:37, Javier Carrasco wrote:
+>>> The Amphenol ChipCap 2 is a capacitive polymer humidity and temperature
+>>> sensor with an integrated EEPROM and minimum/maximum humidity alarms.
+>>>
+>>> All device variants offer an I2C interface and depending on the part
+>>> number, two different output modes:
+>>> - CC2D: digital output
+>>> - CC2A: analog (PDM) output
+>>>
+>>> This driver adds support for the digital variant (CC2D part numbers),
+>>> which is also divided into two subfamilies [1]:
+>>> - CC2DXX: non-sleep measurement mode
+>>> - CC2DXXS: sleep measurement mode
+>>
+>> ...
+>>
+>>> +
+>>> +static int cc2_probe(struct i2c_client *client)
+>>> +{
+>>> +    struct cc2_data *data;
+>>> +    struct device *dev = &client->dev;
+>>> +    enum cc2_ids chip;
+>>> +    int ret;
+>>> +
+>>> +    if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+>>> +        return -EOPNOTSUPP;
+>>> +
+>>> +    data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>>> +    if (!data)
+>>> +        return -ENOMEM;
+>>> +
+>>> +    i2c_set_clientdata(client, data);
+>>> +
+>>> +    mutex_init(&data->i2c_lock);
+>>> +    mutex_init(&data->alarm_lock);
+>>> +
+>>> +    data->client = client;
+>>> +
+>>> +    if (client->dev.of_node)
+>>> +        chip = (uintptr_t)of_device_get_match_data(&client->dev);
+>>> +    else
+>>> +        chip = i2c_match_id(cc2_id, client)->driver_data;
+>>> +
+>>> +    data->config = &cc2_config[chip];
+>>> +
+>>> +    ret = cc2_request_ready_irq(data, dev);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    data->regulator = devm_regulator_get_optional(dev, "vdd");
+>>> +    if (!IS_ERR(data->regulator)) {
+>>> +        ret = cc2_retrive_alarm_config(data);
+> 
+> fwiw, s/retrive/retrieve/g
+ack.
+> 
+>>> +        if (ret)
+>>> +            goto cleanup;
+>>> +    } else {
+>>> +        /* No access to EEPROM without regulator: no alarm control */
+>>> +        goto dev_register;
+>>
+>> Nothing improved here.
+>>
+>> Do not send new version of patchset before discussion finishes.
+>>
+> 
+> This driver will take a while to review due to its complexity.
+That is absolutely ok. I will wait for a few days to gather more
+feedback and hopefully send less versions.
+> 
+> As for the code above: Error handling goes first. Something like
+> the above, where the error case is just a goto, is unacceptable and
+> just increases indentation level for the other code and makes it
+> more difficult to read. Also, the above code _will_ have to handle
+> error cases other than -ENODEV. Besides deferred probe, it is
+> completely inappropriate to ignore -EINVAL or -ENOMEM or any other
+> error codes other than -ENODEV.
+> 
+The probe function will return from errors other than -ENODEV directly
+with no goto and checking them first.
+I just need to skip the alarm registration for -ENODEV and do the
+cleanup if an error occurs after enabling the regulator to keep
+enable/disable parity.
+>>> +    }
+>>> +
+>>> +    ret = cc2_request_alarm_irqs(data, dev);
+>>> +    if (ret)
+>>> +        goto cleanup;
+>>> +
+>>> +dev_register:
+>>> +    data->hwmon = devm_hwmon_device_register_with_info(dev,
+>>> client->name,
+>>> +                               data, &cc2_chip_info,
+>>> +                               NULL);
+>>> +    if (IS_ERR(data->hwmon)) {
+>>> +        ret = PTR_ERR(data->hwmon);
+>>> +        goto cleanup;
+>>> +    }
+>>> +
+>>> +    return 0;
+>>> +
+>>> +cleanup:
+>>> +    if (cc2_disable(data))
+>>> +        dev_dbg(dev, "Failed to disable device");
+>>> +
+>>> +    return dev_err_probe(dev, ret,
+>>> +                 "Unable to register hwmon device\n");
+>>
+>> Drop or move to each error path.
+>>
+> This actually follows Documentation/process/coding-style.rst, chapter 7
+> (Centralized exiting of functions).
+> 
+> Guenter
+> 
+Thanks for your comments.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on linus/master]
-[also build test ERROR on ulf-hansson-mmc-mirror/next v6.6 next-20231109]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jyan-Chou/mmc-solve-DMA-boundary-limitation-of-CQHCI-driver/20231109-190435
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20231109082043.27147-2-jyanchou%40realtek.com
-patch subject: [PATCH V6][1/4] mmc: solve DMA boundary limitation of CQHCI driver
-config: arc-randconfig-002-20231109 (https://download.01.org/0day-ci/archive/20231109/202311092347.9A8MgzyN-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231109/202311092347.9A8MgzyN-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311092347.9A8MgzyN-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/mmc/host/cqhci-core.c: In function 'cqhci_prep_tran_desc':
->> drivers/mmc/host/cqhci-core.c:519:25: error: 'const struct cqhci_host_ops' has no member named 'setup_tran_desc'
-     519 |         if (cq_host->ops->setup_tran_desc) {
-         |                         ^~
-   drivers/mmc/host/cqhci-core.c:520:29: error: 'const struct cqhci_host_ops' has no member named 'setup_tran_desc'
-     520 |                 cq_host->ops->setup_tran_desc(data, cq_host, desc, sg_count);
-         |                             ^~
-
-
-vim +519 drivers/mmc/host/cqhci-core.c
-
-   498	
-   499	static int cqhci_prep_tran_desc(struct mmc_request *mrq,
-   500					struct cqhci_host *cq_host, int tag)
-   501	{
-   502		struct mmc_data *data = mrq->data;
-   503		int i, sg_count, len;
-   504		bool end = false;
-   505		bool dma64 = cq_host->dma64;
-   506		dma_addr_t addr;
-   507		u8 *desc;
-   508		struct scatterlist *sg;
-   509	
-   510		sg_count = cqhci_dma_map(mrq->host, mrq);
-   511		if (sg_count < 0) {
-   512			pr_err("%s: %s: unable to map sg lists, %d\n",
-   513					mmc_hostname(mrq->host), __func__, sg_count);
-   514			return sg_count;
-   515		}
-   516	
-   517		desc = get_trans_desc(cq_host, tag);
-   518	
- > 519		if (cq_host->ops->setup_tran_desc) {
-   520			cq_host->ops->setup_tran_desc(data, cq_host, desc, sg_count);
-   521			return 0;
-   522		}
-   523	
-   524		for_each_sg(data->sg, sg, sg_count, i) {
-   525			addr = sg_dma_address(sg);
-   526			len = sg_dma_len(sg);
-   527	
-   528			if ((i+1) == sg_count)
-   529				end = true;
-   530			cqhci_set_tran_desc(desc, addr, len, end, dma64);
-   531			desc += cq_host->trans_desc_len;
-   532		}
-   533	
-   534		return 0;
-   535	}
-   536	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Javier Carrasco
 
