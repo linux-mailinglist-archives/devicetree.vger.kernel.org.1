@@ -1,333 +1,149 @@
-Return-Path: <devicetree+bounces-14870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C41F7E72BF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 21:26:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7167E7383
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 22:21:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85133281042
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 20:26:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DBE5B20DDF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 21:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92AEC374DD;
-	Thu,  9 Nov 2023 20:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5BD374EE;
+	Thu,  9 Nov 2023 21:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mv+SxyeC"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="lMIuPyGM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E950F374C8;
-	Thu,  9 Nov 2023 20:26:18 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488FF44B6;
-	Thu,  9 Nov 2023 12:26:18 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3A9JY6br026296;
-	Thu, 9 Nov 2023 20:26:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BSEFC97DPNuh2NKt1LnpDdqp0So3uF6/pbicepm5WAc=;
- b=mv+SxyeCa3ZSYSgf4anZeYTRG7BUGKuLQG+AepLDWWsPn5auvaj3htzJsnXjXhjOYYoz
- Uhti4VlqmNRJUPDCtbWVDbEc0yYtFWQyEpjxKHj+nUOQo4iKiUGPYexmt0ZgfTEUmoS+
- peqvT/nGajBvK7PTkO1JGlJcY4UetYCkNsBUYj95Q6O9mYayKth+aKZugb1VOzo1gUNL
- H55tG6j4D9us3Bry7h8/GiBy66BZOWbJXMxKBRLdCnsDTrZovR05kgRmtefbUlm5Lh/k
- 5zpVPOQ8TP6I968V0DQPYSxAPHZg4EaRKaG4WmZyEoV3a1tJrFIc81Kv66q6ReTV/UT7 vQ== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u93rbrdhy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Nov 2023 20:26:06 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3A9KQ3xs008437
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Nov 2023 20:26:03 GMT
-Received: from [10.71.112.236] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
- 2023 12:26:02 -0800
-Message-ID: <50931ba5-132f-3982-e33a-691583e3a71f@quicinc.com>
-Date: Thu, 9 Nov 2023 12:25:59 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40824374DE;
+	Thu,  9 Nov 2023 21:21:38 +0000 (UTC)
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2047.outbound.protection.outlook.com [40.107.105.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F75D3C05;
+	Thu,  9 Nov 2023 13:21:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A5PrIqHlEgT7P6U+JznsaabdM/03bLWzvFtEGjepIqoEsMlSuEfMMg8s8N27GjZboNxR7HUOV+uoM6nuS06yfyrlLgELUwglQYQvRqZxP3k00E8Dul5P3U1AJB6snjSZ7bcl3IeXeiRAPdbB7qkq3/qd5ofoVcPhrmJtedvgNtZwtKlTUBhHktK72TTVouc6iy6SfU65wHe+4skfRkGGznh4Iejvc+zyfdO5Z+/mbupinIPPCw0W1aBdmzITLPUVgfYbZyXeBFBrdT0CC4ZDRxxmpsrVSeKvRKB1S91Hp96zDJxozmcIpuiTrM1XUVZDMR0huRwLdMj4NA7OX3Nw4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v1Mx6XeawNDc81uQYBW7oPzCVcocQG1tHT/QCKiv7FM=;
+ b=Qxybucc/hEuL/tm6p/KQOpHOOXjtU3au2hB2fk5P37GeEzdbyYuiubL/Ip0XJdPLsRfVmg/Z/zIXkRxVbzkY90UGL67l/zWLXwSqMSiMw0bqTbEEyIEa5jd8huC8mrEQRw2O2gh5u6r93sEYRXL/NdUPglp13vjKzMWbkfAkNRAeJNpBbCNsMx2EYjE6/OTaoGR95CWShBtsXH4J/65ISkMc2TaPlAmGVpQ/pWUsd4syouZync0S1c+7SUbKm24F8gaXX9hH4bLkRe1yDuFKPOKofo54es8x4jTEPJ4GltFfJKwvJfTHnznrJ99ahdNts/JkAPURTsC8By0VYmSctQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v1Mx6XeawNDc81uQYBW7oPzCVcocQG1tHT/QCKiv7FM=;
+ b=lMIuPyGM7o6CGfFmbyLozvKMWYeG2GVu3sSmkZuwYMaS3QrbNsD15cFWJNbBnes9WCxfE4xIDJRqiKgUeH+Ol+hpiamWJtcmi6VeWlpZyGjIL1ybiXej0PwvqWC8UE/HaPAysVFTvIbzBe9ApkUOP4dQsVZ54P+NNfsjnNHFbf4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by DBBPR04MB7836.eurprd04.prod.outlook.com (2603:10a6:10:1f3::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.7; Thu, 9 Nov
+ 2023 21:21:34 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::55e7:3fd0:68f4:8885]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::55e7:3fd0:68f4:8885%4]) with mapi id 15.20.6977.018; Thu, 9 Nov 2023
+ 21:21:34 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: frank.li@nxp.com
+Cc: devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	imx@lists.linux.dev,
+	joy.zou@nxp.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org,
+	peng.fan@nxp.com,
+	robh+dt@kernel.org,
+	shenwei.wang@nxp.com,
+	vkoul@kernel.org
+Subject: [PATCH 0/4] dmaengine: fsl-edma: integrate TCD64 support for 64bit physical address
+Date: Thu,  9 Nov 2023 16:20:55 -0500
+Message-Id: <20231109212059.1894646-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH7PR17CA0013.namprd17.prod.outlook.com
+ (2603:10b6:510:324::6) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Content-Language: en-US
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Johan Hovold
-	<johan@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>
-CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-6-quic_kriskura@quicinc.com>
- <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
- <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
- <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
- <2b19b5e2-5eb0-49e0-8c47-8aff3d48f34e@quicinc.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <2b19b5e2-5eb0-49e0-8c47-8aff3d48f34e@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: udjM-C__RW-E6zGhcyWuGHZTcE8kHPzd
-X-Proofpoint-ORIG-GUID: udjM-C__RW-E6zGhcyWuGHZTcE8kHPzd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-09_14,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
- phishscore=0 adultscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=999 impostorscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311090146
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|DBBPR04MB7836:EE_
+X-MS-Office365-Filtering-Correlation-Id: f92e7a45-07ec-480a-7804-08dbe169d988
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	0LZBAb7IY4M/j5DazMBZVHODJH5SkDe0ahPJ/Y0SVYgIN9BQ4AT0mIHhoilOKtAHLle1Ti2/fpc7/EFr1xkRWzQZLNuc4JEpvtyIbK5lpqfVaOb1o+cqIbzhYeyQD/TVjYiNpNxEeg9vMWATG8vH/y++HkzxFw1uNk0BiUX72BbI+pM5qwDCG9n6oFH5QQGlHPo4UbJvwMP6pufDp/x8/buLiZ67bxl0pno9+9dvnuVdDYJSTvxkSHNfDAIRjV/3YSO9/2KXvGhBzFB7iuUH7rUfNTVyYiQUP4i/Ty9mvUOh2i8XQURN2e0/enaF4lvLzA1RTNxavR32gcHGIpkQXDCQuPa/zsQI+EH3LIfY39mGHQCQr6jcRdga1oiSM7siE7Sz3zJxhIe+S376JqH7ZAJo+FTF6cYDDHYBRcfSGTwwN0wyFxkJTxp5SrY/ebv5VKRJSilYr+9BfisvcwoJBL9O0MHQKBoUJWVd6WpgYE7QFWJdm/2S0osVegejzFZq5wk0k8PfnofFP1UVpmALnydeZERt3HcPUEVXFU5LgoJG7xd2pgrb557e+xtu0UklwcVgv+ibVCwdTztjPcNzoC4aHPeNV9fRAk0RDK6J0lCct5QxtiR0ql2D+w/TovvF
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(346002)(396003)(39860400002)(376002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(66556008)(66476007)(316002)(37006003)(1076003)(6512007)(6486002)(52116002)(26005)(66946007)(6666004)(8676002)(83380400001)(8936002)(6506007)(4326008)(34206002)(2616005)(478600001)(5660300002)(4744005)(86362001)(38100700002)(41300700001)(2906002)(36756003)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mOko3Geg62SBYdZ4AcJmOFKBK4EKgDYUFP3xXXpBaxwoLrnEvo8zMqf9oAOS?=
+ =?us-ascii?Q?f+FwKDXj5TVlEoF+64M2ZGJWHphc6xvAwUBW1T5eEMA8IJG/+dBiqEdG909o?=
+ =?us-ascii?Q?DmlZWLj0BVlDr+VEsgdenuXmPyCLG2V81vBtckd5RgfpHJuxvXF2Cq3MdapY?=
+ =?us-ascii?Q?ELBW1HbIZFCrOJ3pTXv5V2h3eClbr3cCJ0pU/tn8EdHDg28g9vhfuz6Oy2b8?=
+ =?us-ascii?Q?0W9L3fpLeTSHmAkbkGknB5DqpqnDHiP4tD1cArgLeiSb4WQyQADZHSmlnn23?=
+ =?us-ascii?Q?wBfmVNpr/8tWkRhVnfDDr6Wo6GlkrbrYnZxYdgdfOBTCfIgjuafcy2PKoOiu?=
+ =?us-ascii?Q?1xW+NtjXkCjgSLcIOWDDP+mW4NHNMynIvNj18q1SR3lPDqHDv+wL+XjXGJzf?=
+ =?us-ascii?Q?9aqHxfK++ZMeYc2aK45Xv32K7Ykj2s1+XNV3skNw7JAgm2k5IsUZ4dk0ykBq?=
+ =?us-ascii?Q?JLJfICCr0xqiEmkVtcBXwemxmfIH/Lk9I0Sh1mQZMHsmSmEjTZxPmote8Kmy?=
+ =?us-ascii?Q?PqMDofibFRXMUtk8iw99mXcnDUDVEpTZhIuxna57CprX9VQqXq/O+JB7MGi9?=
+ =?us-ascii?Q?/Jbjom02XJ6VqaHL6arnBSl/bE10t7Kn9NPcHDt5CBt9gg/F0T5I1TOw5Y87?=
+ =?us-ascii?Q?t6O211h+UlFFUJINpzuboVf0+iJVyQVKC3UzC50XnQL1TPyOHfJAUodILIyw?=
+ =?us-ascii?Q?Tu1ienlk5q/ctrE3AqlH1064HuwxFJFsHLQqZ/SngG1H31xO3fgDaXwQdSLp?=
+ =?us-ascii?Q?OZhEPt2OKeqHFSOtsPM1XcAQtvoZLHccLBOxz6DDk1koBVH+OPEaxQ79cTUY?=
+ =?us-ascii?Q?5mgLGaMS+L1U9WAMjdOkDgB89vxsnMqhLR7kwzJ2bMXGPJGeQf5Stc5lJK+p?=
+ =?us-ascii?Q?3pbAi0aKuaJNoeupcsYqTSWxSvKi7KcUmZ4K73jZzGcPdEQ9f8D9ZB7YYRlw?=
+ =?us-ascii?Q?e82cCtDo6VNSAO0A8Uas/adKNCFJWeXBxP0Q/oe9Wt9UqNM9EEVkcOuQcVpI?=
+ =?us-ascii?Q?DPI/nDlnZ8Y8rdBc4hkYp1mKhNltqmAbGOwVl+kIT6Fr2Umh0UlHAUYfqU7j?=
+ =?us-ascii?Q?UlNJWpWgM9E+NxzZ0Dw8gmmbpSnMSvmXAQpWhk04AaHB4Fwb+7TYwhhS6On/?=
+ =?us-ascii?Q?ETbb+q+8MhhOx7RNxxje9GAXuGoYbeQgKVdqCpJAhAfc5EbBcgrFoekHfNGu?=
+ =?us-ascii?Q?7TFRHSyGpNQZsBkKLO5cEwy5ZgfAS9US652UmkHhTuC2+sPjkm/NGT1gsnwl?=
+ =?us-ascii?Q?ku+R2t7fl/GelAWmIhb3CueLmRnugg1utjYySfYMXXUdCOSBNtJMkRVpPnvA?=
+ =?us-ascii?Q?ZMfiWO9HGxZNUuXltuzwF5+Bga6tBGed4b5uRvjeteHTdv271tYLdlbmlVI1?=
+ =?us-ascii?Q?puPgWoXjuifm/qFbl4oBeaLvYUbL1f3lkfRfNYCBXI3aPGL16M1ezRb5p1wq?=
+ =?us-ascii?Q?Db6mzf4y9qsREOSzVfXxjqFj/Rhh+Vq9V/yfB75OfwSNddZh4YyrRx5HoEVT?=
+ =?us-ascii?Q?NUBLD3PnoObcUX/2h0mya4kgkVMnXf+HJmzxYMvmj7gDNH+VnFRa7J0j0F+d?=
+ =?us-ascii?Q?S0U/l9x+VNZNYN/KLUoFZfel+W9IAi2cYhjCxX3E?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f92e7a45-07ec-480a-7804-08dbe169d988
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2023 21:21:34.3702
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3GPpkAwgV7xDKYXxQoMtItbuN+v0WKwjcCAs+busPLFdAj2d0AB9OLh8B+BCfj/3x5RIyXnpp2Vzm4O7/6l81g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7836
 
+first 2 patch is prepare, No function change.
+3rd patch is dt-bind doc
+4rd patch is actuall support TCD64
 
+Frank Li (4):
+  dmaengine: fsl-edma: involve help macro fsl_edma_set(get)_tcd()
+  dmaengine: fsl-edma: add address for channel mux register in
+    fsl_edma_chan
+  dt-bindings: fsl-dma: fsl-edma: add fsl,imx95-edma5 compatible string
+  dmaengine: fsl-edma: integrate TCD64 support for i.MX95
 
-On 11/9/2023 8:38 AM, Krishna Kurapati PSSNV wrote:
-> 
-> 
-> On 11/9/2023 8:48 PM, Johan Hovold wrote:
->> On Fri, Nov 03, 2023 at 03:34:52PM +0530, Krishna Kurapati PSSNV wrote:
->>> On 10/24/2023 12:26 PM, Johan Hovold wrote:
->>>> On Mon, Oct 23, 2023 at 10:42:31PM +0530, Krishna Kurapati PSSNV wrote:
->>>>> On 10/23/2023 7:37 PM, Johan Hovold wrote:
->>>>
->>>>>> Right. And I assume there are hs_phy_irqs also for the first two USB
->>>>>> controllers on sc8280xp?
->>>>
->>>>> There are, I can dig through and find out. Atleast in downstream I 
->>>>> don't
->>>>> see any use of them.
->>>>
->>>> Yes, please do post how these are wired as well for completeness.
->>
->> Did you find these two interrupts as well?
->>
->>
->>> Regarding the points of discussion we had last week on [1], here are
->>> some clarifications:
->>>
->>> 1. We do have hs_phy_irq 1/2/3/4 for tertiary port of Sc8280 as
->>> mentioned. Why do we need them and would we use it in multiport 
->>> targets ?
->>>
->>> DPSE and DMSE are single ended line state of DP and DM lines. The DP
->>> line and DM line stay in steady High or Low during suspend and they flip
->>> when there is a RESUME or REMOTE WAKE. This is what we do/check in
->>> dwc3_qcom_enable_interrupts call for dp/dm irq's based on usb2_speed.
->>
->> Right, this bit is clear.
->>
->>> Initially in QUSB2 targets, the interrupts were enabled and configured
->>> in phy and the wakeup was interrupt was read on hs_phy_irq vector - [2].
->>> In that case, we modify DP/DM interrupts in phy registers, specifically
->>> QUSB2PHY_INTR_CTRL and when wakeup signal comes in, hs_phy_irq is
->>> triggered. But in femto targets, this is done via DP/DM interrupts and
->>> there is no use of hs_phy_irq. Even hw folks confirmed they dont use
->>> hs_ph_irq in femto phy targets.
->>
->> Ok, thanks for pointing to QUSB2. The same mechanism is apparently used
->> in phy-qcom-usb-hs-28nm.c as well (even if the dtsi currently does not
->> define the wakeup interrupts).
->>
->> Furthermore, that implementation is broken and has never worked due to
->> another half-arsed, incomplete Qualcomm implementation. Specifically, no
->> one is changing the PHY mode based on the current speed before suspend
->> as commits like
->>
->>     3b3cd24ae61b ("phy: Add USB speed related PHY modes")
->>
->> and
->>
->>     891a96f65ac3 ("phy: qcom-qusb2: Add support for runtime PM")
->>
->> depend on. Guess I should go revert that mess too...
->>
->>> As an experiment, I tried to test wakeup by pressing buttons on
->>> connected keyboard when in suspend state or connecting/disconnecting
->>> keyboard in suspended state on different ports and only see dp/dm IRQ's
->>> getting fired although we register for hs_phy_irq as well:
->>>
->>> / # cat /proc/interrupts  |grep phy_
->>> 171:   1  0   0   0  0  0  0  0       PDC 127 Edge      dp_hs_phy_1
->>> 172:   2  0   0   0  0  0  0  0       PDC 126 Edge      dm_hs_phy_1
->>> 173:   3  0   0   0  0  0  0  0       PDC 129 Edge      dp_hs_phy_2
->>> 174:   4  0   0   0  0  0  0  0       PDC 128 Edge      dm_hs_phy_2
->>> 175:   0  0   0   0  0  0  0  0       PDC 131 Edge      dp_hs_phy_3
->>> 176:   2  0   0   0  0  0  0  0       PDC 130 Edge      dm_hs_phy_3
->>> 177:   2  0   0   0  0  0  0  0       PDC 133 Edge      dp_hs_phy_4
->>> 178:   5  0   0   0  0  0  0  0       PDC 132 Edge      dm_hs_phy_4
->>> 179:   0  0   0   0  0  0  0  0       PDC  16 Level     ss_phy_1
->>> 180:   0  0   0   0  0  0  0  0       PDC  17 Level     ss_phy_2
->>> 181:   0  0   0   0  0  0  0  0     GICv3 163 Level     hs_phy_1
->>> 182:   0  0   0   0  0  0  0  0     GICv3 168 Level     hs_phy_2
->>> 183:   0  0   0   0  0  0  0  0     GICv3 892 Level     hs_phy_3
->>> 184:   0  0   0   0  0  0  0  0     GICv3 891 Level     hs_phy_4
->>
->> Yes, but that doesn't really say much since you never enable the hs_phy
->> interrupt in the PHY on suspend.
-> 
-> I did register to and enabled the hs_phy_irq interrupt when I tested and 
-> posted the above table.
-> 
->>> Since the hs_phy_irq is applicable only for qusb2 targets, do we still
->>> need to add it to DT.
->>
->> Are you sure there's no support for hs_phy_irq also in the "femto" PHYs
->> and that it's just that there is currently no driver support for using
->> them?
->>
->> And why is it defined if there is truly no use for it?
-> 
-> Femto phy's have nothing to be configured for interrupts like we do for 
-> qusb2 phy's. I confirmed from hw validation team that they never used 
-> hs_phy_irq for validating wakeup. They only used dp/dm IRQ's for wakeup.
-> 
->> Also, if hs_phy_irq and dp/dm_phy_irq were mutually exclusive, why does
->> the following Qualcomm SoCs define all three?
->>
-> 
-> Similar to BAM IRQ's these might have been just ported over targets I 
-> believe. I say so because HW Validation team confirmed they don't use 
-> this interrupt at all on femto phy targets.
-> 
->>                - qcom,ipq4019-dwc3
->>                - qcom,ipq6018-dwc3
->>                - qcom,ipq8064-dwc3
->>                - qcom,ipq8074-dwc3
->>                - qcom,msm8994-dwc3
->>                - qcom,qcs404-dwc3
->>                - qcom,sc7180-dwc3
->>           - qcom,sc7280-dwc3
->>                - qcom,sdm670-dwc3
->>                - qcom,sdm845-dwc3
->>                - qcom,sdx55-dwc3
->>                - qcom,sdx65-dwc3
->>                - qcom,sm4250-dwc3
->>                - qcom,sm6125-dwc3
->>                - qcom,sm6350-dwc3
->>                - qcom,sm8150-dwc3
->>                - qcom,sm8250-dwc3
->>                - qcom,sm8350-dwc3
->>                - qcom,sm8450-dwc3
->>                - qcom,sm8550-dwc3
->>
->> Some of those use QUSB2 PHYs and some use "femto" PHYs.
->>  > And this comes from Qualcomm through commits like:
->>
->>     0b766e7fe5a2 ("arm64: dts: qcom: sc7180: Add USB related nodes")
->>     bb9efa59c665 ("arm64: dts: qcom: sc7280: Add USB related nodes")
->>
->>
->>> 3. ctrl_irq[1] usage:
->>>
->>> This is a feature of SNPS controller, not qcom glue wrapper, and is
->>> present on all targets (non-QC as well probably). As mentioned before on
->>> [3], this is used for HW acceleration.
->>>
->>> In host mode, XHCI spec does allow for multiple interrupters when
->>> multiple event rings are used. A possible usage is multiple execution
->>> environments something like what we are doing on mobile with ADSP audio
->>> offload [4]. Another possibility could be some of virtualization where
->>> host/hyp would manage the first interrupter and could allow a guest to
->>> operate only with the second (though current design does not go far
->>> enough to offer true isolation for real VM type workloads). The
->>> additional interrupts (ones other than ctrl_irq[0]) are either for
->>> virtualization use cases, or for our various “hw offload” features. In
->>> device mode, these are used for offloading tethering functionality to
->>> IPA FW.
->>
->> Ok, thanks for clarifying what you meant by "HW acceleration".
->>
->>> Since the DeviceTree passed to the OS, should describe the hardware to
->>> the OS, and should represent the hardware from the point-of-view of the
->>> OS, adding one interrupt (ctrl_irq[0]) might be sufficient as Linux
->>> would not use the other interrupts.
->>
->> I've only skimmed the virtualisation bits in xHCI spec, but it seems
->> Linux as VMM would still be involved in assigning these interrupts to
->> VMs.
+ .../devicetree/bindings/dma/fsl,edma.yaml     |   2 +
+ drivers/dma/fsl-edma-common.c                 |  85 ++++++------
+ drivers/dma/fsl-edma-common.h                 | 126 ++++++++++++++++--
+ drivers/dma/fsl-edma-main.c                   |  17 +++
+ 4 files changed, 178 insertions(+), 52 deletions(-)
 
-Hi Krishna/Johan,
-
-IMO it might be a bit premature to add definitions for how to utilize 
-secondary interrupters since design wise, there's nothing really too 
-well defined yet.  At least for the XHCI path, we will have a slew of 
-potential use cases for secondary interrupters, such as USB audio 
-offloading, or for VMMs, etc...  I've only heard mentions about some of 
-them after pushing the usb audio offloading series, but I don't have 
-much details on it.
-
-For example, for the USB audio offload path, the idea is to not have to 
-interrupt the apps proc, and allow for an external DSP to be managing 
-the event ring.
-
-> 
-> I didn't understand this sentence. Are you referring to cases where 
-> Linux needs to act as the entity using the ctrl_irq[1] ?
-> 
-> On QCOM SoC's, in reality (atleast in device mode) I can say that we 
-> create the event rings for IPA FW (which registers for ctrl_irq[1]) to 
-> use and read depevt's. We don't register or get this IRQ from DT and 
-> then provide to IPA (not even in downstream).
-> 
->>
->> This may possibly be something that we can ignore for now, but perhaps
->> someone more familiar with the hardware, like Thinh, can chime in.
->>
->>> Furthermore AFAIK even UEFI/Windows
->>> also use only ctrl_irq[0] for host mode in their execution environment
->>> today. Do we still need to add this to bindings and DT ?
->>
->> But the second interrupt is described in the ACPI tables, which means
->> that a simple driver update could (in theory) allow for it to be used.
->>
->> You need to get into the same mindset when it comes to devicetree. Even
->> if Linux currently does not use an interrupt, like the pwr_event_irq,
->> you should still add it so that when/if someone implements support for
->> it, an older platform using the original dt may also take advantage of
->> it.
-
-Yeah, I totally agree with this point, but I'm not sure if adding it 
-into the "interrupts" array is the way to go.  It would probably have to 
-change as support is added.
-
-Sorry for jumping in, but just giving my two cents since I'm the one 
-trying to do the initial push for the support for secondary interrupters :).
-
-Thanks
-Wesley Cheng
+-- 
+2.34.1
 
 
