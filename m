@@ -1,137 +1,202 @@
-Return-Path: <devicetree+bounces-14674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC42E7E611E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 00:39:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B13A7E6141
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 01:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D74C1C20843
-	for <lists+devicetree@lfdr.de>; Wed,  8 Nov 2023 23:39:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C0571F21142
+	for <lists+devicetree@lfdr.de>; Thu,  9 Nov 2023 00:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E512374FB;
-	Wed,  8 Nov 2023 23:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8DA566F;
+	Thu,  9 Nov 2023 00:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N5+lAS1Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ItFiPvw8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE4E374EB;
-	Wed,  8 Nov 2023 23:39:01 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4583025B5;
-	Wed,  8 Nov 2023 15:38:59 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1BEB6240002;
-	Wed,  8 Nov 2023 23:38:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699486737;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZWGdlfzeQ997IaAZInKpU2sKbuC+Orz4F3vDh0PjvMg=;
-	b=N5+lAS1QuxDD2SdkvbVdLw6qWEExpftDZPduFcY4jvX3tX20kCAWoNxKTCbZRtf9w+ouLF
-	l4fKQQcmYAJfL8NzZdxIG/Zw2NQvea1Blg8JDbZhLzGFqwUFZSMLAZQbKEtgh+f0oxmK4T
-	EpVXWt1UurkD/XfaaScPMdGHnbdIhAsxc8NUUIWyZcFHTWS+vs9cASEwT34LE+hQQNy3eN
-	0IDd6wLXmMcmnxq54uddsLKPdwBZzrwtOTy4lTn/ffsBGYKNJFjj8vvBRXDFioGx8SKIzF
-	K8zpiBozZs5QOnMp5PMhArdwmbRirW7GuvBX/PaIdsbwc92dALc61l+dNbST7Q==
-Date: Thu, 9 Nov 2023 00:38:54 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaehoon Chung <jh80.chung@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 06/17] dt-bindings: rtc: s3c-rtc: add specific
- compatibles for existing SoC
-Message-ID: <202311082338542f79f576@mail.local>
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
- <20231108104343.24192-7-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C29F5668;
+	Thu,  9 Nov 2023 00:02:34 +0000 (UTC)
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9DA2685;
+	Wed,  8 Nov 2023 16:02:34 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-5b383b4184fso3803107b3.1;
+        Wed, 08 Nov 2023 16:02:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699488153; x=1700092953; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=4S3hUwpEwAhRsIK33hvWrkFRJfd6iKru9dgJJTsDG6o=;
+        b=ItFiPvw8bWfimT2ADSZn+NOtiad8oICm1f4A/0F3U8MdzEwszzkFU2b8Uf+77SrHWs
+         gwrbm/vzLLzXGpm0wSsKWOpy/zi7e1xgnmTtvMkdGBHTTL9AVYN1AXLbr9AFDCpBjEAr
+         gF5K1EXQEYbRpZ5y/hFaLjMVI3XrE2gmznAnwSRkuNZdmEL2g/aUvTUc5sRH4RSYbcgB
+         X3tr65gYJl9LAQjdORPvXnq9pPq1XoG9ZL9IuYZH46d1s14UjK4W1UAbS8VP2gzAH+Mb
+         W9OE5Dl+5ebSyWZoDVV6QlOumWVioU/vO4a0TPABu/ZKqLJuvEqZMZqTbka2xUjDCFZ+
+         QKTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699488153; x=1700092953;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4S3hUwpEwAhRsIK33hvWrkFRJfd6iKru9dgJJTsDG6o=;
+        b=u7FrwltY0KoOq8+hzGhCCnq9waHwRR7VR/GFoLqElDHzQGS2clV/zrEuEIcaEWyaZW
+         5auHGKbjs34GaKZuz4oBN7rXvwlajZgI+uhUN1OuEE7ZcTCP8nQnjktFLAbm1UdiEFoM
+         Q/rXekMnL03OQYZn83GFtOCB7lzEC76tBOn3x1jfDGhIkZgJLM9zkLrCFZ/tnt/GXUCC
+         ug6q/FsuiznzjzO0On0PfYrNtRyqzFey2pRgLPc2kSvJKOKNATfLlsxHfClrsnywkRYj
+         eVUcVxyBdSJFf5PtCMc/GzOj9UYrj5tIq7pjXWOt23CLbK3O9l+sP/SCkjGPtU6cuME/
+         eDrg==
+X-Gm-Message-State: AOJu0YxinkLgJs/FtEYOqz9PjkNuBKuV+lZClK1P1Hqp49XvcJLg0cav
+	MfmYhAWsVm+2v9Oua23jop0=
+X-Google-Smtp-Source: AGHT+IF7M4jKHrAJfyC9vLGEIV3Ibl9BE2YgD0HLpg94t/zgChrpWu+z0Mgw8Ztbp8/W5U9l7G1NZg==
+X-Received: by 2002:a81:9185:0:b0:5a5:65e:b847 with SMTP id i127-20020a819185000000b005a5065eb847mr3307746ywg.34.1699488153531;
+        Wed, 08 Nov 2023 16:02:33 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id q16-20020a819910000000b005a20ab8a184sm7607523ywg.31.2023.11.08.16.02.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Nov 2023 16:02:32 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <44f1eaa3-a90d-42cf-9808-4f39aacbf270@roeck-us.net>
+Date: Wed, 8 Nov 2023 16:02:29 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231108104343.24192-7-krzysztof.kozlowski@linaro.org>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] hwmon: (core) Add support for humidity min/max
+ alarm
+Content-Language: en-US
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
+ <20231020-topic-chipcap2-v2-2-f5c325966fdb@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231020-topic-chipcap2-v2-2-f5c325966fdb@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 08/11/2023 11:43:32+0100, Krzysztof Kozlowski wrote:
-> Samsung Exynos SoC reuses several devices from older designs, thus
-> historically we kept the old (block's) compatible only.  This works fine
-> and there is no bug here, however guidelines expressed in
-> Documentation/devicetree/bindings/writing-bindings.rst state that:
-> 1. Compatibles should be specific.
-> 2. We should add new compatibles in case of bugs or features.
+On 11/8/23 07:37, Javier Carrasco wrote:
+> Add min_alarm and max_alarm attributes for humidityX to support devices
+> that can generate these alarms.
+> Such attributes already exist for other magnitudes such as tempX.
 > 
-> Add compatibles specific to each SoC in front of all old-SoC-like
-> compatibles.
+> Tested with a ChipCap 2 temperature-humidity sensor.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-> 
+No objection, but the new attributes also need to be added to the ABI
+documentation at
+Documentation/ABI/testing/sysfs-class-hwmon and
+Documentation/hwmon/sysfs-interface.rst
+
+Which made me notice that humidityX_alarm isn't documented either.
+Please document that attribute as well while you are at it.
+
+Thanks,
+Guenter
+
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 > ---
+>   drivers/hwmon/hwmon.c | 2 ++
+>   include/linux/hwmon.h | 4 ++++
+>   2 files changed, 6 insertions(+)
 > 
-> I propose to take the patch through Samsung SoC (me). See cover letter
-> for explanation.
-> ---
->  Documentation/devicetree/bindings/rtc/s3c-rtc.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> index d51b236939bf..bf4e11d6dffb 100644
-> --- a/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/s3c-rtc.yaml
-> @@ -17,6 +17,11 @@ properties:
->            - samsung,s3c2416-rtc
->            - samsung,s3c2443-rtc
->            - samsung,s3c6410-rtc
-> +      - items:
-> +          - enum:
-> +              - samsung,exynos7-rtc
-> +              - samsung,exynos850-rtc
-> +          - const: samsung,s3c6410-rtc
->        - const: samsung,exynos3250-rtc
->          deprecated: true
->  
-> -- 
-> 2.34.1
-> 
+> diff --git a/drivers/hwmon/hwmon.c b/drivers/hwmon/hwmon.c
+> index c7dd3f5b2bd5..7f92984c37d9 100644
+> --- a/drivers/hwmon/hwmon.c
+> +++ b/drivers/hwmon/hwmon.c
+> @@ -579,8 +579,10 @@ static const char * const hwmon_humidity_attr_templates[] = {
+>   	[hwmon_humidity_input] = "humidity%d_input",
+>   	[hwmon_humidity_label] = "humidity%d_label",
+>   	[hwmon_humidity_min] = "humidity%d_min",
+> +	[hwmon_humidity_min_alarm] = "humidity%d_min_alarm",
+>   	[hwmon_humidity_min_hyst] = "humidity%d_min_hyst",
+>   	[hwmon_humidity_max] = "humidity%d_max",
+> +	[hwmon_humidity_max_alarm] = "humidity%d_max_alarm",
+>   	[hwmon_humidity_max_hyst] = "humidity%d_max_hyst",
+>   	[hwmon_humidity_alarm] = "humidity%d_alarm",
+>   	[hwmon_humidity_fault] = "humidity%d_fault",
+> diff --git a/include/linux/hwmon.h b/include/linux/hwmon.h
+> index 8cd6a6b33593..154de35e34ac 100644
+> --- a/include/linux/hwmon.h
+> +++ b/include/linux/hwmon.h
+> @@ -286,8 +286,10 @@ enum hwmon_humidity_attributes {
+>   	hwmon_humidity_input,
+>   	hwmon_humidity_label,
+>   	hwmon_humidity_min,
+> +	hwmon_humidity_min_alarm,
+>   	hwmon_humidity_min_hyst,
+>   	hwmon_humidity_max,
+> +	hwmon_humidity_max_alarm,
+>   	hwmon_humidity_max_hyst,
+>   	hwmon_humidity_alarm,
+>   	hwmon_humidity_fault,
+> @@ -299,8 +301,10 @@ enum hwmon_humidity_attributes {
+>   #define HWMON_H_INPUT			BIT(hwmon_humidity_input)
+>   #define HWMON_H_LABEL			BIT(hwmon_humidity_label)
+>   #define HWMON_H_MIN			BIT(hwmon_humidity_min)
+> +#define HWMON_H_MIN_ALARM		BIT(hwmon_humidity_min_alarm)
+>   #define HWMON_H_MIN_HYST		BIT(hwmon_humidity_min_hyst)
+>   #define HWMON_H_MAX			BIT(hwmon_humidity_max)
+> +#define HWMON_H_MAX_ALARM		BIT(hwmon_humidity_max_alarm)
+>   #define HWMON_H_MAX_HYST		BIT(hwmon_humidity_max_hyst)
+>   #define HWMON_H_ALARM			BIT(hwmon_humidity_alarm)
+>   #define HWMON_H_FAULT			BIT(hwmon_humidity_fault)
 > 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
