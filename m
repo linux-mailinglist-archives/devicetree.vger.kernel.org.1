@@ -1,220 +1,157 @@
-Return-Path: <devicetree+bounces-15030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7867E7D51
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 16:15:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6979B7E7D54
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 16:17:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A26DA281341
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:15:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9565E1C2099B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:16:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDC31C6B2;
-	Fri, 10 Nov 2023 15:15:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tpSsRiU+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65291C6B5;
+	Fri, 10 Nov 2023 15:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E271B27A
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 15:15:10 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A5F3A234
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 07:15:08 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40836ea8cbaso15112525e9.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 07:15:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699629307; x=1700234107; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AImaWoC/tXOEtHWLdz8sCITz8wYqENXhjXAG+qBs1Ww=;
-        b=tpSsRiU+9W4+M5RCkiS5Mu+UZjXQVynVYlVKnbNqDNCX7H8MQqaw8qjTkDS+P2nJiH
-         aWw2yYgRo7V53CnCF0UgABHTT51STDjBAG5pLWITdnup3PJF6D28/6qPEiFYttRtH3dp
-         7855rfLKBgcOh2xG9pU+usdQ9KqvFXv7ekFcYJSkp/5mMCtm2bAYIuc+OZpROjRuwKeJ
-         UmoH+9eRMmu9cz/eOk1kn56kzYkI/+BJv2WG/WpXAmAfGc5z8ylfBRVEnbrgRmBobQT/
-         VSyCK9rU7zuKAHBRDjwJdgkGp3VRcgha4MuhEuFUdX/2nBGERWyWNgRyhd0a5q8FSc4z
-         IJvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699629307; x=1700234107;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AImaWoC/tXOEtHWLdz8sCITz8wYqENXhjXAG+qBs1Ww=;
-        b=dZB5HFfrUVywu2dUOiybWeG4jjhxHp2kDT3sE5OASwisitnESbIXbDpCClh7XILDHc
-         kfj2i8sHT/fycdoNgvYmj6VOS30P02eZg9Ak6IE+JrhIEu6EqgPiveglNMeJ6p7/8Wq1
-         kXkP7x7h1MgUZyGYH4ap0ulN3SLoaP1cvp8w+rFa/3vRxqLqyKSkZbCgRzENPlkU6Unp
-         4oWZVW4C7jR9jTnR4jnImJ2azBc5fDp06ihz05FLBUbhi240bqQcpcVJEB99YcDrxwTe
-         Vn2iLeGd2ic8cIbQ9fFblIpSU2lhH+CqK6E3IPvrFIqu64IoG3+2Twm1tBIlbUa+zC7l
-         ai0Q==
-X-Gm-Message-State: AOJu0YyHBl2OVmBOtS+PYa7LVx78RcgyaaA+/6rIdIWAkygRxmTqYYk2
-	IvFYLbz5X1jquyiBxjkQkYVp+g==
-X-Google-Smtp-Source: AGHT+IG1TYHHTG3svUv7jCY7QOVVGQjPbgYLHfFFQV1Vw2BWE1A9MFglG+K5Ly4wwt4fubC15YtD6w==
-X-Received: by 2002:a05:600c:4f52:b0:409:79cb:81a3 with SMTP id m18-20020a05600c4f5200b0040979cb81a3mr6913523wmq.30.1699629307312;
-        Fri, 10 Nov 2023 07:15:07 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id be7-20020a05600c1e8700b004063c9f68f2sm5428398wmb.26.2023.11.10.07.15.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 07:15:06 -0800 (PST)
-Message-ID: <6576d4a6-31fa-4780-9a8a-5a1d1974836f@linaro.org>
-Date: Fri, 10 Nov 2023 16:15:04 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419BF1C698;
+	Fri, 10 Nov 2023 15:16:54 +0000 (UTC)
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD0693A232;
+	Fri, 10 Nov 2023 07:16:52 -0800 (PST)
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AABD1E9017094;
+	Fri, 10 Nov 2023 10:16:28 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3u9kew0t7h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 10:16:27 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3AAFGQRW046167
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 10 Nov 2023 10:16:26 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 10 Nov
+ 2023 10:16:25 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 10 Nov 2023 10:16:25 -0500
+Received: from nsa.sphairon.box ([10.44.3.69])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3AAFGA0K029635;
+	Fri, 10 Nov 2023 10:16:12 -0500
+From: Nuno Sa <nuno.sa@analog.com>
+To: <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Bartosz Golaszewski <brgl@bgdev.pl>, Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>, Nuno Sa
+	<nuno.sa@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, Andy Shevchenko
+	<andy@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>, Conor Dooley
+	<conor+dt@kernel.org>
+Subject: [PATCH 0/2] Add support for LTC4282
+Date: Fri, 10 Nov 2023 16:18:44 +0100
+Message-ID: <20231110151905.1659873-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.42.1
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: mediatek,mtk-wdt: add MT7988
- watchdog and toprgu
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
- <2678cb48-1d2b-47bc-9272-06d9aa140c58@collabora.com>
- <ZU47hV1i66WN8nZJ@makrotopia.org>
- <d7b72b3e-c8f4-4675-ae62-26f5ae576f0a@linaro.org>
- <ZU5A59KO8Y_Q97IG@makrotopia.org>
- <a56cfe76-ab03-4187-b6f1-04a5c3414e64@linaro.org>
- <ZU5DVNOmtyFwUTdC@makrotopia.org>
- <708046ae-a821-420c-959a-ab5cb712aa9e@linaro.org>
- <ZU5IcrjqQpwMopJC@makrotopia.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZU5IcrjqQpwMopJC@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: YWK30L_Ujfd5RueWvzDKxS2m6hl4EQ0b
+X-Proofpoint-GUID: YWK30L_Ujfd5RueWvzDKxS2m6hl4EQ0b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-10_12,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 priorityscore=1501
+ clxscore=1011 impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=812 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311060001 definitions=main-2311100126
 
-On 10/11/2023 16:12, Daniel Golle wrote:
->>>>>>>>> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
->>>>>>>>> new file mode 100644
->>>>>>>>> index 0000000000000..fa7c937505e08
->>>>>>>>> --- /dev/null
->>>>>>>>> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
->>>>>>>>> @@ -0,0 +1,12 @@
->>>>>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>>>>>>> +
->>>>>>>>> +/* TOPRGU resets */
->>>>>>>>
->>>>>>>> The first reset is zero, the second reset is one.
->>>>>>>>
->>>>>>>> Where's the zero'th reset? :-)
->>>>>>>
->>>>>>> Currently the reset numbers represent the corresponding bit positions in
->>>>>>> the toprgu register, as this is how the mtk-wdt driver is organized.
->>>>>>>
->>>>>>> So there is probably something at bit 0, and also at bit 3~11 and
->>>>>>> maybe also 17~23, but it's unknown and may be added later once known
->>>>>>> and/or needed.
->>>>>>
->>>>>> There is no need to put register bits, which are not used by the driver,
->>>>>> in the bindings.
->>>>>
->>>>> There aren't. That's why there isn't a zero'th reset (and also not 3~11, 17~24).
->>>>>
->>>>> Or should the driver be reorganized to provide a mapping of logical to
->>>>> physical resets, and then have only the needed once present and start
->>>>> counting logical resets from 0? This is doable, of course, but it's a
->>>>> bit of effort just for the aesthetical goal of starting to count from
->>>>> zero and continous in header file.
->>>>>
->>>>> And, of course, chances are that other currently still unused bits
->>>>> will be needed at a later point which then would mean having to add
->>>>> them in at least 2 places (header file and mapping logical<->physical)
->>>>> where as currently it would just mean adding a line defining it in the
->>>>> header file.
->>>>
->>>> You can do it, but it's not what I wrote here. So bear with me:
->>>>
->>>> "There is no need to put register bits in the bindings."
->>
->> No comments here, so I assume you agree with this.
-
-Here is the answer to...
-
->>
->>>>
->>>> You replied "There aren't", which I don't understand in this context. I
->>>> can be clearer:
->>>> Drop this hunk.
->>>
->>> So adding the file to include/dt-bindings/reset/ should go into a
->>> seperate patch? Because including it with the driver itself gave me
->>> a checkpath warning telling me that dt-bindings should go seperate,
->>> which is why I included it with the binding docs.
->>
->> No, I said the hunk should be dropped. Removed.
-> 
-> I guess we are somehow misunderstanding each other.
-> Lets go with an example. I can put the header into a commit of its own,
-> just like commit
-> 5794dda109fc8 dt-bindings: reset: mt7986: Add reset-controller header file
-> https://lore.kernel.org/r/20220105100456.7126-2-sam.shih@mediatek.com
-> 
-> Would that be acceptable? And if not, why?
-
-...this question.
-
-Again, whether this is separate patch - it is still hunk which I think
-should be removed. I gave the reason "why" in this mail thread and in
-multiple other discussions.
-
-
-
-Best regards,
-Krzysztof
-
+Hi all,=0D
+=0D
+The LTC4282 hot swap controller allows a board to be safely inserted and=0D
+removed from a live backplane. Using one or more external N-channel pass=0D
+transistors, board supply voltage and inrush current are ramped up at an=0D
+adjustable rate. An I2C interface and onboard ADC allows for monitoring=0D
+of board current, voltage, power, energy and fault status.=0D
+=0D
+I'm aware that there are ABI in the driver that will surely raise questions=
+.=0D
+So, I'll try to add some comments about those:=0D
+=0D
+- For the fault_log stuff please see the comment in the code. There might b=
+e=0D
+some scenarios where one might really want to latch off the device until a=
+=0D
+fault is manually cleared.=0D
+- I also see value in the FET interfaces as they are real faults but maybe=
+=0D
+the naming is poor.=0D
+- I'm not so sure about the power1_good and the power1_fault_log. The=0D
+power1_good is more of a real status bit. If the bit is 0, it does not=0D
+necessarily means that there's something wrong. If someone removed=0D
+(on purpose) the "load", then this will be 0 and there's nothing wrong.=0D
+The fault_log is also not one of those bits that will keep the device to=0D
+latch on again. However, they might really indicate some misbehave. But,=0D
+OTOH (again :)), maybe the GPIO support for this is enough...=0D
+- There's also the handling for the overflow bits. I don't think it makes=0D
+much sense to export those so I tried to be clever and automatically handle=
+=0D
+it the driver. The power_average is the thing making the whole thing more=0D
+complicated. If it was only the energy, we could defer it completely to=0D
+userspace...=0D
+- And there's also the rsense as a mandatory property. Designs like this=0D
+completely depend on the calculated rsense so I have no idea (and if it=0D
+makes sense) what default should I use if the property is not given.=0D
+=0D
+I'm also cc'ing the GPIO folks for the GPIO bits. And I'm also not so sure=
+=0D
+about it. I'm just treating the pins as if I can set value + direction. How=
+ever,=0D
+the only thing that we can do is to PULL_LOW and set the pins in HIGH_Z. So=
+,=0D
+I dunno I'm doing the right thing. I wonder if I should just give the abili=
+ty=0D
+to configure the pins through FW with the .set_config hook and then just=0D
+allow to read the pin level? The GPIO1 is also odd since is only the one=0D
+that directly allows you to control the direction but then, again, you=0D
+can just pull it low or high-z.=0D
+=0D
+One last comment is about lines length. I know some maintainer still want=0D
+the 80 col limit but since I'm not so sure on the policy in hwmon I just=0D
+went for 100. I'm pretty sure I'll need more iterations to get the driver=0D
+in, so I'm happy to change it to 80 if required.=0D
+=0D
+Nuno Sa (2):=0D
+  dt-bindings: hwmon: Add LTC4282 bindings=0D
+  hwmon: ltc4282: add support for the LTC4282 chip=0D
+=0D
+ .../bindings/hwmon/adi,ltc4282.yaml           |  228 +++=0D
+ Documentation/hwmon/ltc4282.rst               |  101 ++=0D
+ MAINTAINERS                                   |    8 +=0D
+ drivers/hwmon/Kconfig                         |   11 +=0D
+ drivers/hwmon/Makefile                        |    1 +=0D
+ drivers/hwmon/ltc4282.c                       | 1518 +++++++++++++++++=0D
+ 6 files changed, 1867 insertions(+)=0D
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc4282.yam=
+l=0D
+ create mode 100644 Documentation/hwmon/ltc4282.rst=0D
+ create mode 100644 drivers/hwmon/ltc4282.c=0D
+=0D
+-- =0D
+2.42.1=0D
+=0D
 
