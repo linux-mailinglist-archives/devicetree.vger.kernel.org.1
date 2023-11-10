@@ -1,54 +1,65 @@
-Return-Path: <devicetree+bounces-14977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D75E7E7BB1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:09:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 618617E7BB7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:10:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE12D2815CC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:09:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15FF728122B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:10:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFC614A97;
-	Fri, 10 Nov 2023 11:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E7814AA5;
+	Fri, 10 Nov 2023 11:10:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="neeyUEPE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Aj4ThSX2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B0C1429B;
-	Fri, 10 Nov 2023 11:09:32 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EDD32B7AE;
-	Fri, 10 Nov 2023 03:09:31 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA9rahH004338;
-	Fri, 10 Nov 2023 11:09:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=AAJ2DnWw91bvf04Qt3Nf9uO+jAD3wkFbYUZX4Ih8fqM=;
- b=neeyUEPE7aZ+lfuRwu9LPRcoo/JZfjPyrAJJ2UA/YZn6JWzMOccbaTvJCIx2GpaSsYvA
- 98MPeUMnEoMvp2ygR2ROpkskRdgagxOVeQ2RVAqn5AMzGesb7lhk8T1c1W8DWADTNy33
- Gy1K0+Gj04mUBX7yrLdxpjyxW82DT2KUgAPxhnmqkrgIOxx1tNRZAsHvnHRWG3+ck6gQ
- EQ3g4TBblEwM+22HbbTpCuX0wuOMu8PTLOMvrZBy/K82EdTpDMCsf9c13CXsJGiosUyN
- p+qnVUS/FyEoyHzAHpimHEiZCrimhgEd2SPYJKT5sXgS5tozCrfQi4QRZr6jhzlHVkqb FA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u8u2buf78-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 11:09:19 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AAB9IU4018848
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 11:09:18 GMT
-Received: from [10.249.28.118] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 10 Nov
- 2023 03:09:10 -0800
-Message-ID: <660f50a6-79e7-4b62-aad4-29453fa5b2be@quicinc.com>
-Date: Fri, 10 Nov 2023 16:39:05 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80CAFD308
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 11:10:40 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2792B7BE
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 03:10:39 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9e4675c7a5fso307074966b.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 03:10:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699614637; x=1700219437; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a5+pLgFcuQzVB7VyT/mmdvsCQPmXOBYaF3kVg/yi6FE=;
+        b=Aj4ThSX2xx8ayyhCZiGDgg5b1PQUNZPwxrvWMS39GMYpg1jcfef3wVtc0lonoVNGm0
+         8PjZMQbO3L0P+oXtYq1SXw27Me+ATYjNpu7qgpBQOd+1FS9eOP3OHmu86BJcD/I/6tsz
+         ADCne5lh9As7J2GKuhPT9Ajsk18f241aBMo2oA+cgcp0cjmtblhAbeMgZP35A5geiguc
+         ZFBYBbJfkRUPl/PbUKnCMf0roZfM8ykdH30bYEaiJP3gOh6w/jr8a+5EVah7IxSwP6Li
+         1/BJ+TtgzcjMldMOZQ0gxNYtAZTlcG0LXCL9rkPFuMdJK3VNT12OrQw5XnZLahaO3RJ5
+         Smmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699614637; x=1700219437;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a5+pLgFcuQzVB7VyT/mmdvsCQPmXOBYaF3kVg/yi6FE=;
+        b=Z4l3Pcn80q+51/nViXk0KQGNQsx65wLBAXxoZupHKlqcBmD1LW/pa+eyPyfxNxD95Z
+         JWKsLkbvJVSbPlJRp6Lwm6kdjpHH6KDl1CKE01xUq1oX0DxJ5xhYlVD49OczWST4dV87
+         RLKsWk4BTSy+z2p5G8NQ7mfbtYoPwHMBqwKky5niGiu+3dD7PxVRRsMsLCtoWrG0wVOa
+         bD5ruojp/bKfusctsHQdMENnfh1oXNUw7Hk/Fn7q9uamBAXPJfxPZ5is+iQTPbNM6Ref
+         +0GGQvMxEpgt5stThl4NebdDX0bDg/krnCjibdRw4rs2NysxVG+/kCnuHqEokV1GgkO2
+         Je6A==
+X-Gm-Message-State: AOJu0YyzdlxssimowiCSwmP5hZ5VwnE6DfH3JZQm4lHYEAXK2CdiFXPV
+	pRf6CHu3h3HCswRr1z3M7YGUXQ==
+X-Google-Smtp-Source: AGHT+IE+y5aZiqh+tzEhpycSmG8UkDXJ2gMeavrh9mL6aSrPqkPVStsyQfjAwVwwbTj7wfwtgcvNlw==
+X-Received: by 2002:a17:907:7fac:b0:9bf:6200:fe33 with SMTP id qk44-20020a1709077fac00b009bf6200fe33mr7651309ejc.16.1699614637414;
+        Fri, 10 Nov 2023 03:10:37 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id r20-20020aa7cb94000000b00543597cd190sm978412edt.47.2023.11.10.03.10.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 03:10:36 -0800 (PST)
+Message-ID: <4cf3d481-c16d-4b1c-ab45-3ceff80b0b1b@linaro.org>
+Date: Fri, 10 Nov 2023 12:10:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,85 +67,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
+Subject: Re: [PATCH v5 5/7] riscv: dts: thead: Add TH1520 mmc controllers and
+ sdhci clock
 Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
- <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
- <2b19b5e2-5eb0-49e0-8c47-8aff3d48f34e@quicinc.com>
- <ZU31gx-LY5GBJGPU@hovoldconsulting.com>
- <dc20ecc0-f930-49c5-9e21-5a6e4c8ce637@quicinc.com>
- <ZU4JeenAf_K8liAI@hovoldconsulting.com>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZU4JeenAf_K8liAI@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Drew Fustini <dfustini@baylibre.com>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20231109-th1520-mmc-v5-0-018bd039cf17@baylibre.com>
+ <20231109-th1520-mmc-v5-5-018bd039cf17@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231109-th1520-mmc-v5-5-018bd039cf17@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1pLQFTu8NgxLhVqW22HR8zXXno5HtEqp
-X-Proofpoint-ORIG-GUID: 1pLQFTu8NgxLhVqW22HR8zXXno5HtEqp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-10_07,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=721 impostorscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 spamscore=0 malwarescore=0 adultscore=0 mlxscore=0
- bulkscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311100090
 
-
-
-
->>
->> While I do so, since there are no qusb2 targets present on femto phy's, do
->> you suggest we still add them to port structure in dwc3-qcom ? I am inclined
->> to add it because it would make implementation look cleaner w.r.t code and
->> also spurious interrupts are not getting triggered (which was my primary
->> concern as it was never tested).
+On 10/11/2023 06:41, Drew Fustini wrote:
+> Add node for the SDHCI fixed clock. Add mmc0 node for the first mmc
+> controller instance which is typically connected to the eMMC device.
+> Add mmc1 node for the second mmc controller instance which is typically
+> connected to microSD slot.
 > 
-> Yes, that's what I've been suggesting all along. It's a per-port
-> interrupt so that's where it belongs.
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
-> We should still try to determine when each interrupt should be enabled
-> and how best to implement that (hence all my questions).
-> 
-> For example, if there is no use for hs interrupts on SoCs using femto
-> PHYs we should fix the bindings. If we can use dp/dm on SoCs using QUSB2
-> PHYs, we should probably just ignore the hs interrupt when all three are
-> defined (especially since that functionality has never worked anyway).
-> 
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index ff364709a6df..f5ec9326c4b8 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -134,6 +134,13 @@ uart_sclk: uart-sclk-clock {
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	sdhci_clk: sdhci-clock {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <198000000>;
+> +		clock-output-names = "sdhci_clk";
+> +		#clock-cells = <0>;
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		interrupt-parent = <&plic>;
+> @@ -292,6 +299,22 @@ dmac0: dma-controller@ffefc00000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		mmc0: mmc@ffe7080000 {
+> +			compatible = "thead,th1520-dwcmshc";
+> +			reg = <0xff 0xe7080000 0x0 0x10000>;
+> +			interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&sdhci_clk>;
+> +			clock-names = "core";
 
-Sure. Will finalise this once I get the complete info (why do we have 
-dp/dm on qusb targets)
+You miss disable in each mmc node.
 
-And apologies, I mentioned "qusb2 targets on femto phy's".
-It was supposed to be "hs_phy_irq's on femto phy targets", but I think 
-you got the gist of my question. Thanks for the response.
+Best regards,
+Krzysztof
 
-Regards,
-Krishna,
 
