@@ -1,857 +1,119 @@
-Return-Path: <devicetree+bounces-14955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F8E7E7A2D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 09:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 552CE7E7A50
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 09:54:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0382F1C20CED
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 08:34:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C5611C20AEF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 08:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0B95257;
-	Fri, 10 Nov 2023 08:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE3FD289;
+	Fri, 10 Nov 2023 08:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UE2aVSrC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="eRSvftjk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47AE011CB2;
-	Fri, 10 Nov 2023 08:34:25 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A539EF4;
-	Fri, 10 Nov 2023 00:34:22 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA7fgGY031332;
-	Fri, 10 Nov 2023 08:34:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=t85307i1Ns8twulXqpKmb7N/N+DzRYDo54AqUe8XIUI=;
- b=UE2aVSrCqXVUQ5MMtjbpBC0WuDi3+kZIpFSTaW1LQOmYyvMNkqTxIybBfhfPZtGu8SEh
- Z2hGGw33jg3bDD/MQSh3Xp7e46d8uchE0l0BxZF4mF88ogLxRrX9Z5ytDDshFfUAo0QN
- J4FreL+rOJu6Ccmj7xNS9haKOmpuh34VTS6+E+6Ql5PL0TXrB0TuKRnpsgXVQVtpUb8n
- KLUCzKFEZBdxQGbpKHktoIVDi2a3y/UxK3CwnDqComkd0EwcHbBLM8SAm21seNhPk2Ys
- l/XDkwKGWFhg4juGIWPrl7rkfCfP1Hz3W9SUkjq2Ea2YP5CBab/BDAoEwI+VBTPzx+Pc dQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u9f3k0b4g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 08:34:18 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AA8YIEu032105
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 08:34:18 GMT
-Received: from [10.216.7.246] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Fri, 10 Nov
- 2023 00:34:11 -0800
-Message-ID: <8a1ce949-204a-1c22-c554-67b31379eb7c@quicinc.com>
-Date: Fri, 10 Nov 2023 14:04:07 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B41ED269;
+	Fri, 10 Nov 2023 08:54:40 +0000 (UTC)
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B610EA27D;
+	Fri, 10 Nov 2023 00:54:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=u8052caqSNt3af6DzeiZMofvFARC4Kcew0q/mv0AkUE=; b=eRSvftjkjscZdlIzAGYnHH+mCb
+	eJv7Q7N1M5DJC/5JXhgsDiDSEEoNotwJxxH4umHm97Q06EIxLrwmqmo1mUb4IR8pj1P1jwh4VwAxj
+	OHzBFF0spuZUlXJ17MfpYjVtSK2edEQko3bPcc4wQsclDjXJBEfH5e3JD7fb9ae/lhoEMecXAaXqk
+	1j8iyuFbsoLZY9OQpGAYmhJzhkuP+1x6ngan+I2d/m7Xhh9OLXrM3As0nN880dSCwXcBduX0xAXgC
+	xKwiMdqWAJ+ywY2gpw2ZU1qwpKoiGgllcZ6gf1A5oKOkeDPUusJvn9s2XNpxyI5dg/+wd0tyBUGwp
+	QOwiwivA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49306)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1r1NHG-0003Lv-28;
+	Fri, 10 Nov 2023 08:54:10 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1r1NHC-0001Q8-OY; Fri, 10 Nov 2023 08:54:06 +0000
+Date: Fri, 10 Nov 2023 08:54:06 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Alexander Couzens <lynxis@fe80.eu>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH 3/8] net: pcs: pcs-mtk-lynxi: use 2500Base-X without
+ AN
+Message-ID: <ZU3vrhJe7WmyeVHA@shell.armlinux.org.uk>
+References: <cover.1699565880.git.daniel@makrotopia.org>
+ <091e466912f1333bb76d23e95dc6019c9b71645f.1699565880.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V3 3/4] clk: qcom: Add ECPRICC driver support for QDU1000
- and QRU1000
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20231106103027.3988871-1-quic_imrashai@quicinc.com>
- <20231106103027.3988871-4-quic_imrashai@quicinc.com>
- <CAA8EJpoGLCfrWQ5r8cOcqyWmF2ZTTqPxFy_HVzPC-A-dCiV48A@mail.gmail.com>
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <CAA8EJpoGLCfrWQ5r8cOcqyWmF2ZTTqPxFy_HVzPC-A-dCiV48A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 94UJGMJYTGZoryzYw1CNxTaIr78Eq8IZ
-X-Proofpoint-GUID: 94UJGMJYTGZoryzYw1CNxTaIr78Eq8IZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-10_04,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 impostorscore=0 adultscore=0 bulkscore=0 mlxscore=0
- priorityscore=1501 phishscore=0 clxscore=1015 mlxlogscore=675
- malwarescore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2311060000 definitions=main-2311100071
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <091e466912f1333bb76d23e95dc6019c9b71645f.1699565880.git.daniel@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
+On Thu, Nov 09, 2023 at 09:51:22PM +0000, Daniel Golle wrote:
+> Using 2500Base-T SFP modules e.g. on the BananaPi R3 requires manually
+> disabling auto-negotiation, e.g. using ethtool. While a proper fix
+> using SFP quirks is being discussed upstream, bring a work-around to
+> restore user experience to what it was before the switch to the
+> dedicated SGMII PCS driver.
 
+No.
 
-On 11/6/2023 6:34 PM, Dmitry Baryshkov wrote:
-> On Mon, 6 Nov 2023 at 12:32, Imran Shaik <quic_imrashai@quicinc.com> wrote:
->>
->> Add ECPRI Clock Controller (ECPRICC) support for QDU1000 and QRU1000 SoCs.
-> 
-> After reading this series I have one main question. What is ECPRI?
-> You've never expanded this acronym.
-> 
+> @@ -129,7 +138,8 @@ static int mtk_pcs_lynxi_config(struct phylink_pcs *pcs, unsigned int neg_mode,
+>  	if (neg_mode & PHYLINK_PCS_NEG_INBAND)
+>  		sgm_mode |= SGMII_REMOTE_FAULT_DIS;
+>  
+> -	if (neg_mode == PHYLINK_PCS_NEG_INBAND_ENABLED) {
+> +	if (neg_mode == PHYLINK_PCS_NEG_INBAND_ENABLED &&
+> +	    interface != PHY_INTERFACE_MODE_2500BASEX) {
+>  		if (interface == PHY_INTERFACE_MODE_SGMII)
+>  			sgm_mode |= SGMII_SPEED_DUPLEX_AN;
+>  		bmcr = BMCR_ANENABLE;
 
-This is a clock controller for eCPRI Specification V2.0 Common Public 
-Radio Interface.
+Phylink is asking you to have inband enabled. If inband needs to be
+disabled, then we need to arrange for phylink to pass
+PHYLINK_PCS_NEG_INBAND_DISABLED.
 
->>
->> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
->> ---
->>   drivers/clk/qcom/Kconfig           |    9 +
->>   drivers/clk/qcom/Makefile          |    1 +
->>   drivers/clk/qcom/ecpricc-qdu1000.c | 2456 ++++++++++++++++++++++++++++
->>   3 files changed, 2466 insertions(+)
->>   create mode 100644 drivers/clk/qcom/ecpricc-qdu1000.c
->>
->> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->> index ad1acd9b7426..9e54afc67519 100644
->> --- a/drivers/clk/qcom/Kconfig
->> +++ b/drivers/clk/qcom/Kconfig
->> @@ -668,6 +668,15 @@ config QDU_GCC_1000
->>            QRU1000 devices. Say Y if you want to use peripheral
->>            devices such as UART, SPI, I2C, USB, SD, PCIe, etc.
->>
->> +config QDU_ECPRICC_1000
->> +       tristate "QDU1000/QRU1000 ECPRI Clock Controller"
->> +       depends on ARM64 || COMPILE_TEST
->> +       select QDU_GCC_1000
->> +       help
->> +         Support for the ECPRI clock controller on QDU1000 and
->> +         QRU1000 devices. Say Y if you want to support the ECPRI
->> +         clock controller functionality such as Ethernet.
->> +
->>   config SDM_GCC_845
->>          tristate "SDM845/SDM670 Global Clock Controller"
->>          depends on ARM64 || COMPILE_TEST
->> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
->> index 17edd73f9839..607ed0fabf36 100644
->> --- a/drivers/clk/qcom/Makefile
->> +++ b/drivers/clk/qcom/Makefile
->> @@ -65,6 +65,7 @@ obj-$(CONFIG_QCM_DISPCC_2290) += dispcc-qcm2290.o
->>   obj-$(CONFIG_QCS_GCC_404) += gcc-qcs404.o
->>   obj-$(CONFIG_QCS_Q6SSTOP_404) += q6sstop-qcs404.o
->>   obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
->> +obj-$(CONFIG_QDU_ECPRICC_1000) += ecpricc-qdu1000.o
->>   obj-$(CONFIG_QDU_GCC_1000) += gcc-qdu1000.o
->>   obj-$(CONFIG_SC_CAMCC_7180) += camcc-sc7180.o
->>   obj-$(CONFIG_SC_CAMCC_7280) += camcc-sc7280.o
->> diff --git a/drivers/clk/qcom/ecpricc-qdu1000.c b/drivers/clk/qcom/ecpricc-qdu1000.c
->> new file mode 100644
->> index 000000000000..a430b7228c26
->> --- /dev/null
->> +++ b/drivers/clk/qcom/ecpricc-qdu1000.c
->> @@ -0,0 +1,2456 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
-> 
-> [skipped]
-> 
-> 
->> +
->> +static struct clk_mem_branch ecpri_cc_eth_phy_0_ock_sram_clk = {
->> +       .mem_enable_reg = 0x8404,
->> +       .mem_ack_reg = 0x8418,
->> +       .mem_enable_ack_mask = BIT(6),
->> +       .branch = {
->> +               .halt_reg = 0xd140,
->> +               .halt_check = BRANCH_HALT,
->> +               .clkr = {
->> +                       .enable_reg = 0xd140,
->> +                       .enable_mask = BIT(0),
->> +                       .hw.init = &(const struct clk_init_data) {
->> +                               .name = "ecpri_cc_eth_phy_0_ock_sram_clk",
->> +                               .ops = &clk_branch2_mem_ops,
-> 
-> This (and several following branch clocks) do not have a parent
-> defined. From which clock are they derived from?
-> 
+Please don't hack special handling and behaviour into drivers.
 
-These branch clocks are connected to the Muxes, that are sourced from 
-the PoR ON external clocks which are not required to be controlled from 
-the SW side.
+Thanks.
 
-Thanks,
-Imran
-
->> +                       },
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_mem_branch ecpri_cc_eth_phy_1_ock_sram_clk = {
->> +       .mem_enable_reg = 0x8408,
->> +       .mem_ack_reg = 0x841C,
->> +       .mem_enable_ack_mask = BIT(6),
->> +       .branch = {
->> +               .halt_reg = 0xd148,
->> +               .halt_check = BRANCH_HALT,
->> +               .clkr = {
->> +                       .enable_reg = 0xd148,
->> +                       .enable_mask = BIT(0),
->> +                       .hw.init = &(const struct clk_init_data) {
->> +                               .name = "ecpri_cc_eth_phy_1_ock_sram_clk",
->> +                               .ops = &clk_branch2_mem_ops,
->> +                       },
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_mem_branch ecpri_cc_eth_phy_2_ock_sram_clk = {
->> +       .mem_enable_reg = 0x840c,
->> +       .mem_ack_reg = 0x8420,
->> +       .mem_enable_ack_mask = BIT(6),
->> +       .branch = {
->> +               .halt_reg = 0xd150,
->> +               .halt_check = BRANCH_HALT,
->> +               .clkr = {
->> +                       .enable_reg = 0xd150,
->> +                       .enable_mask = BIT(0),
->> +                       .hw.init = &(const struct clk_init_data) {
->> +                               .name = "ecpri_cc_eth_phy_2_ock_sram_clk",
->> +                               .ops = &clk_branch2_mem_ops,
->> +                       },
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_mem_branch ecpri_cc_eth_phy_3_ock_sram_clk = {
->> +       .mem_enable_reg = 0x8410,
->> +       .mem_ack_reg = 0x8424,
->> +       .mem_enable_ack_mask = BIT(6),
->> +       .branch = {
->> +               .halt_reg = 0xd158,
->> +               .halt_check = BRANCH_HALT,
->> +               .clkr = {
->> +                       .enable_reg = 0xd158,
->> +                       .enable_mask = BIT(0),
->> +                       .hw.init = &(const struct clk_init_data) {
->> +                               .name = "ecpri_cc_eth_phy_3_ock_sram_clk",
->> +                               .ops = &clk_branch2_mem_ops,
->> +                       },
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_mem_branch ecpri_cc_eth_phy_4_ock_sram_clk = {
->> +       .mem_enable_reg = 0x8414,
->> +       .mem_ack_reg = 0x8428,
->> +       .mem_enable_ack_mask = BIT(6),
->> +       .branch = {
->> +               .halt_reg = 0xd160,
->> +               .halt_check = BRANCH_HALT,
->> +               .clkr = {
->> +                       .enable_reg = 0xd160,
->> +                       .enable_mask = BIT(0),
->> +                       .hw.init = &(const struct clk_init_data) {
->> +                               .name = "ecpri_cc_eth_phy_4_ock_sram_clk",
->> +                               .ops = &clk_branch2_mem_ops,
->> +                       },
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_mss_emac_clk = {
->> +       .halt_reg = 0xe008,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xe008,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_mss_emac_clk",
->> +                       .parent_hws = (const struct clk_hw*[]) {
->> +                               &ecpri_cc_mss_emac_clk_src.clkr.hw,
->> +                       },
->> +                       .num_parents = 1,
->> +                       .flags = CLK_SET_RATE_PARENT,
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_mss_oran_clk = {
->> +       .halt_reg = 0xe004,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xe004,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_mss_oran_clk",
->> +                       .parent_hws = (const struct clk_hw*[]) {
->> +                               &ecpri_cc_ecpri_oran_clk_src.clkr.hw,
->> +                       },
->> +                       .num_parents = 1,
->> +                       .flags = CLK_SET_RATE_PARENT,
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane0_rx_clk = {
->> +       .halt_reg = 0xd000,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd000,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane0_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane0_tx_clk = {
->> +       .halt_reg = 0xd050,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd050,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane0_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane1_rx_clk = {
->> +       .halt_reg = 0xd004,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd004,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane1_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane1_tx_clk = {
->> +       .halt_reg = 0xd054,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd054,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane1_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane2_rx_clk = {
->> +       .halt_reg = 0xd008,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd008,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane2_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane2_tx_clk = {
->> +       .halt_reg = 0xd058,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd058,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane2_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane3_rx_clk = {
->> +       .halt_reg = 0xd00c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd00c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane3_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy0_lane3_tx_clk = {
->> +       .halt_reg = 0xd05c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd05c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy0_lane3_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane0_rx_clk = {
->> +       .halt_reg = 0xd010,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd010,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane0_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane0_tx_clk = {
->> +       .halt_reg = 0xd060,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd060,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane0_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane1_rx_clk = {
->> +       .halt_reg = 0xd014,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd014,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane1_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane1_tx_clk = {
->> +       .halt_reg = 0xd064,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd064,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane1_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane2_rx_clk = {
->> +       .halt_reg = 0xd018,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd018,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane2_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane2_tx_clk = {
->> +       .halt_reg = 0xd068,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd068,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane2_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane3_rx_clk = {
->> +       .halt_reg = 0xd01c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd01c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane3_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy1_lane3_tx_clk = {
->> +       .halt_reg = 0xd06c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd06c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy1_lane3_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane0_rx_clk = {
->> +       .halt_reg = 0xd020,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd020,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane0_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane0_tx_clk = {
->> +       .halt_reg = 0xd070,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd070,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane0_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane1_rx_clk = {
->> +       .halt_reg = 0xd024,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd024,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane1_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane1_tx_clk = {
->> +       .halt_reg = 0xd074,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd074,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane1_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane2_rx_clk = {
->> +       .halt_reg = 0xd028,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd028,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane2_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane2_tx_clk = {
->> +       .halt_reg = 0xd078,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd078,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane2_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane3_rx_clk = {
->> +       .halt_reg = 0xd02c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd02c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane3_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy2_lane3_tx_clk = {
->> +       .halt_reg = 0xd07c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd07c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy2_lane3_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane0_rx_clk = {
->> +       .halt_reg = 0xd030,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd030,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane0_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane0_tx_clk = {
->> +       .halt_reg = 0xd080,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd080,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane0_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane1_rx_clk = {
->> +       .halt_reg = 0xd034,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd034,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane1_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane1_tx_clk = {
->> +       .halt_reg = 0xd084,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd084,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane1_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane2_rx_clk = {
->> +       .halt_reg = 0xd038,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd038,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane2_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane2_tx_clk = {
->> +       .halt_reg = 0xd088,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd088,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane2_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane3_rx_clk = {
->> +       .halt_reg = 0xd03c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd03c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane3_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy3_lane3_tx_clk = {
->> +       .halt_reg = 0xd08c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd08c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy3_lane3_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane0_rx_clk = {
->> +       .halt_reg = 0xd040,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd040,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane0_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane0_tx_clk = {
->> +       .halt_reg = 0xd090,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd090,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane0_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane1_rx_clk = {
->> +       .halt_reg = 0xd044,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd044,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane1_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane1_tx_clk = {
->> +       .halt_reg = 0xd094,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd094,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane1_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane2_rx_clk = {
->> +       .halt_reg = 0xd048,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd048,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane2_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane2_tx_clk = {
->> +       .halt_reg = 0xd098,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd098,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane2_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane3_rx_clk = {
->> +       .halt_reg = 0xd04c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd04c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane3_rx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
->> +
->> +static struct clk_branch ecpri_cc_phy4_lane3_tx_clk = {
->> +       .halt_reg = 0xd09c,
->> +       .halt_check = BRANCH_HALT,
->> +       .clkr = {
->> +               .enable_reg = 0xd09c,
->> +               .enable_mask = BIT(0),
->> +               .hw.init = &(const struct clk_init_data) {
->> +                       .name = "ecpri_cc_phy4_lane3_tx_clk",
->> +                       .ops = &clk_branch2_ops,
->> +               },
->> +       },
->> +};
-> 
-> [skipped]
-> 
->> +static int ecpri_cc_qdu1000_probe(struct platform_device *pdev)
->> +{
->> +       struct regmap *regmap;
->> +
->> +       regmap = qcom_cc_map(pdev, &ecpri_cc_qdu1000_desc);
->> +       if (IS_ERR(regmap))
->> +               return PTR_ERR(regmap);
->> +
->> +       clk_lucid_evo_pll_configure(&ecpri_cc_pll0, regmap, &ecpri_cc_pll0_config);
->> +       clk_lucid_evo_pll_configure(&ecpri_cc_pll1, regmap, &ecpri_cc_pll1_config);
->> +
->> +       return qcom_cc_really_probe(pdev, &ecpri_cc_qdu1000_desc, regmap);
->> +}
->> +
->> +static struct platform_driver ecpri_cc_qdu1000_driver = {
->> +       .probe = ecpri_cc_qdu1000_probe,
->> +       .driver = {
->> +               .name = "ecpri_cc-qdu1000",
->> +               .of_match_table = ecpri_cc_qdu1000_match_table,
->> +       },
->> +};
->> +
->> +module_platform_driver(ecpri_cc_qdu1000_driver);
->> +
->> +MODULE_DESCRIPTION("QTI ECPRICC QDU1000 Driver");
->> +MODULE_LICENSE("GPL");
->> --
->> 2.25.1
->>
-> 
-> 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
