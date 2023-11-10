@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63AEA7E7C21
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:24:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FAD67E7C25
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1CBDB20D49
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:24:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A24728137F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:24:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB06B18C21;
-	Fri, 10 Nov 2023 12:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0940818C21;
+	Fri, 10 Nov 2023 12:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p0yYypNx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uu3BFCRi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1729A18B14
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 12:24:21 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212B133F84
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:24:20 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9d267605ceeso327646866b.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:24:20 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17C818E09
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 12:24:54 +0000 (UTC)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4757833F84
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:24:53 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9be02fcf268so315693766b.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:24:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699619058; x=1700223858; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699619092; x=1700223892; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Zsf7JEF9G2S0gCX24v8Qass1UslutuFrUMowdFCYww=;
-        b=p0yYypNxeyZOwFuF/Rv+tqg0V9DgTKqawzLW+AKUwSzv7jteCrnzOdnimi20ToXxVV
-         3vaHrDmcm9RDkjVQ8NN+eJctTdkoehs0vqilYs8S8zT4kqcXw/yaJQfxkq9J+c102B4P
-         m7jrBnmaJUvnRWH+XUZhRZ+8FxaR+2kL4IV7T7qscou9IxlF7eNmm/TMMXOlX4Xqe/HP
-         SiDcOtubpvY1HUj6dj/l0mnfnnT2jMCueNbhH37E6RmXYwlIGUR+RohNLgiX0dTAJ8NE
-         u8EVvyw0uvvScElB9SG97qPj9yaZpseiRTHEm4uv/wLgX8VXGZJATHybQOfsYoFcaDmJ
-         40gw==
+        bh=kSMxTW9sdJk1INNkesPXXGzPLDqsgagFo7VWqT4Pqyc=;
+        b=uu3BFCRiDbcI09+zRDaqZuY5/BsFutP/z0h2dZ7h3NxqpjhU9Gf+SQo5H8O7/LjPFB
+         ShWaQnu0hOv72pPeysV6ZgIJ9H16EO914eGr5eW5pWI/P+b6NLYzH5n6RrdWNuAzmlk7
+         YG08z4OEeqiAFPJVZfnorgU/o3nHEQUlXM0zrejtmEOWZ0OQSfn48uUxGwz+rj2rxGzy
+         hguGML2SvHr7DisvhuSI7F3tldPc2oX1dbEkwCyh5Idr/97374y9G0MIc/xL8BlJ974v
+         GxhUIJ1uAIW9ksBml7btIOsaTub8DQdgm7haHZhqO1DFHPXOUUhUEXQMIeD5LYWDeegT
+         fheg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699619058; x=1700223858;
+        d=1e100.net; s=20230601; t=1699619092; x=1700223892;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Zsf7JEF9G2S0gCX24v8Qass1UslutuFrUMowdFCYww=;
-        b=JTDq4k0f+Li9WHFRXTfj0uZFjT5nH0vCzvHiFvOBBEe1qCM9KbRikJUsbTLtYe48qW
-         uqB9OZ0U9bY039tcdecH40+H/LqSzU9A7bdyllu/Js7Qfaix2wSIe1JVImGyF1dcgz8s
-         poauhc5pR7kp71uY1y6FrUfNNcjVfm8U5AnDbYFv+9LjqcHpZGIqfg//P3gB0W3c5wYT
-         2ihJnTh2iccqHCWV53kU5BFCCR88X0iQHi26U8BdKabJW/y1Dm8c8IjvS0f76QvTXuXi
-         6KEyeBYUMCuGSW9JPE3hn2ddoigykJNkNpCIQyV0VSafEWHL7pT/Xu1WJK+jfmjHOGvi
-         8qdg==
-X-Gm-Message-State: AOJu0YzKfqtml/+qEhfErKrH9UUlug/ERnpbvklzKmCOljLcklpu1CaX
-	xmJESJqdOY3kfGiDnSiynVU9bA==
-X-Google-Smtp-Source: AGHT+IGBMZT8jJJ3VvtocSNOjD98iBlaQYUo7YcIt8tMuslt3z+wAjxAxdGyVD/TZHDVPoWNDbrrIw==
-X-Received: by 2002:a17:907:1ca3:b0:9bf:889e:32a4 with SMTP id nb35-20020a1709071ca300b009bf889e32a4mr6701472ejc.54.1699619058496;
-        Fri, 10 Nov 2023 04:24:18 -0800 (PST)
+        bh=kSMxTW9sdJk1INNkesPXXGzPLDqsgagFo7VWqT4Pqyc=;
+        b=EOj/tlqHnFeuy27x7ikYQKwwfuJE72gjyCRRNAotl04Mtky5uE1GSmEgpLXLb2KVZs
+         OlL2qaOz+vc7e54++MUDtdokKY59sQinqXlSr9WqqF8xHUiOTqLZESTj61tuGZnaaiCj
+         lXTQrwHreOIouqDiCftgxrezqG+Fq4Vkfnpvxx76dn2F5iyEAx+L+OGC0VL4TfEOisXc
+         pqbeYqqm968PysAybTuKkde0IEFCYL0D+yliI8nyHLc9KrduYDMildqjzGeXZi7KN+qV
+         hIeCwgo+Ji/CO6nvmDKV3lud7wyoU08OY33+zuTaMtUfi+a6T6J4mD+BTAAGBZjpEu4l
+         uyvg==
+X-Gm-Message-State: AOJu0YxtxqJnsRp17VEV/CtzrMn7l37lvyQbTyNAzUG1Ahq6sMFTTMGb
+	ZbodrU8npgndZNtog1AcjpmNRw==
+X-Google-Smtp-Source: AGHT+IFXV9SgLbEufj4ibWueYQFMBtT3EW6RJNVbmMciQn9n+OCJDJW1Q20T3iKuWcXZvJ6u8YC2gQ==
+X-Received: by 2002:a17:907:3e9e:b0:9d0:51d4:4d87 with SMTP id hs30-20020a1709073e9e00b009d051d44d87mr7415872ejc.62.1699619091806;
+        Fri, 10 Nov 2023 04:24:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z15-20020a1709060acf00b0099cb0a7098dsm3876197ejf.19.2023.11.10.04.24.17
+        by smtp.gmail.com with ESMTPSA id z15-20020a1709060acf00b0099cb0a7098dsm3876197ejf.19.2023.11.10.04.24.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 04:24:18 -0800 (PST)
-Message-ID: <afce202d-6234-4c5f-9018-facd9a56b5eb@linaro.org>
-Date: Fri, 10 Nov 2023 13:24:16 +0100
+        Fri, 10 Nov 2023 04:24:51 -0800 (PST)
+Message-ID: <faa1835b-4488-4e10-998d-f77ac7e396a5@linaro.org>
+Date: Fri, 10 Nov 2023 13:24:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -135,55 +135,8 @@ Content-Transfer-Encoding: 7bit
 On 10/11/2023 07:20, William Qiu wrote:
 > Add documentation to describe OpenCores Pulse Width Modulation
 > controller driver.
-> 
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  .../bindings/pwm/opencores,pwm.yaml           | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> new file mode 100644
-> index 000000000000..8f776bbc1112
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/opencores,pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OpenCores PWM controller
-> +
-> +maintainers:
-> +  - William Qiu <william.qiu@starfivetech.com>
-> +
-> +description:
-> +  OpenCores PTC ip core contains a PWM controller. When operating in PWM mode, the PTC core
-> +  generates binary signal with user-programmable low and high periods. All PTC counters and
-> +  registers are 32-bit.
 
-Wrap at 80 (as Coding Style asks)
-
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - starfive,jh7100-pwm
-> +              - starfive,jh7110-pwm
-> +          - const: opencores,pwm
-
-That's a very, very generic compatible. Are you sure, 100% sure, that
-all designs from OpenCores from now till next 100 years will be 100%
-compatible?
-
+Please describe the hardware, not the driver.
 
 Best regards,
 Krzysztof
