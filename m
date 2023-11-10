@@ -1,171 +1,162 @@
-Return-Path: <devicetree+bounces-14909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619C87E76E5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:55:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F997E76F8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 03:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 271952813CC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:55:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8DF91C20D5B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:04:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8A6EA9;
-	Fri, 10 Nov 2023 01:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9EF10F1;
+	Fri, 10 Nov 2023 02:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EjM/6UG1"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Io/4z+16"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FEBA46;
-	Fri, 10 Nov 2023 01:55:33 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFFA44BD;
-	Thu,  9 Nov 2023 17:55:32 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA0hZ3Q026646;
-	Fri, 10 Nov 2023 01:55:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : from : subject : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=I8f9U6h678avASE+5LIilnUNQa6w5nRCNEZC/8kG+S4=;
- b=EjM/6UG1svYBwMAc6oCuf67ksAuSyKJT2U+kN108ARMMCTybD6F6+sWZ6af/RreZOvux
- HXaKyuOVRX0j47Ee2ydMUrWceIZXEoAT8/mMA7PnOHF8+hFWabE1GM1WWRTYUi/M4aJt
- t9lI43SeoVYipiVcqWvU5mcnrB+I8lvszwnlP01L0k5jFHv6r7txAXEug/BmHD/WtRsW
- +L4CCtQvOHkMH5mPInr8XE2o5qwrwm6gvdb8Rm6X7h4djmcg4UD84MpGnnFV4n514hJA
- mmQgulKgyZFJPyx+8CQcz3QmBYnQRyyH8WsqdEm/6fb8J1yB6lsY59X+fQvMwoB2NLoX Bg== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u93rbrwg8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 01:55:29 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AA1tSia011838
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 01:55:28 GMT
-Received: from [10.238.139.231] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
- 2023 17:55:24 -0800
-Message-ID: <9b27add9-ba04-49b0-af60-a191866f9a40@quicinc.com>
-Date: Fri, 10 Nov 2023 09:55:15 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC37C1365;
+	Fri, 10 Nov 2023 02:04:29 +0000 (UTC)
+Received: from mail-m12810.netease.com (mail-m12810.netease.com [103.209.128.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 649DB35BB;
+	Thu,  9 Nov 2023 18:04:28 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=Io/4z+16nR3bnukEf7bedLDrK5HLBAVIkoX8Y5HSm5Tx/326/puCiIaAtKFOio3CQ1/sOUamDP/thc6dd5XNlWdm7X2WUYVmTG1aO9wXOJbRNFWvXUXFrKII4JiAMg6Q4Q1N0THvE323ncyp/EhRJG23lMCLQH/pXJLPCTP0QVE=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=+Cl5UViqOmCSXcarAvoc84bGt8RHhzr6CMWCNBI2ATc=;
+	h=date:mime-version:subject:message-id:from;
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id E4E4E4001FC;
+	Fri, 10 Nov 2023 10:04:02 +0800 (CST)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	kever.yang@rock-chips.com,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com
+Subject: [PATCH v6 0/3] rockchip: add GATE_LINK
+Date: Fri, 10 Nov 2023 10:03:55 +0800
+Message-Id: <20231110020358.12840-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRpDQlZLT09DHUlIS0seSh1VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8bb6f8d7452eb3kusne4e4e4001fc
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ODY6MRw*Fzw5Ew0MEBEMPTIp
+	OhFPCi1VSlVKTUJCTkNKQ09IQ0NKVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1JQkM3Bg++
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: hui liu <quic_huliu@quicinc.com>
-Subject: Re: [PATCH] ARM: dts: qcom: Add LPG LED device description
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_fenglinw@quicinc.com>, <quic_uchheda@quicinc.com>,
-        <kamalw@qti.qualcomm.com>
-References: <20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com>
- <CAA8EJpogiYXVPCNXSu+kq29nbn1uxGDAYMn9+qk8CwDz0bfyjg@mail.gmail.com>
-In-Reply-To: <CAA8EJpogiYXVPCNXSu+kq29nbn1uxGDAYMn9+qk8CwDz0bfyjg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: l8HzW4ujkiqePDoorhTYl_kY_wYqEr29
-X-Proofpoint-ORIG-GUID: l8HzW4ujkiqePDoorhTYl_kY_wYqEr29
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-09_17,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
- phishscore=0 adultscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=341 impostorscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311100015
 
+Recent Rockchip SoCs have a new hardware block called Native Interface
+Unit (NIU), which gates clocks to devices behind them. These effectively
+need two parent clocks.
+Use GATE_LINK to handle this.
 
+change in v6:
+Droped the [PATCH v5 3/4]
 
-On 11/8/2023 2:59 PM, Dmitry Baryshkov wrote:
-> On Wed, 8 Nov 2023 at 08:05, Hui Liu via B4 Relay
-> <devnull+quic_huliu.quicinc.com@kernel.org> wrote:
->>
->> From: Hui Liu <quic_huliu@quicinc.com>
->>
->> Add LPG LED device description.
-> 
-> No. You are not adding "LPG LED device description". You are adding
-> definition for three LEDs.
-OK, I will update the commit in next patch.
+change in v5:
+[PATCH v5 1/4]: No change
+[PATCH v5 2/4]: Fix the:
+Oct 20 18:25:04 rk3588-evb1 kernel: clk: Disabling unused clocks
+Oct 20 18:25:04 rk3588-evb1 kernel: ------------[ cut here ]------------
+Oct 20 18:25:04 rk3588-evb1 kernel: hclk_rkvenc0 already disabled
+Oct 20 18:25:04 rk3588-evb1 kernel: WARNING: CPU: 4 PID: 1 at drivers/clk/clk.c:1090 clk_core_disable+0x1b0/0x1e0
+Oct 20 18:25:04 rk3588-evb1 kernel: Modules linked in:
+Oct 20 18:25:04 rk3588-evb1 kernel: CPU: 4 PID: 1 Comm: swapper/0 Not tainted 6.6.0-rc6-00044-g31c3dbd16ca1 #1120
+Oct 20 18:25:04 rk3588-evb1 kernel: Hardware name: Rockchip RK3588 EVB1 V10 Board (DT)
+Oct 20 18:25:04 rk3588-evb1 kernel: pstate: 604000c9 (nZCv daIF +PAN-UAO -TCO -DIT -SSBS BTYPE=--)
+Oct 20 18:25:04 rk3588-evb1 kernel: pc : clk_core_disable+0x1b0/0x1e0
+Oct 20 18:25:04 rk3588-evb1 kernel: lr : clk_core_disable+0x1b0/0x1e0
+Oct 20 18:25:04 rk3588-evb1 kernel: sp : ffff8000846fbbf0
+Oct 20 18:25:04 rk3588-evb1 kernel: x29: ffff8000846fbbf0 x28:ffff8000833a0008 x27: ffff8000830e0130
+Oct 20 18:25:04 rk3588-evb1 kernel: x26: ffff800082ffcff0 x25:ffff8000830b9be8 x24: ffff800083236100
+Oct 20 18:25:04 rk3588-evb1 kernel: x23: 000000000000104a x22:0000000000000000 x21: ffff800084669000
+Oct 20 18:25:04 rk3588-evb1 kernel: x20: ffff00040087ca00 x19:ffff00040087ca00 x18: ffffffffffffffff
+Oct 20 18:25:04 rk3588-evb1 kernel: x17: ffff80008435d050 x16:ffff80008435cfe0 x15: 0720072007200720
+Oct 20 18:25:04 rk3588-evb1 kernel: x14: 0720072007200720 x13:0720072007200720 x12: 0720072007200720
+Oct 20 18:25:04 rk3588-evb1 kernel: x11: 0720072007200720 x10:ffff800084079890 x9 : ffff800080128a78
+Oct 20 18:25:04 rk3588-evb1 kernel: x8 : 00000000ffffefff x7 :ffff800084079890 x6 : 80000000fffff000
+Oct 20 18:25:04 rk3588-evb1 kernel: x5 : 0000000000000000 x4 :0000000000000000 x3 : 0000000000000000
+Oct 20 18:25:04 rk3588-evb1 kernel: x2 : 0000000000000000 x1 :0000000000000000 x0 : ffff000400a08000
+Oct 20 18:25:04 rk3588-evb1 kernel: Call trace:
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_core_disable+0x1b0/0x1e0
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable+0x38/0x60
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_gate_link_disable+0x2c/0x48
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x104/0x270
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused_subtree+0x34/0x270
+Oct 20 18:25:04 rk3588-evb1 kernel:  clk_disable_unused+0x54/0x148
+Oct 20 18:25:04 rk3588-evb1 kernel:  do_one_initcall+0x48/0x2a8
+Oct 20 18:25:04 rk3588-evb1 kernel:  kernel_init_freeable+0x1ec/0x3d8
+Oct 20 18:25:04 rk3588-evb1 kernel:  kernel_init+0x2c/0x1f8
+Oct 20 18:25:04 rk3588-evb1 kernel:  ret_from_fork+0x10/0x20
+Oct 20 18:25:04 rk3588-evb1 kernel: ---[ end trace 0000000000000000 ]---
+Oct 20 18:25:04 rk3588-evb1 kernel: ------------[ cut here ]------------
 
-> 
->>
->> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/pm8350c.dtsi | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
->> index f28e71487d5c..11b9f384d99c 100644
->> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
->> @@ -4,6 +4,7 @@
->>    */
->>
->>   #include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/leds/common.h>
->>   #include <dt-bindings/spmi/spmi.h>
->>
->>   &spmi_bus {
->> @@ -34,6 +35,27 @@ pm8350c_pwm: pwm {
->>                          compatible = "qcom,pm8350c-pwm";
->>                          #pwm-cells = <2>;
->>                          status = "disabled";
->> +
->> +                       #address-cells = <1>;
->> +                       #size-cells = <0>;
->> +
->> +                       led@1 {
->> +                               reg = <1>;
->> +                               color = <LED_COLOR_ID_RED>;
->> +                               label = "red";
->> +                       };
->> +
->> +                       led@2 {
->> +                               reg = <2>;
->> +                               color = <LED_COLOR_ID_GREEN>;
->> +                               label = "green";
->> +                       };
->> +
->> +                       led@3 {
->> +                               reg = <3>;
->> +                               color = <LED_COLOR_ID_BLUE>;
->> +                               label = "blue";
-> 
-> ... and these particular LEDs are board-specific. Please fill them in
-> the board file instead.
+[PATCH v5 3/4]: Rollback to pacth v3.
+[PATCH v5 4/4]: Fix the:
+Oct 20 19:22:37 rk3588-evb1 kernel: pclk_vo0grf clk_register field
+Oct 20 19:22:37 rk3588-evb1 kernel: rockchip_clk_register_branches:failed to register clock pclk_vo0grf: -17
+Oct 20 19:22:37 rk3588-evb1 kernel: pclk_vo1grf clk_register field
+Oct 20 19:22:37 rk3588-evb1 kernel: rockchip_clk_register_branches:failed to register clock pclk_vo1grf: -17
 
-Sure, I will add these node in board file.
-> 
->> +                       };
->>                  };
->>          };
->>   };
->>
->> ---
->> base-commit: b9604be241587fb29c0f40450e53d0a37dc611b5
->> change-id: 20231108-qcom_leds-c3b0b7029008
->>
->> Best regards,
->> --
->> Hui Liu <quic_huliu@quicinc.com>
->>
->>
-> 
-> 
+change in v4:
+[PATCH v4 1/4]: No change
+[PATCH v4 2/4]: No change
+[PATCH v4 3/4]: dropping CLK_NR_CLKS,reword commit message
+[PATCH v4 4/4]: No change
+
+change in V3:
+[PATCH v3 1/4]: new, export clk_gate_endisable for PATCH2.
+[PATCH v3 2/4]: reuse clk_gate_endisable and clk_gate_is_enabled.
+                add prepare and unprepare ops.
+[PATCH v3 3/4]: No change
+[PATCH v3 4/4]: reword commit message
+
+change in V2:
+[PATCH v2 1/3]: fix reported warnings
+[PATCH v2 2/3]: Bindings submit independent patches
+[PATCH v2 3/3]: fix reported warnings
+
+Elaine Zhang (3):
+  clk: gate: export clk_gate_endisable
+  clk: rockchip: add support for gate link
+  clk: rockchip: rk3588: Adjust the GATE_LINK parameter
+
+ drivers/clk/clk-gate.c               |   3 +-
+ drivers/clk/rockchip/Makefile        |   1 +
+ drivers/clk/rockchip/clk-gate-link.c | 120 +++++++++++++++++++++++++++
+ drivers/clk/rockchip/clk-rk3588.c    | 114 +++++++++++++------------
+ drivers/clk/rockchip/clk.c           |   7 ++
+ drivers/clk/rockchip/clk.h           |  22 +++++
+ include/linux/clk-provider.h         |   1 +
+ 7 files changed, 212 insertions(+), 56 deletions(-)
+ create mode 100644 drivers/clk/rockchip/clk-gate-link.c
+
+-- 
+2.17.1
+
 
