@@ -1,113 +1,144 @@
-Return-Path: <devicetree+bounces-15080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6891C7E84FA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 22:10:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF167E850B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 22:29:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED860B20C25
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:10:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A256E2811D4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613A83B7B7;
-	Fri, 10 Nov 2023 21:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ADC3C691;
+	Fri, 10 Nov 2023 21:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Vyq+5cJv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MoyDEIGy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD99B3B28F
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 21:10:06 +0000 (UTC)
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58915C4
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:10:05 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4078fe6a063so2515e9.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:10:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1699650604; x=1700255404; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XE+/jbgSi664HD8BrCmT+2A639BdbZR0PFQ8SEUbr8E=;
-        b=Vyq+5cJvhSEyd08pQn3CN5+m6OQtH+vqHBRso0kqBux+67Wo6j8AyPOSwsq6bVkKhu
-         q5Dm5gMor/wiqn5TFv7aAfQbnIEV3qFqElRe6GRgnL2CPeLWC/T/L5JcQUveqki21h5P
-         WB0xvP1+EHe8kQcdgbSgABNpCZYItr1rLmm0Ea7YuU2XgnwgfLTDwSSmfabUBbujvKOt
-         3uztYidvXik3SjSGoZmHFdDTTiqnMCrs+mqh+yp/LMvZt/pKnDpNGJL8lpcLk6Zm41Vz
-         DAHB4z+Ul2Kvnlj8atwY9T2ahbLW2eLF61+LgcmV465RZ4XA2tBc+uFAjLTf2rmiH49H
-         ApGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699650604; x=1700255404;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XE+/jbgSi664HD8BrCmT+2A639BdbZR0PFQ8SEUbr8E=;
-        b=ZvMCGh+AKP8wRhuYyN1VF9d3TDX6ZNJQoGa2iy5MQ6XHA10ELlm1Jye/BnGIBZyvN/
-         E1QxNHp2h+hiKL3Y3GUBAJkawtMyuJNfiPEcfC/+JPaQQd7eVFkUWy0RkO4vno6mt+lF
-         AHsn68/kCcUrB7NZHZ12D+HyD8LGHJJKOZWUbihUGqEODNcMp/0gpo84DL9WP9zQJEwS
-         Q+qffGJvrTqx6kYmTtON+6KH84hIPOsrRazFYa15r9MEmjgsRR0FlgVai9V1WmTHIU2L
-         28IzNa5Kf3/wFXch7fMjU4S0jd54VUiUgQMGHy07kIpNxkSJbehjbAELWY3ljJ5tepxI
-         248g==
-X-Gm-Message-State: AOJu0Yw714yvXPlafofW0f2aTR06uW5TuNRKvj4BfIx5t5qkpBc21Bzt
-	iWWQ/jXjCbeRmZYAk4ufvwoBYkGUDuwyAUS9yB31yA==
-X-Google-Smtp-Source: AGHT+IEed6ru5XI2tGdQUHFtZARACGAfGFOcCru3M+E5sMSccnmdruAaJQRKVBsgXLem9FOe09lBfdh00h+15HeH9/0=
-X-Received: by 2002:a05:600c:3b9b:b0:408:3725:b96a with SMTP id
- n27-20020a05600c3b9b00b004083725b96amr9766wms.0.1699650603630; Fri, 10 Nov
- 2023 13:10:03 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779823C68C;
+	Fri, 10 Nov 2023 21:29:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED0BC420B;
+	Fri, 10 Nov 2023 13:29:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699651781; x=1731187781;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NA23B0Hz907EL3uQodBGpP4znG68sVHIJYpbYAN5Xys=;
+  b=MoyDEIGyPVaHxhR2ucYoyf2O9JFpfE9xhTZHf+tlT9S7f9Rf3f+jP7AA
+   bcMcXMqE30JIem5Hx7lBHJpoZiaoEpw8NbxFav1oWHJnYx6G0ZV1E3vUR
+   tRAFf/m8IfBrVag5ayyQaY6LkQB9aaET1udqDFOj7ovS6hZ36dbr/0VaE
+   sllcIny1Xt2i2pl/bG7sCNBJDSLICaETUr4z3KwHk3kAALn/LNOOjG+hq
+   ZU3l05IpmnWwOskWUGDTihOL4Zpd1yRzhwHTuVuZzISCqzDkbseJISLeJ
+   xio2+atwoPEkPzmR+YOV4Xo2VQHpo0TvUY/tCz7krvqtvoqApOLWhpJ3b
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="476460859"
+X-IronPort-AV: E=Sophos;i="6.03,293,1694761200"; 
+   d="scan'208";a="476460859"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2023 13:29:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="881059314"
+X-IronPort-AV: E=Sophos;i="6.03,293,1694761200"; 
+   d="scan'208";a="881059314"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 10 Nov 2023 13:29:38 -0800
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1r1Z4K-0009v0-1j;
+	Fri, 10 Nov 2023 21:29:36 +0000
+Date: Sat, 11 Nov 2023 05:29:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v7 2/2] rtc: max31335: add driver support
+Message-ID: <202311110508.MdqXcQsW-lkp@intel.com>
+References: <20231109101449.8347-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231110094553.2361842-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20231110094553.2361842-1-yangcong5@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Fri, 10 Nov 2023 13:09:46 -0800
-Message-ID: <CAD=FV=UvZ9U1SYjOOBB6o2CmquAevqJZ9Ukp_kx4zGXFbp_VBA@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
- panel HFP and HBP
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, airlied@gmail.com, zhouruihai@huaqin.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231109101449.8347-2-antoniu.miclaus@analog.com>
 
-Hi,
+Hi Antoniu,
 
-On Fri, Nov 10, 2023 at 1:46=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The refresh reported by modotest is 60.46Hz, and the actual measurement
+kernel test robot noticed the following build warnings:
 
-s/modotets/modetest/
+[auto build test WARNING on abelloni/rtc-next]
+[also build test WARNING on linus/master v6.6 next-20231110]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> is 60.01Hz, which is outside the expected tolerance. Adjust hporch and
-> pixel clock to fix it. After repair, modetest and actual measurement were
-> all 60.01Hz.
+url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/rtc-max31335-add-driver-support/20231109-231755
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/20231109101449.8347-2-antoniu.miclaus%40analog.com
+patch subject: [PATCH v7 2/2] rtc: max31335: add driver support
+config: x86_64-randconfig-123-20231111 (https://download.01.org/0day-ci/archive/20231111/202311110508.MdqXcQsW-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231111/202311110508.MdqXcQsW-lkp@intel.com/reproduce)
 
-Can you explain this more? Why was the rate that modetest reported
-different from the actual measured rate? This feels like it's a
-problem with your MIPI controller not being able to accurately make
-the rate. Is that it?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311110508.MdqXcQsW-lkp@intel.com/
 
-If so then this is a bit of a hack. Someone else using the same panel
-might have a MIPI controller that can make slightly different clock
-rates. I think you're currently the only user of the panel, so maybe
-this isn't too terrible (would love to hear other people's advice).
+sparse warnings: (new ones prefixed by >>)
+>> drivers/rtc/rtc-max31335.c:504:22: sparse: sparse: symbol 'max31335_clk_init' was not declared. Should it be static?
+>> drivers/rtc/rtc-max31335.c:527:21: sparse: sparse: symbol 'max31335_nvmem_cfg' was not declared. Should it be static?
 
-Assuming this is actually the problem there are probably at least
-several different ways to solve this. One that comes to mind is the
-solution we ended up with for eDP where we allowed specifying some of
-this stuff in the device tree, though that might cause a whole pile of
-debates...
+vim +/max31335_clk_init +504 drivers/rtc/rtc-max31335.c
 
-In any case, as I said above this patch is probably OK if you're the
-only user of this panel, but it might be at least good to add
-something to the commit message?
+   503	
+ > 504	struct clk_init_data max31335_clk_init = {
+   505		.name = "max31335-clkout",
+   506		.ops = &max31335_clkout_ops,
+   507	};
+   508	
+   509	static int max31335_nvmem_reg_read(void *priv, unsigned int offset,
+   510					   void *val, size_t bytes)
+   511	{
+   512		struct max31335_data *max31335 = priv;
+   513		unsigned int reg = MAX31335_TS0_SEC_1_128 + offset;
+   514	
+   515		return regmap_bulk_read(max31335->regmap, reg, val, bytes);
+   516	}
+   517	
+   518	static int max31335_nvmem_reg_write(void *priv, unsigned int offset,
+   519					    void *val, size_t bytes)
+   520	{
+   521		struct max31335_data *max31335 = priv;
+   522		unsigned int reg = MAX31335_TS0_SEC_1_128 + offset;
+   523	
+   524		return regmap_bulk_write(max31335->regmap, reg, val, bytes);
+   525	}
+   526	
+ > 527	struct nvmem_config max31335_nvmem_cfg = {
+   528		.reg_read = max31335_nvmem_reg_read,
+   529		.reg_write = max31335_nvmem_reg_write,
+   530		.word_size = 8,
+   531		.size = MAX31335_RAM_SIZE,
+   532	};
+   533	
 
--Doug
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
