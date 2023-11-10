@@ -1,144 +1,128 @@
-Return-Path: <devicetree+bounces-14931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27B17E797C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:41:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAE947E793E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D17E2811E4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:41:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC2261C20C4F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8600B1852;
-	Fri, 10 Nov 2023 06:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648AB63B0;
+	Fri, 10 Nov 2023 06:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cj5fkE9Y"
+	dkim=pass (2048-bit key) header.d=lexina.in header.i=@lexina.in header.b="g1QU7QP1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBAF15B3
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:40:59 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88AED7A9D;
-	Thu,  9 Nov 2023 22:40:57 -0800 (PST)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA5UT4Z003312;
-	Fri, 10 Nov 2023 05:50:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=1qeJzEU9+q9du+S9Sx8kYO/KTx5lYz7McRllLoryFDM=;
- b=Cj5fkE9Yf5Z1HlPdZe/aaaFHUJI7/w0+XK6IcZFTXFnuDXJUn5WQNoLXKefCgm+kt9DM
- HBetWEpz7NyaJoVRUiRUwmFL6PrC2K98RuXa6YRZYKvwAHu/1hiGl7qw/c3GMBniniOk
- df3z3LP4mcfumzh1aBN8jDA728XVj/JZfSoIkejnz13BRylReQ/sI9k7uRqGLag1cxXH
- 3ubnXtpjHrT+MDUOA8QwWQFExJs6fScZeehO/E/hSpeTdeq9JwZgvKxAGR0roVba049E
- Fz8iAUM6O8WGcnxFUYyN9zAIP9LFGHH3RKgnpIwEcPNAJEFbGycJet3SxhZGKxCF21LM zQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u93tq9a5r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 05:50:21 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AA5oKOV019464
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 05:50:20 GMT
-Received: from [10.239.155.136] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
- 2023 21:50:15 -0800
-Message-ID: <c77d3b96-cec0-b13f-2fd8-df59e29bb889@quicinc.com>
-Date: Fri, 10 Nov 2023 13:50:13 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89009A40
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:24:28 +0000 (UTC)
+Received: from mx.msync.work (mx.msync.work [62.182.159.68])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FE8D6F87;
+	Thu,  9 Nov 2023 22:24:27 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0C23515675E;
+	Fri, 10 Nov 2023 06:00:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
+	t=1699596008; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=pGAPimGotaSJcRtKrDnmSbjkSfOKuNnfaSzdhYkcmXo=;
+	b=g1QU7QP1VD0oscW8sjske7Ntfl7CbqIKOn2vcAlWA7LvoLMyKLBWvFM78k60qh24GHqB6z
+	xDYhNMyfSIQNLZTYhtWgffN1s5eXTUXft9oQaqoiF/fa0PBzGfv7P5VdkaxDbpXPmRWH7F
+	XFhLYYaB6djHz19uz9nGKwJ4PTz6ofeimGtx0/Qi3i0s0UTFD2PN8Tl1MqJtGW/W1u1f0h
+	zl983JV/CU/QvPATxM18yZp2hMoXRcMBbjHevmOpq7SxYLTqIeO7XHDZaNaBkpntoMNaY1
+	CSpFzdnKyldZZJPAOgo5grDfxTWvp+zqqY7SnT+UDrrUgF8CQnFzST+zSIxUbA==
+Message-ID: <d12f0909623088f1f66ab57b1868dee2e0fb6387.camel@lexina.in>
+Subject: Re: [PATCH] firmware: meson-sm: change sprintf to scnprintf
+From: Viacheslav Bocharov <adeep@lexina.in>
+To: David Laight <David.Laight@ACULAB.COM>, Neil Armstrong
+ <neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Kevin
+ Hilman <khilman@baylibre.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+  "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>
+Date: Fri, 10 Nov 2023 09:00:06 +0300
+In-Reply-To: <bd3a9ca738444c99855c6aabe318e351@AcuMS.aculab.com>
+References: <20231109085029.2079176-1-adeep@lexina.in>
+	 <bd3a9ca738444c99855c6aabe318e351@AcuMS.aculab.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: ufs: Add msi-parent for UFS MCQ
-Content-Language: en-US
-To: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>
-CC: Bart Van Assche <bvanassche@acm.org>, <quic_asutoshd@quicinc.com>,
-        <quic_cang@quicinc.com>, <beanhuo@micron.com>, <avri.altman@wdc.com>,
-        <junwoo80.lee@samsung.com>, <martin.petersen@oracle.com>,
-        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        <quic_rampraka@quicinc.com>, <linux-scsi@vger.kernel.org>,
-        Alim Akhtar
-	<alim.akhtar@samsung.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Ulf
- Hansson" <ulf.hansson@linaro.org>, Wolfram Sang <wsa@kernel.org>,
-        "Guenter
- Roeck" <linux@roeck-us.net>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        "Mark
- Brown" <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE
- TREE BINDINGS" <devicetree@vger.kernel.org>,
-        open list
-	<linux-kernel@vger.kernel.org>
-References: <1698835699-28550-1-git-send-email-quic_ziqichen@quicinc.com>
- <20231106144831.GA317907-robh@kernel.org>
- <5850d5ac-e735-4358-866d-f410b00ba39d@acm.org>
- <CAL_Jsq+XB5p_K3C+rc5XetQ-Xfxu4umNFzcF0idB2hhZvS7HLA@mail.gmail.com>
- <20231109161656.GH3752@thinkpad>
-From: Ziqi Chen <quic_ziqichen@quicinc.com>
-In-Reply-To: <20231109161656.GH3752@thinkpad>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jJeOAbnbHovkp2p0lBuzujKZ7WRIQexM
-X-Proofpoint-ORIG-GUID: jJeOAbnbHovkp2p0lBuzujKZ7WRIQexM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-10_02,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999
- spamscore=0 phishscore=0 impostorscore=0 bulkscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311100047
+X-Last-TLS-Session-Version: TLSv1.3
+
+Hi!
+
+On Thu, 2023-11-09 at 17:59 +0000, David Laight wrote:
+> From: Viacheslav Bocharov
+> > Sent: 09 November 2023 08:50
+> >=20
+> > Update sprintf in serial_show frunction to scnprintf command to
+> > prevent sysfs buffer overflow (buffer always is PAGE_SIZE bytes).
+>=20
+> Isn't the correct function sysfs_emit() ?
+Good catch. There's always something new to find)
 
 
 
-On 11/10/2023 12:16 AM, Manivannan Sadhasivam wrote:
-> On Thu, Nov 09, 2023 at 07:55:14AM -0600, Rob Herring wrote:
->> On Mon, Nov 6, 2023 at 11:56 AM Bart Van Assche <bvanassche@acm.org> wrote:
->>>
->>> On 11/6/23 06:48, Rob Herring wrote:
->>>> On Wed, Nov 01, 2023 at 06:48:13PM +0800, Ziqi Chen wrote:
->>>>> The Message Signaled Interrupts (MSI) has been introduced
->>>>> to UFS driver since the MCQ be enabled.
->>>>
->>>> Not really relevant when a driver supported MSI, but the when the h/w
->>>> did. Has UFS always supported MSI? It was added in some version of the
->>>> spec?
->>>
->>> MSI support has been introduced in UFSHCI version 4.0 and I think that
->>> the controller vendor can decide whether or not to implement MSI. Does
->>> this mean that the patch needs to be improved?
->>
->> Yes, this information is what should be in the commit msg rather than
->> driver details.
->>
-> 
-> Yes, agreed. Ziqi, please update the commit message to incorporate the hw
-> details about when MCQ/MSI got introduced. Devicetree binding should describe
-> the hw, not the driver.
-> 
-Thank you all, I will update the commit message in next version.
+> In any case that particular example can't possibly overflow.
+Practically in this example, I agree. But nevertheless, ideologically,=C2=
+=A0
+a pointer to the buffer is passed to the function, but its size is not=C2=
+=A0
+passed. This may cause an overflow error when making changes in the=C2=A0
+code.=C2=A0Yes, the lengths of %12phN and PAGE_SIZE are very different at=
+=C2=A0
+the moment.=C2=A0But what happens if both of these numbers change=C2=A0
+unpredictably in future changes?
 
-- Ziqi
 
-> - Mani
-> 
->> Rob
-> 
+> 	David
+>=20
+> >=20
+> > Signed-off-by: Viacheslav Bocharov <adeep@lexina.in>
+> > ---
+> >  drivers/firmware/meson/meson_sm.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson=
+/meson_sm.c
+> > index ed60f1103053..c1c694b485ee 100644
+> > --- a/drivers/firmware/meson/meson_sm.c
+> > +++ b/drivers/firmware/meson/meson_sm.c
+> > @@ -265,7 +265,7 @@ static ssize_t serial_show(struct device *dev, stru=
+ct device_attribute *attr,
+> >  		return ret;
+> >  	}
+> >=20
+> > -	ret =3D sprintf(buf, "%12phN\n", &id_buf[SM_CHIP_ID_OFFSET]);
+> > +	ret =3D scnprintf(buf, PAGE_SIZE, "%12phN\n", &id_buf[SM_CHIP_ID_OFFS=
+ET]);
+> >=20
+> >  	kfree(id_buf);
+> >=20
+> > --
+> > 2.34.1
+>=20
+> -
+> Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1=
+ 1PT, UK
+> Registration No: 1397386 (Wales)
+>=20
+>=20
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
 
