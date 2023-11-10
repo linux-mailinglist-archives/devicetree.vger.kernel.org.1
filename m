@@ -1,49 +1,94 @@
-Return-Path: <devicetree+bounces-14896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E778E7E75F6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBD797E7628
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:58:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 226301C20CB0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 00:30:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A052D1C20BBC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 00:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DA336A;
-	Fri, 10 Nov 2023 00:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006B8A40;
+	Fri, 10 Nov 2023 00:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V5c558bw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86811847
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 00:30:48 +0000 (UTC)
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3921F2590;
-	Thu,  9 Nov 2023 16:30:48 -0800 (PST)
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1r1FPz-00041m-2U;
-	Fri, 10 Nov 2023 00:30:39 +0000
-Date: Fri, 10 Nov 2023 00:30:36 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E6CB7F6
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 00:58:45 +0000 (UTC)
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17E73A8E
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 16:58:44 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id 46e09a7af769-6d339b93423so12099a34.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 16:58:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699577924; x=1700182724; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xJVrXuXFcu3DgtWdnbXpFzASR1Czvt1UEeVrRTmaZPQ=;
+        b=V5c558bwpJbS+RsMjl+81BnZskU9iA2PziT2KM/lWdWWWu9sF61J7xxbkit5dKirS2
+         r46y3F7gdM+v0QWicY8k7FIYJb5Dw3lpnFUDM3m4L8n8WniI4rH9r8J2k99Wtdjlx3Fb
+         cwZB48T+NKxPi43z6rvgfk/gCXdrlX5dBOCqrgDLWe5aYioerEi22D0WnIYhJA53bF61
+         2Wt2HG7wPkxoF3tCC0mKbYrB8/JhenDUbnG+eH0+lc2Y4Db7+Gy38b34eL/xGguoIOwW
+         3M3hrwMEaHFE2CBRj16ppDuBnYjw4ba78bTRKl83sEIGAc3ygF8yvXkwM6qFYWp3ifyr
+         /Wxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699577924; x=1700182724;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xJVrXuXFcu3DgtWdnbXpFzASR1Czvt1UEeVrRTmaZPQ=;
+        b=mBynP4Cfjva6DVUgjd7nov0yZzxvmmF6QocLu/VL5Hr6fr9cl0QdC8tthYGpJRSy1y
+         8VNJ+CPPKnV2KXVw0i24dDKXCk2xKiG+6DyqjUg9/AYGj2WrD8toEDSzJgDhvEXSC4PU
+         DeUq1K5vPd1PMgdViOoP70NumaWyLhpjBe1GHQhQmWoUI+YWmNbNSkGwBeSYKK0Rk/rw
+         /wp2/R/pxnLh93Z6MMTK9FQYM1XaEUNBUyWtDvQFztmVJDpeKdG1Da6bc1aQ2LMrdjKZ
+         RisDEVAmDRFGwpCS8WiTZJG5xK2GNh2g6e57h2mf0R5ZUOsOVtXC++771YcmTNA0vTYK
+         24iQ==
+X-Gm-Message-State: AOJu0YwjGq9hv9pZONfUS9Kcq9JNmrp7ASUPyBQNXUzS20XYKWzLywNp
+	uuuDj4Am32pGPOPqV+NniWx6fw==
+X-Google-Smtp-Source: AGHT+IFCGAq9uOJ74nOCEa1XdXbPO22Qfscitoj00Gqwgxzjx8UkOGK6WexDGU679wSnRWP4OZnOBw==
+X-Received: by 2002:a9d:6f16:0:b0:6b7:36af:1937 with SMTP id n22-20020a9d6f16000000b006b736af1937mr7501364otq.0.1699577923984;
+        Thu, 09 Nov 2023 16:58:43 -0800 (PST)
+Received: from octopus ([2400:4050:c3e1:100:f2ee:7d90:a86d:610])
+        by smtp.gmail.com with ESMTPSA id s4-20020a655844000000b005bdf596164fsm1746007pgr.94.2023.11.09.16.58.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Nov 2023 16:58:43 -0800 (PST)
+Date: Fri, 10 Nov 2023 09:58:39 +0900
+From: Takahiro Akashi <takahiro.akashi@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+	"sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH 2/2] watchdog: mediatek: mt7988: add wdt support
-Message-ID: <ddb5b6ca88165aa69f73fe2804eedd0231d8d9e7.1699576174.git.daniel@makrotopia.org>
-References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [RFC v5 5/5] dt-bindings: firmware: arm,scmi: Add support for
+ pinctrl protocol
+Message-ID: <ZU2AP7leDcIZIN+b@octopus>
+Mail-Followup-To: Takahiro Akashi <takahiro.akashi@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+	"sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <cover.1698353854.git.oleksii_moisieiev@epam.com>
+ <e9285b4377242e4d888391be987cbb99caf8c573.1698353854.git.oleksii_moisieiev@epam.com>
+ <CACRpkdYW-xmejyOo9H9XSkcabvYgBqPvpjppvNe_RF6RLxyxKA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,162 +97,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
+In-Reply-To: <CACRpkdYW-xmejyOo9H9XSkcabvYgBqPvpjppvNe_RF6RLxyxKA@mail.gmail.com>
 
-Add support for watchdog and reset generator unit of the MediaTek
-MT7988 SoC.
+Hi Arm folks,
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
- drivers/watchdog/mtk_wdt.c | 56 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 55 insertions(+), 1 deletion(-)
+Do you have any comment?
+I expect that you have had some assumption when you defined
+SCMI pinctrl protocol specification.
 
-diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-index b2330b16b497a..b98b8c29735aa 100644
---- a/drivers/watchdog/mtk_wdt.c
-+++ b/drivers/watchdog/mtk_wdt.c
-@@ -12,6 +12,7 @@
- #include <dt-bindings/reset/mt2712-resets.h>
- #include <dt-bindings/reset/mediatek,mt6795-resets.h>
- #include <dt-bindings/reset/mt7986-resets.h>
-+#include <dt-bindings/reset/mediatek,mt7988-resets.h>
- #include <dt-bindings/reset/mt8183-resets.h>
- #include <dt-bindings/reset/mt8186-resets.h>
- #include <dt-bindings/reset/mt8188-resets.h>
-@@ -58,6 +59,8 @@
- #define WDT_SWSYSRST		0x18U
- #define WDT_SWSYS_RST_KEY	0x88000000
- 
-+#define WDT_SWSYSRST_EN		0xfc
-+
- #define DRV_NAME		"mtk-wdt"
- #define DRV_VERSION		"1.0"
- 
-@@ -71,44 +74,85 @@ struct mtk_wdt_dev {
- 	struct reset_controller_dev rcdev;
- 	bool disable_wdt_extrst;
- 	bool reset_by_toprgu;
-+	bool has_swsysrst_en;
- };
- 
- struct mtk_wdt_data {
- 	int toprgu_sw_rst_num;
-+	bool has_swsysrst_en;
- };
- 
- static const struct mtk_wdt_data mt2712_data = {
- 	.toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
- static const struct mtk_wdt_data mt6795_data = {
- 	.toprgu_sw_rst_num = MT6795_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
- static const struct mtk_wdt_data mt7986_data = {
- 	.toprgu_sw_rst_num = MT7986_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
-+};
-+
-+static const struct mtk_wdt_data mt7988_data = {
-+	.toprgu_sw_rst_num = MT7988_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = true,
- };
- 
- static const struct mtk_wdt_data mt8183_data = {
- 	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
- static const struct mtk_wdt_data mt8186_data = {
- 	.toprgu_sw_rst_num = MT8186_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
- static const struct mtk_wdt_data mt8188_data = {
- 	.toprgu_sw_rst_num = MT8188_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
- static const struct mtk_wdt_data mt8192_data = {
- 	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
- static const struct mtk_wdt_data mt8195_data = {
- 	.toprgu_sw_rst_num = MT8195_TOPRGU_SW_RST_NUM,
-+	.has_swsysrst_en = false,
- };
- 
-+static int toprgu_reset_sw_enable(struct reset_controller_dev *rcdev,
-+				  unsigned long id, bool enable)
-+{
-+	unsigned int tmp;
-+	unsigned long flags;
-+	struct mtk_wdt_dev *data =
-+		 container_of(rcdev, struct mtk_wdt_dev, rcdev);
-+
-+	if (!data->has_swsysrst_en)
-+		return 0;
-+
-+	spin_lock_irqsave(&data->lock, flags);
-+
-+	tmp = readl(data->wdt_base + WDT_SWSYSRST_EN);
-+	if (enable)
-+		tmp |= BIT(id);
-+	else
-+		tmp &= ~BIT(id);
-+
-+	writel(tmp, data->wdt_base + WDT_SWSYSRST_EN);
-+
-+	spin_unlock_irqrestore(&data->lock, flags);
-+
-+	return 0;
-+}
-+
- static int toprgu_reset_update(struct reset_controller_dev *rcdev,
- 			       unsigned long id, bool assert)
- {
-@@ -135,13 +179,20 @@ static int toprgu_reset_update(struct reset_controller_dev *rcdev,
- static int toprgu_reset_assert(struct reset_controller_dev *rcdev,
- 			       unsigned long id)
- {
-+	int ret;
-+
-+	ret = toprgu_reset_sw_enable(rcdev, id, true);
-+	if (ret)
-+		return ret;
-+
- 	return toprgu_reset_update(rcdev, id, true);
- }
- 
- static int toprgu_reset_deassert(struct reset_controller_dev *rcdev,
- 				 unsigned long id)
- {
--	return toprgu_reset_update(rcdev, id, false);
-+	toprgu_reset_update(rcdev, id, false);
-+	return toprgu_reset_sw_enable(rcdev, id, false);
- }
- 
- static int toprgu_reset(struct reset_controller_dev *rcdev,
-@@ -406,6 +457,8 @@ static int mtk_wdt_probe(struct platform_device *pdev)
- 						       wdt_data->toprgu_sw_rst_num);
- 		if (err)
- 			return err;
-+
-+		mtk_wdt->has_swsysrst_en = wdt_data->has_swsysrst_en;
- 	}
- 
- 	mtk_wdt->disable_wdt_extrst =
-@@ -444,6 +497,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
- 	{ .compatible = "mediatek,mt6589-wdt" },
- 	{ .compatible = "mediatek,mt6795-wdt", .data = &mt6795_data },
- 	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
-+	{ .compatible = "mediatek,mt7988-wdt", .data = &mt7988_data },
- 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
- 	{ .compatible = "mediatek,mt8188-wdt", .data = &mt8188_data },
--- 
-2.42.1
+On Mon, Nov 06, 2023 at 02:12:36PM +0100, Linus Walleij wrote:
+> On Fri, Oct 27, 2023 at 8:28???AM Oleksii Moisieiev
+> <Oleksii_Moisieiev@epam.com> wrote:
+> 
+> > +                keys_pins: keys-pins {
+> > +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
+> > +                    bias-pull-up;
+> > +                };
+> 
+> This is kind of interesting and relates to my question about naming groups and
+> functions of GPIO pins.
+> 
+> Here we see four pins suspiciously named "GP_*" which I read as
+> "generic purpose"
+> and they are not muxed to *any* function, yes pulled up.
+> 
+> I would have expected something like:
+> 
+> keys_pins: keys-pins {
+>   groups = "GP_5_17_grp", "GP_5_20_grp", "GP_5_22_grp", "GP_2_1_grp";
+>   function = "gpio";
+>   pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
+>   bias-pull-up;
+> };
+> 
+> I hope this illustrates what I see as a problem in not designing in
+> GPIO as an explicit
+> function, I get the impression that these pins are GPIO because it is hardware
+> default.
+
+If you want to stick to "explicit", we may rather introduce a pre-defined
+sub-node name, "gpio", in a device tree binding, i.e.
+
+  protocol@19 { // pinctrl protocol
+      ... // other pinmux nodes
+
+      scmi_gpio: gpio { // "gpio" is a fixed name
+          keys-pins {
+              pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
+              bias-pull-up;
+              // possibly input or output
+          };
+          input-pins {
+              groups = "some group"; // any name
+              input-mode;
+          }
+          output-pins {
+              pins = "foo1", "foo2"; // any name
+              output-mode;
+          }
+      }
+  }
+
+It would indicate that all the succeeding nodes are for gpio definitions
+and *virtual* gpio pin numbers will be assigned in the order of
+appearances in "gpio" node. Then a client driver may refer to a gpio pin
+(say, GP_2_1?) like in the current manner:
+
+  foo_device {
+       ...
+       reset-gpios = <&scmi_gpio 3 ...>;
+  }
+
+-Takahiro Akashi
+
+> 
+> Yours,
+> Linus Walleij
 
