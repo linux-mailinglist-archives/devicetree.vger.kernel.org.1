@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0E57E79E7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 08:55:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D05547E79EA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 08:56:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63639B20E18
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:55:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09D281C20D27
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10167475;
-	Fri, 10 Nov 2023 07:55:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBAB7482;
+	Fri, 10 Nov 2023 07:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fczmYIxU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xxgBKKvf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B6C57462
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 07:55:08 +0000 (UTC)
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290D3884B
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 23:55:07 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-507973f3b65so2391143e87.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 23:55:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3207477
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 07:56:16 +0000 (UTC)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2067B8856
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 23:56:14 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-32df66c691dso941058f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 23:56:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699602905; x=1700207705; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699602972; x=1700207772; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=exq4UFCVFyVXTRVXCKADEx5ek2tcNT2tuJD33J+zJYY=;
-        b=fczmYIxUUR9PxIU3DHstxjpxqs0WIm6z70nEX2fH7Vfora/LQ4A6vDOruBkINi24FX
-         F1Ql8ytCOytGE2malueKYADNsa+hFsRVhGrqBs8BUbLsLKw8m5WagBKMHGb3WyZQzs8h
-         vpC+K8rCtHfC6mOeJRpLd1rltqMr0EUc5RTQvuzBqGeM/XoUpsVKwsesbeqNJJG/OXo/
-         wpzmCNF68GU8qDKKYhJoCvJYY0nGE2eNkmlf7Av0XjFJVi7y3KWlr5qmtxL4Tz0wNuGW
-         R8DdO6CBl0DLL3/HXSGo3nrEXo1vd61Ia3K/ZXbGzYjT0TdubqJ7587X3Y9S0HFw7lYl
-         IeVg==
+        bh=uF/2Olx0l5Pcqn8zuGK5jlw1K/3qayJNzfF2eo5+JRk=;
+        b=xxgBKKvfyniWN37z48WPjFK5vWGHBnHF0Ksd8sMfwQ6Cjb+NwiUujzT0y/PN3GX5GR
+         OxPPzmKBV5lbIxLh8v0qTsyzx1gHjJUhl/8shU4EXFOZuMO9ZbS3CkTAFx0V3et71snv
+         4aySlOp6IrJFLvwn+tURYrTki9Ewxx+1nmTG6Dt7anVQOubQtADdKkkEzHxdBHLdlqwV
+         m5bEPVN+qEyS24s816XO+n1aMLAFx1+aUZIhUuP9lqjzP7/pzEue9jBkQVU6VFTrtYcJ
+         H29T54ZnR42sAI8BM/nkWnhndQInD7rlClZMQ4LRo2u0P24qu32i7dCyLqYUO26o/7ji
+         LG3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699602905; x=1700207705;
+        d=1e100.net; s=20230601; t=1699602972; x=1700207772;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=exq4UFCVFyVXTRVXCKADEx5ek2tcNT2tuJD33J+zJYY=;
-        b=hhHeM1FTTQGOvCU0MNXmY9tCVntSq+TKPi/ZLQK2Qh5QHZ6Vy1whnq58KFiYA6bVjy
-         9WE8adm8Z/hXR/fokKQ9XB0A1bHztL+JTo3pI35BnKll5nrGbxk8wnk9zlhsSoAHdgSW
-         y/R1/eDI5bEW/5Tp0qT6KOrGt72BX2hHKNkf0VCrwvTKbYPSY9TmbIupXSckmNiZ6IMQ
-         REFIJCiv7YF1l1wKafLw3cwGMKXl188MFnlapiEKg680qHeSZPKq5oescIOmghnjvSnB
-         fJB9OVf/sYlmHPlsFyAlW/vkCEwEHP1N8rRdBS8sS+ZEJBghcTMaSAabUgoEKamyjuBs
-         uN9Q==
-X-Gm-Message-State: AOJu0YySB87ltkI+9ZSAQIAoJ91EtPPX8RAwdXem1iBtgP+O5iZkK0Pz
-	C1szWZw42+ut5oVkPc/hCvhVDA==
-X-Google-Smtp-Source: AGHT+IEz5Z/L098NcTyrqONf8EFKuGwXg9A/WJWICjpff8xZDf1JiXrYNoesmr9tCGAlePBYeqt7/g==
-X-Received: by 2002:ac2:5e2e:0:b0:509:4533:ddf2 with SMTP id o14-20020ac25e2e000000b005094533ddf2mr2836185lfg.11.1699602905427;
-        Thu, 09 Nov 2023 23:55:05 -0800 (PST)
+        bh=uF/2Olx0l5Pcqn8zuGK5jlw1K/3qayJNzfF2eo5+JRk=;
+        b=mAOQGAJCNbxxuB9WsLQyue9INnAvOuS4TmlnfJ6R6taQdDxOpoKexCfAqb7zjEiSHf
+         CsJHoogqtDsVIAKo7pE4vksNgz0r53dquF/V0FgcvU2ELRoIpWe6TL4G7Xl5BdFjG/bL
+         oDnSWBgPGk9+GrFoQut1msLjwhqaOJEbgDtgRvITr0ccIHOTfeGkJHKaPpOPBd+PgRgw
+         wP4swL3UACSTxJWZXqQDfd1NkNX1+Y/a8pxhMVZUUU6cVoViADjAMWtmAhaGEr0rEjhA
+         BFs2m/xEfmOEHECXhP+5xRbXSnDqFY00SUbNDgFBCl6s7hfJu0mXxUUg9ULS3WcTw6IK
+         D9yw==
+X-Gm-Message-State: AOJu0YxYLedl8KfqtwNndkF9hlIG1KRyQUSMvGlONAc9fgutxhN1BFwv
+	klDSPkLM0Vkw32Yodd9NQ8ke4Q==
+X-Google-Smtp-Source: AGHT+IF8JEhAvwqoErY4FsSiVIulqOSzDE5q0SUxbnhBsHY0DItYx0agc+/acFplvPNqr6CbqvV3hw==
+X-Received: by 2002:a05:6000:bc2:b0:32d:8c57:b4f2 with SMTP id dm2-20020a0560000bc200b0032d8c57b4f2mr5541779wrb.37.1699602972577;
+        Thu, 09 Nov 2023 23:56:12 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id j3-20020a056000124300b0032db4825495sm1366870wrx.22.2023.11.09.23.55.04
+        by smtp.gmail.com with ESMTPSA id j3-20020a056000124300b0032db4825495sm1366870wrx.22.2023.11.09.23.56.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 23:55:04 -0800 (PST)
-Message-ID: <13574c92-0edf-48d8-b021-8d36b48e5759@linaro.org>
-Date: Fri, 10 Nov 2023 08:55:03 +0100
+        Thu, 09 Nov 2023 23:56:11 -0800 (PST)
+Message-ID: <b6cbd172-12d2-4697-bb57-6fe5b6be82c5@linaro.org>
+Date: Fri, 10 Nov 2023 08:56:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +67,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: es8328: convert to DT schema format
+Subject: Re: [PATCH 3/4] dt-bindings: fsl-dma: fsl-edma: add fsl,imx95-edma5
+ compatible string
 Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Heiko Stuebner <heiko@sntech.de>, Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, kernel@collabora.com
-References: <20231109184453.108676-1-sebastian.reichel@collabora.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+ imx@lists.linux.dev, joy.zou@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+ linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org,
+ shenwei.wang@nxp.com, vkoul@kernel.org
+References: <20231109212059.1894646-1-Frank.Li@nxp.com>
+ <20231109212059.1894646-4-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,19 +122,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231109184453.108676-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20231109212059.1894646-4-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/11/2023 19:44, Sebastian Reichel wrote:
-> Convert the binding to DT schema format. Note, that "IPVDD-supply"
-> got fixed to be "HPVDD-supply" during the conversion. This was
-> obviously a typo in the old binding. The old binding example, DT
-> files, chip datasheet and Linux driver use HPVDD.
+On 09/11/2023 22:20, Frank Li wrote:
+> Add the compatible string 'fsl,imx95-edma5' to support the i.MX95's eDMA,
+> which features 64-bit physical address support.
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
