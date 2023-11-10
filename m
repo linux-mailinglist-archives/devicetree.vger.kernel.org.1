@@ -1,91 +1,87 @@
-Return-Path: <devicetree+bounces-14905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44537E76A3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:39:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 285587E76AF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73EAE2811CB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:39:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93BCAB20C81
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7637E7FE;
-	Fri, 10 Nov 2023 01:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04DE7FE;
+	Fri, 10 Nov 2023 01:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cisco.com header.i=@cisco.com header.b="CHJNTpVf"
+	dkim=pass (1024-bit key) header.d=cisco.com header.i=@cisco.com header.b="JhlMP1dP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5597E6;
-	Fri, 10 Nov 2023 01:39:23 +0000 (UTC)
-X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 09 Nov 2023 17:39:22 PST
-Received: from rcdn-iport-1.cisco.com (rcdn-iport-1.cisco.com [173.37.86.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E723444A4;
-	Thu,  9 Nov 2023 17:39:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06878A46
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 01:39:36 +0000 (UTC)
+Received: from rcdn-iport-4.cisco.com (rcdn-iport-4.cisco.com [173.37.86.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4599E469F;
+	Thu,  9 Nov 2023 17:39:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3762; q=dns/txt; s=iport;
-  t=1699580363; x=1700789963;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=PtUp1GjfEwZS61DxzSRMFo9GD7QWcRxAdJGBMTXDcM0=;
-  b=CHJNTpVfqbPEflg+O6phpSNh0QOXm5wE1W5tLaNTfGH7e2TBUAyr+Ft8
-   SteOPYyT+L6f6ROCXUCsomQwBQjfd/FD97smCNwfJezOf4zPtG0x2B6yN
-   ihm+mFd2d47xGicvnR4wbqRHoOcdnIvtgUoMSaXG7W3FVx1flRah8n7tm
-   4=;
-X-CSE-ConnectionGUID: Tg5rtsM1RzKj3gJducQSPg==
-X-CSE-MsgGUID: 2YLxlXJiRgOPNW/RlT7pzw==
+  d=cisco.com; i=@cisco.com; l=3742; q=dns/txt; s=iport;
+  t=1699580376; x=1700789976;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=hVMC2g6F+sS5xh4dm4+qY8r7kQHgggs8qh2zLFytqSA=;
+  b=JhlMP1dPTIyUwm1rec5aMwHGZIFrepP8tOUXFodpJwuc7/JCwT8zHsP8
+   E2Bskw0xhe+HYAFiOp3Xx3yvKKpQX2Sug+CbsyAaJ08RLKeuRgQBWpvPA
+   BVxvpaCt5vTZ/9ohFjssN+k4bdGwZOTyTVSarh7q534oOGjMsZFZHevrj
+   Q=;
+X-CSE-ConnectionGUID: t3gihvnOTkyYQzPMwAhgsg==
+X-CSE-MsgGUID: suRZL8VFTx6nMj9/gpbWKg==
 X-IPAS-Result: =?us-ascii?q?A0ANAADbh01lmJtdJa1aHAEBAQEBAQcBARIBAQQEAQGBe?=
- =?us-ascii?q?wcBAQsBhAdAjTenQ4F+DwEBAQ9EBAEBhQaHKAImNAkOAQIEAQEBAQMCAwEBA?=
- =?us-ascii?q?QEBAQECAQEFAQEBAgEHBBQBAQEBAQEBAR4ZBRAOJ4V1hwUBRoE+AYMQgl8Dr?=
- =?us-ascii?q?VeCLIEBsyiBaIFIAYxDgR6ENScbgUlEhAeLfASJJQcygUlZg1KDD4o8f0daF?=
- =?us-ascii?q?h0DBwNWKRArBwQtIgYJFC0jBlEEFxEkCRMSPgSDNAp/Pw8OEYI/IgI9NhlIg?=
- =?us-ascii?q?lsVQARGdhAqBBQXgRJuGxUeNxESFw0DCHQdAhEjPAMFAwQzChINCyEFFEIDQ?=
- =?us-ascii?q?gZJCwMCGgUDAwSBNgUNHgIQLScDAxNNAhAUAzsDAwYDCzEDMFVEDFEDbx8aH?=
- =?us-ascii?q?Ak8DwwfAhseDScoAjVDAxEFEgIWAyQZBEUDCQMHBUlAAwsYDUgRLDUGDhsGP?=
- =?us-ascii?q?3MHoGJyAS1igTCUODKPBIIdoEeEF4FfnyoaM4QBjHOZD5g/IKMJhSiBYzqBW?=
- =?us-ascii?q?zMaCBsVgyNRGQ+OOZMbAV0jbQIHCwEBAwmLSgEB?=
-IronPort-Data: A9a23:xFsu3a1wctyYQEMMyPbD5aJ3kn2cJEfYwER7XKvMYLTBsI5bpzZWz
- mUXX2DXPvfZZmqhLtojO43goB8A6pbVztZhSAtu3Hw8FHgiRegpqji6wuYcGwvIc6UvmWo+t
+ =?us-ascii?q?wcBAQsBhAdASIxviUKeARSBEQNWDwEBAQ9EBAEBhQYChyYCJjQJDgECBAEBA?=
+ =?us-ascii?q?QEDAgMBAQEBAQEBAgEBBQEBAQIBBwQUAQEBAQEBAQEeGQUQDieFdYZNAwMyA?=
+ =?us-ascii?q?UYQHTRJDgYBEoJ+gl8DrVeCLIEBsyiBaBiBMAGMQ4EehDUnG4FJRIEVgTuCL?=
+ =?us-ascii?q?YQphl0EiSUHMoIig1KNS39HWhYdAwcDVikQKwcELSIGCRQtIwZRBBcRJAkTE?=
+ =?us-ascii?q?j4EgWOBUQp/Pw8OEYI/IgIHNjYZSIJbFUAERnYQKgQUF4ESbhsVHjcREhcNA?=
+ =?us-ascii?q?wh0HQIRIzwDBQMEMwoSDQshBRRCA0IGSQsDAhoFAwMEgTYFDR4CEC0nAwMTT?=
+ =?us-ascii?q?QIQFAM7AwMGAwsxAzBVRAxRA28fGhwJPA8MHwIbHg0nKAI1QwMRBRICFgMkG?=
+ =?us-ascii?q?QRFAwkDBwVJQAMLGA1IESw1Bg4bBj9zB6FOBgGBD4EIgSASkzaRS6BHhBeBX?=
+ =?us-ascii?q?58qGjOqA5g/IKgxgWM6gVszGggbFYMiUhkPjjmTGwFdIzI7AgcLAQEDCYtKA?=
+ =?us-ascii?q?QE?=
+IronPort-Data: A9a23:USJ/Na22r4fJoxrhGfbD5SV2kn2cJEfYwER7XKvMYLTBsI5bpzQCz
+ mUfCziOaPqNazf8c4hzaY++oxxXvpbUz9IxTARr3Hw8FHgiRegpqji6wuYcGwvIc6UvmWo+t
  512huHodZ1yFjmE4E71btANlFEkvYmQXL3wFeXYDS54QA5gWU8JhAlq8wIDqtYAbeORXUXV4
  rsen+WFYAX+gmctajpNg06+gEoHUMra6WtwUmMWPZinjHeG/1EJAZQWI72GLneQauG4ycbjG
  o4vZJnglo/o109F5uGNy94XQWVWKlLmBjViv1INM0SUbreukQRpukozHKJ0hU66EFxllfgpo
- DlGncTYpQvEosQglcxFOyS0HR2SMoV69+LdPWOa6PaB7E+dfFng3v5XN3k5aNhwFuZfWQmi9
+ DlGncTYpQvEosQglcxFOyS0HR2SMoVao7DGIWa5lvCQ3nz/YUPJ3NxuA1o5aNhwFuZfWQmi9
  NQCIzwLKxuEne/znPSwS/JngYIoK8yD0IE34y47i2qGS6d9B8meHs0m5vcAtNs0rsxHG/fTY
- 9UQQTFudx/HJRZIPz/7Dbpnx7v41iWuImMwRFS9/5sT82zj7g1L35/VFuWSQNi2Gt1HgRPNz
- o7B1z2pXk5FXDCF8hKB83SxlqrCkyLTRo0fDvu7++RsjVnVwXYcYDUSVF2msby6gFO/X953N
- UMZ4GwtoLI0+UjtScPyNzW0rWCFtRMAQdddO/M15RvLyafO5QudQG8eQVZpbN0gqd9zRjEw0
- FKNt83mCCYps7CPT3+ZsLCOoluaPSkTMH9HbDUBCAgI+d/upKk3jwnTVZBiFqCvh9H4ED22x
- CqFxAA4hr4UiccQ/6u59EvDjnShu/DhSAI4/QzKWmSk4xliTIGiYIOs5B7Q6vMoBICQUlmIu
- lAHltKY4eRICouC/ASNWOwlDqC14OzDOzrZ6XZrHp885yy18DuvcJ545DBlOFwvNdQAcDXyJ
- kjJtmt54J5VIWvvaK5veKqvBMkwi6vtD9LoUrbTdNUmSoghKieE8TtoaErW2Hri+GA3nKg5f
- 56dfcu2FnEcIb9qxz3wTOAYuZc3wSU33iXWWJzh0hKk2JKRYXeUTfEON17mRvkk7aizuA/P+
- tZaPuOT1hRUUev1JCLQ9OY7JFMSKFA/BJbru4lZcfOFLgN6GWYnTfjLztsJd4VjnqlRvujJ+
- 2mwXkJGyVH/w2bOL0CEcHllY7L0VpE5pnt9IDdEFUyv0XgLYou16qobMZwtctEP/+x5zOVoS
- OEFdoOED+5IWxzM4DsHaoTl6oF/HDy0hAaKFymoej4ye9hnXQOhxzP/VhHk+C9LBS2tuI5i5
- bahzQjcB5EEQmyOEfo6dtqTwA6roWM4wdhgfEmTLftfZU7Vy7BlfnmZYuAMH+kALhDKxz2/3
- gmQAAsFqeSln2PT2ISX7Uxjh9r0e9aSDna2DEGAsunrbXiyEn6LhN4fALzRLFgxQUutoP36D
- di52c0QJxHuobqnm5B3H7AuxqUk6p6z4bRb1Q9jWn7MajxH64+MwFHYgaGjVYUUm9e1XDdav
- GrTprG23p3VYKvY/KY5flZNUwh6/ah8dsPuxfo0Ol7mwyR84aCKV05fVzHV1n0MceYpbt91m
- rh90CLz1+BZokRzWjphpn4Mn1lg0lRcO0nanshAWdSy2lZDJq9qO8CGVEcaH61jm/0VYhV1f
- Vd4dYLJhq9XwQLZYmEvGH3WtdexdrxQ0C2mOGQqfgzT8vKc36df9EQIoVwfEF8Ppj0ZiL0bB
- 4SeHxAvTUl412021JErsqHFM1wpOSB1DWSokAtRyD2GHxX4PoEPRUVkUduwEIki2zo0VlBmE
- HuwkQ4JjR6CkBnN4xYP
-IronPort-HdrOrdr: A9a23:1pk2VKypleQTi517Rul2KrPwJb1zdoMgy1knxilNoNJuHvBw8P
- re/sjzuiWbtN98YhsdcLO7Scq9qA3nlKKdiLN5VdyftWLd11dAQrsO0WKb+V3d8+mUzJ846U
- +mGJIObeHNMQ==
-X-Talos-CUID: =?us-ascii?q?9a23=3A/Eqiz2mXSOSCeZI2EUGthTci2VnXOUHSkW3MOGr?=
- =?us-ascii?q?hM3RKSuaaa1ON85pfq8U7zg=3D=3D?=
-X-Talos-MUID: 9a23:xtDHAwvI7ZhpOKvHds2n3gBGJMNYwaWUB2c1t6pBgc24ajRiJGLI
+ 9UQQTFudx/HJRZIPz/7Dbpnx7v51iOvK2UwRFS9vrcN0UyD8iJNwObrFdiEPdOST/p2kRPNz
+ o7B1z2pXk5FXDCF8hKB83SxlqrMkDn9VYY6CrK17LhpjUeVy2hVDwcZPXO3rOe4gUOiQd9SA
+ 1Ib9zBorqUo8kGvCN7nUHWQrmSDoRcaV5xUEvYmwA6Iw6vQpQ2eAwAsVDlLaJ8qqOc1SCYs2
+ 1vPmMnmbRRrsbuIWWqF/fKYoC2aPSkOMXREYj0ARAEepd75r+kbihPJU8YmFa+tlfXrFjzqh
+ TOHti4zg/MUl8Fj/7Xro3jEjiiqq5yPSRQ6ji3MU2ujqAp/aIO/fIuuwUPW5vEGJ4GcJnGdu
+ 30NgI6b8ewUEJeOnQSCRewMGPei4PPtGCTBgFVYB5M7/jSo8la6YIFb4Td1YkxuN64scDzxZ
+ WfXuAVM9NpdO2asYaZrYoW3TcMwwsDIGd3jV/3QRtVPZ4B8cAKZ/SpuI1WZ2SXjikEqmqAkM
+ pDdes/qEG1yIb5gxjqeROoH17IvgCckygv7TpDhzg+71qKeaTiRRK0CIXOFde8j676c5gjIm
+ /5ANs+O4xZSSuvzZm/Q64F7ELwRBWIwCZazoMtNe6vfZAFnA2omTfTWxNvNZrCJgYxJzejJ/
+ m+7fXNb2WvGl0XiNiyKZWtsPeaHsYlEkVo3OiklPFCN0nclYJqy4Kp3S3fRVeR5nACE5aMpJ
+ 8Tpa/lsEdwUFWuao2V1gY3V6d09JE7y1GpiKgL8OGBnF6OMUTAl7TMNQ+cC3DMFAizyvswkr
+ vj8kAjaWpEEAQ9lCa46ic5DLXvv4RDxe8orAiMkx+W/nm2wrOCGzASt1pcKzzkkc0mr+9dj/
+ 1/+7e0kjefMuZQp19LCmLqJqYyke8MnQBsLQjSHs+rmbnaGloZG/WOmeLjRFdw6fD2skJhOm
+ c0Jpx0BGKRdxQ0T49YU/0hDl/5kubMDWIO2Piw9TCmUMDxH+5trI2KN2oFUp7ZRy7pC0TZaq
+ WrRkuS2zY6hYZu/eHZIfVJNRr3ahZk8xGKIhdxrexqS2cOC1OfdOamkF0PS2HU1wXocGN5N/
+ NrNT+ZPsFzn1kp1YorW5s2WnkzVRkE9v2wcnslyKOfWZsADkzmuvbS05vfK3ayy
+IronPort-HdrOrdr: A9a23:8hX10KzJCp3ev/u3nQRoKrPwF71zdoMgy1knxilNoNJuHvBw8P
+ re+MjzuiWbtN98YhsdcJW7Scq9qBDnhPtICPcqXItKNTOO0ACVxcNZnOnfKlbbdBEWmNQx6U
+ 5ISdkYNDSJNzhHZQKQ2njALz7mq+P3lpyVuQ==
+X-Talos-CUID: 9a23:ovLiuG2jLCZwgmjd/3mxMbxfBpsqc33DylDsIF6JMHRRbaK8SVCL9/Yx
+X-Talos-MUID: 9a23:Dz9OZAirh9HKqH0Sbu1iIsMpL9pS0YD+Nm4xgcsAnsvVciNoMQi+g2Hi
 X-IronPort-Anti-Spam-Filtered: true
 X-IronPort-AV: E=Sophos;i="6.03,291,1694736000"; 
-   d="scan'208";a="134884996"
+   d="scan'208";a="134982800"
 Received: from rcdn-core-4.cisco.com ([173.37.93.155])
-  by rcdn-iport-1.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2023 01:38:19 +0000
+  by rcdn-iport-4.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2023 01:38:33 +0000
 Received: from goliath.lan ([10.25.128.169])
-	by rcdn-core-4.cisco.com (8.15.2/8.15.2) with ESMTP id 3AA1cHVG011466;
-	Fri, 10 Nov 2023 01:38:17 GMT
+	by rcdn-core-4.cisco.com (8.15.2/8.15.2) with ESMTP id 3AA1cHVN011466;
+	Fri, 10 Nov 2023 01:38:32 GMT
 From: Daniel Walker <danielwa@cisco.com>
 To: Will Deacon <will@kernel.org>,
         Christophe Leroy <christophe.leroy@csgroup.eu>,
@@ -96,17 +92,16 @@ To: Will Deacon <will@kernel.org>,
         Tomas Mudrunka <tomas.mudrunka@gmail.com>,
         Sean Anderson <sean.anderson@seco.com>, x86@kernel.org,
         linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nicolas Schier <nicolas@fjasle.eu>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org
-Cc: linux-efi@vger.kernel.org
-Subject: [PATCH 0/8] generic command line v6
-Date: Thu,  9 Nov 2023 17:38:04 -0800
-Message-Id: <20231110013817.2378507-1-danielwa@cisco.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc: xe-linux-external@cisco.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 7/8] of: replace command line handling
+Date: Thu,  9 Nov 2023 17:38:11 -0800
+Message-Id: <20231110013817.2378507-8-danielwa@cisco.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231110013817.2378507-1-danielwa@cisco.com>
+References: <20231110013817.2378507-1-danielwa@cisco.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,82 +109,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-Outbound-SMTP-Client: 10.25.128.169, [10.25.128.169]
 X-Outbound-Node: rcdn-core-4.cisco.com
 
-This release is an up-rev of the v5 patches. No additional features have
-been added. Some changes were mode to function names and some changes to
-Kconfig dependencies. Also updated the config conversion for mips.
+Rob Herring has complained about this section of code. I removed the
+command line handling code to the cmdline.h header. This hopefully makes
+it easier for Rob to maintain it (at least he doesn't have to look at it
+directly anymore). I would like to add a Kconfig option called
+OF_DEPRECATED_CMDLINE which an architecture would set if it uses this code.
+This would allow a platform to use the cmdline.h and the added function
+directly and remove the Kconfig option. This change would be in a subsequent
+patch.
 
-There are a number of people who have expressed interest in these
-patches either by asking for them to be merge or testing them. If
-people are so inclined please continue to request them to be merge
-or to ask the status of the next release. It's helpful to motivate me to
-release them again and for the maintainers to see the interest
-generated.
+This code was boot tested on powerpc 32bit, powerpc 64bit without
+any generic command line conversion.
 
-These patches have been used by Cisco Systems, Inc. on millions of
-released products to great effect. Hopefully they can be used by the
-entire Linux eco system.
+Cc: xe-linux-external@cisco.com
+Signed-off-by: Daniel Walker <danielwa@cisco.com>
+---
+ drivers/of/fdt.c        | 22 +++-------------------
+ include/linux/cmdline.h | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 34 insertions(+), 19 deletions(-)
 
-My apologies on the length between releases. I will try to release more
-often.
-
-
-Daniel Walker (8):
-  CMDLINE: add generic builtin command line
-  scripts: insert-sys-cert: add command line insert capability
-  scripts: insert-sys-cert: change name to insert-symbol
-  CMDLINE: mips: convert to generic builtin command line
-  drivers: firmware: efi: libstub: enable generic commandline
-  CMDLINE: x86: convert to generic builtin command line
-  of: replace command line handling
-  CMDLINE: arm64: convert to generic builtin command line
-
- arch/arm64/Kconfig                            |  33 +--
- arch/arm64/include/asm/setup.h                |   4 +
- arch/arm64/include/uapi/asm/setup.h           |   2 +
- arch/arm64/kernel/idreg-override.c            |   9 +-
- arch/arm64/kernel/pi/kaslr_early.c            |  14 +-
- arch/mips/Kconfig                             |   4 +-
- arch/mips/Kconfig.debug                       |  44 ----
- arch/mips/configs/ar7_defconfig               |  12 +-
- arch/mips/configs/bcm47xx_defconfig           |  10 +-
- arch/mips/configs/bcm63xx_defconfig           |  21 +-
- arch/mips/configs/bmips_be_defconfig          |  17 +-
- arch/mips/configs/bmips_stb_defconfig         | 139 ++++------
- arch/mips/configs/ci20_defconfig              |   8 +-
- arch/mips/configs/cu1000-neo_defconfig        |  19 +-
- arch/mips/configs/cu1830-neo_defconfig        |  19 +-
- arch/mips/configs/generic_defconfig           |  15 +-
- arch/mips/configs/gpr_defconfig               |  33 +--
- arch/mips/configs/loongson3_defconfig         |  29 +--
- arch/mips/include/asm/setup.h                 |   2 +
- arch/mips/kernel/relocate.c                   |  17 +-
- arch/mips/kernel/setup.c                      |  36 +--
- arch/mips/pic32/pic32mzda/early_console.c     |   2 +-
- arch/mips/pic32/pic32mzda/init.c              |   3 +-
- arch/x86/Kconfig                              |  44 +---
- arch/x86/kernel/setup.c                       |  18 +-
- .../firmware/efi/libstub/efi-stub-helper.c    |  29 +++
- drivers/firmware/efi/libstub/efi-stub.c       |   9 +
- drivers/firmware/efi/libstub/efistub.h        |   1 +
- drivers/firmware/efi/libstub/x86-stub.c       |  14 +-
- drivers/of/fdt.c                              |  22 +-
- include/linux/cmdline.h                       | 137 ++++++++++
- init/Kconfig                                  |  79 ++++++
- lib/Kconfig                                   |   4 +
- lib/Makefile                                  |   3 +
- lib/generic_cmdline.S                         |  53 ++++
- lib/test_cmdline1.c                           | 139 ++++++++++
- scripts/Makefile                              |   2 +-
- .../{insert-sys-cert.c => insert-symbol.c}    | 243 ++++++++++++------
- 38 files changed, 807 insertions(+), 482 deletions(-)
- create mode 100644 include/linux/cmdline.h
- create mode 100644 lib/generic_cmdline.S
- create mode 100644 lib/test_cmdline1.c
- rename scripts/{insert-sys-cert.c => insert-symbol.c} (72%)
-
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index bf502ba8da95..1fc1b17d04dc 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -26,6 +26,7 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysfs.h>
+ #include <linux/random.h>
++#include <linux/cmdline.h>
+ 
+ #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+ #include <asm/page.h>
+@@ -1183,27 +1184,10 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+ 
+ 	/* Retrieve command line */
+ 	p = of_get_flat_dt_prop(node, "bootargs", &l);
+-	if (p != NULL && l > 0)
+-		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
+ 
+ handle_cmdline:
+-	/*
+-	 * CONFIG_CMDLINE is meant to be a default in case nothing else
+-	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
+-	 * is set in which case we override whatever was found earlier.
+-	 */
+-#ifdef CONFIG_CMDLINE
+-#if defined(CONFIG_CMDLINE_EXTEND)
+-	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
+-	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+-#elif defined(CONFIG_CMDLINE_FORCE)
+-	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+-#else
+-	/* No arguments from boot loader, use kernel's  cmdl*/
+-	if (!((char *)cmdline)[0])
+-		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+-#endif
+-#endif /* CONFIG_CMDLINE */
++
++	of_deprecated_cmdline_update(cmdline, p, l);
+ 
+ 	pr_debug("Command line is: %s\n", (char *)cmdline);
+ 
+diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
+index a94758a0f257..c772afb7340f 100644
+--- a/include/linux/cmdline.h
++++ b/include/linux/cmdline.h
+@@ -103,4 +103,35 @@ __cmdline_add_builtin(
+ 
+ #define cmdline_get_static_builtin(dest) \
+ 	(CMDLINE_STATIC_PREPEND CMDLINE_STATIC_APPEND)
++
++#ifndef CONFIG_GENERIC_CMDLINE
++static inline bool of_deprecated_cmdline_update(char *cmdline, const char *dt_bootargs, int length)
++{
++	if (dt_bootargs != NULL && length > 0)
++		strlcpy(cmdline, dt_bootargs, min(length, COMMAND_LINE_SIZE));
++	/*
++	 * CONFIG_CMDLINE is meant to be a default in case nothing else
++	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
++	 * is set in which case we override whatever was found earlier.
++	 */
++
++#ifdef CONFIG_CMDLINE
++#if defined(CONFIG_CMDLINE_EXTEND)
++	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
++	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++#elif defined(CONFIG_CMDLINE_FORCE)
++	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++#else
++	/* No arguments from boot loader, use kernel's  cmdl*/
++	if (!((char *)cmdline)[0])
++		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+ #endif
++#endif /* CONFIG_CMDLINE */
++	return true;
++}
++#else
++static inline bool of_deprecated_cmdline_update(char *cmdline, const char *dt_bootargs, int length) { return false; }
++#endif /* CONFIG_GENERIC_CMDLINE */
++
++
++#endif /* _LINUX_CMDLINE_H */
 -- 
 2.39.2
 
