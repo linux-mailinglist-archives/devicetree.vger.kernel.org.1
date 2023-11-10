@@ -1,158 +1,157 @@
-Return-Path: <devicetree+bounces-14916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A40A7E77A1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 03:40:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05EC07E7949
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:29:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B5F31C20BFC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:40:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60E96281779
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7207EB;
-	Fri, 10 Nov 2023 02:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D5E63CD;
+	Fri, 10 Nov 2023 06:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="IYkK6Zug"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K6BFdncG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10DA8365;
-	Fri, 10 Nov 2023 02:40:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDA8EC433C7;
-	Fri, 10 Nov 2023 02:40:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
-	s=korg; t=1699584025;
-	bh=oK/F0THfOnSL0dIVkI2dvSL2cmYdL74DCbYIUCPytVY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IYkK6ZugBoRE3kStmDD3GmhR9zqm8yZ3vHUbGYoOCSlruwYI7ljkYjxSGlsrcD8QQ
-	 +HhHewygGeQvmOhB2RmnhHG//frOWRgIX3mOclFbvf9K+eDmzSdmzcGHyzLZWfRmXI
-	 9GwjAQNlb6HVnqzAiwtQmJ6R3vAhvrJJdXMqjVAg=
-Date: Thu, 9 Nov 2023 18:40:24 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: "Daniel Walker (danielwa)" <danielwa@cisco.com>
-Cc: Will Deacon <will@kernel.org>, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Rob Herring <robh@kernel.org>, Daniel
- Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>, Pratyush Brahma
- <quic_pbrahma@quicinc.com>, Tomas Mudrunka <tomas.mudrunka@gmail.com>, Sean
- Anderson <sean.anderson@seco.com>, "x86@kernel.org" <x86@kernel.org>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
- "H. Peter Anvin" <hpa@zytor.com>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>, Nicolas Schier
- <nicolas@fjasle.eu>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, "linux-kbuild@vger.kernel.org"
- <linux-kbuild@vger.kernel.org>, "linux-efi@vger.kernel.org"
- <linux-efi@vger.kernel.org>
-Subject: Re: [PATCH 0/8] generic command line v6
-Message-Id: <20231109184024.80bfe8119da8c99b4737f31d@linux-foundation.org>
-In-Reply-To: <ZU2T3VPYosP+ZR1b@goliath>
-References: <20231110013817.2378507-1-danielwa@cisco.com>
-	<20231109175142.49428d5f51325680764663bf@linux-foundation.org>
-	<ZU2T3VPYosP+ZR1b@goliath>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1029E63BB;
+	Fri, 10 Nov 2023 06:29:28 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE62572A2;
+	Thu,  9 Nov 2023 22:29:27 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA4YPUL006265;
+	Fri, 10 Nov 2023 05:03:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Z/PCIpcg9xojQy51MB+VWId2kfAlISsC4S8iqeSNADY=;
+ b=K6BFdncG9QJ2nseJ53B9H8m0YtpBEzthKZwhyt6n7K11phYFKM5nvoXVSZgUNPVjbWY4
+ JQyZWxFODTtnPkyE56WbUwMQf/Q67EU22Wf7B/OdOBsmFKuZKBYXLy0i1irLUwtUKr/k
+ 970Wp/cxC8wqb6QlWAl+QwSeP/W71FQUKrIE17c5Rtt5jW8Y23JEza4n9QCJ1zLiq37t
+ 9c4KRkh6WuF9BtTbwc9j/JELuNv8tmtMFyYwe40QmGs53nAtsyp12FixjJr2d7U6OCZH
+ H8nltvjgK9B3HPLicF1qwavqdeDcM6YIHId4mXrW9LX0io1703HvUJwZ5B/U0rfy6CxW XA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u8u2ttrn0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 05:03:20 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AA53J2l013913
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 05:03:19 GMT
+Received: from [10.218.10.86] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
+ 2023 21:03:11 -0800
+Message-ID: <b40a74f4-1605-d3a1-2c6a-845c41419442@quicinc.com>
+Date: Fri, 10 Nov 2023 10:33:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: sa8775p: Add ep pcie1 controller
+ node
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andrew Halaney
+	<ahalaney@redhat.com>
+CC: <agross@kernel.org>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <mani@kernel.org>, <robh+dt@kernel.org>, <quic_shazhuss@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nayiluri@quicinc.com>, <dmitry.baryshkov@linaro.org>,
+        <robh@kernel.org>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_parass@quicinc.com>,
+        <quic_schintav@quicinc.com>, <quic_shijjose@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon Vijay
+ Abraham I" <kishon@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
+References: <1699362294-15558-1-git-send-email-quic_msarkar@quicinc.com>
+ <1699362294-15558-3-git-send-email-quic_msarkar@quicinc.com>
+ <i3yum3wbko33jwn7tfbcflpcxe5k5j5ituhyxtucx6gk2bs3gz@7ncewfmepnai>
+ <19f32f8e-dfe2-410b-9a4d-80e24a888d65@linaro.org>
+From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+In-Reply-To: <19f32f8e-dfe2-410b-9a4d-80e24a888d65@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8TreDiKchctsydpgz_pSNbtifUBxzsor
+X-Proofpoint-GUID: 8TreDiKchctsydpgz_pSNbtifUBxzsor
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-10_01,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=999 bulkscore=0 adultscore=0 clxscore=1011 spamscore=0
+ phishscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2311100041
 
-On Fri, 10 Nov 2023 02:22:27 +0000 "Daniel Walker (danielwa)" <danielwa@cisco.com> wrote:
 
-> On Thu, Nov 09, 2023 at 05:51:42PM -0800, Andrew Morton wrote:
-> > On Thu,  9 Nov 2023 17:38:04 -0800 Daniel Walker <danielwa@cisco.com> wrote:
-> > 
-> > > This release is an up-rev of the v5 patches. No additional features have
-> > > been added. Some changes were mode to function names and some changes to
-> > > Kconfig dependencies. Also updated the config conversion for mips.
-> > > 
-> > > There are a number of people who have expressed interest in these
-> > > patches either by asking for them to be merge or testing them. If
-> > > people are so inclined please continue to request them to be merge
-> > > or to ask the status of the next release. It's helpful to motivate me to
-> > > release them again and for the maintainers to see the interest
-> > > generated.
-> > > 
-> > > These patches have been used by Cisco Systems, Inc. on millions of
-> > > released products to great effect. Hopefully they can be used by the
-> > > entire Linux eco system.
-> > > 
-> > 
-> > fyi, none of the above is suitable for a [0/N] changelog - it's all
-> > transitory stuff which tells readers nothing much about what the
-> > patchset does.
->  
-> I did not think about it this way. It's because I've submitted this so many
-> times. I guess I assume everyone knows what it is.
+On 11/8/2023 3:24 AM, Konrad Dybcio wrote:
+>
+>
+> On 11/7/23 19:37, Andrew Halaney wrote:
+>> On Tue, Nov 07, 2023 at 06:34:53PM +0530, Mrinmay Sarkar wrote:
+>>> Add ep pcie dtsi node for pcie1 controller found on sa8775p platform.
+>>> It supports gen4 and x4 link width. Limiting the speed to Gen3 due to
+>>> stability issues.
+>>
+>> I wouldn't mind a bit more information on what "stability" issues
+>> entails! I'm a sucker for details in a commit message.
+> Yep, giving us a bit more than "doesnt work" may help us help you!
+Actually if I enable gen4 some time I am getting link down and sometime
+link getting establish at gen1. I am not getting stable gen4, may be we
+need to program some register to get stable gen4 that I am checking.
+>>> +
+>>> +        interrupts = <GIC_SPI 518 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                     <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
+> Looks like the indentation is off?
+>
+>>> +
+>>> +        interrupt-names = "global", "doorbell", "dma";
+>>> +
+>>> +        interconnects = <&pcie_anoc MASTER_PCIE_1 0 &mc_virt 
+>>> SLAVE_EBI1 0>,
+>>> +                <&gem_noc MASTER_APPSS_PROC 0 &config_noc 
+>>> SLAVE_PCIE_1 0>;
+>>
+>> I keep seeing Konrad requesting that we use the #define instead of a raw
+>> number 0, i.e. something like QCOM_ICC_TAG_ALWAYS (although if I'm
+>> reading that correctly QCOM_ICC_TAG_ALWAYS doesn't evaluate to 0, so
+>> make sure you pick the appropriate one).
+> No it doesn't, but if you look at the code, tag being non-existent
+> assigns QCOM_ICC_TAG_ALWAYS which is a workaround for DTBs from back
+> when interconnect tags were not a thing
+>
+>>
+>>> +        interconnect-names = "pcie-mem", "cpu-pcie";
+>>
+>> This is nitpicky, but unless someone told you to do the whitespace
+>> between some of these properties I'd get more consistent. i.e. reg and
+>> reg-names has no newline between them, but clocks and clock-names does,
+>> and then interconnects/interconnect-names does not.
+> :)
+I don't think there is any rule to add those white spaces, in next patch
+I will align these white spaces with other pcie nodes.
+>
+> Konrad
 
-This is all on the path to the mainline git history.  Think about how
-we want it presented to future readers.  10 years from now nobody will
-remember the v5 series email spray.
+Thanks,
+Mrinmay
 
-> 
-> > In [1/8] I see "Even with mips and powerpc enhancement the needs of
-> > Cisco are not met on these platforms" and "This unified implementation
-> > offers the same functionality needed by Cisco on all platform which we
-> > enable it on".
-> > 
-> > Well OK, what are these needs?   What functionality changes does this
-> > patchset offer which Cisco finds useful?  IOW, what were the
-> > requirements?  What's wrong with the old code and how does this
-> > patchset fix/enhance that?
-> 
-> The limitation is that you can't append and prepend to the command line at the
-> same time in any of the architectures. Having access to both allows OEMs to deal
-> with broken bootloaders which can't easily be upgraded.
-
-I would never ever have guessed that from the emails I received!
-
-> Others have responded
-> that they also use these patches for this same reason.
-
-Citing this info in the [0/N] would be useful.
-
-> In 2/8 and 3/8 I modify the insert-sys-cert tool to allow modification of the
-> command line append and prepend after the build. This allow for an SDK
-> provided with a binary kernel and for the command line append/prepend to still
-> be modified identically to how that's done with certificates.
-
-And this.
-
-> Making all this generic means each platform has a unified set of command line
-> services. Cisco uses x86/arm32/arm64/mips/powerpc , and it's nice to have all
-> the same features across platforms.
-
-Sounds good.
-
-> > 
-> > I see the patchset updates nothing under Documentation/.  Should it do
-> > so?  Could it do so?
-> 
-> The only documentation is Kconfig descriptions and commit messages. I suppose it
-> could have something under Documentation/. The only part which could use more
-> documentation are the changes in 2/8 and 3/8. That feature is maybe confusing
-> and has limitations which are maybe not clear. Although the same limitation exist for
-> inserting certificates.
-
-Perhaps the new functionality could be described in
-Documentation/admin-guide/kernel-parameters.rst
-
-> > 
-> > I don't know what is the expected merge patch for this work.  I can
-> > grab them if no other maintainer is in the firing line.
-> 
-> merge patch ?
-
-"path", sorry.
-
-> Do you mean merge description ? I think your the maintainer in the
-> firing line for this one.
-
-OK.  
 
