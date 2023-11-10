@@ -1,175 +1,191 @@
-Return-Path: <devicetree+bounces-15052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183087E8271
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:29:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4AD7E8309
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:48:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90AD9B20D5E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 19:29:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24DC11C2096B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 19:48:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3FF3B291;
-	Fri, 10 Nov 2023 19:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86313AC12;
+	Fri, 10 Nov 2023 19:48:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="FC+8OgDF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1C8D3B28A;
-	Fri, 10 Nov 2023 19:29:16 +0000 (UTC)
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB2AB1A31B;
-	Fri, 10 Nov 2023 11:29:12 -0800 (PST)
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 2F694848CC;
-	Fri, 10 Nov 2023 20:29:10 +0100 (CET)
-From: Duje =?utf-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To: Mark Brown <broonie@kernel.org>
-Cc: Robin Murphy <robin.murphy@arm.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>,
- Robert Jarzmik <robert.jarzmik@free.fr>, Liam Girdwood <lgirdwood@gmail.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Leo Yan <leoy@marvell.com>, Zhangfei Gao <zhangfei.gao@marvell.com>,
- Lubomir Rintel <lkundrak@v3.sk>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Kees Cook <keescook@chromium.org>,
- Tony Luck <tony.luck@intel.com>,
- "Guilherme G . Piccoli" <gpiccoli@igalia.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, Karel Balej <balejk@matfyz.cz>
-Subject: Re: [PATCH v7 06/10] ASoC: pxa: Suppress SSPA on ARM64
-Date: Fri, 10 Nov 2023 20:28:56 +0100
-Message-ID: <1880732.tdWV9SEqCh@radijator>
-In-Reply-To: <ZUjG5tUrBvm6PDvB@finisterre.sirena.org.uk>
-References:
- <20231102152033.5511-1-duje.mihanovic@skole.hr>
- <4855402.GXAFRqVoOG@radijator> <ZUjG5tUrBvm6PDvB@finisterre.sirena.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC163AC1E
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 19:48:53 +0000 (UTC)
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFB68846;
+	Fri, 10 Nov 2023 11:48:51 -0800 (PST)
+Received: from pps.filterd (m0134424.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AAJgb89020145;
+	Fri, 10 Nov 2023 19:48:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pps0720;
+ bh=0/E/HjCmwE0fi71jwok3z9eyac/BTN3f7p312DifIaw=;
+ b=FC+8OgDFWIT3nbzpxbY7oo/3cpkOnj2uqo2u6R7PvARJsK9EeBY/QDcZ1fh/0GGq1z/f
+ GZNV6aX4HJFnimwVHNZb0Xt7W1Oa8R5LFYaM2zg8FTlMbvRyzIr1pfNuZkUszdum4dZK
+ y0z3vCp2O3pQKrNRydXRRtb1jgKyjxjw4ikxZM7up//fgMJnGNdBOm85wo7D09I6BJJ7
+ woCUdJIntRO9CktGfDFOy2eukAE9M9A5OUu4BUhZLY71BxJsjpxdQArbWlIs3tzjLD+T
+ 2IP5FYnZ9ZgI6AC3vTCQ8GfDvDNp4wXI9450HKxZYsGK/cqfUmaii9JlDQ8JGLhqR+mR WQ== 
+Received: from p1lg14881.it.hpe.com ([16.230.97.202])
+	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3u9peqjchd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 19:48:36 +0000
+Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 42820805E7B;
+	Fri, 10 Nov 2023 19:48:36 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.39])
+	by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id B8712804508;
+	Fri, 10 Nov 2023 19:48:31 +0000 (UTC)
+From: charles.kearney@hpe.com
+To: verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Charles Kearney <charles.kearney@hpe.com>
+Subject: [PATCH v2 RESEND] ARM: dts: hpe: BUG: Correct GXP register ranges
+Date: Fri, 10 Nov 2023 19:48:27 +0000
+Message-Id: <20231110194827.122045-1-charles.kearney@hpe.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Autocrypt: addr=duje.mihanovic@skole.hr;
- keydata=
- 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
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: _1USLNSPgNeu86J2_zytf9cSNQAT2GEj
+X-Proofpoint-GUID: _1USLNSPgNeu86J2_zytf9cSNQAT2GEj
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-10_17,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 mlxlogscore=578
+ priorityscore=1501 malwarescore=0 impostorscore=0 phishscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311100166
 
-On Monday, November 6, 2023 11:58:46 AM CET Mark Brown wrote:
-> On Fri, Nov 03, 2023 at 05:58:05PM +0100, Duje Mihanovi=C4=87 wrote:
-> > I just looked at it again and it looks like no code in sound/soc/pxa/* =
-or
-> > sound/arm/pxa* depends on AACI in any way. Therefore, I believe that to=
-=20
-fix
-> > this correctly, I would have to remove "select SND_ARM" from sound/soc/
-pxa/
-> > Kconfig and optionally move the PXA2xx code out of sound/arm/ and into
-> > sound/
-> > soc/pxa/. Is this correct? If so, I'd also split that fix into a separa=
-te
-> > series.
->=20
-> There's the pxa-ac97 driver to consider...
+From: Charles Kearney <charles.kearney@hpe.com>
 
-Can you elaborate? As far as I can tell there are 2 drivers named pxa2xx-ac=
-97=20
-in sound/{arm,soc/pxa} and neither one has any dependency on AACI.=20
+Bug fix to correct memory ranges on GXP to include host registers. This
+corrects a issue where the host interrupt controller is not available.
 
-Regards,
-Duje
+Fixes: 53658de4fadb ("ARM: dts: Introduce HPE GXP Device tree")
 
+Reviewed-by: Nick Hawkins <nick.hawkins@hpe.com>
+Signed-off-by: Charles Kearney <charles.kearney@hpe.com>
+---
+ arch/arm/boot/dts/hpe/hpe-gxp.dtsi | 37 +++++++++++++++---------------
+ 1 file changed, 19 insertions(+), 18 deletions(-)
 
+diff --git a/arch/arm/boot/dts/hpe/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
+index cf735b3c4f35..5de5ec4d833c 100644
+--- a/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
++++ b/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
+@@ -52,73 +52,74 @@ L2: cache-controller@b0040000 {
+ 			cache-level = <2>;
+ 		};
+ 
+-		ahb@c0000000 {
++		ahb@80000000 {
+ 			compatible = "simple-bus";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-			ranges = <0x0 0xc0000000 0x30000000>;
+ 			dma-ranges;
++			ranges = <0x00000000 0x80000000 0x20000000>,
++					 <0x40000000 0xc0000000 0x3fff0000>;
+ 
+-			vic0: interrupt-controller@eff0000 {
++			vic0: interrupt-controller@4eff0000 {
+ 				compatible = "arm,pl192-vic";
+-				reg = <0xeff0000 0x1000>;
++				reg = <0x4eff0000 0x1000>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <1>;
+ 			};
+ 
+-			vic1: interrupt-controller@80f00000 {
++			vic1: interrupt-controller@f00000 {
+ 				compatible = "arm,pl192-vic";
+-				reg = <0x80f00000 0x1000>;
++				reg = <0xf00000 0x1000>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <1>;
+ 			};
+ 
+-			uarta: serial@e0 {
++			uarta: serial@400000e0 {
+ 				compatible = "ns16550a";
+-				reg = <0xe0 0x8>;
++				reg = <0x400000e0 0x8>;
+ 				interrupts = <17>;
+ 				interrupt-parent = <&vic0>;
+ 				clock-frequency = <1846153>;
+ 				reg-shift = <0>;
+ 			};
+ 
+-			uartb: serial@e8 {
++			uartb: serial@400000e8 {
+ 				compatible = "ns16550a";
+-				reg = <0xe8 0x8>;
++				reg = <0x400000e8 0x8>;
+ 				interrupts = <18>;
+ 				interrupt-parent = <&vic0>;
+ 				clock-frequency = <1846153>;
+ 				reg-shift = <0>;
+ 			};
+ 
+-			uartc: serial@f0 {
++			uartc: serial@400000f0 {
+ 				compatible = "ns16550a";
+-				reg = <0xf0 0x8>;
++				reg = <0x400000f0 0x8>;
+ 				interrupts = <19>;
+ 				interrupt-parent = <&vic0>;
+ 				clock-frequency = <1846153>;
+ 				reg-shift = <0>;
+ 			};
+ 
+-			usb0: usb@efe0000 {
++			usb0: usb@4efe0000 {
+ 				compatible = "hpe,gxp-ehci", "generic-ehci";
+-				reg = <0xefe0000 0x100>;
++				reg = <0x4efe0000 0x100>;
+ 				interrupts = <7>;
+ 				interrupt-parent = <&vic0>;
+ 			};
+ 
+-			st: timer@80 {
++			st: timer@40000080 {
+ 				compatible = "hpe,gxp-timer";
+-				reg = <0x80 0x16>;
++				reg = <0x40000080 0x16>;
+ 				interrupts = <0>;
+ 				interrupt-parent = <&vic0>;
+ 				clocks = <&iopclk>;
+ 				clock-names = "iop";
+ 			};
+ 
+-			usb1: usb@efe0100 {
++			usb1: usb@4efe0100 {
+ 				compatible = "hpe,gxp-ohci", "generic-ohci";
+-				reg = <0xefe0100 0x110>;
++				reg = <0x4efe0100 0x110>;
+ 				interrupts = <6>;
+ 				interrupt-parent = <&vic0>;
+ 			};
+-- 
+2.34.1
 
 
