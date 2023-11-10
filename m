@@ -1,143 +1,106 @@
-Return-Path: <devicetree+bounces-14926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA4C7E7928
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:21:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD8A77E798B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 445C11C20D04
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:21:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D29981C20E11
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CC763B0;
-	Fri, 10 Nov 2023 06:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1568B63D6;
+	Fri, 10 Nov 2023 06:50:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M139T2wZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB3E568E
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:20:55 +0000 (UTC)
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BCF16A5E;
-	Thu,  9 Nov 2023 22:20:53 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 6806524E2A0;
-	Fri, 10 Nov 2023 14:20:45 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 10 Nov
- 2023 14:20:45 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 10 Nov 2023 14:20:44 +0800
-From: William Qiu <william.qiu@starfivetech.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>
-CC: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, "Hal
- Feng" <hal.feng@starfivetech.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v7 4/4] riscv: dts: starfive: jh7100: Add PWM node and pins configuration
-Date: Fri, 10 Nov 2023 14:20:39 +0800
-Message-ID: <20231110062039.103339-5-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231110062039.103339-1-william.qiu@starfivetech.com>
-References: <20231110062039.103339-1-william.qiu@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9A963BC;
+	Fri, 10 Nov 2023 06:50:51 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CCE7DB2;
+	Thu,  9 Nov 2023 22:50:50 -0800 (PST)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA63Q8r019061;
+	Fri, 10 Nov 2023 06:50:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Kyw/QysJCLJ9MmCpTF1twWWP5gatSMuXvc6HMlD4JqA=;
+ b=M139T2wZXu4sVhSB90G+5wzI/0vXVL6B/4TeWCpCvDk/bFKncVwjYHZ9/PDfgPRt2E54
+ 4arzIM4puuWrAlOH8xturlWjbbRNKm4BuEFxl8TiV0DRDvmL4MEfrQLWV2ms0of45Jex
+ hI0Be9ijy/A9WRVUZep4QtNcg6zKTTQ+Xi/fPO38o3zVSzaYvp4hduSNvq9fxFGzwDtz
+ 7D6GcLBAeNai0pgAVp3Lm223rXv3bvZ7hNLz0qScEFv/HlXLUzr5j/f7KnjZzdhrci7l
+ Yw/clMhEgYmKkXbDw0GlontRx/adMy05N54sAYoaiVhfM/SKkPKvLPngP8RjP2sWIeLN bA== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u93r0hcwp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 06:50:46 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AA6ojud010805
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 06:50:45 GMT
+Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Thu, 9 Nov 2023 22:50:41 -0800
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>
+Subject: [PATCH 0/4] Add runtime PM support for videocc on SM8150
+Date: Fri, 10 Nov 2023 12:20:25 +0530
+Message-ID: <20231110065029.2117212-1-quic_skakitap@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MN3-lwvAqmbs80AbmSYNQoCJntM-dBxo
+X-Proofpoint-ORIG-GUID: MN3-lwvAqmbs80AbmSYNQoCJntM-dBxo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-10_03,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 clxscore=1011 impostorscore=0 mlxscore=0 suspectscore=0
+ malwarescore=0 bulkscore=0 mlxlogscore=944 adultscore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311100056
 
-Add OpenCores PWM controller node and add PWM pins configuration
-on VisionFive 1 board.
+Add runtime support for videocc on SM8150 and update the resets
+and video_pll0_config configuration.
 
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../boot/dts/starfive/jh7100-common.dtsi      | 24 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7100.dtsi      |  9 +++++++
- 2 files changed, 33 insertions(+)
+Satya Priya Kakitapalli (4):
+  dt-bindings: clock: Update the videocc resets for sm8150
+  clk: qcom: videocc-sm8150: Update the videocc resets
+  clk: qcom: videocc-sm8150: Update the pll0 config
+  clk: qcom: videocc-sm8150: Add runtime PM support
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv=
-/boot/dts/starfive/jh7100-common.dtsi
-index b93ce351a90f..11876906cc05 100644
---- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
-@@ -84,6 +84,24 @@ GPO_I2C2_PAD_SDA_OEN,
- 		};
- 	};
-=20
-+	pwm_pins: pwm-0 {
-+		pwm-pins {
-+			pinmux =3D <GPIOMUX(7,
-+				  GPO_PWM_PAD_OUT_BIT0,
-+				  GPO_PWM_PAD_OE_N_BIT0,
-+				  GPI_NONE)>,
-+				 <GPIOMUX(5,
-+				  GPO_PWM_PAD_OUT_BIT1,
-+				  GPO_PWM_PAD_OE_N_BIT1,
-+				  GPI_NONE)>;
-+			bias-disable;
-+			drive-strength =3D <35>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate =3D <0>;
-+		};
-+	};
-+
- 	uart3_pins: uart3-0 {
- 		rx-pins {
- 			pinmux =3D <GPIOMUX(13, GPO_LOW, GPO_DISABLE,
-@@ -154,6 +172,12 @@ &osc_aud {
- 	clock-frequency =3D <27000000>;
- };
-=20
-+&pwm {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pwm_pins>;
-+	status =3D "okay";
-+};
-+
- &uart3 {
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&uart3_pins>;
-diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7100.dtsi
-index 35ab54fb235f..9a7192b0684c 100644
---- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
-@@ -274,6 +274,15 @@ watchdog@12480000 {
- 				 <&rstgen JH7100_RSTN_WDT>;
- 		};
-=20
-+		pwm: pwm@12490000 {
-+			compatible =3D "starfive,jh7100-pwm", "opencores,pwm";
-+			reg =3D <0x0 0x12490000 0x0 0x10000>;
-+			clocks =3D <&clkgen JH7100_CLK_PWM_APB>;
-+			resets =3D <&rstgen JH7100_RSTN_PWM_APB>;
-+			#pwm-cells =3D <3>;
-+			status =3D "disabled";
-+		};
-+
- 		sfctemp: temperature-sensor@124a0000 {
- 			compatible =3D "starfive,jh7100-temp";
- 			reg =3D <0x0 0x124a0000 0x0 0x10000>;
---=20
-2.34.1
+ drivers/clk/qcom/videocc-sm8150.c             | 26 +++++++++++++++++--
+ .../dt-bindings/clock/qcom,videocc-sm8150.h   |  4 +++
+ 2 files changed, 28 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
 
