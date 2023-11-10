@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-15076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20FE7E84C4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:53:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D067E84CF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:57:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71BA31F20EF7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:53:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1BD91F20EF7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F323C08C;
-	Fri, 10 Nov 2023 20:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225963C08E;
+	Fri, 10 Nov 2023 20:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37ABE3B783;
-	Fri, 10 Nov 2023 20:53:29 +0000 (UTC)
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F35E09F;
-	Fri, 10 Nov 2023 12:53:27 -0800 (PST)
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-58a0154b4baso710394eaf.1;
-        Fri, 10 Nov 2023 12:53:27 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7873B782;
+	Fri, 10 Nov 2023 20:57:19 +0000 (UTC)
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867E94EEE;
+	Fri, 10 Nov 2023 12:57:18 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6ce344fa7e4so1456585a34.0;
+        Fri, 10 Nov 2023 12:57:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699649607; x=1700254407;
+        d=1e100.net; s=20230601; t=1699649838; x=1700254638;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jEvV6up6i1bmVXQGPQ7nI6E0uipZ7czAkBoWnloW338=;
-        b=qTSstPZ+TR8r/07BPOZ7XWKQhPtmSyLcO11n77mZ7kYQ/NTNccOBJVMpIGajykot/+
-         I2viS0ebZ/7qI2eqmINUdEbNNKNqni1i4dPYoEyGIi9suxuKN631ciK1XqnuYCo37pao
-         lLEuNl8eHQmUgyXHoa1vUXa4rhe7ChsgfTxOrQTnwtwN7qNRWKzZ1X6G7BxzFc9yzUt+
-         F+aqTQUivqxksyFwWwvqiEsSe+6VybF7F8GG14p1Bo4KdY2LcuRCu0/T3Pdg0leObDaI
-         JeYiWztPJGcgt8OPby1ubWtpeY+QC41MaWCXCjoPV1tn6ApKE7z9PNC/oSpQ5VAp1dfc
-         ElSw==
-X-Gm-Message-State: AOJu0YyUD0AAUjysQk65l1/Ld4SlfspZalsKgJQVz3J9OrWoGtuPmOYi
-	oKs264ZStNuvInKq183yRQ==
-X-Google-Smtp-Source: AGHT+IG/EZf6Lcw+9SaA3RqAxpvyogtQj45WDc3IQH3lwKA4HPVfubz5Fy6kv0RFIf82fFD5MurXxg==
-X-Received: by 2002:a05:6870:514f:b0:1dd:2a3f:cef3 with SMTP id z15-20020a056870514f00b001dd2a3fcef3mr1980692oak.26.1699649607267;
-        Fri, 10 Nov 2023 12:53:27 -0800 (PST)
+        bh=nm5zX5sql3IowmYolUuWYQdm2nSrl6pQAH5NV0J1g1c=;
+        b=eTb/NnOKIr2/9/5/hbG/PuQWyJ76Sw0m7/skGvKTdJvMidzBAYyCF1hGv3VEPxKiAf
+         ssN6c5CT23n70SqDwScuizYPMHVo0PNGFLd70L/Cc5UrGPcqhvpE4LbSaSNxSBeUncb1
+         9lORHJpkn1+6AsS5mrzw2OhP/zxpfm0w3Qe7bDJFvJ7hgUo7hBIO1dXDjjIQCe+xrW+Y
+         NMCf62EYTQVKK6c62P/1exZzNnDLLAdQ7NV0Hsew2OOetCpvsJv93o7kg6i9+h3O89DN
+         e9eeg5IILhHAwynSu3EnmCX/Z6zsMG7bvA6MCHNG7GBvbXGsOQs+O4Qm3DlRS7ltpnq7
+         cXgg==
+X-Gm-Message-State: AOJu0YyUyFa7l8/DOjoRsJrOTjTRtxkQdqfbOXEfMeR2gFA0ZHPpEK4P
+	+GL9J1Kt5khOKqTVndaS3Q==
+X-Google-Smtp-Source: AGHT+IHtZtVlwtJPvoY4OrZnDnqXkONweOm+3JHkApZQBHo5IGHFFFxQ0l5z/Eo218CP8JWWycngxQ==
+X-Received: by 2002:a05:6808:640c:b0:3a8:75f8:540a with SMTP id fg12-20020a056808640c00b003a875f8540amr497862oib.44.1699649837752;
+        Fri, 10 Nov 2023 12:57:17 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p14-20020a056830338e00b006bee5535b44sm50533ott.75.2023.11.10.12.53.25
+        by smtp.gmail.com with ESMTPSA id j7-20020aca1707000000b003af6eeed9b6sm48245oii.27.2023.11.10.12.57.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Nov 2023 12:53:26 -0800 (PST)
-Received: (nullmailer pid 412851 invoked by uid 1000);
-	Fri, 10 Nov 2023 20:53:25 -0000
-Date: Fri, 10 Nov 2023 14:53:25 -0600
+        Fri, 10 Nov 2023 12:57:17 -0800 (PST)
+Received: (nullmailer pid 418039 invoked by uid 1000);
+	Fri, 10 Nov 2023 20:57:16 -0000
+Date: Fri, 10 Nov 2023 14:57:16 -0600
 From: Rob Herring <robh@kernel.org>
-To: Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jackson Lee <jackson.lee@chipsnmedia.com>, linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@gmail.com>, Robert Beckett <bob.beckett@collabora.com>, Hans Verkuil <hverkuil@xs4all.nl>, devicetree@vger.kernel.org, kernel@collabora.com, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>, linux-media@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, Ivan Bornyakov <brnkv.i1@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Deborah Brouwer <deborah.brouwer@collabora.com>, Nas Chung <nas.chung@chipsnmedia.com>
-Subject: Re: [PATCH v14 6/8] dt-bindings: media: wave5: add yaml devicetree
- bindings
-Message-ID: <169964960493.412801.18307395523292801214.robh@kernel.org>
-References: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com>
- <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Jagan Teki <jagan@amarulasolutions.com>, Nicolas Belin <nbelin@baylibre.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v8 04/12] dt-bindings: phy:
+ amlogic,g12a-mipi-dphy-analog: drop unneeded reg property and example
+Message-ID: <20231110205716.GA413638-robh@kernel.org>
+References: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-0-81e4aeeda193@linaro.org>
+ <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-4-81e4aeeda193@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,22 +64,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
+In-Reply-To: <20231109-amlogic-v6-4-upstream-dsi-ccf-vim3-v8-4-81e4aeeda193@linaro.org>
 
+On Thu, Nov 09, 2023 at 10:00:05AM +0100, Neil Armstrong wrote:
+> Now this bindings is referred from amlogic,meson-gx-hhi-sysctrl.yaml and is
+> documented as a subnode of a simple-mfd, drop the invalid reg property.
 
-On Wed, 08 Nov 2023 20:29:25 +0100, Sebastian Fricke wrote:
-> From: Robert Beckett <bob.beckett@collabora.com>
-> 
-> Add bindings for the wave5 chips&media codec driver
-> 
-> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> ---
->  .../devicetree/bindings/media/cnm,wave521c.yaml    | 61 ++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
-> 
+Why is it invalid? It's preferred to have 'reg' in MFDs even if Linux 
+doesn't use them. If there's a chunk of registers you can define, then 
+do so. If it's all register bit soup, then fine, omit it.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Rob
 
