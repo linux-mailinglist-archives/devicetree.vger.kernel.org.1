@@ -1,171 +1,139 @@
-Return-Path: <devicetree+bounces-15009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF1897E7CC8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:58:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8871B7E7CDE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:10:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7F3DB20B84
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:58:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9BABC1C20A4C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27DD1A714;
-	Fri, 10 Nov 2023 13:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E269E1B297;
+	Fri, 10 Nov 2023 14:10:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TMF8ZURB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x1ZO6wYv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669531A5BC
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:58:23 +0000 (UTC)
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80150171B;
-	Fri, 10 Nov 2023 05:58:20 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9e62b14c9eeso108572666b.2;
-        Fri, 10 Nov 2023 05:58:20 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81251D272
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 14:10:44 +0000 (UTC)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8694E387AF
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:10:40 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40859dee28cso15595945e9.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:10:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699624699; x=1700229499; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hNjbt0EtWa2A1C+JeS9QVXzbju/y/OeX+qJLYHRr0y4=;
-        b=TMF8ZURBzTgVMbTf9asmaZtswCAe/1pIpUjReXju+AoOSQc11qdRC5l9HFnB18M6L1
-         VCsTOijD6AeLUTigjeRkiQVfMs2ndwxkYBykZNOkOJAhNnDzBmjl6wZWpvuQvpp3JBDp
-         /4HDVhB2tqLg944+gesA33ledsuNfj92DSff4PWatqWcrCQdcsF3PKd3GVT6j9Q9ujn9
-         R0IAD4qxesr+WE3mzNNK+shdGvl6J/mnxxQv46E1B9wppLGeBM3ru1zr2mFDI6hDAneg
-         X7JFhApP/7JwqMR3hQm8e3nYVmwEE+Z9xuL/dEvudELM3ExQ6EkKXH6c6M5OkXLAmXV/
-         0aDA==
+        d=linaro.org; s=google; t=1699625439; x=1700230239; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SqD24JlDtZddGkyT2YIsGW856ufA/CMCPfozrVi43fY=;
+        b=x1ZO6wYvVjzlCseG9krBPxcH3Ew/nS+qjJv7HL5ixJEA28n6jKvuNxfB35S95bZXoC
+         0Lervh11pkFPIQFNM9LgIorxPZVJLjHSlK6+MuVZ99wRzJJQuh0dV8Wjy0Q2EhzLUpK2
+         //M2q0ztFclFV28++EQ9Guq7oQZD0aDWi/3Sc1FOLboD4wsVQUa7aiuxLss2ShdeiHuI
+         FZzux2Qo7VZOjrJdVMLWF2Prbawls3Xgm/xy2Nojefu5FMHDHjZg2pHZ1/3hYW95QYVY
+         bgsLYiRwVNNs45DoVT5COeCc7d1bt3tJAcMFkVz7DVH8LFZfSdVR1/Jz5sh+U8rez1Pf
+         iS2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699624699; x=1700229499;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hNjbt0EtWa2A1C+JeS9QVXzbju/y/OeX+qJLYHRr0y4=;
-        b=fE+jDHwfgk0gfd6uiQm8xfjm6Z2WVsGSqXZdF9ZHgBARy1UjrnGSkryvKKUySpVZX8
-         UfPZr3uHqJo59o+4mVVpAZ/ROOy5DSenqJ03Qamib/EJIDJ2o9v0zQtJcsi7PY725Vns
-         Mosdvb6iFK9qzSct4VN+WgDp7GLb0bTWF/7eP6x9lxCKXDxpHbx5xT5eraTmuzQJgZ8I
-         otII6IQX1ud53a34wxfdcjO/qQhH44OriBX+9xI+q8juLNwWcqS9YOHUYeyICGeC1Ab+
-         vqX050Kv9nscRFV8f6QrR3MTepYLxtdGsbeUDsi4d6qbAFZEg69wY9fTYgSngw8jagWa
-         3orQ==
-X-Gm-Message-State: AOJu0YxcheMQiNgprOqqPLy2yXb4ItXDZ2DGCyBCyoKGRuRteSMN9bFI
-	SKO4gdtXRXfDfx9SiuKTtn4=
-X-Google-Smtp-Source: AGHT+IGVQ1Y1WUrgKjE0Ruzh3iRLkcjv8OxVq2OuRdMai07SfdEZi65obyfpOC0335sUnZnRwKjZVA==
-X-Received: by 2002:a17:907:9802:b0:9de:32bb:fa96 with SMTP id ji2-20020a170907980200b009de32bbfa96mr7549574ejc.9.1699624698722;
-        Fri, 10 Nov 2023 05:58:18 -0800 (PST)
-Received: from orome.fritz.box (p200300e41f0fa600f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f0f:a600:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id b4-20020a170906038400b0099bc8bd9066sm3988035eja.150.2023.11.10.05.58.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Nov 2023 05:58:18 -0800 (PST)
-Date: Fri, 10 Nov 2023 14:58:16 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-	Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 02/13] dt-bindings: thermal: tegra: Document throttle
- temperature
-Message-ID: <ZU42-H6Lk6kOPuKS@orome.fritz.box>
-References: <20231012175836.3408077-1-thierry.reding@gmail.com>
- <20231012175836.3408077-3-thierry.reding@gmail.com>
- <20231016140249.GA2655027-robh@kernel.org>
+        d=1e100.net; s=20230601; t=1699625439; x=1700230239;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SqD24JlDtZddGkyT2YIsGW856ufA/CMCPfozrVi43fY=;
+        b=q5eRefnF6q//7a+B5KgkBzsfuvxHKp4vg8QVcaQ01IC7a6jfbtyHwZ9iYeMAzhofGI
+         PsIMCLuACCueyuNjoXWemirZA6pNcOPEkbooa83ncu+kze2rCTQVWpWS3tsiZILeKhTj
+         9eFo8V5snw5URkNRY0dYbCBBpCR43xB1/QzJ+jqnU08A2nNylj7JL+TiDBYAVxJcT/TV
+         dgb5vLc9db7aeVzSD2k7rNygyveXIeunbaAZrGeNVirO4VHHztBiDB8Ib1UF2h/TURuO
+         AmcmHtyTRj2rPvkIU40xqzQRCCk+N1YSzO+KXydS0x2rsYNSdZIth/24ITfpvl9CjxKZ
+         +xrg==
+X-Gm-Message-State: AOJu0YzDqmG34l0yCUvE9GwXQvfKXNRHnOfVXjpsIDGc9jODN/ypUP/8
+	sNbx7XQO/YxJhoLBPn0szviRrg==
+X-Google-Smtp-Source: AGHT+IEdMcvXOf60sHOMwSweIqd4q3L2xTihKBvLKcKc68d3vUYNKqxIAPqzJgGJBvsRPOXt/+fFaA==
+X-Received: by 2002:a05:600c:3596:b0:406:7029:c4f2 with SMTP id p22-20020a05600c359600b004067029c4f2mr7616844wmq.26.1699625438930;
+        Fri, 10 Nov 2023 06:10:38 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id i15-20020a05600c354f00b004067e905f44sm5353769wmq.9.2023.11.10.06.10.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 06:10:38 -0800 (PST)
+Message-ID: <f9ec64ec-f7b0-4905-b81d-82c1ce598108@linaro.org>
+Date: Fri, 10 Nov 2023 15:10:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IL1DOl7t2BE0L6Kx"
-Content-Disposition: inline
-In-Reply-To: <20231016140249.GA2655027-robh@kernel.org>
-User-Agent: Mutt/2.2.12 (2023-09-09)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: usb: hcd: add missing phy name to example
+Content-Language: en-US
+To: Johan Hovold <johan+linaro@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231110134802.32060-1-johan+linaro@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231110134802.32060-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 10/11/2023 14:48, Johan Hovold wrote:
+> The example host controller node has two PHYs and therefore needs two
+> PHY names.
+> 
+> Fixes: 3aa3c66aedef ("dt-bindings: usb: Bring back phy-names")
 
---IL1DOl7t2BE0L6Kx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Mon, Oct 16, 2023 at 09:02:49AM -0500, Rob Herring wrote:
-> On Thu, Oct 12, 2023 at 07:58:23PM +0200, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Each throttling configuration needs to specify the temperature threshold
-> > at which it should start throttling. Previously this was tied to a given
-> > trip point as a cooling device and used the temperature specified for
-> > that trip point. This doesn't work well because the throttling mechanism
-> > is not a cooling device in the traditional sense.
-> >=20
-> > Instead, allow device trees to specify the throttle temperature in the
-> > throttle configuration directly so that the throttle doesn't need to be
-> > exposed as a cooling device.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> > Changes in v2:
-> > - rename temperature to temperature-millicelsius and drop $ref
-> > - add hysteresis-millicelsius property
-> >=20
-> >  .../bindings/thermal/nvidia,tegra124-soctherm.yaml | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-=
-soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-s=
-octherm.yaml
-> > index 04a2ba1aa946..0eb6277082fe 100644
-> > --- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-socther=
-m.yaml
-> > +++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-socther=
-m.yaml
-> > @@ -121,6 +121,20 @@ properties:
-> >                # high (85%, TEGRA_SOCTHERM_THROT_LEVEL_HIGH)
-> >                - 3
-> > =20
-> > +          temperature-millicelsius:
->=20
-> 'temperature' is redundant since we have units. Perhaps=20
-> 'throttle-millicelsius' or 'auto-throttle-millicelsius' instead to say=20
-> what the temperature is for.
+Best regards,
+Krzysztof
 
-Okay, will do.
-
->=20
-> > +            minimum: -273000
-> > +            maximum: 200000
->=20
-> Quite impressive operating range.
-
-Yeah, I don't actually know where these come from. Looking at the manual
-these sensors are actually limited to -127=C2=B0C - 127=C2=B0C. I'll fix th=
-at up.
-
-Thierry
-
---IL1DOl7t2BE0L6Kx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmVONvgACgkQ3SOs138+
-s6Fqfg//Wrvd1xbopW4sXoP86ueodfIy1oZbQEWuPK1X0QLTbougyvBWkAu0qFmS
-ztxjspB29ruwaGAYju4ShhMuORc+4W8co5TIpmGZUXrtHzzNGaIxqlmYbypsQQGR
-JlOrOdui73QlAkyV/Avu5s+UQ1CP+7t2Nlx5iTVJECygoF/msZQ05K0iRrl2J3B4
-/KNMecnCoosxnQz5baPVfWPqOqjMtGStwcBqOh/LOlToYn7JLV5VJDRFLDH3vTY5
-mSk4jij0pMo+RLmKQZwIYUwKN/kITXLZ9k/Toy7nfnvT/ScJCXwBaK5e4beGLNDf
-s+OPGn4IVZixIsMb87lJsZeMFslHm4qwuPhEUEYjFYzUvfryVE4A8xowsINLQ9D5
-C9MMr2grhQ/hpTpuFRfWD0r7Eo7nB/fJYFNiWidCb7WhLpEfa9fIjJGa12ivbQzE
-5ywBHAG1cmil0kXCRfYxzr3Aa9VuQ6UA52mEGXtmuxH1PfNzjP/CH0U9w+U62F6m
-sQdu3tCFZj0w4IWFUZ5ripF3sRtKwBu/xaDCMy+K92ThnHv1q24QrqR05pueniwJ
-XSDbsB9TOBNmTdVaUkn/JVXtH16C5ko+Jgzdgn6ElKtguV0UwfbZNpXRX+uwDkmE
-w4uuQcP/wP2tCP8IWiLWxkgjgkfSH+OoqxywPXfMjvV4diSbjCg=
-=cB6H
------END PGP SIGNATURE-----
-
---IL1DOl7t2BE0L6Kx--
 
