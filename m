@@ -1,124 +1,152 @@
-Return-Path: <devicetree+bounces-14904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2157E7664
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:05:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208717E76B9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:40:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0ACE5B21215
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:05:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDDDB1C20C2F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:40:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FF2628;
-	Fri, 10 Nov 2023 01:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795BEA51;
+	Fri, 10 Nov 2023 01:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kVm1Gepx"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Rdm9QD4y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B1D1363
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 01:05:00 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1756B4229
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 17:05:00 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-507a0907896so1881872e87.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 17:04:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699578298; x=1700183098; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cYQvDtaR1Rq2jfedJTX47JK1X6rSYRRgJAozvHJVQR8=;
-        b=kVm1GepxG7CjuP/CSk3gtvvT6PzrXnahWDwPtHTJpiEa3x7F+jrEZI8WmzPysqmSoE
-         OjqPb850bxrsXOly21iA14glW2B07eBnIes7v3WKnRwbUccHLVLlRx6teXZQQZArk0pB
-         SyL+UZMspwOu2DtCRRObK/7TkoAAuakXzocNbj/HOQ0OspmEgLAJ83KEIfXnYiwvFl5r
-         /lAxHQIEb6aLHsuMvirZN1yuuu6hRDEYGw1yhrZVvpwEbNqtf5cgKrQTnUJbkzSVFXrq
-         lrKvqPj0SOTKAP8NbjSPx6tDn7FnmRAxpSwVKhVwlmupJrEBtJFQwwTp4nJhPmyTS2Iy
-         ND5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699578298; x=1700183098;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cYQvDtaR1Rq2jfedJTX47JK1X6rSYRRgJAozvHJVQR8=;
-        b=TNdM6JU+xB45psfrV+UfPsOOZqbu111YJSej/KsBklGSF9kA62EmIpYD7WFD5unW+r
-         In/2aR0cZ/0RqgwH9mKdyttLXNJLIZ832RL6OVhVdSkzoQN1f1cjOpGLMJRD5AIJGO0K
-         kjWlJM+btLdMcJocynSFMTRMRTYmcfCqnl36rXs8uOq6y/wR0Q9rWYVWqZi722BmqDvg
-         VcKxkXPs2HqLQeOXVkfn3bLuyW4pPahDNXFzTcK7vQu6c9aKvdfiSZYpJ3P/pB25lifg
-         gKTau5FTioKCi207TUvlqhI/ADL4BIepliD3W97u3sTQ8KVAa22cQPnJSSaGQRCbArLe
-         ij7Q==
-X-Gm-Message-State: AOJu0YwFM+XzxD+/j0ZUOeSN8laU/pn450lQv0RFTAu2ucCxjLHIjzRj
-	gFg+AD8HF6D+I5vjFVKqzTCjCQce/7WrY4lTKd9JCA==
-X-Google-Smtp-Source: AGHT+IGO6UmvZMd+QDCGUZMGgoA1QAKWo2qz6+2Fs6vQvRw/QvQsKdJg7ZqNXqHhXGL9zsVGvNFJlg==
-X-Received: by 2002:ac2:4306:0:b0:508:1332:558a with SMTP id l6-20020ac24306000000b005081332558amr2632106lfh.2.1699578298239;
-        Thu, 09 Nov 2023 17:04:58 -0800 (PST)
-Received: from [127.0.0.1] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id d1-20020a056000114100b00326f0ca3566sm820562wrx.50.2023.11.09.17.04.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Nov 2023 17:04:57 -0800 (PST)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Fri, 10 Nov 2023 01:04:51 +0000
-Subject: [PATCH v5 6/6] media: qcom: camss: vfe-17x: Rename camss-vfe-170
- to camss-vfe-17x
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72CBA46;
+	Fri, 10 Nov 2023 01:40:30 +0000 (UTC)
+X-Greylist: delayed 592 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 09 Nov 2023 17:40:29 PST
+Received: from mail-m17244.xmail.ntesmail.com (mail-m17244.xmail.ntesmail.com [45.195.17.244])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4D44689;
+	Thu,  9 Nov 2023 17:40:28 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=Rdm9QD4yO6LRbZBNE1A/b+RLokMwSHSQFNyKUAJYTpR4K9xUU8zLPUZ5xR2J69Hxh5A0rXeerIurDn+8czNto4RCBLRqAHgX00bVVDTTD9FXb6CpWOWOHChw2uUyUEgO1exOq+Sf/pstX5QlCHztlp7pu5XOyhEmIdKHwx5I/FI=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=P0GaHyRA5mwU4r4OqdCotWnXqFS5RSLvYdfU/GQ9YsU=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.49] (unknown [58.22.7.114])
+	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id C3D5D4001CD;
+	Fri, 10 Nov 2023 09:23:39 +0800 (CST)
+Message-ID: <53059eca-5c55-6dde-6246-40ed9f2dca91@rock-chips.com>
+Date: Fri, 10 Nov 2023 09:23:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231110-b4-camss-sc8280xp-v5-6-7f4947cc59c8@linaro.org>
-References: <20231110-b4-camss-sc8280xp-v5-0-7f4947cc59c8@linaro.org>
-In-Reply-To: <20231110-b4-camss-sc8280xp-v5-0-7f4947cc59c8@linaro.org>
-To: hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Todor Tomov <todor.too@gmail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, vincent.knecht@mailoo.org, 
- matti.lehtimaki@gmail.com, quic_grosikop@quicinc.com
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.12.3
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF clk
+ id
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
+ sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ andy.yan@rock-chips.com, Sebastian Reichel <sebastian.reichel@collabora.com>
+References: <20231108061822.4871-1-zhangqing@rock-chips.com>
+ <20231108061822.4871-4-zhangqing@rock-chips.com>
+ <20231108-donation-uncertain-c4d0f560c420@spud>
+ <2e520a06-0ff1-76ef-2a72-ab6663738b45@rock-chips.com>
+ <20231109-send-pushchair-45b37551102a@wendy>
+ <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
+ <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
+ <f013df81-670e-37c4-c1a7-e1302352ca20@rock-chips.com>
+ <f58c8f3f-7b34-47e7-a33a-bddb6106fec7@linaro.org>
+From: zhangqing <zhangqing@rock-chips.com>
+In-Reply-To: <f58c8f3f-7b34-47e7-a33a-bddb6106fec7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxMH1ZOHRhLTRgYHxgaQhpVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8bb6d3dea32eb3kusnc3d5d4001cd
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PzY6Qww6Czw0IQ01E0IcMxxC
+	GCJPCT1VSlVKTUJCTkxCT0lKS0tNVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUxLTkI3Bg++
 
-vfe-170 and vfe-175 can be supported in the same file with some minimal
-indirection to differentiate between the silicon versions.
 
-sdm845 uses vfe-170, sc8280xp uses vfe-175-200. Lets rename the file to
-capture its wider scope than vfe-170 only.
-
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/platform/qcom/camss/Makefile                             | 2 +-
- drivers/media/platform/qcom/camss/{camss-vfe-170.c => camss-vfe-17x.c} | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-index 4e22223589739..0d4389ab312d1 100644
---- a/drivers/media/platform/qcom/camss/Makefile
-+++ b/drivers/media/platform/qcom/camss/Makefile
-@@ -14,7 +14,7 @@ qcom-camss-objs += \
- 		camss-vfe-4-1.o \
- 		camss-vfe-4-7.o \
- 		camss-vfe-4-8.o \
--		camss-vfe-170.o \
-+		camss-vfe-17x.o \
- 		camss-vfe-480.o \
- 		camss-vfe-gen1.o \
- 		camss-vfe.o \
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe-170.c b/drivers/media/platform/qcom/camss/camss-vfe-17x.c
-similarity index 100%
-rename from drivers/media/platform/qcom/camss/camss-vfe-170.c
-rename to drivers/media/platform/qcom/camss/camss-vfe-17x.c
-
+在 2023/11/9 18:24, Krzysztof Kozlowski 写道:
+> On 09/11/2023 11:05, zhangqing wrote:
+>> 在 2023/11/9 17:21, Krzysztof Kozlowski 写道:
+>>> On 09/11/2023 09:06, zhangqing wrote:
+>>>> 在 2023/11/9 15:29, Conor Dooley 写道:
+>>>>> On Thu, Nov 09, 2023 at 02:27:38PM +0800, zhangqing wrote:
+>>>>>> Hi:
+>>>>>>
+>>>>>> 在 2023/11/8 20:01, Conor Dooley 写道:
+>>>>>>> On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
+>>>>>>>> export PCLK_VO1GRF for DT.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>>>>>>>> ---
+>>>>>>>>      include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
+>>>>>>>>      1 file changed, 2 insertions(+), 1 deletion(-)
+>>>>>>>>
+>>>>>>>> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>>>>> index 5790b1391201..50ba72980190 100644
+>>>>>>>> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>>>>> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+>>>>>>>> @@ -733,8 +733,9 @@
+>>>>>>>>      #define ACLK_AV1_PRE			718
+>>>>>>>>      #define PCLK_AV1_PRE			719
+>>>>>>>>      #define HCLK_SDIO_PRE			720
+>>>>>>>> +#define PCLK_VO1GRF			721
+>>>>>>>> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
+>>>>>>>> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
+>>>>>>> This definition is part of the ABI, if it is safe to change it, then it
+>>>>>>> is safe to delete it.
+>>>>>> The new ID is to solve the niu clock dependency problem(Used in PATCH V5
+>>>>>> 4/4).This new ID will also be used in DTS in the future.
+>>>>>>
+>>>>>> CLK_NR_CLKS represents the number of clocks used by the
+>>>>>> drivers/clk/rockchip/clk-rkxxx.c. It is safe to modify it, but cannot delete
+>>>>>> it.
+>>>>> Then delete it from the header and move it to clk-rkxxx.c
+>>>> I don't think it's more appropriate to move to clk-rkxxx.c.
+>>>> Because if there are new requirements later, and add new clk id, it is
+>>>> not in the same file, maybe forget to modify CLK_NR_CLKS.
+>>> Then you are not allowed to change it. It's part of ABI.
+>> If you just don't want me to modify CLK_NR_CLKS, can I use an unused ID,
+>> like [PATCH V4 3/4]:
+>>
+>> -#define MBIST_MCLK_PDM1                        24
+>> +#define PCLK_VO1GRF                    24
+> You cannot change the ABI.
+>
+> I don't understand why do you insist on this path. You got clear
+> comments: either this is ABI, so it cannot be changed, or it has to be
+> dropped. You know insist on some third path. There is no such.
+Ok , I'll drop this change in PATCH V6.
+>
+> Best regards,
+> Krzysztof
+>
 -- 
-2.42.0
+张晴
+瑞芯微电子股份有限公司
+Rockchip Electronics Co.,Ltd
+地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
+Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
+Tel:+86-0591-83991906-8601
+邮编：350003
+E-mail:elaine.zhang@rock-chips.com
+****************************************************************************
+保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
+
+IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
+
+****************************************************************************
 
 
