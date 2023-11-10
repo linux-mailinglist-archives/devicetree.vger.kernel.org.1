@@ -1,125 +1,113 @@
-Return-Path: <devicetree+bounces-15079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737C77E84F2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 22:07:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6891C7E84FA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 22:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 143001F20EBE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:07:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED860B20C25
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C97C3C09D;
-	Fri, 10 Nov 2023 21:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613A83B7B7;
+	Fri, 10 Nov 2023 21:10:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Vyq+5cJv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91AC3C2D2;
-	Fri, 10 Nov 2023 21:07:20 +0000 (UTC)
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 510C21A5;
-	Fri, 10 Nov 2023 13:07:19 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3b2df2fb611so1568097b6e.0;
-        Fri, 10 Nov 2023 13:07:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699650438; x=1700255238;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD99B3B28F
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 21:10:06 +0000 (UTC)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58915C4
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:10:05 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4078fe6a063so2515e9.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:10:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1699650604; x=1700255404; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZhcaUbufGGCGl+oelTC2ECkW5UU6FCUTDhDK/m2sCfs=;
-        b=XCxhNq2i+SJco4U/QUBzzTNEJYDRGbSemA/Ytn390VKM9D6ORpAJeXH6l9J2eFTLHI
-         lOARsjKojknd0b3vydqzBxcZfzVgG7CPCT36kPQ+f7VH2Hoa36YpEJi8Cmq/Ttr/Mtl7
-         Y/am0CYLXqw+istz8BKTl9nOYLJsKSSk4STpej+zVz/z6YlcOkCMbh4caWEcFw42hhpa
-         K0JDcdQdXUD2XnUV9wRpoC/VTU1KXXE0WZTBVFjptUU4sOz6OB72ft7KNwv8tQf2c6h1
-         biYLUi0jlOIFt+s8+v4zK7R21LYBDjc/7/7LuAVjJZY/2/akL864lU6fxv22h6hehybp
-         y71w==
-X-Gm-Message-State: AOJu0YxVeOVSvITd6YYeuxYEs4dgWusvyeeFkTpCA0jqF3qovYCkT3ka
-	3r/DJaS/T/o8Dcv8B2kiaA==
-X-Google-Smtp-Source: AGHT+IEQ7c/sxZ5ogUqRUDBd0ii59Sbjxux7vfokGIfN/0AadRuyYuXRaQGnZx2kQuCJ3B3CfRxsGA==
-X-Received: by 2002:a05:6870:2b13:b0:1ef:b809:3f26 with SMTP id ld19-20020a0568702b1300b001efb8093f26mr476789oab.17.1699650438610;
-        Fri, 10 Nov 2023 13:07:18 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e5-20020a056870920500b001e9b02b00e9sm67574oaf.22.2023.11.10.13.07.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Nov 2023 13:07:18 -0800 (PST)
-Received: (nullmailer pid 434762 invoked by uid 1000);
-	Fri, 10 Nov 2023 21:07:16 -0000
-Date: Fri, 10 Nov 2023 15:07:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>
-Subject: Re: [RFC PATCH v2 5/7] of: hw_prober: Support Chromebook SKU ID
- based component selection
-Message-ID: <20231110210716.GB419831-robh@kernel.org>
-References: <20231109100606.1245545-1-wenst@chromium.org>
- <20231109100606.1245545-6-wenst@chromium.org>
+        bh=XE+/jbgSi664HD8BrCmT+2A639BdbZR0PFQ8SEUbr8E=;
+        b=Vyq+5cJvhSEyd08pQn3CN5+m6OQtH+vqHBRso0kqBux+67Wo6j8AyPOSwsq6bVkKhu
+         q5Dm5gMor/wiqn5TFv7aAfQbnIEV3qFqElRe6GRgnL2CPeLWC/T/L5JcQUveqki21h5P
+         WB0xvP1+EHe8kQcdgbSgABNpCZYItr1rLmm0Ea7YuU2XgnwgfLTDwSSmfabUBbujvKOt
+         3uztYidvXik3SjSGoZmHFdDTTiqnMCrs+mqh+yp/LMvZt/pKnDpNGJL8lpcLk6Zm41Vz
+         DAHB4z+Ul2Kvnlj8atwY9T2ahbLW2eLF61+LgcmV465RZ4XA2tBc+uFAjLTf2rmiH49H
+         ApGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699650604; x=1700255404;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XE+/jbgSi664HD8BrCmT+2A639BdbZR0PFQ8SEUbr8E=;
+        b=ZvMCGh+AKP8wRhuYyN1VF9d3TDX6ZNJQoGa2iy5MQ6XHA10ELlm1Jye/BnGIBZyvN/
+         E1QxNHp2h+hiKL3Y3GUBAJkawtMyuJNfiPEcfC/+JPaQQd7eVFkUWy0RkO4vno6mt+lF
+         AHsn68/kCcUrB7NZHZ12D+HyD8LGHJJKOZWUbihUGqEODNcMp/0gpo84DL9WP9zQJEwS
+         Q+qffGJvrTqx6kYmTtON+6KH84hIPOsrRazFYa15r9MEmjgsRR0FlgVai9V1WmTHIU2L
+         28IzNa5Kf3/wFXch7fMjU4S0jd54VUiUgQMGHy07kIpNxkSJbehjbAELWY3ljJ5tepxI
+         248g==
+X-Gm-Message-State: AOJu0Yw714yvXPlafofW0f2aTR06uW5TuNRKvj4BfIx5t5qkpBc21Bzt
+	iWWQ/jXjCbeRmZYAk4ufvwoBYkGUDuwyAUS9yB31yA==
+X-Google-Smtp-Source: AGHT+IEed6ru5XI2tGdQUHFtZARACGAfGFOcCru3M+E5sMSccnmdruAaJQRKVBsgXLem9FOe09lBfdh00h+15HeH9/0=
+X-Received: by 2002:a05:600c:3b9b:b0:408:3725:b96a with SMTP id
+ n27-20020a05600c3b9b00b004083725b96amr9766wms.0.1699650603630; Fri, 10 Nov
+ 2023 13:10:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231109100606.1245545-6-wenst@chromium.org>
+References: <20231110094553.2361842-1-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20231110094553.2361842-1-yangcong5@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@google.com>
+Date: Fri, 10 Nov 2023 13:09:46 -0800
+Message-ID: <CAD=FV=UvZ9U1SYjOOBB6o2CmquAevqJZ9Ukp_kx4zGXFbp_VBA@mail.gmail.com>
+Subject: Re: [PATCH] drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
+ panel HFP and HBP
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, airlied@gmail.com, zhouruihai@huaqin.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 09, 2023 at 06:06:02PM +0800, Chen-Yu Tsai wrote:
-> In cases where the same Chromebook model is manufactured with different
-> components (MIPI DSI panels, MIPI CSI camera sensors, or trackpad /
-> touchscreens with conflicting addresses), a different SKU ID is
-> allocated to each specific combination. This SKU ID is exported by the
-> bootloader into the device tree, and can be used to "discover" which
-> combination is present on the current machine.
-> 
-> This change adds a hardware prober that will match the SKU ID against
-> a provided table, and enable the component for the matched entry based
-> on the given compatible string. In the MIPI DSI panel and MIPI CSI
-> camera sensor cases which have OF graphs, it will also update the
-> remote endpoint to point to the enabled component. This assumes a single
-> endpoint only.
-> 
-> This will provide a path to reducing the number of Chromebook device
-> trees.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  drivers/of/hw_prober.c | 160 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 160 insertions(+)
+Hi,
 
-This certainly does not belong in drivers/of/.
+On Fri, Nov 10, 2023 at 1:46=E2=80=AFAM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> The refresh reported by modotest is 60.46Hz, and the actual measurement
 
+s/modotets/modetest/
 
-> diff --git a/drivers/of/hw_prober.c b/drivers/of/hw_prober.c
-> index 442da6eff896..4345e5aed6d8 100644
-> --- a/drivers/of/hw_prober.c
-> +++ b/drivers/of/hw_prober.c
-> @@ -8,6 +8,7 @@
->  #include <linux/array_size.h>
->  #include <linux/i2c.h>
->  #include <linux/of.h>
-> +#include <linux/of_graph.h>
->  #include <linux/platform_device.h>
->  
->  #define DRV_NAME	"hw_prober"
-> @@ -108,9 +109,168 @@ static int i2c_component_prober(struct platform_device *pdev, const void *data)
->  	return ret;
->  }
->  
-> +static int cros_get_coreboot_sku_id(struct device *dev, u32 *sku_id)
-> +{
-> +	struct device_node *node = NULL;
-> +	int ret;
-> +
-> +	node = of_find_node_by_path("/firmware/coreboot");
-> +	if (!node)
-> +		return dev_err_probe(dev, -EINVAL, "Cannot find coreboot firmware node\n");
-> +
-> +	ret = of_property_read_u32(node, "sku-id", sku_id);
+> is 60.01Hz, which is outside the expected tolerance. Adjust hporch and
+> pixel clock to fix it. After repair, modetest and actual measurement were
+> all 60.01Hz.
 
-Not documented.
+Can you explain this more? Why was the rate that modetest reported
+different from the actual measured rate? This feels like it's a
+problem with your MIPI controller not being able to accurately make
+the rate. Is that it?
 
-Rob
+If so then this is a bit of a hack. Someone else using the same panel
+might have a MIPI controller that can make slightly different clock
+rates. I think you're currently the only user of the panel, so maybe
+this isn't too terrible (would love to hear other people's advice).
+
+Assuming this is actually the problem there are probably at least
+several different ways to solve this. One that comes to mind is the
+solution we ended up with for eDP where we allowed specifying some of
+this stuff in the device tree, though that might cause a whole pile of
+debates...
+
+In any case, as I said above this patch is probably OK if you're the
+only user of this panel, but it might be at least good to add
+something to the commit message?
+
+-Doug
 
