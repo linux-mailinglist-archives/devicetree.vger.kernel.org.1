@@ -1,54 +1,61 @@
-Return-Path: <devicetree+bounces-15075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FC587E849D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:46:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E20FE7E84C4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 21:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FB061C209A5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:45:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71BA31F20EF7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F163B787;
-	Fri, 10 Nov 2023 20:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F323C08C;
+	Fri, 10 Nov 2023 20:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE723B780
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 20:45:55 +0000 (UTC)
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 721C4D64;
-	Fri, 10 Nov 2023 12:45:53 -0800 (PST)
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1r1YNy-0008Ty-3B;
-	Fri, 10 Nov 2023 20:45:51 +0000
-Date: Fri, 10 Nov 2023 20:45:48 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, linux-watchdog@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: mediatek,mtk-wdt: add MT7988
- watchdog and toprgu
-Message-ID: <ZU6WfOUF7owz7ZLN@makrotopia.org>
-References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
- <59629ec1-cc0c-4c5a-87cc-ea30d64ec191@linaro.org>
- <fc52c1df-e414-49a9-a3a7-7a4ce45c403e@linaro.org>
- <49cd75fd-962f-417c-9196-3c9edd42e4d5@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37ABE3B783;
+	Fri, 10 Nov 2023 20:53:29 +0000 (UTC)
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F35E09F;
+	Fri, 10 Nov 2023 12:53:27 -0800 (PST)
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-58a0154b4baso710394eaf.1;
+        Fri, 10 Nov 2023 12:53:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699649607; x=1700254407;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jEvV6up6i1bmVXQGPQ7nI6E0uipZ7czAkBoWnloW338=;
+        b=qTSstPZ+TR8r/07BPOZ7XWKQhPtmSyLcO11n77mZ7kYQ/NTNccOBJVMpIGajykot/+
+         I2viS0ebZ/7qI2eqmINUdEbNNKNqni1i4dPYoEyGIi9suxuKN631ciK1XqnuYCo37pao
+         lLEuNl8eHQmUgyXHoa1vUXa4rhe7ChsgfTxOrQTnwtwN7qNRWKzZ1X6G7BxzFc9yzUt+
+         F+aqTQUivqxksyFwWwvqiEsSe+6VybF7F8GG14p1Bo4KdY2LcuRCu0/T3Pdg0leObDaI
+         JeYiWztPJGcgt8OPby1ubWtpeY+QC41MaWCXCjoPV1tn6ApKE7z9PNC/oSpQ5VAp1dfc
+         ElSw==
+X-Gm-Message-State: AOJu0YyUD0AAUjysQk65l1/Ld4SlfspZalsKgJQVz3J9OrWoGtuPmOYi
+	oKs264ZStNuvInKq183yRQ==
+X-Google-Smtp-Source: AGHT+IG/EZf6Lcw+9SaA3RqAxpvyogtQj45WDc3IQH3lwKA4HPVfubz5Fy6kv0RFIf82fFD5MurXxg==
+X-Received: by 2002:a05:6870:514f:b0:1dd:2a3f:cef3 with SMTP id z15-20020a056870514f00b001dd2a3fcef3mr1980692oak.26.1699649607267;
+        Fri, 10 Nov 2023 12:53:27 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p14-20020a056830338e00b006bee5535b44sm50533ott.75.2023.11.10.12.53.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Nov 2023 12:53:26 -0800 (PST)
+Received: (nullmailer pid 412851 invoked by uid 1000);
+	Fri, 10 Nov 2023 20:53:25 -0000
+Date: Fri, 10 Nov 2023 14:53:25 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jackson Lee <jackson.lee@chipsnmedia.com>, linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@gmail.com>, Robert Beckett <bob.beckett@collabora.com>, Hans Verkuil <hverkuil@xs4all.nl>, devicetree@vger.kernel.org, kernel@collabora.com, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>, linux-media@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, Ivan Bornyakov <brnkv.i1@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Deborah Brouwer <deborah.brouwer@collabora.com>, Nas Chung <nas.chung@chipsnmedia.com>
+Subject: Re: [PATCH v14 6/8] dt-bindings: media: wave5: add yaml devicetree
+ bindings
+Message-ID: <169964960493.412801.18307395523292801214.robh@kernel.org>
+References: <20231108-wave5-v14-rebased-v14-0-0b4af1258656@collabora.com>
+ <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,88 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <49cd75fd-962f-417c-9196-3c9edd42e4d5@linaro.org>
+In-Reply-To: <20231108-wave5-v14-rebased-v14-6-0b4af1258656@collabora.com>
 
-On Fri, Nov 10, 2023 at 09:00:26PM +0100, Krzysztof Kozlowski wrote:
-> On 10/11/2023 16:20, Krzysztof Kozlowski wrote:
-> > On 10/11/2023 09:09, Krzysztof Kozlowski wrote:
-> >> On 10/11/2023 01:30, Daniel Golle wrote:
-> >>> Add binding description for mediatek,mt7988-wdt.
-> >>>
-> >>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> >>> ---
-> >>
-> >> ...
-> >>
-> >>> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> >>> new file mode 100644
-> >>> index 0000000000000..fa7c937505e08
-> >>> --- /dev/null
-> >>> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> >>> @@ -0,0 +1,12 @@
-> >>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> >>> +
-> >>> +/* TOPRGU resets */
-> >>> +#define MT7988_TOPRGU_SGMII0_GRST		1
-> >>> +#define MT7988_TOPRGU_SGMII1_GRST		2
-> >>> +#define MT7988_TOPRGU_XFI0_GRST			12
-> >>> +#define MT7988_TOPRGU_XFI1_GRST			13
-> >>> +#define MT7988_TOPRGU_XFI_PEXTP0_GRST		14
-> >>> +#define MT7988_TOPRGU_XFI_PEXTP1_GRST		15
-> >>> +#define MT7988_TOPRGU_XFI_PLL_GRST		16
-> >>
-> >> IDs should start from 0 or 1 and increment by 1. If these are not IDs,
-> >> then you do not need them in the bindings.
-> >>
-> >> Where is the driver change using these IDs?
 
-It isn't needed as the driver doesn't list the IDs. If that would
-be true, it would be sufficient to put them into a header next to the
-driver or defined inside the driver C file.
-
-The defined IDs here are intended to be used in device tree files.
-
-> > 
-> > You nicely skipped my email and keep pushing the idea of putting this
-> > into separate patch.
-> > 
-> > No. Respond to received comments.
-> > 
-> >>
-> >>> +
-> >>> +#define MT7988_TOPRGU_SW_RST_NUM		24
-> >>
-> >> Why 24? I see 7. 
-
-Because the wdt on MT7988 has a total of 24 resets. Most of them are
-(currently, as there are no GPL drops, no publicly available devices,
-...) undocumented and are not used in Linux **at this point**. Having
-to change the driver every time a new reset is discovered or needed to
-be used is tideous, so I thought the best would be -- as we know the
-total number of resets -- to already define that, as it's safe to do
-and won't need to change.
-
-> >> Why having it in the bindings in the first place.
-
-This line can indeed go into the driver, it's not used anywhere else.
-I was merely immitating the style of all the existing binding headers
-for similar SoCs and didn't want to stick-out style-wise, also in terms
-of the added code to the driver which relies on that number being
-defined in the header for all other SoCs.
-
-> >>
-> >> It's quite likely I asked the same question about other bindings for
-> >> Mediatek. I will be asking every time till this is fixed.
-> > 
-> > No response to this, either.
+On Wed, 08 Nov 2023 20:29:25 +0100, Sebastian Fricke wrote:
+> From: Robert Beckett <bob.beckett@collabora.com>
 > 
-> You still did not respond here. To none of the points here. It's my
-> third ping because I want this to be resolved. But ignoring my emails,
-> and skipping paragraphs of my replies will not lead anywhere.
+> Add bindings for the wave5 chips&media codec driver
+> 
+> Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+> ---
+>  .../devicetree/bindings/media/cnm,wave521c.yaml    | 61 ++++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+> 
 
-I have answered to this before:
-The driver does NOT have any internal list of names of individual
-resets, it relies on the reset number from device tree matching the bit
-in the controller, just like for any other MediaTek toprgu already
-supported by mtk-wdt.c.
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 
