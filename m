@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B90D7E7C67
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 587797E7C6B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2A40B20D51
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:12:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B2ABB20D40
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3EED156C1;
-	Fri, 10 Nov 2023 13:12:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3A818025;
+	Fri, 10 Nov 2023 13:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XABtP5Ha"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BgD0v+zH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09E817758
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:12:05 +0000 (UTC)
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AA982F361
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:12:02 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5440f25dcc7so3292113a12.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:12:02 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D6614A97
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:12:55 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A61C36C4C
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:12:54 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9dbb3e0ff65so321456466b.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:12:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699621921; x=1700226721; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699621973; x=1700226773; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oOOIgBuLD76SRMXtscbLmnBWjjTZy61Y8xnxf0Pthzg=;
-        b=XABtP5Ha/sGaeZUcV1bgPZ2ayGzTosr6RFmUBmQM5/o9pXa4147CMhF3hc5/LVqOSM
-         KtWlvo0rslbbcFRHAjXKTstWeoFxdTqPwMawLQUzs7w6l2hxPUhqI2iFbugKvNmb9O4C
-         kIlQyjS8NSqh/h80Gl1UFSnXefpsgZHtKcKpxayiGYIK1S6ojeqqv/Cy3m1Z2vHPjqjc
-         Rv0sZDWB4zuIp9Zbbk8lPwQf1HUx135LjlrsgTnBzrRJIGfweGNsUN++gCmj4KXznW6K
-         RaL8uhlGmihwpEywUDwBlCpligugahknet4V7h5GJUIlBsyfDfRsKiC+JALYcGWiEqQb
-         UVPA==
+        bh=6isbZ9uLtfZ8lUq1v9mDUjAKFznjzf9WjfJ4yDiUmqU=;
+        b=BgD0v+zH+y85Px4uln8SZ1AGwF4zyMoEZ9XsgAVYR8Dzm+jDKtVMuz1Xwp0nbOVrE5
+         cm3oR+GX1qIWzjSJpWdRz9XVSCXbNmw0rMY2TJSdJvs4Ze8Mi9M/A3m7A3iKDF19leJl
+         rSjuqyh7m+CpgQKe06LfIK2bzBEfTJBi+kahoXkcK3nN/10NzfGQM4uUfQQL9nSqL1Un
+         qzIAKozBeMaB0/bsrnOPLHb1jUu1PIfsFNtp78ZKg6iUStkz6A2JYCpWfzG0U3zn+Can
+         YnC9fYk03RUXpD3/h0h/NrTTI8Pspdj4p0MeZIQAOzs7yD6u//DYWNJHChQ7sMBYYHXn
+         B2BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699621921; x=1700226721;
+        d=1e100.net; s=20230601; t=1699621973; x=1700226773;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oOOIgBuLD76SRMXtscbLmnBWjjTZy61Y8xnxf0Pthzg=;
-        b=PsxTYkLe0vozrVTFiaLH1ZepSO98x170AGrSRdJnudb8pna9hN1JQv4n4zy2Q5KpSY
-         uQk8jGTeVCDu551BuGpxdtwXdVAS8qrFFSPtkh4KvNdSvU/yLmFRqUTNVrSTn9poLlDn
-         u/SVSe82vav0bJ2vTB4Nc96rTRO8VurV6gcwUfGX/7Jf2gdvozkMaAgIZj5YimQOV9ZF
-         11IJyh9kGaCXSVFMVDfmjswOzxjtgKCN52qfQurcP58bKGkjBerXXSWvmNCYc98RfT9I
-         z1QclqfvS9Ywb0FTzfCngUlvF92sj6V8vR+9Wkceb+/iUHVWQAHlalMeLFOHC+Z0E9kc
-         QRSg==
-X-Gm-Message-State: AOJu0Yxd3C4KD2Knl4yaZdyS6UQCntGIYg8GmgFpnFOM7+TGFPDFVYFB
-	2Fd0Dxz84L1OLd0glzMGTmbf/Q==
-X-Google-Smtp-Source: AGHT+IEEIi+ieS8L2KzBKeL0uO7ZQVAsj01ruKfHUinIc9RCASRJCRjWriWUSNdeLpp2AWnOGM6TWQ==
-X-Received: by 2002:a17:907:3e81:b0:9c3:1d7e:f5b5 with SMTP id hs1-20020a1709073e8100b009c31d7ef5b5mr6652693ejc.20.1699621920783;
-        Fri, 10 Nov 2023 05:12:00 -0800 (PST)
+        bh=6isbZ9uLtfZ8lUq1v9mDUjAKFznjzf9WjfJ4yDiUmqU=;
+        b=FwhoIsT8moRLZCZcnPngf/t+gkgGxT1MCQddAoLbHSD03pw9VJz3UG2tIv9sGn2/83
+         +18a3gIeOQ3SLpZXbAbHo392UGJp0bkqahmxMd8064Bbr/NbCL0ZCVUTi3jZWWdpz19Q
+         f2Gfj3W6uns+QAd8sF33ndamKF0nZ5pPuC7ozsiAqCBOM3iYUawb7dyjZrkzvOphhrKz
+         jTMIQ4DLjcUS0acVZ28A6JVbWqdL+Hb6SmzQudzRNB3TrzTN2fLgz9sspOz9pQyD0p8r
+         eHlTazs6ZvypoizCHbPL5oBMDVee0vRZpEmY2vxtC8AoOC39lnu+owD1djVH1lP+D9EZ
+         LVKA==
+X-Gm-Message-State: AOJu0YzplRbsISTACeN9+htRe6wYiAU8d/LSxnqTU1RJ9k2DXqLfU27G
+	oDd1/KOY5iwVQmN8t3fxzMjUNg==
+X-Google-Smtp-Source: AGHT+IEt2Z20CLasgfjy8piP5p7z8ht3ceHn+xxKIK+JakEK6gmyJ0AHVbbJcPPUqVPzXZgvm5W4uA==
+X-Received: by 2002:a17:907:7f28:b0:9bd:e017:370e with SMTP id qf40-20020a1709077f2800b009bde017370emr7276341ejc.54.1699621972924;
+        Fri, 10 Nov 2023 05:12:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id n22-20020a170906841600b009b27d4153c0sm3938708ejx.178.2023.11.10.05.11.59
+        by smtp.gmail.com with ESMTPSA id n22-20020a170906841600b009b27d4153c0sm3938708ejx.178.2023.11.10.05.12.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 05:12:00 -0800 (PST)
-Message-ID: <c012c0b3-d6ca-4291-aa0c-05a192f30dcb@linaro.org>
-Date: Fri, 10 Nov 2023 14:11:58 +0100
+        Fri, 10 Nov 2023 05:12:52 -0800 (PST)
+Message-ID: <9b108026-0550-4b74-b87f-87f737b5d1d2@linaro.org>
+Date: Fri, 10 Nov 2023 14:12:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,8 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/4] dt-bindings: display: panel: Update NewVision
- NV3051D compatibles
+Subject: Re: [PATCH V2 3/4] dt-bindings: arm: rockchip: Add Powkiddy RK2023
 Content-Language: en-US
 To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
@@ -77,7 +76,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
  Chris Morgan <macromorgan@hotmail.com>
 References: <20231109215007.66826-1-macroalpha82@gmail.com>
- <20231109215007.66826-2-macroalpha82@gmail.com>
+ <20231109215007.66826-4-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,33 +122,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231109215007.66826-2-macroalpha82@gmail.com>
+In-Reply-To: <20231109215007.66826-4-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 09/11/2023 22:50, Chris Morgan wrote:
 > From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Update the NewVision NV3051D compatible strings by adding a new panel,
-> the powkiddy,rk2023-panel, and removing another entry, the
-> anbernic,rg353v-panel. The rg353v-panel is exactly identical to the
-> rg353p-panel and is not currently in use by any existing device tree.
-> The rk2023-panel is similar to the rg353p-panel but has slightly
-> different timings.
+> The Powkiddy RK2023 is a handheld gaming device made by Powkiddy and
+> powered by the Rockchip RK3566 SoC. Group the Powkiddy RK3566 based
+> devices together as they are both extremely similar.
 > 
-> I originally wrote the driver checking for the newvision,nv3051d
-> compatible string which worked fine when there was only 1 panel type.
-> When I added support for the 351v-panel I *should* have changed how the
-> compatible string was handled, but instead I simply added a check in the
-> probe function to look for the secondary string of
-> "anbernic,rg351v-panel". Now that I am adding the 3rd panel type of
-> "powkiddy,rk2023-panel" I am correcting the driver to do it the right
-> way by checking for the specific compatibles.
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
 
-I don't understand how any of this driver behavior is a reason to drop
-rg353v. You wrote two paragraphs to justify this removal, but I feel the
-only reason is that rg353v is just not needed, because it is duplicating
-rg353p? Is this right? You actually did not write it explicitly...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
