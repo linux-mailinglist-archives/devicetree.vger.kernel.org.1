@@ -1,333 +1,221 @@
-Return-Path: <devicetree+bounces-14928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FC07E7939
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:23:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40AD57E7980
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:44:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65B88280F8E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:23:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 632E41C20D28
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF696131;
-	Fri, 10 Nov 2023 06:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF9615B3;
+	Fri, 10 Nov 2023 06:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IpaP8P48"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lCaGPMb+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9A15C9A
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:23:43 +0000 (UTC)
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35926F80;
-	Thu,  9 Nov 2023 22:23:41 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-5b99bfca064so1298246a12.3;
-        Thu, 09 Nov 2023 22:23:41 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666C66FAA
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:44:12 +0000 (UTC)
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE5737D88
+	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 22:44:10 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id 5614622812f47-3b52360cdf0so938337b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 22:44:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699597421; x=1700202221; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=mCKfbSvlYu8MIDRjj/6bXZIu0Ksy5ItSqRuSmrChwQw=;
-        b=IpaP8P48bzQuLHCz72lnjnrIhQhNYuiPeo9rPIHbiROcm9WJ2rYjB9qPnsGQ5djFno
-         6Rr+ad3tRbrLq874MILkL7lyjQw1b3gxkmiD82aU0qMstom2kryfkuboeqOHEVlpnvCG
-         Y5qMC92kMccDInSk2oYlIfc70yDqe6loZY5BgncRBmQPLqW0AZ/tYPu/an1yIcXsIl+B
-         Jt0Pqm5gsIxOPIH2lWRTv2mGFsaJVkqLDqtCyNk8JXU7gUDfeUPQOcpwLGNy6emoEJ9A
-         Sj+lpURIBS06ZY2NwYcsszhpvk8H+V/GyEePd6/NBs/y5tSHplouiEZhtPQfhejsfpSo
-         9cCQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699598650; x=1700203450; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+XcC9jhP/bGq7aC/UoHPwAPHEM/GXNVyFdjZVSpXIVk=;
+        b=lCaGPMb+dppFbgrIoQ0alse29ezEbQfC122ijqUGkaLonX8vHkEf17Mwq2HVq8Ayvl
+         25hCD9cClXTncvyHZ81vGwDXt4uS1+ad42dxYz5TZg48TyGe1tnIyeG4MIWKk8iHg78o
+         CXTCL+E5pXzsHhKXR9XTxWh3UCQP4mA86tzTS7coE0ERRKTJoMyrkql6fERWIB+/PsKH
+         bUkk+zOmUF9gOG+bFYCvcuDOVpibwS7RvF3NJofY8zn+1lTtvpeuOMCiCPCR01K9AvlM
+         Kr8tAkB3xq5kl366ILwoLTCPNZdpY88fjV+SLK4hm/huYrBDciH1N+iO5fZx7yfNYUob
+         aPUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699597421; x=1700202221;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1699598650; x=1700203450;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mCKfbSvlYu8MIDRjj/6bXZIu0Ksy5ItSqRuSmrChwQw=;
-        b=kKTfgP26iKeHyW4t8lA+iwsWK9FfoopqCTyLtgAmNJEFaxNj4ZQ1KFlAAP8h8NTsFx
-         kwtE4D7i3zBJLS+wSlZrRLLsMpFiFXeDMIJqhAdmqAlJPa5yb1uWcfqx5WtL9X4KgvGS
-         kNeqkwpMBiVDjH5uzyeq8YHJOTxeF5CY4yAXt4L4ZtTyPerc0a44qqUqPkQQnvu4C3Mh
-         Wx/G7+iDi9FYfQGy+joxAdhK4vIVzG2c3VfKuHidwzlzLmxxMRpWD/sM8JJdqFtx3DdH
-         2BOXmrTPfRApaU4c8n+4eCb8UdzjsarGOvMKHtTKXZZsOgmI7x0Ql0OnztncIll0uIBQ
-         bqXg==
-X-Gm-Message-State: AOJu0YxECkjdCP637IwHkaYqUru+/BOAoUfSaI1Y5fXdWKAWX25k73ov
-	73JKF8tFXvyn04I821QZsGhVqIx2r7g=
-X-Google-Smtp-Source: AGHT+IFauVgDiouRipgVdWoz98bMXytBbMr+34vLbJN5sYPYwzFWR3WMGJIa6HZ5yiYJxhxs+Dj/UA==
-X-Received: by 2002:a17:902:cec1:b0:1cc:345b:c7e1 with SMTP id d1-20020a170902cec100b001cc345bc7e1mr7175223plg.60.1699593875207;
-        Thu, 09 Nov 2023 21:24:35 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id ix22-20020a170902f81600b001c735421215sm4424645plb.216.2023.11.09.21.24.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 21:24:34 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <c516412b-01bc-4a38-8045-94188aedd543@roeck-us.net>
-Date: Thu, 9 Nov 2023 21:24:32 -0800
+        bh=+XcC9jhP/bGq7aC/UoHPwAPHEM/GXNVyFdjZVSpXIVk=;
+        b=W0n1R0L+d2I+SENTZPcwQd1hh6aBXQ19p5U9croUIgGfh5FcVmmlgauJtB/P+FNduG
+         TdCWc2nfAeT0vXsZent4oQ+JKrB4/e6/4PgqjhrQ1VqzdzyK1kXO52Slb5ENB/4lQmo1
+         kmBGU7z9089LvlNpgBHkxjJ+cfxiRO0pIKITdhAv1emCqZYfM6JXWzEAdI1u1WpfXgNJ
+         b1Ht46ugoIOvtHnCkQkuucpqk10dVQ/DP2jkL8TMUaelA8Ip9KllkGsdvT1+KhcQ5L2Z
+         hXTK6a4LkjCPwcjr9a2CnHM4xEocS+WSKcnzF0d/yu1OKQadbcOv3YC+dgRAinJXg0p+
+         SduQ==
+X-Gm-Message-State: AOJu0YxMr4z1YXHv5Cf8jAohsl53B5whm9SSe5lFV7NFbHSAKRczg6J4
+	bNNSjcgba5zqW8/OPOguMIVUNJNKlmXeA5RnqevUGA==
+X-Google-Smtp-Source: AGHT+IFkQpr0eaXWEhDr21mdSAtBP0kGg5lYXmYv1+D4154UOsr+qeTrAtZAzTwbIvE2xTtyDvJC4A==
+X-Received: by 2002:a17:902:7084:b0:1c9:bca2:d653 with SMTP id z4-20020a170902708400b001c9bca2d653mr3086970plk.11.1699594945459;
+        Thu, 09 Nov 2023 21:42:25 -0800 (PST)
+Received: from [127.0.1.1] ([2601:1c2:1800:f680:2071:4479:98b8:cc69])
+        by smtp.gmail.com with ESMTPSA id ix22-20020a170902f81600b001b8a00d4f7asm4498845plb.9.2023.11.09.21.42.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Nov 2023 21:42:25 -0800 (PST)
+From: Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH v5 0/7] RISC-V: Add MMC support for TH1520 boards
+Date: Thu, 09 Nov 2023 21:41:10 -0800
+Message-Id: <20231109-th1520-mmc-v5-0-018bd039cf17@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] watchdog: mediatek: mt7988: add wdt support
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
- <ddb5b6ca88165aa69f73fe2804eedd0231d8d9e7.1699576174.git.daniel@makrotopia.org>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <ddb5b6ca88165aa69f73fe2804eedd0231d8d9e7.1699576174.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHbCTWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDA2ND3ZIMQ1MjA93c3GTdJJNUCxOztFQzCzNLJaCGgqLUtMwKsGHRsbW
+ 1AOy3IMZcAAAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
+ Adrian Hunter <adrian.hunter@intel.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+ Conor Dooley <conor@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Drew Fustini <dfustini@baylibre.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1699594943; l=6190;
+ i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
+ bh=m+hSYoMizlNfFoD70CP0rvM+rJPjrC2/jGP5h5E7auY=;
+ b=+kVfNZUJ/yL4kzpJ4UTre/gKwRHh0FCK0PeDAaVn5Fmmu+H1uCqdJGe/3xaeF8eEaGeYAj8fc
+ o3aHLPRHUMVAFJJJ1fCSWSdyGrQElfHtLh7LfCQoeOpGVzP68v/bcZC
+X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
+ pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 
-On 11/9/23 16:30, Daniel Golle wrote:
-> Add support for watchdog and reset generator unit of the MediaTek
-> MT7988 SoC.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->   drivers/watchdog/mtk_wdt.c | 56 +++++++++++++++++++++++++++++++++++++-
->   1 file changed, 55 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-> index b2330b16b497a..b98b8c29735aa 100644
-> --- a/drivers/watchdog/mtk_wdt.c
-> +++ b/drivers/watchdog/mtk_wdt.c
-> @@ -12,6 +12,7 @@
->   #include <dt-bindings/reset/mt2712-resets.h>
->   #include <dt-bindings/reset/mediatek,mt6795-resets.h>
->   #include <dt-bindings/reset/mt7986-resets.h>
-> +#include <dt-bindings/reset/mediatek,mt7988-resets.h>
->   #include <dt-bindings/reset/mt8183-resets.h>
->   #include <dt-bindings/reset/mt8186-resets.h>
->   #include <dt-bindings/reset/mt8188-resets.h>
-> @@ -58,6 +59,8 @@
->   #define WDT_SWSYSRST		0x18U
->   #define WDT_SWSYS_RST_KEY	0x88000000
->   
-> +#define WDT_SWSYSRST_EN		0xfc
-> +
->   #define DRV_NAME		"mtk-wdt"
->   #define DRV_VERSION		"1.0"
->   
-> @@ -71,44 +74,85 @@ struct mtk_wdt_dev {
->   	struct reset_controller_dev rcdev;
->   	bool disable_wdt_extrst;
->   	bool reset_by_toprgu;
-> +	bool has_swsysrst_en;
->   };
->   
->   struct mtk_wdt_data {
->   	int toprgu_sw_rst_num;
-> +	bool has_swsysrst_en;
->   };
->   
->   static const struct mtk_wdt_data mt2712_data = {
->   	.toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
+This series adds support for the MMC controller in the T-Head TH1520
+SoC, and it enables the eMMC and microSD slot on both the BeagleV
+Ahead and the Sipeed LicheePi 4A.
 
-Those assignments to false, just like assignments to 0, are unnecessary
-for static variables.
+I tested on top of v6.6 with riscv defconfig. I was able to boot the
+Ahead [1] and LPi4a [2] from eMMC. This patch series also exists as a
+git branch [3].
 
->   };
->   
->   static const struct mtk_wdt_data mt6795_data = {
->   	.toprgu_sw_rst_num = MT6795_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
->   };
->   
->   static const struct mtk_wdt_data mt7986_data = {
->   	.toprgu_sw_rst_num = MT7986_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
-> +};
-> +
-> +static const struct mtk_wdt_data mt7988_data = {
-> +	.toprgu_sw_rst_num = MT7988_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = true,
->   };
->   
->   static const struct mtk_wdt_data mt8183_data = {
->   	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
->   };
->   
->   static const struct mtk_wdt_data mt8186_data = {
->   	.toprgu_sw_rst_num = MT8186_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
->   };
->   
->   static const struct mtk_wdt_data mt8188_data = {
->   	.toprgu_sw_rst_num = MT8188_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
->   };
->   
->   static const struct mtk_wdt_data mt8192_data = {
->   	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
->   };
->   
->   static const struct mtk_wdt_data mt8195_data = {
->   	.toprgu_sw_rst_num = MT8195_TOPRGU_SW_RST_NUM,
-> +	.has_swsysrst_en = false,
->   };
->   
-> +static int toprgu_reset_sw_enable(struct reset_controller_dev *rcdev,
-> +				  unsigned long id, bool enable)
+Note: I have only tested eMMC and microSD. I have not yet configured
+or tested the mmc controller used for SDIO WiFi yet.
 
-This function name is a bit misleading. It doesn't always
-_enable_ something, it updates it based on the enable parameter.
+References:
+[1] https://gist.github.com/pdp7/881342620ec1509685f23a387e2fc8d7
+[2] https://gist.github.com/pdp7/97017ad88d83fccac18eba69bff817b7
+[3] https://github.com/pdp7/linux/tree/b4/th1520-mmc
 
-> +{
-> +	unsigned int tmp;
-> +	unsigned long flags;
-> +	struct mtk_wdt_dev *data =
-> +		 container_of(rcdev, struct mtk_wdt_dev, rcdev);
-> +
-> +	if (!data->has_swsysrst_en)
-> +		return 0;
-> +
-> +	spin_lock_irqsave(&data->lock, flags);
-> +
-> +	tmp = readl(data->wdt_base + WDT_SWSYSRST_EN);
-> +	if (enable)
-> +		tmp |= BIT(id);
-> +	else
-> +		tmp &= ~BIT(id);
-> +
-> +	writel(tmp, data->wdt_base + WDT_SWSYSRST_EN);
-> +
-> +	spin_unlock_irqrestore(&data->lock, flags);
-> +
+Changes in PATCH v5:
+- fix logic in th1520_sdhci_set_phy() to correctly check that both
+  MMC_CAP2_NO_SD and MMC_CAP2_NO_SDIO are set in host->mmc->caps2
+- add Acked-by's from Adrian
 
-I find this code quite confusing. If it is really necessary to set both
-WDT_SWSYSRST_EN and WDT_SWSYSRST together, what is the point of locking twice ?
-Why not just handle this in toprgu_reset_update() while the lock is
-alread held ? There is a lot of code duplication and inefficiency between
-toprgu_reset_sw_enable() and toprgu_reset_update(), and I really don't
-see the value of it if  WDT_SWSYSRST_EN and WDT_SWSYSRST have to be
-written together anyway.
+Changes in PATCH v4:
+https://lore.kernel.org/linux-riscv/20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com/
+- set DWCMSHC_CARD_IS_EMMC when (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)
+  as checking MMC_CAP_NONREMOVABLE is not sufficient
+- change prefix of phy functions from th1520 to dwcmshc as they are not
+  th1520 specific
+- remove unneeded check of priv in dwcmshc_phy_1_8v_init()
+- remove unneeded check of auto-tuning in th1520_execute_tuning()
+- fix order of new nodes in th1520-beaglev-ahead.dts: move sdhci_clk
+  before uart_sclk, move mmc0 and mmc1 before uart0
+- fix comment typos pointed out by Adrian
+- add trailers that I missed from v2
 
-> +	return 0;
+Changes in PATCH v3:
+https://lore.kernel.org/r/20231023-th1520-mmc-v3-0-abc5e7491166@baylibre.com
+- always call th1520_sdhci_set_phy() in th1520_set_uhs_signaling()
+  and not only when timing is MMC_TIMING_MMC_HS400. This allows the
+  microSD slot to work as th1520_phy_3_3v_init() is called from
+  th1520_sdhci_set_phy().
+- add mmc1 node for mmc controller connected to the microSD slot
+- add enable mmc1 and add properties for microSD on the Ahead and LPi4A
 
-This function always returns 0. That does not add any value.
+Changes in PATCH v2:
+https://lore.kernel.org/r/20231017-th1520-mmc-v2-0-4678c8cc4048@baylibre.com
+- make use of BIT(), GENMASK(), FIELD_PREP(), FIELD_GET()
+- add EXPORT_SYMBOL_GPL(__sdhci_execute_tuning)
+- call th1520_phy_1_8v_init() when FLAG_IO_FIXED_1V8 is set
+- set DWCMSHC_CARD_IS_EMMC when mmc caps contains MMC_CAP_NONREMOVABLE
+- remove manipulation of AT_CTRL_AT_EN from th1520_set_uhs_signaling()
+- remove unneccessary cycle of enabling and disabling AT_CTRL_AT_EN in
+  th1520_execute_tuning()
+- remove th1520_phy_1_8v_init_no_pull()
+- remove th1520_phy_3_3v_init_no_pull()
+- remove FLAG_PULL_UP_EN from priv->flags
+- remove thead,phy-pull-up device tree property
 
-> +}
-> +
->   static int toprgu_reset_update(struct reset_controller_dev *rcdev,
->   			       unsigned long id, bool assert)
->   {
-> @@ -135,13 +179,20 @@ static int toprgu_reset_update(struct reset_controller_dev *rcdev,
->   static int toprgu_reset_assert(struct reset_controller_dev *rcdev,
->   			       unsigned long id)
->   {
-> +	int ret;
-> +
-> +	ret = toprgu_reset_sw_enable(rcdev, id, true);
-> +	if (ret)
-> +		return ret;
-> +
+Changes in PACH v1:
+https://lore.kernel.org/all/20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com/
+- ADMA mode now works correctly due to a patch from Jisheng on the list
+  ("riscv: dts: thead: set dma-noncoherent to soc bus") and this commit
+  from Icenowy that is now merged: 8eb8fe67e2c8 ("riscv: errata: fix
+  T-Head dcache.cva encoding").
+- Expose __sdhci_execute_tuning from sdhci.c so that it can be called
+  from th1520_execute_tuning()
+- Refactor the define macros for all the PHY related registers to make
+  it easier to understand the bit fields that the code is manipulating
+- Replace magic numbers in the PHY register writes with proper defines
+- Replace non_removable in dwcmshc_priv with check of mmc_host.caps
+- Drop dt prop "thead,io-fixed-1v8" and instead check for existing
+  properties: "mmc-ddr-1_8v", "mmc-hs200-1_8v", or "mmc-hs400-1_8v"
+- Rename dt prop from "thead,pull-up" to "thead,phy-pull-up" and
+  improve the description in the dt binding
+- Replace pull_up_en in dwcmshc_priv with bit field in new flags field
+- Create th1520_set_uhs_signaling() and call dwcmshc_set_uhs_signaling()
+  from it instead of adding th1520 code to dwcmshc_set_uhs_signaling()
+- Return -EIO instead of -1 upon errors in th1520_execute_tuning()
 
-I am kind of missing the point of this return value check. I guess it is in line
-with the other unnecessary return values / return value checks in this code,
-but this really gets a bit out of control. It kind of creates the wrong
-assumption or expectation that the called code _may_ return an error,
-but in reality it doesn't.
+Changes in RFC v2:
+https://lore.kernel.org/linux-riscv/20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com/
+- Expand dwcmshc_priv based on driver in the T-Head 5.10 kernel:
+  delay_line, non_removable, pull_up_en, io_fixed_1v8
+- New boolean property "thead,pull-up" indicates phy pull-up config
+- New boolean property "thead,io-fixed-1v8" indicates that io voltage
+  should be set to 1.8V during reset
+- Add th1520_phy_1_8v_init() as voltage_switch op
+- Add th1520_execute_tuning() as the platform_execute_tuning op
+- Added th1520_sdhci_reset() as the .reset op. This function will set
+  io voltage to 1.8V after calling the standard sdhci_reset() function.
+- Modified dwcmshc_set_uhs_signaling() to enable SDHCI_CTRL_VDD_180 when
+  io_fixed_1v8 is true
+- Add many defines for register offsets and settings based on the mmc
+  support in the T-Head downstream v5.10 kernel
 
->   	return toprgu_reset_update(rcdev, id, true);
->   }
->   
->   static int toprgu_reset_deassert(struct reset_controller_dev *rcdev,
->   				 unsigned long id)
->   {
-> -	return toprgu_reset_update(rcdev, id, false);
-> +	toprgu_reset_update(rcdev, id, false);
+RFC v1 series:
+https://lore.kernel.org/r/20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com
 
-In a way it is commendable that the unnecessary return value handling was dropped,
-but that makes the code inconsistent with the reset_assert() function. Also, it is
-inconsistent to have the unnecessary return value check in toprgu_reset_assert()
-but not here.
+Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+---
+Drew Fustini (7):
+      dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head TH1520 support
+      mmc: sdhci: add __sdhci_execute_tuning() to header
+      mmc: sdhci-of-dwcmshc: Add support for T-Head TH1520
+      riscv: defconfig: Enable mmc and dma drivers for T-Head TH1520
+      riscv: dts: thead: Add TH1520 mmc controllers and sdhci clock
+      riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
+      riscv: dts: thead: Enable LicheePi 4A eMMC and microSD
 
-> +	return toprgu_reset_sw_enable(rcdev, id, false);
->   }
->   
->   static int toprgu_reset(struct reset_controller_dev *rcdev,
-> @@ -406,6 +457,8 @@ static int mtk_wdt_probe(struct platform_device *pdev)
->   						       wdt_data->toprgu_sw_rst_num);
->   		if (err)
->   			return err;
-> +
-> +		mtk_wdt->has_swsysrst_en = wdt_data->has_swsysrst_en;
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml           |   1 +
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  20 ++
+ .../boot/dts/thead/th1520-lichee-module-4a.dtsi    |  20 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi              |  23 ++
+ arch/riscv/configs/defconfig                       |   2 +
+ drivers/mmc/host/sdhci-of-dwcmshc.c                | 349 +++++++++++++++++++++
+ drivers/mmc/host/sdhci.c                           |   3 +-
+ drivers/mmc/host/sdhci.h                           |   1 +
+ 8 files changed, 418 insertions(+), 1 deletion(-)
+---
+base-commit: 8cfd133bee055fb537d2338b808079a77de60052
+change-id: 20231031-th1520-mmc-b4e846fe6869
 
-This is too late. The reset controller is already registered here,
-and the reset controller functions may already have been called.
-
->   	}
->   
->   	mtk_wdt->disable_wdt_extrst =
-
-Oh well, this and the next property are also called too late because they
-affect watchdog operation and the watchdog device has already been registered,
-but that is a different bug and not a reason to add even more race conditions
-to the driver.
-
-
-> @@ -444,6 +497,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
->   	{ .compatible = "mediatek,mt6589-wdt" },
->   	{ .compatible = "mediatek,mt6795-wdt", .data = &mt6795_data },
->   	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
-> +	{ .compatible = "mediatek,mt7988-wdt", .data = &mt7988_data },
->   	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
->   	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
->   	{ .compatible = "mediatek,mt8188-wdt", .data = &mt8188_data },
+Best regards,
+-- 
+Drew Fustini <dfustini@baylibre.com>
 
 
