@@ -1,238 +1,141 @@
-Return-Path: <devicetree+bounces-15082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F757E85B8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 23:29:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2167E86AC
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 00:48:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B9281C20481
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 22:29:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4324FB20B8F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 23:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391693D38F;
-	Fri, 10 Nov 2023 22:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB753D3BE;
+	Fri, 10 Nov 2023 23:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a3v39h3W"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mir1M6M3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB2E3E467;
-	Fri, 10 Nov 2023 22:28:45 +0000 (UTC)
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1F9B448C;
-	Fri, 10 Nov 2023 14:28:43 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-408382da7f0so19090895e9.0;
-        Fri, 10 Nov 2023 14:28:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699655322; x=1700260122; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=2uyp+vihWlmfUtHKNnOOdv5LG22ZhSVMoL0CChw4utk=;
-        b=a3v39h3WuwypABMfDPUZ0EX2YS7GEBfj6f3NA7tEBjX9NisTgx+IN9hfj7U43Owkzp
-         21rTfP3hi8Y/guesmDl2cr8rTHqy/ZIYN5iMACbkOaXQruaxiG+RkOLd2QQlrgyfdno5
-         3CYqpwWHYSYG4jbAIAlneLrQUhteYt6V15BfypocU91yXuAgTnhc7kQgLXtzb/JmZeWG
-         AbrKrk+xHVHs/QJCeg2rcnFxqg/1SLlvthMl3By/Tq9IroAIIygD28c7M2jgeEvW+gkL
-         6k+NaxC0ClwBKGaolkxZGaEQzfTZFz09qqlkzlugKsbtgoDPYsTvoJm8mU+aTlcli2su
-         mjNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699655322; x=1700260122;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2uyp+vihWlmfUtHKNnOOdv5LG22ZhSVMoL0CChw4utk=;
-        b=ot1hRdSlCqHn+jN6r9M1kJ7k3Q+76M4UPxyfTqHYTQITQyNkNkDPIIN3Mk5fU1cZ8z
-         s6iWR9BHyrFd7N5VPkk73WiMo5Q3URMRsDSRx7Y7+UntNxTXKBlNLGXnrr1d+nN3w1X8
-         suLu4eLqjxZuHhLiJvkHAhgG8FzuCylwB3NSi6mFronJgWoFH7wvNAVW5rKUC6gu6wKI
-         TK3OKGVutEymoBkbCqEZ3/nik2tXPMPL1QH2tGUysW8h6YJD5zGHFXMYIuwoAnuq+pLt
-         ii0wgowmMKN9/N0mLSlFTW0wijxRUtV5JLWqc3BATx2E6DyZjH5vE7EY/WewQbHjTVNj
-         HTKg==
-X-Gm-Message-State: AOJu0YzcyMavqeMBWNwyQDw2iVOtJCMbEJXLD3n52/Cv3myzxE7d2XqN
-	/py9eANfcNLcRIrxtEWhPLA=
-X-Google-Smtp-Source: AGHT+IESeKZlcAdWVmxVgB7ypnyiMUuBeI9QhVdrft2TA83P3XjjACShezcgLgzxE3KTIRr6LlrQiQ==
-X-Received: by 2002:adf:fb42:0:b0:31f:ea18:6f6b with SMTP id c2-20020adffb42000000b0031fea186f6bmr347617wrs.19.1699655322038;
-        Fri, 10 Nov 2023 14:28:42 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id i1-20020adffc01000000b0032f7f4089b7sm251841wrr.43.2023.11.10.14.28.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Nov 2023 14:28:41 -0800 (PST)
-Message-ID: <654eae99.df0a0220.14db7.0cb8@mx.google.com>
-X-Google-Original-Message-ID: <ZU6ulIA5cpQbK4fo@Ansuel-xps.>
-Date: Fri, 10 Nov 2023 23:28:36 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Simon Horman <horms@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Robert Marko <robimarko@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next RFC PATCH v6 3/4] net: phy: aquantia: add firmware
- load support
-References: <20231109123253.3933-1-ansuelsmth@gmail.com>
- <20231109123253.3933-3-ansuelsmth@gmail.com>
- <20231110195628.GA673918@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3611D681;
+	Fri, 10 Nov 2023 23:48:18 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8DA3C39;
+	Fri, 10 Nov 2023 15:48:17 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AANMOLT029711;
+	Fri, 10 Nov 2023 23:48:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=nPqLvqWSNzXaiUzUGDsBCTpfqHwVD2HejTtYoZlTink=;
+ b=mir1M6M3BRYIoTn3uk0nZU7tgMQRFTbeu8pQ/JwDO1cAK3ljK+9l8dJzD5ldJr0YuWPe
+ CinPYVMVE3PTr1JT74acqu0ic9gFPNnTSBlWjB4mH7HGT6PgmZzVTUFHW+/VKSGdpfgw
+ P39rxJDsC7THoRCaY5FhRdH/8e8Vlr0luf6QwsTQa+dvsqCCszl31BnKeAbpULwgTfU6
+ ++Ci8W8VJ4bgaP5JnGtYg5YIGhF/nNJwlRkV4/qPaTHrucsGTVzX3lRkZK9bePG8OeyP
+ CqCz8/bPenFA7EWxofzWR1ZwBxTxKDrv8AP5sOlA4NwiYSmZ79acH8WBEq0ub0ugFvQV Lw== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u9rgwrxda-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 23:48:01 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AANm0wj011811
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 23:48:01 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.39; Fri, 10 Nov 2023 15:48:00 -0800
+Date: Fri, 10 Nov 2023 15:47:58 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Jishnu Prakash <quic_jprakash@quicinc.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <Jonathan.Cameron@huawei.com>,
+        <sboyd@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <marijn.suijten@somainline.org>,
+        <andriy.shevchenko@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-arm-msm-owner@vger.kernel.org>
+Subject: Re: [PATCH 10/11] ARM: dts: qcom: Update devicetree for QCOM ADC
+ bindings path change
+Message-ID: <20231110234758.GE3553829@hu-bjorande-lv.qualcomm.com>
+References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
+ <20230708072835.3035398-11-quic_jprakash@quicinc.com>
+ <59ea565c-93ad-e8e3-10db-ae3ba481ebe9@linaro.org>
+ <706d3b7e-a9b5-081c-52b2-7cce4f0d5f10@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231110195628.GA673918@kernel.org>
+In-Reply-To: <706d3b7e-a9b5-081c-52b2-7cce4f0d5f10@quicinc.com>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6AJ9hk15vPowi0gTtV63OjTn3Ge_Ojzm
+X-Proofpoint-GUID: 6AJ9hk15vPowi0gTtV63OjTn3Ge_Ojzm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-10_21,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ impostorscore=0 spamscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 mlxlogscore=800 clxscore=1011 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311100197
 
-On Fri, Nov 10, 2023 at 07:57:02PM +0000, Simon Horman wrote:
-> On Thu, Nov 09, 2023 at 01:32:52PM +0100, Christian Marangi wrote:
-> > From: Robert Marko <robimarko@gmail.com>
+On Mon, Oct 23, 2023 at 11:48:13AM +0530, Jishnu Prakash wrote:
+> Hi Krzysztof,
+> 
+> On 7/9/2023 10:56 PM, Krzysztof Kozlowski wrote:
+> > On 08/07/2023 09:28, Jishnu Prakash wrote:
+> > > Update ADC dt-bindings file paths in QCOM devicetree files to
+> > > match the dt-bindings change moving the files from 'iio' to
+> > > 'iio/adc' folder.
+> > > 
+> > > Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+> > > ---
+> > Your order of patches is incorrect. DTS cannot be before bindings,
+> > because this indicates you broke ABI. Please keep entire patchset
+> > bisectable and split DTS to separate patchset (linking the driver and
+> > bindings).
 > > 
-> > Aquantia PHY-s require firmware to be loaded before they start operating.
-> > It can be automatically loaded in case when there is a SPI-NOR connected
-> > to Aquantia PHY-s or can be loaded from the host via MDIO.
-> > 
-> > This patch adds support for loading the firmware via MDIO as in most cases
-> > there is no SPI-NOR being used to save on cost.
-> > Firmware loading code itself is ported from mainline U-boot with cleanups.
-> > 
-> > The firmware has mixed values both in big and little endian.
-> > PHY core itself is big-endian but it expects values to be in little-endian.
-> > The firmware is little-endian but CRC-16 value for it is stored at the end
-> > of firmware in big-endian.
-> > 
-> > It seems the PHY does the conversion internally from firmware that is
-> > little-endian to the PHY that is big-endian on using the mailbox
-> > but mailbox returns a big-endian CRC-16 to verify the written data
-> > integrity.
-> > 
-> > Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > Best regards,
+> > Krzysztof
 > 
-> Hi Christian and Robert,
+> OK....so you mean I can move the dtbinding files and update documentation
+> and driver files for this, all in one patch and then make a second patch for
+> updating devicetree files for the file paths?
 > 
-> thanks for your patch-set.
-> 
-> I spotted some minor endien issues which I have highlighted below.
-> 
-> ...
->
-
-Hi Simon,
-
-thanks for the check!
-
-> > +/* load data into the phy's memory */
-> > +static int aqr_fw_load_memory(struct phy_device *phydev, u32 addr,
-> > +			      const u8 *data, size_t len)
-> > +{
-> > +	u16 crc = 0, up_crc;
-> > +	size_t pos;
-> > +
-> > +	/* PHY expect addr in LE */
-> > +	addr = cpu_to_le32(addr);
-> 
-> The type of addr is host byte-order,
-> but here it is assigned a little-endian value.
-> 
-> Flagged by Sparse.
-> 
-> > +
-> > +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> > +		      VEND1_GLOBAL_MAILBOX_INTERFACE1,
-> > +		      VEND1_GLOBAL_MAILBOX_INTERFACE1_CRC_RESET);
-> > +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> > +		      VEND1_GLOBAL_MAILBOX_INTERFACE3,
-> > +		      VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR(addr));
-> 
-> VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR() performs a bit-shift on addr,
-> and applies a mask which is in host-byte order.
-> But, as highlighted above, addr is a little-endian value.
-> This does not seem right.
->
-
-It's really just some magic to split the addr and swap if we are not
-in little-endian. The passed addr are defined here in the code and are
-hardcoded, they doesn't come from the firmware. What I can do is just
-recast __le32 to u32 again with __force to mute the warning...
-
-Resulting in this snippet:
-
-	__le32 addr;
-	size_t pos;
-
-	/* PHY expect addr in LE */
-	addr = cpu_to_le32(load_addr);
-
-	phy_write_mmd(phydev, MDIO_MMD_VEND1,
-		      VEND1_GLOBAL_MAILBOX_INTERFACE1,
-		      VEND1_GLOBAL_MAILBOX_INTERFACE1_CRC_RESET);
-	phy_write_mmd(phydev, MDIO_MMD_VEND1,
-		      VEND1_GLOBAL_MAILBOX_INTERFACE3,
-		      VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR((__force u32)addr));
-	phy_write_mmd(phydev, MDIO_MMD_VEND1,
-		      VEND1_GLOBAL_MAILBOX_INTERFACE4,
-		      VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR((__force u32)addr));
-
-Also things needs to be casted to u16 anyway as phy_write_mmd expect a
-u16. And as you said FILED_PREP will use int (from the define) so I
-wonder if a more clean way would be just addr = (__force u32)cpu_to_le32(load_addr)
-resulting in a simple bswap32 if we are in big-endian.
-
-Would love some feedback about this.
-
-> This is all hidden by a cast in VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR()
-> This seems dangerous to me.
-> 
-> 
-> > +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> > +		      VEND1_GLOBAL_MAILBOX_INTERFACE4,
-> > +		      VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR(addr));
-> 
-> There seem to be similar issues with the use of addr here.
-> 
-> > +
-> > +	/* We assume and enforce the size to be word aligned.
-> > +	 * If a firmware that is not word aligned is found, please report upstream.
-> > +	 */
-> > +	for (pos = 0; pos < len; pos += sizeof(u32)) {
-> > +		u32 word = get_unaligned((const u32 *)(data + pos));
-> > +
-> > +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_MAILBOX_INTERFACE5,
-> > +			      VEND1_GLOBAL_MAILBOX_INTERFACE5_MSW_DATA(word));
-> > +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_MAILBOX_INTERFACE6,
-> > +			      VEND1_GLOBAL_MAILBOX_INTERFACE6_LSW_DATA(word));
-> > +
-> > +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_MAILBOX_INTERFACE1,
-> > +			      VEND1_GLOBAL_MAILBOX_INTERFACE1_EXECUTE |
-> > +			      VEND1_GLOBAL_MAILBOX_INTERFACE1_WRITE);
-> > +
-> > +		/* calculate CRC as we load data to the mailbox.
-> > +		 * We convert word to big-endiang as PHY is BE and mailbox will
-> > +		 * return a BE CRC.
-> > +		 */
-> > +		word = cpu_to_be32(word);
-> 
-> Similarly here, Sparse flags that a little-endian value is assigned to a
-> host byte-order variable.
+> I'll make this change in the next patchset if it looks fine, although the
+> two patches would need to be picked together to avoid kernel breakage. I
+> have asked Jonathan about this too in my reply for the previous patchset 9.
 > 
 
-Same here, I'm solving by declaring a new __be32 variable but in
-crc_ccitt_false the thing needs to be casted anyway, doesn't that makes
-the check useless?
+1) We need to be able to use git bisect to identify regressions, and as
+such the kernel need to be buildable and functional after each applied
+patch.
 
-> > +		crc = crc_ccitt_false(crc, (u8 *)&word, sizeof(word));
-> > +	}
-> 
-> ...
-> 
-> pw-bot: changes-requested
+2) DeviceTree source (dts) changes enters the kernel through different
+maintainer paths than the DeviceTree binding and driver changes, and
+therefore at different times. In some cases the .dtb file is also
+delivered separately from the kernel, which means people might be
+running an old .dtb for a considerable amount of time after your change.
+As such your driver changes needs to be compatible with both the new and
+the old DeviceTree binding.
 
--- 
-	Ansuel
+Regards,
+Bjorn
 
