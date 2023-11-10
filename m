@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D972A7E79EE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 08:58:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3C07E79F9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 09:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C0DAB20D50
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:58:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6D99B20E30
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 08:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EA27482;
-	Fri, 10 Nov 2023 07:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7F97489;
+	Fri, 10 Nov 2023 08:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l2JsI4A3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xpke9z5p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEF97477
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 07:58:18 +0000 (UTC)
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18F9886A
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 23:58:16 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-32deb2809daso964587f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 23:58:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D795B746F
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 08:09:15 +0000 (UTC)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA62A8A58
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 00:09:13 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c5039d4e88so23192651fa.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 00:09:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699603095; x=1700207895; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699603752; x=1700208552; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CmNsSkxGNQJ9Q4GP0q3MvT9no1MR/Ri0odVIQEptAvk=;
-        b=l2JsI4A3ypjEZ3AJjIqfhYM9UrYSuWsC3igICfZ6Jp91/KeHpFC6ryJ8IMFoN9U/nb
-         zni6vUO5a9PgydZmLUVlkinp5VIQ3tiIYoAPGK0EFhQTWXhPbz2ubNxMpQJIasdx1iyO
-         eq8nsby6nz+4tQqE8lhqmS6D3whw0ikHK5xf2TDk4YJ/cHbJL/6WfPAH80lz7o56lzne
-         EGD0nvfeDKVO3aiGEbWyaB58BhS0lLU6fSk06UYniqe2IHRJMo8859RQqx3wjf8V8Beh
-         2oE6Hvp2228G4lxQl1zOELU0IYHi9YCBTAQnWRauzh5uZ2z2TEZk15bX9dVwwSmiJ6c6
-         Vqzg==
+        bh=jj2TzqEB2ENsjSamUNjM4gx0P8t177UfjMHSpkh9dzk=;
+        b=Xpke9z5pWKRh9xUH/vZCxRh7Y7rd9JD4QUeHEGCpF/SrhnDfWDg1F0RVharYp3QjCa
+         3m4ZdyqKwVZJfKETQR+425CC/aghB41B9PVFuIFc4cOQ+7TNMOyw5/hhqEs3QW7BvaQZ
+         QQEeHATSgIvl62rw2iv9pk1lwfEnbI5uhGCZ2pGmtWSP6Btgc74WXM1xYmpApZP6G/Rq
+         1d7bWJTeblW0emsIx9R+trAhqb9c5SbKFG+lKCCtukMKaxhZ7TLiwiJj79Rg4VjyH8l2
+         XZh16GaWMX1ZCYDHBM1nB9Xbd20uXiN5S8yZQWAmRNf9McIVv6AFka81C+GLQXfAqnB+
+         dleA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699603095; x=1700207895;
+        d=1e100.net; s=20230601; t=1699603752; x=1700208552;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CmNsSkxGNQJ9Q4GP0q3MvT9no1MR/Ri0odVIQEptAvk=;
-        b=ezmyqW2dhkvkk76xc4H3ZrmB6hcjSWPe4yTonK1FIefiCPd/XdT3QIGC9+jDL7ykAq
-         j7G1CpCz0uwojqp+JMCgvnBFioANZEZMJm6wdd/UIGvAqhiwSBkXMvBkZY1nEWlUM2Rn
-         ykATVRhf0dtqIRRNCN3DPEnm1jJIlGi/rBRAd8E1JSfqB0hnquIJfLPlkSFFgwBgXV+8
-         KXPi+USLw4KXxWTwr6b1LhIGWRHY2EsTWA+YuXsOcEFOPpq6iYv0x286BAqP5A76ZeSV
-         ingA0Z/oo7AxiVApIS4gqhfn6RkLzGDn3wgsGquQVJpy2GEIlO0FP7l+mZ6UuKZ/BZLD
-         QpEw==
-X-Gm-Message-State: AOJu0YzBKhAWhl2GIiI9JbBRcRZzKgjos5BEa6creQFhgaO4IZ9y43+7
-	cuUX2jW2ARWpjtFQeXy+7wPe0A==
-X-Google-Smtp-Source: AGHT+IGZKQiVi/l3PE3rMUGuuZB9Ya3QDCrJYK8NJRwEd76ii8VtTRZDdWH3qx39UjTk9tcaifEFJA==
-X-Received: by 2002:a05:6000:188c:b0:32d:9850:9e01 with SMTP id a12-20020a056000188c00b0032d98509e01mr4958052wri.61.1699603095075;
-        Thu, 09 Nov 2023 23:58:15 -0800 (PST)
+        bh=jj2TzqEB2ENsjSamUNjM4gx0P8t177UfjMHSpkh9dzk=;
+        b=bfhEcZpJ1vU3ppYPxibRyn7tlOar740ptZi2ftt+tp0T4+zzMzEN7FS+U9GMp2nvoG
+         nnhuTC9t+OkleBkgiVmUJkimoXdVV7gouNiYKxeHuiv9IChYXEidYyfPtbwlqI1aTkRY
+         trERVUvHuhXwhcborjva1tJFyIb6agIvitLn5lG51WEJiXv9Yg6PgSyTAwlRZhtY46kg
+         USSg9inhMFVSX+YbEoYT2z/hqurdOCBKhp+eLIbpt1rx9hxgE4nNGE89NZjYYAsnckA/
+         QzFDFx+HZ/EwvBspd/sgkHt0zcUdw0RfXSLJXbT/UA62h64R81IIMrAzwjD88ubEbHOf
+         jxDw==
+X-Gm-Message-State: AOJu0YwW5ctjjEPRwToh1BlSGEqA3k1/TkLFHCHlJDd5Emafl6khwzjE
+	xobEqEHmfFNqOKC4RdNJSgoljQ==
+X-Google-Smtp-Source: AGHT+IEYFStERPyV5c86gHIMbT3QI1vmdyoywYTR9AH+mGVgu4fiLOQpfzQHAlaMX7ZXgnnJTOOW7A==
+X-Received: by 2002:a05:651c:1a2c:b0:2c7:426b:5028 with SMTP id by44-20020a05651c1a2c00b002c7426b5028mr3892132ljb.2.1699603752207;
+        Fri, 10 Nov 2023 00:09:12 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id j17-20020adfea51000000b0032d829e10c0sm1362413wrn.28.2023.11.09.23.58.12
+        by smtp.gmail.com with ESMTPSA id p5-20020a7bcc85000000b004081a011c0esm4345539wma.12.2023.11.10.00.09.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Nov 2023 23:58:14 -0800 (PST)
-Message-ID: <9db77625-8dc0-4963-b200-851c209ac238@linaro.org>
-Date: Fri, 10 Nov 2023 08:58:11 +0100
+        Fri, 10 Nov 2023 00:09:11 -0800 (PST)
+Message-ID: <59629ec1-cc0c-4c5a-87cc-ea30d64ec191@linaro.org>
+Date: Fri, 10 Nov 2023 09:09:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,41 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/17] dt-bindings: i2c: exynos5: add specific compatibles
- for existing SoC
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: mediatek,mtk-wdt: add MT7988
+ watchdog and toprgu
 Content-Language: en-US
-To: Alim Akhtar <alim.akhtar@samsung.com>, 'David Airlie'
- <airlied@gmail.com>, 'Daniel Vetter' <daniel@ffwll.ch>,
- 'Maarten Lankhorst' <maarten.lankhorst@linux.intel.com>,
- 'Maxime Ripard' <mripard@kernel.org>,
- 'Thomas Zimmermann' <tzimmermann@suse.de>, 'Rob Herring'
- <robh+dt@kernel.org>,
- 'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
- 'Conor Dooley' <conor+dt@kernel.org>, 'Andi Shyti' <andi.shyti@kernel.org>,
- 'Jonathan Cameron' <jic23@kernel.org>, 'Lars-Peter Clausen'
- <lars@metafoo.de>, 'Lee Jones' <lee@kernel.org>,
- 'Ulf Hansson' <ulf.hansson@linaro.org>, 'Tomasz Figa'
- <tomasz.figa@gmail.com>, 'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
- 'Linus Walleij' <linus.walleij@linaro.org>,
- 'Thierry Reding' <thierry.reding@gmail.com>,
- =?UTF-8?Q?=27Uwe_Kleine-K=C3=B6nig=27?= <u.kleine-koenig@pengutronix.de>,
- 'Alessandro Zummo' <a.zummo@towertech.it>,
- 'Alexandre Belloni' <alexandre.belloni@bootlin.com>,
- 'Greg Kroah-Hartman' <gregkh@linuxfoundation.org>,
- 'Jiri Slaby' <jirislaby@kernel.org>, 'Liam Girdwood' <lgirdwood@gmail.com>,
- 'Mark Brown' <broonie@kernel.org>, 'Jaehoon Chung' <jh80.chung@samsung.com>,
- 'Sam Protsenko' <semen.protsenko@linaro.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
- <CGME20231108104407epcas5p4c52f140b035727b6110ff7d3c0f81bc0@epcas5p4.samsung.com>
- <20231108104343.24192-3-krzysztof.kozlowski@linaro.org>
- <02bb01da1337$65caf5e0$3160e1a0$@samsung.com>
+To: Daniel Golle <daniel@makrotopia.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -147,36 +126,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <02bb01da1337$65caf5e0$3160e1a0$@samsung.com>
+In-Reply-To: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/11/2023 19:05, Alim Akhtar wrote:
-
-(...)
-
-Please trim unrelated parts of response/quote before and after your message.
-
->> @@ -25,7 +25,15 @@ properties:
->>            - samsung,exynos5250-hsi2c    # Exynos5250 and Exynos5420
->>            - samsung,exynos5260-hsi2c    # Exynos5260
->>            - samsung,exynos7-hsi2c       # Exynos7
->> -          - samsung,exynosautov9-hsi2c  # ExynosAutoV9 and Exynos850
->> +          - samsung,exynosautov9-hsi2c
->> +      - items:
->> +          - enum:
->> +              - samsung,exynos5433-hsi2c
->> +          - const: samsung,exynos7-hsi2c
->> +      - items:
->> +          - enum:
->> +              - samsung,exynos850-hsi2c
-> Does this need an entry in allOf:? to indicate exynos850 also has 2 clocks?
+On 10/11/2023 01:30, Daniel Golle wrote:
+> Add binding description for mediatek,mt7988-wdt.
 > 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
 
-No, autov9 is there already.
+...
 
->> +          - const: samsung,exynosautov9-hsi2c
+> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> new file mode 100644
+> index 0000000000000..fa7c937505e08
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +
+> +/* TOPRGU resets */
+> +#define MT7988_TOPRGU_SGMII0_GRST		1
+> +#define MT7988_TOPRGU_SGMII1_GRST		2
+> +#define MT7988_TOPRGU_XFI0_GRST			12
+> +#define MT7988_TOPRGU_XFI1_GRST			13
+> +#define MT7988_TOPRGU_XFI_PEXTP0_GRST		14
+> +#define MT7988_TOPRGU_XFI_PEXTP1_GRST		15
+> +#define MT7988_TOPRGU_XFI_PLL_GRST		16
 
+IDs should start from 0 or 1 and increment by 1. If these are not IDs,
+then you do not need them in the bindings.
+
+Where is the driver change using these IDs?
+
+> +
+> +#define MT7988_TOPRGU_SW_RST_NUM		24
+
+Why 24? I see 7. Why having it in the bindings in the first place.
+
+It's quite likely I asked the same question about other bindings for
+Mediatek. I will be asking every time till this is fixed.
 
 Best regards,
 Krzysztof
