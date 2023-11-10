@@ -1,152 +1,196 @@
-Return-Path: <devicetree+bounces-14907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208717E76B9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:40:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C44537E76A3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:39:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDDDB1C20C2F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:40:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73EAE2811CB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795BEA51;
-	Fri, 10 Nov 2023 01:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7637E7FE;
+	Fri, 10 Nov 2023 01:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Rdm9QD4y"
+	dkim=pass (1024-bit key) header.d=cisco.com header.i=@cisco.com header.b="CHJNTpVf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72CBA46;
-	Fri, 10 Nov 2023 01:40:30 +0000 (UTC)
-X-Greylist: delayed 592 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 09 Nov 2023 17:40:29 PST
-Received: from mail-m17244.xmail.ntesmail.com (mail-m17244.xmail.ntesmail.com [45.195.17.244])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4D44689;
-	Thu,  9 Nov 2023 17:40:28 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=Rdm9QD4yO6LRbZBNE1A/b+RLokMwSHSQFNyKUAJYTpR4K9xUU8zLPUZ5xR2J69Hxh5A0rXeerIurDn+8czNto4RCBLRqAHgX00bVVDTTD9FXb6CpWOWOHChw2uUyUEgO1exOq+Sf/pstX5QlCHztlp7pu5XOyhEmIdKHwx5I/FI=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=P0GaHyRA5mwU4r4OqdCotWnXqFS5RSLvYdfU/GQ9YsU=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.49] (unknown [58.22.7.114])
-	by mail-m11877.qiye.163.com (Hmail) with ESMTPA id C3D5D4001CD;
-	Fri, 10 Nov 2023 09:23:39 +0800 (CST)
-Message-ID: <53059eca-5c55-6dde-6246-40ed9f2dca91@rock-chips.com>
-Date: Fri, 10 Nov 2023 09:23:39 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF5597E6;
+	Fri, 10 Nov 2023 01:39:23 +0000 (UTC)
+X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 09 Nov 2023 17:39:22 PST
+Received: from rcdn-iport-1.cisco.com (rcdn-iport-1.cisco.com [173.37.86.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E723444A4;
+	Thu,  9 Nov 2023 17:39:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=3762; q=dns/txt; s=iport;
+  t=1699580363; x=1700789963;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=PtUp1GjfEwZS61DxzSRMFo9GD7QWcRxAdJGBMTXDcM0=;
+  b=CHJNTpVfqbPEflg+O6phpSNh0QOXm5wE1W5tLaNTfGH7e2TBUAyr+Ft8
+   SteOPYyT+L6f6ROCXUCsomQwBQjfd/FD97smCNwfJezOf4zPtG0x2B6yN
+   ihm+mFd2d47xGicvnR4wbqRHoOcdnIvtgUoMSaXG7W3FVx1flRah8n7tm
+   4=;
+X-CSE-ConnectionGUID: Tg5rtsM1RzKj3gJducQSPg==
+X-CSE-MsgGUID: 2YLxlXJiRgOPNW/RlT7pzw==
+X-IPAS-Result: =?us-ascii?q?A0ANAADbh01lmJtdJa1aHAEBAQEBAQcBARIBAQQEAQGBe?=
+ =?us-ascii?q?wcBAQsBhAdAjTenQ4F+DwEBAQ9EBAEBhQaHKAImNAkOAQIEAQEBAQMCAwEBA?=
+ =?us-ascii?q?QEBAQECAQEFAQEBAgEHBBQBAQEBAQEBAR4ZBRAOJ4V1hwUBRoE+AYMQgl8Dr?=
+ =?us-ascii?q?VeCLIEBsyiBaIFIAYxDgR6ENScbgUlEhAeLfASJJQcygUlZg1KDD4o8f0daF?=
+ =?us-ascii?q?h0DBwNWKRArBwQtIgYJFC0jBlEEFxEkCRMSPgSDNAp/Pw8OEYI/IgI9NhlIg?=
+ =?us-ascii?q?lsVQARGdhAqBBQXgRJuGxUeNxESFw0DCHQdAhEjPAMFAwQzChINCyEFFEIDQ?=
+ =?us-ascii?q?gZJCwMCGgUDAwSBNgUNHgIQLScDAxNNAhAUAzsDAwYDCzEDMFVEDFEDbx8aH?=
+ =?us-ascii?q?Ak8DwwfAhseDScoAjVDAxEFEgIWAyQZBEUDCQMHBUlAAwsYDUgRLDUGDhsGP?=
+ =?us-ascii?q?3MHoGJyAS1igTCUODKPBIIdoEeEF4FfnyoaM4QBjHOZD5g/IKMJhSiBYzqBW?=
+ =?us-ascii?q?zMaCBsVgyNRGQ+OOZMbAV0jbQIHCwEBAwmLSgEB?=
+IronPort-Data: A9a23:xFsu3a1wctyYQEMMyPbD5aJ3kn2cJEfYwER7XKvMYLTBsI5bpzZWz
+ mUXX2DXPvfZZmqhLtojO43goB8A6pbVztZhSAtu3Hw8FHgiRegpqji6wuYcGwvIc6UvmWo+t
+ 512huHodZ1yFjmE4E71btANlFEkvYmQXL3wFeXYDS54QA5gWU8JhAlq8wIDqtYAbeORXUXV4
+ rsen+WFYAX+gmctajpNg06+gEoHUMra6WtwUmMWPZinjHeG/1EJAZQWI72GLneQauG4ycbjG
+ o4vZJnglo/o109F5uGNy94XQWVWKlLmBjViv1INM0SUbreukQRpukozHKJ0hU66EFxllfgpo
+ DlGncTYpQvEosQglcxFOyS0HR2SMoV69+LdPWOa6PaB7E+dfFng3v5XN3k5aNhwFuZfWQmi9
+ NQCIzwLKxuEne/znPSwS/JngYIoK8yD0IE34y47i2qGS6d9B8meHs0m5vcAtNs0rsxHG/fTY
+ 9UQQTFudx/HJRZIPz/7Dbpnx7v41iWuImMwRFS9/5sT82zj7g1L35/VFuWSQNi2Gt1HgRPNz
+ o7B1z2pXk5FXDCF8hKB83SxlqrCkyLTRo0fDvu7++RsjVnVwXYcYDUSVF2msby6gFO/X953N
+ UMZ4GwtoLI0+UjtScPyNzW0rWCFtRMAQdddO/M15RvLyafO5QudQG8eQVZpbN0gqd9zRjEw0
+ FKNt83mCCYps7CPT3+ZsLCOoluaPSkTMH9HbDUBCAgI+d/upKk3jwnTVZBiFqCvh9H4ED22x
+ CqFxAA4hr4UiccQ/6u59EvDjnShu/DhSAI4/QzKWmSk4xliTIGiYIOs5B7Q6vMoBICQUlmIu
+ lAHltKY4eRICouC/ASNWOwlDqC14OzDOzrZ6XZrHp885yy18DuvcJ545DBlOFwvNdQAcDXyJ
+ kjJtmt54J5VIWvvaK5veKqvBMkwi6vtD9LoUrbTdNUmSoghKieE8TtoaErW2Hri+GA3nKg5f
+ 56dfcu2FnEcIb9qxz3wTOAYuZc3wSU33iXWWJzh0hKk2JKRYXeUTfEON17mRvkk7aizuA/P+
+ tZaPuOT1hRUUev1JCLQ9OY7JFMSKFA/BJbru4lZcfOFLgN6GWYnTfjLztsJd4VjnqlRvujJ+
+ 2mwXkJGyVH/w2bOL0CEcHllY7L0VpE5pnt9IDdEFUyv0XgLYou16qobMZwtctEP/+x5zOVoS
+ OEFdoOED+5IWxzM4DsHaoTl6oF/HDy0hAaKFymoej4ye9hnXQOhxzP/VhHk+C9LBS2tuI5i5
+ bahzQjcB5EEQmyOEfo6dtqTwA6roWM4wdhgfEmTLftfZU7Vy7BlfnmZYuAMH+kALhDKxz2/3
+ gmQAAsFqeSln2PT2ISX7Uxjh9r0e9aSDna2DEGAsunrbXiyEn6LhN4fALzRLFgxQUutoP36D
+ di52c0QJxHuobqnm5B3H7AuxqUk6p6z4bRb1Q9jWn7MajxH64+MwFHYgaGjVYUUm9e1XDdav
+ GrTprG23p3VYKvY/KY5flZNUwh6/ah8dsPuxfo0Ol7mwyR84aCKV05fVzHV1n0MceYpbt91m
+ rh90CLz1+BZokRzWjphpn4Mn1lg0lRcO0nanshAWdSy2lZDJq9qO8CGVEcaH61jm/0VYhV1f
+ Vd4dYLJhq9XwQLZYmEvGH3WtdexdrxQ0C2mOGQqfgzT8vKc36df9EQIoVwfEF8Ppj0ZiL0bB
+ 4SeHxAvTUl412021JErsqHFM1wpOSB1DWSokAtRyD2GHxX4PoEPRUVkUduwEIki2zo0VlBmE
+ HuwkQ4JjR6CkBnN4xYP
+IronPort-HdrOrdr: A9a23:1pk2VKypleQTi517Rul2KrPwJb1zdoMgy1knxilNoNJuHvBw8P
+ re/sjzuiWbtN98YhsdcLO7Scq9qA3nlKKdiLN5VdyftWLd11dAQrsO0WKb+V3d8+mUzJ846U
+ +mGJIObeHNMQ==
+X-Talos-CUID: =?us-ascii?q?9a23=3A/Eqiz2mXSOSCeZI2EUGthTci2VnXOUHSkW3MOGr?=
+ =?us-ascii?q?hM3RKSuaaa1ON85pfq8U7zg=3D=3D?=
+X-Talos-MUID: 9a23:xtDHAwvI7ZhpOKvHds2n3gBGJMNYwaWUB2c1t6pBgc24ajRiJGLI
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="6.03,291,1694736000"; 
+   d="scan'208";a="134884996"
+Received: from rcdn-core-4.cisco.com ([173.37.93.155])
+  by rcdn-iport-1.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2023 01:38:19 +0000
+Received: from goliath.lan ([10.25.128.169])
+	by rcdn-core-4.cisco.com (8.15.2/8.15.2) with ESMTP id 3AA1cHVG011466;
+	Fri, 10 Nov 2023 01:38:17 GMT
+From: Daniel Walker <danielwa@cisco.com>
+To: Will Deacon <will@kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Rob Herring <robh@kernel.org>,
+        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Pratyush Brahma <quic_pbrahma@quicinc.com>,
+        Tomas Mudrunka <tomas.mudrunka@gmail.com>,
+        Sean Anderson <sean.anderson@seco.com>, x86@kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org
+Cc: linux-efi@vger.kernel.org
+Subject: [PATCH 0/8] generic command line v6
+Date: Thu,  9 Nov 2023 17:38:04 -0800
+Message-Id: <20231110013817.2378507-1-danielwa@cisco.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF clk
- id
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, mturquette@baylibre.com,
- sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
- andy.yan@rock-chips.com, Sebastian Reichel <sebastian.reichel@collabora.com>
-References: <20231108061822.4871-1-zhangqing@rock-chips.com>
- <20231108061822.4871-4-zhangqing@rock-chips.com>
- <20231108-donation-uncertain-c4d0f560c420@spud>
- <2e520a06-0ff1-76ef-2a72-ab6663738b45@rock-chips.com>
- <20231109-send-pushchair-45b37551102a@wendy>
- <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
- <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
- <f013df81-670e-37c4-c1a7-e1302352ca20@rock-chips.com>
- <f58c8f3f-7b34-47e7-a33a-bddb6106fec7@linaro.org>
-From: zhangqing <zhangqing@rock-chips.com>
-In-Reply-To: <f58c8f3f-7b34-47e7-a33a-bddb6106fec7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkxMH1ZOHRhLTRgYHxgaQhpVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8bb6d3dea32eb3kusnc3d5d4001cd
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PzY6Qww6Czw0IQ01E0IcMxxC
-	GCJPCT1VSlVKTUJCTkxCT0lKS0tNVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUxLTkI3Bg++
+X-Outbound-SMTP-Client: 10.25.128.169, [10.25.128.169]
+X-Outbound-Node: rcdn-core-4.cisco.com
+
+This release is an up-rev of the v5 patches. No additional features have
+been added. Some changes were mode to function names and some changes to
+Kconfig dependencies. Also updated the config conversion for mips.
+
+There are a number of people who have expressed interest in these
+patches either by asking for them to be merge or testing them. If
+people are so inclined please continue to request them to be merge
+or to ask the status of the next release. It's helpful to motivate me to
+release them again and for the maintainers to see the interest
+generated.
+
+These patches have been used by Cisco Systems, Inc. on millions of
+released products to great effect. Hopefully they can be used by the
+entire Linux eco system.
+
+My apologies on the length between releases. I will try to release more
+often.
 
 
-在 2023/11/9 18:24, Krzysztof Kozlowski 写道:
-> On 09/11/2023 11:05, zhangqing wrote:
->> 在 2023/11/9 17:21, Krzysztof Kozlowski 写道:
->>> On 09/11/2023 09:06, zhangqing wrote:
->>>> 在 2023/11/9 15:29, Conor Dooley 写道:
->>>>> On Thu, Nov 09, 2023 at 02:27:38PM +0800, zhangqing wrote:
->>>>>> Hi:
->>>>>>
->>>>>> 在 2023/11/8 20:01, Conor Dooley 写道:
->>>>>>> On Wed, Nov 08, 2023 at 02:18:21PM +0800, Elaine Zhang wrote:
->>>>>>>> export PCLK_VO1GRF for DT.
->>>>>>>>
->>>>>>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->>>>>>>> ---
->>>>>>>>      include/dt-bindings/clock/rockchip,rk3588-cru.h | 3 ++-
->>>>>>>>      1 file changed, 2 insertions(+), 1 deletion(-)
->>>>>>>>
->>>>>>>> diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->>>>>>>> index 5790b1391201..50ba72980190 100644
->>>>>>>> --- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
->>>>>>>> +++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
->>>>>>>> @@ -733,8 +733,9 @@
->>>>>>>>      #define ACLK_AV1_PRE			718
->>>>>>>>      #define PCLK_AV1_PRE			719
->>>>>>>>      #define HCLK_SDIO_PRE			720
->>>>>>>> +#define PCLK_VO1GRF			721
->>>>>>>> -#define CLK_NR_CLKS			(HCLK_SDIO_PRE + 1)
->>>>>>>> +#define CLK_NR_CLKS			(PCLK_VO1GRF + 1)
->>>>>>> This definition is part of the ABI, if it is safe to change it, then it
->>>>>>> is safe to delete it.
->>>>>> The new ID is to solve the niu clock dependency problem(Used in PATCH V5
->>>>>> 4/4).This new ID will also be used in DTS in the future.
->>>>>>
->>>>>> CLK_NR_CLKS represents the number of clocks used by the
->>>>>> drivers/clk/rockchip/clk-rkxxx.c. It is safe to modify it, but cannot delete
->>>>>> it.
->>>>> Then delete it from the header and move it to clk-rkxxx.c
->>>> I don't think it's more appropriate to move to clk-rkxxx.c.
->>>> Because if there are new requirements later, and add new clk id, it is
->>>> not in the same file, maybe forget to modify CLK_NR_CLKS.
->>> Then you are not allowed to change it. It's part of ABI.
->> If you just don't want me to modify CLK_NR_CLKS, can I use an unused ID,
->> like [PATCH V4 3/4]:
->>
->> -#define MBIST_MCLK_PDM1                        24
->> +#define PCLK_VO1GRF                    24
-> You cannot change the ABI.
->
-> I don't understand why do you insist on this path. You got clear
-> comments: either this is ABI, so it cannot be changed, or it has to be
-> dropped. You know insist on some third path. There is no such.
-Ok , I'll drop this change in PATCH V6.
->
-> Best regards,
-> Krzysztof
->
+Daniel Walker (8):
+  CMDLINE: add generic builtin command line
+  scripts: insert-sys-cert: add command line insert capability
+  scripts: insert-sys-cert: change name to insert-symbol
+  CMDLINE: mips: convert to generic builtin command line
+  drivers: firmware: efi: libstub: enable generic commandline
+  CMDLINE: x86: convert to generic builtin command line
+  of: replace command line handling
+  CMDLINE: arm64: convert to generic builtin command line
+
+ arch/arm64/Kconfig                            |  33 +--
+ arch/arm64/include/asm/setup.h                |   4 +
+ arch/arm64/include/uapi/asm/setup.h           |   2 +
+ arch/arm64/kernel/idreg-override.c            |   9 +-
+ arch/arm64/kernel/pi/kaslr_early.c            |  14 +-
+ arch/mips/Kconfig                             |   4 +-
+ arch/mips/Kconfig.debug                       |  44 ----
+ arch/mips/configs/ar7_defconfig               |  12 +-
+ arch/mips/configs/bcm47xx_defconfig           |  10 +-
+ arch/mips/configs/bcm63xx_defconfig           |  21 +-
+ arch/mips/configs/bmips_be_defconfig          |  17 +-
+ arch/mips/configs/bmips_stb_defconfig         | 139 ++++------
+ arch/mips/configs/ci20_defconfig              |   8 +-
+ arch/mips/configs/cu1000-neo_defconfig        |  19 +-
+ arch/mips/configs/cu1830-neo_defconfig        |  19 +-
+ arch/mips/configs/generic_defconfig           |  15 +-
+ arch/mips/configs/gpr_defconfig               |  33 +--
+ arch/mips/configs/loongson3_defconfig         |  29 +--
+ arch/mips/include/asm/setup.h                 |   2 +
+ arch/mips/kernel/relocate.c                   |  17 +-
+ arch/mips/kernel/setup.c                      |  36 +--
+ arch/mips/pic32/pic32mzda/early_console.c     |   2 +-
+ arch/mips/pic32/pic32mzda/init.c              |   3 +-
+ arch/x86/Kconfig                              |  44 +---
+ arch/x86/kernel/setup.c                       |  18 +-
+ .../firmware/efi/libstub/efi-stub-helper.c    |  29 +++
+ drivers/firmware/efi/libstub/efi-stub.c       |   9 +
+ drivers/firmware/efi/libstub/efistub.h        |   1 +
+ drivers/firmware/efi/libstub/x86-stub.c       |  14 +-
+ drivers/of/fdt.c                              |  22 +-
+ include/linux/cmdline.h                       | 137 ++++++++++
+ init/Kconfig                                  |  79 ++++++
+ lib/Kconfig                                   |   4 +
+ lib/Makefile                                  |   3 +
+ lib/generic_cmdline.S                         |  53 ++++
+ lib/test_cmdline1.c                           | 139 ++++++++++
+ scripts/Makefile                              |   2 +-
+ .../{insert-sys-cert.c => insert-symbol.c}    | 243 ++++++++++++------
+ 38 files changed, 807 insertions(+), 482 deletions(-)
+ create mode 100644 include/linux/cmdline.h
+ create mode 100644 lib/generic_cmdline.S
+ create mode 100644 lib/test_cmdline1.c
+ rename scripts/{insert-sys-cert.c => insert-symbol.c} (72%)
+
 -- 
-张晴
-瑞芯微电子股份有限公司
-Rockchip Electronics Co.,Ltd
-地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
-Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
-Tel:+86-0591-83991906-8601
-邮编：350003
-E-mail:elaine.zhang@rock-chips.com
-****************************************************************************
-保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
-
-IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
-
-****************************************************************************
+2.39.2
 
 
