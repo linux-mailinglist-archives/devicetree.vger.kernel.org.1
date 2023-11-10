@@ -1,220 +1,103 @@
-Return-Path: <devicetree+bounces-14906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 285587E76AF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:39:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC4587E76D5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 02:51:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93BCAB20C81
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:39:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56484281352
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 01:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04DE7FE;
-	Fri, 10 Nov 2023 01:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1094AEA0;
+	Fri, 10 Nov 2023 01:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cisco.com header.i=@cisco.com header.b="JhlMP1dP"
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="W5NK1hJg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06878A46
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 01:39:36 +0000 (UTC)
-Received: from rcdn-iport-4.cisco.com (rcdn-iport-4.cisco.com [173.37.86.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4599E469F;
-	Thu,  9 Nov 2023 17:39:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=cisco.com; i=@cisco.com; l=3742; q=dns/txt; s=iport;
-  t=1699580376; x=1700789976;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=hVMC2g6F+sS5xh4dm4+qY8r7kQHgggs8qh2zLFytqSA=;
-  b=JhlMP1dPTIyUwm1rec5aMwHGZIFrepP8tOUXFodpJwuc7/JCwT8zHsP8
-   E2Bskw0xhe+HYAFiOp3Xx3yvKKpQX2Sug+CbsyAaJ08RLKeuRgQBWpvPA
-   BVxvpaCt5vTZ/9ohFjssN+k4bdGwZOTyTVSarh7q534oOGjMsZFZHevrj
-   Q=;
-X-CSE-ConnectionGUID: t3gihvnOTkyYQzPMwAhgsg==
-X-CSE-MsgGUID: suRZL8VFTx6nMj9/gpbWKg==
-X-IPAS-Result: =?us-ascii?q?A0ANAADbh01lmJtdJa1aHAEBAQEBAQcBARIBAQQEAQGBe?=
- =?us-ascii?q?wcBAQsBhAdASIxviUKeARSBEQNWDwEBAQ9EBAEBhQYChyYCJjQJDgECBAEBA?=
- =?us-ascii?q?QEDAgMBAQEBAQEBAgEBBQEBAQIBBwQUAQEBAQEBAQEeGQUQDieFdYZNAwMyA?=
- =?us-ascii?q?UYQHTRJDgYBEoJ+gl8DrVeCLIEBsyiBaBiBMAGMQ4EehDUnG4FJRIEVgTuCL?=
- =?us-ascii?q?YQphl0EiSUHMoIig1KNS39HWhYdAwcDVikQKwcELSIGCRQtIwZRBBcRJAkTE?=
- =?us-ascii?q?j4EgWOBUQp/Pw8OEYI/IgIHNjYZSIJbFUAERnYQKgQUF4ESbhsVHjcREhcNA?=
- =?us-ascii?q?wh0HQIRIzwDBQMEMwoSDQshBRRCA0IGSQsDAhoFAwMEgTYFDR4CEC0nAwMTT?=
- =?us-ascii?q?QIQFAM7AwMGAwsxAzBVRAxRA28fGhwJPA8MHwIbHg0nKAI1QwMRBRICFgMkG?=
- =?us-ascii?q?QRFAwkDBwVJQAMLGA1IESw1Bg4bBj9zB6FOBgGBD4EIgSASkzaRS6BHhBeBX?=
- =?us-ascii?q?58qGjOqA5g/IKgxgWM6gVszGggbFYMiUhkPjjmTGwFdIzI7AgcLAQEDCYtKA?=
- =?us-ascii?q?QE?=
-IronPort-Data: A9a23:USJ/Na22r4fJoxrhGfbD5SV2kn2cJEfYwER7XKvMYLTBsI5bpzQCz
- mUfCziOaPqNazf8c4hzaY++oxxXvpbUz9IxTARr3Hw8FHgiRegpqji6wuYcGwvIc6UvmWo+t
- 512huHodZ1yFjmE4E71btANlFEkvYmQXL3wFeXYDS54QA5gWU8JhAlq8wIDqtYAbeORXUXV4
- rsen+WFYAX+gmctajpNg06+gEoHUMra6WtwUmMWPZinjHeG/1EJAZQWI72GLneQauG4ycbjG
- o4vZJnglo/o109F5uGNy94XQWVWKlLmBjViv1INM0SUbreukQRpukozHKJ0hU66EFxllfgpo
- DlGncTYpQvEosQglcxFOyS0HR2SMoVao7DGIWa5lvCQ3nz/YUPJ3NxuA1o5aNhwFuZfWQmi9
- NQCIzwLKxuEne/znPSwS/JngYIoK8yD0IE34y47i2qGS6d9B8meHs0m5vcAtNs0rsxHG/fTY
- 9UQQTFudx/HJRZIPz/7Dbpnx7v51iOvK2UwRFS9vrcN0UyD8iJNwObrFdiEPdOST/p2kRPNz
- o7B1z2pXk5FXDCF8hKB83SxlqrMkDn9VYY6CrK17LhpjUeVy2hVDwcZPXO3rOe4gUOiQd9SA
- 1Ib9zBorqUo8kGvCN7nUHWQrmSDoRcaV5xUEvYmwA6Iw6vQpQ2eAwAsVDlLaJ8qqOc1SCYs2
- 1vPmMnmbRRrsbuIWWqF/fKYoC2aPSkOMXREYj0ARAEepd75r+kbihPJU8YmFa+tlfXrFjzqh
- TOHti4zg/MUl8Fj/7Xro3jEjiiqq5yPSRQ6ji3MU2ujqAp/aIO/fIuuwUPW5vEGJ4GcJnGdu
- 30NgI6b8ewUEJeOnQSCRewMGPei4PPtGCTBgFVYB5M7/jSo8la6YIFb4Td1YkxuN64scDzxZ
- WfXuAVM9NpdO2asYaZrYoW3TcMwwsDIGd3jV/3QRtVPZ4B8cAKZ/SpuI1WZ2SXjikEqmqAkM
- pDdes/qEG1yIb5gxjqeROoH17IvgCckygv7TpDhzg+71qKeaTiRRK0CIXOFde8j676c5gjIm
- /5ANs+O4xZSSuvzZm/Q64F7ELwRBWIwCZazoMtNe6vfZAFnA2omTfTWxNvNZrCJgYxJzejJ/
- m+7fXNb2WvGl0XiNiyKZWtsPeaHsYlEkVo3OiklPFCN0nclYJqy4Kp3S3fRVeR5nACE5aMpJ
- 8Tpa/lsEdwUFWuao2V1gY3V6d09JE7y1GpiKgL8OGBnF6OMUTAl7TMNQ+cC3DMFAizyvswkr
- vj8kAjaWpEEAQ9lCa46ic5DLXvv4RDxe8orAiMkx+W/nm2wrOCGzASt1pcKzzkkc0mr+9dj/
- 1/+7e0kjefMuZQp19LCmLqJqYyke8MnQBsLQjSHs+rmbnaGloZG/WOmeLjRFdw6fD2skJhOm
- c0Jpx0BGKRdxQ0T49YU/0hDl/5kubMDWIO2Piw9TCmUMDxH+5trI2KN2oFUp7ZRy7pC0TZaq
- WrRkuS2zY6hYZu/eHZIfVJNRr3ahZk8xGKIhdxrexqS2cOC1OfdOamkF0PS2HU1wXocGN5N/
- NrNT+ZPsFzn1kp1YorW5s2WnkzVRkE9v2wcnslyKOfWZsADkzmuvbS05vfK3ayy
-IronPort-HdrOrdr: A9a23:8hX10KzJCp3ev/u3nQRoKrPwF71zdoMgy1knxilNoNJuHvBw8P
- re+MjzuiWbtN98YhsdcJW7Scq9qBDnhPtICPcqXItKNTOO0ACVxcNZnOnfKlbbdBEWmNQx6U
- 5ISdkYNDSJNzhHZQKQ2njALz7mq+P3lpyVuQ==
-X-Talos-CUID: 9a23:ovLiuG2jLCZwgmjd/3mxMbxfBpsqc33DylDsIF6JMHRRbaK8SVCL9/Yx
-X-Talos-MUID: 9a23:Dz9OZAirh9HKqH0Sbu1iIsMpL9pS0YD+Nm4xgcsAnsvVciNoMQi+g2Hi
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="6.03,291,1694736000"; 
-   d="scan'208";a="134982800"
-Received: from rcdn-core-4.cisco.com ([173.37.93.155])
-  by rcdn-iport-4.cisco.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2023 01:38:33 +0000
-Received: from goliath.lan ([10.25.128.169])
-	by rcdn-core-4.cisco.com (8.15.2/8.15.2) with ESMTP id 3AA1cHVN011466;
-	Fri, 10 Nov 2023 01:38:32 GMT
-From: Daniel Walker <danielwa@cisco.com>
-To: Will Deacon <will@kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Rob Herring <robh@kernel.org>,
-        Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Pratyush Brahma <quic_pbrahma@quicinc.com>,
-        Tomas Mudrunka <tomas.mudrunka@gmail.com>,
-        Sean Anderson <sean.anderson@seco.com>, x86@kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc: xe-linux-external@cisco.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 7/8] of: replace command line handling
-Date: Thu,  9 Nov 2023 17:38:11 -0800
-Message-Id: <20231110013817.2378507-8-danielwa@cisco.com>
-X-Mailer: git-send-email 2.39.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F83A47;
+	Fri, 10 Nov 2023 01:51:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D84AC433C8;
+	Fri, 10 Nov 2023 01:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1699581104;
+	bh=lxHFf+cJVyuGyX81+L2NmmRwViLV5SlJHHQH9byJyfg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=W5NK1hJgRBAVp5r2VqL12zxpJ8rvnR5T+pYrM8pR+cz343NvxRUsURFNl1RJdu4Ms
+	 +jIItb/Kb0CiAfLpjCyjC59peLSsmErjgsurwkNzmxSnQLR8TbSiUTVYv9ILJfRS/w
+	 HiD/fJvaSgA6zFNJP+HT+qcJ9MImLla9ZAmHdYQA=
+Date: Thu, 9 Nov 2023 17:51:42 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Daniel Walker <danielwa@cisco.com>
+Cc: Will Deacon <will@kernel.org>, Christophe Leroy
+ <christophe.leroy@csgroup.eu>, Rob Herring <robh@kernel.org>, Daniel
+ Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>, Pratyush Brahma
+ <quic_pbrahma@quicinc.com>, Tomas Mudrunka <tomas.mudrunka@gmail.com>, Sean
+ Anderson <sean.anderson@seco.com>, x86@kernel.org,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, "H. Peter Anvin"
+ <hpa@zytor.com>, Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers
+ <ndesaulniers@google.com>, Nicolas Schier <nicolas@fjasle.eu>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linux-efi@vger.kernel.org
+Subject: Re: [PATCH 0/8] generic command line v6
+Message-Id: <20231109175142.49428d5f51325680764663bf@linux-foundation.org>
 In-Reply-To: <20231110013817.2378507-1-danielwa@cisco.com>
 References: <20231110013817.2378507-1-danielwa@cisco.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-Outbound-SMTP-Client: 10.25.128.169, [10.25.128.169]
-X-Outbound-Node: rcdn-core-4.cisco.com
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Rob Herring has complained about this section of code. I removed the
-command line handling code to the cmdline.h header. This hopefully makes
-it easier for Rob to maintain it (at least he doesn't have to look at it
-directly anymore). I would like to add a Kconfig option called
-OF_DEPRECATED_CMDLINE which an architecture would set if it uses this code.
-This would allow a platform to use the cmdline.h and the added function
-directly and remove the Kconfig option. This change would be in a subsequent
-patch.
+On Thu,  9 Nov 2023 17:38:04 -0800 Daniel Walker <danielwa@cisco.com> wrote:
 
-This code was boot tested on powerpc 32bit, powerpc 64bit without
-any generic command line conversion.
+> This release is an up-rev of the v5 patches. No additional features have
+> been added. Some changes were mode to function names and some changes to
+> Kconfig dependencies. Also updated the config conversion for mips.
+> 
+> There are a number of people who have expressed interest in these
+> patches either by asking for them to be merge or testing them. If
+> people are so inclined please continue to request them to be merge
+> or to ask the status of the next release. It's helpful to motivate me to
+> release them again and for the maintainers to see the interest
+> generated.
+> 
+> These patches have been used by Cisco Systems, Inc. on millions of
+> released products to great effect. Hopefully they can be used by the
+> entire Linux eco system.
+> 
 
-Cc: xe-linux-external@cisco.com
-Signed-off-by: Daniel Walker <danielwa@cisco.com>
----
- drivers/of/fdt.c        | 22 +++-------------------
- include/linux/cmdline.h | 31 +++++++++++++++++++++++++++++++
- 2 files changed, 34 insertions(+), 19 deletions(-)
+fyi, none of the above is suitable for a [0/N] changelog - it's all
+transitory stuff which tells readers nothing much about what the
+patchset does.
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index bf502ba8da95..1fc1b17d04dc 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -26,6 +26,7 @@
- #include <linux/serial_core.h>
- #include <linux/sysfs.h>
- #include <linux/random.h>
-+#include <linux/cmdline.h>
- 
- #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
- #include <asm/page.h>
-@@ -1183,27 +1184,10 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 
- 	/* Retrieve command line */
- 	p = of_get_flat_dt_prop(node, "bootargs", &l);
--	if (p != NULL && l > 0)
--		strscpy(cmdline, p, min(l, COMMAND_LINE_SIZE));
- 
- handle_cmdline:
--	/*
--	 * CONFIG_CMDLINE is meant to be a default in case nothing else
--	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
--	 * is set in which case we override whatever was found earlier.
--	 */
--#ifdef CONFIG_CMDLINE
--#if defined(CONFIG_CMDLINE_EXTEND)
--	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
--	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#elif defined(CONFIG_CMDLINE_FORCE)
--	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#else
--	/* No arguments from boot loader, use kernel's  cmdl*/
--	if (!((char *)cmdline)[0])
--		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
--#endif
--#endif /* CONFIG_CMDLINE */
-+
-+	of_deprecated_cmdline_update(cmdline, p, l);
- 
- 	pr_debug("Command line is: %s\n", (char *)cmdline);
- 
-diff --git a/include/linux/cmdline.h b/include/linux/cmdline.h
-index a94758a0f257..c772afb7340f 100644
---- a/include/linux/cmdline.h
-+++ b/include/linux/cmdline.h
-@@ -103,4 +103,35 @@ __cmdline_add_builtin(
- 
- #define cmdline_get_static_builtin(dest) \
- 	(CMDLINE_STATIC_PREPEND CMDLINE_STATIC_APPEND)
-+
-+#ifndef CONFIG_GENERIC_CMDLINE
-+static inline bool of_deprecated_cmdline_update(char *cmdline, const char *dt_bootargs, int length)
-+{
-+	if (dt_bootargs != NULL && length > 0)
-+		strlcpy(cmdline, dt_bootargs, min(length, COMMAND_LINE_SIZE));
-+	/*
-+	 * CONFIG_CMDLINE is meant to be a default in case nothing else
-+	 * managed to set the command line, unless CONFIG_CMDLINE_FORCE
-+	 * is set in which case we override whatever was found earlier.
-+	 */
-+
-+#ifdef CONFIG_CMDLINE
-+#if defined(CONFIG_CMDLINE_EXTEND)
-+	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
-+	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#elif defined(CONFIG_CMDLINE_FORCE)
-+	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+#else
-+	/* No arguments from boot loader, use kernel's  cmdl*/
-+	if (!((char *)cmdline)[0])
-+		strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #endif
-+#endif /* CONFIG_CMDLINE */
-+	return true;
-+}
-+#else
-+static inline bool of_deprecated_cmdline_update(char *cmdline, const char *dt_bootargs, int length) { return false; }
-+#endif /* CONFIG_GENERIC_CMDLINE */
-+
-+
-+#endif /* _LINUX_CMDLINE_H */
--- 
-2.39.2
+And that info is sorely missed.  I can see that it's a code cleanup,
+but I'm sure Cisco wouldn't expend resources to maintain such a thing. 
+There's something else here.
 
+In [1/8] I see "Even with mips and powerpc enhancement the needs of
+Cisco are not met on these platforms" and "This unified implementation
+offers the same functionality needed by Cisco on all platform which we
+enable it on".
+
+Well OK, what are these needs?   What functionality changes does this
+patchset offer which Cisco finds useful?  IOW, what were the
+requirements?  What's wrong with the old code and how does this
+patchset fix/enhance that?
+
+
+I see the patchset updates nothing under Documentation/.  Should it do
+so?  Could it do so?
+
+
+I don't know what is the expected merge patch for this work.  I can
+grab them if no other maintainer is in the firing line.
 
