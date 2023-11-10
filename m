@@ -1,104 +1,128 @@
-Return-Path: <devicetree+bounces-15004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 878FB7E7C89
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:25:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF1D7E7C91
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:28:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49F6D281243
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:25:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD76A28120D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:28:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B7319BAF;
-	Fri, 10 Nov 2023 13:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67EB819BB6;
+	Fri, 10 Nov 2023 13:28:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hMeCwX/a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tODKqcpu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB87199B4
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:25:37 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D35A7524;
-	Fri, 10 Nov 2023 05:25:35 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AADPTH7039050;
-	Fri, 10 Nov 2023 07:25:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1699622729;
-	bh=21x2QGl4owwD1l0qKsS4OE6UsdsDzLPwn829QO38Nrw=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=hMeCwX/aS+eoT+fsb9wKIU+TfgnHGKWle8EluLHNQ/+xbsZItxCidS9wbPU75uL0L
-	 P+SMYMLDEKRICRbn9WWKcibKEJ8IFMGFa0Dxi4AbnnVEDR8G+m0l32yWaQwb7bumrj
-	 wkXhVVuVv7RWxkOmLL423lAKkonQmn7R68ica5oI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AADPTsZ071379
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 10 Nov 2023 07:25:29 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 10
- Nov 2023 07:25:29 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 10 Nov 2023 07:25:29 -0600
-Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AADPKXa041795;
-	Fri, 10 Nov 2023 07:25:27 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-am62x-sk-common: Mark mcu gpio and mcu_gpio_intr as reserved
-Date: Fri, 10 Nov 2023 18:55:08 +0530
-Message-ID: <20231110132508.3137454-3-vigneshr@ti.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231110132508.3137454-1-vigneshr@ti.com>
-References: <20231110132508.3137454-1-vigneshr@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4101719BAF;
+	Fri, 10 Nov 2023 13:28:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC265C433C8;
+	Fri, 10 Nov 2023 13:28:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699622921;
+	bh=RKp5JkDrgXTCaSZhsV2VwufdEyP5Z2U+wHi62OW9Q6w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tODKqcpuMevzLNd4CWQL470DP6V+/C91mGFko7GtrGqiI5/8nJL+iaOSGXfe9iJam
+	 4+2AJKynIosW4XZVgpbwO9XoXEoZLdeJh5NBu9kxI3XgY35UdPOBey65o6O8wI5IjD
+	 O4+074ugJgTxCpnS/mBi7qoHI8ZpB8F8cL7nLhTkOSuElxIkqL8LTYTIwv7CY2WIGE
+	 2zc8BYyEA4oxTgNiw/zVbllNyov/yZMJpMuCG6ege/eGhVnGIXZ3gbmJUCN8lraQM3
+	 5mybm5OxBhiC1wALLfpbxcxiEju0Rvk4xfBu3+tDRWskYuvAvzuB/e/bmM00yIdGmW
+	 Hhmq9Cne10bGQ==
+Received: from johan by theta with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1r1RYp-0007mQ-1r;
+	Fri, 10 Nov 2023 14:28:35 +0100
+Date: Fri, 10 Nov 2023 14:28:35 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
+	ahalaney@redhat.com, quic_shazhuss@quicinc.com,
+	Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v11 02/13] dt-bindings: usb: Add bindings for multiport
+ properties on DWC3 controller
+Message-ID: <ZU4wA9xhfjYBCaTU@hovoldconsulting.com>
+References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
+ <20230828133033.11988-3-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230828133033.11988-3-quic_kriskura@quicinc.com>
 
-These are typically under MCU Firmware usage. Hence mark them reserved.
+On Mon, Aug 28, 2023 at 07:00:22PM +0530, Krishna Kurapati wrote:
+> Add bindings to indicate properties required to support multiport
+> on Synopsys DWC3 controller.
+> 
+> Suggested-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index a696f23730d3..5bc941355b43 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -85,15 +85,16 @@ properties:
+>  
+>    phys:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 8
+>  
+>    phy-names:
+>      minItems: 1
+> -    maxItems: 2
+> -    items:
+> -      enum:
+> -        - usb2-phy
+> -        - usb3-phy
+> +    maxItems: 8
+> +    oneOf:
+> +      - items:
+> +          enum: [ usb2-phy, usb3-phy ]
+> +      - items:
+> +          pattern: "^usb[23]-port[0-3]$"
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Shouldn't this just be
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 5d64386265b8..ccf6c384b9e9 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -515,3 +515,12 @@ dpi1_out: endpoint {
- 		};
- 	};
- };
-+
-+/* mcu_gpio0 and mcu_gpio_intr are reserved for mcu firmware usage */
-+&mcu_gpio0 {
-+	status = "reserved";
-+};
-+
-+&mcu_gpio_intr {
-+	status = "reserved";
-+};
--- 
-2.42.0
+	pattern: "^usb[23]-[0-3]$"
 
+so that it matches the names that are used by the nvidia bindings?
+
+We already have some inconsistency in that Amlogic uses a variant based
+on the legacy names that needlessly includes "phy" in the names:
+
+	const: usb2-phy0
+	const: usb2-phy1
+	const: usb3-phy0
+	...
+
+I don't think we should be introducing a third naming scheme here so I
+suggest just following the nvidia bindings.
+
+Johan
 
