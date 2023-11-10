@@ -1,143 +1,144 @@
-Return-Path: <devicetree+bounces-14933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B47F7E7984
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:48:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27B17E797C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 07:41:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39D641C20C52
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:48:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D17E2811E4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 06:41:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9209D29A5;
-	Fri, 10 Nov 2023 06:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8600B1852;
+	Fri, 10 Nov 2023 06:41:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xqIGQ/12"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cj5fkE9Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17151FAB
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:48:45 +0000 (UTC)
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF4A7DAC
-	for <devicetree@vger.kernel.org>; Thu,  9 Nov 2023 22:48:43 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id 5614622812f47-3b2f28caab9so969824b6e.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Nov 2023 22:48:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699598923; x=1700203723; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DnDZGk512Fn6FcfRLVRqtgZTjSOOBJwTCzWACAW0uhY=;
-        b=xqIGQ/12QDRF0hrERfZN9ldxQ6Xrb3EQpxdnYf7wIFZ9WTyaIxSxChiLz09tkThlYJ
-         FlTimLray/EBZWEPxm7B607gLRQtlkYLugIJqnd3WCJnX6Os6JM/nShcYrt9DVoRJ9tl
-         qvB8Xge4UMe573RZT3ZKp+wR3YKhuaVQpt7O1eLbyIX/EIFP1ftKB3tUw/kduguWpFDq
-         9CP3NL1xjiNKI/M9+FLbjNlVkOK2RHSQQcICurBSFaGfS9RxVyw/2i2VHNaemCU3a+TU
-         l3T/kmKGsOce5D4jkg9R8HmcKECf2EMCtazfIf8m5W05RnyuTziny+PhhDQS1+HJj2G9
-         RnRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699598923; x=1700203723;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DnDZGk512Fn6FcfRLVRqtgZTjSOOBJwTCzWACAW0uhY=;
-        b=xOtn7SifBxUmaCMfwlbG/QDaNC5QaT6jiaZy6bfZSF+aijA6MjTquXCRJTQxXgzJla
-         fWByrbbCVprofc7fMjU6J4Q2D9lsA+70Ia4RCMgPi3svetP9uODExJnOxjqBFAIkvqJh
-         V7kMxLgU3/yrkWKgG81/nFGlFPhm4v9wsiwMwTtwYDuG4g/KMXBuNT/UIqQHp1xa3S+p
-         uNdxkheLI1G8bt/UVKrO45Rlk3ci2yL/QHvvA2WJVpNU7bTMqkHvdIvO5J4KHhTf6srf
-         c8UKLMU9ccS9lrgeRuJnuFv6etnAS0N1+5sUQ1V79qAdzxtYbsr6ISAftonV4MQhYVf9
-         dR2Q==
-X-Gm-Message-State: AOJu0YyRu4I8JPqHM4/sfVXgswbdwnK8g+JxJBwE4a3fLMe+F9wH4Eou
-	3YVjusCwUr6vdSwdYdgxGfZd8Fp0D7oXpoKUxnaLeg==
-X-Google-Smtp-Source: AGHT+IGTTsahV81/Rw5QlsTpUJVxQ1PAILctgM4NyU6BPo77WHSOVHAuWPMQfe9MkO/AQRFIKwQmIA==
-X-Received: by 2002:a17:902:cf01:b0:1c9:d8b6:e7ad with SMTP id i1-20020a170902cf0100b001c9d8b6e7admr11068018plg.56.1699594958186;
-        Thu, 09 Nov 2023 21:42:38 -0800 (PST)
-Received: from [127.0.1.1] ([2601:1c2:1800:f680:2071:4479:98b8:cc69])
-        by smtp.gmail.com with ESMTPSA id ix22-20020a170902f81600b001b8a00d4f7asm4498845plb.9.2023.11.09.21.42.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Nov 2023 21:42:37 -0800 (PST)
-From: Drew Fustini <dfustini@baylibre.com>
-Date: Thu, 09 Nov 2023 21:41:17 -0800
-Subject: [PATCH v5 7/7] riscv: dts: thead: Enable LicheePi 4A eMMC and
- microSD
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBAF15B3
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:40:59 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88AED7A9D;
+	Thu,  9 Nov 2023 22:40:57 -0800 (PST)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AA5UT4Z003312;
+	Fri, 10 Nov 2023 05:50:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=1qeJzEU9+q9du+S9Sx8kYO/KTx5lYz7McRllLoryFDM=;
+ b=Cj5fkE9Yf5Z1HlPdZe/aaaFHUJI7/w0+XK6IcZFTXFnuDXJUn5WQNoLXKefCgm+kt9DM
+ HBetWEpz7NyaJoVRUiRUwmFL6PrC2K98RuXa6YRZYKvwAHu/1hiGl7qw/c3GMBniniOk
+ df3z3LP4mcfumzh1aBN8jDA728XVj/JZfSoIkejnz13BRylReQ/sI9k7uRqGLag1cxXH
+ 3ubnXtpjHrT+MDUOA8QwWQFExJs6fScZeehO/E/hSpeTdeq9JwZgvKxAGR0roVba049E
+ Fz8iAUM6O8WGcnxFUYyN9zAIP9LFGHH3RKgnpIwEcPNAJEFbGycJet3SxhZGKxCF21LM zQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3u93tq9a5r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 05:50:21 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AA5oKOV019464
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Nov 2023 05:50:20 GMT
+Received: from [10.239.155.136] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 9 Nov
+ 2023 21:50:15 -0800
+Message-ID: <c77d3b96-cec0-b13f-2fd8-df59e29bb889@quicinc.com>
+Date: Fri, 10 Nov 2023 13:50:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231109-th1520-mmc-v5-7-018bd039cf17@baylibre.com>
-References: <20231109-th1520-mmc-v5-0-018bd039cf17@baylibre.com>
-In-Reply-To: <20231109-th1520-mmc-v5-0-018bd039cf17@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
- Conor Dooley <conor@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Drew Fustini <dfustini@baylibre.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699594943; l=1102;
- i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=vZkA/Rp2zWEJvsAGA/badfpHmHgx6/3DqqLzYe2IxQc=;
- b=fJaLj8Us7PpYhDPHDt2gAJV0CgQsotNJKZ73gVndaddpreipV21Pv9bXilRM3ODn6eiDa/Ubk
- h7kJ2SCtnDZD8g4t2P9LyI/wn5hmo7COmgWYmsLyqjWJR3zX5ICneL5
-X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: ufs: Add msi-parent for UFS MCQ
+Content-Language: en-US
+To: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>
+CC: Bart Van Assche <bvanassche@acm.org>, <quic_asutoshd@quicinc.com>,
+        <quic_cang@quicinc.com>, <beanhuo@micron.com>, <avri.altman@wdc.com>,
+        <junwoo80.lee@samsung.com>, <martin.petersen@oracle.com>,
+        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>,
+        <quic_rampraka@quicinc.com>, <linux-scsi@vger.kernel.org>,
+        Alim Akhtar
+	<alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Ulf
+ Hansson" <ulf.hansson@linaro.org>, Wolfram Sang <wsa@kernel.org>,
+        "Guenter
+ Roeck" <linux@roeck-us.net>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        "Mark
+ Brown" <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <1698835699-28550-1-git-send-email-quic_ziqichen@quicinc.com>
+ <20231106144831.GA317907-robh@kernel.org>
+ <5850d5ac-e735-4358-866d-f410b00ba39d@acm.org>
+ <CAL_Jsq+XB5p_K3C+rc5XetQ-Xfxu4umNFzcF0idB2hhZvS7HLA@mail.gmail.com>
+ <20231109161656.GH3752@thinkpad>
+From: Ziqi Chen <quic_ziqichen@quicinc.com>
+In-Reply-To: <20231109161656.GH3752@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jJeOAbnbHovkp2p0lBuzujKZ7WRIQexM
+X-Proofpoint-ORIG-GUID: jJeOAbnbHovkp2p0lBuzujKZ7WRIQexM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-10_02,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ suspectscore=0 clxscore=1015 priorityscore=1501 mlxlogscore=999
+ spamscore=0 phishscore=0 impostorscore=0 bulkscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311100047
 
-Add mmc0 properties for the eMMC device and add mmc1 properties for
-the microSD slot. Set the frequency for the sdhci clock.
 
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
----
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi      | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index a802ab110429..94f1741435a5 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -29,6 +29,10 @@ &apb_clk {
- 	clock-frequency = <62500000>;
- };
- 
-+&sdhci_clk {
-+	clock-frequency = <198000000>;
-+};
-+
- &uart_sclk {
- 	clock-frequency = <100000000>;
- };
-@@ -36,3 +40,19 @@ &uart_sclk {
- &dmac0 {
- 	status = "okay";
- };
-+
-+&mmc0 {
-+	bus-width = <8>;
-+	max-frequency = <198000000>;
-+	mmc-hs400-1_8v;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	max-frequency = <198000000>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
+On 11/10/2023 12:16 AM, Manivannan Sadhasivam wrote:
+> On Thu, Nov 09, 2023 at 07:55:14AM -0600, Rob Herring wrote:
+>> On Mon, Nov 6, 2023 at 11:56 AM Bart Van Assche <bvanassche@acm.org> wrote:
+>>>
+>>> On 11/6/23 06:48, Rob Herring wrote:
+>>>> On Wed, Nov 01, 2023 at 06:48:13PM +0800, Ziqi Chen wrote:
+>>>>> The Message Signaled Interrupts (MSI) has been introduced
+>>>>> to UFS driver since the MCQ be enabled.
+>>>>
+>>>> Not really relevant when a driver supported MSI, but the when the h/w
+>>>> did. Has UFS always supported MSI? It was added in some version of the
+>>>> spec?
+>>>
+>>> MSI support has been introduced in UFSHCI version 4.0 and I think that
+>>> the controller vendor can decide whether or not to implement MSI. Does
+>>> this mean that the patch needs to be improved?
+>>
+>> Yes, this information is what should be in the commit msg rather than
+>> driver details.
+>>
+> 
+> Yes, agreed. Ziqi, please update the commit message to incorporate the hw
+> details about when MCQ/MSI got introduced. Devicetree binding should describe
+> the hw, not the driver.
+> 
+Thank you all, I will update the commit message in next version.
 
--- 
-2.34.1
+- Ziqi
 
+> - Mani
+> 
+>> Rob
+> 
 
