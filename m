@@ -1,47 +1,65 @@
-Return-Path: <devicetree+bounces-14991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36767E7C02
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:56:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83DB87E7C1D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56F8BB20C39
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:56:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A23EC1C2099B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C0715E98;
-	Fri, 10 Nov 2023 11:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C72718C21;
+	Fri, 10 Nov 2023 12:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="FJTlm3kN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l5nXoibu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1496B18023
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 11:56:21 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0C0431E6F;
-	Fri, 10 Nov 2023 03:56:20 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id D695C66073D6;
-	Fri, 10 Nov 2023 11:56:18 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1699617379;
-	bh=UsQJMA84in9eZ7+pQRAtSLereQcK1RKiGbtcXNhScsA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=FJTlm3kNTqQ3pO2+5YHTzqCb8s8ldGouiZu4T63SdwavS+QLS5SsHFJdB/yNlGf1S
-	 nxMHvl+igevcE4fY4CiG3H0YzxgWGaEwkiNbT/ohG1r3ldjNLUN+0eqPP2rGNaAUCb
-	 28U+cGmi4aOb5X9uVBTxOBAf2vZus6lLr/tWDP4BKR4qXz1ffRfc+9hidXPEDhTlXi
-	 xrCGkQn2SluEzmMm/fzHTZebOcVG4V5MHcJuPt14CpYS6VGZpi85qMB2AHL9oPnICp
-	 LqlU3keZjXBu0IQyHL1t52E1uK5ixbh7tAcf1hMjyPcZJCtCTkVKgJh3mG6ePfzGYg
-	 7tAiNfCVnmRSg==
-Message-ID: <2678cb48-1d2b-47bc-9272-06d9aa140c58@collabora.com>
-Date: Fri, 10 Nov 2023 12:56:18 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0810718B0D
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 12:23:06 +0000 (UTC)
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB09333F80
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:23:03 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9becde9ea7bso638662466b.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:23:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699618982; x=1700223782; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NheLNV3Ua+9nO2D3pgEi4qpSiUXy5zhSL2AO/z8qXmU=;
+        b=l5nXoibuLfS/umdPcwSpUxMU/oV/M5UrNSS1Xok4vQJzuPpJksUuujkzEx7tX+UXz/
+         VhHg0Gg3EPuz/4ljdug2b40yormp6rq8tt6yCMGE2Lun5ICuia7nXzZwv64hw35mekbY
+         7oRWRApoJzDqi6+Tn4mKAf6cRnPtu9NK3D+TkS5GNphJkKp2oQJAt9JWyhW8+/qdb8Mc
+         5wGcYoHZ2tqS7ow8dQkNUodd0OpA8Xx3hfhckBIwf9lqqXOSowmQjTFkc4AdujPpHklU
+         YxsgpDE7jz3q/jaxtnhLWtRD+3oEGgciL6X67g94BqnBfFBmyud7F5CkrdjEio/2yNY9
+         YA6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699618982; x=1700223782;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NheLNV3Ua+9nO2D3pgEi4qpSiUXy5zhSL2AO/z8qXmU=;
+        b=HxynxKqS1JZJASRphljJnmixkvaFBe/L+RobmHP0jpDwFvHeDb4y4QGAXVsZz1Cw4m
+         MVAe8GKDMQ4kKsDxz5LJGIo/6i61vqPrWidhKpHOtcfXMPwsTOi5aeTDArg5RiVb1yKv
+         V+wqfvP577AUV3/oisj6bwjSZnMo9NvFGVKa389ddJlSx+kSFGRE2oG1iOX3djQOwPRq
+         p1MZOk7mnFYjvykVSD8St4t+npHXt0IMBH3WrMdWHe071nCM4cpcXq/qHtzZXc1JWKUN
+         EXA525ENF47+6BNdGV4LCgoeIEvVi2Dso/3vwVnnPLxZw373DIn2GPQbjxTh9Sfk/QUM
+         /1tg==
+X-Gm-Message-State: AOJu0YyM+ILGu51B4AR8HDwkK37zzXXK+hKq2VioKimXh4wU5fNVOrnL
+	D7On9I66RHg8O8CMFRx765IVyg==
+X-Google-Smtp-Source: AGHT+IEfKhGT7aylCUtQaEIbvPqo35joO+W0xLkMOAI40MlBv/YyULegPUo8vYT+++DF4kdIWilbcA==
+X-Received: by 2002:a17:906:59a8:b0:9db:6437:ef42 with SMTP id m40-20020a17090659a800b009db6437ef42mr1847424ejs.18.1699618982247;
+        Fri, 10 Nov 2023 04:23:02 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id z15-20020a1709060acf00b0099cb0a7098dsm3876197ejf.19.2023.11.10.04.23.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 04:23:01 -0800 (PST)
+Message-ID: <7f02301c-17dd-415b-a5c0-7bebf8721a55@linaro.org>
+Date: Fri, 10 Nov 2023 13:22:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,72 +67,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: mediatek,mtk-wdt: add MT7988
- watchdog and toprgu
+Subject: Re: [PATCH] dt bindings: mmc: arasan,sdci: Add gate property for
+ Xilinx platforms
 Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+To: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@xilinx.com>,
+ Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, git@amd.com, saikrishna12468@gmail.com
+References: <20231110081105.3295037-1-sai.krishna.potthuri@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231110081105.3295037-1-sai.krishna.potthuri@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 10/11/23 01:30, Daniel Golle ha scritto:
-> Add binding description for mediatek,mt7988-wdt.
+On 10/11/2023 09:11, Sai Krishna Potthuri wrote:
+> From: Swati Agarwal <swati.agarwal@amd.com>
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+It's: dt-bindings
+
+> Add gate property in example node for Xilinx platforms which will be used
+> to ungate the DLL clock. DLL clock is required for higher frequencies like
+> 50MHz, 100MHz and 200MHz.
+> DLL clock is automatically selected by the SD controller when the SD
+> output clock frequency is more than 25 MHz.
+> 
+> Signed-off-by: Swati Agarwal <swati.agarwal@amd.com>
+> Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
 > ---
->   .../bindings/watchdog/mediatek,mtk-wdt.yaml          |  1 +
->   include/dt-bindings/reset/mediatek,mt7988-resets.h   | 12 ++++++++++++
->   2 files changed, 13 insertions(+)
->   create mode 100644 include/dt-bindings/reset/mediatek,mt7988-resets.h
+> Note: This patch only updates the example nodes with the gate property for
+> Xilinx platforms.
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-> index cc502838bc398..8d2520241e37f 100644
-> --- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-> @@ -25,6 +25,7 @@ properties:
->             - mediatek,mt6735-wdt
->             - mediatek,mt6795-wdt
->             - mediatek,mt7986-wdt
-> +          - mediatek,mt7988-wdt
->             - mediatek,mt8183-wdt
->             - mediatek,mt8186-wdt
->             - mediatek,mt8188-wdt
-> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> new file mode 100644
-> index 0000000000000..fa7c937505e08
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> @@ -0,0 +1,12 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +/* TOPRGU resets */
 
-The first reset is zero, the second reset is one.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Where's the zero'th reset? :-)
-
-Regards,
-Angelo
-
-> +#define MT7988_TOPRGU_SGMII0_GRST		1
-> +#define MT7988_TOPRGU_SGMII1_GRST		2
-> +#define MT7988_TOPRGU_XFI0_GRST			12
-> +#define MT7988_TOPRGU_XFI1_GRST			13
-> +#define MT7988_TOPRGU_XFI_PEXTP0_GRST		14
-> +#define MT7988_TOPRGU_XFI_PEXTP1_GRST		15
-> +#define MT7988_TOPRGU_XFI_PLL_GRST		16
-> +
-> +#define MT7988_TOPRGU_SW_RST_NUM		24
-
+Best regards,
+Krzysztof
 
 
