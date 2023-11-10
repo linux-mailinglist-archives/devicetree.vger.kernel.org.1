@@ -1,125 +1,194 @@
-Return-Path: <devicetree+bounces-14975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4624C7E7B79
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:44:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 100B67E7B8B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:59:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2DD61F2060E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 10:44:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC2F32812D4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 10:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9852C134C0;
-	Fri, 10 Nov 2023 10:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E72412B8E;
+	Fri, 10 Nov 2023 10:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSLHNlzm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H9xuSCtg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666B6DDB2;
-	Fri, 10 Nov 2023 10:44:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6182C433C7;
-	Fri, 10 Nov 2023 10:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699613054;
-	bh=yViYqOJVdcBEk5fwPiwK27bzW7FkRKcbTn6zst1rjt8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qSLHNlzm4RnBkdR24TluN7Dng6mOBC3pzmQzkUClpylay3CL16NwjJ4Alj7CX5f9F
-	 f80FulVCDie4nGya1NifjrM6e1++EFxYSeROku/SICA4BjLLyLTmIF1HM8/9JdEsTP
-	 0+V2tqprbkPF+dNDMKlgOHfiq1Swk4V5j7J6eYKrF1aipAA6F33s5wP34O7pnwzeQt
-	 Jox5DBmzqhJzsaslk6mATLVU6HIlMivBY5xCcCWj4GG7xmQ0SraDM8cRLywLjECZ9/
-	 I8TdDIOkFhDlXm/5suafwLqc6rwkcUS5i5c01ugOYrykmTRFJvO5Ji7Ul7EcMOpP59
-	 itVv9KhxpAHrg==
-Received: from johan by theta with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r1Ozh-0004rg-14;
-	Fri, 10 Nov 2023 11:44:09 +0100
-Date: Fri, 10 Nov 2023 11:44:09 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-	quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-	ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-Message-ID: <ZU4JeenAf_K8liAI@hovoldconsulting.com>
-References: <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
- <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
- <2b19b5e2-5eb0-49e0-8c47-8aff3d48f34e@quicinc.com>
- <ZU31gx-LY5GBJGPU@hovoldconsulting.com>
- <dc20ecc0-f930-49c5-9e21-5a6e4c8ce637@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C1012B75
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 10:59:14 +0000 (UTC)
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B37162AD2F
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 02:59:11 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c742186a3bso20774431fa.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 02:59:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699613950; x=1700218750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0YtnsbkjgNmMK4oNQZ7/5K+J2+w6BQuYkA1R55uanv0=;
+        b=H9xuSCtgkd1Sge/1+o+eAXBgf1VOw6JF7k8n1LTvU79ZEoxEBKaI2d5ZWY1uNpHj3v
+         y7c+ht+oJLkH/2pYb2mxBhS4m5aHfRWApEGmxoESQRCZzEOYLfy7ycc3YKP0gdqT6jPq
+         G440DDmzcP897L86yXklBylW5UDVXcjk1srblmTCraQNopxQPuWxP8ev1cI/vbgeLkAw
+         HfBRXccCQ4DwP82b8Y1AsuuXkEOUejvyjrWu31Zw5e8PmHili6m8ZT+mTSNAXISVTbfU
+         OLl+hhpfHxagm29fwkE+2vOebAYo8uSCxU2qr2fncUIUZhmiYjcrxWrv8QTVKz0lwnNA
+         Rm7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699613950; x=1700218750;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0YtnsbkjgNmMK4oNQZ7/5K+J2+w6BQuYkA1R55uanv0=;
+        b=AVFgZIV3apwUKivkHpHe76cE46po1zJeEt4VFyLDahU2CBQ1DAV4cqPKmwQPQ7OUe9
+         VlGlBMpK7CWS9t93hsryKpdVS6cVAyA5VK6D4UquXmnk6ke3CRwk6K62fo5lOPHCnWMR
+         zuiOad9pngEvDaGB4zV8UjDUMasel4+s7cHh3tXw4HtJ6y8t8yZYX3ajA4PB7tboo19+
+         dWkhvoUryikmN+DSD7GKKyVMbStN9MH+NljnM8Z1owlG6qifHFF3gbXxIYs6sHtCG9Xu
+         tQcE563igUNafBCNUB32bAclYXFgQnp0Ywdb862QjsiDC7iFoWhKWe7cQhETnRxe+fsB
+         Gedg==
+X-Gm-Message-State: AOJu0YzMyLESHdOcBpTjW71Fba3njIqlmmguzLWlxQBRWnbC12BWPZ5Q
+	qkoPW1Ej5AzlZk3YmGbeEbauZA==
+X-Google-Smtp-Source: AGHT+IFSVrapyybW2AyJuImHeeidk8TiEnVGijxqBCd8mmjR/9eba809vpDi5XMmGFAGFZO7KB9ltA==
+X-Received: by 2002:a05:651c:2dd:b0:2c0:318a:6ee1 with SMTP id f29-20020a05651c02dd00b002c0318a6ee1mr5343889ljo.49.1699613949943;
+        Fri, 10 Nov 2023 02:59:09 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id z12-20020a1c4c0c000000b003fe61c33df5sm4758021wmf.3.2023.11.10.02.59.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 02:59:09 -0800 (PST)
+Message-ID: <8114d2f9-43d8-4761-adfa-aad9ae249cbc@linaro.org>
+Date: Fri, 10 Nov 2023 11:59:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc20ecc0-f930-49c5-9e21-5a6e4c8ce637@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/11] ARM: dts: qcom: Update devicetree for ADC7 rename
+ for QCOM PMICs
+Content-Language: en-US
+To: Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linus.walleij@linaro.org, Jonathan.Cameron@huawei.com, sboyd@kernel.org,
+ dmitry.baryshkov@linaro.org, quic_subbaram@quicinc.com,
+ quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
+ marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ linux-arm-msm@vger.kernel.org
+Cc: linux-iio@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
+ <20230708072835.3035398-4-quic_jprakash@quicinc.com>
+ <839cfac2-8f74-3386-5854-e3fb2ba4e07f@linaro.org>
+ <27b5806f-ef15-7a90-5adc-5ee12690f2ca@quicinc.com>
+ <7af782f3-fe6c-415b-a993-55962845a102@linaro.org>
+ <7ccaf08e-0add-33e5-fbea-ce737e53fa28@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <7ccaf08e-0add-33e5-fbea-ce737e53fa28@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 10, 2023 at 03:31:15PM +0530, Krishna Kurapati PSSNV wrote:
-
-> Controller-1:
-> u_usb31_prim_mvs_wrapper_usb31_hs_phy_irq	SYS_apcsQgicSPI[806]
-> Controller-2:
-> u_usb31_prim_mvs_wrapper_usb31_hs_phy_irq	SYS_apcsQgicSPI[791]
-
-Thanks.
-
-> > Yes, but, again, you never enabled them in the PHY (cf. QUSB2) so it's
-> > hardly surprising that they do not fire.
-> > 
-> There is no register in femto phy address space of sc8280 (which I am
-> currently testing) where we can configure these registers like qusb2 phy's.
-
-Right, so they are not enabled (and possibly cannot be enabled).
-
-> > So then including the hs_phy_irq for most of these SoCs was a mistake
-> > and we should drop it from the bindings?
-> > 
-> > What about the QUSB2 SoCs that also define DP/DM, are both useable
-> > there?
-> > 
-> > And if so, is there any reason to prefer one mechanism over the other?
+On 09/11/2023 09:22, Jishnu Prakash wrote:
+> Hi Krzysztof,
 > 
-> No. I didn't ask this question to hw team whether dp/dm are used in qusb2
-> phy targets. Let me ask them.
+> On 10/23/2023 12:02 PM, Krzysztof Kozlowski wrote:
+>> On 23/10/2023 08:09, Jishnu Prakash wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 7/9/2023 10:48 PM, Krzysztof Kozlowski wrote:
+>>>> On 08/07/2023 09:28, Jishnu Prakash wrote:
+>>>>> The name "ADC7" needs to be replaced with the name "ADC5_GEN2"
+>>>>> everywhere to match the convention used for these ADC peripherals
+>>>>> on Qualcomm Technologies, Inc. PMICs. Update devicetree files for
+>>>> We do not rename compatibles to match convention. Please provide proper
+>>>> rationale.
+>>> I'll avoid renaming the compatible directly, will just mark it
+>>> deprecated - but is it fine to do the other changes, for updating the
+>>> macro names used in devicetree (replacing the ADC7 macros with the ADC5
+>>> Gen2 macros)?
+>> Please provide proper rationale why "ADC7 needs to be replaced". Your
+>> marketing is not a proper rationale.
 > 
-> While I do so, since there are no qusb2 targets present on femto phy's, do
-> you suggest we still add them to port structure in dwc3-qcom ? I am inclined
-> to add it because it would make implementation look cleaner w.r.t code and
-> also spurious interrupts are not getting triggered (which was my primary
-> concern as it was never tested).
+> 
+> The name "ADC7" was the one used internally at first, but it got changed 
+> later to "ADC5 Gen2" by our HW team, after we had added this support 
+> both downstream and upstream. Since we are now adding support for the 
+> next generation named "ADC5 Gen3", we thought it would be helpful to 
+> indicate in some way that this generation (ADC7) lies between the 
+> earlier ADC5 and the latest ADC5 Gen3.
 
-Yes, that's what I've been suggesting all along. It's a per-port
-interrupt so that's where it belongs. 
+You keep replying with the same arguments as before. I wrote that
+marketing, so how you call your devices and then change your mind, is
+not the valid rationale.
 
-We should still try to determine when each interrupt should be enabled
-and how best to implement that (hence all my questions).
+> 
+> Since you do not want us to modify the existing bindings, is it fine if 
+> I just add a new compatible for ADC5 Gen2 and comments to indicate the 
+> ADC7 compatible should be considered deprecated?
 
-For example, if there is no use for hs interrupts on SoCs using femto
-PHYs we should fix the bindings. If we can use dp/dm on SoCs using QUSB2
-PHYs, we should probably just ignore the hs interrupt when all three are
-defined (especially since that functionality has never worked anyway).
+No, because adc7 compatible is valid and there is no reason to replace
+it. Just because you changed naming does not matter for compatibles.
+It's just unique string, that's it. Don't touch it.
 
-Johan
+
+> 
+> If you are not convinced, we can drop the Gen2 name related changes from 
+> the patch series.
+
+Feel free to add comments or descriptions, if you want to map some
+marketing name to real hardware or to compatibles.
+
+
+Best regards,
+Krzysztof
+
 
