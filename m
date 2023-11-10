@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-15019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D307E7D1F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:46:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E045E7E7D25
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:50:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 401E01C20931
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:46:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BAEF1C20998
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:50:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DE71BDD5;
-	Fri, 10 Nov 2023 14:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDAC1C283;
+	Fri, 10 Nov 2023 14:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ak9vje67"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lGvtEy7w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305721B291
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 14:46:21 +0000 (UTC)
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A1EA39CCA
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:46:19 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4083740f92dso15860985e9.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:46:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0C619440
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 14:50:25 +0000 (UTC)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8376539CDF
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:50:22 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-408425c7c10so16043265e9.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:50:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699627577; x=1700232377; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cibIQr+/X8pBreupQ/CP91YPdzsodU5WiQdvS2Vhz4o=;
-        b=Ak9vje67wyNJZTJ8jQcaIx3oK+bDfeo0yvhq/Z4JsQnCirXCu5ovZv9DYY+TxnqsVX
-         VJo8rA0i2Qf/5ovjm9bvtTcpD8xFetoE48SKHZ5FnMMpRTD9tluab4L+6yETVj5CIU4s
-         Xvm4xC0r+4j7EyQDsjtbevYD9XeKIU5NJ8F035ZJmU2SINBjn0xDxfNVSb2In3F/iXYr
-         snrcBEE9V4LgKaRXTzTJzp6HsQ+1Zmq0xUq9v/icfZt1UoI7ekFWJH8aZydeI4T+hBoN
-         FB/Oz3Bmt0W77xexRh4hoassrpyvAOBs2QyUOOvq0iul4kkAkLhfktVK1qbzcqzBL3tQ
-         cafg==
+        d=linaro.org; s=google; t=1699627821; x=1700232621; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7WwUj9+JHQkH7vG/710feDzITxHqn37W9wlvZGZZv7E=;
+        b=lGvtEy7we2hNT1LB9m+K2OhqyGgebQQ8gl0q47oAq+oE3RDU+UbKyI9qGXd8T5fRk2
+         RH/osAKJtfjC3tf8w9610BIZzfw3GN2kizbz1hQZTVFmBiQPxn3r0tSgW6DN9yRofWjD
+         UTZ+sPXvLICFik0o5fr1w+f/TJr3u8Ymdho+fsbVtmHn/PzJS76ypmVJf3VMJtScRV18
+         hyjzsjmcAowQzvzFYmHlGHHOaT1czXWvYVhmQg3XIADSaeqHjoeiGbm6PmwcDgMwnBUx
+         zjPYbupV0F94AbpRx95BGsa1kQRaT82H1j0glbyMyX5EGE3J5+4+iKdNJURMZgX/0A+z
+         midw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699627577; x=1700232377;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cibIQr+/X8pBreupQ/CP91YPdzsodU5WiQdvS2Vhz4o=;
-        b=CQIljTTiSQ8TdJ72bsoRUkHNwIys6eYS/8sKDoJ6ZkI9PnwVqwIX0zh5LY07J9FBmx
-         SCb+6WAt4Dh3iNRcYrRT1BwpLo75biJ68EwbR6NYw7VU72yaGREYjwdxepD63f6UfSgx
-         dsHGcA7nUivoidLdmvhPf+ujI5uqzSVQzZEwishur0K2FGQSClGMe7kk59L9sWi1vtsf
-         m2zD6k/ghErf96zbMdnWWTyJWINY5MRZWzPqoAY1BKU/+dgHbD4kzKtQlZB6c1u5ptpC
-         xYsI0r98rsfRrPvITZxcCaw3FdMWM74YiAknEOTbGxnPAkFrH9z0TiLdY2MRvXAEfLmp
-         eHKA==
-X-Gm-Message-State: AOJu0YxFREk09DhvczOOKDvwa6WIQ7T6Ajns/ANfXc6YPimfkblIGXgh
-	bilxHZHQSyziwu4+oXg9qVS+HA==
-X-Google-Smtp-Source: AGHT+IHSDa3PRv8GqbJCthgpgxOHM8T5bClMnnw8Ek09GlOpcXeTBzOUCVvgJ8pRSgZ2CoAyjcajlQ==
-X-Received: by 2002:a05:600c:46d1:b0:405:49aa:d578 with SMTP id q17-20020a05600c46d100b0040549aad578mr7455486wmo.37.1699627577463;
-        Fri, 10 Nov 2023 06:46:17 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699627821; x=1700232621;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7WwUj9+JHQkH7vG/710feDzITxHqn37W9wlvZGZZv7E=;
+        b=mQSskDaC0mXZQN+k/nckVcH06eONSKr7BndC3gA/drMyt3Bg2iJ2u28KTnaeWvfhIh
+         bF1rBDgRrnmn/oEbzawBWlm5UKKsjusy10Dje4R/rMa2Ul+P3063AT9QfUR+UP2kqfsL
+         wBZbkSoZO9c7gGmNfq0Bi+FVOuaxgIi0F8KKbNsxAQyD3GpcLeoM229/4vnPbzt5Rwuw
+         MwyHr7rHLPEo+QG4oUFZyAVMBHbrJ4kcBPl30REMavU5l2kG4ym8bwUcFjgZ2vWTmjIS
+         Ob6Jnft18AIPJdmZ3GLfo5d/IhtkmKguX9aksVyyjHwuYL/sAyturW7jCVdZa0SpmTes
+         NeTQ==
+X-Gm-Message-State: AOJu0Yzxsv3VAsdMpFLF+0PjwPW8LdMBE6FOEFv08b+sLpljO0pYPBSX
+	MZqfjTg3mgeY701P+IQCPDMOsQ==
+X-Google-Smtp-Source: AGHT+IE+kRatp2oEHy0dhmgJ8N9B7j/GLXQpHYJnq+gKfgd3LokNnxftIEwaYYySIEHkq/5rf+AtKA==
+X-Received: by 2002:a05:600c:3103:b0:404:fc52:a3c6 with SMTP id g3-20020a05600c310300b00404fc52a3c6mr6818062wmo.25.1699627820758;
+        Fri, 10 Nov 2023 06:50:20 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id n18-20020a05600c3b9200b0040839fcb217sm3319547wms.8.2023.11.10.06.46.15
+        by smtp.gmail.com with ESMTPSA id u8-20020a05600c138800b004075d5664basm5497409wmf.8.2023.11.10.06.50.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 06:46:16 -0800 (PST)
-Message-ID: <a56cfe76-ab03-4187-b6f1-04a5c3414e64@linaro.org>
-Date: Fri, 10 Nov 2023 15:46:14 +0100
+        Fri, 10 Nov 2023 06:50:20 -0800 (PST)
+Message-ID: <f095ba95-ce76-4821-87b7-083f4162fc63@linaro.org>
+Date: Fri, 10 Nov 2023 15:50:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,24 +67,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: mediatek,mtk-wdt: add MT7988
- watchdog and toprgu
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
- <2678cb48-1d2b-47bc-9272-06d9aa140c58@collabora.com>
- <ZU47hV1i66WN8nZJ@makrotopia.org>
- <d7b72b3e-c8f4-4675-ae62-26f5ae576f0a@linaro.org>
- <ZU5A59KO8Y_Q97IG@makrotopia.org>
+Subject: Re: [PATCH 4/4] dmaengine: fsl-edma: integrate TCD64 support for
+ i.MX95
 Content-Language: en-US
+To: Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+ imx@lists.linux.dev, joy.zou@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+ linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org,
+ shenwei.wang@nxp.com, vkoul@kernel.org
+References: <20231109212059.1894646-1-Frank.Li@nxp.com>
+ <20231109212059.1894646-5-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,87 +122,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZU5A59KO8Y_Q97IG@makrotopia.org>
+In-Reply-To: <20231109212059.1894646-5-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/11/2023 15:40, Daniel Golle wrote:
-> On Fri, Nov 10, 2023 at 03:20:53PM +0100, Krzysztof Kozlowski wrote:
->> On 10/11/2023 15:17, Daniel Golle wrote:
->>> On Fri, Nov 10, 2023 at 12:56:18PM +0100, AngeloGioacchino Del Regno wrote:
->>>> Il 10/11/23 01:30, Daniel Golle ha scritto:
->>>>> Add binding description for mediatek,mt7988-wdt.
->>>>>
->>>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
->>>>> ---
->>>>>   .../bindings/watchdog/mediatek,mtk-wdt.yaml          |  1 +
->>>>>   include/dt-bindings/reset/mediatek,mt7988-resets.h   | 12 ++++++++++++
->>>>>   2 files changed, 13 insertions(+)
->>>>>   create mode 100644 include/dt-bindings/reset/mediatek,mt7988-resets.h
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
->>>>> index cc502838bc398..8d2520241e37f 100644
->>>>> --- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
->>>>> +++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
->>>>> @@ -25,6 +25,7 @@ properties:
->>>>>             - mediatek,mt6735-wdt
->>>>>             - mediatek,mt6795-wdt
->>>>>             - mediatek,mt7986-wdt
->>>>> +          - mediatek,mt7988-wdt
->>>>>             - mediatek,mt8183-wdt
->>>>>             - mediatek,mt8186-wdt
->>>>>             - mediatek,mt8188-wdt
->>>>> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
->>>>> new file mode 100644
->>>>> index 0000000000000..fa7c937505e08
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
->>>>> @@ -0,0 +1,12 @@
->>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->>>>> +
->>>>> +/* TOPRGU resets */
->>>>
->>>> The first reset is zero, the second reset is one.
->>>>
->>>> Where's the zero'th reset? :-)
->>>
->>> Currently the reset numbers represent the corresponding bit positions in
->>> the toprgu register, as this is how the mtk-wdt driver is organized.
->>>
->>> So there is probably something at bit 0, and also at bit 3~11 and
->>> maybe also 17~23, but it's unknown and may be added later once known
->>> and/or needed.
->>
->> There is no need to put register bits, which are not used by the driver,
->> in the bindings.
+On 09/11/2023 22:20, Frank Li wrote:
+> In i.MX95's edma version 5, the TCD structure is extended to support 64-bit
+> addresses for fields like saddr and daddr. To prevent code duplication,
+> employ help macros to handle the fields, as the field names remain the same
+> between TCD and TCD64.
 > 
-> There aren't. That's why there isn't a zero'th reset (and also not 3~11, 17~24).
+> Change local variables related to TCD addresses from 'u32' to 'dma_addr_t'
+> to accept 64-bit DMA addresses.
 > 
-> Or should the driver be reorganized to provide a mapping of logical to
-> physical resets, and then have only the needed once present and start
-> counting logical resets from 0? This is doable, of course, but it's a
-> bit of effort just for the aesthetical goal of starting to count from
-> zero and continous in header file.
+> Change 'vtcd' type to 'void *' to avoid direct use. Use helper macros to
+> access the TCD fields correctly.
 > 
-> And, of course, chances are that other currently still unused bits
-> will be needed at a later point which then would mean having to add
-> them in at least 2 places (header file and mapping logical<->physical)
-> where as currently it would just mean adding a line defining it in the
-> header file.
-
-You can do it, but it's not what I wrote here. So bear with me:
-
-"There is no need to put register bits in the bindings."
-
-You replied "There aren't", which I don't understand in this context. I
-can be clearer:
-Drop this hunk.
-
+> Call 'dma_set_mask_and_coherent(64)' when TCD64 is supported.
 > 
-> A quick looks at all the other headers in
-> include/dt-binding/reset/mt*-resets.h also shows that currently all of
-> them have unused bits and e.g. infracfg on MT7986 starts counting from
-> 6.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+
+Three kbuild reports with build failures.
+
+I have impression this was never build-tested and reviewed internally
+before posting. We had such talk ~month ago and I insisted on some
+internal review prior submitting to mailing list. I did not insist on
+internal building of patches, because it felt obvious, so please kindly
+thoroughly build, review and test your patches internally, before using
+the community for this. I am pretty sure NXP can build the code they send.
+
+Thank you in advance.
 
 Best regards,
 Krzysztof
