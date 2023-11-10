@@ -1,219 +1,333 @@
-Return-Path: <devicetree+bounces-15036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B0A7E7D64
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 16:24:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE557E7D74
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 16:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79CFA1C209DA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:24:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 085C82810C6
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CA61CA80;
-	Fri, 10 Nov 2023 15:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B34B1CA89;
+	Fri, 10 Nov 2023 15:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S0rLqJei"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D82E1CA81
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 15:24:18 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id B92153A886;
-	Fri, 10 Nov 2023 07:24:16 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D18AC12FC;
-	Fri, 10 Nov 2023 07:25:00 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 694FC3F6C4;
-	Fri, 10 Nov 2023 07:24:14 -0800 (PST)
-Date: Fri, 10 Nov 2023 15:24:04 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Takahiro Akashi <takahiro.akashi@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-	"sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [RFC v5 5/5] dt-bindings: firmware: arm,scmi: Add support for
- pinctrl protocol
-Message-ID: <ZU5LFC23JaEidEGZ@pluto>
-References: <cover.1698353854.git.oleksii_moisieiev@epam.com>
- <e9285b4377242e4d888391be987cbb99caf8c573.1698353854.git.oleksii_moisieiev@epam.com>
- <CACRpkdYW-xmejyOo9H9XSkcabvYgBqPvpjppvNe_RF6RLxyxKA@mail.gmail.com>
- <ZU2AP7leDcIZIN+b@octopus>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856A01CA81;
+	Fri, 10 Nov 2023 15:34:53 +0000 (UTC)
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A8C3AE3B;
+	Fri, 10 Nov 2023 07:34:50 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1cc394f4cdfso17889345ad.0;
+        Fri, 10 Nov 2023 07:34:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699630490; x=1700235290; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=LOTAcu4FmLa0ZO5e/oRiQFa94EdrML0eRYVvFKo0n7w=;
+        b=S0rLqJeiDW64851X+KMapNgz8+jmjd7syBqL09nLK6kcoVqbckk0LJpGprKvEiHBr2
+         INmxIA/Ba4wKsZ07/pJa9SKYIelNXazWGBKjs1truOJoLSs1X20NNwLrIrhg9mn46Mn0
+         cXAddpoGXLEkTjqKBohqbEJAgN0gQOrwPdUz+wmRYAi8ZyAP37QfHpF9dseaenl0Inly
+         AyhCG5nSoc7esWGFp3onB/HIqTcoV3782L3RiQ59VMjswwyQ1okO4HyZhLr8PVuRc6yq
+         FcYbdtg/g1W1fdr+4tqigp7g2x2LHq7q6eZFVCiV+PWmcLBKlm8FZVh8BKbdkCOk3zyM
+         xK+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699630490; x=1700235290;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LOTAcu4FmLa0ZO5e/oRiQFa94EdrML0eRYVvFKo0n7w=;
+        b=Yo46bMHcIqHJrtoEMoeC3YkwnIqLqfsIQYc9aLPHStt66PZAvZIEDk/4tG0RzrSpry
+         1B9MsgjeTO70Hm3Y8Xw6sLnJV9xo2S60O6VrUpJRiMxl6uP/NyeOSUurYURzeZW7hOZ6
+         VqZeFZt70aUqrSsJFbtJz6R/eutSEOxSqvQSWjJnoH+gXrC4M0XFQHFWmMdhQZL7GCih
+         YAS+oopLq5LYGBA+J1WynfWws8S5pQfTDGZUu5ygdDr9T8Qgw9rRM6/LxKkaYOVOKPy1
+         X91TgkcvaGP9eHpUqSJAmv/wKHXs1K0KrzArbXJaiH+m0ZsUq7vDimt663biiRHfpBMR
+         B8KQ==
+X-Gm-Message-State: AOJu0Yxcj3zCzFPvvEsa63T6PJOhZZAbpHPxyf7G7roiAxZefnPIfjUR
+	HdbZelW4Nejq1ckl4Zp0ioQ=
+X-Google-Smtp-Source: AGHT+IHsMQ2Z1fVX2V6vFRC918SDXXUwAN1cGrm2Pu93OANrkqIk6CjfGgySZ4JBSbFcWaUkiVKpaw==
+X-Received: by 2002:a17:902:e84f:b0:1b5:561a:5ca9 with SMTP id t15-20020a170902e84f00b001b5561a5ca9mr9190228plg.50.1699630489743;
+        Fri, 10 Nov 2023 07:34:49 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l6-20020a170902eb0600b001cc3b988fd6sm5493973plb.265.2023.11.10.07.34.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 07:34:48 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <84782418-958c-4477-a9d1-e1eb2714b225@roeck-us.net>
+Date: Fri, 10 Nov 2023 07:34:46 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZU2AP7leDcIZIN+b@octopus>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] hwmon: (pmbus) Add support for MPS Multi-phase
+ mp5990
+Content-Language: en-US
+To: Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+ Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231109044844.614007-1-peteryin.openbmc@gmail.com>
+ <20231109044844.614007-3-peteryin.openbmc@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231109044844.614007-3-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Nov 10, 2023 at 09:58:39AM +0900, Takahiro Akashi wrote:
-> Hi Arm folks,
+On 11/8/23 20:48, Peter Yin wrote:
+> Add support for mp5990 device from Monolithic Power Systems, Inc. (MPS)
+> vendor. This is a Hot-Swap Controller.
 > 
-
-> Do you have any comment?
-> I expect that you have had some assumption when you defined
-> SCMI pinctrl protocol specification.
->
-
-[CC Souvik]
-
-@Souvik for context see:
-https://lore.kernel.org/all/CACRpkdZ4GborirSpa3GK_PwMgCvY0ePEmZO+CwnLcP6nAdieow@mail.gmail.com/
-
-Hi,
-
-I am not sure what is the full story here, BUT the spec was mainly aimed
-at supporting PINCTRL in SCMI with the idea to then, later on, base GPIO
-on top of it, "easily" building on the PINCTRL spec features in the future
-with a separate series from the one Oleksii is working on...but it like
-seems the future is already here and maybe we have discovered something
-to be clarified...
-
-Souvik/Oleksii can tell you better what were (if any) further assumptions
-related to GPIO on top on SCMI/PINCTRL, but the aim of this series was
-always to be just the basic Generic Pinctrl support when dealing with an
-SCMI server backend.
-
-Regarding the current Pinctrl series by Oleksii, I would also notice that,
-indeed, some "non-spec-dictated" naming assumptions are ALREADY present
-somehow, because, currently, the spec and the pinctrl SCMI protocol layer
-speak/refer about pins/groups/functions, as usual, only in terms of numeric
-identifiers/IDs (with an associated name of course), while the pinctrl
-driver (thanks to the Linux pictrl subsystem layer) describes and refers
-anything in the DT in terms of names: so all of this really works only
-because the names used in the DT happen to match the names reported by
-the backend server.
-
-My test DT uses just what Oleksii exemplified in the cover letter:
-
-	pinctrl_i2c2: i2c2 {
-		groups = "i2c2_a", "i2c2_b";
-                function = "i2c2";
-        };
-
-	pinctrl_mdio: pins_mdio {
-		groups = "avb_mdio";
-                drive-strength = <24>;
-        };
-
-        keys_pins: keys {
-		pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-                bias-pull-up;
-        };
-
-
-with a dummmy test driver referring to it, so as to trigger the drivers
-core to initialize the pinctrl stuff.
-
-But all of this works just because, in the example of my emulated setup,
-my fake server exposes resources that are exactly named just as how the
-above DT expects pins/functions/pins to be named, because this is how
-the Generic Pinctrl subsystem in Linux is supposed to work, right ?
-
-The difference is that the names, in the case of pinctrl-scmi, are not
-hardcoded in the specific pin-controller driver BUT are provided dynamically
-by the SCMI server at runtime.
-
-And this is just a naming convention, between the Linux picntrl subsys AND
-the SCMI server, that allows the Linux Pinctrl subsys to map, under-hood,
-names to type/IDs as expected by the SCMI protocol layer (and by the spec):
-so when you will define and describe a real platform with a DT, you will
-will have to provide your name references, knowing that the shipped platform
-SCMI fw will advertise exactly the same (or a superset of them)
-
-As such, personally, I would find reasonable to use, equally, some
-conventional function name like 'gpio' to advertise and configure groups
-of pins as being used as GPIOs.
-
-Maybe, though, both of these expected naming comventions should be
-explicitly stated in the spec: indeed if you look at some Sensor protocol
-extensions added in v3.0, in 4.7.2.5.1 "Sensor Axis Descriptors"
-regarding naming we say:
-
-"It is recommended that the name ends with ‘_’
-followed by the axis of the sensor in uppercase. For
-example, the name for the x-axis of a triaxial
-accelerometer could be “acc_X” or “_X”."
-
-...so maybe some similar remarks could be added here.
-
-Souvik is really the one who can have a say about the opportunity (or
-not) of these kind of explicit advised naming conventions on the spec,
-so I have CCed him.
- 
-> On Mon, Nov 06, 2023 at 02:12:36PM +0100, Linus Walleij wrote:
-> > On Fri, Oct 27, 2023 at 8:28???AM Oleksii Moisieiev
-> > <Oleksii_Moisieiev@epam.com> wrote:
-> > 
-> > > +                keys_pins: keys-pins {
-> > > +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-> > > +                    bias-pull-up;
-> > > +                };
-> > 
-> > This is kind of interesting and relates to my question about naming groups and
-> > functions of GPIO pins.
-> > 
-> > Here we see four pins suspiciously named "GP_*" which I read as
-> > "generic purpose"
-> > and they are not muxed to *any* function, yes pulled up.
-> > 
-> > I would have expected something like:
-> > 
-> > keys_pins: keys-pins {
-> >   groups = "GP_5_17_grp", "GP_5_20_grp", "GP_5_22_grp", "GP_2_1_grp";
-> >   function = "gpio";
-> >   pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
-> >   bias-pull-up;
-> > };
-> > 
-> > I hope this illustrates what I see as a problem in not designing in
-> > GPIO as an explicit
-> > function, I get the impression that these pins are GPIO because it is hardware
-> > default.
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
+>   Documentation/hwmon/index.rst  |  1 +
+>   Documentation/hwmon/mp5990.rst | 84 +++++++++++++++++++++++++++++++++
+>   drivers/hwmon/pmbus/Kconfig    |  9 ++++
+>   drivers/hwmon/pmbus/Makefile   |  1 +
+>   drivers/hwmon/pmbus/mp5990.c   | 86 ++++++++++++++++++++++++++++++++++
+>   5 files changed, 181 insertions(+)
+>   create mode 100644 Documentation/hwmon/mp5990.rst
+>   create mode 100644 drivers/hwmon/pmbus/mp5990.c
 > 
-> If you want to stick to "explicit", we may rather introduce a pre-defined
-> sub-node name, "gpio", in a device tree binding, i.e.
-> 
->   protocol@19 { // pinctrl protocol
->       ... // other pinmux nodes
-> 
->       scmi_gpio: gpio { // "gpio" is a fixed name
->           keys-pins {
->               pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
->               bias-pull-up;
->               // possibly input or output
->           };
->           input-pins {
->               groups = "some group"; // any name
->               input-mode;
->           }
->           output-pins {
->               pins = "foo1", "foo2"; // any name
->               output-mode;
->           }
->       }
->   }
->
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 042e1cf9501b..8c70e10fc795 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -157,6 +157,7 @@ Hardware Monitoring Kernel Drivers
+>      mp2888
+>      mp2975
+>      mp5023
+> +   mp5990
+>      nct6683
+>      nct6775
+>      nct7802
+> diff --git a/Documentation/hwmon/mp5990.rst b/Documentation/hwmon/mp5990.rst
+> new file mode 100644
+> index 000000000000..d2da0f767530
+> --- /dev/null
+> +++ b/Documentation/hwmon/mp5990.rst
+> @@ -0,0 +1,84 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver mp5990
+> +====================
+> +
+> +Supported chips:
+> +
+> +  * MPS MP5990
+> +
+> +    Prefix: 'mp5990'
+> +
+> +  * Datasheet
+> +
+> +    Publicly available at the MPS website : https://www.monolithicpower.com/en/mp5990.html
+> +
+> +Author:
+> +
+> +	Peter Yin <peteryin.openbmc@gmail.com>
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
+> +MP5990 Hot-Swap Controller.
+> +
+> +Device compliant with:
+> +
+> +- PMBus rev 1.3 interface.
+> +
+> +Device supports direct format for reading input voltage, output voltage,
+> +output current, input power and temperature.
+> +
 
-I suppose your proposal of a specially named "gpio" node would be
-another way, BUT it would also mean describing something in the DT that
-could be discoverable dynamically querying the server (while making the
-above assumptions about conventions).
+The device also supports linear mode according to its datasheet.
 
-Thanks,
-Cristian
+> +The driver exports the following attributes via the 'sysfs' files
+> +for input voltage:
+> +
+> +**in1_input**
+> +
+> +**in1_label**
+> +
+> +**in1_max**
+> +
+> +**in1_max_alarm**
+> +
+> +**in1_min**
+> +
+> +**in1_min_alarm**
+> +
+> +The driver provides the following attributes for output voltage:
+> +
+> +**in2_input**
+> +
+> +**in2_label**
+> +
+> +**in2_alarm**
+> +
+> +The driver provides the following attributes for output current:
+> +
+> +**curr1_input**
+> +
+> +**curr1_label**
+> +
+> +**curr1_alarm**
+> +
+> +**curr1_max**
+> +
+> +The driver provides the following attributes for input power:
+> +
+> +**power1_input**
+> +
+> +**power1_label**
+> +
+> +**power1_alarm**
+> +
+> +The driver provides the following attributes for temperature:
+> +
+> +**temp1_input**
+> +
+> +**temp1_max**
+> +
+> +**temp1_max_alarm**
+> +
+> +**temp1_crit**
+> +
+> +**temp1_crit_alarm**
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 270b6336b76d..65a116f7744d 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -326,6 +326,15 @@ config SENSORS_MP5023
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called mp5023.
+>   
+> +config SENSORS_MP5990
+> +	tristate "MPS MP5990"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for MPS
+> +	  MP5990.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called mp5990.
+> +
+>   config SENSORS_MPQ7932_REGULATOR
+>   	bool "Regulator support for MPQ7932"
+>   	depends on SENSORS_MPQ7932 && REGULATOR
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 84ee960a6c2d..212d9ca0acc9 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -35,6 +35,7 @@ obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
+>   obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
+>   obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>   obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+> +obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+>   obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
+>   obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
+>   obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+> diff --git a/drivers/hwmon/pmbus/mp5990.c b/drivers/hwmon/pmbus/mp5990.c
+> new file mode 100644
+> index 000000000000..fb3ac9c5d44e
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mp5990.c
+> @@ -0,0 +1,86 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Driver for MPS MP5990 Hot-Swap Controller
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pmbus.h>
+
+Not used in this driver.
+
+> +#include "pmbus.h"
+> +
+> +static int mp5990_read_byte_data(struct i2c_client *client, int page, int reg)
+> +{
+> +	switch (reg) {
+> +	case PMBUS_VOUT_MODE:
+> +		/* The datasheet does not support the VOUT command,
+
+Standard multi-line comments, please. This is not the networking subsystem.
+
+> +		 * but the device responds with a default value of 0x17.
+> +		 * In the standard, 0x17 represents linear mode. However,
+> +		 * for the MP5990, the VOUT linear mode is linear11, not linear16.
+> +		 * Therefore, we should enforce the VOUT in the direct format.
+> +		 */
+> +		return PB_VOUT_MODE_DIRECT;
+
+This doesn't take into account that the reporting mode is set in
+EFUSE_CFG bit 9 (RPT_FORMAT). If the chip is configured to report its data
+in linear mode, all readings will be wrong if the exponent is != 0 and
+for negative values.
+
+The driver could enforce direct mode by explicitly configuring EFUSE_CFG,
+but that is not guaranteed to work because the chip could be write
+protected. It would be necessary to disable write protection first,
+making this a bit complicated. Alternatively, the reading of VOUT could
+be adjusted in linear mode to linear16 if the chip is configured to
+report data in linear mode. I would personally prefer this solution.
+Either case, this needs to be handled.
+
+Guenter
+
 
