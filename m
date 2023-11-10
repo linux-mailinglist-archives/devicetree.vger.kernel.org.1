@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAD67E7C25
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:24:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA48C7E7C29
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:27:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A24728137F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:24:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7C2C1C2097B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0940818C21;
-	Fri, 10 Nov 2023 12:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A176F18E15;
+	Fri, 10 Nov 2023 12:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uu3BFCRi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oBO+AhV7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17C818E09
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 12:24:54 +0000 (UTC)
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4757833F84
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:24:53 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9be02fcf268so315693766b.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:24:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F75118E09
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 12:27:41 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D8233F9C
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:27:40 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40839807e82so12243705e9.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 04:27:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699619092; x=1700223892; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699619259; x=1700224059; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kSMxTW9sdJk1INNkesPXXGzPLDqsgagFo7VWqT4Pqyc=;
-        b=uu3BFCRiDbcI09+zRDaqZuY5/BsFutP/z0h2dZ7h3NxqpjhU9Gf+SQo5H8O7/LjPFB
-         ShWaQnu0hOv72pPeysV6ZgIJ9H16EO914eGr5eW5pWI/P+b6NLYzH5n6RrdWNuAzmlk7
-         YG08z4OEeqiAFPJVZfnorgU/o3nHEQUlXM0zrejtmEOWZ0OQSfn48uUxGwz+rj2rxGzy
-         hguGML2SvHr7DisvhuSI7F3tldPc2oX1dbEkwCyh5Idr/97374y9G0MIc/xL8BlJ974v
-         GxhUIJ1uAIW9ksBml7btIOsaTub8DQdgm7haHZhqO1DFHPXOUUhUEXQMIeD5LYWDeegT
-         fheg==
+        bh=8EJtfoWrYibrvvyf7DDtBK1pc0WtivZ03vd9ez0zk9M=;
+        b=oBO+AhV7fW58gp1AEeB1eSOuO/sl7zjS14Ls5KHvlhqa2iaIEvVE8QtNr7npMto1+k
+         Z00AFzS+gejahL7kSXwzVu6Gm9uejC2naTAHJY0iWxlVdCbpWy9x93j8vOaNli81hsUm
+         a+g6UV+h0ocYSwtHUUgaYey5BVhPv5TvzQjZDjh7BUZtDiIaMY+9T6q/KzCeFfoRrsO5
+         cRSXp/kcwBZUI/G6mQecP9L0EZal8F9KmLtH6kea8zXj78UKqOgNx8oEK+ZHTt/zwmel
+         ko7kiFxR7hCuFtd40SrTQlNjJBqIGhx//vzIMO2bT1mxPqmxQR97zevDQncEAT4C+08w
+         5DkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699619092; x=1700223892;
+        d=1e100.net; s=20230601; t=1699619259; x=1700224059;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kSMxTW9sdJk1INNkesPXXGzPLDqsgagFo7VWqT4Pqyc=;
-        b=EOj/tlqHnFeuy27x7ikYQKwwfuJE72gjyCRRNAotl04Mtky5uE1GSmEgpLXLb2KVZs
-         OlL2qaOz+vc7e54++MUDtdokKY59sQinqXlSr9WqqF8xHUiOTqLZESTj61tuGZnaaiCj
-         lXTQrwHreOIouqDiCftgxrezqG+Fq4Vkfnpvxx76dn2F5iyEAx+L+OGC0VL4TfEOisXc
-         pqbeYqqm968PysAybTuKkde0IEFCYL0D+yliI8nyHLc9KrduYDMildqjzGeXZi7KN+qV
-         hIeCwgo+Ji/CO6nvmDKV3lud7wyoU08OY33+zuTaMtUfi+a6T6J4mD+BTAAGBZjpEu4l
-         uyvg==
-X-Gm-Message-State: AOJu0YxtxqJnsRp17VEV/CtzrMn7l37lvyQbTyNAzUG1Ahq6sMFTTMGb
-	ZbodrU8npgndZNtog1AcjpmNRw==
-X-Google-Smtp-Source: AGHT+IFXV9SgLbEufj4ibWueYQFMBtT3EW6RJNVbmMciQn9n+OCJDJW1Q20T3iKuWcXZvJ6u8YC2gQ==
-X-Received: by 2002:a17:907:3e9e:b0:9d0:51d4:4d87 with SMTP id hs30-20020a1709073e9e00b009d051d44d87mr7415872ejc.62.1699619091806;
-        Fri, 10 Nov 2023 04:24:51 -0800 (PST)
+        bh=8EJtfoWrYibrvvyf7DDtBK1pc0WtivZ03vd9ez0zk9M=;
+        b=BnxMfqY3OLVKFNkDRjkY1duzjs0Tn29kELjN7uQpqsjsV3kNcWAAof6G7S5vvqo0u1
+         iA83HZQQrVhIEkofB5gb2lZ6Yb/O1YdPqDE0cTObZcgzo76dY5R/U4Qh1g5JOS2HcwEm
+         AAwjBy9KsNBRWkj80B28Hn3pEaXf1+hiUe4zLQUFxBgkW2N1lb2Q8nvYrO5xnCnQb/iS
+         FM0KiIzwBEt7taBVdy+1CXWwMQul7n9lFdVy2KHtSw70zKY+GmOSh7HLgSkZK8u/eEeO
+         EVpqoZJu3QdtndzY+To2ltv99QcYGJZYUHefF+17f5TDHwaQlrCYqJ2N0R3VTp7ojT01
+         Jt7Q==
+X-Gm-Message-State: AOJu0YzuhK4TlkaUjVL+MrunMvGDoYm6Nrp8wtHd0ex7/umaJ+4WSK4z
+	Q7bqN0IvqiVzE0nARYtq42ZvrQ==
+X-Google-Smtp-Source: AGHT+IHhFC8+acrJ15sJ9jd+I8MBXyTvFfbwQZyiZ96JDCYY/icKa8sVEJYynTX87bbtgHzKDsC12w==
+X-Received: by 2002:a05:600c:3c85:b0:401:c7ec:b930 with SMTP id bg5-20020a05600c3c8500b00401c7ecb930mr2859919wmb.10.1699619259077;
+        Fri, 10 Nov 2023 04:27:39 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id z15-20020a1709060acf00b0099cb0a7098dsm3876197ejf.19.2023.11.10.04.24.50
+        by smtp.gmail.com with ESMTPSA id d14-20020a05600c34ce00b00406443c8b4fsm5028154wmq.19.2023.11.10.04.27.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 04:24:51 -0800 (PST)
-Message-ID: <faa1835b-4488-4e10-998d-f77ac7e396a5@linaro.org>
-Date: Fri, 10 Nov 2023 13:24:49 +0100
+        Fri, 10 Nov 2023 04:27:38 -0800 (PST)
+Message-ID: <66173ccd-4478-4622-a386-557a8d35102f@linaro.org>
+Date: Fri, 10 Nov 2023 13:27:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/4] dt-bindings: pwm: Add OpenCores PWM module
+Subject: Re: [PATCH v7 2/4] pwm: opencores: Add PWM driver support
 Content-Language: en-US
 To: William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
@@ -82,7 +82,7 @@ Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
  Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
  <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
 References: <20231110062039.103339-1-william.qiu@starfivetech.com>
- <20231110062039.103339-2-william.qiu@starfivetech.com>
+ <20231110062039.103339-3-william.qiu@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,15 +128,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231110062039.103339-2-william.qiu@starfivetech.com>
+In-Reply-To: <20231110062039.103339-3-william.qiu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 10/11/2023 07:20, William Qiu wrote:
-> Add documentation to describe OpenCores Pulse Width Modulation
-> controller driver.
+> Add Pulse Width Modulation driver support for OpenCores.
 
-Please describe the hardware, not the driver.
+What is OpenCores? Why all your commit messages lack basic explanation
+of the hardware you are working on?
+
+> 
+
+
+> +static const struct ocores_pwm_data jh7100_pwm_data = {
+> +	.get_ch_base = starfive_jh71x0_get_ch_base,
+> +};
+> +
+> +static const struct ocores_pwm_data jh7110_pwm_data = {
+> +	.get_ch_base = starfive_jh71x0_get_ch_base,
+> +};
+> +
+> +static const struct of_device_id ocores_pwm_of_match[] = {
+> +	{ .compatible = "opencores,pwm" },
+> +	{ .compatible = "starfive,jh7100-pwm", .data = &jh7100_pwm_data},
+> +	{ .compatible = "starfive,jh7110-pwm", .data = &jh7110_pwm_data},
+
+Your bindings say something entirely else.
+
+I don't understand what is happening with this patchset.
+
+
+> +	{ /* sentinel */ }
+> +};
+
+...
+
+> +	ddata->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ddata->regs))
+> +		return dev_err_probe(dev, PTR_ERR(ddata->regs),
+> +				     "Unable to map IO resources\n");
+> +
+> +	ddata->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(ddata->clk))
+> +		return dev_err_probe(dev, PTR_ERR(ddata->clk),
+> +				     "Unable to get pwm's clock\n");
+> +
+> +	ret = clk_prepare_enable(ddata->clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Clock enable failed\n");
+
+dev_clk_get_enabled() or whatever the API is called
+
+> +
+> +	ddata->rst = devm_reset_control_get_optional_exclusive(dev, NULL);
+> +	reset_control_deassert(ddata->rst);
+> +
+> +	ddata->clk_rate = clk_get_rate(ddata->clk);
+> +	if (ddata->clk_rate <= 0)
+> +		return dev_err_probe(dev, ddata->clk_rate,
+> +				     "Unable to get clock's rate\n");
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret < 0) {
+> +		dev_err_probe(dev, ret, "Could not register PWM chip\n");
+> +		clk_disable_unprepare(ddata->clk);
+> +		reset_control_assert(ddata->rst);
+
+return dev_err_probe
+
+> +	}
+> +
+> +	platform_set_drvdata(pdev, ddata);
+> +
+> +	return ret;
+> +}
+> +
+> +static void ocores_pwm_remove(struct platform_device *dev)
+> +{
+> +	struct ocores_pwm_device *ddata = platform_get_drvdata(dev);
+> +
+> +	reset_control_assert(ddata->rst);
+> +	clk_disable_unprepare(ddata->clk);
+
+You have confusing order of cleanups. It's like random, once clock then
+reset, in other place reset then clock.
 
 Best regards,
 Krzysztof
