@@ -1,191 +1,166 @@
-Return-Path: <devicetree+bounces-15053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF4AD7E8309
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9926C7E831B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 20:57:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24DC11C2096B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 19:48:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C37871C20949
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 19:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86313AC12;
-	Fri, 10 Nov 2023 19:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FA43AC25;
+	Fri, 10 Nov 2023 19:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="FC+8OgDF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HX4ifgLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC163AC1E
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 19:48:53 +0000 (UTC)
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFB68846;
-	Fri, 10 Nov 2023 11:48:51 -0800 (PST)
-Received: from pps.filterd (m0134424.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AAJgb89020145;
-	Fri, 10 Nov 2023 19:48:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pps0720;
- bh=0/E/HjCmwE0fi71jwok3z9eyac/BTN3f7p312DifIaw=;
- b=FC+8OgDFWIT3nbzpxbY7oo/3cpkOnj2uqo2u6R7PvARJsK9EeBY/QDcZ1fh/0GGq1z/f
- GZNV6aX4HJFnimwVHNZb0Xt7W1Oa8R5LFYaM2zg8FTlMbvRyzIr1pfNuZkUszdum4dZK
- y0z3vCp2O3pQKrNRydXRRtb1jgKyjxjw4ikxZM7up//fgMJnGNdBOm85wo7D09I6BJJ7
- woCUdJIntRO9CktGfDFOy2eukAE9M9A5OUu4BUhZLY71BxJsjpxdQArbWlIs3tzjLD+T
- 2IP5FYnZ9ZgI6AC3vTCQ8GfDvDNp4wXI9450HKxZYsGK/cqfUmaii9JlDQ8JGLhqR+mR WQ== 
-Received: from p1lg14881.it.hpe.com ([16.230.97.202])
-	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3u9peqjchd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 10 Nov 2023 19:48:36 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 42820805E7B;
-	Fri, 10 Nov 2023 19:48:36 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.39])
-	by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id B8712804508;
-	Fri, 10 Nov 2023 19:48:31 +0000 (UTC)
-From: charles.kearney@hpe.com
-To: verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Charles Kearney <charles.kearney@hpe.com>
-Subject: [PATCH v2 RESEND] ARM: dts: hpe: BUG: Correct GXP register ranges
-Date: Fri, 10 Nov 2023 19:48:27 +0000
-Message-Id: <20231110194827.122045-1-charles.kearney@hpe.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED2C3B28F;
+	Fri, 10 Nov 2023 19:57:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03042C433C8;
+	Fri, 10 Nov 2023 19:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699646229;
+	bh=pPeEBHJvQREKkTU30qYxMcqhI6GQEWa9vdngVVAWlco=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HX4ifgLq+XwZy+KNkyT0S+JWropAdL44XUYyjluHGSYpALor868pJnwNCQ9wHe9eu
+	 tQxk3q8EDwspwZknT9Ge6BOV1BLRgnyE+n3UrEqyDlyIssNyitBD1TDWGrDOjwOWmB
+	 9OmkjDxk/zKY+YEN6EmDGy6eIrC/+R1vzyHHlqTRRhPqIqJrW0MACB6fVHDl/pipB+
+	 6h0Bae+FM7VCIWwtd1BBnPBVzPhpl7CeYFSbFgXU8OePRScmo6m3UQ2jFTDi5dcHj0
+	 tdwmOYOMfkN3IY0VJ1M9cQwkMli1RW2hQ+fTOWsDfH2hb4jrZdoTQWX04WQjKx7Uqp
+	 UICOwInuwywGg==
+Date: Fri, 10 Nov 2023 19:57:02 +0000
+From: Simon Horman <horms@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robimarko@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v6 3/4] net: phy: aquantia: add firmware
+ load support
+Message-ID: <20231110195628.GA673918@kernel.org>
+References: <20231109123253.3933-1-ansuelsmth@gmail.com>
+ <20231109123253.3933-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: _1USLNSPgNeu86J2_zytf9cSNQAT2GEj
-X-Proofpoint-GUID: _1USLNSPgNeu86J2_zytf9cSNQAT2GEj
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-10_17,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
- lowpriorityscore=0 adultscore=0 bulkscore=0 mlxlogscore=578
- priorityscore=1501 malwarescore=0 impostorscore=0 phishscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311100166
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231109123253.3933-3-ansuelsmth@gmail.com>
 
-From: Charles Kearney <charles.kearney@hpe.com>
+On Thu, Nov 09, 2023 at 01:32:52PM +0100, Christian Marangi wrote:
+> From: Robert Marko <robimarko@gmail.com>
+> 
+> Aquantia PHY-s require firmware to be loaded before they start operating.
+> It can be automatically loaded in case when there is a SPI-NOR connected
+> to Aquantia PHY-s or can be loaded from the host via MDIO.
+> 
+> This patch adds support for loading the firmware via MDIO as in most cases
+> there is no SPI-NOR being used to save on cost.
+> Firmware loading code itself is ported from mainline U-boot with cleanups.
+> 
+> The firmware has mixed values both in big and little endian.
+> PHY core itself is big-endian but it expects values to be in little-endian.
+> The firmware is little-endian but CRC-16 value for it is stored at the end
+> of firmware in big-endian.
+> 
+> It seems the PHY does the conversion internally from firmware that is
+> little-endian to the PHY that is big-endian on using the mailbox
+> but mailbox returns a big-endian CRC-16 to verify the written data
+> integrity.
+> 
+> Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-Bug fix to correct memory ranges on GXP to include host registers. This
-corrects a issue where the host interrupt controller is not available.
+Hi Christian and Robert,
 
-Fixes: 53658de4fadb ("ARM: dts: Introduce HPE GXP Device tree")
+thanks for your patch-set.
 
-Reviewed-by: Nick Hawkins <nick.hawkins@hpe.com>
-Signed-off-by: Charles Kearney <charles.kearney@hpe.com>
----
- arch/arm/boot/dts/hpe/hpe-gxp.dtsi | 37 +++++++++++++++---------------
- 1 file changed, 19 insertions(+), 18 deletions(-)
+I spotted some minor endien issues which I have highlighted below.
 
-diff --git a/arch/arm/boot/dts/hpe/hpe-gxp.dtsi b/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
-index cf735b3c4f35..5de5ec4d833c 100644
---- a/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
-+++ b/arch/arm/boot/dts/hpe/hpe-gxp.dtsi
-@@ -52,73 +52,74 @@ L2: cache-controller@b0040000 {
- 			cache-level = <2>;
- 		};
- 
--		ahb@c0000000 {
-+		ahb@80000000 {
- 			compatible = "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			ranges = <0x0 0xc0000000 0x30000000>;
- 			dma-ranges;
-+			ranges = <0x00000000 0x80000000 0x20000000>,
-+					 <0x40000000 0xc0000000 0x3fff0000>;
- 
--			vic0: interrupt-controller@eff0000 {
-+			vic0: interrupt-controller@4eff0000 {
- 				compatible = "arm,pl192-vic";
--				reg = <0xeff0000 0x1000>;
-+				reg = <0x4eff0000 0x1000>;
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
- 			};
- 
--			vic1: interrupt-controller@80f00000 {
-+			vic1: interrupt-controller@f00000 {
- 				compatible = "arm,pl192-vic";
--				reg = <0x80f00000 0x1000>;
-+				reg = <0xf00000 0x1000>;
- 				interrupt-controller;
- 				#interrupt-cells = <1>;
- 			};
- 
--			uarta: serial@e0 {
-+			uarta: serial@400000e0 {
- 				compatible = "ns16550a";
--				reg = <0xe0 0x8>;
-+				reg = <0x400000e0 0x8>;
- 				interrupts = <17>;
- 				interrupt-parent = <&vic0>;
- 				clock-frequency = <1846153>;
- 				reg-shift = <0>;
- 			};
- 
--			uartb: serial@e8 {
-+			uartb: serial@400000e8 {
- 				compatible = "ns16550a";
--				reg = <0xe8 0x8>;
-+				reg = <0x400000e8 0x8>;
- 				interrupts = <18>;
- 				interrupt-parent = <&vic0>;
- 				clock-frequency = <1846153>;
- 				reg-shift = <0>;
- 			};
- 
--			uartc: serial@f0 {
-+			uartc: serial@400000f0 {
- 				compatible = "ns16550a";
--				reg = <0xf0 0x8>;
-+				reg = <0x400000f0 0x8>;
- 				interrupts = <19>;
- 				interrupt-parent = <&vic0>;
- 				clock-frequency = <1846153>;
- 				reg-shift = <0>;
- 			};
- 
--			usb0: usb@efe0000 {
-+			usb0: usb@4efe0000 {
- 				compatible = "hpe,gxp-ehci", "generic-ehci";
--				reg = <0xefe0000 0x100>;
-+				reg = <0x4efe0000 0x100>;
- 				interrupts = <7>;
- 				interrupt-parent = <&vic0>;
- 			};
- 
--			st: timer@80 {
-+			st: timer@40000080 {
- 				compatible = "hpe,gxp-timer";
--				reg = <0x80 0x16>;
-+				reg = <0x40000080 0x16>;
- 				interrupts = <0>;
- 				interrupt-parent = <&vic0>;
- 				clocks = <&iopclk>;
- 				clock-names = "iop";
- 			};
- 
--			usb1: usb@efe0100 {
-+			usb1: usb@4efe0100 {
- 				compatible = "hpe,gxp-ohci", "generic-ohci";
--				reg = <0xefe0100 0x110>;
-+				reg = <0x4efe0100 0x110>;
- 				interrupts = <6>;
- 				interrupt-parent = <&vic0>;
- 			};
--- 
-2.34.1
+...
 
+> +/* load data into the phy's memory */
+> +static int aqr_fw_load_memory(struct phy_device *phydev, u32 addr,
+> +			      const u8 *data, size_t len)
+> +{
+> +	u16 crc = 0, up_crc;
+> +	size_t pos;
+> +
+> +	/* PHY expect addr in LE */
+> +	addr = cpu_to_le32(addr);
+
+The type of addr is host byte-order,
+but here it is assigned a little-endian value.
+
+Flagged by Sparse.
+
+> +
+> +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> +		      VEND1_GLOBAL_MAILBOX_INTERFACE1,
+> +		      VEND1_GLOBAL_MAILBOX_INTERFACE1_CRC_RESET);
+> +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> +		      VEND1_GLOBAL_MAILBOX_INTERFACE3,
+> +		      VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR(addr));
+
+VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR() performs a bit-shift on addr,
+and applies a mask which is in host-byte order.
+But, as highlighted above, addr is a little-endian value.
+This does not seem right.
+
+This is all hidden by a cast in VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR()
+This seems dangerous to me.
+
+
+> +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> +		      VEND1_GLOBAL_MAILBOX_INTERFACE4,
+> +		      VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR(addr));
+
+There seem to be similar issues with the use of addr here.
+
+> +
+> +	/* We assume and enforce the size to be word aligned.
+> +	 * If a firmware that is not word aligned is found, please report upstream.
+> +	 */
+> +	for (pos = 0; pos < len; pos += sizeof(u32)) {
+> +		u32 word = get_unaligned((const u32 *)(data + pos));
+> +
+> +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_MAILBOX_INTERFACE5,
+> +			      VEND1_GLOBAL_MAILBOX_INTERFACE5_MSW_DATA(word));
+> +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_MAILBOX_INTERFACE6,
+> +			      VEND1_GLOBAL_MAILBOX_INTERFACE6_LSW_DATA(word));
+> +
+> +		phy_write_mmd(phydev, MDIO_MMD_VEND1, VEND1_GLOBAL_MAILBOX_INTERFACE1,
+> +			      VEND1_GLOBAL_MAILBOX_INTERFACE1_EXECUTE |
+> +			      VEND1_GLOBAL_MAILBOX_INTERFACE1_WRITE);
+> +
+> +		/* calculate CRC as we load data to the mailbox.
+> +		 * We convert word to big-endiang as PHY is BE and mailbox will
+> +		 * return a BE CRC.
+> +		 */
+> +		word = cpu_to_be32(word);
+
+Similarly here, Sparse flags that a little-endian value is assigned to a
+host byte-order variable.
+
+> +		crc = crc_ccitt_false(crc, (u8 *)&word, sizeof(word));
+> +	}
+
+...
+
+pw-bot: changes-requested
 
