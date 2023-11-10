@@ -1,143 +1,338 @@
-Return-Path: <devicetree+bounces-15046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6267E8034
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 19:07:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A43F7E810B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 19:22:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46BEFB20A6C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 18:07:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C8411C208A8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 18:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D549039876;
-	Fri, 10 Nov 2023 18:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C40839878;
+	Fri, 10 Nov 2023 18:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osp9Dsib"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KOAC5EX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B192238DE1;
-	Fri, 10 Nov 2023 18:07:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30E96C433CC;
-	Fri, 10 Nov 2023 18:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699639673;
-	bh=PwI1HMfc9Px11Tdj+NXcNTpHBZq5il3Ma/LVyONVjRg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=osp9DsibB3jQ/+hYBLD4x+ZLmbK8DShmrosXu7V3XLTAGt+CCQppRvCqC0RUuKl76
-	 w+CtqyYCmBaJlUgB84RCCk8Wx6moRO/0qZAqlIHhRi/8FL9v7rgECe/KF9P+Hq9V6N
-	 L63Pdb+dHcgunih2OyOLPMMpqStmliLveJTVKL36gLi8ekdXeZj6q/oJiEQJGfWqYy
-	 mk/oLWpJiPnGAHL1/0xDn9xsP9YSnuCwEGpy37HAur5gk0zsVoUbhkkrcHaehDFwfp
-	 78HdhQk/WLs2vdMbT30r4AxXWnro9q5opjz+Try3Uen9Y785IjeRibT+QpcXkfS2GZ
-	 eNwKVTfKdx82Q==
-Date: Fri, 10 Nov 2023 18:07:43 +0000
-From: Conor Dooley <conor@kernel.org>
-To: zhangqing <zhangqing@rock-chips.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, kever.yang@rock-chips.com, heiko@sntech.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	huangtao@rock-chips.com, andy.yan@rock-chips.com,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v5 3/4] dt-bindings: clock: rk3588: export PCLK_VO1GRF
- clk id
-Message-ID: <20231110-dreamt-revival-5b360472febd@roley>
-References: <20231108061822.4871-1-zhangqing@rock-chips.com>
- <20231108061822.4871-4-zhangqing@rock-chips.com>
- <20231108-donation-uncertain-c4d0f560c420@spud>
- <2e520a06-0ff1-76ef-2a72-ab6663738b45@rock-chips.com>
- <20231109-send-pushchair-45b37551102a@wendy>
- <a11c847c-4f95-ea7b-3497-6ada0586c486@rock-chips.com>
- <dee8031f-d739-442c-988c-3df61d92c0d3@linaro.org>
- <f013df81-670e-37c4-c1a7-e1302352ca20@rock-chips.com>
- <f58c8f3f-7b34-47e7-a33a-bddb6106fec7@linaro.org>
- <53059eca-5c55-6dde-6246-40ed9f2dca91@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC078C2D2;
+	Fri, 10 Nov 2023 18:22:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1EDFC799;
+	Fri, 10 Nov 2023 10:22:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1699640527; x=1731176527;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=qbQcOvG6du6rbdGEsMBcqhw/2eRXDmjj8fePltbf4gA=;
+  b=KOAC5EX5z53EPKtVawKS3FrLjTPbFcLMwdETz9M8l9KOwkmCOTb1oYZV
+   WFKA+MKrtnOZlkoJ/o1iuYEGAk2Q7qDcsP8nBvOC+L73DOxhr4NDMJ4w1
+   xifnp8kua2fM3IG2DQHBqM+JATH9RuAPT6qPYmipyUJtE27KLrf+MaBlw
+   8K/4rCh+R5zTEWxWRF6GytWY0+MEhPUjAOE3Ktl2JauJH/sPpcOrCRhMj
+   yv5/fEZ4pE9IoiK7xOYa2dn0bJiKEwYfgdcZi05RlPK8h8/JyrQA+U9H1
+   f8WNGInhF9b59xlvYXz7J50XLysVW456fdZfPCCIBLio0wbXJHQeKz5dK
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="8868027"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; 
+   d="scan'208";a="8868027"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2023 10:20:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="1095242974"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; 
+   d="scan'208";a="1095242974"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 10 Nov 2023 10:20:39 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Fri, 10 Nov 2023 10:20:38 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Fri, 10 Nov 2023 10:20:38 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Fri, 10 Nov 2023 10:20:38 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZbfsivO1pIoXBMP4837SXdryIWdWbnlHagd1K5UFgDrNbWqt6yoeYNdksf+StJS0/ZF/tMABhdTyxV0P5Rw6VXQgZHNtWOgfmJMlDAynKkszTD0FGhH4s5/uUn4x4MvbLFCifkzrPWM5L6AFcjxlH2Rvmo9TM636Aok22Dpkqdw7PIyg2Y1H+aKj3usbSCEFP2vreF6WZcEuwLFy4O/BFxRNaqtc787JYs1qpfJSv+/Y9X6FC0dWTsT8U6igfiOmlBQJQPKulscG4wqXywJXJQa7Vxbi8UYg2miHMxGpZ+3GOEPeocT/8H45JdeDmkPfhHyYB3I8ZsTCGGRsCMUw+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MBf4+jhg5MiwE5dfgQbxja+JLMyW1PBMvsr2S97FG2o=;
+ b=bY100qVjrW7Wa+qlWPopfP3XtQDu0SqHAy37V6pj8nFv/yl273fqfAUU3pK393UjECaIYes9qfiTaFQt/r5nXoNzhY7Q6Z23/9dzLhC/wRW1iFj1MxuY3s9F4HDU8p+5ReV7FhzoQgTEixOjYadxnpe4d2rd3jcUiaS3SRcYclIkC/6RRuAow+B7eA/xhx0k/DV3q4Od0/HDt0EL+2577/yDeSnrQan8sGEz1wH5NflCrH3kteGcK1GXn7vmWRlUyUnV9JP+OWGKJt1XZIWVt3Z3Rupme2Es6HHi78EM9eW2l4AA6cf079wiQES7tZ9WqjA4RRxEIjOmJaYvnwVngg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5483.namprd11.prod.outlook.com (2603:10b6:408:104::10)
+ by MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.25; Fri, 10 Nov
+ 2023 18:20:35 +0000
+Received: from BN9PR11MB5483.namprd11.prod.outlook.com
+ ([fe80::6da1:a4b7:4771:14e1]) by BN9PR11MB5483.namprd11.prod.outlook.com
+ ([fe80::6da1:a4b7:4771:14e1%4]) with mapi id 15.20.6977.019; Fri, 10 Nov 2023
+ 18:20:35 +0000
+From: "Chiu, Chasel" <chasel.chiu@intel.com>
+To: Simon Glass <sjg@chromium.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+CC: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, "Tan,
+ Lean Sheng" <sheng.tan@9elements.com>, lkml <linux-kernel@vger.kernel.org>,
+	Dhaval Sharma <dhaval@rivosinc.com>, "Brune, Maximilian"
+	<maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>,
+	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, ron minnich
+	<rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>,
+	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, "U-Boot Mailing
+ List" <u-boot@lists.denx.de>, Ard Biesheuvel <ardb@kernel.org>, "Chiu,
+ Chasel" <chasel.chiu@intel.com>
+Subject: RE: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+Thread-Topic: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+Thread-Index: AQHZ8LGvpttG6mvEz0WlU57NBrVnTbB0GT1w
+Date: Fri, 10 Nov 2023 18:20:34 +0000
+Message-ID: <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
+References: <20230926194242.2732127-1-sjg@chromium.org>
+ <20230926194242.2732127-2-sjg@chromium.org>
+In-Reply-To: <20230926194242.2732127-2-sjg@chromium.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5483:EE_|MN0PR11MB6135:EE_
+x-ms-office365-filtering-correlation-id: aa3f4fee-8ef4-4ab8-7db0-08dbe219bb1c
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 99WWrKQlkV+LGcBF+clpRsSpTf79OtvxNVlzC+Uxjt9wktGaLZT3154BgDrcjnTYjo7imoQbv6z6RqZXcqaCgqMWRn/wQVtBjqTLTi5oN5xDUv5Om7HsM5q8fNG2KmvL0THV4z2+3LehYVknZHA9i7++l8oWi5hnnA8+d4C2DC7agW6DNzlgixrea3nmdqd58WeuUkygF7qB08LDWLeQW1tOOKQ3lsHY/uQzREU6t1kUjgUCsWkqUwo1f5anYvDl4sYOjWx1AT4oni8cjZAT1V5xwELGF9r/y1GhB8OglHCoO7AZ+CjdVweqrIsIPsKwtbHQO0CRn4UwPVjbYs6dlDH9jKVGqHkWTTXdiP9tvAytS+hvbchkfTueHkjfMfaRscK/sJkZDv/tkSiDv2yx6Xc4KY/IdIZi4mfokyST50sWaQZK7/cHcF2jSsUxsxBKoVeyP6qHHJktX/goA5658JDhL7N4HXF9NL6/izJ3nwSAp8RUDhLaVJMK/45g09miOoRTFlP186zgMNFsa1NpyHaotWmK83Ndf4FCangiqptGRpWJdMBLFMTtc66SQfkS+kQ+PuWkhq2ygw1iobABm+tsigiEirjgTqchhnzbDC0=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR11MB5483.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(376002)(366004)(396003)(136003)(230922051799003)(451199024)(1800799009)(64100799003)(186009)(8676002)(2906002)(7416002)(4326008)(5660300002)(55016003)(966005)(9686003)(122000001)(76116006)(86362001)(66446008)(316002)(71200400001)(54906003)(66476007)(66556008)(26005)(64756008)(33656002)(66946007)(110136005)(82960400001)(478600001)(6506007)(38100700002)(107886003)(7696005)(53546011)(52536014)(41300700001)(38070700009)(83380400001)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?b8Q641gmCJlMn7VweMmTWI0lTSjNOvb8MyY+PrGQ0ZUVVt6Mo+gGNFseubhA?=
+ =?us-ascii?Q?Yp0d0C7f6SlyXWxA5rTQfpiytjKFIiEppUY6HwILJRJ3l3a/0OxQRXqLCguT?=
+ =?us-ascii?Q?PP/cLrf1mQV7WAKKG92hZ6LKmoF44K9EIR56N1ZRjrgR9dCWfNBJnR9gCBGI?=
+ =?us-ascii?Q?afzY1EttrD/jZCYRT/yatSzWYkxc6nesKCxPyHCcIFJBazkGztdhkEi8xJRN?=
+ =?us-ascii?Q?+lUkAa2kh9TAU6eYwcmz5CPtJvGd/ZPZ4TvIm0eYcprWenIkUealPL9MOjxL?=
+ =?us-ascii?Q?rdliaU7diuTq4sqSu+7dzYIYnMESYHxpkqyOILJgfTu+Urblc+F1/ym8LV3y?=
+ =?us-ascii?Q?zHwJLN28undaONPLXEsrBwWFpEShSkygq410a4WQweJZeYsyevpm+q0iKDAm?=
+ =?us-ascii?Q?ks06KYhMqLZQXqlq4dWoCGrw8XmbV+s9+a5os2/UshEWKwOXhr6+hbP4H+YD?=
+ =?us-ascii?Q?Zx/+qochTVghl6B6qkZ9NZn4nfFiaQITDVx0NtgMz/6RXTAVOsF25xzK5tYc?=
+ =?us-ascii?Q?LJVAcEjWPvdYhWmkraqOHQWMEb/i6I/DS/BRtHerTxCJJYUKQnkvq2bEwFlZ?=
+ =?us-ascii?Q?9pzMrV5YCJOdz4jxMi2CPefzULueltBRsUMpxFsEzX1wyOuz0MjJDcKeF7i5?=
+ =?us-ascii?Q?h2+WUIWq5AULaVN5yWCJX7dxDrvEtHf6qghaSPzenHBeGZ81g9MweNTXO0L1?=
+ =?us-ascii?Q?WtyhSFgz0XIt10cV5LCnVbuvEnKuQsFAP/wRkiKUlYLdZMHD0DnFmpKrKicT?=
+ =?us-ascii?Q?TlArc1o4nUzTfvOKDolFieVfZQdd3CWrsBA/TFFuPkxOj8ABaavzHIjHtx0E?=
+ =?us-ascii?Q?n8HJjDZxjDlP4M3h2nvthIfM8yqwclqtv38TsyCWe6yinUYp3PPSm7dIQAaC?=
+ =?us-ascii?Q?eqX7rZ51PMFYpDVFi4biLnEFlrFe8rmKcmKLGxmx83wCwxrxg/qsTTVvGumO?=
+ =?us-ascii?Q?Xr88x/1XXihS2v18zArjCobnF/vxxS154ViUlN+PJdMFzkTLz7Ir83W03jMc?=
+ =?us-ascii?Q?jOTpoX1YSCJqBg9IesBo4rmnUB/qPUfTaBfBaVWdjfQXtcAzS+tBx0c3fgfX?=
+ =?us-ascii?Q?KdAZdLnxk5Je0kMjrJKzYv+t6E8JCav5gAeP3AL1iJpeOq69yww7bnfL7BOg?=
+ =?us-ascii?Q?MD+bTdRCKxbg6gHZ9aReXVakhXRzWLxBB1weZiD81O0SiL1UrNjIj+bvZXVB?=
+ =?us-ascii?Q?l0cMnwC/b1EIffJHsSunB5iPoUgZFmSshqp9L8Mp/K/muEfztj5+0NO9Ukib?=
+ =?us-ascii?Q?m/ZKUN19KY2qf8oRI0GuRRRY4XV3M3D6RtAkGkRDPeje9WdrtU6NfVsvaJOo?=
+ =?us-ascii?Q?11h21ZqZg42TTY1HRIU1Wbecv3dnJ0fc0ROHdO3j+dTiUyHsjVTTXAwBh3oW?=
+ =?us-ascii?Q?YeoPNpaa7z7cyuPc420YwwOV0d8j0oQngd4yjkD408royOR1vFcei3O2jJ7l?=
+ =?us-ascii?Q?ew0K0LcTiJDWvosOL4YxQ/+jjkQ+dgk+TVLQ4qNngoZxzHKrMKlMr6Kt8KYG?=
+ =?us-ascii?Q?lorwBkB6wsCQnIuzbb56jtm5lyKtQl/myd+roqg4az25bgtUE/me8pTCA6Zk?=
+ =?us-ascii?Q?FUna2Pextr8s8c4HIA6+I/aQLMv+1yWV29UlStCV?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OExvhfaQ444Ef20I"
-Content-Disposition: inline
-In-Reply-To: <53059eca-5c55-6dde-6246-40ed9f2dca91@rock-chips.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5483.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa3f4fee-8ef4-4ab8-7db0-08dbe219bb1c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2023 18:20:34.4034
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dBKSPdh+ZadnY7Q341XcCYMg7xm9bNgUospFem9C1i85KfcVHfK0ffhKHlCRCY1mplBzp0MAG+ecc98LzLUiEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6135
+X-OriginatorOrg: intel.com
 
 
---OExvhfaQ444Ef20I
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Just sharing some usage examples from UEFI/EDK2 scenario.
+To support ACPI S4/Hibernation, memory map must be consistent before enteri=
+ng and after resuming from S4, in this case payload may need to know previo=
+us memory map from bootloader (currently generic payload cannot access plat=
+form/bootloader specific non-volatile data, thus could not save/restore mem=
+ory map information)
+Another usage is to support binary model which generic payload is a prebuil=
+t binary compatible for all platforms/configurations, however the payload d=
+efault memory map might not always work for all the configurations and we w=
+ant to allow bootloader to override payload default memory map without reco=
+mpiling.
 
-> Ok , I'll drop this change in PATCH V6.
-
-> =E5=BC=A0=E6=99=B4
-> =E7=91=9E=E8=8A=AF=E5=BE=AE=E7=94=B5=E5=AD=90=E8=82=A1=E4=BB=BD=E6=9C=89=
-=E9=99=90=E5=85=AC=E5=8F=B8
-> Rockchip Electronics Co.,Ltd
-> =E5=9C=B0=E5=9D=80=EF=BC=9A=E7=A6=8F=E5=BB=BA=E7=9C=81=E7=A6=8F=E5=B7=9E=
-=E5=B8=82=E9=93=9C=E7=9B=98=E8=B7=AF=E8=BD=AF=E4=BB=B6=E5=A4=A7=E9=81=9389=
-=E5=8F=B7=E8=BD=AF=E4=BB=B6=E5=9B=ADA=E5=8C=BA21=E5=8F=B7=E6=A5=BC
-> Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 3=
-50003, P.R.China
-> Tel:+86-0591-83991906-8601
-> =E9=82=AE=E7=BC=96=EF=BC=9A350003
-> E-mail:elaine.zhang@rock-chips.com
-> *************************************************************************=
-***
-> =E4=BF=9D=E5=AF=86=E6=8F=90=E7=A4=BA=EF=BC=9A=E6=9C=AC=E9=82=AE=E4=BB=B6=
-=E5=8F=8A=E5=85=B6=E9=99=84=E4=BB=B6=E5=90=AB=E6=9C=89=E6=9C=BA=E5=AF=86=E4=
-=BF=A1=E6=81=AF=EF=BC=8C=E4=BB=85=E5=8F=91=E9=80=81=E7=BB=99=E6=9C=AC=E9=82=
-=AE=E4=BB=B6=E6=89=80=E6=8C=87=E7=89=B9=E5=AE=9A=E6=94=B6=E4=BB=B6=E4=BA=BA=
-=E3=80=82=E8=8B=A5=E9=9D=9E=E8=AF=A5=E7=89=B9=E5=AE=9A=E6=94=B6=E4=BB=B6=E4=
-=BA=BA=EF=BC=8C=E8=AF=B7=E5=8B=BF=E5=A4=8D=E5=88=B6=E3=80=81=E4=BD=BF=E7=94=
-=A8=E6=88=96=E6=8A=AB=E9=9C=B2=E6=9C=AC=E9=82=AE=E4=BB=B6=E7=9A=84=E4=BB=BB=
-=E4=BD=95=E5=86=85=E5=AE=B9=E3=80=82=E8=8B=A5=E8=AF=AF=E6=94=B6=E6=9C=AC=E9=
-=82=AE=E4=BB=B6=EF=BC=8C=E8=AF=B7=E4=BB=8E=E7=B3=BB=E7=BB=9F=E4=B8=AD=E6=B0=
-=B8=E4=B9=85=E6=80=A7=E5=88=A0=E9=99=A4=E6=9C=AC=E9=82=AE=E4=BB=B6=E5=8F=8A=
-=E6=89=80=E6=9C=89=E9=99=84=E4=BB=B6=EF=BC=8C=E5=B9=B6=E4=BB=A5=E5=9B=9E=E5=
-=A4=8D=E9=82=AE=E4=BB=B6=E6=88=96=E5=85=B6=E4=BB=96=E6=96=B9=E5=BC=8F=E5=8D=
-=B3=E5=88=BB=E5=91=8A=E7=9F=A5=E5=8F=91=E4=BB=B6=E4=BA=BA=E3=80=82=E7=A6=8F=
-=E5=B7=9E=E7=91=9E=E8=8A=AF=E5=BE=AE=E7=94=B5=E5=AD=90=E6=9C=89=E9=99=90=E5=
-=85=AC=E5=8F=B8=E6=8B=A5=E6=9C=89=E6=9C=AC=E9=82=AE=E4=BB=B6=E4=BF=A1=E6=81=
-=AF=E7=9A=84=E8=91=97=E4=BD=9C=E6=9D=83=E5=8F=8A=E8=A7=A3=E9=87=8A=E6=9D=83=
-=EF=BC=8C=E7=A6=81=E6=AD=A2=E4=BB=BB=E4=BD=95=E6=9C=AA=E7=BB=8F=E6=8E=88=E6=
-=9D=83=E8=AE=B8=E5=8F=AF=E7=9A=84=E4=BE=B5=E6=9D=83=E8=A1=8C=E4=B8=BA=E3=80=
-=82
->=20
-> IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd=
- .The contents of this email and any attachments may contain information th=
-at is privileged, confidential and/or exempt from disclosure under applicab=
-le law and relevant NDA. If you are not the intended recipient, you are her=
-eby notified that any disclosure, copying, distribution, or use of the info=
-rmation is STRICTLY PROHIBITED. Please immediately contact the sender as so=
-on as possible and destroy the material in its entirety in any format. Than=
-k you.
->=20
-> *************************************************************************=
-***
->=20
-
-Please also drop this legal footers.
+Under below assumption:
+	FDT OS impact has been evaluated and taken care by relevant experts/stakeh=
+olders.
+Reviewed-by: Chasel Chiu <chasel.chiu@intel.com>
 
 Thanks,
-Conor.
+Chasel
 
---OExvhfaQ444Ef20I
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+> -----Original Message-----
+> From: Simon Glass <sjg@chromium.org>
+> Sent: Tuesday, September 26, 2023 12:43 PM
+> To: devicetree@vger.kernel.org
+> Cc: Mark Rutland <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>;
+> Tan, Lean Sheng <sheng.tan@9elements.com>; lkml <linux-
+> kernel@vger.kernel.org>; Dhaval Sharma <dhaval@rivosinc.com>; Brune,
+> Maximilian <maximilian.brune@9elements.com>; Yunhui Cui
+> <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom Rini
+> <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo, Gua
+> <gua.guo@intel.com>; Chiu, Chasel <chasel.chiu@intel.com>; linux-
+> acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>; Ard
+> Biesheuvel <ardb@kernel.org>; Simon Glass <sjg@chromium.org>
+> Subject: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
+>=20
+> It is common to split firmware into 'Platform Init', which does the initi=
+al hardware
+> setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+>=20
+> Where UEFI boot-time services are not available, but UEFI firmware is pre=
+sent on
+> either side of this interface, information about memory usage and attribu=
+tes must
+> be presented to the "Payload" in some form.
+>=20
+> This aims to provide an small schema addition for the memory mapping need=
+ed
+> to keep these two pieces working together well.
+>=20
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>=20
+> Changes in v7:
+> - Rename acpi-reclaim to acpi
+> - Drop individual mention of when memory can be reclaimed
+> - Rewrite the item descriptions
+> - Add back the UEFI text (with trepidation)
+>=20
+> Changes in v6:
+> - Drop mention of UEFI
+> - Use compatible strings instead of node names
+>=20
+> Changes in v5:
+> - Drop the memory-map node (should have done that in v4)
+> - Tidy up schema a bit
+>=20
+> Changes in v4:
+> - Make use of the reserved-memory node instead of creating a new one
+>=20
+> Changes in v3:
+> - Reword commit message again
+> - cc a lot more people, from the FFI patch
+> - Split out the attributes into the /memory nodes
+>=20
+> Changes in v2:
+> - Reword commit message
+>=20
+>  .../reserved-memory/common-reserved.yaml      | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 dtschema/schemas/reserved-memory/common-
+> reserved.yaml
+>=20
+> diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml
+> b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> new file mode 100644
+> index 0000000..f7fbdfd
+> --- /dev/null
+> +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
+> +---
+> +$id:
+> +http://devicetree.org/schemas/reserved-memory/common-reserved.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common memory reservations
+> +
+> +description: |
+> +  Specifies that the reserved memory region can be used for the purpose
+> +  indicated by its compatible string.
+> +
+> +  Clients may reuse this reserved memory if they understand what it is
+> + for,  subject to the notes below.
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +allOf:
+> +  - $ref: reserved-memory.yaml
+> +
+> +properties:
+> +  compatible:
+> +    description: |
+> +      This describes some common memory reservations, with the compatibl=
+e
+> +      string indicating what it is used for:
+> +
+> +         acpi: Advanced Configuration and Power Interface (ACPI) tables
+> +         acpi-nvs: ACPI Non-Volatile-Sleeping Memory (NVS). This is rese=
+rved by
+> +           the firmware for its use and is required to be saved and rest=
+ored
+> +           across an NVS sleep
+> +         boot-code: Contains code used for booting which is not needed b=
+y the OS
+> +         boot-code: Contains data used for booting which is not needed b=
+y the OS
+> +         runtime-code: Contains code used for interacting with the syste=
+m when
+> +           running the OS
+> +         runtime-data: Contains data used for interacting with the syste=
+m when
+> +           running the OS
+> +
+> +    enum:
+> +      - acpi
+> +      - acpi-nvs
+> +      - boot-code
+> +      - boot-data
+> +      - runtime-code
+> +      - runtime-data
+> +
+> +  reg:
+> +    description: region of memory that is reserved for the purpose indic=
+ated
+> +      by the compatible string.
+> +
+> +required:
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    reserved-memory {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <1>;
+> +
+> +        reserved@12340000 {
+> +            compatible =3D "boot-code";
+> +            reg =3D <0x12340000 0x00800000>;
+> +        };
+> +
+> +        reserved@43210000 {
+> +            compatible =3D "boot-data";
+> +            reg =3D <0x43210000 0x00800000>;
+> +        };
+> +    };
+> --
+> 2.42.0.515.g380fc7ccd1-goog
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZU5xagAKCRB4tDGHoIJi
-0mRqAP4yZmW1RPmA4GZetYj3jVRckaKN7UW79TtmSrKLKPJ7xwD9FbIVjxmE/4yT
-Wbc/0ZnYDI9ffUVgJa9bqOCLpHMNGwk=
-=z8Ye
------END PGP SIGNATURE-----
-
---OExvhfaQ444Ef20I--
 
