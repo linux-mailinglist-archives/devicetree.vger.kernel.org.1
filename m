@@ -1,65 +1,47 @@
-Return-Path: <devicetree+bounces-14989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-14990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BC2A7E7BFB
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:50:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F87B7E7C01
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 12:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC8A5B20DDD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:49:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50FEE1C2095D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 11:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABD91803B;
-	Fri, 10 Nov 2023 11:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97EF179BD;
+	Fri, 10 Nov 2023 11:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V1Jdl+C3"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="j2HO9PT8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27836179BD
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 11:49:55 +0000 (UTC)
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E6D631E54
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 03:49:52 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-32fa7d15f4eso1236545f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 03:49:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699616991; x=1700221791; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dnsyLuQheg+/3cWckMMZhRJ3W+3u+GfGV4x7we92iDA=;
-        b=V1Jdl+C3z4Ec8wywSBc6E+1wXihOjgXL/Iz/T/GMZ6cLpRixVCxiyWky1gk59OGJ2q
-         v1ZQf+mY9woTb3Ep2xvBvZj1slICFKcCAeouE5zljf5DJUHQ6V6/gRS92Tt5OsNXS1N3
-         fVUvWY60uNZxgoJwnBOWAKeuH+YF17T41GWcG41lKHXXiyQi3wu2ek7m3wnZFnQsi7H4
-         HMjz8pkp4UzamXsf/eBzbp9NosjhjOmy6mgTOCvXF6PyUXo2ym2qWww7SOsKZawneZDc
-         nYcOspBTIIGpE4i3mSV5XZX2sEcLxdFEg63aTahg0Tcq5vSoE+zsAXkzPiWtm02HoBKM
-         XRLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699616991; x=1700221791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dnsyLuQheg+/3cWckMMZhRJ3W+3u+GfGV4x7we92iDA=;
-        b=ZA2xLj6E9+tPFgZeCq8FsrSnYZFjxMbrC0LpaopARooJXsmyN9+vHjSY5hx7e/NxAK
-         qS/QKhSPzgesy1E6te6tP9Sam02uNiLMl28vCauCYFrGUDr9wvdIhPXQRI5tqWhj+mt1
-         PLNwOb1gT/QdH4plQ2SyMpETkLtInTqZUn5U20ihgP5HHlaUaRSxQ+8oLpqwTrlcRqsT
-         Unx+iyvHsRPFzbyL9Ec9QeWkBpO/KuYYQ7Wt+qUWlmj5W8Wetc27BKYzBrBAqv2jIm0c
-         KQyspmN9k4tBrDBFTBDXpu2sRBL8h6nMAr3d9GGeADSKj/QcAkdq90QQE+pDjHCNCC3I
-         Xs8Q==
-X-Gm-Message-State: AOJu0Yy1awOkhQbTwQBZZ50YQ7DUqtYifjy3h5xXuQveuBCJCpAyNO4+
-	FSv8afER49Gc0tEqhYqbN5GdTA==
-X-Google-Smtp-Source: AGHT+IFx+qOZ4g+ruh09/Sbp8yByrjwyQHAeeoLBHucqNe+XW9cf4CGy5NlDwW37k1ZjtwdvqHRvpw==
-X-Received: by 2002:a05:6000:18ae:b0:32d:c09d:6ec9 with SMTP id b14-20020a05600018ae00b0032dc09d6ec9mr6686800wri.7.1699616990814;
-        Fri, 10 Nov 2023 03:49:50 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id b15-20020a5d45cf000000b003313069be5dsm1751210wrs.46.2023.11.10.03.49.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 03:49:50 -0800 (PST)
-Message-ID: <31dac823-cc46-401e-85f8-d04544bd38c3@linaro.org>
-Date: Fri, 10 Nov 2023 11:49:49 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F10613FFF
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 11:55:36 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC1D31E6E;
+	Fri, 10 Nov 2023 03:55:34 -0800 (PST)
+Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 3821866073D6;
+	Fri, 10 Nov 2023 11:55:32 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1699617333;
+	bh=38yk6YYYVJElR7zLD5WCKypqClwX0XCjMvdTtIW7UUY=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=j2HO9PT8RWkPtNRS8PtpYBxn3IuQzDgf6neTs/Uzn/JEGoGJRWLbGhRUAx/Tit+gN
+	 M6hy63IbVfDDm5gbDANRpIUziwAWbhLYHq6F8pwqkHLPH/+rdLmoBAwcLIRQ5z8J1Q
+	 nZ0BRrbmvnUOlS3oDmd4nNrCBdaUb4Iu6Cmu+sa3ZGGtyEhCEwPGmvDOkFi8GLVty8
+	 sfAk+sb50KY/tA/h6ZihhdJu6we30NIUN2iyRe2K8sCuDG+YPWoPXbkbx2Nyybts7W
+	 Su23RLZb4UaIL4EPJ+Ed2ABMyvDgcBhmNqhMiyj63RrvN6CASgTGkr5RcEQed/UMf2
+	 0O6NlE+W8aGFg==
+Message-ID: <58b551f2-2d0b-4432-b1fd-edc690f13e4c@collabora.com>
+Date: Fri, 10 Nov 2023 12:55:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,57 +49,219 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] clk: qcom: videocc-sm8150: Update the videocc resets
-Content-Language: en-US
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 2/2] watchdog: mediatek: mt7988: add wdt support
+To: Daniel Golle <daniel@makrotopia.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231110065029.2117212-1-quic_skakitap@quicinc.com>
- <20231110065029.2117212-3-quic_skakitap@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231110065029.2117212-3-quic_skakitap@quicinc.com>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <6912f6f406bc45674020681184f3eeca2f2cb63f.1699576174.git.daniel@makrotopia.org>
+ <ddb5b6ca88165aa69f73fe2804eedd0231d8d9e7.1699576174.git.daniel@makrotopia.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <ddb5b6ca88165aa69f73fe2804eedd0231d8d9e7.1699576174.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/11/2023 06:50, Satya Priya Kakitapalli wrote:
-> Add all the available resets for the video clock controller
-> on sm8150.
+Il 10/11/23 01:30, Daniel Golle ha scritto:
+> Add support for watchdog and reset generator unit of the MediaTek
+> MT7988 SoC.
 > 
-> Fixes: 5658e8cf1a8a ("clk: qcom: add video clock controller driver for SM8150")
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->   drivers/clk/qcom/videocc-sm8150.c | 4 ++++
->   1 file changed, 4 insertions(+)
+>   drivers/watchdog/mtk_wdt.c | 56 +++++++++++++++++++++++++++++++++++++-
+>   1 file changed, 55 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/qcom/videocc-sm8150.c b/drivers/clk/qcom/videocc-sm8150.c
-> index 1afdbe4a249d..6a5f89f53da8 100644
-> --- a/drivers/clk/qcom/videocc-sm8150.c
-> +++ b/drivers/clk/qcom/videocc-sm8150.c
-> @@ -214,6 +214,10 @@ static const struct regmap_config video_cc_sm8150_regmap_config = {
+> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
+> index b2330b16b497a..b98b8c29735aa 100644
+> --- a/drivers/watchdog/mtk_wdt.c
+> +++ b/drivers/watchdog/mtk_wdt.c
+> @@ -12,6 +12,7 @@
+>   #include <dt-bindings/reset/mt2712-resets.h>
+>   #include <dt-bindings/reset/mediatek,mt6795-resets.h>
+>   #include <dt-bindings/reset/mt7986-resets.h>
+> +#include <dt-bindings/reset/mediatek,mt7988-resets.h>
+>   #include <dt-bindings/reset/mt8183-resets.h>
+>   #include <dt-bindings/reset/mt8186-resets.h>
+>   #include <dt-bindings/reset/mt8188-resets.h>
+> @@ -58,6 +59,8 @@
+>   #define WDT_SWSYSRST		0x18U
+>   #define WDT_SWSYS_RST_KEY	0x88000000
 >   
->   static const struct qcom_reset_map video_cc_sm8150_resets[] = {
->   	[VIDEO_CC_MVSC_CORE_CLK_BCR] = { 0x850, 2 },
-> +	[VIDEO_CC_INTERFACE_BCR] = { 0x8f0 },
-> +	[VIDEO_CC_MVS0_BCR] = { 0x870 },
-> +	[VIDEO_CC_MVS1_BCR] = { 0x8b0 },
-> +	[VIDEO_CC_MVSC_BCR] = { 0x810 },
+> +#define WDT_SWSYSRST_EN		0xfc
+> +
+>   #define DRV_NAME		"mtk-wdt"
+>   #define DRV_VERSION		"1.0"
+>   
+> @@ -71,44 +74,85 @@ struct mtk_wdt_dev {
+>   	struct reset_controller_dev rcdev;
+>   	bool disable_wdt_extrst;
+>   	bool reset_by_toprgu;
+> +	bool has_swsysrst_en;
 
-Are you sure this shouldn't be
+mtk_wdt_data is always a const and this has_swsysrst_en member is never supposed
+to change during runtime.
 
-+	[VIDEO_CC_INTERFACE_BCR] = { 0x9ac },
-+	[VIDEO_CC_MVS0_BCR] = { 0x870 },
-+	[VIDEO_CC_MVS1_BCR] = { 0x8b0 },
-+	[VIDEO_CC_MVSC_BCR] = { 0x810 },
+At this point, just add a pointer to struct mtk_wdt_data in mtk_wdt_dev, then
+instead of mtk_wdt->has_swsysrst_en you check mtk_wdt->pdata->has_swsysrst_en.
 
-?
+>   };
+>   
+>   struct mtk_wdt_data {
+>   	int toprgu_sw_rst_num;
+> +	bool has_swsysrst_en;
+>   };
+>   
+>   static const struct mtk_wdt_data mt2712_data = {
+>   	.toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
 
----
-bod
+false == 0; 0 is init default; this assignment is useless.
+
+>   };
+>   
+>   static const struct mtk_wdt_data mt6795_data = {
+>   	.toprgu_sw_rst_num = MT6795_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+>   };
+>   
+>   static const struct mtk_wdt_data mt7986_data = {
+>   	.toprgu_sw_rst_num = MT7986_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+> +};
+> +
+> +static const struct mtk_wdt_data mt7988_data = {
+> +	.toprgu_sw_rst_num = MT7988_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = true,
+>   };
+>   
+>   static const struct mtk_wdt_data mt8183_data = {
+>   	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+>   };
+>   
+>   static const struct mtk_wdt_data mt8186_data = {
+>   	.toprgu_sw_rst_num = MT8186_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+>   };
+>   
+>   static const struct mtk_wdt_data mt8188_data = {
+>   	.toprgu_sw_rst_num = MT8188_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+>   };
+>   
+>   static const struct mtk_wdt_data mt8192_data = {
+>   	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+>   };
+>   
+>   static const struct mtk_wdt_data mt8195_data = {
+>   	.toprgu_sw_rst_num = MT8195_TOPRGU_SW_RST_NUM,
+> +	.has_swsysrst_en = false,
+>   };
+>   
+> +static int toprgu_reset_sw_enable(struct reset_controller_dev *rcdev,
+> +				  unsigned long id, bool enable)
+
+I would transfer this logic inside of toprgu_reset_update() (not literally!).
+
+Doing so means that you would change this function to become
+
+/**
+  * toprgu_reset_sw_en_unlocked - What this function does
+  * params
+  * warn about this *requiring* to be called in locked state
+  * check kerneldoc documentation :)))
+  */
+static void toprgu_reset_sw_en_unlocked(struct mtk_wdt_dev *mtk_wdt,
+					unsigned long id, bool assert)
+{
+	u32 tmp;
+
+	tmp = readl....
+	if (...
+	blahblah
+
+	return 0;
+}
+
+and then call it in toprgu_reset_update(), before spin_unlock_irqrestore() like
+
+{
+	stuff...
+	....
+
+	writel(.... SWSYSRST);
+
+	if (data->pdata->has_swsysrst_en)
+		toprgu_reset_sw_en_unlocked(data, id, assert);
+
+	spin_unlock_irqrestore(...)
+
+	return 0;
+}
+
+> +{
+> +	unsigned int tmp;
+> +	unsigned long flags;
+> +	struct mtk_wdt_dev *data =
+> +		 container_of(rcdev, struct mtk_wdt_dev, rcdev);
+> +
+> +	if (!data->has_swsysrst_en)
+> +		return 0;
+> +
+> +	spin_lock_irqsave(&data->lock, flags);
+> +
+> +	tmp = readl(data->wdt_base + WDT_SWSYSRST_EN);
+> +	if (enable)
+> +		tmp |= BIT(id);
+> +	else
+> +		tmp &= ~BIT(id);
+> +
+> +	writel(tmp, data->wdt_base + WDT_SWSYSRST_EN);
+> +
+> +	spin_unlock_irqrestore(&data->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+>   static int toprgu_reset_update(struct reset_controller_dev *rcdev,
+>   			       unsigned long id, bool assert)
+>   {
+> @@ -135,13 +179,20 @@ static int toprgu_reset_update(struct reset_controller_dev *rcdev,
+>   static int toprgu_reset_assert(struct reset_controller_dev *rcdev,
+>   			       unsigned long id)
+>   {
+> +	int ret;
+> +
+> +	ret = toprgu_reset_sw_enable(rcdev, id, true);
+> +	if (ret)
+> +		return ret;
+> +
+>   	return toprgu_reset_update(rcdev, id, true);
+
+...so you don't even touch this function...
+
+>   }
+>   
+>   static int toprgu_reset_deassert(struct reset_controller_dev *rcdev,
+>   				 unsigned long id)
+>   {
+> -	return toprgu_reset_update(rcdev, id, false);
+> +	toprgu_reset_update(rcdev, id, false);
+> +	return toprgu_reset_sw_enable(rcdev, id, false);
+
+...nor that one.
+
+>   }
+>   
+>   static int toprgu_reset(struct reset_controller_dev *rcdev,
+
+Cheers!
+Angelo
 
 
