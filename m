@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-14999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEF8F7E7C6D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:14:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C757E7C75
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:20:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52E571F20C23
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:14:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4F91B20D7D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 13:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B52E218025;
-	Fri, 10 Nov 2023 13:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3666018AEA;
+	Fri, 10 Nov 2023 13:20:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RSKFL+B9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qJZ7UUKx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A74B18033
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:14:28 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DFEE371E4
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:14:26 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9e62f903e88so96752166b.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:14:26 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA02F18E08
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 13:20:29 +0000 (UTC)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ACA3A750B
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:20:27 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9d10f94f70bso336031066b.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 05:20:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699622065; x=1700226865; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699622426; x=1700227226; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p9JHns6zyKkZ5RtdPvtlBA1z5tFdRVVt9Vp5AUAZ8X8=;
-        b=RSKFL+B9ug5bAFGvt0zK2Y4Axm+0B4CCrP/dI5TnuIv5p9tAQntPysXtDdj1jELssE
-         kWpvu65GM822oGXA51kVjISfiL7JRA0OzRiqgxgvfqa3BULm1/loQc0M9vXZ/Oh1jywp
-         MP6hK1l8hSaF8tK9GD9OQHUEyIMg8wQOomG467KWjeit+AMqkwxcikvi1+t0juFnqHHb
-         Po1noIes/h+YpAIerVo1a4lzHonisQNivu/c6ISlZpnjZGMBIHKOEFYu22io2wqb5Mq/
-         J1Lyv1zxCMtUwAVxXg0VUnDdWEXdsuupdq8zYwM8m9jJGGiLYIhuYR033tBWR3+ki1ei
-         oSiQ==
+        bh=8dFaUiMp+I2GmXiYvOF5/Uap6tJj1Fr3BKLmgZxMJlI=;
+        b=qJZ7UUKxb42HEBIOm1CdbKTE/9wdflv3JwuGL6aOTPKZB7oKsluHZbzyuBqohs2PMk
+         RlTHjuP66q+YZINLIiSR1PzM+j+99D4oizk/fKR6M+iml7JJlJlDFVhrV7aLK6SFGL2n
+         k/dyv7ywFsCqpPcoecgKEJ90+vUtiMDzb579hPVKTQBfnJnlszN1PWVgMFZreU86ShuS
+         K8OguZJfnZoEHxPqOCq/G8H0/UaE1xpMQKKM25EVpEWO5ggs9at65npAAzgzKqmZ7xtT
+         sE5m0FW7mQPNVHLzabfOvK8jQ+HOg9I7JwFkBDV+fTumLO5gdBxmrYSTure1xiBkIxqb
+         O/rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699622065; x=1700226865;
+        d=1e100.net; s=20230601; t=1699622426; x=1700227226;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p9JHns6zyKkZ5RtdPvtlBA1z5tFdRVVt9Vp5AUAZ8X8=;
-        b=mMUEJOhUH9mV7Q4BpAGvvpCTQaCR7VWOTMh2Hir5YQogCOqnocLvJJEyRqPHS3BEeA
-         ZiEjApdEpB1wQUu0mHiGl4VUBi9DFmdjwM06b/bRDcbe7KCQ9+LGlYErpW9xs72CFry+
-         o+rYbek9ZD0Q3h+VH8bNwxCNc+1EawVEy8gBafa2PtKgDSkP2zsu/B1l6AzS5lbIHEv1
-         o1X0DR/AlzF8TyIrD04MUsScRX9t3lweyeqYpoylIoAYIhBOd+a93s3BDRbbPVnRbRVs
-         TnyyN58wMwXzGp2NujiT5AtQ5/KK+jh0Ap7zwddVwHuePDbghE0ffZsBpFub+4D3LS6M
-         qy8w==
-X-Gm-Message-State: AOJu0YyW6iXHVQSfuh538bxDUaiSBXtZBCSjxKbwBNtfcLlpAcW7umaq
-	0NSaEJ78QGWPBDinmAj02wDQ6w==
-X-Google-Smtp-Source: AGHT+IFHLIhkk5Fhis0pSnaEPm4kr+9yKb63zrJPfV3HV+9ueyhy789I+teQbGDTSDLBdCHJVblrcQ==
-X-Received: by 2002:a17:907:7ea9:b0:9c6:10d4:d09f with SMTP id qb41-20020a1709077ea900b009c610d4d09fmr7961509ejc.63.1699622065013;
-        Fri, 10 Nov 2023 05:14:25 -0800 (PST)
+        bh=8dFaUiMp+I2GmXiYvOF5/Uap6tJj1Fr3BKLmgZxMJlI=;
+        b=fDN5eXcVb5BAfEHoTqAovMDmmn50p57eGx+PZqC39P49k5B3mCynSWF+iKzDowqK3n
+         +e2Y+akLadYe6CqcTP6NCRWP0YQcDCM8XwXn7IUv8us0vIWZxqn/nPdVGPqPibUw+67C
+         fEc3RWvylL4u+EYAv+PoeAMVAINE3dWJouK+px98e1+Oidqr2jQSFasMsK/YOTNYJO3/
+         QBAjkRIzx6J1TEm4zgPSii/zHUYsc6sAIzPXa/HTC66lUv/c0uC+G7rDWwoLbRRAg1OQ
+         BTn2xWSEev2hMyzRPzTo7ovJN+SHvy4ZTcVeXZNU6mx4PRqJ5Tsb7HYM3NgJVAPtWfX5
+         Zf6g==
+X-Gm-Message-State: AOJu0YzOSLfisVtEIE3eqNf0dx9uu9ADEIEOENFT98CkEdV2FDv+T9Kv
+	cmckvS/008iRf8edSLq/SHqIzQ==
+X-Google-Smtp-Source: AGHT+IEkxciCaeyoH6QomNaSLvPYLBZXNisIJqBG54egRPnR2BYt3umU2esj95e212mKBHZc3JGeNg==
+X-Received: by 2002:a17:907:7f1e:b0:9d5:ecf9:e6a0 with SMTP id qf30-20020a1709077f1e00b009d5ecf9e6a0mr5633222ejc.0.1699622425883;
+        Fri, 10 Nov 2023 05:20:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id n22-20020a170906841600b009b27d4153c0sm3938708ejx.178.2023.11.10.05.14.23
+        by smtp.gmail.com with ESMTPSA id gz11-20020a170906f2cb00b009b2d46425absm3921054ejb.85.2023.11.10.05.20.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Nov 2023 05:14:24 -0800 (PST)
-Message-ID: <15be209c-753d-469b-a7c4-7403c7745a9f@linaro.org>
-Date: Fri, 10 Nov 2023 14:14:23 +0100
+        Fri, 10 Nov 2023 05:20:25 -0800 (PST)
+Message-ID: <eab3869c-7529-484d-983f-dd85ecfbeb0b@linaro.org>
+Date: Fri, 10 Nov 2023 14:20:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +67,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 4/4] arm64: dts: rockchip: add Powkiddy RK2023
+Subject: Re: [PATCH V6 0/4] Add C3 SoC PLLs and Peripheral clock
 Content-Language: en-US
-To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, daniel@ffwll.ch, airlied@gmail.com,
- sam@ravnborg.org, neil.armstrong@linaro.org, heiko@sntech.de,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-References: <20231109215007.66826-1-macroalpha82@gmail.com>
- <20231109215007.66826-5-macroalpha82@gmail.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Chuan Liu <chuan.liu@amlogic.com>
+References: <20231106085554.3237511-1-xianwei.zhao@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,123 +127,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231109215007.66826-5-macroalpha82@gmail.com>
+In-Reply-To: <20231106085554.3237511-1-xianwei.zhao@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/11/2023 22:50, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 06/11/2023 09:55, Xianwei Zhao wrote:
+> The patchset adds support for the peripheral and PLL clock controller
+> found on the Amlogic C3 SoC family, such as C302X or C308L.
 > 
-> Add support for the Powkiddy RK2023. The Powkiddy RK2023 is a handheld
-> gaming device with a 3.5 inch screen powered by the Rockchip RK3566
-> SoC. The device is almost identical to the Anbernic RG353P except it
-> lacks eMMC, a function button, a touch screen, no UART headers on the
-> board, and the panel has slightly different timings.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../dts/rockchip/rk3566-powkiddy-rk2023.dts   | 161 ++++++++++++++++++
->  2 files changed, 162 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index a18f33bf0c0e..f969618da352 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rgb30.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rk2023.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-radxa-cm3-io.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-> new file mode 100644
-> index 000000000000..5740412f6b2b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-> @@ -0,0 +1,161 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include "rk3566-anbernic-rg353x.dtsi"
-> +
-> +/ {
-> +	model = "RK2023";
-> +	compatible = "powkiddy,rk2023", "rockchip,rk3566";
-> +
-> +	aliases {
-> +		mmc1 = &sdmmc0;
-> +		mmc2 = &sdmmc1;
-> +		mmc3 = &sdmmc2;
-> +	};
-> +
-> +	battery: battery {
-> +		compatible = "simple-battery";
-> +		charge-full-design-microamp-hours = <3151000>;
-> +		charge-term-current-microamp = <300000>;
-> +		constant-charge-current-max-microamp = <2000000>;
-> +		constant-charge-voltage-max-microvolt = <4250000>;
-> +		factory-internal-resistance-micro-ohms = <117000>;
-> +		voltage-max-design-microvolt = <4172000>;
-> +		voltage-min-design-microvolt = <3400000>;
-> +
-> +		ocv-capacity-celsius = <20>;
-> +		ocv-capacity-table-0 =  <4172000 100>, <4092000 95>, <4035000 90>, <3990000 85>,
-> +					<3939000 80>, <3895000 75>, <3852000 70>, <3807000 65>,
-> +					<3762000 60>, <3713000 55>, <3672000 50>, <3647000 45>,
-> +					<3629000 40>, <3613000 35>, <3598000 30>, <3578000 25>,
-> +					<3550000 20>, <3519000 15>, <3479000 10>, <3438000 5>,
-> +					<3400000 0>;
-> +	};
-> +
-> +	/* Channels reversed for headphones. */
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "rk817_int";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
-> +		simple-audio-card,mclk-fs = <256>;
-> +		simple-audio-card,widgets =
-> +			"Microphone", "Mic Jack",
-> +			"Headphone", "Headphones",
-> +			"Speaker", "Internal Speakers";
-> +		simple-audio-card,routing =
-> +			"MICL", "Mic Jack",
-> +			"Headphones", "HPOL",
-> +			"Headphones", "HPOR",
-> +			"Internal Speakers", "SPKO";
-> +
-> +		simple-audio-card,codec {
-> +			sound-dai = <&rk817>;
-> +		};
-> +
-> +		simple-audio-card,cpu {
-> +			sound-dai = <&i2s1_8ch>;
-> +		};
-> +	};
-> +
-> +};
-> +
-> +/delete-node/ &adc_keys;
-> +
-> +&chosen {
-> +	/delete-property/ stdout-path;
-> +};
+> Changes since V5 [3]:
+>  - Fix some typo and modify formart for MARCO. Suggested by Jerome.
+>  - Add pad clock for peripheral input clock in bindings.
+>  - Add some description for explaining why ddr_dpll_pt_clk and cts_msr_clk are out of tree.
+> Changes since V4 [10]:
+>  - Change some fw_name of clocks. Suggested by Jerome.
+>  - Delete minItem of clocks.
+>  - Add CLk_GET_RATE_NOCACHE flags for gp1_pll
+>  - Fix some format. and fix width as 8 for mclk_pll_dco.
+>  - exchange gate and divder for fclk_50m clock.
+>  - add CLK_SET_RATE_PARENT for axi_a_divder & axi_b_divder.
+>  - add CLK_IS_CRITICAL for axi_clk
+>  - Optimized macro define for pwm clk.
+>  - add cts_oscin_clk mux between 24M and 32k
+>  - add some missing gate clock, such as ddr_pll.
 
-If you have to delete so many nodes and properties, this means your
-common DTSI is not that common.
-
-Common DTSI means there is shared hardware. If you take shared hardware
-and put it into another board, pieces of the shared hardware do not
-disappear.
-
+Where are all these versions? Please provide links.
 
 Best regards,
 Krzysztof
