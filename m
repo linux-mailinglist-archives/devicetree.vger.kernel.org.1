@@ -1,246 +1,248 @@
-Return-Path: <devicetree+bounces-15015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201287E7D00
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:30:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACD77E7D09
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 15:33:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A03A1C2099A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:30:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E40E2810E2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Nov 2023 14:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12E21946E;
-	Fri, 10 Nov 2023 14:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B905C18C30;
+	Fri, 10 Nov 2023 14:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="sur81naq"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="ZWULn38U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38AB1C69E
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 14:30:49 +0000 (UTC)
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2060.outbound.protection.outlook.com [40.92.42.60])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF6438EB7
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 06:30:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49731C283
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 14:33:43 +0000 (UTC)
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2040.outbound.protection.outlook.com [40.107.6.40])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EEF738EBE;
+	Fri, 10 Nov 2023 06:33:40 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WISkBCNHuFbUEV7ObOii4NtpEmEaDox+kqWw51IhfQEEexYbn/DYi9D/7eawiKneBpTOAXyyJUWRtHB0K9hjeuCRToiZDCKXxCbJ2qn142QcW5keZOsPQHKcrBhWWPGYQDPjh7k81XSF24uP0BWlYqcBWfmaBhKcZA831ITDmedN/58iop3IqC9za6I0bUhYV/RvH+qNvVqETe5B1dbianGg3BCWoqxJCkgrIPE1670ql4cWI9L+yOJdEqPSTLZtUAjmYGAOd69TdIZoqX1VhIghICgZBsfifAyHUQSr9Lf5H94aE9rvL7LOHKOOTnknZMoZm0PdF0kKRaJea8diSg==
+ b=e+a6Wl9c+E/jFLIGtq74Zaz6gYNACvh9MIRRmX93SZFdI5iHaFmSd3M57QEUFkuUdcsJNjvyqOAYqKtEwaY57lung11PjBbQP6PSTkpUv1KnyPxE/DcqJJ2P+C+PJY0euYn86voInmXpzsMY9VgAgOMsR0wQcgzrA/4ZVmUOhbIfe7/yt17k5xABFTHC5+FyD2J4p5Mh6Kr9UJ8f9D9lboAB594K8Kj0hukAsN/cd05JnRZQuPPFtLqRuGfepshU/cuwK8/Q3MBIUq3UrMrjQCZuZxn5i/sp91Yifo7SjJi+6k3eFfQeF2+M3FxiyF0pYdLxdYmOY8KwgzF7p2bA+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ddoa+CdxgRsB4CVxwjnslLnzWpN1S1sTf0mEL8RV/EY=;
- b=MHTyNooPL7VdVh9K4E/m3GmPBU88j1vDABJ9deK9Ny8UAQh/8E6EYzLyPRaRf+Uay0jtF+9eu9LAVOME1Cimn0gE/20Z+pA46cjsjhanZljfBr7vqXtPO/+IRsLcipZAFyVC740fAz03xdtl+8UqR7+3cDjb4U0KPZ0LNWMvTgadXlhDpneqB0EqOfd9bsYFptjz0BBtnxfBywnvXmJ7MRLysDOjiq0J0gHH7yQmgbGOqdPtBuyW987sOR24ZqxZr73mDNoOMVzneup0lrYRZkLREwXqz5/Fyh1Pvk0ddR6Myasz00XRZFhb87A1gMVReyPArVIvxWiY9BR6tnDzqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
+ bh=/5mm/cfLURsvfIFkDBAOFR9a83Dvniqyx6o7xS2f+t8=;
+ b=ezwL/AQeLHQRJN3Tu3aRF4oC4PeHyxGfg14Ctg3x7DRGbYR8y58rEHrSO6JZwTyLCoSEMT2IvA/zhJOaRpIEURwZQbNfskIAuZrA6mKGE9PLoctESpSHoQCryL9yI0YWL7KU9qbELDSUc1wGJzEUmuZW7Acn21rNU03KVmZOqVfE4JjR/zcnkV8XfMe31cHpUptNMIajAWNACzfRnFWSEMLue4cHIEDwdXsvsp77k0X6lUGTotBzCskMjhVLYApciJ7pNbOVlWsuBWwG1Si5eKSBIvqA3mkF7x3UmzrqKkTA7+Dq5SHWZc22G0DyDbc5eIKeZX2lIw0n7wjqA6k/JA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ddoa+CdxgRsB4CVxwjnslLnzWpN1S1sTf0mEL8RV/EY=;
- b=sur81naqWUep2Ym/gnsUzTC6+X2VjN7u3/CHXEi++09StPDsSG2LgbA1QlhEEK1htnyS/YpHlyrmNF6LdEe6Z5aQeunf+AXa6B+ZZyMhIVWbcyXmhFpi6DTNnUOArCqpoRCVYOZo1bsuIatsZNoA365nlOgVtY77Wk+QYEPdpBLCYaq4trEhB6dqOTlY9nqpRxtqoF86fWY/ZA2dtCLFEvV9B9BCTfSZp28it4i0w+TeTNB3TXF50UDxWwX3HH8gojBG7mB9CxMga8Mq2yGDH66aiKO0BnTJ0yWTms+VZM8epwrKjo6vqz5KA+21sI2AiRnszpafxLvKidRAsXobew==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by PH7PR06MB9485.namprd06.prod.outlook.com (2603:10b6:510:2e8::16) with
+ bh=/5mm/cfLURsvfIFkDBAOFR9a83Dvniqyx6o7xS2f+t8=;
+ b=ZWULn38UOT/7SHGuJ7mO86CnoaQeLfHvuX8IgZAmrYNCVTWx5N+SwUqLJ2edpvRFfctqw0A3YRfSPSUZsYxofSI1nG8MMDnGhR90uBB1qhysuHjEjweasgI/BZt/+eol0iRDgKlrtGzDJErcDHNGA7FAf9XFO9V4DnYU6aSAZ+E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by DU5PR08MB10677.eurprd08.prod.outlook.com (2603:10a6:10:529::6) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Fri, 10 Nov
- 2023 14:30:42 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::3fca:a39b:c9d2:c834]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::3fca:a39b:c9d2:c834%2]) with mapi id 15.20.6954.025; Fri, 10 Nov 2023
- 14:30:42 +0000
-Date: Fri, 10 Nov 2023 08:30:39 -0600
-From: Chris Morgan <macromorgan@hotmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
-	daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-	neil.armstrong@linaro.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH V2 4/4] arm64: dts: rockchip: add Powkiddy RK2023
-Message-ID:
- <SN6PR06MB5342CA386D24487297783A17A5AEA@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20231109215007.66826-1-macroalpha82@gmail.com>
- <20231109215007.66826-5-macroalpha82@gmail.com>
- <15be209c-753d-469b-a7c4-7403c7745a9f@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <15be209c-753d-469b-a7c4-7403c7745a9f@linaro.org>
-X-TMN: [zph1UVW1RyQjnrG2VSAGGQVnPkbcLa4W]
-X-ClientProxiedBy: DM5PR07CA0090.namprd07.prod.outlook.com
- (2603:10b6:4:ae::19) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZU4+j+fn2TLQtUhX@wintermute.localhost.fail>
+ 2023 14:33:37 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::79a1:5ad6:b221:ad]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::79a1:5ad6:b221:ad%4]) with mapi id 15.20.6977.019; Fri, 10 Nov 2023
+ 14:33:37 +0000
+Message-ID: <4f9bc04b-81af-49ee-9818-d4cd281504e7@wolfvision.net>
+Date: Fri, 10 Nov 2023 15:33:34 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Content-Language: en-US
+To: Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+ heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+ alexandre.belloni@bootlin.com, maxime.chevallier@bootlin.com,
+ paul.kocialkowski@bootlin.com
+References: <cover.1699460637.git.mehdi.djait@bootlin.com>
+ <bcc0b84f4a6a8cf4c007cfe25025060b22627408.1699460637.git.mehdi.djait@bootlin.com>
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <bcc0b84f4a6a8cf4c007cfe25025060b22627408.1699460637.git.mehdi.djait@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR0902CA0048.eurprd09.prod.outlook.com
+ (2603:10a6:802:1::37) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|PH7PR06MB9485:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18484da4-245c-45f3-7d67-08dbe1f99e08
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|DU5PR08MB10677:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7eb6612e-5357-4261-0d0c-08dbe1fa06a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	QOijKvGal9CgIIVBX4SZWNHK6jKy2gHqz33p6gUI2iTEDEkVkTBPMnU4nnV6uvECaVUni8HY9ivYGEAPWhqbhzus5pvPVavGXdCmbHH6/ki1tPkOA0jDW/cV9v/YY6yqdOa+6KMPQgxhRUEKwBbaJBlqRbJ4geYs8d3xt5HJyE3dKoJ6zy50ZdaUO8thJ8VkzONd3KAFrYAj5cJPVRmZlNeTWqU2jnEVrqQcWk2UsXPINsh2NPmOuVmWKv6cxjbVCegIFP/OYixIxmTCGaGjW6+5uFCACdkoCjFxB5MPLj5pmqATDm7udUHzimLZPKkocMJIWqwLKzOV1/seFp1cLhCEFQLlzGtQ/Dte7+zXlTA5M2l5qkqxQ4dMpvUejpOl1ZhRZIT3uuueorP9D0v2Py+A2jPZ1Mr4Uaw41NEDHKbBCieoJsF09x75J1Pzp8sfRxummpr80GU+KZlcCFCoI0aoz2NiCOqtQcdwxaAxnI9VAviWKoOYGKeyHIBIwFbKHkGxlQ03a0wDVIEcnPejqdwLxIiTiAqh9XTp4Dy58EQPvnURiDXN7yHioKvBKNB2
+	3/ZG1zEKa/EvrnaTVvKVjzx8LUCQED/iWVIeyRc/AdsHQ+dEYBjG7BEV+jh13xBITsFAMBWRdcaN5W4UQ4ysNW+Rx9b/iQMfUCSn+Ju7/jmivLgnxRvOHE+iZBs/NEK5wKeK1lmCJRQ24NQptSecGcTrk7nBjB0v3YfTOnekQ62/PiSRSXxQv/nP/6twK6+nu9WRlzisuME7pGq6Srfn4BRv+DDogbV8Bo8cSbGb8l5PfYIv3iYTd7MP/MVw2rCbH7fmiegJGwNFuFRaiLvs6YH8jixCAZLTWb9P2PJvixwelbednDtIBZ7buQ0fMHgxOkArS/bieUWMdNHEixrtxFCxChGxDMXiO5tyTouvHGivz7NdkunoMBZY3h45lhS1dapqc73zx8QTxPs2hbACM/zRryL0WTlBy+HT4gXb90CHM3F3xpxJuWkeCsMHcXNHjHtA/fE7qC7vRSt34axkExvYzxSt7MDCBae06wOOnZZzIkRxOvHmD0RlGOG05MSCZLI0taQW6wwTiVsO5IUhoUXX1JubbRFvNlT9JBGxEyXD6RPwgiU3lYwVilkG+B1Mp5teiMHRwg65SUhtonAjiCvDppktQmYlEmHNGNAWEsS+BQ5tOz41Eb2r8UJ1QL1dv+xIYBeHUYO16hJo6HBWRw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(39850400004)(366004)(396003)(136003)(230922051799003)(1800799009)(64100799003)(451199024)(186009)(26005)(2616005)(83380400001)(66946007)(6666004)(6506007)(36916002)(478600001)(66556008)(53546011)(6512007)(31696002)(2906002)(8676002)(4326008)(36756003)(8936002)(41300700001)(5660300002)(38100700002)(7416002)(86362001)(44832011)(66476007)(316002)(6486002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?5QI4htUHThtTYViIedcot3BY2LPgONgl3VhWjQJI9GiX8gejP6vJJihbL27+?=
- =?us-ascii?Q?07zKkx8MoAgucvWsMSNH2jViIvooO/tuAZMkMSq4JHJK8V8fVnzwTqr+orKY?=
- =?us-ascii?Q?7B/yWWLDEydKLLbmSMLDiUnjgCaUZmYtby9nT5YDofu7VDgbAi7rEryC50yC?=
- =?us-ascii?Q?hs45HLkpcf4XCgt0sztffq51h8yHo99pGb3/UrMmPyjrd0FuID0/LwrQcbhM?=
- =?us-ascii?Q?oMxygnDl7WcJ46kWA0e8a09E2yZipIFW1H8flTB2BUIXC1P1pvOk3wLAkdV2?=
- =?us-ascii?Q?qjHdtx4m2noCN3LbcjdQPCt8cj+TOB+Vz0h5+bY06aoOLi+qNSjfIDyvK8H0?=
- =?us-ascii?Q?LPFHOb4tWDYA5G7y/rp1KWHbGca1WD1DPTN9Q0in6xbxzJEIT0ZswCZxAKEt?=
- =?us-ascii?Q?YHG5gOmO4l/b2RUNE9btTL9Ev3d8jWlUQHyORk2mXUWMh0pwpgztYzEs9UGr?=
- =?us-ascii?Q?qDY2Ph5vBIL8Kh/xUsHjIFAZ1Ph1+evsSU2v0CLxeWAF24PdCrUfEcAO7LHz?=
- =?us-ascii?Q?OXLC9a8hIDDQPBx5Vb4yb+I1ay2nCuXbkcEpOVLQKOLAcrrPxq62rS9Bjwz7?=
- =?us-ascii?Q?Le+pOxEYpiSo1jwGR94YNb5o5YbAaCTcgFYimGDN+sighLO0d9HDlEqTGs7a?=
- =?us-ascii?Q?AnCcPX+sP9OT2t5ELi6YGh+MAPQjjD0iCt0PcIcJEz7QvkHhVRBV/ByY3pIM?=
- =?us-ascii?Q?tLkZ7hlKg34R/Jsb/wJFuHXN7G7+wyeUf1gg/+sDmLpLHibXyYJJVTnc4BwW?=
- =?us-ascii?Q?DL2UspjBx28/BUZHPG2SVfaodUTeIvZ3/poriCHBuQYCmcvTfOZ22ZiM9wdo?=
- =?us-ascii?Q?I3fDGpGKYAC0aJvBV3+UC0rZ/CtOQWmajBVpoZaEt8FLan/e6x9EIQlLX2dy?=
- =?us-ascii?Q?GMokywR73LzZ/IvxajzpbNogS3961qYYoDziAQjnihl3Y8rl+XElVd/L/KDX?=
- =?us-ascii?Q?k3VJKCu7O6q1A/xcDVw2KpEaCv0F5k2MyFV4dkTHQRRrzLYpb5mfAqJQq9eF?=
- =?us-ascii?Q?aoACqvdnE4MERvy1s6JzxEfMtMmCCCF22hmML2wMICsLEPc1ApBLVCbKq1Bp?=
- =?us-ascii?Q?4JPJi3o4T7RMfMoBrsXMMp2rNZva7VmDGstogoaSFbOhFCFWLj0nDeOpgHBY?=
- =?us-ascii?Q?y0nYYn9Ejlu0JU4uk6+UgfVTMoFlGB2oyEWFahDwNcNdOL0o5f8+Oqu4qIFD?=
- =?us-ascii?Q?FFtQOZpvsG4KnIcwQY+jrrkW0MQDksXEa5OrdridBnYU8TPQ1W3sW526bWE?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18484da4-245c-45f3-7d67-08dbe1f99e08
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+	=?utf-8?B?TTh1VW1sc3FuRy83VlNETkNmT1RNZDBJQU93QnYzVVcvY3M3K1duZ0dIbklo?=
+ =?utf-8?B?TERleXNleUdxQnd5Y0Q1azV0MHRQUzFuaFhjWDhQeXpnQUREeS9udHVwQ0hv?=
+ =?utf-8?B?ajRLOEprMC83MlF0bDNWbGt0OWRuRE5Fcmx5YlZ5TzdiU2dFdWFlanBNV29y?=
+ =?utf-8?B?N0d2Rldhb1BwR3ArRTdVOEMvakZONno4L0dRUmhHZUFESWh4dWtUTlRyU2pq?=
+ =?utf-8?B?bnJJZmI1R0thTEVUSnFLcWdnUGdUQ0MwbHZGcksyUGkxUzRLZXdHNmtTZmZM?=
+ =?utf-8?B?dXFXMXRrNDdXQ3pyNS9BY0pRWkpkK3pQL3l0RCtkRWlXQXZDbjZVSGhVUDFL?=
+ =?utf-8?B?OElDVlBwZDFjTDMzR3hGVFR4ZGQ3TlhQRlRvc2t3RE9VdVhUdFVVZC9hMHFF?=
+ =?utf-8?B?L3JicmFlczhZY2s5NjlNbi9yZkt3U2kzWGUxbndwZnpTTlNoQVZBYllWSmpM?=
+ =?utf-8?B?ZC9HalJvSDh0SFdTNS9LT0R3SU1JTlFsQ0pOVWV3NmFjRUt4LytsN2wvRmVR?=
+ =?utf-8?B?YnNxU1NWZTVoekVWUGNWNFNob0ZDS2dxOGdHeVhjU2U1YVB2bllualAxUll1?=
+ =?utf-8?B?Szg2ZC9lb3BYYUdEcHVPRCtnUXRDUzhmS2Rva1lhTm1rZ1BrS1kwQzRhVHZT?=
+ =?utf-8?B?QWlHT29ZOTVRMGZCUkRLYjZlN0JuemNFWTJYQzlXNFRXY0tiRGtSR04zY1hV?=
+ =?utf-8?B?NHN5MnRoOVZLTkk4YUQraURzZHIzR00rbU1Zb1hENU1WQ1Vxa3d4aGszNXg2?=
+ =?utf-8?B?c0NWNzRMT0JnVHJMRGovVnNLZnQvTFdqcGt4clZ3TXROK3JRU29BN2ZlUHd3?=
+ =?utf-8?B?UGVpSnk4U0FOWFJ3ZDhxY2cvT0RJSWlFU0c5LytQTDQ0Mi82UUxlWkRFMzFJ?=
+ =?utf-8?B?L29zWndrKzIzK1NBaDg2ZUpreFJBekRscUhMUEhkYVgzZDNUYzJ6NHY0K01m?=
+ =?utf-8?B?dzFuM1IxQU9IU3ArTTdsMEt1ck9tQUdadG9JOUUwTXA4NElFMHVQdDBhcmpm?=
+ =?utf-8?B?WTUwV0lLRElQUjNYcU14RFNKY2d6TXgxQnFZb2l4eUxhVVYwUjRCRGZzTnl2?=
+ =?utf-8?B?NHIvN3ZTOWlHanljZHZYdTQzVXdCVTJVL0hnUVIySmIrb1J0MlQ1QzlNb1JF?=
+ =?utf-8?B?WTRaUzFOa0plMzV4bFlMU1oxVHMxajlWUU9mUU5yZXdzdW9vQlhzRDMxWXJq?=
+ =?utf-8?B?WHMzckVLdVJsWkNKZ2NDT09yN04zV3FiUE80U0FzRlZBSjdKUFU0NzBscURU?=
+ =?utf-8?B?S3IzMFNYeHhwQ1FuUGRKSnEwc2tHSk5UbFpGTGpGVVM2VWtVd3Q5MVdLdTU5?=
+ =?utf-8?B?Sk0wQ2tZbVE4VXpsdThBTldOcWFGWjdRUEthMDdBQmN0L2hIYWYzQVFzbTRk?=
+ =?utf-8?B?c213UGw4b2x3UjJDWmlCS0IzQ2dJbEFlcEx4ZFJFV0N2Mk9ieG44UXdrOUky?=
+ =?utf-8?B?M3BCWUlqMGRJUEJ6UXkva3ZDTU01NmFDUEVYYVlYZGNCYnVsV3o1Y0liT1Ex?=
+ =?utf-8?B?ZDZNNnVLM1hXdHc1eHlYSmpPK095UFl1Qm5Ga1hsc1dENDg0UW1iWkNLWmhX?=
+ =?utf-8?B?b3JkTkVEUG56YVJ2anNhWTZEczMrdzl6L0hoRFpPYkpWQjU1V2pHclo4QlBq?=
+ =?utf-8?B?WVE1MGJJSVU3SGFyazJTeTEydjNFTDJUNlN3TyswRTJYaktUbzJ6b2hNMkZr?=
+ =?utf-8?B?Y3RHSzFLclpoRUMvM0ZSSFowK3NQeFRRMlR2UXFJNkZ2bWdYSWthWnkzNGFT?=
+ =?utf-8?B?V1dCbGdicXlLbjdNeklDdzVtRk9KQ0NmVmVuOHdTUjgwczNFNmdGMi93RHcy?=
+ =?utf-8?B?LzlTNzBWQnBrNjBuYzVmR3pTN2IxUHZMZVlmczFGbXJMT2VHZjVDamJ4cDZv?=
+ =?utf-8?B?dGQ0MzE2aHlicmh4MlpFQkd1OUJSdEErRitGN0x5OGRlWjJpcktReVNhQkNE?=
+ =?utf-8?B?cDJaVTUyeHUvMm9BVDFvQVJKM1ROM3hFMjNhaHlpN3FtMjhRNlhyN1dld3Bh?=
+ =?utf-8?B?YW95NVZMMDNoL2phc2daRmN4M080YURWYkRyRXFadUp2RndHTEhNTGttOHRk?=
+ =?utf-8?B?MFREZEZOY2lnRlp4WUN4b0gzMitwbk5XZlFDL3pSZDFNSm0walNHajllZ2I4?=
+ =?utf-8?B?YWdHTnk3V2lrOUFiV1hjcHZTUVF1UWd1MUI1bnprYTRJSVdaZXVRNlN4bkha?=
+ =?utf-8?B?ckE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7eb6612e-5357-4261-0d0c-08dbe1fa06a1
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2023 14:30:42.3838
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2023 14:33:37.3953
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR06MB9485
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sXPprwWSmNOEixHr23wPCEire6VXPn8ZHyaet6ZsQn2tNpiuOhKDtZUrHdQ0j7jhpfZVAldzyqRad7NUsi/tBsOMUmwlR8H4R2EEu9uo07E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU5PR08MB10677
 
-On Fri, Nov 10, 2023 at 02:14:23PM +0100, Krzysztof Kozlowski wrote:
-> On 09/11/2023 22:50, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add support for the Powkiddy RK2023. The Powkiddy RK2023 is a handheld
-> > gaming device with a 3.5 inch screen powered by the Rockchip RK3566
-> > SoC. The device is almost identical to the Anbernic RG353P except it
-> > lacks eMMC, a function button, a touch screen, no UART headers on the
-> > board, and the panel has slightly different timings.
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >  .../dts/rockchip/rk3566-powkiddy-rk2023.dts   | 161 ++++++++++++++++++
-> >  2 files changed, 162 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> > index a18f33bf0c0e..f969618da352 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rgb30.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rk2023.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-a.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-quartz64-b.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-radxa-cm3-io.dtb
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-> > new file mode 100644
-> > index 000000000000..5740412f6b2b
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-> > @@ -0,0 +1,161 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include <dt-bindings/pinctrl/rockchip.h>
-> > +#include "rk3566-anbernic-rg353x.dtsi"
-> > +
-> > +/ {
-> > +	model = "RK2023";
-> > +	compatible = "powkiddy,rk2023", "rockchip,rk3566";
-> > +
-> > +	aliases {
-> > +		mmc1 = &sdmmc0;
-> > +		mmc2 = &sdmmc1;
-> > +		mmc3 = &sdmmc2;
-> > +	};
-> > +
-> > +	battery: battery {
-> > +		compatible = "simple-battery";
-> > +		charge-full-design-microamp-hours = <3151000>;
-> > +		charge-term-current-microamp = <300000>;
-> > +		constant-charge-current-max-microamp = <2000000>;
-> > +		constant-charge-voltage-max-microvolt = <4250000>;
-> > +		factory-internal-resistance-micro-ohms = <117000>;
-> > +		voltage-max-design-microvolt = <4172000>;
-> > +		voltage-min-design-microvolt = <3400000>;
-> > +
-> > +		ocv-capacity-celsius = <20>;
-> > +		ocv-capacity-table-0 =  <4172000 100>, <4092000 95>, <4035000 90>, <3990000 85>,
-> > +					<3939000 80>, <3895000 75>, <3852000 70>, <3807000 65>,
-> > +					<3762000 60>, <3713000 55>, <3672000 50>, <3647000 45>,
-> > +					<3629000 40>, <3613000 35>, <3598000 30>, <3578000 25>,
-> > +					<3550000 20>, <3519000 15>, <3479000 10>, <3438000 5>,
-> > +					<3400000 0>;
-> > +	};
-> > +
-> > +	/* Channels reversed for headphones. */
-> > +	sound {
-> > +		compatible = "simple-audio-card";
-> > +		simple-audio-card,name = "rk817_int";
-> > +		simple-audio-card,format = "i2s";
-> > +		simple-audio-card,hp-det-gpio = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
-> > +		simple-audio-card,mclk-fs = <256>;
-> > +		simple-audio-card,widgets =
-> > +			"Microphone", "Mic Jack",
-> > +			"Headphone", "Headphones",
-> > +			"Speaker", "Internal Speakers";
-> > +		simple-audio-card,routing =
-> > +			"MICL", "Mic Jack",
-> > +			"Headphones", "HPOL",
-> > +			"Headphones", "HPOR",
-> > +			"Internal Speakers", "SPKO";
-> > +
-> > +		simple-audio-card,codec {
-> > +			sound-dai = <&rk817>;
-> > +		};
-> > +
-> > +		simple-audio-card,cpu {
-> > +			sound-dai = <&i2s1_8ch>;
-> > +		};
-> > +	};
-> > +
-> > +};
-> > +
-> > +/delete-node/ &adc_keys;
-> > +
-> > +&chosen {
-> > +	/delete-property/ stdout-path;
-> > +};
-> 
-> If you have to delete so many nodes and properties, this means your
-> common DTSI is not that common.
-> 
-> Common DTSI means there is shared hardware. If you take shared hardware
-> and put it into another board, pieces of the shared hardware do not
-> disappear.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Hi Mehdi,
 
-I can redo this with a different top-level dtsi so I won't have to
-delete so much if that helps. I'll redo both the RGB30 and RK2023
-so that they use a common dtsi and no longer rely on the Anberic
-one. I'll do that and submit a V3.
+Sorry, forgot one thing:
 
-Thank you.
+On 11/8/23 17:38, Mehdi Djait wrote:
+> [...]
+> diff --git a/drivers/media/platform/rockchip/cif/dev.c b/drivers/media/platform/rockchip/cif/dev.c
+> new file mode 100644
+> index 000000000000..f7d061a13577
+> --- /dev/null
+> +++ b/drivers/media/platform/rockchip/cif/dev.c
+> @@ -0,0 +1,289 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Rockchip CIF Camera Interface Driver
+> + *
+> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
+> + * Copyright (C) 2020 Maxime Chevallier <maxime.chevallier@bootlin.com>
+> + * Copyright (C) 2023 Mehdi Djait <mehdi.djait@bootlin.com>
+> + */
+> +
+> +#include "linux/platform_device.h"
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/reset.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pinctrl/consumer.h>
+> +#include <media/v4l2-fwnode.h>
+> +
+> +#include "dev.h"
+> +#include "regs.h"
+> +
+> +static int subdev_notifier_complete(struct v4l2_async_notifier *notifier)
+> +{
+> +	struct cif_device *cif_dev;
+> +	struct v4l2_subdev *sd;
+> +	int ret;
+> +
+> +	cif_dev = container_of(notifier, struct cif_device, notifier);
+> +	sd = cif_dev->remote.sd;
+> +
+> +	mutex_lock(&cif_dev->media_dev.graph_mutex);
+> +
+> +	ret = v4l2_device_register_subdev_nodes(&cif_dev->v4l2_dev);
+> +	if (ret < 0)
+> +		goto unlock;
+> +
+> +	ret = media_create_pad_link(&sd->entity, 0,
+> +				    &cif_dev->stream.vdev.entity, 0,
+> +				    MEDIA_LNK_FL_ENABLED);
+> +	if (ret)
+> +		dev_err(cif_dev->dev, "failed to create link");
+> +
+> +unlock:
+> +	mutex_unlock(&cif_dev->media_dev.graph_mutex);
+> +	return ret;
+> +}
+> +
+> +static int subdev_notifier_bound(struct v4l2_async_notifier *notifier,
+> +				 struct v4l2_subdev *subdev,
+> +				 struct v4l2_async_connection *asd)
+> +{
+> +	struct cif_device *cif_dev = container_of(notifier,
+> +						  struct cif_device, notifier);
+> +	int pad;
+> +
+> +	cif_dev->remote.sd = subdev;
+> +	pad = media_entity_get_fwnode_pad(&subdev->entity, subdev->fwnode,
+> +					  MEDIA_PAD_FL_SOURCE);
+> +	if (pad < 0)
+> +		return pad;
+> +
+> +	cif_dev->remote.pad = pad;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_async_notifier_operations subdev_notifier_ops = {
+> +	.bound = subdev_notifier_bound,
+> +	.complete = subdev_notifier_complete,
+> +};
+> +
+> +static int cif_subdev_notifier(struct cif_device *cif_dev)
+> +{
+> +	struct v4l2_async_notifier *ntf = &cif_dev->notifier;
+> +	struct device *dev = cif_dev->dev;
+> +	struct v4l2_async_connection *asd;
+> +	struct v4l2_fwnode_endpoint vep = {
+> +		.bus_type = V4L2_MBUS_PARALLEL,
+
+This is surprising. I had to set this to V4L2_MBUS_UNKNOWN, otherwise
+v4l2_fwnode_endpoint_parse would yield -ENXIO, which indicates a bus
+type mismatch. Does this really work for your (BT.656, right?) setup?
+
+I think we should get the bus type from the device tree, right?
+
+Thanks and best regards,
+Michael
+
+> [...]
 
