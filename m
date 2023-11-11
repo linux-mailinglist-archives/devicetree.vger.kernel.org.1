@@ -1,125 +1,110 @@
-Return-Path: <devicetree+bounces-15181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417927E8C52
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 20:23:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160287E8CA0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 21:47:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6BEC280DF6
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 19:23:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80D861F20F75
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 20:47:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA31CF90;
-	Sat, 11 Nov 2023 19:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4269EDF45;
+	Sat, 11 Nov 2023 20:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="XLClci90"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q1zBnuKZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7370A1BDED;
-	Sat, 11 Nov 2023 19:23:29 +0000 (UTC)
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AE4C4;
-	Sat, 11 Nov 2023 11:23:28 -0800 (PST)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 271F21C0071; Sat, 11 Nov 2023 20:23:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1699730607;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=K6odKY3sY9Zkf6tdtdGxd7vIMwPRzaLEncX/QIk0rXA=;
-	b=XLClci90peawuVYrVztZgHTKdYXdm0itTVjUfT1o+gb03zwYRO8sKeZM7Ysqz3xv20JsKu
-	gC10dXiq9RGnUBBC4l5p/D3yMyQ+N+l3lmhT6w1JHTEAimIyXCVpEiyRC6bxc4D4nADsnJ
-	1B/ta8uCxeE34YaCjjZuP2frK0rBieI=
-Date: Sat, 11 Nov 2023 20:23:13 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E667B1B274
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 20:47:31 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0752D73
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 12:47:30 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9d216597f64so506961666b.3
+        for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 12:47:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699735649; x=1700340449; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Peg1pxCwGlnhNKPOTBWdvFK6RQItCTgLiK4ys22+0zI=;
+        b=q1zBnuKZgE8y/IgPhTpQCy1JhBOB4879vLQuhvTmXNGAOT70oRsrnWRRGMi+K/RpkN
+         pasJP1BhPp3rX9kXmXOQCaGTDBDWBV0vNF3o5Z3avjHm2jk6etL0Rw8ljatHsvGNOTeC
+         YM1eQjy4eku2213kDgS+yYpdAQv9lYfUAatfKcE8N6ajJG5TnSjNG0rz/qinNLexK2oj
+         iqOBfYznH9pIPFdJPPDx4MnkakKLo1IuDaYjqxztISHt/wJwhrvIE8HBYuUU5JxD+Tzz
+         CilP9Gb0oEAMG7cLW57MBOQcyhm3x1E94+wLbpyeX9voe7FzynlrcmgTZ58lEs2ckjew
+         tMqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699735649; x=1700340449;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Peg1pxCwGlnhNKPOTBWdvFK6RQItCTgLiK4ys22+0zI=;
+        b=C/Y9A8XwqiLzApDlwRgaxHstYScwGeuie5hqvmHD7HMEoCLzM5o4PLLHsmvmrNDMbn
+         iiV1eb6wvP9/P3ubyzNEwIK1yg6p+kpMJZEPh9dNZE1RUzGFVUXyyUuNW9bPJGDPQczu
+         VB6zIpfRqEMPZVT+QoifGSj8b+NlKzeuwySpDDAhLOG79MnpVs9jRRRYg4JEYUFmG15H
+         ArdoE1wRSfoEdiVBWWYksQWKK1L7VjEwNVD0VqBWMjd8oYo+EPQmYMMJOMLVoq78Xi2r
+         CxijD1/tK68Bvl43eK7FADgi/Ub5fpJ4AFXD2S1oKuY5r+5b5sSX6Xl5U1HW/obBNafr
+         Da+Q==
+X-Gm-Message-State: AOJu0YygzyC0goWEEaCjE4lSwdETzu3QjqB94Ek3ZuPJHHTdQhBZn7OZ
+	O7U7xuiUlDxlcp/Smat+gd3i0A==
+X-Google-Smtp-Source: AGHT+IE/AWG1HaOZp60zhem7NngI/0APEHckp98uQ4HTdPA7+GViVgAA3x2I697DRgKOwHFqYwMXbw==
+X-Received: by 2002:a17:906:234d:b0:9d3:f436:6809 with SMTP id m13-20020a170906234d00b009d3f4366809mr1743119eja.39.1699735649053;
+        Sat, 11 Nov 2023 12:47:29 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id dc3-20020a170906c7c300b009b947f81c4asm1547346ejb.155.2023.11.11.12.47.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Nov 2023 12:47:28 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: media: i2c: add galaxycore,gc2145
- dt-bindings
-Message-ID: <ZU/QyrbaeyoV5+ON@duo.ucw.cz>
-References: <20231107081345.3172392-1-alain.volmat@foss.st.com>
- <20231107081345.3172392-3-alain.volmat@foss.st.com>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sc8180x: align APSS with bindings
+Date: Sat, 11 Nov 2023 21:47:25 +0100
+Message-Id: <20231111204725.35707-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="HEYXTtUT371s7KFw"
-Content-Disposition: inline
-In-Reply-To: <20231107081345.3172392-3-alain.volmat@foss.st.com>
+Content-Transfer-Encoding: 8bit
 
+SC8180x APSS Devicetree bindings expect qcom,sc8180x-apss-shared to use
+qcom,sdm845-apss-shared fallback:
 
---HEYXTtUT371s7KFw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+  sc8180x-lenovo-flex-5g.dtb: mailbox@17c00000: compatible: 'oneOf' conditional failed, one must be fixed:
+    ['qcom,sc8180x-apss-shared'] is too short
 
-Hi!
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Introduction of the Galaxy Core GC2145 XVGA CMOS camera sensor.
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index a34f438ef2d9..6f5c07fa6c2e 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -3421,7 +3421,7 @@ intc: interrupt-controller@17a00000 {
+ 		};
+ 
+ 		apss_shared: mailbox@17c00000 {
+-			compatible = "qcom,sc8180x-apss-shared";
++			compatible = "qcom,sc8180x-apss-shared", "qcom,sdm845-apss-shared";
+ 			reg = <0x0 0x17c00000 0x0 0x1000>;
+ 			#mbox-cells = <1>;
+ 		};
+-- 
+2.34.1
 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc214=
-5.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> new file mode 100644
-> index 000000000000..94d194cf5452
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc2145.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Galaxy Core 1/5'' UXGA CMOS Image Sensor
-> +
-> +maintainers:
-> +  - Alain Volmat <alain.volmat@foss.st.com>
-> +
-> +description:
-> +  The Galaxy Core GC2145 is a high quality 2 Mega CMOS image sensor, for=
- mobile
-
-I'd drop "high quality" and add "pixel".
-
-> +  phone camera applications and digital camera products. GC2145 incorpor=
-ates a
-> +  1616V x 1232H active pixel array, on-chip 10-bit ADC, and image signal
-> +  processor. It is programmable through an I2C interface. Image data is =
-sent
-> +  either through a parallel interface or through MIPI CSI-2.
-
-Short note what the on-board ISP can do might be welcome here.
-
-Best regards,
-							Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---HEYXTtUT371s7KFw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZU/UoQAKCRAw5/Bqldv6
-8orDAJwM20frY6IY1jpKX8OIEbZK9e6RLQCZATDMB7pVsZ9YHVBMUlxXBbnOi50=
-=I4xG
------END PGP SIGNATURE-----
-
---HEYXTtUT371s7KFw--
 
