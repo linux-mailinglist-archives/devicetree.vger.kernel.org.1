@@ -1,158 +1,120 @@
-Return-Path: <devicetree+bounces-15190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F517E8CE5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 22:33:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D61397E8CF2
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 22:57:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D9771C2082D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 21:33:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40D25B20A5A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 21:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF7D1DA4D;
-	Sat, 11 Nov 2023 21:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557431DFC3;
+	Sat, 11 Nov 2023 21:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SoWDJ6Uf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PFL1HlsK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3019D1DA38;
-	Sat, 11 Nov 2023 21:33:46 +0000 (UTC)
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2125430CF;
-	Sat, 11 Nov 2023 13:33:44 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-408382da7f0so25426505e9.0;
-        Sat, 11 Nov 2023 13:33:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE141DA50;
+	Sat, 11 Nov 2023 21:57:13 +0000 (UTC)
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB3B62737;
+	Sat, 11 Nov 2023 13:57:12 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-6ce2ee17cb5so1873205a34.2;
+        Sat, 11 Nov 2023 13:57:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699738422; x=1700343222; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=BjJpwKGCecxdkQ5LjdaCff64J4ZeBO10oL7F7MwcVn4=;
-        b=SoWDJ6UfBqwi53zUN3lqwjEzqeoNaEv5zsc4CMeWzz/pa4MGPZdI9VOIJcxPXDIBXK
-         4ROP0Y0M+5dKmB770QtNeBIstJv2T2waq9KvTEA62oWBNLEK3tn6EpFOzyw9GGtWBiLl
-         +8vMVriKMxML9XTHzs99pBrGIJ2pgUCzNsC/krpkJ4DW+67LIIV033QhiAk/h407sekN
-         7dgneR81A4ZJ6qzpDw/G/X3nhtSAj4wbdrjGmNn7/etm16KaC2w2VT3uteyhr9X8XKNo
-         VPPLSZOuhkiIuszK4PUfU7/99L+ack9ienSwmJqXLSvM4HY0Dmhy8QMLdcAI/ce86wQO
-         Tkrg==
+        d=gmail.com; s=20230601; t=1699739831; x=1700344631; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NXqAk6xN281UpSgUatM/i7XchjeZPtdGe/hPZ9eSb6o=;
+        b=PFL1HlsKlCNdeyufI/ja0COxZeRn8ENLPEkImQm92yLnkXA5k4Fy2+fiYpLTl16Pso
+         yl+ZmsR91rCs0NxnnjO4qqkaawLXWWiq3EVDVgegbK5g5PwujdcJSboANjiAHHC0N1eO
+         l94TpEZvVn7NX2mQg+iMzOLLBVi3DjeZcIZNHZzhBCk5z6FjCD3P6L/8R92lDjYQ0t5p
+         3YSCzo2Of+SGMJc8xrtRoJmSl/FzluN6aB3k2l/HYEMPVZ4LniV80WfoWjpBU+yBA7ZW
+         IWXrKEjw4kLDhwYv8214kuHPkv9TvTYd/QcZr/OUMRQAgvCX+2H+pypRAC53yDSzsc6j
+         i6CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699738422; x=1700343222;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BjJpwKGCecxdkQ5LjdaCff64J4ZeBO10oL7F7MwcVn4=;
-        b=Hybfyddn3YmL+/eG1Hy+/BMvI3TvTEEYmHeNCUtg5U2fRYWSBljdO3ZgK1vMAd11wk
-         lK04hoaBRwRdCtkCZmUbRh2k307tlfFi5piLK1vfsZRCpSTfXgK31v9T7aJhXh8+a9gy
-         MW/KQyohXQqn1yD4S57z5WCrpWaw6jC/kp8b30IPQqrAV6Fs8DcGN6SILyCsaVNX6tEb
-         uffx9UByCp04rFBnBtOBL6BLTxgMGkm4j6tbSRWvxffFkBv7QuMZVeGtZBm3VZO9VEpV
-         /KnoSMS9k+3kGx8Xwxmr4g7S8Qn76qAItG7IWvjUZv16LtI3qdLTk2QWYWKKdLONWuql
-         P/IA==
-X-Gm-Message-State: AOJu0YwoZRU81bKYCH1So5JLMZQuMV2nYYu4IAh/NCi/ynapwAdf0Thl
-	WteHhhvVGc7pI36hlmTi4/A=
-X-Google-Smtp-Source: AGHT+IGcspAIBmQE8uECroiT5zYPxAfvcuIKjKOjZDZOhwNchFn+oYO8zOgLHmFyk1hPD+Lg8347oA==
-X-Received: by 2002:a05:600c:5121:b0:408:57bb:ef96 with SMTP id o33-20020a05600c512100b0040857bbef96mr2147252wms.30.1699738422278;
-        Sat, 11 Nov 2023 13:33:42 -0800 (PST)
-Received: from giga-mm.home ([2a02:1210:8629:800:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id be14-20020a05600c1e8e00b00401b242e2e6sm8935242wmb.47.2023.11.11.13.33.40
+        d=1e100.net; s=20230601; t=1699739831; x=1700344631;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NXqAk6xN281UpSgUatM/i7XchjeZPtdGe/hPZ9eSb6o=;
+        b=a6nZwXpYuyiPYGyULw48VhFSdcCuVzE21faDQhENn5q7/0UA7JyizGpmu+tByBK5gK
+         5bsBSPNZzE6V2DKw4WyM477jJvp8PRMqVh7cuXvJK5ADIY+K0/Ub4MfSvxUN8BEPKy1k
+         OtQC9dn96nIW5LHdnPPyXT8YA8n3TSZyawVa75jZXvSzaQFyf/km6QUbpYipNkz5rGuP
+         eWPDNm1BHu/XVknUjxUvMvxc5ZtBo5DksSQo8510bm1palVZkwBeSICG6lKa7ldUDEg8
+         ZKAe3kyvc2NbYh3//ZSGiZvnkJJiOlJo/azpkhs/2KUQhslGpfD9+NKLaMOqHzUFNlQ9
+         utlA==
+X-Gm-Message-State: AOJu0Yw1oZwR5U1xHbX5hSPkChmSo8q3/CMlLtCrpXRYgOV3gXMC7NLO
+	kyje9WfSKx6KYdW56YsT+NRuVPcTR0UfIg==
+X-Google-Smtp-Source: AGHT+IGHH3mShd6Tpzm45Xac6betq7nRzlhXyxCv5mxIKsLYRZ12Vtbov4OWTH7z4Y+UAdkrvsXnKQ==
+X-Received: by 2002:a05:6870:2b04:b0:1e9:94c1:9179 with SMTP id ld4-20020a0568702b0400b001e994c19179mr4496278oab.21.1699739831265;
+        Sat, 11 Nov 2023 13:57:11 -0800 (PST)
+Received: from tresc054937.tre-sc.gov.br (177-131-126-82.acessoline.net.br. [177.131.126.82])
+        by smtp.gmail.com with ESMTPSA id 25-20020a17090a199900b002801184885dsm1867210pji.4.2023.11.11.13.57.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Nov 2023 13:33:41 -0800 (PST)
-Message-ID: <c49f77492cacc5a30079720af58a9f2fca761609.camel@gmail.com>
-Subject: Re: [PATCH v3 07/42] soc: Add SoC driver for Cirrus ep93xx
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Andy Shevchenko <andy@kernel.org>, nikita.shubin@maquefel.me
-Cc: Hartley Sweeten <hsweeten@visionengravers.com>, Lennert Buytenhek
- <kernel@wantstofly.org>, Russell King <linux@armlinux.org.uk>, Lukasz
- Majewski <lukma@denx.de>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Daniel Lezcano
- <daniel.lezcano@linaro.org>,  Thomas Gleixner <tglx@linutronix.de>,
- Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
-  Guenter Roeck <linux@roeck-us.net>, Sebastian Reichel <sre@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Mark
- Brown <broonie@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,  Paolo
- Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>, Miquel Raynal
- <miquel.raynal@bootlin.com>,  Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>, Sergey
- Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
- soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,  Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Michael Peters
- <mpeters@embeddedts.com>, Kris Bahnsen <kris@embeddedts.com>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org, 
- linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
- netdev@vger.kernel.org,  dmaengine@vger.kernel.org,
- linux-mtd@lists.infradead.org,  linux-ide@vger.kernel.org,
- linux-input@vger.kernel.org,  alsa-devel@alsa-project.org
-Date: Sat, 11 Nov 2023 22:33:38 +0100
-In-Reply-To: <ZLqSo6B5cJXVRJS/@smile.fi.intel.com>
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
-	 <20230605-ep93xx-v3-7-3d63a5f1103e@maquefel.me>
-	 <ZLqSo6B5cJXVRJS/@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+        Sat, 11 Nov 2023 13:57:10 -0800 (PST)
+From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+To: netdev@vger.kernel.org
+Cc: linus.walleij@linaro.org,
+	alsi@bang-olufsen.dk,
+	andrew@lunn.ch,
+	vivien.didelot@gmail.com,
+	f.fainelli@gmail.com,
+	olteanv@gmail.com,
+	davem@davemloft.net,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh+dt@kernel.org,
+	krzk+dt@kernel.org,
+	arinc.unal@arinc9.com,
+	Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [RFC net-next 1/5] dt-bindings: net: dsa: realtek: reset-gpios is not required
+Date: Sat, 11 Nov 2023 18:51:04 -0300
+Message-ID: <20231111215647.4966-2-luizluca@gmail.com>
+X-Mailer: git-send-email 2.42.1
+In-Reply-To: <20231111215647.4966-1-luizluca@gmail.com>
+References: <20231111215647.4966-1-luizluca@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hello Andy,
+The 'reset-gpios' should not be mandatory. although they might be
+required for some devices if the switch reset was left asserted by a
+previous driver, such as the bootloader.
 
-On Fri, 2023-07-21 at 17:13 +0300, Andy Shevchenko wrote:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_lock_irqsave(&ep93xx_sw=
-lock, flags);
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regmap_read(map, EP93XX_SYSC=
-ON_DEVCFG, &val);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0val &=3D ~clear_bits;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0val |=3D set_bits;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regmap_write(map, EP93XX_SYS=
-CON_SWLOCK, EP93XX_SWLOCK_MAGICK);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regmap_write(map, EP93XX_SYS=
-CON_DEVCFG, val);
->=20
-> Is this sequence a must?
-> I.o.w. can you first supply magic and then update devcfg?
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_unlock_irqrestore(&ep93=
-xx_swlock, flags);
->=20
-> ...
->=20
-> > +void ep93xx_swlocked_update_bits(struct regmap *map, unsigned int reg,
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int mask, unsigned int =
-val)
-> > +{
->=20
-> Same Q as above.
+Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: devicetree@vger.kernel.org
+Acked-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/net/dsa/realtek.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-EP93xx User Manual [1] has most verbose description of SWLock for ADC
-block:
-"Writing 0xAA to this register will unlock all locked registers until the
-next block access. The ARM lock instruction prefix should be used for the
-two consequtive write cycles when writing to locked chip registers."
-
-One may conclude that RmW (two accesses to the particular block) sequence
-is not appropriate.
-
-[1]=C2=A0https://cdn.embeddedts.com/resource-attachments/ts-7000_ep9301-ug.=
-pdf=20
-
---=20
-Alexander Sverdlin.
+diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+index cce692f57b08..46e113df77c8 100644
+--- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+@@ -127,7 +127,6 @@ else:
+     - mdc-gpios
+     - mdio-gpios
+     - mdio
+-    - reset-gpios
+ 
+ required:
+   - compatible
+-- 
+2.42.1
 
 
