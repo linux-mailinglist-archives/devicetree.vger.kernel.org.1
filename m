@@ -1,53 +1,49 @@
-Return-Path: <devicetree+bounces-15158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8057E8B99
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 17:24:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95DD67E8B9D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 17:29:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC2C280F2F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:24:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40C8A280EBB
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4630119BCF;
-	Sat, 11 Nov 2023 16:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A2D19BCF;
+	Sat, 11 Nov 2023 16:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ia4YKeMp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fw0uxGpy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F55F19BC2;
-	Sat, 11 Nov 2023 16:24:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B52ECC433C7;
-	Sat, 11 Nov 2023 16:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519B614271;
+	Sat, 11 Nov 2023 16:29:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24C4C433C7;
+	Sat, 11 Nov 2023 16:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699719870;
-	bh=GKClXD6GTs5Oe+8N+6T6uTSKxWAvXwwhgME3dE69DWI=;
+	s=k20201202; t=1699720191;
+	bh=hDeok4VwtGBImKqmRhCT3wLseQRJ3N3dIiy/AHeJ2jE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ia4YKeMpG9rSsEq3hD1a5IKv88nxmCe3BKpAPUdJD+Ya4zgGwkdBHTiJBtzVY9xZB
-	 h3GqPZjtaWpzBfyEi8ceV80bQ1VwYje8yKIa1AHBRN88AjxhzwJz5QSf6UL8A40I7v
-	 p114zGSA59Fj4i/Ce2ls+JiTywezvTb4XyGW8YSaIYOUz+MuKqvzpZGKbQ3Z8BH5UE
-	 4h/vkBws6PVMBfrNyMeKBkX4NJ6hWfdCSMWlma3Hv/0RYi7Azw9pNw5SjJmRtxyOjs
-	 xjdjbYKygvIRfcIR19lzll9fOYPn0dN99fQESZ3EhXi4vl2A05LvXCyljNJ2VTiOQH
-	 r/HZLocG37oYw==
-Date: Sat, 11 Nov 2023 16:24:27 +0000
+	b=fw0uxGpyLZFw4H1OobtInNXkdaJKsmTa3oW1GHxOusZI+voU54E5nAOX7PiCvAWmQ
+	 0hWGkAzcaHokATBEZ8qM4IV2+zAlwyb+sWSwVbY4ZAhFbkvNv7KjAWIICJcPi7f5oF
+	 gmJNarWQpcxUurPoeAsNZjkLDinttnXnebAjaVXRSWK+l+ApxyWUzxIJ3Hp/raMuFk
+	 l40E/zSSHdg39zmQuooEFznADdSL5zwLZq5HLwWoBNxGfPrpaxJ4eTuGFT+bWN5Dme
+	 n3LWbbgGJGkmou2nMh5j5w0DWQY0EjAsm/WE8Jy+vghnWafjAuRFIP4pv7Eqp0dD+5
+	 Td0wQq4W8CDyw==
+Date: Sat, 11 Nov 2023 16:29:49 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	Andi Shyti <andi.shyti@kernel.org>, linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: adjust number of interrupts
- on SM6125
-Message-ID: <20231111-credible-omnivore-656130622958@squawk>
-References: <20231111141953.51841-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: input: samsung,s6sy761: convert to DT schema
+Message-ID: <20231111-mothball-diploma-c034c0622bc6@squawk>
+References: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,68 +51,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8Myb6ZhNzaHjc+lW"
+	protocol="application/pgp-signature"; boundary="TOjGpG9yBBBwqB/s"
 Content-Disposition: inline
-In-Reply-To: <20231111141953.51841-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
 
 
---8Myb6ZhNzaHjc+lW
+--TOjGpG9yBBBwqB/s
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 11, 2023 at 03:19:53PM +0100, Krzysztof Kozlowski wrote:
-> Qualcomm SM6125 DWC3 USB controller comes with two interrupts (verified
-> with downstream/vendor code of Trinket DTSI from Xiaomi Laurel device).
-> Move the qcom,sm6125-dwc3 to appropriate place in allOf:if:then blocks
-> constraining interrupts.
+On Sat, Nov 11, 2023 at 03:32:21PM +0100, Krzysztof Kozlowski wrote:
+> Convert Samsung  S6SY761 touchscreen controller bindings to DT schema.
 >=20
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
+Thanks,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Docum=
-entation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index 64043b91ffb9..3f41362b2a91 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -375,7 +375,6 @@ allOf:
->                - qcom,sdx65-dwc3
->                - qcom,sdx75-dwc3
->                - qcom,sm4250-dwc3
-> -              - qcom,sm6125-dwc3
->                - qcom,sm6350-dwc3
->                - qcom,sm8150-dwc3
->                - qcom,sm8250-dwc3
-> @@ -408,6 +407,7 @@ allOf:
->                - qcom,msm8996-dwc3
->                - qcom,msm8998-dwc3
->                - qcom,sm6115-dwc3
-> +              - qcom,sm6125-dwc3
->      then:
->        properties:
->          interrupts:
-> --=20
-> 2.34.1
->=20
-
---8Myb6ZhNzaHjc+lW
+--TOjGpG9yBBBwqB/s
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZU+quAAKCRB4tDGHoIJi
-0r8eAP9enjrVOoi1KjZy3pS4wNk/dw2cmGZGu8BLhIKkrJ/bkAEAqgolF9+SK2Op
-6vpVoYMg53Uh4MsnhxTTUEH2xSZC+g0=
-=mUHv
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZU+r+QAKCRB4tDGHoIJi
+0pVoAQDtJ7zs05y0VmoVNpU0At08PqscThaQzG3jxWGhVKIWoAD/U203WC0BIUDe
+Ctz+H0qBWmNRkoteTxxc/5qYk1pNsAA=
+=8GRI
 -----END PGP SIGNATURE-----
 
---8Myb6ZhNzaHjc+lW--
+--TOjGpG9yBBBwqB/s--
 
