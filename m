@@ -1,140 +1,142 @@
-Return-Path: <devicetree+bounces-15084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6FC7E86CD
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 01:07:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A83427E86D5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 01:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B30B280D75
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 00:07:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B268280FF8
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 00:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E954371;
-	Sat, 11 Nov 2023 00:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280ED373;
+	Sat, 11 Nov 2023 00:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VpwjBREL"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="i0piSaOJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A179EA1
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 00:07:50 +0000 (UTC)
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFDD3C39
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 16:07:48 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-5aa7172bafdso1929235a12.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 16:07:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A7D137B
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 00:12:48 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7908F3C3D
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 16:12:46 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c5056059e0so36029671fa.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 16:12:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699661268; x=1700266068; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oZOLx6piJ84WzMT/cgtNzYXyAwxaq83dr7vI8k16AOs=;
-        b=VpwjBRELtn3hl/lwknWR2q5pKLw7AUqGVcSQIfIb3qH/Qp95CSael2LxODcQZFRqy/
-         j7gzlGE/my7dcbuTVo+zsF2j61gF+6j0bUGh3AdBDsMVgiP21fvNWp0C9huXKnVov/yB
-         GkrhYD1E91olWVUjdLeto15o49XcVEi2SmCsPlV16hMpIzDX84m2K2nlvaAqSOD6zLBY
-         M0ZX0Iea1/MmQ8CwaWx3rENOe0xmnaGhuClBqSULxm9Lv8LGQwBcM5+eSnf0jA9c3R2D
-         NG4a0UsXXwAYY8JEZfzxhifRoxxd9y8P2JWVWbmC31KAEbq9mrB0o5fr5u1vi3uo6I3E
-         8dcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699661268; x=1700266068;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1699661563; x=1700266363; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oZOLx6piJ84WzMT/cgtNzYXyAwxaq83dr7vI8k16AOs=;
-        b=ageSdtKro01IDil2oFRtGqUP15ZbrGEVB0GHVhfy/AbcT0vNWBq7fdtUhENhIz5GRw
-         v7IirBJ/lWBUu+O+rWRib3msq8yOhit595MPqx7m90EUz+JL809Z0aW2bwabePMlwwx8
-         sYYdQ7w2/UF3HePqnKol3sQ1ip4Xir1z4LteqL4XXDWjNuc8AYQqIX1FkiA9w2rcTGfK
-         y/v/HGuZllGN2FEBeTEc5EqZPp4k/NeDyJO+5VlsiwqiLAPEOS0Lc6oavspu5CuZ01Yn
-         uEFmO5MUS6SauYBNDWukrsoyBrYz0h+1fU/+5i8pT4f44EHqzKdkmEnFN8mZhHAqjcKE
-         uOxA==
-X-Gm-Message-State: AOJu0Yx9UZTIQUtnGBjW/wzS2NFJLlo8En1HcORB4PM94htLTkJ1FTBv
-	BbKaUl67eNcE24MG1tOZDs0LbA==
-X-Google-Smtp-Source: AGHT+IEf3RnQ6vghHFIDkcaI3xfo22n0ICD/Y7dXSaL4pgL+HjLTqobf8F4Ab5nqLI350QpkYuW/Ow==
-X-Received: by 2002:a05:6a20:daa3:b0:14e:a1f0:a8ea with SMTP id iy35-20020a056a20daa300b0014ea1f0a8eamr792191pzb.3.1699661267932;
-        Fri, 10 Nov 2023 16:07:47 -0800 (PST)
-Received: from x1 ([2601:1c2:1800:f680:e564:eb78:dbd8:6618])
-        by smtp.gmail.com with ESMTPSA id p47-20020a056a0026ef00b00692754580f0sm272439pfw.187.2023.11.10.16.07.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Nov 2023 16:07:47 -0800 (PST)
-Date: Fri, 10 Nov 2023 16:07:45 -0800
-From: Drew Fustini <dfustini@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 5/7] riscv: dts: thead: Add TH1520 mmc controllers and
- sdhci clock
-Message-ID: <ZU7F0d+MCefRskPn@x1>
-References: <20231109-th1520-mmc-v5-0-018bd039cf17@baylibre.com>
- <20231109-th1520-mmc-v5-5-018bd039cf17@baylibre.com>
- <4cf3d481-c16d-4b1c-ab45-3ceff80b0b1b@linaro.org>
+        bh=pdD5p4ZJ2xs0jbe3PMitwqM3ZIGCltDGGJH36M99UsU=;
+        b=i0piSaOJ9ZHeRlHtZtzAeSiAiWKX4HfWoocJqfOhKQlnnlDSgpG6VXHzTnCvtF8nfY
+         EE4tObCD64J+eN2pN+yGq7X58JW45zqlMDAPpKOswOrdjYbqo0yxzaY22Sy+scQKvZwt
+         pHv/EukwEjk2q865SkLS9phsnKLkaaQcA/64g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699661563; x=1700266363;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pdD5p4ZJ2xs0jbe3PMitwqM3ZIGCltDGGJH36M99UsU=;
+        b=J5L2H3L4N/N6YKD7o7W8aMiZNT2XwoYbVG4J4wuFKShQT7ZRXdmDJpvqtdJ/mKEU2P
+         TM7aDTM0WCP09RmwoGvSGrwxgEi2qaC9odUYdVKy+wRbWM7KO0M/L2Z6t7keeAzmq4Mh
+         KwR8PWnexcLHK1/aAJcd7al2Ezs6gC6qbom88jrg8vwLecF/o7ofEwFZvSVAWESHSSD/
+         EO6ywJ5DQreHqgWOAi7sA89vPxe7cGGj+fin5KnC2jw2eLEUY/gu1ZYVwUXQMxr4kbEg
+         7ENsqk1hyjQswzud81odwe9RxDVnndgWfblFv3oZnpesknodCuasnLdTLVge7ZqxTXuo
+         PAAA==
+X-Gm-Message-State: AOJu0Yzs+GkNgnuD1So2sPVm5IVCyZ5rGwVutVq3OE4ptXaaJOJWYGMb
+	FnAHnaj2v3d/Lc2CPNeWelK07vAzOfIz6z8UcBYTMssx
+X-Google-Smtp-Source: AGHT+IHsaidhRQfADZ7THNgdS46I2/qYLHoQy10uC3phX9QKo/aSCVzW3hPusczdkIGeF2yJpAiWHQ==
+X-Received: by 2002:a19:a409:0:b0:507:b988:7c3c with SMTP id q9-20020a19a409000000b00507b9887c3cmr348994lfc.65.1699661563586;
+        Fri, 10 Nov 2023 16:12:43 -0800 (PST)
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com. [209.85.208.41])
+        by smtp.gmail.com with ESMTPSA id q29-20020a50cc9d000000b0052ffc2e82f1sm244906edi.4.2023.11.10.16.12.43
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Nov 2023 16:12:43 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-51e24210395so4977a12.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 16:12:43 -0800 (PST)
+X-Received: by 2002:a05:600c:1c11:b0:3f6:f4b:d4a6 with SMTP id
+ j17-20020a05600c1c1100b003f60f4bd4a6mr5724wms.7.1699661542490; Fri, 10 Nov
+ 2023 16:12:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4cf3d481-c16d-4b1c-ab45-3ceff80b0b1b@linaro.org>
+References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
+ <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
+In-Reply-To: <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 10 Nov 2023 16:12:06 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com>
+Message-ID: <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
+To: Rob Herring <robh+dt@kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
+	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, 
+	rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 10, 2023 at 12:10:34PM +0100, Krzysztof Kozlowski wrote:
-> On 10/11/2023 06:41, Drew Fustini wrote:
-> > Add node for the SDHCI fixed clock. Add mmc0 node for the first mmc
-> > controller instance which is typically connected to the eMMC device.
-> > Add mmc1 node for the second mmc controller instance which is typically
-> > connected to microSD slot.
-> > 
-> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> > ---
-> >  arch/riscv/boot/dts/thead/th1520.dtsi | 23 +++++++++++++++++++++++
-> >  1 file changed, 23 insertions(+)
-> > 
-> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > index ff364709a6df..f5ec9326c4b8 100644
-> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > @@ -134,6 +134,13 @@ uart_sclk: uart-sclk-clock {
-> >  		#clock-cells = <0>;
-> >  	};
-> >  
-> > +	sdhci_clk: sdhci-clock {
-> > +		compatible = "fixed-clock";
-> > +		clock-frequency = <198000000>;
-> > +		clock-output-names = "sdhci_clk";
-> > +		#clock-cells = <0>;
-> > +	};
-> > +
-> >  	soc {
-> >  		compatible = "simple-bus";
-> >  		interrupt-parent = <&plic>;
-> > @@ -292,6 +299,22 @@ dmac0: dma-controller@ffefc00000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > +		mmc0: mmc@ffe7080000 {
-> > +			compatible = "thead,th1520-dwcmshc";
-> > +			reg = <0xff 0xe7080000 0x0 0x10000>;
-> > +			interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
-> > +			clocks = <&sdhci_clk>;
-> > +			clock-names = "core";
-> 
-> You miss disable in each mmc node.
-> 
-> Best regards,
-> Krzysztof
+Hi,
 
-Thank you for reviewing. I will add 'status = "disabled"' to each node.
+On Thu, Nov 9, 2023 at 5:52=E2=80=AFAM Rob Herring <robh+dt@kernel.org> wro=
+te:
+>
+> > > End of background from Doug's cover letter.
+> >
+> > I think that using "status" is not a good idea, I find that confusing.
+>
+> "status" is what defines a device's state in terms of enabled,
+> present, available. That's exactly what we're expressing here.
+>
+> Now, I do not think we should be mixing the device class (e.g.
+> touchscreen) into status. I said this on v1, but apparently that was
+> not listened to.
 
-Drew
-> 
+Interesting. I must have missed the "don't mix device class into
+status" part. Do you have a link to your post about that? Maybe
+there's other stuff I missed... Having the device class stuck at the
+end there was at least part of my last post [1] which gathered no
+response.
+
+I think one of the reasons that I felt we needed to mux the device
+class into status was that it was going to make the code a lot less
+fragile. Everything I've seen indicates that you don't want us to
+create a "HW prober" node that could be used to provide relevant
+phandles for different classes of devices, so the "HW prober" code
+needs to either search through the whole device tree for a status of
+"failed-needs-probe" or needs to contain per-board, hardcoded,
+fully-qualified paths.
+
+I don't think we want to include hardcoded, fully-qualified paths in
+the code. That would mean that if someone changed a node name
+somewhere in the path to one of the devices that we're dealing with
+then it would break.
+
+So if we're searching the whole device tree for "failed-needs-probe"
+then we need to figure out which devices are related to each other. If
+a given board has second sources for MIPI panels, touchscreens, and
+trackpads then we need to know which of the "failed-needs-probe"
+devices are trackpads, which are touchscreens, and which are MIPI
+panels. Do you have any suggestions for how we should do that? Maybe
+it was in some other thread that I missed? I guess we could have a
+board-specific table mapping (compatible + node name + reg) to a
+class, but that feels awkward.
+
+[1] https://lore.kernel.org/r/CAD=3DFV=3DUjVAgT-febtj4=3DUZ2GQp01D-ern2Ff9+=
+ODcHeQBOsdTQ@mail.gmail.com
 
