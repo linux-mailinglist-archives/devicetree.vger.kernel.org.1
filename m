@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-15121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BF247E89B2
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 09:00:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14BF77E89C0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 09:14:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1BB01F20F1E
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 08:00:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF8A62811C1
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 08:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E4579E3;
-	Sat, 11 Nov 2023 08:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F96B10977;
+	Sat, 11 Nov 2023 08:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GY/loTgl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wufoJrYk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D95F11184
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 08:00:22 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2C9E9
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 00:00:20 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-507bd644a96so3991792e87.3
-        for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 00:00:20 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A38411706
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 08:13:59 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E7D3C39
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 00:13:56 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40859c464daso21505905e9.1
+        for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 00:13:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699689619; x=1700294419; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=O1222mw3gg26SxmcqeaQGicvEhohGZ7vQKAQFzvaffg=;
-        b=GY/loTglrh7UDxxATUfiyBThZEgF+Ct9RLXDEGuGsQUuIDgL8V2BBNy8nh3o0txaly
-         7ANsrUqQXyEtKQJDL6VYydWHeGDPTvPXTBkg/r1h/3qnMYD1u8Ydr7v4tXHSNAKDGIh6
-         seKN2D8VJoagf/j1cw3YV8cM2CM7UYAGj4YNRHxicPeqFrJzar08WWoeB0ek7GkKaueQ
-         a2ajxbQPQBoZ1kAkMDihmmooHPluhpiiw8kloAeLEzQR1Yvx73cuZK1tk8EMoN5rQbd2
-         46TG0LzQ8nvpumd2XlCOn48nViKQl058Ksu+lTA7JDlxLe/TXIj0zwbCFZCJY6kqbwI1
-         3qfw==
+        d=linaro.org; s=google; t=1699690435; x=1700295235; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=hbD/sFHhqCgv+rc21fEZQqviHdww1+qYyJF/3ffER+g=;
+        b=wufoJrYkiClm7GJyRhFUoLTidDsVWAzSRRb6WmbpJwiEIdAI7cyBmPJmEM3j4Dttzj
+         kh2PIfhTRJllA+wB9b5ILJcqJfoqRF/Q4jiKtE6yD3BWwwfpN0Hgka4g9o9C2emuNqaV
+         phur9EXpTkUt5qNZR5Lc4Y5AOtS+t16mZxAAGmtvsjts95wm1Xn8CoVR8YVKwX7rnXSP
+         3b1o0Z0ZoT0kw2E69VdfSz9I5JM1cnBx0lqAzWpLgtmnhLQZD4gfMGpDZ9PaUAJk0yUZ
+         o+LYemPFZ5Wb1Ctvya/fMznwcI3kwvDJashdys1Nmqp868AMKP1HAqz7Gx/rVQO2iMvp
+         Yjdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699689619; x=1700294419;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O1222mw3gg26SxmcqeaQGicvEhohGZ7vQKAQFzvaffg=;
-        b=kt5WONk9/lBwEFx48ANIWCC/i6WI0B1yMtB8gTATDj8ag68Os7/NQa1jVOz038CLLm
-         ri8Y5bsfUOhilomcnMKqNdjD77L1Ohz12qH8txoYXeOO1sjFHzqQKoeTBD1E26BsVHiT
-         KqkYfgD035ILSYOK2ZFp44KsVYZ9UCDpr0g6EKpG1wf1w7IYDafL9HIiC1iqtuAsW1Jb
-         zQ7bI6YpQGX/vHU7A9fPMFd9W72r6U+LcNEICrndTBjvFMZTEwVRICH4d6007c8jFa7G
-         ovkeLxTdHbf0m+pFLQ1NJNN3qRZqbJh7vIfZXpD6IsXCfM+ACWcqAms0W80l4xMmPEcU
-         RFWw==
-X-Gm-Message-State: AOJu0YygigHjuphypWviE09Hzgc8HOSa/8GH/+HYX5JoDXh7s10b2uyV
-	U6Z7Jj8pKbcztag0ue+si5aRUA==
-X-Google-Smtp-Source: AGHT+IFsDSMSYUTlHKD6sWFawVYLGVziMjZY3rvnOtXIZdTYEDRfdKpSgxHD+PgHjAlzscTQO9phxw==
-X-Received: by 2002:a19:8c4e:0:b0:509:4767:57f9 with SMTP id i14-20020a198c4e000000b00509476757f9mr890025lfj.55.1699689618714;
-        Sat, 11 Nov 2023 00:00:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699690435; x=1700295235;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hbD/sFHhqCgv+rc21fEZQqviHdww1+qYyJF/3ffER+g=;
+        b=irryd1xvq6G9jGCVmueC4gz+rrMqp4Gl4ojm6P3yZ22JUov8aeJw4nJ0vgtpR/OGsj
+         h8I0gSKiQZEZcK8Wsq89egWgs3QqjoVAjav1sMwf3dWPxjmvv3rmgmEpWvu/ShxIUfPY
+         9M7VgbbxEfU8Tl0SUkHVnQgxkRhdemyhB3T5SDkc7jgBWe3zFB019cvv51fjCJ+gjs6R
+         +745Jw57X2aHnkM/0+6bfLtFPAl5qnTWSiY9OTw2DhyY5SHKoWb+iTileS1332GCYFi3
+         kMqC11oijpDvo1hg64ftFt75WX8/akvuTcbbwVDuub+jm4w7xmsiqI/rGf5RaXqvAV2u
+         gVyA==
+X-Gm-Message-State: AOJu0YybG8+IyamdSjlKQzFR6tg6w1ZDYgdFIXV0Ke+FdValQJHckDoQ
+	+Fte2/91VMHFqNRFX+Oprgt9Vw==
+X-Google-Smtp-Source: AGHT+IG8F5780iVYGMmIwg2z/khiYfoNnFqsg579K+pHph0JUAyx+INzjzlKPTIrThsPFg7vXACArg==
+X-Received: by 2002:a05:600c:30d3:b0:409:85d:5a6e with SMTP id h19-20020a05600c30d300b00409085d5a6emr1168539wmn.29.1699690435330;
+        Sat, 11 Nov 2023 00:13:55 -0800 (PST)
 Received: from [10.230.170.72] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
-        by smtp.gmail.com with ESMTPSA id e6-20020adff346000000b0032ddc3b88e9sm985019wrp.0.2023.11.11.00.00.17
+        by smtp.gmail.com with ESMTPSA id hg12-20020a05600c538c00b0040a4835d2b2sm3019298wmb.37.2023.11.11.00.13.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Nov 2023 00:00:18 -0800 (PST)
-Message-ID: <543871a3-cd35-4ff3-8f42-105cdff77ed5@linaro.org>
-Date: Sat, 11 Nov 2023 09:00:17 +0100
+        Sat, 11 Nov 2023 00:13:54 -0800 (PST)
+Message-ID: <0819b2e0-fa1f-4452-9925-e93b8bb2e940@linaro.org>
+Date: Sat, 11 Nov 2023 09:13:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +68,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: ipq6018: Add remaining QUP UART
- node
-Content-Language: en-US
-To: Chukun Pan <amadeus@jmu.edu.cn>, Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
+Subject: Re: [RFC PATCH 5/8] dt-bindings: net: pcs: add bindings for MediaTek
+ USXGMII PCS
+To: Daniel Golle <daniel@makrotopia.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231111075004.40478-1-amadeus@jmu.edu.cn>
+ Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
+ <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ John Crispin <john@phrozen.org>, Sean Wang <sean.wang@mediatek.com>,
+ Mark Lee <Mark-MC.Lee@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Alexander Couzens <lynxis@fe80.eu>,
+ Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org
+References: <cover.1699565880.git.daniel@makrotopia.org>
+ <2dff6aff7006573d3232ec2ddd93c1792740d4d3.1699565880.git.daniel@makrotopia.org>
+Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,23 +136,141 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231111075004.40478-1-amadeus@jmu.edu.cn>
+In-Reply-To: <2dff6aff7006573d3232ec2ddd93c1792740d4d3.1699565880.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/11/2023 08:50, Chukun Pan wrote:
-> Add node to support all the QUP UART node controller inside of IPQ6018.
-> Some routers use these bus to connect Bluetooth chips.
+On 09/11/2023 22:51, Daniel Golle wrote:
+> MediaTek's USXGMII can be found in the MT7988 SoC. We need to access
+> it in order to configure and monitor the Ethernet SerDes link in
+> USXGMII, 10GBase-R and 5GBase-R mode. By including a wrapped
+> legacy 1000Base-X/2500Base-X/Cisco SGMII LynxI PCS as well, those
+> interface modes are also available.
 > 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 50 +++++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
 
-Three patches linked to each other in a thread and each of them called
-1/1. I don't understand if they are related or depend on each other.
-Please use proper threading and patch generation (format-patch -3 &&
-send-email; or b4).
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../bindings/net/pcs/mediatek,usxgmii.yaml    | 105 ++++++++++++++++++
+
+Use compatible as filename (especially that you do not expect it to grow).
+
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
+> new file mode 100644
+> index 0000000000000..199cf47859e31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/pcs/mediatek,usxgmii.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek USXGMII PCS
+
+MT7888 I guess?
+
+> +
+> +maintainers:
+> +  - Daniel Golle <daniel@makrotopia.org>
+> +
+> +description:
+> +  The MediaTek USXGMII PCS provides physical link control and status
+> +  for USXGMII, 10GBase-R and 5GBase-R links on the SerDes interfaces
+> +  provided by the PEXTP PHY.
+> +  In order to also support legacy 2500Base-X, 1000Base-X and Cisco
+> +  SGMII an existing mediatek,*-sgmiisys LynxI PCS is wrapped to
+> +  provide those interfaces modes on the same SerDes interfaces shared
+> +  with the USXGMII PCS.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^pcs@[0-9a-f]+$"
+
+Drop, we do not enforce naming in individual device schemas.
+
+> +
+> +  compatible:
+> +    const: mediatek,mt7988-usxgmiisys
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: USXGMII top-level clock
+> +      - description: SGMII top-level clock
+> +      - description: SGMII subsystem TX clock
+> +      - description: SGMII subsystem RX clock
+> +      - description: XFI PLL clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: usxgmii
+> +      - const: sgmii_sel
+> +      - const: sgmii_tx
+> +      - const: sgmii_rx
+> +      - const: xfi_pll
+> +
+> +  phys:
+> +    items:
+> +      - description: PEXTP SerDes PHY
+> +
+> +  mediatek,sgmiisys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon node of the corresponding SGMII LynxI PCS.
+
+"syscon node" is Linux term. Instead describe to what part of hardware
+this phandle is and why do you need it.
+
+> +
+> +  resets:
+> +    items:
+> +      - description: XFI reset
+> +      - description: SGMII reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: xfi
+> +      - const: sgmii
+> +
+> +  "#pcs-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - mediatek,sgmiisys
+> +  - resets
+> +  - reset-names
+> +  - "#pcs-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mediatek,mt7988-clk.h>
+> +    #include <dt-bindings/reset/mediatek,mt7988-resets.h>
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +        usxgmiisys0: pcs@10080000 {
+
+Odd/Messed indentation.
+
+Use 4 spaces for example indentation.
+
+
 
 Best regards,
 Krzysztof
