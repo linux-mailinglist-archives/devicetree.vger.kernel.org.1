@@ -1,145 +1,149 @@
-Return-Path: <devicetree+bounces-15193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5017E8CFB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 23:06:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CE57E8D0F
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 23:08:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853A1280DDC
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 22:06:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F8101F20FAE
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 22:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B521C1DDE9;
-	Sat, 11 Nov 2023 22:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BFD2208AF;
+	Sat, 11 Nov 2023 22:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nqlNbjG/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=igalia.com header.i=@igalia.com header.b="hwkyFets"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED7A1DDE3;
-	Sat, 11 Nov 2023 22:06:21 +0000 (UTC)
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E722B3253;
-	Sat, 11 Nov 2023 14:06:19 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-da3b4b7c6bdso3325865276.2;
-        Sat, 11 Nov 2023 14:06:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699740379; x=1700345179; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hJkPGfx6uQ2uiI9j9uHbGyC/BkU4D9ZtAgnm+lv0hko=;
-        b=nqlNbjG/5gxLhYlytodur4QjbCOUyl/rCSLIg5v+WZSCKuN1Hcvg+9WpVGdpzdrmvk
-         QpFcCBNeavO53rPmhmFU8q/6kMLj3E10M/5KCYEEQponcsi58syoR9IB9EhvAUnza9KW
-         bX1GxW+hl3CnDR2MWaJD1zB9/6MkzmRTf9DjBnnoiJ6JmPi+H0oplR8sI4/yB6omE+tZ
-         ppb7rpPwKQisiQAlxRxvH6ledO+LnPv+Nx5fN5U8U8nFPjYEuHHB8wElq/0daJO4rAdp
-         Ru/dpGDoRPCHzL6+9vSiKhKuG7QUIWOZaWqi66bR3fiLKzkj6y84syGiQf78AZN+KAuP
-         JoaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699740379; x=1700345179;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hJkPGfx6uQ2uiI9j9uHbGyC/BkU4D9ZtAgnm+lv0hko=;
-        b=IeUTpb5brrK3ePJU5RXXNJlhe46GGOtmTCs0eZit5DC2NVWiRhMg3Icpfs8tVN2LmW
-         XXh1niXpnvJbGte7ARLdlxTQDhTkBv0BwFF/eGfFwAt8NCjDsN7RUt269g2lXfvqIHVg
-         WVUgRVyJC7CADfSzIeH9O0mEQAeL/ycPAD6NHUU2Bp88d0aBE3WMEVmVgkF7WHvSef6c
-         47zlOzmAxntj31/e12WHyBFUm33oq3DUweLXgoMMz4lmprYNL6FZH8bY7/lqzVLxm8xH
-         ZgyQtr7NMXCef6TTUbH4WEZaZ7kdkg6CG9jWnEhhMzFJ1f1G2BljLuE0BNxrzgdYA8NP
-         qKAg==
-X-Gm-Message-State: AOJu0Yw+Mct6+9Sv6FZtanjyRXQ4zvGHEBiCZpt309EM/2kIg+Cbvaiv
-	sxrlPmtHzYqebIyFIz2LwFxAZSTZuiVKHg==
-X-Google-Smtp-Source: AGHT+IELHKUUAwNwg+un5G6Qx/qrkNwRUzKTFVKf16yN8au1z0gTkO2DbjshIHlDLu1XisiHs5B1xA==
-X-Received: by 2002:a25:da51:0:b0:d9a:b48c:7d96 with SMTP id n78-20020a25da51000000b00d9ab48c7d96mr2906791ybf.1.1699740379111;
-        Sat, 11 Nov 2023 14:06:19 -0800 (PST)
-Received: from localhost.localdomain (bras-base-ktnron0692w-grc-13-174-95-13-129.dsl.bell.ca. [174.95.13.129])
-        by smtp.gmail.com with ESMTPSA id z10-20020ac8710a000000b004196a813639sm758558qto.17.2023.11.11.14.06.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Nov 2023 14:06:18 -0800 (PST)
-From: Abdel Alkuor <alkuor@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abdel Alkuor <alkuor@gmail.com>
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: iio: temperature: Add AMS AS6200
-Date: Sat, 11 Nov 2023 17:05:01 -0500
-Message-Id: <7e108db19cd9ad19b6413f65099280c010325a91.1699740057.git.alkuor@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61915673;
+	Sat, 11 Nov 2023 22:08:02 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56B93253;
+	Sat, 11 Nov 2023 14:07:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=oLB1NGiEPNFZaXayNGepJMpKvCAIVEhg6rNxsCuSgls=; b=hwkyFetssa893Jbr5vdSd2GLMp
+	GHOy/TFvmVi2L3EwmPP4hNeAIiSRIeJMbt0DVhRZocz3QyGXiwLKk905EHrygtRSthBKcg5A5/onj
+	iICgrQkmfMphj56NfFrKAqzQT8H0GpXZaUaf8OkkebVMcu3X/Horg6LUOSMLxtRQEysLNmSh9Tw0N
+	GO2plECFeeyA9jrL4SjHVcRqS7C3R4tltOJ+ghUA1/u/joJEhFGcej9+bdMI62+KJF/FcYSzlJCOU
+	CZu2yXdzg4jGVZKc1Z8U6auOJyoXn54XhyPlT2/Ot517s5+BB5bvzbxTCGmv/XQ/1VFHc33tglFeG
+	H+KlSerA==;
+Received: from i73190.upc-i.chello.nl ([62.195.73.190] helo=[192.168.68.111])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1r1w8w-0029Vw-7T; Sat, 11 Nov 2023 23:07:54 +0100
+From: Nia Espera <nespera@igalia.com>
+Subject: [PATCH v4 0/6] support oneplus-lemonade(p) devices
+Date: Sat, 11 Nov 2023 23:07:38 +0100
+Message-Id: <20231111-nia-sm8350-for-upstream-v4-0-3a638b02eea5@igalia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACr7T2UC/4XNTQ7CIBCG4as0rMXAAKW68h7GBSBtJ7E/gdpom
+ t5d2o0aoy7fL5lnJhJ9QB/JPptI8CNG7NoUcpMRV5u28hTPqQkwEJzxnLZoaGwKoRgtu0CvfRy
+ CNw2FUioQee4lcJKu++BLvK3y8ZS6xjh04b4+Gvmy/jdHThm1ViltmCnB7w5YmQuaresasqAjv
+ ELFdwgSpC1IwSF3VusPSDwhzn5AIkG8MAykVU5L9wbN8/wA6KyPNlEBAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, Vinod Koul <vkoul@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org, Rob <Me@orbit.sh>, 
+ Clayton Craft <clayton@igalia.com>, 
+ Caleb Connolly <caleb.connolly@linaro.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ ~postmarketos/upstreaming@lists.sr.ht, Nia Espera <nespera@igalia.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2383; i=nespera@igalia.com;
+ h=from:subject:message-id; bh=iz6Nkw3EJXV5T7V4mGGoBF1mUCtOGZEEQH+li2dAIyw=;
+ b=owEB7QES/pANAwAIAfIkzsI3VuKtAcsmYgBlT/s4VzrDlRJUTT1/u3z88jS2qfkZ9P2GZaMmt
+ nSUAcL4iZ6JAbMEAAEIAB0WIQSBPDomug3slDJEnubyJM7CN1birQUCZU/7OAAKCRDyJM7CN1bi
+ refDC/9+Pxnu8X0/OVKU8BDsbDc4wiuolt/hRm97HTzy2AAuImks+0On36H9d6663Qm0kXm9F6s
+ Ek9XbZAjvb6Llm3K5Fd/9kogyUB+/h7Yarc8WXrAV0tSXn1Ce7zeXTTNjyL29lDeogxBpxtB/DD
+ +xlddQylUmDoM2EZWb47FmB4KsOMZ1KLSZJAo44ZlzPPjgipxjXAj1sg+IhsyLoh899HHYimTD9
+ hz0FI0RjClZpEQGvkxnNEsPGVL3Lbd9Jn/9aXBBAbyYjM4z4rn2HjXrVoS54rY2TJTPk4TBToky
+ u38XkOhUuCnEga62Sw03cPabnBquEftqBbrXC9YkasJOCxRdpqTHU88Qh/T/zZV1EoZqwf7ZLsn
+ prW22XYPEE00WlhClHttxmgyAlT4HWPqPtEqC0POHRLURPeDe966nwY5O6r7e0aGoit41bLk1vb
+ E0i9orZQKX6ZnisGXgsNP/zLXMInNVMSGj3jh2ktKPJzRQ5noKcqlYZj4FzjD3exFf+QA=
+X-Developer-Key: i=nespera@igalia.com; a=openpgp;
+ fpr=813C3A26BA0DEC9432449EE6F224CEC23756E2AD
 
-as6200 is high accuracy temperature sensor of -/+ 0.4C degree
-with a range between -40C to 125C degrees
+Patch series adding support for oneplus-lemonade and oneplus-lemonadep
+devices (OnePlus 9 & 9 Pro), along with a few needed fixups. Currently
+working as of this series:
 
-Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+- USB OTG
+- UFS
+- Framebuffer display
+- Touchscreen (for lemonade)
+- Power & volume down keys
+- Battery reading
+- Modem, IPA, and remoteproc bringup
+
+Signed-off-by: Nia Espera <nespera@igalia.com>
 ---
- .../bindings/iio/temperature/ams,as6200.yaml  | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/temperature/ams,as6200.yaml
+Changes in v4:
+- Fixed up some small naming-related nits.
+- Link to v3: https://lore.kernel.org/r/20231108-nia-sm8350-for-upstream-v3-0-18a024b5c74c@igalia.com
 
-diff --git a/Documentation/devicetree/bindings/iio/temperature/ams,as6200.yaml b/Documentation/devicetree/bindings/iio/temperature/ams,as6200.yaml
-new file mode 100644
-index 000000000000..97a73b92a789
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/temperature/ams,as6200.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/temperature/ams,as6200.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AMS AS6200 Temperature Sensor
-+
-+maintainers:
-+  - Abdel Alkuor <alkuor@gmail.com>
-+
-+description: |
-+  https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
-+
-+properties:
-+  compatible:
-+    const: ams,as6200
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        temperature-sensor@48 {
-+            compatible = "ams,as6200";
-+            reg = <0x48>;
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <17 IRQ_TYPE_EDGE_BOTH>;
-+        };
-+    };
-+...
+Changes in v3:
+- Fixed up more incorrect devicetree properties.
+- Properly enabled the fsa type-C mux.
+- Added node for sm8350 PMIC glink.
+- Patch name fixes.
+- Link to v2: https://lore.kernel.org/r/20231018-nia-sm8350-for-upstream-v2-0-7b243126cb77@igalia.com
+
+Changes in v2:
+- Fixed up formatting/style.
+- Removed unused pinctrl nodes.
+- Removed unused properties.
+- Moved ADC7 defines to vadc header.
+- Edited copyright on lemonade dts and license on spmi header.
+- Fixed up therm channels.
+- Removed unnecessary hack w.r.t. timer node.
+- Link to v1: https://lore.kernel.org/r/20231016-nia-sm8350-for-upstream-v1-0-bb557a0af2e9@igalia.com
+
+---
+Nia Espera (6):
+      dt-bindings: iio: adc: qcom: Add Qualcomm smb139x
+      arm64: dts: qcom: sm8350: Fix DMA0 address
+      arm64: dts: qcom: pm8350k: Remove hanging whitespace
+      arm64: dts: qcom: sm8350: Fix remoteproc interrupt type
+      dt-bindings: arm: qcom: Add oneplus-lemonade(p)
+      arm64: dts: qcom: sm8350-lemonade(p): New devices
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    2 +
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi              |    2 +-
+ .../arm64/boot/dts/qcom/sm8350-oneplus-common.dtsi | 1086 ++++++++++++++++++++
+ .../boot/dts/qcom/sm8350-oneplus-lemonade.dts      |   85 ++
+ .../boot/dts/qcom/sm8350-oneplus-lemonadep.dts     |   20 +
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |   12 +-
+ include/dt-bindings/iio/qcom,spmi-adc7-smb139x.h   |   19 +
+ include/dt-bindings/iio/qcom,spmi-vadc.h           |    3 +
+ 9 files changed, 1224 insertions(+), 7 deletions(-)
+---
+base-commit: ffc253263a1375a65fa6c9f62a893e9767fbebfa
+change-id: 20231016-nia-sm8350-for-upstream-2f452366e421
+
+Best regards,
 -- 
-2.34.1
+Nia Espera <nespera@igalia.com>
 
 
