@@ -1,142 +1,188 @@
-Return-Path: <devicetree+bounces-15149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B9A47E8B5A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:23:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2D507E8B66
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEF981F20EF8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 15:23:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 928031C20841
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 15:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4FF179B5;
-	Sat, 11 Nov 2023 15:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23521804A;
+	Sat, 11 Nov 2023 15:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a2r0dktJ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DWRXpKq7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65933156CD;
-	Sat, 11 Nov 2023 15:23:41 +0000 (UTC)
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 448623A9D;
-	Sat, 11 Nov 2023 07:23:40 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3b2df2fb611so1968574b6e.0;
-        Sat, 11 Nov 2023 07:23:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699716219; x=1700321019; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=eq+gkKgdx/b/WCCgyAGwHDJ+LCvgduiiFOa9cwN7HlY=;
-        b=a2r0dktJWwFJ9/F7N83/jbPZrcwyaEHJ/1/iuI3SYPeSF+3klcVB2Z1z6fljeW0Mtx
-         Y0EgB/ch3ECSE6plfpT6PUDpzPWlBLlkaE35TL9JaI77gTxAq2ueoUW8O4dDQ+dqC3u3
-         xu5xlexgcBiPZI0xCquaX5ah042e686Bea/vwI0FYkh14Q1bMLwISUhQTlibFMBzPjZf
-         ieAHGaLmVvT0uTUW2cxG4+XJaJbioqXOBkaZabI7GOqtLXyfXxtq5LWf/7+nVS7+pGVx
-         X515JgwuhL+AlvGLYIn7MRju0dNOKIopmtUgYRikboTdHWe9foQXKv8GICIXkEcpSeJ+
-         NQGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699716219; x=1700321019;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eq+gkKgdx/b/WCCgyAGwHDJ+LCvgduiiFOa9cwN7HlY=;
-        b=cIPYw/IVdiiD1EdeWLHtfe+SuiWr12GnTGiFreQqrI5iiOKYoFYCbDiRipC7UUnYo2
-         UVgJMkaWPdzA8JVzekLjDAoEccI2UqVR/NmcH3pSfqKKbmIKmnVKEOSZ+6/gLVSjXPOp
-         Nq8H1Z/sSYYFB4gkjJszSG9LVeb/AHotQfSLWF/+Yb/1nlzCDnvo/zT06GlCgcCrHlTo
-         qTnyDTDQk3KvY3+YQlQ1fi1p6RTf1z+q7uzpw/8I2RlHsHA9AcIGizkL/M5lHQCBtJfs
-         jRALllug0dhRTmoWTaeLQc27Dofr8+mXf+dXwCi5vN5KJyw0d6h/tVzXg6+ZmJPiniyr
-         F++g==
-X-Gm-Message-State: AOJu0Yyr5gA/b8ydvmgcw1bGn/BwE2+RexPU5TIhL4wrHhAsqi4gi/Ua
-	RJkwUc60NWnqVYWRrc4FuQDsxgjzQKA=
-X-Google-Smtp-Source: AGHT+IHpa7aM1EVzJQc2zq54XipSCHZR+ZdBWb5Sy01fFVErGPVCmhVunZ14T/B88sEStQnH4HyDvA==
-X-Received: by 2002:a05:6808:229f:b0:3b6:4e53:e7ac with SMTP id bo31-20020a056808229f00b003b64e53e7acmr2891133oib.56.1699716219466;
-        Sat, 11 Nov 2023 07:23:39 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u17-20020aa78491000000b006c5da63556dsm1199671pfn.178.2023.11.11.07.23.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Nov 2023 07:23:38 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4795d129-8af3-4384-8f18-62d1f26d1ef1@roeck-us.net>
-Date: Sat, 11 Nov 2023 07:23:36 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6534179B5;
+	Sat, 11 Nov 2023 15:47:01 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0741FC4;
+	Sat, 11 Nov 2023 07:47:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=BRoAErZ5yOtvfNP0SlKlWtBLjRZYFNsbyXZVc9WMORo=; b=DWRXpKq7JJi+mzvFky3MJjJqNW
+	UnBga+6yQRg/hhJhLh0CXDxZwPZlrt2R/SywT8ELO2g1pTB+pu4sG7ZgAU5p9FDnk3DV5tQh1o+jM
+	0A3uizk3/lmYQwpqH20SMhJbmBS5F7E2RGxjpt63DD0V37DXVicyrdFr6XnKdS8cFcFo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r1qC2-001Ma7-Eb; Sat, 11 Nov 2023 16:46:42 +0100
+Date: Sat, 11 Nov 2023 16:46:42 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Simon Horman <horms@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robimarko@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH v6 3/4] net: phy: aquantia: add firmware
+ load support
+Message-ID: <e75a8874-5ffe-4d8d-bcb9-27d8dff1cd09@lunn.ch>
+References: <20231109123253.3933-1-ansuelsmth@gmail.com>
+ <20231109123253.3933-3-ansuelsmth@gmail.com>
+ <20231110195628.GA673918@kernel.org>
+ <654eae99.df0a0220.14db7.0cb8@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] rtc: max31335: add driver support
-Content-Language: en-US
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-References: <20231109101449.8347-1-antoniu.miclaus@analog.com>
- <20231109101449.8347-2-antoniu.miclaus@analog.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20231109101449.8347-2-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <654eae99.df0a0220.14db7.0cb8@mx.google.com>
 
-On 11/9/23 02:14, Antoniu Miclaus wrote:
-> RTC driver for MAX31335 ±2ppm Automotive Real-Time Clock with
-> Integrated MEMS Resonator.
+On Fri, Nov 10, 2023 at 11:28:36PM +0100, Christian Marangi wrote:
+> On Fri, Nov 10, 2023 at 07:57:02PM +0000, Simon Horman wrote:
+> > On Thu, Nov 09, 2023 at 01:32:52PM +0100, Christian Marangi wrote:
+> > > From: Robert Marko <robimarko@gmail.com>
+> > > 
+> > > Aquantia PHY-s require firmware to be loaded before they start operating.
+> > > It can be automatically loaded in case when there is a SPI-NOR connected
+> > > to Aquantia PHY-s or can be loaded from the host via MDIO.
+> > > 
+> > > This patch adds support for loading the firmware via MDIO as in most cases
+> > > there is no SPI-NOR being used to save on cost.
+> > > Firmware loading code itself is ported from mainline U-boot with cleanups.
+> > > 
+> > > The firmware has mixed values both in big and little endian.
+> > > PHY core itself is big-endian but it expects values to be in little-endian.
+> > > The firmware is little-endian but CRC-16 value for it is stored at the end
+> > > of firmware in big-endian.
+> > > 
+> > > It seems the PHY does the conversion internally from firmware that is
+> > > little-endian to the PHY that is big-endian on using the mailbox
+> > > but mailbox returns a big-endian CRC-16 to verify the written data
+> > > integrity.
+> > > 
+> > > Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > 
+> > Hi Christian and Robert,
+> > 
+> > thanks for your patch-set.
+> > 
+> > I spotted some minor endien issues which I have highlighted below.
+> > 
+> > ...
+> >
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Hi Simon,
+> 
+> thanks for the check!
+> 
+> > > +/* load data into the phy's memory */
+> > > +static int aqr_fw_load_memory(struct phy_device *phydev, u32 addr,
+> > > +			      const u8 *data, size_t len)
+> > > +{
+> > > +	u16 crc = 0, up_crc;
+> > > +	size_t pos;
+> > > +
+> > > +	/* PHY expect addr in LE */
+> > > +	addr = cpu_to_le32(addr);
+> > 
+> > The type of addr is host byte-order,
+> > but here it is assigned a little-endian value.
+> > 
+> > Flagged by Sparse.
+> > 
+> > > +
+> > > +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> > > +		      VEND1_GLOBAL_MAILBOX_INTERFACE1,
+> > > +		      VEND1_GLOBAL_MAILBOX_INTERFACE1_CRC_RESET);
+> > > +	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> > > +		      VEND1_GLOBAL_MAILBOX_INTERFACE3,
+> > > +		      VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR(addr));
+> > 
+> > VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR() performs a bit-shift on addr,
+> > and applies a mask which is in host-byte order.
+> > But, as highlighted above, addr is a little-endian value.
+> > This does not seem right.
+> >
+> 
+> It's really just some magic to split the addr and swap if we are not
+> in little-endian. The passed addr are defined here in the code and are
+> hardcoded, they doesn't come from the firmware. What I can do is just
+> recast __le32 to u32 again with __force to mute the warning...
+> 
+> Resulting in this snippet:
+> 
+> 	__le32 addr;
+> 	size_t pos;
+> 
+> 	/* PHY expect addr in LE */
+> 	addr = cpu_to_le32(load_addr);
+> 
+> 	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> 		      VEND1_GLOBAL_MAILBOX_INTERFACE1,
+> 		      VEND1_GLOBAL_MAILBOX_INTERFACE1_CRC_RESET);
+> 	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> 		      VEND1_GLOBAL_MAILBOX_INTERFACE3,
+> 		      VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR((__force u32)addr));
+> 	phy_write_mmd(phydev, MDIO_MMD_VEND1,
+> 		      VEND1_GLOBAL_MAILBOX_INTERFACE4,
+> 		      VEND1_GLOBAL_MAILBOX_INTERFACE4_LSW_ADDR((__force u32)addr));
+> 
+> Also things needs to be casted to u16 anyway as phy_write_mmd expect a
+> u16. And as you said FILED_PREP will use int (from the define) so I
+> wonder if a more clean way would be just addr = (__force u32)cpu_to_le32(load_addr)
+> resulting in a simple bswap32 if we are in big-endian.
+> 
+> Would love some feedback about this.
 
-For hwmon:
+I don't think sparse is giving much value here. As you say,
+phy_write_mmd() expects a u16, host endian. The endianness of the bus
+is well defined in 802.3, and we expect the MDIO bus driver to take
+care of converting host endian to whatever is needed by the
+hardware. And typically, that is nothing since it is all integrated.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+There does not appear to be a cpu_to_le32() without sparse markup. So
+i think you are forced to use the ugly __force. I would do that as
+soon as possible, as part of the cpu_to_le32() line.
 
+> > This is all hidden by a cast in VEND1_GLOBAL_MAILBOX_INTERFACE3_MSW_ADDR()
+> > This seems dangerous to me.
+
+That cast could be made more visible. The macro itself looks safe on
+different endians. It uses > and & operations. So try taking the cast
+out of the macro and make it part of the phy_write_mmd() call? I
+assume the cast is needed because you get a compiler warning, passing
+a u32 when a u16 is expected?
+
+	Andrew
 
