@@ -1,198 +1,142 @@
-Return-Path: <devicetree+bounces-15148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897177E8B3A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 15:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9A47E8B5A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:23:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D30571F2064D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 14:32:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEF981F20EF8
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 15:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F0CF18E2E;
-	Sat, 11 Nov 2023 14:32:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4FF179B5;
+	Sat, 11 Nov 2023 15:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EVG4BSnG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a2r0dktJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4CB3217
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 14:32:32 +0000 (UTC)
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585954680
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 06:32:26 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9e62b14c9eeso233543966b.2
-        for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 06:32:26 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65933156CD;
+	Sat, 11 Nov 2023 15:23:41 +0000 (UTC)
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 448623A9D;
+	Sat, 11 Nov 2023 07:23:40 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3b2df2fb611so1968574b6e.0;
+        Sat, 11 Nov 2023 07:23:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699713145; x=1700317945; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ub4VI3MZ7DSmkukUX/fiEV7NAmUSVlsfQVOOR3bbu7U=;
-        b=EVG4BSnGOavD/Qw7HgnrENa9WDABPIT0igsYMOaFDsiOQ2KkdzAbftWN2W80kfvoIn
-         cpp6NNGDGUFGa7rmD/gtCeWppb9VnVFLRkAeCBu9Qgg2RW03Ks/CdrWyJzxHIPuez7/D
-         zUDHpYFttixi68nyCoBcWHPfjTn8b24fht/ehLZZFME36m73Zk3RZo4fm3XyLpanjbP6
-         BjlKWlLQXQ3cEz6wu1yiuhzlQjoaltZnizmFoexnfTen3goES3Qdfq7a5IZYF/1V0bQR
-         81AuGvKnpeZGPi5eiQ3u3Knw7hNFHKjY3dDtkOku7QihtFa6STkIJtW94q5nZp05viHC
-         O2nA==
+        d=gmail.com; s=20230601; t=1699716219; x=1700321019; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=eq+gkKgdx/b/WCCgyAGwHDJ+LCvgduiiFOa9cwN7HlY=;
+        b=a2r0dktJWwFJ9/F7N83/jbPZrcwyaEHJ/1/iuI3SYPeSF+3klcVB2Z1z6fljeW0Mtx
+         Y0EgB/ch3ECSE6plfpT6PUDpzPWlBLlkaE35TL9JaI77gTxAq2ueoUW8O4dDQ+dqC3u3
+         xu5xlexgcBiPZI0xCquaX5ah042e686Bea/vwI0FYkh14Q1bMLwISUhQTlibFMBzPjZf
+         ieAHGaLmVvT0uTUW2cxG4+XJaJbioqXOBkaZabI7GOqtLXyfXxtq5LWf/7+nVS7+pGVx
+         X515JgwuhL+AlvGLYIn7MRju0dNOKIopmtUgYRikboTdHWe9foQXKv8GICIXkEcpSeJ+
+         NQGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699713145; x=1700317945;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1699716219; x=1700321019;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ub4VI3MZ7DSmkukUX/fiEV7NAmUSVlsfQVOOR3bbu7U=;
-        b=oiUFIYhWO4ty4MohHwu5yxYNLigAu84QQ7OpoQTsS/kX0LxcuQhvJuyyPMINcduESt
-         E8HcRA+5fGL3OHm6o9zKeRwlzBeochOD+4aH/5tftLZJ5Pk5oXaBHfNStjB4teayAnXL
-         ENbM9VYWkR27Lf6OJtxC9ZJ4q5POueC4K2p4JcgisbmJEAriLHCH+MkY61qSZQGCIQaD
-         JrkHvhVVC0m5dA/a1E87WuecitM7H+B0vZZoVhzGs2wkIgrEkm/jjtEd7CjhVRejhSoR
-         3R1ywECSjwwdQI7/LVi4yCa9ERIpR9n9/Ipr4vChbHO31wGSoXCHOUVoyNhmMfEKZ9nF
-         nDNg==
-X-Gm-Message-State: AOJu0Yw77Edf/IXnoi0ESIukVRz6DjpcBqDDt6sQhwadidz05rpvjtk/
-	OWh+vVueQi5nZXUOPmZ9W2tuAQ==
-X-Google-Smtp-Source: AGHT+IFhbal/t9dQICzWzQexo59iM2onji5W66rDi2OmOwwG1cMKENrsger0nKbYz10Q5RUipiWJfQ==
-X-Received: by 2002:a17:906:6c92:b0:9e8:2c4d:40d4 with SMTP id s18-20020a1709066c9200b009e82c4d40d4mr180958ejr.30.1699713144759;
-        Sat, 11 Nov 2023 06:32:24 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id b13-20020a170906038d00b009bd9ac83a9fsm1136889eja.152.2023.11.11.06.32.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Nov 2023 06:32:24 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: input: samsung,s6sy761: convert to DT schema
-Date: Sat, 11 Nov 2023 15:32:21 +0100
-Message-Id: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        bh=eq+gkKgdx/b/WCCgyAGwHDJ+LCvgduiiFOa9cwN7HlY=;
+        b=cIPYw/IVdiiD1EdeWLHtfe+SuiWr12GnTGiFreQqrI5iiOKYoFYCbDiRipC7UUnYo2
+         UVgJMkaWPdzA8JVzekLjDAoEccI2UqVR/NmcH3pSfqKKbmIKmnVKEOSZ+6/gLVSjXPOp
+         Nq8H1Z/sSYYFB4gkjJszSG9LVeb/AHotQfSLWF/+Yb/1nlzCDnvo/zT06GlCgcCrHlTo
+         qTnyDTDQk3KvY3+YQlQ1fi1p6RTf1z+q7uzpw/8I2RlHsHA9AcIGizkL/M5lHQCBtJfs
+         jRALllug0dhRTmoWTaeLQc27Dofr8+mXf+dXwCi5vN5KJyw0d6h/tVzXg6+ZmJPiniyr
+         F++g==
+X-Gm-Message-State: AOJu0Yyr5gA/b8ydvmgcw1bGn/BwE2+RexPU5TIhL4wrHhAsqi4gi/Ua
+	RJkwUc60NWnqVYWRrc4FuQDsxgjzQKA=
+X-Google-Smtp-Source: AGHT+IHpa7aM1EVzJQc2zq54XipSCHZR+ZdBWb5Sy01fFVErGPVCmhVunZ14T/B88sEStQnH4HyDvA==
+X-Received: by 2002:a05:6808:229f:b0:3b6:4e53:e7ac with SMTP id bo31-20020a056808229f00b003b64e53e7acmr2891133oib.56.1699716219466;
+        Sat, 11 Nov 2023 07:23:39 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u17-20020aa78491000000b006c5da63556dsm1199671pfn.178.2023.11.11.07.23.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Nov 2023 07:23:38 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <4795d129-8af3-4384-8f18-62d1f26d1ef1@roeck-us.net>
+Date: Sat, 11 Nov 2023 07:23:36 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/2] rtc: max31335: add driver support
+Content-Language: en-US
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Alessandro Zummo <a.zummo@towertech.it>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+References: <20231109101449.8347-1-antoniu.miclaus@analog.com>
+ <20231109101449.8347-2-antoniu.miclaus@analog.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231109101449.8347-2-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Convert Samsung  S6SY761 touchscreen controller bindings to DT schema.
+On 11/9/23 02:14, Antoniu Miclaus wrote:
+> RTC driver for MAX31335 ±2ppm Automotive Real-Time Clock with
+> Integrated MEMS Resonator.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+For hwmon:
 
----
-
-I put original autho, Andi, as bindings maintainer, but I don't think he
-has access to the device anymore. Anyone else has datasheet or hardware?
----
- .../input/touchscreen/samsung,s6sy761.txt     | 32 -----------
- .../input/touchscreen/samsung,s6sy761.yaml    | 54 +++++++++++++++++++
- 2 files changed, 54 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.txt
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.txt b/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.txt
-deleted file mode 100644
-index 6805d10d226d..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.txt
-+++ /dev/null
-@@ -1,32 +0,0 @@
--* Samsung S6SY761 touchscreen controller
--
--Required properties:
--- compatible		: must be "samsung,s6sy761"
--- reg			: I2C slave address, (e.g. 0x48)
--- interrupts		: interrupt specification
--- avdd-supply		: analogic power supply
--- vdd-supply		: power supply
--
--Optional properties:
--- touchscreen-size-x	: see touchscreen.txt. This property is embedded in the
--			  device. If defined it forces a different x resolution.
--- touchscreen-size-y	: see touchscreen.txt. This property is embedded in the
--			  device. If defined it forces a different y resolution.
--
--Example:
--
--i2c@00000000 {
--
--	/* ... */
--
--	touchscreen@48 {
--		compatible = "samsung,s6sy761";
--		reg = <0x48>;
--		interrupt-parent = <&gpa1>;
--		interrupts = <1 IRQ_TYPE_NONE>;
--		avdd-supply = <&ldo30_reg>;
--		vdd-supply = <&ldo31_reg>;
--		touchscreen-size-x = <4096>;
--		touchscreen-size-y = <4096>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.yaml b/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.yaml
-new file mode 100644
-index 000000000000..1ffd17af3c53
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/samsung,s6sy761.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/samsung,s6sy761.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S6SY761 touchscreen controller
-+
-+maintainers:
-+  - Andi Shyti <andi.shyti@kernel.org>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    const: samsung,s6sy761
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  avdd-supply: true
-+  vdd-supply: true
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - avdd-supply
-+  - vdd-supply
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        touchscreen@48 {
-+            compatible = "samsung,s6sy761";
-+            reg = <0x48>;
-+            interrupt-parent = <&gpa1>;
-+            interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
-+            avdd-supply = <&ldo30_reg>;
-+            vdd-supply = <&ldo31_reg>;
-+            touchscreen-size-x = <4096>;
-+            touchscreen-size-y = <4096>;
-+        };
-+    };
--- 
-2.34.1
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 
