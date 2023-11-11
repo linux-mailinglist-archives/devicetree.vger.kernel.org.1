@@ -1,30 +1,30 @@
-Return-Path: <devicetree+bounces-15117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA54A7E89A4
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 08:50:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B3D47E89A5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 08:50:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53C561F20F19
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 07:50:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97F06B20BEB
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 07:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D990749A;
-	Sat, 11 Nov 2023 07:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BE179E3;
+	Sat, 11 Nov 2023 07:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145537466
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0E17496
 	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 07:50:34 +0000 (UTC)
-Received: from mail-m17218.xmail.ntesmail.com (mail-m17218.xmail.ntesmail.com [45.195.17.218])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332333C25
-	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 23:50:29 -0800 (PST)
+Received: from mail-m17245.xmail.ntesmail.com (mail-m17245.xmail.ntesmail.com [45.195.17.245])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D93111
+	for <devicetree@vger.kernel.org>; Fri, 10 Nov 2023 23:50:31 -0800 (PST)
 Received: from Vostro-3710.lan (unknown [58.61.140.31])
-	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 00EEB800058;
-	Sat, 11 Nov 2023 15:50:11 +0800 (CST)
+	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 5E1B98000A3;
+	Sat, 11 Nov 2023 15:50:15 +0800 (CST)
 From: Chukun Pan <amadeus@jmu.edu.cn>
 To: Andy Gross <agross@kernel.org>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -35,10 +35,12 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 1/1] arm64: dts: qcom: ipq6018: Add remaining QUP UART node
-Date: Sat, 11 Nov 2023 15:50:02 +0800
-Message-Id: <20231111075004.40478-1-amadeus@jmu.edu.cn>
+Subject: [PATCH 1/1] arm64: dts: qcom: ipq6018: Add QUP5 SPI node
+Date: Sat, 11 Nov 2023 15:50:03 +0800
+Message-Id: <20231111075004.40478-2-amadeus@jmu.edu.cn>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231111075004.40478-1-amadeus@jmu.edu.cn>
+References: <20231111075004.40478-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,90 +48,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaSh1LVhlOSkNJTEMZHk9CQlUTARMWGhIXJBQOD1
-	lXWRgSC1lBWU5DVU1KVUpPS1VISllXWRYaDxIVHRRZQVlPS0hVSk1DTENLVUpLS1VKQktLWQY+
-X-HM-Tid: 0a8bbd5c1c0cb03akuuu00eeb800058
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTEpOVhpJTRpKGk8aGE5DSVUTARMWGhIXJBQOD1
+	lXWRgSC1lBWU5DVU1KVUpPS1VISllXWRYaDxIVHRRZQVlLVUtVS1VLWQY+
+X-HM-Tid: 0a8bbd5c293db03akuuu5e1b98000a3
 X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kyo6Oio5PjwzIQITKxIBPhMN
-	Ix4wCRlVSlVKTUJCTUNCS0pJTENOVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWU5D
-	VU1KVUpPS1VISllXWQgBWUFIQ0pINwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PRg6Lzo5ODwxOQJOHRw1PhUR
+	GhxPC0lVSlVKTUJCTUNCS0pNT0NLVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWU5D
+	VU1KVUpPS1VISllXWQgBWUFJT0JPNwY+
 
-Add node to support all the QUP UART node controller inside of IPQ6018.
-Some routers use these bus to connect Bluetooth chips.
+Add node to support the QUP5 SPI controller inside of IPQ6018.
+Some routers use this bus to connect SPI TPM chips.
 
 Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 ---
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 50 +++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 9aec89d5e095..ec0a0ce1849e 100644
+index ec0a0ce1849e..2399d16f147e 100644
 --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
 +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -439,6 +439,26 @@ blsp_dma: dma-controller@7884000 {
- 			qcom,ee = <0>;
- 		};
- 
-+		blsp1_uart1: serial@78af000 {
-+			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-+			reg = <0x0 0x78af000 0x0 0x200>;
-+			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>,
-+				 <&gcc GCC_BLSP1_AHB_CLK>;
-+			clock-names = "core", "iface";
-+			status = "disabled";
-+		};
-+
-+		blsp1_uart2: serial@78b0000 {
-+			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-+			reg = <0x0 0x78b0000 0x0 0x200>;
-+			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
-+				 <&gcc GCC_BLSP1_AHB_CLK>;
-+			clock-names = "core", "iface";
-+			status = "disabled";
-+		};
-+
- 		blsp1_uart3: serial@78b1000 {
- 			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
- 			reg = <0x0 0x078b1000 0x0 0x200>;
-@@ -449,6 +469,36 @@ blsp1_uart3: serial@78b1000 {
+@@ -527,6 +527,20 @@ blsp1_spi2: spi@78b6000 {
  			status = "disabled";
  		};
  
-+		blsp1_uart4: serial@78b2000 {
-+			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-+			reg = <0x0 0x078b2000 0x0 0x200>;
-+			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_BLSP1_UART4_APPS_CLK>,
++		blsp1_spi5: spi@78b9000 {
++			compatible = "qcom,spi-qup-v2.2.1";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x0 0x078b9000 0x0 0x600>;
++			interrupts = <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_QUP5_SPI_APPS_CLK>,
 +				 <&gcc GCC_BLSP1_AHB_CLK>;
 +			clock-names = "core", "iface";
++			dmas = <&blsp_dma 20>, <&blsp_dma 21>;
++			dma-names = "tx", "rx";
 +			status = "disabled";
 +		};
 +
-+		blsp1_uart5: serial@78b3000 {
-+			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-+			reg = <0x0 0x78b3000 0x0 0x200>;
-+			interrupts = <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_BLSP1_UART5_APPS_CLK>,
-+				 <&gcc GCC_BLSP1_AHB_CLK>;
-+			clock-names = "core", "iface";
-+			status = "disabled";
-+		};
-+
-+		blsp1_uart6: serial@78b4000 {
-+			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-+			reg = <0x0 0x078b4000 0x0 0x200>;
-+			interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc GCC_BLSP1_UART6_APPS_CLK>,
-+				 <&gcc GCC_BLSP1_AHB_CLK>;
-+			clock-names = "core", "iface";
-+			status = "disabled";
-+		};
-+
- 		blsp1_spi1: spi@78b5000 {
- 			compatible = "qcom,spi-qup-v2.2.1";
+ 		blsp1_i2c2: i2c@78b6000 {
+ 			compatible = "qcom,i2c-qup-v2.2.1";
  			#address-cells = <1>;
 -- 
 2.25.1
