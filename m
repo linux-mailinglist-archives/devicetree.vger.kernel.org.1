@@ -1,125 +1,145 @@
-Return-Path: <devicetree+bounces-15141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB517E8AB3
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 12:39:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4BF37E8AE8
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 13:42:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06C881C208D2
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 11:39:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 324561F20F7D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 12:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD23613FFA;
-	Sat, 11 Nov 2023 11:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B1A11CA7;
+	Sat, 11 Nov 2023 12:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fWixJ4xz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nykK3KVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7833A13AF9;
-	Sat, 11 Nov 2023 11:39:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59854C433C7;
-	Sat, 11 Nov 2023 11:39:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699702761;
-	bh=rTPhRXHcBu3FdnF5esG7WBKJ0Idng7F9RzrodK0bdSk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fWixJ4xzkM5iuRIeqOxmh8hZZoNu2GuNqAdD7KRNB1cCvDvGjyUZe/TMewqJGtPuB
-	 eBgUD7cHlRFhd5JqBwwSOLW6sBipH5fr6+5nHGyKdoNKMzmVOvbBRmL/W8TkO9ygpp
-	 +sfHhxlFVwRqzIPFthrU9HLS93/y/1Z5YTsJ+COUfLVLqQtVpq7Mu7Pk9pE1Fir5Ho
-	 2DRS8hEEwlcdF88YHtZ3U/XrpvkgmlBWqPzeOpUpLFxr36Z3wRoVvTQ8JByWEl/Ow6
-	 AsDqNaqDviV3LswdZooMJdd1W3rDftp/act6vMBVu/+eXuTxKu5rl9qCjU7/wfNtJl
-	 aH88akbQpAz2A==
-Date: Sat, 11 Nov 2023 11:39:17 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Robin Murphy <robin.murphy@arm.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>, Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Leo Yan <leoy@marvell.com>, Zhangfei Gao <zhangfei.gao@marvell.com>,
-	Lubomir Rintel <lkundrak@v3.sk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Kees Cook <keescook@chromium.org>,
-	Tony Luck <tony.luck@intel.com>,
-	"Guilherme G . Piccoli" <gpiccoli@igalia.com>,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-hardening@vger.kernel.org,
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	Karel Balej <balejk@matfyz.cz>
-Subject: Re: [PATCH v7 06/10] ASoC: pxa: Suppress SSPA on ARM64
-Message-ID: <ZU9n5Y8DxZt4QYRO@finisterre.sirena.org.uk>
-References: <20231102152033.5511-1-duje.mihanovic@skole.hr>
- <4855402.GXAFRqVoOG@radijator>
- <ZUjG5tUrBvm6PDvB@finisterre.sirena.org.uk>
- <1880732.tdWV9SEqCh@radijator>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F223134C1
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 12:42:17 +0000 (UTC)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAF12D7F
+	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 04:42:15 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-53e70b0a218so4623239a12.2
+        for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 04:42:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699706534; x=1700311334; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sidnzx2KfTitgRW3cI1BL2jDTHBsxVQkPDHZklMEDiI=;
+        b=nykK3KVhj49YqjxQezlerU9rBkZ1TC01rsi/VIlmpc0TDB7WBOETBjC6akYHFeh0J7
+         BKg3b5ka5YFglY+N4pP60ZKPSU6LpVgBb8/uNvCTY2dH0u0ZTd0thttaqfYosasp2dgc
+         IsDUtzojecjM+7kjyoicqcZ5OEtPYFHs7KviBk/JJC6aAnpDqo/u8sk34tRAec2EjAMW
+         1rY+Hh8xJefaG2ACGNhuL9xeCTvK8m1CIWmGyjeQocMRhjDUe/z0rxef2ixszVw6WLoH
+         8t9fy8WHXme8+6c4Mx8n2DKZTGuSkisEhx5HOnvN74m+N8FEUwl49sNRvOi5gnjYmRi/
+         zt2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699706534; x=1700311334;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sidnzx2KfTitgRW3cI1BL2jDTHBsxVQkPDHZklMEDiI=;
+        b=J+ymtBiOFrx2pUJ7sVne824OxHAFZmAxEukpM6xgWqS1PXCwR2AIHGskSYoBfKbiag
+         8LsX9BWzLF5IErVeW5hJmaTFfwpXLp7kxKHW/vgiZsYL7QeFZ7o7cmsGODityOPcVJxU
+         lD3P/wqxeJOGPlp/ZXHokkbRltO/Dxd/VUXbRPUnqERiZMA4ePBpmmC5BWaj8S86RMyT
+         i7Rw6bwJ18/sYdzsJ+JMGn9n5knO2W/ArsvSGIuR5WkOY99/22JZyLt36SAd592nJgO9
+         dZX63a5WGIW8Le1pjNakzIYGiph7QX1KMd7mXDin2jnmu9kxRn3raAiOpQyQJeszHU6Q
+         7meQ==
+X-Gm-Message-State: AOJu0YyKvvuwpAeLhmkHIU6sApC+ddX4KtFhrumuse6fbHCbq6cRmqTK
+	+dspACz+Dl4+WFcrahtBXJHPdvZEzdE2eR8dVQo=
+X-Google-Smtp-Source: AGHT+IFWiRpXg1Oo51Bb6d1CTy9DOtAZcNMYn0/9Q+atdOAyyDnIUa7TN1UkTogf8lCOHHSih891lw==
+X-Received: by 2002:a05:6402:40e:b0:53e:7d60:58bb with SMTP id q14-20020a056402040e00b0053e7d6058bbmr1276894edv.27.1699706533727;
+        Sat, 11 Nov 2023 04:42:13 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.126])
+        by smtp.gmail.com with ESMTPSA id z37-20020a509e28000000b0053e88c4d004sm948255ede.66.2023.11.11.04.42.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Nov 2023 04:42:13 -0800 (PST)
+Message-ID: <05fd5db6-c481-4499-90c2-a7e47e084c77@linaro.org>
+Date: Sat, 11 Nov 2023 13:42:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NMCFkAyahKpkrrIE"
-Content-Disposition: inline
-In-Reply-To: <1880732.tdWV9SEqCh@radijator>
-X-Cookie: Slow day.  Practice crawling.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: Revert "arm64: dts: qcom: qrb5165-rb5:
+ enable DP altmode"
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20231111094645.12520-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231111094645.12520-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 11/11/2023 10:46, Krzysztof Kozlowski wrote:
+> This reverts commit b3dea914127e9065df003002ed13a2ef40d19877.
+> 
+> The commit introduced unsupported and undocumented properties:
+> 
+>   qrb5165-rb5.dtb: pmic@2: typec@1500:connector: 'altmodes' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---NMCFkAyahKpkrrIE
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I forgot to Cc Dmitry, author of reverted commit. I bounced the original
+email to him and Cc-ing him here as well.
 
-On Fri, Nov 10, 2023 at 08:28:56PM +0100, Duje Mihanovi=C4=87 wrote:
-> On Monday, November 6, 2023 11:58:46 AM CET Mark Brown wrote:
-> > On Fri, Nov 03, 2023 at 05:58:05PM +0100, Duje Mihanovi=C4=87 wrote:
+Best regards,
+Krzysztof
 
-> > > this correctly, I would have to remove "select SND_ARM" from sound/so=
-c/
-> pxa/
-> > > Kconfig and optionally move the PXA2xx code out of sound/arm/ and into
-> > > sound/
-> > > soc/pxa/. Is this correct? If so, I'd also split that fix into a sepa=
-rate
-> > > series.
-
-> > There's the pxa-ac97 driver to consider...
-
-> Can you elaborate? As far as I can tell there are 2 drivers named pxa2xx-=
-ac97=20
-> in sound/{arm,soc/pxa} and neither one has any dependency on AACI.=20
-
-They do both share a lot of library code and the one in sound/arm has no
-dependency on ASoC so I don't understand why you're suggesting moving it
-to sound/soc.
-
---NMCFkAyahKpkrrIE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVPZ+AACgkQJNaLcl1U
-h9BwEAf+OEf6qc1xLpzXXgYfgJtHBjpbdnuByW2eet0HjenII7+fsKy2Hh/cvZD+
-EQ4z1dzENCL67nkzK2YyQTegLduY02qVEIe4CYN18yU/g1SbwcDATwcVbWRoNS5S
-yXwGUsBY0Lahsyeuop+P+K4e7z2EDqo9UZyUJi/sUHC4VHzj/ZA+o66k62U/FPxO
-0WAdhTto7vXB4fmHB2zZEVNfihwp3YjFEId17tnp6DfHlldgQTd8Vs7LuANofRuK
-dx3t66n6gWek0MvGYPeCzBCHdTzN2P4iqTHxFRmLUARkA2txeM+uwahng+/XI4SZ
-rpaHK38Iu4+CzjK0b41iz68AEoAzLQ==
-=9Bkd
------END PGP SIGNATURE-----
-
---NMCFkAyahKpkrrIE--
 
