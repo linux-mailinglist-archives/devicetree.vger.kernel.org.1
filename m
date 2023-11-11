@@ -1,49 +1,55 @@
-Return-Path: <devicetree+bounces-15159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DD67E8B9D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 17:29:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DBC37E8BA3
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 17:32:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40C8A280EBB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:29:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AA911C2084B
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 16:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A2D19BCF;
-	Sat, 11 Nov 2023 16:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F346E11193;
+	Sat, 11 Nov 2023 16:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fw0uxGpy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D0YgOD50"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519B614271;
-	Sat, 11 Nov 2023 16:29:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24C4C433C7;
-	Sat, 11 Nov 2023 16:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED0A8821;
+	Sat, 11 Nov 2023 16:31:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B1EC433C7;
+	Sat, 11 Nov 2023 16:31:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699720191;
-	bh=hDeok4VwtGBImKqmRhCT3wLseQRJ3N3dIiy/AHeJ2jE=;
+	s=k20201202; t=1699720318;
+	bh=N4eJORdtlqjk4Cwso9ZXK77iVw8ec8lYE0PGsvPkPBw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fw0uxGpyLZFw4H1OobtInNXkdaJKsmTa3oW1GHxOusZI+voU54E5nAOX7PiCvAWmQ
-	 0hWGkAzcaHokATBEZ8qM4IV2+zAlwyb+sWSwVbY4ZAhFbkvNv7KjAWIICJcPi7f5oF
-	 gmJNarWQpcxUurPoeAsNZjkLDinttnXnebAjaVXRSWK+l+ApxyWUzxIJ3Hp/raMuFk
-	 l40E/zSSHdg39zmQuooEFznADdSL5zwLZq5HLwWoBNxGfPrpaxJ4eTuGFT+bWN5Dme
-	 n3LWbbgGJGkmou2nMh5j5w0DWQY0EjAsm/WE8Jy+vghnWafjAuRFIP4pv7Eqp0dD+5
-	 Td0wQq4W8CDyw==
-Date: Sat, 11 Nov 2023 16:29:49 +0000
+	b=D0YgOD50dpSUrRk9oAOF7CzFTENh2qk5pm/cGFPS7mc5Rc5Ph7nMDFyVXDmJNO1ws
+	 x0qH+bMoeZd0V/swxrJWTv82D3UCMIdwNdtTzDG43anFa5FtEe0wWkjx8emNkNNMif
+	 n1qVEk14wx1F6wpPu8VQgUPdxyhSHEG5Rzk9jAd4yyyMcxV2ouiKiqtXca7ngf97j1
+	 RI7QCl9wWQLH50JZRg2TiI2sf3rUXN9RXEexnyylxLVf9xSi4KJnAk33rrEKFM+RVt
+	 +z+e3SM26p49Ru+a+NC5Fd5TJPchBFZrM/LsmhD7BsxAoe0Z876el/59oV3ydbdSU/
+	 OLeSfkVwuwdLA==
+Date: Sat, 11 Nov 2023 16:31:55 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>, linux-input@vger.kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: samsung,s6sy761: convert to DT schema
-Message-ID: <20231111-mothball-diploma-c034c0622bc6@squawk>
-References: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: PCI: qcom: Correct reset-names property
+Message-ID: <20231111-unenvied-riot-5203bd2ea685@squawk>
+References: <20231111142006.51883-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,36 +57,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TOjGpG9yBBBwqB/s"
+	protocol="application/pgp-signature"; boundary="u7srXMTkl7pfa03y"
 Content-Disposition: inline
-In-Reply-To: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231111142006.51883-1-krzysztof.kozlowski@linaro.org>
 
 
---TOjGpG9yBBBwqB/s
+--u7srXMTkl7pfa03y
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Nov 11, 2023 at 03:32:21PM +0100, Krzysztof Kozlowski wrote:
-> Convert Samsung  S6SY761 touchscreen controller bindings to DT schema.
+On Sat, Nov 11, 2023 at 03:20:06PM +0100, Krzysztof Kozlowski wrote:
+> There is no "resets-names" property, but "reset-names".
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: 075a9d55932e ("dt-bindings: PCI: qcom: Convert to YAML")
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+The original text binding did in fact use reset not resets.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
+Cheers,
 Conor.
 
---TOjGpG9yBBBwqB/s
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Docum=
+entation/devicetree/bindings/pci/qcom,pcie.yaml
+> index eadba38171e1..8bfae8eb79a3 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -88,7 +88,7 @@ properties:
+>      minItems: 1
+>      maxItems: 12
+> =20
+> -  resets-names:
+> +  reset-names:
+>      minItems: 1
+>      maxItems: 12
+> =20
+> --=20
+> 2.34.1
+>=20
+
+--u7srXMTkl7pfa03y
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZU+r+QAKCRB4tDGHoIJi
-0pVoAQDtJ7zs05y0VmoVNpU0At08PqscThaQzG3jxWGhVKIWoAD/U203WC0BIUDe
-Ctz+H0qBWmNRkoteTxxc/5qYk1pNsAA=
-=8GRI
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZU+sdAAKCRB4tDGHoIJi
+0uomAQDyCLq9m9qUDaFBJF/w18Szow4VuL9mIlwQk/lpPkNoFwD/T2m6YDFljKTI
+BUD0mnOCmcWZ9t/Ld7y769itwch4JQY=
+=fLVh
 -----END PGP SIGNATURE-----
 
---TOjGpG9yBBBwqB/s--
+--u7srXMTkl7pfa03y--
 
