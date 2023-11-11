@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-15143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 867B37E8AEE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 13:49:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 472D07E8AFD
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 14:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35B87280EF4
-	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 12:49:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95FD5280EF0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Nov 2023 13:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC8614270;
-	Sat, 11 Nov 2023 12:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5AA14271;
+	Sat, 11 Nov 2023 13:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wjgvYG2H"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l4Wx1J+H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19432134C1
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 12:48:55 +0000 (UTC)
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432E12D7C
-	for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 04:48:53 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9dd3f4a0f5aso465610366b.1
-        for <devicetree@vger.kernel.org>; Sat, 11 Nov 2023 04:48:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699706931; x=1700311731; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9KXJpYZzRkCqTvec87XlahQByPlsLnbY5jFrjhVHCwQ=;
-        b=wjgvYG2HN/u86xSLGle+8wxl7COfXHblojJKkzF1Q8ybtxhxwAx7n2GtJHqQzlDVQ+
-         nWKg2npY4EzY9qq0daXkQK4q6TJAENqpUPptjWviu5rLELPU+gpD8XkRy50s8NVp8+3t
-         ZNt85edTF2iIDRyeT9P/C5fCM4IXgW2i6VICHQDTi7wNfwhg6OOeuCOmEPGwt22in3BZ
-         zp84NN+Q2XMH50gfteQNXWKm+L2MxIGvRJN/9Aj5DLm29Y3FJxZhCUsPXxGA8rgS8YUo
-         hU/rNYc8FxTXZmCvwKnP3tBO6LAW/JhRcMAr8CgSU96kq6z2Fu/CiKTkOt3rbjnKlyxj
-         ShMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699706931; x=1700311731;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9KXJpYZzRkCqTvec87XlahQByPlsLnbY5jFrjhVHCwQ=;
-        b=k3iQMbosc2i98bZmXHQ/ex1gV09ogh5NMp1gD+dtSc0cqkB6lDNIomYSSz6FJ6N8y6
-         1ycMFxuQth5pU41qo0yx8OsQr3GLiGARKFW8A9xV9AwpVUjBjtr/r0Cec7DV4yYXozx4
-         oeBNay1Xz3PQ5/44yMGnhjjS14lwL56bE0etiER07juM+yJSZif6PgJMT8+xju5gcNrS
-         lRVcZfZy0o3eYLFQAqNtr95k0rQLsVZmM1uzfbb4z64kSphEgRsMjhEZOMl0amPE3MtQ
-         i+NQuFRuGXvKEijeyWHC9+ivfID8W2Pz8LKGki/Albm+wws6ez78kr7rox6yZ5VY8BKS
-         Rqmg==
-X-Gm-Message-State: AOJu0YwfBjNLzcIAjphb8zAdjEKZ1z+FtebkmN1p1c8aMzQ3HcvntEI8
-	WpPHhHdx4+J8O9WSpAM6Hkvhjg==
-X-Google-Smtp-Source: AGHT+IFix718UahWWr38N7cLqjT3VKT/ONBu0qEgIoL5lRKExo0ymCSOmmMfkI/WARsZpx3IKL5SJQ==
-X-Received: by 2002:a17:906:24d9:b0:9d3:ccf0:7617 with SMTP id f25-20020a17090624d900b009d3ccf07617mr990320ejb.44.1699706931444;
-        Sat, 11 Nov 2023 04:48:51 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.126])
-        by smtp.gmail.com with ESMTPSA id s15-20020a170906bc4f00b00992ea405a79sm1015062ejv.166.2023.11.11.04.48.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Nov 2023 04:48:50 -0800 (PST)
-Message-ID: <0ccee72f-98ac-4a08-9253-9c22dad4d95a@linaro.org>
-Date: Sat, 11 Nov 2023 13:48:48 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1938779F6;
+	Sat, 11 Nov 2023 13:05:29 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5D130E6;
+	Sat, 11 Nov 2023 05:05:28 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3ABD0fSk015903;
+	Sat, 11 Nov 2023 13:05:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=abIu2MORsikqvY3d7KBcDOW2/Dr/HxEN9qt7rLxhROM=;
+ b=l4Wx1J+HQXSPgoPAp9YqxN/JR/5P24Ga42hRiq7xsadFQAWh+hgGIo3EQpnoQGxhy1MO
+ qzcmDYRv78VTfYLq506ngWFoJwHyd6MITA+870BQ+fO6dn13OhlpZwpAaLcQtmWV0oNH
+ xM1tc7jgcuRXFoBcsNdTujqc/NBTnL8reD6QSj1ig3Nt/1Bzpe8jqZg+eLDuXbI1iM1G
+ Q28q4F69Nv6PyNDJaQgF+zHZh6zCJzBT7XrbYt8X3mm1jICePehUB1H724PCZe+OZ91F
+ Ty5mKqRfafjZTHXkTExs9H2rGJkybUJBZ72CyHcfFr9I3FbPINiN7wlUHaNV1w0IItru ew== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ua1778mvr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 11 Nov 2023 13:05:08 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3ABD57hL009576
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 11 Nov 2023 13:05:07 GMT
+Received: from [10.216.23.41] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Sat, 11 Nov
+ 2023 05:05:00 -0800
+Message-ID: <8591f3d1-5c29-4fa0-a791-62ffb26c90f1@quicinc.com>
+Date: Sat, 11 Nov 2023 18:34:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,175 +56,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] dt-bindings: reserved-memory: Add secure CMA
- reserved memory range
+Subject: Re: [PATCH v11 02/13] dt-bindings: usb: Add bindings for multiport
+ properties on DWC3 controller
+To: Johan Hovold <johan@kernel.org>
+CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy
+ Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, "Felipe
+ Balbi" <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        "Mathias
+ Nyman" <mathias.nyman@intel.com>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
+        <quic_shazhuss@quicinc.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        "Rob Herring" <robh@kernel.org>
+References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
+ <20230828133033.11988-3-quic_kriskura@quicinc.com>
+ <ZU4wA9xhfjYBCaTU@hovoldconsulting.com>
+ <bc3e9da6-c932-46a0-923a-44be817bd129@quicinc.com>
+ <c8b0af46-6513-43fc-994d-4d04f6c65b5e@quicinc.com>
+ <ZU9dlfM8tdfdqKkx@hovoldconsulting.com>
 Content-Language: en-US
-To: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>, christian.koenig@amd.com,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
- tjmercier@google.com,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, jianjiao.zeng@mediatek.com,
- kuohong.wang@mediatek.com, Vijayanand Jitta <quic_vjitta@quicinc.com>,
- Joakim Bech <joakim.bech@linaro.org>,
- Jeffrey Kardatzke <jkardatzke@google.com>,
- Nicolas Dufresne <nicolas@ndufresne.ca>, ckoenig.leichtzumerken@gmail.com
-References: <20231111111559.8218-1-yong.wu@mediatek.com>
- <20231111111559.8218-7-yong.wu@mediatek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231111111559.8218-7-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZU9dlfM8tdfdqKkx@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zjWeNsImxlPMJuG07Jm__gxj8S3GoT91
+X-Proofpoint-GUID: zjWeNsImxlPMJuG07Jm__gxj8S3GoT91
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-11_11,2023-11-09_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ bulkscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 impostorscore=0 phishscore=0 mlxscore=0
+ mlxlogscore=755 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311110110
 
-On 11/11/2023 12:15, Yong Wu wrote:
-> Add a binding for describing the secure CMA reserved memory range. The
-> memory range also will be defined in the TEE firmware. It means the TEE
-> will be configured with the same address/size that is being set in this
-> DT node.
+
+
+On 11/11/2023 4:25 PM, Johan Hovold wrote:
+> On Sat, Nov 11, 2023 at 03:17:40PM +0530, Krishna Kurapati PSSNV wrote:
+>> On 11/11/2023 2:00 PM, Krishna Kurapati PSSNV wrote:
+>>> On 11/10/2023 6:58 PM, Johan Hovold wrote:
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
-
-What was the outcome of previous discussion? I don't see any references
-to the conclusion and your changelog "Reword the dt-binding description"
-is way too generic.
-
-You must explain what happened here.
-
->  .../reserved-memory/secure_cma_region.yaml    | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml
+>>>>>      phy-names:
+>>>>>        minItems: 1
+>>>>> -    maxItems: 2
+>>>>> -    items:
+>>>>> -      enum:
+>>>>> -        - usb2-phy
+>>>>> -        - usb3-phy
+>>>>> +    maxItems: 8
+>>>>> +    oneOf:
+>>>>> +      - items:
+>>>>> +          enum: [ usb2-phy, usb3-phy ]
+>>>>> +      - items:
+>>>>> +          pattern: "^usb[23]-port[0-3]$"
+>>>>
+>>>> Shouldn't this just be
+>>>>
+>>>>      pattern: "^usb[23]-[0-3]$"
+>>>>
+>>>> so that it matches the names that are used by the nvidia bindings?
+>>>>
+>>>> We already have some inconsistency in that Amlogic uses a variant based
+>>>> on the legacy names that needlessly includes "phy" in the names:
+>>>>
+>>>>      const: usb2-phy0
+>>>>      const: usb2-phy1
+>>>>      const: usb3-phy0
+>>>>      ...
+>>>>
+>>>> I don't think we should be introducing a third naming scheme here so I
+>>>> suggest just following the nvidia bindings.
 > 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml b/Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml
-> new file mode 100644
-> index 000000000000..8ab559595fbe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reserved-memory/secure_cma_region.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Secure Reserved CMA Region
-> +
-> +description:
-> +  This binding describes a CMA region that can dynamically transition
+>>>>> In that case, why don't we use  "^usb[23]-phy[0-3]$". I think its close
+>>> to what we have on dwc3 core already today (usb2-phy/usb3-phy).
+>>
+>> I mean, it isn't needless. It is a phy and shouldn't the binding suggest
+>> that and include "-phy" in the name ?
+> 
+> No, adding a '-phy' suffix to each name is unnecessary since the
+> property is called 'phy-names'.
+> 
+> This is also documented:
+> 
+> 	For names used in {clock,dma,interrupt,reset}-names, do not add
+> 	any suffix, e.g.: "tx" instead of "txirq" (for interrupt).
+> 
+> 	https://docs.kernel.org/devicetree/bindings/writing-bindings.html
+> 
 
-Describe the hardware or firmware, not the binding. Drop first four
-words and rephrase it.
+Thanks for the explanation.
 
-> +between secure and non-secure states that a TEE can allocate memory
-> +from.
+> and we've already discussed this when I asked you to drop the likewise
+> redundant '_irq' suffix from the interrupt names.
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+Yes, we did discuss this in irq context. But in this case I thought it 
+was fine because we already have usb(2/3)-"phy" already present.
 
-Do not send untested code.
+When pushing v14, will make this change to usb(2/3)-(0-3) and skip port/phy.
 
-> +
-> +maintainers:
-> +  - Yong Wu <yong.wu@mediatek.com>
-> +
-> +allOf:
-> +  - $ref: reserved-memory.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: secure_cma_region
-
-Still wrong compatible. Look at other bindings - there is nowhere
-underscore. Look at other reserved memory bindings especially.
-
-Also, CMA is a Linux thingy, so either not suitable for bindings at all,
-or you need Linux specific compatible. I don't quite get why do you even
-put CMA there - adding Linux specific stuff will get obvious pushback...
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reusable
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +
-
-Stray blank line.
-
-> +    reserved-memory {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        reserved-memory@80000000 {
-> +            compatible = "secure_cma_region";
-> +            reusable;
-> +            reg = <0x80000000 0x18000000>;
-
-reg is second property. Open DTS and check how it is there.
-
-> +        };
-> +    };
-
-Best regards,
-Krzysztof
-
+Regards,
+Krishna,
 
