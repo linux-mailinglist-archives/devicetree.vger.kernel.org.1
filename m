@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-15205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA537E8DBC
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 01:55:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 899397E8DC0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 01:55:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B01781F20FA5
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 00:55:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42681280DDB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 00:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C0317D9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB731842;
 	Sun, 12 Nov 2023 00:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qgpBSE+z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XMQ/QzTs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A8F15D1;
-	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E392C433CC;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C53417ED
+	for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 00:55:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8EC71C433B8;
 	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1699750546;
-	bh=BudbliKklZT1nMXLsYFQyB+Pk18EUouJG6KZUqc8uyA=;
+	bh=ECwHfXafrdIwVU+4vTjRoTfaOIHL/jM2cbtKPhWIDRw=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=qgpBSE+z2PM5zIUQ4ZiQ42U4qfNh/mK+G0UjLlwezYzovO7Hv0r3U4c2k0cyQdJYu
-	 2tpvqEdQc/11Ql3RizpG4raIDOskXMIAUvBKTtjTHuZBVqO64Ai4BwQvtxiuGP7GE0
-	 CQmDP5c7hXu//cf4WJPIWVVxlHFlXjFtikp2paYREnbtSZEzC4aaPYEiSS3SYENmbA
-	 8Um9rkkzACTUm8CXhr7u/rIYQ204eiVoJlZZJPnezsmOLIDxlNAQc1kpIVDVmquMV2
-	 HIxQgf86TrDBy4GYf8wHAQCmg3P0oq4N21BCiACjV24ts57a55XSwDkPCJQzoigyop
-	 H7y/eALJS/dlA==
+	b=XMQ/QzTsm/2p5sHNY8XVoVRUi/j61I8rkkz7DG0sgmog4v688RP7n7E268SHwB4Hi
+	 kM0oj63eLQex67boZza/xlq/NXQhQarerk1DiZ0A9cI+O4hKRcQL6zCxr+Be8MFqLq
+	 LmG1qw7E31WmN336Chx4XSLZrIrWEAsnnhfwbG4G297droNnZZ+MWBK8twkUXq2W6X
+	 g6fd+XEsK/RQshV/QOYDIvyOhyVZKmkHTIn1ZMho9R5YVmektddYquRBbZrjGIT60B
+	 DG5Z/HG204onRvLGN6PKGOdgeJeaVKp2kuuocKEYjxdKFgotC+WUwkDBTvfVxKWGly
+	 QxG7lgKBhxmYA==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4CE26E0008B;
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 5D992E0008C;
 	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
@@ -43,50 +43,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/6] KVM RISC-V Conditional Operations
+Subject: Re: [PATCH v2] riscv: dts: thead: set dma-noncoherent to soc bus
 From: patchwork-bot+linux-riscv@kernel.org
 Message-Id: 
- <169975054631.11360.10958982747975281844.git-patchwork-notify@kernel.org>
+ <169975054638.11360.7816717973824399061.git-patchwork-notify@kernel.org>
 Date: Sun, 12 Nov 2023 00:55:46 +0000
-References: <20231003035226.1945725-1-apatel@ventanamicro.com>
-In-Reply-To: <20231003035226.1945725-1-apatel@ventanamicro.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, pbonzini@redhat.com,
- atishp@atishpatra.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+References: <20230912072232.2455-1-jszhang@kernel.org>
+In-Reply-To: <20230912072232.2455-1-jszhang@kernel.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: linux-riscv@lists.infradead.org, guoren@kernel.org, wefu@redhat.com,
  conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- shuah@kernel.org, ajones@ventanamicro.com, mchitale@ventanamicro.com,
- devicetree@vger.kernel.org, kvm@vger.kernel.org,
- kvm-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-kselftest@vger.kernel.org
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dfustini@baylibre.com
 
 Hello:
 
-This series was applied to riscv/linux.git (fixes)
-by Anup Patel <anup@brainfault.org>:
+This patch was applied to riscv/linux.git (fixes)
+by Arnd Bergmann <arnd@arndb.de>:
 
-On Tue,  3 Oct 2023 09:22:20 +0530 you wrote:
-> This series extends KVM RISC-V to allow Guest/VM discover and use
-> conditional operations related ISA extensions (namely XVentanaCondOps
-> and Zicond).
+On Tue, 12 Sep 2023 15:22:32 +0800 you wrote:
+> riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
+> dma coherent, so set dma-noncoherent to reflect this fact.
 > 
-> To try these patches, use KVMTOOL from riscv_zbx_zicntr_smstateen_condops_v1
-> branch at: https://github.com/avpatel/kvmtool.git
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> Tested-by: Drew Fustini <dfustini@baylibre.com>
+> ---
 > 
 > [...]
 
 Here is the summary with links:
-  - [v3,1/6] dt-bindings: riscv: Add Zicond extension entry
-    https://git.kernel.org/riscv/c/00c6f39c8247
-  - [v3,2/6] RISC-V: Detect Zicond from ISA string
-    https://git.kernel.org/riscv/c/662a601aa355
-  - [v3,3/6] RISC-V: KVM: Allow Zicond extension for Guest/VM
-    https://git.kernel.org/riscv/c/df68f4d8cb49
-  - [v3,4/6] KVM: riscv: selftests: Add senvcfg register to get-reg-list test
-    https://git.kernel.org/riscv/c/4d554e0226e6
-  - [v3,5/6] KVM: riscv: selftests: Add smstateen registers to get-reg-list test
-    https://git.kernel.org/riscv/c/e1a8db0c9a0e
-  - [v3,6/6] KVM: riscv: selftests: Add condops extensions to get-reg-list test
-    https://git.kernel.org/riscv/c/2b3f2b78ec93
+  - [v2] riscv: dts: thead: set dma-noncoherent to soc bus
+    https://git.kernel.org/riscv/c/759426c758c7
 
 You are awesome, thank you!
 -- 
