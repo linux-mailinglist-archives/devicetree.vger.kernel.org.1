@@ -1,74 +1,95 @@
-Return-Path: <devicetree+bounces-15222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D114A7E91B5
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 17:57:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74637E91CD
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 18:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70753280D71
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 16:57:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D7C61F20F72
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 17:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493B814AB8;
-	Sun, 12 Nov 2023 16:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SRnwT5KQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C8C154BF;
+	Sun, 12 Nov 2023 17:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B48314F7C;
-	Sun, 12 Nov 2023 16:56:58 +0000 (UTC)
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083FF1BEC;
-	Sun, 12 Nov 2023 08:56:56 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9c41e95efcbso551698766b.3;
-        Sun, 12 Nov 2023 08:56:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699808214; x=1700413014; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=byjIoGTRKKP6Yru0xo4Lk+ItPgk7g9H5HT4yy5ccjk8=;
-        b=SRnwT5KQZ7J7yT+6RGsxu4bnoMVUSYbAOmsnjSHZtQT/9e8H5UVltFB/uFR+02rsM0
-         4D+H/o9FtdOXtX50F0N+vM0WIdo4amxzBEp1N7HUlMsxaqxyyV/ETSTQGji7NvBROoBE
-         2TbnjslaX9B+vDHeEDk+cP4lHR7x0j8jV+HRkYW4mysC8O9bSksD9miA0Ob4vkBhoykL
-         XzMRyLQPjcIGn88xSYTzJGcUqeOYpSiIZFOVWssrzh8KHdkL22F9ogOMbalREuTJ3u46
-         Hsjh/UOJA2y9YPW2JFNd5MvzHMOdcbZSNIWD8XBZHRdX2Pq7bUbAX1Pw0yrSmjhEz4WG
-         DDDA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A631548F;
+	Sun, 12 Nov 2023 17:35:26 +0000 (UTC)
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0595D211B;
+	Sun, 12 Nov 2023 09:35:25 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1cc4f777ab9so26246275ad.0;
+        Sun, 12 Nov 2023 09:35:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699808214; x=1700413014;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=byjIoGTRKKP6Yru0xo4Lk+ItPgk7g9H5HT4yy5ccjk8=;
-        b=cOLGHghOTHaLk+dGvnAjlK6HqsLePkfbp/iEw9hEBU0eg6Vj/37fNQQhRXHA7wa6/j
-         ZlGOT6AWJbsdughDzXSdCJMbl8ynsbbqBERi+FnQPG95QZK0PpGfm0dL9BJyE0tsb9Ol
-         sdkiN8QsX2BiuOBhcrA5g8cflK6+szFxkPQM1xRTST+//GGHmCDTf8pwf3sSzf1OilT3
-         1U4ehMBaur1XUbMETSjwRqK+g67n/NvyUqHqza4J0oJYCUUFPMwgH3M8vTkpWAP3eo9H
-         zJGcpCYHIynjYfnYdY4f9G6Ej9X/DxeKIY4jKJpLXba4RfgV0Z+6kvJVMMpEQf7ziVw+
-         0xfQ==
-X-Gm-Message-State: AOJu0YwdXeu4x3Hp8/ucPun0XGVaWJBEUf+MBIbt/AOwdAD/gkDN4c2Z
-	qNLDOuDKrKxYXCCg5SUSfKs=
-X-Google-Smtp-Source: AGHT+IE2mS+jzq0gvdaQ/f1Ud55X/x9LNxKqr5zVlPWQxqv5EfYGnUe2Dh7isCAqmIeJ375FJ3fZvw==
-X-Received: by 2002:a17:906:5fc7:b0:9b2:aa2f:ab69 with SMTP id k7-20020a1709065fc700b009b2aa2fab69mr2748317ejv.30.1699808214257;
-        Sun, 12 Nov 2023 08:56:54 -0800 (PST)
-Received: from standask-GA-A55M-S2HP ([188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id k9-20020a170906054900b00997d7aa59fasm2804273eja.14.2023.11.12.08.56.53
+        d=1e100.net; s=20230601; t=1699810524; x=1700415324;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WoHWK6gINi+EEwKTGP1Dg7yIjtZGVaNrtn4vb+1P0Pc=;
+        b=fqSD7VGKbfWxci9Tr/tCTUhiRZutfr1bbi0M0yqzqJT9HTcf8uNJS0cRKm5EOhL0LI
+         7Ixh6IxqVX71ODB9qVFPb6iOxa8mnVcdurFKh+N+W9XL7n5Ou3GJrXdxip25sTrgXbf/
+         oVnHy7sE1ILzcZdUSXZoF1s+4gXdYEMuGByVVMXvHHAhxIYa3vME5skzwYjzUPA82rFI
+         f+QkMglQ1Fl429L5fGyhsYuwPHClAROLV0VmJ771lJs9yELqNFAboOb3WXqYIf7ZEkXC
+         AVcDCIqSNaHTZ/7rVAMN1BjgpfPMS5+Lxphj8Pgx6laj+VrdL9bH4e83DENHly6pkxFc
+         6+rA==
+X-Gm-Message-State: AOJu0Yzc914Lv5i0bm+S9ZjYowbav/3ZQghCkUnP5cWFIu5RMuhH+DnY
+	cOdy1RHLxn4kShITR8vb0zE=
+X-Google-Smtp-Source: AGHT+IFd+7BefBv/n/fSSGw7xmysLeuCAiNT7/refCQp1UZ16kLfECcyF3DpQcfnxFHM4Pm1w5+ajw==
+X-Received: by 2002:a17:902:b618:b0:1cc:138a:287b with SMTP id b24-20020a170902b61800b001cc138a287bmr2491072pls.3.1699810524296;
+        Sun, 12 Nov 2023 09:35:24 -0800 (PST)
+Received: from localhost ([156.39.10.100])
+        by smtp.gmail.com with ESMTPSA id b5-20020a170903228500b001cc32f46757sm2761359plh.107.2023.11.12.09.35.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Nov 2023 08:56:53 -0800 (PST)
-Date: Sun, 12 Nov 2023 17:56:51 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>
-Cc: bcm-kernel-feedback-list@broadcom.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Artur Weber <aweber.kernel@gmail.com>
-Subject: [PATCH v3] dt-bindings: clock: brcm,kona-ccu: convert to YAML
-Message-ID: <ZVED01t3+coBd44x@standask-GA-A55M-S2HP>
+        Sun, 12 Nov 2023 09:35:23 -0800 (PST)
+Date: Sun, 12 Nov 2023 09:35:23 -0800
+From: Moritz Fischer <mdf@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linuxfoundation.org,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
+	David Woodhouse <dwmw2@infradead.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Christoph Hellwig <hch@lst.de>, iommu@lists.linux.dev,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
+	linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Hector Martin <marcan@marcan.st>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Robert Moore <robert.moore@intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Sven Peter <sven@svenpeter.dev>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
+	virtualization@lists.linux-foundation.org,
+	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>,
+	Zhenhua Huang <quic_zhenhuah@quicinc.com>
+Subject: Re: [PATCH RFC 01/17] iommu: Remove struct iommu_ops *iommu from
+ arch_setup_dma_ops()
+Message-ID: <ZVEM23qFzLnnXiEz@archbook>
+References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+ <1-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,373 +98,204 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <1-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
 
-Convert Broadcom Kona family clock controller unit (CCU) bindings
-to DT schema.
+On Fri, Nov 03, 2023 at 01:44:46PM -0300, Jason Gunthorpe wrote:
+> This is not being used to pass ops, it is just a way to tell if an
+> iommu driver was probed. These days this can be detected directly via
+> device_iommu_mapped(). Call device_iommu_mapped() in the two places that
+> need to check it and remove the iommu parameter everywhere.
+> 
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
-Changes during conversion:
-  - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
-    such a clock doesn't exist
-  - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
-    such a clock doesn't exist
-
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes in V3:
-  - collect Conor's R-b
-  - changed reasoning for the removal of the 2 clocks to "such a clock doesn't
-    exist", as it better reflects the situation
-  - Link to V2: https://lore.kernel.org/lkml/ZTf0oWfOqnyMEKbF@standask-GA-A55M-S2HP/
-
-Changes in V2:
-  - remove the table copied from the old txt bindings, replace it with if-then
-    blocks individually listing the allowed clock-output-names per compatible
-  - remove "dmac" from clock-output-names for brcm,bcm11351-master-ccu,
-    it is not used in DT nor the dt-bindings
-  - remove "uartb4" from clock-output-names for brcm,bcm21664-slave-ccu,
-    it is not used in DT nor the dt-bindings
-  - move allOf: after required:
-  - Link to V1: https://lore.kernel.org/lkml/ZTUIJrTc6KKyT4xj@standask-GA-A55M-S2HP/
-
- .../bindings/clock/brcm,kona-ccu.txt          | 138 -------------
- .../bindings/clock/brcm,kona-ccu.yaml         | 181 ++++++++++++++++++
- 2 files changed, 181 insertions(+), 138 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
- create mode 100644 Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
-deleted file mode 100644
-index 8e5a7d868557..000000000000
---- a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.txt
-+++ /dev/null
-@@ -1,138 +0,0 @@
--Broadcom Kona Family Clocks
--
--This binding is associated with Broadcom SoCs having "Kona" style
--clock control units (CCUs).  A CCU is a clock provider that manages
--a set of clock signals.  Each CCU is represented by a node in the
--device tree.
--
--This binding uses the common clock binding:
--    Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Required properties:
--- compatible
--	Shall have a value of the form "brcm,<model>-<which>-ccu",
--	where <model> is a Broadcom SoC model number and <which> is
--	the name of a defined CCU.  For example:
--	    "brcm,bcm11351-root-ccu"
--	The compatible strings used for each supported SoC family
--	are defined below.
--- reg
--	Shall define the base and range of the address space
--	containing clock control registers
--- #clock-cells
--	Shall have value <1>.  The permitted clock-specifier values
--	are defined below.
--- clock-output-names
--	Shall be an ordered list of strings defining the names of
--	the clocks provided by the CCU.
--
--Device tree example:
--
--	slave_ccu: slave_ccu {
--		compatible = "brcm,bcm11351-slave-ccu";
--		reg = <0x3e011000 0x0f00>;
--		#clock-cells = <1>;
--		clock-output-names = "uartb",
--				     "uartb2",
--				     "uartb3",
--				     "uartb4";
--	};
--
--	ref_crystal_clk: ref_crystal {
--		#clock-cells = <0>;
--		compatible = "fixed-clock";
--		clock-frequency = <26000000>;
--	};
--
--	uart@3e002000 {
--		compatible = "brcm,bcm11351-dw-apb-uart", "snps,dw-apb-uart";
--		reg = <0x3e002000 0x1000>;
--		clocks = <&slave_ccu BCM281XX_SLAVE_CCU_UARTB3>;
--		interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>;
--		reg-shift = <2>;
--		reg-io-width = <4>;
--	};
--
--BCM281XX family
-----------------
--CCU compatible string values for SoCs in the BCM281XX family are:
--    "brcm,bcm11351-root-ccu"
--    "brcm,bcm11351-aon-ccu"
--    "brcm,bcm11351-hub-ccu"
--    "brcm,bcm11351-master-ccu"
--    "brcm,bcm11351-slave-ccu"
--
--The following table defines the set of CCUs and clock specifiers for
--BCM281XX family clocks.  When a clock consumer references a clocks,
--its symbolic specifier (rather than its numeric index value) should
--be used.  These specifiers are defined in:
--    "include/dt-bindings/clock/bcm281xx.h"
--
--    CCU     Clock           Type    Index   Specifier
--    ---     -----           ----    -----   ---------
--    root    frac_1m         peri      0     BCM281XX_ROOT_CCU_FRAC_1M
--
--    aon     hub_timer       peri      0     BCM281XX_AON_CCU_HUB_TIMER
--    aon     pmu_bsc         peri      1     BCM281XX_AON_CCU_PMU_BSC
--    aon     pmu_bsc_var     peri      2     BCM281XX_AON_CCU_PMU_BSC_VAR
--
--    hub     tmon_1m         peri      0     BCM281XX_HUB_CCU_TMON_1M
--
--    master  sdio1           peri      0     BCM281XX_MASTER_CCU_SDIO1
--    master  sdio2           peri      1     BCM281XX_MASTER_CCU_SDIO2
--    master  sdio3           peri      2     BCM281XX_MASTER_CCU_SDIO3
--    master  sdio4           peri      3     BCM281XX_MASTER_CCU_SDIO4
--    master  dmac            peri      4     BCM281XX_MASTER_CCU_DMAC
--    master  usb_ic          peri      5     BCM281XX_MASTER_CCU_USB_IC
--    master  hsic2_48m       peri      6     BCM281XX_MASTER_CCU_HSIC_48M
--    master  hsic2_12m       peri      7     BCM281XX_MASTER_CCU_HSIC_12M
--
--    slave   uartb           peri      0     BCM281XX_SLAVE_CCU_UARTB
--    slave   uartb2          peri      1     BCM281XX_SLAVE_CCU_UARTB2
--    slave   uartb3          peri      2     BCM281XX_SLAVE_CCU_UARTB3
--    slave   uartb4          peri      3     BCM281XX_SLAVE_CCU_UARTB4
--    slave   ssp0            peri      4     BCM281XX_SLAVE_CCU_SSP0
--    slave   ssp2            peri      5     BCM281XX_SLAVE_CCU_SSP2
--    slave   bsc1            peri      6     BCM281XX_SLAVE_CCU_BSC1
--    slave   bsc2            peri      7     BCM281XX_SLAVE_CCU_BSC2
--    slave   bsc3            peri      8     BCM281XX_SLAVE_CCU_BSC3
--    slave   pwm             peri      9     BCM281XX_SLAVE_CCU_PWM
--
--
--BCM21664 family
-----------------
--CCU compatible string values for SoCs in the BCM21664 family are:
--    "brcm,bcm21664-root-ccu"
--    "brcm,bcm21664-aon-ccu"
--    "brcm,bcm21664-master-ccu"
--    "brcm,bcm21664-slave-ccu"
--
--The following table defines the set of CCUs and clock specifiers for
--BCM21664 family clocks.  When a clock consumer references a clocks,
--its symbolic specifier (rather than its numeric index value) should
--be used.  These specifiers are defined in:
--    "include/dt-bindings/clock/bcm21664.h"
--
--    CCU     Clock           Type    Index   Specifier
--    ---     -----           ----    -----   ---------
--    root    frac_1m         peri      0     BCM21664_ROOT_CCU_FRAC_1M
--
--    aon     hub_timer       peri      0     BCM21664_AON_CCU_HUB_TIMER
--
--    master  sdio1           peri      0     BCM21664_MASTER_CCU_SDIO1
--    master  sdio2           peri      1     BCM21664_MASTER_CCU_SDIO2
--    master  sdio3           peri      2     BCM21664_MASTER_CCU_SDIO3
--    master  sdio4           peri      3     BCM21664_MASTER_CCU_SDIO4
--    master  sdio1_sleep     peri      4     BCM21664_MASTER_CCU_SDIO1_SLEEP
--    master  sdio2_sleep     peri      5     BCM21664_MASTER_CCU_SDIO2_SLEEP
--    master  sdio3_sleep     peri      6     BCM21664_MASTER_CCU_SDIO3_SLEEP
--    master  sdio4_sleep     peri      7     BCM21664_MASTER_CCU_SDIO4_SLEEP
--
--    slave   uartb           peri      0     BCM21664_SLAVE_CCU_UARTB
--    slave   uartb2          peri      1     BCM21664_SLAVE_CCU_UARTB2
--    slave   uartb3          peri      2     BCM21664_SLAVE_CCU_UARTB3
--    slave   uartb4          peri      3     BCM21664_SLAVE_CCU_UARTB4
--    slave   bsc1            peri      4     BCM21664_SLAVE_CCU_BSC1
--    slave   bsc2            peri      5     BCM21664_SLAVE_CCU_BSC2
--    slave   bsc3            peri      6     BCM21664_SLAVE_CCU_BSC3
--    slave   bsc4            peri      7     BCM21664_SLAVE_CCU_BSC4
-diff --git a/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
-new file mode 100644
-index 000000000000..e5656950b3bd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/brcm,kona-ccu.yaml
-@@ -0,0 +1,181 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/brcm,kona-ccu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Kona family clock control units (CCU)
-+
-+maintainers:
-+  - Florian Fainelli <florian.fainelli@broadcom.com>
-+  - Ray Jui <rjui@broadcom.com>
-+  - Scott Branden <sbranden@broadcom.com>
-+
-+description: |
-+  Broadcom "Kona" style clock control unit (CCU) is a clock provider that
-+  manages a set of clock signals.
-+
-+  All available clock IDs are defined in
-+  - include/dt-bindings/clock/bcm281xx.h for BCM281XX family
-+  - include/dt-bindings/clock/bcm21664.h for BCM21664 family
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm11351-aon-ccu
-+      - brcm,bcm11351-hub-ccu
-+      - brcm,bcm11351-master-ccu
-+      - brcm,bcm11351-root-ccu
-+      - brcm,bcm11351-slave-ccu
-+      - brcm,bcm21664-aon-ccu
-+      - brcm,bcm21664-master-ccu
-+      - brcm,bcm21664-root-ccu
-+      - brcm,bcm21664-slave-ccu
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  clock-output-names:
-+    minItems: 1
-+    maxItems: 10
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - clock-output-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm11351-aon-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          items:
-+            - const: hub_timer
-+            - const: pmu_bsc
-+            - const: pmu_bsc_var
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm11351-hub-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          const: tmon_1m
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm11351-master-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          items:
-+            - const: sdio1
-+            - const: sdio2
-+            - const: sdio3
-+            - const: sdio4
-+            - const: usb_ic
-+            - const: hsic2_48m
-+            - const: hsic2_12m
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - brcm,bcm11351-root-ccu
-+              - brcm,bcm21664-root-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          const: frac_1m
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm11351-slave-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          items:
-+            - const: uartb
-+            - const: uartb2
-+            - const: uartb3
-+            - const: uartb4
-+            - const: ssp0
-+            - const: ssp2
-+            - const: bsc1
-+            - const: bsc2
-+            - const: bsc3
-+            - const: pwm
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm21664-aon-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          const: hub_timer
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm21664-master-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          items:
-+            - const: sdio1
-+            - const: sdio2
-+            - const: sdio3
-+            - const: sdio4
-+            - const: sdio1_sleep
-+            - const: sdio2_sleep
-+            - const: sdio3_sleep
-+            - const: sdio4_sleep
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm21664-slave-ccu
-+    then:
-+      properties:
-+        clock-output-names:
-+          items:
-+            - const: uartb
-+            - const: uartb2
-+            - const: uartb3
-+            - const: bsc1
-+            - const: bsc2
-+            - const: bsc3
-+            - const: bsc4
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@3e011000 {
-+      compatible = "brcm,bcm11351-slave-ccu";
-+      reg = <0x3e011000 0x0f00>;
-+      #clock-cells = <1>;
-+      clock-output-names = "uartb",
-+                           "uartb2",
-+                           "uartb3",
-+                           "uartb4",
-+                           "ssp0",
-+                           "ssp2",
-+                           "bsc1",
-+                           "bsc2",
-+                           "bsc3",
-+                           "pwm";
-+    };
-+...
--- 
-2.34.1
-
+Reviewed-by: Moritz Fischer <mdf@kernel.org>
+> ---
+>  arch/arc/mm/dma.c               |  2 +-
+>  arch/arm/mm/dma-mapping-nommu.c |  2 +-
+>  arch/arm/mm/dma-mapping.c       | 10 +++++-----
+>  arch/arm64/mm/dma-mapping.c     |  4 ++--
+>  arch/mips/mm/dma-noncoherent.c  |  2 +-
+>  arch/riscv/mm/dma-noncoherent.c |  2 +-
+>  drivers/acpi/scan.c             |  3 +--
+>  drivers/hv/hv_common.c          |  2 +-
+>  drivers/of/device.c             |  2 +-
+>  include/linux/dma-map-ops.h     |  4 ++--
+>  10 files changed, 16 insertions(+), 17 deletions(-)
+> 
+> diff --git a/arch/arc/mm/dma.c b/arch/arc/mm/dma.c
+> index 2a7fbbb83b7056..197707bc765889 100644
+> --- a/arch/arc/mm/dma.c
+> +++ b/arch/arc/mm/dma.c
+> @@ -91,7 +91,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
+>   * Plug in direct dma map ops.
+>   */
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -			const struct iommu_ops *iommu, bool coherent)
+> +			bool coherent)
+>  {
+>  	/*
+>  	 * IOC hardware snoops all DMA traffic keeping the caches consistent
+> diff --git a/arch/arm/mm/dma-mapping-nommu.c b/arch/arm/mm/dma-mapping-nommu.c
+> index cfd9c933d2f09c..b94850b579952a 100644
+> --- a/arch/arm/mm/dma-mapping-nommu.c
+> +++ b/arch/arm/mm/dma-mapping-nommu.c
+> @@ -34,7 +34,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
+>  }
+>  
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -			const struct iommu_ops *iommu, bool coherent)
+> +			bool coherent)
+>  {
+>  	if (IS_ENABLED(CONFIG_CPU_V7M)) {
+>  		/*
+> diff --git a/arch/arm/mm/dma-mapping.c b/arch/arm/mm/dma-mapping.c
+> index 5409225b4abc06..6c359a3af8d9c7 100644
+> --- a/arch/arm/mm/dma-mapping.c
+> +++ b/arch/arm/mm/dma-mapping.c
+> @@ -1713,7 +1713,7 @@ void arm_iommu_detach_device(struct device *dev)
+>  EXPORT_SYMBOL_GPL(arm_iommu_detach_device);
+>  
+>  static void arm_setup_iommu_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -				    const struct iommu_ops *iommu, bool coherent)
+> +				    bool coherent)
+>  {
+>  	struct dma_iommu_mapping *mapping;
+>  
+> @@ -1748,7 +1748,7 @@ static void arm_teardown_iommu_dma_ops(struct device *dev)
+>  #else
+>  
+>  static void arm_setup_iommu_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -				    const struct iommu_ops *iommu, bool coherent)
+> +				    bool coherent)
+>  {
+>  }
+>  
+> @@ -1757,7 +1757,7 @@ static void arm_teardown_iommu_dma_ops(struct device *dev) { }
+>  #endif	/* CONFIG_ARM_DMA_USE_IOMMU */
+>  
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -			const struct iommu_ops *iommu, bool coherent)
+> +			bool coherent)
+>  {
+>  	/*
+>  	 * Due to legacy code that sets the ->dma_coherent flag from a bus
+> @@ -1776,8 +1776,8 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+>  	if (dev->dma_ops)
+>  		return;
+>  
+> -	if (iommu)
+> -		arm_setup_iommu_dma_ops(dev, dma_base, size, iommu, coherent);
+> +	if (device_iommu_mapped(dev))
+> +		arm_setup_iommu_dma_ops(dev, dma_base, size, coherent);
+>  
+>  	xen_setup_dma_ops(dev);
+>  	dev->archdata.dma_ops_setup = true;
+> diff --git a/arch/arm64/mm/dma-mapping.c b/arch/arm64/mm/dma-mapping.c
+> index 3cb101e8cb29ba..61886e43e3a10f 100644
+> --- a/arch/arm64/mm/dma-mapping.c
+> +++ b/arch/arm64/mm/dma-mapping.c
+> @@ -47,7 +47,7 @@ void arch_teardown_dma_ops(struct device *dev)
+>  #endif
+>  
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -			const struct iommu_ops *iommu, bool coherent)
+> +			bool coherent)
+>  {
+>  	int cls = cache_line_size_of_cpu();
+>  
+> @@ -58,7 +58,7 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+>  		   ARCH_DMA_MINALIGN, cls);
+>  
+>  	dev->dma_coherent = coherent;
+> -	if (iommu)
+> +	if (device_iommu_mapped(dev))
+>  		iommu_setup_dma_ops(dev, dma_base, dma_base + size - 1);
+>  
+>  	xen_setup_dma_ops(dev);
+> diff --git a/arch/mips/mm/dma-noncoherent.c b/arch/mips/mm/dma-noncoherent.c
+> index 3c4fc97b9f394b..0f3cec663a12cd 100644
+> --- a/arch/mips/mm/dma-noncoherent.c
+> +++ b/arch/mips/mm/dma-noncoherent.c
+> @@ -138,7 +138,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
+>  
+>  #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -		const struct iommu_ops *iommu, bool coherent)
+> +		bool coherent)
+>  {
+>  	dev->dma_coherent = coherent;
+>  }
+> diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
+> index b76e7e192eb183..f91fa741c41211 100644
+> --- a/arch/riscv/mm/dma-noncoherent.c
+> +++ b/arch/riscv/mm/dma-noncoherent.c
+> @@ -135,7 +135,7 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
+>  }
+>  
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -		const struct iommu_ops *iommu, bool coherent)
+> +			bool coherent)
+>  {
+>  	WARN_TAINT(!coherent && riscv_cbom_block_size > ARCH_DMA_MINALIGN,
+>  		   TAINT_CPU_OUT_OF_SPEC,
+> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+> index 691d4b7686ee7e..a6891ad0ceee2c 100644
+> --- a/drivers/acpi/scan.c
+> +++ b/drivers/acpi/scan.c
+> @@ -1636,8 +1636,7 @@ int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
+>  	if (PTR_ERR(iommu) == -EPROBE_DEFER)
+>  		return -EPROBE_DEFER;
+>  
+> -	arch_setup_dma_ops(dev, 0, U64_MAX,
+> -				iommu, attr == DEV_DMA_COHERENT);
+> +	arch_setup_dma_ops(dev, 0, U64_MAX, attr == DEV_DMA_COHERENT);
+>  
+>  	return 0;
+>  }
+> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+> index ccad7bca3fd3da..fd938b6dfa7ed4 100644
+> --- a/drivers/hv/hv_common.c
+> +++ b/drivers/hv/hv_common.c
+> @@ -489,7 +489,7 @@ void hv_setup_dma_ops(struct device *dev, bool coherent)
+>  	 * Hyper-V does not offer a vIOMMU in the guest
+>  	 * VM, so pass 0/NULL for the IOMMU settings
+>  	 */
+> -	arch_setup_dma_ops(dev, 0, 0, NULL, coherent);
+> +	arch_setup_dma_ops(dev, 0, 0, coherent);
+>  }
+>  EXPORT_SYMBOL_GPL(hv_setup_dma_ops);
+>  
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index 1ca42ad9dd159d..65c71be71a8d45 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -193,7 +193,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+>  	dev_dbg(dev, "device is%sbehind an iommu\n",
+>  		iommu ? " " : " not ");
+>  
+> -	arch_setup_dma_ops(dev, dma_start, size, iommu, coherent);
+> +	arch_setup_dma_ops(dev, dma_start, size, coherent);
+>  
+>  	if (!iommu)
+>  		of_dma_set_restricted_buffer(dev, np);
+> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+> index f2fc203fb8a1a2..2cb98a12c50348 100644
+> --- a/include/linux/dma-map-ops.h
+> +++ b/include/linux/dma-map-ops.h
+> @@ -426,10 +426,10 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
+>  
+>  #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
+>  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> -		const struct iommu_ops *iommu, bool coherent);
+> +		bool coherent);
+>  #else
+>  static inline void arch_setup_dma_ops(struct device *dev, u64 dma_base,
+> -		u64 size, const struct iommu_ops *iommu, bool coherent)
+> +		u64 size, bool coherent)
+>  {
+>  }
+>  #endif /* CONFIG_ARCH_HAS_SETUP_DMA_OPS */
+> -- 
+> 2.42.0
+> 
 
