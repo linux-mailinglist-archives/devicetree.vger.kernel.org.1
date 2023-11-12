@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-15227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899DC7E9206
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 19:44:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A063C7E9208
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 19:44:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AE411F20F6F
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EE03280C35
 	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 18:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA2B1641A;
-	Sun, 12 Nov 2023 18:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CE24168AB;
+	Sun, 12 Nov 2023 18:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iw0kFUuR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TpcWzFbF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5D7156EC
-	for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 18:44:14 +0000 (UTC)
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85BEE2715
-	for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 10:44:13 -0800 (PST)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-5a7d9d357faso41455067b3.0
-        for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 10:44:13 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C32154B6
+	for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 18:44:15 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C042B1FF6
+	for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 10:44:14 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5bf5d6eaf60so38127307b3.2
+        for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 10:44:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699814653; x=1700419453; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699814654; x=1700419454; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LKapjGZo46m2u3Pg+KgGkylJklW8QTl7gfgNZK8ZJCY=;
-        b=iw0kFUuRxQS4MRdP9ZPJzS7oPkfkXebd7c3njWsPui62lFi9tOfKXScs9zrlWtyZke
-         7Jjc8kGfU+f64JD0OYZCI1omZqi9njEXxR740nn4JJzH/eZiaSfCNdKUBD8f4rdS4gYe
-         EKoch+HpXgXPOyKP6E2gd+3uyLdzti8z8XACNYyHq6L781CWAslb0/Cq8DtkFNC3E7A7
-         FyZ66B8dO0eri9nfL5KYHQZz3r+dx6KxpMQSAfVJs9BWzQXBgRGcsQjgCdGuW7oD7rPU
-         ojtYcCugoS5kp/dVJ41ajgLFRVxoQBg4yCV03ckCIZTUPQjDxUz++GTn3yssESJmKRdI
-         LtJg==
+        bh=8ph7m6E1Vtkv7RR08QhRUG59xkdDRnqIt7SGyWJz8QU=;
+        b=TpcWzFbFbWQD/R4q1X10vUxWwV7ztvB5P+uMEmzb9P6mjcfL+EXPSWcAiyxEK2KMls
+         hjVUpoUy6j7zaBWFxJ70GmJPgQKPCKUSLhQ5MdGXEnVnBumkiOQQf2DpEDAbH9Y7RIjB
+         64HVagIdcRWSEErRbMfyfkjVZ+Iia0l9loEH00GZ0oHzRahwTLLAf/E5xH39TGfXwzSC
+         T2t8SE8MM8yDA56VfUS0L+MFtcko3m6G8a75dCK8iRyIF0bepJKp2/Mf75yGuRr0EUq4
+         FmH6u5gBG8ngP7AAohZRT0iq2WksHTyZUEoH/d/mOyTszQPVC7tPNlKL47d8W/YRrZSW
+         Cmtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699814653; x=1700419453;
+        d=1e100.net; s=20230601; t=1699814654; x=1700419454;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LKapjGZo46m2u3Pg+KgGkylJklW8QTl7gfgNZK8ZJCY=;
-        b=PzvnXzPhqDy9qRcHlnTxRcKoBS9fSo/AAKZxJcVpRyudFyN7hOr77wW/sLMDbEMB0d
-         lYjEEBX1wMzBgmnJzmi8YJOymfrTgesds5KqyJkSeLhZ82PrrB2jZOusSOa5nBR0uBSo
-         4/JoYtd/VXPNHdxvRTVwMOOJoJwk3GRAWC+v2Djya1q6Mdxwwz4fDXlJBMI1jXW+fOvG
-         WvUCkpj8KeZHVim/dHIJH28ACC5O0Ao3YRUG007V/Jl6GayLVX20wup4q4gVqZM3hjag
-         ZLtzDPHDvasdRFhuS5X4fLbaT3J1ERTcVSZB6GAFZf09vAU3Nqs0RX9fBVcTBJgqMmE1
-         rcEA==
-X-Gm-Message-State: AOJu0YxEcnSkMTjqfNhUHfRarWwVOD1j8lRtWlt7NxfxbTtr4b6llo6y
-	ri0EE05JY1piVpuwJ6XKpF0h/w==
-X-Google-Smtp-Source: AGHT+IG6jLEwOvsic3zim3Oi0DQNKZCCpaWpZotIRjhbW1JFP57Ypl6v3EbQBFpfe1K3LZKV2jWSMQ==
-X-Received: by 2002:a0d:ca8f:0:b0:5a7:ba54:af02 with SMTP id m137-20020a0dca8f000000b005a7ba54af02mr5340230ywd.38.1699814652746;
-        Sun, 12 Nov 2023 10:44:12 -0800 (PST)
+        bh=8ph7m6E1Vtkv7RR08QhRUG59xkdDRnqIt7SGyWJz8QU=;
+        b=AaEjP4vD+UF2m8BW7a3out12mbP6+/Q8bwb6L8owutnJhLDgfTaq/5kTYO1PNMgEGN
+         Ewu5WuKLl0Q0u/lI1U6sLMiZ1dczgLuMvCQ7B716dI0OA2g55+ul+L+xVS+XkQ6vyhGp
+         gl3JvOlwKMrUSOwyxGTK01+d+pixArtxLIF0FfVxEDIwA8Kr8tSYVP0vj4jZNqIlfGro
+         BFF7HxtqSbbwFqS5+v76b5O7SI/YO7SrAZoM2jxz+NEb9KyZNQy4Y8MsA4f7d5ZxJf6n
+         ZEuSEGls9/kgl84Fiz014qn1j3PoJTWvPNG2D6sk4tyKg2GKFpjQsuLslN0B0Q/sKFj0
+         0+sw==
+X-Gm-Message-State: AOJu0YylM4W3cY0s2ACUq2pOZ06LBvzFx75u8abRDkew7lMwSpmU8niB
+	jx+EUeaQEw4McBInSvxD7YDQHg==
+X-Google-Smtp-Source: AGHT+IHpzvYeJiWjBu0flWuD/GyQnhsKd8gKM5c0RQLvUyFjf+fvZeq5nvs0RJ5Nw84f/GzsfgSNXA==
+X-Received: by 2002:a81:4113:0:b0:5a8:277f:b378 with SMTP id o19-20020a814113000000b005a8277fb378mr2138130ywa.1.1699814653985;
+        Sun, 12 Nov 2023 10:44:13 -0800 (PST)
 Received: from krzk-bin.. ([12.161.6.170])
-        by smtp.gmail.com with ESMTPSA id u63-20020a0deb42000000b005b3f6c1b5edsm1308938ywe.80.2023.11.12.10.44.11
+        by smtp.gmail.com with ESMTPSA id u63-20020a0deb42000000b005b3f6c1b5edsm1308938ywe.80.2023.11.12.10.44.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Nov 2023 10:44:12 -0800 (PST)
+        Sun, 12 Nov 2023 10:44:13 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
@@ -72,9 +72,9 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/5] dt-bindings: gpu: samsung: constrain clocks in top-level properties
-Date: Sun, 12 Nov 2023 19:44:01 +0100
-Message-Id: <20231112184403.3449-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/5] dt-bindings: gpu: samsung-g2d: constrain iommus and power-domains
+Date: Sun, 12 Nov 2023 19:44:02 +0100
+Message-Id: <20231112184403.3449-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231112184403.3449-1-krzysztof.kozlowski@linaro.org>
 References: <20231112184403.3449-1-krzysztof.kozlowski@linaro.org>
@@ -86,61 +86,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-When number of clock varies between variants, the Devicetree bindings
-coding convention expects to have widest constraints in top-level
-definition of the properties and narrow them in allOf:if:then block.
-
-This is more readable and sometimes allows to spot some errors in the
-bindings.
+Provide specific constraints for iommus and power-domains, based on
+current DTS.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/gpu/samsung-g2d.yaml | 10 ++++++++--
- .../devicetree/bindings/gpu/samsung-scaler.yaml        | 10 ++++++++--
- 2 files changed, 16 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/gpu/samsung-g2d.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml b/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
-index b6951acc7643..f368966cf83a 100644
+index f368966cf83a..132aaa49597b 100644
 --- a/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
 +++ b/Documentation/devicetree/bindings/gpu/samsung-g2d.yaml
-@@ -22,8 +22,14 @@ properties:
-   interrupts:
-     maxItems: 1
+@@ -30,8 +30,12 @@ properties:
+     minItems: 1
+     maxItems: 2
  
--  clocks: {}
--  clock-names: {}
-+  clocks:
+-  iommus: {}
+-  power-domains: {}
++  iommus:
 +    minItems: 1
 +    maxItems: 2
 +
-+  clock-names:
-+    minItems: 1
-+    maxItems: 2
-+
-   iommus: {}
-   power-domains: {}
++  power-domains:
++    maxItems: 1
  
-diff --git a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
-index 97d86a002a90..e08fc1e4115f 100644
---- a/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
-+++ b/Documentation/devicetree/bindings/gpu/samsung-scaler.yaml
-@@ -21,8 +21,14 @@ properties:
-   interrupts:
-     maxItems: 1
- 
--  clocks: {}
--  clock-names: {}
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+
-   iommus: {}
-   power-domains: {}
- 
+ required:
+   - compatible
 -- 
 2.34.1
 
