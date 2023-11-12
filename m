@@ -1,57 +1,41 @@
-Return-Path: <devicetree+bounces-15203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 481257E8DAC
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 01:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6257E8DB1
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 01:55:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD263280D9B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 00:45:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07DC8280D8F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 00:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949EF1386;
-	Sun, 12 Nov 2023 00:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CDE15B5;
+	Sun, 12 Nov 2023 00:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vS2koGYd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJZqZgPy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4EF010F6;
-	Sun, 12 Nov 2023 00:45:43 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1072D73;
-	Sat, 11 Nov 2023 16:45:41 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1606C10FC;
-	Sun, 12 Nov 2023 01:45:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1699749915;
-	bh=mGiSwxlG3AcYYgJEUBIuljfZFyZo9vXL2qt6sVylIfI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=vS2koGYdaqBgdCXXDdfrPhiI+zM5O97FwkCYpSAdnsLeeCAfbVABIOmp6AJGneUlt
-	 5LSRYzZEN1Jz+aH0whgruFa2mg9v3bYYig3MohGmHwjszcbFHbdLsF7YJXbLwytEmz
-	 8C5JkDCT75KJVjHTqfSrxQ0xngGNt5Fd6twavr6k=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Paul Elder <paul.elder@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Julien Stephan <jstephan@baylibre.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	linux-mediatek@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 1/3] dt-bindings: media: Add bindings for THine THP7312 ISP
-Date: Sun, 12 Nov 2023 02:45:42 +0200
-Message-ID: <20231112004544.24877-2-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231112004544.24877-1-laurent.pinchart@ideasonboard.com>
-References: <20231112004544.24877-1-laurent.pinchart@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7A5137C;
+	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 501B7C433CA;
+	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699750546;
+	bh=4kucImHj71DNjO8Fkep5OM38QhqpmGmPU6kfG3O+HvQ=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=KJZqZgPypH6bl6tdJ8y+foaDKgEsdcaal1SW8veJmtRw0j5Snnn39t9y2DxQ/3M21
+	 3uYon1iK6oQHrO4wGuU3H7Vsv4B5lRU/fap8GYtVjEHlKGyjQy/Dzlee9Qo5euSnR3
+	 BOnlsgA0QRY6fqVor4PRh6UjVh+aFChziRmt+stFYWFVrcvf4KLl2ZWhx6Rs3R6B/O
+	 i9YZbn4JZX4jGrv/+B/EYsV9wXMNhI93Qs/X1t2giuKudncvtG/0ZhyWY0X+KGZXx0
+	 7RzkFgwfkgJRxbkKmi1V8VkMYAjB7TiSZLk/qTwnDczaC0X70OeGKF9IV81rDXMdji
+	 2jVC3BbyYJwsA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 32760C4166E;
+	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,292 +43,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/6] riscv,isa-extensions additions
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <169975054620.11360.8786420869587397898.git-patchwork-notify@kernel.org>
+Date: Sun, 12 Nov 2023 00:55:46 +0000
+References: <20231009-approve-verbalize-ce9324858e76@wendy>
+In-Reply-To: <20231009-approve-verbalize-ce9324858e76@wendy>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: linux-riscv@lists.infradead.org, linux-riscv@lists.indradead.org,
+ conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, wens@csie.org, jernej.skrabec@gmail.com,
+ samuel@sholland.org, daire.mcnamara@microchip.com, geert+renesas@glider.be,
+ magnus.damm@gmail.com, kernel@esmil.dk, jszhang@kernel.org,
+ guoren@kernel.org, wefu@redhat.com, unicorn_wang@outlook.com,
+ devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-renesas-soc@vger.kernel.org
 
-From: Paul Elder <paul.elder@ideasonboard.com>
+Hello:
 
-The THP7312 is an external ISP from THine. Add DT bindings for it.
+This series was applied to riscv/linux.git (fixes)
+by Arnd Bergmann <arnd@arndb.de>:
 
-Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes since v5:
+On Mon, 9 Oct 2023 10:37:44 +0100 you wrote:
+> Now with the RFC tag dropped. There are no changes here from "RFC v2",
+> other than the addition of tags that were provided along the way. I have
+> not added "Zfh" to the T-Head based stuff, as I can't actually read the
+> documentation that would show that they're encoding-for-encoding
+> compatible with the standard extension, since it is apparently only in
+> Chinese.
+> 
+> [...]
 
-- Make relative schema path absolute
-- Add missing $ in pattern properties
-- Set maximum value for sensor node's reg property
-- Drop support for sensor regulators
-- Add Laurent Pinchart as co-maintainer
+Here is the summary with links:
+  - [v3,1/6] riscv: dts: microchip: convert isa detection to new properties
+    (no matching commit)
+  - [v3,2/6] riscv: dts: sifive: convert isa detection to new properties
+    (no matching commit)
+  - [v3,3/6] riscv: dts: starfive: convert isa detection to new properties
+    (no matching commit)
+  - [v3,4/6] riscv: dts: renesas: convert isa detection to new properties
+    (no matching commit)
+  - [v3,5/6] riscv: dts: allwinner: convert isa detection to new properties
+    https://git.kernel.org/riscv/c/c3f7c14856eb
+  - [v3,6/6] riscv: dts: thead: convert isa detection to new properties
+    https://git.kernel.org/riscv/c/0804f3bec9e9
 
-Changes since v4:
-
-- Add bus-type property
-
-Changes since v2:
-
-- Drop description of reg property
-- Improve thine,boot-mode property documentation
-- Making thine,boot-mode property optional
-- Don't use underscores in supplies names
----
- .../bindings/media/i2c/thine,thp7312.yaml     | 224 ++++++++++++++++++
- MAINTAINERS                                   |   8 +
- 2 files changed, 232 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-new file mode 100644
-index 000000000000..1978fbb77a6c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-@@ -0,0 +1,224 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (c) 2023 Ideas on Board
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/thine,thp7312.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: THine THP7312
-+
-+maintainers:
-+  - Paul Elder <paul.elder@@ideasonboard.com>
-+
-+description:
-+  The THP7312 is a standalone ISP controlled over i2c, and is capable of
-+  various image processing and correction functions, including 3A control. It
-+  can be connected to CMOS image sensors from various vendors, supporting both
-+  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
-+  or parallel. The hardware is capable of transmitting and receiving MIPI
-+  interlaved data strams with data types or multiple virtual channel
-+  identifiers.
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: thine,thp7312
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description: CLKI clock input
-+
-+  thine,boot-mode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 1
-+    default: 1
-+    description:
-+      Boot mode of the THP7312, reflecting the value of the BOOT[0] pin strap.
-+      0 is for the SPI/2-wire slave boot, 1 is for the SPI master boot (from
-+      external flash ROM).
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      Reference to the GPIO connected to the RESET_N pin, if any.
-+      Must be released (set high) after all supplies are applied.
-+
-+  vddcore-supply:
-+    description:
-+      1.2V supply for core, PLL, MIPI rx and MIPI tx.
-+
-+  vhtermrx-supply:
-+    description:
-+      Supply for input (RX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-+
-+  vddtx-supply:
-+    description:
-+      Supply for output (TX). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-+
-+  vddhost-supply:
-+    description:
-+      Supply for host interface. 1.8V, 2.8V, or 3.3V.
-+
-+  vddcmos-supply:
-+    description:
-+      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
-+
-+  vddgpio-0-supply:
-+    description:
-+      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
-+
-+  vddgpio-1-supply:
-+    description:
-+      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
-+
-+  orientation: true
-+  rotation: true
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          bus-type:
-+            const: 4 # CSI-2 D-PHY
-+
-+          data-lanes:
-+            description:
-+              This property is for lane reordering between the THP7312 and the
-+              SoC. The sensor supports either two-lane, or four-lane operation.
-+              If this property is omitted four-lane operation is assumed. For
-+              two-lane operation the property must be set to <1 2>.
-+            minItems: 2
-+            maxItems: 4
-+            items:
-+              maximum: 4
-+
-+  sensors:
-+    type: object
-+    description: List of connected sensors
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+    patternProperties:
-+      "^sensor@[01]$":
-+        type: object
-+        description:
-+          Sensors connected to the first and second input, with one node per
-+          sensor.
-+
-+        properties:
-+          thine,model:
-+            $ref: /schemas/types.yaml#/definitions/string
-+            description:
-+              Model of the connected sensors. Must be a valid compatible string.
-+
-+          reg:
-+            description: THP7312 input port number
-+            items:
-+              - maximum: 1
-+
-+          data-lanes:
-+            $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
-+            items:
-+              maxItems: 4
-+            description:
-+              This property is for lane reordering between the THP7312 and the imaging
-+              sensor that it is connected to.
-+
-+        required:
-+          - reg
-+          - data-lanes
-+
-+        additionalProperties: false
-+
-+    required:
-+      - "#address-cells"
-+      - "#size-cells"
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - clocks
-+  - vddcore-supply
-+  - vhtermrx-supply
-+  - vddtx-supply
-+  - vddhost-supply
-+  - vddcmos-supply
-+  - vddgpio-0-supply
-+  - vddgpio-1-supply
-+  - sensors
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/media/video-interfaces.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@61 {
-+            compatible = "thine,thp7312";
-+            reg = <0x61>;
-+
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&cam1_pins_default>;
-+
-+            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
-+            clocks = <&camera61_clk>;
-+
-+            vddcore-supply = <&vsys_v4p2>;
-+            vhtermrx-supply = <&vsys_v4p2>;
-+            vddtx-supply = <&vsys_v4p2>;
-+            vddhost-supply = <&vsys_v4p2>;
-+            vddcmos-supply = <&vsys_v4p2>;
-+            vddgpio-0-supply = <&vsys_v4p2>;
-+            vddgpio-1-supply = <&vsys_v4p2>;
-+
-+            orientation = <0>;
-+            rotation = <0>;
-+
-+            sensors {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                sensor@0 {
-+                    thine,model = "sony,imx258";
-+                    reg = <0>;
-+
-+                    data-lanes = <4 1 3 2>;
-+                };
-+            };
-+
-+            port {
-+                thp7312_2_endpoint: endpoint {
-+                    remote-endpoint = <&mipi_thp7312_2>;
-+                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+                    data-lanes = <4 2 1 3>;
-+                };
-+            };
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f3e6dbbbbccb..01f18b06f147 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21448,6 +21448,14 @@ S:	Maintained
- F:	Documentation/ABI/testing/sysfs-class-firmware-attributes
- F:	drivers/platform/x86/think-lmi.?
- 
-+THP7312 ISP DRIVER
-+M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+M:	Paul Elder <paul.elder@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-+
- THUNDERBOLT DMA TRAFFIC TEST DRIVER
- M:	Isaac Hazan <isaac.hazan@intel.com>
- L:	linux-usb@vger.kernel.org
+You are awesome, thank you!
 -- 
-Regards,
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-Laurent Pinchart
 
 
