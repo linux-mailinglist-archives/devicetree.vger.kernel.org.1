@@ -1,453 +1,287 @@
-Return-Path: <devicetree+bounces-15235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280E47E9248
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 20:38:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4494F7E928F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 21:26:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0DB8280A7F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 19:38:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55C90B20989
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 20:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F532171AB;
-	Sun, 12 Nov 2023 19:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC3015D1;
+	Sun, 12 Nov 2023 20:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="Po5Tg47a"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="c7awyXEH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03590168C1
-	for <devicetree@vger.kernel.org>; Sun, 12 Nov 2023 19:38:21 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9652582;
-	Sun, 12 Nov 2023 11:38:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
-	t=1699817880; x=1700422680; i=linosanfilippo@gmx.de;
-	bh=SosxGtIlvr6WP7BkRq90xyNCWQxhQ44ePKDPeAlBZo0=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=Po5Tg47a7ZqRy6WT6pH52WYQcQRimnYDrHs7oYSJtL1cBYofTS1W8Jt9rbdJOJ3J
-	 wPWkFqfYc8NIr8mLVt7hlQvIwCD/vupr4UDTjXfsWDs3A6aZxlQD0ehURmZLz+WsE
-	 CmALLVUpVA0vYLGmOHfvuiH7Lr6npaB2XbzJMZE2Lt3VhJLMnX1KPd3ZLkQaqzind
-	 SKJRB4cfow/DwV37vq+3FfHP2wVgZTgu+15ONFAzuqFSb8xfg+1BPR3SvjwEdH0Ts
-	 bxI4jBRfU6H1cRaDlSA9/L0bTGM956ixls8mHMwwAeqGDT1jse5JncDJmhfjq+Cwk
-	 pF4uCkbUgOKVpf0mGA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.2.42] ([84.162.21.41]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1McY8T-1recEk38ZB-00cvh6; Sun, 12
- Nov 2023 20:37:59 +0100
-Message-ID: <97bfc5ee-6c07-4e4b-8192-f46c701a0604@gmx.de>
-Date: Sun, 12 Nov 2023 20:37:58 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997ED182BD;
+	Sun, 12 Nov 2023 20:26:45 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 303EF210E;
+	Sun, 12 Nov 2023 12:26:43 -0800 (PST)
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 70DC46607285;
+	Sun, 12 Nov 2023 20:26:41 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1699820801;
+	bh=XhOtr6qNHJqXwERbWW6J7QMBUzqPDndZpiOWJCbArdI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c7awyXEHNjcpI2tAMCar+Opag+p/HznWijBw6N31Rr1ujGTxjbivj6GBWZTelHFCH
+	 QBypSn3o68uxcidLeZiik4kn5a/nE3xbb9ySebgXpGgUV6MYM54mFrdymEN2DfcdYo
+	 nNzJye35cz4g6pHLFMproCh4tbLCW/OAj8Y8D2gZzDGRoOKNe4+Dv+rDmsEWer+BGY
+	 ndga6qNX9LPNrq9wI2u+HC6e+ux+X4eSlWFObC6tihOXpZQdd9LoHPAY0GYvE4u5i4
+	 REvp+XVzWTsdHexKDvSRvzwWOWcsbj1f50774f1KhinWn6Bv0JMXM9AsR8/eKsF9f+
+	 2aYBRk072c5yQ==
+Received: by mercury (Postfix, from userid 1000)
+	id 80F43106323E; Sun, 12 Nov 2023 21:26:39 +0100 (CET)
+Date: Sun, 12 Nov 2023 21:26:39 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+	Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
+	herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com, p.zabel@pengutronix.de, robh+dt@kernel.org,
+	sboyd@kernel.org, ricardo@pardini.net, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 5/6] reset: rockchip: secure reset must be used by SCMI
+Message-ID: <20231112202639.obvmnjlt4mpa52qr@mercury.elektranox.org>
+References: <20231107155532.3747113-1-clabbe@baylibre.com>
+ <20231107155532.3747113-6-clabbe@baylibre.com>
+ <f1b24f19-c210-4f55-b40f-ab063e7eeb22@linaro.org>
+ <11278271.CDJkKcVGEf@diego>
+ <d82865bc-29a7-4150-876e-489e0d797699@linaro.org>
+ <20231111205115.6hkhjj37ypeq45ax@mercury.elektranox.org>
+ <4f86c7da-5589-4451-89cb-739b97b67170@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] tty: serial: uartps: Add rs485 support to uartps
- driver
-Content-Language: en-US
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
- michal.simek@amd.com, gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, jirislaby@kernel.org,
- linux-arm-kernel@lists.infradead.org
-Cc: radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
- shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-References: <20231024144847.2316941-1-manikanta.guntupalli@amd.com>
- <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
-From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <20231024144847.2316941-3-manikanta.guntupalli@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:I8J/F3bid1loWbfp/82mcI7J9lCork/uFtlxkRd3uOaucWXIb4L
- BJDfbkrW5mpD7MyawdFr8GIykmQLm6fCcOBq5603jzEk7s6X5BRvPf9EkW2iIYr/70QHJZ5
- BgsLQTbSBO9tYb9mfYPrRRGSxKGayirttRF3qG0+rkVjdWVr3gZRrHt0CacnPOJtbkm5jYZ
- zHNJaUqzWPNsWLMJJokmQ==
-UI-OutboundReport: notjunk:1;M01:P0:bkWpB6KQmog=;0KsOviSbexOI/uQJwXG6Z2EDiV8
- bsTCk9wLNIEUEhGjktvTz84Vf1HnNC/0jpcX0dDxjbu/U0GvKcOS06+sA/BYQmHeV5X9MraJP
- a4w6w06saq0Mi+DsRhsBPfYHUfdC0E5GFI8RXnowt0Kt1wUF9pNZGmfLLDXeW1uWdWBc5Kncn
- /cqHxwbtKC+f9KohUtOk6QMoalpW32cMzns+zj1KBaPtnBSS5zGG/UuZFNQwXH7EpXlE3HHDz
- 9IIJUeFDSpnlgkYRC9BSgEYV8zIWslOCL3z0zlPrEZ6fngtZBO46GUXdFTVlVQaU33g45rcLL
- XtthJBo8cpV9UfACtGtXM/kfXOKpMnJbJzoZGam4hrravWJBWEAEhJK6aN0eqIeEcF0L9c4nQ
- q4Rt82XABSGfRW7TbLAYIlG5bPkhAbQkWMX+uSzEFQqkI0GbB4ncqdZXScrQbSZBY4ieVKdrR
- Mtwh13KmSC4z2fL6fOvdYYOaSW67X5WwYh4g1d3YGgtNm6ZvkB82DLO3Y3Bm2kQH/Fm4pO5vR
- TkaqBLpf5Uodl4cp0p4XcV17Y4xVYhD9LA/Ijk1ZQX46lOU242cF2+8YT6IVsASrfHAHHHJpx
- YPhVAUfiRAo/THzlgN0HbIsnjjqV5QSp7JqQ7x7RGb7tP28VPTO/NMUT3BRwP4rLq66hmJSNF
- CyYJ+HsrH3y3JhDxTQ5KeR7tc44NUSIrL8jXtaY3GYUwqR9BQqd4VJP5rErcpiloUWKlAtJx+
- o76mOrbOtC+5ky7k/BmnUBYKXJSMvJ05hP9vPdo5yoReBk5lEXL9vRpgU5CVPbRQR9MuxXMMu
- M3DkcIs2vnWQvkvrgCbUEkIIvixPvGciIPxMvaKiCPvPn2WWIkCDq9/ieJ8hKoUmI3h+Ik0gV
- 4v/b9VsxD3vhYTtiNQTAtGW/01L/b+zZj7gWnHHQZuGfqGkpmHrqHNriRVwnWOwHJYELkt43t
- Xz/M2w==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4f86c7da-5589-4451-89cb-739b97b67170@linaro.org>
 
 Hi,
 
-On 24.10.23 16:48, Manikanta Guntupalli wrote:
-> Add rs485 support to uartps driver. Use either rts-gpios or RTS
-> to control RS485 phy as driver or a receiver.
->
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> ---
-> Changes for V2:
-> Modify optional gpio name to xlnx,phy-ctrl-gpios.
-> Update commit description.
-> Add support for RTS, delay_rts_before_send and delay_rts_after_send in R=
-S485 mode.
-> Changes for V3:
-> Modify optional gpio name to rts-gpios.
-> Update commit description.
-> Move cdns_uart_tx_empty function to avoid prototype statement.
-> Remove assignment of struct serial_rs485 to port->rs485 as
-> serial core performs that.
-> Switch to native RTS in non GPIO case.
-> Handle rs485 during stop tx.
-> Remove explicit calls to configure gpio direction and value,
-> as devm_gpiod_get_optional performs that by using GPIOD_OUT_LOW argument=
-.
-> Update implementation to support configuration of GPIO/RTS value
-> based on user configuration of SER_RS485_RTS_ON_SEND and
-> SER_RS485_RTS_AFTER_SEND. Move implementation to start_tx from handle_tx=
-.
-> ---
->  drivers/tty/serial/xilinx_uartps.c | 180 ++++++++++++++++++++++++++---
->  1 file changed, 165 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xil=
-inx_uartps.c
-> index 9c13dac1d4d1..32229cf5c508 100644
-> --- a/drivers/tty/serial/xilinx_uartps.c
-> +++ b/drivers/tty/serial/xilinx_uartps.c
-> @@ -23,6 +23,9 @@
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/iopoll.h>
-> +#include <linux/gpio.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/delay.h>
->
->  #define CDNS_UART_TTY_NAME	"ttyPS"
->  #define CDNS_UART_NAME		"xuartps"
-> @@ -193,6 +196,7 @@ MODULE_PARM_DESC(rx_timeout, "Rx timeout, 1-255");
->   * @clk_rate_change_nb:	Notifier block for clock changes
->   * @quirks:		Flags for RXBS support.
->   * @cts_override:	Modem control state override
-> + * @gpiod:		Pointer to the gpio descriptor
->   */
->  struct cdns_uart {
->  	struct uart_port	*port;
-> @@ -203,10 +207,19 @@ struct cdns_uart {
->  	struct notifier_block	clk_rate_change_nb;
->  	u32			quirks;
->  	bool cts_override;
-> +	struct gpio_desc	*gpiod;
->  };
->  struct cdns_platform_data {
->  	u32 quirks;
->  };
-> +
-> +struct serial_rs485 cdns_rs485_supported =3D {
-> +	.flags =3D SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND |
-> +		 SER_RS485_RTS_AFTER_SEND,
-> +	.delay_rts_before_send =3D 1,
-> +	.delay_rts_after_send =3D 1,
-> +};
-> +
->  #define to_cdns_uart(_nb) container_of(_nb, struct cdns_uart, \
->  		clk_rate_change_nb)
->
-> @@ -305,6 +318,79 @@ static void cdns_uart_handle_rx(void *dev_id, unsig=
-ned int isrstatus)
->  	tty_flip_buffer_push(&port->state->port);
->  }
->
-> +/**
-> + * cdns_rs485_config_gpio_rts_high - Configure GPIO/RTS to high
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_config_gpio_rts_high(struct cdns_uart *cdns_uart=
-)
-> +{
-> +	u32 val;
-> +
-> +	if (cdns_uart->gpiod) {
-> +		gpiod_set_value(cdns_uart->gpiod, 1);
-> +	} else {
-> +		val =3D readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +		val &=3D ~CDNS_UART_MODEMCR_RTS;
-> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +	}
-> +}
-> +
-> +/**
-> + * cdns_rs485_config_gpio_rts_low - Configure GPIO/RTS to low
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_config_gpio_rts_low(struct cdns_uart *cdns_uart)
-> +{
-> +	u32 val;
-> +
-> +	if (cdns_uart->gpiod) {
-> +		gpiod_set_value(cdns_uart->gpiod, 0);
-> +	} else {
-> +		val =3D readl(cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +		val |=3D CDNS_UART_MODEMCR_RTS;
-> +		writel(val, cdns_uart->port->membase + CDNS_UART_MODEMCR);
-> +	}
-> +}
-> +
-> +/**
-> + * cdns_rs485_tx_setup - Tx setup specific to rs485
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_tx_setup(struct cdns_uart *cdns_uart)
-> +{
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_ON_SEND)
-> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
-> +	else
-> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
-> +}
-> +
-> +/**
-> + * cdns_rs485_rx_setup - Rx setup specific to rs485
-> + * @cdns_uart: Handle to the cdns_uart
-> + */
-> +static void cdns_rs485_rx_setup(struct cdns_uart *cdns_uart)
-> +{
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_RTS_AFTER_SEND)
-> +		cdns_rs485_config_gpio_rts_high(cdns_uart);
-> +	else
-> +		cdns_rs485_config_gpio_rts_low(cdns_uart);
-> +}
-> +
-> +/**
-> + * cdns_uart_tx_empty -  Check whether TX is empty
-> + * @port: Handle to the uart port structure
-> + *
-> + * Return: TIOCSER_TEMT on success, 0 otherwise
-> + */
-> +static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-> +{
-> +	unsigned int status;
-> +
-> +	status =3D readl(port->membase + CDNS_UART_SR) &
-> +		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
-> +	return (status =3D=3D CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-> +}
-> +
->  /**
->   * cdns_uart_handle_tx - Handle the bytes to be Txed.
->   * @dev_id: Id of the UART port
-> @@ -571,6 +657,8 @@ static int cdns_uart_clk_notifier_cb(struct notifier=
-_block *nb,
->  static void cdns_uart_start_tx(struct uart_port *port)
->  {
->  	unsigned int status;
-> +	unsigned long time_out;
-> +	struct cdns_uart *cdns_uart =3D port->private_data;
->
->  	if (uart_tx_stopped(port))
->  		return;
-> @@ -589,8 +677,31 @@ static void cdns_uart_start_tx(struct uart_port *po=
-rt)
->
->  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_ISR);
->
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		cdns_rs485_tx_setup(cdns_uart);
-> +		if (cdns_uart->port->rs485.delay_rts_before_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_before_send);
+On Sat, Nov 11, 2023 at 10:28:59PM +0100, Krzysztof Kozlowski wrote:
+> On 11/11/2023 21:51, Sebastian Reichel wrote:
+> > Hi,
+> > 
+> > On Tue, Nov 07, 2023 at 06:45:03PM +0100, Krzysztof Kozlowski wrote:
+> >> On 07/11/2023 18:35, Heiko Stübner wrote:
+> >>> Am Dienstag, 7. November 2023, 17:21:41 CET schrieb Krzysztof Kozlowski:
+> >>>> On 07/11/2023 16:55, Corentin Labbe wrote:
+> >>>>> While working on the rk3588 crypto driver, I loose lot of time
+> >>>>> understanding why resetting the IP failed.
+> >>>>> This is due to RK3588_SECURECRU_RESET_OFFSET being in the secure world,
+> >>>>> so impossible to operate on it from the kernel.
+> >>>>> All resets in this block must be handled via SCMI call.
+> >>>>>
+> >>>>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> >>>>> ---
+> >>>>>  drivers/clk/rockchip/rst-rk3588.c             | 42 ------------
+> >>>>>  .../dt-bindings/reset/rockchip,rk3588-cru.h   | 68 +++++++++----------
+> >>>>
+> >>>> Please run scripts/checkpatch.pl and fix reported warnings. Some
+> >>>> warnings can be ignored, but the code here looks like it needs a fix.
+> >>>> Feel free to get in touch if the warning is not clear.
+> >>>>
+> >>>>>  2 files changed, 34 insertions(+), 76 deletions(-)
+> >>>>>
+> >>>>> diff --git a/drivers/clk/rockchip/rst-rk3588.c b/drivers/clk/rockchip/rst-rk3588.c
+> >>>>> index e855bb8d5413..6556d9d3c7ab 100644
+> >>>>> --- a/drivers/clk/rockchip/rst-rk3588.c
+> >>>>> +++ b/drivers/clk/rockchip/rst-rk3588.c
+> >>>>> @@ -16,9 +16,6 @@
+> >>>>>  /* 0xFD7C8000 + 0x0A00 */
+> >>>>>  #define RK3588_PHPTOPCRU_RESET_OFFSET(id, reg, bit) [id] = (0x8000*4 + reg * 16 + bit)
+> >>>>>  
+> >>>>> -/* 0xFD7D0000 + 0x0A00 */
+> >>>>> -#define RK3588_SECURECRU_RESET_OFFSET(id, reg, bit) [id] = (0x10000*4 + reg * 16 + bit)
+> >>>>> -
+> >>>>>  /* 0xFD7F0000 + 0x0A00 */
+> >>>>>  #define RK3588_PMU1CRU_RESET_OFFSET(id, reg, bit) [id] = (0x30000*4 + reg * 16 + bit)
+> >>>>>  
+> >>>>> @@ -806,45 +803,6 @@ static const int rk3588_register_offset[] = {
+> >>>>>  	RK3588_PMU1CRU_RESET_OFFSET(SRST_P_PMU0IOC, 5, 4),
+> >>>>>  	RK3588_PMU1CRU_RESET_OFFSET(SRST_P_GPIO0, 5, 5),
+> >>>>>  	RK3588_PMU1CRU_RESET_OFFSET(SRST_GPIO0, 5, 6),
+> >>>>> -
+> >>>>> -	/* SECURECRU_SOFTRST_CON00 */
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_SECURE_NS_BIU, 0, 10),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SECURE_NS_BIU, 0, 11),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_SECURE_S_BIU, 0, 12),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SECURE_S_BIU, 0, 13),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_SECURE_S_BIU, 0, 14),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_CRYPTO_CORE, 0, 15),
+> >>>>> -
+> >>>>> -	/* SECURECRU_SOFTRST_CON01 */
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_CRYPTO_PKA, 1, 0),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_CRYPTO_RNG, 1, 1),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_CRYPTO, 1, 2),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_CRYPTO, 1, 3),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_KEYLADDER_CORE, 1, 9),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_KEYLADDER_RNG, 1, 10),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_KEYLADDER, 1, 11),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_KEYLADDER, 1, 12),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_OTPC_S, 1, 13),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_OTPC_S, 1, 14),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_WDT_S, 1, 15),
+> >>>>> -
+> >>>>> -	/* SECURECRU_SOFTRST_CON02 */
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_T_WDT_S, 2, 0),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_BOOTROM, 2, 1),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_A_DCF, 2, 2),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_DCF, 2, 3),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_BOOTROM_NS, 2, 5),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_KEYLADDER, 2, 14),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_TRNG_S, 2, 15),
+> >>>>> -
+> >>>>> -	/* SECURECRU_SOFTRST_CON03 */
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_TRNG_NS, 3, 0),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_D_SDMMC_BUFFER, 3, 1),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SDMMC, 3, 2),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_H_SDMMC_BUFFER, 3, 3),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_SDMMC, 3, 4),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_P_TRNG_CHK, 3, 5),
+> >>>>> -	RK3588_SECURECRU_RESET_OFFSET(SRST_TRNG_S, 3, 6),
+> >>>>>  };
+> >>>>>  
+> >>>>>  void rk3588_rst_init(struct device_node *np, void __iomem *reg_base)
+> >>>>> diff --git a/include/dt-bindings/reset/rockchip,rk3588-cru.h b/include/dt-bindings/reset/rockchip,rk3588-cru.h
+> >>>>> index d4264db2a07f..c0d08ae78cd5 100644
+> >>>>> --- a/include/dt-bindings/reset/rockchip,rk3588-cru.h
+> >>>>> +++ b/include/dt-bindings/reset/rockchip,rk3588-cru.h
+> >>>>> @@ -716,39 +716,39 @@
+> >>>>>  #define SRST_P_GPIO0			627
+> >>>>>  #define SRST_GPIO0			628
+> >>>>>  
+> >>>>> -#define SRST_A_SECURE_NS_BIU		629
+> >>>>> -#define SRST_H_SECURE_NS_BIU		630
+> >>>>> -#define SRST_A_SECURE_S_BIU		631
+> >>>>> -#define SRST_H_SECURE_S_BIU		632
+> >>>>> -#define SRST_P_SECURE_S_BIU		633
+> >>>>> -#define SRST_CRYPTO_CORE		634
+> >>>>> -
+> >>>>> -#define SRST_CRYPTO_PKA			635
+> >>>>> -#define SRST_CRYPTO_RNG			636
+> >>>>> -#define SRST_A_CRYPTO			637
+> >>>>> -#define SRST_H_CRYPTO			638
+> >>>>> -#define SRST_KEYLADDER_CORE		639
+> >>>>> -#define SRST_KEYLADDER_RNG		640
+> >>>>> -#define SRST_A_KEYLADDER		641
+> >>>>> -#define SRST_H_KEYLADDER		642
+> >>>>> -#define SRST_P_OTPC_S			643
+> >>>>> -#define SRST_OTPC_S			644
+> >>>>> -#define SRST_WDT_S			645
+> >>>>> -
+> >>>>> -#define SRST_T_WDT_S			646
+> >>>>> -#define SRST_H_BOOTROM			647
+> >>>>> -#define SRST_A_DCF			648
+> >>>>> -#define SRST_P_DCF			649
+> >>>>> -#define SRST_H_BOOTROM_NS		650
+> >>>>> -#define SRST_P_KEYLADDER		651
+> >>>>> -#define SRST_H_TRNG_S			652
+> >>>>> -
+> >>>>> -#define SRST_H_TRNG_NS			653
+> >>>>> -#define SRST_D_SDMMC_BUFFER		654
+> >>>>> -#define SRST_H_SDMMC			655
+> >>>>> -#define SRST_H_SDMMC_BUFFER		656
+> >>>>> -#define SRST_SDMMC			657
+> >>>>> -#define SRST_P_TRNG_CHK			658
+> >>>>> -#define SRST_TRNG_S			659
+> >>>>> +#define SRST_A_SECURE_NS_BIU		10
+> >>>>
+> >>>> NAK. You just broke all users.
+> >>>
+> >>> If I'm reading the commit message correctly, all resets in that area
+> >>> couldn't have any users to begin with, as the registers controlling them
+> >>> are in the secure space, and need a higher exception level
+> >>>
+> >>> So if  anything is trying to handle these resets, would end up with some
+> >>> security exception right now.
+> >>>
+> >>> Though I guess we might want to use different names and not reuse the
+> >>> existing ones. scmi clocks use a SCMI_CLK_* id scheme, so maybe SCMI_SRST_* ?
+> >>
+> >> I don't quite get what the patch wants to achieve. Why dropping driver
+> >> support for given reset ID is connected with changing the value of
+> >> binding for given reset?
+> >>
+> >> What is the point of this define SRST_A_SECURE_NS_BIU 10?
+> > 
+> > This is about two different reset controllers. The IDs defined here
+> > are used by the operating system to access the correct registers.
+> > The kernel has a LUT from the ID to a register addresses, which is
+> > something you asked for during upstreaming.
+> > 
+> > The ID defined by Corentin is for reset control via SCMI firmware,
+> > which has different number scheme than Linux. To me the suggestion
+> > from Heiko looks sensible (i.e. create a new ID scheme and keep the
+> > current one unchanged).
+> 
+> So the binding is not for Linux but for FW? This should be explained in
+> the commit msg.
 
-So, this will be executed each time (including the rts_before_send delay) =
-the core wants
-to send data? This is not how it is supposed to work: The tx setup (and th=
-e
-delay before send) has to be done once when transmission starts. Note that=
- when sending
-a bulk of data the core may call cdns_uart_start_tx() several times before
-it eventually calls cdns_uart_stop_tx() to stop the transmission.
+No.
 
+The current binding describes reset IDs, which are mapped by the
+Linux driver to register offsets in the CRU (clock-reset-unit).
+But accessing the crypto reset line directly from Linux (which
+usually does not run in secure state) will fail. Accessing it
+from correct security context with the current binding is fine
+though. Considering we are sharing the bindings with e.g.
+U-Boot, I suggest to keep the currently defined IDs.
 
-> +	}
-> +
->  	cdns_uart_handle_tx(port);
->
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		time_out =3D jiffies + usecs_to_jiffies(TX_TIMEOUT);
-> +		/* Wait for tx completion */
-> +		while ((cdns_uart_tx_empty(cdns_uart->port) !=3D TIOCSER_TEMT) &&
-> +		       time_before(jiffies, time_out))
-> +			cpu_relax();
-> +
-> +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-> +
-> +		/*
-> +		 * Default Rx should be setup, because RX signaling path
-> +		 * need to enable to receive data.
-> +		 */
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +	}
-> +
->  	/* Enable the TX Empty interrupt */
->  	writel(CDNS_UART_IXR_TXEMPTY, port->membase + CDNS_UART_IER);
->  }
-> @@ -602,6 +713,14 @@ static void cdns_uart_start_tx(struct uart_port *po=
-rt)
->  static void cdns_uart_stop_tx(struct uart_port *port)
->  {
->  	unsigned int regval;
-> +	struct cdns_uart *cdns_uart =3D port->private_data;
-> +
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED) {
-> +		if (cdns_uart->port->rs485.delay_rts_after_send)
-> +			mdelay(cdns_uart->port->rs485.delay_rts_after_send);
-> +
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +	}
->
->  	regval =3D readl(port->membase + CDNS_UART_CR);
->  	regval |=3D CDNS_UART_CR_TX_DIS;
-> @@ -626,21 +745,6 @@ static void cdns_uart_stop_rx(struct uart_port *por=
-t)
->  	writel(regval, port->membase + CDNS_UART_CR);
->  }
->
-> -/**
-> - * cdns_uart_tx_empty -  Check whether TX is empty
-> - * @port: Handle to the uart port structure
-> - *
-> - * Return: TIOCSER_TEMT on success, 0 otherwise
-> - */
-> -static unsigned int cdns_uart_tx_empty(struct uart_port *port)
-> -{
-> -	unsigned int status;
-> -
-> -	status =3D readl(port->membase + CDNS_UART_SR) &
-> -		       (CDNS_UART_SR_TXEMPTY | CDNS_UART_SR_TACTIVE);
-> -	return (status =3D=3D CDNS_UART_SR_TXEMPTY) ? TIOCSER_TEMT : 0;
-> -}
-> -
->  /**
->   * cdns_uart_break_ctl - Based on the input ctl we have to start or sto=
-p
->   *			transmitting char breaks
-> @@ -829,6 +933,9 @@ static int cdns_uart_startup(struct uart_port *port)
->  		(CDNS_UART_CR_TXRST | CDNS_UART_CR_RXRST))
->  		cpu_relax();
->
-> +	if (cdns_uart->port->rs485.flags & SER_RS485_ENABLED)
-> +		cdns_rs485_rx_setup(cdns_uart);
-> +
->  	/*
->  	 * Clear the RX disable bit and then set the RX enable bit to enable
->  	 * the receiver.
-> @@ -1455,6 +1562,23 @@ MODULE_DEVICE_TABLE(of, cdns_uart_of_match);
->  /* Temporary variable for storing number of instances */
->  static int instances;
->
-> +/**
-> + * cdns_rs485_config - Called when an application calls TIOCSRS485 ioct=
-l.
-> + * @port: Pointer to the uart_port structure
-> + * @termios: Pointer to the ktermios structure
-> + * @rs485: Pointer to the serial_rs485 structure
-> + *
-> + * Return: 0
-> + */
-> +static int cdns_rs485_config(struct uart_port *port, struct ktermios *t=
-ermios,
-> +			     struct serial_rs485 *rs485)
-> +{
-> +	if (rs485->flags & SER_RS485_ENABLED)
-> +		dev_dbg(port->dev, "Setting UART to RS485\n");
-> +
-> +	return 0;
-> +}
+But Corentin tries to get this running on Linux. For that he
+needs to ask the (SCMI) firmware running in secure state to
+please take care of the reset. The firmware is using different
+reset IDs (apparently the ones used by downstream Linux, which
+are derived from register offset).
 
-So what if userspace changes the RS485 configuration? When does it take ef=
-fect?
+In DT the difference looks like this (check the different phandles):
 
-> +
->  /**
->   * cdns_uart_probe - Platform driver probe
->   * @pdev: Pointer to the platform device structure
-> @@ -1463,6 +1587,7 @@ static int instances;
->   */
->  static int cdns_uart_probe(struct platform_device *pdev)
->  {
-> +	u32 val;
->  	int rc, id, irq;
->  	struct uart_port *port;
->  	struct resource *res;
-> @@ -1597,9 +1722,23 @@ static int cdns_uart_probe(struct platform_device=
- *pdev)
->  	port->private_data =3D cdns_uart_data;
->  	port->read_status_mask =3D CDNS_UART_IXR_TXEMPTY | CDNS_UART_IXR_RXTRI=
-G |
->  			CDNS_UART_IXR_OVERRUN | CDNS_UART_IXR_TOUT;
-> +	port->rs485_config =3D cdns_rs485_config;
-> +	port->rs485_supported =3D cdns_rs485_supported;
->  	cdns_uart_data->port =3D port;
->  	platform_set_drvdata(pdev, port);
->
-> +	rc =3D uart_get_rs485_mode(port);
-> +	if (rc)
-> +		goto err_out_clk_notifier;
-> +
-> +	cdns_uart_data->gpiod =3D devm_gpiod_get_optional(&pdev->dev, "rts",
-> +							GPIOD_OUT_LOW);
-> +	if (IS_ERR(cdns_uart_data->gpiod)) {
-> +		rc =3D PTR_ERR(cdns_uart_data->gpiod);
-> +		dev_err(port->dev, "xuartps: devm_gpiod_get_optional failed\n");
+#define SRST_A_SECURE_NS_BIU 629
+crypto-old {
+    // existing binding from Linux perspective
+    // reset via direct CRU access
+    // NOTE: permission denied
+    resets = <&cru SRST_A_SECURE_NS_BIU>; 
+};
 
-Why bail out with an error if having cdns_uart_data->gpiod is only optiona=
-l?
+#define SCMI_RST_A_SECURE_NS_BIU 10
+crypto-new {
+    // new binding from Linux perspective
+    // reset via SCMI firmware request
+    resets = <&scmi SCMI_RST_A_SECURE_NS_BIU>;
+};
 
-> +		goto err_out_clk_notifier;
-> +	}
-> +
->  	pm_runtime_use_autosuspend(&pdev->dev);
->  	pm_runtime_set_autosuspend_delay(&pdev->dev, UART_AUTOSUSPEND_TIMEOUT)=
-;
->  	pm_runtime_set_active(&pdev->dev);
-> @@ -1638,6 +1777,16 @@ static int cdns_uart_probe(struct platform_device=
- *pdev)
->  	cdns_uart_data->cts_override =3D of_property_read_bool(pdev->dev.of_no=
-de,
->  							     "cts-override");
->
-> +	if (cdns_uart_data->port->rs485.flags & SER_RS485_ENABLED) {
-> +		if (!cdns_uart_data->gpiod) {
-> +			val =3D readl(cdns_uart_data->port->membase
-> +				    + CDNS_UART_MODEMCR);
-> +			val |=3D CDNS_UART_MODEMCR_RTS;
-> +			writel(val, cdns_uart_data->port->membase
-> +			       + CDNS_UART_MODEMCR);
-> +		}
-> +	}
+Instead of introducing SCMI_RST_A_SECURE_NS_BIU, Corentin
+currently just redefines SRST_A_SECURE_NS_BIU. This is quite
+misleading. If somebody does '<&cru SRST_A_SECURE_NS_BIU>'
+with the '10' value for SCMI, it instead resets
+SRST_A_TOP_M300_BIU.
 
-This covers the RTS_AFTER_SEND mode. What if SER_RS485_RTS_ON_SEND is conf=
-igured instead
-(as it is the default set by uart_get_rs485_mode())? What if cdns_uart_dat=
-a->gpiod exists?
-Why not simply call cdns_rs485_rx_setup() which covers all these cases?
-Note that uart_add_one_port() will call into the serial core and eventuall=
-y result in an
-initial call to the ports rs485_config function (see uart_rs485_config()).=
- So maybe put the
-initial configuration into that function and remove the above code. Howeve=
-r
-in this case
+So my suggestion is to go with the suggestion from Heiko and
+introduce SCMI_RST_A_SECURE_NS_BIU (or something similar).
+That also matches how the SCMI clks on RK3588 and some other
+platforms. See e.g.:
 
-cdns_uart_data->cts_override =3D of_property_read_bool(pdev->dev.of_node,
-							     "cts-override");
-should be called before uart_add_one_port().
+of include/dt-bindings/clock/rockchip,rk3588-cru.h.
 
+Greetings,
 
-Regards,
-Lino
+-- Sebastian
 
