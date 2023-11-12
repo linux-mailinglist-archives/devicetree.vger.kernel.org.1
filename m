@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-15204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6257E8DB1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 01:55:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA537E8DBC
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 01:55:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07DC8280D8F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 00:55:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B01781F20FA5
+	for <lists+devicetree@lfdr.de>; Sun, 12 Nov 2023 00:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CDE15B5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C0317D9;
 	Sun, 12 Nov 2023 00:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJZqZgPy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qgpBSE+z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7A5137C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A8F15D1;
 	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 501B7C433CA;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E392C433CC;
 	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1699750546;
-	bh=4kucImHj71DNjO8Fkep5OM38QhqpmGmPU6kfG3O+HvQ=;
+	bh=BudbliKklZT1nMXLsYFQyB+Pk18EUouJG6KZUqc8uyA=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=KJZqZgPypH6bl6tdJ8y+foaDKgEsdcaal1SW8veJmtRw0j5Snnn39t9y2DxQ/3M21
-	 3uYon1iK6oQHrO4wGuU3H7Vsv4B5lRU/fap8GYtVjEHlKGyjQy/Dzlee9Qo5euSnR3
-	 BOnlsgA0QRY6fqVor4PRh6UjVh+aFChziRmt+stFYWFVrcvf4KLl2ZWhx6Rs3R6B/O
-	 i9YZbn4JZX4jGrv/+B/EYsV9wXMNhI93Qs/X1t2giuKudncvtG/0ZhyWY0X+KGZXx0
-	 7RzkFgwfkgJRxbkKmi1V8VkMYAjB7TiSZLk/qTwnDczaC0X70OeGKF9IV81rDXMdji
-	 2jVC3BbyYJwsA==
+	b=qgpBSE+z2PM5zIUQ4ZiQ42U4qfNh/mK+G0UjLlwezYzovO7Hv0r3U4c2k0cyQdJYu
+	 2tpvqEdQc/11Ql3RizpG4raIDOskXMIAUvBKTtjTHuZBVqO64Ai4BwQvtxiuGP7GE0
+	 CQmDP5c7hXu//cf4WJPIWVVxlHFlXjFtikp2paYREnbtSZEzC4aaPYEiSS3SYENmbA
+	 8Um9rkkzACTUm8CXhr7u/rIYQ204eiVoJlZZJPnezsmOLIDxlNAQc1kpIVDVmquMV2
+	 HIxQgf86TrDBy4GYf8wHAQCmg3P0oq4N21BCiACjV24ts57a55XSwDkPCJQzoigyop
+	 H7y/eALJS/dlA==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 32760C4166E;
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4CE26E0008B;
 	Sun, 12 Nov 2023 00:55:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
@@ -43,52 +43,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v3 0/6] riscv,isa-extensions additions
+Subject: Re: [PATCH v3 0/6] KVM RISC-V Conditional Operations
 From: patchwork-bot+linux-riscv@kernel.org
 Message-Id: 
- <169975054620.11360.8786420869587397898.git-patchwork-notify@kernel.org>
+ <169975054631.11360.10958982747975281844.git-patchwork-notify@kernel.org>
 Date: Sun, 12 Nov 2023 00:55:46 +0000
-References: <20231009-approve-verbalize-ce9324858e76@wendy>
-In-Reply-To: <20231009-approve-verbalize-ce9324858e76@wendy>
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: linux-riscv@lists.infradead.org, linux-riscv@lists.indradead.org,
+References: <20231003035226.1945725-1-apatel@ventanamicro.com>
+In-Reply-To: <20231003035226.1945725-1-apatel@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, pbonzini@redhat.com,
+ atishp@atishpatra.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
  conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, wens@csie.org, jernej.skrabec@gmail.com,
- samuel@sholland.org, daire.mcnamara@microchip.com, geert+renesas@glider.be,
- magnus.damm@gmail.com, kernel@esmil.dk, jszhang@kernel.org,
- guoren@kernel.org, wefu@redhat.com, unicorn_wang@outlook.com,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-renesas-soc@vger.kernel.org
+ shuah@kernel.org, ajones@ventanamicro.com, mchitale@ventanamicro.com,
+ devicetree@vger.kernel.org, kvm@vger.kernel.org,
+ kvm-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-kselftest@vger.kernel.org
 
 Hello:
 
 This series was applied to riscv/linux.git (fixes)
-by Arnd Bergmann <arnd@arndb.de>:
+by Anup Patel <anup@brainfault.org>:
 
-On Mon, 9 Oct 2023 10:37:44 +0100 you wrote:
-> Now with the RFC tag dropped. There are no changes here from "RFC v2",
-> other than the addition of tags that were provided along the way. I have
-> not added "Zfh" to the T-Head based stuff, as I can't actually read the
-> documentation that would show that they're encoding-for-encoding
-> compatible with the standard extension, since it is apparently only in
-> Chinese.
+On Tue,  3 Oct 2023 09:22:20 +0530 you wrote:
+> This series extends KVM RISC-V to allow Guest/VM discover and use
+> conditional operations related ISA extensions (namely XVentanaCondOps
+> and Zicond).
+> 
+> To try these patches, use KVMTOOL from riscv_zbx_zicntr_smstateen_condops_v1
+> branch at: https://github.com/avpatel/kvmtool.git
 > 
 > [...]
 
 Here is the summary with links:
-  - [v3,1/6] riscv: dts: microchip: convert isa detection to new properties
-    (no matching commit)
-  - [v3,2/6] riscv: dts: sifive: convert isa detection to new properties
-    (no matching commit)
-  - [v3,3/6] riscv: dts: starfive: convert isa detection to new properties
-    (no matching commit)
-  - [v3,4/6] riscv: dts: renesas: convert isa detection to new properties
-    (no matching commit)
-  - [v3,5/6] riscv: dts: allwinner: convert isa detection to new properties
-    https://git.kernel.org/riscv/c/c3f7c14856eb
-  - [v3,6/6] riscv: dts: thead: convert isa detection to new properties
-    https://git.kernel.org/riscv/c/0804f3bec9e9
+  - [v3,1/6] dt-bindings: riscv: Add Zicond extension entry
+    https://git.kernel.org/riscv/c/00c6f39c8247
+  - [v3,2/6] RISC-V: Detect Zicond from ISA string
+    https://git.kernel.org/riscv/c/662a601aa355
+  - [v3,3/6] RISC-V: KVM: Allow Zicond extension for Guest/VM
+    https://git.kernel.org/riscv/c/df68f4d8cb49
+  - [v3,4/6] KVM: riscv: selftests: Add senvcfg register to get-reg-list test
+    https://git.kernel.org/riscv/c/4d554e0226e6
+  - [v3,5/6] KVM: riscv: selftests: Add smstateen registers to get-reg-list test
+    https://git.kernel.org/riscv/c/e1a8db0c9a0e
+  - [v3,6/6] KVM: riscv: selftests: Add condops extensions to get-reg-list test
+    https://git.kernel.org/riscv/c/2b3f2b78ec93
 
 You are awesome, thank you!
 -- 
