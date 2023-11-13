@@ -1,424 +1,308 @@
-Return-Path: <devicetree+bounces-15428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFDA87EA09F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 16:52:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5538D7EA095
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 16:52:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0AAF1C2095D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:52:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1224D280E14
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB4E21A0B;
-	Mon, 13 Nov 2023 15:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8188921A05;
+	Mon, 13 Nov 2023 15:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="efiCWBwR"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="dlw+DE7q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E282121A07;
-	Mon, 13 Nov 2023 15:52:24 +0000 (UTC)
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5ED1728;
-	Mon, 13 Nov 2023 07:52:22 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1cc5fa0e4d5so40856955ad.0;
-        Mon, 13 Nov 2023 07:52:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529E3219F6
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 15:52:04 +0000 (UTC)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F8B8D6D
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 07:52:01 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-53dfc28a2afso6993221a12.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 07:52:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699890742; x=1700495542; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XGWunBoOAmKhHVGBNXmLXecareAz0Mh9iiom0qVpKsE=;
-        b=efiCWBwRJwO25JZ01tR5Q0gC7sKzIv7xOWA3P4MGdIPloqBbh6L7MyS/Dh16TcXCXg
-         aOz2klmfWBaBZGmnVhoq10sUbKZQtaP7SgRaCp7qcv150LcK3b8TgzEmQ+CJUFlTkqio
-         rhRK9VtvPZUCokHwqVw5HkoH5WCulw0QwgNZC/SL8NZv3+QIKN5GF5UzyBOJqK/Qd5Wy
-         ocleSSPEZWC4BUzK5TkxuYPyoXPyoQMW1omdn3CVGvOpTwsC+1A37ejSbP4b9diQsfXg
-         wQpmogtXMkxMkYhLjMqkkFaO9sOVhdi40t7wZAacwk4QgUjpPZegjHA58fN8Re8BNSyw
-         e0uA==
+        d=fairphone.com; s=fair; t=1699890720; x=1700495520; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1VBQq/GNmlMl4OZYSkNgPQl89PzdV47b+mg6x2mJ9GY=;
+        b=dlw+DE7qtuJ2pa+JbircufOEVcIDBm+EEW8c10ounTCvx4nmRCtVz/FvLKVgp4OTts
+         z0bXyZPlyUJ2e2rFO1cwSZ/vjwNrom3bxpzoOwdR2YkxOd/rDr+m6yBP9dfIYjZ+xXoo
+         KG7c7g09E3ao+9VUMdRIM33x2ooueQGXGXFMr8TsOTugKwkrt4LHgYQmPoE3wc4yi0vA
+         vzQM9zKTFNrIXwbW/KqbaMHoO87KtYraCEowFYXJJMaIYhd2VyLnREWxRxAbD+D3+Tdg
+         Qd9MutwCaFmAmM1Vbp4ZeCJGd6EUEuuqUcUmk8ojZ+6DmGZhLmbI9z4PrkLdeL7be7qH
+         WI8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699890742; x=1700495542;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XGWunBoOAmKhHVGBNXmLXecareAz0Mh9iiom0qVpKsE=;
-        b=HOF+FctdwFrQ4qSABvAzMaNZktPBswhnU6VD4O0TCzWT8ZYzSHrKo9cpKHBLflclB6
-         0JgU+l1nvRU+FMnbpizkLr6Pb89wccRN5LaI1edU8CK5T43gXGdSidLA3Pu/IFM8jw5S
-         7SGUnaTortTt/2Yt5aF8+3k6+6NH8IHitlFruVxDLcI55HS/sTjWMLM5T6z/CzvomewX
-         FvCM3UmMTgIiStE8x33cN68FtRh7pF/s0O8Sh/RKUE1j0mi+nQIY43Xm3yaOv0nFW5vQ
-         1sr6Cbqcp4qTunUomVmCmaubK92p3IEITUiKidHIpUt5WCEGKwg7tRTR4Kknxgqt2D57
-         2mZg==
-X-Gm-Message-State: AOJu0YxXYarrVnLgDGavlMXJX0WipLbxI96XcJ2+Z+b/Im4w9Bw+yO0s
-	rRhFU1ptSby6zdAFrSrBeE8=
-X-Google-Smtp-Source: AGHT+IHPK95Y0jTsYoZpz1kAidQYw18LQDzKDYhMvbYR/Ou/QfUIFyBbSQ70pqGwpRyHGLNItPwf8Q==
-X-Received: by 2002:a17:903:32c7:b0:1cc:4828:9b07 with SMTP id i7-20020a17090332c700b001cc48289b07mr9702445plr.0.1699890742023;
-        Mon, 13 Nov 2023 07:52:22 -0800 (PST)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id iw14-20020a170903044e00b001c5076ae6absm4155925plb.126.2023.11.13.07.52.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 07:52:21 -0800 (PST)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Joel Stanley <joel@jms.id.au>,
-	Chanh Nguyen <chanh@os.amperecomputing.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: [PATCH v3 2/2] hwmon: (pmbus) Add support for MPS Multi-phase mp5990
-Date: Mon, 13 Nov 2023 23:50:08 +0800
-Message-Id: <20231113155008.2147090-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231113155008.2147090-1-peteryin.openbmc@gmail.com>
-References: <20231113155008.2147090-1-peteryin.openbmc@gmail.com>
+        d=1e100.net; s=20230601; t=1699890720; x=1700495520;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1VBQq/GNmlMl4OZYSkNgPQl89PzdV47b+mg6x2mJ9GY=;
+        b=upri7a4FiiztSHfHSHCOJ/C6WNF2tbHDP4CAEjjjXdwPgUUkgGpkl65Lxtt5WsU/hQ
+         qu8BZsSH5Tuyhz8CKxGsFJRhXg82/Ah3mDlThcybWRpVnZED5UFtrzPDip+rkAIiasuS
+         wTQ6/I6qzBO9d2dRzFtt1nVijywcGkRwITHYUV1v0uyZbRNn5NlEHkEIK+90FKU9EacN
+         migzJ4jOCJegAEROC5xAOFrfamfvmCDDGEp4o0vdP6TD7OJQagxHw4rtM+I8QcxHS9+j
+         +6xOxWjTGvrp7kKZLTf6NidZSOvCTyxgIqRMWENggc6q0nkBTdB+yZ2GP9N7YwQ/rTYQ
+         RyHg==
+X-Gm-Message-State: AOJu0Ywyr2EmfkA10ZDQu6KPHq9fg5Onu555bXoHfO/zXxOydgI2Ntyc
+	/RIf3nDm7mNEYmj8Ll2dmXQACg==
+X-Google-Smtp-Source: AGHT+IGU8psV8YYpBrak+k84CjH7qUglA4kvuDZoFMtyh0eqWtgwK8A9z5Nv2VCQrwy+5QSmAsj9Zw==
+X-Received: by 2002:a17:906:cc53:b0:9d5:9065:90a9 with SMTP id mm19-20020a170906cc5300b009d5906590a9mr4772835ejb.45.1699890720078;
+        Mon, 13 Nov 2023 07:52:00 -0800 (PST)
+Received: from localhost (k10064.upc-k.chello.nl. [62.108.10.64])
+        by smtp.gmail.com with ESMTPSA id ov3-20020a170906fc0300b00977cad140a8sm4216945ejb.218.2023.11.13.07.51.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Nov 2023 07:51:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 13 Nov 2023 16:51:59 +0100
+Message-Id: <CWXSYVQ15C8X.2RXH2M2HH62RY@fairphone.com>
+Cc: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Komal Bajaj"
+ <quic_kbajaj@quicinc.com>, "Andy Gross" <agross@kernel.org>, "Bjorn
+ Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konrad.dybcio@linaro.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <quic_nainmeht@quicinc.com>
+Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
+ rb3 board
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Mukesh Ojha" <quic_mojha@quicinc.com>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>
+X-Mailer: aerc 0.15.2
+References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
+ <20231103184655.23555-3-quic_kbajaj@quicinc.com>
+ <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+ <1830fc44-7bac-4db5-af59-112410d73a64@linaro.org>
+ <af05dbdb-21bf-34f0-e9b3-9f6b9a0c3115@quicinc.com>
+ <CAA8EJpq89g9EeyKcogU+Mt9ie6Bk-rmgi=GqyycYBm_291i1Bw@mail.gmail.com>
+ <d5492e4d-6c70-7d6c-3f5b-a0b5d9266ab0@quicinc.com>
+ <CAA8EJpr+8MSEHbziTJhhnkeFhPemRARL_bpWEvHmVvAcbp++Cw@mail.gmail.com>
+ <62650f39-9703-fdc5-c72a-801b8e9f6470@quicinc.com>
+In-Reply-To: <62650f39-9703-fdc5-c72a-801b8e9f6470@quicinc.com>
 
-Add support for mp5990 device from Monolithic Power Systems, Inc. (MPS)
-vendor. This is a Hot-Swap Controller.
+On Tue Nov 7, 2023 at 9:10 AM CET, Mukesh Ojha wrote:
+>
+>
+> On 11/7/2023 4:02 AM, Dmitry Baryshkov wrote:
+> > On Mon, 6 Nov 2023 at 16:46, Mukesh Ojha <quic_mojha@quicinc.com> wrote=
+:
+> >>
+> >>
+> >>
+> >> On 11/6/2023 5:24 PM, Dmitry Baryshkov wrote:
+> >>> On Mon, 6 Nov 2023 at 13:41, Mukesh Ojha <quic_mojha@quicinc.com> wro=
+te:
+> >>>>
+> >>>>
+> >>>> On 11/5/2023 6:38 PM, Krzysztof Kozlowski wrote:
+> >>>>> On 03/11/2023 23:22, Dmitry Baryshkov wrote:
+> >>>>>> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com>=
+ wrote:
+> >>>>>>>
+> >>>>>>> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
+> >>>>>>> platform. QCM6490 is derived from SC7280 meant for various
+> >>>>>>> form factor including IoT.
+> >>>>>>>
+> >>>>>>> Supported features are, as of now:
+> >>>>>>> * Debug UART
+> >>>>>>> * eMMC (only in IDP)
+> >>>>>>> * USB
+> >>>>>>>
+> >>>>>
+> >>>>> ...
+> >>>>>
+> >>>>>>> +
+> >>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi b/a=
+rch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+> >>>>>>> new file mode 100644
+> >>>>>>> index 000000000000..01adc97789d0
+> >>>>>>> --- /dev/null
+> >>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+> >>>>>>
+> >>>>>> I have mixed feelings towards this file. Usually we add such 'comm=
+on'
+> >>>>>> files only for the phone platforms where most of the devices are
+> >>>>>> common.
+> >>>>>> Do you expect that IDP and RB3 will have a lot of common code othe=
+r
+> >>>>>> than these regulator settings?
+> >>>>>
+> >>>>> I agree here. What exactly is common in the real hardware between I=
+DP
+> >>>>> and RB3? Commit msg does not explain it, so I do not see enough
+> >>>>> justification for common file. Just because some DTS looks similar =
+for
+> >>>>> different hardware does not mean you should creat common file.
+> >>>>
+> >>>> @Dmitry/@Krzysztof,
+> >>>>
+> >>>> Thank you for reviewing the RFC, we wanted to continue the
+> >>>> suggestion/discussion given on [1] , where we discussed that this
+> >>>> qcm6490 is going to be targeted for IOT segment and will have differ=
+ent
+> >>>> memory map and it is going to use some of co-processors like adsp/cd=
+sp
+> >>>> which chrome does not use.
+> >>>>
+> >>>> So to your question what is common between RB3 and IDP, mostly they =
+will
+> >>>> share common memory map(similar to [2]) and regulator settings and b=
+oth
+> >>>> will use adsp/cdsp etc., we will be posting the memory map changes a=
+s
+> >>>> well in coming weeks once this RFC is acked.
+> >>>
+> >>> Is the memory map going to be the same as the one used on Fairphone5?
+> >>
+> >> No, Fairphone5 looks to be using chrome memory map and i suggested
+> >> here to move them into sc7280.dtsi
+> >>
+> >> https://lore.kernel.org/lkml/d5d53346-ca3b-986a-e104-d87c37115b62@quic=
+inc.com/
+> >>
+> >>>
+> >>> Are ADSP and CDSP physically present on sc7280?
+> >>
+> >> Yes, they are present but not used.
+> >=20
+> > So ADSP and CDSP should go into sc7280.dtsi. They will anyway have
+> > status =3D "disabled";
+> >=20
+> >>
+> >>>
+> >>> I think that your goal should be to:
+> >>> - populate missing device in sc7280.dtsi
+> >>> - maybe add qcm6490.dtsi which defines SoC-level common data (e.g. me=
+mory map)
+> >>> - push the rest to board files.
+> >>
+> >> Agree to all of the point.
+> >> We started with the same thought at[3] but it got lost in discussion
+> >> due to its differentiation with mobile counter part(fairphone) which
+> >> follow chrome memory map and hence we came up with qcm6490-iot-common.
+> >> Do you think, qcm6490-iot.dtsi should be good ?
+> >=20
+> > No. DT describes hardware, and -iot is not a hardware abstraction / uni=
+fication.
+> > If you consider your memory map to be generic for the qcm6490 (and FP5
+> > being the only exception), add it to the qcm6490.dtsi (and let FP5
+> > override it, like some of the phones do). If it can not be considered
+> > generic for the SoC, then you have no other choice than to replicate
+> > it to all board files.
+>
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- Documentation/hwmon/index.rst  |   1 +
- Documentation/hwmon/mp5990.rst |  84 ++++++++++++++++
- drivers/hwmon/pmbus/Kconfig    |   9 ++
- drivers/hwmon/pmbus/Makefile   |   1 +
- drivers/hwmon/pmbus/mp5990.c   | 177 +++++++++++++++++++++++++++++++++
- 5 files changed, 272 insertions(+)
- create mode 100644 Documentation/hwmon/mp5990.rst
- create mode 100644 drivers/hwmon/pmbus/mp5990.c
+Hi Mukesh,
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 042e1cf9501b..8c70e10fc795 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -157,6 +157,7 @@ Hardware Monitoring Kernel Drivers
-    mp2888
-    mp2975
-    mp5023
-+   mp5990
-    nct6683
-    nct6775
-    nct7802
-diff --git a/Documentation/hwmon/mp5990.rst b/Documentation/hwmon/mp5990.rst
-new file mode 100644
-index 000000000000..6f2f0c099d44
---- /dev/null
-+++ b/Documentation/hwmon/mp5990.rst
-@@ -0,0 +1,84 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver mp5990
-+====================
-+
-+Supported chips:
-+
-+  * MPS MP5990
-+
-+    Prefix: 'mp5990'
-+
-+  * Datasheet
-+
-+    Publicly available at the MPS website : https://www.monolithicpower.com/en/mp5990.html
-+
-+Author:
-+
-+	Peter Yin <peteryin.openbmc@gmail.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for Monolithic Power Systems, Inc. (MPS)
-+MP5990 Hot-Swap Controller.
-+
-+Device compliant with:
-+
-+- PMBus rev 1.3 interface.
-+
-+Device supports direct and linear format for reading input voltage,
-+output voltage, output current, input power and temperature.
-+
-+The driver exports the following attributes via the 'sysfs' files
-+for input voltage:
-+
-+**in1_input**
-+
-+**in1_label**
-+
-+**in1_max**
-+
-+**in1_max_alarm**
-+
-+**in1_min**
-+
-+**in1_min_alarm**
-+
-+The driver provides the following attributes for output voltage:
-+
-+**in2_input**
-+
-+**in2_label**
-+
-+**in2_alarm**
-+
-+The driver provides the following attributes for output current:
-+
-+**curr1_input**
-+
-+**curr1_label**
-+
-+**curr1_alarm**
-+
-+**curr1_max**
-+
-+The driver provides the following attributes for input power:
-+
-+**power1_input**
-+
-+**power1_label**
-+
-+**power1_alarm**
-+
-+The driver provides the following attributes for temperature:
-+
-+**temp1_input**
-+
-+**temp1_max**
-+
-+**temp1_max_alarm**
-+
-+**temp1_crit**
-+
-+**temp1_crit_alarm**
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index 270b6336b76d..65a116f7744d 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -326,6 +326,15 @@ config SENSORS_MP5023
- 	  This driver can also be built as a module. If so, the module will
- 	  be called mp5023.
- 
-+config SENSORS_MP5990
-+	tristate "MPS MP5990"
-+	help
-+	  If you say yes here you get hardware monitoring support for MPS
-+	  MP5990.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called mp5990.
-+
- config SENSORS_MPQ7932_REGULATOR
- 	bool "Regulator support for MPQ7932"
- 	depends on SENSORS_MPQ7932 && REGULATOR
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index 84ee960a6c2d..212d9ca0acc9 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -35,6 +35,7 @@ obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
- obj-$(CONFIG_SENSORS_MP2888)	+= mp2888.o
- obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
- obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
-+obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
- obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
- obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
- obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
-diff --git a/drivers/hwmon/pmbus/mp5990.c b/drivers/hwmon/pmbus/mp5990.c
-new file mode 100644
-index 000000000000..2d721b6acfb8
---- /dev/null
-+++ b/drivers/hwmon/pmbus/mp5990.c
-@@ -0,0 +1,177 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Driver for MPS MP5990 Hot-Swap Controller
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include "pmbus.h"
-+
-+#define MP5990_EFUSE_CFG	(0xC4)
-+#define MP5990_VOUT_FORMAT	BIT(9)
-+
-+struct mp5990_data {
-+	struct pmbus_driver_info info;
-+	u8 vout_mode;
-+	u8 vout_linear_exponent;
-+};
-+
-+#define to_mp5990_data(x)  container_of(x, struct mp5990_data, info)
-+
-+static int mp5990_read_byte_data(struct i2c_client *client, int page, int reg)
-+{
-+	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-+	struct mp5990_data *data = to_mp5990_data(info);
-+
-+	switch (reg) {
-+	case PMBUS_VOUT_MODE:
-+		if (data->vout_mode == linear) {
-+			/*
-+			 * The VOUT format is linear11, not linear16.
-+			 * We should enforce the VOUT in linear mode and
-+			 * return exponent value.
-+			 */
-+			return data->vout_linear_exponent;
-+		}
-+
-+		/*
-+		 * The datasheet does not support the VOUT command,
-+		 * but the device responds with a default value of 0x17.
-+		 * In the standard, 0x17 represents linear mode. However,
-+		 * Therefore, we should enforce the VOUT in the direct format
-+		 * when format use default direct mode.
-+		 */
-+		return PB_VOUT_MODE_DIRECT;
-+
-+	default:
-+		return -ENODATA;
-+	}
-+}
-+
-+static int mp5990_read_word_data(struct i2c_client *client, int page,
-+				 int phase, int reg)
-+{
-+	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-+	struct mp5990_data *data = to_mp5990_data(info);
-+	int ret;
-+	s32 mantissa;
-+
-+	switch (reg) {
-+	case PMBUS_READ_VOUT:
-+		ret = pmbus_read_word_data(client, page, phase, reg);
-+		if (ret < 0)
-+			return ret;
-+		/*
-+		 * Because the VOUT mode is linear11 and not linear16,
-+		 * we disregard bits[15:11] and report based on the VOUT mode.
-+		 */
-+		if (data->vout_mode == linear) {
-+			mantissa = ((s16)((ret & 0x7ff) << 5)) >> 5;
-+			ret = mantissa;
-+		}
-+		break;
-+	default:
-+		return -ENODATA;
-+	}
-+
-+	return ret;
-+}
-+
-+static struct pmbus_driver_info mp5990_info = {
-+	.pages = 1,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.format[PSC_POWER] = direct,
-+	.format[PSC_TEMPERATURE] = direct,
-+	.m[PSC_VOLTAGE_IN] = 32,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = 0,
-+	.m[PSC_VOLTAGE_OUT] = 32,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = 0,
-+	.m[PSC_CURRENT_OUT] = 16,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = 0,
-+	.m[PSC_POWER] = 1,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = 0,
-+	.m[PSC_TEMPERATURE] = 1,
-+	.b[PSC_TEMPERATURE] = 0,
-+	.R[PSC_TEMPERATURE] = 0,
-+	.func[0] =
-+		PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
-+		PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT |
-+		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
-+	.read_byte_data = mp5990_read_byte_data,
-+	.read_word_data = mp5990_read_word_data,
-+};
-+
-+static int mp5990_probe(struct i2c_client *client)
-+{
-+	struct pmbus_driver_info *info;
-+	struct mp5990_data *data;
-+	int ret;
-+
-+	data = devm_kzalloc(&client->dev, sizeof(struct mp5990_data),
-+			    GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	memcpy(&data->info, &mp5990_info, sizeof(*info));
-+	info = &data->info;
-+
-+	/* Read Vout Config */
-+	ret = i2c_smbus_read_word_data(client, MP5990_EFUSE_CFG);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Can't get vout mode.");
-+		return ret;
-+	}
-+
-+	/*
-+	 * EFUSE_CFG (0xC4) bit9=1 is linear mode, bit=0 is direct mode.
-+	 */
-+	if (ret & MP5990_VOUT_FORMAT) {
-+		data->vout_mode = linear;
-+		data->info.format[PSC_VOLTAGE_IN] = linear;
-+		data->info.format[PSC_VOLTAGE_OUT] = linear;
-+		data->info.format[PSC_CURRENT_OUT] = linear;
-+		data->info.format[PSC_POWER] = linear;
-+		ret = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
-+		if (ret < 0) {
-+			dev_err(&client->dev, "Can't get vout exponent.");
-+			return ret;
-+		}
-+		data->vout_linear_exponent = (u8)((ret >> 11) & 0x1f);
-+	} else {
-+		data->vout_mode = direct;
-+	}
-+	return pmbus_do_probe(client, info);
-+}
-+
-+static const struct of_device_id mp5990_of_match[] = {
-+	{ .compatible = "mps,mp5990" },
-+	{}
-+};
-+
-+static const struct i2c_device_id mp5990_id[] = {
-+	{"mp5990", 0},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, mp5990_id);
-+
-+static struct i2c_driver mp5990_driver = {
-+	.driver = {
-+		   .name = "mp5990",
-+		   .of_match_table = mp5990_of_match,
-+	},
-+	.probe = mp5990_probe,
-+	.id_table = mp5990_id,
-+};
-+module_i2c_driver(mp5990_driver);
-+
-+MODULE_AUTHOR("Peter Yin <peter.yin@quantatw.com>");
-+MODULE_DESCRIPTION("PMBus driver for MP5990 HSC");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(PMBUS);
--- 
-2.25.1
+> Thanks for the suggestion.
+> Let me add @Luca here for information, if he want to share
+> anything about qcm6490 fp5 memory map.
+
+Not sure I have much to share, just probably that on FP5 the memory
+setup and all the basics just come from a standard QCM6490.LA.3.0
+release.
+I don't see any hint that our ODM changed something in the memory map
+for the device either.
+
+I'm also aware that other phones also use QCM6490 SoC, so I'm still
+wondering where the distinction between "FP5/ChromeOS memory map" vs
+this new QCM6490 memory map is.
+There's also e.g. this phone using QCM6490, I've not looked into this at
+all, but I'm guessing that phone uses the same memory map as FP5.
+https://www.crosscall.com/en_NL/core-z5-COZ5.MASTER.html
+
+Regards
+Luca
+
+>
+> -Mukesh
+> >=20
+> >>
+> >> [3]
+> >> https://lore.kernel.org/linux-arm-msm/20231003175456.14774-3-quic_kbaj=
+aj@quicinc.com/
+> >>
+> >> -Mukesh
+> >>>
+> >>> I don't think that putting regulators to the common file is a good
+> >>> idea. Platforms will further change and limit voltage limits and
+> >>> modes, so they usually go to the board file.
+> >>>
+> >>>>
+> >>>>
+> >>>> Thanks,
+> >>>> Mukesh
+> >>>>
+> >>>> [1]
+> >>>> https://lore.kernel.org/linux-arm-msm/d97ebf74-ad03-86d6-b826-b57be2=
+09b9e2@quicinc.com/
+> >>>>
+> >>>> [2]
+> >>>> commit 90c856602e0346ce9ff234062e86a198d71fa723
+> >>>> Author: Douglas Anderson <dianders@chromium.org>
+> >>>> Date:   Tue Jan 25 14:44:20 2022 -0800
+> >>>>
+> >>>>        arm64: dts: qcom: sc7280: Factor out Chrome common fragment
+> >>>>
+> >>>>        This factors out a device tree fragment from some sc7280 devi=
+ce
+> >>>>        trees. It represents the device tree bits that should be incl=
+uded for
+> >>>>        "Chrome" based sc7280 boards. On these boards the bootloader =
+(Coreboot
+> >>>>        + Depthcharge) configures things slightly different than the
+> >>>>        bootloader that Qualcomm provides. The modem firmware on thes=
+e boards
+> >>>>        also works differently than on other Qulacomm products and th=
+us the
+> >>>>        reserved memory map needs to be adjusted.
+> >>>>
+> >>>>        NOTES:
+> >>>>        - This is _not_ quite a no-op change. The "herobrine" and "id=
+p"
+> >>>>          fragments here were different and it looks like someone sim=
+ply
+> >>>>          forgot to update the herobrine version. This updates a few =
+numbers
+> >>>>          to match IDP. This will also cause the `pmk8350_pon` to be =
+disabled
+> >>>>          on idp/crd, which I belive is a correct change.
+> >>>>        - At the moment this assumes LTE skus. Once it's clearer how =
+WiFi SKUs
+> >>>>          will work (how much of the memory map they can reclaim) we =
+may add
+> >>>>          an extra fragment that will rejigger one way or the other.
+> >>>>
+> >>>>        Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> >>>>        Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> >>>>        Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> >>>>        Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >>>>        Link:
+> >>>> https://lore.kernel.org/r/20220125144316.v2.3.Iac012fa8d727be46448d4=
+7027a1813ea716423ce@changeid
+> >>>>
+> >>>>
+> >>>>>
+> >>>>> Best regards,
+> >>>>> Krzysztof
+> >>>>>
+> >>>
+> >>>
+> >>>
+> >=20
+> >=20
+> >=20
 
 
