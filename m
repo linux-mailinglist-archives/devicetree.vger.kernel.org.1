@@ -1,100 +1,214 @@
-Return-Path: <devicetree+bounces-15347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 263E87E9C1D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 945C97E9C3C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2F27280A90
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:26:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D7C7280B97
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC4F1D559;
-	Mon, 13 Nov 2023 12:26:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA931C2B1;
+	Mon, 13 Nov 2023 12:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUeaWkms"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TULh3ryt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7552C1D69A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:26:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB5F7C433C7;
-	Mon, 13 Nov 2023 12:26:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699878395;
-	bh=FPIp+cqgIY0PhpYyM/+c1zOLJtRcC1R0KvXB0ib9TbM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hUeaWkms3Y9wLVCS+wsQEym5p9vIWKWEEfs61vzfTTz/4ckuyv7Z2NYNlaIKSWTb1
-	 ara4RM1NgeVu6zM6KFga2nVJPpZOZq47M56XPtp26sZj17W8KB5N2P6ZsTAvF7BLhd
-	 CZq/APnrPcNCshIdv/bekTECw+P+3Jn6e/LJP4v0PhquPQVBA219VAKxoPnZQDCcKr
-	 zkLmncAPM2b1WAXUu/9x6Rs/s6JN36k7OlKf3CZXRgnGKkcUISgLFOiic/MZzWRaNX
-	 DPEyfuXeAHTfRXUc1A0VhXUx0OYbCIsfLXAyS/28IeWCm8Bb0J41hTWKUwWWU+wokb
-	 MyEwfPgyUYmWg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1r2W1R-00Cfx5-G5;
-	Mon, 13 Nov 2023 12:26:33 +0000
-Date: Mon, 13 Nov 2023 12:26:33 +0000
-Message-ID: <867cml2612.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Hongyan Xia <hongyan.xia2@arm.com>
-Cc: David Dai <davidai@google.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Quentin Perret <qperret@google.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>,
-	Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] Improve VM CPUfreq and task placement behavior
-In-Reply-To: <438c96fd-bcb0-4699-b81b-40f800cedca0@arm.com>
-References: <20231111014933.1934562-1-davidai@google.com>
-	<438c96fd-bcb0-4699-b81b-40f800cedca0@arm.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E651BDD6
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:35:27 +0000 (UTC)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB46CD55;
+	Mon, 13 Nov 2023 04:35:25 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-53e08e439c7so7224029a12.0;
+        Mon, 13 Nov 2023 04:35:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699878924; x=1700483724; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sqJNnVUISV8ConHJRlGZ/JEIE4MyLgnfqLghRwViRxM=;
+        b=TULh3rytxFF35uu6vX44slI8G9eeZ0T8GApNXcpZXxP37SOM4rWejE9abnLEmQGzNT
+         mtXzvEKApYyAZu7NfMQNgz1uPMr4z+Jrrbui8L6hI6xE8ro+5DFg/18Mj20BXiU2UAXH
+         3rKRDsEjrswqFWhlqEbY4wAlfXsQ8KP30sP4knJdkGggfy1wKPi/PvSSMNO4rp1BR3Wo
+         Fdx9SuiCxqiXVmPanJhBTmDtriyr3i0ttagpzEM4nfi4pauRf/ZKcdhjIrT37aqmwLWO
+         l3R2dEP7Y3FkDbgB9JZYb3HZnMlLNqFdw9tZJW9G5CUOOUk1/UafGVG2r+MJ9rKb65jU
+         2WgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699878924; x=1700483724;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sqJNnVUISV8ConHJRlGZ/JEIE4MyLgnfqLghRwViRxM=;
+        b=FBXIvIvVLcBI3emjBFmMK6PGXqV6AN3Ag9Xrow99XNtS5GE0FEKPoENLxLYujJs5Qw
+         zNsbryaVQ2GRgG6UYDi/UFx8pnu9mDlEXLSEmnzjyAfkzuRsIDf28Yy7pRsGxlmzMhzf
+         FbqtjR6R5r4mrqJMoK/O2mKNq/aJJrwQbu0COV7sVeIlQ7y+vAtn77hnXfLW9+ca+V6i
+         08vvycuF0KPDtti6SSOJfZkyngSRdiGFusyYHfNohJNa+6LBeHKa6WQCLr0EfcaYZs8X
+         /Q3oW01faAZjdcQO9cCWI/Vgwib1ca3sBsmE79rnEjc6791dz15OjeVTOVDIjbDDDfQb
+         EBCg==
+X-Gm-Message-State: AOJu0Yx3JBjQ6Dj1FM3eJjRB6hstZ/Rr7S3yBVtQUMWj6hvxI0ploY6l
+	cWsT1MnUgmA4AcGLvgorQMzjjATOfwiRA4H7E7Y=
+X-Google-Smtp-Source: AGHT+IGDNu9XaR6qzbagXlfw/e4IMYemMCmpWBxJJ4MgXyWOk4jaKiMzD+SDoi1Hio1tCexm0N7XL20Ga2toGWiaOkI=
+X-Received: by 2002:aa7:d699:0:b0:53e:21f6:d784 with SMTP id
+ d25-20020aa7d699000000b0053e21f6d784mr5646548edr.8.1699878924092; Mon, 13 Nov
+ 2023 04:35:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: hongyan.xia2@arm.com, davidai@google.com, rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, sudeep.holla@arm.com, saravanak@google.com, qperret@google.com, mhiramat@google.com, will@kernel.org, peterz@infradead.org, vincent.guittot@linaro.org, oliver.upton@linux.dev, dietmar.eggemann@arm.com, quic_pkondeti@quicinc.com, pankaj.gupta@amd.com, mgorman@suse.de, kernel-team@android.com, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+References: <20231113085305.1823455-1-javierm@redhat.com> <9f3d3c8d-fbf1-485b-9c2a-4d442733954d@suse.de>
+In-Reply-To: <9f3d3c8d-fbf1-485b-9c2a-4d442733954d@suse.de>
+From: Andrew Worsley <amworsley@gmail.com>
+Date: Mon, 13 Nov 2023 23:35:12 +1100
+Message-ID: <CA+Y=x3khfKx_oQYABMSCAPOEuDWyZ+MyTHK=JufH8fC-m6z7Xw@mail.gmail.com>
+Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
+ node is found
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org, 
+	Ard Biesheuvel <ardb@kernel.org>, Sima Vetter <daniel.vetter@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	dri-devel@lists.freedesktop.org, Hector Martin <marcan@marcan.st>, 
+	Sergio Lopez <slp@redhat.com>, Frank Rowand <frowand.list@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 13 Nov 2023 12:20:29 +0000,
-Hongyan Xia <hongyan.xia2@arm.com> wrote:
-> 
-> Also, my knowledge with KVM is limited. May I know where the vCPU fork
-> happens? Can't you just set the p->sched_reset_on_fork flag on fork to
-> not carry forward the uclamp values?
+On Mon, 13 Nov 2023 at 20:18, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>
+>
+>
+> Am 13.11.23 um 09:51 schrieb Javier Martinez Canillas:
+> > Some DT platforms use EFI to boot and in this case the EFI Boot Services
+> > may register a EFI_GRAPHICS_OUTPUT_PROTOCOL handle, that will later be
+> > queried by the Linux EFI stub to fill the global struct screen_info data.
+> >
+> > The data is used by the Generic System Framebuffers (sysfb) framework to
+> > add a platform device with platform data about the system framebuffer.
+> >
+> > But if there is a "simple-framebuffer" node in the DT, the OF core will
+> > also do the same and add another device for the system framebuffer.
+> >
+> > This could lead for example, to two platform devices ("simple-framebuffer"
+> > and "efi-framebuffer") to be added and matched with their corresponding
+> > drivers. So both efifb and simpledrm will be probed, leading to following:
+> >
+> > [    0.055752] efifb: framebuffer at 0xbd58dc000, using 16000k, total 16000k
+> > [    0.055755] efifb: mode is 2560x1600x32, linelength=10240, pages=1
+> > [    0.055758] efifb: scrolling: redraw
+> > [    0.055759] efifb: Truecolor: size=2:10:10:10, shift=30:20:10:0
+> > ...
+> > [    3.295896] simple-framebuffer bd58dc000.framebuffer: [drm] *ERROR*
+> > could not acquire memory range [??? 0xffff79f30a29ee40-0x2a5000001a7
+> > flags 0x0]: -16
+> > [    3.298018] simple-framebuffer: probe of bd58dc000.framebuffer
+> > failed with error -16
+> >
+> > To prevent the issue, make the OF core to disable sysfb if there is a node
+> > with a "simple-framebuffer" compatible. That way only this device will be
+> > registered and sysfb would not attempt to register another one using the
+> > screen_info data even if this has been filled.
+> >
+> > This seems the correct thing to do in this case because:
+> >
+> > a) On a DT platform, the DTB is the single source of truth since is what
+> >     describes the hardware topology. Even if EFI Boot Services are used to
+> >     boot the machine.
+> >
+> > b) The of_platform_default_populate_init() function is called in the
+> >     arch_initcall_sync() initcall level while the sysfb_init() function
+> >     is called later in the subsys_initcall() initcall level.
+> >
+> > Reported-by: Andrew Worsley <amworsley@gmail.com>
+> > Closes: https://lore.kernel.org/all/20231111042926.52990-2-amworsley@gmail.com
+> > Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+>
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+>
+> > ---
+> >
+> >   drivers/of/platform.c | 18 ++++++++++++++++--
+> >   1 file changed, 16 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > index f235ab55b91e..0a692fdfef59 100644
+> > --- a/drivers/of/platform.c
+> > +++ b/drivers/of/platform.c
+> > @@ -20,6 +20,7 @@
+> >   #include <linux/of_irq.h>
+> >   #include <linux/of_platform.h>
+> >   #include <linux/platform_device.h>
+> > +#include <linux/sysfb.h>
+> >
+> >   #include "of_private.h"
+> >
+> > @@ -621,8 +622,21 @@ static int __init of_platform_default_populate_init(void)
+> >               }
+> >
+> >               node = of_get_compatible_child(of_chosen, "simple-framebuffer");
+> > -             of_platform_device_create(node, NULL, NULL);
+> > -             of_node_put(node);
+> > +             if (node) {
+> > +                     /*
+> > +                      * Since a "simple-framebuffer" device is already added
+> > +                      * here, disable the Generic System Framebuffers (sysfb)
+> > +                      * to prevent it from registering another device for the
+> > +                      * system framebuffer later (e.g: using the screen_info
+> > +                      * data that may had been filled as well).
+> > +                      *
+> > +                      * This can happen for example on DT systems that do EFI
+> > +                      * booting and may provide a GOP handle to the EFI stub.
+> > +                      */
+> > +                     sysfb_disable();
+> > +                     of_platform_device_create(node, NULL, NULL);
+> > +                     of_node_put(node);
+> > +             }
+> >
+> >               /* Populate everything else. */
+> >               of_platform_default_populate(NULL, NULL, NULL);
+>
+> --
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstrasse 146, 90461 Nuernberg, Germany
+> GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+> HRB 36809 (AG Nuernberg)
 
-There is no "vCPU fork". The vcpu is a VMM (qemu, crosvm, kvmtool)
-thread, nothing else.
+I applied the patch and just the simpledrm driver is probed (the efifb is not):
 
-	M.
+grep -i -E 'drm|efifb' --color -C3 dmesg-6.5.0-asahi-00780-gf5aadc85a34d.txt
+[    2.621433] systemd-journald[276]: varlink-21: Changing state
+idle-server \xe2\x86\x92 pending-disconnect
+[    2.621437] systemd-journald[276]: varlink-21: Changing state
+pending-disconnect \xe2\x86\x92 processing-disconnect
+[    2.621439] systemd-journald[276]: varlink-21: Changing state
+processing-disconnect \xe2\x86\x92 disconnected
+[    2.878828] [drm] Initialized simpledrm 1.0.0 20200625 for
+bd58dc000.framebuffer on minor 0
+[    2.909764] Console: switching to colour frame buffer device 160x50
+[    2.915628] tas2770 1-0031: Property ti,imon-slot-no is missing
+setting default slot
+[    2.915631] tas2770 1-0031: Property ti,vmon-slot-no is missing
+setting default slot
+--
+[    2.921407] cs42l42 2-0048: supply VCP not found, using dummy regulator
+[    2.921412] cs42l42 2-0048: supply VD_FILT not found, using dummy regulator
+[    2.921416] cs42l42 2-0048: supply VL not found, using dummy regulator
+[    2.934530] simple-framebuffer bd58dc000.framebuffer: [drm] fb0:
+simpledrmdrmfb frame buffer device
+[    2.938437] cs42l42 2-0048: CS42L42 Device ID (42A83). Expected 42A42
+[    2.944183] cs42l83 2-0048: supply VA not found, using dummy regulator
+[    2.944769] cs42l83 2-0048: supply VP not found, using dummy regulator
 
--- 
-Without deviation from the norm, progress is not possible.
+I am wondering if the drm_aperture_remove_framebuffers() shouldn't be
+called in the probe function anyway
+as it ends up overriding the efifb one as wanted and handles the case
+the simpledrm (CONFIG_DRM_SIMPLEDRM)
+is not present.
+Perhaps there is an accepted principle that such kernels *should* fail
+to set up a FB?
+
+Andrew
 
