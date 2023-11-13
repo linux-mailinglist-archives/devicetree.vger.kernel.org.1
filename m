@@ -1,138 +1,100 @@
-Return-Path: <devicetree+bounces-15346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB917E9C13
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:22:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 263E87E9C1D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:26:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3F1E1C2039E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:22:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2F27280A90
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8B21D559;
-	Mon, 13 Nov 2023 12:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC4F1D559;
+	Mon, 13 Nov 2023 12:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rnhE9NFY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUeaWkms"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBEC15ACD;
-	Mon, 13 Nov 2023 12:22:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A62CDC433CC;
-	Mon, 13 Nov 2023 12:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7552C1D69A
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:26:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB5F7C433C7;
+	Mon, 13 Nov 2023 12:26:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699878149;
-	bh=iK08OXY6dY0EIsJ75ch5uI0DUUXVJGJlTdQYigZ01hg=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=rnhE9NFYihQUPPjLIKRhMijY8KEdLTiK9wYpdCjO141idobis2aZBenTLipsNxyGE
-	 9QtX+Nqjj3Wd4MMOSnbB8mjQXgrsMUJJ60RVi7O5djFD/RwHDLahAIDcW75N8nny8b
-	 KeZA377P/iXLWbCR+DXc6intGUtUZwlJSNJnA035wN9TTcGQCSn1kYXywL93wql/BD
-	 gKFvMsr4fV06yeEpO6B9ld4zlZh7cmdWpP57kNf1mM9gMl8W08gLsInLn3X29Bw+4G
-	 2nMidh6Jd0cT+iscjidxdQiMB8oQnwAXkFJml06EsiFAA5s1Nyhk1OcT8o6zLg7c3T
-	 ZyaCDE3nDynVQ==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Luca Weiss <luca.weiss@fairphone.com>,  Konrad Dybcio
- <konrad.dybcio@linaro.org>,  Andy Gross <agross@kernel.org>,  Bjorn
- Andersson <andersson@kernel.org>,  Mathieu Poirier
- <mathieu.poirier@linaro.org>,  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Manivannan Sadhasivam <mani@kernel.org>,
-  cros-qcom-dts-watchers@chromium.org,
-  ~postmarketos/upstreaming@lists.sr.ht,  phone-devel@vger.kernel.org,
-  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,  Rob Herring
- <robh@kernel.org>,  Matti =?utf-8?Q?Lehtim=C3=A4ki?=
- <matti.lehtimaki@gmail.com>,
-  linux-arm-msm@vger.kernel.org,  linux-remoteproc@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-    ath11k@lists.infradead.org
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable WiFi
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
-	<20231027-sc7280-remoteprocs-v1-9-05ce95d9315a@fairphone.com>
-	<12ea48bd-5022-4820-815a-89ef23ec9385@linaro.org>
-	<CWMK0AQRL87L.1F9MIDVQ4J439@fairphone.com>
-	<CAA8EJpqCeW8NVcrpwo6JVn0kE2W-QMELB1YH7i7pgOH6qiPbCQ@mail.gmail.com>
-Date: Mon, 13 Nov 2023 14:22:22 +0200
-In-Reply-To: <CAA8EJpqCeW8NVcrpwo6JVn0kE2W-QMELB1YH7i7pgOH6qiPbCQ@mail.gmail.com>
-	(Dmitry Baryshkov's message of "Sat, 4 Nov 2023 15:23:38 +0200")
-Message-ID: <87zfzhu9kx.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1699878395;
+	bh=FPIp+cqgIY0PhpYyM/+c1zOLJtRcC1R0KvXB0ib9TbM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hUeaWkms3Y9wLVCS+wsQEym5p9vIWKWEEfs61vzfTTz/4ckuyv7Z2NYNlaIKSWTb1
+	 ara4RM1NgeVu6zM6KFga2nVJPpZOZq47M56XPtp26sZj17W8KB5N2P6ZsTAvF7BLhd
+	 CZq/APnrPcNCshIdv/bekTECw+P+3Jn6e/LJP4v0PhquPQVBA219VAKxoPnZQDCcKr
+	 zkLmncAPM2b1WAXUu/9x6Rs/s6JN36k7OlKf3CZXRgnGKkcUISgLFOiic/MZzWRaNX
+	 DPEyfuXeAHTfRXUc1A0VhXUx0OYbCIsfLXAyS/28IeWCm8Bb0J41hTWKUwWWU+wokb
+	 MyEwfPgyUYmWg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1r2W1R-00Cfx5-G5;
+	Mon, 13 Nov 2023 12:26:33 +0000
+Date: Mon, 13 Nov 2023 12:26:33 +0000
+Message-ID: <867cml2612.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Hongyan Xia <hongyan.xia2@arm.com>
+Cc: David Dai <davidai@google.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Quentin Perret <qperret@google.com>,
+	Masami Hiramatsu <mhiramat@google.com>,
+	Will Deacon <will@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Vincent Guittot <vincent.guittot@linaro.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Dietmar Eggemann <dietmar.eggemann@arm.com>,
+	Pavan Kondeti <quic_pkondeti@quicinc.com>,
+	Gupta Pankaj <pankaj.gupta@amd.com>,
+	Mel Gorman <mgorman@suse.de>,
+	kernel-team@android.com,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Improve VM CPUfreq and task placement behavior
+In-Reply-To: <438c96fd-bcb0-4699-b81b-40f800cedca0@arm.com>
+References: <20231111014933.1934562-1-davidai@google.com>
+	<438c96fd-bcb0-4699-b81b-40f800cedca0@arm.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: hongyan.xia2@arm.com, davidai@google.com, rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, sudeep.holla@arm.com, saravanak@google.com, qperret@google.com, mhiramat@google.com, will@kernel.org, peterz@infradead.org, vincent.guittot@linaro.org, oliver.upton@linux.dev, dietmar.eggemann@arm.com, quic_pkondeti@quicinc.com, pankaj.gupta@amd.com, mgorman@suse.de, kernel-team@android.com, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-(adding ath11k list)
+On Mon, 13 Nov 2023 12:20:29 +0000,
+Hongyan Xia <hongyan.xia2@arm.com> wrote:
+> 
+> Also, my knowledge with KVM is limited. May I know where the vCPU fork
+> happens? Can't you just set the p->sched_reset_on_fork flag on fork to
+> not carry forward the uclamp values?
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+There is no "vCPU fork". The vcpu is a VMM (qemu, crosvm, kvmtool)
+thread, nothing else.
 
-> [Added Kalle to the CC list]
->
-> On Tue, 31 Oct 2023 at 12:31, Luca Weiss <luca.weiss@fairphone.com> wrote:
->>
->> On Mon Oct 30, 2023 at 8:26 PM CET, Konrad Dybcio wrote:
->> > On 27.10.2023 16:20, Luca Weiss wrote:
->> > > Now that the WPSS remoteproc is enabled, enable wifi so we can use it.
->> > >
->> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->> > > ---
->> > >  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 4 ++++
->> > >  1 file changed, 4 insertions(+)
->> > >
->> > > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> > > index d65eef30091b..e7e20f73cbe6 100644
->> > > --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> > > @@ -713,3 +713,7 @@ &venus {
->> > >     firmware-name = "qcom/qcm6490/fairphone5/venus.mbn";
->> > >     status = "okay";
->> > >  };
->> > > +
->> > > +&wifi {
->> > > +   status = "okay";
->> > qcom,ath11k-calibration-variant?
->>
->> What value would I put there for my device? Based on existing usages
->> (mostly for ath10k) I'd say "Fairphone_5"?
->
-> I think this is fine.
-
-From style point of view I would prefer lower case and dashes, for
-example "fairphone-5" but I'm just nitpicking, uppercase and underscores
-work fine as well.
-
-If you have different SKUs or similar which need different ath11k board
-files being more specific like "fairphone-5-eu" and "fairphone-5-us" is
-one option. But I'm sure Luca knows best what is needed for Fairphone,
-just throwing out ideas here.
-
->> And you mean I should add this property in dts before even looking into
->> the firmware/calibration side of it?
->
-> From my experience some (most?) of the device manufacturers do the
-> wrong thing here. They do not program a sensible board_id, leaving it
-> as 0xff or some other semi-random value. The calibration variant is
-> the only way for the kernel to distinguish between such poor devices.
->
-> The kernel will do a smart thing though. If the device-specific
-> calibration data is not present, it will try to fall back to the
-> generic data.
-
-You are correct, just to be specific it's ath11k which will choose which
-board file to use. I recommend always setting
-qcom,ath11k-calibration-variant in DTS if you can.
-
-Back in the day I have tried to push for the firmware team to improve
-the board file selection but no success. So the only practical solution
-we have is qcom,ath11k-calibration-variant in DTS.
+	M.
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Without deviation from the norm, progress is not possible.
 
