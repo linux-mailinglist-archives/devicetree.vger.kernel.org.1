@@ -1,116 +1,146 @@
-Return-Path: <devicetree+bounces-15412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82B47E9F4B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:53:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 939837E9ECF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:34:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A260280DE0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:53:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34040B209F9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2272137D;
-	Mon, 13 Nov 2023 14:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2011F92C;
+	Mon, 13 Nov 2023 14:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VJcfMXe3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C7GiyytR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936792135A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:53:36 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9E11724
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:53:34 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a0907896so6232673e87.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:53:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699887213; x=1700492013; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KajBuUuJpwuy15xSzO9YMy+TSc6B+gUFFD30MmfVQnM=;
-        b=VJcfMXe3ExiMBDQgYmCyUNtHRsDg+Yhk/Q8ESynJ1U48TbuzDon7N4dz3sWUHXWSCX
-         7y5mxJCq4E7WvR4+G+VohoZfFnwToNZBhO7YVmLoxyq6gCuyXB5oH33ME2oVmh9jm1Ow
-         wk+ww22bB8ouOCnSJo3BKLy8VKsPkSg9q8npY8TprRjzA0EYKGomAWuVTwW5gUgPZ/Qw
-         YtaN08+KPrjWJAdrY2PVyHd42CE18u45HGYKdxa2f0xEU6MTq+RK0GNMfuGGItC3YUyS
-         8vFDuHLadKsK4xyYgss2gF5O1nS3JvLp0xOnBZzqk4Xd5+ObSrz2rjvKW/IRWdYScLE9
-         4CDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699887213; x=1700492013;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KajBuUuJpwuy15xSzO9YMy+TSc6B+gUFFD30MmfVQnM=;
-        b=WbA6JwPYrepJJ3meUADrzsOQoevy8C9c/yC6FuWpyQn3Uu5wItHgszqmt0dUkPYvt5
-         h62xGGFB5X+vIT6UYUEyuxTXcKspgCps/QOWlv3b0vnFgartJy6U6yy0gYpjz0x5axl7
-         rF78KZUCIhms5u6o2p1CgCKswSbgGSc+F4tF68pBzr+5LQRGmY5v+A6cAuJfMwk4ZGVH
-         oQuknWwfhnUpFX3BlIfVRUBdI0XqzrXK61cRnvH+MsCLZ6GhBu85pi3GBhyERQBzCPeC
-         EdtCE7RIKa1VfkSp8yNOcIcejcjnqZzwi4kcVQXhCwofrwhwGcnLAvborHQ1Z3FbsiNQ
-         daYQ==
-X-Gm-Message-State: AOJu0Yzf0L40Mr7dTsTO5plk9ZaiYB3/9q2T2YBdZhGYGQJrft/klr3F
-	oU+Z4JpW1PFAUdIaRVOcOPrYxA==
-X-Google-Smtp-Source: AGHT+IFssdsSeMO8OhuFr2rnn73oVtRkLf8RT6Drkzt27EUHXdwP55jUd9bvfFdMoYRyYOwcBoTFqA==
-X-Received: by 2002:a05:6512:3d90:b0:509:494d:c3d2 with SMTP id k16-20020a0565123d9000b00509494dc3d2mr5401160lfv.32.1699887212950;
-        Mon, 13 Nov 2023 06:53:32 -0800 (PST)
-Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id x24-20020ac24898000000b0050794b05c8asm991429lfc.42.2023.11.13.06.53.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 06:53:32 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Gross <markgross@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: qrb5165-rb5: use u16 for DP altmode svid
-Date: Mon, 13 Nov 2023 16:33:09 +0200
-Message-ID: <20231113145328.42575-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231113145328.42575-1-dmitry.baryshkov@linaro.org>
-References: <20231113145328.42575-1-dmitry.baryshkov@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5467621356;
+	Mon, 13 Nov 2023 14:33:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD0BC433C9;
+	Mon, 13 Nov 2023 14:33:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699886036;
+	bh=6DAxemjl0AVTHxHytjTbhgq1BuBFNuktqHNcC4X2p80=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=C7GiyytRkZx3o6iKTHGPfVnDZH8Y9UlNVdS44XxBSHc9tAEarSOm06vmyYOLguL85
+	 R0jo9Sb4Z3njUH2hihmk6edT4OO5HpS/h5YXkEPKIsVynj1JSQcAdn3zwLEKQzhEqn
+	 DdsJQN/llK3tS0Aa0+VOpkCcneulg70FLiqWRo692XfkRD8bQpkwfQcW2XtG6FrBXZ
+	 BJsuhu2xCg0FdYVMDeqE7rkfdcmEs2CCgi6PwFoCrcZyiUlLTWhb0JHoZv+Cbyu/8d
+	 SQZ0FPMXbzthj1jjY0+gd71Ola8vBzQ0FbHaOWij6DNjTYihY2P2zQFKdK+/YCyqKs
+	 gfWebgDXEQdzA==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2c50cf61f6dso62802511fa.2;
+        Mon, 13 Nov 2023 06:33:56 -0800 (PST)
+X-Gm-Message-State: AOJu0YwgyhC32x6inQY/TCb3M0e8sLGGUyiy/9zjdtMcHTe4CszlH1re
+	oR4lUKe8PWdoZr0mNy99fjC3Jl1aHNHdny9NpDs=
+X-Google-Smtp-Source: AGHT+IF8sszOmCM/pyDPh+LfBIcxgfXipt/rZt6rWmIvK+wpDukDNDxSLIyU7B+lHoQohecY7K0htUXRMO83ELauFmk=
+X-Received: by 2002:a05:6512:31c8:b0:50a:71e1:e1ce with SMTP id
+ j8-20020a05651231c800b0050a71e1e1cemr5323774lfe.51.1699886034965; Mon, 13 Nov
+ 2023 06:33:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1699521866.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1699521866.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Mon, 13 Nov 2023 22:33:43 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H4pzWNJf2Bs0tHRZG=8ibm_JUvfoPQdkurEnqo=L+P1oA@mail.gmail.com>
+Message-ID: <CAAhV-H4pzWNJf2Bs0tHRZG=8ibm_JUvfoPQdkurEnqo=L+P1oA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] dt-bindings: interrupt-controller: Fix some
+ loongson,liointc warnings
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+	linux-mips@vger.kernel.org, lvjianmin@loongson.cn, 
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Follow the bindings and use 16-bit value for AltMode SVID instead of
-using the full u32.
+For the whole series.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index c8cd40a462a3..88b37ceb13ed 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1425,7 +1425,7 @@ PDO_FIXED_USB_COMM |
- 
- 		altmodes {
- 			displayport {
--				svid = <0xff01>;
-+				svid = /bits/ 16 <0xff01>;
- 				vdo = <0x00001c46>;
- 			};
- 		};
--- 
-2.42.0
-
+On Mon, Nov 13, 2023 at 10:36=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.c=
+n> wrote:
+>
+> Hi all:
+>
+> Some liointc-related DTBS_CHECK warnings were found when trying to
+> introduce the Loongson-2K DTS{I} for LoongArch.
+> This patch series attempts to fix those warnings, as well as fixing
+> non-standard property naming.
+>
+> Of course, these fixes also apply to MIPS Loongson-2K1000.
+>
+> Thanks.
+>
+> -----
+> V4:
+> - Add Acked-by tag;
+> patch(2/5):
+>   - Just add 'maxitem 2' instead of duplicating the list;
+> patch(3/5):
+>   - Rewite commit message for 'interrupt-names'.
+>
+> Link to V3:
+> https://lore.kernel.org/all/cover.1698717154.git.zhoubinbin@loongson.cn/
+>
+> V3:
+> patch(1/5):
+>   - new patch, 'loongson,parent_int_map' renamed to 'loongson,parent-int-=
+map';
+> patch(2/5)(3/5):
+>   - Separate the change points into separate patches;
+> patch(4/5):
+>  - new patch, make sure both parent map forms can be parsed;
+> patch(5/5):
+>  - new patch, fix 'loongson,parent_int_map' references in mips loongson
+>    dts{i}.
+>
+> Link to V2:
+> https://lore.kernel.org/all/20230821061315.3416836-1-zhoubinbin@loongson.=
+cn/
+>
+> V2:
+> 1. Update commit message;
+> 2. "interruprt-names" should be "required", the driver gets the parent
+> interrupts through it;
+> 3. Add more descriptions to explain the rationale for multiple nodes;
+> 4. Rewrite if-else statements.
+>
+> Link to V1:
+> https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongson.=
+cn/
+>
+> Binbin Zhou (5):
+>   dt-bindings: interrupt-controller: loongson,liointc: Standardize the
+>     naming of 'loongson,parent-int-map'
+>   dt-bindings: interrupt-controller: loongson,liointc: Fix dtbs_check
+>     warning for reg-names
+>   dt-bindings: interrupt-controller: loongson,liointc: Fix dtbs_check
+>     for warning interrupt-names
+>   irqchip/loongson-liointc: Fix 'loongson,parent_int_map' parse
+>   MIPS: Loongson64: DTS: Fix 'loongson,parent_int_map' references
+>
+>  .../loongson,liointc.yaml                     | 33 +++++++++++++------
+>  .../boot/dts/loongson/loongson64-2k1000.dtsi  |  4 +--
+>  .../dts/loongson/loongson64c-package.dtsi     |  2 +-
+>  .../dts/loongson/loongson64g-package.dtsi     |  2 +-
+>  .../dts/loongson/loongson64v_4core_virtio.dts |  2 +-
+>  drivers/irqchip/irq-loongson-liointc.c        |  7 +++-
+>  6 files changed, 34 insertions(+), 16 deletions(-)
+>
+> --
+> 2.39.3
+>
+>
 
