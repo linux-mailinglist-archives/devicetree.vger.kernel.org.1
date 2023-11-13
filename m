@@ -1,1479 +1,1270 @@
-Return-Path: <devicetree+bounces-15370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D9A7E9D31
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E79A7E9D38
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F16CD1C2028E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6947B1C20342
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC3520309;
-	Mon, 13 Nov 2023 13:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF3C20314;
+	Mon, 13 Nov 2023 13:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R7jydPpY"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LmqVMY7R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321E9200CB
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 13:31:39 +0000 (UTC)
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D671189
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 05:31:34 -0800 (PST)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5ac376d311aso48730937b3.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 05:31:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699882293; x=1700487093; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WQOZUXd7NfurNcqV6NE1t2nr98RhaZpU5QsUwlAd3Ek=;
-        b=R7jydPpYhFmmi3K7GdHdQ2f8APbnYrMHga9pRYM8JesdBxFKCTJ5faV6zTQZ9Hf3hn
-         QlkcuIypRgPOJ4TTEIfaN/+1IQiv1sFJ5+3E487s2bN4YLiBly1ikHEbqZtK+MEFrlP+
-         psuElc4Pt5TkpalDYcqGZ2RUYgIGIvTFi7xWvwd3HglsYLNhZJD9iF/bnSf9ZyBMRonO
-         k5+YBsDBTKI+Q2l7ZcpyLmKh0nbqQVWm6+uhVoZqqfyuJsLPAbUZQAbwWzRGKBLoHuJ/
-         c2em3PcZTj3tsHZHfcSaA3EzrGIuImlh0Ut+2tCfD8xGFxkIvUMWTvmq5EbelRMi0w2O
-         t6yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699882293; x=1700487093;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WQOZUXd7NfurNcqV6NE1t2nr98RhaZpU5QsUwlAd3Ek=;
-        b=uJi1MK/ZtW0tEVmjFG7k8Myx8SnMP/fTfXww4z67uQmXx4tiWOuP6oW5q+kp/TjGmx
-         Wdj3+LCNG3AQEPil1IvmCpvs+89dVtybq5zUwTkBGNgoRTYdg325KjjpC+2ph3wTMmNs
-         qPOU4oOJlhFB1ayHqiFXYj+neISRa4CxKULu6Y/TBwAg0Hh3d1ALkSNYOmQ6lJxgUX5K
-         cGIH4T2ggUrHgWO3lco6Il+F/bDPKj3lPmmr75n0uyAu2yUmo7nTSqN9t2oAuZfw3Pox
-         YPgQvou84zfP855RAzrRIUM3+Yhk7Bs2+LfMMDfgXDIUmnNyJe9VhYm+eNrRfjB2ihi/
-         05kw==
-X-Gm-Message-State: AOJu0YyUerHJVYUiLnPK7dKg90E/4bokUu8hG8eobltqzW970dMEc5IZ
-	xCzkXcMK04LkNiCXuW2DtCSfDowqLV/IM1iPZvA3sw==
-X-Google-Smtp-Source: AGHT+IEYEPF7N9a4VOBRzn4sx6kJge1C3xYl5RgZvUpmgGSkA71ov2ug9+DIzbWjQGxTnRFiJnxlIcEsWeVzBfawNA8=
-X-Received: by 2002:a0d:f201:0:b0:595:be7:a38 with SMTP id b1-20020a0df201000000b005950be70a38mr7858257ywf.49.1699882293207;
- Mon, 13 Nov 2023 05:31:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1CD1D555;
+	Mon, 13 Nov 2023 13:32:20 +0000 (UTC)
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E0318B;
+	Mon, 13 Nov 2023 05:32:14 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPA id 56EA41BF207;
+	Mon, 13 Nov 2023 13:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699882333;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=uwYpA0hh+G5OGinKG8kfeNBaD8yAC62G/EuOLEun5wQ=;
+	b=LmqVMY7RpKi+7yhoUNxIcAKRJHNxz2cStJXDzxKfSugY3I/hYTKG2wDxu140/bkJz065dJ
+	4JIzI8U9cT0VWg4rV7Uuu+iBiB1CR9zotG7sbjgn9VPBGrN5WSci6LnXPvD4WwKmsAQulP
+	nVzaYwV7YtuGLcDRd2Wc8TodHN5qw1PJqLGp+Ea2PoOxNSSCR+0LHrcJSm3IlTcQ08iL+J
+	AYCDGEJk4tpq5xRxF6jqmjRP03S6Vc+bHZWGo6AjRaerHJBH33bXeLD6b2YsG4GwB8V5Nv
+	yrSe51RYovt9M7cczB8thThAu+fo54GeD9fERwqLyG6NNIvBMigzUYl/Qvdtvg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
- <20231025103957.3776-7-keith.zhao@starfivetech.com> <70805ff2-56a8-45e1-a31c-ffb0e84749e5@linaro.org>
- <4f37d075-9b3a-4222-8124-1bb3983ea00b@starfivetech.com>
-In-Reply-To: <4f37d075-9b3a-4222-8124-1bb3983ea00b@starfivetech.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 13 Nov 2023 15:31:22 +0200
-Message-ID: <CAA8EJpqbY4pTpMB6855S=wacdhpj3+24dBFH+4DSnBi9XYSaeA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/6] drm/vs: Add hdmi driver
-To: Keith Zhao <keith.zhao@starfivetech.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Jagan Teki <jagan@edgeble.ai>, 
-	Rob Herring <robh+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Changhuang Liang <changhuang.liang@starfivetech.com>, Jack Zhu <jack.zhu@starfivetech.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Shawn Guo <shawnguo@kernel.org>, christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 13 Nov 2023 14:32:12 +0100
+From: kamel.bouhara@bootlin.com
+To: Jeff LaBundy <jeff@labundy.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Marco Felsch
+ <m.felsch@pengutronix.de>, mark.satterthwaite@touchnetix.com,
+ bartp@baasheep.co.uk, hannah.rossiter@touchnetix.com, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Gregory Clement
+ <gregory.clement@bootlin.com>, bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v3 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+Message-ID: <d760ad5e60b21816a395713f004ca14c@bootlin.com>
+X-Sender: kamel.bouhara@bootlin.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-On Mon, 13 Nov 2023 at 14:11, Keith Zhao <keith.zhao@starfivetech.com> wrote:
->
->
->
-> On 2023/10/26 6:23, Dmitry Baryshkov wrote:
-> > On 25/10/2023 13:39, Keith Zhao wrote:
-> >> add hdmi driver as encoder and connect
-> >>
-> >> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
-> >> ---
-> >>   drivers/gpu/drm/verisilicon/Kconfig         |   8 +-
-> >>   drivers/gpu/drm/verisilicon/Makefile        |   1 +
-> >>   drivers/gpu/drm/verisilicon/starfive_hdmi.c | 949 ++++++++++++++++++++
-> >>   drivers/gpu/drm/verisilicon/starfive_hdmi.h | 295 ++++++
-> >>   drivers/gpu/drm/verisilicon/vs_drv.c        |   5 +
-> >>   drivers/gpu/drm/verisilicon/vs_drv.h        |   4 +
-> >>   6 files changed, 1261 insertions(+), 1 deletion(-)
-> >>   create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
-> >>   create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
-> >>
-> >> diff --git a/drivers/gpu/drm/verisilicon/Kconfig b/drivers/gpu/drm/verisilicon/Kconfig
-> >> index 3a361f8c8..122c786e3 100644
-> >> --- a/drivers/gpu/drm/verisilicon/Kconfig
-> >> +++ b/drivers/gpu/drm/verisilicon/Kconfig
-> >> @@ -12,4 +12,10 @@ config DRM_VERISILICON
-> >>         setting and buffer management. It does not
-> >>         provide 2D or 3D acceleration.
-> >>   -
-> >> +config DRM_VERISILICON_STARFIVE_HDMI
-> >> +    bool "Starfive HDMI extensions"
-> >> +    depends on DRM_VERISILICON
-> >> +    help
-> >> +       This selects support for StarFive soc specific extensions
-> >> +       for the Innosilicon HDMI driver. If you want to enable
-> >> +       HDMI on JH7110 based soc, you should select this option.
-> >> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
-> >> index 1d48016ca..08350f25b 100644
-> >> --- a/drivers/gpu/drm/verisilicon/Makefile
-> >> +++ b/drivers/gpu/drm/verisilicon/Makefile
-> >> @@ -7,5 +7,6 @@ vs_drm-objs := vs_dc_hw.o \
-> >>           vs_modeset.o \
-> >>           vs_plane.o
-> >>   +vs_drm-$(CONFIG_DRM_VERISILICON_STARFIVE_HDMI) += starfive_hdmi.o
-> >>   obj-$(CONFIG_DRM_VERISILICON) += vs_drm.o
-> >>   diff --git a/drivers/gpu/drm/verisilicon/starfive_hdmi.c b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
-> >> new file mode 100644
-> >> index 000000000..d296c4b71
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
-> >> @@ -0,0 +1,949 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-only
-> >> +/*
-> >> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
-> >> + */
-> >> +
-> >> +#include <linux/clk.h>
-> >> +#include <linux/component.h>
-> >> +#include <linux/delay.h>
-> >> +#include <linux/err.h>
-> >> +#include <linux/hdmi.h>
-> >> +#include <linux/i2c.h>
-> >> +#include <linux/irq.h>
-> >> +#include <linux/media-bus-format.h>
-> >> +#include <linux/mfd/syscon.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/mutex.h>
-> >> +#include <linux/of_device.h>
-> >> +#include <linux/pm_runtime.h>
-> >> +#include <linux/reset.h>
-> >> +
-> >> +#include <drm/bridge/dw_hdmi.h>
-> >> +#include <drm/drm_atomic_helper.h>
-> >> +#include <drm/drm_edid.h>
-> >> +#include <drm/drm_managed.h>
-> >> +#include <drm/drm_of.h>
-> >> +#include <drm/drm_probe_helper.h>
-> >> +#include <drm/drm_simple_kms_helper.h>
-> >> +
-> >> +#include "starfive_hdmi.h"
-> >> +#include "vs_drv.h"
-> >> +#include "vs_crtc.h"
-> >> +
-> >> +static struct starfive_hdmi *encoder_to_hdmi(struct drm_encoder *encoder)
-> >> +{
-> >> +    return container_of(encoder, struct starfive_hdmi, encoder);
-> >> +}
-> >> +
-> >> +static struct starfive_hdmi *connector_to_hdmi(struct drm_connector *connector)
-> >> +{
-> >> +    return container_of(connector, struct starfive_hdmi, connector);
-> >> +}
-> >> +
-> >> +struct starfive_hdmi_i2c {
-> >> +    struct i2c_adapter adap;
-> >> +
-> >> +    u8 ddc_addr;
-> >> +    u8 segment_addr;
-> >> +    /* protects the edid data when use i2c cmd to read edid */
-> >> +    struct mutex lock;
-> >> +    struct completion cmp;
-> >> +};
-> >> +
-> >> +static const struct pre_pll_config pre_pll_cfg_table[] = {
-> >> +    { 25175000,  25175000, 1,  100, 2, 3, 3, 12, 3, 3, 4, 0, 0xf55555},
-> >> +    { 25200000,  25200000, 1,  100, 2, 3, 3, 12, 3, 3, 4, 0, 0},
-> >> +    { 27000000,  27000000, 1,  90, 3, 2, 2, 10, 3, 3, 4, 0, 0},
-> >
-> > Such data structures are usually pretyt limited and hard to handle. Could you please replace it with the runtime calculations of
-> >
-> >> +    { 27027000,  27027000, 1,  90, 3, 2, 2, 10, 3, 3, 4, 0, 0x170a3d},
-> >> +    { 28320000,  28320000, 1,  28, 2, 1, 1,  3, 0, 3, 4, 0, 0x51eb85},
-> >> +    { 30240000,  30240000, 1,  30, 2, 1, 1,  3, 0, 3, 4, 0, 0x3d70a3},
-> >> +    { 31500000,  31500000, 1,  31, 2, 1, 1,  3, 0, 3, 4, 0, 0x7fffff},
-> >> +    { 33750000,  33750000, 1,  33, 2, 1, 1,  3, 0, 3, 4, 0, 0xcfffff},
-> >> +    { 36000000,  36000000, 1,  36, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    { 40000000,  40000000, 1,  80, 2, 2, 2, 12, 2, 2, 2, 0, 0},
-> >> +    { 46970000,  46970000, 1,  46, 2, 1, 1,  3, 0, 3, 4, 0, 0xf851eb},
-> >> +    { 49500000,  49500000, 1,  49, 2, 1, 1,  3, 0, 3, 4, 0, 0x7fffff},
-> >> +    { 49000000,  49000000, 1,  49, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    { 50000000,  50000000, 1,  50, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    { 54000000,  54000000, 1,  54, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    { 54054000,  54054000, 1,  54, 2, 1, 1,  3, 0, 3, 4, 0, 0x0dd2f1},
-> >> +    { 57284000,  57284000, 1,  57, 2, 1, 1,  3, 0, 3, 4, 0, 0x48b439},
-> >> +    { 58230000,  58230000, 1,  58, 2, 1, 1,  3, 0, 3, 4, 0, 0x3ae147},
-> >> +    { 59341000,  59341000, 1,  59, 2, 1, 1,  3, 0, 3, 4, 0, 0x574bc6},
-> >> +    { 59400000,  59400000, 1,  99, 3, 1, 1,  1, 3, 3, 4, 0, 0},
-> >> +    { 65000000,  65000000, 1, 130, 2, 2, 2,  12, 0, 2, 2, 0, 0},
-> >> +    { 68250000,  68250000, 1, 68,  2, 1, 1,  3,  0, 3, 4, 0, 0x3fffff},
-> >> +    { 71000000,  71000000, 1,  71, 2, 1, 1,  3, 0, 3,  4, 0, 0},
-> >> +    { 74176000,  74176000, 1,  98, 1, 2, 2,  1, 2, 3, 4, 0, 0xe6ae6b},
-> >> +    { 74250000,  74250000, 1,  99, 1, 2, 2,  1, 2, 3, 4, 0, 0},
-> >> +    { 75000000,  75000000, 1,  75, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    { 78750000,  78750000, 1,  78, 2, 1, 1,  3, 0, 3, 4, 0, 0xcfffff},
-> >> +    { 79500000,  79500000, 1,  79, 2, 1, 1,  3, 0, 3, 4, 0, 0x7fffff},
-> >> +    { 83500000,  83500000, 2, 167, 2, 1, 1,  1, 0, 0,  6, 0, 0},
-> >> +    { 83500000, 104375000, 1, 104, 2, 1, 1,  1, 1, 0,  5, 0, 0x600000},
-> >> +    { 84858000,  84858000, 1,  85, 2, 1, 1,  3, 0, 3,  4, 0, 0xdba5e2},
-> >> +    { 85500000,  85500000, 1,  85, 2, 1, 1,  3, 0, 3,  4, 0, 0x7fffff},
-> >> +    { 85750000,  85750000, 1,  85, 2, 1, 1,  3, 0, 3,  4, 0, 0xcfffff},
-> >> +    { 85800000,  85800000, 1,  85, 2, 1, 1,  3, 0, 3,  4, 0, 0xcccccc},
-> >> +    { 88750000,  88750000, 1,  88, 2, 1, 1,  3, 0, 3,  4, 0, 0xcfffff},
-> >> +    { 89910000,  89910000, 1,  89, 2, 1, 1,  3, 0, 3, 4, 0, 0xe8f5c1},
-> >> +    { 90000000,  90000000, 1,  90, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {101000000, 101000000, 1, 101, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {102250000, 102250000, 1, 102, 2, 1, 1,  3, 0, 3, 4, 0, 0x3fffff},
-> >> +    {106500000, 106500000, 1, 106, 2, 1, 1,  3, 0, 3, 4, 0, 0x7fffff},
-> >> +    {108000000, 108000000, 1,  90, 3, 0, 0,  5, 0, 2,  2, 0, 0},
-> >> +    {119000000, 119000000, 1, 119, 2, 1, 1,  3, 0, 3,  4, 0, 0},
-> >> +    {131481000, 131481000, 1,  131, 2, 1, 1,  3, 0, 3,  4, 0, 0x7b22d1},
-> >> +    {135000000, 135000000, 1,  135, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {136750000, 136750000, 1,  136, 2, 1, 1,  3, 0, 3, 4, 0, 0xcfffff},
-> >> +    {147180000, 147180000, 1,  147, 2, 1, 1,  3, 0, 3, 4, 0, 0x2e147a},
-> >> +    {148352000, 148352000, 1,  98, 1, 1, 1,  1, 2, 2, 2, 0, 0xe6ae6b},
-> >> +    {148500000, 148500000, 1,  99, 1, 1, 1,  1, 2, 2, 2, 0, 0},
-> >> +    {154000000, 154000000, 1, 154, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {156000000, 156000000, 1, 156, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {157000000, 157000000, 1, 157, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {162000000, 162000000, 1, 162, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {174250000, 174250000, 1, 145, 3, 0, 0,  5, 0, 2, 2, 0, 0x355555},
-> >> +    {174500000, 174500000, 1, 174, 2, 1, 1,  3, 0, 3, 4, 0, 0x7fffff},
-> >> +    {174570000, 174570000, 1, 174, 2, 1, 1,  3, 0, 3, 4, 0, 0x91eb84},
-> >> +    {175500000, 175500000, 1, 175, 2, 1, 1,  3, 0, 3, 4, 0, 0x7fffff},
-> >> +    {185590000, 185590000, 1, 185, 2, 1, 1,  3, 0, 3, 4, 0, 0x970a3c},
-> >> +    {187000000, 187000000, 1, 187, 2, 1, 1,  3, 0, 3, 4, 0, 0},
-> >> +    {241500000, 241500000, 1, 161, 1, 1, 1,  4, 0, 2,  2, 0, 0},
-> >> +    {241700000, 241700000, 1, 241, 2, 1, 1,  3, 0, 3,  4, 0, 0xb33332},
-> >> +    {262750000, 262750000, 1, 262, 2, 1, 1,  3, 0, 3,  4, 0, 0xcfffff},
-> >> +    {296500000, 296500000, 1, 296, 2, 1, 1,  3, 0, 3,  4, 0, 0x7fffff},
-> >> +    {296703000, 296703000, 1,  98, 0, 1, 1,  1, 0, 2,  2, 0, 0xe6ae6b},
-> >> +    {297000000, 297000000, 1,  99, 0, 1, 1,  1, 0, 2,  2, 0, 0},
-> >> +    {594000000, 594000000, 1,  99, 0, 2, 0,  1, 0, 1,  1, 0, 0},
-> >> +    {0, 0, 0,  0, 0, 0, 0,  0, 0, 0,  0, 0, 0},
-> >> +};
-> >> +
-> >> +static const struct post_pll_config post_pll_cfg_table[] = {
-> >> +    {25200000,    1, 80, 13, 3, 1},
-> >> +    {27000000,    1, 40, 11, 3, 1},
-> >> +    {33750000,    1, 40, 11, 3, 1},
-> >> +    {49000000,    1, 20, 1, 3, 3},
-> >> +    {241700000, 1, 20, 1, 3, 3},
-> >> +    {297000000, 4, 20, 0, 0, 3},
-> >> +    {594000000, 4, 20, 0, 0, 0},
-> >> +    { /* sentinel */ }
-> >> +};
-> >> +
-> >> +inline u8 hdmi_readb(struct starfive_hdmi *hdmi, u16 offset)
-> >> +{
-> >> +    return readl_relaxed(hdmi->regs + (offset) * 0x04);
-> >> +}
-> >> +
-> >> +inline void hdmi_writeb(struct starfive_hdmi *hdmi, u16 offset, u32 val)
-> >> +{
-> >> +    writel_relaxed(val, hdmi->regs + (offset) * 0x04);
-> >> +}
-> >> +
-> >> +inline void hdmi_modb(struct starfive_hdmi *hdmi, u16 offset,
-> >> +                 u32 msk, u32 val)
-> >> +{
-> >> +    u8 temp = hdmi_readb(hdmi, offset) & ~msk;
-> >> +
-> >> +    temp |= val & msk;
-> >> +    hdmi_writeb(hdmi, offset, temp);
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_enable_clk_deassert_rst(struct device *dev, struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    int ret;
-> >> +
-> >> +    ret = clk_prepare_enable(hdmi->sys_clk);
-> >> +    if (ret) {
-> >> +        dev_err(dev, "Cannot enable HDMI sys clock: %d\n", ret);
-> >> +        return ret;
-> >> +    }
-> >> +
-> >> +    ret = clk_prepare_enable(hdmi->mclk);
-> >> +    if (ret) {
-> >> +        dev_err(dev, "Cannot enable HDMI mclk clock: %d\n", ret);
-> >> +        goto err_mclk;
-> >> +    }
-> >> +    ret = clk_prepare_enable(hdmi->bclk);
-> >
-> > This code begs to use clk_bulk instead.
-> >
-> >> +    if (ret) {
-> >> +        dev_err(dev, "Cannot enable HDMI bclk clock: %d\n", ret);
-> >> +        goto err_bclk;
-> >> +    }
-> >> +    ret = reset_control_deassert(hdmi->tx_rst);
-> >> +    if (ret < 0) {
-> >> +        dev_err(dev, "failed to deassert tx_rst\n");
-> >> +        goto err_rst;
-> >> +    }
-> >> +    return 0;
-> >> +
-> >> +err_rst:
-> >> +    clk_disable_unprepare(hdmi->bclk);
-> >> +err_bclk:
-> >> +    clk_disable_unprepare(hdmi->mclk);
-> >> +err_mclk:
-> >> +    clk_disable_unprepare(hdmi->sys_clk);
-> >> +    return ret;
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_disable_clk_assert_rst(struct device *dev, struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    int ret;
-> >> +
-> >> +    ret = reset_control_assert(hdmi->tx_rst);
-> >> +    if (ret < 0)
-> >> +        dev_err(dev, "failed to assert tx_rst\n");
-> >> +
-> >> +    clk_disable_unprepare(hdmi->sys_clk);
-> >> +    clk_disable_unprepare(hdmi->mclk);
-> >> +    clk_disable_unprepare(hdmi->bclk);
-> >> +}
-> >> +
-> >> +#ifdef CONFIG_PM_SLEEP
-> >> +static int hdmi_system_pm_suspend(struct device *dev)
-> >> +{
-> >> +    return pm_runtime_force_suspend(dev);
-> >> +}
-> >> +
-> >> +static int hdmi_system_pm_resume(struct device *dev)
-> >> +{
-> >> +    return pm_runtime_force_resume(dev);
-> >> +}
-> >> +#endif
-> >> +
-> >> +#ifdef CONFIG_PM
-> >> +static int hdmi_runtime_suspend(struct device *dev)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = dev_get_drvdata(dev);
-> >> +
-> >> +    starfive_hdmi_disable_clk_assert_rst(dev, hdmi);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int hdmi_runtime_resume(struct device *dev)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = dev_get_drvdata(dev);
-> >> +
-> >> +    return starfive_hdmi_enable_clk_deassert_rst(dev, hdmi);
-> >> +}
-> >> +#endif
-> >> +
-> >> +static void starfive_hdmi_tx_phy_power_down(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    hdmi_modb(hdmi, HDMI_SYS_CTRL, m_POWER, v_PWR_OFF);
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_tx_phy_power_on(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    hdmi_modb(hdmi, HDMI_SYS_CTRL, m_POWER, v_PWR_ON);
-> >
-> > It looks like one can inline these two helpers w/o too much troubles.
-> >
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_config_pll(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    u32 val;
-> >> +    u8 reg_1ad_value = hdmi->post_cfg->post_div_en ?
-> >> +         hdmi->post_cfg->postdiv : 0x00;
-> >> +    u8 reg_1aa_value = hdmi->post_cfg->post_div_en ?
-> >> +         0x0e : 0x02;
-> >> +
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_CONTROL, STARFIVE_PRE_PLL_POWER_DOWN);
-> >> +    hdmi_writeb(hdmi, STARFIVE_POST_PLL_DIV_1,
-> >> +            STARFIVE_POST_PLL_POST_DIV_ENABLE |
-> >> +            STARFIVE_POST_PLL_REFCLK_SEL_TMDS |
-> >> +            STARFIVE_POST_PLL_POWER_DOWN);
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_DIV_1, STARFIVE_PRE_PLL_PRE_DIV(hdmi->pre_cfg->prediv));
-> >> +
-> >> +    val = STARFIVE_SPREAD_SPECTRUM_MOD_DISABLE | STARFIVE_SPREAD_SPECTRUM_MOD_DOWN;
-> >> +    if (!hdmi->pre_cfg->fracdiv)
-> >> +        val |= STARFIVE_PRE_PLL_FRAC_DIV_DISABLE;
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_DIV_2,
-> >> +            STARFIVE_PRE_PLL_FB_DIV_11_8(hdmi->pre_cfg->fbdiv) | val);
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_DIV_3,
-> >> +            STARFIVE_PRE_PLL_FB_DIV_7_0(hdmi->pre_cfg->fbdiv));
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_DIV_4,
-> >> +            STARFIVE_PRE_PLL_TMDSCLK_DIV_C(hdmi->pre_cfg->tmds_div_c) |
-> >> +            STARFIVE_PRE_PLL_TMDSCLK_DIV_A(hdmi->pre_cfg->tmds_div_a) |
-> >> +            STARFIVE_PRE_PLL_TMDSCLK_DIV_B(hdmi->pre_cfg->tmds_div_b));
-> >> +
-> >> +    if (hdmi->pre_cfg->fracdiv) {
-> >> +        hdmi_writeb(hdmi, STARFIVE_PRE_PLL_FRAC_DIV_L,
-> >> +                STARFIVE_PRE_PLL_FRAC_DIV_7_0(hdmi->pre_cfg->fracdiv));
-> >> +        hdmi_writeb(hdmi, STARFIVE_PRE_PLL_FRAC_DIV_M,
-> >> +                STARFIVE_PRE_PLL_FRAC_DIV_15_8(hdmi->pre_cfg->fracdiv));
-> >> +        hdmi_writeb(hdmi, STARFIVE_PRE_PLL_FRAC_DIV_H,
-> >> +                STARFIVE_PRE_PLL_FRAC_DIV_23_16(hdmi->pre_cfg->fracdiv));
-> >> +    }
-> >> +
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_DIV_5,
-> >> +            STARFIVE_PRE_PLL_PCLK_DIV_A(hdmi->pre_cfg->pclk_div_a) |
-> >> +            STARFIVE_PRE_PLL_PCLK_DIV_B(hdmi->pre_cfg->pclk_div_b));
-> >> +    hdmi_writeb(hdmi, STARFIVE_PRE_PLL_DIV_6,
-> >> +            STARFIVE_PRE_PLL_PCLK_DIV_C(hdmi->pre_cfg->pclk_div_c) |
-> >> +            STARFIVE_PRE_PLL_PCLK_DIV_D(hdmi->pre_cfg->pclk_div_d));
-> >> +
-> >> +    /*pre-pll power down*/
-> >> +    hdmi_modb(hdmi, STARFIVE_PRE_PLL_CONTROL, STARFIVE_PRE_PLL_POWER_DOWN, 0);
-> >> +
-> >> +    hdmi_modb(hdmi, STARFIVE_POST_PLL_DIV_2, STARFIVE_POST_PLL_Pre_DIV_MASK,
-> >> +          STARFIVE_POST_PLL_PRE_DIV(hdmi->post_cfg->prediv));
-> >> +    hdmi_writeb(hdmi, STARFIVE_POST_PLL_DIV_3, hdmi->post_cfg->fbdiv & 0xff);
-> >> +    hdmi_writeb(hdmi, STARFIVE_POST_PLL_DIV_4, reg_1ad_value);
-> >> +    hdmi_writeb(hdmi, STARFIVE_POST_PLL_DIV_1, reg_1aa_value);
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_tmds_driver_on(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    hdmi_modb(hdmi, STARFIVE_TMDS_CONTROL,
-> >> +          STARFIVE_TMDS_DRIVER_ENABLE, STARFIVE_TMDS_DRIVER_ENABLE);
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_sync_tmds(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    /*first send 0 to this bit, then send 1 and keep 1 into this bit*/
-> >> +    hdmi_writeb(hdmi, HDMI_SYNC, 0x0);
-> >> +    hdmi_writeb(hdmi, HDMI_SYNC, 0x1);
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_i2c_init(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    int ddc_bus_freq;
-> >> +
-> >> +    ddc_bus_freq = (clk_get_rate(hdmi->sys_clk) >> 2) / HDMI_SCL_RATE;
-> >> +
-> >> +    hdmi_writeb(hdmi, DDC_BUS_FREQ_L, ddc_bus_freq & 0xFF);
-> >> +    hdmi_writeb(hdmi, DDC_BUS_FREQ_H, (ddc_bus_freq >> 8) & 0xFF);
-> >> +
-> >> +    /* Clear the EDID interrupt flag and mute the interrupt */
-> >> +    hdmi_writeb(hdmi, HDMI_INTERRUPT_MASK1, 0);
-> >> +    hdmi_writeb(hdmi, HDMI_INTERRUPT_STATUS1, m_INT_EDID_READY);
-> >> +}
-> >> +
-> >> +static const
-> >> +struct pre_pll_config *starfive_hdmi_phy_get_pre_pll_cfg(struct starfive_hdmi *hdmi,
-> >> +                             unsigned long rate)
-> >> +{
-> >> +    const struct pre_pll_config *cfg = pre_pll_cfg_table;
-> >> +
-> >> +    rate = (rate / 1000) * 1000;
-> >> +    for (; cfg->pixclock != 0; cfg++)
-> >> +        if (cfg->tmdsclock == rate && cfg->pixclock == rate)
-> >> +            break;
-> >> +
-> >> +    if (cfg->pixclock == 0)
-> >> +        return ERR_PTR(-EINVAL);
-> >> +
-> >> +    return cfg;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_phy_clk_set_rate(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    hdmi->post_cfg = post_pll_cfg_table;
-> >> +
-> >> +    hdmi->pre_cfg = starfive_hdmi_phy_get_pre_pll_cfg(hdmi, hdmi->tmds_rate);
-> >> +    if (IS_ERR(hdmi->pre_cfg))
-> >> +        return PTR_ERR(hdmi->pre_cfg);
-> >> +
-> >> +    for (; hdmi->post_cfg->tmdsclock != 0; hdmi->post_cfg++)
-> >> +        if (hdmi->tmds_rate <= hdmi->post_cfg->tmdsclock)
-> >> +            break;
-> >> +
-> >> +    starfive_hdmi_config_pll(hdmi);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_config_video_timing(struct starfive_hdmi *hdmi,
-> >> +                         struct drm_display_mode *mode)
-> >> +{
-> >> +    int value;
-> >> +    /* Set detail external video timing */
-> >> +    value = mode->htotal;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HTOTAL_L, value & 0xFF);
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HTOTAL_H, (value >> 8) & 0xFF);
-> >
-> > As you have hdmi_writeb already, adding hdmi_writew will help here.
-> >
-> >> +
-> >> +    value = mode->htotal - mode->hdisplay;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HBLANK_L, value & 0xFF);
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HBLANK_H, (value >> 8) & 0xFF);
-> >> +
-> >> +    value = mode->htotal - mode->hsync_start;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HDELAY_L, value & 0xFF);
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HDELAY_H, (value >> 8) & 0xFF);
-> >> +
-> >> +    value = mode->hsync_end - mode->hsync_start;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HDURATION_L, value & 0xFF);
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_HDURATION_H, (value >> 8) & 0xFF);
-> >> +
-> >> +    value = mode->vtotal;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_VTOTAL_L, value & 0xFF);
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_VTOTAL_H, (value >> 8) & 0xFF);
-> >> +
-> >> +    value = mode->vtotal - mode->vdisplay;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_VBLANK, value & 0xFF);
-> >> +
-> >> +    value = mode->vtotal - mode->vsync_start;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_VDELAY, value & 0xFF);
-> >> +
-> >> +    value = mode->vsync_end - mode->vsync_start;
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_EXT_VDURATION, value & 0xFF);
-> >> +
-> >> +    /* Set detail external video timing polarity and interlace mode */
-> >> +    value = v_EXTERANL_VIDEO(1);
-> >> +    value |= mode->flags & DRM_MODE_FLAG_PHSYNC ?
-> >> +        v_HSYNC_POLARITY(1) : v_HSYNC_POLARITY(0);
-> >> +    value |= mode->flags & DRM_MODE_FLAG_PVSYNC ?
-> >> +        v_VSYNC_POLARITY(1) : v_VSYNC_POLARITY(0);
-> >> +    value |= mode->flags & DRM_MODE_FLAG_INTERLACE ?
-> >> +        v_INETLACE(1) : v_INETLACE(0);
-> >> +
-> >> +    hdmi_writeb(hdmi, HDMI_VIDEO_TIMING_CTL, value);
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_setup(struct starfive_hdmi *hdmi,
-> >> +                   struct drm_display_mode *mode)
-> >> +{
-> >> +    hdmi_modb(hdmi, STARFIVE_BIAS_CONTROL, STARFIVE_BIAS_ENABLE, STARFIVE_BIAS_ENABLE);
-> >> +    hdmi_writeb(hdmi, STARFIVE_RX_CONTROL, STARFIVE_RX_ENABLE);
-> >> +    hdmi->hdmi_data.vic = drm_match_cea_mode(mode);
-> >> +
-> >> +    hdmi->tmds_rate = mode->clock * 1000;
-> >> +    starfive_hdmi_phy_clk_set_rate(hdmi);
-> >> +
-> >> +    while (!(hdmi_readb(hdmi, STARFIVE_PRE_PLL_LOCK_STATUS) & 0x1))
-> >> +        continue;
-> >> +    while (!(hdmi_readb(hdmi, STARFIVE_POST_PLL_LOCK_STATUS) & 0x1))
-> >> +        continue;
-> >
-> > Please use read_iopoll_timeout here.
-> >
-> >> +
-> >> +    /*turn on LDO*/
-> >> +    hdmi_writeb(hdmi, STARFIVE_LDO_CONTROL, STARFIVE_LDO_ENABLE);
-> >> +    /*turn on serializer*/
-> >> +    hdmi_writeb(hdmi, STARFIVE_SERIALIER_CONTROL, STARFIVE_SERIALIER_ENABLE);
-> >> +
-> >> +    starfive_hdmi_tx_phy_power_down(hdmi);
-> >> +    starfive_hdmi_config_video_timing(hdmi, mode);
-> >> +    starfive_hdmi_tx_phy_power_on(hdmi);
-> >> +
-> >> +    starfive_hdmi_tmds_driver_on(hdmi);
-> >> +    starfive_hdmi_sync_tmds(hdmi);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_encoder_mode_set(struct drm_encoder *encoder,
-> >> +                       struct drm_display_mode *mode,
-> >> +                       struct drm_display_mode *adj_mode)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = encoder_to_hdmi(encoder);
-> >> +
-> >> +    drm_mode_copy(&hdmi->previous_mode, adj_mode);
-> >
-> > Why do you need it?
-> >
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_encoder_enable(struct drm_encoder *encoder)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = encoder_to_hdmi(encoder);
-> >> +    struct drm_display_mode *mode = &encoder->crtc->state->adjusted_mode;
-> >> +    int ret, idx;
-> >> +    struct drm_device *drm = hdmi->connector.dev;
-> >> +
-> >> +    if (drm && !drm_dev_enter(drm, &idx))
-> >> +        return;
-> >> +
-> >> +    ret = pm_runtime_get_sync(hdmi->dev);
-> >> +    if (ret < 0)
-> >> +        return;
-> >> +    mdelay(10);
-> >> +    starfive_hdmi_setup(hdmi, mode);
-> >> +
-> >> +    if (drm)
-> >> +        drm_dev_exit(idx);
-> >> +}
-> >> +
-> >> +static void starfive_hdmi_encoder_disable(struct drm_encoder *encoder)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = encoder_to_hdmi(encoder);
-> >> +
-> >> +    int idx;
-> >> +    struct drm_device *drm = hdmi->connector.dev;
-> >> +
-> >> +    if (drm && !drm_dev_enter(drm, &idx))
-> >> +        return;
-> >> +
-> >> +    pm_runtime_put(hdmi->dev);
-> >> +
-> >> +    if (drm)
-> >> +        drm_dev_exit(idx);
-> >> +}
-> >> +
-> >> +static int
-> >> +starfive_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
-> >> +                   struct drm_crtc_state *crtc_state,
-> >> +                   struct drm_connector_state *conn_state)
-> >> +{
-> >> +    bool valid = false;
-> >> +    struct drm_display_mode *mode = &crtc_state->adjusted_mode;
-> >> +    struct vs_crtc_state *vs_crtc_state = to_vs_crtc_state(crtc_state);
-> >> +
-> >> +    vs_crtc_state->encoder_type = encoder->encoder_type;
-> >> +    vs_crtc_state->output_fmt = MEDIA_BUS_FMT_RGB888_1X24;
-> >> +
-> >> +    const struct pre_pll_config *cfg = pre_pll_cfg_table;
-> >> +    int pclk = mode->clock * 1000;
-> >> +
-> >> +    for (; cfg->pixclock != 0; cfg++) {
-> >> +        if (pclk == cfg->pixclock) {
-> >> +            if (pclk > 297000000)
-> >
-> > Magic value.
-> >
-> >> +                continue;
-> >> +
-> >> +            valid = true;
-> >> +            break;
-> >> +        }
-> >> +    }
-> >> +
-> >> +    return (valid) ? 0 : -EINVAL;
-> >> +}
-> >> +
-> >> +static const struct drm_encoder_helper_funcs starfive_hdmi_encoder_helper_funcs = {
-> >> +    .enable     = starfive_hdmi_encoder_enable,
-> >> +    .disable    = starfive_hdmi_encoder_disable,
-> >> +    .mode_set   = starfive_hdmi_encoder_mode_set,
-> >> +    .atomic_check = starfive_hdmi_encoder_atomic_check,
-> >> +};
-> >> +
-> >> +static enum drm_connector_status
-> >> +starfive_hdmi_connector_detect(struct drm_connector *connector, bool force)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = connector_to_hdmi(connector);
-> >> +    struct drm_device *drm = hdmi->connector.dev;
-> >> +    int ret;
-> >> +    int idx;
-> >> +
-> >> +    if (drm && !drm_dev_enter(drm, &idx))
-> >> +        return connector_status_disconnected;
-> >> +
-> >> +    ret = pm_runtime_get_sync(hdmi->dev);
-> >> +    if (ret < 0)
-> >> +        return ret;
-> >> +
-> >> +    ret = (hdmi_readb(hdmi, HDMI_STATUS) & m_HOTPLUG) ?
-> >> +        connector_status_connected : connector_status_disconnected;
-> >> +    pm_runtime_put(hdmi->dev);
-> >> +
-> >> +    if (drm)
-> >> +        drm_dev_exit(idx);
-> >> +
-> >> +    return ret;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_connector_get_modes(struct drm_connector *connector)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = connector_to_hdmi(connector);
-> >> +    struct edid *edid;
-> >> +    int ret = 0;
-> >> +
-> >> +    if (!hdmi->ddc)
-> >> +        return 0;
-> >> +    ret = pm_runtime_get_sync(hdmi->dev);
-> >> +    if (ret < 0)
-> >> +        return ret;
-> >> +
-> >> +    edid = drm_get_edid(connector, hdmi->ddc);
-> >> +    if (edid) {
-> >> +        hdmi->hdmi_data.sink_is_hdmi = drm_detect_hdmi_monitor(edid);
-> >> +        hdmi->hdmi_data.sink_has_audio = drm_detect_monitor_audio(edid);
-> >> +        drm_connector_update_edid_property(connector, edid);
-> >> +        ret = drm_add_edid_modes(connector, edid);
-> >> +        kfree(edid);
-> >> +    }
-> >> +    pm_runtime_put(hdmi->dev);
-> >
-> > Can you use drm_connector_helper_get_modes_from_ddc() here? And then drm_display_info.is_hdmi and .has_audio.
-> >
-> >> +
-> >> +    return ret;
-> >> +}
-> >> +
-> >> +static enum drm_mode_status
-> >> +starfive_hdmi_connector_mode_valid(struct drm_connector *connector,
-> >> +                   struct drm_display_mode *mode)
-> >> +{
-> >> +    const struct pre_pll_config *cfg = pre_pll_cfg_table;
-> >> +    int pclk = mode->clock * 1000;
-> >> +    bool valid = false;
-> >> +
-> >> +    for (; cfg->pixclock != 0; cfg++) {
-> >> +        if (pclk == cfg->pixclock) {
-> >> +            if (pclk > 297000000)
-> >
-> > magic value
-> >
-> >> +                continue;
-> >> +
-> >> +            valid = true;
-> >> +            break;
-> >> +        }
-> >> +    }
-> >> +
-> >> +    return (valid) ? MODE_OK : MODE_BAD;
-> >> +}
-> >> +
-> >> +static int
-> >> +starfive_hdmi_probe_single_connector_modes(struct drm_connector *connector,
-> >> +                       u32 maxX, u32 maxY)
-> >> +{
-> >> +    return drm_helper_probe_single_connector_modes(connector, 3840, 2160);
-> >> +}
-> >> +
-> >> +static const struct drm_connector_funcs starfive_hdmi_connector_funcs = {
-> >> +    .fill_modes = starfive_hdmi_probe_single_connector_modes,
-> >> +    .detect = starfive_hdmi_connector_detect,
-> >> +    .reset = drm_atomic_helper_connector_reset,
-> >> +    .atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-> >> +    .atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-> >> +};
-> >> +
-> >> +static struct drm_connector_helper_funcs starfive_hdmi_connector_helper_funcs = {
-> >> +    .get_modes = starfive_hdmi_connector_get_modes,
-> >> +    .mode_valid = starfive_hdmi_connector_mode_valid,
-> >> +};
-> >> +
-> >> +static int starfive_hdmi_register(struct drm_device *drm, struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    struct drm_encoder *encoder = &hdmi->encoder;
-> >> +    struct device *dev = hdmi->dev;
-> >> +
-> >> +    encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
-> >> +
-> >> +    /*
-> >> +     * If we failed to find the CRTC(s) which this encoder is
-> >> +     * supposed to be connected to, it's because the CRTC has
-> >> +     * not been registered yet.  Defer probing, and hope that
-> >> +     * the required CRTC is added later.
-> >> +     */
-> >> +    if (encoder->possible_crtcs == 0)
-> >> +        return -EPROBE_DEFER;
-> >> +
-> >> +    drm_encoder_helper_add(encoder, &starfive_hdmi_encoder_helper_funcs);
-> >> +
-> >> +    hdmi->connector.polled = DRM_CONNECTOR_POLL_HPD;
-> >> +
-> >> +    drm_connector_helper_add(&hdmi->connector,
-> >> +                 &starfive_hdmi_connector_helper_funcs);
-> >> +    drmm_connector_init(drm, &hdmi->connector,
-> >> +                &starfive_hdmi_connector_funcs,
-> >> +                DRM_MODE_CONNECTOR_HDMIA,
-> >
-> > On an embedded device one can not be so sure. There can be MHL or HDMI Alternative Mode. Usually we use drm_bridge here and drm_bridge_connector.
-> >
-> >> +                hdmi->ddc);
-> >> +
-> >> +    drm_connector_attach_encoder(&hdmi->connector, encoder);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static irqreturn_t starfive_hdmi_i2c_irq(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    struct starfive_hdmi_i2c *i2c = hdmi->i2c;
-> >> +    u8 stat;
-> >> +
-> >> +    stat = hdmi_readb(hdmi, HDMI_INTERRUPT_STATUS1);
-> >> +    if (!(stat & m_INT_EDID_READY))
-> >> +        return IRQ_NONE;
-> >> +
-> >> +    /* Clear HDMI EDID interrupt flag */
-> >> +    hdmi_writeb(hdmi, HDMI_INTERRUPT_STATUS1, m_INT_EDID_READY);
-> >> +
-> >> +    complete(&i2c->cmp);
-> >> +
-> >> +    return IRQ_HANDLED;
-> >> +}
-> >> +
-> >> +static irqreturn_t starfive_hdmi_hardirq(int irq, void *dev_id)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = dev_id;
-> >> +    irqreturn_t ret = IRQ_NONE;
-> >> +    u8 interrupt;
-> >> +
-> >> +    if (hdmi->i2c)
-> >> +        ret = starfive_hdmi_i2c_irq(hdmi);
-> >> +
-> >> +    interrupt = hdmi_readb(hdmi, HDMI_STATUS);
-> >> +    if (interrupt & m_INT_HOTPLUG) {
-> >> +        hdmi_modb(hdmi, HDMI_STATUS, m_INT_HOTPLUG, m_INT_HOTPLUG);
-> >> +        ret = IRQ_WAKE_THREAD;
-> >> +    }
-> >> +
-> >> +    return ret;
-> >> +}
-> >> +
-> >> +static irqreturn_t starfive_hdmi_irq(int irq, void *dev_id)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = dev_id;
-> >> +
-> >> +    drm_connector_helper_hpd_irq_event(&hdmi->connector);
-> >> +
-> >> +    return IRQ_HANDLED;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_i2c_read(struct starfive_hdmi *hdmi, struct i2c_msg *msgs)
-> >> +{
-> >> +    int length = msgs->len;
-> >> +    u8 *buf = msgs->buf;
-> >> +    int ret;
-> >> +
-> >> +    ret = wait_for_completion_timeout(&hdmi->i2c->cmp, HZ / 10);
-> >
-> > read_poll_timeout
-> Hi Dmitry:
-> I think using wait_for_completion_timeout here is a bit clearer than read_poll_timeout logic
-> I2c_read has hardware interrupt dependency. so need wait the interrupt completion.
-> also it comes with timeout detection.
+Le 2023-10-22 23:54, Jeff LaBundy a écrit :
+> Hi Kamel,
 
-Hi,
+Hi Jeff,
 
-Yes, maybe I was thinking about a different piece of code here.
-wait_for_completion looks good here, indeed.
+> 
+> On Thu, Oct 12, 2023 at 09:40:34AM +0200, Kamel Bouhara wrote:
+>> Add a new driver for the TouchNetix's axiom family of
+>> touchscreen controllers. This driver only supports i2c
+>> and can be later adapted for SPI and USB support.
+>> 
+>> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+>> ---
+>>  MAINTAINERS                                   |   1 +
+>>  drivers/input/touchscreen/Kconfig             |  13 +
+>>  drivers/input/touchscreen/Makefile            |   1 +
+>>  .../input/touchscreen/touchnetix_axiom_i2c.c  | 740 
+>> ++++++++++++++++++
+>>  4 files changed, 755 insertions(+)
+>>  create mode 100644 drivers/input/touchscreen/touchnetix_axiom_i2c.c
+> 
+> Please do not include 'i2c' in the filename. If the driver is expanded 
+> in
+> the future to support SPI, it would make sense to have 
+> touchnetix_axiom.c,
+> touchnetix_axiom_i2c.c and touchnetix_axiom_spi.c. To prevent this 
+> driver
+> from having to be renamed in that case, just call it 
+> touchnetix_axiom.c.
+> 
 
-But this actually brings up another question. You reinit_comletion in
-starfive_hdmi_i2c_write() and then wait_for_completion in
-starfive_hdmi_i2c_read(). How does that work?
+Sure but the generic part of the code could also be moved to 
+touchnetix_axiom.c.
 
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 12ae8bc6b8cf..2d1e0b025e89 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -21415,6 +21415,7 @@ M:	Kamel Bouhara <kamel.bouhara@bootlin.com>
+>>  L:	linux-input@vger.kernel.org
+>>  S:	Maintained
+>>  
+>> F:	Documentation/devicetree/bindings/input/touchscreen/touchnetix,axiom-ax54a.yaml
+>> +F:	drivers/input/touchscreen/touchnetix_axiom_i2c.c
+>> 
+>>  THUNDERBOLT DMA TRAFFIC TEST DRIVER
+>>  M:	Isaac Hazan <isaac.hazan@intel.com>
+>> diff --git a/drivers/input/touchscreen/Kconfig 
+>> b/drivers/input/touchscreen/Kconfig
+>> index e3e2324547b9..58665ccbe077 100644
+>> --- a/drivers/input/touchscreen/Kconfig
+>> +++ b/drivers/input/touchscreen/Kconfig
+>> @@ -803,6 +803,19 @@ config TOUCHSCREEN_MIGOR
+>>  	  To compile this driver as a module, choose M here: the
+>>  	  module will be called migor_ts.
+>> 
+>> +config TOUCHSCREEN_TOUCHNETIX_AXIOM_I2C
+>> +	tristate "TouchNetix AXIOM based touchscreen controllers"
+>> +	depends on I2C
+>> +	depends on GPIOLIB || COMPILE_TEST
+> 
+> All gpiod_*() functions used in this driver have a dummy function for 
+> the
+> CONFIG_GPIOLIB=n case, so this dependency is unnecessary.
+> 
 
+Yes, thanks.
 
->
-> >
-> >> +    if (!ret)
-> >> +        return -EAGAIN;
-> >> +
-> >> +    while (length--)
-> >> +        *buf++ = hdmi_readb(hdmi, HDMI_EDID_FIFO_ADDR);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_i2c_write(struct starfive_hdmi *hdmi, struct i2c_msg *msgs)
-> >> +{
-> >> +    /*
-> >> +     * The DDC module only support read EDID message, so
-> >> +     * we assume that each word write to this i2c adapter
-> >> +     * should be the offset of EDID word address.
-> >> +     */
-> >> +    if (msgs->len != 1 ||
-> >> +        (msgs->addr != DDC_ADDR && msgs->addr != DDC_SEGMENT_ADDR))
-> >> +        return -EINVAL;
-> >> +
-> >> +    reinit_completion(&hdmi->i2c->cmp);
-> >> +
-> >> +    if (msgs->addr == DDC_SEGMENT_ADDR)
-> >> +        hdmi->i2c->segment_addr = msgs->buf[0];
-> >> +    if (msgs->addr == DDC_ADDR)
-> >> +        hdmi->i2c->ddc_addr = msgs->buf[0];
-> >> +
-> >> +    /* Set edid fifo first addr */
-> >> +    hdmi_writeb(hdmi, HDMI_EDID_FIFO_OFFSET, 0x00);
-> >> +
-> >> +    /* Set edid word address 0x00/0x80 */
-> >> +    hdmi_writeb(hdmi, HDMI_EDID_WORD_ADDR, hdmi->i2c->ddc_addr);
-> >> +
-> >> +    /* Set edid segment pointer */
-> >> +    hdmi_writeb(hdmi, HDMI_EDID_SEGMENT_POINTER, hdmi->i2c->segment_addr);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_i2c_xfer(struct i2c_adapter *adap,
-> >> +                  struct i2c_msg *msgs, int num)
-> >> +{
-> >> +    struct starfive_hdmi *hdmi = i2c_get_adapdata(adap);
-> >> +    struct starfive_hdmi_i2c *i2c = hdmi->i2c;
-> >> +    int i, ret = 0;
-> >> +
-> >> +    mutex_lock(&i2c->lock);
-> >> +
-> >> +    /* Clear the EDID interrupt flag and unmute the interrupt */
-> >> +    hdmi_writeb(hdmi, HDMI_INTERRUPT_MASK1, m_INT_EDID_READY);
-> >> +    hdmi_writeb(hdmi, HDMI_INTERRUPT_STATUS1, m_INT_EDID_READY);
-> >> +
-> >> +    for (i = 0; i < num; i++) {
-> >> +        DRM_DEV_DEBUG(hdmi->dev,
-> >> +                  "xfer: num: %d/%d, len: %d, flags: %#x\n",
-> >> +                  i + 1, num, msgs[i].len, msgs[i].flags);
-> >> +
-> >> +        if (msgs[i].flags & I2C_M_RD)
-> >> +            ret = starfive_hdmi_i2c_read(hdmi, &msgs[i]);
-> >> +        else
-> >> +            ret = starfive_hdmi_i2c_write(hdmi, &msgs[i]);
-> >> +
-> >> +        if (ret < 0)
-> >> +            break;
-> >> +    }
-> >> +
-> >> +    if (!ret)
-> >> +        ret = num;
-> >> +
-> >> +    /* Mute HDMI EDID interrupt */
-> >> +    hdmi_writeb(hdmi, HDMI_INTERRUPT_MASK1, 0);
-> >> +
-> >> +    mutex_unlock(&i2c->lock);
-> >> +
-> >> +    return ret;
-> >> +}
-> >> +
-> >> +static u32 starfive_hdmi_i2c_func(struct i2c_adapter *adapter)
-> >> +{
-> >> +    return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-> >> +}
-> >> +
-> >> +static const struct i2c_algorithm starfive_hdmi_algorithm = {
-> >> +    .master_xfer    = starfive_hdmi_i2c_xfer,
-> >> +    .functionality    = starfive_hdmi_i2c_func,
-> >> +};
-> >> +
-> >> +static struct i2c_adapter *starfive_hdmi_i2c_adapter(struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    struct i2c_adapter *adap;
-> >> +    struct starfive_hdmi_i2c *i2c;
-> >> +    int ret;
-> >> +
-> >> +    i2c = drmm_kzalloc(hdmi->drm_dev, sizeof(*i2c), GFP_KERNEL);
-> >> +    if (!i2c)
-> >> +        return ERR_PTR(-ENOMEM);
-> >> +
-> >> +    mutex_init(&i2c->lock);
-> >> +    init_completion(&i2c->cmp);
-> >> +
-> >> +    adap = &i2c->adap;
-> >> +    adap->class = I2C_CLASS_DDC;
-> >> +    adap->owner = THIS_MODULE;
-> >> +    adap->dev.parent = hdmi->dev;
-> >> +    adap->algo = &starfive_hdmi_algorithm;
-> >> +    strscpy(adap->name, "Starfive HDMI", sizeof(adap->name));
-> >> +    i2c_set_adapdata(adap, hdmi);
-> >> +
-> >> +    ret = devm_i2c_add_adapter(hdmi->dev, adap);
-> >> +    if (ret) {
-> >> +        drm_warn(hdmi->drm_dev, "cannot add %s I2C adapter\n", adap->name);
-> >> +        return ERR_PTR(ret);
-> >> +    }
-> >> +
-> >> +    hdmi->i2c = i2c;
-> >> +
-> >> +    drm_info(hdmi->drm_dev, "registered %s I2C bus driver success\n", adap->name);
-> >> +
-> >> +    return adap;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_get_clk_rst(struct device *dev, struct starfive_hdmi *hdmi)
-> >> +{
-> >> +    hdmi->sys_clk = devm_clk_get(dev, "sysclk");
-> >> +    if (IS_ERR(hdmi->sys_clk)) {
-> >> +        dev_err(dev, "Unable to get HDMI sysclk clk\n");
-> >> +        return PTR_ERR(hdmi->sys_clk);
-> >> +    }
-> >> +    hdmi->mclk = devm_clk_get(dev, "mclk");
-> >> +    if (IS_ERR(hdmi->mclk)) {
-> >> +        dev_err(dev, "Unable to get HDMI mclk clk\n");
-> >> +        return PTR_ERR(hdmi->mclk);
-> >> +    }
-> >> +    hdmi->bclk = devm_clk_get(dev, "bclk");
-> >> +    if (IS_ERR(hdmi->bclk)) {
-> >> +        dev_err(dev, "Unable to get HDMI bclk clk\n");
-> >> +        return PTR_ERR(hdmi->bclk);
-> >> +    }
-> >> +    hdmi->tx_rst = devm_reset_control_get_by_index(dev, 0);
-> >> +    if (IS_ERR(hdmi->tx_rst)) {
-> >> +        dev_err(dev, "failed to get tx_rst reset\n");
-> >> +        return PTR_ERR(hdmi->tx_rst);
-> >> +    }
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_bind(struct device *dev, struct device *master,
-> >> +                  void *data)
-> >> +{
-> >> +    struct platform_device *pdev = to_platform_device(dev);
-> >> +    struct drm_device *drm = dev_get_drvdata(master);
-> >> +    struct starfive_hdmi *hdmi;
-> >> +    struct resource *iores;
-> >> +    int irq;
-> >> +    int ret;
-> >> +
-> >> +    hdmi = drmm_kzalloc(drm, sizeof(*hdmi), GFP_KERNEL);
-> >> +    if (!hdmi)
-> >> +        return -ENOMEM;
-> >> +
-> >> +    hdmi = drmm_simple_encoder_alloc(drm, struct starfive_hdmi,
-> >> +                     encoder, DRM_MODE_ENCODER_TMDS);
-> >> +
-> >> +    hdmi->dev = dev;
-> >> +    hdmi->drm_dev = drm;
-> >> +    dev_set_drvdata(dev, hdmi);
-> >> +
-> >> +    iores = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> >> +    hdmi->regs = devm_ioremap_resource(dev, iores);
-> >
-> > This should go to probe
-> >
-> >> +    if (IS_ERR(hdmi->regs))
-> >> +        return PTR_ERR(hdmi->regs);
-> >> +
-> >> +    ret = starfive_hdmi_get_clk_rst(dev, hdmi);
-> >> +    if (ret < 0)
-> >> +        return ret;
-> >
-> > And this
-> >
-> >> +
-> >> +    ret = devm_pm_runtime_enable(dev);
-> >> +    if (ret)
-> >> +        return ret;
-> >> +
-> >> +    ret = pm_runtime_resume_and_get(dev);
-> >> +    if (ret)
-> >> +        return ret;
-> >> +
-> >> +    irq = platform_get_irq(pdev, 0);
-> >
-> > And this
-> >
-> >> +    if (irq < 0) {
-> >> +        ret = irq;
-> >> +        goto err_put_runtime_pm;
-> >> +    }
-> >> +
-> >> +    hdmi->ddc = starfive_hdmi_i2c_adapter(hdmi);
-> >> +    if (IS_ERR(hdmi->ddc)) {
-> >> +        ret = PTR_ERR(hdmi->ddc);
-> >> +        hdmi->ddc = NULL;
-> >> +        goto err_put_runtime_pm;
-> >> +    }
-> >> +
-> >> +    starfive_hdmi_i2c_init(hdmi);
-> >> +
-> >> +    ret = starfive_hdmi_register(drm, hdmi);
-> >> +    if (ret)
-> >> +        goto err_put_adapter;
-> >> +
-> >> +    /* Unmute hotplug interrupt */
-> >> +    hdmi_modb(hdmi, HDMI_STATUS, m_MASK_INT_HOTPLUG, v_MASK_INT_HOTPLUG(1));
-> >> +
-> >> +    ret = devm_request_threaded_irq(dev, irq, starfive_hdmi_hardirq,
-> >> +                    starfive_hdmi_irq, IRQF_SHARED,
-> >> +                    dev_name(dev), hdmi);
-> >> +    if (ret < 0)
-> >> +        goto err_put_adapter;
-> >> +
-> >> +    pm_runtime_put_sync(dev);
-> >> +
-> >> +    return 0;
-> >> +
-> >> +err_put_adapter:
-> >> +    i2c_put_adapter(hdmi->ddc);
-> >> +err_put_runtime_pm:
-> >> +    pm_runtime_put_sync(dev);
-> >> +
-> >> +    return ret;
-> >> +}
-> >> +
-> >> +static const struct component_ops starfive_hdmi_ops = {
-> >> +    .bind    = starfive_hdmi_bind,
-> >> +};
-> >> +
-> >> +static int starfive_hdmi_probe(struct platform_device *pdev)
-> >> +{
-> >> +    return component_add(&pdev->dev, &starfive_hdmi_ops);
-> >> +}
-> >> +
-> >> +static int starfive_hdmi_remove(struct platform_device *pdev)
-> >> +{
-> >> +    component_del(&pdev->dev, &starfive_hdmi_ops);
-> >> +
-> >> +    return 0;
-> >> +}
-> >> +
-> >> +static const struct dev_pm_ops hdmi_pm_ops = {
-> >> +    SET_RUNTIME_PM_OPS(hdmi_runtime_suspend, hdmi_runtime_resume, NULL)
-> >> +    SET_LATE_SYSTEM_SLEEP_PM_OPS(hdmi_system_pm_suspend, hdmi_system_pm_resume)
-> >> +};
-> >> +
-> >> +static const struct of_device_id starfive_hdmi_dt_ids[] = {
-> >> +    { .compatible = "starfive,jh7110-inno-hdmi",},
-> >> +    {},
-> >> +};
-> >> +MODULE_DEVICE_TABLE(of, starfive_hdmi_dt_ids);
-> >> +
-> >> +struct platform_driver starfive_hdmi_driver = {
-> >> +    .probe  = starfive_hdmi_probe,
-> >> +    .remove = starfive_hdmi_remove,
-> >> +    .driver = {
-> >> +        .name = "starfive-hdmi",
-> >> +        .of_match_table = starfive_hdmi_dt_ids,
-> >> +        .pm = &hdmi_pm_ops,
-> >> +    },
-> >> +};
-> >> +
-> >> +MODULE_AUTHOR("StarFive Corporation");
-> >> +MODULE_DESCRIPTION("Starfive HDMI Driver");
-> >> diff --git a/drivers/gpu/drm/verisilicon/starfive_hdmi.h b/drivers/gpu/drm/verisilicon/starfive_hdmi.h
-> >> new file mode 100644
-> >> index 000000000..1b9a11bca
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/verisilicon/starfive_hdmi.h
-> >> @@ -0,0 +1,295 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0-only */
-> >> +/*
-> >> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
-> >> + */
-> >> +
-> >> +#ifndef __STARFIVE_HDMI_H__
-> >> +#define __STARFIVE_HDMI_H__
-> >> +
-> >> +#include <drm/bridge/dw_hdmi.h>
-> >> +#include <drm/drm_atomic_helper.h>
-> >> +#include <drm/drm_edid.h>
-> >> +#include <drm/drm_of.h>
-> >> +#include <drm/drm_probe_helper.h>
-> >> +#include <drm/drm_simple_kms_helper.h>
-> >> +#include <linux/bitfield.h>
-> >> +#include <linux/bits.h>
-> >> +
-> >> +#define DDC_SEGMENT_ADDR        0x30
-> >> +
-> >> +#define HDMI_SCL_RATE            (100 * 1000)
-> >> +#define DDC_BUS_FREQ_L            0x4b
-> >> +#define DDC_BUS_FREQ_H            0x4c
-> >> +
-> >> +#define HDMI_SYS_CTRL            0x00
-> >> +#define m_RST_ANALOG            BIT(6)
-> >> +#define v_RST_ANALOG            0
-> >> +#define v_NOT_RST_ANALOG        BIT(6)
-> >> +#define m_RST_DIGITAL            BIT(5)
-> >> +#define v_RST_DIGITAL            0
-> >> +#define v_NOT_RST_DIGITAL        BIT(5)
-> >> +#define m_REG_CLK_INV            BIT(4)
-> >> +#define v_REG_CLK_NOT_INV        0
-> >> +#define v_REG_CLK_INV            BIT(4)
-> >> +#define m_VCLK_INV            BIT(3)
-> >> +#define v_VCLK_NOT_INV            0
-> >> +#define v_VCLK_INV            BIT(3)
-> >> +#define m_REG_CLK_SOURCE        BIT(2)
-> >> +#define v_REG_CLK_SOURCE_TMDS        0
-> >> +#define v_REG_CLK_SOURCE_SYS        BIT(2)
-> >> +#define m_POWER                BIT(1)
-> >> +#define v_PWR_ON            0
-> >> +#define v_PWR_OFF            BIT(1)
-> >> +#define m_INT_POL            BIT(0)
-> >> +#define v_INT_POL_HIGH            1
-> >> +#define v_INT_POL_LOW            0
-> >> +
-> >> +#define HDMI_AV_MUTE            0x05
-> >> +#define m_AVMUTE_CLEAR            BIT(7)
-> >> +#define m_AVMUTE_ENABLE            BIT(6)
-> >> +#define m_AUDIO_MUTE            BIT(1)
-> >> +#define m_VIDEO_BLACK            BIT(0)
-> >> +#define v_AVMUTE_CLEAR(n)        ((n) << 7)
-> >> +#define v_AVMUTE_ENABLE(n)        ((n) << 6)
-> >> +#define v_AUDIO_MUTE(n)            ((n) << 1)
-> >> +#define v_VIDEO_MUTE(n)            ((n) << 0)
-> >> +
-> >> +#define HDMI_VIDEO_TIMING_CTL        0x08
-> >> +#define v_VSYNC_POLARITY(n)        ((n) << 3)
-> >> +#define v_HSYNC_POLARITY(n)        ((n) << 2)
-> >> +#define v_INETLACE(n)            ((n) << 1)
-> >> +#define v_EXTERANL_VIDEO(n)        ((n) << 0)
-> >> +
-> >> +#define HDMI_VIDEO_EXT_HTOTAL_L        0x09
-> >> +#define HDMI_VIDEO_EXT_HTOTAL_H        0x0a
-> >> +#define HDMI_VIDEO_EXT_HBLANK_L        0x0b
-> >> +#define HDMI_VIDEO_EXT_HBLANK_H        0x0c
-> >> +#define HDMI_VIDEO_EXT_HDELAY_L        0x0d
-> >> +#define HDMI_VIDEO_EXT_HDELAY_H        0x0e
-> >> +#define HDMI_VIDEO_EXT_HDURATION_L    0x0f
-> >> +#define HDMI_VIDEO_EXT_HDURATION_H    0x10
-> >> +#define HDMI_VIDEO_EXT_VTOTAL_L        0x11
-> >> +#define HDMI_VIDEO_EXT_VTOTAL_H        0x12
-> >> +#define HDMI_VIDEO_EXT_VBLANK        0x13
-> >> +#define HDMI_VIDEO_EXT_VDELAY        0x14
-> >> +#define HDMI_VIDEO_EXT_VDURATION    0x15
-> >> +
-> >> +#define HDMI_EDID_SEGMENT_POINTER    0x4d
-> >> +#define HDMI_EDID_WORD_ADDR        0x4e
-> >> +#define HDMI_EDID_FIFO_OFFSET        0x4f
-> >> +#define HDMI_EDID_FIFO_ADDR        0x50
-> >> +
-> >> +#define HDMI_INTERRUPT_MASK1        0xc0
-> >> +#define HDMI_INTERRUPT_STATUS1        0xc1
-> >> +#define    m_INT_ACTIVE_VSYNC        BIT(5)
-> >> +#define m_INT_EDID_READY        BIT(2)
-> >> +
-> >> +#define HDMI_STATUS            0xc8
-> >> +#define m_HOTPLUG            BIT(7)
-> >> +#define m_MASK_INT_HOTPLUG        BIT(5)
-> >> +#define m_INT_HOTPLUG            BIT(1)
-> >> +#define v_MASK_INT_HOTPLUG(n)        (((n) & 0x1) << 5)
-> >
-> > It is untypical to have field defines which start with lowercase letter.
-> >
-> >> +
-> >> +#define HDMI_SYNC                    0xce
-> >> +
-> >> +#define UPDATE(x, h, l)                    FIELD_PREP(GENMASK(h, l), x)
-> >> +
-> >> +/* REG: 0x1a0 */
-> >> +#define STARFIVE_PRE_PLL_CONTROL            0x1a0
-> >> +#define STARFIVE_PCLK_VCO_DIV_5_MASK            BIT(1)
-> >> +#define STARFIVE_PCLK_VCO_DIV_5(x)            UPDATE(x, 1, 1)
-> >> +#define STARFIVE_PRE_PLL_POWER_DOWN            BIT(0)
-> >> +
-> >> +/* REG: 0x1a1 */
-> >> +#define STARFIVE_PRE_PLL_DIV_1                0x1a1
-> >> +#define STARFIVE_PRE_PLL_PRE_DIV_MASK            GENMASK(5, 0)
-> >> +#define STARFIVE_PRE_PLL_PRE_DIV(x)            UPDATE(x, 5, 0)
-> >> +
-> >> +/* REG: 0x1a2 */
-> >> +#define STARFIVE_PRE_PLL_DIV_2                0x1a2
-> >> +#define STARFIVE_SPREAD_SPECTRUM_MOD_DOWN        BIT(7)
-> >> +#define STARFIVE_SPREAD_SPECTRUM_MOD_DISABLE        BIT(6)
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_DISABLE        UPDATE(3, 5, 4)
-> >> +#define STARFIVE_PRE_PLL_FB_DIV_11_8_MASK        GENMASK(3, 0)
-> >> +#define STARFIVE_PRE_PLL_FB_DIV_11_8(x)            UPDATE((x) >> 8, 3, 0)
-> >> +
-> >> +/* REG: 0x1a3 */
-> >> +#define STARFIVE_PRE_PLL_DIV_3                0x1a3
-> >> +#define STARFIVE_PRE_PLL_FB_DIV_7_0(x)            UPDATE(x, 7, 0)
-> >> +
-> >> +/* REG: 0x1a4*/
-> >> +#define STARFIVE_PRE_PLL_DIV_4                0x1a4
-> >> +#define STARFIVE_PRE_PLL_TMDSCLK_DIV_C_MASK        GENMASK(1, 0)
-> >> +#define STARFIVE_PRE_PLL_TMDSCLK_DIV_C(x)        UPDATE(x, 1, 0)
-> >> +#define STARFIVE_PRE_PLL_TMDSCLK_DIV_B_MASK        GENMASK(3, 2)
-> >> +#define STARFIVE_PRE_PLL_TMDSCLK_DIV_B(x)        UPDATE(x, 3, 2)
-> >> +#define STARFIVE_PRE_PLL_TMDSCLK_DIV_A_MASK        GENMASK(5, 4)
-> >> +#define STARFIVE_PRE_PLL_TMDSCLK_DIV_A(x)        UPDATE(x, 5, 4)
-> >> +
-> >> +/* REG: 0x1a5 */
-> >> +#define STARFIVE_PRE_PLL_DIV_5                0x1a5
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_B_SHIFT        5
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_B_MASK        GENMASK(6, 5)
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_B(x)            UPDATE(x, 6, 5)
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_A_MASK        GENMASK(4, 0)
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_A(x)            UPDATE(x, 4, 0)
-> >> +
-> >> +/* REG: 0x1a6 */
-> >> +#define STARFIVE_PRE_PLL_DIV_6                0x1a6
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_C_SHIFT        5
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_C_MASK        GENMASK(6, 5)
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_C(x)            UPDATE(x, 6, 5)
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_D_MASK        GENMASK(4, 0)
-> >> +#define STARFIVE_PRE_PLL_PCLK_DIV_D(x)            UPDATE(x, 4, 0)
-> >> +
-> >> +/* REG: 0x1a9 */
-> >> +#define STARFIVE_PRE_PLL_LOCK_STATUS            0x1a9
-> >> +
-> >> +/* REG: 0x1aa */
-> >> +#define STARFIVE_POST_PLL_DIV_1                0x1aa
-> >> +#define STARFIVE_POST_PLL_POST_DIV_ENABLE        GENMASK(3, 2)
-> >> +#define STARFIVE_POST_PLL_REFCLK_SEL_TMDS        BIT(1)
-> >> +#define STARFIVE_POST_PLL_POWER_DOWN            BIT(0)
-> >> +#define STARFIVE_POST_PLL_FB_DIV_8(x)            UPDATE(((x) >> 8) << 4, 4, 4)
-> >> +
-> >> +/* REG:0x1ab */
-> >> +#define STARFIVE_POST_PLL_DIV_2                0x1ab
-> >> +#define STARFIVE_POST_PLL_Pre_DIV_MASK            GENMASK(5, 0)
-> >> +#define STARFIVE_POST_PLL_PRE_DIV(x)            UPDATE(x, 5, 0)
-> >> +
-> >> +/* REG: 0x1ac */
-> >> +#define STARFIVE_POST_PLL_DIV_3                0x1ac
-> >> +#define STARFIVE_POST_PLL_FB_DIV_7_0(x)            UPDATE(x, 7, 0)
-> >> +
-> >> +/* REG: 0x1ad */
-> >> +#define STARFIVE_POST_PLL_DIV_4                0x1ad
-> >> +#define STARFIVE_POST_PLL_POST_DIV_MASK            GENMASK(2, 0)
-> >> +#define STARFIVE_POST_PLL_POST_DIV_2            0x0
-> >> +#define STARFIVE_POST_PLL_POST_DIV_4            0x1
-> >> +#define STARFIVE_POST_PLL_POST_DIV_8            0x3
-> >> +
-> >> +/* REG: 0x1af */
-> >> +#define STARFIVE_POST_PLL_LOCK_STATUS            0x1af
-> >> +
-> >> +/* REG: 0x1b0 */
-> >> +#define STARFIVE_BIAS_CONTROL                0x1b0
-> >> +#define STARFIVE_BIAS_ENABLE                BIT(2)
-> >> +
-> >> +/* REG: 0x1b2 */
-> >> +#define STARFIVE_TMDS_CONTROL                0x1b2
-> >> +#define STARFIVE_TMDS_CLK_DRIVER_EN            BIT(3)
-> >> +#define STARFIVE_TMDS_D2_DRIVER_EN            BIT(2)
-> >> +#define STARFIVE_TMDS_D1_DRIVER_EN            BIT(1)
-> >> +#define STARFIVE_TMDS_D0_DRIVER_EN            BIT(0)
-> >> +#define STARFIVE_TMDS_DRIVER_ENABLE            (STARFIVE_TMDS_CLK_DRIVER_EN | \
-> >> +                             STARFIVE_TMDS_D2_DRIVER_EN | \
-> >> +                             STARFIVE_TMDS_D1_DRIVER_EN | \
-> >> +                             STARFIVE_TMDS_D0_DRIVER_EN)
-> >> +
-> >> +/* REG: 0x1b4 */
-> >> +#define STARFIVE_LDO_CONTROL                0x1b4
-> >> +#define STARFIVE_LDO_D2_EN                BIT(2)
-> >> +#define STARFIVE_LDO_D1_EN                BIT(1)
-> >> +#define STARFIVE_LDO_D0_EN                BIT(0)
-> >> +#define STARFIVE_LDO_ENABLE                (STARFIVE_LDO_D2_EN | \
-> >> +                             STARFIVE_LDO_D1_EN | \
-> >> +                             STARFIVE_LDO_D0_EN)
-> >> +
-> >> +/* REG: 0x1be */
-> >> +#define STARFIVE_SERIALIER_CONTROL            0x1be
-> >> +#define STARFIVE_SERIALIER_D2_EN            BIT(6)
-> >> +#define STARFIVE_SERIALIER_D1_EN            BIT(5)
-> >> +#define STARFIVE_SERIALIER_D0_EN            BIT(4)
-> >> +#define STARFIVE_SERIALIER_EN                BIT(0)
-> >> +
-> >> +#define STARFIVE_SERIALIER_ENABLE            (STARFIVE_SERIALIER_D2_EN | \
-> >> +                             STARFIVE_SERIALIER_D1_EN | \
-> >> +                             STARFIVE_SERIALIER_D0_EN | \
-> >> +                             STARFIVE_SERIALIER_EN)
-> >> +
-> >> +/* REG: 0x1cc */
-> >> +#define STARFIVE_RX_CONTROL                0x1cc
-> >> +#define STARFIVE_RX_EN                    BIT(3)
-> >> +#define STARFIVE_RX_CHANNEL_2_EN            BIT(2)
-> >> +#define STARFIVE_RX_CHANNEL_1_EN            BIT(1)
-> >> +#define STARFIVE_RX_CHANNEL_0_EN            BIT(0)
-> >> +#define STARFIVE_RX_ENABLE                (STARFIVE_RX_EN | \
-> >> +                             STARFIVE_RX_CHANNEL_2_EN | \
-> >> +                             STARFIVE_RX_CHANNEL_1_EN | \
-> >> +                             STARFIVE_RX_CHANNEL_0_EN)
-> >> +
-> >> +/* REG: 0x1d1 */
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_H            0x1d1
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_23_16(x)        UPDATE((x) >> 16, 7, 0)
-> >> +/* REG: 0x1d2 */
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_M            0x1d2
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_15_8(x)        UPDATE((x) >> 8, 7, 0)
-> >> +/* REG: 0x1d3 */
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_L            0x1d3
-> >> +#define STARFIVE_PRE_PLL_FRAC_DIV_7_0(x)        UPDATE(x, 7, 0)
-> >> +
-> >> +struct pre_pll_config {
-> >> +    unsigned long pixclock;
-> >> +    unsigned long tmdsclock;
-> >> +    u8 prediv;
-> >> +    u16 fbdiv;
-> >> +    u8 tmds_div_a;
-> >> +    u8 tmds_div_b;
-> >> +    u8 tmds_div_c;
-> >> +    u8 pclk_div_a;
-> >> +    u8 pclk_div_b;
-> >> +    u8 pclk_div_c;
-> >> +    u8 pclk_div_d;
-> >> +    u8 vco_div_5_en;
-> >> +    u32 fracdiv;
-> >> +};
-> >> +
-> >> +struct post_pll_config {
-> >> +    unsigned long tmdsclock;
-> >> +    u8 prediv;
-> >> +    u16 fbdiv;
-> >> +    u8 postdiv;
-> >> +    u8 post_div_en;
-> >> +    u8 version;
-> >> +};
-> >> +
-> >> +struct phy_config {
-> >> +    unsigned long    tmdsclock;
-> >> +    u8        regs[14];
-> >> +};
-> >> +
-> >> +struct hdmi_data_info {
-> >> +    int vic;
-> >> +    bool sink_is_hdmi;
-> >> +    bool sink_has_audio;
-> >> +    unsigned int enc_in_format;
-> >> +    unsigned int enc_out_format;
-> >> +    unsigned int colorimetry;
-> >> +};
-> >> +
-> >> +struct starfive_hdmi {
-> >> +    struct device *dev;
-> >> +    struct drm_device *drm_dev;
-> >> +    struct drm_encoder    encoder;
-> >> +    struct drm_connector    connector;
-> >> +
-> >> +    struct starfive_hdmi_i2c *i2c;
-> >> +
-> >> +    int irq;
-> >> +    struct clk *sys_clk;
-> >> +    struct clk *mclk;
-> >> +    struct clk *bclk;
-> >> +    struct reset_control *tx_rst;
-> >> +    void __iomem *regs;
-> >> +
-> >> +    struct i2c_adapter *ddc;
-> >> +
-> >> +    unsigned long tmds_rate;
-> >> +
-> >> +    struct hdmi_data_info    hdmi_data;
-> >> +    struct drm_display_mode previous_mode;
-> >> +    const struct pre_pll_config    *pre_cfg;
-> >> +    const struct post_pll_config    *post_cfg;
-> >> +};
-> >> +
-> >> +#endif /* __STARFIVE_HDMI_H__ */
-> >> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/verisilicon/vs_drv.c
-> >> index 3cd533cfa..9669354bd 100644
-> >> --- a/drivers/gpu/drm/verisilicon/vs_drv.c
-> >> +++ b/drivers/gpu/drm/verisilicon/vs_drv.c
-> >> @@ -126,6 +126,11 @@ static const struct component_master_ops vs_drm_ops = {
-> >>   static struct platform_driver *drm_sub_drivers[] = {
-> >>       &dc_platform_driver,
-> >>   +    /* connector + encoder*/
-> >> +#ifdef CONFIG_DRM_VERISILICON_STARFIVE_HDMI
-> >> +    &starfive_hdmi_driver,
-> >> +#endif
-> >> +
-> >>   };
-> >>     static struct component_match *vs_drm_match_add(struct device *dev)
-> >> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.h b/drivers/gpu/drm/verisilicon/vs_drv.h
-> >> index 369ad22d6..e90723419 100644
-> >> --- a/drivers/gpu/drm/verisilicon/vs_drv.h
-> >> +++ b/drivers/gpu/drm/verisilicon/vs_drv.h
-> >> @@ -24,4 +24,8 @@ to_vs_drm_private(const struct drm_device *dev)
-> >>       return container_of(dev, struct vs_drm_device, base);
-> >>   }
-> >>   +#ifdef CONFIG_DRM_VERISILICON_STARFIVE_HDMI
-> >> +extern struct platform_driver starfive_hdmi_driver;
-> >> +#endif
-> >> +
-> >>   #endif /* __VS_DRV_H__ */
-> >
+>> +	help
+>> +	  Say Y here if you have a axiom touchscreen connected to
+>> +	  your system.
+>> +
+>> +	  If unsure, say N.
+>> +
+>> +	  To compile this driver as a module, choose M here: the
+>> +	  module will be called axiom_i2c.
+>> +
+>>  config TOUCHSCREEN_TOUCHRIGHT
+>>  	tristate "Touchright serial touchscreen"
+>>  	select SERIO
+>> diff --git a/drivers/input/touchscreen/Makefile 
+>> b/drivers/input/touchscreen/Makefile
+>> index 62bd24f3ac8e..23b6fb8864b0 100644
+>> --- a/drivers/input/touchscreen/Makefile
+>> +++ b/drivers/input/touchscreen/Makefile
+>> @@ -88,6 +88,7 @@ obj-$(CONFIG_TOUCHSCREEN_SUR40)		+= sur40.o
+>>  obj-$(CONFIG_TOUCHSCREEN_SURFACE3_SPI)	+= surface3_spi.o
+>>  obj-$(CONFIG_TOUCHSCREEN_TI_AM335X_TSC)	+= ti_am335x_tsc.o
+>>  obj-$(CONFIG_TOUCHSCREEN_TOUCHIT213)	+= touchit213.o
+>> +obj-$(CONFIG_TOUCHSCREEN_TOUCHNETIX_AXIOM_I2C)	+= 
+>> touchnetix_axiom_i2c.o
+>>  obj-$(CONFIG_TOUCHSCREEN_TOUCHRIGHT)	+= touchright.o
+>>  obj-$(CONFIG_TOUCHSCREEN_TOUCHWIN)	+= touchwin.o
+>>  obj-$(CONFIG_TOUCHSCREEN_TS4800)	+= ts4800-ts.o
+>> diff --git a/drivers/input/touchscreen/touchnetix_axiom_i2c.c 
+>> b/drivers/input/touchscreen/touchnetix_axiom_i2c.c
+>> new file mode 100644
+>> index 000000000000..fb6239a87341
+>> --- /dev/null
+>> +++ b/drivers/input/touchscreen/touchnetix_axiom_i2c.c
+>> @@ -0,0 +1,740 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * TouchNetix aXiom Touchscreen Driver
+>> + *
+>> + * Copyright (C) 2020-2023 TouchNetix Ltd.
+>> + *
+>> + * Author(s): Bart Prescott <bartp@baasheep.co.uk>
+>> + *            Pedro Torruella <pedro.torruella@touchnetix.com>
+>> + *            Mark Satterthwaite <mark.satterthwaite@touchnetix.com>
+>> + *            Hannah Rossiter <hannah.rossiter@touchnetix.com>
+>> + *            Kamel Bouhara <kamel.bouhara@bootlin.com>
+>> + *
+>> + */
+>> +
+>> +#include <linux/crc16.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/device.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/input.h>
+>> +#include <linux/input/mt.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+> 
+> Please #include mod_devicetable.h as well.
+> 
 
+OK is this only for the sake of clarity ? As mod_devicetable.h is 
+already included in linux/of.h ?
 
+>> +#include <linux/of.h>
+>> +#include <linux/pm.h>
+> 
+> In addition to Marco's comment about unused includes, pm.h does not 
+> appear
+> to be used either.
+> 
 
--- 
-With best wishes
-Dmitry
+Ack, thx.
+
+>> +#include <linux/slab.h>
+>> +#include <linux/string.h>
+>> +
+>> +/*
+>> + * Runtime TCP mode: device is executing normal code and is
+>> + * accessible via the Touch Controller Mode
+>> + */
+>> +#define BOOT_TCP			0
+>> +/*
+>> + * Bootloader BLP mode: device is executing bootloader and is
+>> + * accessible via the Boot Loader Protocol.
+>> + */
+>> +#define BOOT_BLP			1
+>> +#define AXIOM_PROX_LEVEL		-128
+>> +/*
+>> + * Register group u31 has 2 pages for usage table entries.
+>> + * (2 * AXIOM_COMMS_PAGE_SIZE) / AXIOM_U31_BYTES_PER_USAGE = 85
+>> + */
+>> +#define AXIOM_U31_MAX_USAGES		85
+>> +#define AXIOM_U31_BYTES_PER_USAGE	6
+>> +#define AXIOM_U31_PAGE0_LENGTH		0x0C
+>> +#define AXIOM_U31_BOOTMODE_MASK		BIT(7)
+>> +#define AXIOM_U31_FW_INFO_VARIANT_MASK	GENMASK(6, 0)
+>> +#define AXIOM_U31_FW_INFO_STATUS_MASK	BIT(7)
+>> +
+>> +#define AXIOM_U41_MAX_TARGETS		10
+>> +
+>> +#define AXIOM_U46_AUX_CHANNELS		4
+>> +#define AXIOM_U46_AUX_MASK		GENMASK(11, 0)
+>> +
+>> +#define AXIOM_COMMS_MAX_USAGE_PAGES	3
+>> +#define AXIOM_COMMS_PAGE_SIZE		256
+>> +#define AXIOM_COMMS_OVERFLOW_MASK	BIT(7)
+>> +#define AXIOM_COMMS_REPORT_LEN_MASK	GENMASK(7, 0)
+>> +
+>> +#define AXIOM_REBASELINE_CMD		0x03
+>> +
+>> +#define AXIOM_REPORT_USAGE_ID		0x34
+>> +#define AXIOM_DEVINFO_USAGE_ID		0x31
+>> +#define AXIOM_USAGE_2HB_REPORT_ID	0x01
+>> +#define AXIOM_REBASELINE_USAGE_ID	0x02
+>> +#define AXIOM_USAGE_2AUX_REPORT_ID	0x46
+>> +#define AXIOM_USAGE_2DCTS_REPORT_ID	0x41
+>> +
+>> +#define AXIOM_PAGE_MASK			GENMASK(15, 8)
+>> +#define AXIOM_PAGE_OFFSET_MASK		GENMASK(7, 0)
+>> +
+>> +struct axiom_devinfo {
+>> +	char bootloader_fw_major;
+> 
+> Please use standard kernel type definitions, specifically u8 in place 
+> of char.
+> 
+
+Ack.
+
+>> +	char bootloader_fw_minor;
+>> +	char bootmode;
+>> +	u16 device_id;
+>> +	char fw_major;
+>> +	char fw_minor;
+>> +	char fw_info_extra;
+>> +	char tcp_revision;
+>> +	u16 jedec_id;
+>> +	char num_usages;
+>> +	char silicon_revision;
+>> +};
+>> +
+>> +/*
+>> + * Describes parameters of a specific usage, essenstially a single 
+>> element of
+>> + * the "Usage Table"
+>> + */
+>> +struct usage_entry {
+>> +	char id;
+>> +	char is_report;
+>> +	char start_page;
+>> +	char num_pages;
+>> +};
+>> +
+>> +/*
+>> + * Holds state of a touch or target when detected prior a touch (eg.
+>> + * hover or proximity events).
+>> + */
+> 
+> Nit: this comment is misleading. The enum itself does not hold state; 
+> it
+> represents state. A variable defined using this enum holds the state.
+> 
+
+Ok.
+
+>> +enum axiom_target_state {
+>> +	TARGET_STATE_NOT_PRESENT = 0,
+>> +	TARGET_STATE_PROX = 1,
+>> +	TARGET_STATE_HOVER = 2,
+>> +	TARGET_STATE_TOUCHING = 3,
+>> +	TARGET_STATE_MIN = TARGET_STATE_NOT_PRESENT,
+>> +	TARGET_STATE_MAX = TARGET_STATE_TOUCHING,
+>> +};
+> 
+> Please namespace these, i.e. AXIOM_TARGET_STATE_*.
+> 
+>> +
+>> +struct u41_target {
+>> +	enum axiom_target_state state;
+>> +	u16 x;
+>> +	u16 y;
+>> +	s8 z;
+>> +	bool insert;
+>> +	bool touch;
+>> +};
+> 
+> Please namespace this struct definition as you have done below.
+> 
+
+Sure.
+
+>> +
+>> +struct axiom_target_report {
+>> +	u8 index;
+>> +	u8 present;
+>> +	u16 x;
+>> +	u16 y;
+>> +	s8 z;
+>> +};
+>> +
+>> +struct axiom_cmd_header {
+>> +	u16 target_address;
+>> +	u16 length:15;
+>> +	u16 read:1;
+>> +} __packed;
+>> +
+>> +struct axiom_data {
+>> +	struct axiom_devinfo devinfo;
+>> +	struct device *dev;
+>> +	struct gpio_desc *reset_gpio;
+>> +	struct gpio_desc *irq_gpio;
+>> +	struct i2c_client *client;
+>> +	struct input_dev *input_dev;
+>> +	u32 max_report_len;
+>> +	u32 report_overflow_counter;
+>> +	u32 report_counter;
+>> +	char rx_buf[AXIOM_COMMS_MAX_USAGE_PAGES * AXIOM_COMMS_PAGE_SIZE];
+>> +	struct u41_target targets[AXIOM_U41_MAX_TARGETS];
+>> +	struct usage_entry usage_table[AXIOM_U31_MAX_USAGES];
+>> +	bool usage_table_populated;
+>> +};
+>> +
+>> +/*
+>> + * aXiom devices are typically configured to report
+>> + * touches at a rate of 100Hz (10ms). For systems
+>> + * that require polling for reports, 100ms seems like
+>> + * an acceptable polling rate.
+>> + * When reports are polled, it will be expected to
+>> + * occasionally observe the overflow bit being set
+>> + * in the reports. This indicates that reports are not
+>> + * being read fast enough.
+>> + */
+>> +#define POLL_INTERVAL_DEFAULT_MS 100
+> 
+> I'd rather we take this information from device tree; it seems 
+> 'poll-interval'
+> is a common property used by other drivers.
+> 
+>> +
+>> +/* Translate usage/page/offset triplet into physical address. */
+>> +static u16
+>> +usage_to_target_address(struct axiom_data *ts, char usage, char page,
+>> +			char offset)
+> 
+> The line break after the function type is a bit confusing; please use 
+> this
+> more common style and namespace all functions:
+> 
+> static u16 axiom_usage_to_target_address(...,
+> 					 ...);
+> 
+> Note any line breaks are aligned to the opening parenthesis.
+> 
+
+Fixed, thx.
+
+>> +{
+>> +	struct axiom_devinfo *device_info;
+>> +	struct usage_entry *usage_table;
+>> +	u32 i;
+>> +
+>> +	device_info = &ts->devinfo;
+>> +	usage_table = ts->usage_table;
+>> +
+>> +	/* At the moment the convention is that u31 is always at physical 
+>> address 0x0 */
+>> +	if (!ts->usage_table_populated) {
+>> +		if (usage == AXIOM_DEVINFO_USAGE_ID)
+>> +			return ((page << 8) + offset);
+>> +		else
+>> +			return 0xffff;
+>> +	}
+>> +
+>> +	for (i = 0; i < device_info->num_usages; i++) {
+>> +		if (usage_table[i].id != usage)
+>> +			continue;
+>> +
+>> +		if (page >= usage_table[i].num_pages) {
+>> +			dev_err(ts->dev, "Invalid usage table! usage: %u, page: %u, 
+>> offset: %u\n",
+>> +				usage, page, offset);
+>> +			return 0xffff;
+>> +		}
+>> +	}
+>> +
+>> +	return ((usage_table[i].start_page + page) << 8) + offset;
+>> +}
+>> +
+>> +static int
+>> +axiom_i2c_read(struct i2c_client *client, u8 usage, u8 page, u8 *buf, 
+>> u16 len)
+>> +{
+>> +	struct axiom_data *ts = i2c_get_clientdata(client);
+>> +	struct axiom_cmd_header cmd_header;
+>> +	struct i2c_msg msg[2];
+>> +	int ret;
+>> +
+>> +	cmd_header.target_address = cpu_to_le16(usage_to_target_address(ts, 
+>> usage, page, 0));
+>> +	cmd_header.length = cpu_to_le16(len);
+>> +	cmd_header.read = 1;
+>> +
+>> +	msg[0].addr = client->addr;
+>> +	msg[0].flags = 0;
+>> +	msg[0].len = sizeof(cmd_header);
+>> +	msg[0].buf = (u8 *)&cmd_header;
+>> +
+>> +	msg[1].addr = client->addr;
+>> +	msg[1].flags = I2C_M_RD;
+>> +	msg[1].len = len;
+>> +	msg[1].buf = (char *)buf;
+> 
+> Again, please use u8 in place of char, as was done for the first 
+> element.
+
+OK.
+
+> 
+>> +
+>> +	ret = i2c_transfer(client->adapter, msg, 2);
+> 
+> Please use ARRAY_SIZE(msg) above as you do below.
+> 
+>> +	if (ret != ARRAY_SIZE(msg)) {
+>> +		dev_err(&client->dev,
+>> +			"Failed reading usage %#x page %#x, error=%d\n",
+>> +			usage, page, ret);
+>> +		return -EIO;
+>> +	}
+> 
+> This check papers over negative error codes that may have been returned 
+> by
+> i2c_transfer(). For ret < 0 you should return ret, and only return -EIO 
+> for
+> 0 <= ret < ARRAY_SIZE(msg).
+> 
+> More importantly, however, if this device supports multiple transports 
+> and
+> you expect SPI support can be added in the future, you really should 
+> use
+> regmap throughout in order to avoid ripping up this driver later.
+> 
+
+I have a doubt on wether or not regmap can be used for SPI as there is 
+some
+specific padding required for SPI.
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int
+>> +axiom_i2c_write(struct i2c_client *client, u8 usage, u8 page, u8 
+>> *buf, u16 len)
+>> +{
+>> +	struct axiom_data *ts = i2c_get_clientdata(client);
+>> +	struct axiom_cmd_header cmd_header;
+>> +	struct i2c_msg msg[2];
+>> +	int ret;
+>> +
+>> +	cmd_header.target_address = cpu_to_le16(usage_to_target_address(ts, 
+>> usage, page, 0));
+>> +	cmd_header.length = cpu_to_le16(len);
+>> +	cmd_header.read = 0;
+>> +
+>> +	msg[0].addr = client->addr;
+>> +	msg[0].flags = 0;
+>> +	msg[0].len = sizeof(cmd_header);
+>> +	msg[0].buf = (u8 *)&cmd_header;
+>> +
+>> +	msg[1].addr = client->addr;
+>> +	msg[1].flags = 0;
+>> +	msg[1].len = len;
+>> +	msg[1].buf = (char *)buf;
+>> +
+>> +	ret = i2c_transfer(client->adapter, msg, 2);
+>> +	if (ret < 0) {
+>> +		dev_err(&client->dev,
+>> +			"Failed to write usage %#x page %#x, error=%d\n", usage,
+>> +			page, ret);
+>> +		return ret;
+>> +	}
+> 
+> The error handling between your read and write wrappers is 
+> inconsistent;
+> please see my comment above.
+> 
+> Is there any reason i2c_master_send() cannot work here? I'm guessing 
+> the
+> controller needs a repeated start in between the two messages?
+> 
+
+Yes reads requires repeated starts between each messages.
+
+For writes I could still use i2c_master_send() but what makes it more
+relevant here ?
+
+> For these kind of special requirements, it's helpful to add some 
+> comments
+> as to why the HW calls for additional housekeeping.
+> 
+
+OK.
+
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/*
+>> + * Decodes and populates the local Usage Table.
+>> + * Given a buffer of data read from page 1 onwards of u31 from an 
+>> aXiom
+>> + * device.
+>> + */
+> 
+> What is a usage table? These comments aren't helpful unless some of the
+> underlying concepts are defined as well.
+
+It's a set of registers regrouped in categories (data, configuration, 
+device and report).
+
+I'll try to clarify it.
+
+> 
+>> +static u32 axiom_populate_usage_table(struct axiom_data *ts, char 
+>> *rx_data)
+>> +{
+>> +	u32 usage_id = 0;
+> 
+> There is no need to initialize this iterator.
+> 
+>> +	u32 max_report_len = 0;
+>> +	struct axiom_devinfo *device_info;
+>> +	struct usage_entry *usage_table;
+>> +
+>> +	device_info = &ts->devinfo;
+>> +	usage_table = ts->usage_table;
+>> +
+>> +	for (usage_id = 0; usage_id < device_info->num_usages; usage_id++) {
+>> +		u16 offset = (usage_id * AXIOM_U31_BYTES_PER_USAGE);
+>> +		char id = rx_data[offset + 0];
+>> +		char start_page = rx_data[offset + 1];
+>> +		char num_pages = rx_data[offset + 2];
+> 
+> Please consider whether you can use a packed struct for this decoding.
+> 
+>> +		u32 max_offset = ((rx_data[offset + 3] & AXIOM_PAGE_OFFSET_MASK) + 
+>> 1) * 2;
+>> +
+>> +		if (!num_pages)
+>> +			usage_table[usage_id].is_report = true;
+>> +
+>> +		/* Store the entry into the usage table */
+>> +		usage_table[usage_id].id = id;
+>> +		usage_table[usage_id].start_page = start_page;
+>> +		usage_table[usage_id].num_pages = num_pages;
+>> +
+>> +		dev_dbg(ts->dev, "Usage %2u Info: %*ph\n", usage_id,
+>> +			AXIOM_U31_BYTES_PER_USAGE,
+>> +			&rx_data[offset]);
+> 
+> Nit: this line break seems unnecessary.
+> 
+>> +
+>> +		/* Identify the max report length the module will receive */
+>> +		if (usage_table[usage_id].is_report && max_offset > max_report_len)
+>> +			max_report_len = max_offset;
+>> +	}
+>> +	ts->usage_table_populated = true;
+>> +
+>> +	return max_report_len;
+>> +}
+>> +
+>> +/* Retrieve, store and print the axiom device information */
+> 
+> This comment does not seem particularly helpful.
+> 
+>> +static int axiom_discover(struct axiom_data *ts)
+>> +{
+>> +	struct axiom_devinfo *devinfo = &ts->devinfo;
+>> +	struct device *dev = ts->dev;
+>> +	char *rx_data = ts->rx_buf;
+>> +	int ret;
+> 
+> In input, variables that represent a negative error code (fail) or zero 
+> (pass)
+> tend to be called 'error'.
+> 
+>> +
+>> +	/*
+>> +	 * Fetch the first page of usage u31 to get the
+>> +	 * device information and the number of usages
+>> +	 */
+>> +	ret = axiom_i2c_read(ts->client, AXIOM_DEVINFO_USAGE_ID, 0, rx_data,
+>> +			     AXIOM_U31_PAGE0_LENGTH);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	devinfo->bootmode = (rx_data[0] & AXIOM_U31_BOOTMODE_MASK);
+>> +	devinfo->device_id = ((rx_data[1] & AXIOM_PAGE_OFFSET_MASK) << 8) | 
+>> rx_data[0];
+>> +	devinfo->fw_minor = rx_data[2];
+>> +	devinfo->fw_major = rx_data[3];
+>> +	devinfo->fw_info_extra = rx_data[4];
+>> +	devinfo->bootloader_fw_minor = rx_data[6];
+>> +	devinfo->bootloader_fw_major = rx_data[7];
+>> +	devinfo->jedec_id = (rx_data[8]) | (rx_data[9] << 8);
+>> +	devinfo->num_usages = rx_data[10];
+>> +	devinfo->silicon_revision = rx_data[11];
+> 
+> Opinions may vary here, but mine is that it is a waste of memory and 
+> time
+> to read and parse all of this data, only to print it at debug level. 
+> Unless
+> these variables are used elsewhere or reported to user space via sysfs, 
+> I
+> would drop all of this. It seems like cruft leftover from a vendor 
+> driver.
+> 
+> If you feel strongly about keeping these variables, then axiom_devinfo 
+> should
+> be defined as a packed struct to prevent having to disect rx_data[] 
+> byte by
+> byte. You should just read into &devinfo directly.
+
+Ack thx.
+
+> 
+>> +
+>> +	dev_dbg(dev, "  Boot Mode: %s\n", ts->devinfo.bootmode ? "BLP" : 
+>> "TCP");
+>> +	dev_dbg(dev, "  Device ID      : %04x\n", ts->devinfo.device_id);
+>> +	dev_dbg(dev, "  Firmware Rev   : %02x.%02x\n", ts->devinfo.fw_major,
+>> +		ts->devinfo.fw_minor);
+>> +	dev_dbg(dev, "  Bootloader Rev : %02x.%02x\n",
+>> +		ts->devinfo.bootloader_fw_major,
+>> +		ts->devinfo.bootloader_fw_minor);
+>> +	dev_dbg(dev, "  FW Extra Info  : %04x\n", 
+>> ts->devinfo.fw_info_extra);
+>> +	dev_dbg(dev, "  Silicon        : %02x\n", ts->devinfo.jedec_id);
+>> +	dev_dbg(dev, "  Num Usages     : %04x\n", ts->devinfo.num_usages);
+>> +
+>> +	/* Read the second page of usage u31 to get the usage table */
+>> +	ret = axiom_i2c_read(ts->client, AXIOM_DEVINFO_USAGE_ID, 1, rx_data,
+>> +			     (AXIOM_U31_BYTES_PER_USAGE * ts->devinfo.num_usages));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ts->max_report_len = axiom_populate_usage_table(ts, rx_data);
+>> +	dev_dbg(dev, "Max Report Length: %u\n", ts->max_report_len);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/*
+>> + * Support function to axiom_process_u41_report.
+>> + * Generates input-subsystem events for every target.
+>> + * After calling this function the caller shall issue
+>> + * a Sync to the input sub-system.
+>> + */
+>> +static bool
+>> +axiom_process_u41_report_target(struct axiom_data *ts,
+>> +				struct axiom_target_report *target)
+>> +{
+>> +	struct input_dev *input_dev = ts->input_dev;
+>> +	enum axiom_target_state current_state;
+>> +	struct u41_target *target_prev_state;
+>> +	struct device *dev = ts->dev;
+>> +	bool update = false;
+>> +	int slot;
+>> +
+>> +	/* Verify the target index */
+>> +	if (target->index >= AXIOM_U41_MAX_TARGETS) {
+>> +		dev_dbg(dev, "Invalid target index! %u\n", target->index);
+>> +		return false;
+>> +	}
+>> +
+>> +	target_prev_state = &ts->targets[target->index];
+>> +
+>> +	current_state = TARGET_STATE_NOT_PRESENT;
+>> +
+>> +	if (target->present) {
+>> +		if (target->z >= 0)
+>> +			current_state = TARGET_STATE_TOUCHING;
+>> +		else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
+>> +			current_state = TARGET_STATE_HOVER;
+>> +		else if (target->z AXIOM_PROX_LEVEL)
+>> +			current_state = TARGET_STATE_PROX;
+>> +	}
+>> +
+>> +	if (target_prev_state->state == current_state &&
+>> +	    target_prev_state->x == target->x &&
+>> +	    target_prev_state->y == target->y &&
+>> +	    target_prev_state->z == target->z) {
+>> +		return false;
+>> +	}
+>> +
+>> +	slot = target->index;
+>> +
+>> +	dev_dbg(dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, 
+>> z:%d\n",
+>> +		target->index, slot, target->present,
+>> +		target->x, target->y, target->z);
+>> +
+>> +	switch (current_state) {
+>> +	case TARGET_STATE_NOT_PRESENT:
+>> +	case TARGET_STATE_PROX:
+>> +		if (target_prev_state->insert)
+>> +			break;
+>> +		update = true;
+>> +		target_prev_state->insert = false;
+>> +		input_mt_slot(input_dev, slot);
+>> +
+>> +		if (!slot)
+>> +			input_report_key(input_dev, BTN_LEFT, 0);
+>> +
+>> +		input_mt_report_slot_inactive(input_dev);
+>> +		/*
+>> +		 * make sure the previous coordinates are
+>> +		 * all off screen when the finger comes back
+>> +		 */
+>> +		target->x = 65535;
+>> +		target->y = 65535;
+>> +		target->z = AXIOM_PROX_LEVEL;
+>> +		break;
+>> +	case TARGET_STATE_HOVER:
+>> +	case TARGET_STATE_TOUCHING:
+>> +		target_prev_state->insert = true;
+>> +		update = true;
+>> +		input_mt_slot(input_dev, slot);
+>> +		input_report_abs(input_dev, ABS_MT_TRACKING_ID, slot);
+>> +		input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
+>> +		input_report_abs(input_dev, ABS_X, target->x);
+>> +		input_report_abs(input_dev, ABS_MT_POSITION_Y, target->y);
+>> +		input_report_abs(input_dev, ABS_Y, target->y);
+>> +
+>> +		if (current_state == TARGET_STATE_TOUCHING) {
+>> +			input_report_abs(input_dev, ABS_MT_DISTANCE, 0);
+>> +			input_report_abs(input_dev, ABS_DISTANCE, 0);
+>> +			input_report_abs(input_dev, ABS_MT_PRESSURE, target->z);
+>> +			input_report_abs(input_dev, ABS_PRESSURE, target->z);
+>> +		} else {
+>> +			input_report_abs(input_dev, ABS_MT_DISTANCE, -target->z);
+>> +			input_report_abs(input_dev, ABS_DISTANCE, -target->z);
+>> +			input_report_abs(input_dev, ABS_MT_PRESSURE, 0);
+>> +			input_report_abs(input_dev, ABS_PRESSURE, 0);
+>> +		}
+>> +
+>> +		if (!slot)
+>> +			input_report_key(input_dev, BTN_LEFT, (current_state ==
+>> +					 TARGET_STATE_TOUCHING));
+>> +		break;
+>> +	}
+>> +
+>> +	target_prev_state->state = current_state;
+>> +	target_prev_state->x = target->x;
+>> +	target_prev_state->y = target->y;
+>> +	target_prev_state->z = target->z;
+>> +
+>> +	if (update)
+>> +		input_mt_sync_frame(input_dev);
+>> +
+>> +	return update;
+>> +}
+>> +
+>> +/*
+>> + * Take a raw buffer with u41 report data and decode it.
+>> + * Also generate input events if needed.
+>> + * rx_buf: ptr to a byte array [0]: Usage number [1]: Status LSB [2]: 
+>> Status MSB
+>> + */
+>> +static void axiom_process_u41_report(struct axiom_data *ts, char 
+>> *rx_buf)
+>> +{
+>> +	struct input_dev *input_dev = ts->input_dev;
+>> +	struct axiom_target_report target;
+>> +	bool update_done = false;
+>> +	u16 target_status;
+>> +	u32 i;
+>> +
+>> +	target_status = ((rx_buf[1]) | (rx_buf[2] << 8));
+>> +
+>> +	for (i = 0; i < AXIOM_U41_MAX_TARGETS; i++) {
+>> +		char target_step = rx_buf[(i * 4)];
+>> +
+>> +		target.index = i;
+>> +		target.present = ((target_status & (1 << i)) != 0) ? 1 : 0;
+>> +		target.x = ((target_step + 3) | ((target_step + 4) << 8));
+>> +		target.y = ((target_step + 5) | ((target_step + 6) << 8));
+>> +		target.z = (s8)(rx_buf[i + 43]);
+>> +		update_done |= axiom_process_u41_report_target(ts, &target);
+>> +	}
+>> +
+>> +	if (update_done)
+>> +		input_sync(input_dev);
+>> +}
+>> +
+>> +static void axiom_process_u46_report(struct axiom_data *ts, char 
+>> *rx_buf)
+>> +{
+>> +	struct input_dev *input_dev = ts->input_dev;
+>> +	u32 event_value;
+>> +	u16 aux_value;
+>> +	u32 i = 0;
+>> +
+>> +	for (i = 0; i < AXIOM_U46_AUX_CHANNELS; i++) {
+>> +		char target_step = rx_buf[(i * 2)];
+>> +
+>> +		aux_value = (((target_step + 2) << 8) | (target_step + 1)) & 
+>> AXIOM_U46_AUX_MASK;
+>> +		event_value = (i << 16) | (aux_value);
+>> +		input_event(input_dev, EV_MSC, MSC_RAW, event_value);
+>> +	}
+>> +
+>> +	input_mt_sync(input_dev);
+>> +	input_sync(input_dev);
+>> +}
+> 
+> Please forgive me in case I am simply slow to understand, but I really 
+> do
+> not think we can accept this kind of encapsulation. We have multiple 
+> calls
+> to input_mt_sync() and input_sync() spread across different functions, 
+> one
+> of which uses a 'done' flag to make a decision. It's also unclear what 
+> 'u41'
+> and 'u46' represent. The current implementation is too confusing to 
+> review
+> effectively IMO.
+> 
+> What we ultimately want to see here is one homogenous event handler 
+> where
+> MT slots are processed, followed by one call to input_mt_sync(), itself
+> followed by one call to input_sync() after any additional events (e.g. 
+> keys)
+> are processed. It's certainly OK to break out some processing into 
+> helper
+> functions, but we ultimately want to see one entry point into the input 
+> core.
+> 
+> Please consider whether there is a more maintainable way to organize 
+> this
+> processing; it seems more complex than other touchscreen drivers.
+
+OK I'll rework this in v4.
+
+> 
+>> +
+>> +/*
+>> + * Validates the crc and demultiplexes the axiom reports to the 
+>> appropriate
+>> + * report handler
+>> + */
+>> +static void axiom_handle_events(struct axiom_data *ts)
+>> +{
+>> +	char *report_data = ts->rx_buf;
+>> +	struct device *dev = ts->dev;
+>> +	char usage = report_data[1];
+>> +	u16 crc_report;
+>> +	u16 crc_calc;
+>> +	char len;
+>> +
+>> +	axiom_i2c_read(ts->client, AXIOM_REPORT_USAGE_ID, 0, report_data, 
+>> ts->max_report_len);
+> 
+> If this read fails due to a HW problem, the rest of this function will 
+> act
+> upon garbage data.
+> 
+>> +
+>> +	if ((report_data[0] & AXIOM_COMMS_OVERFLOW_MASK) != 0)
+>> +		ts->report_overflow_counter++;
+>> +
+>> +	len = (report_data[0] & AXIOM_COMMS_REPORT_LEN_MASK) * 2;
+>> +	if (!len) {
+>> +		dev_err(dev, "Zero length report discarded.\n");
+>> +		return;
+> 
+> Please make the return type of helper functions like 
+> axiom_handle_events() of
+> type int, and consider -ENODATA for this particular condition.
+> 
+> Even though callers to axiom_handle_events() are void at this time, you 
+> should
+> start out with the driver being flexible in case it grows over time.
+> 
+>> +	}
+>> +
+>> +	dev_dbg(dev, "Payload Data %*ph\n", len, report_data);
+>> +
+>> +	/* Validate the report CRC */
+>> +	crc_report = (report_data[len - 1] << 8) | (report_data[len - 2]);
+>> +	/* Length is in 16 bit words and remove the size of the CRC16 itself 
+>> */
+>> +	crc_calc = crc16(0, report_data, (len - 2));
+>> +
+>> +	if (crc_calc != crc_report) {
+>> +		dev_err(dev,
+>> +			"CRC mismatch! Expected: %#x, Calculated CRC: %#x.\n",
+>> +			crc_report, crc_calc);
+>> +		return;
+> 
+> Return -EINVAL after promoting the return type to int.
+
+OK.
+
+> 
+>> +	}
+>> +
+>> +	switch (usage) {
+>> +	case AXIOM_USAGE_2DCTS_REPORT_ID:
+>> +		axiom_process_u41_report(ts, &report_data[1]);
+>> +		break;
+>> +
+>> +	case AXIOM_USAGE_2AUX_REPORT_ID:
+>> +		/* This is an aux report (force) */
+>> +		axiom_process_u46_report(ts, &report_data[1]);
+>> +		break;
+>> +
+>> +	case AXIOM_USAGE_2HB_REPORT_ID:
+>> +		/* This is a heartbeat report */
+>> +		break;
+> 
+> Since 'usage' is read from the HW, we need a default branch for 
+> handling
+> unexpected values.
+
+Ack thx.
+
+> 
+>> +	}
+>> +
+>> +	ts->report_counter++;
+> 
+> This counter appears to be unused.
+> 
+
+Fixed thx.
+
+>> +}
+>> +
+>> +static void axiom_i2c_poll(struct input_dev *input_dev)
+>> +{
+>> +	struct axiom_data *ts = input_get_drvdata(input_dev);
+>> +
+>> +	axiom_handle_events(ts);
+>> +}
+>> +
+>> +static irqreturn_t axiom_irq(int irq, void *dev_id)
+>> +{
+>> +	struct axiom_data *ts = dev_id;
+>> +
+>> +	axiom_handle_events(ts);
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static void axiom_reset(struct gpio_desc *reset_gpio)
+>> +{
+>> +	gpiod_set_value_cansleep(reset_gpio, 1);
+>> +	usleep_range(1000, 2000);
+>> +	gpiod_set_value_cansleep(reset_gpio, 0);
+>> +	msleep(100);
+>> +}
+>> +
+>> +/* Rebaseline the touchscreen, effectively zero-ing it */
+> 
+> What does it mean to rebaseline the touchscreen? I'm guessing it means
+> to null out or normalize pressure? Please consider a less 
+> colloquialized
+> function name.
+> 
+> Out of curiousity, what happens if the user's hand happens to be on the
+> touch surface at the time you call axiom_rebaseline()? Does the device
+> recover on its own?
+
+This indeed force the controller to measure a new capacitance by zeoring 
+it,
+I don't really know if it's harmful, yet the documentation says 
+rebaseline is
+for tuning or debug purpose.
+
+I believe this is done for testing the communication.
+
+> 
+>> +static int axiom_rebaseline(struct axiom_data *ts)
+>> +{
+>> +	char buffer[8] = {};
+> 
+> Are you expecting each element to be initialized to zero?
+
+Yes.
+
+> 
+>> +
+>> +	buffer[0] = AXIOM_REBASELINE_CMD;
+>> +
+>> +	return axiom_i2c_write(ts->client, AXIOM_REPORT_USAGE_ID, 0, buffer, 
+>> sizeof(buffer));
+>> +}
+>> +
+>> +static int axiom_i2c_probe(struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct input_dev *input_dev;
+>> +	struct axiom_data *ts;
+>> +	int ret;
+>> +	int target;
+>> +
+>> +	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+>> +	if (!ts)
+>> +		return -ENOMEM;
+>> +
+>> +	ts->client = client;
+>> +	i2c_set_clientdata(client, ts);
+>> +	ts->dev = dev;
+>> +
+>> +	ts->irq_gpio = devm_gpiod_get_optional(dev, "irq", GPIOD_IN);
+>> +	if (IS_ERR(ts->irq_gpio))
+>> +		return dev_err_probe(dev, PTR_ERR(ts->irq_gpio), "failed to get irq 
+>> GPIO");
+>> +
+>> +	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", 
+>> GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(ts->reset_gpio))
+>> +		return dev_err_probe(dev, PTR_ERR(ts->reset_gpio), "failed to get 
+>> reset GPIO\n");
+>> +
+>> +	axiom_reset(ts->reset_gpio);
+> 
+> We shouldn't call axiom_reset() if reset_gpio is NULL. Even though the
+> calls to gpiod_set_value_cansleep() will bail safely, there is no 
+> reason
+> to make the CPU sleep for 100 ms if the device was not actually reset.
+> 
+>> +
+>> +	if (ts->irq_gpio) {
+>> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
+>> +						axiom_irq, 0, dev_name(dev), ts);
+> 
+> Did you mean to set IRQF_ONESHOT?
+
+No
+
+> 
+>> +		if (ret < 0)
+>> +			return dev_err_probe(dev, ret, "Failed to request threaded 
+>> IRQ\n");
+>> +	}
+> 
+> This is a kernel panic waiting to happen, as the interrupt handler 
+> (which can
+> post input events) is declared before the input device has been 
+> allocated.
+> 
+> Normally you want to set up interrupts last, after all resources have 
+> been
+> initialized and the HW has been configured.
+
+Ack thx.
+
+> 
+>> +
+>> +	ret = axiom_discover(ts);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed touchscreen discover\n");
+>> +
+>> +	ret = axiom_rebaseline(ts);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed touchscreen 
+>> re-baselining\n");
+>> +
+>> +	input_dev = devm_input_allocate_device(ts->dev);
+>> +	if (!input_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	input_dev->name = "TouchNetix aXiom Touchscreen";
+>> +	input_dev->phys = "input/axiom_ts";
+>> +
+>> +	/* Single Touch */
+>> +	input_set_abs_params(input_dev, ABS_X, 0, 65535, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_Y, 0, 65535, 0, 0);
+> 
+> You don't need to explicitly declare support for single-contact axes;
+> input_mt_init_slots() does this for us.
+
+Indeed, we set INPUT_MT_DIRECT.
+
+> 
+>> +
+>> +	/* Multi Touch */
+>> +	/* Min, Max, Fuzz (expected noise in px, try 4?) and Flat */
+>> +	input_set_abs_params(input_dev, ABS_MT_POSITION_X, 0, 65535, 0, 0);
+>> +	/* Min, Max, Fuzz (expected noise in px, try 4?) and Flat */
+>> +	input_set_abs_params(input_dev, ABS_MT_POSITION_Y, 0, 65535, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_TOOL_TYPE, 0, MT_TOOL_MAX, 0, 
+>> 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_DISTANCE, 0, 127, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_PRESSURE, 0, 127, 0, 0);
+>> +
+>> +	/* Registers the axiom device as a touchscreen instead of as a mouse 
+>> pointer */
+>> +	input_mt_init_slots(input_dev, AXIOM_U41_MAX_TARGETS, 
+>> INPUT_MT_DIRECT);
+> 
+> Please check the return value of input_mt_init_slots().
+
+OK.
+
+> 
+>> +
+>> +	input_set_capability(input_dev, EV_KEY, BTN_LEFT);
+> 
+> Why to hard-code the key to BTN_LEFT as opposed to making it 
+> configurable via
+> device tree?
+
+Not sure about this, I will check with the vendors, try to clarify why.
+
+> 
+>> +
+>> +	/* Enables the raw data for up to 4 force channels to be sent to the 
+>> input subsystem */
+>> +	set_bit(EV_REL, input_dev->evbit);
+>> +	set_bit(EV_MSC, input_dev->evbit);
+>> +	/* Declare that we support "RAW" Miscellaneous events */
+>> +	set_bit(MSC_RAW, input_dev->mscbit);
+> 
+> The driver is not posting any REL events. Can you clarify what is 
+> represented
+> by MSC events?
+
+Same here.
+
+> 
+>> +
+>> +	if (!ts->irq_gpio) {
+>> +		ret = input_setup_polling(input_dev, axiom_i2c_poll);
+>> +		if (ret)
+>> +			return	dev_err_probe(ts->dev, ret, "Unable to set up polling 
+>> mode\n");
+> 
+> Nit: extraneous space.
+> 
+>> +		input_set_poll_interval(input_dev, POLL_INTERVAL_DEFAULT_MS);
+>> +	}
+>> +
+>> +	ts->input_dev = input_dev;
+>> +	input_set_drvdata(ts->input_dev, ts);
+>> +
+>> +	/* Ensure that all reports are initialised to not be present. */
+>> +	for (target = 0; target < AXIOM_U41_MAX_TARGETS; target++)
+>> +		ts->targets[target].state = TARGET_STATE_NOT_PRESENT;
+>> +
+>> +	ret = input_register_device(input_dev);
+>> +
+> 
+> Nit: unnecessary NL.
+> 
+>> +	if (ret)
+>> +		return dev_err_probe(ts->dev, ret,
+>> +					"Could not register with Input Sub-system.\n");
+> 
+> Nit: alignment.
+> 
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void axiom_i2c_remove(struct i2c_client *client)
+>> +{
+>> +	struct axiom_data *ts = i2c_get_clientdata(client);
+>> +
+>> +	input_unregister_device(ts->input_dev);
+>> +}
+> 
+> This remove callback is unnecessary. So long as input_dev was allocated 
+> using
+> a device-managed function, it will be unregistered automatically.
+> 
+>> +
+>> +static const struct i2c_device_id axiom_i2c_id_table[] = {
+>> +	{ "axiom-ax54a" },
+>> +	{},
+> 
+> Nit: no need for a trailing comma after the sentinel, as no line would 
+> ever be
+> added beneath it.
+> 
+>> +};
+>> +
+> 
+> Nit: unnecessary NL.
+> 
+>> +MODULE_DEVICE_TABLE(i2c, axiom_i2c_id_table);
+>> +
+>> +static const struct of_device_id axiom_i2c_of_match[] = {
+>> +	{ .compatible = "touchnetix,axiom-ax54a", },
+>> +	{}
+>> +};
+>> +
+> 
+> And here.
+> 
+>> +MODULE_DEVICE_TABLE(of, axiom_i2c_of_match);
+>> +
+>> +static struct i2c_driver axiom_i2c_driver = {
+>> +	.driver = {
+>> +		   .name = "axiom",
+>> +		   .of_match_table = axiom_i2c_of_match,
+>> +	},
+>> +	.id_table = axiom_i2c_id_table,
+>> +	.probe = axiom_i2c_probe,
+>> +	.remove = axiom_i2c_remove,
+>> +};
+>> +
+>> +module_i2c_driver(axiom_i2c_driver);
+> 
+> And here.
+> 
+>> +
+>> +MODULE_AUTHOR("Bart Prescott <bartp@baasheep.co.uk>");
+>> +MODULE_AUTHOR("Pedro Torruella <pedro.torruella@touchnetix.com>");
+>> +MODULE_AUTHOR("Mark Satterthwaite 
+>> <mark.satterthwaite@touchnetix.com>");
+>> +MODULE_AUTHOR("Hannah Rossiter <hannah.rossiter@touchnetix.com>");
+>> +MODULE_AUTHOR("Kamel Bouhara <kamel.bouhara@bootlin.com>");
+>> +MODULE_DESCRIPTION("TouchNetix aXiom touchscreen I2C bus driver");
+>> +MODULE_LICENSE("GPL");
+>> --
+>> 2.25.1
+>> 
+> 
+> Kind regards,
+> Jeff LaBundy
 
