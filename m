@@ -1,52 +1,57 @@
-Return-Path: <devicetree+bounces-15272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA3EC7E9636
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 05:29:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE9F7E9660
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 05:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7B641C2098A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 04:29:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6699B20A87
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 04:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A6211C9D;
-	Mon, 13 Nov 2023 04:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86924468F;
+	Mon, 13 Nov 2023 04:54:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="F9WCGDd3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 812EA11700
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:29:36 +0000 (UTC)
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9951716;
-	Sun, 12 Nov 2023 20:29:32 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2C0AE7FF9;
-	Mon, 13 Nov 2023 12:29:25 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Nov
- 2023 12:29:25 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Nov
- 2023 12:29:17 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, "Rob
- Herring" <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Peter Zijlstra <peterz@infradead.org>
-CC: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, Ley Foon Tan
-	<leyfoon.tan@starfivetech.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] dt-bindings: perf: starfive: Add StarLink PMU
-Date: Mon, 13 Nov 2023 12:22:31 +0800
-Message-ID: <20231113042231.457882-3-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231113042231.457882-1-jisheng.teoh@starfivetech.com>
-References: <20231113042231.457882-1-jisheng.teoh@starfivetech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306F68BE6;
+	Mon, 13 Nov 2023 04:54:30 +0000 (UTC)
+Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5A3171B;
+	Sun, 12 Nov 2023 20:54:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+	s=201909; t=1699851264;
+	bh=avuGse/loF5UavLAxTW+7b8ie0FypFWWnYQuSnadlV8=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=F9WCGDd3mTXiAxpDTnIuEH6GCdDcBqJ8HRo9d3CP1JuATdd3s5h4WmgzGrlS6+V4T
+	 +3Y6ZkUZ26zUnEbmoOXPKgDr67l6EHlYxYzxEOaIc4JSKEc5ZVIw8sPcwS3/R/57im
+	 aoZzWU3vWpXQCWkJc0pp22F4Agu9RKsibrWtG9HAXz8vpq/FvvyOSGWpB07aAznDQd
+	 WWbwfbaRfNgvyFDqP6IFpcup8gRcTBaP+yExIM7DM0cgMAOILKznGMtLI1raWJVm87
+	 AIbhGSi9YyfwcCZeCO9IWgrjURKeQXJXez+p1ZB2ch8hYH6WGVVBeM3caLCYVjl2Rt
+	 rDWqyjf98KGyQ==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.ozlabs.org (Postfix) with ESMTPSA id 4STHCM4Bl6z4xTM;
+	Mon, 13 Nov 2023 15:54:23 +1100 (AEDT)
+From: Michael Ellerman <mpe@ellerman.id.au>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>, linux-edac@vger.kernel.org
+Cc: git@amd.com, devicetree@vger.kernel.org, sai.krishna.potthuri@amd.com,
+ krzysztof.kozlowski@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ bp@alien8.de, tony.luck@intel.com, james.morse@arm.com,
+ mchehab@kernel.org, rric@kernel.org, michal.simek@amd.com
+Subject: Re: [PATCH v9 2/2] EDAC/versal: Add a Xilinx Versal memory
+ controller driver
+In-Reply-To: <20231005101242.14621-3-shubhrajyoti.datta@amd.com>
+References: <20231005101242.14621-1-shubhrajyoti.datta@amd.com>
+ <20231005101242.14621-3-shubhrajyoti.datta@amd.com>
+Date: Mon, 13 Nov 2023 15:54:23 +1100
+Message-ID: <875y268d8g.fsf@mail.lhotse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,78 +59,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [202.188.176.82]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
 
-Add device tree binding for StarFive's StarLink PMU (Performance
-Monitor Unit).
+Shubhrajyoti Datta <shubhrajyoti.datta@amd.com> writes:
+> Add a EDAC driver for the RAS capabilities on the Xilinx integrated DDR
+> Memory Controllers (DDRMCs) which support both DDR4 and LPDDR4/4X memory
+> interfaces. It has four programmable NoC interface ports and is designed
+> to handle multiple streams of traffic.The driver
+> reports correctable and uncorrectable errors , and also creates
+> debugfs entries for error injection.
+...
+> diff --git a/drivers/edac/versal_edac.c b/drivers/edac/versal_edac.c
+> new file mode 100644
+> index 000000000000..5ce2e9585a00
+> --- /dev/null
+> +++ b/drivers/edac/versal_edac.c
+...
+> +#define XDDR_REG_CONFIG0_NUM_CHANS_MASK		BIT(17)
+...
+> +static int mc_probe(struct platform_device *pdev)
+> +{
+> +	void __iomem *ddrmc_baseaddr, *ddrmc_noc_baseaddr;
+> +	struct edac_mc_layer layers[2];
+> +	struct mem_ctl_info *mci;
+> +	u8 num_chans, num_csrows;
+> +	struct edac_priv *priv;
+> +	u32 edac_mc_id, regval;
+> +	int rc;
+> +
+...
+> +
+> +	regval = readl(ddrmc_baseaddr + XDDR_REG_CONFIG0_OFFSET);
+> +	num_chans = FIELD_PREP(XDDR_REG_CONFIG0_NUM_CHANS_MASK, regval);
+ 
+Shouldn't this be FIELD_GET?
 
-Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
----
- .../bindings/perf/starfive,starlink-pmu.yaml  | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/starfive,starl=
-ink-pmu.yaml
+Otherwise it's shifting regval into BIT(17), and then assigning that to a u8.
 
-diff --git a/Documentation/devicetree/bindings/perf/starfive,starlink-pmu=
-.yaml b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-new file mode 100644
-index 000000000000..b164f6849055
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/starfive,starlink-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: StarFive StarLink PMU
-+
-+maintainers:
-+  - Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-+
-+description:
-+  StarFive's StarLink PMU integrates one or more CPU cores with a shared=
- L3
-+  memory system. The PMU support overflow interrupt, up to 16 programmab=
-le
-+  64bit event counters, and an independent 64bit cycle counter.
-+  StarLink PMU is accessed via MMIO.
-+
-+properties:
-+  compatible:
-+    const: starfive,starlink-pmu
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells =3D <2>;
-+        #size-cells =3D <2>;
-+
-+        l3_pmu: pmu@12900000 {
-+            compatible =3D "starfive,starlink-pmu";
-+            reg =3D <0x0 0x12900000 0x0 0x10000>;
-+            interrupts =3D <34>;
-+        };
-+    };
---=20
-2.25.1
+> +	num_chans++;
+> +
+> +	num_csrows = FIELD_PREP(XDDR_REG_CONFIG0_NUM_RANKS_MASK, regval);
+ 
+And here too?
 
+> +	num_csrows *= 2;
+> +	if (!num_csrows)
+> +		num_csrows = 1;
+
+cheers
 
