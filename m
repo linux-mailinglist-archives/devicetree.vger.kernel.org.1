@@ -1,126 +1,108 @@
-Return-Path: <devicetree+bounces-15465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CE57EA4AA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:17:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 478957EA4AF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:19:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F6C7B20A07
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:17:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAB651F22670
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A62249F5;
-	Mon, 13 Nov 2023 20:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BFC24A19;
+	Mon, 13 Nov 2023 20:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WEVjZcuR"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="N5VtVlBd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595A1224CA
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 20:17:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32326C433C8;
-	Mon, 13 Nov 2023 20:17:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699906657;
-	bh=SwYHSTS3rTDa7Clubx8Dvf8G10g50QTr2Ibg/KW4oWc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WEVjZcuRKwNGSQo9Z6hggcHjls2BO5bwob2sN4A61qPt1Uh6cI04CVwi9R2lNafsk
-	 xPKVEfsNctoAo553B7Xq6hoXvJFPysMDNE78i1wBmptzl6gqTGF5BgB0N28fEzY1aK
-	 st537PkxXo0+tfaXS9L3+rfGrv5TIvO1ysTsQjMGfxC+Zt/mxpI/56hN+xtKlrezi8
-	 e4PO3k//uYLFRfXmK8+nPg2pCeTZeLHCYVSS/oA04kREcTwxfn/FHl1IxxIEQh3ZXk
-	 x74FxaEUvqhxZAVD1rKJkcBXFuibj9IRyz3Tf9ouXuS/KIM2exjrISpl9x0hTn9VlI
-	 E8nyjOsK4wQDg==
-Date: Mon, 13 Nov 2023 20:17:34 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-pwm@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v7 1/4] dt-bindings: pwm: Add OpenCores PWM module
-Message-ID: <20231113-sprung-tantrum-94659009b9d4@squawk>
-References: <20231110062039.103339-1-william.qiu@starfivetech.com>
- <20231110062039.103339-2-william.qiu@starfivetech.com>
- <afce202d-6234-4c5f-9018-facd9a56b5eb@linaro.org>
- <f4551a7a-61e6-4d97-94c2-da2e4e9e8cb3@starfivetech.com>
- <824cee7b-e4d3-461a-8bfb-4ad095c240fd@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3643524A0B
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 20:19:03 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BF110CE
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:19:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1699906741;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
+	b=N5VtVlBdaqEHuY492h0JjSZZ1GoadmiXVvQacaWoxj2HA0hDf+7JoRGQmhSc6tMG8eHHxm
+	Y6pRHz+Ac3Wx+fw18gXjwFpsF2ut/krpKaI3duXVxjIyACFDCoSo8ypz5URFWFPcOBsIE5
+	OcHlYzvyTQZf9VYrtmBFr9xLFUuHqko=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-440-F7IVSc3DNGSEkxSHJDgNKQ-1; Mon, 13 Nov 2023 15:18:59 -0500
+X-MC-Unique: F7IVSc3DNGSEkxSHJDgNKQ-1
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-41eaf5d20d8so58173851cf.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:18:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699906739; x=1700511539;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
+        b=NPYGqMY7ArQrlumx/DPrUV8XiVqf7+PZqxFLZvO2+/SgySXjQgWrYVrCi71YhmyQ2x
+         q+XyGN2g+kFdt248hLqU44U5uh29QM945zrkNDappe+DeGuI9uY+DOouYAPJDvTZfNGB
+         BLfq1KrytjrkGtY5nK0XLQtoAO0pcdtijPiGHV+xPWbii7PVSEKRxI3FH+rO8y3vz9u1
+         YOOV+8wXgNUgHSVGrEJ8b/kkAbUp7PIl7eTYPyH9kfySDMDPVyNxIdNHLqDx8blGbIyW
+         WFlau4VnQVGrtYQ86xx5KAuo2IjT1Jmf6kLlqG5xZ93grR0RNKB1SPk9PFFMVDRQxHhM
+         ezhw==
+X-Gm-Message-State: AOJu0YxMcXPiMrHt6u1HC0QPyHhlH+8wBbfqg+LgYvOkW6IwT4gqjJZ3
+	xOuCch4I6AdNMgi4bpC+QekiB9tJgORp2sYCXu41VVJfa7OVSCkney39N0GLwyekoMuxEarZq4L
+	viVUdQDn+qvugemD+ga94Ig==
+X-Received: by 2002:a05:622a:1908:b0:41c:b6cf:a49e with SMTP id w8-20020a05622a190800b0041cb6cfa49emr292163qtc.10.1699906739327;
+        Mon, 13 Nov 2023 12:18:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGJ4aN/cKUvDweqjuNq1K11+iEyXGsjit6950JrTQD9aZT2d8xoiBctpmKNKw2vmVX7XqpdQA==
+X-Received: by 2002:a05:622a:1908:b0:41c:b6cf:a49e with SMTP id w8-20020a05622a190800b0041cb6cfa49emr292104qtc.10.1699906739106;
+        Mon, 13 Nov 2023 12:18:59 -0800 (PST)
+Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
+        by smtp.gmail.com with ESMTPSA id j5-20020ac84f85000000b00405502aaf76sm2177375qtw.57.2023.11.13.12.18.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Nov 2023 12:18:58 -0800 (PST)
+Date: Mon, 13 Nov 2023 13:18:57 -0700
+From: Jerry Snitselaar <jsnitsel@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linuxfoundation.org, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, 
+	Lu Baolu <baolu.lu@linux.intel.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
+	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, 
+	Christoph Hellwig <hch@lst.de>, iommu@lists.linux.dev, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Robert Moore <robert.moore@intel.com>, 
+	Rob Herring <robh+dt@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
+	Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Krishna Reddy <vdumpa@nvidia.com>, 
+	Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux-foundation.org, 
+	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
+	Zhenhua Huang <quic_zhenhuah@quicinc.com>
+Subject: Re: [PATCH RFC 14/17] iommu: Remove pointless iommu_fwspec_free()
+Message-ID: <22mlpmrdftubxzr46qci26p3aqojvv5p4ffroshlzubtwcw5cr@jwcl5scuttdi>
+References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+ <14-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+lpp7srQCeLErYm2"
-Content-Disposition: inline
-In-Reply-To: <824cee7b-e4d3-461a-8bfb-4ad095c240fd@linaro.org>
-
-
---+lpp7srQCeLErYm2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <14-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
 
-On Mon, Nov 13, 2023 at 09:07:15PM +0100, Krzysztof Kozlowski wrote:
-> On 13/11/2023 10:42, William Qiu wrote:
-> > Will update.
-> >>> +
-> >>> +allOf:
-> >>> +  - $ref: pwm.yaml#
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    oneOf:
-> >>> +      - items:
-> >>> +          - enum:
-> >>> +              - starfive,jh7100-pwm
-> >>> +              - starfive,jh7110-pwm
-> >>> +          - const: opencores,pwm
-> >>
-> >> That's a very, very generic compatible. Are you sure, 100% sure, that
-> >> all designs from OpenCores from now till next 100 years will be 100%
-> >> compatible?
-> >>
-> > My description is not accurate enough, this is OpenCores PTC IP, and PWM
-> > is one of those modes, so it might be better to replace compatible with
-> > "opencores, ptc-pwm"
-> >=20
-> > What do you think?
->=20
-> Sorry, maybe this answers maybe doesn't. What is "PTC"?
+Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
 
-"pwm timer counter". AFAIU, the IP can be configured to provide all 3.
-I think that William pointed out on an earlier revision that they have
-only implemented the pwm on their hardware.
-I don't think putting in "ptc" is a sufficient differentiator though, as
-clearly there could be several different versions of "ptc-pwm" that have
-the same concern about "all designs from OpenCores for now till the next
-100 years" being compatible.
-
-Cheers.
-Conor.
-
---+lpp7srQCeLErYm2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVKEWgAKCRB4tDGHoIJi
-0lg6AQDoetFH+2Q0R2VopRs52W7OWITEOpAFd04nMYVyHdsONgD+LawAuiiSLaEB
-0ECkKGOudEZJ6nR1cZ/Vt+FGfB1MyAs=
-=sVnT
------END PGP SIGNATURE-----
-
---+lpp7srQCeLErYm2--
 
