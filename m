@@ -1,87 +1,173 @@
-Return-Path: <devicetree+bounces-15433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11107EA12E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 17:21:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC417EA14D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 17:31:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D1DB1C20878
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 16:21:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14ABBB2099F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 16:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6795322313;
-	Mon, 13 Nov 2023 16:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8AD200D1;
+	Mon, 13 Nov 2023 16:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A079C21A0A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 16:21:14 +0000 (UTC)
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 778581715;
-	Mon, 13 Nov 2023 08:21:11 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id CECE624DFC2;
-	Tue, 14 Nov 2023 00:21:08 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Nov
- 2023 00:21:08 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 14 Nov
- 2023 00:21:01 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: <conor@kernel.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<leyfoon.tan@starfivetech.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <mark.rutland@arm.com>,
-	<peterz@infradead.org>, <robh+dt@kernel.org>, <tglx@linutronix.de>,
-	<will@kernel.org>
-Subject: Re: [PATCH 1/2] perf: starfive: Add StarLink PMU support
-Date: Tue, 14 Nov 2023 00:20:47 +0800
-Message-ID: <20231113162047.2213725-1-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231113-grip-unstamped-7d5cb2e39d3e@squawk>
-References: <20231113-grip-unstamped-7d5cb2e39d3e@squawk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE9C224C1;
+	Mon, 13 Nov 2023 16:31:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3158DD54;
+	Mon, 13 Nov 2023 08:31:50 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="12016956"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; 
+   d="scan'208";a="12016956"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2023 08:31:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="830276548"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; 
+   d="scan'208";a="830276548"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2023 08:31:45 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97-RC3)
+	(envelope-from <andy@kernel.org>)
+	id 1r2Zqg-0000000DbZi-0jb4;
+	Mon, 13 Nov 2023 18:31:42 +0200
+Date: Mon, 13 Nov 2023 18:31:41 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Message-ID: <ZVJPbV2469kjqbHu@smile.fi.intel.com>
+References: <20231110151905.1659873-1-nuno.sa@analog.com>
+ <20231110151905.1659873-3-nuno.sa@analog.com>
+ <ZU5fYY81L_qSmQWq@smile.fi.intel.com>
+ <581aec9c6313e3885aae8b1e12dfcc9f392716db.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [202.188.176.82]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <581aec9c6313e3885aae8b1e12dfcc9f392716db.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, 13 Nov 2023 13:45:00 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Mon, Nov 13, 2023 at 11:13:44AM +0100, Nuno Sá wrote:
+> On Fri, 2023-11-10 at 18:50 +0200, Andy Shevchenko wrote:
+> > On Fri, Nov 10, 2023 at 04:18:46PM +0100, Nuno Sa wrote:
 
-> On Mon, Nov 13, 2023 at 12:22:30PM +0800, Ji Sheng Teoh wrote:
->=20
-> > +config STARFIVE_STARLINK_PMU
-> > +	depends on SOC_STARFIVE =20
->=20
-> Please s/SOC/ARCH/ so I have one fewer instance to delete.
+...
 
-Thanks Conor, will change to ARCH_STARFIVE in v2.
+> > > +/*
+> > > + * relaxed version of FIELD_PREP() to be used when mask is not a compile
+> > > time constant
+> > > + * u32_encode_bits() can't also be used as the compiler needs to be able to
+> > > evaluate
+> > > + * mask at compile time.
+> > > + */
+> > > +#define LTC4282_FIELD_PREP(m, v)	(((v) << (ffs(m) - 1)) & (m))
+> > 
+> > Can we name it accordingly as done in other places, and TBH it's a time to
+> > move
+> > it to the header. (At least I know about two more implementations of this).
+> 
+> Not sure what you mean? Is there some other drivers doing it already? I'll,
+> anyways, wait on more feedback for the GPIO stuff because we might end up not
+> needing it...
 
->=20
-> > +	bool "StarFive StarLink PMU"
-> > +	help
-> > +	   Provide support for StarLink Performance Monitor Unit.
-> > +	   StarLink Performance Monitor Unit integrates one or
-> > more cores with
-> > +	   an L3 memory system. The L3 cache events are added into
-> > perf event
-> > +	   subsystem, allowing monitoring of various L3 cache perf
-> > events. =20
->=20
+$ git grep -n 'define field_prep'
+
+...
+
+> > > +	/* GPIO_2,3 and the ALERT pin require setting the bit to 1 to pull
+> > > down the line */
+> > > +	if (!gpio->active_high)
+> > 
+> > Hmm... Why do you need a separate flag for this? Shouldn't be described or
+> > autodetected somehow?
+> 
+> Well, if a consumer as an active high gpio, it expects to call
+> gpiod_set_value(..., 1) and the line to assert, right? To have that, we need to
+> write 0 on the device register for some of the pins.
+
+It doesn't matter, the GPIO (not _raw) APIs are using logical levels, 1 — activate,
+0 — deactivate.
+
+> And the same story is true for active low. gpiod_set_value(..., 0) will have the
+> gpiolib to automatically invert the value and we get 1 in the callback.
+
+Yes, but why do you have that flag in the structure?
+
+> > > +		val = !val;
+
+...
+
+> > > +	*val = DIV_ROUND_CLOSEST_ULL(be16_to_cpu(in) * (u64)fs, U16_MAX);
+> > 
+> > I'm wondering if you can do some trick to "divide" actually to 2^16 so, it
+> > will
+> > not use division op at all?
+> 
+> Hmm, not sure if it will be obvious but you mean something like:
+> 
+> *val = (be16_to_cpu(in) * (u64)fs) >> 16;
+> 
+> Is this what you mean? If so, we`ll loose the "CLOSEST" handling... Not so sure
+> if we need to be "that" performant in such a code path. But Guenter can also
+> share his opinion...
+
+	*val = DIV_ROUND_CLOSEST_ULL(be16_to_cpu(in) * (u64)fs + (BIT(16) - 1), BIT(16));
+
+will give the same result without division, no?
+What you need is to make sure that the multiplication won't get closer to
+U64_MAX, which seems not the case here (max 48-bit number).
+
+Ditto for all other similar cases which I already pointed out.
+
+...
+
+> > > +	u64 temp =  DECA * 40ULL * st->vfs_out * 1 << 16, temp_2;
+
+> > 
+> > "* BIT(16)" / "* BIT_ULL(16)" ?
+> 
+> Well, I can just place the number as in the formula. Not too keen on the BIT()
+> macros as this is not really a mask.
+
+I'm not sure I got this. The << 16 neither a plain number and BIT() is equally
+good. With power of two it's most likely that this is due to internal
+implementation of the firmware or hardware, so again BIT() can be still good
+enough to show that.
+
+...
+
+> > > +	msleep(3200);
+> > 
+> > Not a single letter to comment such a huge delay :-(
+> 
+> Well, it's after doing a reset so it should be pretty obvious is the number
+> given in the DS. But I'll put a comment on it.
+
+Please do.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
