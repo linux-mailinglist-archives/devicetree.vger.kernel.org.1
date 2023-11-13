@@ -1,52 +1,55 @@
-Return-Path: <devicetree+bounces-15446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B3E7EA3E2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:40:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D22717EA3E8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D1891B20976
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:40:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852031F224E4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E142375E;
-	Mon, 13 Nov 2023 19:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0621923767;
+	Mon, 13 Nov 2023 19:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vGEzhC91"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kxr8pe7Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423867E;
-	Mon, 13 Nov 2023 19:40:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1E1EC433CA;
-	Mon, 13 Nov 2023 19:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD3A7E
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 19:40:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E15FC433C8;
+	Mon, 13 Nov 2023 19:40:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699904432;
-	bh=Pku/AXmSkmETBoNY2XfS16sT2QpxqRxPSU/j8yciQ/M=;
+	s=k20201202; t=1699904450;
+	bh=Sww/WWaJ51nm84r2fYUy70d6PRu+fd6AVzmVnWzJ8Js=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=vGEzhC91V07BOuK8Jbxel2UenXl9kJFd7nA88SPftbENAyZeJcErL7BR6g38rRobQ
-	 tzPrf+hUjVwEcBqwtdQUMBdlVjo90V2wqukXwQFpzlTl9PVT1Z90AJ14ltvEHY5Ttg
-	 wNYx2U9rASpyT9LAX2/H9JKMI1kkuROoa7FbbCEvVhUwKUcPs8+N3XvAONshd+tjrV
-	 CejvZC7O6zxZFLNdCkzqBwEaodp30foC84rjldsbtmoaXl6DUQeJvirIuah6vsCEuf
-	 eENr4GGXtokqYKW9/kvaSSiD2LwWzQtDZDYhEb9DmNm9HwUdJ2nBjRaDazhbt7HHQQ
-	 Eb/pScxJSGhBQ==
+	b=Kxr8pe7ZY2+J5nJ3lS//8qGM7EfFPIW/4giAq2x9J2xGT/AX4MkvGW4gLQXy1McRX
+	 3MLKYj2V/ljB5JAgItq/LeuArUb81ZxdqmnevzKXzxmcoYVzo9MAN17Swm5OQjG84y
+	 MfZYR2aJz0fr2LL5CMB/fTF9efF7mqgOE2YQzaTLmY5pY+Tz3EAA7xD1y6XNCTmMsR
+	 YrfyynmdlLaQNUtWhoja90G0TGrvyQGhrCwwDlIhckTlRkOdygohQFzvH/tLEZYg6G
+	 pVQ/jETK0OmYzkSVEZpNLZL2qjvURE7pIopB3zeZugdOMAAI0kT29kuVhAd/lXEAfy
+	 4q6CyN/Y+i/RA==
 From: Mark Brown <broonie@kernel.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
+To: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ben Wolsieffer <ben.wolsieffer@hefring.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Robert Marko <robimarko@gmail.com>, 
- Dang Huynh <danct12@riseup.net>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
-References: <20231106-pm8937-v1-0-ec51d9eeec53@riseup.net>
-Subject: Re: (subset) [PATCH 0/8] Add PM8937 PMIC support
-Message-Id: <169990442820.3294075.3854725538330307845.b4-ty@kernel.org>
-Date: Mon, 13 Nov 2023 19:40:28 +0000
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Erwan Leray <erwan.leray@foss.st.com>, 
+ Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <20231102193722.3042245-1-ben.wolsieffer@hefring.com>
+References: <20231102193722.3042245-1-ben.wolsieffer@hefring.com>
+Subject: Re: (subset) [PATCH v2 0/5] Add STM32F7 SPI support
+Message-Id: <169990444654.3294163.14589555385933393439.b4-ty@kernel.org>
+Date: Mon, 13 Nov 2023 19:40:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,26 +60,31 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13-dev-0438c
 
-On Mon, 06 Nov 2023 19:08:28 +0700, Dang Huynh wrote:
-> PM8937 is a power management IC. It is used in various boards with
-> MSM8917, MSM8937, MSM8940 and APQ variants.
+On Thu, 02 Nov 2023 15:37:17 -0400, Ben Wolsieffer wrote:
+> This series adds support for SPI on STM32F7 processors. The STM32F7 SPI
+> peripheral is nearly identical to the STM32F4, with the only significant
+> differences being that it supports a wider range of word sizes, and the
+> addition of 32-bit transmit and receive FIFOs.
 > 
+> v2:
+>   - Add missing commit body
 > 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[3/8] regulator: qcom_spmi: Add PM8937 SPMI regulator
-      commit: c0d6b2acf78e3195a6b100a236210f2e6e42b0c0
-[4/8] dt-bindings: regulator: qcom,spmi-regulator: Document PM8937 PMIC
-      commit: f2b003c8235e0afed60ed426e891e41dab131821
-[5/8] regulator: qcom_smd: Add PM8937 regulators
-      commit: 18cc1cd011131d878be2619b56eff7bc2a278bdf
-[6/8] dt-bindings: regulator: qcom,smd-rpm-regulator: Document PM8937 IC
-      commit: 40e13ae67c6fc2897b49398d6f804b5d1ec63fff
+[1/5] spi: stm32: rename stm32f4_* to stm32fx_*
+      commit: adde8a55daf640515edd78b7ac5f3293c3960b8e
+[2/5] spi: stm32: use callbacks for read_rx and write_tx
+      commit: 247ba5ea058290824862902f7ee64c20a744c461
+[3/5] dt-bindings: spi: add stm32f7-spi compatible
+      commit: 09388379b6d7143ed12fc06900ec9db3bb82ca8f
+[4/5] spi: stm32: add STM32F7 support
+      commit: a84dcb410b5f928899a53ba79ec71108700872d6
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
