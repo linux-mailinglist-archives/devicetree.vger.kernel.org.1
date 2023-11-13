@@ -1,86 +1,73 @@
-Return-Path: <devicetree+bounces-15488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737087EA5DB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 23:15:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A57E7EA5EE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 23:20:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3E2D1C2083D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 22:15:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BA601F229BB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 22:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A67A3C6AE;
-	Mon, 13 Nov 2023 22:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1409C3AC29;
+	Mon, 13 Nov 2023 22:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WVEI1Zl2"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="NDuqezJ3";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hLyoiPN7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80CD13B79A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 22:15:36 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31CD0172A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:15:34 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c51682fddeso64633661fa.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:15:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699913732; x=1700518532; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KajBuUuJpwuy15xSzO9YMy+TSc6B+gUFFD30MmfVQnM=;
-        b=WVEI1Zl28JemvpDCFyVQCs7IgWzSn8bftEA8hSGlp3GkYM/5L7rwDGU/uTFG+S4aKG
-         uYlTX3TbPmiszUFlD4PYb37ZJnvelFX89oqgqX9EFtK8UZ0QcknmeuZ7wMXAHSPYFaoh
-         bEeqApwL0JW6Sdsyx8qtNEGw0mKKMRot795jKvMEGUQYBk8auhh6ulEYPnOLcQv3M96k
-         nZPQBIyG+XivJLKFLBtb4UZFk+wB2Qis4ZMTr3nyUheh5X35x+LkAdra9AWjGWYM2m1V
-         JN6DurXjHToCEb/VmWEO92Ka/vtnqgG0/niIr+31HsSTdq+jXHAParFrw/FwNm795V6P
-         bVww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699913732; x=1700518532;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KajBuUuJpwuy15xSzO9YMy+TSc6B+gUFFD30MmfVQnM=;
-        b=Yajq3DMVdeOuXO2XvTIg9lQ2AYu4uvue9b9I84ZGKZi38qI256HdOs3UnN7xIw4KQ/
-         6v6jkabge1Y7JBGYcfqeWTBjkw5Gy76yMfSmwQgtEiFtP0FoT4sYoQNh9xgJV/2X8owJ
-         gud0x415kmhdAsR7nXxME+X7cRkfuPYwYTndbTPWeFI4qHQ79PFLnVXTQO91DLdZwxL/
-         I5CTYxReaF9RRYm/3DxKpD+tCOIu5y0tfIHSMC/MvkjHC6o1d/S2Zlol2qEmQ2m7+hG7
-         4IE7IYk7WDXfaW9zyW4MjxaYqMn6Kv7JGPq6qMe1YAN2+JLUxEx3J+00qr96wVvk6LNp
-         IcYQ==
-X-Gm-Message-State: AOJu0YzfbNZ1zc9ps+6N9GUgOJ9aJiYHyTHAlWH3I96Rkku5n9W1H4Yz
-	vk+Lhb/DmcBegUB0mQUKyTVLMKVpAxh8y7I5eyQ=
-X-Google-Smtp-Source: AGHT+IH/jEmW6mRmKSmrElSDPBjzh15unoJsWN6Vt6NCJockDC6d+ppH/ijeD4ElxXqQBySLegWChg==
-X-Received: by 2002:ac2:4a63:0:b0:504:33ff:156a with SMTP id q3-20020ac24a63000000b0050433ff156amr224964lfp.11.1699913732301;
-        Mon, 13 Nov 2023 14:15:32 -0800 (PST)
-Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id w8-20020a0565120b0800b00507f18af7e0sm1097578lfu.4.2023.11.13.14.15.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 14:15:31 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3EC2E626;
+	Mon, 13 Nov 2023 22:20:21 +0000 (UTC)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [IPv6:2001:67c:2050:0:465::201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6800D10C;
+	Mon, 13 Nov 2023 14:20:16 -0800 (PST)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4STkQ32QQ1z9sW2;
+	Mon, 13 Nov 2023 23:20:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1699914011;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fQv89aV+4ByK+wlmAgbHMFA8qk3Yc+TtNwQpfJj2H4M=;
+	b=NDuqezJ37fA1/mXtLkuJrKae5GgwCpVLstdfRVaXgmscq20gfoHSw0iRw+x8Ndla/xmAMH
+	hwXSAPITQq9cZWBJIF59adABv/gcmdCH0oZLkj816kiPk5ui7CBkTKc+Lu86VPz/BmO5TX
+	YURai94PeTJLaiTRUCT4hkYG/KO/q4tWQs0wR+XkOcJ8N9SLAIXkXWT1WxObAFAritIQ9E
+	5nzIDV3svs1iJCtiqS/LAdehriJT4/KdzZmW5x8tgN+flNgwMMpudaBc8s4Dhk6327Tora
+	kfHzRf6loquyzoYXBrtmq906+6d48VY5K1+SFCA9qevYRtGaglcilHkFNOiX9Q==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1699914009;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=fQv89aV+4ByK+wlmAgbHMFA8qk3Yc+TtNwQpfJj2H4M=;
+	b=hLyoiPN7E/yNP6/F2Yw//DNhUqF9Uct8ME5d9RE9gIojenoSj9a6KvUrvyb2M03d5pqwXy
+	4EnZuYwZWfYTkq94Piodd+Ec6Fqua3LoiZGTLlkD9aBsU8mYAc+nubS8IzS4/PycC2QsZO
+	MoCpMzI22hFYI3VlL6bOuqZMVcvHyZ8kkBLDGs5UMkkqO2pY4ers/rq0sPtTbyjUCDp6+j
+	lAOL6WcOGQOXmFQWSSMy91/N02jibUrGw1k5AgeMe58flQt7Y5X0xRi1V2M8TPbhoYW0XQ
+	4mByO0FeVe8vJzy6xmsxraC/YAzrUkMt3fmk2oyLdLfzNkyiDpfE8vMHvd/L/w==
+To: linux-clk@vger.kernel.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Mark Gross <markgross@kernel.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: qrb5165-rb5: use u16 for DP altmode svid
-Date: Tue, 14 Nov 2023 00:13:29 +0200
-Message-ID: <20231113221528.749481-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
-References: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 1/4] dt-bindings: clk: rs9: Add 9FGV0841
+Date: Mon, 13 Nov 2023 23:18:51 +0100
+Message-ID: <20231113221949.111964-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,28 +75,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 30fe3d2de739b463a51
+X-MBO-RS-META: nr7cwmi15zdoqhwf6tbza5pmh4fpxm7z
+X-Rspamd-Queue-Id: 4STkQ32QQ1z9sW2
 
-Follow the bindings and use 16-bit value for AltMode SVID instead of
-using the full u32.
+This is an 8-channel variant of 9FGV series.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V2: Add AB from Alexander and Conor
+V3: No change
+---
+ .../devicetree/bindings/clock/renesas,9series.yaml     | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index c8cd40a462a3..88b37ceb13ed 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -1425,7 +1425,7 @@ PDO_FIXED_USB_COMM |
+diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+index 3afdebdb52ad..af6319697b1c 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,9series.yaml
++++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+@@ -21,6 +21,15 @@ description: |
+     1 -- DIF1
+     2 -- DIF2
+     3 -- DIF3
++  - 9FGV0841:
++    0 -- DIF0
++    1 -- DIF1
++    2 -- DIF2
++    3 -- DIF3
++    4 -- DIF4
++    5 -- DIF5
++    6 -- DIF6
++    7 -- DIF7
  
- 		altmodes {
- 			displayport {
--				svid = <0xff01>;
-+				svid = /bits/ 16 <0xff01>;
- 				vdo = <0x00001c46>;
- 			};
- 		};
+ maintainers:
+   - Marek Vasut <marex@denx.de>
+@@ -30,6 +39,7 @@ properties:
+     enum:
+       - renesas,9fgv0241
+       - renesas,9fgv0441
++      - renesas,9fgv0841
+ 
+   reg:
+     description: I2C device address
 -- 
 2.42.0
 
