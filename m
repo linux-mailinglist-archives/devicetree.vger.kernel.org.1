@@ -1,114 +1,148 @@
-Return-Path: <devicetree+bounces-15483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB03A7EA5AD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 23:03:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C14A7EA5C5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 23:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53862B20B23
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 22:03:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55899280F0C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 22:13:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4DC82D62B;
-	Mon, 13 Nov 2023 22:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8132D639;
+	Mon, 13 Nov 2023 22:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikMwCh04"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DC0HdELW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B4F02D622;
-	Mon, 13 Nov 2023 22:03:05 +0000 (UTC)
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02501D50;
-	Mon, 13 Nov 2023 14:03:04 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-6ce2cf67be2so2611220a34.2;
-        Mon, 13 Nov 2023 14:03:03 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2C32D638
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 22:13:35 +0000 (UTC)
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A19FD50
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:13:34 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5bf58914bacso54809437b3.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:13:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699912983; x=1700517783; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rrR0LMMA9pCsMg7Z2og3ajwpAkisvYIotqQKaMkJ4HQ=;
-        b=ikMwCh04/dMazyMkQQ0QkHHGsmfbSI/OLIhwdNGDmERxZf8Lon6GlSMN/cN+AEsSv1
-         xt6LnOSXQOZrF+cWKQmoAaWAGoYSBheSf9wgJxKUIu69f9JrDTPfKU7+IKG3dgE5p8I1
-         CTGMdAhyGBCEoTaFpGrEhcBjPX0pNompL3LaiCoGmk2O/YRGtlUDsfRK8h8bL+LMnvd4
-         dT7U1ShSD6NhWVYmqc5C9NtdbeqY6+/2DEzB6zr0UdOfd6UeXY6CrRtilcwZoN3dYLVO
-         Ehlan/46BP1g2eckOPyPWgi94qi0/nNrsliGaOxv9pwWgwFD1VmVUex1BN1xzPW3AzQD
-         5z6w==
+        d=linaro.org; s=google; t=1699913614; x=1700518414; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TgVRhaibRPEV0BOmS0W5kCOcsP7nac0xFB7b24z8+LQ=;
+        b=DC0HdELWzaHoZIbjY2Vf7VXOaMGVmT3mUPpScvERhqlK3HCb4S/zRm/0hrvaBBeXVV
+         7M/MYYHVGwk6bVGH0tcyNEv7j9KxDdtJyUgz4kU9WSg2Zp8z78hBMeEqUFC/kJpOyuaK
+         tqTUMvfmLumR38nBYpSUsf+lDzte2G3jgqqd8GI56R44yiSbvHH4WLz5KT+vBSjkZRPL
+         v7dBlX7bAPbbw3daKM0U8vZfV0/+c0JEcoZMzl1b15Yvahxfbgkl+QMAEN1mbqFIGx9W
+         GU1lzBMaMwtj/4fWC5rtCuITfDb4RFm3EJO6SKfD5+O4tfiqN1u0A2r9FO9IH2TmDVlt
+         KSEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699912983; x=1700517783;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rrR0LMMA9pCsMg7Z2og3ajwpAkisvYIotqQKaMkJ4HQ=;
-        b=quIc9IpRFLGzvp/v6WJqJBeorzppbT7I0uo/wvGMS5G8a/FZ+ETgrH9i4P86tgzhIj
-         0gXag8OU/mWVHvLtV+tx6zT01PVMPYNCZhubpM3XekRlGrvugpErm+tpkpvv2HGVADcK
-         PDfGSAh0QlkoDRtqpnbXnDYhsyaXuHU398d87kJFb355bCTJ7o8/Hsv7XZQ2pY42y8/e
-         3cHRjyU5g61pKUNUt5SJ4KpAMMaZAo3F4oJ0pzBHEuunsTkD16eDrZ1oWgU4b2rgOCPu
-         E38HQPdVBndNCkkQelP3Kduad03iPmDKix9Pz9o0FftyzrfRltxvldm2nuN7SAFO155z
-         v/yQ==
-X-Gm-Message-State: AOJu0YzMnu8DuA6/phzxUhXryaKI6buy9WI4DDWddUgN/Ul/dn2jINHz
-	1GfRIkq4PW4hheVltxmcNyQ=
-X-Google-Smtp-Source: AGHT+IEHzuDLDN+SqdeAktwSurDVy0AQs9qa/F7Y0H5oyMx9fMGQ5LzdsS/6XH5yklsmNh+8aZ+UeA==
-X-Received: by 2002:a05:6830:1397:b0:6d6:4be1:442c with SMTP id d23-20020a056830139700b006d64be1442cmr435454otq.4.1699912983220;
-        Mon, 13 Nov 2023 14:03:03 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id a18-20020a656412000000b0059d219cb359sm3779823pgv.9.2023.11.13.14.03.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Nov 2023 14:03:02 -0800 (PST)
-Message-ID: <3acda2a2-3c99-4a14-ab68-ab166ce08194@gmail.com>
-Date: Mon, 13 Nov 2023 14:03:00 -0800
+        d=1e100.net; s=20230601; t=1699913614; x=1700518414;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TgVRhaibRPEV0BOmS0W5kCOcsP7nac0xFB7b24z8+LQ=;
+        b=sw0KPYI6YZpNDtneXh9pTbP18G45Ik3pc+o9rQu32mgNm0iOxyyX9KnRAZ5BJrDZRv
+         2BNZOb1YujMNO+UOplY5ej+S3gWM2MP0qWTllHzzwKiOd8BKtPC1GKCyQpFNgqYVM4Ai
+         LcJc6hGUyyChMUc1fe4WpBhXQGPpBiXJPqIxT0xgL3eAu8a90hL7rzfNuL+Tb7i3iGZe
+         eR9tunCw12qRftgAs6KKy5fE1hxYQ0XNXG0SmRvTXwwyVWF1YwZlk7h9OpMH0VD6ZTKd
+         wsyCIPXFq8iDezPD9o1XgFWrVaAdpNk+Wd6TIrXwf9i6EOo+dk9rcENi4NETKW5wxNwX
+         7KoA==
+X-Gm-Message-State: AOJu0YwIOC9+6AvRZugvJMyshxHskIGwqzUI/tt3yz580bGl5SXdSoCi
+	dP/YC/gySZFWK3Acxs/rFSa5nfZduLVrGGDvTRy2GQ==
+X-Google-Smtp-Source: AGHT+IG7qkUFziC8v6lSPZLAQbseeUt0nHP5c186LxLXAlJLmZiYs47nkq3/qgS/GQ+URO+W9mOD4Euhn0tPdJbyymM=
+X-Received: by 2002:a0d:eb4e:0:b0:59f:9c08:8f12 with SMTP id
+ u75-20020a0deb4e000000b0059f9c088f12mr8888321ywe.38.1699913613750; Mon, 13
+ Nov 2023 14:13:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next] dt-bindings: net: snps,dwmac: Do not make
- 'phy-mode' required
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>, Fabio Estevam <festevam@gmail.com>
-Cc: kuba@kernel.org, davem@davemloft.net, edumazet@google.com,
- pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20231113204052.43688-1-festevam@gmail.com>
- <43d176e2-d95f-40dd-8e42-8d7d5ed6492c@lunn.ch>
-From: Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <43d176e2-d95f-40dd-8e42-8d7d5ed6492c@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20231113145328.42575-1-dmitry.baryshkov@linaro.org> <ae5131e3-b282-437d-9a80-ae8b697eea3c@redhat.com>
+In-Reply-To: <ae5131e3-b282-437d-9a80-ae8b697eea3c@redhat.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 14 Nov 2023 00:13:22 +0200
+Message-ID: <CAA8EJpq_vXefsNHmUCopmyATF8=PsjG0-EwJCY65yfvkCK+A4w@mail.gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings: connector: usb: provide bindings for altmodes
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Mark Gross <markgross@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/13/23 13:51, Andrew Lunn wrote:
-> On Mon, Nov 13, 2023 at 05:40:52PM -0300, Fabio Estevam wrote:
->> From: Fabio Estevam <festevam@denx.de>
->>
->> The property 'phy-connection-type' can also be used to describe
->> the interface type between the Ethernet device and the Ethernet PHY
->> device.
->>
->> Mark 'phy-mode' as a non required property.
-> 
-> Hi Fabio
-> 
-> What does the driver actually require? Will it error out if neither is
-> provided?
-> 
-> Maybe we should be changing the condition that one or the other is
-> required?
+On Mon, 13 Nov 2023 at 18:07, Hans de Goede <hdegoede@redhat.com> wrote:
+>
+> Hi Dmitry,
+>
+> On 11/13/23 15:33, Dmitry Baryshkov wrote:
+> > In some cases we need a way to specify USB-C AltModes that can be
+> > supportd on the particular USB-C connector. For example, x86 INT33FE
+> > driver does this by populating fwnode properties internally. For the
+> > Qualcomm Robotics RB5 platform (and several similar devices which use
+> > Qualcomm PMIC TCPM) we have to put this information to the DT.
+> >
+> > Provide the DT bindings for this kind of information and while we are at
+> > it, change svid property to be 16-bit unsigned integer instead of a
+> > simple u32.
+>
+> Thank you for your patches. I'm fine with this, one remark though:
+>
+> Since at least the existing arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> is already using this I'm not sure of changing the svid property to
+> an u16 is really a good idea from devicetree compatibility pov ?
 
-'phy-connection-type' is the deprecated version of 'phy-mode' which 
-of_get_phy_mode() will fall back to if 'phy-mode' is not provided. It 
-does not appear that stmmac attempts to use anything other than 
-of_get_phy_mode() therefore would not it be acceptable to update the 
-relevant .dts file such that it uses 'phy-mode'?
+Usually we try to keep DT compatible, that's true. And I also do not
+fully like the u16 notation. However I'm not sure whether using full
+u32 for explicitly u16 value is correct. I'll wait for the guidance
+from DT binding and USB maintainers.
 
-That really should not have a functional impact given that 
-of_get_phy_mode() has worked that way for a while.
+I'll mention the qrb5165-rb5 explicitly in the cover letter.
+
+>
+> Also the whole 16 bit property notation in the dts files seems
+> less readable to me. So to me this seems more of something
+> which one would use when having a significantly sized array
+> of u16-s since then it will result in space-saving in the dtb.
+>
+> In this case I personally think it is fine to leave this
+> as an u32.
+>
+> With all that said, I'm fine either way.
+>
+> Here is my ack for routing the drivers/platform/x86/intel/chtwc_int33fe.c
+> bits through whatever tree is best to get this upstream:
+>
+> Acked-by: Hans de Goede <hdegoede@redhat.com>
+>
+> Regards,
+>
+> Hans
+>
+>
+>
+>
+> > Dmitry Baryshkov (3):
+> >   dt-bindings: connector: usb: add altmodes description
+> >   usb: typec: change altmode SVID to u16 entry
+> >   arm64: dts: qcom: qrb5165-rb5: use u16 for DP altmode svid
+> >
+> >  .../bindings/connector/usb-connector.yaml     | 35 +++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  2 +-
+> >  drivers/platform/x86/intel/chtwc_int33fe.c    |  2 +-
+> >  drivers/usb/typec/class.c                     |  5 +--
+> >  4 files changed, 40 insertions(+), 4 deletions(-)
+> >
+>
+
+
 -- 
-Florian
-
+With best wishes
+Dmitry
 
