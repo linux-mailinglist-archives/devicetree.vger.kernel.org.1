@@ -1,154 +1,205 @@
-Return-Path: <devicetree+bounces-15301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC267E98DE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 10:26:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E53817E98EE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 10:29:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC1A11F20C75
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 09:26:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B5541F20C98
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 09:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAB318E1F;
-	Mon, 13 Nov 2023 09:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A4AD199C3;
+	Mon, 13 Nov 2023 09:29:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="mMCt2A/P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="crSdqiZZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF05212B7E
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 09:26:03 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2010.outbound.protection.outlook.com [40.92.20.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF85110D0;
-	Mon, 13 Nov 2023 01:26:01 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S8osBBdC3BFoJlM00tnWpuji5wKZZsLbIEoFnCJy0+nPPtu1Jvyo3r/kODGKti6CGkEnZ/Dq/By9RoMNtwgv8OKnHjaFTulLYDb8F14a/RdKyuixHf8qO6i4TtfhsmCdnF52kJLtjrCemOw1YNBO6BX4kpi3oo8z1cYb1mTALezU20QmGemln7BCU0gJafgK7lkWd8IuP9fflrFmPr88pd97LQHq++zzFTJz8LBgDhpd282icJOiISMmXEjeUlNdr5KI9WPaJCgbBh/F+PkPGr+4T1hhfeanHhZVJvAyaBdcPL1dkP/d0WfOPUWL85NmJwwwsM5Z1eS2LRAPuA/t9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qqz5pQMI0E0+HeT6UiwmUgbdQrhyFUVIy+H8obl9xH4=;
- b=Cw78SQFztMM+2fAgJrL8MfNsIfCSGa5v89cXfK8LTW+BxV+m90ygdKaJ/Q2LYTW1ofbkmUNYeyACnBf4T1a1B5kVKkw45NI/WYfrBtGeauiRCd7XeeWW2Q28hzi7p5uQ5rFbm8KE5ir0Dq4sbeAidpmxpTeCKkm/J1Jtz12f6EbCq0Rsvip8d4I1uCdO+ec2oKEEQdyLKHj/UXplqsK46Xh/uNbh5vqjXhdWbEhTBvEQjLcTOORBPIZ80GCKIJ7mR3yQ/G6FjizvS8XYmX5vmHIUTVsuAqoGrM7kyKsFtIG/7nPHT63JzZqxu+egX75aGZgrPrhWCB5hL7OU9hqmsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qqz5pQMI0E0+HeT6UiwmUgbdQrhyFUVIy+H8obl9xH4=;
- b=mMCt2A/PnAvW1xca9GF8O1bdiQwrSTkW8KtpoWffsVaRicpk1ps7b0MJFuOZyncWJA79As/BkgEB+4CK/5hwTGjr2H7zMCnxpoOMxPn0G19uWCQmmby9rbtnlOjXsZhEn2Hl3oqmEsk2R/K/qS7DxYAQBLd33BYEBvey0sXfK9t/PeWh7zUUtjHtBYEs9DCVo/DZTdbDz342uImPy5JKcM4yCMON6AJG8/Eor21QnQjHKSxAAxrpY//xLaoLKUbUtl3YzGgPm5xSGZXiqV5oxKYPdC7N5Y9vSggREPcwJyVXTZk/3v4ybaEDaqvxxMsVCYEJA3jnIj8mNdlC3tENww==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by MW3PR20MB3465.namprd20.prod.outlook.com (2603:10b6:303:59::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Mon, 13 Nov
- 2023 09:25:59 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6977.029; Mon, 13 Nov 2023
- 09:25:59 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] riscv: dts: sophgo: remove address-cells from CV1800B intc node
-Date: Mon, 13 Nov 2023 17:26:15 +0800
-Message-ID:
- <IA1PR20MB49532613F5B4BD9753A1BB4DBBB3A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [wEvxMjLbPiEQh6PPG7qWkwPTA10ApsD5A5yMO0pAxcQ=]
-X-ClientProxiedBy: SJ0PR05CA0125.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::10) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231113092617.114031-1-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846F819465;
+	Mon, 13 Nov 2023 09:29:24 +0000 (UTC)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC06E10D0;
+	Mon, 13 Nov 2023 01:29:22 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-53de0d1dc46so6893722a12.3;
+        Mon, 13 Nov 2023 01:29:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699867761; x=1700472561; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Yp/7ptDRFOzrMZAZ9KuQqrD9cMa6e2wJsBv3cHoElh4=;
+        b=crSdqiZZ0A/rVOZ0Q+6Kf5HJGxf2V38QPmzfFG0wSJatGeraMNkY41yd8574mlvYun
+         6lZpwBqZD3uGnqk0cAqO83H+zshk3lqcfGkf0G0f5dILjRc3YocQHHYGZQ30SyWGD96P
+         SoCIqiajp54xpmxizPitYSDkmDIlwGanctZDoqRaQdtSatHhXghjzZPAP4DXcouk/8+f
+         9zWu7tMlMUp044gky7JxIt3TNzW76RdQe+x0gRGzi9xfoiaMum6BDy0NW9nIJ+u2emaM
+         qtlm3FJSaWsAiMLu92Id5pkabqwPAgOYGfEjdB7KfrsRW6RuVHrv3wsvf8SNb64mBr8J
+         rSkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699867761; x=1700472561;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yp/7ptDRFOzrMZAZ9KuQqrD9cMa6e2wJsBv3cHoElh4=;
+        b=laBFf0pXvSUhm8k/Bk5Gq46f5LbB/+WPhQy+ZmLDjlacF46dHDdBdw2cceaiZX76qa
+         kTbEZh8DeCdyGVbIyVBG4DgMbxfUXvBlQgof9/mfPb9ri2JTAz9mwSTtUrPm8WIhcNv+
+         38z8g6qrgbuI9m+1XyHtlMVLEBHHflDTfS9z2Eg6Cz/VGKwRfWPAbzlH+tvrRlXM7N3t
+         1uZDNCddKxoOsmfhoSZ1EUdJxSBmJKHrVqZJqHzRvAjUSW5r5QNbCG5vroahd6zXQ45/
+         ULNmqxwIw8AcGRziv0l5CuhFljl2pW7sOBf3C7Wm08/dt45MBmNrHDKtLkSDzjF2k3qX
+         7Lwg==
+X-Gm-Message-State: AOJu0Yxb3Nz4noAoJ5q2mmLBs14XWK0P30jmKl0icmsIDKH78GmSaw5+
+	RuH9zVtcMYNpT56a1GCca2M=
+X-Google-Smtp-Source: AGHT+IFVG2pZq11wz3Bd3neJ2lHMGSdI343lJ6Z2gg806knE5K3Dl9+kugaX5lYyaeLqBQgfLqiyEw==
+X-Received: by 2002:a17:906:b49:b0:9bf:d65d:dc0f with SMTP id v9-20020a1709060b4900b009bfd65ddc0fmr5342968ejg.4.1699867761036;
+        Mon, 13 Nov 2023 01:29:21 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:361b:8f29:1cbf:5e69? (p200300f6ef1b2000361b8f291cbf5e69.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:361b:8f29:1cbf:5e69])
+        by smtp.gmail.com with ESMTPSA id h17-20020a1709063b5100b009e6e82939f9sm3698732ejf.26.2023.11.13.01.29.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Nov 2023 01:29:20 -0800 (PST)
+Message-ID: <65060d844b4cdab02079a05286b506740623ed53.camel@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add LTC4282 bindings
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Conor Dooley <conor@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, Jonathan
+ Corbet <corbet@lwn.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Linus Walleij
+ <linus.walleij@linaro.org>, Guenter Roeck <linux@roeck-us.net>, Rob Herring
+ <robh+dt@kernel.org>,  Andy Shevchenko <andy@kernel.org>, Jean Delvare
+ <jdelvare@suse.com>, Conor Dooley <conor+dt@kernel.org>
+Date: Mon, 13 Nov 2023 10:32:17 +0100
+In-Reply-To: <20231110-astronomy-nicotine-02c798d42910@roley>
+References: <20231110151905.1659873-1-nuno.sa@analog.com>
+	 <20231110151905.1659873-2-nuno.sa@analog.com>
+	 <20231110-astronomy-nicotine-02c798d42910@roley>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MW3PR20MB3465:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83675bb7-ab93-4bf7-d2ac-08dbe42a8b9a
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	rfwcs2EX3lL+1cVU31ZRLf+cMQ8qQFGUrIQfu37V4wyEbcvjt/1GyIJgzA4xiKjlvRZ7RPuqovZqc9UB4GgI3H0uqPIqviT70M+9XIsJ50ZNrsfSzB1ga66OHhQRTvlQV84wmzlnTjN8n6nRPGZQLEFEzEDiPsAwtUNoGv2TtRosLwzo0/suhAk7iGv0pBaKjxSNzP8lUE8XSGHi/KY6PznXei0q0jsPBPicTpivmhjmec/69LHBgoDCIzBjM7+5z8QZoUIBIVihWL6twgLHAyAX7xtdGxnKYz8SYPCdCkUiVGIze2Ei+Xcya9MQZs4liUwVWW/piUeEQTal52X1+0mwFKJJBEawANSbWRbMqoGamTnUlsR7RlDdqWMoDzBpUF3K+0PUjn+YiEZnbdwWLSoA/lOvJH36oxhyXnr2oheiZ3GDnLtdCZfTKh/uty/05NorjVe0JppjVGDXsxVPuE3XqRz7TFW2Yz9zvJI9E9iTH4jwFR04wsE2RG506mCDrGe/OdGpYvR7aO0tKBe8I+Z2j0zI+CUFbgTIrOO88MjzN+jUfwQAFWpsMjZREYdc7KRG/Wn+WcUkDBoulUNmT9lWwqY84aWSif1Np1ciZGgeeOBam343JsRDHWk5MDmZ
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7SW6Ln2EtLanSJL7UAKRe4T4K+Sb11yIWqtyVs5lRNfp3bUJgpyDwUEVlZXx?=
- =?us-ascii?Q?8NlftHQ/C8YGdsbfm1kkWFAp7glnigFc4wdL/NAdQkbOJVGu8jSFYT4v0oXy?=
- =?us-ascii?Q?8ocI9J5Til9JHUpl/xeTC3C+qDZtqLjLTNTV99R8FzVrXzbSH+mzRieR+d2M?=
- =?us-ascii?Q?cdzfqjQsfRUo/Yy98BwCohJFCG2rRROFOZKKPrXJ6BGkd3DT0WAQAXT1MKD5?=
- =?us-ascii?Q?2ijIbd1x3QVigsyLVw+R5XRpMCVL0AieOIhgNjAQsoYLtntE92r+5EQop4Xl?=
- =?us-ascii?Q?62sWW7slyKgOTzt5MRz3wSIfrE/C8Nurbikf9PJmyXZ6+glcznBxckzYN8Hf?=
- =?us-ascii?Q?zsCRZPYcoCL0/7iwLFc6//yxek/vBB1uI0zvu5ASYvEeDbkhy8WIzmu2m4Ge?=
- =?us-ascii?Q?VCUA/PA2mHGjwhpmmZ0vvyWSzjScWeCqGPASkoyV+uw6qqfzjm9sDnb1AAnh?=
- =?us-ascii?Q?1z9KjZEaDXN2UDbUvId9Dkh7WYmzjOsGaNE7BVFu/rAmHDMtsmS9fdEnbN9Z?=
- =?us-ascii?Q?f+9hYQii8+VVyv6fkTE2zlaWuzMCSVl95chabHIFjzOImJ8Rvdeye7vv6MDx?=
- =?us-ascii?Q?e1vtO2p1/f3hA1LrtpzEOQ2bur2A8nCZHwnkDPZPCQ2tFHWfz7pXKsY1n10p?=
- =?us-ascii?Q?PuJrSzsDlg7W8rrwwppiSwiv0JCCtmfXUomAcR8bFDVdEvoZ+PgKL4YMj3As?=
- =?us-ascii?Q?K40rHi42T6Wb8KE5z3lSHitsMn9kO+yIvS48nGIRt4DPDrwLmfSwjSwlqMR9?=
- =?us-ascii?Q?SReZ5ZFZ+N1Mfnbb0xjXm5xewPlTMBYOcplxqdzVth3hf9Wtttfs3p/eUfkj?=
- =?us-ascii?Q?iq1eA8BoPaJ/vsPqcIMdNy5dIXj+Sy6t7LCXc4xxPGfJU854gcpngyjsq+po?=
- =?us-ascii?Q?prII/vtuAYaX8OFW/fzhinH9wDx/96/NJjOY0gOcZGDi4lX6lRcLOr9OLzlc?=
- =?us-ascii?Q?huAfiXopmyk8xhWedDavpSRE8pwlwh4uYzbpkq/5F8mL2LeftErsjBODrWSe?=
- =?us-ascii?Q?cPjFuPRi5SgsQRX4XgM4OPmwHtbkWOUpN4otzIdGd1zaLgs0mPXuf8/sPAtu?=
- =?us-ascii?Q?C3Q17BzWr1FnHy4bjiGeXF7wozq8GbV+FqC7J9OJn5/W17TjHd6VBCPLWEHw?=
- =?us-ascii?Q?oG6gGXweF8tzdQ699aXt2W0O9hejAwtAsoP75KcO0neX5mpB2TrPnnEAZLdF?=
- =?us-ascii?Q?wEVeXV5KbkpapbJqCBst5FeNSgKAIII8ZIiRTTQzli42wRqdwO23+aGUAgs?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83675bb7-ab93-4bf7-d2ac-08dbe42a8b9a
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2023 09:25:58.7669
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR20MB3465
 
-A recent submission from Rob has added additionalProperties: false
-to the interrupt-controller child node of RISC-V cpus. But CV1800B does
-not follow this change and still uses #address-cells in its interrupt
-controller. As it has no child nodes, #address-cells is not needed and
-can be removed.
+On Fri, 2023-11-10 at 18:42 +0000, Conor Dooley wrote:
+> Yo,
+>=20
+> On Fri, Nov 10, 2023 at 04:18:45PM +0100, Nuno Sa wrote:
+> > Add bindings for the LTC4282 High Current Hot Swap Controller with I2C
+> > Compatible Monitoring.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0.../bindings/hwmon/adi,ltc4282.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 228 ++++++++++++++++++
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0=C2=A0 6 +
+> > =C2=A02 files changed, 234 insertions(+)
+> > =C2=A0create mode 100644 Documentation/devicetree/bindings/hwmon/adi,lt=
+c4282.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
+> > b/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
+> > new file mode 100644
+> > index 000000000000..0a5d540f014e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/adi,ltc4282.yaml
+> > @@ -0,0 +1,228 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/hwmon/adi,ltc4282.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices LTC4282 I2C High Current Hot Swap Controller ove=
+r I2C
+> > +
+> > +maintainers:
+> > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
+> > +
+> > +description: |
+> > +=C2=A0 Analog Devices LTC4282 I2C High Current Hot Swap Controller ove=
+r I2C.
+> > +
+> > +=C2=A0
+> > https://www.analog.com/media/en/technical-documentation/data-sheets/ltc=
+4282.pdf
+> > +
+> > +
+>=20
+> Extra blank line here FYI.
+>=20
 
-Fixes: c3dffa879cca ("riscv: dts: sophgo: add initial CV1800B SoC device tree")
-Link: https://patchwork.kernel.org/project/linux-riscv/patch/20230915201946.4184468-1-robh@kernel.org/
+Right...
 
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ltc4282
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 vdd-supply: true
+> > +
+> > +=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 adi,clkout-mode:
+> > +=C2=A0=C2=A0=C2=A0 description: |
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Controls in which mode the CLKOUT PIN s=
+hould work:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 - Configures the CLKOUT p=
+in to output the internal system clock
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1 - Configures the CLKOUT p=
+in to output the internal conversion
+> > time
+> > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
+> > +=C2=A0=C2=A0=C2=A0 enum: [0, 1]
+>=20
+> I really am not a fan of these types of properties. Part of me says that
+> if you're outputting clocks from this device, then you should be a clock
+> controller. How do consumers of this @clkout@ pin get the rate of the
+> clock?
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-index df40e87ee063..aec6401a467b 100644
---- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-@@ -34,7 +34,6 @@ cpu0: cpu@0 {
- 			cpu0_intc: interrupt-controller {
- 				compatible = "riscv,cpu-intc";
- 				interrupt-controller;
--				#address-cells = <0>;
- 				#interrupt-cells = <1>;
- 			};
- 		};
---
-2.42.1
+I explained it to Guenter as he also argued about this. I'll wait for more
+feedback but it's likely this will just turn into a clock provider, yes.
 
+> I'd kinda be expecting to see a clocks property with a maxItems of 1 and
+> clock-names with two, mutually exclusive, options.
+>=20
+> The other part says, and it applies in multiple places here, that having
+> integer properties with non-integer meanings is a poor ABI. I'd be vastly
+> happier if the various instances in this file became enums of strings,
+> or $re=E2=94=A4evant-unit so that a dts containing these properties is
+> immediately understandable.
+
+Well, I think you're mentioning the 'gpio-mode' 'and under/over-voltage-
+dividers'. I think for both it's clear that having the relevant units is no=
+t
+feasible (at least I'm not seeing a way of properly do it). As for the stri=
+ngs,
+well, I don't have any much to argue other than:
+
+1) It's pattern seen in a lot of bindings - yes, that's not an excuse to co=
+py
+bad/wrong things over new bindings - but, honestly, it's the first time I h=
+ave
+someone complaining about it so I never thought it was wrong.
+
+2) It makes much more easier to handle the properties in the driver (yeah, =
+I
+know that, as far as you're concerned, this does not matter to you :))
+
+So yeah, if you insist on it, no strong reasons on my side to not do it. As=
+ long
+as I see some consistency down the road :)).
+
+
+- Nuno S=C3=A1
 
