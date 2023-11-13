@@ -1,160 +1,176 @@
-Return-Path: <devicetree+bounces-15353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF187E9C7D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:57:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A10D7E9CD9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:15:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E6E0B20855
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:57:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8E25280CFD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ED21D6AA;
-	Mon, 13 Nov 2023 12:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E519D1DFEA;
+	Mon, 13 Nov 2023 13:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MYKWsRyN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Za5Hz+lf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742281D694
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:57:24 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034C6D7E
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:57:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1699880240;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XEEW3XcoHB1VZUo6+U7UmEZpZHFHm8rW7krXF/G2wlo=;
-	b=MYKWsRyNpfyzORUqB3RRo3ufFJ5ETTTdfkDWDMfbGh5zDiah9mQk9pgy9bR79e2+1vUx8E
-	oL4BzbdzZMU7JBj9Tapc/ArTn5ijAaTmqELD4Y8qqUmhajMS8fvfwp7ULY3fjn91BJxyKH
-	+OrYLlfZ9u5PPJrWs7BhOPiXRA5ZGT4=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-257-kB8ZnXBFMIW7BYrxtNDJNQ-1; Mon, 13 Nov 2023 07:57:19 -0500
-X-MC-Unique: kB8ZnXBFMIW7BYrxtNDJNQ-1
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-32da7983d20so2392001f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:57:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699880238; x=1700485038;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XEEW3XcoHB1VZUo6+U7UmEZpZHFHm8rW7krXF/G2wlo=;
-        b=fqnV5s7DKu1Ff3M+ZaFrWH3P8bxzK+pFUUiFnmtViR4WOnMZH9A9ULE9hMzv0G0ZzM
-         7XjIat1s5LEL+rl8XP0KiMuQkh5bZHNyDZn0NrhefE8kIPtR34XVGT9z1JemGA/xSlPM
-         TmE31gxzTmx3RZqkoN9CKDTI0BwkxRfTVBcF4tIpz20wozslQeEywAcbgPyEEPljn/Jc
-         7005PqtoT1KRsefCMuUFtLdq7QeoHNEQXe7Mf4xz94N9j/e7kk0Ev3ZesjVdoEA09iuR
-         YFnar2cyCYIVrnTCGWfXD+Ej9J/8KIWrk7ulxzP/wHHYFZdD9/grO2PtFAvROWeQteX9
-         beIg==
-X-Gm-Message-State: AOJu0YxjI1wlotao/Xl0SRED4Br2jH+KJlXMnDVsgyrPtPG6EKrK2y5b
-	qn6eOmHWQh6q4HPzh28cqRkHWxfWcXc18gM9FvpoxxPzs0Jy/gIb2jrhCVN7UEF/oHTJjDTHDBI
-	/p45OGoovvhEZg2/aDcchAQ==
-X-Received: by 2002:a5d:6486:0:b0:32f:89ce:f66b with SMTP id o6-20020a5d6486000000b0032f89cef66bmr6690285wri.10.1699880237841;
-        Mon, 13 Nov 2023 04:57:17 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGvU+wcl912JE3I6ry5f8WGalZEQtNXVee4MgWE9m4W+nSgpYWlK++Na50Jp1k5l+5FVCg/Vw==
-X-Received: by 2002:a5d:6486:0:b0:32f:89ce:f66b with SMTP id o6-20020a5d6486000000b0032f89cef66bmr6690272wri.10.1699880237501;
-        Mon, 13 Nov 2023 04:57:17 -0800 (PST)
-Received: from localhost ([90.167.95.115])
-        by smtp.gmail.com with ESMTPSA id o9-20020a5d58c9000000b0032d9caeab0fsm5403122wrf.77.2023.11.13.04.57.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 04:57:17 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Andrew Worsley <amworsley@gmail.com>, Thomas Zimmermann
- <tzimmermann@suse.de>
-Cc: linux-kernel@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>, Sima
- Vetter <daniel.vetter@ffwll.ch>, Rob Herring <robh@kernel.org>,
- dri-devel@lists.freedesktop.org, Hector Martin <marcan@marcan.st>, Sergio
- Lopez <slp@redhat.com>, Frank Rowand <frowand.list@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-In-Reply-To: <CA+Y=x3khfKx_oQYABMSCAPOEuDWyZ+MyTHK=JufH8fC-m6z7Xw@mail.gmail.com>
-References: <20231113085305.1823455-1-javierm@redhat.com>
- <9f3d3c8d-fbf1-485b-9c2a-4d442733954d@suse.de>
- <CA+Y=x3khfKx_oQYABMSCAPOEuDWyZ+MyTHK=JufH8fC-m6z7Xw@mail.gmail.com>
-Date: Mon, 13 Nov 2023 13:57:16 +0100
-Message-ID: <8734x9steb.fsf@minerva.mail-host-address-is-not-set>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F591DFE4
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 13:15:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC16CC433C8;
+	Mon, 13 Nov 2023 13:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699881332;
+	bh=IUou9g1eC7eRyhYqxTZ2wecJaQRhh+vOQhsR2yztLhY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Za5Hz+lfHckCYadClxj9S0HmEayg0pbrmOvWPNveXQM/WkSLZXIDPV+PF8DOId7ba
+	 53CZUqxcsNJl3kGjiSzF5hUxbt0ONRMxi7QL6efvnR09VEVUA5159sq2m6I/FRL1j3
+	 j+sFscRcacyHwWiDba9D0GeFD+H3GgjmSoKPq0IFoBOGG24+piLxfuQVC5EypMSJcp
+	 2sA8cry5c8+XiHGZy/J3S3TML4us/VSr+lWvXxfiTA/Yf0O+mAX/plKxTr62YFSPMw
+	 hnL59cvZmWjmMtJMufOcp04JY8MuzNNquCr7RmvuUz38PSFwTmhuwMugmGv65z4dKI
+	 sD5XqKbud0cTQ==
+Date: Mon, 13 Nov 2023 21:03:11 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>,
+	Tony Lindgren <tony@atomide.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH 1/2] riscv: dts: cv1800b: add pinctrl node for cv1800b
+Message-ID: <ZVIejw2O6on8QMYy@xhacker>
+References: <20231113005702.2467-1-jszhang@kernel.org>
+ <20231113005702.2467-2-jszhang@kernel.org>
+ <58a99001-8260-4970-9fc7-25fe81e557a5@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <58a99001-8260-4970-9fc7-25fe81e557a5@sifive.com>
 
-Andrew Worsley <amworsley@gmail.com> writes:
+On Sun, Nov 12, 2023 at 08:51:20PM -0500, Samuel Holland wrote:
+> On 2023-11-12 6:57 PM, Jisheng Zhang wrote:
+> > Add the reset device tree node to cv1800b SoC reusing the
+>           ^^^^^
+>           I assume you mean pinctrl here?
 
-Hello Andrew,
+oops copy and paste the commit msg ;) thanks
+> 
+> > pinctrl-single driver.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  arch/riscv/boot/dts/sophgo/cv-pinctrl.h | 19 +++++++++++++++++++
+> >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 10 ++++++++++
+> >  2 files changed, 29 insertions(+)
+> >  create mode 100644 arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+> > 
+> > diff --git a/arch/riscv/boot/dts/sophgo/cv-pinctrl.h b/arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+> > new file mode 100644
+> > index 000000000000..ed78b6fb3142
+> > --- /dev/null
+> > +++ b/arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+> 
+> A couple of questions: Should this go in include/dt-bindings? And is it worth
 
-> On Mon, 13 Nov 2023 at 20:18, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Am 13.11.23 um 09:51 schrieb Javier Martinez Canillas:
->> > Some DT platforms use EFI to boot and in this case the EFI Boot Services
->> > may register a EFI_GRAPHICS_OUTPUT_PROTOCOL handle, that will later be
->> > queried by the Linux EFI stub to fill the global struct screen_info data.
->> >
+When I cooked this series two weeks ago, I did put it in dt-binding, but
+then I found commit fe49f2d776f799 ("arm64: dts: ti: Use local header for
+pinctrl register values"), "These definitions were previously put in the
+bindings header to avoid code duplication and to provide some context
+meaning (name), but they do not fit the purpose of bindings." which is
+suggested and acked by Krzysztof, so I just want to follow the style
+here.
 
-[...]
 
->
-> I applied the patch and just the simpledrm driver is probed (the efifb is not):
->
-> grep -i -E 'drm|efifb' --color -C3 dmesg-6.5.0-asahi-00780-gf5aadc85a34d.txt
-> [    2.621433] systemd-journald[276]: varlink-21: Changing state
-> idle-server \xe2\x86\x92 pending-disconnect
-> [    2.621437] systemd-journald[276]: varlink-21: Changing state
-> pending-disconnect \xe2\x86\x92 processing-disconnect
-> [    2.621439] systemd-journald[276]: varlink-21: Changing state
-> processing-disconnect \xe2\x86\x92 disconnected
-> [    2.878828] [drm] Initialized simpledrm 1.0.0 20200625 for
-> bd58dc000.framebuffer on minor 0
-> [    2.909764] Console: switching to colour frame buffer device 160x50
+> including macros for the actual function mappings, like in the vendor source[1]?
 
-Great, thanks for testing. The patch works then as expected. Can I get
-your Tested-by then ?
+Do you want something as the following?
 
->
-> I am wondering if the drm_aperture_remove_framebuffers() shouldn't be
-> called in the probe function anyway
-> as it ends up overriding the efifb one as wanted and handles the case
-> the simpledrm (CONFIG_DRM_SIMPLEDRM)
-> is not present.
-> Perhaps there is an accepted principle that such kernels *should* fail
-> to set up a FB?
->
+#define UART0_TX	0
+#define CAM_MCLK1	1
+...
 
-We were talking with Thomas that the sysfb design seems to be reaching its
-limits and need some rework but currently you either need some driver that
-matches the "simple-framebuffer" device that is registered by OF or won't
-get an early framebuffer in the system.
+#define REG_UART0_TX	0x24
+...
 
-That could be either simpledrm or simplefb. But if a DT has a device node
-for "simple-framebuffer", how can the OF core know if there is a driver to
-match that device? And same for any other device defined in the DTB.
+pinctrl-single,pins = <REG_UART0_TX UART0_TX>;
 
-It's similar on platforms that use sysfb to register the device (e.g: x86)
-since either "simple-framebuffer" is registered (if CONFIG_SYSFB_SIMPLEFB
-is enabled) or "efi-framebuffer" (if CONFIG_SYSFB_SIMPLEFB is disabled).
+Other pinctl-single users just uses the register value directly, I have
+no preference. But I'd like to get suggestions from DT and pinctl-single
+maintainers. Hi Rob, Krzysztof, Conor, Tony, what's your opinion?
 
-That means CONFIG_SYSFB_SIMPLEFB=y and CONFIG_DRM_SIMPLEDRM disabled won't
-work either, even if CONFIG_FB_EFI=y which is the case you are mentioning.
+> 
+> [1]:
+> https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/linux_5.10/drivers/pinctrl/cvitek/cv180x_pinlist_swconfig.h
+> 
+> > @@ -0,0 +1,19 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * This header provides constants for pinctrl bindings for Sophgo CV* SoC.
+> > + *
+> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> > + */
+> > +#ifndef _DTS_RISCV_SOPHGO_CV_PINCTRL_H
+> > +#define _DTS_RISCV_SOPHGO_CV_PINCTRL_H
+> > +
+> > +#define MUX_M0		0
+> > +#define MUX_M1		1
+> > +#define MUX_M2		2
+> > +#define MUX_M3		3
+> > +#define MUX_M4		4
+> > +#define MUX_M5		5
+> > +#define MUX_M6		6
+> > +#define MUX_M7		7
+> > +
+> > +#endif
+> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > index e04df04a91c0..7a44d8e8672b 100644
+> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > @@ -6,6 +6,8 @@
+> >  #include <dt-bindings/interrupt-controller/irq.h>
+> >  #include <dt-bindings/reset/sophgo,cv1800b-reset.h>
+> >  
+> > +#include "cv-pinctrl.h"
+> > +
+> >  / {
+> >  	compatible = "sophgo,cv1800b";
+> >  	#address-cells = <1>;
+> > @@ -55,6 +57,14 @@ soc {
+> >  		dma-noncoherent;
+> >  		ranges;
+> >  
+> > +		pinctrl0: pinctrl@3001000 {
+> > +			compatible = "pinctrl-single";
+> > +			reg = <0x3001000 0x130>;
+> > +			#pinctrl-cells = <1>;
+> > +			pinctrl-single,register-width = <32>;
+> > +			pinctrl-single,function-mask = <0x00000007>;
+> > +		};
+> 
+> From the vendor driver[2], it looks like this peripheral block only handles
+> pinmuxing, so indeed this looks like a good use of pinctrl-single.
 
-What I think that doesn't make sense is to remove conflicting framebuffers
-from drivers that can only handle firmware provided framebuffers. As said
-in the other thread, drm_aperture_remove_framebuffers() is only meant for
-native DRM drivers.
+This is deffinitely pinctrl-single style pinmux controller ;)
 
-> Andrew
->
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+> 
+> [2]:
+> https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/linux_5.10/drivers/pinctrl/cvitek/pinctrl-cv180x.h
+> 
+> > +
+> >  		rst: reset-controller@3003000 {
+> >  			compatible = "sophgo,cv1800b-reset";
+> >  			reg = <0x03003000 0x1000>;
+> 
 
