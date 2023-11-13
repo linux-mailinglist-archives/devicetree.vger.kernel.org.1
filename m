@@ -1,168 +1,104 @@
-Return-Path: <devicetree+bounces-15415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373547E9FB8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 16:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 714287E9FF3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 16:28:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 044431C2030D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:15:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A22731C2089B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3507B2111C;
-	Mon, 13 Nov 2023 15:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC33E2137E;
+	Mon, 13 Nov 2023 15:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="AMoWBGLh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ItggKojN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39CB620326
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 15:15:49 +0000 (UTC)
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C2DF5
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 07:15:46 -0800 (PST)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5a7c08b7744so52455147b3.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 07:15:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1699888546; x=1700493346; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qFzJreDRT31H+y0jyIEDRuhNT8QoPX317nTi9EqfR10=;
-        b=AMoWBGLhoO9F9Mife0W8M/y3WxxbnezaQgVLg7aBUEGD5s6KwZTz0TR8dsdYcjJTTD
-         607DPgWOt9rmsbZNXsW7KZzwjPXTndMBqcWdj1w9lU2go62Pg61JICoojdRBG9gnOpf1
-         hLR0KrfatBcTyuRZlOwfiWxts7YZwMRhXPminUU8GthQn//Wza3eHZwbFKq2ISuyL6iI
-         e66eD0SalpPrwYGfRMnaFR4tKY9ONsTq6BY4R8/T4M2Q8fIQv1eIWIz5Lq5s3KI+CNu2
-         s4cnIV0DXMKblAomzh10qNbte915k4sFnbuJggDnSA1s1Inzx732lC+rG7XZmv1x4Msj
-         Fdow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699888546; x=1700493346;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qFzJreDRT31H+y0jyIEDRuhNT8QoPX317nTi9EqfR10=;
-        b=JW5bUjSB6TLB0CdoAy1zN+b1o1w1mRSAUewV8oiD2UqW1+2wb65+NFaQ0gEzBtu9lm
-         RWBzQZZTSw9RrtPMFA2kbdGl+p4jXOa/PpzwRpSaR/y18kEKTaspwCPp8W9WF59aBtv/
-         1rkBazwahTYBBvFRoFjfXOuGSuywThTK7dMg1WpGAuNVM4WbhOVJVfqWynOfI38CJb3U
-         Z6i4EXq67yIfeh/9Hm1EANUB+cz3MqpW67dkoGx6Gs3sxYWBYa6l3WSf7MDFHtv3azVA
-         u1+Am7NP5InjiCNnfH2FfHWswG7ihiUSU/VXoCsvCGB1dfrzyUW/QNrnkak3xUr3eKrP
-         VEEA==
-X-Gm-Message-State: AOJu0YxF0NajqhF/5ob/RuRfFakTlkHxJXgm2aP/DMKsTVkL/U9xeiZZ
-	oWUfwU+6sEu8CgVIIV4kjbzQBvSeb7rsFxGi9aWPvQ==
-X-Google-Smtp-Source: AGHT+IEViwim7q06I5kBXIicGi7+h5Bbd828ZjCk3ZnnNbwwCq55VYOMAx8eG7+erphkjxQv0TNwdBOLhF7UOHjUeX8=
-X-Received: by 2002:a81:8901:0:b0:583:b186:d817 with SMTP id
- z1-20020a818901000000b00583b186d817mr5582807ywf.27.1699888545614; Mon, 13 Nov
- 2023 07:15:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB84C2111B;
+	Mon, 13 Nov 2023 15:28:42 +0000 (UTC)
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949E8D63;
+	Mon, 13 Nov 2023 07:28:39 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AE965E000C;
+	Mon, 13 Nov 2023 15:28:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699889316;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aIIRnOM8lZdjayyVbJdSL02qsiaukPJ406eFMm5UKFA=;
+	b=ItggKojN8r1Km5DPV7lScttvphF0TWoJVrHORGuEhlDw0Qg2DhcCPPboAYQdqYRuFQ/Xw2
+	0PhAjNVYoNzxQ9i1lKs9karTKqIcjjA3/h3x/MzgNeL8Vb4YIVbgT94jeqI5yq8a69M9Dk
+	sYK97Fy2bRwN5bgEoiSNDH2DkRccGIH3zX2pDveFTKsdCxpV3qOf2jiTBe/0RZk8clc2WD
+	1dvU6j/PRsxadugl5WJY/da4I0NSq53+tNNL4kkdp6rkmMJ8Z9n0CGGGUAQlbqyKtP9LaK
+	iiiMTYfUiZ2lMgj7y7naY4kIF1B56H6u1tJwKx8HBsq9saQ+l8qPht6SVUAg6Q==
+Date: Mon, 13 Nov 2023 16:28:34 +0100
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
+Subject: Re: [PATCH v10 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Message-ID: <ZVJAogJsTidx+Cg1@pc-70.home>
+References: <cover.1699460637.git.mehdi.djait@bootlin.com>
+ <bcc0b84f4a6a8cf4c007cfe25025060b22627408.1699460637.git.mehdi.djait@bootlin.com>
+ <4f9bc04b-81af-49ee-9818-d4cd281504e7@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230731200559.635629-1-jagan@edgeble.ai> <2194166.1BCLMh4Saa@diego>
-In-Reply-To: <2194166.1BCLMh4Saa@diego>
-From: Jagan Teki <jagan@edgeble.ai>
-Date: Mon, 13 Nov 2023 10:15:34 -0500
-Message-ID: <CA+VMnFwGe6c4e2wucEUNmr8RDjv=DSnZ1UrDHiLdnNq5a9-3XQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add Radxa ROCK 4C+ DSI DT-overlay
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f9bc04b-81af-49ee-9818-d4cd281504e7@wolfvision.net>
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-On Thu, 5 Oct 2023 at 06:07, Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Am Montag, 31. Juli 2023, 22:05:57 CEST schrieb Jagan Teki:
-> > Add DSI pipeline for Radxa ROCK 4C+ board via DT-overlay.
-> >
-> > The DSI connector in Radxa ROCK 4C+ board support different
-> > resolution panels and those compatible is added in another
-> > DT-overlay.
-> >
-> > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
-> >  .../rk3399-rock-4c-plus-mipi-dsi.dtso         | 69 +++++++++++++++++++
-> >  2 files changed, 70 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus-mi=
-pi-dsi.dtso
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
-s/rockchip/Makefile
-> > index 1ebbb3e9c2f9..3a4c4cd769eb 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -58,6 +58,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-roc-pc.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-roc-pc-mezzanine.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-roc-pc-plus.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-4c-plus.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-4c-plus-mipi-dsi.dtbo
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-4se.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-pi-4a.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3399-rock-pi-4a-plus.dtb
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus-mipi-dsi.=
-dtso b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus-mipi-dsi.dtso
-> > new file mode 100644
-> > index 000000000000..271717040b6c
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus-mipi-dsi.dtso
-> > @@ -0,0 +1,69 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (c) 2023 Radxa Computer Co., Ltd.
-> > + * Copyright (c) 2023 Edgeble AI Technologies Pvt. Ltd.
-> > + *
-> > + * DT-overlay for Radxa ROCK 4C+ DSI Connector.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +/plugin/;
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/pinctrl/rockchip.h>
-> > +
-> > +&{/} {
-> > +     backlight: backlight {
-> > +             compatible =3D "pwm-backlight";
-> > +             pwms =3D <&pwm2 0 25000 0>;
-> > +     };
-> > +};
-> > +
-> > +&mipi_dsi {
-> > +     clock-master;
-> > +     #address-cells =3D <1>;
-> > +     #size-cells =3D <0>;
-> > +     status =3D "okay";
-> > +
-> > +     ports {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +
-> > +             mipi_out: port@1 {
-> > +                     reg =3D <1>;
-> > +
-> > +                     mipi_out_panel: endpoint {
-> > +                             remote-endpoint =3D <&mipi_in_panel>;
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> > +     panel: panel@0 {
-> > +             /* different resolution panels are used, compatibles are =
-in DTO */
->
-> then I guess, the panel node should get a disabled here (and the mipi_dsi
-> should stay disabled at this point) and both should get enabled in the fi=
-nal
-> dtbo where the compatible lives?
+Hi Michael,
 
-Do you mean dsi also needs to be disabled here and enabled in dtbo? if
-so why? if panel disabled then dsi won't probe even if it enabled.
+On Fri, Nov 10, 2023 at 03:33:34PM +0100, Michael Riesch wrote:
+> Hi Mehdi,
+> 
+> Sorry, forgot one thing:
+> 
+> On 11/8/23 17:38, Mehdi Djait wrote:
+> > +static int cif_subdev_notifier(struct cif_device *cif_dev)
+> > +{
+> > +	struct v4l2_async_notifier *ntf = &cif_dev->notifier;
+> > +	struct device *dev = cif_dev->dev;
+> > +	struct v4l2_async_connection *asd;
+> > +	struct v4l2_fwnode_endpoint vep = {
+> > +		.bus_type = V4L2_MBUS_PARALLEL,
+> 
+> This is surprising. I had to set this to V4L2_MBUS_UNKNOWN, otherwise
+> v4l2_fwnode_endpoint_parse would yield -ENXIO, which indicates a bus
+> type mismatch. Does this really work for your (BT.656, right?) setup?
+> 
 
-Jagan
+Yes it works.
+
+> I think we should get the bus type from the device tree, right?
+> 
+
+I am looking into this.
+
+> Thanks and best regards,
+> Michael
+> 
+
+I assume you have a "bus-type = <MEDIA_BUS_TYPE_BT656>;" in the device
+tree definition of your endpoint ? This caused the mismatch as the
+v4l2_fwnode_endpoint is set to PARALLEL
+
+--
+Kind Regards
+Mehdi Djait
 
