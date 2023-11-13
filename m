@@ -1,69 +1,73 @@
-Return-Path: <devicetree+bounces-15441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ABE37EA2A8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:16:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 850147EA301
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C3D11C20873
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 18:16:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D06EFB20912
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 18:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C31224ED;
-	Mon, 13 Nov 2023 18:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EEE1173E;
+	Mon, 13 Nov 2023 18:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ogZHeP42"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bPecw27Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAA622EFA
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 18:16:35 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9EA93;
-	Mon, 13 Nov 2023 10:16:32 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ADIG6iZ083221;
-	Mon, 13 Nov 2023 12:16:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1699899366;
-	bh=sb0mSzAPEmd4snrsgRpPSWRwRZH+g7Nc4O4n8vLwRD4=;
-	h=From:To:CC:Subject:Date;
-	b=ogZHeP422FGYh3YdRgBUyIpwVB2Evl/AkPBiWg+Y+LWnlwRq2gYki543YPXumuekm
-	 q/zObY/cStmWdhtc6kkMbnDQqYv0K74xASpQ6Eu+rSBspu8ddNGlVUBo3Q+Xico0XN
-	 8aGwgGKldE/7QUSryeTDpeSYKb6FgJtkGft0lA2A=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ADIG6Ps029619
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 13 Nov 2023 12:16:06 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 13
- Nov 2023 12:16:06 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 13 Nov 2023 12:16:06 -0600
-Received: from fllv0040.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ADIG5PH028171;
-	Mon, 13 Nov 2023 12:16:05 -0600
-From: Andrew Davis <afd@ti.com>
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren
-	<tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH] ARM: dts: dra7: Fix DRA7 L3 NoC node register size
-Date: Mon, 13 Nov 2023 12:16:04 -0600
-Message-ID: <20231113181604.546444-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A453F2232A
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 18:42:44 +0000 (UTC)
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7CD10E2
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 10:42:43 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-28099d11c49so979752a91.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 10:42:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699900963; x=1700505763; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=83dTJne/ZEswG1uslaCdjsttQj+Q5ottvIejwOIVJSc=;
+        b=bPecw27Zs6xvzv6osQaGb6KGJgBm6J0c/tbf+LcrDScB8seDh5LFet6SAZ9bDD935T
+         rMMSnu8mQhAA2zXd0gJoSdCTptHUImdV7THdEx/JOWkOv1JRzq+d0DforFhPXLl2ItAN
+         efqmqgT0tfoD5DwfawIdRNNqBtEPkRxjrZUa7NXpfB78eU+rrj2LLl0cp7n45DBtZhd8
+         B3gFp/XY06RNx6RsJC8cuVpXVwfvbLwtWF1H9MpLfJzlgpRv9EiuSakYOkXmPINmwWdd
+         aRHq3JKx6amBpCkcr1jnWZ1Ns1DdUtGJMqe+0dxGB2/N73IGeZNpybbVdYnw8AV7mpvX
+         xZPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699900963; x=1700505763;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=83dTJne/ZEswG1uslaCdjsttQj+Q5ottvIejwOIVJSc=;
+        b=Uey1KdVXJTJvSV8IyZ919WMFeXdz0OVvj30RacFf/8UMyNrLYiETQcTHPwGMRzCcX6
+         Phm5mjrkB0MWjxqRlOQVDsBD3QeqB41ScDkHKCJsc2WiorKx3c2dlPNGBOE5WXILy7ia
+         5+XgdnnFs+H8iSLLO4VJo257xto4eqVtAU4gf1BWN2dnfupixmEtvZfxm2SB16JB06Hd
+         lmPLAa1iuPmrVeobgpGyVTEkxBBsgn7mawNaufluFAZ+dg04S7RVnN6ZhLRcr2YLv9EB
+         Q2Lu/KF45zjFynw7vXUuxYlmdjfWCPIhSqVXMYFO+wB+dS5JSFAJ6n0xGu24RYwydKhL
+         p9+A==
+X-Gm-Message-State: AOJu0YxlMohmvO55I6kWziK6SFbcgYvmsIUWcQjPX7vK8aHG6ghQ80Lt
+	7df/Ipszqj70FI5e6Kqc7dI=
+X-Google-Smtp-Source: AGHT+IE18P4kdu8KiAkzvp8qldB/a2oCnWajmVuBXmcn01T0bSLLROJ8lYJsFZXpEsYRtekFOXxSVg==
+X-Received: by 2002:a17:90a:df0c:b0:283:2846:f67d with SMTP id gp12-20020a17090adf0c00b002832846f67dmr6645512pjb.4.1699900962973;
+        Mon, 13 Nov 2023 10:42:42 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9049:24ac:b727:fd76])
+        by smtp.gmail.com with ESMTPSA id f6-20020a17090a8e8600b0027df6ff00eesm3967423pjo.19.2023.11.13.10.42.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Nov 2023 10:42:42 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2] dt-bindings: power: fsl,scu-pd: Document imx8dl
+Date: Mon, 13 Nov 2023 15:42:30 -0300
+Message-Id: <20231113184230.14413-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,33 +75,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-This node can access any part of the L3 configuration registers space,
-including CLK1 and CLK2 which are 0x800000 offset. Restore this area
-size to include these areas.
+From: Fabio Estevam <festevam@denx.de>
 
-Fixes: 7f2659ce657e ("ARM: dts: Move dra7 l3 noc to a separate node")
-Signed-off-by: Andrew Davis <afd@ti.com>
+imx8dxl also contains the SCU PD block.
+
+Add an entry for 'fsl,imx8dl-scu-pd'.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm/boot/dts/ti/omap/dra7.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1:
+- Sent as a standalone patch.
+- Collected Conor's Ack.
 
-diff --git a/arch/arm/boot/dts/ti/omap/dra7.dtsi b/arch/arm/boot/dts/ti/omap/dra7.dtsi
-index 3f3e52e3b3752..6509c742fb58c 100644
---- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
-@@ -147,7 +147,7 @@ ocp: ocp {
- 
- 		l3-noc@44000000 {
- 			compatible = "ti,dra7-l3-noc";
--			reg = <0x44000000 0x1000>,
-+			reg = <0x44000000 0x1000000>,
- 			      <0x45000000 0x1000>;
- 			interrupts-extended = <&crossbar_mpu GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&wakeupgen GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+ Documentation/devicetree/bindings/power/fsl,scu-pd.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml b/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
+index 407b7cfec783..7a0f1a400868 100644
+--- a/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
++++ b/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
+@@ -20,6 +20,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - fsl,imx8dl-scu-pd
+           - fsl,imx8qm-scu-pd
+           - fsl,imx8qxp-scu-pd
+       - const: fsl,scu-pd
 -- 
-2.39.2
+2.34.1
 
 
