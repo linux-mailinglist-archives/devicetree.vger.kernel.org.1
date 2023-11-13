@@ -1,69 +1,103 @@
-Return-Path: <devicetree+bounces-15440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C367EA291
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:11:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ABE37EA2A8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:16:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F28F01C208C4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 18:11:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C3D11C20873
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 18:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5623E22EFA;
-	Mon, 13 Nov 2023 18:11:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C31224ED;
+	Mon, 13 Nov 2023 18:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5u+VDi8+"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ogZHeP42"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA8E22EF6;
-	Mon, 13 Nov 2023 18:11:12 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B869FC2;
-	Mon, 13 Nov 2023 10:11:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=ILSZE9/+acMQ5UCYwW4X/ljLaf1vcUCrGIfSeBLTBSU=; b=5u
-	+VDi8+qFm+Ar+6h8/c6u50czBnCpcv/fSy9fgL5E+D+cXvzQXTtgrPGgVj3Dhb4rRJmBPXvxcio1Z
-	ZN0dx2sQW/mR/+lnEQoV6xy4YBa//luWyaSVZF12Gbrs80Ug250XzXlUSvlnY3bgEV8EcduG6bU3S
-	FvqGKo2OIBL9E5E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r2bOr-0005qO-Hz; Mon, 13 Nov 2023 19:11:05 +0100
-Date: Mon, 13 Nov 2023 19:11:05 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: ethernet-controller: Fix formatting
- error
-Message-ID: <a4e5520f-b45b-47f8-94a1-7ab09398ea5d@lunn.ch>
-References: <20231113164412.945365-1-niklas.soderlund+renesas@ragnatech.se>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAA622EFA
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 18:16:35 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9EA93;
+	Mon, 13 Nov 2023 10:16:32 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3ADIG6iZ083221;
+	Mon, 13 Nov 2023 12:16:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1699899366;
+	bh=sb0mSzAPEmd4snrsgRpPSWRwRZH+g7Nc4O4n8vLwRD4=;
+	h=From:To:CC:Subject:Date;
+	b=ogZHeP422FGYh3YdRgBUyIpwVB2Evl/AkPBiWg+Y+LWnlwRq2gYki543YPXumuekm
+	 q/zObY/cStmWdhtc6kkMbnDQqYv0K74xASpQ6Eu+rSBspu8ddNGlVUBo3Q+Xico0XN
+	 8aGwgGKldE/7QUSryeTDpeSYKb6FgJtkGft0lA2A=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3ADIG6Ps029619
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 13 Nov 2023 12:16:06 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 13
+ Nov 2023 12:16:06 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 13 Nov 2023 12:16:06 -0600
+Received: from fllv0040.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3ADIG5PH028171;
+	Mon, 13 Nov 2023 12:16:05 -0600
+From: Andrew Davis <afd@ti.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren
+	<tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH] ARM: dts: dra7: Fix DRA7 L3 NoC node register size
+Date: Mon, 13 Nov 2023 12:16:04 -0600
+Message-ID: <20231113181604.546444-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231113164412.945365-1-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Nov 13, 2023 at 05:44:12PM +0100, Niklas Söderlund wrote:
-> When moving the *-internal-delay-ps properties to only apply for RGMII
-> interface modes there where a typo in the text formatting.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+This node can access any part of the L3 configuration registers space,
+including CLK1 and CLK2 which are 0x800000 offset. Restore this area
+size to include these areas.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Fixes: 7f2659ce657e ("ARM: dts: Move dra7 l3 noc to a separate node")
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm/boot/dts/ti/omap/dra7.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-    Andrew
+diff --git a/arch/arm/boot/dts/ti/omap/dra7.dtsi b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+index 3f3e52e3b3752..6509c742fb58c 100644
+--- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
++++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+@@ -147,7 +147,7 @@ ocp: ocp {
+ 
+ 		l3-noc@44000000 {
+ 			compatible = "ti,dra7-l3-noc";
+-			reg = <0x44000000 0x1000>,
++			reg = <0x44000000 0x1000000>,
+ 			      <0x45000000 0x1000>;
+ 			interrupts-extended = <&crossbar_mpu GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&wakeupgen GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.39.2
+
 
