@@ -1,102 +1,154 @@
-Return-Path: <devicetree+bounces-15407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257077E9EFD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:43:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E945F7E9F19
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 549571C20850
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:43:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CE96B20955
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9801D1E51D;
-	Mon, 13 Nov 2023 14:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CD320B3B;
+	Mon, 13 Nov 2023 14:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yxQftqbA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZpD9H236"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB3E20B3B
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:43:49 +0000 (UTC)
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA481729
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:43:47 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-408425c7c10so36796875e9.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:43:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2111F612
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:46:49 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA6710E5
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:46:47 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40a48775c58so24371795e9.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:46:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699886626; x=1700491426; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vNnR04yCNnmtJJPXHpBhPgt3OU1li3/fE3RG16gZ0bU=;
-        b=yxQftqbAw6f0QHBpxR9ncZPjYcUuB/yZ0qjBNAWI9dd7SAW0WjjHlKB9t8sgxQIzPC
-         qKXmxyfhluWP7e7mb02V56lj7K5eYUggNq/yyJO5Pydb5cj8TLPY1nlcklgy5/Z1Uyxg
-         3nVsWaZ5KdvgN5ddXnMXNJ5AwJglb8s6hMuPFA7Xmxqyc+vWU0huwNiLDMAfCdrVcSgp
-         Ax6RlOabzW3O+zdhvEGeajQ9yAnkpnvEY6Ji7E2GUug0Rr10kSk8JKAM+BTFeSUaK5k4
-         xN239d8M8v6Roh4oDIEoUr07M0/MJywrGW/zkNWJhAuwelkUn4I18IwqoXeRHTT1gjb5
-         Xclw==
+        d=linaro.org; s=google; t=1699886806; x=1700491606; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eH/cbv+HTmjd9T6Og+nrY0oFWB621hXpBo6QeBm/lDg=;
+        b=ZpD9H2366KcA0db6Mu4/g0+zwNYDKLjKHr939p5a3t6OPxGoqU5xpCupux0V4GaZG1
+         umko9mVdDObX/FlgIBHZpTGRzSDSSupiQk7Htje2gkF7n4puU1l/0qGECVueI1OVACYw
+         bV4aoVXqswCaW51kd/ZKpkiPfsiKgQnNE461y20xdgnJJx6MUJ6MSC6xmGKCidEIL0W/
+         rg2JJl8S+NOQ1dnBfyH5h3+TuhEzYmpPM+iSshHJLQin61qwt9TiovfCXkt6KSu/e9T8
+         qDhPTAhA3xPmsGrClcDH4QO2LTX4voO6iKMpVn5n1vDULvkBk4+PIYOXQGMnjvYBx+XC
+         dCDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699886626; x=1700491426;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vNnR04yCNnmtJJPXHpBhPgt3OU1li3/fE3RG16gZ0bU=;
-        b=mNpQAc4/W7nYZETVhPoN7y/wmSIqeu3ECp4Y1MDxCqrhBI83vj6BpwXKNVV0igKLL2
-         DbLP6hcGVUKG8DUiDNbbXkAKabIzhGWaf4fJu2BqUX88jgQCqtFRL/+SSDPJZgK3Osie
-         KucVlO+LOA6KUTSjXTgeu+tQXQNo65/vMA5PxPPOJ6lHj8r+OzLH0zwahaY2pqxMZtoM
-         m/0XDQjkavrX3gupIkrMlwc9eVqmiIVuqvp9QKdUp70LwVfYN+9bBmhPSNVE19ytAe57
-         e1sabZgHdyUYjM+NfKROyDcSjCcKIKbhpH/FTEXtP30+wAIm8MOyGkgsAs2ZGBaZdj+4
-         RgLg==
-X-Gm-Message-State: AOJu0YxNRNLat8gskrqSh2te7Yd+2GvkFUz3EgznZCAfWtzyHDsCd5pu
-	KlIP+bpWx+JqFSGlp/6HrKPriw==
-X-Google-Smtp-Source: AGHT+IFyl4KKFJvEAx90PJK12JnmMzqY/5jHnJCgMk1zVzPkN1C68bLXevTx5IpixEgyODWdzc7+bg==
-X-Received: by 2002:adf:a3da:0:b0:32f:7db1:22fb with SMTP id m26-20020adfa3da000000b0032f7db122fbmr4253284wrb.28.1699886625790;
-        Mon, 13 Nov 2023 06:43:45 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id b11-20020a05600010cb00b0032f9688ea48sm5574339wrx.10.2023.11.13.06.43.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 06:43:45 -0800 (PST)
-Date: Mon, 13 Nov 2023 14:43:43 +0000
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Flavio Suligoi <f.suligoi@asem.it>
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Helge Deller <deller@gmx.de>, Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: backlight: mp3309c: remove two
- required properties
-Message-ID: <20231113144343.GA264383@aspen.lan>
-References: <20231025155057.886823-1-f.suligoi@asem.it>
- <20231025155057.886823-2-f.suligoi@asem.it>
+        d=1e100.net; s=20230601; t=1699886806; x=1700491606;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=eH/cbv+HTmjd9T6Og+nrY0oFWB621hXpBo6QeBm/lDg=;
+        b=dhkbtGdvvFKiAaAXNA7qIyunQ//IBrOYs5yFwaVnoz2P+AzB+FNR0S1Lj6AJbKra1d
+         x9QWIAyAM6UBL0o9qZTlXqt6BbqScPcRMDqVdy8BuhwBdc0FfVPP5Y45CWpf/IiMC8IF
+         aozLRsLO7DRwFNUnxmfdEd/NgdCPuTD2H6XZvIoUEZbrc2mBMIy/nYGJ7uptovV6EBdp
+         +veNf8cMZOsP5+sstFqyPOV/5egeuIc1noMpK5J5pCBolPFRGx5LO5eWoaclPgcD4psq
+         CmxQrpeX1Ggh6Ab0VTuR5csoXeCys5kSb5MJEhA1qTlE+D8iaEjnZ2zbGyE3KoMCIBmy
+         kYmA==
+X-Gm-Message-State: AOJu0Yxu50khQpsR7S+E+iPgPXHNUBITcJ8djDHCaR6p59m6JEA2zfHU
+	PRaCtMV1YR1wRIjgamDZ3fC+tw==
+X-Google-Smtp-Source: AGHT+IFElif9cHOC9qe+E7tgITXO3oLS7DlfLfXUb9l/5s3/U7DnGOzL81WwyZYiUMApLuYHuAwrUw==
+X-Received: by 2002:a05:6000:178d:b0:32d:a466:48d8 with SMTP id e13-20020a056000178d00b0032da46648d8mr6597253wrg.69.1699886805912;
+        Mon, 13 Nov 2023 06:46:45 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:1bb7:80e:7bf2:f66c? ([2a01:e0a:982:cbb0:1bb7:80e:7bf2:f66c])
+        by smtp.gmail.com with ESMTPSA id o16-20020adfe810000000b0032326908972sm5587673wrm.17.2023.11.13.06.46.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Nov 2023 06:46:45 -0800 (PST)
+Message-ID: <418b98b5-738b-491d-b5a2-692fd26dbf98@linaro.org>
+Date: Mon, 13 Nov 2023 15:46:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231025155057.886823-2-f.suligoi@asem.it>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 0/3] pinctrl: qcom: Introduce Pinctrl/GPIO for SM8650
+Content-Language: en-US, fr
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20231106-topic-sm8650-upstream-tlmm-v3-0-0e179c368933@linaro.org>
+ <CACRpkdYB7AQZ7HeNmE5d716sWz5_MHiVtAet6P5XOC1etDKNcw@mail.gmail.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <CACRpkdYB7AQZ7HeNmE5d716sWz5_MHiVtAet6P5XOC1etDKNcw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 25, 2023 at 05:50:57PM +0200, Flavio Suligoi wrote:
-> NOTE: there are no compatibility problems with the previous version,
->       since the device driver has not yet been included in any kernel.
->       Only this dt-binding yaml file is already included in the
->       "for-backlight-next" branch of the "backlight" kernel repository.
->       No developer may have used it.
+Hi Linus,
 
-I'm afraid I got confused by the fragmented MP3309C patches from all the
-different patchsets.
+On 13/11/2023 15:06, Linus Walleij wrote:
+> On Mon, Nov 6, 2023 at 9:32 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> 
+>> The SM8650 Top Level Mode Multiplexer supports 211 GPIOs,
+>> and the usual UFS Reset, SDC Clk/Cmd/Data special pins.
+>>
+>> An handful of pins can have their IRQ generated by the PDC
+>> module, and for this support for the new wakeup_present &
+>> wakeup_enable_bit is required to allow the "wakeup" event
+>> to be passed to PDC and generate an interrupt or a wakeup
+>> system event.
+>>
+>> As SM8550, it also supports the i2c_pull_bit bit to enable the
+>> on-SoC load resistor for I2C busses.
+>>
+>> Dependencies: None
+>>
+>> For convenience, a regularly refreshed linux-next based git tree containing
+>> all the SM8650 related work is available at:
+>> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> 
+> Patches applied, unless Bjorn has some last minutes regrets,
+> they are in.
+> 
+> Had to rebase the last patch manually because of Krzysztof's
+> LPASS driver, check the result pls.
 
-Please can you rebase whatever is left on v6.7-rc1 and send a single
-patchset with all pending changes as a single patch set.
+Will check, thanks.
 
+Neil
 
-Thanks
+> 
+> Yours,
+> Linus Walleij
 
-Daniel.
 
