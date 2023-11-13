@@ -1,116 +1,127 @@
-Return-Path: <devicetree+bounces-15473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6562C7EA4F5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:40:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B807EA4FD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:41:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAB30B209B9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:40:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09552B20998
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDF922F03;
-	Mon, 13 Nov 2023 20:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C8D22F1A;
+	Mon, 13 Nov 2023 20:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZZLdYdHQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5466E1944F;
-	Mon, 13 Nov 2023 20:40:46 +0000 (UTC)
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06247D55;
-	Mon, 13 Nov 2023 12:40:45 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b2e330033fso3029323b6e.3;
-        Mon, 13 Nov 2023 12:40:44 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A19D22F03;
+	Mon, 13 Nov 2023 20:41:18 +0000 (UTC)
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D7B9D55;
+	Mon, 13 Nov 2023 12:41:17 -0800 (PST)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1e99ecda011so619145fac.1;
+        Mon, 13 Nov 2023 12:41:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699908076; x=1700512876; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XjhVxR9xvk3uVFxU60gT4sdwmpoKVzcHYNMozCqBdSU=;
+        b=ZZLdYdHQ6mTurKsJyO/bN4rwYcE1qC8kzyoc8tzZz+qkoWFib8b7G0Me6hzePCg4iA
+         sF5zTxcAqD6z4fbcKe0XlYrSBEJE/6t8Jk3J4l8trG3PCDf1JYNR8WqELROb3ki7OF0e
+         9bR8buDgH6i4FIbjV2kIa5t2hVm4YqTfguSkfskqJtb8Lu7W2KKqldOQUQmTh/TgOjTn
+         q7I+zzzq6kkS4iMYs8/WpO/RHh3cViQ2yZFZ6lXywaA1l+YcaT8vzIR1YJTyDKckpZR2
+         3s7HRFwK8FCWH5BmhdvD+NrZGlc2w1BB/RkwKNb71bmXVpBVEsw6efCs1iVV+YeV+4gl
+         HruQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699908044; x=1700512844;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=kIUOg6xcD1mveQt4yAqYkPtye9ZANiCj61RnWxJZ9RE=;
-        b=byQYMxZqX+yQBx3WeqfcOXC0oZkxWBYMh5bD9FfKs0ZmeFnR6ZkaVkZptqBqMr0iGE
-         nJ7KthN+FOqEJVojOsV7QWFMfxRzLQG7SCQNuIw78JrcHqgQ+ZdePdmYy0tyzqiWHVZx
-         5xINieVmROQ0tmZOHzisSOdBjalpVOVCtDywTpN6nJn5WBmBaorCPv37T2LzjieMDrfv
-         LWRqwb/fbdfgiBhrIhF2IYinFF0lnioC+yCzask4ExR8wYY5qQ3BJ6DDCZz608vSd5hh
-         ncC6N8a8ZRgW5jsbIcIhvjDtEDyet7aWXtjZ9jv96cnAXBgQ8mDejTzGdfQuk1x/ddPQ
-         jzZw==
-X-Gm-Message-State: AOJu0Yzj7In24cjuFxAkE/SNdlhXQV7ubVnlwtzUOLklyV05WIAJMaFb
-	5yFnSgOiDqc9rG0D/t7Dpg==
-X-Google-Smtp-Source: AGHT+IE+M7ODqvletmAN6kZJ6EBjwVhQYADFHXDZ0Hl1ZJYebTPk7Dxy4FLEWYDWixjDGGboIOMmUw==
-X-Received: by 2002:a54:4586:0:b0:3ab:8431:8037 with SMTP id z6-20020a544586000000b003ab84318037mr9564352oib.32.1699908044232;
-        Mon, 13 Nov 2023 12:40:44 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b7-20020aca1b07000000b003af732a2054sm902879oib.57.2023.11.13.12.40.42
+        d=1e100.net; s=20230601; t=1699908076; x=1700512876;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XjhVxR9xvk3uVFxU60gT4sdwmpoKVzcHYNMozCqBdSU=;
+        b=xQE3HcTBoR3Dr5h5qavXj463eftnF0O3bB3opUifnLOgo3AwufY1AWGhwAcCrubfDE
+         ZxebhENkEtOj87uWFDVvp8zE2COChKAcTCmdyfsmxrUIM1vXqOt+AxmjO6wOx9TPqU/x
+         PVwDS6aoM55+8qVUegs61QEhEJBTHhUVxcICjENRBzyS2CPzyZ7nlUQk1dFX26/Yb5AP
+         oU9WCiKjo/uuYLKeLWC3PlIAuj33zByM0r4lV+m0Gdr/+AjoiC331h1HSVRA99lHTGdX
+         OScKltxCQuFeDejXHObXqK+KNAh/0nCHQ3bE/kwJaG4aN5uhsdYzj/QcQO54jTtj7ufv
+         vQcw==
+X-Gm-Message-State: AOJu0YxM7Wc++kaUiH/1Z9IAkiZnbR5D5pE2V2/clRT7+XKDQJ8ReRSe
+	6A7GPPgq2fAKYK2lgB69EYE=
+X-Google-Smtp-Source: AGHT+IElAnAF5X+WlnpEKAR8g6AlfIU0/KQVvCmZSnU5Zhfv80S62sJu+m5GnvcmvSfmvzGE3ltXmg==
+X-Received: by 2002:a05:6870:9a29:b0:1f4:abd:9f5b with SMTP id fo41-20020a0568709a2900b001f40abd9f5bmr272207oab.0.1699908076484;
+        Mon, 13 Nov 2023 12:41:16 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:221a:b999:fa92:3c9c])
+        by smtp.gmail.com with ESMTPSA id dh3-20020a056a020b8300b005b93dee7fa4sm3829299pgb.50.2023.11.13.12.41.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 12:40:43 -0800 (PST)
-Received: (nullmailer pid 38662 invoked by uid 1000);
-	Mon, 13 Nov 2023 20:40:42 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Mon, 13 Nov 2023 12:41:15 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: kuba@kernel.org
+Cc: davem@davemloft.net,
+	edumazet@google.com,
+	pabeni@redhat.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH net-next] dt-bindings: net: snps,dwmac: Do not make 'phy-mode' required
+Date: Mon, 13 Nov 2023 17:40:52 -0300
+Message-Id: <20231113204052.43688-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Yong Wu <yong.wu@mediatek.com>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, kuohong.wang@mediatek.com, Nicolas Dufresne <nicolas@ndufresne.ca>, Jeffrey Kardatzke <jkardatzke@google.com>, christian.koenig@amd.com, Brian Starkey <Brian.Starkey@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>, John Stultz <jstultz@google.com>, linux-kernel@vger.kernel.org, ckoenig.leichtzumerken@gmail.com, linux-media@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, dri-devel@lists.freedesktop.org, tjmercier@google.com, linaro-mm-sig@lists.linaro.org, Joakim Bech <joakim.bech@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Vijayanand Jitta <quic_vjitta@quicinc.com>, jianjiao.zeng@mediatek.com, linux-mediatek@lists.infradead.org, Benjamin Gaignard <benjamin.gaignard@collabora.com>, devicetree@vger.kernel.org
-In-Reply-To: <20231111111559.8218-7-yong.wu@mediatek.com>
-References: <20231111111559.8218-1-yong.wu@mediatek.com>
- <20231111111559.8218-7-yong.wu@mediatek.com>
-Message-Id: <169990800956.37900.2282148242749436119.robh@kernel.org>
-Subject: Re: [PATCH v2 6/8] dt-bindings: reserved-memory: Add secure CMA
- reserved memory range
-Date: Mon, 13 Nov 2023 14:40:42 -0600
+Content-Transfer-Encoding: 8bit
 
+From: Fabio Estevam <festevam@denx.de>
 
-On Sat, 11 Nov 2023 19:15:57 +0800, Yong Wu wrote:
-> Add a binding for describing the secure CMA reserved memory range. The
-> memory range also will be defined in the TEE firmware. It means the TEE
-> will be configured with the same address/size that is being set in this
-> DT node.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  .../reserved-memory/secure_cma_region.yaml    | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml
-> 
+The property 'phy-connection-type' can also be used to describe
+the interface type between the Ethernet device and the Ethernet PHY
+device.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Mark 'phy-mode' as a non required property.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml:12:1: [error] syntax error: could not find expected ':' (syntax)
+This fixes the following schema warning:
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/reserved-memory/secure_cma_region.example.dts'
-Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml:12:1: could not find expected ':'
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/reserved-memory/secure_cma_region.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml:12:1: could not find expected ':'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/reserved-memory/secure_cma_region.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1427: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+imx8mp-debix-model-a.dtb: ethernet@30bf0000: 'phy-mode' is a required property
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
 
-doc reference errors (make refcheckdocs):
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/net/snps,dwmac.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231111111559.8218-7-yong.wu@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 5c2769dc689a..6c0d9e694d76 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -505,6 +505,10 @@ properties:
+     required:
+       - compatible
+ 
++  phy-connection-type: true
++
++  phy-mode: true
++
+   stmmac-axi-config:
+     type: object
+     unevaluatedProperties: false
+@@ -564,7 +568,6 @@ required:
+   - reg
+   - interrupts
+   - interrupt-names
+-  - phy-mode
+ 
+ dependencies:
+   snps,reset-active-low: ["snps,reset-gpio"]
+-- 
+2.34.1
 
 
