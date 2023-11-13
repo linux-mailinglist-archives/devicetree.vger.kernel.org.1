@@ -1,133 +1,166 @@
-Return-Path: <devicetree+bounces-15307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A52F7E9999
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 11:00:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 942087E9990
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 10:58:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3E301F20EF9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 10:00:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3E941C204F6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 09:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B5E91BDCB;
-	Mon, 13 Nov 2023 10:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37121A5B3;
+	Mon, 13 Nov 2023 09:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gxt6jNL1"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MjVK4qRF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 074FF1C285;
-	Mon, 13 Nov 2023 10:00:31 +0000 (UTC)
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8473010D;
-	Mon, 13 Nov 2023 02:00:27 -0800 (PST)
-Received: by mail-qv1-xf35.google.com with SMTP id 6a1803df08f44-66d0ceba445so22074936d6.0;
-        Mon, 13 Nov 2023 02:00:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699869626; x=1700474426; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JbOR8jc4vESBCIxoa+hxCKP6qo+nQDlXSDfPg0qKWS8=;
-        b=Gxt6jNL11g8ADqbbtUUu7sfCA5TCxef+Oi9O6UCpUMz2Hl9UAcCsrVGQSAJY0rchSa
-         2fWXVq7AXmWx9ZEJFNMQFvJIZDkZIXeHv3rXTKLTInXimIL/ARnozwGG5lHaBnIYHq84
-         T+nbbCmlUVIzSwHWnuogJ6NMqKpUOmuI7tlR1e4u+1y/C9grNtO1dK5DZHv0+RK28hi/
-         RBU4Pd6DCFzy0+1+KS+0smnNeLou21/Q8HtbSTb8Mj8pOMM+xbjo3DeBsignlYjtGXvp
-         OtNJiD4Po/PezVaW5KiouZMhCgMGPbaaOxgGUf2ydmM7atI4j9IyQ76HgLPRe0c3dX+g
-         4wXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699869626; x=1700474426;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JbOR8jc4vESBCIxoa+hxCKP6qo+nQDlXSDfPg0qKWS8=;
-        b=ElWU8ncAAVEDWaTjvNLg4RUgiS5h6Ii4YjZrG6Fp0TZA6A7rlO0+9c7LCWHQ58dXU8
-         8aPKc5TmZgdo/2ijwqylqewCBXF0IvLWEizVWEXR/HaEDefp2y/HFjWOzCZ9Hzi9EGl6
-         dcOJ1yy5tF7xNafy7b4GKJ4GSle1SezSbSfXV9uq4SK+p8tNak1ot4oiaxumVobG8IFc
-         6VUqBknm52oIehzckjwpEogdj29+Wl0WUQH9tnGQiuWCiZQI1k7okfN8XMdq+BWFD+Fe
-         eeTDZCEWofJ83zSGwU7U0qY/eEtE62BAXsCw4ipi1iLWqwKHaBrpCJ4uds2yvq3hl3xf
-         JcZw==
-X-Gm-Message-State: AOJu0YxuqSIsvehFjH2URJaMUnmivfdqyzd4fIxT8nYTH7/rk1hhChTU
-	CnRgg+Z0zB9QUrJasWU8NFjMsuXzsm0L7XKc7jM=
-X-Google-Smtp-Source: AGHT+IGCUr7PujFC+poPa2QrZRvWL4HOk1bJVQMa23HsF2MY33M5q50/7KY3Uea2911BZ50MrpHn+FMZq5R37QecRrw=
-X-Received: by 2002:ad4:45b4:0:b0:658:1eec:408a with SMTP id
- y20-20020ad445b4000000b006581eec408amr4664228qvu.40.1699869626386; Mon, 13
- Nov 2023 02:00:26 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E34C18623
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 09:58:11 +0000 (UTC)
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2052.outbound.protection.outlook.com [40.107.21.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E24010E;
+	Mon, 13 Nov 2023 01:58:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FFioDkOChCLmgExHPpkiIn5scXnBo1zXFsErTvietutHC10tdTf5/r60UbB7R83v4fhJFBKzMs2SNWTpJK1VI9ugi4uvJkneZpte8p6N8j9b+wPj5EHB79jokkFcTeh2q/AuB6JYtoc1ZC3BcUNSz75exwwlPRWLZ/4oMXy74zozVw5W32CKsT7WdtKcpdMPkKaxzRaNQEW+xGgREabBAVT8CM+RoG87ZASgTJTu990Zs8ZGGydbaTpvVsqG/ktZUWkDFuZhhEOcZw/llFJmfaRxN3CtM7QUvWn0tv1UpfJxBA3AwtpuRDejcvOlhmQdTbPRO/Iwn3GJHBFUb75pzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sKUIKxHQt/A0j6hIELfJ3x0CdVonSpswLmJhOXP9gwQ=;
+ b=TOHay3M6tE+wBY8p5gConPSeBv7S2zWoLmVVdwSA+4+E16dGKBkw32i4ojuYmmfgXpy2L3BVmM89wMtry3npAh7/ZURf6/O7h3LZEGkamtlqZuzehp6+nsPvHRu3Lzk2XYBvbCRKxG/tj1LwpCvhazzOG7Fz5D2XA7L4+jhIaOWMczKR61euzUWskOZ3tikl6DSwWbfQoylEIleJpzR/JimD50VHi6+3pceoamDS/5DTRcR4yG+jJYnXqHCCUfTbWyiWAVjX7qy7+B+fQXk4IZPcjxKoYwG9pd+iwhixq9xgeTKsDI7hn4sjPX4ZfaW1DNvf54BwMc67/QeW0WqkdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sKUIKxHQt/A0j6hIELfJ3x0CdVonSpswLmJhOXP9gwQ=;
+ b=MjVK4qRFy78D1lF2e3moS0gNHER76zhwFcuLYfsIu2711v12DIkeYKuTbRbtxl7maL8imu0yaPjFUAQ4v7/3hFPosZJD5zYCExy8oDy9Bp4hHpO9eq+M9e3+L/NcWnpkSe/USk8nCAlbOEaATNRHNSMV5xzIU/20Hw4ELSamX+c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM8PR04MB7441.eurprd04.prod.outlook.com (2603:10a6:20b:1c4::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.15; Mon, 13 Nov
+ 2023 09:58:06 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d99:f43f:65a3:9bf]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d99:f43f:65a3:9bf%6]) with mapi id 15.20.7002.015; Mon, 13 Nov 2023
+ 09:58:06 +0000
+From: Liu Ying <victor.liu@nxp.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	peng.fan@nxp.com,
+	ping.bai@nxp.com
+Subject: [PATCH] arm64: dts: imx93: correct mediamix power
+Date: Mon, 13 Nov 2023 18:02:29 +0800
+Message-Id: <20231113100229.3885321-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0165.apcprd04.prod.outlook.com (2603:1096:4::27)
+ To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
- <20230605-ep93xx-v3-14-3d63a5f1103e@maquefel.me> <ZLq0Z0QgBdCoDpV+@smile.fi.intel.com>
- <80ed91bb971516638fa1793d648939815eba7630.camel@gmail.com>
-In-Reply-To: <80ed91bb971516638fa1793d648939815eba7630.camel@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 13 Nov 2023 11:59:49 +0200
-Message-ID: <CAHp75VeYHscM-r94kTrpH44W=OGVq+qoNNQZoVrR5_n-_K_Xsw@mail.gmail.com>
-Subject: Re: [PATCH v3 14/42] power: reset: Add a driver for the ep93xx reset
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>, nikita.shubin@maquefel.me, 
-	Hartley Sweeten <hsweeten@visionengravers.com>, Lennert Buytenhek <kernel@wantstofly.org>, 
-	Russell King <linux@armlinux.org.uk>, Lukasz Majewski <lukma@denx.de>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Sebastian Reichel <sre@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Mark Brown <broonie@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Vinod Koul <vkoul@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>, 
-	Sergey Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Michael Peters <mpeters@embeddedts.com>, Kris Bahnsen <kris@embeddedts.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org, netdev@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
-	alsa-devel@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM8PR04MB7441:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38ffdcd3-0699-44e9-f2eb-08dbe42f08bb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	AzNVssG0yAsavQcbVhyAej4yoFMwL068hcP5edSwgzJdb2tmwCZ+QglOqH+6d0QMLtwXoUSTT9haWS8oKz1OaefyF3p5aP2Yf8ToncfzgxqbH1Pq7U7IaO2QqPcKB+i1GnxU5AupK2DcM5qx+HGNFzHwXJm7mgIJEl5WVvUvc7RzJ1uoW5fPfo+9WeDprqCHjCVwilhNX292Ntxd/GzrN7yhqIvgtkQ0JTx2OKgRwj68gqSoFQBpoj3K3X2U3Jq5HZkoFO7cKgK5dqIBLpMxveRjYVztXKCUlvzi1L2j2kudG++k0xTW2ZnSHnADjLU7UXfxKMr6Op4Km4rvytAllyIJ0x1xqw7V3Le0EvKxilCVMAS86BNHsTh0EEV9xY6hEvPV5tpBZYqgDRetD3fyu3PmpM4yEizirrBm7XKS1NrAax5sqRjgIFudaS1gEXB96r3JakwrIW82S45TyIsHEDqdmy6tExNmMg6VFGcgwM7wkiApYgbBNEXI5d+lx1p6ga2s1AfGLrJdnTPPcQ46uSvx8d2+MEjvA98ZridsNOeum29p7U6vfnGYchq7/lGSKHVIAY/RTPopN4Z/Kw45pfqIht1v7rsYpntpZjQVckY=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(136003)(396003)(366004)(376002)(230922051799003)(186009)(451199024)(1800799009)(64100799003)(26005)(1076003)(38100700002)(83380400001)(86362001)(7416002)(5660300002)(2616005)(6512007)(6506007)(52116002)(38350700005)(478600001)(6666004)(6486002)(966005)(36756003)(66946007)(316002)(66476007)(66556008)(8676002)(4326008)(8936002)(2906002)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?GRXVYvMr2pu4eF9SKkh62w+XNQYqQWs59vyRl2kXuwz2IoEuDlYnxUy9pBRX?=
+ =?us-ascii?Q?QeWGWMaIcm6aU6wcVweKTtBlTfNIWk/wrpwciWN/g2nZFldNyElSHnSi7Iq3?=
+ =?us-ascii?Q?Q5FjpSOTqfQYP6AUD4re+sh1H9EfDa847KgKI9Hp0+yZfcypoTybQ+4ToheU?=
+ =?us-ascii?Q?F8u8Ju/xuFK7WIQ/3DmVL6PUNGbGTnbTXuYnHoI/6FaUjWFVdTLYFSJxGhps?=
+ =?us-ascii?Q?6sWth0GBBMyY9nSIN6d8qDYYDwUQ9v3/ZZs0U8r0rsu/S4V6Adb1PA5KzsQr?=
+ =?us-ascii?Q?zru333rbSIwlB7609YUPGQsM5a5ukLYJMPir0xiz7DbyZX1OtDFyAAM5A7Bc?=
+ =?us-ascii?Q?XPc6gBA/Qo+a/MJvmPvCpvnCpUe6CoI9Mim3cjrMtURMYmmGF9YsWDhQsNLZ?=
+ =?us-ascii?Q?FxWfhhiV0M+dnhcQeH5rQ7sUVjS9Av45no9rUzgtYDJ1eUvI7tz544+lTaDF?=
+ =?us-ascii?Q?aEF7/e6JKXqDoQekI5cb3eGoZGtYAN0QMz4rXlxTO1Vb/OLuj+AUG+Xj+7+j?=
+ =?us-ascii?Q?Gc46ByBU53/tBgWHuja0yEkf4Zs+iyze4LM29zbGax8EJDFxpFkbo1eyOaer?=
+ =?us-ascii?Q?JOqnBH4mEcA60ESagwACvyjrMQb0rDvduHCqLB7Il646Hf2pTqlTkLk9eWN6?=
+ =?us-ascii?Q?A7VGVkH5V4NiCc4gQdKvZ4uX5W7P1ATw8S++c+EXsiluCF7fhaRtDTXix/H1?=
+ =?us-ascii?Q?9hzvWO17LzOhPenXnzaBo9DyqDTU+YnT+wDaEKmhMG3swVYRfTuWRdLxndf/?=
+ =?us-ascii?Q?dQsQlAc+Aw2y6Y07VmNnuTvNzroZ5kzSVyQdkqreahLbA1O3XaHaUwy/8/5k?=
+ =?us-ascii?Q?nwSRiZREpyyD8J4lJ8TuYUOVU16kuSEhnh+qAdmdJ48MzP8TuiiN4jcsXJC+?=
+ =?us-ascii?Q?7Da8cUSbIgREPNnYCpEK88U91fteSv6ZH4Loz2Hg8MEtAmU6oR5MrIXgSpOW?=
+ =?us-ascii?Q?tKSWFwdumz7xcblCAkwanKOxzNujA6bnmVweFPSoDaz7OcVMlNHXPJWPvVXS?=
+ =?us-ascii?Q?fgm0LXajEjp0+4C1yzGF57MtoyiV7Ei3WYKxbFDYTk8ubTN1yA7C0Cso0gPm?=
+ =?us-ascii?Q?S9dt+JRndVDn0wA4ieyLiAa3hABrSa7uGUW0KDzOTnRUel8tYwrQNWXqvDaJ?=
+ =?us-ascii?Q?2Bik7Qr3Kk2XVEQrCxuTObpS528ut/+MjPMOQ+vuseqFfJeeyrwtTJ8wcE9v?=
+ =?us-ascii?Q?SfCNauAPUYCYedNxXXj+gpoWNPlcz5gactDs4VoJbeVnb+holj9OVY/bt7bC?=
+ =?us-ascii?Q?98b33mtp5GIJ2/EJjxkAkTWVRfgVjmhLupB3QbOxxt3NEvlMHcakf8ASHxC+?=
+ =?us-ascii?Q?V+prbtgN66qBCYqIslbxYr+JiGhCIcdz40laK6Z3CmEs3tWz5/rvzxxDyuMb?=
+ =?us-ascii?Q?j71Bn51txtZiwBYra5Fkhv4OBzjhUaSbHzz6VQchD8RQAVu4VFpp/sDW+fjv?=
+ =?us-ascii?Q?f6ON+gea5VZTuzd71YCKzLuvQp9l5Bx5Z8ZFgsSJ3J3acRfR0sp3V9S4wLjO?=
+ =?us-ascii?Q?xD/dCObFXg69Xtqq1ioAI6W4pwmEJdVE5DVA0Q78MEsjnCDwnq73hX81Vcmg?=
+ =?us-ascii?Q?YqJtyFM8g3kNu20gWnL9Y1dw9CGv7qNf+OXd1pMD?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38ffdcd3-0699-44e9-f2eb-08dbe42f08bb
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2023 09:58:06.6853
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P8ock1S9WepqWP1j++RMeyrDKNCwCwADCe2Q1d2EZ1wEX7Ap2fAHqBI3BPRYxsWFQfjsTmWYGNxGIjxVTwEYag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7441
 
-On Sat, Nov 11, 2023 at 8:18=E2=80=AFPM Alexander Sverdlin
-<alexander.sverdlin@gmail.com> wrote:
-> On Fri, 2023-07-21 at 19:37 +0300, Andy Shevchenko wrote:
+From: Peng Fan <peng.fan@nxp.com>
 
-...
+"nic_media" clock should be enabled when power on/off mediamix, otherwise
+power on/off will fail. Because "media_axi_root" clock is the parent of
+"nic_media" clock, so replace "media_axi_clock" clock with "nic_media"
+clock in mediamix node.
 
-> > > +       mdelay(1000);
-> >
-> > Atomic?! Such a huge delay must be explained, esp. why it's atomic.
->
-> atomic or not, SoC is supposed to reset itself here.
-> However there is an errata [1] and the SoC can lockup instead.
+Link: https://github.com/nxp-imx/linux-imx/commit/ce18e6d0071ae9df5486af8613708ebe920484be
+Fixes: f2d03ba997cb ("arm64: dts: imx93: reorder device nodes")
+Fixes: e85d3458a804 ("arm64: dts: imx93: add src node")
+Reviewed-by: Jacky Bai <ping.bai@nxp.com>
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+I rebased the patch found in the link above upon v6.7-rc1 and improved
+the commit message a bit.
 
-Good, and what I'm saying is that this piece of code must have a
-comment explaining this.
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> So even pr_emerg() makes sense to me.
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index 91d3c5003a2c..0f65658a40bf 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -417,7 +417,7 @@ mediamix: power-domain@44462400 {
+ 					compatible = "fsl,imx93-src-slice";
+ 					reg = <0x44462400 0x400>, <0x44465800 0x400>;
+ 					#power-domain-cells = <0>;
+-					clocks = <&clk IMX93_CLK_MEDIA_AXI>,
++					clocks = <&clk IMX93_CLK_NIC_MEDIA_GATE>,
+ 						 <&clk IMX93_CLK_MEDIA_APB>;
+ 				};
+ 			};
+-- 
+2.37.1
 
-This is irrelevant to the comment.
-
-> > > +       pr_emerg("Unable to restart system\n");
-> > > +       return NOTIFY_DONE;
->
-> [1] http://web.archive.org/web/20161130230727/http://www.cirrus.com/en/pu=
-bs/appNote/AN258REV2.pdf
-
---=20
-With Best Regards,
-Andy Shevchenko
 
