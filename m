@@ -1,95 +1,99 @@
-Return-Path: <devicetree+bounces-15396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBA07E9E46
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:12:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA2A7E9E0D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:05:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1830E280D7D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:12:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D377280E49
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACFB320B3D;
-	Mon, 13 Nov 2023 14:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCD920B3E;
+	Mon, 13 Nov 2023 14:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OkaNk6Od"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQ39f0kf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9161833C9
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:12:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 624ABC433C8;
-	Mon, 13 Nov 2023 14:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC2720B3B;
+	Mon, 13 Nov 2023 14:05:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2037CC433C8;
+	Mon, 13 Nov 2023 14:05:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699884759;
-	bh=7n9z+cHpOQ8W91XBkYQLoFLrh4UpmQ6en6y1XeCK3Kc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OkaNk6Od6P7WGy82NQKqBftjUJ8iuNS2PhRkdz8VnwAV3mKYJ5Mk+KaKs7KA3WSyW
-	 a7kDMBYayhA5IFV0P/w+CFhS/ZoaTMZcqfpbkA6jOHPAxqqvQ1REU9Iqf96v/zarno
-	 0nl/6qmmr22QeG8oC8jEgdkb240HiEJgXXCsWx8uiOzgIYyeHJHwjHVybLfgRwiFtb
-	 dhnOVdy8L+/5/fgnyO0XujxfX5xwKVFog+TAFRGKv/8vOtQR2+12oySA0AxmDcLvcJ
-	 9BxNQtFf2solRjysjp/cdohH23nFQvltLOmKkMADTfXAB0m5nMmO3rXjQ8co7iRdLH
-	 v9ElzPjCIZahw==
-Date: Mon, 13 Nov 2023 22:00:17 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: reset: Add binding for Sophgo CV1800B
- reset controller
-Message-ID: <ZVIr8VH+29lpSpxb@xhacker>
-References: <20231113005503.2423-1-jszhang@kernel.org>
- <20231113005503.2423-2-jszhang@kernel.org>
- <20231113-washable-elbow-629bf42b9be1@squawk>
+	s=k20201202; t=1699884328;
+	bh=SDRkAHDc9itV6f8oK3mmT3NDiKoKnApjwxqUguLBXSc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=eQ39f0kfOVpu/qAfrUSSjm1/kH70Wjyj/nuLbKGQjmmxpZrAUk4atDwXMiHA8aNvQ
+	 9AX1Ti9j5L8+cYg3vAmMEjhlmzid81xcWJW74eOZjr7A3oJR6zWo3SWROpvNFBm3wr
+	 p8QUEdK9Q2+4frfLTj6U1vR0yWmJxKMtztCK42b9Jaj6kskprL4qRxraFhIQgZ/vMe
+	 my2VtyxAR+XtUu8s+f5pHlnKF9iyjLYXsVgcxLAV2ti/5THFhpakJNVpPBBGVM/Guk
+	 nK3JmHmtqyAV+ZlPQQvn/hF4QFNsXeU4mqpbO0UcTuIFJwwEpR1BEotN1urJiumaW5
+	 72PNTTxKhDcTg==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Ryan Lee <ryans.lee@analog.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-arm-msm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20231107101610.13728-1-krzysztof.kozlowski@linaro.org>
+References: <20231107101610.13728-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: use "soundwire" as controller's
+ node name in examples
+Message-Id: <169988432341.3280890.10229585948785487186.b4-ty@kernel.org>
+Date: Mon, 13 Nov 2023 14:05:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231113-washable-elbow-629bf42b9be1@squawk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-0438c
 
-On Mon, Nov 13, 2023 at 01:36:54PM +0000, Conor Dooley wrote:
-> On Mon, Nov 13, 2023 at 08:55:00AM +0800, Jisheng Zhang wrote:
-> > Add devicetree binding for Sophgo CV1800B SoC reset controller.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+On Tue, 07 Nov 2023 11:16:10 +0100, Krzysztof Kozlowski wrote:
+> Soundwire Devicetree bindings expect the Soundwire controller device
+> node to be named just "soundwire".  Correct examples, so the incorrect
+> code will not be re-used.
 > 
-> With the unterminated ifndef that was pointed out by the robots fixed,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> > +/*				0-1	*/
-> > +/*				10	*/
-> > +/*				13	*/
-> > +/*				15	*/
-> > +/*				17	*/
-> > +/*				36-39	*/
-> > +/*				53-57	*/
-> > +/*				59-60	*/
-> > +/*				63-73	*/
-> > +/*				90	*/
-> > +/*				94	*/
-> > +/*				102-292	*/
-> 
-> There are quite a lot of gaps here, do you know why that is?
 
-The tail bits are for cpusys, so I guess the SoC designer want to
-seperate them with guard? I'm not sure.
+Applied to
 
-> 
-> Thanks,
-> Conor.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/1] ASoC: dt-bindings: use "soundwire" as controller's node name in examples
+      commit: dc29d3d253f1f3513a916f0b4271569223860c71
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
