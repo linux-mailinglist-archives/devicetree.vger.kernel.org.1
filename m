@@ -1,155 +1,151 @@
-Return-Path: <devicetree+bounces-15263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D487F7E94B9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 03:26:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F437E946F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 03:22:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BCC6B207B8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 02:26:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE766280A74
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 02:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6437488;
-	Mon, 13 Nov 2023 02:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD00D46AA;
+	Mon, 13 Nov 2023 02:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="g36lSVu1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C054B8BE2
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 02:26:30 +0000 (UTC)
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998E4111;
-	Sun, 12 Nov 2023 18:26:26 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1C44F24E004;
-	Mon, 13 Nov 2023 10:26:18 +0800 (CST)
-Received: from EXMBX161.cuchost.com (172.16.6.71) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Nov
- 2023 10:26:17 +0800
-Received: from [192.168.125.131] (113.72.144.54) by EXMBX161.cuchost.com
- (172.16.6.71) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 13 Nov
- 2023 10:26:16 +0800
-Message-ID: <f1d39129-c4ae-4264-a414-fd18f1d66e9f@starfivetech.com>
-Date: Mon, 13 Nov 2023 10:19:38 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9D05232
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 02:22:08 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02olkn2077.outbound.protection.outlook.com [40.92.15.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE15219A3;
+	Sun, 12 Nov 2023 18:22:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SilCnvCQ8et+7ewDOGZJ73dUzNbIhkH8eaNwuXgseZqKqUdkretRccQCR0O0nXT11zEj1DTkjlf/uRuXy6K9ob8KcxUDg2NJEopZqBVcyzgV75gevSlbMuKLJj8VzIrymMH1efeVSRAAB11waNmbVCGkek3MT13MYGo2P7HztbvH7PoWvdsPDvnMOelqEkv8R4lthfOape+h/sAyfAcTTqPP0Qmx2dhcxfyht7PQqkpzvT0ym6FCjZtBdcVX9S9F8LEYM4xTvjPs+ihYubQ58Bc9zVGLAMZA2lgDU2b0AsmO+f1QhO3qAUijh88kyZU5Czw/sq/Z3bouLllQ2Lar0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qQMWpymeoTpuaMalh1DVoOuuEFVWgQql0iJzlOGxR4E=;
+ b=gjYcst6mdQcQ6fOHV3Oo3nkKCqQpdJW4zvYyxI/Y08DVTwHDchB612+fht0hbm1MDLgcZveLkDzml2y3wWM7O/XEbSyys9xYcs0owB3nApmRCIvLV6LnWMhHr/UEv7PjwEAACl0k9ttDyy+8ARe1rhTElRdYgcFIZF3PmQ0ajb43VWU5+2eHxre7ArZOrvpGHl8uUYlYJQzAzpfrzbF6tQIuMU6gNlVPItdvRhASEdSrRAIuYH9tgJNeVYSCtKdwp7NroS8cPxGjFodPwJmfqoe5SlQN5CpmrjzH9zqXmwWDmDIXJS0uGqVtDFt2d/qlXnJk2347W1hVg/sMdfpe2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qQMWpymeoTpuaMalh1DVoOuuEFVWgQql0iJzlOGxR4E=;
+ b=g36lSVu1ysTuGf0D4+0ZpAySu0UQAxUnNsI5JXLnKopFNhTkJ8L4IyP6wupY7mleFFGpRwEOW1GvD0VTxk0JvKbV7bDGVYTfFMtn8feTYpalgWfgXXnY6l+uWpVWTh1jYYC0kSsNEImM707gOjJ5C2n05ccmzuk0NHdSiOrt7KxfXlaszqc2XcJeNhoFO4RGrIposvje3R+7L0r5sv8DKsoCHlg6Id7jcTkVinq0xDqbVlQonVSTKhr5mqw8v0tE0BnNq75QndkF7zzfeY0vsdOB8lFFa82jwTk6TYCLH6l1zDwKLk2V5dug77nBAzv/tq3n4rlhUHX1E+TYcnSjcA==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SJ0PR20MB4533.namprd20.prod.outlook.com (2603:10b6:a03:3ec::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.28; Mon, 13 Nov
+ 2023 02:22:04 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6933.029; Mon, 13 Nov 2023
+ 02:22:04 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Guo Ren <guoren@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH 0/2] Change the sg2042 timer layout to fit aclint format
+Date: Mon, 13 Nov 2023 10:22:36 +0800
+Message-ID:
+ <IA1PR20MB49538304E99DABF0208C00A0BBB3A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [tD0OtFIvJ4wZ/yk8YKvmWx02inennZONpGrb9so1Lpk=]
+X-ClientProxiedBy: TYCP301CA0055.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:384::6) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231113022236.35992-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/3] clocksource: Add JH7110 timer driver
-Content-Language: en-US
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, Samuel Holland
-	<samuel.holland@sifive.com>
-CC: Thomas Gleixner <tglx@linutronix.de>, Emil Renner Berthing
-	<emil.renner.berthing@canonical.com>, Christophe JAILLET
-	<christophe.jaillet@wanadoo.fr>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Walker Chen
-	<walker.chen@starfivetech.com>, Samin Guo <samin.guo@starfivetech.com>,
-	<linux-kernel@vger.kernel.org>, Conor Dooley <conor@kernel.org>
-References: <20231019053501.46899-1-xingyu.wu@starfivetech.com>
- <20231019053501.46899-3-xingyu.wu@starfivetech.com>
- <3f76f965-7c7b-109e-2ee0-3033e332e84b@linaro.org>
- <bb819333-52d3-49fc-9bb9-1a227bd5ca8f@starfivetech.com>
- <d0e70434-e273-4799-c5ec-bbee1b3f5cc7@linaro.org>
- <540136d4-6f8f-49a6-80ff-cc621f2f462b@starfivetech.com>
- <65c38717-3e0c-46d3-a124-29cae48f1a2e@linaro.org>
- <72ad5029-42b2-481a-887f-8f6079d8859b@starfivetech.com>
- <a8f0011c-5689-4071-b5e0-90bd6b7c66bc@linaro.org>
- <b402eb4d-a770-4988-8274-8a2544362229@starfivetech.com>
- <1dd3d765-c583-4db9-a0aa-303bfcf871db@linaro.org>
- <7c2e9b70-201c-45f8-9871-a823cc2ded16@starfivetech.com>
- <a37be8f7-64a4-4cec-8692-28ad92a02b00@sifive.com>
- <bbd2ee8d-4349-4752-859a-02fb0252d496@linaro.org>
-From: Xingyu Wu <xingyu.wu@starfivetech.com>
-In-Reply-To: <bbd2ee8d-4349-4752-859a-02fb0252d496@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.144.54]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX161.cuchost.com
- (172.16.6.71)
-X-YovoleRuleAgent: yovoleflag
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SJ0PR20MB4533:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01adb556-87f2-4fff-dd09-08dbe3ef5376
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	vNqHbGWbq+JgB+ukfxv28Z+dAeKNwon5Zu4Cl362zjSfhfbX2ozYhoG/UqeRG3/c2h8tj1p3507sCKPBSomUL9gFBeI+n6GLkDSlXkTLZ9y8LK1ux9abAl33M/53ktC4+mbEkPriPIH+mmDhXn2IxBiP0Bo/+OzNB6nrUQXfRQX0GjNSLSF1wt3tAWNRgjbDPzrCd7AMhKgWFL89x9X4gltyQGYY5Pj6f9gkeBl7SQssQB2hNeGMarfbwdQUHqzeufKy56yJtYAtR97ZsfeJWAqr/7ppEbIW8UkMxSX/LAp97tEU+AoDJCWDErZeP5lGNC7zirD10hUg2QDxT7f7dClxJVfqGumRV0m1Z81iej0UKOKWIqDupa4oPHU60I4cEkKlUn2c5Hbn8thBZdIDvi1dXciooXDg6YqiQTBf9c/XI1GCUhW1R37Ha5bkangQayqKTmAM3Oh+DvSWyLUx16Vox+F1RGcwX+DNwxb5ks88z3pVE0zJIs1yDUNc4p8Dfz2MVbsXbxHmgFH3q44D7XuGg0hqzui6saAy/yrhfk28mYCCiQ+Dv9KmqvVWPyj7dpcXYhSb4cZbOOczfG4brJtmm04uV5rVHu6QZ4hDaIuS+ALtB/fmA+JWvVVxCB/3
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?X0fXaavE5yyGFZyHWmRzC69Mn6eAPLXDREXs4sP+eBg0wbSAtQwyvwI7FKMV?=
+ =?us-ascii?Q?DzisBzNMofkIYTqN21+cvlEa+SIqBcIjx9hjO9i1i6P6pKuAqKkqrs6a1JaU?=
+ =?us-ascii?Q?I/cVAoRNBaRSP97capmQA1AKVNY2s0hlSpoqwzdAJXAe3U8GJ3utaDzZwN2D?=
+ =?us-ascii?Q?1vWcD5j1slseItP9Fs62yEhwkhUyWS4KdU1EP/JGvmRHaxiK+iE2qQeOE+FZ?=
+ =?us-ascii?Q?wkyn0W3tCZkgt3cc7+6/F1fpywOB8m5i7njg5UOgY6ukmWozVDnwIDdSScar?=
+ =?us-ascii?Q?qeuxsvWcvHT6fMp5iShw8I6DjxKdtKUTrJYUpYPWUA2EsT7spiH7D6d+Rb02?=
+ =?us-ascii?Q?V9waWO9MIm5KEwWGlCC1WkrZXjMTgLZLNfzvYB6bgyElKH5/BvC1hgIgoouv?=
+ =?us-ascii?Q?0bvYjDtx1qSAW4ltoRT0WiIkX2NiwREwqzr5yv1NrEDI6eI6sl+avKNdy1kT?=
+ =?us-ascii?Q?C6T8bSqiej4WfrrXyOaZ+3KGA565laWmxEm7BBzoH103urynatLWhUlPXETH?=
+ =?us-ascii?Q?QF5MzPtP8QTokk73AvaHlKtEEatCoffKXqOGvLQSXAUxLk3h17AejXWCbDGl?=
+ =?us-ascii?Q?p5snhu/g+ZTo3k0oqvnjzDY/wJ58jAN1hHeKNUOA/NRSTgdnSECcEQE91/FZ?=
+ =?us-ascii?Q?sqbI0emJg7uLxUS6mEXv1a4W2m1nk5/Hr74vkCXPGTT0XzzRKER5nYPCE4oX?=
+ =?us-ascii?Q?99lNf/nZWNwI5qWEzTGV5cZvfi/ui9tWYg3cWXBqQ2GL+yyLfsWAEuPdljQF?=
+ =?us-ascii?Q?mO1CgFY9bICJ77onYfi4OfBYgYJhWOI4hEs9jbULgrnfSlNoQI6CBeEa3hjB?=
+ =?us-ascii?Q?3bt31ik6BUfEmDZHDUjMbLHQzR26fYuUfLyDopJqCG0mYnfH0rkLuFYSIkuO?=
+ =?us-ascii?Q?Dc1RmOb66aOd/U8jBFiVy6TeDTwoyiOBNpWb1k3f7tX5iEyJ4cNNynz7uLCP?=
+ =?us-ascii?Q?oMAGwsQH/59zfhRRYfJtMJVGDQ4nnbIxJOpR76W92neAUHdwcmk2Q/vHcyW3?=
+ =?us-ascii?Q?uHo2e+Dv/IVeoCZMWhlgboyQcVqACdSts4uPfa51fQ6zd9HYHFig3wFurIm0?=
+ =?us-ascii?Q?x5UZ89A9i1RfAEfmaam7eaFU4hQRqtMR9B3WOfenggyzrksziljT6nn3475H?=
+ =?us-ascii?Q?us4fejXB9n+q8n94b1WtWTw4+LEuCQgG85+x613on+iNKpFGLTKSVc1lFjcy?=
+ =?us-ascii?Q?w4iOsmOOyoQjwrmqYidVo0qvm9qjQaDMkdjVMM5Ab2jpoYwYLQA5UdOxcgk?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01adb556-87f2-4fff-dd09-08dbe3ef5376
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2023 02:22:04.6836
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR20MB4533
 
-On 2023/11/11 2:02, Daniel Lezcano wrote:
-> 
-> Hi Samuel,
-> 
-> On 10/11/2023 18:40, Samuel Holland wrote:
->> On 2023-11-08 11:51 PM, Xingyu Wu wrote:
->>> On 2023/11/8 17:10, Daniel Lezcano wrote:
->>>> On 08/11/2023 04:45, Xingyu Wu wrote:
->>>>> On 2023/11/2 22:29, Daniel Lezcano wrote:
->>>>
->>>> [ ... ]
->>>>
->>>>> Thanks. The riscv-timer has a clocksource with a higher rating but a
->>>>> clockevent with lower rating[1] than jh7110-timer. I tested the
->>>>> jh7110-timer as clockevent and flagged as one shot, which could do some
->>>>> of the works instead of riscv-timer. And the current_clockevent changed
->>>>> to jh7110-timer.
->>>>>
->>>>> Because the jh7110-timer works as clocksource with lower rating and only
->>>>> will be used as global timer at CPU idle time. Is it necessary to be
->>>>> registered as clocksource? If not, should it just be registered as
->>>>> clockevent?
->>>>
->>>> Yes, you can register the clockevent without the clocksource.
->>>>
->>>> You mentioned the JH7110 has a better rating than the CPU architected
->>>> timers. The rating is there to "choose" the best timer, so it is up to the
->>>> author of the driver check against which timers it compares on the
->>>> platform.
->>>>
->>>> Usually, CPU timers are the best.
->>>>
->>>> It is surprising the timer-riscv has a so low rating. You may double check
->>>> if jh7110 is really better. If it is the case, then implementing a
->>>> clockevent per cpu would make more sense, otherwise one clockevent as a
->>>> global timer is enough.
->>
->> The timer-riscv clockevent has a low rating because it requires a call to
->> firmware to set the timer, as well as a trap to firmware to handle the
->> interrupt, which both add overhead. Implementations which support the Sstc
->> extension[1] do not require firmware assistance to implement the clockevent, so
->> in that case we register the clockevent with a higher rating.
->>
->> [1]: https://github.com/riscv/riscv-time-compare
-> 
-> Thanks for the pointer and the clarification.
-> 
->>>> Unused clocksource, clockevents should be stopped in case the firmware let
->>>> them in a undetermined state.
->>>
->>> The interrupts of jh7110-timer each channel are global interrupts like
->>> SPI(Shared Peripheral Interrupt) not PPI (Private Peripheral Interrupt). They
->>> are up to PLIC to select which core to respond to. So it is hard to implement
->>> a clockevent per cpu core. I tested this with request_percpu_irq() and it
->>> failed.
->>
->> You cannot use request_percpu_irq(), but the driver should be able to set the
->> affinity of each IRQ to a separate CPU.
-> 
-> Absolutely. And given the bad rating of the local timers, it may be worth to implement this driver in a per CPU (affinity set) basis.
-> 
-> At the first glance, the arm_global_timer can be used as an example.
-> 
-> Note in this case, you may want to double check what does with an idle state with a local timer stop flag and this timer which is always on.
-> 
-> 
-> 
+As the sg2042 uses different address for timer and mswi of its clint
+device, it should follow the aclint format. For the previous patchs,
+it only use only one address for both mtime and mtimer, this is can
+not be parsed by OpenSBI. To resolve this, separate these two registers
+in the dtb.
 
-Hi Daniel and Samuel,
+Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
+Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005738.html
+Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
 
-Thanks for your pointers. I will check it. If it works, I will send the new version of this patch.
+Inochi Amaoto (2):
+  dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and
+    mtimecmp regs
+  riscv: dts: sophgo: separate sg2042 mtime and mtimecmp to fit aclint
+    format
 
-Best regards,
-Xingyu Wu
+ .../timer/thead,c900-aclint-mtimer.yaml       |  5 +-
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 80 +++++++++++--------
+ 2 files changed, 51 insertions(+), 34 deletions(-)
+
+--
+2.42.1
+
 
