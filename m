@@ -1,108 +1,111 @@
-Return-Path: <devicetree+bounces-15472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93757EA4E9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:35:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 415AA7EA4F9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:40:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2631D1C20A02
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:35:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE941B209A8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5BE22EE9;
-	Mon, 13 Nov 2023 20:35:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hu1Agh8g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADB924A14;
+	Mon, 13 Nov 2023 20:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B79722336
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 20:35:43 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23FBC1AD
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:35:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1699907741;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
-	b=hu1Agh8g6+1yUEwZ2/+ba7XbcHBhpAE3pVolPKyy/pMuqCzYrruK25qWT8ypCYozDP8oBE
-	ZszB/3CxEAY5hvz9bJKNctsR7421IlJkudTpmsk0uUToiZ9erNrHR519u/Rf900A2eXfOx
-	SMw7yO618XmPjAcOfHyVW0hcTToR5JI=
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com
- [209.85.222.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-694-uDRcFOc6MqS14D-u2PbCQg-1; Mon, 13 Nov 2023 15:35:40 -0500
-X-MC-Unique: uDRcFOc6MqS14D-u2PbCQg-1
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-7ba45ffb1e0so1429364241.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:35:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F4A224C8;
+	Mon, 13 Nov 2023 20:40:47 +0000 (UTC)
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A3DD57;
+	Mon, 13 Nov 2023 12:40:46 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3b6ce6fac81so2030644b6e.1;
+        Mon, 13 Nov 2023 12:40:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699907740; x=1700512540;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
-        b=rnyffPEMSAjIe0KB2sdzKaLETimkNErhzwpmIqW0opzz8DIf+Jn0z6DeKLFjlUkxIj
-         IJtJkkhWsdUzLSqV2YCQnWRxqw0AIY+c5054xDRzPdQrbfFIEaXffdtxYwyMemLYvDi0
-         gpgO4j9WxhbAS59nrxN3gxHEei237nXrT5r2r2vpKEewQrIeFynNtPBwEeThiIp/3SIl
-         qFGoZc7w2Zz4Q1YWAn1fW3HqftJ8Hwuxj0VrWFyqQknBDhst1sxcbZzS2maunIV0q08+
-         NQ5RhBST2a8Hti5qJm2OBPNU8vYJCc5bzPlKh+n8upPLBrnt0bE2N5EylK8M2iOVqAt7
-         rLOg==
-X-Gm-Message-State: AOJu0Yw9DLPbDthu0FoWxkcr54Lebr4QBb/nCVFmyjRtRYwAsJ8GvRPJ
-	snQ2AA1vslIPktfXbwrJ/PEQOeZg/2kBIv1ieyrMtZIgRNOLFyPAe09fb/5RBjVC5ZDfxoUrSOF
-	7RceOJZCKA/8NdcWxb/Bvyg==
-X-Received: by 2002:a67:c999:0:b0:45f:1d2:30d7 with SMTP id y25-20020a67c999000000b0045f01d230d7mr6099907vsk.8.1699907739763;
-        Mon, 13 Nov 2023 12:35:39 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFHxuNWEMeMyEEwh/zP9ymoIFo7xdEdta/98xN6QQh3vfUdvtg1LEuvGc/ZAJ7YHFiZylBuHw==
-X-Received: by 2002:a67:c999:0:b0:45f:1d2:30d7 with SMTP id y25-20020a67c999000000b0045f01d230d7mr6099883vsk.8.1699907739491;
-        Mon, 13 Nov 2023 12:35:39 -0800 (PST)
-Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
-        by smtp.gmail.com with ESMTPSA id dx9-20020a05620a608900b007789072e445sm2145267qkb.31.2023.11.13.12.35.38
+        d=1e100.net; s=20230601; t=1699908046; x=1700512846;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zlUyGqF8YFfY+SBOA/cyr6ZOVZJ7c/K2t3V+uvFzoZo=;
+        b=O3QbQ5AIEem6KzcyB8c7fodmhY2Ztze6NXpTr1eO5CHCswrYhNCAfRZ2JyNoXtlAho
+         GBrGYar232rLRx4cWIhIXLGx6+/47fn+2IVVVPcgjlINt1waoKErfkRrHjuVuGOcgbg9
+         xVE7vtgZIfTKm8Olys17DjhUqb9ZwOhv9mPM78bgLbiXmiz4nRFeqI312BVZuR05zTqA
+         TUDRiT1eIimSvYvpwP7OS20OrvWlt1mXB4FUWaKSn9Z7EYDg+VJDEm1hJ3Y6hUg/4gQV
+         3AMaOqsOSCnwWRKIi1oUC02dOV6xR/4A2oi+pdV2E+1JlRI7RdFS+8rix9SYUQtfEZ/2
+         Mgvw==
+X-Gm-Message-State: AOJu0YwRercYPCzD+WWirE4cZp2wWQvezkoCXKlN/+TaJMUjK2x3Fn2y
+	NaYw+wFJ6YW7BzvdiuMyUzCVjEGLmQ==
+X-Google-Smtp-Source: AGHT+IHBzTJq+oL6GFdaOVxFk4/Ftg8k5iAgT1Ifs85gnVEKM22ESG9dmEHGWLJWa+sT6dWirBhxpw==
+X-Received: by 2002:a05:6808:210f:b0:3b2:dc66:21a9 with SMTP id r15-20020a056808210f00b003b2dc6621a9mr10510321oiw.28.1699908046076;
+        Mon, 13 Nov 2023 12:40:46 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l5-20020a056808020500b003b2f3fb081csm902881oie.51.2023.11.13.12.40.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 12:35:39 -0800 (PST)
-Date: Mon, 13 Nov 2023 13:35:37 -0700
-From: Jerry Snitselaar <jsnitsel@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: acpica-devel@lists.linuxfoundation.org, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
-	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, 
-	Christoph Hellwig <hch@lst.de>, iommu@lists.linux.dev, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Robert Moore <robert.moore@intel.com>, 
-	Rob Herring <robh+dt@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
-	Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Krishna Reddy <vdumpa@nvidia.com>, 
-	Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux-foundation.org, 
-	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
-	Zhenhua Huang <quic_zhenhuah@quicinc.com>
-Subject: Re: [PATCH RFC 17/17] iommu: Mark dev_iommu_priv_set() with a lockdep
-Message-ID: <ytwi5fmrlwmbl5trepczcy6on2sknr43yrym53c4ychhagrlr5@vdvgw5zpgjds>
-References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
- <17-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+        Mon, 13 Nov 2023 12:40:45 -0800 (PST)
+Received: (nullmailer pid 38665 invoked by uid 1000);
+	Mon, 13 Nov 2023 20:40:42 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Andersson <andersson@kernel.org>, Mark Gross <markgross@kernel.org>, Conor Dooley <conor+dt@kernel.org>, platform-driver-x86@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, Hans de Goede <hdegoede@redhat.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org
+In-Reply-To: <20231113145328.42575-2-dmitry.baryshkov@linaro.org>
+References: <20231113145328.42575-1-dmitry.baryshkov@linaro.org>
+ <20231113145328.42575-2-dmitry.baryshkov@linaro.org>
+Message-Id: <169990801021.37946.4455016402393368576.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: connector: usb: add altmodes
+ description
+Date: Mon, 13 Nov 2023 14:40:42 -0600
 
-Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+
+On Mon, 13 Nov 2023 16:33:07 +0200, Dmitry Baryshkov wrote:
+> Add description of the USB-C AltModes supported on the particular USB-C
+> connector. This is required for devices like Qualcomm Robotics RB5,
+> which have no other way to express alternative modes supported by the
+> hardware platform.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../bindings/connector/usb-connector.yaml     | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/usb-connector.yaml: $defs:altmodes-list: 'anyOf' conditional failed, one must be fixed:
+	'descrption' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	hint: $defs entries must contain schemas
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231113145328.42575-2-dmitry.baryshkov@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
