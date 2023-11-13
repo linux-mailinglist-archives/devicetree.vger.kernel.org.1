@@ -1,131 +1,134 @@
-Return-Path: <devicetree+bounces-15340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9767E9BE1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:08:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32817E9BD5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:07:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC8CA1C208D8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:08:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F6FDB20A2F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31841D555;
-	Mon, 13 Nov 2023 12:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94401D555;
+	Mon, 13 Nov 2023 12:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="EeUb1WjY";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="OsCq7f0a"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uapxKblD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E071D548
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:08:42 +0000 (UTC)
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 304C0D72
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:08:41 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id 8FEB85C00D1;
-	Mon, 13 Nov 2023 07:08:40 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 13 Nov 2023 07:08:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm2; t=1699877320; x=
-	1699963720; bh=1r++sqtO8eU7O0W8F5x1LffRTcyqoZo9MnQcYdmnV0I=; b=E
-	eUb1WjYXxVqnSkLoMfPsEocMaF+Bm+mKPJPXPHA5fY3fjB669+iPzLWqo9Muejv1
-	vYXj7deAfJcaFIJl/P0GQfWu4qHql1r51xnBnnew8Xec3R7qc75QhX/fgWaVyLrc
-	dOud6EH7p1tnRC6bMJsXDcmuVfGdfHtK+BXvcKZ6OwPMpmPf7qAmGlg0671aq//B
-	f7UvFsaJ3/3fsynLqwhekGInMBvWgkrAi7tHjWR7Wovl2iWO5SYosHvftT3lilUu
-	VlDtXC4bHw9QjdTBZk4keu5XQK2fsMv+RdPt6ZJ+6ZRQl1grw7eBlahHjLcp3Kxg
-	xVDq2Wp/cAXl8Yn3995IQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1699877320; x=
-	1699963720; bh=1r++sqtO8eU7O0W8F5x1LffRTcyqoZo9MnQcYdmnV0I=; b=O
-	sCq7f0aqQElY4Vny6y3Zpt2UPpZtRQY9gfY1SgPgc3tYlCaX7dksC+lJM35QefCY
-	8bfzefdDd1AoCcEbh7w9zP/phU0bSA8gZqGpF/xPxZBIQzBoPybtgCNxDc1o6aY2
-	LX/Io84QxU9P3bvtWDIy8ogLRu+ZrQP5xvdYECOS827nJi/M7N5Qz41fsidiVDtP
-	0W+Lvi3KcMqMEFtRS2bpGFbq7Ryilsb6boNHMcaVoFXeA5R1VelCuxoVOyz2aWec
-	AL6kaiB1Cewsx/fgxhXBENkbeLtlMIlHxnUAmlZQgSoEOapuR23YhQjRjDfXT9Fk
-	/r8F5yBIi7GkZDAzT9Arg==
-X-ME-Sender: <xms:yBFSZWYg2wkzqYmAg1d7jAqvwglV-qeYj_EZ1efGneQ802vS7W9j1Q>
-    <xme:yBFSZZaLZqtRLCVbByW3s3GfyOZTdfPPTJ-ZMnPJSUQy9Z97uMHODzQV3fpsS-AqX
-    gH52Y-2qQ>
-X-ME-Received: <xmr:yBFSZQ-LutV2SbDfqQhWSzBcYs5Og7TXGWeBU9ijOWfeQ4t9ug64rB3AG9UlDzKx-_fL2CoEcXGXuu62PIMCkfFN4Dhls-YzAZk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeftddgfeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepvfhimhcu
-    nfhunhhnuceothhimhesfhgvrghthhgvrhhtohhprdhorhhgqeenucggtffrrghtthgvrh
-    hnpeefffeuhfetgeeikeejvefgtdefteehgfdvhfetfeeuffeuhffhfeekgfekgeehieen
-    ucevlhhushhtvghrufhiiigvpeefnecurfgrrhgrmhepmhgrihhlfhhrohhmpehtihhmse
-    hfvggrthhhvghrthhophdrohhrgh
-X-ME-Proxy: <xmx:yBFSZYobFBLHx3qgMoZeS8Q98zlGTzKhCWbbwJAkZzABcxn9vJy9Lw>
-    <xmx:yBFSZRp6yQ7Dkb3aFhh7xC_ws15Ycxl2VUoJaVaSwHICVt40rffmmA>
-    <xmx:yBFSZWT1WuySYDXMoVLiUbhIMxn1pixMnNhZB2G4Os6VCPH9ZTnCcw>
-    <xmx:yBFSZVIngsQZHQ-jCZ8NHXaG4Idu5kRc1aA4RCHzBc9CmlgWA6jcfw>
-Feedback-ID: i1f8241ce:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Nov 2023 07:08:36 -0500 (EST)
-Received: by feathertop.org (sSMTP sendmail emulation); Mon, 13 Nov 2023 23:08:33 +1100
-From: Tim Lunn <tim@feathertop.org>
-To: linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Jagan Teki <jagan@edgeble.ai>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Tim Lunn <tim@feathertop.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH 8/8] dt-bindings: arm: rockchip: Add Sonoff iHost
-Date: Mon, 13 Nov 2023 23:07:05 +1100
-Message-Id: <20231113120705.1647498-9-tim@feathertop.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231113120705.1647498-1-tim@feathertop.org>
-References: <20231113120705.1647498-1-tim@feathertop.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8512E1D553
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:07:27 +0000 (UTC)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206E8D70
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:07:26 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9e2838bcb5eso640980266b.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:07:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699877244; x=1700482044; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nR7y4Jg2Ac+auB40P6/wbWH5X7rzzXC9e7/AXIOSL30=;
+        b=uapxKblDS+agB4/QTt6hxJEGp4vChxQhclBlqEQaX/21Xby31QghH6DI6Rruhqtkfc
+         FP71PyM+YVbM6S3YVdBK0J9TvUvXw0EIWrVLoKtb9KjbDcaz3Ld+TS653Q5Z/UnVmvQM
+         I39NACBuaaLEFfiYXJtVXAc0m35ICD8pEKTu78LkENmjn30MOcrnb99e8NN+/pEQpyqF
+         i0gpnJEduIzy8Kd4bbvscOmH5GPX/84vRBdZJJXwfsoZN2+QRI06m0FDQPd+mWvbS4Qa
+         +bRkeaShZdz0TWdDMMSsHQDY4sYyQ22AeErK1bxRZV2AUQQBYuBsTOUuVikr2baqFxcD
+         HliA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699877244; x=1700482044;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nR7y4Jg2Ac+auB40P6/wbWH5X7rzzXC9e7/AXIOSL30=;
+        b=Jj9Ko0/BqsrafDFhUlQMGY/6kKv021RQfHf0kTmJOeX7LGohaor2d5Vwphv3fIo7Iw
+         bp4bQOtrsSJGqnVQmrE88KaIU+ODNUomkifLCDYcUnxf4SDgkZ/S0LEO5tC+w/UxE5u7
+         lY5CsOpngBlfIuvutVm0zQtireGd2pCONtKpyyKnJxLyZ2F5uApDAupHsBIBZgT9Nzf/
+         OEm2A7bM+/BgdWjHQVVHuCkSvvJ1DvSjHxHnCioG0T8o4bPcpBapqDY3U1lcubJR5yi4
+         eepUfoXBIIj6WHnIJ8P25F4kFzGUOZsGfIts50jNEXVUEeo2u+8d4HfwE12y3RLwy++S
+         S86A==
+X-Gm-Message-State: AOJu0YwTz1lt6AuMu7YiWWL2u5IowinAvlQm8v64EDtaK6IllkyM/uuP
+	lo9NGPMK+2jmqHOjLba4SP+OlA==
+X-Google-Smtp-Source: AGHT+IFGXNyx91jlePTnCHs0+zbDtx+pV512qDNcUq3qYaLBGqu/OJpoE2tkA9DUNe0jdKEy6qudaQ==
+X-Received: by 2002:a17:906:6da:b0:9e6:ccad:b45d with SMTP id v26-20020a17090606da00b009e6ccadb45dmr4669015ejb.49.1699877244420;
+        Mon, 13 Nov 2023 04:07:24 -0800 (PST)
+Received: from [192.168.201.100] (178235177064.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.64])
+        by smtp.gmail.com with ESMTPSA id k15-20020a17090646cf00b009932337747esm3874925ejs.86.2023.11.13.04.07.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Nov 2023 04:07:24 -0800 (PST)
+Message-ID: <651e9b17-5c08-4d6c-b318-cacfa2341d7d@linaro.org>
+Date: Mon, 13 Nov 2023 13:07:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] clk: qcom: videocc-sm8150: Update the
+ video_pll0_config
+Content-Language: en-US
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231110065029.2117212-1-quic_skakitap@quicinc.com>
+ <20231110065029.2117212-4-quic_skakitap@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231110065029.2117212-4-quic_skakitap@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Sonoff iHost is a smart home hub with built in radios for wifi/bt
-and Zigbee. It is based off the Rockchip RV1126 (or RV1109) SoC.
+On 10.11.2023 07:50, Satya Priya Kakitapalli wrote:
+> Update the video_pll0_config to configure the test_ctl_hi and
+> test_ctl_hi1 values.
+> 
+> Fixes: 5658e8cf1a8a ("clk: qcom: add video clock controller driver for SM8150")
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> ---
+These values are not present on LA.UM.7.1.r1. Can you confirm internally
+that they're valid?
 
-Signed-off-by: Tim Lunn <tim@feathertop.org>
-
----
-
- Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 5f7c6c4aad8f..a26bbcd00deb 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -922,6 +922,13 @@ properties:
-           - const: rockchip,rk3568-bpi-r2pro
-           - const: rockchip,rk3568
- 
-+      - description: Sonoff iHost Smart Home Hub
-+        items:
-+          - const: itead,sonoff-ihost
-+          - enum:
-+              - rockchip,rv1126
-+              - rockchip,rv1109
-+
- additionalProperties: true
- 
- ...
--- 
-2.40.1
-
+Konrad
 
