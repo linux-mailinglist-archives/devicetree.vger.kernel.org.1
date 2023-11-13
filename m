@@ -1,105 +1,100 @@
-Return-Path: <devicetree+bounces-15394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0B67E9E34
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:11:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 421887E9E43
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:12:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E64D9280D46
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:11:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F054B280D68
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595FA20B36;
-	Mon, 13 Nov 2023 14:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB62220B3D;
+	Mon, 13 Nov 2023 14:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J3ay90WH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dPhazqou"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6A22031B;
-	Mon, 13 Nov 2023 14:10:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56B90C433C8;
-	Mon, 13 Nov 2023 14:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699884657;
-	bh=2vpy58rQTHTP9krRVNgcAQrv/Q/+avRu6pax/Biruds=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=J3ay90WHC4ALuWZzRA6IAYlybdjApZS9p2RVDXtuXHnkWS7x0DOZEkfn/uXDp1IaA
-	 WKiPqVM1DJvqdJejm4ZO6tnPrJqw8ph6QyrtjW28Eq1bIzm31leY/dGKFXYYWHqYBg
-	 y4VAgNZtktIzHV0GYWAuc05wxFSClKCWiwIG1puKsf6fT95+mEDV1F8PJLUgOpzpCb
-	 B8BJO0bcBD1XK821yKbKpCc1kInm6+ae4p8lWG++1F9rXd4OwuakoWh+YekOWxi9/m
-	 a2CnN0GSmBUE+1nNZ1B68QZDp9mnQKs+PnOVIYmYyHH8fjQraIzZIjG4zR0lMfkvN0
-	 GjZqHE6whIX9g==
-From: Kalle Valo <kvalo@kernel.org>
-To: "Luca Weiss" <luca.weiss@fairphone.com>
-Cc: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,  "Konrad Dybcio"
- <konrad.dybcio@linaro.org>,  "Andy Gross" <agross@kernel.org>,  "Bjorn
- Andersson" <andersson@kernel.org>,  "Mathieu Poirier"
- <mathieu.poirier@linaro.org>,  "Rob Herring" <robh+dt@kernel.org>,
-  "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,  "Conor
- Dooley" <conor+dt@kernel.org>,  "Manivannan Sadhasivam" <mani@kernel.org>,
-  <cros-qcom-dts-watchers@chromium.org>,
-  <~postmarketos/upstreaming@lists.sr.ht>,  <phone-devel@vger.kernel.org>,
-  "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,  "Rob Herring"
- <robh@kernel.org>,  Matti =?utf-8?Q?Lehtim=C3=A4ki?=
- <matti.lehtimaki@gmail.com>,
-  <linux-arm-msm@vger.kernel.org>,  <linux-remoteproc@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
-  <ath11k@lists.infradead.org>
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable WiFi
-References: <20231027-sc7280-remoteprocs-v1-0-05ce95d9315a@fairphone.com>
-	<20231027-sc7280-remoteprocs-v1-9-05ce95d9315a@fairphone.com>
-	<12ea48bd-5022-4820-815a-89ef23ec9385@linaro.org>
-	<CWMK0AQRL87L.1F9MIDVQ4J439@fairphone.com>
-	<CAA8EJpqCeW8NVcrpwo6JVn0kE2W-QMELB1YH7i7pgOH6qiPbCQ@mail.gmail.com>
-	<87zfzhu9kx.fsf@kernel.org> <CWXP3TCW3A1G.2ME0JJT3S540G@fairphone.com>
-Date: Mon, 13 Nov 2023 16:10:51 +0200
-In-Reply-To: <CWXP3TCW3A1G.2ME0JJT3S540G@fairphone.com> (Luca Weiss's message
-	of "Mon, 13 Nov 2023 13:50:21 +0100")
-Message-ID: <87r0ktu4k4.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5D133C9
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:11:56 +0000 (UTC)
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24D1CD5E
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:11:55 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-dae0ab8ac3eso4401714276.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:11:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699884714; x=1700489514; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WJr1OXkuxnT03SCv+djqBRWs+VoPNnRqt/gpqMoKcS4=;
+        b=dPhazqou+ayKP4zGXmB+bzWYXpFj2na6UysngAOocfO76BBDDfHgFB+8GVn/2Lry4k
+         l0qmn+GxKZyYwtqjvecGw+Ji6JZ0bXN3uxrtoznmnRbVVcrSHHxfOaJ5mQa7dIvEX0KC
+         NDnFpoDTBJQdKiXKOKDJsAs1zzTN0pTT5XY8Cz3KT/faS2rTKgKlDUH61ntJFT8XJv8n
+         BPsZETaP6WEwiYNoVtOkqT8bvsuAJhbD/yAuKf47ZEQrL04tn1wiI7mtyTpVJ+Rf8du/
+         0HcLl2ZGTe48CmWBa/e7lFjIipbFxLT1c99vqSeo8Q+rA/oNBwelIwpkeURr68QYfBKa
+         Hq5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699884714; x=1700489514;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WJr1OXkuxnT03SCv+djqBRWs+VoPNnRqt/gpqMoKcS4=;
+        b=tK1V9IBjl5C5//HxY7oUBlseU1+C65+3hnOB7qUsHgQ9+JGY3PPZbTogZSVIrwuNIp
+         AaymWDKk+GCnlLMqXOjHN/ZzFCwHYwbOgr0W1/F2c2rzzcfqK989KQcFOm+ZJ3zogZ/R
+         +IrgYa4Tww7fnM13Siow9W8teVpwNU7PR4CTCHerZ3nI04SZzxDqcLZl0Gd9dUSUTE7w
+         jM6GhACr54uWhrvxanHnpetndWqJu9mQSH1q1swUaM4RvVhT0wcJTSWOjAUNOoQPYCiW
+         8TMvQXS+cJeszHLxWEgVFfnQBtL4v5/cMF1ZUvnywowYXw3Mmcp4eaa9ZpvquD+taxdJ
+         GyrA==
+X-Gm-Message-State: AOJu0Yz5jAyrhLzxVYQ3nYUK5DUBLoeCbr+lwvZ4QNGnHjYK15cStAGz
+	FH+HED9rycrd0au5IetpBZeNRylJo+GIdSS0WqssEg==
+X-Google-Smtp-Source: AGHT+IHOnTJi2b1Q0iw6JudAumqU6ptqzEHKAsTPQMqY6ERd/tzWqcc2NMGHeiZAy1A323D3e8TLe3gaGaKgn7ddmRc=
+X-Received: by 2002:a25:d196:0:b0:d9a:4bc3:226e with SMTP id
+ i144-20020a25d196000000b00d9a4bc3226emr5511950ybg.37.1699884713789; Mon, 13
+ Nov 2023 06:11:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <CGME20231031095014epcas2p2814fa2bb5f940ccb0d0951667df34f98@epcas2p2.samsung.com>
+ <20231031094852.118677-1-jaewon02.kim@samsung.com>
+In-Reply-To: <20231031094852.118677-1-jaewon02.kim@samsung.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Nov 2023 15:11:42 +0100
+Message-ID: <CACRpkdZRMJgWkLwKstpN_9=VGutbE1wBv+X_a15RJ=7ddNtbHw@mail.gmail.com>
+Subject: Re: [PATCH 00/10] Introduce ExynosAutov920 SoC and SADK board
+To: Jaewon Kim <jaewon02.kim@samsung.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tomasz Figa <tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-"Luca Weiss" <luca.weiss@fairphone.com> writes:
+Hi Jaewon,
 
->> >> > > --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> >> > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->> >> > > @@ -713,3 +713,7 @@ &venus {
->> >> > >     firmware-name = "qcom/qcm6490/fairphone5/venus.mbn";
->> >> > >     status = "okay";
->> >> > >  };
->> >> > > +
->> >> > > +&wifi {
->> >> > > +   status = "okay";
->> >> > qcom,ath11k-calibration-variant?
->> >>
->> >> What value would I put there for my device? Based on existing usages
->> >> (mostly for ath10k) I'd say "Fairphone_5"?
->> >
->> > I think this is fine.
->>
->> From style point of view I would prefer lower case and dashes, for
->> example "fairphone-5" but I'm just nitpicking, uppercase and underscores
->> work fine as well.
->
-> I really don't mind, but I used "Fairphone_5" in v2 now, but I can
-> change it for v3 if that happens if you wish.
+thanks for your patches!
 
-Nah, no need to resend. That's fine.
+On Tue, Oct 31, 2023 at 10:50=E2=80=AFAM Jaewon Kim <jaewon02.kim@samsung.c=
+om> wrote:
 
-But in the future please try to CC the ath11k list for patches like
-this, easier to follow what's happening.
+>   dt-bindings: pinctrl: samsung: add exynosautov920 pinctrl binding
+>   pinctrl: samsung: add exynosautv920 pinctrl
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+It is best if I can apply these two separately once Krzysztof is happy
+with them. I hope that would work? I don't see any specific dependencies.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Yours,
+Linus Walleij
 
