@@ -1,132 +1,111 @@
-Return-Path: <devicetree+bounces-15315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D577E9A35
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 11:23:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF527E9A3D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 11:26:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81B5A1C20910
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 10:23:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F33C1F20EFC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 10:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E43B1C699;
-	Mon, 13 Nov 2023 10:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289471C695;
+	Mon, 13 Nov 2023 10:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FKPymDsO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XaweZldF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15EA12B96;
-	Mon, 13 Nov 2023 10:23:33 +0000 (UTC)
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1418D75;
-	Mon, 13 Nov 2023 02:23:32 -0800 (PST)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5bf5d6eaf60so43584527b3.2;
-        Mon, 13 Nov 2023 02:23:32 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D6218B08;
+	Mon, 13 Nov 2023 10:26:16 +0000 (UTC)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C50D78;
+	Mon, 13 Nov 2023 02:26:15 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-544455a4b56so6552758a12.1;
+        Mon, 13 Nov 2023 02:26:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699871012; x=1700475812; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ISelrhUz+tUwTPOpVjAn5G1ABI4YmRZvCmOYJcKmy7Q=;
-        b=FKPymDsO6DcEeuw50V07tfIdJBSarXf+j18wnrkYVnw2RmkMZhphzbR3iiVlDR2PYF
-         mYPFD6CtTLHlr+mzzHwFHDrEyOH7t8B2nWftiAPhHGeQ2etaYOlopkjSHTSG4iYjiXKU
-         26/nSzQ+dAGlokiHLt667qktFJiB3bMulkr6aIWn+BcPj6Ourj/nn1dbXUswHiRMiRW6
-         4N310Ld2MvfaA4b1Q0VBqGIGgcFXEDIix8jTNaugmFWyqlQVZ1vTonDQ0yaHxknym6VV
-         IEtCPqGctWVWWiSnaEKAwNbdqfCXAgC5scAMby3VNYJTEtk8tYylV1kxb07K6H6SLDsF
-         8JaA==
+        d=gmail.com; s=20230601; t=1699871173; x=1700475973; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PCWL893/WA8glZkeLycvNct9u8/wkDSSjZw4ibjSloY=;
+        b=XaweZldFp70Nqy0NJ0I1PhczdN6zGMUNOg+tyLKP9ilv4JDt14o9VXRJi4IkzPwJSl
+         YLaIlPwJBGwDAU/B41WNjTBTGBB/3z1zmMHpZGpxKa3i1bKTUiNsdriBcSMRuHeIqQrE
+         67zDmZinHlGOJfSn5w5odwBzAZ0H4wipVH4WgzKlDVmsRAXL3sp6rrcEq/wFBj0zBPkC
+         DgFn21K49ze4Fmz7as8Q80/l1Mw6NhprZBoXVGE4mtBAlxKDV0px3ANAT+JLRaYCrJW7
+         1/tUEsWfQ2mzuKbecZ/2Dq4DJea3zAigRV/2LoBDuXUGhPQKiH15WU+B8a4HFaV/C7tL
+         WiHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699871012; x=1700475812;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ISelrhUz+tUwTPOpVjAn5G1ABI4YmRZvCmOYJcKmy7Q=;
-        b=sc67gZCiBaFg49cXXypw+w4ElFoz4eT2QRhx0B8IWbN2SkuJnSDRjq1QEo8v4eEp8J
-         zM4FipFrNRAU32G2/+0Jnwu4qubtgTAbX5hi9AfHZz+0teHs0bQA3NoMcShn8X0T6GRN
-         cVTse907IV5t4g/LNwEcTtRGNdJNOCWgOBbKsWCalG7aSRNwU+RYx8TaDzXmrjapSLRS
-         F3ODeUc9fIBS1EjtU0cfmgMG1dnMpzigLaR8qsQxCU5bf0kw2pDGcLoiGYrsM1jnCbuY
-         CR9kPIbhQt7R8MfQ6f1K00y2gRQ1U/QxgojyF1NAVf0uy3DhRWlWLSXqB1QHyzO1Yq3/
-         rgOQ==
-X-Gm-Message-State: AOJu0YxPmRyPoMeWR3mSDABUzksR4caSuPpNJQUWSJZDhXS5ja/jwVGm
-	alOdGOHKblf9seHw8IU67osSAhfbmad/FK5firU=
-X-Google-Smtp-Source: AGHT+IGeFMq6OPRYVFpLBqn7U8F7RLctOzbaeZinyDCceNJQA9yzq0afSM1d3lxBYSz248sE7pBipt1geSP2uWLF31w=
-X-Received: by 2002:a81:4782:0:b0:5a7:a817:be43 with SMTP id
- u124-20020a814782000000b005a7a817be43mr6070415ywa.6.1699871011907; Mon, 13
- Nov 2023 02:23:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699871173; x=1700475973;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PCWL893/WA8glZkeLycvNct9u8/wkDSSjZw4ibjSloY=;
+        b=VmegFaHoHVdYaUVwvP+sWfPBP0z0v2Hfx0x7DN1NB4PZDUkR33cDbRsVYJnzL0m5TQ
+         vofiMhr6eD+dDaR8eIy03MPBPDJUiMX1AQJ7m45RV0qhSEhVgAKfExuyuAbiGwRV/qml
+         cpm7ksuS26Pssg17vqi5RboPwvKmATVUsRyYmtdS3AWgi2FqjQ9xDZ/RCuelThYjG3SB
+         zKiIoxHp1t+urDm4dNZXXVYNBsurucwEAxnQ4TYo0yO5pRjE0EHuCbJItjkzX3mJ5P/0
+         L9TZlfMKnvbaOBY9bPovj4mIgLR8tK1bQ1C2jH+dgbv2x1T3SlcbMZQhTHpulvmz+hxW
+         q67Q==
+X-Gm-Message-State: AOJu0YxeX1UBNOMg95Jk5iaBv0ah03x8mQoWV5p/3WJPHpsXpDGLzdhp
+	E1X7p55vsILMWBx/zibWbNk=
+X-Google-Smtp-Source: AGHT+IFybFEqXMAVVGpXAbHOXDBXgGb29HHmZhRdMU5+W4p9ssmnLmNuY/XS2mItgs0e3tnBKDteUQ==
+X-Received: by 2002:aa7:d413:0:b0:53d:b1ca:293c with SMTP id z19-20020aa7d413000000b0053db1ca293cmr3684774edq.22.1699871173066;
+        Mon, 13 Nov 2023 02:26:13 -0800 (PST)
+Received: from ubuntu.. ([188.24.51.27])
+        by smtp.gmail.com with ESMTPSA id r20-20020aa7cfd4000000b005435c317fedsm3464940edy.80.2023.11.13.02.26.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Nov 2023 02:26:12 -0800 (PST)
+From: Ana-Maria Cusco <anamaria.cuscoo@gmail.com>
+To: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Add ADRF5740 driver
+Date: Mon, 13 Nov 2023 12:25:33 +0200
+Message-Id: <20231113102535.51074-1-anamaria.cuscoo@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
- <20230605-ep93xx-v3-14-3d63a5f1103e@maquefel.me> <ZLq0Z0QgBdCoDpV+@smile.fi.intel.com>
- <fcfdc6f05926db494ea0105e5523cc21ecfdf4e7.camel@gmail.com>
-In-Reply-To: <fcfdc6f05926db494ea0105e5523cc21ecfdf4e7.camel@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 13 Nov 2023 12:22:56 +0200
-Message-ID: <CAHp75VcsF8GtmE2iDf2xPWi7U5WXhi1ZFUSeA_Y+TfHQn72Jrg@mail.gmail.com>
-Subject: Re: [PATCH v3 14/42] power: reset: Add a driver for the ep93xx reset
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>, nikita.shubin@maquefel.me, 
-	Hartley Sweeten <hsweeten@visionengravers.com>, Lennert Buytenhek <kernel@wantstofly.org>, 
-	Russell King <linux@armlinux.org.uk>, Lukasz Majewski <lukma@denx.de>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Sebastian Reichel <sre@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Mark Brown <broonie@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Vinod Koul <vkoul@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>, 
-	Sergey Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, 
-	Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Michael Peters <mpeters@embeddedts.com>, Kris Bahnsen <kris@embeddedts.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org, netdev@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
-	alsa-devel@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 13, 2023 at 12:07=E2=80=AFPM Alexander Sverdlin
-<alexander.sverdlin@gmail.com> wrote:
-> On Fri, 2023-07-21 at 19:37 +0300, Andy Shevchenko wrote:
-> > > +       /* Issue the reboot */
->             ^^^^^^^^^^^^^^^^^^^^^^
-> This is the relevant comment, one can extend it, but looks already quite
-> informative considering EP93XX_SYSCON_DEVCFG_SWRST register name.
+From: Ana-Maria Cusco <ana-maria.cusco@analog.com>
 
-This does not explain the necessity of the mdelay() below.
+This patch series adds support for the ADRF5740 Attenuator within the existing 
+HMC425A driver.
 
-> But Nikita would be able to include more verbose comment if
-> you'd have a suggestion.
+The ADRF5740 is a silicon, 4-bit digital attenuator with 22 dB
+attenuation control range in 2 dB steps.
+It offers parallel control mode through four digitally controlled inputs.
 
-Please,add one.
+V2 -> V3:
+* hmc425a.c: edit commit message to clarify the change related to default 
+attenuation setting.
 
-> > > +       ep93xx_devcfg_set_clear(priv->map, EP93XX_SYSCON_DEVCFG_SWRST=
-, 0x00);
-> > > +       ep93xx_devcfg_set_clear(priv->map, 0x00, EP93XX_SYSCON_DEVCFG=
-_SWRST);
-> >
-> >
-> > > +       mdelay(1000);
-> >
-> > Atomic?! Such a huge delay must be explained, esp. why it's atomic.
+V1 -> V2:
+* dt-bindings: arrange entry in alphabetical order
+* improve title clarity
 
---=20
-With Best Regards,
-Andy Shevchenko
+Ana-Maria Cusco (2):
+  iio: amplifiers: hmc425a: add support for ADRF5740 Attenuator
+  dt-bindings: iio: hmc425a: add entry for ADRF5740 Attenuator
+
+ .../bindings/iio/amplifiers/adi,hmc425a.yaml  |  4 ++++
+ drivers/iio/amplifiers/hmc425a.c              | 23 +++++++++++++++++++
+ 2 files changed, 27 insertions(+)
+
+-- 
+2.34.1
+
 
