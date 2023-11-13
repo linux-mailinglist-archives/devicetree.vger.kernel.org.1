@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-15334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F387E9BD7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D977E9BDB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:08:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFC81280BE5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3591280AAC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28621D545;
-	Mon, 13 Nov 2023 12:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A020F1D548;
+	Mon, 13 Nov 2023 12:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="i2g9W+7M";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gdfsyK5K"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="TyGjYT0y";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="NBFq3f3G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BECE1D53A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:07:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34941D545;
+	Mon, 13 Nov 2023 12:07:55 +0000 (UTC)
 Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B22D76
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:07:37 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id 82E535C0175;
-	Mon, 13 Nov 2023 07:07:36 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 13 Nov 2023 07:07:36 -0500
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2517D7C;
+	Mon, 13 Nov 2023 04:07:54 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 207CF5C0163;
+	Mon, 13 Nov 2023 07:07:54 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 13 Nov 2023 07:07:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
 	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
 	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:sender:subject:subject:to:to; s=fm2; t=1699877256; x=
-	1699963656; bh=4qMDHmRYilZ4+QBhq8Frhf1+Idyx4gcuM++fKXAF/2A=; b=i
-	2g9W+7MicHqKz0r0de8pfmiwtig1P/8DJ3/0YdGglSmHiNygkJ/+FJFZj7aplFJM
-	d44xy7mXDESmEoGVa1Up4Xnh/w8wIzxHI6QGMpVfjPKyJ8Og06ubc/Bgv43nvn94
-	ngoIUwBEX1PlbzeX2JqXEr0251cbM6+kGBboMfnQKTFwlY4kHWTeKWtfJ9RlHG95
-	K+GYBNwjzt4kxmxtZbZigjt33jOaAE0ASSH6uxfOozw8rrOt5+Noerd48YoSx66C
-	9ftuC62YkT1RSq4/hu1o8NRuv6TxCPZOsdRs/94WMW/yXzma3/ybvArgqeOCnfPX
-	sXjTug5efKAi0kfvcoH6Q==
+	:reply-to:sender:subject:subject:to:to; s=fm2; t=1699877274; x=
+	1699963674; bh=cfmKWNvi9ySzOZPovC2dZMwlGmDOYANqHBVeqSwUZ00=; b=T
+	yGjYT0y4TH3JKxE7wobbcM1k6GDfZRjL1iNgLq2gE78S8WtPwhKVbVEd//7ZRbum
+	CSCTavJMQPZIR1LEa+vqJ1WX7j6vpo491EBzVaFkhEa7VTcWGQTeZcYqh21e7wMA
+	9TG928SA4tMJlMaNEv+5Xh2Cyrf/VdBpcr9htvZBl9+5RITjJ6a+XUyXmMVH5A9u
+	VCDPbJwRE1ZgXgqC7Rz6xb3RpnK5EOKmnQUnRqCUefVKylIwK62GmqY9x/+0MjEz
+	IFDxq3pL+ObD2UrXjGPrlomHN9tzfdnnlNDM5/He5ke6tH+XIrBZO5WTEIN1Pm9Z
+	75DCKiNs8/IUs7tGIsYfQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
 	:in-reply-to:in-reply-to:message-id:mime-version:references
 	:reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1699877256; x=
-	1699963656; bh=4qMDHmRYilZ4+QBhq8Frhf1+Idyx4gcuM++fKXAF/2A=; b=g
-	dfsyK5K5WhxF5c4wKPUhZ2RRZASywIVD1vw/qUOKIfe7nn6cmYlUetaBvDYzgUXR
-	piciuFrLxpz6+CDONE5AHmE69UC7wsG0S7HKdfLJ4THudF2PdtuOzHa6tCH57JUE
-	+f8n7fEQZLl2NdzQQi4LQxR/I8ERf1jMMNo2XE28chPU0yg8bEOk5DApT5kJ5GBq
-	oOmu0QL6OVu6gVPdx7vyJzRQdx6roIvR15AgWtwNnkQwpq3FGkBvwuWGOxLVlf3g
-	FnMo0lulwuUvkip7iTgSeAl2KUn/poUNKKP0+neHeODJPuR7p1624puJm9tQelEO
-	zT1rqdU0m/GgyJbLc1qQg==
-X-ME-Sender: <xms:iBFSZeQ26-iy1Z1qWoqaQFdh7KUHpSC-8DCH-hOcYp5jafZ1jIs6aQ>
-    <xme:iBFSZTxTnRk92bp_NeoJsqGTOVSkjIzdsf6Cm9XFGQ5rZ-NfNo5CgzAmb4yr6AOX9
-    E7e9hgX4A>
-X-ME-Received: <xmr:iBFSZb2wdPsBTj9lOClbcqw77xhLW-oBbTYJyphlOpTX7sM4OPswRUD2PIpvtrvatp3R3oqXMuy36APi0QstxYl_gHqxLHGtKUc>
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1699877274; x=
+	1699963674; bh=cfmKWNvi9ySzOZPovC2dZMwlGmDOYANqHBVeqSwUZ00=; b=N
+	BFq3f3GTVoQHhjm7t9KANn5UThMmMppOtBhbhy+HMco7HYw8SHbzcHA4edK6GyXh
+	Q8mFamXFhEF0VQwVzNRiR35o3RhoJZqWuowTvCq7X7Kt14ZPX83QD1CL5l+u0EM5
+	Ctzm3e8nXT3IhJ7lgRkOPSJKuclm9nxUnct8LxstVQgeAs479Z24ZJpwVsIs/nby
+	/8nmg2xrkIG20lrMXvb0Vg5eWvI/RYmABEirqtLlhkr64eVcqd5GQlX1co4TEKWh
+	GR9RtUP2rVnXAWDc/x61zW0nc30OJe5tR3bJb+3S4y/e73yXrhoBvfJSotKNKYnl
+	2A7kf0Thh6PPZCmNRNsrw==
+X-ME-Sender: <xms:mRFSZe-FbFgIXSs5nTBUo7fdHcKGwD5dnKc26K-QXcYZYv1_bXmq1g>
+    <xme:mRFSZevc0ygWP288sR59ITB9Gt62xIC3bUpB--dipZYTuQ59dys7tqz86hbStIcTp
+    5LDgqiq4A>
+X-ME-Received: <xmr:mRFSZUCKtCRPmVP78hotrT6vVZd_TZ8tuprO3GIh1tNVOzegiyiCo5dkPu4kghq5w1felRvFuLBva3UeQED5S15EjlI6Nha8_tI>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeftddgfeegucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepvfhimhcu
     nfhunhhnuceothhimhesfhgvrghthhgvrhhtohhprdhorhhgqeenucggtffrrghtthgvrh
     hnpeefffeuhfetgeeikeejvefgtdefteehgfdvhfetfeeuffeuhffhfeekgfekgeehieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehtihhmse
+    ucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehtihhmse
     hfvggrthhhvghrthhophdrohhrgh
-X-ME-Proxy: <xmx:iBFSZaB6mADWYFYC_SnokAuyurdEAiho9FZWQn_4xFSicvwPicK74Q>
-    <xmx:iBFSZXi620YEQVsNkUa8U6aY_XwgMZPLlE88Je8i489V0PGXN0T0JA>
-    <xmx:iBFSZWrRnAydAGiiUccNEUQFa7G3kw91eSxf7TPfdeHSKFEvYdawVA>
-    <xmx:iBFSZXgkMuWipH-mPo1ZA9H9aIroc8rqGcnnnQDlfSG3aVjZWWgArg>
+X-ME-Proxy: <xmx:mhFSZWfJ9wzMBjkVjXVviYKiKth1VxwJ3hKQp-5aNOPZTz9E-mpFlQ>
+    <xmx:mhFSZTMPq12SRTbDgkDWn4Uxap2QC9yN29DwJylo0pjSdAn9J99soA>
+    <xmx:mhFSZQnnZ0-iHvpg3XwFYjlhPpvo-o3uD8tQ8kposHAc8YawYb_whA>
+    <xmx:mhFSZeoRPjr4QqpfSJ9Q5F4dBt7gg6ztv-Y8JFbfQtlSWzF04Yc-UQ>
 Feedback-ID: i1f8241ce:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Nov 2023 07:07:31 -0500 (EST)
-Received: by feathertop.org (sSMTP sendmail emulation); Mon, 13 Nov 2023 23:07:29 +1100
+ 13 Nov 2023 07:07:48 -0500 (EST)
+Received: by feathertop.org (sSMTP sendmail emulation); Mon, 13 Nov 2023 23:07:44 +1100
 From: Tim Lunn <tim@feathertop.org>
 To: linux-rockchip@lists.infradead.org,
 	devicetree@vger.kernel.org
@@ -82,10 +82,12 @@ Cc: Jagan Teki <jagan@edgeble.ai>,
 	Rob Herring <robh+dt@kernel.org>,
 	Heiko Stuebner <heiko@sntech.de>,
 	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH 2/8] ARM: dts: rockchip: rv1126: Serial aliases
-Date: Mon, 13 Nov 2023 23:06:59 +1100
-Message-Id: <20231113120705.1647498-3-tim@feathertop.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: [PATCH 3/8] i2c: rk3x: Adjust grf offset for i2c2 on rv1126
+Date: Mon, 13 Nov 2023 23:07:00 +1100
+Message-Id: <20231113120705.1647498-4-tim@feathertop.org>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231113120705.1647498-1-tim@feathertop.org>
 References: <20231113120705.1647498-1-tim@feathertop.org>
@@ -97,30 +99,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add serial aliases for uart nodes so that serial devices are created
+Rockchip RV1126 has a special case grf offset/mask for i2c2
 
 Signed-off-by: Tim Lunn <tim@feathertop.org>
 ---
 
- arch/arm/boot/dts/rockchip/rv1126.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/i2c/busses/i2c-rk3x.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rockchip/rv1126.dtsi b/arch/arm/boot/dts/rockchip/rv1126.dtsi
-index 9ccd1bad6229..6c5c928f06c7 100644
---- a/arch/arm/boot/dts/rockchip/rv1126.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rv1126.dtsi
-@@ -21,6 +21,11 @@ / {
+diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
+index a044ca0c35a1..83b7bf7b48a7 100644
+--- a/drivers/i2c/busses/i2c-rk3x.c
++++ b/drivers/i2c/busses/i2c-rk3x.c
+@@ -1288,8 +1288,12 @@ static int rk3x_i2c_probe(struct platform_device *pdev)
+ 			return -EINVAL;
+ 		}
  
- 	aliases {
- 		i2c0 = &i2c0;
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
- 	};
+-		/* 27+i: write mask, 11+i: value */
+-		value = BIT(27 + bus_nr) | BIT(11 + bus_nr);
++		if (i2c->soc_data == &rv1126_soc_data && bus_nr == 2)
++			/* rv1126 i2c2 set pmugrf offset-0x118, bit-4 */
++			value = BIT(20) | BIT(4);
++		else
++			/* 27+i: write mask, 11+i: value */
++			value = BIT(27 + bus_nr) | BIT(11 + bus_nr);
  
- 	cpus {
+ 		ret = regmap_write(grf, i2c->soc_data->grf_offset, value);
+ 		if (ret != 0) {
 -- 
 2.40.1
 
