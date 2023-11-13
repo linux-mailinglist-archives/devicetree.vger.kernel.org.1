@@ -1,111 +1,129 @@
-Return-Path: <devicetree+bounces-15469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A4C7EA4CB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1497EA4CD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:31:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 934A01F22699
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:31:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E4C01F226D7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA75C208BB;
-	Mon, 13 Nov 2023 20:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D5B1EB4E;
+	Mon, 13 Nov 2023 20:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PzgHaruH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GQ56aqx3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F43250F7;
-	Mon, 13 Nov 2023 20:31:03 +0000 (UTC)
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E246D10CE;
-	Mon, 13 Nov 2023 12:31:01 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5099184f8a3so6458961e87.2;
-        Mon, 13 Nov 2023 12:31:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699907460; x=1700512260; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5AOFzE6fszMevBs2fySjWtp2Ne0ycBPPv7xKvrhZJz0=;
-        b=PzgHaruHHrqb/qyvkGUB/safa9LkRSwWqL3gGIEUNWTKSU3DMxgD+GxxLsaSNZMWyD
-         FFe+iRYaIyN2eW8bN5Hxbowz3oofF/usolRBzWCvUQ/xfOWrAq35YjFS5Tu3e8HkOpvy
-         787aot84go160QY1INpYVAU7ArdXK72bglQgT6Tm0Z+E9dC9+GmFLgO4OXOu3F55BIZe
-         C9Zs0wTn/AkUjB5+4s3pNx0hRx5Qbd19an+9xo1qPah8QIbV5FSgn9l2IUmVKl2WbS5J
-         bjNV/8uwrj0mTrDqGnEbJPmUmhk+wFad9Fkm8kI2D0hAdK5+Z0Ya/zBXc+jUx0TQWRAA
-         bfpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699907460; x=1700512260;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5AOFzE6fszMevBs2fySjWtp2Ne0ycBPPv7xKvrhZJz0=;
-        b=Bw0njxfl8tuxEUUW952Hcs3HBfM666gk1kdJr3sXRAdfzeOOC3/Mue57FyftytoaJL
-         GF16gnODO9A+7FbSCSpOKI6M9wZ7iK8MymXMmEGr5UN7pBmWuuixa6ngyrf0iEHol6ob
-         2m/GjGgwu0u2ivIyQijjX8trPBHDHWhY2g4kVdTtBK0JJirGxD+TWj/tBzTJYBTzucb6
-         L/A3trPcPonjTxY4TlILBoT51OjIQymHOlvQ/smDAtXqSvKIwbdctCZ8M+xuf/9Xz4tc
-         mth5jqdiNXddMNRocMb+wXbU8BNoSeBSIKvgz+lPy9pj87W97xcIffglOPQcWA2VvFtz
-         Ik5g==
-X-Gm-Message-State: AOJu0Yw8+Izc96EAhRSybPmHjAGU2su/5Nj/a5xyF2ZkViZMHo7RkLi3
-	iBgRhJFZe3RB/5sQB5aaFyrPCzPX4U+vlAv8BHw=
-X-Google-Smtp-Source: AGHT+IFu91WYH5JBbJGD61cP7aUsh8PoxLyC/vJcKrEnLPV01ymoWaakzYPXo92/fESYRJXnwpfasQWuF27LOuqEgmU=
-X-Received: by 2002:ac2:5507:0:b0:509:1033:c53e with SMTP id
- j7-20020ac25507000000b005091033c53emr5139326lfk.62.1699907459878; Mon, 13 Nov
- 2023 12:30:59 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD37250EB;
+	Mon, 13 Nov 2023 20:31:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FB1BC433C9;
+	Mon, 13 Nov 2023 20:31:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699907502;
+	bh=fIARVbAefPJU30DddQ1rgV4vuTrk0KJXRxsHjap3SPc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GQ56aqx3L5+oc843PafhWwRe9LSIfrJkXlAZyn4pAKiJk8nkwDPbGz7xGB0/RqgWI
+	 FGnnkvOTBVW0stF6Nays6N4CAqat8dWY/RvWnZRKtuHwrd1/if8dxbfXan9s+scbhx
+	 3FSzORu6SL7Fv6xWwOwD3YlRtwwwa77FFsDguQXBAHsoL4WQu7+bzm02EdsUqVB8xq
+	 PNVfylEgf0H7ENR9w8wAac0hmyHZQQhFXA6qjjWxrYwHr93RSD28zgfy4rL0Nln8/Q
+	 z2ZfB3DiidattULbCqbo64l+lt/iPQeeAa9+UuqTlBSu4oM8HdDiDtdaAD/10xIWDW
+	 Apv81Ne1eoPMQ==
+Date: Mon, 13 Nov 2023 20:31:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Piyush Mehta <piyush.mehta@amd.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: usb: microchip,usb5744: Add second
+ supply
+Message-ID: <20231113-extruding-regroup-8c26fe2eec63@squawk>
+References: <20231113145921.30104-1-francesco@dolcini.it>
+ <20231113145921.30104-2-francesco@dolcini.it>
+ <20231113-jargon-manliness-584f34a5cf85@squawk>
+ <ZVKCKop2zxI5FvCv@francesco-nb.int.toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231111215647.4966-1-luizluca@gmail.com> <20231111215647.4966-2-luizluca@gmail.com>
- <87433a37-ca5a-4439-b25a-1c7ad6025b41@kernel.org>
-In-Reply-To: <87433a37-ca5a-4439-b25a-1c7ad6025b41@kernel.org>
-From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date: Mon, 13 Nov 2023 17:30:48 -0300
-Message-ID: <CAJq09z7Dsq0cPyB0eJ+d5D4Mz-mNezxWCFm==L=zUYiSFVDDZg@mail.gmail.com>
-Subject: Re: [RFC net-next 1/5] dt-bindings: net: dsa: realtek: reset-gpios is
- not required
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: netdev@vger.kernel.org, linus.walleij@linaro.org, alsi@bang-olufsen.dk, 
-	andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com, 
-	olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, arinc.unal@arinc9.com, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Y1ODAo1e3RHl1YOW"
+Content-Disposition: inline
+In-Reply-To: <ZVKCKop2zxI5FvCv@francesco-nb.int.toradex.com>
+
+
+--Y1ODAo1e3RHl1YOW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> On 11/11/2023 22:51, Luiz Angelo Daros de Luca wrote:
-> > The 'reset-gpios' should not be mandatory. although they might be
-> > required for some devices if the switch reset was left asserted by a
-> > previous driver, such as the bootloader.
-> >
-> > Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> > Cc: devicetree@vger.kernel.org
-> > Acked-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
-> > Acked-by: Rob Herring <robh@kernel.org>
->
-> If this is first RFC, how did you get the Acks? If this is not v1,
-> provide changelog.
+On Mon, Nov 13, 2023 at 09:08:10PM +0100, Francesco Dolcini wrote:
+> Hello Conor,
+> thanks for the review.
+>=20
+> On Mon, Nov 13, 2023 at 07:55:20PM +0000, Conor Dooley wrote:
+> > On Mon, Nov 13, 2023 at 03:59:20PM +0100, Francesco Dolcini wrote:
+> > > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> > >=20
+> > > The USB5744 has two power supplies one for 3V3 and one for 1V2. Add t=
+he
+> > > second supply to the USB5744 DT binding.
+> > >=20
+> > > Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > ---
+> > >  .../devicetree/bindings/usb/microchip,usb5744.yaml         | 7 +++++=
++-
+> > >  1 file changed, 6 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.=
+yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> > > index ff3a1707ef57..6d4cfd943f58 100644
+> > > --- a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> > > @@ -36,7 +36,11 @@ properties:
+> > > =20
+> > >    vdd-supply:
+> > >      description:
+> > > -      VDD power supply to the hub
+> > > +      3V3 power supply to the hub
+> > > +
+> > > +  vdd2-supply:
+> > > +    description:
+> > > +      1V2 power supply to the hub
+> >=20
+> > How about v1p2-supply?
+>=20
+> The reason for vdd2 is this
 
-Sorry Krzysztof, I might not have handled it correctly. Let me try to fix t=
-hat.
+I see.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-This RFC is based on a v1/v2 series that morphed into this one.
+Cheers,
+Conor.
 
-https://lists.openwall.net/netdev/2023/10/24/348
-https://lists.openwall.net/netdev/2023/10/27/257
+--Y1ODAo1e3RHl1YOW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC (and consider --no-git-fallback argument). It might
-> happen, that command when run on an older kernel, gives you outdated
-> entries. Therefore please be sure you base your patches on recent Linux
-> kernel.
->
-> Best regards,
-> Krzysztof
->
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVKHqAAKCRB4tDGHoIJi
+0mNjAP9fUcaKxFMcv3wv7oSMVK4Tu6svAPmuTFLJRlXDXPbO5QD8DIgec0uLbdKm
+Ikp0/BZFsla62RWFEecdOwC5K+OG+wM=
+=fEzx
+-----END PGP SIGNATURE-----
+
+--Y1ODAo1e3RHl1YOW--
 
