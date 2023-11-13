@@ -1,95 +1,113 @@
-Return-Path: <devicetree+bounces-15392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7737E9E12
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:05:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0105B7E9E1F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:06:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 155F21C208BB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:05:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A66121F214CA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568D920B1C;
-	Mon, 13 Nov 2023 14:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8584F20B3B;
+	Mon, 13 Nov 2023 14:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZ5Hjnrl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kp1NHbLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA6F20B05
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:05:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CDFCC433C9;
-	Mon, 13 Nov 2023 14:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699884341;
-	bh=fpD4M1H4xdOEFU6K/qJY74VJY3p9W9YVZi0wodwrOH8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=pZ5Hjnrl3pN/k4Juvngh8mWdgeGpjMFY+wEdEupsbPmuSLoG+DRTWI80902qbg4IU
-	 ok7TAWxTYLfx3nRoXuOlfMr8Hvx6686y9CVNAjdYmEcZXz8E7vJVZPjBFXERfRQOFf
-	 UWIOOvZzqgrIhVEh6r2WFNLhkinLb+SipHsFxUtf01D/Qypc7G6lUH2pg6cM0+6W9z
-	 ZgDqQUsz86TO2W/q7v1ZbnFFaGExe8aAOqKLr1uNRG6N85JT2AO+xqn/lK/q8fHiqJ
-	 bg4opLzuDjNTXjMPfopNvZLxwj7HHWxYaXuOolePuZ9r4VZ+8iy7aBy09oX42xWhr3
-	 YCIq12WoUpRVA==
-From: Mark Brown <broonie@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- kernel@collabora.com
-In-Reply-To: <20231109184453.108676-1-sebastian.reichel@collabora.com>
-References: <20231109184453.108676-1-sebastian.reichel@collabora.com>
-Subject: Re: (subset) [PATCH v1 1/2] dt-bindings: es8328: convert to DT
- schema format
-Message-Id: <169988433843.3280890.13854028136239519600.b4-ty@kernel.org>
-Date: Mon, 13 Nov 2023 14:05:38 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF42620B2C
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:06:48 +0000 (UTC)
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 724C4D72
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:06:47 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-3b565e35fedso2624264b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:06:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699884406; x=1700489206; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oyrc6FshW+z5U6vJqacgbhem3IFjlCautuYHlaSBfRo=;
+        b=Kp1NHbLMShO28/6rld1FHRBGeFLK3VII9fHxBbUlmeGgms7ogzJZKdaL8Z68X+kvoq
+         DoCHxOsQuAqfvg5+XfB1m0HqlO0oKAd6z/bTjjZlGybQX+vcRi8z5Qxt68HhfSk12feu
+         Aiw2Ch5Q0gMSNm9M+sHkd5puGGROrGAnLhu+jwppJ7evvcs+KzCCSajXhQoe2GlFPtV7
+         OXAaN86p+IEvWsInflTdW2l/q5oFfG0JV/KzvNioBzcqPmpsC15FwmI26gLh+coUgAQU
+         4ctAl685rknz+4XG2IKWzSwq1GT6j5HXY8Kx0O+A5rneCpBEH46wKnF3FBZ/Y+ICUOjc
+         JFzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699884406; x=1700489206;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oyrc6FshW+z5U6vJqacgbhem3IFjlCautuYHlaSBfRo=;
+        b=Eu4yNNd4bTkeac3u6lrupL+lLaulEZlBhsN1g8LrZxjKfvPrScZSneqFLiFDGfQ8WU
+         3mv+aUIm9rWX+xZnp6oY2OtjV9+E3o2ADcVeVYiKdzINTceg6hodt0OhSS1tSaxz6qSi
+         rlDkzdE6ngf788UG1w7++yzB6nLAr6TwW/VYAHlN60lH9Gd4mg3vIDjBvjNj9T4bi9Fs
+         81xZIPGkGyBlTke6AYw2HjVI8igV2HF0khImKOk8kPr7VuyiajDmoz7K8Qemuf9NAO3B
+         8Qhq2DA6qAFpmeDLZtv0+0H0ynW5FvoDh+Dm37e01MoILKgo1kGQUYyIRUBpE3hlBVKk
+         G3uQ==
+X-Gm-Message-State: AOJu0YwalvDMK5ezPDJtkfNXmvoLFURO1kZcWn7uB1QrdlCLuZKxV8By
+	ux8LnBF9+IbgOcPvdHCSMoP3XUz0S9154tuDw734cg==
+X-Google-Smtp-Source: AGHT+IE4LQpkmC3gS33ZjHm+rJ8dP97RNKPJ49IFJV4V19OzOvJ1ryzjchxsRhW4RHqYW/kj+O1GDoUY74Q5mJrcJgQ=
+X-Received: by 2002:a05:6808:320b:b0:3b5:9965:2bc2 with SMTP id
+ cb11-20020a056808320b00b003b599652bc2mr9568936oib.23.1699884406725; Mon, 13
+ Nov 2023 06:06:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-0438c
+References: <20231106-topic-sm8650-upstream-tlmm-v3-0-0e179c368933@linaro.org>
+In-Reply-To: <20231106-topic-sm8650-upstream-tlmm-v3-0-0e179c368933@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Nov 2023 15:06:35 +0100
+Message-ID: <CACRpkdYB7AQZ7HeNmE5d716sWz5_MHiVtAet6P5XOC1etDKNcw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] pinctrl: qcom: Introduce Pinctrl/GPIO for SM8650
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 09 Nov 2023 19:44:43 +0100, Sebastian Reichel wrote:
-> Convert the binding to DT schema format. Note, that "IPVDD-supply"
-> got fixed to be "HPVDD-supply" during the conversion. This was
-> obviously a typo in the old binding. The old binding example, DT
-> files, chip datasheet and Linux driver use HPVDD.
-> 
-> 
+On Mon, Nov 6, 2023 at 9:32=E2=80=AFAM Neil Armstrong <neil.armstrong@linar=
+o.org> wrote:
 
-Applied to
+> The SM8650 Top Level Mode Multiplexer supports 211 GPIOs,
+> and the usual UFS Reset, SDC Clk/Cmd/Data special pins.
+>
+> An handful of pins can have their IRQ generated by the PDC
+> module, and for this support for the new wakeup_present &
+> wakeup_enable_bit is required to allow the "wakeup" event
+> to be passed to PDC and generate an interrupt or a wakeup
+> system event.
+>
+> As SM8550, it also supports the i2c_pull_bit bit to enable the
+> on-SoC load resistor for I2C busses.
+>
+> Dependencies: None
+>
+> For convenience, a regularly refreshed linux-next based git tree containi=
+ng
+> all the SM8650 related work is available at:
+> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstr=
+eam/integ
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Patches applied, unless Bjorn has some last minutes regrets,
+they are in.
 
-Thanks!
+Had to rebase the last patch manually because of Krzysztof's
+LPASS driver, check the result pls.
 
-[1/2] dt-bindings: es8328: convert to DT schema format
-      commit: c479f4989486b79cb92f0ee3b2ffcfc77fc3e443
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Yours,
+Linus Walleij
 
