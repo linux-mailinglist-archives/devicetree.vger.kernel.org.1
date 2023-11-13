@@ -1,110 +1,260 @@
-Return-Path: <devicetree+bounces-15442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850147EA301
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:42:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC737EA321
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 19:56:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D06EFB20912
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 18:42:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18D94B2096C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 18:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EEE1173E;
-	Mon, 13 Nov 2023 18:42:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF5822EEF;
+	Mon, 13 Nov 2023 18:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bPecw27Z"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NgRlkj2/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A453F2232A
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 18:42:44 +0000 (UTC)
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7CD10E2
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 10:42:43 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-28099d11c49so979752a91.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 10:42:43 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47CD1DA4D
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 18:56:15 +0000 (UTC)
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1721702
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 10:56:13 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id 5614622812f47-3b6f4d8ddccso334289b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 10:56:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699900963; x=1700505763; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=83dTJne/ZEswG1uslaCdjsttQj+Q5ottvIejwOIVJSc=;
-        b=bPecw27Zs6xvzv6osQaGb6KGJgBm6J0c/tbf+LcrDScB8seDh5LFet6SAZ9bDD935T
-         rMMSnu8mQhAA2zXd0gJoSdCTptHUImdV7THdEx/JOWkOv1JRzq+d0DforFhPXLl2ItAN
-         efqmqgT0tfoD5DwfawIdRNNqBtEPkRxjrZUa7NXpfB78eU+rrj2LLl0cp7n45DBtZhd8
-         B3gFp/XY06RNx6RsJC8cuVpXVwfvbLwtWF1H9MpLfJzlgpRv9EiuSakYOkXmPINmwWdd
-         aRHq3JKx6amBpCkcr1jnWZ1Ns1DdUtGJMqe+0dxGB2/N73IGeZNpybbVdYnw8AV7mpvX
-         xZPw==
+        d=broadcom.com; s=google; t=1699901773; x=1700506573; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LBtmRDdM2QwWZgow554SZJ2Idr42Xl1EIctNZ5wkrIg=;
+        b=NgRlkj2/e+m7FtEZ6kpRjfbZXKfTiTZrePEL2GF0zdiA0de326RkAdanvp0glsLRNT
+         jVaE6WVedtfsnMj4FJ7Stc3QlZbcWN7UdY3FIvg5vwRjis36a6l+v0/4g0fRdv71a+dP
+         fEgd0tgAD4De8Jb37gAMMqQmLDZB3Qd25c90U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699900963; x=1700505763;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=83dTJne/ZEswG1uslaCdjsttQj+Q5ottvIejwOIVJSc=;
-        b=Uey1KdVXJTJvSV8IyZ919WMFeXdz0OVvj30RacFf/8UMyNrLYiETQcTHPwGMRzCcX6
-         Phm5mjrkB0MWjxqRlOQVDsBD3QeqB41ScDkHKCJsc2WiorKx3c2dlPNGBOE5WXILy7ia
-         5+XgdnnFs+H8iSLLO4VJo257xto4eqVtAU4gf1BWN2dnfupixmEtvZfxm2SB16JB06Hd
-         lmPLAa1iuPmrVeobgpGyVTEkxBBsgn7mawNaufluFAZ+dg04S7RVnN6ZhLRcr2YLv9EB
-         Q2Lu/KF45zjFynw7vXUuxYlmdjfWCPIhSqVXMYFO+wB+dS5JSFAJ6n0xGu24RYwydKhL
-         p9+A==
-X-Gm-Message-State: AOJu0YxlMohmvO55I6kWziK6SFbcgYvmsIUWcQjPX7vK8aHG6ghQ80Lt
-	7df/Ipszqj70FI5e6Kqc7dI=
-X-Google-Smtp-Source: AGHT+IE18P4kdu8KiAkzvp8qldB/a2oCnWajmVuBXmcn01T0bSLLROJ8lYJsFZXpEsYRtekFOXxSVg==
-X-Received: by 2002:a17:90a:df0c:b0:283:2846:f67d with SMTP id gp12-20020a17090adf0c00b002832846f67dmr6645512pjb.4.1699900962973;
-        Mon, 13 Nov 2023 10:42:42 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9049:24ac:b727:fd76])
-        by smtp.gmail.com with ESMTPSA id f6-20020a17090a8e8600b0027df6ff00eesm3967423pjo.19.2023.11.13.10.42.39
+        d=1e100.net; s=20230601; t=1699901773; x=1700506573;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LBtmRDdM2QwWZgow554SZJ2Idr42Xl1EIctNZ5wkrIg=;
+        b=wC0nYdFYocKRei8PFAgJlwm5LNLljKWZ4RXCQ9+ihc28eeJO9L4GuOgJrxjfm9r77D
+         ZvApkxa4NHD1EL1/xa8qUUcwK4FEnoV3nF/mYEFHcqkqmNRx1ijHEqPsRGDbStlWlPCn
+         4k/DVmRhwLUyl1xVmEP/4ba9KfM33GFNAyZ4/MuZt/+hq5Pb+6cmIXWwp1wMLOXPNqQ3
+         +U7eESkVIxXfx12ijllGRrMq1U9phtpca8IaxyZvLuJQ5MlOMwNeeewaEDrIxxK/XBFg
+         FhQTwkqhEDN2vcCUWPWKMvjjz5MoGKAtrs/fSQ43Ltsz6Sv6heiSbYB730U0Qp3usrBU
+         5Sjg==
+X-Gm-Message-State: AOJu0Yx0xhN/rJpJjJrT9bRDyI1UZam1vy3apa0CQCJKBLExgZifNf6Y
+	ehmjsKGZ9cm4S+infLizkHj1FQ==
+X-Google-Smtp-Source: AGHT+IFS5SasBmECJ/tk7P+h1ZRJrAbM3+XK567jgpWI5zJCovVrs3bsSyr2+G3mVh0uP3aB3TaoHQ==
+X-Received: by 2002:a05:6808:1413:b0:3b2:dc66:1673 with SMTP id w19-20020a056808141300b003b2dc661673mr9286135oiv.9.1699901773160;
+        Mon, 13 Nov 2023 10:56:13 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id b187-20020a6334c4000000b0056b27af8715sm4366421pga.43.2023.11.13.10.56.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 10:42:42 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: robh+dt@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2] dt-bindings: power: fsl,scu-pd: Document imx8dl
-Date: Mon, 13 Nov 2023 15:42:30 -0300
-Message-Id: <20231113184230.14413-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Mon, 13 Nov 2023 10:56:12 -0800 (PST)
+From: Jim Quinlan <james.quinlan@broadcom.com>
+To: linux-pci@vger.kernel.org,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+	Cyril Brulebois <kibi@debian.org>,
+	Phil Elwell <phil@raspberrypi.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	james.quinlan@broadcom.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list),
+	linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE),
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v8 0/2] PCI: brcmstb: Configure appropriate HW CLKREQ# mode
+Date: Mon, 13 Nov 2023 13:56:04 -0500
+Message-Id: <20231113185607.1756-1-james.quinlan@broadcom.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="0000000000005c934f060a0d3933"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+--0000000000005c934f060a0d3933
 
-imx8dxl also contains the SCU PD block.
+V8 -- Un-advertise L1SS capability when in "no-l1ss" mode (Bjorn)
+   -- Squashed last two commits of v7 (Bjorn)
+   -- Fix DT binding description text wrapping (Bjorn)
+   -- Fix incorrect Spec reference (Bjorn)
+         s/PCIe Spec/PCIe Express Mini CEM 2.1 specification/
+   -- Text substitutions (Bjorn)
+         s/WRT/With respect to/ 
+         s/Tclron/T_CLRon/
 
-Add an entry for 'fsl,imx8dl-scu-pd'.
+v7 -- Manivannan Sadhasivam suggested (a) making the property look like a
+      network phy-mode and (b) keeping the code simple (not counting clkreq
+      signal appearances, un-advertising capabilites, etc).  This is
+      what I have done.  The property is now "brcm,clkreq-mode" and
+      the values may be one of "safe", "default", and "no-l1ss".  The
+      default setting is to employ the most capable power savings mode.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes since v1:
-- Sent as a standalone patch.
-- Collected Conor's Ack.
+v6 -- No code has been changed.
+   -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
+   -- Changed sign-off and author email address for all commits.
+      This was due to a change in Broadcom's upstreaming policy.
 
- Documentation/devicetree/bindings/power/fsl,scu-pd.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v5 -- Remove DT property "brcm,completion-timeout-us" from	 
+      "DT bindings" commit.  Although this error may be reported	 
+      as a completion timeout, its cause was traced to an	 
+      internal bus timeout which may occur even when there is	 
+      no PCIe access being processed.  We set a timeout of four	 
+      seconds only if we are operating in "L1SS CLKREQ#" mode.
+   -- Correct CEM 2.0 reference provided by HW engineer,
+      s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
+   -- Add newline to dev_info() string (Stefan)
+   -- Change variable rval to unsigned (Stefan)
+   -- s/implementaion/implementation/ (Bjorn)
+   -- s/superpowersave/powersupersave/ (Bjorn)
+   -- Slightly modify message on "PERST#" commit.
+   -- Rebase to torvalds master
 
-diff --git a/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml b/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
-index 407b7cfec783..7a0f1a400868 100644
---- a/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
-+++ b/Documentation/devicetree/bindings/power/fsl,scu-pd.yaml
-@@ -20,6 +20,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - fsl,imx8dl-scu-pd
-           - fsl,imx8qm-scu-pd
-           - fsl,imx8qxp-scu-pd
-       - const: fsl,scu-pd
+v4 -- New commit that asserts PERST# for 2711/RPi SOCs at PCIe RC
+      driver probe() time.  This is done in Raspian Linux and its
+      absence may be the cause of a failing test case.
+   -- New commit that removes stale comment.
+
+v3 -- Rewrote commit msgs and comments refering panics if L1SS
+      is enabled/disabled; the code snippet that unadvertises L1SS
+      eliminates the panic scenario. (Bjorn)
+   -- Add reference for "400ns of CLKREQ# assertion" blurb (Bjorn)
+   -- Put binding names in DT commit Subject (Bjorn)
+   -- Add a verb to a commit's subject line (Bjorn)
+   -- s/accomodat(\w+)/accommodat$1/g (Bjorn)
+   -- Rewrote commit msgs and comments refering panics if L1SS
+      is enabled/disabled; the code snippet that unadvertises L1SS
+      eliminates the panic scenario. (Bjorn)
+
+v2 -- Changed binding property 'brcm,completion-timeout-msec' to
+      'brcm,completion-timeout-us'.  (StefanW for standard suffix).
+   -- Warn when clamping timeout value, and include clamped
+      region in message. Also add min and max in YAML. (StefanW)
+   -- Qualify description of "brcm,completion-timeout-us" so that
+      it refers to PCIe transactions. (StefanW)
+   -- Remvove mention of Linux specifics in binding description. (StefanW)
+   -- s/clkreq#/CLKREQ#/g (Bjorn)
+   -- Refactor completion-timeout-us code to compare max and min to
+      value given by the property (as opposed to the computed value).
+
+v1 -- The current driver assumes the downstream devices can
+      provide CLKREQ# for ASPM.  These commits accomodate devices
+      w/ or w/o clkreq# and also handle L1SS-capable devices.
+
+   -- The Raspian Linux folks have already been using a PCIe RC
+      property "brcm,enable-l1ss".  These commits use the same
+      property, in a backward-compatible manner, and the implementaion
+      adds more detail and also automatically identifies devices w/o
+      a clkreq# signal, i.e. most devices plugged into an RPi CM4
+      IO board.
+
+Jim Quinlan (2):
+  dt-bindings: PCI: brcmstb: Add property "brcm,clkreq-mode"
+  PCI: brcmstb: Configure HW CLKREQ# mode appropriate for downstream
+    device
+
+ .../bindings/pci/brcm,stb-pcie.yaml           | 18 ++++
+ drivers/pci/controller/pcie-brcmstb.c         | 96 +++++++++++++++++--
+ 2 files changed, 104 insertions(+), 10 deletions(-)
+
+
+base-commit: 305230142ae0637213bf6e04f6d9f10bbcb74af8
 -- 
-2.34.1
+2.17.1
 
+
+--0000000000005c934f060a0d3933
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
+uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
+AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
+c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
+AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
+TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
+L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
+BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
+VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
+z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
+b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
++R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
+AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
+75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
+AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
+AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
+MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCR1Rd9uZ9weAzAvtvpYJl+j8J57253
+a0raVyYPd22G5jAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMzEx
+MTMxODU2MTNaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
+hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
+AgEwDQYJKoZIhvcNAQEBBQAEggEAVg2SylGj8HkCbhYkac48CSlAvKPS4DH/d8TNiP/fFJlqCqxr
+BNHlPLaSd5+5vfazE/VubnrbjsIaTmDnBGo8v4a9dynpOz+BupXJysbnZU/SWUKU4cth2ed+Wvmn
+RXTWeJRi40o2S4OkEzPIl95NYBHw10gH9DMKNi4v8ftFHmColekPHqUCrs2hMvrr850rn3uZR8A8
+fg32imIhq4LmcUrg2Wv0F+JieqXrKlp9eVCfTf4gvCsyaQgEhCBaKlaZQlmDXnZbwoHbXhcGXTZI
+ZzoM8fADywhBG333Y80orS9C2SeoGMVOMEyloyS7jeNmukShXNzTtQl/bBOSiJ/Npg==
+--0000000000005c934f060a0d3933--
 
