@@ -1,93 +1,113 @@
-Return-Path: <devicetree+bounces-15405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609AD7E9EC8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:32:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A60F07E9F3E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:53:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09BA5B209AC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:32:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4C6C1C20836
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9CB1CFA2;
-	Mon, 13 Nov 2023 14:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF8B21108;
+	Mon, 13 Nov 2023 14:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cQQEoaJQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989F121102
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:32:39 +0000 (UTC)
-Received: from smtp.gentoo.org (mail.gentoo.org [IPv6:2001:470:ea4a:1:5054:ff:fec7:86e4])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A64D59;
-	Mon, 13 Nov 2023 06:32:38 -0800 (PST)
-Date: Mon, 13 Nov 2023 14:32:24 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F363D20B2E
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:53:32 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6282910E5
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:53:31 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c50cf61f6dso63101331fa.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:53:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699887209; x=1700492009; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h53jKEflW3e/C/cuKnWnlAqCfzD5OxoKB9wqj+QaJ9E=;
+        b=cQQEoaJQpUIvNyXM+Zrt7QDmVvZDwUD8AFvXeaYQQ8b4HwbhKu3leLBD9ewNjEoGDu
+         Ijyd0LNohIvYFtJ4pU5tPSQOGGwHzKy6fDni5vaLKtjwSyNq/2pmfDmMnlrLOhCvJzBU
+         VYInYRckRoBNMBLOCC18Si2dDsipo+YVfz4JcaqncesHZO7piwq5599fsqTslSS5djI5
+         f4kTwpDtSXTWHm3YUo51NTWLvtN7MWNTwi9my/sxPERKvhWOYbp45zPpz2flx3Swla3i
+         Hj2RcbfJOR95hZuV58etrbURfCXB60AjU/huMfwTHORNsbt0mljHqEorCqN4FXW3P4lP
+         J8Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699887209; x=1700492009;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h53jKEflW3e/C/cuKnWnlAqCfzD5OxoKB9wqj+QaJ9E=;
+        b=ll06yRobMGABA8MZG2NjWJC/t3OZQJXSW3c1zHnquQd/sJzH8l4apu0lMBfAObZBYo
+         1Oi7Jy8WxiK1VjBf++ns3hvATXQzXsFAZyCsT+9v3oOUVxJyPeQRHkkX3Xt/djj2jvvX
+         e+9YyVUeoaYOKB6iEtYWzZB53YlQbK0FAH+RlxRyiYEPiAjS8cAnIkRm9V7XsIRpaU2r
+         m6zYEDOUHSFZsNWxQdunHxpTA5yyJuwiaIp/FHw4Yxo8zMSXbcuktgXuYzfieRMjqIYf
+         FdiVq5eiAnlLH0l6u2za1POlK0RXed4/Hve3t+18laeiwwUqztGhY908LzEk2xLF759Y
+         PxVA==
+X-Gm-Message-State: AOJu0YzLs5SLF26yfpRYjXHwGZU0lg7F22CpnoMf9yfhndoIVpPDztlm
+	w9j5QqaDE4ruTL3ZeoUwxNrBuw==
+X-Google-Smtp-Source: AGHT+IEfWdXO8U4PcYgb7/pI01WDceQuQrzLOIYLYfOMG5ddcS10/Cscv2kajtCO4iZUCZ+f2JiyYA==
+X-Received: by 2002:ac2:5def:0:b0:509:f45c:fae6 with SMTP id z15-20020ac25def000000b00509f45cfae6mr4757338lfq.10.1699887209584;
+        Mon, 13 Nov 2023 06:53:29 -0800 (PST)
+Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id x24-20020ac24898000000b0050794b05c8asm991429lfc.42.2023.11.13.06.53.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Nov 2023 06:53:28 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 3/4] riscv: dts: sophgo: add reset dt node for cv1800b
-Message-ID: <20231113143224.GA130254@ofsar>
-References: <20231113005503.2423-1-jszhang@kernel.org>
- <20231113005503.2423-4-jszhang@kernel.org>
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Gross <markgross@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: [PATCH 0/3] dt-bindings: connector: usb: provide bindings for altmodes
+Date: Mon, 13 Nov 2023 16:33:06 +0200
+Message-ID: <20231113145328.42575-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231113005503.2423-4-jszhang@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-Hi Jisheng:
+In some cases we need a way to specify USB-C AltModes that can be
+supportd on the particular USB-C connector. For example, x86 INT33FE
+driver does this by populating fwnode properties internally. For the
+Qualcomm Robotics RB5 platform (and several similar devices which use
+Qualcomm PMIC TCPM) we have to put this information to the DT.
 
-On 08:55 Mon 13 Nov     , Jisheng Zhang wrote:
-> Add the reset device tree node to cv1800b SoC.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> index df40e87ee063..4032419486be 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> @@ -54,6 +54,12 @@ soc {
->  		dma-noncoherent;
->  		ranges;
->  
-> +		rst: reset-controller@3003000 {
-> +			compatible = "sophgo,cv1800b-reset";
-> +			reg = <0x03003000 0x1000>;
-                                          ~~~~~~~
-			        it should be 0x28
+Provide the DT bindings for this kind of information and while we are at
+it, change svid property to be 16-bit unsigned integer instead of a
+simple u32.
 
-while please also note the 0x24 == SOFT_CPUAC_RSTN, does not compatible
-with the reset-simple driver, but as it's not implemented nor used in this driver,
-so we should be fine with this?
+Dmitry Baryshkov (3):
+  dt-bindings: connector: usb: add altmodes description
+  usb: typec: change altmode SVID to u16 entry
+  arm64: dts: qcom: qrb5165-rb5: use u16 for DP altmode svid
 
-> +			#reset-cells = <1>;
-> +		};
-> +
->  		uart0: serial@4140000 {
->  			compatible = "snps,dw-apb-uart";
->  			reg = <0x04140000 0x100>;
-> -- 
-> 2.42.0
-> 
+ .../bindings/connector/usb-connector.yaml     | 35 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  2 +-
+ drivers/platform/x86/intel/chtwc_int33fe.c    |  2 +-
+ drivers/usb/typec/class.c                     |  5 +--
+ 4 files changed, 40 insertions(+), 4 deletions(-)
 
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+2.42.0
+
 
