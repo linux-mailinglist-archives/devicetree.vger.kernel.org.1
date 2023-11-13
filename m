@@ -1,226 +1,217 @@
-Return-Path: <devicetree+bounces-15367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E0A27E9D06
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:20:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F1F7E9D24
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B9011F20F7B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:20:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2ACAB209FB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3404E1F947;
-	Mon, 13 Nov 2023 13:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93AAF20314;
+	Mon, 13 Nov 2023 13:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dX8IAVIi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Iio+o1Zl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9735B1CA9F;
-	Mon, 13 Nov 2023 13:20:21 +0000 (UTC)
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56CED6F;
-	Mon, 13 Nov 2023 05:20:19 -0800 (PST)
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6ce31c4a653so2672521a34.3;
-        Mon, 13 Nov 2023 05:20:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699881619; x=1700486419; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r2oQtEPIutglTe0zePH4EdTxwpuD5Zb7G2ePiU4NwmQ=;
-        b=dX8IAVIipejWr13GMB0Tf4XdlVCWCfTvV/dzXTTKduEkMBgGyCQaR216iLiyj2KGXX
-         WrDCi4Zluc89Plnt5U9wA96kCDzoN6JWtblFG89f5n3zyrVV3LE0WAOASRQUjBOb1nhH
-         aLEAchxgMn4jv/1OvhHPHsTN+xzoZo5YSGVKVcOllOVhwkzuujo750UthOkM2Lm6cP81
-         3DIyfr7T2nj0O/uOlKEwr7RIBE8kJS8CD7Rw4ENLzAuFDk8Z/Wvy6KXYf/FCDW3PWN97
-         Za8nSyZHoi5vN/GhbLvRxYAhySt+xq8dXg7IEWC28o2KTW0JGainnRj5TgOJsAlwlH+j
-         UaDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699881619; x=1700486419;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r2oQtEPIutglTe0zePH4EdTxwpuD5Zb7G2ePiU4NwmQ=;
-        b=rlX/8XNfxCFWzAYWHZOZ5Ikr8tIP0vE9xOO0WoGDWREICt7ZeCpwyEYhw/ha/O4/h9
-         SeRntU6A6sZwxiy4+gwDNgiMDVIYaaGD3d9mpMSoGggf2uKuJCRqacZ67i5pIrYSLdHj
-         zcBEHL4MbgfQ+pSIpFHgh7rjyD8gUHULzXkOCNk+W73zjF1Vq8ndbLQ+GJcZPNUv69u0
-         H3/bj27W1UWJGYBgNsmVIHVtXSyWSkYcr1MOFeUZUn9qXyC0vzHd2JwAJLlYGw0Ku4Wm
-         DMm7YHySEm3EojtZmt0Ybnh3a4hvqVZ6bU3pJG5imAbtBTnDQcUGqtGibRQ1DaHVaXpn
-         GGvw==
-X-Gm-Message-State: AOJu0Yy0nKdAA4QbV/pquDIcfZIfwBj3eRWptKR/4FOSs4Gii3RQAoJ4
-	0UDs9QuxWMLHqt1HDxC1Jss=
-X-Google-Smtp-Source: AGHT+IGdyfd3Iw8wc2oNjooMchUT5EXKOY6OdN9KO1iBklie7kMMadIh4BY1epZEyrW1KogBEF8e+w==
-X-Received: by 2002:a9d:7752:0:b0:6d6:4cf3:d908 with SMTP id t18-20020a9d7752000000b006d64cf3d908mr7631954otl.33.1699881619198;
-        Mon, 13 Nov 2023 05:20:19 -0800 (PST)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id v7-20020a9d69c7000000b006d646763942sm799989oto.23.2023.11.13.05.20.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 05:20:18 -0800 (PST)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com,
-	conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	richardcochran@gmail.com,
-	robh+dt@kernel.org,
-	sboyd@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7218B20309
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 13:29:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06FDAC433C7;
+	Mon, 13 Nov 2023 13:29:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699882144;
+	bh=+2mkh4yIyUeEGCrAJG33DcCfBGAjXe3Cgtcf89a4hF0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Iio+o1ZlrCPEstCtxQLdSWIMmnogrnZwngRPYu01bBu9EjwpelZFO1453Mt3gw1mA
+	 /nV8HrQuvpJaUUuOBT1DtzwVtse+JJvk47VAd0OOHrbD6JPPbbPSXvJqzr27x/Knfz
+	 V1Wtg75PZKKRDSa/2tuyO8QAX8eov97/d9k+kMq8B1w7jWplHPX1ccNfQcqYbG3s2a
+	 COPSGqNdMu/c73cu258LvdttiWiapZknT5p3yjBTtekCi7soPtwWZ8r+4/BNqhAg6Q
+	 WF5vMq3Nw3IHH8UQiU0uEYsMrus5eE42JwUJLgnvzTs73PU0CL3TbtshGoto1FW17v
+	 UT077SY6SAVTg==
+Date: Mon, 13 Nov 2023 13:29:01 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH 5/5] riscv: dts: add clock generator for Sophgo SG2042 SoC
-Date: Mon, 13 Nov 2023 21:20:11 +0800
-Message-Id: <25fcbab4c04bcbbdc4577dc58822540829f91dc9.1699879741.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1699879741.git.unicorn_wang@outlook.com>
-References: <cover.1699879741.git.unicorn_wang@outlook.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH 1/2] riscv: dts: cv1800b: add pinctrl node for cv1800b
+Message-ID: <20231113-mama-underarm-a8bbf0c2a1f1@squawk>
+References: <20231113005702.2467-1-jszhang@kernel.org>
+ <20231113005702.2467-2-jszhang@kernel.org>
+ <58a99001-8260-4970-9fc7-25fe81e557a5@sifive.com>
+ <ZVIejw2O6on8QMYy@xhacker>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7Zoqzoerm7+6YMc4"
+Content-Disposition: inline
+In-Reply-To: <ZVIejw2O6on8QMYy@xhacker>
 
-From: Chen Wang <unicorn_wang@outlook.com>
 
-Add clock generator node to device tree for SG2042, and enable clock for
-uart0.
+--7Zoqzoerm7+6YMc4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi | 76 ++++++++++++++++++++
- arch/riscv/boot/dts/sophgo/sg2042.dtsi       | 10 +++
- 2 files changed, 86 insertions(+)
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi
+On Mon, Nov 13, 2023 at 09:03:11PM +0800, Jisheng Zhang wrote:
+> On Sun, Nov 12, 2023 at 08:51:20PM -0500, Samuel Holland wrote:
+> > On 2023-11-12 6:57 PM, Jisheng Zhang wrote:
+> > > Add the reset device tree node to cv1800b SoC reusing the
+> >           ^^^^^
+> >           I assume you mean pinctrl here?
+>=20
+> oops copy and paste the commit msg ;) thanks
+> >=20
+> > > pinctrl-single driver.
+> > >=20
+> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > > ---
+> > >  arch/riscv/boot/dts/sophgo/cv-pinctrl.h | 19 +++++++++++++++++++
+> > >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 10 ++++++++++
+> > >  2 files changed, 29 insertions(+)
+> > >  create mode 100644 arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+> > >=20
+> > > diff --git a/arch/riscv/boot/dts/sophgo/cv-pinctrl.h b/arch/riscv/boo=
+t/dts/sophgo/cv-pinctrl.h
+> > > new file mode 100644
+> > > index 000000000000..ed78b6fb3142
+> > > --- /dev/null
+> > > +++ b/arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+> >=20
+> > A couple of questions: Should this go in include/dt-bindings? And is it=
+ worth
+>=20
+> When I cooked this series two weeks ago, I did put it in dt-binding, but
+> then I found commit fe49f2d776f799 ("arm64: dts: ti: Use local header for
+> pinctrl register values"), "These definitions were previously put in the
+> bindings header to avoid code duplication and to provide some context
+> meaning (name), but they do not fit the purpose of bindings." which is
+> suggested and acked by Krzysztof, so I just want to follow the style
+> here.
+>=20
+>=20
+> > including macros for the actual function mappings, like in the vendor s=
+ource[1]?
+>=20
+> Do you want something as the following?
+>=20
+> #define UART0_TX	0
+> #define CAM_MCLK1	1
+> ...
+>=20
+> #define REG_UART0_TX	0x24
+> ...
+>=20
+> pinctrl-single,pins =3D <REG_UART0_TX UART0_TX>;
+>=20
+> Other pinctl-single users just uses the register value directly, I have
+> no preference. But I'd like to get suggestions from DT and pinctl-single
+> maintainers. Hi Rob, Krzysztof, Conor, Tony, what's your opinion?
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi b/arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi
-new file mode 100644
-index 000000000000..66d2723fab35
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
-+ */
-+
-+/ {
-+	cgi: oscillator {
-+		compatible = "fixed-clock";
-+		clock-frequency = <25000000>;
-+		clock-output-names = "cgi";
-+		#clock-cells = <0>;
-+	};
-+
-+	clkgen: clock-controller {
-+		compatible = "sophgo,sg2042-clkgen";
-+		#clock-cells = <1>;
-+		system-ctrl = <&sys_ctrl>;
-+		clocks = <&cgi>;
-+		assigned-clocks = \
-+			<&clkgen DIV_CLK_FPLL_RP_CPU_NORMAL_1>,
-+			<&clkgen DIV_CLK_FPLL_50M_A53>,
-+			<&clkgen DIV_CLK_FPLL_TOP_RP_CMN_DIV2>,
-+			<&clkgen DIV_CLK_FPLL_UART_500M>,
-+			<&clkgen DIV_CLK_FPLL_AHB_LPC>,
-+			<&clkgen DIV_CLK_FPLL_EFUSE>,
-+			<&clkgen DIV_CLK_FPLL_TX_ETH0>,
-+			<&clkgen DIV_CLK_FPLL_PTP_REF_I_ETH0>,
-+			<&clkgen DIV_CLK_FPLL_REF_ETH0>,
-+			<&clkgen DIV_CLK_FPLL_EMMC>,
-+			<&clkgen DIV_CLK_FPLL_SD>,
-+			<&clkgen DIV_CLK_FPLL_TOP_AXI0>,
-+			<&clkgen DIV_CLK_FPLL_TOP_AXI_HSPERI>,
-+			<&clkgen DIV_CLK_FPLL_AXI_DDR_1>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER1>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER2>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER3>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER4>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER5>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER6>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER7>,
-+			<&clkgen DIV_CLK_FPLL_DIV_TIMER8>,
-+			<&clkgen DIV_CLK_FPLL_100K_EMMC>,
-+			<&clkgen DIV_CLK_FPLL_100K_SD>,
-+			<&clkgen DIV_CLK_FPLL_GPIO_DB>,
-+			<&clkgen DIV_CLK_MPLL_RP_CPU_NORMAL_0>,
-+			<&clkgen DIV_CLK_MPLL_AXI_DDR_0>;
-+		assigned-clock-rates = \
-+			<2000000000>,
-+			<50000000>,
-+			<1000000000>,
-+			<500000000>,
-+			<200000000>,
-+			<25000000>,
-+			<125000000>,
-+			<50000000>,
-+			<25000000>,
-+			<100000000>,
-+			<100000000>,
-+			<100000000>,
-+			<250000000>,
-+			<1000000000>,
-+			<50000000>,
-+			<50000000>,
-+			<50000000>,
-+			<50000000>,
-+			<50000000>,
-+			<50000000>,
-+			<50000000>,
-+			<50000000>,
-+			<100000>,
-+			<100000>,
-+			<100000>,
-+			<2000000000>,
-+			<1000000000>;
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 93256540d078..de79c0cdb4c1 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -5,8 +5,10 @@
- 
- /dts-v1/;
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/sophgo-sg2042-clk.h>
- 
- #include "sg2042-cpus.dtsi"
-+#include "sg2042-clock.dtsi"
- 
- / {
- 	compatible = "sophgo,sg2042";
-@@ -311,12 +313,20 @@ intc: interrupt-controller@7090000000 {
- 			riscv,ndev = <224>;
- 		};
- 
-+		sys_ctrl: syscon@7030010000 {
-+			compatible = "sophgo,sg2042-syscon", "syscon";
-+			reg = <0x70 0x30010000 0x0 0x8000>;
-+		};
-+
- 		uart0: serial@7040000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x00000070 0x40000000 0x00000000 0x00001000>;
- 			interrupt-parent = <&intc>;
- 			interrupts = <112 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <500000000>;
-+			clocks = <&clkgen GATE_CLK_UART_500M>,
-+				 <&clkgen GATE_CLK_APB_UART>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
--- 
-2.25.1
+Basically, if the definitions map directly to registers and are just
+used to make writing your devicetree easier then they do not belong
+in a binding. This differs from clock or reset indices, where we
+essentially make up a set of indices that may or may not correlate to
+offsets in the hardware as using the register values without any sort of
+abstraction is not defining an ABI.
 
+Cheers,
+Conor.
+>=20
+> >=20
+> > [1]:
+> > https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/linux_5.10/=
+drivers/pinctrl/cvitek/cv180x_pinlist_swconfig.h
+> >=20
+> > > @@ -0,0 +1,19 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > +/*
+> > > + * This header provides constants for pinctrl bindings for Sophgo CV=
+* SoC.
+> > > + *
+> > > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> > > + */
+> > > +#ifndef _DTS_RISCV_SOPHGO_CV_PINCTRL_H
+> > > +#define _DTS_RISCV_SOPHGO_CV_PINCTRL_H
+> > > +
+> > > +#define MUX_M0		0
+> > > +#define MUX_M1		1
+> > > +#define MUX_M2		2
+> > > +#define MUX_M3		3
+> > > +#define MUX_M4		4
+> > > +#define MUX_M5		5
+> > > +#define MUX_M6		6
+> > > +#define MUX_M7		7
+> > > +
+> > > +#endif
+> > > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boo=
+t/dts/sophgo/cv1800b.dtsi
+> > > index e04df04a91c0..7a44d8e8672b 100644
+> > > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > > @@ -6,6 +6,8 @@
+> > >  #include <dt-bindings/interrupt-controller/irq.h>
+> > >  #include <dt-bindings/reset/sophgo,cv1800b-reset.h>
+> > > =20
+> > > +#include "cv-pinctrl.h"
+> > > +
+> > >  / {
+> > >  	compatible =3D "sophgo,cv1800b";
+> > >  	#address-cells =3D <1>;
+> > > @@ -55,6 +57,14 @@ soc {
+> > >  		dma-noncoherent;
+> > >  		ranges;
+> > > =20
+> > > +		pinctrl0: pinctrl@3001000 {
+> > > +			compatible =3D "pinctrl-single";
+> > > +			reg =3D <0x3001000 0x130>;
+> > > +			#pinctrl-cells =3D <1>;
+> > > +			pinctrl-single,register-width =3D <32>;
+> > > +			pinctrl-single,function-mask =3D <0x00000007>;
+> > > +		};
+> >=20
+> > From the vendor driver[2], it looks like this peripheral block only han=
+dles
+> > pinmuxing, so indeed this looks like a good use of pinctrl-single.
+>=20
+> This is deffinitely pinctrl-single style pinmux controller ;)
+>=20
+> >=20
+> > [2]:
+> > https://github.com/milkv-duo/duo-buildroot-sdk/blob/develop/linux_5.10/=
+drivers/pinctrl/cvitek/pinctrl-cv180x.h
+> >=20
+> > > +
+> > >  		rst: reset-controller@3003000 {
+> > >  			compatible =3D "sophgo,cv1800b-reset";
+> > >  			reg =3D <0x03003000 0x1000>;
+> >=20
+
+--7Zoqzoerm7+6YMc4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVIkmgAKCRB4tDGHoIJi
+0uRlAP9Px887Odlbyj2PwKsTBLE9E6OJ5moG9T721MhExHWzvgEA4FhpvDOu9zKu
+fByJynWCnhTHWUzi0litF1aow7IBLwY=
+=G+To
+-----END PGP SIGNATURE-----
+
+--7Zoqzoerm7+6YMc4--
 
