@@ -1,154 +1,68 @@
-Return-Path: <devicetree+bounces-15408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E945F7E9F19
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:46:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209147E9F67
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 15:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CE96B20955
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:46:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4C801F21770
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CD320B3B;
-	Mon, 13 Nov 2023 14:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZpD9H236"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAF62111B;
+	Mon, 13 Nov 2023 14:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2111F612
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:46:49 +0000 (UTC)
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA6710E5
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:46:47 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40a48775c58so24371795e9.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 06:46:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699886806; x=1700491606; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eH/cbv+HTmjd9T6Og+nrY0oFWB621hXpBo6QeBm/lDg=;
-        b=ZpD9H2366KcA0db6Mu4/g0+zwNYDKLjKHr939p5a3t6OPxGoqU5xpCupux0V4GaZG1
-         umko9mVdDObX/FlgIBHZpTGRzSDSSupiQk7Htje2gkF7n4puU1l/0qGECVueI1OVACYw
-         bV4aoVXqswCaW51kd/ZKpkiPfsiKgQnNE461y20xdgnJJx6MUJ6MSC6xmGKCidEIL0W/
-         rg2JJl8S+NOQ1dnBfyH5h3+TuhEzYmpPM+iSshHJLQin61qwt9TiovfCXkt6KSu/e9T8
-         qDhPTAhA3xPmsGrClcDH4QO2LTX4voO6iKMpVn5n1vDULvkBk4+PIYOXQGMnjvYBx+XC
-         dCDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699886806; x=1700491606;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=eH/cbv+HTmjd9T6Og+nrY0oFWB621hXpBo6QeBm/lDg=;
-        b=dhkbtGdvvFKiAaAXNA7qIyunQ//IBrOYs5yFwaVnoz2P+AzB+FNR0S1Lj6AJbKra1d
-         x9QWIAyAM6UBL0o9qZTlXqt6BbqScPcRMDqVdy8BuhwBdc0FfVPP5Y45CWpf/IiMC8IF
-         aozLRsLO7DRwFNUnxmfdEd/NgdCPuTD2H6XZvIoUEZbrc2mBMIy/nYGJ7uptovV6EBdp
-         +veNf8cMZOsP5+sstFqyPOV/5egeuIc1noMpK5J5pCBolPFRGx5LO5eWoaclPgcD4psq
-         CmxQrpeX1Ggh6Ab0VTuR5csoXeCys5kSb5MJEhA1qTlE+D8iaEjnZ2zbGyE3KoMCIBmy
-         kYmA==
-X-Gm-Message-State: AOJu0Yxu50khQpsR7S+E+iPgPXHNUBITcJ8djDHCaR6p59m6JEA2zfHU
-	PRaCtMV1YR1wRIjgamDZ3fC+tw==
-X-Google-Smtp-Source: AGHT+IFElif9cHOC9qe+E7tgITXO3oLS7DlfLfXUb9l/5s3/U7DnGOzL81WwyZYiUMApLuYHuAwrUw==
-X-Received: by 2002:a05:6000:178d:b0:32d:a466:48d8 with SMTP id e13-20020a056000178d00b0032da46648d8mr6597253wrg.69.1699886805912;
-        Mon, 13 Nov 2023 06:46:45 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1bb7:80e:7bf2:f66c? ([2a01:e0a:982:cbb0:1bb7:80e:7bf2:f66c])
-        by smtp.gmail.com with ESMTPSA id o16-20020adfe810000000b0032326908972sm5587673wrm.17.2023.11.13.06.46.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Nov 2023 06:46:45 -0800 (PST)
-Message-ID: <418b98b5-738b-491d-b5a2-692fd26dbf98@linaro.org>
-Date: Mon, 13 Nov 2023 15:46:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44BDE21112
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 14:59:33 +0000 (UTC)
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6679D44;
+	Mon, 13 Nov 2023 06:59:30 -0800 (PST)
+Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 3BB751F8F7;
+	Mon, 13 Nov 2023 15:59:26 +0100 (CET)
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Piyush Mehta <piyush.mehta@amd.com>,
+	Michal Simek <michal.simek@amd.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] usb: misc: onboard-hub: add support for Microchip USB5744
+Date: Mon, 13 Nov 2023 15:59:19 +0100
+Message-Id: <20231113145921.30104-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 0/3] pinctrl: qcom: Introduce Pinctrl/GPIO for SM8650
-Content-Language: en-US, fr
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20231106-topic-sm8650-upstream-tlmm-v3-0-0e179c368933@linaro.org>
- <CACRpkdYB7AQZ7HeNmE5d716sWz5_MHiVtAet6P5XOC1etDKNcw@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CACRpkdYB7AQZ7HeNmE5d716sWz5_MHiVtAet6P5XOC1etDKNcw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hi Linus,
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-On 13/11/2023 15:06, Linus Walleij wrote:
-> On Mon, Nov 6, 2023 at 9:32 AM Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> 
->> The SM8650 Top Level Mode Multiplexer supports 211 GPIOs,
->> and the usual UFS Reset, SDC Clk/Cmd/Data special pins.
->>
->> An handful of pins can have their IRQ generated by the PDC
->> module, and for this support for the new wakeup_present &
->> wakeup_enable_bit is required to allow the "wakeup" event
->> to be passed to PDC and generate an interrupt or a wakeup
->> system event.
->>
->> As SM8550, it also supports the i2c_pull_bit bit to enable the
->> on-SoC load resistor for I2C busses.
->>
->> Dependencies: None
->>
->> For convenience, a regularly refreshed linux-next based git tree containing
->> all the SM8650 related work is available at:
->> https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Patches applied, unless Bjorn has some last minutes regrets,
-> they are in.
-> 
-> Had to rebase the last patch manually because of Krzysztof's
-> LPASS driver, check the result pls.
+Add support for the Microchip USB5744 USB3.0 and USB2.0 Hub.
 
-Will check, thanks.
+Stefan Eichenberger (2):
+  dt-bindings: usb: microchip,usb5744: Add second supply
+  usb: misc: onboard-hub: add support for Microchip USB5744
 
-Neil
+ .../devicetree/bindings/usb/microchip,usb5744.yaml         | 7 ++++++-
+ drivers/usb/misc/onboard_usb_hub.c                         | 2 ++
+ drivers/usb/misc/onboard_usb_hub.h                         | 7 +++++++
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
-> 
-> Yours,
-> Linus Walleij
+-- 
+2.25.1
 
 
