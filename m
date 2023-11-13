@@ -1,108 +1,128 @@
-Return-Path: <devicetree+bounces-15357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230D97E9CD4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:15:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCCF7E9CEA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 14:18:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EC26B20A32
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:15:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 364BF280D16
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:17:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAAD01F616;
-	Mon, 13 Nov 2023 13:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA261D6A4;
+	Mon, 13 Nov 2023 13:17:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="I0sgutXH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g6tm2kPd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84E71DFD9;
-	Mon, 13 Nov 2023 13:15:08 +0000 (UTC)
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2A5D7E;
-	Mon, 13 Nov 2023 05:15:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=cVVrL3n8fF3IeKqYks3FdsyfVM1zMSPfQaRac7y9ksA=; b=I0sgutXHYSf8BfwGPf6fckoYGG
-	VBNiV/74qnn07W4JdxSvJ1qCTUP21PgEWPjiAnzRtZMTaLadr9/MDp3yuEXJ7yDPhmAwSE1YC5kaM
-	DrVuFFTfSsSsFX4gEu5VUBFuqsxw73QMmmvPwdu2BQiEU/JQBsDJymQOJUcwOGpegQ+HPfYpLC3IP
-	JegW9Z+z5zBJz4aYV2eilMmlMpyHrTd2vO+ZzLsy0l/PWK74fax4AVjfO9xzhi/IICj1JyZsS8y5y
-	SyHyKnpKqEsSo9f9NRfVQo+pmG1g0eRLYSQDf+6TNuQcB6SGaBE7h6TZF8s5NZSpZZbjnQFpvXIqJ
-	NNKhSRBg==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <martin@geanix.com>)
-	id 1r2WmG-0007Gj-7I; Mon, 13 Nov 2023 14:14:56 +0100
-Received: from [185.17.218.86] (helo=zen..)
-	by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <martin@geanix.com>)
-	id 1r2WmF-000XPJ-J6; Mon, 13 Nov 2023 14:14:55 +0100
-From: =?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@geanix.com>
-To: linux-can@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-	Wolfgang Grandegger <wg@grandegger.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Martin=20Hundeb=C3=B8ll?= <martin@geanix.com>
-Subject: [PATCH v3 3/3] dt-bindings: can: tcan4x5x: Document the wakeup-source flag
-Date: Mon, 13 Nov 2023 14:14:52 +0100
-Message-ID: <20231113131452.214961-4-martin@geanix.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231113131452.214961-1-martin@geanix.com>
-References: <20231113131452.214961-1-martin@geanix.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CE91F613;
+	Mon, 13 Nov 2023 13:17:55 +0000 (UTC)
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD4FD6D;
+	Mon, 13 Nov 2023 05:17:52 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-3b2ea7cca04so2722162b6e.2;
+        Mon, 13 Nov 2023 05:17:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699881472; x=1700486272; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sMYVHHaJeCjmpAavU23RMpRyLk0TWskkcBNgC6viZA4=;
+        b=g6tm2kPdHEfk79n/oIuAzWgzZcAfeG2dUseu0MiZKS0OB0G6AGYqX4bL+Nf+SGhEqn
+         GoNFNjqeLfewtQIA5gc2nv/85wqRhW29DG+mfY/5KSYSX7Bdil4gjabIpISwbcDc9gvH
+         rpbT5b3OAQSKvKL/s3sQ2d31wCqs3gditoTu6KtELLWTjzpoSfHSWe5Zc7ANF3nOMUFz
+         gE0opy5GD24g1j//raiCy8qtuoS/rD7R0wOhrh+T4YdYdNQzmqaqotfs8p5V7qMs3uVR
+         sIa8AefuIb22YnMydb/KJLGUupc9zMXzgqXh4LXaURZL4nS48e9WfF4JWvcGVLod+1/Z
+         r7jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699881472; x=1700486272;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sMYVHHaJeCjmpAavU23RMpRyLk0TWskkcBNgC6viZA4=;
+        b=rf9EnKDbjPVZUgMze3FKsQXqZrMCo15FOq8jzQ6IQrdVVoN6VFAGBq8sZwDLt54U7u
+         r4NZ6iAPsp7P2GClUtw1U+Dx8D5zwc46+0++2t7IyN+ctsmc9Nb5LnsQY03asVGM6G6m
+         iatgOTNvz4PmJ069fscytk9jmrLuXXkjFP1z0IYDwYN6hwS9AMvvJBL79wYAloBqHW/C
+         4wuhXmWJ2kdHhIJ7ROYF4fecGm5NZOiWcCUYZgV9V8QiA35Ne3baPYSdpErKW7LpWhPB
+         E08zZZHBu0jdxDPr0P0m3nEcKwtju6ySrUWsYm/icLZuOLZcQNcSiqO01vAsBT0nprPf
+         HM+A==
+X-Gm-Message-State: AOJu0YweEhmZdsuaoSAz0gS/cjTNm4kE6gQOlsc/G6/E9YuVHx2g8uxm
+	kVr43jAB3BYaWqAvdaeIYEY=
+X-Google-Smtp-Source: AGHT+IH2iVeNtxuhSNYqil+kIbOodUzZxXB+mr47hLTS7HskUTvpMjqRwlUgtDQCXwNRY57D0S0omA==
+X-Received: by 2002:a05:6808:b13:b0:3a8:6b4d:6b78 with SMTP id s19-20020a0568080b1300b003a86b4d6b78mr7628082oij.35.1699881471814;
+        Mon, 13 Nov 2023 05:17:51 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id g34-20020a0568080de200b003b2df32d9a9sm773426oic.19.2023.11.13.05.17.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Nov 2023 05:17:51 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	richardcochran@gmail.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH 0/5] riscv: sophgo: add clock support for sg2042
+Date: Mon, 13 Nov 2023 21:16:36 +0800
+Message-Id: <cover.1699879741.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: martin@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27092/Mon Nov 13 09:38:20 2023)
 
-Let it be known that the tcan4x5x device can now be configured to wake
-the host from suspend when a can frame is received.
+From: Chen Wang <unicorn_wang@outlook.com>
 
-Signed-off-by: Martin Hundebøll <martin@geanix.com>
----
+This series adds clock controller support for sophgo sg2042.
 
-Change in v3:
- * New patch
+Chen Wang (5):
+  dt-bindings: clock: sophgo: Add SG2042 clock definitions
+  dt-bindings: soc: sophgo: Add Sophgo syscon module
+  dt-bindings: clock: sophgo: Add SG2042 bindings
+  clk: sophgo: Add SG2042 clock generator driver
+  riscv: dts: add clock generator for Sophgo SG2042 SoC
 
- Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 3 +++
- 1 file changed, 3 insertions(+)
+ .../clock/sophgo/sophgo,sg2042-clkgen.yaml    |   48 +
+ .../soc/sophgo/sophgo,sg2042-syscon.yaml      |   38 +
+ MAINTAINERS                                   |    8 +
+ arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi  |   76 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   10 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/sophgo/Kconfig                    |    8 +
+ drivers/clk/sophgo/Makefile                   |    2 +
+ drivers/clk/sophgo/clk-sophgo-sg2042.c        | 1259 +++++++++++++++++
+ drivers/clk/sophgo/clk-sophgo-sg2042.h        |  226 +++
+ include/dt-bindings/clock/sophgo-sg2042-clk.h |  169 +++
+ 12 files changed, 1846 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-syscon.yaml
+ create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi
+ create mode 100644 drivers/clk/sophgo/Kconfig
+ create mode 100644 drivers/clk/sophgo/Makefile
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.h
+ create mode 100644 include/dt-bindings/clock/sophgo-sg2042-clk.h
 
-diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-index 170e23f0610d..20c0572c9853 100644
---- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-+++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-@@ -28,6 +28,8 @@ Optional properties:
- 			      available with tcan4552/4553.
- 	- device-wake-gpios: Wake up GPIO to wake up the TCAN device. Not
- 			     available with tcan4552/4553.
-+	- wakeup-source: Leave the chip running when suspended, and configure
-+			 the RX interrupt to wake up the device.
- 
- Example:
- tcan4x5x: tcan4x5x@0 {
-@@ -42,4 +44,5 @@ tcan4x5x: tcan4x5x@0 {
- 		device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
- 		device-wake-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
- 		reset-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
-+		wakeup-source;
- };
+
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
 -- 
-2.42.0
+2.25.1
 
 
