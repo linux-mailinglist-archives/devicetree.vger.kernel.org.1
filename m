@@ -1,108 +1,111 @@
-Return-Path: <devicetree+bounces-15468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C757EA4BD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:25:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A4C7EA4CB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 21:31:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CE64280F3D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:25:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 934A01F22699
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 20:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E74250F1;
-	Mon, 13 Nov 2023 20:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA75C208BB;
+	Mon, 13 Nov 2023 20:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="EsoPlO93"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PzgHaruH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E0624A14
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 20:25:28 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE01010DA
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:25:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1699907126;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
-	b=EsoPlO93xa9IbDgvEh3uBrUaKHGA2TgVsMGRGD6Yx6oHWeRvWdx1aV+WWOGBv88/IX6hVd
-	jV3XdIqepXP+Swe2na1/oMMYrFc0INXer/5N3Uc8mVMUhhyywzfPBMZg18P/bO1wHQLLHT
-	5mWePEi+opY3VO3GMuFts4mAiSIzw3U=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-411-Cpg4GCUCN6a9G-8lsUGkAA-1; Mon, 13 Nov 2023 15:25:25 -0500
-X-MC-Unique: Cpg4GCUCN6a9G-8lsUGkAA-1
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-66fbd02d104so62174446d6.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:25:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699907125; x=1700511925;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F43250F7;
+	Mon, 13 Nov 2023 20:31:03 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E246D10CE;
+	Mon, 13 Nov 2023 12:31:01 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5099184f8a3so6458961e87.2;
+        Mon, 13 Nov 2023 12:31:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699907460; x=1700512260; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
-        b=T7SCPb/kmQE1hcC2dY0dukePdsWvd/yknaxX4/aRkvqWBpCw1l/jrnj8TNoVe0OLzU
-         Di0PPTkL3YTpfHJZ/feMAuz/VWzTrrvQ8uy9bnV3TSqatrVIse7g+HgZXvrKUy/LBy9a
-         iV9oeV5YErg6Bpmlron4upHL9TtV6lxCfnCnyIWH4WfqMUDYPEjeQyY6AxODiIV2P3lx
-         vi27Upb2EfOYt6CmVmUagqbYSTvuDLdQYAM97Vda6xV1vCoBm22x9rrkKn228N2IQYn8
-         Cxy6lXj1ZgIB8CM7EbcUuLStI315E8igTws1L69gy/2SjStLZR2CyuXro/bZjguw21f0
-         ekaw==
-X-Gm-Message-State: AOJu0YzaX7CXiYYgr/s7yciWPR3OD7y2gvcmZ3i6mPA2gDK7VhxgZDc8
-	xEOU29CHx1YjCMKYA5eSXM97YNMeBbrZ9hrh3/i5qaY/QS5MunjRDokDN1fyA3Tk94q0pUNKh7p
-	BivoCT2y/JozJY7+iFkTHBw==
-X-Received: by 2002:a05:6214:2a9:b0:672:3f54:b94f with SMTP id m9-20020a05621402a900b006723f54b94fmr343496qvv.7.1699907125264;
-        Mon, 13 Nov 2023 12:25:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGDuwvOtoyPZ5iPmtgsnzi3ZmT4SfzU8sjdIavaCXICAagXeDLzw8KJuwOG1DaOAnqE0bqGXg==
-X-Received: by 2002:a05:6214:2a9:b0:672:3f54:b94f with SMTP id m9-20020a05621402a900b006723f54b94fmr343444qvv.7.1699907125050;
-        Mon, 13 Nov 2023 12:25:25 -0800 (PST)
-Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
-        by smtp.gmail.com with ESMTPSA id qz6-20020a05620a8c0600b00774292e636dsm2120525qkn.63.2023.11.13.12.25.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Nov 2023 12:25:24 -0800 (PST)
-Date: Mon, 13 Nov 2023 13:25:23 -0700
-From: Jerry Snitselaar <jsnitsel@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: acpica-devel@lists.linuxfoundation.org, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, 
-	Lu Baolu <baolu.lu@linux.intel.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
-	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, 
-	Christoph Hellwig <hch@lst.de>, iommu@lists.linux.dev, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Robert Moore <robert.moore@intel.com>, 
-	Rob Herring <robh+dt@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, 
-	Sven Peter <sven@svenpeter.dev>, Thierry Reding <thierry.reding@gmail.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Krishna Reddy <vdumpa@nvidia.com>, 
-	Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux-foundation.org, 
-	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
-	Zhenhua Huang <quic_zhenhuah@quicinc.com>
-Subject: Re: [PATCH RFC 16/17] iommu: Mark dev_iommu_get() with lockdep
-Message-ID: <avqfvjfck64kedxvjtsw5rc7x2dkubbpm5ytz6roog6pb7of2z@g6up6nxawsmo>
-References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
- <16-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+        bh=5AOFzE6fszMevBs2fySjWtp2Ne0ycBPPv7xKvrhZJz0=;
+        b=PzgHaruHHrqb/qyvkGUB/safa9LkRSwWqL3gGIEUNWTKSU3DMxgD+GxxLsaSNZMWyD
+         FFe+iRYaIyN2eW8bN5Hxbowz3oofF/usolRBzWCvUQ/xfOWrAq35YjFS5Tu3e8HkOpvy
+         787aot84go160QY1INpYVAU7ArdXK72bglQgT6Tm0Z+E9dC9+GmFLgO4OXOu3F55BIZe
+         C9Zs0wTn/AkUjB5+4s3pNx0hRx5Qbd19an+9xo1qPah8QIbV5FSgn9l2IUmVKl2WbS5J
+         bjNV/8uwrj0mTrDqGnEbJPmUmhk+wFad9Fkm8kI2D0hAdK5+Z0Ya/zBXc+jUx0TQWRAA
+         bfpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699907460; x=1700512260;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5AOFzE6fszMevBs2fySjWtp2Ne0ycBPPv7xKvrhZJz0=;
+        b=Bw0njxfl8tuxEUUW952Hcs3HBfM666gk1kdJr3sXRAdfzeOOC3/Mue57FyftytoaJL
+         GF16gnODO9A+7FbSCSpOKI6M9wZ7iK8MymXMmEGr5UN7pBmWuuixa6ngyrf0iEHol6ob
+         2m/GjGgwu0u2ivIyQijjX8trPBHDHWhY2g4kVdTtBK0JJirGxD+TWj/tBzTJYBTzucb6
+         L/A3trPcPonjTxY4TlILBoT51OjIQymHOlvQ/smDAtXqSvKIwbdctCZ8M+xuf/9Xz4tc
+         mth5jqdiNXddMNRocMb+wXbU8BNoSeBSIKvgz+lPy9pj87W97xcIffglOPQcWA2VvFtz
+         Ik5g==
+X-Gm-Message-State: AOJu0Yw8+Izc96EAhRSybPmHjAGU2su/5Nj/a5xyF2ZkViZMHo7RkLi3
+	iBgRhJFZe3RB/5sQB5aaFyrPCzPX4U+vlAv8BHw=
+X-Google-Smtp-Source: AGHT+IFu91WYH5JBbJGD61cP7aUsh8PoxLyC/vJcKrEnLPV01ymoWaakzYPXo92/fESYRJXnwpfasQWuF27LOuqEgmU=
+X-Received: by 2002:ac2:5507:0:b0:509:1033:c53e with SMTP id
+ j7-20020ac25507000000b005091033c53emr5139326lfk.62.1699907459878; Mon, 13 Nov
+ 2023 12:30:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <16-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
+References: <20231111215647.4966-1-luizluca@gmail.com> <20231111215647.4966-2-luizluca@gmail.com>
+ <87433a37-ca5a-4439-b25a-1c7ad6025b41@kernel.org>
+In-Reply-To: <87433a37-ca5a-4439-b25a-1c7ad6025b41@kernel.org>
+From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date: Mon, 13 Nov 2023 17:30:48 -0300
+Message-ID: <CAJq09z7Dsq0cPyB0eJ+d5D4Mz-mNezxWCFm==L=zUYiSFVDDZg@mail.gmail.com>
+Subject: Re: [RFC net-next 1/5] dt-bindings: net: dsa: realtek: reset-gpios is
+ not required
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: netdev@vger.kernel.org, linus.walleij@linaro.org, alsi@bang-olufsen.dk, 
+	andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com, 
+	olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com, 
+	robh+dt@kernel.org, krzk+dt@kernel.org, arinc.unal@arinc9.com, 
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+> On 11/11/2023 22:51, Luiz Angelo Daros de Luca wrote:
+> > The 'reset-gpios' should not be mandatory. although they might be
+> > required for some devices if the switch reset was left asserted by a
+> > previous driver, such as the bootloader.
+> >
+> > Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> > Cc: devicetree@vger.kernel.org
+> > Acked-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+>
+> If this is first RFC, how did you get the Acks? If this is not v1,
+> provide changelog.
 
+Sorry Krzysztof, I might not have handled it correctly. Let me try to fix t=
+hat.
+
+This RFC is based on a v1/v2 series that morphed into this one.
+
+https://lists.openwall.net/netdev/2023/10/24/348
+https://lists.openwall.net/netdev/2023/10/27/257
+
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC (and consider --no-git-fallback argument). It might
+> happen, that command when run on an older kernel, gives you outdated
+> entries. Therefore please be sure you base your patches on recent Linux
+> kernel.
+>
+> Best regards,
+> Krzysztof
+>
 
