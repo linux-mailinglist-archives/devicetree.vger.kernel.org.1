@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-15329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FFBF7E9BC3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:02:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F087E9BC9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 13:04:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 006E5B2080A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:02:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3080280D13
+	for <lists+devicetree@lfdr.de>; Mon, 13 Nov 2023 12:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725611D533;
-	Mon, 13 Nov 2023 12:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346521CA90;
+	Mon, 13 Nov 2023 12:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L05S2HZL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PqCgzmcQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D765B1CA8C
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:02:10 +0000 (UTC)
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17548D6F
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:02:09 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5431614d90eso6734524a12.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:02:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7CE1D53A
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 12:04:13 +0000 (UTC)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C8B2D6F
+	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:04:12 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9d242846194so642508266b.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 04:04:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699876927; x=1700481727; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1699877051; x=1700481851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LmMMjSnQ3FfpfMMoO/MXG2pkv68SfbKNHw9Dh8U3V8w=;
-        b=L05S2HZLOT3gk7Haxi0oOAc4EMVgTYxSUjuPNxbqiiLC+61k8uhjwXH+c4pv5n9QVu
-         uY0eXF5alBCmTRpVeTup/z5YE+UsZBgVzBG6lPHedhzoTH1NIqYemc/EtAXzjjn6Lnde
-         jSiEBlmxggyg1uD040rRlMKor2m+FcUbKi7apAW/xMsumY52AuVlDcmV3yn+HfITJCo4
-         pQc7iD+UC8z7uYe26aV2J6xvuU9YDZCS2sGf2/KGLbIO7NTu8S3/ZXpY3oqm3VPVWYpY
-         7UbqIWGI9UFFjIJ9CnyrO92wU/REO6EWb7XmqaBSlQKoMt31zAv7yX2BxsrnjgPukjJ1
-         UnLA==
+        bh=W1HCIwcTyh5yecxbj2P13ttqD9fa1gow9SIDq/cvT2U=;
+        b=PqCgzmcQd/bIwASBv6HhNUqU0Wdbn9ES6y3NsFLUINs7BbMg8bEjq3+5cYzglWUMRo
+         WezUjm2nmhJVJfgibaPsg0OSWMmunDikAaFTe0clikyrhy1t46/blVKs/NxD25O/vWyR
+         rOEw2Gpi/icRtdDeLKdfzfrAqyulVi3tyuSNIf18+975+ZADHOfJSwxxgpGZ9zVnqgmo
+         JqLPMKKHtqETFPa23+zICSTr757VPHi8Y6lSnbA7/FNXtdp6E+1SJlUpHCEdWITbU6xz
+         OeEShF03omV4L8QUY+s0iZSEZOgXZ+pRt9Ur45WhaZGP0Yz9pq6l2XE+y+6P7XSj3KQq
+         3urg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699876927; x=1700481727;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1699877051; x=1700481851;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LmMMjSnQ3FfpfMMoO/MXG2pkv68SfbKNHw9Dh8U3V8w=;
-        b=LLL9pZAm2l6/gtZOg/1DU9Nadcc4GU3OPwwjDN/U0pwfrOxxyN7E9OetkjPRXQodX5
-         MU3K47yMJhHO90R8mBk9E0EAW1+ZaqgDAYNgZRmI2HIWGDXsXg5fNN+RYVjAEq4N+7T2
-         V1WZTJiNKAvu5Q+agQeJLih7+V+x+sx97kGNrqLwxc4MT5cwsfb/7fKU4y7Vmr0eiANM
-         sLVGWyk3fKe6g8fTFQ0IvHU1aeM9gFh6ZmMgAaKY1oYS/myLItunWo9jyp9RavGV6NhA
-         cUASQWhKN9autTk0bF9E7OKkFvillWnFJOPceQW+8nOGpyjDOEWgFPIEoHt6fH175GTj
-         mpdQ==
-X-Gm-Message-State: AOJu0YyUAlJ1CNBcIFFUzUSSviUGOaUM0ntXyGAjob0iMeh53dBLiYIV
-	zGaOuIQdouL7SV5IBBze8WmqJA==
-X-Google-Smtp-Source: AGHT+IGn5axedppVHsMFuYtgzLI973+P0NS6t6H0TPgjlsJgb2j3/qELdRmfQuqih3bVVrFek2rC4A==
-X-Received: by 2002:a17:906:4087:b0:9e4:b664:baa8 with SMTP id u7-20020a170906408700b009e4b664baa8mr4427534ejj.7.1699876927584;
-        Mon, 13 Nov 2023 04:02:07 -0800 (PST)
+        bh=W1HCIwcTyh5yecxbj2P13ttqD9fa1gow9SIDq/cvT2U=;
+        b=fNG0uiT7CxfEYzZSWKfoYJM3BjkY4wuMAhNwFfWzWbTouPhlP7JVoimP6wKENk8w26
+         lbgzHCgVXkRQI2QJSJ/qwiGWoLVzu3IZlCAdV5NUhuyAvwmloLWS6IoBlepJO6iBVfPV
+         p8xw0Ts6/j3aa/iJL9wVhpLhzNa6c7i+pTrwijB19lc++KFpDOxmv0hntLAstCaAn3D9
+         0soIxYEjWqQdx6j3ZgcpkAVFa30bmRHnlrx+5iiojEflfQ11bDHQ+BgQIFaJeVgji1RP
+         kvsGHRz8MbcmqSoBHJ1q9Dr2bM3zlWE3lbQ/5hmlS87CSTKG21Lm5Q/9Gj1Yzv9xJ4Aw
+         2Pjg==
+X-Gm-Message-State: AOJu0YwGKYmYoiwsUfmeNJFYQPfyNJkG24knyrPLdq/GPCyeIsvprbRz
+	ioVl1CTvzK4FzdOLFamuoDv2QTvrTXoInuT7vFk=
+X-Google-Smtp-Source: AGHT+IGGcqPqE5hm8hZrM7AOVMuWL3ymFZIqPkbzT0zrb+/u8fDCtOnu1JKNBE57z11KRoV1ZEJplQ==
+X-Received: by 2002:a17:906:2515:b0:9c7:5667:5649 with SMTP id i21-20020a170906251500b009c756675649mr4484878ejb.73.1699877050769;
+        Mon, 13 Nov 2023 04:04:10 -0800 (PST)
 Received: from [192.168.201.100] (178235177064.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.64])
-        by smtp.gmail.com with ESMTPSA id gx24-20020a170906f1d800b009c503bf61c9sm3868184ejb.165.2023.11.13.04.02.06
+        by smtp.gmail.com with ESMTPSA id gx24-20020a170906f1d800b009c503bf61c9sm3868184ejb.165.2023.11.13.04.04.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Nov 2023 04:02:07 -0800 (PST)
-Message-ID: <747afd5a-f20b-4980-9962-ecdb3922227d@linaro.org>
-Date: Mon, 13 Nov 2023 13:02:06 +0100
+        Mon, 13 Nov 2023 04:04:10 -0800 (PST)
+Message-ID: <2f533b7e-c758-4213-a838-1639e79d7d39@linaro.org>
+Date: Mon, 13 Nov 2023 13:04:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Revert "arm64: dts: qcom: qrb5165-rb5:
- enable DP altmode"
+Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: correct LED panic
+ indicator
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231111094645.12520-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJpoK1N1LBY5ZjL7hb0Sqge7iF4X=rm1n9VZPx-0nOm3bkw@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231111094623.12476-1-krzysztof.kozlowski@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -115,30 +114,20 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <CAA8EJpoK1N1LBY5ZjL7hb0Sqge7iF4X=rm1n9VZPx-0nOm3bkw@mail.gmail.com>
+In-Reply-To: <20231111094623.12476-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13.11.2023 11:09, Dmitry Baryshkov wrote:
-> On Sat, 11 Nov 2023 at 11:46, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> This reverts commit b3dea914127e9065df003002ed13a2ef40d19877.
->>
->> The commit introduced unsupported and undocumented properties:
->>
->>   qrb5165-rb5.dtb: pmic@2: typec@1500:connector: 'altmodes' does not match any of the regexes: 'pinctrl-[0-9]+'
+On 11.11.2023 10:46, Krzysztof Kozlowski wrote:
+> There is no "panic-indicator" default trigger but a property with that
+> name:
 > 
-> We need this property to enable DP altmode on RB5. It has been parsed
-> by the typec subsystem since the commit 7b458a4c5d73 ("usb: typec: Add
-> typec_port_register_altmodes()"), merged in April 2021.
+>   qrb5165-rb5.dtb: leds: led-user4: Unevaluated properties are not allowed ('linux,default-trigger' was unexpected)
 > 
-> Rather than landing this commit, let me propose to send the proper
-> binding instead. If we can not agree on a compatible bindings document
-> within the sensible timeframe (e.g. 1 month), I'm fine with dropping
-> of the altmodes from qrb5156-rb5.
-Right, I'dve imagined this was taken care of.. Retain my r-b but have what
-Dmitry said in mind..
+> Fixes: b5cbd84e499a ("arm64: dts: qcom: qrb5165-rb5: Add onboard LED support")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
