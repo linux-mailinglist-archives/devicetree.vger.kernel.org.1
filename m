@@ -1,181 +1,159 @@
-Return-Path: <devicetree+bounces-15766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819B17EB98E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 23:44:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB947EB9AC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 23:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B23541C20840
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:44:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EFC52812AB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26201946F;
-	Tue, 14 Nov 2023 22:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D741026AE8;
+	Tue, 14 Nov 2023 22:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="gBPAqp1V"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="WJkJyXJE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4049326AC1
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:44:53 +0000 (UTC)
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11olkn2029.outbound.protection.outlook.com [40.92.19.29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD02593;
-	Tue, 14 Nov 2023 14:44:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S5yTw4v9cF2/wuk7YVDNITql0CocOOW6BIc2Qm449AHLk14v7XQ/6Xxn+TsBZ+0XZQrEWKjM6xeTqq0cs4lpKG8c0wVwndiwF89a11bz+qZEmSMWVN1VZTRx00nBcFoM26D5odqfujnhzPncJ8aiU2X619gqp+bYGoMye5AzegAAwMLo+hzu3Qc5CTgSyovF4tNU2cxHdwQvFHDoqhCSm7IEPgquVGEVgQq3cLoTaiP7uhlim5RguIXaZUxYllNpPPD52tFOOzSWB4NmWhxnXdyOhJ6XI9NuVWdpkhGm2Jtwg19levvhvNfHDqkutnzxXVlrcJibES+b4dUM7GLRFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gd3YlwADjs0q/lq9cwemtN8wXinAad7VFsxIJYbU+UU=;
- b=eK77xErvEVQNTGGw4/GS9SjU6rMZaMTwmsZkACzdMOLwkNwZtPDOh70tL+MheANOMHS0f/4qlAv4N/SFH/q6nFMNYBxYtLBusgfR26j206y2aREqH0jWNN1rTg30O/jm89j4BNGaigo/Jdiq63jMuDonWYu8hAXUT+KGPUVK66NkKRTp3A94i+t2rHMUtrlq3akslf7EwF/Z3w2fGz+g8RLd4kjN81LbJovMvIT+/R/loMOz0QhHzMwPOssWLNr2EPChIF96u3oPKBklWb5XZ7dhR3tsOjBSKmw0JQF3H9hQmEVr2SwldT/XtLj42XqyImdZXEhy+xSInOXPb3110A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gd3YlwADjs0q/lq9cwemtN8wXinAad7VFsxIJYbU+UU=;
- b=gBPAqp1VK5zq4lZaymVflaVRc1VHBmVki7bK5pmNSlaZU/8pWq56QjKcDkd/XX2zJ/rIgHNXSYnfV5AYj9bkcht4fDuOLrfEoLx9h9+rwiUxRvPpU8ID3izoEP+6ezRPcV8ESTIx4vBH2K+/m1Ct9QE6zW2yW2MWL+5ck08kCj6/P2mfOX/WOjlA+IRZR5covlgO4DgemEi8aXibtl/r2GeJbIfbPHxha+2wmvSecTDAvqcc4boHtcjHuYoHHqtYSNCT4A4VSFVyiyJZZcDvA1IeAMhd4/e7qZ+Kmjn07owO2hxd1CVLc+QKs4eVHcdynoxbuDBW9O5BzGDcqx/jtA==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by MW4PR20MB5424.namprd20.prod.outlook.com (2603:10b6:303:22d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Tue, 14 Nov
- 2023 22:44:49 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6977.029; Tue, 14 Nov 2023
- 22:44:49 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB3226AD1
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:55:41 +0000 (UTC)
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6A4DD0;
+	Tue, 14 Nov 2023 14:55:39 -0800 (PST)
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:7e5d:5300::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 6FC24674;
+	Tue, 14 Nov 2023 14:55:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1700002539;
+	bh=qaYU2IGMX1lsBoaugoYAT/ndPiiRSEGxP3R5Evh8Msw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WJkJyXJEZtlDmqI29zqijW0seV4wA4tzePyRVk4ckQDIrzNRIKBXGeWisF38spT6l
+	 +SQpfwWG41J1UVLsEvV8RQCDSRIhGkrcrLcQwW/Saa/GicltsB021dvTR4X3cJQgLz
+	 SRFJdfSF9y/e6mK0L4xoAhcVUErf1RcWyP8o9bwI=
+Date: Tue, 14 Nov 2023 14:55:38 -0800
+From: Zev Weiss <zev@bewilderbeest.net>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
-Date: Wed, 15 Nov 2023 06:45:28 +0800
-Message-ID:
- <IA1PR20MB4953FF1A8D222DBB4E580E06BBB2A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231114-outweigh-sandbank-6bbdd7ea3286@squawk>
-References: <20231114-outweigh-sandbank-6bbdd7ea3286@squawk>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [K/kkuikKH/smAgXDudtx0dGy2oNtA8KzSg8vJA6pRDw=]
-X-ClientProxiedBy: SJ0PR03CA0080.namprd03.prod.outlook.com
- (2603:10b6:a03:331::25) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID: <20231114224529.5599-1-inochiama@outlook.com>
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add ASRock E3C256D4I BMC
+Message-ID: <beafed87-a77d-4347-9648-24a51890eaa6@hatter.bewilderbeest.net>
+References: <20231114112722.28506-4-zev@bewilderbeest.net>
+ <20231114112722.28506-6-zev@bewilderbeest.net>
+ <cde26249-1d47-496f-b198-a0c4c02bed5c@linaro.org>
+ <e766e663-0985-4a2e-8023-26ad0228157d@hatter.bewilderbeest.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MW4PR20MB5424:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3fbb8241-54b6-4c95-7dea-08dbe5634e98
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	bbwgObdNqnoklvps465EDUMw2pN2ClQT2HLYur9KRHtNtj0I2Ul91tre2ujLPm2l8bWwhT9ptXVuc6SQj3Fl90Q+7mF2+okAOYPjX+l5alD5EC70hbO4sYRYhoNtdBJHBe8HVmWJDRv12SGnF0I600njS/dJb8NBg6bkuagOnYmYMcqaM1VtKRBNTPy0b6NpEcK8tqSYVojMpVdUA9rVuWPMR+yy/w4wmd8GkMlodbkdMegH8kQKoRwJq4Xo+g1s+gNdwPo3Z7XqClCYotDon9sE3mqj7RQMhDMyInw132BTrXh8JZMTG/5kh8T920Qi2JbYHCcl97IEZ2b0EqY2+nd08HveGRllnE6vSe6sUqiFXK27IPD4W1J2bMIK2xXopomb5AdmEv3JcbfP1PbAAsTDy8aSW+Img5d1BDG4N4QupaGC80nwPPDwW+jS6nDBoM22SFnQG7TjDdaTuLGdDUet2Zds7d/JDXijYp0CpdKO8qoAy4NMf9TdWb2Gck+H+/0UIrvM/wAQqeOJO1fCLKx/7dEjuLN5hV93wVPB2gAjZZv2abMo8qzQ0sivGyIqT34bnVZlXYjQuSjNWZ68VQ0/4iwN8AitvZSeKMAUvs5X9KbbIan1axELqq3G350T
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?UByc7474qdYP4QjTCvwCj6Y8HVfcWFyo85uj+18CIjLd+YA3ScntRp+nrGZe?=
- =?us-ascii?Q?F+OVCW1sBibSmXD0dx0FP/S/ElyWO/UWtvcDHV9wAOxyd3pkn8nPa3ocpsZW?=
- =?us-ascii?Q?AuS3+DjmAlc3Qu46VTnyLC8YdhvyMBnSO2Y9zgmuYhl2h+l2JehRzMLk5jhf?=
- =?us-ascii?Q?R8DuDff7mvmA/GMg1H4l9PXS9DI17xNbyu21G6sojlR/tCGyUtTee20vmpUD?=
- =?us-ascii?Q?sjeYkb1W9/TfbEIYYhJhb3kFRGMV+A2tDyI41CdzOmZGiscdhB/MYDS/JneS?=
- =?us-ascii?Q?DMP3qkgsquPG+KclFIicv6+TJ3sE8asPzx8fEDMQW+2TaWXGV4qCXGu7aeW3?=
- =?us-ascii?Q?WN4Ddmonfz8Huf1MQZTfWo/VWEFCGMZud4zHemtwMDU7dPkCnvV5wyg50GpP?=
- =?us-ascii?Q?zmPA9lWfDynm008/JjO5WAZm2fmMDSHzpl0DeF+7RbhcjY4gO/xGqaiKZZu8?=
- =?us-ascii?Q?XEvBhxr9ouJJpRvetCIOqpnLIdJRobNtX/9yxnPvo41mzUslkcwz1M7Ny8z0?=
- =?us-ascii?Q?0qDRksQK1rN+7H5QgDluKaVPFhD340hJ5YOnqAn0jwYEoBjbiALtv1e4EP/e?=
- =?us-ascii?Q?X/chphGeRITF/MJjujk8BZrbq2cFdUt9CUToNjzAenvmOAX7lENCJQHnqOPp?=
- =?us-ascii?Q?M5aseVzS3BqX2bv7PRze5ZI+ITxFreaMVd0TUaMBa2QeQ4hS9WGk9kyig/Xs?=
- =?us-ascii?Q?1GY0lLlufw/9XN/AyTdPdkm9Xu5O6LS7f8gUFRh+4PL8l7hv42pmnjRoOhZ/?=
- =?us-ascii?Q?AM6KKrpNeCLkLbSceoS6xfzd8pHF6MN0P1c7lVsa/EA99Nq5u7E0nEnePm6Y?=
- =?us-ascii?Q?X6VRFT3b5M62WXb2bMqHx7jtKF+9m4IsC3I08Z4U2GmkMtLYLqKtfR9Uedmc?=
- =?us-ascii?Q?l2N8nv5B8ZeHo6pVv1DqDfRV1A4K++VVFQ0If139mMROc3ci/6g9pnFCmIGA?=
- =?us-ascii?Q?uXYWxS+0N3pImGEc2tEQm0yVylNbROp+YRzVZU/9R2uThJMthAZ+kxMIBT1+?=
- =?us-ascii?Q?g6GybKlV8KhCte413KzOX08kj4GwAENeLQxu1CyrZareIwNgC09UGdhAYJky?=
- =?us-ascii?Q?sOOh0/3pd1JPWZIWcgryvM7seg/aIEQwMspNAbQtx/Z+UCgjsEQWZZpwXjLs?=
- =?us-ascii?Q?HdNWJ+Xwobr68jtbo9guDPfo9WZ5rb0d+nzMTiac3YFQDOjpP3nIkAIsReC5?=
- =?us-ascii?Q?2ay1fh9PElSAZDjioHBJUzqH89Jaqz4+1F1kHdLyFZtvc2h9VJ9jHKKOCUE?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3fbb8241-54b6-4c95-7dea-08dbe5634e98
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2023 22:44:48.9332
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR20MB5424
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <e766e663-0985-4a2e-8023-26ad0228157d@hatter.bewilderbeest.net>
 
->On Tue, Nov 14, 2023 at 09:45:33AM +0800, Inochi Amaoto wrote:
->>> On 2023/11/14 8:45, Inochi Amaoto wrote:
->>>> The timer registers of aclint don't follow the clint layout and can
->>>> be mapped on any different offset. As sg2042 uses separated timer
->>>> and mswi for its clint, it should follow the aclint spec and have
->>>> separated registers.
->>>>
->>>> The previous patch introduces a new type of T-HEAD aclint timer which
->>>> has clint timer layout. Although the timer has the clint layout, it
->>>> should follow the aclint spec and uses the separated mtime and mtimecmp
->>>> regs. So a ABI change is needed to make the timer fit the aclint spec.
->>>>
->>>> To make T-HEAD aclint timer more closer to the aclint spec, use two regs
->>>> to represent the mtime and mtimecmp.
->>>>
->>>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
->>>> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer")
->>>> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
->>>> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
->>>> ---
->>>>   .../devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml  | 5 +++--
->>>>   1 file changed, 3 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
->>>> index fbd235650e52..c3080962d902 100644
->>>> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
->>>> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
->>>> @@ -17,7 +17,7 @@ properties:
->>>>         - const: thead,c900-aclint-mtimer
->>>>
->>>>     reg:
->>>> -    maxItems: 1
->>>> +    maxItems: 2
+On Tue, Nov 14, 2023 at 02:37:10PM PST, Zev Weiss wrote:
+>On Tue, Nov 14, 2023 at 12:35:37PM PST, Krzysztof Kozlowski wrote:
+>>On 14/11/2023 12:27, Zev Weiss wrote:
+>>>Like the E3C246D4I, this is a reasonably affordable off-the-shelf
+>>>mini-ITX AST2500/Xeon motherboard with good potential as an OpenBMC
+>>>development platform.  Booting the host requires a modicum of eSPI
+>>>support that's not yet in the mainline kernel, but most other basic
+>>>BMC functionality is available with this device-tree.
 >>>
->>> The first one is for mtime and the second one is for mtimecmp, right?
->>
->> Yes, that is right.
->>
->>> Recommend to add some comment in binding file to make it clear.
+>>>Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>>>---
+>>> arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>>> .../aspeed/aspeed-bmc-asrock-e3c256d4i.dts    | 314 ++++++++++++++++++
+>>> 2 files changed, 315 insertions(+)
+>>> create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
 >>>
+>>>diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>>>index d3ac20e316d0..3398ee53f034 100644
+>>>--- a/arch/arm/boot/dts/aspeed/Makefile
+>>>+++ b/arch/arm/boot/dts/aspeed/Makefile
+>>>@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>>> 	aspeed-bmc-ampere-mtmitchell.dtb \
+>>> 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>>> 	aspeed-bmc-asrock-e3c246d4i.dtb \
+>>>+	aspeed-bmc-asrock-e3c256d4i.dtb \
+>>> 	aspeed-bmc-asrock-romed8hm3.dtb \
+>>> 	aspeed-bmc-bytedance-g220a.dtb \
+>>> 	aspeed-bmc-delta-ahe50dc.dtb \
+>>>diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+>>>new file mode 100644
+>>>index 000000000000..4c55272afd4f
+>>>--- /dev/null
+>>>+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+>>>@@ -0,0 +1,314 @@
+>>>+// SPDX-License-Identifier: GPL-2.0+
+>>>+/dts-v1/;
+>>>+
+>>>+#include "aspeed-g5.dtsi"
+>>>+#include <dt-bindings/gpio/aspeed-gpio.h>
+>>>+#include <dt-bindings/i2c/i2c.h>
+>>>+#include <dt-bindings/interrupt-controller/irq.h>
+>>>+#include <dt-bindings/watchdog/aspeed-wdt.h>
+>>>+
+>>>+/{
+>>>+	model = "ASRock E3C256D4I BMC";
+>>>+	compatible = "asrock,e3c256d4i-bmc", "aspeed,ast2500";
+>>>+
+>>>+	aliases {
+>>>+		serial4 = &uart5;
+>>>+
+>>>+		i2c20 = &i2c2mux0ch0;
+>>>+		i2c21 = &i2c2mux0ch1;
+>>>+		i2c22 = &i2c2mux0ch2;
+>>>+		i2c23 = &i2c2mux0ch3;
+>>>+	};
+>>>+
+>>>+	chosen {
+>>>+		stdout-path = &uart5;
+>>>+		bootargs = "console=tty0 console=ttyS4,115200 earlycon";
 >>
->> Thanks for your advice.
+>>Drop bootargs.
+>>
 >
->Sorry for not noticing that on v1 -
-
-Sorry for this, I have seen the v1 and improve the comment of the v2. I
-will give a feedback next time. Anyway, thank you for your advice in v1.
-
->you should indeed describe these in the binding, by using the items property.
+>Ack.
+>
+>>>+	};
+>>>+
+>>>+	memory@80000000 {
+>>>+		reg = <0x80000000 0x20000000>;
+>>>+	};
+>>>+
+>>>+	leds {
+>>>+		compatible = "gpio-leds";
+>>>+
+>>>+		heartbeat {
+>>
+>>It does not look like you tested the DTS against bindings. Please run
+>>`make dtbs_check W=1` (see
+>>Documentation/devicetree/bindings/writing-schema.rst or
+>>https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>>for instructions).
+>>
+>
+>As with my spc621d8hm3 dts patch, I did run that and got no output, so 
+>if there are other specific problems please let me know what they are.
 >
 
-Thanks, I will have a try.
+Whoops, and of course now I realize I also sent the first reply to this 
+thread instead of the spc621d8hm3 one...
+
+
+Zev
+
 
