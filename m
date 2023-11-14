@@ -1,225 +1,275 @@
-Return-Path: <devicetree+bounces-15706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2927EB65F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:27:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33C997EB6A0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:56:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 110DCB20B37
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:27:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8C10B20BA2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF2633CC9;
-	Tue, 14 Nov 2023 18:27:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62DA433CF6;
+	Tue, 14 Nov 2023 18:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H+xdIqS+"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kDzB9rVj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B716326AC0;
-	Tue, 14 Nov 2023 18:27:47 +0000 (UTC)
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E486812A;
-	Tue, 14 Nov 2023 10:27:45 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507c5249d55so9252239e87.3;
-        Tue, 14 Nov 2023 10:27:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699986464; x=1700591264; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4aLKgnxjumveCQmA33N3eaw/7AnwbWNB2KFhyb6Fh/M=;
-        b=H+xdIqS+p279Rjx95XOnywx4dme8lCa5Vnh1CUWc7KTFSydT6PTyv1qEJ6LZpF/2BN
-         VDlGTqzAo2W/5xrwHZ9Fc31izITcsUYDSxXIIGWuj8XHsBwQRjvOFNTe20JCHfhevC3L
-         a5kr7ss345IyXYavYNxund5HOe05QnziBjyzNSxgGXuVoeYdsB3sHVSdjooJv3INzDYB
-         n1bVbzU1oVJ0LphTAl1ODkxk2MUMj9Fgr94KbFvWaletVXIXsCnzjUtd+bOpRqu3rrQI
-         ZlTMNnniaeo5nIBL1dRM6cNTiW6erEAFCJpO9vMvU5lQmkMwaULeCQaKJxfsg7byuTNO
-         baLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699986464; x=1700591264;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4aLKgnxjumveCQmA33N3eaw/7AnwbWNB2KFhyb6Fh/M=;
-        b=XQXUrNFcqC3aYP99zqWCdS7Q6q+QtYYgJ/t/WmOzN3RvtBldahM6tQyIzxXulf7GVn
-         RQooy4l0y3xoE+fwdPr13EYL2Mprr75zNYhMJO8YIyPzSBgmgXdo+HAGix8Itv0tRzZ6
-         WtfjHVYA4ZEBDTyuCBk0zutiOgokwc6mHCuOgISMbMpAxbFoE/ZtQJtGDogqBxqWPtPl
-         kFP0cuLsDky8UI3XM3HlhpfQN8eQcoBvsc7N4DbMzYxoSrQbkj0nkXmmLbchc1Q5vwvN
-         adgyXwkmnD2Xf9QggHCjkdgmyT6c1z1TxgVSbjhTKm5Z8cplNHJ7ErcH+KgbCtA1A3Q7
-         HvIA==
-X-Gm-Message-State: AOJu0YyyLnHEJEFVRtxZpaIREEQQUZ2dbb8/XlOscWkdgmGZNsDFhczJ
-	pjx6D9QdVdWGn8141mYQkhnO2hOoW/qs65PuTW0=
-X-Google-Smtp-Source: AGHT+IEh9RjdZDWW7hfIGTr1M9kFP62rLBZYB/wEV27gSjM/hp1UXeKHJNEy56A3HMOhaV9tu+DkNQ==
-X-Received: by 2002:a05:6512:3f0:b0:50a:6fc5:e95c with SMTP id n16-20020a05651203f000b0050a6fc5e95cmr6168003lfq.60.1699986463736;
-        Tue, 14 Nov 2023 10:27:43 -0800 (PST)
-Received: from [10.76.84.181] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id w24-20020a50d798000000b00544f8271b5fsm5585115edi.8.2023.11.14.10.27.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 10:27:43 -0800 (PST)
-Message-ID: <80ad972c-9f98-4c57-8318-c84225e79cbe@gmail.com>
-Date: Tue, 14 Nov 2023 20:27:41 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B6833CEE
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 18:56:32 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593E7FE;
+	Tue, 14 Nov 2023 10:56:30 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AEIuPd7041011;
+	Tue, 14 Nov 2023 12:56:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1699988185;
+	bh=fRVLA3iaivCqu1EutUd8GewEfQQfLcXGTufYyBRusdE=;
+	h=From:To:CC:Subject:Date;
+	b=kDzB9rVjSTG9QfF4p7UL7gB8dzwhvH8PUQpqdnOWnProLj9VJ/MXJ+K/xYvQZfU67
+	 uMEBWOm3/cnM6hJTm/xH/hoCwpKqv3kMMangPe24cxlEQ8SARwbXGobdb1dk1uTIjw
+	 5gjXWSVYPufweBX7s/2OL5UWz57BFvUC3yiNAq64=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AEIuPMV018688
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 14 Nov 2023 12:56:25 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 14
+ Nov 2023 12:56:25 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 14 Nov 2023 12:56:25 -0600
+Received: from lelv0327.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AEIuOAK088527;
+	Tue, 14 Nov 2023 12:56:24 -0600
+From: Andrew Davis <afd@ti.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis
+	<afd@ti.com>
+Subject: [PATCH 1/4] dt-bindings: spi: Convert spi-davinci.txt to YAML
+Date: Tue, 14 Nov 2023 12:56:10 -0600
+Message-ID: <20231114185613.322570-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: ad7192: Add AD7194 support
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Tachici <alexandru.tachici@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Maksim Kiselev <bigunclemax@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- Cosmin Tanislav <demonsingur@gmail.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Marius Cristea <marius.cristea@microchip.com>,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Ibrahim Tilki <Ibrahim.Tilki@analog.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
- Ivan Mikhaylov <fr0st61te@gmail.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231105193132.47009-1-alisadariana@gmail.com>
- <20231105193132.47009-3-alisadariana@gmail.com>
- <e5c9eaaa-a8f3-4ca5-acf6-9ff714a07898@linaro.org>
- <500eec71-e2f4-4f43-8bc9-6d4914b2493c@gmail.com>
- <124c97ca-0c2c-4b92-8d8e-99d589daf2da@linaro.org>
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-In-Reply-To: <124c97ca-0c2c-4b92-8d8e-99d589daf2da@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 14.11.2023 19:39, Krzysztof Kozlowski wrote:
-> On 14/11/2023 17:02, Alisa-Dariana Roman wrote:
->> On 06.11.2023 10:56, Krzysztof Kozlowski wrote:
->>> On 05/11/2023 20:31, alisadariana@gmail.com wrote:
->>>> From: Alisa-Dariana Roman <alisa.roman@analog.com>
->>>>
->>>> Unlike the other AD719Xs, AD7194 has configurable differential
->>>> channels. The default configuration for these channels can be changed
->>>> from the devicetree.
->>>>
->>>> Also add an example for AD7194 devicetree.
->>>>
->>>> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
->>>> ---
->>>>    .../bindings/iio/adc/adi,ad7192.yaml          | 69 +++++++++++++++++++
->>>>    1 file changed, 69 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>>> index 16def2985ab4..b9a9f7b20670 100644
->>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
->>>> @@ -21,8 +21,15 @@ properties:
->>>>          - adi,ad7190
->>>>          - adi,ad7192
->>>>          - adi,ad7193
->>>> +      - adi,ad7194
->>>>          - adi,ad7195
->>>>    
->>>> +  '#address-cells':
->>>> +    const: 1
->>>> +
->>>> +  '#size-cells':
->>>> +    const: 0
->>>> +
->>>>      reg:
->>>>        maxItems: 1
->>>>    
->>>> @@ -96,6 +103,31 @@ required:
->>>>      - spi-cpol
->>>>      - spi-cpha
->>>>    
->>>> +patternProperties:
->>>> +  "^channel@([0-9a-f])$":
->>>> +    type: object
->>>> +    $ref: adc.yaml
->>>> +    unevaluatedProperties: false
->>>> +
->>>> +    properties:
->>>> +      reg:
->>>> +        description: The channel index.
->>>> +        minimum: 0
->>>> +        maximum: 7
->>>
->>> Your pattern a bit above is not correct then: [0-7]
->>>
->>>> +
->>>> +      diff-channels:
->>>> +        description: |
->>>> +          The differential channel pair for Ad7194 configurable channels. The
->>>> +          first channel is the positive input, the second channel is the
->>>> +          negative input.
->>>> +        items:
->>>> +          minimum: 1
->>>> +          maximum: 16
->>>> +
->>>> +    required:
->>>> +      - reg
->>>> +      - diff-channels
->>>> +
->>>>    allOf:
->>>>      - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>>>    
->>>> @@ -127,3 +159,40 @@ examples:
->>>>                adi,burnout-currents-enable;
->>>>            };
->>>>        };
->>>> +  - |
->>>> +    spi {
->>>> +        #address-cells = <1>;
->>>> +        #size-cells = <0>;
->>>> +
->>>> +        adc@0 {
->>>> +            #address-cells = <1>;
->>>> +            #size-cells = <0>;
->>>> +            compatible = "adi,ad7194";
->>>> +            reg = <0>;
->>>> +            spi-max-frequency = <1000000>;
->>>> +            spi-cpol;
->>>> +            spi-cpha;
->>>> +            clocks = <&ad7192_mclk>;
->>>> +            clock-names = "mclk";
->>>> +            interrupts = <25 0x2>;
->>>> +            interrupt-parent = <&gpio>;
->>>> +            dvdd-supply = <&dvdd>;
->>>> +            avdd-supply = <&avdd>;
->>>> +            vref-supply = <&vref>;
->>>> +
->>>> +            adi,refin2-pins-enable;
->>>> +            adi,rejection-60-Hz-enable;
->>>> +            adi,buffer-enable;
->>>> +            adi,burnout-currents-enable;
->>>> +
->>>> +            channel@0 {
->>>
->>> Why cannot you add this to the existing example?
->>>
->>>
->>>
->>> Best regards,
->>> Krzysztof
->>>
->> I added another example to highlight the fact that only AD7194 supports
->> configurable channels. How should I proceed?
-> 
-> Bindings did not tell that, so it seems you miss that part - allOf
-> constraining channels per variant.
-> 
-> Best regards,
-> Krzysztof
-> 
-And should I remove the AD7194 example?
+Convert spi-davinci.txt to ti,dm6441-spi.yaml.
 
-Kind regards,
-Alisa-Dariana Roman
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ .../devicetree/bindings/spi/spi-davinci.txt   | 100 ------------------
+ .../bindings/spi/ti,dm6441-spi.yaml           |  76 +++++++++++++
+ 2 files changed, 76 insertions(+), 100 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-davinci.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
+
+diff --git a/Documentation/devicetree/bindings/spi/spi-davinci.txt b/Documentation/devicetree/bindings/spi/spi-davinci.txt
+deleted file mode 100644
+index f012888656eca..0000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-davinci.txt
++++ /dev/null
+@@ -1,100 +0,0 @@
+-Davinci SPI controller device bindings
+-
+-Links on DM:
+-Keystone 2 - https://www.ti.com/lit/ug/sprugp2a/sprugp2a.pdf
+-dm644x - https://www.ti.com/lit/ug/sprue32a/sprue32a.pdf
+-OMAP-L138/da830 - http://www.ti.com/lit/ug/spruh77a/spruh77a.pdf
+-
+-Required properties:
+-- #address-cells: number of cells required to define a chip select
+-	address on the SPI bus. Should be set to 1.
+-- #size-cells: should be zero.
+-- compatible:
+-	- "ti,dm6441-spi" for SPI used similar to that on DM644x SoC family
+-	- "ti,da830-spi" for SPI used similar to that on DA8xx SoC family
+-	- "ti,keystone-spi" for SPI used similar to that on Keystone2 SoC
+-		family
+-- reg: Offset and length of SPI controller register space
+-- num-cs: Number of chip selects. This includes internal as well as
+-	GPIO chip selects.
+-- ti,davinci-spi-intr-line: interrupt line used to connect the SPI
+-	IP to the interrupt controller within the SoC. Possible values
+-	are 0 and 1. Manual says one of the two possible interrupt
+-	lines can be tied to the interrupt controller. Set this
+-	based on a specific SoC configuration.
+-- interrupts: interrupt number mapped to CPU.
+-- clocks: spi clk phandle
+-          For 66AK2G this property should be set per binding,
+-          Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
+-
+-SoC-specific Required Properties:
+-
+-The following are mandatory properties for Keystone 2 66AK2G SoCs only:
+-
+-- power-domains:	Should contain a phandle to a PM domain provider node
+-			and an args specifier containing the SPI device id
+-			value. This property is as per the binding,
+-
+-Optional:
+-- cs-gpios: gpio chip selects
+-	For example to have 3 internal CS and 2 GPIO CS, user could define
+-	cs-gpios = <0>, <0>, <0>, <&gpio1 30 0>, <&gpio1 31 0>;
+-	where first three are internal CS and last two are GPIO CS.
+-
+-Optional properties for slave devices:
+-SPI slave nodes can contain the following properties.
+-Not all SPI Peripherals from Texas Instruments support this.
+-Please check SPI peripheral documentation for a device before using these.
+-
+-- ti,spi-wdelay : delay between transmission of words
+-	(SPIFMTn.WDELAY, SPIDAT1.WDEL) must be specified in number of SPI module
+-	clock periods.
+-
+-	delay = WDELAY * SPI_module_clock_period + 2 * SPI_module_clock_period
+-
+-Below is timing diagram which shows functional meaning of
+-"ti,spi-wdelay" parameter.
+-
+-             +-+ +-+ +-+ +-+ +-+                           +-+ +-+ +-+
+-SPI_CLK      | | | | | | | | | |                           | | | | | |
+-  +----------+ +-+ +-+ +-+ +-+ +---------------------------+ +-+ +-+ +-
+-
+-SPI_SOMI/SIMO+-----------------+                           +-----------
+-  +----------+ word1           +---------------------------+word2
+-             +-----------------+                           +-----------
+-                                          WDELAY
+-                                <-------------------------->
+-
+-Example of a NOR flash slave device (n25q032) connected to DaVinci
+-SPI controller device over the SPI bus.
+-
+-spi0:spi@20bf0000 {
+-	#address-cells			= <1>;
+-	#size-cells			= <0>;
+-	compatible			= "ti,dm6446-spi";
+-	reg				= <0x20BF0000 0x1000>;
+-	num-cs				= <4>;
+-	ti,davinci-spi-intr-line	= <0>;
+-	interrupts			= <338>;
+-	clocks				= <&clkspi>;
+-
+-	flash: flash@0 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "st,m25p32";
+-		spi-max-frequency = <25000000>;
+-		reg = <0>;
+-		ti,spi-wdelay = <8>;
+-
+-		partition@0 {
+-			label = "u-boot-spl";
+-			reg = <0x0 0x80000>;
+-			read-only;
+-		};
+-
+-		partition@1 {
+-			label = "test";
+-			reg = <0x80000 0x380000>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml b/Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
+new file mode 100644
+index 0000000000000..b48e37d80daf0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/ti,dm6441-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Davinci SPI Controller
++
++description:
++  SPI controllers on TI Davinci, OMAP-L138, and Keystone2 SoCs.
++
++maintainers:
++  - Andrew Davis <afd@ti.com>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - ti,dm6441-spi # for SPI used on DM644x SoC family
++          - ti,da830-spi # for SPI used on DA8xx SoC family
++          - ti,keystone-spi # for SPI used on Keystone2 SoC family
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clock-names:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ti,davinci-spi-intr-line:
++    description:
++      Interrupt line used to connect the SPI IP to the interrupt controller
++        within the SoC. Possible values are 0 and 1. Manual says one of the
++        two possible interrupt lines can be tied to the interrupt controller.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi@20bf0000 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        compatible = "ti,dm6446-spi";
++        reg = <0x20bf0000 0x1000>;
++        interrupts = <338>;
++        clocks = <&clkspi>;
++
++        num-cs = <4>;
++        ti,davinci-spi-intr-line = <0>;
++
++        flash@0 {
++            compatible = "st,m25p32";
++            spi-max-frequency = <50000000>;
++            reg = <0>;
++            ti,spi-wdelay = <8>;
++        };
++    };
+-- 
+2.39.2
 
 
