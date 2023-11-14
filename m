@@ -1,344 +1,232 @@
-Return-Path: <devicetree+bounces-15562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA0F7EACEE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:22:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFE177EAD6A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1D46280F39
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:22:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC351C2083F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA506168A4;
-	Tue, 14 Nov 2023 09:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D8A168D9;
+	Tue, 14 Nov 2023 09:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="FDuAaiQT"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WI5fqCKO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B5516424
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 09:22:01 +0000 (UTC)
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A13131
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 01:21:59 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id 98e67ed59e1d1-282ff1a97dcso3485097a91.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 01:21:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1699953719; x=1700558519; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nK6k+bkVGaZaisByngPdLkJB/ZDdw96sS7MFrtgdMiA=;
-        b=FDuAaiQTRS8DbkbPizuRsJc09akTmQyJYRZE7RkoxVZ3pHKbsBK+JFyMgkCpK2tydq
-         k5ESLiLLoPkhA6tooQRWhA9T/2rEwLsmHpqxE56M17oSCaaKOlmovz31xdGCBOavWe5u
-         kkE8mvGFVu96MiTpoNG0AeA7jKZh98GQCKV5VsldYZX/E1+L+4OD30L371YnEEAyvvuo
-         jbVTKF2wFuL7QntI9/8VklvFt0m/9Qi4d7CsjJJ9rPbC2U8h/jtz+S7Ig1f4C3l4FvQB
-         nQcVgDTtl/AfaQkjEGnsdHjzkpvk2z0T1vzAj+q0QTm+mLysZnCoMhPJ3vBDV7YFxs85
-         6nCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699953719; x=1700558519;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nK6k+bkVGaZaisByngPdLkJB/ZDdw96sS7MFrtgdMiA=;
-        b=womRkQ/udi/qIUZJkRIBBUiP5Ch0F9n4DaHbLvp3UWc46XmGfx2vqu3oT99EOL3zAk
-         yvKzP8IkqlLSsC79YQGVTiZtgX5Sxr9RLidlu0lGwKQJbyBRLtEyP9rW0rL2B/vkl3Ih
-         qNVy4+3itUA3fu3hMJxcKVhfttKU+XCL+545cDNcvH3HTqRfMx+Yrok/KDbaCd3SSWnv
-         lHcgLoWUPFILBdJN4fO0jpsgVf8KHST6Cz3hTAu7GxPIoLhgBVMAX5GGWKexgU83UWrV
-         4TgGX1a4746tucQKht1hhfir0abkbyylMykzi46nN/iwJdlrkBH5OiXgvB9Gir4K0dM/
-         BVnQ==
-X-Gm-Message-State: AOJu0YysCtmIRaBGxvqZqV8j5TUgqqypmUKkQTrE5c4UFe/E00bmg15L
-	qRaFS8WDdgurBWeTBUo4wAgpKBPR1T+OnmxdmF0iqNbNKRHy9hv3
-X-Google-Smtp-Source: AGHT+IG/Dr8WjHgtyJcI+Cj5kMUWx5+iKsNO8jYDfT8O7O99IRCAphTedhbmGEiE3PbwhlNlj0oc1rhYGG0kfblVYXQ=
-X-Received: by 2002:a17:90b:1bc2:b0:281:5550:ce3d with SMTP id
- oa2-20020a17090b1bc200b002815550ce3dmr7074188pjb.31.1699953719056; Tue, 14
- Nov 2023 01:21:59 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D571798B;
+	Tue, 14 Nov 2023 09:53:29 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22214191;
+	Tue, 14 Nov 2023 01:53:28 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 348DE2BC;
+	Tue, 14 Nov 2023 10:52:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1699955579;
+	bh=GNHoQv0bcWc8Y22LUMF0GP8avbvT78ir75Al0FeLhrc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WI5fqCKOj3RvH11obhS8vnqlv7ht3bI7rAl7ESv0LjDPfw60fur+K+v9MIOdfMxri
+	 rvvSC99x8NP6aTTTQxfOvJUBKLUzHhPc5SPqOl+2m9bcKEBq4Z+t/JbjhoVr6Kxolm
+	 98ZYIlQMsCJG0ZJM2PG6UUtxIiFbqQDezprUl4z4=
+Date: Tue, 14 Nov 2023 11:53:31 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Hans Verkuil <hverkuil@xs4all.nl>
+Cc: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 3/5] media: platform: visconti: add V4L2 vendor
+ specific control handlers
+Message-ID: <20231114095331.GA13826@pendragon.ideasonboard.com>
+References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
+ <20231012071329.2542003-4-yuji2.ishikawa@toshiba.co.jp>
+ <6095bd3d-2580-44e2-b622-3ad31e12787f@xs4all.nl>
+ <a84ce942-e6df-414e-8d0c-e7d3ef3e62f6@xs4all.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231023172800.315343-1-apatel@ventanamicro.com>
- <20231023172800.315343-13-apatel@ventanamicro.com> <22d5d9e9.258.18b97d65ce7.Coremail.figure1802@126.com>
- <CAK9=C2WPhROWKGKmLbLyS+q2ncCNTJEHnFKcYqCGJoNK4Uz=LQ@mail.gmail.com>
- <8624cc4.5923.18baf6adca4.Coremail.figure1802@126.com> <CAK9=C2Vr6BmmdNN11rn+-7JjvERiawVKOgPhMjncrUSG8x+W2Q@mail.gmail.com>
- <6c8a531.585f.18baf9073f3.Coremail.figure1802@126.com>
-In-Reply-To: <6c8a531.585f.18baf9073f3.Coremail.figure1802@126.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Tue, 14 Nov 2023 14:51:46 +0530
-Message-ID: <CAAhSdy24FE51qt1bZx-EoYhip0rNWaXzDFNH6mftF7bTm9unYw@mail.gmail.com>
-Subject: Re: Re: Re: [PATCH v11 12/14] irqchip/riscv-aplic: Add support for MSI-mode
-To: Ben <figure1802@126.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org, 
-	=?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>, 
-	Atish Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org, 
-	Andrew Jones <ajones@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <a84ce942-e6df-414e-8d0c-e7d3ef3e62f6@xs4all.nl>
 
-On Wed, Nov 8, 2023 at 9:02=E2=80=AFPM Ben <figure1802@126.com> wrote:
->
->
-> At 2023-11-08 22:56:59, "Anup Patel" <apatel@ventanamicro.com> wrote:
-> >On Wed, Nov 8, 2023 at 8:23=E2=80=AFPM Ben <figure1802@126.com> wrote:
+On Tue, Nov 14, 2023 at 10:10:50AM +0100, Hans Verkuil wrote:
+> On 14/11/2023 10:02, Hans Verkuil wrote:
+> > On 12/10/2023 09:13, Yuji Ishikawa wrote:
+> >> Add support to Image Signal Processors of Visconti's Video Input Interface.
+> >> This patch adds vendor specific compound controls
+> >> to configure the image signal processor.
 > >>
-> >> At 2023-11-08 22:43:25, "Anup Patel" <apatel@ventanamicro.com> wrote:
-> >> >On Sat, Nov 4, 2023 at 6:30=E2=80=AFAM Ben <figure1802@126.com> wrote=
-:
-> >> >>
-> >> >> At 2023-10-24 01:27:58, "Anup Patel" <apatel@ventanamicro.com> wrot=
-e:
-> >> >> >The RISC-V advanced platform-level interrupt controller (APLIC) ha=
-s
-> >> >> >two modes of operation: 1) Direct mode and 2) MSI mode.
-> >> >> >(For more details, refer https://github.com/riscv/riscv-aia)
-> >> >> >
-> >> >> >In APLIC MSI-mode, wired interrupts are forwared as message signal=
-ed
-> >> >> >interrupts (MSIs) to CPUs via IMSIC.
-> >> >> >
-> >> >> >We extend the existing APLIC irqchip driver to support MSI-mode fo=
-r
-> >> >> >RISC-V platforms having both wired interrupts and MSIs.
-> >> >> >
-> >> >> >Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >> >> >---
-> >> >> > drivers/irqchip/Kconfig                |   6 +
-> >> >> > drivers/irqchip/Makefile               |   1 +
-> >> >> > drivers/irqchip/irq-riscv-aplic-main.c |   2 +-
-> >> >> > drivers/irqchip/irq-riscv-aplic-main.h |   8 +
-> >> >> > drivers/irqchip/irq-riscv-aplic-msi.c  | 285 ++++++++++++++++++++=
-+++++
-> >> >> > 5 files changed, 301 insertions(+), 1 deletion(-)
-> >> >> > create mode 100644 drivers/irqchip/irq-riscv-aplic-msi.c
-> >> >> >
-> >> >> >diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> >> >> >index 1996cc6f666a..7adc4dbe07ff 100644
-> >> >> >--- a/drivers/irqchip/Kconfig
-> >> >> >+++ b/drivers/irqchip/Kconfig
-> >> >> >@@ -551,6 +551,12 @@ config RISCV_APLIC
-> >> >> >       depends on RISCV
-> >> >> >       select IRQ_DOMAIN_HIERARCHY
-> >> >> >
-> >> >> >+config RISCV_APLIC_MSI
-> >> >> >+      bool
-> >> >> >+      depends on RISCV_APLIC
-> >> >> >+      select GENERIC_MSI_IRQ
-> >> >> >+      default RISCV_APLIC
-> >> >> >+
-> >> >> > config RISCV_IMSIC
-> >> >> >       bool
-> >> >> >       depends on RISCV
-> >> >> >diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> >> >> >index 7f8289790ed8..47995fdb2c60 100644
-> >> >> >--- a/drivers/irqchip/Makefile
-> >> >> >+++ b/drivers/irqchip/Makefile
-> >> >> >@@ -96,6 +96,7 @@ obj-$(CONFIG_CSKY_MPINTC)            +=3D irq-cs=
-ky-mpintc.o
-> >> >> > obj-$(CONFIG_CSKY_APB_INTC)           +=3D irq-csky-apb-intc.o
-> >> >> > obj-$(CONFIG_RISCV_INTC)              +=3D irq-riscv-intc.o
-> >> >> > obj-$(CONFIG_RISCV_APLIC)             +=3D irq-riscv-aplic-main.o=
- irq-riscv-aplic-direct.o
-> >> >> >+obj-$(CONFIG_RISCV_APLIC_MSI)         +=3D irq-riscv-aplic-msi.o
-> >> >> > obj-$(CONFIG_RISCV_IMSIC)             +=3D irq-riscv-imsic-state.=
-o irq-riscv-imsic-early.o irq-riscv-imsic-platform.o
-> >> >> > obj-$(CONFIG_SIFIVE_PLIC)             +=3D irq-sifive-plic.o
-> >> >> > obj-$(CONFIG_IMX_IRQSTEER)            +=3D irq-imx-irqsteer.o
-> >> >> >diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqc=
-hip/irq-riscv-aplic-main.c
-> >> >> >index 87450708a733..d1b342b66551 100644
-> >> >> >--- a/drivers/irqchip/irq-riscv-aplic-main.c
-> >> >> >+++ b/drivers/irqchip/irq-riscv-aplic-main.c
-> >> >> >@@ -205,7 +205,7 @@ static int aplic_probe(struct platform_device =
-*pdev)
-> >> >> >               msi_mode =3D of_property_present(to_of_node(dev->fw=
-node),
-> >> >> >                                               "msi-parent");
-> >> >> >       if (msi_mode)
-> >> >> >-              rc =3D -ENODEV;
-> >> >> >+              rc =3D aplic_msi_setup(dev, regs);
-> >> >> >       else
-> >> >> >               rc =3D aplic_direct_setup(dev, regs);
-> >> >> >       if (rc) {
-> >> >> >diff --git a/drivers/irqchip/irq-riscv-aplic-main.h b/drivers/irqc=
-hip/irq-riscv-aplic-main.h
-> >> >> >index 474a04229334..78267ec58098 100644
-> >> >> >--- a/drivers/irqchip/irq-riscv-aplic-main.h
-> >> >> >+++ b/drivers/irqchip/irq-riscv-aplic-main.h
-> >> >> >@@ -41,5 +41,13 @@ void aplic_init_hw_global(struct aplic_priv *pr=
-iv, bool msi_mode);
-> >> >> > int aplic_setup_priv(struct aplic_priv *priv, struct device *dev,
-> >> >> >                    void __iomem *regs);
-> >> >> > int aplic_direct_setup(struct device *dev, void __iomem *regs);
-> >> >> >+#ifdef CONFIG_RISCV_APLIC_MSI
-> >> >> >+int aplic_msi_setup(struct device *dev, void __iomem *regs);
-> >> >> >+#else
-> >> >> >+static inline int aplic_msi_setup(struct device *dev, void __iome=
-m *regs)
-> >> >> >+{
-> >> >> >+      return -ENODEV;
-> >> >> >+}
-> >> >> >+#endif
-> >> >> >
-> >> >> > #endif
-> >> >> >diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqch=
-ip/irq-riscv-aplic-msi.c
-> >> >> >new file mode 100644
-> >> >> >index 000000000000..086d00e0429e
-> >> >> >--- /dev/null
-> >> >> >+++ b/drivers/irqchip/irq-riscv-aplic-msi.c
-> >> >> >@@ -0,0 +1,285 @@
-> >> >> >+// SPDX-License-Identifier: GPL-2.0
-> >> >> >+/*
-> >> >> >+ * Copyright (C) 2021 Western Digital Corporation or its affiliat=
-es.
-> >> >> >+ * Copyright (C) 2022 Ventana Micro Systems Inc.
-> >> >> >+ */
-> >> >> >+
-> >> >> >+#include <linux/bitops.h>
-> >> >> >+#include <linux/cpu.h>
-> >> >> >+#include <linux/interrupt.h>
-> >> >> >+#include <linux/irqchip.h>
-> >> >> >+#include <linux/irqchip/riscv-aplic.h>
-> >> >> >+#include <linux/irqchip/riscv-imsic.h>
-> >> >> >+#include <linux/module.h>
-> >> >> >+#include <linux/msi.h>
-> >> >> >+#include <linux/of_irq.h>
-> >> >> >+#include <linux/platform_device.h>
-> >> >> >+#include <linux/printk.h>
-> >> >> >+#include <linux/smp.h>
-> >> >> >+
-> >> >> >+#include "irq-riscv-aplic-main.h"
-> >> >> >+
-> >> >> >+static void aplic_msi_irq_unmask(struct irq_data *d)
-> >> >> >+{
-> >> >> >+      aplic_irq_unmask(d);
-> >> >> >+      irq_chip_unmask_parent(d);
-> >> >> >+}
-> >> >> >+
-> >> >> >+static void aplic_msi_irq_mask(struct irq_data *d)
-> >> >> >+{
-> >> >> >+      aplic_irq_mask(d);
-> >> >> >+      irq_chip_mask_parent(d);
-> >> >> >+}
-> >> >> >+
-> >> >> >+static void aplic_msi_irq_eoi(struct irq_data *d)
-> >> >> >+{
-> >> >> >+      struct aplic_priv *priv =3D irq_data_get_irq_chip_data(d);
-> >> >> >+      u32 reg_off, reg_mask;
-> >> >> >+
-> >> >> >+      /*
-> >> >> >+       * EOI handling only required only for level-triggered
-> >> >> >+       * interrupts in APLIC MSI mode.
-> >> >> >+       */
-> >> >> >+
-> >> >> >+      reg_off =3D APLIC_CLRIP_BASE + ((d->hwirq / APLIC_IRQBITS_P=
-ER_REG) * 4);
-> >> >> >+      reg_mask =3D BIT(d->hwirq % APLIC_IRQBITS_PER_REG);
-> >> >> >+      switch (irqd_get_trigger_type(d)) {
-> >> >> >+      case IRQ_TYPE_LEVEL_LOW:
-> >> >> >+              if (!(readl(priv->regs + reg_off) & reg_mask))
-> >> >> >+                      writel(d->hwirq, priv->regs + APLIC_SETIPNU=
-M_LE);
-> >> >> >+              break;
-> >> >> >+      case IRQ_TYPE_LEVEL_HIGH:
-> >> >> >+              if (readl(priv->regs + reg_off) & reg_mask)
-> >> >> >+                      writel(d->hwirq, priv->regs + APLIC_SETIPNU=
-M_LE);
-> >> >> >+              break;
-> >> >> >+      }
-> >> >> >+}
-> >> >> >+
-> >> >> >+static struct irq_chip aplic_msi_chip =3D {
-> >> >> >+      .name           =3D "APLIC-MSI",
-> >> >> >+      .irq_mask       =3D aplic_msi_irq_mask,
-> >> >> >+      .irq_unmask     =3D aplic_msi_irq_unmask,
-> >> >> >+      .irq_set_type   =3D aplic_irq_set_type,
-> >> >> >+      .irq_eoi        =3D aplic_msi_irq_eoi,
-> >> >> >+#ifdef CONFIG_SMP
-> >> >> >+      .irq_set_affinity =3D irq_chip_set_affinity_parent,
-> >> >> >+#endif
-> >> >> >+      .flags          =3D IRQCHIP_SET_TYPE_MASKED |
-> >> >> >+                        IRQCHIP_SKIP_SET_WAKE |
-> >> >> >+                        IRQCHIP_MASK_ON_SUSPEND,
-> >> >> >+};
-> >> >> >+
-> >> >> >+static int aplic_msi_irqdomain_translate(struct irq_domain *d,
-> >> >> >+                                       struct irq_fwspec *fwspec,
-> >> >> >+                                       unsigned long *hwirq,
-> >> >> >+                                       unsigned int *type)
-> >> >> >+{
-> >> >> >+      struct aplic_priv *priv =3D platform_msi_get_host_data(d);
-> >> >> >+
-> >> >> >+      return aplic_irqdomain_translate(fwspec, priv->gsi_base, hw=
-irq, type);
-> >> >> >+}
-> >> >> >+
-> >> >> >+static int aplic_msi_irqdomain_alloc(struct irq_domain *domain,
-> >> >> >+                                   unsigned int virq, unsigned in=
-t nr_irqs,
-> >> >> >+                                   void *arg)
-> >> >> >+{
-> >> >> >+      int i, ret;
-> >> >> >+      unsigned int type;
-> >> >> >+      irq_hw_number_t hwirq;
-> >> >> >+      struct irq_fwspec *fwspec =3D arg;
-> >> >> >+      struct aplic_priv *priv =3D platform_msi_get_host_data(doma=
-in);
-> >> >> >+
-> >> >> >+      ret =3D aplic_irqdomain_translate(fwspec, priv->gsi_base, &=
-hwirq, &type);
-> >> >> >+      if (ret)
-> >> >> >+              return ret;
-> >> >>
-> >> >> In your patchset, the wired IRQ and IRQ of platform device will go =
-into APLIC-MSI domain firstly.
-> >> >
-> >> >Yes, that is correct. In general, this applies to AIA specification
-> >> >and nothing to do with this patchset.
-> >> >
-> >> >> Let me assume here is a MSI IRQ not wired IRQ on a device, and it i=
-s a platform device in system.
-> >> >> so in aplic_irqdomain_translate() function, it will parse the APLIC=
- physical IRQ number by fwspec->param[0],
-> >> >> but this is not a wried IRQ, it is a MSI IRQ, it should not has a A=
-PLIC physical IRQ number, the hwirq number should be allocated by MSI bitma=
-p,
-> >> >> what value will be parse by DTS? zero or negative?
-> >> >
-> >> >For platform devices with MSI support, the MSIs will directly target
-> >> >the per-HART
-> >> >IMSICs and the DT node of such devices will never point to APLIC as t=
-he parent
-> >> >MSI controller.
-> >> >
+> >> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> >> ---
+> >> Changelog v2:
+> >> - Resend v1 because a patch exceeds size limit.
 > >>
-> >> >The IMSIC driver implements the IMSIC-PLAT domain for platform MSIs.
+> >> Changelog v3:
+> >> - Adapted to media control framework
+> >> - Introduced ISP subdevice, capture device
+> >> - Remove private IOCTLs and add vendor specific V4L2 controls
+> >> - Change function name avoiding camelcase and uppercase letters
 > >>
-> >> Have you test this case on QEMU? would you like share the test steps?
-> >
-> >The APLIC in MSI-mode acts like a platform device with MSIs so yes this
-> >is tested on QEMU.
->
-> yet, I know the wired interrupt with MSI-mode of APLIC has tested on QEMU=
- by virtio devices, but i want to know how about the MSI interrupt with non=
--PCI device?
-> have you tested this case?
+> >> Changelog v4:
+> >> - Split patches because the v3 patch exceeds size limit
+> >> - Stop using ID number to identify driver instance:
+> >>   - Use dynamically allocated structure to hold HW specific context,
+> >>     instead of static one.
+> >>   - Call HW layer functions with the context structure instead of ID number
+> >>
+> >> Changelog v5:
+> >> - no change
+> >>
+> >> Changelog v6:
+> >> - remove unused macros
+> >> - removed hwd_ and HWD_ prefix
+> >> - update source code documentation
+> >> - Suggestion from Hans Verkuil
+> >>   - pointer to userland memory is removed from uAPI arguments
+> >>     - style of structure is now "nested" instead of "chained by pointer";
+> >>   - use div64_u64 for 64bit division
+> >>   - vendor specific controls support TRY_EXT_CTRLS
+> >>   - add READ_ONLY flag to GET_CALIBRATION_STATUS control and similar ones
+> >>   - human friendry control names for vendor specific controls
+> >>   - add initial value to each vendor specific control
+> >>   - GET_LAST_CAPTURE_STATUS control is updated asyncnously from workqueue
+> >>   - remove EXECUTE_ON_WRITE flag of vendor specific control
+> >>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
+> >>   - applied v4l2-compliance
+> >> - Suggestion from Sakari Ailus
+> >>   - use div64_u64 for 64bit division
+> >>   - update copyright's year
+> >>   - remove redandunt cast
+> >>   - use bool instead of HWD_VIIF_ENABLE/DISABLE
+> >>   - simplify comparison to 0
+> >>   - simplify statements with trigram operator
+> >>   - remove redundant local variables
+> >>   - use general integer types instead of u32/s32
+> >> - Suggestion from Laurent Pinchart
+> >>   - moved VIIF driver to driver/platform/toshiba/visconti
+> >>   - change register access: struct-style to macro-style
+> >>   - remove unused type definitions
+> >>   - define enums instead of successive macro constants
+> >>   - remove redundant parenthesis of macro constant
+> >>   - embed struct hwd_res into struct viif_device
+> >>   - use xxx_dma instead of xxx_paddr for variable names of IOVA
+> >>   - literal value: just 0 instead of 0x0
+> >>   - use literal 1 or 0 instead of HWD_VIIF_ENABLE, DISABLE for register access
+> >>   - use true or false instead of HWD_VIIF_ENABLE, DISABLE for function calls
+> >>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
+> >>
+> >> Changelog v7:
+> >> - remove unused variables
+> >> - split long statements which have multiple logical-OR and trigram operators
+> >>
+> >> Changelog v8:
+> >> - define constant V4L2_CTRL_TYPE_VISCONTI_ISP for datatype
+> >>   of Visconti specific controls
+> >> - Suggestion from Hans Verkuil
+> >>   - remove pr_info()
+> >>   - use pm_runtime_get_if_in_use() to get power status
+> >>
+> >> Changelog v9:
+> >> - fix warning for cast between ptr and dma_addr_t
+> >>
+> >>  .../media/platform/toshiba/visconti/Makefile  |    2 +-
+> >>  .../media/platform/toshiba/visconti/viif.c    |   10 +-
+> >>  .../platform/toshiba/visconti/viif_controls.c | 3395 +++++++++++++++++
+> >>  .../platform/toshiba/visconti/viif_controls.h |   18 +
+> >>  .../platform/toshiba/visconti/viif_isp.c      |   15 +-
+> >>  drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
+> >>  include/uapi/linux/videodev2.h                |    2 +
+> >>  7 files changed, 3431 insertions(+), 18 deletions(-)
+> >>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+> >>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+> >>
+> > 
+> > <snip>
+> > 
+> > These core changes below should be in a separate patch, not mixed in with
+> > the driver.
+> > 
+> >> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> >> index a662fb60f73f..0c4df9fffbe0 100644
+> >> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> >> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> >> @@ -367,7 +367,9 @@ void v4l2_ctrl_type_op_log(const struct v4l2_ctrl *ctrl)
+> >>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
+> >>  		pr_cont("AV1_FILM_GRAIN");
+> >>  		break;
+> >> -
+> >> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
+> >> +		pr_cont("VISCONTI_ISP");
+> >> +		break;
+> >>  	default:
+> >>  		pr_cont("unknown type %d", ctrl->type);
+> >>  		break;
+> >> @@ -1163,6 +1165,9 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
+> >>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
+> >>  		return validate_av1_film_grain(p);
+> >>  
+> >> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
+> >> +		break;
+> >> +
+> >>  	case V4L2_CTRL_TYPE_AREA:
+> >>  		area = p;
+> >>  		if (!area->width || !area->height)
+> >> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> >> index c3d4e490ce7c..bbc3cd3efa65 100644
+> >> --- a/include/uapi/linux/videodev2.h
+> >> +++ b/include/uapi/linux/videodev2.h
+> >> @@ -1915,6 +1915,8 @@ enum v4l2_ctrl_type {
+> >>  	V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY = 0x281,
+> >>  	V4L2_CTRL_TYPE_AV1_FRAME	    = 0x282,
+> >>  	V4L2_CTRL_TYPE_AV1_FILM_GRAIN	    = 0x283,
+> >> +
+> >> +	V4L2_CTRL_TYPE_VISCONTI_ISP = 0x290,
+> > 
+> > I see you are using the same V4L2_CTRL_TYPE_VISCONTI_ISP for all the compound
+> > controls. But that's not allowed: the V4L2_CTRL_TYPE_ defines determine the
+> > control type, so each struct used by a control needs its own type.
+> 
+> Actually, you don't want to add such a type at all. This is all driver specific,
+> so support like this belongs in the driver.
+> 
+> A good example of that is V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP in
+> drivers/media/platform/nxp/dw100/dw100.c: there all the handling is done in
+> the driver, and it adds init/validate/log/equal ops as well.
 
-I don't see any difference in the way APLIC MSI-mode platform
-device use MSI versus any other platform using MSI.
+Actually, I think a better option is to use parameters buffers instead
+of controls, like other ISP driver do.
 
-We also have the RISC-V IOMMU platform device which uses
-MSIs provided by the IMSIC-PLAT domain.
+> > I also noticed looking through include/uapi/linux/visconti_viif.h that some
+> > of the struct have holes. I really want to avoid holes in structs used by
+> > controls, it is bad practice.
+> > 
+> > The pahole utility is very useful for testing this. It is also highly
+> > recommended to check for both 32 and 64 bit compilation: the struct layout
+> > must be the same, otherwise you would run into problems if a 32 bit application
+> > is used with a 64 bit kernel.
+> > 
+> > Finally, Laurent and/or Sakari will also take a look at this driver, for some
+> > reason this driver has been mostly reviewed by me, but I am not really the
+> > expert on ISPs.
+> > 
+> >>  };
+> >>  
+> >>  /*  Used in the VIDIOC_QUERYCTRL ioctl for querying controls */
 
+-- 
 Regards,
-Anup
+
+Laurent Pinchart
 
