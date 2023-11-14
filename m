@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-15745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B65437EB849
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:11:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F9887EB84C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:12:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16B73B20B8C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:11:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5445528134C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D822B2FC2F;
-	Tue, 14 Nov 2023 21:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD07A2FC36;
+	Tue, 14 Nov 2023 21:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D2ofLG3A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Acg3qLfJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B312C1B6
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:11:01 +0000 (UTC)
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AF1C2
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:10:59 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-41b7fd8f458so37107151cf.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:10:59 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485372FC2F
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:12:38 +0000 (UTC)
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26719BF
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:12:37 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id 5614622812f47-3b2ea7cc821so3576194b6e.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:12:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699996258; x=1700601058; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699996356; x=1700601156; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZCXP/b8LzUbZXJ5PFHY6mEdodKrFpUi38A/VBViCSxw=;
-        b=D2ofLG3AXExOTX0r6tAvYyqS2IrBX2jsoHNn6euJ/3Eg/14u4C25mwieVENwnyTCR6
-         wV1BFT7Y9QwDhea4T1YBiJac/8HSt0l62FYNCgP7yanLdEMfcGqBVoG6LSX4sF9uB8iI
-         nCV/4LsIYrPXKxy9W62wUMvn2TZvi4KtRMTf9nnfwfKS8nqlbYg1Ms56oCB3MNPIht7C
-         ZrP6/3DPi0Y3hOxPApOtiCm3x+fnie3fJ6s3DWZ8nKoTcFCGUoexOJZGCShLLIgcwLF3
-         rWLC6uFOc4tbn/06HaTQc5eIIT8kL58u2lA+n0Tatw1hjgfpIP/CCJnQS6uDNiswRQO+
-         WHKg==
+        bh=vqWQ+odAkllzaBzf32P3kSwnMrxwgxLYMWAv9lHqgiA=;
+        b=Acg3qLfJT+tw/KVDtfAkTvgikW6vzFMWs3mlyGlaVCVB5RWgrpnZT7eprAKxi5sRS4
+         cY+zWkqvOijuB19ua2P7GQBjfh6jor5crx+ejDyEU1zSQhk/Gv8IjXpZ4SFl+UEbqr3s
+         m30PaH3zogVG+P9bTW6/OnO3YSAATDv9yXGIPiUKEoi1XWGc7KqrJTKunBr2L6IUUCep
+         N8pMKtcMgYRwcsGdmgj38DX6S1v0ajsvT72t6nL7Sb3SCWmL94r+XST2yfKVWoRHdo/G
+         +I2qpx2bBYRuk0mQrKqB1/LyYkaDXFIvXOlZhCwA07eGk6Ro8+8LDDfd1kmKetk0IjB+
+         Ra/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699996258; x=1700601058;
+        d=1e100.net; s=20230601; t=1699996356; x=1700601156;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZCXP/b8LzUbZXJ5PFHY6mEdodKrFpUi38A/VBViCSxw=;
-        b=rUbt2Bj5tCdGGWVbaErG8V9egGNlO13KaodHGaGWHbV2pG5WSWO3qBWdXlKsC2ysDi
-         F9/HraYVDVjRS93fkKkhOm+9mNVyX/RYBR08LNWbkhlBTIKrXowUteAxnRXEdV17+BEj
-         V3UTM0YFg1RlKCXiVCn8dlZy18Qe1jhm4BiQXNR4/EQNdPK7iBN0atG0VFIOZZIcf4g7
-         0foWHgDs1f7gilWm/iEPJU6fkuaI9gdrvhVIvW7xNEmGzJAIsd0EP82bwYbo4k1Apbnl
-         E54AuRtbDgD3OuEepwYVv954XXdRR6kz/tprLtEu6x/pgJPAhqofSKEl3V60ByMFF8Fk
-         VIZA==
-X-Gm-Message-State: AOJu0Yw0y82OXDQsNVpkh2ILhSnKIAhv+OoSDvP89zYjffT7tvU/EYg3
-	6E5ypnHcDogVuaFR3xEvyoAjSA==
-X-Google-Smtp-Source: AGHT+IFefyC3sxzLwG0/nBnVrInr3jKA66qN98yn8IDD86CKaKKsF87Tee3Yzk8d9QCtShVFFkzeUQ==
-X-Received: by 2002:a05:622a:284:b0:41e:204b:f947 with SMTP id z4-20020a05622a028400b0041e204bf947mr4293209qtw.62.1699996258545;
-        Tue, 14 Nov 2023 13:10:58 -0800 (PST)
+        bh=vqWQ+odAkllzaBzf32P3kSwnMrxwgxLYMWAv9lHqgiA=;
+        b=fYa8PVBqN/Ls4EfV8lFwclUsml9RA0tDWkyIi6PFshR+x7mEaGddOhX8p2+9RF3oMB
+         JvHncnunY/j2e5sbfZNRSqoznuczUh03L/sMhbpMNsQBDomrb+9gNit9n0QWp+WnPDNk
+         IoSdmVmT94UcU2Bw6PYCHvKnRisztIInCNdOjLfTuRn3v/a1Pv2UklGVVl1q37BHhy5y
+         os4BXwW9NiW0d39zHCzBrf54WWsxPEjPPsWvUw9zpuwX98C3/e3xdHFDkiDOqO71Tywa
+         3wsK1l7J9N+cn2nmgCcaJjbvsEEg/2KOpYBQj7SUM58QJAI4b6vFgmK67I0kGoNIKBU4
+         u7Jg==
+X-Gm-Message-State: AOJu0YxElbUIk01wlGD9PiCHk07uIICgTJuWnVpTOsz7tP+Xq8BuGMKx
+	p3ne3LKgfYWBsRdAERAyo7ASxQ==
+X-Google-Smtp-Source: AGHT+IEPoeGOb+Og3l7VEaGE9QoBLhMhl29xjKhcRQ95GKonu/RpHSsWBhmAvZNmoZRM8IZYK44yfw==
+X-Received: by 2002:a05:6808:10cb:b0:3af:c259:71e6 with SMTP id s11-20020a05680810cb00b003afc25971e6mr16618948ois.5.1699996356521;
+        Tue, 14 Nov 2023 13:12:36 -0800 (PST)
 Received: from [172.25.83.73] ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id o2-20020ac841c2000000b0041803dfb240sm3022260qtm.45.2023.11.14.13.10.57
+        by smtp.gmail.com with ESMTPSA id o2-20020ac841c2000000b0041803dfb240sm3022260qtm.45.2023.11.14.13.12.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 13:10:58 -0800 (PST)
-Message-ID: <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
-Date: Tue, 14 Nov 2023 22:10:56 +0100
+        Tue, 14 Nov 2023 13:12:36 -0800 (PST)
+Message-ID: <44f21244-5bf1-4e0f-80a9-6ec76d65eea4@linaro.org>
+Date: Tue, 14 Nov 2023 22:12:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +67,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
- TTC device configured as PWM
+Subject: Re: [PATCH 1/4] dt-bindings: reset: Add binding for Sophgo CV1800B
+ reset controller
 Content-Language: en-US
-To: Mubin Sayyed <mubin.sayyed@amd.com>, krzysztof.kozlowski+dt@linaro.org,
- u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com,
- robh+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
- daniel.lezcano@linaro.org, michal.simek@amd.com
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-pwm@vger.kernel.org, git@amd.com,
- mubin10@gmail.com
-References: <20231114124748.581850-1-mubin.sayyed@amd.com>
- <20231114124748.581850-2-mubin.sayyed@amd.com>
+To: Jisheng Zhang <jszhang@kernel.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
+ Chen Wang <unicorn_wang@outlook.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20231113005503.2423-1-jszhang@kernel.org>
+ <20231113005503.2423-2-jszhang@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,47 +126,40 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231114124748.581850-2-mubin.sayyed@amd.com>
+In-Reply-To: <20231113005503.2423-2-jszhang@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/11/2023 13:47, Mubin Sayyed wrote:
-> TTC device can act either as clocksource/clockevent or
-> PWM generator, it would be decided by pwm-cells property.
-> TTC PWM feature would be supported through separate driver
-> based on PWM framework.
-> 
-> If pwm-cells property is present in TTC node, it would be
-> treated as PWM device, and clocksource driver should just
-> skip it.
-> 
-> Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
-> ---
-> Changes for v2:
->     - Added comment regarding pwm-cells property
-> ---
->  drivers/clocksource/timer-cadence-ttc.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/clocksource/timer-cadence-ttc.c b/drivers/clocksource/timer-cadence-ttc.c
-> index 32daaac9b132..f8fcb1a4bdd0 100644
-> --- a/drivers/clocksource/timer-cadence-ttc.c
-> +++ b/drivers/clocksource/timer-cadence-ttc.c
-> @@ -477,6 +477,13 @@ static int __init ttc_timer_probe(struct platform_device *pdev)
->  	u32 timer_width = 16;
->  	struct device_node *timer = pdev->dev.of_node;
->  
-> +	/*
-> +	 * If pwm-cells property is present in TTC node,
-> +	 * it would be treated as PWM device.
-> +	 */
-> +	if (of_property_read_bool(timer, "#pwm-cells"))
-> +		return -ENODEV;
+On 13/11/2023 01:55, Jisheng Zhang wrote:
+...
 
-You will introduce dmesg errors, so regressions.
+> diff --git a/include/dt-bindings/reset/sophgo,cv1800b-reset.h b/include/dt-bindings/reset/sophgo,cv1800b-reset.h
+> new file mode 100644
+> index 000000000000..28dda71369b4
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/sophgo,cv1800b-reset.h
+> @@ -0,0 +1,96 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +/*
+> + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CV1800B_RESET_H
+> +#define _DT_BINDINGS_CV1800B_RESET_H
+> +
+> +/*				0-1	*/
+> +#define RST_DDR			2
+> +#define RST_H264C		3
+> +#define RST_JPEG		4
+> +#define RST_H265C		5
+> +#define RST_VIPSYS		6
+> +#define RST_TDMA		7
+> +#define RST_TPU			8
+> +#define RST_TPUSYS		9
+> +/*				10	*/
 
-This does not look right. What you want is to bind one device driver and
-choose different functionality based on properties.
+Why do you have empty IDs? IDs start at 0 and are incremented by 1.
 
 Best regards,
 Krzysztof
