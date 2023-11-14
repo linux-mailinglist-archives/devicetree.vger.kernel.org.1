@@ -1,129 +1,70 @@
-Return-Path: <devicetree+bounces-15538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B941B7EAAEA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A957EAAEC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:33:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD2C21C208B8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 07:32:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 854D11C20856
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 07:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B63F1173D;
-	Tue, 14 Nov 2023 07:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D2B31173D;
+	Tue, 14 Nov 2023 07:33:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rQIIt++7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3134B11734
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:32:14 +0000 (UTC)
-Received: from muru.com (muru.com [72.249.23.125])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0BDCC196
-	for <devicetree@vger.kernel.org>; Mon, 13 Nov 2023 23:32:13 -0800 (PST)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-	by muru.com (Postfix) with ESMTP id AC65E80CE;
-	Tue, 14 Nov 2023 07:32:11 +0000 (UTC)
-From: Tony Lindgren <tony@atomide.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Dhruva Gole <d-gole@ti.com>
-Subject: [PATCH v2 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for wkup_uart0
-Date: Tue, 14 Nov 2023 09:32:09 +0200
-Message-ID: <20231114073209.40756-1-tony@atomide.com>
-X-Mailer: git-send-email 2.42.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14D411734;
+	Tue, 14 Nov 2023 07:33:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB654C433C8;
+	Tue, 14 Nov 2023 07:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699947191;
+	bh=1jPXW/9gsRNCRI/ogL17H5SYbGmYFfttaj3ESSTXmIc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rQIIt++75FqOoAjUbylKmvaXsmHoCIQCguESRHUl38xhUoNOsZ/w1obOtqc9vXYp6
+	 f/uD49221oPiVMZfY7mtL1S+DV6Gnhcj/XYliwMnOJKdi8opCJWsQ64GBBwH53V5bO
+	 VNjYY+rj+8fhGjJHKlp56dEbLrpYO8PPEK+lMyNOAkNB03+qkSki1yJNKabxydCnP5
+	 MhodKFDm0h5pdkIuHMKV3kmje8qa94dDbw1xN0cy8T/tX+TBibB4aizub73HmeNYcU
+	 f7eT7/RP50SEuw7aAdodCUM88zUgWY5fmk1Ml7FnWHzJwXIIKt9VxVbGmBi57JeIwq
+	 QAyFtZcllQ2lA==
+Date: Tue, 14 Nov 2023 13:03:07 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vivek Gautam <vivek.gautam@codeaurora.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845: correct Soundwire node name
+Message-ID: <ZVMis75+dhUdm3iI@matsya>
+References: <20231111095617.16496-1-krzysztof.kozlowski@linaro.org>
+ <20231111095617.16496-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231111095617.16496-2-krzysztof.kozlowski@linaro.org>
 
-The devices in the wkup domain are capable of waking up the system from
-suspend. We can configure the wkup domain devices in a generic way using
-the ti-sysc interconnect target module driver like we have done with the
-earlier TI SoCs.
+On 11-11-23, 10:56, Krzysztof Kozlowski wrote:
+> Soundwire Devicetree bindings expect the Soundwire controller device
+> node to be named just "soundwire":
+> 
+>   sdm845-db845c.dtb: swm@c85: $nodename:0: 'swm@c85' does not match '^soundwire(@.*)?$'
 
-As ti-sysc manages the SYSCONFIG related registers independent of the
-child hardware device, the wake-up configuration is also set even if
-wkup_uart0 is reserved by sysfw.
+Acked-by: Vinod Koul <vkoul@kernel.org>
 
-The wkup_uart0 device has interconnect target module register mapping like
-dra7 wkup uart. There is a 1 MB interconnect target range with one uart IP
-block in the target module. The power domain and clock affects the whole
-interconnect target module.
-
-Note we change the functional clock name to follow the ti-sysc binding
-and use "fck" instead of "fclk".
-
-Tested-by: Dhruva Gole <d-gole@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
-
-Changes since v1:
-
-- Added Tested-by from Dhruva
-
----
- arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 33 ++++++++++++++++++----
- 1 file changed, 27 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
---- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-@@ -5,6 +5,8 @@
-  * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
-+#include <dt-bindings/bus/ti-sysc.h>
-+
- &cbass_wakeup {
- 	wkup_conf: syscon@43000000 {
- 		bootph-all;
-@@ -21,14 +23,33 @@ chipid: chipid@14 {
- 		};
- 	};
- 
--	wkup_uart0: serial@2b300000 {
--		compatible = "ti,am64-uart", "ti,am654-uart";
--		reg = <0x00 0x2b300000 0x00 0x100>;
--		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+	target-module@2b300000 {
-+		compatible = "ti,sysc-omap2", "ti,sysc";
-+		reg = <0 0x2b300050 0 0x4>,
-+		      <0 0x2b300054 0 0x4>,
-+		      <0 0x2b300058 0 0x4>;
-+		reg-names = "rev", "sysc", "syss";
-+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
-+				 SYSC_OMAP2_SOFTRESET |
-+				 SYSC_OMAP2_AUTOIDLE)>;
-+		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+				<SYSC_IDLE_NO>,
-+				<SYSC_IDLE_SMART>,
-+				<SYSC_IDLE_SMART_WKUP>;
-+		ti,syss-mask = <1>;
- 		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
- 		clocks = <&k3_clks 114 0>;
--		clock-names = "fclk";
--		status = "disabled";
-+		clock-names = "fck";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0 0x2b300000 0x100000>;
-+
-+		wkup_uart0: serial@2b300000 {
-+			compatible = "ti,am64-uart", "ti,am654-uart";
-+			reg = <0 0x100>;
-+			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	wkup_i2c0: i2c@2b200000 {
 -- 
-2.42.1
+~Vinod
 
