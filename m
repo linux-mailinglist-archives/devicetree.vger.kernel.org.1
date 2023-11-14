@@ -1,566 +1,424 @@
-Return-Path: <devicetree+bounces-15710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16C57EB6A3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:56:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0DC7EB6C3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:08:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38C6EB20B30
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:56:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2281B20AC1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D82E1385;
-	Tue, 14 Nov 2023 18:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB441C05;
+	Tue, 14 Nov 2023 19:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PSiANbGi"
+	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="QWhmlB5s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A71133CEE
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 18:56:41 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DD8102;
-	Tue, 14 Nov 2023 10:56:37 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AEIuRxD092020;
-	Tue, 14 Nov 2023 12:56:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1699988187;
-	bh=miS453cW3mvsSG8TAJhbwZDNGAa9es8w1UdeNybZcz4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=PSiANbGiGa6JKbE2GERiTRc5OC/osicGcIpmkEyk6jfNSdA24q64zs+fZo4JUCweJ
-	 TJhmuAeYxAnkMmlnoRv9yYvKNVKbpGd0dIxghfam7IfssdWwq9v3xEPjvliILajxv2
-	 wW9TgUAoYwPMyrMbwjdYsxs7bfKjMbLjHdpq6u4A=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AEIuR6U039105
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 14 Nov 2023 12:56:27 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 14
- Nov 2023 12:56:27 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 14 Nov 2023 12:56:27 -0600
-Received: from lelv0327.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AEIuOAN088527;
-	Tue, 14 Nov 2023 12:56:26 -0600
-From: Andrew Davis <afd@ti.com>
-To: Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>
-Subject: [PATCH 4/4] dt-bindings: dma: Convert ti-edma.txt to YAML
-Date: Tue, 14 Nov 2023 12:56:13 -0600
-Message-ID: <20231114185613.322570-4-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231114185613.322570-1-afd@ti.com>
-References: <20231114185613.322570-1-afd@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E0417D8;
+	Tue, 14 Nov 2023 19:07:58 +0000 (UTC)
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8FB119;
+	Tue, 14 Nov 2023 11:07:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+	s=mail; t=1699988874;
+	bh=SYGluN3+4eLJfq22jk0bwc/x8ZAsdhZvXpbOhM3QM08=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QWhmlB5sfntwHNnwjF3kgTBZ9EsKDPxtPP/rsElLiZ+4IM+G1LxbgQLTglDj/zf/o
+	 uPDylesv+SAAd8SBnOuNro6NXN8fHkvxJwRKlnzT3abEdjragcsb75obLkj/vi1pXr
+	 oBC6RKTUZV68Jul3EPrbLV+mpK2jADhY1nGAIrZQ=
+Date: Tue, 14 Nov 2023 20:07:53 +0100
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
+To: Anshul Dalal <anshulusr@gmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jeff LaBundy <jeff@labundy.com>, 
+	linux-kernel-mentees@lists.linuxfoundation.org
+Subject: Re: [PATCH v8 2/2] input: joystick: driver for Adafruit Seesaw
+ Gamepad
+Message-ID: <6384a19d-8b47-43ce-a8ad-16843b8fabf2@t-8ch.de>
+References: <20231108005337.45069-1-anshulusr@gmail.com>
+ <20231108005337.45069-2-anshulusr@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20231108005337.45069-2-anshulusr@gmail.com>
 
-Convert ti-edma.txt to ti/ti,edma3-tpcc.yaml and
-ti/ti,edma3-tptc.yaml.
+On 2023-11-08 06:23:36+0530, Anshul Dalal wrote:
+> Adds a driver for a mini gamepad that communicates over i2c, the gamepad
+> has bidirectional thumb stick input and six buttons.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- .../devicetree/bindings/dma/ti-edma.txt       | 238 ------------------
- .../bindings/dma/ti/ti,edma3-tpcc.yaml        | 142 +++++++++++
- .../bindings/dma/ti/ti,edma3-tptc.yaml        |  63 +++++
- MAINTAINERS                                   |   1 -
- 4 files changed, 205 insertions(+), 239 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/dma/ti-edma.txt
- create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,edma3-tpcc.yaml
- create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,edma3-tptc.yaml
+With or without the tiny nitpicks mentioned below:
 
-diff --git a/Documentation/devicetree/bindings/dma/ti-edma.txt b/Documentation/devicetree/bindings/dma/ti-edma.txt
-deleted file mode 100644
-index f719e1612b0a5..0000000000000
---- a/Documentation/devicetree/bindings/dma/ti-edma.txt
-+++ /dev/null
-@@ -1,238 +0,0 @@
--Texas Instruments eDMA
--
--The eDMA3 consists of two components: Channel controller (CC) and Transfer
--Controller(s) (TC). The CC is the main entry for DMA users since it is
--responsible for the DMA channel handling, while the TCs are responsible to
--execute the actual DMA tansfer.
--
--------------------------------------------------------------------------------
--eDMA3 Channel Controller
--
--Required properties:
----------------------
--- compatible:	Should be:
--		- "ti,edma3-tpcc" for the channel controller(s) on OMAP,
--		  AM33xx and AM43xx SoCs.
--		- "ti,k2g-edma3-tpcc", "ti,edma3-tpcc" for the
--		  channel controller(s) on 66AK2G.
--- #dma-cells:	Should be set to <2>. The first number is the DMA request
--		number and the second is the TC the channel is serviced on.
--- reg:		Memory map of eDMA CC
--- reg-names:	"edma3_cc"
--- interrupts:	Interrupt lines for CCINT, MPERR and CCERRINT.
--- interrupt-names: "edma3_ccint", "edma3_mperr" and "edma3_ccerrint"
--- ti,tptcs:	List of TPTCs associated with the eDMA in the following form:
--		<&tptc_phandle TC_priority_number>. The highest priority is 0.
--
--SoC-specific Required properties:
----------------------------------
--The following are mandatory properties for OMAP, AM33xx and AM43xx SoCs only:
--- ti,hwmods:	Name of the hwmods associated to the eDMA CC.
--
--The following are mandatory properties for 66AK2G SoCs only:
--- power-domains:Should contain a phandle to a PM domain provider node
--		and an args specifier containing the device id
--		value. This property is as per the binding,
--		Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
--
--Optional properties:
---------------------
--- ti,edma-memcpy-channels: List of channels allocated to be used for memcpy, iow
--		these channels will be SW triggered channels. See example.
--- ti,edma-reserved-slot-ranges: PaRAM slot ranges which should not be used by
--		the driver, they are allocated to be used by for example the
--		DSP. See example.
--- dma-channel-mask: Mask of usable channels.
--		Single uint32 for EDMA with 32 channels, array of two uint32 for
--		EDMA with 64 channels. See example and
--		Documentation/devicetree/bindings/dma/dma-common.yaml
--
--
--------------------------------------------------------------------------------
--eDMA3 Transfer Controller
--
--Required properties:
----------------------
--- compatible:	Should be:
--		- "ti,edma3-tptc" for the transfer controller(s) on OMAP,
--		  AM33xx and AM43xx SoCs.
--		- "ti,k2g-edma3-tptc", "ti,edma3-tptc" for the
--		  transfer controller(s) on 66AK2G.
--- reg:		Memory map of eDMA TC
--- interrupts:	Interrupt number for TCerrint.
--
--SoC-specific Required properties:
----------------------------------
--The following are mandatory properties for OMAP, AM33xx and AM43xx SoCs only:
--- ti,hwmods:	Name of the hwmods associated to the eDMA TC.
--
--The following are mandatory properties for 66AK2G SoCs only:
--- power-domains:Should contain a phandle to a PM domain provider node
--		and an args specifier containing the device id
--		value. This property is as per the binding,
--		Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
--
--Optional properties:
---------------------
--- interrupt-names: "edma3_tcerrint"
--
--------------------------------------------------------------------------------
--Examples:
--
--1.
--edma: edma@49000000 {
--	compatible = "ti,edma3-tpcc";
--	ti,hwmods = "tpcc";
--	reg =	<0x49000000 0x10000>;
--	reg-names = "edma3_cc";
--	interrupts = <12 13 14>;
--	interrupt-names = "edma3_ccint", "edma3_mperr", "edma3_ccerrint";
--	dma-requests = <64>;
--	#dma-cells = <2>;
--
--	ti,tptcs = <&edma_tptc0 7>, <&edma_tptc1 7>, <&edma_tptc2 0>;
--
--	/* Channel 20 and 21 is allocated for memcpy */
--	ti,edma-memcpy-channels = <20 21>;
--	/* The following PaRAM slots are reserved: 35-44 and 100-109 */
--	ti,edma-reserved-slot-ranges = <35 10>, <100 10>;
--	/* The following channels are reserved: 35-44 */
--	dma-channel-mask = <0xffffffff /* Channel 0-31 */
--			    0xffffe007>; /* Channel 32-63 */
--};
--
--edma_tptc0: tptc@49800000 {
--	compatible = "ti,edma3-tptc";
--	ti,hwmods = "tptc0";
--	reg =	<0x49800000 0x100000>;
--	interrupts = <112>;
--	interrupt-names = "edm3_tcerrint";
--};
--
--edma_tptc1: tptc@49900000 {
--	compatible = "ti,edma3-tptc";
--	ti,hwmods = "tptc1";
--	reg =	<0x49900000 0x100000>;
--	interrupts = <113>;
--	interrupt-names = "edm3_tcerrint";
--};
--
--edma_tptc2: tptc@49a00000 {
--	compatible = "ti,edma3-tptc";
--	ti,hwmods = "tptc2";
--	reg =	<0x49a00000 0x100000>;
--	interrupts = <114>;
--	interrupt-names = "edm3_tcerrint";
--};
--
--sham: sham@53100000 {
--	compatible = "ti,omap4-sham";
--	ti,hwmods = "sham";
--	reg = <0x53100000 0x200>;
--	interrupts = <109>;
--	/* DMA channel 36 executed on eDMA TC0 - low priority queue */
--	dmas = <&edma 36 0>;
--	dma-names = "rx";
--};
--
--mcasp0: mcasp@48038000 {
--	compatible = "ti,am33xx-mcasp-audio";
--	ti,hwmods = "mcasp0";
--	reg = <0x48038000 0x2000>,
--		<0x46000000 0x400000>;
--	reg-names = "mpu", "dat";
--	interrupts = <80>, <81>;
--	interrupt-names = "tx", "rx";
--	/* DMA channels 8 and 9 executed on eDMA TC2 - high priority queue */
--	dmas = <&edma 8 2>,
--	       <&edma 9 2>;
--	dma-names = "tx", "rx";
--};
--
--2.
--edma1: edma@2728000 {
--	compatible = "ti,k2g-edma3-tpcc", "ti,edma3-tpcc";
--	reg =	<0x02728000 0x8000>;
--	reg-names = "edma3_cc";
--	interrupts = <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
--			<GIC_SPI 219 IRQ_TYPE_EDGE_RISING>,
--			<GIC_SPI 220 IRQ_TYPE_EDGE_RISING>;
--	interrupt-names = "edma3_ccint", "emda3_mperr",
--			  "edma3_ccerrint";
--	dma-requests = <64>;
--	#dma-cells = <2>;
--
--	ti,tptcs = <&edma1_tptc0 7>, <&edma1_tptc1 0>;
--
--	/*
--	 * memcpy is disabled, can be enabled with:
--	 * ti,edma-memcpy-channels = <12 13 14 15>;
--	 * for example.
--	 */
--
--	power-domains = <&k2g_pds 0x4f>;
--};
--
--edma1_tptc0: tptc@27b0000 {
--	compatible = "ti,k2g-edma3-tptc", "ti,edma3-tptc";
--	reg =	<0x027b0000 0x400>;
--	power-domains = <&k2g_pds 0x4f>;
--};
--
--edma1_tptc1: tptc@27b8000 {
--	compatible = "ti,k2g-edma3-tptc", "ti,edma3-tptc";
--	reg =	<0x027b8000 0x400>;
--	power-domains = <&k2g_pds 0x4f>;
--};
--
--mmc0: mmc@23000000 {
--	compatible = "ti,k2g-hsmmc", "ti,omap4-hsmmc";
--	reg = <0x23000000 0x400>;
--	interrupts = <GIC_SPI 96 IRQ_TYPE_EDGE_RISING>;
--	dmas = <&edma1 24 0>, <&edma1 25 0>;
--	dma-names = "tx", "rx";
--	bus-width = <4>;
--	ti,needs-special-reset;
--	no-1-8-v;
--	max-frequency = <96000000>;
--	power-domains = <&k2g_pds 0xb>;
--	clocks = <&k2g_clks 0xb 1>, <&k2g_clks 0xb 2>;
--	clock-names = "fck", "mmchsdb_fck";
--};
--
--------------------------------------------------------------------------------
--DEPRECATED binding, new DTS files must use the ti,edma3-tpcc/ti,edma3-tptc
--binding.
--
--Required properties:
--- compatible : "ti,edma3"
--- #dma-cells: Should be set to <1>
--              Clients should use a single channel number per DMA request.
--- reg: Memory map for accessing module
--- interrupts: Exactly 3 interrupts need to be specified in the order:
--              1. Transfer completion interrupt.
--              2. Memory protection interrupt.
--              3. Error interrupt.
--Optional properties:
--- ti,hwmods: Name of the hwmods associated to the EDMA
--- ti,edma-xbar-event-map: Crossbar event to channel map
--
--Deprecated properties:
--Listed here in case one wants to boot an old kernel with new DTB. These
--properties might need to be added to the new DTS files.
--- ti,edma-regions: Number of regions
--- ti,edma-slots: Number of slots
--- dma-channels: Specify total DMA channels per CC
--
--Example:
--
--edma: edma@49000000 {
--	reg = <0x49000000 0x10000>;
--	interrupt-parent = <&intc>;
--	interrupts = <12 13 14>;
--	compatible = "ti,edma3";
--	ti,hwmods = "tpcc", "tptc0", "tptc1", "tptc2";
--	#dma-cells = <1>;
--	ti,edma-xbar-event-map = /bits/ 16 <1 12
--					    2 13>;
--};
-diff --git a/Documentation/devicetree/bindings/dma/ti/ti,edma3-tpcc.yaml b/Documentation/devicetree/bindings/dma/ti/ti,edma3-tpcc.yaml
-new file mode 100644
-index 0000000000000..6c14b3367dd8a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/ti/ti,edma3-tpcc.yaml
-@@ -0,0 +1,142 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/ti/ti,edma3-tpcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments eDMA3 Channel Controller
-+
-+description: |
-+  The eDMA3 consists of two components, Channel controller (CC) and Transfer
-+  Controller(s) (TC). The CC is the main entry for DMA users since it is
-+  responsible for the DMA channel handling, while the TCs are responsible to
-+  execute the actual DMA tansfer. This documents the Channel Controller.
-+
-+maintainers:
-+  - Andrew Davis <afd@ti.com>
-+
-+allOf:
-+  - $ref: /schemas/dma/dma-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: ti,edma3-tpcc # OMAP, AM33xx, and AM43xx
-+      - items:
-+          - const: ti,k2g-edma3-tpcc # 66AK2G
-+          - const: ti,edma3-tpcc
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    const: edma3_cc
-+
-+  interrupts:
-+    items:
-+      - description: CCINT Interrupt
-+      - description: MPERR Interrupt
-+      - description: CCERRINT Interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: edma3_ccint
-+      - const: edma3_mperr
-+      - const: edma3_ccerrint
-+
-+  "#dma-cells":
-+    const: 2
-+    description: |
-+      The first cell is the DMA request number.
-+      The second cell is the TC the channel is serviced on.
-+
-+  ti,tptcs:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: |
-+      List of TPTCs associated with the eDMA in the following form,
-+      <&tptc_phandle TC_priority_number>. The highest priority is 0.
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ti,edma-memcpy-channels:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      List of channels allocated to be used for memcpy, iow
-+      these channels will be SW triggered channels.
-+
-+  ti,edma-reserved-slot-ranges:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      PaRAM slot ranges which should not be used by the driver,
-+      they are allocated to be used by for example the DSP.
-+
-+  dma-channel-mask:
-+    description: |
-+      Mask of usable channels. Single uint32 for EDMA with 32 channels,
-+      array of two uint32 for EDMA with 64 channels.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - "#dma-cells"
-+  - ti,tptcs
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ti,k2g-edma3-tptc
-+then:
-+  required:
-+    - power-domains
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma-controller@49000000 {
-+        compatible = "ti,edma3-tpcc";
-+        reg = <0x49000000 0x10000>;
-+        reg-names = "edma3_cc";
-+        interrupts = <12 13 14>;
-+        interrupt-names = "edma3_ccint", "edma3_mperr", "edma3_ccerrint";
-+        dma-requests = <64>;
-+        #dma-cells = <2>;
-+
-+        ti,tptcs = <&edma_tptc0 7>, <&edma_tptc1 7>, <&edma_tptc2 0>;
-+
-+        /* Channel 20 and 21 is allocated for memcpy */
-+        ti,edma-memcpy-channels = <20 21>;
-+        /* The following PaRAM slots are reserved: 35-44 and 100-109 */
-+        ti,edma-reserved-slot-ranges = <35 10>, <100 10>;
-+        /* The following channels are reserved: 35-44 */
-+        dma-channel-mask = <0xffffffff /* Channel 0-31 */
-+                            0xffffe007>; /* Channel 32-63 */
-+    };
-+
-+    sham@53100000 {
-+        compatible = "ti,omap4-sham";
-+        reg = <0x53100000 0x200>;
-+        interrupts = <109>;
-+        /* DMA channel 36 executed on eDMA TC0 - low priority queue */
-+        dmas = <&edma 36 0>;
-+        dma-names = "rx";
-+    };
-+
-+    mcasp@48038000 {
-+        compatible = "ti,am33xx-mcasp-audio";
-+        reg = <0x48038000 0x2000>,
-+              <0x46000000 0x400000>;
-+        reg-names = "mpu", "dat";
-+        interrupts = <80>, <81>;
-+        interrupt-names = "tx", "rx";
-+        /* DMA channels 8 and 9 executed on eDMA TC2 - high priority queue */
-+        dmas = <&edma 8 2>,
-+               <&edma 9 2>;
-+        dma-names = "tx", "rx";
-+    };
-diff --git a/Documentation/devicetree/bindings/dma/ti/ti,edma3-tptc.yaml b/Documentation/devicetree/bindings/dma/ti/ti,edma3-tptc.yaml
-new file mode 100644
-index 0000000000000..b73db3283f577
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/ti/ti,edma3-tptc.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/ti/ti,edma3-tptc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments eDMA3 Transfer Controller
-+
-+description: |
-+  The eDMA3 consists of two components, Channel controller (CC) and Transfer
-+  Controller(s) (TC). The CC is the main entry for DMA users since it is
-+  responsible for the DMA channel handling, while the TCs are responsible to
-+  execute the actual DMA tansfer. This documents the Transfer Controller.
-+
-+maintainers:
-+  - Andrew Davis <afd@ti.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: ti,edma3-tptc # OMAP, AM33xx, and AM43xx
-+      - items:
-+          - const: ti,k2g-edma3-tptc # 66AK2G
-+          - const: ti,edma3-tptc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: Interrupt number for TCerrint
-+    maxItems: 1
-+
-+  interrupt-names:
-+    const: edma3_tcerrint
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - ti,k2g-edma3-tptc
-+then:
-+  required:
-+    - power-domains
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    tptc@49800000 {
-+        compatible = "ti,k2g-edma3-tptc", "ti,edma3-tptc";
-+        reg = <0x49800000 0x100000>;
-+        interrupts = <112>;
-+        interrupt-names = "edm3_tcerrint";
-+        power-domains = <&k2g_pds 0xb>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 97f51d5ec1cfd..b19cfac762b42 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21515,7 +21515,6 @@ M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
- L:	dmaengine@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/dma/ti-dma-crossbar.txt
--F:	Documentation/devicetree/bindings/dma/ti-edma.txt
- F:	Documentation/devicetree/bindings/dma/ti/
- F:	drivers/dma/ti/
- F:	include/linux/dma/k3-psil.h
--- 
-2.39.2
+Reviewed-by: Thomas Weißschuh <linux@weissschuh.net>
 
+> The gamepad chip utilizes the open framework from Adafruit called 'Seesaw'
+> to transmit the ADC data for the joystick and digital pin state for the
+> buttons. I have only implemented the functionality required to receive the
+> thumb stick and button state.
+
+[..]
+
+> diff --git a/drivers/input/joystick/adafruit-seesaw.c b/drivers/input/joystick/adafruit-seesaw.c
+> new file mode 100644
+> index 000000000000..8e8ef26a585f
+> --- /dev/null
+> +++ b/drivers/input/joystick/adafruit-seesaw.c
+> @@ -0,0 +1,315 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
+> + *
+> + * Driver for Adafruit Mini I2C Gamepad
+> + *
+> + * Based on the work of:
+> + *	Oleh Kravchenko (Sparkfun Qwiic Joystick driver)
+> + *
+> + * Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf
+> + * Product page: https://www.adafruit.com/product/5743
+> + * Firmware and hardware sources: https://github.com/adafruit/Adafruit_Seesaw
+> + *
+> + * TODO:
+> + *	- Add interrupt support
+> + */
+> +
+> +#include <asm-generic/unaligned.h>
+
+#include <asm/unaligned.h>
+
+> +#include <linux/bits.h>
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/input.h>
+> +#include <linux/input/sparse-keymap.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +
+> +#define SEESAW_DEVICE_NAME	     "seesaw-gamepad"
+> +
+> +#define SEESAW_STATUS_BASE	     0x00
+> +#define SEESAW_GPIO_BASE	     0x01
+> +#define SEESAW_ADC_BASE		     0x09
+> +
+> +#define SEESAW_GPIO_DIRCLR_BULK	     0x03
+> +#define SEESAW_GPIO_BULK	     0x04
+> +#define SEESAW_GPIO_BULK_SET	     0x05
+> +#define SEESAW_GPIO_PULLENSET	     0x0b
+> +
+> +#define SEESAW_STATUS_HW_ID	     0x01
+> +#define SEESAW_STATUS_SWRST	     0x7f
+> +
+> +#define SEESAW_ADC_OFFSET	     0x07
+> +
+> +#define SEESAW_BUTTON_A		     0x05
+> +#define SEESAW_BUTTON_B		     0x01
+> +#define SEESAW_BUTTON_X		     0x06
+> +#define SEESAW_BUTTON_Y		     0x02
+> +#define SEESAW_BUTTON_START	     0x10
+> +#define SEESAW_BUTTON_SELECT	     0x00
+> +
+> +#define SEESAW_ANALOG_X		     0x0e
+> +#define SEESAW_ANALOG_Y		     0x0f
+> +
+> +#define SEESAW_JOYSTICK_MAX_AXIS     1023
+> +#define SEESAW_JOYSTICK_FUZZ	     2
+> +#define SEESAW_JOYSTICK_FLAT	     4
+> +
+> +#define SEESAW_GAMEPAD_POLL_INTERVAL 16
+> +#define SEESAW_GAMEPAD_POLL_MIN	     8
+> +#define SEESAW_GAMEPAD_POLL_MAX	     32
+> +
+> +static const u32 SEESAW_BUTTON_MASK =
+> +	BIT(SEESAW_BUTTON_A) | BIT(SEESAW_BUTTON_B) | BIT(SEESAW_BUTTON_X) |
+> +	BIT(SEESAW_BUTTON_Y) | BIT(SEESAW_BUTTON_START) |
+> +	BIT(SEESAW_BUTTON_SELECT);
+> +
+> +struct seesaw_gamepad {
+> +	struct input_dev *input_dev;
+
+This field is not used, but it doesn't hurt.
+If you remove the field you can get rid of the whole struct itself.
+
+> +	struct i2c_client *i2c_client;
+> +};
+> +
+> +struct seesaw_data {
+> +	u16 x;
+> +	u16 y;
+> +	u32 button_state;
+> +};
+> +
+> +struct seesaw_button_description {
+> +	unsigned int code;
+> +	unsigned int bit;
+> +};
+
+Not used anymore.
+
+> +
+> +static const struct key_entry seesaw_buttons_new[] = {
+> +	{ KE_KEY, SEESAW_BUTTON_A, .keycode = BTN_SOUTH },
+> +	{ KE_KEY, SEESAW_BUTTON_B, .keycode = BTN_EAST },
+> +	{ KE_KEY, SEESAW_BUTTON_X, .keycode = BTN_NORTH },
+> +	{ KE_KEY, SEESAW_BUTTON_Y, .keycode = BTN_WEST },
+> +	{ KE_KEY, SEESAW_BUTTON_START, .keycode = BTN_START },
+> +	{ KE_KEY, SEESAW_BUTTON_SELECT, .keycode = BTN_SELECT },
+> +	{ KE_END, 0 },
+
+No comma after sentinel element.
+
+> +};
+> +
+> +static int seesaw_register_read(struct i2c_client *client, u8 register_high,
+> +				u8 register_low, char *buf, int count)
+> +{
+> +	int ret;
+> +	u8 register_buf[2] = { register_high, register_low };
+> +
+> +	struct i2c_msg message_buf[2] = {
+> +		{
+> +			.addr = client->addr,
+> +			.flags = client->flags,
+> +			.len = sizeof(register_buf),
+> +			.buf = register_buf
+
+Commas after normal last elements.
+
+> +		},
+> +		{
+> +			.addr = client->addr,
+> +			.flags = client->flags | I2C_M_RD,
+> +			.len = count,
+> +			.buf = buf
+
+Same as above.
+
+> +		},
+> +	};
+> +	ret = i2c_transfer(client->adapter, message_buf,
+> +			   ARRAY_SIZE(message_buf));
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int seesaw_register_write_u8(struct i2c_client *client, u8 register_high,
+> +				    u8 register_low, u8 value)
+> +{
+> +	int ret;
+> +	u8 write_buf[3] = { register_high, register_low, value };
+> +
+> +	ret = i2c_master_send(client, write_buf, sizeof(write_buf));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int seesaw_register_write_u32(struct i2c_client *client,
+> +				     u8 register_high, u8 register_low,
+> +				     u32 value)
+> +{
+> +	int ret;
+> +	u8 write_buf[6] = { register_high, register_low };
+> +
+> +	put_unaligned_be32(value, write_buf + 2);
+> +	ret = i2c_master_send(client, write_buf, sizeof(write_buf));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int seesaw_read_data(struct i2c_client *client, struct seesaw_data *data)
+> +{
+> +	int ret;
+> +	__be16 adc_data;
+> +	__be32 read_buf;
+> +
+> +	ret = seesaw_register_read(client, SEESAW_GPIO_BASE, SEESAW_GPIO_BULK,
+> +				   (char *)&read_buf, sizeof(read_buf));
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->button_state = ~be32_to_cpu(read_buf);
+> +
+> +	ret = seesaw_register_read(client, SEESAW_ADC_BASE,
+> +				   SEESAW_ADC_OFFSET + SEESAW_ANALOG_X,
+> +				   (char *)&adc_data, sizeof(adc_data));
+> +	if (ret)
+> +		return ret;
+> +	/*
+> +	 * ADC reads left as max and right as 0, must be reversed since kernel
+> +	 * expects reports in opposite order.
+> +	 */
+> +	data->x = SEESAW_JOYSTICK_MAX_AXIS - be16_to_cpu(adc_data);
+> +
+> +	ret = seesaw_register_read(client, SEESAW_ADC_BASE,
+> +				   SEESAW_ADC_OFFSET + SEESAW_ANALOG_Y,
+> +				   (char *)&adc_data, sizeof(adc_data));
+> +	if (ret)
+> +		return ret;
+> +	data->y = be16_to_cpu(adc_data);
+> +
+> +	return 0;
+> +}
+> +
+> +static void seesaw_poll(struct input_dev *input)
+> +{
+> +	int err, i;
+> +	struct seesaw_gamepad *private = input_get_drvdata(input);
+> +	struct seesaw_data data;
+> +
+> +	err = seesaw_read_data(private->i2c_client, &data);
+> +	if (err) {
+> +		dev_err_ratelimited(&input->dev,
+> +				    "failed to read joystick state: %d\n", err);
+> +		return;
+> +	}
+> +
+> +	input_report_abs(input, ABS_X, data.x);
+> +	input_report_abs(input, ABS_Y, data.y);
+> +
+> +	for_each_set_bit(i, (long *)&SEESAW_BUTTON_MASK,
+> +			 BITS_PER_TYPE(SEESAW_BUTTON_MASK)) {
+> +		if (!sparse_keymap_report_event(
+> +			    input, i, data.button_state & BIT(i), false)) {
+> +			dev_err_ratelimited(&input->dev,
+> +					    "failed to report keymap event");
+> +			return;
+
+I would drop this return. Report as much data as possible.
+
+> +		};
+> +	}
+> +
+> +	input_sync(input);
+> +}
+> +
+> +static int seesaw_probe(struct i2c_client *client)
+> +{
+> +	int ret;
+> +	u8 hardware_id;
+> +	struct seesaw_gamepad *seesaw;
+> +
+> +	ret = seesaw_register_write_u8(client, SEESAW_STATUS_BASE,
+> +				       SEESAW_STATUS_SWRST, 0xFF);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait for the registers to reset before proceeding */
+> +	usleep_range(10000, 15000);
+
+This would be a very tiny bit clearer:
+
+usleep_range(10 * MSEC_PER_USEC, 15 * MSEC_PER_USEC);
+
+> +
+> +	seesaw = devm_kzalloc(&client->dev, sizeof(*seesaw), GFP_KERNEL);
+> +	if (!seesaw)
+> +		return -ENOMEM;
+> +
+> +	ret = seesaw_register_read(client, SEESAW_STATUS_BASE,
+> +				   SEESAW_STATUS_HW_ID, &hardware_id,
+> +				   sizeof(hardware_id));
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_dbg(&client->dev, "Adafruit Seesaw Gamepad, Hardware ID: %02x\n",
+> +		hardware_id);
+> +
+> +	/* Set Pin Mode to input and enable pull-up resistors */
+> +	ret = seesaw_register_write_u32(client, SEESAW_GPIO_BASE,
+> +					SEESAW_GPIO_DIRCLR_BULK,
+> +					SEESAW_BUTTON_MASK);
+> +	if (ret)
+> +		return ret;
+> +	ret = seesaw_register_write_u32(client, SEESAW_GPIO_BASE,
+> +					SEESAW_GPIO_PULLENSET,
+> +					SEESAW_BUTTON_MASK);
+> +	if (ret)
+> +		return ret;
+> +	ret = seesaw_register_write_u32(client, SEESAW_GPIO_BASE,
+> +					SEESAW_GPIO_BULK_SET,
+> +					SEESAW_BUTTON_MASK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	seesaw->i2c_client = client;
+> +	seesaw->input_dev = devm_input_allocate_device(&client->dev);
+> +	if (!seesaw->input_dev)
+> +		return -ENOMEM;
+> +
+> +	seesaw->input_dev->id.bustype = BUS_I2C;
+> +	seesaw->input_dev->name = "Adafruit Seesaw Gamepad";
+> +	seesaw->input_dev->phys = "i2c/" SEESAW_DEVICE_NAME;
+> +	input_set_drvdata(seesaw->input_dev, seesaw);
+> +	input_set_abs_params(seesaw->input_dev, ABS_X, 0,
+> +			     SEESAW_JOYSTICK_MAX_AXIS, SEESAW_JOYSTICK_FUZZ,
+> +			     SEESAW_JOYSTICK_FLAT);
+> +	input_set_abs_params(seesaw->input_dev, ABS_Y, 0,
+> +			     SEESAW_JOYSTICK_MAX_AXIS, SEESAW_JOYSTICK_FUZZ,
+> +			     SEESAW_JOYSTICK_FLAT);
+> +
+> +	ret = sparse_keymap_setup(seesaw->input_dev, seesaw_buttons_new, NULL);
+> +	if (ret) {
+> +		dev_err(&client->dev,
+> +			"failed to set up input device keymap: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = input_setup_polling(seesaw->input_dev, seesaw_poll);
+> +	if (ret) {
+> +		dev_err(&client->dev, "failed to set up polling: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	input_set_poll_interval(seesaw->input_dev, SEESAW_GAMEPAD_POLL_INTERVAL);
+> +	input_set_max_poll_interval(seesaw->input_dev, SEESAW_GAMEPAD_POLL_MAX);
+> +	input_set_min_poll_interval(seesaw->input_dev, SEESAW_GAMEPAD_POLL_MIN);
+> +
+> +	ret = input_register_device(seesaw->input_dev);
+> +	if (ret) {
+> +		dev_err(&client->dev, "failed to register joystick: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i2c_device_id seesaw_id_table[] = {
+> +	{ SEESAW_DEVICE_NAME, 0 },
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, seesaw_id_table);
+> +
+> +static struct i2c_driver seesaw_driver = {
+> +	.driver = {
+> +		.name = SEESAW_DEVICE_NAME,
+> +	},
+> +	.id_table = seesaw_id_table,
+> +	.probe = seesaw_probe,
+> +};
+> +module_i2c_driver(seesaw_driver);
+> +
+> +MODULE_AUTHOR("Anshul Dalal <anshulusr@gmail.com>");
+> +MODULE_DESCRIPTION("Adafruit Mini I2C Gamepad driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.42.0
+> 
 
