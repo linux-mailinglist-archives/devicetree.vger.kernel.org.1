@@ -1,237 +1,168 @@
-Return-Path: <devicetree+bounces-15544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C857EABA7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:33:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AE27EABB3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:39:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CEE62810D8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:33:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 048662810E7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA1F8486;
-	Tue, 14 Nov 2023 08:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6607CD2E8;
+	Tue, 14 Nov 2023 08:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H62js26N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Evo9Jq1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B39B291F;
-	Tue, 14 Nov 2023 08:33:14 +0000 (UTC)
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF2D1A5;
-	Tue, 14 Nov 2023 00:33:12 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9e623356e59so569366566b.0;
-        Tue, 14 Nov 2023 00:33:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1699950791; x=1700555591; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YKuTpCPN16vLxqtxNUoO64nlEyO6OP4oo4zEgiC+VFo=;
-        b=H62js26NeVAoKg/n0v9GTffUyJgNu896aMz8x1OoQpgWh6+LCfhbNwO/zKGxhiL3eQ
-         g5Wt9yUDLwPLt1Q3mgpO1AiCO3Fz8xzZ3o5oY+c5VCPCwsQsbjpWwMwWgB8/uld9UOjx
-         BpLhe6i9ZfjoRodvegfymsqb0KRrcWvL8fZeFY0fJre43HNQ4dsyzc7v/xCDv89L3HRt
-         7z1/pB9Ll1RFYNg/mL/TeVkMWNbyNTEVFLanVFCFbJq3tyPXacXXRvxWake8NCjssL1S
-         SnanwEyjtGhqtUfvCWDaVAfpGG6IZRMF1ysnUQEyZggcYcMq7iFrEaZ14bf1Xs3CPRUU
-         Hgdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699950791; x=1700555591;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YKuTpCPN16vLxqtxNUoO64nlEyO6OP4oo4zEgiC+VFo=;
-        b=c0Q+sgcn5AXSSsPzAdwl/GsUuUAuWYuF+xgnvp1fkHKIFlXK2MsQFd8tRiovpCxzsI
-         0rY5FRpOrhPzNzsYPDRuq+49nCNLEy5GDzjSNxwDsWZpIQ1lHuXmU+K7Ss77CwWHX4KC
-         W5OoZBNJ2yr3o4uL+SVVvPFzvdRvY4j1xS9zfx66BRa1YbR5LcWUxjHF1b6eeOEn94Y5
-         AOoumryjaxIuzv/5WLjRphId+qEKgddUWtSV+qErXM17+N3dGEAE5sJWRk/aZajI1p/q
-         Z9ojI+pzgTXl4lXKRboi4e+gfpoa0P7E2vTmRrd4qFWtCe8ggPnB8fS6uoaYnaZZ+Bkr
-         gNXg==
-X-Gm-Message-State: AOJu0Yz/zPrVCod4HAzPHCerR7voAdjXseKAbRDJsvya4etZz/ruuWpU
-	LjGL5e7kp/1xlBNfLneLCzasQ7HQWnyecXiT2oY=
-X-Google-Smtp-Source: AGHT+IEB9op4P/sigur1MvKvXtbr8TVcL/3UGnaMQfq+6vpzHk5HudqjhagJMT47mz52OydRN0ypiA==
-X-Received: by 2002:a17:906:7185:b0:9e3:85c9:11dc with SMTP id h5-20020a170906718500b009e385c911dcmr6132334ejk.32.1699950790794;
-        Tue, 14 Nov 2023 00:33:10 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:361b:8f29:1cbf:5e69? (p200300f6ef1b2000361b8f291cbf5e69.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:361b:8f29:1cbf:5e69])
-        by smtp.gmail.com with ESMTPSA id pj19-20020a170906d79300b0099ce025f8ccsm5176315ejb.186.2023.11.14.00.33.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 00:33:10 -0800 (PST)
-Message-ID: <fc3304423a57ca8acb40ecf8d2fb641aa280a8c1.camel@gmail.com>
-Subject: Re: [PATCH 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Nuno Sa <nuno.sa@analog.com>, linux-hwmon@vger.kernel.org, 
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org, Bartosz Golaszewski
- <brgl@bgdev.pl>, Jonathan Corbet <corbet@lwn.net>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
- <linus.walleij@linaro.org>,  Guenter Roeck <linux@roeck-us.net>, Rob
- Herring <robh+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,  Conor
- Dooley <conor+dt@kernel.org>
-Date: Tue, 14 Nov 2023 09:36:07 +0100
-In-Reply-To: <ZVJPbV2469kjqbHu@smile.fi.intel.com>
-References: <20231110151905.1659873-1-nuno.sa@analog.com>
-	 <20231110151905.1659873-3-nuno.sa@analog.com>
-	 <ZU5fYY81L_qSmQWq@smile.fi.intel.com>
-	 <581aec9c6313e3885aae8b1e12dfcc9f392716db.camel@gmail.com>
-	 <ZVJPbV2469kjqbHu@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47467BE4A;
+	Tue, 14 Nov 2023 08:38:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF65BC433C8;
+	Tue, 14 Nov 2023 08:38:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699951138;
+	bh=Qz4bqCfb39E5fvYkFxANSDUiv0YU+cze73hZIqUJoas=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Evo9Jq1Z02upcf0EdAXLr4DlJDNCEFzN9aofJ05Ssk28wE/s7yhMnPCIvtgjG0ebI
+	 YM6fuhkTs2jJDiOoKnHakIJYHuesen4hL+NtfDBjRZvQF8EuPFzgLbCkoBmgNzOZsE
+	 s3n/I/E9TmOG/fgt1nv3OA3McT+8vff5mbv0UJyMud8/LPvkoJ6JH5x0L/A9jKkM+j
+	 7txpZPI0iD1r3pY5eyEyrFoBp5IL1uS3Seukf8ep1Cy8W1L4C8p18vwf0qlBY4/6U+
+	 +6XOvxBO1VkkzrCzFAJVUCL8vBorLhLrC2Na/51HzRKdACb/vSbbch47ukXavw6VqS
+	 7H3lwKgnE9B8Q==
+Date: Tue, 14 Nov 2023 16:38:38 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Roger Quadros <rogerq@kernel.org>,
+	Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 4/6] usb: cdns3: support power-off of controller when in
+ host role
+Message-ID: <20231114083838.GC64573@nchen-desktop>
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-4-ad1ee714835c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231113-j7200-usb-suspend-v1-4-ad1ee714835c@bootlin.com>
 
-On Mon, 2023-11-13 at 18:31 +0200, Andy Shevchenko wrote:
-> On Mon, Nov 13, 2023 at 11:13:44AM +0100, Nuno S=C3=A1 wrote:
-> > On Fri, 2023-11-10 at 18:50 +0200, Andy Shevchenko wrote:
-> > > On Fri, Nov 10, 2023 at 04:18:46PM +0100, Nuno Sa wrote:
->=20
-> ...
->=20
-> > > > +/*
-> > > > + * relaxed version of FIELD_PREP() to be used when mask is not a
-> > > > compile
-> > > > time constant
-> > > > + * u32_encode_bits() can't also be used as the compiler needs to b=
-e
-> > > > able to
-> > > > evaluate
-> > > > + * mask at compile time.
-> > > > + */
-> > > > +#define LTC4282_FIELD_PREP(m, v)	(((v) << (ffs(m) - 1)) & (m))
-> > >=20
-> > > Can we name it accordingly as done in other places, and TBH it's a ti=
-me to
-> > > move
-> > > it to the header. (At least I know about two more implementations of
-> > > this).
-> >=20
-> > Not sure what you mean? Is there some other drivers doing it already? I=
-'ll,
-> > anyways, wait on more feedback for the GPIO stuff because we might end =
-up
-> > not
-> > needing it...
->=20
-> $ git grep -n 'define field_prep'
->=20
-> ...
->=20
-> > > > +	/* GPIO_2,3 and the ALERT pin require setting the bit to 1 to
-> > > > pull
-> > > > down the line */
-> > > > +	if (!gpio->active_high)
-> > >=20
-> > > Hmm... Why do you need a separate flag for this? Shouldn't be describ=
-ed or
-> > > autodetected somehow?
-> >=20
-> > Well, if a consumer as an active high gpio, it expects to call
-> > gpiod_set_value(..., 1) and the line to assert, right? To have that, we=
- need
-> > to
-> > write 0 on the device register for some of the pins.
->=20
-> It doesn't matter, the GPIO (not _raw) APIs are using logical levels, 1 =
-=E2=80=94
-> activate,
-> 0 =E2=80=94 deactivate.
->=20
-> > And the same story is true for active low. gpiod_set_value(..., 0) will=
- have
-> > the
-> > gpiolib to automatically invert the value and we get 1 in the callback.
->=20
-> Yes, but why do you have that flag in the structure?
+On 23-11-13 15:26:59, Théo Lebrun wrote:
+> The controller is not being reconfigured at resume. Change resume to
+> redo hardware config if quirk CDNS3_RESET_ON_RESUME is active.
 
-Because one of the pins (GPIO_1) has the opposite behavior...
+Current logic has power off judgement, see cdns3_controller_resume for
+detail.
 
->=20
-> > > > +		val =3D !val;
->=20
-> ...
->=20
-> > > > +	*val =3D DIV_ROUND_CLOSEST_ULL(be16_to_cpu(in) * (u64)fs,
-> > > > U16_MAX);
-> > >=20
-> > > I'm wondering if you can do some trick to "divide" actually to 2^16 s=
-o, it
-> > > will
-> > > not use division op at all?
-> >=20
-> > Hmm, not sure if it will be obvious but you mean something like:
-> >=20
-> > *val =3D (be16_to_cpu(in) * (u64)fs) >> 16;
-> >=20
-> > Is this what you mean? If so, we`ll loose the "CLOSEST" handling... Not=
- so
-> > sure
-> > if we need to be "that" performant in such a code path. But Guenter can=
- also
-> > share his opinion...
->=20
-> 	*val =3D DIV_ROUND_CLOSEST_ULL(be16_to_cpu(in) * (u64)fs + (BIT(16) -
-> 1), BIT(16));
->=20
-> will give the same result without division, no?
-> What you need is to make sure that the multiplication won't get closer to
-> U64_MAX, which seems not the case here (max 48-bit number).
+> 
+> Platform data comes from the parent driver (eg cdns3-ti).
+> 
+> The quirk should be passed if the platform driver knows that the
+> controller might be in reset state at resume. We do NOT reconfigure the
+> hardware without this quirk to avoid losing state if we did a suspend
+> without reset.
+> 
+> If the quirk is on, we notify the xHCI subsystem that:
+> 
+> 1. We reset on resume. It will therefore redo the xHC init & trigger
+>    such message as "root hub lost power or was reset" in dmesg.
+> 
+> 2. It should disable/enable clocks on suspend/resume. This does not
+>    matter on our platform as xhci-plat does not get access to any clock
+>    but it would be the right thing to do if we indeed had such clocks.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  drivers/usb/cdns3/core.h |  1 +
+>  drivers/usb/cdns3/host.c | 20 ++++++++++++++++++++
+>  2 files changed, 21 insertions(+)
+> 
+> diff --git a/drivers/usb/cdns3/core.h b/drivers/usb/cdns3/core.h
+> index 81a9c9d6be08..7487067ba23f 100644
+> --- a/drivers/usb/cdns3/core.h
+> +++ b/drivers/usb/cdns3/core.h
+> @@ -44,6 +44,7 @@ struct cdns3_platform_data {
+>  			bool suspend, bool wakeup);
+>  	unsigned long quirks;
+>  #define CDNS3_DEFAULT_PM_RUNTIME_ALLOW	BIT(0)
+> +#define CDNS3_RESET_ON_RESUME		BIT(1)
+>  };
+>  
+>  /**
+> diff --git a/drivers/usb/cdns3/host.c b/drivers/usb/cdns3/host.c
+> index 6164fc4c96a4..a81019a7c8cc 100644
+> --- a/drivers/usb/cdns3/host.c
+> +++ b/drivers/usb/cdns3/host.c
+> @@ -88,6 +88,9 @@ static int __cdns_host_init(struct cdns *cdns)
+>  		goto err1;
+>  	}
+>  
+> +	if (cdns->pdata && cdns->pdata->quirks & CDNS3_RESET_ON_RESUME)
+> +		cdns->xhci_plat_data->quirks |= XHCI_RESET_ON_RESUME | XHCI_SUSPEND_RESUME_CLKS;
+> +
 
-Hmm, I must be missing something but you're still using DIV_ROUND_CLOSEST_U=
-LL().
-So, I guess you're rely on some formula optimization that removes the divis=
-ion
-(I'm honestly seeing it) but the result won't be exactly the same (off by 1=
-).
-Again, this is not a fast path (AFAIK) and this is a typical formula to get=
- a
-value from an ADC so I'm not sure making any super "smart" tricks to make t=
-his
-run faster beats readability.
+If you set this flag, how could you support the USB remote wakeup
+request? In that case, the USB bus does not expect re-enumeration.
 
-But, I'm still not seeing what you mean so I might change my mind...
+>  	if (cdns->pdata && (cdns->pdata->quirks & CDNS3_DEFAULT_PM_RUNTIME_ALLOW))
+>  		cdns->xhci_plat_data->quirks |= XHCI_DEFAULT_PM_RUNTIME_ALLOW;
+>  
+> @@ -124,6 +127,18 @@ static void cdns_host_exit(struct cdns *cdns)
+>  	cdns_drd_host_off(cdns);
+>  }
+>  
+> +static int cdns_host_suspend(struct cdns *cdns, bool do_wakeup)
+> +{
+> +	if (!do_wakeup)
+> +		cdns_drd_host_off(cdns);
+> +	return 0;
+> +}
+> +
+> +static int cdns_host_resume(struct cdns *cdns, bool hibernated)
+> +{
+> +	return cdns_drd_host_on(cdns);
 
->=20
-> Ditto for all other similar cases which I already pointed out.
->=20
-> ...
->=20
-> > > > +	u64 temp =3D=C2=A0 DECA * 40ULL * st->vfs_out * 1 << 16, temp_2;
->=20
-> > >=20
-> > > "* BIT(16)" / "* BIT_ULL(16)" ?
-> >=20
-> > Well, I can just place the number as in the formula. Not too keen on th=
-e
-> > BIT()
-> > macros as this is not really a mask.
->=20
-> I'm not sure I got this. The << 16 neither a plain number and BIT() is eq=
-ually
+This one will redo if controller's power is off, please consider both
+on and power situation.
 
-Well, I do agree with << 16 part...
+> +}
+> +
+>  int cdns_host_init(struct cdns *cdns)
+>  {
+>  	struct cdns_role_driver *rdrv;
+> @@ -137,6 +152,11 @@ int cdns_host_init(struct cdns *cdns)
+>  	rdrv->state	= CDNS_ROLE_STATE_INACTIVE;
+>  	rdrv->name	= "host";
+>  
+> +	if (cdns->pdata && cdns->pdata->quirks & CDNS3_RESET_ON_RESUME) {
+> +		rdrv->suspend = cdns_host_suspend;
+> +		rdrv->resume = cdns_host_resume;
+> +	}
+> +
+>  	cdns->roles[USB_ROLE_HOST] = rdrv;
+>  
+>  	return 0;
+> 
+> -- 
+> 2.41.0
+> 
 
-> good. With power of two it's most likely that this is due to internal
-> implementation of the firmware or hardware, so again BIT() can be still g=
-ood
-> enough to show that.
->=20
+-- 
 
-I'm still not convinced honestly... I see plain numbers to be a good fit an=
-d
-they match exactly with the DS. I just see things like BIT(), GENMASK, BITM=
-AP
-and the likes to be used on masks.
-
-But I don't really care so unless Guenter has some opinion I can make as yo=
-u
-suggest...
-
-- Nuno S=C3=A1
-
+Thanks,
+Peter Chen
 
