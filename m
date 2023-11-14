@@ -1,59 +1,53 @@
-Return-Path: <devicetree+bounces-15702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20B777EB5D1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:51:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347147EB5E3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:57:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C01C1C208E9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:51:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7A631F25494
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:57:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD702C1A7;
-	Tue, 14 Nov 2023 17:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC5E2C1AD;
+	Tue, 14 Nov 2023 17:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NrpZd3j9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+symr6M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7EF2C1A6;
-	Tue, 14 Nov 2023 17:51:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 615D9C433C8;
-	Tue, 14 Nov 2023 17:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A072C1AA
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 17:57:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40AB3C433C7;
+	Tue, 14 Nov 2023 17:57:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699984304;
-	bh=yRDLT5Yi6ct/vSUupMEEcgTF3wh2mnRCifA6GnyLQVg=;
+	s=k20201202; t=1699984638;
+	bh=TA5MITJHC2T13fQnufVaK7/sIlajF1q5F1aF0YWeztQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NrpZd3j93jKjzVG+3VfWZJI+ZTeh9iL90bWq6VCOjfDbeQ4oRua+IbXJV06v4+wcL
-	 DNGe8XaxXV50P/xW3xQoSDgyzaPiVkbi11U+Rbjypsb9yCcsVE0iVWpFcwcEn3K17Q
-	 iVSveXYXP4PwozGFsXBM4ov0stfJ/O/mhdYuUNjc8vTxmlBySInvATm2tXQWfn8X4S
-	 pAhNEQN+Zumop5wy1OJm6KgPCPeAqAWN/in61ehdqM9WTBQuVJyTVotAFffsAoCSZX
-	 Bnrp2wla4ZcODnauBSiN1fhVLnLFkP49YIC15oOB0PSm5S2fOaNgrPh+iZu3XcE4om
-	 UaV6QVHdSLbuA==
-Date: Tue, 14 Nov 2023 17:51:41 +0000
+	b=o+symr6MkA9aQtcw1bYamXK14WvN66KoLpemZUMdLpN8Qbn0Gd4LmHGlxICWnnK+I
+	 bLQSlMekeZ6g3DRpfnA5Cia2b0XOaEbBldtmYQ/3FY/F0rrGNEXKZZmePsxa7iZKVl
+	 oM81pFh3xQR35RdndIs+oxCDXQSopGzNfvf9oTOeqZ2bIGE856FGsoyVkToG+hdDc0
+	 e4HUi80KaAVnP5D5umNzo8s6fbiH7U/87nR9gpRv1e9UZ9q2IBs5QMkQJ7uFOnzHEe
+	 2V2gGdA9aW7NOqCvI6yX6qnThXGPCf7GizmMno6zzg54i1sFfRwMx39VjZNCcwWDBr
+	 21VwijL1bAl0Q==
+Date: Tue, 14 Nov 2023 17:57:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
-	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, michael.riesch@wolfvision.net
-Subject: Re: [PATCH v10 1/3] media: dt-bindings: media: add bindings for
- Rockchip CIF
-Message-ID: <20231114-abnormal-uncross-dcebea2e82ae@squawk>
-References: <cover.1699460637.git.mehdi.djait@bootlin.com>
- <037bcabf97294d37b271537e4b11fb88cf9bb6f6.1699460637.git.mehdi.djait@bootlin.com>
- <20231109-closable-superglue-5e7f39739cf1@spud>
- <ZU0avuRRaITV4jws@aptenodytes>
- <e5b1f0dd-0aab-4ce5-82ba-879a4d736e7e@linaro.org>
- <ZU0f33clFwlsTw16@aptenodytes>
- <20231110-appetizer-fame-2152806c7442@roley>
- <ZVJUsDb1mPVtcjdX@aptenodytes>
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: perf: starfive: Add StarLink PMU
+Message-ID: <20231114-policy-routing-8df2607e76cf@squawk>
+References: <20231114021254.3009799-1-jisheng.teoh@starfivetech.com>
+ <20231114021254.3009799-3-jisheng.teoh@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,43 +55,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8nu08neggqbZ3wuJ"
+	protocol="application/pgp-signature"; boundary="GVUN6CsEXv0BSbNb"
 Content-Disposition: inline
-In-Reply-To: <ZVJUsDb1mPVtcjdX@aptenodytes>
+In-Reply-To: <20231114021254.3009799-3-jisheng.teoh@starfivetech.com>
 
 
---8nu08neggqbZ3wuJ
-Content-Type: text/plain; charset=utf-8
+--GVUN6CsEXv0BSbNb
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 13, 2023 at 05:54:08PM +0100, Paul Kocialkowski wrote:
-=20
-> > Ultimately, I don't care what the file ends up being called when there
-> > are multiple devices documented in it. I'd ack a patch renaming to the
-> > =C5=93riginal incarnation of the IP when the documentation for that IP =
-is
-> > added without a second thought.
+On Tue, Nov 14, 2023 at 10:12:54AM +0800, Ji Sheng Teoh wrote:
+> Add device tree binding for StarFive's StarLink PMU (Performance
+> Monitor Unit).
 >=20
-> That would be agreeable to me if my proposal still ends up feeling unreas=
-onable
-> to you. But I might very well take you at your word since I ended up purc=
-hasing
-> a RK3066 board in a moment of weakness last week.
+> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> ---
+>  .../bindings/perf/starfive,starlink-pmu.yaml  | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/starfive,starl=
+ink-pmu.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/perf/starfive,starlink-pmu=
+=2Eyaml b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
+> new file mode 100644
+> index 000000000000..b164f6849055
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/starfive,starlink-pmu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive StarLink PMU
+> +
+> +maintainers:
+> +  - Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> +
+> +description:
+> +  StarFive's StarLink PMU integrates one or more CPU cores with a shared=
+ L3
+> +  memory system. The PMU support overflow interrupt, up to 16 programmab=
+le
+> +  64bit event counters, and an independent 64bit cycle counter.
+> +  StarLink PMU is accessed via MMIO.
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,starlink-pmu
 
-The ideal outcome I suppose would be documenting both variants. If
-you've gone ahead and bought one, give that a go.
+This compatible (in isolation) is far too generic. Please add a device
+specific compatible for the device that has this PMU.
 
---8nu08neggqbZ3wuJ
+Thanks,
+Conor.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        l3_pmu: pmu@12900000 {
+> +            compatible =3D "starfive,starlink-pmu";
+> +            reg =3D <0x0 0x12900000 0x0 0x10000>;
+> +            interrupts =3D <34>;
+> +        };
+> +    };
+> --=20
+> 2.25.1
+>=20
+
+--GVUN6CsEXv0BSbNb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVOzqgAKCRB4tDGHoIJi
-0jjfAQC4F8CNyB9+LVpLdQCs9w3PBuWgDLgZBTAMXWWl7n3p3wD/b2562YZymf5L
-Y9gGBaPMp5CO1wvwe7CR7zZ78eEpAAI=
-=u3yf
+iHQEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVO09wAKCRB4tDGHoIJi
+0oKyAQDMGNLblbWwPrbf2IDZPlUbqUp3cf3FJJlST27PCfSlPAD3fxa4mjKlBXxF
+rBGin84XnMj9T1tFSy1yt3KRXzJsCA==
+=5OaB
 -----END PGP SIGNATURE-----
 
---8nu08neggqbZ3wuJ--
+--GVUN6CsEXv0BSbNb--
 
