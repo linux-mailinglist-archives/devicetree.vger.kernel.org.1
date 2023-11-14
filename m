@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-15729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C603E7EB7D9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:32:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F017EB7DE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:33:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D1FB28134C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:32:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6300A281347
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:33:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAE835F18;
-	Tue, 14 Nov 2023 20:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B4835F0E;
+	Tue, 14 Nov 2023 20:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RjxRbrJQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mHZi4+/s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90332FC2F
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:32:43 +0000 (UTC)
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6144D106
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:32:42 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6ce2d4567caso3462918a34.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:32:42 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C57E2FC21
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:33:53 +0000 (UTC)
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6970DF1
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:33:52 -0800 (PST)
+Received: by mail-vs1-xe2c.google.com with SMTP id ada2fe7eead31-45efc5b5251so2186490137.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:33:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699993961; x=1700598761; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699994031; x=1700598831; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GWuHm2PyhpvtXmafr8oA1u+dO28uYjRgGzuxSdieW3s=;
-        b=RjxRbrJQ6/KXXG64+3mxGVujkTrGkvoDyh94Slc+qUIAsFF/dDKr+jATLBEljT2sc2
-         QkTgFTxDTgPQ+1BPJlaS09/jaO6xBMLpOedjDr4oiicZEMGDd0kcCb+xvqCRAN52x051
-         akjGUOLAqkpcKC6UL+elK6zuMGFly/D+Tb6zSOOA1M+3fdfZ3NOWvqXMaxLv/b6/uCWO
-         ssEmIK5VyaJTxsjS2kzgIAZEI0wXLm4s9otL5IBhZ2bhA9i8qvBO5UdhELbHMWCClCUl
-         gvieNrMuYslzHVPuHmqG77OPdbS1rlEQxeslMc+AKAmH6pQm/YBTjcvkY8sp6sa+6tDz
-         vLMA==
+        bh=Qp1zO5jx1PttOuB/MNI2YR6CHcSSCkeTGuKqGHT6Si8=;
+        b=mHZi4+/s1vAahoWiV3V0f/lolzqdHTkdPf700SjNWqGUy2stDklI416eYazKCNQGYH
+         5lAzXHN8WvMLzW24WXwomwhacOhC9cbSFjqFvWhBgXsWd4PtPUauQ98WbnhRQkKD8s2f
+         q+aBM3LbLd3k0wfbuWt75riPJHP3V2YecY+0gzvgZjSdSphTL+Ugeqs8R7DWCGCCqe8z
+         kJQeJzHasMsFmKxet5gkTss0l31eRIs+CUNh1jr5n2L9QwEk+K0ZZeny4T0XupxW3uJ/
+         8qt4r89xWVkcoSDn1o8Cu19m3NSJej9SqhV9SqtHAlEPsLz9HYP8CxHiqIvNNC1gZd15
+         u0iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699993961; x=1700598761;
+        d=1e100.net; s=20230601; t=1699994031; x=1700598831;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GWuHm2PyhpvtXmafr8oA1u+dO28uYjRgGzuxSdieW3s=;
-        b=E11UdPqeKi1WeSJoaKFy5ibqFF15tcNtDhW/IldO0AhWaokxuuZdA+cahmGePmXuCe
-         a1wjgWo1rFu+bVeLDJSthzjMcFW6Q2tAiaoIjO5V+EH4v5C4FJEOdaiV4EEMZ2IJKUvj
-         5A9rZbMMUFyOZj52XiTAffmGp9tm4Q5Nb7uoPHsNCFRdR8u67NzHX6CMIJjRzjlXWLlh
-         XozVLXBmM5w3osfFNXsWsnf9DZMdI5mZTM5oA0hPhRJfvkDILRMji+69Q58c0N3D6PQj
-         NJOWVQJWivOy9KO6ah+bkgD5BqzYQZIwyHF8y+FW9dQYwXf5cteUIkRuI0XUs9SAkWq6
-         9yjQ==
-X-Gm-Message-State: AOJu0YxlvQNg2azKH8GPxzhoaVnEmdgOHowfP2LWnwt4U3t3L3XVgLT0
-	Vs8GFKhJKB1MJT06o5pb/dx1zg==
-X-Google-Smtp-Source: AGHT+IHSfUE7hHE+1su6xChlOkcuvNvEt5G+y5FaHghn0x72P/EFVV2O7PU9IaRzlt9J7SuzRnwoIw==
-X-Received: by 2002:a9d:6502:0:b0:6d6:53fe:2181 with SMTP id i2-20020a9d6502000000b006d653fe2181mr3399558otl.26.1699993961734;
-        Tue, 14 Nov 2023 12:32:41 -0800 (PST)
+        bh=Qp1zO5jx1PttOuB/MNI2YR6CHcSSCkeTGuKqGHT6Si8=;
+        b=VyewvPfwVq8JaXi1njYK3x8GJlYjCvE4H4KIhOqwWwup2sg7DkqTJ3z/NfSY9uifsA
+         ZKlBans5b8bR+tE7I8hstU2X+npi2T+A1S1/5ESMDRr1ovgCcHsnFRb5O2m85gBLwG9Q
+         Wtnvwre8aZiZTSFNQsuTrLRAsrzcXPbpU7+NO2vCOYuevDJzWnuwG2BX4THC8hjQsx1H
+         A/OaPTwv2xUkY29a05kDUVhNYvGeIle2tcEiY3NncpkwuJ5qE+yflwkQg8QR7cbvyrcI
+         3wCz3TN6+Huq+83u2xtXCM6uH4IFzLJSiQy6KdQNzmpLTuoZcRe4MqRWyjgnCnDGYRX2
+         Xb7Q==
+X-Gm-Message-State: AOJu0Yx1DU40njjQwFyYmsHpl2bgmnW88aWBaQ5WifMdwe7jSgHLMrPI
+	e7xmdMu4j404HN+3d0BemvuHMg==
+X-Google-Smtp-Source: AGHT+IFvtceCMA42IM+PRYwPCNHf0BYuhUN73Gk/fjPT+RF3DgcwqqkQRLjAewBDREcb3xQroPVg7g==
+X-Received: by 2002:a67:e00f:0:b0:457:c2ff:ad98 with SMTP id c15-20020a67e00f000000b00457c2ffad98mr9704727vsl.13.1699994031533;
+        Tue, 14 Nov 2023 12:33:51 -0800 (PST)
 Received: from [172.25.83.73] ([12.186.190.1])
-        by smtp.gmail.com with ESMTPSA id h13-20020a0ceecd000000b00671b009412asm3132110qvs.141.2023.11.14.12.32.40
+        by smtp.gmail.com with ESMTPSA id h13-20020a0ceecd000000b00671b009412asm3132110qvs.141.2023.11.14.12.33.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 12:32:41 -0800 (PST)
-Message-ID: <908fe905-b2e5-46c9-bb67-46c3797fd9ab@linaro.org>
-Date: Tue, 14 Nov 2023 21:32:40 +0100
+        Tue, 14 Nov 2023 12:33:51 -0800 (PST)
+Message-ID: <f6aade48-d885-4c27-8afc-f5381465580d@linaro.org>
+Date: Tue, 14 Nov 2023 21:33:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,32 +67,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: ad7192: Add AD7194 support
+Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: document ASRock SPC621D8HM3
 Content-Language: en-US
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Tachici <alexandru.tachici@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Zev Weiss <zev@bewilderbeest.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Maksim Kiselev <bigunclemax@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- Cosmin Tanislav <demonsingur@gmail.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Marius Cristea <marius.cristea@microchip.com>,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Ibrahim Tilki <Ibrahim.Tilki@analog.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
- Ivan Mikhaylov <fr0st61te@gmail.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231105193132.47009-1-alisadariana@gmail.com>
- <20231105193132.47009-3-alisadariana@gmail.com>
- <e5c9eaaa-a8f3-4ca5-acf6-9ff714a07898@linaro.org>
- <500eec71-e2f4-4f43-8bc9-6d4914b2493c@gmail.com>
- <124c97ca-0c2c-4b92-8d8e-99d589daf2da@linaro.org>
- <80ad972c-9f98-4c57-8318-c84225e79cbe@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org
+References: <20231114112819.28572-4-zev@bewilderbeest.net>
+ <20231114112819.28572-5-zev@bewilderbeest.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -138,28 +123,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <80ad972c-9f98-4c57-8318-c84225e79cbe@gmail.com>
+In-Reply-To: <20231114112819.28572-5-zev@bewilderbeest.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/11/2023 19:27, Alisa-Dariana Roman wrote:
+On 14/11/2023 12:28, Zev Weiss wrote:
+> Document ASRock SPC621D8HM3 board compatible.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> ---
 
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> I added another example to highlight the fact that only AD7194 supports
->>> configurable channels. How should I proceed?
->>
->> Bindings did not tell that, so it seems you miss that part - allOf
->> constraining channels per variant.
->>
->> Best regards,
->> Krzysztof
->>
-> And should I remove the AD7194 example?
-
-You can add new example in such case (and keep old).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
