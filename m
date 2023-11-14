@@ -1,368 +1,216 @@
-Return-Path: <devicetree+bounces-15565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B4A57EAD84
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:04:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C077EAD93
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:07:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6669B209E3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:04:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3AF21C2083F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0150A1803E;
-	Tue, 14 Nov 2023 10:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4B6182CB;
+	Tue, 14 Nov 2023 10:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EBigAJCQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KGrmMB+x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4C8E1803D;
-	Tue, 14 Nov 2023 10:04:13 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F917194;
-	Tue, 14 Nov 2023 02:04:11 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 0857C6602F36;
-	Tue, 14 Nov 2023 10:04:07 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1699956249;
-	bh=Hq37ChMubvCTToerJNuW/7oUKCovgAWrPkN6HAPLVK4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EBigAJCQehoclU7qZ0/2lQ7YlVgYBgTVD6/UEKierYm1ZkUcMUYl/lyzqcPNuCNUc
-	 Y5bEabo1xrw5dsBZSM0zNEWPIif5OTnezmoI5YX8iFu1UZ+pT+U+H2GfemrH39XEI1
-	 dh3ceuh5VILgCsmQLs4LSv2yvFB9sNt74dmABb/GRocl1eDTRQQ0ugT52kP0YWvkDY
-	 qu2hj3DnRfuxHnfjWUS0rBdQS8b2D0lqXNY88XEAxD5mWG87r5nTCnFOV0N0VOrz7q
-	 MjTDCUlrbpyQ+GFgz41Dz1gJx4NFV60mXoh+Zvme8NWAh5f/jCm4GVzGiGrvkQClMl
-	 3BB0dFYaU1SaA==
-Message-ID: <bfbd68fb-82c5-4357-8679-f1ad1c53426b@collabora.com>
-Date: Tue, 14 Nov 2023 11:04:05 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E7818631
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 10:07:27 +0000 (UTC)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87EB1197
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:07:24 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-408425c7c10so44192665e9.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699956443; x=1700561243; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QR7rJ0Q5Vply3G1eukhHgIEevqGVK5XTr0L9lQZuxIA=;
+        b=KGrmMB+xWhVQ//BfS+GV6G9zqFcLoxibkeENi+yquXluEZNZdcflnwwSkytWrplf8U
+         Y+sCB+YkkR7/X4jSYJZAYkbdv4HijhpsEX81rjX8dT8IPINeOe45uc2UiuQPwz5no4MM
+         q5VyI4ODqzRDgq+rbpFFqGEpERv20nzo04amFQtXHMM2U4PrDUn61ILjOfkCbkIsdSrX
+         CIUBXJ0q7nTf5iOvp/8+El5m04YykQ/+KIE7FIvJe1cEMOymMD5fbY8Aj7aeJYMinzCo
+         Wfk5LaGFnWi19IdvE5zGRMH7598o4wbEjzo8miFe+uFpGAOPRvTXr6HUFWw9JAzecJsP
+         XPRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699956443; x=1700561243;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QR7rJ0Q5Vply3G1eukhHgIEevqGVK5XTr0L9lQZuxIA=;
+        b=plfTkv3W5rB1FFMfICcsptcEFK5/IE0Pgdp72J1dWniii0K/4IJA7hNmMmv3Lkhm9L
+         gFMr3NrelrCfDBfVrsQbR4I6g5dteJyu6TZW4OKZlZfi91/yJrneVfh2PzEi3fdOlk8A
+         +R52ZZxXkFeYKiroCp6mFAjb9zednYdTD3E+CG/ZSQdkVDgREXcJEAcpmHPdCxs0eRif
+         ca2S0QPlbMHPXjtMzHqO3kftSx6lGJ6D6lBvR200xO977BihfyADjfv2rAU/zhDL0sqA
+         feL5zmnwIWxQNyUh0THm6JpXUnCxLM7rIdEdz0HdcYlQdLfVuw+zVVcOJbiS/y3Im8Ff
+         P1hQ==
+X-Gm-Message-State: AOJu0Yzpfw12qXogy0mWS27HYSslLvoTbLTrwaSJRGO8uS5Ve9GUS6/0
+	sd86LazraG42oZhiPTGWzOLZog==
+X-Google-Smtp-Source: AGHT+IESkVZkNKLyliEMie2GhdTpTo5Nn7MD0tmyx/eQCUA8PBCEuhfQTTzm8KnLsnDI8haNdcftcw==
+X-Received: by 2002:a05:600c:450d:b0:409:5a92:4718 with SMTP id t13-20020a05600c450d00b004095a924718mr6843841wmo.36.1699956442973;
+        Tue, 14 Nov 2023 02:07:22 -0800 (PST)
+Received: from blmsp ([2001:4091:a246:821e:4988:9c5:5b9:1020])
+        by smtp.gmail.com with ESMTPSA id f23-20020a1c6a17000000b0040648217f4fsm16463521wmc.39.2023.11.14.02.07.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 02:07:22 -0800 (PST)
+Date: Tue, 14 Nov 2023 11:07:21 +0100
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Martin =?utf-8?Q?Hundeb=C3=B8ll?= <martin@geanix.com>
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+	Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 1/3] can: m_can: allow keeping the transceiver running
+ in suspend
+Message-ID: <20231114100721.noigib5rxmmopiu7@blmsp>
+References: <20231113131452.214961-1-martin@geanix.com>
+ <20231113131452.214961-2-martin@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>,
- linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org,
- hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech,
- keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de,
- Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>
-References: <20231109100606.1245545-1-wenst@chromium.org>
- <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
- <CAGXv+5G+J__Z_YBySxrkthhwa71shq7aCeKZ_DEZCK=PLgYwUg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5G+J__Z_YBySxrkthhwa71shq7aCeKZ_DEZCK=PLgYwUg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231113131452.214961-2-martin@geanix.com>
 
-Il 14/11/23 09:57, Chen-Yu Tsai ha scritto:
-> On Thu, Nov 9, 2023 at 6:54 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 09/11/23 11:05, Chen-Yu Tsai ha scritto:
->>> Hi everyone,
->>>
->>> This v2 series continues Doug's "of: device: Support 2nd sources of
->>> probeable but undiscoverable devices" [1] series, but follows the scheme
->>> suggested by Rob, marking all second source component device nodes
->>> as "fail-needs-probe-XXX", and having a hardware prober driver enable
->>> the one of them. I tried to include everyone from the original Cc: list.
->>> Please let me know if you would like to be dropped from future
->>> submissions.
->>>
->>>
->>> For the I2C component (touchscreens and trackpads) case from the
->>> original series, the hardware prober driver finds the particular
->>> class of device in the device tree, gets its parent I2C adapter,
->>> and tries to initiate a simple I2C read for each device under that
->>> I2C bus. When it finds one that responds, it considers that one
->>> present, marks it as "okay", and returns, letting the driver core
->>> actually probe the device.
->>>
->>> This works fine in most cases since these components are connected
->>> via ribbon cable and always have the same resources. The driver as
->>> implemented currently doesn't deal with regulators or GPIO pins,
->>> since in the existing device trees they are either always on for
->>> regulators, or have GPIO hogs or pinmux and pinconfig directly
->>> tied to the pin controller.
->>>
->>>
->>> Another case this driver could handle is selecting components based
->>> on some identifier passed in by the firmware. On Chromebooks we have
->>> a SKU ID which is inserted by the bootloader at
->>> /firmware/coreboot/sku-id. When a new combination of components is
->>> introduced, a new SKU ID is allocated to it. To have SKU ID based
->>> device trees, we would need to have one per SKU ID. This ends up
->>> increasing the number of device trees we have a lot. The recent
->>> MT8186 devices already have 10+10 SKUs [2], with possibly more to come.
->>>
->>> Instead, we could have just one device tree for each device, with
->>> component options listed and marked as "fail-needs-probe-XXX", and
->>> let the hardware prober enable one of them based on the given SKU ID.
->>> The driver will also fix up OF graph remote endpoints to point to the
->>> enabled component.
->>>
->>> The MT8186 Corsola series [2] can also benefit from this, though I
->>> haven't implemented anything yet.
->>>
->>>
->>> Patch 1 adds of_device_is_fail() for the new driver to use.
->>>
->>> Patch 2 implements the first case, probing the I2C bus for presence
->>> of components. This initial version targets the Hana Chromebooks.
->>>
->>> Patch 3 modifies the Hana device tree and marks the touchscreens
->>> and trackpads as "fail-needs-probe-XXX", ready for the driver to
->>> probe.
->>>
->>> Patch 4 adds a missing touchscreen variant to Hana.
->>>
->>> Patch 5 implements the second case, selectively enabling components
->>> based on the SKU ID. This initial version targets the Krane ChromeOS
->>> tablet, which has two possible MIPI DSI display panel options.
->>>
->>> Patch 6 drops Krane's SKU-specific compatible strings from the bindings.
->>>
->>> Patch 7 merges Krane's SKU-specific device trees into one, with the
->>> device tree now containing two possible panels. This unfortunately
->>> introduces a dtc warning:
->>>
->>>       arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dts:81.13-83.6:
->>>           Warning (graph_endpoint): /soc/dsi@14014000/panel2@0/port/endpoint:
->>>        graph connection to node '/soc/dsi@14014000/ports/port/endpoint'
->>>            is not bidirectional
->>>
->>>
->>> Please take a look.
->>>
->>> Johan, I'm not sure if this works as is for the Lenovo Thinkpad 13S
->>> case, since it looks like the trackpad shares the I2C bus with the
->>> keyboard.
->>>
->>>
->>> Thanks
->>> ChenYu
->>>
->>>
->>> Background as given in Doug's cover letter:
->>>
->>> Support for multiple "equivalent" sources for components (also known
->>> as second sourcing components) is a standard practice that helps keep
->>> cost down and also makes sure that if one component is unavailable due
->>> to a shortage that we don't need to stop production for the whole
->>> product.
->>>
->>> Some components are very easy to second source. eMMC, for instance, is
->>> fully discoverable and probable so you can stuff a wide variety of
->>> similar eMMC chips on your board and things will work without a hitch.
->>>
->>> Some components are more difficult to second source, specifically
->>> because it's difficult for software to probe what component is present
->>> on any given board. In cases like this software is provided
->>> supplementary information to help it, like a GPIO strap or a SKU ID
->>> programmed into an EEPROM. This helpful information can allow the
->>> bootloader to select a different device tree. The various different
->>> "SKUs" of different Chromebooks are examples of this.
->>>
->>> Some components are somewhere in between. These in-between components
->>> are the subject of this patch. Specifically, these components are
->>> easily "probeable" but not easily "discoverable".
->>>
->>> A good example of a probeable but undiscoverable device is an
->>> i2c-connected touchscreen or trackpad. Two separate components may be
->>> electrically compatible with each other and may have compatible power
->>> sequencing requirements but may require different software. If
->>> software is told about the different possible components (because it
->>> can't discover them), it can safely probe them to figure out which
->>> ones are present.
->>>
->>> On systems using device tree, if we want to tell the OS about all of
->>> the different components we need to list them all in the device
->>> tree. This leads to a problem. The multiple sources for components
->>> likely use the same resources (GPIOs, interrupts, regulators). If the
->>> OS tries to probe all of these components at the same time then it
->>> will detect a resource conflict and that's a fatal error.
->>>
->>> The fact that Linux can't handle these probeable but undiscoverable
->>> devices well has had a few consequences:
->>> 1. In some cases, we've abandoned the idea of second sourcing
->>>      components for a given board, which increases cost / generates
->>>      manufacturing headaches.
->>> 2. In some cases, we've been forced to add some sort of strapping /
->>>      EEPROM to indicate which component is present. This adds difficulty
->>>      to manufacturing / refurb processes.
->>> 3. In some cases, we've managed to make things work by the skin of our
->>>      teeth through slightly hacky solutions. Specifically, if we remove
->>>      the "pinctrl" entry from the various options then it won't
->>>      conflict. Regulators inherently can have more than one consumer, so
->>>      as long as there are no GPIOs involved in power sequencing and
->>>      probing devices then things can work. This is how
->>>      "sc8280xp-lenovo-thinkpad-x13s" works and also how
->>>      "mt8173-elm-hana" works.
->>>
->>> End of background from Doug's cover letter.
->>
->> I think that using "status" is not a good idea, I find that confusing.
+Hi Martin,
+
+On Mon, Nov 13, 2023 at 02:14:50PM +0100, Martin Hundebøll wrote:
+> Add a flag to the device class structure that leaves the chip in a
+> running state with rx interrupt enabled, so that an m_can device driver
+> can configure and use the interrupt as a wakeup source.
 > 
-> It isn't a hard requirement. The current I2C prober actually just looks
-> at the node name, which already should be a generic class type. It then
-> assumes that all the components of the same class that it is supposed
-> to probe for are on the same bus. I think this is a fair assumption for
-> replaceable parts connected via ribbon cable or co-layout parts?
+> Signed-off-by: Martin Hundebøll <martin@geanix.com>
+> ---
 > 
-
-Assuming that the parts are on the exact same bus is ok, there has to be a
-flexibility limit, or this framework will definitely get abused in the wrong
-ways.
-
->> Perhaps we could have a node like
->>
->> something {
->>          device-class-one = <&device1>, <&device2>, <&device3>;
->>          device-class-two = <&device4>, <&device5>, <&device6>;
->> }
->>
->> so that'd be more or less
->>
->> hw-prober {
->>          trackpads = <&tp1>, <&tp2>;
->>          keyboards = <&kb1>, <&kb2>;
->>          touchscreens = <&ts1>, <&ts2>;
->> }
+> Change in v3:
+>  * Replaced the added function parameter with a property in
+>    struct m_can_classdev.
 > 
-> This was already nacked by Rob.
-
-Oh. Oops. :-)
-
+> Changes in v2:
+>  * Fixed comment formatting
+>  * Updated m_can_class_{suspend,resume} calls in m_can_pci.c too
+>  * Skipped calling m_can_start() when resuming a wake-source device
 > 
->> Besides, something else I can suggest here is to make this more generic: actually,
->> this issue is spread across way more devices than you maybe think... for example,
->> I know of some smartphones that may have the same situation with DSI displays and
->> they're sometimes distinguished by an ADC value, sometimes by reading back the
->> manufacturer ID (or panel id) through DSI.
+>  drivers/net/can/m_can/m_can.c          | 22 +++++++++++++++++-----
+>  drivers/net/can/m_can/m_can.h          |  1 +
+>  drivers/net/can/m_can/m_can_pci.c      |  1 +
+>  drivers/net/can/m_can/m_can_platform.c |  1 +
+>  drivers/net/can/m_can/tcan4x5x-core.c  |  1 +
+>  5 files changed, 21 insertions(+), 5 deletions(-)
 > 
-> ADC strapping is common. Though we might need some kind of binding about how
-> to describe the ADC strapping scheme, as this is bound to be different across
-> boards.
+> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+> index b351597f594b..55df50580480 100644
+> --- a/drivers/net/can/m_can/m_can.c
+> +++ b/drivers/net/can/m_can/m_can.c
+> @@ -2392,7 +2392,15 @@ int m_can_class_suspend(struct device *dev)
+>  	if (netif_running(ndev)) {
+>  		netif_stop_queue(ndev);
+>  		netif_device_detach(ndev);
+> -		m_can_stop(ndev);
+> +
+> +		/* leave the chip running with rx interrupt enabled if it is
+> +		 * used as a wake-up source.
+> +		 */
+> +		if (cdev->pm_wake_source)
+> +			m_can_write(cdev, M_CAN_IE, IR_RF0N);
+> +		else
+> +			m_can_stop(ndev);
+> +
+>  		m_can_clk_stop(cdev);
+>  	}
+>  
+> @@ -2419,11 +2427,15 @@ int m_can_class_resume(struct device *dev)
+>  		ret = m_can_clk_start(cdev);
+>  		if (ret)
+>  			return ret;
+> -		ret  = m_can_start(ndev);
+> -		if (ret) {
+> -			m_can_clk_stop(cdev);
+>  
+> -			return ret;
+> +		if (cdev->pm_wake_source) {
+> +			m_can_write(cdev, M_CAN_IE, cdev->active_interrupts);
+> +		} else {
+> +			ret  = m_can_start(ndev);
+
+There is one space too much here.
+
+> +			if (ret) {
+> +				m_can_clk_stop(cdev);
+> +				return ret;
+> +			}
+>  		}
+>  
+>  		netif_device_attach(ndev);
+> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
+> index 2986c4ce0b2f..3a9edc292593 100644
+> --- a/drivers/net/can/m_can/m_can.h
+> +++ b/drivers/net/can/m_can/m_can.h
+> @@ -97,6 +97,7 @@ struct m_can_classdev {
+>  	u32 irqstatus;
+>  
+>  	int pm_clock_support;
+> +	int pm_wake_source;
+
+Can you avoid this new variable by using device_can_wakeup() and/or
+device_may_wakeup() to check if the device is capable to wake up and if
+wakeup is actually enabled?
+
+Best,
+Markus
+
+>  	int is_peripheral;
+>  
+>  	// Cached M_CAN_IE register content
+> diff --git a/drivers/net/can/m_can/m_can_pci.c b/drivers/net/can/m_can/m_can_pci.c
+> index f2219aa2824b..45400de4163d 100644
+> --- a/drivers/net/can/m_can/m_can_pci.c
+> +++ b/drivers/net/can/m_can/m_can_pci.c
+> @@ -125,6 +125,7 @@ static int m_can_pci_probe(struct pci_dev *pci, const struct pci_device_id *id)
+>  	mcan_class->dev = &pci->dev;
+>  	mcan_class->net->irq = pci_irq_vector(pci, 0);
+>  	mcan_class->pm_clock_support = 1;
+> +	mcan_class->pm_wake_source = 0;
+>  	mcan_class->can.clock.freq = id->driver_data;
+>  	mcan_class->ops = &m_can_pci_ops;
+>  
+> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
+> index ab1b8211a61c..df0367124b4c 100644
+> --- a/drivers/net/can/m_can/m_can_platform.c
+> +++ b/drivers/net/can/m_can/m_can_platform.c
+> @@ -139,6 +139,7 @@ static int m_can_plat_probe(struct platform_device *pdev)
+>  
+>  	mcan_class->net->irq = irq;
+>  	mcan_class->pm_clock_support = 1;
+> +	mcan_class->pm_wake_source = 0;
+>  	mcan_class->can.clock.freq = clk_get_rate(mcan_class->cclk);
+>  	mcan_class->dev = &pdev->dev;
+>  	mcan_class->transceiver = transceiver;
+> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
+> index 8a4143809d33..870ab4aef610 100644
+> --- a/drivers/net/can/m_can/tcan4x5x-core.c
+> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+> @@ -411,6 +411,7 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
+>  	priv->spi = spi;
+>  
+>  	mcan_class->pm_clock_support = 0;
+> +	mcan_class->pm_wake_source = 0;
+>  	mcan_class->can.clock.freq = freq;
+>  	mcan_class->dev = &spi->dev;
+>  	mcan_class->ops = &tcan4x5x_ops;
+> -- 
+> 2.42.0
 > 
-> Reading back from DSI feels problematic to implement. But I don't know much
-> about DSI ATM. Doug implied in our offline discussion that DSI panels might
-> have power sequencing requirements that are all over the place.
-> 
-
-This is exactly why I think that this should allow a certain kind of "modularity",
-meaning that subsystems should be able to register their own hook into this: in
-both cases of ADC and/or DSI readback we're getting into some fairly (less, or
-more) complicated territory - and it's something that people around each subsystem
-knows best - and they must have that kind of flexibility and freedom to change the
-hooked implementation in their own subsystem instead of somewhere else.
-
-There would be much more to say about this, but I'm avoiding to write a wall of
-text because I'm sure that you can read through the lines and can get my point
-anyway.
-
->> Also, if Chromebooks really need something "special", such as that coreboot sku-id
->> parameter, I think that this should be registered externally into the hw prober
->> and not embedded inside of the *generic* hw prober driver.
->>
->> We can even reuse of_device_id instead of inventing a new hw_prober_entry struct...
->>
->> Idea:
->>
->> drivers/platform/chrome/cros_of_hw_prober.c
->>
->> static int cros_sku_hw_prober(struct platform_device *pdev, const void *data)
->> {
->>          ...this is your cros_sku_component_selector() function, anyway...
->> }
->>
->> static const struct of_device_id cros_hw_prober_ids[] = {
->>          { .compatible = "google,hana", .data = something },
->>          { /* sentinel */ }
->> };
->>
->> static int some_kind_of_early_init_function(something)
->> {
->>          int a,b,c,ret,something;
->>
->>          .. some logic if necessary ..
->>
->>          return of_hw_prober_register(cros_sku_hw_prober, cros_hw_prober_ids);
->> }
-> 
-> This feels a bit too layered, and requires all the board specific code to
-> have an early init function. I think exposing common helper functions for
-> boards to implement prober drivers would be better. Then the prober could
-> also be a module if that made sense. Given that SoC vendors are making
-> clock controller drivers modules, this doesn't seem very far fetched.
-> 
-
-That would as well work - and would be way better than early init. Reading it back
-now, putting that in a early init function would be counter-productive in general.
-
->> Btw, thanks for starting that. If this will be done the right way, it's going to
->> be useful to many, many people.
-> 
-> Right. I only have a limited view of applications, so input is always welcome.
-> 
-> Thanks
-> ChenYu
-> 
->> Regards,
->> Angelo
->>
->>>
->>> [1] https://lore.kernel.org/all/20230921102420.RFC.1.I9dddd99ccdca175e3ceb1b9fa1827df0928c5101@changeid/
->>> [2] https://lore.kernel.org/linux-mediatek/20231012230237.2676469-1-wenst@chromium.org/
->>>
->>> Chen-Yu Tsai (7):
->>>     of: base: Add of_device_is_fail
->>>     of: Introduce hardware prober driver
->>>     arm64: dts: mediatek: mt8173-elm-hana: Mark touchscreens and trackpads
->>>       as fail
->>>     arm64: dts: mediatek: mt8173-elm-hana: Add G2touch G7500 touchscreen
->>>     of: hw_prober: Support Chromebook SKU ID based component selection
->>>     dt-bindings: arm: mediatek: Remove SKU specific compatibles for Google
->>>       Krane
->>>     arm64: dts: mediatek: mt8183-kukui: Merge Krane device trees
->>>
->>>    .../devicetree/bindings/arm/mediatek.yaml     |   3 -
->>>    arch/arm64/boot/dts/mediatek/Makefile         |   3 +-
->>>    .../boot/dts/mediatek/mt8173-elm-hana.dtsi    |  20 ++
->>>    .../dts/mediatek/mt8183-kukui-krane-sku0.dts  |  24 --
->>>    .../mediatek/mt8183-kukui-krane-sku176.dts    |  24 --
->>>    ...ukui-krane.dtsi => mt8183-kukui-krane.dts} |  47 ++-
->>>    drivers/of/Kconfig                            |  13 +
->>>    drivers/of/Makefile                           |   1 +
->>>    drivers/of/base.c                             |  20 ++
->>>    drivers/of/hw_prober.c                        | 314 ++++++++++++++++++
->>>    include/linux/of.h                            |   6 +
->>>    11 files changed, 418 insertions(+), 57 deletions(-)
->>>    delete mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
->>>    delete mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
->>>    rename arch/arm64/boot/dts/mediatek/{mt8183-kukui-krane.dtsi => mt8183-kukui-krane.dts} (86%)
->>>    create mode 100644 drivers/of/hw_prober.c
->>>
->>
-
-
-
 
