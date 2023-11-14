@@ -1,66 +1,67 @@
-Return-Path: <devicetree+bounces-15737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5DB7EB82D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:08:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1161B7EB82C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:08:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 357C01F25D68
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:08:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8944F2813DD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:08:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DE72FC44;
-	Tue, 14 Nov 2023 21:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39C02D62E;
+	Tue, 14 Nov 2023 21:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iKkcRUNU"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qAJMH3NN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C4F2FC2F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A602FC2B
 	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:08:12 +0000 (UTC)
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A9CBF
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:07 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id d75a77b69052e-41cd97d7272so36683551cf.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:07 -0800 (PST)
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF4995
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:08 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-3b2e72fe47fso3985299b6e.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699996087; x=1700600887; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bVfZqFoQfSFxFV4SokjDO2x1oFiuMyw4rUeKlbXA8wA=;
-        b=iKkcRUNUpYkIKLkmAXmt6sw565yy/Ib0gdSjqk9hvGp4ujaj03DcI4EypjwMllHFnZ
-         r60zrx41SaWeMhRAJKws7gaWUGvhv2kuBX3iFHQXvzbNqZVzdJKOxh2MofHHDB778iOE
-         nS95V7P7rRivz3wKBdKNGCFPk59h26ss9JmDNlrh+N99vEiaZSANKroXjhYC8BD2SNTX
-         aSnz1wxJEYzkw6L6YyORQrZsdWozyqP+96RgZvs/6meFN5EggQBKqTIicsHOFxQ0mtj2
-         tg4yY0Ydr0thCRnWMErKL2IrNnKaFs+A/Y3chDL1UDwECUTzfVrT5maaeCRakcKkyHoZ
-         +TVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699996087; x=1700600887;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699996088; x=1700600888; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bVfZqFoQfSFxFV4SokjDO2x1oFiuMyw4rUeKlbXA8wA=;
-        b=JnNR+zdXvCOhUmFjzp5P8Eaijl0hibQsmG4IzcTrf1ko+3US/JhTx/r66SsEbT6mmB
-         dUWes+kOaxVRRBmdYw4kMicfxmwb3FXd3otC+jSN41RZ/8KIScWjHt8En9AtRpIxNW70
-         DqihP+srQrTa9rdl287rRgSHHmysizM1om8XmiXYWfC8VGoFd+K4nNl1oH5BzFGQBBvd
-         4JC70N3V70yz0paa8vjb8k7Oq3agpWgizQ6wrv9Qj4Exo8RB0acTCiX9TUpSAip1Ah3c
-         WQAomebQED509mk+uCByHG4H+XYBa9wr2cNHZe5EwE0pV+M6oJLYNPBvJKnPC+0jDv5G
-         WbNg==
-X-Gm-Message-State: AOJu0Yxo6jpsqGGg/gd7IV0wDrDD1QeZaQmFKE1yg43WMmmgQ4nR/G1L
-	rZD2F1Ad+XNhJcA+PgH8nIqgda+42RMkBukHy/PzGA==
-X-Google-Smtp-Source: AGHT+IFbtE9CwIndoeJRTRvJiPKdvNVyfdVZv/ztDEXt8MeM8LfI1MhzcF2EytFUfZ/JcGgG/rTQMw==
-X-Received: by 2002:a05:622a:1009:b0:41c:b617:8529 with SMTP id d9-20020a05622a100900b0041cb6178529mr3992208qte.21.1699996086857;
-        Tue, 14 Nov 2023 13:08:06 -0800 (PST)
+        bh=y6aHgY7dVjq1emLLBr9I0qdToBO/wwiRz9A+uR2RPk0=;
+        b=qAJMH3NNKpTdkfJnNhVnPB8iCcIvSMF9SdTD2cgZajx15fnjwmdhI+o9raR/KcMQra
+         e5CCwwtl3sQPpYfA+ThmoFnmb2L6vV+axLyeYzetDsVYN2KYyQWIfAzBgZSADhs5wdh/
+         uD+n039e6M6dPnBSElp7ncpeUptbzO//BYd7yBnduI25AIPjkHphuoB4FODKMmm1sUm+
+         MoxuFnDXAmtFQJxL/294hhQgDBBDmch3ohq5fZ50zsvlzXXPeBpbS3EcFuhL6gwvs1PO
+         KVAikxplfScYKjJsLoteKHd97FDuMreRIssu2UhL4hsxkkuF8syv2RN0lCv6UzaXItK+
+         sOlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699996088; x=1700600888;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y6aHgY7dVjq1emLLBr9I0qdToBO/wwiRz9A+uR2RPk0=;
+        b=hdOBaj+dmQQEJ0vcTDqlRn6UwvEs4SXl9cIt+zrFcF7f2gkKL1ZOhcSTWDaT+xC1Vc
+         XgzzuSiTyRvoevKm/Y8rmEo+//XZPYkGhWBBFUkOyomFtGLFcGb49Yuy2yyXKcl0n8pJ
+         wMqJ7kiW+BThlwx8BDKfsXLsDYy8yDTmCFTRz4+eeRQC681AAKL5sEsQiIkpHBMUcVNN
+         xw8u6yjKx0BMLmqQUnjrIYsk4jVTFRfoyd0DtK7VbhufFboAJrZGwQAzMkcnvmO0UXTf
+         kB5EoN+oKTzBBblRJZsw95430TKj/zNKNQ/qdVH/0XvZJcBmRJnRg/P7sSREdHegUDQP
+         DvUQ==
+X-Gm-Message-State: AOJu0Yw7vCbelb0jx1Xf+OYNPQ70u8BAOkEh3csyMMOqSz9bHmAN3WW6
+	XfTyrfXHPkj1azjgFh4Lk5bINg==
+X-Google-Smtp-Source: AGHT+IGC6dCh8CngQdS8ipJ/wmcb8gleqQAhQZL3+1+fy3Z7J6ygYty+lTHTkjgne4uoZ65ptYNAmg==
+X-Received: by 2002:a05:6808:11ca:b0:3b5:a58c:cca6 with SMTP id p10-20020a05680811ca00b003b5a58ccca6mr15033179oiv.3.1699996088217;
+        Tue, 14 Nov 2023 13:08:08 -0800 (PST)
 Received: from [127.0.1.1] ([12.186.190.1])
-        by smtp.gmail.com with ESMTPSA id x16-20020ac85390000000b004198d026be6sm3027549qtp.35.2023.11.14.13.08.05
+        by smtp.gmail.com with ESMTPSA id x16-20020ac85390000000b004198d026be6sm3027549qtp.35.2023.11.14.13.08.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 13:08:06 -0800 (PST)
+        Tue, 14 Nov 2023 13:08:07 -0800 (PST)
 From: Drew Fustini <dfustini@baylibre.com>
-Subject: [PATCH v6 0/7] RISC-V: Add MMC support for TH1520 boards
-Date: Tue, 14 Nov 2023 16:07:54 -0500
-Message-Id: <20231114-th1520-mmc-v6-0-3273c661a571@baylibre.com>
+Date: Tue, 14 Nov 2023 16:07:55 -0500
+Subject: [PATCH v6 1/7] dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head
+ TH1520 support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,10 +70,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKvhU2UC/03MQQ6CMBCF4auQWVszLVCpK+9hWNAyyCSWmpYQC
- eHuVty4/F/yvg0SRaYE12KDSAsnDlMOfSrAjd30IMF9blCoSomlFPMoa4XCeydsRU2lB9KNNpA
- Pr0gDvw/s3uYeOc0hroe91N/1x0g0/8xSCxQoG9tjadwgLzfbrU+2kc4ueGj3ff8A6J1QV6cAA
- AA=
+Message-Id: <20231114-th1520-mmc-v6-1-3273c661a571@baylibre.com>
+References: <20231114-th1520-mmc-v6-0-3273c661a571@baylibre.com>
+In-Reply-To: <20231114-th1520-mmc-v6-0-3273c661a571@baylibre.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
@@ -86,141 +86,37 @@ Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
  Drew Fustini <dfustini@baylibre.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699996085; l=6344;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1699996085; l=855;
  i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=VuAG8WUc3nD8UqAChXAVi+/Hned3GYCDhorscuGxNno=;
- b=dh3BpKYFyDk9Us4BhY3MWKxSHHJRzzM1mdQ35wJx0bFsHU1BhxLMZO+z7Nae+mRnpUn0MmD9t
- 7sV2YivthezAypbm3BVCZSXKT0iWMIz4zX8IpYgvC8hn6N+DU78lhxE
+ bh=sdi2GBRazAXQCmzsLeFCtwwLCyPq9k+jdkf3IoMSdfo=;
+ b=l8NAiEvdoppIB/0jKWUFZB8IbAYQ1k/jwcCXyJuMHrxJvC/ZlLI+hGBofEFwdHm6gNDYhD7qb
+ 7JMlwY2lmvjCOhL4yZ834jj1QaEgk2BEikRzjTYlyc0nYTCTRTeRttY
 X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
  pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 
-This series adds support for the MMC controller in the T-Head TH1520
-SoC, and it enables the eMMC and microSD slot on both the BeagleV
-Ahead and the Sipeed LicheePi 4A.
+Add compatible value for the T-Head TH1520 dwcmshc controller.
 
-I tested on top of v6.6 with riscv defconfig. I was able to boot the
-Ahead [1] and LPi4a [2] from eMMC. This patch series also exists as a
-git branch [3].
-
-Note: I have only tested eMMC and microSD. I have not yet configured
-or tested the mmc controller used for SDIO WiFi yet.
-
-References:
-[1] https://gist.github.com/pdp7/881342620ec1509685f23a387e2fc8d7
-[2] https://gist.github.com/pdp7/97017ad88d83fccac18eba69bff817b7
-[3] https://github.com/pdp7/linux/tree/b4/th1520-mmc
-
-Changes in PATCH v6:
-- set the mmc nodes to disabled in the th1520.dtsi
-
-Changes in PATCH v5:
-https://lore.kernel.org/r/20231109-th1520-mmc-v5-0-018bd039cf17@baylibre.com
-- fix logic in th1520_sdhci_set_phy() to correctly check that both
-  MMC_CAP2_NO_SD and MMC_CAP2_NO_SDIO are set in host->mmc->caps2
-- add Acked-by's from Adrian
-
-Changes in PATCH v4:
-https://lore.kernel.org/linux-riscv/20231101-th1520-mmc-v4-0-86e0216b5994@baylibre.com/
-- set DWCMSHC_CARD_IS_EMMC when (MMC_CAP2_NO_SD | MMC_CAP2_NO_SDIO)
-  as checking MMC_CAP_NONREMOVABLE is not sufficient
-- change prefix of phy functions from th1520 to dwcmshc as they are not
-  th1520 specific
-- remove unneeded check of priv in dwcmshc_phy_1_8v_init()
-- remove unneeded check of auto-tuning in th1520_execute_tuning()
-- fix order of new nodes in th1520-beaglev-ahead.dts: move sdhci_clk
-  before uart_sclk, move mmc0 and mmc1 before uart0
-- fix comment typos pointed out by Adrian
-- add trailers that I missed from v2
-
-Changes in PATCH v3:
-https://lore.kernel.org/r/20231023-th1520-mmc-v3-0-abc5e7491166@baylibre.com
-- always call th1520_sdhci_set_phy() in th1520_set_uhs_signaling()
-  and not only when timing is MMC_TIMING_MMC_HS400. This allows the
-  microSD slot to work as th1520_phy_3_3v_init() is called from
-  th1520_sdhci_set_phy().
-- add mmc1 node for mmc controller connected to the microSD slot
-- add enable mmc1 and add properties for microSD on the Ahead and LPi4A
-
-Changes in PATCH v2:
-https://lore.kernel.org/r/20231017-th1520-mmc-v2-0-4678c8cc4048@baylibre.com
-- make use of BIT(), GENMASK(), FIELD_PREP(), FIELD_GET()
-- add EXPORT_SYMBOL_GPL(__sdhci_execute_tuning)
-- call th1520_phy_1_8v_init() when FLAG_IO_FIXED_1V8 is set
-- set DWCMSHC_CARD_IS_EMMC when mmc caps contains MMC_CAP_NONREMOVABLE
-- remove manipulation of AT_CTRL_AT_EN from th1520_set_uhs_signaling()
-- remove unneccessary cycle of enabling and disabling AT_CTRL_AT_EN in
-  th1520_execute_tuning()
-- remove th1520_phy_1_8v_init_no_pull()
-- remove th1520_phy_3_3v_init_no_pull()
-- remove FLAG_PULL_UP_EN from priv->flags
-- remove thead,phy-pull-up device tree property
-
-Changes in PACH v1:
-https://lore.kernel.org/all/20230921-th1520-mmc-v1-0-49f76c274fb3@baylibre.com/
-- ADMA mode now works correctly due to a patch from Jisheng on the list
-  ("riscv: dts: thead: set dma-noncoherent to soc bus") and this commit
-  from Icenowy that is now merged: 8eb8fe67e2c8 ("riscv: errata: fix
-  T-Head dcache.cva encoding").
-- Expose __sdhci_execute_tuning from sdhci.c so that it can be called
-  from th1520_execute_tuning()
-- Refactor the define macros for all the PHY related registers to make
-  it easier to understand the bit fields that the code is manipulating
-- Replace magic numbers in the PHY register writes with proper defines
-- Replace non_removable in dwcmshc_priv with check of mmc_host.caps
-- Drop dt prop "thead,io-fixed-1v8" and instead check for existing
-  properties: "mmc-ddr-1_8v", "mmc-hs200-1_8v", or "mmc-hs400-1_8v"
-- Rename dt prop from "thead,pull-up" to "thead,phy-pull-up" and
-  improve the description in the dt binding
-- Replace pull_up_en in dwcmshc_priv with bit field in new flags field
-- Create th1520_set_uhs_signaling() and call dwcmshc_set_uhs_signaling()
-  from it instead of adding th1520 code to dwcmshc_set_uhs_signaling()
-- Return -EIO instead of -1 upon errors in th1520_execute_tuning()
-
-Changes in RFC v2:
-https://lore.kernel.org/linux-riscv/20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com/
-- Expand dwcmshc_priv based on driver in the T-Head 5.10 kernel:
-  delay_line, non_removable, pull_up_en, io_fixed_1v8
-- New boolean property "thead,pull-up" indicates phy pull-up config
-- New boolean property "thead,io-fixed-1v8" indicates that io voltage
-  should be set to 1.8V during reset
-- Add th1520_phy_1_8v_init() as voltage_switch op
-- Add th1520_execute_tuning() as the platform_execute_tuning op
-- Added th1520_sdhci_reset() as the .reset op. This function will set
-  io voltage to 1.8V after calling the standard sdhci_reset() function.
-- Modified dwcmshc_set_uhs_signaling() to enable SDHCI_CTRL_VDD_180 when
-  io_fixed_1v8 is true
-- Add many defines for register offsets and settings based on the mmc
-  support in the T-Head downstream v5.10 kernel
-
-RFC v1 series:
-https://lore.kernel.org/r/20230724-th1520-emmc-v1-0-cca1b2533da2@baylibre.com
-
+Acked-by: Guo Ren <guoren@kernel.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 ---
-Drew Fustini (7):
-      dt-bindings: mmc: sdhci-of-dwcmhsc: Add T-Head TH1520 support
-      mmc: sdhci: add __sdhci_execute_tuning() to header
-      mmc: sdhci-of-dwcmshc: Add support for T-Head TH1520
-      riscv: defconfig: Enable mmc and dma drivers for T-Head TH1520
-      riscv: dts: thead: Add TH1520 mmc controllers and sdhci clock
-      riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
-      riscv: dts: thead: Enable LicheePi 4A eMMC and microSD
+ Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../bindings/mmc/snps,dwcmshc-sdhci.yaml           |   1 +
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts |  20 ++
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi    |  20 ++
- arch/riscv/boot/dts/thead/th1520.dtsi              |  25 ++
- arch/riscv/configs/defconfig                       |   2 +
- drivers/mmc/host/sdhci-of-dwcmshc.c                | 349 +++++++++++++++++++++
- drivers/mmc/host/sdhci.c                           |   3 +-
- drivers/mmc/host/sdhci.h                           |   1 +
- 8 files changed, 420 insertions(+), 1 deletion(-)
----
-base-commit: 8cfd133bee055fb537d2338b808079a77de60052
-change-id: 20231031-th1520-mmc-b4e846fe6869
+diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+index a43eb837f8da..42804d955293 100644
+--- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+@@ -19,6 +19,7 @@ properties:
+       - rockchip,rk3568-dwcmshc
+       - rockchip,rk3588-dwcmshc
+       - snps,dwcmshc-sdhci
++      - thead,th1520-dwcmshc
+ 
+   reg:
+     maxItems: 1
 
-Best regards,
 -- 
-Drew Fustini <dfustini@baylibre.com>
+2.34.1
 
 
