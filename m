@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-15744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8550D7EB841
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:08:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65437EB849
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40519281345
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:08:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16B73B20B8C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3236F2FC36;
-	Tue, 14 Nov 2023 21:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D822B2FC2F;
+	Tue, 14 Nov 2023 21:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m2KiGmdU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D2ofLG3A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC0D2D62E
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:08:48 +0000 (UTC)
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C7D172D
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:34 -0800 (PST)
-Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-77bac408851so16238085a.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:34 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B312C1B6
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:11:01 +0000 (UTC)
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AF1C2
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:10:59 -0800 (PST)
+Received: by mail-qt1-x836.google.com with SMTP id d75a77b69052e-41b7fd8f458so37107151cf.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:10:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699996113; x=1700600913; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ITgC8CUU1lRZUmEogDrZ1v8W9ctk3212df3sXUl23Y=;
-        b=m2KiGmdUZCUm2ApmyYjCiXnK850PGYSDX7JK5NQ1oCC1/1Citb5dpBEtAy2v1nbavi
-         7Anmlv2R1XM7Vy7qxauW2JxSzOFnYKU77hR8VVNzuNlUt5xHrPC8Hsf1kSECeCrxgmO3
-         EZOdb/pGNoR23vTUhBqfGdnuZjy/VuWnCPyALt8pycylRWz2BOL9WZZuDLjSP2lYkxso
-         5uoDW3AAMohaUUqMEx1KtBg/mJBM3L17ALAd8oUz4fyMK1UOQUrNLBfOwssoudDe5wcM
-         SIm9rG0Y7Ldn35FOKHceCuHTHzH+zP33QUhzZRjtWUojOPdmQ2dnhtRP1OAZCdE5OV9t
-         VVeg==
+        d=linaro.org; s=google; t=1699996258; x=1700601058; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZCXP/b8LzUbZXJ5PFHY6mEdodKrFpUi38A/VBViCSxw=;
+        b=D2ofLG3AXExOTX0r6tAvYyqS2IrBX2jsoHNn6euJ/3Eg/14u4C25mwieVENwnyTCR6
+         wV1BFT7Y9QwDhea4T1YBiJac/8HSt0l62FYNCgP7yanLdEMfcGqBVoG6LSX4sF9uB8iI
+         nCV/4LsIYrPXKxy9W62wUMvn2TZvi4KtRMTf9nnfwfKS8nqlbYg1Ms56oCB3MNPIht7C
+         ZrP6/3DPi0Y3hOxPApOtiCm3x+fnie3fJ6s3DWZ8nKoTcFCGUoexOJZGCShLLIgcwLF3
+         rWLC6uFOc4tbn/06HaTQc5eIIT8kL58u2lA+n0Tatw1hjgfpIP/CCJnQS6uDNiswRQO+
+         WHKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699996113; x=1700600913;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7ITgC8CUU1lRZUmEogDrZ1v8W9ctk3212df3sXUl23Y=;
-        b=iy+uWdmqcaZLKtv4dbProQAn6ikdvHaXyn5jVcT7ngwUN1uPJ1uLukHR+quh7e2GAx
-         HLD4n/HezXz4HJWWysOLKcS7F7/oMyn1eVvyDQuN2YX5/jyN0veZePbFQ+NuNpKMMc56
-         BNN/x8UqfILeQU//NzkkNhjnVCDj3yT8CSOXNt+2PvnxWPKQ9VNCEj+XUP/sINnK33ya
-         blc9OTuO6aIoe7nqEb7AQ+EawfoLG5HdWIFDQGOGJm8wgAd249Jf65tQB871PHk3WA3i
-         I1Xr/MHhC6V8BzW6gX/9SlRFSxUIqYUbr2ex7pq6jsDmTG2Jwf2XTPgzJdr1fA//qK7x
-         qQ2Q==
-X-Gm-Message-State: AOJu0Yy1AFvtji2O3rx6Mnczk4lGTVgE4bseTV8fxIB5EbphF++9E7eR
-	de+mLUhMO3eKH8rW/cKhTtOHzA==
-X-Google-Smtp-Source: AGHT+IHAri8Js3fCWjOGbjAACQ/pFSZd9qHsYHEomh/oXmCq7vQVQ8BRYDZg5BRX4vDhy/AJvt+RAg==
-X-Received: by 2002:a05:620a:2910:b0:774:21d8:b0bb with SMTP id m16-20020a05620a291000b0077421d8b0bbmr5414483qkp.24.1699996112988;
-        Tue, 14 Nov 2023 13:08:32 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699996258; x=1700601058;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZCXP/b8LzUbZXJ5PFHY6mEdodKrFpUi38A/VBViCSxw=;
+        b=rUbt2Bj5tCdGGWVbaErG8V9egGNlO13KaodHGaGWHbV2pG5WSWO3qBWdXlKsC2ysDi
+         F9/HraYVDVjRS93fkKkhOm+9mNVyX/RYBR08LNWbkhlBTIKrXowUteAxnRXEdV17+BEj
+         V3UTM0YFg1RlKCXiVCn8dlZy18Qe1jhm4BiQXNR4/EQNdPK7iBN0atG0VFIOZZIcf4g7
+         0foWHgDs1f7gilWm/iEPJU6fkuaI9gdrvhVIvW7xNEmGzJAIsd0EP82bwYbo4k1Apbnl
+         E54AuRtbDgD3OuEepwYVv954XXdRR6kz/tprLtEu6x/pgJPAhqofSKEl3V60ByMFF8Fk
+         VIZA==
+X-Gm-Message-State: AOJu0Yw0y82OXDQsNVpkh2ILhSnKIAhv+OoSDvP89zYjffT7tvU/EYg3
+	6E5ypnHcDogVuaFR3xEvyoAjSA==
+X-Google-Smtp-Source: AGHT+IFefyC3sxzLwG0/nBnVrInr3jKA66qN98yn8IDD86CKaKKsF87Tee3Yzk8d9QCtShVFFkzeUQ==
+X-Received: by 2002:a05:622a:284:b0:41e:204b:f947 with SMTP id z4-20020a05622a028400b0041e204bf947mr4293209qtw.62.1699996258545;
+        Tue, 14 Nov 2023 13:10:58 -0800 (PST)
 Received: from [172.25.83.73] ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id rb18-20020a05620a8d1200b0077bc5299c85sm2934513qkn.124.2023.11.14.13.08.32
+        by smtp.gmail.com with ESMTPSA id o2-20020ac841c2000000b0041803dfb240sm3022260qtm.45.2023.11.14.13.10.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 13:08:32 -0800 (PST)
-Message-ID: <a68ffc93-1ba7-433d-87b5-a6f2bed0173a@linaro.org>
-Date: Tue, 14 Nov 2023 22:08:31 +0100
+        Tue, 14 Nov 2023 13:10:58 -0800 (PST)
+Message-ID: <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
+Date: Tue, 14 Nov 2023 22:10:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +67,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [LINUX PATCH v2 2/3] dt-bindings: timer: Add bindings for TTC PWM
+Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
+ TTC device configured as PWM
+Content-Language: en-US
 To: Mubin Sayyed <mubin.sayyed@amd.com>, krzysztof.kozlowski+dt@linaro.org,
  u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com,
  robh+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
@@ -77,8 +78,7 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-pwm@vger.kernel.org, git@amd.com,
  mubin10@gmail.com
 References: <20231114124748.581850-1-mubin.sayyed@amd.com>
- <20231114124748.581850-3-mubin.sayyed@amd.com>
-Content-Language: en-US
+ <20231114124748.581850-2-mubin.sayyed@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,48 +124,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231114124748.581850-3-mubin.sayyed@amd.com>
+In-Reply-To: <20231114124748.581850-2-mubin.sayyed@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/11/2023 13:47, Mubin Sayyed wrote:
-> Cadence TTC can act as PWM device, it is supported through
-> separate PWM framework based driver. Decision to configure
-> specific TTC device as PWM or clocksource/clockevent would
-> be done based on presence of "#pwm-cells" property.
+> TTC device can act either as clocksource/clockevent or
+> PWM generator, it would be decided by pwm-cells property.
+> TTC PWM feature would be supported through separate driver
+> based on PWM framework.
+> 
+> If pwm-cells property is present in TTC node, it would be
+> treated as PWM device, and clocksource driver should just
+> skip it.
+> 
+> Signed-off-by: Mubin Sayyed <mubin.sayyed@amd.com>
+> ---
+> Changes for v2:
+>     - Added comment regarding pwm-cells property
+> ---
+>  drivers/clocksource/timer-cadence-ttc.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/clocksource/timer-cadence-ttc.c b/drivers/clocksource/timer-cadence-ttc.c
+> index 32daaac9b132..f8fcb1a4bdd0 100644
+> --- a/drivers/clocksource/timer-cadence-ttc.c
+> +++ b/drivers/clocksource/timer-cadence-ttc.c
+> @@ -477,6 +477,13 @@ static int __init ttc_timer_probe(struct platform_device *pdev)
+>  	u32 timer_width = 16;
+>  	struct device_node *timer = pdev->dev.of_node;
+>  
+> +	/*
+> +	 * If pwm-cells property is present in TTC node,
+> +	 * it would be treated as PWM device.
+> +	 */
+> +	if (of_property_read_bool(timer, "#pwm-cells"))
+> +		return -ENODEV;
 
-This is a friendly reminder during the review process.
+You will introduce dmesg errors, so regressions.
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-
-Missed comments: subject. I don't understand why Cadence was dropped,
-but "bindings" stayed. Opposite of what I asked.
-
-Rest looks good, so with above fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+This does not look right. What you want is to bind one device driver and
+choose different functionality based on properties.
 
 Best regards,
 Krzysztof
