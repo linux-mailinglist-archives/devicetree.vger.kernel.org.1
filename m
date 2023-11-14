@@ -1,278 +1,263 @@
-Return-Path: <devicetree+bounces-15696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 616017EB595
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:35:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C857EB5A5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:39:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F24A28129E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:35:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 101C11C20AE0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D612C192;
-	Tue, 14 Nov 2023 17:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4C32C19C;
+	Tue, 14 Nov 2023 17:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BAIgU2x4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZMb2uT+v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A402C180;
-	Tue, 14 Nov 2023 17:35:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CDADC433C8;
-	Tue, 14 Nov 2023 17:35:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699983323;
-	bh=joZBFhbRQi00kLO+og/cpjGzjAEGwcNlTtDpOtzvBx8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BAIgU2x4r+gD33pYZ1FMQ0BDGAQh1q8zqYgwk37N5MHp975L0H+s3rOutumry4Ec9
-	 PwgNwjOt5nIDSPv39RrF1uTMrJkOYujQvrOPKzUK6Dy1clJVllXryZXdpk0rX+MvzH
-	 AsCLyW1OPfWEQ7lq9krKh9MTg0fwmiQ+6+ZhlZpgfCDKbSyvv6l3LFIwYqws6LTOq3
-	 YwJwdozdyWKXIvmoDk3RiB6rFStfi8PAN1sal10Wp8EvXI+cjy6gONxiFTHI5m61yg
-	 dTJgkZtjD640nnxcnYdVjqW2uX9E+mkT5OFMDxzYEYlWJZzmDL4Y9L1rvD20Vjtd+z
-	 gUDvAixVKn5DQ==
-Date: Tue, 14 Nov 2023 17:35:20 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	palmer@dabbelt.com, paul.walmsley@sifive.com,
-	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
-	Chen Wang <unicorn_wang@outlook.com>
-Subject: Re: [PATCH 1/5] dt-bindings: clock: sophgo: Add SG2042 clock
- definitions
-Message-ID: <20231114-spool-hemlock-f69291a8cfa4@squawk>
-References: <cover.1699879741.git.unicorn_wang@outlook.com>
- <db59acdc99357d52ede5fc9738bdb161649c8fa1.1699879741.git.unicorn_wang@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69E72C199
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 17:39:15 +0000 (UTC)
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57C8100
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 09:39:13 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-670e7ae4a2eso58481926d6.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 09:39:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699983553; x=1700588353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9XiKxA5VDNsAvUBLkxgGxX4wbMhEnlVk81pKqwltiZQ=;
+        b=ZMb2uT+v7ygOzsfntA28Bh+4DWVDZGkW6HMt5NiRVBPEdNlR4Q+Qf9LGBSrpMd5MdI
+         lGXAO0rNTQdfHlZ5fZWCjQBXqxiVjKSzVLFelsgYetMqebQoCgLig7DpEej3ZYxE3G8+
+         AmvbWwb/21ZTqPLe/74l6y0FLBRYP/y7bGXxbw6g3dRdaCEiNucurH3ZUoT2Abpj/f6z
+         2aJ2qAwyhAZi6QkviXw1Ol8GpZFP3yRO6wK4skwmad4Xun9dPWbvt8NUeGE2vwqqb4gu
+         3s7IvBbqgtY2lx2hov7gZR4cKCt99OCPryZSUOMwoi25mpMK40Z402mAn5yh+fsgoWsX
+         L0tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699983553; x=1700588353;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9XiKxA5VDNsAvUBLkxgGxX4wbMhEnlVk81pKqwltiZQ=;
+        b=ZH2dMQdWKGGhi0DThdrK2IBCPuPafe0oc6DG7g+xUIM2d8azFxOuTxUHOAQPiY51q/
+         yp3nYWyT8SNrIjJYz5jxp4fhl3rIhGjbu3grohwVDE1zRBw/wJ0ge60K/HaEnQvBnySX
+         t7AbUU0ehqOsmkTxgLawfe2fzzotnCdJgOWI+TROcdQVwo6XmdReARcjDPkQbQWOc9Fn
+         Qqjd1NevFLzFRywAeA92Orl3eVoqRDxIbWW7nBgGeMvXuoyf/xx8aL/orB19C6PyNmXs
+         z+T3t72L6perSkmcrsNWsblS8J0NryWr+nFHYvi0NJO3Vi910yQHeUPbTLXDoiZDmoQI
+         nrBg==
+X-Gm-Message-State: AOJu0YxDugvTZ43JwLw/JQTO7vI/xSEkURxVBuUCJl8mCA0CpH0BmVIt
+	/3d6LMdGlAhwGJO+03ch8l/QPQ==
+X-Google-Smtp-Source: AGHT+IHyPfODvFvqlazTjiSu6P7NjTZkmBilmM93IuC7GXNUAOoY2aRTwpkj8O8rEzQl+QB2+V7iUw==
+X-Received: by 2002:a0c:ebcb:0:b0:66f:b580:8836 with SMTP id k11-20020a0cebcb000000b0066fb5808836mr4364269qvq.1.1699983552768;
+        Tue, 14 Nov 2023 09:39:12 -0800 (PST)
+Received: from [172.25.83.73] ([12.186.190.1])
+        by smtp.gmail.com with ESMTPSA id n12-20020a056214008c00b0066d1d2242desm3086378qvr.120.2023.11.14.09.39.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Nov 2023 09:39:12 -0800 (PST)
+Message-ID: <124c97ca-0c2c-4b92-8d8e-99d589daf2da@linaro.org>
+Date: Tue, 14 Nov 2023 18:39:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7cFGeDkzxkeHA1ni"
-Content-Disposition: inline
-In-Reply-To: <db59acdc99357d52ede5fc9738bdb161649c8fa1.1699879741.git.unicorn_wang@outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: ad7192: Add AD7194 support
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Alexandru Tachici <alexandru.tachici@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Maksim Kiselev <bigunclemax@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ Cosmin Tanislav <demonsingur@gmail.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Marius Cristea <marius.cristea@microchip.com>,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Ibrahim Tilki <Ibrahim.Tilki@analog.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
+ Ivan Mikhaylov <fr0st61te@gmail.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231105193132.47009-1-alisadariana@gmail.com>
+ <20231105193132.47009-3-alisadariana@gmail.com>
+ <e5c9eaaa-a8f3-4ca5-acf6-9ff714a07898@linaro.org>
+ <500eec71-e2f4-4f43-8bc9-6d4914b2493c@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <500eec71-e2f4-4f43-8bc9-6d4914b2493c@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 14/11/2023 17:02, Alisa-Dariana Roman wrote:
+> On 06.11.2023 10:56, Krzysztof Kozlowski wrote:
+>> On 05/11/2023 20:31, alisadariana@gmail.com wrote:
+>>> From: Alisa-Dariana Roman <alisa.roman@analog.com>
+>>>
+>>> Unlike the other AD719Xs, AD7194 has configurable differential
+>>> channels. The default configuration for these channels can be changed
+>>> from the devicetree.
+>>>
+>>> Also add an example for AD7194 devicetree.
+>>>
+>>> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+>>> ---
+>>>   .../bindings/iio/adc/adi,ad7192.yaml          | 69 +++++++++++++++++++
+>>>   1 file changed, 69 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>>> index 16def2985ab4..b9a9f7b20670 100644
+>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>>> @@ -21,8 +21,15 @@ properties:
+>>>         - adi,ad7190
+>>>         - adi,ad7192
+>>>         - adi,ad7193
+>>> +      - adi,ad7194
+>>>         - adi,ad7195
+>>>   
+>>> +  '#address-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#size-cells':
+>>> +    const: 0
+>>> +
+>>>     reg:
+>>>       maxItems: 1
+>>>   
+>>> @@ -96,6 +103,31 @@ required:
+>>>     - spi-cpol
+>>>     - spi-cpha
+>>>   
+>>> +patternProperties:
+>>> +  "^channel@([0-9a-f])$":
+>>> +    type: object
+>>> +    $ref: adc.yaml
+>>> +    unevaluatedProperties: false
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        description: The channel index.
+>>> +        minimum: 0
+>>> +        maximum: 7
+>>
+>> Your pattern a bit above is not correct then: [0-7]
+>>
+>>> +
+>>> +      diff-channels:
+>>> +        description: |
+>>> +          The differential channel pair for Ad7194 configurable channels. The
+>>> +          first channel is the positive input, the second channel is the
+>>> +          negative input.
+>>> +        items:
+>>> +          minimum: 1
+>>> +          maximum: 16
+>>> +
+>>> +    required:
+>>> +      - reg
+>>> +      - diff-channels
+>>> +
+>>>   allOf:
+>>>     - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>>>   
+>>> @@ -127,3 +159,40 @@ examples:
+>>>               adi,burnout-currents-enable;
+>>>           };
+>>>       };
+>>> +  - |
+>>> +    spi {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        adc@0 {
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +            compatible = "adi,ad7194";
+>>> +            reg = <0>;
+>>> +            spi-max-frequency = <1000000>;
+>>> +            spi-cpol;
+>>> +            spi-cpha;
+>>> +            clocks = <&ad7192_mclk>;
+>>> +            clock-names = "mclk";
+>>> +            interrupts = <25 0x2>;
+>>> +            interrupt-parent = <&gpio>;
+>>> +            dvdd-supply = <&dvdd>;
+>>> +            avdd-supply = <&avdd>;
+>>> +            vref-supply = <&vref>;
+>>> +
+>>> +            adi,refin2-pins-enable;
+>>> +            adi,rejection-60-Hz-enable;
+>>> +            adi,buffer-enable;
+>>> +            adi,burnout-currents-enable;
+>>> +
+>>> +            channel@0 {
+>>
+>> Why cannot you add this to the existing example?
+>>
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> I added another example to highlight the fact that only AD7194 supports 
+> configurable channels. How should I proceed?
 
---7cFGeDkzxkeHA1ni
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Bindings did not tell that, so it seems you miss that part - allOf
+constraining channels per variant.
 
-On Mon, Nov 13, 2023 at 09:18:25PM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
->=20
-> Add all clock outputs for the Sophgo SG2042 clock generator.
+Best regards,
+Krzysztof
 
-This patch can be squashed with the patch adding the binding for the
-clock controller.
-
-Cheers,
-Conor.
-
->=20
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  include/dt-bindings/clock/sophgo-sg2042-clk.h | 169 ++++++++++++++++++
->  1 file changed, 169 insertions(+)
->  create mode 100644 include/dt-bindings/clock/sophgo-sg2042-clk.h
->=20
-> diff --git a/include/dt-bindings/clock/sophgo-sg2042-clk.h b/include/dt-b=
-indings/clock/sophgo-sg2042-clk.h
-> new file mode 100644
-> index 000000000000..a8e05c00c3bf
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/sophgo-sg2042-clk.h
-> @@ -0,0 +1,169 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-> +/*
-> + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__
-> +#define __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__
-> +
-> +/* Divider clocks */
-> +#define DIV_CLK_MPLL_RP_CPU_NORMAL_0 0
-> +#define DIV_CLK_MPLL_AXI_DDR_0 1
-> +#define DIV_CLK_FPLL_DDR01_1 2
-> +#define DIV_CLK_FPLL_DDR23_1 3
-> +#define DIV_CLK_FPLL_RP_CPU_NORMAL_1 4
-> +#define DIV_CLK_FPLL_50M_A53 5
-> +#define DIV_CLK_FPLL_TOP_RP_CMN_DIV2 6
-> +#define DIV_CLK_FPLL_UART_500M 7
-> +#define DIV_CLK_FPLL_AHB_LPC 8
-> +#define DIV_CLK_FPLL_EFUSE 9
-> +#define DIV_CLK_FPLL_TX_ETH0 10
-> +#define DIV_CLK_FPLL_PTP_REF_I_ETH0 11
-> +#define DIV_CLK_FPLL_REF_ETH0 12
-> +#define DIV_CLK_FPLL_EMMC 13
-> +#define DIV_CLK_FPLL_SD 14
-> +#define DIV_CLK_FPLL_TOP_AXI0 15
-> +#define DIV_CLK_FPLL_TOP_AXI_HSPERI 16
-> +#define DIV_CLK_FPLL_AXI_DDR_1 17
-> +#define DIV_CLK_FPLL_DIV_TIMER1 18
-> +#define DIV_CLK_FPLL_DIV_TIMER2 19
-> +#define DIV_CLK_FPLL_DIV_TIMER3 20
-> +#define DIV_CLK_FPLL_DIV_TIMER4 21
-> +#define DIV_CLK_FPLL_DIV_TIMER5 22
-> +#define DIV_CLK_FPLL_DIV_TIMER6 23
-> +#define DIV_CLK_FPLL_DIV_TIMER7 24
-> +#define DIV_CLK_FPLL_DIV_TIMER8 25
-> +#define DIV_CLK_FPLL_100K_EMMC 26
-> +#define DIV_CLK_FPLL_100K_SD 27
-> +#define DIV_CLK_FPLL_GPIO_DB 28
-> +#define DIV_CLK_DPLL0_DDR01_0 29
-> +#define DIV_CLK_DPLL1_DDR23_0 30
-> +
-> +/* Gate clocks */
-> +#define GATE_CLK_RP_CPU_NORMAL_DIV0 31
-> +#define GATE_CLK_AXI_DDR_DIV0 32
-> +
-> +#define GATE_CLK_RP_CPU_NORMAL_DIV1 33
-> +#define GATE_CLK_A53_50M 34
-> +#define GATE_CLK_TOP_RP_CMN_DIV2 35
-> +#define GATE_CLK_HSDMA 36
-> +#define GATE_CLK_EMMC_100M 37
-> +#define GATE_CLK_SD_100M 38
-> +#define GATE_CLK_TX_ETH0 39
-> +#define GATE_CLK_PTP_REF_I_ETH0 40
-> +#define GATE_CLK_REF_ETH0 41
-> +#define GATE_CLK_UART_500M 42
-> +#define GATE_CLK_EFUSE 43
-> +
-> +#define GATE_CLK_AHB_LPC 44
-> +#define GATE_CLK_AHB_ROM 45
-> +#define GATE_CLK_AHB_SF 46
-> +
-> +#define GATE_CLK_APB_UART 47
-> +#define GATE_CLK_APB_TIMER 48
-> +#define GATE_CLK_APB_EFUSE 49
-> +#define GATE_CLK_APB_GPIO 50
-> +#define GATE_CLK_APB_GPIO_INTR 51
-> +#define GATE_CLK_APB_SPI 52
-> +#define GATE_CLK_APB_I2C 53
-> +#define GATE_CLK_APB_WDT 54
-> +#define GATE_CLK_APB_PWM 55
-> +#define GATE_CLK_APB_RTC 56
-> +
-> +#define GATE_CLK_AXI_PCIE0 57
-> +#define GATE_CLK_AXI_PCIE1 58
-> +#define GATE_CLK_SYSDMA_AXI 59
-> +#define GATE_CLK_AXI_DBG_I2C 60
-> +#define GATE_CLK_AXI_SRAM 61
-> +#define GATE_CLK_AXI_ETH0 62
-> +#define GATE_CLK_AXI_EMMC 63
-> +#define GATE_CLK_AXI_SD 64
-> +#define GATE_CLK_TOP_AXI0 65
-> +#define GATE_CLK_TOP_AXI_HSPERI 66
-> +
-> +#define GATE_CLK_TIMER1 67
-> +#define GATE_CLK_TIMER2 68
-> +#define GATE_CLK_TIMER3 69
-> +#define GATE_CLK_TIMER4 70
-> +#define GATE_CLK_TIMER5 71
-> +#define GATE_CLK_TIMER6 72
-> +#define GATE_CLK_TIMER7 73
-> +#define GATE_CLK_TIMER8 74
-> +#define GATE_CLK_100K_EMMC 75
-> +#define GATE_CLK_100K_SD 76
-> +#define GATE_CLK_GPIO_DB 77
-> +
-> +#define GATE_CLK_AXI_DDR_DIV1 78
-> +#define GATE_CLK_DDR01_DIV1 79
-> +#define GATE_CLK_DDR23_DIV1 80
-> +/* DPLL0 */
-> +#define GATE_CLK_DDR01_DIV0 81
-> +/* DPLL1 */
-> +#define GATE_CLK_DDR23_DIV0 82
-> +
-> +#define GATE_CLK_DDR01 83
-> +#define GATE_CLK_DDR23 84
-> +#define GATE_CLK_RP_CPU_NORMAL 85
-> +#define GATE_CLK_AXI_DDR 86
-> +#define GATE_CLK_RXU0 87
-> +#define GATE_CLK_RXU1 88
-> +#define GATE_CLK_RXU2 89
-> +#define GATE_CLK_RXU3 90
-> +#define GATE_CLK_RXU4 91
-> +#define GATE_CLK_RXU5 92
-> +#define GATE_CLK_RXU6 93
-> +#define GATE_CLK_RXU7 94
-> +#define GATE_CLK_RXU8 95
-> +#define GATE_CLK_RXU9 96
-> +#define GATE_CLK_RXU10 97
-> +#define GATE_CLK_RXU11 98
-> +#define GATE_CLK_RXU12 99
-> +#define GATE_CLK_RXU13 100
-> +#define GATE_CLK_RXU14 101
-> +#define GATE_CLK_RXU15 102
-> +#define GATE_CLK_RXU16 103
-> +#define GATE_CLK_RXU17 104
-> +#define GATE_CLK_RXU18 105
-> +#define GATE_CLK_RXU19 106
-> +#define GATE_CLK_RXU20 107
-> +#define GATE_CLK_RXU21 108
-> +#define GATE_CLK_RXU22 109
-> +#define GATE_CLK_RXU23 110
-> +#define GATE_CLK_RXU24 111
-> +#define GATE_CLK_RXU25 112
-> +#define GATE_CLK_RXU26 113
-> +#define GATE_CLK_RXU27 114
-> +#define GATE_CLK_RXU28 115
-> +#define GATE_CLK_RXU29 116
-> +#define GATE_CLK_RXU30 117
-> +#define GATE_CLK_RXU31 118
-> +#define GATE_CLK_MP0 119
-> +#define GATE_CLK_MP1 120
-> +#define GATE_CLK_MP2 121
-> +#define GATE_CLK_MP3 122
-> +#define GATE_CLK_MP4 123
-> +#define GATE_CLK_MP5 124
-> +#define GATE_CLK_MP6 125
-> +#define GATE_CLK_MP7 126
-> +#define GATE_CLK_MP8 127
-> +#define GATE_CLK_MP9 128
-> +#define GATE_CLK_MP10 129
-> +#define GATE_CLK_MP11 130
-> +#define GATE_CLK_MP12 131
-> +#define GATE_CLK_MP13 132
-> +#define GATE_CLK_MP14 133
-> +#define GATE_CLK_MP15 134
-> +
-> +/* MUX clocks */
-> +#define MUX_CLK_DDR01 135
-> +#define MUX_CLK_DDR23 136
-> +#define MUX_CLK_RP_CPU_NORMAL 137
-> +#define MUX_CLK_AXI_DDR 138
-> +
-> +/* PLL clocks */
-> +#define MPLL_CLK	139
-> +#define FPLL_CLK	140
-> +#define DPLL0_CLK	141
-> +#define DPLL1_CLK	142
-> +
-> +#endif /* __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__ */
-> --=20
-> 2.25.1
->=20
-
---7cFGeDkzxkeHA1ni
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVOv1AAKCRB4tDGHoIJi
-0s1bAP4l95TtR+AmLoNNf0pqp9QhukBdzCRCW2o3ePS6f25UcgEAyRh6YiAyAt1T
-w4DGzzqpJ0I3uc+c/wxgB4z1K95TnAc=
-=F1WB
------END PGP SIGNATURE-----
-
---7cFGeDkzxkeHA1ni--
 
