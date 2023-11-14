@@ -1,109 +1,114 @@
-Return-Path: <devicetree+bounces-15617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E0E7EAF4A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:34:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDED7EAF5C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:41:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A994C28130F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:34:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C921728115E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC4D2D62E;
-	Tue, 14 Nov 2023 11:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7DF2374B;
+	Tue, 14 Nov 2023 11:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAB43A267
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 11:34:30 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F08319D
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 03:34:28 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r2rgI-00066n-9u; Tue, 14 Nov 2023 12:34:10 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r2rgG-008ytE-MN; Tue, 14 Nov 2023 12:34:08 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r2rgG-001K07-Cd; Tue, 14 Nov 2023 12:34:08 +0100
-Date: Tue, 14 Nov 2023 12:34:08 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Devi Priya <quic_devipriy@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	lee@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	thierry.reding@gmail.com, baruch@tkos.co.il,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 0/4] Enable pwm support for IPQ5332 & IPQ9574 SoCs
-Message-ID: <20231114113408.f7xvbvmhvf256jis@pengutronix.de>
-References: <20231006045317.1056625-1-quic_devipriy@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCF0224CD
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 11:41:21 +0000 (UTC)
+X-Greylist: delayed 370 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 14 Nov 2023 03:41:20 PST
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9203DD;
+	Tue, 14 Nov 2023 03:41:20 -0800 (PST)
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 977BC604A7;
+	Tue, 14 Nov 2023 11:34:46 +0000 (UTC)
+Date: Tue, 14 Nov 2023 13:34:44 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/1] dt-bindings: pwm: ti,pwm-omap-dmtimer: Update
+ binding for yaml
+Message-ID: <20231114113444.GB5169@atomide.com>
+References: <20231114082709.54138-1-tony@atomide.com>
+ <20231114103610.sbiicumbh2xju6lj@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3wbsy6jm65ldlr2s"
-Content-Disposition: inline
-In-Reply-To: <20231006045317.1056625-1-quic_devipriy@quicinc.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---3wbsy6jm65ldlr2s
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231114103610.sbiicumbh2xju6lj@pengutronix.de>
 
-On Fri, Oct 06, 2023 at 10:23:13AM +0530, Devi Priya wrote:
-> Enable pwm support for IPQ5332 & IPQ9574 SoCs and document the
-> pwm compatibles.
-> While at it, use qcom,ipq6018-pwm as the fallback compatible and extend t=
-he
-> simple-mfd support for ipq5332 & ipq9574 targets.
+* Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> [231114 10:36]:
+> Hello,
 >=20
-> This series depends on the below series which adds support
-> for the PWM driver on IPQ targets:
-> https://lore.kernel.org/linux-arm-msm/20231005160550.2423075-1-quic_devip=
-riy@quicinc.com/
+> On Tue, Nov 14, 2023 at 10:27:06AM +0200, Tony Lindgren wrote:
+> > +  ti,timers:
+> > +    description: Timer instance phandle for the PWM
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +  ti,prescaler:
+> > +    description: |
+> > +      Legacy clock prescaler for timer. The timer counter is prescaled
+> > +      with 2^n where n is the prescaler.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+> > +    deprecated: true
+> > +
+> > +  ti,clock-source:
+> > +    description: |
+> > +      Legacy clock for timer, please use assigned-clocks instead.
+> > +      0x00 - high-frequency system clock (timer_sys_ck)
+> > +      0x01 - 32-kHz always-on clock (timer_32k_ck)
+> > +      0x02 - external clock (timer_ext_ck, OMAP2 only)
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [ 0, 1, 2 ]
+> > +    deprecated: true
+>=20
+> Someone could collect some bonus points by converting these:
+>=20
+> 	$ git grep ti,clock-source arch/arm/boot
+> 	arch/arm/boot/dts/ti/omap/am335x-guardian.dts:          ti,clock-source =
+=3D <0x01>;
+> 	arch/arm/boot/dts/ti/omap/am3517-evm.dts:               ti,clock-source =
+=3D <0x01>;
+> 	arch/arm/boot/dts/ti/omap/logicpd-torpedo-baseboard.dtsi:               =
+ti,clock-source =3D <0x01>;
+> 	arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi:                =
+ti,clock-source =3D <0x01>;
+> 	arch/arm/boot/dts/ti/omap/motorola-mapphone-common.dtsi:                =
+ti,clock-source =3D <0x01>;
+> 	arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi:             ti,clock-source =
+=3D <0x01>;
+> 	arch/arm/boot/dts/ti/omap/omap3-n900.dts:               ti,clock-source =
+=3D <0x00>; /* timer_sys_ck */
+>=20
+> (I verified, this are all about this binding.)
 
-Given this dependency, I suggest you add the patches from this series to
-the next revision of the IPQ base series.
+Agreed, we should update all those.
 
-Best regards
-Uwe
+> otherwise LGTM:
+>=20
+> Reviewed-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> Should this go via the pwm tree or via some arm or omap or dt tree?
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Please take this via the pwm tree, there are no dependencies.
 
---3wbsy6jm65ldlr2s
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVTWy8ACgkQj4D7WH0S
-/k4UvAf7B9DckIZWg1K3ifzsa+9ogP0hip9vJ46qYWw7pn+SwRGNyx/H60eYzD8e
-nLc/dCllG6IvI/JyZSDvBcgZZouKSaeheZpEWRyhcXzRTbJrtFId0gGpSr6fJ2Wx
-rhMSV6isay4bfhkGilPV3ne/iQeEtUl+hoSFkICK7QW1n0yB9stsgXylOhyZsUq5
-DLjIqqGTlTkqUTJqLz/KbEHg71X4XUE8FDIyO/O9DC4joIpXmr9I7g80SZmtRmi7
-eFFRkPzlz7gRoRm6tfmoYaCMNK4y/BLKI0ZBjaqhbSSHRe0PAY8nFEc1JqmT2mk0
-tUsXZm/AjfZWChyV5t/9b57x6Cg2YQ==
-=WCAE
------END PGP SIGNATURE-----
-
---3wbsy6jm65ldlr2s--
+Tony
 
