@@ -1,111 +1,170 @@
-Return-Path: <devicetree+bounces-15639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F357EB118
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 14:45:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA9707EB13F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 14:56:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41CFA2811DE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 13:45:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A76FB20A3F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 13:56:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC0B156E0;
-	Tue, 14 Nov 2023 13:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60891405D4;
+	Tue, 14 Nov 2023 13:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6942C405C2
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:44:54 +0000 (UTC)
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 476DE1B6;
-	Tue, 14 Nov 2023 05:44:53 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3b2f28caab9so3451350b6e.1;
-        Tue, 14 Nov 2023 05:44:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34073FE43;
+	Tue, 14 Nov 2023 13:56:08 +0000 (UTC)
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B98132;
+	Tue, 14 Nov 2023 05:56:07 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1efa01323b4so3443564fac.3;
+        Tue, 14 Nov 2023 05:56:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699969492; x=1700574292;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PmEgb+EV0Zl7D8C3uAM8E/H1l2y9vB0lqB3Tm7vb8U4=;
-        b=SsWvmobV893/MEC6DfXVrfvvKAHbgBO/py1LO7DDHbG4W/yvG9kKuY/j65e0qtn8AU
-         Oel8LvI6UN9jP2GIV04BXM4fzBCiILMZOAq9U+tEd640WklRUnSAVY8qlaU8NmL+bvcd
-         pupQBrPR43DJchANHl5e/6glRIi0xiq9c29pttucmN9qUwm1YtZ5UVJofHjIco3X2WQb
-         MxTyQz41URaW5iXMzbIS/42eSlZA01SHUGIcH2N3FKhKuTvOGDAZgRvfMWz7eQTbShkB
-         UbZevPt4RT6rfoM/OEzJTQvJjlcYRUGCycEr/81Ghf/ehxu7d2drFB+tKCtrLcQ5Y/ni
-         GgMQ==
-X-Gm-Message-State: AOJu0YzK99ozdPqUZzZKRB13EBDaWOTDJI95MttQ/wawpcFEF2lyJhlR
-	Cr8G4bXB2INg9JddTPI9Ug==
-X-Google-Smtp-Source: AGHT+IEoAU1Lg6SlYx8VqG5eB7OWyqoEYSPcEMHmWoXzIY4/iBbuR3rMHc1ozP3vv2heVSdCnLsY+w==
-X-Received: by 2002:a05:6871:7291:b0:1ea:85a:db2e with SMTP id mm17-20020a056871729100b001ea085adb2emr14076992oac.45.1699969492557;
-        Tue, 14 Nov 2023 05:44:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699970167; x=1700574967;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QiASBl9VrAjzQgmOuXmfWuxNZgNwYoFGLkzwqXtE/qw=;
+        b=hcEPTm2ogQo3AX1d8RkwYEdT95D16WfIGCgK9lYmPJSnGhhMZYYS/MEGow9VB3ZLNB
+         OzrDoyQRQqzBR4DctL9bSIoWHXGqMWUV0U24yXhguiqPDv+V/eUgACphFn0kz/Z3NdBf
+         Ex357we+IpZIUxCdBnFPBrGe2eCfsYMhO5X5XVwBLPEgkPgJJs1XDpHWUBNvYUi8Zkea
+         vi9Ps2LVuqnhzzvw7fqitENFY4J0eUzz8NhSx8G69YgGeesswgACZKm7pj33mRqGa1ud
+         DujMP+sMmpooYEdBN+4Ty96P2hsRvyvutInE6fdO02gcPfBJesWz2XSFxztYdZE7w+Q1
+         0MqA==
+X-Gm-Message-State: AOJu0Yyvt6+6aNEglA33//BiWbj/EsE7jP7Zy3VfT8VVcWkxkpR35V8y
+	nh844IFYVqBiP2peEYHwKm6b1WFudA==
+X-Google-Smtp-Source: AGHT+IFYOuCtYvhZonQy046WfyrIoy4A+vOjsLbnefhLS1WXzW1gHM/v6TjGpVo+25v7X/N6wfLMGQ==
+X-Received: by 2002:a05:6870:40d2:b0:1e9:d8a4:551f with SMTP id l18-20020a05687040d200b001e9d8a4551fmr11788936oal.17.1699970166709;
+        Tue, 14 Nov 2023 05:56:06 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id wh6-20020a056871a68600b001e12bb81363sm1394830oab.35.2023.11.14.05.44.51
+        by smtp.gmail.com with ESMTPSA id ec21-20020a0568708c1500b001e5ad4b2f65sm1372872oab.19.2023.11.14.05.56.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 05:44:51 -0800 (PST)
-Received: (nullmailer pid 1652367 invoked by uid 1000);
-	Tue, 14 Nov 2023 13:44:51 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Tue, 14 Nov 2023 05:56:06 -0800 (PST)
+Received: (nullmailer pid 1664148 invoked by uid 1000);
+	Tue, 14 Nov 2023 13:56:04 -0000
+Date: Tue, 14 Nov 2023 07:56:04 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>, 
+	Sean Wang <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Alexander Couzens <lynxis@fe80.eu>, Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH 5/8] dt-bindings: net: pcs: add bindings for MediaTek
+ USXGMII PCS
+Message-ID: <20231114135604.GA1661768-robh@kernel.org>
+References: <cover.1699565880.git.daniel@makrotopia.org>
+ <2dff6aff7006573d3232ec2ddd93c1792740d4d3.1699565880.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: devicetree@vger.kernel.org, s.hauer@pengutronix.de, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>, dri-devel@lists.freedesktop.org, sebastian.reichel@collabora.com, kever.yang@rock-chips.com, chris.obbard@collabora.com, heiko@sntech.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, hjc@rock-chips.com
-In-Reply-To: <20231114112841.1771312-1-andyshrk@163.com>
-References: <20231114112534.1770731-1-andyshrk@163.com>
- <20231114112841.1771312-1-andyshrk@163.com>
-Message-Id: <169996949102.1652338.14967893657318401842.robh@kernel.org>
-Subject: Re: [PATCH 08/11] dt-bindings: display: vop2: Add rk3588 support
-Date: Tue, 14 Nov 2023 07:44:51 -0600
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2dff6aff7006573d3232ec2ddd93c1792740d4d3.1699565880.git.daniel@makrotopia.org>
 
-
-On Tue, 14 Nov 2023 19:28:41 +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On Thu, Nov 09, 2023 at 09:51:47PM +0000, Daniel Golle wrote:
+> MediaTek's USXGMII can be found in the MT7988 SoC. We need to access
+> it in order to configure and monitor the Ethernet SerDes link in
+> USXGMII, 10GBase-R and 5GBase-R mode. By including a wrapped
+> legacy 1000Base-X/2500Base-X/Cisco SGMII LynxI PCS as well, those
+> interface modes are also available.
 > 
-> The vop2 on rk3588 is similar to which on rk356x
-> but with 4 video outputs and need to reference
-> more grf modules.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
+>  .../bindings/net/pcs/mediatek,usxgmii.yaml    | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
 > 
->  .../display/rockchip/rockchip-vop2.yaml       | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
+> new file mode 100644
+> index 0000000000000..199cf47859e31
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/pcs/mediatek,usxgmii.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek USXGMII PCS
+> +
+> +maintainers:
+> +  - Daniel Golle <daniel@makrotopia.org>
+> +
+> +description:
+> +  The MediaTek USXGMII PCS provides physical link control and status
+> +  for USXGMII, 10GBase-R and 5GBase-R links on the SerDes interfaces
+> +  provided by the PEXTP PHY.
+> +  In order to also support legacy 2500Base-X, 1000Base-X and Cisco
+> +  SGMII an existing mediatek,*-sgmiisys LynxI PCS is wrapped to
+> +  provide those interfaces modes on the same SerDes interfaces shared
+> +  with the USXGMII PCS.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^pcs@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    const: mediatek,mt7988-usxgmiisys
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: USXGMII top-level clock
+> +      - description: SGMII top-level clock
+> +      - description: SGMII subsystem TX clock
+> +      - description: SGMII subsystem RX clock
+> +      - description: XFI PLL clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: usxgmii
+> +      - const: sgmii_sel
+> +      - const: sgmii_tx
+> +      - const: sgmii_rx
+> +      - const: xfi_pll
+> +
+> +  phys:
+> +    items:
+> +      - description: PEXTP SerDes PHY
+> +
+> +  mediatek,sgmiisys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon node of the corresponding SGMII LynxI PCS.
+> +
+> +  resets:
+> +    items:
+> +      - description: XFI reset
+> +      - description: SGMII reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: xfi
+> +      - const: sgmii
+> +
+> +  "#pcs-cells":
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+There is no such property defined.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.example.dtb: vop@fe040000: clocks: [[4294967295, 221], [4294967295, 222], [4294967295, 223], [4294967295, 224], [4294967295, 225]] is too short
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.example.dtb: vop@fe040000: clock-names: ['aclk', 'hclk', 'dclk_vp0', 'dclk_vp1', 'dclk_vp2'] is too short
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231114112841.1771312-1-andyshrk@163.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Rob
 
