@@ -1,80 +1,225 @@
-Return-Path: <devicetree+bounces-15705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FD37EB63F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:16:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2927EB65F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AB131C20C40
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:16:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 110DCB20B37
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1AE33CD9;
-	Tue, 14 Nov 2023 18:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF2633CC9;
+	Tue, 14 Nov 2023 18:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="M/1p3//l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H+xdIqS+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8EB42FC42;
-	Tue, 14 Nov 2023 18:15:29 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81585129;
-	Tue, 14 Nov 2023 10:15:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=uADPOJd28K7xeDwvDsxrux/EuRs6b2nWjJMNpQr42QE=; b=M/1p3//l7HqWAQx67iyrTANPVq
-	gzv8D4LUWI6o8Dp92GGq/lM6hHjxXg1JaO8Ovp//XLS4u/Vu5DFHG+Ze2/npyRMPggBODCWP98DkC
-	ywexobIpUMpt3iYcg9wcyb75i0ibTSKD54u3rRtRkdyUQk+cGWYfVdbq7oVg9issGdhU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r2xwY-000BJj-HP; Tue, 14 Nov 2023 19:15:22 +0100
-Date: Tue, 14 Nov 2023 19:15:22 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 2/8] net: dsa: qca8k: Make the QCA8K hardware
- library available globally
-Message-ID: <744b25ee-cbdd-48e3-86ab-92be412b32ae@lunn.ch>
-References: <20231114105600.1012056-1-romain.gantois@bootlin.com>
- <20231114105600.1012056-3-romain.gantois@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B716326AC0;
+	Tue, 14 Nov 2023 18:27:47 +0000 (UTC)
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E486812A;
+	Tue, 14 Nov 2023 10:27:45 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507c5249d55so9252239e87.3;
+        Tue, 14 Nov 2023 10:27:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1699986464; x=1700591264; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4aLKgnxjumveCQmA33N3eaw/7AnwbWNB2KFhyb6Fh/M=;
+        b=H+xdIqS+p279Rjx95XOnywx4dme8lCa5Vnh1CUWc7KTFSydT6PTyv1qEJ6LZpF/2BN
+         VDlGTqzAo2W/5xrwHZ9Fc31izITcsUYDSxXIIGWuj8XHsBwQRjvOFNTe20JCHfhevC3L
+         a5kr7ss345IyXYavYNxund5HOe05QnziBjyzNSxgGXuVoeYdsB3sHVSdjooJv3INzDYB
+         n1bVbzU1oVJ0LphTAl1ODkxk2MUMj9Fgr94KbFvWaletVXIXsCnzjUtd+bOpRqu3rrQI
+         ZlTMNnniaeo5nIBL1dRM6cNTiW6erEAFCJpO9vMvU5lQmkMwaULeCQaKJxfsg7byuTNO
+         baLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699986464; x=1700591264;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4aLKgnxjumveCQmA33N3eaw/7AnwbWNB2KFhyb6Fh/M=;
+        b=XQXUrNFcqC3aYP99zqWCdS7Q6q+QtYYgJ/t/WmOzN3RvtBldahM6tQyIzxXulf7GVn
+         RQooy4l0y3xoE+fwdPr13EYL2Mprr75zNYhMJO8YIyPzSBgmgXdo+HAGix8Itv0tRzZ6
+         WtfjHVYA4ZEBDTyuCBk0zutiOgokwc6mHCuOgISMbMpAxbFoE/ZtQJtGDogqBxqWPtPl
+         kFP0cuLsDky8UI3XM3HlhpfQN8eQcoBvsc7N4DbMzYxoSrQbkj0nkXmmLbchc1Q5vwvN
+         adgyXwkmnD2Xf9QggHCjkdgmyT6c1z1TxgVSbjhTKm5Z8cplNHJ7ErcH+KgbCtA1A3Q7
+         HvIA==
+X-Gm-Message-State: AOJu0YyyLnHEJEFVRtxZpaIREEQQUZ2dbb8/XlOscWkdgmGZNsDFhczJ
+	pjx6D9QdVdWGn8141mYQkhnO2hOoW/qs65PuTW0=
+X-Google-Smtp-Source: AGHT+IEh9RjdZDWW7hfIGTr1M9kFP62rLBZYB/wEV27gSjM/hp1UXeKHJNEy56A3HMOhaV9tu+DkNQ==
+X-Received: by 2002:a05:6512:3f0:b0:50a:6fc5:e95c with SMTP id n16-20020a05651203f000b0050a6fc5e95cmr6168003lfq.60.1699986463736;
+        Tue, 14 Nov 2023 10:27:43 -0800 (PST)
+Received: from [10.76.84.181] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id w24-20020a50d798000000b00544f8271b5fsm5585115edi.8.2023.11.14.10.27.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Nov 2023 10:27:43 -0800 (PST)
+Message-ID: <80ad972c-9f98-4c57-8318-c84225e79cbe@gmail.com>
+Date: Tue, 14 Nov 2023 20:27:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231114105600.1012056-3-romain.gantois@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: ad7192: Add AD7194 support
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Alexandru Tachici <alexandru.tachici@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Maksim Kiselev <bigunclemax@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ Cosmin Tanislav <demonsingur@gmail.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Marius Cristea <marius.cristea@microchip.com>,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Ibrahim Tilki <Ibrahim.Tilki@analog.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
+ Ivan Mikhaylov <fr0st61te@gmail.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231105193132.47009-1-alisadariana@gmail.com>
+ <20231105193132.47009-3-alisadariana@gmail.com>
+ <e5c9eaaa-a8f3-4ca5-acf6-9ff714a07898@linaro.org>
+ <500eec71-e2f4-4f43-8bc9-6d4914b2493c@gmail.com>
+ <124c97ca-0c2c-4b92-8d8e-99d589daf2da@linaro.org>
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+In-Reply-To: <124c97ca-0c2c-4b92-8d8e-99d589daf2da@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
->  int qca8k_port_mirror_add(struct dsa_switch *ds, int port,
-> -			  struct dsa_mall_mirror_tc_entry *mirror,
-> -			  bool ingress, struct netlink_ext_ack *extack)
-> +				 struct dsa_mall_mirror_tc_entry *mirror,
-> +				 bool ingress, struct netlink_ext_ack *extack)
+On 14.11.2023 19:39, Krzysztof Kozlowski wrote:
+> On 14/11/2023 17:02, Alisa-Dariana Roman wrote:
+>> On 06.11.2023 10:56, Krzysztof Kozlowski wrote:
+>>> On 05/11/2023 20:31, alisadariana@gmail.com wrote:
+>>>> From: Alisa-Dariana Roman <alisa.roman@analog.com>
+>>>>
+>>>> Unlike the other AD719Xs, AD7194 has configurable differential
+>>>> channels. The default configuration for these channels can be changed
+>>>> from the devicetree.
+>>>>
+>>>> Also add an example for AD7194 devicetree.
+>>>>
+>>>> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+>>>> ---
+>>>>    .../bindings/iio/adc/adi,ad7192.yaml          | 69 +++++++++++++++++++
+>>>>    1 file changed, 69 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>>>> index 16def2985ab4..b9a9f7b20670 100644
+>>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+>>>> @@ -21,8 +21,15 @@ properties:
+>>>>          - adi,ad7190
+>>>>          - adi,ad7192
+>>>>          - adi,ad7193
+>>>> +      - adi,ad7194
+>>>>          - adi,ad7195
+>>>>    
+>>>> +  '#address-cells':
+>>>> +    const: 1
+>>>> +
+>>>> +  '#size-cells':
+>>>> +    const: 0
+>>>> +
+>>>>      reg:
+>>>>        maxItems: 1
+>>>>    
+>>>> @@ -96,6 +103,31 @@ required:
+>>>>      - spi-cpol
+>>>>      - spi-cpha
+>>>>    
+>>>> +patternProperties:
+>>>> +  "^channel@([0-9a-f])$":
+>>>> +    type: object
+>>>> +    $ref: adc.yaml
+>>>> +    unevaluatedProperties: false
+>>>> +
+>>>> +    properties:
+>>>> +      reg:
+>>>> +        description: The channel index.
+>>>> +        minimum: 0
+>>>> +        maximum: 7
+>>>
+>>> Your pattern a bit above is not correct then: [0-7]
+>>>
+>>>> +
+>>>> +      diff-channels:
+>>>> +        description: |
+>>>> +          The differential channel pair for Ad7194 configurable channels. The
+>>>> +          first channel is the positive input, the second channel is the
+>>>> +          negative input.
+>>>> +        items:
+>>>> +          minimum: 1
+>>>> +          maximum: 16
+>>>> +
+>>>> +    required:
+>>>> +      - reg
+>>>> +      - diff-channels
+>>>> +
+>>>>    allOf:
+>>>>      - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>>>>    
+>>>> @@ -127,3 +159,40 @@ examples:
+>>>>                adi,burnout-currents-enable;
+>>>>            };
+>>>>        };
+>>>> +  - |
+>>>> +    spi {
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <0>;
+>>>> +
+>>>> +        adc@0 {
+>>>> +            #address-cells = <1>;
+>>>> +            #size-cells = <0>;
+>>>> +            compatible = "adi,ad7194";
+>>>> +            reg = <0>;
+>>>> +            spi-max-frequency = <1000000>;
+>>>> +            spi-cpol;
+>>>> +            spi-cpha;
+>>>> +            clocks = <&ad7192_mclk>;
+>>>> +            clock-names = "mclk";
+>>>> +            interrupts = <25 0x2>;
+>>>> +            interrupt-parent = <&gpio>;
+>>>> +            dvdd-supply = <&dvdd>;
+>>>> +            avdd-supply = <&avdd>;
+>>>> +            vref-supply = <&vref>;
+>>>> +
+>>>> +            adi,refin2-pins-enable;
+>>>> +            adi,rejection-60-Hz-enable;
+>>>> +            adi,buffer-enable;
+>>>> +            adi,burnout-currents-enable;
+>>>> +
+>>>> +            channel@0 {
+>>>
+>>> Why cannot you add this to the existing example?
+>>>
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> I added another example to highlight the fact that only AD7194 supports
+>> configurable channels. How should I proceed?
+> 
+> Bindings did not tell that, so it seems you miss that part - allOf
+> constraining channels per variant.
+> 
+> Best regards,
+> Krzysztof
+> 
+And should I remove the AD7194 example?
 
-This looks like a whitespece change which should not be here.
+Kind regards,
+Alisa-Dariana Roman
 
-     Andrew
 
