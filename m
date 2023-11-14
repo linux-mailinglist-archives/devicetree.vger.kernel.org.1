@@ -1,371 +1,250 @@
-Return-Path: <devicetree+bounces-15550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C31287EAC46
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:58:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07A037EAC5E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:02:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 708B02810FA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:58:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88E561F222B0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC93125DA;
-	Tue, 14 Nov 2023 08:58:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="k43WlMaW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E51E156DD;
+	Tue, 14 Nov 2023 09:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6B3154A4
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:58:04 +0000 (UTC)
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18431AC
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 00:58:01 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507c5249d55so8350028e87.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 00:58:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1699952280; x=1700557080; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EpeuhvaUzx9DVrRpRRSAt7VSJx9fLxiy0TG7WzmpI+s=;
-        b=k43WlMaWKYrcJE92FaqbGGMaeyU30nICPFYc4b/V+suaZVPRg+q2X9RhqoX8zOSeZE
-         UoT6UvdPuc9twuRytd5mo/73gwao3eMiAuIOhH/1xa1JOdPIB11Yw63ypU0fwgcmaBAp
-         ICFodVa71nyjLJeQ7cbohiVW4VrGN1lvUMCE0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699952280; x=1700557080;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EpeuhvaUzx9DVrRpRRSAt7VSJx9fLxiy0TG7WzmpI+s=;
-        b=E576l1Dpd14Pf2Edu6koXCf7HeAZ2+NZyQpojzTPfssVKsV7Gvn5fbGqaHPyli3vWM
-         E1g8aXL30G4MNJkx5raeg84ldhtREptaYNNU+iYxjoYwtUapY4uPpmayYntQrRZIiT7N
-         n8MhQVBlS05+9hqJw/aOjJFOabKm5fxrf/w3dR9naVAg8v/E+uwI/epIY1KNAzUCmqgE
-         bWDCMIEjoqo0RyQfcxmbBjz18PIQv4tk5G6Kbz7XA18VzK2SYgI4qBMM6W8+qIJuI1Wg
-         gCKbn3oPVJqLp6EZwwQxQVkpyzQL3cNTdOoaieMOFfz3rzeqbvTuGWXjSALU+DTmlm5b
-         HliA==
-X-Gm-Message-State: AOJu0YzmvcHyc+Si8TXuBwU6d057BqIpEPS3TRfk9z3XgiUOYNkGbO9I
-	s3Y5MG5R3GqB0CxgpPT4i2mzH6DU1buK/DmmZhnVMQ==
-X-Google-Smtp-Source: AGHT+IGoap3T5IdklsK8edLZEnTxgQRmoWUpdkrbLlyk6n1CM0MxLtok/B+HS4P8gwV2D437XxUZL/WznF8YciQmScQ=
-X-Received: by 2002:a05:6512:3f0:b0:50a:6fc5:e95c with SMTP id
- n16-20020a05651203f000b0050a6fc5e95cmr5220855lfq.60.1699952279990; Tue, 14
- Nov 2023 00:57:59 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F460156D7;
+	Tue, 14 Nov 2023 09:02:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57952C433C7;
+	Tue, 14 Nov 2023 09:02:16 +0000 (UTC)
+Message-ID: <6095bd3d-2580-44e2-b622-3ad31e12787f@xs4all.nl>
+Date: Tue, 14 Nov 2023 10:02:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
-In-Reply-To: <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 14 Nov 2023 16:57:48 +0800
-Message-ID: <CAGXv+5G+J__Z_YBySxrkthhwa71shq7aCeKZ_DEZCK=PLgYwUg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
-	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
-	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
-	james@equiv.tech, keescook@chromium.org, rafael@kernel.org, 
-	tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 3/5] media: platform: visconti: add V4L2 vendor
+ specific control handlers
+Content-Language: en-US, nl
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
+ <20231012071329.2542003-4-yuji2.ishikawa@toshiba.co.jp>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20231012071329.2542003-4-yuji2.ishikawa@toshiba.co.jp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 9, 2023 at 6:54=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 09/11/23 11:05, Chen-Yu Tsai ha scritto:
-> > Hi everyone,
-> >
-> > This v2 series continues Doug's "of: device: Support 2nd sources of
-> > probeable but undiscoverable devices" [1] series, but follows the schem=
-e
-> > suggested by Rob, marking all second source component device nodes
-> > as "fail-needs-probe-XXX", and having a hardware prober driver enable
-> > the one of them. I tried to include everyone from the original Cc: list=
-.
-> > Please let me know if you would like to be dropped from future
-> > submissions.
-> >
-> >
-> > For the I2C component (touchscreens and trackpads) case from the
-> > original series, the hardware prober driver finds the particular
-> > class of device in the device tree, gets its parent I2C adapter,
-> > and tries to initiate a simple I2C read for each device under that
-> > I2C bus. When it finds one that responds, it considers that one
-> > present, marks it as "okay", and returns, letting the driver core
-> > actually probe the device.
-> >
-> > This works fine in most cases since these components are connected
-> > via ribbon cable and always have the same resources. The driver as
-> > implemented currently doesn't deal with regulators or GPIO pins,
-> > since in the existing device trees they are either always on for
-> > regulators, or have GPIO hogs or pinmux and pinconfig directly
-> > tied to the pin controller.
-> >
-> >
-> > Another case this driver could handle is selecting components based
-> > on some identifier passed in by the firmware. On Chromebooks we have
-> > a SKU ID which is inserted by the bootloader at
-> > /firmware/coreboot/sku-id. When a new combination of components is
-> > introduced, a new SKU ID is allocated to it. To have SKU ID based
-> > device trees, we would need to have one per SKU ID. This ends up
-> > increasing the number of device trees we have a lot. The recent
-> > MT8186 devices already have 10+10 SKUs [2], with possibly more to come.
-> >
-> > Instead, we could have just one device tree for each device, with
-> > component options listed and marked as "fail-needs-probe-XXX", and
-> > let the hardware prober enable one of them based on the given SKU ID.
-> > The driver will also fix up OF graph remote endpoints to point to the
-> > enabled component.
-> >
-> > The MT8186 Corsola series [2] can also benefit from this, though I
-> > haven't implemented anything yet.
-> >
-> >
-> > Patch 1 adds of_device_is_fail() for the new driver to use.
-> >
-> > Patch 2 implements the first case, probing the I2C bus for presence
-> > of components. This initial version targets the Hana Chromebooks.
-> >
-> > Patch 3 modifies the Hana device tree and marks the touchscreens
-> > and trackpads as "fail-needs-probe-XXX", ready for the driver to
-> > probe.
-> >
-> > Patch 4 adds a missing touchscreen variant to Hana.
-> >
-> > Patch 5 implements the second case, selectively enabling components
-> > based on the SKU ID. This initial version targets the Krane ChromeOS
-> > tablet, which has two possible MIPI DSI display panel options.
-> >
-> > Patch 6 drops Krane's SKU-specific compatible strings from the bindings=
-.
-> >
-> > Patch 7 merges Krane's SKU-specific device trees into one, with the
-> > device tree now containing two possible panels. This unfortunately
-> > introduces a dtc warning:
-> >
-> >      arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dts:81.13-83.6:
-> >          Warning (graph_endpoint): /soc/dsi@14014000/panel2@0/port/endp=
-oint:
-> >       graph connection to node '/soc/dsi@14014000/ports/port/endpoint'
-> >           is not bidirectional
-> >
-> >
-> > Please take a look.
-> >
-> > Johan, I'm not sure if this works as is for the Lenovo Thinkpad 13S
-> > case, since it looks like the trackpad shares the I2C bus with the
-> > keyboard.
-> >
-> >
-> > Thanks
-> > ChenYu
-> >
-> >
-> > Background as given in Doug's cover letter:
-> >
-> > Support for multiple "equivalent" sources for components (also known
-> > as second sourcing components) is a standard practice that helps keep
-> > cost down and also makes sure that if one component is unavailable due
-> > to a shortage that we don't need to stop production for the whole
-> > product.
-> >
-> > Some components are very easy to second source. eMMC, for instance, is
-> > fully discoverable and probable so you can stuff a wide variety of
-> > similar eMMC chips on your board and things will work without a hitch.
-> >
-> > Some components are more difficult to second source, specifically
-> > because it's difficult for software to probe what component is present
-> > on any given board. In cases like this software is provided
-> > supplementary information to help it, like a GPIO strap or a SKU ID
-> > programmed into an EEPROM. This helpful information can allow the
-> > bootloader to select a different device tree. The various different
-> > "SKUs" of different Chromebooks are examples of this.
-> >
-> > Some components are somewhere in between. These in-between components
-> > are the subject of this patch. Specifically, these components are
-> > easily "probeable" but not easily "discoverable".
-> >
-> > A good example of a probeable but undiscoverable device is an
-> > i2c-connected touchscreen or trackpad. Two separate components may be
-> > electrically compatible with each other and may have compatible power
-> > sequencing requirements but may require different software. If
-> > software is told about the different possible components (because it
-> > can't discover them), it can safely probe them to figure out which
-> > ones are present.
-> >
-> > On systems using device tree, if we want to tell the OS about all of
-> > the different components we need to list them all in the device
-> > tree. This leads to a problem. The multiple sources for components
-> > likely use the same resources (GPIOs, interrupts, regulators). If the
-> > OS tries to probe all of these components at the same time then it
-> > will detect a resource conflict and that's a fatal error.
-> >
-> > The fact that Linux can't handle these probeable but undiscoverable
-> > devices well has had a few consequences:
-> > 1. In some cases, we've abandoned the idea of second sourcing
-> >     components for a given board, which increases cost / generates
-> >     manufacturing headaches.
-> > 2. In some cases, we've been forced to add some sort of strapping /
-> >     EEPROM to indicate which component is present. This adds difficulty
-> >     to manufacturing / refurb processes.
-> > 3. In some cases, we've managed to make things work by the skin of our
-> >     teeth through slightly hacky solutions. Specifically, if we remove
-> >     the "pinctrl" entry from the various options then it won't
-> >     conflict. Regulators inherently can have more than one consumer, so
-> >     as long as there are no GPIOs involved in power sequencing and
-> >     probing devices then things can work. This is how
-> >     "sc8280xp-lenovo-thinkpad-x13s" works and also how
-> >     "mt8173-elm-hana" works.
-> >
-> > End of background from Doug's cover letter.
->
-> I think that using "status" is not a good idea, I find that confusing.
+On 12/10/2023 09:13, Yuji Ishikawa wrote:
+> Add support to Image Signal Processors of Visconti's Video Input Interface.
+> This patch adds vendor specific compound controls
+> to configure the image signal processor.
+> 
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> ---
+> Changelog v2:
+> - Resend v1 because a patch exceeds size limit.
+> 
+> Changelog v3:
+> - Adapted to media control framework
+> - Introduced ISP subdevice, capture device
+> - Remove private IOCTLs and add vendor specific V4L2 controls
+> - Change function name avoiding camelcase and uppercase letters
+> 
+> Changelog v4:
+> - Split patches because the v3 patch exceeds size limit
+> - Stop using ID number to identify driver instance:
+>   - Use dynamically allocated structure to hold HW specific context,
+>     instead of static one.
+>   - Call HW layer functions with the context structure instead of ID number
+> 
+> Changelog v5:
+> - no change
+> 
+> Changelog v6:
+> - remove unused macros
+> - removed hwd_ and HWD_ prefix
+> - update source code documentation
+> - Suggestion from Hans Verkuil
+>   - pointer to userland memory is removed from uAPI arguments
+>     - style of structure is now "nested" instead of "chained by pointer";
+>   - use div64_u64 for 64bit division
+>   - vendor specific controls support TRY_EXT_CTRLS
+>   - add READ_ONLY flag to GET_CALIBRATION_STATUS control and similar ones
+>   - human friendry control names for vendor specific controls
+>   - add initial value to each vendor specific control
+>   - GET_LAST_CAPTURE_STATUS control is updated asyncnously from workqueue
+>   - remove EXECUTE_ON_WRITE flag of vendor specific control
+>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
+>   - applied v4l2-compliance
+> - Suggestion from Sakari Ailus
+>   - use div64_u64 for 64bit division
+>   - update copyright's year
+>   - remove redandunt cast
+>   - use bool instead of HWD_VIIF_ENABLE/DISABLE
+>   - simplify comparison to 0
+>   - simplify statements with trigram operator
+>   - remove redundant local variables
+>   - use general integer types instead of u32/s32
+> - Suggestion from Laurent Pinchart
+>   - moved VIIF driver to driver/platform/toshiba/visconti
+>   - change register access: struct-style to macro-style
+>   - remove unused type definitions
+>   - define enums instead of successive macro constants
+>   - remove redundant parenthesis of macro constant
+>   - embed struct hwd_res into struct viif_device
+>   - use xxx_dma instead of xxx_paddr for variable names of IOVA
+>   - literal value: just 0 instead of 0x0
+>   - use literal 1 or 0 instead of HWD_VIIF_ENABLE, DISABLE for register access
+>   - use true or false instead of HWD_VIIF_ENABLE, DISABLE for function calls
+>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
+> 
+> Changelog v7:
+> - remove unused variables
+> - split long statements which have multiple logical-OR and trigram operators
+> 
+> Changelog v8:
+> - define constant V4L2_CTRL_TYPE_VISCONTI_ISP for datatype
+>   of Visconti specific controls
+> - Suggestion from Hans Verkuil
+>   - remove pr_info()
+>   - use pm_runtime_get_if_in_use() to get power status
+> 
+> Changelog v9:
+> - fix warning for cast between ptr and dma_addr_t
+> 
+>  .../media/platform/toshiba/visconti/Makefile  |    2 +-
+>  .../media/platform/toshiba/visconti/viif.c    |   10 +-
+>  .../platform/toshiba/visconti/viif_controls.c | 3395 +++++++++++++++++
+>  .../platform/toshiba/visconti/viif_controls.h |   18 +
+>  .../platform/toshiba/visconti/viif_isp.c      |   15 +-
+>  drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
+>  include/uapi/linux/videodev2.h                |    2 +
+>  7 files changed, 3431 insertions(+), 18 deletions(-)
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+> 
 
-It isn't a hard requirement. The current I2C prober actually just looks
-at the node name, which already should be a generic class type. It then
-assumes that all the components of the same class that it is supposed
-to probe for are on the same bus. I think this is a fair assumption for
-replaceable parts connected via ribbon cable or co-layout parts?
+<snip>
 
-> Perhaps we could have a node like
->
-> something {
->         device-class-one =3D <&device1>, <&device2>, <&device3>;
->         device-class-two =3D <&device4>, <&device5>, <&device6>;
-> }
->
-> so that'd be more or less
->
-> hw-prober {
->         trackpads =3D <&tp1>, <&tp2>;
->         keyboards =3D <&kb1>, <&kb2>;
->         touchscreens =3D <&ts1>, <&ts2>;
-> }
+These core changes below should be in a separate patch, not mixed in with
+the driver.
 
-This was already nacked by Rob.
+> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> index a662fb60f73f..0c4df9fffbe0 100644
+> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+> @@ -367,7 +367,9 @@ void v4l2_ctrl_type_op_log(const struct v4l2_ctrl *ctrl)
+>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
+>  		pr_cont("AV1_FILM_GRAIN");
+>  		break;
+> -
+> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
+> +		pr_cont("VISCONTI_ISP");
+> +		break;
+>  	default:
+>  		pr_cont("unknown type %d", ctrl->type);
+>  		break;
+> @@ -1163,6 +1165,9 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
+>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
+>  		return validate_av1_film_grain(p);
+>  
+> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
+> +		break;
+> +
+>  	case V4L2_CTRL_TYPE_AREA:
+>  		area = p;
+>  		if (!area->width || !area->height)
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index c3d4e490ce7c..bbc3cd3efa65 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -1915,6 +1915,8 @@ enum v4l2_ctrl_type {
+>  	V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY = 0x281,
+>  	V4L2_CTRL_TYPE_AV1_FRAME	    = 0x282,
+>  	V4L2_CTRL_TYPE_AV1_FILM_GRAIN	    = 0x283,
+> +
+> +	V4L2_CTRL_TYPE_VISCONTI_ISP = 0x290,
 
-> Besides, something else I can suggest here is to make this more generic: =
-actually,
-> this issue is spread across way more devices than you maybe think... for =
-example,
-> I know of some smartphones that may have the same situation with DSI disp=
-lays and
-> they're sometimes distinguished by an ADC value, sometimes by reading bac=
-k the
-> manufacturer ID (or panel id) through DSI.
+I see you are using the same V4L2_CTRL_TYPE_VISCONTI_ISP for all the compound
+controls. But that's not allowed: the V4L2_CTRL_TYPE_ defines determine the
+control type, so each struct used by a control needs its own type.
 
-ADC strapping is common. Though we might need some kind of binding about ho=
-w
-to describe the ADC strapping scheme, as this is bound to be different acro=
-ss
-boards.
+I also noticed looking through include/uapi/linux/visconti_viif.h that some
+of the struct have holes. I really want to avoid holes in structs used by
+controls, it is bad practice.
 
-Reading back from DSI feels problematic to implement. But I don't know much
-about DSI ATM. Doug implied in our offline discussion that DSI panels might
-have power sequencing requirements that are all over the place.
+The pahole utility is very useful for testing this. It is also highly
+recommended to check for both 32 and 64 bit compilation: the struct layout
+must be the same, otherwise you would run into problems if a 32 bit application
+is used with a 64 bit kernel.
 
-> Also, if Chromebooks really need something "special", such as that corebo=
-ot sku-id
-> parameter, I think that this should be registered externally into the hw =
-prober
-> and not embedded inside of the *generic* hw prober driver.
->
-> We can even reuse of_device_id instead of inventing a new hw_prober_entry=
- struct...
->
-> Idea:
->
-> drivers/platform/chrome/cros_of_hw_prober.c
->
-> static int cros_sku_hw_prober(struct platform_device *pdev, const void *d=
-ata)
-> {
->         ...this is your cros_sku_component_selector() function, anyway...
-> }
->
-> static const struct of_device_id cros_hw_prober_ids[] =3D {
->         { .compatible =3D "google,hana", .data =3D something },
->         { /* sentinel */ }
-> };
->
-> static int some_kind_of_early_init_function(something)
-> {
->         int a,b,c,ret,something;
->
->         .. some logic if necessary ..
->
->         return of_hw_prober_register(cros_sku_hw_prober, cros_hw_prober_i=
-ds);
-> }
+Finally, Laurent and/or Sakari will also take a look at this driver, for some
+reason this driver has been mostly reviewed by me, but I am not really the
+expert on ISPs.
 
-This feels a bit too layered, and requires all the board specific code to
-have an early init function. I think exposing common helper functions for
-boards to implement prober drivers would be better. Then the prober could
-also be a module if that made sense. Given that SoC vendors are making
-clock controller drivers modules, this doesn't seem very far fetched.
+Regards,
 
-> Btw, thanks for starting that. If this will be done the right way, it's g=
-oing to
-> be useful to many, many people.
+	Hans
 
-Right. I only have a limited view of applications, so input is always welco=
-me.
+>  };
+>  
+>  /*  Used in the VIDIOC_QUERYCTRL ioctl for querying controls */
 
-Thanks
-ChenYu
-
-> Regards,
-> Angelo
->
-> >
-> > [1] https://lore.kernel.org/all/20230921102420.RFC.1.I9dddd99ccdca175e3=
-ceb1b9fa1827df0928c5101@changeid/
-> > [2] https://lore.kernel.org/linux-mediatek/20231012230237.2676469-1-wen=
-st@chromium.org/
-> >
-> > Chen-Yu Tsai (7):
-> >    of: base: Add of_device_is_fail
-> >    of: Introduce hardware prober driver
-> >    arm64: dts: mediatek: mt8173-elm-hana: Mark touchscreens and trackpa=
-ds
-> >      as fail
-> >    arm64: dts: mediatek: mt8173-elm-hana: Add G2touch G7500 touchscreen
-> >    of: hw_prober: Support Chromebook SKU ID based component selection
-> >    dt-bindings: arm: mediatek: Remove SKU specific compatibles for Goog=
-le
-> >      Krane
-> >    arm64: dts: mediatek: mt8183-kukui: Merge Krane device trees
-> >
-> >   .../devicetree/bindings/arm/mediatek.yaml     |   3 -
-> >   arch/arm64/boot/dts/mediatek/Makefile         |   3 +-
-> >   .../boot/dts/mediatek/mt8173-elm-hana.dtsi    |  20 ++
-> >   .../dts/mediatek/mt8183-kukui-krane-sku0.dts  |  24 --
-> >   .../mediatek/mt8183-kukui-krane-sku176.dts    |  24 --
-> >   ...ukui-krane.dtsi =3D> mt8183-kukui-krane.dts} |  47 ++-
-> >   drivers/of/Kconfig                            |  13 +
-> >   drivers/of/Makefile                           |   1 +
-> >   drivers/of/base.c                             |  20 ++
-> >   drivers/of/hw_prober.c                        | 314 +++++++++++++++++=
-+
-> >   include/linux/of.h                            |   6 +
-> >   11 files changed, 418 insertions(+), 57 deletions(-)
-> >   delete mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sk=
-u0.dts
-> >   delete mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sk=
-u176.dts
-> >   rename arch/arm64/boot/dts/mediatek/{mt8183-kukui-krane.dtsi =3D> mt8=
-183-kukui-krane.dts} (86%)
-> >   create mode 100644 drivers/of/hw_prober.c
-> >
->
 
