@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-15700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C216B7EB5C7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:47:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 473027EB5CA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBD591C20954
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:47:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 011A428125C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:47:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA4515BC;
-	Tue, 14 Nov 2023 17:46:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9912515BC;
+	Tue, 14 Nov 2023 17:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M043fNWl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVNPcPm9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6C22C194
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 17:46:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 906DDC433C8;
-	Tue, 14 Nov 2023 17:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B49B2C19E;
+	Tue, 14 Nov 2023 17:47:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CAAAC433CA;
+	Tue, 14 Nov 2023 17:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699984018;
-	bh=eCMU4RF9OJ4X7mcA2D6kVETfj8p7WKrVJJV5XZuQ5Xs=;
+	s=k20201202; t=1699984058;
+	bh=D9KzSEK2MNUlw54aT4akCNMjbWc04nlocOCzra8qnEs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M043fNWlZFaDO4W2DaRdnW/Zkgbizurx86jTKDsqEKY1+6ayXvXouPLX3RaMWw3aW
-	 ea0bmPGghraL+VzuSZ8rwjzIU0IAbRV5+nHN75PxxDGubFW9peZ9/S4bmrMLcX+wtA
-	 VeIndsF78jfozk3B4yRZ1I8gSwWZAJl2LA5sUH9GEhyNmvFefkDf056z99OgKvCth0
-	 6O2uh5CtMEFGEUV3gLLMYvGMdTKi3lhSmz/UWywxVisV/VRLbIT0ATz6lBnVXQZnJw
-	 29TPCQ8KzEwNcF/Gw35VQwjEistoju409/jXK0d8Vi70G9QsTVKC4PxjPKmMVRmqgQ
-	 FS9AjhGBnaQLQ==
-Date: Tue, 14 Nov 2023 17:46:55 +0000
+	b=ZVNPcPm9Kvz2KPrx2w7zth7Hu6Ge58GrV2+G/LwiEnMdI6P+da59r2GZoYtlJfeiY
+	 mki4tmtRxIRX7AvZ7KBfDEFi7Ewxyw2d6AwEmJe9WRhvL+lzD0L7cGThdr2tUI3t/l
+	 RGl86ZwmnWSkG6WDi5avj/bP6gLQk3Tim7eh7hwHLW/LT058UQo5ngvoyH4nt29Cbo
+	 ozUtdZU1OIYMSD2R6iDEbmA0dh3twWaCg44U7vwfWa2PH6S7mNjqdCSZEY051w9LOj
+	 itJK1ErevAMpwf7xCFoej/TtvpDeAZKoYW700O4x+3GkQVQGZnPn1F0iD24wsbxYjY
+	 Bd3FOvB/Q5LCw==
+Date: Tue, 14 Nov 2023 17:47:34 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
 	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
 	Daniel Scally <dan.scally@ideasonboard.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: meson-g12a-power: document ISP
- power domain
-Message-ID: <20231114-tremor-deftly-9e0df4aa6dc9@squawk>
-References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
- <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: g12a-clkc: add MIPI ISP & CSI
+ PHY clock ids
+Message-ID: <20231114-lash-singer-ddf33f11bc4c@squawk>
+References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
+ <20231114-topic-amlogic-upstream-isp-clocks-v1-1-223958791501@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,57 +58,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PwYF9EZeZpf3gj+q"
+	protocol="application/pgp-signature"; boundary="Mg1UK2b3qj7ouDpz"
 Content-Disposition: inline
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
+In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-1-223958791501@linaro.org>
 
 
---PwYF9EZeZpf3gj+q
+--Mg1UK2b3qj7ouDpz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 14, 2023 at 11:19:50AM +0100, Neil Armstrong wrote:
-> Add MIPI ISP power domain ID to the G12A Power domains bindings header
+On Tue, Nov 14, 2023 at 11:14:43AM +0100, Neil Armstrong wrote:
+> Add MIPI ISP & CSI PHY clock ids to G12A clock bindings header
 >=20
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
+Cheers,
 Conor,
 
 > ---
->  include/dt-bindings/power/meson-g12a-power.h | 1 +
->  1 file changed, 1 insertion(+)
+>  include/dt-bindings/clock/g12a-clkc.h | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >=20
-> diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bi=
-ndings/power/meson-g12a-power.h
-> index 44ec0c50e340..01fd0ac4dd08 100644
-> --- a/include/dt-bindings/power/meson-g12a-power.h
-> +++ b/include/dt-bindings/power/meson-g12a-power.h
-> @@ -10,5 +10,6 @@
->  #define PWRC_G12A_VPU_ID		0
->  #define PWRC_G12A_ETH_ID		1
->  #define PWRC_G12A_NNA_ID		2
-> +#define PWRC_G12A_ISP_ID		3
+> diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/=
+clock/g12a-clkc.h
+> index 636d713f95ff..fd09819da2ec 100644
+> --- a/include/dt-bindings/clock/g12a-clkc.h
+> +++ b/include/dt-bindings/clock/g12a-clkc.h
+> @@ -281,5 +281,11 @@
+>  #define CLKID_MIPI_DSI_PXCLK			270
+>  #define CLKID_CTS_ENCL				271
+>  #define CLKID_CTS_ENCL_SEL			272
+> +#define CLKID_MIPI_ISP_DIV			273
+> +#define CLKID_MIPI_ISP_SEL			274
+> +#define CLKID_MIPI_ISP				275
+> +#define CLKID_MIPI_ISP_GATE			276
+> +#define CLKID_MIPI_ISP_CSI_PHY0			277
+> +#define CLKID_MIPI_ISP_CSI_PHY1			278
 > =20
->  #endif
+>  #endif /* __G12A_CLKC_H */
 >=20
 > --=20
 > 2.34.1
 >=20
 
---PwYF9EZeZpf3gj+q
+--Mg1UK2b3qj7ouDpz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVOyiwAKCRB4tDGHoIJi
-0rmuAP962Bb9llHANd7qrsMYBmKgYiRTEy5nus69HQ/DSFFWngEA5WgpUUCCOIRm
-vSTfY/PJbbSulsYVa7P1iCnUYaoERQI=
-=gjcN
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVOysgAKCRB4tDGHoIJi
+0hqQAP4hX+8A/W3JLgzC4C6VHY0eRmE1mwCTvgaeXnGFdMFyggEA0jDMrTecaNnW
+13R4LiJbI3EwIg6VMuKZ9z0Plz5r2g4=
+=wOqs
 -----END PGP SIGNATURE-----
 
---PwYF9EZeZpf3gj+q--
+--Mg1UK2b3qj7ouDpz--
 
