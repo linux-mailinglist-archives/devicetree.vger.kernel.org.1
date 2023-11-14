@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-15732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A35CB7EB7E4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:35:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A85487EB7EA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:35:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E1D5281341
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:35:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B18461C20AEB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37262C1B6;
-	Tue, 14 Nov 2023 20:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044282C1B2;
+	Tue, 14 Nov 2023 20:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TVxATW19"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EEU3Pn9V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA032FC2E
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:35:02 +0000 (UTC)
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1B2911F
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:35:00 -0800 (PST)
-Received: by mail-qv1-xf2e.google.com with SMTP id 6a1803df08f44-6779fb43e5cso27696076d6.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:35:00 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D4F2FC2E
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:35:41 +0000 (UTC)
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C93710F
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:35:39 -0800 (PST)
+Received: by mail-qv1-xf2c.google.com with SMTP id 6a1803df08f44-66d190a8f87so35317306d6.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:35:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699994100; x=1700598900; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1699994138; x=1700598938; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CVjFswQ/jW2pMZHsfFdNFiwxD/bpTN2LHYTDKvoamzQ=;
-        b=TVxATW196mmxry2eIpFsYrKn8sak9T10Zv9yoEE4xXqYYOCzpWwzOblzyZH5h/dj24
-         WOGvzJoKN0IbKZhrfqw8kSMqHHLNFpRQ5iWrybonI0Oo8HHHjkOJ6BfFswU8dT+spVWj
-         nukWGY8Irh+wV9l3XBQpSScT4XrI4andcTO4P/qahZdKoK8mpBSG2CKW97zP21o1q18B
-         aLMpsgdnYfDT32MKq2h7CWWp2mw6PrKAcH193/nXYxRvuoAaJceztG/oYiWrIKyuER92
-         0sP1yrlZPs7rr19ngD2XQXjNgQu7RGrdtVbL3eehFQEb/Coxhs8te36Hi02KAhX/XdHf
-         igxg==
+        bh=ZbzvcBT/r0F/SovGItDH2NVWmf4yM2BnGogL4Rhh7dY=;
+        b=EEU3Pn9VT5L/vtnSx8TKPEw2Y3PYUMhs5CYvtEt2ewRmqTYbnYvyLMXvJ8GYMSZSE1
+         LJnoKyDD2zVQcZwVoJpOJyg+oBbZ3+e8+KTclhbOjlXv4RktDRbNfbx7zDBHkLj/K588
+         BQCom9yn1eKA1+giRJ4ci/zD04jFr+HKEq65G9fhX4FqJazUp8blpYnTaO6RC3RaMUDa
+         XrJNxuzzB7Fvbo0PhEHqgjLW0EGubC6YbJpn2v98Tep0n6KrBNue+gh4mZxg9KvhH/rq
+         5Sxiw6EBRgp05O2S8C9cz4wnF4Fb+eJz4/rXi9TYVKIBkmzRhY5mFuWn3l2XhNnPOMa8
+         166w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699994100; x=1700598900;
+        d=1e100.net; s=20230601; t=1699994138; x=1700598938;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CVjFswQ/jW2pMZHsfFdNFiwxD/bpTN2LHYTDKvoamzQ=;
-        b=q9EE68M37wc9E0X95Cx8cd2eDsfTRXM6Od33axfSoMcLtyP3iH5ZmyYsNBV4RwZ9Wt
-         RrVoJZ8Zvs8nRdOzmxGt/MbwyPKeylKermCnrycL9m3S1ll8LzJjXM7rUghq7rSA8xT+
-         J9ZAh4smQJANwefh9zr3Gkxhm8OzjuP2zP4Lf7Df5/wZC6yPx4cqWCgHgdUfFaE2xpaw
-         2AOAhtQHpMHf2fGrKbOOuKOKn1qam5qyU6B2TT9M1EYUMVdFO5xMmQUfotmFazlS2S56
-         ozo2NTOnNl/N9uM+wqMtG1T0VO85sv8W9tY7IsbO/oU4ipj9Jxu6qPZhYdkhtoebHvds
-         uZiA==
-X-Gm-Message-State: AOJu0YxhUbuAwH5YilND4cB5P6lXfh31cydkSYc75inIjh5LLnf+b9hp
-	4GsRkGn9kqwV20kTQ10vWKHCeaI5hohgZXi+hvQ=
-X-Google-Smtp-Source: AGHT+IEdIqnxZ60wqAn54yhi0VfoBEFFWyac1wVwuE1WKmBGODwplZ6ZTn1n0v0cWViKvVnA8qRFBg==
-X-Received: by 2002:a0c:fd81:0:b0:672:3f54:b950 with SMTP id p1-20020a0cfd81000000b006723f54b950mr3092486qvr.50.1699994099920;
-        Tue, 14 Nov 2023 12:34:59 -0800 (PST)
+        bh=ZbzvcBT/r0F/SovGItDH2NVWmf4yM2BnGogL4Rhh7dY=;
+        b=YzwPMi09h60bP35A4WjTLN2oOdrRklSGg6IMcnjFgU16GVe4l8WS+QqbZjFnAOZqux
+         UxHJLxhiWM4geZA5zpc2mEXzd2MBMrLBhBG5rV+2fHsGKSEqqqzpHPVmabn5ruzeagAF
+         vXo8pfRW1zJYSPtShK7Xs3uEfDFMUFbeYfoUvPHJefMoOkFremb7uAAfX+yPNPUAZ8wF
+         SjQVuehQLpGXkdw2Y88APsyWU2LToFGAtanfFPmhKpa1iMnkAeMhXsv5mqpD4Elifmxu
+         2xL+0m+Un/nKhRzZtmFsubYQqVCEbuHnK4V/QeWs/2h+sVE0lk0vdm01kkE8liW/fYCu
+         y10g==
+X-Gm-Message-State: AOJu0YzNQlIslKCRuYTkSDntEjzQzqnTsdxKhXhDXPr5DnljMucRg3W8
+	yZYYnSDFIt5ZjnLaAklusDzYhA==
+X-Google-Smtp-Source: AGHT+IGCxSDrF6Mt0Uem4zXCCeJXWJaGx8sRfH6NQN3kqugwvtp5a61SqdTYad3BH0eg488Ixd4Hsw==
+X-Received: by 2002:a05:6214:c81:b0:66d:245a:4b70 with SMTP id r1-20020a0562140c8100b0066d245a4b70mr4370589qvr.2.1699994138459;
+        Tue, 14 Nov 2023 12:35:38 -0800 (PST)
 Received: from [172.25.83.73] ([12.186.190.1])
-        by smtp.gmail.com with ESMTPSA id h13-20020a0ceecd000000b00671b009412asm3132110qvs.141.2023.11.14.12.34.59
+        by smtp.gmail.com with ESMTPSA id h13-20020a0ceecd000000b00671b009412asm3132110qvs.141.2023.11.14.12.35.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 12:34:59 -0800 (PST)
-Message-ID: <1c7cded1-dc24-4312-bbdd-0161c710234a@linaro.org>
-Date: Tue, 14 Nov 2023 21:34:58 +0100
+        Tue, 14 Nov 2023 12:35:38 -0800 (PST)
+Message-ID: <cde26249-1d47-496f-b198-a0c4c02bed5c@linaro.org>
+Date: Tue, 14 Nov 2023 21:35:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: aspeed: document ASRock E3C256D4I
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add ASRock E3C256D4I BMC
 Content-Language: en-US
 To: Zev Weiss <zev@bewilderbeest.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -77,7 +77,7 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
  openbmc@lists.ozlabs.org
 References: <20231114112722.28506-4-zev@bewilderbeest.net>
- <20231114112722.28506-5-zev@bewilderbeest.net>
+ <20231114112722.28506-6-zev@bewilderbeest.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,17 +123,92 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231114112722.28506-5-zev@bewilderbeest.net>
+In-Reply-To: <20231114112722.28506-6-zev@bewilderbeest.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/11/2023 12:27, Zev Weiss wrote:
-> Document ASRock E3C256D4I board compatible.
+> Like the E3C246D4I, this is a reasonably affordable off-the-shelf
+> mini-ITX AST2500/Xeon motherboard with good potential as an OpenBMC
+> development platform.  Booting the host requires a modicum of eSPI
+> support that's not yet in the mainline kernel, but most other basic
+> BMC functionality is available with this device-tree.
 > 
 > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 > ---
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../aspeed/aspeed-bmc-asrock-e3c256d4i.dts    | 314 ++++++++++++++++++
+>  2 files changed, 315 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index d3ac20e316d0..3398ee53f034 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-ampere-mtmitchell.dtb \
+>  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>  	aspeed-bmc-asrock-e3c246d4i.dtb \
+> +	aspeed-bmc-asrock-e3c256d4i.dtb \
+>  	aspeed-bmc-asrock-romed8hm3.dtb \
+>  	aspeed-bmc-bytedance-g220a.dtb \
+>  	aspeed-bmc-delta-ahe50dc.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+> new file mode 100644
+> index 000000000000..4c55272afd4f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+> @@ -0,0 +1,314 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/dts-v1/;
+> +
+> +#include "aspeed-g5.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/i2c/i2c.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/watchdog/aspeed-wdt.h>
+> +
+> +/{
+> +	model = "ASRock E3C256D4I BMC";
+> +	compatible = "asrock,e3c256d4i-bmc", "aspeed,ast2500";
+> +
+> +	aliases {
+> +		serial4 = &uart5;
+> +
+> +		i2c20 = &i2c2mux0ch0;
+> +		i2c21 = &i2c2mux0ch1;
+> +		i2c22 = &i2c2mux0ch2;
+> +		i2c23 = &i2c2mux0ch3;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +		bootargs = "console=tty0 console=ttyS4,115200 earlycon";
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop bootargs.
+
+> +	};
+> +
+> +	memory@80000000 {
+> +		reg = <0x80000000 0x20000000>;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		heartbeat {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
+> +			linux,default-trigger = "timer";
+
+Missing function and color.
+
 
 Best regards,
 Krzysztof
