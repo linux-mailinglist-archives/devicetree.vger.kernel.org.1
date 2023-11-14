@@ -1,115 +1,293 @@
-Return-Path: <devicetree+bounces-15629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF8F7EB04B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 13:52:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B71B7EB052
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 13:53:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 773ED281251
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:52:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B9D21C20835
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEC23FB33;
-	Tue, 14 Nov 2023 12:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB45D3FB33;
+	Tue, 14 Nov 2023 12:53:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IUva1w1n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JKFFwVmw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5991F3FB24
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:52:52 +0000 (UTC)
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8255D52
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 04:52:49 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-dae7cc31151so5527373276.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 04:52:49 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F108C3E47D
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:53:33 +0000 (UTC)
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF7981A7
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 04:53:31 -0800 (PST)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5b383b4184fso65788237b3.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 04:53:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699966369; x=1700571169; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dm5tIBxlFob9g4Fl4wFAfi9oUFoS3/1CELy15DVM1mI=;
-        b=IUva1w1nEizlrvNSoUb3UCdQBfVmQ5Q4YZp7nEJb92vakCXDD3tvM56YuNFWj73t56
-         TOoZ95mU9fpkZD2KzIW51MFjmpbE6+hIE3T+so0B1GAhA59XFPmZTZSjSDtLr8mydiBn
-         Ef9QF2o6CrkfgsAZcZmj+S4j8KOM99mRlpubKhiM/m53A3QLZcc5PUzMkjqGMDY8tRdu
-         PS8vjaJPg0kpvBHmKGd8zxZQbZXG+Bwl+WJuQcx5XkAv1XEgI7/vnmvOcFgAVwjfcR2L
-         th8L1YtixZdLUKGq3erttfLhik3qL8eBf1l3jQIVwmRRUC1q/x+O6K6Hk1CZ3y4DfDHl
-         jIhQ==
+        d=linaro.org; s=google; t=1699966411; x=1700571211; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=peYBzjEozsW0Bpz59DUMMakO9Y7YA/BG29XZMsT57PU=;
+        b=JKFFwVmwSyxNHd4BucU77jk5tDt9rQhB247sz01VmqrAQtDhKmmpCX9LH4IA90aWNt
+         8kzfe00YlCmOAEdmojLjxHGe2EWujqxbiItXaDdIIGdieEtlkzwE3jTcwc0OJ/oB51bt
+         0yDpGZCG76bxqIom4J30/B6NwMKYTo9ElvKT90VVLJxZ79oDxwNKM5QKdfKIfYnblpic
+         4qyDgN6bGFi6mPI6vpiJrn5JD/LLe0/CQbgGhYglo+O6LQy74OXOYGI2U2wSQrlFMI2v
+         vhZaT1YVuVnHQ3gb5gbCt1hP5mLSKVfQoDLQ8jLdD26QTpld9PpITwUDIeuSnU8/rvtW
+         60BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699966369; x=1700571169;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dm5tIBxlFob9g4Fl4wFAfi9oUFoS3/1CELy15DVM1mI=;
-        b=JyFF/dwoZ7McqqJ9N3pMU1V5U+3REF5WAHdIIigGx/wBcs5Be+bvB8PtYJZhU13nZW
-         C68A5rQ70gKeLZDZJLOHbRa6V61h8K7YMuY4wNYItIKon12+gDuaWIKqFrZIflj5tdzV
-         x2eb7NV9ut9tnsdYwjs2WB1y75w6HzDADtg+6hbbJd+K12KjuNE2UrmKfPStEG+GoRdx
-         BAjlmrVx+T4+W7KzXPJ78XZ209YPHJB3vnbRZ7q5lz54dUs+PRFZ7a5z17cUhXYlTa7e
-         1zrowz+q5nCjITDbYHQM/hZWB7xYJ67/UufMfC8cCtTQOillVZdSwNIcGRqrTLGKdwA1
-         HnXA==
-X-Gm-Message-State: AOJu0YxedJYcdGLjCAnnunPu2fI05sznItJ8sWAKPemAVUnff+5e3ixq
-	aKG5GTDM0Xy9bplDf5xQkLvj/7SGs64de5iTw30reg==
-X-Google-Smtp-Source: AGHT+IHb5y2/nAMzpAAbpcAqsc2332J3Hl+TEbnJYw6VgROQL9pFrDJMQLjA7DxF+w42E0bHCOIHzfYDBAjoO7yaXoA=
-X-Received: by 2002:a25:6951:0:b0:da3:ab41:2fc8 with SMTP id
- e78-20020a256951000000b00da3ab412fc8mr8347458ybc.16.1699966368706; Tue, 14
- Nov 2023 04:52:48 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699966411; x=1700571211;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=peYBzjEozsW0Bpz59DUMMakO9Y7YA/BG29XZMsT57PU=;
+        b=aEsWHol8K4WgFnrYH6OTuVtsq6QdrDL1lCEVLJqfBgQokrguxR0Me4FIrgC/uEFR4H
+         kFrzoxLISyMyCVHH8k+FV+Lh3DAVyJx4dwFGZdsnn3WvjhQ8NwVkomSO9aDNyOkcbHV8
+         qbS+nacRRbYKv0fFXPCi9I7A2qhfWbA4eiSf55npt9xEQ3dMu33S8jsNstsFZKogf5KS
+         Z5T/VKDuRklShEdI1zb038QohEzEZN80MX0mecRx4SHWiio6x+p140EkHMlHXzgyF4/n
+         LxxMWVgmHlzIfA8a6wk4w8j6/+BrIFknYVlrA8AjFU02J/xQ/WEpQfAAuqp4Ku5qvT13
+         eIEQ==
+X-Gm-Message-State: AOJu0YwiY5+o+o/AgyTOeNfRUUy+Bf7vGnvY4FAsPs/2JY1u5kyShAq0
+	l+V1cOL82IMJW3OUoR6M1kbEqJe/HEYjNb0+bt3H0w==
+X-Google-Smtp-Source: AGHT+IGL0+DzoobzEQ/opliPH0St2Y7bQGq+JanqN1QzcKghvBVkOV/grI7ukN+CKoX125VRHfiG3qvM64n/wqA5p1I=
+X-Received: by 2002:a81:7189:0:b0:5a7:c8f3:de4b with SMTP id
+ m131-20020a817189000000b005a7c8f3de4bmr9506805ywc.8.1699966410780; Tue, 14
+ Nov 2023 04:53:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20231031095014epcas2p2814fa2bb5f940ccb0d0951667df34f98@epcas2p2.samsung.com>
- <20231031094852.118677-1-jaewon02.kim@samsung.com> <CACRpkdZRMJgWkLwKstpN_9=VGutbE1wBv+X_a15RJ=7ddNtbHw@mail.gmail.com>
- <15d9340a-dd4f-43fc-96c6-f6a8daf76e11@linaro.org>
-In-Reply-To: <15d9340a-dd4f-43fc-96c6-f6a8daf76e11@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Nov 2023 13:52:36 +0100
-Message-ID: <CACRpkdYrJMnJLHa1+Vtga3WdYySx9ioGzqmnf1uZKGdBxEWa_Q@mail.gmail.com>
-Subject: Re: [PATCH 00/10] Introduce ExynosAutov920 SoC and SADK board
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jaewon Kim <jaewon02.kim@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-serial@vger.kernel.org
+References: <20231103184655.23555-1-quic_kbajaj@quicinc.com>
+ <20231103184655.23555-3-quic_kbajaj@quicinc.com> <CAA8EJprNyu0r_mV9hbKA1fSvoEvTHuk5umxU8H64Voj_cnZcFQ@mail.gmail.com>
+ <1830fc44-7bac-4db5-af59-112410d73a64@linaro.org> <af05dbdb-21bf-34f0-e9b3-9f6b9a0c3115@quicinc.com>
+ <CAA8EJpq89g9EeyKcogU+Mt9ie6Bk-rmgi=GqyycYBm_291i1Bw@mail.gmail.com>
+ <d5492e4d-6c70-7d6c-3f5b-a0b5d9266ab0@quicinc.com> <CAA8EJpr+8MSEHbziTJhhnkeFhPemRARL_bpWEvHmVvAcbp++Cw@mail.gmail.com>
+ <62650f39-9703-fdc5-c72a-801b8e9f6470@quicinc.com> <CWXSYVQ15C8X.2RXH2M2HH62RY@fairphone.com>
+ <dffe07e5-a6f5-397a-7715-ffb25474ac84@quicinc.com>
+In-Reply-To: <dffe07e5-a6f5-397a-7715-ffb25474ac84@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 14 Nov 2023 14:53:19 +0200
+Message-ID: <CAA8EJpqJ4+A0a0VyQjTkkcF7R+1WRtgu0JgzrUPZjGzW8GrQ9g@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/2] arm64: dts: qcom: qcm6490: Add qcm6490 idp and
+ rb3 board
+To: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Luca Weiss <luca.weiss@fairphone.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Komal Bajaj <quic_kbajaj@quicinc.com>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_nainmeht@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 13, 2023 at 8:59=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 13/11/2023 15:11, Linus Walleij wrote:
-> > Hi Jaewon,
-> >
-> > thanks for your patches!
-> >
-> > On Tue, Oct 31, 2023 at 10:50=E2=80=AFAM Jaewon Kim <jaewon02.kim@samsu=
-ng.com> wrote:
-> >
-> >>   dt-bindings: pinctrl: samsung: add exynosautov920 pinctrl binding
-> >>   pinctrl: samsung: add exynosautv920 pinctrl
-> >
-> > It is best if I can apply these two separately once Krzysztof is happy
-> > with them. I hope that would work? I don't see any specific dependencie=
-s.
+On Tue, 14 Nov 2023 at 14:49, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
 >
-> That's fine. I might have conflicting pieces in-flight, but then I'll
-> funnel these through you as well. I can apply these to my
-> samsung-pinctrl tree and send them to you as usual, unless you prefer to
-> apply yourself.
+>
+>
+> On 11/13/2023 9:21 PM, Luca Weiss wrote:
+> > On Tue Nov 7, 2023 at 9:10 AM CET, Mukesh Ojha wrote:
+> >>
+> >>
+> >> On 11/7/2023 4:02 AM, Dmitry Baryshkov wrote:
+> >>> On Mon, 6 Nov 2023 at 16:46, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+> >>>>
+> >>>>
+> >>>>
+> >>>> On 11/6/2023 5:24 PM, Dmitry Baryshkov wrote:
+> >>>>> On Mon, 6 Nov 2023 at 13:41, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+> >>>>>>
+> >>>>>>
+> >>>>>> On 11/5/2023 6:38 PM, Krzysztof Kozlowski wrote:
+> >>>>>>> On 03/11/2023 23:22, Dmitry Baryshkov wrote:
+> >>>>>>>> On Fri, 3 Nov 2023 at 20:49, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+> >>>>>>>>>
+> >>>>>>>>> Add qcm6490 devicetree file for QCM6490 IDP and QCM6490 RB3
+> >>>>>>>>> platform. QCM6490 is derived from SC7280 meant for various
+> >>>>>>>>> form factor including IoT.
+> >>>>>>>>>
+> >>>>>>>>> Supported features are, as of now:
+> >>>>>>>>> * Debug UART
+> >>>>>>>>> * eMMC (only in IDP)
+> >>>>>>>>> * USB
+> >>>>>>>>>
+> >>>>>>>
+> >>>>>>> ...
+> >>>>>>>
+> >>>>>>>>> +
+> >>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+> >>>>>>>>> new file mode 100644
+> >>>>>>>>> index 000000000000..01adc97789d0
+> >>>>>>>>> --- /dev/null
+> >>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-iot-common.dtsi
+> >>>>>>>>
+> >>>>>>>> I have mixed feelings towards this file. Usually we add such 'common'
+> >>>>>>>> files only for the phone platforms where most of the devices are
+> >>>>>>>> common.
+> >>>>>>>> Do you expect that IDP and RB3 will have a lot of common code other
+> >>>>>>>> than these regulator settings?
+> >>>>>>>
+> >>>>>>> I agree here. What exactly is common in the real hardware between IDP
+> >>>>>>> and RB3? Commit msg does not explain it, so I do not see enough
+> >>>>>>> justification for common file. Just because some DTS looks similar for
+> >>>>>>> different hardware does not mean you should creat common file.
+> >>>>>>
+> >>>>>> @Dmitry/@Krzysztof,
+> >>>>>>
+> >>>>>> Thank you for reviewing the RFC, we wanted to continue the
+> >>>>>> suggestion/discussion given on [1] , where we discussed that this
+> >>>>>> qcm6490 is going to be targeted for IOT segment and will have different
+> >>>>>> memory map and it is going to use some of co-processors like adsp/cdsp
+> >>>>>> which chrome does not use.
+> >>>>>>
+> >>>>>> So to your question what is common between RB3 and IDP, mostly they will
+> >>>>>> share common memory map(similar to [2]) and regulator settings and both
+> >>>>>> will use adsp/cdsp etc., we will be posting the memory map changes as
+> >>>>>> well in coming weeks once this RFC is acked.
+> >>>>>
+> >>>>> Is the memory map going to be the same as the one used on Fairphone5?
+> >>>>
+> >>>> No, Fairphone5 looks to be using chrome memory map and i suggested
+> >>>> here to move them into sc7280.dtsi
+> >>>>
+> >>>> https://lore.kernel.org/lkml/d5d53346-ca3b-986a-e104-d87c37115b62@quicinc.com/
+> >>>>
+> >>>>>
+> >>>>> Are ADSP and CDSP physically present on sc7280?
+> >>>>
+> >>>> Yes, they are present but not used.
+> >>>
+> >>> So ADSP and CDSP should go into sc7280.dtsi. They will anyway have
+> >>> status = "disabled";
+> >>>
+> >>>>
+> >>>>>
+> >>>>> I think that your goal should be to:
+> >>>>> - populate missing device in sc7280.dtsi
+> >>>>> - maybe add qcm6490.dtsi which defines SoC-level common data (e.g. memory map)
+> >>>>> - push the rest to board files.
+> >>>>
+> >>>> Agree to all of the point.
+> >>>> We started with the same thought at[3] but it got lost in discussion
+> >>>> due to its differentiation with mobile counter part(fairphone) which
+> >>>> follow chrome memory map and hence we came up with qcm6490-iot-common.
+> >>>> Do you think, qcm6490-iot.dtsi should be good ?
+> >>>
+> >>> No. DT describes hardware, and -iot is not a hardware abstraction / unification.
+> >>> If you consider your memory map to be generic for the qcm6490 (and FP5
+> >>> being the only exception), add it to the qcm6490.dtsi (and let FP5
+> >>> override it, like some of the phones do). If it can not be considered
+> >>> generic for the SoC, then you have no other choice than to replicate
+> >>> it to all board files.
+> >>
+> >
+> > Hi Mukesh,
+> >
+> >> Thanks for the suggestion.
+> >> Let me add @Luca here for information, if he want to share
+> >> anything about qcm6490 fp5 memory map.
+> >
+> > Not sure I have much to share, just probably that on FP5 the memory
+> > setup and all the basics just come from a standard QCM6490.LA.3.0
+> > release.
+> > I don't see any hint that our ODM changed something in the memory map
+> > for the device either.
+> >
+> > I'm also aware that other phones also use QCM6490 SoC, so I'm still
+> > wondering where the distinction between "FP5/ChromeOS memory map" vs
+> > this new QCM6490 memory map is.
+> > There's also e.g. this phone using QCM6490, I've not looked into this at
+> > all, but I'm guessing that phone uses the same memory map as FP5.
+> > https://www.crosscall.com/en_NL/core-z5-COZ5.MASTER.html
+>
+> Was looking for your view on the things about qcm6490.dtsi one common
+> dtsi file for all qcm6490.dtsi suggested in the mail, but looks like FP5
+> is following the memory map based out of sc7280, in that case we have to
+> replicate the new memory map for all our IOT boards(idp/rb3) based on
+> this SoC.
 
-Oh that's best of course, you take them when you think they are ready.
+You can have IoT memory map in the qcm6490.dtsi and have the
+board-specific memory map in the qcm6490-fp5.dtsi, if that makes life
+easier. I think the phone DT already provides the memory map, so you
+just have to add statements to remove conflicting data entries.
 
-I was more referring to that we should be able to merge the two pin control
-patches apart from the rest of the series.
+>
+> -Mukesh
+> >
+> > Regards
+> > Luca
+> >
+> >>
+> >> -Mukesh
+> >>>
+> >>>>
+> >>>> [3]
+> >>>> https://lore.kernel.org/linux-arm-msm/20231003175456.14774-3-quic_kbajaj@quicinc.com/
+> >>>>
+> >>>> -Mukesh
+> >>>>>
+> >>>>> I don't think that putting regulators to the common file is a good
+> >>>>> idea. Platforms will further change and limit voltage limits and
+> >>>>> modes, so they usually go to the board file.
+> >>>>>
+> >>>>>>
+> >>>>>>
+> >>>>>> Thanks,
+> >>>>>> Mukesh
+> >>>>>>
+> >>>>>> [1]
+> >>>>>> https://lore.kernel.org/linux-arm-msm/d97ebf74-ad03-86d6-b826-b57be209b9e2@quicinc.com/
+> >>>>>>
+> >>>>>> [2]
+> >>>>>> commit 90c856602e0346ce9ff234062e86a198d71fa723
+> >>>>>> Author: Douglas Anderson <dianders@chromium.org>
+> >>>>>> Date:   Tue Jan 25 14:44:20 2022 -0800
+> >>>>>>
+> >>>>>>         arm64: dts: qcom: sc7280: Factor out Chrome common fragment
+> >>>>>>
+> >>>>>>         This factors out a device tree fragment from some sc7280 device
+> >>>>>>         trees. It represents the device tree bits that should be included for
+> >>>>>>         "Chrome" based sc7280 boards. On these boards the bootloader (Coreboot
+> >>>>>>         + Depthcharge) configures things slightly different than the
+> >>>>>>         bootloader that Qualcomm provides. The modem firmware on these boards
+> >>>>>>         also works differently than on other Qulacomm products and thus the
+> >>>>>>         reserved memory map needs to be adjusted.
+> >>>>>>
+> >>>>>>         NOTES:
+> >>>>>>         - This is _not_ quite a no-op change. The "herobrine" and "idp"
+> >>>>>>           fragments here were different and it looks like someone simply
+> >>>>>>           forgot to update the herobrine version. This updates a few numbers
+> >>>>>>           to match IDP. This will also cause the `pmk8350_pon` to be disabled
+> >>>>>>           on idp/crd, which I belive is a correct change.
+> >>>>>>         - At the moment this assumes LTE skus. Once it's clearer how WiFi SKUs
+> >>>>>>           will work (how much of the memory map they can reclaim) we may add
+> >>>>>>           an extra fragment that will rejigger one way or the other.
+> >>>>>>
+> >>>>>>         Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> >>>>>>         Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> >>>>>>         Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> >>>>>>         Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >>>>>>         Link:
+> >>>>>> https://lore.kernel.org/r/20220125144316.v2.3.Iac012fa8d727be46448d47027a1813ea716423ce@changeid
+> >>>>>>
+> >>>>>>
+> >>>>>>>
+> >>>>>>> Best regards,
+> >>>>>>> Krzysztof
+> >>>>>>>
+> >>>>>
+> >>>>>
+> >>>>>
+> >>>
+> >>>
+> >>>
+> >
 
-Yours,
-Linus Walleij
+
+
+-- 
+With best wishes
+Dmitry
 
