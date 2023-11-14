@@ -1,75 +1,68 @@
-Return-Path: <devicetree+bounces-15584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A2247EAE41
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:44:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D0957EAE5D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:55:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ACE61C20A33
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:44:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAA7428102A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92B218E0B;
-	Tue, 14 Nov 2023 10:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527C615AC4;
+	Tue, 14 Nov 2023 10:55:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UYA4KFCp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YyMEmwGc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E0E171DC
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 10:44:15 +0000 (UTC)
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 327FC185
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:44:14 -0800 (PST)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1f066fc2a28so3313942fac.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:44:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1699958652; x=1700563452; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EtGo2PbI4VhfFCzLF5CTcHmhJXxS0YiF4GH0b4RYzjc=;
-        b=UYA4KFCpaFaA5Vb6lsM8FVWQ/+HU0Oxtm8zhCbwf57Szg8Kf8UA4QAi8m/VmONY/LH
-         BJJwhQDKnQR1yuZaxSc+AYgO6nbdc0bhoiwEV7x0V7v+jDyoTYZdQmk9Fs1Lv0LZTQjY
-         fb/hfeokqDJsF9duBwa4fbIEGH4ncoF4g4L3I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699958652; x=1700563452;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EtGo2PbI4VhfFCzLF5CTcHmhJXxS0YiF4GH0b4RYzjc=;
-        b=XJai/BoZnHQxPSJw8hpBLv36MwZMq74aiv55YthAasQ58HyUFiz6IhebLmcnANxPrX
-         b1dNQuIdbdzl35+LAhXz/KKWwT1HfFvRM7NCwzMSIY9bD3Zvz/L5+59YNdPbSM3Xwjcv
-         Oj5dDCeyk9g7rWj103d12BHp4mXtzcR3t4LN2DcQeKgtjZ0X/86jQ8OcbDDDL8SIcIyy
-         GDmMUKL9ZFnUR3w6wgOMi3gmeZuO3F8xxHmEY/JmfB/rqjl+CG08WSybN3i9cf3Tf488
-         WNbv+J5RXT9vLKGB7RDkdikZHXzbPa1Q9qrtdgjEK5Mda4FXr0Uv3wDoyasc9XL/V1HR
-         qDBA==
-X-Gm-Message-State: AOJu0YyE5oPIIvlRJabtuBFJqSlam92zWPZHIfuilgXZe5Azg/RjXsGB
-	E3cvMe4EZTB5S4s6+XGzmLcPsw==
-X-Google-Smtp-Source: AGHT+IHxmgUlMEBieMM61gtbnmLAhVuEAHgMl6ycbPU13IOxBVkaJ+NHHsqbyyZtI6i0GsUzVhD6Ig==
-X-Received: by 2002:a05:6870:81b:b0:1e9:b550:c05a with SMTP id fw27-20020a056870081b00b001e9b550c05amr12708195oab.53.1699958652536;
-        Tue, 14 Nov 2023 02:44:12 -0800 (PST)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:b51f:fb1c:5e29:cfc8])
-        by smtp.gmail.com with ESMTPSA id m4-20020aa78a04000000b006c33311965esm926136pfa.68.2023.11.14.02.44.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 02:44:12 -0800 (PST)
-From: Pin-yen Lin <treapking@chromium.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9011A582;
+	Tue, 14 Nov 2023 10:55:53 +0000 (UTC)
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24411186;
+	Tue, 14 Nov 2023 02:55:49 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 32BA62000A;
+	Tue, 14 Nov 2023 10:55:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699959348;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=uX1qAm3PoNBjcV71gubQoriGUAtfUipgUKlDAbAe2Og=;
+	b=YyMEmwGcOAZb3/vG+C4mQhSrCpsNt1hxFFDhRqeN/3udwY0nnAIJsvavTcIDzJPmr1F1+K
+	9ulvGXleLBQBazGSodrxSYe1X+1NxgGTGJuOC1R+9BaJfYyNUgBAKL+j03oV+E8ZVibXBu
+	1UoJoMy9ANnL2keTWm6nwnFfwpvSF1tfyCOzcMtY3KT5oH+X2hqrKvY1AL4sqVkkNtcTxE
+	YAejF1dUw3zZdOdtNKEPBEkgR40GL4lYN2Agk0p6RKHwShMvGMlHluEbenx8V37XOVfH66
+	G03shzfxke5RnDyXFc1ecJQAfDepID1fMeBlutnhTrFwhLvRr7h8MyrxvqP1yw==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: davem@davemloft.net,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
 	linux-arm-kernel@lists.infradead.org,
-	Pin-yen Lin <treapking@chromium.org>
-Subject: [PATCH] arm64: dts: mt8173: Add G2Touch touchscreen node
-Date: Tue, 14 Nov 2023 18:43:23 +0800
-Message-ID: <20231114104353.1693966-1-treapking@chromium.org>
-X-Mailer: git-send-email 2.42.0.869.gea05f2083d-goog
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH net-next v3 0/8] net: qualcomm: ipqess: introduce Qualcomm IPQESS driver
+Date: Tue, 14 Nov 2023 11:55:50 +0100
+Message-ID: <20231114105600.1012056-1-romain.gantois@bootlin.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,36 +70,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Lenovo Ideapad C330 Chromebook (MTK) uses G2Touch touchscreen as a
-second source component.
+Hello everyone,
 
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
----
+This is the 3rd iteration on the Qualcomm IPQ4019 Ethernet Switch Subsystem
+driver. I made some patch separation mistakes in the v2, sorry about that.
 
- arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Notable changes in v3:
+ - Fixed formatting of 3/8.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-index bdcd35cecad9..0d6dbc36c352 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-@@ -29,6 +29,14 @@ touchscreen3: touchscreen@20 {
- 		interrupt-parent = <&pio>;
- 		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
- 	};
-+
-+	touchscreen4: touchscreen@40 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x40>;
-+		hid-descr-addr = <0x0001>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
-+	};
- };
- 
- &i2c4 {
+Notable changes in v2:
+ - Refactored the PSGMII calibration procedure to exclude
+   PHY-model-specific code from the switch driver. Added two new callbacks
+   to the phy_driver struct to enable PHY-agnostic calibration control from
+   the MAC driver.
+ - Modified the EDMA Ethernet driver to use page_pool for skb handling.
+ - Refactored several qca8k-common.c functions to enable calling them from
+   the IPQESS driver rather than reimplementing them.
+
+The IPQ4019 SoC integrates a modified version of the QCA8K Ethernet switch.
+One major difference with the original switch IP is that port tags are
+passed to the integrated Ethernet controller out-of-band.
+
+Previous DSA versions of this driver were rejected because they required
+adding out-of-band tagging support to the DSA subsystem. Therefore, we
+rewrote the driver as a pure switchdev module, which shares a common
+backend library with the current QCA8K driver.
+
+The main driver components are:
+ - ipqess_switch.c which registers and configures the integrated switch
+ - ipqess_port.c which creates net devices for each one of the front-facing
+   ports.
+ - ipqess_edma.c which handles the integrated EDMA Ethernet controller
+   linked to the CPU port.
+ - drivers/net/dsa/qca/qca8k-common.c which defines low-level ESS access
+   methods common to this driver and the original DSA QCA8K driver.
+
+Thanks to the people from Sartura for providing us hardware and working on
+the base QCA8K driver, and to Maxime for his work on the EDMA code.
+
+Best regards,
+
+Romain
+
+Romain Gantois (8):
+  dt-bindings: net: Introduce the Qualcomm IPQESS Ethernet switch
+  net: dsa: qca8k: Make the QCA8K hardware library available globally
+  net: qualcomm: ipqess: introduce the Qualcomm IPQESS driver
+  net: qualcomm: ipqess: Add Ethtool ops to IPQESS port netdevices
+  net: qualcomm: ipqess: add bridge offloading features to the IPQESS
+    driver
+  net: phy: add calibration callbacks to phy_driver
+  net: qualcomm: ipqess: add a PSGMII calibration procedure to the
+    IPQESS driver
+  ARM: dts: qcom: ipq4019: Add description for the IPQ4019 ESS EDMA and
+    switch
+
+ .../bindings/net/qcom,ipq4019-ess.yaml        |  152 ++
+ MAINTAINERS                                   |    7 +
+ .../boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi |   13 +
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi      |   94 +
+ drivers/net/dsa/qca/Kconfig                   |   10 +
+ drivers/net/dsa/qca/Makefile                  |    5 +-
+ drivers/net/dsa/qca/qca8k-8xxx.c              |   51 +-
+ drivers/net/dsa/qca/qca8k-common.c            |  126 +-
+ drivers/net/dsa/qca/qca8k-leds.c              |    2 +-
+ drivers/net/ethernet/qualcomm/Kconfig         |   15 +
+ drivers/net/ethernet/qualcomm/Makefile        |    2 +
+ drivers/net/ethernet/qualcomm/ipqess/Makefile |    8 +
+ .../ethernet/qualcomm/ipqess/ipqess_calib.c   |  156 ++
+ .../ethernet/qualcomm/ipqess/ipqess_edma.c    | 1195 ++++++++++++
+ .../ethernet/qualcomm/ipqess/ipqess_edma.h    |  488 +++++
+ .../ethernet/qualcomm/ipqess/ipqess_ethtool.c |  245 +++
+ .../qualcomm/ipqess/ipqess_notifiers.c        |  306 +++
+ .../qualcomm/ipqess/ipqess_notifiers.h        |   29 +
+ .../ethernet/qualcomm/ipqess/ipqess_port.c    | 1686 +++++++++++++++++
+ .../ethernet/qualcomm/ipqess/ipqess_port.h    |  102 +
+ .../ethernet/qualcomm/ipqess/ipqess_switch.c  |  533 ++++++
+ .../ethernet/qualcomm/ipqess/ipqess_switch.h  |   36 +
+ .../net/dsa/qca => include/linux/dsa}/qca8k.h |   61 +-
+ include/linux/phy.h                           |   28 +
+ 24 files changed, 5296 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,ipq4019-ess.yaml
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/Makefile
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_calib.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_edma.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_notifiers.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_notifiers.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_port.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_port.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_switch.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_switch.h
+ rename {drivers/net/dsa/qca => include/linux/dsa}/qca8k.h (90%)
+
 -- 
-2.42.0.869.gea05f2083d-goog
+2.42.0
 
 
