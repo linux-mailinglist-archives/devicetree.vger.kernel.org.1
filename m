@@ -1,405 +1,237 @@
-Return-Path: <devicetree+bounces-15543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797587EABA2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:31:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C857EABA7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:33:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D3391C20A00
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:30:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CEE62810D8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD39C8C8;
-	Tue, 14 Nov 2023 08:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA1F8486;
+	Tue, 14 Nov 2023 08:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="U86BdM2d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H62js26N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7372D624
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:30:57 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5892E1BC
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 00:30:54 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-5098eb6690cso7044881e87.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 00:30:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B39B291F;
+	Tue, 14 Nov 2023 08:33:14 +0000 (UTC)
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF2D1A5;
+	Tue, 14 Nov 2023 00:33:12 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-9e623356e59so569366566b.0;
+        Tue, 14 Nov 2023 00:33:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1699950652; x=1700555452; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=obryca9n2eNb5yg2DndPtpmeZlGBNrVGOB13odmFpHw=;
-        b=U86BdM2dMN4FNMh5eiDMcD3u3/tNizcTaertRLnxeb8PQEJLjTVV8xb8EMWq1i4YlV
-         sklrp7Hmgju86aLEkT13a/tANPmBpy/DDmyqopNknGr3UQBfTc+oh2dk4WfWx2t+DuAS
-         htz8l1fLy8AFl2ckI6+vHGkZRuACcG79d5CWY=
+        d=gmail.com; s=20230601; t=1699950791; x=1700555591; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=YKuTpCPN16vLxqtxNUoO64nlEyO6OP4oo4zEgiC+VFo=;
+        b=H62js26NeVAoKg/n0v9GTffUyJgNu896aMz8x1OoQpgWh6+LCfhbNwO/zKGxhiL3eQ
+         g5Wt9yUDLwPLt1Q3mgpO1AiCO3Fz8xzZ3o5oY+c5VCPCwsQsbjpWwMwWgB8/uld9UOjx
+         BpLhe6i9ZfjoRodvegfymsqb0KRrcWvL8fZeFY0fJre43HNQ4dsyzc7v/xCDv89L3HRt
+         7z1/pB9Ll1RFYNg/mL/TeVkMWNbyNTEVFLanVFCFbJq3tyPXacXXRvxWake8NCjssL1S
+         SnanwEyjtGhqtUfvCWDaVAfpGG6IZRMF1ysnUQEyZggcYcMq7iFrEaZ14bf1Xs3CPRUU
+         Hgdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699950652; x=1700555452;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=obryca9n2eNb5yg2DndPtpmeZlGBNrVGOB13odmFpHw=;
-        b=ErbLU5UX4FwmlDoCRnY8xs/hp2RVfEFE0sDHiaG3bsFJfuMe9YOCGSbv4UfqbMe7QP
-         3M3XNQ8/dUdFdtb8euNrG/6sfUISig71CMz0GFlHHuDPKHCNK7jYmyoRa0bd17IBC2m8
-         qFY/p8O0+IuTUo2FDCCqmeRI0kPGaK4VahLL5a4/wGo1mBgXsNTmZjKLKpBczZUBM8R5
-         p6zGcC0PTh0ipAH3RvN+7prDJGByizfoA8/0JZUYtZhlMa3hJnoZy+Hhfjh7OBJe6ti8
-         SV8Edd5wG6fsJgFxqrjm4DbkcT6Fzt/XnFxtn0PKUPa8Ghxirr9XX2JzIW3KFFTuEFt3
-         /e+w==
-X-Gm-Message-State: AOJu0YxxrYaLhBXwaFmipbPF0krBTaqz7bjZA8Y/+1uDxadnxw0n7RIn
-	c3/y8h0iFODNbncvSVFHGRRbnjmmt8aGyFBWu9X6jA==
-X-Google-Smtp-Source: AGHT+IGkiQteXVxpQxEnN5T5mBHos8SiV3ZYgzB1M48PVBVO51h7FzcCr3+88xaVaOrfvXnrEkoxyrFPYL6ySRMKMIA=
-X-Received: by 2002:ac2:58f3:0:b0:507:b1f8:7895 with SMTP id
- v19-20020ac258f3000000b00507b1f87895mr5865847lfo.38.1699950652551; Tue, 14
- Nov 2023 00:30:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699950791; x=1700555591;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YKuTpCPN16vLxqtxNUoO64nlEyO6OP4oo4zEgiC+VFo=;
+        b=c0Q+sgcn5AXSSsPzAdwl/GsUuUAuWYuF+xgnvp1fkHKIFlXK2MsQFd8tRiovpCxzsI
+         0rY5FRpOrhPzNzsYPDRuq+49nCNLEy5GDzjSNxwDsWZpIQ1lHuXmU+K7Ss77CwWHX4KC
+         W5OoZBNJ2yr3o4uL+SVVvPFzvdRvY4j1xS9zfx66BRa1YbR5LcWUxjHF1b6eeOEn94Y5
+         AOoumryjaxIuzv/5WLjRphId+qEKgddUWtSV+qErXM17+N3dGEAE5sJWRk/aZajI1p/q
+         Z9ojI+pzgTXl4lXKRboi4e+gfpoa0P7E2vTmRrd4qFWtCe8ggPnB8fS6uoaYnaZZ+Bkr
+         gNXg==
+X-Gm-Message-State: AOJu0Yz/zPrVCod4HAzPHCerR7voAdjXseKAbRDJsvya4etZz/ruuWpU
+	LjGL5e7kp/1xlBNfLneLCzasQ7HQWnyecXiT2oY=
+X-Google-Smtp-Source: AGHT+IEB9op4P/sigur1MvKvXtbr8TVcL/3UGnaMQfq+6vpzHk5HudqjhagJMT47mz52OydRN0ypiA==
+X-Received: by 2002:a17:906:7185:b0:9e3:85c9:11dc with SMTP id h5-20020a170906718500b009e385c911dcmr6132334ejk.32.1699950790794;
+        Tue, 14 Nov 2023 00:33:10 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:361b:8f29:1cbf:5e69? (p200300f6ef1b2000361b8f291cbf5e69.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:361b:8f29:1cbf:5e69])
+        by smtp.gmail.com with ESMTPSA id pj19-20020a170906d79300b0099ce025f8ccsm5176315ejb.186.2023.11.14.00.33.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 00:33:10 -0800 (PST)
+Message-ID: <fc3304423a57ca8acb40ecf8d2fb641aa280a8c1.camel@gmail.com>
+Subject: Re: [PATCH 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-hwmon@vger.kernel.org, 
+ linux-doc@vger.kernel.org, devicetree@vger.kernel.org, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Jonathan Corbet <corbet@lwn.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
+ <linus.walleij@linaro.org>,  Guenter Roeck <linux@roeck-us.net>, Rob
+ Herring <robh+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,  Conor
+ Dooley <conor+dt@kernel.org>
+Date: Tue, 14 Nov 2023 09:36:07 +0100
+In-Reply-To: <ZVJPbV2469kjqbHu@smile.fi.intel.com>
+References: <20231110151905.1659873-1-nuno.sa@analog.com>
+	 <20231110151905.1659873-3-nuno.sa@analog.com>
+	 <ZU5fYY81L_qSmQWq@smile.fi.intel.com>
+	 <581aec9c6313e3885aae8b1e12dfcc9f392716db.camel@gmail.com>
+	 <ZVJPbV2469kjqbHu@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231109100606.1245545-1-wenst@chromium.org> <20231109100606.1245545-3-wenst@chromium.org>
- <CAL_JsqJgUNcuXqtzHKdz5FdbxsrnLeZpgq-F+E21BvYS9qL0xg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJgUNcuXqtzHKdz5FdbxsrnLeZpgq-F+E21BvYS9qL0xg@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 14 Nov 2023 16:30:41 +0800
-Message-ID: <CAGXv+5GD1VugmdGeU+YL9EPoBkPZXSzwimM4EgsVZVyLbMZ5WA@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 2/7] of: Introduce hardware prober driver
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, 
-	linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, 
-	hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, 
-	keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de, 
-	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 9, 2023 at 11:14=E2=80=AFPM Rob Herring <robh+dt@kernel.org> wr=
-ote:
->
-> On Thu, Nov 9, 2023 at 4:06=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org> =
-wrote:
-> >
-> > Some devices are designed and manufactured with some components having
-> > multiple drop-in replacement options. These components are often
-> > connected to the mainboard via ribbon cables, having the same signals
-> > and pin assignments across all options. These may include the display
-> > panel and touchscreen on laptops and tablets, and the trackpad on
-> > laptops. Sometimes which component option is used in a particular devic=
+On Mon, 2023-11-13 at 18:31 +0200, Andy Shevchenko wrote:
+> On Mon, Nov 13, 2023 at 11:13:44AM +0100, Nuno S=C3=A1 wrote:
+> > On Fri, 2023-11-10 at 18:50 +0200, Andy Shevchenko wrote:
+> > > On Fri, Nov 10, 2023 at 04:18:46PM +0100, Nuno Sa wrote:
+>=20
+> ...
+>=20
+> > > > +/*
+> > > > + * relaxed version of FIELD_PREP() to be used when mask is not a
+> > > > compile
+> > > > time constant
+> > > > + * u32_encode_bits() can't also be used as the compiler needs to b=
 e
-> > can be detected by some firmware provided identifier, other times that
-> > information is not available, and the kernel has to try to probe each
-> > device.
-> >
-> > This change attempts to make the "probe each device" case cleaner. The
-> > current approach is to have all options added and enabled in the device
-> > tree. The kernel would then bind each device and run each driver's prob=
+> > > > able to
+> > > > evaluate
+> > > > + * mask at compile time.
+> > > > + */
+> > > > +#define LTC4282_FIELD_PREP(m, v)	(((v) << (ffs(m) - 1)) & (m))
+> > >=20
+> > > Can we name it accordingly as done in other places, and TBH it's a ti=
+me to
+> > > move
+> > > it to the header. (At least I know about two more implementations of
+> > > this).
+> >=20
+> > Not sure what you mean? Is there some other drivers doing it already? I=
+'ll,
+> > anyways, wait on more feedback for the GPIO stuff because we might end =
+up
+> > not
+> > needing it...
+>=20
+> $ git grep -n 'define field_prep'
+>=20
+> ...
+>=20
+> > > > +	/* GPIO_2,3 and the ALERT pin require setting the bit to 1 to
+> > > > pull
+> > > > down the line */
+> > > > +	if (!gpio->active_high)
+> > >=20
+> > > Hmm... Why do you need a separate flag for this? Shouldn't be describ=
+ed or
+> > > autodetected somehow?
+> >=20
+> > Well, if a consumer as an active high gpio, it expects to call
+> > gpiod_set_value(..., 1) and the line to assert, right? To have that, we=
+ need
+> > to
+> > write 0 on the device register for some of the pins.
+>=20
+> It doesn't matter, the GPIO (not _raw) APIs are using logical levels, 1 =
+=E2=80=94
+> activate,
+> 0 =E2=80=94 deactivate.
+>=20
+> > And the same story is true for active low. gpiod_set_value(..., 0) will=
+ have
+> > the
+> > gpiolib to automatically invert the value and we get 1 in the callback.
+>=20
+> Yes, but why do you have that flag in the structure?
+
+Because one of the pins (GPIO_1) has the opposite behavior...
+
+>=20
+> > > > +		val =3D !val;
+>=20
+> ...
+>=20
+> > > > +	*val =3D DIV_ROUND_CLOSEST_ULL(be16_to_cpu(in) * (u64)fs,
+> > > > U16_MAX);
+> > >=20
+> > > I'm wondering if you can do some trick to "divide" actually to 2^16 s=
+o, it
+> > > will
+> > > not use division op at all?
+> >=20
+> > Hmm, not sure if it will be obvious but you mean something like:
+> >=20
+> > *val =3D (be16_to_cpu(in) * (u64)fs) >> 16;
+> >=20
+> > Is this what you mean? If so, we`ll loose the "CLOSEST" handling... Not=
+ so
+> > sure
+> > if we need to be "that" performant in such a code path. But Guenter can=
+ also
+> > share his opinion...
+>=20
+> 	*val =3D DIV_ROUND_CLOSEST_ULL(be16_to_cpu(in) * (u64)fs + (BIT(16) -
+> 1), BIT(16));
+>=20
+> will give the same result without division, no?
+> What you need is to make sure that the multiplication won't get closer to
+> U64_MAX, which seems not the case here (max 48-bit number).
+
+Hmm, I must be missing something but you're still using DIV_ROUND_CLOSEST_U=
+LL().
+So, I guess you're rely on some formula optimization that removes the divis=
+ion
+(I'm honestly seeing it) but the result won't be exactly the same (off by 1=
+).
+Again, this is not a fast path (AFAIK) and this is a typical formula to get=
+ a
+value from an ADC so I'm not sure making any super "smart" tricks to make t=
+his
+run faster beats readability.
+
+But, I'm still not seeing what you mean so I might change my mind...
+
+>=20
+> Ditto for all other similar cases which I already pointed out.
+>=20
+> ...
+>=20
+> > > > +	u64 temp =3D=C2=A0 DECA * 40ULL * st->vfs_out * 1 << 16, temp_2;
+>=20
+> > >=20
+> > > "* BIT(16)" / "* BIT_ULL(16)" ?
+> >=20
+> > Well, I can just place the number as in the formula. Not too keen on th=
 e
-> > function. This works, but has been broken before due to the introductio=
-n
-> > of asynchronous probing, causing multiple instances requesting "shared"
-> > resources, such as pinmuxes, GPIO pins, interrupt lines, at the same
-> > time, with only one instance succeeding. Work arounds for these include
-> > moving the pinmux to the parent I2C controller, using GPIO hogs or
-> > pinmux settings to keep the GPIO pins in some fixed configuration, and
-> > requesting the interrupt line very late. Such configurations can be see=
-n
-> > on the MT8183 Krane Chromebook tablets, and the Qualcomm sc8280xp-based
-> > Lenovo Thinkpad 13S.
-> >
-> > Instead of this delicate dance between drivers and device tree quirks,
-> > this change introduces a simple I2C component prober. For any given
-> > class of devices on the same I2C bus, it will go through all of them,
-> > doing a simple I2C read transfer and see which one of them responds.
-> > It will then enable the device that responds.
-> >
-> > This requires some minor modifications in the existing device tree.
-> > The status for all the device nodes for the component options must be
-> > set to "failed-needs-probe-xxx". This makes it clear that some mechanis=
-m
-> > is needed to enable one of them, and also prevents the prober and devic=
-e
-> > drivers running at the same time.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >  drivers/of/Kconfig     |  13 ++++
-> >  drivers/of/Makefile    |   1 +
-> >  drivers/of/hw_prober.c | 154 +++++++++++++++++++++++++++++++++++++++++
->
-> Not sure about having this in drivers/of/, but fine for now... Really,
-> the I2C bus stuff should be in the I2C core with the rest of the code
-> that knows how to parse I2C bus nodes.
+> > BIT()
+> > macros as this is not really a mask.
+>=20
+> I'm not sure I got this. The << 16 neither a plain number and BIT() is eq=
+ually
 
-I think we can move the majority of this patch into the I2C core and
-export just the one prober function. The remainder and the other SKU
-ID based prober could be moved to drivers/platform/chrome.
+Well, I do agree with << 16 part...
 
-Not sure how we want to place probers for other platforms though?
+> good. With power of two it's most likely that this is due to internal
+> implementation of the firmware or hardware, so again BIT() can be still g=
+ood
+> enough to show that.
+>=20
 
-> >  3 files changed, 168 insertions(+)
-> >  create mode 100644 drivers/of/hw_prober.c
-> >
-> > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> > index da9826accb1b..269d20d51936 100644
-> > --- a/drivers/of/Kconfig
-> > +++ b/drivers/of/Kconfig
-> > @@ -102,4 +102,17 @@ config OF_OVERLAY
-> >  config OF_NUMA
-> >         bool
-> >
-> > +config HW_PROBER
-> > +       bool "Hardware Prober driver"
-> > +       select I2C
->
-> You should not select I2C, but enable/disable I2C functionality based
-> on it being enabled.
+I'm still not convinced honestly... I see plain numbers to be a good fit an=
+d
+they match exactly with the DS. I just see things like BIT(), GENMASK, BITM=
+AP
+and the likes to be used on masks.
 
-Ack.
+But I don't really care so unless Guenter has some opinion I can make as yo=
+u
+suggest...
 
-> > +       select OF_DYNAMIC
-> > +       help
-> > +         Some devices will have multiple drop-in options for one compo=
-nent.
-> > +         In many cases the different options are indistinguishable by =
-the
-> > +         kernel without actually probing each possible option.
-> > +
-> > +         This driver is meant to handle the probing of such components=
-, and
-> > +         update the running device tree such that the correct variant =
-is
-> > +         made available.
-> > +
-> >  endif # OF
-> > diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> > index eff624854575..ed3875cdc554 100644
-> > --- a/drivers/of/Makefile
-> > +++ b/drivers/of/Makefile
-> > @@ -12,6 +12,7 @@ obj-$(CONFIG_OF_RESERVED_MEM) +=3D of_reserved_mem.o
-> >  obj-$(CONFIG_OF_RESOLVE)  +=3D resolver.o
-> >  obj-$(CONFIG_OF_OVERLAY) +=3D overlay.o
-> >  obj-$(CONFIG_OF_NUMA) +=3D of_numa.o
-> > +obj-$(CONFIG_HW_PROBER) +=3D hw_prober.o
-> >
-> >  ifdef CONFIG_KEXEC_FILE
-> >  ifdef CONFIG_OF_FLATTREE
-> > diff --git a/drivers/of/hw_prober.c b/drivers/of/hw_prober.c
-> > new file mode 100644
-> > index 000000000000..442da6eff896
-> > --- /dev/null
-> > +++ b/drivers/of/hw_prober.c
-> > @@ -0,0 +1,154 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * hw_prober.c - Hardware prober driver
-> > + *
-> > + * Copyright (c) 2023 Google LLC
-> > + */
-> > +
-> > +#include <linux/array_size.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#define DRV_NAME       "hw_prober"
-> > +
-> > +/**
-> > + * struct hw_prober_entry - Holds an entry for the hardware prober
-> > + *
-> > + * @compatible:        compatible string to match against the machine
-> > + * @prober:    prober function to call when machine matches
-> > + * @data:      extra data for the prober function
-> > + */
-> > +struct hw_prober_entry {
-> > +       const char *compatible;
-> > +       int (*prober)(struct platform_device *pdev, const void *data);
-> > +       const void *data;
-> > +};
-> > +
-> > +/*
-> > + * Some devices, such as Google Hana Chromebooks, are produced by mult=
-iple
-> > + * vendors each using their preferred components. This prober assumes =
-such
-> > + * drop-in parts are on dedicated I2C busses, have non-conflicting add=
-resses,
-> > + * and can be directly probed by seeing which address responds without=
- needing
-> > + * regulators or GPIOs being enabled or toggled.
-> > + */
-> > +static int i2c_component_prober(struct platform_device *pdev, const vo=
-id *data)
-> > +{
-> > +       const char *node_name =3D data;
-> > +       struct device_node *node, *i2c_node;
-> > +       struct i2c_adapter *i2c;
-> > +       int ret =3D 0;
-> > +
-> > +       node =3D of_find_node_by_name(NULL, node_name);
-> > +       if (!node)
-> > +               return dev_err_probe(&pdev->dev, -ENODEV, "Could not fi=
-nd %s device node\n",
-> > +                                    node_name);
-> > +
-> > +       i2c_node =3D of_get_next_parent(node);
-> > +       if (strcmp(i2c_node->name, "i2c")) {
->
-> We have functions for comparing node names, use them and don't access
-> ->name directly.
+- Nuno S=C3=A1
 
-Ack.
-
-> > +               of_node_put(i2c_node);
-> > +               return dev_err_probe(&pdev->dev, -EINVAL, "%s device is=
-n't on I2C bus\n",
-> > +                                    node_name);
-> > +       }
-> > +
-> > +       for_each_child_of_node(i2c_node, node) {
-> > +               if (!of_node_name_prefix(node, node_name))
-> > +                       continue;
-> > +               if (!of_device_is_fail(node)) {
-> > +                       /* device tree has component already enabled */
->
-> This isn't quite right if there's a disabled device. To check 'is
-> enabled', you just need to use of_device_is_available().
-
-I wanted to distinguish between explicitly disabled, i.e. components
-known to not exist on some specific variant, vs fail or components
-that need probing. I suppose this is overengineered since the previous
-of_node_name_prefix() already restricts the check to the class of
-components we are interested in.
-
-> > +                       of_node_put(node);
-> > +                       of_node_put(i2c_node);
-> > +                       return 0;
-> > +               }
-> > +       }
-> > +
-> > +       i2c =3D of_get_i2c_adapter_by_node(i2c_node);
-> > +       if (!i2c) {
-> > +               of_node_put(i2c_node);
-> > +               return dev_err_probe(&pdev->dev, -EPROBE_DEFER, "Couldn=
-'t get I2C adapter\n");
-> > +       }
-> > +
-> > +       for_each_child_of_node(i2c_node, node) {
->
-> The I2C core will walk the devices too. Perhaps if that saves off a
-> list of failed devices, then we don't need to walk the nodes again.
-
-I will look into it.
-
-> > +               struct property *prop;
-> > +               union i2c_smbus_data data;
-> > +               u32 addr;
-> > +
-> > +               if (!of_node_name_prefix(node, node_name))
-> > +                       continue;
-> > +               if (of_property_read_u32(node, "reg", &addr))
-> > +                       continue;
-> > +               if (i2c_smbus_xfer(i2c, addr, 0, I2C_SMBUS_READ, 0, I2C=
-_SMBUS_BYTE, &data) < 0)
-> > +                       continue;
-> > +
-> > +               dev_info(&pdev->dev, "Enabling %pOF\n", node);
-> > +
-> > +               prop =3D kzalloc(sizeof(*prop), GFP_KERNEL);
-> > +               if (!prop) {
-> > +                       ret =3D -ENOMEM;
-> > +                       of_node_put(node);
-> > +                       break;
-> > +               }
-> > +
-> > +               prop->name      =3D "status";
-> > +               prop->length    =3D 5;
-> > +               prop->value     =3D "okay";
-> > +
-> > +               /* Found a device that is responding */
-> > +               ret =3D of_update_property(node, prop);
->
-> Use the changeset API instead and make an update flavor of
-> of_changeset_add_prop_string().
-
-Ack. However I don't really like the API, as there is no easy way to free
-the allocated property if of_changeset_apply fails and we want to clean up.
-
-> > +               if (ret)
-> > +                       kfree(prop);
-> > +
-> > +               of_node_put(node);
-> > +               break;
-> > +       }
-> > +
-> > +       i2c_put_adapter(i2c);
-> > +       of_node_put(i2c_node);
-> > +
-> > +       return ret;
-> > +}
-> > +
-> > +static const struct hw_prober_entry hw_prober_platforms[] =3D {
-> > +       { .compatible =3D "google,hana", .prober =3D i2c_component_prob=
-er, .data =3D "touchscreen" },
-> > +       { .compatible =3D "google,hana", .prober =3D i2c_component_prob=
-er, .data =3D "trackpad" },
->
-> Not generic code. Needs to be somewhere else.
-
-OK. How about drivers/platform/chrome/ for the non-generic bits and the oth=
-er
-prober patch?
-
-> > +};
-> > +
-> > +static int hw_prober_probe(struct platform_device *pdev)
-> > +{
-> > +       for (int i =3D 0; i < ARRAY_SIZE(hw_prober_platforms); i++)
-> > +               if (of_machine_is_compatible(hw_prober_platforms[i].com=
-patible)) {
-> > +                       int ret;
-> > +
-> > +                       ret =3D hw_prober_platforms[i].prober(pdev, hw_=
-prober_platforms[i].data);
-> > +                       if (ret)
-> > +                               return ret;
-> > +               }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static struct platform_driver hw_prober_driver =3D {
-> > +       .probe  =3D hw_prober_probe,
-> > +       .driver =3D {
-> > +               .name =3D DRV_NAME,
-> > +       },
-> > +};
-> > +
-> > +static int __init hw_prober_driver_init(void)
-> > +{
-> > +       struct platform_device *pdev;
-> > +       int ret;
-> > +
-> > +       ret =3D platform_driver_register(&hw_prober_driver);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       pdev =3D platform_device_register_simple(DRV_NAME, -1, NULL, 0)=
-;
->
-> This should be dependent on platforms that need it, not everyone. IOW,
-> this is where checking for "google,hana" belongs.
-
-Ack.
-
-Thanks
-ChenYu
 
