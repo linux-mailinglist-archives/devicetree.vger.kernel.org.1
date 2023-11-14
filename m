@@ -1,143 +1,173 @@
-Return-Path: <devicetree+bounces-15743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0727EB83F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:08:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8550D7EB841
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 22:08:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CF621C20B36
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:08:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40519281345
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:08:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF202FC5D;
-	Tue, 14 Nov 2023 21:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3236F2FC36;
+	Tue, 14 Nov 2023 21:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ahUIQNrs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m2KiGmdU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AFD233073
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:08:19 +0000 (UTC)
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58CBEDB
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:15 -0800 (PST)
-Received: by mail-qt1-x830.google.com with SMTP id d75a77b69052e-4219f89ee21so34875021cf.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:15 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC0D2D62E
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 21:08:48 +0000 (UTC)
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C7D172D
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:34 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-77bac408851so16238085a.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:08:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699996094; x=1700600894; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DnDZGk512Fn6FcfRLVRqtgZTjSOOBJwTCzWACAW0uhY=;
-        b=ahUIQNrsWoqMCq7/jcJZF9gjodt+KWVgu7oTQbdahh0Zwj7k+F2areaVmEaaJJpLF1
-         94iQKu7HXxFbzApzkdQZrUIg1d26269iM9VQ1hHwU8EtCxEqxd0knnpE1AhgU2iOqAnZ
-         rbHpf6VkhLAVN68m6sINttmmVcl7vPhpbch3Y53WFfFylt+YKI2YA2ij1+UMia38/vDZ
-         WRYku4O9zA5BpwPXSKnUq4v/p7dG+FYcA/zwUmDY575/ZUIj+9Dz3fF5oe3HEgK6AXOJ
-         H1Fe0xJpinmADLTC2deSO9eV0deBnaX7/zaAcxKGKgHKafwYYCMXBdgNImvSFMjolEcm
-         8bsg==
+        d=linaro.org; s=google; t=1699996113; x=1700600913; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ITgC8CUU1lRZUmEogDrZ1v8W9ctk3212df3sXUl23Y=;
+        b=m2KiGmdUZCUm2ApmyYjCiXnK850PGYSDX7JK5NQ1oCC1/1Citb5dpBEtAy2v1nbavi
+         7Anmlv2R1XM7Vy7qxauW2JxSzOFnYKU77hR8VVNzuNlUt5xHrPC8Hsf1kSECeCrxgmO3
+         EZOdb/pGNoR23vTUhBqfGdnuZjy/VuWnCPyALt8pycylRWz2BOL9WZZuDLjSP2lYkxso
+         5uoDW3AAMohaUUqMEx1KtBg/mJBM3L17ALAd8oUz4fyMK1UOQUrNLBfOwssoudDe5wcM
+         SIm9rG0Y7Ldn35FOKHceCuHTHzH+zP33QUhzZRjtWUojOPdmQ2dnhtRP1OAZCdE5OV9t
+         VVeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699996094; x=1700600894;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DnDZGk512Fn6FcfRLVRqtgZTjSOOBJwTCzWACAW0uhY=;
-        b=hZ+dtBqroHFHNgQxFoKLjL8UDx6zMGp+rs98gTjy9aQN8tFWVw9OkdybMHVZjx2UtC
-         i5HPUj0ip9+JbNHYz87C6XcbxN2E6/JcVy2WrTT4QoaxUVU4800HR+CuK8pFRopFuQz8
-         UwVnmKZEun43m5G04U72aEiba0fyD89nA5jPe1ZgGnBxeTN10+aIuW0UIsJ+4WfUMEPE
-         wQTm1ZWNOhWWMBb9/8lKy8KPPqXauUWwm8bJqT7sdFkYOhKgE/5WztvW7MWi9JHtQAYl
-         +QUPPZKNMYEBNb7N6Etv5bMKNE5j85ZrfTOLDYhrxyk2DWEuJOtpOwgMexmF9rL8ICY8
-         l+pA==
-X-Gm-Message-State: AOJu0YxEIHjhO3//PACZb1f1BbddbZ0w7sEAdHz5QvTBnk+1Sw+2lyND
-	H9AM8QL3f4kRJ48E7Ri0nHMcow==
-X-Google-Smtp-Source: AGHT+IEK7PlZMYuHkL/R+IsthoAOwkSQLBiE4nLJ04BntKaKYMZ7Xfo/U9ypzSKpZtZk+0pj5KANYA==
-X-Received: by 2002:ac8:5788:0:b0:40d:7ffd:fc61 with SMTP id v8-20020ac85788000000b0040d7ffdfc61mr3671284qta.23.1699996094414;
-        Tue, 14 Nov 2023 13:08:14 -0800 (PST)
-Received: from [127.0.1.1] ([12.186.190.1])
-        by smtp.gmail.com with ESMTPSA id x16-20020ac85390000000b004198d026be6sm3027549qtp.35.2023.11.14.13.08.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 13:08:13 -0800 (PST)
-From: Drew Fustini <dfustini@baylibre.com>
-Date: Tue, 14 Nov 2023 16:08:01 -0500
-Subject: [PATCH v6 7/7] riscv: dts: thead: Enable LicheePi 4A eMMC and
- microSD
+        d=1e100.net; s=20230601; t=1699996113; x=1700600913;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7ITgC8CUU1lRZUmEogDrZ1v8W9ctk3212df3sXUl23Y=;
+        b=iy+uWdmqcaZLKtv4dbProQAn6ikdvHaXyn5jVcT7ngwUN1uPJ1uLukHR+quh7e2GAx
+         HLD4n/HezXz4HJWWysOLKcS7F7/oMyn1eVvyDQuN2YX5/jyN0veZePbFQ+NuNpKMMc56
+         BNN/x8UqfILeQU//NzkkNhjnVCDj3yT8CSOXNt+2PvnxWPKQ9VNCEj+XUP/sINnK33ya
+         blc9OTuO6aIoe7nqEb7AQ+EawfoLG5HdWIFDQGOGJm8wgAd249Jf65tQB871PHk3WA3i
+         I1Xr/MHhC6V8BzW6gX/9SlRFSxUIqYUbr2ex7pq6jsDmTG2Jwf2XTPgzJdr1fA//qK7x
+         qQ2Q==
+X-Gm-Message-State: AOJu0Yy1AFvtji2O3rx6Mnczk4lGTVgE4bseTV8fxIB5EbphF++9E7eR
+	de+mLUhMO3eKH8rW/cKhTtOHzA==
+X-Google-Smtp-Source: AGHT+IHAri8Js3fCWjOGbjAACQ/pFSZd9qHsYHEomh/oXmCq7vQVQ8BRYDZg5BRX4vDhy/AJvt+RAg==
+X-Received: by 2002:a05:620a:2910:b0:774:21d8:b0bb with SMTP id m16-20020a05620a291000b0077421d8b0bbmr5414483qkp.24.1699996112988;
+        Tue, 14 Nov 2023 13:08:32 -0800 (PST)
+Received: from [172.25.83.73] ([12.186.190.2])
+        by smtp.gmail.com with ESMTPSA id rb18-20020a05620a8d1200b0077bc5299c85sm2934513qkn.124.2023.11.14.13.08.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Nov 2023 13:08:32 -0800 (PST)
+Message-ID: <a68ffc93-1ba7-433d-87b5-a6f2bed0173a@linaro.org>
+Date: Tue, 14 Nov 2023 22:08:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [LINUX PATCH v2 2/3] dt-bindings: timer: Add bindings for TTC PWM
+To: Mubin Sayyed <mubin.sayyed@amd.com>, krzysztof.kozlowski+dt@linaro.org,
+ u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com,
+ robh+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
+ daniel.lezcano@linaro.org, michal.simek@amd.com
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pwm@vger.kernel.org, git@amd.com,
+ mubin10@gmail.com
+References: <20231114124748.581850-1-mubin.sayyed@amd.com>
+ <20231114124748.581850-3-mubin.sayyed@amd.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231114124748.581850-3-mubin.sayyed@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231114-th1520-mmc-v6-7-3273c661a571@baylibre.com>
-References: <20231114-th1520-mmc-v6-0-3273c661a571@baylibre.com>
-In-Reply-To: <20231114-th1520-mmc-v6-0-3273c661a571@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
- Conor Dooley <conor@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Drew Fustini <dfustini@baylibre.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1699996086; l=1102;
- i=dfustini@baylibre.com; s=20230430; h=from:subject:message-id;
- bh=vZkA/Rp2zWEJvsAGA/badfpHmHgx6/3DqqLzYe2IxQc=;
- b=SjwF4UAXo6/VukqMwwjVNk1Bt2VTO2cQgXt/3XczOxw6M01DzJI5nFGgAMrBI3p5LGZYyeYHw
- ul3WhjbXZvaBlQ2tkLlrJa4Fs/mjbBvjVO7YJ8LK+2Qn7S2r0S0TXtz
-X-Developer-Key: i=dfustini@baylibre.com; a=ed25519;
- pk=p3GKE9XFmjhwAayAHG4U108yag7V8xQVd4zJLdW0g7g=
 
-Add mmc0 properties for the eMMC device and add mmc1 properties for
-the microSD slot. Set the frequency for the sdhci clock.
+On 14/11/2023 13:47, Mubin Sayyed wrote:
+> Cadence TTC can act as PWM device, it is supported through
+> separate PWM framework based driver. Decision to configure
+> specific TTC device as PWM or clocksource/clockevent would
+> be done based on presence of "#pwm-cells" property.
 
-Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+
+Missed comments: subject. I don't understand why Cadence was dropped,
+but "bindings" stayed. Opposite of what I asked.
+
+Rest looks good, so with above fixed:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
 ---
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi      | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index a802ab110429..94f1741435a5 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -29,6 +29,10 @@ &apb_clk {
- 	clock-frequency = <62500000>;
- };
- 
-+&sdhci_clk {
-+	clock-frequency = <198000000>;
-+};
-+
- &uart_sclk {
- 	clock-frequency = <100000000>;
- };
-@@ -36,3 +40,19 @@ &uart_sclk {
- &dmac0 {
- 	status = "okay";
- };
-+
-+&mmc0 {
-+	bus-width = <8>;
-+	max-frequency = <198000000>;
-+	mmc-hs400-1_8v;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	max-frequency = <198000000>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
 
--- 
-2.34.1
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+Best regards,
+Krzysztof
 
 
