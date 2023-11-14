@@ -1,137 +1,82 @@
-Return-Path: <devicetree+bounces-15676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9CF7EB363
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:21:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F21FC7EB367
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:22:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC8061C20947
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:21:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E3CE1C208A5
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D3141743;
-	Tue, 14 Nov 2023 15:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="puB7EAV3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2B0941743;
+	Tue, 14 Nov 2023 15:21:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056B23FE27
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 15:21:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 161B4C433C9;
-	Tue, 14 Nov 2023 15:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1699975311;
-	bh=9wXjIVmd2uGE2frovOidRIeYLd6daeG69AXO48B0PYg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=puB7EAV32+9rjtUH1Q5vcxMKFwP1jZvLIynXVyfhDpc4Oj6zh0YiGEBIWZRToxIUa
-	 7sFT6q69A4TwRo2PWXUBuRnsZTvb8pS0WrfT1X8mjip4Nx747Gxusr80LXFzDmDnvZ
-	 vekW9CWIqf6y73Ogt84t9wBN6rbyGorLH2bxemhfnNk0X/CmwMHI5n9YIKrlNBghiH
-	 bkjPJLXO3/FTktfNDkAWMhGAeYoe+vKSuSAvf2JL6xzY3FMBpGf77Oe5VKZbsZV4kS
-	 4zemsEpdWoTDYP5OzGOwQSEy5eDKTPuSf6cdtoqnUlTw4lJKgld5rr5tKioItQ4YHW
-	 m9QXQio8nsB4A==
-Date: Tue, 14 Nov 2023 15:21:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
- separate mtime and mtimecmp regs
-Message-ID: <20231114-outweigh-sandbank-6bbdd7ea3286@squawk>
-References: <MA0P287MB03326F420E96FE3198C81C21FEB2A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <IA1PR20MB4953EBB4DA58A7170D865B0CBBB2A@IA1PR20MB4953.namprd20.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B063FE27
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 15:21:57 +0000 (UTC)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDFA11A;
+	Tue, 14 Nov 2023 07:21:55 -0800 (PST)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-58a737957d3so285464eaf.0;
+        Tue, 14 Nov 2023 07:21:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699975315; x=1700580115;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J15sEa7zSm5u7jaEkjftn3VCZWspXJk6JRoiiJKaDmk=;
+        b=ZQ2lwwq0HjEbFuJFeUlNE2nacQ7OSoleZomGaIdhkGC27C9SuofrXHoC5JUxTGca5J
+         XJ7Q4rdk4Nop9X7IEiNEbmpZ1yHbwgvj85WUwYE0EjYTM7J0thZ8Jd9+WbQY/g27o9oj
+         EEHbEHQdo8oDPUOlcReLxJhNAIMOxCUoQa3EC+5qLQPy1K6GQIhf4eU5a7t3ZDABYmEB
+         jswTfO4n0+jhVUKJUsAgjbMN1cMmjTgehD+B21xSRqyrTunsIPq8qv6hYTmBfn7Tm7no
+         yYpGymrpNwqE5Sie9xko3ukyHPbSe7c0+GcJvhSqJp5hkaNgjSHeJBjQObm71oFU6TW+
+         jJeg==
+X-Gm-Message-State: AOJu0YyVHkn+0OmZn99GohQTKPzhj1LPsT9mILVFUCom9EHPodUmJqeU
+	5YbOV6hjYTiuCggTVWVFSw==
+X-Google-Smtp-Source: AGHT+IHMXoKiyNylaIR+nukyu3BetutomYr9uKiRQo/BwHNE+zS/4TczHyQs3K2bQgl/iosqC+11wQ==
+X-Received: by 2002:a4a:b588:0:b0:58a:67b1:47ca with SMTP id t8-20020a4ab588000000b0058a67b147camr2790634ooo.6.1699975315188;
+        Tue, 14 Nov 2023 07:21:55 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id u188-20020a4a57c5000000b00587bf56d2desm281035ooa.26.2023.11.14.07.21.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 07:21:54 -0800 (PST)
+Received: (nullmailer pid 1872956 invoked by uid 1000);
+	Tue, 14 Nov 2023 15:21:53 -0000
+Date: Tue, 14 Nov 2023 09:21:53 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Inki Dae <inki.dae@samsung.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: gpu: samsung-rotator: drop redundant
+ quotes
+Message-ID: <20231114152153.GA1704371-robh@kernel.org>
+References: <20231112184403.3449-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gYMgAIUgTJwv6z//"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953EBB4DA58A7170D865B0CBBB2A@IA1PR20MB4953.namprd20.prod.outlook.com>
-
-
---gYMgAIUgTJwv6z//
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231112184403.3449-1-krzysztof.kozlowski@linaro.org>
 
-On Tue, Nov 14, 2023 at 09:45:33AM +0800, Inochi Amaoto wrote:
-> >On 2023/11/14 8:45, Inochi Amaoto wrote:
-> >> The timer registers of aclint don't follow the clint layout and can
-> >> be mapped on any different offset. As sg2042 uses separated timer
-> >> and mswi for its clint, it should follow the aclint spec and have
-> >> separated registers.
-> >>
-> >> The previous patch introduces a new type of T-HEAD aclint timer which
-> >> has clint timer layout. Although the timer has the clint layout, it
-> >> should follow the aclint spec and uses the separated mtime and mtimecmp
-> >> regs. So a ABI change is needed to make the timer fit the aclint spec.
-> >>
-> >> To make T-HEAD aclint timer more closer to the aclint spec, use two re=
-gs
-> >> to represent the mtime and mtimecmp.
-> >>
-> >> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> >> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT time=
-r")
-> >> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/00569=
-3.html
-> >> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
-> >> ---
-> >>   .../devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml  | 5 +++=
---
-> >>   1 file changed, 3 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint=
--mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mt=
-imer.yaml
-> >> index fbd235650e52..c3080962d902 100644
-> >> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer=
-=2Eyaml
-> >> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer=
-=2Eyaml
-> >> @@ -17,7 +17,7 @@ properties:
-> >>         - const: thead,c900-aclint-mtimer
-> >>
-> >>     reg:
-> >> -    maxItems: 1
-> >> +    maxItems: 2
-> >
-> >The first one is for mtime and the second one is for mtimecmp, right?
->=20
-> Yes, that is right.
->=20
-> >Recommend to add some comment in binding file to make it clear.
-> >
->=20
-> Thanks for your advice.
+On Sun, Nov 12, 2023 at 07:43:59PM +0100, Krzysztof Kozlowski wrote:
+> Compatibles should not use quotes in the bindings.
 
-Sorry for not noticing that on v1 - you should indeed describe these in
-the binding, by using the items property.
+Unfortunately yamllint skips checking these due to a bug handling 
+bracketed lists. There's an open issue for it[1].
 
---gYMgAIUgTJwv6z//
-Content-Type: application/pgp-signature; name="signature.asc"
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/gpu/samsung-rotator.yaml         | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+Acked-by: Rob Herring <robh@kernel.org>
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVOQiAAKCRB4tDGHoIJi
-0pX6AP0XJb92ui0Tkp9pTbUbFAmlVrtlYS0vPCDvHy6caTR3RgEAvzFeJR7FxdHm
-a8rrW3n/yQZNKQXoucst7fvwoffvwwA=
-=o9jC
------END PGP SIGNATURE-----
-
---gYMgAIUgTJwv6z//--
+[1] https://github.com/adrienverge/yamllint/issues/516
 
