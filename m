@@ -1,174 +1,130 @@
-Return-Path: <devicetree+bounces-15694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713B97EB554
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:05:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B8897EB589
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 18:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B5C7B20B8E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:05:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5EA51F24DC3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:31:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8D441237;
-	Tue, 14 Nov 2023 17:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1E72C18E;
+	Tue, 14 Nov 2023 17:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u/nqQqQE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89E50405F5
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 17:04:57 +0000 (UTC)
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6862711D;
-	Tue, 14 Nov 2023 09:04:56 -0800 (PST)
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1r2wqH-0000hY-1n;
-	Tue, 14 Nov 2023 17:04:49 +0000
-Date: Tue, 14 Nov 2023 17:04:46 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 2/2] watchdog: mediatek: mt7988: add wdt support
-Message-ID: <3f5ed9656ea66637d259e9771ed852511369ba9b.1699980962.git.daniel@makrotopia.org>
-References: <4d7db8786dce35273db516f3d41228bc27a08fe9.1699980962.git.daniel@makrotopia.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7242C180;
+	Tue, 14 Nov 2023 17:31:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA62C433C8;
+	Tue, 14 Nov 2023 17:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1699983066;
+	bh=jkdZ5mB8QhSCTtNuc3Z7qON1sLEsZWx5t6SxsjDMGrQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u/nqQqQETcc6iJBWzf7IQ80EGqqzYiyeoUkgDRfthRxuXU/cN0o8EA4tLfr/gCvu0
+	 cxnOX3lXlWEaTok3f1T3B9mAFu0NV8pmCAxpqmX879b/Z/z69cOxJYFO9pSUFs/l80
+	 c7CXKBucLPv8JA/x+y4unWR/JWxJADBLx0OmvyuC7sh4riivdIulLOkC4qvoePnA0i
+	 yUO5/HgZxbAKEstTwaIPQ9UkcZbVWzRnABpFz8mTMZkmTzrHMKNOFn6ZQCFbqce+AW
+	 OayixMJOiZRrapUAeARwyohnaCxTNgoLzBsh/+k+2RRJta8q2DjtEbpKCqtnPUE4iT
+	 9Iul1XOM/goDg==
+Date: Tue, 14 Nov 2023 17:31:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com,
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+	palmer@dabbelt.com, paul.walmsley@sifive.com,
+	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+	Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH 5/5] riscv: dts: add clock generator for Sophgo SG2042 SoC
+Message-ID: <20231114-grumble-capably-d8f7a8eb6a8d@squawk>
+References: <cover.1699879741.git.unicorn_wang@outlook.com>
+ <25fcbab4c04bcbbdc4577dc58822540829f91dc9.1699879741.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BObCPPDlTCtpWM3f"
+Content-Disposition: inline
+In-Reply-To: <25fcbab4c04bcbbdc4577dc58822540829f91dc9.1699879741.git.unicorn_wang@outlook.com>
+
+
+--BObCPPDlTCtpWM3f
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4d7db8786dce35273db516f3d41228bc27a08fe9.1699980962.git.daniel@makrotopia.org>
+Content-Transfer-Encoding: quoted-printable
 
-Add support for watchdog and reset generator unit of the MediaTek
-MT7988 SoC.
+On Mon, Nov 13, 2023 at 09:20:11PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+>=20
+> Add clock generator node to device tree for SG2042, and enable clock for
+> uart0.
+>=20
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi | 76 ++++++++++++++++++++
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-v3: fix wrong function parameter name in kernel-doc comment
-v2: call new toprgu_reset_sw_en_unlocked from toprgu_reset_update while
-    holding lock.
+There's no need to create an entirely new file for this.
 
- drivers/watchdog/mtk_wdt.c | 40 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+>  arch/riscv/boot/dts/sophgo/sg2042.dtsi       | 10 +++
+>  2 files changed, 86 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi
+>=20
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi b/arch/riscv/bo=
+ot/dts/sophgo/sg2042-clock.dtsi
+> new file mode 100644
+> index 000000000000..66d2723fab35
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042-clock.dtsi
+> @@ -0,0 +1,76 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
+> + */
+> +
+> +/ {
+> +	cgi: oscillator {
+> +		compatible =3D "fixed-clock";
+> +		clock-frequency =3D <25000000>;
+> +		clock-output-names =3D "cgi";
+> +		#clock-cells =3D <0>;
+> +	};
 
-diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-index b2330b16b497a..3b4ee7185feed 100644
---- a/drivers/watchdog/mtk_wdt.c
-+++ b/drivers/watchdog/mtk_wdt.c
-@@ -58,6 +58,8 @@
- #define WDT_SWSYSRST		0x18U
- #define WDT_SWSYS_RST_KEY	0x88000000
- 
-+#define WDT_SWSYSRST_EN		0xfc
-+
- #define DRV_NAME		"mtk-wdt"
- #define DRV_VERSION		"1.0"
- 
-@@ -71,10 +73,12 @@ struct mtk_wdt_dev {
- 	struct reset_controller_dev rcdev;
- 	bool disable_wdt_extrst;
- 	bool reset_by_toprgu;
-+	bool has_swsysrst_en;
- };
- 
- struct mtk_wdt_data {
- 	int toprgu_sw_rst_num;
-+	bool has_swsysrst_en;
- };
- 
- static const struct mtk_wdt_data mt2712_data = {
-@@ -89,6 +93,11 @@ static const struct mtk_wdt_data mt7986_data = {
- 	.toprgu_sw_rst_num = MT7986_TOPRGU_SW_RST_NUM,
- };
- 
-+static const struct mtk_wdt_data mt7988_data = {
-+	.toprgu_sw_rst_num = 24,
-+	.has_swsysrst_en = true,
-+};
-+
- static const struct mtk_wdt_data mt8183_data = {
- 	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
- };
-@@ -109,6 +118,28 @@ static const struct mtk_wdt_data mt8195_data = {
- 	.toprgu_sw_rst_num = MT8195_TOPRGU_SW_RST_NUM,
- };
- 
-+/**
-+ * toprgu_reset_sw_en_unlocked() - enable/disable software control for reset bit
-+ * @data: Pointer to instance of driver data.
-+ * @id: Bit number identifying the reset to be enabled or disabled.
-+ * @enable: If true, enable software control for that bit, disable otherwise.
-+ *
-+ * Context: The caller must hold lock of struct mtk_wdt_dev.
-+ */
-+static void toprgu_reset_sw_en_unlocked(struct mtk_wdt_dev *data,
-+					unsigned long id, bool enable)
-+{
-+	u32 tmp;
-+
-+	tmp = readl(data->wdt_base + WDT_SWSYSRST_EN);
-+	if (enable)
-+		tmp |= BIT(id);
-+	else
-+		tmp &= ~BIT(id);
-+
-+	writel(tmp, data->wdt_base + WDT_SWSYSRST_EN);
-+}
-+
- static int toprgu_reset_update(struct reset_controller_dev *rcdev,
- 			       unsigned long id, bool assert)
- {
-@@ -119,6 +150,9 @@ static int toprgu_reset_update(struct reset_controller_dev *rcdev,
- 
- 	spin_lock_irqsave(&data->lock, flags);
- 
-+	if (assert && data->has_swsysrst_en)
-+		toprgu_reset_sw_en_unlocked(data, id, true);
-+
- 	tmp = readl(data->wdt_base + WDT_SWSYSRST);
- 	if (assert)
- 		tmp |= BIT(id);
-@@ -127,6 +161,9 @@ static int toprgu_reset_update(struct reset_controller_dev *rcdev,
- 	tmp |= WDT_SWSYS_RST_KEY;
- 	writel(tmp, data->wdt_base + WDT_SWSYSRST);
- 
-+	if (!assert && data->has_swsysrst_en)
-+		toprgu_reset_sw_en_unlocked(data, id, false);
-+
- 	spin_unlock_irqrestore(&data->lock, flags);
- 
- 	return 0;
-@@ -406,6 +443,8 @@ static int mtk_wdt_probe(struct platform_device *pdev)
- 						       wdt_data->toprgu_sw_rst_num);
- 		if (err)
- 			return err;
-+
-+		mtk_wdt->has_swsysrst_en = wdt_data->has_swsysrst_en;
- 	}
- 
- 	mtk_wdt->disable_wdt_extrst =
-@@ -444,6 +483,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
- 	{ .compatible = "mediatek,mt6589-wdt" },
- 	{ .compatible = "mediatek,mt6795-wdt", .data = &mt6795_data },
- 	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
-+	{ .compatible = "mediatek,mt7988-wdt", .data = &mt7988_data },
- 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
- 	{ .compatible = "mediatek,mt8188-wdt", .data = &mt8188_data },
--- 
-2.42.1
+What actually is this oscillator?
+Is it provided by another clock controller on the SoC, or is it provided
+by an oscillator on the board?
+
+> +
+> +	clkgen: clock-controller {
+> +		compatible =3D "sophgo,sg2042-clkgen";
+> +		#clock-cells =3D <1>;
+> +		system-ctrl =3D <&sys_ctrl>;
+
+Why is this node not a child of the system controller?
+
+Cheers,
+Conor.
+
+--BObCPPDlTCtpWM3f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVOu0wAKCRB4tDGHoIJi
+0uT6AQD3FJYKLUrrVpL4tzEV3YskeSlnVP66eWfgWIZ+3O5aagD/b5dttSrtKFIt
+S80P7AKBwUKY+5II2CtmlSZ4eep63Q0=
+=4vEb
+-----END PGP SIGNATURE-----
+
+--BObCPPDlTCtpWM3f--
 
