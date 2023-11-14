@@ -1,112 +1,135 @@
-Return-Path: <devicetree+bounces-15618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F247EAF53
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:39:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23AE57EAF72
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:45:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DEE01F24608
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:39:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBE181F21007
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5E22D62E;
-	Tue, 14 Nov 2023 11:39:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79559374E5;
+	Tue, 14 Nov 2023 11:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="XAKGdCGX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A2523A267
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 11:39:43 +0000 (UTC)
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78EDD9
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 03:39:41 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r2rlW-0006s8-2e; Tue, 14 Nov 2023 12:39:34 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r2rlU-008yw4-SK; Tue, 14 Nov 2023 12:39:32 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1r2rlU-001K1A-HH; Tue, 14 Nov 2023 12:39:32 +0100
-Date: Tue, 14 Nov 2023 12:39:32 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] imx8qm/imx8qxp: Support for inverted PWM
-Message-ID: <20231114113932.aqidxrmg4sajfsh5@pengutronix.de>
-References: <20231106151326.812099-1-alexander.stein@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A672377F
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 11:44:58 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94FDEA7;
+	Tue, 14 Nov 2023 03:44:57 -0800 (PST)
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C2216223;
+	Tue, 14 Nov 2023 12:44:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1699962270;
+	bh=nVXLAM6hu4HEohOhi+g/me75tKaN6ccLrhxS53GSTp4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XAKGdCGXMn7/V5wmK5B8jPgf0bzlcpV+zcKlMKqd8tv5x4ioZfXbSlXacN+ZaOmiA
+	 Nq5q99PQETcM1McfIeF4MAjGfI4R9GW9JDS8tZttyBeTPMqii25EOCyzPEx+SzaWYO
+	 iuOWjd3hYUFNoSq0pMFa4Z5ks2tKcZnnbYa6VI78=
+Message-ID: <d667b74e-faed-44f4-a0c4-959aede16fb8@ideasonboard.com>
+Date: Tue, 14 Nov 2023 11:44:52 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tpesly76tzrmhhw3"
-Content-Disposition: inline
-In-Reply-To: <20231106151326.812099-1-alexander.stein@ew.tq-group.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: power: meson-g12a-power: document ISP
+ power domain
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
+ <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-1-f01e6fca67a0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi Neil
 
---tpesly76tzrmhhw3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 14/11/2023 10:19, Neil Armstrong wrote:
+> Add MIPI ISP power domain ID to the G12A Power domains bindings header
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-On Mon, Nov 06, 2023 at 04:13:23PM +0100, Alexander Stein wrote:
-> this small series adds support for inverted PWM output i.MX8QM/QXP.
-> Driver is already there, but #pwm-cells needs to be adjusted in DT.
-> While at it, enforce the same #pwm-cells value for all compatibles.
-> [...]
->  Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 10 ++++------
->  arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi     |  2 +-
->  arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi    |  8 ++++----
->  3 files changed, 9 insertions(+), 11 deletions(-)
+Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
 
-What is the merge plan here? pwm or imx? For me both options are fine,
-given this only touches bindings and arch/arm64, maybe it's more
-suitable to be merged by Shawn?
+Tested-by: Daniel Scally <dan.scally@ideasonboard.com>
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---tpesly76tzrmhhw3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVTXHMACgkQj4D7WH0S
-/k7LdAf+NnQYkQGnKrZvedYT3teoz1FJiDO3bUDuCnRckIIOznKn3cv/z085oM4K
-ZC2vYSScAeGtICTJWFVREt+Dd81iSb0VymgNSzh92//FOUodhMm8ljq/EYRhUAkE
-Lw0Fet7virGan3nz4cj07h1ZuFU+XweObNBF6Z6VhQSUjUY91ORj1UiGZdvcle8C
-xJqX9kBGqHgBuMEFIqRqJAS1dRD4rAKbBw5E1x2sEi/aljj2XHlEC85ilJ8gXswU
-cYsBwKUM1XuYXb5Qmy68azlrz3SafKsfaJcoflcVrhs0omZkDFfVqK9qY96GmlzY
-LI6sJfBhkC1IJfb5vvPAtTIviDuJxA==
-=USdg
------END PGP SIGNATURE-----
-
---tpesly76tzrmhhw3--
+>   include/dt-bindings/power/meson-g12a-power.h | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
+> index 44ec0c50e340..01fd0ac4dd08 100644
+> --- a/include/dt-bindings/power/meson-g12a-power.h
+> +++ b/include/dt-bindings/power/meson-g12a-power.h
+> @@ -10,5 +10,6 @@
+>   #define PWRC_G12A_VPU_ID		0
+>   #define PWRC_G12A_ETH_ID		1
+>   #define PWRC_G12A_NNA_ID		2
+> +#define PWRC_G12A_ISP_ID		3
+>   
+>   #endif
+>
 
