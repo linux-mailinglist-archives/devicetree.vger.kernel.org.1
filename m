@@ -1,147 +1,102 @@
-Return-Path: <devicetree+bounces-15535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF537EA9DF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 05:58:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F757EAA13
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 06:24:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62C801C209BD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 04:58:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 036E2B20A53
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 05:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF453BA53;
-	Tue, 14 Nov 2023 04:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE46C2D0;
+	Tue, 14 Nov 2023 05:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P4U9JNsZ"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="FgY4eind"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C60BA31;
-	Tue, 14 Nov 2023 04:58:13 +0000 (UTC)
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC8F123;
-	Mon, 13 Nov 2023 20:58:12 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AE4dQxp015496;
-	Tue, 14 Nov 2023 04:57:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Ut+LP/oQgS6AHmq27TArlkMKu8wbNEjr6zcLsTELHGU=;
- b=P4U9JNsZ9twinkAM6crKSroq7yTQNIGWmkH2jnosKDAz9K5IrD0KC+OFma4jfeDqxQq+
- Jios5YHkR/P1oDpeARKJM2+nQJAHIoy/AU39G733GUA7X/t+IfSA/Um81F8A6iCtQL26
- XG4dtUswJSuAwmlGjkGcZuNFHb330V24H5OqAeBwm6fW/02agttPnGwa8mYMhC8YNPDL
- TSKl5hj7Y9fOX8//4nAwpHHKR4ae/Pebp5Zv8rijSDAyEzEk9K9W2+AIslRM+tKCuR55
- lfIA8BS+uF4K4AD8r57Ipm+m83CMrPvY4hiFvL9PLI1Y49qIQrtqpSe+/TUS76UcnzFQ vA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ubuswrmww-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Nov 2023 04:57:04 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AE4v2nN010730
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Nov 2023 04:57:02 GMT
-Received: from [10.239.132.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Mon, 13 Nov
- 2023 20:56:53 -0800
-Message-ID: <ee647939-3f47-4b82-b1e4-a0c9414a1e8e@quicinc.com>
-Date: Tue, 14 Nov 2023 12:56:43 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABA6D2FF;
+	Tue, 14 Nov 2023 05:24:14 +0000 (UTC)
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1049ADD;
+	Mon, 13 Nov 2023 21:24:13 -0800 (PST)
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 969D6408CE;
+	Tue, 14 Nov 2023 10:24:07 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1699939448; bh=RbTQ9Gyko9mWKAoJcs4lYkr1Uh4l+RCsZid+oUd3BdE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=FgY4eindZGM+SNgXzPoSmcUOE8Hj1OlaLA9b2ZwZ6sTxxd9nSjt75D7Sg2sZePxa0
+	 3n+tHROk4Y9HJN0+K2D53RCEjm1L8MVMxOK8o/O4bUjR13RsUtPQvyETViEiZqEGKV
+	 OayAyAkkWq57np0Di2wQ9BRnza3nTWr1l7TbdzKzFn9Vd2y1WZcutRX2POc2s0PpV3
+	 RG41MuRP2nry/mEFMlB/s70YYXq9bi4zyn4Jd8hf+LVhwK5QdRiHWLw/elhay3ujR3
+	 rAOX6oneX/5asBAw3DkXFRvq1xyVf/djCB+f6qrFZU89CFI7CuM6GzGnIp9c7Rg7Ta
+	 cDPIySPMvJzHQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 00/17] Solve iommu probe races around iommu_fwspec
-Content-Language: en-US
-To: Jason Gunthorpe <jgg@nvidia.com>, <acpica-devel@lists.linuxfoundation.org>,
-        Alyssa Rosenzweig
-	<alyssa@rosenzweig.io>,
-        Albert Ou <aou@eecs.berkeley.edu>, <asahi@lists.linux.dev>,
-        Lu Baolu <baolu.lu@linux.intel.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Dexuan Cui <decui@microsoft.com>, <devicetree@vger.kernel.org>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Frank
- Rowand <frowand.list@gmail.com>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Haiyang
- Zhang <haiyangz@microsoft.com>,
-        Christoph Hellwig <hch@lst.de>, <iommu@lists.linux.dev>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
-        "K.
- Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
-        <linux-acpi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-hyperv@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        <linux-snps-arc@lists.infradead.org>, <linux-tegra@vger.kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Lorenzo
- Pieralisi <lpieralisi@kernel.org>,
-        Marek Szyprowski
-	<m.szyprowski@samsung.com>,
-        Hector Martin <marcan@marcan.st>, Palmer Dabbelt
-	<palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Rafael J.
- Wysocki" <rafael@kernel.org>,
-        Robert Moore <robert.moore@intel.com>,
-        Rob
- Herring <robh+dt@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Sudeep
- Holla <sudeep.holla@arm.com>,
-        Suravee Suthikulpanit
-	<suravee.suthikulpanit@amd.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Thierry
- Reding <thierry.reding@gmail.com>,
-        Thomas Bogendoerfer
-	<tsbogend@alpha.franken.de>,
-        Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta
-	<vgupta@kernel.org>,
-        <virtualization@lists.linux-foundation.org>,
-        Wei Liu
-	<wei.liu@kernel.org>, Will Deacon <will@kernel.org>
-References: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
-From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-In-Reply-To: <0-v1-5f734af130a3+34f-iommu_fwspec_jgg@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: W9mLspwTBqhYvV5ajR8gt_t_BuX4RknD
-X-Proofpoint-ORIG-GUID: W9mLspwTBqhYvV5ajR8gt_t_BuX4RknD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-14_03,2023-11-09_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 clxscore=1011 mlxlogscore=917
- impostorscore=0 adultscore=0 spamscore=0 phishscore=0 lowpriorityscore=0
- mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311140037
+Date: Tue, 14 Nov 2023 10:24:06 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Lee Jones <lee@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andy Gross
+ <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: (subset) [PATCH v2 1/3] dt-bindings: mfd: qcom,spmi-pmic: Add
+ pm8916 vm-bms and lbc
+In-Reply-To: <20231031075400.GR8909@google.com>
+References: <20231023-pm8916-dtsi-bms-lbc-v2-0-343e3dbf423e@trvn.ru>
+ <20231023-pm8916-dtsi-bms-lbc-v2-1-343e3dbf423e@trvn.ru>
+ <169824868224.758275.3309948002942732059.b4-ty@kernel.org>
+ <67b0e974-779c-434c-b558-81840ec46cdd@linaro.org>
+ <20231031075400.GR8909@google.com>
+Message-ID: <c72077299f457eabb1b885a5d2353f8c@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Thanks Jason.
-
-On 2023/11/4 0:44, Jason Gunthorpe wrote:
-> This is a more complete solution that the first attempt here:
-> https://lore.kernel.org/r/1698825902-10685-1-git-send-email-quic_zhenhuah@quicinc.com
+Lee Jones писал(а) 31.10.2023 12:54:
+> On Fri, 27 Oct 2023, Krzysztof Kozlowski wrote:
 > 
-> I haven't been able to test this on any HW that touches these paths, so if
-> some people with HW can help get it in shape it can become non-RFC.
+>> On 25/10/2023 17:44, Lee Jones wrote:
+>> > On Mon, 23 Oct 2023 11:20:32 +0500, Nikita Travkin wrote:
+>> >> PM8916 (and probably some other similar pmics) have hardware blocks for
+>> >> battery monitoring and charging. Add patterns for respecive nodes so the
+>> >> devicetree for those blocks can be validated properly.
+>> >>
+>> >>
+>> >
+>> > Applied, thanks!
+>> >
+>> > [1/3] dt-bindings: mfd: qcom,spmi-pmic: Add pm8916 vm-bms and lbc
+>> >       commit: e9aec86e211ee493081e8934b8c821d660b417ee
+>>
+>> Hi Lee,
+>>
+>> It seems this patch depends on something not in your tree. This should
+>> have been clearly explained in cover letter or this patch changelog, but
+>> wasn't.
+>>
+>> Please drop the patch.
+> 
+> Done.
 
-Thank you for addressing it quickly with a thorough way. I have 
-backported it to Android common kernel 6.1 and tested basic sanity well.
-I will share these to OEMs and see if they can reproduce further, thanks.
+Hi, v6.7-rc1 now includes the dependencies for this bindings change,
+could you pick it up again? Or maybe I should respin the series
+with it included back?
 
-Thanks,
-Zhenhua
+Sorry for making this inconvenient for you...
+
+Nikita
 
