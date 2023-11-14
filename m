@@ -1,146 +1,186 @@
-Return-Path: <devicetree+bounces-15668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A9C7EB1D8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:14:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 716E57EB1AC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43A2E1C20AD5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 14:14:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7DFC1F24DA6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 14:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 188F541211;
-	Tue, 14 Nov 2023 14:14:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="dnx4y6VF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BBA8405F8;
+	Tue, 14 Nov 2023 14:13:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AACD405FA
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 14:14:12 +0000 (UTC)
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7741BF0
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 06:13:58 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-77773d3246aso14497185a.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 06:13:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1699971237; x=1700576037; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8oJqbvRhcnLQ4NxthWPQmg85qomzW1aIjvQdZvqQ+P8=;
-        b=dnx4y6VFVZXXxHxrPOZEMg+iwKsctF0YCegxpcgZ/bb45IGDJdKj4Y8+McR3vD6lI5
-         y2T4cb1YbVszVikjWD42lwmNcxbHGVd6w9MD/TqmJvjdWRPwfGpWRniaRgFPXgXtpw0r
-         CekBGC17nhNv8+evmB3Ke3NNJSyC2p1l7UO/tchmEyHmU1LTpo+GTvH2cKwnGsfW6N9I
-         WK50pJpK80jGRpPiSQHMsNACQxFI5dgz76zrgd9AcA1AurxepWt6XLTl376nS4yju3Ti
-         RWrDD7Ng5Y4Le361FOJ7lj3e0zdTnfSIfP8ilouMgdtmsUEvINxXqo6mDB+1iorQy/0F
-         +szg==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1E3405DB;
+	Tue, 14 Nov 2023 14:12:59 +0000 (UTC)
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47583CA;
+	Tue, 14 Nov 2023 06:12:58 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3b3f55e1bbbso3671831b6e.2;
+        Tue, 14 Nov 2023 06:12:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699971237; x=1700576037;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8oJqbvRhcnLQ4NxthWPQmg85qomzW1aIjvQdZvqQ+P8=;
-        b=mPkhstg6YmhpnS/dcrpKcPdXi6twJSbac7zvlbRMyO+BaZ84YcmucH2Q2bkdHOxFdi
-         yaNDTrcVAB42j24AtTKl+cAZBV/UorSTX0c2QCA4h847geX9Z1MeQjhsJUsYP7JjLc8T
-         wVHyfmF2q5sUomGaghhYOX6slkTGyaFloiB/cPU2p2N7algvNXUtxQsR3RpQ2kQ07GA5
-         jRkcu7qa5g4ZM6TBZ0y5fMCnvkfF8JFALRpnN28Ks9BM8/Q3vQCmz63RmGwblIJKokhO
-         pueHkhkkcRND3Fb0sjQsHXxsFT3OQBeOTkyvS616jqnt1r1vODFsDzL1LQ4Zm6/yLD/W
-         sTTQ==
-X-Gm-Message-State: AOJu0Yx/jBtlHV7YRnQcSK6uYdfxBHRaRczdRnryhCi0phZA9zC3KUXl
-	VOkjPt93bDikWCPpwbFR6FrUAA==
-X-Google-Smtp-Source: AGHT+IF9EjIfzzCxNwPyM1ga1yNOhI5yYokOjuEfqsXGtogg+vNsqW/HCxpZN6Ez5oZMRSmIbkGJGw==
-X-Received: by 2002:a05:620a:28d4:b0:773:a789:cd15 with SMTP id l20-20020a05620a28d400b00773a789cd15mr2090356qkp.6.1699971236775;
-        Tue, 14 Nov 2023 06:13:56 -0800 (PST)
-Received: from carbon-x1.. ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id m2-20020a05620a220200b00777611164c5sm2701263qkh.106.2023.11.14.06.13.55
+        d=1e100.net; s=20230601; t=1699971177; x=1700575977;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=grqabXhF1cc92vF8gq/pM9VwhzUupGdZ4UapkLTlThU=;
+        b=l/Fuhy4cwCvkZ95+Ld59lpxdsd6vvtV70Me1L3y9gouR+LWbcPTGm95r7u12WE7AkF
+         oqsemgTIfnR6VYI2Opq4OmLkEj0YYsjOJvx9S+nrOqKe3t1bmJ1eOtvgvdKp0UnvIwSo
+         WzibpY/3aYOaHg811zNpB5OziiogDxXN0ZcU3cMXjN0BeMhj84EsUZxyEpKH3NkXHsX8
+         grdfXalBdFJcA/6UyN9uYqdMRbN1nhTakPHmLvbCoKj32WYXFnF/tHLqr4nZNE5QOP6+
+         O9D4QxKtJp3nx0f34kSZPZ8rv3vo9Z4ugwEeTtLmdz/P0/faQ+9lHdX9S012JmBq9PsQ
+         BksA==
+X-Gm-Message-State: AOJu0YzseM6X/SGonksSjuhyWU/4c5HMTFJ6g5t2gC7M3GVHd/6TvnFa
+	bOwqUPZ+tY8ugrRMBNB+Gg==
+X-Google-Smtp-Source: AGHT+IGM8P2dNpor6yqmA3vMzSNCOpGNAQLuH/RBi+neq4/Gkrf0qxbf/uIffCsQIQU/hDO8wYDRbw==
+X-Received: by 2002:a05:6871:64f:b0:1ea:3210:3b5d with SMTP id x15-20020a056871064f00b001ea32103b5dmr14372864oan.40.1699971177494;
+        Tue, 14 Nov 2023 06:12:57 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z18-20020a9d7a52000000b006ce25d48e55sm205730otm.67.2023.11.14.06.12.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 06:13:56 -0800 (PST)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Palmer Dabbelt <palmer@rivosinc.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Evan Green <evan@rivosinc.com>,
-	Conor Dooley <conor@kernel.org>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Jerry Shih <jerry.shih@sifive.com>
-Subject: [PATCH v4 19/20] riscv: hwprobe: export Zfa ISA extension
-Date: Tue, 14 Nov 2023 09:12:55 -0500
-Message-ID: <20231114141256.126749-20-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231114141256.126749-1-cleger@rivosinc.com>
-References: <20231114141256.126749-1-cleger@rivosinc.com>
+        Tue, 14 Nov 2023 06:12:56 -0800 (PST)
+Received: (nullmailer pid 1682194 invoked by uid 1000);
+	Tue, 14 Nov 2023 14:12:55 -0000
+Date: Tue, 14 Nov 2023 08:12:55 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Sabrina Dubroca <sd@queasysnail.net>, Jianhui Zhao <zhaojh329@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, "Garmin.Chang" <Garmin.Chang@mediatek.com>, Johnson Wang <johnson.wang@mediatek.com>, Sam Shih <sam.shih@mediatek.com>, Frank Wunderlich <frank-w@public-files.de>, Dan Carpenter <dan.carpenter@linaro.org>, Edward-JW Yang <edward-jw.yang@mediatek.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: clock: mediatek: add clock controllers
+ of MT7988
+Message-ID: <20231114141255.GA1678477-robh@kernel.org>
+References: <cde7269e5975907ed2b7799328ea814e529ecf51.1699909748.git.daniel@makrotopia.org>
+ <42c9447ae32be8aaeca2047a5e97660fb67dd286.1699909748.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <42c9447ae32be8aaeca2047a5e97660fb67dd286.1699909748.git.daniel@makrotopia.org>
 
-Export Zfa ISA extension[1] through hwprobe.
+On Mon, Nov 13, 2023 at 09:12:19PM +0000, Daniel Golle wrote:
+> Add various clock controllers found in the MT7988 SoC to existing
+> bindings (if applicable) and add files for the new ethwarp, mcusys
+> and xfi-pll clock controllers not previously present in any previous
+> MediaTek SoC.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../bindings/arm/mediatek/mediatek,ethsys.txt |  1 +
+>  .../arm/mediatek/mediatek,infracfg.yaml       |  1 +
+>  .../arm/mediatek/mediatek,mt7988-ethwarp.yaml | 60 +++++++++++++++++++
+>  .../arm/mediatek/mediatek,mt7988-mcusys.yaml  | 46 ++++++++++++++
+>  .../arm/mediatek/mediatek,mt7988-xfi-pll.yaml | 49 +++++++++++++++
+>  .../bindings/clock/mediatek,apmixedsys.yaml   |  1 +
+>  .../bindings/clock/mediatek,topckgen.yaml     |  1 +
+>  .../bindings/net/pcs/mediatek,sgmiisys.yaml   |  2 +
+>  8 files changed, 161 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-mcusys.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-xfi-pll.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt
+> index eccd4b706a78d..ac52579e03618 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,ethsys.txt
+> @@ -12,6 +12,7 @@ Required Properties:
+>  	- "mediatek,mt7629-ethsys", "syscon"
+>  	- "mediatek,mt7981-ethsys", "syscon"
+>  	- "mediatek,mt7986-ethsys", "syscon"
+> +	- "mediatek,mt7988-ethsys", "syscon"
+>  - #clock-cells: Must be 1
+>  - #reset-cells: Must be 1
+>  
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> index ea98043c6ba3d..230b5188a88db 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> @@ -30,6 +30,7 @@ properties:
+>                - mediatek,mt7629-infracfg
+>                - mediatek,mt7981-infracfg
+>                - mediatek,mt7986-infracfg
+> +              - mediatek,mt7988-infracfg
+>                - mediatek,mt8135-infracfg
+>                - mediatek,mt8167-infracfg
+>                - mediatek,mt8173-infracfg
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml
+> new file mode 100644
+> index 0000000000000..0c3d5e88b09df
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7988-ethwarp.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7988-ethwarp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT7988 ethwarp Controller
+> +
+> +maintainers:
+> +  - Daniel Golle <daniel@makrotopia.org>
+> +
+> +description:
+> +  The Mediatek MT7988 ethwarp controller provides clocks and resets for the
+> +  Ethernet related subsystems found the MT7988 SoC.
+> +  The reset-controller can be represented using the ti,syscon-reset bindings.
+> +  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: mediatek,mt7988-ethwarp
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-controller: true
 
-Link: https://drive.google.com/file/d/1VT6QIggpb59-8QRV266dEE4T8FZTxGq4/view [1]
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
-Reviewed-by: Evan Green <evan@rivosinc.com>
----
- Documentation/arch/riscv/hwprobe.rst  | 4 ++++
- arch/riscv/include/uapi/asm/hwprobe.h | 1 +
- arch/riscv/kernel/sys_riscv.c         | 1 +
- 3 files changed, 6 insertions(+)
+type: object
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index 896ecfbbe5f4..41463b932268 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -157,6 +157,10 @@ The following keys are defined:
-        defined in the RISC-V Vector manual starting from commit e2ccd0548d6c
-        ("Remove draft warnings from Zvfh[min]").
- 
-+  * :c:macro:`RISCV_HWPROBE_EXT_ZFA`: The Zfa extension is supported as
-+       defined in the RISC-V ISA manual starting from commit 056b6ff467c7
-+       ("Zfa is ratified").
-+
- * :c:macro:`RISCV_HWPROBE_KEY_CPUPERF_0`: A bitmask that contains performance
-   information about the selected set of processors.
- 
-diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-index fffc69d9f6ba..91fbe1a7f2e2 100644
---- a/arch/riscv/include/uapi/asm/hwprobe.h
-+++ b/arch/riscv/include/uapi/asm/hwprobe.h
-@@ -55,6 +55,7 @@ struct riscv_hwprobe {
- #define		RISCV_HWPROBE_EXT_ZIHINTNTL	(1 << 29)
- #define		RISCV_HWPROBE_EXT_ZVFH		(1 << 30)
- #define		RISCV_HWPROBE_EXT_ZVFHMIN	(1 << 31)
-+#define		RISCV_HWPROBE_EXT_ZFA		(1ULL << 32)
- #define RISCV_HWPROBE_KEY_CPUPERF_0	5
- #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
- #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
-index e90537593f5f..f0bd7b480b7f 100644
---- a/arch/riscv/kernel/sys_riscv.c
-+++ b/arch/riscv/kernel/sys_riscv.c
-@@ -193,6 +193,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
- 		if (has_fpu()) {
- 			EXT_KEY(ZFH);
- 			EXT_KEY(ZFHMIN);
-+			EXT_KEY(ZFA);
- 		}
- #undef EXT_KEY
- 	}
--- 
-2.42.0
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/reset/ti-syscon.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        ethwarp: clock-controller@15031000 {
 
+Drop unused labels. Elsewhere too.
+
+> +            compatible = "mediatek,mt7988-ethwarp", "syscon", "simple-mfd";
+> +            reg = <0 0x15031000 0 0x1000>;
+> +            #clock-cells = <1>;
+> +
+> +            ethrst: reset-controller {
+> +                compatible = "ti,syscon-reset";
+> +                #reset-cells = <1>;
+> +                ti,reset-bits = <
+> +                    0x8 9 0x8 9 0 0 (ASSERT_SET | DEASSERT_CLEAR | STATUS_NONE)
+> +                >;
+> +            };
+> +        };
+> +    };
 
