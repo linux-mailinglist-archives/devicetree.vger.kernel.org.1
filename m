@@ -1,101 +1,156 @@
-Return-Path: <devicetree+bounces-15680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426F37EB380
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E22987EB38B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:28:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 682811C20947
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:26:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F49B1C20A65
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A0F41751;
-	Tue, 14 Nov 2023 15:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A57641755;
+	Tue, 14 Nov 2023 15:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vd+Ic96C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xG1HpNb5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F44B4174F
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 15:26:50 +0000 (UTC)
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E7EC127
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:26:48 -0800 (PST)
-Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-77bac408851so551679885a.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:26:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76AA4174F
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 15:28:50 +0000 (UTC)
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119D4124
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:28:49 -0800 (PST)
+Received: by mail-qk1-x732.google.com with SMTP id af79cd13be357-7781b176131so295815585a.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:28:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699975607; x=1700580407; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=w7F8QgjG6LQI/HDtH6YsJ8pzu6k42g4LGlXjrIxXLCg=;
-        b=vd+Ic96Csx85sJu/M1HPsJIDkVkkZiDB5e7uauOUL+rFLjxmWH6BOGPBwhITNARXhP
-         F7wcNagTf9xnBKXqnQnNsD2aJH5UxkpHGXoJs7PkE/CEM40b2Eh6/+YaQIn+MOLoTPQU
-         MRjIpIYNfx3aQPrYeHurWL1u4rfh1o7sAvpZnsHvH6M81LOicWvJTUNbLeSZxLfWa4A0
-         SXtAgLjAQnzUi4+yw+Fmo+A9A7lb1KIAHJ7lE5Laz4cBDEipVucyTYGp0VfVxcVXLRj5
-         HAF64XvvEHn2uQuvC1n3PO/wjDi0nL0mhy3kwZXl6HbEUH48ikurAo+M3gQlfqKLaYRj
-         sQtw==
+        d=linaro.org; s=google; t=1699975728; x=1700580528; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BGxQDxhwGJ2nh5zs6ScH+LS4hZ552IQoSeqNqLnSUY0=;
+        b=xG1HpNb5FWSBDUdgLc5TREEouOnlWBRjk5Pn05/jlNHRWzw2onyzzdjF5EaNF5yCh6
+         /svpQVvL09O7YLd/Fp9z+bzk0dnHJXkFycskqHR6Y2oFIVy/I6TluJUUYYw+Lzycvo4I
+         HRdz/Y3+5gM3tFMMS78hBydNN5l/0PV8Cy51msxcS1T1hKTGVshcPwzWPBHn7u9aDNar
+         nhHrSwGaXqvrRD4tIII0BJb8WULJ8ZiQlO8Xz1voykN9V2jgGo9JnS5j+QUy9tFZludZ
+         FmGBWuFy7V6Z6tkFSIZK3KDIGNpYSM3BiB2j7GDkkgq2zvmJqjrHM68hjs8e5yw0Ot5b
+         aDOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699975607; x=1700580407;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w7F8QgjG6LQI/HDtH6YsJ8pzu6k42g4LGlXjrIxXLCg=;
-        b=IYLv1bXBD2TTEGVhJMj5rN7ihQjYfLuKxf+9xKySpp6qHeHj4AdflO0BBz8ZdvX7Bc
-         FhpIHg94debeIoY2gnxzorJ5+WjYFLZKJHP03Mel7QwaOfzHi1PbveEx7G43Nrn74eqD
-         MAHC0S5b3kHT17QZRU3bILv3blFtjWK0zbKf2VZqxUFOCZs3yo7u0/3LLaELJI4EEX3W
-         u/SWVYCtBlT2KsxBTRM5+ASi7hlJJMDNAx9pfQBntiz7+PRnsnbg345pwFeq6yY0cUTb
-         xQsggC20zfSWTf1QdZyheq3Za3R/Ne4wh58503JATfp2U/SlRc9wVQ2TkV35Fge0MDgq
-         pSTQ==
-X-Gm-Message-State: AOJu0YwMQnpkcvwuVf9xb33z26pSC0UIx6WlxLWDlmcqtTesS3zM3Doz
-	SM6ykOK6zFgfhqFIdVkArIC2nA==
-X-Google-Smtp-Source: AGHT+IF0Wl1kVxFaBCj1GO4wI262SpQaQZD4Ao8J20Z3un2G8Y7PMNcnaECfZqEqkeoPrGFuvA2i3Q==
-X-Received: by 2002:a05:620a:4712:b0:76e:f90d:85d1 with SMTP id bs18-20020a05620a471200b0076ef90d85d1mr4028598qkb.26.1699975607743;
-        Tue, 14 Nov 2023 07:26:47 -0800 (PST)
-Received: from [127.0.1.1] ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id s3-20020a05620a29c300b0076efaec147csm2716087qkp.45.2023.11.14.07.26.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 07:26:47 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Jaewon Kim <jaewon02.kim@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20231027040338.63088-1-jaewon02.kim@samsung.com>
-References: <CGME20231027040435epcas2p4628f9c61d4622ed4c4b62edc4486e2d1@epcas2p4.samsung.com>
- <20231027040338.63088-1-jaewon02.kim@samsung.com>
-Subject: Re: [PATCH] arm64: dts: exynos: add gpio-key node for
- exynosautov9-sadk
-Message-Id: <169997560713.7305.9969596641933403889.b4-ty@linaro.org>
-Date: Tue, 14 Nov 2023 16:26:47 +0100
+        d=1e100.net; s=20230601; t=1699975728; x=1700580528;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BGxQDxhwGJ2nh5zs6ScH+LS4hZ552IQoSeqNqLnSUY0=;
+        b=kI8+pXZaMi3OxoepBT2vFLxuDGKEUfaESDoZp/AIw/myGDFQo/uPG0oQ7FCFeH73yv
+         cebSR+y25hw0Y6DsWLx8iDZVoQEcgF2FanKS1+4GXYCIdaDydRKsUDC/Gr/QB6Hqucmc
+         svxfPjG+3Z5JTPVcirSEGUDVxsaWKkbHwOioHenICYQxdUSfLjBcpero4NUBZPDsIYrz
+         9L/pmuHa1u/ESwJFrcNjHxVoYQb6J/6440djeAuiDEN4ry10NBliLboHyPMaqrUqRf0g
+         I7b811vCAPAqoLnfPwQKUBniWcgxSElRg+JfUaJl8jrbaa8S2JNaiNvn8s8dck6wzzUI
+         uh1w==
+X-Gm-Message-State: AOJu0YwsV4nH1iVELQPWHjKfQQ/D+FPGh/lx+H2fEQA8rKNdG6cbWEoG
+	H9ju6b7hgiVl6Yht45PLE46jrw==
+X-Google-Smtp-Source: AGHT+IE+7rw23tKCHEGTWas8bKZs9IJbGI6dJMY/vX5+Ea8ykwZXNrA1jFDtHohlObVIyQwvBkBf2A==
+X-Received: by 2002:a05:620a:1725:b0:774:3963:41a5 with SMTP id az37-20020a05620a172500b00774396341a5mr2820249qkb.13.1699975728151;
+        Tue, 14 Nov 2023 07:28:48 -0800 (PST)
+Received: from [172.25.83.73] ([12.186.190.2])
+        by smtp.gmail.com with ESMTPSA id bp39-20020a05620a45a700b0076ef004f659sm2734795qkb.1.2023.11.14.07.28.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Nov 2023 07:28:47 -0800 (PST)
+Message-ID: <2323d13a-aa7c-43a9-85e3-95a2d176b990@linaro.org>
+Date: Tue, 14 Nov 2023 16:28:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: Revert "arm64: dts: qcom: qrb5165-rb5:
+ enable DP altmode"
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231111094645.12520-1-krzysztof.kozlowski@linaro.org>
+ <CAA8EJpoK1N1LBY5ZjL7hb0Sqge7iF4X=rm1n9VZPx-0nOm3bkw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAA8EJpoK1N1LBY5ZjL7hb0Sqge7iF4X=rm1n9VZPx-0nOm3bkw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
 
-
-On Fri, 27 Oct 2023 13:03:37 +0900, Jaewon Kim wrote:
-> ExynosAutov9 SADK board has 3 keys to test external GPIO interrupt.
-> To support this, add 3 gpio-key(Wakeup, Volume Down, Volume Up) node.
+On 13/11/2023 11:09, Dmitry Baryshkov wrote:
+> On Sat, 11 Nov 2023 at 11:46, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> This reverts commit b3dea914127e9065df003002ed13a2ef40d19877.
+>>
+>> The commit introduced unsupported and undocumented properties:
+>>
+>>   qrb5165-rb5.dtb: pmic@2: typec@1500:connector: 'altmodes' does not match any of the regexes: 'pinctrl-[0-9]+'
 > 
+> We need this property to enable DP altmode on RB5. It has been parsed
+> by the typec subsystem since the commit 7b458a4c5d73 ("usb: typec: Add
+> typec_port_register_altmodes()"), merged in April 2021.
 > 
+> Rather than landing this commit, let me propose to send the proper
+> binding instead. If we can not agree on a compatible bindings document
+> within the sensible timeframe (e.g. 1 month), I'm fine with dropping
+> of the altmodes from qrb5156-rb5.
 
-Applied, thanks!
+I agree, sounds good for me. I just want to stir the pot and have the
+issue resolved :)
 
-[1/1] arm64: dts: exynos: add gpio-key node for exynosautov9-sadk
-      https://git.kernel.org/krzk/linux/c/6479f40a10f773d712f645c3d7bc2ffd5904aa6c
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
 
 
