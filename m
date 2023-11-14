@@ -1,115 +1,129 @@
-Return-Path: <devicetree+bounces-15631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A55E7EB07D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 14:05:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B653C7EB096
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 14:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EE081F22D2A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 13:05:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7C5A1C20A38
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 13:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BC83FE35;
-	Tue, 14 Nov 2023 13:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8AC3FE3E;
+	Tue, 14 Nov 2023 13:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nMk4bjzW"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1EhKFpv9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B923FE24
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:05:12 +0000 (UTC)
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41792DD
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 05:05:11 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-daec4e4c5eeso5669411276.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 05:05:11 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF083FB35
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 13:10:37 +0000 (UTC)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978D819B
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 05:10:35 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-32fa7d15f4eso3860929f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 05:10:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699967110; x=1700571910; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y3kLet+ZFc4FiXhXyJTUcUEX1JsMDtWsRFc0PYkqxJM=;
-        b=nMk4bjzWl2OH2sgI2kginq+JqGE7cwEcr+JGDejTGiX2niImmLs4RpluHd3H9DmyOX
-         39NxMktLxD0KR/1jO0DVPvee/GYRKvdT0NGDyOOY9mugEYri1z7tPGOuN1UaDnDslMPM
-         07KVGoolts85BnWYiBEeoDTKbfNmDvu5SMcH8fkerB/VCr7HRL3nOmT0dMFAw6psXo7L
-         PQ/yETAMDp42UEMSaZHW8fDmMccfGZ99jpCF2zkYMbjDRmxmbKkkPuIGDPaJjXwpkPJN
-         6YRQJ9NnpBeWQwKLA6iHGmEX2qiNv1VB3X4ejZsla3zyizgE0zAnjBWzAhmBMv96hrt4
-         Sceg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699967434; x=1700572234; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=kylEPySB/5FfOKILQp0wcgiznvVbaF9pAdNSaICh0gU=;
+        b=1EhKFpv9vfdMGmBcW+Z6TL893F2Hhzoh1GYxTxra5II3v/4wLitzg9OdchqrJa72lB
+         UUcga1gdhNnJ8ECeWztSYTaEusHoSoiSm/VXYa2o+Ov2pmh1V+yYlbr95WlXzbPBURB2
+         fm0K3sI9kYbkraDxuPKPwVhp7mT7f7FsBZ2ljDLSm8ByFZ8VgBXIUdFXrYyREWuWzTNH
+         C5d/taRxg1GuMUWmkhBc52FGzsWYe6JiXBRrnAAhmtSQyojaL708yvIGzYvjfNVMR6Et
+         Y/AY5kXf7RClVstmBGvFEC85gZaUt++X/5KYV0jOin6ZZadaow+1+3GJhS4kVRuYoVQg
+         vXgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699967110; x=1700571910;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y3kLet+ZFc4FiXhXyJTUcUEX1JsMDtWsRFc0PYkqxJM=;
-        b=Kkuwa/A+lJBo2rtzFNO9RTiDGjuv3srbSrEaUA9nRH2rISRICrwiT9KflWXGo4GRLt
-         500oUOI6Z26Yzp8HdQ+c41a1ZCALstYUFIC9XpCKXPhHckHdPrdQfX0UYth2NZyjJeOk
-         PwKBexLwuNtY6+bocTZab1zsC2osM634Es6l6/zAHns1Z6bQonap6tKFkRXvGXWWO8QL
-         Mtu9YTqGYk9uma+vve986+kccG78ydOrBvkR9EBErX+31o4TrnriabiyvsE+Ptv2a5Gn
-         lrxtUu6aXc4KKco4iejCyo/oVeHig8J+lmobGSo3Wr6JiZYPQfA7Usca99aKLTmRDkjJ
-         HYAA==
-X-Gm-Message-State: AOJu0Ywg6STv84nSUKgArVcI41ivy2MLAW+gwUK74vt9l8bL6d1p29gU
-	1WIIUtD69BeeH67NGIlMHOw5opB+5FcnE7GnZosiMw==
-X-Google-Smtp-Source: AGHT+IHU/EMXoR/AsvwDR5tVM/hTfhag7Py4pB8zx2h4lfdu8R1hVWGA8wCYGXEvgGG4RCO6d/pEhnbc29+P4adFbGc=
-X-Received: by 2002:a25:35d6:0:b0:daf:66f9:cfab with SMTP id
- c205-20020a2535d6000000b00daf66f9cfabmr8292993yba.9.1699967110411; Tue, 14
- Nov 2023 05:05:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1699967434; x=1700572234;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kylEPySB/5FfOKILQp0wcgiznvVbaF9pAdNSaICh0gU=;
+        b=PUIvqC4BdKv6uajISdK4tB7/vlrFc6gKSlSQ0HIBX2XtBt0SlnTWLpgOJ/ZKGq/A7f
+         P4FSiIVSY+Qf9ogTRUqMGOBozAbZI+CSeDTfwIRCzuwZ4DqbW1d01t+aja1xvJ1mMIPK
+         LUrIN++Gib0tN4vjMgGhLjOCcS5qUmz/2+tZxX2VLcbubipFE9MEBVyHvpAZmGUXymB2
+         Qru2rNg9Y+UZEWG8s0X6dnOjlrYqJyPqISf9DLWDKSN6w1RsGJq8kHcxY1+n2J4Rv7AI
+         Dcxv4TB2XJFVkVY1U/ehAoOAW0bL/ZZPqG19hqRkEgdMJahr5UEfviqhNxa+YZHe6C2u
+         IYoA==
+X-Gm-Message-State: AOJu0YzYbmcIkE/KhbAtdkwzUmrpppeG/I4bb6LycWRxZ8ZrcbLhBgIT
+	wCXnhiCjUkg2rD2je2febBCKpFpgoecpz7t4qX0=
+X-Google-Smtp-Source: AGHT+IGziU1soHXdOrIYoiZhkJ3lrSemdXNvFyCejd2ntbWKzDN90NoFHYrl0P9aRWDq0a+dBQ2I1w==
+X-Received: by 2002:a05:6000:4024:b0:32d:b991:1a71 with SMTP id cp36-20020a056000402400b0032db9911a71mr7443849wrb.0.1699967433842;
+        Tue, 14 Nov 2023 05:10:33 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:8fe7:3223:c57b:4b01])
+        by smtp.gmail.com with ESMTPSA id i20-20020a5d5234000000b003196b1bb528sm7843980wra.64.2023.11.14.05.10.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 05:10:33 -0800 (PST)
+References: <20231106085554.3237511-1-xianwei.zhao@amlogic.com>
+ <eab3869c-7529-484d-983f-dd85ecfbeb0b@linaro.org>
+ <1j34xdcwf4.fsf@starbuckisacylon.baylibre.com>
+User-agent: mu4e 1.8.13; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Xianwei Zhao
+ <xianwei.zhao@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Chuan Liu
+ <chuan.liu@amlogic.com>
+Subject: Re: [PATCH V6 0/4] Add C3 SoC PLLs and Peripheral clock
+Date: Tue, 14 Nov 2023 14:07:16 +0100
+In-reply-to: <1j34xdcwf4.fsf@starbuckisacylon.baylibre.com>
+Message-ID: <1jleb0bhvb.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org> <20231108104343.24192-6-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231108104343.24192-6-krzysztof.kozlowski@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Nov 2023 14:04:59 +0100
-Message-ID: <CACRpkdaSPTjjPA=TS-WbOb3E=TabtP6MFEx6Q+Dar-Mh=EtknQ@mail.gmail.com>
-Subject: Re: [PATCH 05/17] dt-bindings: pinctrl: samsung: add specific
- compatibles for existing SoC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Tomasz Figa <tomasz.figa@gmail.com>, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaehoon Chung <jh80.chung@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org, 
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-On Wed, Nov 8, 2023 at 11:44=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
 
-> Samsung Exynos SoC reuses several devices from older designs, thus
-> historically we kept the old (block's) compatible only.  This works fine
-> and there is no bug here, however guidelines expressed in
-> Documentation/devicetree/bindings/writing-bindings.rst state that:
-> 1. Compatibles should be specific.
-> 2. We should add new compatibles in case of bugs or features.
+On Fri 10 Nov 2023 at 18:50, Jerome Brunet <jbrunet@baylibre.com> wrote:
+
+> On Fri 10 Nov 2023 at 14:20, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 >
-> Add compatibles specific to each SoC in front of all old-SoC-like
-> compatibles.
+>> On 06/11/2023 09:55, Xianwei Zhao wrote:
+>>> The patchset adds support for the peripheral and PLL clock controller
+>>> found on the Amlogic C3 SoC family, such as C302X or C308L.
+>>> 
+>>> Changes since V5 [3]:
+>>>  - Fix some typo and modify formart for MARCO. Suggested by Jerome.
+>>>  - Add pad clock for peripheral input clock in bindings.
+>>>  - Add some description for explaining why ddr_dpll_pt_clk and cts_msr_clk are out of tree.
+>>> Changes since V4 [10]:
+>>>  - Change some fw_name of clocks. Suggested by Jerome.
+>>>  - Delete minItem of clocks.
+>>>  - Add CLk_GET_RATE_NOCACHE flags for gp1_pll
+>>>  - Fix some format. and fix width as 8 for mclk_pll_dco.
+>>>  - exchange gate and divder for fclk_50m clock.
+>>>  - add CLK_SET_RATE_PARENT for axi_a_divder & axi_b_divder.
+>>>  - add CLK_IS_CRITICAL for axi_clk
+>>>  - Optimized macro define for pwm clk.
+>>>  - add cts_oscin_clk mux between 24M and 32k
+>>>  - add some missing gate clock, such as ddr_pll.
+>>
+>> Where are all these versions? Please provide links.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> I have provided some guidance offline at the request of Amlogic.
+>
+> This should have been v4 and the cover-letter should have summarized the
+> change from v3 to this. Unfortunately it was sent as v6 :/
+>
+>>
+>> Best regards,
+>> Krzysztof
 
-This is more formally correct indeed.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+While labeling this v6 was a mistake, please continue from there:
+next to be v7. Don't reset to v4 or v5. If more versions are needed, I
+don't want to end up with 2 v6 on the list, that would be even more
+confusing.
 
-Yours,
-Linus Walleij
+Thanks
 
