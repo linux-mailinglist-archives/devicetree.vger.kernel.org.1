@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-15682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 354BF7EB390
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:30:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 432F07EB3FC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:43:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AED6C1F228DC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:30:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6D23B20AD7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 15:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C194175F;
-	Tue, 14 Nov 2023 15:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB2D41768;
+	Tue, 14 Nov 2023 15:43:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FgK6mK/0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFoDsbZE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8D141234
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 15:30:10 +0000 (UTC)
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C949193
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:30:09 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-7789923612dso357797585a.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 07:30:09 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C28B4174D;
+	Tue, 14 Nov 2023 15:43:38 +0000 (UTC)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B00418F;
+	Tue, 14 Nov 2023 07:43:36 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9d2e7726d5bso867956666b.0;
+        Tue, 14 Nov 2023 07:43:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699975809; x=1700580609; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=gmail.com; s=20230601; t=1699976615; x=1700581415; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0z8mYGlvzpXltKUUIjDXOzBtwWwYDn4CEpQNJlr626Q=;
-        b=FgK6mK/07LLNZzIB9fM00SQRtAhqiAxJFx+VeogC8sjIyDGaDxIdi4lCXGfGo5/RjH
-         ApcYNUSR6/3gIgNR6h9JlKrRjgqhV4zszwYHzXMv9vVEImGOkcKaOPOkDK4KcaNGJasH
-         fZKDGMfKjgkPK0Jq7dY05UwrGELBBhT0etfqcoCwAmerhRUkI2tFkt4HRI9R3ao5FySd
-         MNiT2wOpUwwmY1U/j18nskTuA5D4bK9HoEIuaLKgmQc6WofSYhSxUDntYOInfHYL8ij3
-         1dyXYadmn2czbwBt+X25kBGGiqxpUS1JIh8pvnSONgosAvKjJAFk7KUsgAvr3uB0Wi2G
-         iCcg==
+        bh=g+ep0eXvunZX8/Xp7/xoRsA2kj2nPwPABneaP0qplrM=;
+        b=MFoDsbZEg4wQYnmTZ7WaVyDX5K6bN6Be+agTVlf/+RRWaA0DMeNySyqgVx2s/1O3jy
+         rFaeIw78PIl25Iz7YT5pUINY/p/G8tbUPD/wQ18usF47Uib6YVf+bzwUhQ0kQIRrITe/
+         3iTjekecoiDjzQ+ncJZWWuVa/Hgnc/tHgPBd2jBG+3JzJOHVdW1cLjW9stkHQOkxol6c
+         CExrEp1i6ydGNshrbjUtfwXE4Gd9cqRFNXcTOwvjcArd8TYxli06d0lAhnd4sDrsEFHI
+         02LqRnumPNJbLaxBI3uL1po/YaqefWXXkaC0L2fGLRofZhG2XPADlQvVxB2SCYJWsg0h
+         /eSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699975809; x=1700580609;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+        d=1e100.net; s=20230601; t=1699976615; x=1700581415;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0z8mYGlvzpXltKUUIjDXOzBtwWwYDn4CEpQNJlr626Q=;
-        b=MXGu3nDhkDoV/meqKhwResXDgrxdA6CZsPX618PGiqj8c9sEMZscasWjD3Pl27B/7y
-         N00B8Q+oacKRRrX75zOJ5IOba73mrqewpSJxALhlMpJX0m/lFb4UCuLIbI4PyUuC5sqZ
-         TbT8OzuViml24ayQB+Djn1nH7WnG6dR2MZ/JPGBgmfJWK4VUabvfcvNXi/I/hzxp22aX
-         kbPBza5lm6mATA9JuzELTPrAQ+/VuKqu3oslGjysLJ2jPFaDHDRLlDHI/DZWF7cc2FLn
-         4eCk8YcmEVctldiQBUnfTfmkhs4nsK+zGW05J+4Hyra6eJqLHkbKTWm+yZzjfDYywAdu
-         ljFg==
-X-Gm-Message-State: AOJu0YxyQAJE2hq7Ver1Y36iOj17zjC2gFz3+y6iLD6+gwSD/6HDev3X
-	IcAXSPHVXapSng1dc8pb76W5aQ==
-X-Google-Smtp-Source: AGHT+IHRO/56HZrJWKUmGFoFd9AbhcgDhYOmUVnhf0y4iuYrRDUaH18Q8zY3Sx4CcPySJThyMwfT4A==
-X-Received: by 2002:a05:620a:148b:b0:77b:cc51:822e with SMTP id w11-20020a05620a148b00b0077bcc51822emr2474353qkj.64.1699975808965;
-        Tue, 14 Nov 2023 07:30:08 -0800 (PST)
-Received: from [172.25.83.73] ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id bp39-20020a05620a45a700b0076ef004f659sm2734795qkb.1.2023.11.14.07.30.08
+        bh=g+ep0eXvunZX8/Xp7/xoRsA2kj2nPwPABneaP0qplrM=;
+        b=DSRUCE2//VKqpMKLfnvQTbKQbR2Yr4Yq/vTNzhl51f9bXaXscSNmKUNbAHZXAoeoZ7
+         eHatumrRQ23l1vJuKEAB0f7plKMAPacLTBTzomSVhkr0FBQK2GsuF/POQEjG+H97Mb1J
+         4XoJ3Cx7l8khMpaDTfaM+COGDQCEctrDwlFzAqpjBOkI/kafORNokJgSpQVTStUOGS+x
+         SpDNuZx1JJGWZ4tBLdQHkDbZWdPfJVWz6FkfVuoFJtXmwx1W/KFHBcEN5NUzMzOAw5J0
+         XKvVnjq+RIyXfFAn610xWy6Zr4VW/2rUudG9SnYKpCGPw2snjINHlOFrlBra9SHtJkdw
+         yvkw==
+X-Gm-Message-State: AOJu0YzjzI8qTNJs57qA/nIXIYF/jNdbuHEip4+aGS1gZIuIhEool0FG
+	ZsKtW+P4TxhAbzhcvrusLng=
+X-Google-Smtp-Source: AGHT+IFuAQiyP4aiAIIbl5vdG5bXIDlqHJcpzLh0Fo1uJiVM8wv7FZAVy3iyYajFOt6lW7xLYYBcPQ==
+X-Received: by 2002:a17:906:3395:b0:9e6:1661:92fa with SMTP id v21-20020a170906339500b009e6166192famr7415602eja.45.1699976614503;
+        Tue, 14 Nov 2023 07:43:34 -0800 (PST)
+Received: from [10.76.84.181] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id ga23-20020a170906b85700b009ae587ce128sm5670899ejb.216.2023.11.14.07.43.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Nov 2023 07:30:08 -0800 (PST)
-Message-ID: <0109c9c9-3556-4b65-83b6-7d8b37b775a0@linaro.org>
-Date: Tue, 14 Nov 2023 16:30:08 +0100
+        Tue, 14 Nov 2023 07:43:34 -0800 (PST)
+Message-ID: <e4cd1c34-0127-4574-8c62-80ec25afc420@gmail.com>
+Date: Tue, 14 Nov 2023 17:43:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,84 +67,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8150: use 'gpios' suffix for PCI
- GPIOs
+Subject: Re: [PATCH 1/3] iio: adc: ad7192: Use device api
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Alexandru Tachici <alexandru.tachici@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Maksim Kiselev <bigunclemax@gmail.com>,
+ Cosmin Tanislav <demonsingur@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ Liam Beguin <liambeguin@gmail.com>,
+ Marius Cristea <marius.cristea@microchip.com>,
+ Ibrahim Tilki <Ibrahim.Tilki@analog.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
+ Ivan Mikhaylov <fr0st61te@gmail.com>,
+ Marcus Folkesson <marcus.folkesson@gmail.com>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231111164229.63803-1-krzysztof.kozlowski@linaro.org>
- <20231111164229.63803-3-krzysztof.kozlowski@linaro.org>
- <81c4d6c3-1fce-4bb2-ad07-89f1482dd686@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <81c4d6c3-1fce-4bb2-ad07-89f1482dd686@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+References: <20231105193132.47009-1-alisadariana@gmail.com>
+ <20231105193132.47009-2-alisadariana@gmail.com>
+ <8fae735c-c227-4f60-8ba8-8cb13dfb2626@linaro.org>
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+In-Reply-To: <8fae735c-c227-4f60-8ba8-8cb13dfb2626@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 13/11/2023 13:00, Konrad Dybcio wrote:
-> On 11.11.2023 17:42, Krzysztof Kozlowski wrote:
->> Linux handles both versions, but bindings expect GPIO properties to
->> have 'gpios' suffix instead of 'gpio':
+On 06.11.2023 11:24, Krzysztof Kozlowski wrote:
+> On 05/11/2023 20:31, alisadariana@gmail.com wrote:
+>> From: Alisa-Dariana Roman <alisa.roman@analog.com>
 >>
->>   sa8155p-adp.dtb: pci@1c00000: Unevaluated properties are not allowed ('perst-gpio' was unexpected)
+>> Replace of.h and corresponding functions with preferred device specific
+>> functions.
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Also replace of_device_get_match_data function with
+>> spi_get_device_match_data.
+>>
+>> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
 >> ---
-> What about the 'enable-gpio' right below it?
+>>   drivers/iio/adc/ad7192.c | 32 +++++++++++++++-----------------
+>>   1 file changed, 15 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/iio/adc/ad7192.c b/drivers/iio/adc/ad7192.c
+>> index adc3cbe92d6e..48e0357564af 100644
+>> --- a/drivers/iio/adc/ad7192.c
+>> +++ b/drivers/iio/adc/ad7192.c
+>> @@ -17,7 +17,6 @@
+>>   #include <linux/err.h>
+>>   #include <linux/sched.h>
+>>   #include <linux/delay.h>
+>> -#include <linux/of.h>
+>>   
+>>   #include <linux/iio/iio.h>
+>>   #include <linux/iio/sysfs.h>
+>> @@ -364,19 +363,19 @@ static inline bool ad7192_valid_external_frequency(u32 freq)
+>>   		freq <= AD7192_EXT_FREQ_MHZ_MAX);
+>>   }
+>>   
+>> -static int ad7192_of_clock_select(struct ad7192_state *st)
+>> +static int ad7192_device_clock_select(struct ad7192_state *st)
+>>   {
+>> -	struct device_node *np = st->sd.spi->dev.of_node;
+>> +	struct device *dev = &st->sd.spi->dev;
+>>   	unsigned int clock_sel;
+>>   
+>>   	clock_sel = AD7192_CLK_INT;
+>>   
+>>   	/* use internal clock */
+>>   	if (!st->mclk) {
+>> -		if (of_property_read_bool(np, "adi,int-clock-output-enable"))
+>> +		if (device_property_read_bool(dev, "adi,int-clock-output-enable"))
+>>   			clock_sel = AD7192_CLK_INT_CO;
+>>   	} else {
+>> -		if (of_property_read_bool(np, "adi,clock-xtal"))
+>> +		if (device_property_read_bool(dev, "adi,clock-xtal"))
+>>   			clock_sel = AD7192_CLK_EXT_MCLK1_2;
+>>   		else
+>>   			clock_sel = AD7192_CLK_EXT_MCLK2;
+>> @@ -385,9 +384,10 @@ static int ad7192_of_clock_select(struct ad7192_state *st)
+>>   	return clock_sel;
+>>   }
+>>   
+>> -static int ad7192_setup(struct iio_dev *indio_dev, struct device_node *np)
+>> +static int ad7192_setup(struct iio_dev *indio_dev)
+>>   {
+>>   	struct ad7192_state *st = iio_priv(indio_dev);
+>> +	struct device *dev = &st->sd.spi->dev;
+>>   	bool rej60_en, refin2_en;
+>>   	bool buf_en, bipolar, burnout_curr_en;
+>>   	unsigned long long scale_uv;
+>> @@ -416,26 +416,26 @@ static int ad7192_setup(struct iio_dev *indio_dev, struct device_node *np)
+>>   
+>>   	st->conf = FIELD_PREP(AD7192_CONF_GAIN_MASK, 0);
+>>   
+>> -	rej60_en = of_property_read_bool(np, "adi,rejection-60-Hz-enable");
+>> +	rej60_en = device_property_read_bool(dev, "adi,rejection-60-Hz-enable");
+> 
+> Not strictly related to your patch, but where are these properties
+> documented?
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+Thank you for the feedback! The properties are documented in
+Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml. But the
+properties related to the clock configuration are indeed missing. I will
+add them.
 
-It needs to be documented first. enable-gpio/s seems to be missing from
-the bindings and I did not have enough of time to investigate whether
-this is correct in the first place.
-
-That's why I thought about fixing only already accepted perst-gpios.
-
-Best regards,
-Krzysztof
-
+Kind regards,
+Alisa-Dariana Roman
 
