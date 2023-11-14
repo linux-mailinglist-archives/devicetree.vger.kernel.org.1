@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-15601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7346C7EAED0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:27:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1733F7EAED8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 12:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3CDB1C20A9A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:27:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8EC1F2451E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC922377F;
-	Tue, 14 Nov 2023 11:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4985123744;
+	Tue, 14 Nov 2023 11:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="DkL2AH5+"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="P5G590wF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A9822F18
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 11:27:34 +0000 (UTC)
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CBE12C;
-	Tue, 14 Nov 2023 03:27:32 -0800 (PST)
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:7e5d:5300::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id C24FCE44;
-	Tue, 14 Nov 2023 03:27:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1699961252;
-	bh=Q6+RD/pAzzgNvq/iKbB8YmOX4O2aiXLWhDhwUL49GQA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DkL2AH5+zU+Udoc6DzHMLgya7E2EV8aQkLvsNR5zTrzzbADQmLJduPD02+SpNxO+p
-	 Ia/GQq0TXARWdif/NZVNuKDqetp/KFzHt7OvfYyWu+iGnJkNR1l3+6KUDzGrcorqqc
-	 tUMBN4nvtLfxM4MxOESy5gSkMN3x8OjIzbAJOb/Q=
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Zev Weiss <zev@bewilderbeest.net>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1E922F06
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 11:28:11 +0000 (UTC)
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1CC4518C;
+	Tue, 14 Nov 2023 03:28:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=pLzXI
+	2slUOYfzkpdlZfDQQ/XzOt7ReXHj5ulSz8OfE0=; b=P5G590wFR9GkHIva3nO6t
+	980lQbsSKV2TMOvgybOw7/3ktZE0BuddTd1srqo9Vkl8n+RCZZQJrE4AVPpnVhE1
+	P69TjEOTdEB5GvGLI+S62YfKcz7B9+tAs3aCHoYSQNPgOIc4jyVOZ4lySrDljUte
+	6sN4LjQGkyQNZpMwZ06en4=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g4-1 (Coremail) with SMTP id _____wDn7_6iWVNlDXBpDA--.55740S2;
+	Tue, 14 Nov 2023 19:27:34 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org
-Subject: [PATCH 2/2] ARM: dts: aspeed: Add ASRock E3C256D4I BMC
-Date: Tue, 14 Nov 2023 03:27:25 -0800
-Message-ID: <20231114112722.28506-6-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231114112722.28506-4-zev@bewilderbeest.net>
-References: <20231114112722.28506-4-zev@bewilderbeest.net>
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com,
+	chris.obbard@collabora.com,
+	s.hauer@pengutronix.de,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH 03/11] drm/rockchip: vop2: set half_block_en bit in all mode
+Date: Tue, 14 Nov 2023 19:27:29 +0800
+Message-Id: <20231114112729.1770998-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231114112534.1770731-1-andyshrk@163.com>
+References: <20231114112534.1770731-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,353 +59,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDn7_6iWVNlDXBpDA--.55740S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXF47tw47Cr4xJFW5ZrW5Wrg_yoW5ZrWrpr
+	47ArWDKr4Ut3WjgFZ7JrZ8ZF4akws7Ka17XrZxKwnaqrWak3yDW3WkKF9rArZ8tryfuFW8
+	ZFn3CrW7urWIyF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jSwZ7UUUUU=
+X-Originating-IP: [58.22.7.114]
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBnAsoXlghlUye3AAAsD
 
-Like the E3C246D4I, this is a reasonably affordable off-the-shelf
-mini-ITX AST2500/Xeon motherboard with good potential as an OpenBMC
-development platform.  Booting the host requires a modicum of eSPI
-support that's not yet in the mainline kernel, but most other basic
-BMC functionality is available with this device-tree.
+From: Andy Yan <andy.yan@rock-chips.com>
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+At first we thought the half_block_en bit in AFBCD_CTRL register
+only work in afbc mode. But the fact is that it control the line
+buffer in all mode(afbc/tile/line), so we need configure it in
+all case.
+
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 ---
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../aspeed/aspeed-bmc-asrock-e3c256d4i.dts    | 314 ++++++++++++++++++
- 2 files changed, 315 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index d3ac20e316d0..3398ee53f034 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-ampere-mtmitchell.dtb \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
-+	aspeed-bmc-asrock-e3c256d4i.dtb \
- 	aspeed-bmc-asrock-romed8hm3.dtb \
- 	aspeed-bmc-bytedance-g220a.dtb \
- 	aspeed-bmc-delta-ahe50dc.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
-new file mode 100644
-index 000000000000..4c55272afd4f
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
-@@ -0,0 +1,314 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/dts-v1/;
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 25 ++++++++++++++------
+ 1 file changed, 18 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 4d7d5032d96b..0f7b68c5fdf2 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -516,6 +516,18 @@ static bool rockchip_vop2_mod_supported(struct drm_plane *plane, u32 format,
+ 	return vop2_convert_afbc_format(format) >= 0;
+ }
+ 
++/*
++ * 0: Full mode, 16 lines for one tail
++ * 1: half block mode, 8 lines one tail
++ */
++static bool vop2_half_block_enable(struct drm_plane_state *pstate)
++{
++	if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90))
++		return false;
++	else
++		return true;
++}
 +
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/watchdog/aspeed-wdt.h>
+ static u32 vop2_afbc_transform_offset(struct drm_plane_state *pstate,
+ 				      bool afbc_half_block_en)
+ {
+@@ -1139,6 +1151,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 	bool rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
+ 	struct rockchip_gem_object *rk_obj;
+ 	unsigned long offset;
++	bool half_block_en;
+ 	bool afbc_en;
+ 	dma_addr_t yrgb_mst;
+ 	dma_addr_t uv_mst;
+@@ -1231,6 +1244,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 	dsp_info = (dsp_h - 1) << 16 | ((dsp_w - 1) & 0xffff);
+ 
+ 	format = vop2_convert_format(fb->format->format);
++	half_block_en = vop2_half_block_enable(pstate);
+ 
+ 	drm_dbg(vop2->drm, "vp%d update %s[%dx%d->%dx%d@%dx%d] fmt[%p4cc_%s] addr[%pad]\n",
+ 		vp->id, win->data->name, actual_w, actual_h, dsp_w, dsp_h,
+@@ -1238,6 +1252,9 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 		&fb->format->format,
+ 		afbc_en ? "AFBC" : "", &yrgb_mst);
+ 
++	if (vop2_cluster_window(win))
++		vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, half_block_en);
 +
-+/{
-+	model = "ASRock E3C256D4I BMC";
-+	compatible = "asrock,e3c256d4i-bmc", "aspeed,ast2500";
-+
-+	aliases {
-+		serial4 = &uart5;
-+
-+		i2c20 = &i2c2mux0ch0;
-+		i2c21 = &i2c2mux0ch1;
-+		i2c22 = &i2c2mux0ch2;
-+		i2c23 = &i2c2mux0ch3;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+		bootargs = "console=tty0 console=ttyS4,115200 earlycon";
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		heartbeat {
-+			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "timer";
-+		};
-+
-+		system-fault {
-+			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
-+			panic-indicator;
-+		};
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
-+			<&adc 4>, <&adc 5>, <&adc 6>, <&adc 7>,
-+			<&adc 8>, <&adc 9>, <&adc 10>, <&adc 11>,
-+			<&adc 12>, <&adc 13>, <&adc 14>, <&adc 15>;
-+	};
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <100000000>; /* 100 MHz */
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&uart_routing {
-+	status = "okay";
-+};
-+
-+&mac0 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-+
-+	nvmem-cells = <&eth0_macaddress>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9545";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c2mux0ch0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c2mux0ch1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		i2c2mux0ch2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c2mux0ch3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+
-+	vrm@60 {
-+		compatible = "renesas,isl69269", "isl69269";
-+		reg = <0x60>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+
-+	/* FRU eeprom */
-+	eeprom@57 {
-+		compatible = "st,24c128", "atmel,24c128";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+
-+		eth0_macaddress: macaddress@3f80 {
-+			reg = <0x3f80 6>;
-+		};
-+	};
-+};
-+
-+&video {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&lpc_ctrl {
-+	status = "okay";
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>;
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
-+
-+&peci0 {
-+	status = "okay";
-+};
-+
-+&wdt1 {
-+	aspeed,reset-mask = <(AST2500_WDT_RESET_DEFAULT & ~AST2500_WDT_RESET_LPC)>;
-+};
-+
-+&wdt2 {
-+	aspeed,reset-mask = <(AST2500_WDT_RESET_DEFAULT & ~AST2500_WDT_RESET_LPC)>;
-+};
-+
-+&pwm_tacho {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_default /* CPU */
-+		&pinctrl_pwm2_default      /* rear */
-+		&pinctrl_pwm4_default>;    /* front */
-+
-+	/* CPU */
-+	fan@0 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+	};
-+
-+	/* rear */
-+	fan@2 {
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x02>;
-+	};
-+
-+	/* front */
-+	fan@4 {
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x04>;
-+	};
-+};
-+
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+		/*  A */ "", "", "NMI_BTN_N", "BMC_NMI", "", "", "", "",
-+		/*  B */ "", "", "", "", "", "", "", "",
-+		/*  C */ "", "", "", "", "", "", "", "",
-+		/*  D */ "BMC_PSIN", "BMC_PSOUT", "BMC_RESETCON", "RESETCON",
-+			"", "", "", "",
-+		/*  E */ "", "", "", "", "", "", "", "",
-+		/*  F */ "LOCATORLED_STATUS_N", "LOCATORBTN", "", "",
-+			"", "", "BMC_PCH_SCI_LPC", "BMC_NCSI_MUX_CTL",
-+		/*  G */ "HWM_BAT_EN", "CHASSIS_ID0", "CHASSIS_ID1", "CHASSIS_ID2",
-+			"", "", "", "",
-+		/*  H */ "FM_ME_RCVR_N", "O_PWROK", "", "D4_DIMM_EVENT_3V_N",
-+			"MFG_MODE_N", "BMC_RTCRST", "BMC_HB_LED_N", "BMC_CASEOPEN",
-+		/*  I */ "", "", "", "", "", "", "", "",
-+		/*  J */ "BMC_READY", "BMC_PCH_BIOS_CS_N", "BMC_SMI", "", "", "", "", "",
-+		/*  K */ "", "", "", "", "", "", "", "",
-+		/*  L */ "", "", "", "", "", "", "", "",
-+		/*  M */ "", "", "", "", "", "", "", "",
-+		/*  N */ "", "", "", "", "", "", "", "",
-+		/*  O */ "", "", "", "", "", "", "", "",
-+		/*  P */ "", "", "", "", "", "", "", "",
-+		/*  Q */ "", "", "", "", "", "", "", "",
-+		/*  R */ "", "", "", "", "", "", "", "",
-+		/*  S */ "PCHHOT_BMC_N", "", "RSMRST", "", "", "", "", "",
-+		/*  T */ "", "", "", "", "", "", "", "",
-+		/*  U */ "", "", "", "", "", "", "", "",
-+		/*  V */ "", "", "", "", "", "", "", "",
-+		/*  W */ "", "", "", "", "", "", "", "",
-+		/*  X */ "", "", "", "", "", "", "", "",
-+		/*  Y */ "SLP_S3", "SLP_S5", "", "", "", "", "", "",
-+		/*  Z */ "CPU_CATERR_BMC_N", "", "SYSTEM_FAULT_LED_N", "BMC_THROTTLE_N",
-+			"", "", "", "",
-+		/* AA */ "CPU1_THERMTRIP_LATCH_N", "", "CPU1_PROCHOT_N", "",
-+			"", "", "IRQ_SMI_ACTIVE_N", "FM_BIOS_POST_CMPLT_N",
-+		/* AB */ "", "", "ME_OVERRIDE", "BMC_DMI_MODIFY", "", "", "", "",
-+		/* AC */ "", "", "", "", "", "", "", "";
-+};
-+
-+&adc {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default /* 3VSB */
-+		&pinctrl_adc1_default	   /* 5VSB */
-+		&pinctrl_adc2_default	   /* CPU1 */
-+		&pinctrl_adc3_default	   /* VCCSA */
-+		&pinctrl_adc4_default	   /* VCCM */
-+		&pinctrl_adc5_default	   /* V10M */
-+		&pinctrl_adc6_default	   /* VCCIO */
-+		&pinctrl_adc7_default	   /* VCCGT */
-+		&pinctrl_adc8_default	   /* VPPM */
-+		&pinctrl_adc9_default	   /* BAT */
-+		&pinctrl_adc10_default	   /* 3V */
-+		&pinctrl_adc11_default	   /* 5V */
-+		&pinctrl_adc12_default	   /* 12V */
-+		&pinctrl_adc13_default	   /* GND */
-+		&pinctrl_adc14_default	   /* GND */
-+		&pinctrl_adc15_default>;   /* GND */
-+};
+ 	if (afbc_en) {
+ 		u32 stride;
+ 
+@@ -1278,13 +1295,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
+-		if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90)) {
+-			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 0);
+-			transform_offset = vop2_afbc_transform_offset(pstate, false);
+-		} else {
+-			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 1);
+-			transform_offset = vop2_afbc_transform_offset(pstate, true);
+-		}
++		transform_offset = vop2_afbc_transform_offset(pstate, half_block_en);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_PIC_SIZE, act_info);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, transform_offset);
 -- 
-2.42.0
+2.34.1
 
 
