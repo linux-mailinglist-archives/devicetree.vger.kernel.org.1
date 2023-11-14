@@ -1,687 +1,371 @@
-Return-Path: <devicetree+bounces-15549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55967EAC08
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:49:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C31287EAC46
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:58:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B88BB20B49
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:49:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 708B02810FA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 08:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE58515495;
-	Tue, 14 Nov 2023 08:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC93125DA;
+	Tue, 14 Nov 2023 08:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="k43WlMaW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEAD814F7F;
-	Tue, 14 Nov 2023 08:49:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C42BBC433C8;
-	Tue, 14 Nov 2023 08:49:45 +0000 (UTC)
-Message-ID: <c284b41a-3402-4e86-9331-545f592a6044@xs4all.nl>
-Date: Tue, 14 Nov 2023 09:49:43 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6B3154A4
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:58:04 +0000 (UTC)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18431AC
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 00:58:01 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507c5249d55so8350028e87.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 00:58:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1699952280; x=1700557080; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EpeuhvaUzx9DVrRpRRSAt7VSJx9fLxiy0TG7WzmpI+s=;
+        b=k43WlMaWKYrcJE92FaqbGGMaeyU30nICPFYc4b/V+suaZVPRg+q2X9RhqoX8zOSeZE
+         UoT6UvdPuc9twuRytd5mo/73gwao3eMiAuIOhH/1xa1JOdPIB11Yw63ypU0fwgcmaBAp
+         ICFodVa71nyjLJeQ7cbohiVW4VrGN1lvUMCE0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699952280; x=1700557080;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EpeuhvaUzx9DVrRpRRSAt7VSJx9fLxiy0TG7WzmpI+s=;
+        b=E576l1Dpd14Pf2Edu6koXCf7HeAZ2+NZyQpojzTPfssVKsV7Gvn5fbGqaHPyli3vWM
+         E1g8aXL30G4MNJkx5raeg84ldhtREptaYNNU+iYxjoYwtUapY4uPpmayYntQrRZIiT7N
+         n8MhQVBlS05+9hqJw/aOjJFOabKm5fxrf/w3dR9naVAg8v/E+uwI/epIY1KNAzUCmqgE
+         bWDCMIEjoqo0RyQfcxmbBjz18PIQv4tk5G6Kbz7XA18VzK2SYgI4qBMM6W8+qIJuI1Wg
+         gCKbn3oPVJqLp6EZwwQxQVkpyzQL3cNTdOoaieMOFfz3rzeqbvTuGWXjSALU+DTmlm5b
+         HliA==
+X-Gm-Message-State: AOJu0YzmvcHyc+Si8TXuBwU6d057BqIpEPS3TRfk9z3XgiUOYNkGbO9I
+	s3Y5MG5R3GqB0CxgpPT4i2mzH6DU1buK/DmmZhnVMQ==
+X-Google-Smtp-Source: AGHT+IGoap3T5IdklsK8edLZEnTxgQRmoWUpdkrbLlyk6n1CM0MxLtok/B+HS4P8gwV2D437XxUZL/WznF8YciQmScQ=
+X-Received: by 2002:a05:6512:3f0:b0:50a:6fc5:e95c with SMTP id
+ n16-20020a05651203f000b0050a6fc5e95cmr5220855lfq.60.1699952279990; Tue, 14
+ Nov 2023 00:57:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/5] documentation: media: add documentation for
- Toshiba Visconti Video Input Interface driver
-Content-Language: en-US, nl
-To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
- <20231012071329.2542003-5-yuji2.ishikawa@toshiba.co.jp>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <20231012071329.2542003-5-yuji2.ishikawa@toshiba.co.jp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
+In-Reply-To: <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 14 Nov 2023 16:57:48 +0800
+Message-ID: <CAGXv+5G+J__Z_YBySxrkthhwa71shq7aCeKZ_DEZCK=PLgYwUg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
+	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, rafael@kernel.org, 
+	tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Johan Hovold <johan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/10/2023 09:13, Yuji Ishikawa wrote:
-> Added basic description of Video Input Interface driver of
-> Toshiba Visconti architecture.
-> It includes hardware organization, structure of the driver
-> and description of vendor specific V4L2 controls
-> to configure the embedded image signal processor.
-> 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> ---
-> Changelog v3:
-> - Newly add documentation to describe SW and HW
-> 
-> Changelog v4:
-> - no change
-> 
-> Changelog v5:
-> - no change
-> 
-> Changelog v6:
-> - add description of CSI2RX subdevice
-> - add ordering of ioctl(S_FMT) and ioctl(S_EXT_CTRLS)
-> 
-> Changelog v7:
-> - no change
-> 
-> Changelog v8:
-> - add usage of V4L2_CTRL_TYPE_VISCONTI_ISP
-> 
-> Changelog v9:
-> - fix warning: set reference target for keyword V4L2_CTRL_TYPE_VISCONTI_ISP
-> 
->  .../driver-api/media/drivers/index.rst        |   1 +
->  .../media/drivers/visconti-viif.rst           | 462 ++++++++++++++++++
->  .../media/v4l/vidioc-g-ext-ctrls.rst          |   4 +
->  .../media/v4l/vidioc-queryctrl.rst            |   5 +
->  .../media/videodev2.h.rst.exceptions          |   1 +
->  5 files changed, 473 insertions(+)
->  create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
-> 
-> diff --git a/Documentation/driver-api/media/drivers/index.rst b/Documentation/driver-api/media/drivers/index.rst
-> index c4123a16b5f9..5592bd99ae5c 100644
-> --- a/Documentation/driver-api/media/drivers/index.rst
-> +++ b/Documentation/driver-api/media/drivers/index.rst
-> @@ -24,6 +24,7 @@ Video4Linux (V4L) drivers
->  	sh_mobile_ceu_camera
->  	tuners
->  	vimc-devel
-> +	visconti-viif
->  	zoran
->  	ccs/ccs
->  
-> diff --git a/Documentation/driver-api/media/drivers/visconti-viif.rst b/Documentation/driver-api/media/drivers/visconti-viif.rst
-> new file mode 100644
-> index 000000000000..fd2480cbde46
-> --- /dev/null
-> +++ b/Documentation/driver-api/media/drivers/visconti-viif.rst
-> @@ -0,0 +1,462 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +============================================
-> +Visconti Video Input Interface (VIIF) Driver
-> +============================================
-> +
-> +Overview
-> +========
-> +
-> +The Visconti VIIF Hardware
-> +--------------------------
-> +
-> +The Visconti Video Input Interface (VIIF) hardware is  a proprietary videocapture device of Toshiba.
-> +Following function modules are integrated:
-> +
-> +* MIPI CSI2 receiver (CSI2RX)
-> +* L1 Image Signal Processor (L1ISP)
-> +
-> +  * Correction, enhancement, adjustment on RAW pictures.
-> +
-> +* L2 Image Signal Processor (L2ISP)
-> +
-> +  * Lens distortion correction
-> +  * Scaling
-> +  * Cropping
-> +
-> +* Video DMAC
-> +
-> +  * format picture (RGB, YUV, Grayscale, ...)
-> +  * write picture into DRAM
-> +
-> +Visconti5 SoC has two VIIF hardware instances.
-> +
-> +software architecture
-> +---------------------
-> +
-> +The Visconti VIIF driver is composed of following components:
-> +
-> +* (image sensor driver)
-> +* MIPI CSI2 receiver subdevice driver
-> +
-> +  * corresponding to CSI2RX
-> +
-> +* Visconti ISP subdevice driver
-> +
-> +  * corresponding to L1ISP, L2ISP (Lens distortion correction, Scaling)
-> +
-> +* Visconti Capture V4L2 device driver
-> +
-> +  * corresponding to L2ISP (Cropping) and Video DMAC
-> +  * multiple output videobuf queues
-> +
-> +    * main path0 (RGB, YUV, Grayscale, ...)
-> +    * main path1 (RGB, YUV, Grayscale, ...)
-> +    * sub path (RAW picture)
-> +
-> +::
-> +
-> +  +-----------+      +-----------+     +----------------+       +-------------------------+
-> +  | Sensor    |      | CSI2RX    |     | ISP            |       | Capture MAIN PATH0      |
-> +  | subdevice | ---- | subdevice | --- | subdevice      | --+-- | V4L2 device             |
-> +  | (IMX219)  |      | (CSI2RX)  |     | (L1ISP, L2ISP) |   |   | (L2ISP crop, VideoDMAC) |
-> +  +-----------+      +-----------+     +----------------+   |   +-------------------------+
-> +                                                            |
-> +                                                            |   +-------------------------+
-> +                                                            |   | Capture MAIN PATH1      |
-> +                                                            +-- | V4L2 device             |
-> +                                                            |   | (L2ISP crop, VideoDMAC) |
-> +                                                            |   +-------------------------+
-> +                                                            |
-> +                                                            |   +-------------------------+
-> +                                                            |   | Capture SUB PATH        |
-> +                                                            +-- | V4L2 device             |
-> +                                                                | (VideoDMAC)             |
-> +                                                                +-------------------------+
-> +
-> +
-> +The VIIF driver provides following device nodes for Visconti5 SoC:
-> +
-> +* VIIF0
-> +
-> +  * /dev/media0
-> +  * /dev/video0 (main path0)
-> +  * /dev/video1 (main path1)
-> +  * /dev/video2 (sub path)
-> +
-> +* VIIF1
-> +
-> +  * /dev/media1
-> +  * /dev/video3 (main path0)
-> +  * /dev/video4 (main path1)
-> +  * /dev/video5 (sub path)
-> +
-> +Use of coherent memory
-> +----------------------
-> +
-> +Visconti5 SoC has two independent DDR SDRAM controllers.
-> +Each controller is mapped to 36bit address space.
-> +
-> +Accelerator bus masters have two paths to access memory;
-> +one is directly connected to SDRAM controller,
-> +the another is connected via a cache coherency bus
-> +which keeps coherency among CPUs.
-> +
-> +From acclerators and CPUs, the address map is following:
+On Thu, Nov 9, 2023 at 6:54=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 09/11/23 11:05, Chen-Yu Tsai ha scritto:
+> > Hi everyone,
+> >
+> > This v2 series continues Doug's "of: device: Support 2nd sources of
+> > probeable but undiscoverable devices" [1] series, but follows the schem=
+e
+> > suggested by Rob, marking all second source component device nodes
+> > as "fail-needs-probe-XXX", and having a hardware prober driver enable
+> > the one of them. I tried to include everyone from the original Cc: list=
+.
+> > Please let me know if you would like to be dropped from future
+> > submissions.
+> >
+> >
+> > For the I2C component (touchscreens and trackpads) case from the
+> > original series, the hardware prober driver finds the particular
+> > class of device in the device tree, gets its parent I2C adapter,
+> > and tries to initiate a simple I2C read for each device under that
+> > I2C bus. When it finds one that responds, it considers that one
+> > present, marks it as "okay", and returns, letting the driver core
+> > actually probe the device.
+> >
+> > This works fine in most cases since these components are connected
+> > via ribbon cable and always have the same resources. The driver as
+> > implemented currently doesn't deal with regulators or GPIO pins,
+> > since in the existing device trees they are either always on for
+> > regulators, or have GPIO hogs or pinmux and pinconfig directly
+> > tied to the pin controller.
+> >
+> >
+> > Another case this driver could handle is selecting components based
+> > on some identifier passed in by the firmware. On Chromebooks we have
+> > a SKU ID which is inserted by the bootloader at
+> > /firmware/coreboot/sku-id. When a new combination of components is
+> > introduced, a new SKU ID is allocated to it. To have SKU ID based
+> > device trees, we would need to have one per SKU ID. This ends up
+> > increasing the number of device trees we have a lot. The recent
+> > MT8186 devices already have 10+10 SKUs [2], with possibly more to come.
+> >
+> > Instead, we could have just one device tree for each device, with
+> > component options listed and marked as "fail-needs-probe-XXX", and
+> > let the hardware prober enable one of them based on the given SKU ID.
+> > The driver will also fix up OF graph remote endpoints to point to the
+> > enabled component.
+> >
+> > The MT8186 Corsola series [2] can also benefit from this, though I
+> > haven't implemented anything yet.
+> >
+> >
+> > Patch 1 adds of_device_is_fail() for the new driver to use.
+> >
+> > Patch 2 implements the first case, probing the I2C bus for presence
+> > of components. This initial version targets the Hana Chromebooks.
+> >
+> > Patch 3 modifies the Hana device tree and marks the touchscreens
+> > and trackpads as "fail-needs-probe-XXX", ready for the driver to
+> > probe.
+> >
+> > Patch 4 adds a missing touchscreen variant to Hana.
+> >
+> > Patch 5 implements the second case, selectively enabling components
+> > based on the SKU ID. This initial version targets the Krane ChromeOS
+> > tablet, which has two possible MIPI DSI display panel options.
+> >
+> > Patch 6 drops Krane's SKU-specific compatible strings from the bindings=
+.
+> >
+> > Patch 7 merges Krane's SKU-specific device trees into one, with the
+> > device tree now containing two possible panels. This unfortunately
+> > introduces a dtc warning:
+> >
+> >      arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dts:81.13-83.6:
+> >          Warning (graph_endpoint): /soc/dsi@14014000/panel2@0/port/endp=
+oint:
+> >       graph connection to node '/soc/dsi@14014000/ports/port/endpoint'
+> >           is not bidirectional
+> >
+> >
+> > Please take a look.
+> >
+> > Johan, I'm not sure if this works as is for the Lenovo Thinkpad 13S
+> > case, since it looks like the trackpad shares the I2C bus with the
+> > keyboard.
+> >
+> >
+> > Thanks
+> > ChenYu
+> >
+> >
+> > Background as given in Doug's cover letter:
+> >
+> > Support for multiple "equivalent" sources for components (also known
+> > as second sourcing components) is a standard practice that helps keep
+> > cost down and also makes sure that if one component is unavailable due
+> > to a shortage that we don't need to stop production for the whole
+> > product.
+> >
+> > Some components are very easy to second source. eMMC, for instance, is
+> > fully discoverable and probable so you can stuff a wide variety of
+> > similar eMMC chips on your board and things will work without a hitch.
+> >
+> > Some components are more difficult to second source, specifically
+> > because it's difficult for software to probe what component is present
+> > on any given board. In cases like this software is provided
+> > supplementary information to help it, like a GPIO strap or a SKU ID
+> > programmed into an EEPROM. This helpful information can allow the
+> > bootloader to select a different device tree. The various different
+> > "SKUs" of different Chromebooks are examples of this.
+> >
+> > Some components are somewhere in between. These in-between components
+> > are the subject of this patch. Specifically, these components are
+> > easily "probeable" but not easily "discoverable".
+> >
+> > A good example of a probeable but undiscoverable device is an
+> > i2c-connected touchscreen or trackpad. Two separate components may be
+> > electrically compatible with each other and may have compatible power
+> > sequencing requirements but may require different software. If
+> > software is told about the different possible components (because it
+> > can't discover them), it can safely probe them to figure out which
+> > ones are present.
+> >
+> > On systems using device tree, if we want to tell the OS about all of
+> > the different components we need to list them all in the device
+> > tree. This leads to a problem. The multiple sources for components
+> > likely use the same resources (GPIOs, interrupts, regulators). If the
+> > OS tries to probe all of these components at the same time then it
+> > will detect a resource conflict and that's a fatal error.
+> >
+> > The fact that Linux can't handle these probeable but undiscoverable
+> > devices well has had a few consequences:
+> > 1. In some cases, we've abandoned the idea of second sourcing
+> >     components for a given board, which increases cost / generates
+> >     manufacturing headaches.
+> > 2. In some cases, we've been forced to add some sort of strapping /
+> >     EEPROM to indicate which component is present. This adds difficulty
+> >     to manufacturing / refurb processes.
+> > 3. In some cases, we've managed to make things work by the skin of our
+> >     teeth through slightly hacky solutions. Specifically, if we remove
+> >     the "pinctrl" entry from the various options then it won't
+> >     conflict. Regulators inherently can have more than one consumer, so
+> >     as long as there are no GPIOs involved in power sequencing and
+> >     probing devices then things can work. This is how
+> >     "sc8280xp-lenovo-thinkpad-x13s" works and also how
+> >     "mt8173-elm-hana" works.
+> >
+> > End of background from Doug's cover letter.
+>
+> I think that using "status" is not a good idea, I find that confusing.
 
-acclerators -> accelerators
+It isn't a hard requirement. The current I2C prober actually just looks
+at the node name, which already should be a generic class type. It then
+assumes that all the components of the same class that it is supposed
+to probe for are on the same bus. I think this is a fair assumption for
+replaceable parts connected via ribbon cable or co-layout parts?
 
-> +
-> +* 0x0_8000_0000 DDR0 direct access
-> +* 0x4_8000_0000 DDR0 coherency bus
-> +* 0x8_8000_0000 DDR1 direct access
-> +* 0xC_8000_0000 DDR1 coherency bus
-> +
-> +The base address can be specified with "memory" and "reserved-memory" elements
-> +in a device tree description.
-> +It's not recommended to mix direct address and coherent address.
-> +
-> +The Visconti5 VIIF driver always use only direct address to configure Video DMACs of the hardware.
-> +This design is to avoid great performance loss at coherency bus caused by massive memory access.
-> +You should not put the dma_coherent attribute to viif element in device tree.
-> +Cache operations are done automatically by videobuf2 driver.
-> +
-> +Tested environment
-> +------------------
-> +
-> +The Visconti VIIF driver was tested with following items:
-> +
-> +* IMX219 image sensor
-> +* IMX335 image sensor
-> +
-> +IOCTLs
-> +======
-> +
-> +Following public IOCTLs are supported
-> +
-> +* VIDIOC_QUERYCAP
-> +* VIDIOC_ENUM_FMT
-> +* VIDIOC_TRY_FMT
-> +* VIDIOC_S_FMT
-> +* VIDIOC_G_FMT
-> +* VIDIOC_ENUM_FRAMESIZES
-> +* VIDIOC_G_EXT_CTRLS
-> +* VIDIOC_S_EXT_CTRLS
-> +* VIDIOC_REQBUFS
-> +* VIDIOC_QUERYBUF
-> +* VIDIOC_QBUF
-> +* VIDIOC_EXPBUF
-> +* VIDIOC_DQBUF
-> +* VIDIOC_CREATE_BUFS
-> +* VIDIOC_PREPARE_BUF
-> +* VIDIOC_STREAMON
-> +* VIDIOC_STREAMOFF
+> Perhaps we could have a node like
+>
+> something {
+>         device-class-one =3D <&device1>, <&device2>, <&device3>;
+>         device-class-two =3D <&device4>, <&device5>, <&device6>;
+> }
+>
+> so that'd be more or less
+>
+> hw-prober {
+>         trackpads =3D <&tp1>, <&tp2>;
+>         keyboards =3D <&kb1>, <&kb2>;
+>         touchscreens =3D <&ts1>, <&ts2>;
+> }
 
-I would not mention these, this is all standard stuff.
+This was already nacked by Rob.
 
-The list is also incomplete :-)
+> Besides, something else I can suggest here is to make this more generic: =
+actually,
+> this issue is spread across way more devices than you maybe think... for =
+example,
+> I know of some smartphones that may have the same situation with DSI disp=
+lays and
+> they're sometimes distinguished by an ADC value, sometimes by reading bac=
+k the
+> manufacturer ID (or panel id) through DSI.
 
-> +
-> +Vendor specific v4l2 controls
-> +(except for V4L2_CID_VISCONTI_VIIF_MAIN_SET_RAWPACK_MODE and
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_INPUT_MODE) should be called
-> +after ioctl(S_FMT) because setting the frame format may affect
-> +valid range of parameters of the controls.
+ADC strapping is common. Though we might need some kind of binding about ho=
+w
+to describe the ADC strapping scheme, as this is bound to be different acro=
+ss
+boards.
 
-What happens if I do this the other way around? I.e., set a control,
-then set the format. Will the control values/ranges be updated automatically?
-If not, what will happen if I try to stream?
+Reading back from DSI feels problematic to implement. But I don't know much
+about DSI ATM. Doug implied in our offline discussion that DSI panels might
+have power sequencing requirements that are all over the place.
 
-Generally setting the format should modify all affected controls if
-they are no longer matching the format requirements.
+> Also, if Chromebooks really need something "special", such as that corebo=
+ot sku-id
+> parameter, I think that this should be registered externally into the hw =
+prober
+> and not embedded inside of the *generic* hw prober driver.
+>
+> We can even reuse of_device_id instead of inventing a new hw_prober_entry=
+ struct...
+>
+> Idea:
+>
+> drivers/platform/chrome/cros_of_hw_prober.c
+>
+> static int cros_sku_hw_prober(struct platform_device *pdev, const void *d=
+ata)
+> {
+>         ...this is your cros_sku_component_selector() function, anyway...
+> }
+>
+> static const struct of_device_id cros_hw_prober_ids[] =3D {
+>         { .compatible =3D "google,hana", .data =3D something },
+>         { /* sentinel */ }
+> };
+>
+> static int some_kind_of_early_init_function(something)
+> {
+>         int a,b,c,ret,something;
+>
+>         .. some logic if necessary ..
+>
+>         return of_hw_prober_register(cros_sku_hw_prober, cros_hw_prober_i=
+ds);
+> }
 
-> +
-> +Vendor specific v4l2 controls
-> +=============================
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_MAIN_SET_RAWPACK_MODE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_MAIN_SET_RAWPACK_MODE
-> +--------------------------------------------
-> +
-> +This control sets the format to pack multiple RAW pixel values into a word.
-> +
-> +This control accepts a __u32 value defined as `enum viif_rawpack_mode`.
-> +
-> +This control should be set before ioctl(S_FMT) and should not be changed after that.
+This feels a bit too layered, and requires all the board specific code to
+have an early init function. I think exposing common helper functions for
+boards to implement prober drivers would be better. Then the prober could
+also be a module if that made sense. Given that SoC vendors are making
+clock controller drivers modules, this doesn't seem very far fetched.
 
-Why not? What happens if I do?
+> Btw, thanks for starting that. If this will be done the right way, it's g=
+oing to
+> be useful to many, many people.
 
-Typically you should be able to make changes to the configuration until the
-moment you allocate buffers (VIDIOC_REQBUFS): that locks the configuration into
-place and attempts to make changes will return -EBUSY. Until all buffers are
-released, then you can make changes again.
+Right. I only have a limited view of applications, so input is always welco=
+me.
 
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_INPUT_MODE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_INPUT_MODE
-> +--------------------------------------------
-> +
-> +This control sets L1ISP preprocessing mode for RAW input images.
-> +
-> +This control accepts a `struct viif_l1_input_mode_config` instance.
-> +
-> +This control should be set before ioctl(S_FMT) and should not be changed after that.
+Thanks
+ChenYu
 
-Same comment here.
-
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RGB_TO_Y_COEF:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RGB_TO_Y_COEF
-> +-----------------------------------------------
-> +
-> +This control sets parameters to yield Y value from RGB pixel values.
-> +
-> +This control accepts a `struct viif_l1_rgb_to_y_coef_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG_MODE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG_MODE
-> +-----------------------------------------
-> +
-> +This control sets rules of generating analog gains for each feature in L1ISP.
-> +Related features are:
-> +
-> +* Optical Black Clamp Correction (OBCC)
-> +* Defect Pixel Correction (DPC)
-> +* RAW Color Noise Reduction (RCNR)
-> +* Lens Shading Correction (LSC)
-> +* Color matrix correction (MPRO)
-> +* Image quality adjustment (VPRO)
-> +
-> +The base gain is set with V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG control.
-> +
-> +This control accepts a `struct viif_l1_ag_mode_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG
-> +------------------------------------
-> +
-> +This control sets base analog gain commonly used in L1ISP features.
-> +Analog gain for each L1ISP feature is generated
-> +from the base analog gain and a configuration via V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AG_MODE control.
-> +
-> +This control accepts a `struct viif_l1_ag_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRE
-> +--------------------------------------
-> +
-> +This controls sets parameters for HDR Expansion feature.
-> +
-> +This control accepts a `struct viif_l1_hdre_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_EXTRACTION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_EXTRACTION
-> +------------------------------------------------
-> +
-> +This control sets black level parameters for L1ISP inputs.
-> +
-> +This control accepts a `struct viif_l1_img_extraction_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_DPC:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_DPC
-> +-------------------------------------
-> +
-> +This control sets parameters for Defect Pixel Correction.
-> +
-> +This control accepts a `struct viif_l1_dpc_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_PRESET_WHITE_BALANCE:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_PRESET_WHITE_BALANCE
-> +------------------------------------------------------
-> +
-> +This control sets parameters for white balance.
-> +
-> +This control accepts a `struct viif_l1_preset_white_balance_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RAW_COLOR_NOISE_REDUCTION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_RAW_COLOR_NOISE_REDUCTION
-> +-----------------------------------------------------------
-> +
-> +This control sets parameters for RAW color noise reduction (RCNR) feature.
-> +
-> +This control accepts a `struct viif_l1_raw_color_noise_reduction_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRS
-> +--------------------------------------
-> +
-> +This control sets parameters for HDR synthesis.
-> +
-> +This control accepts a `struct viif_l1_hdrs_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_BLACK_LEVEL_CORRECTION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_BLACK_LEVEL_CORRECTION
-> +--------------------------------------------------------
-> +
-> +This control sets parameters for black level correction feature.
-> +
-> +This control accepts a `struct viif_l1_black_level_correction_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_LSC:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_LSC
-> +-------------------------------------
-> +
-> +This control sets parameters for Lens Shading Correction feature.
-> +L1ISP supports 2 correction methods:
-> +
-> +* parabola shading
-> +* grid shading
-> +
-> +This control accepts a `struct viif_l1_lsc_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_MAIN_PROCESS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_MAIN_PROCESS
-> +----------------------------------------------
-> +
-> +This controls sets parameter for the MAIN PROCESS feature which is composed of:
-> +
-> +* demosaic
-> +* color matrix correction
-> +
-> +This control accepts a `struct viif_l1_main_process_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AWB:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AWB
-> +-------------------------------------
-> +
-> +This control sets parameter for auto white balance feature.
-> +
-> +This control accepts a `struct viif_l1_awb_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_LOCK_AWB_GAIN:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_LOCK_AWB_GAIN
-> +-------------------------------------------
-> +
-> +This control requests enable/disable of lock for AWB gain.
-> +
-> +This control accepts a u32 value; 0 for disable lock, 1 for enable lock.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC
-> +--------------------------------------
-> +
-> +This control sets parameter for HDR Compression feature.
-> +
-> +This control accepts a `struct viif_l1_hdrc_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC_LTM:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_HDRC_LTM
-> +------------------------------------------
-> +
-> +This control sets parameter for HDR Compression Local Tone Mapping feature.
-> +
-> +This control accepts a `struct viif_l1_hdrc_ltm_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_GAMMA:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_GAMMA
-> +---------------------------------------
-> +
-> +This control sets parameter for gamma correction at L1ISP.
-> +
-> +This control accepts a `struct viif_l1_gamma_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_QUALITY_ADJUSTMENT:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_IMG_QUALITY_ADJUSTMENT
-> +--------------------------------------------------------
-> +
-> +This control sets parameter for VPRO feature which is composed of:
-> +
-> +* luminance adjustment:
-> +
-> + * brightness adjustment
-> + * linear contrast adjusment
-> + * nonlinear contrast adjustment
-> + * luminance noise reduction
-> + * edge enhancement
-> +
-> +* chroma adjustment:
-> +
-> + * chroma suppression
-> + * color level adjustment
-> + * chroma noise reduction
-> + * coring suppression
-> + * edge chroma suppression
-> + * color noise reduction
-> +
-> +This control accepts a `struct viif_l1_img_quality_adjustment_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AVG_LUM_GENERATION:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L1_SET_AVG_LUM_GENERATION
-> +----------------------------------------------------
-> +
-> +This control sets parameter for average luminance statistics feature.
-> +
-> +This control accepts a `struct viif_l1_avg_lum_generation_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_UNDIST:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_UNDIST
-> +----------------------------------------
-> +
-> +This control sets parameter for the lens undistortion feature of L2ISP.
-> +Lens undistortion parameters are defined as either or combination of polinomial parameter and grid table.
-> +
-> +This control accepts a `struct viif_l2_undist_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_ROI:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_ROI
-> +-------------------------------------
-> +
-> +This control sets dimensions of intermediate images and scaling parameter of L2ISP.
-> +If you want to crop the output image,
-> +you should set crop parameter to the corresponding source pad of the ISP subdevice with media-ctl tool.
-> +
-> +This control accepts a `struct viif_l2_roi_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_GAMMA:
-> +
-> +V4L2_CID_VISCONTI_VIIF_ISP_L2_SET_GAMMA
-> +---------------------------------------
-> +
-> +This control sets gamma parameter for L2ISP.
-> +
-> +This control accepts a `struct viif_l2_gamma_config` instance.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_CALIBRATION_STATUS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_CALIBRATION_STATUS
-> +----------------------------------------------------
-> +
-> +This control provides CSI2 receiver calibration status.
-> +
-> +This control fills a `struct viif_csi2rx_cal_status` instance with current status.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_ERR_STATUS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_CSI2RX_GET_ERR_STATUS
-> +--------------------------------------------
-> +
-> +This control provides CSI2 receiver error description.
-> +
-> +This control fills a `struct viif_csi2rx_err_status` instance with accumerated error status.
-> +Note that internal accumerated status is cleared after reading.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_GET_LAST_CAPTURE_STATUS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_GET_LAST_CAPTURE_STATUS
-> +----------------------------------------------
-> +
-> +This control provides status information for the last captured frame.
-> +
-> +This control fills a `struct viif_l1_info` instance with current status.
-> +
-> +.. _V4L2_CID_VISCONTI_VIIF_GET_REPORTED_ERRORS:
-> +
-> +V4L2_CID_VISCONTI_VIIF_GET_REPORTED_ERRORS
-> +------------------------------------------
-> +
-> +This control provides error information since the last read of this control.
-> +
-> +This control fills a `struct viif_reported_errors` instance with accumerated error status.
-> +Note that internal accumerated status is cleared after reading.
-> +
-> +Structures
-> +==========
-> +
-> +.. kernel-doc:: include/uapi/linux/visconti_viif.h
-> +
-> diff --git a/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst b/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst
-> index f9f73530a6be..2f0e4f955167 100644
-> --- a/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst
-> +++ b/Documentation/userspace-api/media/v4l/vidioc-g-ext-ctrls.rst
-> @@ -295,6 +295,10 @@ still cause this situation.
->        - ``p_av1_film_grain``
->        - A pointer to a struct :c:type:`v4l2_ctrl_av1_film_grain`. Valid if this control is
->          of type ``V4L2_CTRL_TYPE_AV1_FILM_GRAIN``.
-> +    * - void *
-> +      - ``ptr``
-> +      - A pointer to Visconti ISP control specific structure. Valid if this control is
-> +        of type ``V4L2_CTRL_TYPE_VISCONTI_ISP``
->      * - void *
->        - ``ptr``
->        - A pointer to a compound type which can be an N-dimensional array
-> diff --git a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> index 4d38acafe8e1..cd57fac8bbf9 100644
-> --- a/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> +++ b/Documentation/userspace-api/media/v4l/vidioc-queryctrl.rst
-> @@ -549,6 +549,11 @@ See also the examples in :ref:`control`.
->        - n/a
->        - A struct :c:type:`v4l2_ctrl_av1_film_grain`, containing AV1 Film Grain
->          parameters for stateless video decoders.
-> +    * - ``V4L2_CTRL_TYPE_VISCONTI_ISP``
-> +      - n/a
-> +      - n/a
-> +      - n/a
-> +      - Structs specific for Visconti ISP configuration controls.
->  
->  .. raw:: latex
->  
-> diff --git a/Documentation/userspace-api/media/videodev2.h.rst.exceptions b/Documentation/userspace-api/media/videodev2.h.rst.exceptions
-> index 3e58aac4ef0b..dbab7527445e 100644
-> --- a/Documentation/userspace-api/media/videodev2.h.rst.exceptions
-> +++ b/Documentation/userspace-api/media/videodev2.h.rst.exceptions
-> @@ -165,6 +165,7 @@ replace symbol V4L2_CTRL_TYPE_AV1_SEQUENCE :c:type:`v4l2_ctrl_type`
->  replace symbol V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY :c:type:`v4l2_ctrl_type`
->  replace symbol V4L2_CTRL_TYPE_AV1_FRAME :c:type:`v4l2_ctrl_type`
->  replace symbol V4L2_CTRL_TYPE_AV1_FILM_GRAIN :c:type:`v4l2_ctrl_type`
-> +replace symbol V4L2_CTRL_TYPE_VISCONTI_ISP :c:type:`v4l2_ctrl_type`
->  
->  # V4L2 capability defines
->  replace define V4L2_CAP_VIDEO_CAPTURE device-capabilities
-
-Regards,
-
-	Hans
+> Regards,
+> Angelo
+>
+> >
+> > [1] https://lore.kernel.org/all/20230921102420.RFC.1.I9dddd99ccdca175e3=
+ceb1b9fa1827df0928c5101@changeid/
+> > [2] https://lore.kernel.org/linux-mediatek/20231012230237.2676469-1-wen=
+st@chromium.org/
+> >
+> > Chen-Yu Tsai (7):
+> >    of: base: Add of_device_is_fail
+> >    of: Introduce hardware prober driver
+> >    arm64: dts: mediatek: mt8173-elm-hana: Mark touchscreens and trackpa=
+ds
+> >      as fail
+> >    arm64: dts: mediatek: mt8173-elm-hana: Add G2touch G7500 touchscreen
+> >    of: hw_prober: Support Chromebook SKU ID based component selection
+> >    dt-bindings: arm: mediatek: Remove SKU specific compatibles for Goog=
+le
+> >      Krane
+> >    arm64: dts: mediatek: mt8183-kukui: Merge Krane device trees
+> >
+> >   .../devicetree/bindings/arm/mediatek.yaml     |   3 -
+> >   arch/arm64/boot/dts/mediatek/Makefile         |   3 +-
+> >   .../boot/dts/mediatek/mt8173-elm-hana.dtsi    |  20 ++
+> >   .../dts/mediatek/mt8183-kukui-krane-sku0.dts  |  24 --
+> >   .../mediatek/mt8183-kukui-krane-sku176.dts    |  24 --
+> >   ...ukui-krane.dtsi =3D> mt8183-kukui-krane.dts} |  47 ++-
+> >   drivers/of/Kconfig                            |  13 +
+> >   drivers/of/Makefile                           |   1 +
+> >   drivers/of/base.c                             |  20 ++
+> >   drivers/of/hw_prober.c                        | 314 +++++++++++++++++=
++
+> >   include/linux/of.h                            |   6 +
+> >   11 files changed, 418 insertions(+), 57 deletions(-)
+> >   delete mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sk=
+u0.dts
+> >   delete mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sk=
+u176.dts
+> >   rename arch/arm64/boot/dts/mediatek/{mt8183-kukui-krane.dtsi =3D> mt8=
+183-kukui-krane.dts} (86%)
+> >   create mode 100644 drivers/of/hw_prober.c
+> >
+>
 
