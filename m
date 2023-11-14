@@ -1,221 +1,266 @@
-Return-Path: <devicetree+bounces-15558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAFCA7EAC98
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B58E7EACA8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:10:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27BEB1C20A8A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:09:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CBB71C204D6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583FF18652;
-	Tue, 14 Nov 2023 09:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M5cO2k5r"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FEF316406;
+	Tue, 14 Nov 2023 09:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40090168B3;
-	Tue, 14 Nov 2023 09:08:33 +0000 (UTC)
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7DFD41;
-	Tue, 14 Nov 2023 01:08:29 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 236A1C0003;
-	Tue, 14 Nov 2023 09:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1699952908;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tZKAGIL7tCosSaUSk8d96o5LmNKTOtXF6OZIhSqTXQM=;
-	b=M5cO2k5rZWYxj5QsM26BTYC1z73lncEpeg4Navg1hNV2Ozx5GKDb4UYLOmO8IUCteurC1X
-	G/UQSPKjmVYASPUQ2QLaCXlTtpVAPOnAHwE/Amgmxrfe2xPm0HG/5/vDlYKzvAQBOVYWnQ
-	EQVM+AD1fVuTIxQtqusIclrU0IBHnVS9wWe2/r49lkhbDJYDg+5y17QoOduAHABbxk43h8
-	KX+X6Mkz5qpxRhIlALbYx6UBE9IO142y4EhxHXcwHt9jy4THT7VYFH5U5MVtG2wGNz9vna
-	7kaY/iy3wVHCOvaEyqVDHMPOiPq0XNem8zPyUMQ2vOJwk3pkA1YLprQDSuTD+g==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: davem@davemloft.net,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Romain Gantois <romain.gantois@bootlin.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH net-next v2 8/8] ARM: dts: qcom: ipq4019: Add description for the IPQ4019 ESS EDMA and switch
-Date: Tue, 14 Nov 2023 10:07:34 +0100
-Message-ID: <20231114090743.865453-9-romain.gantois@bootlin.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231114090743.865453-1-romain.gantois@bootlin.com>
-References: <20231114090743.865453-1-romain.gantois@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F4315495;
+	Tue, 14 Nov 2023 09:10:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6EADC433C8;
+	Tue, 14 Nov 2023 09:10:51 +0000 (UTC)
+Message-ID: <a84ce942-e6df-414e-8d0c-e7d3ef3e62f6@xs4all.nl>
+Date: Tue, 14 Nov 2023 10:10:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: romain.gantois@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 3/5] media: platform: visconti: add V4L2 vendor
+ specific control handlers
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+To: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
+ <20231012071329.2542003-4-yuji2.ishikawa@toshiba.co.jp>
+ <6095bd3d-2580-44e2-b622-3ad31e12787f@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <6095bd3d-2580-44e2-b622-3ad31e12787f@xs4all.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Qualcomm IPQ4019 includes a modified version of the QCA8K Ethernet
-switch. The switch's CPU port is connected to the SoC through the internal
-EDMA Ethernet controller. Add support for these two devices, which are
-coupled tightly enough to justify treating them as a single device.
+On 14/11/2023 10:02, Hans Verkuil wrote:
+> On 12/10/2023 09:13, Yuji Ishikawa wrote:
+>> Add support to Image Signal Processors of Visconti's Video Input Interface.
+>> This patch adds vendor specific compound controls
+>> to configure the image signal processor.
+>>
+>> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+>> ---
+>> Changelog v2:
+>> - Resend v1 because a patch exceeds size limit.
+>>
+>> Changelog v3:
+>> - Adapted to media control framework
+>> - Introduced ISP subdevice, capture device
+>> - Remove private IOCTLs and add vendor specific V4L2 controls
+>> - Change function name avoiding camelcase and uppercase letters
+>>
+>> Changelog v4:
+>> - Split patches because the v3 patch exceeds size limit
+>> - Stop using ID number to identify driver instance:
+>>   - Use dynamically allocated structure to hold HW specific context,
+>>     instead of static one.
+>>   - Call HW layer functions with the context structure instead of ID number
+>>
+>> Changelog v5:
+>> - no change
+>>
+>> Changelog v6:
+>> - remove unused macros
+>> - removed hwd_ and HWD_ prefix
+>> - update source code documentation
+>> - Suggestion from Hans Verkuil
+>>   - pointer to userland memory is removed from uAPI arguments
+>>     - style of structure is now "nested" instead of "chained by pointer";
+>>   - use div64_u64 for 64bit division
+>>   - vendor specific controls support TRY_EXT_CTRLS
+>>   - add READ_ONLY flag to GET_CALIBRATION_STATUS control and similar ones
+>>   - human friendry control names for vendor specific controls
+>>   - add initial value to each vendor specific control
+>>   - GET_LAST_CAPTURE_STATUS control is updated asyncnously from workqueue
+>>   - remove EXECUTE_ON_WRITE flag of vendor specific control
+>>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
+>>   - applied v4l2-compliance
+>> - Suggestion from Sakari Ailus
+>>   - use div64_u64 for 64bit division
+>>   - update copyright's year
+>>   - remove redandunt cast
+>>   - use bool instead of HWD_VIIF_ENABLE/DISABLE
+>>   - simplify comparison to 0
+>>   - simplify statements with trigram operator
+>>   - remove redundant local variables
+>>   - use general integer types instead of u32/s32
+>> - Suggestion from Laurent Pinchart
+>>   - moved VIIF driver to driver/platform/toshiba/visconti
+>>   - change register access: struct-style to macro-style
+>>   - remove unused type definitions
+>>   - define enums instead of successive macro constants
+>>   - remove redundant parenthesis of macro constant
+>>   - embed struct hwd_res into struct viif_device
+>>   - use xxx_dma instead of xxx_paddr for variable names of IOVA
+>>   - literal value: just 0 instead of 0x0
+>>   - use literal 1 or 0 instead of HWD_VIIF_ENABLE, DISABLE for register access
+>>   - use true or false instead of HWD_VIIF_ENABLE, DISABLE for function calls
+>>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
+>>
+>> Changelog v7:
+>> - remove unused variables
+>> - split long statements which have multiple logical-OR and trigram operators
+>>
+>> Changelog v8:
+>> - define constant V4L2_CTRL_TYPE_VISCONTI_ISP for datatype
+>>   of Visconti specific controls
+>> - Suggestion from Hans Verkuil
+>>   - remove pr_info()
+>>   - use pm_runtime_get_if_in_use() to get power status
+>>
+>> Changelog v9:
+>> - fix warning for cast between ptr and dma_addr_t
+>>
+>>  .../media/platform/toshiba/visconti/Makefile  |    2 +-
+>>  .../media/platform/toshiba/visconti/viif.c    |   10 +-
+>>  .../platform/toshiba/visconti/viif_controls.c | 3395 +++++++++++++++++
+>>  .../platform/toshiba/visconti/viif_controls.h |   18 +
+>>  .../platform/toshiba/visconti/viif_isp.c      |   15 +-
+>>  drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
+>>  include/uapi/linux/videodev2.h                |    2 +
+>>  7 files changed, 3431 insertions(+), 18 deletions(-)
+>>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+>>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+>>
+> 
+> <snip>
+> 
+> These core changes below should be in a separate patch, not mixed in with
+> the driver.
+> 
+>> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+>> index a662fb60f73f..0c4df9fffbe0 100644
+>> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
+>> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+>> @@ -367,7 +367,9 @@ void v4l2_ctrl_type_op_log(const struct v4l2_ctrl *ctrl)
+>>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
+>>  		pr_cont("AV1_FILM_GRAIN");
+>>  		break;
+>> -
+>> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
+>> +		pr_cont("VISCONTI_ISP");
+>> +		break;
+>>  	default:
+>>  		pr_cont("unknown type %d", ctrl->type);
+>>  		break;
+>> @@ -1163,6 +1165,9 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
+>>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
+>>  		return validate_av1_film_grain(p);
+>>  
+>> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
+>> +		break;
+>> +
+>>  	case V4L2_CTRL_TYPE_AREA:
+>>  		area = p;
+>>  		if (!area->width || !area->height)
+>> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+>> index c3d4e490ce7c..bbc3cd3efa65 100644
+>> --- a/include/uapi/linux/videodev2.h
+>> +++ b/include/uapi/linux/videodev2.h
+>> @@ -1915,6 +1915,8 @@ enum v4l2_ctrl_type {
+>>  	V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY = 0x281,
+>>  	V4L2_CTRL_TYPE_AV1_FRAME	    = 0x282,
+>>  	V4L2_CTRL_TYPE_AV1_FILM_GRAIN	    = 0x283,
+>> +
+>> +	V4L2_CTRL_TYPE_VISCONTI_ISP = 0x290,
+> 
+> I see you are using the same V4L2_CTRL_TYPE_VISCONTI_ISP for all the compound
+> controls. But that's not allowed: the V4L2_CTRL_TYPE_ defines determine the
+> control type, so each struct used by a control needs its own type.
 
-Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
----
- .../boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi | 13 +++
- arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi      | 94 +++++++++++++++++++
- 2 files changed, 107 insertions(+)
+Actually, you don't want to add such a type at all. This is all driver specific,
+so support like this belongs in the driver.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
-index da67d55fa557..6a185b8b31c6 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4018-ap120c-ac.dtsi
-@@ -242,6 +242,19 @@ &mdio {
- 	pinctrl-names = "default";
- };
- 
-+&switch {
-+	status = "okay";
-+};
-+
-+&swport4 {
-+	status = "okay";
-+	label = "lan";
-+};
-+
-+&swport5 {
-+	status = "okay";
-+};
-+
- &wifi0 {
- 	status = "okay";
- 	nvmem-cell-names = "pre-calibration";
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-index 9844e0b7cff9..5a4e5d408f72 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-@@ -596,6 +596,100 @@ wifi1: wifi@a800000 {
- 			status = "disabled";
- 		};
- 
-+		switch: switch@c000000 {
-+			compatible = "qcom,ipq4019-ess";
-+			reg = <0xc000000 0x80000>, <0x98000 0x800>, <0xc080000 0x8000>;
-+			reg-names = "base", "psgmii_phy", "edma";
-+			resets = <&gcc ESS_PSGMII_ARES>, <&gcc ESS_RESET>;
-+			reset-names = "psgmii", "ess";
-+			clocks = <&gcc GCC_ESS_CLK>;
-+			clock-names = "ess";
-+			mdio = <&mdio>;
-+			interrupts = <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				swport1: port@1 { /* MAC1 */
-+					reg = <1>;
-+					label = "lan1";
-+					phy-handle = <&ethphy0>;
-+					phy-mode = "psgmii";
-+
-+					status = "disabled";
-+				};
-+
-+				swport2: port@2 { /* MAC2 */
-+					reg = <2>;
-+					label = "lan2";
-+					phy-handle = <&ethphy1>;
-+					phy-mode = "psgmii";
-+
-+					status = "disabled";
-+				};
-+
-+				swport3: port@3 { /* MAC3 */
-+					reg = <3>;
-+					label = "lan3";
-+					phy-handle = <&ethphy2>;
-+					phy-mode = "psgmii";
-+
-+					status = "disabled";
-+				};
-+
-+				swport4: port@4 { /* MAC4 */
-+					reg = <4>;
-+					label = "lan4";
-+					phy-handle = <&ethphy3>;
-+					phy-mode = "psgmii";
-+
-+					status = "disabled";
-+				};
-+
-+				swport5: port@5 { /* MAC5 */
-+					reg = <5>;
-+					label = "wan";
-+					phy-handle = <&ethphy4>;
-+					phy-mode = "psgmii";
-+
-+					status = "disabled";
-+				};
-+			};
-+		};
-+
- 		mdio: mdio@90000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.42.0
+A good example of that is V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP in
+drivers/media/platform/nxp/dw100/dw100.c: there all the handling is done in
+the driver, and it adds init/validate/log/equal ops as well.
+
+Regards,
+
+	Hans
+
+> 
+> I also noticed looking through include/uapi/linux/visconti_viif.h that some
+> of the struct have holes. I really want to avoid holes in structs used by
+> controls, it is bad practice.
+> 
+> The pahole utility is very useful for testing this. It is also highly
+> recommended to check for both 32 and 64 bit compilation: the struct layout
+> must be the same, otherwise you would run into problems if a 32 bit application
+> is used with a 64 bit kernel.
+> 
+> Finally, Laurent and/or Sakari will also take a look at this driver, for some
+> reason this driver has been mostly reviewed by me, but I am not really the
+> expert on ISPs.
+> 
+> Regards,
+> 
+> 	Hans
+> 
+>>  };
+>>  
+>>  /*  Used in the VIDIOC_QUERYCTRL ioctl for querying controls */
+> 
+> 
 
 
