@@ -1,74 +1,81 @@
-Return-Path: <devicetree+bounces-15525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA707EA84D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 02:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6E07EA85A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 02:46:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F4F61C20749
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 01:39:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79FD41C2084D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 01:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D9D612C;
-	Tue, 14 Nov 2023 01:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E46612C;
+	Tue, 14 Nov 2023 01:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="JhNcD0jD"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="iChFUhSb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352F56101
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 01:38:59 +0000 (UTC)
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2017.outbound.protection.outlook.com [40.92.103.17])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7DD1B2;
-	Mon, 13 Nov 2023 17:38:57 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651BB6101
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 01:45:07 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2060.outbound.protection.outlook.com [40.92.42.60])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD901D43;
+	Mon, 13 Nov 2023 17:45:05 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ISvgisN7O64msiXWsxJl+wNssu1oWz3KzuFuPqREQNkVlDqZ6qVy+FmVi46fHz0Knzm1s+IPGsAcTGVdTDQ+xPvFLCOe3lLmK3YrXdV1YkDlhA/dcVxR6wAdZSOj9tfBDsVkOBix9F9kqDsf2bvhMbTb7Wgdx1ODxzd8c9YMGpfmxwI999rABaJjYAHDWukI0xxaEYwBcoqws+9RO1ZDb9CwLOTbmSDKJO9HCq8qGul9Zqg3rMcUVG5hh0A8L7j4rdjB0Z+3MJEu2u5lSgQJ8+2tjde+Dc4mjjmZKP47P0q7R3ukN93H2PuAFSJAPgsIE8SByTwxBzC4ZAi8BeJVSg==
+ b=KUX7ZqQVQyAMLouds+alBOUXtXi1DPdr89WTQqFroFWsTzcuD4B+70DUg6YKNeVHXzAcpKuBf7zG/TFR4LfpKd1q6uu4JplNLxcCeiZsoLHXkyXZnDiBxauzi/K/NoXN9nYtUeZ6mSW1qfWdBSs0V5Zk3lhWPVSg4isJGbALy49FDEhVDZdjCaQINSJLZ8Jp0ze/VvP5jerAUjmDxbRKjiLvsJvTLe93hH0CD78sZccw1L26dgzioxsznsPyD14s1WP8xqWRoPUN70+SQ4wjhMLwsYDBYPzX4CZC4DGHqbKpP9ILudckhJenaHaOAHB9TnrnOJMaVQCb5ttpa+aVSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9haC56Kmp/BJ8W1MaJtORpKeLFwZhhS7SFxHsrLmJCE=;
- b=E8F4UbR3lATAOx6nHPfQckwSg+6bPl2zftqAlfwn/ucEJoVXly3aAKZ2NH9/GYeJNrdgIEKhh/GbfxjwZZJZHU1j85KEg2iWyx9SgPRGUR327vH5Te9n4Guc8XfYf9ceMAay6jgmPuujeSWpO0ZKGJyQZqzgkZd9LK0GJ0uS5JvX1b/0WfYOFZolQ+61wCjuWfL/FskQoi1N1bZtqhw4fzmZL19D8cNO8gDuyeyxVNjzQ7M+YMd3PkOQMehix/Uy34X195kIsJpg+3QTX65OGcwkSQEaUVpwmFKw61hgu53xirshC01WE3rHd3v+L66PszybCod1eRa13O0xxF96bQ==
+ bh=w55uGHYAiXPyE2WciqceQNTFuT5ytx+sDK/NNdoyhVw=;
+ b=ix5GC4RFiNDUt5ameNxfIvVMwOY1au0/SeA53S3mCGf1ErAmS5q4uvhdfeyY6SkFxlPfiqxKzcWsZ8Ii26UaQZKywHRUo7x/oa1/kUAvOOkWHoQ/4+d1YXTToCbssuLoG2SMRBb03ADE2pfmjIoYzC37lgT9DA7GYPWJSE1olfJ4BhxGKQKlS1nimiGVwFglxV+Avu4lhgMnbJjZ76TLWKVG41Q5U8SxkIR22Zc0psNjgPBFnbtcCwc42c8RJ2ngBhquc8diUDKSVuUDuLNWN/iuVnzoTo8wYbILWmLaRabYvPKE7ptojkTD5UyKjK+NwGrenxDqtb4Hle6zmMXLYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9haC56Kmp/BJ8W1MaJtORpKeLFwZhhS7SFxHsrLmJCE=;
- b=JhNcD0jD1XDaxW2njdKGk4FVlKJVAkdslFDmPT2fAtlAkKnDECReG80DoW68gYP27CFLFsSlKklaSCupke3QaBV1jfqhVAFKmgMuUYxkXVUJkIEKRuHJMc5Z1E9YxY8qCPZ5ikmysMdoWghOEjBJ8vlAXQH2QC5D6dqAmfR4eVEgkpe3ruKAjP/4VMKvpbYNt0D2xlBPzLhixoOiLdCWGYhW5YeBk2pvHhCMrwTCuZis3uLnnBTbccxbxZ+sAqYd7r9qMrv5hz/1KYVeHjBp7xGVznNF9wZPyYq8GJ3zf1VGw/YZiDYfmNk5FLIpvNylfdDnoo60P2/2galEUk/MLg==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN3P287MB2027.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1cd::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6977.31; Tue, 14 Nov 2023 01:38:50 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3%6]) with mapi id 15.20.6977.029; Tue, 14 Nov 2023
- 01:38:50 +0000
+ bh=w55uGHYAiXPyE2WciqceQNTFuT5ytx+sDK/NNdoyhVw=;
+ b=iChFUhSbrC/i37uTjzYbMtL1ELPWQh6ltqHI0hWOlWoeebfpOQd9kUEbtop0owH7yxVHPPc8YaX15Y+J9KYiwlu5sj9fAkHm4bzEeE2RvhignMCHQ+qcgMKRgnSH/itphuUARSlIRiO9gGqZ8Nz9Q5pv99e2Hs+DBH/MrZ3Hqip+Aw9wHbhxgGtBG99DkkhLs2TA8GLi1sViKQ/XPm0Ubc55WjI30HUsuJ3okO+tBWvs8ue8+bRFVQ3drprHOzh3RkqnZcabVEhyE0B/B5kQ7VKv2PpmjgOmjDFPfuYS4yAh1ePZueFCZyOKHIztXwvPfzjwKZpXLO4+rTxVYihiBQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DS0PR20MB5894.namprd20.prod.outlook.com (2603:10b6:8:14c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Tue, 14 Nov
+ 2023 01:45:03 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.6977.029; Tue, 14 Nov 2023
+ 01:45:03 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Chen Wang <unicorn_wang@outlook.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Guo Ren <guoren@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
+Date: Tue, 14 Nov 2023 09:45:33 +0800
 Message-ID:
- <MA0P287MB033298A1F0F1B59CDF110E52FEB2A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Tue, 14 Nov 2023 09:38:47 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] riscv: dts: cv1800b: add pinctrl node for cv1800b
-To: Jisheng Zhang <jszhang@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20231113005702.2467-1-jszhang@kernel.org>
- <20231113005702.2467-2-jszhang@kernel.org>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20231113005702.2467-2-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [afc3IvA1y6NMvwZR57xOIjn45l38FSxtnxp+x+PP3rc=]
-X-ClientProxiedBy: SI1PR02CA0060.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::17) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
+ <IA1PR20MB4953EBB4DA58A7170D865B0CBBB2A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.1
+In-Reply-To: <MA0P287MB03326F420E96FE3198C81C21FEB2A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+References: <MA0P287MB03326F420E96FE3198C81C21FEB2A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [14V6GTMZK3kth1r3/4lzfeAFY3jxbNQPNYYCugxXz/k=]
+X-ClientProxiedBy: TYCPR01CA0023.jpnprd01.prod.outlook.com (2603:1096:405::35)
+ To IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
 X-Microsoft-Original-Message-ID:
- <daecf0b5-dbca-4156-bf38-c4a8555a1908@outlook.com>
+ <20231114014535.54585-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,125 +84,105 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB2027:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10e38c53-14bf-45f0-24e9-08dbe4b273ba
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS0PR20MB5894:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ca5a701-e052-438d-6d21-08dbe4b3526b
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	OiRp+SU5AzBOifgHwv7iNk/K/8XEjV7nNqwgQM24EQFV9gYuZxVnJlThkeE0K6SiAx6NmbUuuvKrCRd4vHP0D2I3gldDyR0x/7F+BocoW5jpqL27sdTWqCBisH+9rn9O6IZJgS0Io9V+19BkRQkAiWdd0oCI0PS531bX/Oa4tMwCHQ0vI3PKeVnp3jGWtagQGL/uQDP+Wa9A+KbgiXTmuMpnuTacGE9k/YhMDWe7PgmQr5nQMtqL3aeH3XM3FX5aYVgxkiFkCniq8QAlm6WGk5Hq9IlJsj2vlVWNqy2i0vmZfSfCDfSccDXBdLk394+9M2k7joV9IUAaHNlSev7YiD2M99Js78Me7N8oOPGhR/EOXPmTBS6glVNCza0Hll3CrtynBFriU+aGtmY9GOjE3Mu9yTRmw77gcdO2cp396+LW63pptrLAA4EndekHHontlIPavMVwaJ+QR6XT0mZQe7e0ijWUfiiswx1ybZ3CkRhQfaqPP/gmIs1MAqCXqeGqSP4/dA8kR1dbFvH/ZJ/mT3IMt018LOB0WKrH22teIdCZKmddGP3oLl2IIytMLm5G
+	BVZZ5ObqbowdWHTRqtpw8vN+RYGgj7akjK+/rIuFQ53LvedTijVQIZNvT0MMAKyqqsokZhk2Udek3D60HA0MYWYWjXrngGdRhqLlKg2mf6h3QzmQ9A88Y0KB0pbt224J552fXFFD+I+tDcnydflKRgXwjYd8mYbqd9WGLXBVHvJB+5Zl62TVnS5O/UtzhJ8szy+aWtywqShmqFe42uplVwfqxfpY06TLY4pdjgtusMabfgu83rf9uiOYB738dZ+LNloS5VkNAYepIYqEf48YD7Aj+RjXSyQk14RV8e8jyS2Lo4WEFoy30ErruAInmEMPmI8xz04EapojQ8MiuO1kLhSRjM7yZYUgXZdv2uBRfElsVW7lgUcSPiZk5NubYTaSFzidtc4R4N9YRbbNnGAqlF0Ljaey1wy+spHn4Ynuami49xvgdNO9o/vgi3bjI9XPex1Yq9NlN7GRiZTf1Zd+xSsimbsIY6A1nPT6SGw6gL8WfWAo2r1Qp3G2g4AVf52Am7STpzERnLARU1xmlK/LvpW1aBCBIvd8NhuYwxSxauIvMfani6UwfKx4vcAhP416oZwQAxN5CwNWfrbnUY019EqtdLRrTBDHH8XmN38YYoHYqo4YiDMQhJotB8xPUcnQ
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eG9ic3JOK3hHODh4VFdmbFdkYzR0b3JQblZQUE5ZUEdiOU9NLzVsRnhqaDE2?=
- =?utf-8?B?cnhtZ1dBcVZzUWVhaGhhNk9xTlFtamQrQkgvTDUwNzRqQ1ZMRGdjN3lmbTZn?=
- =?utf-8?B?UHlFNmtYK29URkV3eUhXRXU3eFA0b0dDR3BNdzdUQVJGVXg2ZlRvbmwzL1Uz?=
- =?utf-8?B?R1Y2dUpmR3QyelRVRVBZMk83K0VCdHI1MXU4a1N1YWxmSlVSVWhGd2FwdTVH?=
- =?utf-8?B?bTRXUmpTOHpYVmxYeDNYTHNzTmdkdkhaMFhSazl0NFg5bE9pdEx2TkV2bHNr?=
- =?utf-8?B?aWt0dXBDeElkK2Z5WHFkd3llaTI2U2dzN2dwb0dnNHBSZTRITXpsZmhPUmxL?=
- =?utf-8?B?R0xoa0puL2ZRb3Q3MDNWSDg2ZW5oaklLYU84UTVmeXp1cDZuckE3a0FlSytX?=
- =?utf-8?B?V3MrVU1RRERlYzhkdnF3a25ZT0UvU0xMc1lndXQ2TUNQOHhFR3VsaHM2QmJO?=
- =?utf-8?B?WWdvU1pHNTA3bG9IcmovY2lDMDV1OWtVNUcyUWRvVzBYc2VXczE1OXFoclJH?=
- =?utf-8?B?ODltODlEK3piVEdnNzlpSzJvN3loZ0RVNEhPTUVJK1d3TDlzdktWUThzdVEw?=
- =?utf-8?B?aUZreFRGUHg4T3UyK1BzMUVjL0FxM3VnODFSZU13bWVkVVNVcWt5dTJTRHly?=
- =?utf-8?B?UUxvbFF0TzFCQnVXc1NtZEw2OFN1ejdNOUh5bUJLNW9yekZYUWMrZURRVTRh?=
- =?utf-8?B?ZGJlV20vZlUzaVVSRXdhYU5zMko1RmhNMGE5dWFQMUJpZytOMnFqcjJzRXRv?=
- =?utf-8?B?TGJPNVY0WmUvQk5aR2VrcTNjMGRFN3JCSzRIWFdmTE9DZUZJd1Y3UkVLSUU3?=
- =?utf-8?B?eHNqdFlLanVWdUZqVnNBWTJ0ZDlTRG5hOEVtRnExZEthSk4xd0tiWE1FMXNH?=
- =?utf-8?B?clYrYTZsNHVrYjFDNGloazhXV1Bob21GZWgvUDEwVGRPU2FvR3N6Z1dsaENr?=
- =?utf-8?B?bkVyTXF5QXgwcGp5b0FLc1BJdEhXOG4xQ2x1amRtNEpiQUlweHI3MStLUUJE?=
- =?utf-8?B?MDBrczd2NTc3QTFvaFVSMHQ4TzNCK0tnc2pGNUpDQUw4ZjdaSHR1eXdZQXpG?=
- =?utf-8?B?RTEwR1QxbkxiSTErYmJIYmdnRlZoM24zeWNXNW5KbjlPb2FVNEdoOUt4YWpV?=
- =?utf-8?B?cHhhVFFBYlZFZ2d5WHpkVlpKNzBTd1p1aklkL0RNWktIeXRwU3RDMXd6TzFm?=
- =?utf-8?B?L2lsWElXMXEwT3c3QjZEZW1ZclhSV0h3WHFEelNGMzdYWHhOeisvaTh6R0dI?=
- =?utf-8?B?S1BnUWdXWHJQVHNtUlNrT0szZlp0VUw0bDk4OUZubUVGSVh5MUJsSkRHeGJq?=
- =?utf-8?B?Q3ErR0txSVhHVE04SmR1K1BCcWlLdVZuVHBMMVFyTlFkMGd6elRCa0o4N2Nx?=
- =?utf-8?B?RnhVeHBKMW1vR3A4eWJ5WGNFbEMvL09xeG90Y1VUUnptcFRPWmVhUDlZbklm?=
- =?utf-8?B?TTA2R2Zoek84d25FanNJSU8zc0RxSloxd1JQK1dyTWhTNVhHUWJ2aTBUc1Vk?=
- =?utf-8?B?WUpDeGRkQlVCRTk1Z0dpN1Z5N25DTjg0Qk1VT29ZMnBhVzNXRkJUYXRqT2JP?=
- =?utf-8?B?U09tVUQwa2NDd1JnUmV5dE9rZ25FNFNkUWVnaWtpTHM2blBPQTlIMjhMZVZi?=
- =?utf-8?Q?8A16MguMkTI9TuICH+HpmfiK2X6bUp3NQnWDzORkR0JI=3D?=
+	=?us-ascii?Q?3XjcRCNnH4DTNwFoK0h/HNXn6MW/YyU8VT6iCXGW6xP1dokv9gtHvUG4kU6B?=
+ =?us-ascii?Q?idAnTWlmDTM42lSrOpLpF0wjUBBDP9e82fzyjKy5z15K15kaeDmWH+8vD6zf?=
+ =?us-ascii?Q?NA9ABqCevBeZDcMlssstDXMYsK+kIY9Gyse603b0fXJOwfSPtyOipXFmdjlJ?=
+ =?us-ascii?Q?1X2ulDUPcaT3u+N6y8KFQc729aP4n+1yjPLV2DLYdGwaMOahrefooc6rHa9A?=
+ =?us-ascii?Q?Wmo4+TGQYrwtoP6nPuTI+JBj0GeUiZPTeWLuFPjZ6/qZsxvw1d8/xcUqSAPj?=
+ =?us-ascii?Q?6gBZU0AB+ua9Y5TaCEdfe9FbzWK0a9YyUPbjRmPluu4beqbo2ktpi4jBSY4H?=
+ =?us-ascii?Q?KbtYVbz0LlbSkUnw61FujnrSj4JqZ7LsJDdsMyhnDbVAusaWgheW8SzuDnL1?=
+ =?us-ascii?Q?GA3oDIvO3cAw5tvtZD42kzg93QJY/ow8XxdRDfttYqsJU7axi/v+iWNgopJ1?=
+ =?us-ascii?Q?Nx4Z0Bly21iWcirbFRXASFvTY9uAuYqlNNg7UZ3PmcTYpcu9/PGbDN4PgTDB?=
+ =?us-ascii?Q?35zsxpXlkBGmXtlmnSsbA8jNi5TIAx+6r9kmUgqHGaSm20lOkO5M17N53GVW?=
+ =?us-ascii?Q?/RdjcaUcB2MS7OGpcR/YA9ojmw5D07R389VK7tGsOOAYGbF9aIJA0LO3exR3?=
+ =?us-ascii?Q?6kQmul/Yg/4fOIfJvW2qth/enbAaaXxoPs5E07mDS74W1F8RWJkM+O/mcvFa?=
+ =?us-ascii?Q?9+vVUOOwnyN+7w/LYT9JBNeKqFQ+J7S4rCfozZWqV+dtD6WK0gguYOqe5A3j?=
+ =?us-ascii?Q?28hbK+BFHXrcJRcCXrukjvN4cxjjK3FRdsV2fd67iJBQulp9xghh0qjPpwsk?=
+ =?us-ascii?Q?6fb6yPLl5wags0HEuaga9QNRCKJhUrUj227fOozkZxcXDrxwuidjXaYaERP8?=
+ =?us-ascii?Q?awuuF8jJ+YTi/oBx3XIxYLBm8fJvQe1C3DULRPnsd4T+xpyhyVa1KPVnFNYX?=
+ =?us-ascii?Q?uXf57AVGFBqyERWGvBsLByYrlDtOo5GGTz8jKLfsbLmqR5qNJ3WuTrwPHlcf?=
+ =?us-ascii?Q?YkdGvI/m8IwS81lox5QDYz0JmFs+++CUOXeHkH7dBXCad7ShTiwmDAfeyEAr?=
+ =?us-ascii?Q?Qsfmu9tkncJ8iSoMCeulce1R5C76Q9LWE6aLVcpGCKGqC50FrENbJybaXTSG?=
+ =?us-ascii?Q?DFF86Kh/3w+7/JR6cuUyDvvIPjPJ2g8736PdWY86R08N02g0g1kNsRj2ba+s?=
+ =?us-ascii?Q?KvL8a0JnOBjisJyMcIdPraDWmf+Muojfw0TGFMBya+YEAq+R14bY/Ts1q6g?=
+ =?us-ascii?Q?=3D?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10e38c53-14bf-45f0-24e9-08dbe4b273ba
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ca5a701-e052-438d-6d21-08dbe4b3526b
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2023 01:38:50.3248
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2023 01:45:03.8674
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB2027
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR20MB5894
 
-
-On 2023/11/13 8:57, Jisheng Zhang wrote:
-> Add the reset device tree node to cv1800b SoC reusing the
-> pinctrl-single driver.
+>On 2023/11/14 8:45, Inochi Amaoto wrote:
+>> The timer registers of aclint don't follow the clint layout and can
+>> be mapped on any different offset. As sg2042 uses separated timer
+>> and mswi for its clint, it should follow the aclint spec and have
+>> separated registers.
+>>
+>> The previous patch introduces a new type of T-HEAD aclint timer which
+>> has clint timer layout. Although the timer has the clint layout, it
+>> should follow the aclint spec and uses the separated mtime and mtimecmp
+>> regs. So a ABI change is needed to make the timer fit the aclint spec.
+>>
+>> To make T-HEAD aclint timer more closer to the aclint spec, use two regs
+>> to represent the mtime and mtimecmp.
+>>
+>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+>> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer")
+>> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
+>> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+>> ---
+>>   .../devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml  | 5 +++--
+>>   1 file changed, 3 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
+>> index fbd235650e52..c3080962d902 100644
+>> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
+>> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.yaml
+>> @@ -17,7 +17,7 @@ properties:
+>>         - const: thead,c900-aclint-mtimer
+>>
+>>     reg:
+>> -    maxItems: 1
+>> +    maxItems: 2
 >
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->   arch/riscv/boot/dts/sophgo/cv-pinctrl.h | 19 +++++++++++++++++++
->   arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 10 ++++++++++
->   2 files changed, 29 insertions(+)
->   create mode 100644 arch/riscv/boot/dts/sophgo/cv-pinctrl.h
+>The first one is for mtime and the second one is for mtimecmp, right?
 
+Yes, that is right.
 
-I'm afraid there will not be more cv* chip in coming days. So I would 
-suggest you use "cv1800b-pinctrl.h" first here. If we see more cv* 
-coming, and if they will reuse the definition here, we can consider 
-optimize the filename, what do you think?
+>Recommend to add some comment in binding file to make it clear.
+>
 
-BTW, how about defining the file name as "cv1800b.h" and I'm not sure if 
-you will have more macro const definition for other modules?
+Thanks for your advice.
 
-> diff --git a/arch/riscv/boot/dts/sophgo/cv-pinctrl.h b/arch/riscv/boot/dts/sophgo/cv-pinctrl.h
-> new file mode 100644
-> index 000000000000..ed78b6fb3142
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/cv-pinctrl.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * This header provides constants for pinctrl bindings for Sophgo CV* SoC.
-> + *
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +#ifndef _DTS_RISCV_SOPHGO_CV_PINCTRL_H
-> +#define _DTS_RISCV_SOPHGO_CV_PINCTRL_H
-> +
-> +#define MUX_M0		0
-> +#define MUX_M1		1
-> +#define MUX_M2		2
-> +#define MUX_M3		3
-> +#define MUX_M4		4
-> +#define MUX_M5		5
-> +#define MUX_M6		6
-> +#define MUX_M7		7
-> +
-> +#endif
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> index e04df04a91c0..7a44d8e8672b 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> @@ -6,6 +6,8 @@
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/reset/sophgo,cv1800b-reset.h>
->   
-> +#include "cv-pinctrl.h"
-> +
->   / {
->   	compatible = "sophgo,cv1800b";
->   	#address-cells = <1>;
-> @@ -55,6 +57,14 @@ soc {
->   		dma-noncoherent;
->   		ranges;
->   
-> +		pinctrl0: pinctrl@3001000 {
-> +			compatible = "pinctrl-single";
-> +			reg = <0x3001000 0x130>;
-> +			#pinctrl-cells = <1>;
-> +			pinctrl-single,register-width = <32>;
-> +			pinctrl-single,function-mask = <0x00000007>;
-> +		};
-> +
->   		rst: reset-controller@3003000 {
->   			compatible = "sophgo,cv1800b-reset";
->   			reg = <0x03003000 0x1000>;
+>Chen
+>
+>>
+>>     interrupts-extended:
+>>       minItems: 1
+>> @@ -38,6 +38,7 @@ examples:
+>>                               <&cpu2intc 7>,
+>>                               <&cpu3intc 7>,
+>>                               <&cpu4intc 7>;
+>> -      reg = <0xac000000 0x00010000>;
+>> +      reg = <0xac000000 0x00000000>,
+>> +            <0xac000000 0x0000c000>;
+>>       };
+>>   ...
+>> --
+>> 2.42.1
+>>
+>
 
