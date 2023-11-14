@@ -1,56 +1,62 @@
-Return-Path: <devicetree+bounces-15563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFE177EAD6A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:53:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4157EAD7E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:02:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC351C2083F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 09:53:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3F2E28102C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D8A168D9;
-	Tue, 14 Nov 2023 09:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9715F179B6;
+	Tue, 14 Nov 2023 10:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WI5fqCKO"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dhtfD1f+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D571798B;
-	Tue, 14 Nov 2023 09:53:29 +0000 (UTC)
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22214191;
-	Tue, 14 Nov 2023 01:53:28 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 348DE2BC;
-	Tue, 14 Nov 2023 10:52:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1699955579;
-	bh=GNHoQv0bcWc8Y22LUMF0GP8avbvT78ir75Al0FeLhrc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WI5fqCKOj3RvH11obhS8vnqlv7ht3bI7rAl7ESv0LjDPfw60fur+K+v9MIOdfMxri
-	 rvvSC99x8NP6aTTTQxfOvJUBKLUzHhPc5SPqOl+2m9bcKEBq4Z+t/JbjhoVr6Kxolm
-	 98ZYIlQMsCJG0ZJM2PG6UUtxIiFbqQDezprUl4z4=
-Date: Tue, 14 Nov 2023 11:53:31 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>
-Cc: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 3/5] media: platform: visconti: add V4L2 vendor
- specific control handlers
-Message-ID: <20231114095331.GA13826@pendragon.ideasonboard.com>
-References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
- <20231012071329.2542003-4-yuji2.ishikawa@toshiba.co.jp>
- <6095bd3d-2580-44e2-b622-3ad31e12787f@xs4all.nl>
- <a84ce942-e6df-414e-8d0c-e7d3ef3e62f6@xs4all.nl>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997FF1803D;
+	Tue, 14 Nov 2023 10:02:08 +0000 (UTC)
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428D8191;
+	Tue, 14 Nov 2023 02:02:03 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E62F920011;
+	Tue, 14 Nov 2023 10:01:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1699956121;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1lnq+WegjgapWVtw6ANN/5vC9p0PJaSZ3zKf7qrNvjU=;
+	b=dhtfD1f+VCI1J5EjE6P+5EQj/6WvGKBcBWpBLhsKnokMDHowszRitrJYBCniWoswNtR5r3
+	D7PmJQeF88qog6nkkqo2a6vxUVJ9LUrlJnc+ji3L5dlGwP4nRRdY61hva5VZNhnY2ja+jh
+	51Pjhu1nKEjVY0VBzwTiX+21k1Ep0GsfveVIrbepJ9L9fx/yeOvlD0/FjPU92UAUwt8XF9
+	mLlARSGPBEAevbw2Idkao2+7hiovlt9GMsjV3wgjryuGFogGKaMJXYROnjeBKlj488LC9R
+	w8wUlneRLGrvx/qliscN5TazNDoTSDnb53yZIpPDWEKjNQuIzWRSmwnbnUz6TQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>, Greg
+ Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>, Peter Chen
+ <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>, Nishanth
+ Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
+ <kristo@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ =?utf-8?Q?Th=C3=A9o?=
+ Lebrun <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 6/6] arm64: dts: ti: k3-j7200: use J7200-specific USB
+ compatible
+In-Reply-To: <20231113-j7200-usb-suspend-v1-6-ad1ee714835c@bootlin.com>
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-6-ad1ee714835c@bootlin.com>
+Date: Tue, 14 Nov 2023 11:01:59 +0100
+Message-ID: <87wmuk64bs.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,175 +64,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <a84ce942-e6df-414e-8d0c-e7d3ef3e62f6@xs4all.nl>
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Tue, Nov 14, 2023 at 10:10:50AM +0100, Hans Verkuil wrote:
-> On 14/11/2023 10:02, Hans Verkuil wrote:
-> > On 12/10/2023 09:13, Yuji Ishikawa wrote:
-> >> Add support to Image Signal Processors of Visconti's Video Input Interface.
-> >> This patch adds vendor specific compound controls
-> >> to configure the image signal processor.
-> >>
-> >> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> >> ---
-> >> Changelog v2:
-> >> - Resend v1 because a patch exceeds size limit.
-> >>
-> >> Changelog v3:
-> >> - Adapted to media control framework
-> >> - Introduced ISP subdevice, capture device
-> >> - Remove private IOCTLs and add vendor specific V4L2 controls
-> >> - Change function name avoiding camelcase and uppercase letters
-> >>
-> >> Changelog v4:
-> >> - Split patches because the v3 patch exceeds size limit
-> >> - Stop using ID number to identify driver instance:
-> >>   - Use dynamically allocated structure to hold HW specific context,
-> >>     instead of static one.
-> >>   - Call HW layer functions with the context structure instead of ID number
-> >>
-> >> Changelog v5:
-> >> - no change
-> >>
-> >> Changelog v6:
-> >> - remove unused macros
-> >> - removed hwd_ and HWD_ prefix
-> >> - update source code documentation
-> >> - Suggestion from Hans Verkuil
-> >>   - pointer to userland memory is removed from uAPI arguments
-> >>     - style of structure is now "nested" instead of "chained by pointer";
-> >>   - use div64_u64 for 64bit division
-> >>   - vendor specific controls support TRY_EXT_CTRLS
-> >>   - add READ_ONLY flag to GET_CALIBRATION_STATUS control and similar ones
-> >>   - human friendry control names for vendor specific controls
-> >>   - add initial value to each vendor specific control
-> >>   - GET_LAST_CAPTURE_STATUS control is updated asyncnously from workqueue
-> >>   - remove EXECUTE_ON_WRITE flag of vendor specific control
-> >>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
-> >>   - applied v4l2-compliance
-> >> - Suggestion from Sakari Ailus
-> >>   - use div64_u64 for 64bit division
-> >>   - update copyright's year
-> >>   - remove redandunt cast
-> >>   - use bool instead of HWD_VIIF_ENABLE/DISABLE
-> >>   - simplify comparison to 0
-> >>   - simplify statements with trigram operator
-> >>   - remove redundant local variables
-> >>   - use general integer types instead of u32/s32
-> >> - Suggestion from Laurent Pinchart
-> >>   - moved VIIF driver to driver/platform/toshiba/visconti
-> >>   - change register access: struct-style to macro-style
-> >>   - remove unused type definitions
-> >>   - define enums instead of successive macro constants
-> >>   - remove redundant parenthesis of macro constant
-> >>   - embed struct hwd_res into struct viif_device
-> >>   - use xxx_dma instead of xxx_paddr for variable names of IOVA
-> >>   - literal value: just 0 instead of 0x0
-> >>   - use literal 1 or 0 instead of HWD_VIIF_ENABLE, DISABLE for register access
-> >>   - use true or false instead of HWD_VIIF_ENABLE, DISABLE for function calls
-> >>   - uAPI: return value of GET_CALIBRATION_STATUS follows common rules of error codes
-> >>
-> >> Changelog v7:
-> >> - remove unused variables
-> >> - split long statements which have multiple logical-OR and trigram operators
-> >>
-> >> Changelog v8:
-> >> - define constant V4L2_CTRL_TYPE_VISCONTI_ISP for datatype
-> >>   of Visconti specific controls
-> >> - Suggestion from Hans Verkuil
-> >>   - remove pr_info()
-> >>   - use pm_runtime_get_if_in_use() to get power status
-> >>
-> >> Changelog v9:
-> >> - fix warning for cast between ptr and dma_addr_t
-> >>
-> >>  .../media/platform/toshiba/visconti/Makefile  |    2 +-
-> >>  .../media/platform/toshiba/visconti/viif.c    |   10 +-
-> >>  .../platform/toshiba/visconti/viif_controls.c | 3395 +++++++++++++++++
-> >>  .../platform/toshiba/visconti/viif_controls.h |   18 +
-> >>  .../platform/toshiba/visconti/viif_isp.c      |   15 +-
-> >>  drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
-> >>  include/uapi/linux/videodev2.h                |    2 +
-> >>  7 files changed, 3431 insertions(+), 18 deletions(-)
-> >>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
-> >>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
-> >>
-> > 
-> > <snip>
-> > 
-> > These core changes below should be in a separate patch, not mixed in with
-> > the driver.
-> > 
-> >> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> >> index a662fb60f73f..0c4df9fffbe0 100644
-> >> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> >> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> >> @@ -367,7 +367,9 @@ void v4l2_ctrl_type_op_log(const struct v4l2_ctrl *ctrl)
-> >>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
-> >>  		pr_cont("AV1_FILM_GRAIN");
-> >>  		break;
-> >> -
-> >> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
-> >> +		pr_cont("VISCONTI_ISP");
-> >> +		break;
-> >>  	default:
-> >>  		pr_cont("unknown type %d", ctrl->type);
-> >>  		break;
-> >> @@ -1163,6 +1165,9 @@ static int std_validate_compound(const struct v4l2_ctrl *ctrl, u32 idx,
-> >>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
-> >>  		return validate_av1_film_grain(p);
-> >>  
-> >> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
-> >> +		break;
-> >> +
-> >>  	case V4L2_CTRL_TYPE_AREA:
-> >>  		area = p;
-> >>  		if (!area->width || !area->height)
-> >> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> >> index c3d4e490ce7c..bbc3cd3efa65 100644
-> >> --- a/include/uapi/linux/videodev2.h
-> >> +++ b/include/uapi/linux/videodev2.h
-> >> @@ -1915,6 +1915,8 @@ enum v4l2_ctrl_type {
-> >>  	V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY = 0x281,
-> >>  	V4L2_CTRL_TYPE_AV1_FRAME	    = 0x282,
-> >>  	V4L2_CTRL_TYPE_AV1_FILM_GRAIN	    = 0x283,
-> >> +
-> >> +	V4L2_CTRL_TYPE_VISCONTI_ISP = 0x290,
-> > 
-> > I see you are using the same V4L2_CTRL_TYPE_VISCONTI_ISP for all the compound
-> > controls. But that's not allowed: the V4L2_CTRL_TYPE_ defines determine the
-> > control type, so each struct used by a control needs its own type.
-> 
-> Actually, you don't want to add such a type at all. This is all driver specific,
-> so support like this belongs in the driver.
-> 
-> A good example of that is V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP in
-> drivers/media/platform/nxp/dw100/dw100.c: there all the handling is done in
-> the driver, and it adds init/validate/log/equal ops as well.
+Hello Th=C3=A9o,
 
-Actually, I think a better option is to use parameters buffers instead
-of controls, like other ISP driver do.
+> On our platform, suspend-to-idle or suspend-to-RAM turn the controller
+> off thanks to a power-domain. This compatible triggers reset on resume
+> behavior to reconfigure the hardware.
+>
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/=
+dts/ti/k3-j7200-main.dtsi
+> index 709081cd1e7f..581905d9199e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -788,7 +788,7 @@ pcie1_ep: pcie-ep@2910000 {
+>  	};
+>=20=20
+>  	usbss0: cdns-usb@4104000 {
+> -		compatible =3D "ti,j721e-usb";
+> +		compatible =3D "ti,j7200-usb";
 
-> > I also noticed looking through include/uapi/linux/visconti_viif.h that some
-> > of the struct have holes. I really want to avoid holes in structs used by
-> > controls, it is bad practice.
-> > 
-> > The pahole utility is very useful for testing this. It is also highly
-> > recommended to check for both 32 and 64 bit compilation: the struct layout
-> > must be the same, otherwise you would run into problems if a 32 bit application
-> > is used with a 64 bit kernel.
-> > 
-> > Finally, Laurent and/or Sakari will also take a look at this driver, for some
-> > reason this driver has been mostly reviewed by me, but I am not really the
-> > expert on ISPs.
-> > 
-> >>  };
-> >>  
-> >>  /*  Used in the VIDIOC_QUERYCTRL ioctl for querying controls */
+What about keeping the old compatible as fallback in the unlikley case
+we have a new dtb with an old kernel ?
 
--- 
-Regards,
+Gregory
 
-Laurent Pinchart
+>  		reg =3D <0x00 0x4104000 0x00 0x100>;
+>  		dma-coherent;
+>  		power-domains =3D <&k3_pds 288 TI_SCI_PD_EXCLUSIVE>;
+>
+> --=20
+> 2.41.0
+>
+>
+
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
