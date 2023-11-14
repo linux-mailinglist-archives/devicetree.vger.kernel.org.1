@@ -1,163 +1,162 @@
-Return-Path: <devicetree+bounces-15578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C26A7EADDE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:20:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 922907EADEA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:23:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 590C91C208B8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:20:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20F1728118D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A8719462;
-	Tue, 14 Nov 2023 10:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953361944A;
+	Tue, 14 Nov 2023 10:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K+HGsPui"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="j7PaDjLH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF50C18C39
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 10:19:59 +0000 (UTC)
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D341AB
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:19:58 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4084e49a5e5so46947495e9.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:19:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699957196; x=1700561996; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OEIBIUZc6uePJfntJdIEYKl8kqhtvCCVMaiOaHpDyfM=;
-        b=K+HGsPuiYL3ZrqRk7KkXHGbkyLrn6PeTwb33cDrYHxY5xNX5cpz53uQSSv23D8aN8N
-         JwXyC8Fc4OvS+vhbmSrGPPsiUHia0y5rrk2kYhwCg9PhI2vRNdMvgjjUWjjhiLmGHojM
-         MuW8XF93vuy1QC6Sc7igbbTFCkjnevsvtghCeWCLs/qSAJykX3GvE6uy8waLeejkGC29
-         Egpoctb92Bgjc8QdUEAL7CR4ZZ863/EVhoBC9JLJ6W+qig7ANMoWwcuXnz7xOZtBAuYB
-         6bsAtMz8zylgoelMrKkt53zc5o5xAXDfzKtwFVt8UukWhI6fTny9h1cpPJRHz3+uGPkl
-         cBUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699957196; x=1700561996;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OEIBIUZc6uePJfntJdIEYKl8kqhtvCCVMaiOaHpDyfM=;
-        b=mClLVP8HqI3eTzBfKYiD1GUa1you/B4iucfeMy5A4i0qDFzceWEZU72V/EWnhv3+ED
-         ylLfipH9ZD/bmUbNGDzQYKl5pAc7HoIhjvP+M0BeRn561vScMHxR6uscc4G/4QXav7jM
-         LW8tScUzdHShOCk6bohNleMOC25D9TOcJo3bH5GZOiCcqPqR418QgXIBdCLvKpwDc4Ne
-         rl41la28S2NNPpBOFEwxYsm6eHMSdK332W5CdLvRMz+MSFqwlN/MGhtsOAWsD23u8Zk/
-         98QVr6/rtmij4qF5qJW3j/qGC46qqCu5SJhIkWlz5xJ4KZyf8AkTB4ksDJNqEnAWqiTR
-         6ksw==
-X-Gm-Message-State: AOJu0YzM3Mh1osD/BMLO72VbLYsIeoENAzuvm/0RiwakN9Pl37CUvFNI
-	ykbPCJxK0gjecq8cAvHj0BJacg==
-X-Google-Smtp-Source: AGHT+IFNvpoPpsHx2p5m3MMv9VHHwSghZIW3y1edhUbi+6SVcRkn4CBysD08DhvHC8uZ2rPXGDk8rw==
-X-Received: by 2002:a5d:4e85:0:b0:32f:7967:aa4d with SMTP id e5-20020a5d4e85000000b0032f7967aa4dmr6050646wru.68.1699957196533;
-        Tue, 14 Nov 2023 02:19:56 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v9-20020a5d43c9000000b0032da022855fsm7419675wrr.111.2023.11.14.02.19.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 02:19:56 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 14 Nov 2023 11:19:51 +0100
-Subject: [PATCH 2/2] pmdomain: amlogic: meson-ee-pwrc: add support for G12A
- ISP power domain
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1149718C1E;
+	Tue, 14 Nov 2023 10:23:33 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2088.outbound.protection.outlook.com [40.107.237.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853F083;
+	Tue, 14 Nov 2023 02:23:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BYOaxv73hiVMFJARDvhwo7eYcJWbUB/iSz10iNBLEm9wYhj0gBPS9B5oSshwnhCec1biGn8RmM0UJumtu9m9JeEv0Q3UuEMhhryqE6eYnihhqmJxB0nXSHjlfOmUgrJ+TrKrKv0u5sqQ4cuSPHqury78HcBI36HuPJYdomuRTv9Rk/hIxpqjdaRHMZJXXJw6q/BNtnqA4JmtVA2wvddLCjX6OKkrnAK1htGo4dO7XXEF4WjIFkzsXF9qVF3dQniW69AMGQK0A7bJz/welSx95L1/IxnKZNc3hAqr7r75ThXiiPU8uILoLokscsQZytjCqJErkN7S3JvVxN+L8fIEnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4ubI5IiEL99rDFZ3f2L/n5Q1zVEJfO7x5Uk3ivXQMAY=;
+ b=GkhyRW1vBIkWt+qSE0u1ArpkfQl1oVJwm7uB3THO9xFSrHJ4h1ne0QZB+6tlRWll6z0Yi/eUmC3qO2qFKlJQc3j7LhpPGLz97U4QmZ2Qxiaz0n+inTrL3EOvto5th+9k4sLpvajH8hcW6jmIyC5DHKHgk6r/R/Nrd/TO0OjD/6ZZakPxKzEV5xSGi/4bytcX0eTXfPdjC+NE9qB+/ZVCpimEUBgyr4fVIHpwEp1wmgXFYF3FYm8cW1HCd8ed8315BpQ147L/gQGcfRxOVDw4/m/G+lZenn9mz/zdX2KWnzopf88gxxygMlhFgHLGNs3WBD6s+JlmqzbooXS11X+tPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4ubI5IiEL99rDFZ3f2L/n5Q1zVEJfO7x5Uk3ivXQMAY=;
+ b=j7PaDjLHCMwneaLYDEjvu7Zts7uoM36TUGehH0ahunn42TZvfGv8BXR5b55abTN+nzBJ06+yWNPQ4OVBDZ7HUdehtfgOmGTBvY+6Ne2guFI5lJ9NznsAg0aQ2wFDS7PSZnDqxEFanSCZJYHIMrmPWvdm7DYgIqNaz2ZLtL/sUcI=
+Received: from CH0PR13CA0022.namprd13.prod.outlook.com (2603:10b6:610:b1::27)
+ by CYYPR12MB8750.namprd12.prod.outlook.com (2603:10b6:930:be::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Tue, 14 Nov
+ 2023 10:23:30 +0000
+Received: from DS3PEPF000099E1.namprd04.prod.outlook.com
+ (2603:10b6:610:b1:cafe::82) by CH0PR13CA0022.outlook.office365.com
+ (2603:10b6:610:b1::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.17 via Frontend
+ Transport; Tue, 14 Nov 2023 10:23:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS3PEPF000099E1.mail.protection.outlook.com (10.167.17.196) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7002.17 via Frontend Transport; Tue, 14 Nov 2023 10:23:30 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Tue, 14 Nov
+ 2023 04:23:29 -0600
+Received: from xhdlakshmis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.32 via Frontend
+ Transport; Tue, 14 Nov 2023 04:23:26 -0600
+From: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Michal Simek <michal.simek@xilinx.com>, Adrian Hunter
+	<adrian.hunter@intel.com>
+CC: <linux-mmc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <git@amd.com>, <saikrishna12468@gmail.com>
+Subject: [PATCH v2] dt-bindings: mmc: arasan,sdci: Add gate property for Xilinx platforms
+Date: Tue, 14 Nov 2023 15:53:21 +0530
+Message-ID: <20231114102321.1147951-1-sai.krishna.potthuri@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-2-f01e6fca67a0@linaro.org>
-References: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-pmdomain-v1-0-f01e6fca67a0@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2024;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=aQxr32do09NNbq0amsdwX/uvKdT6sjjcfu6Gh0FrHoI=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlU0nJG2mljBw/0T6F93TKPKViSSLGHPI+v240fNwU
- 6mi3DumJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVNJyQAKCRB33NvayMhJ0XjED/
- 9KRANEUmUjaRu1euBCtDmLf/JYF1uTV/2Zv2jc7KgMIDYp88B7esJ6pba+UtJ3jN3oj/xO2oRkRPWA
- gn3mgr1zCNWeFchLMDHwrE9AOwUQlesIWdh2PZSwSxZ9M+4IyyWY8shQkUVKf4U6/2hD4tujoQ8HaX
- C37kWyzbxzLZ2oWFl3DxsGAFk5doAr6Uh4q523pFst1oS0fs3WU6Ms5UgAf+6McUPwaPWSth3JRvG1
- V6ybYoD8aQmPjlvO+0TcsfemJ9U8OzU76SlgENyFxTHMSi/O0080wR2dGQAYfrRYyiRJDGa5IuNgLX
- Gf2/hs48OniwJBKhpc0FJQ2fQWOW2LKyoDw00w7CSoBujUqwHTR8GOupyHqqOodBrsXXmfyrucu0Au
- qINla3qD8EYH/br77LI4Zlt9F4KpKR7bI7DnznwBtRTsg9AUK0tIwSVgapO9vDCirhQML0m3sksavo
- wSmFDAqgSV1foZkzxtKndM/yM7G/g2bf3fpsY4QoGy40QnKfHCWZgNdvKp/yycTpTR+AtqhWgY8Qd2
- o1cskcw0iSfh+R5Mle6a071YtCqQ5mSUCMsFn9v/2nTKAnrh1+82YcrdHiGYHO2neof5AUxNK9aV1y
- bPYUBc1t9KJPXT35IEmzS9XP9L8AOOYy42+RD4smlOdstkhbboEWekFvpG8A==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099E1:EE_|CYYPR12MB8750:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3275a7cb-f149-442e-beee-08dbe4fbbf82
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	XMQsZqWJS/b6i9azFvwev7ky+Xo2xjzmjdgGPIw8ChbQAlf9YmnhwCuS4NFeHMYftg4fH6NRRfSHgQ0Ip4Zm6W0mISkzF7ZlueHwc+kkFLAYeGeLzP13Syziupfrp2HkieBXEQMFHsnH75+fkKue3YGeEIPX4DdU+tvp1HOD+8BgbQUDnROgNUmnim37vGhk1oZzGJZ1sJuWzdpqoXoeGaxg0fwLYykunRF5/ZkoCvp5C8CJ0tc1KX5R835vYOKtMG2MOyMq5L6e3n10zh0qmI7wWT+Edfm76+W6wyKAPNyO3MF2pbOJ1vju/RiM516Fn2VMGsTg5F1ODXHTal0JTpVzG1/xnsp8QSP27t21BVT3VddXIH/nRUjYSLrpsPkBOCiu6Zrm9QK92s833iTws2l8JPghdJ7a+5KKCv8T3BSijf9LfEzI5+Gnlr+RxYl4wmlb3Hy4TZLKH47nJbHMJKUlRALKzFZ70yz2Z4R+2AqiKdjJZbaqyLo2ZIaYzrU40YD+/t3mRjPxqjh68LQSkTZwBcKCZgpvKoEc7gGeRczB8AEUPHWLmowlFaYun5P0512NXUbBXjWMiVDxW7BbICGDIbCt8ofRJGMLSYhtspm3QJxoBasJHoRInC8uC0rG4SDsEsOgOFZ+vIqufE+tgGx5RHwE8kh4wTOtb2AJIBTOnrb48F9CGFQ/whPpOAuKAW3KP23RGKdspMi8gT9w9DI0T7G8gQvxhFv3KPD/7Fy484fYIF+zv2+5krJwIERi73P8jTp2/T6XZs1w5H8HtQ==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(396003)(346002)(39860400002)(136003)(230922051799003)(64100799003)(82310400011)(1800799009)(186009)(451199024)(46966006)(40470700004)(36840700001)(2906002)(36860700001)(5660300002)(7416002)(86362001)(40460700003)(83380400001)(356005)(81166007)(103116003)(6666004)(478600001)(41300700001)(47076005)(316002)(70206006)(426003)(336012)(4326008)(2616005)(8676002)(8936002)(70586007)(1076003)(82740400003)(36756003)(54906003)(26005)(110136005)(40480700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2023 10:23:30.3216
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3275a7cb-f149-442e-beee-08dbe4fbbf82
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS3PEPF000099E1.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8750
+X-Spam-Level: *
 
-Add entries for the ISP power domain found in the Amlogic G12B SoC
+From: Swati Agarwal <swati.agarwal@amd.com>
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Add gate property in example node for Xilinx platforms which will be used
+to ungate the DLL clock. DLL clock is required for higher frequencies like
+50MHz, 100MHz and 200MHz.
+DLL clock is automatically selected by the SD controller when the SD
+output clock frequency is more than 25 MHz.
+
+Signed-off-by: Swati Agarwal <swati.agarwal@amd.com>
+Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/pmdomain/amlogic/meson-ee-pwrc.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Note: This patch only updates the example nodes with the gate property for
+Xilinx platforms.
 
-diff --git a/drivers/pmdomain/amlogic/meson-ee-pwrc.c b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-index 0dd71cd814c5..cba216a2175e 100644
---- a/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-+++ b/drivers/pmdomain/amlogic/meson-ee-pwrc.c
-@@ -47,6 +47,8 @@
- 
- #define G12A_HHI_NANOQ_MEM_PD_REG0	(0x43 << 2)
- #define G12A_HHI_NANOQ_MEM_PD_REG1	(0x44 << 2)
-+#define G12A_HHI_ISP_MEM_PD_REG0	(0x45 << 2)
-+#define G12A_HHI_ISP_MEM_PD_REG1	(0x46 << 2)
- 
- struct meson_ee_pwrc;
- struct meson_ee_pwrc_domain;
-@@ -115,6 +117,13 @@ static struct meson_ee_pwrc_top_domain g12a_pwrc_nna = {
- 	.iso_mask = BIT(16) | BIT(17),
- };
- 
-+static struct meson_ee_pwrc_top_domain g12a_pwrc_isp = {
-+	.sleep_reg = GX_AO_RTI_GEN_PWR_SLEEP0,
-+	.sleep_mask = BIT(18) | BIT(19),
-+	.iso_reg = GX_AO_RTI_GEN_PWR_ISO0,
-+	.iso_mask = BIT(18) | BIT(19),
-+};
-+
- /* Memory PD Domains */
- 
- #define VPU_MEMPD(__reg)					\
-@@ -231,6 +240,11 @@ static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_nna[] = {
- 	{ G12A_HHI_NANOQ_MEM_PD_REG1, GENMASK(31, 0) },
- };
- 
-+static struct meson_ee_pwrc_mem_domain g12a_pwrc_mem_isp[] = {
-+	{ G12A_HHI_ISP_MEM_PD_REG0, GENMASK(31, 0) },
-+	{ G12A_HHI_ISP_MEM_PD_REG0, GENMASK(31, 0) },
-+};
-+
- #define VPU_PD(__name, __top_pd, __mem, __is_pwr_off, __resets, __clks)	\
- 	{								\
- 		.name = __name,						\
-@@ -269,6 +283,8 @@ static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
- 	[PWRC_G12A_ETH_ID] = MEM_PD("ETH", meson_pwrc_mem_eth),
- 	[PWRC_G12A_NNA_ID] = TOP_PD("NNA", &g12a_pwrc_nna, g12a_pwrc_mem_nna,
- 				    pwrc_ee_is_powered_off),
-+	[PWRC_G12A_ISP_ID] = TOP_PD("ISP", &g12a_pwrc_isp, g12a_pwrc_mem_isp,
-+				    pwrc_ee_is_powered_off),
- };
- 
- static struct meson_ee_pwrc_domain_desc gxbb_pwrc_domains[] = {
+Changes in v2:
+- Updated subject prefix to match with the subsystem.
 
+ Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+index 3e99801f77d2..9075add020bf 100644
+--- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+@@ -226,8 +226,8 @@ examples:
+           interrupt-parent = <&gic>;
+           interrupts = <0 48 4>;
+           reg = <0xff160000 0x1000>;
+-          clocks = <&clk200>, <&clk200>;
+-          clock-names = "clk_xin", "clk_ahb";
++          clocks = <&clk200>, <&clk200>, <&clk1200>;
++          clock-names = "clk_xin", "clk_ahb", "gate";
+           clock-output-names = "clk_out_sd0", "clk_in_sd0";
+           #clock-cells = <1>;
+           clk-phase-sd-hs = <63>, <72>;
+@@ -239,8 +239,8 @@ examples:
+           interrupt-parent = <&gic>;
+           interrupts = <0 126 4>;
+           reg = <0xf1040000 0x10000>;
+-          clocks = <&clk200>, <&clk200>;
+-          clock-names = "clk_xin", "clk_ahb";
++          clocks = <&clk200>, <&clk200>, <&clk1200>;
++          clock-names = "clk_xin", "clk_ahb", "gate";
+           clock-output-names = "clk_out_sd0", "clk_in_sd0";
+           #clock-cells = <1>;
+           clk-phase-sd-hs = <132>, <60>;
 -- 
-2.34.1
+2.25.1
 
 
