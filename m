@@ -1,191 +1,105 @@
-Return-Path: <devicetree+bounces-15715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67C0D7EB6D4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:20:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F8397EB6F0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 687EF1C20938
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:20:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE3621F25062
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 19:39:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3703C26AC2;
-	Tue, 14 Nov 2023 19:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=weissschuh.net header.i=@weissschuh.net header.b="QE8EOBN4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB96126AD1;
+	Tue, 14 Nov 2023 19:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93611D684;
-	Tue, 14 Nov 2023 19:20:50 +0000 (UTC)
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6AF112;
-	Tue, 14 Nov 2023 11:20:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
-	s=mail; t=1699989646;
-	bh=k8+NOpdnACMH2/pF12mSk0Wious1DDALWoloICjmG0A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QE8EOBN4I3p8IzZ03CbVFBzTlpef8t8K/vqECz6a0xyhGHuWcvaIe3RXTWj1+6FvD
-	 WCjzCS93QieLlU7ZuzY99vdsfwoLS4YggJZ7tutauTTgQ+a+M00kTtTGPvAQDXhKnB
-	 X5wwz6xm2H4lwSpRw31mvJjg+sAEBJskGBYYaJnw=
-Date: Tue, 14 Nov 2023 20:20:46 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: Anshul Dalal <anshulusr@gmail.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jeff LaBundy <jeff@labundy.com>, 
-	linux-kernel-mentees@lists.linuxfoundation.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: input: bindings for Adafruit Seesaw
- Gamepad
-Message-ID: <0defc0e3-dc15-459d-9e71-64f3c38a6931@t-8ch.de>
-References: <20231108005337.45069-1-anshulusr@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18CA26AC2
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 19:39:15 +0000 (UTC)
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1B912E;
+	Tue, 14 Nov 2023 11:39:10 -0800 (PST)
+Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-586ad15f9aaso3068603eaf.2;
+        Tue, 14 Nov 2023 11:39:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1699990750; x=1700595550;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rOp/7D19t5KiQPv67ZkS/lW4hFfliiklN4u28M8krzo=;
+        b=X9qkgWHfSZI5aJo1C2jOHfRVkXcVvsTTEqrp+Ml16a/YtSpP1JN5JpBKzBSZ1X+Q+0
+         PSP7e9juZCdhmeUV0owlXJRES1ol+6pgk30rGsGCjGIqBvuxe64h7pU9pQ4xX/Ncs1m4
+         /cPwL8HZ9jt3wEdTrcYMUA8gccJ7WvZ+SnY8WfeaV6rJZtDuObBWc8B0sHlKeSsBjxRW
+         lnYrVXVYSWKA/ow6oIHRRApudAfX9Bow5nNeH/Y1wItmsd/gZMcQLIZUlS6/U1ZhgZi5
+         hmLpL1r0wuOMl9A6adhV/wagJaNmFcRtbguiyOsCjLNCzkrtnftCqmgHYr4vzGaI6WhL
+         /sgg==
+X-Gm-Message-State: AOJu0Yx/7WR0PHsPld/jhKw2nRYL+qcrtd9NxpTxmDqU66poVeihbJAR
+	PNzlVeTCUQ+h+J+DBQQxEg==
+X-Google-Smtp-Source: AGHT+IERcJTwSE2IjznQUMFUWd+Hpf2yVdVpcnreOJTebqZqadSeZxqKirG0CXS/ZH9d1EgSh8MI0w==
+X-Received: by 2002:a4a:6342:0:b0:56c:cd0c:1d67 with SMTP id r2-20020a4a6342000000b0056ccd0c1d67mr8416884oof.7.1699990750072;
+        Tue, 14 Nov 2023 11:39:10 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id cz26-20020a0568306a1a00b006ce2fce83cbsm318662otb.25.2023.11.14.11.39.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 11:39:09 -0800 (PST)
+Received: (nullmailer pid 396917 invoked by uid 1000);
+	Tue, 14 Nov 2023 19:39:08 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231108005337.45069-1-anshulusr@gmail.com>
+From: Rob Herring <robh@kernel.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20231114185613.322570-1-afd@ti.com>
+References: <20231114185613.322570-1-afd@ti.com>
+Message-Id: <169999074731.396816.12767576201162917485.robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: spi: Convert spi-davinci.txt to YAML
+Date: Tue, 14 Nov 2023 13:39:08 -0600
 
-On 2023-11-08 06:23:35+0530, Anshul Dalal wrote:
-> Adds bindings for the Adafruit Seesaw Gamepad.
+
+On Tue, 14 Nov 2023 12:56:10 -0600, Andrew Davis wrote:
+> Convert spi-davinci.txt to ti,dm6441-spi.yaml.
 > 
-> The gamepad functions as an i2c device with the default address of 0x50
-> and has an IRQ pin that can be enabled in the driver to allow for a rising
-> edge trigger on each button press or joystick movement.
-> 
-> Product page:
->   https://www.adafruit.com/product/5743
-> Arduino driver:
->   https://github.com/adafruit/Adafruit_Seesaw
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+> Signed-off-by: Andrew Davis <afd@ti.com>
 > ---
+>  .../devicetree/bindings/spi/spi-davinci.txt   | 100 ------------------
+>  .../bindings/spi/ti,dm6441-spi.yaml           |  76 +++++++++++++
+>  2 files changed, 76 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-davinci.txt
+>  create mode 100644 Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
 > 
-> Changes for v8:
-> - no updates
-> 
-> Changes for v7:
-> - no updates
-> 
-> Changes for v6:
-> - no updates
-> 
-> Changes for v5:
-> - Added link to the datasheet
-> 
-> Changes for v4:
-> - Fixed the URI for the id field
-> - Added `interrupts` property
-> 
-> Changes for v3:
-> - Updated id field to reflect updated file name from previous version
-> - Added `reg` property
-> 
-> Changes for v2:
-> - Renamed file to `adafruit,seesaw-gamepad.yaml`
-> - Removed quotes for `$id` and `$schema`
-> - Removed "Bindings for" from the description
-> - Changed node name to the generic name "joystick"
-> - Changed compatible to 'adafruit,seesaw-gamepad' instead of
->   'adafruit,seesaw_gamepad'
-> ---
->  .../input/adafruit,seesaw-gamepad.yaml        | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-> new file mode 100644
-> index 000000000000..3f0d1c5a3b9b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/adafruit,seesaw-gamepad.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/adafruit,seesaw-gamepad.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Adafruit Mini I2C Gamepad with seesaw
-> +
-> +maintainers:
-> +  - Anshul Dalal <anshulusr@gmail.com>
-> +
-> +description: |
-> +  Adafruit Mini I2C Gamepad
-> +
-> +    +-----------------------------+
-> +    |   ___                       |
-> +    |  /   \               (X)    |
-> +    | |  S  |  __   __  (Y)   (A) |
-> +    |  \___/  |ST| |SE|    (B)    |
-> +    |                             |
-> +    +-----------------------------+
-> +
-> +  S -> 10-bit percision bidirectional analog joystick
-> +  ST -> Start
-> +  SE -> Select
-> +  X, A, B, Y -> Digital action buttons
-> +
-> +  Datasheet: https://cdn-learn.adafruit.com/downloads/pdf/gamepad-qt.pdf
-> +  Product page: https://www.adafruit.com/product/5743
-> +  Arduino Driver: https://github.com/adafruit/Adafruit_Seesaw
-> +
-> +properties:
-> +  compatible:
-> +    const: adafruit,seesaw-gamepad
 
-I don't really have any clue about devicetree, but shouldn't the actual
-driver have an id-table for this "compatible"?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-It had one up to v5 of the patchset.
+yamllint warnings/errors:
 
-Jeff had some comments about the OF aspect [0], but to me the state now
-seems incorrect.
-Maybe the DT can be dropped completely?
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/spi/ti,dm6441-spi.example.dtb: /example-0/spi@20bf0000: failed to match any schema with compatible: ['ti,dm6446-spi']
 
-Jeff, could you advise?
+doc reference errors (make refcheckdocs):
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The gamepad's IRQ pin triggers a rising edge if interrupts are enabled.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231114185613.322570-1-afd@ti.com
 
-Interrupts are not supported yet by the driver.
-Should the property be there already?
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        joystick@50 {
-> +            compatible = "adafruit,seesaw-gamepad";
-> +            reg = <0x50>;
-> +        };
-> +    };
-> -- 
-> 2.42.0
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-[0] https://lore.kernel.org/lkml/ZTWza+S+t+UZKlwu@nixie71/
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
