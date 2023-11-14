@@ -1,85 +1,179 @@
-Return-Path: <devicetree+bounces-15725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A13DC7EB7B9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:22:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708377EB7CB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 21:30:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BF7C281307
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:22:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 939F71C20AD3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 20:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC53635F0E;
-	Tue, 14 Nov 2023 20:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A1B2FC39;
+	Tue, 14 Nov 2023 20:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LvtooO/Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5555835F0B
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:22:35 +0000 (UTC)
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE56F5;
-	Tue, 14 Nov 2023 12:22:30 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3b512dd7d5bso4083080b6e.1;
-        Tue, 14 Nov 2023 12:22:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC69A2FC29
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:30:02 +0000 (UTC)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC465102
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:30:00 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-da7238b3eb4so6587059276.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 12:30:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1699993800; x=1700598600; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEp6jVcSot0l1bj0gSPJMJ72IrrC8N/v9YLLwxK2Z+M=;
+        b=LvtooO/Yzb6CxvLpwAd90JXJDhxg18uhIm3fDSB4y+xjWsmxlpWmHPwlmhQ1g+Z5M2
+         Cp/cLW+9B2U83t1tTbjlZEcIkj8X9Ysm/JRMQsOk0J/LYI+h33sKFsn7m2OnIiE3iL2U
+         vqnchpV3xZKHxfRQWa/iE0OwtnRkhcecBrCGuZqthuhDbK1lxMMnWCJZSFB4T9Uw8GKU
+         pxPCIO7PoV7h9JRHK2Z5r8QeqnX5nr+Hn0eExyD8gEpF08vNrTszN3SPNDERu7tIped2
+         Bjd5Dpt+5tUCN+3LWvf9AmIdD4wfas00oQmsemEdfW/2LDgeHWUj4sydsyo/XFGJpxQR
+         afEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699993350; x=1700598150;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1699993800; x=1700598600;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=PN1QbTvxURo/h7mHZUP6E5kNPIsXRML0G9gU6ayYKzw=;
-        b=IX+9OGYD7Vu9yVBN+NhdBo6kO6+n607TfiV8gdX06uQf0bKBt15GHNX1+J9HL/ITxz
-         8+qDl/lb3Kvbu3l9erGPHUTXiKv2/jHqa5ldL0+zf9rC/Knip8r9aF/kO8vfS7ce1DqW
-         wl2dCHQqJD9/VarQZxntFvWgKH9VP6j/7aXV/KLzwhDVD2FIRyZaQYsnKNrLAlDH76qW
-         qMyUceBxPohBP0u7pZB+4oy5wDO+0sl6NlsZBwr+uebgFJStUO4XW39aOAalG6D/TNbv
-         LfcI26HCObjyM6/9bp6ixhgXnSoyfUPvEC9Oy2qgvue8OrcgiV9N1EBV+6dp3YNns+BW
-         SLSg==
-X-Gm-Message-State: AOJu0YxdwkstZML7e8SITiS/RCYzUqF1Skyro2CfmQglK2EmgFkF814o
-	xlxtF2rO2JT1dFElBj8ugA==
-X-Google-Smtp-Source: AGHT+IEROoId8ghIa/bUPwkp/GfJOwSwEJpVH6CEk4esrLAW0KKOStfLZDL1S3Jl3FT0nRRTMbYjkA==
-X-Received: by 2002:a05:6808:31a:b0:3a7:a3b1:ac30 with SMTP id i26-20020a056808031a00b003a7a3b1ac30mr11034373oie.44.1699993349749;
-        Tue, 14 Nov 2023 12:22:29 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b7-20020aca1b07000000b003af732a2054sm1236360oib.57.2023.11.14.12.22.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 12:22:29 -0800 (PST)
-Received: (nullmailer pid 455067 invoked by uid 1000);
-	Tue, 14 Nov 2023 20:22:27 -0000
-Date: Tue, 14 Nov 2023 14:22:27 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jim Quinlan <james.quinlan@broadcom.com>
-Cc: Cyril Brulebois <kibi@debian.org>, Jim Quinlan <jim2101024@gmail.com>, linux-arm-kernel@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, linux-kernel@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Conor Dooley <conor+dt@kernel.org>, linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Florian Fainelli <florian.fainelli@broadcom.com>, Nicolas Saenz Julienne <nsaenz@kernel.org>, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v8 1/2] dt-bindings: PCI: brcmstb: Add property
- "brcm,clkreq-mode"
-Message-ID: <169999334704.455013.2784769290164979974.robh@kernel.org>
-References: <20231113185607.1756-1-james.quinlan@broadcom.com>
- <20231113185607.1756-2-james.quinlan@broadcom.com>
+        bh=gEp6jVcSot0l1bj0gSPJMJ72IrrC8N/v9YLLwxK2Z+M=;
+        b=IDb1YJoawAPKyvJb4ybr7AZHBkHcJ/5J7bgzDMe3lkOUaAVk9H3YKrNAVeHRBWNFuO
+         LAmCg57baIjj64E9/0hVSst1/8FoK6r52zTG807GrGT2YpMmwAMjuucYUso2sErWcJSE
+         VopOaNj0rxvIAkzn/8aDv1zqucdvCH0Mq8U/RBxyjqA92ML4KvT8QwtAYZs5mOHGks+R
+         mAoWTjGepBw05xNmd5u02fjLLS9sPFVr5oEpTV++rNmflw8+w5BuqwKG/Dj/w0LUcPpY
+         Cwe2995ao9+KWWx/kqAy7lkq0AzEm07vRWcJdZb1K0cE0sh73ZZ/dcDLORgh0m//D+gg
+         XV3w==
+X-Gm-Message-State: AOJu0YwP9mvJGJIC9Zc9HhoiisFtJxhEntRskUpPs9jgOZjD1SqbOFlw
+	VmaZsTPCSgB+hVyPrl4sZTsC5w==
+X-Google-Smtp-Source: AGHT+IFqBwWtuibP5DuuIJ9ie6ZfT/kFbYkL0UEeiCbDQopeMHCRZHQCG4qRiDAkFZMivqoXc2XDIw==
+X-Received: by 2002:a25:3302:0:b0:d72:a54d:4b7 with SMTP id z2-20020a253302000000b00d72a54d04b7mr10783111ybz.1.1699993800023;
+        Tue, 14 Nov 2023 12:30:00 -0800 (PST)
+Received: from [172.25.83.73] ([12.186.190.1])
+        by smtp.gmail.com with ESMTPSA id h13-20020a0ceecd000000b00671b009412asm3132110qvs.141.2023.11.14.12.29.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Nov 2023 12:29:59 -0800 (PST)
+Message-ID: <c6ca5a25-2d41-4a46-95a5-eb994c4cf529@linaro.org>
+Date: Tue, 14 Nov 2023 21:29:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231113185607.1756-2-james.quinlan@broadcom.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: ad7192: Add properties
+To: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Alexandru Tachici <alexandru.tachici@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20231114200533.137995-1-alisa.roman@analog.com>
+ <20231114200533.137995-2-alisa.roman@analog.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231114200533.137995-2-alisa.roman@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 14/11/2023 21:05, Alisa-Dariana Roman wrote:
+> Document properties used for clock configuration.
 
-On Mon, 13 Nov 2023 13:56:05 -0500, Jim Quinlan wrote:
-> The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-> requires the driver to deliberately place the RC HW one of three CLKREQ#
-> modes.  The "brcm,clkreq-mode" property allows the user to override the
-> default setting.  If this property is omitted, the default mode shall be
-> "default".
+Some background here is missing - otherwise it looks like you are adding
+new properties...
+
 > 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
 > ---
->  .../devicetree/bindings/pci/brcm,stb-pcie.yaml | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  .../devicetree/bindings/iio/adc/adi,ad7192.yaml        | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index 16def2985ab4..9b59d6eea368 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -80,6 +80,16 @@ properties:
+>        and when chop is disabled.
+>      type: boolean
+>  
+> +  adi,clock-xtal:
+> +    description: |
+> +      External crystal connected from MCLK1 to MCLK2.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+And this should be input clock.
+
+> +    type: boolean
+> +
+> +  adi,int-clock-output-enable:
+> +    description: |
+> +      Internal 4.92 MHz clock available on MCLK2 pin.
+> +    type: boolean
+
+This should be clock-cells and clock provider.
+
+Unless you are just documenting already used interface which you do not
+want to break...
+
+> +
+>    bipolar:
+>      description: see Documentation/devicetree/bindings/iio/adc/adc.yaml
+>      type: boolean
+
+Best regards,
+Krzysztof
 
 
