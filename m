@@ -1,151 +1,200 @@
-Return-Path: <devicetree+bounces-15574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FE57EADBD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:15:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4337A7EADC8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 11:16:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6444F1C20A45
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:15:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE8A6B209D1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 10:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9DE18B11;
-	Tue, 14 Nov 2023 10:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7A618AF1;
+	Tue, 14 Nov 2023 10:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K3mS3ipE"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1VLhXwj3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9BB1865F
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 10:14:55 +0000 (UTC)
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D51A199B
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:14:54 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50930f126b1so7165042e87.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:14:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30DE71863F
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 10:16:05 +0000 (UTC)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4166FD56
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:16:02 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c834c52b5aso50219601fa.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 02:16:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699956892; x=1700561692; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=989mY4zS1x08vGe3jaH2doZ857QaMFqojYApjOFNcNA=;
-        b=K3mS3ipEhVwAsgD0DlqqnryuN0O8I1RpncEbq+iHIAPBSUBFNyimf3EtQL+GDnG7sx
-         v+Rip3pQ/D7r8O3qEkcx62naII1M2lqCRl9S/c9ii6VEUH990MjEC3KezrJF1aNNuRFc
-         vbBZkCTTuwwddA405g8QgWkEl9DlC5htH2jNRjZJSCh84xchSqxz3gFuHTPfkfqmaZcd
-         O8I8w7IDcQ6wozRZ7d0zj+YPhD5e4T6ttQNT9necDPYhyrqD+fK6DVuRsmGF9vc0ElHm
-         LjaREFVBPe6lOGtMjiUvRMEGkI/IuzI99Rafq7dcuI6LNN5JRtzPFc+G/mr0k8n1Acxx
-         y19g==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1699956960; x=1700561760; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=S66K1VSLqdDY4G6GRPiKeVmO5YV98+bwwbj3xy8sc9k=;
+        b=1VLhXwj3EOIruxOGDfwi8mkuNo8DbIUZ3e99bnBOXkKkB5GYKKcjnHn/0oHrNF1Uua
+         T4NPzbQT2MS4AuVz8rdMQ0nwnExhXM+JFcKz5NAoCP7VP8HkaKsphJbG4bMg4A4NdP5/
+         2hnS0GUjU4MsBpWLl3v63vfoRvVpqbIR3K/DFUukONZY4VHWUx5ffzcpCimC4EdVcoiQ
+         /xs2l+bvQ0WiHQFnOAh0/wsvpQUSBmGz5VVHm4gcxhYHY0nUefMdh5ka/X4Lq4y8iA8G
+         v1NbzzEp4OwURej0XOxm1qcrEYY7XuflA0CmEJKTuAtTz8LGtjEMc7CsBOpVLVrxO07/
+         55Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699956892; x=1700561692;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=989mY4zS1x08vGe3jaH2doZ857QaMFqojYApjOFNcNA=;
-        b=X5ZfTRUub+lGTZCYTNR17l60QNHF648ooDu9Pe1IdEiIKsvXAss/fIA2eZaK92g3d/
-         Y+QvMNo/9eHPHteoPiqar3aKQSjKIvveBf0j8ay/eOSkuHeht1rsY/x0/OHkNGs6/Ton
-         2+t2Tq9K+QTHLKaWrPQtOEkM5UsbsweD/NujoU5UxVXv2Y/azzvmGZzbY1m2u5o8Q5qY
-         KKPAc9f9MjZVjKStWfK+XCDicW4i9IwJYFQiK8LCAp6Y82744giZeC0vPgH0fl1A6KlO
-         IMUO8vr4DfYzcOQy6e0ySF/eYcqt1YsW66jGbaxYrpGsjnce252L5Fr6duAfuNsTlUGj
-         XPIQ==
-X-Gm-Message-State: AOJu0Yz/9K+R/xU4NlNmYjzf45lV/xjXiJw/y9BihY/u+gZqpVVIKx25
-	AF68Txx7sy0Ib2siqazQSnvQBw==
-X-Google-Smtp-Source: AGHT+IEFDSgibpjMV4Y7PnvYBSXrksO4SQXgiQw6EKC+4nF+gMP8A5o+yNQNi1S3cVJxowIPQccVKg==
-X-Received: by 2002:a05:6512:20d3:b0:503:653:5711 with SMTP id u19-20020a05651220d300b0050306535711mr4965401lfr.9.1699956892200;
-        Tue, 14 Nov 2023 02:14:52 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n2-20020a5d4202000000b0032d886039easm7335585wrq.14.2023.11.14.02.14.51
+        d=1e100.net; s=20230601; t=1699956960; x=1700561760;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S66K1VSLqdDY4G6GRPiKeVmO5YV98+bwwbj3xy8sc9k=;
+        b=k6AiWk/5/YA3uckdJNULLWbblLExdXh882N2fwAkOu15O4OOIBED4D+Y3YaokIiwho
+         T5F7Hl8org0BNO82GbrJ5yIXGQddO+35G3BtIpH3vvdi+FVl6IsLHz+/EPqUfGP3y56B
+         Koc+N4WZsSd7do4zfU3iKjHsIygVMvlNl7GOit8v9SVfCGUv5H5vZSEwHnik2uohFKHP
+         a7k8NG6KUyYsbJkgkQMDFAXHK4HhvLxGczYetl/MEBxAqDeeNKCGHsmKa+zNsaUqySgq
+         6L/q9vJVgaW9DoLIaeA2+teIISxXdQxmWFbO9mcSIANOuNSrPjfMQyH/2AoFMsE4IWSd
+         3VDw==
+X-Gm-Message-State: AOJu0Yzf8QQokiGqxvsdFwx2Bhv9b9xIhRoaKYVcgPIoW8JS4TyEyAEv
+	GwL4vBasXTM1j7JHsE3CUNWppQ==
+X-Google-Smtp-Source: AGHT+IFpFePXPUj6r47XrvY+6vIyAtnVXiV3+sXFtpZsCWqUCGTVFu8vWiDXyJWPzaMTzGRi0imnzg==
+X-Received: by 2002:a2e:9d03:0:b0:2c5:2df8:d321 with SMTP id t3-20020a2e9d03000000b002c52df8d321mr1319633lji.36.1699956960430;
+        Tue, 14 Nov 2023 02:16:00 -0800 (PST)
+Received: from blmsp ([2001:4091:a246:821e:4988:9c5:5b9:1020])
+        by smtp.gmail.com with ESMTPSA id v14-20020a05600c470e00b0040a47091602sm13109300wmo.31.2023.11.14.02.15.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 02:14:51 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 14 Nov 2023 11:14:45 +0100
-Subject: [PATCH 3/3] clk: meson: g12a: add CSI & ISP gates clocks
+        Tue, 14 Nov 2023 02:16:00 -0800 (PST)
+Date: Tue, 14 Nov 2023 11:15:59 +0100
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Martin =?utf-8?Q?Hundeb=C3=B8ll?= <martin@geanix.com>
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+	Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 2/3] can: tcan4x5x: support resuming from rx interrupt
+ signal
+Message-ID: <20231114101559.5wqnhdmklarr3lgv@blmsp>
+References: <20231113131452.214961-1-martin@geanix.com>
+ <20231113131452.214961-3-martin@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231114-topic-amlogic-upstream-isp-clocks-v1-3-223958791501@linaro.org>
-References: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-In-Reply-To: <20231114-topic-amlogic-upstream-isp-clocks-v1-0-223958791501@linaro.org>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
- Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1776;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=G6Kb72oGcBrPLl5eFs681WZSIgqU+YTJL+dNbC8hxWs=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlU0iXw3tWEkFljMjnl008PiXXewEGfT3AHYBO+Wi+
- sQAl3i+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZVNIlwAKCRB33NvayMhJ0QufD/
- 0ceRMlDLWS+bur9qzpxRCQm4JTKJ6Kx+cIpmoZWH64KiPe9srQxK38q/CKawXo+wQvZjc1gWV+ldur
- BgqhGY/VxsjAwt8p+FO7NT8BotOl5Xhh9U4gbEf2DJqMUYjcZx7gLBrpWFNMFLId9cEXCdrmAbo7G/
- UfeW+cHrY5rOCkSvtcAWFUE12xUANkKlU/8VB/51OUcvrS4iyymlxA2qV6EKltNwJRTdLtuMBMFzHT
- 0HzZH7C8MObagKeOiWT3MH4g8tk/sJk98dB3NkL1BH3p7NxCRc9Nsswrtw20S+Nn05Usfvty8mLEeY
- ugjrfY0vyBqZMqmrMxhApo6gmLeex65PpEjR+z7LENPXc46UoAel7LI5fV/y5HOlT+erymy1vPVf+S
- JSOSn1rJ/ESZMYCgdECBtjFXqbAwMt/qDb/NvLD4elGmYYPnbx2z7pytzdidK5CBvvsMYxjbsn3DDU
- WUMUXuwwPY2QNnFpxLic0Obir+1TsIsu+IcS5fnHPf2+2VRRLS27gijuuYvWrJl9GWCDRDqnC+8gIR
- JDuC2awJSuWNOfb//BOiZmN4H+6CyG0ARxAEfvdU2AXfaBC/tXnthHtxvVhHZFJeWAi1iN80IWqaYJ
- tMAOb2UldwqlNqZ1XqH2gzxt2oofds639E4P1jOIzqN0dGsX6tCB85evzSlQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231113131452.214961-3-martin@geanix.com>
 
-Add the gates entires for the CSI ISP domain and CSI PHYs.
+Hi Martin,
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/clk/meson/g12a.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Mon, Nov 13, 2023 at 02:14:51PM +0100, Martin Hundebøll wrote:
+> Implement the "wakeup-source" device tree property, so the chip is left
+> running when suspending, and its rx interrupt is used as a wakeup source
+> to resume operation.
+> 
+> Signed-off-by: Martin Hundebøll <martin@geanix.com>
+> ---
+> 
+> Change in v3:
+>  * Updated to use the property in struct m_can_classdev instead of
+>    passing parameters to suspend/resume functions.
+> 
+> Change in v2:
+>  * Added `static` keyword to dev_pm_ops sturcture
+> 
+>  drivers/net/can/m_can/tcan4x5x-core.c | 34 +++++++++++++++++++++++++--
+>  1 file changed, 32 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
+> index 870ab4aef610..0f4c2ac7e4f6 100644
+> --- a/drivers/net/can/m_can/tcan4x5x-core.c
+> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+> @@ -411,7 +411,7 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
+>  	priv->spi = spi;
+>  
+>  	mcan_class->pm_clock_support = 0;
+> -	mcan_class->pm_wake_source = 0;
+> +	mcan_class->pm_wake_source = device_property_read_bool(&spi->dev, "wakeup-source");
+>  	mcan_class->can.clock.freq = freq;
+>  	mcan_class->dev = &spi->dev;
+>  	mcan_class->ops = &tcan4x5x_ops;
+> @@ -460,6 +460,9 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
+>  		goto out_power;
+>  	}
+>  
+> +	if (mcan_class->pm_wake_source)
+> +		device_init_wakeup(&spi->dev, true);
+> +
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index a8312f29d1cc..b0bd37ae1a81 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -4274,9 +4274,12 @@ static MESON_GATE(g12a_htx_hdcp22,		HHI_GCLK_MPEG2,	3);
- static MESON_GATE(g12a_htx_pclk,		HHI_GCLK_MPEG2,	4);
- static MESON_GATE(g12a_bt656,			HHI_GCLK_MPEG2,	6);
- static MESON_GATE(g12a_usb1_to_ddr,		HHI_GCLK_MPEG2,	8);
-+static MESON_GATE(g12b_mipi_isp_gate,		HHI_GCLK_MPEG2,	17);
- static MESON_GATE(g12a_mmc_pclk,		HHI_GCLK_MPEG2,	11);
- static MESON_GATE(g12a_uart2,			HHI_GCLK_MPEG2,	15);
- static MESON_GATE(g12a_vpu_intr,		HHI_GCLK_MPEG2,	25);
-+static MESON_GATE(g12b_csi_phy1,		HHI_GCLK_MPEG2,	28);
-+static MESON_GATE(g12b_csi_phy0,		HHI_GCLK_MPEG2,	29);
- static MESON_GATE(g12a_gic,			HHI_GCLK_MPEG2,	30);
- 
- static MESON_GATE(g12a_vclk2_venci0,		HHI_GCLK_OTHER,	1);
-@@ -4792,6 +4795,9 @@ static struct clk_hw *g12b_hw_clks[] = {
- 	[CLKID_MIPI_ISP_SEL]		= &g12b_mipi_isp_sel.hw,
- 	[CLKID_MIPI_ISP_DIV]		= &g12b_mipi_isp_div.hw,
- 	[CLKID_MIPI_ISP]		= &g12b_mipi_isp.hw,
-+	[CLKID_MIPI_ISP_GATE]		= &g12b_mipi_isp_gate.hw,
-+	[CLKID_MIPI_ISP_CSI_PHY0]	= &g12b_csi_phy0.hw,
-+	[CLKID_MIPI_ISP_CSI_PHY1]	= &g12b_csi_phy1.hw,
- };
- 
- static struct clk_hw *sm1_hw_clks[] = {
-@@ -5287,6 +5293,9 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&g12b_mipi_isp_sel,
- 	&g12b_mipi_isp_div,
- 	&g12b_mipi_isp,
-+	&g12b_mipi_isp_gate,
-+	&g12b_csi_phy1,
-+	&g12b_csi_phy0,
- };
- 
- static const struct reg_sequence g12a_init_regs[] = {
+You are automatically enabling the device for wakeup here.
 
--- 
-2.34.1
+What do you think about using ethtool's wake-on-lan settings to actually
+enable tcan as a wakeup source? So the devicetree would describe if the
+hardware is capable of wakeups and the software (ethtool) can be used by
+the user to decide if CAN wakeups should be enabled.
 
+I am currently working on something similar for m_can, where m_can can
+be the wakeup source from very deep sleep states. However I can't keep
+the wakeup source always enabled. So this is a kind of a conflict for me
+in this patch. Also I would need to use the wakeup-source flag in m_can
+device nodes as well.
+
+I can share my work later as well, so we can find a good solution that
+works in both cases.
+
+Best,
+Markus
+
+>  	ret = m_can_class_register(mcan_class);
+>  	if (ret) {
+>  		dev_err(&spi->dev, "Failed registering m_can device %pe\n",
+> @@ -488,6 +491,29 @@ static void tcan4x5x_can_remove(struct spi_device *spi)
+>  	m_can_class_free_dev(priv->cdev.net);
+>  }
+>  
+> +static int __maybe_unused tcan4x5x_suspend(struct device *dev)
+> +{
+> +	struct m_can_classdev *cdev = dev_get_drvdata(dev);
+> +	struct spi_device *spi = to_spi_device(dev);
+> +
+> +	if (cdev->pm_wake_source)
+> +		enable_irq_wake(spi->irq);
+> +
+> +	return m_can_class_suspend(dev);
+> +}
+> +
+> +static int __maybe_unused tcan4x5x_resume(struct device *dev)
+> +{
+> +	struct m_can_classdev *cdev = dev_get_drvdata(dev);
+> +	struct spi_device *spi = to_spi_device(dev);
+> +	int ret = m_can_class_resume(dev);
+> +
+> +	if (cdev->pm_wake_source)
+> +		disable_irq_wake(spi->irq);
+> +
+> +	return ret;
+> +}
+> +
+>  static const struct of_device_id tcan4x5x_of_match[] = {
+>  	{
+>  		.compatible = "ti,tcan4x5x",
+> @@ -506,11 +532,15 @@ static const struct spi_device_id tcan4x5x_id_table[] = {
+>  };
+>  MODULE_DEVICE_TABLE(spi, tcan4x5x_id_table);
+>  
+> +static const struct dev_pm_ops tcan4x5x_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(tcan4x5x_suspend, tcan4x5x_resume)
+> +};
+> +
+>  static struct spi_driver tcan4x5x_can_driver = {
+>  	.driver = {
+>  		.name = KBUILD_MODNAME,
+>  		.of_match_table = tcan4x5x_of_match,
+> -		.pm = NULL,
+> +		.pm = &tcan4x5x_pm_ops,
+>  	},
+>  	.id_table = tcan4x5x_id_table,
+>  	.probe = tcan4x5x_can_probe,
+> -- 
+> 2.42.0
+> 
 
