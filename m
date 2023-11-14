@@ -1,164 +1,160 @@
-Return-Path: <devicetree+bounces-15691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 177B57EB4CE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6585E7EB512
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 17:42:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89DB61F254E3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:31:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F06DE1F2554F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Nov 2023 16:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6117A1385;
-	Tue, 14 Nov 2023 16:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B233FB1C;
+	Tue, 14 Nov 2023 16:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h0oLxdom"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="GERmnqXC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7C52AF0D
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 16:31:37 +0000 (UTC)
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7C7119
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:31:35 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-da41e70e334so5931092276.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:31:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1699979494; x=1700584294; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fr9fBrNQghS3PnJBIgxqFuQ3YV89v+EkFP5jOeoN9BI=;
-        b=h0oLxdombhcX61+QbhS50eWQ1gC2f7ymvb1PrvifsdEPOzbPWhmUfqTvCB5ONhKbwE
-         8HGwRvgNRrOtf+Kq6WjmsHHlyuDPxTlYVOLw91Ubg8YlhSkuGZr7OkVwiZJCL1sRVPtt
-         uxre0gBseJrRX39kQ9CfX1n4jRAFQVbWEKMWvlvIRKPPUt0kkWjDsz0KkxZNmvRIzcfQ
-         ZcA6SwWneWcCFlBw0AMBL+JtUNsWYwrxP+bXDpgfkZFp8a73MtUxUFH5gRHW9xY1LBmx
-         PSSf7tba6HmEucd6ABJIaEbLHPigHH16xlU/s7ImXFqGAa+p4l0mCmbheKvphCuqLqIo
-         009g==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3413E476
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 16:42:39 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80230123
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:42:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1699980157;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S0c77MRIfmEGYCNMMqVyI2qPOnHUBgvpZCQHCynNgK8=;
+	b=GERmnqXCS6btgTnkvNuXwSapr4qSlrZNXnedtzpItu6Alli8MhEmNFIZ1B2bfAhuVLH6FH
+	PmjrjMpyRn5mvrsWxxQWmmHGvzkG3XCeJiUGL4YCkefKnwA52PQVDGTIV3pfQMzyHU1A/h
+	xx01W3rsJ3vqk7XbDym1ycEAvVshJSM=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-422-cWMchE8HOraqVTSWM38uZg-1; Tue, 14 Nov 2023 11:42:36 -0500
+X-MC-Unique: cWMchE8HOraqVTSWM38uZg-1
+Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-54061ad6600so3922222a12.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 08:42:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699979494; x=1700584294;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1699980155; x=1700584955;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fr9fBrNQghS3PnJBIgxqFuQ3YV89v+EkFP5jOeoN9BI=;
-        b=nzkGPvQnERK3Z9uH0O7p07ofbX2NaReyErTOaeQQ49XsN8WPyndVbyOf+ZdyigWf8Z
-         +yxHGHkqDtdzm0g20x1vrKWH99R2LVZPYJ2HwvBfNFGLelUaN60tDDDtQ1kLKFPVvvzh
-         qqtdJORR9UHdAGFmBVGP5tloT1tnWkDyOdCl72plHA3AM3GHPNcQaEMKORGuvgTrV5Xr
-         OP4JRcnnYLJcBkAG2hrlfROdLAcdhR3lFTGtlfYMWpmmT3lwqeSh6Fc+Y+5Zv4jqQa5A
-         aRdmHg4ml3vVt1zsZLhwky1NwNuxFx2hsIcp6k4ORRPt4l+jF1rq2Ce9fy0b/fVmt7+m
-         cE6g==
-X-Gm-Message-State: AOJu0Yyo+DsPVcevcFmUFTonZVJydl5Gr1+IO3z14ZRNtUOqrDCrYXHT
-	6fozU4oQGR3Ga6ZhSvvAYpMKkt+iXraonO5S/5yfUw==
-X-Google-Smtp-Source: AGHT+IE5JRixOjxRGUF+c61qIeYY24wdOAvccV78T4FRZCSUWSvo//Cy7fL+VTmLpOHSicQnDTECRUPpp9z3C1BQ8uY=
-X-Received: by 2002:a25:1646:0:b0:daf:579a:79cd with SMTP id
- 67-20020a251646000000b00daf579a79cdmr7364262ybw.27.1699979494683; Tue, 14 Nov
- 2023 08:31:34 -0800 (PST)
+        bh=S0c77MRIfmEGYCNMMqVyI2qPOnHUBgvpZCQHCynNgK8=;
+        b=ohmaFxGUTmCRNNgXJz8QHXsyc4c/aFqX6AohrSVC7iQwyhLgE0+EB+y3bJUpyOEE+t
+         Rhl2y2/DuWZZKPHJtw2kv9Tx5J1KY9WhJrlc43uE/2In7G8LmB8+STtYhdXpVMF4vyga
+         EcjnW+h+FgYKGok6Bc6js2Oh/Y3E+SLOecwZmWysL2afk7aNLnWC1n0huBnJAQsNCNZ4
+         Q5LZm1Mr79+5Pz6Bq2/TtIogwHOyq3Mzb8y6293BsweNiUBJ9upC9NHwExkbwbggYTIh
+         eY5opY3OgDWRJrYWKvSbBBmdOHa1hriTXOP/osAWMgBrtFkuBuWZtUl9uT2YQMgg2tfV
+         pxgA==
+X-Gm-Message-State: AOJu0YyQCzquRcKAicThbRcCedhfNK69pOSiTzPizLbfR3a0Q0R0K9S3
+	YMGX4JfFdd53vTVE8+scttc+O6xrEoJfJUkIbsIdtMyvw3C1wkFQ/Qf9i0UaHyue8r/Pb+IjTk6
+	ABXgQQNQFEBm71gmz9jmN1g==
+X-Received: by 2002:a17:906:4f13:b0:9df:bc50:2513 with SMTP id t19-20020a1709064f1300b009dfbc502513mr7274339eju.65.1699980154876;
+        Tue, 14 Nov 2023 08:42:34 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHfn4c24R5W4bd+EVwrMNaRwBMuNVIsC9zYOUo2FKiKsCdAOBsvD6dioe9WjEOnxb9D3QGFVw==
+X-Received: by 2002:a17:906:4f13:b0:9df:bc50:2513 with SMTP id t19-20020a1709064f1300b009dfbc502513mr7274298eju.65.1699980154501;
+        Tue, 14 Nov 2023 08:42:34 -0800 (PST)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:abf:b8ff:feee:998b? ([2a02:810d:4b3f:de9c:abf:b8ff:feee:998b])
+        by smtp.gmail.com with ESMTPSA id y19-20020a170906525300b009a13fdc139fsm5766753ejm.183.2023.11.14.08.42.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Nov 2023 08:42:34 -0800 (PST)
+Message-ID: <e517d560-3a1f-4e79-9bec-acdc77784bcd@redhat.com>
+Date: Tue, 14 Nov 2023 17:42:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org> <20231108104343.24192-5-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20231108104343.24192-5-krzysztof.kozlowski@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 14 Nov 2023 17:30:58 +0100
-Message-ID: <CAPDyKFrynEEd+y6Qkv_9aTSJy1iLO4bhg-Jg8hEP0CZiWnRJ0w@mail.gmail.com>
-Subject: Re: [PATCH 04/17] dt-bindings: mmc: samsung,exynos-dw-mshc: add
- specific compatibles for existing SoC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaehoon Chung <jh80.chung@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org, 
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 02/20] drm/gpuvm: Helper to get range of unmap from a
+ remap op.
+Content-Language: en-US
+To: Sarah Walker <sarah.walker@imgtec.com>, dri-devel@lists.freedesktop.org
+Cc: frank.binns@imgtec.com, donald.robson@imgtec.com,
+ boris.brezillon@collabora.com, faith.ekstrand@collabora.com,
+ airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, afd@ti.com, hns@goldelico.com,
+ matthew.brost@intel.com, christian.koenig@amd.com, luben.tuikov@amd.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, corbet@lwn.net, linux-doc@vger.kernel.org
+References: <20231031151257.90350-1-sarah.walker@imgtec.com>
+ <20231031151257.90350-3-sarah.walker@imgtec.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <20231031151257.90350-3-sarah.walker@imgtec.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 8 Nov 2023 at 11:44, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Samsung Exynos SoC reuses several devices from older designs, thus
-> historically we kept the old (block's) compatible only.  This works fine
-> and there is no bug here, however guidelines expressed in
-> Documentation/devicetree/bindings/writing-bindings.rst state that:
-> 1. Compatibles should be specific.
-> 2. We should add new compatibles in case of bugs or features.
->
-> Add compatibles specific to each SoC in front of all old-SoC-like
-> compatibles.
->
-> While re-indenting the first enum, put also axis,artpec8-dw-mshc in
-> alphabetical order.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 10/31/23 16:12, Sarah Walker wrote:
+> From: Donald Robson <donald.robson@imgtec.com>
+> 
+> Determining the start and range of the unmap stage of a remap op is a
+> common piece of code currently implemented by multiple drivers. Add a
+> helper for this.
+> 
+> Changes since v7:
+> - Renamed helper to drm_gpuva_op_remap_to_unmap_range()
+> - Improved documentation
+> 
+> Changes since v6:
+> - Remove use of __always_inline
+> 
+> Signed-off-by: Donald Robson <donald.robson@imgtec.com>
+> Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
 
-Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+Reviewed-by: Danilo Krummrich <dakr@redhat.com>
 
-Kind regards
-Uffe
+Want me to apply the patch?
 
->
 > ---
->
-> I propose to take the patch through Samsung SoC (me). See cover letter
-> for explanation.
-> ---
->  .../bindings/mmc/samsung,exynos-dw-mshc.yaml  | 25 ++++++++++++-------
->  1 file changed, 16 insertions(+), 9 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> index 6ee78a38bd74..5fe65795f796 100644
-> --- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> @@ -14,15 +14,22 @@ maintainers:
->
->  properties:
->    compatible:
-> -    enum:
-> -      - samsung,exynos4210-dw-mshc
-> -      - samsung,exynos4412-dw-mshc
-> -      - samsung,exynos5250-dw-mshc
-> -      - samsung,exynos5420-dw-mshc
-> -      - samsung,exynos5420-dw-mshc-smu
-> -      - samsung,exynos7-dw-mshc
-> -      - samsung,exynos7-dw-mshc-smu
-> -      - axis,artpec8-dw-mshc
-> +    oneOf:
-> +      - enum:
-> +          - axis,artpec8-dw-mshc
-> +          - samsung,exynos4210-dw-mshc
-> +          - samsung,exynos4412-dw-mshc
-> +          - samsung,exynos5250-dw-mshc
-> +          - samsung,exynos5420-dw-mshc
-> +          - samsung,exynos5420-dw-mshc-smu
-> +          - samsung,exynos7-dw-mshc
-> +          - samsung,exynos7-dw-mshc-smu
-> +      - items:
-> +          - enum:
-> +              - samsung,exynos5433-dw-mshc-smu
-> +              - samsung,exynos7885-dw-mshc-smu
-> +              - samsung,exynos850-dw-mshc-smu
-> +          - const: samsung,exynos7-dw-mshc-smu
->
->    reg:
->      maxItems: 1
-> --
-> 2.34.1
->
+>   include/drm/drm_gpuvm.h | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+> 
+> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+> index c7ed6bf441d4..c64585dc4e8e 100644
+> --- a/include/drm/drm_gpuvm.h
+> +++ b/include/drm/drm_gpuvm.h
+> @@ -702,4 +702,32 @@ void drm_gpuva_remap(struct drm_gpuva *prev,
+>   
+>   void drm_gpuva_unmap(struct drm_gpuva_op_unmap *op);
+>   
+> +/**
+> + * drm_gpuva_op_remap_to_unmap_range() - Helper to get the start and range of
+> + * the unmap stage of a remap op.
+> + * @op: Remap op.
+> + * @start_addr: Output pointer for the start of the required unmap.
+> + * @range: Output pointer for the length of the required unmap.
+> + *
+> + * The given start address and range will be set such that they represent the
+> + * range of the address space that was previously covered by the mapping being
+> + * re-mapped, but is now empty.
+> + */
+> +static inline void
+> +drm_gpuva_op_remap_to_unmap_range(const struct drm_gpuva_op_remap *op,
+> +				  u64 *start_addr, u64 *range)
+> +{
+> +	const u64 va_start = op->prev ?
+> +			     op->prev->va.addr + op->prev->va.range :
+> +			     op->unmap->va->va.addr;
+> +	const u64 va_end = op->next ?
+> +			   op->next->va.addr :
+> +			   op->unmap->va->va.addr + op->unmap->va->va.range;
+> +
+> +	if (start_addr)
+> +		*start_addr = va_start;
+> +	if (range)
+> +		*range = va_end - va_start;
+> +}
+> +
+>   #endif /* __DRM_GPUVM_H__ */
+
 
