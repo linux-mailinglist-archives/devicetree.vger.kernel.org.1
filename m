@@ -1,111 +1,186 @@
-Return-Path: <devicetree+bounces-15987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD4F7EC664
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:54:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108F47EC669
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38526281572
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:54:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FF5C1C20B52
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1547F2FC3D;
-	Wed, 15 Nov 2023 14:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49FC2FC25;
+	Wed, 15 Nov 2023 14:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RbrA9WVk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sZBjEbY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86322F500
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 14:54:11 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5B5B8
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:54:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1700060050;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1FlIYAXhM/ERDubCadB5WwuUe+5s0MuhfY1IPTS1Qc0=;
-	b=RbrA9WVkY0CxPT8naGjvvd1vu31JvoCBWu+MIy/tYtB18MVxvYiLSV+y8/sv7/qWNmKtxG
-	XKHQuqB6Sty+HZ9xG+RSxMx1hWGmQsmSJBTg4yUWuEqN6N6GwBEkArn2r3JitHht2KzkO8
-	svdxq5X6FeAkUmqbfpHNZLL2GYVQOeM=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-623-YFlIC6T6OhGlGfLHvbiYDQ-1; Wed, 15 Nov 2023 09:54:09 -0500
-X-MC-Unique: YFlIC6T6OhGlGfLHvbiYDQ-1
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-77a3fb5b214so806191485a.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:54:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700060047; x=1700664847;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1FlIYAXhM/ERDubCadB5WwuUe+5s0MuhfY1IPTS1Qc0=;
-        b=QsqpfRCdo1J4AyhX0BFdJLq2hmJw0xMdg0nq2nXC9ViF7QgsPMUtROzTKFSzcQ4lbV
-         TM6XZej0rQjEWwUnX7BTF4VyUyeyKOM+/ooaQdbWHwhiOYqzZbic6Q2JatjJCAObV7Y5
-         pQX28ls3Zmi40e9OjTprMpS3ZkteAtvXdLg0ThEixMnFquE561OW3yvGsrZ38aBUPgsJ
-         9PP1/xdB+MXwx9NS4SshWSxmIzYxfiolhCI3CXtqfvmGPerMDef7khv5yAHhUctqjm5j
-         mldjDUE0uuQc0g9XTnUaUkLMxzlgpMjhyMwa1vkLu0BH7t9csiUlcQHIvmWnnS1s2nF4
-         Pq7Q==
-X-Gm-Message-State: AOJu0Yzzj92P4RAQYfLaI3M6FbGrzCfTspZV6zZeb17OZDnVC3K6g6f0
-	zD+vM79JUBI1dAd1PJHVHa89yY8QGiklke0BWtUYGOZqjw9/ASEXUFu5NiMshtgzxs8AXzyaPxS
-	yZ5F3fzEgP+pM5H3mp0R4Tw==
-X-Received: by 2002:a05:620a:560b:b0:77b:b34e:6262 with SMTP id vu11-20020a05620a560b00b0077bb34e6262mr6700766qkn.46.1700060047605;
-        Wed, 15 Nov 2023 06:54:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE8Q+hB6LwGEOpBjf0tTy48HeUIb95APpcQR8cIO4M7kaLSCpN0/vvs5U/8Y5mL2TRIxjAUaQ==
-X-Received: by 2002:a05:620a:560b:b0:77b:b34e:6262 with SMTP id vu11-20020a05620a560b00b0077bb34e6262mr6700714qkn.46.1700060047365;
-        Wed, 15 Nov 2023 06:54:07 -0800 (PST)
-Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
-        by smtp.gmail.com with ESMTPSA id dx8-20020a05620a608800b0076cc0a6e127sm3521399qkb.116.2023.11.15.06.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 06:54:07 -0800 (PST)
-Date: Wed, 15 Nov 2023 07:54:05 -0700
-From: Jerry Snitselaar <jsnitsel@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: acpica-devel@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>, 
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
-	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev, 
-	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
-	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev, 
-	Paul Walmsley <paul.walmsley@sifive.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, Sven Peter <sven@svenpeter.dev>, 
-	Thierry Reding <thierry.reding@gmail.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux.dev, 
-	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
-	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Lu Baolu <baolu.lu@linux.intel.com>, 
-	Christoph Hellwig <hch@lst.de>, Moritz Fischer <mdf@kernel.org>, 
-	Zhenhua Huang <quic_zhenhuah@quicinc.com>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 00/17] Solve iommu probe races around iommu_fwspec
-Message-ID: <ah7jh6pi5o3s47mz5y4tms46fvpbmaisw6orom6tke2vdsqejm@qvjnxhejqs5i>
-References: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCF72EB08;
+	Wed, 15 Nov 2023 14:54:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E51AC433C8;
+	Wed, 15 Nov 2023 14:54:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700060063;
+	bh=qJzZTmMjUOCQgaFSR0cAlyelD4CebJxSHi50IvMMUXo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sZBjEbY7ekjmsPtfiYZ7Qes3zmOewOIk3dgwa4I4mBP3Ew/Zkl+nv6jT5TcTA0sso
+	 tnXS6s2x92qXATCgr4gauZDg6Cm4OD+QvZMmzaVB8tL7YP3MR/e7tqVcjnPc3RADGe
+	 46rxBZJNMU8z7pMFI5fxDNOVs8my4USq3fMe8GUZZRTVh0+XeJpJ3XhO/mzMLMqfe1
+	 6k2kyzwwGr4bo8dWA7f7q4Rx2YrR0FbKCe3jsqkR/6PVZPBRX2EeLqpKS2/+e9jxUA
+	 Hy2KGZCZ/A2ftHDhNVd/AE5uNEsHGcScCrCuvyBcyx8EGFM/+R4vpA0FGGb9aVTxwH
+	 A70dtOc8HgFfA==
+Date: Wed, 15 Nov 2023 14:54:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	loongson-kernel@lists.loongnix.cn, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, Yinbo Zhu <zhuyinbo@loongson.cn>,
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: loongson,ls2k-thermal: Fix
+ binding check issues
+Message-ID: <20231115-frantic-charter-ccd33e3478de@squawk>
+References: <cover.1698743706.git.zhoubinbin@loongson.cn>
+ <944559ea3bf7ba0a1540f831ccd7d33591622b22.1698743706.git.zhoubinbin@loongson.cn>
+ <20231031-negative-giveaway-6191a2da0cd5@spud>
+ <CAMpQs4+3T9RATpJ5VycnEzkOTx_M2vdt6WPJv_B1Efy81RzCjA@mail.gmail.com>
+ <20231101-clone-facsimile-fd4c37333842@spud>
+ <CAMpQs4L_85yPQXR4t=kaCEuwXK-Jr=L6G=omhAtrOn7CWUMCKw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="onz20QwnE0RQyYcQ"
 Content-Disposition: inline
-In-Reply-To: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+In-Reply-To: <CAMpQs4L_85yPQXR4t=kaCEuwXK-Jr=L6G=omhAtrOn7CWUMCKw@mail.gmail.com>
 
-Did patch 12 v2 get sent? I'm not seeing it locally, nor in lore, and b4 doesn't find it when pulling then thread.
 
-Regards,
-Jerry
+--onz20QwnE0RQyYcQ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Nov 15, 2023 at 12:50:41PM +0600, Binbin Zhou wrote:
+> On Wed, Nov 1, 2023 at 1:59=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+> >
+> > On Wed, Nov 01, 2023 at 07:38:39AM +0600, Binbin Zhou wrote:
+> > > On Tue, Oct 31, 2023 at 10:58=E2=80=AFPM Conor Dooley <conor@kernel.o=
+rg> wrote:
+> > > >
+> > > > On Tue, Oct 31, 2023 at 07:05:49PM +0800, Binbin Zhou wrote:
+> > > > > Add the missing 'thermal-sensor-cells' property which is required=
+ for
+> > > > > every thermal sensor as it's used when using phandles.
+> > > > > And add the thermal-sensor.yaml reference.
+> > > > >
+> > > > > Fixes: 72684d99a854 ("thermal: dt-bindings: add loongson-2 therma=
+l")
+> > > > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > > > > ---
+> > > > >  .../bindings/thermal/loongson,ls2k-thermal.yaml        | 10 ++++=
++++++-
+> > > > >  1 file changed, 9 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/thermal/loongson,l=
+s2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-=
+thermal.yaml
+> > > > > index 7538469997f9..b634f57cd011 100644
+> > > > > --- a/Documentation/devicetree/bindings/thermal/loongson,ls2k-the=
+rmal.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-the=
+rmal.yaml
+> > > > > @@ -10,6 +10,9 @@ maintainers:
+> > > > >    - zhanghongchen <zhanghongchen@loongson.cn>
+> > > > >    - Yinbo Zhu <zhuyinbo@loongson.cn>
+> > > > >
+> > > > > +allOf:
+> > > > > +  - $ref: /schemas/thermal/thermal-sensor.yaml#
+> > > > > +
+> > > > >  properties:
+> > > > >    compatible:
+> > > > >      oneOf:
+> > > > > @@ -26,12 +29,16 @@ properties:
+> > > > >    interrupts:
+> > > > >      maxItems: 1
+> > > > >
+> > > > > +  '#thermal-sensor-cells':
+> > > > > +    const: 1
+> > > > > +
+> > > > >  required:
+> > > > >    - compatible
+> > > > >    - reg
+> > > > >    - interrupts
+> > > > > +  - '#thermal-sensor-cells'
+> > > >
+> > > > Why does it need to be a required property now though?
+> > > > Adding new required properties is technically an ABI break.
+> > >
+> > > Hi Conor:
+> > >
+> > > I don't think it makes sense to have a separate thermal sensor
+> > > definition, it needs thermal-zones to describe specific behaviors,
+> > > e.g. cpu-thermal, so we need '#thermal-sensor-cells' to specify the
+> > > reference.
+> > > And the Loongson-2K1000 has 4 sets of control registers, we need to
+> > > specify the id when referencing it.
+> >
+> > Unfortunately, none of this is an answer to my question.
+>=20
+> Hi Conor:
+>=20
+> Sorry for my late reply.
+>=20
+> Over the past few days, I've been communicating offline with Yinbo
+> (the driver author) about the use of the '#thermal-sensor-cells'
+> attribute. He retested the attribute and determined that it is
+> 'required'.
+>=20
+> We can see that the '#thermal-sensor-cells' attribute in the
+> dt-binding was dropped between the V12 patchset[1] and the V13
+> patchset[2]. Yinbo may have misunderstood Daniel's comment and removed
+> the '#thermal-sensor-cells' attribute from the dt-binding. But the
+> attribute was carelessly still left in the dts file, resulting in the
+> issue not being found during functional validation.
+>=20
+> Indeed, re-adding the '#thermal-sensor-cells' attribute as "required"
+> is technically an ABI breakage, but the driver does not work properly
+> under the current dt-binding rules.
+
+I was going to say that you should add some comment about this in the
+commit message, but at the end of the day - you're not much of a thermal
+sensor without having thermal-sensor-cells, so I think your commit
+message is actually fine.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+and I probably should have recognised that earlier.
+
+Thanks,
+Conor
+
+--onz20QwnE0RQyYcQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVTbkAAKCRB4tDGHoIJi
+0kPGAP4vCF3zOgWBTIduTnedLvxu7tAfmldsc4YY9a/LZhSwHgEAx41v6AmfunzY
+vAEB1T1BmgPRc8b0RFtCKVscJocGXwg=
+=GzLQ
+-----END PGP SIGNATURE-----
+
+--onz20QwnE0RQyYcQ--
 
