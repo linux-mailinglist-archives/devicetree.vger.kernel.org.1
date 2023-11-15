@@ -1,114 +1,179 @@
-Return-Path: <devicetree+bounces-15803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4467EBD15
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 07:29:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFCD17EBD3A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 07:51:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDF991F25347
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 06:29:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83DCD281315
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 06:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F8623D9;
-	Wed, 15 Nov 2023 06:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2112E844;
+	Wed, 15 Nov 2023 06:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BrLPsIcb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aXebQ5bk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D967E
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:29:38 +0000 (UTC)
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC330E9
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:29:35 -0800 (PST)
-Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-5c184b3bbc4so2556194a12.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:29:35 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAB03D6E
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:50:56 +0000 (UTC)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48E45EB;
+	Tue, 14 Nov 2023 22:50:54 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5a7b91faf40so75248647b3.1;
+        Tue, 14 Nov 2023 22:50:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700029775; x=1700634575; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ijWgB/n7wQWOhBbaV1md72p8BCrVtoBj2gz5Jm1idO0=;
-        b=BrLPsIcbbxEeDIlp/W6DNYnO7aFe9v/lWyJ9wXQfaHy54r50+uLkAZfeeY9P1lAhBn
-         S9+G2/jnK2ZaDjho2gMvEYxlniqc2qT9Ty9VMUVgBfSGerEly11jSY/0TU5+MnsNl0yT
-         S0256uC4zYisWcT10Z+uz2XW/xpZkSwONPhZCxcqKDwrrMeDa4ujhK5USuhTvmjdtTuH
-         D/LeRBeHntStjb63XuvRPQdyLYXJ1soFFSjvD+iNnfVwkviglGfkPQhnHZWIc2wUeECM
-         Uhj4VPju1NxAF4lVVrxgpvmHRdjndMyFdGtnBOiHbYJFj4ogEi61KuA7KkWb0gWTo/Qi
-         JsnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700029775; x=1700634575;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1700031053; x=1700635853; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ijWgB/n7wQWOhBbaV1md72p8BCrVtoBj2gz5Jm1idO0=;
-        b=K7ZZ0pHV90Bkjjbd2ktxxRlloU6x3PletBNoxnqZMRmpcwV/7fKZ0ontQxr5nH3P06
-         xV9DbGAkkQuuEZCwld9QSeuNaEEVo2KDUPmg6uGomoNf3aVQTyDhRkMhtbv/05FiX2Ct
-         hTwNiOh2hdTgfrny6Hd9KYvrqw15P/7Uum+wAbXWCU7TWHpQgpy6aHyqr2bR+9+N/+ii
-         3/VV9VBvYX0tufvbzJ1pg3HxkrBP11SGqh5iwkraoD3aqdgmvuz4rCwGTHhX1WSACpx9
-         2pFxhnnQLSNGVU052NrfEvO+WyM2uki95//DojoRst/WgRD7dKZw+OuI4MuXhMSGrfaH
-         0HRA==
-X-Gm-Message-State: AOJu0YxQe41jezQNcx/p+iN4YAkKg7tXs/VFUXRWaTGC4oFuseZqRTqO
-	uJK5Wk8xLVQnzjUQiMFyzukoAw==
-X-Google-Smtp-Source: AGHT+IHNQoS9uDAn0ReyTwQP6t3z0RVvRg7vMQN4mCOr0kGFtghMcGt9yzA+q1gHzzOarfaJd1+BRw==
-X-Received: by 2002:a05:6a20:244e:b0:15e:d84:1c5e with SMTP id t14-20020a056a20244e00b0015e0d841c5emr15202326pzc.38.1700029775212;
-        Tue, 14 Nov 2023 22:29:35 -0800 (PST)
-Received: from localhost ([122.172.82.6])
-        by smtp.gmail.com with ESMTPSA id oo3-20020a17090b1c8300b0028328057c67sm5810344pjb.45.2023.11.14.22.29.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 22:29:34 -0800 (PST)
-Date: Wed, 15 Nov 2023 11:59:32 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: David Dai <davidai@google.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Quentin Perret <qperret@google.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] cpufreq: add virtual-cpufreq driver
-Message-ID: <20231115062932.vz2tyg6wgux5lx6t@vireshk-i7>
-References: <20231111014933.1934562-1-davidai@google.com>
- <20231111014933.1934562-3-davidai@google.com>
+        bh=POR86ACWq50gnyaMlW3Qse0dtzLOhtouY3Pos+VsSEI=;
+        b=aXebQ5bkyoFbSHg5SDogMSy4C4sKKIoOewXqPj45PpfKStbwv+Jeq8gk+iCkRcaySa
+         SSKreVUDHpMVR6WdNOnnK6RfRy2hpbh2gwrriBxuGKzo7s8L8UOVLJIQ7CsqQnA5R1FO
+         w1zQeatnbqPd04rDEb/+/sqXQnWIDd7QcXG261ucb6GomiufANQX5YYJEKOupVdnblsm
+         zkyEBHY46NLtbD7wqRqnATLFEQV2VEBNg2GvIaTckX+AthzRZPm0+Oy7f4eBXQc5weVO
+         z4NcJmKJWLN975su65y/kQ1UCRQdzpwWYRLrd78RG9X1ArSz6Y+kpmm9rWKSvyxEXRXR
+         T0tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700031053; x=1700635853;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=POR86ACWq50gnyaMlW3Qse0dtzLOhtouY3Pos+VsSEI=;
+        b=I2qUf7TYurStwOYYbFNjxLWPsH8EuyScSR5/lQRikLBEeAwpKD7Lwn3WAyTF8PSU0X
+         9K7ARqYzBGaMKyYbgqMHSLphLk2beC323bQo7jCpiKBfL5OhEYHP0FV/IXE8Qu28fUgZ
+         6KKdWRMlq85OxobAyWifH7pXH6cD1RcqJYOCoF+oNjG69RwRYfmZZHNnrpD7fSY5uJZg
+         9aSt1VLPl+L1QV+TTgClbUUw4ky8+m15WFl3RLv8I4PCzCbmMQ/X0T4JmnHApXIasdX4
+         zI6QQS/Jj3v98ydwfoJbx87j0ZfpLH+xAkM6Vr5a2MRVD/HjcGjhh3O9Hqedicj4pktM
+         ceMg==
+X-Gm-Message-State: AOJu0YzMVSP+PP5uLD92sFl6kjLPSnRjSxwUDV8tuDgFSc3L86VlZHCM
+	keqBZtpDmoYWLbeDsJ6/gns1QYKMkYMFhjMaK1tXlYpb7Z4=
+X-Google-Smtp-Source: AGHT+IEvWU+xADG1vVrhuo05S5yemv8lG8npJc7Gem1sHpS7JujsnjhW9DN6x9wSerRwOITRWwumplSH2YEoe+kS57E=
+X-Received: by 2002:a25:383:0:b0:da0:6257:8da4 with SMTP id
+ 125-20020a250383000000b00da062578da4mr9881399ybd.57.1700031053336; Tue, 14
+ Nov 2023 22:50:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231111014933.1934562-3-davidai@google.com>
+References: <cover.1698743706.git.zhoubinbin@loongson.cn> <944559ea3bf7ba0a1540f831ccd7d33591622b22.1698743706.git.zhoubinbin@loongson.cn>
+ <20231031-negative-giveaway-6191a2da0cd5@spud> <CAMpQs4+3T9RATpJ5VycnEzkOTx_M2vdt6WPJv_B1Efy81RzCjA@mail.gmail.com>
+ <20231101-clone-facsimile-fd4c37333842@spud>
+In-Reply-To: <20231101-clone-facsimile-fd4c37333842@spud>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 15 Nov 2023 12:50:41 +0600
+Message-ID: <CAMpQs4L_85yPQXR4t=kaCEuwXK-Jr=L6G=omhAtrOn7CWUMCKw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: loongson,ls2k-thermal: Fix
+ binding check issues
+To: Conor Dooley <conor@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Yinbo Zhu <zhuyinbo@loongson.cn>, WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10-11-23, 17:49, David Dai wrote:
-> diff --git a/drivers/cpufreq/virtual-cpufreq.c b/drivers/cpufreq/virtual-cpufreq.c
-> +static unsigned int virt_cpufreq_set_perf(struct cpufreq_policy *policy)
-> +{
-> +	writel_relaxed(policy->cached_target_freq,
+On Wed, Nov 1, 2023 at 1:59=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
+e:
+>
+> On Wed, Nov 01, 2023 at 07:38:39AM +0600, Binbin Zhou wrote:
+> > On Tue, Oct 31, 2023 at 10:58=E2=80=AFPM Conor Dooley <conor@kernel.org=
+> wrote:
+> > >
+> > > On Tue, Oct 31, 2023 at 07:05:49PM +0800, Binbin Zhou wrote:
+> > > > Add the missing 'thermal-sensor-cells' property which is required f=
+or
+> > > > every thermal sensor as it's used when using phandles.
+> > > > And add the thermal-sensor.yaml reference.
+> > > >
+> > > > Fixes: 72684d99a854 ("thermal: dt-bindings: add loongson-2 thermal"=
+)
+> > > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > > > ---
+> > > >  .../bindings/thermal/loongson,ls2k-thermal.yaml        | 10 ++++++=
++++-
+> > > >  1 file changed, 9 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2=
+k-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-th=
+ermal.yaml
+> > > > index 7538469997f9..b634f57cd011 100644
+> > > > --- a/Documentation/devicetree/bindings/thermal/loongson,ls2k-therm=
+al.yaml
+> > > > +++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-therm=
+al.yaml
+> > > > @@ -10,6 +10,9 @@ maintainers:
+> > > >    - zhanghongchen <zhanghongchen@loongson.cn>
+> > > >    - Yinbo Zhu <zhuyinbo@loongson.cn>
+> > > >
+> > > > +allOf:
+> > > > +  - $ref: /schemas/thermal/thermal-sensor.yaml#
+> > > > +
+> > > >  properties:
+> > > >    compatible:
+> > > >      oneOf:
+> > > > @@ -26,12 +29,16 @@ properties:
+> > > >    interrupts:
+> > > >      maxItems: 1
+> > > >
+> > > > +  '#thermal-sensor-cells':
+> > > > +    const: 1
+> > > > +
+> > > >  required:
+> > > >    - compatible
+> > > >    - reg
+> > > >    - interrupts
+> > > > +  - '#thermal-sensor-cells'
+> > >
+> > > Why does it need to be a required property now though?
+> > > Adding new required properties is technically an ABI break.
+> >
+> > Hi Conor:
+> >
+> > I don't think it makes sense to have a separate thermal sensor
+> > definition, it needs thermal-zones to describe specific behaviors,
+> > e.g. cpu-thermal, so we need '#thermal-sensor-cells' to specify the
+> > reference.
+> > And the Loongson-2K1000 has 4 sets of control registers, we need to
+> > specify the id when referencing it.
+>
+> Unfortunately, none of this is an answer to my question.
 
-Drivers shouldn't be using the cached_target_freq directly. Use the target freq
-or index passed from cpufreq core.
+Hi Conor:
 
-> +static int virt_cpufreq_cpu_exit(struct cpufreq_policy *policy)
-> +{
-> +	topology_clear_scale_freq_source(SCALE_FREQ_SOURCE_VIRT, policy->related_cpus);
-> +	kfree(policy->freq_table);
-> +	policy->freq_table = NULL;
+Sorry for my late reply.
 
-No need of doing this. Also the order of above two calls is wrong anyway.
+Over the past few days, I've been communicating offline with Yinbo
+(the driver author) about the use of the '#thermal-sensor-cells'
+attribute. He retested the attribute and determined that it is
+'required'.
 
--- 
-viresh
+We can see that the '#thermal-sensor-cells' attribute in the
+dt-binding was dropped between the V12 patchset[1] and the V13
+patchset[2]. Yinbo may have misunderstood Daniel's comment and removed
+the '#thermal-sensor-cells' attribute from the dt-binding. But the
+attribute was carelessly still left in the dts file, resulting in the
+issue not being found during functional validation.
+
+Indeed, re-adding the '#thermal-sensor-cells' attribute as "required"
+is technically an ABI breakage, but the driver does not work properly
+under the current dt-binding rules.
+Also, the driver is only valid under LoongArch and will have no effect
+on other architectures.
+
+[1]=EF=BC=9Ahttps://lore.kernel.org/all/20221114024709.7975-2-zhuyinbo@loon=
+gson.cn/
+[2]=EF=BC=9Ahttps://lore.kernel.org/all/20230221095355.9799-2-zhuyinbo@loon=
+gson.cn/
+
+Thanks.
+Binbin
 
