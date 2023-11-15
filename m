@@ -1,161 +1,145 @@
-Return-Path: <devicetree+bounces-15893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759667EC381
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:21:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A462E7EC38A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:25:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E2121C208B5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:21:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D374A1C20826
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E92B1A591;
-	Wed, 15 Nov 2023 13:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAC81A592;
+	Wed, 15 Nov 2023 13:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FlzbVDhs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lJTWNsPg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4403DDAA
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 13:21:39 +0000 (UTC)
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6B2CB
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 05:21:38 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d9abc069c8bso6652187276.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 05:21:38 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE4A1A5A2;
+	Wed, 15 Nov 2023 13:25:35 +0000 (UTC)
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF6E120;
+	Wed, 15 Nov 2023 05:25:34 -0800 (PST)
+Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-778925998cbso447128385a.0;
+        Wed, 15 Nov 2023 05:25:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700054498; x=1700659298; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qmhC7cUoOMTfZNr8tTpl5VWN0/bC5ZVilmLHQGwcmA8=;
-        b=FlzbVDhs5FPuEtsQgfwfZg+P5HLgzgGLJlFhk81vB8KES59dcCdJHuk8MAYRhT7H2J
-         2HuMN/YuQ5n9TdSresmvEC64GBy+kKDFqoLDuTQEKYUvPcKWWteW2tljkSwNST85YLJY
-         0wU6v5hEXDiYO65wGwP4oTMURm1KIUx6jfgeQC3J5NqXAWUr+IJFYiJ0fuMg1Wj50Lri
-         q+qi4NAvFxHtAyMsI8CxudB4KBCNNAFbUUJqjkyCBwxDA+Urr74PjDW4jMzH1P2TwmVE
-         oculpuRsxAA8BEpaYpyGfutUTAnwTIpigBN9ncveMGZ+bE69iaj33P8UBveZuXC0vVMP
-         21Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700054498; x=1700659298;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1700054733; x=1700659533; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qmhC7cUoOMTfZNr8tTpl5VWN0/bC5ZVilmLHQGwcmA8=;
-        b=roY88+5EybsLZFPsUfu7bd22WyvS/b87yMNlflh7EIssaTuV+AmtTJSqeYIEPJA3mB
-         i5FLSumwQRSAfSIDyNzwXYjGdaANfL/aG8BI58ZImo5tHTVET4bD37iLixLBMcjxbawg
-         uLJ7cMp0PlMSjpWyFS0b8x5tvD+LK79ldhCxGfNEKlSgtTiPQdYfmEzijGGavUNO0OF9
-         O1OSO7mJEON2WxIdrEHxWNRZj06ZNIxTNyuWucYH8Hkivc371pYORPPigbhr2/Ehug6Z
-         eHIugDguUhl6xToQUc9HXwiF38b6fVzB78XI/B+FdgwuNYd7NqgnQLtDrZhmnWW7IzPL
-         l1pA==
-X-Gm-Message-State: AOJu0Yzrkc0K4J+SooGDMCWP1mCiUW8Xdpr7ibX+eWw3MNOeQZQm3Poi
-	/YnYQe4LFBKcAqxk/Aue3JE7mfkTB7RkBeC7VqRMGw==
-X-Google-Smtp-Source: AGHT+IGosDu2W9oeWYt/RNw56Tl9pnmCGdRN+gpQGKe0jrfOUiv7Tybc5XhJ8xYmVnJpsuRetbjrvZnCAoPAC6D6rWE=
-X-Received: by 2002:a25:c5c4:0:b0:d9a:fe8c:c29c with SMTP id
- v187-20020a25c5c4000000b00d9afe8cc29cmr9934442ybe.58.1700054497731; Wed, 15
- Nov 2023 05:21:37 -0800 (PST)
+        bh=3vuQNx0saY2ItGRKdBl26Lb/Oz25BKx0ZaIePLBjp78=;
+        b=lJTWNsPgkvArhJfx4mLzea66zYOPRDRqShORfizWt7bJwxyfZkIXlZoZpXiNpkYX7b
+         Ie9VxfSoTJ8ISvgqoq4CKoF2O7hVN7TGbaw/AV1H8VDXX9Fxyi+hNyFdbfL+WqPFDQjq
+         AsBN1/AY9K6AOugiCty/leyHi+zlF1Tax1husrlbiGg6nSG7l4+XjPyDk0XaMGx8HlxR
+         C4HqEpQ4WmxM8mR08upTH/Q3Ox5ycJ8673wZ40j4YZFfVbhyrhtFwm7ddZznVH+0B8L8
+         Pk0S9cghW+PejIMoLtKLY1HJvLRJde9RQf3NlOkpWOWhqeknqFoP49lMFOtTH7Jsritj
+         DTRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700054733; x=1700659533;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3vuQNx0saY2ItGRKdBl26Lb/Oz25BKx0ZaIePLBjp78=;
+        b=FUCzcEEjeMTfo1FOEnSEEBRA22fJG7nZNf+lKt7h7euSHz8Vrt2FlQuEPm5KHpqNlB
+         pW/v44mI9udgtjtREu0IMIGXIMOwUrcoDALcIwr4MdOjo3m+gsL81ndVYa7FBKPnYokU
+         T8voOwc9fcJ0W2y4Uu5YszLeMXyEKGAb7HxM6JAud3FzAoXaVUzFMl1fc7PnBZLSPbO4
+         /Z+KMGWK5TDgBD40I2Ijsk46++iZH57VF78zzNp2IhdmfzVgUQFbbuV41s5OLG2o1kRS
+         2gcV9xoUv61Pfs4P0PTzBXFA4Drh4VydVMmsNmvRqy/hGr5kzt47T6IElDl49M3Y5pox
+         kiSQ==
+X-Gm-Message-State: AOJu0Ywej8tnD8LOEx2BzpDxGk7FP1zvO92yRQv0/Iu02rCRHOA2yVXr
+	58VbYV7zrC03zGpNqXppAI2zzSR3wkY=
+X-Google-Smtp-Source: AGHT+IF4gKYfsnPTfy77RCqBJS3PI8cTib/dwl7HH/3rcJTzhH91a7+Qu0a6cI2q5Hc8xdw7+fnmIA==
+X-Received: by 2002:a05:620a:4627:b0:767:923:48e7 with SMTP id br39-20020a05620a462700b00767092348e7mr6223765qkb.5.1700054733626;
+        Wed, 15 Nov 2023 05:25:33 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id dp12-20020a05620a2b4c00b0076f0744ff50sm3433522qkb.136.2023.11.15.05.25.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Nov 2023 05:25:33 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Wed, 15 Nov 2023 05:25:31 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] hwmon: (core) Add support for humidity min/max
+ alarm
+Message-ID: <1ef7a10c-d9cf-4042-a198-f72dbdf9d05a@roeck-us.net>
+References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
+ <20231020-topic-chipcap2-v2-2-f5c325966fdb@gmail.com>
+ <44f1eaa3-a90d-42cf-9808-4f39aacbf270@roeck-us.net>
+ <25059951-ca50-4b19-8f74-5631b34c719b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1700051821-1087-1-git-send-email-quic_msarkar@quicinc.com>
- <1700051821-1087-2-git-send-email-quic_msarkar@quicinc.com> <CAA8EJprWP3ThYyPZDF7ddG9Awdk9D7ovxes--r0VS3Ma53VqxA@mail.gmail.com>
-In-Reply-To: <CAA8EJprWP3ThYyPZDF7ddG9Awdk9D7ovxes--r0VS3Ma53VqxA@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 15 Nov 2023 15:21:26 +0200
-Message-ID: <CAA8EJprouEiex2YGuMjJCmwiWmhbYXaUpTBkWhEXpF08iGzk6Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org, 
-	robh+dt@kernel.org, quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com, 
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com, robh@kernel.org, 
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com, quic_parass@quicinc.com, 
-	quic_schintav@quicinc.com, quic_shijjose@quicinc.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <25059951-ca50-4b19-8f74-5631b34c719b@gmail.com>
 
-On Wed, 15 Nov 2023 at 15:18, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Wed, 15 Nov 2023 at 14:37, Mrinmay Sarkar <quic_msarkar@quicinc.com> wrote:
-> >
-> > This change will enable cache snooping logic to support
-> > cache coherency for 8775 RC platform.
-> >
-> > Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-qcom.c | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 6902e97..b82ccd1 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -51,6 +51,7 @@
-> >  #define PARF_SID_OFFSET                                0x234
-> >  #define PARF_BDF_TRANSLATE_CFG                 0x24c
-> >  #define PARF_SLV_ADDR_SPACE_SIZE               0x358
-> > +#define PCIE_PARF_NO_SNOOP_OVERIDE             0x3d4
-> >  #define PARF_DEVICE_TYPE                       0x1000
-> >  #define PARF_BDF_TO_SID_TABLE_N                        0x2000
-> >
-> > @@ -117,6 +118,10 @@
-> >  /* PARF_LTSSM register fields */
-> >  #define LTSSM_EN                               BIT(8)
-> >
-> > +/* PARF_NO_SNOOP_OVERIDE register fields */
-> > +#define WR_NO_SNOOP_OVERIDE_EN                 BIT(1)
-> > +#define RD_NO_SNOOP_OVERIDE_EN                 BIT(3)
-> > +
-> >  /* PARF_DEVICE_TYPE register fields */
-> >  #define DEVICE_TYPE_RC                         0x4
-> >
-> > @@ -961,6 +966,14 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
-> >
-> >  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
-> >  {
-> > +       struct dw_pcie *pci = pcie->pci;
-> > +       struct device *dev = pci->dev;
-> > +
-> > +       /* Enable cache snooping for SA8775P */
-> > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sa8775p"))
->
-> Quoting my feedback from v1:
->
-> Obviously: please populate a flag in the data structures instead of
-> doing of_device_is_compatible(). Same applies to the patch 2.
+On Thu, Nov 09, 2023 at 07:24:00AM +0100, Javier Carrasco wrote:
+> Hello,
+> 
+> On 09.11.23 01:02, Guenter Roeck wrote:
+> > On 11/8/23 07:37, Javier Carrasco wrote:
+> >> Add min_alarm and max_alarm attributes for humidityX to support devices
+> >> that can generate these alarms.
+> >> Such attributes already exist for other magnitudes such as tempX.
+> >>
+> >> Tested with a ChipCap 2 temperature-humidity sensor.
+> >>
+> > 
+> > No objection, but the new attributes also need to be added to the ABI
+> > documentation at
+> > Documentation/ABI/testing/sysfs-class-hwmon and
+> > Documentation/hwmon/sysfs-interface.rst
+> > 
+> > Which made me notice that humidityX_alarm isn't documented either.
+> > Please document that attribute as well while you are at it.
+> > 
+> > Thanks,
+> > Guenter
+> > 
+> Actually there are several attributes without ABI documentation or at
+> least the attributes enum is much larger than the objects in the ABI
+> documentation (in testing/sysfs-class-hwmon).
+> For humidity there is only input, enable, rated_min and rated_max. Are
+> some attributes not described for a good reason or should all be
+> documented? the current humidity_attributes contains:
+> 
+> hwmon_humidity_enable -> documented in sysfs-class-hwmon
+> hwmon_humidity_input -> documented in sysfs-class-hwmon
+> hwmon_humidity_label
+> hwmon_humidity_min
+> hwmon_humidity_min_hyst
+> hwmon_humidity_max
+> hwmon_humidity_max_hyst
+> hwmon_humidity_alarm
+> hwmon_humidity_fault
+> hwmon_humidity_rated_min -> documented in sysfs-class-hwmon
+> hwmon_humidity_rated_max -> documented in sysfs-class-hwmon
+> 
+> I could not find the temperature counterparts of my new additions
+> (temp_min_alarm and temp_max_alarm).
+> 
+> Should all be added to sysfs-class-hwmon or am I missing some other
+> document? I am alright adding the ones I mentioned.
+> 
 
-Mani, I saw your response for the v1, but I forgot to respond. In my
-opinion, it's better to have the flag now, even if it is just for a
-single platform. It allows us to follow the logic of the driver and
-saves few string ops.
+They should all be documented. It would be great if you volunteer
+to add the missing ones, but that won't be a mandate. I just don't want
+the situation to get worse.
 
->
->
-> > +               writel(WR_NO_SNOOP_OVERIDE_EN | RD_NO_SNOOP_OVERIDE_EN,
-> > +                               pcie->parf + PCIE_PARF_NO_SNOOP_OVERIDE);
-> > +
-> >         qcom_pcie_clear_hpc(pcie->pci);
-> >
-> >         return 0;
-> > --
-> > 2.7.4
-> >
->
->
-> --
-> With best wishes
-> Dmitry
-
-
-
--- 
-With best wishes
-Dmitry
+Thanks,
+Guenter
 
