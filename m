@@ -1,191 +1,132 @@
-Return-Path: <devicetree+bounces-15819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A9B7EBF3C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 10:15:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25397EBF49
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 10:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85257B20B2E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 09:15:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BDD2281165
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 09:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DA6441A;
-	Wed, 15 Nov 2023 09:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E66E5248;
+	Wed, 15 Nov 2023 09:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WoMBelWD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gkv7Pl+b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 721A47E
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 09:15:41 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EABFFC;
-	Wed, 15 Nov 2023 01:15:39 -0800 (PST)
-Received: from [100.107.97.3] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 495F566022D0;
-	Wed, 15 Nov 2023 09:15:36 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700039737;
-	bh=nDaRx6pEZU+HVzs1GynsYneaSgUwG+u1t1pVK6uu4FM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WoMBelWD+IZYzYAHIF1aYcRbbNs9aUjKXotj76r1mONyAddaQfs1EmjKPPaCfrU6a
-	 4/vSDU0yvOeoD4Gxr4WHOPAVE2ZOE7YyBBZg5Tw9h2BNhThl72coktf7n57pKcnq/2
-	 8iQMGQAGIbY0b/wHzsBNNNcms0JNxlJf8cCOMUN/2YoNFL1JaBvz1qHyT4J8clIePS
-	 X1pzVNSubEREAk586n7qG0FmhKRRA6tGvY7rhdFnQuF9gbMMQb+wY2sR31B6jjwtBF
-	 K95FOjSTHL3J5e2rfCM+n47IUSK5in3PrZj/kRmHmWZRPR0Do/NlnJcPKTkFIXiA+P
-	 Q2ZvJTSMXpI0w==
-Message-ID: <1b7a6572-25cc-40c8-b8bd-a0605fd8d317@collabora.com>
-Date: Wed, 15 Nov 2023 10:15:33 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEC87E;
+	Wed, 15 Nov 2023 09:16:29 +0000 (UTC)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2A711C;
+	Wed, 15 Nov 2023 01:16:23 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1688524000C;
+	Wed, 15 Nov 2023 09:16:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700039782;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fEBGlNa6ETX9qVEVywc0Dk28Tg8zkpZzVQlUPuAs6YA=;
+	b=gkv7Pl+bIME6lgpeIGjLvmlGp04L3bUcTbk094pWAX166nXAAXV0ImUKdI1WHscKuhwpV3
+	MERBo6HmYIkos69YcUQEJnkmC7paZ+TYedjZgtHgP+qPEeoFv7GFTDd4Q5aft/jLs4R1pR
+	KLXPAO2mSsDrHVSSbIdhVu3A0HjgEuTx441A5evLC3MAHs//ZAAYVrOdzMx/wOD0LFSf5s
+	KEWjVK//XX5iMeegY29KYX9dzQe3/2tJpjhV0Aq5fKHmqBl0g2CXkiXo2pllbBvARZuPk8
+	Ykaic8DVN4kG3kl4inyELuQsbLjGcuBU6ZkyUZx0ne5d/jShTVhbQFIMXaA7pA==
+Date: Wed, 15 Nov 2023 10:16:20 +0100
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com
+Subject: Re: [PATCH v10 2/3] media: rockchip: Add a driver for Rockchip's
+ camera interface
+Message-ID: <ZVSMZLDVPv0V3h1A@pc-70.home>
+References: <cover.1699460637.git.mehdi.djait@bootlin.com>
+ <bcc0b84f4a6a8cf4c007cfe25025060b22627408.1699460637.git.mehdi.djait@bootlin.com>
+ <4f9bc04b-81af-49ee-9818-d4cd281504e7@wolfvision.net>
+ <ZVJAogJsTidx+Cg1@pc-70.home>
+ <c06b68f5-ac7c-46d4-bb81-dc1dbbee0b34@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] ASoC: mediatek: mt8188-mt6359: add es8326 support
-To: Rui Zhou <zhourui@huaqin.corp-partner.google.com>, lgirdwood@gmail.com,
- broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, perex@perex.cz, allen-kh.cheng@mediatek.com,
- kuninori.morimoto.gx@renesas.com
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20231115090903.578438-1-zhourui@huaqin.corp-partner.google.com>
- <20231115090903.578438-3-zhourui@huaqin.corp-partner.google.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20231115090903.578438-3-zhourui@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c06b68f5-ac7c-46d4-bb81-dc1dbbee0b34@wolfvision.net>
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-Il 15/11/23 10:09, Rui Zhou ha scritto:
-> To use ES8326 as the codec, add a new sound card
-> named mt8186_es8326.
+On Mon, Nov 13, 2023 at 05:05:12PM +0100, Michael Riesch wrote:
+> Hi Mehdi,
 > 
-> Signed-off-by: Rui Zhou <zhourui@huaqin.corp-partner.google.com>
-> ---
->   sound/soc/mediatek/Kconfig                |   1 +
->   sound/soc/mediatek/mt8188/mt8188-mt6359.c | 100 +++++++++++++++++++++-
->   2 files changed, 100 insertions(+), 1 deletion(-)
+> On 11/13/23 16:28, Mehdi Djait wrote:
+> > Hi Michael,
+> > 
+> > On Fri, Nov 10, 2023 at 03:33:34PM +0100, Michael Riesch wrote:
+> >> Hi Mehdi,
+> >>
+> >> Sorry, forgot one thing:
+> >>
+> >> On 11/8/23 17:38, Mehdi Djait wrote:
+> >>> +static int cif_subdev_notifier(struct cif_device *cif_dev)
+> >>> +{
+> >>> +	struct v4l2_async_notifier *ntf = &cif_dev->notifier;
+> >>> +	struct device *dev = cif_dev->dev;
+> >>> +	struct v4l2_async_connection *asd;
+> >>> +	struct v4l2_fwnode_endpoint vep = {
+> >>> +		.bus_type = V4L2_MBUS_PARALLEL,
+> >>
+> >> This is surprising. I had to set this to V4L2_MBUS_UNKNOWN, otherwise
+> >> v4l2_fwnode_endpoint_parse would yield -ENXIO, which indicates a bus
+> >> type mismatch. Does this really work for your (BT.656, right?) setup?
+> >>
+> > 
+> > Yes it works.
+> > 
+> >> I think we should get the bus type from the device tree, right?
+> >>
+> > 
+> > I am looking into this.
+> > 
+> >> Thanks and best regards,
+> >> Michael
+> >>
+> > 
+> > I assume you have a "bus-type = <MEDIA_BUS_TYPE_BT656>;" in the device
+> > tree definition of your endpoint ? This caused the mismatch as the
+> > v4l2_fwnode_endpoint is set to PARALLEL
 > 
-> diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-> index b93d455744ab..296b434caf81 100644
-> --- a/sound/soc/mediatek/Kconfig
-> +++ b/sound/soc/mediatek/Kconfig
-> @@ -252,6 +252,7 @@ config SND_SOC_MT8188_MT6359
->   	select SND_SOC_NAU8315
->   	select SND_SOC_NAU8825
->   	select SND_SOC_RT5682S
-> +	select SND_SOC_ES8326
->   	help
->   	  This adds support for ASoC machine driver for MediaTek MT8188
->   	  boards with the MT6359 and other I2S audio codecs.
-> diff --git a/sound/soc/mediatek/mt8188/mt8188-mt6359.c b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
-> index 33d477cc2e54..0421debe3ce4 100644
-> --- a/sound/soc/mediatek/mt8188/mt8188-mt6359.c
-> +++ b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
-> @@ -34,6 +34,8 @@
->   
->   #define NAU8825_HS_PRESENT	BIT(0)
->   #define RT5682S_HS_PRESENT	BIT(1)
-> +#define ES8326_HS_PRESENT	BIT(2)
-> +#define MAX98390_TWO_AMP	BIT(3)
->   /*
->    * Maxim MAX98390
->    */
-> @@ -48,6 +50,11 @@
->    */
->   #define NAU8825_CODEC_DAI  "nau8825-hifi"
->   
-> +/*
-> + * ES8326
-> + */
-> +#define ES8326_CODEC_DAI  "es8326-hifi"
-> +
->   #define SOF_DMA_DL2 "SOF_DMA_DL2"
->   #define SOF_DMA_DL3 "SOF_DMA_DL3"
->   #define SOF_DMA_UL4 "SOF_DMA_UL4"
-> @@ -261,6 +268,17 @@ static struct snd_soc_jack_pin nau8825_jack_pins[] = {
->   	},
->   };
->   
-> +static struct snd_soc_jack_pin es8326_jack_pins[] = {
+> Yes that's correct.
+> 
+> The documentation is quite sparse here, but I would guess that the PX30
+> VIP accepts parallel data without embedded syncs (=
+> MEDIA_BUS_TYPE_PARALLEL) as well as parallel data with embedded syncs (=
+> MEDIA_BUS_TYPE_BT656). If this is actually the case, I think we should
+> put V4L2_MBUS_UNKNOWN and let the device tree decide.
 
-This is practically the same as nau8825_jack_pins, can we please avoid duplication?
+Yes, I will do this.
 
-> +	{
-> +		.pin    = "Headphone",
-> +		.mask   = SND_JACK_HEADPHONE,
-> +	},
-> +	{
-> +		.pin    = "Headset Mic",
-> +		.mask   = SND_JACK_MICROPHONE,
-> +	},
-> +};
-> +
->   struct mt8188_card_data {
->   	const char *name;
->   	unsigned long quirk;
-> @@ -943,6 +961,71 @@ static const struct snd_soc_ops mt8188_sof_be_ops = {
->   	.hw_params = mt8188_sof_be_hw_params,
->   };
->   
-> +static int mt8188_es8326_codec_init(struct snd_soc_pcm_runtime *rtd)
-> +{
-> +	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(rtd->card);
-> +	struct mt8188_mt6359_priv *priv = soc_card_data->mach_priv;
-> +	struct snd_soc_component *component = snd_soc_rtd_to_codec(rtd, 0)->component;
-> +	struct snd_soc_jack *jack = &priv->headset_jack;
-> +	int ret;
-> +
-> +	ret = snd_soc_card_jack_new_pins(rtd->card, "Headset Jack",
-> +					 SND_JACK_HEADSET | SND_JACK_BTN_0 |
-> +					 SND_JACK_BTN_1 | SND_JACK_BTN_2 |
-> +					 SND_JACK_BTN_3,
-> +					 jack,
-> +					 es8326_jack_pins,
-> +					 ARRAY_SIZE(es8326_jack_pins));
-> +	if (ret) {
-> +		dev_err(rtd->dev, "Headset Jack creation failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	snd_jack_set_key(jack->jack, SND_JACK_BTN_0, KEY_PLAYPAUSE);
-> +	snd_jack_set_key(jack->jack, SND_JACK_BTN_1, KEY_VOICECOMMAND);
-> +	snd_jack_set_key(jack->jack, SND_JACK_BTN_2, KEY_VOLUMEUP);
-> +	snd_jack_set_key(jack->jack, SND_JACK_BTN_3, KEY_VOLUMEDOWN);
-> +	ret = snd_soc_component_set_jack(component, jack, NULL);
-> +
-> +	if (ret) {
-> +		dev_err(rtd->dev, "Headset Jack call-back failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
+> 
+> We can be sure, however, that the PX30 VIP supports BT.656, so I guess
+> the safe approach would be to use .bus_type = V4L2_MBUS_BT656.
+> 
+> What do you think?
 
-This exact code pattern is repeated already twice: once for RT5682s and once for
-NAU8825. Can we please commonize it?
+I agree
 
-> +	return ret;
-> +};
-> +
-> +static void mt8188_es8326_codec_exit(struct snd_soc_pcm_runtime *rtd)
-> +{
+--
+Kind Regards
+Mehdi Djait
 
-Same for this one.
-
-> +	struct snd_soc_component *component = snd_soc_rtd_to_codec(rtd, 0)->component;
-> +
-> +	snd_soc_component_set_jack(component, NULL, NULL);
-> +}
-> +
-
-Regards,
-Angelo
-
+> 
+> Best regards,
+> Michael
 
