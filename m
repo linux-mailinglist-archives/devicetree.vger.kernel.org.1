@@ -1,280 +1,111 @@
-Return-Path: <devicetree+bounces-15986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62967EC656
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:52:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD4F7EC664
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:54:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3D691C20847
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:52:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38526281572
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:54:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E042EAE1;
-	Wed, 15 Nov 2023 14:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1547F2FC3D;
+	Wed, 15 Nov 2023 14:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RbrA9WVk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43762EAF3;
-	Wed, 15 Nov 2023 14:52:38 +0000 (UTC)
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2289E8E;
-	Wed, 15 Nov 2023 06:52:35 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 3CE7C24E20F;
-	Wed, 15 Nov 2023 22:52:28 +0800 (CST)
-Received: from EXMBX161.cuchost.com (172.16.6.71) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Nov
- 2023 22:52:28 +0800
-Received: from [192.168.1.115] (180.164.60.184) by EXMBX161.cuchost.com
- (172.16.6.71) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Nov
- 2023 22:52:27 +0800
-Message-ID: <21e14a40-e707-4925-b43b-6656ae59d680@starfivetech.com>
-Date: Wed, 15 Nov 2023 22:52:27 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86322F500
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 14:54:11 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5B5B8
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:54:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1700060050;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1FlIYAXhM/ERDubCadB5WwuUe+5s0MuhfY1IPTS1Qc0=;
+	b=RbrA9WVkY0CxPT8naGjvvd1vu31JvoCBWu+MIy/tYtB18MVxvYiLSV+y8/sv7/qWNmKtxG
+	XKHQuqB6Sty+HZ9xG+RSxMx1hWGmQsmSJBTg4yUWuEqN6N6GwBEkArn2r3JitHht2KzkO8
+	svdxq5X6FeAkUmqbfpHNZLL2GYVQOeM=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-623-YFlIC6T6OhGlGfLHvbiYDQ-1; Wed, 15 Nov 2023 09:54:09 -0500
+X-MC-Unique: YFlIC6T6OhGlGfLHvbiYDQ-1
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-77a3fb5b214so806191485a.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:54:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700060047; x=1700664847;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1FlIYAXhM/ERDubCadB5WwuUe+5s0MuhfY1IPTS1Qc0=;
+        b=QsqpfRCdo1J4AyhX0BFdJLq2hmJw0xMdg0nq2nXC9ViF7QgsPMUtROzTKFSzcQ4lbV
+         TM6XZej0rQjEWwUnX7BTF4VyUyeyKOM+/ooaQdbWHwhiOYqzZbic6Q2JatjJCAObV7Y5
+         pQX28ls3Zmi40e9OjTprMpS3ZkteAtvXdLg0ThEixMnFquE561OW3yvGsrZ38aBUPgsJ
+         9PP1/xdB+MXwx9NS4SshWSxmIzYxfiolhCI3CXtqfvmGPerMDef7khv5yAHhUctqjm5j
+         mldjDUE0uuQc0g9XTnUaUkLMxzlgpMjhyMwa1vkLu0BH7t9csiUlcQHIvmWnnS1s2nF4
+         Pq7Q==
+X-Gm-Message-State: AOJu0Yzzj92P4RAQYfLaI3M6FbGrzCfTspZV6zZeb17OZDnVC3K6g6f0
+	zD+vM79JUBI1dAd1PJHVHa89yY8QGiklke0BWtUYGOZqjw9/ASEXUFu5NiMshtgzxs8AXzyaPxS
+	yZ5F3fzEgP+pM5H3mp0R4Tw==
+X-Received: by 2002:a05:620a:560b:b0:77b:b34e:6262 with SMTP id vu11-20020a05620a560b00b0077bb34e6262mr6700766qkn.46.1700060047605;
+        Wed, 15 Nov 2023 06:54:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE8Q+hB6LwGEOpBjf0tTy48HeUIb95APpcQR8cIO4M7kaLSCpN0/vvs5U/8Y5mL2TRIxjAUaQ==
+X-Received: by 2002:a05:620a:560b:b0:77b:b34e:6262 with SMTP id vu11-20020a05620a560b00b0077bb34e6262mr6700714qkn.46.1700060047365;
+        Wed, 15 Nov 2023 06:54:07 -0800 (PST)
+Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
+        by smtp.gmail.com with ESMTPSA id dx8-20020a05620a608800b0076cc0a6e127sm3521399qkb.116.2023.11.15.06.54.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Nov 2023 06:54:07 -0800 (PST)
+Date: Wed, 15 Nov 2023 07:54:05 -0700
+From: Jerry Snitselaar <jsnitsel@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>, 
+	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
+	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev, 
+	Paul Walmsley <paul.walmsley@sifive.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, Sven Peter <sven@svenpeter.dev>, 
+	Thierry Reding <thierry.reding@gmail.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux.dev, 
+	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Lu Baolu <baolu.lu@linux.intel.com>, 
+	Christoph Hellwig <hch@lst.de>, Moritz Fischer <mdf@kernel.org>, 
+	Zhenhua Huang <quic_zhenhuah@quicinc.com>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 00/17] Solve iommu probe races around iommu_fwspec
+Message-ID: <ah7jh6pi5o3s47mz5y4tms46fvpbmaisw6orom6tke2vdsqejm@qvjnxhejqs5i>
+References: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] drm/vs: Add KMS crtc&plane
-Content-Language: en-US
-To: Maxime Ripard <mripard@kernel.org>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>, "David
- Airlie" <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	"Emil Renner Berthing" <kernel@esmil.dk>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Sumit Semwal
-	<sumit.semwal@linaro.org>, "christian.koenig@amd.com"
-	<christian.koenig@amd.com>, Bjorn Andersson <andersson@kernel.org>, "Heiko
- Stuebner" <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>, Jagan Teki
-	<jagan@edgeble.ai>, Chris Morgan <macromorgan@hotmail.com>, Jack Zhu
-	<jack.zhu@starfivetech.com>, Shengyang Chen
-	<shengyang.chen@starfivetech.com>, Changhuang Liang
-	<changhuang.liang@starfivetech.com>
-References: <20231025103957.3776-1-keith.zhao@starfivetech.com>
- <20231025103957.3776-6-keith.zhao@starfivetech.com>
- <pfjfxkpg4cheozhnjgql67ntfiapssba36ukusqrlo6za4owv3@mwzucmdqboy5>
-From: Keith Zhao <keith.zhao@starfivetech.com>
-In-Reply-To: <pfjfxkpg4cheozhnjgql67ntfiapssba36ukusqrlo6za4owv3@mwzucmdqboy5>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX161.cuchost.com
- (172.16.6.71)
-X-YovoleRuleAgent: yovoleflag
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
 
+Did patch 12 v2 get sent? I'm not seeing it locally, nor in lore, and b4 doesn't find it when pulling then thread.
 
+Regards,
+Jerry
 
-On 2023/10/25 21:57, Maxime Ripard wrote:
-> On Wed, Oct 25, 2023 at 06:39:56PM +0800, Keith Zhao wrote:
->> +static struct drm_crtc_state *
->> +vs_crtc_atomic_duplicate_state(struct drm_crtc *crtc)
->> +{
->> +	struct vs_crtc_state *ori_state;
->> +	struct vs_crtc_state *state;
->> +
->> +	if (!crtc->state)
->> +		return NULL;
->> +
->> +	ori_state = to_vs_crtc_state(crtc->state);
->> +	state = kzalloc(sizeof(*state), GFP_KERNEL);
->> +	if (!state)
->> +		return NULL;
->> +
->> +	__drm_atomic_helper_crtc_duplicate_state(crtc, &state->base);
->> +
->> +	state->output_fmt = ori_state->output_fmt;
-> 
-> That field is never set in your patch.
-> 
->> +	state->encoder_type = ori_state->encoder_type;
-> 
-> That isn't either, and it's not clear why you would need the
-> encoder_type stored in the CRTC?
-> 
->> +	state->bpp = ori_state->bpp;
-> 
-> You seem to derive that from output_fmt, it doesn't need to be in the
-> CRTC state.
-> 
->> +	state->underflow = ori_state->underflow;
-> 
-> Assuming you're setting this from the interrupt handler, it's unsafe,
-> you shouldn't do that. What are you using it for?
-I am going to use the crtc_debugfs function for printing.
-crtc_debugfs  will use it
-But now I'd better delete it
-
-> 
->> +static const struct drm_prop_enum_list vs_sync_mode_enum_list[] = {
->> +	{ VS_SINGLE_DC,				"single dc mode" },
->> +	{ VS_MULTI_DC_PRIMARY,		"primary dc for multi dc mode" },
->> +	{ VS_MULTI_DC_SECONDARY,	"secondary dc for multi dc mode" },
->> +};
-> 
-> Custom driver properties are a no-go:
-> https://docs.kernel.org/gpu/drm-kms.html#requirements
-> 
-> And
-> 
-> https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-requirements
-> 
->> +void vs_dc_enable(struct vs_dc *dc, struct drm_crtc *crtc)
->> +{
->> +	struct vs_crtc_state *crtc_state = to_vs_crtc_state(crtc->state);
->> +	struct drm_display_mode *mode = &crtc->state->adjusted_mode;
->> +	struct dc_hw_display display;
-> 
-> Why are you rolling your own structure here, if it's exactly equivalent
-> to what drm_display_mode and the crtc_state provide?
-My original intention was to make the hardware part purer. and 
-want to decouple hardware from drm struct.
-
-so I define the own structure  between drm and hardware.
-Maybe doing this will make both the hardware and drm happy
-
-> 
->> +void vs_dc_commit(struct vs_dc *dc)
->> +{
->> +	dc_hw_enable_shadow_register(&dc->hw, false);
->> +
->> +	dc_hw_commit(&dc->hw);
->> +
->> +	if (dc->first_frame)
->> +		dc->first_frame = false;
->> +
->> +	dc_hw_enable_shadow_register(&dc->hw, true);
->> +}
-> 
-> It's not clear to me what you're trying to do here, does the hardware
-> have latched registers that are only updated during vblank?
-> 
->> +static int dc_bind(struct device *dev, struct device *master, void *data)
->> +{
->> +	struct drm_device *drm_dev = data;
->> +	struct vs_dc *dc = dev_get_drvdata(dev);
->> +	struct device_node *port;
->> +	struct vs_crtc *crtc;
->> +	struct vs_dc_info *dc_info;
->> +	struct vs_plane *plane;
->> +	struct vs_plane_info *plane_info;
->> +	int i, ret;
->> +	u32 ctrc_mask = 0;
->> +
->> +	if (!drm_dev || !dc) {
->> +		dev_err(dev, "devices are not created.\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	ret = dc_init(dev);
->> +	if (ret < 0) {
->> +		drm_err(drm_dev, "Failed to initialize DC hardware.\n");
->> +		return ret;
->> +	}
->> +
->> +	port = of_get_child_by_name(dev->of_node, "port");
->> +	if (!port) {
->> +		drm_err(drm_dev, "no port node found\n");
->> +		return -ENODEV;
->> +	}
->> +	of_node_put(port);
->> +
->> +	dc_info = dc->hw.info;
->> +
->> +	for (i = 0; i < dc_info->panel_num; i++) {
->> +		crtc = vs_crtc_create(drm_dev, dc_info);
->> +		if (!crtc) {
->> +			drm_err(drm_dev, "Failed to create CRTC.\n");
->> +			ret = -ENOMEM;
->> +			return ret;
->> +		}
->> +
->> +		crtc->base.port = port;
->> +		crtc->dev = dev;
->> +		dc->crtc[i] = crtc;
->> +		ctrc_mask |= drm_crtc_mask(&crtc->base);
->> +	}
->> +
->> +	for (i = 0; i < dc_info->plane_num; i++) {
->> +		plane_info = (struct vs_plane_info *)&dc_info->planes[i];
->> +
->> +		if (!strcmp(plane_info->name, "Primary") || !strcmp(plane_info->name, "Cursor")) {
->> +			plane = vs_plane_create(drm_dev, plane_info, dc_info->layer_num,
->> +						drm_crtc_mask(&dc->crtc[0]->base));
->> +		} else if (!strcmp(plane_info->name, "Primary_1") ||
->> +				   !strcmp(plane_info->name, "Cursor_1")) {
-> 
-> Please use an enum and an id there.
-> 
->> +static int vs_plane_atomic_set_property(struct drm_plane *plane,
->> +					struct drm_plane_state *state,
->> +					struct drm_property *property,
->> +					uint64_t val)
->> +{
->> +	struct drm_device *dev = plane->dev;
->> +	struct vs_plane *vs_plane = to_vs_plane(plane);
->> +	struct vs_plane_state *vs_plane_state = to_vs_plane_state(state);
->> +	int ret = 0;
->> +
->> +	if (property == vs_plane->degamma_mode) {
->> +		if (vs_plane_state->degamma != val) {
->> +			vs_plane_state->degamma = val;
->> +			vs_plane_state->degamma_changed = true;
->> +		} else {
->> +			vs_plane_state->degamma_changed = false;
->> +		}
->> +	} else if (property == vs_plane->watermark_prop) {
->> +		ret = _vs_plane_set_property_blob_from_id(dev,
->> +							  &vs_plane_state->watermark,
->> +							  val,
->> +							  sizeof(struct drm_vs_watermark));
->> +		return ret;
->> +	} else if (property == vs_plane->color_mgmt_prop) {
->> +		ret = _vs_plane_set_property_blob_from_id(dev,
->> +							  &vs_plane_state->color_mgmt,
->> +							  val,
->> +							  sizeof(struct drm_vs_color_mgmt));
->> +		return ret;
->> +	} else if (property == vs_plane->roi_prop) {
->> +		ret = _vs_plane_set_property_blob_from_id(dev,
->> +							  &vs_plane_state->roi,
->> +							  val,
->> +							  sizeof(struct drm_vs_roi));
->> +		return ret;
->> +	} else {
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
-> 
-> Same story than above for properties
-> 
-> 
-> Honestly, that driver is pretty massive, and you should be simplifying
-> it a lot of you want the initial contribution to be as smooth as
-> possible.
-> 
-> Things like all the tiling formats, the underflowing handling, all those
-> properties, etc can (and should) be added in a second step once the
-> foundations are in.
-> 
-> Maxime
-
-ok , Thanks for reminding me. I will clarify my next goal and be more likely to simplify features.
 
