@@ -1,129 +1,245 @@
-Return-Path: <devicetree+bounces-16043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 251BA7ECA45
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 19:11:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB637ECA59
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 19:18:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCD771F261A5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 18:11:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 924192811EE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 18:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 818893DBBF;
-	Wed, 15 Nov 2023 18:11:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B3tI/qlm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037472E629;
+	Wed, 15 Nov 2023 18:18:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E16B2E629;
-	Wed, 15 Nov 2023 18:11:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8C6DC433C8;
-	Wed, 15 Nov 2023 18:11:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700071869;
-	bh=SKHJUnjpmtws/NFQEUU8h0axwxdCJ+qDn5qwpISmjaE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B3tI/qlm/C+qfBnlLtg6SZPP5DLP4rSGWgurWELIrMiG19l7q++pccC9aWKHgj8cS
-	 Hdfyy4MNLvo0XObCme76nhVjlJI4vE2KKy/ayieP2kyOUEDyB/W/NibM+FcqRqAeMO
-	 HdfiWKJbbNwJsPVlUN+P3kA8s/VKjWAdEi69F43a+7ILUC3KvH8FdLwixJYVzqnRH9
-	 RSTNQrMDaXIkLjwAY7JMUVvkbJXIU7XDbdfus7fgw2FKeo7KmWaSGk3UqBIsr5dO46
-	 LtlXDsb/K+FtJ/uvoYy4OEhpEQm8FVvTbVnGM6TzuE6HU9v6KmctbFqU3OOTX1qbCV
-	 d31m/mDaf/QmA==
-Date: Wed, 15 Nov 2023 18:11:03 +0000
-From: Simon Horman <horms@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3A97F1A4;
+	Wed, 15 Nov 2023 10:18:23 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="6.03,305,1694703600"; 
+   d="scan'208";a="183040988"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 16 Nov 2023 03:18:22 +0900
+Received: from localhost.localdomain (unknown [10.226.92.200])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id C29EA4047615;
+	Thu, 16 Nov 2023 03:18:16 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 3/8] net: qualcomm: ipqess: introduce the
- Qualcomm IPQESS driver
-Message-ID: <20231115181103.GX74656@kernel.org>
-References: <20231114105600.1012056-1-romain.gantois@bootlin.com>
- <20231114105600.1012056-4-romain.gantois@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v13 1/4] dt-bindings: display: Document Renesas RZ/G2L DU bindings
+Date: Wed, 15 Nov 2023 18:18:04 +0000
+Message-Id: <20231115181807.138292-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231115181807.138292-1-biju.das.jz@bp.renesas.com>
+References: <20231115181807.138292-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231114105600.1012056-4-romain.gantois@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 14, 2023 at 11:55:53AM +0100, Romain Gantois wrote:
-> The Qualcomm IPQ4019 Ethernet Switch Subsystem for the IPQ4019 chip
-> includes an internal Ethernet switch based on the QCA8K IP.
-> 
-> The CPU-to-switch port data plane depends on the IPQESS EDMA Controller,
-> a simple 1G Ethernet controller. It is connected to the switch through an
-> internal link, and doesn't expose directly any external interface.
-> 
-> The EDMA controller has 16 RX and TX queues, with a very basic RSS fanout
-> configured at init time.
-> 
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+The RZ/G2L LCD controller is composed of Frame Compression Processor
+(FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
 
-Hi Romain,
+The DU module supports the following hardware features
+− Display Parallel Interface (DPI) and MIPI LINK Video Interface
+− Display timing master
+− Generates video timings
+− Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
+− Supports Progressive
+− Input data format (from VSPD): RGB888, RGB666
+− Output data format: same as Input data format
+− Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
+− Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
 
-some minor feedback from my side.
+This patch documents the DU module found on RZ/G2L LCDC.
 
-> diff --git a/drivers/net/ethernet/qualcomm/ipqess/ipqess_switch.c b/drivers/net/ethernet/qualcomm/ipqess/ipqess_switch.c
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+v12->v13:
+ * No change.
+v11->v12:
+ * Dropped quotes in ref handle for renesas,vsps property.
+ * Retained tags as it is trivial change.
+v10->v11:
+ * No change
+v9->v10:
+ * Added Rb tag from Laurent
+ * Updated the commit description.
+ * Updated description of the port by dropping the text "specified in
+   Documentation/devicetree/bindings/graph.txt."
+ * Dropped empty endpoint from example.
+v8->v9:
+ * No change
+v7->v8:
+ * No change
+v6->v7:
+ * No change
+v5->v6:
+ * No change.
+v4->v5:
+ * Added Rb tag from Rob.
+v3->v4:
+ * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
+ * started using same compatible for RZ/G2{L,LC}
+v3: New patch
+---
+ .../bindings/display/renesas,rzg2l-du.yaml    | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
 
-...
+diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+new file mode 100644
+index 000000000000..c0ad194c538d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L Display Unit (DU)
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description: |
++  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
++  and RZ/V2L SoCs.
++
++properties:
++  compatible:
++    enum:
++      - renesas,r9a07g044-du # RZ/G2{L,LC}
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Main clock
++      - description: Register access clock
++      - description: Video clock
++
++  clock-names:
++    items:
++      - const: aclk
++      - const: pclk
++      - const: vclk
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    description: |
++      The connections to the DU output video ports are modeled using the OF
++      graph bindings. The number of ports and their assignment are
++      model-dependent. Each port shall have a single endpoint.
++
++    patternProperties:
++      "^port@[0-1]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        unevaluatedProperties: false
++
++    required:
++      - port@0
++
++    unevaluatedProperties: false
++
++  renesas,vsps:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      items:
++        - description: phandle to VSP instance that serves the DU channel
++        - description: Channel index identifying the LIF instance in that VSP
++    description:
++      A list of phandle and channel index tuples to the VSPs that handle the
++      memory interfaces for the DU channels.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - power-domains
++  - ports
++  - renesas,vsps
++
++additionalProperties: false
++
++examples:
++  # RZ/G2L DU
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    display@10890000 {
++        compatible = "renesas,r9a07g044-du";
++        reg = <0x10890000 0x10000>;
++        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
++        clock-names = "aclk", "pclk", "vclk";
++        resets = <&cpg R9A07G044_LCDC_RESET_N>;
++        power-domains = <&cpg>;
++
++        renesas,vsps = <&vspd0 0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++            port@1 {
++                reg = <1>;
++            };
++        };
++    };
++
++...
+-- 
+2.25.1
 
-> +static int ipqess_switch_probe(struct platform_device *pdev)
-> +{
-
-...
-
-> +	for_each_available_child_of_node(ports, port_np) {
-> +		ret = ipqess_port_register(sw, port_np);
-> +		if (ret) {
-> +			pr_err("Failed to register ipqess port! error %d\n", ret);
-
-Coccinelle warns that a call to of_node_put() is needed here.
-
-> +			goto out_ports;
-> +		}
-> +	}
-
-...
-
-> +static int
-> +ipqess_switch_remove(struct platform_device *pdev)
-> +{
-> +	struct ipqess_switch *sw = platform_get_drvdata(pdev);
-> +	struct qca8k_priv *priv = sw->priv;
-
-Here sw is dereferenced...
-
-> +	struct ipqess_port *port = NULL;
-> +	int i;
-> +
-> +	if (!sw)
-> +		return 0;
-
-... but here the code guards against sw being NULL.
-This seems inconsistent.
-
-As flagged by Smatch.
-
-...
 
