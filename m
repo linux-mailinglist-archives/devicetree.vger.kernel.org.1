@@ -1,139 +1,214 @@
-Return-Path: <devicetree+bounces-16041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B67027EC9D6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 18:43:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A187ECA26
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 19:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BF7B1F23DC7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:43:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0FF2280F62
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 18:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A86633CD9;
-	Wed, 15 Nov 2023 17:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5843DB8F;
+	Wed, 15 Nov 2023 18:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Di5VZkLO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="odYvCY+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9D02E0;
-	Wed, 15 Nov 2023 09:43:05 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AFFvdph011122;
-	Wed, 15 Nov 2023 17:42:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=UOYPIh1LCyb4tgGeTSqamCZ1AYWTX2DwLwuQtmS3xnM=;
- b=Di5VZkLOiNUNShnK0+kkio45XMtR+l6mKWIB+GPlkMV7aTP5D7rdYFraL/qEvTvRcTx6
- EJ9p8yq6PpF+AJFaVmQoS4SW1ixX4WIuza4b5lLoNkehShvf9u7gKN9GZv8tQe4I8M0Y
- uSwdsLxUJ/k7NgK0CI+rc4MIwJ7JCAslTjGb2XzvcIQI+zi/kaQZopUhRxMXKWvZfKCy
- SRrKWyy+TzkHAZYpVmKUXifISRQuBl+5Ymdw1k3fn6/s0IK60i7Mw9e6d/XggMiMkOaq
- LvMBbtYamfQhAxjGZsngc7aiB1ioMrOUbRSKRl3W/jVXhEBqrnY9BUsyMN3LqKj2bjuX KA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ucfkaakv2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Nov 2023 17:42:37 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AFHgaT9000825
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Nov 2023 17:42:36 GMT
-Received: from [10.216.42.195] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 15 Nov
- 2023 09:42:30 -0800
-Message-ID: <6d4d959c-b155-471b-b13d-f6fda557cfe0@quicinc.com>
-Date: Wed, 15 Nov 2023 23:12:16 +0530
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7660D1A3;
+	Wed, 15 Nov 2023 10:00:54 -0800 (PST)
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id CE3B56603149;
+	Wed, 15 Nov 2023 18:00:52 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700071252;
+	bh=X88lTzC5Yr86WfdK6qmmX7sQwuExYkpdW/1MWVIAWHw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=odYvCY+qSt6BiI+fz3V5dKopgkEpCjYBaDwDlJG4PBLSynRrYVOls1PbILMcJg9zK
+	 si6/Th8e8N2YY2w1WeG2d/ZJgjfkF9B8KI8+sp76FcsyA345sAUMRr/uGdj2J7N6O6
+	 qsDkcRpHhUob+NMCf+LUmccPiIDUOgIWxKqJwiuSPZegUVnDXr+FTyp1ISVUsc2jy/
+	 sJw4EFHgv5JNbbsLywMApEdrC3us+HgMUU7g6DbNey8T3iRfFQSSgXy+8hUbBauumx
+	 HYkKKJLDSh2iQhDzhIxF7bWzlMJl9KuoUD8F6ebfOizklzXLJLoeF9sfEEM2Ezwrv8
+	 LEuinyU+W4qlQ==
+Received: by mercury (Postfix, from userid 1000)
+	id D3AD31062B52; Wed, 15 Nov 2023 19:00:50 +0100 (CET)
+Date: Wed, 15 Nov 2023 19:00:50 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lee Jones <lee@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@collabora.com,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Vincent Legoll <vincent.legoll@gmail.com>
+Subject: Re: [PATCH v8 08/14] mfd: rk8xx: add rk806 support
+Message-ID: <20231115180050.5r5xukttz27vviyi@mercury.elektranox.org>
+References: <20230504173618.142075-1-sebastian.reichel@collabora.com>
+ <20230504173618.142075-9-sebastian.reichel@collabora.com>
+ <e612cef3-3bb6-46b7-a2c9-53fffc20c819@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 05/10] usb: dwc3: qcom: Refactor IRQ handling in QCOM
- Glue driver
-To: Johan Hovold <johan@kernel.org>
-CC: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy
- Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi
-	<balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>, <quic_shazhuss@quicinc.com>
-References: <20231007154806.605-1-quic_kriskura@quicinc.com>
- <20231007154806.605-6-quic_kriskura@quicinc.com>
- <ZTJ_T1UL8-s2cgNz@hovoldconsulting.com>
- <14fc724c-bc99-4b5d-9893-3e5eff8895f7@quicinc.com>
- <ZTY7Lwjd3_8NlfEi@hovoldconsulting.com>
- <cabf24d0-8eea-4eb5-8205-bf7fe6017ec2@quicinc.com>
- <ZTZ-EvvbuA6HpycT@hovoldconsulting.com>
- <fb5e5e1d-520c-4cbc-adde-f30e853421a1@quicinc.com>
- <ZTdqnSHq_Jo8AuPW@hovoldconsulting.com>
- <04615205-e380-4719-aff1-f32c26004b14@quicinc.com>
- <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZUz4RD3MjnLlPn6V@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cdzl9_JGs7djGz1RV66vjjiOiNGOwtwV
-X-Proofpoint-GUID: cdzl9_JGs7djGz1RV66vjjiOiNGOwtwV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-15_17,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 adultscore=0 clxscore=1015 spamscore=0 bulkscore=0
- phishscore=0 mlxscore=0 mlxlogscore=365 priorityscore=1501 suspectscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311150137
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="p5x677iir2g2ntby"
+Content-Disposition: inline
+In-Reply-To: <e612cef3-3bb6-46b7-a2c9-53fffc20c819@linaro.org>
 
 
-Hi Johan,
+--p5x677iir2g2ntby
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Are you sure there's no support for hs_phy_irq also in the "femto" PHYs
-> and that it's just that there is currently no driver support for using
-> them?
-> 
-> And why is it defined if there is truly no use for it?
-> 
+Hi Neil,
 
-We had an internal sync up with HW folks and here is some baseline 
-suggestions we received:
+On Wed, Nov 15, 2023 at 06:17:50PM +0100, Neil Armstrong wrote:
+> Hi Sebastian,
+>=20
+> On 04/05/2023 19:36, Sebastian Reichel wrote:
+> > Add support for SPI connected rk806, which is used by the RK3588
+> > evaluation boards. The PMIC is advertised to support I2C and SPI,
+> > but the evaluation boards all use SPI. Thus only SPI support is
+> > added here.
+> >=20
+> > Acked-for-MFD-by: Lee Jones <lee@kernel.org>
+> > Tested-by: Diederik de Haas <didi.debian@cknow.org> # Rock64, Quartz64 =
+Model A + B
+> > Tested-by: Vincent Legoll <vincent.legoll@gmail.com> # Pine64 QuartzPro=
+64
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >   drivers/mfd/Kconfig       |  14 ++
+> >   drivers/mfd/Makefile      |   1 +
+> >   drivers/mfd/rk8xx-core.c  |  69 ++++++-
+> >   drivers/mfd/rk8xx-spi.c   | 124 ++++++++++++
+> >   include/linux/mfd/rk808.h | 409 ++++++++++++++++++++++++++++++++++++++
+> >   5 files changed, 614 insertions(+), 3 deletions(-)
+> >   create mode 100644 drivers/mfd/rk8xx-spi.c
+> >=20
+>=20
+> <snip>
+>=20
+> > -	ret =3D devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> > -			      cells, nr_cells, NULL, 0,
+> > +	ret =3D devm_mfd_add_devices(dev, 0, cells, nr_cells, NULL, 0,
+> >   			      regmap_irq_get_domain(rk808->irq_data));
+>=20
+> It seems you replaced PLATFORM_DEVID_NONE by 0, triggering again the bug =
+preventing
+> having multiples RK pmics on the same system I fixed earlier at [1].
 
-If DP/DM interrupts are defined, then that is the preferred path to 
-used, irrespective if HS Phy irq is defined or not / or whether it is 
-Femto / QUSB2 target. There is no target that has femto phy but misses 
-DP/DM today.
+All cells have PLATFORM_DEVID_NONE specified and thus are registered
+without an ID. I changed this bit to avoid overriding the
+information, since I did not want to have PLATFORM_DEVID_NONE for
+rk806.
 
-For cases like sdm660/msm8998/msm8953/msm8956, these targets use 
-hs_phy_irq only and don't rely on DP/DM. So we cannot remove the binding 
-in entirety.
+> This gives (again):
+> <4>[ 0.664107] sysfs: cannot create duplicate filename '/bus/platform/dev=
+ices/rk808-clkout'
 
-> Also, if hs_phy_irq and dp/dm_phy_irq were mutually exclusive, why does
-> the following Qualcomm SoCs define all three?
-> 
+Which means, you do not want PLATFORM_DEVID_NONE (-1), but
+PLATFORM_DEVID_AUTO (-2). The above path is the expected path
+for PLATFORM_DEVID_NONE.
 
-HS Phy Irq is redundant or functionality is mutually exclusive in this 
-case. If there are targets that define all three, then we need to update 
-those to only utilize DP/DM interrupts.
+> <4>[ 0.664120] CPU: 3 PID: 97 Comm: kworker/u12:2 Not tainted 6.6.1 #1
+> <4>[ 0.664131] Hardware name: Hardkernel ODROID-GO-Ultra (DT)
+> <4>[ 0.664139] Workqueue: events_unbound deferred_probe_work_func
+> <4>[ 0.664160] Call trace:
+> <4>[ 0.664165] dump_backtrace+0x9c/0x11c
+> <4>[ 0.664181] show_stack+0x18/0x24
+> <4>[ 0.664193] dump_stack_lvl+0x78/0xc4
+> <4>[ 0.664205] dump_stack+0x18/0x24
+> <4>[ 0.664215] sysfs_warn_dup+0x64/0x80
+> <4>[ 0.664227] sysfs_do_create_link_sd+0xf0/0xf8
+> <4>[ 0.664239] sysfs_create_link+0x20/0x40
+> <4>[ 0.664250] bus_add_device+0x114/0x160
+> <4>[ 0.664259] device_add+0x3f0/0x7cc
+> <4>[ 0.664267] platform_device_add+0x180/0x270
+> <4>[ 0.664278] mfd_add_device+0x390/0x4a8
+> <4>[ 0.664290] devm_mfd_add_devices+0xb0/0x150
+> <4>[ 0.664301] rk8xx_probe+0x26c/0x410
+> <4>[ 0.664312] rk8xx_i2c_probe+0x64/0x98
+> <4>[ 0.664323] i2c_device_probe+0x104/0x2e8
+> <4>[ 0.664333] really_probe+0x184/0x3c8
+> <4>[ 0.664342] __driver_probe_device+0x7c/0x16c
+> <4>[ 0.664351] driver_probe_device+0x3c/0x10c
+> <4>[ 0.664360] __device_attach_driver+0xbc/0x158
+> <4>[ 0.664369] bus_for_each_drv+0x80/0xdc
+> <4>[ 0.664377] __device_attach+0x9c/0x1ac
+> <4>[ 0.664386] device_initial_probe+0x14/0x20
+> <4>[ 0.664395] bus_probe_device+0xac/0xb0
+> <4>[ 0.664403] deferred_probe_work_func+0xa0/0xf4
+> <4>[ 0.664412] process_one_work+0x1bc/0x378
+> <4>[ 0.664421] worker_thread+0x1dc/0x3d4
+> <4>[ 0.664429] kthread+0x104/0x118
+> <4>[ 0.664440] ret_from_fork+0x10/0x20
+> <3>[ 0.664494] rk8xx-i2c 0-001c: error -EEXIST: failed to add MFD devices
+> <4>[ 0.666769] rk8xx-i2c: probe of 0-001c failed with error -17
 
-Regards,
-Krishna,
+I didn't notice when working on rk806, but after analyzing it now:
+
+Your patch effectively set the cells to PLATFORM_DEVID_AUTO, because
+you set all cells to PLATFORM_DEVID_NONE (-1) and additionally used
+PLATFORM_DEVID_NONE (-1) for the devm_mfd_add_devices() call. But
+that uses the sum of both IDs. Adding -1 to -1 is -2 and thus
+PLATFORM_DEVID_AUTO. This is of course very confusing and just
+worked by chance. There are two options:
+
+1. Modify all cells to use PLATFORM_DEVID_AUTO instead of
+PLATFORM_DEVID_NONE
+2. Drop the .id from all cells and use PLATFORM_DEVID_AUTO in the
+call to devm_mfd_add_devices()
+
+Note, that switching from PLATFORM_DEVID_NONE to PLATFORM_DEVID_AUTO
+modifies sysfs paths and thus might break people's scripts; that's why
+I tried not to modify any existing platform. I will let you deal
+with that, since I cannot even test any !rk806 platform supported by
+this driver :)
+
+Also mfd_add_device should probably get special handling for
+PLATFORM_DEVID_NONE, just like it already has special handling
+for PLATFORM_DEVID_AUTO.
+
+Greetings,
+
+-- Sebastian
+
+--p5x677iir2g2ntby
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmVVB0gACgkQ2O7X88g7
++prC/w//VgyuqwaABLRt3wzZOdQku6c+y/SaPX8eoRpCOKhOOdhvhqpYNl5VyzuC
+2wPOTkvqvSjd2C3DtZ8KwSphfCkEyIhNb0+Pb1G3PpsNheQdnz43XM/P1+6vxn5j
+W6SjavSxjW3/XuttSZKmmM0RPMrOC+sKs9S2XmMg9yql3mCof1cDTgJ+XLPrvUdv
+bS+PosV9h1lMROyf2G5LS8ePfXHIyUEnlSvRtK+ukUagdnd9iNeMjzI+LqMkwka/
+Px+Bnh/eb5CZovZUphkgrEVpAY/SZxQkLrJigb5KM4OljPaeYPpc1NwL2bJgihNl
+P/l99YFrAnowbyxkBrWgxW3eQFIYF6U0ahTkM2r9lGMkRxNQ9UQ+WJVYYexmhg2K
+TfYpKdiD6iqIB3IQCw3aujsZS+xIqSMPqM+r8Hys5vF1F4qSrWR3GQEfy6lpkrOD
+KpV9WtDnLP8hq64Wb8i6KBWxJL518F/e+42Is7ujXd6vL+R8lRzS414MGE95O1pb
+jJ/XI4gF8/Z5oIj4Tva4x7TdQ02TPncrbD5MHCADa/QRRtAZB7S4XxxO+i+xCXIZ
+3JYAkgYmzRR8MTwLzyV49sYWduQTbR5HAQBAEdF7AWuJbfB5f7FdL0gYZXTU+S3J
+UQOLKlJWwOrePScP+33uV6Fovv2Vby15CM8s19Iu4JPpsfBxqyk=
+=HRzJ
+-----END PGP SIGNATURE-----
+
+--p5x677iir2g2ntby--
 
