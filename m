@@ -1,65 +1,39 @@
-Return-Path: <devicetree+bounces-15846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54F37EC14B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 12:33:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1EF7EC151
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 12:34:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15BA41C201EE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 11:33:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95E0A281215
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 11:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33561642B;
-	Wed, 15 Nov 2023 11:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D780168BB;
+	Wed, 15 Nov 2023 11:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tn6ClLaW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ERSiHHhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328B4168A3
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 11:33:00 +0000 (UTC)
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE02E9
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 03:32:58 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id 38308e7fff4ca-2c5039d4e88so92868941fa.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 03:32:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700047977; x=1700652777; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hiBw5jMG8U1ulMqGVWIaLS7ahy5r63yHp8YN9d29sao=;
-        b=Tn6ClLaWdtI9Zoq4FUEJFNvp0PoIwuo46k5KCl+BFHeV/E0eC+RlLJSBAseuYx1RFk
-         YmH3BFT+j70Q9z65Gb+rO48AU5sZ/nmyYMtptbru3FnuHUrjfE8/51W3TObq1wcoaosr
-         3Bw23I2IXgq7j4vvOOGKwH2QMfdw70g17AVLw7LVecepS41iBAnQn+oVWJv87HbdYuoP
-         6yW8ML7/Yh6sjljLegvTymZrP4ytnj+Btk36zdktq84dbh0yfWVR+KSqxS1X8SLBFl5r
-         mVdSw3d4xuekIarZadbSlURgvySXeLVCRQubiU/p7WF7ozaV7GMd87kJ+aLZNdiYxsS5
-         oL9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700047977; x=1700652777;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hiBw5jMG8U1ulMqGVWIaLS7ahy5r63yHp8YN9d29sao=;
-        b=w1/ZDgMuwojRAaGF/8br0x/bF/EaombL0RsURkmqC1XeJcR/Rw+cu7HbBfVaQrg1Mh
-         gKGij8PG9j1cb4wTDVix54NjNxb03kQMiPk5LYJ7EPtT43SMBohK2Ycos3hmFv8xnuL7
-         AOguEslNYwTBkQKdrrmA7/o9MH4O/CSsMjTQJWk/k/BHeYg+NfvxpohoAjZ63x8jLfsR
-         Zr5KPkUFsfVtvr2JUlNO/C1kgLVIEqQkx6yuTE4CrWfjqQYfTQgGRJg8r0PuVJySra8/
-         G0dtWJEm15N3lmqz6CZr88K4gHndPyOE2BaL6yVudViSO/gzEsyLDOyCFbG9209/uwMa
-         v+Zg==
-X-Gm-Message-State: AOJu0YyM3EYYwkOZSdcF7JQnlyCwx3EKc9tWfW0YRmT0ZEmLWMomv7Px
-	Ws6JZnXeFXVF7x1h+otH9LXy4Q==
-X-Google-Smtp-Source: AGHT+IE0T3C1HyGXfX4+RejyzsU3q7ZVO8/zOHxu8BPFG40RyApPXuNL0DTaN2SAH+B1aLohPZycNA==
-X-Received: by 2002:a05:651c:b2c:b0:2c6:ee73:a20e with SMTP id b44-20020a05651c0b2c00b002c6ee73a20emr4759513ljr.33.1700047976849;
-        Wed, 15 Nov 2023 03:32:56 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id w3-20020a5d4b43000000b0032cc35c2ef7sm10311329wrs.29.2023.11.15.03.32.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Nov 2023 03:32:56 -0800 (PST)
-Message-ID: <a3e35d3b-906a-4540-924c-0103cf32efa4@linaro.org>
-Date: Wed, 15 Nov 2023 11:32:55 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1822C168A3;
+	Wed, 15 Nov 2023 11:34:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B64FC433C7;
+	Wed, 15 Nov 2023 11:34:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700048043;
+	bh=KVbTcjfjQMnTlb2mNWMfytXNOgiaVQnoIdzsAhE3uy8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ERSiHHhl8j2yVkH6aaroMxdbCJZPizh7yYkDyfB+l9YgtLpz3pbkB9FWIFVKOmXC/
+	 5IIFu4aAl78/OER5mGGNTYcANLLg/IaBhDeq+jTPLCHwxmpJY1HEdssTN7jSJU5++g
+	 Bzl5W2VzrwVaytmqYM9Cw3Oky8hxBhYlBzF0WMHJ/i8EuKCVy+FMVV7lx6qH3qb7Xr
+	 OMofWH1qPv1QcKSAheR7TVfXG7FAPBvLmr5ds7QSpXyG3BWOy3tkJmB6LfQGXLgeUf
+	 TzDFOsLL1RCcB1/v639WGSVQ7BPnxEQJMc0LklkIuP9B8YV4OlPTzHLF4Fmo+ku3FJ
+	 jrQ3pVlML7I5g==
+Message-ID: <aabf618e-9352-4555-9059-f213cb16c84f@kernel.org>
+Date: Wed, 15 Nov 2023 13:33:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,96 +41,169 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: add QUP5 I2C node
-To: Legale Legale <legale.legale@gmail.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CACDmYyf4hxbuw+cpKqEDnqmHpS9yPXuE5MPD5_XZ3hjmYuViUQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] usb: cdns3-ti: move reg writes from probe into an
+ init_hw helper
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CACDmYyf4hxbuw+cpKqEDnqmHpS9yPXuE5MPD5_XZ3hjmYuViUQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
+ Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-2-ad1ee714835c@bootlin.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20231113-j7200-usb-suspend-v1-2-ad1ee714835c@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 15/11/2023 09:55, Legale Legale wrote:
-> Add node to support this bus inside of IPQ6018.
-> For example, this bus is used to work with the
-> voltage regulator (mp5496) on the Yuncore AX840 wireless AP.
+Hi Théo,
+
+On 13/11/2023 16:26, Théo Lebrun wrote:
+> The hardware initialisation register write sequence is only used at
+> probe. To support suspend/resume with a controller losing power, we
+> must redo this sequence of writes.
 > 
-> Signed-off-by: Isaev Ruslan <legale.legale@gmail.com>
+> Extract the register write sequence to a new cdns_ti_init_hw function to
+> reuse it later down the road, at resume.
+> 
+> We keep the devicetree-parsing aspect of the sequence in probe & add a
+> new field in the private struct to remember the USB2 refclk rate code
+> computation result.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
+>  drivers/usb/cdns3/cdns3-ti.c | 76 ++++++++++++++++++++++++--------------------
+>  1 file changed, 41 insertions(+), 35 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index e59b9df96c7e..745bfc6e2907 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -507,6 +507,21 @@ blsp1_i2c3: i2c@78b7000 {
->                          status = "disabled";
->                  };
-> 
-> +               blsp1_i2c6: i2c@78ba000 {
-> +                       compatible = "qcom,i2c-qup-v2.2.1";
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +                       reg = <0x078ba000 0x600>;
-
-reg = <0x0 0x078ba000 0x0 0x600>;
-like the other regs here
-
-> +                       interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>,
-> +                                <&gcc GCC_BLSP1_AHB_CLK>;
-> +                       clock-names = "core", "iface";
-> +                       clock-frequency = <100000>;
-
-Why not <400000>; as with other nodes ?
-
-> +                       dmas = <&blsp_dma 22>, <&blsp_dma 23>;
-> +                       dma-names = "tx", "rx";
-> +                       status = "disabled";
-> +               };
+> diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
+> index 5945c4b1e11f..c331bcd2faeb 100644
+> --- a/drivers/usb/cdns3/cdns3-ti.c
+> +++ b/drivers/usb/cdns3/cdns3-ti.c
+> @@ -57,6 +57,7 @@ struct cdns_ti {
+>  	unsigned vbus_divider:1;
+>  	struct clk *usb2_refclk;
+>  	struct clk *lpm_clk;
+> +	int usb2_refclk_rate_code;
+>  };
+>  
+>  static const int cdns_ti_rate_table[] = {	/* in KHZ */
+> @@ -85,15 +86,50 @@ static inline void cdns_ti_writel(struct cdns_ti *data, u32 offset, u32 value)
+>  	writel(value, data->usbss + offset);
+>  }
+>  
+> +static void cdns_ti_init_hw(struct cdns_ti *data)
+> +{
+> +	u32 reg;
 > +
->                  qpic_bam: dma-controller@7984000 {
->                          compatible = "qcom,bam-v1.7.0";
->                          reg = <0x0 0x07984000 0x0 0x1a000>;
-> --
-> 2.42.0
+> +	/* assert RESET */
+> +	reg = cdns_ti_readl(data, USBSS_W1);
+> +	reg &= ~USBSS_W1_PWRUP_RST;
+> +	cdns_ti_writel(data, USBSS_W1, reg);
+> +
+> +	/* set static config */
+> +	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> +	reg &= ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+> +	reg |= data->usb2_refclk_rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
+> +
+> +	reg &= ~USBSS1_STATIC_VBUS_SEL_MASK;
+> +	if (data->vbus_divider)
+> +		reg |= 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+> +
+> +	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+> +	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> +
+> +	/* set USB2_ONLY mode if requested */
+> +	reg = cdns_ti_readl(data, USBSS_W1);
+> +	if (data->usb2_only)
+> +		reg |= USBSS_W1_USB2_ONLY;
+> +
+> +	/* set default modestrap */
+> +	reg |= USBSS_W1_MODESTRAP_SEL;
+> +	reg &= ~USBSS_W1_MODESTRAP_MASK;
+> +	reg |= USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+> +	cdns_ti_writel(data, USBSS_W1, reg);
+> +
+> +	/* de-assert RESET */
+> +	reg |= USBSS_W1_PWRUP_RST;
+> +	cdns_ti_writel(data, USBSS_W1, reg);
+> +}
+> +
+>  static int cdns_ti_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *node = pdev->dev.of_node;
+>  	struct cdns_ti *data;
+> -	int error;
+> -	u32 reg;
+> -	int rate_code, i;
+>  	unsigned long rate;
+> +	int error, i;
+
+Should we leave rate_code and get rid of i?
+
+>  
+>  	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+> @@ -133,8 +169,6 @@ static int cdns_ti_probe(struct platform_device *pdev)
+>  		return -EINVAL;
+>  	}
+>  
+> -	rate_code = i;
+> -
+>  	pm_runtime_enable(dev);
+>  	error = pm_runtime_get_sync(dev)>  	if (error < 0) {
+> @@ -142,39 +176,11 @@ static int cdns_ti_probe(struct platform_device *pdev)
+>  		goto err;
+>  	}
+>  
+> -	/* assert RESET */
+> -	reg = cdns_ti_readl(data, USBSS_W1);
+> -	reg &= ~USBSS_W1_PWRUP_RST;
+> -	cdns_ti_writel(data, USBSS_W1, reg);
+> -
+> -	/* set static config */
+> -	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> -	reg &= ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+> -	reg |= rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
+> -
+> -	reg &= ~USBSS1_STATIC_VBUS_SEL_MASK;
+>  	data->vbus_divider = device_property_read_bool(dev, "ti,vbus-divider");
+> -	if (data->vbus_divider)
+> -		reg |= 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+> -
+> -	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+> -	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> -
+> -	/* set USB2_ONLY mode if requested */
+> -	reg = cdns_ti_readl(data, USBSS_W1);
+>  	data->usb2_only = device_property_read_bool(dev, "ti,usb2-only");
+> -	if (data->usb2_only)
+> -		reg |= USBSS_W1_USB2_ONLY;
+> -
+> -	/* set default modestrap */
+> -	reg |= USBSS_W1_MODESTRAP_SEL;
+> -	reg &= ~USBSS_W1_MODESTRAP_MASK;
+> -	reg |= USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+> -	cdns_ti_writel(data, USBSS_W1, reg);
+> +	data->usb2_refclk_rate_code = i;
+
+because 'i' seems temporary.
+
+>  
+> -	/* de-assert RESET */
+> -	reg |= USBSS_W1_PWRUP_RST;
+> -	cdns_ti_writel(data, USBSS_W1, reg);
+> +	cdns_ti_init_hw(data);
+>  
+>  	error = of_platform_populate(node, NULL, NULL, dev);
+>  	if (error) {
 > 
 
-What tree does this apply to ?
-
-git checkout -b linux-next-6.7-rc1 v6.7-rc1
-Switched to a new branch 'linux-next-6.7-rc1'
-
-deckard@sagittarius-a:~/Development/qualcomm/qlt-kernel$ b4 shazam 
-CACDmYyf4hxbuw+cpKqEDnqmHpS9yPXuE5MPD5_XZ3hjmYuViUQ@mail.gmail.com
-
-Grabbing thread from 
-lore.kernel.org/all/CACDmYyf4hxbuw%2BcpKqEDnqmHpS9yPXuE5MPD5_XZ3hjmYuViUQ@mail.gmail.com/t.mbox.gz
-Checking for newer revisions
-Grabbing search results from lore.kernel.org
-Analyzing 1 messages in the thread
-Checking attestation on all messages, may take a moment...
----
-   [PATCH] arm64: dts: qcom: ipq6018: add QUP5 I2C node
-   ---
-   NOTE: install dkimpy for DKIM signature verification
----
-Total patches: 1
----
-Applying: arm64: dts: qcom: ipq6018: add QUP5 I2C node
-Patch failed at 0001 arm64: dts: qcom: ipq6018: add QUP5 I2C node
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-error: git diff header lacks filename information when removing 1 
-leading pathname component (line 6)
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-
----
-bod
+-- 
+cheers,
+-roger
 
