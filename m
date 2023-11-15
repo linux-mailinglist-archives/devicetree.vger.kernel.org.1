@@ -1,133 +1,109 @@
-Return-Path: <devicetree+bounces-15994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9757F7EC6AF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:07:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B177EC6C4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37A341F24DEB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:07:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33A801C2099B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A03335F14;
-	Wed, 15 Nov 2023 15:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04280381AB;
+	Wed, 15 Nov 2023 15:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jcZbQDDD"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RCBhfDDf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965923418C;
-	Wed, 15 Nov 2023 15:07:25 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65605125;
-	Wed, 15 Nov 2023 07:07:22 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 12BBC24000C;
-	Wed, 15 Nov 2023 15:07:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700060840;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B6C35F1D
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 15:09:41 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A331418A
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 07:09:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1700060979;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=9dy5Pt08X+zZERsZIfegEmYR9OttXODBuhXhRa0MCI8=;
-	b=jcZbQDDDhYGFHk72VXnxdjYiNDUyrCQ/WJb2qldiqupZ+jnENFi6d7pXZXPO7zaOXqZN3n
-	Z4UOhaIhkVC0nXMh7vH5oTL0/A06nc1Txuz7OmqMXjFECAuutFDIXTdSMJnAfYB8UnmMZe
-	ttvMHMAJWf0cvaeB8X0L6KngKx0ZRIaZk9xXtWdkDQfUBJhitM4g2/Jbs8COQHx07UPjoo
-	xfezyffYVPzr6Mtk1f7i/r+PEdAxk8EAWmkanywsqEyVwyx3fvhrbNXW76JSBg6B4Z+dM6
-	nC9XZV4NrBVjciM+ew12qhG8KmvR/dsxMEt7PvLivSOyDLVDu/zKCnN3L15jSA==
-Date: Wed, 15 Nov 2023 16:07:32 +0100 (CET)
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Wojciech Drewek <wojciech.drewek@intel.com>
-cc: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net, 
-    Rob Herring <robh+dt@kernel.org>, 
-    Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-    Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, 
-    Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-    thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, 
-    Florian Fainelli <f.fainelli@gmail.com>, 
-    Heiner Kallweit <hkallweit1@gmail.com>, 
-    Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org, 
-    Vladimir Oltean <vladimir.oltean@nxp.com>, 
-    Luka Perkov <luka.perkov@sartura.hr>, 
-    Robert Marko <robert.marko@sartura.hr>, Andy Gross <agross@kernel.org>, 
-    Bjorn Andersson <andersson@kernel.org>, 
-    Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 3/8] net: qualcomm: ipqess: introduce the
- Qualcomm IPQESS driver
-In-Reply-To: <59e1edc3-2ebc-40a9-a05b-cab02e8b0c10@intel.com>
-Message-ID: <d52d766f-11a5-494a-63cc-cbffd2945069@bootlin.com>
-References: <20231114105600.1012056-1-romain.gantois@bootlin.com> <20231114105600.1012056-4-romain.gantois@bootlin.com> <59e1edc3-2ebc-40a9-a05b-cab02e8b0c10@intel.com>
+	bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
+	b=RCBhfDDfYO/TKKaWW8Im6C39h4d4WZGaGXY/9CMEvFdaLn60W9dhTRUrUC/1lsvkCqW8Oq
+	b6wgl/tZpSSrT3Z8/KwxdvVoiPpKElzPu/eQOy9SL+EW4DgGIB/Bjd/tYqDRuXGkOkxeBx
+	Miuhkufw/+7QKliScp+LSHlhS79mxuc=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-195-gaSvHIgTOfGPAnMtxWVV1g-1; Wed, 15 Nov 2023 10:09:38 -0500
+X-MC-Unique: gaSvHIgTOfGPAnMtxWVV1g-1
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-41bef8f8d94so68533351cf.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 07:09:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700060978; x=1700665778;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sqWGwV812/CXYndzj2W50PA7KOMPm+tHC+e+xjD2/M0=;
+        b=OdxIdrkkDfWNvjK1/+PGRphLAXBpS/z6xKxodSOvnh1EgnKn/R+uYuYSCW8At/dwFS
+         lW5IrU73jKt0scMZMKpzAsyUEbpGYOra8tDHwL9tcm+d4PvraJMfoFcVntYHdJXJJsNh
+         guhTdw0thKD6/7ZqdhYR+5c1reuZF8Ur5NJBeA6RwUaFvjRmDNgoyJArQ7SJRI85SFu+
+         P5yIr7GXuxmJRrzphdL94qTPQZqDyKbM2I7ot/TdiebUDxxSnKGzxsKyzvd/IpFWPnOi
+         aQ4P/Ud7Of4wqm/mhImj8eL/ZUBKUAXQR04O/9vco7ZpjvCGc6mW+rlsemYtbINuZciL
+         vQ2g==
+X-Gm-Message-State: AOJu0YyWaH34pe3U18zHoLveW09vYj8fztOYnfjbjLau3ZzcTPM2ULw7
+	jvNrZtek3qrm30RGSWjTDle3qGxLkVlDX1w+Kdu60d7JsVZqGEgn9KoRE5of1fdUcoa/WMY1B2U
+	66+3iEOv5lvHpyk4a1qWuuQ==
+X-Received: by 2002:ac8:570f:0:b0:418:a58:1cd2 with SMTP id 15-20020ac8570f000000b004180a581cd2mr6938248qtw.51.1700060978272;
+        Wed, 15 Nov 2023 07:09:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFJQ4sai83VgKMNcVk7LBkPO+lmGyR543b/SO2885Ys+XYhGZt/IKDco0l9338e20RsJ7UBFA==
+X-Received: by 2002:ac8:570f:0:b0:418:a58:1cd2 with SMTP id 15-20020ac8570f000000b004180a581cd2mr6938210qtw.51.1700060977944;
+        Wed, 15 Nov 2023 07:09:37 -0800 (PST)
+Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
+        by smtp.gmail.com with ESMTPSA id b3-20020ac85403000000b0041ea59e639bsm3597148qtq.70.2023.11.15.07.09.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Nov 2023 07:09:37 -0800 (PST)
+Date: Wed, 15 Nov 2023 08:09:36 -0700
+From: Jerry Snitselaar <jsnitsel@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: acpica-devel@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>, 
+	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org, 
+	David Woodhouse <dwmw2@infradead.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Hanjun Guo <guohanjun@huawei.com>, Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Joerg Roedel <joro@8bytes.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-snps-arc@lists.infradead.org, linux-tegra@vger.kernel.org, 
+	Russell King <linux@armlinux.org.uk>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Hector Martin <marcan@marcan.st>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev, 
+	Paul Walmsley <paul.walmsley@sifive.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Robert Moore <robert.moore@intel.com>, Rob Herring <robh+dt@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, Sven Peter <sven@svenpeter.dev>, 
+	Thierry Reding <thierry.reding@gmail.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>, virtualization@lists.linux.dev, 
+	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>, 
+	=?utf-8?B?QW5kcsOp?= Draszik <andre.draszik@linaro.org>, Lu Baolu <baolu.lu@linux.intel.com>, 
+	Christoph Hellwig <hch@lst.de>, Moritz Fischer <mdf@kernel.org>, 
+	Zhenhua Huang <quic_zhenhuah@quicinc.com>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, 
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 12/17] iommu: Make iommu_ops_from_fwnode() static
+Message-ID: <fc3a6krgqyi7awvm6dcjg5edbem5lead66b4tyi5ttetkcfdpp@iaya3ijkywwv>
+References: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+ <12-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <12-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
 
-On Wed, 15 Nov 2023, Wojciech Drewek wrote:
-...
-> > +static int ipqess_port_vlan_rx_add_vid(struct net_device *dev, __be16 proto,
-> > +				       u16 vid)
-> > +{
-> > +	struct ipqess_port *port = netdev_priv(dev);
-> > +	struct switchdev_obj_port_vlan vlan = {
-> > +		.obj.id = SWITCHDEV_OBJ_ID_PORT_VLAN,
-> > +		.vid = vid,
-> > +		/* This API only allows programming tagged, non-PVID VIDs */
-> > +		.flags = 0,
-> > +	};
-> > +	struct netlink_ext_ack extack = {0};
-> > +	int ret;
-> > +
-> > +	/* User port... */
-> > +	ret = ipqess_port_do_vlan_add(port->sw->priv, port->index, &vlan, &extack);
-> > +	if (ret) {
-> > +		if (extack._msg)
-> > +			netdev_err(dev, "%s\n", extack._msg);
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* And CPU port... */
-> > +	ret = ipqess_port_do_vlan_add(port->sw->priv, 0, &vlan, &extack);
-> > +	if (ret) {
-> 
-> Should we delete vlan from user port if this fails?
-I'll have to look into how and when this API is called in more detail but I 
-think this would indeed make sense.
+Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
 
-> > +
-> > +	/* Flush the FDB table */
-> > +	qca8k_fdb_flush(priv);
-> > +
-> > +	if (ret < 0)
-> > +		goto devlink_free;
-> > +
-> > +	/* set Port0 status */
-> > +	reg  = QCA8K_PORT_STATUS_LINK_AUTO;
-> > +	reg |= QCA8K_PORT_STATUS_DUPLEX;
-> > +	reg |= QCA8K_PORT_STATUS_SPEED_1000;
-> > +	reg |= QCA8K_PORT_STATUS_RXFLOW;
-> > +	reg |= QCA8K_PORT_STATUS_TXFLOW;
-> > +	reg |= QCA8K_PORT_STATUS_TXMAC | QCA8K_PORT_STATUS_RXMAC;
-> > +	qca8k_write(priv, QCA8K_REG_PORT_STATUS(0), reg);
-> > +	sw->port0_enabled = true;
-> > +
-> > +	return 0;
-> > +
-> > +devlink_free:
-> 
-> Why is it called devlink_free, I don't see any connection to devlink.
-I think this is leftover from a previous version of this function, where it 
-interacted with devlink. I'll rename it to error.
-
-Best,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
