@@ -1,144 +1,119 @@
-Return-Path: <devicetree+bounces-15777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 651DB7EBB5C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 03:58:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 081C57EBBA8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 04:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053C81F245F3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 02:58:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C30A1F249BA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 03:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDDA7644;
-	Wed, 15 Nov 2023 02:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72125658;
+	Wed, 15 Nov 2023 03:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="GvXV6Bi3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5702F647
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 02:58:11 +0000 (UTC)
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ADA5D2;
-	Tue, 14 Nov 2023 18:58:09 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 4B8517FFB;
-	Wed, 15 Nov 2023 10:57:56 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Nov
- 2023 10:57:56 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 15 Nov
- 2023 10:57:51 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: <conor@kernel.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<leyfoon.tan@starfivetech.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <mark.rutland@arm.com>,
-	<peterz@infradead.org>, <robh+dt@kernel.org>, <tglx@linutronix.de>,
-	<will@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: perf: starfive: Add StarLink PMU
-Date: Wed, 15 Nov 2023 10:57:17 +0800
-Message-ID: <20231115025717.1414288-1-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231114-policy-routing-8df2607e76cf@squawk>
-References: <20231114-policy-routing-8df2607e76cf@squawk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA6D647
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 03:22:52 +0000 (UTC)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E1AD5
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 19:22:51 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-509c61e0cf4so7693227e87.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 19:22:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1700018569; x=1700623369; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jxR8SEff9QhQWGnC0bTicTu902xyqq/a50SrjOH4Vi4=;
+        b=GvXV6Bi3Ef+fzSbrh2Qe11H5ZnG9zXavsPWTfLAumfwiATz5ZAeUnl+RVLYDVPsESG
+         yQgUgxidJnTOayE9zCPOFE/cJhB63AI5JMq9pf+lKUZuUzrjN4RMqyTHZfcGtRdX0BuS
+         arRK7ApDMwy3KqWYDO5HgTyziEHA8YLPtL9ng=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700018569; x=1700623369;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jxR8SEff9QhQWGnC0bTicTu902xyqq/a50SrjOH4Vi4=;
+        b=Drazqniyw0OC1pVMzgrKD0zpRYG2in2wHrkFDN/dmcggVwjFlK3OqLNUNdfM5ldCyO
+         kO4zKQ9B4ouBc+tqPNoN6050RMK2/DoD3pXSRn90MqnqyCFtJdMzwMohSMXVew6Wl17p
+         /wmCH0AHkunLoOCPL9NkHV2+e+Iy7Hf4pVtKukpEc+TxNP1UbN7C1lEmthDR/PPCev0U
+         6gb3mgIc8P8e0QnWWnpRh6pnN8f+SlRWHQ+xKBH3KFR89rEVz3uifsP2krkDGYGUxnVw
+         UBqWsBmB7moR7eMB9EJc5pV+2k0WlG55UIP3yblRnUVT7AOexJHmKq0+N0nT43xyM44M
+         vSNQ==
+X-Gm-Message-State: AOJu0Yx4KXf9Ly8hHGnmnPP06pUA1dMFPBBi4MOn1KqCRNbaIEvdnj4C
+	dqUEeGcMP8a6hOUXDtOGiXnZcO47+AFuvjpvXx6pHA==
+X-Google-Smtp-Source: AGHT+IH/sEG2Ucut35rGScW2osfDdxASphCbak+GNijQXM9mN/aThAmwkj5q5kBza+Bkt5p0XJPSi1hAi7h0K4LMw1k=
+X-Received: by 2002:a05:6512:1107:b0:509:7141:fec with SMTP id
+ l7-20020a056512110700b0050971410fecmr8866004lfg.48.1700018569194; Tue, 14 Nov
+ 2023 19:22:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [202.188.176.82]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
+References: <20231114104353.1693966-1-treapking@chromium.org>
+In-Reply-To: <20231114104353.1693966-1-treapking@chromium.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 15 Nov 2023 11:22:37 +0800
+Message-ID: <CAGXv+5FaCBdwhnwQPWPpxUN3=MW9HeGnpRtsK7a0A=E0rAJDKQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8173: Add G2Touch touchscreen node
+To: Pin-yen Lin <treapking@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 14 Nov 2023 17:57:15 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Tue, Nov 14, 2023 at 6:44=E2=80=AFPM Pin-yen Lin <treapking@chromium.org=
+> wrote:
+>
+> Lenovo Ideapad C330 Chromebook (MTK) uses G2Touch touchscreen as a
+> second source component.
+>
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> ---
+>
+>  arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm=
+64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+> index bdcd35cecad9..0d6dbc36c352 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+> @@ -29,6 +29,14 @@ touchscreen3: touchscreen@20 {
+>                 interrupt-parent =3D <&pio>;
+>                 interrupts =3D <88 IRQ_TYPE_LEVEL_LOW>;
+>         };
+> +
+> +       touchscreen4: touchscreen@40 {
 
-> On Tue, Nov 14, 2023 at 10:12:54AM +0800, Ji Sheng Teoh wrote:
-> > Add device tree binding for StarFive's StarLink PMU (Performance
-> > Monitor Unit).
-> >=20
-> > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > ---
-> >  .../bindings/perf/starfive,starlink-pmu.yaml  | 46
-> > +++++++++++++++++++ 1 file changed, 46 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> > b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> > new file mode 100644 index 000000000000..b164f6849055 --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/perf/starfive,starlink-pmu.yaml
-> > @@ -0,0 +1,46 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
-> > BSD-2-Clause +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/perf/starfive,starlink-pmu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: StarFive StarLink PMU
-> > +
-> > +maintainers:
-> > +  - Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > +
-> > +description:
-> > +  StarFive's StarLink PMU integrates one or more CPU cores with a
-> > shared L3
-> > +  memory system. The PMU support overflow interrupt, up to 16
-> > programmable
-> > +  64bit event counters, and an independent 64bit cycle counter.
-> > +  StarLink PMU is accessed via MMIO.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: starfive,starlink-pmu =20
->=20
-> This compatible (in isolation) is far too generic. Please add a device
-> specific compatible for the device that has this PMU.
->=20
-> Thanks,
-> Conor.
+The label likely isn't needed.
 
-Thanks Conor, I will fix that in v3.
+Otherwise,
 
->=20
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    soc {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        l3_pmu: pmu@12900000 {
-> > +            compatible =3D "starfive,starlink-pmu";
-> > +            reg =3D <0x0 0x12900000 0x0 0x10000>;
-> > +            interrupts =3D <34>;
-> > +        };
-> > +    };
-> > --=20
-> > 2.25.1
-> >=20
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+
+> +               compatible =3D "hid-over-i2c";
+> +               reg =3D <0x40>;
+> +               hid-descr-addr =3D <0x0001>;
+> +               interrupt-parent =3D <&pio>;
+> +               interrupts =3D <88 IRQ_TYPE_LEVEL_LOW>;
+> +       };
+>  };
+>
+>  &i2c4 {
+> --
+> 2.42.0.869.gea05f2083d-goog
+>
 
