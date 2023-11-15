@@ -1,59 +1,72 @@
-Return-Path: <devicetree+bounces-15806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13A997EBD70
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 08:16:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04EED7EBE17
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 08:27:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A74DD1F26338
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 07:16:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3479B1C2093A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 07:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10172E854;
-	Wed, 15 Nov 2023 07:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C4A3D6E;
+	Wed, 15 Nov 2023 07:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7UTwy6S"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MC/G7xp5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA4163C4;
-	Wed, 15 Nov 2023 07:15:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38327C433CB;
-	Wed, 15 Nov 2023 07:15:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700032557;
-	bh=MqgzQQOu8k3naqWebde+daNwOSL9eli/d3myBSRtR24=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e7UTwy6SU73judLJIIm68X2W3qJppWcb4CM6fOQeLWa1Gt5Ev0KQk9ojN9NCJtKjR
-	 Hw7u1aLwf0STckZ98EOd1CAnDPmo9QR1Xv4a2HnsKxOny5Kg/vwIphr17srpvZuqtF
-	 e9471oeN9SFLWOSE8IFejUUd2O//US+rmSWJISf+XCGKfDv6t2254rKR0TCoE02qNb
-	 tSpGvM0FrlP4Bi14MHQvSrOAZgvkmYprfwnWA0PGqYgQU0QmEYUd43Ls8pguP/Y8G4
-	 URBRg8WM/i+kl+dzhGJyMkZqY5LqzW39fq+kB0e7NlixQ5LiAvAq6dNtBqvcPYyWle
-	 8ZB3rR7YqE/DQ==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1r3A7t-0007rg-2A;
-	Wed, 15 Nov 2023 08:15:53 +0100
-Date: Wed, 15 Nov 2023 08:15:53 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 905ACFBE9;
+	Wed, 15 Nov 2023 07:27:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F418E;
+	Tue, 14 Nov 2023 23:27:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1700033243; x=1731569243;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CVjv4ZrpGDJbz1IrUPzrrK9YuYaL0aZL0iiRA1BpOhQ=;
+  b=MC/G7xp5dXyn/r1I/bX8hWEJMe8OCrmnf8fCf44PqgNoRwBwTx/45u7r
+   39au94ODFUdIVHvofCB55hMEaiuve9rb5XlPJTnxkP1AvjIV3JqQCboDf
+   UQ3h2ZkQ52O2gVUlhC9vq+RkPxNAM+8nPcZTLbpgx4V0yMxohu/9KOvIC
+   xrZFx5WGLeO3CdQXS3BOdyiyHXFM1qFc1Yn2OW65AlNBv782/GP9ITh/T
+   4u8uOf6qMzphbI3u+z2wtZnZ20Cq2iEsYF9o33BaG5ExXOUzv1NrIKig0
+   r3IGtVy7k/Sg4qPzWAHCXgqWmPzfyiMUm5jFxnOChVplrEF1PkSSp9tHs
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="390624057"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; 
+   d="scan'208";a="390624057"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2023 23:27:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="714800758"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; 
+   d="scan'208";a="714800758"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by orsmga003.jf.intel.com with SMTP; 14 Nov 2023 23:27:17 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 15 Nov 2023 09:27:16 +0200
+Date: Wed, 15 Nov 2023 09:27:16 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: Document sm8450 pcie phys as having 4
- clocks
-Message-ID: <ZVRwKaUTDBaYsnQS@hovoldconsulting.com>
-References: <20231103230339.966792-1-quic_eberman@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Mark Gross <markgross@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] usb: typec: change altmode SVID to u16 entry
+Message-ID: <ZVRy1L5JEN3Nda81@kuha.fi.intel.com>
+References: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
+ <20231113221528.749481-3-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,51 +75,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231103230339.966792-1-quic_eberman@quicinc.com>
+In-Reply-To: <20231113221528.749481-3-dmitry.baryshkov@linaro.org>
 
-On Fri, Nov 03, 2023 at 04:03:38PM -0700, Elliot Berman wrote:
-> I noticed while running make dtbs_check that
-> qcom,sm8450-qmp-gen3x1-pcie-phy and qcom,sm8450-qmp-gen4x2-pcie-phy have
-> 4 clocks, not 5. There was also a typo for the 8450 bindings:
-> s/gen3x2/gen4x2/.
+On Tue, Nov 14, 2023 at 12:13:28AM +0200, Dmitry Baryshkov wrote:
+> As stated in the changelog for the commit 7b458a4c5d73 ("usb: typec: Add
+> typec_port_register_altmodes()"), the code should be adjusted according
+> to the AltMode bindings. As the SVID is 16 bits wide (according to the
+> USB PD Spec), use fwnode_property_read_u16() to read it.
 > 
-> Update the bindings to reflect the correct number of required clocks.
-> 
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Fixes: 505fb2541678 ("dt-bindings: phy: migrate QMP PCIe PHY bindings to qcom,sc8280xp-qmp-pcie-phy.yaml")
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Acked-by: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
->  .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
+>  drivers/platform/x86/intel/chtwc_int33fe.c | 2 +-
+>  drivers/usb/typec/class.c                  | 5 +++--
+>  2 files changed, 4 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> index 2c3d6553a7ba..1768f2016a9f 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> @@ -128,6 +128,20 @@ allOf:
->          reg:
->            maxItems: 1
+> diff --git a/drivers/platform/x86/intel/chtwc_int33fe.c b/drivers/platform/x86/intel/chtwc_int33fe.c
+> index 848baecc1bb0..93f75ba1dafd 100644
+> --- a/drivers/platform/x86/intel/chtwc_int33fe.c
+> +++ b/drivers/platform/x86/intel/chtwc_int33fe.c
+> @@ -136,7 +136,7 @@ static const struct software_node altmodes_node = {
+>  };
 >  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sm8450-qmp-gen3x1-pcie-phy
-> +              - qcom,sm8450-qmp-gen4x2-pcie-phy
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +        clock-names:
-> +          minItems: 4
-> +
+>  static const struct property_entry dp_altmode_properties[] = {
+> -	PROPERTY_ENTRY_U32("svid", 0xff01),
+> +	PROPERTY_ENTRY_U16("svid", 0xff01),
+>  	PROPERTY_ENTRY_U32("vdo", 0x0c0086),
+>  	{ }
+>  };
+> diff --git a/drivers/usb/typec/class.c b/drivers/usb/typec/class.c
+> index 6ec2a94e6fad..4251d44137b6 100644
+> --- a/drivers/usb/typec/class.c
+> +++ b/drivers/usb/typec/class.c
+> @@ -2238,7 +2238,8 @@ void typec_port_register_altmodes(struct typec_port *port,
+>  	struct typec_altmode_desc desc;
+>  	struct typec_altmode *alt;
+>  	size_t index = 0;
+> -	u32 svid, vdo;
+> +	u16 svid;
+> +	u32 vdo;
+>  	int ret;
+>  
+>  	altmodes_node = device_get_named_child_node(&port->dev, "altmodes");
+> @@ -2246,7 +2247,7 @@ void typec_port_register_altmodes(struct typec_port *port,
+>  		return; /* No altmodes specified */
+>  
+>  	fwnode_for_each_child_node(altmodes_node, child) {
+> -		ret = fwnode_property_read_u32(child, "svid", &svid);
+> +		ret = fwnode_property_read_u16(child, "svid", &svid);
+>  		if (ret) {
+>  			dev_err(&port->dev, "Error reading svid for altmode %s\n",
+>  				fwnode_get_name(child));
+> -- 
+> 2.42.0
 
-I'm not sure which tree you think you're looking at but this is clearly
-not correct.
-
-The phy nodes in arch/arm64/boot/dts/qcom/sm8450.dtsi have five clocks
-defined.
-
-Johan
+-- 
+heikki
 
