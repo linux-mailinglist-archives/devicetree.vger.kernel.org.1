@@ -1,66 +1,65 @@
-Return-Path: <devicetree+bounces-15871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B59077EC1E3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:11:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 996517EC1E6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:13:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E121B20B17
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 12:11:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4992A281298
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 12:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3981799E;
-	Wed, 15 Nov 2023 12:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC2E1799F;
+	Wed, 15 Nov 2023 12:13:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RM/BHTUb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sV8Jew0t"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCBA1799B
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:11:39 +0000 (UTC)
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF58D121
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:11:33 -0800 (PST)
-Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-778940531dbso408781685a.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:11:33 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A872E1799C
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:13:36 +0000 (UTC)
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602119B
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:13:35 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-41ea8debcdaso38363351cf.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:13:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700050293; x=1700655093; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1c3yW1iRaf+ne7MmtvWLEB1RHgOkaZ2lQHdp2l3FC8=;
-        b=RM/BHTUb7pYN8fheKBq8q4IWeOGuWHr9lFflIm/iTNMYcUysfANkYr4QQtfAk/RwqO
-         Qn2XRMYYyaobqGtSWpC3A5otX+mgkIDV6y8JmdHpHyR5N7zkXCpvSWrLZXY3bREYVUgx
-         tWwvpUrL7DO5m1mlFebeBjfMEFh4Irl678ZI2rpbA5laJAup/+kA4bRLb3lfbGly00+D
-         iKt2b04M4EDiNHBExM9Zc0zAg5zMdG/5J60m0MB7X/neAboXRSSo/YhYewWxp8Vz19tE
-         nNXHUCSiuYbFf5rbamz/qMp3Q3mnoPFgXe0jeWYO7ShpzRr8eDHTjrxlSjEFMMEaIPvq
-         iFPw==
+        d=linaro.org; s=google; t=1700050414; x=1700655214; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LvpNuJxZyzXz0lhYSLLiX8dGBOe586PG52WfNw4Sz4Y=;
+        b=sV8Jew0t9mBXtZulefJ0BD5gth9ErYePF1QjRfs526DotheuWq5ol19mdNeOwzyuQ5
+         /+y8Ms7H+V7xY6iSOavi+oZ1jrQQNRk59mmoT5X0+AUbPZUP5dy0AtPlrcd6xa4zdaoQ
+         eX5YPsThpUh45FleLl3IVVMs+uAmd0tANt8rgo//9UCsmWITU/3idpckdfp0exaEOWVu
+         58+qv3IYLFrNn4u+uSPhpB3ewtfP8cIPlzxhxG8OCtGxcHCnSnmxoB3dJObJ2rDXZGwg
+         FYtqH99AR/nXh13XGyum+LbCbdFF7gJ6wLOhmX+3KnPoJkB9HaxNmkxHEPoyI7anOS1l
+         G+Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700050293; x=1700655093;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h1c3yW1iRaf+ne7MmtvWLEB1RHgOkaZ2lQHdp2l3FC8=;
-        b=BUEi3ASjB7zDizZOBuwaMverVIPqQL6Lv4q1U6ePE3tW/3bDqYtWd7lZnns7ow+9rc
-         dgeVeexOMsXp/Ydeo26mYiChhBcTPDAserQaAZ35U9P8JnsIAUT/dWzk0Ev4ITmEzyCr
-         hXf5ST2OKFMHjPh/lCJqIHwZRe8SdEer1aI9vOUQuFPg4hg+yaOz5Hm+qHjWWL0fikNK
-         jY+H3MbZFQ+zfbjfFXsIDt1d4jOjVn6132GRUoEvlG2ws2y0H/MCm1qPGS3WKe4FpK1W
-         H3GzllITQDgLzxspHfOefHtaFVZQGjvf5cwdXn4+PGx9Sk/kFF2n8/bI1nfybCpSCGGX
-         rj2g==
-X-Gm-Message-State: AOJu0YwtfT3tX+Bb/QMFG3Iq57lEm8wr/gcitfqRND/H1LEiqv/4gsJu
-	gryPr5eVjRwbuRRQdUxbkRI6bg==
-X-Google-Smtp-Source: AGHT+IFDsnRi7n+puPII6vLIkn8CeLHgODgriEQAbJ3HG/8f/LtrkMqqKM1WfYRJNXu/QB/suczmUw==
-X-Received: by 2002:a05:620a:228f:b0:76e:f62e:45cc with SMTP id o15-20020a05620a228f00b0076ef62e45ccmr4513042qkh.32.1700050292855;
-        Wed, 15 Nov 2023 04:11:32 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700050414; x=1700655214;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LvpNuJxZyzXz0lhYSLLiX8dGBOe586PG52WfNw4Sz4Y=;
+        b=P6rLM2ff3gHrRdbIVxZjPQcqBsWVQ6KcvQa281CBd1XEKCz8HUCGfVRkox75LHYv2F
+         vLHbyPsfJ6lUkDI259mfKpuh4USvGUGYeQIcRx0U21ONI2hsPm9AzMZjUbty6ZAOuSt8
+         UK2xdvdLArA3eIe7r8qFNkPkQa11KoUSQPsqntH95xdB9RSaoV5mKWR+eOlaEjDGWzZU
+         n+Ih+0ndD5g0mjKnmp31L5cdz0BBMNj9LMIzKTze6hE17PTicMAo5eZ8Zu8fxYFhmt+X
+         PuHWAqKoRCa6pvVZJKPxx7akir3skdP5UOcxQho93X7GBhkvRQsOfNAr898KcWQF2AIq
+         o8uw==
+X-Gm-Message-State: AOJu0YxJcXdzZdGYAvXfIyVt8EXECYhFrjDMHKg4ey7sfSWbqqt0TaJY
+	0vnF6AK/Rw1dXZC2XYzAoluFpA==
+X-Google-Smtp-Source: AGHT+IH84bPvgzDcBndojcYYJFlT1VpU7I0rtiiik0evYMOE/zEBIqMjAbgttG+x4fNu9n3IXQaCbw==
+X-Received: by 2002:ac8:4e4b:0:b0:412:c2a:eaef with SMTP id e11-20020ac84e4b000000b004120c2aeaefmr5747450qtw.11.1700050414460;
+        Wed, 15 Nov 2023 04:13:34 -0800 (PST)
 Received: from [192.168.212.13] ([12.191.197.195])
-        by smtp.gmail.com with ESMTPSA id g24-20020a05620a109800b007757f6558b3sm3408398qkk.95.2023.11.15.04.11.29
+        by smtp.gmail.com with ESMTPSA id n25-20020ac86759000000b0041cb8947ed2sm3463497qtp.26.2023.11.15.04.13.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Nov 2023 04:11:31 -0800 (PST)
-Message-ID: <e0f28ec5-b980-490b-a857-5218fe521381@linaro.org>
-Date: Wed, 15 Nov 2023 13:11:28 +0100
+        Wed, 15 Nov 2023 04:13:33 -0800 (PST)
+Message-ID: <863a0fe2-c258-47d9-8563-6f12bb55b4ad@linaro.org>
+Date: Wed, 15 Nov 2023 13:13:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,28 +67,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
- TTC device configured as PWM
-To: "Sayyed, Mubin" <mubin.sayyed@amd.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
- "git (AMD-Xilinx)" <git@amd.com>, "mubin10@gmail.com" <mubin10@gmail.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
- "Simek, Michal" <michal.simek@amd.com>
-References: <20231114124748.581850-1-mubin.sayyed@amd.com>
- <20231114124748.581850-2-mubin.sayyed@amd.com>
- <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
- <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add ASRock E3C256D4I BMC
 Content-Language: en-US
+To: Zev Weiss <zev@bewilderbeest.net>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+References: <20231114112722.28506-4-zev@bewilderbeest.net>
+ <20231114112722.28506-6-zev@bewilderbeest.net>
+ <cde26249-1d47-496f-b198-a0c4c02bed5c@linaro.org>
+ <e766e663-0985-4a2e-8023-26ad0228157d@hatter.bewilderbeest.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,35 +125,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
+In-Reply-To: <e766e663-0985-4a2e-8023-26ad0228157d@hatter.bewilderbeest.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/11/2023 06:55, Sayyed, Mubin wrote:
->>> +	/*
->>> +	 * If pwm-cells property is present in TTC node,
->>> +	 * it would be treated as PWM device.
->>> +	 */
->>> +	if (of_property_read_bool(timer, "#pwm-cells"))
->>> +		return -ENODEV;
->>
->> You will introduce dmesg errors, so regressions.
->>
-> [Mubin]: I will change it to "return 0" to avoid dmesg errors.
-
-No, because solution is wrong.
+On 14/11/2023 23:37, Zev Weiss wrote:
 
 > 
->> This does not look right. What you want is to bind one device driver and
->> choose different functionality based on properties.
-> [Mubin]:  I am doing it based on earlier discussion related to AXI Timer PWM driver.  It was suggested to use #pwm-cells property for identifying role of device(PWM/clocksource) https://lore.kernel.org/linux-devicetree/20210513021631.GA878860@robh.at.kernel.org/. 
+>>> +	};
+>>> +
+>>> +	memory@80000000 {
+>>> +		reg = <0x80000000 0x20000000>;
+>>> +	};
+>>> +
+>>> +	leds {
+>>> +		compatible = "gpio-leds";
+>>> +
+>>> +		heartbeat {
+>>
+>> It does not look like you tested the DTS against bindings. Please run
+>> `make dtbs_check W=1` (see
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
 
-You are mixing bindings with driver. I said here about driver and yes -
-you must use pwm-cells to differentiate that. It's obvious.
+The node names are clearly wrong and you got output. It's easy to spot
+if your patch worked in the first place:
 
-So again, one driver binding.
+ fatal error: dt-bindings/watchdog/aspeed-wdt.h: No such file or directory
 
-Wrap your emails to mailing list discussion style.
 
 Best regards,
 Krzysztof
