@@ -1,130 +1,108 @@
-Return-Path: <devicetree+bounces-16019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D3847EC832
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:12:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE52C7EC849
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:17:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5EFD280E72
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:12:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EA631C20BAC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B92D3174F;
-	Wed, 15 Nov 2023 16:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17517381D2;
+	Wed, 15 Nov 2023 16:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zH/neAjb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tyUzCfXU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FBD13173C;
-	Wed, 15 Nov 2023 16:12:12 +0000 (UTC)
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26347AD;
-	Wed, 15 Nov 2023 08:12:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=3agsLpsSM2d58FHz7b5hDOIxhzFLmj2e63YxikopHhQ=; b=zH/neAjbIjs/dCVDLjp/tyn0Hm
-	D46MRYuvFBN3YS+CfmEu+uK3mDflXyPxOyXoNQW3mjIacteJRwkCOCyLYic8chi3Qi9GLwmvjJiyi
-	PsgLEgOeTJuTy17cCqCzDgZ77KbhmsCTO7yA3RbjXrN9HwBLTNcQIRNFDBpJSgceQu4U=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1r3IUl-000GHP-EA; Wed, 15 Nov 2023 17:12:03 +0100
-Date: Wed, 15 Nov 2023 17:12:03 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 6/8] net: phy: add calibration callbacks to
- phy_driver
-Message-ID: <8bd7abff-9b6d-42ac-b98f-fbfe5f0d7c00@lunn.ch>
-References: <20231114105600.1012056-1-romain.gantois@bootlin.com>
- <20231114105600.1012056-7-romain.gantois@bootlin.com>
- <a4dd8cb4-f662-4dc7-8311-712c64de6f21@lunn.ch>
- <2d4c7054-1aa8-1531-ffa3-7be342ed9a07@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342E634189
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 16:17:22 +0000 (UTC)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C7DE5
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 08:17:20 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-507962561adso10772101e87.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 08:17:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700065038; x=1700669838; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3qRdRIQB+SyLD/2SSSnhRbTBC1T+kT3kqoQQAJb6ZGk=;
+        b=tyUzCfXUfjuyWxENabaWJnV2OSyvqNR7EAWA0zT2WntfZHI3s6xG04BXO/R8sk/+YD
+         MXsDRtoBW2LdtRzcmpIk/h/N9xBOCTRkC6sdyqv+pcMpwCWHI8RpfNKosESC9/ca/q1T
+         /mV5SXOA5FvbpJ7WCnt74/AjFRRi1SGDG3deh979EwjPtLFfjpVWCDj3vdD3F6bNhZE8
+         Y+yBlGGVcPbx3gEjSH2NvfnM1WQF5W6jm/9FdhGandDK5j7w1DNn1xFx3okl1Thzft/7
+         XAXqHup/En7RKolTYnwn328dVHmm+2BK/1oHwFX3Z9qqr/bV/yWaUAAruY3OgnZ0LCIB
+         nZhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700065038; x=1700669838;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3qRdRIQB+SyLD/2SSSnhRbTBC1T+kT3kqoQQAJb6ZGk=;
+        b=Tkb8XI8jjiw7YPICfHPzoHT+SLMp86T7C1eqzBPx3sJH3sgjuERlgQ/blz+vQx812/
+         qmr4mcS12slrj3+jshsTQ0FICvYSs5fasJ+slqLFdWgDaQuOiwB0TEk/zWPKk9Gq1qAo
+         kT01JYSnfar32nBiJiK1II8vf/xi3r/AmRweF6SxHioafnr4HyxaMyxAc0OYbVMDwOT4
+         FaUWW/kwQbiImsCSrrhxnIFj84dfOSpXOGcsDsMA+vgt1zGVa3Xqvv+s+dl0Qay7JZZw
+         5hEVlTYT481OcCSN4FnO6+XhlSlz21wwmVJFaee4x7XDOhOaTgXeYmS6NIFKeBs/TVHQ
+         Xz9Q==
+X-Gm-Message-State: AOJu0YyfIWlNPwV37KZtORLGh6Z1JvqkmJZNh0rRfesZRAZX1ul1e2r0
+	aq+H1Cdhdki+JStCC+DQAymNtQ==
+X-Google-Smtp-Source: AGHT+IGDqUKQj8i4ksmCvgTifMSpJYI6UUhnm2dFhWerlnxd1hBxKHSzpcMr+i8toBc2SR9Oy0cD/w==
+X-Received: by 2002:ac2:43a3:0:b0:509:3bba:e8a with SMTP id t3-20020ac243a3000000b005093bba0e8amr8552355lfl.39.1700065038548;
+        Wed, 15 Nov 2023 08:17:18 -0800 (PST)
+Received: from [172.30.204.150] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id x17-20020ac24891000000b00507962dd2aesm1692517lfc.207.2023.11.15.08.17.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Nov 2023 08:17:18 -0800 (PST)
+Message-ID: <1df726c4-745c-4b41-be04-d3081525210d@linaro.org>
+Date: Wed, 15 Nov 2023 17:17:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2d4c7054-1aa8-1531-ffa3-7be342ed9a07@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qrb5165-rb5: use u16 for DP
+ altmode svid
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Mark Gross <markgross@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
+ <20231113221528.749481-4-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231113221528.749481-4-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: *
 
-On Wed, Nov 15, 2023 at 04:31:07PM +0100, Romain Gantois wrote:
-> On Tue, 14 Nov 2023, Andrew Lunn wrote:
-> 
-> > > +static inline
-> > > +int phy_start_calibration(struct phy_device *phydev)
-> > > +{
-> > > +	if (!(phydev->drv &&
-> > > +	      phydev->drv->calibration_start &&
-> > > +	      phydev->drv->calibration_stop))
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	return phydev->drv->calibration_start(phydev);
-> > > +}
-> > > +
-> > > +static inline
-> > > +int phy_stop_calibration(struct phy_device *phydev)
-> > > +{
-> > > +	if (!(phydev->drv &&
-> > > +	      phydev->drv->calibration_stop))
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	return phydev->drv->calibration_stop(phydev);
-> > > +}
-> > > +
-> > 
-> > What is the locking model?
-> > 
-> >      Andrew
-> > 
-> This driver currently uses an atomic flag to make sure that the calibration 
-> doesn't run twice. It doesn't acquire any locks before calling 
-> phy_start_calibration(), which is a mistake.
-> 
-> I think a good locking model for this would be similar to the one used for 
-> phy_cable_test. The phy_start_calibration() and phy_stop_calibration() wrappers 
-> would acquire a lock on the PHY device and then test phydev->state, to check for 
-> an ongoing calibration. A new enum member such as PHY_CALIB could be defined for 
-> this purpose. The lock would be released by the phylib wrapper once the 
-> phy_driver callback returns.
-> 
-> The problem with this is that one calibration run can access multiple 
-> phy_device instances at the same time, e.g. if a switch is linked to a multiport 
-> PHY via a PSGMII link.
-> 
-> So acquiring a lock on a single phy device isn't enough. Ideally, these 
-> calls could somehow acquire one lock on all the hardware resources of a 
-> multiport PHY simultaneously. From what I've seen, there is no standard kernel 
-> interface that allows MAC drivers to know about link-sharing between phy 
-> devices. I'll have to do more research on this but if you know of an existing 
-> interface that I can use for this, please tell me.
 
-Lets get the switch parts merged first, then we can think about this
-calibration problem. I need a better understanding of the requirements
-before i can suggest something.
 
-       Andrew
+On 11/13/23 23:13, Dmitry Baryshkov wrote:
+> Follow the bindings and use 16-bit value for AltMode SVID instead of
+> using the full u32.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Fixes: b3dea914127e ("arm64: dts: qcom: qrb5165-rb5: enable DP altmode")
 
+(because it was previously not compliant with bindings)
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
