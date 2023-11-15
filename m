@@ -1,81 +1,65 @@
-Return-Path: <devicetree+bounces-16018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 221607EC81E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3847EC832
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:12:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF40D28156E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:05:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5EFD280E72
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:12:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228CD3172D;
-	Wed, 15 Nov 2023 16:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B92D3174F;
+	Wed, 15 Nov 2023 16:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AeBXp3Fj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zH/neAjb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963793173C
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 16:05:08 +0000 (UTC)
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E64127
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 08:05:07 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id 6a1803df08f44-66d0760cd20so9175396d6.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 08:05:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1700064306; x=1700669106; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=MejHG9v78thYt1KCbL5Bhup5VOWpNmj9HgzD1QZtMTA=;
-        b=AeBXp3FjmYcu6PwTQOMYiY6hY8V9m64eef4+yd7Rxcifr4LlNJezuuFpQ6wzh0RRVU
-         5F0kcaICBeyizPSoqFXOm7YVQ9ncSQ8shEeT2gflMsnNwjgD13OdLogs16Lt+ZJ5MDHV
-         TylzYiqzc2G2TZ7UW16OxKdxICpu9dyDFr4VnAFaDlr3OKo3fJDWDSJ7yyA2dh3JgTn1
-         ynpRgHQ2eds3c1A7uNohCtierwscpGZZGcy+OVF+APHbzCxCIlRVQVrJsBGfJsdSyL9Y
-         4w5TwJFVgU0gNjKnMNF8KAX9ZgvHrI4V/7NCBaZQWOXei0iZApimMfZx6m/9OUuOxup4
-         UmhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700064306; x=1700669106;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MejHG9v78thYt1KCbL5Bhup5VOWpNmj9HgzD1QZtMTA=;
-        b=vzpf0s1WUPZLsgETAqq1O6HuhzjpwRaUg32q4rvIDRMJeDeq5WGiCIlhkkyWMZFND2
-         bQvnxXWQ3eXM9RTypW0ek6ZpdHsB/+EhBpaGwxPPaRB9HSS0lBDKQ4v0nLI2/zxzwRfL
-         Z9v12yytmGlIbUOdD8iVoL4gYg9nxsm5ySUgmTQB0emxCQ9OMHEMrdSbX8kR6YA506yg
-         9HmPjQo884nAhhIuzGE6bZHyvqdM/qeCaAjDSk70pAcZ1Vi2+M/X1zwtLchh0jA3y+fY
-         1Tz39CojuRFRGQpj1dfQ5mFQojPZf2c1VloXqxWPJNq9JuAWIkoWJ3pA6wrOlJabr8Wp
-         CImw==
-X-Gm-Message-State: AOJu0YxoNfRKW/ko9wxO87uAQYnPdJvF+6ED/zeYo9ix7CYZvIno2ifh
-	Dv5ULkMorhqmZjrnEQWaAfTInw==
-X-Google-Smtp-Source: AGHT+IEcj6XcTZ0mNvYbPmKaVsfiFpIwuHA7OmpjgBlO36wsG12GpSde51/jSBEJuULlMiocskZovg==
-X-Received: by 2002:a05:6214:1706:b0:66d:6a92:16c2 with SMTP id db6-20020a056214170600b0066d6a9216c2mr10015972qvb.8.1700064306362;
-        Wed, 15 Nov 2023 08:05:06 -0800 (PST)
-Received: from x1 ([12.186.190.1])
-        by smtp.gmail.com with ESMTPSA id k9-20020a05621414e900b00671ab3da5d0sm617138qvw.105.2023.11.15.08.05.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 08:05:06 -0800 (PST)
-Date: Wed, 15 Nov 2023 11:05:04 -0500
-From: Drew Fustini <dfustini@baylibre.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FBD13173C;
+	Wed, 15 Nov 2023 16:12:12 +0000 (UTC)
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26347AD;
+	Wed, 15 Nov 2023 08:12:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=3agsLpsSM2d58FHz7b5hDOIxhzFLmj2e63YxikopHhQ=; b=zH/neAjbIjs/dCVDLjp/tyn0Hm
+	D46MRYuvFBN3YS+CfmEu+uK3mDflXyPxOyXoNQW3mjIacteJRwkCOCyLYic8chi3Qi9GLwmvjJiyi
+	PsgLEgOeTJuTy17cCqCzDgZ77KbhmsCTO7yA3RbjXrN9HwBLTNcQIRNFDBpJSgceQu4U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1r3IUl-000GHP-EA; Wed, 15 Nov 2023 17:12:03 +0100
+Date: Wed, 15 Nov 2023 17:12:03 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 0/7] RISC-V: Add MMC support for TH1520 boards
-Message-ID: <ZVTsMIHc50hkQ2fe@x1>
-References: <20231114-th1520-mmc-v6-0-3273c661a571@baylibre.com>
- <CAPDyKFooGiv6fj+X9c4KXaBjvsTTRaHSrxinQYirTWXmX1Ht5Q@mail.gmail.com>
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH net-next v3 6/8] net: phy: add calibration callbacks to
+ phy_driver
+Message-ID: <8bd7abff-9b6d-42ac-b98f-fbfe5f0d7c00@lunn.ch>
+References: <20231114105600.1012056-1-romain.gantois@bootlin.com>
+ <20231114105600.1012056-7-romain.gantois@bootlin.com>
+ <a4dd8cb4-f662-4dc7-8311-712c64de6f21@lunn.ch>
+ <2d4c7054-1aa8-1531-ffa3-7be342ed9a07@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,36 +68,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFooGiv6fj+X9c4KXaBjvsTTRaHSrxinQYirTWXmX1Ht5Q@mail.gmail.com>
+In-Reply-To: <2d4c7054-1aa8-1531-ffa3-7be342ed9a07@bootlin.com>
 
-On Wed, Nov 15, 2023 at 04:51:30PM +0100, Ulf Hansson wrote:
-> On Tue, 14 Nov 2023 at 22:08, Drew Fustini <dfustini@baylibre.com> wrote:
-> >
-> > This series adds support for the MMC controller in the T-Head TH1520
-> > SoC, and it enables the eMMC and microSD slot on both the BeagleV
-> > Ahead and the Sipeed LicheePi 4A.
-> >
-> > I tested on top of v6.6 with riscv defconfig. I was able to boot the
-> > Ahead [1] and LPi4a [2] from eMMC. This patch series also exists as a
-> > git branch [3].
-> >
-> > Note: I have only tested eMMC and microSD. I have not yet configured
-> > or tested the mmc controller used for SDIO WiFi yet.
-> >
-> > References:
-> > [1] https://gist.github.com/pdp7/881342620ec1509685f23a387e2fc8d7
-> > [2] https://gist.github.com/pdp7/97017ad88d83fccac18eba69bff817b7
-> > [3] https://github.com/pdp7/linux/tree/b4/th1520-mmc
-> >
-> > Changes in PATCH v6:
-> > - set the mmc nodes to disabled in the th1520.dtsi
+On Wed, Nov 15, 2023 at 04:31:07PM +0100, Romain Gantois wrote:
+> On Tue, 14 Nov 2023, Andrew Lunn wrote:
 > 
-> Patch 1 -> 3 , applied for next, thanks!
+> > > +static inline
+> > > +int phy_start_calibration(struct phy_device *phydev)
+> > > +{
+> > > +	if (!(phydev->drv &&
+> > > +	      phydev->drv->calibration_start &&
+> > > +	      phydev->drv->calibration_stop))
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	return phydev->drv->calibration_start(phydev);
+> > > +}
+> > > +
+> > > +static inline
+> > > +int phy_stop_calibration(struct phy_device *phydev)
+> > > +{
+> > > +	if (!(phydev->drv &&
+> > > +	      phydev->drv->calibration_stop))
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	return phydev->drv->calibration_stop(phydev);
+> > > +}
+> > > +
+> > 
+> > What is the locking model?
+> > 
+> >      Andrew
+> > 
+> This driver currently uses an atomic flag to make sure that the calibration 
+> doesn't run twice. It doesn't acquire any locks before calling 
+> phy_start_calibration(), which is a mistake.
 > 
-> Kind regards
-> Uffe
+> I think a good locking model for this would be similar to the one used for 
+> phy_cable_test. The phy_start_calibration() and phy_stop_calibration() wrappers 
+> would acquire a lock on the PHY device and then test phydev->state, to check for 
+> an ongoing calibration. A new enum member such as PHY_CALIB could be defined for 
+> this purpose. The lock would be released by the phylib wrapper once the 
+> phy_driver callback returns.
+> 
+> The problem with this is that one calibration run can access multiple 
+> phy_device instances at the same time, e.g. if a switch is linked to a multiport 
+> PHY via a PSGMII link.
+> 
+> So acquiring a lock on a single phy device isn't enough. Ideally, these 
+> calls could somehow acquire one lock on all the hardware resources of a 
+> multiport PHY simultaneously. From what I've seen, there is no standard kernel 
+> interface that allows MAC drivers to know about link-sharing between phy 
+> devices. I'll have to do more research on this but if you know of an existing 
+> interface that I can use for this, please tell me.
 
-Thank you!
+Lets get the switch parts merged first, then we can think about this
+calibration problem. I need a better understanding of the requirements
+before i can suggest something.
 
-Drew
+       Andrew
+
 
