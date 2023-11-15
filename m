@@ -1,124 +1,106 @@
-Return-Path: <devicetree+bounces-15801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D637EBCED
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 07:08:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 439DB7EBD0E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 07:27:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D724B20AF1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 06:08:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D50061F25661
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 06:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 151F07E;
-	Wed, 15 Nov 2023 06:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E8A7E;
+	Wed, 15 Nov 2023 06:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="S5tBlUMY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="agaLieDS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 906A33C1C
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:08:49 +0000 (UTC)
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D33C93
-	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:08:47 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-507bd19eac8so8598470e87.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:08:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CAFE4404
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 06:27:46 +0000 (UTC)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CBDD9
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:27:44 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-2809fb0027cso153825a91.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 22:27:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1700028526; x=1700633326; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vrRtND/YRUzURuoQwjKJk/HonLng3kvTj/8TZ3Odh2Y=;
-        b=S5tBlUMYSc8tCkMz+qNoAyoyCed8ciKJuLDunru4IFPcL9XnYZuxEBjVlmeUnzKl7d
-         N75cxkPn3PMp7CnxAG1NGOY1IWj+JnKyjuFVv0uzsZiYpl6LzRe6WA2EeUHEy4JTNFPf
-         6nJLfidy3e2wz8M8fpvRV7jIHmFesUbRHYk7k=
+        d=linaro.org; s=google; t=1700029664; x=1700634464; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AKSOBVjj+YjOcXAU8cJCuporBoTYiy5nHyba5GnlAqQ=;
+        b=agaLieDSj7L8eCTTz775oRhZLMFY0SzOJ7NAh1P1ga0w8nx2UIh3SY3BBeZ4Es35aE
+         Hek8wiRKc+DazloKR1aW1NQNcTG2x5LSZhKpiJElFlryujlvZ2GUcrIWLoQ2EmbyHsaB
+         2XHstflom80TWlZSJbT710fih6XDJNyKIQPAf628p74zaGE6zW/v+234mp0hOaEwMp8o
+         +KLALvnP4txEw4OyoRrpsRqqGPhQkTi9q4rFZQOtFzAQufJ6QXdrbmK7m388W6HBltno
+         AawqUFSQ0CaflKFE5/AAaJF9uHrVsmfebP2DNRsFRWCtleu7joCImd+hT0CqF4FAWU6S
+         G+Jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700028526; x=1700633326;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vrRtND/YRUzURuoQwjKJk/HonLng3kvTj/8TZ3Odh2Y=;
-        b=A7tUz/XTxJMBGxtHd8ZIHIt5QVdkv4Z0VgugY3bzUVYpIpmSEYcMWRN9rBVm6d1p+g
-         bqOqPfgEldGllyIwIbKyDsS7avc5+Uc7IUzBgAXkV5YV6Sw9pgGhBFEWa4Xy0uz19inY
-         5hHnMoV5pWbW/hyqgmBcYGGWXHIkdURQVSaZwnW2uLoOkh9i7perP2+ZQBtBrWGOyjCE
-         fRbUK6krkxb63eIdgJnuCzCphOxEqXJ+LWc0P8jz/+xdb+1si3oTmVgSg+y+TsOKx/yB
-         Rs5Ix5phZTQuoVjosH78p1GHf+zuU0jivMri0rXCAX1FKgKjtT1vPO/mxuv8QDt9FIAV
-         UG2w==
-X-Gm-Message-State: AOJu0YxR6Q/LmgN3c6B20R5BwPMeS5eyrIPaw5mnZyr1H9kZyofUv27Y
-	eL6uQpAH9gvmORvJVkLH74FYnFNpNIhYW4kNBcPiAA==
-X-Google-Smtp-Source: AGHT+IEElVyq/Wfz+fZN9g5gHhgB0rYPl8JRXgccOm8OavEsvJYgG8EGZ+VI+3AA2iv3HFdt3nFxSDC3zZjP6Wt+9vg=
-X-Received: by 2002:a05:6512:b14:b0:509:8e3d:7cb0 with SMTP id
- w20-20020a0565120b1400b005098e3d7cb0mr11292990lfu.41.1700028525615; Tue, 14
- Nov 2023 22:08:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700029664; x=1700634464;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AKSOBVjj+YjOcXAU8cJCuporBoTYiy5nHyba5GnlAqQ=;
+        b=CtbylKtbbvtcJdnW5SBv4R1biCbgYzGtPyE3BP1dyqPm/lBQVBTn0oEn1YXXoUgcdC
+         ddDxXTExCL/JywqJbP6WMFrC8c+aYG3RbPBxUDIdTHryp6xJLKQW0/EmZ4VPXCxL/FWJ
+         fntUiUtXR0JE2JM3B0yBtTjrugP4YVTEYchCjbzFfzpQCmQSQAf3+oIbwuCcMjrR68sc
+         YqlLX/WAS6xNWe0wUwawsafwqZK/Hlz6ziGlVzS+uiFgRNrMCfhIuRm6TuDtOKt2Vqcy
+         Otw3+WMgY7lluA0TZMxk+gPaD0zN8vjdN9L8/tNbTf7GjSoUT2Y8qi3/Ug1WlSfyEavr
+         ASbQ==
+X-Gm-Message-State: AOJu0YyYaDis1123uQliiNX7mgYjrAZn5w2DbTGrt0MMninHLHeIhuZf
+	Aa1AJS+bZstVaw9uNGNhBabltA==
+X-Google-Smtp-Source: AGHT+IHLjecUpYnZT1aX8sOnGe785XxMzOTpOQh8BD10EBM3cElVJkFW7QBKAP+68Bxnn0Wv3wq58w==
+X-Received: by 2002:a17:90b:3a8c:b0:280:2652:d41 with SMTP id om12-20020a17090b3a8c00b0028026520d41mr9717051pjb.4.1700029663650;
+        Tue, 14 Nov 2023 22:27:43 -0800 (PST)
+Received: from localhost ([122.172.82.6])
+        by smtp.gmail.com with ESMTPSA id 23-20020a17090a1a1700b0027ced921e80sm8998415pjk.38.2023.11.14.22.27.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Nov 2023 22:27:43 -0800 (PST)
+Date: Wed, 15 Nov 2023 11:57:41 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: David Dai <davidai@google.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Quentin Perret <qperret@google.com>,
+	Masami Hiramatsu <mhiramat@google.com>,
+	Will Deacon <will@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Vincent Guittot <vincent.guittot@linaro.org>,
+	Marc Zyngier <maz@kernel.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Dietmar Eggemann <dietmar.eggemann@arm.com>,
+	Pavan Kondeti <quic_pkondeti@quicinc.com>,
+	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>,
+	kernel-team@android.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: add virtual cpufreq device
+Message-ID: <20231115062741.v3tpm337c2lidxzr@vireshk-i7>
+References: <20231111014933.1934562-1-davidai@google.com>
+ <20231111014933.1934562-2-davidai@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231115043511.2670477-1-treapking@chromium.org>
-In-Reply-To: <20231115043511.2670477-1-treapking@chromium.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 15 Nov 2023 14:08:34 +0800
-Message-ID: <CAGXv+5FnzLgnNfvK-KEd4OUysUXqCuCp7AJ3iuzEGn=fry0B1g@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8173: Add G2Touch touchscreen node
-To: Pin-yen Lin <treapking@chromium.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231111014933.1934562-2-davidai@google.com>
 
-On Wed, Nov 15, 2023 at 12:35=E2=80=AFPM Pin-yen Lin <treapking@chromium.or=
-g> wrote:
->
-> Lenovo Ideapad C330 Chromebook (MTK) uses G2Touch touchscreen as a
-> second source component.
->
-> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+On 10-11-23, 17:49, David Dai wrote:
+> diff --git a/Documentation/devicetree/bindings/cpufreq/qemu,cpufreq-virtual.yaml b/Documentation/devicetree/bindings/cpufreq/qemu,cpufreq-virtual.yaml
+> +$id: http://devicetree.org/schemas/cpufreq/qemu,cpufreq-virtual.yaml#
+> +properties:
+> +  compatible:
+> +    const: qemu,virtual-cpufreq
 
-I assume this patch will get merged relatively soon. I can base my DT
-probing work on top of it, instead of having roughly the same patch
-in my series.
+Not sure why we need to mention QEMU here.. Why limit this to just QEMU ?
 
-> ---
->
-> Changes in v2:
-> - Remove the label for the node
->
->  arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm=
-64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-> index bdcd35cecad9..8836ac3c4233 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-> @@ -29,6 +29,14 @@ touchscreen3: touchscreen@20 {
->                 interrupt-parent =3D <&pio>;
->                 interrupts =3D <88 IRQ_TYPE_LEVEL_LOW>;
->         };
-> +
-> +       touchscreen@40 {
-> +               compatible =3D "hid-over-i2c";
-> +               reg =3D <0x40>;
-> +               hid-descr-addr =3D <0x0001>;
-> +               interrupt-parent =3D <&pio>;
-> +               interrupts =3D <88 IRQ_TYPE_LEVEL_LOW>;
-
-I assume Angelo might ask you to use interrupts-extended instead, but
-I'd argue it's better to be consistent throughout the file.
-
-> +       };
->  };
->
->  &i2c4 {
-> --
-> 2.43.0.rc0.421.g78406f8d94-goog
->
+-- 
+viresh
 
