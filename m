@@ -1,174 +1,171 @@
-Return-Path: <devicetree+bounces-15870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819627EC1C5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 12:57:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B59077EC1E3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:11:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BD56281308
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 11:57:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E121B20B17
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 12:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3877917753;
-	Wed, 15 Nov 2023 11:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3981799E;
+	Wed, 15 Nov 2023 12:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PNZfJUdo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RM/BHTUb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092B21798F;
-	Wed, 15 Nov 2023 11:57:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4A18122;
-	Wed, 15 Nov 2023 03:57:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700049439; x=1731585439;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=16w+40d0xLLcfCPMxmhTbWzTg032nxyn4BeL0NpQz0U=;
-  b=PNZfJUdoTG4knPVq+6eUmG2OJZn0DqIvInOC+iaCghBm3gaOFCJbfIDy
-   aRMdgnIDmbqWkf2jAeEKi3aknPXLhz3UaaJ06i8HUyNN4uaoWwNpW6YGv
-   7Mw7URB2KJX1eLTaBaqP1bUyklytHNsuo2y8/7BVRAIfJ6A6zodkBVvPJ
-   4i+ob/DUnacKYsnU2VbjoxCuG91D8AFvjlSktEJ7Vgx3bYe9sl4PAPy+v
-   rp+/JImr5FihRt9TK3godglHDZRyseY6zuSX6brqWkGZ3iLi+mFUDCcjo
-   jo/NUh2oreaJchPtrTEhgrsLX2khV09J+Zaw7Nro5+VW6AoNPXXpsdwxP
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="12411016"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; 
-   d="scan'208";a="12411016"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Nov 2023 03:57:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; 
-   d="scan'208";a="6377009"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
-  by fmviesa002.fm.intel.com with ESMTP; 15 Nov 2023 03:57:13 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r3EW6-0000J1-2q;
-	Wed, 15 Nov 2023 11:57:10 +0000
-Date: Wed, 15 Nov 2023 19:56:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 5/8] net: qualcomm: ipqess: add bridge
- offloading features to the IPQESS driver
-Message-ID: <202311151907.EpWA1jzi-lkp@intel.com>
-References: <20231114105600.1012056-6-romain.gantois@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CCBA1799B
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:11:39 +0000 (UTC)
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF58D121
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:11:33 -0800 (PST)
+Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-778940531dbso408781685a.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:11:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700050293; x=1700655093; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=h1c3yW1iRaf+ne7MmtvWLEB1RHgOkaZ2lQHdp2l3FC8=;
+        b=RM/BHTUb7pYN8fheKBq8q4IWeOGuWHr9lFflIm/iTNMYcUysfANkYr4QQtfAk/RwqO
+         Qn2XRMYYyaobqGtSWpC3A5otX+mgkIDV6y8JmdHpHyR5N7zkXCpvSWrLZXY3bREYVUgx
+         tWwvpUrL7DO5m1mlFebeBjfMEFh4Irl678ZI2rpbA5laJAup/+kA4bRLb3lfbGly00+D
+         iKt2b04M4EDiNHBExM9Zc0zAg5zMdG/5J60m0MB7X/neAboXRSSo/YhYewWxp8Vz19tE
+         nNXHUCSiuYbFf5rbamz/qMp3Q3mnoPFgXe0jeWYO7ShpzRr8eDHTjrxlSjEFMMEaIPvq
+         iFPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700050293; x=1700655093;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h1c3yW1iRaf+ne7MmtvWLEB1RHgOkaZ2lQHdp2l3FC8=;
+        b=BUEi3ASjB7zDizZOBuwaMverVIPqQL6Lv4q1U6ePE3tW/3bDqYtWd7lZnns7ow+9rc
+         dgeVeexOMsXp/Ydeo26mYiChhBcTPDAserQaAZ35U9P8JnsIAUT/dWzk0Ev4ITmEzyCr
+         hXf5ST2OKFMHjPh/lCJqIHwZRe8SdEer1aI9vOUQuFPg4hg+yaOz5Hm+qHjWWL0fikNK
+         jY+H3MbZFQ+zfbjfFXsIDt1d4jOjVn6132GRUoEvlG2ws2y0H/MCm1qPGS3WKe4FpK1W
+         H3GzllITQDgLzxspHfOefHtaFVZQGjvf5cwdXn4+PGx9Sk/kFF2n8/bI1nfybCpSCGGX
+         rj2g==
+X-Gm-Message-State: AOJu0YwtfT3tX+Bb/QMFG3Iq57lEm8wr/gcitfqRND/H1LEiqv/4gsJu
+	gryPr5eVjRwbuRRQdUxbkRI6bg==
+X-Google-Smtp-Source: AGHT+IFDsnRi7n+puPII6vLIkn8CeLHgODgriEQAbJ3HG/8f/LtrkMqqKM1WfYRJNXu/QB/suczmUw==
+X-Received: by 2002:a05:620a:228f:b0:76e:f62e:45cc with SMTP id o15-20020a05620a228f00b0076ef62e45ccmr4513042qkh.32.1700050292855;
+        Wed, 15 Nov 2023 04:11:32 -0800 (PST)
+Received: from [192.168.212.13] ([12.191.197.195])
+        by smtp.gmail.com with ESMTPSA id g24-20020a05620a109800b007757f6558b3sm3408398qkk.95.2023.11.15.04.11.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Nov 2023 04:11:31 -0800 (PST)
+Message-ID: <e0f28ec5-b980-490b-a857-5218fe521381@linaro.org>
+Date: Wed, 15 Nov 2023 13:11:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231114105600.1012056-6-romain.gantois@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [LINUX PATCH v2 1/3] clocksource: timer-cadence-ttc: Do not probe
+ TTC device configured as PWM
+To: "Sayyed, Mubin" <mubin.sayyed@amd.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "git (AMD-Xilinx)" <git@amd.com>, "mubin10@gmail.com" <mubin10@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "tglx@linutronix.de" <tglx@linutronix.de>,
+ "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+ "Simek, Michal" <michal.simek@amd.com>
+References: <20231114124748.581850-1-mubin.sayyed@amd.com>
+ <20231114124748.581850-2-mubin.sayyed@amd.com>
+ <d37db10b-f9fa-49b0-8b1e-36e20acbcfd6@linaro.org>
+ <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <DM4PR12MB593888B73B65D25E42490EF29DB1A@DM4PR12MB5938.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Romain,
+On 15/11/2023 06:55, Sayyed, Mubin wrote:
+>>> +	/*
+>>> +	 * If pwm-cells property is present in TTC node,
+>>> +	 * it would be treated as PWM device.
+>>> +	 */
+>>> +	if (of_property_read_bool(timer, "#pwm-cells"))
+>>> +		return -ENODEV;
+>>
+>> You will introduce dmesg errors, so regressions.
+>>
+> [Mubin]: I will change it to "return 0" to avoid dmesg errors.
 
-kernel test robot noticed the following build warnings:
+No, because solution is wrong.
 
-[auto build test WARNING on net-next/main]
+> 
+>> This does not look right. What you want is to bind one device driver and
+>> choose different functionality based on properties.
+> [Mubin]:  I am doing it based on earlier discussion related to AXI Timer PWM driver.  It was suggested to use #pwm-cells property for identifying role of device(PWM/clocksource) https://lore.kernel.org/linux-devicetree/20210513021631.GA878860@robh.at.kernel.org/. 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-net-Introduce-the-Qualcomm-IPQESS-Ethernet-switch/20231114-185953
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231114105600.1012056-6-romain.gantois%40bootlin.com
-patch subject: [PATCH net-next v3 5/8] net: qualcomm: ipqess: add bridge offloading features to the IPQESS driver
-config: x86_64-randconfig-003-20231115 (https://download.01.org/0day-ci/archive/20231115/202311151907.EpWA1jzi-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231115/202311151907.EpWA1jzi-lkp@intel.com/reproduce)
+You are mixing bindings with driver. I said here about driver and yes -
+you must use pwm-cells to differentiate that. It's obvious.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311151907.EpWA1jzi-lkp@intel.com/
+So again, one driver binding.
 
-All warnings (new ones prefixed by >>):
+Wrap your emails to mailing list discussion style.
 
->> drivers/net/dsa/qca/qca8k-8xxx.c:1982:5: warning: no previous prototype for 'qca8k_dsa_port_fdb_dump' [-Wmissing-prototypes]
-    1982 | int qca8k_dsa_port_fdb_dump(struct dsa_switch *ds, int port,
-         |     ^~~~~~~~~~~~~~~~~~~~~~~
->> drivers/net/dsa/qca/qca8k-8xxx.c:1988:6: warning: no previous prototype for 'qca8k_dsa_port_stp_state_set' [-Wmissing-prototypes]
-    1988 | void qca8k_dsa_port_stp_state_set(struct dsa_switch *ds, int port,
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/net/dsa/qca/qca8k-8xxx.c:1995:6: warning: no previous prototype for 'qca8k_dsa_port_fast_age' [-Wmissing-prototypes]
-    1995 | void qca8k_dsa_port_fast_age(struct dsa_switch *ds, int port)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~
->> drivers/net/dsa/qca/qca8k-8xxx.c:2000:5: warning: no previous prototype for 'qca8k_dsa_set_ageing_time' [-Wmissing-prototypes]
-    2000 | int qca8k_dsa_set_ageing_time(struct dsa_switch *ds, unsigned int msecs)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/net/dsa/qca/qca8k-8xxx.c:2005:5: warning: no previous prototype for 'qca8k_dsa_port_vlan_filtering' [-Wmissing-prototypes]
-    2005 | int qca8k_dsa_port_vlan_filtering(struct dsa_switch *ds, int port,
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/net/dsa/qca/qca8k-8xxx.c:2012:5: warning: no previous prototype for 'qca8k_dsa_vlan_add' [-Wmissing-prototypes]
-    2012 | int qca8k_dsa_vlan_add(struct dsa_switch *ds, int port,
-         |     ^~~~~~~~~~~~~~~~~~
+Best regards,
+Krzysztof
 
-
-vim +/qca8k_dsa_port_fdb_dump +1982 drivers/net/dsa/qca/qca8k-8xxx.c
-
-  1981	
-> 1982	int qca8k_dsa_port_fdb_dump(struct dsa_switch *ds, int port,
-  1983				    dsa_fdb_dump_cb_t *cb, void *data)
-  1984	{
-  1985		return qca8k_port_fdb_dump(ds->priv, port, cb, data);
-  1986	}
-  1987	
-> 1988	void qca8k_dsa_port_stp_state_set(struct dsa_switch *ds, int port,
-  1989					  u8 state)
-  1990	{
-  1991		qca8k_port_stp_state_set(ds->priv, port, state,
-  1992					 dsa_to_port(ds, port)->learning, true);
-  1993	}
-  1994	
-> 1995	void qca8k_dsa_port_fast_age(struct dsa_switch *ds, int port)
-  1996	{
-  1997		qca8k_port_fast_age(ds->priv, port);
-  1998	}
-  1999	
-> 2000	int qca8k_dsa_set_ageing_time(struct dsa_switch *ds, unsigned int msecs)
-  2001	{
-  2002		return qca8k_set_ageing_time(ds->priv, msecs);
-  2003	}
-  2004	
-> 2005	int qca8k_dsa_port_vlan_filtering(struct dsa_switch *ds, int port,
-  2006					  bool vlan_filtering,
-  2007					  struct netlink_ext_ack *extack)
-  2008	{
-  2009		return qca8k_port_vlan_filtering(ds->priv, port, vlan_filtering);
-  2010	}
-  2011	
-> 2012	int qca8k_dsa_vlan_add(struct dsa_switch *ds, int port,
-  2013			       const struct switchdev_obj_port_vlan *vlan,
-  2014			       struct netlink_ext_ack *extack)
-  2015	{
-  2016		return qca8k_port_vlan_add(ds->priv, port, vlan, extack);
-  2017	}
-  2018	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
