@@ -1,91 +1,106 @@
-Return-Path: <devicetree+bounces-16027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3AFC7EC8A0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 453DD7EC8E0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 17:44:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 641FAB20B3E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:31:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EBE2B20BDF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:44:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D381EB34;
-	Wed, 15 Nov 2023 16:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960D928DAE;
+	Wed, 15 Nov 2023 16:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K/aErExJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PNy1DYfC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376FE3BB55;
-	Wed, 15 Nov 2023 16:31:10 +0000 (UTC)
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8671994;
-	Wed, 15 Nov 2023 08:31:04 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id 6a1803df08f44-66d190a8f87so40218496d6.0;
-        Wed, 15 Nov 2023 08:31:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700065864; x=1700670664; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+INF42k1XG4+6QzaNisuOEUhiKYehEiojUz+F/VMRXU=;
-        b=K/aErExJvYgXc45ckszJGSWC9EyIuuFbXt6BCQ/ozGRj5UFyQfbGKzi5ZTrkQ3dMRe
-         pYSp50RcP/vHiNP/2DMmZ4re5ZhXFJjP72d+eGqJcHuTDUcjGhADot+npIIT4IwcgBPQ
-         DrFhsTnwu1Q/vuA1QYpq1Ihyz79/vPy/MEQ9Wc1lUsXQB8ilq5Yw2McQJJY8CLjoJQoL
-         910ZDlQlo5uBsEVBDz90mo9aSlOcqbeKTULVv7u5zG6+by4tpRnsOTrtgVlNjkIMGkr9
-         RGBJBvLg3iBnBMVvNeCrLk8yOGi1sb6yZtQHoctLuTUEuqpHwdtm2+9f36lnRA9ujcq2
-         HAIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700065864; x=1700670664;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+INF42k1XG4+6QzaNisuOEUhiKYehEiojUz+F/VMRXU=;
-        b=P73yNDHGuf6Y5rFszBWOm8uxmHN3kjwbGK+ClfDmTazlqkREyc4/UleXAkz7/PUSAm
-         xs+wHSgGLT4vhGGeV+D8OD+TbBod6dXO8ds8L53ESU+KTPSs10+0xQPFtxua4vREYd5H
-         u+n74PNkKR4YnyZupypmBG3wFnDrfbDYn+kLCDoaQDV4Yocg+ofidFny6/GxTbRr9OQc
-         boKxYrBN+WYr0IMKXfqHnsoxCzyEZfwJwHnQtjuG2nP+R8gz9pvFuhGus5zfBCXrlEzQ
-         tar4Q5W5jgDxZXhVEceXOkTu4cLVQWCetUFYFYNXP1CD9EceUGW2loFAWiIYshr4YWOc
-         V+ZA==
-X-Gm-Message-State: AOJu0YwBVYpsT6ttfYwweFvRhnqsL79L2KB15+5mtEMdfTiBXocoDmVd
-	5N5/k9AH+U9uU4ySKBMxQMQIh5A6dv0=
-X-Google-Smtp-Source: AGHT+IEn/2rz+rcSYv3U4p1KtnF5wJpHNs7HX9mybwVu8k08zuexww2lEBpj2J9tC2zhD37VjYepbA==
-X-Received: by 2002:a05:6214:560c:b0:66d:6388:bb2c with SMTP id mg12-20020a056214560c00b0066d6388bb2cmr4834783qvb.54.1700065863627;
-        Wed, 15 Nov 2023 08:31:03 -0800 (PST)
-Received: from google.com ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id l16-20020ad44d10000000b00656e2464719sm650908qvl.92.2023.11.15.08.31.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 08:31:03 -0800 (PST)
-Date: Wed, 15 Nov 2023 16:30:59 +0000
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: samsung,s6sy761: convert to DT schema
-Message-ID: <ZVTyQx7hpADGGk8l@google.com>
-References: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3063BB44;
+	Wed, 15 Nov 2023 16:44:15 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A1611D;
+	Wed, 15 Nov 2023 08:44:12 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B40EA60006;
+	Wed, 15 Nov 2023 16:44:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700066651;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=mnNKnxShDKBKR7oddzUJiYMgk7ZsuUJgQ9HbV/jIWzo=;
+	b=PNy1DYfCIEvygEiDckI0R3vTZpWCm5cZauVL38NsqNeXeg5Lq9LPhSNJd+FMh808Uh8dbe
+	hvEFHjvuTNC6wAaxoq2gIq0OYSFroR8n7dUpe/N9cGzUl4DsiIBI6JCHyG/mNEJSX9T1cd
+	HRppNhgzOZJ36jPgYesb+RlYW107fusuvXFRMbNf96JWlnR0LD98kER3Zk+0CNpU0Cbfxg
+	k7io9HikMFWyhpfilR4wAOQ29uwzI/KyXtQylsVEVJKoLWppKqu5BWz/aX0qHf3F8Snkx2
+	06O9hbtIS2IjgUPG7LEawJuXrcXwMcBAiZ/oq3BlH9S5AANlNmWYqxmHSnZd0A==
+From: Mehdi Djait <mehdi.djait@bootlin.com>
+To: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com,
+	alexandre.belloni@bootlin.com,
+	paul.kocialkowski@bootlin.com,
+	dafna@fastmail.com,
+	laurent.pinchart@ideasonboard.com,
+	helen.koike@collabora.com,
+	heiko@sntech.de,
+	paul.elder@ideasonboard.com,
+	Mehdi Djait <mehdi.djait@bootlin.com>
+Subject: [PATCH] media: dt-bindings: media: rkisp1: Fix the port description for the parallel interface
+Date: Wed, 15 Nov 2023 17:44:07 +0100
+Message-ID: <20231115164407.99876-1-mehdi.djait@bootlin.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231111143221.55452-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: mehdi.djait@bootlin.com
 
-On Sat, Nov 11, 2023 at 03:32:21PM +0100, Krzysztof Kozlowski wrote:
-> Convert Samsung  S6SY761 touchscreen controller bindings to DT schema.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+The bus-type belongs to the endpoint's properties and should therefore
+be moved.
 
-Applied, thank you.
+Fixes: 6a0eaa25bf36 ("media: dt-bindings: media: rkisp1: Add port for parallel interface")
+Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+---
+ .../devicetree/bindings/media/rockchip-isp1.yaml      | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+index e466dff8286d..afcaa427d48b 100644
+--- a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
++++ b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+@@ -90,15 +90,16 @@ properties:
+         description: connection point for input on the parallel interface
+ 
+         properties:
+-          bus-type:
+-            enum: [5, 6]
+-
+           endpoint:
+             $ref: video-interfaces.yaml#
+             unevaluatedProperties: false
+ 
+-        required:
+-          - bus-type
++            properties:
++              bus-type:
++                enum: [5, 6]
++
++            required:
++              - bus-type
+ 
+     anyOf:
+       - required:
 -- 
-Dmitry
+2.41.0
+
 
