@@ -1,131 +1,113 @@
-Return-Path: <devicetree+bounces-16060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77BD57ED2F0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:45:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272937ED3A9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:53:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 922071C20969
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 20:45:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 583B91C208D3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 20:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8E943AAB;
-	Wed, 15 Nov 2023 20:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49C243AD5;
+	Wed, 15 Nov 2023 20:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XW2Fbidh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LjzsJQtG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F0CA1
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:45:05 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9c2a0725825so15025366b.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:45:05 -0800 (PST)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D1819B;
+	Wed, 15 Nov 2023 12:53:48 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40859c466efso359795e9.3;
+        Wed, 15 Nov 2023 12:53:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1700081102; x=1700685902; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MMCXFclGcLK2XWRhjGnvFkwVtcm+D581tPNKMzDFIwY=;
-        b=XW2FbidhV0kiGU4tZfY5di/mHMlam05rTCbQxyoaSU5AR4sZBsjNq5KuVn8Kj/6MhH
-         eXnlBUlAy/aK4jcHuBA30xhc0OY/44xfwDiXgxHrz/aqPRuC8uEqKgFhdYDj6GJdhPnf
-         GJd47CnHksZxgM1dft+Lrh2bZA+cHMCNPKQn0=
+        d=gmail.com; s=20230601; t=1700081627; x=1700686427; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2PYtEKMR8Lcx2AJuXC/XT3diCjxIMZbSWA19LgiBkn0=;
+        b=LjzsJQtGwNQJAlRoORXDYZYNyfqEDCGbwhP7pFIZXGLWJkjD+vh+1YMzyUcUDW4kRA
+         VgBMeih2oXEg0fj/WBagerf89hD/8NTo88hRY7SKW4tnN+LewzzYk4ywbvjB4Dd+iBZU
+         kq9QCRKJqRAUx17Fm9uaiSYMaMJl9/hfSJpqVme3fCDp5JO6m7xwiXOYKIJnEB8pkoZX
+         zPFCosHgmcyEucq3Q5n7fQSK3K4AZ2p5GDRd91y1rWdYxMjCx3iksy3jASObw2fDOIuI
+         +xD7LV3WVIAYf1uyTQypxzvHNXh1Ne0wYlH8asLr4Foed83VEQu+1zmo3DNUympZPAzr
+         w6pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700081102; x=1700685902;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MMCXFclGcLK2XWRhjGnvFkwVtcm+D581tPNKMzDFIwY=;
-        b=SlGo4rX3lTC1tR7/2cO4eJdBXAMUcHgX4OATcRYjiW1Vj+AGykdD7Wyv6SbYOAWLxd
-         9sKuzFJZ/3JgUqxKjY6yMAWjZitcWHkrNlWO7U9HZLtKkuSNZxkjLfUBrbiSfoxFiyju
-         HaIxlKlSMWRKe6FyOFBQh27aC+b7Sw3Cr3BO1X5fmaMDE8iO/+RYKlI/xw+94LoGl4RY
-         edpE/Hvp009HnyyoD7c4auZYqPAqsWAHHxzxKdOzW7EyO+YTyl9sfQbHEWrS2zxybu7+
-         dV4GSXr0W83hwHcQNARrGZfQUku2TWH7tNCQVLIz9KJ4HGNXg9VboHLc4q3Op8TN7Y/U
-         KBpA==
-X-Gm-Message-State: AOJu0YyTfro5ctnfI7qcgcOlpYfqtA7erohZupsXGb/gBOtsG43eN1mw
-	7YoKNWlTlbG9TY3+g9BsLpx+0QHl4pM+AwKzHqpOTO3s
-X-Google-Smtp-Source: AGHT+IHnEj7IzZZCmUlEgPyg7uo3GMyeApmPKeUv/nM2TuNxw/9nEECCTJSPidHKrxyfV9MWWnFysw==
-X-Received: by 2002:a17:906:aed3:b0:9c3:7510:e522 with SMTP id me19-20020a170906aed300b009c37510e522mr326185ejb.63.1700081102319;
-        Wed, 15 Nov 2023 12:45:02 -0800 (PST)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com. [209.85.208.52])
-        by smtp.gmail.com with ESMTPSA id rp21-20020a170906d97500b009e6af2efd77sm7445829ejb.45.2023.11.15.12.45.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Nov 2023 12:45:02 -0800 (PST)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-53eeb28e8e5so3048a12.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:45:02 -0800 (PST)
-X-Received: by 2002:a05:600c:3b23:b0:408:3727:92c5 with SMTP id
- m35-20020a05600c3b2300b00408372792c5mr11547wms.2.1700081081263; Wed, 15 Nov
- 2023 12:44:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700081627; x=1700686427;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2PYtEKMR8Lcx2AJuXC/XT3diCjxIMZbSWA19LgiBkn0=;
+        b=LoFOOFuZbyFlFLioOXmp0wZ65d8QXfWZygy6czSwzgeN8kQrg0kCAaAko5yYK0y1h+
+         AQPokbjd5+ecQUQzGTAWdd8IN9Dt31ns1Ffs4UJS/umbaQGnDbr9qG/2Sh1BVWy2mjNF
+         6Pj8mMSqIpoV5R/RBuwynhE2usBoaADZ8T2OqVFQrE51IiIqz1QPLlIfyUrR2f7AXmJM
+         /9Z7tBNs6KtYnZnP6bE6OQx6aLsQ/HjLlX3Lm2HqGlNTjBGtyPYQgp2OLVOsUr57mpId
+         Ydhk3C/c5gg7eQ8X5FqDYwxkI7Y7G/kVACFvgR1dxuddz7saGhhXruckkN569mEBHie5
+         NXJQ==
+X-Gm-Message-State: AOJu0Yzwmz3KwryQKEcHihlNpmiywcB3arccK/61MYF4UrRFvMYXr3kj
+	tMkLJj0E6VvugI1MNP2UdFg=
+X-Google-Smtp-Source: AGHT+IGBhIjettvz+xuqMppFRXJa0VPar5Slww77XeBNE9okbEw1eOXeU0gM18HaYf+k+Tig7zIZtQ==
+X-Received: by 2002:a05:600c:1f87:b0:40a:55a6:793a with SMTP id je7-20020a05600c1f8700b0040a55a6793amr6941368wmb.21.1700081626862;
+        Wed, 15 Nov 2023 12:53:46 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:e8e:4851:e049:93fd])
+        by smtp.gmail.com with ESMTPSA id dd19-20020a0560001e9300b0032da4c98ab2sm11438277wrb.35.2023.11.15.12.53.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Nov 2023 12:53:46 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] spi: dt-bindings: renesas,rspi: Document RZ/Five SoC
+Date: Wed, 15 Nov 2023 20:53:33 +0000
+Message-Id: <20231115205333.31076-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
- <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
- <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com> <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 15 Nov 2023 12:44:25 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
-Message-ID: <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
-To: Rob Herring <robh+dt@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Chen-Yu Tsai <wenst@chromium.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
-	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
-	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
-	james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, 
-	rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Wed, Nov 15, 2023 at 2:28=E2=80=AFPM Rob Herring <robh+dt@kernel.org> wr=
-ote:
->
-> > So if we're searching the whole device tree for "failed-needs-probe"
-> > then we need to figure out which devices are related to each other. If
-> > a given board has second sources for MIPI panels, touchscreens, and
-> > trackpads then we need to know which of the "failed-needs-probe"
-> > devices are trackpads, which are touchscreens, and which are MIPI
-> > panels. Do you have any suggestions for how we should do that? Maybe
-> > it was in some other thread that I missed? I guess we could have a
-> > board-specific table mapping (compatible + node name + reg) to a
-> > class, but that feels awkward.
->
-> Node name is supposed to correspond to device class, so why not use
-> that (no path or unit-address.) and nothing else (well, besides
-> "status")?
+The RSPI block on the RZ/Five SoC is identical to one found on the RZ/G2UL
+SoC. "renesas,r9a07g043-rspi" compatible string will be used on the
+RZ/Five SoC so to make this clear and to keep this file consistent, update
+the comment to include RZ/Five SoC.
 
-One problem is that I could imagine having two second source trackpads
-that both have the same i2c address. That would give them the same
-name, right? I guess you could maybe come up with some sort of suffix
-rule? Like
+No driver changes are required as generic compatible string
+"renesas,rspi-rz" will be used as a fallback on RZ/Five SoC.
 
-trackpad-1@10 {
-  compatible =3D "elan,blah";
-  ret =3D <0x10>;
-  status =3D "failed-needs-probe";
-  ...
-}
-trackpad-2@10 {
-  compatible =3D "goodix,gt7375p";
-  ret =3D <0x10>;
-  status =3D "failed-needs-probe";
-  ...
-}
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ Documentation/devicetree/bindings/spi/renesas,rspi.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Then I guess the class would be "trackpad"?
+diff --git a/Documentation/devicetree/bindings/spi/renesas,rspi.yaml b/Documentation/devicetree/bindings/spi/renesas,rspi.yaml
+index 4d8ec69214c9..0ef3f8421986 100644
+--- a/Documentation/devicetree/bindings/spi/renesas,rspi.yaml
++++ b/Documentation/devicetree/bindings/spi/renesas,rspi.yaml
+@@ -21,7 +21,7 @@ properties:
+           - enum:
+               - renesas,rspi-r7s72100  # RZ/A1H
+               - renesas,rspi-r7s9210   # RZ/A2
+-              - renesas,r9a07g043-rspi # RZ/G2UL
++              - renesas,r9a07g043-rspi # RZ/G2UL and RZ/Five
+               - renesas,r9a07g044-rspi # RZ/G2{L,LC}
+               - renesas,r9a07g054-rspi # RZ/V2L
+           - const: renesas,rspi-rz
+-- 
+2.34.1
 
-
--Doug
 
