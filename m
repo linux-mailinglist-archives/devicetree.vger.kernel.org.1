@@ -1,53 +1,61 @@
-Return-Path: <devicetree+bounces-16055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B8C07ED1D9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:14:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D2FE7ED1E0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:16:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CF9D281744
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 20:14:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25850B20D7E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 20:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0AF4177E;
-	Wed, 15 Nov 2023 20:14:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5EB241A81;
+	Wed, 15 Nov 2023 20:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TiQsJcib"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gOaqeBZd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C69CE3C462;
-	Wed, 15 Nov 2023 20:14:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5F14C433C8;
-	Wed, 15 Nov 2023 20:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C777E3C49F;
+	Wed, 15 Nov 2023 20:16:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16848C433C7;
+	Wed, 15 Nov 2023 20:16:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700079278;
-	bh=u27jYiyCnPvX7BwcogXqTwm0JCokegPD0Pe+zFt7/vk=;
+	s=k20201202; t=1700079407;
+	bh=ZVjSqLjKaAHIOMXlYsfwrIVccwu0qJMyjQZ2lpKAeK4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TiQsJcibVMrhAUxdRs4u55T1ZRdXUaqXl0B5FwM1xxy95CP56AwkQ1rDOe8a9oRoM
-	 Z8/1VADpjkogA5+7sakttqxM+FIdPYZCb6phOXReJyup0qXLXDxcDlBED2qrZ9pEK/
-	 5d23ZF8mirTogRa0OaIJ6zSozfBveBNkof79iV0xhe4z7yoIHnXwn6mqxh1h426RzR
-	 5BDgd7OCfpaenn5yZ96T8LtORT8jEzmRim8o1D82D5BBkWn0IBuHnMgWvXhB4dr07X
-	 VKcfkO78iZsKEchmMDJOT0SGiuzm2EaZdxuf33hGEk96KPL2GK8EUKga0NP+ACePHB
-	 q4fkFIRbfc2mw==
-Date: Wed, 15 Nov 2023 20:14:32 +0000
+	b=gOaqeBZd4d5l74Suo2vktBpX3X5I2qB1CKVCC2HIY3pzJDRmYpmbZwiYkDNZFCX6/
+	 HaL8djZYNeNCi0PjXUmnL0PIo6xm7n6XqXEIOropvDb9g2QzC9xEm7zMWsOsvqqlFH
+	 Hb0R54p4dKv3cGzHRNyLoDRyMhcBk0k8jAcK2Jp1nK5BMYHfYHsG4ybtI7dLFxpDkI
+	 0+wuQYEGHkyAT3O12HEczG+K9g1Xg3H1conCmqTPytYbmqMmfaVHFOiMfTmjirshiw
+	 M3p4sQehGCqiwB0ROeve7HaEgAgYRKcGJiFqoG0b4PSFnvZKlxYTg5drdaEUTkjla/
+	 trHWosst3E6xw==
+Date: Wed, 15 Nov 2023 20:16:43 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Flavio Suligoi <f.suligoi@asem.it>
-Cc: Lee Jones <lee@kernel.org>,
-	Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Helge Deller <deller@gmx.de>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: backlight: mp3309c: remove two
- required properties
-Message-ID: <20231115-showdown-blame-06a9acb63506@squawk>
-References: <20231115152902.851715-1-f.suligoi@asem.it>
- <20231115152902.851715-2-f.suligoi@asem.it>
+To: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, michael.riesch@wolfvision.net
+Subject: Re: [PATCH v10 1/3] media: dt-bindings: media: add bindings for
+ Rockchip CIF
+Message-ID: <20231115-angles-entrust-f72112053ee0@squawk>
+References: <cover.1699460637.git.mehdi.djait@bootlin.com>
+ <037bcabf97294d37b271537e4b11fb88cf9bb6f6.1699460637.git.mehdi.djait@bootlin.com>
+ <20231109-closable-superglue-5e7f39739cf1@spud>
+ <ZU0avuRRaITV4jws@aptenodytes>
+ <e5b1f0dd-0aab-4ce5-82ba-879a4d736e7e@linaro.org>
+ <ZU0f33clFwlsTw16@aptenodytes>
+ <20231110-appetizer-fame-2152806c7442@roley>
+ <ZVJUsDb1mPVtcjdX@aptenodytes>
+ <20231114-abnormal-uncross-dcebea2e82ae@squawk>
+ <ZVTemwY6gvFdQMib@aptenodytes>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,34 +63,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7YInnrzDKNO+YsB+"
+	protocol="application/pgp-signature"; boundary="p7xwxdlI3yVO6ndn"
 Content-Disposition: inline
-In-Reply-To: <20231115152902.851715-2-f.suligoi@asem.it>
+In-Reply-To: <ZVTemwY6gvFdQMib@aptenodytes>
 
 
---7YInnrzDKNO+YsB+
-Content-Type: text/plain; charset=us-ascii
+--p7xwxdlI3yVO6ndn
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 15, 2023 at 04:29:01PM +0100, Flavio Suligoi wrote:
-> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
+On Wed, Nov 15, 2023 at 04:07:07PM +0100, Paul Kocialkowski wrote:
+> Hi,
+>=20
+> On Tue 14 Nov 23, 17:51, Conor Dooley wrote:
+> > On Mon, Nov 13, 2023 at 05:54:08PM +0100, Paul Kocialkowski wrote:
+> > =20
+> > > > Ultimately, I don't care what the file ends up being called when th=
+ere
+> > > > are multiple devices documented in it. I'd ack a patch renaming to =
+the
+> > > > =C5=93riginal incarnation of the IP when the documentation for that=
+ IP is
+> > > > added without a second thought.
+> > >=20
+> > > That would be agreeable to me if my proposal still ends up feeling un=
+reasonable
+> > > to you. But I might very well take you at your word since I ended up =
+purchasing
+> > > a RK3066 board in a moment of weakness last week.
+> >=20
+> > The ideal outcome I suppose would be documenting both variants. If
+> > you've gone ahead and bought one, give that a go.
+>=20
+> Yeah I'll try to do that eventually, but we really want to have this seri=
+es
+> merged as soon as possible. So it wouldn't be reasonable for us to wait f=
+or
+> RK3066 support.
+>=20
+> What's your final decision for now: is it okay to keep the file named
+> rockchip,rk3066-cif.yaml (without this compatible in the file) or do you =
+still
+> want it called rockchip,px30-vip.yaml?
 
-You omitted my ack that I gave on the previous version.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I'd still rather it was called after the only compatible in the file and
+subsequently renamed, sorry.
 
-Cheers,
-Conor.
-
---7YInnrzDKNO+YsB+
+--p7xwxdlI3yVO6ndn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVUmpQAKCRB4tDGHoIJi
-0qqQAP48sZ0PpimqIgeXVDtIsAnRBgLRK6J12gcofe0rmm2dTQEA6AsQB7AwImc8
-T8U4C7CkANMlEQvcOu1fB5Bl5KkzKgw=
-=Z3fk
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVUnJwAKCRB4tDGHoIJi
+0oTZAP4yHDcteNplKbcsPunVdLyM9hU/+gXNLfFa0T0GvElWsAD9HZ8JqDT4+bnB
+ubg3obCIgBxf86lXeQLb/cvYAnwuswg=
+=akr5
 -----END PGP SIGNATURE-----
 
---7YInnrzDKNO+YsB+--
+--p7xwxdlI3yVO6ndn--
 
