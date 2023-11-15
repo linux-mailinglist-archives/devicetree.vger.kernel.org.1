@@ -1,145 +1,111 @@
-Return-Path: <devicetree+bounces-15894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A462E7EC38A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:25:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6DF7EC3E6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 14:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D374A1C20826
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:25:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33E92B20A6F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 13:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAC81A592;
-	Wed, 15 Nov 2023 13:25:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807291CAAF;
+	Wed, 15 Nov 2023 13:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lJTWNsPg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sUTy4gSP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE4A1A5A2;
-	Wed, 15 Nov 2023 13:25:35 +0000 (UTC)
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF6E120;
-	Wed, 15 Nov 2023 05:25:34 -0800 (PST)
-Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-778925998cbso447128385a.0;
-        Wed, 15 Nov 2023 05:25:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700054733; x=1700659533; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3vuQNx0saY2ItGRKdBl26Lb/Oz25BKx0ZaIePLBjp78=;
-        b=lJTWNsPgkvArhJfx4mLzea66zYOPRDRqShORfizWt7bJwxyfZkIXlZoZpXiNpkYX7b
-         Ie9VxfSoTJ8ISvgqoq4CKoF2O7hVN7TGbaw/AV1H8VDXX9Fxyi+hNyFdbfL+WqPFDQjq
-         AsBN1/AY9K6AOugiCty/leyHi+zlF1Tax1husrlbiGg6nSG7l4+XjPyDk0XaMGx8HlxR
-         C4HqEpQ4WmxM8mR08upTH/Q3Ox5ycJ8673wZ40j4YZFfVbhyrhtFwm7ddZznVH+0B8L8
-         Pk0S9cghW+PejIMoLtKLY1HJvLRJde9RQf3NlOkpWOWhqeknqFoP49lMFOtTH7Jsritj
-         DTRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700054733; x=1700659533;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3vuQNx0saY2ItGRKdBl26Lb/Oz25BKx0ZaIePLBjp78=;
-        b=FUCzcEEjeMTfo1FOEnSEEBRA22fJG7nZNf+lKt7h7euSHz8Vrt2FlQuEPm5KHpqNlB
-         pW/v44mI9udgtjtREu0IMIGXIMOwUrcoDALcIwr4MdOjo3m+gsL81ndVYa7FBKPnYokU
-         T8voOwc9fcJ0W2y4Uu5YszLeMXyEKGAb7HxM6JAud3FzAoXaVUzFMl1fc7PnBZLSPbO4
-         /Z+KMGWK5TDgBD40I2Ijsk46++iZH57VF78zzNp2IhdmfzVgUQFbbuV41s5OLG2o1kRS
-         2gcV9xoUv61Pfs4P0PTzBXFA4Drh4VydVMmsNmvRqy/hGr5kzt47T6IElDl49M3Y5pox
-         kiSQ==
-X-Gm-Message-State: AOJu0Ywej8tnD8LOEx2BzpDxGk7FP1zvO92yRQv0/Iu02rCRHOA2yVXr
-	58VbYV7zrC03zGpNqXppAI2zzSR3wkY=
-X-Google-Smtp-Source: AGHT+IF4gKYfsnPTfy77RCqBJS3PI8cTib/dwl7HH/3rcJTzhH91a7+Qu0a6cI2q5Hc8xdw7+fnmIA==
-X-Received: by 2002:a05:620a:4627:b0:767:923:48e7 with SMTP id br39-20020a05620a462700b00767092348e7mr6223765qkb.5.1700054733626;
-        Wed, 15 Nov 2023 05:25:33 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id dp12-20020a05620a2b4c00b0076f0744ff50sm3433522qkb.136.2023.11.15.05.25.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 05:25:33 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Wed, 15 Nov 2023 05:25:31 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 656221A737
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 13:39:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7EEAC433C8;
+	Wed, 15 Nov 2023 13:39:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700055577;
+	bh=+m5EkdsuFgk4M8NgYmYjSHFQr191uVxuI+jCtlMUOdw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sUTy4gSPEZVY1b1dUA7g3l2l1Pjx6h4pd44zta+k9/BLgrwu2g907HexbUKqb8p3L
+	 PXtWeBDSN5DsolmNPBeXwGGeNAv9DDOwap9o59WksBFGtsSsY3nq1iQaLKpeEC75zj
+	 deGYYaz8tRPiSJGmy2j+pj7JTfl4hGgic2/Hj2OVHP6wOiMgKxhHguNqGJi4NNNwXZ
+	 Wd2Yy1U8HX5jjhxvUMmXGRWEoHD5IHmjN/bHBoHpgZX6kwxRdGInAcXgS8bW8EeX59
+	 M/2hXSw958zAWSyd7sp6oQ2KN3oZ6QzJdmipMODs3uc3P9Fw/zZChlAMjWVsfVdJgj
+	 RSPPd1UMxfigg==
+Date: Wed, 15 Nov 2023 21:27:14 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] hwmon: (core) Add support for humidity min/max
- alarm
-Message-ID: <1ef7a10c-d9cf-4042-a198-f72dbdf9d05a@roeck-us.net>
-References: <20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com>
- <20231020-topic-chipcap2-v2-2-f5c325966fdb@gmail.com>
- <44f1eaa3-a90d-42cf-9808-4f39aacbf270@roeck-us.net>
- <25059951-ca50-4b19-8f74-5631b34c719b@gmail.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: reset: Add binding for Sophgo CV1800B
+ reset controller
+Message-ID: <ZVTHMsXaPdHiuUOF@xhacker>
+References: <20231113005503.2423-1-jszhang@kernel.org>
+ <20231113005503.2423-2-jszhang@kernel.org>
+ <44f21244-5bf1-4e0f-80a9-6ec76d65eea4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <25059951-ca50-4b19-8f74-5631b34c719b@gmail.com>
+In-Reply-To: <44f21244-5bf1-4e0f-80a9-6ec76d65eea4@linaro.org>
 
-On Thu, Nov 09, 2023 at 07:24:00AM +0100, Javier Carrasco wrote:
-> Hello,
+On Tue, Nov 14, 2023 at 10:12:35PM +0100, Krzysztof Kozlowski wrote:
+> On 13/11/2023 01:55, Jisheng Zhang wrote:
+> ...
 > 
-> On 09.11.23 01:02, Guenter Roeck wrote:
-> > On 11/8/23 07:37, Javier Carrasco wrote:
-> >> Add min_alarm and max_alarm attributes for humidityX to support devices
-> >> that can generate these alarms.
-> >> Such attributes already exist for other magnitudes such as tempX.
-> >>
-> >> Tested with a ChipCap 2 temperature-humidity sensor.
-> >>
-> > 
-> > No objection, but the new attributes also need to be added to the ABI
-> > documentation at
-> > Documentation/ABI/testing/sysfs-class-hwmon and
-> > Documentation/hwmon/sysfs-interface.rst
-> > 
-> > Which made me notice that humidityX_alarm isn't documented either.
-> > Please document that attribute as well while you are at it.
-> > 
-> > Thanks,
-> > Guenter
-> > 
-> Actually there are several attributes without ABI documentation or at
-> least the attributes enum is much larger than the objects in the ABI
-> documentation (in testing/sysfs-class-hwmon).
-> For humidity there is only input, enable, rated_min and rated_max. Are
-> some attributes not described for a good reason or should all be
-> documented? the current humidity_attributes contains:
+> > diff --git a/include/dt-bindings/reset/sophgo,cv1800b-reset.h b/include/dt-bindings/reset/sophgo,cv1800b-reset.h
+> > new file mode 100644
+> > index 000000000000..28dda71369b4
+> > --- /dev/null
+> > +++ b/include/dt-bindings/reset/sophgo,cv1800b-reset.h
+> > @@ -0,0 +1,96 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> > +/*
+> > + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
+> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_CV1800B_RESET_H
+> > +#define _DT_BINDINGS_CV1800B_RESET_H
+> > +
+> > +/*				0-1	*/
+> > +#define RST_DDR			2
+> > +#define RST_H264C		3
+> > +#define RST_JPEG		4
+> > +#define RST_H265C		5
+> > +#define RST_VIPSYS		6
+> > +#define RST_TDMA		7
+> > +#define RST_TPU			8
+> > +#define RST_TPUSYS		9
+> > +/*				10	*/
 > 
-> hwmon_humidity_enable -> documented in sysfs-class-hwmon
-> hwmon_humidity_input -> documented in sysfs-class-hwmon
-> hwmon_humidity_label
-> hwmon_humidity_min
-> hwmon_humidity_min_hyst
-> hwmon_humidity_max
-> hwmon_humidity_max_hyst
-> hwmon_humidity_alarm
-> hwmon_humidity_fault
-> hwmon_humidity_rated_min -> documented in sysfs-class-hwmon
-> hwmon_humidity_rated_max -> documented in sysfs-class-hwmon
-> 
-> I could not find the temperature counterparts of my new additions
-> (temp_min_alarm and temp_max_alarm).
-> 
-> Should all be added to sysfs-class-hwmon or am I missing some other
-> document? I am alright adding the ones I mentioned.
-> 
+> Why do you have empty IDs? IDs start at 0 and are incremented by 1.
 
-They should all be documented. It would be great if you volunteer
-to add the missing ones, but that won't be a mandate. I just don't want
-the situation to get worse.
+there's 1:1 mapping between the ID and bit. Some bits are reserved, I.E
+no actions at all. Is "ID start at 0 and increment by 1" documented
+in some docs? From another side, I also notice some SoCs especially
+those which make use of reset-simple driver don't strictly follow
+this rule, for example, amlogic,meson-a1-reset.h and so on. What
+happened?
 
-Thanks,
-Guenter
+And I'd like to ask a question here before cooking 2nd version:
+if the HW programming logic is the same as reset-simple, but some
+or many bits are reserved, what's the can-be-accepted way to support
+the reset controller? Use reset-simple? Obviously if we want the
+"ID start at 0 and increment by 1" rule, then we have to write
+a custom driver which almost use the reset-simple but with a
+customized mapping.
+
+Thanks
 
