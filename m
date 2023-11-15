@@ -1,114 +1,134 @@
-Return-Path: <devicetree+bounces-16074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E38B7ED617
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 22:34:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C637ED61E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 22:35:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0857C280E5E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:34:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 476221C208D8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191543C489;
-	Wed, 15 Nov 2023 21:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A032D3C49F;
+	Wed, 15 Nov 2023 21:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CI9VI4IX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ax7GU+e8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD35B8;
-	Wed, 15 Nov 2023 13:34:09 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-407da05f05aso623445e9.3;
-        Wed, 15 Nov 2023 13:34:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700084047; x=1700688847; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TJq9RwRehs4D7WXODBH5ujBwSEz9WoRdCdezm7e5LdI=;
-        b=CI9VI4IX3/Y7I7kovV2zUqXNJa7zrS9O2ZU0Zu3iOPwhAYXGleOFG57/vnop2rtg3E
-         WPegyPypcT2GGfNh31wJeRvG5mgU1xmMPsFes2esgJIbpV4Ih452p20BTvt7WMW1ZqkE
-         RIXiPjyO1ZofbzttGLS+H0xDsptZXcIMPNQKkde69CMMI/h+MFeSCJwaAfsDBzJy8bWO
-         D2q7P0ml/gaSrzW/hb+3bT2U7peqFeqMkTLJ/p1zZg15k4TBwZvuzJMvcrLwlNr7kPx1
-         icA36TKRRGYjdfwtLhE89DxvG/F9WnBaKvFipGREOAojyXUI78yEYu8hHud8wOCMDGZ+
-         hhZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700084047; x=1700688847;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TJq9RwRehs4D7WXODBH5ujBwSEz9WoRdCdezm7e5LdI=;
-        b=dk+7TKPBqQQkaG0/vNEL1Hq8tvmaSLM/k89Y5HaNoKNrtC1H6S2Pg/mo6Yzo8RY3Nl
-         2uhNqGr7BwlnpFxuxPUWurupd5Xt2B7Hg/2QNSoXoN/vzUyyGWwn4XiurBTcaORdkw1Y
-         5+ISXXJdGx4d5hQpckB5GQsCngIk1gXrk1V5O4vBIuPXlyXfyqdKlWBx4xokjj84fBx7
-         TPBkLo2OWmh/ChsOX6W0UMjLNL5875RHZAvkELkU/Rms+bTOyvDczU+LU6KMiQWJbMIX
-         GQBpZQl8xcQ8FxrGORaWZRHaGzmVBhCJukASY6+YLV2cB+avP2izf/W6Leq/RHCchf9Q
-         z+mw==
-X-Gm-Message-State: AOJu0Yze7JAsYJbzDllCncDoMNqUmU/QyHWF51NDIYdh7ttylaGfZnIZ
-	qqlsQ5yf/f0Tl8aJpcYl7LQ=
-X-Google-Smtp-Source: AGHT+IHb3SyTdwLXt/HE/cynHBAK02Y53Amu6UoXjOtymiJSVwp87yE+gVeFZi19CMpgtwP80m5dNg==
-X-Received: by 2002:a05:600c:4f8d:b0:40a:6235:e82d with SMTP id n13-20020a05600c4f8d00b0040a6235e82dmr2265604wmq.15.1700084047522;
-        Wed, 15 Nov 2023 13:34:07 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2500:a01:e8e:4851:e049:93fd])
-        by smtp.gmail.com with ESMTPSA id x16-20020a05600c2a5000b00405391f485fsm914104wme.41.2023.11.15.13.34.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 13:34:07 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/Five SoC
-Date: Wed, 15 Nov 2023 21:33:58 +0000
-Message-Id: <20231115213358.33400-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 767B045BE6;
+	Wed, 15 Nov 2023 21:35:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECD9AC433B6;
+	Wed, 15 Nov 2023 21:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700084108;
+	bh=RWdpyuo51tuvIqwMGTL3/I2DqmEZBZKqCR84EaR63Ic=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ax7GU+e8NoT5NkhfbCkd6P6Edug5yH+pW3/V5VyW1TLH2HPz/nr8R2GsxsPPVVGO/
+	 lkVfE0amR6D0oREGacbWEFDSThlzJ3Pm0CER2NugqFfsP0Qye78NcoEx79ePWeiK/N
+	 4GtOmqctClRVu77IayArzEX3uErPWajp+mdTfHt+FPR4QEM7HqzyFPPRgwQLnG59yu
+	 yM1iH72Ttd3X+Ga/HmssO1USouNL74sFTlcfI0TMsslOwjnn0uMTkt/djrjl4wGANN
+	 xaaIuNoJGhaqoIcWxPaLgWUy/WQzFirCRX3c5F+wRRn+5cKfxKkY9WyIEZvt/p5TbR
+	 odUwMB52SGjpQ==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-507bd19eac8so153263e87.0;
+        Wed, 15 Nov 2023 13:35:07 -0800 (PST)
+X-Gm-Message-State: AOJu0Ywm9nsiRfMF8uBmCx8wMk4+F/+/c4LHGoTjuQAdMV16mDN/zNvi
+	EGOfhoKX6RKpZkZWv3aqmB/dv4YJZS+mBadghw==
+X-Google-Smtp-Source: AGHT+IFl6KjrcRk1mQBCW5HE5cpfkWvGnPq2lzZKYvuAbqxy2DSLTn7CJKpIC3Dea3cgv04VsyssEPWyJ1Gce9eCWAA=
+X-Received: by 2002:a05:6512:3f12:b0:507:a6a5:a87b with SMTP id
+ y18-20020a0565123f1200b00507a6a5a87bmr12750059lfa.51.1700084106033; Wed, 15
+ Nov 2023 13:35:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
+ <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
+ <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com>
+ <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com> <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Wed, 15 Nov 2023 15:34:53 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKR_YD6hm4Lv+OuCKms8Ha61BZRKUuiLYPgSkz3_3NCFA@mail.gmail.com>
+Message-ID: <CAL_JsqKR_YD6hm4Lv+OuCKms8Ha61BZRKUuiLYPgSkz3_3NCFA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
+To: Doug Anderson <dianders@chromium.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
+	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, 
+	rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Wed, Nov 15, 2023 at 2:45=E2=80=AFPM Doug Anderson <dianders@chromium.or=
+g> wrote:
+>
+> Hi,
+>
+> On Wed, Nov 15, 2023 at 2:28=E2=80=AFPM Rob Herring <robh+dt@kernel.org> =
+wrote:
+> >
+> > > So if we're searching the whole device tree for "failed-needs-probe"
+> > > then we need to figure out which devices are related to each other. I=
+f
+> > > a given board has second sources for MIPI panels, touchscreens, and
+> > > trackpads then we need to know which of the "failed-needs-probe"
+> > > devices are trackpads, which are touchscreens, and which are MIPI
+> > > panels. Do you have any suggestions for how we should do that? Maybe
+> > > it was in some other thread that I missed? I guess we could have a
+> > > board-specific table mapping (compatible + node name + reg) to a
+> > > class, but that feels awkward.
+> >
+> > Node name is supposed to correspond to device class, so why not use
+> > that (no path or unit-address.) and nothing else (well, besides
+> > "status")?
+>
+> One problem is that I could imagine having two second source trackpads
+> that both have the same i2c address. That would give them the same
+> name, right? I guess you could maybe come up with some sort of suffix
+> rule? Like
+>
+> trackpad-1@10 {
+>   compatible =3D "elan,blah";
+>   ret =3D <0x10>;
+>   status =3D "failed-needs-probe";
+>   ...
+> }
+> trackpad-2@10 {
+>   compatible =3D "goodix,gt7375p";
+>   ret =3D <0x10>;
+>   status =3D "failed-needs-probe";
+>   ...
+> }
+>
+> Then I guess the class would be "trackpad"?
 
-The SSI block on the RZ/Five SoC is identical to one found on the RZ/G2UL
-SoC. "renesas,r9a07g043-ssi" compatible string will be used on the RZ/Five
-SoC so to make this clear and to keep this file consistent, update the
-comment to include RZ/Five SoC.
+That issue is somewhat orthogonal because it is not following the spec.
 
-No driver changes are required as generic compatible string
-"renesas,rz-ssi" will be used as a fallback on RZ/Five SoC.
+I'm not sure mixing the 2 styles of node names is a good idea. While
+not used too much, matching by node name does ignore the unit-address,
+but I'm not sure we could ignore a '-N'.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I think our options are either add something to the unit-address or
+use i2c-mux binding. Adding to the unit-address is not unprecedented.
+I did that for some of the register bit level bindings where you have
+a node for different bits at the same address. The downside is
+unit-address is bus specific, so we'd have to add that for multiple
+buses. For the i2c-mux, it's perhaps a bit complex and I'm not sure
+what if anything you'd have to do to manage the mux that's not really
+there.
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-index 3b5ae45eee4a..8b9695f5decc 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-@@ -16,7 +16,7 @@ properties:
-   compatible:
-     items:
-       - enum:
--          - renesas,r9a07g043-ssi  # RZ/G2UL
-+          - renesas,r9a07g043-ssi  # RZ/G2UL and RZ/Five
-           - renesas,r9a07g044-ssi  # RZ/G2{L,LC}
-           - renesas,r9a07g054-ssi  # RZ/V2L
-       - const: renesas,rz-ssi
--- 
-2.34.1
-
+Rob
 
