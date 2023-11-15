@@ -1,103 +1,118 @@
-Return-Path: <devicetree+bounces-16063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B697ED55F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 22:04:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F357ED563
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 22:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10237280E8C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:04:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6263280D81
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C36C4381BF;
-	Wed, 15 Nov 2023 21:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FEE39FF0;
+	Wed, 15 Nov 2023 21:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="asAgb2Zb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="axelKK0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C016E2111
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 13:04:42 -0800 (PST)
-Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-7789577b53fso2033285a.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 13:04:42 -0800 (PST)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B6C19BD;
+	Wed, 15 Nov 2023 13:05:00 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c504a5e1deso905001fa.2;
+        Wed, 15 Nov 2023 13:04:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700082282; x=1700687082; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IR68rbCqUw8CtYPmfdb5YCDkKax7BnU7bOcQgQ7EGfk=;
-        b=asAgb2ZbzVdqpzKnTb1wFtIn2jKtNIzr+5waCn4NwgrkfDFpntf4sIxoF1xlWNtSdT
-         w5BJ1rytFwJQxkA5ci3MhADryCrSUqSF1Unj5ESBofp1A6Mmo4Nh9mXs17XxZXMWglVo
-         qwZEwJtBtcMvr2ZPC+XgRiUIzYLIz+CriILtFd5BqDkR9MpUl6VkA/fkC8M74jZhX9Z0
-         YO20HymLxfLSjhi1LmVLAVbPY57MK/cUzg06EzsSfJ+L3zMjGXjk8D9Fs07xsssE75+A
-         mq/vwolxHETd4USCNdQPRTKZpy2BPrq9IhxgW4PtGJb4C2kfvwa+aYoArdJTIke0JdrU
-         j6Mw==
+        d=gmail.com; s=20230601; t=1700082298; x=1700687098; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LuzKSdvR1du8T/9eWZvj/7thMH6CYFOCmDm+RmP0jR8=;
+        b=axelKK0sCK7Ot2Yo2YxwJoTkrN6kZn7ZzozKCMyTMxToqLpgPdgE60MIyxXqpC5BpL
+         jAd5T4ULuRKwy37psk0dLsGwjQ3MMrx2P/MrgUYXADPib6D7FQxf4+PKW1C05kkW4dil
+         hNkSnJwnZW4VhBFEyEmRxtf9PRSaQDsaBRAZoKAyeeE4LPOSEHAmpSunJYCT2vbrd5Cu
+         RGmjsC2ZmI282i4MouErT6i7A//Y2wc6w4FvACKUqCd3elGwSanj30VCu9RQ40BC4q0F
+         kWuGNfud1xHqA4sThGexuwy2rYDx2RUbmhPujB3IdgliG9Qms+uW6hJPFV5hkNcZAtGw
+         ijIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700082282; x=1700687082;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IR68rbCqUw8CtYPmfdb5YCDkKax7BnU7bOcQgQ7EGfk=;
-        b=a4U7ppU72uMen2srbBkH5BrO9f8yMBV+z58oOD18mQu2T73NyuKxIqfZFC0+sxzSaf
-         /csIkx1uIB2eAuBylO17NNnec8wP/G9Vaw7pR/XkCpr9IddqbM39kThcRGQKeIoC2IwE
-         OzxUxSRaWwsXVDpzUKUEc4pwfqIIeQz2MLmQzKtqOTDYnCofPjfxdtHyZ1VlsixxEnoW
-         1yQgovXbNqUkfE9rsrNdv+qgTq8OCQdxejo/X4yleZpbnhPYfOrAGuoPx15nIxh8UiiK
-         swRcb9hIDpZVkAyJmucQpGi1OXWrm2pzeSG8VVP0s3FlB27hXO92+ULfD7lk5yV52pLU
-         uifQ==
-X-Gm-Message-State: AOJu0YzD2EjpNqPyW3scuVS9b8WFdULfe4x8o4RTSKfq3TEdEysyl+E2
-	zhKxoS4g8Prrlr4yoPQbXl/CZw==
-X-Google-Smtp-Source: AGHT+IH2GDwTuyCy4xkB7EKUOALCaivIacHBI9Ecram8jzDmeEaK9Si8AF1rguzBVaPxi+EqNG9aLg==
-X-Received: by 2002:a05:620a:953:b0:77b:e020:2fcc with SMTP id w19-20020a05620a095300b0077be0202fccmr7517718qkw.31.1700082281899;
-        Wed, 15 Nov 2023 13:04:41 -0800 (PST)
-Received: from [127.0.1.1] ([12.186.190.2])
-        by smtp.gmail.com with ESMTPSA id i6-20020a37c206000000b007788d2f3d4asm3752793qkm.39.2023.11.15.13.04.41
+        d=1e100.net; s=20230601; t=1700082298; x=1700687098;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LuzKSdvR1du8T/9eWZvj/7thMH6CYFOCmDm+RmP0jR8=;
+        b=FlpOZ4kvw3vyG6TJixCiIWGUylaiKlRzoTrucFjgnoRH+4P2NLMNIoiE/Twv8l1a93
+         YWsvC9nCXtd3ancgZ3GLVgIRzdSViIxqgMYboZ50aS5FaoT7dCyapDN+rvMRSzWJzV3s
+         pnZ6NOhqX0Ec9+2Z5BvLeVektQxTF20nSxCH7UhcjVdq/Dghz4WzX0xZVZa3W6GjhZmB
+         y2P6At0oCz5YMrVeFaRmgcf0XsxU4RzjHTtOaWHD34hLmObVYczHR2eN2sXk/4EYl69q
+         u2zzlwQgSiJb0Aag5IIA5v0TaJboYY0PSrFsVcREhIulvCsBTTGK/O6Ivqzk4oMQNVR7
+         uZLg==
+X-Gm-Message-State: AOJu0YxX5YYxvaIVSX0DkRUgKhvvi8ZarCPLAvAf6kZBjzNJ56SRKb8Z
+	yXPXjFIX3Mtta9RrjhdQeqVPTQWnTqk=
+X-Google-Smtp-Source: AGHT+IFlYTBjGqhKEE5ak9EXGj1yavpZnydYl0Gaw2fiSKDF+4KFkGqGr7TmKt0+hjqqzZpQZhcmlQ==
+X-Received: by 2002:a05:651c:4d1:b0:2c5:17c0:cd53 with SMTP id e17-20020a05651c04d100b002c517c0cd53mr5905903lji.42.1700082297892;
+        Wed, 15 Nov 2023 13:04:57 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:e8e:4851:e049:93fd])
+        by smtp.gmail.com with ESMTPSA id l15-20020a05600c4f0f00b00405959469afsm909249wmq.3.2023.11.15.13.04.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 13:04:41 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: thomas.delev@amd.com, michal.simek@amd.com, robh+dt@kernel.org, 
- conor+dt@kernel.org, Kris Chaplin <kris.chaplin@amd.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com
-In-Reply-To: <20231107180814.615933-1-kris.chaplin@amd.com>
-References: <20231107180814.615933-1-kris.chaplin@amd.com>
-Subject: Re: [PATCH v3 0/2] w1: Add AXI 1-wire host driver for AMD
- programmable logic IP core
-Message-Id: <170008228111.6293.10665140667009011469.b4-ty@linaro.org>
-Date: Wed, 15 Nov 2023 22:04:41 +0100
+        Wed, 15 Nov 2023 13:04:57 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Sergey Shtylyov <s.shtylyov@omp.ru>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: net: renesas,etheravb: Document RZ/Five SoC
+Date: Wed, 15 Nov 2023 21:04:48 +0000
+Message-Id: <20231115210448.31575-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue, 07 Nov 2023 10:06:50 -0800, Kris Chaplin wrote:
-> Changes since v2:
->  Updated binding patch commit description to specify that version is detected
->  using a register in IP.
-> 
-> Changes since v1:
->  Updated IP name and binding to axi-1wire-host and filenames to match. Comment
->  pruning where operation obvious, additional comments where not. Unwrapped
->  helper functions for register read/writes. Removed un-necessary device reset
->  on fail to add device. Fixed duplicate clock disable in remove function. Move
->  bus master structure to per instance. Improved hardware testing with multiple
->  w1 instances.
-> 
-> [...]
+The Gigabit Ethernet IP block on the RZ/Five SoC is identical to one
+found on the RZ/G2UL SoC. "renesas,r9a07g043-gbeth" compatible string
+will be used on the RZ/Five SoC so to make this clear and to keep this
+file consistent, update the comment to include RZ/Five SoC.
 
-Applied, thanks!
+No driver changes are required as generic compatible string
+"renesas,rzg2l-gbeth" will be used as a fallback on RZ/Five SoC.
 
-[1/2] dt-bindings: w1: Add YAML DT schema for AMD AXI w1 host and MAINTAINERS entry
-      https://git.kernel.org/krzk/linux-w1/c/3427fa5b32bbf54e51a2fde347a88161ff16a641
-[2/2] w1: Add AXI 1-wire host driver for AMD programmable logic IP core
-      https://git.kernel.org/krzk/linux-w1/c/271c81935801d6449bb7bab5ccfc6cd38238c62b
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+index 3f41294f5997..8125e9023e8b 100644
+--- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+@@ -55,7 +55,7 @@ properties:
+ 
+       - items:
+           - enum:
+-              - renesas,r9a07g043-gbeth # RZ/G2UL
++              - renesas,r9a07g043-gbeth # RZ/G2UL and RZ/Five
+               - renesas,r9a07g044-gbeth # RZ/G2{L,LC}
+               - renesas,r9a07g054-gbeth # RZ/V2L
+           - const: renesas,rzg2l-gbeth  # RZ/{G2L,G2UL,V2L} family
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.34.1
 
 
