@@ -1,118 +1,131 @@
-Return-Path: <devicetree+bounces-16059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75BAA7ED211
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:34:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BD57ED2F0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 21:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 039032812D9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 20:34:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 922071C20969
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 20:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A360364D1;
-	Wed, 15 Nov 2023 20:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8E943AAB;
+	Wed, 15 Nov 2023 20:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rZiuEsiD"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="XW2Fbidh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E114446A9
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 20:34:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF0EEC433C9;
-	Wed, 15 Nov 2023 20:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700080467;
-	bh=EU1ORu8L0oCIrg7KaHoD9GBXRRT/HQ6jol7CgcdHKlo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rZiuEsiD/gyMZ37hWE4hC2+icyLyXIgSvGbKoA+XtY2kFPqY0jrGPBLFPuwEGTFHC
-	 2fNCq1cUovUcYFrdYcKwnCSFmnQXcyaf7AU44s987CpP7grIxH/AOTI045dDv06X//
-	 YqShp87/EVmMLMRU/EdXQE9XpngHzH3ibukhc9imjWTeHP2qBNFTrpj2yc3CGNe8kE
-	 OntgNDHBQZuczCVouwpfbXr/uDYHvlFlSsMDhqIjJGRbULt6QyFbhIlzod4l9M8HTT
-	 BWd3CqLoTdrCvSU+OKoOwQfXwUKOrJ+0HB98Zrs/FDsl9IOZ5+e9r/5xpQUG9urSQL
-	 R3VUfuvWO1R+g==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50797cf5b69so57498e87.2;
-        Wed, 15 Nov 2023 12:34:27 -0800 (PST)
-X-Gm-Message-State: AOJu0YxomVC4ovN/HUdRQoQOCjmXFAWvF4sjyMjZLIHyG5fdqeGjeh7H
-	wtdHKMdoHSrBiwI3Whf9KpTeVIGgoG4F3R6nsg==
-X-Google-Smtp-Source: AGHT+IE0S0tK/GSU6Wv5fUjZc4pGvPrcHf9BeEhRUDhIFnZWd7FL+/kFO75KxRbZi65Q9ml6nHbs3chKQp0jaiE+FqY=
-X-Received: by 2002:ac2:4907:0:b0:507:cb61:2054 with SMTP id
- n7-20020ac24907000000b00507cb612054mr9866660lfi.49.1700080466108; Wed, 15 Nov
- 2023 12:34:26 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F0CA1
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:45:05 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9c2a0725825so15025366b.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:45:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1700081102; x=1700685902; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MMCXFclGcLK2XWRhjGnvFkwVtcm+D581tPNKMzDFIwY=;
+        b=XW2FbidhV0kiGU4tZfY5di/mHMlam05rTCbQxyoaSU5AR4sZBsjNq5KuVn8Kj/6MhH
+         eXnlBUlAy/aK4jcHuBA30xhc0OY/44xfwDiXgxHrz/aqPRuC8uEqKgFhdYDj6GJdhPnf
+         GJd47CnHksZxgM1dft+Lrh2bZA+cHMCNPKQn0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700081102; x=1700685902;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MMCXFclGcLK2XWRhjGnvFkwVtcm+D581tPNKMzDFIwY=;
+        b=SlGo4rX3lTC1tR7/2cO4eJdBXAMUcHgX4OATcRYjiW1Vj+AGykdD7Wyv6SbYOAWLxd
+         9sKuzFJZ/3JgUqxKjY6yMAWjZitcWHkrNlWO7U9HZLtKkuSNZxkjLfUBrbiSfoxFiyju
+         HaIxlKlSMWRKe6FyOFBQh27aC+b7Sw3Cr3BO1X5fmaMDE8iO/+RYKlI/xw+94LoGl4RY
+         edpE/Hvp009HnyyoD7c4auZYqPAqsWAHHxzxKdOzW7EyO+YTyl9sfQbHEWrS2zxybu7+
+         dV4GSXr0W83hwHcQNARrGZfQUku2TWH7tNCQVLIz9KJ4HGNXg9VboHLc4q3Op8TN7Y/U
+         KBpA==
+X-Gm-Message-State: AOJu0YyTfro5ctnfI7qcgcOlpYfqtA7erohZupsXGb/gBOtsG43eN1mw
+	7YoKNWlTlbG9TY3+g9BsLpx+0QHl4pM+AwKzHqpOTO3s
+X-Google-Smtp-Source: AGHT+IHnEj7IzZZCmUlEgPyg7uo3GMyeApmPKeUv/nM2TuNxw/9nEECCTJSPidHKrxyfV9MWWnFysw==
+X-Received: by 2002:a17:906:aed3:b0:9c3:7510:e522 with SMTP id me19-20020a170906aed300b009c37510e522mr326185ejb.63.1700081102319;
+        Wed, 15 Nov 2023 12:45:02 -0800 (PST)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com. [209.85.208.52])
+        by smtp.gmail.com with ESMTPSA id rp21-20020a170906d97500b009e6af2efd77sm7445829ejb.45.2023.11.15.12.45.02
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Nov 2023 12:45:02 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-53eeb28e8e5so3048a12.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 12:45:02 -0800 (PST)
+X-Received: by 2002:a05:600c:3b23:b0:408:3727:92c5 with SMTP id
+ m35-20020a05600c3b2300b00408372792c5mr11547wms.2.1700081081263; Wed, 15 Nov
+ 2023 12:44:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231113085305.1823455-1-javierm@redhat.com>
-In-Reply-To: <20231113085305.1823455-1-javierm@redhat.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 15 Nov 2023 14:34:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
-Message-ID: <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Ard Biesheuvel <ardb@kernel.org>, Sima Vetter <daniel.vetter@ffwll.ch>, 
-	dri-devel@lists.freedesktop.org, Andrew Worsley <amworsley@gmail.com>, 
-	Hector Martin <marcan@marcan.st>, Sergio Lopez <slp@redhat.com>, Frank Rowand <frowand.list@gmail.com>, 
-	devicetree@vger.kernel.org
+References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
+ <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
+ <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com> <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 15 Nov 2023 12:44:25 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
+Message-ID: <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
+To: Rob Herring <robh+dt@kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
+	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, 
+	rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 13, 2023 at 2:53=E2=80=AFAM Javier Martinez Canillas
-<javierm@redhat.com> wrote:
->
-> Some DT platforms use EFI to boot and in this case the EFI Boot Services
-> may register a EFI_GRAPHICS_OUTPUT_PROTOCOL handle, that will later be
-> queried by the Linux EFI stub to fill the global struct screen_info data.
->
-> The data is used by the Generic System Framebuffers (sysfb) framework to
-> add a platform device with platform data about the system framebuffer.
->
-> But if there is a "simple-framebuffer" node in the DT, the OF core will
-> also do the same and add another device for the system framebuffer.
->
-> This could lead for example, to two platform devices ("simple-framebuffer=
-"
-> and "efi-framebuffer") to be added and matched with their corresponding
-> drivers. So both efifb and simpledrm will be probed, leading to following=
-:
->
-> [    0.055752] efifb: framebuffer at 0xbd58dc000, using 16000k, total 160=
-00k
-> [    0.055755] efifb: mode is 2560x1600x32, linelength=3D10240, pages=3D1
-> [    0.055758] efifb: scrolling: redraw
-> [    0.055759] efifb: Truecolor: size=3D2:10:10:10, shift=3D30:20:10:0
-> ...
-> [    3.295896] simple-framebuffer bd58dc000.framebuffer: [drm] *ERROR*
-> could not acquire memory range [??? 0xffff79f30a29ee40-0x2a5000001a7
-> flags 0x0]: -16
-> [    3.298018] simple-framebuffer: probe of bd58dc000.framebuffer
-> failed with error -16
->
-> To prevent the issue, make the OF core to disable sysfb if there is a nod=
-e
-> with a "simple-framebuffer" compatible. That way only this device will be
-> registered and sysfb would not attempt to register another one using the
-> screen_info data even if this has been filled.
->
-> This seems the correct thing to do in this case because:
->
-> a) On a DT platform, the DTB is the single source of truth since is what
->    describes the hardware topology. Even if EFI Boot Services are used to
->    boot the machine.
+Hi,
 
-This is the opposite of what we do for memory and memory reservations.
-EFI is the source of truth for those.
+On Wed, Nov 15, 2023 at 2:28=E2=80=AFPM Rob Herring <robh+dt@kernel.org> wr=
+ote:
+>
+> > So if we're searching the whole device tree for "failed-needs-probe"
+> > then we need to figure out which devices are related to each other. If
+> > a given board has second sources for MIPI panels, touchscreens, and
+> > trackpads then we need to know which of the "failed-needs-probe"
+> > devices are trackpads, which are touchscreens, and which are MIPI
+> > panels. Do you have any suggestions for how we should do that? Maybe
+> > it was in some other thread that I missed? I guess we could have a
+> > board-specific table mapping (compatible + node name + reg) to a
+> > class, but that feels awkward.
+>
+> Node name is supposed to correspond to device class, so why not use
+> that (no path or unit-address.) and nothing else (well, besides
+> "status")?
 
-This could also lead to an interesting scenario. As simple-framebuffer
-can define its memory in a /reserved-memory node, but that is ignored
-in EFI boot. Probably would work, but only because EFI probably
-generates its memory map table from the /reserved-memory nodes.
+One problem is that I could imagine having two second source trackpads
+that both have the same i2c address. That would give them the same
+name, right? I guess you could maybe come up with some sort of suffix
+rule? Like
 
-Rob
+trackpad-1@10 {
+  compatible =3D "elan,blah";
+  ret =3D <0x10>;
+  status =3D "failed-needs-probe";
+  ...
+}
+trackpad-2@10 {
+  compatible =3D "goodix,gt7375p";
+  ret =3D <0x10>;
+  status =3D "failed-needs-probe";
+  ...
+}
+
+Then I guess the class would be "trackpad"?
+
+
+-Doug
 
