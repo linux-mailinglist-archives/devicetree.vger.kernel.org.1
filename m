@@ -1,112 +1,116 @@
-Return-Path: <devicetree+bounces-15798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7BE27EBC91
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 05:20:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBF87EBCA1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 05:35:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6FA51C20A93
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 04:20:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AF07B20A4D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 04:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF656EB8;
-	Wed, 15 Nov 2023 04:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FE17F5;
+	Wed, 15 Nov 2023 04:35:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PA7ze/vL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A598A55;
-	Wed, 15 Nov 2023 04:20:20 +0000 (UTC)
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29633D8;
-	Tue, 14 Nov 2023 20:20:19 -0800 (PST)
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6ce291b5df9so4070010a34.2;
-        Tue, 14 Nov 2023 20:20:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7079479
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 04:35:21 +0000 (UTC)
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C97FD9
+	for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:35:19 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-28003daaaa6so133386a91.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Nov 2023 20:35:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1700022919; x=1700627719; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JKE2Z3rIdCP16EvnaCbTQcF6cETDsiXZjgYQFVaGzsY=;
+        b=PA7ze/vLK/n0DCl+piO4LVDdXt4uQIgscs9vqxrC0mMHoFGfAdrWaKPWsAzmdWUX/D
+         WzPTAMy311JyYZUJjQj2S86klcV3Fcp0B1HENsz9CZAXTmb1033zvrvGhGJRdLo3HhlC
+         U/EUuncoQiJu/dhrqw4UW7zkEXD3PvpoVLwf0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700022018; x=1700626818;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zMZtG8wZ4mB9TMRAsuvMioibWJRVqhYk1Jf8pUMmSp8=;
-        b=us2SG2kEg2UtOvWuCn1KtIAhB+9OLuXfh4YVKYyWuyVbP+N6XbKffs7OjhgGPrBLdZ
-         tKLrUlVyPjAeK/7bVX5W6/0G7AgOztYaaocFQ48k985TVbF40N4h9dSLfnp/3Ow1Tuph
-         I1GvAooztsNuYbLksbEr+ZzllzinPRzEM12jNBhgq6X7qgPELZQa6DzAO3qj9JushIXg
-         OA5ef3ypbciWacfqeRh89exxnO9zYORMPdmOyt8gwqlSfm8fkX7dfSgR9DuHsC9ZWYbG
-         BRshFwEk3h7kIa6b/FPvhO/YIuE6dAtIQxK6MxiAEYbExwoeXFH6o5HBIUF/h8arbBFl
-         rqMQ==
-X-Gm-Message-State: AOJu0YysOMrARaEXBHeQ7rm0O1HvDAyhuscAauM+S9cR24vZomoaywhV
-	RDDcZeOTSl9SEz5YWU9ZZQ==
-X-Google-Smtp-Source: AGHT+IEdr207A8JOAg6W3oZMktdcok05h9UBN4tPtj5Q7XydVuCDJSPsQP5hpIZAMaDb0onnVzA6fA==
-X-Received: by 2002:a9d:6c8e:0:b0:6b9:ed64:1423 with SMTP id c14-20020a9d6c8e000000b006b9ed641423mr4036402otr.2.1700022018335;
-        Tue, 14 Nov 2023 20:20:18 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l21-20020a056830269500b006cd0a56c406sm444524otu.60.2023.11.14.20.20.16
+        d=1e100.net; s=20230601; t=1700022919; x=1700627719;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JKE2Z3rIdCP16EvnaCbTQcF6cETDsiXZjgYQFVaGzsY=;
+        b=OCJ6+PLPdEyO4cNfyT3Rrr5WWEFE5XCv7eE4bNbwt/wH2LLKFY4SHPJ4YNrTmUT95h
+         D2TUkmj4WIZ+J9++TpbrU+We+Q/XeOclGVpLw2YLUcn5gJdMVk+G+MzbHJGx2d7lKodP
+         5E/fD8p10M4c/GGK0KzmeUogfuA3caqE8n3dgXS2A5KlAXjSw8uW4XdB5g88x3EXChKV
+         LtC7w70NiVLtqL0ioT0rk6rIAbaVMOrDSfI7170E+gdjA8fDOx7RllwikHcOrjb1xzH5
+         +FlFgYSvUVR2hc5iannKlHdKq6AMJFELjiJBrkLJNisEn1zqHlW6/SUvQG2T+ufWLkUa
+         yVyg==
+X-Gm-Message-State: AOJu0YwB164WJVzk3jwocYmHz4Tv+AjwY9WEZ35I0BRcZKg/PZ0pLOU8
+	+bl4af5jy/ipMkgMaVJl8+Ru4w==
+X-Google-Smtp-Source: AGHT+IHPWARszrcyKURojq7sjdFRg5WZJqBWm7TVHsyJF6yVoEHDN9wnAQBKnHHZ3jWQAFQoYBIT5Q==
+X-Received: by 2002:a17:90b:1c0c:b0:27f:fce3:2266 with SMTP id oc12-20020a17090b1c0c00b0027ffce32266mr11651424pjb.24.1700022918786;
+        Tue, 14 Nov 2023 20:35:18 -0800 (PST)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:b51f:fb1c:5e29:cfc8])
+        by smtp.gmail.com with ESMTPSA id gp16-20020a17090adf1000b00280cd4fbd83sm7879425pjb.55.2023.11.14.20.35.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Nov 2023 20:20:17 -0800 (PST)
-Received: (nullmailer pid 1471064 invoked by uid 1000);
-	Wed, 15 Nov 2023 04:20:16 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Tue, 14 Nov 2023 20:35:18 -0800 (PST)
+From: Pin-yen Lin <treapking@chromium.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Pin-yen Lin <treapking@chromium.org>
+Subject: [PATCH v2] arm64: dts: mt8173: Add G2Touch touchscreen node
+Date: Wed, 15 Nov 2023 12:35:01 +0800
+Message-ID: <20231115043511.2670477-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.43.0.rc0.421.g78406f8d94-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: quic_srichara@quicinc.com, linux-arm-msm@vger.kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org, agross@kernel.org, conor+dt@kernel.org, linux@armlinux.org.uk, edumazet@google.com, robert.marko@sartura.hr, davem@davemloft.net, konrad.dybcio@linaro.org, hkallweit1@gmail.com, pabeni@redhat.com, andrew@lunn.ch, devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org, kuba@kernel.org, netdev@vger.kernel.org
-In-Reply-To: <20231115032515.4249-10-quic_luoj@quicinc.com>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-10-quic_luoj@quicinc.com>
-Message-Id: <170002201635.1471046.17829589138044518697.robh@kernel.org>
-Subject: Re: [PATCH 9/9] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
-Date: Tue, 14 Nov 2023 22:20:16 -0600
+Content-Transfer-Encoding: 8bit
 
+Lenovo Ideapad C330 Chromebook (MTK) uses G2Touch touchscreen as a
+second source component.
 
-On Wed, 15 Nov 2023 11:25:15 +0800, Luo Jie wrote:
-> On platform IPQ5332, the MDIO address of qca8084 can be programed
-> when the device tree property "fixup" defined, the clock sequence
-> needs to be completed before the PHY probeable.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  .../bindings/net/qcom,ipq4019-mdio.yaml       | 138 +++++++++++++++++-
->  1 file changed, 130 insertions(+), 8 deletions(-)
-> 
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+---
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Changes in v2:
+- Remove the label for the node
 
-yamllint warnings/errors:
+ arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: phyaddr-fixup: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: pcsaddr-fixup: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: mdio-clk-fixup: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: fixup: missing type definition
-Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.example.dtb: /example-1/mdio@90000/pcsphy0@5: failed to match any schema with compatible: ['qcom,qca8k_pcs']
-Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.example.dtb: /example-1/mdio@90000/pcsphy1@6: failed to match any schema with compatible: ['qcom,qca8k_pcs']
-Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.example.dtb: /example-1/mdio@90000/xpcsphy@7: failed to match any schema with compatible: ['qcom,qca8k_pcs']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231115032515.4249-10-quic_luoj@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+index bdcd35cecad9..8836ac3c4233 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+@@ -29,6 +29,14 @@ touchscreen3: touchscreen@20 {
+ 		interrupt-parent = <&pio>;
+ 		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
+ 	};
++
++	touchscreen@40 {
++		compatible = "hid-over-i2c";
++		reg = <0x40>;
++		hid-descr-addr = <0x0001>;
++		interrupt-parent = <&pio>;
++		interrupts = <88 IRQ_TYPE_LEVEL_LOW>;
++	};
+ };
+ 
+ &i2c4 {
+-- 
+2.43.0.rc0.421.g78406f8d94-goog
 
 
