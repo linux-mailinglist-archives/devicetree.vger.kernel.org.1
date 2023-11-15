@@ -1,223 +1,111 @@
-Return-Path: <devicetree+bounces-15828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A6967EBFC2
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 10:52:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413847EBFC8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 10:55:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4311F1F26C3D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 09:52:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEE031F26851
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 09:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE4E9471;
-	Wed, 15 Nov 2023 09:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C319465;
+	Wed, 15 Nov 2023 09:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bfbg7JGJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iHLZb3j/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8419477
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 09:52:34 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CE1194;
-	Wed, 15 Nov 2023 01:52:31 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AF9qJ2Q105032;
-	Wed, 15 Nov 2023 03:52:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700041939;
-	bh=wqiNtajspM2Vcwa3njm3c9Igmlpl9oNUS/rMg4Wqd8g=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=bfbg7JGJ0/Xoclvgv5i/ZrcyWoYsQfgURUBH6fMrSicLunvfNESEUq1V7ChZQSKkO
-	 /KyruPnoOFUdnd5ifJ6oFvydux2EXPCFhDG6h5uQTYuxYTGNjARbDENg6pVdeqx+Sk
-	 2tuwfiu1GYM554TBBvNVc0q8CEB5/ZQ1Wnrtn5SI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AF9qJcm101669
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 Nov 2023 03:52:19 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 15
- Nov 2023 03:52:19 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 15 Nov 2023 03:52:19 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AF9qI9o009800;
-	Wed, 15 Nov 2023 03:52:19 -0600
-From: Jai Luthra <j-luthra@ti.com>
-Date: Wed, 15 Nov 2023 15:21:16 +0530
-Subject: [PATCH 8/8] arm64: dts: ti: k3-am62x: Add overlay for IMX219
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7197E;
+	Wed, 15 Nov 2023 09:55:25 +0000 (UTC)
+Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com [IPv6:2607:f8b0:4864:20::a30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A906106;
+	Wed, 15 Nov 2023 01:55:24 -0800 (PST)
+Received: by mail-vk1-xa30.google.com with SMTP id 71dfb90a1353d-4abf80eab14so2939220e0c.2;
+        Wed, 15 Nov 2023 01:55:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1700042123; x=1700646923; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lP6kMRkCOqvaUr4OI6dET5EWrhmrSO9vePyGj/P6sPs=;
+        b=iHLZb3j/em8XoAEXR1ZQaEywP3MSY4KawhrS1wMlzrOVjirOn7nYi4a1vazrTTiFav
+         bNXXs7GixSl+stXXR1pwjuaImmF4STMmevEyuF15WebOmIp1e+eMfNpg/a7IpE6i02gC
+         9vDmqw633/rBCe9yhg2TuJegriyMA2TSa46O6Zcl9dX1ZXH4NMGn4lTWU8wKZsVEoaej
+         iM8UI+Z+qTwz8pZIuXm7JdeVsDc+Z1ZqYQHIlvhGzGLc8HsnnHTTXfcp6l5al1ppzya7
+         MeSEabAtD5b5/nxVuBpCUWm6UmUUqUxLjLzFCu6/tBlCeXXPxqSeRIOPye3Atw0YfsbZ
+         0sLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700042123; x=1700646923;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lP6kMRkCOqvaUr4OI6dET5EWrhmrSO9vePyGj/P6sPs=;
+        b=rmDinkDw3/WzQwbwvGhcgRrFL08Zt8JrBEkvGljnFWgjIGBXJtGXGpChE6gWmWGid7
+         a1Ut68zUq0Py0TFPADqhw+SmpDGI5cpjEMed1dQPq/eIzpXzPvZpP2dEXyzGhmdm/X0e
+         /3BcCyLdpmJdjyO6Y54sVwvy1OZLshC3M+23+jiu2KFsrzH46YTRhLavbjY2RzFIvbup
+         9iF1vTeo66vcNe7Qo6oLJMXlYS2o5aqSdX/xbv1cLH7mCfoXDfRTL0XtART/f+f83kXj
+         DrNRXaDejlHPXHA7owo/kVIsRp0lkxPa/IKpKTxwuY4C4OPaxVg6LBRfRYVe8041nmVH
+         F+qg==
+X-Gm-Message-State: AOJu0Yz+sumf/D/30SA19BaoW+QDmW/Xsp7M4CsYXcWwEzs6pwjmKsNT
+	l3U4qhTn8yZUnHjTRExy42WJhM0669gzWsmnODvpQU5k9WxoEuhp
+X-Google-Smtp-Source: AGHT+IFT1F1D8uo240bZHgFsyj/QNEYuIzR14n4a4kHdyyRi6HsP+gcJQliNAsOFoGs5U/1RvMA3qxZTv5Dkx8BJa2U=
+X-Received: by 2002:a05:6122:a19:b0:4ab:ef58:fca4 with SMTP id
+ 25-20020a0561220a1900b004abef58fca4mr13925082vkn.7.1700042122967; Wed, 15 Nov
+ 2023 01:55:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20231115-csi_dts-v1-8-99fc535b2bde@ti.com>
-References: <20231115-csi_dts-v1-0-99fc535b2bde@ti.com>
-In-Reply-To: <20231115-csi_dts-v1-0-99fc535b2bde@ti.com>
-To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>,
-        Devarsh
- Thakkar <devarsht@ti.com>,
-        Vaishnav Achath <vaishnav.a@ti.com>,
-        Julien Massot
-	<julien.massot@collabora.com>,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Jai
- Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3170; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=R4Pz6G6ZrGv5Qkr/jjdVZhmrMN2R5FPJxbqhP5Eaai0=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlVJS/gXlpcY1OXa45nzruOPwgoa2cibCigIosR
- jzoIrj03ACJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZVSUvwAKCRBD3pH5JJpx
- RUSkEACbCUIe52YaC5hFb01EK//gREfgKm0vNpRr7k0cREWxzwlVIGTa4hr3RlIj8hV6ScHAlBU
- J1H/a9NQ+oLi5gqov0tKDHd30bubuS4+9Mx2mLx8TH415QSv6z9upgXkELIE8eCjvW5Q4ig9unp
- sz2496uve83ylwKHnrJvi6uZPABlTLjAGxPa21QloenTR7SSVq1Fu32k0RZgRK9GWxdcBWYClKa
- GFbOreZg05sOIc6LseLACK/NhSbzW5b3TTxaJqCQiCJbR4EERLSDxZnNk6b9LJ0ty4n6iBzZqVc
- LSBUnDB86SeqPDlXCkc2rsx0WU+IQNZ+YwA2IvNquQOK9mEhD0h0G/guyObIKvuN7URr/0Eka9e
- fDcWHQarY8hdCzsylHSV34SsAViSuzOR9JG1B5GAexXlqPNF/XxlqxsIMgMtOgmMW9uelVzBsM8
- Vl9MzQPFkp8zu37baPMSFzj/Bm3B1TuY7cidA42n4sLz1tOT/sDE+AQM6dola6uhKsaFBcnXPvi
- JIwUif4Yhzgiux7ekwnzqJUEEvedQbEAfpNYPLcHF4KL/xD0VbU+I/3yCAwBE4S8KkatjrvVD3E
- i5mM5XLRiK7ylZ+jL9EVddikygH0mXxTEHSUC0bSvLiiLWWwaUK1kwwpafyOXVS9sLdDgpJMiFa
- MS0k7ARfHTg4JRw==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: Legale Legale <legale.legale@gmail.com>
+Date: Wed, 15 Nov 2023 12:55:10 +0300
+Message-ID: <CACDmYyf4hxbuw+cpKqEDnqmHpS9yPXuE5MPD5_XZ3hjmYuViUQ@mail.gmail.com>
+Subject: [PATCH] arm64: dts: qcom: ipq6018: add QUP5 I2C node
+To: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Cc: Legale Legale <legale.legale@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-RPi v2 Camera (IMX219) is an 8MP camera that can be used with SK-AM62A
-through the 22-pin CSI-RX connector.
+Add node to support this bus inside of IPQ6018.
+For example, this bus is used to work with the
+voltage regulator (mp5496) on the Yuncore AX840 wireless AP.
 
-Same overlay can be used across SK-AM62* boards that have a 15/22-pin
-FFC connector, so we name it with the k3-am62x- prefix.
-
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
+Signed-off-by: Isaev Ruslan <legale.legale@gmail.com>
 ---
- arch/arm64/boot/dts/ti/Makefile                    |  4 ++
- .../arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso | 76 ++++++++++++++++++++++
- 2 files changed, 80 insertions(+)
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index a09b16cbefb4..f89dcbe3c635 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -37,7 +37,10 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-sk-hdmi-audio.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk-hdmi-audio.dtb
- 
- # Boards with AM62Ax SoC
-+k3-am62a7-sk-csi2-imx219-dtbs := k3-am62a7-sk.dtb \
-+	k3-am62x-sk-csi2-imx219.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk-csi2-imx219.dtb
- 
- # Boards with AM62Px SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
-@@ -96,6 +99,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- DTC_FLAGS_k3-am625-beagleplay += -@
- DTC_FLAGS_k3-am625-sk += -@
- DTC_FLAGS_k3-am62-lp-sk += -@
-+DTC_FLAGS_k3-am62a7-sk += -@
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
- DTC_FLAGS_k3-j721e-common-proc-board += -@
- DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
-new file mode 100644
-index 000000000000..84d08bfda469
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * IMX219 (RPi v2) Camera Module
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	clk_imx219_fixed: imx219-xclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+};
-+
-+&main_i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	i2c-switch@71 {
-+		compatible = "nxp,pca9543";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x71>;
-+
-+		/* CAM port */
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			ov5640: camera@10 {
-+				compatible = "sony,imx219";
-+				reg = <0x10>;
-+
-+				clocks = <&clk_imx219_fixed>;
-+				clock-names = "xclk";
-+
-+				reset-gpios = <&exp1 13 GPIO_ACTIVE_HIGH>;
-+
-+				port {
-+					csi2_cam0: endpoint {
-+						remote-endpoint = <&csi2rx0_in_sensor>;
-+						link-frequencies = /bits/ 64 <456000000>;
-+						clock-lanes = <0>;
-+						data-lanes = <1 2>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&cdns_csi2rx0 {
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi0_port0: port@0 {
-+			reg = <0>;
-+			status = "okay";
-+
-+			csi2rx0_in_sensor: endpoint {
-+				remote-endpoint = <&csi2_cam0>;
-+				bus-type = <4>; /* CSI2 DPHY. */
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index e59b9df96c7e..745bfc6e2907 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -507,6 +507,21 @@ blsp1_i2c3: i2c@78b7000 {
+                        status = "disabled";
+                };
 
--- 
-2.42.1
-
++               blsp1_i2c6: i2c@78ba000 {
++                       compatible = "qcom,i2c-qup-v2.2.1";
++                       #address-cells = <1>;
++                       #size-cells = <0>;
++                       reg = <0x078ba000 0x600>;
++                       interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
++                       clocks = <&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>,
++                                <&gcc GCC_BLSP1_AHB_CLK>;
++                       clock-names = "core", "iface";
++                       clock-frequency = <100000>;
++                       dmas = <&blsp_dma 22>, <&blsp_dma 23>;
++                       dma-names = "tx", "rx";
++                       status = "disabled";
++               };
++
+                qpic_bam: dma-controller@7984000 {
+                        compatible = "qcom,bam-v1.7.0";
+                        reg = <0x0 0x07984000 0x0 0x1a000>;
+--
+2.42.0
 
