@@ -1,151 +1,134 @@
-Return-Path: <devicetree+bounces-15992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-15993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B4F7EC69D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:03:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AE27EC6AC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E41691C2090B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:03:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8F9E1F24E4A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34FC33CE9;
-	Wed, 15 Nov 2023 15:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1925B2FE2A;
+	Wed, 15 Nov 2023 15:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UpHRzaZA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HvnzKYPA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7124733CDB;
-	Wed, 15 Nov 2023 15:03:30 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC3651AE;
-	Wed, 15 Nov 2023 07:03:28 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AFCb2Jx015147;
-	Wed, 15 Nov 2023 15:03:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TArmughCiaySbtxApQ9r8oFmeuAAF7BBzQ/u9l67Jus=;
- b=UpHRzaZA3T8IVgbknuTXpky7MVb1eq50hslsnC4VnQ7l+Q2Xj5vCJdfenOgbvHhXtf2P
- kqH6F6GL2yx13JOHdESc7WSvLNLfNRa1T4/+q4pLacc94dZ2xij8m0r3SV7s8nxUxokQ
- 2L98FALZSfXRJ64eKLSr9OCJhs4LGIs5bNgmPvyN8LGWFjtD9GI7HBA4aIfESdrDmCRE
- sH5E66Iu2vOY2jrFih34OFZ7QK08lGKOt9vrxOIqc88sanlvmOlXsApVeod6Y0A/ZdWE
- VK76n5EqWmq0mjUzL06FVdnz52B6z8QOaI2GG4JceR38SoDJJGe1Hpg4b8hfGJ7mpjZn nA== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ucanq3178-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Nov 2023 15:03:10 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AFF39YW019798
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Nov 2023 15:03:09 GMT
-Received: from [10.111.175.193] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 15 Nov
- 2023 07:03:06 -0800
-Message-ID: <26a7eb74-7f54-4ade-a761-ce08e85f2a93@quicinc.com>
-Date: Wed, 15 Nov 2023 10:03:04 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C75D35EFB;
+	Wed, 15 Nov 2023 15:07:11 +0000 (UTC)
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7038E;
+	Wed, 15 Nov 2023 07:07:09 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D60DB2000A;
+	Wed, 15 Nov 2023 15:07:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1700060828;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IGzp5+9/qNwtTCLx26W2NfMVNLIdgrQHWOCKXLfAu/A=;
+	b=HvnzKYPAeVrTEaYvIQ4zCZo+HzCucbvjEr3/ML6g4XRJfxgLcaV/WYc6wG4afCQ17/SUOZ
+	fIh/QFQMm1XPiwnMqETv2chA1NIHSht4cWQIDYX6KZ391ZLAhv+yT8vUS/qstZOHhnp41G
+	sYjUajXwJBIxXiWeP7c28GT5DU1mo73K1xlnjFvKGtEodvmFSPN8bKXq89PJjNAYxr7ebj
+	LdT4IHTRpm50bycHv3Irnlw7pww/jI8vjOYIClcOTuojPz8TcK99DGcsWbjopqrylizCjJ
+	t/Jn5It4eyjnW6b5v+1ONIJXJEFWr7uWYg8mXBdfL913Ihp+YyE7JBreDQoaxQ==
+Date: Wed, 15 Nov 2023 16:07:07 +0100
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mehdi Djait <mehdi.djait@bootlin.com>, mchehab@kernel.org,
+	heiko@sntech.de, hverkuil-cisco@xs4all.nl,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	maxime.chevallier@bootlin.com, michael.riesch@wolfvision.net
+Subject: Re: [PATCH v10 1/3] media: dt-bindings: media: add bindings for
+ Rockchip CIF
+Message-ID: <ZVTemwY6gvFdQMib@aptenodytes>
+References: <cover.1699460637.git.mehdi.djait@bootlin.com>
+ <037bcabf97294d37b271537e4b11fb88cf9bb6f6.1699460637.git.mehdi.djait@bootlin.com>
+ <20231109-closable-superglue-5e7f39739cf1@spud>
+ <ZU0avuRRaITV4jws@aptenodytes>
+ <e5b1f0dd-0aab-4ce5-82ba-879a4d736e7e@linaro.org>
+ <ZU0f33clFwlsTw16@aptenodytes>
+ <20231110-appetizer-fame-2152806c7442@roley>
+ <ZVJUsDb1mPVtcjdX@aptenodytes>
+ <20231114-abnormal-uncross-dcebea2e82ae@squawk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: phy: Document sm8450 pcie phys as having 4
- clocks
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20231103230339.966792-1-quic_eberman@quicinc.com>
- <ZVRwKaUTDBaYsnQS@hovoldconsulting.com>
-From: Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <ZVRwKaUTDBaYsnQS@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: RcazGwatS5aUDL0JxL6r0WQY5HjjpnDB
-X-Proofpoint-ORIG-GUID: RcazGwatS5aUDL0JxL6r0WQY5HjjpnDB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-15_13,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 suspectscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 priorityscore=1501 clxscore=1011
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311150115
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RLyCz4Fbk+INaST5"
+Content-Disposition: inline
+In-Reply-To: <20231114-abnormal-uncross-dcebea2e82ae@squawk>
+X-GND-Sasl: paul.kocialkowski@bootlin.com
 
 
+--RLyCz4Fbk+INaST5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 11/15/2023 2:15 AM, Johan Hovold wrote:
-> On Fri, Nov 03, 2023 at 04:03:38PM -0700, Elliot Berman wrote:
->> I noticed while running make dtbs_check that
->> qcom,sm8450-qmp-gen3x1-pcie-phy and qcom,sm8450-qmp-gen4x2-pcie-phy have
->> 4 clocks, not 5. There was also a typo for the 8450 bindings:
->> s/gen3x2/gen4x2/.
->>
->> Update the bindings to reflect the correct number of required clocks.
->>
->> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Fixes: 505fb2541678 ("dt-bindings: phy: migrate QMP PCIe PHY bindings to qcom,sc8280xp-qmp-pcie-phy.yaml")
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>  .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml | 16 ++++++++++++++--
->>  1 file changed, 14 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->> index 2c3d6553a7ba..1768f2016a9f 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->> @@ -128,6 +128,20 @@ allOf:
->>          reg:
->>            maxItems: 1
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sm8450-qmp-gen3x1-pcie-phy
->> +              - qcom,sm8450-qmp-gen4x2-pcie-phy
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 4
->> +        clock-names:
->> +          minItems: 4
->> +
-> 
-> I'm not sure which tree you think you're looking at but this is clearly
-> not correct.
-> 
-> The phy nodes in arch/arm64/boot/dts/qcom/sm8450.dtsi have five clocks
-> defined.
-> 
+Hi,
 
-You're right, next now has 5 clocks for 8450. -next vs. tip of tree strikes me again :)
+On Tue 14 Nov 23, 17:51, Conor Dooley wrote:
+> On Mon, Nov 13, 2023 at 05:54:08PM +0100, Paul Kocialkowski wrote:
+> =20
+> > > Ultimately, I don't care what the file ends up being called when there
+> > > are multiple devices documented in it. I'd ack a patch renaming to the
+> > > =C5=93riginal incarnation of the IP when the documentation for that I=
+P is
+> > > added without a second thought.
+> >=20
+> > That would be agreeable to me if my proposal still ends up feeling unre=
+asonable
+> > to you. But I might very well take you at your word since I ended up pu=
+rchasing
+> > a RK3066 board in a moment of weakness last week.
+>=20
+> The ideal outcome I suppose would be documenting both variants. If
+> you've gone ahead and bought one, give that a go.
 
-I'll send out a fix for just the typo tomorrow/Friday when I do another sweep of
-dtbs_check (on next/master instead of torvalds/master).
+Yeah I'll try to do that eventually, but we really want to have this series
+merged as soon as possible. So it wouldn't be reasonable for us to wait for
+RK3066 support.
 
-> Johan
+What's your final decision for now: is it okay to keep the file named
+rockchip,rk3066-cif.yaml (without this compatible in the file) or do you st=
+ill
+want it called rockchip,px30-vip.yaml?
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--RLyCz4Fbk+INaST5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmVU3psACgkQ3cLmz3+f
+v9HjEAf/SU3y3RdjGRSQQ5ldwayPyDN9QCNmqna23Z7SUj7Iy3DoWx9iAIHrXKuE
+9PpvVh2nMXxoIjvjQMnmcIZgdqZoAJvDwFCrIR/a+tlwg68Gco5lPwAG00dm3vXV
+kIBXjL7VLWjwV1v66SwxEvi4fXDNT6/3qbO5r83jAshhC/VsxFMyLrNSdNrIKwIJ
+4w496dDQ9yv/Y0NwW2C05ibT+FAk2Av+7DxG4HzQkN1dMYLbSAn5t57Q+86FfqQf
+h8Tjy6xuHtj8ja2sWFBQzyJmzqYFOzcnb28CyOmfDnz8jVmCy/kwk/WLyqK+kRqM
+Bvk1pN6Xw6xFLAjrCcEq49bLqLZBNQ==
+=jU15
+-----END PGP SIGNATURE-----
+
+--RLyCz4Fbk+INaST5--
 
