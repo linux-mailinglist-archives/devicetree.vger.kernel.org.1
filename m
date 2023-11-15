@@ -1,105 +1,145 @@
-Return-Path: <devicetree+bounces-15998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C1F7EC6DB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:13:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 682817EC722
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 16:27:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 470AF1F278F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:13:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C7361F27143
+	for <lists+devicetree@lfdr.de>; Wed, 15 Nov 2023 15:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB6F381A9;
-	Wed, 15 Nov 2023 15:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B0633CCC;
+	Wed, 15 Nov 2023 15:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="i108W8Ac"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9uSX5wy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lindbergh.monkeyblade.net (lindbergh.monkeyblade.net [23.128.96.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D5A381A3;
-	Wed, 15 Nov 2023 15:13:20 +0000 (UTC)
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C951AC;
-	Wed, 15 Nov 2023 07:13:19 -0800 (PST)
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AFE3sxO010429;
-	Wed, 15 Nov 2023 15:13:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2023-03-30;
- bh=zz1/EnkZMGU0MZPcY0N+OqSuX6AglSIBEu4LF6hLjic=;
- b=i108W8AclFN7oU+lGGp3duaIM00UfQCawVu9jbR7A2RbOUOrNau6YnMMkHEz4tVqXImL
- I980zVzEgvcNAIqe4qn6J4ZXIUeklewj3Bs9TZ99F/2yzeMe4NI8nT30gCGBvrVNJhyo
- FmowMguAUkvVzKTe9luaL23egxR3DsCb4UCSwmtQfU/Eux3QvjUlaKdG4F5JKBr/1fam
- nDnDmt7Qqw8CYQi6M248Owqsun5sifGFluQWl0y1MbmHQXCOhBMK74YGoLMfeakpN+5A
- WEk+i8O6k3KDLYl3XngxAUR7jWTak+rZoZRM1oAKrhTO/bM4DBE7Jfy+mNRQjN65oODB eA== 
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3ua2na0t4s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 15 Nov 2023 15:13:11 +0000
-Received: from pps.filterd (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 3AFF8GN8004088;
-	Wed, 15 Nov 2023 15:13:10 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3uaxj40882-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 15 Nov 2023 15:13:10 +0000
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3AFFD8SR011253;
-	Wed, 15 Nov 2023 15:13:09 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 3uaxj4085x-3;
-	Wed, 15 Nov 2023 15:13:09 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: ufs: qcom-ufs: document the SM8650 UFS Controller
-Date: Wed, 15 Nov 2023 10:13:01 -0500
-Message-Id: <170006111400.506874.7193155029123585368.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231030-topic-sm8650-upstream-bindings-ufs-v3-1-a96364463fd5@linaro.org>
-References: <20231030-topic-sm8650-upstream-bindings-ufs-v3-1-a96364463fd5@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073C2381DD
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 15:27:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 590ECC433C7;
+	Wed, 15 Nov 2023 15:27:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700062053;
+	bh=vIyO62Y1rX3UiM9wLvewj/4J1jBrDX4ryBgvCxiLOMg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b9uSX5wyi2/f49m9IDT2ro1jZBmesSIY6wLeLsuwUMohCuDNcwmMuo5mcp2Y5zTMl
+	 xK/u9kXS+G9rSoxpPYHC3LMBjlOl3DYBQmBlnQ0bYfQw5in+YsKGenObCOmtQt8IfG
+	 IS+uVORTkrHg9OJoJOXiaSQVt4oaFfa1mY8PHTHrraPl150MXJuTtVhhrJFyJrNJ69
+	 19Iq1lZL/R1mKu6USmOsBiVDj3SYkgRKKd4NlEVKH1lzhwEPHylHdO0iUHvosooOlz
+	 zLsIR7nnrMT0B3ltU0gYATGvZpHY9ZAljZ3RRan8ejw7RK8ANfpj5O2W2+F9VjkOHf
+	 XzBstOU1XpSoA==
+Date: Wed, 15 Nov 2023 23:15:11 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: reset: Add binding for Sophgo CV1800B
+ reset controller
+Message-ID: <ZVTgfzeK6GkKpArK@xhacker>
+References: <20231113005503.2423-1-jszhang@kernel.org>
+ <20231113005503.2423-2-jszhang@kernel.org>
+ <44f21244-5bf1-4e0f-80a9-6ec76d65eea4@linaro.org>
+ <ZVTHMsXaPdHiuUOF@xhacker>
+ <80e28d77-4a0e-4827-91c0-951094176bbd@sifive.com>
+ <20231115-upward-unsworn-7746e0aeb5dd@squawk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-15_13,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 adultscore=0
- mlxlogscore=796 mlxscore=0 malwarescore=0 phishscore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311150115
-X-Proofpoint-GUID: nzLqVCgQHp2OGrlM-1-5q9_Iz6p9JysS
-X-Proofpoint-ORIG-GUID: nzLqVCgQHp2OGrlM-1-5q9_Iz6p9JysS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231115-upward-unsworn-7746e0aeb5dd@squawk>
 
-On Mon, 30 Oct 2023 10:43:11 +0100, Neil Armstrong wrote:
-
-> Document the UFS Controller on the SM8650 Platform.
+On Wed, Nov 15, 2023 at 03:02:21PM +0000, Conor Dooley wrote:
+> On Wed, Nov 15, 2023 at 09:56:07AM -0500, Samuel Holland wrote:
+> > On 2023-11-15 7:27 AM, Jisheng Zhang wrote:
+> > > On Tue, Nov 14, 2023 at 10:12:35PM +0100, Krzysztof Kozlowski wrote:
+> > >> On 13/11/2023 01:55, Jisheng Zhang wrote:
+> > >> ...
+> > >>
+> > >>> diff --git a/include/dt-bindings/reset/sophgo,cv1800b-reset.h b/include/dt-bindings/reset/sophgo,cv1800b-reset.h
+> > >>> new file mode 100644
+> > >>> index 000000000000..28dda71369b4
+> > >>> --- /dev/null
+> > >>> +++ b/include/dt-bindings/reset/sophgo,cv1800b-reset.h
+> > >>> @@ -0,0 +1,96 @@
+> > >>> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> > >>> +/*
+> > >>> + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
+> > >>> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> > >>> + */
+> > >>> +
+> > >>> +#ifndef _DT_BINDINGS_CV1800B_RESET_H
+> > >>> +#define _DT_BINDINGS_CV1800B_RESET_H
+> > >>> +
+> > >>> +/*				0-1	*/
+> > >>> +#define RST_DDR			2
+> > >>> +#define RST_H264C		3
+> > >>> +#define RST_JPEG		4
+> > >>> +#define RST_H265C		5
+> > >>> +#define RST_VIPSYS		6
+> > >>> +#define RST_TDMA		7
+> > >>> +#define RST_TPU			8
+> > >>> +#define RST_TPUSYS		9
+> > >>> +/*				10	*/
+> > >>
+> > >> Why do you have empty IDs? IDs start at 0 and are incremented by 1.
+> > > 
+> > > there's 1:1 mapping between the ID and bit. Some bits are reserved, I.E
+> > > no actions at all. Is "ID start at 0 and increment by 1" documented
+> > > in some docs? From another side, I also notice some SoCs especially
+> > > those which make use of reset-simple driver don't strictly follow
+> > > this rule, for example, amlogic,meson-a1-reset.h and so on. What
+> > > happened?
+> > > 
+> > > And I'd like to ask a question here before cooking 2nd version:
+> > > if the HW programming logic is the same as reset-simple, but some
+> > > or many bits are reserved, what's the can-be-accepted way to support
+> > > the reset controller? Use reset-simple? Obviously if we want the
+> > > "ID start at 0 and increment by 1" rule, then we have to write
+> > > a custom driver which almost use the reset-simple but with a
+> > > customized mapping.
+> > 
+> > There are two possible situations. Either the reset specifier maps directly to
+> > something in the hardware, or you are inventing some brand new enumeration to
+> > use as a specifier.
+> > 
+> > In the first situation, you do not need a header. We assume the user will look
+> > to the SoC documentation if they want to know what the numbers mean. (You aren't
+> > _creating_ an ABI, since the ABI is already defined by the hardware.)
+> > 
+> > In the second situation, since we are inventing something new, the numbers
+> > should be contiguous. This is what Krzysztof's comment was about.
+> > 
+> > For this reset device, the numbers are hardware bit offsets, so you are in the
+> > first situation. So I think the recommended solution here is to remove the
+> > header entirely and use the bit numbers directly in the SoC devicetree.
+> > 
+> > It's still appropriate to use reset-simple. Adding some new mapping would make
+> > things more complicated for no benefit.
 > 
-> 
+> Further, I think it is fine in that case to have a header, just the
+> header doesn't belong as a binding, and can instead go in the dts
+> directory.
 
-Applied to 6.7/scsi-fixes, thanks!
+Hi Samuel, Conor,
 
-[1/1] dt-bindings: ufs: qcom-ufs: document the SM8650 UFS Controller
-      https://git.kernel.org/mkp/scsi/c/e439e4a62a8e
+thanks a lot for the suggestion!
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+Regards
 
