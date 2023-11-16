@@ -1,182 +1,124 @@
-Return-Path: <devicetree+bounces-16385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28F197EE70B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:56:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0A47EE853
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 21:31:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D23181F24C34
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:56:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E2B6B20A7E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB23634558;
-	Thu, 16 Nov 2023 18:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Axli57Y0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DECAF3212;
+	Thu, 16 Nov 2023 20:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464FC181;
-	Thu, 16 Nov 2023 10:56:25 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 92CCA240005;
-	Thu, 16 Nov 2023 18:56:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1700160983;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dvolxHvO6BKwJ4vR7RsyEZFAGupNxMo4pjITWoD7r7g=;
-	b=Axli57Y07qsWySxQZfDgCSL2+rNtRWyQKDEm1hAO+S4sliiRJ5TPONqbGzf3kyCHxbxkrZ
-	1mE4LRhSJDU58pHTuVLcZdcysj7ISVbrgCvWKyM0RxHpK8QYxDnJ5SOh0msW/o4Yqmq67x
-	RSsKZyjUi6XHn/wYrNafnrZjvI0HvbZrXSFsqRlzh63pS0ELzV0ii2Iojy4FZM3ltO63At
-	DIteCQfycWL+Ifhs89M8pojMdTqGdo1fXGgrzIFhDTUjYs2072KM97xkx7Fqj+AAZScTuO
-	7rekoehYzNV6v9fMgYZmwlCdEJ99T9ExywvHNy9FkZPl6yKZz40QaF8lyxIdVg==
+Received: from 18.mo583.mail-out.ovh.net (18.mo583.mail-out.ovh.net [178.33.45.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA9BD53
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:30:56 -0800 (PST)
+Received: from director10.ghost.mail-out.ovh.net (unknown [10.109.138.180])
+	by mo583.mail-out.ovh.net (Postfix) with ESMTP id A55DA268D3
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 18:01:13 +0000 (UTC)
+Received: from ghost-submission-6684bf9d7b-6c6xr (unknown [10.110.103.234])
+	by director10.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 697E51FE0D;
+	Thu, 16 Nov 2023 18:01:12 +0000 (UTC)
+Received: from RCM-web10.webmail.mail.ovh.net ([151.80.29.18])
+	by ghost-submission-6684bf9d7b-6c6xr with ESMTPSA
+	id wLPAF+hYVmV/XQEApgZwCw
+	(envelope-from <rafal@milecki.pl>); Thu, 16 Nov 2023 18:01:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 16 Nov 2023 19:56:22 +0100
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
- J7200
-Cc: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-To: "Roger Quadros" <rogerq@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Peter Chen" <peter.chen@kernel.org>, "Pawel
- Laszczak" <pawell@cadence.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh
- Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Message-Id: <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
-X-Mailer: aerc 0.15.2
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
- <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
- <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
- <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
-In-Reply-To: <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Date: Thu, 16 Nov 2023 19:01:12 +0100
+From: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, Herbert Xu
+ <herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Antoine Tenart <atenart@kernel.org>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: crypto: convert Inside Secure SafeXcel to
+ the json-schema
+In-Reply-To: <3f9f31e9-ead3-438a-bbd9-818b98ba1b3b@linaro.org>
+References: <20231116130620.4787-1-zajec5@gmail.com>
+ <3f9f31e9-ead3-438a-bbd9-818b98ba1b3b@linaro.org>
+User-Agent: Roundcube Webmail/1.4.15
+Message-ID: <844c8a5387ca4c5847bf8cfa82b8164c@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 31.11.218.106
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 6406651946374703905
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvkedrudefkedguddthecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeggfffhvfevufgjfhgfkfigihgtgfesthekjhdttderjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepvdehieeltdejheeltdfhffetgfetheejhefhffekfedukeeltdfhvdethfdtjedvnecuffhomhgrihhnpehrmhhilhgvtghkihdrlhhotggrlhdpshgthhgvmhgrrdhphienucfkphepuddvjedrtddrtddruddpfedurdduuddrvddukedruddtiedpudehuddrkedtrddvledrudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpeeorhgrfhgrlhesmhhilhgvtghkihdrphhlqedpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekfedpmhhouggvpehsmhhtphhouhht
 
-Hello Roger,
+On 2023-11-16 15:42, Krzysztof Kozlowski wrote:
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - const: inside-secure,safexcel-eip197b
+>> +      - const: inside-secure,safexcel-eip197d
+>> +      - const: inside-secure,safexcel-eip97ies
+>> +      - const: inside-secure,safexcel-eip197
+>> +        description: Equivalent of inside-secure,safexcel-eip197b
+>> +        deprecated: true
+>> +      - const: inside-secure,safexcel-eip97
+>> +        description: Equivalent of inside-secure,safexcel-eip97ies
+>> +        deprecated: true
+> 
+> Wait, some new entries appear here and commit msg said nothing about
+> changes in the binding. Commit says it is pure conversion. You must
+> document all changes made.
 
-On Thu Nov 16, 2023 at 1:40 PM CET, Roger Quadros wrote:
-> On 15/11/2023 17:02, Th=C3=A9o Lebrun wrote:
-> > On Wed Nov 15, 2023 at 12:37 PM CET, Roger Quadros wrote:
-> >> On 13/11/2023 16:26, Th=C3=A9o Lebrun wrote:
-> >>> Hardware initialisation is only done at probe. The J7200 USB controll=
-er
-> >>> is reset at resume because of power-domains toggling off & on. We
-> >>> therefore (1) toggle PM runtime at suspend/resume & (2) reconfigure t=
-he
-> >>> hardware at resume.
-> >>
-> >> at probe we are doing a pm_runtime_get() and never doing a put thus
-> >> preventing any runtime PM.
-> >=20
-> > Indeed. The get() from probe/resume are in symmetry with the put() from
-> > suspend. Is this wrong in some manner?
-> >=20
-> >>> index c331bcd2faeb..50b38c4b9c87 100644
-> >>> --- a/drivers/usb/cdns3/cdns3-ti.c
-> >>> +++ b/drivers/usb/cdns3/cdns3-ti.c
-> >>> @@ -197,6 +197,50 @@ static int cdns_ti_probe(struct platform_device =
-*pdev)
-> >>>  	return error;
-> >>>  }
-> >>> =20
-> >>> +#ifdef CONFIG_PM
-> >>> +
-> >>> +static int cdns_ti_suspend(struct device *dev)
-> >>> +{
-> >>> +	struct cdns_ti *data =3D dev_get_drvdata(dev);
-> >>> +
-> >>> +	if (!of_device_is_compatible(dev_of_node(dev), "ti,j7200-usb"))
-> >>> +		return 0;
-> >>> +
-> >>> +	pm_runtime_put_sync(data->dev);
-> >>> +
-> >>> +	return 0;
-> >>
-> >> You might want to check suspend/resume ops in cdns3-plat and
-> >> do something similar here.
-> >=20
-> > I'm unsure what you are referring to specifically in cdns3-plat?
->
-> What I meant is, calling pm_runtime_get/put() from system suspend/resume
-> hooks doesn't seem right.
->
-> How about using something like pm_runtime_forbid(dev) on devices which
-> loose USB context on runtime suspend e.g. J7200.
-> So at probe we can get rid of the pm_runtime_get_sync() call.
+I may make many mistakes but not one like that. I am phobic to adding
+new stuff silently. All those entries were documented in .txt.
 
-What is the goal of enabling PM runtime to then block (ie forbid) it in
-its enabled state until system suspend?
 
-Thinking some more about it and having read parts of the genpd source,
-it's unclear to me why there even is some PM runtime calls in this
-driver. No runtime_suspend/runtime_resume callbacks are registered.
-Also, power-domains work as expected without any PM runtime calls.
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 2
+>> +    then:
+>> +      required:
+>> +        - clock-names
+> 
+> Did you test that it actually works? Considering other patchset which
+> you did not, I have doubts that this was...
 
-The power domain is turned on when attached to a device
-(see genpd_dev_pm_attach). It gets turned off automatically at
-suspend_noirq (taking into account the many things that make genpd
-complex: multiple devices per PD, subdomains, flags to customise the
-behavior, etc.). Removing calls to PM runtime at probe keeps the driver
-working.
+Sorry, I really have bad experience with Python due its maze of
+dependencies and unfriendly feedback. I just wasted half an hour
+debugging error like:
 
-So my new proposal would be: remove all all PM runtime calls from this
-driver. Anything wrong with this approach?
+Traceback (most recent call last):
+   File "/home/rmilecki/.local/bin/dt-doc-validate", line 64, in <module>
+     ret |= check_doc(f)
+   File "/home/rmilecki/.local/bin/dt-doc-validate", line 32, in 
+check_doc
+     for error in sorted(dtsch.iter_errors(), key=lambda e: e.linecol):
+   File 
+"/home/rmilecki/.local/lib/python3.10/site-packages/dtschema/schema.py", 
+line 132, in iter_errors
+     self.annotate_error(scherr, meta_schema, scherr.schema_path)
+   File 
+"/home/rmilecki/.local/lib/python3.10/site-packages/dtschema/schema.py", 
+line 111, in annotate_error
+     schema = schema[p]
+KeyError: 'type'
 
-Only possible reason I see for having PM runtime in this wrapper driver
-would be cut the full power-domain when USB isn't used, with some PM
-runtime interaction with the children node. But that cannot work
-currently as we don't register a runtime_resume to init the hardware,
-so this cannot be the current expected behavior.
+which turned out to be a result of some outdated examples files.
 
-> e.g.
->
->         pm_runtime_set_active(dev);
->         pm_runtime_enable(dev);
->         if (cnds_ti->can_loose_context)
->                 pm_runtime_forbid(dev);
->
->         pm_runtime_set_autosuspend_delay(dev, CNDS_TI_AUTOSUSPEND_DELAY);=
-	/* could be 20ms? */
+I tested that binding thought. Still after another look at that allOf I
+found one more corner case to cover.
 
-Why mention autosuspend in this driver? This will turn the device off in
-CNDS_TI_AUTOSUSPEND_DELAY then nothing enables it back using
-pm_runtime_get. We have nothing to reconfigure the device, ie no
-runtime_resume, so we must not go into runtime suspend.
-
->         pm_runtime_mark_last_busy(dev);
->         pm_runtime_use_autosuspend(dev);
->
-> You will need to modify the suspend/resume handlers accordingly.
-> https://docs.kernel.org/power/runtime_pm.html#runtime-pm-and-system-sleep
->
-> What I'm not sure of is if there are any TI platforms that retain USB con=
-text
-> on power domain off. Let me get back on this. Till then we can assume tha=
-t
-> all platforms loose USB context on power domain off.
-
-Good question indeed! Thanks for looking into it. From what I see all 5
-DT nodes which use this driver in upstream devicetrees have a
-power-domain configured. So if the behavior is the same on all three TI
-platforms (which would be the logical thing to assume) it would make
-sense that all controllers lose power at suspend.
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-- 
+Rafał Miłecki
 
