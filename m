@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-16364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD677EE618
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:45:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B451A7EE62C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC0411F2460D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:45:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66AED281142
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5268B446DF;
-	Thu, 16 Nov 2023 17:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77BE4653C;
+	Thu, 16 Nov 2023 17:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6u2kK0/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p3hbPSNT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31FB4364D8;
-	Thu, 16 Nov 2023 17:44:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D44F3C433C8;
-	Thu, 16 Nov 2023 17:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCD13455B;
+	Thu, 16 Nov 2023 17:54:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC5D5C433C8;
+	Thu, 16 Nov 2023 17:54:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700156697;
-	bh=yn5B25n6M8qrwrNyu0STc5iMLcjtyg6R1Uxl3tbWaqE=;
+	s=k20201202; t=1700157258;
+	bh=y8eFS6dl8OZQt7xyX9mow8MlruoXZo3WcMeBbYxVhcY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H6u2kK0/IowLCdNLr4C5NK0exZ27pjabRvjz3pfiTGxK2HMJCRecsKkSr+TsGGIYE
-	 ncaUTB4oC8rxk7lEd/BExTappoBI77nkp20TXsV4w1Y02H1F5z/rs9q78qUAWAQmVx
-	 YFjQsxTeFfmfg8ElsdiSJ2X56ZztoIlmWzDbwAX41ScHUDdGDm/97X0D1ZB1piTzUY
-	 ojTQSWB7wCGZsIYeKakOLblWZhS7WPwq71Xk38SG2IHN5hYxkimIZR069qTq5W5qLb
-	 LTifKK5gF/UyJVUP7EtqTMrOuzotucclcM+zoIvkX5lO7WViCJ39ICD9XJ18Gn3JeH
-	 OWilj18Cr9Nxw==
-Date: Thu, 16 Nov 2023 17:44:53 +0000
+	b=p3hbPSNTkZmgKqFxus5EZggFA2A4fn5RRIa2wG/hRfCNCfsqEIiuursx3IwSgoU1w
+	 suBvk/M6dg2EnjQj7x33oDeDwMzjut8XKNVX9Omqdk7qJADHPXHsAmVU6vtuJEAL6g
+	 W5jRH5NMq/0jVkIwTyNYKLmmEoKmI+/5YGEtz0ECWFtq/aznLIGasmTRKQtYFs6CX2
+	 A2mjP1/RGMkAEE6IdHY5o+3FkIHdiM/fSSePAGKeF7jMT14D8dOimMr4vWpi5hpcRV
+	 MT2xr97YYRAuJ/J05oa5zZ61vr27xHP4HNJVpWzuOnDr5eyQ202j1IdEdpz8M+Z10x
+	 FocS5sYEQYmZA==
+Date: Thu, 16 Nov 2023 17:54:13 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: mitrutzceclan <mitrutzceclan@gmail.com>, linus.walleij@linaro.org,
+	brgl@bgdev.pl, andy@kernel.org, linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 7/9] firmware_loader: Expand Firmware upload
- error codes
-Message-ID: <20231116-t-shirt-supreme-581c8882d5cc@squawk>
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
- <20231116-feature_poe-v1-7-be48044bf249@bootlin.com>
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: adc: add AD7173
+Message-ID: <20231116-spousal-mystify-dcd1d4fec7e6@squawk>
+References: <20231116134655.21052-1-user@HYB-hhAwRlzzMZb>
+ <44cfcd9a-f139-479b-85ff-5fd23c9714b2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,50 +65,225 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6ypoZjICOlFY8ORK"
+	protocol="application/pgp-signature"; boundary="esKPrMVRLJw2O/9X"
 Content-Disposition: inline
-In-Reply-To: <20231116-feature_poe-v1-7-be48044bf249@bootlin.com>
+In-Reply-To: <44cfcd9a-f139-479b-85ff-5fd23c9714b2@linaro.org>
 
 
---6ypoZjICOlFY8ORK
-Content-Type: text/plain; charset=us-ascii
+--esKPrMVRLJw2O/9X
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 16, 2023 at 03:01:39PM +0100, Kory Maincent wrote:
-> No error code are available to signal an invalid firmware content.
-> Drivers that can check the firmware content validity can not return this
-> specific failure to the user-space
+On Thu, Nov 16, 2023 at 03:54:13PM +0100, Krzysztof Kozlowski wrote:
+> On 16/11/2023 14:46, mitrutzceclan wrote:
+> > From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> >=20
+> > The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> > which can be used in high precision, low noise single channel applicati=
+ons
+> > or higher speed multiplexed applications. The Sigma-Delta ADC is intend=
+ed
+> > primarily for measurement of signals close to DC but also delivers
+> > outstanding performance with input bandwidths out to ~10kHz.
+> >=20
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com> # except referen=
+ce_select
 >=20
-> Expand the firmware error code with an additional code:
-> - "firmware invalid" code which can be used when the provided firmware
->   is invalid
+> Please drop the tag. You clearly did not test it, so it must be
+> re-reviewed. Do not send code which was not tested.
+
+yeah, this is vastly different from what I reviewed. I suppose if
+someone finds it necessary to add a "# except foo" to the end of a tag
+it is very good signifier that the tag should in fact be removed.
+
 >=20
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> > Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> > ---
+> > V3 -> V4
+> >  - include supply attributes
+> >  - add channel attribute for selecting conversion reference
+> >=20
+> >  .../bindings/iio/adc/adi,ad7173.yaml          | 166 ++++++++++++++++++
+> >  1 file changed, 166 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad717=
+3.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> > new file mode 100644
+> > index 000000000000..92aa352b6653
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> > @@ -0,0 +1,166 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2023 Analog Devices Inc.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices AD7173 ADC device driver
+>=20
+> Drop: device driver
+>=20
+> Bindings are for hardware.
+>=20
+> > +
+> > +maintainers:
+> > +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
+> > +
+> > +description: |
+> > +  Bindings for the Analog Devices AD717X ADC's. Datasheets for support=
+ed chips:
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheet=
+s/AD7172-2.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheet=
+s/AD7173-8.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheet=
+s/AD7175-2.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheet=
+s/AD7176-2.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,ad7172-2
+> > +      - adi,ad7173-8
+> > +      - adi,ad7175-2
+> > +      - adi,ad7176-2
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 20000000
+> > +
+> > +  refin-supply:
+> > +    description: external reference supply, can be used as reference f=
+or conversion.
+> > +
+> > +  refin2-supply:
+> > +    description: external reference supply, can be used as reference f=
+or conversion.
+> > +
+> > +  avdd-supply:
+> > +    description: avdd supply, can be used as reference for conversion.
+> > +
+> > +  dependencies:
+>=20
+> Nope, needs testing... See also example-schema.
+>=20
+>=20
+> > +    refin2-supply:
+> > +      properties:
+> > +        compatible:
+> > +          adi,ad7173-8
+> > +
+> > +  required:
+>=20
+> Please open example schema and put it in similar place.
+>=20
+> > +    - compatible
+> > +    - reg
+> > +    - interrupts
+> > +
+> > +patternProperties:
+> > +  "^channel@[0-9a-f]$":
+> > +    type: object
+> > +    $ref: adc.yaml
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        minimum: 0
+> > +        maximum: 15
+> > +
+> > +      diff-channels:
+> > +        items:
+> > +          minimum: 0
+> > +          maximum: 31
+> > +
+> > +      adi,reference-select:
+> > +        description: |
+> > +          Select the reference source to use when converting on
+> > +          the specific channel. Valid values are:
+> > +          0: REFIN(+)/REFIN(=E2=88=92).
+> > +          1: REFIN2(+)/REFIN2(=E2=88=92)
+> > +          2: REFOUT/AVSS (Internal reference)
+> > +          3: AVDD
+> > +
+> > +          External reference 2 only available on ad7173-8.
+> > +          If not specified, internal reference used.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum: [0, 1, 2, 3]
+> > +        default: 2
 
-This would be rather helpful to me for some stuff that I am currently
-working on and was hoping to send to Arnd for inclusion in 6.8:
-https://lore.kernel.org/all/20231020-series-uncooked-077b107af3ae@spud/
+I really don't like these properties where integers are mapped to
+functionalities like this. I'd much rather see a enum of strings where
+the meaning for these things can be put in & there's no need to look up
+the binding to figure out what "adi,reference-select =3D <3>" means.
+For example having "refin", "refin2", "refout-avss" & "avdd" as the
+options and therefore "adi,reference-select =3D "avdd" in a devicetree is
+a lot more understandable IMO.
 
-I'm currently returning a "HW_ERROR" for something that this would fit
-the bill for (in mpfs_auto_update_write()). What would the ETA for this
-stuff landing via the net tree be?
-Since I am not a netdev contributor its hard to tell how controversial
-these patches are!
 
 Cheers,
 Conor.
 
---6ypoZjICOlFY8ORK
+> > +
+> > +      bipolar:
+> > +        type: boolean
+> > +
+> > +    required:
+> > +      - reg
+> > +      - diff-channels
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: adi,ad7173-8
+> > +    then:
+>=20
+> ??? Maybe you want to use "not"?
+>=20
+> > +    else:
+>=20
+> > +      patternProperties:
+> > +        "^channel@[0-9a-f]$":
+> > +          properties:
+> > +            enum: [0, 2, 3]
+> > +
+> > +unevaluatedProperties: false
+> > +
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+--esKPrMVRLJw2O/9X
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVZVEgAKCRB4tDGHoIJi
-0irnAP463rgejD0fRuUPUsFy/SyMR0GqguMUDXaPiQRu3KbdyAD/fQJuV4BKxnmF
-n8iXTSD1Six25k/bHw9DH6k1b+et7gU=
-=GRGU
+iHQEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVZXPwAKCRB4tDGHoIJi
+0hUDAPdjZjcsiNy/vVJdyjREO1Ge/SU9glgPFwQpHxIOZJrqAP9cbEHhajGJgx9s
+3poiKjiTyKlIZg/Ls691B5MeTt6RDQ==
+=+iDh
 -----END PGP SIGNATURE-----
 
---6ypoZjICOlFY8ORK--
+--esKPrMVRLJw2O/9X--
 
