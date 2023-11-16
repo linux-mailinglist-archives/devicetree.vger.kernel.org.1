@@ -1,172 +1,197 @@
-Return-Path: <devicetree+bounces-16140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64C27EDB6D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 07:06:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D948E7EDB91
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 07:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22B911C2039F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:06:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E337BB20A31
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:30:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D9CDDB5;
-	Thu, 16 Nov 2023 06:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA577FBF3;
+	Thu, 16 Nov 2023 06:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SC9jUjOh"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P41VhJ4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68AC9DDAB;
-	Thu, 16 Nov 2023 06:05:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F1E8C433C8;
-	Thu, 16 Nov 2023 06:05:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700114755;
-	bh=B36lbKAAn1whA4DTcAjeUDPo5i0BoaQAKk0kLOv7+Mc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SC9jUjOhjj6aTYcTLsK8Zp8lA6m/gFqGEdA2xaOwwzKgwc2utVzaF6Y7VgkE5NvtZ
-	 dSpzXaKv0E8DM9RkszoHVYTL8u43nsWL6aRSs9DG9Tnk4OFS/BkWyyKKTtklfdkF6m
-	 66VCk4J7zrsY7M+fd9Pik9nwbT4tsotakSnqTxXBfabaB+OD2hM/YWHZOLglpErS9l
-	 e18FtbQZ857rzC4MJTwcP0ubzktClDl9nV+RDvVxUQQMJ6+dkP9UiZtr7YjbGWbtE5
-	 XirNa9plIfpAnaABkf9OB8xpUdN9Hatg/pzLf0isf8Lk/BWyuBH2CMdoUvzcSsiobO
-	 Lz9M7V8Ky3d+g==
-Date: Thu, 16 Nov 2023 11:35:41 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: PCI: qcom: correct clocks for SC8180x
- and SM8150
-Message-ID: <20231116060541.GC3443@thinkpad>
-References: <20231112184557.3801-1-krzysztof.kozlowski@linaro.org>
- <20231112184557.3801-2-krzysztof.kozlowski@linaro.org>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD78A4;
+	Wed, 15 Nov 2023 22:30:43 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG5fPto019356;
+	Thu, 16 Nov 2023 06:30:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=lJBWb0DFVaqBPn5WS2xIqEkp3Evqw9zDxdFgf67KCDo=;
+ b=P41VhJ4FWvC3R/tlx2/fjOppb0a7ygI7oPFOOnIq3PGdAUBFnQLz0KLwh5RDpJB+sOH2
+ /Hiop52rgGkF7KB5IMwl1Q9p18e1dlqqAsrE6SWoFTZU80N0NlgFK6PpKa78V2oRvW0k
+ njcJM+hKtKcKEaWsv5rMc22+B7OSvSfU2LyTccaXV2vWhEtxa9k65fRvdasTgT3im0bH
+ 8CfpUO9pJ3D+e0M8m1X+3dFcoasXryjHVc7kyiw+xOawV8rhXlNHAHaBFHbkiL9WOudY
+ iM5JRfL8rwLo/9DoSyPurWF50/j3Xioqi2dU23v3Jr5JbvFseUTv/fIkkp6wQOOZMh/N dg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ud6ecgtwm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Nov 2023 06:30:17 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AG6UGH3014552
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Nov 2023 06:30:16 GMT
+Received: from [10.216.41.162] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 15 Nov
+ 2023 22:30:02 -0800
+Message-ID: <5a476b51-5916-74f8-0395-60d94f210aa0@quicinc.com>
+Date: Thu, 16 Nov 2023 11:59:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231112184557.3801-2-krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH V2 0/3] iio: adc: Add support for QCOM SPMI PMIC5 Gen3 ADC
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <daniel.lezcano@linaro.org>,
+        <linus.walleij@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <andriy.shevchenko@linux.intel.com>, <quic_subbaram@quicinc.com>,
+        <quic_collinsd@quicinc.com>, <quic_amelende@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <lars@metafoo.de>, <luca@z3ntu.xyz>, <linux-iio@vger.kernel.org>,
+        <lee@kernel.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <cros-qcom-dts-watchers@chromium.org>,
+        <sboyd@kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <kernel@quicinc.com>
+References: <20231116032530.753192-1-quic_jprakash@quicinc.com>
+ <CAA8EJprJuiFq5UXc9weNr1hy2vW_10TaQweN_ZW5XW=3LKrgtA@mail.gmail.com>
+Content-Language: en-US
+From: Jishnu Prakash <quic_jprakash@quicinc.com>
+In-Reply-To: <CAA8EJprJuiFq5UXc9weNr1hy2vW_10TaQweN_ZW5XW=3LKrgtA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: DV90G0dLrhL99O234ZHLt0xsMNWcxz9J
+X-Proofpoint-ORIG-GUID: DV90G0dLrhL99O234ZHLt0xsMNWcxz9J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-16_03,2023-11-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 mlxlogscore=999 bulkscore=0
+ suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311160049
 
-On Sun, Nov 12, 2023 at 07:45:57PM +0100, Krzysztof Kozlowski wrote:
-> PCI node in Qualcomm SC8180x DTS has 8 clocks, while one on SM8150 has 7
-> clocks:
-> 
->   sc8180x-primus.dtb: pci@1c00000: 'oneOf' conditional failed, one must be fixed:
->     ['pipe', 'aux', 'cfg', 'bus_master', 'bus_slave', 'slave_q2a', 'ref', 'tbu'] is too short
-> 
->   sm8150-hdk.dtb: pci@1c00000: 'oneOf' conditional failed, one must be fixed:
->     ['pipe', 'aux', 'cfg', 'bus_master', 'bus_slave', 'slave_q2a', 'ref', 'tbu'] is too short
+Hi Dmitry,
 
-This error says that SM8150 has 8 clocks defined in DT, but it has only 7. I'm
-confused.
+On 11/16/2023 10:52 AM, Dmitry Baryshkov wrote:
+> On Thu, 16 Nov 2023 at 05:26, Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
+>> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+>> with all SW communication to ADC going through PMK8550 which
+>> communicates with other PMICs through PBS. The major difference is
+>> that the register interface used here is that of an SDAM present on
+>> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+>> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+>> be used for either immediate reads (same functionality as previous PMIC5 and
+>> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+>> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+>> combined into the same driver.
+>>
+>> Patches 1 adds bindings for ADC5 Gen3 peripheral.
+>>
+>> Patches 2 adds driver support for ADC5 Gen3.
+> For some reason I don't see this patch in my inbox. Maybe it will
+> arrive later. Immediate response: please add
+> devm_thermal_add_hwmon_sysfs().
 
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Anyway, the patch looks good to me.
+Yes, I'll check and add this in the next patch series, I'll wait for 
+some more comments on the existing patches for now.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+I ran into some error after sending the first two mails (cover letter 
+and patch 1), so I sent patches 2 and 3 separately after it, I think you 
+may have received them separately.
 
-- Mani
 
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 58 ++++++++++++++++++-
->  1 file changed, 57 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index 14d25e8a18e4..4c993ea97d7c 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -479,6 +479,35 @@ allOf:
->            items:
->              - const: pci # PCIe core reset
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-sc8180x
-> +    then:
-> +      oneOf:
-> +        - properties:
-> +            clocks:
-> +              minItems: 8
-> +              maxItems: 8
-> +            clock-names:
-> +              items:
-> +                - const: pipe # PIPE clock
-> +                - const: aux # Auxiliary clock
-> +                - const: cfg # Configuration clock
-> +                - const: bus_master # Master AXI clock
-> +                - const: bus_slave # Slave AXI clock
-> +                - const: slave_q2a # Slave Q2A clock
-> +                - const: ref # REFERENCE clock
-> +                - const: tbu # PCIe TBU clock
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +        reset-names:
-> +          items:
-> +            - const: pci # PCIe core reset
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -527,8 +556,35 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> -              - qcom,pcie-sc8180x
->                - qcom,pcie-sm8150
-> +    then:
-> +      oneOf:
-> +        - properties:
-> +            clocks:
-> +              minItems: 7
-> +              maxItems: 7
-> +            clock-names:
-> +              items:
-> +                - const: pipe # PIPE clock
-> +                - const: aux # Auxiliary clock
-> +                - const: cfg # Configuration clock
-> +                - const: bus_master # Master AXI clock
-> +                - const: bus_slave # Slave AXI clock
-> +                - const: slave_q2a # Slave Q2A clock
-> +                - const: tbu # PCIe TBU clock
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +        reset-names:
-> +          items:
-> +            - const: pci # PCIe core reset
-> +
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
->                - qcom,pcie-sm8250
->      then:
->        oneOf:
-> -- 
-> 2.34.1
-> 
+>
+>> Patch 3 is a cleanup, to move the QCOM ADC dt-bindings files from
+>> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
+>> specifically for ADC devices. It also fixes all compilation errors
+>> with this change in driver and devicetree files and similar errors
+>> in documentation for dtbinding check.
+> NAK. The kernel is expected to build and work after each commit.
+> Otherwise git-bisecting the kernel becomes impossible.
+> So, please rework your series in a way that there are no compilation
+> errors after any of the patches. The easiest way would be to rearrange
+> your patches in 3-1-2 order.
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+I think you may have misunderstood the meaning here, I had verified 
+compilation works each time after applying each of the three patches in 
+this series. It's not that this last patch fixes compilation errors 
+caused by the first two, this is a completely separate patch which 
+affects existing QCOM ADC code (driver and devicetree) including ADC5 Gen3.
+
+
+This patch does two things mainly:
+
+Move the ADC binding files from dt-bindings/iio folder to 
+dt-bindings/iio/adc folder (this would naturally cause some errors in 
+driver and devicetree code due to path update)
+
+Fix all compilation and dtbinding errors generated by the move
+
+
+I added this change at the end of the series as I was not completely 
+sure if it could get picked, just wanted to make it easier to drop if 
+that is the final decision.
+
+
+Thanks,
+
+Jishnu
+
+
+>
+>
+>> Changes since v1:
+>> - Dropped patches 1-5 for changing 'ADC7' peripheral name to 'ADC5 Gen2'.
+>> - Addressed reviewer comments for binding and driver patches for ADC5 Gen3.
+>> - Combined patches 8-11 into a single patch as requested by reviewers to make
+>>    the change clearer and made all fixes required in same patch.
+>>
+>>   .../iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    |    2 +-
+>>   .../iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    |    2 +-
+>>   .../iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    |    2 +-
+>>   .../iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    |    0
+>>   .../iio/{ => adc}/qcom,spmi-vadc.h            |   81 ++
+>>   46 files changed, 1725 insertions(+), 61 deletions(-)
+>>   create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
+>>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
+>>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
+>>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
+>>   create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
+>>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
+>>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
+>>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
+>>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
+>>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
+>>   rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (77%)
+>>
+>> --
+>> 2.25.1
+>>
+>
+> --
+> With best wishes
+> Dmitry
 
