@@ -1,102 +1,147 @@
-Return-Path: <devicetree+bounces-16262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC027EE246
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:03:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD83B7EE24A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABAAB1C20BF1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:03:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E2E0B20BE1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B5B3158D;
-	Thu, 16 Nov 2023 14:03:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9FD315A1;
+	Thu, 16 Nov 2023 14:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCJKnCmV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB2F19A7;
-	Thu, 16 Nov 2023 06:02:54 -0800 (PST)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5c516f92759so8731337b3.2;
-        Thu, 16 Nov 2023 06:02:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700143373; x=1700748173;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+a7AGpCsYFRkwmEKl8t6Ffx64QeS9oLpr5/sPCE906o=;
-        b=MyuklPbRlDAZm3224WPemSM+Oz2vtCTtXvAGfZFlcTH/b5sDmFK2x0VlQbdy0ZkdZC
-         MZdFTLGEy/gYKzAnvp64u/VtkktKy5AZX8kUeZ9wDN9lVHtFQfcP0HvzQ03z4/W9664/
-         FAVRyG16mooYP2ovWfOhjcusdsOzgw0xr1Fn9VidPbuxy7aE5kT2XAA5UXmCkJdE8uB+
-         bNSDyfkBfLByf+BWoJOkjkhlwqZyxa1+EyFf3HFHiuc4603rVpyGzT2tFmi5Q2wvwccZ
-         c5NrKlsJ4X8e6Ktwf+R8XWeiFEYM66CPCGaJFJwZmpyonIgOZWO4kNrEXx5WIWcpbiGi
-         vrQQ==
-X-Gm-Message-State: AOJu0Yy+dkKp/GExsPKy0bi2G42VQRmpfhjBUokUUvXm+aUc38XiriYI
-	vSpmMheuPfVYYMuI3iHq84U8SHyX8KNUgw==
-X-Google-Smtp-Source: AGHT+IHe62PrhOUuPuH9j49jIDt0z04s0jPBlTF5fr9h2BotQ8xmzVHos0MSvzhTk12KarNBeVGxrg==
-X-Received: by 2002:a0d:c446:0:b0:5ac:fe2d:5edf with SMTP id g67-20020a0dc446000000b005acfe2d5edfmr16775374ywd.44.1700143372898;
-        Thu, 16 Nov 2023 06:02:52 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id e185-20020a8169c2000000b0059bdac3fd08sm1027000ywc.48.2023.11.16.06.02.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 06:02:52 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5c516f92759so8730947b3.2;
-        Thu, 16 Nov 2023 06:02:51 -0800 (PST)
-X-Received: by 2002:a0d:df14:0:b0:5a8:28d6:4d08 with SMTP id
- i20-20020a0ddf14000000b005a828d64d08mr15985817ywe.17.1700143371403; Thu, 16
- Nov 2023 06:02:51 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD1128E09;
+	Thu, 16 Nov 2023 14:03:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA684C433C8;
+	Thu, 16 Nov 2023 14:03:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700143409;
+	bh=d6xPUlhaYELCUC56AkK/eGiDZyhysNoVJ5PsEWB3OyQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZCJKnCmV70p7/Zs+2XSS+PXNOlA6+oDISYhh0L9KvfYNiIT1msdmujTTsy/Asdpvd
+	 0gAkms93us8ptNyaws9N0qfyX2Z2LjpVCliNQZ7SN1EyYJ8JZfuU7krj7Sv/hEX+SW
+	 b9hlPSF2vwBvYbItVQZyT3pzMzmGJ+i7bddYpZLiOVj+HaTrVL4O+7SplxWH4wao0i
+	 qfuM+NiIV9f2wNrki9hJmKo44zAfkCkzG9G6H5Xcp8lWob8stpmoyBlj2FFE2qNhUK
+	 xP6oCgGMr2FBPU9lLfxakXC+kiMCJDS3gfH9R6xBZJAHvwDkovTidcptMBmza2DKEh
+	 Sp5hSQnvHJI0w==
+Date: Thu, 16 Nov 2023 14:03:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-iio@vger.kernel.org,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: isl76682: Document ISL76682
+Message-ID: <20231116-diameter-showbiz-59067f7c6334@squawk>
+References: <20231116131329.6801-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231115211829.32542-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20231115211829.32542-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 16 Nov 2023 15:02:40 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXgk53x6MYHZQVUjZ1oz+a=XsLKu98AmOEqayvi913_YA@mail.gmail.com>
-Message-ID: <CAMuHMdXgk53x6MYHZQVUjZ1oz+a=XsLKu98AmOEqayvi913_YA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document
- RZ/Five SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4b1214TFXiQZKbns"
+Content-Disposition: inline
+In-Reply-To: <20231116131329.6801-1-marex@denx.de>
+
+
+--4b1214TFXiQZKbns
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 15, 2023 at 10:18=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The USBPHY Control Device on the RZ/Five SoC is identical to one found on
-> the RZ/G2UL SoC. "renesas,r9a07g043-usbphy-ctrl" compatible string will b=
-e
-> used on the RZ/Five SoC so to make this clear and to keep this file
-> consistent, update the comment to include RZ/Five SoC.
->
-> No driver changes are required as generic compatible string
-> "renesas,rzg2l-usbphy-ctrl" will be used as a fallback on RZ/Five SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Nov 16, 2023 at 02:13:15PM +0100, Marek Vasut wrote:
+> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> other fancy functionality. Document it as trivial device.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Gr{oetje,eeting}s,
+Cheers,
+Conor.
 
-                        Geert
+> ---
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Andre Werner <andre.werner@systec-electronic.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+> Cc: Naresh Solanki <naresh.solanki@9elements.com>
+> Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+> Cc: Vincent Tremblay <vincent@vtremblay.dev>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
+umentation/devicetree/bindings/trivial-devices.yaml
+> index c3190f2a168a2..27164e9219276 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -179,6 +179,8 @@ properties:
+>            - isil,isl29030
+>              # Intersil ISL68137 Digital Output Configurable PWM Controll=
+er
+>            - isil,isl68137
+> +            # Intersil ISL76682 Ambient Light Sensor
+> +          - isil,isl76682
+>              # Linear Technology LTC2488
+>            - lineartechnology,ltc2488
+>              # 5 Bit Programmable, Pulse-Width Modulator
+> --=20
+> 2.42.0
+>=20
+>=20
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+--4b1214TFXiQZKbns
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVYhKQAKCRB4tDGHoIJi
+0pNbAQCpSK5BsngtT7hZXgeFenbylOiiuvXV97ZU0cXhVt8oPQEAgkBRmj4NbUdm
+I4YU+UgU/J22n2dnXuaphI/5mw4ZCAE=
+=2wgf
+-----END PGP SIGNATURE-----
+
+--4b1214TFXiQZKbns--
 
