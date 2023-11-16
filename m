@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-16387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA967EE76E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:23:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 318FE7EE774
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:26:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AD5B1C209FC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:23:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3225B20A3B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED99345972;
-	Thu, 16 Nov 2023 19:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6756831A79;
+	Thu, 16 Nov 2023 19:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6EF1A8;
-	Thu, 16 Nov 2023 11:23:32 -0800 (PST)
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6d645cfd238so665307a34.2;
-        Thu, 16 Nov 2023 11:23:32 -0800 (PST)
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94FD718B;
+	Thu, 16 Nov 2023 11:26:19 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-58a03280aa7so605938eaf.2;
+        Thu, 16 Nov 2023 11:26:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700162611; x=1700767411;
+        d=1e100.net; s=20230601; t=1700162779; x=1700767579;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=11ZdWcm9xn9/03dHAna0VIYX27sSKjstDA9LwDlSCCE=;
-        b=WAdCkhEzQk+We1ZpMM7aFrlB9lO2C5OlJ3wU21Ptnnw2BL8t4nRfmnVPWViNyxbDDx
-         v7KA/wo+ZUE9PlWLX5IldpsJF0nAkTSON9knm0l6fp35JoGHUJW8RIjxPesq6MFkvU7e
-         p1gyE/Zyd2aiKY/V65OYBuni8g1/kTdfCW7k2C3LVq843HM7b4ndzjWW/rLmAT7v3/Tm
-         0q5zp+FDKGMtsuibltN6W7h/pUjp5iV00Q85avv+Uh/o/GSUSV6xFau+kqnLFenvcNBc
-         pbwEoJYCqtTb4zVFHtCGD/iGg21XoNLgHKZI9cQf1yUdA9JUDk8PZnAVa2p89HlK4695
-         XTng==
-X-Gm-Message-State: AOJu0Yx4VxPm7wz16hlxMbtWui5wIW5MGkDUZ72oIFf1dYR6DJb+wKVQ
-	fPiMGKG8d5Z2+1lsdYVeOg==
-X-Google-Smtp-Source: AGHT+IFFflHQDgRWcv8Aa0Xfi5zkFhUmKL2WYSX7jkOBDfAipGIi5WM/EhkIhHPanJyZbmYMTEsu6g==
-X-Received: by 2002:a9d:6f8c:0:b0:6d6:45b1:faff with SMTP id h12-20020a9d6f8c000000b006d645b1faffmr9490888otq.30.1700162611533;
-        Thu, 16 Nov 2023 11:23:31 -0800 (PST)
+        bh=NcZwCjQ4JrwVYAwfxeJR9lgNCrE0p4rX4/iJLdX3krg=;
+        b=cBbHgrjsn2cgwriS1aEZmiLxvQtQ8xe80S4I9Lxt5BX4I+oDMudrXpb4dKd2cSmXIb
+         Z1wF20eQE4zYW9tXVR2py9r737ciyWqfOW5DRBKQZTMIrtRcYh5ED5gaq1BFIjP6QpYu
+         Z2pM/js86S6vUWalkwdFol9YQbRZKke4Tr88D1zqyPTXFwv9RKTDTOJ7AAsXLFVoXmft
+         vBuHQVer0PevGvPwJM2c+SRcilTE63wWz12XwDOFjwKcF/bm27UMW6rDu8ijC2cH7b82
+         CBJV5GLlQIWdaBqYQiSh85vIE5Jy0I3nxabeePItJgg5TmNq8hPmJZZ1IrL35Ejpwot8
+         cTkQ==
+X-Gm-Message-State: AOJu0YzRHzm3BmKWlNnCOdDRfbvoTRB99BPMoUudQ3cYa7iAfNnGgehK
+	P7MLc20NnYWu4YDxNFZ14Q==
+X-Google-Smtp-Source: AGHT+IGSTth+hP2mmYGFO8yjKtjUWI7ZiE2Wb5+MqaNsG99C+yIPf6hkTRBp8Wbxr+QbyVOYwjXPNQ==
+X-Received: by 2002:a4a:9181:0:b0:589:d6c7:8573 with SMTP id d1-20020a4a9181000000b00589d6c78573mr16344725ooh.3.1700162778694;
+        Thu, 16 Nov 2023 11:26:18 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bg22-20020a056830361600b006d309c126fbsm1006744otb.57.2023.11.16.11.23.29
+        by smtp.gmail.com with ESMTPSA id a2-20020a4a9882000000b0057b74352e3asm12380ooj.25.2023.11.16.11.26.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 11:23:30 -0800 (PST)
-Received: (nullmailer pid 3022585 invoked by uid 1000);
-	Thu, 16 Nov 2023 19:23:24 -0000
-Date: Thu, 16 Nov 2023 13:23:24 -0600
+        Thu, 16 Nov 2023 11:26:18 -0800 (PST)
+Received: (nullmailer pid 3049422 invoked by uid 1000);
+	Thu, 16 Nov 2023 19:26:16 -0000
+Date: Thu, 16 Nov 2023 13:26:16 -0600
 From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Frank Rowand <frowand.list@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
-Subject: Re: [PATCH 4/4] drivers: clk: renesas: enable all clocks which is
- assinged to non Linux system
-Message-ID: <20231116192324.GB2821275-robh@kernel.org>
-References: <8734x9tda9.wl-kuninori.morimoto.gx@renesas.com>
- <87wmulrynq.wl-kuninori.morimoto.gx@renesas.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: robh+dt@kernel.org, sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>, hjc@rock-chips.com, krzysztof.kozlowski+dt@linaro.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, heiko@sntech.de, chris.obbard@collabora.com, s.hauer@pengutronix.de, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, kever.yang@rock-chips.com
+Subject: Re: [PATCH 07/11] dt-bindings: soc: rockchip: add rk3588 vop/vo
+ syscon
+Message-ID: <170016277633.3049138.9769922490771899888.robh@kernel.org>
+References: <20231114112534.1770731-1-andyshrk@163.com>
+ <20231114112820.1771240-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,42 +59,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87wmulrynq.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20231114112820.1771240-1-andyshrk@163.com>
 
-On Tue, Nov 14, 2023 at 12:01:14AM +0000, Kuninori Morimoto wrote:
-> Some board might use Linux and another OS in the same time. In such
-> case, current Linux will stop necessary module clock when booting
-> which is not used on Linux side, but is used on another OS side.
+
+On Tue, 14 Nov 2023 19:28:20 +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> To avoid such situation, renesas-cpg-mssr try to find
-> status = "reserved" devices (A), and add CLK_IGNORE_UNUSED flag to its
-> <&cgp CPG_MOD xxx> clock (B).
-
-See Stephen's presentation from Plumbers this week. The default behavior 
-for unused clocks may be changing soon.
-
+> Add VOP and VO GRF syscon compatibles for RK3588
 > 
-> Table 2.4: Values for status property
-> https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> ---
 > 
-> "reserved"
-> 	Indicates that the device is operational, but should not be
-> 	used. Typically this is used for devices that are controlled
-> 	by another software component, such as platform firmware.
+>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> ex)
-> 	scif5: serial@e6f30000 {
-> 		...
-> (B)		clocks = <&cpg CPG_MOD 202>,
-> 			 <&cpg CPG_CORE R8A7795_CLK_S3D1>,
-> 			 <&scif_clk>;
-> 		...
-> (A)		status = "reserved";
-> 	};
 
-I have some reservations about whether a reserved node should be touched 
-at all by Linux. I suppose since it is platform specific, it's okay. I 
-don't think we could apply such behavior globally.
+Acked-by: Rob Herring <robh@kernel.org>
 
-Rob
 
