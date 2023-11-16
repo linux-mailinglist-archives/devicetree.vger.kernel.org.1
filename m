@@ -1,184 +1,193 @@
-Return-Path: <devicetree+bounces-16135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2A117EDB0D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:11:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C057EDB26
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F9261C20906
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 05:11:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06DF31C2091E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 05:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E6008F74;
-	Thu, 16 Nov 2023 05:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73187C8E4;
+	Thu, 16 Nov 2023 05:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BOeguaTU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JhIwLMaw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0AEA130
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:11:39 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-507a5f2193bso430745e87.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:11:39 -0800 (PST)
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4936C1B8
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:22:50 -0800 (PST)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5a86b6391e9so4635557b3.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:22:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1700111498; x=1700716298; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z8JhiyfChFnHfK8gH5OrmY086razpxrVoC9oM/007B8=;
-        b=BOeguaTUifrBltCoy6ZYlE52qVyuyWTOCkZCXO79GdcQNFjz6PPTiWQ9pGyQLIGoYD
-         ZTYo2vxQ2TYu3YhDCpW+IbvFSPWjEH+zyPpPKnUWwrIkLb1qRryjr/evlKUxr47Pq4mh
-         d5eBqDjHXjoRcqIcYUIKtQXsbRU5zFzpH8nTQ=
+        d=linaro.org; s=google; t=1700112169; x=1700716969; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LGsBAN5f4HBD1+0b849nw4eGgZQCAWEgA8RzzOxSqRw=;
+        b=JhIwLMaw0M1imVxrf1UhxrMGCD5PbCZi6hZ6sP88QYhpJCSAXkJhn1ekLlj/AWm91L
+         5j78EPXcc3dmOu5DZFEqocpLkMITSwC0yPF20AgfWStkPAZcmpgNSZuveWYewufHm2jv
+         YFOTbbbzvgC9GXhsUocrlX3zuFRZGrLVOS6FFKa+B/ni0HqR4koRgF9x98KECcuwBxHr
+         G54yJ30FSdlTzhrusFB7OhvDvwT82mHYIEvmg83iAMS97tbQyibOlF27PG2eFoH9WN9N
+         dZ4Wx3N2HkdEL+i9sqDhcK6ZrXURoOTONpITr5hM7RTptCghCAQGUf/ceTpCRiEEbnU8
+         ry0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700111498; x=1700716298;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z8JhiyfChFnHfK8gH5OrmY086razpxrVoC9oM/007B8=;
-        b=i8takZKI0hVEMifkmWxynEOXe58miEYWD8Jr09BOXUkBRhRqZFU4DHGMtQXkZi9PDo
-         A0YGEU2c5m3JSzZSKqJKrCol7OpVMmYH0L1mDeAyPibBvfzPlwBe1fSTV/bGa+qE1xK0
-         VFCac0GCraJQSZMpXAlz+gVqI9e6mw1shbPBqJfvUCwI/4hAYNH6hCcJILt6jYuykAFB
-         4S+p5i5x6ldZkW0yUWqbgs1XoCUCaVkvIb/CZFwldx6dl+VkFoB2eAQ2TxCeUmQkFOXt
-         QD096q7vxsAOCK3H1f33vRf5iqFrZU2KXJ2csPnDr5xUSNEb6zLX1l0l8q2zbOXolhsY
-         qg3w==
-X-Gm-Message-State: AOJu0YzSm+zYpciTT6PA6X9BB6jhSPTZDNJ7eADgREHXSV+iHIiOLYgr
-	k0yN/ZvbqgNTmNEaSrLnHoDrPVZmJ7q4fB/mxf5gsA==
-X-Google-Smtp-Source: AGHT+IE919p5h6uSBLZUgL0Rce3waJORc1i8w1Vez3b7vQCDhk2f/YDhmtC3VtlqFgH6f/xyZikinMN2oFEIA+DaGMQ=
-X-Received: by 2002:a19:ac03:0:b0:509:8da5:5d46 with SMTP id
- g3-20020a19ac03000000b005098da55d46mr174429lfc.17.1700111497544; Wed, 15 Nov
- 2023 21:11:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700112169; x=1700716969;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LGsBAN5f4HBD1+0b849nw4eGgZQCAWEgA8RzzOxSqRw=;
+        b=Mi8VjlVj9nx9enkQicrZCpE0CY81H7EenFFarKGIhlDNcTxhGoFgsdsK6OYv6TOEwa
+         V0MrShUfuozy+/Z/pVuuNSqxj0prhaOdlXQfy6Kil5OQqrd4gjP2st+PdSCXL10SZ2x6
+         b8aEfc4J/x9szhhtsaBH+dqvoc3NplbVLftdqgejZhFEMV/kKo1ZPES3PHgrnVj9wCFq
+         xV93KsYNXpAIhvHstCy+6x0bid4GfLiVhfEtZBkFOYWTUDRjqp5XCsBm4aErQ2JgCukw
+         wHwbdml9fQO3bV64MrU35oGTWaYuxWdBtaRAfcMm9IJiA8t/cr6JcabD3aoWtsafDN4A
+         ETIg==
+X-Gm-Message-State: AOJu0Yw22/pfi/rNGGh9FaFg+dEVnpg9JTNN8z7O+aqiNtvVJemj6Kq2
+	04w5C/ZsOSdQErLqIfyUI0sbowBALQOcHn6YSz/LyQ==
+X-Google-Smtp-Source: AGHT+IHOEGWz3HtHd55pmB8Pv/nh+WGNRTsulQJPMzCPy94SaZI4yFMTydBgtiZ2E7PmosNQDdKzcq7XzPXgnedovC0=
+X-Received: by 2002:a0d:d502:0:b0:5b3:f5f8:c5c7 with SMTP id
+ x2-20020a0dd502000000b005b3f5f8c5c7mr16117676ywd.18.1700112169345; Wed, 15
+ Nov 2023 21:22:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
- <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
- <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com>
- <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
- <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com>
- <CAL_JsqKR_YD6hm4Lv+OuCKms8Ha61BZRKUuiLYPgSkz3_3NCFA@mail.gmail.com> <CAD=FV=XO5VNuaVKwBHLQC1ukdpHQO0-XTaKnRM=rigbcdOytgQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=XO5VNuaVKwBHLQC1ukdpHQO0-XTaKnRM=rigbcdOytgQ@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Thu, 16 Nov 2023 13:11:26 +0800
-Message-ID: <CAGXv+5E6zYBoiVr4oNQ9LHEgMWBjz4kBNv+sWmRa5_0jEkdUDg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
-To: Doug Anderson <dianders@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
-	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
-	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
-	james@equiv.tech, keescook@chromium.org, rafael@kernel.org, 
-	tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Johan Hovold <johan@kernel.org>
+References: <20231116032530.753192-1-quic_jprakash@quicinc.com>
+In-Reply-To: <20231116032530.753192-1-quic_jprakash@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 16 Nov 2023 07:22:38 +0200
+Message-ID: <CAA8EJprJuiFq5UXc9weNr1hy2vW_10TaQweN_ZW5XW=3LKrgtA@mail.gmail.com>
+Subject: Re: [PATCH V2 0/3] iio: adc: Add support for QCOM SPMI PMIC5 Gen3 ADC
+To: Jishnu Prakash <quic_jprakash@quicinc.com>
+Cc: jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org, 
+	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org, linus.walleij@linaro.org, 
+	linux-arm-msm@vger.kernel.org, andriy.shevchenko@linux.intel.com, 
+	quic_subbaram@quicinc.com, quic_collinsd@quicinc.com, 
+	quic_amelende@quicinc.com, quic_kamalw@quicinc.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	marijn.suijten@somainline.org, lars@metafoo.de, luca@z3ntu.xyz, 
+	linux-iio@vger.kernel.org, lee@kernel.org, rafael@kernel.org, 
+	rui.zhang@intel.com, lukasz.luba@arm.com, cros-qcom-dts-watchers@chromium.org, 
+	sboyd@kernel.org, linux-pm@vger.kernel.org, 
+	linux-arm-msm-owner@vger.kernel.org, kernel@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 16, 2023 at 6:14=E2=80=AFAM Doug Anderson <dianders@chromium.or=
-g> wrote:
+On Thu, 16 Nov 2023 at 05:26, Jishnu Prakash <quic_jprakash@quicinc.com> wrote:
 >
-> Hi,
+> PMIC5 Gen3 has a similar ADC architecture to that on PMIC5 Gen2,
+> with all SW communication to ADC going through PMK8550 which
+> communicates with other PMICs through PBS. The major difference is
+> that the register interface used here is that of an SDAM present on
+> PMK8550, rather than a dedicated ADC peripheral. There may be more than one
+> SDAM used for ADC5 Gen3. Each ADC SDAM has eight channels, each of which may
+> be used for either immediate reads (same functionality as previous PMIC5 and
+> PMIC5 Gen2 ADC peripherals) or recurring measurements (same as PMIC5 and PMIC5
+> Gen2 ADC_TM functionality). In this case, we have VADC and ADC_TM functionality
+> combined into the same driver.
 >
-> On Wed, Nov 15, 2023 at 4:35=E2=80=AFPM Rob Herring <robh+dt@kernel.org> =
-wrote:
-> >
-> > On Wed, Nov 15, 2023 at 2:45=E2=80=AFPM Doug Anderson <dianders@chromiu=
-m.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Wed, Nov 15, 2023 at 2:28=E2=80=AFPM Rob Herring <robh+dt@kernel.o=
-rg> wrote:
-> > > >
-> > > > > So if we're searching the whole device tree for "failed-needs-pro=
-be"
-> > > > > then we need to figure out which devices are related to each othe=
-r. If
-> > > > > a given board has second sources for MIPI panels, touchscreens, a=
-nd
-> > > > > trackpads then we need to know which of the "failed-needs-probe"
-> > > > > devices are trackpads, which are touchscreens, and which are MIPI
-> > > > > panels. Do you have any suggestions for how we should do that? Ma=
-ybe
-> > > > > it was in some other thread that I missed? I guess we could have =
-a
-> > > > > board-specific table mapping (compatible + node name + reg) to a
-> > > > > class, but that feels awkward.
-> > > >
-> > > > Node name is supposed to correspond to device class, so why not use
-> > > > that (no path or unit-address.) and nothing else (well, besides
-> > > > "status")?
-> > >
-> > > One problem is that I could imagine having two second source trackpad=
-s
-> > > that both have the same i2c address. That would give them the same
-> > > name, right? I guess you could maybe come up with some sort of suffix
-> > > rule? Like
-> > >
-> > > trackpad-1@10 {
-> > >   compatible =3D "elan,blah";
-> > >   ret =3D <0x10>;
-> > >   status =3D "failed-needs-probe";
-> > >   ...
-> > > }
-> > > trackpad-2@10 {
-> > >   compatible =3D "goodix,gt7375p";
-> > >   ret =3D <0x10>;
-> > >   status =3D "failed-needs-probe";
-> > >   ...
-> > > }
-> > >
-> > > Then I guess the class would be "trackpad"?
-> >
-> > That issue is somewhat orthogonal because it is not following the spec.
+> Patches 1 adds bindings for ADC5 Gen3 peripheral.
 >
-> I'm not sure why you say it's orthogonal. The whole reason why we get
-> into the situation above is that we could have two devices, only one
-> of which is present (hence the status of "failed-needs-probe"), that
-> are the same type and have the same "reg" address.
->
-> Essentially the whole "failed-needs-probe" is extending the spec,
-> right? While extending the spec, we also need to talk about what to do
-> if some of the devices that we need to probe have the same class and
-> the same "reg".
+> Patches 2 adds driver support for ADC5 Gen3.
 
-If it's at the same address, then you would need some device specific
-probing code, like reading a register back and checking if matches
-some known value. This could be done by passing in some kind of table,
-but it is by no means as generic as checking if an address responds.
+For some reason I don't see this patch in my inbox. Maybe it will
+arrive later. Immediate response: please add
+devm_thermal_add_hwmon_sysfs().
 
-This is what we have on MT8186 Tentacruel. We do have the ability to
-differentiate using the SKU ID for the same address case, but I'm happy
-to try other methods if it helps everyone else.
+>
+> Patch 3 is a cleanup, to move the QCOM ADC dt-bindings files from
+> dt-bindings/iio to dt-bindings/iio/adc folder, as they are
+> specifically for ADC devices. It also fixes all compilation errors
+> with this change in driver and devicetree files and similar errors
+> in documentation for dtbinding check.
 
-ChenYu
+NAK. The kernel is expected to build and work after each commit.
+Otherwise git-bisecting the kernel becomes impossible.
+So, please rework your series in a way that there are no compilation
+errors after any of the patches. The easiest way would be to rearrange
+your patches in 3-1-2 order.
 
-> > I'm not sure mixing the 2 styles of node names is a good idea. While
-> > not used too much, matching by node name does ignore the unit-address,
-> > but I'm not sure we could ignore a '-N'.
-> >
-> > I think our options are either add something to the unit-address or
-> > use i2c-mux binding. Adding to the unit-address is not unprecedented.
-> > I did that for some of the register bit level bindings where you have
-> > a node for different bits at the same address. The downside is
-> > unit-address is bus specific, so we'd have to add that for multiple
-> > buses. For the i2c-mux, it's perhaps a bit complex and I'm not sure
-> > what if anything you'd have to do to manage the mux that's not really
-> > there.
+
 >
-> Somehow it feels weird to use an i2c-mux because there's no real mux
-> present, right? ...so this would be a virtual (bogus) device that
-> doesn't really exist in hardware.
+> Changes since v1:
+> - Dropped patches 1-5 for changing 'ADC7' peripheral name to 'ADC5 Gen2'.
+> - Addressed reviewer comments for binding and driver patches for ADC5 Gen3.
+> - Combined patches 8-11 into a single patch as requested by reviewers to make
+>   the change clearer and made all fixes required in same patch.
 >
-> ...though I guess if the "mux" type binding is OK then maybe we just
-> use that as the HW prober, at least for i2c devices...
+> Jishnu Prakash (3):
+>   dt-bindings: iio: adc: Add QCOM PMIC5 Gen3 ADC bindings
+>   iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+>   dt-bindings: iio/adc: Move QCOM ADC bindings to iio/adc folder
 >
-> -Doug
+>  .../bindings/iio/adc/qcom,spmi-vadc.yaml      |  185 ++-
+>  .../bindings/mfd/qcom,spmi-pmic.yaml          |    2 +-
+>  .../bindings/thermal/qcom-spmi-adc-tm-hc.yaml |    2 +-
+>  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |    6 +-
+>  arch/arm64/boot/dts/qcom/pm2250.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm6125.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm6150.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm6150l.dtsi         |    2 +-
+>  arch/arm64/boot/dts/qcom/pm660.dtsi           |    2 +-
+>  arch/arm64/boot/dts/qcom/pm660l.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm7250b.dtsi         |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi         |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8150l.dtsi         |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8916.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8950.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8953.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8994.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pm8998.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pmi632.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/pmi8950.dtsi         |    2 +-
+>  arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     |    2 +-
+>  arch/arm64/boot/dts/qcom/pmp8074.dtsi         |    2 +-
+>  arch/arm64/boot/dts/qcom/pms405.dtsi          |    2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts       |    2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |    2 +-
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |    4 +-
+>  arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi   |    2 +-
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |    6 +-
+>  .../boot/dts/qcom/sm7225-fairphone-fp4.dts    |    2 +-
+>  arch/arm64/boot/dts/qcom/sm8450-hdk.dts       |    8 +-
+>  drivers/iio/adc/Kconfig                       |   25 +
+>  drivers/iio/adc/Makefile                      |    1 +
+>  drivers/iio/adc/qcom-spmi-adc5-gen3.c         | 1189 +++++++++++++++++
+>  drivers/iio/adc/qcom-spmi-adc5.c              |    2 +-
+>  drivers/iio/adc/qcom-spmi-vadc.c              |    2 +-
+>  .../iio/adc/qcom,spmi-adc5-gen3-pm8550.h      |   50 +
+>  .../iio/adc/qcom,spmi-adc5-gen3-pm8550b.h     |   89 ++
+>  .../iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    |   22 +
+>  .../iio/adc/qcom,spmi-adc5-gen3-pmk8550.h     |   56 +
+>  .../iio/{ => adc}/qcom,spmi-adc7-pm8350.h     |    2 +-
+>  .../iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    |    2 +-
+>  .../iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    |    2 +-
+>  .../iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    |    2 +-
+>  .../iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    |    0
+>  .../iio/{ => adc}/qcom,spmi-vadc.h            |   81 ++
+>  46 files changed, 1725 insertions(+), 61 deletions(-)
+>  create mode 100644 drivers/iio/adc/qcom-spmi-adc5-gen3.c
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
+>  create mode 100644 include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
+>  rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (77%)
+>
+> --
+> 2.25.1
+>
+
+
+--
+With best wishes
+Dmitry
 
