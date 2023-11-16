@@ -1,239 +1,123 @@
-Return-Path: <devicetree+bounces-16370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7804E7EE660
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:06:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8537EE66F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:08:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04FCC1F253FD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:06:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16036281159
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B3A46556;
-	Thu, 16 Nov 2023 18:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 940594655D;
+	Thu, 16 Nov 2023 18:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UMvrM70d"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ON6/bdZc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19898D4F;
-	Thu, 16 Nov 2023 10:06:48 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5409bc907edso1635876a12.0;
-        Thu, 16 Nov 2023 10:06:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700158006; x=1700762806; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yGuolYAuOJ9mG/TiRTbTUdmCZ4CIel/D0oAmSK+iTUM=;
-        b=UMvrM70dl+effar28/CKD/DvErEKWQIcsmk1/2bcOwLPID6Z7T+Vk7gnyuugT7uWfB
-         uGIf3D2Pw/MdxPiR4S6qPwWyZE3VM4pRy9LcKeHiypoD9zs0auS62bUQsIddB2j9BYxO
-         SNtc8ho1pFOIVc+AI1cO3YdrwKa8vYw4RsoYbMJeyiF1TmqyhoLLbEoj11eL712feAYR
-         WAtROSmtOmbZA1IkKpB1TSNz3QmY2j2ha7cdjdhyLiJbzRpcGAqcJM+5zirQ73BMaxws
-         Tgsh0VBz/BZCCL3+MK7s67m6OhQzA0rt8wp6MPzPobTK009RbQSyT1JAatopfoz9w7eA
-         R6QA==
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8DF192
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 10:07:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1700158078;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hPxzOncy5HIGVOblAN4i/IW7KR+JFRLvP+iQR6fOxe0=;
+	b=ON6/bdZcypZycSaf8pxacNu+ByzxMDpR18GCrdM39ZPTctD+OE5x1E1dVkyQzpaNWuTOZc
+	GQ2CqFb3WfGe+9TKY99mE5EchMoEX33bfFiamQDUJA1BWNrHbH+ucaF80uVxbmVZtjbgVN
+	Mnt3PjQdwU3cKQC2vh9MyY1GyMJ0fhY=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-626-pPMVf4ONMUeZHquexngoew-1; Thu, 16 Nov 2023 13:07:54 -0500
+X-MC-Unique: pPMVf4ONMUeZHquexngoew-1
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-408695c377dso6919975e9.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 10:07:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700158006; x=1700762806;
+        d=1e100.net; s=20230601; t=1700158073; x=1700762873;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yGuolYAuOJ9mG/TiRTbTUdmCZ4CIel/D0oAmSK+iTUM=;
-        b=lwftINa5OnPyf7AYhsTCxPv1/fpG3lmdIQxWhwfhoBCxsJGQ7+WZ4dNnTdGmOrN90z
-         XSVCnrL1KKiPJN6pLVTEdmJt1S2HVtx0kUAtAhXxyravwqTB4MlRdiqEBnaevMurYdKB
-         xvO1kpb+b6YMvCYAWpR1ilhSSY/M48O8lOCBgApWcNpMW/TuAzUBGqn01t5JxLyzmmyd
-         uQY53Pm5VyoiHiPuhSHg/P8zqO1++cc2Oe2+JNg1krXLNn62scLK7aReyjEtjrMJl7Gb
-         W23Kt7CPdzDIJLC2pcqyH2xfa07JCjENLJ7lbx2T1tdegZH8r4xz2JdAUGR2IPxyGBga
-         gYTg==
-X-Gm-Message-State: AOJu0YywoW4PKiahVOz0DxoRX9sSWjTA0vl28a0//kQP7iOTnDT/HfUD
-	x2YfwEeq0p0l1j3w2adCduA=
-X-Google-Smtp-Source: AGHT+IHqvVl4Ix2JgJUurJj5Fy4AY21stEqD3txM0qiceNd2moWcQx3nAzmPGORKD4YDsRR/Ua7ZqQ==
-X-Received: by 2002:a17:906:cedd:b0:9e2:c6a7:447a with SMTP id si29-20020a170906cedd00b009e2c6a7447amr12449909ejb.45.1700158006219;
-        Thu, 16 Nov 2023 10:06:46 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id t25-20020a1709066bd900b0099c53c4407dsm8621877ejs.78.2023.11.16.10.06.45
+        bh=hPxzOncy5HIGVOblAN4i/IW7KR+JFRLvP+iQR6fOxe0=;
+        b=Ftp7GRkjH3ptaScbvT9tFTYe37sZpcU5WijYMji1aRoO1655ZKIWZXLwOdpGk6AHU9
+         sD0vcXU4uS1MKSBzhgpVbJiS/m7A2En8wzFttpt1RTtSoGvfYB8IKmFUEuykhaE5RU5O
+         hwOnT+Ff6OKWrCk6vWYH3+JU3W22K8PwF7nmeVagQ6XGnxyeD/z26sy2oFcY0oxPSdSp
+         BBGDoh+UxOMpcNTUG4ZrT8LN0YmDEA2kgKFE0WQ/lAYZ0U4N3SL67Z2WlGNudZGvG+6d
+         t7glMvv0sQKgZw9yTUn2qgYhmXp0AJBNOB85F0OW2OYcXoFj/do6NSKyN30SMhmDWZsW
+         Kl/A==
+X-Gm-Message-State: AOJu0Yyzecc1/WzmTUd5av6CUUFXcB3gU+ksWjnOV6Z+XxXJ1N3UlKGc
+	khJUmcHQA0wF66LIbWC9ES4KGZvsWuPmKc/UuJJxi+ivI5BOT27K0EAtcqWzEU7ErA1Rr+84fYQ
+	IPY97xZXdxyzvyVdaeBcFpA==
+X-Received: by 2002:a05:600c:c0f:b0:402:e68f:8896 with SMTP id fm15-20020a05600c0c0f00b00402e68f8896mr14609075wmb.0.1700158073621;
+        Thu, 16 Nov 2023 10:07:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHmdfeAnuQFuohht1CLAm2Stx5W5EGXlcnDY8tsQEAn2nKKlrvW/+NDUyqH/j1nM9uFFuRyLA==
+X-Received: by 2002:a05:600c:c0f:b0:402:e68f:8896 with SMTP id fm15-20020a05600c0c0f00b00402e68f8896mr14609042wmb.0.1700158073266;
+        Thu, 16 Nov 2023 10:07:53 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id w8-20020a05600c474800b0040836519dd9sm61664wmo.25.2023.11.16.10.07.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 10:06:45 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S . Miller" <davem@davemloft.net>,
-	Rob Herring <robh+dt@kernel.org>,
+        Thu, 16 Nov 2023 10:07:52 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Sahaj Sarup <sahaj.sarup@linaro.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Antoine Tenart <atenart@kernel.org>,
-	linux-crypto@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: crypto: convert Inside Secure SafeXcel to the json-schema
-Date: Thu, 16 Nov 2023 19:06:41 +0100
-Message-Id: <20231116180641.29420-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/3] dt-bindings: display: ssd1307fb: Change "solomon,page-offset" default value
+Date: Thu, 16 Nov 2023 19:07:37 +0100
+Message-ID: <20231116180743.2763021-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+This is used to specify the page start address offset of the display RAM.
 
-This helps validating DTS files.
+The value is used as offset when setting the page start address with the
+SSD130X_SET_PAGE_RANGE command, and the driver currently sets its value to
+1 if the property is not present in the Device Tree.
 
-Cc: Antoine Tenart <atenart@kernel.org>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+But the datasheet mentions that the value on reset for the page start is a
+0, so it makes more sense to also have 0 as the default value for the page
+offset if the property is not present.
+
+In fact, using a default value of 1 leads to the display not working when
+the fbdev is attached to the framebuffer console.
+
+Reported-by: Sahaj Sarup <sahaj.sarup@linaro.org>
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
-V2: Rename file to inside-secure,safexcel.yaml
-    Drop minItems from interrupts
-    Move additionalProperties down
-    Improve condition in allOf
 
-Sorry for those issues in V1. I hope I didn't miss anything this time.
+ .../devicetree/bindings/display/solomon,ssd1307fb.yaml          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../crypto/inside-secure,safexcel.yaml        | 86 +++++++++++++++++++
- .../crypto/inside-secure-safexcel.txt         | 40 ---------
- 2 files changed, 86 insertions(+), 40 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
- delete mode 100644 Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt
-
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
-new file mode 100644
-index 000000000000..ef07258d16c1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Inside Secure SafeXcel cryptographic engine
-+
-+maintainers:
-+  - Antoine Tenart <atenart@kernel.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: inside-secure,safexcel-eip197b
-+      - const: inside-secure,safexcel-eip197d
-+      - const: inside-secure,safexcel-eip97ies
-+      - const: inside-secure,safexcel-eip197
-+        description: Equivalent of inside-secure,safexcel-eip197b
-+        deprecated: true
-+      - const: inside-secure,safexcel-eip97
-+        description: Equivalent of inside-secure,safexcel-eip97ies
-+        deprecated: true
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 6
-+
-+  interrupt-names:
-+    items:
-+      - const: ring0
-+      - const: ring1
-+      - const: ring2
-+      - const: ring3
-+      - const: eip
-+      - const: mem
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: core
-+      - const: reg
-+
-+required:
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        clocks:
-+          minItems: 2
-+    then:
-+      properties:
-+        clock-names:
-+          minItems: 2
-+      required:
-+        - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    crypto@800000 {
-+        compatible = "inside-secure,safexcel-eip197b";
-+        reg = <0x800000 0x200000>;
-+        interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ring0", "ring1", "ring2", "ring3", "eip", "mem";
-+        clocks = <&cpm_syscon0 1 26>;
-+        clock-names = "core";
-+    };
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt b/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt
-deleted file mode 100644
-index 3bbf144c9988..000000000000
---- a/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt
-+++ /dev/null
-@@ -1,40 +0,0 @@
--Inside Secure SafeXcel cryptographic engine
--
--Required properties:
--- compatible: Should be "inside-secure,safexcel-eip197b",
--	      "inside-secure,safexcel-eip197d" or
--              "inside-secure,safexcel-eip97ies".
--- reg: Base physical address of the engine and length of memory mapped region.
--- interrupts: Interrupt numbers for the rings and engine.
--- interrupt-names: Should be "ring0", "ring1", "ring2", "ring3", "eip", "mem".
--
--Optional properties:
--- clocks: Reference to the crypto engine clocks, the second clock is
--          needed for the Armada 7K/8K SoCs.
--- clock-names: mandatory if there is a second clock, in this case the
--               name must be "core" for the first clock and "reg" for
--               the second one.
--
--Backward compatibility:
--Two compatibles are kept for backward compatibility, but shouldn't be used for
--new submissions:
--- "inside-secure,safexcel-eip197" is equivalent to
--  "inside-secure,safexcel-eip197b".
--- "inside-secure,safexcel-eip97" is equivalent to
--  "inside-secure,safexcel-eip97ies".
--
--Example:
--
--	crypto: crypto@800000 {
--		compatible = "inside-secure,safexcel-eip197b";
--		reg = <0x800000 0x200000>;
--		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "mem", "ring0", "ring1", "ring2", "ring3",
--				  "eip";
--		clocks = <&cpm_syscon0 1 26>;
--	};
+diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+index 3afbb52d1b7f..badd81459aaa 100644
+--- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
++++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
+@@ -35,7 +35,7 @@ properties:
+ 
+   solomon,page-offset:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    default: 1
++    default: 0
+     description:
+       Offset of pages (band of 8 pixels) that the screen is mapped to
+ 
 -- 
-2.35.3
+2.41.0
 
 
