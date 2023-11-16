@@ -1,360 +1,149 @@
-Return-Path: <devicetree+bounces-16133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784A67EDAFF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:00:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A007EDB07
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 06:07:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BCB2280C38
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 05:00:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8536B20A45
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 05:07:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD621870;
-	Thu, 16 Nov 2023 05:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7551856;
+	Thu, 16 Nov 2023 05:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="AIQTZWu1"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kMy9X+Zv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8C319D
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:00:11 -0800 (PST)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20231116050009epoutp038bcb5ce262d1a3ea735b97b9db2594e8~YAcX13w692861628616epoutp03K
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:00:09 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20231116050009epoutp038bcb5ce262d1a3ea735b97b9db2594e8~YAcX13w692861628616epoutp03K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1700110809;
-	bh=NAkytrCe5aM1b6jLPcoQx9e9hWt3OPZ5KoHNxK743cU=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=AIQTZWu14HZFwO07+tQcycuk/NmrqQV1L8mwSjv0FO8ctQvkqxfAdGJuNuhWuWAOE
-	 HgfRBUmF8OZVY2vUFcEMXwZQTLjyyFWPCV2HCBoOVnmBUDs3zphu5EpY6sYH2/e//Y
-	 bID8Y8dYaRSKEdiejFxbciN0fLmBoqpSwpzr+ZDM=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20231116050008epcas5p4f1adfabd64607c9a5721eea5b981cbd7~YAcXUjcu_2922529225epcas5p4q;
-	Thu, 16 Nov 2023 05:00:08 +0000 (GMT)
-Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.178]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4SW7BZ08b3z4x9QF; Thu, 16 Nov
-	2023 05:00:06 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	A9.9E.19369.5D1A5556; Thu, 16 Nov 2023 14:00:05 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20231116050005epcas5p4f71e3d7d21802c738d331e69310656fd~YAcUbkGzV0330003300epcas5p4h;
-	Thu, 16 Nov 2023 05:00:05 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231116050005epsmtrp2939be81164f51581702e0368b5b0da98~YAcUYYgXM2381423814epsmtrp2f;
-	Thu, 16 Nov 2023 05:00:05 +0000 (GMT)
-X-AuditID: b6c32a50-9e1ff70000004ba9-f5-6555a1d590a7
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	5A.66.08817.5D1A5556; Thu, 16 Nov 2023 14:00:05 +0900 (KST)
-Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20231116050002epsmtip13b38cf6e78094bb8f50b82e2d921876c~YAcRYNYOQ2191521915epsmtip1W;
-	Thu, 16 Nov 2023 05:00:02 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Aakarsh Jain'" <aakarsh.jain@samsung.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Cc: <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
-	<mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-	<krzysztof.kozlowski+dt@linaro.org>, <dillon.minfei@gmail.com>,
-	<david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
-	<robh+dt@kernel.org>, <conor+dt@kernel.org>,
-	<linux-samsung-soc@vger.kernel.org>, <andi@etezian.org>,
-	<gost.dev@samsung.com>, <aswani.reddy@samsung.com>,
-	<pankaj.dubey@samsung.com>, <ajaykumar.rs@samsung.com>,
-	<linux-fsd@tesla.com>, "'Smitha T Murthy'" <smithatmurthy@gmail.com>
-In-Reply-To: <20231025102216.50480-3-aakarsh.jain@samsung.com>
-Subject: RE: [Patch v4 02/11] media: s5p-mfc: Rename IS_MFCV10 macro
-Date: Thu, 16 Nov 2023 10:30:00 +0530
-Message-ID: <0d2801da1849$c34ddc70$49e99550$@samsung.com>
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB2FA19F
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:07:43 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-507975d34e8so546129e87.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 21:07:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1700111262; x=1700716062; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n47o3OCFeDC4YRz6dczMMUhasbGb5AVuJwwpKHI7eFo=;
+        b=kMy9X+ZvZZcOmSWLeFHvAHNtNge8oJD4OdCGchhk/D79Ye4EhoblebUNO5c+S3dXIQ
+         di50xAIrda8ld6gu7NWvTpo1V4/u261eu9DsWH7w7TBDe0RD+7Ip3ezP31g0kDfJZ5uy
+         rgUc95XjztBClPsRiO0/U+e0Ep7N+ozu5DH5E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700111262; x=1700716062;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n47o3OCFeDC4YRz6dczMMUhasbGb5AVuJwwpKHI7eFo=;
+        b=inxlRptWhTiIlbTeD7oEaOyu1werYnqDeLnD3QCD8jA0FoUgGRI5yIxVtOPEWJmk+K
+         tpuR06zhgQMqsD3n++3+nWvg4A8U3+AEsYRAoYjUZmLIW+RPOKBPlUtN1s+I7Vn7GiYW
+         4sKh3ox+btnNTgnly5TbX47YIL3J/GVrz27x6f95zsMC5AZVWg2z+/g/SI7FHBIcqjzO
+         8itynAC/IIgczWHNrPhdKjg7Ou0mrArkjD5OgC1OfLAasXVZd7iT8HESc9+vdnIa8KER
+         jG119QwNiRFMNtXNF+uPjUTc3C/laf8mGnWywgMF0TbWJc97n0CQREHpik/sSPRSo6m8
+         KM+A==
+X-Gm-Message-State: AOJu0Yybh5IgK0SJf1liVAKaFWAh7161GfWip4r6cX8CE5F5M7VAaiXU
+	PRWQIp5zhxV05/WoGVswHHeJ36UsVdxhF98uGz1Ipw==
+X-Google-Smtp-Source: AGHT+IHE03gJszw8lf/xHkWqpl61E8rAlryiMxaNRq78cfueM1p5kFwPjBIZVK5w9yvg2jCkjEB/Vh2Q6LEYk1Pq+cI=
+X-Received: by 2002:a19:7616:0:b0:509:4980:7bf0 with SMTP id
+ c22-20020a197616000000b0050949807bf0mr9759057lff.38.1700111261841; Wed, 15
+ Nov 2023 21:07:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLm4twfZx4yvmLB3iF6RxvUJv+HzQGjI0AwA0f6tMSuO3P5oA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xbVRzHvb23ve1i9cpQTmoya2XJYCm0G4/TBRgKG3duGpK5uCzG2rV3
-	LYM+7GOO6RxuA3EwIkGIIOhoERi0A8sqZcJgpQPZDAuTMSsvQaC8io6yhzqnfYDuv8/vnO83
-	v9/3d3KYaEgRzmFmqPSUViXJ4jHWYd92R0Twb1XvowSl1yGctpfTYddvVzBoeuCmwXGTF4OO
-	FhsOzR39NFjX20WHXzn76bD1yiQGXV1tNDhQPorBotkJFFp/HaLDifk34Y+XKhmwsNlGh5/f
-	uEyDFucoDr++PUCDtdaHNGi0reAwt8OJw9Mf1dCTw0jzl2aEvF2zjJJtFaM4aWqfo5HWhk8Y
-	5MhQO4NsqTlB5l79EyOLLjYg5KOTVTjptW4gr9314ulPHshMUFASGaXlUiqpWpahkifydu8V
-	p4hj4wRCvlAE43lclURJJfJS96Tzd2Zk+XLzuEckWQbfUbpEp+NFJyVo1QY9xVWodfpEHqWR
-	ZWliNFE6iVJnUMmjVJR+m1Ag2BLrE76TqZi2NzI0VTuODnrasBykR3QGYTEBEQM8BQ7aGWQd
-	M4RoR0C5+QIjWCwj4Of6j1eLewiYXiigr1lyh39AgxcdCMixDKz6ZxGQb1nA/CoGwQd2U17A
-	HkrYETBoNmH+AiUKMeCtvxlQsYgk4C5pwv28nkgFj2YsqJ8xYiM4NfdLgNmECCzOzK3yM6Cv
-	fCrgRYkXQKunEg3OxAV/TNcG5gslXgH/1NvQoCYMzF114v7GgGhlgQs/1a0aUsFifx8e5PVg
-	vvfiKnOAd6nDNzbTxyQwPuQEjxXAU9eEBHk76BqsxPwSlIgATZeig62eAmf/mqIFnWyQnxcS
-	VPuSLN3Cgvw8KC5Y2yIJJhpn6Z8iL1Y8FqzisWAVjwWo+L/ZOQRrQDiURqeUU9JYjZCvot77
-	78mlaqUVCXyMyHQ70tj8d5QDoTERBwKYKC+UHb/hDSqELZNkH6O0arHWkEXpHEisb93FKOdZ
-	qdr3s1R6sTBGJIiJi4uLEW2NE/LC2Au5VbIQQi7RU5kUpaG0az4ak8XJoYW9djrctXKZKP3M
-	W8a1zty9PpAmnX29R79JnvLBHQ8QKHfqXGVDuzM7w+bTdi2P5S3zcz6UNSXuT9pecvz+ee+B
-	TnG4jNXYf+ObSHYx1mdKG+sbcSMu12b9qalrHumegfBCTf6OLXkm8b6Tguye0vbpcmWa8fvv
-	jqwc9ha8/ETKzWP7Z8ZPxCbjrvB33fFim93i9owkGO8dnP396bcmlzYbDi/umiK7zxqUe0ty
-	y2zGBxuHew8djKxlVSldNZNvD2fDl46LE+ViwKBXF2Ykd246h7mVsi+qD+U7S486I8Jbxuge
-	x7ZxkdrWYO6Ovq/QoefJV+8kW57bmuyVvY81G3mYTiERRqJaneRfAm9c+6EEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0xSYRiA951z4CBJndDyMxs5MmcWWq7LZ2utddnOWrnmurjWMsozMwUJ
-	tOwqmbZ1sbVZFkwtQbFMZiIUKpSSll3NLInSygqJzMzoYq2sCbX579me9332/ng5OP8bMYmT
-	Is1g5FJxmpDNJa7cEApET0rXMrMGCscip1nFQo0DTQTSDrkw9FLrIZCt1kSiKusDDFXcamSh
-	c80PWOhq02sCORrrMNSu6ibQiXc9ODK86WShnvfrUUd9ERsdv2xiobNt1zCkb+4mUbm9HUM6
-	wy8MaUxfSJRnbSZR7sEy1uIguqqkCtD2ss84XafuJmmtxY3RhsojbLqr08Kma8uy6byWnwR9
-	wlgJ6OGcYpL2GAT0na8ecrX/Bu7CJCYtZScjj160mbvNab7ElhUvz3rcX0cowc3Yo8CPA6k5
-	MO/5Pfwo4HL4VAOAmsMWwidCoL3mJOnjAHhx2EX6hnoBzK/XsUYEmxJBs/Ywe0QEUhYAj51u
-	9wqcKiGg7VmEb6MJQJde5035UYugq6DaywHUMjjcq8dHmKCmwUPuV17mUbHwQ6/7H4+Ht1Vv
-	CV90BnQ6nP94CrzaX4T7zguFP5y+iwKpJfDPBRPumwmC7pZm8iQIUI9KqUel1KNS6lEr5wFR
-	CYIZmUKSLFHMlsVImV1RCrFEkSlNjtqaLjEA72tERpqBpfJTlA1gHGADkIMLA3nzBWsYPi9J
-	vHsPI09PlGemMQobCOEQwiDet778JD6VLM5gUhlGxsj/W4zjN0mJRYgmBjZEfx+0phjVc5Wi
-	mb+ib2+5HN9pLJSskCTekoFruvS7NTpHl1TJ7bME3xi0jRNdN7TGecZgxoQ1/a19esuQVRCf
-	G5AubBmekbgiY8P9mu0ux6PwyW8moJhGwZhBZ5pJk18Qs6nPWL5K41lcEZ8ZlLdpx5RQLOF7
-	Tpy2NP/M4P7kKGtw6/3aeV1PQy50OEOLKtoG2qwuc5gjvKvAnz89u1RTviBsvqN/4bvxKvep
-	AxE5saI5ZRkdvHUbNU3nX8x0VssblKmqnoc1S43P6L0l++yFWfrs8uKSRwUPT0H91Mm/669/
-	fP5hy/SwpNy71UMLUrNwe4p/B8Fa+fPJeyGh2CaeHYnLFeK/9bl4PYkDAAA=
-X-CMS-MailID: 20231116050005epcas5p4f71e3d7d21802c738d331e69310656fd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231025102237epcas5p28a5ad9db8d7dea072a6986d530810dde
-References: <20231025102216.50480-1-aakarsh.jain@samsung.com>
-	<CGME20231025102237epcas5p28a5ad9db8d7dea072a6986d530810dde@epcas5p2.samsung.com>
-	<20231025102216.50480-3-aakarsh.jain@samsung.com>
+References: <20231109100606.1245545-1-wenst@chromium.org> <859ac058-c50a-4eb8-99b6-3011ef4e7529@collabora.com>
+ <CAL_JsqK64w3+r_LJZoh50PzAUcsvH6ahSDCqgSiKrD3LBAXE9g@mail.gmail.com>
+ <CAD=FV=VUZy9DaZgKafSpXXopD5k8ExGSR97BjAqC5tupPoxNfQ@mail.gmail.com>
+ <CAL_Jsq+puq20EWkQg1RTs2zfmh4DGbqz1krp+19c=wPXnLT5dA@mail.gmail.com>
+ <CAD=FV=X-17COQ2-tycV1bSuCrGy7MJ88Un8nA-a-ODexvgi9TQ@mail.gmail.com> <CAL_JsqKR_YD6hm4Lv+OuCKms8Ha61BZRKUuiLYPgSkz3_3NCFA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKR_YD6hm4Lv+OuCKms8Ha61BZRKUuiLYPgSkz3_3NCFA@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 16 Nov 2023 13:07:30 +0800
+Message-ID: <CAGXv+5Gu4fmfriCh5wfeyqGPAX+LyLEDkCCrp4+_3XvS9-mAmw@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/7] of: Introduce hardware prober driver
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Doug Anderson <dianders@chromium.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, andriy.shevchenko@linux.intel.com, 
+	Jiri Kosina <jikos@kernel.org>, linus.walleij@linaro.org, broonie@kernel.org, 
+	gregkh@linuxfoundation.org, hdegoede@redhat.com, james.clark@arm.com, 
+	james@equiv.tech, keescook@chromium.org, petr.tesarik.ext@huawei.com, 
+	rafael@kernel.org, tglx@linutronix.de, Jeff LaBundy <jeff@labundy.com>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Aakarsh
+On Thu, Nov 16, 2023 at 5:35=E2=80=AFAM Rob Herring <robh+dt@kernel.org> wr=
+ote:
+>
+> On Wed, Nov 15, 2023 at 2:45=E2=80=AFPM Doug Anderson <dianders@chromium.=
+org> wrote:
+> >
+> > Hi,
+> >
+> > On Wed, Nov 15, 2023 at 2:28=E2=80=AFPM Rob Herring <robh+dt@kernel.org=
+> wrote:
+> > >
+> > > > So if we're searching the whole device tree for "failed-needs-probe=
+"
+> > > > then we need to figure out which devices are related to each other.=
+ If
+> > > > a given board has second sources for MIPI panels, touchscreens, and
+> > > > trackpads then we need to know which of the "failed-needs-probe"
+> > > > devices are trackpads, which are touchscreens, and which are MIPI
+> > > > panels. Do you have any suggestions for how we should do that? Mayb=
+e
+> > > > it was in some other thread that I missed? I guess we could have a
+> > > > board-specific table mapping (compatible + node name + reg) to a
+> > > > class, but that feels awkward.
+> > >
+> > > Node name is supposed to correspond to device class, so why not use
+> > > that (no path or unit-address.) and nothing else (well, besides
+> > > "status")?
+> >
+> > One problem is that I could imagine having two second source trackpads
+> > that both have the same i2c address. That would give them the same
+> > name, right? I guess you could maybe come up with some sort of suffix
+> > rule? Like
+> >
+> > trackpad-1@10 {
+> >   compatible =3D "elan,blah";
+> >   ret =3D <0x10>;
+> >   status =3D "failed-needs-probe";
+> >   ...
+> > }
+> > trackpad-2@10 {
+> >   compatible =3D "goodix,gt7375p";
+> >   ret =3D <0x10>;
+> >   status =3D "failed-needs-probe";
+> >   ...
+> > }
+> >
+> > Then I guess the class would be "trackpad"?
+>
+> That issue is somewhat orthogonal because it is not following the spec.
+>
+> I'm not sure mixing the 2 styles of node names is a good idea. While
+> not used too much, matching by node name does ignore the unit-address,
+> but I'm not sure we could ignore a '-N'.
 
-> -----Original Message-----
-> From: Aakarsh Jain <aakarsh.jain@samsung.com>
-> Sent: Wednesday, October 25, 2023 3:52 PM
-> To: linux-arm-kernel@lists.infradead.org; linux-media@vger.kernel.org;
-> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org
-> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
-> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
-> krzysztof.kozlowski+dt@linaro.org; dillon.minfei@gmail.com;
-> david.plowman@raspberrypi.com; mark.rutland@arm.com;
-> robh+dt@kernel.org; conor+dt@kernel.org; linux-samsung-
-> soc@vger.kernel.org; andi@etezian.org; gost.dev@samsung.com;
-> alim.akhtar@samsung.com; aswani.reddy@samsung.com;
-> pankaj.dubey@samsung.com; ajaykumar.rs@samsung.com;
-> aakarsh.jain@samsung.com; linux-fsd@tesla.com; Smitha T Murthy
-> <smithatmurthy@gmail.com>
-> Subject: [Patch v4 02/11] media: s5p-mfc: Rename IS_MFCV10 macro
-> 
-> Renames macro IS_MFCV10 to IS_MFCV10_PLUS so that the MFCv10 code
-> can be resued for MFCv12 support. Since some part of MFCv10 specific code
-> holds good for MFCv12 also.
-> 
-> Cc: linux-fsd@tesla.com
-> Signed-off-by: Smitha T Murthy <smithatmurthy@gmail.com>
-> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> ---
+of_node_name_prefix() solves that. I assume that's the intended use case?
 
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-
->  .../platform/samsung/s5p-mfc/s5p_mfc_common.h | 10 +++----
->  .../platform/samsung/s5p-mfc/s5p_mfc_ctrl.c   |  2 +-
->  .../platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c | 28 +++++++++----------
->  3 files changed, 20 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> index 5304f42c8c72..e6ec4a43b290 100644
-> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
-> @@ -771,11 +771,11 @@ void s5p_mfc_cleanup_queue(struct list_head *lh,
-> struct vb2_queue *vq);
->  #define HAS_PORTNUM(dev)	(dev ? (dev->variant ? \
->  				(dev->variant->port_num ? 1 : 0) : 0) : 0)
->  #define IS_TWOPORT(dev)		(dev->variant->port_num == 2 ? 1 : 0)
-> -#define IS_MFCV6_PLUS(dev)	(dev->variant->version >= 0x60 ? 1 :
-> 0)
-> -#define IS_MFCV7_PLUS(dev)	(dev->variant->version >= 0x70 ? 1 :
-> 0)
-> -#define IS_MFCV8_PLUS(dev)	(dev->variant->version >= 0x80 ? 1 :
-> 0)
-> -#define IS_MFCV10(dev)		(dev->variant->version >= 0xA0 ? 1 :
-> 0)
-> -#define FW_HAS_E_MIN_SCRATCH_BUF(dev) (IS_MFCV10(dev))
-> +#define IS_MFCV6_PLUS(dev)	(dev->variant->version >= 0x60)
-> +#define IS_MFCV7_PLUS(dev)	(dev->variant->version >= 0x70)
-> +#define IS_MFCV8_PLUS(dev)	(dev->variant->version >= 0x80)
-> +#define IS_MFCV10_PLUS(dev)	(dev->variant->version >= 0xA0)
-> +#define FW_HAS_E_MIN_SCRATCH_BUF(dev) (IS_MFCV10_PLUS(dev))
-> 
->  #define MFC_V5_BIT	BIT(0)
->  #define MFC_V6_BIT	BIT(1)
-> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
-> b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
-> index 6d3c92045c05..54b54b2fa9b1 100644
-> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
-> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
-> @@ -236,7 +236,7 @@ int s5p_mfc_init_hw(struct s5p_mfc_dev *dev)
->  	else
->  		mfc_write(dev, 0x3ff, S5P_FIMV_SW_RESET);
-> 
-> -	if (IS_MFCV10(dev))
-> +	if (IS_MFCV10_PLUS(dev))
->  		mfc_write(dev, 0x0, S5P_FIMV_MFC_CLOCK_OFF_V10);
-> 
->  	mfc_debug(2, "Will now wait for completion of firmware
-> transfer\n"); diff --git a/drivers/media/platform/samsung/s5p-
-> mfc/s5p_mfc_opr_v6.c b/drivers/media/platform/samsung/s5p-
-> mfc/s5p_mfc_opr_v6.c
-> index c0df5ac9fcff..882166e4ac50 100644
-> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
-> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
-> @@ -72,9 +72,9 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  			  ctx->luma_size, ctx->chroma_size, ctx->mv_size);
->  		mfc_debug(2, "Totals bufs: %d\n", ctx->total_dpb_count);
->  	} else if (ctx->type == MFCINST_ENCODER) {
-> -		if (IS_MFCV10(dev)) {
-> +		if (IS_MFCV10_PLUS(dev))
->  			ctx->tmv_buffer_size = 0;
-> -		} else if (IS_MFCV8_PLUS(dev))
-> +		else if (IS_MFCV8_PLUS(dev))
->  			ctx->tmv_buffer_size =
-> S5P_FIMV_NUM_TMV_BUFFERS_V6 *
-> 
-> 	ALIGN(S5P_FIMV_TMV_BUFFER_SIZE_V8(mb_width, mb_height),
->  			S5P_FIMV_TMV_BUFFER_ALIGN_V6);
-> @@ -82,7 +82,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  			ctx->tmv_buffer_size =
-> S5P_FIMV_NUM_TMV_BUFFERS_V6 *
-> 
-> 	ALIGN(S5P_FIMV_TMV_BUFFER_SIZE_V6(mb_width, mb_height),
->  			S5P_FIMV_TMV_BUFFER_ALIGN_V6);
-> -		if (IS_MFCV10(dev)) {
-> +		if (IS_MFCV10_PLUS(dev)) {
->  			lcu_width = S5P_MFC_LCU_WIDTH(ctx->img_width);
->  			lcu_height = S5P_MFC_LCU_HEIGHT(ctx-
-> >img_height);
->  			if (ctx->codec_mode !=
-> S5P_FIMV_CODEC_HEVC_ENC) { @@ -133,7 +133,7 @@ static int
-> s5p_mfc_alloc_codec_buffers_v6(struct s5p_mfc_ctx *ctx)
->  	switch (ctx->codec_mode) {
->  	case S5P_MFC_CODEC_H264_DEC:
->  	case S5P_MFC_CODEC_H264_MVC_DEC:
-> -		if (IS_MFCV10(dev))
-> +		if (IS_MFCV10_PLUS(dev))
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  		else if (IS_MFCV8_PLUS(dev))
->  			ctx->scratch_buf_size =
-> @@ -152,7 +152,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  			(ctx->mv_count * ctx->mv_size);
->  		break;
->  	case S5P_MFC_CODEC_MPEG4_DEC:
-> -		if (IS_MFCV10(dev))
-> +		if (IS_MFCV10_PLUS(dev))
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  		else if (IS_MFCV7_PLUS(dev)) {
->  			ctx->scratch_buf_size =
-> @@ -172,7 +172,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  		break;
->  	case S5P_MFC_CODEC_VC1RCV_DEC:
->  	case S5P_MFC_CODEC_VC1_DEC:
-> -		if (IS_MFCV10(dev))
-> +		if (IS_MFCV10_PLUS(dev))
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  		else
->  			ctx->scratch_buf_size =
-> @@ -189,7 +189,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  		ctx->bank2.size = 0;
->  		break;
->  	case S5P_MFC_CODEC_H263_DEC:
-> -		if (IS_MFCV10(dev))
-> +		if (IS_MFCV10_PLUS(dev))
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  		else
->  			ctx->scratch_buf_size =
-> @@ -201,7 +201,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  		ctx->bank1.size = ctx->scratch_buf_size;
->  		break;
->  	case S5P_MFC_CODEC_VP8_DEC:
-> -		if (IS_MFCV10(dev))
-> +		if (IS_MFCV10_PLUS(dev))
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  		else if (IS_MFCV8_PLUS(dev))
->  			ctx->scratch_buf_size =
-> @@ -230,7 +230,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  			DEC_VP9_STATIC_BUFFER_SIZE;
->  		break;
->  	case S5P_MFC_CODEC_H264_ENC:
-> -		if (IS_MFCV10(dev)) {
-> +		if (IS_MFCV10_PLUS(dev)) {
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  			ctx->me_buffer_size =
->  			ALIGN(ENC_V100_H264_ME_SIZE(mb_width,
-> mb_height), 16); @@ -254,7 +254,7 @@ static int
-> s5p_mfc_alloc_codec_buffers_v6(struct s5p_mfc_ctx *ctx)
->  		break;
->  	case S5P_MFC_CODEC_MPEG4_ENC:
->  	case S5P_MFC_CODEC_H263_ENC:
-> -		if (IS_MFCV10(dev)) {
-> +		if (IS_MFCV10_PLUS(dev)) {
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  			ctx->me_buffer_size =
-> 
-> 	ALIGN(ENC_V100_MPEG4_ME_SIZE(mb_width,
-> @@ -273,7 +273,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct
-> s5p_mfc_ctx *ctx)
->  		ctx->bank2.size = 0;
->  		break;
->  	case S5P_MFC_CODEC_VP8_ENC:
-> -		if (IS_MFCV10(dev)) {
-> +		if (IS_MFCV10_PLUS(dev)) {
->  			mfc_debug(2, "Use min scratch buffer size\n");
->  			ctx->me_buffer_size =
->  				ALIGN(ENC_V100_VP8_ME_SIZE(mb_width,
-> mb_height), @@ -452,7 +452,7 @@ static void
-> s5p_mfc_dec_calc_dpb_size_v6(struct s5p_mfc_ctx *ctx)
-> 
->  	if (ctx->codec_mode == S5P_MFC_CODEC_H264_DEC ||
->  			ctx->codec_mode ==
-> S5P_MFC_CODEC_H264_MVC_DEC) {
-> -		if (IS_MFCV10(dev)) {
-> +		if (IS_MFCV10_PLUS(dev)) {
->  			ctx->mv_size = S5P_MFC_DEC_MV_SIZE_V10(ctx-
-> >img_width,
->  					ctx->img_height);
->  		} else {
-> @@ -668,7 +668,7 @@ static int s5p_mfc_set_enc_ref_buffer_v6(struct
-> s5p_mfc_ctx *ctx)
-> 
->  	mfc_debug(2, "Buf1: %p (%d)\n", (void *)buf_addr1, buf_size1);
-> 
-> -	if (IS_MFCV10(dev)) {
-> +	if (IS_MFCV10_PLUS(dev)) {
->  		/* start address of per buffer is aligned */
->  		for (i = 0; i < ctx->pb_count; i++) {
->  			writel(buf_addr1, mfc_regs->e_luma_dpb + (4 * i));
-> @@ -2455,7 +2455,7 @@ const struct s5p_mfc_regs
-> *s5p_mfc_init_regs_v6_plus(struct s5p_mfc_dev *dev)
->  	R(e_h264_options, S5P_FIMV_E_H264_OPTIONS_V8);
->  	R(e_min_scratch_buffer_size,
-> S5P_FIMV_E_MIN_SCRATCH_BUFFER_SIZE_V8);
-> 
-> -	if (!IS_MFCV10(dev))
-> +	if (!IS_MFCV10_PLUS(dev))
->  		goto done;
-> 
->  	/* Initialize registers used in MFC v10 only.
-> --
-> 2.17.1
-
-
+> I think our options are either add something to the unit-address or
+> use i2c-mux binding. Adding to the unit-address is not unprecedented.
+> I did that for some of the register bit level bindings where you have
+> a node for different bits at the same address. The downside is
+> unit-address is bus specific, so we'd have to add that for multiple
+> buses. For the i2c-mux, it's perhaps a bit complex and I'm not sure
+> what if anything you'd have to do to manage the mux that's not really
+> there.
+>
+> Rob
 
