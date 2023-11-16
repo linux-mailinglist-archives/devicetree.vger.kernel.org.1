@@ -1,142 +1,108 @@
-Return-Path: <devicetree+bounces-16152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5747EDC78
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:01:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A3C27EDC83
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:01:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 185C6280F0E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 08:01:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A2351C209FF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 08:01:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504B3FC1F;
-	Thu, 16 Nov 2023 08:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9197C10A14;
+	Thu, 16 Nov 2023 08:01:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KWqvvflA"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="H9QzLX0W"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 2093 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 16 Nov 2023 00:01:04 PST
-Received: from mail-m118112.qiye.163.com (mail-m118112.qiye.163.com [115.236.118.112])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4814319D;
-	Thu, 16 Nov 2023 00:01:04 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=KWqvvflA9+/axwizsRSRSGyg5fk6IiUM3lVg4IWeuLgSTHP3EQwrAHevkwLc9fj1YaVp0MhVr5sxIW+M6U3bH5A8RWx1FFuNaXhOfQX4jKKO0eplRABeNejJiZklHazkzs1VNUFwz0Ei+cMawQgO4+qE4HMijB789pKyiY4iVWo=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=tb1X4KpeIfR7YuU+9FGfgBz5jQqP4HMT01BOCR63WJc=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id A79AA7801AF;
-	Thu, 16 Nov 2023 16:00:06 +0800 (CST)
-Message-ID: <d6c77064-bae5-41c3-b49f-8c5c3a076a6b@rock-chips.com>
-Date: Thu, 16 Nov 2023 16:00:06 +0800
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39ACF19F;
+	Thu, 16 Nov 2023 00:01:45 -0800 (PST)
+X-UUID: 5c2fc93a845611eea33bb35ae8d461a2-20231116
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ZxZ3pd9QKUMQPsMbgxXDTSwYVgjtwCn7yO7jHi/LzbE=;
+	b=H9QzLX0W28DUY6eL2Mp5Qh90yZj/wksb+Iu4YYhJNCUtlfnRtf3Ilv90VM8fxVQ0O30n7PXlMuB4r4dPn4F0IQ/kPmRdtw31iBcTc+jaMMXRQmiTJoRJ3SEw7+G/tFwTiof3nMBR3GsAthUdkcqsxJi07rUMTPpHr3YCgwzKri4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.33,REQID:5723ee85-2c34-4426-9e58-8dae76719b45,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:364b77b,CLOUDID:14dd7595-10ce-4e4b-85c2-c9b5229ff92b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 5c2fc93a845611eea33bb35ae8d461a2-20231116
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+	(envelope-from <yu-chang.lee@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2029895919; Thu, 16 Nov 2023 16:01:34 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 16 Nov 2023 16:01:32 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 16 Nov 2023 16:01:32 +0800
+From: yu-chang.lee <yu-chang.lee@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: Garmin Chang <garmin.chang@mediatek.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "yu-chang . lee"
+	<yu-chang.lee@mediatek.com>
+Subject: [PATCH v2 0/3] Migrate MT8188 VPPSYS 0/1 to mtk-mmsys driver
+Date: Thu, 16 Nov 2023 16:01:26 +0800
+Message-ID: <20231116080129.20617-1-yu-chang.lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/11] drm/rockchip: vop2: Add support for rk3588
-Content-Language: en-US
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Andy Yan <andyshrk@163.com>, heiko@sntech.de, hjc@rock-chips.com,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, kever.yang@rock-chips.com,
- chris.obbard@collabora.com
-References: <20231114112534.1770731-1-andyshrk@163.com>
- <20231114112855.1771372-1-andyshrk@163.com>
- <20231115090823.GY3359458@pengutronix.de>
- <229557d7-beec-44e0-9ee6-4a962b33ec79@rock-chips.com>
- <20231116075015.GG3359458@pengutronix.de>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20231116075015.GG3359458@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxkZGVZKH0weGEofGR9NQ0pVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk5MSUpJVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8bd724fb70b24fkuuua79aa7801af
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NU06Pzo6Pzw8KUIOMiocFBA0
-	SyNPCxRVSlVKTEtLSklKTUtMT0NCVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT05NTjcG
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--2.560300-8.000000
+X-TMASE-MatchedRID: C+hvtS4FT8uvVT6bfkFW/gzi9ePw0R3QsEf8CpnIYtlkDFfw8NSG/Gb6
+	PphVtfZg4wnhOb+JR+SAMuqetGVetiVvu9chHp+mavP8b9lJtWr6C0ePs7A07X1HhKzShSYnDel
+	VDFbKGP8qA6iL/EaSBdVNHrvW36ZUesAV/+a7hKIzi4B1G5jJU3/5funDHxqRQFMdvtQNIUtW+v
+	GRK1IMn9lrv6b+lasIdmtRsRmKkASJZPT2ZDPuzPD2QfzMDLjho65UufHcDvg=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--2.560300-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	46FE3587E7C58FB6D44B59ECC25C0B042683D82F71CDB16E6E8B57DDC73891D52000:8
+X-MTK: N
 
-Hi Sascha:
+Changes in v2:
+- Refine commit message
+- Refine commit title
 
-On 11/16/23 15:50, Sascha Hauer wrote:
-> On Thu, Nov 16, 2023 at 03:24:54PM +0800, Andy Yan wrote:
->>> 	case ROCKCHIP_VOP2_EP_HDMI0:
->>> 	case ROCKCHIP_VOP2_EP_HDMI1:
->>> 		...
->>> }
->>>
->>> would look a bit better overall.
->>>
->>>> +		/*
->>>> +		 * K = 2: dclk_core = if_pixclk_rate > if_dclk_rate
->>>> +		 * K = 1: dclk_core = hdmie_edp_dclk > if_pixclk_rate
->>>> +		 */
->>>> +		if (output_mode == ROCKCHIP_OUT_MODE_YUV420) {
->>>> +			dclk_rate = dclk_rate >> 1;
->>>> +			K = 2;
->>>> +		}
->>>> +
->>>> +		if_pixclk_rate = (dclk_core_rate << 1) / K;
->>>> +		if_dclk_rate = dclk_core_rate / K;
->>>> +
->>>> +		*if_pixclk_div = dclk_rate / if_pixclk_rate;
->>>> +		*if_dclk_div = dclk_rate / if_dclk_rate;
->>> Not sure if this will change with future extensions, but currently
->>> *if_pixclk_div will always be 2 and *if_dclk_div will alway be 4,
->>> so maybe better write it like this
->>
->> Yes, the calculation of *if_pixclk_div is always 2 and *if_dclk_div is always 4,
->>
->> I think calculation formula can give us a clear explanation why is 2 or 4.
->>
->> considering the great power of rk3588, i think it can calculate it very easy.
-> Sure it can. My concern is not the CPU time it takes to do that
-> equation, but more the readability of the code. For me as a reader it
-> might be more easily acceptable that both dividers have fixed values
-> than it is to understand the equation.
->
-> Your mileage may vary, I won't insist on this.
+Hi,
 
+This series is to reflect VPPSYS' dependency on mtk-mmsys driver for
+mediatek MT8188 platform. The MT8188 VPPSYS 0/1 should be probed 
+from the "mtk-mmsys" driver, which then starts its own clock driver
+as the platform driver.
 
-Or I make it as fixed values, and leave the calculation formula as comments ?
+yu-chang.lee (3):
+  soc: mediatek: mmsys: Add support for MT8188 VPPSYS
+  dt-bindings: clock: mediatek: Remove compatible for MT8188 VPPSYS
+  dt-bindings: arm: mediatek: mmsys: Add VPPSYS compatible for MT8188
 
->
->>>
->>>> +		*dclk_core_div = dclk_rate / dclk_core_rate;
->>> *dclk_core_div is calculated the same way for all cases. You could pull
->>> this out of the if/else.
->> Okay, will do.
->>>> +	} else if (vop2_output_if_is_edp(id)) {
->>>> +		/* edp_pixclk = edp_dclk > dclk_core */
->>>> +		if_pixclk_rate = v_pixclk / K;
->>>> +		if_dclk_rate = v_pixclk / K;
->>> if_dclk_rate is unused here.
->>
->> It will be removed in next version.
->>
->>>> +		dclk_rate = if_pixclk_rate * K;
->>>> +		*dclk_core_div = dclk_rate / dclk_core_rate;
->>>> +		*if_pixclk_div = dclk_rate / if_pixclk_rate;
->>>> +		*if_dclk_div = *if_pixclk_div;
->>> Both *if_pixclk_div and *if_dclk_div will always be 1.
->> Actually,  they will be the value of K here,  if it work at split mode(two
->>
->> edp connect to one VP, one show the image for left half, one for right half,
->>
->> a function like a dual channel mipi dsi).
->>
->> I know it split mode is not supported by the current mainline, but i think keep
-> Ok.
->
-> Sascha
->
->
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml        |  2 ++
+ .../bindings/clock/mediatek,mt8188-clock.yaml        |  2 --
+ drivers/soc/mediatek/mtk-mmsys.c                     | 12 ++++++++++++
+ 3 files changed, 14 insertions(+), 2 deletions(-)
+
+-- 
+2.18.0
+
 
