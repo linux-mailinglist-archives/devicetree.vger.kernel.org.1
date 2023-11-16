@@ -1,221 +1,543 @@
-Return-Path: <devicetree+bounces-16276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCC57EE2E0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C56B7EE2E5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:32:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CBEDB20CA7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:31:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0465B20BED
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D758730FA6;
-	Thu, 16 Nov 2023 14:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1718430FB0;
+	Thu, 16 Nov 2023 14:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pafVVW2S"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="akVGd7RB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9BD187
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 06:31:44 -0800 (PST)
-Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-6707401e1edso4571106d6.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 06:31:44 -0800 (PST)
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C3A182;
+	Thu, 16 Nov 2023 06:32:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700145104; x=1700749904; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ze34MzP6ZzMJQHTOgbQ+ZaBo2IhiBlOffFMR4boWctc=;
-        b=pafVVW2Szad6C4pwuc5xf2rxCWR92qX0kCif6h3VDlJfmj7vweBt92h+Ixx/lYIc1e
-         P+r452sBzPYGwxXiyl3Nm0vgesWwXmNxGObFPd6ejFq3Bi902pi64OkfzDXXStjVix/3
-         wm2JvMRuoS6jjtRqwFNw6OYED9d6h1Ejuv+8Gt/37bVSpRqgFXJtP6p4Td9AkPBw/v6A
-         F/gAyyGsN8l0YwOptwzqxF8cPXLKAMPE0lKAqH784gjZH9ma2i4CqqvM8nQxWOM/HW40
-         OhI3Q3JbS0C/0aFUxizEnpYVkKIfKqB/TAm29P09yXg9uZaYZJQwz64/uYAN4lTu83YG
-         3Yqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700145104; x=1700749904;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ze34MzP6ZzMJQHTOgbQ+ZaBo2IhiBlOffFMR4boWctc=;
-        b=bbNUCFwhWdY5I0V+SEfiobwrxzaWwWod47lJN3NEAWCT2QhDQIXnqacEouy5fHwd8u
-         AtXHi7ZTM6rq//U0ooXAexPY+BHeYSuoXBepnzUaiX6xh7thf4VZF5rEZbO4Fg9oRHkJ
-         7WLc/NxYUIe2Ck7igu6FJjOd7UGOnnk5Ni0uapT7cN6UW+vXvFKmBuZ2/2G9U7QyewAx
-         dv3g3AOjpSaxDlXDFy1gVDGtSuIeB5SjXG3KKfGwGXMwv9lenN4NrQa0pL5HKnNP8Olo
-         Pf6BEfmU1JVwWeg9rws6IvS9bX4OuyLVmFAdxtmTHHNB0UW1L35djViSzuIObkek0mmY
-         VlWQ==
-X-Gm-Message-State: AOJu0YytG5Y0jWne+HXiBhm2E85nlYzjjiTKcSm3yH4QLQ00ncuN5Su1
-	HAHJZd8HXrU7hmk/0lO9NidspA==
-X-Google-Smtp-Source: AGHT+IERuHXTJmKC9tmJtPGJkbsVbQWeftwOI0w7HvRGFXG9ymG+DUtOY7bCy0DxYQg3Lwha15fpcQ==
-X-Received: by 2002:a05:6214:519a:b0:66f:ae60:8c51 with SMTP id kl26-20020a056214519a00b0066fae608c51mr10878210qvb.11.1700145104052;
-        Thu, 16 Nov 2023 06:31:44 -0800 (PST)
-Received: from [10.50.4.74] ([50.201.115.146])
-        by smtp.gmail.com with ESMTPSA id jy8-20020a0562142b4800b0065d0d0c752csm1401427qvb.116.2023.11.16.06.31.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 06:31:43 -0800 (PST)
-Message-ID: <6b39c522-1486-4e30-b958-b8a57104cede@linaro.org>
-Date: Thu, 16 Nov 2023 15:31:42 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1700145159; x=1731681159;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=fYTdBrL1sJUH1s4lrwdtk5z0gxs4OG9PmCszKKXKUx0=;
+  b=akVGd7RB2ydWCqG5LhhAA3IzoryfBP9IGaT9b3I/rtSNKIdWRbjilXK8
+   Z/KTpR7wwG6g3IJn5Sz4HxdhTRv1wKniir5xgDRTBEcafB/KOsdvg83ja
+   fHTMOq6b8ph9FPB5PtW769ZoNnhVFmD1XiLDMes0BtZRyE1SY9IJVgnsD
+   Aw4RXEeStrc2/0Nvyq0UXmo7U2WMUb9axk508rfmGPHitZZ1V0VVeLhbE
+   tAk+COtufyMkPdFZw182LQ0zAWGBP7gx/JsfYm1oSpOyIXuzZKl/m5rn6
+   oIVavsAE5Jfjg8/xfBqpusmq1R7yUfBuUqfXW7WsTBlp7BMzddpi+ADtS
+   A==;
+X-IronPort-AV: E=Sophos;i="6.04,308,1695679200"; 
+   d="scan'208";a="34023368"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Nov 2023 15:32:37 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2071F28007F;
+	Thu, 16 Nov 2023 15:32:37 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-iio@vger.kernel.org, Marek Vasut <marex@denx.de>
+Cc: Marek Vasut <marex@denx.de>, Andre Werner <andre.werner@systec-electronic.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>, Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Naresh Solanki <naresh.solanki@9elements.com>, Patrick Rudolph <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: light: isl76682: Add ISL76682 driver
+Date: Thu, 16 Nov 2023 15:32:40 +0100
+Message-ID: <3269381.44csPzL39Z@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20231116131329.6801-2-marex@denx.de>
+References: <20231116131329.6801-1-marex@denx.de> <20231116131329.6801-2-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 8/9] dt-bindings: net: pse-pd: Add bindings for
- PD692x0 PSE controller
-To: Kory Maincent <kory.maincent@bootlin.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain <mcgrof@kernel.org>,
- Russ Weight <russ.weight@linux.dev>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20231116-feature_poe-v1-0-be48044bf249@bootlin.com>
- <20231116-feature_poe-v1-8-be48044bf249@bootlin.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231116-feature_poe-v1-8-be48044bf249@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 16/11/2023 15:01, Kory Maincent wrote:
-> Add the PD692x0 I2C Power Sourcing Equipment controller device tree
-> bindings documentation.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+Hi Marek,
+
+Am Donnerstag, 16. November 2023, 14:13:16 CET schrieb Marek Vasut:
+> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> other fancy functionality.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../bindings/net/pse-pd/microchip,pd692x0_i2c.yaml | 70 ++++++++++++++++++++++
->  MAINTAINERS                                        |  6 ++
->  2 files changed, 76 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0_i2c.yaml b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0_i2c.yaml
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Andre Werner <andre.werner@systec-electronic.com>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@denx.de>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+> Cc: Naresh Solanki <naresh.solanki@9elements.com>
+> Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+> Cc: Vincent Tremblay <vincent@vtremblay.dev>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> ---
+> NOTE: I am not 100% sure about the SCALE handling, can you please
+>       check esp. that one ? Thanks !
+> ---
+>  drivers/iio/light/Kconfig    |   8 +
+>  drivers/iio/light/Makefile   |   1 +
+>  drivers/iio/light/isl76682.c | 379 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 388 insertions(+)
+>  create mode 100644 drivers/iio/light/isl76682.c
+>=20
+> diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
+> index 45edba797e4c7..124c45f509754 100644
+> --- a/drivers/iio/light/Kconfig
+> +++ b/drivers/iio/light/Kconfig
+> @@ -252,6 +252,14 @@ config ISL29125
+>  	  To compile this driver as a module, choose M here: the module will=20
+be
+>  	  called isl29125.
+>=20
+> +config ISL76682
+> +	tristate "Intersil ISL76682 Light Sensor"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  Provides driver for the Intersil's ISL76682 device. This driver
+> +	  supports the sysfs interface to get the ALS and IR intensity.
+> +
+>  config HID_SENSOR_ALS
+>  	depends on HID_SENSOR_HUB
+>  	select IIO_BUFFER
+> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+> index c0db4c4c36ec9..09fa585f3109f 100644
+> --- a/drivers/iio/light/Makefile
+> +++ b/drivers/iio/light/Makefile
+> @@ -28,6 +28,7 @@ obj-$(CONFIG_IQS621_ALS)	+=3D iqs621-als.o
+>  obj-$(CONFIG_SENSORS_ISL29018)	+=3D isl29018.o
+>  obj-$(CONFIG_SENSORS_ISL29028)	+=3D isl29028.o
+>  obj-$(CONFIG_ISL29125)		+=3D isl29125.o
+> +obj-$(CONFIG_ISL76682)		+=3D isl76682.o
+>  obj-$(CONFIG_JSA1212)		+=3D jsa1212.o
+>  obj-$(CONFIG_SENSORS_LM3533)	+=3D lm3533-als.o
+>  obj-$(CONFIG_LTR501)		+=3D ltr501.o
+> diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
 > new file mode 100644
-> index 000000000000..c42bbc427988
+> index 0000000000000..8b41a14bfe5be
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0_i2c.yaml
-
-Filename should match compatibles, so drop i2c suffix.
-
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/pse-pd/microchip,pd692x0_i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/iio/light/isl76682.c
+> @@ -0,0 +1,379 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * IIO driver for the light sensor ISL76682.
+> + * ISL76682 is Ambient Light Sensor
+> + *
+> + * Copyright (c) 2023 Marek Vasut <marex@denx.de>
+> + */
 > +
-> +title: Microchip PD692x0 Power Sourcing Equipment controller
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
 > +
-> +maintainers:
-> +  - Kory Maincent <kory.maincent@bootlin.com>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
 > +
-> +allOf:
-> +  - $ref: pse-controller.yaml#
+> +#define ISL76682_REG_COMMAND			0x00
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pd69200
-> +      - microchip,pd69210
-> +      - microchip,pd69220
-
-Your driver suggests these are compatible.
-
+> +#define ISL76682_COMMAND_EN			BIT(7)
+> +#define ISL76682_COMMAND_MODE_CONTINUOUS	BIT(6)
+> +#define ISL76682_COMMAND_LIGHT_IR		BIT(5)
 > +
-> +  reg:
-> +    maxItems: 1
+> +#define ISL76682_COMMAND_RANGE_LUX_1K		0
+> +#define ISL76682_COMMAND_RANGE_LUX_4K		(1 << 0)
+> +#define ISL76682_COMMAND_RANGE_LUX_16K		(2 << 0)
+> +#define ISL76682_COMMAND_RANGE_LUX_64K		(3 << 0)
+> +#define ISL76682_COMMAND_RANGE_LUX_MASK		GENMASK(1, 0)
 > +
-> +  '#pse-cells':
-> +    const: 1
+> +#define ISL76682_REG_ALSIR_L			0x01
 > +
-> +  ports-matrix:
-> +    description: Port conversion matrix configuration
-
-I do not see such property defined anywhere. Your description should
-explain what the purpose is and what it is exactly. Currently you just
-repeat property name, so quite pointless.
-
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    minItems: 1
-> +    maxItems: 48
-> +    items:
-> +      items:
-> +        - description: Logical port number
-> +          minimum: 0
-> +          maximum: 47
-> +        - description: Physical port number A (0xff for undefined)
-> +          oneOf:
-> +            - minimum: 0
-> +              maximum: 95
-> +            - const: 0xff
-> +        - description: Physical port number B (0xff for undefined)
-> +          oneOf:
-> +            - minimum: 0
-> +              maximum: 95
-> +            - const: 0xff
+> +#define ISL76682_REG_ALSIR_U			0x02
 > +
-> +additionalProperties: false
-
-unevaluatedProperties: false instead
-
+> +#define ISL76682_NUM_REGS			(ISL76682_REG_ALSIR_U + 1)
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> 
+> +#define ISL76682_CONV_TIME_MS			100
+> +
+> +#define ISL76682_ADC_MAX			0xffff
+> +
+> +enum isl76682_als_ir_mode {
+> +	ISL76682_MODE_NONE =3D 0,
+> +	ISL76682_MODE_ALS,
+> +	ISL76682_MODE_IR,
+> +};
+> +
+> +struct isl76682_chip {
+> +	struct mutex			lock;
+> +	struct regmap			*regmap;
+> +	enum isl76682_als_ir_mode	als_ir_mode;
+> +	int				lux_scale;
+> +};
+> +
+> +static int isl76682_set_als_scale(struct isl76682_chip *chip, int
+> lux_scale) +{
+> +	int ret, val;
+> +
 
-Best regards,
-Krzysztof
+How about
+	if (chip->lux_scale =3D=3D lux_scale)
+		return 0;
+similar to the short path in isl76682_set_als_ir_mode()?
+
+best regards,
+Alexander
+
+> +	if (lux_scale =3D=3D 1000)
+> +		val =3D ISL76682_COMMAND_RANGE_LUX_1K;
+> +	else if (lux_scale =3D=3D 4000)
+> +		val =3D ISL76682_COMMAND_RANGE_LUX_4K;
+> +	else if (lux_scale =3D=3D 16000)
+> +		val =3D ISL76682_COMMAND_RANGE_LUX_16K;
+> +	else if (lux_scale =3D=3D 64000)
+> +		val =3D ISL76682_COMMAND_RANGE_LUX_64K;
+> +	else
+> +		return -EINVAL;
+> +
+> +	ret =3D regmap_update_bits(chip->regmap, ISL76682_REG_COMMAND,
+> +				 ISL76682_COMMAND_RANGE_LUX_MASK,=20
+val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	chip->lux_scale =3D lux_scale;
+> +
+> +	return 0;
+> +}
+> +
+> +static int isl76682_set_als_ir_mode(struct isl76682_chip *chip,
+> +				    enum isl76682_als_ir_mode mode)
+> +{
+> +	int ret;
+> +
+> +	if (chip->als_ir_mode =3D=3D mode)
+> +		return 0;
+> +
+> +	if (mode =3D=3D ISL76682_MODE_NONE) {
+> +		return regmap_clear_bits(chip->regmap,=20
+ISL76682_REG_COMMAND,
+> +					 ISL76682_COMMAND_EN);
+> +	}
+> +
+> +	ret =3D isl76682_set_als_scale(chip, chip->lux_scale);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (mode =3D=3D ISL76682_MODE_ALS) {
+> +		ret =3D regmap_clear_bits(chip->regmap,=20
+ISL76682_REG_COMMAND,
+> +					ISL76682_COMMAND_LIGHT_IR);
+> +	} else {
+> +		ret =3D regmap_set_bits(chip->regmap, ISL76682_REG_COMMAND,
+> +				      ISL76682_COMMAND_LIGHT_IR);
+> +	}
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable the ALS/IR */
+> +	ret =3D regmap_set_bits(chip->regmap, ISL76682_REG_COMMAND,
+> +			      ISL76682_COMMAND_EN |
+> +			      ISL76682_COMMAND_MODE_CONTINUOUS);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Need to wait for conversion time if ALS/IR mode enabled */
+> +	msleep(ISL76682_CONV_TIME_MS);
+> +
+> +	chip->als_ir_mode =3D mode;
+> +
+> +	return 0;
+> +}
+> +
+> +static int isl76682_read_als_ir(struct isl76682_chip *chip, int *als_ir)
+> +{
+> +	unsigned int lsb, msb;
+> +	int ret;
+> +
+> +	ret =3D regmap_read(chip->regmap, ISL76682_REG_ALSIR_L, &lsb);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D regmap_read(chip->regmap, ISL76682_REG_ALSIR_U, &msb);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*als_ir =3D (msb << 8) | lsb;
+> +
+> +	return 0;
+> +}
+> +
+> +static int isl76682_als_get(struct isl76682_chip *chip, int *als_data)
+> +{
+> +	int als_ir_data;
+> +	int ret;
+> +
+> +	ret =3D isl76682_set_als_ir_mode(chip, ISL76682_MODE_ALS);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D isl76682_read_als_ir(chip, &als_ir_data);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*als_data =3D als_ir_data;
+> +
+> +	return 0;
+> +}
+> +
+> +static int isl76682_ir_get(struct isl76682_chip *chip, int *ir_data)
+> +{
+> +	int ret;
+> +
+> +	ret =3D isl76682_set_als_ir_mode(chip, ISL76682_MODE_IR);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return isl76682_read_als_ir(chip, ir_data);
+> +}
+> +
+> +static int isl76682_write_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int val, int val2, long mask)
+> +{
+> +	struct isl76682_chip *chip =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (chan->type !=3D IIO_LIGHT)
+> +		return -EINVAL;
+> +
+> +	if (mask !=3D IIO_CHAN_INFO_SCALE)
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&chip->lock);
+> +	ret =3D isl76682_set_als_scale(chip, val);
+> +	mutex_unlock(&chip->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int isl76682_read_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int *val, int *val2, long mask)
+> +{
+> +	struct isl76682_chip *chip =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	mutex_lock(&chip->lock);
+> +
+> +	ret =3D -EINVAL;
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_LIGHT:
+> +			ret =3D isl76682_als_get(chip, val);
+> +			break;
+> +		case IIO_INTENSITY:
+> +			ret =3D isl76682_ir_get(chip, val);
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +
+> +		if (ret < 0)
+> +			break;
+> +
+> +		ret =3D IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		if (chan->type !=3D IIO_LIGHT)
+> +			break;
+> +		*val =3D chip->lux_scale;
+> +		*val2 =3D ISL76682_ADC_MAX;
+> +		ret =3D IIO_VAL_FRACTIONAL;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	mutex_unlock(&chip->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static IIO_CONST_ATTR(in_illuminance_scale_available, "1000 4000 16000
+> 64000"); +
+> +#define ISL76682_CONST_ATTR(name) (&iio_const_attr_##name.dev_attr.attr)
+> +static struct attribute *isl76682_attributes[] =3D {
+> +	ISL76682_CONST_ATTR(in_illuminance_scale_available),
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group isl29108_group =3D {
+> +	.attrs =3D isl76682_attributes,
+> +};
+> +
+> +static const struct iio_chan_spec isl76682_channels[] =3D {
+> +	{
+> +		.type =3D IIO_LIGHT,
+> +		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +	}, {
+> +		.type =3D IIO_INTENSITY,
+> +		.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),
+> +	}
+> +};
+> +
+> +static const struct iio_info isl76682_info =3D {
+> +	.attrs		=3D &isl29108_group,
+> +	.read_raw	=3D isl76682_read_raw,
+> +	.write_raw	=3D isl76682_write_raw,
+> +};
+> +
+> +static int isl76682_clear_configure_reg(struct isl76682_chip *chip)
+> +{
+> +	struct device *dev =3D regmap_get_device(chip->regmap);
+> +	int ret;
+> +
+> +	ret =3D regmap_write(chip->regmap, ISL76682_REG_COMMAND, 0x0);
+> +	if (ret < 0)
+> +		dev_err(dev, "%s(): Error %d clearing the CONFIGURE=20
+register\n",
+> +			__func__, ret);
+> +
+> +	chip->als_ir_mode =3D ISL76682_MODE_NONE;
+> +
+> +	return ret;
+> +}
+> +
+> +static bool isl76682_is_volatile_reg(struct device *dev, unsigned int re=
+g)
+> +{
+> +	switch (reg) {
+> +	case ISL76682_REG_ALSIR_L:
+> +	case ISL76682_REG_ALSIR_U:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static const struct regmap_config isl76682_regmap_config =3D {
+> +	.reg_bits =3D 8,
+> +	.val_bits =3D 8,
+> +	.volatile_reg =3D isl76682_is_volatile_reg,
+> +	.max_register =3D ISL76682_NUM_REGS - 1,
+> +	.num_reg_defaults_raw =3D ISL76682_NUM_REGS,
+> +	.cache_type =3D REGCACHE_FLAT,
+> +};
+> +
+> +static int isl76682_probe(struct i2c_client *client)
+> +{
+> +	const struct i2c_device_id *id =3D i2c_client_get_device_id(client);
+> +	struct isl76682_chip *chip;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*chip));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	chip =3D iio_priv(indio_dev);
+> +
+> +	i2c_set_clientdata(client, indio_dev);
+> +	mutex_init(&chip->lock);
+> +
+> +	chip->regmap =3D devm_regmap_init_i2c(client,=20
+&isl76682_regmap_config);
+> +	if (IS_ERR(chip->regmap)) {
+> +		ret =3D PTR_ERR(chip->regmap);
+> +		dev_err(&client->dev, "%s: Error %d initializing=20
+regmap\n",
+> +			__func__, ret);
+> +		return ret;
+> +	}
+> +
+> +	chip->lux_scale =3D 1000;
+> +
+> +	ret =3D isl76682_clear_configure_reg(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	indio_dev->info =3D &isl76682_info;
+> +	indio_dev->channels =3D isl76682_channels;
+> +	indio_dev->num_channels =3D ARRAY_SIZE(isl76682_channels);
+> +	indio_dev->name =3D id->name;
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +
+> +	ret =3D iio_device_register(indio_dev);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev,
+> +			"%s(): iio registration failed with error %d\n",
+> +			__func__, ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void isl76682_remove(struct i2c_client *client)
+> +{
+> +	struct iio_dev *indio_dev =3D i2c_get_clientdata(client);
+> +	struct isl76682_chip *chip =3D iio_priv(indio_dev);
+> +
+> +	iio_device_unregister(indio_dev);
+> +
+> +	isl76682_clear_configure_reg(chip);
+> +}
+> +
+> +static const struct i2c_device_id isl76682_id[] =3D {
+> +	{"isl76682", 0},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, isl76682_id);
+> +
+> +static const struct of_device_id isl76682_of_match[] =3D {
+> +	{ .compatible =3D "isil,isl76682", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, isl76682_of_match);
+> +
+> +static struct i2c_driver isl76682_driver =3D {
+> +	.driver  =3D {
+> +		.name =3D "isl76682",
+> +		.of_match_table =3D isl76682_of_match,
+> +	},
+> +	.probe =3D isl76682_probe,
+> +	.remove =3D isl76682_remove,
+> +	.id_table =3D isl76682_id,
+> +};
+> +
+> +module_i2c_driver(isl76682_driver);
+> +
+> +MODULE_DESCRIPTION("ISL76682 Ambient Light Sensor driver");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_AUTHOR("Marek Vasut <marex@denx.de>");
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
