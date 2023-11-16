@@ -1,154 +1,110 @@
-Return-Path: <devicetree+bounces-16168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F747EDDBF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 10:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B36E7EDE0C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 10:55:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDA861F23EE3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:36:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD8C31F22971
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1C328E12;
-	Thu, 16 Nov 2023 09:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DC129429;
+	Thu, 16 Nov 2023 09:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JkDPa1lp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PKNH0bJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6681BCE
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 01:36:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1700127370;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S+LZsf1Geh2x5b5Ad0zzJw+dVByeOVUvndd2RtoYI34=;
-	b=JkDPa1lprBXLeiZbJqO1b7LhvCW5+8LS3KkJodl1FHu1BznBU3Sb5JW+ShIrqim/KaWTDW
-	ArcvogIvmXPqAy7NkcBLjdLLj/BEEyqm+d3BiB18C9xB4DUN/fJoT/8BUMr1GM7L7jstPK
-	mPZBW27cP/xHVHZO2bseTqF/mxwCkSc=
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com
- [209.85.167.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-453-WGabr74EO8-UfV6k7iP01Q-1; Thu, 16 Nov 2023 04:36:09 -0500
-X-MC-Unique: WGabr74EO8-UfV6k7iP01Q-1
-Received: by mail-lf1-f70.google.com with SMTP id 2adb3069b0e04-50a753d9f0aso556373e87.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 01:36:08 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE8C11B3
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 01:55:18 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso5127745e9.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 01:55:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1700128517; x=1700733317; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E1oRsx0JkrJpAxhu0TG6CzqhEt1GaBKEgIlWIAk646w=;
+        b=PKNH0bJ8OhT8Yed/uUcTzytBOLIyPy5UjBY4fG7B4PEtm17I2Jcn3i+sfZ3LLkrFuA
+         dwxia2gw8oVJ+kmyM2Bda/W0dp4X2k/br980zJ+qlBojbb4h07yHqpSFz6NodIG2vh4/
+         8+yy8qeBKCkY1xcN2idv06kG+nkQbaKuWTW8PDHshvywF/hTXkZ+4RJxzpHLK1izRW0e
+         yU7vVxR1N08tGazriUdMOChtcyhsihUuByeUij5KE2W3PnJT5JHmMdOTTN28jlUnqRI1
+         I0+xsLP/lEQEcA4GfnO2DwMBcMw+zoN3+UC06cWpkGwfn970Qk7055bfMi/WLdxIcMmW
+         GGPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700127367; x=1700732167;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S+LZsf1Geh2x5b5Ad0zzJw+dVByeOVUvndd2RtoYI34=;
-        b=LoNqYMfUP0AUE2yIxxmW0a8e+qd5qB19WcoSSx2ARqNVOIvVTeJQFQ2ys6Dt2k+dC7
-         FkT4ANRPoWojHTt7ax2hCxmV5wV5wI3RF5cZyuTcogqmV/HO8ubyvLvqhJvKpVXOfeLj
-         yTWCPHpjQTs2SOIPIU39wGcaO3cDw3yTSUt5eUV4v44COabs1nblgEWMbVBlSVFKY06K
-         ba3HF0huM+GThx1NgyazUDmQvMdERoEPS1VJ5PjqyM9EC+IWby5Re8ALb2TPZxKYzxqs
-         dPg5scQ8DHcsd95qOjGnu+8Eh1mx2R9vVU2+OIixRIlZnwpB6n1mc+nGQ8Y79K2AsydG
-         iQnQ==
-X-Gm-Message-State: AOJu0YxF0cMLXeJNjYSZZxw6jTo2U9EGgxn0VG6ErfFQ8FvkHNtBqqdk
-	jbHDvBoAsZtH4OEtWUb3I+s+gB2I7sT2Uvo6MnDOKYuM+CPgTu8PVw3TfA6948LEifOonRg3Pqr
-	6n4NkPMFj6tV4/lhsiM1IiQ==
-X-Received: by 2002:a05:6512:3d02:b0:509:31e6:1de5 with SMTP id d2-20020a0565123d0200b0050931e61de5mr15185626lfv.47.1700127367544;
-        Thu, 16 Nov 2023 01:36:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE75yAvd+0pV7xWDGGFOLYeqfxtPEMRAHOezjjPoj7Cde5b1To5N4sTL7RRUU4c3qam6M0Img==
-X-Received: by 2002:a05:6512:3d02:b0:509:31e6:1de5 with SMTP id d2-20020a0565123d0200b0050931e61de5mr15185608lfv.47.1700127367236;
-        Thu, 16 Nov 2023 01:36:07 -0800 (PST)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id d11-20020a5d4f8b000000b0032d829e10c0sm12933437wru.28.2023.11.16.01.36.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 01:36:07 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Ard Biesheuvel <ardb@kernel.org>, Sima Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Andrew Worsley <amworsley@gmail.com>,
- Hector Martin <marcan@marcan.st>, Sergio Lopez <slp@redhat.com>, Frank
- Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-In-Reply-To: <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
-References: <20231113085305.1823455-1-javierm@redhat.com>
- <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
-Date: Thu, 16 Nov 2023 10:36:06 +0100
-Message-ID: <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
+        d=1e100.net; s=20230601; t=1700128517; x=1700733317;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E1oRsx0JkrJpAxhu0TG6CzqhEt1GaBKEgIlWIAk646w=;
+        b=BsNbvvGgKfnBFw5VxvXmjr8DUL20jgTRob3bpVmyiLwuEuflVDZxY3CKMnnGpcKIUi
+         2jw2777ZVodmfwMqaRbXH9Oc3Emuenoyj1AOkUqoYixj0CBGY3FGsdsatd7PVGmTVUaQ
+         kwF4s3sK3vEQSYpy8lr5mG/5xCI885sMLwii8J5MJtwpkIab7z8w//b/k7qNjrGw1HZ6
+         Ezjo5/xYXoh9/OzIt/IlTmsZOVE7mz9B9pltB9YYgBWwBubqtnbMFl2ReQsNWJtisHro
+         6lzKyzbeGU8rD/vNrkDNJeVhjVLyjUjpPEQZDtQ1Ywjm8uB6v63/tLTo4HywemQyXSSl
+         p14w==
+X-Gm-Message-State: AOJu0YxaTGdYkwzr4yuKeF3nXHZuy9t6VAwyd2ouxIszvrvfT2wEtU/o
+	0HsaXUMotO6XIzTAzzCRBoOqkw==
+X-Google-Smtp-Source: AGHT+IFC0ufUujVImIIcEUUJStMAApGOKU2C7zQcbgEAamM2TCYN0xyoQv6pa0YlLg2206Tv9B8xyA==
+X-Received: by 2002:a05:600c:4ec6:b0:409:3f53:c9c7 with SMTP id g6-20020a05600c4ec600b004093f53c9c7mr11485099wmq.35.1700128517136;
+        Thu, 16 Nov 2023 01:55:17 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id y14-20020a05600c2b0e00b0040644e699a0sm2793102wme.45.2023.11.16.01.55.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Nov 2023 01:55:16 -0800 (PST)
+Message-ID: <3db4549e-9707-48f1-a199-d0155f3ebc16@linaro.org>
+Date: Thu, 16 Nov 2023 09:55:15 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] clk: qcom: videocc-sm8150: Update the videocc resets
+Content-Language: en-US
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231110065029.2117212-1-quic_skakitap@quicinc.com>
+ <20231110065029.2117212-3-quic_skakitap@quicinc.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20231110065029.2117212-3-quic_skakitap@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Rob Herring <robh@kernel.org> writes:
+On 10/11/2023 06:50, Satya Priya Kakitapalli wrote:
+> Add all the available resets for the video clock controller
+> on sm8150.
+> 
+> Fixes: 5658e8cf1a8a ("clk: qcom: add video clock controller driver for SM8150")
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> ---
+>   drivers/clk/qcom/videocc-sm8150.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/videocc-sm8150.c b/drivers/clk/qcom/videocc-sm8150.c
+> index 1afdbe4a249d..6a5f89f53da8 100644
+> --- a/drivers/clk/qcom/videocc-sm8150.c
+> +++ b/drivers/clk/qcom/videocc-sm8150.c
+> @@ -214,6 +214,10 @@ static const struct regmap_config video_cc_sm8150_regmap_config = {
+>   
+>   static const struct qcom_reset_map video_cc_sm8150_resets[] = {
+>   	[VIDEO_CC_MVSC_CORE_CLK_BCR] = { 0x850, 2 },
+> +	[VIDEO_CC_INTERFACE_BCR] = { 0x8f0 },
+> +	[VIDEO_CC_MVS0_BCR] = { 0x870 },
+> +	[VIDEO_CC_MVS1_BCR] = { 0x8b0 },
+> +	[VIDEO_CC_MVSC_BCR] = { 0x810 },
+>   };
+>   
+>   static const struct qcom_cc_desc video_cc_sm8150_desc = {
 
-Hello Rob,
-
-> On Mon, Nov 13, 2023 at 2:53=E2=80=AFAM Javier Martinez Canillas
-> <javierm@redhat.com> wrote:
->>
->> Some DT platforms use EFI to boot and in this case the EFI Boot Services
->> may register a EFI_GRAPHICS_OUTPUT_PROTOCOL handle, that will later be
->> queried by the Linux EFI stub to fill the global struct screen_info data.
->>
->> The data is used by the Generic System Framebuffers (sysfb) framework to
->> add a platform device with platform data about the system framebuffer.
->>
->> But if there is a "simple-framebuffer" node in the DT, the OF core will
->> also do the same and add another device for the system framebuffer.
->>
->> This could lead for example, to two platform devices ("simple-framebuffe=
-r"
->> and "efi-framebuffer") to be added and matched with their corresponding
->> drivers. So both efifb and simpledrm will be probed, leading to followin=
-g:
->>
->> [    0.055752] efifb: framebuffer at 0xbd58dc000, using 16000k, total 16=
-000k
->> [    0.055755] efifb: mode is 2560x1600x32, linelength=3D10240, pages=3D1
->> [    0.055758] efifb: scrolling: redraw
->> [    0.055759] efifb: Truecolor: size=3D2:10:10:10, shift=3D30:20:10:0
->> ...
->> [    3.295896] simple-framebuffer bd58dc000.framebuffer: [drm] *ERROR*
->> could not acquire memory range [??? 0xffff79f30a29ee40-0x2a5000001a7
->> flags 0x0]: -16
->> [    3.298018] simple-framebuffer: probe of bd58dc000.framebuffer
->> failed with error -16
->>
->> To prevent the issue, make the OF core to disable sysfb if there is a no=
-de
->> with a "simple-framebuffer" compatible. That way only this device will be
->> registered and sysfb would not attempt to register another one using the
->> screen_info data even if this has been filled.
->>
->> This seems the correct thing to do in this case because:
->>
->> a) On a DT platform, the DTB is the single source of truth since is what
->>    describes the hardware topology. Even if EFI Boot Services are used to
->>    boot the machine.
->
-> This is the opposite of what we do for memory and memory reservations.
-> EFI is the source of truth for those.
->
-> This could also lead to an interesting scenario. As simple-framebuffer
-> can define its memory in a /reserved-memory node, but that is ignored
-> in EFI boot. Probably would work, but only because EFI probably
-> generates its memory map table from the /reserved-memory nodes.
->
-
-I see. So what would be the solution then? Ignoring creating a platform
-device for "simple-framebuffer" if booted using EFI and have an EFI-GOP?
-
-> Rob
->
-
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
