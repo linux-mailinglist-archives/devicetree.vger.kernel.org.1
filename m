@@ -1,267 +1,146 @@
-Return-Path: <devicetree+bounces-16233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43237EE127
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 936BA7EE13A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:14:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99C12280ECE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:13:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47060280FF6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:14:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DF630641;
-	Thu, 16 Nov 2023 13:13:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493373066E;
+	Thu, 16 Nov 2023 13:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H1oUfAE+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h/+/7PBp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A85610D5;
-	Thu, 16 Nov 2023 05:13:25 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9c603e2354fso152904866b.1;
-        Thu, 16 Nov 2023 05:13:25 -0800 (PST)
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84415D4B;
+	Thu, 16 Nov 2023 05:14:28 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id d2e1a72fcca58-6bee11456baso703116b3a.1;
+        Thu, 16 Nov 2023 05:14:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700140404; x=1700745204; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Fnxhr1dk/vfohyQfMfgOpH3tTQBBu2nuppfYXXpJ6wA=;
-        b=H1oUfAE+1QrnehJZkBuHjvmsPK0HCTA4vu6rQn5VTwUWdD1PpFiQ94xyv04e6glrG5
-         YgV0QkyPvjI8fC45JIR959oN5lP3t49Jn450YXF67UOHpIHlYwK3zfN82UtsKHAA2zrG
-         NEcKVmjpVG8yMqpOtSGV81qwcNvptg8p6Ym8pGTeTNESS8ih96vF4On/izYsmGQde4a+
-         f8boRsbt3eASmZJQXUipad7jekHe7ZIgplQ3Z9h623JVwfNVAqw6Dv2DP9PNgVt8VGFL
-         Ub9lCgqPrDCbzVC0/d0At8Jj8GBzsE2nPuhPQwrtHDuOPzudPE8gnZ1dijBn7pYpdrFw
-         iTsA==
+        d=gmail.com; s=20230601; t=1700140468; x=1700745268; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3EV2x8sNIePE4OMEQeslKV0/7KlyOI4zsqd0GErjPWY=;
+        b=h/+/7PBp6ovXQ5tb6UASbJJVWVmr0unisGsEYfIeYFXHeoegylepUDB4q4gvGm21y7
+         jISJ+ncFmvNJV3faF0S5UeTA/SW5TtpVlyOQvltDM6o/+qTfzbFrmV4SapK37dVoa5pm
+         3mkuJoRLzlIy/IQPrFtP5272WrA/wRi8/V3aN2E6Kjs8W28lLLCmkpuj61UK628n8HEG
+         U27QeXLUMQ7O3aPLZtHq9gJoMdej3kW3cNz2hXO5lbUNfo6WRstQVERtoo7Eki4UQ/M/
+         3Ompy2zDN9KEKau7wJKZl7vCaz8KlI1A+udr4E4lksRx0GWKGq380Hy9aAKHZOz+SfMC
+         jSyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700140404; x=1700745204;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Fnxhr1dk/vfohyQfMfgOpH3tTQBBu2nuppfYXXpJ6wA=;
-        b=ZIbfSl+NEZiNWxeAXSKY+dO8FhzP4mjvtA52NKCrX2W+duKXeMasxxc+LsZKZtqA6G
-         Z8BC9SRTEpDXMm+UNmYSAXzbNS84gd5OBl0sXdtWrcPFPOX9IX8wCGIW+tRDgk67hu/i
-         Xr+B6gfK0DUI4cFmw9FTW24iHRGBtOdpjPjfXHJZnzPtDAHVYCFQs2Cn9bKv4YmDP8vS
-         w7RHaqVf8D5YFRjqwpV3xPTtcqDXWkjpmDJf8+zT2/uj1kZfZ9Mogta6J5jcXdUL+atq
-         ZDeYyS0mDCfeT3Y3KTJqp0yiuTktdV9EdIZWpG5khmiZzY8MnRT5YLdelfCKnol5TNzb
-         YjYg==
-X-Gm-Message-State: AOJu0Yx6Th+dAYXJVCpRTl0khh0HSNJrlaxrxMVd5lwInXNE2YUQf4B6
-	ff0TNtvcK7/f5N6YKx/bmMs=
-X-Google-Smtp-Source: AGHT+IEl2Xlwo1h4vrkBr9Yyi0WKoUvKYSm60dyFK8pkJfjBaHrRZa6CGJkO4HvqqcrARMGr96+9Yg==
-X-Received: by 2002:a17:907:75d7:b0:9b2:be5e:3674 with SMTP id jl23-20020a17090775d700b009b2be5e3674mr1401307ejc.36.1700140403737;
-        Thu, 16 Nov 2023 05:13:23 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id u10-20020a170906408a00b009e5d30422ebsm8412710ejj.101.2023.11.16.05.13.22
+        d=1e100.net; s=20230601; t=1700140468; x=1700745268;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3EV2x8sNIePE4OMEQeslKV0/7KlyOI4zsqd0GErjPWY=;
+        b=wK7SaBEd3IKovp1HfhDMg4yjmvWvI2dGEaDn7IzTaQOoJFqSO+m2Lp6S/YdZaEXlv2
+         8jyrXiO2Y9m1zqVIlQzLyA1gSRejtbjz+UkNpx/TFB+a79WAti+LNppxOCXr9LaD0dYo
+         0HBGVxq8l44o/p89aAHlp6UbmA+V4TEjn7kQE+sNH+LlVSFCa1DfcK5DaMO6ChpkMnm7
+         XMpNiW6fSXdtml0mZ2y7t3TSqvc1dIl/qK3BJq8jA5REn2uGGUiwPEiAmkj7vpMb1RBd
+         3hp8+H4RsKG1g1PHGMaPyS76TfXUofTvwY8je29eq+BpHhDy5uFJPI/co6XCwqvvuhz4
+         gAzg==
+X-Gm-Message-State: AOJu0YwEuza+BQYBC6SBoPUMCJT+2LlwTR8tqsfNTQO5cinUwBvp19s8
+	N+wOoiCSp53aO52UZH2kia4PNa16h8zyPCpO
+X-Google-Smtp-Source: AGHT+IEbi1zP354LWGJe1WQvgZ9VU2GyW4rh37etIuIodA171tXdE8H2BOsNzOLp93wY88/X2ybk5Q==
+X-Received: by 2002:a05:6a20:daa0:b0:186:bd68:fa95 with SMTP id iy32-20020a056a20daa000b00186bd68fa95mr12835516pzb.22.1700140465723;
+        Thu, 16 Nov 2023 05:14:25 -0800 (PST)
+Received: from dawn-virtual-machine.localdomain ([183.198.111.40])
+        by smtp.gmail.com with ESMTPSA id o18-20020a056a001b5200b006b2e07a6235sm4440540pfv.136.2023.11.16.05.14.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 05:13:23 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	linux-pm@vger.kernel.org,
+        Thu, 16 Nov 2023 05:14:25 -0800 (PST)
+From: Li peiyu <579lpy@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: thermal: convert Mediatek Thermal to the json-schema
-Date: Thu, 16 Nov 2023 14:13:16 +0100
-Message-Id: <20231116131316.5897-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH [2/2]] dt-bindings: iio: humidity: Add TI HDC302x support
+Date: Thu, 16 Nov 2023 21:14:07 +0800
+Message-Id: <20231116131407.13860-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231116125433.13285-1-579lpy@gmail.com>
+References: <20231116125433.13285-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+temperature sensors.
 
-This helps validating DTS files.
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Li peiyu <579lpy@gmail.com>
 ---
-V2: Add "maintainers"
+ .../bindings/iio/humidity/ti,hdc3020.yaml     | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
 
- .../bindings/thermal/mediatek-thermal.txt     |  52 ---------
- .../bindings/thermal/mediatek-thermal.yaml    | 101 ++++++++++++++++++
- 2 files changed, 101 insertions(+), 52 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
- create mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal.yaml
-
-diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-deleted file mode 100644
-index ac39c7156fde..000000000000
---- a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--* Mediatek Thermal
--
--This describes the device tree binding for the Mediatek thermal controller
--which measures the on-SoC temperatures. This device does not have its own ADC,
--instead it directly controls the AUXADC via AHB bus accesses. For this reason
--this device needs phandles to the AUXADC. Also it controls a mux in the
--apmixedsys register space via AHB bus accesses, so a phandle to the APMIXEDSYS
--is also needed.
--
--Required properties:
--- compatible:
--  - "mediatek,mt8173-thermal" : For MT8173 family of SoCs
--  - "mediatek,mt2701-thermal" : For MT2701 family of SoCs
--  - "mediatek,mt2712-thermal" : For MT2712 family of SoCs
--  - "mediatek,mt7622-thermal" : For MT7622 SoC
--  - "mediatek,mt7981-thermal", "mediatek,mt7986-thermal" : For MT7981 SoC
--  - "mediatek,mt7986-thermal" : For MT7986 SoC
--  - "mediatek,mt8183-thermal" : For MT8183 family of SoCs
--  - "mediatek,mt8365-thermal" : For MT8365 family of SoCs
--  - "mediatek,mt8516-thermal", "mediatek,mt2701-thermal : For MT8516 family of SoCs
--- reg: Address range of the thermal controller
--- interrupts: IRQ for the thermal controller
--- clocks, clock-names: Clocks needed for the thermal controller. required
--                       clocks are:
--		       "therm":	 Main clock needed for register access
--		       "auxadc": The AUXADC clock
--- mediatek,auxadc: A phandle to the AUXADC which the thermal controller uses
--- mediatek,apmixedsys: A phandle to the APMIXEDSYS controller.
--- #thermal-sensor-cells : Should be 0. See Documentation/devicetree/bindings/thermal/thermal-sensor.yaml for a description.
--
--Optional properties:
--- resets: Reference to the reset controller controlling the thermal controller.
--- nvmem-cells: A phandle to the calibration data provided by a nvmem device. If
--               unspecified default values shall be used.
--- nvmem-cell-names: Should be "calibration-data"
--
--Example:
--
--	thermal: thermal@1100b000 {
--		#thermal-sensor-cells = <1>;
--		compatible = "mediatek,mt8173-thermal";
--		reg = <0 0x1100b000 0 0x1000>;
--		interrupts = <0 70 IRQ_TYPE_LEVEL_LOW>;
--		clocks = <&pericfg CLK_PERI_THERM>, <&pericfg CLK_PERI_AUXADC>;
--		clock-names = "therm", "auxadc";
--		resets = <&pericfg MT8173_PERI_THERM_SW_RST>;
--		reset-names = "therm";
--		mediatek,auxadc = <&auxadc>;
--		mediatek,apmixedsys = <&apmixedsys>;
--		nvmem-cells = <&thermal_calibration_data>;
--		nvmem-cell-names = "calibration-data";
--	};
-diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek-thermal.yaml
+diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
 new file mode 100644
-index 000000000000..faeb4d6c6dd4
+index 000000000000..8015c4bb5b2f
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/thermal/mediatek-thermal.yaml#
++$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Mediatek Thermal
++title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
 +
 +maintainers:
-+  - Sascha Hauer <s.hauer@pengutronix.de>
++  - Jonathan Cameron <jic23@kernel.org>
 +
-+description: >
-+  This describes the device tree binding for the Mediatek thermal controller
-+  which measures the on-SoC temperatures. This device does not have its own ADC,
-+  instead it directly controls the AUXADC via AHB bus accesses. For this reason
-+  this device needs phandles to the AUXADC. Also it controls a mux in the
-+  apmixedsys register space via AHB bus accesses, so a phandle to the APMIXEDSYS
-+  is also needed.
++description: |
++  The HDC302x is an integrated capacitive based relative humidity (RH)
++  and temperature sensor.
 +
-+allOf:
-+  - $ref: thermal-sensor.yaml#
++  datasheet is available:
++    https://www.ti.com/lit/ds/symlink/hdc3020.pdf
 +
 +properties:
 +  compatible:
 +    enum:
-+      - mediatek,mt2701-thermal
-+      - mediatek,mt2712-thermal
-+      - mediatek,mt7622-thermal
-+      - mediatek,mt7981-thermal
-+      - mediatek,mt7986-thermal
-+      - mediatek,mt8173-thermal
-+      - mediatek,mt8183-thermal
-+      - mediatek,mt8365-thermal
-+      - mediatek,mt8516-thermal
-+
-+  reg:
-+    maxItems: 1
++      - ti,hdc3020
++      - ti,hdc3021
++      - ti,hdc3022
 +
 +  interrupts:
 +    maxItems: 1
 +
-+  clocks:
-+    items:
-+      - description: Main clock needed for register access
-+      - description: The AUXADC clock
-+
-+  clock-names:
-+    items:
-+      - const: therm
-+      - const: auxadc
-+
-+  mediatek,auxadc:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle to the AUXADC which the thermal controller uses
-+
-+  mediatek,apmixedsys:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle to the APMIXEDSYS controller
-+
-+  resets: Reference to the reset controller controlling the thermal controller.
-+
-+  nvmem-cells:
-+    items:
-+      - description: >
-+          NVMEM cell with EEPROMA phandle to the calibration data provided by an
-+          NVMEM device. If unspecified default values shall be used.
-+
-+  nvmem-cell-names:
-+    items:
-+      - const: calibration-data
-+
-+unevaluatedProperties: false
++  reg:
++    maxItems: 1
 +
 +required:
++  - compatible
 +  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - mediatek,auxadc
-+  - mediatek,apmixedsys
++
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/mt8173-clk.h>
-+    #include <dt-bindings/reset/mt8173-resets.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+    thermal@1100b000 {
-+        compatible = "mediatek,mt8173-thermal";
-+        reg = <0x1100b000 0x1000>;
-+        interrupts = <0 70 IRQ_TYPE_LEVEL_LOW>;
-+        clocks = <&pericfg CLK_PERI_THERM>, <&pericfg CLK_PERI_AUXADC>;
-+        clock-names = "therm", "auxadc";
-+        resets = <&pericfg MT8173_PERI_THERM_SW_RST>;
-+        reset-names = "therm";
-+        mediatek,auxadc = <&auxadc>;
-+        mediatek,apmixedsys = <&apmixedsys>;
-+        nvmem-cells = <&thermal_calibration_data>;
-+        nvmem-cell-names = "calibration-data";
-+        #thermal-sensor-cells = <1>;
++        humidity@47 {
++            compatible = "ti,hdc3020";
++            reg = <0x47>;
++        };
 +    };
 -- 
-2.35.3
+2.34.1
 
 
