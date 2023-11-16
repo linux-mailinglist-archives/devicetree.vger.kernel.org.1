@@ -1,105 +1,251 @@
-Return-Path: <devicetree+bounces-16111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C750A7ED8B0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:51:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD87E7ED8C1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:57:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ECAE1F22CF6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:51:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82312280E4C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF2D7E;
-	Thu, 16 Nov 2023 00:51:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EDptMfqE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59AF0392;
+	Thu, 16 Nov 2023 00:57:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C4C01B9;
-	Wed, 15 Nov 2023 16:51:36 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 99697B9A;
-	Thu, 16 Nov 2023 01:51:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1700095868;
-	bh=18xXfXfw+tBl0xHCFm3jGrfNhRXP3Rv8yr93gRiQOkg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EDptMfqEsX+ghwRRlb6ihCUitYmpgij7FW5JBZjiU6pVDw20fKVzzuNyQeEzZMQWf
-	 b14MmvoDtbjd+x8cWB78ZbxSgvmWBAcxBld64GMs11Q8mjAucfdSLQE5jicpeTueJZ
-	 XH+awjkdPx0Z+oueccl59BgpJnACFgJprXOSZz7I=
-Date: Thu, 16 Nov 2023 02:51:40 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Mehdi Djait <mehdi.djait@bootlin.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	paul.kocialkowski@bootlin.com, dafna@fastmail.com,
-	helen.koike@collabora.com, heiko@sntech.de,
-	paul.elder@ideasonboard.com
-Subject: Re: [PATCH] media: dt-bindings: media: rkisp1: Fix the port
- description for the parallel interface
-Message-ID: <20231116005140.GB21041@pendragon.ideasonboard.com>
-References: <20231115164407.99876-1-mehdi.djait@bootlin.com>
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFAC6194;
+	Wed, 15 Nov 2023 16:57:25 -0800 (PST)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AG0uiMi006003;
+	Wed, 15 Nov 2023 19:57:05 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3uaqmk0xre-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Nov 2023 19:57:04 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3AG0v31H031913
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 15 Nov 2023 19:57:03 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 15 Nov 2023 19:57:02 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 15 Nov 2023 19:57:02 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 15 Nov 2023 19:57:02 -0500
+Received: from KPALLER2-L02.ad.analog.com (KPALLER2-L02.ad.analog.com [10.117.220.22])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3AG0un02012837;
+	Wed, 15 Nov 2023 19:56:51 -0500
+From: Kim Seer Paller <kimseer.paller@analog.com>
+To: 
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Kim
+ Seer Paller" <kimseer.paller@analog.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] dt-bindings: iio: frequency: add admfm2000
+Date: Thu, 16 Nov 2023 08:56:42 +0800
+Message-ID: <20231116005643.245314-1-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231115164407.99876-1-mehdi.djait@bootlin.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: MXEbBJLSvpRIMrRLAFdEeS146aq_852f
+X-Proofpoint-ORIG-GUID: MXEbBJLSvpRIMrRLAFdEeS146aq_852f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-15_20,2023-11-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ malwarescore=0 bulkscore=0 lowpriorityscore=0 clxscore=1011 spamscore=0
+ priorityscore=1501 mlxlogscore=999 mlxscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311060001 definitions=main-2311160006
 
-Hi Mehdi,
+Dual microwave down converter module with input RF and LO frequency
+ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+for each down conversion path.
 
-Thank you for the patch.
+Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+---
+ .../bindings/iio/frequency/adi,admfm2000.yaml | 128 ++++++++++++++++++
+ MAINTAINERS                                   |   7 +
+ 2 files changed, 135 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
 
-On Wed, Nov 15, 2023 at 05:44:07PM +0100, Mehdi Djait wrote:
-> The bus-type belongs to the endpoint's properties and should therefore
-> be moved.
-> 
-> Fixes: 6a0eaa25bf36 ("media: dt-bindings: media: rkisp1: Add port for parallel interface")
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+new file mode 100644
+index 000000000..7ea5ede7b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/adi,admfm2000.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ADMFM2000 Dual Microwave Down Converter
++
++maintainers:
++  - Kim Seer Paller <kimseer.paller@analog.com>
++
++description: |
++    Dual microwave down converter module with input RF and LO frequency ranges
++    from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
++    It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each down
++    conversion path.
++
++properties:
++  compatible:
++    enum:
++      - adi,admfm2000
++
++  switch1-gpios:
++    description:
++      Must contain an array of 2 GPIO specifiers, referring to the GPIO pins
++      connected to the channel 1 switch controls.
++    minItems: 2
++    maxItems: 2
++
++  switch2-gpios:
++    description:
++      Must contain an array of 2 GPIO specifiers, referring to the GPIO pins
++      connected to the channel 2 switch controls.
++    minItems: 2
++    maxItems: 2
++
++  attenuation1-gpios:
++    description:
++      Must contain an array of 5 GPIO specifiers, referring to the GPIO pins
++      connected to the channel 1 DSA attenuation controls.
++    minItems: 5
++    maxItems: 5
++
++  attenuation2-gpios:
++    description:
++      Must contain an array of 5 GPIO specifiers, referring to the GPIO pins
++      connected to the channel 2 DSA attenuation controls.
++    minItems: 5
++    maxItems: 5
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  "^channel@[0-1]$":
++    type: object
++    description: Represents a channel of the device.
++
++    properties:
++      reg:
++        description:
++          The channel number.
++        minimum: 0
++        maximum: 1
++
++      adi,mode:
++        description:
++          RF path selected for the channel.
++            0 - Direct IF mode
++            1 - Mixer mode
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1]
++
++    required:
++      - reg
++      - adi,mode
++
++required:
++  - compatible
++  - switch1-gpios
++  - switch2-gpios
++  - attenuation1-gpios
++  - attenuation2-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    admfm2000 {
++      compatible = "adi,admfm2000";
++
++      switch1-gpios = <&gpio 1 GPIO_ACTIVE_LOW>,
++        <&gpio 2 GPIO_ACTIVE_HIGH>;
++
++      switch2-gpios = <&gpio 3 GPIO_ACTIVE_LOW>,
++        <&gpio 4 GPIO_ACTIVE_HIGH>;
++
++      attenuation1-gpios = <&gpio 17 GPIO_ACTIVE_LOW>,
++        <&gpio 22 GPIO_ACTIVE_LOW>,
++        <&gpio 23 GPIO_ACTIVE_LOW>,
++        <&gpio 24 GPIO_ACTIVE_LOW>,
++        <&gpio 25 GPIO_ACTIVE_LOW>;
++
++      attenuation2-gpios = <&gpio 0 GPIO_ACTIVE_LOW>,
++        <&gpio 5 GPIO_ACTIVE_LOW>,
++        <&gpio 6 GPIO_ACTIVE_LOW>,
++        <&gpio 16 GPIO_ACTIVE_LOW>,
++        <&gpio 26 GPIO_ACTIVE_LOW>;
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      channel@0 {
++        reg = <0>;
++        adi,mode = <1>;
++      };
++
++      channel@1 {
++        reg = <1>;
++        adi,mode = <1>;
++      };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5c9f868e1..505eb57eb 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1247,6 +1247,13 @@ W:	https://ez.analog.com/linux-software-drivers
+ F:	Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
+ F:	drivers/hwmon/adm1177.c
+ 
++ANALOG DEVICES INC ADMFM2000 DRIVER
++M:	Kim Seer Paller <kimseer.paller@analog.com>
++L:	linux-iio@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
++
+ ANALOG DEVICES INC ADMV1013 DRIVER
+ M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+ L:	linux-iio@vger.kernel.org
 
-Good catch.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  .../devicetree/bindings/media/rockchip-isp1.yaml      | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> index e466dff8286d..afcaa427d48b 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> @@ -90,15 +90,16 @@ properties:
->          description: connection point for input on the parallel interface
->  
->          properties:
-> -          bus-type:
-> -            enum: [5, 6]
-> -
->            endpoint:
->              $ref: video-interfaces.yaml#
->              unevaluatedProperties: false
->  
-> -        required:
-> -          - bus-type
-> +            properties:
-> +              bus-type:
-> +                enum: [5, 6]
-> +
-> +            required:
-> +              - bus-type
->  
->      anyOf:
->        - required:
-
+base-commit: c42d9eeef8e5ba9292eda36fd8e3c11f35ee065c
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
