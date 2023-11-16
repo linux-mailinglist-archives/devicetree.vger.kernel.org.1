@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-16229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A827EE10B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:06:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B8737EE114
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB5DC28101C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:06:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C9DA1C20832
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:08:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC3F3035D;
-	Thu, 16 Nov 2023 13:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9C130645;
+	Thu, 16 Nov 2023 13:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EX0IGAZV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZbvjrwRB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3577181;
-	Thu, 16 Nov 2023 05:06:24 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-507bd64814fso1106539e87.1;
-        Thu, 16 Nov 2023 05:06:24 -0800 (PST)
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE457181
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:08:24 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9d2e7726d5bso106814366b.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:08:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700139983; x=1700744783; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1700140103; x=1700744903; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=q+bT5UY6cWuA1dImr/AZqypgBJe+23IFM6ce79AcpQ4=;
-        b=EX0IGAZVviremp1JOJVb7SlSBXhb8Jb1F8OKl64l+tA+C9ZIapYJsjJ3Zatb4+kOHA
-         RjyKe8VGDTtiObZDQ7unII49phFdEycnG2xMx6jaS6mYYS7yfYJ+HYpHO+G+Rx5w3VSi
-         vFB+FUjZbm5BvGFwQsSu81fy0UpqscjNZ81il8CQyuUkmt0/2629uw6iM2U/8jwjZg/6
-         Zy/ug2Lo7Jt9lh+JLHo7OEszwfzaKtZsVfiTIRblJObMSZ5BdVoLRzrnaPxHcBRuxHiu
-         BfjL1mosrl4jW8B1Zl1WU2dqVYuGycJD3XxCQi7aAlrBlGO7u4WdwDtNgto18WzV+lTU
-         s0vQ==
+        bh=ewa/RO/c2nNV9BqZXYhhMq1WyzGVfFe1cICq2jP+i3Q=;
+        b=ZbvjrwRBs2JfdPAF2hiKaSV5La0hA5EQDtTETtRcdod5KXAYNEXWXCPKKvP8rCk3Zb
+         JXFbEOqCXc/LDDOKpNv0kiFs1KDNiJrUNkfaNmt2eruZNKY9u6JEoI/EpozqtBm09akV
+         kD6Kt6TkKTltDYyYvUJxBcd6IjfmK2ciqLR+r96klg6m/7H5972kFugcOgv83FnwY9Oz
+         GrpWnYdYTagV0O3lmM0nJu5TM0Dfhp5OoJ11Cq1/O6eFB+Qr9zY/IYBaAz8OQjPfyPgr
+         cNPKM64BhOvIQTaC8zG5PI/BXx6nHCkxv7q29yuTsaAdUSrsVLBHDXZON5t2LSlA6GPV
+         glqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700139983; x=1700744783;
+        d=1e100.net; s=20230601; t=1700140103; x=1700744903;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=q+bT5UY6cWuA1dImr/AZqypgBJe+23IFM6ce79AcpQ4=;
-        b=bVxorbdnu8ycIYGYBVnSbGtZzHaYnpeSi4iQwcm2BH+cC5hQcUjm8KjimgiPhwglyP
-         KIyhImaLCNrpqsdNZ5AvbVOub7Kk+Us51KXWjsss57qQQkGvymKopR6JNmjOCliCBGnH
-         6ClimLuTPoZwLFOh+56uejZN+J9RFa8pkhx8oMUG+MzOkDH5ERozMQ8Fqb2LdrMCPWdA
-         exSSSeN2RBOcZ8I1tj+k48rPkmdEzMtjwACcd8kYwZQAxKt5XlT0PtDjipOKEoUbayCo
-         pClkxOFk+e4sfP73ZsgUdrQutT/Yn8kr4Rhgb+jihJhA2KNVYm0KC89OOIPvMpApJNLq
-         LBGw==
-X-Gm-Message-State: AOJu0YzW7qxGwuA37AwbdJDq6zdAYSNAzv9wcUxRFBcRAd6uTD6GKH2S
-	Lq1oZqhL+pR1LVRwyiTqHZA=
-X-Google-Smtp-Source: AGHT+IHml2gWvGcbtSH+yXUOO/F6HNXIl1dwjEC+PLCMLnlfBI2ejluNYcga9rM/1ggt2YHYzxyi8g==
-X-Received: by 2002:a05:6512:e99:b0:507:ab6b:31ef with SMTP id bi25-20020a0565120e9900b00507ab6b31efmr2206843lfb.41.1700139982669;
-        Thu, 16 Nov 2023 05:06:22 -0800 (PST)
+        bh=ewa/RO/c2nNV9BqZXYhhMq1WyzGVfFe1cICq2jP+i3Q=;
+        b=Z5vKsH7FNb8iwA0BqHbOcQY+NNas08s1pLwcfeyB0MjdXuQRlzok/eQnZfWEBvQnBU
+         HdXtHQJv/95Q69qQZ/0L1AzDBv6JAX5Pwf1n7HACdFjkKGhvMW/mKGPkTgm1WZOjVCd/
+         SJzxKeCAPYn3fVYKC4oH5lf9fQ/X9v5eQadVoIB5gxDB74iAsmsdrv0y6kZw4MjXEpWu
+         PZchoijpBUPcjeOFBrwKUOPmkt6RRibO6wuxj+08N3zp6ecVbpn3degy5JWsysx0kXnK
+         nG1Amvoyl7qrRZcUjiU4kdmA7uOb71ycKwIQ7uaUpfoIt6RmnB0Se4mLv1F8doWh4O/7
+         zasg==
+X-Gm-Message-State: AOJu0YxiuifvUPnMcXX8+i34vjFrHFdz5SuBzPZy9I+q2GqGk/t+GpPs
+	Y5D+EfeAJkxTWBE5nLYSJYq5rtxBYZw=
+X-Google-Smtp-Source: AGHT+IHVuYL+1VlYakZtvkRco8laP3tpnuEfUx0y1nDVLHShdfNJc8z8ihZGXgeJGqFKdg+MjA7dCQ==
+X-Received: by 2002:a17:906:774a:b0:9e6:da40:50e4 with SMTP id o10-20020a170906774a00b009e6da4050e4mr13395959ejn.7.1700140102989;
+        Thu, 16 Nov 2023 05:08:22 -0800 (PST)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id v22-20020aa7d816000000b00533e915923asm7651138edq.49.2023.11.16.05.06.21
+        by smtp.gmail.com with ESMTPSA id a3-20020a1709065f8300b009e505954becsm8375833eju.107.2023.11.16.05.08.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 05:06:22 -0800 (PST)
+        Thu, 16 Nov 2023 05:08:22 -0800 (PST)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S . Miller" <davem@davemloft.net>,
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Antoine Tenart <atenart@kernel.org>,
-	linux-crypto@vger.kernel.org,
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Frank Wunderlich <frank-w@public-files.de>,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: crypto: convert Inside Secure SafeXcel to the json-schema
-Date: Thu, 16 Nov 2023 14:06:20 +0100
-Message-Id: <20231116130620.4787-1-zajec5@gmail.com>
+Subject: [PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan node
+Date: Thu, 16 Nov 2023 14:08:16 +0100
+Message-Id: <20231116130816.4932-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -77,153 +79,30 @@ Content-Transfer-Encoding: 8bit
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-This helps validating DTS files.
+This fixes typo and resolves following validation error:
+arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pwm-fan: pwms: [[54, 0, 10000], [0]] is too long
+        from schema $id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
 
-Cc: Antoine Tenart <atenart@kernel.org>
+Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
+Cc: Daniel Golle <daniel@makrotopia.org>
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- .../crypto/inside-secure-safexcel.txt         | 40 ---------
- .../crypto/inside-secure-safexcel.yaml        | 84 +++++++++++++++++++
- 2 files changed, 84 insertions(+), 40 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt
- create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure-safexcel.yaml
+ arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt b/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt
-deleted file mode 100644
-index 3bbf144c9988..000000000000
---- a/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.txt
-+++ /dev/null
-@@ -1,40 +0,0 @@
--Inside Secure SafeXcel cryptographic engine
--
--Required properties:
--- compatible: Should be "inside-secure,safexcel-eip197b",
--	      "inside-secure,safexcel-eip197d" or
--              "inside-secure,safexcel-eip97ies".
--- reg: Base physical address of the engine and length of memory mapped region.
--- interrupts: Interrupt numbers for the rings and engine.
--- interrupt-names: Should be "ring0", "ring1", "ring2", "ring3", "eip", "mem".
--
--Optional properties:
--- clocks: Reference to the crypto engine clocks, the second clock is
--          needed for the Armada 7K/8K SoCs.
--- clock-names: mandatory if there is a second clock, in this case the
--               name must be "core" for the first clock and "reg" for
--               the second one.
--
--Backward compatibility:
--Two compatibles are kept for backward compatibility, but shouldn't be used for
--new submissions:
--- "inside-secure,safexcel-eip197" is equivalent to
--  "inside-secure,safexcel-eip197b".
--- "inside-secure,safexcel-eip97" is equivalent to
--  "inside-secure,safexcel-eip97ies".
--
--Example:
--
--	crypto: crypto@800000 {
--		compatible = "inside-secure,safexcel-eip197b";
--		reg = <0x800000 0x200000>;
--		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
--			     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "mem", "ring0", "ring1", "ring2", "ring3",
--				  "eip";
--		clocks = <&cpm_syscon0 1 26>;
--	};
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.yaml b/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.yaml
-new file mode 100644
-index 000000000000..4dfd5ddd90bb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/inside-secure-safexcel.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/inside-secure-safexcel.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Inside Secure SafeXcel cryptographic engine
-+
-+maintainers:
-+  - Antoine Tenart <atenart@kernel.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: inside-secure,safexcel-eip197b
-+      - const: inside-secure,safexcel-eip197d
-+      - const: inside-secure,safexcel-eip97ies
-+      - const: inside-secure,safexcel-eip197
-+        description: Equivalent of inside-secure,safexcel-eip197b
-+        deprecated: true
-+      - const: inside-secure,safexcel-eip97
-+        description: Equivalent of inside-secure,safexcel-eip97ies
-+        deprecated: true
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 6
-+    maxItems: 6
-+
-+  interrupt-names:
-+    items:
-+      - const: ring0
-+      - const: ring1
-+      - const: ring2
-+      - const: ring3
-+      - const: eip
-+      - const: mem
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: core
-+      - const: reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        clocks:
-+          minItems: 2
-+    then:
-+      required:
-+        - clock-names
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    crypto@800000 {
-+        compatible = "inside-secure,safexcel-eip197b";
-+        reg = <0x800000 0x200000>;
-+        interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "ring0", "ring1", "ring2", "ring3", "eip", "mem";
-+        clocks = <&cpm_syscon0 1 26>;
-+        clock-names = "core";
-+    };
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+index af4a4309bda4..ba65e3e72bf6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+@@ -43,7 +43,7 @@ fan: pwm-fan {
+ 		#cooling-cells = <2>;
+ 		/* cooling level (0, 1, 2) - pwm inverted */
+ 		cooling-levels = <255 96 0>;
+-		pwms = <&pwm 0 10000 0>;
++		pwms = <&pwm 0 10000>;
+ 		status = "okay";
+ 	};
+ 
 -- 
 2.35.3
 
