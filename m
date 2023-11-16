@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077BC7EE849
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 21:25:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79657EE84B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 21:25:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3858E1C20836
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:25:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68DF928104B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D88647162;
-	Thu, 16 Nov 2023 20:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7C343AD8;
+	Thu, 16 Nov 2023 20:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MUnrpzp9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kI0GtYyL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD46D55
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:25:17 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-3b566ee5f1dso742340b6e.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:25:17 -0800 (PST)
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF0C1A7
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:25:52 -0800 (PST)
+Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-778a92c06d6so70511385a.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:25:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700166316; x=1700771116; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700166351; x=1700771151; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UcNBnGJB40dtZqLIC5fFsXSJbvtWbqeXkPg9KjlNVlg=;
-        b=MUnrpzp9lXvF+hKLZNN7H6j0bWZOOjSuVLq7jcD5pEQ0bofpBtM74tDge5awYkV4U4
-         Sn+v1agnncqsskLarNsmeOyGuRMdqXN210K+DhkwdcStygsAf77w9aTo+wu0kweyAPPz
-         OgIaAA9unnbbmC9nA3y7rv6LOqOHaftODQL/6cxFzP92VHlClVoabkY8+brik6w6pan0
-         JP/P/RTNQNKX35nCPQKfSWirO1owSG5OMDsMu9cbfwLy6/vRE0Qa80kvzMBpvlD5qAHP
-         NgKHAqADLtfYHBzyi8QL137CDUSZyPzS9dSSyWMBXo3/2OtARoLU0Hw6FVtEdAurKwyM
-         QL9A==
+        bh=Ftw8OKM8jyV6wgLm4ISZDKT4DP+MTpHnPMcabpyZU+U=;
+        b=kI0GtYyLNkLJOYQIK9hLO+mzwgfepQm5GfFaLipMlXY6/SWGurgYqSvsUvaqvDyL2L
+         F5EEwHBDuTEaFb3lY7nLgihyP9ek/aIAzjsIskKuQE20TBuli1J/BKe8a0Vux+WPhX5P
+         eWEMPlcmGvhh0BILfrQNpbaZsfJJhp7uQMIhvHoktl3qWUXPfCNwYT/7tkLP/9Xd9JwL
+         iRXkopFqNeReR4Axe+qfl5AbjeZWsh3TVLDtE51OR/kYQFDYPF6Qn2gMCDLG5laFaafm
+         QdylywVMF1TwCIMat9kI4cI8KbSa3QTfWsy55aiCuZt6sgn+J/7UGLuxbA9Ux3p1k5RA
+         0PjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700166316; x=1700771116;
+        d=1e100.net; s=20230601; t=1700166351; x=1700771151;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UcNBnGJB40dtZqLIC5fFsXSJbvtWbqeXkPg9KjlNVlg=;
-        b=A/uEqt+D/6EbejbssCQKMEotFjq1RnQNMph/N7j3SAsfAlH0yjWa4/AIHb1/UjS5Aj
-         UBRahKznV3Uu0HtPQGSTJrVHr+tmZg4T0zsoZtATSNBSWnzTRPVbQZcQE7w4lM2MSrwm
-         zApFD15f+1Y1TpiDNFdhBijIm9fm/3cOqjPBtwFspEOQ8qqOht+pTTp3DELrovhGjeD7
-         90ZHTts1LO3HFvXfgo2iJkCAKHxpXRXffhii3A+orbypY2zyqKr8hrYr3XYNM/FMrNUt
-         YWiRWWOfRqLa2ajCKdePknYy+ihfCKFB+1sYIm1cCkBChr7fIQIoUVHZXpxI2VmGWPH2
-         0x2w==
-X-Gm-Message-State: AOJu0YzKxveXoaPtHeILC9gZ16Oan7nVAhqC0lu0snInHPofnqoxlCeP
-	q//NqVpE5vMoRo212eWZRq+AUw==
-X-Google-Smtp-Source: AGHT+IEptDLuiRXsLaoS1Vu8ochSLgZ8DrOKC7ayAfv2GChtvhM5v9hxn9HWjiDN3DvwjstMGfgyKA==
-X-Received: by 2002:a05:6358:6f82:b0:16b:c58a:ce8 with SMTP id s2-20020a0563586f8200b0016bc58a0ce8mr11823560rwn.10.1700166316603;
-        Thu, 16 Nov 2023 12:25:16 -0800 (PST)
+        bh=Ftw8OKM8jyV6wgLm4ISZDKT4DP+MTpHnPMcabpyZU+U=;
+        b=H5Ibba/11C0epliGhCR5ggrls4+roGNImuQbnXLrbKpB8mLUdZi4m5j5mjBfLwI1j8
+         EhtaPly8NSWlX93i5X4VSL2egSDxP8Vw1Xv3zLgucFNDTApaPcRVYXxYcuAIwXDr2wcL
+         uMKaeAlrBFTWvJBMDDv8rSKcDfloKHTmnmm29HQ33urQ+bEPBBPOWB0JXHxzFQrNUzBa
+         oKaVasxDWHBKq//mljcXbuu0pijSj46pfN652QvoojyjvVVAOglgorsIP8O/2wz5SeFK
+         a9FKns/yNPazYde6bE6hsIbmXA03lihVzEbP5SGZlRsZK1lE8POoQ4UFyWxIiVQ6kNiq
+         +Ylw==
+X-Gm-Message-State: AOJu0YzLT2XJ0fvX0+/w/kIzC4nQWkEYQ0vHLydJ76M1E/RlOjxBtzWw
+	KY7EQyZ6aYp93dNh8f3N4uWNlQ==
+X-Google-Smtp-Source: AGHT+IFZgRgJHjHqSPRblG/k/ByjAcOsouz1erMh7YXYb+Cp4Zsi5gQCczw6iOSLR5882xWb7rD+oQ==
+X-Received: by 2002:a05:6214:268f:b0:66d:fa0:ab2f with SMTP id gm15-20020a056214268f00b0066d0fa0ab2fmr12375291qvb.18.1700166351706;
+        Thu, 16 Nov 2023 12:25:51 -0800 (PST)
 Received: from [10.44.189.251] ([12.161.6.169])
-        by smtp.gmail.com with ESMTPSA id ee11-20020a0562140a4b00b0065d051fc445sm51695qvb.55.2023.11.16.12.25.15
+        by smtp.gmail.com with ESMTPSA id ee11-20020a0562140a4b00b0065d051fc445sm51695qvb.55.2023.11.16.12.25.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 12:25:16 -0800 (PST)
-Message-ID: <fdd84042-4140-407c-9dc5-d5a56d3d3292@linaro.org>
-Date: Thu, 16 Nov 2023 21:25:15 +0100
+        Thu, 16 Nov 2023 12:25:51 -0800 (PST)
+Message-ID: <bf1e2146-0322-45a7-abc6-945f5887f474@linaro.org>
+Date: Thu, 16 Nov 2023 21:25:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/6] dt-bindings: display: panel: Update NewVision
- NV3051D compatibles
+Subject: Re: [PATCH V3 6/6] dt-bindings: arm: rockchip: Add Powkiddy RK2023
 Content-Language: en-US
 To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
@@ -72,7 +71,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
  Chris Morgan <macromorgan@hotmail.com>
 References: <20231116001742.2340646-1-macroalpha82@gmail.com>
- <20231116001742.2340646-2-macroalpha82@gmail.com>
+ <20231116001742.2340646-7-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,27 +117,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231116001742.2340646-2-macroalpha82@gmail.com>
+In-Reply-To: <20231116001742.2340646-7-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 16/11/2023 01:17, Chris Morgan wrote:
 > From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Update the NewVision NV3051D compatible strings by adding a new panel,
-> the powkiddy,rk2023-panel, and removing another entry, the
-> anbernic,rg353v-panel.
-> 
-> The rk2023-panel is similar to the rg353p-panel but has slightly
-> different timings so it needs a new string.
-> 
-> The rg353v-panel is duplicate to the rg353p-panel, so remove it. No
-> current devices use it and changes to the driver mean it is no longer
-> valid as a compatible string.
+> Add support for the Powkiddy RK2023. The Powkiddy RK2023 is a handheld
+> gaming device with a 3.5 inch screen powered by the Rockchip RK3566
+> SoC. The device looks physically different from the Powkiddy RGB30,
+> but is functionally identical except for the panel.
 > 
 > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject prefix is wrong. It's:
+ARM: dts: rockchip:
 
 Best regards,
 Krzysztof
