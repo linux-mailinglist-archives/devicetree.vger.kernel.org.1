@@ -1,79 +1,55 @@
-Return-Path: <devicetree+bounces-16333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E45037EE4F3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:09:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083B47EE4F5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:09:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56A71280E85
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:09:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95ED4B20C68
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97523A8EB;
-	Thu, 16 Nov 2023 16:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XNJNgO4T"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B798D3A8E8;
+	Thu, 16 Nov 2023 16:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434C61A8;
-	Thu, 16 Nov 2023 08:09:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1700150967; x=1731686967;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4jAC/OAjhM3lZ3eKiniR3cDYGZlMg0wHRHqqAdytbUs=;
-  b=XNJNgO4TLZfgLzL+UBt5X30dErXMWbErtHUBGMNIn43Gb2VTCUPCQgHf
-   okQooLgxCzKWycOHupOiqc8ccPVIs4u6j+s4Y8fpEY0dOb0A/Ar1EojRi
-   lodZAO7lZ9yzohrUgrprIvwaU14PMbHOquAAgLrwl1BudwHXlhy7Sl89O
-   TGozdPzDyON7hWxR4lo/Qoykg7H8LLFTSb5BxB1q/9sIg9ypjeiPDKYeu
-   OZhCVqBF88kdkgUJgrxlVpJUEoRiSWjb0EDDGMhWRtzXqo1svNttlOrRk
-   SUu1ABpWU7JCj10yLbDfXJG8GDw6e/Uol9bu3c/8obQXfEkr4WK8FlkuX
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="4244382"
-X-IronPort-AV: E=Sophos;i="6.04,204,1695711600"; 
-   d="scan'208";a="4244382"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2023 08:09:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="758878380"
-X-IronPort-AV: E=Sophos;i="6.04,204,1695711600"; 
-   d="scan'208";a="758878380"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
-  by orsmga007.jf.intel.com with ESMTP; 16 Nov 2023 08:09:19 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1r3evd-0001rX-00;
-	Thu, 16 Nov 2023 16:09:17 +0000
-Date: Fri, 17 Nov 2023 00:08:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Luka Perkov <luka.perkov@sartura.hr>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v3 3/8] net: qualcomm: ipqess: introduce the
- Qualcomm IPQESS driver
-Message-ID: <202311162336.2BYtVL3Q-lkp@intel.com>
-References: <20231114105600.1012056-4-romain.gantois@bootlin.com>
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB8CC1AD;
+	Thu, 16 Nov 2023 08:09:38 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-581fb6f53fcso535528eaf.2;
+        Thu, 16 Nov 2023 08:09:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700150978; x=1700755778;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aOcig5yxgC/BK7paxQilGIUUqt33158KEtjyWWD9YNQ=;
+        b=SbMYWa7EOaB+G14I4UG3U/4T4YdhbcjMMsFLilC57W1ftQEvK4/LXgviXdl8PMuBPS
+         /kTpac5+dHIi6DrBqiiYCRu+hRApntFDkI13xrUmPLIME0gToHlFX2zSnkoOyH/ZXIhY
+         9uAA67b7ET+enjmcizY0MwCJb9VHzR+jvi/oIgIsmAdUMJ8kb9Udc9n0Bj9nfLIXCZf1
+         +Dmv4N92bSTRzPSjx6vrmBVi1JndUflsWhixEUnx2C3yZU7gCsFTO8pZqK+xZo5yUdB8
+         U9H5BrmEqt+Zz9wGg6erzQZ7nejfEScAu/ZBRF93o1Xyp4Rt9WhVpNw67U6Z0VY+S89x
+         qOQg==
+X-Gm-Message-State: AOJu0YzyaJWBnjXGrvyPAs+9cW8fckOGzix49+NiwOxyLX1LkcndlKXu
+	iLXM7VjeK4rfhi0tNF1dAw==
+X-Google-Smtp-Source: AGHT+IF+0KlzPHTSAYd8f0qoIp2VoeCx7YS9oDEEvzGxQfpBkJopgD5yuI9JsZg7rhEeaLCizK3xpA==
+X-Received: by 2002:a4a:9248:0:b0:57d:e76d:c206 with SMTP id g8-20020a4a9248000000b0057de76dc206mr16692489ooh.1.1700150978164;
+        Thu, 16 Nov 2023 08:09:38 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d8-20020a4aaa88000000b0058a133c3641sm611522oon.6.2023.11.16.08.09.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 08:09:37 -0800 (PST)
+Received: (nullmailer pid 2416819 invoked by uid 1000);
+	Thu, 16 Nov 2023 16:09:36 -0000
+Date: Thu, 16 Nov 2023 10:09:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Walker <danielwa@cisco.com>
+Cc: Will Deacon <will@kernel.org>, Christophe Leroy <christophe.leroy@csgroup.eu>, Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>, Andrew Morton <akpm@linux-foundation.org>, Pratyush Brahma <quic_pbrahma@quicinc.com>, Tomas Mudrunka <tomas.mudrunka@gmail.com>, Sean Anderson <sean.anderson@seco.com>, x86@kernel.org, linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, Frank Rowand <frowand.list@gmail.com>, xe-linux-external@cisco.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/8] of: replace command line handling
+Message-ID: <20231116160936.GA2376455-robh@kernel.org>
+References: <20231110013817.2378507-1-danielwa@cisco.com>
+ <20231110013817.2378507-8-danielwa@cisco.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,35 +58,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231114105600.1012056-4-romain.gantois@bootlin.com>
+In-Reply-To: <20231110013817.2378507-8-danielwa@cisco.com>
 
-Hi Romain,
+On Thu, Nov 09, 2023 at 05:38:11PM -0800, Daniel Walker wrote:
+> Rob Herring has complained about this section of code. I removed the
+> command line handling code to the cmdline.h header. This hopefully makes
+> it easier for Rob to maintain it (at least he doesn't have to look at it
+> directly anymore).
 
-kernel test robot noticed the following build warnings:
+Well, my goal is to eliminate drivers/of/, but no.
 
-[auto build test WARNING on net-next/main]
+> I would like to add a Kconfig option called
+> OF_DEPRECATED_CMDLINE which an architecture would set if it uses this code.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-net-Introduce-the-Qualcomm-IPQESS-Ethernet-switch/20231114-185953
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231114105600.1012056-4-romain.gantois%40bootlin.com
-patch subject: [PATCH net-next v3 3/8] net: qualcomm: ipqess: introduce the Qualcomm IPQESS driver
-config: i386-kismet-CONFIG_NET_DSA-CONFIG_QCOM_IPQ4019_ESS-0-0 (https://download.01.org/0day-ci/archive/20231116/202311162336.2BYtVL3Q-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20231116/202311162336.2BYtVL3Q-lkp@intel.com/reproduce)
+Which architecture needs this code? Do we wait and see who complains 
+their platform broke and then go set this option? In the meantime, new 
+platforms started depending on the new behavior and setting the option 
+may break them. So we can't have a kconfig option.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311162336.2BYtVL3Q-lkp@intel.com/
+> This would allow a platform to use the cmdline.h and the added function
+> directly and remove the Kconfig option. This change would be in a subsequent
+> patch.
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for NET_DSA when selected by QCOM_IPQ4019_ESS
-   
-   WARNING: unmet direct dependencies detected for NET_DSA
-     Depends on [n]: NET [=y] && (BRIDGE [=n] || BRIDGE [=n]=n) && (HSR [=n] || HSR [=n]=n) && INET [=n] && NETDEVICES [=y]
-     Selected by [y]:
-     - QCOM_IPQ4019_ESS [=y] && NETDEVICES [=y] && ETHERNET [=y] && NET_VENDOR_QUALCOMM [=y] && (OF [=n] && ARCH_QCOM || COMPILE_TEST [=y])
+Per platform code handling the cmdline is completely the wrong 
+direction. Per arch behavior is bad enough.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
