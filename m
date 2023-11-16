@@ -1,113 +1,140 @@
-Return-Path: <devicetree+bounces-16185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293997EDF25
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:05:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24FF47EDF4D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:14:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4F9CB20D8F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:05:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B029A1F2414E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE4402D7B7;
-	Thu, 16 Nov 2023 11:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6402DF73;
+	Thu, 16 Nov 2023 11:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="fpZ3lmp0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LJeIhkqj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E8D68;
-	Thu, 16 Nov 2023 03:04:58 -0800 (PST)
-X-UUID: f77b8122846f11ee8051498923ad61e6-20231116
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=0Ilth5/ml3BcwAlDzYOZhC1QcQ8Nl7amXfdm70cmsFs=;
-	b=fpZ3lmp0+bvgL892nZ5IGe1H2o+9Gu99Fptc6Jv145rRlqoErEHyVNCCrWS7X231Bm4jaIdZNWDh7B7ZB50vr3q+br9zs0szokOE/znbWJNL2f1PwHAQVfrS/WOuyWX8WoAyX3vtiQeOaMk8JejmXipwJSzMvSzafJI0Cm3Mgf8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.33,REQID:edec14d6-afc7-4488-99f6-45cca4cfa66c,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:364b77b,CLOUDID:21b42260-c89d-4129-91cb-8ebfae4653fc,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: f77b8122846f11ee8051498923ad61e6-20231116
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <chun-jen.tseng@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 914367294; Thu, 16 Nov 2023 19:04:52 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 16 Nov 2023 19:04:50 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 16 Nov 2023 19:04:50 +0800
-From: Mark Tseng <chun-jen.tseng@mediatek.com>
-To: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Roger Lu <roger.lu@mediatek.com>, Kevin Hilman
-	<khilman@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<chun-jen.tseng@mediatek.com>
-Subject: [PATCH v2 3/3] dt-bindings: soc: mediatek: add mt8186 and mt8195 svs dt-bindings
-Date: Thu, 16 Nov 2023 19:04:47 +0800
-Message-ID: <20231116110447.3598-4-chun-jen.tseng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20231116110447.3598-1-chun-jen.tseng@mediatek.com>
-References: <20231116110447.3598-1-chun-jen.tseng@mediatek.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FED485;
+	Thu, 16 Nov 2023 03:14:37 -0800 (PST)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG7fxpb001720;
+	Thu, 16 Nov 2023 11:14:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=WG+vTW6SxUmCCV/6GleBb07NZzuJmnHKZogC3uQzSVg=;
+ b=LJeIhkqjABZNoBIdh0rf0XtzpcTY+tSctWQpzGB5uay0odDBIKNlQK+IUUMSJv67Cm57
+ 6Az1aSIQBhwr805xVqXC5lmkSfg1W7UaQYuaNT5KJenk5fikT4vQYi4dwjyhX8fJl7oT
+ K5Guqj7yopy8qfM+2RrN8Ln0ekX7dATkrZ4Z+aB0WK6r3Gp9AkiFX+B9bt8Bi7WgCYe2
+ q1NRFMpuWLNFZAi3wWAYE3EjWK4e6mFx0HPKh0tkyQdbuEjvqUTpDksTbc/BcWNcO+tk
+ HUH8ekI9CsRyq7YJCDWFOH/PcSQHGqcqPQFfE/ylE5M4yKh1nObaPCSW4nBHrvseMbVR 7w== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udeww8e95-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Nov 2023 11:14:23 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AGBDsN2021454
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Nov 2023 11:13:54 GMT
+Received: from [10.253.72.184] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
+ 2023 03:13:50 -0800
+Message-ID: <33246b49-2579-4889-9fcb-babec5003a88@quicinc.com>
+Date: Thu, 16 Nov 2023 19:13:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--2.474800-8.000000
-X-TMASE-MatchedRID: qaEF7sysRdbHCChNBbZThQPZZctd3P4BfS0Ip2eEHnwj/1Rbkzl1E95/
-	HgWYxplM5MIx11wv+CPKayT/BQTiGijkRB+q9uV+zy8CehqGChcZFyQzNomHSPw3dlYD1EcdbIw
-	NL10fUKRHHh78pbcuPOJbiTiJZfShnIItpVenOepwSFus9SMLZKDE4wLr4uZ8dATQdtPksR+3/J
-	iWOe6GXXSWgQ2GpXdZhztLVWA1eE9DDKa3G4nrLQ==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--2.474800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	2900993E6A7A7315122D62FB8CF6B5365F34A2DCA102FD1D6EA2428A43DA99852000:8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/9] net: mdio: ipq4019: Enable GPIO reset for ipq5332
+ platform
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
+References: <20231115032515.4249-1-quic_luoj@quicinc.com>
+ <20231115032515.4249-4-quic_luoj@quicinc.com>
+ <e740a206-37af-49b1-a6b6-baa3c99165c0@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <e740a206-37af-49b1-a6b6-baa3c99165c0@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 46NsgQtgK9drv1wuiyk85wDjaDNh9j8M
+X-Proofpoint-GUID: 46NsgQtgK9drv1wuiyk85wDjaDNh9j8M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-16_09,2023-11-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 mlxlogscore=999 phishscore=0
+ clxscore=1015 impostorscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2311160090
 
-Support more SoC svs compatible in dt-bindings.
-1. MT8186
-2. MT8195
 
-Signed-off-by: Mark Tseng <chun-jen.tseng@mediatek.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
- Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-index 7eda63d5682f..742b91d1d28e 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-+++ b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-@@ -22,8 +22,10 @@ properties:
-   compatible:
-     enum:
-       - mediatek,mt8183-svs
-+      - mediatek,mt8186-svs
-       - mediatek,mt8188-svs
-       - mediatek,mt8192-svs
-+      - mediatek,mt8195-svs
- 
-   reg:
-     maxItems: 1
--- 
-2.18.0
+On 11/15/2023 11:11 PM, Andrew Lunn wrote:
+> On Wed, Nov 15, 2023 at 11:25:09AM +0800, Luo Jie wrote:
+>> Before doing GPIO reset on the MDIO slave devices, the common clock
+>> output to MDIO slave device should be enabled, and the related GCC
+>> clocks also need to be configured.
+>>
+>> Because of these extra configurations, the MDIO bus level GPIO and
+>> PHY device level GPIO can't be leveraged.
+> 
+> Its not clear to me why the normal reset cannot be used. The MBIO bus
+> driver can probe, setup the clocks, and then register the MDIO bus to
+> the core. The core can then use the GPIO resets.
+> 
+> What am i missing?
+> 
+>       Andrew
 
+Hi Andrew,
+Looks we can leverage the MDIO bus GPIO to reset qca8084 PHY, but the
+mdio bus gpio only supports one GPIO number.
+
+Here are the reasons i put the GPIO reset here.
+1. Currently one MDIO bus instance only connects one qca8084 PHY as
+MDIO slave device on IPQ5332 platform, since the MDIO address
+occupied by qca8084. if the other type PHY also needs to use MDIO
+bus GPIO reset, then we can't cover this case.
+
+2. Before doing the GPIO reset on qca8084, we need to enable the clock
+output to qca8084 by configuring eth_ldo_rdy register, and the mdio
+bus->reset is called after the mdio bus level reset.
+
+3. program the mdio address of qca8084 PHY and the initialization
+configurations needed before the registers of qca8084 can be accessed.
+if we take the PHY level GPIO reset for qca8084, there is no call point
+to do the initialization configurations and programing PHY address in
+the MDIO driver code.
+
+i will check the feasibility of taking the PHY level GPIO reset and do
+the initial configurations in the PHY probe function.
+
+FYI, here is the sequence to bring up qca8084.
+a. enable clock output to qca8084.
+b. do gpio reset of qca8084.
+c. customize MDIO address and initialization configurations.
+d. the PHY ID can be acquired.
+
+
+Thanks,
+Jie.
 
