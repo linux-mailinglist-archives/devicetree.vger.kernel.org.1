@@ -1,66 +1,105 @@
-Return-Path: <devicetree+bounces-16109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B05E7ED8A0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:38:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C750A7ED8B0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:51:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB3C1B20BD6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:38:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ECAE1F22CF6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F0F738B;
-	Thu, 16 Nov 2023 00:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF2D7E;
+	Thu, 16 Nov 2023 00:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EDptMfqE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03841138A
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 00:38:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69023C433C8;
-	Thu, 16 Nov 2023 00:38:45 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id 172AA1062B61; Thu, 16 Nov 2023 01:38:42 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- Elliot Berman <quic_eberman@quicinc.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20231031-ref-nvmem-reboot-mode-v1-1-c1af9070ce52@quicinc.com>
-References: <20231031-ref-nvmem-reboot-mode-v1-1-c1af9070ce52@quicinc.com>
-Subject: Re: [PATCH] dt-bindings: power: reset: $ref reboot-mode in
- nvmem-reboot-mode
-Message-Id: <170009512207.785165.11427620584398250645.b4-ty@collabora.com>
-Date: Thu, 16 Nov 2023 01:38:42 +0100
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C4C01B9;
+	Wed, 15 Nov 2023 16:51:36 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 99697B9A;
+	Thu, 16 Nov 2023 01:51:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1700095868;
+	bh=18xXfXfw+tBl0xHCFm3jGrfNhRXP3Rv8yr93gRiQOkg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EDptMfqEsX+ghwRRlb6ihCUitYmpgij7FW5JBZjiU6pVDw20fKVzzuNyQeEzZMQWf
+	 b14MmvoDtbjd+x8cWB78ZbxSgvmWBAcxBld64GMs11Q8mjAucfdSLQE5jicpeTueJZ
+	 XH+awjkdPx0Z+oueccl59BgpJnACFgJprXOSZz7I=
+Date: Thu, 16 Nov 2023 02:51:40 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Mehdi Djait <mehdi.djait@bootlin.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	paul.kocialkowski@bootlin.com, dafna@fastmail.com,
+	helen.koike@collabora.com, heiko@sntech.de,
+	paul.elder@ideasonboard.com
+Subject: Re: [PATCH] media: dt-bindings: media: rkisp1: Fix the port
+ description for the parallel interface
+Message-ID: <20231116005140.GB21041@pendragon.ideasonboard.com>
+References: <20231115164407.99876-1-mehdi.djait@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20231115164407.99876-1-mehdi.djait@bootlin.com>
 
+Hi Mehdi,
 
-On Tue, 31 Oct 2023 11:28:22 -0700, Elliot Berman wrote:
-> nvmem-reboot-mode.yaml should $ref: reboot-mode.yaml, but instead
-> rewrites the properties. Update so it $refs instead.
+Thank you for the patch.
+
+On Wed, Nov 15, 2023 at 05:44:07PM +0100, Mehdi Djait wrote:
+> The bus-type belongs to the endpoint's properties and should therefore
+> be moved.
 > 
+> Fixes: 6a0eaa25bf36 ("media: dt-bindings: media: rkisp1: Add port for parallel interface")
+> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+
+Good catch.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  .../devicetree/bindings/media/rockchip-isp1.yaml      | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> index e466dff8286d..afcaa427d48b 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> @@ -90,15 +90,16 @@ properties:
+>          description: connection point for input on the parallel interface
+>  
+>          properties:
+> -          bus-type:
+> -            enum: [5, 6]
+> -
+>            endpoint:
+>              $ref: video-interfaces.yaml#
+>              unevaluatedProperties: false
+>  
+> -        required:
+> -          - bus-type
+> +            properties:
+> +              bus-type:
+> +                enum: [5, 6]
+> +
+> +            required:
+> +              - bus-type
+>  
+>      anyOf:
+>        - required:
 
-Applied, thanks!
-
-[1/1] dt-bindings: power: reset: $ref reboot-mode in nvmem-reboot-mode
-      commit: 5739da3e16ad0ebe99c31cabe960856b53eaaabe
-
-Best regards,
 -- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+Regards,
 
+Laurent Pinchart
 
