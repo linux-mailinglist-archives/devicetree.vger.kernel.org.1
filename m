@@ -1,114 +1,103 @@
-Return-Path: <devicetree+bounces-16269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7D77EE280
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:16:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9B77EE288
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90B851F268DC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:16:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87AA71F26C69
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C60D31A66;
-	Thu, 16 Nov 2023 14:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C92A31A63;
+	Thu, 16 Nov 2023 14:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id C6723135;
-	Thu, 16 Nov 2023 06:16:30 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="6.04,308,1695654000"; 
-   d="scan'208";a="187030082"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 16 Nov 2023 23:16:30 +0900
-Received: from localhost.localdomain (unknown [10.226.93.178])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A114D426D11C;
-	Thu, 16 Nov 2023 23:16:24 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Rob Herring <robh@kernel.org>
-Subject: [PATCH v14 2/4] dt-bindings: display: renesas,rzg2l-du: Document RZ/V2L DU bindings
-Date: Thu, 16 Nov 2023 14:16:06 +0000
-Message-Id: <20231116141608.252452-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231116141608.252452-1-biju.das.jz@bp.renesas.com>
-References: <20231116141608.252452-1-biju.das.jz@bp.renesas.com>
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1FED55;
+	Thu, 16 Nov 2023 06:16:45 -0800 (PST)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5a82f176860so9418057b3.1;
+        Thu, 16 Nov 2023 06:16:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700144205; x=1700749005;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ibmdabV7l5XTVe2k8R3JzSdJeiOB1me2z9/gej+1Tto=;
+        b=GJ4gMj/gchRjIry1gEBriVfGP/xzWg2Jcy8BXbe/sB17IApoxwJcu5VdDbZEJHK5Lx
+         haSCsyWS69LukKGux0pVAfrOD6gH8oB+zSkRtHyP5VbB9RV/76/T6Zyi36/hdfIf9Xiv
+         8kCXiMlk1cI97Ufm+2LrWQGtEzpZ84uRnrnS1XnHNZHjURDjE4JV2M/KKLo0GypwUk4i
+         cfSSLQWSD8GwAqRUnAPLpmg13egVlo8IsfJcTDSxd95d9xIWfCeSFfRJofhJLKgLM7SP
+         I8TvO2F3Iv1fD8z5Ql4Mf1xcg3qqZ2EAmlAIQYHz4/pW2oV5XUMkrkz+sr+gPzojdmpX
+         byuA==
+X-Gm-Message-State: AOJu0YxbXptc61/KiUuUT1SiCGtzWd1HRp3rW09s+m7lv3hZCqXzK3JL
+	ZtB+YoWrWmYQjVcTJ9mpaPFLGfVyaOZnSQ==
+X-Google-Smtp-Source: AGHT+IHbcX04PGYeaUhKqhleU5CNVn4S+x2ZzvU6qX6U22YHkpdciZkxtyf3/SpSCmh/NUkh0c0MYw==
+X-Received: by 2002:a0d:e3c1:0:b0:5a8:60ad:39a4 with SMTP id m184-20020a0de3c1000000b005a860ad39a4mr17955067ywe.3.1700144204813;
+        Thu, 16 Nov 2023 06:16:44 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id w190-20020a0dedc7000000b005a7d9fca87dsm999245ywe.107.2023.11.16.06.16.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Nov 2023 06:16:44 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5b31c5143a0so9283847b3.3;
+        Thu, 16 Nov 2023 06:16:44 -0800 (PST)
+X-Received: by 2002:a81:49d8:0:b0:5a8:5079:422 with SMTP id
+ w207-20020a8149d8000000b005a850790422mr16462532ywa.26.1700144204289; Thu, 16
+ Nov 2023 06:16:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231102203922.548353-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20231102203922.548353-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 16 Nov 2023 15:16:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVmoknQLnkMmi-pGVjz5osE8Vx_TQy3OXH3GUfYbtDwMw@mail.gmail.com>
+Message-ID: <CAMuHMdVmoknQLnkMmi-pGVjz5osE8Vx_TQy3OXH3GUfYbtDwMw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: dma: rz-dmac: Document RZ/Five SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Document DU found in RZ/V2L SoC. The DU block is identical to RZ/G2L
-SoC and therefore use RZ/G2L fallback to avoid any driver changes.
+On Thu, Nov 2, 2023 at 9:39=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The DMAC block on the RZ/Five SoC is identical to one found on the RZ/G2U=
+L
+> SoC. "renesas,r9a07g043-dmac" compatible string will be used on the
+> RZ/Five SoC so to make this clear, update the comment to include RZ/Five
+> SoC.
+>
+> No driver changes are required as generic compatible string
+> "renesas,rz-dmac" will be used as a fallback on RZ/Five SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v13->v14:
- * No change.
-v12->v13:
- * No change.
-v11->v12:
- * No change.
-v10->v11:
- * No change.
-v9->v10:
- * No change.
-V8->v9:
- * Added Rb tag from Laurent and Geert.
-v7->v8:
- * Fixed the typo vsp2->du
- * Added Rb tag from Rob as the change is trivial.
-v7:
- * New patch.
----
- .../devicetree/bindings/display/renesas,rzg2l-du.yaml    | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-index c0ad194c538d..08e5b9478051 100644
---- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-@@ -16,8 +16,13 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - renesas,r9a07g044-du # RZ/G2{L,LC}
-+    oneOf:
-+      - enum:
-+          - renesas,r9a07g044-du # RZ/G2{L,LC}
-+      - items:
-+          - enum:
-+              - renesas,r9a07g054-du    # RZ/V2L
-+          - const: renesas,r9a07g044-du # RZ/G2L fallback
- 
-   reg:
-     maxItems: 1
--- 
-2.25.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
