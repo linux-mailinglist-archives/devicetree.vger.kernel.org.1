@@ -1,112 +1,130 @@
-Return-Path: <devicetree+bounces-16379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E5387EE6C0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:30:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5707EE6C9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB501281144
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:30:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 645DB281144
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E5B2F867;
-	Thu, 16 Nov 2023 18:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0914C2F867;
+	Thu, 16 Nov 2023 18:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="maVewsrb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxzYQgfX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97196D49;
-	Thu, 16 Nov 2023 10:30:46 -0800 (PST)
-Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 267BF6607355;
-	Thu, 16 Nov 2023 18:30:43 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1700159444;
-	bh=SfQ0+hmvmWXxSEVa4mEfgSW3GKHJePtTDvpcPdZG1Uk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=maVewsrbypH3b7HVwPhXhJEqUkk1FTC2a2CT/5Zdw8v0VmZeg8+49dqvgBb32xiWM
-	 azbq7XlRF2ladTSFgbsOB5dpUdbNs+4FMDF5xcR9fdEVZB/F+ulE6j4ZBRq0aVF6gd
-	 Ur0OkuPWF55GWXqbMfJmoU650l9DTsr8+skMC8Zswxs2w1tuaiRCRlz0AGOeQXVE52
-	 UXsV2fK1XsZojC5adNNbRtAUfgqGVyQA6/j/Ap8+LUXOiljEPcAB6Cgbz+1VDKrfA6
-	 xfLdKthrk/vZguFVZXiDOIWS6Ls/26NP4+ih04LWU6pskf7c8KzkOn65cYI6vWsUU/
-	 P7wAhHza3KzGg==
-Message-ID: <dae6284f-b94f-45d6-a76c-20f173bf7978@collabora.com>
-Date: Thu, 16 Nov 2023 20:30:40 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD42A46524;
+	Thu, 16 Nov 2023 18:34:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C348C433C8;
+	Thu, 16 Nov 2023 18:34:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700159660;
+	bh=8EhJKo8rDeezKqxLzMDL7DCLOC6nqzPZCy8ff/Ayqe8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GxzYQgfX6q6Qrk30HeKvn5JTCTDM4xnC9E62Ky78pyXCsCpuwnhHWYNOLpqJeoS69
+	 jXrNYndJ1RNR0GrPzvtu4KF+txcfx6nxgKaaM/yebJ+PrZ4wTvQUdpo9CkKFR6aq9f
+	 liU+UUd76DmQahOVwgWLldkF3hUEc352EUWtArptO1Z7R7rk/ai32G/x0K5ui3Jvw/
+	 lB1kfJ3/YMyar+tzvnnBJGmr8j43nmyddwH5G+2pw6mriYvglmKOOwi1+igINbrv5O
+	 mOwuEcanj2bpiv0H8AEugX4oZ+ohKmJ/amHFUkQ28APHiNOW9NEfoGjC3kCYn6ynU8
+	 W30nira3eBMzQ==
+Date: Thu, 16 Nov 2023 18:34:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Andreas Klinger <ak@it-klinger.de>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Petre Rodan <petre.rodan@subdimension.ro>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] iio: honeywell,mprls0025pa.yaml: fix function numbering
+Message-ID: <20231116-grudge-hankering-b7a71d831b93@squawk>
+References: <20231116182443.7290-1-ak@it-klinger.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
- beaglev-starlight: Enable gmac
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
- Emil Renner Berthing <kernel@esmil.dk>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Samin Guo <samin.guo@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
- geert@linux-m68k.org
-References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
- <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
- <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch>
- <233a45e1-15ac-40da-badf-dee2d3d60777@collabora.com>
- <cb6597be-2185-45ad-aa47-c6804ff68c85@collabora.com>
- <20231116-stellar-anguished-7cf06eb5634a@squawk>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20231116-stellar-anguished-7cf06eb5634a@squawk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hdaK5Truep84srtq"
+Content-Disposition: inline
+In-Reply-To: <20231116182443.7290-1-ak@it-klinger.de>
 
-On 11/16/23 19:55, Conor Dooley wrote:
-> On Thu, Nov 16, 2023 at 03:15:46PM +0200, Cristian Ciocaltea wrote:
->> On 10/30/23 00:53, Cristian Ciocaltea wrote:
->>> On 10/29/23 20:46, Andrew Lunn wrote:
->>>> On Sun, Oct 29, 2023 at 06:27:12AM +0200, Cristian Ciocaltea wrote:
->>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
->>>>> RGMII-ID.
->>>>>
->>>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
->>>>> yes, add the mdio & phy sub-nodes.
->>>>
->>>> Please could you try to get this tested. It might shed some light on
->>>> what is going on here, since it is a different PHY.
->>>
->>> Actually, this is the main reason I added the patch. I don't have access
->>> to this board, so it would be great if we could get some help with testing.
->>
->> @Emil, @Conor: Any idea who might help us with a quick test on the
->> BeagleV Starlight board?
-> 
-> I don't have one & I am not sure if Emil does. Geert (CCed) should have
-> one though. Is there a specific test you need to have done?
 
-As Andrew already pointed out, we'd like to know if networking for this
-board works without any further adjustment of the RX internal delay.
+--hdaK5Truep84srtq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This was necessary for VisionFive (see previous PATCH v2 11/12), but the
-PHY is different (Motorcomm YT8521), hence this test might help us
-understand if there's a potential issue with the SoC or the PHY.
+On Thu, Nov 16, 2023 at 07:24:43PM +0100, Andreas Klinger wrote:
+> Fix wrongly documented numbering of transfer functions.
+>=20
+> Fixes: a765c985e696 ("dt-bindings: iio: pressure: Support Honeywell mprls=
+0025pa sensor")
+>
 
-Thanks,
-Cristian
+No blank line here.
+
+> Suggested-by: Petre Rodan <petre.rodan@subdimension.ro>
+
+This should be Reported-by.
+
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> ---
+>  .../bindings/iio/pressure/honeywell,mprls0025pa.yaml        | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mpr=
+ls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mp=
+rls0025pa.yaml
+> index b31f8120f14e..61775eff1128 100644
+> --- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025p=
+a.yaml
+> +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025p=
+a.yaml
+> @@ -64,9 +64,9 @@ properties:
+>      description: |
+>        Transfer function which defines the range of valid values delivere=
+d by the
+>        sensor.
+> -      1 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
+> -      2 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
+> -      3 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
+> +      0 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
+> +      1 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
+> +      2 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
+
+I don't understand. These are arbitrary numbers in a dt-binding, why
+does zero or one indexing make any difference here?
+Can't you just fix up the driver to correctly map the dt-binding to
+whatever needs to be written to registers in the hardware?
+
+Cheers,
+Conor.
+
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> =20
+>    vdd-supply:
+> --=20
+> 2.39.2
+>=20
+
+--hdaK5Truep84srtq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVZgpQAKCRB4tDGHoIJi
+0ro9AP41/miHXh7XhWfNmwyktMkO3qn/gHtMyuEiySwMJSiQygEA5W0rZahN92ag
+PUp2JscwQiOwmt7fQzs1cJb7N8aOvgI=
+=C+WP
+-----END PGP SIGNATURE-----
+
+--hdaK5Truep84srtq--
 
