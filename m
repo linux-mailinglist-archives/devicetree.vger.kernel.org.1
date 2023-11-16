@@ -1,253 +1,95 @@
-Return-Path: <devicetree+bounces-16377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57517EE69D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:21:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 517677EE6AC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4168FB20C0B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:21:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A94281112
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB4D487AB;
-	Thu, 16 Nov 2023 18:21:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vhf0ra+0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215C748CDB;
+	Thu, 16 Nov 2023 18:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8AFD46536;
-	Thu, 16 Nov 2023 18:21:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08B91C433C8;
-	Thu, 16 Nov 2023 18:21:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1700158897;
-	bh=afcjSCTVmlV4p68dsI5fTXVa0bQhtpJng5oNuW2v4Os=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vhf0ra+0c6tEw4RTVE8zXQFo821hMFV3IIi4ZHo4MACQm6Xg84Nesnspov8/oyY20
-	 0nwWzipJ13BeDXrXcYEO/BIay6078ghGLkWB32pzXiKLr+g9/+ovKAUBqZHjOvuQN2
-	 fdNdQQTjV7mKZLCHFnyGLW2z+TqGMiitKy5ABkyFfRQG0O2z4E19Mm4u1IuSk6r3/f
-	 ffjuJG3uAtHVGH5Z5Luc9JV1IPKZCImNnCKPdaKRs6ruPB7AzJEuNBZ5p+thd4njqP
-	 y3s+JAcjB30SNTSxu/bAHyqMe3i78zsRYYFIm/jEMxLbrR/0Hg2s4Y5V6Jg777aFAY
-	 sO8sPfvN4vspw==
-Date: Thu, 16 Nov 2023 18:21:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: marius.cristea@microchip.com, jic23@kernel.org, lars@metafoo.de,
-	robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
-	linux-hwmon@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adc: adding support for PAC193X
-Message-ID: <20231116-channel-variety-cc7c262924ad@squawk>
-References: <20231115134453.6656-1-marius.cristea@microchip.com>
- <20231115134453.6656-2-marius.cristea@microchip.com>
- <fedd4bcf-7892-4096-bcca-7ea72d39576f@linaro.org>
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A74A4D4E;
+	Thu, 16 Nov 2023 10:25:31 -0800 (PST)
+Received: from localhost.localdomain ([46.183.103.8]) by
+ mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MRTEp-1qgmUB0B0f-00NVDe; Thu, 16 Nov 2023 19:25:15 +0100
+From: Andreas Klinger <ak@it-klinger.de>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Petre Rodan <petre.rodan@subdimension.ro>,
+	Andreas Klinger <ak@it-klinger.de>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] iio: honeywell,mprls0025pa.yaml: fix function numbering
+Date: Thu, 16 Nov 2023 19:24:43 +0100
+Message-Id: <20231116182443.7290-1-ak@it-klinger.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CqQpzGUiaD3Sqhz2"
-Content-Disposition: inline
-In-Reply-To: <fedd4bcf-7892-4096-bcca-7ea72d39576f@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:jpI3HRtq1qrPEfvCSYZnREA78HrIVFvSWaWp/K9JH6x5XqCpToM
+ ZWds6VPXrqCK0QLHzR8LtNzq6jUPGJ3Dp0ltedT6ehxC+W4pSPDpAu7XhdWXZSrXHzqDrWv
+ reBU9xa6LAmLYH9UhofWb+vqpkneKz3yocy4onlPmAMhcmjSBxE6QadNuFWP/OHLx3LEefO
+ 7TAnxofAHezJyo+cgu8Dw==
+UI-OutboundReport: notjunk:1;M01:P0:qNpRdEEawM8=;DC0ckfU5aHXfCWvWfnggXc20720
+ zU25oKtBekvw3crMhVi5Y9pvR1vzm8vzQeBAUqOvl+sgjfMke0V9Xi+WzmWpJum1nSOKQPLrj
+ QQhl7cdy2HEfREY+KGifdOBWxYREK9kxENBxVGBAUpX6yDeH0ekpvqedIECQ63H/QZoqCyoht
+ +OBltXpcoqNLYm89pVIgsGZWQBnvJ+6Mnck/0GYXfbRVJtkBLDf+Z+XyRuPo7dTgt1uKI4vJX
+ 2zQUxz51Ay4YPD0ezJalU0m/M9DIhBCk9ywE8pR9DPCydYkEzgB2gQyRWGk0j24oCDEUJymSY
+ SMDGpKO10VHtF8wRKgHmBL4/dXy72DmV1KQfXnAXcw+raBtS81xCvNyQsbaTWIokvt/iLlTD8
+ 5ZmWsVg9DHgtqqZ/EaU5EDvvgSYPi9bphaGpBtCa8ug/QDXEi1CrZTMta1LN6fc+S0mH3okgS
+ SKOM8ImQ8S76aL947eOiNn5Y3EDroVhT9DkGT/PJxsYA2LRuwOSrR5/+sQouGRj+vB6BgmQvo
+ Lb/DeUaPBAAj8NyajTN3GSF/4lujJM1wTWEttmzfYSDOuGdNNX2v8clSmKzCGYQlPsSSMbSL3
+ Y/0f7VkatwVtBZwqyrBXLPUzHtOUBlsAgwM1vNNrjLV9+lBtHrCxD8ueFqnRInZvSHjsMF4Jh
+ egsH5FI1IOp5c7OMnI8rMWWnoynqkOXI0pVh4rEy9TyVlvxuP5Z8wSSNnF5RXaHewCr66rGu2
+ H8AWUf/WdxWtLLLtk84zv6uODByVqor2RRX46xJgjfLz3cmQ0Sm6ivi7k3NR90HiDVFJJa0ki
+ 4IYpg04DADHiJhSUjj6XHZaidXoZ2eeDfAH868mfw6TM5kgAVm0SubOc6dcdZGprJXR//6+mf
+ Qqs3nPKqR/Fz+hjg0jZz6W2lLQkCi2eu2gMw=
+X-Spam-Level: *
 
+Fix wrongly documented numbering of transfer functions.
 
---CqQpzGUiaD3Sqhz2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: a765c985e696 ("dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor")
 
-On Thu, Nov 16, 2023 at 04:01:43PM +0100, Krzysztof Kozlowski wrote:
-> On 15/11/2023 14:44, marius.cristea@microchip.com wrote:
-> > From: Marius Cristea <marius.cristea@microchip.com>
-> >=20
-> > This is the device tree schema for iio driver for
-> > Microchip PAC193X series of Power Monitors with Accumulator.
-> >=20
-> > Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-> > ---
-> >  .../bindings/iio/adc/microchip,pac1934.yaml   | 137 ++++++++++++++++++
-> >  1 file changed, 137 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip=
-,pac1934.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac193=
-4.yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > new file mode 100644
-> > index 000000000000..2609cb19c377
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> > @@ -0,0 +1,137 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microchip PAC1934 Power Monitors with Accumulator
-> > +
-> > +maintainers:
-> > +  - Marius Cristea <marius.cristea@microchip.com>
-> > +
-> > +description: |
-> > +  This device is part of the Microchip family of Power Monitors with A=
-ccumulator.
-> > +  The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be found=
- here:
-> > +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Pro=
-ductDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - microchip,pac1931
-> > +      - microchip,pac1932
-> > +      - microchip,pac1933
-> > +      - microchip,pac1934
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  microchip,slow-io:
-> > +    type: boolean
-> > +    description: |
-> > +      A GPIO used to trigger a change is sampling rate (lowering the c=
-hip power consumption).
->=20
-> Use Linux coding style wrapping (as described in Linux Coding style). I
-> am not going to tell you numbers because I want you to read the document
-> first.
->=20
-> This is boolean, not GPIO. I don't understand. "A GPIO", so any GPIO or
-> some specific? How is this property related to GPIO?
->=20
->=20
-> > +      If configured in SLOW mode, if this pin is forced high, sampling=
- rate is forced to eight
->=20
-> This pin? This is boolean, not a GPIO. GPIOs are phandles.
+Suggested-by: Petre Rodan <petre.rodan@subdimension.ro>
+Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+---
+ .../bindings/iio/pressure/honeywell,mprls0025pa.yaml        | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I said it on the previous version, but this really seems like it should
-be something like "slow-io-gpios". I know Jonathan expressed some
-concerns about having to deal with it on the operating system side (as
-the pin is either an input & used for this slow-io control, or an output
-and used as an interrupt) but that is, in my opinion, a problem for the
-operating system & the binding should describe how the hardware works,
-even if that is not convenient. With this sort of property, a GPIO hog
-would be required to be set up (and the driver for that gpio controller
-bound etc before the pac driver loads) for correction functionality if
-this property was in the non-default state.
+diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+index b31f8120f14e..61775eff1128 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+@@ -64,9 +64,9 @@ properties:
+     description: |
+       Transfer function which defines the range of valid values delivered by the
+       sensor.
+-      1 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
+-      2 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
+-      3 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
++      0 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
++      1 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
++      2 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
+     $ref: /schemas/types.yaml#/definitions/uint32
+ 
+   vdd-supply:
+-- 
+2.39.2
 
-> > +      samples/second. When it is forced low, the sampling rate is 1024=
- samples/second unless
-> > +      a different sample rate has been programmed.
-> > +
-> > +patternProperties:
-> > +  "^channel@[1-4]+$":
-> > +    type: object
-> > +    $ref: adc.yaml
-> > +    description: Represents the external channels which are connected =
-to the ADC.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        items:
-> > +          minimum: 1
-> > +          maximum: 4
-> > +
-> > +      shunt-resistor-micro-ohms:
-> > +        description: |
-> > +          Value in micro Ohms of the shunt resistor connected between
-> > +          the SENSE+ and SENSE- inputs, across which the current is me=
-asured. Value
-> > +          is needed to compute the scaling of the measured current.
-> > +
-> > +    required:
-> > +      - reg
-> > +      - shunt-resistor-micro-ohms
-> > +
-> > +    unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: interrupts
->=20
->=20
-> I don't understand what do you want to say here. I am also 100% sure you
-> did not test it on a real case (maybe example passes but nothing more).
-
-As far as I understand, the same pin on the device is used for both an
-output or an input depending on the configuration. As an input, it is
-the "slow-io" control, and as an output it is an interrupt.
-I think Marius is trying to convey that either this pin can be in
-exclusively one state or another.
-
-_However_ I am not sure that that is really the right thing to do - they
-might well be mutually exclusive modes, but I think the decision can be
-made at runtime, rather than at devicetree creation time. Say for
-example the GPIO controller this is connected to is capable of acting as
-an interrupt controller. Unless I am misunderstanding the runtime
-configurability of this hardware, I think it is possible to actually
-provide a "slow-io-gpios" and an interrupt property & let the operating
-system decide at runtime which mode it wants to work in.
-
-I'm off travelling at the moment Marius, but I should be back in work on
-Monday if you want to have a chat about it & explain a bit more to me?
-
-Cheers,
-Conor.
-
->=20
-> > +    then:
-> > +      properties:
-> > +        microchip,slow-io: false
-> > +    else:
-> > +      if:
-> > +        properties:
-> > +          compatible:
-> > +            contains:
-> > +              const: microchip,slow-io
-> > +      then:
-> > +        properties:
-> > +          interrupts: false
->=20
-> Best regards,
-> Krzysztof
->=20
-
---CqQpzGUiaD3Sqhz2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVZdqwAKCRB4tDGHoIJi
-0ujbAQCjXBBuVPgyP4WT9ADe31P1IzbnBiEVymzdiv9hZVxnRAD/d9hSmWkAXypj
-w1fZogUDEFwlkt04d1QG4OsATZhxNQ8=
-=3oED
------END PGP SIGNATURE-----
-
---CqQpzGUiaD3Sqhz2--
 
