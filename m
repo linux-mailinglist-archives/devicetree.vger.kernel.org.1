@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-16390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777217EE77C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A40617EE782
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EDF01F22AF8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:27:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CC431F23BE3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01E634CD1;
-	Thu, 16 Nov 2023 19:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45FCA46524;
+	Thu, 16 Nov 2023 19:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E860D4D;
-	Thu, 16 Nov 2023 11:27:38 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-58786e23d38so663639eaf.3;
-        Thu, 16 Nov 2023 11:27:38 -0800 (PST)
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D1518D;
+	Thu, 16 Nov 2023 11:30:29 -0800 (PST)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5869914484fso616393eaf.0;
+        Thu, 16 Nov 2023 11:30:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700162857; x=1700767657;
+        d=1e100.net; s=20230601; t=1700163029; x=1700767829;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UdXxO76TxrHNOJ1hG2GWZ3FtG3o6//qcCrBEV7e6JF0=;
-        b=uSK7lCd44mDSPFaskFwNPiWAevRW8NVnXF+aqCq/CtZVS7GovCcL7al9y7Vng9DMiH
-         5Cx5EGFhTIPk6DJM9EyX9wGhi4i11/4G9IophZI2QOqat8ahj3pT/uRB5zxLWR2g6Rnc
-         ixYq2xExsJW7V1NcHcbfhl3vakPmyCOS8Oidzxdfmtxt/sK3AYZNA8pbGdPHpfHA3q7g
-         KdIuZ01CA+82IxTZZuHK1dDtASeLQ8dqDbK/zHoCTYyM9+hYCqGTe681xCUoYDOAMJ41
-         LD5g/8kuWwv5DzARY6pKAM0iqarDBSKMZUC0itmnVWEPCuMtaC9kAnFcM5oYpDOQrdYO
-         JQzQ==
-X-Gm-Message-State: AOJu0YzI6xOE8HJyLH6INeaXerbutEEGDe8p0OybDZYdREDYdeyljNzm
-	hq4y0YprOQYT8YH3I5E5DQ==
-X-Google-Smtp-Source: AGHT+IFX+Vh0cRgukREyljR+kjDwhtv9/esCRp99bcIH9IEMsr6X4lDgVj1LBbJa0EfNgm8RoL05IA==
-X-Received: by 2002:a4a:9187:0:b0:586:b062:f3d0 with SMTP id d7-20020a4a9187000000b00586b062f3d0mr15603964ooh.7.1700162857520;
-        Thu, 16 Nov 2023 11:27:37 -0800 (PST)
+        bh=J7FbFMZyOm4y21zxxd4fG3rlnBc8F2We8GtC4w2SS1w=;
+        b=CUXn+IvEB2gF6Mdi90bgE05Bt/4p2b6TiQq5UXsvyofO9GUGk0sCjK4wJqpCKs7hzo
+         kJd91qICEjOji06tBZumxJoT30gcD9Grz0PbxQZQqY2fth3RrxHc73vYOr58nxSiNkyI
+         EDI/4jVreJCoz1mbj9Lj+mzCEIExF7QlQbi+4HOooUUE/Bpp7vKMOtCYtznTN9FPfDb7
+         uyVbrRqg2ZY4aFNpdOj2Tg+uCr69J6lGo53aRlaLRET06DG4ok/ZCu1XgV7MCFGjLEAa
+         ABR2y6S2Y2VMdeIcMJyxF4rpPlYucRrnk4OGMVmUvF5rUPEAAzEbETXlzkqAIzaIYhfg
+         y77g==
+X-Gm-Message-State: AOJu0Yy/ZXVhaKc+3bLkv35pRgrBsAVmRoqpDlgQfy3q8OnzhS8GDoYR
+	lmzquc9OIm61LbEiIBkc+A==
+X-Google-Smtp-Source: AGHT+IFSp1f7TbpivIjIY//huUNmDslsDMxVBCti4nc7OSLQ6yL118JR1HPflrHOkpP+ls1MaiRwBw==
+X-Received: by 2002:a4a:85c1:0:b0:57b:eee7:4a40 with SMTP id u1-20020a4a85c1000000b0057beee74a40mr15895111ooh.7.1700163029011;
+        Thu, 16 Nov 2023 11:30:29 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w18-20020a4ae4d2000000b00581fc1af0a7sm11965oov.28.2023.11.16.11.27.34
+        by smtp.gmail.com with ESMTPSA id ch1-20020a0568200a0100b00584078d1e17sm10580oob.45.2023.11.16.11.30.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 11:27:36 -0800 (PST)
-Received: (nullmailer pid 3065895 invoked by uid 1000);
-	Thu, 16 Nov 2023 19:27:34 -0000
-Date: Thu, 16 Nov 2023 13:27:34 -0600
+        Thu, 16 Nov 2023 11:30:28 -0800 (PST)
+Received: (nullmailer pid 3079204 invoked by uid 1000);
+	Thu, 16 Nov 2023 19:30:26 -0000
+Date: Thu, 16 Nov 2023 13:30:26 -0600
 From: Rob Herring <robh@kernel.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, sebastian.reichel@collabora.com, kever.yang@rock-chips.com, chris.obbard@collabora.com, s.hauer@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 09/11] drm/rockchip: vop2: Add support for rk3588
-Message-ID: <20231116192734.GA3050632-robh@kernel.org>
-References: <20231114112534.1770731-1-andyshrk@163.com>
- <20231114112855.1771372-1-andyshrk@163.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Frank.li@nxp.com, krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org, joy.zou@nxp.com, shenwei.wang@nxp.com, krzysztof.kozlowski@linaro.org, robh+dt@kernel.org, festevam@denx.de, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, vkoul@kernel.org, peng.fan@nxp.com, shawnguo@kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: dma: fsl-edma: Add fsl-edma.h to
+ prevent hardcoding in dts
+Message-ID: <170016302591.3079151.39706037865284534.robh@kernel.org>
+References: <20231114154824.3617255-1-Frank.Li@nxp.com>
+ <20231114154824.3617255-3-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,29 +59,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231114112855.1771372-1-andyshrk@163.com>
+In-Reply-To: <20231114154824.3617255-3-Frank.Li@nxp.com>
 
-On Tue, Nov 14, 2023 at 07:28:55PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+
+On Tue, 14 Nov 2023 10:48:22 -0500, Frank Li wrote:
+> Introduce a common dt-bindings header file, fsl-edma.h, shared between
+> the driver and dts files. This addition aims to eliminate hardcoded values
+> in dts files, promoting maintainability and consistency.
 > 
-> VOP2 on rk3588:
+> DTS header file not support BIT() macro yet. Directly use 2^n number.
 > 
-> Four video ports:
-> VP0 Max 4096x2160
-> VP1 Max 4096x2160
-> VP2 Max 4096x2160
-> VP3 Max 2048x1080
-> 
-> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
-> 4 4K Esmart windows with line RGB/YUV support
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+>  include/dt-bindings/dma/fsl-edma.h | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>  create mode 100644 include/dt-bindings/dma/fsl-edma.h
 > 
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 324 ++++++++++++++++++-
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  57 ++++
->  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 215 ++++++++++++
->  include/dt-bindings/soc/rockchip,vop2.h      |   4 +
 
-This is part of the binding and belongs in the binding patch.
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 
