@@ -1,153 +1,118 @@
-Return-Path: <devicetree+bounces-16354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70A87EE5D5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:22:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA7297EE5DA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:24:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C84D1C20940
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:22:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9924B1F24398
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:24:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EBB7364BC;
-	Thu, 16 Nov 2023 17:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9765D30666;
+	Thu, 16 Nov 2023 17:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QjR7Ffec"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tL5bXgoY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55B21A8
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 09:22:13 -0800 (PST)
-Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-41b7fd8f458so5958971cf.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 09:22:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700155333; x=1700760133; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+OCrm0wdm2w6X5LkdluUlem8xt9m30lXYkWHLUzHIKo=;
-        b=QjR7FfeckjXSm86LwQqOuxYLB9l6TQcioAjq9BHkA1Zfg5j4nfI21WKdg6uMN8//pU
-         neYP7XM2tkELmUaEE2sToS2QILjTtaIa1+QI19IqOKLHB1bsG1IPQmcba/3wlYEqGnH6
-         rp1Vapu3WwhXoYZUJNGOmrMhDCBKs0Mhsjfnlnc2vqZtZFEwTG2fnlb9Zxcz+cau3P7p
-         LMgeu7s3ksIeQEm2UWTPynVRO0DWsMKpNghfqh8qTB6RGorkXoWt3iT+zQ+9DSVDrgfZ
-         9gaFI3FkFieG9qSzvgX7mBZ4VE1QCgPMJENjuqrmnZCHcKsMGxAl3PF9aQT0nqPwb19B
-         9Q1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700155333; x=1700760133;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+OCrm0wdm2w6X5LkdluUlem8xt9m30lXYkWHLUzHIKo=;
-        b=K9OVbsil4wmfC9RgOs3yD8oy1yuSIV0Av2Hz9xJTB2DKvYknKDupcqcvK+JJryQ2qM
-         A5XlXIt7kAzHXvq3FyQg8uRC/6L39yTkKcGvCNArNf5VUb482R3v2n6SAmX1uI+3dr9e
-         ro9BHVhMyyF4eLbVnYV3thxtJa+EYhZRZPaZUJmLXRNKNUJpA5rRs6C85Xr9K9Q2euy/
-         0I6bj8j/Dq/qtQQuher98IXcRXPvOLTRHC+pOKe6w+mYS8b/AjTeONponh1QNOBuUxDL
-         oaOtVm46S02vgyra41Xtw8ssmTr8nu1pqHNY0dQs2gq2yXpIKmdPHG6blWIXSOARyMff
-         jZYg==
-X-Gm-Message-State: AOJu0YyVsQhZ+9i56nB6YyYfbe3LVtXkyZcp+QkTZzmulMp4RtkeG1R9
-	MYQgCaYJGq+tnYfHyDBRpeJFlQ==
-X-Google-Smtp-Source: AGHT+IHxbF0F7JkXcq69USa45sOSaCpFo5cV7BF4urizfSXYcBp1PIHDPUiXyDW0wrzcaRQZKDywXg==
-X-Received: by 2002:a05:622a:13:b0:403:b645:86fa with SMTP id x19-20020a05622a001300b00403b64586famr11213614qtw.24.1700155332804;
-        Thu, 16 Nov 2023 09:22:12 -0800 (PST)
-Received: from [10.44.189.251] ([12.161.6.169])
-        by smtp.gmail.com with ESMTPSA id fu23-20020a05622a5d9700b00421ae93b7a5sm4474462qtb.2.2023.11.16.09.22.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 09:22:12 -0800 (PST)
-Message-ID: <10afe65f-4e86-4127-9f8d-b4e3f5ee8a3a@linaro.org>
-Date: Thu, 16 Nov 2023 18:22:11 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775A0364BC
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 17:24:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6940C433C8;
+	Thu, 16 Nov 2023 17:24:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700155451;
+	bh=6Uez4j1D+PV94+gqoUCDXgF4YMEOJqot79M3jVUUXcE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tL5bXgoYqER57kKf3S27zY1UmSnSytsgx9QMRh0kUUc/HRJ65MQtxQs/l0oGayDrW
+	 Za0jzcrRlQtnLZ8QqiNBeF0RHj5D3klQ12XcWwVW+hr9e0wTLwcQ2EP10E0bbFnH5y
+	 Pent9uuB/VMnqvp+m3syefqXBX2nk4WV6PL1CYKnpDQVyom+IsgGn6CnoyzfrBDBmS
+	 +p12aQuhp0WricDi1IuBYGwhW4unEjgFPYjpi4i4/hVTVZDkXkFaAFR8ABCjsr6uKb
+	 9kyh1Y1X/k4IZWt07tUl8Enu3mfHzBEtsRSqrl3Et9TT0R874EbP9R2bDBwQxh2QmW
+	 kF+iFhop8mh3A==
+Date: Thu, 16 Nov 2023 17:24:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Inki Dae <inki.dae@samsung.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: gpu: samsung: constrain clocks in
+ top-level properties
+Message-ID: <20231116-fit-secluding-58541c26d484@squawk>
+References: <20231112184403.3449-1-krzysztof.kozlowski@linaro.org>
+ <20231112184403.3449-3-krzysztof.kozlowski@linaro.org>
+ <20231113-sultry-cold-d63dd9f015d9@squawk>
+ <20231116162855.GA2435337-robh@kernel.org>
+ <e9daa8cc-9cdd-4b76-96b9-b9a6b1ef6f5e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] dt-bindings: arm: Add remote etm driver
-Content-Language: en-US
-To: Mao Jinlong <quic_jinlmao@quicinc.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Trilok Soni <quic_tsoni@quicinc.com>
-Cc: linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>
-References: <20231107060939.13449-1-quic_jinlmao@quicinc.com>
- <20231107060939.13449-3-quic_jinlmao@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231107060939.13449-3-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fFmKGqJ6SO8LH1UG"
+Content-Disposition: inline
+In-Reply-To: <e9daa8cc-9cdd-4b76-96b9-b9a6b1ef6f5e@linaro.org>
 
-On 07/11/2023 07:09, Mao Jinlong wrote:
-> Add new coresight-remote-etm.yaml file describing the bindings required
-> to define coresight remote etm in the device trees.
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 
-+Cc Trilok,
+--fFmKGqJ6SO8LH1UG
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Several Qualcomm boards have warnings coming from Coresight bindings.
-These are big, fat warnings coming usually from ARM bindings (e.g.
-dynamic funnel, TMC). I don't know Coresight good enough to fix them by
-myself.
+On Thu, Nov 16, 2023 at 06:17:31PM +0100, Krzysztof Kozlowski wrote:
+> On 16/11/2023 17:28, Rob Herring wrote:
+> > On Mon, Nov 13, 2023 at 01:51:30PM +0000, Conor Dooley wrote:
+> >> On Sun, Nov 12, 2023 at 07:44:01PM +0100, Krzysztof Kozlowski wrote:
+> >>> When number of clock varies between variants, the Devicetree bindings
+> >>> coding convention expects to have widest constraints in top-level
+> >>> definition of the properties and narrow them in allOf:if:then block.
+> >>>
+> >>> This is more readable and sometimes allows to spot some errors in the
+> >>> bindings.
+> >>>
+> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >>
+> >> =C5cked-by: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> >   ^
+> >=20
+> > Not an 'A'. I only caught this because I go thru everything=20
+> > Acked/Reviewed-by first and this one was missed.
+>=20
+> And in Norwegian it is pronounced as "o", so this would be ocked-by :)
 
-I would prefer not to take any new Qualcomm specific Coresight bindings
-and definitely no new Coresight device nodes in Qualcomm boards, before
-these are fixed.
+What on earth! The fedora install on this macbook I've been travelling
+with does some odd things (clearly there's some setting I need to
+disable) if I type something incorrectly and hit a backspace, but I use
+a vim keybind to "type" my acks etc, so I am not sure that could have
+been affected. FWIW,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Therefore I kindly ask to fix all warnings in Qualcomm boards coming
-from existing Coresight bindings.
+Cheers,
+Conor.
 
-Best regards,
-Krzysztof
 
+--fFmKGqJ6SO8LH1UG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVZQNAAKCRB4tDGHoIJi
+0gWAAP9W+XCybNMkVo8bMN5r4PJjQJGNCRNikfpBlS1m6dw74gEAltKpe/BflVoJ
+60jjmtdd8w8JJuweFkYGUVs9o1/8rQQ=
+=Y/mO
+-----END PGP SIGNATURE-----
+
+--fFmKGqJ6SO8LH1UG--
 
