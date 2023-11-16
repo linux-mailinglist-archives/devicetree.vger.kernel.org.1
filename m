@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-16230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8737EE114
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:08:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6277EE116
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:10:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C9DA1C20832
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:08:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 559C3280ECC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9C130645;
-	Thu, 16 Nov 2023 13:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F61930647;
+	Thu, 16 Nov 2023 13:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZbvjrwRB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EYpxr6WP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE457181
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:08:24 -0800 (PST)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9d2e7726d5bso106814366b.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:08:24 -0800 (PST)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E063C182
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:09:58 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso116484666b.1
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700140103; x=1700744903; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1700140197; x=1700744997; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ewa/RO/c2nNV9BqZXYhhMq1WyzGVfFe1cICq2jP+i3Q=;
-        b=ZbvjrwRBs2JfdPAF2hiKaSV5La0hA5EQDtTETtRcdod5KXAYNEXWXCPKKvP8rCk3Zb
-         JXFbEOqCXc/LDDOKpNv0kiFs1KDNiJrUNkfaNmt2eruZNKY9u6JEoI/EpozqtBm09akV
-         kD6Kt6TkKTltDYyYvUJxBcd6IjfmK2ciqLR+r96klg6m/7H5972kFugcOgv83FnwY9Oz
-         GrpWnYdYTagV0O3lmM0nJu5TM0Dfhp5OoJ11Cq1/O6eFB+Qr9zY/IYBaAz8OQjPfyPgr
-         cNPKM64BhOvIQTaC8zG5PI/BXx6nHCkxv7q29yuTsaAdUSrsVLBHDXZON5t2LSlA6GPV
-         glqQ==
+        bh=/CmDRN4e/HQ0MmpQTQ9Amu51he+/R067td0lYeM4NG8=;
+        b=EYpxr6WPzWRHGpNyYKca73kIXjuV2/eJMm7Dbc+Cm30wptngqfzxAQ5hCGYaaBqwYn
+         G8yv2yW35L45epjoSd1fC/ZQepWWxlxX7moPLutxpIVJjQ79upGRvMo3Jtz3a/eRH/fS
+         QDi8Ix7kLw5QAsJzLgS2UNq5GpKfbxewHeB5n2oXUcoXzVLqVj9ZRP1drRKBT8W8/Yt6
+         BmZwIHJy5KpO5n+HxSu/B97mXUAvQHExZau5mGpGHTcmDSN+HcapZvchG2z7I03bV97s
+         VKd9BPVR/4LmjQtcqb5QYJDf5h3sXCcPBJit+1e3kGA0Ib/exyCo19Fm9bj7TPYCHgzz
+         0SJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700140103; x=1700744903;
+        d=1e100.net; s=20230601; t=1700140197; x=1700744997;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ewa/RO/c2nNV9BqZXYhhMq1WyzGVfFe1cICq2jP+i3Q=;
-        b=Z5vKsH7FNb8iwA0BqHbOcQY+NNas08s1pLwcfeyB0MjdXuQRlzok/eQnZfWEBvQnBU
-         HdXtHQJv/95Q69qQZ/0L1AzDBv6JAX5Pwf1n7HACdFjkKGhvMW/mKGPkTgm1WZOjVCd/
-         SJzxKeCAPYn3fVYKC4oH5lf9fQ/X9v5eQadVoIB5gxDB74iAsmsdrv0y6kZw4MjXEpWu
-         PZchoijpBUPcjeOFBrwKUOPmkt6RRibO6wuxj+08N3zp6ecVbpn3degy5JWsysx0kXnK
-         nG1Amvoyl7qrRZcUjiU4kdmA7uOb71ycKwIQ7uaUpfoIt6RmnB0Se4mLv1F8doWh4O/7
-         zasg==
-X-Gm-Message-State: AOJu0YxiuifvUPnMcXX8+i34vjFrHFdz5SuBzPZy9I+q2GqGk/t+GpPs
-	Y5D+EfeAJkxTWBE5nLYSJYq5rtxBYZw=
-X-Google-Smtp-Source: AGHT+IHVuYL+1VlYakZtvkRco8laP3tpnuEfUx0y1nDVLHShdfNJc8z8ihZGXgeJGqFKdg+MjA7dCQ==
-X-Received: by 2002:a17:906:774a:b0:9e6:da40:50e4 with SMTP id o10-20020a170906774a00b009e6da4050e4mr13395959ejn.7.1700140102989;
-        Thu, 16 Nov 2023 05:08:22 -0800 (PST)
+        bh=/CmDRN4e/HQ0MmpQTQ9Amu51he+/R067td0lYeM4NG8=;
+        b=Ng7J/RyZ07jN+QuvJPZtRT3NAFYdHf5gA9hNtlNMfLtuXwWl7fxDoLYxBgl5GLtDFk
+         pS8xmbnSarMwhfpjiWd+qP96mdtGtuKMXM8IMoUrS33s9q4qWC0H3ffblLCdvK1FkCjl
+         ZEbZR8qO5+0gQBIfF9Ah5zBESanwcg9N6/DcoElfKH7b7Upiq9EywDXr+1oaBVtsjVLD
+         nJL04ZdW8Z9Ihwze9F1gmkZP3xu/X3Ij6o+FZA871eFVQIZYVSIOgLVyfaIhQQe9gd3F
+         k2iUpLm4qW1cx0bA71rn0MosPv/0c15Jt3SGMIiedyJWVVwiZQt894A4hVV4W6WPLVg9
+         HdnA==
+X-Gm-Message-State: AOJu0Yw4pX5pqLv/Ts4ghksDFo5a4gHmp75F8MgK/oNdYWgm8u5LFre7
+	ziV3Ph/9AT7/TmZFdUAjSQcwSiyCkoY=
+X-Google-Smtp-Source: AGHT+IHicHcKzKBlDNseHjmXhJBxUOloYbBkiGJMT+T56kBgUZhVTDk3+bKnUOHZu6AG4mc9RVxzNg==
+X-Received: by 2002:a17:906:ca5b:b0:9be:30c2:b8ff with SMTP id jx27-20020a170906ca5b00b009be30c2b8ffmr11765124ejb.61.1700140197010;
+        Thu, 16 Nov 2023 05:09:57 -0800 (PST)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a3-20020a1709065f8300b009e505954becsm8375833eju.107.2023.11.16.05.08.21
+        by smtp.gmail.com with ESMTPSA id cw18-20020a170906c79200b0099bd7b26639sm8390652ejb.6.2023.11.16.05.09.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 05:08:22 -0800 (PST)
+        Thu, 16 Nov 2023 05:09:56 -0800 (PST)
 From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Golle <daniel@makrotopia.org>,
+Cc: Sam Shih <sam.shih@mediatek.com>,
 	Frank Wunderlich <frank-w@public-files.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan node
-Date: Thu, 16 Nov 2023 14:08:16 +0100
-Message-Id: <20231116130816.4932-1-zajec5@gmail.com>
+Subject: [PATCH 1/2] arm64: dts: mediatek: mt7986: fix SPI bus width properties
+Date: Thu, 16 Nov 2023 14:09:51 +0100
+Message-Id: <20231116130952.5099-1-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,29 +79,48 @@ Content-Transfer-Encoding: 8bit
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-This fixes typo and resolves following validation error:
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pwm-fan: pwms: [[54, 0, 10000], [0]] is too long
-        from schema $id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
+This fixes SPI setup and resolves following validation errors:
+arch/arm64/boot/dts/mediatek/mt7986a-rfb.dtb: spi_nand@0: Unevaluated properties are not allowed ('spi-rx-buswidth', 'spi-tx-buswidth' were unexpected)
+        from schema $id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
+arch/arm64/boot/dts/mediatek/mt7986b-rfb.dtb: spi_nand@0: Unevaluated properties are not allowed ('spi-rx-buswidth', 'spi-tx-buswidth' were unexpected)
+        from schema $id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
 
-Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
-Cc: Daniel Golle <daniel@makrotopia.org>
+Fixes: 885e153ed7c1 ("arm64: dts: mt7986: add spi related device nodes")
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 4 ++--
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-index af4a4309bda4..ba65e3e72bf6 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -43,7 +43,7 @@ fan: pwm-fan {
- 		#cooling-cells = <2>;
- 		/* cooling level (0, 1, 2) - pwm inverted */
- 		cooling-levels = <255 96 0>;
--		pwms = <&pwm 0 10000 0>;
-+		pwms = <&pwm 0 10000>;
- 		status = "okay";
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+index 3ef371ca254e..bcb3ebb85d70 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+@@ -241,8 +241,8 @@ spi_nand: spi_nand@0 {
+ 		compatible = "spi-nand";
+ 		reg = <0>;
+ 		spi-max-frequency = <10000000>;
+-		spi-tx-buswidth = <4>;
+-		spi-rx-buswidth = <4>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
  	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+index dde190442e38..48fe50e67177 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+@@ -156,8 +156,8 @@ spi_nand: spi_nand@0 {
+ 		compatible = "spi-nand";
+ 		reg = <0>;
+ 		spi-max-frequency = <10000000>;
+-		spi-tx-buswidth = <4>;
+-		spi-rx-buswidth = <4>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
+ 	};
+ };
  
 -- 
 2.35.3
