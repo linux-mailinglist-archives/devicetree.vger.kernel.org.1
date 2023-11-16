@@ -1,185 +1,152 @@
-Return-Path: <devicetree+bounces-16410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B007EE878
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 21:48:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD7A7EE8AB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 22:09:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 168161F25716
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 20:48:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4E9F1F215C6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 21:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7080247799;
-	Thu, 16 Nov 2023 20:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pfry8HUA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C5D45029;
+	Thu, 16 Nov 2023 21:09:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE32419D
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:48:21 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-dae7cc31151so1161860276.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 12:48:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700167701; x=1700772501; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3jsteqKoN0WWpHYaZ+5dGYmwGw/oo6WmbF7h43IrO4I=;
-        b=Pfry8HUALyS/Pnsu4MvjCQhVjIAicRPRXtoDx/puCI6Sy1Km49JCXBgNfpXhhN3fsl
-         5MIT70WcPo+UfDz7w10N5S9HyiTndnhSoUSVsf6M7bIIfL7FWkqB6/aH2QpPId9YqMSJ
-         9wgu8vlGxF8ca3mn/UAAAOloE5WnYgcxsj4nEK7fmj+/uztRoWHCGE0BA8Ye55oGag+J
-         IaXAtA4hMELM5cSSPEUUbM/fq0g3UnQScbiFDtUzUk0H4OFnCR7Jdmdgrfa4sQwA4MO9
-         4MQJedDEftCB40TPfdVMI0lOXOBhXgqNtypjJUSYcjUW8WV85yzrBCG+1drwSgjrViAm
-         5sxg==
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A55CB9;
+	Thu, 16 Nov 2023 13:09:01 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5b383b4184fso14720017b3.1;
+        Thu, 16 Nov 2023 13:09:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700167701; x=1700772501;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3jsteqKoN0WWpHYaZ+5dGYmwGw/oo6WmbF7h43IrO4I=;
-        b=IZthfWbTFuRSq4J0odrLG83uexrtAJIKzAnScYcf57FCkg2q+DXBgO9gEyiAlIfLrt
-         lbhpTvn166r8QF72X0bElBtEFrGjju2M+9RbKrNfPueBz2raINjk6QrLhMhtp4AyqUxK
-         qwJ98Wn6036LjKXeawN8GZL6PllxvmxSbInxmj/0ReC2G9sXLC1BzWm3LrowSiaJ0IV6
-         05F1JvdA2/x+nLdoLEtVAqZUgS9RIS6bq9f8QGWJfKyxfIWpbMBXg2vNobDx/EXmw7P3
-         5v0iRegsHWGRu6K2cdjYRBwk3ZhqfXiQ7yMzeuy5JF1XCP3Og6Qr/xvulNpHqD/zNfwP
-         T8lw==
-X-Gm-Message-State: AOJu0YxkaEpZitJ3+Ti0IjDHuGUuwMGWzbFf3dD7e3jQeO/nlc5hvXMy
-	WMsonSMnRi/dIsIOgaL/hD01gUl5pyYXXJzEhHhgPA==
-X-Google-Smtp-Source: AGHT+IHVTlFJzHDjToNpFdQnCvZKDQ+PQ1znp3kQQkzNq4tHUtFVV9wom8RYAW3XYC8nyPrjocgkBKXNLOvWzbyPg+k=
-X-Received: by 2002:a25:bd8f:0:b0:d80:4533:9556 with SMTP id
- f15-20020a25bd8f000000b00d8045339556mr15904655ybh.63.1700167700968; Thu, 16
- Nov 2023 12:48:20 -0800 (PST)
+        d=1e100.net; s=20230601; t=1700168940; x=1700773740;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NmAR3Dzl+2Yap6j2yy8l4JfxyLBr+pYiVj7xTuK3lwA=;
+        b=VL8HkbDCk/naPeU/JjvUsnxrA7T7L9rXoD54mtwVpFNX/CHsmiFdYrtsIdK2s0n2Z0
+         Z6XBAmbeIvIewvJMaW/cALyaUIYm3VRmYOwQy6MU1N6eA/wLzMQPF32y44IKHgy/ekk1
+         NDXwL5R2a20NtnP3EHBhsBgqoLxwrkpp6diDpRjIh8121gFMEcppvt6zwlLDV8lnv88R
+         46BHM2sPbwobQA4+Lv8Jwp5ykVg1UATp3+gGTQw7V8Zhu1TuwaljOc/Qg9gqu8z24X11
+         UyynbsOzuB2r8rkrOd0AoD/acr+kTpM+PBNZ9PUTboKVdDtMVaorXwfvTi3TO8s1fe28
+         R3Eg==
+X-Gm-Message-State: AOJu0Yy82tqm2wPUotByOyhSaaCkARO0eaVxXT96tllchHUT/mN93IBz
+	IpXzi7ejN1BJK1hQ6PD9UtaY6cdwrc3UZw==
+X-Google-Smtp-Source: AGHT+IH+MKO1S2qViUWa/qjSyNItu+lV2cKb4Tv5znsbhI8QPdMo0E7jNmnxw5IRAQHURrSp6gy+mA==
+X-Received: by 2002:a81:89c5:0:b0:5b8:d451:9b84 with SMTP id z188-20020a8189c5000000b005b8d4519b84mr16112808ywf.17.1700168940454;
+        Thu, 16 Nov 2023 13:09:00 -0800 (PST)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id j142-20020a819294000000b0059f802fad40sm98443ywg.22.2023.11.16.13.08.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Nov 2023 13:08:59 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5b383b4184fso14719657b3.1;
+        Thu, 16 Nov 2023 13:08:58 -0800 (PST)
+X-Received: by 2002:a0d:cb0c:0:b0:5a7:bc38:fff2 with SMTP id
+ n12-20020a0dcb0c000000b005a7bc38fff2mr17325818ywd.15.1700168938637; Thu, 16
+ Nov 2023 13:08:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231113221528.749481-1-dmitry.baryshkov@linaro.org>
- <20231113221528.749481-2-dmitry.baryshkov@linaro.org> <20231116183802.GB2742530-robh@kernel.org>
-In-Reply-To: <20231116183802.GB2742530-robh@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 16 Nov 2023 22:48:09 +0200
-Message-ID: <CAA8EJpoJzGWM_1DDY1AfB35qFz+58LVhO+L7t5fKC9HoUsR0sg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: connector: usb: add altmodes description
+References: <8734x9tda9.wl-kuninori.morimoto.gx@renesas.com>
+ <87wmulrynq.wl-kuninori.morimoto.gx@renesas.com> <20231116192324.GB2821275-robh@kernel.org>
+In-Reply-To: <20231116192324.GB2821275-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 16 Nov 2023 22:08:46 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU0Hqem8Ooehoo64rrGn8q8+5A8_DjGZd9Tvh=Xej6mdA@mail.gmail.com>
+Message-ID: <CAMuHMdU0Hqem8Ooehoo64rrGn8q8+5A8_DjGZd9Tvh=Xej6mdA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] drivers: clk: renesas: enable all clocks which is
+ assinged to non Linux system
 To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Hans de Goede <hdegoede@redhat.com>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Mark Gross <markgross@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-usb@vger.kernel.org
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Frank Rowand <frowand.list@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 16 Nov 2023 at 20:38, Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Nov 14, 2023 at 12:13:27AM +0200, Dmitry Baryshkov wrote:
-> > Add description of the USB-C AltModes supported on the particular USB-C
-> > connector. This is required for devices like Qualcomm Robotics RB5,
-> > which have no other way to express alternative modes supported by the
-> > hardware platform.
+Hi Rob,
+
+On Thu, Nov 16, 2023 at 8:23=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Tue, Nov 14, 2023 at 12:01:14AM +0000, Kuninori Morimoto wrote:
+> > Some board might use Linux and another OS in the same time. In such
+> > case, current Linux will stop necessary module clock when booting
+> > which is not used on Linux side, but is used on another OS side.
 > >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../bindings/connector/usb-connector.yaml     | 36 +++++++++++++++++++
-> >  1 file changed, 36 insertions(+)
+> > To avoid such situation, renesas-cpg-mssr try to find
+> > status =3D "reserved" devices (A), and add CLK_IGNORE_UNUSED flag to it=
+s
+> > <&cgp CPG_MOD xxx> clock (B).
+>
+> See Stephen's presentation from Plumbers this week. The default behavior
+> for unused clocks may be changing soon.
+
+Thank you!
+
+ou mean "Make sync_state()/handoff work for the common clk
+framework"[1]? IIUIC, that presentation didn't cover the problem we are
+facing, except for the big "Kconfig for clk_ignore_unused=3Dtrue" hammer.
+
+> > Table 2.4: Values for status property
+> > https://github.com/devicetree-org/devicetree-specification/releases/dow=
+nload/v0.4/devicetree-specification-v0.4.pdf
 > >
-> > diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > index 7c8a3e8430d3..1bd51b86906f 100644
-> > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > @@ -14,6 +14,31 @@ description:
-> >    of a USB interface controller or a separate node when it is attached to both
-> >    MUX and USB interface controller.
+> > "reserved"
+> >       Indicates that the device is operational, but should not be
+> >       used. Typically this is used for devices that are controlled
+> >       by another software component, such as platform firmware.
 > >
-> > +$defs:
+> > ex)
+> >       scif5: serial@e6f30000 {
+> >               ...
+> > (B)           clocks =3D <&cpg CPG_MOD 202>,
+> >                        <&cpg CPG_CORE R8A7795_CLK_S3D1>,
+> >                        <&scif_clk>;
+> >               ...
+> > (A)           status =3D "reserved";
+> >       };
 >
-> I fail to see why we need to use $defs here.
+> I have some reservations about whether a reserved node should be touched
+> at all by Linux. I suppose since it is platform specific, it's okay. I
+> don't think we could apply such behavior globally.
 
-I had an idea of defining a schema piece that can later be referenced
-from any other place. If you think this is an overkill, I can drop
-them.
+That's an interesting comment, as the issue is that currently Linux
+does touch (resources belonging to) reserved nodes, and this patch
+would prevent doing that for module clock resources;-)
 
->
-> > +  altmode-desc:
-> > +    type: object
-> > +    description:
-> > +      A single USB-C Alternative Mode as supported by the USB-C connector logic.
-> > +    properties:
-> > +      svid:
-> > +        $ref: /schemas/types.yaml#/definitions/uint16
-> > +        description: Unique value assigned by USB-IF to the Vendor / AltMode.
-> > +      vdo:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description: VDO returned by Discover Modes USB PD command.
->
-> What's VDO?
+The core issue is that Linux distinguishes only between two cases:
+  1. "device is used by Linux" (if a driver is available),
+     as indicated by 'status =3D "okay"' in DT, or
+  2. "device is unused by Linux".
+On a heterogenous system, the latter actually comprises two cases:
+  2a. "device is unused", or
+  2b. "device is used by another OS running on another CPU core".
 
-Ack, I'll expand it in v3
+Looking for 'status =3D "reserved"' allows us to distinguish between 2a
+and 2b, and can prevent disabling clocks that are used by another OS.
+Probably we need a similar solution for power domains.
 
->
-> These names are a bit short. Types for property names are global
-> (mostly). Though this patch doesn't make it clear these were already in
-> use.
->
-> > +
-> > +  altmodes-list:
-> > +    type: object
-> > +    description: List of Alternative Modes supported by the schematics on the
-> > +      particular device. This is only necessary if there are no other means to
-> > +      discover supported alternative modes (e.g. through the UCSI firmware
-> > +      interface).
-> > +
-> > +    patternProperties:
-> > +      "^[a-z][a-z0-9]*$":
->
-> Are there standard id's and names? Should we define some so we don't get
-> 'dp', 'displayport', etc.
+Do you have a better or alternative suggestion?
+Thanks!
 
-Indeed it might be better to enumerate them via string enumeration.
+[1] https://lpc.events/event/17/contributions/1432/
+    https://www.youtube.com/watch?v=3DNSSSIVQgsIk?t=3D164m
 
->
->
-> > +        $ref: "#/$defs/altmode-desc"
-> > +        unevaluatedProperties: false
-> > +
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > @@ -171,6 +196,10 @@ properties:
-> >        offer the power, Capability Mismatch is set. Required for power sink and
-> >        power dual role.
-> >
-> > +  altmodes:
-> > +    $ref: "#/$defs/altmodes-list"
-> > +    unevaluatedProperties: false
-> > +
-> >    port:
-> >      $ref: /schemas/graph.yaml#/properties/port
-> >      description: OF graph bindings modeling a data bus to the connector, e.g.
-> > @@ -289,6 +318,13 @@ examples:
-> >              compatible = "usb-c-connector";
-> >              label = "USB-C";
-> >
-> > +            altmodes {
-> > +                displayport {
-> > +                    svid = /bits/ 16 <0xff01>;
-> > +                    vdo = <0x00001c46>;
-> > +                };
-> > +            };
-> > +
-> >              ports {
-> >                  #address-cells = <1>;
-> >                  #size-cells = <0>;
-> > --
-> > 2.42.0
-> >
+Gr{oetje,eeting}s,
 
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
--- 
-With best wishes
-Dmitry
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
