@@ -1,103 +1,123 @@
-Return-Path: <devicetree+bounces-16270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9B77EE288
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:16:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F767EE2AE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87AA71F26C69
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:16:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2C291C209B2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C92A31A63;
-	Thu, 16 Nov 2023 14:16:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 875D1321B6;
+	Thu, 16 Nov 2023 14:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tT7pAGH6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1FED55;
-	Thu, 16 Nov 2023 06:16:45 -0800 (PST)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5a82f176860so9418057b3.1;
-        Thu, 16 Nov 2023 06:16:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700144205; x=1700749005;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ibmdabV7l5XTVe2k8R3JzSdJeiOB1me2z9/gej+1Tto=;
-        b=GJ4gMj/gchRjIry1gEBriVfGP/xzWg2Jcy8BXbe/sB17IApoxwJcu5VdDbZEJHK5Lx
-         haSCsyWS69LukKGux0pVAfrOD6gH8oB+zSkRtHyP5VbB9RV/76/T6Zyi36/hdfIf9Xiv
-         8kCXiMlk1cI97Ufm+2LrWQGtEzpZ84uRnrnS1XnHNZHjURDjE4JV2M/KKLo0GypwUk4i
-         cfSSLQWSD8GwAqRUnAPLpmg13egVlo8IsfJcTDSxd95d9xIWfCeSFfRJofhJLKgLM7SP
-         I8TvO2F3Iv1fD8z5Ql4Mf1xcg3qqZ2EAmlAIQYHz4/pW2oV5XUMkrkz+sr+gPzojdmpX
-         byuA==
-X-Gm-Message-State: AOJu0YxbXptc61/KiUuUT1SiCGtzWd1HRp3rW09s+m7lv3hZCqXzK3JL
-	ZtB+YoWrWmYQjVcTJ9mpaPFLGfVyaOZnSQ==
-X-Google-Smtp-Source: AGHT+IHbcX04PGYeaUhKqhleU5CNVn4S+x2ZzvU6qX6U22YHkpdciZkxtyf3/SpSCmh/NUkh0c0MYw==
-X-Received: by 2002:a0d:e3c1:0:b0:5a8:60ad:39a4 with SMTP id m184-20020a0de3c1000000b005a860ad39a4mr17955067ywe.3.1700144204813;
-        Thu, 16 Nov 2023 06:16:44 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id w190-20020a0dedc7000000b005a7d9fca87dsm999245ywe.107.2023.11.16.06.16.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 06:16:44 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5b31c5143a0so9283847b3.3;
-        Thu, 16 Nov 2023 06:16:44 -0800 (PST)
-X-Received: by 2002:a81:49d8:0:b0:5a8:5079:422 with SMTP id
- w207-20020a8149d8000000b005a850790422mr16462532ywa.26.1700144204289; Thu, 16
- Nov 2023 06:16:44 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A382321AB;
+	Thu, 16 Nov 2023 14:22:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF52C433C7;
+	Thu, 16 Nov 2023 14:22:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700144564;
+	bh=IS1DuP8+1kUE365TQJj5hRQ+HcxauE+Dzik9ZXeEijs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tT7pAGH6H3r4emjRDPthCSKY7xssdmajLP+5/xeX438B0cVaprE19Rd+hqlsFDTnA
+	 lbDytFbjZI0hjk0zl/Tqc/XBmgFoBsYxUZh3aGT5EQ2k49cOD6Y/VY23Zmw/R78wy1
+	 adQYt0kMhCre5T9OBOZA5Tr4UduG3PTISDvLVwKT8XrHiMfoRfLVEpDOaqWDnvMLJN
+	 D65c7S2NrUo6z6liQrbz4MPWSgE0lBuDxOn/VXFGyiPZ+zfDMcbuLlLjr3Df1InDIa
+	 obQHutb1sRJQ36sT7hqMyhRDbxVqcW9hXm5bQAop8cVjHu66hztlz9TVItoS+IT62Y
+	 +ch0tVomSEpIg==
+Date: Thu, 16 Nov 2023 14:22:41 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: andrew@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 2/6] dt-bindings: net: ethernet-controller: add
+ 10g-qxgmii mode
+Message-ID: <20231116-flier-washed-eb1a45481323@squawk>
+References: <20231116112437.10578-1-quic_luoj@quicinc.com>
+ <20231116112437.10578-3-quic_luoj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231102203922.548353-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20231102203922.548353-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 16 Nov 2023 15:16:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVmoknQLnkMmi-pGVjz5osE8Vx_TQy3OXH3GUfYbtDwMw@mail.gmail.com>
-Message-ID: <CAMuHMdVmoknQLnkMmi-pGVjz5osE8Vx_TQy3OXH3GUfYbtDwMw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: dma: rz-dmac: Document RZ/Five SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eeTAmJq3hbXLEdrA"
+Content-Disposition: inline
+In-Reply-To: <20231116112437.10578-3-quic_luoj@quicinc.com>
+
+
+--eeTAmJq3hbXLEdrA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 2, 2023 at 9:39=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
-m> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The DMAC block on the RZ/Five SoC is identical to one found on the RZ/G2U=
-L
-> SoC. "renesas,r9a07g043-dmac" compatible string will be used on the
-> RZ/Five SoC so to make this clear, update the comment to include RZ/Five
-> SoC.
->
-> No driver changes are required as generic compatible string
-> "renesas,rz-dmac" will be used as a fallback on RZ/Five SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Nov 16, 2023 at 07:24:33PM +0800, Luo Jie wrote:
+> Add the new interface mode 10g-qxgmii, which is similar to
+> usxgmii but extend to 4 channels to support maximum of 4
+> ports with the link speed 10M/100M/1G/2.5G.
+>=20
 
+> This patch is separated from Vladimir Oltean's previous patch
+> <net: phy: introduce core support for phy-mode =3D "10g-qxgmii">.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This belongs in the changelog under the --- line.
 
-Gr{oetje,eeting}s,
+>=20
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-                        Geert
+Are you missing a from: line in this patch?
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.ya=
+ml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index d14d123ad7a0..0ef6103c5fd8 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -104,6 +104,7 @@ properties:
+>        - usxgmii
+>        - 10gbase-r
+>        - 25gbase-r
+> +      - 10g-qxgmii
+> =20
+>    phy-mode:
+>      $ref: "#/properties/phy-connection-type"
+> --=20
+> 2.42.0
+>=20
+
+--eeTAmJq3hbXLEdrA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVYlrgAKCRB4tDGHoIJi
+0stsAQC/xl95sWf1KDMyE1ytf/jBbf6R1duIc9zoYY4ivS9IhAD9FebNFMkbQsMM
+CW1kP66V0irHHz6eUXF+HF8sOB2uLAE=
+=JVOw
+-----END PGP SIGNATURE-----
+
+--eeTAmJq3hbXLEdrA--
 
