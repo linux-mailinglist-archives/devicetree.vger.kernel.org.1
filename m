@@ -1,152 +1,98 @@
-Return-Path: <devicetree+bounces-16282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D3A7EE2FB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:36:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 167CF7EE2FF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 15:37:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2F822810AB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:36:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84EFDB20C34
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00B7328D5;
-	Thu, 16 Nov 2023 14:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA41C2DF7E;
+	Thu, 16 Nov 2023 14:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XaiyQAw5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8C7D4B;
-	Thu, 16 Nov 2023 06:36:33 -0800 (PST)
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6d67d32adc2so453120a34.2;
-        Thu, 16 Nov 2023 06:36:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700145392; x=1700750192;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hQe83AHexfh3GazMLDTY5AyEL167MohegfRBMKLl7I8=;
-        b=gNgC8dPRqLpw2x9mM5EFEyinbYSiySY+yTYN5Cu0s8Bap4S+L5cfNbYGyTh9YixSso
-         sLdKjQOqZyNphUb5EAIJSkEOtBu37K7JkAeBUcZB92nPzMXLT3dm3enWGxXQeixZXGyN
-         PiKol+kvyAtt0NmCupHw4grxx7aizpbEdPIEbiuSei039njKHok+Ja1oWK9o17bom+2m
-         bfVMzzzOLVb7invMry6VkDlmfZZff0C22pFj7INoJ1vibbfj5FrrE9FxeDZieAJcbyId
-         5aPr5n2jAU1325SdWHLtxbT6BW/ZqsXtpD2h41lhNPJdA+M73cmUdh/pKdKn023c7EDV
-         YGcA==
-X-Gm-Message-State: AOJu0YzZwOPeuoAheeJhryleNtZZTA97BCQnndpTQNQJXCW5s/WXFjLo
-	DIDdY19R4xTkyCrZ39zLw8M=
-X-Google-Smtp-Source: AGHT+IHU4Lxx+/myT+H5YB5iQwSXHLDIA41zmD2u+pjBktk3mb+GPBhIH+yVJJ2/AO7NCTzQtZy56A==
-X-Received: by 2002:a05:6830:10c7:b0:6c4:ae52:9599 with SMTP id z7-20020a05683010c700b006c4ae529599mr9476568oto.7.1700145392505;
-        Thu, 16 Nov 2023 06:36:32 -0800 (PST)
-Received: from localhost ([2600:380:7a60:430d:7a98:972a:884d:31ff])
-        by smtp.gmail.com with ESMTPSA id l2-20020a9d7082000000b006cd099bb052sm912460otj.1.2023.11.16.06.36.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 06:36:32 -0800 (PST)
-Date: Thu, 16 Nov 2023 06:36:30 -0800
-From: Moritz Fischer <mdf@kernel.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: acpica-devel@lists.linux.dev, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
-	David Woodhouse <dwmw2@infradead.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Joerg Roedel <joro@8bytes.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>, Len Brown <lenb@kernel.org>,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
-	linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Hector Martin <marcan@marcan.st>,
-	Palmer Dabbelt <palmer@dabbelt.com>, patches@lists.linux.dev,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Robert Moore <robert.moore@intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Sven Peter <sven@svenpeter.dev>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Krishna Reddy <vdumpa@nvidia.com>, Vineet Gupta <vgupta@kernel.org>,
-	virtualization@lists.linux.dev, Wei Liu <wei.liu@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
-	Jerry Snitselaar <jsnitsel@redhat.com>,
-	Moritz Fischer <mdf@kernel.org>,
-	Zhenhua Huang <quic_zhenhuah@quicinc.com>,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 12/17] iommu: Make iommu_ops_from_fwnode() static
-Message-ID: <ZVYo7s_dV9HDm1qU@archbook>
-References: <0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
- <12-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A715D328CB;
+	Thu, 16 Nov 2023 14:37:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C46DDC433CA;
+	Thu, 16 Nov 2023 14:37:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1700145461;
+	bh=al1iPQtTj5S8+kmJIvOjqSlIMqeFQE4WgzTUxwqsS4I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XaiyQAw5H9nI4k/r2urZShY7clc73iJIc/DXXYT8AhI/6SizqYyXjQK1/1j+udscd
+	 VhjWXkjd/xYHXX1jFZUk3a4IQNxlhHuFQMZcUm6ArwRTzu6r+asT/CWBNOxUlqgaP1
+	 hCf4YXOH4bBANzDVW1IqkvbQVBjmF6UXGNxyFGfu4FjTocbFCkmm7TreO9LQVo6DoX
+	 uoMahCdT6WCxo3pjMQgmAYhcU29K4KVpvBpQM21n5BhnSJEZB6z2CUVKWZIto6u9s7
+	 Xw+yLq3P2mIGbQmW/pbzcyjTGlz7SpN6oc+9cLcrZpWmXiUmD8iUbENVU4IBV+RL/I
+	 deNS0dH2ecYMQ==
+Date: Thu, 16 Nov 2023 14:37:38 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Mehdi Djait <mehdi.djait@bootlin.com>,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
+	paul.kocialkowski@bootlin.com, dafna@fastmail.com,
+	helen.koike@collabora.com, heiko@sntech.de,
+	paul.elder@ideasonboard.com
+Subject: Re: [PATCH] media: dt-bindings: media: rkisp1: Fix the port
+ description for the parallel interface
+Message-ID: <20231116-rigor-rectified-2edcf9461c05@squawk>
+References: <20231115164407.99876-1-mehdi.djait@bootlin.com>
+ <20231116005140.GB21041@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="a5aVI6MThUXgtnrw"
+Content-Disposition: inline
+In-Reply-To: <20231116005140.GB21041@pendragon.ideasonboard.com>
+
+
+--a5aVI6MThUXgtnrw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <12-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 15, 2023 at 10:06:03AM -0400, Jason Gunthorpe wrote:
-> There are no external callers now.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-Reviewed-by: Moritz Fischer <mdf@kernel.org>
-> ---
->  drivers/iommu/iommu.c | 3 ++-
->  include/linux/iommu.h | 7 -------
->  2 files changed, 2 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 5af98cad06f9ef..ea6aede326131e 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -2928,7 +2928,8 @@ bool iommu_default_passthrough(void)
->  }
->  EXPORT_SYMBOL_GPL(iommu_default_passthrough);
->  
-> -const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
-> +static const struct iommu_ops *
-> +iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
->  {
->  	const struct iommu_ops *ops = NULL;
->  	struct iommu_device *iommu;
-> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-> index 72ec71bd31a376..05c5ad6bad6339 100644
-> --- a/include/linux/iommu.h
-> +++ b/include/linux/iommu.h
-> @@ -831,7 +831,6 @@ static inline void iommu_fwspec_free(struct device *dev)
->  	dev->iommu->fwspec = NULL;
->  }
->  int iommu_fwspec_add_ids(struct device *dev, u32 *ids, int num_ids);
-> -const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode);
->  int iommu_fwspec_append_ids(struct iommu_fwspec *fwspec, u32 *ids, int num_ids);
->  
->  static inline struct iommu_fwspec *dev_iommu_fwspec_get(struct device *dev)
-> @@ -1187,12 +1186,6 @@ static inline int iommu_fwspec_add_ids(struct device *dev, u32 *ids,
->  	return -ENODEV;
->  }
->  
-> -static inline
-> -const struct iommu_ops *iommu_ops_from_fwnode(struct fwnode_handle *fwnode)
-> -{
-> -	return NULL;
-> -}
-> -
->  static inline int
->  iommu_dev_enable_feature(struct device *dev, enum iommu_dev_features feat)
->  {
-> -- 
-> 2.42.0
-> 
+On Thu, Nov 16, 2023 at 02:51:40AM +0200, Laurent Pinchart wrote:
+> On Wed, Nov 15, 2023 at 05:44:07PM +0100, Mehdi Djait wrote:
+> > The bus-type belongs to the endpoint's properties and should therefore
+> > be moved.
+> >=20
+> > Fixes: 6a0eaa25bf36 ("media: dt-bindings: media: rkisp1: Add port for p=
+arallel interface")
+> > Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
+>=20
+> Good catch.
+>=20
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--a5aVI6MThUXgtnrw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZVYpLgAKCRB4tDGHoIJi
+0vPhAQCT1dp7os5Z5idwlawY+a9tjPvQ5f/v4/48A/rLXyU0/QD/b2SEgPCdTPuQ
+k0UQJ631n1qR1zcC5ZkEkQx+SVoxug8=
+=8ET4
+-----END PGP SIGNATURE-----
+
+--a5aVI6MThUXgtnrw--
 
