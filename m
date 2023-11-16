@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB877EE01C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:47:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E36E7EE037
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:56:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B66DC281093
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:47:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9439BB20B87
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:56:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFC42F535;
-	Thu, 16 Nov 2023 11:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593C02F857;
+	Thu, 16 Nov 2023 11:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pKJjhiMw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fm93XQ36"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B6ED187
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:47:11 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5a7b91faf40so7672897b3.1
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:47:11 -0800 (PST)
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C27C4
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:56:36 -0800 (PST)
+Received: by mail-qk1-x72e.google.com with SMTP id af79cd13be357-778a47bc09aso39253685a.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:56:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700135231; x=1700740031; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700135795; x=1700740595; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9IZjcqGv42rVv0ipCzhYT3Hq96pkj962enz82vWbOD8=;
-        b=pKJjhiMw6qe5hxSpsuAv0AexpFThwXd/mbcu6fxBH/S/BesmocaCOMBhqkCAdUt+Q/
-         gMADdlaJ89slxm0Sf1Z7dvesvHkE200G7EzCJPO6xU7hSAgoFE49+lZTAHghVJ2bSbAj
-         +BuRVKvkMvOQ6Vu0NkMJp0s0xm5gCFZTBPI1g7OQXbf0BnDVjFm4sfBmGmbg9vDcHuMs
-         Lb9hUUjZcx2GFK6dmnQHIppoGc+EmueIBd8cZqXOauA5U/T6EiI9M0iXgiIA51nbFeKx
-         SJJPzvZLZDNwZ6wQQNUBs8qeP3HYj0sk/ZytPo5x3dQthg7Qb35UyoPbLTGi25ZJYSbe
-         iLhQ==
+        bh=6sduR18SAGL/LrSQHVtqPdn++QC3UjL5bC7BaWYG+KE=;
+        b=Fm93XQ361inLUqfBuF59B5NVoT7vQ3nd9ddJpzVFKHH2mZIDomKs3UPbyW/1x884LM
+         thx0qBGleO+OMdocW01XCPl1Mtubem1lc6xE/SBMbMslx9GqHmr5cCE+uXbRJSkiTn5w
+         tk9D1w+15aNfbCTp0itMJulDDBbM7VAUWL3/d0PDbxzLAX6tasH8+qSd0gMNbRKYhdyf
+         f+hMK1WedRfZsFy3HdIlxXxKBdWLjUiS+pXEsAmdQ6D6v9tQUH8aoKJUMr77y34PUvtd
+         sfGUjKFwBlbeD3/k5E9rXANxSVyM1k+nPQDOIoGgVMsu7vfmZLDZ7VRvK8b1eiD1+m6O
+         8V8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700135231; x=1700740031;
+        d=1e100.net; s=20230601; t=1700135795; x=1700740595;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9IZjcqGv42rVv0ipCzhYT3Hq96pkj962enz82vWbOD8=;
-        b=KfmiENMz+pPdh6S9TOE0cZfWfVM3c1f0YgBkvbRL+W0UBp7PniR+ghe0eZjW39dJF4
-         +ubO17NAq2h92KZcfvGYe0OpBe1G23V57CEDhkLQZUyJVfy9XZN2le6bRF3k1b0gRT2M
-         e7rmyn4XQOOFncdFwT+H1hizbpLIEFyO0sH1maLv/o94lHvS6VGMtu3rFpEwLj9OKflS
-         0OHY5rk3mm7Bd6ep2g51uvNUhgpnb51rnh4yMjhUjP1danJUn1cM9VOtUcGzUGP7tyaq
-         vIBKNXU3kHSLINwUJU/WVbys0gXs1pV7qRR5x+JRP4fcLW+Qg9bz9g0cvp8GPbujMArk
-         6A5A==
-X-Gm-Message-State: AOJu0YyByeMs+2ZUg2Os7E3LjkcInYzzGF5wJnzum+/Lo058bQeng541
-	lfJMMLUzoEH7uiWCf08r3MQIEw==
-X-Google-Smtp-Source: AGHT+IGWA89zidPswf2TQAp+TqRFhSxa7Oyp6znP0Eb8YbE0oq3Ta/SGAHTPqcGO96abkl4ixVfjAA==
-X-Received: by 2002:a0d:c8c7:0:b0:5a7:bbca:8c9e with SMTP id k190-20020a0dc8c7000000b005a7bbca8c9emr14741014ywd.7.1700135230773;
-        Thu, 16 Nov 2023 03:47:10 -0800 (PST)
+        bh=6sduR18SAGL/LrSQHVtqPdn++QC3UjL5bC7BaWYG+KE=;
+        b=uTC+PeiMoN/tpXfdghhSjL57i7Jjj4SOhy1Zv8B6i5p17icsO0IjTpS/uEPgQzbOXl
+         WUQL+5wAaondObxOij4LfnKVqaQQQq6fIWa2ZVMQ+09O8SJux0Zjt+SHdCfIT5VYyATu
+         Wr6T42WR3A/WnLDnHvYafN1QDe5ssTR2gfG3Zev1iwzty59aKxL1r6JYQ2+v85sLMifR
+         xt1LIdX6jT32qjuvQ5o8mu0hxAk2RLkHVrhF5Nj6XiTHhyf6rnhjHfkOUiLstJeB8PJG
+         bbjr/FZoJTc3TmavxoFTRi0y30l0hyMK34ofua+havr5CDPcVVi1mSySxUSc3vVjr17u
+         Zy9A==
+X-Gm-Message-State: AOJu0YxC1Ql3FTcniSpzZ5p5jRoSgIn6JODlx3k88eKYlJoARfsJfxIt
+	YIaLB/8yGPtCxxH1FSWLbTJPRg==
+X-Google-Smtp-Source: AGHT+IFGiq+EEnneJQhbyMpvhM5nd0O8GlvkBn6OEiICIj/lDbbqEaBBZyC3Z30TIPhx9JFCSDNNNQ==
+X-Received: by 2002:ad4:4089:0:b0:675:b904:9bc1 with SMTP id l9-20020ad44089000000b00675b9049bc1mr8608767qvp.49.1700135795582;
+        Thu, 16 Nov 2023 03:56:35 -0800 (PST)
 Received: from [192.168.212.13] ([12.191.197.195])
-        by smtp.gmail.com with ESMTPSA id qd6-20020a05620a658600b007758b25ac3bsm4229474qkn.82.2023.11.16.03.47.05
+        by smtp.gmail.com with ESMTPSA id l15-20020ad4408f000000b00670867d7bdfsm1315936qvp.122.2023.11.16.03.56.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 03:47:10 -0800 (PST)
-Message-ID: <e469039c-9370-4718-9081-98a203c62e77@linaro.org>
-Date: Thu, 16 Nov 2023 12:46:52 +0100
+        Thu, 16 Nov 2023 03:56:35 -0800 (PST)
+Message-ID: <834cbb58-3a88-4ba6-8db6-10440a4d0893@linaro.org>
+Date: Thu, 16 Nov 2023 12:56:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,27 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/11] iio: adc: Add QCOM PMIC5 Gen3 ADC bindings
+Subject: Re: [PATCH 9/9] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
 Content-Language: en-US
-To: Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
+To: Luo Jie <quic_luoj@quicinc.com>, agross@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linus.walleij@linaro.org, Jonathan.Cameron@huawei.com, sboyd@kernel.org,
- dmitry.baryshkov@linaro.org, quic_subbaram@quicinc.com,
- quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
- marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Luca Weiss <luca@z3ntu.xyz>,
- linux-iio@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc: linux-arm-msm-owner@vger.kernel.org
-References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
- <20230708072835.3035398-7-quic_jprakash@quicinc.com>
- <bb225c12-f017-fac3-45f1-c828a10553e2@linaro.org>
- <99070bce-6188-82eb-c92c-cf7a323394e2@quicinc.com>
- <c4ef9cac-15ac-4c2c-9f9a-cb9e740e2900@linaro.org>
- <06d0f06a-7a5a-44d1-0bad-27f56bfc1421@quicinc.com>
+ quic_srichara@quicinc.com
+References: <20231115032515.4249-1-quic_luoj@quicinc.com>
+ <20231115032515.4249-10-quic_luoj@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,42 +120,131 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <06d0f06a-7a5a-44d1-0bad-27f56bfc1421@quicinc.com>
+In-Reply-To: <20231115032515.4249-10-quic_luoj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/11/2023 04:23, Jishnu Prakash wrote:
-> Hi Krzysztof,
+On 15/11/2023 04:25, Luo Jie wrote:
+> On platform IPQ5332, the MDIO address of qca8084 can be programed
+> when the device tree property "fixup" defined, the clock sequence
+> needs to be completed before the PHY probeable.
 > 
-> On 10/23/2023 12:06 PM, Krzysztof Kozlowski wrote:
->> On 23/10/2023 08:14, Jishnu Prakash wrote:
->>> Hi Krzysztof,
->>>
->>> On 7/9/2023 10:53 PM, Krzysztof Kozlowski wrote:
->>>
->>>>>      reg:
->>>>>        description: VADC base address in the SPMI PMIC register map
->>>>> -    maxItems: 1
->>>>> +    minItems: 1
->>>> Why? This does not make any sense. With previous patches it looks like
->>>> random set of changes.
->>> The idea here is to convey that reg can have multiple values for ADC5
->>> Gen3 as there can be more than one peripheral used for ADC, so there can
->>> be multiple base addresses. I'll try to make this more clear in the next
->>> patchset.
->> You cannot remove constraints from an entry.
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  .../bindings/net/qcom,ipq4019-mdio.yaml       | 138 +++++++++++++++++-
+>  1 file changed, 130 insertions(+), 8 deletions(-)
 > 
-> 
-> In this case, minItems: 1 will remain true for all other ADC devices 
-> documented here, but it will not be true for ADC5 Gen3, as this one can 
-> have multiple base addresses if more than one SDAM is used for ADC. I'll 
-> update this separately for each compatible, keeping it the same for the 
-> older ones, hope that should work.
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> index 3407e909e8a7..7ff92be14ee1 100644
+> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> @@ -15,11 +15,13 @@ properties:
+>        - enum:
+>            - qcom,ipq4019-mdio
+>            - qcom,ipq5018-mdio
+> +          - qcom,ipq5332-mdio
+>  
+>        - items:
+>            - enum:
+>                - qcom,ipq6018-mdio
+>                - qcom,ipq8074-mdio
+> +              - qcom,ipq9574-mdio
+>            - const: qcom,ipq4019-mdio
+>  
+>    "#address-cells":
+> @@ -30,19 +32,47 @@ properties:
+>  
+>    reg:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 5
+>      description:
+> -      the first Address and length of the register set for the MDIO controller.
+> -      the second Address and length of the register for ethernet LDO, this second
+> -      address range is only required by the platform IPQ50xx.
+> +      the first Address and length of the register set for the MDIO controller,
+> +      the optional second, third and fourth address and length of the register
+> +      for ethernet LDO, these three address range are required by the platform
+> +      IPQ50xx/IPQ5332, the last address and length is for the CMN clock to
+> +      select the reference clock.
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 5
 
-BTW, you disagree with me and send new version 2 minutes later.
-Basically you did not leave me any time to respond to you.
+You must describe the items and constrain them per each variant.
 
-That's not how the process works.
+>  
+>    clocks:
+> -    items:
+> -      - description: MDIO clock source frequency fixed to 100MHZ
+> +    minItems: 1
+> +    maxItems: 5
+> +    description:
+
+Doesn't this make all other variants with incorrect constraints?
+
+> +      MDIO system clock frequency fixed to 100MHZ, and the GCC uniphy
+> +      clocks enabled for resetting ethernet PHY.
+>  
+>    clock-names:
+> -    items:
+> -      - const: gcc_mdio_ahb_clk
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  phy-reset-gpio:
+
+No, for multiple reasons. It's gpios first of all. Where do you see such
+property? Where is the existing definition?
+
+Then it is "reset-gpios" if this is MDIO. Why do you put phy properties
+in MDIO?
+
+> +    minItems: 1
+> +    maxItems: 3
+> +    description:
+> +      GPIO used to reset the PHY, each GPIO is for resetting the connected
+> +      ethernet PHY device.
+> +
+> +  phyaddr-fixup:
+> +    description: Register address for programing MDIO address of PHY devices
+
+You did not test code which you sent.
+
+> +
+> +  pcsaddr-fixup:
+> +    description: Register address for programing MDIO address of PCS devices
+> +
+> +  mdio-clk-fixup:
+> +    description: The initialization clocks to be configured
+> +
+> +  fixup:
+> +    description: The MDIO address of PHY/PCS device to be programed
+
+Please do not send untested code.
+
+
+...
+
+> +
+> +      qca8kphy2: ethernet-phy@3 {
+> +        reg = <3>;
+> +        fixup;
+> +      };
+> +
+> +      qca8kphy3: ethernet-phy@4 {
+> +        reg = <4>;
+> +        fixup;
+> +      };
+> +
+> +      qca8kpcs0: pcsphy0@5 {
+> +        compatible = "qcom,qca8k_pcs";
+> +        reg = <5>;
+> +        fixup;
+> +        };
+
+Fix indentation.
 
 Best regards,
 Krzysztof
