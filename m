@@ -1,240 +1,146 @@
-Return-Path: <devicetree+bounces-16159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B397EDD03
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:41:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F48F7EDD1B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:51:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEB551C20905
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 08:41:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFAC51F23095
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 08:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359DA2596;
-	Thu, 16 Nov 2023 08:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED7C12B81;
+	Thu, 16 Nov 2023 08:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gO0MyIsy"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="fo35qanl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 074A9D46
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 00:41:07 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-407c3adef8eso4551255e9.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 00:41:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700124065; x=1700728865; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5hniODu6j01bbuESP6Z8fITScn6cg4zb+KdTZ5eQC+A=;
-        b=gO0MyIsyJX+LK3/NXqxfEoubGWA8ZgDxkNsK+qMKUluQGoCti2Pb5vj+8dHfpEyZgQ
-         DwmMaYO0Gd7zDlqNYh2bEvs5vja4OYCJ3qeft/oRKyb4Pn9YZmwrML063huzfadbOmg2
-         qHJ5ySNu2r1z5UQmbvefrp9WH8/aZ2klL/UEb2npLkXiAIgBX/EwUHNhdxN7eFPPbfmN
-         KMq89kNhlAnMjt3j4VO7uKuj/ZGY6/S2nKHC2rYxZQieUAlWFBRTkXO/2HFRz3HSh5t8
-         7ePnjP/muYeJS+ff1KUFyoWzrzT/Wu82BY7lQmps1mDCGgtSTEvMZNgonXVvXUHcKy1l
-         Q4sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700124065; x=1700728865;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5hniODu6j01bbuESP6Z8fITScn6cg4zb+KdTZ5eQC+A=;
-        b=AUpkBDSCWqGHbU5X5cR8Jh31/z4vrctUnl+Ol32fdDx5WPqE3zaHIRtnsHhsT6Acqh
-         M0S9qwQvqeVuoGZiFaF/2Xo7/elnSGK2gd4v8Ak8rIksAH3Aw6UZphCf/boVV4BxQfWH
-         OFHP9c9TPVhvgU53wSWKRFvdmXgOEwczRJN3vKYEYhaRM3oEUsSxD7EcG8Zsudwsvrsv
-         JKW7ZNxls8y7Wb+B25UcfsODrRG0WuoeqbCclnBxWfhBkASTlHEjL7gWiDuzgOB+qQNQ
-         /ZNgtCfQ7A4Ro3g/BJBTyEwoA7SOZUmaeKtrNnDDT8u7VfD6LT+a95JgJBjgbz6ZGRiM
-         wPMw==
-X-Gm-Message-State: AOJu0YwutGkJrb1BG+ldE4hipfri/8GTOpwfG6r4sMFvT7ApqauM6mWC
-	N/Ay4kO2uiek5gIfse6RmcrjXsyUI64HNaJKAUxiqGuc
-X-Google-Smtp-Source: AGHT+IEbqKjc9pBdKDJPIAE2x0mP6MrzoeK8GDVpuk7vcRIpt529YfQbm64Em7Utuj56L3deAnstTg==
-X-Received: by 2002:a05:600c:202:b0:404:4b6f:d705 with SMTP id 2-20020a05600c020200b004044b6fd705mr12740802wmi.17.1700124065303;
-        Thu, 16 Nov 2023 00:41:05 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:eaed:bc6a:fc25:5159? ([2a01:e0a:982:cbb0:eaed:bc6a:fc25:5159])
-        by smtp.gmail.com with ESMTPSA id n7-20020a05600c4f8700b0040588d85b3asm2617051wmq.15.2023.11.16.00.41.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 00:41:04 -0800 (PST)
-Message-ID: <0ba99820-ada8-4a42-af99-3b57f585bec8@linaro.org>
-Date: Thu, 16 Nov 2023 09:41:03 +0100
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2044.outbound.protection.outlook.com [40.107.237.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9046182;
+	Thu, 16 Nov 2023 00:50:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eLq7IjxxmFUN1DpgJmZ0lcG1uWY/bINl6Uk4NWifd7JGdNJKiEkG1J2HYLn2lDlYtCZY8Jb97XFgDHSmv4Gs/lDrW3ciPGPTqnuv63yqmw5d/TzQLtl2hj3dnjaFWHnTdt15jOQz2IJtvDnmR3Obe9fMNZHK2EkW4m0TJOhmhqqKMDC7+0EXHLPdlFoNiX2u6NuvGsEUoYT504u63G7J1MvoGsrgJ7covIVCHGDyrgIU31mjdwplxjn4U3C+mvekh5YgpWMMT2AJtEgOKeges1fk2mBpJLl4RJxmkoFPcb/l7aHMDBVoYeFsc3nzVCc56TPgUUULOINfZQl1dAv+0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xV9hmTe1yHsYPgdSdOcy0zU+FTubwgoQjreNsx1q7Lw=;
+ b=MbURMed15WTOafpnjcfoDbayojyk9BWIJ5FFwuFkzF7rG677HMDOT5imwpqwZ8Zugyk1SARmlOmmlwpaBxlHPmCFI7fbeSQQuWsnGbPkhh+cmfF1HbZW4ybyaxglKGw8cZekzUYy+15nxDciSTjUXkRv+QqwaWA9beKIPZw1y/NdpwiBAN+s2id7502gpfKe10P6IBKrSZqbbV3i80yG8ocD3TL17QwTHIkEECx7ftG8UMMsVYQGT+MwGDpuKuYHqkjhbctzDAJ+xrbDZHyasupa59xmtqyRES924NhXt8RQqOCN86F3LjBANHzmqqZ6Z41Aoicu1WMuTkS+xjtWRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xV9hmTe1yHsYPgdSdOcy0zU+FTubwgoQjreNsx1q7Lw=;
+ b=fo35qanlJpWeANfhZZXmD1gOINOUHlOhYmmqlpO2d7o2TfCBTgl3erlo6ulHrlBl7SGs4WRtkV+sQLkTa4/gXF6JmGCzKKqOTNvBLeJQ8/NbQmNrha/SwhV+4ECHOY6H06sIJEeHDKjweVvSSwBeC1E819G3BhmSECOGQIfx0UI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com (2603:10b6:208:c5::18)
+ by SJ2PR12MB7961.namprd12.prod.outlook.com (2603:10b6:a03:4c0::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Thu, 16 Nov
+ 2023 08:50:55 +0000
+Received: from MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::8b27:b871:419:2466]) by MN2PR12MB3407.namprd12.prod.outlook.com
+ ([fe80::8b27:b871:419:2466%5]) with mapi id 15.20.7002.021; Thu, 16 Nov 2023
+ 08:50:54 +0000
+Message-ID: <7f063086-186b-4a7b-a1de-f9a21aa75306@amd.com>
+Date: Thu, 16 Nov 2023 08:50:50 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] w1: Add AXI 1-wire host driver for AMD
+ programmable logic IP core
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ thomas.delev@amd.com, michal.simek@amd.com, robh+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, git@amd.com
+References: <20231107180814.615933-1-kris.chaplin@amd.com>
+ <170008228111.6293.10665140667009011469.b4-ty@linaro.org>
+Content-Language: en-GB
+From: Kris Chaplin <kris.chaplin@amd.com>
+In-Reply-To: <170008228111.6293.10665140667009011469.b4-ty@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PA7P264CA0508.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:3da::12) To MN2PR12MB3407.namprd12.prod.outlook.com
+ (2603:10b6:208:c5::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v8 08/14] mfd: rk8xx: add rk806 support
-Content-Language: en-US, fr
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lee Jones <lee@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Alessandro Zummo <a.zummo@towertech.it>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@collabora.com, Diederik de Haas <didi.debian@cknow.org>,
- Vincent Legoll <vincent.legoll@gmail.com>
-References: <20230504173618.142075-1-sebastian.reichel@collabora.com>
- <20230504173618.142075-9-sebastian.reichel@collabora.com>
- <e612cef3-3bb6-46b7-a2c9-53fffc20c819@linaro.org>
- <20231115180050.5r5xukttz27vviyi@mercury.elektranox.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231115180050.5r5xukttz27vviyi@mercury.elektranox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3407:EE_|SJ2PR12MB7961:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ffc0dc2-3a65-42bd-e98a-08dbe68124e0
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	tX/oDh569F1KcGsRG63waPSRMqR6Av/MMeQKygy7GvU65d+PYK4G7EWZ+mCKd98ClWf5ZYk0+wTVHlzb3xwgp1RYGVSUoX+MdQhSFnJshFfuGbtO9j9W0bQJMdzU1xcLfawnvSWRgeW50MCxpe/39o8WF1qputop15laixZ6g7e0oF262yYZVSdYPRHNdGLwFMXz0NxfADUtTcs5Ak8Rl9yYzzfLX5dRoZOP1VyNdTJIGnAAtRb6D/NSTztc1dS+YpFQOKhL4C4qHzjFHi7+mHD22vaf3Ei8xDNVn2Jo5SpBsCDvmblkDxcf+WJmMl2YJsHUIBfD/AR5lCRoG8UA7VWFarkAkvxGAQo2So33pNsVV6Cbypi9vWI9Nu8p2wSvT9sHY8gqUJEh/qdiZhaLY7J8lyPtzC6HWWjhbCHply64WdJEoK/9DJlUTpBQpQn6iW1EYJTjc8sXhaMO1/BdlBUCQ8qW9egGKcZs17feRv+RcR+KUilWdhiXG/NqB/t/yvrJGjIxsMhgMV+fRPPhSSP4E5zK21etvraCBog9T+wjzMylD7pQB5B8fYaMaiCkgtkwYcKg5qwofrPzhlsuTRkirHgt6YcDH9tio54Yu8jlVDEHT5OOvpvCC9LOcGa6e7GIiLxJ9peKm212uOfrFw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3407.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(396003)(136003)(376002)(346002)(366004)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(2616005)(2906002)(31696002)(558084003)(36756003)(41300700001)(86362001)(4326008)(38100700002)(8936002)(8676002)(6506007)(478600001)(53546011)(6512007)(44832011)(31686004)(66946007)(316002)(66476007)(66556008)(5660300002)(6666004)(6486002)(26005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RmkvV0ROM3p4eXpVZVRZN1JoQVA4YTRWZ1RRVFVHVzREZVAzZUFLbFRqK204?=
+ =?utf-8?B?THFsQXZtYUhmVzhwcXFZbGpXbXljYUl0YlR5cFNQdjEvb1hjNzQxMUc2ZUg1?=
+ =?utf-8?B?LzNkZVh0WHNEcnpOUHdIamJORXhhUEsrbUwyT3hhSXRhcy9lODdSbjlSMThH?=
+ =?utf-8?B?U1kxYVYwRGU0dVFHcE1IYkgyZ25nZVZmTFV5ZnlaUzFlaitySEt6WkhLOVF4?=
+ =?utf-8?B?VDhGRDVoaW5IeGpMTllVRkI2SXFWVW00M0tkano5Wk8wZTRiYmlMbktCYU5n?=
+ =?utf-8?B?aHZJdEozdmJlL0FpbjFmWTdzaEY0TWg3QjcyN3ZiUFBFRHpDaTJ4RXcyQmUx?=
+ =?utf-8?B?U0xERGpZUG9JUks3YVBldjNCSnp2MjRvd0pJWTlkVU56eUJmcmtrVU9rZTdG?=
+ =?utf-8?B?T3dOSUR5cm03cjBtQjJHMkpvcFE0K1JRWjJNOW1rT1pQT3ZNdFhTemppZjVC?=
+ =?utf-8?B?KytmZFVYSjZyaDlkVXM3SktIMjUrck44dlBhRUg5cUtLM2VaclF5TUttQTFF?=
+ =?utf-8?B?VktPUTFFbkNvUHlUZkwrbmMzR25CYWZsWVhiSGpDVW80TDNuUHBzVnVhY0ZK?=
+ =?utf-8?B?V0lZVkcyWjFjcnVxYmxSUUhKY0MyMU5IdXF5S0t5Vy9uMjBQUzVMSUs2djBj?=
+ =?utf-8?B?RDlnVXYxbVluOTB2NkdnRkhWWjdBK0Z1OFZ1VGg3K0dKbkVIZVhWYTE5WC9T?=
+ =?utf-8?B?bGZsUm45M3l5b0tzWTVEdTd0M0ZaRkZzaEt0Nk5RdmRvZW81elZ4VEJjUTVP?=
+ =?utf-8?B?ek4wTlZ1OGc5cisrZFNxRGw4aUpMTmk4Mi85bmtMa0dwdnp2a1B1Q0FnalZO?=
+ =?utf-8?B?My9JS3JnTGsvQVg5UDZJUzUyd0NacjBZK2dOSnN3eGE0d0wxQVlacFArQUVP?=
+ =?utf-8?B?N0M5NTdtd1FsdWczUkZqYndVbDNKZ3p6RXpvbjh4RlN0OGJqZkRLNVNUV0h2?=
+ =?utf-8?B?YzFrbUtBSGV0N0l0UUFQaUtOUC9zS0dsSS9xMGZ2QUZzYTM5YU56R1BFN1pz?=
+ =?utf-8?B?aVpsSzF6VW80Si9SQUVEdHg2cTZTN3NZVWZDdlBiUzd2Z1pRU3QzRHhXVlM1?=
+ =?utf-8?B?VDVsZzBSL0Z0RHlSSE9VVXc5alFLbzdYWFpEcmhBS3V1MnFiNU84TDcwSGtV?=
+ =?utf-8?B?WWYxdzFkN0tqaTVXNjRIUlUyY2FtQmwrOXQxYVEwSFp1TVlYcFZ1d2I0K0Nw?=
+ =?utf-8?B?Z01pY3QrNzloMENDYjFnUDJoaXo5ajZJdEpobENJSkwyOUk3dDgzbXV6c1NE?=
+ =?utf-8?B?ZWI3WEpaa3NDSjJTaUYvMkRQZ2xzWFl1VitpbW5UdTZ0emRDc0NyT2JIVXkx?=
+ =?utf-8?B?REJNV3NJU2ZabFJRY09TdE0vMWs0dk5WZFRCVDEwZDN2Tkt5NHFKV0pZZHVn?=
+ =?utf-8?B?UWdWNFBGc21HRkdPVGU0RmZkcjZXbS9qdW1yR25RRHhVNXVuNUZDM1FmdThD?=
+ =?utf-8?B?b004Wi9YL0h0Nm5ZUCtQU3VubVpKOUZUK2Y5R3dFNUxLUmltak00dmIxOGM0?=
+ =?utf-8?B?cEZybmUyZUc5NTcvYk81MjQrU3RSZ2xXaVNjZnFvMjkrdE1XZUtTUFA1akdM?=
+ =?utf-8?B?a0ZxN3hlWmxJNk5velNhNVZOYmRXK2VsUXdrY2QyV0FwZG8ySDh0ZGdubEh2?=
+ =?utf-8?B?cjdVVkx3a3dlTnBXRjNaaFl1eEU4b2ZGZnlQUW4rUFVLOU16TkNxVlZ3RSs4?=
+ =?utf-8?B?emRucEZadHNYYS90cjh3a3hMb21KbHloL1BaeHVxR1hTUmdQcVhhZWdaa1k5?=
+ =?utf-8?B?NkJqODMxL3htdmNaaHFGTW5ybHNCTlRXMHoyU3E0Qk1hVTQ2R0lpcVEwT3kw?=
+ =?utf-8?B?TSs0WjhkM21UdWx2N0NFaGtXditmaU1ZVHEzL1hNUGdjZlRLdnVUbW5CT3JJ?=
+ =?utf-8?B?b3RucTRqd0pwcG1ORHd0bmtwOWFVOXREdTBRRU94N01SSjUyOUFWNStxMTBh?=
+ =?utf-8?B?ckZTZ3d5QWRxOWUyWXJHRFhQMHd0djluaUFRQzJ2cXN4MHZ1SVhmdkM5dE82?=
+ =?utf-8?B?Y3doTERoZWxncHgvVTFpOHZZQld4QStFZEFUb0NndUJ5ZlJ6NnIydGZlZ1JL?=
+ =?utf-8?B?ZUdmVk9EaVVOL0N3MGV1WkpMSGhWVDhyTVZGWlBLNEQ2WmFXbEZEdmJJcnA1?=
+ =?utf-8?Q?BP5o=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ffc0dc2-3a65-42bd-e98a-08dbe68124e0
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3407.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 08:50:54.9163
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HWPvxiyOO8CqDdnGBhISngvcYh+O+/jQ3VomV/4uG1BMx+vrPY/BWNW+MW0cluYj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7961
 
-Hi,
+Thank you Krzysztof,
 
-On 15/11/2023 19:00, Sebastian Reichel wrote:
-> Hi Neil,
-> 
-> On Wed, Nov 15, 2023 at 06:17:50PM +0100, Neil Armstrong wrote:
->> Hi Sebastian,
->>
->> On 04/05/2023 19:36, Sebastian Reichel wrote:
->>> Add support for SPI connected rk806, which is used by the RK3588
->>> evaluation boards. The PMIC is advertised to support I2C and SPI,
->>> but the evaluation boards all use SPI. Thus only SPI support is
->>> added here.
->>>
->>> Acked-for-MFD-by: Lee Jones <lee@kernel.org>
->>> Tested-by: Diederik de Haas <didi.debian@cknow.org> # Rock64, Quartz64 Model A + B
->>> Tested-by: Vincent Legoll <vincent.legoll@gmail.com> # Pine64 QuartzPro64
->>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->>> ---
->>>    drivers/mfd/Kconfig       |  14 ++
->>>    drivers/mfd/Makefile      |   1 +
->>>    drivers/mfd/rk8xx-core.c  |  69 ++++++-
->>>    drivers/mfd/rk8xx-spi.c   | 124 ++++++++++++
->>>    include/linux/mfd/rk808.h | 409 ++++++++++++++++++++++++++++++++++++++
->>>    5 files changed, 614 insertions(+), 3 deletions(-)
->>>    create mode 100644 drivers/mfd/rk8xx-spi.c
->>>
->>
->> <snip>
->>
->>> -	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
->>> -			      cells, nr_cells, NULL, 0,
->>> +	ret = devm_mfd_add_devices(dev, 0, cells, nr_cells, NULL, 0,
->>>    			      regmap_irq_get_domain(rk808->irq_data));
->>
->> It seems you replaced PLATFORM_DEVID_NONE by 0, triggering again the bug preventing
->> having multiples RK pmics on the same system I fixed earlier at [1].
-> 
-> All cells have PLATFORM_DEVID_NONE specified and thus are registered
-> without an ID. I changed this bit to avoid overriding the
-> information, since I did not want to have PLATFORM_DEVID_NONE for
-> rk806.
-> 
->> This gives (again):
->> <4>[ 0.664107] sysfs: cannot create duplicate filename '/bus/platform/devices/rk808-clkout'
-> 
-> Which means, you do not want PLATFORM_DEVID_NONE (-1), but
-> PLATFORM_DEVID_AUTO (-2). The above path is the expected path
-> for PLATFORM_DEVID_NONE.
-> 
->> <4>[ 0.664120] CPU: 3 PID: 97 Comm: kworker/u12:2 Not tainted 6.6.1 #1
->> <4>[ 0.664131] Hardware name: Hardkernel ODROID-GO-Ultra (DT)
->> <4>[ 0.664139] Workqueue: events_unbound deferred_probe_work_func
->> <4>[ 0.664160] Call trace:
->> <4>[ 0.664165] dump_backtrace+0x9c/0x11c
->> <4>[ 0.664181] show_stack+0x18/0x24
->> <4>[ 0.664193] dump_stack_lvl+0x78/0xc4
->> <4>[ 0.664205] dump_stack+0x18/0x24
->> <4>[ 0.664215] sysfs_warn_dup+0x64/0x80
->> <4>[ 0.664227] sysfs_do_create_link_sd+0xf0/0xf8
->> <4>[ 0.664239] sysfs_create_link+0x20/0x40
->> <4>[ 0.664250] bus_add_device+0x114/0x160
->> <4>[ 0.664259] device_add+0x3f0/0x7cc
->> <4>[ 0.664267] platform_device_add+0x180/0x270
->> <4>[ 0.664278] mfd_add_device+0x390/0x4a8
->> <4>[ 0.664290] devm_mfd_add_devices+0xb0/0x150
->> <4>[ 0.664301] rk8xx_probe+0x26c/0x410
->> <4>[ 0.664312] rk8xx_i2c_probe+0x64/0x98
->> <4>[ 0.664323] i2c_device_probe+0x104/0x2e8
->> <4>[ 0.664333] really_probe+0x184/0x3c8
->> <4>[ 0.664342] __driver_probe_device+0x7c/0x16c
->> <4>[ 0.664351] driver_probe_device+0x3c/0x10c
->> <4>[ 0.664360] __device_attach_driver+0xbc/0x158
->> <4>[ 0.664369] bus_for_each_drv+0x80/0xdc
->> <4>[ 0.664377] __device_attach+0x9c/0x1ac
->> <4>[ 0.664386] device_initial_probe+0x14/0x20
->> <4>[ 0.664395] bus_probe_device+0xac/0xb0
->> <4>[ 0.664403] deferred_probe_work_func+0xa0/0xf4
->> <4>[ 0.664412] process_one_work+0x1bc/0x378
->> <4>[ 0.664421] worker_thread+0x1dc/0x3d4
->> <4>[ 0.664429] kthread+0x104/0x118
->> <4>[ 0.664440] ret_from_fork+0x10/0x20
->> <3>[ 0.664494] rk8xx-i2c 0-001c: error -EEXIST: failed to add MFD devices
->> <4>[ 0.666769] rk8xx-i2c: probe of 0-001c failed with error -17
-> 
-> I didn't notice when working on rk806, but after analyzing it now:
-> 
-> Your patch effectively set the cells to PLATFORM_DEVID_AUTO, because
-> you set all cells to PLATFORM_DEVID_NONE (-1) and additionally used
-> PLATFORM_DEVID_NONE (-1) for the devm_mfd_add_devices() call. But
-> that uses the sum of both IDs. Adding -1 to -1 is -2 and thus
-> PLATFORM_DEVID_AUTO. This is of course very confusing and just
-> worked by chance. There are two options:
-> 
-> 1. Modify all cells to use PLATFORM_DEVID_AUTO instead of
-> PLATFORM_DEVID_NONE
-> 2. Drop the .id from all cells and use PLATFORM_DEVID_AUTO in the
-> call to devm_mfd_add_devices()
-> 
-> Note, that switching from PLATFORM_DEVID_NONE to PLATFORM_DEVID_AUTO
-> modifies sysfs paths and thus might break people's scripts; that's why
-> I tried not to modify any existing platform. I will let you deal
-> with that, since I cannot even test any !rk806 platform supported by
-> this driver :)
-
-Yes it will modify sysfs path, but it's a regression since this before this patch
-everything was registered with PLATFORM_DEVID_AUTO anyway,
-so I'll provide a fix adding back PLATFORM_DEVID_NONE to devm_mfd_add_devices
-in a first time...
+On 15/11/2023 21:04, Krzysztof Kozlowski wrote:
 
 > 
-> Also mfd_add_device should probably get special handling for
-> PLATFORM_DEVID_NONE, just like it already has special handling
-> for PLATFORM_DEVID_AUTO.
-
-... and yes thanks for the great analysis I'll provide a change cleaning the mess.
-
-Thanks,
-Neil
-
+> Applied, thanks!
 > 
-> Greetings,
-> 
-> -- Sebastian
+
+Really appreciate all the assistance from you, Michal, Thomas, Conor and 
+Rob.
+
+Regards
+Kris
 
 
