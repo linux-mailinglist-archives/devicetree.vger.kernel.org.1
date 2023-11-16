@@ -1,119 +1,154 @@
-Return-Path: <devicetree+bounces-16167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B9947EDDBB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 10:36:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F747EDDBF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 10:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9DB0280FAC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:36:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDA861F23EE3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 09:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9818928DDD;
-	Thu, 16 Nov 2023 09:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1C328E12;
+	Thu, 16 Nov 2023 09:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ePhMpjb+"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JkDPa1lp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 354C01BC0;
-	Thu, 16 Nov 2023 01:36:10 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG5AkBw032381;
-	Thu, 16 Nov 2023 09:35:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GEuP6Rpji2X+1oMcUTO94Nar7xPCb3N4/EUxMMrf/9g=;
- b=ePhMpjb+EHMZuVH+IIKJnXvKthI7OxRzandm8JFsCLlW7ZWEDuXik7els5LAUytggbkx
- j8djCv7k4gTwFdD/U3yAjnyB+RmbD+EKpxvvi62YmvTmxynOwRMmHZ35OLLMecdMYB0K
- isjUeDf8u2SdQCzILgzexB2hYz7ZQ4PGyMKTYMESGY0udqT/divkIbKV8buQmXAdBlFx
- 8lVQxLT3SSw1nJ0Xd3loQYbCw1ok+AJF1JyDlVz8zLMthNj7zfL+WLjl0Npbp+w8LK4k
- suxENXthknOakvv0sNewPJs8JYSf5BhrBwOULXP8OeJjTbCxYrrvQ8QRc1DmEifmUYG+ 6A== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ud1k51vg8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 09:35:57 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AG9Ztg8028243
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 09:35:55 GMT
-Received: from [10.253.72.184] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
- 2023 01:35:52 -0800
-Message-ID: <ccb4bdbd-b7d7-49f0-b8f4-6ea13a4ab407@quicinc.com>
-Date: Thu, 16 Nov 2023 17:35:49 +0800
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6681BCE
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 01:36:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1700127370;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S+LZsf1Geh2x5b5Ad0zzJw+dVByeOVUvndd2RtoYI34=;
+	b=JkDPa1lprBXLeiZbJqO1b7LhvCW5+8LS3KkJodl1FHu1BznBU3Sb5JW+ShIrqim/KaWTDW
+	ArcvogIvmXPqAy7NkcBLjdLLj/BEEyqm+d3BiB18C9xB4DUN/fJoT/8BUMr1GM7L7jstPK
+	mPZBW27cP/xHVHZO2bseTqF/mxwCkSc=
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com
+ [209.85.167.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-453-WGabr74EO8-UfV6k7iP01Q-1; Thu, 16 Nov 2023 04:36:09 -0500
+X-MC-Unique: WGabr74EO8-UfV6k7iP01Q-1
+Received: by mail-lf1-f70.google.com with SMTP id 2adb3069b0e04-50a753d9f0aso556373e87.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 01:36:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700127367; x=1700732167;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S+LZsf1Geh2x5b5Ad0zzJw+dVByeOVUvndd2RtoYI34=;
+        b=LoNqYMfUP0AUE2yIxxmW0a8e+qd5qB19WcoSSx2ARqNVOIvVTeJQFQ2ys6Dt2k+dC7
+         FkT4ANRPoWojHTt7ax2hCxmV5wV5wI3RF5cZyuTcogqmV/HO8ubyvLvqhJvKpVXOfeLj
+         yTWCPHpjQTs2SOIPIU39wGcaO3cDw3yTSUt5eUV4v44COabs1nblgEWMbVBlSVFKY06K
+         ba3HF0huM+GThx1NgyazUDmQvMdERoEPS1VJ5PjqyM9EC+IWby5Re8ALb2TPZxKYzxqs
+         dPg5scQ8DHcsd95qOjGnu+8Eh1mx2R9vVU2+OIixRIlZnwpB6n1mc+nGQ8Y79K2AsydG
+         iQnQ==
+X-Gm-Message-State: AOJu0YxF0cMLXeJNjYSZZxw6jTo2U9EGgxn0VG6ErfFQ8FvkHNtBqqdk
+	jbHDvBoAsZtH4OEtWUb3I+s+gB2I7sT2Uvo6MnDOKYuM+CPgTu8PVw3TfA6948LEifOonRg3Pqr
+	6n4NkPMFj6tV4/lhsiM1IiQ==
+X-Received: by 2002:a05:6512:3d02:b0:509:31e6:1de5 with SMTP id d2-20020a0565123d0200b0050931e61de5mr15185626lfv.47.1700127367544;
+        Thu, 16 Nov 2023 01:36:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE75yAvd+0pV7xWDGGFOLYeqfxtPEMRAHOezjjPoj7Cde5b1To5N4sTL7RRUU4c3qam6M0Img==
+X-Received: by 2002:a05:6512:3d02:b0:509:31e6:1de5 with SMTP id d2-20020a0565123d0200b0050931e61de5mr15185608lfv.47.1700127367236;
+        Thu, 16 Nov 2023 01:36:07 -0800 (PST)
+Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id d11-20020a5d4f8b000000b0032d829e10c0sm12933437wru.28.2023.11.16.01.36.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 01:36:07 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Ard Biesheuvel <ardb@kernel.org>, Sima Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, Andrew Worsley <amworsley@gmail.com>,
+ Hector Martin <marcan@marcan.st>, Sergio Lopez <slp@redhat.com>, Frank
+ Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
+ node is found
+In-Reply-To: <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
+References: <20231113085305.1823455-1-javierm@redhat.com>
+ <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
+Date: Thu, 16 Nov 2023 10:36:06 +0100
+Message-ID: <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] net: mdio: ipq4019: increase eth_ldo_rdy for ipq5332
- platform
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-2-quic_luoj@quicinc.com>
- <c7ae6561-fbcc-40d9-a02c-61fc76e089d0@lunn.ch>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <c7ae6561-fbcc-40d9-a02c-61fc76e089d0@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TH3DcYruvcjW6eYr3stYd3ERefWUPhEi
-X-Proofpoint-ORIG-GUID: TH3DcYruvcjW6eYr3stYd3ERefWUPhEi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_07,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=592 bulkscore=0
- spamscore=0 suspectscore=0 clxscore=1015 malwarescore=0 priorityscore=1501
- impostorscore=0 phishscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311160076
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Rob Herring <robh@kernel.org> writes:
 
+Hello Rob,
 
-On 11/15/2023 9:44 PM, Andrew Lunn wrote:
->> +	for (ret = 0; ret < ETH_LDO_RDY_CNT; ret++) {
->> +		if (priv->eth_ldo_rdy[ret]) {
->> +			val = readl(priv->eth_ldo_rdy[ret]);
->> +			val |= BIT(0);
->> +			writel(val, priv->eth_ldo_rdy[ret]);
->> +			fsleep(IPQ_PHY_SET_DELAY_US);
->> +		}
-> 
-> Please add a new variable, rather than use ret this way.
+> On Mon, Nov 13, 2023 at 2:53=E2=80=AFAM Javier Martinez Canillas
+> <javierm@redhat.com> wrote:
+>>
+>> Some DT platforms use EFI to boot and in this case the EFI Boot Services
+>> may register a EFI_GRAPHICS_OUTPUT_PROTOCOL handle, that will later be
+>> queried by the Linux EFI stub to fill the global struct screen_info data.
+>>
+>> The data is used by the Generic System Framebuffers (sysfb) framework to
+>> add a platform device with platform data about the system framebuffer.
+>>
+>> But if there is a "simple-framebuffer" node in the DT, the OF core will
+>> also do the same and add another device for the system framebuffer.
+>>
+>> This could lead for example, to two platform devices ("simple-framebuffe=
+r"
+>> and "efi-framebuffer") to be added and matched with their corresponding
+>> drivers. So both efifb and simpledrm will be probed, leading to followin=
+g:
+>>
+>> [    0.055752] efifb: framebuffer at 0xbd58dc000, using 16000k, total 16=
+000k
+>> [    0.055755] efifb: mode is 2560x1600x32, linelength=3D10240, pages=3D1
+>> [    0.055758] efifb: scrolling: redraw
+>> [    0.055759] efifb: Truecolor: size=3D2:10:10:10, shift=3D30:20:10:0
+>> ...
+>> [    3.295896] simple-framebuffer bd58dc000.framebuffer: [drm] *ERROR*
+>> could not acquire memory range [??? 0xffff79f30a29ee40-0x2a5000001a7
+>> flags 0x0]: -16
+>> [    3.298018] simple-framebuffer: probe of bd58dc000.framebuffer
+>> failed with error -16
+>>
+>> To prevent the issue, make the OF core to disable sysfb if there is a no=
+de
+>> with a "simple-framebuffer" compatible. That way only this device will be
+>> registered and sysfb would not attempt to register another one using the
+>> screen_info data even if this has been filled.
+>>
+>> This seems the correct thing to do in this case because:
+>>
+>> a) On a DT platform, the DTB is the single source of truth since is what
+>>    describes the hardware topology. Even if EFI Boot Services are used to
+>>    boot the machine.
+>
+> This is the opposite of what we do for memory and memory reservations.
+> EFI is the source of truth for those.
+>
+> This could also lead to an interesting scenario. As simple-framebuffer
+> can define its memory in a /reserved-memory node, but that is ignored
+> in EFI boot. Probably would work, but only because EFI probably
+> generates its memory map table from the /reserved-memory nodes.
+>
 
-OK, will add it in the next patch set.
+I see. So what would be the solution then? Ignoring creating a platform
+device for "simple-framebuffer" if booted using EFI and have an EFI-GOP?
 
-> 
->> +	for (ret = 0; ret < ETH_LDO_RDY_CNT; ret++) {
->> +		res = platform_get_resource(pdev, IORESOURCE_MEM, ret + 1);
->> +		if (res)
->> +			priv->eth_ldo_rdy[ret] = devm_ioremap(&pdev->dev,
-> 
-> same here.
+> Rob
+>
 
-Ok.
+--=20
+Best regards,
 
-> 
->      Andrew
-> 
-> ---
-> pw-bot: cr
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
 
