@@ -1,154 +1,142 @@
-Return-Path: <devicetree+bounces-16175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D19147EDEDF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:49:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AA47EDEEB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502821F238F2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 10:49:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4DA7280F9E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 10:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBDD28E38;
-	Thu, 16 Nov 2023 10:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6213F2D05A;
+	Thu, 16 Nov 2023 10:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WHqdBDWc"
+	dkim=pass (1024-bit key) header.d=asem.it header.i=@asem.it header.b="J1EpFjD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C5618B;
-	Thu, 16 Nov 2023 02:48:53 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG4r8A2027231;
-	Thu, 16 Nov 2023 10:48:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=J/GfrTozsME6TxWB6Io+G6rYB6XogVeT7NQ1aAvCyrE=;
- b=WHqdBDWc/J6jobRFhpx+Yr/6hjfHtfqJuPYh3z4lXevgRxd942vm6kZwd/EXnGMz2Xli
- OPoUQvJ1Y0I2jyyYVNLS2IZNBXNWzwBYwMc9FpSE4MtpNKzkOF4pdH2MZEp/WojJv4Vl
- xNVljAHurZxGTlusa2ATGPRA7IIWzkYxoPPFJdIL7F27wOvH3WBJgNuRzaHa2PKAGFBQ
- bcXu6MRvG1FzYEx0pRNX0FEhJ7hgnZ8CDtgFJIxUTpCGeVjP6USYqi7cx9QLDSGLxra5
- amERxp2mebbjlDdUGvkberZOfrDR0uW2N+f0AGjDLWOO+ZeMOL4K3z7073SCnXSERhi4 GQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ud6echbe1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 10:48:40 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AGAmdO9031656
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 10:48:39 GMT
-Received: from [10.253.72.184] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Thu, 16 Nov
- 2023 02:48:34 -0800
-Message-ID: <4cdaf41c-6cc0-470f-97a7-8b08fdde7f6c@quicinc.com>
-Date: Thu, 16 Nov 2023 18:48:34 +0800
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2077.outbound.protection.outlook.com [40.107.7.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4706C1B6;
+	Thu, 16 Nov 2023 02:53:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X54U0a2b5lMnFXFteZwFJQKCTv8WWpGIz3ClJ+F+e5CpNJqn0WzySKE86iSbXuqisQBYaVavv9iD+UYyknv0/7mOoDBg7XLVGSDX4m8tvCPFhYkIO8lHRQEz1UV6YiKaWzdFzRipFLT7UZ6BxeaBigPUCgrGVPjM+Osa1otVUXOi958FltfwUPhJqjFTRdVLCDeLZfXzEF8NZstmNy/w09JL2rAfQP3yDw4soENnYjsdThoq2JlJfdl6S0uEnUYIXXFDOGfNkAsMuG4TKPBYqG5Ll/4LEDzwPd5v7A4NHo1lFw8Cu371WBxfPu9ZYL5FeNvsMAMuyQuuEatzcsUNtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kXFm1JVcKK2Sm2WULWvxrSdeaYJ06T+WVyWjZQZfxjw=;
+ b=eBFRpkTxbgNhJV0vrvqxq3nylNcyT4JOM0tzbTINT3aZbqU1JqsmdQ5ThWzWvny6NkisnDN8msYny89wOitB4cFPzDHHdGiSo9OAiKW9epiIzGH65coxdp5AHNJOrn9Ckx9Cyxbx0gIS0fM4dAsKcsrZ+hMsSS62PtjOMjkvtyZDnRChAVtMM0wDBTCj29xu5z01M0g3TSthZz2U0vTCeee448d/mUEaE+Ni19ogcp8tDo4y1HwPPk/yrkQS+1Fx72dQTHVEg3oTFPGnx2pimJx65JRq6oUKwANJBEyTkY389KKp3p+yB3/meJOTTHHkFq9J0laZxEQDhDdS4FXEng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 151.1.184.193) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=asem.it;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=asem.it;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=asem.it; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kXFm1JVcKK2Sm2WULWvxrSdeaYJ06T+WVyWjZQZfxjw=;
+ b=J1EpFjD2/JZVJb/aVOZP7AGtHE82op0UYotPPW5Kh61Zromiw6740eKg4j2WdD/H0nuTbR8MvTMKMA81uOKqCdZUzGspW0r8KWh9CIQ11mOXinoUpukJpQZg6sLd9SEk4VMRKj0VWyaP6hCsM2EhqprmOid33wdyCPMGidMaI+w=
+Received: from AS4P189CA0023.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:5db::11)
+ by AS4PR01MB9160.eurprd01.prod.exchangelabs.com (2603:10a6:20b:4ef::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.26; Thu, 16 Nov
+ 2023 10:53:28 +0000
+Received: from AMS0EPF00000198.eurprd05.prod.outlook.com
+ (2603:10a6:20b:5db:cafe::48) by AS4P189CA0023.outlook.office365.com
+ (2603:10a6:20b:5db::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.21 via Frontend
+ Transport; Thu, 16 Nov 2023 10:53:28 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 151.1.184.193) smtp.mailfrom=asem.it; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=asem.it;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ asem.it discourages use of 151.1.184.193 as permitted sender)
+Received: from asas054.asem.intra (151.1.184.193) by
+ AMS0EPF00000198.mail.protection.outlook.com (10.167.16.244) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7002.19 via Frontend Transport; Thu, 16 Nov 2023 10:53:28 +0000
+Received: from flavio-x.asem.intra ([172.16.18.47]) by asas054.asem.intra with Microsoft SMTPSVC(10.0.14393.4169);
+	 Thu, 16 Nov 2023 11:53:27 +0100
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Flavio Suligoi <f.suligoi@asem.it>
+Subject: [PATCH v7 0/2] backlight: mp3309c: Add support for MPS MP3309C
+Date: Thu, 16 Nov 2023 11:53:17 +0100
+Message-Id: <20231116105319.957600-1-f.suligoi@asem.it>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] net: mdio: ipq4019: configure CMN PLL clock for
- ipq5332
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-5-quic_luoj@quicinc.com>
- <e1fecfd7-3de1-4719-879b-fd486fdc3815@lunn.ch>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <e1fecfd7-3de1-4719-879b-fd486fdc3815@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xQMCGXHJXj6dafljrE4_RKd20FN4NeAo
-X-Proofpoint-ORIG-GUID: xQMCGXHJXj6dafljrE4_RKd20FN4NeAo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_09,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 malwarescore=0 mlxscore=0 mlxlogscore=783 bulkscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
- definitions=main-2311160085
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 16 Nov 2023 10:53:27.0497 (UTC) FILETIME=[21068390:01DA187B]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF00000198:EE_|AS4PR01MB9160:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 698f4505-95c4-4921-5dcd-08dbe69243f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Iuram3dqDY3MuLlb6cYkxmKlRmh1wphtg4KIeu2/wpRU3Cj7C/PrCC4gneno55bIC8paZQggEXzYFaSqQM2YQA66UN676A/zi9u3tjNK65jdpk1TfZ1+MPaJhElJa3biL5EzGTI9CxhNTNC4/3Fpx9vsNtrVRSnO1Ml3N1hvHtaPfk2K/sfcPiP959r2EWacW28bTH5Nnz7Xkmxu3iziuDVAYY5hkvuqkm5lOFlJoVE03VIVGFw39tFtD/TAgZgzgyDg17ajyBHBP8jWJhgJj2fFQTIceMgaMLoCJ+uylAEdJLi5ZWuU6kzD1tejLtLXpOlxWAMss7HR2Fu7Y9PxTMiil5+kCOI7P8frMC78CMY9aGBfHKEATiRc3Qho6VXjLD2uf9RBmXpsqxMfguGzNUGmKmlbdJwS27NcwtLAHEjpxRHvlzH1GqchHEAl9MA+hmzeImhPgalJWorjCt7BYTaocVarCyG3756MJllFzSg+C1c2gfJqIxa0q1m6gdBhorsJDDJDbri9G7mQMLjUQ+CAUUrsEKjYXpnsmyK+skJu5OREU5n1/M5nxBlEIEeNxrnsZh2g7GzCIbxRdvyinCdW5JxOF3S7JyubwNrJ7cAb+WsiPJrskjfjgWvhzezA49mAqScMNgFW1bPWDs1jWUl3VJK05Ydcz15p/8VOUjhyc/d5eRxRgW5bqiYhTtocMq77MDRsApqYf2BmRNCwXpdVXqgUvcq7GFvBDlhzSo+ab5vUKKoioZsnevocEu4N
+X-Forefront-Antispam-Report:
+	CIP:151.1.184.193;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:asas054.asem.intra;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(396003)(39850400004)(346002)(136003)(376002)(230922051799003)(82310400011)(64100799003)(451199024)(1800799009)(186009)(46966006)(36840700001)(70586007)(316002)(70206006)(83380400001)(110136005)(82740400003)(356005)(8676002)(450100002)(40480700001)(8936002)(4326008)(81166007)(478600001)(36756003)(6666004)(86362001)(5660300002)(107886003)(2616005)(2906002)(1076003)(36860700001)(26005)(336012)(47076005)(41300700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: asem.it
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 10:53:28.0415
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 698f4505-95c4-4921-5dcd-08dbe69243f4
+X-MS-Exchange-CrossTenant-Id: d0a766c6-7992-4344-a4a2-a467a7bb1ed2
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d0a766c6-7992-4344-a4a2-a467a7bb1ed2;Ip=[151.1.184.193];Helo=[asas054.asem.intra]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF00000198.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR01MB9160
 
+This patchset (rebased on v6.7.0-rc1 kernel version):
 
+- includes and updates the mps,mp3309c.yaml dt bindings file:
+    - Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+    Note: the patch related to this file was previously a separate patch
+          and sent in two versions (v1 and v2).
+          It has now been included in this patchset, starting with the
+          version v6.
+- adds the related device driver to support the MPS MP3309C backlight chip
+- adds missed history of previous versions
+- adds missed "Acked-by" and "Reviewed-by" added in previous versions
 
-On 11/15/2023 11:19 PM, Andrew Lunn wrote:
->> +static void ipq_cmn_clock_config(struct mii_bus *bus)
->> +{
->> +	u32 reg_val;
->> +	const char *cmn_ref_clk;
->> +	struct ipq4019_mdio_data *priv = bus->priv;
-> 
-> Reverse christmass tree place.
+Note: about the first point, the mps,mp3309c.yaml file updating, there are
+      no compatibility problems with the previous version, since the
+      related device driver has not yet been included in any kernel.
+      Only this dt-binding yaml file is already included in the current
+      v6.7.0-rc1 kernel version.
+      No developer may have used it.
 
-will fix it in the next patch set.
+Flavio Suligoi (2):
+  dt-bindings: backlight: mp3309c: remove two required properties
+  backlight: mp3309c: Add support for MPS MP3309C
 
-> 
->> +
->> +	if (priv && priv->cmn_membase) {
-> 
-> Can priv be NULL? Can cmn_membase be NULL?
+ .../bindings/leds/backlight/mps,mp3309c.yaml  |  10 +-
+ MAINTAINERS                                   |   7 +
+ drivers/video/backlight/Kconfig               |  11 +
+ drivers/video/backlight/Makefile              |   1 +
+ drivers/video/backlight/mp3309c.c             | 443 ++++++++++++++++++
+ 5 files changed, 466 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/video/backlight/mp3309c.c
 
-priv can't be NULL, cmn_membase is optional, the legacy chip does not
-provide the cmn_membase in device node.
+-- 
+2.34.1
 
-will remove the priv check here.
-
-> 
->> +		reg_val = readl(priv->cmn_membase + CMN_PLL_REFERENCE_CLOCK);
->> +		reg_val &= ~(CMN_PLL_REFCLK_EXTERNAL | CMN_PLL_REFCLK_INDEX);
->> +
->> +		/* Select reference clock source */
->> +		cmn_ref_clk = of_get_property(bus->parent->of_node, "cmn_ref_clk", NULL);
->> +		if (!cmn_ref_clk) {
->> +			/* Internal 48MHZ selected by default */
->> +			reg_val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
->> +		} else {
->> +			if (!strcmp(cmn_ref_clk, "external_25MHz"))
-> 
-> Not strings, please use u32 values. You can then list the valid values
-> in the yaml file, and get te tools to verify the DT.
-
-will update this in the next patch.
-
-> 
->> +				reg_val |= (CMN_PLL_REFCLK_EXTERNAL |
->> +					    FIELD_PREP(CMN_PLL_REFCLK_INDEX, 3));
->> +			else if (!strcmp(cmn_ref_clk, "external_31250KHz"))
->> +				reg_val |= (CMN_PLL_REFCLK_EXTERNAL |
->> +					    FIELD_PREP(CMN_PLL_REFCLK_INDEX, 4));
->> +			else if (!strcmp(cmn_ref_clk, "external_40MHz"))
->> +				reg_val |= (CMN_PLL_REFCLK_EXTERNAL |
->> +					    FIELD_PREP(CMN_PLL_REFCLK_INDEX, 6));
->> +			else if (!strcmp(cmn_ref_clk, "external_48MHz"))
->> +				reg_val |= (CMN_PLL_REFCLK_EXTERNAL |
->> +					    FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7));
->> +			else if (!strcmp(cmn_ref_clk, "external_50MHz"))
->> +				reg_val |= (CMN_PLL_REFCLK_EXTERNAL |
->> +					    FIELD_PREP(CMN_PLL_REFCLK_INDEX, 8));
->> +			else
->> +				reg_val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
-> 
-> If the value is not valid, return -EINVAL.
-
-will add it in the next patch set.
-
-> 
->     Andrew
 
