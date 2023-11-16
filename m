@@ -1,95 +1,112 @@
-Return-Path: <devicetree+bounces-16378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517677EE6AC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:25:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E5387EE6C0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A94281112
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:25:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB501281144
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:30:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215C748CDB;
-	Thu, 16 Nov 2023 18:25:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E5B2F867;
+	Thu, 16 Nov 2023 18:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="maVewsrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A74A4D4E;
-	Thu, 16 Nov 2023 10:25:31 -0800 (PST)
-Received: from localhost.localdomain ([46.183.103.8]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MRTEp-1qgmUB0B0f-00NVDe; Thu, 16 Nov 2023 19:25:15 +0100
-From: Andreas Klinger <ak@it-klinger.de>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Petre Rodan <petre.rodan@subdimension.ro>,
-	Andreas Klinger <ak@it-klinger.de>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] iio: honeywell,mprls0025pa.yaml: fix function numbering
-Date: Thu, 16 Nov 2023 19:24:43 +0100
-Message-Id: <20231116182443.7290-1-ak@it-klinger.de>
-X-Mailer: git-send-email 2.39.2
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97196D49;
+	Thu, 16 Nov 2023 10:30:46 -0800 (PST)
+Received: from [100.116.17.117] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 267BF6607355;
+	Thu, 16 Nov 2023 18:30:43 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1700159444;
+	bh=SfQ0+hmvmWXxSEVa4mEfgSW3GKHJePtTDvpcPdZG1Uk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=maVewsrbypH3b7HVwPhXhJEqUkk1FTC2a2CT/5Zdw8v0VmZeg8+49dqvgBb32xiWM
+	 azbq7XlRF2ladTSFgbsOB5dpUdbNs+4FMDF5xcR9fdEVZB/F+ulE6j4ZBRq0aVF6gd
+	 Ur0OkuPWF55GWXqbMfJmoU650l9DTsr8+skMC8Zswxs2w1tuaiRCRlz0AGOeQXVE52
+	 UXsV2fK1XsZojC5adNNbRtAUfgqGVyQA6/j/Ap8+LUXOiljEPcAB6Cgbz+1VDKrfA6
+	 xfLdKthrk/vZguFVZXiDOIWS6Ls/26NP4+ih04LWU6pskf7c8KzkOn65cYI6vWsUU/
+	 P7wAhHza3KzGg==
+Message-ID: <dae6284f-b94f-45d6-a76c-20f173bf7978@collabora.com>
+Date: Thu, 16 Nov 2023 20:30:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:jpI3HRtq1qrPEfvCSYZnREA78HrIVFvSWaWp/K9JH6x5XqCpToM
- ZWds6VPXrqCK0QLHzR8LtNzq6jUPGJ3Dp0ltedT6ehxC+W4pSPDpAu7XhdWXZSrXHzqDrWv
- reBU9xa6LAmLYH9UhofWb+vqpkneKz3yocy4onlPmAMhcmjSBxE6QadNuFWP/OHLx3LEefO
- 7TAnxofAHezJyo+cgu8Dw==
-UI-OutboundReport: notjunk:1;M01:P0:qNpRdEEawM8=;DC0ckfU5aHXfCWvWfnggXc20720
- zU25oKtBekvw3crMhVi5Y9pvR1vzm8vzQeBAUqOvl+sgjfMke0V9Xi+WzmWpJum1nSOKQPLrj
- QQhl7cdy2HEfREY+KGifdOBWxYREK9kxENBxVGBAUpX6yDeH0ekpvqedIECQ63H/QZoqCyoht
- +OBltXpcoqNLYm89pVIgsGZWQBnvJ+6Mnck/0GYXfbRVJtkBLDf+Z+XyRuPo7dTgt1uKI4vJX
- 2zQUxz51Ay4YPD0ezJalU0m/M9DIhBCk9ywE8pR9DPCydYkEzgB2gQyRWGk0j24oCDEUJymSY
- SMDGpKO10VHtF8wRKgHmBL4/dXy72DmV1KQfXnAXcw+raBtS81xCvNyQsbaTWIokvt/iLlTD8
- 5ZmWsVg9DHgtqqZ/EaU5EDvvgSYPi9bphaGpBtCa8ug/QDXEi1CrZTMta1LN6fc+S0mH3okgS
- SKOM8ImQ8S76aL947eOiNn5Y3EDroVhT9DkGT/PJxsYA2LRuwOSrR5/+sQouGRj+vB6BgmQvo
- Lb/DeUaPBAAj8NyajTN3GSF/4lujJM1wTWEttmzfYSDOuGdNNX2v8clSmKzCGYQlPsSSMbSL3
- Y/0f7VkatwVtBZwqyrBXLPUzHtOUBlsAgwM1vNNrjLV9+lBtHrCxD8ueFqnRInZvSHjsMF4Jh
- egsH5FI1IOp5c7OMnI8rMWWnoynqkOXI0pVh4rEy9TyVlvxuP5Z8wSSNnF5RXaHewCr66rGu2
- H8AWUf/WdxWtLLLtk84zv6uODByVqor2RRX46xJgjfLz3cmQ0Sm6ivi7k3NR90HiDVFJJa0ki
- 4IYpg04DADHiJhSUjj6XHZaidXoZ2eeDfAH868mfw6TM5kgAVm0SubOc6dcdZGprJXR//6+mf
- Qqs3nPKqR/Fz+hjg0jZz6W2lLQkCi2eu2gMw=
-X-Spam-Level: *
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ Emil Renner Berthing <kernel@esmil.dk>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+ geert@linux-m68k.org
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <f253b50a-a0ac-40c6-b13d-013de7bac407@lunn.ch>
+ <233a45e1-15ac-40da-badf-dee2d3d60777@collabora.com>
+ <cb6597be-2185-45ad-aa47-c6804ff68c85@collabora.com>
+ <20231116-stellar-anguished-7cf06eb5634a@squawk>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20231116-stellar-anguished-7cf06eb5634a@squawk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Fix wrongly documented numbering of transfer functions.
+On 11/16/23 19:55, Conor Dooley wrote:
+> On Thu, Nov 16, 2023 at 03:15:46PM +0200, Cristian Ciocaltea wrote:
+>> On 10/30/23 00:53, Cristian Ciocaltea wrote:
+>>> On 10/29/23 20:46, Andrew Lunn wrote:
+>>>> On Sun, Oct 29, 2023 at 06:27:12AM +0200, Cristian Ciocaltea wrote:
+>>>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+>>>>> RGMII-ID.
+>>>>>
+>>>>> TODO: Verify if manual adjustment of the RX internal delay is needed. If
+>>>>> yes, add the mdio & phy sub-nodes.
+>>>>
+>>>> Please could you try to get this tested. It might shed some light on
+>>>> what is going on here, since it is a different PHY.
+>>>
+>>> Actually, this is the main reason I added the patch. I don't have access
+>>> to this board, so it would be great if we could get some help with testing.
+>>
+>> @Emil, @Conor: Any idea who might help us with a quick test on the
+>> BeagleV Starlight board?
+> 
+> I don't have one & I am not sure if Emil does. Geert (CCed) should have
+> one though. Is there a specific test you need to have done?
 
-Fixes: a765c985e696 ("dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor")
+As Andrew already pointed out, we'd like to know if networking for this
+board works without any further adjustment of the RX internal delay.
 
-Suggested-by: Petre Rodan <petre.rodan@subdimension.ro>
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- .../bindings/iio/pressure/honeywell,mprls0025pa.yaml        | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+This was necessary for VisionFive (see previous PATCH v2 11/12), but the
+PHY is different (Motorcomm YT8521), hence this test might help us
+understand if there's a potential issue with the SoC or the PHY.
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-index b31f8120f14e..61775eff1128 100644
---- a/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
-@@ -64,9 +64,9 @@ properties:
-     description: |
-       Transfer function which defines the range of valid values delivered by the
-       sensor.
--      1 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
--      2 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
--      3 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
-+      0 - A, 10% to 90% of 2^24 (1677722 .. 15099494)
-+      1 - B, 2.5% to 22.5% of 2^24 (419430 .. 3774874)
-+      2 - C, 20% to 80% of 2^24 (3355443 .. 13421773)
-     $ref: /schemas/types.yaml#/definitions/uint32
- 
-   vdd-supply:
--- 
-2.39.2
-
+Thanks,
+Cristian
 
