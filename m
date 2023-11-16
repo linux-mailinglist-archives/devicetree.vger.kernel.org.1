@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-16099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB0E17ED86A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:17:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CFEB7ED86B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9984D280FDA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:17:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2D871F22BB1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC1E38B;
-	Thu, 16 Nov 2023 00:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F4B656;
+	Thu, 16 Nov 2023 00:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a0GSAAoT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JwTB5/cM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB7819F
-	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 16:17:48 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6ce2988d62eso126918a34.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 16:17:48 -0800 (PST)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42452187
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 16:17:49 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6ce327458a6so131492a34.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 16:17:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20230601; t=1700093868; x=1700698668; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+T640iabDcn94YPGyLAPy5TpEuHJTBSfofResuK41VQ=;
-        b=a0GSAAoTqYEtWPKNZHATkflefj8H06TWfTe0UY2bUCfJn+AMKMn09y6bJKLeYRNNre
-         SnatSVwcpovzi9mnkV0yc1X3DAh0ghP+QaQ11+cJDX/gGPAnuGURlql5EDbE3o/fFqC5
-         gtff046MX95D/13SOCwGgD3SU0c14uPMEgGk740pwcRonXRHSn79+KVh3tF2WnsliVWo
-         /W9ulDkNuV2N+EhUjsg4O2lyeL7Wzg5lldiTyPoZPS+U2wcsYvTMp9Kk0qGIf0g7AL2S
-         +popivwzcxqw0USO+W0Rr1ZHOI5A4KXhT72yA88Nt7wzesZGJPW6wfzcIRhUBgyNJgdP
-         QIHg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U0mEsiNdPfHU/4JTiWw+15A4V1CJWyMXbRELX83ScM4=;
+        b=JwTB5/cMXFKSoEgaXAfWqhkUQIj/j97yrruW8YvC/nMRECPMWf1CcMMykHCyeH+g0P
+         6f1ONulwWkmcJEvicrjVLZeM6HunxgxQXyacMcQ7hRpFJnD9Fz1TvJb2OdvZjfpGOQl2
+         IUNo4WTRbNa7+sOQd2HqBt9XVnRquBHW4vKpayBw5/fekPjEjOqzjR9T/ZumGQFGApdA
+         WHh9LmDXvIg6mTlE7iZMJ/8Ka2l+X2w9k9dmBgLF48dLarbP2rCU7258IScccQJcWE1T
+         708VbfEAKg0V0l7WuXo8+j2SqS169yjQiNUX6eqremPfboogrLDoSCIzZaWCRwCNEmZY
+         X+Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1700093868; x=1700698668;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+T640iabDcn94YPGyLAPy5TpEuHJTBSfofResuK41VQ=;
-        b=gMKaMZ/3GrE6behLUKcNkevubPoQXNtDByK9MZQHMj6U8cgZGFCnzGhQezutDSrkUh
-         LFHqnJAiTwmZVAaz/xsC9+MZrQNn37s+YKVj7KFyWIlEwWxKnvp+S3j+3fcDcgmmpD3t
-         1Pd48rZUkguuEYANBxZSmnVgJFqgivywFXE5BG2JpbPSgSmC9n9oNxXhrrSH0U1CCD+e
-         9RGx0bzytLzbpN4qLsi6MUV4ILfMke4SDE3MwLdZKB5MiMLDSVCB9u0NozyJzi5fU71B
-         PpU/faJCMF+A+nbnMHHUDUVowyabjmUZOaUUt9+mJLTCcO0tgw57P+APG2YAXc+tnute
-         aCxA==
-X-Gm-Message-State: AOJu0Yx5gpVx7G5iU+3no/cO6BkHLjdLJlHezArC5NrZo7Z7A8hN0V9j
-	2xkH5YRoAoCKv/ZuXMXo1ZVDFWeNc2Q=
-X-Google-Smtp-Source: AGHT+IFKl9kDcNbmofepMGj1Dnht7Xf1P87GcxVSLTppZx4COKkoDcBO4GGyvMHqiBZZYKfstb4zwA==
-X-Received: by 2002:a9d:62d3:0:b0:6bc:fab5:e996 with SMTP id z19-20020a9d62d3000000b006bcfab5e996mr6517974otk.31.1700093867763;
-        Wed, 15 Nov 2023 16:17:47 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U0mEsiNdPfHU/4JTiWw+15A4V1CJWyMXbRELX83ScM4=;
+        b=AHN0t4vPPtGABafBUK2LWxjtCX6zqsKJr4eMOpiegpn7EZkzyt7rzjYdbo7l2uTpQT
+         ixNgX/i4v2Prfqsx+3zEB3l4lfKPVe+G7KlU6dYzMhBorqHvqEi0KqgU+/m6p+XebdXo
+         jE0dSdhIzqgg0My6BpC03vSpDrTCsdVOWhu3eyrIqg+SyWf14HfZYc0f3+orH5CQQj6n
+         ruSGJ8gXwp66hOUFxLvqllKPUli8eK6Z4ExhNkxWrRQHK00thEpCnC2zvbxRd6PVw8jF
+         tJsCXb30TWtGRHCdghTdP4MK/ybV7PsmRXHIpk6h8Sn84iFkoxNTF2G+CmGSjt90z37T
+         +cJA==
+X-Gm-Message-State: AOJu0Yx1R2TZaVLTR5/f8EroHWgzvMdI6fdOJn9y23qWkvO/ih6IFTK0
+	US8qydPWsU5ooy05wzuebF0=
+X-Google-Smtp-Source: AGHT+IEWe51vXJ2DhIHJ7URCfodlJcoGklKewxeM5wtzw2YWENnAh582QPOTBc2Ex3kEBpeQszEIcw==
+X-Received: by 2002:a05:6830:43a4:b0:6bd:335e:1eda with SMTP id s36-20020a05683043a400b006bd335e1edamr66302otv.11.1700093868511;
+        Wed, 15 Nov 2023 16:17:48 -0800 (PST)
 Received: from localhost.localdomain ([75.28.21.198])
         by smtp.gmail.com with ESMTPSA id j18-20020a9d7d92000000b006c619f17669sm727117otn.74.2023.11.15.16.17.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Nov 2023 16:17:47 -0800 (PST)
+        Wed, 15 Nov 2023 16:17:48 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-rockchip@lists.infradead.org
 Cc: dri-devel@lists.freedesktop.org,
@@ -66,10 +67,12 @@ Cc: dri-devel@lists.freedesktop.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	robh+dt@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V3 0/6] rockchip: Add Powkiddy RK2023
-Date: Wed, 15 Nov 2023 18:17:36 -0600
-Message-Id: <20231116001742.2340646-1-macroalpha82@gmail.com>
+Subject: [PATCH V3 1/6] dt-bindings: display: panel: Update NewVision NV3051D  compatibles
+Date: Wed, 15 Nov 2023 18:17:37 -0600
+Message-Id: <20231116001742.2340646-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231116001742.2340646-1-macroalpha82@gmail.com>
+References: <20231116001742.2340646-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,43 +83,35 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the Powkiddy RK2023, which is extremely similar to
-existing Powkiddy RGB30 device.
+Update the NewVision NV3051D compatible strings by adding a new panel,
+the powkiddy,rk2023-panel, and removing another entry, the
+anbernic,rg353v-panel.
 
-Changes since V2:
- - Split "hold panel in reset" to a separate patch for the NV3051D.
- - Changed replaced common include to a new Powkiddy specific include
-   to better reflect the similarity of these two devices (and so as
-   to not have to delete so many nodes).
+The rk2023-panel is similar to the rg353p-panel but has slightly
+different timings so it needs a new string.
 
-Changes since V1:
- - Necessary clock changes have been accepted to mainline, so removed
-   from this series.
-   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?id=f1db0865b4628d5e2e85347350c077a71f0629d2
- - Combined Powkiddy RK3566 devices in devicetree documentation.
-   Dropped ack from binding as this change is vastly different than
-   the previous update.
- - Updated panel driver to hold panel in reset status after unprepare.
+The rg353v-panel is duplicate to the rg353p-panel, so remove it. No
+current devices use it and changes to the driver mean it is no longer
+valid as a compatible string.
 
-Chris Morgan (6):
-  dt-bindings: display: panel: Update NewVision NV3051D  compatibles
-  drm/panel: nv3051d: Hold panel in reset for unprepare
-  nv3051d: Add Powkiddy RK2023 Panel Support
-  dt-bindings: arm: rockchip: Add Powkiddy RK2023
-  arm64: dts: rockchip: Update powkiddy,rgb30 include to rk2023 DTSI
-  dt-bindings: arm: rockchip: Add Powkiddy RK2023
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ .../devicetree/bindings/display/panel/newvision,nv3051d.yaml    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../devicetree/bindings/arm/rockchip.yaml     |   6 +-
- .../display/panel/newvision,nv3051d.yaml      |   2 +-
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3566-powkiddy-rgb30.dts    | 154 +--
- .../dts/rockchip/rk3566-powkiddy-rk2023.dts   |  38 +
- .../dts/rockchip/rk3566-powkiddy-rk2023.dtsi  | 875 ++++++++++++++++++
- .../gpu/drm/panel/panel-newvision-nv3051d.c   |  57 +-
- 7 files changed, 981 insertions(+), 152 deletions(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dtsi
-
+diff --git a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+index cce775a87f87..7a634fbc465e 100644
+--- a/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
++++ b/Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+@@ -21,7 +21,7 @@ properties:
+       - enum:
+           - anbernic,rg351v-panel
+           - anbernic,rg353p-panel
+-          - anbernic,rg353v-panel
++          - powkiddy,rk2023-panel
+       - const: newvision,nv3051d
+ 
+   reg: true
 -- 
 2.34.1
 
