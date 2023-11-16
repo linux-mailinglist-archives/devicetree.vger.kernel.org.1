@@ -1,113 +1,132 @@
-Return-Path: <devicetree+bounces-16119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8DF7ED9A3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 03:39:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A4857EDA02
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 04:23:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2766C28102F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 02:39:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B37EC2810E4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 03:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D7FA21;
-	Thu, 16 Nov 2023 02:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD6479D4;
+	Thu, 16 Nov 2023 03:23:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="Ncnoulht"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CzcD0bnL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F05D199;
-	Wed, 15 Nov 2023 18:39:23 -0800 (PST)
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:7e5d:5300::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id C667442AF;
-	Wed, 15 Nov 2023 18:39:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1700102363;
-	bh=4q1q7lhezpq/0nWCFgR7MsiQUEeQlSbd2dM5jhV/qog=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NcnoulhtqbhUn5EZOFj7D+/JbKkpUwqvwcZxEHvD6aC/mZ341nKINT4OE0Eixip+T
-	 xZZNg47oC1rErtlZogQ5oequAzUi4qRH86nRuOsULxM+SxfE/sAaz6W88cBOxU9qzN
-	 iWBacofijjfo1Idm+DA2u1CNr2a6U9pT77cZ0KlA=
-Date: Wed, 15 Nov 2023 18:39:21 -0800
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add ASRock E3C256D4I BMC
-Message-ID: <1e1c1493-d3f5-4c96-b85f-158d720b2ab5@hatter.bewilderbeest.net>
-References: <20231114112722.28506-4-zev@bewilderbeest.net>
- <20231114112722.28506-6-zev@bewilderbeest.net>
- <cde26249-1d47-496f-b198-a0c4c02bed5c@linaro.org>
- <e766e663-0985-4a2e-8023-26ad0228157d@hatter.bewilderbeest.net>
- <863a0fe2-c258-47d9-8563-6f12bb55b4ad@linaro.org>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995F11A4;
+	Wed, 15 Nov 2023 19:23:35 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG1spf6000357;
+	Thu, 16 Nov 2023 03:23:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ZJHZ0hYzA9hL5E4FTKSXb/MkIlhg4z+4Eg5vBs84CWU=;
+ b=CzcD0bnLVUI7v5UoeXwP90mPYMrSo4zJlOshDfe5BMrbwW9Ehjexo2/21m0OjAtweCge
+ s3l29tgnEhqzn3Bj6VXN9K2sD6IfCwEmXVfV2t4NJ+e0gaxMBKKQ3PSJyx75b8TxRAkk
+ IXeOy3XRYb56QBY1L5YEPR3QCNumrG8GIdK4OxAwI7qx3vCV8fyRGslgFUSy6YTA8AtL
+ 8mSF1dpcAU+mbUfXeShBkBPyOZrzIhFZVQpEXyD5B/y/HBpzVP6SHKjmWhpIooeXm08m
+ HKRVHx143Thd/WbOsNz4EsfRjHXXR7cGmgARocnQJmUjU9AGXckLPOO6oDJssa2PeIiL zA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ud41f8ts9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Nov 2023 03:23:22 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AG3NK9S002852
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Nov 2023 03:23:20 GMT
+Received: from [10.216.41.162] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.39; Wed, 15 Nov
+ 2023 19:23:13 -0800
+Message-ID: <823317c7-7076-7f54-bb23-9e05c4a3ba87@quicinc.com>
+Date: Thu, 16 Nov 2023 08:53:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <863a0fe2-c258-47d9-8563-6f12bb55b4ad@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From: Jishnu Prakash <quic_jprakash@quicinc.com>
+Subject: Re: [PATCH 03/11] ARM: dts: qcom: Update devicetree for ADC7 rename
+ for QCOM PMICs
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <Jonathan.Cameron@huawei.com>,
+        <sboyd@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
+        <quic_kamalw@quicinc.com>, <marijn.suijten@somainline.org>,
+        <andriy.shevchenko@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-msm-owner@vger.kernel.org>
+References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
+ <20230708072835.3035398-4-quic_jprakash@quicinc.com>
+ <839cfac2-8f74-3386-5854-e3fb2ba4e07f@linaro.org>
+ <27b5806f-ef15-7a90-5adc-5ee12690f2ca@quicinc.com>
+ <7af782f3-fe6c-415b-a993-55962845a102@linaro.org>
+ <7ccaf08e-0add-33e5-fbea-ce737e53fa28@quicinc.com>
+ <8114d2f9-43d8-4761-adfa-aad9ae249cbc@linaro.org>
+Content-Language: en-US
+In-Reply-To: <8114d2f9-43d8-4761-adfa-aad9ae249cbc@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: I7vMNTuFf4imOtkJde7sKj7OtMAwTQuJ
+X-Proofpoint-ORIG-GUID: I7vMNTuFf4imOtkJde7sKj7OtMAwTQuJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-11-15_20,2023-11-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ phishscore=0 spamscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ bulkscore=0 adultscore=0 malwarescore=0 mlxlogscore=381 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311060000
+ definitions=main-2311160025
 
-On Wed, Nov 15, 2023 at 04:13:29AM PST, Krzysztof Kozlowski wrote:
->On 14/11/2023 23:37, Zev Weiss wrote:
->
+Hi Krzysztof,
+
+On 11/10/2023 4:29 PM, Krzysztof Kozlowski wrote:
+> On 09/11/2023 09:22, Jishnu Prakash wrote:
+>> Hi Krzysztof,
 >>
->>>> +	};
->>>> +
->>>> +	memory@80000000 {
->>>> +		reg = <0x80000000 0x20000000>;
->>>> +	};
->>>> +
->>>> +	leds {
->>>> +		compatible = "gpio-leds";
->>>> +
->>>> +		heartbeat {
->>>
->>> It does not look like you tested the DTS against bindings. Please run
->>> `make dtbs_check W=1` (see
->>> Documentation/devicetree/bindings/writing-schema.rst or
->>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->>> for instructions).
+>> On 10/23/2023 12:02 PM, Krzysztof Kozlowski wrote:
+>>
+>> Since you do not want us to modify the existing bindings, is it fine if
+>> I just add a new compatible for ADC5 Gen2 and comments to indicate the
+>> ADC7 compatible should be considered deprecated?
+> No, because adc7 compatible is valid and there is no reason to replace
+> it. Just because you changed naming does not matter for compatibles.
+> It's just unique string, that's it. Don't touch it.
 >
->The node names are clearly wrong and you got output. It's easy to spot
->if your patch worked in the first place:
 >
-> fatal error: dt-bindings/watchdog/aspeed-wdt.h: No such file or directory
+>> If you are not convinced, we can drop the Gen2 name related changes from
+>> the patch series.
+> Feel free to add comments or descriptions, if you want to map some
+> marketing name to real hardware or to compatibles.
+
+Yes, I'll just add a line in the documentation to mention ADC7 goes 
+between ADC5 and ADC5 Gen3.
+
+Thanks,
+
+Jishnu
+
+
+> Best regards,
+> Krzysztof
 >
-
-The patch series was based on Linus's tree at the time I sent it; that 
-file was added in commit 9931be2cfca3 ("dt-bindings: watchdog: 
-aspeed-wdt: Add aspeed,reset-mask property"), which was included in the 
-6.7-rc1 tag, FWIW.
-
-After some debugging I discovered that the reason I wasn't getting any 
-output from dtbs_check was that I had neglected to specify ARCH=arm when 
-invoking it, and when that defaulted to x86 it silently did a whole 
-bunch of nothing.  It might be nice if something emitted some sort of 
-warning when invoked with nonsensical parameters (especially if I've 
-explicitly specified a dtstree=... argument pointing to arch/arm/...), 
-but oh well.
-
-After re-running it with ARCH=arm, it produced a fairly voluminous spew 
-of output, though after combing through it all as best I can tell only 
-one or two lines of it actually pertain to the .dts in question itself 
-(the vast majority being from a .dtsi it #includes).  I've fixed the one 
-remaining issue it reported (missing #address-cells and #size-cells on 
-the FRU eeprom node) and will post a v2 in the next few days (and 
-likewise on the spc621d8hm3 series).
-
-
-Zev
-
 
