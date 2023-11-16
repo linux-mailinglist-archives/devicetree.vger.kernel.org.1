@@ -1,745 +1,185 @@
-Return-Path: <devicetree+bounces-16128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F337EDA32
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 04:28:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6017EDA67
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 04:35:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E522C1F2378C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 03:28:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5874B20C72
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 03:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5028F7A;
-	Thu, 16 Nov 2023 03:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A516847D;
+	Thu, 16 Nov 2023 03:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WqG+5Yb9"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="D7jww2ht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE48131;
-	Wed, 15 Nov 2023 19:27:53 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AG1RVh8030709;
-	Thu, 16 Nov 2023 03:27:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=Vua+glkd/hI643/FFIY8otGm7DG0Fd/isimxDm4R6sA=;
- b=WqG+5Yb9CsXreqC4fmYwJ6/wBg+l/xGASSk9AoXTKzHnDcagg7XHswgwJ2lN+llDcNO8
- GQHEzttXF7yeqIOA7Mc6ahw6pvs1EAjM6C3slndvqMBPxursAsWGcRwP2wbFqtNBVM82
- 5xfr6q8hSdJmHQf/c/QxWVJVDEm8RxpOld2KcVVKfA+6IvA9G9vzYcir/CxTsUWwpqKo
- WeZ6DROgIDfQAimMZZtZUfbuDaeRKS3eSmDswEFohfLM/23Jd9ekDTvGQL4iWifS2PkY
- NH1IIHU4DF0GtkbOu/gCRW+iw6660jmJAcCePAwFMTky0STeRxLIYCqlpxBqaQghhD06 Nw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ud5pf0jw4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 03:27:30 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3AG3RTWr022259
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 03:27:29 GMT
-Received: from hu-jprakash-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.39; Wed, 15 Nov 2023 19:27:17 -0800
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-To: <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <daniel.lezcano@linaro.org>,
-        <dmitry.baryshkov@linaro.org>, <linus.walleij@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <andriy.shevchenko@linux.intel.com>,
-        <quic_subbaram@quicinc.com>, <quic_collinsd@quicinc.com>,
-        <quic_amelende@quicinc.com>, <quic_kamalw@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <marijn.suijten@somainline.org>
-CC: <lars@metafoo.de>, <luca@z3ntu.xyz>, <linux-iio@vger.kernel.org>,
-        <lee@kernel.org>, <rafael@kernel.org>, <rui.zhang@intel.com>,
-        <lukasz.luba@arm.com>, <cros-qcom-dts-watchers@chromium.org>,
-        <sboyd@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-arm-msm-owner@vger.kernel.org>, <kernel@quicinc.com>,
-        Jishnu Prakash
-	<quic_jprakash@quicinc.com>
-Subject: [PATCH V2 3/3] dt-bindings: iio/adc: Move QCOM ADC bindings to iio/adc folder
-Date: Thu, 16 Nov 2023 08:56:44 +0530
-Message-ID: <20231116032644.753370-2-quic_jprakash@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231116032644.753370-1-quic_jprakash@quicinc.com>
-References: <20231116032644.753370-1-quic_jprakash@quicinc.com>
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD397170F
+	for <devicetree@vger.kernel.org>; Wed, 15 Nov 2023 19:35:21 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231116033519epoutp02f9099f024d531aed123380deac18a8b0~X-SToFKKd1742017420epoutp02O
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:35:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231116033519epoutp02f9099f024d531aed123380deac18a8b0~X-SToFKKd1742017420epoutp02O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1700105719;
+	bh=4eb70dV8AEFO+wsS0zii/w1LSvTaYR29FHvwLpNtXv0=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=D7jww2ht/Yc9OAt0bu0keMBKjNGtDLc6SfDvcuBaZffWQy91+W0R3HBYY37x9s7qQ
+	 wn9SQFK9l4nXoBOwVdb9rNMbZvQbzQS1Ny1S4PbNqYAueEcswTw38zXbZQDl7Jfn94
+	 ozfcQcGAE8mwID8TJBS6Mk61f0cfP7znGVXbbWk0=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+	20231116033518epcas2p33fbb468b69c6a9634f6fd0403a49c974~X-SS8oeZu0584805848epcas2p3H;
+	Thu, 16 Nov 2023 03:35:18 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.68]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4SW5Jk0p2Wz4x9Pv; Thu, 16 Nov
+	2023 03:35:18 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	67.44.10006.5FD85556; Thu, 16 Nov 2023 12:35:17 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20231116033517epcas2p1d386bbf294dccad0ccb45f8a867ea972~X-SSAb2oJ2677326773epcas2p1M;
+	Thu, 16 Nov 2023 03:35:17 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231116033517epsmtrp1074fd24d8e02bbe0b3cbf04b7a74050b~X-SR-XsRF1098610986epsmtrp1Z;
+	Thu, 16 Nov 2023 03:35:17 +0000 (GMT)
+X-AuditID: b6c32a45-9e590a8000002716-b8-65558df5bea4
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	83.61.08817.5FD85556; Thu, 16 Nov 2023 12:35:17 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20231116033517epsmtip2329c33e66f6d9fbb624e61393f1c7e9b~X-SRn81wV2404524045epsmtip2T;
+	Thu, 16 Nov 2023 03:35:17 +0000 (GMT)
+Message-ID: <d6f3d451-6a53-46b6-2263-cc071a9dc44c@samsung.com>
+Date: Thu, 16 Nov 2023 12:32:30 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH v2 00/12] Introduce ExynosAutov920 SoC and SADK board
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
+	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
+	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Content-Language: en-US
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <55a0f27c-ea46-40ae-b1e5-e650802b89a8@linaro.org>
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: iaq7enPkbirlHimlPqWEPI18d2IAVGs9
-X-Proofpoint-ORIG-GUID: iaq7enPkbirlHimlPqWEPI18d2IAVGs9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-15_20,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- lowpriorityscore=0 priorityscore=1501 mlxlogscore=918 mlxscore=0
- spamscore=0 bulkscore=0 malwarescore=0 phishscore=0 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311160025
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOJsWRmVeSWpSXmKPExsWy7bCmqe633tBUg39pFg/mbWOzWLP3HJPF
+	/CPnWC2aF69ns3g3V8Zi7+ut7BZT/ixnstj0+Bqrxeb5fxgtLu+aw2Zx9+4qRosZ5/cxWZxZ
+	3Mtu0br3CLvF4TftrBY/d81jsVi1C6ju9sTJjA5CHjtn3WX32LSqk83jzrU9bB77565h99i8
+	pN6j/6+BR9+WVYwenzfJBXBEZdtkpCampBYppOYl56dk5qXbKnkHxzvHm5oZGOoaWlqYKynk
+	Jeam2iq5+AToumXmAD2ipFCWmFMKFApILC5W0rezKcovLUlVyMgvLrFVSi1IySkwL9ArTswt
+	Ls1L18tLLbEyNDAwMgUqTMjOmHjXtqCRr+JAW0kD433uLkZODgkBE4nHa7czdTFycQgJ7GCU
+	2LztFjOE84lRYvvpWSwgVUIC3xglVjwugun4sfcjG0TRXkaJiS0wzmtGiTsb5rCDVPEK2El8
+	WHkNzGYRUJXYsXkFE0RcUOLkzCdgU0UFoiVal91nA7GFBTwlJu//ywxiiwjcZ5Z43VYNMpRZ
+	4AGjxNxzXxlBEswC4hK3nswHG8QmoC3xff1iVhCbE2jZhZOtrBA18hLNW2eD/SAh8IZDYsb9
+	iewQd7tI7GpqZoawhSVeHd8CFZeSeNnfBmVnS7RP/8MKYVdIXNwwmw3CNpaY9awd6AgOoAWa
+	Eut36YOYEgLKEkdusUCs5ZPoOPyXHSLMK9HRJgTRqCZxf+o5qCEyEpOOrGSCsD0kTnbsY53A
+	qDgLKVRmIXlyFpJnZiHsXcDIsopRLLWgODc9tdiowBAe1cn5uZsYwSlcy3UH4+S3H/QOMTJx
+	MB5ilOBgVhLhNZcLSRXiTUmsrEotyo8vKs1JLT7EaAqMm4nMUqLJ+cAsklcSb2hiaWBiZmZo
+	bmRqYK4kznuvdW6KkEB6YklqdmpqQWoRTB8TB6dUA5NWX9F2CVa/wOwpjp/nRwhrHq1eqhVs
+	3tpo7Pz2/kJGt7wrE19I283cqD5jMTvXW7dXW1bdv/Mp6MueyW9VFuvs7637JSFvdXqpl2V3
+	bM+q6DqHatv2V0zJ7xKi3nIEnXyQyCi13pRf76+GSa1X2uGtdfE8K55vuxZWKd3y2yQ64OS/
+	f+s0n89TL/FxPhchXPJ7qbrPt8JE13t328TuHPNsP/RvjkNlIMuxBV5bs3Qv5QTmuvF/S+Qo
+	FG6N33yvcfW5jf43Eu/o687g97p5+ZL/lRxTuykrp/JqWGi0P96Zoay6zuyjoV3X/7T6wvQN
+	Gv2Hb/189pdBzD771rvX05eVySwMWS75LP15ysJoDiWW4oxEQy3mouJEAAxjoutqBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJIsWRmVeSWpSXmKPExsWy7bCSvO7X3tBUg1lt4hYP5m1js1iz9xyT
+	xfwj51gtmhevZ7N4N1fGYu/rrewWU/4sZ7LY9Pgaq8Xm+X8YLS7vmsNmcffuKkaLGef3MVmc
+	WdzLbtG69wi7xeE37awWP3fNY7FYtQuo7vbEyYwOQh47Z91l99i0qpPN4861PWwe++euYffY
+	vKTeo/+vgUffllWMHp83yQVwRHHZpKTmZJalFunbJXBlTLxrW9DIV3GgraSB8T53FyMnh4SA
+	icSPvR/ZQGwhgd2MEhdX1kLEZSSWP+tjg7CFJe63HGHtYuQCqnnJKHHl62d2kASvgJ3Eh5XX
+	wGwWAVWJHZtXMEHEBSVOznzCAmKLCkRLrP58gRXEFhbwlJi8/y8zyCARgcfMEg+n/gdzmAUe
+	MEosn/SIFeKMrUwS/5prQGxmAXGJW0/mg01lE9CW+L5+MVgNJ9DmCydbWSFqzCS6tnYxQtjy
+	Es1bZzNPYBSaheSQWUhGzULSMgtJywJGllWMkqkFxbnpucWGBUZ5qeV6xYm5xaV56XrJ+bmb
+	GMGxq6W1g3HPqg96hxiZOBgPMUpwMCuJ8JrLhaQK8aYkVlalFuXHF5XmpBYfYpTmYFES5/32
+	ujdFSCA9sSQ1OzW1ILUIJsvEwSnVwLRn2h7W7W8/PLczj5XjKNsz/8mpA6rXZj59MaPh0sq6
+	IoeDr00vPk9j6Hz+Mu5c0l+Rq5cmpW04viWyzJ+tOC74dZjR3N1y3PpuNsZnf6Zana9Mkf2X
+	rn5dpuGqcq79l89/37OenNXVkraLzyB6Zcpy0RV3pu1Mrz9T5Fw969bNuI8v3WOvH7x7ObL7
+	z/0FXzOD1breKYgUvc7WeHpA6M6q0vKpnG4lnDfjw38rN73WmSsfpbJl2untU24pfjrhKdb6
+	8+mB7K7I9OAAowv/jpeeC473O1leeKOe56/E9Ulu8Y3fD2S1msjraK7J7ZvN+eTvB/+YrUul
+	5Lal2R/xZAiJe8ieylm3rM/+aXZyyV8lluKMREMt5qLiRAAO4A9FTAMAAA==
+X-CMS-MailID: 20231116033517epcas2p1d386bbf294dccad0ccb45f8a867ea972
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166
+References: <CGME20231115095852epcas2p21e067efe75275c6abd2aebf04c5c6166@epcas2p2.samsung.com>
+	<20231115095609.39883-1-jaewon02.kim@samsung.com>
+	<170005362858.21132.4200897251821879805.b4-ty@linaro.org>
+	<6e69df6c-10fa-404a-ac02-4880723b8c50@linaro.org>
+	<55a0f27c-ea46-40ae-b1e5-e650802b89a8@linaro.org>
 
-There are several files containing QCOM ADC macros for channel names
-right now in the include/dt-bindings/iio folder. Since all of these
-are specifically for adc, move the files to the
-include/dt-bindings/iio/adc folder.
 
-Also update all affected devicetree and driver files to fix compilation
-errors seen with this move and update documentation files to fix
-dtbinding check errors for the same.
+On 23. 11. 16. 06:17, Krzysztof Kozlowski wrote:
+> On 15/11/2023 22:11, Krzysztof Kozlowski wrote:
+>> On 15/11/2023 14:08, Krzysztof Kozlowski wrote:
+>>> On Wed, 15 Nov 2023 18:55:56 +0900, Jaewon Kim wrote:
+>>>> ExynosAutov920[1] is ARMv8-based automotive-oriented SoC.
+>>>> This SoC is the next generation of exynosautov9 and AE(Automotive Enhanced)
+>>>> IPs are used for safety.
+>>>>
+>>>> This patchset is the minimal set for ExynosAutov920 SoC and SADK board.
+>>>> Currently, ramdisk console is available and Clock, UFS, and USI will be
+>>>> added after this patchset.
+>>>>
+>>>> [...]
+>>> Applied, thanks!
+>>>
+>> And dropped. You did not test it. Please read Samsung SoC maintainer
+>> profile:
+>> https://www.kernel.org/doc/html/latest/process/maintainers.html#arm-samsung-s3c-s5p-and-exynos-arm-architectures
+>>
+>> I also made announcements on the lists and on social.kernel.org. I don't
+>> know where to announce it more...
+>>
+> To clarify, I dropped only DTS and kept bindings. Let me know if
+> bindings are problematic here...
+>
+> I also repeated the announcement:
+> https://social.kernel.org/notice/AbqJkj9gOZJ3sG8eCu
+> Please share internally within Samsung, so there will be no surprises.
+>
+> Best regards,
+> Krzysztof
+>
+>
 
-Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
----
- .../devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml       | 4 ++--
- Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 2 +-
- .../devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml  | 2 +-
- .../devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml    | 6 +++---
- arch/arm64/boot/dts/qcom/pm2250.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm6125.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm6150.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm6150l.dtsi                     | 2 +-
- arch/arm64/boot/dts/qcom/pm660.dtsi                       | 2 +-
- arch/arm64/boot/dts/qcom/pm660l.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm7250b.dtsi                     | 2 +-
- arch/arm64/boot/dts/qcom/pm8150.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm8150b.dtsi                     | 2 +-
- arch/arm64/boot/dts/qcom/pm8150l.dtsi                     | 2 +-
- arch/arm64/boot/dts/qcom/pm8916.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm8950.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm8953.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm8994.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pm8998.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pmi632.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/pmi8950.dtsi                     | 2 +-
- arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi                 | 2 +-
- arch/arm64/boot/dts/qcom/pmp8074.dtsi                     | 2 +-
- arch/arm64/boot/dts/qcom/pms405.dtsi                      | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dts                   | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi                  | 2 +-
- arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi                | 4 ++--
- arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi               | 2 +-
- .../arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 +++---
- arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts         | 2 +-
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts                   | 8 ++++----
- drivers/iio/adc/qcom-spmi-adc5-gen3.c                     | 2 +-
- drivers/iio/adc/qcom-spmi-adc5.c                          | 2 +-
- drivers/iio/adc/qcom-spmi-vadc.c                          | 2 +-
- include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h  | 2 +-
- include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h | 2 +-
- .../dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h    | 2 +-
- include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h | 2 +-
- include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h | 2 +-
- .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h    | 2 +-
- .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h    | 2 +-
- .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h    | 2 +-
- .../dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h    | 0
- include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h        | 0
- 44 files changed, 51 insertions(+), 51 deletions(-)
- rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350.h (98%)
- rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pm8350b.h (99%)
- rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmk8350.h (97%)
- rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735a.h (95%)
- rename include/dt-bindings/iio/{ => adc}/qcom,spmi-adc7-pmr735b.h (100%)
- rename include/dt-bindings/iio/{ => adc}/qcom,spmi-vadc.h (100%)
+I already checked and there were no warnings or errors as shown below.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-index c988bd74a247..9b7b773ed7f8 100644
---- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-@@ -367,8 +367,8 @@ examples:
-     };
- 
-   - |
--    #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
--    #include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
- 
-     spmi {
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-index 9fa568603930..f04b46553aad 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-@@ -261,7 +261,7 @@ examples:
-     #include <dt-bindings/input/input.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
--    #include <dt-bindings/iio/qcom,spmi-vadc.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
-     #include <dt-bindings/spmi/spmi.h>
- 
-     pmic@0 {
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml
-index 01253d58bf9f..6dc01512cc70 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm-hc.yaml
-@@ -112,7 +112,7 @@ additionalProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/iio/qcom,spmi-vadc.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-     spmi_bus {
-         #address-cells = <1>;
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-index 3c81def03c84..e27f34da9165 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
-@@ -165,7 +165,7 @@ additionalProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/iio/qcom,spmi-vadc.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-     spmi_bus {
-         #address-cells = <1>;
-@@ -204,8 +204,8 @@ examples:
-     };
- 
-   - |
--    #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
--    #include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
-+    #include <dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-     spmi_bus {
-         #address-cells = <1>;
-diff --git a/arch/arm64/boot/dts/qcom/pm2250.dtsi b/arch/arm64/boot/dts/qcom/pm2250.dtsi
-index 5f1d15db5c99..a26466de03ad 100644
---- a/arch/arm64/boot/dts/qcom/pm2250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm2250.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2023, Linaro Ltd
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm6125.dtsi b/arch/arm64/boot/dts/qcom/pm6125.dtsi
-index 99369a0cdb61..c10625728d23 100644
---- a/arch/arm64/boot/dts/qcom/pm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6125.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: BSD-3-Clause
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-index ddbaf7280b03..844e77de1fa0 100644
---- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm6150l.dtsi b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
-index d13a1ab7c20b..208b5ec8dca6 100644
---- a/arch/arm64/boot/dts/qcom/pm6150l.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/pm660.dtsi b/arch/arm64/boot/dts/qcom/pm660.dtsi
-index 98dc04962fe3..bc5ce1ae9920 100644
---- a/arch/arm64/boot/dts/qcom/pm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm660.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2020, Konrad Dybcio
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm660l.dtsi b/arch/arm64/boot/dts/qcom/pm660l.dtsi
-index 6fdbf507c262..c16dc3c4a6a3 100644
---- a/arch/arm64/boot/dts/qcom/pm660l.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm660l.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (c) 2020, Konrad Dybcio
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-index 3bf7cf5d1700..e5ea669795a3 100644
---- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (C) 2022 Luca Weiss <luca.weiss@fairphone.com>
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-index 3ba3ba5d8fce..5dbfebc43847 100644
---- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-@@ -7,7 +7,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- / {
- 	thermal-zones {
-diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-index 1aee3270ce7b..68d612d4277d 100644
---- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-@@ -4,7 +4,7 @@
-  * Copyright (c) 2019, Linaro Limited
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150l.dtsi b/arch/arm64/boot/dts/qcom/pm8150l.dtsi
-index ac08a09c64c2..a0b89a43baf0 100644
---- a/arch/arm64/boot/dts/qcom/pm8150l.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150l.dtsi
-@@ -4,7 +4,7 @@
-  * Copyright (c) 2019, Linaro Limited
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/pm8916.dtsi b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-index f4de86787743..76b6be98945b 100644
---- a/arch/arm64/boot/dts/qcom/pm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8916.dtsi
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm8950.dtsi b/arch/arm64/boot/dts/qcom/pm8950.dtsi
-index f03095779de0..33b401c9e70d 100644
---- a/arch/arm64/boot/dts/qcom/pm8950.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8950.dtsi
-@@ -5,7 +5,7 @@
-  * Copyright (c) 2022, Marijn Suijten <marijn.suijten@somainline.org>
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm8953.dtsi b/arch/arm64/boot/dts/qcom/pm8953.dtsi
-index 1067e141be6c..5e2a7a3783b5 100644
---- a/arch/arm64/boot/dts/qcom/pm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8953.dtsi
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause
- /* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm8994.dtsi b/arch/arm64/boot/dts/qcom/pm8994.dtsi
-index d44a95caf04a..cfa4eb5723a6 100644
---- a/arch/arm64/boot/dts/qcom/pm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8994.dtsi
-@@ -1,5 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-index 3f82715392c6..26f46f898eb6 100644
---- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- /* Copyright 2018 Google LLC. */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-index 4eb79e0ce40a..09f7af85d39b 100644
---- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-@@ -3,7 +3,7 @@
-  * Copyright (C) 2023 Luca Weiss <luca@z3ntu.xyz>
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-index 1029f3b1bb9a..6fd1acdab640 100644
---- a/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2019, AngeloGioacchino Del Regno <kholk11@gmail.com>
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-index dbd4b91dfe06..6d95a1352db1 100644
---- a/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-@@ -6,7 +6,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- / {
- 	thermal-zones {
-diff --git a/arch/arm64/boot/dts/qcom/pmp8074.dtsi b/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-index 0d0a846ac8d9..9f3e4121d834 100644
---- a/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmp8074.dtsi
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only OR BSD-3-Clause
- 
- #include <dt-bindings/spmi/spmi.h>
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- &spmi_bus {
- 	pmic@0 {
-diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
-index 461ad97032f7..673a8ea5b64d 100644
---- a/arch/arm64/boot/dts/qcom/pms405.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
-@@ -5,7 +5,7 @@
- 
- #include <dt-bindings/spmi/spmi.h>
- #include <dt-bindings/input/linux-event-codes.h>
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index b5fe7356be48..1dd4aa300f7f 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -7,7 +7,7 @@
- 
- /dts-v1/;
- 
--#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h>
- #include "sc7280-idp.dtsi"
- #include "pmr735a.dtsi"
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 2ff549f4dc7a..63bc5c8ca6df 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -5,7 +5,7 @@
-  * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include "sc7280.dtsi"
- #include "pm7325.dtsi"
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-index f9b96bd2477e..ecd17cbaa966 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-@@ -11,8 +11,8 @@
-  * Copyright 2022 Google LLC.
-  */
- 
--#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-index ddc84282f142..931a8d911229 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-@@ -7,7 +7,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- / {
- 	thermal-zones {
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index f2055899ae7a..1abad151d61f 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -7,9 +7,9 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/leds/common.h>
-diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-index ade619805519..c20abdf34eb7 100644
---- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-+++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-@@ -14,7 +14,7 @@
- 
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index 20153d08edde..11416c504822 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -6,10 +6,10 @@
- /dts-v1/;
- 
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pm8350b.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
--#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pm8350b.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h>
- #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
- #include "sm8450.dtsi"
- #include "pm8350.dtsi"
-diff --git a/drivers/iio/adc/qcom-spmi-adc5-gen3.c b/drivers/iio/adc/qcom-spmi-adc5-gen3.c
-index 7cb0692fe612..2c7decca5c6c 100644
---- a/drivers/iio/adc/qcom-spmi-adc5-gen3.c
-+++ b/drivers/iio/adc/qcom-spmi-adc5-gen3.c
-@@ -23,7 +23,7 @@
- #include <linux/slab.h>
- #include <linux/thermal.h>
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- #define ADC5_GEN3_HS				0x45
- #define ADC5_GEN3_HS_BUSY			BIT(7)
-diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-index b6b612d733ff..4225952001f3 100644
---- a/drivers/iio/adc/qcom-spmi-adc5.c
-+++ b/drivers/iio/adc/qcom-spmi-adc5.c
-@@ -20,7 +20,7 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- #define ADC5_USR_REVISION1			0x0
- #define ADC5_USR_STATUS1			0x8
-diff --git a/drivers/iio/adc/qcom-spmi-vadc.c b/drivers/iio/adc/qcom-spmi-vadc.c
-index f5c6f1f27b2c..c3602c53968a 100644
---- a/drivers/iio/adc/qcom-spmi-vadc.c
-+++ b/drivers/iio/adc/qcom-spmi-vadc.c
-@@ -20,7 +20,7 @@
- #include <linux/slab.h>
- #include <linux/log2.h>
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* VADC register and bit definitions */
- #define VADC_REVISION2				0x1
-diff --git a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
-index 4c1ef10a4607..0f25ef87ed5c 100644
---- a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550.h
-@@ -10,7 +10,7 @@
- #define PM8550_SID		1
- #endif
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PM8550_ADC for PMIC5 Gen3 */
- #define PM8550_ADC5_GEN3_REF_GND			(PM8550_SID << 8 | ADC5_GEN3_REF_GND)
-diff --git a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
-index b62971243700..47116bbe45de 100644
---- a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550b.h
-@@ -10,7 +10,7 @@
- #define PM8550B_SID		7
- #endif
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PM8550B_ADC for PMIC5 Gen3 */
- #define PM8550B_ADC5_GEN3_REF_GND			(PM8550B_SID << 8 | ADC5_GEN3_REF_GND)
-diff --git a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
-index 175bba532ee9..360f2245d582 100644
---- a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pm8550vx.h
-@@ -6,7 +6,7 @@
- #ifndef _DT_BINDINGS_QCOM_SPMI_VADC_PM8550VX_H
- #define _DT_BINDINGS_QCOM_SPMI_VADC_PM8550VX_H
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PM8550VX_ADC for PMIC5 Gen3 */
- #define PM8550VS_ADC5_GEN3_REF_GND(sid)			((sid) << 8 | ADC5_GEN3_REF_GND)
-diff --git a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
-index 4d32e13bb8d6..3fc829ebdf6d 100644
---- a/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc5-gen3-pmk8550.h
-@@ -10,7 +10,7 @@
- #define PMK8550_SID		0
- #endif
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PMK8550_ADC for PMIC5 Gen3 */
- #define PMK8550_ADC5_GEN3_REF_GND			(PMK8550_SID << 8 | ADC5_GEN3_REF_GND)
-diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h
-similarity index 98%
-rename from include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h
-rename to include/dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h
-index 5d98f7d48a1e..ef818248ec8c 100644
---- a/include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pm8350.h
-@@ -6,7 +6,7 @@
- #ifndef _DT_BINDINGS_QCOM_SPMI_VADC_PM8350_H
- #define _DT_BINDINGS_QCOM_SPMI_VADC_PM8350_H
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PM8350_ADC for PMIC7 */
- #define PM8350_ADC7_REF_GND(sid)			((sid) << 8 | ADC7_REF_GND)
-diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pm8350b.h
-similarity index 99%
-rename from include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h
-rename to include/dt-bindings/iio/adc/qcom,spmi-adc7-pm8350b.h
-index 57c7977666d3..d841bf00b7b0 100644
---- a/include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pm8350b.h
-@@ -10,7 +10,7 @@
- #define PM8350B_SID					3
- #endif
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PM8350B_ADC for PMIC7 */
- #define PM8350B_ADC7_REF_GND			(PM8350B_SID << 8 | ADC7_REF_GND)
-diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h
-similarity index 97%
-rename from include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h
-rename to include/dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h
-index 3d1a41a22cef..161b211ec126 100644
---- a/include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pmk8350.h
-@@ -10,7 +10,7 @@
- #define PMK8350_SID					0
- #endif
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PMK8350_ADC for PMIC7 */
- #define PMK8350_ADC7_REF_GND			(PMK8350_SID << 8 | ADC7_REF_GND)
-diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h
-similarity index 95%
-rename from include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h
-rename to include/dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h
-index c5adfa82b20d..fedc9e3882b8 100644
---- a/include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h
-+++ b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pmr735a.h
-@@ -10,7 +10,7 @@
- #define PMR735A_SID					4
- #endif
- 
--#include <dt-bindings/iio/qcom,spmi-vadc.h>
-+#include <dt-bindings/iio/adc/qcom,spmi-vadc.h>
- 
- /* ADC channels for PMR735A_ADC for PMIC7 */
- #define PMR735A_ADC7_REF_GND			(PMR735A_SID << 8 | ADC7_REF_GND)
-diff --git a/include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h b/include/dt-bindings/iio/adc/qcom,spmi-adc7-pmr735b.h
-similarity index 100%
-rename from include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h
-rename to include/dt-bindings/iio/adc/qcom,spmi-adc7-pmr735b.h
-diff --git a/include/dt-bindings/iio/qcom,spmi-vadc.h b/include/dt-bindings/iio/adc/qcom,spmi-vadc.h
-similarity index 100%
-rename from include/dt-bindings/iio/qcom,spmi-vadc.h
-rename to include/dt-bindings/iio/adc/qcom,spmi-vadc.h
--- 
-2.25.1
+Did I miss something??
+
+
+$ make CHECK_DTBS=y ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- 
+exynos/exynosautov920-sadk.dtb
+   LINT    Documentation/devicetree/bindings
+   CHKDT Documentation/devicetree/bindings/processed-schema.json
+   SCHEMA Documentation/devicetree/bindings/processed-schema.json
+   UPD     include/config/kernel.release
+   DTC_CHK arch/arm64/boot/dts/exynos/exynosautov920-sadk.dtb
+
+
+Thanks
+
+Jaewon Kim
 
 
