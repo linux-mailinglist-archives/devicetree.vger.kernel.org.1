@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-16206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B4AB7EDFF2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:37:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F18A7EDFFE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 12:40:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F981280F66
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AE721F2301C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 11:40:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF892EAE1;
-	Thu, 16 Nov 2023 11:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802682EB0F;
+	Thu, 16 Nov 2023 11:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OofVp+nU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jYqKi6+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C998135
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:37:51 -0800 (PST)
-Received: by mail-qk1-x730.google.com with SMTP id af79cd13be357-7788db95652so39676585a.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:37:51 -0800 (PST)
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B580D187
+	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:40:20 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5bf58204b7aso7238697b3.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 03:40:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1700134670; x=1700739470; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1700134820; x=1700739620; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QKz33fRXGncP/6ISpiMtpAHGGFNNUHHfOEZzGuOATSM=;
-        b=OofVp+nUp+XQ97eREPQOFhHLrynRMYl9KF4R3s7b5+B0eVwr0QgQ6CY+OQtERYLTij
-         GK0VPlIyUq0rjt060lSQXqOW/OjJw6sE+rqTNrjc+3Rqmzdz6mJnskRAkD0H9J3cXXF+
-         bvbqlknt1WtMkfS3PwR8sELKgCUPtSgvQhpwBVLQv3NEpCfLZfWjyUbD63OStcjCd7P0
-         CAbwOyTHx8tFM2QOtBdFQA4X4daPnLo2vWpMhxEUQBtIN1/2aEm+uReaR2Lgi8LFVlxz
-         RGxXGmNYJNie5JdW1BzT7FgnlSQIabT4JHnvCcfAFblGPwF7S3JFrKpPTGs/ONEsciSX
-         epyA==
+        bh=jPmwDyDnTt2mfJDFk4M04sRvgIpCqOiaXwSPPRNnyQQ=;
+        b=jYqKi6+wu2zNIPFDkIPFrSionXcyHO+OtJTUWTkWCEPSzn67e52UDkQZ6Y4JMVPdfH
+         9WQJQoXH1Kdm6ddt0AP8ykyqd8gNz/wJHh5gDLJAbj6UKB0pucukIEiBCfq1MWG2mNoF
+         kaZ5X0B/YQwk3WA5DVxje3sG//8yjV3VQBNrkqbMv7NIdYhqchbQeTSv81EmfR3jt1zz
+         GEtZvZ8hfIbgglsx4qowb7O4kYcGeIzPNs7erZg8CbtymEyH8mB88X46TKChAUHeOKe0
+         zn0dfo236zzwUxMGaZSr2fUpdXY2qloS+c029D8Q6kzF37dIChGgaBW7p6jSUp/fRjs3
+         YC2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700134670; x=1700739470;
+        d=1e100.net; s=20230601; t=1700134820; x=1700739620;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QKz33fRXGncP/6ISpiMtpAHGGFNNUHHfOEZzGuOATSM=;
-        b=Ypo8WtTlNtJ7T+/fW10Y+UU1Y7T306qx13kE7puctWQPS7/ID9y5BKz47YMj0tccAo
-         zmbIQrcMsbIknBxBPUpTF4pTmFVRqsDcww4sJlhU0xeTVGBmDEDoEsDJm11DPF12aPmD
-         BWvbfA0p5ZeSyb86csnFkltogMALC6Hccizsgrkx2I3lSrY8KyEmwCxqLHLrZQXXoO00
-         TConlJ4Mv0PdfR15jPAvA5/DwPklekWx2ZJ1vQ3llDnvJwPu4b/Mpjk67+FlCSGE03sq
-         pOO44oL687WtBfcHv4ILy0N5jolzxzNqG6fMYfeHAFdrAEFwIGfs6/M5pgMrUxzdBG/v
-         H+3g==
-X-Gm-Message-State: AOJu0YwHDo4Fv/jZA8JleX2RmcHETCR5kJjdw4VmlLe2EmUCiH3y0TRt
-	i1oVOsQZ5Nu06VgwmIHsQa6qOw==
-X-Google-Smtp-Source: AGHT+IEtNVZYcLgGMcL/L+aRBPanl6QL3LrFnGpMv8jNkRAEMs2v2qJgdVd8ouepHLGf4H7i8/xj3A==
-X-Received: by 2002:a05:620a:201b:b0:778:8b39:166e with SMTP id c27-20020a05620a201b00b007788b39166emr8783145qka.20.1700134670357;
-        Thu, 16 Nov 2023 03:37:50 -0800 (PST)
+        bh=jPmwDyDnTt2mfJDFk4M04sRvgIpCqOiaXwSPPRNnyQQ=;
+        b=ClNjSALfeg4DTzoWE/ks8kqvLX9oEP50NUYQ+qvkkDsWsxI+LAPkPcp9FdYHc7OoYx
+         kn5GfVJ78RBUsn0FWMFfr1LvQ05gF+WDtSlxNFNgWWqEPQXn38EiGR5N1dvRKAjClFkz
+         S4iMuvIwgSaJRyz7tFROjYXNzlFnt3QyDuJbK31bQdGaUmUz3E/n+ttQSs4jZs2mhNFU
+         TVkO/71ydJMWzn+yJCJPjeDqsL6Gt7WJuqO9PAjAp0HxKREk0f/IMYlEhY9sm0GC3OHO
+         YdYNGD9XD6h5YGEieyn+zSx1Z12kpAi9qv5w2Wuv3CzFBBn+E5/i3d9P0bCKNaZ/Nrbv
+         A31A==
+X-Gm-Message-State: AOJu0YywYFFYJ+MG8qw6dPr8meba0xd/OPRjy6eo+FUpT1j0yWBKCn2J
+	zWgm8dgSXznB7b5fy07oNWzqCQ==
+X-Google-Smtp-Source: AGHT+IFtwwpoOvZJIXX3Pr0GCvaufNrPMRU/FlgQ2Ejulw6x5wIeRakrK9kpyWpo2e7qWqZEcPKxYA==
+X-Received: by 2002:a0d:ca8f:0:b0:5a7:ba54:af02 with SMTP id m137-20020a0dca8f000000b005a7ba54af02mr17174955ywd.38.1700134819885;
+        Thu, 16 Nov 2023 03:40:19 -0800 (PST)
 Received: from [192.168.212.13] ([12.191.197.195])
-        by smtp.gmail.com with ESMTPSA id u8-20020a05620a022800b00767da9b6ae9sm3697236qkm.11.2023.11.16.03.37.48
+        by smtp.gmail.com with ESMTPSA id a17-20020a0cc591000000b0065b21f1b687sm1298370qvj.80.2023.11.16.03.40.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Nov 2023 03:37:50 -0800 (PST)
-Message-ID: <d1e067a7-81ed-4962-bc38-9db1697514da@linaro.org>
-Date: Thu, 16 Nov 2023 12:37:48 +0100
+        Thu, 16 Nov 2023 03:40:19 -0800 (PST)
+Message-ID: <a4d5293f-43ee-487c-a540-5a1f65e3c7d6@linaro.org>
+Date: Thu, 16 Nov 2023 12:40:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +62,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: add bus-reset-gpios property
+Subject: Re: [PATCH 06/11] iio: adc: Add QCOM PMIC5 Gen3 ADC bindings
 Content-Language: en-US
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
- "wsa@kernel.org" <wsa@kernel.org>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>
-Cc: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20231115035753.925534-1-chris.packham@alliedtelesis.co.nz>
- <20231115035753.925534-2-chris.packham@alliedtelesis.co.nz>
- <f24b9b2d-aeb1-47f7-bf21-4383fdcf94aa@linaro.org>
- <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
+To: Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linus.walleij@linaro.org, Jonathan.Cameron@huawei.com, sboyd@kernel.org,
+ dmitry.baryshkov@linaro.org, quic_subbaram@quicinc.com,
+ quic_collinsd@quicinc.com, quic_kamalw@quicinc.com,
+ marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Luca Weiss <luca@z3ntu.xyz>,
+ linux-iio@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc: linux-arm-msm-owner@vger.kernel.org
+References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
+ <20230708072835.3035398-7-quic_jprakash@quicinc.com>
+ <bb225c12-f017-fac3-45f1-c828a10553e2@linaro.org>
+ <99070bce-6188-82eb-c92c-cf7a323394e2@quicinc.com>
+ <c4ef9cac-15ac-4c2c-9f9a-cb9e740e2900@linaro.org>
+ <06d0f06a-7a5a-44d1-0bad-27f56bfc1421@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,52 +128,107 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5a52b0c9-8858-4f55-8dd7-9269c29c10a7@alliedtelesis.co.nz>
+In-Reply-To: <06d0f06a-7a5a-44d1-0bad-27f56bfc1421@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/11/2023 22:53, Chris Packham wrote:
-> Hi Krystof,
+On 16/11/2023 04:23, Jishnu Prakash wrote:
+> Hi Krzysztof,
 > 
-> On 16/11/23 10:29, Krzysztof Kozlowski wrote:
->> On 15/11/2023 04:57, Chris Packham wrote:
->>> Add bus-reset-gpios and bus-reset-duration-us properties to the binding
->>> description for i2c busses. These can be used to describe hardware where
->>> a common reset GPIO is connected to all downstream devices on and I2C
->>> bus. This reset will be asserted then released before the downstream
->>> devices on the bus are probed.
+> On 10/23/2023 12:06 PM, Krzysztof Kozlowski wrote:
+>> On 23/10/2023 08:14, Jishnu Prakash wrote:
+>>> Hi Krzysztof,
 >>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> ---
+>>> On 7/9/2023 10:53 PM, Krzysztof Kozlowski wrote:
 >>>
+>>>>>      reg:
+>>>>>        description: VADC base address in the SPMI PMIC register map
+>>>>> -    maxItems: 1
+>>>>> +    minItems: 1
+>>>> Why? This does not make any sense. With previous patches it looks like
+>>>> random set of changes.
+>>> The idea here is to convey that reg can have multiple values for ADC5
+>>> Gen3 as there can be more than one peripheral used for ADC, so there can
+>>> be multiple base addresses. I'll try to make this more clear in the next
+>>> patchset.
+>> You cannot remove constraints from an entry.
+> 
+> 
+> In this case, minItems: 1 will remain true for all other ADC devices 
+> documented here, but it will not be true for ADC5 Gen3, as this one can 
+> have multiple base addresses if more than one SDAM is used for ADC. I'll 
+> update this separately for each compatible, keeping it the same for the 
+> older ones, hope that should work.
+
+You responded like you disagree with me, so just in case:  my comment
+stays. If you resend the same, I will NAK it.
+
+> 
+> 
+>>>>>    
+>>>>>      '#address-cells':
+>>>>>        const: 1
+>>>>> @@ -38,6 +39,12 @@ properties:
+>>>>>      '#size-cells':
+>>>>>        const: 0
+>>>>>    
+>>>>>    
+>>>>> +      qcom,adc-tm-type:
+>>>>> +        description: |
+>>>>> +            Indicates if ADC_TM monitoring is done on this channel.
+>>>> Description does not match property name.
+>>> You mean it sounds more like an enum which can take several values
+>>> rather than just a boolean? I can update it to "qcom,adc-tm" if that
+>>> looks better.
+>> The property name suggests this is type of monitoring. Property
+>> description says this will enable ADC_TM monitoring. These two do not match.
+>>
+>> Except that I wonder now whether this is a property of hardware at
+>> all... What is this monitoring? By the driver?
+> 
+> 
+> The property description is right, this property is used to indicate 
+> that one of the configurable channels on the ADC SDAMs will be used for 
+> ADC_TM functionality, for periodically monitoring this particular ADC 
+> channel . This is the exact same functionality as in the existing QCOM 
+> ADC_TM device, documented at 
+> devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml. I'll mention this 
+> too in the description.
+> 
+> It can be considered a property of the hardware as the monitoring is 
+> done by a sequence under PBS (Programmable Boot Sequence, can be 
+> considered firmware), which periodically gets the channel reading and 
+> checks it against upper/lower thresholds set by clients of this driver, 
+> for threshold violations.
+> 
+> 
 >> ...
 >>
->>>   Documentation/devicetree/bindings/i2c/i2c.txt | 8 ++++++++
->>>   1 file changed, 8 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
->>> index fc3dd7ec0445..3f95d71b9985 100644
->>> --- a/Documentation/devicetree/bindings/i2c/i2c.txt
->>> +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
->>> @@ -99,6 +99,14 @@ wants to support one of the below features, it should adapt these bindings.
->>>   	indicates that the system is accessible via this bus as an endpoint for
->>>   	MCTP over I2C transport.
->>>   
->>> +- bus-reset-gpios:
->>> +	GPIO pin providing a common reset for all downstream devices. This GPIO
->>> +	will be asserted then released before the downstream devices are probed.
->> I initially reviewed it, but did not think enough about it. After more
->> consideration, I believe this is not a property of the I2C bus
->> controller. This is a property of each device, even if the GPIO is the same.
->>
->> Linux kernel already supports shared GPIO, so you only need
->> enable-ref-counting on it.
+>>>>>        then:
+>>>>>          patternProperties:
+>>>>> @@ -299,7 +315,7 @@ examples:
+>>>>>                    label = "xo_therm";
+>>>>>                };
+>>>>>    
 > 
-> That's the kind of breadcrumb I need. Although I can't see 
-> enable-ref-counting as any kind of DT property. Do you mean 
-> GPIOD_FLAGS_BIT_NONEXCLUSIVE?
+>>>>> diff --git a/include/dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h b/include/dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h
+>>>>> new file mode 100644
+>>>>> index 000000000000..74e6e2f6f9ed
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/iio/qcom,spmi-adc5-gen3-pm8550.h
+>>>>> @@ -0,0 +1,48 @@
+>>>>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>>>> Dual license.
+>>> I think we do have an internal rule by which we do have to add these two
+>>> licenses....I'll check again and update them if required.
+>> Just to be clear: your internal rules are your internal affair. We
+>> expect here dual license.
+> 
+> 
+> I misunderstood what you meant earlier, I understand now that 
+> "GPL-2.0-only" is wrong, I'll update it.
 
-It's not a feature or property of Devicetree, but missing feature of OS.
+If only you run checkpatch before sending patches...
 
 Best regards,
 Krzysztof
