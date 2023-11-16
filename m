@@ -1,457 +1,145 @@
-Return-Path: <devicetree+bounces-16113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B947ED8C3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:57:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4982A7ED8C9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 02:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1973280E7A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 00:57:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D13C1C20912
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 01:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A21391;
-	Thu, 16 Nov 2023 00:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dkim=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A29A7E;
+	Thu, 16 Nov 2023 01:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="bfnV8agf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A9C1A3;
-	Wed, 15 Nov 2023 16:57:29 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3AFJlQWo006076;
-	Wed, 15 Nov 2023 19:57:10 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3uaqmk0xrm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Nov 2023 19:57:09 -0500 (EST)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 3AG0v8pB024839
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 Nov 2023 19:57:08 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 15 Nov
- 2023 19:57:07 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 15 Nov 2023 19:57:07 -0500
-Received: from KPALLER2-L02.ad.analog.com (KPALLER2-L02.ad.analog.com [10.117.220.22])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3AG0un03012837;
-	Wed, 15 Nov 2023 19:56:59 -0500
-From: Kim Seer Paller <kimseer.paller@analog.com>
-To: 
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kim
- Seer Paller <kimseer.paller@analog.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] iio: frequency: admfm2000: New driver
-Date: Thu, 16 Nov 2023 08:56:43 +0800
-Message-ID: <20231116005643.245314-2-kimseer.paller@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231116005643.245314-1-kimseer.paller@analog.com>
-References: <20231116005643.245314-1-kimseer.paller@analog.com>
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2105.outbound.protection.outlook.com [40.107.113.105])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DDB194;
+	Wed, 15 Nov 2023 17:04:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NDk9kPLcaX1qyODuQ59CuZZo0EKGVOB2Q2F8ZVnfB7meCZlDUyVMN2AbKbhP78fZdOOf2QK9mimqT6J0lyVI7/gg0wt5aiKFso3Nk8tYHZUu0g7Zok0cU1yH3OTICnkryWdSQfJPBVW7LGbYTNJUwoFZWbY/FAWp2l3HXBbTegOf8jAwlgzVAuWLHXTfpuwgXeqGT6QbRVxv0HYqu13X/OQhGv9b8/Hg5SCWvxDiUvBSMjMNBZ6JA/NyM53iymtMuvRye7K/AZONfRV6blsN4qpYt0smP3rnluLlf2Lb+1l6V3fz40xZIsC1FSFALiigGyF4G6sUZWobXQSHr8m2oQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DjQ6xJuZ1xTwIkbGjEy2wfE2BYgDcscqS5bm2+wZdj0=;
+ b=aj2BdLxj3V3sVUfx7BweaIaIkLQZsDuhq4WKrtayj7Tmk8OD6+ImHmwC+oNUj0nkzihjezBq2n9GZ9+OsUYD600FKRlqOBWQXQAvq9g0JXvGq2oKxkv1VGvuq8TESg6NtcAjZtHo4M8BxuZQeezrsVyIUtII5CK0Xms/B6IXZ2IFlVesngG3DVNHKWrDxn7V5zwkWEFKrBDyHXqYa3SP13pCnSbDc9Txh8h7O5qNLI3/4a+7GndXw4jy+ytqhMUGJEO9MhvW6OG02kztsItFyZThwPpef8otMcGkwYjAkneEa+jDdTNfE1At6ZANeHsIp9eYjVsEImEXcUpUGynlmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DjQ6xJuZ1xTwIkbGjEy2wfE2BYgDcscqS5bm2+wZdj0=;
+ b=bfnV8agfmq6aj2urDfz+NeAGlTMM5zcpKy6iFteiM7IOgeO6CyGudyqDdljDgx9bgFcmZrPJhxL//N8swDPzdcm33WNSR7jvdw7aVWZ/pz3DO/7WAOFcvJHTnk4B3MzQCAmuo7WBv7wKWTsSQPtQDhX3Bv98OUnePcVKI3s9VxI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from OSAPR01MB2178.jpnprd01.prod.outlook.com (2603:1096:603:1a::14)
+ by OS3PR01MB10154.jpnprd01.prod.outlook.com (2603:1096:604:1e3::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.21; Thu, 16 Nov
+ 2023 01:04:32 +0000
+Received: from OSAPR01MB2178.jpnprd01.prod.outlook.com
+ ([fe80::173f:d892:3d66:397d]) by OSAPR01MB2178.jpnprd01.prod.outlook.com
+ ([fe80::173f:d892:3d66:397d%4]) with mapi id 15.20.7002.021; Thu, 16 Nov 2023
+ 01:04:32 +0000
+Message-ID: <874jhmtso0.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: kernel test robot <lkp@intel.com>
+Cc: Frank Rowand <frowand.list@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Aymeric Aillet <aymeric.aillet@iot.bzh>,
+	Yusuke Goda <yusuke.goda.sx@renesas.com>
+Subject: Re: [PATCH 4/4] drivers: clk: renesas: enable all clocks which is assinged to non Linux system
+In-Reply-To: <202311142059.XrPUseGq-lkp@intel.com>
+References: <87wmulrynq.wl-kuninori.morimoto.gx@renesas.com>
+	<202311142059.XrPUseGq-lkp@intel.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 16 Nov 2023 01:04:31 +0000
+X-ClientProxiedBy: TY2PR06CA0046.apcprd06.prod.outlook.com
+ (2603:1096:404:2e::34) To OSAPR01MB2178.jpnprd01.prod.outlook.com
+ (2603:1096:603:1a::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: TyB6SUvDHu3JEMHnnk_-_hyf72CEnIEY
-X-Proofpoint-ORIG-GUID: TyB6SUvDHu3JEMHnnk_-_hyf72CEnIEY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-15_20,2023-11-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- malwarescore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
- priorityscore=1501 mlxlogscore=999 mlxscore=0 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311060001 definitions=main-2311160006
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSAPR01MB2178:EE_|OS3PR01MB10154:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b58215c-f68e-48e5-067c-08dbe63ffdd2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	YEPmCS0XxmS7yGxQ5/nK3NzO4pXde42yYf4qztuHdOA0nlw1aUytTDwKQkBgMhmVXP+R5mwFDlBIeonmjGBS2A0F9BZU8ZGCx3S675hZrz9fptEkWMn3QmSGagLLK2g5DmcqQXZWFBDc4fzZuWG3jzU9KM6nLx33CoiS9HZ/Qdsqgu2VvESjRq7H4xuxYb0sc7yqvSfc6R8vWXBFtq9D/z+CBDUftnv19gyxSikEmbyNqGBlnb5BMAcVr5UVcBNMjmzywJw+r9FzUL6sir5RnIlBWzTfAZEjgVf7JdRQtrVVPBuuMKwrNB+KWXLXVkOSWRSgaJThVGQBbRQw1RhYZmutI8XkWz6vq67v9FoVPJypsNUV0TYPNzOYDZJQx/w6X32QrjMEuqqwdfE6yjVCNT+sL8UO7v8vA/7tM3eWI/N1eINWIqcrO3K0syYK0vpRd4oz2ST6ByTcSXm06uKyb481B8sw6UaACublfgsma4daLZwRZ2tkekrNc780i734VNCnhSNGRjYAieOd24l60iVnvP1Qw1eWKGz1PE059osR+CeeuPj3XxjuibmNXsay32x3Y5eRsYByfWPpQ/4KW1cVvUJNVYhSRAtZUBCMjZPVRRjOhqa7I14FENbwNxiJdSIv2iFPDARXe454MzTIH17cVxB/zZTlx9EJN1jCWhg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB2178.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(376002)(396003)(39860400002)(136003)(230173577357003)(230922051799003)(230273577357003)(451199024)(186009)(1800799009)(64100799003)(7416002)(5660300002)(86362001)(8676002)(8936002)(4326008)(41300700001)(38350700005)(36756003)(2906002)(4744005)(83380400001)(26005)(107886003)(2616005)(38100700002)(66476007)(66556008)(66946007)(54906003)(316002)(6916009)(6506007)(52116002)(6512007)(6486002)(478600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?6hfJE+lWOBTM4gbm6LKRUP2QY043LKuIJcyZsN5mevd3hHp35drc3FgUqu9P?=
+ =?us-ascii?Q?dt3aJAZFpMtZmF6ci/hVcA8MAquC0+z1NDl8OSAyDsPYggX1h1I82gEWOeEc?=
+ =?us-ascii?Q?u0OKX0DiFzWpwGtW9oKoMpNzGMd/DWCdCCCFW61s60/k+DFNBAHTUGtIcoU0?=
+ =?us-ascii?Q?AlgiudiSbAalFxjDPHriqgNTbXI9X+4ES9wcdGbMLImovmn0LUYqYaO5tm+q?=
+ =?us-ascii?Q?flt+vh/01kl7x+EkQ4QnPrqCiiQi/FXG6rxU5ofQnyc7Lg7fAJaS9AnKASU/?=
+ =?us-ascii?Q?lu7s5gdds9IX5zBqFOzMr8gEap6cf63WD/MFQIa46z029gNi1dYJ7Za5ALYZ?=
+ =?us-ascii?Q?okwpmRaAMocWMEhoAPgr+g1eo9Gr0jRcP2xkSqAbYMsGfzM3uKtXQ5o2tEBI?=
+ =?us-ascii?Q?E2QuU/QCi6B77nqn3gwnM3ZUs7lg182gGlNKJXDLFgqyADLD29gET1glffp+?=
+ =?us-ascii?Q?NzwabcvE460zvEJsOo4cRP26LbDeGQEebRc8akk2d1AHAh8UWSJ5RrKC2xtf?=
+ =?us-ascii?Q?39uxcq2YeuRfT9lihFnnyA0g7p1P+klMqWp+o9IiwRY7vGSGW4y9+kkASKQh?=
+ =?us-ascii?Q?QYGOlkHHKmNosbEw0Kzorm3fS1Ag9sgNFRt6C3YLpqCrierlBvBjYrsi0DVx?=
+ =?us-ascii?Q?y32xcSoO52LRotRFG4B+Ypd+xGbKc2lLYy1xD7LYL+Icz7kaG0Rfh+2efMZS?=
+ =?us-ascii?Q?y/m1zNirBU/vtQ4Zn9LcV/p30nvKADdcCkWx/EnZgIJu+qBxrok2Lm0SeBth?=
+ =?us-ascii?Q?QjEUqf4hVLsSIqZqckj292CYOsOlKVg+Rb8fDPubf6v3pVxkr+kG6VkvCfRK?=
+ =?us-ascii?Q?zjwzNY9sUHQ4i05OH7aA11cOvdjyYLgs/+gVw6qq4Q/jOolssIywVx4u7uqH?=
+ =?us-ascii?Q?jzxO7RIfiWBHxZx5vqBC3aI61nOolQq9cgkcf8chc+MeKEJ5SBX4eZoaOA0p?=
+ =?us-ascii?Q?1W44YPPZfs4xQ3blW7pdTmsxIqj1xl/IBYURfAZUbVaBsjpVVtDX2j/uibqa?=
+ =?us-ascii?Q?795N6Sc5eHGNkYwDkSIqd7OXKOfCKyx32M3lWvbWbGYahMK8+e+dnK0B7h7g?=
+ =?us-ascii?Q?O4TNa8qpJ0dXqIGG3yG2VJ8Efv8JHP5ZqWpNhXVKtNMGdj2+rZZQAotqSPJy?=
+ =?us-ascii?Q?4p1RqaAQQfe+SHFh2WRaw5Y1rdOwTdHHNq3sPF5evg1a9nSs9JidHXgPVFov?=
+ =?us-ascii?Q?p2KtEWKhB+1glSVg4gEgeVTEo68rz8BiEbVz6COYLGkFTQR4wp3uDMleD5Ai?=
+ =?us-ascii?Q?A/oWTBch7Vayt/6rki3qgRY+cDNSGmzIZLG4HSiivwiNMoVXmKA0lZ7jZgp5?=
+ =?us-ascii?Q?0hvtuggD3VfTooQRpWQb7hCdvjMDLcTS0Gx2QLGZEUIR4bYi7ncLBcdXeFp6?=
+ =?us-ascii?Q?LR5mf6oi466pJfeoX93WTRXCuLG0izi/glkfBr6pb/vrf268HWiqxdeTArQ2?=
+ =?us-ascii?Q?UjduUulOmxuNAA9WRzQP0nIqQPvATvAJpD5xL7cPu+D9CPEeH6ck3S1ryOIs?=
+ =?us-ascii?Q?l3OhEiNljIzv63sdF2TCpeM993IUnTNnvREIwGMBAtaeUI7Vrs33o5gNJO6E?=
+ =?us-ascii?Q?/1gCdk5s2Ydo/GzZajp1x3KkZRScbzWUkcHWQ7IYp7CdHB6fs1iw5Mo+AF0J?=
+ =?us-ascii?Q?1YGVsSuYWtmAF396ho+3P/I=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b58215c-f68e-48e5-067c-08dbe63ffdd2
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB2178.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 01:04:32.0577
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JA2uxo8TU/qZnkytxKxpP99kVsD7teUKeY2J/F9nzpujdMFgV/QM//oGxruXV0H9D8nivsiM/Ubp28LyOqbeiNsSWzWHGhUh3+dxEViNUlWoYMfJYQv3IsqwZ0bUHP1w
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB10154
 
-Dual microwave down converter module with input RF and LO frequency
-ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
-8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
-for each down conversion path.
 
-Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+Hi kernel test
+
+> kernel test robot noticed the following build warnings:
+(snip)
+> >> drivers/clk/renesas/renesas-cpg-mssr.c:175: warning: Function parameter or member 'reserved_ids' not described in 'cpg_mssr_priv'
+> >> drivers/clk/renesas/renesas-cpg-mssr.c:175: warning: Function parameter or member 'num_reserved_ids' not described in 'cpg_mssr_priv'
+
+Thank you for the report.
+I will fixup it on v2.
+
+Thank you for your help !!
+
+Best regards
 ---
- MAINTAINERS                       |   1 +
- drivers/iio/frequency/Kconfig     |  10 +
- drivers/iio/frequency/Makefile    |   1 +
- drivers/iio/frequency/admfm2000.c | 309 ++++++++++++++++++++++++++++++
- 4 files changed, 321 insertions(+)
- create mode 100644 drivers/iio/frequency/admfm2000.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 505eb57eb..fbd9bce86 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1253,6 +1253,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-+F:	drivers/iio/frequency/admfm2000.c
- 
- ANALOG DEVICES INC ADMV1013 DRIVER
- M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
-diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
-index 9e85dfa58..c455be7d4 100644
---- a/drivers/iio/frequency/Kconfig
-+++ b/drivers/iio/frequency/Kconfig
-@@ -60,6 +60,16 @@ config ADF4377
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adf4377.
- 
-+config ADMFM2000
-+	tristate "Analog Devices ADMFM2000 Dual Microwave Down Converter"
-+	depends on GPIOLIB
-+	help
-+	  Say yes here to build support for Analog Devices ADMFM2000 Dual
-+	  Microwave Down Converter.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called admfm2000.
-+
- config ADMV1013
- 	tristate "Analog Devices ADMV1013 Microwave Upconverter"
- 	depends on SPI && COMMON_CLK
-diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
-index b616c29b4..70d0e0b70 100644
---- a/drivers/iio/frequency/Makefile
-+++ b/drivers/iio/frequency/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_AD9523) += ad9523.o
- obj-$(CONFIG_ADF4350) += adf4350.o
- obj-$(CONFIG_ADF4371) += adf4371.o
- obj-$(CONFIG_ADF4377) += adf4377.o
-+obj-$(CONFIG_ADMFM2000) += admfm2000.o
- obj-$(CONFIG_ADMV1013) += admv1013.o
- obj-$(CONFIG_ADMV1014) += admv1014.o
- obj-$(CONFIG_ADMV4420) += admv4420.o
-diff --git a/drivers/iio/frequency/admfm2000.c b/drivers/iio/frequency/admfm2000.c
-new file mode 100644
-index 000000000..e0b5edce7
---- /dev/null
-+++ b/drivers/iio/frequency/admfm2000.c
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ADMFM2000 Dual Microwave Down Converter
-+ *
-+ * Copyright 2023 Analog Devices Inc.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define ADMFM2000_MIXER_MODE		0
-+#define ADMFM2000_DIRECT_IF_MODE	1
-+#define ADMF20000_DSA_GPIOS		5
-+#define ADMF20000_MODE_GPIOS		2
-+#define ADMF20000_MAX_GAIN		0
-+#define ADMF20000_MIN_GAIN		-31000
-+#define ADMF20000_DEFAULT_GAIN		-0x20
-+
-+struct admfm2000_state {
-+	struct mutex			lock; /* protect sensor state */
-+	struct gpio_descs		*sw_ch[2];
-+	struct gpio_descs		*dsa_gpios[2];
-+	u32				gain[2];
-+};
-+
-+static int admfm2000_mode(struct iio_dev *indio_dev, u32 reg, u32 mode)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	DECLARE_BITMAP(values, 2);
-+
-+	switch (mode) {
-+	case ADMFM2000_MIXER_MODE:
-+		values[0] = (reg == 0) ? 1 : 2;
-+		gpiod_set_array_value_cansleep(st->sw_ch[reg]->ndescs,
-+					       st->sw_ch[reg]->desc,
-+					       NULL, values);
-+		break;
-+	case ADMFM2000_DIRECT_IF_MODE:
-+		values[0] = (reg == 0) ? 2 : 1;
-+		gpiod_set_array_value_cansleep(st->sw_ch[reg]->ndescs,
-+					       st->sw_ch[reg]->desc,
-+					       NULL, values);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_attenuation(struct iio_dev *indio_dev, u32 chan,
-+				 u32 value)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	DECLARE_BITMAP(values, BITS_PER_TYPE(value));
-+
-+	values[0] = value;
-+
-+	gpiod_set_array_value_cansleep(st->dsa_gpios[chan]->ndescs,
-+				       st->dsa_gpios[chan]->desc,
-+				       NULL, values);
-+	return 0;
-+}
-+
-+static int admfm2000_read_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, int *val,
-+			      int *val2, long mask)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	int gain;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		mutex_lock(&st->lock);
-+		gain = ~(st->gain[chan->channel]) * -1000;
-+		*val = gain / 1000;
-+		*val2 = (gain % 1000) * 1000;
-+		mutex_unlock(&st->lock);
-+
-+		return  IIO_VAL_INT_PLUS_MICRO_DB;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int admfm2000_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int val,
-+			     int val2, long mask)
-+{
-+	struct admfm2000_state *st = iio_priv(indio_dev);
-+	int gain, ret;
-+
-+	if (val < 0)
-+		gain = (val * 1000) - (val2 / 1000);
-+	else
-+		gain = (val * 1000) + (val2 / 1000);
-+
-+	if (gain > ADMF20000_MAX_GAIN || gain < ADMF20000_MIN_GAIN)
-+		return -EINVAL;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		mutex_lock(&st->lock);
-+		st->gain[chan->channel] = ~((abs(gain) / 1000) & 0x1F);
-+
-+		ret = admfm2000_attenuation(indio_dev, chan->channel,
-+					    st->gain[chan->channel]);
-+
-+		mutex_unlock(&st->lock);
-+		if (ret)
-+			return ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				       struct iio_chan_spec const *chan,
-+				       long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		return IIO_VAL_INT_PLUS_MICRO_DB;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info admfm2000_info = {
-+	.read_raw = &admfm2000_read_raw,
-+	.write_raw = &admfm2000_write_raw,
-+	.write_raw_get_fmt = &admfm2000_write_raw_get_fmt,
-+};
-+
-+#define ADMFM2000_CHAN(_channel) {					\
-+	.type = IIO_VOLTAGE,						\
-+	.output = 1,							\
-+	.indexed = 1,							\
-+	.channel = _channel,						\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_HARDWAREGAIN),		\
-+}
-+
-+static const struct iio_chan_spec admfm2000_channels[] = {
-+	ADMFM2000_CHAN(0),
-+	ADMFM2000_CHAN(1),
-+};
-+
-+static int admfm2000_channel_config(struct admfm2000_state *st,
-+				    struct iio_dev *indio_dev)
-+{
-+	struct platform_device *pdev = to_platform_device(indio_dev->dev.parent);
-+	struct device *dev = &pdev->dev;
-+	struct fwnode_handle *child;
-+	u32 reg, mode;
-+	int ret;
-+
-+	device_for_each_child_node(dev, child) {
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to get reg property\n");
-+		}
-+
-+		if (reg >= indio_dev->num_channels) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, -EINVAL, "reg bigger than: %d\n",
-+					     indio_dev->num_channels);
-+		}
-+
-+		ret = fwnode_property_read_u32(child, "adi,mode", &mode);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, ret,
-+					     "Failed to get mode property\n");
-+		}
-+
-+		if (mode >= 2) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, -EINVAL, "mode bigger than: 1\n");
-+		}
-+
-+		ret = admfm2000_mode(indio_dev, reg, mode);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_setup(struct admfm2000_state *st,
-+			   struct iio_dev *indio_dev)
-+{
-+	struct platform_device *pdev = to_platform_device(indio_dev->dev.parent);
-+	struct device *dev = &pdev->dev;
-+
-+	st->sw_ch[0] = devm_gpiod_get_array(dev, "switch1", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->sw_ch[0]))
-+		return dev_err_probe(dev, PTR_ERR(st->sw_ch[0]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->sw_ch[0]->ndescs != ADMF20000_MODE_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_MODE_GPIOS);
-+		return -ENODEV;
-+	}
-+
-+	st->sw_ch[1] = devm_gpiod_get_array(dev, "switch2", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->sw_ch[1]))
-+		return dev_err_probe(dev, PTR_ERR(st->sw_ch[1]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->sw_ch[1]->ndescs != ADMF20000_MODE_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_MODE_GPIOS);
-+		return -ENODEV;
-+	}
-+
-+	st->dsa_gpios[0] = devm_gpiod_get_array(dev, "attenuation1",
-+						GPIOD_OUT_LOW);
-+	if (IS_ERR(st->dsa_gpios[0]))
-+		return dev_err_probe(dev, PTR_ERR(st->dsa_gpios[0]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->dsa_gpios[0]->ndescs != ADMF20000_DSA_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_DSA_GPIOS);
-+		return -ENODEV;
-+	}
-+
-+	st->dsa_gpios[1] = devm_gpiod_get_array(dev, "attenuation2",
-+						GPIOD_OUT_LOW);
-+	if (IS_ERR(st->dsa_gpios[1]))
-+		return dev_err_probe(dev, PTR_ERR(st->dsa_gpios[1]),
-+				     "Failed to get gpios\n");
-+
-+	if (st->dsa_gpios[1]->ndescs != ADMF20000_DSA_GPIOS) {
-+		dev_err_probe(dev, -ENODEV, "%d GPIOs needed to operate\n",
-+			      ADMF20000_DSA_GPIOS);
-+	}
-+
-+	return 0;
-+}
-+
-+static int admfm2000_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct iio_dev *indio_dev;
-+	struct admfm2000_state *st;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+
-+	indio_dev->name = "admfm2000";
-+	indio_dev->num_channels = ARRAY_SIZE(admfm2000_channels);
-+	indio_dev->channels = admfm2000_channels;
-+	indio_dev->info = &admfm2000_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	st->gain[0] = ADMF20000_DEFAULT_GAIN;
-+	st->gain[1] = ADMF20000_DEFAULT_GAIN;
-+
-+	mutex_init(&st->lock);
-+
-+	ret = admfm2000_setup(st, indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = admfm2000_channel_config(st, indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct of_device_id admfm2000_of_match[] = {
-+	{ .compatible = "adi,admfm2000" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, admfm2000_of_match);
-+
-+static struct platform_driver admfm2000_driver = {
-+	.driver = {
-+		.name = "admfm2000",
-+		.of_match_table = admfm2000_of_match,
-+	},
-+	.probe = admfm2000_probe,
-+};
-+module_platform_driver(admfm2000_driver);
-+
-+MODULE_AUTHOR("Kim Seer Paller <kimseer.paller@analog.com>");
-+MODULE_DESCRIPTION("ADMFM2000 Dual Microwave Down Converter");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
-
+Kuninori Morimoto
 
