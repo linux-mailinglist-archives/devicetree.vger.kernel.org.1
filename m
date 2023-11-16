@@ -1,79 +1,86 @@
-Return-Path: <devicetree+bounces-16341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 226A07EE522
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:26:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC0CF7EE52C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:29:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D04F4280FB5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:25:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD2081C208A3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1B539FE0;
-	Thu, 16 Nov 2023 16:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0803A8EB;
+	Thu, 16 Nov 2023 16:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2159D189;
-	Thu, 16 Nov 2023 08:25:54 -0800 (PST)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-1ef9f1640a5so486998fac.3;
-        Thu, 16 Nov 2023 08:25:54 -0800 (PST)
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A5F3AD;
+	Thu, 16 Nov 2023 08:28:58 -0800 (PST)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-1ea82246069so482665fac.3;
+        Thu, 16 Nov 2023 08:28:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700151953; x=1700756753;
+        d=1e100.net; s=20230601; t=1700152138; x=1700756938;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MdF0221BVqkPNWgSqhec2EXy65Py3/xwAFMQEwbUdnE=;
-        b=PYbFPSU5n1qJOAY+2hOs8hA039Myq/nAa52ERVDbh3i9vc4vXolQAvyk06h5EHhRx5
-         xISIQCVrNFKPNApYgHaEuugAIAo3/S4BWCMq5tiPNRz1CogdtB7krXVVOos345G9Ng0w
-         lWo3w0s+/Gebsgwxm6uz5TW4ZVv+0qUxC5eaFFpWLbFZmXFRADusxq4S2zaeXrbblFGu
-         3Zn5eAdgM8LDBLQ7eGS9WgDIa3uyBN5sEI+Vg4dEirHkfTQDuR+9aYrP6hU4OGjcKFqI
-         pxcK4OsbsQyuA47TYO6zNi0pq4wE29BixllczP4oCqURP76MuUH/jkRm50Ru65AVJaD3
-         sLvQ==
-X-Gm-Message-State: AOJu0YzJc3LsXNGcWxJxqBCVrcGMZC5PZUFyB0x1s42ll5FgpcWS0XID
-	q6tW4IVoXpkdx7Jr9x2hcg==
-X-Google-Smtp-Source: AGHT+IFsQ6G8Hs/gkiT6P18hdAozMHVcByhgRdiwKxciKv0SxS5pWE0upGxpEiMbTbEFLfhoIRdTmg==
-X-Received: by 2002:a05:6870:239b:b0:1f4:8d16:ea08 with SMTP id e27-20020a056870239b00b001f48d16ea08mr19820721oap.14.1700151953227;
-        Thu, 16 Nov 2023 08:25:53 -0800 (PST)
+        bh=SHpsolomr1O8IoNZNmWuKJghrcMhtNlGZuOKvxu4Hyg=;
+        b=rAPReS48rdOynBf8fZhqE/qyTywjD1L+pbSHRe0OssTTniIOmVafVxA5uvW+6qUFqv
+         aGnNH3afUMy3hfRnpcqgkCRZk8VMaHpmDmb1v1whtA3pp9adiv3HmRfSTYhUzRDn/NrB
+         +No9dhTTbtXmr3moQWOUiVS54B+omnb+Dfy9vdrIkE3bbksL+UyCW3R4nS/LbAO2lZWr
+         jhj/XpvMALMqgqbfQwr1y/wUtElRaLSYNxlA+HG2pcn31qZ3VvCpA8xqeZFu9INzDJU8
+         Ii/HCBPN0rP+vwJ8rqTFo8VpWlMT7jZGbLHaA7aDyECvHmCbFdMIYwjP1ks+iVbSmdzV
+         2yFQ==
+X-Gm-Message-State: AOJu0Yx7QbGIFAIelyRvsLgwdpOE+2tAve+Ycpj3JABysEJSUBaAcpkR
+	FeJ8v+Ierj3ulNv/8FALLw==
+X-Google-Smtp-Source: AGHT+IEN7OCfu+AaT2L23F6tUrWC+9ztcQ5rH5Mxyh/0SpCy8jBoSr8cd13j15tMtuSmOolw2nIBzQ==
+X-Received: by 2002:a05:6870:6c05:b0:1f0:6931:e301 with SMTP id na5-20020a0568706c0500b001f06931e301mr21055183oab.0.1700152137858;
+        Thu, 16 Nov 2023 08:28:57 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id dd13-20020a056871c80d00b001ead209f185sm2168835oac.20.2023.11.16.08.25.51
+        by smtp.gmail.com with ESMTPSA id bp9-20020a056871280900b001eb79fedbb1sm2156514oac.17.2023.11.16.08.28.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 08:25:52 -0800 (PST)
-Received: (nullmailer pid 2434756 invoked by uid 1000);
-	Thu, 16 Nov 2023 16:25:50 -0000
-Date: Thu, 16 Nov 2023 10:25:50 -0600
+        Thu, 16 Nov 2023 08:28:57 -0800 (PST)
+Received: (nullmailer pid 2438161 invoked by uid 1000);
+	Thu, 16 Nov 2023 16:28:55 -0000
+Date: Thu, 16 Nov 2023 10:28:55 -0600
 From: Rob Herring <robh@kernel.org>
-To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc: arinc.unal@arinc9.com, davem@davemloft.net, vivien.didelot@gmail.com, andrew@lunn.ch, f.fainelli@gmail.com, robh+dt@kernel.org, krzk+dt@kernel.org, linus.walleij@linaro.org, devicetree@vger.kernel.org, alsi@bang-olufsen.dk, netdev@vger.kernel.org, olteanv@gmail.com, pabeni@redhat.com, kuba@kernel.org
-Subject: Re: [RFC net-next 2/5] dt-bindings: net: dsa: realtek: add reset
- controller
-Message-ID: <170015195016.2434701.9542548877901507767.robh@kernel.org>
-References: <20231111215647.4966-1-luizluca@gmail.com>
- <20231111215647.4966-3-luizluca@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Inki Dae <inki.dae@samsung.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: gpu: samsung: constrain clocks in
+ top-level properties
+Message-ID: <20231116162855.GA2435337-robh@kernel.org>
+References: <20231112184403.3449-1-krzysztof.kozlowski@linaro.org>
+ <20231112184403.3449-3-krzysztof.kozlowski@linaro.org>
+ <20231113-sultry-cold-d63dd9f015d9@squawk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231111215647.4966-3-luizluca@gmail.com>
+In-Reply-To: <20231113-sultry-cold-d63dd9f015d9@squawk>
 
-
-On Sat, 11 Nov 2023 18:51:05 -0300, Luiz Angelo Daros de Luca wrote:
-> Realtek switches can use a reset controller instead of reset-gpios.
+On Mon, Nov 13, 2023 at 01:51:30PM +0000, Conor Dooley wrote:
+> On Sun, Nov 12, 2023 at 07:44:01PM +0100, Krzysztof Kozlowski wrote:
+> > When number of clock varies between variants, the Devicetree bindings
+> > coding convention expects to have widest constraints in top-level
+> > definition of the properties and narrow them in allOf:if:then block.
+> > 
+> > This is more readable and sometimes allows to spot some errors in the
+> > bindings.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Acked-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
->  Documentation/devicetree/bindings/net/dsa/realtek.yaml | 3 +++
->  1 file changed, 3 insertions(+)
 > 
+> �cked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+  ^
 
+Not an 'A'. I only caught this because I go thru everything 
+Acked/Reviewed-by first and this one was missed.
+
+Rob
 
