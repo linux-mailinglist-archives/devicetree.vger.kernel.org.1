@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-16334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 083B47EE4F5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:09:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B977EE500
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 17:14:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95ED4B20C68
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:09:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 867B01C2081F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 16:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B798D3A8E8;
-	Thu, 16 Nov 2023 16:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F8333456D;
+	Thu, 16 Nov 2023 16:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB8CC1AD;
-	Thu, 16 Nov 2023 08:09:38 -0800 (PST)
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-581fb6f53fcso535528eaf.2;
-        Thu, 16 Nov 2023 08:09:38 -0800 (PST)
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9586193;
+	Thu, 16 Nov 2023 08:14:26 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6ce29d1db6eso1002218a34.1;
+        Thu, 16 Nov 2023 08:14:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700150978; x=1700755778;
+        d=1e100.net; s=20230601; t=1700151266; x=1700756066;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aOcig5yxgC/BK7paxQilGIUUqt33158KEtjyWWD9YNQ=;
-        b=SbMYWa7EOaB+G14I4UG3U/4T4YdhbcjMMsFLilC57W1ftQEvK4/LXgviXdl8PMuBPS
-         /kTpac5+dHIi6DrBqiiYCRu+hRApntFDkI13xrUmPLIME0gToHlFX2zSnkoOyH/ZXIhY
-         9uAA67b7ET+enjmcizY0MwCJb9VHzR+jvi/oIgIsmAdUMJ8kb9Udc9n0Bj9nfLIXCZf1
-         +Dmv4N92bSTRzPSjx6vrmBVi1JndUflsWhixEUnx2C3yZU7gCsFTO8pZqK+xZo5yUdB8
-         U9H5BrmEqt+Zz9wGg6erzQZ7nejfEScAu/ZBRF93o1Xyp4Rt9WhVpNw67U6Z0VY+S89x
-         qOQg==
-X-Gm-Message-State: AOJu0YzyaJWBnjXGrvyPAs+9cW8fckOGzix49+NiwOxyLX1LkcndlKXu
-	iLXM7VjeK4rfhi0tNF1dAw==
-X-Google-Smtp-Source: AGHT+IF+0KlzPHTSAYd8f0qoIp2VoeCx7YS9oDEEvzGxQfpBkJopgD5yuI9JsZg7rhEeaLCizK3xpA==
-X-Received: by 2002:a4a:9248:0:b0:57d:e76d:c206 with SMTP id g8-20020a4a9248000000b0057de76dc206mr16692489ooh.1.1700150978164;
-        Thu, 16 Nov 2023 08:09:38 -0800 (PST)
+        bh=uPOuAU8vMYFh38SnQyp7EHt1Qwf+rn56I3qW71141fs=;
+        b=PXRaeHWz8/nJo78qDYd+5PAM+a+QX9zTS9NXbwjVZTb11S1YXxxDO4a72uYzjqO9/+
+         ldXSYNJqgyVeHDYgveY9+OTj2wYTquZuu1cUkgbZzyh42pxgj1cr0/uXtslTe4Fh6M7f
+         2HHh6Js/LQJcvhQWJG5FxGhXPUkQ8xqcTi2zNwsMSiXhG4qV9Yzg7mIgKDJjUY5dhEi9
+         ymw4X5wUXxh/UbHN1YG/iGNIXAQfKfPk/OG5FAn7gIL2LkUsyJcmtDW1Pc1ncKWZvXJ/
+         WTO/zfJ+WYEb9Z3jZiPt2nMFFY9sJbGVsHUSI00TIra+XLd21THnLweHEFVculRFYBAd
+         ZhdQ==
+X-Gm-Message-State: AOJu0Yz0hgGXYwYSY1Vm87ezXfH3f+f8TPNcVG2lYNa+aWHmRnjMcze0
+	iGirf3lwUfS3OVIbCTFeJA==
+X-Google-Smtp-Source: AGHT+IHagwFA/Ipg+5SXMbyxN/5DDa33QMtCNElCnTRYpdPtJEU3ZSt1nVnaxpEMdf9BOCBTXSJDYw==
+X-Received: by 2002:a05:6830:2b20:b0:6c2:1ff0:b2e1 with SMTP id l32-20020a0568302b2000b006c21ff0b2e1mr1062290otv.4.1700151266031;
+        Thu, 16 Nov 2023 08:14:26 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d8-20020a4aaa88000000b0058a133c3641sm611522oon.6.2023.11.16.08.09.36
+        by smtp.gmail.com with ESMTPSA id s30-20020a056830439e00b006ce2e464a45sm952501otv.29.2023.11.16.08.14.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 08:09:37 -0800 (PST)
-Received: (nullmailer pid 2416819 invoked by uid 1000);
-	Thu, 16 Nov 2023 16:09:36 -0000
-Date: Thu, 16 Nov 2023 10:09:36 -0600
+        Thu, 16 Nov 2023 08:14:25 -0800 (PST)
+Received: (nullmailer pid 2422343 invoked by uid 1000);
+	Thu, 16 Nov 2023 16:14:24 -0000
+Date: Thu, 16 Nov 2023 10:14:24 -0600
 From: Rob Herring <robh@kernel.org>
-To: Daniel Walker <danielwa@cisco.com>
-Cc: Will Deacon <will@kernel.org>, Christophe Leroy <christophe.leroy@csgroup.eu>, Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>, Andrew Morton <akpm@linux-foundation.org>, Pratyush Brahma <quic_pbrahma@quicinc.com>, Tomas Mudrunka <tomas.mudrunka@gmail.com>, Sean Anderson <sean.anderson@seco.com>, x86@kernel.org, linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, Frank Rowand <frowand.list@gmail.com>, xe-linux-external@cisco.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/8] of: replace command line handling
-Message-ID: <20231116160936.GA2376455-robh@kernel.org>
-References: <20231110013817.2378507-1-danielwa@cisco.com>
- <20231110013817.2378507-8-danielwa@cisco.com>
+To: Linu Cherian <lcherian@marvell.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, sgoutham@marvell.com, mike.leach@linaro.org, coresight@lists.linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, suzuki.poulose@arm.com, james.clark@arm.com, gcherian@marvell.com, leo.yan@linaro.org
+Subject: Re: [PATCH v5 1/7] dt-bindings: arm: coresight-tmc: Add
+ "memory-region" property
+Message-ID: <170015126381.2422288.18051157836489485044.robh@kernel.org>
+References: <20231110112533.2499437-1-lcherian@marvell.com>
+ <20231110112533.2499437-2-lcherian@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,30 +59,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231110013817.2378507-8-danielwa@cisco.com>
+In-Reply-To: <20231110112533.2499437-2-lcherian@marvell.com>
 
-On Thu, Nov 09, 2023 at 05:38:11PM -0800, Daniel Walker wrote:
-> Rob Herring has complained about this section of code. I removed the
-> command line handling code to the cmdline.h header. This hopefully makes
-> it easier for Rob to maintain it (at least he doesn't have to look at it
-> directly anymore).
 
-Well, my goal is to eliminate drivers/of/, but no.
+On Fri, 10 Nov 2023 16:55:27 +0530, Linu Cherian wrote:
+> memory-region 0: Reserved trace buffer memory
+> 
+>   TMC ETR: When available, use this reserved memory region for
+>   trace data capture. Same region is used for trace data
+>   retention after a panic or watchdog reset.
+> 
+>   TMC ETF: When available, use this reserved memory region for
+>   trace data retention synced from internal SRAM after a panic or
+>   watchdog reset.
+> 
+> memory-region 1: Reserved meta data memory
+> 
+>   TMC ETR, ETF: When available, use this memory for register
+>   snapshot retention synced from hardware registers after a panic
+>   or watchdog reset.
+> 
+> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+> ---
+> Changelog from v4:
+> * Description is more explicit on the usage of reserved trace buffer
+>   regions
+> * Removed "mem" suffix from the memory region names
+> 
+>  .../bindings/arm/arm,coresight-tmc.yaml       | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
 
-> I would like to add a Kconfig option called
-> OF_DEPRECATED_CMDLINE which an architecture would set if it uses this code.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Which architecture needs this code? Do we wait and see who complains 
-their platform broke and then go set this option? In the meantime, new 
-platforms started depending on the new behavior and setting the option 
-may break them. So we can't have a kconfig option.
-
-> This would allow a platform to use the cmdline.h and the added function
-> directly and remove the Kconfig option. This change would be in a subsequent
-> patch.
-
-Per platform code handling the cmdline is completely the wrong 
-direction. Per arch behavior is bad enough.
-
-Rob
 
