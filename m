@@ -1,129 +1,119 @@
-Return-Path: <devicetree+bounces-16232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 061107EE117
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:10:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38C347EE12C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 14:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 431FDB20B10
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:10:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25A141C20A70
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 13:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769993065C;
-	Thu, 16 Nov 2023 13:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BE530676;
+	Thu, 16 Nov 2023 13:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YrORh9VO"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="qFHO92LD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B376E193
-	for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:10:00 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5098e423ba2so1091915e87.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Nov 2023 05:10:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1700140199; x=1700744999; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g+caM/fGFqwg+mNVYtjWtQ/3+CQtaaIeq8SYK74zbQE=;
-        b=YrORh9VOpiVZtXUyPfjBS5YRh+TqaRo9/4D7fSOl6au/cYTMIiJuOg4MJ4TjYXRlEu
-         a2uLFsnii+r5klRCiQJk9omHHLA4c6BLUUipmtBmYIWGUNlGWhz4fnwOcimAiWeOlGOf
-         OXsUu8M1HY3yVuk1i+WOawHMz4xrbAdY1L6UWBGVJxabNA7fU25oz4fYwmamY8cLaiPu
-         eg1CKmeKXgAw40XNM0NDV8OYyA9gjFGsa2ojw9JGlLS/H7TMXWXzDmFcS72zoBPtljix
-         lGZgSM7fn14uhyNg8URoBw0LTtVdB2gEhSfn0Bb87fveE4lxCyjVg1aWlS9detxm0XIQ
-         8KCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1700140199; x=1700744999;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g+caM/fGFqwg+mNVYtjWtQ/3+CQtaaIeq8SYK74zbQE=;
-        b=BfIrtOXVBT1N0kesUg30HgPUzg7/yGlOg2Rvq+18BZziIhMY8+U9sdqus6IzBndDZM
-         mkvz6Hfu9SwaVgXfb9C/UNVrp2kBatQkktGw7xB6fN0OEXVl9arPFXT1ijNwxRuIMcTr
-         JtKPO61paLCqI4URfb2DEeTsxWH07NE3BWh21y0pbBK+qn2IiiqYJb3wNHode2Psosui
-         yeU9HXDCKXYQ3dihOvt2TBK1am5vBcdQ5g49bMzk5/tVxxse0L1Yv3e0fGn/Va9lF0YI
-         nipHQ30Aj7YsxdCRxu3Qt8Q4lxmef/hY793cP1V4IVz27jwOuZiqw8dxesKTElLNlaKY
-         j/fQ==
-X-Gm-Message-State: AOJu0YyA+Hp4jawnrX+2AEWkNK6uaGpIutN2LejG1hAfTiFFkLTAkzV0
-	95coi6OzB72lVxNZ7YOovp4=
-X-Google-Smtp-Source: AGHT+IEx188eMVfx2JFN4RQ/a3OZYRbagamvEiD0/93G0nYiihguTjkmM1ueS+77Cz5i4/SKzp22nA==
-X-Received: by 2002:a05:6512:4002:b0:505:6cc7:e0f7 with SMTP id br2-20020a056512400200b005056cc7e0f7mr2343047lfb.44.1700140198822;
-        Thu, 16 Nov 2023 05:09:58 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id cw18-20020a170906c79200b0099bd7b26639sm8390652ejb.6.2023.11.16.05.09.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Nov 2023 05:09:58 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26944173B;
+	Thu, 16 Nov 2023 05:13:45 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id F2D7087489;
+	Thu, 16 Nov 2023 14:13:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1700140423;
+	bh=JaKErXtq2Ejsgf1M7Tdd/CeO0L0G9e/LK/fxVXuInDg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qFHO92LDD51AYCiU0GE1V2F2E/EBxORNCTxL9kvOcGTFttFPpbEY6oTsKP+ELM/ev
+	 58KHMJ/aRkK7FI4O6jMgRGfnFXPFQv09vDWAyupuz1+Tlw5WKhchoS2pD/DrozK8hD
+	 lOnXSgwid0ebwhOMLHHhqdUTcOzdgA+0rzZFG4Bfj8Le5/rim97Y5c/gkEHA/gTMDQ
+	 IGw9lp6JKeHawYkYYX9tBt00AeRu2Ge5kiO+IoXRwINHptUoh+NkSl68smI9n0tMeV
+	 lfcWm+27b99/+oUSkTevAyxx868va1A0TpR/OIy/eiHPPpEgKbZ8CnSS1o84qxBcGO
+	 sgVtyoT/wgNAg==
+From: Marek Vasut <marex@denx.de>
+To: linux-iio@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Sam Shih <sam.shih@mediatek.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt7986: fix SPI nodename
-Date: Thu, 16 Nov 2023 14:09:52 +0100
-Message-Id: <20231116130952.5099-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20231116130952.5099-1-zajec5@gmail.com>
-References: <20231116130952.5099-1-zajec5@gmail.com>
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	Vincent Tremblay <vincent@vtremblay.dev>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: iio: light: isl76682: Document ISL76682
+Date: Thu, 16 Nov 2023 14:13:15 +0100
+Message-ID: <20231116131329.6801-1-marex@denx.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-From: Rafał Miłecki <rafal@milecki.pl>
+The ISL76682 is very basic ALS which only supports ALS or IR mode
+in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+other fancy functionality. Document it as trivial device.
 
-This fixes following validation errors:
-arch/arm64/boot/dts/mediatek/mt7986a-rfb.dtb: spi_nand@0: $nodename:0: 'spi_nand@0' does not match '^(flash|.*sram|nand)(@.*)?$'
-        from schema $id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
-arch/arm64/boot/dts/mediatek/mt7986b-rfb.dtb: spi_nand@0: $nodename:0: 'spi_nand@0' does not match '^(flash|.*sram|nand)(@.*)?$'
-        from schema $id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
-
-Fixes: 885e153ed7c1 ("arm64: dts: mt7986: add spi related device nodes")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 3 ++-
- arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Andre Werner <andre.werner@systec-electronic.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>
+Cc: Vincent Tremblay <vincent@vtremblay.dev>
+Cc: devicetree@vger.kernel.org
+Cc: linux-iio@vger.kernel.org
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-index bcb3ebb85d70..2f884c24f1eb 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-@@ -237,7 +237,8 @@ &spi0 {
- 	pinctrl-0 = <&spi_flash_pins>;
- 	cs-gpios = <0>, <0>;
- 	status = "okay";
--	spi_nand: spi_nand@0 {
-+
-+	spi_nand: flash@0 {
- 		compatible = "spi-nand";
- 		reg = <0>;
- 		spi-max-frequency = <10000000>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-index 48fe50e67177..57dcaeef31d7 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-@@ -152,7 +152,8 @@ &spi0 {
- 	pinctrl-0 = <&spi_flash_pins>;
- 	cs-gpios = <0>, <0>;
- 	status = "okay";
--	spi_nand: spi_nand@0 {
-+
-+	spi_nand: flash@0 {
- 		compatible = "spi-nand";
- 		reg = <0>;
- 		spi-max-frequency = <10000000>;
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index c3190f2a168a2..27164e9219276 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -179,6 +179,8 @@ properties:
+           - isil,isl29030
+             # Intersil ISL68137 Digital Output Configurable PWM Controller
+           - isil,isl68137
++            # Intersil ISL76682 Ambient Light Sensor
++          - isil,isl76682
+             # Linear Technology LTC2488
+           - lineartechnology,ltc2488
+             # 5 Bit Programmable, Pulse-Width Modulator
 -- 
-2.35.3
+2.42.0
 
 
