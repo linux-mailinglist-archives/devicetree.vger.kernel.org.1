@@ -1,134 +1,82 @@
-Return-Path: <devicetree+bounces-16383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-16384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF91C7EE6E1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:39:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0AD07EE6EE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 19:42:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79955281138
-	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:39:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 785D71F260A9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Nov 2023 18:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E9B2596;
-	Thu, 16 Nov 2023 18:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="amdREPg/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B5361DA4A;
+	Thu, 16 Nov 2023 18:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dkim=none
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6DEF1A7;
-	Thu, 16 Nov 2023 10:39:45 -0800 (PST)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3AGHtcZD014734;
-	Thu, 16 Nov 2023 18:39:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=X6oPfkHxe/YCx9FsY+hafUep44il5oQO9yswemvtjj8=;
- b=amdREPg/jCilXxBeYfKMriql2xZTY4FgxT/myLNYPJcIvuV+jMdZ4SR7+pbH7d9JaMYW
- 2EeFgb7/ygrg9lu44SBCoNAM6ZsPnF7xKQcoTk2Z0Tt0Uom73Mtxu2fnuTORNbZv/H1/
- Zj5dAl7AWa8eoV027sl/jDte2o3WfC2gMprXPuqIbwCxAH0U7R0NHnOUY3obvzL+evew
- HX8T7K3gLthTDzilAnzaTbT0CyryPxl7hIPq6Ns+VnyT6X/9CEZIiPAc57MWY0jaOu2o
- D0RXoolr8ku8MCPF8zU6FlVMfst18o8DNRyUlSyDmx4q2yCYXyXIGSRxHb2/bwJdqwtp MQ== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3udeww9dna-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Nov 2023 18:39:42 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3AGIdcGu018671;
-	Thu, 16 Nov 2023 18:39:38 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3ua2pmjsx2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 16 Nov 2023 18:39:38 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3AGIdbZc018665;
-	Thu, 16 Nov 2023 18:39:37 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-vdadhani-hyd.qualcomm.com [10.213.106.28])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3AGIdbqv018663;
-	Thu, 16 Nov 2023 18:39:37 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4047106)
-	id E98265001D9; Fri, 17 Nov 2023 00:09:36 +0530 (+0530)
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-sm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: vnivarth@quicinc.com, msavaliy@quicinc.com, vtanuku@quicinc.com,
-        cchiluve@quicinc.com, dkammath@quicinc.com,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [PATCH 1/1] arm64: dts: qcom: sc7280: add slimbus DT node
-Date: Fri, 17 Nov 2023 00:09:09 +0530
-Message-Id: <20231116183909.32179-1-quic_vdadhani@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Zr8Urot-si1W6OXq_rMpvCI1CdoPjccU
-X-Proofpoint-GUID: Zr8Urot-si1W6OXq_rMpvCI1CdoPjccU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.987,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-11-16_19,2023-11-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 mlxscore=0 adultscore=0 mlxlogscore=476 phishscore=0
- clxscore=1011 impostorscore=0 bulkscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2311160147
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E75D51;
+	Thu, 16 Nov 2023 10:42:02 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6d30d9f4549so625473a34.0;
+        Thu, 16 Nov 2023 10:42:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1700160121; x=1700764921;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xkWTQOIyVpOfLdSmjxQe+ZEyWYh6CEVKH0sUokEYmis=;
+        b=kk52Ys/WPMMQyh1GEE4BZH35jJCpOsD49gp8nHKqVyC45kShSqecbDuILfPo4uLeDu
+         yvWg5NQjGfuGFPo0DtubSx3yPmMkG2mQk2ZNOpfXW0oWqnjXKjwLQ7BtJoPimUx6kx3/
+         EyNw9iadcSAXQWvUxeKJvG8jGrDsRGrDfc5CeP2v5D9Dz7wDVRIJpeuDGl+4tFfvbqTF
+         MnxD83j2qOYBN3CNi48RQYdWX46WcYT3unt5uASJzUDAlWDx2QPa+bv9m9UNZN5wiUL9
+         YCQ9MUSNHgVnBGKQnBGySmpgmD3x8fFy62k2K8IEcPo+vF8TLYAKLu6DaLG9r0ruZuh1
+         m5XA==
+X-Gm-Message-State: AOJu0Yw/JaKu0RjzZGIHc08cPBgG4Zm7CAr99h+mwGdNbEk+wSHjbEse
+	S/Ty5qeaQ2vg0tdklOoHVA==
+X-Google-Smtp-Source: AGHT+IHpLDFf/BevPQYjKNzthluo2+W8QR5uIN8SPGvSIJTeV7vcKNQsUuWQcBz9PkynNh2NxdIIEw==
+X-Received: by 2002:a05:6830:cc:b0:6ce:267b:d409 with SMTP id x12-20020a05683000cc00b006ce267bd409mr9992998oto.13.1700160121336;
+        Thu, 16 Nov 2023 10:42:01 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r42-20020a05683044aa00b006c4d822bea7sm998466otv.31.2023.11.16.10.41.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Nov 2023 10:42:00 -0800 (PST)
+Received: (nullmailer pid 2821189 invoked by uid 1000);
+	Thu, 16 Nov 2023 18:41:59 -0000
+Date: Thu, 16 Nov 2023 12:41:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Russell King <linux@armlinux.org.uk>, Rob Herring <robh+dt@kernel.org>, Gregory Clement <gregory.clement@bootlin.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, Christian Marangi <ansuelsmth@gmail.com>, Eric Dumazet <edumazet@google.com>, Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>, linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH net-next v8 6/9] dt-bindings: net: ethernet-switch:
+ Accept special variants
+Message-ID: <170016011897.2821150.13183612616201132930.robh@kernel.org>
+References: <20231114-marvell-88e6152-wan-led-v8-0-50688741691b@linaro.org>
+ <20231114-marvell-88e6152-wan-led-v8-6-50688741691b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231114-marvell-88e6152-wan-led-v8-6-50688741691b@linaro.org>
 
-Add slimbus DT node to enable slimbus usecase on Bluetooth
-for audio streaming and playback.
 
-Based on requirement, client team can enable slimbus node
-on target specific dt file.
+On Tue, 14 Nov 2023 00:36:01 +0100, Linus Walleij wrote:
+> Accept special node naming variants for Marvell switches with
+> special node names as ABI.
+> 
+> This is maybe not the prettiest but it avoids special-casing
+> the Marvell MV88E6xxx bindings by copying a lot of generic
+> binding code down into that one binding just to special-case
+> these unfixable nodes.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../devicetree/bindings/net/ethernet-switch.yaml   | 23 +++++++++++++++++++---
+>  1 file changed, 20 insertions(+), 3 deletions(-)
+> 
 
-Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 04bf85b0399a..fba352504f3f 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2528,6 +2528,31 @@
- 			status = "disabled";
- 		};
- 
-+		slimbam: dma-controller@3a84000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0x0 0x03a84000 0x0 0x20000>;
-+			#dma-cells = <1>;
-+			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-+			qcom,controlled-remotely;
-+			num-channels  = <31>;
-+			qcom,ee = <1>;
-+			qcom,num-ees = <2>;
-+			iommus = <&apps_smmu 0x1826 0x0>;
-+			status = "disabled";
-+		};
-+
-+		slim_msm: slim-ngd@3ac0000 {
-+			compatible = "qcom,slim-ngd-v1.5.0";
-+			reg = <0x0 0x03ac0000 0x0 0x2c000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&slimbam 3>, <&slimbam 4>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x1826 0x0>;
-+			status = "disabled";
-+		};
-+
- 		lpass_hm: clock-controller@3c00000 {
- 			compatible = "qcom,sc7280-lpasshm";
- 			reg = <0 0x03c00000 0 0x28>;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
